@@ -3,14 +3,14 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
-    "generate-metadata": true
-    "generate-test": false
-    "add-credentials": false
-    "azure-sdk-for-js": false
-    "is-typespec-test": true
+    generate-metadata: true
+    generate-test: false
+    add-credentials: false
+    azure-sdk-for-js: false
+    is-typespec-test: true
     title: MultipleParamInServerPathClient
-    "is-modular-library": true
-    "hierarchy-client": false
-    "package-details":
-      name: "@msinternal/multipleparam"
+    is-modular-library: true
+    hierarchy-client: false
+    package-details:
+      name: "@unbranded/multipleparam"
       description: "MultipleParameter Test Service"

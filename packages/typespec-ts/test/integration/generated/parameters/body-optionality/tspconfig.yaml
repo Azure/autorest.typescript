@@ -3,11 +3,11 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
-    "generate-metadata": true
-    "generate-test": false
-    "add-credentials": false
-    "azure-sdk-for-js": false
-    "enable-operation-group": true
-    "is-typespec-test": true
-    "package-details":
-      name: "@msinternal/collectionFormat"
+    generate-metadata: true
+    generate-test: false
+    add-credentials: false
+    is-modular-library: false
+    enable-operation-group: true
+    is-typespec-test: true
+    package-details:
+      name: "@unbranded/collectionFormat"

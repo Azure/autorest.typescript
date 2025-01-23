@@ -3,12 +3,12 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
-    generateTest: true
-    addCredentials: false
+    generate-test: true
+    add-credentials: false
     flavor: azure
-    azureSdkForJs: false
-    isTypeSpecTest: true
+    azure-sdk-for-js: false
+    is-typespec-test: true
     title: RoutesClient
-    packageDetails:
+    package-details:
       name: "@msinternal/routes"
       description: "Routes Test Service"

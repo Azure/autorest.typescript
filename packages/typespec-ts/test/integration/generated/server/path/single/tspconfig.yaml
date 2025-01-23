@@ -3,12 +3,12 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
-    "generate-metadata": true
-    "generate-test": false
-    "add-credentials": false
-    "azure-sdk-for-js": false
-    "is-typespec-test": true
+    generate-metadata: true
+    generate-test: false
+    add-credentials: false
+    is-modular-library: false
+    is-typespec-test: true
     title: SingleParamInServerPathClient
-    "package-details":
-      name: "@msinternal/singleparam"
+    package-details:
+      name: "@unbranded/singleparam"
       description: "SingleParameter Test Service"

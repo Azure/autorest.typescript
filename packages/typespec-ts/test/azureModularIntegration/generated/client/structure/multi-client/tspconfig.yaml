@@ -3,14 +3,14 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
-    "generate-metadata": true
-    "generate-test": false
-    "add-credentials": false
-    "azure-sdk-for-js": false
-    "is-typespec-test": true
-    "is-modular-library": true
-    "hierarchy-client": false
-    "package-details":
+    generate-metadata: true
+    generate-test: false
+    add-credentials: false
+    azure-sdk-for-js: false
+    is-typespec-test: true
+    is-modular-library: true
+    hierarchy-client: false
+    package-details:
       name: "@msinternal/client-structure-multiclient"
       description: "Client Structure MultiClient Test Service"
       version: "1.0.0"

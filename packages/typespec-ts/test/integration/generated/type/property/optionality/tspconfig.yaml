@@ -3,13 +3,13 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
-    "generate-metadata": true
-    "generate-test": false
-    "add-credentials": false
-    "azure-sdk-for-js": false
-    "is-typespec-test": true
-    "enable-operation-group": true
-    "package-details":
-      name: "@msinternal/optional-property"
+    generate-metadata: true
+    generate-test: false
+    add-credentials: false
+    is-modular-library: false
+    is-typespec-test: true
+    enable-operation-group: true
+    package-details:
+      name: "@unbranded/optional-property"
       description: "Optional Property Test Service"
       version: "1.0.0"

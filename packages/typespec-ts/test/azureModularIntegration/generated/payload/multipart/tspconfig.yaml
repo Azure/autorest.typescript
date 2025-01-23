@@ -3,12 +3,12 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
-    generateMetadata: true
-    generateTest: false
-    addCredentials: false
-    isTypeSpecTest: true
+    generate-metadata: true
+    generate-test: false
+    add-credentials: false
+    is-typespec-test: true
     flavor: azure
-    isModularLibrary: true
-    packageDetails:
+    is-modular-library: true
+    package-details:
       name: "@msinternal/payload-multipart"
       description: "Payload Multipart Test Service"

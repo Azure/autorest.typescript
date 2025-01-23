@@ -3,13 +3,13 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
-    "generate-metadata": true
-    "generate-test": false
-    "add-credentials": false
-    "azure-sdk-for-js": false
-    "is-typespec-test": true
+    generate-metadata: true
+    generate-test: false
+    add-credentials: false
+    azure-sdk-for-js: false
+    is-typespec-test: true
     title: ServiceDrivenNewClient
-    "package-details":
+    package-details:
       name: "@msinternal/srv-driven-main"
       description: "Srv Driven Main Test Service"
       version: "1.0.0"

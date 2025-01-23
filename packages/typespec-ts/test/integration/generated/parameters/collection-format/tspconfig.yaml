@@ -3,14 +3,14 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
-    "generate-metadata": true
-    "generate-test": false
-    "add-credentials": false
-    "azure-sdk-for-js": false
-    "enable-operation-group": true
-    "compatibility-query-multi-format": true
-    "is-typespec-test": true
+    generate-metadata: true
+    generate-test: false
+    add-credentials: false
+    is-modular-library: false
+    enable-operation-group: true
+    compatibility-query-multi-format: true
+    is-typespec-test: true
     title: CollectionFormatClient
-    "package-details":
-      name: "@msinternal/collectionFormat"
+    package-details:
+      name: "@unbranded/collectionFormat"
       description: "CollectionFormat Test Service"

@@ -3,12 +3,12 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
-    "generate-metadata": true
-    "generate-test": true
-    "azure-sdk-for-js": false
-    "is-typespec-test": true
+    generate-metadata: true
+    generate-test: true
+    is-modular-library: false
+    is-typespec-test: true
     title: AuthUnionClient
-    "package-details":
-      name: "@msinternal/auth-union"
+    package-details:
+      name: "@unbranded/auth-union"
       description: "Auth Union Test Service"
       version: "1.0.0"

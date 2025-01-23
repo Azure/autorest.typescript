@@ -3,12 +3,12 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
-    generateMetadata: true
-    generateTest: false
-    addCredentials: false
+    generate-metadata: true
+    generate-test: false
+    add-credentials: false
     flavor: azure
-    azureSdkForJs: false
-    isTypeSpecTest: true
+    azure-sdk-for-js: false
+    is-typespec-test: true
     title: MediaTypesClient
-    packageDetails:
+    package-details:
       name: "@msinternal/media-types"

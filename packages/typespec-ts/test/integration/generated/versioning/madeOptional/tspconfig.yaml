@@ -3,12 +3,12 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
-    "generate-test": false
-    "add-credentials": false
-    "azure-sdk-for-js": false
-    "is-typespec-test": true
-    "generate-sample": true
+    generate-test: false
+    add-credentials: false
+    is-modular-library: false
+    is-typespec-test: true
+    generate-sample: true
     title: VersioningMadeOptionalClient
-    "package-details":
-      name: "@msinternal/versioning-madeOptional"
+    package-details:
+      name: "@unbranded/versioning-madeOptional"
       description: "Versioning MadeOptional Service"

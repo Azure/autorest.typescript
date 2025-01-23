@@ -3,13 +3,13 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
-    generateMetadata: true
-    generateTest: false
-    addCredentials: false
+    generate-metadata: true
+    generate-test: false
+    add-credentials: false
     flavor: azure
-    azureSdkForJs: false
-    isTypeSpecTest: true
-    isModularLibrary: true
-    packageDetails:
+    azure-sdk-for-js: false
+    is-typespec-test: true
+    is-modular-library: true
+    package-details:
       name: "@msinternal/payload-pageable"
       description: "Azure payload Pageable Test Service"

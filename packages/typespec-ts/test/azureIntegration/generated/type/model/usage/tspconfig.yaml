@@ -3,12 +3,12 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
-    "generate-metadata": true
-    "generate-test": false
-    "add-credentials": false
-    "is-typespec-test": true
-    branded: false
-    "package-details":
+    generate-metadata: true
+    generate-test: false
+    add-credentials: false
+    flavor: azure
+    is-typespec-test: true
+    package-details:
       name: "@msinternal/usage"
       description: "Usage Test Service"
       version: "1.0.0"

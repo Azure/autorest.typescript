@@ -3,10 +3,10 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
-    "generate-metadata": true
-    "add-credentials": false
-    "azure-sdk-for-js": false
-    "is-typespec-test": true
-    "enable-operation-group": true
-    "package-details":
-      name: "@msinternal/encode-numeric"
+    generate-metadata: true
+    add-credentials: false
+    is-modular-library: false
+    is-typespec-test: true
+    enable-operation-group: true
+    package-details:
+      name: "@unbranded/encode-numeric"
