@@ -69,6 +69,7 @@ export interface EmitterOptions {
   "ignore-property-name-normalize"?: boolean;
   "compatibility-query-multi-format"?: boolean;
   branded?: boolean;
+  "typespec-title-map"?: Record<string, string>;
 }
 
 export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
