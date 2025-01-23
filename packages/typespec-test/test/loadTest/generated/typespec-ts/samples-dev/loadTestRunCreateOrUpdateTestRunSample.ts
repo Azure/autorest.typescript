@@ -5,16 +5,14 @@ import { DefaultAzureCredential } from "@azure/identity";
 import createAzureLoadTestingClient, {
   getLongRunningPoller,
 } from "@azure-rest/load-testing";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation CreateOrUpdateTestRun
  *
  * @summary call operation CreateOrUpdateTestRun
  */
-async function loadTestRunCreateOrUpdateTestRunSample() {
+async function loadTestRunCreateOrUpdateTestRunSample(): Promise<void> {
   const endpointParam = "{Your endpointParam}";
   const credential = new DefaultAzureCredential();
   const client = createAzureLoadTestingClient(endpointParam, credential);
@@ -65,7 +63,7 @@ async function loadTestRunCreateOrUpdateTestRunSample() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await loadTestRunCreateOrUpdateTestRunSample();
 }
 
