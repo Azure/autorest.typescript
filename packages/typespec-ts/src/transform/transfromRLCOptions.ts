@@ -91,7 +91,7 @@ function extractRLCOptions(
     emitterOptions["ignore-property-name-normalize"];
   const compatibilityQueryMultiFormat =
     emitterOptions["compatibility-query-multi-format"];
-  const typespecTitleMap = emitterOptions["typespec-title-map"];
+  // const typespecTitleMap = emitterOptions["typespec-title-map"];
 
   return {
     ...credentialInfo,
@@ -121,7 +121,7 @@ function extractRLCOptions(
     experimentalExtensibleEnums,
     ignorePropertyNameNormalize,
     compatibilityQueryMultiFormat,
-    typespecTitleMap
+    // typespecTitleMap
   };
 }
 
@@ -355,7 +355,7 @@ function getAzureSdkForJs(emitterOptions: EmitterOptions) {
   return emitterOptions.flavor !== "azure"
     ? false
     : emitterOptions["azure-sdk-for-js"] === undefined ||
-        emitterOptions["azure-sdk-for-js"] === null
+      emitterOptions["azure-sdk-for-js"] === null
       ? true
       : Boolean(emitterOptions["azure-sdk-for-js"]);
 }
