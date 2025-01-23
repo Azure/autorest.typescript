@@ -3,13 +3,13 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     title: ContentSafety Service
-    "generate-metadata": true
-    "generate-test": false
-    "azure-sdk-for-js": false
-    "is-modular-library": true
-    "hierarchy-client": false
+    generate-metadata: true
+    generate-test: false
+    azure-sdk-for-js: false
+    is-modular-library: true
+    hierarchy-client: false
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
-    "package-details":
+    package-details:
       name: "@azure-rest/ai-content-safety"
       version: "1.0.0"
       description: "ContentSafety Service"

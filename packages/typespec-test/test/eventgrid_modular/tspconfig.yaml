@@ -3,11 +3,11 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     title: EventGrid Service
-    "generate-metadata": true
-    "azure-sdk-for-js": false
-    "is-modular-library": true
+    generate-metadata: true
+    azure-sdk-for-js: false
+    is-modular-library: true
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
-    "package-details":
+    package-details:
       name: "@msinternal/eventgrid"
       description: "Azure EventGrid"
       version: "1.0.0-beta.1"

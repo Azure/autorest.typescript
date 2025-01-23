@@ -3,13 +3,13 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     title: Batch Service
-    "generate-metadata": true
-    "generate-test": true
-    "azure-sdk-for-js": false
-    "is-modular-library": true
-    "hierarchy-client": false
+    generate-metadata: true
+    generate-test: true
+    azure-sdk-for-js: false
+    is-modular-library: true
+    hierarchy-client: false
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
-    "package-details":
+    package-details:
       name: "@azure-rest/batch"
       description: "Batch Service"
       version: "1.0.0-beta.1"

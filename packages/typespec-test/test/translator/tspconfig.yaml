@@ -3,10 +3,10 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
-    "generate-metadata": true
-    "generate-test": true
-    "azure-sdk-for-js": false
-    "compatibility-query-multi-format": true
-    "package-details":
+    generate-metadata: true
+    generate-test: true
+    azure-sdk-for-js: false
+    compatibility-query-multi-format: true
+    package-details:
       name: "@azure-rest/cognitiveservices-translator"
       description: "Microsoft Translator Service"

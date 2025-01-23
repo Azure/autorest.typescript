@@ -6,7 +6,7 @@ options:
     "emitter-output-dir": "{project-root}/generated/openapi"
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
-    "azure-sdk-for-js": false
-    "package-details":
+    azure-sdk-for-js: false
+    package-details:
       name: "@azure-rest/contosowidgetmanager-rest"
       description: "Contoso WidgetManager Service"

@@ -3,11 +3,11 @@ emit:
   - "@azure-tools/typespec-autorest"
 options:
   "@azure-tools/typespec-ts":
-    "azure-sdk-for-js": false
-    "generate-metadata": true
-    "generate-test": false
+    azure-sdk-for-js: false
+    generate-metadata: true
+    generate-test: false
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
-    "package-details":
+    package-details:
       name: "@msinternal/confidential-ledger"
       description: "Confidential Ledger Service"
   "@azure-tools/typespec-autorest":
