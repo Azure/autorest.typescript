@@ -68,11 +68,7 @@ import { buildApiOptions } from "./modular/emitModelsOptions.js";
 import { buildOperationFiles } from "./modular/buildOperations.js";
 import { buildRestorePoller } from "./modular/buildRestorePoller.js";
 import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
-import {
-  createSdkContext,
-  SdkClientType,
-  SdkServiceOperation
-} from "@azure-tools/typespec-client-generator-core";
+import { createSdkContext, SdkClientType, SdkServiceOperation } from "@azure-tools/typespec-client-generator-core";
 import { transformModularEmitterOptions } from "./modular/buildModularOptions.js";
 import { emitLoggerFile } from "./modular/emitLoggerFile.js";
 import { emitTypes } from "./modular/emitModels.js";

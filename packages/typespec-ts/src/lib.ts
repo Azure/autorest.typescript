@@ -152,7 +152,7 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
     "clear-output-folder": { type: "boolean", nullable: true },
     "ignore-property-name-normalize": { type: "boolean", nullable: true },
     "compatibility-query-multi-format": { type: "boolean", nullable: true },
-    typespecTitleMap: {
+    "typespec-title-map": {
       type: "object",
       additionalProperties: {
         type: "string"

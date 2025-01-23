@@ -91,6 +91,7 @@ function extractRLCOptions(
     emitterOptions["ignore-property-name-normalize"];
   const compatibilityQueryMultiFormat =
     emitterOptions["compatibility-query-multi-format"];
+  const typespecTitleMap = emitterOptions["typespec-title-map"];
 
   return {
     ...credentialInfo,
@@ -119,7 +120,8 @@ function extractRLCOptions(
     compatibilityMode,
     experimentalExtensibleEnums,
     ignorePropertyNameNormalize,
-    compatibilityQueryMultiFormat
+    compatibilityQueryMultiFormat,
+    typespecTitleMap
   };
 }
 
