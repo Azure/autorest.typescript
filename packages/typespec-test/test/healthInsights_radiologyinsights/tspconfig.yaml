@@ -6,6 +6,6 @@ options:
     generate-sample: true
     azure-sdk-for-js: false
     is-modular-library: true
-    "emitter-output-dir": "{project-root}/generated/typespec-ts"
+    emitter-output-dir: "{project-root}/generated/typespec-ts"
     package-details:
       name: "@azure-rest/health-insights-radiologyinsights"

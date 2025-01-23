@@ -6,9 +6,9 @@ options:
     is-modular-library: true
     generate-metadata: true
     azure-sdk-for-js: false
-    "emitter-output-dir": "{project-root}/generated/typespec-ts"
+    emitter-output-dir: "{project-root}/generated/typespec-ts"
     package-details:
       name: "@msinternal/spread"
   "@typespec/openapi3":
-    "emitter-output-dir": "{project-root}/generated/openapi"
+    emitter-output-dir: "{project-root}/generated/openapi"
     "file-type": "json"

@@ -13,4 +13,4 @@ options:
       description: "A generated SDK for AnomalyDetectorRest."
       version: "1.0.0-beta.1"
   "@azure-tools/typespec-autorest":
-    "emitter-output-dir": "{project-root}/generated/openapi"
+    emitter-output-dir: "{project-root}/generated/openapi"

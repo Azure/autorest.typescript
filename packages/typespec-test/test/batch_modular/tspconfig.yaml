@@ -8,7 +8,7 @@ options:
     azure-sdk-for-js: false
     is-modular-library: true
     hierarchy-client: false
-    "emitter-output-dir": "{project-root}/generated/typespec-ts"
+    emitter-output-dir: "{project-root}/generated/typespec-ts"
     package-details:
       name: "@azure-rest/batch"
       description: "Batch Service"

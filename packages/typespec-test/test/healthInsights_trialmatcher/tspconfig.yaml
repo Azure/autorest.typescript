@@ -25,7 +25,7 @@ options:
     generate-test: true
     generate-sample: true
     azure-sdk-for-js: false
-    "emitter-output-dir": "{project-root}/generated/typespec-ts"
+    emitter-output-dir: "{project-root}/generated/typespec-ts"
     package-details:
       name: "@azure-rest/health-insights-clinicalmatching"
       description: "Azure Health Insights ClinicalMatching"

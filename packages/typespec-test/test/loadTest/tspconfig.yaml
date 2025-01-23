@@ -17,7 +17,7 @@ options:
   #   azure-resource-provider-folder: "data-plane"
   #   examples-directory: ./examples
   "@azure-tools/typespec-ts":
-    "emitter-output-dir": "{project-root}/generated/typespec-ts"
+    emitter-output-dir: "{project-root}/generated/typespec-ts"
     title: Azure Load Testing
     description: Azure Load Testing Client
     generate-metadata: true
@@ -30,4 +30,4 @@ options:
       description: "This package contains Microsoft Azure LoadTestingClient client library."
       version: 1.0.1
   # "@azure-tools/typespec-autorest":
-  #   "emitter-output-dir": "{project-root}/generated/openapi"
+  #   emitter-output-dir: "{project-root}/generated/openapi"

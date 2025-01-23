@@ -8,6 +8,6 @@ options:
     azure-sdk-for-js: false
     is-modular-library: true
     hierarchy-client: false
-    "emitter-output-dir": "{project-root}"
+    emitter-output-dir: "{project-root}"
     package-details:
       name: "@msinternal/modular-model-empty"

@@ -4,11 +4,12 @@ options:
   "@azure-tools/typespec-ts":
     generate-metadata: true
     generate-test: false
+    flavor: azure
     azure-sdk-for-js: false
     is-modular-library: true
     hierarchy-client: false
     generate-sample: true
     examples-directory: "../../../../../../temp/http/azure/example/basic/examples"
-    "emitter-output-dir": "{project-root}"
+    emitter-output-dir: "{project-root}"
     package-details:
       name: "@msinternal/example"
