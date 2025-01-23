@@ -42,7 +42,7 @@ async function getVmssPublicIP() {
 }
 
 async function main() {
-  getVmssPublicIP();
+  await getVmssPublicIP();
 }
 
 main().catch(console.error);

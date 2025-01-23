@@ -91,7 +91,7 @@ async function subFoo() {
 }
 
 async function main() {
-  subFoo();
+  await subFoo();
 }
 
 main().catch(console.error);

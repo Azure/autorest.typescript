@@ -38,7 +38,7 @@ async function keyVaultListPrivateEndpointConnection() {
 }
 
 async function main() {
-  keyVaultListPrivateEndpointConnection();
+  await keyVaultListPrivateEndpointConnection();
 }
 
 main().catch(console.error);

@@ -39,7 +39,7 @@ async function updateIPGroups() {
 }
 
 async function main() {
-  updateIPGroups();
+  await updateIPGroups();
 }
 
 main().catch(console.error);

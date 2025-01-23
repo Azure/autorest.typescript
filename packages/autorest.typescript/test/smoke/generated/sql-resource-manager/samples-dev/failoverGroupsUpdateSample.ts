@@ -50,7 +50,7 @@ async function updateFailoverGroup() {
 }
 
 async function main() {
-  updateFailoverGroup();
+  await updateFailoverGroup();
 }
 
 main().catch(console.error);

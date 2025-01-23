@@ -43,7 +43,7 @@ async function getTheLongTermRetentionBackup() {
 }
 
 async function main() {
-  getTheLongTermRetentionBackup();
+  await getTheLongTermRetentionBackup();
 }
 
 main().catch(console.error);

@@ -31,7 +31,7 @@ async function listFileServices() {
 }
 
 async function main() {
-  listFileServices();
+  await listFileServices();
 }
 
 main().catch(console.error);

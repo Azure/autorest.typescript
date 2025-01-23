@@ -34,7 +34,7 @@ async function deleteADiskEncryptionSet() {
 }
 
 async function main() {
-  deleteADiskEncryptionSet();
+  await deleteADiskEncryptionSet();
 }
 
 main().catch(console.error);

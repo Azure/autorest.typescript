@@ -50,7 +50,7 @@ async function createOrUpdateTheLongTermRetentionPolicyForTheDatabase() {
 }
 
 async function main() {
-  createOrUpdateTheLongTermRetentionPolicyForTheDatabase();
+  await createOrUpdateTheLongTermRetentionPolicyForTheDatabase();
 }
 
 main().catch(console.error);

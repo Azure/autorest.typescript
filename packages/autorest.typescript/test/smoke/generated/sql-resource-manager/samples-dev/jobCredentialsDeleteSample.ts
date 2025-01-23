@@ -39,7 +39,7 @@ async function deleteACredential() {
 }
 
 async function main() {
-  deleteACredential();
+  await deleteACredential();
 }
 
 main().catch(console.error);

@@ -41,7 +41,7 @@ async function updateScmAllowed() {
 }
 
 async function main() {
-  updateScmAllowed();
+  await updateScmAllowed();
 }
 
 main().catch(console.error);

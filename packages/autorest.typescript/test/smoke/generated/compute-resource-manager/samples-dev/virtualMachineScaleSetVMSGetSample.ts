@@ -36,7 +36,7 @@ async function getVMScaleSetVMWithUserData() {
 }
 
 async function main() {
-  getVMScaleSetVMWithUserData();
+  await getVMScaleSetVMWithUserData();
 }
 
 main().catch(console.error);

@@ -34,7 +34,7 @@ async function getFileServices() {
 }
 
 async function main() {
-  getFileServices();
+  await getFileServices();
 }
 
 main().catch(console.error);

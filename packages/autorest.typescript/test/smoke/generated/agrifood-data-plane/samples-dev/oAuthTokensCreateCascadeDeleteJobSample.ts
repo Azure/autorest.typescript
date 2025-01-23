@@ -34,7 +34,7 @@ async function oAuthTokensCreateCascadeDeleteJob() {
 }
 
 async function main() {
-  oAuthTokensCreateCascadeDeleteJob();
+  await oAuthTokensCreateCascadeDeleteJob();
 }
 
 main().catch(console.error);

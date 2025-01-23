@@ -71,8 +71,8 @@ async function listAppSlotDetectors() {
 }
 
 async function main() {
-  listAppDetectors();
-  listAppSlotDetectors();
+  await listAppDetectors();
+  await listAppSlotDetectors();
 }
 
 main().catch(console.error);

@@ -42,7 +42,7 @@ async function createOrUpdateSubscriptionNetworkManagerConnection() {
 }
 
 async function main() {
-  createOrUpdateSubscriptionNetworkManagerConnection();
+  await createOrUpdateSubscriptionNetworkManagerConnection();
 }
 
 main().catch(console.error);

@@ -37,7 +37,7 @@ async function deleteAStaticSiteBuild() {
 }
 
 async function main() {
-  deleteAStaticSiteBuild();
+  await deleteAStaticSiteBuild();
 }
 
 main().catch(console.error);

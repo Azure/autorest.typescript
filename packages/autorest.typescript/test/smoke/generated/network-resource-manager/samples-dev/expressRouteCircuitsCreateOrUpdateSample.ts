@@ -87,8 +87,8 @@ async function createExpressRouteCircuitOnExpressRoutePort() {
 }
 
 async function main() {
-  createExpressRouteCircuit();
-  createExpressRouteCircuitOnExpressRoutePort();
+  await createExpressRouteCircuit();
+  await createExpressRouteCircuitOnExpressRoutePort();
 }
 
 main().catch(console.error);

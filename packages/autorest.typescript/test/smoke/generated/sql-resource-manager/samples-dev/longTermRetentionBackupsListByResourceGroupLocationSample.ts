@@ -39,7 +39,7 @@ async function getAllLongTermRetentionBackupsUnderTheLocation() {
 }
 
 async function main() {
-  getAllLongTermRetentionBackupsUnderTheLocation();
+  await getAllLongTermRetentionBackupsUnderTheLocation();
 }
 
 main().catch(console.error);

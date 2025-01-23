@@ -25,7 +25,7 @@ async function loadTestAdministrationGetTestFileSample() {
 }
 
 async function main() {
-  loadTestAdministrationGetTestFileSample();
+  await loadTestAdministrationGetTestFileSample();
 }
 
 main().catch(console.error);

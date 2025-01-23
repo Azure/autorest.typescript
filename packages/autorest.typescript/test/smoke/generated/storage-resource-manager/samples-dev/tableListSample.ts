@@ -37,7 +37,7 @@ async function tableOperationList() {
 }
 
 async function main() {
-  tableOperationList();
+  await tableOperationList();
 }
 
 main().catch(console.error);

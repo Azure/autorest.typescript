@@ -36,7 +36,7 @@ async function listInstancePoolsByResourceGroup() {
 }
 
 async function main() {
-  listInstancePoolsByResourceGroup();
+  await listInstancePoolsByResourceGroup();
 }
 
 main().catch(console.error);

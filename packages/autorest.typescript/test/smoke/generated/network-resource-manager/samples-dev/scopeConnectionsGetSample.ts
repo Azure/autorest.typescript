@@ -37,7 +37,7 @@ async function getNetworkManagerScopeConnection() {
 }
 
 async function main() {
-  getNetworkManagerScopeConnection();
+  await getNetworkManagerScopeConnection();
 }
 
 main().catch(console.error);

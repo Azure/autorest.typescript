@@ -38,7 +38,7 @@ async function getAListOfPrivateEndpointConnectionsAssociatedWithASite() {
 }
 
 async function main() {
-  getAListOfPrivateEndpointConnectionsAssociatedWithASite();
+  await getAListOfPrivateEndpointConnectionsAssociatedWithASite();
 }
 
 main().catch(console.error);

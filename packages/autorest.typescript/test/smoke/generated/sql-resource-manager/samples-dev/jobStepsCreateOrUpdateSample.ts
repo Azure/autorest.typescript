@@ -102,8 +102,8 @@ async function createOrUpdateAJobStepWithMinimalPropertiesSpecified() {
 }
 
 async function main() {
-  createOrUpdateAJobStepWithAllPropertiesSpecified();
-  createOrUpdateAJobStepWithMinimalPropertiesSpecified();
+  await createOrUpdateAJobStepWithAllPropertiesSpecified();
+  await createOrUpdateAJobStepWithMinimalPropertiesSpecified();
 }
 
 main().catch(console.error);

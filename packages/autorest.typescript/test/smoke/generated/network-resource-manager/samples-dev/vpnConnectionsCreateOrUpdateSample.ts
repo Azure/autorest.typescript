@@ -84,7 +84,7 @@ async function vpnConnectionPut() {
 }
 
 async function main() {
-  vpnConnectionPut();
+  await vpnConnectionPut();
 }
 
 main().catch(console.error);

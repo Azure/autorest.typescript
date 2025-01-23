@@ -43,7 +43,7 @@ async function listCapacityReservationGroupsInResourceGroup() {
 }
 
 async function main() {
-  listCapacityReservationGroupsInResourceGroup();
+  await listCapacityReservationGroupsInResourceGroup();
 }
 
 main().catch(console.error);

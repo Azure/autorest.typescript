@@ -36,7 +36,7 @@ async function deleteARunCommand() {
 }
 
 async function main() {
-  deleteARunCommand();
+  await deleteARunCommand();
 }
 
 main().catch(console.error);

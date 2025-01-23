@@ -35,7 +35,7 @@ async function getsAnOperationInASubscriptionAndGivenRegion() {
 }
 
 async function main() {
-  getsAnOperationInASubscriptionAndGivenRegion();
+  await getsAnOperationInASubscriptionAndGivenRegion();
 }
 
 main().catch(console.error);

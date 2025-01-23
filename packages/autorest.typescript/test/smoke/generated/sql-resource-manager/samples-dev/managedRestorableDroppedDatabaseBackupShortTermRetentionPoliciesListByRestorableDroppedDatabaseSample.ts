@@ -41,7 +41,7 @@ async function getTheShortTermRetentionPolicyListForTheDatabase() {
 }
 
 async function main() {
-  getTheShortTermRetentionPolicyListForTheDatabase();
+  await getTheShortTermRetentionPolicyListForTheDatabase();
 }
 
 main().catch(console.error);

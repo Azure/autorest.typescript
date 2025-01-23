@@ -38,7 +38,7 @@ async function generateASyncAgentKey() {
 }
 
 async function main() {
-  generateASyncAgentKey();
+  await generateASyncAgentKey();
 }
 
 main().catch(console.error);

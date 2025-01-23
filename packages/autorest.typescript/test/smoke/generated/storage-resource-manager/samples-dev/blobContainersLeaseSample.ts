@@ -79,8 +79,8 @@ async function breakALeaseOnAContainer() {
 }
 
 async function main() {
-  acquireALeaseOnAContainer();
-  breakALeaseOnAContainer();
+  await acquireALeaseOnAContainer();
+  await breakALeaseOnAContainer();
 }
 
 main().catch(console.error);

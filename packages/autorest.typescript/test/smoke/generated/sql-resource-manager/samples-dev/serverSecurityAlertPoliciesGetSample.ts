@@ -38,7 +38,7 @@ async function getAServerThreatDetectionPolicy() {
 }
 
 async function main() {
-  getAServerThreatDetectionPolicy();
+  await getAServerThreatDetectionPolicy();
 }
 
 main().catch(console.error);

@@ -40,7 +40,7 @@ async function failoverAReplicationLink() {
 }
 
 async function main() {
-  failoverAReplicationLink();
+  await failoverAReplicationLink();
 }
 
 main().catch(console.error);

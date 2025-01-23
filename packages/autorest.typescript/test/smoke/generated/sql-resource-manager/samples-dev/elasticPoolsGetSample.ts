@@ -37,7 +37,7 @@ async function getAnElasticPool() {
 }
 
 async function main() {
-  getAnElasticPool();
+  await getAnElasticPool();
 }
 
 main().catch(console.error);

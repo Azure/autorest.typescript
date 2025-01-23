@@ -63,8 +63,8 @@ async function listAppSlotDiagnosticCategories() {
 }
 
 async function main() {
-  listAppDiagnosticCategories();
-  listAppSlotDiagnosticCategories();
+  await listAppDiagnosticCategories();
+  await listAppSlotDiagnosticCategories();
 }
 
 main().catch(console.error);

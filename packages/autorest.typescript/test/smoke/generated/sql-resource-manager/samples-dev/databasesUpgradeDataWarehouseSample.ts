@@ -38,7 +38,7 @@ async function upgradesADataWarehouse() {
 }
 
 async function main() {
-  upgradesADataWarehouse();
+  await upgradesADataWarehouse();
 }
 
 main().catch(console.error);

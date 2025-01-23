@@ -51,7 +51,7 @@ async function createOrUpdateASimpleGalleryImage() {
 }
 
 async function main() {
-  createOrUpdateASimpleGalleryImage();
+  await createOrUpdateASimpleGalleryImage();
 }
 
 main().catch(console.error);

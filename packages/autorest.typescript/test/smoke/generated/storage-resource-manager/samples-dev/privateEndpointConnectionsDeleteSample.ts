@@ -36,7 +36,7 @@ async function storageAccountDeletePrivateEndpointConnection() {
 }
 
 async function main() {
-  storageAccountDeletePrivateEndpointConnection();
+  await storageAccountDeletePrivateEndpointConnection();
 }
 
 main().catch(console.error);

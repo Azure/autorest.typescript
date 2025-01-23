@@ -33,7 +33,7 @@ async function listDeletedServersInASubscription() {
 }
 
 async function main() {
-  listDeletedServersInASubscription();
+  await listDeletedServersInASubscription();
 }
 
 main().catch(console.error);

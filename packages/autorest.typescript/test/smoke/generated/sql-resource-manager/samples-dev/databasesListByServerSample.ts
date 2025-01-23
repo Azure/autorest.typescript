@@ -39,7 +39,7 @@ async function getsAListOfDatabases() {
 }
 
 async function main() {
-  getsAListOfDatabases();
+  await getsAListOfDatabases();
 }
 
 main().catch(console.error);

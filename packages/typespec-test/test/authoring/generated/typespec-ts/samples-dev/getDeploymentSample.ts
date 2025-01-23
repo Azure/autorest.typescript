@@ -29,7 +29,7 @@ async function getDeploymentSample() {
 }
 
 async function main() {
-  getDeploymentSample();
+  await getDeploymentSample();
 }
 
 main().catch(console.error);

@@ -279,10 +279,10 @@ async function createNewCloudServiceWithSingleRoleAndRdpExtension() {
 }
 
 async function main() {
-  createNewCloudServiceWithMultipleRoles();
-  createNewCloudServiceWithSingleRole();
-  createNewCloudServiceWithSingleRoleAndCertificateFromKeyVault();
-  createNewCloudServiceWithSingleRoleAndRdpExtension();
+  await createNewCloudServiceWithMultipleRoles();
+  await createNewCloudServiceWithSingleRole();
+  await createNewCloudServiceWithSingleRoleAndCertificateFromKeyVault();
+  await createNewCloudServiceWithSingleRoleAndRdpExtension();
 }
 
 main().catch(console.error);

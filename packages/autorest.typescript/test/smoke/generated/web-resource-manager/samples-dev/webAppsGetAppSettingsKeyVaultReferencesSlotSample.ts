@@ -40,7 +40,7 @@ async function getAzureKeyVaultReferencesForAppSettingsForSlot() {
 }
 
 async function main() {
-  getAzureKeyVaultReferencesForAppSettingsForSlot();
+  await getAzureKeyVaultReferencesForAppSettingsForSlot();
 }
 
 main().catch(console.error);

@@ -33,7 +33,7 @@ async function virtualMachineRunCommandList() {
 }
 
 async function main() {
-  virtualMachineRunCommandList();
+  await virtualMachineRunCommandList();
 }
 
 main().catch(console.error);

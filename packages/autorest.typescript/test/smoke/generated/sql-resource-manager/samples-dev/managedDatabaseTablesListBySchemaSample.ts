@@ -42,7 +42,7 @@ async function listManagedDatabaseTables() {
 }
 
 async function main() {
-  listManagedDatabaseTables();
+  await listManagedDatabaseTables();
 }
 
 main().catch(console.error);

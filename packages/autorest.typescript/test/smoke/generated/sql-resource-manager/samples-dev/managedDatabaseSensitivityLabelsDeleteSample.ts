@@ -43,7 +43,7 @@ async function deletesTheSensitivityLabelOfAGivenColumnInAManagedDatabase() {
 }
 
 async function main() {
-  deletesTheSensitivityLabelOfAGivenColumnInAManagedDatabase();
+  await deletesTheSensitivityLabelOfAGivenColumnInAManagedDatabase();
 }
 
 main().catch(console.error);

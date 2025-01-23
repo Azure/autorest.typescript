@@ -32,7 +32,7 @@ async function stopACurrentlyRunningNetworkTraceOperationForASite() {
 }
 
 async function main() {
-  stopACurrentlyRunningNetworkTraceOperationForASite();
+  await stopACurrentlyRunningNetworkTraceOperationForASite();
 }
 
 main().catch(console.error);

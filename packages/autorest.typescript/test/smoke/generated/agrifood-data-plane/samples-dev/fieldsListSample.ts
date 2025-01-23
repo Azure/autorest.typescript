@@ -32,7 +32,7 @@ async function fieldsList() {
 }
 
 async function main() {
-  fieldsList();
+  await fieldsList();
 }
 
 main().catch(console.error);

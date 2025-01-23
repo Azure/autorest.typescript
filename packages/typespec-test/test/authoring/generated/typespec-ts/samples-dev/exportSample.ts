@@ -30,7 +30,7 @@ async function exportSample() {
 }
 
 async function main() {
-  exportSample();
+  await exportSample();
 }
 
 main().catch(console.error);

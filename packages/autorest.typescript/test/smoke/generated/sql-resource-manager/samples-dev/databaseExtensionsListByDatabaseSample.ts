@@ -41,7 +41,7 @@ async function listDatabaseExtensions() {
 }
 
 async function main() {
-  listDatabaseExtensions();
+  await listDatabaseExtensions();
 }
 
 main().catch(console.error);

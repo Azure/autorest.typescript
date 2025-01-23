@@ -44,7 +44,7 @@ async function completesAManagedDatabaseExternalBackupRestore() {
 }
 
 async function main() {
-  completesAManagedDatabaseExternalBackupRestore();
+  await completesAManagedDatabaseExternalBackupRestore();
 }
 
 main().catch(console.error);

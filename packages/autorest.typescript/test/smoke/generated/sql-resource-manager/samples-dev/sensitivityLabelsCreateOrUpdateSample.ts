@@ -54,7 +54,7 @@ async function updatesTheSensitivityLabelOfAGivenColumnWithAllParameters() {
 }
 
 async function main() {
-  updatesTheSensitivityLabelOfAGivenColumnWithAllParameters();
+  await updatesTheSensitivityLabelOfAGivenColumnWithAllParameters();
 }
 
 main().catch(console.error);

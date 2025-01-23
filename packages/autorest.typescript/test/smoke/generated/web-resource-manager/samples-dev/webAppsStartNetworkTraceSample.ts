@@ -41,7 +41,7 @@ async function startANewNetworkTraceOperationForASite() {
 }
 
 async function main() {
-  startANewNetworkTraceOperationForASite();
+  await startANewNetworkTraceOperationForASite();
 }
 
 main().catch(console.error);

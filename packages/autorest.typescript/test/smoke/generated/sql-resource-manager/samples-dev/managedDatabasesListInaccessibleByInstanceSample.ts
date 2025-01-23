@@ -38,7 +38,7 @@ async function listInaccessibleManagedDatabasesByManagedInstances() {
 }
 
 async function main() {
-  listInaccessibleManagedDatabasesByManagedInstances();
+  await listInaccessibleManagedDatabasesByManagedInstances();
 }
 
 main().catch(console.error);

@@ -37,7 +37,7 @@ async function listAllResourcesThatAreEncryptedWithThisDiskEncryptionSet() {
 }
 
 async function main() {
-  listAllResourcesThatAreEncryptedWithThisDiskEncryptionSet();
+  await listAllResourcesThatAreEncryptedWithThisDiskEncryptionSet();
 }
 
 main().catch(console.error);

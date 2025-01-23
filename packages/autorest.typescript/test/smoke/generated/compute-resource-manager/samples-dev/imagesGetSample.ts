@@ -31,7 +31,7 @@ async function getInformationAboutAVirtualMachineImage() {
 }
 
 async function main() {
-  getInformationAboutAVirtualMachineImage();
+  await getInformationAboutAVirtualMachineImage();
 }
 
 main().catch(console.error);

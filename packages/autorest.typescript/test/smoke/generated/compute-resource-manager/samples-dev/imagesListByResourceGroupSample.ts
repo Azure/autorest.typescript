@@ -33,7 +33,7 @@ async function listAllVirtualMachineImagesInAResourceGroup() {
 }
 
 async function main() {
-  listAllVirtualMachineImagesInAResourceGroup();
+  await listAllVirtualMachineImagesInAResourceGroup();
 }
 
 main().catch(console.error);

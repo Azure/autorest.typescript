@@ -34,7 +34,7 @@ async function generateAnSshKeyPair() {
 }
 
 async function main() {
-  generateAnSshKeyPair();
+  await generateAnSshKeyPair();
 }
 
 main().catch(console.error);

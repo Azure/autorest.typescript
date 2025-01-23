@@ -32,7 +32,7 @@ async function getCertificate() {
 }
 
 async function main() {
-  getCertificate();
+  await getCertificate();
 }
 
 main().catch(console.error);

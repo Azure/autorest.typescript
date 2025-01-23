@@ -39,7 +39,7 @@ async function getsAListOfInaccessibleDatabasesInALogicalServer() {
 }
 
 async function main() {
-  getsAListOfInaccessibleDatabasesInALogicalServer();
+  await getsAListOfInaccessibleDatabasesInALogicalServer();
 }
 
 main().catch(console.error);

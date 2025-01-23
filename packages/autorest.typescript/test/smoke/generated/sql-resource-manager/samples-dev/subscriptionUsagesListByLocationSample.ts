@@ -36,7 +36,7 @@ async function listSubscriptionUsagesInTheGivenLocation() {
 }
 
 async function main() {
-  listSubscriptionUsagesInTheGivenLocation();
+  await listSubscriptionUsagesInTheGivenLocation();
 }
 
 main().catch(console.error);

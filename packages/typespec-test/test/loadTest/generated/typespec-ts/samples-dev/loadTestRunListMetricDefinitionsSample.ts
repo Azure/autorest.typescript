@@ -24,7 +24,7 @@ async function loadTestRunListMetricDefinitionsSample() {
 }
 
 async function main() {
-  loadTestRunListMetricDefinitionsSample();
+  await loadTestRunListMetricDefinitionsSample();
 }
 
 main().catch(console.error);
