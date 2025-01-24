@@ -356,48 +356,52 @@ function getPackageDetails(
   program: Program,
   emitterOptions: EmitterOptions
 ): PackageDetails {
-  // const packageOldDetails: PackageDetails = {
-  //   ...emitterOptions.packageDetails,
-  //   name:
-  //     emitterOptions.packageDetails?.name ??
-  //     normalizeName(
-  //       emitterOptions?.title ?? getDefaultService(program)?.title ?? "",
-  //       NameType.Class
-  //     ),
-  //   version: emitterOptions.packageDetails?.version ?? "1.0.0-beta.1"
-  // };
-  // if (emitterOptions.packageDetails?.name) {
-  //   const nameOldParts = emitterOptions.packageDetails?.name.split("/");
-  //   if (nameOldParts.length === 2) {
-  //     packageOldDetails.nameWithoutScope = nameOldParts[1];
-  //     packageOldDetails.scopeName = nameOldParts[0]?.replace("@", "");
-  //   }
-  // }
-  const packageDetails: PackageDetails = {
-    ...emitterOptions["package-details"],
-    name:
-      emitterOptions["package-details"]?.name ??
-      normalizeName(
-        emitterOptions?.title ?? getDefaultService(program)?.title ?? "",
-        NameType.Class
-      ),
-    version: emitterOptions["package-details"]?.version ?? "1.0.0-beta.1"
+  const defaultDetial = {
+    name: "@msinternal/unamedpackage",
+    nameWithoutScope: "unamedpackage",
+    version: "1.0.0-beta.1"
   };
-  if (emitterOptions["package-details"]?.name) {
-    const nameParts = emitterOptions["package-details"]?.name.split("/");
-    if (nameParts.length === 2) {
-      packageDetails.nameWithoutScope = nameParts[1];
-      packageDetails.scopeName = nameParts[0]?.replace("@", "");
+  if (emitterOptions.packageDetails !== undefined) {
+    const packageOldDetails: PackageDetails = {
+      ...emitterOptions.packageDetails,
+      name:
+        emitterOptions.packageDetails?.name ??
+        normalizeName(
+          emitterOptions?.title ?? getDefaultService(program)?.title ?? "",
+          NameType.Class
+        ),
+      version: emitterOptions.packageDetails?.version ?? "1.0.0-beta.1"
+    };
+    if (emitterOptions.packageDetails?.name) {
+      const nameOldParts = emitterOptions.packageDetails?.name.split("/");
+      if (nameOldParts.length === 2) {
+        packageOldDetails.nameWithoutScope = nameOldParts[1];
+        packageOldDetails.scopeName = nameOldParts[0]?.replace("@", "");
+      }
     }
+    return packageOldDetails ?? defaultDetial;
   }
-  return (
-    // packageOldDetails ??
-    packageDetails ?? {
-      name: "@msinternal/unamedpackage",
-      nameWithoutScope: "unamedpackage",
-      version: "1.0.0-beta.1"
+  if (emitterOptions["package-details"] !== undefined) {
+    const packageDetails: PackageDetails = {
+      ...emitterOptions["package-details"],
+      name:
+        emitterOptions["package-details"]?.name ??
+        normalizeName(
+          emitterOptions?.title ?? getDefaultService(program)?.title ?? "",
+          NameType.Class
+        ),
+      version: emitterOptions["package-details"]?.version ?? "1.0.0-beta.1"
+    };
+    if (emitterOptions["package-details"]?.name) {
+      const nameParts = emitterOptions["package-details"]?.name.split("/");
+      if (nameParts.length === 2) {
+        packageDetails.nameWithoutScope = nameParts[1];
+        packageDetails.scopeName = nameParts[0]?.replace("@", "");
+      }
     }
-  );
+    return packageDetails ?? defaultDetial;
+  }
+  return defaultDetial;
 }
 
 function getServiceInfo(program: Program): ServiceInfo {
@@ -422,14 +426,10 @@ function getAzureSdkForJs(emitterOptions: EmitterOptions) {
 
 function getGenerateMetadata(emitterOptions: EmitterOptions) {
   if (
-    emitterOptions["generate-metadata"] === undefined ||
-    emitterOptions["generate-metadata"] === null
-  ) {
-    return undefined;
-  }
-  if (
-    emitterOptions.generateMetadata === undefined ||
-    emitterOptions.generateMetadata === null
+    (emitterOptions["generate-metadata"] === undefined ||
+      emitterOptions["generate-metadata"] === null) &&
+    (emitterOptions.generateMetadata === undefined ||
+      emitterOptions.generateMetadata === null)
   ) {
     return undefined;
   }
