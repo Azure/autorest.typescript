@@ -151,7 +151,7 @@ export async function $onEmit(context: EmitContext) {
   await buildRLCCodeModels();
 
   // 4. Generate sources
-  if (emitterOptions["is-modular-library"]) {
+  if (emitterOptions["is-modular-library"] || emitterOptions.isModularLibrary) {
     await generateModularSources();
   } else {
     await generateRLCSources();
@@ -166,6 +166,7 @@ export async function $onEmit(context: EmitContext) {
     dpgContext.generationPathDetail = generationPathDetail;
     const options: RLCOptions = transformRLCOptions(emitterOptions, dpgContext);
     emitterOptions["is-modular-library"] = options.isModularLibrary;
+    emitterOptions.isModularLibrary = options.isModularLibrary;
     // clear output folder if needed
     if (options.clearOutputFolder) {
       await fsextra.emptyDir(context.emitterOutputDir);
@@ -321,7 +322,10 @@ export async function $onEmit(context: EmitContext) {
       );
     }
     // Enable modular sample generation when explicitly set to true or MPG
-    if (emitterOptions["generate-sample"] === true) {
+    if (
+      emitterOptions["generate-sample"] === true ||
+      emitterOptions.generateSample === true
+    ) {
       const samples = emitSamples(dpgContext);
       // Refine the rlc sample generation logic
       // TODO: remember to remove this out when RLC is splitted from Modular

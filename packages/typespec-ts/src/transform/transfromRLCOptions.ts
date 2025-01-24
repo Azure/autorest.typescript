@@ -35,11 +35,16 @@ export function transformRLCOptions(
   );
   if (
     !isAzurePackage({ options }) &&
-    emitterOptions["is-modular-library"] !== false
+    emitterOptions["is-modular-library"] !== false &&
+    emitterOptions.isModularLibrary !== false
   ) {
     options.isModularLibrary = true;
   }
-  if (dpgContext.arm && emitterOptions["is-modular-library"] !== false) {
+  if (
+    dpgContext.arm &&
+    emitterOptions["is-modular-library"] !== false &&
+    emitterOptions.isModularLibrary !== false
+  ) {
     options.isModularLibrary = true;
   }
   const batch = getRLCClients(dpgContext);
@@ -78,20 +83,30 @@ function extractRLCOptions(
   );
   const hierarchyClient = getHierarchyClient(emitterOptions);
   const clearOutputFolder = getClearOutputFolder(emitterOptions);
-  const multiClient = emitterOptions["multi-client"];
-  const isTypeSpecTest = emitterOptions["is-typespec-test"];
-  const title = emitterOptions["title"];
-  const dependencyInfo = emitterOptions["dependency-info"];
-  const productDocLink = emitterOptions["product-doc-link"];
-  const isModularLibrary = emitterOptions["is-modular-library"];
-  const compatibilityMode = emitterOptions["compatibility-mode"];
+  const multiClient =
+    emitterOptions["multi-client"] || emitterOptions.multiClient;
+  const isTypeSpecTest =
+    emitterOptions["is-typespec-test"] || emitterOptions.isTypeSpecTest;
+  const title = emitterOptions.title;
+  const dependencyInfo =
+    emitterOptions["dependency-info"] || emitterOptions.dependencyInfo;
+  const productDocLink =
+    emitterOptions["product-doc-link"] || emitterOptions.productDocLink;
+  const isModularLibrary =
+    emitterOptions["is-modular-library"] || emitterOptions.isModularLibrary;
+  const compatibilityMode =
+    emitterOptions["compatibility-mode"] || emitterOptions.compatibilityMode;
   const experimentalExtensibleEnums =
-    emitterOptions["experimental-extensible-enums"];
+    emitterOptions["experimental-extensible-enums"] ||
+    emitterOptions.experimentalExtensibleEnums;
   const ignorePropertyNameNormalize =
-    emitterOptions["ignore-property-name-normalize"];
+    emitterOptions["ignore-property-name-normalize"] ||
+    emitterOptions.ignorePropertyNameNormalize;
   const compatibilityQueryMultiFormat =
-    emitterOptions["compatibility-query-multi-format"];
-  const typespecTitleMap = emitterOptions["typespec-title-map"];
+    emitterOptions["compatibility-query-multi-format"] ||
+    emitterOptions.compatibilityQueryMultiFormat;
+  const typespecTitleMap =
+    emitterOptions["typespec-title-map"] || emitterOptions.typespecTitleMap;
 
   return {
     ...credentialInfo,
@@ -202,6 +217,12 @@ function getEnableOperationGroup(
   ) {
     return emitterOptions["enable-operation-group"];
   }
+  if (
+    emitterOptions.enableOperationGroup === true ||
+    emitterOptions.enableOperationGroup === false
+  ) {
+    return emitterOptions.enableOperationGroup;
+  }
   // Only detect if existing name conflicts if customers don't set hierarchyClient to true
   return detectIfNameConflicts(dpgContext);
 }
@@ -216,6 +237,12 @@ function getEnableModelNamespace(
   ) {
     return emitterOptions["enable-model-namespace"];
   }
+  if (
+    emitterOptions.enableModelNamespace === true ||
+    emitterOptions.enableModelNamespace === false
+  ) {
+    return emitterOptions.enableModelNamespace;
+  }
   // Detect if existing name conflicts if customers didn't set the option explicitly
   return detectModelConflicts(dpgContext);
 }
@@ -227,12 +254,21 @@ function getHierarchyClient(emitterOptions: EmitterOptions) {
   ) {
     return emitterOptions["hierarchy-client"];
   }
+  if (
+    emitterOptions.hierarchyClient === true ||
+    emitterOptions.hierarchyClient === false
+  ) {
+    return emitterOptions.hierarchyClient;
+  }
   // enable hierarchy client by default if customers didn't set the option explicitly
   return true;
 }
 
 function getClearOutputFolder(emitterOptions: EmitterOptions) {
-  if (emitterOptions["clear-output-folder"] === true) {
+  if (
+    emitterOptions["clear-output-folder"] === true ||
+    emitterOptions.clearOutputFolder === true
+  ) {
     return true;
   }
   return false;
@@ -276,11 +312,14 @@ function detectIfNameConflicts(dpgContext: SdkContext) {
 }
 
 function getIncludeShortcuts(emitterOptions: EmitterOptions) {
-  return Boolean(emitterOptions["include-shortcuts"]);
+  return (
+    Boolean(emitterOptions["include-shortcuts"]) ||
+    Boolean(emitterOptions.includeShortcuts)
+  );
 }
 
 function getModuleKind(emitterOptions: EmitterOptions) {
-  return emitterOptions["module-kind"] ?? "esm";
+  return emitterOptions["module-kind"] ?? emitterOptions.moduleKind ?? "esm";
 }
 
 function getFlavor(
@@ -317,6 +356,23 @@ function getPackageDetails(
   program: Program,
   emitterOptions: EmitterOptions
 ): PackageDetails {
+  // const packageOldDetails: PackageDetails = {
+  //   ...emitterOptions.packageDetails,
+  //   name:
+  //     emitterOptions.packageDetails?.name ??
+  //     normalizeName(
+  //       emitterOptions?.title ?? getDefaultService(program)?.title ?? "",
+  //       NameType.Class
+  //     ),
+  //   version: emitterOptions.packageDetails?.version ?? "1.0.0-beta.1"
+  // };
+  // if (emitterOptions.packageDetails?.name) {
+  //   const nameOldParts = emitterOptions.packageDetails?.name.split("/");
+  //   if (nameOldParts.length === 2) {
+  //     packageOldDetails.nameWithoutScope = nameOldParts[1];
+  //     packageOldDetails.scopeName = nameOldParts[0]?.replace("@", "");
+  //   }
+  // }
   const packageDetails: PackageDetails = {
     ...emitterOptions["package-details"],
     name:
@@ -335,6 +391,7 @@ function getPackageDetails(
     }
   }
   return (
+    // packageOldDetails ??
     packageDetails ?? {
       name: "@msinternal/unamedpackage",
       nameWithoutScope: "unamedpackage",
@@ -354,10 +411,13 @@ function getServiceInfo(program: Program): ServiceInfo {
 function getAzureSdkForJs(emitterOptions: EmitterOptions) {
   return emitterOptions.flavor !== "azure"
     ? false
-    : emitterOptions["azure-sdk-for-js"] === undefined ||
-        emitterOptions["azure-sdk-for-js"] === null
+    : (emitterOptions["azure-sdk-for-js"] === undefined ||
+          emitterOptions["azure-sdk-for-js"] === null) &&
+        (emitterOptions.azureSdkForJs === undefined ||
+          emitterOptions.azureSdkForJs === null)
       ? true
-      : Boolean(emitterOptions["azure-sdk-for-js"]);
+      : Boolean(emitterOptions["azure-sdk-for-js"]) ||
+        Boolean(emitterOptions.azureSdkForJs);
 }
 
 function getGenerateMetadata(emitterOptions: EmitterOptions) {
@@ -367,7 +427,16 @@ function getGenerateMetadata(emitterOptions: EmitterOptions) {
   ) {
     return undefined;
   }
-  return Boolean(emitterOptions["generate-metadata"]);
+  if (
+    emitterOptions.generateMetadata === undefined ||
+    emitterOptions.generateMetadata === null
+  ) {
+    return undefined;
+  }
+  return (
+    Boolean(emitterOptions["generate-metadata"]) ||
+    Boolean(emitterOptions.generateMetadata)
+  );
 }
 
 /**
@@ -379,17 +448,24 @@ function getGenerateTest(emitterOptions: EmitterOptions, flavor?: "azure") {
   if (
     flavor !== "azure" &&
     (emitterOptions["generate-test"] === undefined ||
-      emitterOptions["generate-test"] === null)
+      emitterOptions["generate-test"] === null) &&
+    (emitterOptions.generateTest === undefined ||
+      emitterOptions.generateTest === null)
   ) {
     return undefined;
   } else if (
     flavor === "azure" &&
     (emitterOptions["generate-test"] === undefined ||
-      emitterOptions["generate-test"] === null)
+      emitterOptions["generate-test"] === null) &&
+    (emitterOptions.generateTest === undefined ||
+      emitterOptions.generateTest === null)
   ) {
     return true;
   }
-  return Boolean(emitterOptions["generate-test"]);
+  return (
+    Boolean(emitterOptions["generate-test"]) ||
+    Boolean(emitterOptions.generateTest)
+  );
 }
 
 /**
@@ -399,12 +475,17 @@ function getGenerateTest(emitterOptions: EmitterOptions, flavor?: "azure") {
  */
 function getGenerateSample(emitterOptions: EmitterOptions) {
   if (
-    emitterOptions["generate-sample"] === undefined ||
-    emitterOptions["generate-sample"] === null
+    (emitterOptions["generate-sample"] === undefined ||
+      emitterOptions["generate-sample"] === null) &&
+    (emitterOptions.generateSample === undefined ||
+      emitterOptions.generateSample === null)
   ) {
     return undefined;
   }
-  return Boolean(emitterOptions["generate-sample"]);
+  return (
+    Boolean(emitterOptions["generate-sample"]) ||
+    Boolean(emitterOptions.generateSample)
+  );
 }
 
 export function getCredentialInfo(
@@ -413,27 +494,31 @@ export function getCredentialInfo(
 ) {
   const securityInfo = processAuth(program);
   const addCredentials =
-    emitterOptions["add-credentials"] === false
+    emitterOptions["add-credentials"] === false ||
+    emitterOptions.addCredentials === false
       ? false
       : securityInfo
         ? securityInfo.addCredentials
-        : emitterOptions["add-credentials"];
+        : emitterOptions["add-credentials"] || emitterOptions.addCredentials;
   const credentialScopes =
     securityInfo && securityInfo.credentialScopes
       ? securityInfo.credentialScopes
-      : emitterOptions["credential-scopes"];
+      : emitterOptions["credential-scopes"] || emitterOptions.credentialScopes;
   const credentialKeyHeaderName =
     securityInfo && securityInfo.credentialKeyHeaderName
       ? securityInfo.credentialKeyHeaderName
-      : emitterOptions["credential-key-header-name"];
+      : emitterOptions["credential-key-header-name"] ||
+        emitterOptions.credentialKeyHeaderName;
   const customHttpAuthHeaderName =
     securityInfo && securityInfo.customHttpAuthHeaderName
       ? securityInfo.customHttpAuthHeaderName
-      : emitterOptions["custom-http-auth-header-name"];
+      : emitterOptions["custom-http-auth-header-name"] ||
+        emitterOptions.customHttpAuthHeaderName;
   const customHttpAuthSharedKeyPrefix =
     securityInfo && securityInfo.customHttpAuthSharedKeyPrefix
       ? securityInfo.customHttpAuthSharedKeyPrefix
-      : emitterOptions["custom-http-auth-shared-key-prefix"];
+      : emitterOptions["custom-http-auth-shared-key-prefix"] ||
+        emitterOptions.customHttpAuthSharedKeyPrefix;
   return {
     addCredentials,
     credentialScopes,
