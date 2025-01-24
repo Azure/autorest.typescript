@@ -10,6 +10,7 @@ options:
     azure-sdk-for-js: false
     is-typespec-test: true
     generate-sample: true
+    is-modular-library: false
     title: Azure Arm models CommonTypes ManagedIdentity
     package-details:
       name: "@azure/arm-managedIdentity"
