@@ -286,6 +286,9 @@ class BinderImp implements Binder {
         const importDec = this.addImport(file, declarationSourceFile, name);
         name = importDec.alias ?? name;
       }
+      if (placeholderKey === "__PLACEHOLDER_o16__") {
+        declaration;
+      }
       replacePlaceholder(file, placeholderKey, name);
     }
   }

@@ -3,8 +3,9 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
-    generateMetadata: false
+    generateMetadata: true
     generateTest: false
+    azureSdkForJs: false
     experimentalExtensibleEnums: true
     isModularLibrary: true
     packageDetails:

@@ -8,6 +8,7 @@ import { getModelExpression } from "./get-model-expression.js";
 import { getUnionExpression } from "./get-union-expression.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { SdkContext } from "../../utils/interfaces.js";
+import { getNullableExpression } from "./get-nullable-expression.js";
 
 export interface EmitTypeOptions {
   emitInline?: boolean;
@@ -88,10 +89,8 @@ export function getTypeExpression(
     }
     case "model":
       return getModelExpression(context, type);
-    case "nullable": {
-      const nonNullableType = getTypeExpression(context, type.type, options);
-      return `(${nonNullableType}) | null`;
-    }
+    case "nullable": 
+      return getNullableExpression(context, type, options);
     case "offsetDateTime":
       return "string";
     case "tuple": {
