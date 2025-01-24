@@ -72,15 +72,15 @@ Whenever you work on adding a feature/fixing a bug, this would probably be your 
      - "@azure-tools/typespec-ts"
    options:
      "@azure-tools/typespec-ts":
-       "emitter-output-dir": "{project-root}"
-       generateMetadata: true
-       generateTest: true
-       "include-shortcuts": true
-       azureSdkForJs: false
-       addCredentials: false
-       isTypeSpecTest: true
+       emitter-output-dir: "{project-root}"
+       generate-metadata: true
+       generate-test: true
+       include-shortcuts: true
+       azure-sdk-for-js: false
+       add-credentials: false
+       is-typespec-test: true
        title: AuthApiKeyClient
-       packageDetails:
+       package-details:
          name: "@msinternal/auth-apikey"
          description: "Auth api key Test Service"
          version: "1.0.0"
