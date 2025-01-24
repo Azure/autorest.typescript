@@ -516,6 +516,7 @@ export function normalizeModelName(
       nameType
     )}>`;
   }
+  // TODO see https://github.com/Azure/typespec-azure/issues/2125
   if (type.kind === "nullable") {
     return normalizeName(type.name, nameType, true);
   }
