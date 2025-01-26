@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Returns the properties for the specified encryption scope.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Returns the properties for the specified encryption scope.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountGetEncryptionScope.json
  */
-async function storageAccountGetEncryptionScope() {
+async function storageAccountGetEncryptionScope(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName =
     process.env["RESOURCE_GROUP"] || "resource-group-name";
@@ -36,7 +34,7 @@ async function storageAccountGetEncryptionScope() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await storageAccountGetEncryptionScope();
 }
 

@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets a list of all the tables under the specified storage account
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets a list of all the tables under the specified storage account
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/TableOperationList.json
  */
-async function tableOperationList() {
+async function tableOperationList(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res9290";
   const accountName = "sto328";
@@ -36,7 +34,7 @@ async function tableOperationList() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await tableOperationList();
 }
 

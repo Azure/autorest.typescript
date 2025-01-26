@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Retrieves all the ExpressRouteCrossConnections in a resource group.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Retrieves all the ExpressRouteCrossConnections in a resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteCrossConnectionListByResourceGroup.json
  */
-async function expressRouteCrossConnectionListByResourceGroup() {
+async function expressRouteCrossConnectionListByResourceGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName =
     process.env["RESOURCE_GROUP"] || "CrossConnection-SiliconValley";
@@ -35,7 +33,7 @@ async function expressRouteCrossConnectionListByResourceGroup() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await expressRouteCrossConnectionListByResourceGroup();
 }
 

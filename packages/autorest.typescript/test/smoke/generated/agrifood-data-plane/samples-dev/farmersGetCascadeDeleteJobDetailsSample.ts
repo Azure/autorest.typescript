@@ -3,9 +3,7 @@
 
 import createAzureAgriFoodPlatformDataPlaneServiceClient from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Get a cascade delete job for specified farmer.
@@ -13,7 +11,7 @@ dotenv.config();
  * @summary Get a cascade delete job for specified farmer.
  * x-ms-original-file: specification/agrifood/data-plane/Microsoft.AgFoodPlatform/preview/2021-03-31-preview/examples/Farmers_GetCascadeDeleteJobDetails.json
  */
-async function farmersGetCascadeDeleteJobDetails() {
+async function farmersGetCascadeDeleteJobDetails(): Promise<void> {
   const endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
@@ -27,7 +25,7 @@ async function farmersGetCascadeDeleteJobDetails() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await farmersGetCascadeDeleteJobDetails();
 }
 

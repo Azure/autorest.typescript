@@ -89,7 +89,7 @@ import { TestingClient } from "@azure/internal-test";
  * @summary show example demo
  * x-ms-original-file: 2021-10-01-preview/json.json
  */
-async function read() {
+async function read(): Promise<void> {
   const client = new TestingClient();
   const result = await client.read({
     strValue: "00000000-0000-0000-0000-00000000000",
@@ -115,7 +115,7 @@ async function read() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await read();
 }
 

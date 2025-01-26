@@ -2,9 +2,7 @@
 // Licensed under the MIT License.
 
 import createHeaderRestClient from "@msinternal/header-rest";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Send a post request with header value "Content-Type": "text/html"
@@ -12,7 +10,7 @@ dotenv.config();
  * @summary Send a post request with header value "Content-Type": "text/html"
  * x-ms-original-file: /@microsoft.azure/autorest.testserver/swagger/examples/header_paramProtectedKey.json
  */
-async function headerParamProtectedKey() {
+async function headerParamProtectedKey(): Promise<void> {
   const client = createHeaderRestClient();
   const result = await client
     .path("/header/param/protectedkey")
@@ -20,7 +18,7 @@ async function headerParamProtectedKey() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await headerParamProtectedKey();
 }
 

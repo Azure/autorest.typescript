@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets a restore point.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets a restore point.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/DatabaseRestorePointsGet.json
  */
-async function getsADatabaseRestorePoint() {
+async function getsADatabaseRestorePoint(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -45,7 +43,7 @@ async function getsADatabaseRestorePoint() {
  * @summary Gets a restore point.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/DataWarehouseRestorePointsGet.json
  */
-async function getsADatawarehouseDatabaseRestorePoint() {
+async function getsADatawarehouseDatabaseRestorePoint(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -64,7 +62,7 @@ async function getsADatawarehouseDatabaseRestorePoint() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await getsADatabaseRestorePoint();
   await getsADatawarehouseDatabaseRestorePoint();
 }

@@ -13,9 +13,7 @@ import {
   ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Update a gallery image version.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Update a gallery image version.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/UpdateASimpleGalleryImageVersion.json
  */
-async function updateASimpleGalleryImageVersionManagedImageAsSource() {
+async function updateASimpleGalleryImageVersionManagedImageAsSource(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -64,7 +62,7 @@ async function updateASimpleGalleryImageVersionManagedImageAsSource() {
  * @summary Update a gallery image version.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/UpdateASimpleGalleryImageVersionWithoutSourceId.json
  */
-async function updateASimpleGalleryImageVersionWithoutSourceId() {
+async function updateASimpleGalleryImageVersionWithoutSourceId(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -95,7 +93,7 @@ async function updateASimpleGalleryImageVersionWithoutSourceId() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await updateASimpleGalleryImageVersionManagedImageAsSource();
   await updateASimpleGalleryImageVersionWithoutSourceId();
 }

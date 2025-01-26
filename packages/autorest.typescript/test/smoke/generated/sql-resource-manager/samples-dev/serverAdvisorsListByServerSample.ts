@@ -13,9 +13,7 @@ import {
   SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets a list of server advisors.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Gets a list of server advisors.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ServerAdvisorList.json
  */
-async function listOfServerAdvisors() {
+async function listOfServerAdvisors(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -44,7 +42,7 @@ async function listOfServerAdvisors() {
  * @summary Gets a list of server advisors.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ServerRecommendedActionListExpand.json
  */
-async function listOfServerRecommendedActionsForAllAdvisors() {
+async function listOfServerRecommendedActionsForAllAdvisors(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -62,7 +60,7 @@ async function listOfServerRecommendedActionsForAllAdvisors() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await listOfServerAdvisors();
   await listOfServerRecommendedActionsForAllAdvisors();
 }
