@@ -449,6 +449,8 @@ function getSchemaForUnion(
     schema.outputTypeName = unionName + "Output";
   } else if (union.expression && !union.name) {
     schema.type = "union";
+    schema.typeName = schema.alias;
+    schema.outputTypeName = schema.outputAlias;
   } else {
     schema.type = "union";
     schema.typeName = union.name ?? schema.alias;

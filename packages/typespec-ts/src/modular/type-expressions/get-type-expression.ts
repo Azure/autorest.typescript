@@ -89,7 +89,7 @@ export function getTypeExpression(
     }
     case "model":
       return getModelExpression(context, type);
-    case "nullable": 
+    case "nullable":
       return getNullableExpression(context, type, options);
     case "offsetDateTime":
       return "string";

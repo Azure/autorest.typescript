@@ -129,10 +129,10 @@ export async function $onEmit(context: EmitContext) {
   );
   const extraDependencies = isAzurePackage({ options: rlcOptions })
     ? {
-      ...AzurePollingDependencies,
-      ...AzureCoreDependencies,
-      ...AzureIdentityDependencies
-    }
+        ...AzurePollingDependencies,
+        ...AzureCoreDependencies,
+        ...AzureIdentityDependencies
+      }
     : { ...DefaultCoreDependencies };
   const binder = provideBinder(outputProject, {
     staticHelpers,
@@ -199,8 +199,8 @@ export async function $onEmit(context: EmitContext) {
   async function clearSrcFolder() {
     await fsextra.emptyDir(
       dpgContext.generationPathDetail?.modularSourcesDir ??
-      dpgContext.generationPathDetail?.rlcSourcesDir ??
-      ""
+        dpgContext.generationPathDetail?.rlcSourcesDir ??
+        ""
     );
   }
 

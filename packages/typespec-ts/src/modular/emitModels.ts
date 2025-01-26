@@ -78,7 +78,7 @@ function isGenerableType(
     type.kind === "union" ||
     type.kind === "dict" ||
     type.kind === "array" ||
-    type.kind === "nullable" && isGenerableType(type.type)
+    (type.kind === "nullable" && isGenerableType(type.type))
   );
 }
 export function emitTypes(
@@ -335,18 +335,16 @@ function buildUnionType(
   return unionDeclaration;
 }
 
-function buildNullableType(
-  context: SdkContext,
-  type: SdkNullableType
-) {
+function buildNullableType(context: SdkContext, type: SdkNullableType) {
   const nullableDeclaration: TypeAliasDeclarationStructure = {
     kind: StructureKind.TypeAlias,
     name: normalizeModelName(context, type),
     isExported: true,
-    type: getTypeExpression(context, type.type) + " | null",
-
+    type: getTypeExpression(context, type.type) + " | null"
   };
-  nullableDeclaration.docs = [type.doc ?? `Alias for ${nullableDeclaration.name}`];
+  nullableDeclaration.docs = [
+    type.doc ?? `Alias for ${nullableDeclaration.name}`
+  ];
   return nullableDeclaration;
 }
 
