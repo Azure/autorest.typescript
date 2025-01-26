@@ -1,0 +1,13 @@
+emit: ["@azure-tools/typespec-ts"]
+options:
+  "@azure-tools/typespec-ts":
+    examples-directory: "{project-root}/spec/examples"
+    generateMetadata: true
+    generateTest: true
+    generateSample: true
+    azureSdkForJs: false
+    hierarchyClient: false
+    experimentalExtensibleEnums: true
+    "emitter-output-dir": "{project-root}/generated/typespec-ts/sdk/servicenetworking/arm-servicenetworking"
+    packageDetails:
+      name: "@azure/arm-servicenetworking"
