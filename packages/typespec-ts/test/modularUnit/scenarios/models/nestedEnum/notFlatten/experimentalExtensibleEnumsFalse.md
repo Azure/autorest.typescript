@@ -60,7 +60,7 @@ Should enable `flatten-union-as-enum` option:
 
 ```yaml
 withRawContent: true
-experimentalExtensibleEnums: false
+experimental-extensible-enums: false
 ```
 
 ## Models
