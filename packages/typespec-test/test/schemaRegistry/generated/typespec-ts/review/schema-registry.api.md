@@ -50,7 +50,7 @@ export type SchemaFormat = "Avro" | "Json" | "Custom" | "Protobuf";
 
 // @public
 export interface SchemaGroup {
-    readonly groupName: string;
+    readonly groupName?: string;
 }
 
 // @public
@@ -110,7 +110,7 @@ export interface SchemaRegistryClientOptionalParams extends ClientOptions {
 
 // @public
 export interface SchemaVersion {
-    readonly schemaVersion: number;
+    readonly schemaVersion?: number;
 }
 
 // (No @packageDocumentation comment for this package)

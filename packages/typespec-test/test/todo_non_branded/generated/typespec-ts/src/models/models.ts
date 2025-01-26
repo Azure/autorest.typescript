@@ -24,11 +24,11 @@ export function todoItemArrayDeserializer(result: Array<TodoItem>): any[] {
 /** model interface TodoItem */
 export interface TodoItem {
   /** The item's unique id */
-  readonly id: number;
+  readonly id?: number;
   /** The item's title */
   title: string;
   /** User that created the todo */
-  readonly createdBy: number;
+  readonly createdBy?: number;
   /** User that the todo is assigned to */
   assignedTo?: number;
   /** A longer description of the todo item in markdown format */
@@ -36,9 +36,9 @@ export interface TodoItem {
   /** The status of the todo item */
   status: "NotStarted" | "InProgress" | "Completed";
   /** When the todo item was created. */
-  readonly createdAt: Date;
+  readonly createdAt?: Date;
   /** When the todo item was last updated */
-  readonly updatedAt: Date;
+  readonly updatedAt?: Date;
   /** When the todo item was makred as completed */
   readonly completedAt?: Date;
   labels?: TodoLabels;
@@ -213,11 +213,11 @@ export function todoAttachmentArrayDeserializer(
 /** model interface _CreateJsonResponse */
 export interface _CreateJsonResponse {
   /** The item's unique id */
-  readonly id: number;
+  readonly id?: number;
   /** The item's title */
   title: string;
   /** User that created the todo */
-  readonly createdBy: number;
+  readonly createdBy?: number;
   /** User that the todo is assigned to */
   assignedTo?: number;
   /** A longer description of the todo item in markdown format */
@@ -225,9 +225,9 @@ export interface _CreateJsonResponse {
   /** The status of the todo item */
   status: "NotStarted" | "InProgress" | "Completed";
   /** When the todo item was created. */
-  readonly createdAt: Date;
+  readonly createdAt?: Date;
   /** When the todo item was last updated */
-  readonly updatedAt: Date;
+  readonly updatedAt?: Date;
   /** When the todo item was makred as completed */
   readonly completedAt?: Date;
   labels?: TodoLabels;
@@ -281,11 +281,11 @@ export function toDoItemMultipartRequestSerializer(
 /** model interface _CreateFormResponse */
 export interface _CreateFormResponse {
   /** The item's unique id */
-  readonly id: number;
+  readonly id?: number;
   /** The item's title */
   title: string;
   /** User that created the todo */
-  readonly createdBy: number;
+  readonly createdBy?: number;
   /** User that the todo is assigned to */
   assignedTo?: number;
   /** A longer description of the todo item in markdown format */
@@ -293,9 +293,9 @@ export interface _CreateFormResponse {
   /** The status of the todo item */
   status: "NotStarted" | "InProgress" | "Completed";
   /** When the todo item was created. */
-  readonly createdAt: Date;
+  readonly createdAt?: Date;
   /** When the todo item was last updated */
-  readonly updatedAt: Date;
+  readonly updatedAt?: Date;
   /** When the todo item was makred as completed */
   readonly completedAt?: Date;
   labels?: TodoLabels;
@@ -325,11 +325,11 @@ export function _createFormResponseDeserializer(
 /** model interface _GetResponse */
 export interface _GetResponse {
   /** The item's unique id */
-  readonly id: number;
+  readonly id?: number;
   /** The item's title */
   title: string;
   /** User that created the todo */
-  readonly createdBy: number;
+  readonly createdBy?: number;
   /** User that the todo is assigned to */
   assignedTo?: number;
   /** A longer description of the todo item in markdown format */
@@ -337,9 +337,9 @@ export interface _GetResponse {
   /** The status of the todo item */
   status: "NotStarted" | "InProgress" | "Completed";
   /** When the todo item was created. */
-  readonly createdAt: Date;
+  readonly createdAt?: Date;
   /** When the todo item was last updated */
-  readonly updatedAt: Date;
+  readonly updatedAt?: Date;
   /** When the todo item was makred as completed */
   readonly completedAt?: Date;
   labels?: TodoLabels;
@@ -367,11 +367,11 @@ export function _getResponseDeserializer(item: any): _GetResponse {
 /** model interface _UpdateResponse */
 export interface _UpdateResponse {
   /** The item's unique id */
-  readonly id: number;
+  readonly id?: number;
   /** The item's title */
   title: string;
   /** User that created the todo */
-  readonly createdBy: number;
+  readonly createdBy?: number;
   /** User that the todo is assigned to */
   assignedTo?: number;
   /** A longer description of the todo item in markdown format */
@@ -379,9 +379,9 @@ export interface _UpdateResponse {
   /** The status of the todo item */
   status: "NotStarted" | "InProgress" | "Completed";
   /** When the todo item was created. */
-  readonly createdAt: Date;
+  readonly createdAt?: Date;
   /** When the todo item was last updated */
-  readonly updatedAt: Date;
+  readonly updatedAt?: Date;
   /** When the todo item was makred as completed */
   readonly completedAt?: Date;
   labels?: TodoLabels;
@@ -422,7 +422,7 @@ export function fileAttachmentMultipartRequestSerializer(
 /** model interface User */
 export interface User {
   /** An autogenerated unique id for the user */
-  readonly id: number;
+  readonly id?: number;
   /** The user's username */
   username: string;
   /** The user's email address */
@@ -445,7 +445,7 @@ export function userSerializer(item: User): any {
 /** model interface _CreateResponse */
 export interface _CreateResponse {
   /** An autogenerated unique id for the user */
-  readonly id: number;
+  readonly id?: number;
   /** The user's username */
   username: string;
   /** The user's email address */

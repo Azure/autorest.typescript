@@ -34,7 +34,7 @@ export declare interface TraitsClientOptionalParams extends ClientOptions {
 }
 
 export declare interface User {
-    readonly id: number;
+    readonly id?: number;
     name?: string;
 }
 

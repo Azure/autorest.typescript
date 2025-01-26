@@ -4,7 +4,7 @@
 /** Details about a user. */
 export interface User {
   /** The name of user. */
-  readonly name: string;
+  readonly name?: string;
   /** The role of user */
   role: string;
   /** The UUID of this widget. This is generated automatically by the service. */
