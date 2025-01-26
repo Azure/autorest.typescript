@@ -145,7 +145,7 @@ function emitMethodSamples(
     );
     const exampleFunctionType = {
       name: exampleName,
-      returnType: "void",
+      returnType: "Promise",
       body: exampleFunctionBody
     };
     const parameterMap: Record<string, SdkHttpParameterExampleValue> =
@@ -216,7 +216,6 @@ function emitMethodSamples(
     const normalizedDescription =
       description.charAt(0).toLowerCase() + description.slice(1);
     const functionDeclaration: FunctionDeclarationStructure = {
-      returnType: "Promise<void> ",
       kind: StructureKind.Function,
       isAsync: true,
       name: exampleFunctionType.name,
@@ -231,7 +230,7 @@ function emitMethodSamples(
   // Add statements referencing the tracked declarations
   const functions = exampleFunctions.map((f) => `${f}();`).join("\n");
   sourceFile.addStatements(`
-  async function main(): Promise<void>  {
+  async function main(): Promise<void> {
     await ${functions}
   }
 

@@ -46,7 +46,7 @@ async function {{name}}(): Promise<void>  {
 
 {{/each}}
 
-async function main(): Promise<void>  {
+async function main(): Promise<void> {
 {{#each samples}}
   await {{this.name}}();
 {{/each}}
