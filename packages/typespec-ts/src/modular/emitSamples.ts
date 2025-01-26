@@ -145,7 +145,7 @@ function emitMethodSamples(
     );
     const exampleFunctionType = {
       name: exampleName,
-      returnType: "Promise",
+      returnType: "Promise<void>",
       body: exampleFunctionBody
     };
     const parameterMap: Record<string, SdkHttpParameterExampleValue> =
