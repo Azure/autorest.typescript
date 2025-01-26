@@ -216,6 +216,7 @@ function emitMethodSamples(
     const normalizedDescription =
       description.charAt(0).toLowerCase() + description.slice(1);
     const functionDeclaration: FunctionDeclarationStructure = {
+      returnType: exampleFunctionType.returnType,
       kind: StructureKind.Function,
       isAsync: true,
       name: exampleFunctionType.name,
