@@ -407,7 +407,7 @@ function getSchemaForUnion(
         // We already know it's not a model type
         const variantType = getSchemaForType(dpgContext, variant.type, {
           ...options,
-          needRef: options?.needRef ?? false
+          needRef: isAnonymousModelType(variant.type) ? false : true
         });
         values.push(variantType);
         if (variantType.typeName) {
@@ -451,6 +451,8 @@ function getSchemaForUnion(
     schema.type = "union";
     schema.typeName = schema.alias;
     schema.outputTypeName = schema.outputAlias;
+    delete schema.alias;
+    delete schema.outputAlias;
   } else {
     schema.type = "union";
     schema.typeName = union.name ?? schema.alias;
