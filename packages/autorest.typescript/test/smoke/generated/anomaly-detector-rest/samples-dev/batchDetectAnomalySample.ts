@@ -5,9 +5,7 @@ import createAnomalyDetectorRestClient, {
   getLongRunningPoller,
 } from "@msinternal/anomaly-detector-rest";
 import { AzureKeyCredential } from "@azure/core-auth";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Submit multivariate anomaly detection task with the modelId of trained model and inference data, the input schema should be the same with the training request. The request will complete asynchronously and return a resultId to query the detection result.The request should be a source link to indicate an externally accessible Azure storage Uri, either pointed to an Azure blob storage folder, or pointed to a CSV file in Azure blob storage.
@@ -15,7 +13,7 @@ dotenv.config();
  * @summary Submit multivariate anomaly detection task with the modelId of trained model and inference data, the input schema should be the same with the training request. The request will complete asynchronously and return a resultId to query the detection result.The request should be a source link to indicate an externally accessible Azure storage Uri, either pointed to an Azure blob storage folder, or pointed to a CSV file in Azure blob storage.
  * x-ms-original-file: specification/cognitiveservices/data-plane/AnomalyDetector/stable/v1.1/examples/DetectAnomaly.json
  */
-async function detectAnomalyWithMultivariateModel() {
+async function detectAnomalyWithMultivariateModel(): Promise<void> {
   const endpoint = "{Endpoint}";
   const apiVersion = "v1.1";
   const credential = new AzureKeyCredential("{Your API key}");
@@ -42,7 +40,7 @@ async function detectAnomalyWithMultivariateModel() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await detectAnomalyWithMultivariateModel();
 }
 

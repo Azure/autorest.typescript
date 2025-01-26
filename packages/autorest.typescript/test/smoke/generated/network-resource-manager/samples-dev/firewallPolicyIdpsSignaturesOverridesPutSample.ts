@@ -13,9 +13,7 @@ import {
   NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Will override/create a new signature overrides for the policy's IDPS
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Will override/create a new signature overrides for the policy's IDPS
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/FirewallPolicySignatureOverridesPut.json
  */
-async function putSignatureOverrides() {
+async function putSignatureOverrides(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "e747cc13-97d4-4a79-b463-42d7f4e558f2";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
@@ -44,7 +42,7 @@ async function putSignatureOverrides() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await putSignatureOverrides();
 }
 

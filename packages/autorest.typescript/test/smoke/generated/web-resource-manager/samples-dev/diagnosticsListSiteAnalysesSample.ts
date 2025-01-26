@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Description for Get Site Analyses
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Description for Get Site Analyses
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/Diagnostics_ListSiteAnalyses.json
  */
-async function listAppAnalyses() {
+async function listAppAnalyses(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName =
@@ -46,7 +44,7 @@ async function listAppAnalyses() {
  * @summary Description for Get Site Analyses
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/Diagnostics_ListSiteAnalysesSlot.json
  */
-async function listAppSlotAnalyses() {
+async function listAppSlotAnalyses(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName =
@@ -66,7 +64,7 @@ async function listAppSlotAnalyses() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await listAppAnalyses();
   await listAppSlotAnalyses();
 }

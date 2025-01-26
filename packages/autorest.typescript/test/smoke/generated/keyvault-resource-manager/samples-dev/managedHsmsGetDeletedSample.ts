@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { KeyVaultManagementClient } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets the specified deleted managed HSM.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets the specified deleted managed HSM.
  * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/DeletedManagedHsm_Get.json
  */
-async function retrieveADeletedManagedHsm() {
+async function retrieveADeletedManagedHsm(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const name = "hsm1";
@@ -31,7 +29,7 @@ async function retrieveADeletedManagedHsm() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await retrieveADeletedManagedHsm();
 }
 

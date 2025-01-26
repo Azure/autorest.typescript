@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to List the object replication policies associated with the storage account.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary List the object replication policies associated with the storage account.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountListObjectReplicationPolicies.json
  */
-async function storageAccountListObjectReplicationPolicies() {
+async function storageAccountListObjectReplicationPolicies(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res6977";
   const accountName = "sto2527";
@@ -36,7 +34,7 @@ async function storageAccountListObjectReplicationPolicies() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await storageAccountListObjectReplicationPolicies();
 }
 
