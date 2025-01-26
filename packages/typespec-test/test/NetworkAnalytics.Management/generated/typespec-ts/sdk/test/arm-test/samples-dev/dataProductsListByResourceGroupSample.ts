@@ -10,7 +10,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * @summary list data products by resource group.
  * x-ms-original-file: 2023-11-15/DataProducts_ListByResourceGroup_MinimumSet_Gen.json
  */
-async function dataProductsListByResourceGroupMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen() {
+async function dataProductsListByResourceGroupMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
   const client = new NetworkAnalyticsApi(credential, subscriptionId);
@@ -24,7 +24,7 @@ async function dataProductsListByResourceGroupMaximumSetGenGeneratedByMinimumSet
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await dataProductsListByResourceGroupMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen();
 }
 

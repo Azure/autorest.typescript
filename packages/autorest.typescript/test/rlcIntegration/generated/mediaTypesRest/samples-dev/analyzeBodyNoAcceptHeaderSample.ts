@@ -2,16 +2,14 @@
 // Licensed under the MIT License.
 
 import createMediaTypesClient from "@msinternal/media-types-service-rest";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation AnalyzeBodyNoAcceptHeader
  *
  * @summary call operation AnalyzeBodyNoAcceptHeader
  */
-async function analyzeBodyNoAcceptHeaderSample() {
+async function analyzeBodyNoAcceptHeaderSample(): Promise<void> {
   const client = createMediaTypesClient();
   const result = await client
     .path("/mediatypes/analyzeNoAccept")
@@ -19,7 +17,7 @@ async function analyzeBodyNoAcceptHeaderSample() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await analyzeBodyNoAcceptHeaderSample();
 }
 

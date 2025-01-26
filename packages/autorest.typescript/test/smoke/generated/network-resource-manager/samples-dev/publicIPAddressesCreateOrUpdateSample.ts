@@ -13,9 +13,7 @@ import {
   NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Creates or updates a static or dynamic public IP address.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Creates or updates a static or dynamic public IP address.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/PublicIpAddressCreateDns.json
  */
-async function createPublicIPAddressDns() {
+async function createPublicIPAddressDns(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const publicIpAddressName = "test-ip";
@@ -47,7 +45,7 @@ async function createPublicIPAddressDns() {
  * @summary Creates or updates a static or dynamic public IP address.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/PublicIpAddressCreateCustomizedValues.json
  */
-async function createPublicIPAddressAllocationMethod() {
+async function createPublicIPAddressAllocationMethod(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const publicIpAddressName = "test-ip";
@@ -74,7 +72,7 @@ async function createPublicIPAddressAllocationMethod() {
  * @summary Creates or updates a static or dynamic public IP address.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/PublicIpAddressCreateDefaults.json
  */
-async function createPublicIPAddressDefaults() {
+async function createPublicIPAddressDefaults(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const publicIpAddressName = "test-ip";
@@ -89,7 +87,7 @@ async function createPublicIPAddressDefaults() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await createPublicIPAddressDns();
   await createPublicIPAddressAllocationMethod();
   await createPublicIPAddressDefaults();

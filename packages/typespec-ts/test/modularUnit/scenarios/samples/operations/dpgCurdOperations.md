@@ -136,7 +136,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * @summary creates or updates a Widget asynchronously.
  * x-ms-original-file: 2021-10-01-preview/json_for_Widgets_CreateOrUpdateWidget.json
  */
-async function widgetsCreateOrUpdateWidget() {
+async function widgetsCreateOrUpdateWidget(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new WidgetManagerClient(credential);
   const result = await client.widgets.createOrUpdateWidget("name1", {
@@ -145,7 +145,7 @@ async function widgetsCreateOrUpdateWidget() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await widgetsCreateOrUpdateWidget();
 }
 
@@ -161,14 +161,14 @@ import { DefaultAzureCredential } from "@azure/identity";
  * @summary delete a Widget asynchronously.
  * x-ms-original-file: 2021-10-01-preview/json_for_Widgets_DeleteWidget.json
  */
-async function deleteWidgetByWidgetNameUsingLongRunningOperation() {
+async function deleteWidgetByWidgetNameUsingLongRunningOperation(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new WidgetManagerClient(credential);
   const result = await client.widgets.deleteWidget("searchbox");
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await deleteWidgetByWidgetNameUsingLongRunningOperation();
 }
 
@@ -184,7 +184,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * @summary list Widget resources
  * x-ms-original-file: 2021-10-01-preview/json_for_Widgets_ListWidgets.json
  */
-async function widgetsListWidgets() {
+async function widgetsListWidgets(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new WidgetManagerClient(credential);
   const resArray = new Array();
@@ -199,7 +199,7 @@ async function widgetsListWidgets() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await widgetsListWidgets();
 }
 

@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Deletes the specified ipGroups.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Deletes the specified ipGroups.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/IpGroupsDelete.json
  */
-async function deleteIPGroups() {
+async function deleteIPGroups(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const ipGroupsName = "ipGroups1";
@@ -33,7 +31,7 @@ async function deleteIPGroups() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await deleteIPGroups();
 }
 

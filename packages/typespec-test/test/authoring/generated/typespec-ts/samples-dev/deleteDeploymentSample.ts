@@ -5,16 +5,14 @@ import { AzureKeyCredential } from "@azure/core-auth";
 import createAuthoringClient, {
   getLongRunningPoller,
 } from "@msinternal/authoring";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation DeleteDeployment
  *
  * @summary call operation DeleteDeployment
  */
-async function deleteDeploymentSample() {
+async function deleteDeploymentSample(): Promise<void> {
   const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAuthoringClient(endpointParam, credential);
@@ -32,7 +30,7 @@ async function deleteDeploymentSample() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await deleteDeploymentSample();
 }
 

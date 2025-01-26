@@ -3,9 +3,7 @@
 
 import createAnomalyDetectorRestClient from "@msinternal/anomaly-detector-rest";
 import { AzureKeyCredential } from "@azure/core-auth";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Create and train a multivariate anomaly detection model. The request must include a source parameter to indicate an externally accessible Azure blob storage URI.There are two types of data input: An URI pointed to an Azure blob storage folder which contains multiple CSV files, and each CSV file contains two columns, timestamp and variable. Another type of input is an URI pointed to a CSV file in Azure blob storage, which contains all the variables and a timestamp column.
@@ -13,7 +11,7 @@ dotenv.config();
  * @summary Create and train a multivariate anomaly detection model. The request must include a source parameter to indicate an externally accessible Azure blob storage URI.There are two types of data input: An URI pointed to an Azure blob storage folder which contains multiple CSV files, and each CSV file contains two columns, timestamp and variable. Another type of input is an URI pointed to a CSV file in Azure blob storage, which contains all the variables and a timestamp column.
  * x-ms-original-file: specification/cognitiveservices/data-plane/AnomalyDetector/stable/v1.1/examples/TrainModel.json
  */
-async function trainMultivariateModel() {
+async function trainMultivariateModel(): Promise<void> {
   const endpoint = "{Endpoint}";
   const apiVersion = "v1.1";
   const credential = new AzureKeyCredential("{Your API key}");
@@ -44,7 +42,7 @@ async function trainMultivariateModel() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await trainMultivariateModel();
 }
 

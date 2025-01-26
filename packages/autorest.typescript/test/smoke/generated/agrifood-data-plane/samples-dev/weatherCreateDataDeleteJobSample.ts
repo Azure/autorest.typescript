@@ -5,9 +5,7 @@ import createAzureAgriFoodPlatformDataPlaneServiceClient, {
   getLongRunningPoller,
 } from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Create a weather data delete job.
@@ -15,7 +13,7 @@ dotenv.config();
  * @summary Create a weather data delete job.
  * x-ms-original-file: specification/agrifood/data-plane/Microsoft.AgFoodPlatform/preview/2021-03-31-preview/examples/Weather_CreateDataDeleteJob.json
  */
-async function weatherCreateDataDeleteJob() {
+async function weatherCreateDataDeleteJob(): Promise<void> {
   const endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
@@ -31,7 +29,7 @@ async function weatherCreateDataDeleteJob() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await weatherCreateDataDeleteJob();
 }
 
