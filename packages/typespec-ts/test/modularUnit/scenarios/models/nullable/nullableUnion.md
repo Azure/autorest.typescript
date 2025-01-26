@@ -3,52 +3,116 @@
 ## TypeSpec
 
 ```tsp
-model Base {
-  foo: int32;
-}
-model A extends Base{
-  ...Record<int32>;
-  prop: int32
+union A {
+  null,
+  {
+    code?: string,
+    message?: string,
+    propA?: A,
+  },
 }
 op post(@body body: A): { @body body: A };
 ```
 
-The config would be like:
+## Models
 
-```yaml
-compatibilityMode: true
-```
-
-## Model interface A
-
-```ts models interface A
-/** model interface A */
-export interface A extends Base, Record<string, number> {
-  prop: number;
+```ts models
+/** model interface _PostRequest */
+export interface _PostRequest {
+  code?: string;
+  message?: string;
+  propA?: A;
 }
-```
 
-## Model function aSerializer
-
-```ts models function aSerializer
-export function aSerializer(item: A): any {
-  return { ...item, foo: item["foo"], prop: item["prop"] };
+export function _postRequestSerializer(item: _PostRequest): any {
+  return {
+    code: item["code"],
+    message: item["message"],
+    propA: !item["propA"]
+      ? item["propA"]
+      : _postRequestSerializer(item["propA"]),
+  };
 }
-```
 
-## Model interface Base
-
-```ts models interface Base
-/** model interface Base */
-export interface Base {
-  foo: number;
+export function _postRequestDeserializer(item: any): _PostRequest {
+  return {
+    code: item["code"],
+    message: item["message"],
+    propA: !item["propA"]
+      ? item["propA"]
+      : _postRequestDeserializer(item["propA"]),
+  };
 }
+
+/** Alias for A */
+export type A = {
+  code?: string;
+  message?: string;
+  propA?: A;
+} | null;
+/** Alias for A */
+export type A_1 = {
+  code?: string;
+  message?: string;
+  propA?: A;
+} | null;
 ```
 
-## Model function baseSerializer
+## Operations
 
-```ts models function baseSerializer
-export function baseSerializer(item: Base): any {
-  return { foo: item["foo"] };
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import {
+  _postRequestSerializer,
+  _postRequestDeserializer,
+  A_1,
+} from "../models/models.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _postSend(
+  context: Client,
+  body: A_1,
+  options: PostOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      body: !body ? body : _postRequestSerializer(body),
+    });
+}
+
+export async function _postDeserialize(
+  result: PathUncheckedResponse,
+): Promise<A_1> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return {
+    code: ["code"],
+    message: ["message"],
+    propA: !["propA"] ? ["propA"] : _postRequestDeserializer(["propA"]),
+  };
+}
+
+export async function post(
+  context: Client,
+  body: A_1,
+  options: PostOptionalParams = { requestOptions: {} },
+): Promise<A_1 | null> {
+  const result = await _postSend(context, body, options);
+  return _postDeserialize(result);
 }
 ```
