@@ -38,7 +38,7 @@ async function detachTheUserProvidedFunctionAppFromTheStaticSite() {
 }
 
 async function main() {
-  detachTheUserProvidedFunctionAppFromTheStaticSite();
+  await detachTheUserProvidedFunctionAppFromTheStaticSite();
 }
 
 main().catch(console.error);

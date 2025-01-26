@@ -33,7 +33,7 @@ async function listVirtualClusters() {
 }
 
 async function main() {
-  listVirtualClusters();
+  await listVirtualClusters();
 }
 
 main().catch(console.error);

@@ -42,7 +42,7 @@ async function getDatabaseRecommendedAction() {
 }
 
 async function main() {
-  getDatabaseRecommendedAction();
+  await getDatabaseRecommendedAction();
 }
 
 main().catch(console.error);

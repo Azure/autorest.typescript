@@ -63,7 +63,7 @@ async function createDscpConfiguration() {
 }
 
 async function main() {
-  createDscpConfiguration();
+  await createDscpConfiguration();
 }
 
 main().catch(console.error);

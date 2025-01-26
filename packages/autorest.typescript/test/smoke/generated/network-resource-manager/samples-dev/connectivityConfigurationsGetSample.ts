@@ -37,7 +37,7 @@ async function connectivityConfigurationsGet() {
 }
 
 async function main() {
-  connectivityConfigurationsGet();
+  await connectivityConfigurationsGet();
 }
 
 main().catch(console.error);

@@ -20,7 +20,7 @@ async function putTextAndJsonBodySample() {
 }
 
 async function main() {
-  putTextAndJsonBodySample();
+  await putTextAndJsonBodySample();
 }
 
 main().catch(console.error);

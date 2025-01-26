@@ -46,7 +46,7 @@ async function createOrUpdateAUserForAStaticSite() {
 }
 
 async function main() {
-  createOrUpdateAUserForAStaticSite();
+  await createOrUpdateAUserForAStaticSite();
 }
 
 main().catch(console.error);

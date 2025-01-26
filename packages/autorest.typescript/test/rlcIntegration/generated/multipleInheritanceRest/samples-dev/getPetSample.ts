@@ -18,7 +18,7 @@ async function getPetSample() {
 }
 
 async function main() {
-  getPetSample();
+  await getPetSample();
 }
 
 main().catch(console.error);

@@ -96,8 +96,8 @@ async function updateASimpleGalleryImageVersionWithoutSourceId() {
 }
 
 async function main() {
-  updateASimpleGalleryImageVersionManagedImageAsSource();
-  updateASimpleGalleryImageVersionWithoutSourceId();
+  await updateASimpleGalleryImageVersionManagedImageAsSource();
+  await updateASimpleGalleryImageVersionWithoutSourceId();
 }
 
 main().catch(console.error);

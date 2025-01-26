@@ -44,7 +44,7 @@ async function createOrUpdateAppServicePlan() {
 }
 
 async function main() {
-  createOrUpdateAppServicePlan();
+  await createOrUpdateAppServicePlan();
 }
 
 main().catch(console.error);

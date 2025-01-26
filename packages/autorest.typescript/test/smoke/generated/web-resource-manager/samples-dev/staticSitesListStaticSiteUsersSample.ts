@@ -40,7 +40,7 @@ async function listUsersForAStaticSite() {
 }
 
 async function main() {
-  listUsersForAStaticSite();
+  await listUsersForAStaticSite();
 }
 
 main().catch(console.error);

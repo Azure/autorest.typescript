@@ -98,9 +98,9 @@ async function createOrUpdateElasticPoolWithMinimumParameters() {
 }
 
 async function main() {
-  createOrUpdateElasticPoolWithAllParameter();
-  createOrUpdateElasticPoolWithMaintenanceConfigurationParameter();
-  createOrUpdateElasticPoolWithMinimumParameters();
+  await createOrUpdateElasticPoolWithAllParameter();
+  await createOrUpdateElasticPoolWithMaintenanceConfigurationParameter();
+  await createOrUpdateElasticPoolWithMinimumParameters();
 }
 
 main().catch(console.error);

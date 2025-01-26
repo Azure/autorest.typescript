@@ -32,7 +32,7 @@ async function listDeploymentsSample() {
 }
 
 async function main() {
-  listDeploymentsSample();
+  await listDeploymentsSample();
 }
 
 main().catch(console.error);

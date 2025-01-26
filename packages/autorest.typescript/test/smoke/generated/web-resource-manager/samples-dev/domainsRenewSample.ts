@@ -32,7 +32,7 @@ async function renewAnExistingDomain() {
 }
 
 async function main() {
-  renewAnExistingDomain();
+  await renewAnExistingDomain();
 }
 
 main().catch(console.error);

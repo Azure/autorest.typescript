@@ -31,7 +31,7 @@ async function getDeletedWebAppSnapshots() {
 }
 
 async function main() {
-  getDeletedWebAppSnapshots();
+  await getDeletedWebAppSnapshots();
 }
 
 main().catch(console.error);

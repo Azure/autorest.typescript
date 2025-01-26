@@ -40,7 +40,7 @@ async function deleteAPrivateEndpointConnectionForASite() {
 }
 
 async function main() {
-  deleteAPrivateEndpointConnectionForASite();
+  await deleteAPrivateEndpointConnectionForASite();
 }
 
 main().catch(console.error);

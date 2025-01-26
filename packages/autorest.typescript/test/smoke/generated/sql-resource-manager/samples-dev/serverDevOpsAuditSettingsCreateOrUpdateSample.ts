@@ -80,8 +80,8 @@ async function updateAServerDevOpsAuditSettingsWithMinimalInput() {
 }
 
 async function main() {
-  updateAServerDevOpsAuditSettingsWithAllParams();
-  updateAServerDevOpsAuditSettingsWithMinimalInput();
+  await updateAServerDevOpsAuditSettingsWithAllParams();
+  await updateAServerDevOpsAuditSettingsWithMinimalInput();
 }
 
 main().catch(console.error);

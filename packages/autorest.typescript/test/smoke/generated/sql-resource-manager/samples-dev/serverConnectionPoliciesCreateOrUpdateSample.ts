@@ -43,7 +43,7 @@ async function updatesAServerConnectionPolicy() {
 }
 
 async function main() {
-  updatesAServerConnectionPolicy();
+  await updatesAServerConnectionPolicy();
 }
 
 main().catch(console.error);

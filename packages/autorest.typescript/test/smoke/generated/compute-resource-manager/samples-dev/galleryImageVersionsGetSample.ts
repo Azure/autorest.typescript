@@ -113,10 +113,10 @@ async function getAGalleryImageVersion() {
 }
 
 async function main() {
-  getAGalleryImageVersionWithReplicationStatus();
-  getAGalleryImageVersionWithSnapshotsAsASource();
-  getAGalleryImageVersionWithVhdAsASource();
-  getAGalleryImageVersion();
+  await getAGalleryImageVersionWithReplicationStatus();
+  await getAGalleryImageVersionWithSnapshotsAsASource();
+  await getAGalleryImageVersionWithVhdAsASource();
+  await getAGalleryImageVersion();
 }
 
 main().catch(console.error);

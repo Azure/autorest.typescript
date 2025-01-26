@@ -31,7 +31,7 @@ async function getInformationAboutASnapshot() {
 }
 
 async function main() {
-  getInformationAboutASnapshot();
+  await getInformationAboutASnapshot();
 }
 
 main().catch(console.error);

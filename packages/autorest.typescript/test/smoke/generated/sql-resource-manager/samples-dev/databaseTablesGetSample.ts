@@ -41,7 +41,7 @@ async function getDatabaseTable() {
 }
 
 async function main() {
-  getDatabaseTable();
+  await getDatabaseTable();
 }
 
 main().catch(console.error);

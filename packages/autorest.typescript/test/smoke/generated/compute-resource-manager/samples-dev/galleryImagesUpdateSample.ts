@@ -50,7 +50,7 @@ async function updateASimpleGalleryImage() {
 }
 
 async function main() {
-  updateASimpleGalleryImage();
+  await updateASimpleGalleryImage();
 }
 
 main().catch(console.error);

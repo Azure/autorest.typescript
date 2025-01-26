@@ -32,7 +32,7 @@ async function fieldsCreateCascadeDeleteJob() {
 }
 
 async function main() {
-  fieldsCreateCascadeDeleteJob();
+  await fieldsCreateCascadeDeleteJob();
 }
 
 main().catch(console.error);

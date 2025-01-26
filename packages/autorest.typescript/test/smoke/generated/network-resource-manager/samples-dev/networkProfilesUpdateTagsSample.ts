@@ -39,7 +39,7 @@ async function updateNetworkProfileTags() {
 }
 
 async function main() {
-  updateNetworkProfileTags();
+  await updateNetworkProfileTags();
 }
 
 main().catch(console.error);

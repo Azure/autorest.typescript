@@ -39,7 +39,7 @@ async function getAnIncrementalDiskRestorePointResource() {
 }
 
 async function main() {
-  getAnIncrementalDiskRestorePointResource();
+  await getAnIncrementalDiskRestorePointResource();
 }
 
 main().catch(console.error);

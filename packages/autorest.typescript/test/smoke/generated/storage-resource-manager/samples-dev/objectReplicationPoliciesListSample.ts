@@ -37,7 +37,7 @@ async function storageAccountListObjectReplicationPolicies() {
 }
 
 async function main() {
-  storageAccountListObjectReplicationPolicies();
+  await storageAccountListObjectReplicationPolicies();
 }
 
 main().catch(console.error);

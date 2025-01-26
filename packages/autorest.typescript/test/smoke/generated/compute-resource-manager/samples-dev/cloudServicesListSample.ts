@@ -33,7 +33,7 @@ async function listCloudServicesInAResourceGroup() {
 }
 
 async function main() {
-  listCloudServicesInAResourceGroup();
+  await listCloudServicesInAResourceGroup();
 }
 
 main().catch(console.error);

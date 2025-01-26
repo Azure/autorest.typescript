@@ -498,6 +498,10 @@ export const rlcTsps = [
   {
     outputPath: "type/property/value-types",
     inputPath: "type/property/value-types"
+  },
+  {
+    outputPath: "payload/pageable",
+    inputPath: "payload/pageable"
   }
 ];
 
@@ -955,5 +959,9 @@ export const modularTsps = [
   {
     outputPath: "encode/numeric",
     inputPath: "encode/numeric"
+  },
+  {
+    outputPath: "payload/pageable",
+    inputPath: "payload/pageable"
   }
 ];

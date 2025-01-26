@@ -37,7 +37,7 @@ async function getAServiceObjective() {
 }
 
 async function main() {
-  getAServiceObjective();
+  await getAServiceObjective();
 }
 
 main().catch(console.error);

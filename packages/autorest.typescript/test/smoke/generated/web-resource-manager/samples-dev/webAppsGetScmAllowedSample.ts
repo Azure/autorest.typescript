@@ -32,7 +32,7 @@ async function getScmAllowed() {
 }
 
 async function main() {
-  getScmAllowed();
+  await getScmAllowed();
 }
 
 main().catch(console.error);

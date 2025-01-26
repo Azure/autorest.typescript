@@ -32,7 +32,7 @@ async function seasonalFieldsList() {
 }
 
 async function main() {
-  seasonalFieldsList();
+  await seasonalFieldsList();
 }
 
 main().catch(console.error);

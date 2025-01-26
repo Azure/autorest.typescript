@@ -35,7 +35,7 @@ async function listAllDiskAccessResourcesInAResourceGroup() {
 }
 
 async function main() {
-  listAllDiskAccessResourcesInAResourceGroup();
+  await listAllDiskAccessResourcesInAResourceGroup();
 }
 
 main().catch(console.error);

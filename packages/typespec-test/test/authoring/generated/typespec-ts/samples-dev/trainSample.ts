@@ -28,7 +28,7 @@ async function trainSample() {
 }
 
 async function main() {
-  trainSample();
+  await trainSample();
 }
 
 main().catch(console.error);

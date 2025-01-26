@@ -37,7 +37,7 @@ async function listResourceHealthMetadataForAResourceGroup() {
 }
 
 async function main() {
-  listResourceHealthMetadataForAResourceGroup();
+  await listResourceHealthMetadataForAResourceGroup();
 }
 
 main().catch(console.error);

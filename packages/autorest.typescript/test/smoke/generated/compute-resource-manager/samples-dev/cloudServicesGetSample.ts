@@ -34,7 +34,7 @@ async function getCloudServiceWithMultipleRolesAndRdpExtension() {
 }
 
 async function main() {
-  getCloudServiceWithMultipleRolesAndRdpExtension();
+  await getCloudServiceWithMultipleRolesAndRdpExtension();
 }
 
 main().catch(console.error);

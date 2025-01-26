@@ -89,8 +89,8 @@ async function createAnAdminRule() {
 }
 
 async function main() {
-  createADefaultAdminRule();
-  createAnAdminRule();
+  await createADefaultAdminRule();
+  await createAnAdminRule();
 }
 
 main().catch(console.error);

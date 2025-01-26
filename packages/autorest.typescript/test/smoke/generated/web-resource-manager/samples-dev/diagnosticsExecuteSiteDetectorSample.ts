@@ -65,8 +65,8 @@ async function executeSiteSlotDetector() {
 }
 
 async function main() {
-  executeSiteDetector();
-  executeSiteSlotDetector();
+  await executeSiteDetector();
+  await executeSiteSlotDetector();
 }
 
 main().catch(console.error);

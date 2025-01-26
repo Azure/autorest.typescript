@@ -47,8 +47,8 @@ async function getAVirtualMachinePlacedOnADedicatedHostGroupThroughAutomaticPlac
 }
 
 async function main() {
-  getAVirtualMachine();
-  getAVirtualMachinePlacedOnADedicatedHostGroupThroughAutomaticPlacement();
+  await getAVirtualMachine();
+  await getAVirtualMachinePlacedOnADedicatedHostGroupThroughAutomaticPlacement();
 }
 
 main().catch(console.error);

@@ -56,7 +56,7 @@ async function addAnAccessPolicyOrUpdateAnAccessPolicyWithNewPermissions() {
 }
 
 async function main() {
-  addAnAccessPolicyOrUpdateAnAccessPolicyWithNewPermissions();
+  await addAnAccessPolicyOrUpdateAnAccessPolicyWithNewPermissions();
 }
 
 main().catch(console.error);

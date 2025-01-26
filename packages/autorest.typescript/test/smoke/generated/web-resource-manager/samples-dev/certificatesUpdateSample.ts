@@ -42,7 +42,7 @@ async function patchCertificate() {
 }
 
 async function main() {
-  patchCertificate();
+  await patchCertificate();
 }
 
 main().catch(console.error);

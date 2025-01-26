@@ -38,7 +38,7 @@ async function getsTheFunctionsOfAStaticSite() {
 }
 
 async function main() {
-  getsTheFunctionsOfAStaticSite();
+  await getsTheFunctionsOfAStaticSite();
 }
 
 main().catch(console.error);

@@ -38,7 +38,7 @@ async function getAdministratorOfManagedInstance() {
 }
 
 async function main() {
-  getAdministratorOfManagedInstance();
+  await getAdministratorOfManagedInstance();
 }
 
 main().catch(console.error);

@@ -38,7 +38,7 @@ async function listsAServersConnectionPolicies() {
 }
 
 async function main() {
-  listsAServersConnectionPolicies();
+  await listsAServersConnectionPolicies();
 }
 
 main().catch(console.error);

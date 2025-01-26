@@ -24,7 +24,7 @@ async function loadTestRunListMetricNamespacesSample() {
 }
 
 async function main() {
-  loadTestRunListMetricNamespacesSample();
+  await loadTestRunListMetricNamespacesSample();
 }
 
 main().catch(console.error);

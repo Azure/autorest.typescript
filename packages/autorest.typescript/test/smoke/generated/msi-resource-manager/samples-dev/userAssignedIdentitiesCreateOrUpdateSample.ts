@@ -42,7 +42,7 @@ async function identityCreate() {
 }
 
 async function main() {
-  identityCreate();
+  await identityCreate();
 }
 
 main().catch(console.error);

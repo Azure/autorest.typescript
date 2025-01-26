@@ -36,7 +36,7 @@ async function getStaticSitesForAResourceGroup() {
 }
 
 async function main() {
-  getStaticSitesForAResourceGroup();
+  await getStaticSitesForAResourceGroup();
 }
 
 main().catch(console.error);

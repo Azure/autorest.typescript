@@ -132,10 +132,10 @@ async function createASnapshotFromAnExistingSnapshotInTheSameOrADifferentSubscri
 }
 
 async function main() {
-  createASnapshotByImportingAnUnmanagedBlobFromADifferentSubscription();
-  createASnapshotByImportingAnUnmanagedBlobFromTheSameSubscription();
-  createASnapshotFromAnExistingSnapshotInTheSameOrADifferentSubscriptionInADifferentRegion();
-  createASnapshotFromAnExistingSnapshotInTheSameOrADifferentSubscription();
+  await createASnapshotByImportingAnUnmanagedBlobFromADifferentSubscription();
+  await createASnapshotByImportingAnUnmanagedBlobFromTheSameSubscription();
+  await createASnapshotFromAnExistingSnapshotInTheSameOrADifferentSubscriptionInADifferentRegion();
+  await createASnapshotFromAnExistingSnapshotInTheSameOrADifferentSubscription();
 }
 
 main().catch(console.error);

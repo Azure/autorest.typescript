@@ -45,7 +45,7 @@ async function getASyncMemberSchema() {
 }
 
 async function main() {
-  getASyncMemberSchema();
+  await getASyncMemberSchema();
 }
 
 main().catch(console.error);

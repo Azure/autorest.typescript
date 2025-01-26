@@ -92,9 +92,9 @@ async function createOrUpdateASimpleGallery() {
 }
 
 async function main() {
-  createOrUpdateASimpleGalleryWithSharingProfile();
-  createOrUpdateASimpleGalleryWithSoftDeletionEnabled();
-  createOrUpdateASimpleGallery();
+  await createOrUpdateASimpleGalleryWithSharingProfile();
+  await createOrUpdateASimpleGalleryWithSoftDeletionEnabled();
+  await createOrUpdateASimpleGallery();
 }
 
 main().catch(console.error);

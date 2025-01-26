@@ -43,7 +43,7 @@ async function createOrUpdateIPGroups() {
 }
 
 async function main() {
-  createOrUpdateIPGroups();
+  await createOrUpdateIPGroups();
 }
 
 main().catch(console.error);

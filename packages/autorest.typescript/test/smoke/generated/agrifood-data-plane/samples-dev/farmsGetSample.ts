@@ -29,7 +29,7 @@ async function farmsGet() {
 }
 
 async function main() {
-  farmsGet();
+  await farmsGet();
 }
 
 main().catch(console.error);

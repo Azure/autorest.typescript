@@ -43,7 +43,7 @@ async function createOrUpdateACapacityReservationGroup() {
 }
 
 async function main() {
-  createOrUpdateACapacityReservationGroup();
+  await createOrUpdateACapacityReservationGroup();
 }
 
 main().catch(console.error);

@@ -43,7 +43,7 @@ async function resetTheApiKeyForAStaticSite() {
 }
 
 async function main() {
-  resetTheApiKeyForAStaticSite();
+  await resetTheApiKeyForAStaticSite();
 }
 
 main().catch(console.error);

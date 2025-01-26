@@ -67,8 +67,8 @@ async function listAppSlotAnalyses() {
 }
 
 async function main() {
-  listAppAnalyses();
-  listAppSlotAnalyses();
+  await listAppAnalyses();
+  await listAppSlotAnalyses();
 }
 
 main().catch(console.error);

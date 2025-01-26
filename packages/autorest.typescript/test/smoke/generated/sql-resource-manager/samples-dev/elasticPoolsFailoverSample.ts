@@ -37,7 +37,7 @@ async function failoverAnElasticPool() {
 }
 
 async function main() {
-  failoverAnElasticPool();
+  await failoverAnElasticPool();
 }
 
 main().catch(console.error);

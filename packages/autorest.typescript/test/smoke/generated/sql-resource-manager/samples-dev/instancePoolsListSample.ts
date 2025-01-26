@@ -33,7 +33,7 @@ async function listInstancePoolsInTheSubscription() {
 }
 
 async function main() {
-  listInstancePoolsInTheSubscription();
+  await listInstancePoolsInTheSubscription();
 }
 
 main().catch(console.error);

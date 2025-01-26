@@ -39,7 +39,7 @@ async function startAJobExecution() {
 }
 
 async function main() {
-  startAJobExecution();
+  await startAJobExecution();
 }
 
 main().catch(console.error);

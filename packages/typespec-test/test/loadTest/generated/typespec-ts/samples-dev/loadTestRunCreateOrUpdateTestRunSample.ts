@@ -66,7 +66,7 @@ async function loadTestRunCreateOrUpdateTestRunSample() {
 }
 
 async function main() {
-  loadTestRunCreateOrUpdateTestRunSample();
+  await loadTestRunCreateOrUpdateTestRunSample();
 }
 
 main().catch(console.error);

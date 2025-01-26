@@ -35,7 +35,7 @@ async function startAnExtensionRollingUpgrade() {
 }
 
 async function main() {
-  startAnExtensionRollingUpgrade();
+  await startAnExtensionRollingUpgrade();
 }
 
 main().catch(console.error);

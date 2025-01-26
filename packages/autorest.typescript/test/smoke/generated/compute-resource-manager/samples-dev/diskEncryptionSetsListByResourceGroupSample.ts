@@ -35,7 +35,7 @@ async function listAllDiskEncryptionSetsInAResourceGroup() {
 }
 
 async function main() {
-  listAllDiskEncryptionSetsInAResourceGroup();
+  await listAllDiskEncryptionSetsInAResourceGroup();
 }
 
 main().catch(console.error);
