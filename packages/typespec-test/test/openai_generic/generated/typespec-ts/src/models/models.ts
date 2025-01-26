@@ -1133,7 +1133,7 @@ export interface CreateCompletionRequest {
    * Note that <|endoftext|> is the document separator that the model sees during training, so if a
    * prompt is not specified the model will generate as if from the beginning of a new document.
    */
-  prompt: Prompt | null;
+  prompt: Prompt;
   /** The suffix that comes after a completion of inserted text. */
   suffix?: string | null;
   /**
@@ -1166,7 +1166,7 @@ export interface CreateCompletionRequest {
    */
   max_tokens?: number | null;
   /** Up to 4 sequences where the API will stop generating further tokens. */
-  stop?: Stop | null;
+  stop?: Stop;
   /**
    * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear
    * in the text so far, increasing the model's likelihood to talk about new topics.
@@ -1251,14 +1251,18 @@ export function createCompletionRequestSerializer(
 }
 
 /** Alias for Prompt */
-export type Prompt = string | string[] | number[] | number[][];
+export type Prompt = Prompt_1 | null;
+/** Alias for Prompt */
+export type Prompt_1 = string | string[] | number[] | number[][];
 
 export function promptSerializer(item: Prompt): any {
   return item;
 }
 
 /** Alias for Stop */
-export type Stop = string | string[];
+export type Stop = Stop_1 | null;
+/** Alias for Stop */
+export type Stop_1 = string | string[];
 
 export function stopSerializer(item: Stop): any {
   return item;
@@ -1747,7 +1751,7 @@ export interface CreateChatCompletionRequest {
    */
   max_tokens?: number | null;
   /** Up to 4 sequences where the API will stop generating further tokens. */
-  stop?: Stop | null;
+  stop?: Stop;
   /**
    * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear
    * in the text so far, increasing the model's likelihood to talk about new topics.

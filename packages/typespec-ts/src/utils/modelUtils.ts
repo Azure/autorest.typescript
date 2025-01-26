@@ -390,7 +390,7 @@ function getSchemaForUnion(
   const values = [];
   let namedUnionMember = false;
 
-  if (!(options?.needRef && union.name)) {
+  if (!(options?.needRef && union.name && !asEnum)) {
     if (asEnum?.open && asEnum.members.size > 0) {
       for (const [_, member] of asEnum.members.entries()) {
         const memberType = getSchemaForType(dpgContext, member.type, {
@@ -457,6 +457,8 @@ function getSchemaForUnion(
     schema.outputTypeName = union.name
       ? union.name + "Output"
       : schema.outputAlias;
+    delete schema.alias;
+    delete schema.outputAlias;
   }
 
   return schema;

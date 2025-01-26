@@ -78,7 +78,10 @@ function isGenerableType(
     type.kind === "union" ||
     type.kind === "dict" ||
     type.kind === "array" ||
-    (type.kind === "nullable" && isGenerableType(type.type))
+    (type.kind === "nullable" &&
+      isGenerableType(type.type) &&
+      Boolean(type.name) &&
+      !type.isGeneratedName)
   );
 }
 export function emitTypes(
