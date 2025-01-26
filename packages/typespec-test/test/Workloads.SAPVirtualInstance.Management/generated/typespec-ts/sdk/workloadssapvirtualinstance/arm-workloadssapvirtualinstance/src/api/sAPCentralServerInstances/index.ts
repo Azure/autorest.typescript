@@ -13,16 +13,13 @@ import {
 } from "../index.js";
 import {
   errorResponseDeserializer,
-  StartRequest,
   startRequestSerializer,
   OperationStatusResult,
   operationStatusResultDeserializer,
-  StopRequest,
   stopRequestSerializer,
   SAPCentralServerInstance,
   sAPCentralServerInstanceSerializer,
   sAPCentralServerInstanceDeserializer,
-  UpdateSAPCentralInstanceRequest,
   updateSAPCentralInstanceRequestSerializer,
   _SAPCentralServerInstanceListResult,
   _sAPCentralServerInstanceListResultDeserializer,
@@ -45,9 +42,6 @@ export function _stopSend(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   centralInstanceName: string,
-  body: {
-    body?: StopRequest;
-  },
   options: SAPCentralServerInstancesStopOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -91,9 +85,6 @@ export function stop(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   centralInstanceName: string,
-  body: {
-    body?: StopRequest;
-  },
   options: SAPCentralServerInstancesStopOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<OperationStatusResult>, OperationStatusResult> {
   return getLongRunningPoller(context, _stopDeserialize, ["202", "200"], {
@@ -105,7 +96,6 @@ export function stop(
         resourceGroupName,
         sapVirtualInstanceName,
         centralInstanceName,
-        body,
         options,
       ),
     resourceLocationConfig: "location",
@@ -120,9 +110,6 @@ export function _startSend(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   centralInstanceName: string,
-  body: {
-    body?: StartRequest;
-  },
   options: SAPCentralServerInstancesStartOptionalParams = {
     requestOptions: {},
   },
@@ -168,9 +155,6 @@ export function start(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   centralInstanceName: string,
-  body: {
-    body?: StartRequest;
-  },
   options: SAPCentralServerInstancesStartOptionalParams = {
     requestOptions: {},
   },
@@ -184,7 +168,6 @@ export function start(
         resourceGroupName,
         sapVirtualInstanceName,
         centralInstanceName,
-        body,
         options,
       ),
     resourceLocationConfig: "location",
@@ -327,7 +310,6 @@ export function _updateSend(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   centralInstanceName: string,
-  properties: UpdateSAPCentralInstanceRequest,
   options: SAPCentralServerInstancesUpdateOptionalParams = {
     requestOptions: {},
   },
@@ -371,7 +353,6 @@ export async function update(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   centralInstanceName: string,
-  properties: UpdateSAPCentralInstanceRequest,
   options: SAPCentralServerInstancesUpdateOptionalParams = {
     requestOptions: {},
   },
@@ -381,7 +362,6 @@ export async function update(
     resourceGroupName,
     sapVirtualInstanceName,
     centralInstanceName,
-    properties,
     options,
   );
   return _updateDeserialize(result);
@@ -392,7 +372,6 @@ export function _createSend(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   centralInstanceName: string,
-  resource: SAPCentralServerInstance,
   options: SAPCentralServerInstancesCreateOptionalParams = {
     requestOptions: {},
   },
@@ -436,7 +415,6 @@ export function create(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   centralInstanceName: string,
-  resource: SAPCentralServerInstance,
   options: SAPCentralServerInstancesCreateOptionalParams = {
     requestOptions: {},
   },
@@ -453,7 +431,6 @@ export function create(
         resourceGroupName,
         sapVirtualInstanceName,
         centralInstanceName,
-        resource,
         options,
       ),
     resourceLocationConfig: "azure-async-operation",

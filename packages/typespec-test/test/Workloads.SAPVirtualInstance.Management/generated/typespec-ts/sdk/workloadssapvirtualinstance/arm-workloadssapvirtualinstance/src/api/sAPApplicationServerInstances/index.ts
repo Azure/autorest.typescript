@@ -16,15 +16,12 @@ import {
   sAPApplicationServerInstanceSerializer,
   sAPApplicationServerInstanceDeserializer,
   errorResponseDeserializer,
-  UpdateSAPApplicationInstanceRequest,
   updateSAPApplicationInstanceRequestSerializer,
   _SAPApplicationServerInstanceListResult,
   _sAPApplicationServerInstanceListResultDeserializer,
-  StartRequest,
   startRequestSerializer,
   OperationStatusResult,
   operationStatusResultDeserializer,
-  StopRequest,
   stopRequestSerializer,
 } from "../../models/models.js";
 import {
@@ -45,9 +42,6 @@ export function _stopSend(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   applicationInstanceName: string,
-  body: {
-    body?: StopRequest;
-  },
   options: SAPApplicationServerInstancesStopOptionalParams = {
     requestOptions: {},
   },
@@ -93,9 +87,6 @@ export function stop(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   applicationInstanceName: string,
-  body: {
-    body?: StopRequest;
-  },
   options: SAPApplicationServerInstancesStopOptionalParams = {
     requestOptions: {},
   },
@@ -109,7 +100,6 @@ export function stop(
         resourceGroupName,
         sapVirtualInstanceName,
         applicationInstanceName,
-        body,
         options,
       ),
     resourceLocationConfig: "location",
@@ -124,9 +114,6 @@ export function _startSend(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   applicationInstanceName: string,
-  body: {
-    body?: StartRequest;
-  },
   options: SAPApplicationServerInstancesStartOptionalParams = {
     requestOptions: {},
   },
@@ -172,9 +159,6 @@ export function start(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   applicationInstanceName: string,
-  body: {
-    body?: StartRequest;
-  },
   options: SAPApplicationServerInstancesStartOptionalParams = {
     requestOptions: {},
   },
@@ -188,7 +172,6 @@ export function start(
         resourceGroupName,
         sapVirtualInstanceName,
         applicationInstanceName,
-        body,
         options,
       ),
     resourceLocationConfig: "location",
@@ -335,7 +318,6 @@ export function _updateSend(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   applicationInstanceName: string,
-  properties: UpdateSAPApplicationInstanceRequest,
   options: SAPApplicationServerInstancesUpdateOptionalParams = {
     requestOptions: {},
   },
@@ -379,7 +361,6 @@ export async function update(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   applicationInstanceName: string,
-  properties: UpdateSAPApplicationInstanceRequest,
   options: SAPApplicationServerInstancesUpdateOptionalParams = {
     requestOptions: {},
   },
@@ -389,7 +370,6 @@ export async function update(
     resourceGroupName,
     sapVirtualInstanceName,
     applicationInstanceName,
-    properties,
     options,
   );
   return _updateDeserialize(result);
@@ -400,7 +380,6 @@ export function _createSend(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   applicationInstanceName: string,
-  resource: SAPApplicationServerInstance,
   options: SAPApplicationServerInstancesCreateOptionalParams = {
     requestOptions: {},
   },
@@ -444,7 +423,6 @@ export function create(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   applicationInstanceName: string,
-  resource: SAPApplicationServerInstance,
   options: SAPApplicationServerInstancesCreateOptionalParams = {
     requestOptions: {},
   },
@@ -461,7 +439,6 @@ export function create(
         resourceGroupName,
         sapVirtualInstanceName,
         applicationInstanceName,
-        resource,
         options,
       ),
     resourceLocationConfig: "azure-async-operation",

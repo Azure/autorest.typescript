@@ -18,32 +18,25 @@ import {
 } from "../index.js";
 import {
   errorResponseDeserializer,
-  StartRequest,
   startRequestSerializer,
   OperationStatusResult,
   operationStatusResultDeserializer,
-  StopRequest,
   stopRequestSerializer,
   SAPVirtualInstance,
   sAPVirtualInstanceSerializer,
   sAPVirtualInstanceDeserializer,
-  UpdateSAPVirtualInstanceRequest,
   updateSAPVirtualInstanceRequestSerializer,
   _SAPVirtualInstanceListResult,
   _sAPVirtualInstanceListResultDeserializer,
-  SAPSizingRecommendationRequest,
   sAPSizingRecommendationRequestSerializer,
   sAPSizingRecommendationResultUnionDeserializer,
   SAPSizingRecommendationResultUnion,
-  SAPSupportedSkusRequest,
   sAPSupportedSkusRequestSerializer,
   SAPSupportedResourceSkusResult,
   sAPSupportedResourceSkusResultDeserializer,
-  SAPDiskConfigurationsRequest,
   sAPDiskConfigurationsRequestSerializer,
   SAPDiskConfigurationsResult,
   sAPDiskConfigurationsResultDeserializer,
-  SAPAvailabilityZoneDetailsRequest,
   sAPAvailabilityZoneDetailsRequestSerializer,
   SAPAvailabilityZoneDetailsResult,
   sAPAvailabilityZoneDetailsResultDeserializer,
@@ -64,7 +57,6 @@ import { PollerLike, OperationState } from "@azure/core-lro";
 export function _getAvailabilityZoneDetailsSend(
   context: Client,
   location: string,
-  body: SAPAvailabilityZoneDetailsRequest,
   options: SAPVirtualInstancesGetAvailabilityZoneDetailsOptionalParams = {
     requestOptions: {},
   },
@@ -104,7 +96,6 @@ export async function _getAvailabilityZoneDetailsDeserialize(
 export async function getAvailabilityZoneDetails(
   context: Client,
   location: string,
-  body: SAPAvailabilityZoneDetailsRequest,
   options: SAPVirtualInstancesGetAvailabilityZoneDetailsOptionalParams = {
     requestOptions: {},
   },
@@ -112,7 +103,6 @@ export async function getAvailabilityZoneDetails(
   const result = await _getAvailabilityZoneDetailsSend(
     context,
     location,
-    body,
     options,
   );
   return _getAvailabilityZoneDetailsDeserialize(result);
@@ -121,7 +111,6 @@ export async function getAvailabilityZoneDetails(
 export function _getDiskConfigurationsSend(
   context: Client,
   location: string,
-  body: SAPDiskConfigurationsRequest,
   options: SAPVirtualInstancesGetDiskConfigurationsOptionalParams = {
     requestOptions: {},
   },
@@ -161,24 +150,17 @@ export async function _getDiskConfigurationsDeserialize(
 export async function getDiskConfigurations(
   context: Client,
   location: string,
-  body: SAPDiskConfigurationsRequest,
   options: SAPVirtualInstancesGetDiskConfigurationsOptionalParams = {
     requestOptions: {},
   },
 ): Promise<SAPDiskConfigurationsResult> {
-  const result = await _getDiskConfigurationsSend(
-    context,
-    location,
-    body,
-    options,
-  );
+  const result = await _getDiskConfigurationsSend(context, location, options);
   return _getDiskConfigurationsDeserialize(result);
 }
 
 export function _getSapSupportedSkuSend(
   context: Client,
   location: string,
-  body: SAPSupportedSkusRequest,
   options: SAPVirtualInstancesGetSapSupportedSkuOptionalParams = {
     requestOptions: {},
   },
@@ -218,24 +200,17 @@ export async function _getSapSupportedSkuDeserialize(
 export async function getSapSupportedSku(
   context: Client,
   location: string,
-  body: SAPSupportedSkusRequest,
   options: SAPVirtualInstancesGetSapSupportedSkuOptionalParams = {
     requestOptions: {},
   },
 ): Promise<SAPSupportedResourceSkusResult> {
-  const result = await _getSapSupportedSkuSend(
-    context,
-    location,
-    body,
-    options,
-  );
+  const result = await _getSapSupportedSkuSend(context, location, options);
   return _getSapSupportedSkuDeserialize(result);
 }
 
 export function _getSizingRecommendationsSend(
   context: Client,
   location: string,
-  body: SAPSizingRecommendationRequest,
   options: SAPVirtualInstancesGetSizingRecommendationsOptionalParams = {
     requestOptions: {},
   },
@@ -275,7 +250,6 @@ export async function _getSizingRecommendationsDeserialize(
 export async function getSizingRecommendations(
   context: Client,
   location: string,
-  body: SAPSizingRecommendationRequest,
   options: SAPVirtualInstancesGetSizingRecommendationsOptionalParams = {
     requestOptions: {},
   },
@@ -283,7 +257,6 @@ export async function getSizingRecommendations(
   const result = await _getSizingRecommendationsSend(
     context,
     location,
-    body,
     options,
   );
   return _getSizingRecommendationsDeserialize(result);
@@ -293,9 +266,6 @@ export function _stopSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
-  body: {
-    body?: StopRequest;
-  },
   options: SAPVirtualInstancesStopOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -337,22 +307,13 @@ export function stop(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
-  body: {
-    body?: StopRequest;
-  },
   options: SAPVirtualInstancesStopOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<OperationStatusResult>, OperationStatusResult> {
   return getLongRunningPoller(context, _stopDeserialize, ["202", "200"], {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () =>
-      _stopSend(
-        context,
-        resourceGroupName,
-        sapVirtualInstanceName,
-        body,
-        options,
-      ),
+      _stopSend(context, resourceGroupName, sapVirtualInstanceName, options),
     resourceLocationConfig: "location",
   }) as PollerLike<
     OperationState<OperationStatusResult>,
@@ -364,9 +325,6 @@ export function _startSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
-  body: {
-    body?: StartRequest;
-  },
   options: SAPVirtualInstancesStartOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -408,22 +366,13 @@ export function start(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
-  body: {
-    body?: StartRequest;
-  },
   options: SAPVirtualInstancesStartOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<OperationStatusResult>, OperationStatusResult> {
   return getLongRunningPoller(context, _startDeserialize, ["202", "200"], {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () =>
-      _startSend(
-        context,
-        resourceGroupName,
-        sapVirtualInstanceName,
-        body,
-        options,
-      ),
+      _startSend(context, resourceGroupName, sapVirtualInstanceName, options),
     resourceLocationConfig: "location",
   }) as PollerLike<
     OperationState<OperationStatusResult>,
@@ -605,7 +554,6 @@ export function _updateSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
-  properties: UpdateSAPVirtualInstanceRequest,
   options: SAPVirtualInstancesUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -645,20 +593,13 @@ export function update(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
-  properties: UpdateSAPVirtualInstanceRequest,
   options: SAPVirtualInstancesUpdateOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<SAPVirtualInstance>, SAPVirtualInstance> {
   return getLongRunningPoller(context, _updateDeserialize, ["200", "202"], {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () =>
-      _updateSend(
-        context,
-        resourceGroupName,
-        sapVirtualInstanceName,
-        properties,
-        options,
-      ),
+      _updateSend(context, resourceGroupName, sapVirtualInstanceName, options),
     resourceLocationConfig: "location",
   }) as PollerLike<OperationState<SAPVirtualInstance>, SAPVirtualInstance>;
 }
@@ -667,7 +608,6 @@ export function _createSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
-  resource: SAPVirtualInstance,
   options: SAPVirtualInstancesCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -707,20 +647,13 @@ export function create(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
-  resource: SAPVirtualInstance,
   options: SAPVirtualInstancesCreateOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<SAPVirtualInstance>, SAPVirtualInstance> {
   return getLongRunningPoller(context, _createDeserialize, ["200", "201"], {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () =>
-      _createSend(
-        context,
-        resourceGroupName,
-        sapVirtualInstanceName,
-        resource,
-        options,
-      ),
+      _createSend(context, resourceGroupName, sapVirtualInstanceName, options),
     resourceLocationConfig: "azure-async-operation",
   }) as PollerLike<OperationState<SAPVirtualInstance>, SAPVirtualInstance>;
 }

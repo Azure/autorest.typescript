@@ -12,11 +12,8 @@ import {
   get,
 } from "../../api/sAPDatabaseInstances/index.js";
 import {
-  StartRequest,
   OperationStatusResult,
-  StopRequest,
   SAPDatabaseInstance,
-  UpdateSAPDatabaseInstanceRequest,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
@@ -37,9 +34,6 @@ export interface SAPDatabaseInstancesOperations {
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     databaseInstanceName: string,
-    body: {
-      body?: StopRequest;
-    },
     options?: SAPDatabaseInstancesStopOptionalParams,
   ) => PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
   /** Starts the database instance of the SAP system. */
@@ -47,9 +41,6 @@ export interface SAPDatabaseInstancesOperations {
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     databaseInstanceName: string,
-    body: {
-      body?: StartRequest;
-    },
     options?: SAPDatabaseInstancesStartOptionalParams,
   ) => PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
   /** Lists the Database resources associated with a Virtual Instance for SAP solutions resource. */
@@ -75,7 +66,6 @@ export interface SAPDatabaseInstancesOperations {
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     databaseInstanceName: string,
-    properties: UpdateSAPDatabaseInstanceRequest,
     options?: SAPDatabaseInstancesUpdateOptionalParams,
   ) => Promise<SAPDatabaseInstance>;
   /** Creates the Database resource corresponding to the Virtual Instance for SAP solutions resource. &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will return a Bad Request error. */
@@ -83,7 +73,6 @@ export interface SAPDatabaseInstancesOperations {
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     databaseInstanceName: string,
-    resource: SAPDatabaseInstance,
     options?: SAPDatabaseInstancesCreateOptionalParams,
   ) => PollerLike<OperationState<SAPDatabaseInstance>, SAPDatabaseInstance>;
   /** Gets the SAP Database Instance resource. */
@@ -101,9 +90,6 @@ function _getSAPDatabaseInstances(context: WorkloadsContext) {
       resourceGroupName: string,
       sapVirtualInstanceName: string,
       databaseInstanceName: string,
-      body: {
-        body?: StopRequest;
-      },
       options?: SAPDatabaseInstancesStopOptionalParams,
     ) =>
       stop(
@@ -111,16 +97,12 @@ function _getSAPDatabaseInstances(context: WorkloadsContext) {
         resourceGroupName,
         sapVirtualInstanceName,
         databaseInstanceName,
-        body,
         options,
       ),
     start: (
       resourceGroupName: string,
       sapVirtualInstanceName: string,
       databaseInstanceName: string,
-      body: {
-        body?: StartRequest;
-      },
       options?: SAPDatabaseInstancesStartOptionalParams,
     ) =>
       start(
@@ -128,7 +110,6 @@ function _getSAPDatabaseInstances(context: WorkloadsContext) {
         resourceGroupName,
         sapVirtualInstanceName,
         databaseInstanceName,
-        body,
         options,
       ),
     list: (
@@ -153,7 +134,6 @@ function _getSAPDatabaseInstances(context: WorkloadsContext) {
       resourceGroupName: string,
       sapVirtualInstanceName: string,
       databaseInstanceName: string,
-      properties: UpdateSAPDatabaseInstanceRequest,
       options?: SAPDatabaseInstancesUpdateOptionalParams,
     ) =>
       update(
@@ -161,14 +141,12 @@ function _getSAPDatabaseInstances(context: WorkloadsContext) {
         resourceGroupName,
         sapVirtualInstanceName,
         databaseInstanceName,
-        properties,
         options,
       ),
     create: (
       resourceGroupName: string,
       sapVirtualInstanceName: string,
       databaseInstanceName: string,
-      resource: SAPDatabaseInstance,
       options?: SAPDatabaseInstancesCreateOptionalParams,
     ) =>
       create(
@@ -176,7 +154,6 @@ function _getSAPDatabaseInstances(context: WorkloadsContext) {
         resourceGroupName,
         sapVirtualInstanceName,
         databaseInstanceName,
-        resource,
         options,
       ),
     get: (
@@ -195,7 +172,7 @@ function _getSAPDatabaseInstances(context: WorkloadsContext) {
   };
 }
 
-export function getSAPDatabaseInstancesOperations(
+export function _getSAPDatabaseInstancesOperations(
   context: WorkloadsContext,
 ): SAPDatabaseInstancesOperations {
   return {

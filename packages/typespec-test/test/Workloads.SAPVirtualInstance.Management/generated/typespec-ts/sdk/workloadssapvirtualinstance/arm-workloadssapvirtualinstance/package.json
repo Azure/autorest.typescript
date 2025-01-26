@@ -11,12 +11,12 @@
     "exports": {
       "./package.json": "./package.json",
       ".": "./src/index.ts",
-      "./models": "./src/models/index.ts",
       "./api/sAPApplicationServerInstances": "src/api/sAPApplicationServerInstances/index.ts",
       "./api/sAPDatabaseInstances": "src/api/sAPDatabaseInstances/index.ts",
       "./api/sAPCentralServerInstances": "src/api/sAPCentralServerInstances/index.ts",
       "./api/sAPVirtualInstances": "src/api/sAPVirtualInstances/index.ts",
-      "./api/operations": "src/api/operations/index.ts"
+      "./api/operations": "src/api/operations/index.ts",
+      "./models": "./src/models/index.ts"
     },
     "dialects": ["esm", "commonjs"],
     "esmDialects": ["browser", "react-native"],

@@ -2,23 +2,23 @@
 // Licensed under the MIT License.
 
 import {
-  getSAPApplicationServerInstancesOperations,
+  _getSAPApplicationServerInstancesOperations,
   SAPApplicationServerInstancesOperations,
 } from "./classic/sAPApplicationServerInstances/index.js";
 import {
-  getSAPDatabaseInstancesOperations,
+  _getSAPDatabaseInstancesOperations,
   SAPDatabaseInstancesOperations,
 } from "./classic/sAPDatabaseInstances/index.js";
 import {
-  getSAPCentralServerInstancesOperations,
+  _getSAPCentralServerInstancesOperations,
   SAPCentralServerInstancesOperations,
 } from "./classic/sAPCentralServerInstances/index.js";
 import {
-  getSAPVirtualInstancesOperations,
+  _getSAPVirtualInstancesOperations,
   SAPVirtualInstancesOperations,
 } from "./classic/sAPVirtualInstances/index.js";
 import {
-  getOperationsOperations,
+  _getOperationsOperations,
   OperationsOperations,
 } from "./classic/operations/index.js";
 import {
@@ -52,13 +52,15 @@ export class WorkloadsClient {
     });
     this.pipeline = this._client.pipeline;
     this.sAPApplicationServerInstances =
-      getSAPApplicationServerInstancesOperations(this._client);
-    this.sAPDatabaseInstances = getSAPDatabaseInstancesOperations(this._client);
-    this.sAPCentralServerInstances = getSAPCentralServerInstancesOperations(
+      _getSAPApplicationServerInstancesOperations(this._client);
+    this.sAPDatabaseInstances = _getSAPDatabaseInstancesOperations(
       this._client,
     );
-    this.sAPVirtualInstances = getSAPVirtualInstancesOperations(this._client);
-    this.operations = getOperationsOperations(this._client);
+    this.sAPCentralServerInstances = _getSAPCentralServerInstancesOperations(
+      this._client,
+    );
+    this.sAPVirtualInstances = _getSAPVirtualInstancesOperations(this._client);
+    this.operations = _getOperationsOperations(this._client);
   }
 
   /** The operation groups for sAPApplicationServerInstances */

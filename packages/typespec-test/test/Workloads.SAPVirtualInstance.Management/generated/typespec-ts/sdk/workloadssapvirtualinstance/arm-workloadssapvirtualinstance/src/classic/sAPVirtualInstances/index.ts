@@ -17,18 +17,11 @@ import {
   get,
 } from "../../api/sAPVirtualInstances/index.js";
 import {
-  StartRequest,
   OperationStatusResult,
-  StopRequest,
   SAPVirtualInstance,
-  UpdateSAPVirtualInstanceRequest,
-  SAPSizingRecommendationRequest,
   SAPSizingRecommendationResultUnion,
-  SAPSupportedSkusRequest,
   SAPSupportedResourceSkusResult,
-  SAPDiskConfigurationsRequest,
   SAPDiskConfigurationsResult,
-  SAPAvailabilityZoneDetailsRequest,
   SAPAvailabilityZoneDetailsResult,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
@@ -53,43 +46,33 @@ export interface SAPVirtualInstancesOperations {
   /** Get the recommended SAP Availability Zone Pair Details for your region. */
   getAvailabilityZoneDetails: (
     location: string,
-    body: SAPAvailabilityZoneDetailsRequest,
     options?: SAPVirtualInstancesGetAvailabilityZoneDetailsOptionalParams,
   ) => Promise<SAPAvailabilityZoneDetailsResult>;
   /** Get the SAP Disk Configuration Layout prod/non-prod SAP System. */
   getDiskConfigurations: (
     location: string,
-    body: SAPDiskConfigurationsRequest,
     options?: SAPVirtualInstancesGetDiskConfigurationsOptionalParams,
   ) => Promise<SAPDiskConfigurationsResult>;
   /** Get a list of SAP supported SKUs for ASCS, Application and Database tier. */
   getSapSupportedSku: (
     location: string,
-    body: SAPSupportedSkusRequest,
     options?: SAPVirtualInstancesGetSapSupportedSkuOptionalParams,
   ) => Promise<SAPSupportedResourceSkusResult>;
   /** Gets the sizing recommendations. */
   getSizingRecommendations: (
     location: string,
-    body: SAPSizingRecommendationRequest,
     options?: SAPVirtualInstancesGetSizingRecommendationsOptionalParams,
   ) => Promise<SAPSizingRecommendationResultUnion>;
   /** Stops the SAP Application, that is the Application server instances and Central Services instance. */
   stop: (
     resourceGroupName: string,
     sapVirtualInstanceName: string,
-    body: {
-      body?: StopRequest;
-    },
     options?: SAPVirtualInstancesStopOptionalParams,
   ) => PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
   /** Starts the SAP application, that is the Central Services instance and Application server instances. */
   start: (
     resourceGroupName: string,
     sapVirtualInstanceName: string,
-    body: {
-      body?: StartRequest;
-    },
     options?: SAPVirtualInstancesStartOptionalParams,
   ) => PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
   /** Gets all Virtual Instances for SAP solutions resources in a Subscription. */
@@ -116,14 +99,12 @@ export interface SAPVirtualInstancesOperations {
   update: (
     resourceGroupName: string,
     sapVirtualInstanceName: string,
-    properties: UpdateSAPVirtualInstanceRequest,
     options?: SAPVirtualInstancesUpdateOptionalParams,
   ) => PollerLike<OperationState<SAPVirtualInstance>, SAPVirtualInstance>;
   /** Creates a Virtual Instance for SAP solutions (VIS) resource */
   create: (
     resourceGroupName: string,
     sapVirtualInstanceName: string,
-    resource: SAPVirtualInstance,
     options?: SAPVirtualInstancesCreateOptionalParams,
   ) => PollerLike<OperationState<SAPVirtualInstance>, SAPVirtualInstance>;
   /** Gets a Virtual Instance for SAP solutions resource */
@@ -138,42 +119,30 @@ function _getSAPVirtualInstances(context: WorkloadsContext) {
   return {
     getAvailabilityZoneDetails: (
       location: string,
-      body: SAPAvailabilityZoneDetailsRequest,
       options?: SAPVirtualInstancesGetAvailabilityZoneDetailsOptionalParams,
-    ) => getAvailabilityZoneDetails(context, location, body, options),
+    ) => getAvailabilityZoneDetails(context, location, options),
     getDiskConfigurations: (
       location: string,
-      body: SAPDiskConfigurationsRequest,
       options?: SAPVirtualInstancesGetDiskConfigurationsOptionalParams,
-    ) => getDiskConfigurations(context, location, body, options),
+    ) => getDiskConfigurations(context, location, options),
     getSapSupportedSku: (
       location: string,
-      body: SAPSupportedSkusRequest,
       options?: SAPVirtualInstancesGetSapSupportedSkuOptionalParams,
-    ) => getSapSupportedSku(context, location, body, options),
+    ) => getSapSupportedSku(context, location, options),
     getSizingRecommendations: (
       location: string,
-      body: SAPSizingRecommendationRequest,
       options?: SAPVirtualInstancesGetSizingRecommendationsOptionalParams,
-    ) => getSizingRecommendations(context, location, body, options),
+    ) => getSizingRecommendations(context, location, options),
     stop: (
       resourceGroupName: string,
       sapVirtualInstanceName: string,
-      body: {
-        body?: StopRequest;
-      },
       options?: SAPVirtualInstancesStopOptionalParams,
-    ) =>
-      stop(context, resourceGroupName, sapVirtualInstanceName, body, options),
+    ) => stop(context, resourceGroupName, sapVirtualInstanceName, options),
     start: (
       resourceGroupName: string,
       sapVirtualInstanceName: string,
-      body: {
-        body?: StartRequest;
-      },
       options?: SAPVirtualInstancesStartOptionalParams,
-    ) =>
-      start(context, resourceGroupName, sapVirtualInstanceName, body, options),
+    ) => start(context, resourceGroupName, sapVirtualInstanceName, options),
     listBySubscription: (
       options?: SAPVirtualInstancesListBySubscriptionOptionalParams,
     ) => listBySubscription(context, options),
@@ -189,29 +158,13 @@ function _getSAPVirtualInstances(context: WorkloadsContext) {
     update: (
       resourceGroupName: string,
       sapVirtualInstanceName: string,
-      properties: UpdateSAPVirtualInstanceRequest,
       options?: SAPVirtualInstancesUpdateOptionalParams,
-    ) =>
-      update(
-        context,
-        resourceGroupName,
-        sapVirtualInstanceName,
-        properties,
-        options,
-      ),
+    ) => update(context, resourceGroupName, sapVirtualInstanceName, options),
     create: (
       resourceGroupName: string,
       sapVirtualInstanceName: string,
-      resource: SAPVirtualInstance,
       options?: SAPVirtualInstancesCreateOptionalParams,
-    ) =>
-      create(
-        context,
-        resourceGroupName,
-        sapVirtualInstanceName,
-        resource,
-        options,
-      ),
+    ) => create(context, resourceGroupName, sapVirtualInstanceName, options),
     get: (
       resourceGroupName: string,
       sapVirtualInstanceName: string,
@@ -220,7 +173,7 @@ function _getSAPVirtualInstances(context: WorkloadsContext) {
   };
 }
 
-export function getSAPVirtualInstancesOperations(
+export function _getSAPVirtualInstancesOperations(
   context: WorkloadsContext,
 ): SAPVirtualInstancesOperations {
   return {

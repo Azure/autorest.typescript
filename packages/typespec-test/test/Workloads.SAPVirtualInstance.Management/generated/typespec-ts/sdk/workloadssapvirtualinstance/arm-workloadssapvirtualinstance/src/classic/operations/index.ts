@@ -21,7 +21,7 @@ function _getOperations(context: WorkloadsContext) {
   };
 }
 
-export function getOperationsOperations(
+export function _getOperationsOperations(
   context: WorkloadsContext,
 ): OperationsOperations {
   return {

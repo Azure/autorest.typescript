@@ -13,16 +13,13 @@ import {
 } from "../index.js";
 import {
   errorResponseDeserializer,
-  StartRequest,
   startRequestSerializer,
   OperationStatusResult,
   operationStatusResultDeserializer,
-  StopRequest,
   stopRequestSerializer,
   SAPDatabaseInstance,
   sAPDatabaseInstanceSerializer,
   sAPDatabaseInstanceDeserializer,
-  UpdateSAPDatabaseInstanceRequest,
   updateSAPDatabaseInstanceRequestSerializer,
   _SAPDatabaseInstanceListResult,
   _sAPDatabaseInstanceListResultDeserializer,
@@ -45,9 +42,6 @@ export function _stopSend(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   databaseInstanceName: string,
-  body: {
-    body?: StopRequest;
-  },
   options: SAPDatabaseInstancesStopOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -91,9 +85,6 @@ export function stop(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   databaseInstanceName: string,
-  body: {
-    body?: StopRequest;
-  },
   options: SAPDatabaseInstancesStopOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<OperationStatusResult>, OperationStatusResult> {
   return getLongRunningPoller(context, _stopDeserialize, ["202", "200"], {
@@ -105,7 +96,6 @@ export function stop(
         resourceGroupName,
         sapVirtualInstanceName,
         databaseInstanceName,
-        body,
         options,
       ),
     resourceLocationConfig: "location",
@@ -120,9 +110,6 @@ export function _startSend(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   databaseInstanceName: string,
-  body: {
-    body?: StartRequest;
-  },
   options: SAPDatabaseInstancesStartOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -166,9 +153,6 @@ export function start(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   databaseInstanceName: string,
-  body: {
-    body?: StartRequest;
-  },
   options: SAPDatabaseInstancesStartOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<OperationStatusResult>, OperationStatusResult> {
   return getLongRunningPoller(context, _startDeserialize, ["202", "200"], {
@@ -180,7 +164,6 @@ export function start(
         resourceGroupName,
         sapVirtualInstanceName,
         databaseInstanceName,
-        body,
         options,
       ),
     resourceLocationConfig: "location",
@@ -319,7 +302,6 @@ export function _updateSend(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   databaseInstanceName: string,
-  properties: UpdateSAPDatabaseInstanceRequest,
   options: SAPDatabaseInstancesUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -361,7 +343,6 @@ export async function update(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   databaseInstanceName: string,
-  properties: UpdateSAPDatabaseInstanceRequest,
   options: SAPDatabaseInstancesUpdateOptionalParams = { requestOptions: {} },
 ): Promise<SAPDatabaseInstance> {
   const result = await _updateSend(
@@ -369,7 +350,6 @@ export async function update(
     resourceGroupName,
     sapVirtualInstanceName,
     databaseInstanceName,
-    properties,
     options,
   );
   return _updateDeserialize(result);
@@ -380,7 +360,6 @@ export function _createSend(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   databaseInstanceName: string,
-  resource: SAPDatabaseInstance,
   options: SAPDatabaseInstancesCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -422,7 +401,6 @@ export function create(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   databaseInstanceName: string,
-  resource: SAPDatabaseInstance,
   options: SAPDatabaseInstancesCreateOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<SAPDatabaseInstance>, SAPDatabaseInstance> {
   return getLongRunningPoller(context, _createDeserialize, ["200", "201"], {
@@ -434,7 +412,6 @@ export function create(
         resourceGroupName,
         sapVirtualInstanceName,
         databaseInstanceName,
-        resource,
         options,
       ),
     resourceLocationConfig: "azure-async-operation",

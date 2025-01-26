@@ -12,11 +12,8 @@ import {
   get,
 } from "../../api/sAPCentralServerInstances/index.js";
 import {
-  StartRequest,
   OperationStatusResult,
-  StopRequest,
   SAPCentralServerInstance,
-  UpdateSAPCentralInstanceRequest,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
@@ -37,9 +34,6 @@ export interface SAPCentralServerInstancesOperations {
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     centralInstanceName: string,
-    body: {
-      body?: StopRequest;
-    },
     options?: SAPCentralServerInstancesStopOptionalParams,
   ) => PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
   /** Starts the SAP Central Services Instance. */
@@ -47,9 +41,6 @@ export interface SAPCentralServerInstancesOperations {
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     centralInstanceName: string,
-    body: {
-      body?: StartRequest;
-    },
     options?: SAPCentralServerInstancesStartOptionalParams,
   ) => PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
   /** Lists the SAP Central Services Instance resource for the given Virtual Instance for SAP solutions resource. */
@@ -75,7 +66,6 @@ export interface SAPCentralServerInstancesOperations {
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     centralInstanceName: string,
-    properties: UpdateSAPCentralInstanceRequest,
     options?: SAPCentralServerInstancesUpdateOptionalParams,
   ) => Promise<SAPCentralServerInstance>;
   /** Creates the SAP Central Services Instance resource. &lt;br&gt;&lt;br&gt;This will be used by service only. PUT operation on this resource by end user will return a Bad Request error. */
@@ -83,7 +73,6 @@ export interface SAPCentralServerInstancesOperations {
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     centralInstanceName: string,
-    resource: SAPCentralServerInstance,
     options?: SAPCentralServerInstancesCreateOptionalParams,
   ) => PollerLike<
     OperationState<SAPCentralServerInstance>,
@@ -104,9 +93,6 @@ function _getSAPCentralServerInstances(context: WorkloadsContext) {
       resourceGroupName: string,
       sapVirtualInstanceName: string,
       centralInstanceName: string,
-      body: {
-        body?: StopRequest;
-      },
       options?: SAPCentralServerInstancesStopOptionalParams,
     ) =>
       stop(
@@ -114,16 +100,12 @@ function _getSAPCentralServerInstances(context: WorkloadsContext) {
         resourceGroupName,
         sapVirtualInstanceName,
         centralInstanceName,
-        body,
         options,
       ),
     start: (
       resourceGroupName: string,
       sapVirtualInstanceName: string,
       centralInstanceName: string,
-      body: {
-        body?: StartRequest;
-      },
       options?: SAPCentralServerInstancesStartOptionalParams,
     ) =>
       start(
@@ -131,7 +113,6 @@ function _getSAPCentralServerInstances(context: WorkloadsContext) {
         resourceGroupName,
         sapVirtualInstanceName,
         centralInstanceName,
-        body,
         options,
       ),
     list: (
@@ -156,7 +137,6 @@ function _getSAPCentralServerInstances(context: WorkloadsContext) {
       resourceGroupName: string,
       sapVirtualInstanceName: string,
       centralInstanceName: string,
-      properties: UpdateSAPCentralInstanceRequest,
       options?: SAPCentralServerInstancesUpdateOptionalParams,
     ) =>
       update(
@@ -164,14 +144,12 @@ function _getSAPCentralServerInstances(context: WorkloadsContext) {
         resourceGroupName,
         sapVirtualInstanceName,
         centralInstanceName,
-        properties,
         options,
       ),
     create: (
       resourceGroupName: string,
       sapVirtualInstanceName: string,
       centralInstanceName: string,
-      resource: SAPCentralServerInstance,
       options?: SAPCentralServerInstancesCreateOptionalParams,
     ) =>
       create(
@@ -179,7 +157,6 @@ function _getSAPCentralServerInstances(context: WorkloadsContext) {
         resourceGroupName,
         sapVirtualInstanceName,
         centralInstanceName,
-        resource,
         options,
       ),
     get: (
@@ -198,7 +175,7 @@ function _getSAPCentralServerInstances(context: WorkloadsContext) {
   };
 }
 
-export function getSAPCentralServerInstancesOperations(
+export function _getSAPCentralServerInstancesOperations(
   context: WorkloadsContext,
 ): SAPCentralServerInstancesOperations {
   return {
