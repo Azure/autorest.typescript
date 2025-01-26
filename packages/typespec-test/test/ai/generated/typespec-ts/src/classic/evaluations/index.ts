@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { AzureAIContext } from "../../api/azureAIContext.js";
+import { AIProjectContext } from "../../api/aIProjectContext.js";
 import {
-  deleteSchedule,
+  disableSchedule,
   listSchedule,
   createOrReplaceSchedule,
   getSchedule,
@@ -15,7 +15,7 @@ import {
 import { Evaluation, EvaluationSchedule } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import {
-  EvaluationsDeleteScheduleOptionalParams,
+  EvaluationsDisableScheduleOptionalParams,
   EvaluationsListScheduleOptionalParams,
   EvaluationsCreateOrReplaceScheduleOptionalParams,
   EvaluationsGetScheduleOptionalParams,
@@ -27,10 +27,10 @@ import {
 
 /** Interface representing a Evaluations operations. */
 export interface EvaluationsOperations {
-  /** Resource delete operation template. */
-  deleteSchedule: (
-    id: string,
-    options?: EvaluationsDeleteScheduleOptionalParams,
+  /** Disable the evaluation schedule. */
+  disableSchedule: (
+    name: string,
+    options?: EvaluationsDisableScheduleOptionalParams,
   ) => Promise<void>;
   /** Resource list operation template. */
   listSchedule: (
@@ -38,13 +38,13 @@ export interface EvaluationsOperations {
   ) => PagedAsyncIterableIterator<EvaluationSchedule>;
   /** Create or replace operation template. */
   createOrReplaceSchedule: (
-    id: string,
+    name: string,
     resource: EvaluationSchedule,
     options?: EvaluationsCreateOrReplaceScheduleOptionalParams,
   ) => Promise<EvaluationSchedule>;
   /** Resource read operation template. */
   getSchedule: (
-    id: string,
+    name: string,
     options?: EvaluationsGetScheduleOptionalParams,
   ) => Promise<EvaluationSchedule>;
   /** Resource update operation template. */
@@ -69,21 +69,23 @@ export interface EvaluationsOperations {
   ) => Promise<Evaluation>;
 }
 
-function _getEvaluations(context: AzureAIContext) {
+function _getEvaluations(context: AIProjectContext) {
   return {
-    deleteSchedule: (
-      id: string,
-      options?: EvaluationsDeleteScheduleOptionalParams,
-    ) => deleteSchedule(context, id, options),
+    disableSchedule: (
+      name: string,
+      options?: EvaluationsDisableScheduleOptionalParams,
+    ) => disableSchedule(context, name, options),
     listSchedule: (options?: EvaluationsListScheduleOptionalParams) =>
       listSchedule(context, options),
     createOrReplaceSchedule: (
-      id: string,
+      name: string,
       resource: EvaluationSchedule,
       options?: EvaluationsCreateOrReplaceScheduleOptionalParams,
-    ) => createOrReplaceSchedule(context, id, resource, options),
-    getSchedule: (id: string, options?: EvaluationsGetScheduleOptionalParams) =>
-      getSchedule(context, id, options),
+    ) => createOrReplaceSchedule(context, name, resource, options),
+    getSchedule: (
+      name: string,
+      options?: EvaluationsGetScheduleOptionalParams,
+    ) => getSchedule(context, name, options),
     update: (
       id: string,
       resource: Evaluation,
@@ -100,7 +102,7 @@ function _getEvaluations(context: AzureAIContext) {
 }
 
 export function _getEvaluationsOperations(
-  context: AzureAIContext,
+  context: AIProjectContext,
 ): EvaluationsOperations {
   return {
     ..._getEvaluations(context),

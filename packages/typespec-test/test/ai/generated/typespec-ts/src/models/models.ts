@@ -18,7 +18,7 @@ export interface Evaluation {
   readonly id: string;
   /** Data for evaluation. */
   data: InputDataUnion;
-  /** Display Name for evaluation. It helps to find evaluation easily in AI Studio. It does not need to be unique. */
+  /** Display Name for evaluation. It helps to find the evaluation easily in AI Foundry. It does not need to be unique. */
   displayName?: string;
   /** Description of the evaluation. It can be used to store additional information about the evaluation and is mutable. */
   description?: string;
@@ -79,13 +79,16 @@ export function inputDataDeserializer(item: any): InputData {
 }
 
 /** Alias for InputDataUnion */
-export type InputDataUnion = AppInsightsConfiguration | Dataset | InputData;
+export type InputDataUnion =
+  | ApplicationInsightsConfiguration
+  | Dataset
+  | InputData;
 
 export function inputDataUnionSerializer(item: InputDataUnion): any {
   switch (item.type) {
     case "app_insights":
-      return appInsightsConfigurationSerializer(
-        item as AppInsightsConfiguration,
+      return applicationInsightsConfigurationSerializer(
+        item as ApplicationInsightsConfiguration,
       );
 
     case "dataset":
@@ -99,8 +102,8 @@ export function inputDataUnionSerializer(item: InputDataUnion): any {
 export function inputDataUnionDeserializer(item: any): InputDataUnion {
   switch (item.type) {
     case "app_insights":
-      return appInsightsConfigurationDeserializer(
-        item as AppInsightsConfiguration,
+      return applicationInsightsConfigurationDeserializer(
+        item as ApplicationInsightsConfiguration,
       );
 
     case "dataset":
@@ -111,35 +114,39 @@ export function inputDataUnionDeserializer(item: any): InputDataUnion {
   }
 }
 
-/** Data Source for Application Insight. */
-export interface AppInsightsConfiguration extends InputData {
+/** Data Source for Application Insights. */
+export interface ApplicationInsightsConfiguration extends InputData {
   readonly type: "app_insights";
-  /** LogAnalytic Workspace resourceID associated with AppInsights */
+  /** LogAnalytic Workspace resourceID associated with ApplicationInsights */
   resourceId: string;
   /** Query to fetch the data. */
   query: string;
   /** Service name. */
   serviceName: string;
+  /** Connection String to connect to ApplicationInsights. */
+  connectionString?: string;
 }
 
-export function appInsightsConfigurationSerializer(
-  item: AppInsightsConfiguration,
+export function applicationInsightsConfigurationSerializer(
+  item: ApplicationInsightsConfiguration,
 ): any {
   return {
     resourceId: item["resourceId"],
     query: item["query"],
     serviceName: item["serviceName"],
+    connectionString: item["connectionString"],
   };
 }
 
-export function appInsightsConfigurationDeserializer(
+export function applicationInsightsConfigurationDeserializer(
   item: any,
-): AppInsightsConfiguration {
+): ApplicationInsightsConfiguration {
   return {
     type: item["type"],
     resourceId: item["resourceId"],
     query: item["query"],
     serviceName: item["serviceName"],
+    connectionString: item["connectionString"],
   };
 }
 
@@ -269,58 +276,53 @@ export function evaluationArrayDeserializer(result: Array<Evaluation>): any[] {
 
 /** Evaluation Schedule Definition */
 export interface EvaluationSchedule {
-  /** Identifier of the evaluation. */
-  readonly id: string;
+  /** Name of the schedule, which also serves as the unique identifier for the evaluation */
+  readonly name: string;
   /** Data for evaluation. */
-  data: InputDataUnion;
-  /** Display Name for evaluation. It helps to find evaluation easily in AI Studio. It does not need to be unique. */
-  displayName?: string;
+  data: ApplicationInsightsConfiguration;
   /** Description of the evaluation. It can be used to store additional information about the evaluation and is mutable. */
   description?: string;
   /** Metadata containing createdBy and modifiedBy information. */
   readonly systemData?: SystemData;
-  /** Status of the evaluation. It is set by service and is read-only. */
-  readonly provisioningStatus?: string;
+  /** Provisioning State of the evaluation. It is set by service and is read-only. */
+  readonly provisioningState?: string;
   /** Evaluation's tags. Unlike properties, tags are fully mutable. */
   tags?: Record<string, string>;
   /** Evaluation's properties. Unlike tags, properties are add-only. Once added, a property cannot be removed. */
   properties?: Record<string, string>;
+  /** Enabled status of the evaluation. It is set by service and is read-only. */
+  readonly isEnabled?: string;
   /** Evaluators to be used for the evaluation. */
   evaluators: Record<string, EvaluatorConfiguration>;
   /** Trigger for the evaluation. */
   trigger: TriggerUnion;
-  /** Sampling strategy for the evaluation. */
-  samplingStrategy: SamplingStrategy;
 }
 
 export function evaluationScheduleSerializer(item: EvaluationSchedule): any {
   return {
-    data: inputDataUnionSerializer(item["data"]),
-    displayName: item["displayName"],
+    data: applicationInsightsConfigurationSerializer(item["data"]),
     description: item["description"],
     tags: item["tags"],
     properties: item["properties"],
     evaluators: evaluatorConfigurationRecordSerializer(item["evaluators"]),
     trigger: triggerUnionSerializer(item["trigger"]),
-    samplingStrategy: samplingStrategySerializer(item["samplingStrategy"]),
   };
 }
 
 export function evaluationScheduleDeserializer(item: any): EvaluationSchedule {
   return {
-    id: item["id"],
-    data: inputDataUnionDeserializer(item["data"]),
-    displayName: item["displayName"],
+    name: item["name"],
+    data: applicationInsightsConfigurationDeserializer(item["data"]),
     description: item["description"],
     systemData: !item["systemData"]
       ? item["systemData"]
       : systemDataDeserializer(item["systemData"]),
-    provisioningStatus: item["provisioningStatus"],
+    provisioningState: item["provisioningState"],
     tags: item["tags"],
     properties: item["properties"],
+    isEnabled: item["isEnabled"],
     evaluators: evaluatorConfigurationRecordDeserializer(item["evaluators"]),
     trigger: triggerUnionDeserializer(item["trigger"]),
-    samplingStrategy: samplingStrategyDeserializer(item["samplingStrategy"]),
   };
 }
 
@@ -378,14 +380,16 @@ export interface RecurrenceTrigger extends Trigger {
   /** Specifies schedule interval in conjunction with frequency */
   interval: number;
   /** The recurrence schedule. */
-  schedule: RecurrenceSchedule;
+  schedule?: RecurrenceSchedule;
 }
 
 export function recurrenceTriggerSerializer(item: RecurrenceTrigger): any {
   return {
     frequency: item["frequency"],
     interval: item["interval"],
-    schedule: recurrenceScheduleSerializer(item["schedule"]),
+    schedule: !item["schedule"]
+      ? item["schedule"]
+      : recurrenceScheduleSerializer(item["schedule"]),
   };
 }
 
@@ -394,7 +398,9 @@ export function recurrenceTriggerDeserializer(item: any): RecurrenceTrigger {
     type: item["type"],
     frequency: item["frequency"],
     interval: item["interval"],
-    schedule: recurrenceScheduleDeserializer(item["schedule"]),
+    schedule: !item["schedule"]
+      ? item["schedule"]
+      : recurrenceScheduleDeserializer(item["schedule"]),
   };
 }
 
@@ -408,9 +414,9 @@ export interface RecurrenceSchedule {
   /** List of minutes for the schedule. */
   minutes: number[];
   /** List of days for the schedule. */
-  weekDays: WeekDays[];
+  weekDays?: WeekDays[];
   /** List of month days for the schedule */
-  monthDays: number[];
+  monthDays?: number[];
 }
 
 export function recurrenceScheduleSerializer(item: RecurrenceSchedule): any {
@@ -421,12 +427,16 @@ export function recurrenceScheduleSerializer(item: RecurrenceSchedule): any {
     minutes: item["minutes"].map((p: any) => {
       return p;
     }),
-    weekDays: item["weekDays"].map((p: any) => {
-      return p;
-    }),
-    monthDays: item["monthDays"].map((p: any) => {
-      return p;
-    }),
+    weekDays: !item["weekDays"]
+      ? item["weekDays"]
+      : item["weekDays"].map((p: any) => {
+          return p;
+        }),
+    monthDays: !item["monthDays"]
+      ? item["monthDays"]
+      : item["monthDays"].map((p: any) => {
+          return p;
+        }),
   };
 }
 
@@ -438,12 +448,16 @@ export function recurrenceScheduleDeserializer(item: any): RecurrenceSchedule {
     minutes: item["minutes"].map((p: any) => {
       return p;
     }),
-    weekDays: item["weekDays"].map((p: any) => {
-      return p;
-    }),
-    monthDays: item["monthDays"].map((p: any) => {
-      return p;
-    }),
+    weekDays: !item["weekDays"]
+      ? item["weekDays"]
+      : item["weekDays"].map((p: any) => {
+          return p;
+        }),
+    monthDays: !item["monthDays"]
+      ? item["monthDays"]
+      : item["monthDays"].map((p: any) => {
+          return p;
+        }),
   };
 }
 
@@ -472,22 +486,6 @@ export function cronTriggerDeserializer(item: any): CronTrigger {
   return {
     type: item["type"],
     expression: item["expression"],
-  };
-}
-
-/** SamplingStrategy Definition */
-export interface SamplingStrategy {
-  /** Sampling rate */
-  rate: number;
-}
-
-export function samplingStrategySerializer(item: SamplingStrategy): any {
-  return { rate: item["rate"] };
-}
-
-export function samplingStrategyDeserializer(item: any): SamplingStrategy {
-  return {
-    rate: item["rate"],
   };
 }
 
@@ -524,126 +522,199 @@ export function evaluationScheduleArrayDeserializer(
   });
 }
 
-/** Response from the list operation */
-export interface ConnectionsListResponse {
-  /** A list of connection list secrets */
-  value: ConnectionsListSecretsResponse[];
+/** Response from getting properties of the Application Insights resource */
+export interface GetAppInsightsResponse {
+  /** A unique identifier for the resource */
+  id: string;
+  /** The name of the resource */
+  name: string;
+  /** The properties of the resource */
+  properties: AppInsightsProperties;
 }
 
-export function connectionsListResponseDeserializer(
+export function getAppInsightsResponseDeserializer(
   item: any,
-): ConnectionsListResponse {
+): GetAppInsightsResponse {
   return {
-    value: connectionsListSecretsResponseArrayDeserializer(item["value"]),
+    id: item["id"],
+    name: item["name"],
+    properties: appInsightsPropertiesDeserializer(item["properties"]),
   };
 }
 
-export function connectionsListSecretsResponseArrayDeserializer(
-  result: Array<ConnectionsListSecretsResponse>,
+/** The properties of the Application Insights resource */
+export interface AppInsightsProperties {
+  /** Authentication type of the connection target */
+  connectionString: string;
+}
+
+export function appInsightsPropertiesDeserializer(
+  item: any,
+): AppInsightsProperties {
+  return {
+    connectionString: item["ConnectionString"],
+  };
+}
+
+/** Response from the Workspace - Get operation */
+export interface GetWorkspaceResponse {
+  /** A unique identifier for the resource */
+  id: string;
+  /** The name of the resource */
+  name: string;
+  /** The properties of the resource */
+  properties: WorkspaceProperties;
+}
+
+export function getWorkspaceResponseDeserializer(
+  item: any,
+): GetWorkspaceResponse {
+  return {
+    id: item["id"],
+    name: item["name"],
+    properties: workspacePropertiesDeserializer(item["properties"]),
+  };
+}
+
+/** workspace properties */
+export interface WorkspaceProperties {
+  /** Authentication type of the connection target */
+  applicationInsights: string;
+}
+
+export function workspacePropertiesDeserializer(
+  item: any,
+): WorkspaceProperties {
+  return {
+    applicationInsights: item["applicationInsights"],
+  };
+}
+
+/** Response from the list operation */
+export interface ListConnectionsResponse {
+  /** A list of connection list secrets */
+  value: GetConnectionResponse[];
+}
+
+export function listConnectionsResponseDeserializer(
+  item: any,
+): ListConnectionsResponse {
+  return {
+    value: getConnectionResponseArrayDeserializer(item["value"]),
+  };
+}
+
+export function getConnectionResponseArrayDeserializer(
+  result: Array<GetConnectionResponse>,
 ): any[] {
   return result.map((item) => {
-    return connectionsListSecretsResponseDeserializer(item);
+    return getConnectionResponseDeserializer(item);
   });
 }
 
 /** Response from the listSecrets operation */
-export interface ConnectionsListSecretsResponse {
+export interface GetConnectionResponse {
   /** A unique identifier for the connection */
   id: string;
   /** The name of the resource */
   name: string;
   /** The properties of the resource */
-  properties: ConnectionPropertiesUnion;
+  properties: InternalConnectionPropertiesUnion;
 }
 
-export function connectionsListSecretsResponseDeserializer(
+export function getConnectionResponseDeserializer(
   item: any,
-): ConnectionsListSecretsResponse {
+): GetConnectionResponse {
   return {
     id: item["id"],
     name: item["name"],
-    properties: connectionPropertiesUnionDeserializer(item["properties"]),
+    properties: internalConnectionPropertiesUnionDeserializer(
+      item["properties"],
+    ),
   };
 }
 
 /** Connection properties */
-export interface ConnectionProperties {
+export interface InternalConnectionProperties {
   /** Authentication type of the connection target */
   /** The discriminator possible values: ApiKey, AAD, SAS */
   authType: AuthenticationType;
+  /** Category of the connection */
+  category: ConnectionType;
+  /** The connection URL to be used for this service */
+  target: string;
 }
 
-export function connectionPropertiesDeserializer(
+export function internalConnectionPropertiesDeserializer(
   item: any,
-): ConnectionProperties {
+): InternalConnectionProperties {
   return {
     authType: item["authType"],
+    category: item["category"],
+    target: item["target"],
   };
 }
 
-/** Alias for ConnectionPropertiesUnion */
-export type ConnectionPropertiesUnion =
-  | ConnectionPropertiesApiKeyAuth
-  | ConnectionPropertiesAADAuth
-  | ConnectionPropertiesSASAuth
-  | ConnectionProperties;
+/** Alias for InternalConnectionPropertiesUnion */
+export type InternalConnectionPropertiesUnion =
+  | InternalConnectionPropertiesApiKeyAuth
+  | InternalConnectionPropertiesAADAuth
+  | InternalConnectionPropertiesSASAuth
+  | InternalConnectionProperties;
 
-export function connectionPropertiesUnionDeserializer(
+export function internalConnectionPropertiesUnionDeserializer(
   item: any,
-): ConnectionPropertiesUnion {
+): InternalConnectionPropertiesUnion {
   switch (item.authType) {
     case "ApiKey":
-      return connectionPropertiesApiKeyAuthDeserializer(
-        item as ConnectionPropertiesApiKeyAuth,
+      return internalConnectionPropertiesApiKeyAuthDeserializer(
+        item as InternalConnectionPropertiesApiKeyAuth,
       );
 
     case "AAD":
-      return connectionPropertiesAADAuthDeserializer(
-        item as ConnectionPropertiesAADAuth,
+      return internalConnectionPropertiesAADAuthDeserializer(
+        item as InternalConnectionPropertiesAADAuth,
       );
 
     case "SAS":
-      return connectionPropertiesSASAuthDeserializer(
-        item as ConnectionPropertiesSASAuth,
+      return internalConnectionPropertiesSASAuthDeserializer(
+        item as InternalConnectionPropertiesSASAuth,
       );
 
     default:
-      return connectionPropertiesDeserializer(item);
+      return internalConnectionPropertiesDeserializer(item);
   }
 }
 
 /** Authentication type used by Azure AI service to connect to another service */
 export type AuthenticationType = "ApiKey" | "AAD" | "SAS";
-
-/** Connection properties for connections with API key authentication */
-export interface ConnectionPropertiesApiKeyAuth extends ConnectionProperties {
-  /** Authentication type of the connection target */
-  authType: "ApiKey";
-  /** Category of the connection */
-  category: ConnectionType;
-  /** Credentials will only be present for authType=ApiKey */
-  credentials: CredentialsApiKeyAuth;
-  /** The connection URL to be used for this service */
-  target: string;
-}
-
-export function connectionPropertiesApiKeyAuthDeserializer(
-  item: any,
-): ConnectionPropertiesApiKeyAuth {
-  return {
-    authType: item["authType"],
-    category: item["category"],
-    credentials: credentialsApiKeyAuthDeserializer(item["credentials"]),
-    target: item["target"],
-  };
-}
-
 /** The Type (or category) of the connection */
 export type ConnectionType =
   | "AzureOpenAI"
   | "Serverless"
   | "AzureBlob"
-  | "AIServices";
+  | "AIServices"
+  | "CognitiveSearch";
+
+/** Connection properties for connections with API key authentication */
+export interface InternalConnectionPropertiesApiKeyAuth
+  extends InternalConnectionProperties {
+  /** Authentication type of the connection target */
+  authType: "ApiKey";
+  /** Credentials will only be present for authType=ApiKey */
+  credentials: CredentialsApiKeyAuth;
+}
+
+export function internalConnectionPropertiesApiKeyAuthDeserializer(
+  item: any,
+): InternalConnectionPropertiesApiKeyAuth {
+  return {
+    authType: item["authType"],
+    category: item["category"],
+    target: item["target"],
+    credentials: credentialsApiKeyAuthDeserializer(item["credentials"]),
+  };
+}
 
 /** The credentials needed for API key authentication */
 export interface CredentialsApiKeyAuth {
@@ -660,18 +731,15 @@ export function credentialsApiKeyAuthDeserializer(
 }
 
 /** Connection properties for connections with AAD authentication (aka `Entra ID passthrough`) */
-export interface ConnectionPropertiesAADAuth extends ConnectionProperties {
+export interface InternalConnectionPropertiesAADAuth
+  extends InternalConnectionProperties {
   /** Authentication type of the connection target */
   authType: "AAD";
-  /** Category of the connection */
-  category: ConnectionType;
-  /** The connection URL to be used for this service */
-  target: string;
 }
 
-export function connectionPropertiesAADAuthDeserializer(
+export function internalConnectionPropertiesAADAuthDeserializer(
   item: any,
-): ConnectionPropertiesAADAuth {
+): InternalConnectionPropertiesAADAuth {
   return {
     authType: item["authType"],
     category: item["category"],
@@ -680,25 +748,22 @@ export function connectionPropertiesAADAuthDeserializer(
 }
 
 /** Connection properties for connections with SAS authentication */
-export interface ConnectionPropertiesSASAuth extends ConnectionProperties {
+export interface InternalConnectionPropertiesSASAuth
+  extends InternalConnectionProperties {
   /** Authentication type of the connection target */
   authType: "SAS";
-  /** Category of the connection */
-  category: ConnectionType;
   /** Credentials will only be present for authType=ApiKey */
   credentials: CredentialsSASAuth;
-  /** The connection URL to be used for this service */
-  target: string;
 }
 
-export function connectionPropertiesSASAuthDeserializer(
+export function internalConnectionPropertiesSASAuthDeserializer(
   item: any,
-): ConnectionPropertiesSASAuth {
+): InternalConnectionPropertiesSASAuth {
   return {
     authType: item["authType"],
     category: item["category"],
-    credentials: credentialsSASAuthDeserializer(item["credentials"]),
     target: item["target"],
+    credentials: credentialsSASAuthDeserializer(item["credentials"]),
   };
 }
 

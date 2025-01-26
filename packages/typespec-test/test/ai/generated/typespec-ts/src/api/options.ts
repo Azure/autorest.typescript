@@ -5,10 +5,11 @@ import { ConnectionType } from "../models/models.js";
 import {
   ToolDefinitionUnion,
   ToolResources,
+  VectorStoreDataSource,
+  VectorStoreConfiguration,
   AgentsApiResponseFormatOption,
   ThreadMessageOptions,
   MessageAttachment,
-  ThreadMessage,
   TruncationObject,
   AgentsApiToolChoiceOption,
   UpdateToolResourcesOptions,
@@ -17,16 +18,14 @@ import {
   VectorStoreExpirationPolicy,
   VectorStoreChunkingStrategyRequestUnion,
   ListSortOrder,
+  RunAdditionalFieldList,
   VectorStoreFileStatusFilter,
 } from "../models/agents/models.js";
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface EvaluationsDeleteScheduleOptionalParams
-  extends OperationOptions {
-  /** An opaque, globally-unique, client-generated string identifier for the request. */
-  clientRequestId?: string;
-}
+export interface EvaluationsDisableScheduleOptionalParams
+  extends OperationOptions {}
 
 /** Optional parameters. */
 export interface EvaluationsListScheduleOptionalParams
@@ -82,14 +81,20 @@ export interface EvaluationsGetOptionalParams extends OperationOptions {
 }
 
 /** Optional parameters. */
-export interface ConnectionsListSecretsOptionalParams
+export interface TelemetryGetAppInsightsOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface ConnectionsGetOptionalParams extends OperationOptions {}
+export interface ConnectionsGetConnectionWithSecretsOptionalParams
+  extends OperationOptions {}
 
 /** Optional parameters. */
-export interface ConnectionsListOptionalParams extends OperationOptions {
+export interface ConnectionsGetConnectionOptionalParams
+  extends OperationOptions {}
+
+/** Optional parameters. */
+export interface ConnectionsListConnectionsOptionalParams
+  extends OperationOptions {
   /** Category of the workspace connection. */
   category?: ConnectionType;
   /** Indicates whether to list datastores. Service default: do not list datastores. */
@@ -97,6 +102,10 @@ export interface ConnectionsListOptionalParams extends OperationOptions {
   /** Target of the workspace connection. */
   target?: string;
 }
+
+/** Optional parameters. */
+export interface ConnectionsGetWorkspaceOptionalParams
+  extends OperationOptions {}
 
 /** Optional parameters. */
 export interface AgentsListVectorStoreFileBatchFilesOptionalParams
@@ -124,6 +133,10 @@ export interface AgentsGetVectorStoreFileBatchOptionalParams
 /** Optional parameters. */
 export interface AgentsCreateVectorStoreFileBatchOptionalParams
   extends OperationOptions {
+  /** List of file identifiers. */
+  fileIds?: string[];
+  /** List of Azure assets. */
+  dataSources?: VectorStoreDataSource[];
   /** The chunking strategy used to chunk the file(s). If not set, will use the auto strategy. */
   chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
 }
@@ -139,6 +152,10 @@ export interface AgentsGetVectorStoreFileOptionalParams
 /** Optional parameters. */
 export interface AgentsCreateVectorStoreFileOptionalParams
   extends OperationOptions {
+  /** Identifier of the file. */
+  fileId?: string;
+  /** Azure asset ID. */
+  dataSources?: VectorStoreDataSource[];
   /** The chunking strategy used to chunk the file(s). If not set, will use the auto strategy. */
   chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
 }
@@ -183,6 +200,8 @@ export interface AgentsCreateVectorStoreOptionalParams
   fileIds?: string[];
   /** The name of the vector store. */
   name?: string;
+  /** The vector store configuration, used when vector store is created from Azure asset URIs. */
+  storeConfiguration?: VectorStoreConfiguration;
   /** Details on when this vector store expires */
   expiresAfter?: VectorStoreExpirationPolicy;
   /** The chunking strategy used to chunk the file(s). If not set, will use the auto strategy. Only applicable if file_ids is non-empty. */
@@ -226,6 +245,11 @@ export interface AgentsListFilesOptionalParams extends OperationOptions {
 
 /** Optional parameters. */
 export interface AgentsListRunStepsOptionalParams extends OperationOptions {
+  /**
+   * A list of additional fields to include in the response.
+   * Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.
+   */
+  include?: RunAdditionalFieldList[];
   /** A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. */
   limit?: number;
   /** Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order. */
@@ -237,7 +261,13 @@ export interface AgentsListRunStepsOptionalParams extends OperationOptions {
 }
 
 /** Optional parameters. */
-export interface AgentsGetRunStepOptionalParams extends OperationOptions {}
+export interface AgentsGetRunStepOptionalParams extends OperationOptions {
+  /**
+   * A list of additional fields to include in the response.
+   * Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.
+   */
+  include?: RunAdditionalFieldList[];
+}
 
 /** Optional parameters. */
 export interface AgentsCreateThreadAndRunOptionalParams
@@ -288,6 +318,8 @@ export interface AgentsCreateThreadAndRunOptionalParams
   toolChoice?: AgentsApiToolChoiceOption | null;
   /** Specifies the format that the model must output. */
   responseFormat?: AgentsApiResponseFormatOption | null;
+  /** If `true` functions will run in parallel during tool use. */
+  parallelToolCalls?: boolean;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
 }
@@ -325,6 +357,11 @@ export interface AgentsListRunsOptionalParams extends OperationOptions {
 
 /** Optional parameters. */
 export interface AgentsCreateRunOptionalParams extends OperationOptions {
+  /**
+   * A list of additional fields to include in the response.
+   * Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.
+   */
+  include?: RunAdditionalFieldList[];
   /** The overridden model name that the agent should use to run the thread. */
   model?: string | null;
   /** The overridden system instructions that the agent should use to run the thread. */
@@ -335,7 +372,7 @@ export interface AgentsCreateRunOptionalParams extends OperationOptions {
    */
   additionalInstructions?: string | null;
   /** Adds additional messages to the thread before creating the run. */
-  additionalMessages?: ThreadMessage[] | null;
+  additionalMessages?: ThreadMessageOptions[] | null;
   /** The overridden list of enabled tools that the agent should use to run the thread. */
   tools?: ToolDefinitionUnion[] | null;
   /**
@@ -374,6 +411,8 @@ export interface AgentsCreateRunOptionalParams extends OperationOptions {
   toolChoice?: AgentsApiToolChoiceOption | null;
   /** Specifies the format that the model must output. */
   responseFormat?: AgentsApiResponseFormatOption | null;
+  /** If `true` functions will run in parallel during tool use. */
+  parallelToolCalls?: boolean;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
 }
