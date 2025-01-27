@@ -1,6 +1,7 @@
 ## 6.0.34 (2025-01-27)
 
 - [Feature] Upgrade spector version. Please refer to [#3007](https://github.com/Azure/autorest.typescript/pull/3007)
+- [Feature] Generate nullable as type alias and resolve recursive reference in union. Please refer to [#2989](https://github.com/Azure/autorest.typescript/pull/2989)
 - [Bugfix] Add await for sync function. Please refer to [#3014](https://github.com/Azure/autorest.typescript/pull/3014)
 - [Bugfix] Fix crossLanguageDefinitionId with TypeSpec.Rest.Resource. Please refer to [#3010](https://github.com/Azure/autorest.typescript/pull/3010)
 - [Bugfix] Remove mkdirp ./review as dev-tool handles that. Please refer to [#3015](https://github.com/Azure/autorest.typescript/pull/3015)
