@@ -14,14 +14,17 @@ parameters:
   - name: Windows_Latest
     type: string
     default: "Windows-latest"
-
+  - name: SetDevVersion
+    type: boolean
+    default: true
+  
 variables:
+  SetDevVersion: ${{ parameters.SetDevVersion }}
   AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/packages/autorest.typescript/coverage/"
   TypeSpec_TESTSERVER_COVERAGE_RLC_AZURE_REPORT: "$(Build.SourcesDirectory)/packages/typespec-ts/coverage/spector-coverage-typescript-rlc-azure.json"
   TypeSpec_TESTSERVER_COVERAGE_RLC_STANDARD_REPORT: "$(Build.SourcesDirectory)/packages/typespec-ts/coverage/spector-coverage-typescript-rlc-standard.json"
   TypeSpec_TESTSERVER_COVERAGE_MODULAR_AZURE_REPORT: "$(Build.SourcesDirectory)/packages/typespec-ts/coverage/spector-coverage-typescript-modular-azure.json"
   TypeSpec_TESTSERVER_COVERAGE_MODULAR_STANDARD_REPORT: "$(Build.SourcesDirectory)/packages/typespec-ts/coverage/spector-coverage-typescript-modular-standard.json"
-
 pool:
   vmImage: ubuntu-20.04
 
@@ -67,6 +70,13 @@ stages:
             condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
             name: SetRLCCommonDevVersion
             workingDirectory: $(Build.SourcesDirectory)/packages/rlc-common
+          - script: |
+              export DEV_VERSION=$(node -p -e "require('../rlc-common/package.json').version")
+              jq --arg DEV_VERSION "$DEV_VERSION" '.dependencies["@azure-tools/rlc-common"] = $DEV_VERSION' package.json > temp.json
+              mv temp.json package.json
+            condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
+            name: UpdateRLCCommonDevVersionInTypesSpecTs
+            workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
           - script: |
               export TAR_NAME=$(node ../../common/scripts/install-run-rush-pnpm.js pack -q)
               echo $TAR_NAME
