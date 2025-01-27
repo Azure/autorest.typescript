@@ -10,7 +10,7 @@ using TypeSpec.Rest;
 using TypeSpec.Http;
 using TypeSpec.Versioning;
 
-namespace Azure.AI.Client.Agents;
+namespace Azure.AI.Projects.Agents;
 
 /**
  * Creates and starts a new run of the specified thread using the specified agent.
@@ -31,6 +31,13 @@ op createRun is Azure.Core.Foundations.Operation<
     @doc("Identifier of the thread.")
     @path
     threadId: string;
+
+    @doc("""
+      A list of additional fields to include in the response.
+      Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.
+      """)
+    @query("include[]")
+    include?: RunAdditionalFieldList[];
 
     /**
      * The details used when creating a new run of an agent thread.

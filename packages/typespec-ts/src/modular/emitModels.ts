@@ -78,7 +78,10 @@ function isGenerableType(
     type.kind === "union" ||
     type.kind === "dict" ||
     type.kind === "array" ||
-    type.kind === "nullable"
+    (type.kind === "nullable" &&
+      isGenerableType(type.type) &&
+      Boolean(type.name) &&
+      !type.isGeneratedName)
   );
 }
 export function emitTypes(
@@ -210,6 +213,9 @@ function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
     addSerializationFunctions(context, type, sourceFile);
   } else if (type.kind === "array") {
     addSerializationFunctions(context, type, sourceFile);
+  } else if (type.kind === "nullable") {
+    const nullableType = buildNullableType(context, type);
+    addDeclaration(sourceFile, nullableType, type);
   }
 }
 
@@ -266,6 +272,8 @@ export function getModelNamespaces(
     return [];
   } else if (model.kind === "array" || model.kind === "dict") {
     return getModelNamespaces(context, model.valueType);
+  } else if (model.kind === "nullable") {
+    return getModelNamespaces(context, model.type);
   }
   return [];
 }
@@ -328,6 +336,19 @@ function buildUnionType(
   unionDeclaration.docs = [type.doc ?? `Alias for ${unionDeclaration.name}`];
 
   return unionDeclaration;
+}
+
+function buildNullableType(context: SdkContext, type: SdkNullableType) {
+  const nullableDeclaration: TypeAliasDeclarationStructure = {
+    kind: StructureKind.TypeAlias,
+    name: normalizeModelName(context, type),
+    isExported: true,
+    type: getTypeExpression(context, type.type) + " | null"
+  };
+  nullableDeclaration.docs = [
+    type.doc ?? `Alias for ${nullableDeclaration.name}`
+  ];
+  return nullableDeclaration;
 }
 
 export function buildEnumTypes(
@@ -482,7 +503,8 @@ export function normalizeModelName(
     | SdkEnumType
     | SdkUnionType
     | SdkArrayType
-    | SdkDictionaryType,
+    | SdkDictionaryType
+    | SdkNullableType,
   nameType: NameType = NameType.Interface,
   skipPolymorphicUnionSuffix = false
 ): string {
@@ -494,6 +516,10 @@ export function normalizeModelName(
       type.valueType as any,
       nameType
     )}>`;
+  }
+  // TODO see https://github.com/Azure/typespec-azure/issues/2125
+  if (type.kind === "nullable") {
+    return normalizeName(type.name, nameType, true);
   }
   if (type.kind !== "model" && type.kind !== "enum" && type.kind !== "union") {
     return getTypeExpression(context, type);
