@@ -451,14 +451,7 @@ describe("#transformSchemas", () => {
             fromCore: false,
             isMultipartBody: false,
             typeName: "A",
-            properties: {
-              '"foo"': {
-                description: undefined,
-                required: true,
-                type: "string",
-                usage: ["input", "output"]
-              }
-            },
+            properties: {},
             outputTypeName: "AOutput",
             usage: ["input", "output"]
           },
@@ -469,14 +462,7 @@ describe("#transformSchemas", () => {
             fromCore: false,
             isMultipartBody: false,
             typeName: "B",
-            properties: {
-              '"bar"': {
-                description: undefined,
-                required: true,
-                type: "string",
-                usage: ["input", "output"]
-              }
-            },
+            properties: {},
             outputTypeName: "BOutput",
             usage: ["input", "output"]
           }
@@ -611,14 +597,7 @@ describe("#transformSchemas", () => {
               fromCore: false,
               isMultipartBody: false,
               typeName: "A",
-              properties: {
-                '"foo"': {
-                  type: "string",
-                  description: undefined,
-                  required: true,
-                  usage: ["input", "output"]
-                }
-              },
+              properties: {},
               outputTypeName: "AOutput",
               usage: ["input", "output"]
             },
@@ -629,14 +608,7 @@ describe("#transformSchemas", () => {
               fromCore: false,
               isMultipartBody: false,
               typeName: "B",
-              properties: {
-                '"baz"': {
-                  type: "string",
-                  description: undefined,
-                  required: true,
-                  usage: ["input", "output"]
-                }
-              },
+              properties: {},
               outputTypeName: "BOutput",
               usage: ["input", "output"]
             }

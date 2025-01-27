@@ -119,6 +119,58 @@ describe("Input/output model type", () => {
       await verifyPropertyType(tspType, typeScriptType);
     });
 
+    it("should generate nullable recursive union", async () => {
+      const tspDefinition = `
+        union A {
+          null,
+          {
+            code?: string,
+            message?: string,
+            propA?: A,
+          },
+        }
+        op post(@body body: A): { @body body: A };
+      `;
+      const schemaOutput = await emitModelsFromTypeSpec(
+        tspDefinition
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+        /** Alias for A */
+        export type A = null | { code?: string; message?: string; propA?: A };
+      `
+      );
+      await assertEqualContent(
+        outputModelFile?.content!,
+        `
+        /** Alias for AOutput */
+        export type AOutput = null | {
+          code?: string;
+          message?: string;
+          propA?: AOutput;
+        };
+        `
+      );
+      const parametersOutput = await emitParameterFromTypeSpec(tspDefinition);
+      assert.ok(parametersOutput);
+      await assertEqualContent(
+        parametersOutput?.content!,
+        `
+        import type { RequestParameters } from "@azure-rest/core-client";
+        import type { A } from "./models.js";
+        
+        export interface PostBodyParam {
+          body: A;
+        }
+        
+        export type PostParameters = PostBodyParam & RequestParameters;
+        `
+      );
+    });
+
     it("should generate nullable array", async () => {
       const tspDefinition = `
       alias nullableArray = int32 | null;`;
