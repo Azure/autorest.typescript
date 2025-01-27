@@ -1,4 +1,4 @@
-## 0.38.2 (2025-01-26)
+## 0.38.2 (2025-01-27)
 
 - [Feature] Upgrade spector version. Please refer to [#3007](https://github.com/Azure/autorest.typescript/pull/3007)
 - [Bugfix] Add await for sync function. Please refer to [#3014](https://github.com/Azure/autorest.typescript/pull/3014)
@@ -6,6 +6,7 @@
 - [Bugfix] Remove mkdirp ./review as dev-tool handles that. Please refer to [#3015](https://github.com/Azure/autorest.typescript/pull/3015)
 - [Bugfix] Should not filter serializedName out for endpoint. Please refer to [#3017](https://github.com/Azure/autorest.typescript/pull/3017)
 - [Bugfix] Update sample template for Modular/RLC/HLC. Please refer to [#2998](https://github.com/Azure/autorest.typescript/pull/2998)
+- [Bugfix] Fix generation issue and update the ai projects to the latest one. Please refer to [#3037](https://github.com/Azure/autorest.typescript/pull/3037)
 
 ## 0.38.1 (2025-01-17)
 
