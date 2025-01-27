@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Description for List Site Detector Responses
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Description for List Site Detector Responses
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/Diagnostics_ListSiteDetectorResponses.json
  */
-async function getAppDetectorResponses() {
+async function getAppDetectorResponses(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName =
@@ -44,7 +42,7 @@ async function getAppDetectorResponses() {
  * @summary Description for List Site Detector Responses
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/Diagnostics_ListSiteDetectorResponsesSlot.json
  */
-async function getAppSlotDetectorResponses() {
+async function getAppSlotDetectorResponses(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName =
@@ -62,7 +60,7 @@ async function getAppSlotDetectorResponses() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await getAppDetectorResponses();
   await getAppSlotDetectorResponses();
 }

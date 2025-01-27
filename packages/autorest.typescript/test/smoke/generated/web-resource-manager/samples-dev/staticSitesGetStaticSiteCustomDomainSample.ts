@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Description for Gets an existing custom domain for a particular static site.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Description for Gets an existing custom domain for a particular static site.
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/GetStaticSiteCustomDomain.json
  */
-async function getCustomDomainForAStaticSite() {
+async function getCustomDomainForAStaticSite(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg";
@@ -36,7 +34,7 @@ async function getCustomDomainForAStaticSite() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await getCustomDomainForAStaticSite();
 }
 

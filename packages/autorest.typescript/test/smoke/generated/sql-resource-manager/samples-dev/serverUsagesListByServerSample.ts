@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Returns server usages.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Returns server usages.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/stable/2014-04-01-legacy/examples/ServerUsageMetricsList.json
  */
-async function listServersUsages() {
+async function listServersUsages(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-6730";
@@ -37,7 +35,7 @@ async function listServersUsages() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await listServersUsages();
 }
 

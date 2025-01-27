@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { AzureAIContext } from "../../api/azureAIContext.js";
+import { AIProjectContext } from "../../api/aIProjectContext.js";
 import {
   listVectorStoreFileBatchFiles,
   cancelVectorStoreFileBatch,
@@ -62,7 +62,6 @@ import {
   OpenAIFile,
   FilePurpose,
   FileDeletionStatus,
-  FileContentResponse,
   OpenAIPageableListOfVectorStore,
   VectorStore,
   VectorStoreDeletionStatus,
@@ -137,7 +136,6 @@ export interface AgentsOperations {
   /** Create a vector store file batch. */
   createVectorStoreFileBatch: (
     vectorStoreId: string,
-    fileIds: string[],
     options?: AgentsCreateVectorStoreFileBatchOptionalParams,
   ) => Promise<VectorStoreFileBatch>;
   /**
@@ -158,7 +156,6 @@ export interface AgentsOperations {
   /** Create a vector store file by attaching a file to a vector store. */
   createVectorStoreFile: (
     vectorStoreId: string,
-    fileId: string,
     options?: AgentsCreateVectorStoreFileOptionalParams,
   ) => Promise<VectorStoreFile>;
   /** Returns a list of vector store files. */
@@ -189,11 +186,11 @@ export interface AgentsOperations {
   listVectorStores: (
     options?: AgentsListVectorStoresOptionalParams,
   ) => Promise<OpenAIPageableListOfVectorStore>;
-  /** Returns information about a specific file. Does not retrieve file content. */
+  /** Retrieves the raw content of a specific file. */
   getFileContent: (
     fileId: string,
     options?: AgentsGetFileContentOptionalParams,
-  ) => Promise<FileContentResponse>;
+  ) => Promise<Uint8Array>;
   /** Returns information about a specific file. Does not retrieve file content. */
   getFile: (
     fileId: string,
@@ -337,7 +334,7 @@ export interface AgentsOperations {
   ) => Promise<Agent>;
 }
 
-function _getAgents(context: AzureAIContext) {
+function _getAgents(context: AIProjectContext) {
   return {
     listVectorStoreFileBatchFiles: (
       vectorStoreId: string,
@@ -357,9 +354,8 @@ function _getAgents(context: AzureAIContext) {
     ) => getVectorStoreFileBatch(context, vectorStoreId, batchId, options),
     createVectorStoreFileBatch: (
       vectorStoreId: string,
-      fileIds: string[],
       options?: AgentsCreateVectorStoreFileBatchOptionalParams,
-    ) => createVectorStoreFileBatch(context, vectorStoreId, fileIds, options),
+    ) => createVectorStoreFileBatch(context, vectorStoreId, options),
     deleteVectorStoreFile: (
       vectorStoreId: string,
       fileId: string,
@@ -372,9 +368,8 @@ function _getAgents(context: AzureAIContext) {
     ) => getVectorStoreFile(context, vectorStoreId, fileId, options),
     createVectorStoreFile: (
       vectorStoreId: string,
-      fileId: string,
       options?: AgentsCreateVectorStoreFileOptionalParams,
-    ) => createVectorStoreFile(context, vectorStoreId, fileId, options),
+    ) => createVectorStoreFile(context, vectorStoreId, options),
     listVectorStoreFiles: (
       vectorStoreId: string,
       options?: AgentsListVectorStoreFilesOptionalParams,
@@ -503,7 +498,7 @@ function _getAgents(context: AzureAIContext) {
 }
 
 export function _getAgentsOperations(
-  context: AzureAIContext,
+  context: AIProjectContext,
 ): AgentsOperations {
   return {
     ..._getAgents(context),

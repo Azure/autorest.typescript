@@ -11,8 +11,8 @@ using Azure.Core;
 using Azure.Core.Traits;
 using Azure.Core.Foundations;
 
-// namespace Azure.AI.Client.Evaluations;
-namespace Azure.AI.Client;
+// namespace Azure.AI.Projects.Evaluations;
+namespace Azure.AI.Projects;
 
 alias ServiceTraits = SupportsClientRequestId &
   NoRepeatableRequests &
@@ -58,5 +58,18 @@ interface Evaluations {
     ListQueryParametersTrait<StandardListQueryParameters>
   >;
 
-  deleteSchedule is EvaluationsOperations.ResourceDelete<EvaluationSchedule>;
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations"
+  #suppress "@azure-tools/typespec-azure-core/no-response-body"
+  @route("schedules/{name}/disable")
+  @patch
+  @doc("Disable the evaluation schedule.")
+  disableSchedule(
+    @query
+    @doc("The API version to use for this operation.")
+    apiVersion: string,
+
+    @path
+    @doc("Name of the evaluation schedule.")
+    name: string,
+  ): NoContentResponse | ErrorResponse;
 }
