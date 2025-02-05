@@ -13,9 +13,7 @@ import {
   WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Description for Updates whether FTP is allowed on the site or not.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Description for Updates whether FTP is allowed on the site or not.
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/UpdatePublishingCredentialsPolicy.json
  */
-async function updateFtpAllowed() {
+async function updateFtpAllowed(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg";
@@ -40,8 +38,8 @@ async function updateFtpAllowed() {
   console.log(result);
 }
 
-async function main() {
-  updateFtpAllowed();
+async function main(): Promise<void> {
+  await updateFtpAllowed();
 }
 
 main().catch(console.error);

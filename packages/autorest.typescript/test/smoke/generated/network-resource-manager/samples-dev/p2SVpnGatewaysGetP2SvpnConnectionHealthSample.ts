@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets the connection health of P2S clients of the virtual wan P2SVpnGateway in the specified resource group.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets the connection health of P2S clients of the virtual wan P2SVpnGateway in the specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/P2SVpnGatewayGetConnectionHealth.json
  */
-async function p2SVpnGatewayGetConnectionHealth() {
+async function p2SVpnGatewayGetConnectionHealth(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const gatewayName = "p2sVpnGateway1";
@@ -34,8 +32,8 @@ async function p2SVpnGatewayGetConnectionHealth() {
   console.log(result);
 }
 
-async function main() {
-  p2SVpnGatewayGetConnectionHealth();
+async function main(): Promise<void> {
+  await p2SVpnGatewayGetConnectionHealth();
 }
 
 main().catch(console.error);

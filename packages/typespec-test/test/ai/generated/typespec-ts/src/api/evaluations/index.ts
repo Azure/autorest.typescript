@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 
 import {
-  AzureAIContext as Client,
+  AIProjectContext as Client,
   EvaluationsCreateOptionalParams,
   EvaluationsCreateOrReplaceScheduleOptionalParams,
-  EvaluationsDeleteScheduleOptionalParams,
+  EvaluationsDisableScheduleOptionalParams,
   EvaluationsGetOptionalParams,
   EvaluationsGetScheduleOptionalParams,
   EvaluationsListOptionalParams,
@@ -35,27 +35,24 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
-export function _deleteScheduleSend(
+export function _disableScheduleSend(
   context: Client,
-  id: string,
-  options: EvaluationsDeleteScheduleOptionalParams = { requestOptions: {} },
+  name: string,
+  options: EvaluationsDisableScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
-    .path("/evaluations/schedules/{id}", id)
-    .delete({
+    .path("/evaluations/schedules/{name}/disable", name)
+    .patch({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        ...(options?.clientRequestId !== undefined
-          ? { "x-ms-client-request-id": options?.clientRequestId }
-          : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
+      queryParameters: { apiVersion: context.apiVersion },
     });
 }
 
-export async function _deleteScheduleDeserialize(
+export async function _disableScheduleDeserialize(
   result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["204"];
@@ -66,14 +63,14 @@ export async function _deleteScheduleDeserialize(
   return;
 }
 
-/** Resource delete operation template. */
-export async function deleteSchedule(
+/** Disable the evaluation schedule. */
+export async function disableSchedule(
   context: Client,
-  id: string,
-  options: EvaluationsDeleteScheduleOptionalParams = { requestOptions: {} },
+  name: string,
+  options: EvaluationsDisableScheduleOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _deleteScheduleSend(context, id, options);
-  return _deleteScheduleDeserialize(result);
+  const result = await _disableScheduleSend(context, name, options);
+  return _disableScheduleDeserialize(result);
 }
 
 export function _listScheduleSend(
@@ -127,14 +124,14 @@ export function listSchedule(
 
 export function _createOrReplaceScheduleSend(
   context: Client,
-  id: string,
+  name: string,
   resource: EvaluationSchedule,
   options: EvaluationsCreateOrReplaceScheduleOptionalParams = {
     requestOptions: {},
   },
 ): StreamableMethod {
   return context
-    .path("/evaluations/schedules/{id}", id)
+    .path("/evaluations/schedules/{name}", name)
     .put({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
@@ -164,7 +161,7 @@ export async function _createOrReplaceScheduleDeserialize(
 /** Create or replace operation template. */
 export async function createOrReplaceSchedule(
   context: Client,
-  id: string,
+  name: string,
   resource: EvaluationSchedule,
   options: EvaluationsCreateOrReplaceScheduleOptionalParams = {
     requestOptions: {},
@@ -172,7 +169,7 @@ export async function createOrReplaceSchedule(
 ): Promise<EvaluationSchedule> {
   const result = await _createOrReplaceScheduleSend(
     context,
-    id,
+    name,
     resource,
     options,
   );
@@ -181,11 +178,11 @@ export async function createOrReplaceSchedule(
 
 export function _getScheduleSend(
   context: Client,
-  id: string,
+  name: string,
   options: EvaluationsGetScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
-    .path("/evaluations/schedules/{id}", id)
+    .path("/evaluations/schedules/{name}", name)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -213,10 +210,10 @@ export async function _getScheduleDeserialize(
 /** Resource read operation template. */
 export async function getSchedule(
   context: Client,
-  id: string,
+  name: string,
   options: EvaluationsGetScheduleOptionalParams = { requestOptions: {} },
 ): Promise<EvaluationSchedule> {
-  const result = await _getScheduleSend(context, id, options);
+  const result = await _getScheduleSend(context, name, options);
   return _getScheduleDeserialize(result);
 }
 

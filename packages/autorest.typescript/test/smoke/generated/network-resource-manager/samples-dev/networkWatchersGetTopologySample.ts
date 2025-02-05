@@ -13,9 +13,7 @@ import {
   NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets the current network topology by resource group.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Gets the current network topology by resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkWatcherTopologyGet.json
  */
-async function getTopology() {
+async function getTopology(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkWatcherName = "nw1";
@@ -38,8 +36,8 @@ async function getTopology() {
   console.log(result);
 }
 
-async function main() {
-  getTopology();
+async function main(): Promise<void> {
+  await getTopology();
 }
 
 main().catch(console.error);

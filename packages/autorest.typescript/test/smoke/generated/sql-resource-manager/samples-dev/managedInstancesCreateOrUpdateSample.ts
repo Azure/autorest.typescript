@@ -13,9 +13,7 @@ import {
   SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Creates or updates a managed instance.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Creates or updates a managed instance.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceCreateMax.json
  */
-async function createManagedInstanceWithAllProperties() {
+async function createManagedInstanceWithAllProperties(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "20D7082A-0FC7-4468-82BD-542694D5042B";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
@@ -76,7 +74,7 @@ async function createManagedInstanceWithAllProperties() {
  * @summary Creates or updates a managed instance.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceCreateMin.json
  */
-async function createManagedInstanceWithMinimalProperties() {
+async function createManagedInstanceWithMinimalProperties(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "20D7082A-0FC7-4468-82BD-542694D5042B";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
@@ -102,9 +100,9 @@ async function createManagedInstanceWithMinimalProperties() {
   console.log(result);
 }
 
-async function main() {
-  createManagedInstanceWithAllProperties();
-  createManagedInstanceWithMinimalProperties();
+async function main(): Promise<void> {
+  await createManagedInstanceWithAllProperties();
+  await createManagedInstanceWithMinimalProperties();
 }
 
 main().catch(console.error);

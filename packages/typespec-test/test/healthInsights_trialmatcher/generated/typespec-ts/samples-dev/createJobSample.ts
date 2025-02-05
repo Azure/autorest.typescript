@@ -5,16 +5,14 @@ import { AzureKeyCredential } from "@azure/core-auth";
 import createHealthInsightsClinicalMatchingClient, {
   getLongRunningPoller,
 } from "@azure-rest/health-insights-clinicalmatching";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation CreateJob
  *
  * @summary call operation CreateJob
  */
-async function createJobSample() {
+async function createJobSample(): Promise<void> {
   const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createHealthInsightsClinicalMatchingClient(
@@ -131,8 +129,8 @@ async function createJobSample() {
   console.log(result);
 }
 
-async function main() {
-  createJobSample();
+async function main(): Promise<void> {
+  await createJobSample();
 }
 
 main().catch(console.error);

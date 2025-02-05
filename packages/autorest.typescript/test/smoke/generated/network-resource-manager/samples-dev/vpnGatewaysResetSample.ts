@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Resets the primary of the vpn gateway in the specified resource group.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Resets the primary of the vpn gateway in the specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VpnGatewayReset.json
  */
-async function resetVpnGateway() {
+async function resetVpnGateway(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const gatewayName = "vpngw";
@@ -33,8 +31,8 @@ async function resetVpnGateway() {
   console.log(result);
 }
 
-async function main() {
-  resetVpnGateway();
+async function main(): Promise<void> {
+  await resetVpnGateway();
 }
 
 main().catch(console.error);

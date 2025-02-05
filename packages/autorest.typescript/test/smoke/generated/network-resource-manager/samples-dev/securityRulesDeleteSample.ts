@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Deletes the specified network security rule.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Deletes the specified network security rule.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkSecurityGroupRuleDelete.json
  */
-async function deleteNetworkSecurityRuleFromNetworkSecurityGroup() {
+async function deleteNetworkSecurityRuleFromNetworkSecurityGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkSecurityGroupName = "testnsg";
@@ -35,8 +33,8 @@ async function deleteNetworkSecurityRuleFromNetworkSecurityGroup() {
   console.log(result);
 }
 
-async function main() {
-  deleteNetworkSecurityRuleFromNetworkSecurityGroup();
+async function main(): Promise<void> {
+  await deleteNetworkSecurityRuleFromNetworkSecurityGroup();
 }
 
 main().catch(console.error);

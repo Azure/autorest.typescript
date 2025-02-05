@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets a list of databases.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets a list of databases.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ListVCoreDatabasesByServer.json
  */
-async function getsAListOfDatabases() {
+async function getsAListOfDatabases(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -38,8 +36,8 @@ async function getsAListOfDatabases() {
   console.log(resArray);
 }
 
-async function main() {
-  getsAListOfDatabases();
+async function main(): Promise<void> {
+  await getsAListOfDatabases();
 }
 
 main().catch(console.error);

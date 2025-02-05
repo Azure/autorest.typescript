@@ -13,9 +13,7 @@ import {
   NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Updates an express route circuit tags.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Updates an express route circuit tags.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteCircuitUpdateTags.json
  */
-async function updateExpressRouteCircuitTags() {
+async function updateExpressRouteCircuitTags(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "ertest";
   const circuitName = "er1";
@@ -38,8 +36,8 @@ async function updateExpressRouteCircuitTags() {
   console.log(result);
 }
 
-async function main() {
-  updateExpressRouteCircuitTags();
+async function main(): Promise<void> {
+  await updateExpressRouteCircuitTags();
 }
 
 main().catch(console.error);

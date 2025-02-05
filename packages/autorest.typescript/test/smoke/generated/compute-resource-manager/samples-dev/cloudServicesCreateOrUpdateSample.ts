@@ -14,9 +14,7 @@ import {
   ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Create or update a cloud service. Please note some properties can be set only during cloud service creation.
@@ -24,7 +22,7 @@ dotenv.config();
  * @summary Create or update a cloud service. Please note some properties can be set only during cloud service creation.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/CreateCloudServiceWithMultiRole.json
  */
-async function createNewCloudServiceWithMultipleRoles() {
+async function createNewCloudServiceWithMultipleRoles(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "ConstosoRG";
   const cloudServiceName = "{cs-name}";
@@ -84,7 +82,7 @@ async function createNewCloudServiceWithMultipleRoles() {
  * @summary Create or update a cloud service. Please note some properties can be set only during cloud service creation.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/CreateCloudServiceWithSingleRole.json
  */
-async function createNewCloudServiceWithSingleRole() {
+async function createNewCloudServiceWithSingleRole(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "ConstosoRG";
   const cloudServiceName = "{cs-name}";
@@ -140,7 +138,7 @@ async function createNewCloudServiceWithSingleRole() {
  * @summary Create or update a cloud service. Please note some properties can be set only during cloud service creation.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/CreateCloudServiceWithSingleRoleAndCertificate.json
  */
-async function createNewCloudServiceWithSingleRoleAndCertificateFromKeyVault() {
+async function createNewCloudServiceWithSingleRoleAndCertificateFromKeyVault(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "ConstosoRG";
   const cloudServiceName = "{cs-name}";
@@ -211,7 +209,7 @@ async function createNewCloudServiceWithSingleRoleAndCertificateFromKeyVault() {
  * @summary Create or update a cloud service. Please note some properties can be set only during cloud service creation.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/CreateCloudServiceWithSingleRoleAndRDP.json
  */
-async function createNewCloudServiceWithSingleRoleAndRdpExtension() {
+async function createNewCloudServiceWithSingleRoleAndRdpExtension(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "ConstosoRG";
   const cloudServiceName = "{cs-name}";
@@ -278,11 +276,11 @@ async function createNewCloudServiceWithSingleRoleAndRdpExtension() {
   console.log(result);
 }
 
-async function main() {
-  createNewCloudServiceWithMultipleRoles();
-  createNewCloudServiceWithSingleRole();
-  createNewCloudServiceWithSingleRoleAndCertificateFromKeyVault();
-  createNewCloudServiceWithSingleRoleAndRdpExtension();
+async function main(): Promise<void> {
+  await createNewCloudServiceWithMultipleRoles();
+  await createNewCloudServiceWithSingleRole();
+  await createNewCloudServiceWithSingleRoleAndCertificateFromKeyVault();
+  await createNewCloudServiceWithSingleRoleAndRdpExtension();
 }
 
 main().catch(console.error);

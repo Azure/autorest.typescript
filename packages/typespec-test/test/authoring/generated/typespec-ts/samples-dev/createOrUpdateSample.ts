@@ -5,16 +5,14 @@ import { AzureKeyCredential } from "@azure/core-auth";
 import createAuthoringClient, {
   getLongRunningPoller,
 } from "@msinternal/authoring";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation CreateOrUpdate
  *
  * @summary call operation CreateOrUpdate
  */
-async function createOrUpdateSample() {
+async function createOrUpdateSample(): Promise<void> {
   const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAuthoringClient(endpointParam, credential);
@@ -37,8 +35,8 @@ async function createOrUpdateSample() {
   console.log(result);
 }
 
-async function main() {
-  createOrUpdateSample();
+async function main(): Promise<void> {
+  await createOrUpdateSample();
 }
 
 main().catch(console.error);

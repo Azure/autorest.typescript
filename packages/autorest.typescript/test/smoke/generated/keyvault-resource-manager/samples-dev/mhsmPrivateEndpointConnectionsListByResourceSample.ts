@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { KeyVaultManagementClient } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to The List operation gets information about the private endpoint connections associated with the managed HSM Pool.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary The List operation gets information about the private endpoint connections associated with the managed HSM Pool.
  * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/ManagedHsm_ListPrivateEndpointConnectionsByResource.json
  */
-async function listManagedHsmPoolsInASubscription() {
+async function listManagedHsmPoolsInASubscription(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sample-group";
@@ -37,8 +35,8 @@ async function listManagedHsmPoolsInASubscription() {
   console.log(resArray);
 }
 
-async function main() {
-  listManagedHsmPoolsInASubscription();
+async function main(): Promise<void> {
+  await listManagedHsmPoolsInASubscription();
 }
 
 main().catch(console.error);

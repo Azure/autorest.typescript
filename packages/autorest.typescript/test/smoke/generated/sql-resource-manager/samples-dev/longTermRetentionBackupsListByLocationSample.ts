@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Lists the long term retention backups for a given location.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Lists the long term retention backups for a given location.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/LongTermRetentionBackupListByLocation.json
  */
-async function getAllLongTermRetentionBackupsUnderTheLocation() {
+async function getAllLongTermRetentionBackupsUnderTheLocation(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const locationName = "japaneast";
@@ -35,8 +33,8 @@ async function getAllLongTermRetentionBackupsUnderTheLocation() {
   console.log(resArray);
 }
 
-async function main() {
-  getAllLongTermRetentionBackupsUnderTheLocation();
+async function main(): Promise<void> {
+  await getAllLongTermRetentionBackupsUnderTheLocation();
 }
 
 main().catch(console.error);

@@ -166,8 +166,8 @@ function checkBeginning(name: string): string {
 }
 
 function sanitizeName(name: string): string {
-  // Remove \, " and ' from name string
-  return name.replace(/["'\\]+/g, "");
+  // Remove [, ], \, " and ' from name string
+  return name.replace(/["'\\[\]]+/g, "");
 }
 
 export function getModelsName(title: string): string {

@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Deletes the specified peering from the ExpressRouteCrossConnection.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Deletes the specified peering from the ExpressRouteCrossConnection.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteCrossConnectionBgpPeeringDelete.json
  */
-async function deleteExpressRouteCrossConnectionBgpPeering() {
+async function deleteExpressRouteCrossConnectionBgpPeering(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName =
     process.env["RESOURCE_GROUP"] || "CrossConnection-SiliconValley";
@@ -37,8 +35,8 @@ async function deleteExpressRouteCrossConnectionBgpPeering() {
   console.log(result);
 }
 
-async function main() {
-  deleteExpressRouteCrossConnectionBgpPeering();
+async function main(): Promise<void> {
+  await deleteExpressRouteCrossConnectionBgpPeering();
 }
 
 main().catch(console.error);

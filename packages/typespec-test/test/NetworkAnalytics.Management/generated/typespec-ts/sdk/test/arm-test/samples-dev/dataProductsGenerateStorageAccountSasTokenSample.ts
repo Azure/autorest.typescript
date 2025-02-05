@@ -10,7 +10,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * @summary generate sas token for storage account.
  * x-ms-original-file: 2023-11-15/DataProducts_GenerateStorageAccountSasToken_MaximumSet_Gen.json
  */
-async function dataProductsGenerateStorageAccountSasTokenMaximumSetGen() {
+async function dataProductsGenerateStorageAccountSasTokenMaximumSetGen(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
   const client = new NetworkAnalyticsApi(credential, subscriptionId);
@@ -26,8 +26,8 @@ async function dataProductsGenerateStorageAccountSasTokenMaximumSetGen() {
   console.log(result);
 }
 
-async function main() {
-  dataProductsGenerateStorageAccountSasTokenMaximumSetGen();
+async function main(): Promise<void> {
+  await dataProductsGenerateStorageAccountSasTokenMaximumSetGen();
 }
 
 main().catch(console.error);

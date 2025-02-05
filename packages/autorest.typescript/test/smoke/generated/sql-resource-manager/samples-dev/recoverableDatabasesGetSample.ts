@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets a recoverable database, which is a resource representing a database's geo backup
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets a recoverable database, which is a resource representing a database's geo backup
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/stable/2014-04-01-legacy/examples/RecoverableDatabaseGet.json
  */
-async function getARecoverableDatabase() {
+async function getARecoverableDatabase(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -37,8 +35,8 @@ async function getARecoverableDatabase() {
   console.log(result);
 }
 
-async function main() {
-  getARecoverableDatabase();
+async function main(): Promise<void> {
+  await getARecoverableDatabase();
 }
 
 main().catch(console.error);

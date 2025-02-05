@@ -3,16 +3,14 @@
 
 import createAzureLoadTestingClient from "@azure-rest/load-testing";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation GetTestRunFile
  *
  * @summary call operation GetTestRunFile
  */
-async function loadTestRunGetTestRunFileSample() {
+async function loadTestRunGetTestRunFileSample(): Promise<void> {
   const endpointParam = "{Your endpointParam}";
   const credential = new DefaultAzureCredential();
   const client = createAzureLoadTestingClient(endpointParam, credential);
@@ -24,8 +22,8 @@ async function loadTestRunGetTestRunFileSample() {
   console.log(result);
 }
 
-async function main() {
-  loadTestRunGetTestRunFileSample();
+async function main(): Promise<void> {
+  await loadTestRunGetTestRunFileSample();
 }
 
 main().catch(console.error);

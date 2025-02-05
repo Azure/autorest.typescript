@@ -10,7 +10,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * @summary initiate key rotation on Data Product.
  * x-ms-original-file: 2023-11-15/DataProducts_RotateKey_MaximumSet_Gen.json
  */
-async function dataProductsRotateKeyMaximumSetGen() {
+async function dataProductsRotateKeyMaximumSetGen(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
   const client = new NetworkAnalyticsApi(credential, subscriptionId);
@@ -19,8 +19,8 @@ async function dataProductsRotateKeyMaximumSetGen() {
   });
 }
 
-async function main() {
-  dataProductsRotateKeyMaximumSetGen();
+async function main(): Promise<void> {
+  await dataProductsRotateKeyMaximumSetGen();
 }
 
 main().catch(console.error);

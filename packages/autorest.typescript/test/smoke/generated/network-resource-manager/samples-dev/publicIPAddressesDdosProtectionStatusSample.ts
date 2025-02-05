@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets the Ddos Protection Status of a Public IP Address
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets the Ddos Protection Status of a Public IP Address
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/PublicIpAddressGetDdosProtectionStatus.json
  */
-async function getDdosProtectionStatusOfAPublicIPAddress() {
+async function getDdosProtectionStatusOfAPublicIPAddress(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const publicIpAddressName = "test-pip";
@@ -34,8 +32,8 @@ async function getDdosProtectionStatusOfAPublicIPAddress() {
   console.log(result);
 }
 
-async function main() {
-  getDdosProtectionStatusOfAPublicIPAddress();
+async function main(): Promise<void> {
+  await getDdosProtectionStatusOfAPublicIPAddress();
 }
 
 main().catch(console.error);

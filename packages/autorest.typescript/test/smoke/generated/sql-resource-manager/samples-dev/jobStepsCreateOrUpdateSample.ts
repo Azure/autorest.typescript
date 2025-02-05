@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { JobStep, SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Creates or updates a job step. This will implicitly create a new job version.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Creates or updates a job step. This will implicitly create a new job version.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/CreateOrUpdateJobStepMax.json
  */
-async function createOrUpdateAJobStepWithAllPropertiesSpecified() {
+async function createOrUpdateAJobStepWithAllPropertiesSpecified(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "group1";
@@ -73,7 +71,7 @@ async function createOrUpdateAJobStepWithAllPropertiesSpecified() {
  * @summary Creates or updates a job step. This will implicitly create a new job version.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/CreateOrUpdateJobStepMin.json
  */
-async function createOrUpdateAJobStepWithMinimalPropertiesSpecified() {
+async function createOrUpdateAJobStepWithMinimalPropertiesSpecified(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "group1";
@@ -101,9 +99,9 @@ async function createOrUpdateAJobStepWithMinimalPropertiesSpecified() {
   console.log(result);
 }
 
-async function main() {
-  createOrUpdateAJobStepWithAllPropertiesSpecified();
-  createOrUpdateAJobStepWithMinimalPropertiesSpecified();
+async function main(): Promise<void> {
+  await createOrUpdateAJobStepWithAllPropertiesSpecified();
+  await createOrUpdateAJobStepWithMinimalPropertiesSpecified();
 }
 
 main().catch(console.error);

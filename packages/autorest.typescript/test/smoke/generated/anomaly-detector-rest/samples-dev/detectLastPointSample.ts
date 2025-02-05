@@ -3,9 +3,7 @@
 
 import createAnomalyDetectorRestClient from "@msinternal/anomaly-detector-rest";
 import { AzureKeyCredential } from "@azure/core-auth";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to This operation generates a model using the points that you sent into the API, and based on all data to determine whether the last point is anomalous.
@@ -13,7 +11,7 @@ dotenv.config();
  * @summary This operation generates a model using the points that you sent into the API, and based on all data to determine whether the last point is anomalous.
  * x-ms-original-file: specification/cognitiveservices/data-plane/AnomalyDetector/stable/v1.1/examples/LastDetect.json
  */
-async function detectAnomalyStatusOfTheLatestPointInTimeSeriesExample() {
+async function detectAnomalyStatusOfTheLatestPointInTimeSeriesExample(): Promise<void> {
   const endpoint = "{Endpoint}";
   const apiVersion = "v1.1";
   const credential = new AzureKeyCredential("{Your API key}");
@@ -85,8 +83,8 @@ async function detectAnomalyStatusOfTheLatestPointInTimeSeriesExample() {
   console.log(result);
 }
 
-async function main() {
-  detectAnomalyStatusOfTheLatestPointInTimeSeriesExample();
+async function main(): Promise<void> {
+  await detectAnomalyStatusOfTheLatestPointInTimeSeriesExample();
 }
 
 main().catch(console.error);
