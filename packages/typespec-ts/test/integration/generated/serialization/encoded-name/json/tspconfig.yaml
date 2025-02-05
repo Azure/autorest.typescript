@@ -2,14 +2,14 @@ emit:
   - "@azure-tools/typespec-ts"
 options:
   "@azure-tools/typespec-ts":
-    "emitter-output-dir": "{project-root}"
-    generateMetadata: true
-    generateTest: false
-    addCredentials: false
-    isModularLibrary: false
-    isTypeSpecTest: true
+    emitter-output-dir: "{project-root}"
+    generate-metadata: true
+    generate-test: false
+    add-credentials: false
+    is-modular-library: false
+    is-typespec-test: true
     title: SerializationEncodedNameJsonClient
-    enableOperationGroup: true
-    packageDetails:
+    enable-operation-group: true
+    package-details:
       name: "@unbranded/serialization-encoded-name-json"
       description: "Serialization Encoded Name Json Test Service"

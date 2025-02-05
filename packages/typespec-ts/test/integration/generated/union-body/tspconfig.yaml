@@ -2,13 +2,13 @@ emit:
   - "@azure-tools/typespec-ts"
 options:
   "@azure-tools/typespec-ts":
-    "emitter-output-dir": "{project-root}"
-    generateTest: true
-    addCredentials: false
-    isModularLibrary: false
-    isTypeSpecTest: true
-    generateSample: true
+    emitter-output-dir: "{project-root}"
+    generate-test: true
+    add-credentials: false
+    is-modular-library: false
+    is-typespec-test: true
+    generate-sample: true
     title: UnionBodyClient
-    packageDetails:
+    package-details:
       name: "@unbranded/union-body"
       description: "Union Body Test Service"
