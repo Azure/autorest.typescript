@@ -303,6 +303,10 @@ export const azureRlcTsps = [
   {
     outputPath: "azure/example/basic",
     inputPath: "azure/example/basic"
+  },
+  {
+    outputPath: "client/namespace",
+    inputPath: "client/namespace"
   }
 ];
 
@@ -779,6 +783,10 @@ export const azureModularTsps = [
   {
     outputPath: "azure/payload/pageable",
     inputPath: "azure/payload/pageable"
+  },
+  {
+    outputPath: "client/namespace",
+    inputPath: "client/namespace"
   }
 ];
 
