@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         Linux_Node18:
-          Pool: ${{ parameters.LinuxPool }}
+          Pool: azsdk-pool-mms-ubuntu-2004-general
           OSVmImage: "ubuntu-20.04"
           NodeTestVersion: "18.x"
     steps:
