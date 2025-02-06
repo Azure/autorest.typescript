@@ -23,7 +23,8 @@ variables:
   TypeSpec_TESTSERVER_COVERAGE_MODULAR_STANDARD_REPORT: "$(Build.SourcesDirectory)/packages/typespec-ts/coverage/spector-coverage-typescript-modular-standard.json"
 
 pool:
-  vmImage: ubuntu-20.04
+  name: ${{ parameters.LinuxPool }}
+  vmImage: ${{ parameters.OSVmImage }}
 
 stages:
   - stage: BuildStage
