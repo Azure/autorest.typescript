@@ -112,10 +112,10 @@ function getEsmDevDependencies({
 
   if (withTests) {
     return {
-      "@vitest/browser": "^2.0.5",
-      "@vitest/coverage-istanbul": "^2.0.5",
+      "@vitest/browser": "^3.0.3",
+      "@vitest/coverage-istanbul": "^3.0.3",
       playwright: "^1.41.2",
-      vitest: "^2.0.5"
+      vitest: "^3.0.3"
     };
   } else return {};
 }
