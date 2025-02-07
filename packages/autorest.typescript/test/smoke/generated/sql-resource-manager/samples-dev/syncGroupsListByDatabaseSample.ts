@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Lists sync groups under a hub database.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Lists sync groups under a hub database.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/SyncGroupListByDatabase.json
  */
-async function listSyncGroupsUnderAGivenDatabase() {
+async function listSyncGroupsUnderAGivenDatabase(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -40,7 +38,7 @@ async function listSyncGroupsUnderAGivenDatabase() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await listSyncGroupsUnderAGivenDatabase();
 }
 

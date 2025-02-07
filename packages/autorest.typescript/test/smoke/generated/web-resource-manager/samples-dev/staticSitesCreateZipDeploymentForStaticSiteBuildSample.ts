@@ -13,9 +13,7 @@ import {
   WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Description for Deploys zipped content to a specific environment of a static site.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Description for Deploys zipped content to a specific environment of a static site.
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/StaticSiteBuildZipDeploy.json
  */
-async function deployASiteFromAZippedPackageToAParticularStaticSiteBuild() {
+async function deployASiteFromAZippedPackageToAParticularStaticSiteBuild(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg";
@@ -50,7 +48,7 @@ async function deployASiteFromAZippedPackageToAParticularStaticSiteBuild() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await deployASiteFromAZippedPackageToAParticularStaticSiteBuild();
 }
 

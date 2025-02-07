@@ -1,52 +1,68 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { AzureAIContext } from "../../api/azureAIContext.js";
-import { listSecrets, get, list } from "../../api/connections/index.js";
+import { AIProjectContext } from "../../api/aIProjectContext.js";
 import {
-  ConnectionsListResponse,
-  ConnectionsListSecretsResponse,
+  getConnectionWithSecrets,
+  getConnection,
+  listConnections,
+  getWorkspace,
+} from "../../api/connections/index.js";
+import {
+  GetWorkspaceResponse,
+  ListConnectionsResponse,
+  GetConnectionResponse,
 } from "../../models/models.js";
 import {
-  ConnectionsListSecretsOptionalParams,
-  ConnectionsGetOptionalParams,
-  ConnectionsListOptionalParams,
+  ConnectionsGetConnectionWithSecretsOptionalParams,
+  ConnectionsGetConnectionOptionalParams,
+  ConnectionsListConnectionsOptionalParams,
+  ConnectionsGetWorkspaceOptionalParams,
 } from "../../api/options.js";
 
 /** Interface representing a Connections operations. */
 export interface ConnectionsOperations {
   /** Get the details of a single connection, including credentials (if available). */
-  listSecrets: (
+  getConnectionWithSecrets: (
     connectionName: string,
     ignored: string,
-    options?: ConnectionsListSecretsOptionalParams,
-  ) => Promise<ConnectionsListSecretsResponse>;
+    options?: ConnectionsGetConnectionWithSecretsOptionalParams,
+  ) => Promise<GetConnectionResponse>;
   /** Get the details of a single connection, without credentials. */
-  get: (
+  getConnection: (
     connectionName: string,
-    options?: ConnectionsGetOptionalParams,
-  ) => Promise<ConnectionsListSecretsResponse>;
+    options?: ConnectionsGetConnectionOptionalParams,
+  ) => Promise<GetConnectionResponse>;
   /** List the details of all the connections (not including their credentials) */
-  list: (
-    options?: ConnectionsListOptionalParams,
-  ) => Promise<ConnectionsListResponse>;
+  listConnections: (
+    options?: ConnectionsListConnectionsOptionalParams,
+  ) => Promise<ListConnectionsResponse>;
+  /** Gets the properties of the specified machine learning workspace. */
+  getWorkspace: (
+    options?: ConnectionsGetWorkspaceOptionalParams,
+  ) => Promise<GetWorkspaceResponse>;
 }
 
-function _getConnections(context: AzureAIContext) {
+function _getConnections(context: AIProjectContext) {
   return {
-    listSecrets: (
+    getConnectionWithSecrets: (
       connectionName: string,
       ignored: string,
-      options?: ConnectionsListSecretsOptionalParams,
-    ) => listSecrets(context, connectionName, ignored, options),
-    get: (connectionName: string, options?: ConnectionsGetOptionalParams) =>
-      get(context, connectionName, options),
-    list: (options?: ConnectionsListOptionalParams) => list(context, options),
+      options?: ConnectionsGetConnectionWithSecretsOptionalParams,
+    ) => getConnectionWithSecrets(context, connectionName, ignored, options),
+    getConnection: (
+      connectionName: string,
+      options?: ConnectionsGetConnectionOptionalParams,
+    ) => getConnection(context, connectionName, options),
+    listConnections: (options?: ConnectionsListConnectionsOptionalParams) =>
+      listConnections(context, options),
+    getWorkspace: (options?: ConnectionsGetWorkspaceOptionalParams) =>
+      getWorkspace(context, options),
   };
 }
 
 export function _getConnectionsOperations(
-  context: AzureAIContext,
+  context: AIProjectContext,
 ): ConnectionsOperations {
   return {
     ..._getConnections(context),

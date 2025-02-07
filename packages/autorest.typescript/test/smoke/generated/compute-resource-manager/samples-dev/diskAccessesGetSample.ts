@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets information about a disk access resource.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets information about a disk access resource.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/GetInformationAboutADiskAccessWithPrivateEndpoints.json
  */
-async function getInformationAboutADiskAccessResourceWithPrivateEndpoints() {
+async function getInformationAboutADiskAccessResourceWithPrivateEndpoints(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskAccessName = "myDiskAccess";
@@ -39,7 +37,7 @@ async function getInformationAboutADiskAccessResourceWithPrivateEndpoints() {
  * @summary Gets information about a disk access resource.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/GetInformationAboutADiskAccess.json
  */
-async function getInformationAboutADiskAccessResource() {
+async function getInformationAboutADiskAccessResource(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskAccessName = "myDiskAccess";
@@ -52,7 +50,7 @@ async function getInformationAboutADiskAccessResource() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await getInformationAboutADiskAccessResourceWithPrivateEndpoints();
   await getInformationAboutADiskAccessResource();
 }

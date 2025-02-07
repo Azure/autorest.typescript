@@ -13,9 +13,7 @@ import {
   SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Copy an existing long term retention backup.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Copy an existing long term retention backup.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/LongTermRetentionBackupCopy.json
  */
-async function copyTheLongTermRetentionBackup() {
+async function copyTheLongTermRetentionBackup(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const locationName = "japaneast";
@@ -48,7 +46,7 @@ async function copyTheLongTermRetentionBackup() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await copyTheLongTermRetentionBackup();
 }
 

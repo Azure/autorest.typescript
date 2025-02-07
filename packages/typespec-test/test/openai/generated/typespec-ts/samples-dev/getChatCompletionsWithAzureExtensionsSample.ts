@@ -3,16 +3,14 @@
 
 import createOpenAIClient from "@msinternal/openai";
 import { AzureKeyCredential } from "@azure/core-auth";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation GetChatCompletionsWithAzureExtensions
  *
  * @summary call operation GetChatCompletionsWithAzureExtensions
  */
-async function getChatCompletionsWithAzureExtensionsSample() {
+async function getChatCompletionsWithAzureExtensionsSample(): Promise<void> {
   const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createOpenAIClient(endpointParam, credential);
@@ -63,7 +61,7 @@ async function getChatCompletionsWithAzureExtensionsSample() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await getChatCompletionsWithAzureExtensionsSample();
 }
 

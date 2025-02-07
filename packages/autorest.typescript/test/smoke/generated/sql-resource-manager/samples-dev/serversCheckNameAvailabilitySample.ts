@@ -13,9 +13,7 @@ import {
   SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Determines whether a resource can be created with the specified name.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Determines whether a resource can be created with the specified name.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/CheckNameAvailabilityServerAlreadyExists.json
  */
-async function checkForAServerNameThatAlreadyExists() {
+async function checkForAServerNameThatAlreadyExists(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const parameters: CheckNameAvailabilityRequest = {
@@ -42,7 +40,7 @@ async function checkForAServerNameThatAlreadyExists() {
  * @summary Determines whether a resource can be created with the specified name.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/CheckNameAvailabilityServerAvailable.json
  */
-async function checkForAServerNameThatIsAvailable() {
+async function checkForAServerNameThatIsAvailable(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const parameters: CheckNameAvailabilityRequest = {
@@ -61,7 +59,7 @@ async function checkForAServerNameThatIsAvailable() {
  * @summary Determines whether a resource can be created with the specified name.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/CheckNameAvailabilityServerInvalid.json
  */
-async function checkForAServerNameThatIsInvalid() {
+async function checkForAServerNameThatIsInvalid(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const parameters: CheckNameAvailabilityRequest = {
@@ -74,7 +72,7 @@ async function checkForAServerNameThatIsInvalid() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await checkForAServerNameThatAlreadyExists();
   await checkForAServerNameThatIsAvailable();
   await checkForAServerNameThatIsInvalid();

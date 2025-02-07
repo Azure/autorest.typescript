@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Revokes access to a disk.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Revokes access to a disk.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/EndGetAccessManagedDisk.json
  */
-async function revokeAccessToAManagedDisk() {
+async function revokeAccessToAManagedDisk(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskName = "myDisk";
@@ -33,7 +31,7 @@ async function revokeAccessToAManagedDisk() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await revokeAccessToAManagedDisk();
 }
 

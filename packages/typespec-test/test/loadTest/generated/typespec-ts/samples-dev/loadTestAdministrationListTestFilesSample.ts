@@ -5,16 +5,14 @@ import { DefaultAzureCredential } from "@azure/identity";
 import createAzureLoadTestingClient, {
   paginate,
 } from "@azure-rest/load-testing";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation ListTestFiles
  *
  * @summary call operation ListTestFiles
  */
-async function loadTestAdministrationListTestFilesSample() {
+async function loadTestAdministrationListTestFilesSample(): Promise<void> {
   const endpointParam = "{Your endpointParam}";
   const credential = new DefaultAzureCredential();
   const client = createAzureLoadTestingClient(endpointParam, credential);
@@ -30,7 +28,7 @@ async function loadTestAdministrationListTestFilesSample() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await loadTestAdministrationListTestFilesSample();
 }
 

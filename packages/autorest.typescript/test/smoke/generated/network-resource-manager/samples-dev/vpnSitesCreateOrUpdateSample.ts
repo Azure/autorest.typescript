@@ -13,9 +13,7 @@ import {
   NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Creates a VpnSite resource if it doesn't exist else updates the existing VpnSite.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Creates a VpnSite resource if it doesn't exist else updates the existing VpnSite.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VpnSitePut.json
  */
-async function vpnSiteCreate() {
+async function vpnSiteCreate(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const vpnSiteName = "vpnSite1";
@@ -58,7 +56,7 @@ async function vpnSiteCreate() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await vpnSiteCreate();
 }
 

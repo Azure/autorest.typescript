@@ -2,16 +2,14 @@
 // Licensed under the MIT License.
 
 import createMediaTypesClient from "@msinternal/media-types-service-rest";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation ContentTypeWithEncoding
  *
  * @summary call operation ContentTypeWithEncoding
  */
-async function contentTypeWithEncodingSample() {
+async function contentTypeWithEncodingSample(): Promise<void> {
   const client = createMediaTypesClient();
   const result = await client
     .path("/mediatypes/contentTypeWithEncoding")
@@ -19,7 +17,7 @@ async function contentTypeWithEncodingSample() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await contentTypeWithEncodingSample();
 }
 
