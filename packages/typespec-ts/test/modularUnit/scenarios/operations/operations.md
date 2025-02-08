@@ -1,6 +1,6 @@
-# only: required bodyRoot and required body and other params
+# skip: required bodyRoot and required body and other params
 
-required bodyRoot and required body
+Required bodyRoot and required body and other params.
 
 ## TypeSpec
 
@@ -14,14 +14,10 @@ op read(@bodyRoot body: {
 ## Models withOptions
 
 ```ts models:withOptions
-import { Bar } from "../models/models.js";
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface ReadOptionalParams extends OperationOptions {
-  prop3?: Date;
-  prop5?: Bar;
-}
+export interface ReadOptionalParams extends OperationOptions {}
 ```
 
 ## Operations
@@ -39,9 +35,12 @@ export function _readSend(
   context: Client,
   options: ReadOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
-  return context
-    .path("/")
-    .post({ ...operationOptionsToRequestParameters(options) });
+  return context.path("/").post({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
+    queryParameters: { queryParam: queryParam },
+    body: bodyParam
+  });
 }
 
 export async function _readDeserialize(
@@ -64,9 +63,9 @@ export async function read(
 }
 ```
 
-# only: required bodyRoot and required body
+# skip: required bodyRoot and required body
 
-required bodyRoot and required body
+Required bodyRoot and required body.
 
 ## TypeSpec
 
@@ -79,14 +78,10 @@ op read(@bodyRoot body: {
 ## Models withOptions
 
 ```ts models:withOptions
-import { Bar } from "../models/models.js";
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface ReadOptionalParams extends OperationOptions {
-  prop3?: Date;
-  prop5?: Bar;
-}
+export interface ReadOptionalParams extends OperationOptions {}
 ```
 
 ## Operations
@@ -104,9 +99,11 @@ export function _readSend(
   context: Client,
   options: ReadOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
-  return context
-    .path("/")
-    .post({ ...operationOptionsToRequestParameters(options) });
+  return context.path("/").post({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
+    body: param
+  });
 }
 
 export async function _readDeserialize(
@@ -129,9 +126,9 @@ export async function read(
 }
 ```
 
-# only: required bodyRoot and optional body
+# skip: required bodyRoot and optional body
 
-operations void request body should be omitted
+Required bodyRoot and optional body.
 
 ## TypeSpec
 
@@ -144,14 +141,10 @@ op read(@bodyRoot body: {
 ## Models withOptions
 
 ```ts models:withOptions
-import { Bar } from "../models/models.js";
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface ReadOptionalParams extends OperationOptions {
-  prop3?: Date;
-  prop5?: Bar;
-}
+export interface ReadOptionalParams extends OperationOptions {}
 ```
 
 ## Operations
@@ -169,9 +162,11 @@ export function _readSend(
   context: Client,
   options: ReadOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
-  return context
-    .path("/")
-    .post({ ...operationOptionsToRequestParameters(options) });
+  return context.path("/").post({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
+    body: !options["param"] ? options["param"] : options["param"]
+  });
 }
 
 export async function _readDeserialize(
