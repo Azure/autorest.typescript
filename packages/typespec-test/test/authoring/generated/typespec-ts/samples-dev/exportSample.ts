@@ -5,16 +5,14 @@ import { AzureKeyCredential } from "@azure/core-auth";
 import createAuthoringClient, {
   getLongRunningPoller,
 } from "@msinternal/authoring";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation Export
  *
  * @summary call operation Export
  */
-async function exportSample() {
+async function exportSample(): Promise<void> {
   const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAuthoringClient(endpointParam, credential);
@@ -29,7 +27,7 @@ async function exportSample() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await exportSample();
 }
 

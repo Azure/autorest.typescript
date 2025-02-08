@@ -13,9 +13,7 @@ import {
   NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Creates or updates a network security group in the specified resource group.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Creates or updates a network security group in the specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkSecurityGroupCreate.json
  */
-async function createNetworkSecurityGroup() {
+async function createNetworkSecurityGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkSecurityGroupName = "testnsg";
@@ -44,7 +42,7 @@ async function createNetworkSecurityGroup() {
  * @summary Creates or updates a network security group in the specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkSecurityGroupCreateWithRule.json
  */
-async function createNetworkSecurityGroupWithRule() {
+async function createNetworkSecurityGroupWithRule(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkSecurityGroupName = "testnsg";
@@ -74,7 +72,7 @@ async function createNetworkSecurityGroupWithRule() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await createNetworkSecurityGroup();
   await createNetworkSecurityGroupWithRule();
 }

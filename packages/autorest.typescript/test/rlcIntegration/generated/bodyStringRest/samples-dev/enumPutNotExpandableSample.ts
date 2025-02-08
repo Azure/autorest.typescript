@@ -2,9 +2,7 @@
 // Licensed under the MIT License.
 
 import createBodyStringRestClient from "@msinternal/body-string-rest";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'
@@ -12,7 +10,7 @@ dotenv.config();
  * @summary Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'
  * x-ms-original-file: /@microsoft.azure/autorest.testserver/swagger/examples/enum_putNotExpandable.json
  */
-async function enumPutNotExpandable() {
+async function enumPutNotExpandable(): Promise<void> {
   const client = createBodyStringRestClient();
   const result = await client
     .path("/string/enum/notExpandable")
@@ -20,7 +18,7 @@ async function enumPutNotExpandable() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await enumPutNotExpandable();
 }
 

@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Lists all of the protection policies within a resource group.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Lists all of the protection policies within a resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/WafListPolicies.json
  */
-async function listsAllWafPoliciesInAResourceGroup() {
+async function listsAllWafPoliciesInAResourceGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const credential = new DefaultAzureCredential();
@@ -34,7 +32,7 @@ async function listsAllWafPoliciesInAResourceGroup() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await listsAllWafPoliciesInAResourceGroup();
 }
 

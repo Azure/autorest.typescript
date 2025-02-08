@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Sets which replica database is primary by failing over from the current primary replica database.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Sets which replica database is primary by failing over from the current primary replica database.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/stable/2014-04-01-legacy/examples/ReplicationLinkFailover.json
  */
-async function failoverAReplicationLink() {
+async function failoverAReplicationLink(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-8931";
@@ -38,7 +36,7 @@ async function failoverAReplicationLink() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await failoverAReplicationLink();
 }
 

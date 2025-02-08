@@ -35,14 +35,14 @@ export interface AgentDeletionStatus {
 
 // @public
 export interface AgentsApiResponseFormat {
-    type?: ApiResponseFormat;
+    type?: ResponseFormat;
 }
 
 // @public
 export type AgentsApiResponseFormatMode = "auto" | "none";
 
 // @public
-export type AgentsApiResponseFormatOption = string | AgentsApiResponseFormatMode | AgentsApiResponseFormat;
+export type AgentsApiResponseFormatOption = string | AgentsApiResponseFormatMode | AgentsApiResponseFormat | ResponseFormatJsonSchemaType;
 
 // @public
 export type AgentsApiToolChoiceOption = string | AgentsApiToolChoiceOptionMode | AgentsNamedToolChoice;
@@ -80,12 +80,14 @@ export interface AgentsCreateMessageOptionalParams extends OperationOptions {
 // @public
 export interface AgentsCreateRunOptionalParams extends OperationOptions {
     additionalInstructions?: string | null;
-    additionalMessages?: ThreadMessage[] | null;
+    additionalMessages?: ThreadMessageOptions[] | null;
+    include?: RunAdditionalFieldList[];
     instructions?: string | null;
     maxCompletionTokens?: number | null;
     maxPromptTokens?: number | null;
     metadata?: Record<string, string> | null;
     model?: string | null;
+    parallelToolCalls?: boolean;
     responseFormat?: AgentsApiResponseFormatOption | null;
     stream?: boolean;
     temperature?: number | null;
@@ -102,6 +104,7 @@ export interface AgentsCreateThreadAndRunOptionalParams extends OperationOptions
     maxPromptTokens?: number | null;
     metadata?: Record<string, string> | null;
     model?: string | null;
+    parallelToolCalls?: boolean;
     responseFormat?: AgentsApiResponseFormatOption | null;
     stream?: boolean;
     temperature?: number | null;
@@ -123,11 +126,15 @@ export interface AgentsCreateThreadOptionalParams extends OperationOptions {
 // @public
 export interface AgentsCreateVectorStoreFileBatchOptionalParams extends OperationOptions {
     chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
+    dataSources?: VectorStoreDataSource[];
+    fileIds?: string[];
 }
 
 // @public
 export interface AgentsCreateVectorStoreFileOptionalParams extends OperationOptions {
     chunkingStrategy?: VectorStoreChunkingStrategyRequestUnion;
+    dataSources?: VectorStoreDataSource[];
+    fileId?: string;
 }
 
 // @public
@@ -137,6 +144,7 @@ export interface AgentsCreateVectorStoreOptionalParams extends OperationOptions 
     fileIds?: string[];
     metadata?: Record<string, string> | null;
     name?: string;
+    storeConfiguration?: VectorStoreConfiguration;
 }
 
 // @public
@@ -181,6 +189,7 @@ export interface AgentsGetRunOptionalParams extends OperationOptions {
 
 // @public
 export interface AgentsGetRunStepOptionalParams extends OperationOptions {
+    include?: RunAdditionalFieldList[];
 }
 
 // @public
@@ -233,6 +242,7 @@ export interface AgentsListRunsOptionalParams extends OperationOptions {
 export interface AgentsListRunStepsOptionalParams extends OperationOptions {
     after?: string;
     before?: string;
+    include?: RunAdditionalFieldList[];
     limit?: number;
     order?: ListSortOrder;
 }
@@ -277,7 +287,7 @@ export interface AgentsNamedToolChoice {
 }
 
 // @public
-export type AgentsNamedToolChoiceType = "function" | "code_interpreter" | "file_search" | "bing_grounding" | "microsoft_fabric" | "sharepoint" | "azure_ai_search";
+export type AgentsNamedToolChoiceType = "function" | "code_interpreter" | "file_search" | "bing_grounding" | "fabric_aiskill" | "sharepoint_grounding" | "azure_ai_search";
 
 // @public
 export interface AgentsOperations {
@@ -289,8 +299,8 @@ export interface AgentsOperations {
     createThread: (options?: AgentsCreateThreadOptionalParams) => Promise<AgentThread>;
     createThreadAndRun: (assistantId: string, options?: AgentsCreateThreadAndRunOptionalParams) => Promise<ThreadRun>;
     createVectorStore: (options?: AgentsCreateVectorStoreOptionalParams) => Promise<VectorStore>;
-    createVectorStoreFile: (vectorStoreId: string, fileId: string, options?: AgentsCreateVectorStoreFileOptionalParams) => Promise<VectorStoreFile>;
-    createVectorStoreFileBatch: (vectorStoreId: string, fileIds: string[], options?: AgentsCreateVectorStoreFileBatchOptionalParams) => Promise<VectorStoreFileBatch>;
+    createVectorStoreFile: (vectorStoreId: string, options?: AgentsCreateVectorStoreFileOptionalParams) => Promise<VectorStoreFile>;
+    createVectorStoreFileBatch: (vectorStoreId: string, options?: AgentsCreateVectorStoreFileBatchOptionalParams) => Promise<VectorStoreFileBatch>;
     deleteAgent: (assistantId: string, options?: AgentsDeleteAgentOptionalParams) => Promise<AgentDeletionStatus>;
     deleteFile: (fileId: string, options?: AgentsDeleteFileOptionalParams) => Promise<FileDeletionStatus>;
     deleteThread: (threadId: string, options?: AgentsDeleteThreadOptionalParams) => Promise<ThreadDeletionStatus>;
@@ -298,7 +308,7 @@ export interface AgentsOperations {
     deleteVectorStoreFile: (vectorStoreId: string, fileId: string, options?: AgentsDeleteVectorStoreFileOptionalParams) => Promise<VectorStoreFileDeletionStatus>;
     getAgent: (assistantId: string, options?: AgentsGetAgentOptionalParams) => Promise<Agent>;
     getFile: (fileId: string, options?: AgentsGetFileOptionalParams) => Promise<OpenAIFile>;
-    getFileContent: (fileId: string, options?: AgentsGetFileContentOptionalParams) => Promise<FileContentResponse>;
+    getFileContent: (fileId: string, options?: AgentsGetFileContentOptionalParams) => Promise<Uint8Array>;
     getMessage: (threadId: string, messageId: string, options?: AgentsGetMessageOptionalParams) => Promise<ThreadMessage>;
     getRun: (threadId: string, runId: string, options?: AgentsGetRunOptionalParams) => Promise<ThreadRun>;
     getRunStep: (threadId: string, runId: string, stepId: string, options?: AgentsGetRunStepOptionalParams) => Promise<RunStep>;
@@ -382,11 +392,29 @@ export interface AgentThreadCreationOptions {
     toolResources?: ToolResources | null;
 }
 
-// @public
-export type ApiResponseFormat = "text" | "json_object";
+// @public (undocumented)
+export class AIProjectClient {
+    constructor(endpointParam: string, subscriptionId: string, resourceGroupName: string, projectName: string, credential: TokenCredential, options?: AIProjectClientOptionalParams);
+    readonly agents: AgentsOperations;
+    readonly connections: ConnectionsOperations;
+    readonly evaluations: EvaluationsOperations;
+    readonly pipeline: Pipeline;
+    readonly telemetry: TelemetryOperations;
+}
 
 // @public
-export interface AppInsightsConfiguration extends InputData {
+export interface AIProjectClientOptionalParams extends ClientOptions {
+    apiVersion?: string;
+}
+
+// @public
+export interface AppInsightsProperties {
+    connectionString: string;
+}
+
+// @public
+export interface ApplicationInsightsConfiguration extends InputData {
+    connectionString?: string;
     query: string;
     resourceId: string;
     serviceName: string;
@@ -396,20 +424,6 @@ export interface AppInsightsConfiguration extends InputData {
 
 // @public
 export type AuthenticationType = "ApiKey" | "AAD" | "SAS";
-
-// @public (undocumented)
-export class AzureAIClient {
-    constructor(endpointParam: string, subscriptionId: string, resourceGroupName: string, projectName: string, credential: TokenCredential, options?: AzureAIClientOptionalParams);
-    readonly agents: AgentsOperations;
-    readonly connections: ConnectionsOperations;
-    readonly evaluations: EvaluationsOperations;
-    readonly pipeline: Pipeline;
-}
-
-// @public
-export interface AzureAIClientOptionalParams extends ClientOptions {
-    apiVersion?: string;
-}
 
 // @public
 export interface AzureAISearchResource {
@@ -422,7 +436,33 @@ export interface AzureAISearchToolDefinition extends ToolDefinition {
 }
 
 // @public
+export interface AzureFunctionBinding {
+    storageQueue: AzureFunctionStorageQueue;
+    type: "storage_queue";
+}
+
+// @public
+export interface AzureFunctionDefinition {
+    function: FunctionDefinition;
+    inputBinding: AzureFunctionBinding;
+    outputBinding: AzureFunctionBinding;
+}
+
+// @public
+export interface AzureFunctionStorageQueue {
+    queueName: string;
+    storageServiceEndpoint: string;
+}
+
+// @public
+export interface AzureFunctionToolDefinition extends ToolDefinition {
+    azureFunction: AzureFunctionDefinition;
+    type: "azure_function";
+}
+
+// @public
 export interface BingGroundingToolDefinition extends ToolDefinition {
+    bingGrounding: ToolConnectionList;
     type: "bing_grounding";
 }
 
@@ -433,86 +473,39 @@ export interface CodeInterpreterToolDefinition extends ToolDefinition {
 
 // @public
 export interface CodeInterpreterToolResource {
+    dataSources?: VectorStoreDataSource[];
     fileIds?: string[];
 }
 
 // @public
-export interface ConnectionListResource {
-    connectionList?: ConnectionResource[];
+export interface ConnectionsGetConnectionOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface ConnectionProperties {
-    authType: AuthenticationType;
+export interface ConnectionsGetConnectionWithSecretsOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface ConnectionPropertiesAADAuth extends ConnectionProperties {
-    authType: "AAD";
-    category: ConnectionType;
-    target: string;
+export interface ConnectionsGetWorkspaceOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface ConnectionPropertiesApiKeyAuth extends ConnectionProperties {
-    authType: "ApiKey";
-    category: ConnectionType;
-    credentials: CredentialsApiKeyAuth;
-    target: string;
-}
-
-// @public
-export interface ConnectionPropertiesSASAuth extends ConnectionProperties {
-    authType: "SAS";
-    category: ConnectionType;
-    credentials: CredentialsSASAuth;
-    target: string;
-}
-
-// @public
-export type ConnectionPropertiesUnion = ConnectionPropertiesApiKeyAuth | ConnectionPropertiesAADAuth | ConnectionPropertiesSASAuth | ConnectionProperties;
-
-// @public
-export interface ConnectionResource {
-    connectionId: string;
-}
-
-// @public
-export interface ConnectionsGetOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface ConnectionsListOptionalParams extends OperationOptions {
+export interface ConnectionsListConnectionsOptionalParams extends OperationOptions {
     category?: ConnectionType;
     includeAll?: boolean;
     target?: string;
 }
 
 // @public
-export interface ConnectionsListResponse {
-    value: ConnectionsListSecretsResponse[];
-}
-
-// @public
-export interface ConnectionsListSecretsOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface ConnectionsListSecretsResponse {
-    id: string;
-    name: string;
-    properties: ConnectionPropertiesUnion;
-}
-
-// @public
 export interface ConnectionsOperations {
-    get: (connectionName: string, options?: ConnectionsGetOptionalParams) => Promise<ConnectionsListSecretsResponse>;
-    list: (options?: ConnectionsListOptionalParams) => Promise<ConnectionsListResponse>;
-    listSecrets: (connectionName: string, ignored: string, options?: ConnectionsListSecretsOptionalParams) => Promise<ConnectionsListSecretsResponse>;
+    getConnection: (connectionName: string, options?: ConnectionsGetConnectionOptionalParams) => Promise<GetConnectionResponse>;
+    getConnectionWithSecrets: (connectionName: string, ignored: string, options?: ConnectionsGetConnectionWithSecretsOptionalParams) => Promise<GetConnectionResponse>;
+    getWorkspace: (options?: ConnectionsGetWorkspaceOptionalParams) => Promise<GetWorkspaceResponse>;
+    listConnections: (options?: ConnectionsListConnectionsOptionalParams) => Promise<ListConnectionsResponse>;
 }
 
 // @public
-export type ConnectionType = "AzureOpenAI" | "Serverless" | "AzureBlob" | "AIServices";
+export type ConnectionType = "AzureOpenAI" | "Serverless" | "AzureBlob" | "AIServices" | "CognitiveSearch";
 
 // @public
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
@@ -564,14 +557,13 @@ export interface Evaluation {
 
 // @public
 export interface EvaluationSchedule {
-    data: InputDataUnion;
+    data: ApplicationInsightsConfiguration;
     description?: string;
-    displayName?: string;
     evaluators: Record<string, EvaluatorConfiguration>;
-    readonly id: string;
+    readonly isEnabled?: string;
+    readonly name: string;
     properties?: Record<string, string>;
-    readonly provisioningStatus?: string;
-    samplingStrategy: SamplingStrategy;
+    readonly provisioningState?: string;
     readonly systemData?: SystemData;
     tags?: Record<string, string>;
     trigger: TriggerUnion;
@@ -587,8 +579,7 @@ export interface EvaluationsCreateOrReplaceScheduleOptionalParams extends Operat
 }
 
 // @public
-export interface EvaluationsDeleteScheduleOptionalParams extends OperationOptions {
-    clientRequestId?: string;
+export interface EvaluationsDisableScheduleOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -620,10 +611,10 @@ export interface EvaluationsListScheduleOptionalParams extends OperationOptions 
 // @public
 export interface EvaluationsOperations {
     create: (evaluation: Evaluation, options?: EvaluationsCreateOptionalParams) => Promise<Evaluation>;
-    createOrReplaceSchedule: (id: string, resource: EvaluationSchedule, options?: EvaluationsCreateOrReplaceScheduleOptionalParams) => Promise<EvaluationSchedule>;
-    deleteSchedule: (id: string, options?: EvaluationsDeleteScheduleOptionalParams) => Promise<void>;
+    createOrReplaceSchedule: (name: string, resource: EvaluationSchedule, options?: EvaluationsCreateOrReplaceScheduleOptionalParams) => Promise<EvaluationSchedule>;
+    disableSchedule: (name: string, options?: EvaluationsDisableScheduleOptionalParams) => Promise<void>;
     get: (id: string, options?: EvaluationsGetOptionalParams) => Promise<Evaluation>;
-    getSchedule: (id: string, options?: EvaluationsGetScheduleOptionalParams) => Promise<EvaluationSchedule>;
+    getSchedule: (name: string, options?: EvaluationsGetScheduleOptionalParams) => Promise<EvaluationSchedule>;
     list: (options?: EvaluationsListOptionalParams) => PagedAsyncIterableIterator<Evaluation>;
     listSchedule: (options?: EvaluationsListScheduleOptionalParams) => PagedAsyncIterableIterator<EvaluationSchedule>;
     update: (id: string, resource: Evaluation, options?: EvaluationsUpdateOptionalParams) => Promise<Evaluation>;
@@ -639,11 +630,6 @@ export interface EvaluatorConfiguration {
     dataMapping?: Record<string, string>;
     id: string;
     initParams?: Record<string, any>;
-}
-
-// @public
-export interface FileContentResponse {
-    content: Uint8Array;
 }
 
 // @public
@@ -666,6 +652,18 @@ export interface FileListResponse {
 export type FilePurpose = "fine-tune" | "fine-tune-results" | "assistants" | "assistants_output" | "batch" | "batch_output" | "vision";
 
 // @public
+export interface FileSearchRankingOptions {
+    ranker: string;
+    scoreThreshold: number;
+}
+
+// @public
+export interface FileSearchToolCallContent {
+    text: string;
+    type: "text";
+}
+
+// @public
 export interface FileSearchToolDefinition extends ToolDefinition {
     fileSearch?: FileSearchToolDefinitionDetails;
     type: "file_search";
@@ -674,11 +672,13 @@ export interface FileSearchToolDefinition extends ToolDefinition {
 // @public
 export interface FileSearchToolDefinitionDetails {
     maxNumResults?: number;
+    rankingOptions?: FileSearchRankingOptions;
 }
 
 // @public
 export interface FileSearchToolResource {
     vectorStoreIds?: string[];
+    vectorStores?: VectorStoreConfigurations[];
 }
 
 // @public
@@ -706,7 +706,33 @@ export interface FunctionToolDefinition extends ToolDefinition {
 }
 
 // @public
-export type IncompleteRunDetails = "max_completion_tokens" | "max_prompt_tokens";
+export interface GetAppInsightsResponse {
+    id: string;
+    name: string;
+    properties: AppInsightsProperties;
+}
+
+// @public
+export interface GetConnectionResponse {
+    id: string;
+    name: string;
+    properties: InternalConnectionPropertiesUnion;
+}
+
+// @public
+export interface GetWorkspaceResponse {
+    id: string;
+    name: string;
+    properties: WorkspaceProperties;
+}
+
+// @public
+export type IncompleteDetailsReason = "max_completion_tokens" | "max_prompt_tokens";
+
+// @public
+export interface IncompleteRunDetails {
+    reason: IncompleteDetailsReason;
+}
 
 // @public
 export interface IndexResource {
@@ -720,7 +746,34 @@ export interface InputData {
 }
 
 // @public
-export type InputDataUnion = AppInsightsConfiguration | Dataset | InputData;
+export type InputDataUnion = ApplicationInsightsConfiguration | Dataset | InputData;
+
+// @public
+export interface InternalConnectionProperties {
+    authType: AuthenticationType;
+    category: ConnectionType;
+    target: string;
+}
+
+// @public
+export interface InternalConnectionPropertiesAADAuth extends InternalConnectionProperties {
+    authType: "AAD";
+}
+
+// @public
+export interface InternalConnectionPropertiesApiKeyAuth extends InternalConnectionProperties {
+    authType: "ApiKey";
+    credentials: CredentialsApiKeyAuth;
+}
+
+// @public
+export interface InternalConnectionPropertiesSASAuth extends InternalConnectionProperties {
+    authType: "SAS";
+    credentials: CredentialsSASAuth;
+}
+
+// @public
+export type InternalConnectionPropertiesUnion = InternalConnectionPropertiesApiKeyAuth | InternalConnectionPropertiesAADAuth | InternalConnectionPropertiesSASAuth | InternalConnectionProperties;
 
 // @public
 export enum KnownVersions {
@@ -728,11 +781,17 @@ export enum KnownVersions {
 }
 
 // @public
+export interface ListConnectionsResponse {
+    value: GetConnectionResponse[];
+}
+
+// @public
 export type ListSortOrder = "asc" | "desc";
 
 // @public
 export interface MessageAttachment {
-    fileId: string;
+    dataSource?: VectorStoreDataSource;
+    fileId?: string;
     tools: MessageAttachmentToolDefinition[];
 }
 
@@ -908,7 +967,8 @@ export interface MessageTextFilePathDetails {
 
 // @public
 export interface MicrosoftFabricToolDefinition extends ToolDefinition {
-    type: "microsoft_fabric";
+    fabricAiskill: ToolConnectionList;
+    type: "fabric_aiskill";
 }
 
 // @public
@@ -978,6 +1038,58 @@ export interface OpenAIPageableListOfVectorStoreFile {
 }
 
 // @public
+export interface OpenApiAnonymousAuthDetails extends OpenApiAuthDetails {
+    type: "anonymous";
+}
+
+// @public
+export interface OpenApiAuthDetails {
+    type: OpenApiAuthType;
+}
+
+// @public
+export type OpenApiAuthDetailsUnion = OpenApiAnonymousAuthDetails | OpenApiConnectionAuthDetails | OpenApiManagedAuthDetails | OpenApiAuthDetails;
+
+// @public
+export type OpenApiAuthType = "anonymous" | "connection" | "managed_identity";
+
+// @public
+export interface OpenApiConnectionAuthDetails extends OpenApiAuthDetails {
+    securityScheme: OpenApiConnectionSecurityScheme;
+    type: "connection";
+}
+
+// @public
+export interface OpenApiConnectionSecurityScheme {
+    connectionId: string;
+}
+
+// @public
+export interface OpenApiFunctionDefinition {
+    auth: OpenApiAuthDetailsUnion;
+    description?: string;
+    name: string;
+    spec: any;
+}
+
+// @public
+export interface OpenApiManagedAuthDetails extends OpenApiAuthDetails {
+    securityScheme: OpenApiManagedSecurityScheme;
+    type: "managed_identity";
+}
+
+// @public
+export interface OpenApiManagedSecurityScheme {
+    audience: string;
+}
+
+// @public
+export interface OpenApiToolDefinition extends ToolDefinition {
+    openapi: OpenApiFunctionDefinition;
+    type: "openapi";
+}
+
+// @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
     [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
     byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
@@ -993,15 +1105,15 @@ export interface PageSettings {
 export interface RecurrenceSchedule {
     hours: number[];
     minutes: number[];
-    monthDays: number[];
-    weekDays: WeekDays[];
+    monthDays?: number[];
+    weekDays?: WeekDays[];
 }
 
 // @public
 export interface RecurrenceTrigger extends Trigger {
     frequency: Frequency;
     interval: number;
-    schedule: RecurrenceSchedule;
+    schedule?: RecurrenceSchedule;
     // (undocumented)
     readonly type: "Recurrence";
 }
@@ -1034,6 +1146,25 @@ export interface RequiredToolCall {
 
 // @public
 export type RequiredToolCallUnion = RequiredFunctionToolCall | RequiredToolCall;
+
+// @public
+export type ResponseFormat = "text" | "json_object";
+
+// @public
+export interface ResponseFormatJsonSchema {
+    description?: string;
+    name: string;
+    schema: any;
+}
+
+// @public
+export interface ResponseFormatJsonSchemaType {
+    jsonSchema: ResponseFormatJsonSchema;
+    type: "json_schema";
+}
+
+// @public
+export type RunAdditionalFieldList = "step_details.tool_calls[*].file_search.results[*].content";
 
 // @public
 export interface RunCompletionUsage {
@@ -1250,8 +1381,23 @@ export type RunStepErrorCode = "server_error" | "rate_limit_exceeded";
 
 // @public
 export interface RunStepFileSearchToolCall extends RunStepToolCall {
-    fileSearch: Record<string, string>;
+    fileSearch: RunStepFileSearchToolCallResults;
+    id: string;
     type: "file_search";
+}
+
+// @public
+export interface RunStepFileSearchToolCallResult {
+    content?: FileSearchToolCallContent[];
+    fileId: string;
+    fileName: string;
+    score: number;
+}
+
+// @public
+export interface RunStepFileSearchToolCallResults {
+    rankingOptions?: FileSearchRankingOptions;
+    results: RunStepFileSearchToolCallResult[];
 }
 
 // @public
@@ -1281,13 +1427,13 @@ export interface RunStepMessageCreationReference {
 // @public
 export interface RunStepMicrosoftFabricToolCall extends RunStepToolCall {
     microsoftFabric: Record<string, string>;
-    type: "microsoft_fabric";
+    type: "fabric_aiskill";
 }
 
 // @public
 export interface RunStepSharepointToolCall extends RunStepToolCall {
     sharePoint: Record<string, string>;
-    type: "sharepoint";
+    type: "sharepoint_grounding";
 }
 
 // @public
@@ -1315,16 +1461,12 @@ export type RunStepToolCallUnion = RunStepCodeInterpreterToolCall | RunStepFileS
 export type RunStepType = "message_creation" | "tool_calls";
 
 // @public
-export type RunStreamEvent = "thread.run.created" | "thread.run.queued" | "thread.run.in_progress" | "thread.run.requires_action" | "thread.run.completed" | "thread.run.failed" | "thread.run.cancelling" | "thread.run.cancelled" | "thread.run.expired";
-
-// @public
-export interface SamplingStrategy {
-    rate: number;
-}
+export type RunStreamEvent = "thread.run.created" | "thread.run.queued" | "thread.run.in_progress" | "thread.run.requires_action" | "thread.run.completed" | "thread.run.incomplete" | "thread.run.failed" | "thread.run.cancelling" | "thread.run.cancelled" | "thread.run.expired";
 
 // @public
 export interface SharepointToolDefinition extends ToolDefinition {
-    type: "sharepoint";
+    sharepointGrounding: ToolConnectionList;
+    type: "sharepoint_grounding";
 }
 
 // @public
@@ -1344,6 +1486,15 @@ export interface SystemData {
     readonly createdBy?: string;
     readonly createdByType?: string;
     readonly lastModifiedAt?: Date;
+}
+
+// @public
+export interface TelemetryGetAppInsightsOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface TelemetryOperations {
+    getAppInsights: (appInsightsResourceUrl: string, options?: TelemetryGetAppInsightsOptionalParams) => Promise<GetAppInsightsResponse>;
 }
 
 // @public
@@ -1396,7 +1547,7 @@ export interface ThreadRun {
     metadata: Record<string, string> | null;
     model: string;
     object: "thread.run";
-    parallelToolCalls?: boolean;
+    parallelToolCalls: boolean;
     requiredAction?: RequiredActionUnion | null;
     responseFormat: AgentsApiResponseFormatOption | null;
     startedAt: Date | null;
@@ -1415,12 +1566,22 @@ export interface ThreadRun {
 export type ThreadStreamEvent = "thread.created";
 
 // @public
+export interface ToolConnection {
+    connectionId: string;
+}
+
+// @public
+export interface ToolConnectionList {
+    connectionList?: ToolConnection[];
+}
+
+// @public
 export interface ToolDefinition {
     type: string;
 }
 
 // @public
-export type ToolDefinitionUnion = CodeInterpreterToolDefinition | FileSearchToolDefinition | FunctionToolDefinition | BingGroundingToolDefinition | MicrosoftFabricToolDefinition | SharepointToolDefinition | AzureAISearchToolDefinition | ToolDefinition;
+export type ToolDefinitionUnion = CodeInterpreterToolDefinition | FileSearchToolDefinition | FunctionToolDefinition | BingGroundingToolDefinition | MicrosoftFabricToolDefinition | SharepointToolDefinition | AzureAISearchToolDefinition | OpenApiToolDefinition | AzureFunctionToolDefinition | ToolDefinition;
 
 // @public
 export interface ToolOutput {
@@ -1431,11 +1592,8 @@ export interface ToolOutput {
 // @public
 export interface ToolResources {
     azureAISearch?: AzureAISearchResource;
-    bingGrounding?: ConnectionListResource;
     codeInterpreter?: CodeInterpreterToolResource;
     fileSearch?: FileSearchToolResource;
-    microsoftFabric?: ConnectionListResource;
-    sharePoint?: ConnectionListResource;
 }
 
 // @public
@@ -1468,11 +1626,8 @@ export interface UpdateFileSearchToolResourceOptions {
 // @public
 export interface UpdateToolResourcesOptions {
     azureAISearch?: AzureAISearchResource;
-    bingGrounding?: ConnectionListResource;
     codeInterpreter?: UpdateCodeInterpreterToolResourceOptions;
     fileSearch?: UpdateFileSearchToolResourceOptions;
-    microsoftFabric?: ConnectionListResource;
-    sharePoint?: ConnectionListResource;
 }
 
 // @public
@@ -1521,6 +1676,26 @@ export type VectorStoreChunkingStrategyResponseType = "other" | "static";
 
 // @public
 export type VectorStoreChunkingStrategyResponseUnion = VectorStoreAutoChunkingStrategyResponse | VectorStoreStaticChunkingStrategyResponse | VectorStoreChunkingStrategyResponse;
+
+// @public
+export interface VectorStoreConfiguration {
+    dataSources: VectorStoreDataSource[];
+}
+
+// @public
+export interface VectorStoreConfigurations {
+    storeConfiguration: VectorStoreConfiguration;
+    storeName: string;
+}
+
+// @public
+export interface VectorStoreDataSource {
+    assetIdentifier: string;
+    assetType: VectorStoreDataSourceAssetType;
+}
+
+// @public
+export type VectorStoreDataSourceAssetType = "uri_asset" | "id_asset";
 
 // @public
 export interface VectorStoreDeletionStatus {
@@ -1586,7 +1761,7 @@ export interface VectorStoreFileError {
 }
 
 // @public
-export type VectorStoreFileErrorCode = "internal_error" | "file_not_found" | "parsing_error" | "unhandled_mime_type";
+export type VectorStoreFileErrorCode = "server_error" | "invalid_file" | "unsupported_file";
 
 // @public
 export type VectorStoreFileStatus = "in_progress" | "completed" | "failed" | "cancelled";
@@ -1617,6 +1792,11 @@ export type VectorStoreStatus = "expired" | "in_progress" | "completed";
 
 // @public
 export type WeekDays = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
+
+// @public
+export interface WorkspaceProperties {
+    applicationInsights: string;
+}
 
 // (No @packageDocumentation comment for this package)
 

@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 
 export {
-  createAzureAI,
-  AzureAIContext,
-  AzureAIClientOptionalParams,
-} from "./azureAIContext.js";
+  createAIProject,
+  AIProjectContext,
+  AIProjectClientOptionalParams,
+} from "./aIProjectContext.js";
 export {
-  EvaluationsDeleteScheduleOptionalParams,
+  EvaluationsDisableScheduleOptionalParams,
   EvaluationsListScheduleOptionalParams,
   EvaluationsCreateOrReplaceScheduleOptionalParams,
   EvaluationsGetScheduleOptionalParams,
@@ -15,9 +15,11 @@ export {
   EvaluationsListOptionalParams,
   EvaluationsCreateOptionalParams,
   EvaluationsGetOptionalParams,
-  ConnectionsListSecretsOptionalParams,
-  ConnectionsGetOptionalParams,
-  ConnectionsListOptionalParams,
+  TelemetryGetAppInsightsOptionalParams,
+  ConnectionsGetConnectionWithSecretsOptionalParams,
+  ConnectionsGetConnectionOptionalParams,
+  ConnectionsListConnectionsOptionalParams,
+  ConnectionsGetWorkspaceOptionalParams,
   AgentsListVectorStoreFileBatchFilesOptionalParams,
   AgentsCancelVectorStoreFileBatchOptionalParams,
   AgentsGetVectorStoreFileBatchOptionalParams,

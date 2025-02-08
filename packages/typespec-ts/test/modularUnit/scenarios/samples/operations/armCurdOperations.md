@@ -120,7 +120,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * @summary list the operations for the provider
  * x-ms-original-file: 2021-10-01-preview/json_for_Operations_List.json
  */
-async function operationsList() {
+async function operationsList(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
   const client = new ContosoClient(credential, subscriptionId);
@@ -132,7 +132,7 @@ async function operationsList() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await operationsList();
 }
 
@@ -181,7 +181,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * @summary create a Employee
  * x-ms-original-file: 2021-10-01-preview/json_for_Employees_CreateOrUpdate.json
  */
-async function employeesCreateOrUpdate() {
+async function employeesCreateOrUpdate(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
   const client = new ContosoClient(credential, subscriptionId);
@@ -201,7 +201,7 @@ async function employeesCreateOrUpdate() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await employeesCreateOrUpdate();
 }
 
@@ -239,14 +239,14 @@ import { DefaultAzureCredential } from "@azure/identity";
  * @summary delete a Employee
  * x-ms-original-file: 2021-10-01-preview/json_for_Employees_Delete.json
  */
-async function employeesDelete() {
+async function employeesDelete(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
   const client = new ContosoClient(credential, subscriptionId);
   await client.employees.delete("rgopenapi", "5vX--BxSu3ux48rI4O9OQ569");
 }
 
-async function main() {
+async function main(): Promise<void> {
   await employeesDelete();
 }
 

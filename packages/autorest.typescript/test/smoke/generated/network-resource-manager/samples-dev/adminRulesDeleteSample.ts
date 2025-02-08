@@ -13,9 +13,7 @@ import {
   NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Deletes an admin rule.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Deletes an admin rule.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkManagerAdminRuleDelete.json
  */
-async function deletesAnAdminRule() {
+async function deletesAnAdminRule(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
@@ -46,7 +44,7 @@ async function deletesAnAdminRule() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await deletesAnAdminRule();
 }
 
