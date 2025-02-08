@@ -339,28 +339,34 @@ function getOperationSignatureParameters(
   method: [string[], ServiceOperation],
   clientType: string
 ): OptionalKind<ParameterDeclarationStructure>[] {
-  const operation = method[1];
+  const operationMethod = method[1];
+  const methodParameters = operationMethod.parameters;
+  const operationParameters: any[] = [...operationMethod.operation.parameters];
+  if (operationMethod.operation.bodyParam) {
+    operationParameters.push(operationMethod.operation.bodyParam);
+  }
+
   const optionsType = getOperationOptionsName(method, true);
   const parameters: Map<
     string,
     OptionalKind<ParameterDeclarationStructure>
   > = new Map();
 
-  operation.parameters
+  methodParameters
     .filter((p) => {
-      const correspondingMethodParams = operation.operation.parameters.filter(
+      const correspondingMethodParams = operationParameters.filter(
         (param) => {
           return (
-            param.correspondingMethodParams.length === 1 &&
-            param.correspondingMethodParams[0] === p
+            (param.correspondingMethodParams as any[]).includes(p)
           );
         }
       );
+      const corresponseParam = (correspondingMethodParams.length === 1 &&
+        correspondingMethodParams[0]?.kind !== "cookie");
       const res =
         p.onClient === false &&
         p.type.kind !== "constant" &&
-        correspondingMethodParams.length === 1 &&
-        correspondingMethodParams[0]?.kind !== "cookie" &&
+        corresponseParam &&
         p.clientDefaultValue === undefined &&
         !p.optional &&
         !(
@@ -511,7 +517,7 @@ function getLroOnlyOperationFunction(
   ];
   const resourceLocationConfig =
     lroMetadata?.finalStateVia &&
-    allowedFinalLocation.includes(lroMetadata?.finalStateVia)
+      allowedFinalLocation.includes(lroMetadata?.finalStateVia)
       ? `resourceLocationConfig: "${lroMetadata?.finalStateVia}"`
       : "";
   const statements: string[] = [];
@@ -526,9 +532,8 @@ function getLroOnlyOperationFunction(
       .map((p) => p.name)
       .join(", ")}),
     ${resourceLocationConfig}
-  }) as ${pollerLikeReference}<${operationStateReference}<${
-    returnType.type
-  }>, ${returnType.type}>;
+  }) as ${pollerLikeReference}<${operationStateReference}<${returnType.type
+    }>, ${returnType.type}>;
   `);
 
   return {
@@ -845,15 +850,14 @@ function getCollectionFormat(
       getEncodeForType(param.type)
     )}${additionalParam})`;
   }
-  return `"${serializedName}": ${optionalParamName}?.${
-    param.name
-  } !== undefined ? ${collectionInfo}(${serializeRequestValue(
-    context,
-    param.type,
-    `${optionalParamName}?.${param.name}`,
-    false,
-    getEncodeForType(param.type)
-  )}${additionalParam}): undefined`;
+  return `"${serializedName}": ${optionalParamName}?.${param.name
+    } !== undefined ? ${collectionInfo}(${serializeRequestValue(
+      context,
+      param.type,
+      `${optionalParamName}?.${param.name}`,
+      false,
+      getEncodeForType(param.type)
+    )}${additionalParam}): undefined`;
 }
 
 function isContentType(param: SdkServiceParameter): boolean {
@@ -875,11 +879,10 @@ function getContentTypeValue(
   if (defaultValue) {
     return `contentType: ${optionalParamName}.${param.name} as any ?? "${defaultValue}"`;
   } else {
-    return `contentType: ${
-      !param.optional
-        ? "contentType"
-        : `${optionalParamName}.` + param.name + " as any"
-    }`;
+    return `contentType: ${!param.optional
+      ? "contentType"
+      : `${optionalParamName}.` + param.name + " as any"
+      }`;
   }
 }
 
@@ -1147,9 +1150,8 @@ export function getResponseMapping(
   for (const property of properties) {
     const dot = propertyPath.endsWith("?") ? "." : "";
     const serializedName = getPropertySerializedName(property);
-    const restValue = `${
-      propertyPath ? `${propertyPath}${dot}` : `${dot}`
-    }["${serializedName}"]`;
+    const restValue = `${propertyPath ? `${propertyPath}${dot}` : `${dot}`
+      }["${serializedName}"]`;
 
     const nullOrUndefinedPrefix =
       property.optional || isTypeNullable(property.type)
@@ -1245,14 +1247,12 @@ export function serializeRequestValue(
         );
         return required
           ? `${getNullableCheck(
-              clientValue,
-              type
-            )} ${uint8ArrayToStringReference}(${clientValue}, "${
-              getEncodingFormat({ format }) ?? "base64"
-            }")`
-          : `${nullOrUndefinedPrefix} ${uint8ArrayToStringReference}(${clientValue}, "${
-              getEncodingFormat({ format }) ?? "base64"
-            }")`;
+            clientValue,
+            type
+          )} ${uint8ArrayToStringReference}(${clientValue}, "${getEncodingFormat({ format }) ?? "base64"
+          }")`
+          : `${nullOrUndefinedPrefix} ${uint8ArrayToStringReference}(${clientValue}, "${getEncodingFormat({ format }) ?? "base64"
+          }")`;
       }
       return clientValue;
     case "union":
@@ -1323,11 +1323,11 @@ export function deserializeResponseValue(
       }
       const deserializeFunctionName = type.valueType
         ? buildModelDeserializer(
-            context,
-            getNullableValidType(type.valueType),
-            false,
-            true
-          )
+          context,
+          getNullableValidType(type.valueType),
+          false,
+          true
+        )
         : undefined;
       if (deserializeFunctionName) {
         return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(p)})`;
@@ -1355,11 +1355,11 @@ export function deserializeResponseValue(
       } else if (isSpecialHandledUnion(type)) {
         const deserializeFunctionName = type
           ? buildModelDeserializer(
-              context,
-              getNullableValidType(type),
-              false,
-              true
-            )
+            context,
+            getNullableValidType(type),
+            false,
+            true
+          )
           : undefined;
         if (deserializeFunctionName) {
           return `${deserializeFunctionName}(${restValue})`;
