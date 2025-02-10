@@ -19,11 +19,9 @@ import {
   endpointResourceDeserializer,
   _EndpointsList,
   _endpointsListDeserializer,
-  ListCredentialsRequest,
   listCredentialsRequestSerializer,
   EndpointAccessResource,
   endpointAccessResourceDeserializer,
-  ListIngressGatewayCredentialsRequest,
   listIngressGatewayCredentialsRequestSerializer,
   IngressGatewayResource,
   ingressGatewayResourceDeserializer,
@@ -107,9 +105,6 @@ export function _endpointsListIngressGatewayCredentialsSend(
   context: Client,
   resourceUri: string,
   endpointName: string,
-  body: {
-    listIngressGatewayCredentialsRequest?: ListIngressGatewayCredentialsRequest;
-  },
   options: EndpointsListIngressGatewayCredentialsOptionalParams = {
     requestOptions: {},
   },
@@ -157,9 +152,6 @@ export async function endpointsListIngressGatewayCredentials(
   context: Client,
   resourceUri: string,
   endpointName: string,
-  body: {
-    listIngressGatewayCredentialsRequest?: ListIngressGatewayCredentialsRequest;
-  },
   options: EndpointsListIngressGatewayCredentialsOptionalParams = {
     requestOptions: {},
   },
@@ -168,7 +160,6 @@ export async function endpointsListIngressGatewayCredentials(
     context,
     resourceUri,
     endpointName,
-    body,
     options,
   );
   return _endpointsListIngressGatewayCredentialsDeserialize(result);
@@ -178,9 +169,6 @@ export function _endpointsListCredentialsSend(
   context: Client,
   resourceUri: string,
   endpointName: string,
-  listCredentialsRequest: {
-    listCredentialsRequest?: ListCredentialsRequest;
-  },
   options: EndpointsListCredentialsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -224,16 +212,12 @@ export async function endpointsListCredentials(
   context: Client,
   resourceUri: string,
   endpointName: string,
-  listCredentialsRequest: {
-    listCredentialsRequest?: ListCredentialsRequest;
-  },
   options: EndpointsListCredentialsOptionalParams = { requestOptions: {} },
 ): Promise<EndpointAccessResource> {
   const result = await _endpointsListCredentialsSend(
     context,
     resourceUri,
     endpointName,
-    listCredentialsRequest,
     options,
   );
   return _endpointsListCredentialsDeserialize(result);

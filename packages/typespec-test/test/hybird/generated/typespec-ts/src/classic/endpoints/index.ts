@@ -14,9 +14,7 @@ import {
 } from "../../api/endpoints/index.js";
 import {
   EndpointResource,
-  ListCredentialsRequest,
   EndpointAccessResource,
-  ListIngressGatewayCredentialsRequest,
   IngressGatewayResource,
   ManagedProxyRequest,
   ManagedProxyResource,
@@ -46,18 +44,12 @@ export interface EndpointsOperations {
   listIngressGatewayCredentials: (
     resourceUri: string,
     endpointName: string,
-    body: {
-      listIngressGatewayCredentialsRequest?: ListIngressGatewayCredentialsRequest;
-    },
     options?: EndpointsListIngressGatewayCredentialsOptionalParams,
   ) => Promise<IngressGatewayResource>;
   /** Gets the endpoint access credentials to the resource. */
   listCredentials: (
     resourceUri: string,
     endpointName: string,
-    listCredentialsRequest: {
-      listCredentialsRequest?: ListCredentialsRequest;
-    },
     options?: EndpointsListCredentialsOptionalParams,
   ) => Promise<EndpointAccessResource>;
   /** List of endpoints to the target resource. */
@@ -111,33 +103,19 @@ function _getEndpoints(context: HybridConnectivityManagementAPIContext) {
     listIngressGatewayCredentials: (
       resourceUri: string,
       endpointName: string,
-      body: {
-        listIngressGatewayCredentialsRequest?: ListIngressGatewayCredentialsRequest;
-      },
       options?: EndpointsListIngressGatewayCredentialsOptionalParams,
     ) =>
       endpointsListIngressGatewayCredentials(
         context,
         resourceUri,
         endpointName,
-        body,
         options,
       ),
     listCredentials: (
       resourceUri: string,
       endpointName: string,
-      listCredentialsRequest: {
-        listCredentialsRequest?: ListCredentialsRequest;
-      },
       options?: EndpointsListCredentialsOptionalParams,
-    ) =>
-      endpointsListCredentials(
-        context,
-        resourceUri,
-        endpointName,
-        listCredentialsRequest,
-        options,
-      ),
+    ) => endpointsListCredentials(context, resourceUri, endpointName, options),
     list: (resourceUri: string, options?: EndpointsListOptionalParams) =>
       endpointsList(context, resourceUri, options),
     delete: (
