@@ -46,7 +46,8 @@ import {
   hasUnexpectedHelper,
   isAzurePackage,
   updatePackageFile,
-  buildSampleEnvFile
+  buildSampleEnvFile,
+  buildSnippets
 } from "@azure-tools/rlc-common";
 import {
   buildRootIndex,
@@ -129,10 +130,10 @@ export async function $onEmit(context: EmitContext) {
   );
   const extraDependencies = isAzurePackage({ options: rlcOptions })
     ? {
-        ...AzurePollingDependencies,
-        ...AzureCoreDependencies,
-        ...AzureIdentityDependencies
-      }
+      ...AzurePollingDependencies,
+      ...AzureCoreDependencies,
+      ...AzureIdentityDependencies
+    }
     : { ...DefaultCoreDependencies };
   const binder = provideBinder(outputProject, {
     staticHelpers,
@@ -199,8 +200,8 @@ export async function $onEmit(context: EmitContext) {
   async function clearSrcFolder() {
     await fsextra.emptyDir(
       dpgContext.generationPathDetail?.modularSourcesDir ??
-        dpgContext.generationPathDetail?.rlcSourcesDir ??
-        ""
+      dpgContext.generationPathDetail?.rlcSourcesDir ??
+      ""
     );
   }
 
@@ -407,6 +408,15 @@ export async function $onEmit(context: EmitContext) {
         buildPackageFile(model, modularPackageInfo)
       );
       commonBuilders.push(buildTsConfig);
+
+      if (option.isModularLibrary && option.generateTest && isAzureFlavor) {
+        for (const subClient of dpgContext.sdkPackage.clients) {
+          commonBuilders.push((model) =>
+            buildSnippets(model, subClient.name)
+          );
+        }
+      }
+
       // build metadata relevant files
       await emitContentByBuilder(
         program,
