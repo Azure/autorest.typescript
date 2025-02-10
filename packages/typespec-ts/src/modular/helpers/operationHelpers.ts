@@ -52,6 +52,7 @@ import {
   SdkLroPagingServiceMethod,
   SdkLroServiceMethod,
   SdkMethod,
+  SdkMethodParameter,
   SdkModelPropertyType,
   SdkModelType,
   SdkPagingServiceMethod,
@@ -340,41 +341,51 @@ function getOperationSignatureParameters(
   clientType: string
 ): OptionalKind<ParameterDeclarationStructure>[] {
   const operationMethod = method[1];
-  const methodParameters = operationMethod.parameters;
-  const operationParameters: any[] = [...operationMethod.operation.parameters];
-  if (operationMethod.operation.bodyParam) {
-    operationParameters.push(operationMethod.operation.bodyParam);
-  }
-
+  const operationParameters = getAllOperationParameters(operationMethod);
   const optionsType = getOperationOptionsName(method, true);
   const parameters: Map<
     string,
     OptionalKind<ParameterDeclarationStructure>
   > = new Map();
-
-  methodParameters
-    .filter((p) => {
-      const correspondingMethodParams = operationParameters.filter(
-        (param) => {
-          return (
-            (param.correspondingMethodParams as any[]).includes(p)
-          );
-        }
+  const inScopeParameter = (p: SdkMethodParameter | SdkModelPropertyType) =>
+    p.onClient === false && // skip client-level parameters
+    p.type.kind !== "constant" && // skip constant type parameter
+    p.clientDefaultValue === undefined && // skip default value parameter
+    !p.optional && // skip optional parameter
+    !(p.isGeneratedName && (p.name === "contentType" || p.name === "accept")); // skip tcgc generated contentType and accept header parameter
+  const paramCandidates = operationMethod.parameters.filter(inScopeParameter);
+  const requiredParams = [];
+  for (const methodParam of paramCandidates) {
+    const correspondingOperationParams = operationParameters.filter(
+      (operationParam) =>
+        operationParam.correspondingMethodParams.includes(methodParam)
+    );
+    const matchedCount = correspondingOperationParams.length;
+    if (matchedCount === 0) {
+      // If there is no matched operation parameter, we should consider this is a @bodyRoot case
+      const propertyAsParameters = extractParametersFromRootParam(
+        methodParam,
+        operationParameters
       );
-      const corresponseParam = (correspondingMethodParams.length === 1 &&
-        correspondingMethodParams[0]?.kind !== "cookie");
-      const res =
-        p.onClient === false &&
-        p.type.kind !== "constant" &&
-        corresponseParam &&
-        p.clientDefaultValue === undefined &&
-        !p.optional &&
-        !(
-          p.isGeneratedName &&
-          (p.name === "contentType" || p.name === "accept")
-        ); // skip tcgc generated contentType and accept header parameter
-      return res;
-    })
+      for (const [property, operationParam] of propertyAsParameters) {
+        if (!inScopeParameter(property)) {
+          continue;
+        }
+        requiredParams.push(operationParam);
+      }
+    } else if (matchedCount === 1 && correspondingOperationParams[0]) {
+      if (correspondingOperationParams[0].kind === "cookie") {
+        // If the corresponding operation parameter is a cookie, we should not add the method parameter to the signature
+        continue;
+      }
+      requiredParams.push(methodParam);
+    } else if (matchedCount > 1) {
+      // Not supported yet
+      continue;
+    }
+  }
+
+  requiredParams
     .map((p) => {
       return {
         name: p.name,
@@ -398,6 +409,56 @@ function getOperationSignatureParameters(
   const finalParameters = [contextParam, ...parameters.values(), optionsParam];
 
   return finalParameters;
+}
+
+/**
+ * Get all operation parameters including body parameters
+ * @param method sod method
+ * @returns all http operation parameters
+ */
+export function getAllOperationParameters(method: ServiceOperation) {
+  const operationParameters: (SdkBodyParameter | SdkHttpParameter)[] = [
+    ...method.operation.parameters
+  ];
+  if (method.operation.bodyParam) {
+    operationParameters.push(method.operation.bodyParam);
+  }
+  return operationParameters;
+}
+
+/**
+ * Extract the property and corresponding operation parameter mappings from a bodyRoot parameter
+ * @param methodParam
+ * @param operationParameters
+ * @returns
+ */
+export function extractParametersFromRootParam(
+  methodParam: SdkMethodParameter,
+  operationParameters: (SdkBodyParameter | SdkHttpParameter)[]
+) {
+  const res: [SdkModelPropertyType, SdkBodyParameter | SdkHttpParameter][] = [];
+  // If there is no corresponding operation parameter, we should consider this is a @bodyRoot case
+  const isBodyRoot =
+    (methodParam.__raw?.decorators ?? []).filter(
+      (d) => d?.definition?.name === "@bodyRoot"
+    ).length > 0;
+  if (isBodyRoot && methodParam.type.kind === "model") {
+    for (const property of methodParam.type.properties) {
+      const correspondingOperationParams = operationParameters.filter(
+        (operationParam) =>
+          operationParam.correspondingMethodParams.includes(property)
+      );
+      // prompt property in bodyRoot to method-level parameters
+      if (
+        correspondingOperationParams.length === 1 &&
+        correspondingOperationParams[0] &&
+        correspondingOperationParams[0]?.kind !== "cookie"
+      ) {
+        res.push([property, correspondingOperationParams[0]]);
+      }
+    }
+  }
+  return res;
 }
 
 /**
@@ -517,7 +578,7 @@ function getLroOnlyOperationFunction(
   ];
   const resourceLocationConfig =
     lroMetadata?.finalStateVia &&
-      allowedFinalLocation.includes(lroMetadata?.finalStateVia)
+    allowedFinalLocation.includes(lroMetadata?.finalStateVia)
       ? `resourceLocationConfig: "${lroMetadata?.finalStateVia}"`
       : "";
   const statements: string[] = [];
@@ -532,8 +593,9 @@ function getLroOnlyOperationFunction(
       .map((p) => p.name)
       .join(", ")}),
     ${resourceLocationConfig}
-  }) as ${pollerLikeReference}<${operationStateReference}<${returnType.type
-    }>, ${returnType.type}>;
+  }) as ${pollerLikeReference}<${operationStateReference}<${
+    returnType.type
+  }>, ${returnType.type}>;
   `);
 
   return {
@@ -850,14 +912,15 @@ function getCollectionFormat(
       getEncodeForType(param.type)
     )}${additionalParam})`;
   }
-  return `"${serializedName}": ${optionalParamName}?.${param.name
-    } !== undefined ? ${collectionInfo}(${serializeRequestValue(
-      context,
-      param.type,
-      `${optionalParamName}?.${param.name}`,
-      false,
-      getEncodeForType(param.type)
-    )}${additionalParam}): undefined`;
+  return `"${serializedName}": ${optionalParamName}?.${
+    param.name
+  } !== undefined ? ${collectionInfo}(${serializeRequestValue(
+    context,
+    param.type,
+    `${optionalParamName}?.${param.name}`,
+    false,
+    getEncodeForType(param.type)
+  )}${additionalParam}): undefined`;
 }
 
 function isContentType(param: SdkServiceParameter): boolean {
@@ -879,10 +942,11 @@ function getContentTypeValue(
   if (defaultValue) {
     return `contentType: ${optionalParamName}.${param.name} as any ?? "${defaultValue}"`;
   } else {
-    return `contentType: ${!param.optional
-      ? "contentType"
-      : `${optionalParamName}.` + param.name + " as any"
-      }`;
+    return `contentType: ${
+      !param.optional
+        ? "contentType"
+        : `${optionalParamName}.` + param.name + " as any"
+    }`;
   }
 }
 
@@ -1150,8 +1214,9 @@ export function getResponseMapping(
   for (const property of properties) {
     const dot = propertyPath.endsWith("?") ? "." : "";
     const serializedName = getPropertySerializedName(property);
-    const restValue = `${propertyPath ? `${propertyPath}${dot}` : `${dot}`
-      }["${serializedName}"]`;
+    const restValue = `${
+      propertyPath ? `${propertyPath}${dot}` : `${dot}`
+    }["${serializedName}"]`;
 
     const nullOrUndefinedPrefix =
       property.optional || isTypeNullable(property.type)
@@ -1247,12 +1312,14 @@ export function serializeRequestValue(
         );
         return required
           ? `${getNullableCheck(
-            clientValue,
-            type
-          )} ${uint8ArrayToStringReference}(${clientValue}, "${getEncodingFormat({ format }) ?? "base64"
-          }")`
-          : `${nullOrUndefinedPrefix} ${uint8ArrayToStringReference}(${clientValue}, "${getEncodingFormat({ format }) ?? "base64"
-          }")`;
+              clientValue,
+              type
+            )} ${uint8ArrayToStringReference}(${clientValue}, "${
+              getEncodingFormat({ format }) ?? "base64"
+            }")`
+          : `${nullOrUndefinedPrefix} ${uint8ArrayToStringReference}(${clientValue}, "${
+              getEncodingFormat({ format }) ?? "base64"
+            }")`;
       }
       return clientValue;
     case "union":
@@ -1323,11 +1390,11 @@ export function deserializeResponseValue(
       }
       const deserializeFunctionName = type.valueType
         ? buildModelDeserializer(
-          context,
-          getNullableValidType(type.valueType),
-          false,
-          true
-        )
+            context,
+            getNullableValidType(type.valueType),
+            false,
+            true
+          )
         : undefined;
       if (deserializeFunctionName) {
         return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(p)})`;
@@ -1355,11 +1422,11 @@ export function deserializeResponseValue(
       } else if (isSpecialHandledUnion(type)) {
         const deserializeFunctionName = type
           ? buildModelDeserializer(
-            context,
-            getNullableValidType(type),
-            false,
-            true
-          )
+              context,
+              getNullableValidType(type),
+              false,
+              true
+            )
           : undefined;
         if (deserializeFunctionName) {
           return `${deserializeFunctionName}(${restValue})`;

@@ -2,6 +2,8 @@ import { ModularEmitterOptions } from "./interfaces.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { Project, SourceFile } from "ts-morph";
 import {
+  extractParametersFromRootParam,
+  getAllOperationParameters,
   getDeserializePrivateFunction,
   getExpectedStatuses,
   getOperationFunction,
@@ -22,6 +24,7 @@ import { getTypeExpression } from "./type-expressions/get-type-expression.js";
 import {
   SdkClientType,
   SdkMethodParameter,
+  SdkModelPropertyType,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 import {
@@ -157,6 +160,34 @@ export function importDeserializeUtils(
   }
 }
 
+function getOptionalParameters(operation: ServiceOperation) {
+  const inScopedParam = (p: SdkMethodParameter | SdkModelPropertyType) =>
+    (p.onClient === false &&
+      !(
+        p.isGeneratedName &&
+        (p.name === "contentType" || p.name !== "accept")
+      ) &&
+      p.optional) ||
+    p.clientDefaultValue;
+  // optional parameters would include two parts:
+  // first part is defined parameters in operation level
+  const optionalParameters: (SdkMethodParameter | SdkModelPropertyType)[] =
+    operation.parameters.filter(inScopedParam);
+  // second parts are prompted from bodyRoot properties
+  operation.parameters.forEach((p) => {
+    const otherParams = extractParametersFromRootParam(
+      p,
+      getAllOperationParameters(operation)
+    );
+    for (const [property, _] of otherParams) {
+      if (inScopedParam(property)) {
+        optionalParameters.push(property);
+      }
+    }
+  });
+  return optionalParameters;
+}
+
 /**
  * This function generates the interfaces for each operation options
  */
@@ -167,18 +198,9 @@ export function buildOperationOptions(
 ) {
   const dependencies = useDependencies();
   const operation = method[1];
-  const optionalParameters = operation.parameters
-    .filter(
-      (p) =>
-        p.onClient === false &&
-        !(
-          p.isGeneratedName &&
-          (p.name === "contentType" || p.name !== "accept")
-        )
-    )
-    .filter((p) => p.optional || p.clientDefaultValue);
-  const options: SdkMethodParameter[] = [...optionalParameters];
 
+  const options: (SdkMethodParameter | SdkModelPropertyType)[] =
+    getOptionalParameters(operation);
   const name = getOperationOptionsName(method, true);
   const lroOptions = {
     name: "updateIntervalInMs",
@@ -186,11 +208,6 @@ export function buildOperationOptions(
     hasQuestionToken: true,
     docs: ["Delay to wait until next poll, in milliseconds."]
   };
-
-  // handle optional body parameter
-  // if (operation.operation.bodyParam?.optional === true) {
-  //   options.push(operation.operation.bodyParam);
-  // }
   const operationOptionsReference = resolveReference(
     dependencies.OperationOptions
   );
