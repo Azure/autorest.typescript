@@ -16,6 +16,7 @@ import {
   sAPApplicationServerInstanceSerializer,
   sAPApplicationServerInstanceDeserializer,
   errorResponseDeserializer,
+  UpdateSAPApplicationInstanceRequest,
   updateSAPApplicationInstanceRequestSerializer,
   _SAPApplicationServerInstanceListResult,
   _sAPApplicationServerInstanceListResultDeserializer,
@@ -24,11 +25,11 @@ import {
   operationStatusResultDeserializer,
   stopRequestSerializer,
 } from "../../models/models.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
-import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -318,6 +319,7 @@ export function _updateSend(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   applicationInstanceName: string,
+  properties: UpdateSAPApplicationInstanceRequest,
   options: SAPApplicationServerInstancesUpdateOptionalParams = {
     requestOptions: {},
   },
@@ -361,6 +363,7 @@ export async function update(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   applicationInstanceName: string,
+  properties: UpdateSAPApplicationInstanceRequest,
   options: SAPApplicationServerInstancesUpdateOptionalParams = {
     requestOptions: {},
   },
@@ -370,6 +373,7 @@ export async function update(
     resourceGroupName,
     sapVirtualInstanceName,
     applicationInstanceName,
+    properties,
     options,
   );
   return _updateDeserialize(result);
@@ -380,6 +384,7 @@ export function _createSend(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   applicationInstanceName: string,
+  resource: SAPApplicationServerInstance,
   options: SAPApplicationServerInstancesCreateOptionalParams = {
     requestOptions: {},
   },
@@ -423,6 +428,7 @@ export function create(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   applicationInstanceName: string,
+  resource: SAPApplicationServerInstance,
   options: SAPApplicationServerInstancesCreateOptionalParams = {
     requestOptions: {},
   },
@@ -439,6 +445,7 @@ export function create(
         resourceGroupName,
         sapVirtualInstanceName,
         applicationInstanceName,
+        resource,
         options,
       ),
     resourceLocationConfig: "azure-async-operation",

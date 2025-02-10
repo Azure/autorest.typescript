@@ -20,15 +20,16 @@ import {
   SAPDatabaseInstance,
   sAPDatabaseInstanceSerializer,
   sAPDatabaseInstanceDeserializer,
+  UpdateSAPDatabaseInstanceRequest,
   updateSAPDatabaseInstanceRequestSerializer,
   _SAPDatabaseInstanceListResult,
   _sAPDatabaseInstanceListResultDeserializer,
 } from "../../models/models.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
-import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -302,6 +303,7 @@ export function _updateSend(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   databaseInstanceName: string,
+  properties: UpdateSAPDatabaseInstanceRequest,
   options: SAPDatabaseInstancesUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -343,6 +345,7 @@ export async function update(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   databaseInstanceName: string,
+  properties: UpdateSAPDatabaseInstanceRequest,
   options: SAPDatabaseInstancesUpdateOptionalParams = { requestOptions: {} },
 ): Promise<SAPDatabaseInstance> {
   const result = await _updateSend(
@@ -350,6 +353,7 @@ export async function update(
     resourceGroupName,
     sapVirtualInstanceName,
     databaseInstanceName,
+    properties,
     options,
   );
   return _updateDeserialize(result);
@@ -360,6 +364,7 @@ export function _createSend(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   databaseInstanceName: string,
+  resource: SAPDatabaseInstance,
   options: SAPDatabaseInstancesCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -401,6 +406,7 @@ export function create(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   databaseInstanceName: string,
+  resource: SAPDatabaseInstance,
   options: SAPDatabaseInstancesCreateOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<SAPDatabaseInstance>, SAPDatabaseInstance> {
   return getLongRunningPoller(context, _createDeserialize, ["200", "201"], {
@@ -412,6 +418,7 @@ export function create(
         resourceGroupName,
         sapVirtualInstanceName,
         databaseInstanceName,
+        resource,
         options,
       ),
     resourceLocationConfig: "azure-async-operation",

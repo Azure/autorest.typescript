@@ -14,6 +14,7 @@ import {
 import {
   OperationStatusResult,
   SAPCentralServerInstance,
+  UpdateSAPCentralInstanceRequest,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
@@ -66,6 +67,7 @@ export interface SAPCentralServerInstancesOperations {
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     centralInstanceName: string,
+    properties: UpdateSAPCentralInstanceRequest,
     options?: SAPCentralServerInstancesUpdateOptionalParams,
   ) => Promise<SAPCentralServerInstance>;
   /** Creates the SAP Central Services Instance resource. &lt;br&gt;&lt;br&gt;This will be used by service only. PUT operation on this resource by end user will return a Bad Request error. */
@@ -73,6 +75,7 @@ export interface SAPCentralServerInstancesOperations {
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     centralInstanceName: string,
+    resource: SAPCentralServerInstance,
     options?: SAPCentralServerInstancesCreateOptionalParams,
   ) => PollerLike<
     OperationState<SAPCentralServerInstance>,
@@ -137,6 +140,7 @@ function _getSAPCentralServerInstances(context: WorkloadsContext) {
       resourceGroupName: string,
       sapVirtualInstanceName: string,
       centralInstanceName: string,
+      properties: UpdateSAPCentralInstanceRequest,
       options?: SAPCentralServerInstancesUpdateOptionalParams,
     ) =>
       update(
@@ -144,12 +148,14 @@ function _getSAPCentralServerInstances(context: WorkloadsContext) {
         resourceGroupName,
         sapVirtualInstanceName,
         centralInstanceName,
+        properties,
         options,
       ),
     create: (
       resourceGroupName: string,
       sapVirtualInstanceName: string,
       centralInstanceName: string,
+      resource: SAPCentralServerInstance,
       options?: SAPCentralServerInstancesCreateOptionalParams,
     ) =>
       create(
@@ -157,6 +163,7 @@ function _getSAPCentralServerInstances(context: WorkloadsContext) {
         resourceGroupName,
         sapVirtualInstanceName,
         centralInstanceName,
+        resource,
         options,
       ),
     get: (

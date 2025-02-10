@@ -13,6 +13,7 @@ import {
 } from "../../api/sAPApplicationServerInstances/index.js";
 import {
   SAPApplicationServerInstance,
+  UpdateSAPApplicationInstanceRequest,
   OperationStatusResult,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
@@ -66,6 +67,7 @@ export interface SAPApplicationServerInstancesOperations {
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     applicationInstanceName: string,
+    properties: UpdateSAPApplicationInstanceRequest,
     options?: SAPApplicationServerInstancesUpdateOptionalParams,
   ) => Promise<SAPApplicationServerInstance>;
   /** Puts the SAP Application Server Instance resource. &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will return a Bad Request error. */
@@ -73,6 +75,7 @@ export interface SAPApplicationServerInstancesOperations {
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     applicationInstanceName: string,
+    resource: SAPApplicationServerInstance,
     options?: SAPApplicationServerInstancesCreateOptionalParams,
   ) => PollerLike<
     OperationState<SAPApplicationServerInstance>,
@@ -137,6 +140,7 @@ function _getSAPApplicationServerInstances(context: WorkloadsContext) {
       resourceGroupName: string,
       sapVirtualInstanceName: string,
       applicationInstanceName: string,
+      properties: UpdateSAPApplicationInstanceRequest,
       options?: SAPApplicationServerInstancesUpdateOptionalParams,
     ) =>
       update(
@@ -144,12 +148,14 @@ function _getSAPApplicationServerInstances(context: WorkloadsContext) {
         resourceGroupName,
         sapVirtualInstanceName,
         applicationInstanceName,
+        properties,
         options,
       ),
     create: (
       resourceGroupName: string,
       sapVirtualInstanceName: string,
       applicationInstanceName: string,
+      resource: SAPApplicationServerInstance,
       options?: SAPApplicationServerInstancesCreateOptionalParams,
     ) =>
       create(
@@ -157,6 +163,7 @@ function _getSAPApplicationServerInstances(context: WorkloadsContext) {
         resourceGroupName,
         sapVirtualInstanceName,
         applicationInstanceName,
+        resource,
         options,
       ),
     get: (

@@ -20,15 +20,16 @@ import {
   SAPCentralServerInstance,
   sAPCentralServerInstanceSerializer,
   sAPCentralServerInstanceDeserializer,
+  UpdateSAPCentralInstanceRequest,
   updateSAPCentralInstanceRequestSerializer,
   _SAPCentralServerInstanceListResult,
   _sAPCentralServerInstanceListResultDeserializer,
 } from "../../models/models.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
-import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -310,6 +311,7 @@ export function _updateSend(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   centralInstanceName: string,
+  properties: UpdateSAPCentralInstanceRequest,
   options: SAPCentralServerInstancesUpdateOptionalParams = {
     requestOptions: {},
   },
@@ -353,6 +355,7 @@ export async function update(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   centralInstanceName: string,
+  properties: UpdateSAPCentralInstanceRequest,
   options: SAPCentralServerInstancesUpdateOptionalParams = {
     requestOptions: {},
   },
@@ -362,6 +365,7 @@ export async function update(
     resourceGroupName,
     sapVirtualInstanceName,
     centralInstanceName,
+    properties,
     options,
   );
   return _updateDeserialize(result);
@@ -372,6 +376,7 @@ export function _createSend(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   centralInstanceName: string,
+  resource: SAPCentralServerInstance,
   options: SAPCentralServerInstancesCreateOptionalParams = {
     requestOptions: {},
   },
@@ -415,6 +420,7 @@ export function create(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   centralInstanceName: string,
+  resource: SAPCentralServerInstance,
   options: SAPCentralServerInstancesCreateOptionalParams = {
     requestOptions: {},
   },
@@ -431,6 +437,7 @@ export function create(
         resourceGroupName,
         sapVirtualInstanceName,
         centralInstanceName,
+        resource,
         options,
       ),
     resourceLocationConfig: "azure-async-operation",

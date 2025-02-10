@@ -14,6 +14,7 @@ import {
 import {
   OperationStatusResult,
   SAPDatabaseInstance,
+  UpdateSAPDatabaseInstanceRequest,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
@@ -66,6 +67,7 @@ export interface SAPDatabaseInstancesOperations {
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     databaseInstanceName: string,
+    properties: UpdateSAPDatabaseInstanceRequest,
     options?: SAPDatabaseInstancesUpdateOptionalParams,
   ) => Promise<SAPDatabaseInstance>;
   /** Creates the Database resource corresponding to the Virtual Instance for SAP solutions resource. &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will return a Bad Request error. */
@@ -73,6 +75,7 @@ export interface SAPDatabaseInstancesOperations {
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     databaseInstanceName: string,
+    resource: SAPDatabaseInstance,
     options?: SAPDatabaseInstancesCreateOptionalParams,
   ) => PollerLike<OperationState<SAPDatabaseInstance>, SAPDatabaseInstance>;
   /** Gets the SAP Database Instance resource. */
@@ -134,6 +137,7 @@ function _getSAPDatabaseInstances(context: WorkloadsContext) {
       resourceGroupName: string,
       sapVirtualInstanceName: string,
       databaseInstanceName: string,
+      properties: UpdateSAPDatabaseInstanceRequest,
       options?: SAPDatabaseInstancesUpdateOptionalParams,
     ) =>
       update(
@@ -141,12 +145,14 @@ function _getSAPDatabaseInstances(context: WorkloadsContext) {
         resourceGroupName,
         sapVirtualInstanceName,
         databaseInstanceName,
+        properties,
         options,
       ),
     create: (
       resourceGroupName: string,
       sapVirtualInstanceName: string,
       databaseInstanceName: string,
+      resource: SAPDatabaseInstance,
       options?: SAPDatabaseInstancesCreateOptionalParams,
     ) =>
       create(
@@ -154,6 +160,7 @@ function _getSAPDatabaseInstances(context: WorkloadsContext) {
         resourceGroupName,
         sapVirtualInstanceName,
         databaseInstanceName,
+        resource,
         options,
       ),
     get: (
