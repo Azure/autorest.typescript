@@ -61,9 +61,8 @@ can be used to authenticate the client.
 
 Enabling logging may help uncover useful information about failures. In order to see a log of HTTP requests and responses, set the `AZURE_LOG_LEVEL` environment variable to `info`. Alternatively, logging can be enabled at runtime by calling `setLogLevel` in the `@azure/logger`:
 
-```javascript
-const { setLogLevel } = require("@azure/logger");
-
+```ts 
+import { setLogLevel } from "@azure/logger";
 setLogLevel("info");
 ```
 
