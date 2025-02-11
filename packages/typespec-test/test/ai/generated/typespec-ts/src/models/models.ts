@@ -4,12 +4,6 @@
 import {
   CodeInterpreterToolDefinition,
   FileSearchToolDefinition,
-  ThreadStreamEvent,
-  RunStreamEvent,
-  RunStepStreamEvent,
-  MessageStreamEvent,
-  ErrorEvent,
-  DoneEvent,
 } from "./agents/models.js";
 
 /** Evaluation Definition */
@@ -795,15 +789,6 @@ export function _messageAttachmentToolDeserializer(
 ): _MessageAttachmentTool {
   return item;
 }
-
-/** Alias for _ */
-export type _ =
-  | ThreadStreamEvent
-  | RunStreamEvent
-  | RunStepStreamEvent
-  | MessageStreamEvent
-  | ErrorEvent
-  | DoneEvent;
 
 /** Azure AI API versions */
 export enum KnownVersions {
