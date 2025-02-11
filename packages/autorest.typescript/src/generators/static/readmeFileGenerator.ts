@@ -64,6 +64,8 @@ interface Metadata {
   hasMultiClients?: boolean;
   /** Indicates if we have a client-level subscription id paramter */
   hasClientSubscriptionId?: boolean;
+  /** Indicates if the package is generted to azure-sdk-for-js repo */
+  azureSdkForJs?: boolean;
 }
 
 /**
@@ -83,7 +85,8 @@ function createMetadata(
     productDocLink,
     dependencyInfo,
     multiClient,
-    batch
+    batch,
+    azureSdkForJs
   } = getAutorestOptions();
   const { addCredentials } = getSecurityInfoFromModel(codeModel.security);
 
@@ -168,7 +171,8 @@ function createMetadata(
     dependencyDescription: dependencyInfo?.description,
     dependencyLink: dependencyInfo?.link,
     hasMultiClients: multiClient && batch && batch.length > 1,
-    hasClientSubscriptionId: hasClientSubscriptionId(clientDetails?.samples)
+    hasClientSubscriptionId: hasClientSubscriptionId(clientDetails?.samples),
+    azureSdkForJs: azureSdkForJs
   };
 }
 

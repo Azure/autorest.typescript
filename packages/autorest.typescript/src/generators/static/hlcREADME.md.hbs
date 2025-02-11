@@ -62,46 +62,59 @@ You will also need to **register a new AAD application and grant access to {{ se
 For more information about how to create an Azure AD Application check out [this guide](https://learn.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal).
 
 {{#if azureArm}}
-```javascript
-const { {{ clientClassName }} } = require("{{ clientPackageName }}");
-const { DefaultAzureCredential } = require("@azure/identity");
-// For client-side applications running in the browser, use InteractiveBrowserCredential instead of DefaultAzureCredential. See https://aka.ms/azsdk/js/identity/examples for more details.
+Using Node.js and Node-like environments, you can use the \`DefaultAzureCredential\` class to authenticate the client.
+
+```ts {{#if azureSdkForJs}}snippet:ReadmeSampleCreateClient_Node{{/if}}
+import { {{ clientClassName }} } from "{{ clientPackageName }}";
+import { DefaultAzureCredential } from "@azure/identity";
 
 {{#if hasClientSubscriptionId}}
 const subscriptionId = "00000000-0000-0000-0000-000000000000";
 const client = new {{ clientClassName }}(new DefaultAzureCredential(), subscriptionId);
-
-// For client-side applications running in the browser, use this code instead:
-// const credential = new InteractiveBrowserCredential({
-//   tenantId: "<YOUR_TENANT_ID>",
-//   clientId: "<YOUR_CLIENT_ID>"
-// });
-// const client = new {{ clientClassName }}(credential, subscriptionId);
 ```
 {{else}}
 const client = new {{ clientClassName }}(new DefaultAzureCredential());
+{{/if}}
+```
+For browser environments, use the \`InteractiveBrowserCredential\` from the \`@azure/identity\` package to authenticate.
 
-// For client-side applications running in the browser, use this code instead:
-// const credential = new InteractiveBrowserCredential({
-//   tenantId: "<YOUR_TENANT_ID>",
-//   clientId: "<YOUR_CLIENT_ID>"
-// });
-// const client = new {{ clientClassName }}(credential);
+```ts {{#if azureSdkForJs}}snippet:ReadmeSampleCreateClient_Browser{{/if}}
+import { InteractiveBrowserCredential } from "@azure/identity";
+import { {{ clientClassName }} } from "{{ clientPackageName }}";
+
+const credential = new InteractiveBrowserCredential({
+  tenantId: "<YOUR_TENANT_ID>",
+  clientId: "<YOUR_CLIENT_ID>"
+ });
+{{#if hasClientSubscriptionId}}
+const client = new {{ clientClassName }}(credential, subscriptionId);
+```
+{{else}}
+const client = new {{ clientClassName }}(credential);
 ```
 {{/if}}
+{{/if}}
 {{else}}
-```javascript
-const { {{ clientClassName }} } = require("{{ clientPackageName }}");
-const { DefaultAzureCredential } = require("@azure/identity");
-// For client-side applications running in the browser, use InteractiveBrowserCredential instead of DefaultAzureCredential. See https://aka.ms/azsdk/js/identity/examples for more details.
+Using Node.js and Node-like environments, you can use the \`DefaultAzureCredential\` class to authenticate the client.
+
+```ts {{#if azureSdkForJs}}snippet:ReadmeSampleCreateClient_Node{{/if}}
+import { InteractiveBrowserCredential } from "@azure/identity";
+import { {{ clientClassName }} } from "{{ clientPackageName }}";
 
 const client = new {{ clientClassName }}("<endpoint>", new DefaultAzureCredential());
-// For client-side applications running in the browser, use this code instead:
-// const credential = new InteractiveBrowserCredential({
-//   tenantId: "<YOUR_TENANT_ID>",
-//   clientId: "<YOUR_CLIENT_ID>"
-// });
-// const client = new {{ clientClassName }}("<endpoint>", credential);
+```
+
+For browser environments, use the \`InteractiveBrowserCredential\` from the \`@azure/identity\` package to authenticate.
+
+```ts {{#if azureSdkForJs}}snippet:ReadmeSampleCreateClient_Browser{{/if}}
+import { InteractiveBrowserCredential } from "@azure/identity";
+import { {{ clientClassName }} } from "{{ clientPackageName }}";
+
+const credential = new InteractiveBrowserCredential({
+  tenantId: "<YOUR_TENANT_ID>",
+  clientId: "<YOUR_CLIENT_ID>"
+ });
+const client = new {{ clientClassName }}("<endpoint>", credential);
 ```
 {{/if}}
 {{/if}}{{/if}}
