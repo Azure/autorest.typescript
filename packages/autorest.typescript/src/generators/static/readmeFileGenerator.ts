@@ -149,8 +149,8 @@ function createMetadata(
       : packageSourceURL && `${packageSourceURL}/samples`,
     impressionURL: azureHuh
       ? packageParentDirectoryName &&
-        packageDirectoryName &&
-        `https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2F${packageParentDirectoryName}%2F${packageDirectoryName}%2FREADME.png`
+      packageDirectoryName &&
+      `https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2F${packageParentDirectoryName}%2F${packageDirectoryName}%2FREADME.png`
       : undefined,
     clientDescriptiveName: `${serviceName} client`,
     description: codeModel.info?.description,
@@ -192,7 +192,7 @@ export function generateReadmeFile(
   });
 }
 
-function hasClientSubscriptionId(samples?: SampleGroup[]) {
+export function hasClientSubscriptionId(samples?: SampleGroup[]) {
   if (!samples || samples.length === 0) {
     // have the subscription id parameter in constructor if no samples
     return true;
@@ -204,7 +204,7 @@ function hasClientSubscriptionId(samples?: SampleGroup[]) {
   });
 }
 
-function getClientAndServiceName(
+export function getClientAndServiceName(
   codeModelLanguage: Languages,
   codeModelInfo: Info
 ) {
