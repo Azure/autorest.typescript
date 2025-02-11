@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { uint8ArrayToString } from "@azure/core-util";
+import {
+  FileContents,
+  createFilePartDescriptor,
+} from "../static-helpers/multipartHelpers.js";
 import { ErrorModel } from "@azure-rest/core-client";
 
 /** The configuration information for an audio transcription request. */
@@ -10,7 +13,9 @@ export interface AudioTranscriptionOptions {
    * The audio data to transcribe. This must be the binary content of a file in one of the supported media formats:
    *  flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, webm.
    */
-  file: Uint8Array;
+  file:
+    | FileContents
+    | { contents: FileContents; contentType?: string; filename?: string };
   /** The optional filename or descriptive identifier to associate with with the audio data. */
   filename?: string;
   /** The requested format of the transcription response data, which will influence the content and detail of the result. */
@@ -46,20 +51,37 @@ export interface AudioTranscriptionOptions {
 export function audioTranscriptionOptionsSerializer(
   item: AudioTranscriptionOptions,
 ): any {
-  return {
-    file: uint8ArrayToString(item["file"], "base64"),
-    filename: item["filename"],
-    response_format: item["responseFormat"],
-    language: item["language"],
-    prompt: item["prompt"],
-    temperature: item["temperature"],
-    timestamp_granularities: !item["timestampGranularities"]
-      ? item["timestampGranularities"]
-      : item["timestampGranularities"].map((p: any) => {
-          return p;
-        }),
-    model: item["model"],
-  };
+  return [
+    createFilePartDescriptor("file", item["file"]),
+    ...(item["filename"] === undefined
+      ? []
+      : [{ name: "filename", body: item["filename"] }]),
+    ...(item["responseFormat"] === undefined
+      ? []
+      : [{ name: "response_format", body: item["responseFormat"] }]),
+    ...(item["language"] === undefined
+      ? []
+      : [{ name: "language", body: item["language"] }]),
+    ...(item["prompt"] === undefined
+      ? []
+      : [{ name: "prompt", body: item["prompt"] }]),
+    ...(item["temperature"] === undefined
+      ? []
+      : [{ name: "temperature", body: item["temperature"] }]),
+    ...(item["timestampGranularities"] === undefined
+      ? []
+      : [
+          ...(!item["timestampGranularities"]
+            ? item["timestampGranularities"]
+            : item["timestampGranularities"].map((p: any) => {
+                return p;
+              })
+          ).map((x: unknown) => ({ name: "timestamp_granularities", body: x })),
+        ]),
+    ...(item["model"] === undefined
+      ? []
+      : [{ name: "model", body: item["model"] }]),
+  ];
 }
 
 /** Defines available options for the underlying response format of output transcription information. */
@@ -204,7 +226,9 @@ export interface AudioTranslationOptions {
    * The audio data to translate. This must be the binary content of a file in one of the supported media formats:
    *  flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, webm.
    */
-  file: Uint8Array;
+  file:
+    | FileContents
+    | { contents: FileContents; contentType?: string; filename?: string };
   /** The optional filename or descriptive identifier to associate with with the audio data. */
   filename?: string;
   /** The requested format of the translation response data, which will influence the content and detail of the result. */
@@ -227,14 +251,24 @@ export interface AudioTranslationOptions {
 export function audioTranslationOptionsSerializer(
   item: AudioTranslationOptions,
 ): any {
-  return {
-    file: uint8ArrayToString(item["file"], "base64"),
-    filename: item["filename"],
-    response_format: item["responseFormat"],
-    prompt: item["prompt"],
-    temperature: item["temperature"],
-    model: item["model"],
-  };
+  return [
+    createFilePartDescriptor("file", item["file"]),
+    ...(item["filename"] === undefined
+      ? []
+      : [{ name: "filename", body: item["filename"] }]),
+    ...(item["responseFormat"] === undefined
+      ? []
+      : [{ name: "response_format", body: item["responseFormat"] }]),
+    ...(item["prompt"] === undefined
+      ? []
+      : [{ name: "prompt", body: item["prompt"] }]),
+    ...(item["temperature"] === undefined
+      ? []
+      : [{ name: "temperature", body: item["temperature"] }]),
+    ...(item["model"] === undefined
+      ? []
+      : [{ name: "model", body: item["model"] }]),
+  ];
 }
 
 /** Defines available options for the underlying response format of output translation information. */
@@ -715,7 +749,9 @@ export function choiceDeserializer(item: any): Choice {
       : contentFilterResultsForChoiceDeserializer(
           item["content_filter_results"],
         ),
-    logprobs: item["logprobs"],
+    logprobs: !item["logprobs"]
+      ? item["logprobs"]
+      : completionsLogProbabilityModelDeserializer(item["logprobs"]),
     finishReason: item["finish_reason"],
   };
 }
@@ -2971,7 +3007,9 @@ export function chatChoiceDeserializer(item: any): ChatChoice {
     message: !item["message"]
       ? item["message"]
       : chatResponseMessageDeserializer(item["message"]),
-    logprobs: item["logprobs"],
+    logprobs: !item["logprobs"]
+      ? item["logprobs"]
+      : chatChoiceLogProbabilityInfoDeserializer(item["logprobs"]),
     index: item["index"],
     finishReason: item["finish_reason"],
     finishDetails: !item["finish_details"]
@@ -3176,11 +3214,7 @@ export function chatChoiceLogProbabilityInfoDeserializer(
   return {
     content: !item["content"]
       ? item["content"]
-      : !item["content"]
-        ? item["content"]
-        : item["content"].map((p: any) => {
-            return chatTokenLogProbabilityResultDeserializer(p);
-          }),
+      : chatTokenLogProbabilityResultArrayDeserializer(item["content"]),
   };
 }
 
@@ -3212,18 +3246,12 @@ export function chatTokenLogProbabilityResultDeserializer(
     logprob: item["logprob"],
     bytes: !item["bytes"]
       ? item["bytes"]
-      : !item["bytes"]
-        ? item["bytes"]
-        : item["bytes"].map((p: any) => {
-            return p;
-          }),
+      : item["bytes"].map((p: any) => {
+          return p;
+        }),
     topLogprobs: !item["top_logprobs"]
       ? item["top_logprobs"]
-      : !item["top_logprobs"]
-        ? item["top_logprobs"]
-        : item["top_logprobs"].map((p: any) => {
-            return chatTokenLogProbabilityInfoDeserializer(p);
-          }),
+      : chatTokenLogProbabilityInfoArrayDeserializer(item["top_logprobs"]),
   };
 }
 
@@ -3253,11 +3281,9 @@ export function chatTokenLogProbabilityInfoDeserializer(
     logprob: item["logprob"],
     bytes: !item["bytes"]
       ? item["bytes"]
-      : !item["bytes"]
-        ? item["bytes"]
-        : item["bytes"].map((p: any) => {
-            return p;
-          }),
+      : item["bytes"].map((p: any) => {
+          return p;
+        }),
   };
 }
 

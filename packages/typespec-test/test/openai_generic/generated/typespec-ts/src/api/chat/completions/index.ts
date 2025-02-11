@@ -6,6 +6,7 @@ import {
   OpenAIContext as Client,
 } from "../../index.js";
 import {
+  errorResponseDeserializer,
   CreateChatCompletionRequest,
   createChatCompletionRequestSerializer,
   CreateChatCompletionResponse,
@@ -27,6 +28,11 @@ export function _createSend(
     .path("/chat/completions")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: createChatCompletionRequestSerializer(body),
     });
 }
@@ -36,7 +42,9 @@ export async function _createDeserialize(
 ): Promise<CreateChatCompletionResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return createChatCompletionResponseDeserializer(result.body);

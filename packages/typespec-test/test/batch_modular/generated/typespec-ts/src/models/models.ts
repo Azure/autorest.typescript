@@ -23,7 +23,9 @@ export function batchNodeUserCreateOptionsSerializer(
   return {
     name: item["name"],
     isAdmin: item["isAdmin"],
-    expiryTime: item["expiryTime"]?.toISOString(),
+    expiryTime: !item["expiryTime"]
+      ? item["expiryTime"]
+      : item["expiryTime"].toISOString(),
     password: item["password"],
     sshPublicKey: item["sshPublicKey"],
   };
@@ -104,7 +106,9 @@ export function batchNodeUserUpdateOptionsSerializer(
 ): any {
   return {
     password: item["password"],
-    expiryTime: item["expiryTime"]?.toISOString(),
+    expiryTime: !item["expiryTime"]
+      ? item["expiryTime"]
+      : item["expiryTime"].toISOString(),
     sshPublicKey: item["sshPublicKey"],
   };
 }
@@ -1080,7 +1084,7 @@ export function uploadBatchServiceLogsOptionsSerializer(
   return {
     containerUrl: item["containerUrl"],
     startTime: item["startTime"].toISOString(),
-    endTime: item["endTime"]?.toISOString(),
+    endTime: !item["endTime"] ? item["endTime"] : item["endTime"].toISOString(),
     identityReference: !item["identityReference"]
       ? item["identityReference"]
       : batchNodeIdentityReferenceSerializer(item["identityReference"]),
@@ -2549,8 +2553,12 @@ export interface Schedule {
 
 export function scheduleSerializer(item: Schedule): any {
   return {
-    doNotRunUntil: item["doNotRunUntil"]?.toISOString(),
-    doNotRunAfter: item["doNotRunAfter"]?.toISOString(),
+    doNotRunUntil: !item["doNotRunUntil"]
+      ? item["doNotRunUntil"]
+      : item["doNotRunUntil"].toISOString(),
+    doNotRunAfter: !item["doNotRunAfter"]
+      ? item["doNotRunAfter"]
+      : item["doNotRunAfter"].toISOString(),
     startWindow: item["startWindow"],
     recurrenceInterval: item["recurrenceInterval"],
   };

@@ -3,16 +3,14 @@
 
 import { AzureKeyCredential } from "@azure/core-auth";
 import createAuthoringClient, { paginate } from "@msinternal/authoring";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation GetSupportedLanguages
  *
  * @summary call operation GetSupportedLanguages
  */
-async function getSupportedLanguagesSample() {
+async function getSupportedLanguagesSample(): Promise<void> {
   const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAuthoringClient(endpointParam, credential);
@@ -27,8 +25,8 @@ async function getSupportedLanguagesSample() {
   console.log(result);
 }
 
-async function main() {
-  getSupportedLanguagesSample();
+async function main(): Promise<void> {
+  await getSupportedLanguagesSample();
 }
 
 main().catch(console.error);

@@ -4,6 +4,8 @@
 export {
   CreateModerationRequest,
   CreateModerationResponse,
+  ErrorResponse,
+  ErrorModel,
   CreateImageRequest,
   ImagesResponse,
   Image,
@@ -29,7 +31,9 @@ export {
   CompletionUsage,
   CreateCompletionRequest,
   Prompt,
+  Prompt_1,
   Stop,
+  Stop_1,
   CreateCompletionResponse,
   CreateFineTuningJobRequest,
   FineTuningJob,

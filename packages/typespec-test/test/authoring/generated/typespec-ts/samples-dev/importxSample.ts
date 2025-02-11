@@ -5,16 +5,14 @@ import { AzureKeyCredential } from "@azure/core-auth";
 import createAuthoringClient, {
   getLongRunningPoller,
 } from "@msinternal/authoring";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation Importx
  *
  * @summary call operation Importx
  */
-async function importxSample() {
+async function importxSample(): Promise<void> {
   const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAuthoringClient(endpointParam, credential);
@@ -27,8 +25,8 @@ async function importxSample() {
   console.log(result);
 }
 
-async function main() {
-  importxSample();
+async function main(): Promise<void> {
+  await importxSample();
 }
 
 main().catch(console.error);

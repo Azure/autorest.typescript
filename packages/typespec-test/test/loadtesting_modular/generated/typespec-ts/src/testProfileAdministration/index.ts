@@ -3,10 +3,10 @@
 
 export { TestProfileAdministrationClient } from "./testProfileAdministrationClient.js";
 export {
-  CreateOrUpdateTestProfileOptionalParams,
-  DeleteTestProfileOptionalParams,
-  GetTestProfileOptionalParams,
   ListTestProfilesOptionalParams,
+  GetTestProfileOptionalParams,
+  DeleteTestProfileOptionalParams,
+  CreateOrUpdateTestProfileOptionalParams,
   TestProfileAdministrationContext,
   TestProfileAdministrationClientOptionalParams,
 } from "./api/index.js";

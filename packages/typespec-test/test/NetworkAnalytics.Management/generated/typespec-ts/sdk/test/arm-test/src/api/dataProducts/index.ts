@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import {
-  NetworkAnalyticsContext as Client,
+  NetworkAnalyticsApiContext as Client,
   DataProductsAddUserRoleOptionalParams,
   DataProductsCreateOptionalParams,
   DataProductsDeleteOptionalParams,
@@ -19,6 +19,7 @@ import {
   DataProduct,
   dataProductSerializer,
   dataProductDeserializer,
+  errorResponseDeserializer,
   DataProductUpdate,
   dataProductUpdateSerializer,
   AccountSas,
@@ -43,7 +44,6 @@ import {
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
-import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -52,205 +52,423 @@ import {
 } from "@azure-rest/core-client";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
-export function _createSend(
+export function _listBySubscriptionSend(
   context: Client,
-  subscriptionId: string,
-  resourceGroupName: string,
-  dataProductName: string,
-  resource: DataProduct,
-  options: DataProductsCreateOptionalParams = { requestOptions: {} },
+  options: DataProductsListBySubscriptionOptionalParams = {
+    requestOptions: {},
+  },
 ): StreamableMethod {
-  const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}{?api-version}",
-    {
-      subscriptionId: subscriptionId,
-      resourceGroupName: resourceGroupName,
-      dataProductName: dataProductName,
-    },
-    {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
-  );
   return context
-    .path(path)
-    .put({
+    .path(
+      "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkAnalytics/dataProducts",
+      context.subscriptionId,
+    )
+    .get({
       ...operationOptionsToRequestParameters(options),
-      body: dataProductSerializer(resource),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
-export async function _createDeserialize(
+export async function _listBySubscriptionDeserialize(
   result: PathUncheckedResponse,
-): Promise<DataProduct> {
-  const expectedStatuses = ["200", "201"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return dataProductDeserializer(result.body);
-}
-
-/** Create data product resource. */
-export function create(
-  context: Client,
-  subscriptionId: string,
-  resourceGroupName: string,
-  dataProductName: string,
-  resource: DataProduct,
-  options: DataProductsCreateOptionalParams = { requestOptions: {} },
-): PollerLike<OperationState<DataProduct>, DataProduct> {
-  return getLongRunningPoller(context, _createDeserialize, ["200", "201"], {
-    updateIntervalInMs: options?.updateIntervalInMs,
-    abortSignal: options?.abortSignal,
-    getInitialResponse: () =>
-      _createSend(
-        context,
-        subscriptionId,
-        resourceGroupName,
-        dataProductName,
-        resource,
-        options,
-      ),
-    resourceLocationConfig: "azure-async-operation",
-  }) as PollerLike<OperationState<DataProduct>, DataProduct>;
-}
-
-export function _getSend(
-  context: Client,
-  subscriptionId: string,
-  resourceGroupName: string,
-  dataProductName: string,
-  options: DataProductsGetOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}{?api-version}",
-    {
-      subscriptionId: subscriptionId,
-      resourceGroupName: resourceGroupName,
-      dataProductName: dataProductName,
-    },
-    {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
-  );
-  return context
-    .path(path)
-    .get({ ...operationOptionsToRequestParameters(options) });
-}
-
-export async function _getDeserialize(
-  result: PathUncheckedResponse,
-): Promise<DataProduct> {
+): Promise<_DataProductListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
-  return dataProductDeserializer(result.body);
+  return _dataProductListResultDeserializer(result.body);
 }
 
-/** Retrieve data product resource. */
-export async function get(
+/** List data products by subscription. */
+export function listBySubscription(
   context: Client,
-  subscriptionId: string,
-  resourceGroupName: string,
-  dataProductName: string,
-  options: DataProductsGetOptionalParams = { requestOptions: {} },
-): Promise<DataProduct> {
-  const result = await _getSend(
+  options: DataProductsListBySubscriptionOptionalParams = {
+    requestOptions: {},
+  },
+): PagedAsyncIterableIterator<DataProduct> {
+  return buildPagedAsyncIterator(
     context,
-    subscriptionId,
-    resourceGroupName,
-    dataProductName,
-    options,
+    () => _listBySubscriptionSend(context, options),
+    _listBySubscriptionDeserialize,
+    ["200"],
+    { itemName: "value", nextLinkName: "nextLink" },
   );
-  return _getDeserialize(result);
 }
 
-export function _updateSend(
+export function _listByResourceGroupSend(
   context: Client,
-  subscriptionId: string,
   resourceGroupName: string,
-  dataProductName: string,
-  properties: DataProductUpdate,
-  options: DataProductsUpdateOptionalParams = { requestOptions: {} },
+  options: DataProductsListByResourceGroupOptionalParams = {
+    requestOptions: {},
+  },
 ): StreamableMethod {
-  const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}{?api-version}",
-    {
-      subscriptionId: subscriptionId,
-      resourceGroupName: resourceGroupName,
-      dataProductName: dataProductName,
-    },
-    {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
-  );
   return context
-    .path(path)
-    .patch({
+    .path(
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts",
+      context.subscriptionId,
+      resourceGroupName,
+    )
+    .get({
       ...operationOptionsToRequestParameters(options),
-      body: dataProductUpdateSerializer(properties),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
-export async function _updateDeserialize(
+export async function _listByResourceGroupDeserialize(
   result: PathUncheckedResponse,
-): Promise<DataProduct> {
-  const expectedStatuses = ["200", "202"];
+): Promise<_DataProductListResult> {
+  const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
-  return dataProductDeserializer(result.body);
+  return _dataProductListResultDeserializer(result.body);
 }
 
-/** Update data product resource. */
-export function update(
+/** List data products by resource group. */
+export function listByResourceGroup(
   context: Client,
-  subscriptionId: string,
+  resourceGroupName: string,
+  options: DataProductsListByResourceGroupOptionalParams = {
+    requestOptions: {},
+  },
+): PagedAsyncIterableIterator<DataProduct> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listByResourceGroupSend(context, resourceGroupName, options),
+    _listByResourceGroupDeserialize,
+    ["200"],
+    { itemName: "value", nextLinkName: "nextLink" },
+  );
+}
+
+export function _listRolesAssignmentsSend(
+  context: Client,
   resourceGroupName: string,
   dataProductName: string,
-  properties: DataProductUpdate,
-  options: DataProductsUpdateOptionalParams = { requestOptions: {} },
-): PollerLike<OperationState<DataProduct>, DataProduct> {
-  return getLongRunningPoller(context, _updateDeserialize, ["200", "202"], {
-    updateIntervalInMs: options?.updateIntervalInMs,
-    abortSignal: options?.abortSignal,
-    getInitialResponse: () =>
-      _updateSend(
-        context,
-        subscriptionId,
-        resourceGroupName,
-        dataProductName,
-        properties,
-        options,
-      ),
-    resourceLocationConfig: "location",
-  }) as PollerLike<OperationState<DataProduct>, DataProduct>;
+  body: Record<string, any>,
+  options: DataProductsListRolesAssignmentsOptionalParams = {
+    requestOptions: {},
+  },
+): StreamableMethod {
+  return context
+    .path(
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/listRolesAssignments",
+      context.subscriptionId,
+      resourceGroupName,
+      dataProductName,
+    )
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { "api-version": context.apiVersion },
+      body: _listRolesAssignmentsRequestSerializer(body),
+    });
+}
+
+export async function _listRolesAssignmentsDeserialize(
+  result: PathUncheckedResponse,
+): Promise<ListRoleAssignments> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
+  }
+
+  return listRoleAssignmentsDeserializer(result.body);
+}
+
+/** List user roles associated with the data product. */
+export async function listRolesAssignments(
+  context: Client,
+  resourceGroupName: string,
+  dataProductName: string,
+  body: Record<string, any>,
+  options: DataProductsListRolesAssignmentsOptionalParams = {
+    requestOptions: {},
+  },
+): Promise<ListRoleAssignments> {
+  const result = await _listRolesAssignmentsSend(
+    context,
+    resourceGroupName,
+    dataProductName,
+    body,
+    options,
+  );
+  return _listRolesAssignmentsDeserialize(result);
+}
+
+export function _removeUserRoleSend(
+  context: Client,
+  resourceGroupName: string,
+  dataProductName: string,
+  body: RoleAssignmentDetail,
+  options: DataProductsRemoveUserRoleOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path(
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/removeUserRole",
+      context.subscriptionId,
+      resourceGroupName,
+      dataProductName,
+    )
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { "api-version": context.apiVersion },
+      body: roleAssignmentDetailSerializer(body),
+    });
+}
+
+export async function _removeUserRoleDeserialize(
+  result: PathUncheckedResponse,
+): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
+  }
+
+  return;
+}
+
+/** Remove role from the data product. */
+export async function removeUserRole(
+  context: Client,
+  resourceGroupName: string,
+  dataProductName: string,
+  body: RoleAssignmentDetail,
+  options: DataProductsRemoveUserRoleOptionalParams = { requestOptions: {} },
+): Promise<void> {
+  const result = await _removeUserRoleSend(
+    context,
+    resourceGroupName,
+    dataProductName,
+    body,
+    options,
+  );
+  return _removeUserRoleDeserialize(result);
+}
+
+export function _addUserRoleSend(
+  context: Client,
+  resourceGroupName: string,
+  dataProductName: string,
+  body: RoleAssignmentCommonProperties,
+  options: DataProductsAddUserRoleOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path(
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/addUserRole",
+      context.subscriptionId,
+      resourceGroupName,
+      dataProductName,
+    )
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { "api-version": context.apiVersion },
+      body: roleAssignmentCommonPropertiesSerializer(body),
+    });
+}
+
+export async function _addUserRoleDeserialize(
+  result: PathUncheckedResponse,
+): Promise<RoleAssignmentDetail> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
+  }
+
+  return roleAssignmentDetailDeserializer(result.body);
+}
+
+/** Assign role to the data product. */
+export async function addUserRole(
+  context: Client,
+  resourceGroupName: string,
+  dataProductName: string,
+  body: RoleAssignmentCommonProperties,
+  options: DataProductsAddUserRoleOptionalParams = { requestOptions: {} },
+): Promise<RoleAssignmentDetail> {
+  const result = await _addUserRoleSend(
+    context,
+    resourceGroupName,
+    dataProductName,
+    body,
+    options,
+  );
+  return _addUserRoleDeserialize(result);
+}
+
+export function _rotateKeySend(
+  context: Client,
+  resourceGroupName: string,
+  dataProductName: string,
+  body: KeyVaultInfo,
+  options: DataProductsRotateKeyOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path(
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/rotateKey",
+      context.subscriptionId,
+      resourceGroupName,
+      dataProductName,
+    )
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { "api-version": context.apiVersion },
+      body: keyVaultInfoSerializer(body),
+    });
+}
+
+export async function _rotateKeyDeserialize(
+  result: PathUncheckedResponse,
+): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
+  }
+
+  return;
+}
+
+/** Initiate key rotation on Data Product. */
+export async function rotateKey(
+  context: Client,
+  resourceGroupName: string,
+  dataProductName: string,
+  body: KeyVaultInfo,
+  options: DataProductsRotateKeyOptionalParams = { requestOptions: {} },
+): Promise<void> {
+  const result = await _rotateKeySend(
+    context,
+    resourceGroupName,
+    dataProductName,
+    body,
+    options,
+  );
+  return _rotateKeyDeserialize(result);
+}
+
+export function _generateStorageAccountSasTokenSend(
+  context: Client,
+  resourceGroupName: string,
+  dataProductName: string,
+  body: AccountSas,
+  options: DataProductsGenerateStorageAccountSasTokenOptionalParams = {
+    requestOptions: {},
+  },
+): StreamableMethod {
+  return context
+    .path(
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/generateStorageAccountSasToken",
+      context.subscriptionId,
+      resourceGroupName,
+      dataProductName,
+    )
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { "api-version": context.apiVersion },
+      body: accountSasSerializer(body),
+    });
+}
+
+export async function _generateStorageAccountSasTokenDeserialize(
+  result: PathUncheckedResponse,
+): Promise<AccountSasToken> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
+  }
+
+  return accountSasTokenDeserializer(result.body);
+}
+
+/** Generate sas token for storage account. */
+export async function generateStorageAccountSasToken(
+  context: Client,
+  resourceGroupName: string,
+  dataProductName: string,
+  body: AccountSas,
+  options: DataProductsGenerateStorageAccountSasTokenOptionalParams = {
+    requestOptions: {},
+  },
+): Promise<AccountSasToken> {
+  const result = await _generateStorageAccountSasTokenSend(
+    context,
+    resourceGroupName,
+    dataProductName,
+    body,
+    options,
+  );
+  return _generateStorageAccountSasTokenDeserialize(result);
 }
 
 export function _$deleteSend(
   context: Client,
-  subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
   options: DataProductsDeleteOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}{?api-version}",
-    {
-      subscriptionId: subscriptionId,
-      resourceGroupName: resourceGroupName,
-      dataProductName: dataProductName,
-    },
-    {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
-  );
   return context
-    .path(path)
-    .delete({ ...operationOptionsToRequestParameters(options) });
+    .path(
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}",
+      context.subscriptionId,
+      resourceGroupName,
+      dataProductName,
+    )
+    .delete({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { "api-version": context.apiVersion },
+    });
 }
 
 export async function _$deleteDeserialize(
@@ -258,7 +476,9 @@ export async function _$deleteDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202", "204", "200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -272,7 +492,6 @@ export async function _$deleteDeserialize(
  */
 export function $delete(
   context: Client,
-  subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
   options: DataProductsDeleteOptionalParams = { requestOptions: {} },
@@ -285,419 +504,184 @@ export function $delete(
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
       getInitialResponse: () =>
-        _$deleteSend(
-          context,
-          subscriptionId,
-          resourceGroupName,
-          dataProductName,
-          options,
-        ),
+        _$deleteSend(context, resourceGroupName, dataProductName, options),
       resourceLocationConfig: "location",
     },
   ) as PollerLike<OperationState<void>, void>;
 }
 
-export function _generateStorageAccountSasTokenSend(
+export function _updateSend(
   context: Client,
-  subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
-  body: AccountSas,
-  options: DataProductsGenerateStorageAccountSasTokenOptionalParams = {
-    requestOptions: {},
-  },
+  properties: DataProductUpdate,
+  options: DataProductsUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/generateStorageAccountSasToken{?api-version}",
-    {
-      subscriptionId: subscriptionId,
-      resourceGroupName: resourceGroupName,
-      dataProductName: dataProductName,
-    },
-    {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
-  );
   return context
-    .path(path)
-    .post({
+    .path(
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}",
+      context.subscriptionId,
+      resourceGroupName,
+      dataProductName,
+    )
+    .patch({
       ...operationOptionsToRequestParameters(options),
-      body: accountSasSerializer(body),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { "api-version": context.apiVersion },
+      body: dataProductUpdateSerializer(properties),
     });
 }
 
-export async function _generateStorageAccountSasTokenDeserialize(
+export async function _updateDeserialize(
   result: PathUncheckedResponse,
-): Promise<AccountSasToken> {
-  const expectedStatuses = ["200"];
+): Promise<DataProduct> {
+  const expectedStatuses = ["200", "202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
-  return accountSasTokenDeserializer(result.body);
+  return dataProductDeserializer(result.body);
 }
 
-/** Generate sas token for storage account. */
-export async function generateStorageAccountSasToken(
+/** Update data product resource. */
+export function update(
   context: Client,
-  subscriptionId: string,
   resourceGroupName: string,
   dataProductName: string,
-  body: AccountSas,
-  options: DataProductsGenerateStorageAccountSasTokenOptionalParams = {
-    requestOptions: {},
-  },
-): Promise<AccountSasToken> {
-  const result = await _generateStorageAccountSasTokenSend(
-    context,
-    subscriptionId,
-    resourceGroupName,
-    dataProductName,
-    body,
-    options,
-  );
-  return _generateStorageAccountSasTokenDeserialize(result);
-}
-
-export function _rotateKeySend(
-  context: Client,
-  subscriptionId: string,
-  resourceGroupName: string,
-  dataProductName: string,
-  body: KeyVaultInfo,
-  options: DataProductsRotateKeyOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/rotateKey{?api-version}",
-    {
-      subscriptionId: subscriptionId,
-      resourceGroupName: resourceGroupName,
-      dataProductName: dataProductName,
-    },
-    {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
-  );
-  return context
-    .path(path)
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      body: keyVaultInfoSerializer(body),
-    });
-}
-
-export async function _rotateKeyDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
-  const expectedStatuses = ["204"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return;
-}
-
-/** Initiate key rotation on Data Product. */
-export async function rotateKey(
-  context: Client,
-  subscriptionId: string,
-  resourceGroupName: string,
-  dataProductName: string,
-  body: KeyVaultInfo,
-  options: DataProductsRotateKeyOptionalParams = { requestOptions: {} },
-): Promise<void> {
-  const result = await _rotateKeySend(
-    context,
-    subscriptionId,
-    resourceGroupName,
-    dataProductName,
-    body,
-    options,
-  );
-  return _rotateKeyDeserialize(result);
-}
-
-export function _addUserRoleSend(
-  context: Client,
-  subscriptionId: string,
-  resourceGroupName: string,
-  dataProductName: string,
-  body: RoleAssignmentCommonProperties,
-  options: DataProductsAddUserRoleOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/addUserRole{?api-version}",
-    {
-      subscriptionId: subscriptionId,
-      resourceGroupName: resourceGroupName,
-      dataProductName: dataProductName,
-    },
-    {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
-  );
-  return context
-    .path(path)
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      body: roleAssignmentCommonPropertiesSerializer(body),
-    });
-}
-
-export async function _addUserRoleDeserialize(
-  result: PathUncheckedResponse,
-): Promise<RoleAssignmentDetail> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return roleAssignmentDetailDeserializer(result.body);
-}
-
-/** Assign role to the data product. */
-export async function addUserRole(
-  context: Client,
-  subscriptionId: string,
-  resourceGroupName: string,
-  dataProductName: string,
-  body: RoleAssignmentCommonProperties,
-  options: DataProductsAddUserRoleOptionalParams = { requestOptions: {} },
-): Promise<RoleAssignmentDetail> {
-  const result = await _addUserRoleSend(
-    context,
-    subscriptionId,
-    resourceGroupName,
-    dataProductName,
-    body,
-    options,
-  );
-  return _addUserRoleDeserialize(result);
-}
-
-export function _removeUserRoleSend(
-  context: Client,
-  subscriptionId: string,
-  resourceGroupName: string,
-  dataProductName: string,
-  body: RoleAssignmentDetail,
-  options: DataProductsRemoveUserRoleOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/removeUserRole{?api-version}",
-    {
-      subscriptionId: subscriptionId,
-      resourceGroupName: resourceGroupName,
-      dataProductName: dataProductName,
-    },
-    {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
-  );
-  return context
-    .path(path)
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      body: roleAssignmentDetailSerializer(body),
-    });
-}
-
-export async function _removeUserRoleDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
-  const expectedStatuses = ["204"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return;
-}
-
-/** Remove role from the data product. */
-export async function removeUserRole(
-  context: Client,
-  subscriptionId: string,
-  resourceGroupName: string,
-  dataProductName: string,
-  body: RoleAssignmentDetail,
-  options: DataProductsRemoveUserRoleOptionalParams = { requestOptions: {} },
-): Promise<void> {
-  const result = await _removeUserRoleSend(
-    context,
-    subscriptionId,
-    resourceGroupName,
-    dataProductName,
-    body,
-    options,
-  );
-  return _removeUserRoleDeserialize(result);
-}
-
-export function _listRolesAssignmentsSend(
-  context: Client,
-  subscriptionId: string,
-  resourceGroupName: string,
-  dataProductName: string,
-  body: Record<string, any>,
-  options: DataProductsListRolesAssignmentsOptionalParams = {
-    requestOptions: {},
-  },
-): StreamableMethod {
-  const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/listRolesAssignments{?api-version}",
-    {
-      subscriptionId: subscriptionId,
-      resourceGroupName: resourceGroupName,
-      dataProductName: dataProductName,
-    },
-    {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
-  );
-  return context
-    .path(path)
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      body: _listRolesAssignmentsRequestSerializer(body),
-    });
-}
-
-export async function _listRolesAssignmentsDeserialize(
-  result: PathUncheckedResponse,
-): Promise<ListRoleAssignments> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return listRoleAssignmentsDeserializer(result.body);
-}
-
-/** List user roles associated with the data product. */
-export async function listRolesAssignments(
-  context: Client,
-  subscriptionId: string,
-  resourceGroupName: string,
-  dataProductName: string,
-  body: Record<string, any>,
-  options: DataProductsListRolesAssignmentsOptionalParams = {
-    requestOptions: {},
-  },
-): Promise<ListRoleAssignments> {
-  const result = await _listRolesAssignmentsSend(
-    context,
-    subscriptionId,
-    resourceGroupName,
-    dataProductName,
-    body,
-    options,
-  );
-  return _listRolesAssignmentsDeserialize(result);
-}
-
-export function _listByResourceGroupSend(
-  context: Client,
-  subscriptionId: string,
-  resourceGroupName: string,
-  options: DataProductsListByResourceGroupOptionalParams = {
-    requestOptions: {},
-  },
-): StreamableMethod {
-  const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts{?api-version}",
-    {
-      subscriptionId: subscriptionId,
-      resourceGroupName: resourceGroupName,
-    },
-    {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
-  );
-  return context
-    .path(path)
-    .get({ ...operationOptionsToRequestParameters(options) });
-}
-
-export async function _listByResourceGroupDeserialize(
-  result: PathUncheckedResponse,
-): Promise<_DataProductListResult> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return _dataProductListResultDeserializer(result.body);
-}
-
-/** List data products by resource group. */
-export function listByResourceGroup(
-  context: Client,
-  subscriptionId: string,
-  resourceGroupName: string,
-  options: DataProductsListByResourceGroupOptionalParams = {
-    requestOptions: {},
-  },
-): PagedAsyncIterableIterator<DataProduct> {
-  return buildPagedAsyncIterator(
-    context,
-    () =>
-      _listByResourceGroupSend(
+  properties: DataProductUpdate,
+  options: DataProductsUpdateOptionalParams = { requestOptions: {} },
+): PollerLike<OperationState<DataProduct>, DataProduct> {
+  return getLongRunningPoller(context, _updateDeserialize, ["200", "202"], {
+    updateIntervalInMs: options?.updateIntervalInMs,
+    abortSignal: options?.abortSignal,
+    getInitialResponse: () =>
+      _updateSend(
         context,
-        subscriptionId,
         resourceGroupName,
+        dataProductName,
+        properties,
         options,
       ),
-    _listByResourceGroupDeserialize,
-    ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
-  );
+    resourceLocationConfig: "location",
+  }) as PollerLike<OperationState<DataProduct>, DataProduct>;
 }
 
-export function _listBySubscriptionSend(
+export function _getSend(
   context: Client,
-  subscriptionId: string,
-  options: DataProductsListBySubscriptionOptionalParams = {
-    requestOptions: {},
-  },
+  resourceGroupName: string,
+  dataProductName: string,
+  options: DataProductsGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkAnalytics/dataProducts{?api-version}",
-    {
-      subscriptionId: subscriptionId,
-    },
-    {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
-  );
   return context
-    .path(path)
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .path(
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}",
+      context.subscriptionId,
+      resourceGroupName,
+      dataProductName,
+    )
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { "api-version": context.apiVersion },
+    });
 }
 
-export async function _listBySubscriptionDeserialize(
+export async function _getDeserialize(
   result: PathUncheckedResponse,
-): Promise<_DataProductListResult> {
+): Promise<DataProduct> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
-  return _dataProductListResultDeserializer(result.body);
+  return dataProductDeserializer(result.body);
 }
 
-/** List data products by subscription. */
-export function listBySubscription(
+/** Retrieve data product resource. */
+export async function get(
   context: Client,
-  subscriptionId: string,
-  options: DataProductsListBySubscriptionOptionalParams = {
-    requestOptions: {},
-  },
-): PagedAsyncIterableIterator<DataProduct> {
-  return buildPagedAsyncIterator(
+  resourceGroupName: string,
+  dataProductName: string,
+  options: DataProductsGetOptionalParams = { requestOptions: {} },
+): Promise<DataProduct> {
+  const result = await _getSend(
     context,
-    () => _listBySubscriptionSend(context, subscriptionId, options),
-    _listBySubscriptionDeserialize,
-    ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    resourceGroupName,
+    dataProductName,
+    options,
   );
+  return _getDeserialize(result);
+}
+
+export function _createSend(
+  context: Client,
+  resourceGroupName: string,
+  dataProductName: string,
+  resource: DataProduct,
+  options: DataProductsCreateOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path(
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}",
+      context.subscriptionId,
+      resourceGroupName,
+      dataProductName,
+    )
+    .put({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { "api-version": context.apiVersion },
+      body: dataProductSerializer(resource),
+    });
+}
+
+export async function _createDeserialize(
+  result: PathUncheckedResponse,
+): Promise<DataProduct> {
+  const expectedStatuses = ["200", "201"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
+  }
+
+  return dataProductDeserializer(result.body);
+}
+
+/** Create data product resource. */
+export function create(
+  context: Client,
+  resourceGroupName: string,
+  dataProductName: string,
+  resource: DataProduct,
+  options: DataProductsCreateOptionalParams = { requestOptions: {} },
+): PollerLike<OperationState<DataProduct>, DataProduct> {
+  return getLongRunningPoller(context, _createDeserialize, ["200", "201"], {
+    updateIntervalInMs: options?.updateIntervalInMs,
+    abortSignal: options?.abortSignal,
+    getInitialResponse: () =>
+      _createSend(
+        context,
+        resourceGroupName,
+        dataProductName,
+        resource,
+        options,
+      ),
+    resourceLocationConfig: "azure-async-operation",
+  }) as PollerLike<OperationState<DataProduct>, DataProduct>;
 }

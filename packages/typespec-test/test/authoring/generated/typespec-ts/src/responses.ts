@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
-import {
+import type { RawHttpHeaders } from "@azure/core-rest-pipeline";
+import type { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
+import type {
   ProjectOutput,
-  OperationStatusOutput,
+  OperationStatusErrorOutput,
   PagedProjectOutput,
   DeploymentOutput,
   PagedDeploymentOutput,
@@ -81,7 +81,7 @@ export interface Delete202Headers {
 /** The request has been accepted for processing, but processing has not yet completed. */
 export interface Delete202Response extends HttpResponse {
   status: "202";
-  body: OperationStatusOutput;
+  body: OperationStatusErrorOutput;
   headers: RawHttpHeaders & Delete202Headers;
 }
 
@@ -99,7 +99,7 @@ export interface DeleteDefaultResponse extends HttpResponse {
 /** The final response for long-running delete operation */
 export interface DeleteLogicalResponse extends HttpResponse {
   status: "200";
-  body: OperationStatusOutput;
+  body: OperationStatusErrorOutput;
 }
 
 /** The request has succeeded. */
@@ -266,7 +266,7 @@ export interface DeleteDeployment202Headers {
 /** The request has been accepted for processing, but processing has not yet completed. */
 export interface DeleteDeployment202Response extends HttpResponse {
   status: "202";
-  body: OperationStatusOutput;
+  body: OperationStatusErrorOutput;
   headers: RawHttpHeaders & DeleteDeployment202Headers;
 }
 
@@ -284,7 +284,7 @@ export interface DeleteDeploymentDefaultResponse extends HttpResponse {
 /** The final response for long-running deleteDeployment operation */
 export interface DeleteDeploymentLogicalResponse extends HttpResponse {
   status: "200";
-  body: OperationStatusOutput;
+  body: OperationStatusErrorOutput;
 }
 
 /** The request has succeeded. */

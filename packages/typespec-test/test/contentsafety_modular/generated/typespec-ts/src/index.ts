@@ -31,15 +31,15 @@ export {
 } from "./models/index.js";
 export {
   ContentSafetyClientOptionalParams,
-  AnalyzeTextOptionalParams,
-  AnalyzeImageOptionalParams,
-  GetTextBlocklistOptionalParams,
-  CreateOrUpdateTextBlocklistOptionalParams,
-  DeleteTextBlocklistOptionalParams,
-  ListTextBlocklistsOptionalParams,
-  AddOrUpdateBlockItemsOptionalParams,
-  RemoveBlockItemsOptionalParams,
-  GetTextBlocklistItemOptionalParams,
   ListTextBlocklistItemsOptionalParams,
+  GetTextBlocklistItemOptionalParams,
+  RemoveBlockItemsOptionalParams,
+  AddOrUpdateBlockItemsOptionalParams,
+  ListTextBlocklistsOptionalParams,
+  DeleteTextBlocklistOptionalParams,
+  CreateOrUpdateTextBlocklistOptionalParams,
+  GetTextBlocklistOptionalParams,
+  AnalyzeImageOptionalParams,
+  AnalyzeTextOptionalParams,
 } from "./api/index.js";
 export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };

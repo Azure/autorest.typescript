@@ -3,16 +3,14 @@
 
 import createOpenAIClient from "@msinternal/openai";
 import { AzureKeyCredential } from "@azure/core-auth";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation GetCompletions
  *
  * @summary call operation GetCompletions
  */
-async function getCompletionsSample() {
+async function getCompletionsSample(): Promise<void> {
   const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createOpenAIClient(endpointParam, credential);
@@ -41,8 +39,8 @@ async function getCompletionsSample() {
   console.log(result);
 }
 
-async function main() {
-  getCompletionsSample();
+async function main(): Promise<void> {
+  await getCompletionsSample();
 }
 
 main().catch(console.error);

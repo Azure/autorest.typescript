@@ -2,16 +2,16 @@
 // Licensed under the MIT License.
 
 import {
-  createOrUpdateTestProfileRun,
-  deleteTestProfileRun,
-  getTestProfileRun,
-  listTestProfileRuns,
   stopTestProfileRun,
-  CreateOrUpdateTestProfileRunOptionalParams,
-  DeleteTestProfileRunOptionalParams,
-  GetTestProfileRunOptionalParams,
-  ListTestProfileRunsOptionalParams,
+  listTestProfileRuns,
+  getTestProfileRun,
+  deleteTestProfileRun,
+  createOrUpdateTestProfileRun,
   StopTestProfileRunOptionalParams,
+  ListTestProfileRunsOptionalParams,
+  GetTestProfileRunOptionalParams,
+  DeleteTestProfileRunOptionalParams,
+  CreateOrUpdateTestProfileRunOptionalParams,
   createTestProfileRun,
   TestProfileRunContext,
   TestProfileRunClientOptionalParams,
@@ -44,6 +44,37 @@ export class TestProfileRunClient {
     this.pipeline = this._client.pipeline;
   }
 
+  /** Stop test profile run for the given test profile run Id. */
+  stopTestProfileRun(
+    testProfileRunId: string,
+    options: StopTestProfileRunOptionalParams = { requestOptions: {} },
+  ): Promise<TestProfileRun> {
+    return stopTestProfileRun(this._client, testProfileRunId, options);
+  }
+
+  /** Get all test profile runs for the given filters. */
+  listTestProfileRuns(
+    options: ListTestProfileRunsOptionalParams = { requestOptions: {} },
+  ): PagedAsyncIterableIterator<TestProfileRun> {
+    return listTestProfileRuns(this._client, options);
+  }
+
+  /** Get test profile run details by test profile run Id. */
+  getTestProfileRun(
+    testProfileRunId: string,
+    options: GetTestProfileRunOptionalParams = { requestOptions: {} },
+  ): Promise<TestProfileRun> {
+    return getTestProfileRun(this._client, testProfileRunId, options);
+  }
+
+  /** Delete an existing load test profile run by providing the test profile run Id. */
+  deleteTestProfileRun(
+    testProfileRunId: string,
+    options: DeleteTestProfileRunOptionalParams = { requestOptions: {} },
+  ): Promise<void> {
+    return deleteTestProfileRun(this._client, testProfileRunId, options);
+  }
+
   /** Create and start a new test profile run with the given test profile run Id. */
   createOrUpdateTestProfileRun(
     testProfileRunId: string,
@@ -58,36 +89,5 @@ export class TestProfileRunClient {
       body,
       options,
     );
-  }
-
-  /** Delete an existing load test profile run by providing the test profile run Id. */
-  deleteTestProfileRun(
-    testProfileRunId: string,
-    options: DeleteTestProfileRunOptionalParams = { requestOptions: {} },
-  ): Promise<void> {
-    return deleteTestProfileRun(this._client, testProfileRunId, options);
-  }
-
-  /** Get test profile run details by test profile run Id. */
-  getTestProfileRun(
-    testProfileRunId: string,
-    options: GetTestProfileRunOptionalParams = { requestOptions: {} },
-  ): Promise<TestProfileRun> {
-    return getTestProfileRun(this._client, testProfileRunId, options);
-  }
-
-  /** Get all test profile runs for the given filters. */
-  listTestProfileRuns(
-    options: ListTestProfileRunsOptionalParams = { requestOptions: {} },
-  ): PagedAsyncIterableIterator<TestProfileRun> {
-    return listTestProfileRuns(this._client, options);
-  }
-
-  /** Stop test profile run for the given test profile run Id. */
-  stopTestProfileRun(
-    testProfileRunId: string,
-    options: StopTestProfileRunOptionalParams = { requestOptions: {} },
-  ): Promise<TestProfileRun> {
-    return stopTestProfileRun(this._client, testProfileRunId, options);
   }
 }

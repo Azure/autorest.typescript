@@ -7,6 +7,7 @@ import {
   ImagesCreateVariationOptionalParams,
 } from "../index.js";
 import {
+  errorResponseDeserializer,
   CreateImageRequest,
   createImageRequestSerializer,
   ImagesResponse,
@@ -23,37 +24,44 @@ import {
   operationOptionsToRequestParameters,
 } from "@typespec/ts-http-runtime";
 
-export function _createSend(
+export function _createVariationSend(
   context: Client,
-  image: CreateImageRequest,
-  options: ImagesCreateOptionalParams = { requestOptions: {} },
+  image: CreateImageVariationRequest,
+  options: ImagesCreateVariationOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
-    .path("/images/generations")
+    .path("/images/variations")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: createImageRequestSerializer(image),
+      contentType: "multipart/form-data",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      body: createImageVariationRequestSerializer(image),
     });
 }
 
-export async function _createDeserialize(
+export async function _createVariationDeserialize(
   result: PathUncheckedResponse,
 ): Promise<ImagesResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return imagesResponseDeserializer(result.body);
 }
 
-export async function create(
+export async function createVariation(
   context: Client,
-  image: CreateImageRequest,
-  options: ImagesCreateOptionalParams = { requestOptions: {} },
+  image: CreateImageVariationRequest,
+  options: ImagesCreateVariationOptionalParams = { requestOptions: {} },
 ): Promise<ImagesResponse> {
-  const result = await _createSend(context, image, options);
-  return _createDeserialize(result);
+  const result = await _createVariationSend(context, image, options);
+  return _createVariationDeserialize(result);
 }
 
 export function _createEditSend(
@@ -65,7 +73,11 @@ export function _createEditSend(
     .path("/images/edits")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "multipart/form-data",
+      contentType: "multipart/form-data",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: createImageEditRequestSerializer(image),
     });
 }
@@ -75,7 +87,9 @@ export async function _createEditDeserialize(
 ): Promise<ImagesResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return imagesResponseDeserializer(result.body);
@@ -90,36 +104,42 @@ export async function createEdit(
   return _createEditDeserialize(result);
 }
 
-export function _createVariationSend(
+export function _createSend(
   context: Client,
-  image: CreateImageVariationRequest,
-  options: ImagesCreateVariationOptionalParams = { requestOptions: {} },
+  image: CreateImageRequest,
+  options: ImagesCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
-    .path("/images/variations")
+    .path("/images/generations")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: createImageVariationRequestSerializer(image),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      body: createImageRequestSerializer(image),
     });
 }
 
-export async function _createVariationDeserialize(
+export async function _createDeserialize(
   result: PathUncheckedResponse,
 ): Promise<ImagesResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return imagesResponseDeserializer(result.body);
 }
 
-export async function createVariation(
+export async function create(
   context: Client,
-  image: CreateImageVariationRequest,
-  options: ImagesCreateVariationOptionalParams = { requestOptions: {} },
+  image: CreateImageRequest,
+  options: ImagesCreateOptionalParams = { requestOptions: {} },
 ): Promise<ImagesResponse> {
-  const result = await _createVariationSend(context, image, options);
-  return _createVariationDeserialize(result);
+  const result = await _createSend(context, image, options);
+  return _createDeserialize(result);
 }
