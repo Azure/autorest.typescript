@@ -339,9 +339,6 @@ export interface AgentsSubmitToolOutputsToRunOptionalParams extends OperationOpt
 }
 
 // @public
-export type AgentStreamEvent = string | (ThreadStreamEvent | RunStreamEvent | RunStepStreamEvent | MessageStreamEvent | ErrorEvent | DoneEvent);
-
-// @public
 export interface AgentsUpdateAgentOptionalParams extends OperationOptions {
     description?: string | null;
     instructions?: string | null;
@@ -535,12 +532,6 @@ export interface Dataset extends InputData {
     // (undocumented)
     readonly type: "dataset";
 }
-
-// @public
-export type DoneEvent = "done";
-
-// @public
-export type ErrorEvent = "error";
 
 // @public
 export interface Evaluation {
@@ -807,89 +798,6 @@ export interface MessageContent {
 export type MessageContentUnion = MessageTextContent | MessageImageFileContent | MessageContent;
 
 // @public
-export interface MessageDelta {
-    content: MessageDeltaContentUnion[];
-    role: MessageRole;
-}
-
-// @public
-export interface MessageDeltaChunk {
-    delta: MessageDelta;
-    id: string;
-    object: "thread.message.delta";
-}
-
-// @public
-export interface MessageDeltaContent {
-    index: number;
-    type: string;
-}
-
-// @public
-export type MessageDeltaContentUnion = MessageDeltaImageFileContent | MessageDeltaTextContent | MessageDeltaContent;
-
-// @public
-export interface MessageDeltaImageFileContent extends MessageDeltaContent {
-    imageFile?: MessageDeltaImageFileContentObject;
-    type: "image_file";
-}
-
-// @public
-export interface MessageDeltaImageFileContentObject {
-    fileId?: string;
-}
-
-// @public
-export interface MessageDeltaTextAnnotation {
-    index: number;
-    type: string;
-}
-
-// @public
-export type MessageDeltaTextAnnotationUnion = MessageDeltaTextFileCitationAnnotation | MessageDeltaTextFilePathAnnotation | MessageDeltaTextAnnotation;
-
-// @public
-export interface MessageDeltaTextContent extends MessageDeltaContent {
-    text?: MessageDeltaTextContentObject;
-    type: "text";
-}
-
-// @public
-export interface MessageDeltaTextContentObject {
-    annotations?: MessageDeltaTextAnnotationUnion[];
-    value?: string;
-}
-
-// @public
-export interface MessageDeltaTextFileCitationAnnotation extends MessageDeltaTextAnnotation {
-    endIndex?: number;
-    fileCitation?: MessageDeltaTextFileCitationAnnotationObject;
-    startIndex?: number;
-    text?: string;
-    type: "file_citation";
-}
-
-// @public
-export interface MessageDeltaTextFileCitationAnnotationObject {
-    fileId?: string;
-    quote?: string;
-}
-
-// @public
-export interface MessageDeltaTextFilePathAnnotation extends MessageDeltaTextAnnotation {
-    endIndex?: number;
-    filePath?: MessageDeltaTextFilePathAnnotationObject;
-    startIndex?: number;
-    text?: string;
-    type: "file_path";
-}
-
-// @public
-export interface MessageDeltaTextFilePathAnnotationObject {
-    fileId?: string;
-}
-
-// @public
 export interface MessageImageFileContent extends MessageContent {
     imageFile: MessageImageFileDetails;
     type: "image_file";
@@ -913,9 +821,6 @@ export type MessageRole = "user" | "assistant";
 
 // @public
 export type MessageStatus = "in_progress" | "incomplete" | "completed";
-
-// @public
-export type MessageStreamEvent = "thread.message.created" | "thread.message.in_progress" | "thread.message.delta" | "thread.message.completed" | "thread.message.incomplete";
 
 // @public
 export interface MessageTextAnnotation {
@@ -1259,110 +1164,6 @@ export interface RunStepCompletionUsage {
 }
 
 // @public
-export interface RunStepDelta {
-    stepDetails?: RunStepDeltaDetailUnion;
-}
-
-// @public
-export interface RunStepDeltaChunk {
-    delta: RunStepDelta;
-    id: string;
-    object: "thread.run.step.delta";
-}
-
-// @public
-export interface RunStepDeltaCodeInterpreterDetailItemObject {
-    input?: string;
-    outputs?: RunStepDeltaCodeInterpreterOutputUnion[];
-}
-
-// @public
-export interface RunStepDeltaCodeInterpreterImageOutput extends RunStepDeltaCodeInterpreterOutput {
-    image?: RunStepDeltaCodeInterpreterImageOutputObject;
-    type: "image";
-}
-
-// @public
-export interface RunStepDeltaCodeInterpreterImageOutputObject {
-    fileId?: string;
-}
-
-// @public
-export interface RunStepDeltaCodeInterpreterLogOutput extends RunStepDeltaCodeInterpreterOutput {
-    logs?: string;
-    type: "logs";
-}
-
-// @public
-export interface RunStepDeltaCodeInterpreterOutput {
-    index: number;
-    type: string;
-}
-
-// @public
-export type RunStepDeltaCodeInterpreterOutputUnion = RunStepDeltaCodeInterpreterLogOutput | RunStepDeltaCodeInterpreterImageOutput | RunStepDeltaCodeInterpreterOutput;
-
-// @public
-export interface RunStepDeltaCodeInterpreterToolCall extends RunStepDeltaToolCall {
-    codeInterpreter?: RunStepDeltaCodeInterpreterDetailItemObject;
-    type: "code_interpreter";
-}
-
-// @public
-export interface RunStepDeltaDetail {
-    type: string;
-}
-
-// @public
-export type RunStepDeltaDetailUnion = RunStepDeltaMessageCreation | RunStepDeltaToolCallObject | RunStepDeltaDetail;
-
-// @public
-export interface RunStepDeltaFileSearchToolCall extends RunStepDeltaToolCall {
-    fileSearch?: Record<string, string>;
-    type: "file_search";
-}
-
-// @public
-export interface RunStepDeltaFunction {
-    arguments?: string;
-    name?: string;
-    output?: string | null;
-}
-
-// @public
-export interface RunStepDeltaFunctionToolCall extends RunStepDeltaToolCall {
-    function?: RunStepDeltaFunction;
-    type: "function";
-}
-
-// @public
-export interface RunStepDeltaMessageCreation extends RunStepDeltaDetail {
-    messageCreation?: RunStepDeltaMessageCreationObject;
-    type: "message_creation";
-}
-
-// @public
-export interface RunStepDeltaMessageCreationObject {
-    messageId?: string;
-}
-
-// @public
-export interface RunStepDeltaToolCall {
-    id: string;
-    index: number;
-    type: string;
-}
-
-// @public
-export interface RunStepDeltaToolCallObject extends RunStepDeltaDetail {
-    toolCalls?: RunStepDeltaToolCallUnion[];
-    type: "tool_calls";
-}
-
-// @public
-export type RunStepDeltaToolCallUnion = RunStepDeltaFunctionToolCall | RunStepDeltaFileSearchToolCall | RunStepDeltaCodeInterpreterToolCall | RunStepDeltaToolCall;
-
-// @public
 export interface RunStepDetails {
     type: RunStepType;
 }
@@ -1440,9 +1241,6 @@ export interface RunStepSharepointToolCall extends RunStepToolCall {
 export type RunStepStatus = "in_progress" | "cancelled" | "failed" | "completed" | "expired";
 
 // @public
-export type RunStepStreamEvent = "thread.run.step.created" | "thread.run.step.in_progress" | "thread.run.step.delta" | "thread.run.step.completed" | "thread.run.step.failed" | "thread.run.step.cancelled" | "thread.run.step.expired";
-
-// @public
 export interface RunStepToolCall {
     id: string;
     type: string;
@@ -1459,9 +1257,6 @@ export type RunStepToolCallUnion = RunStepCodeInterpreterToolCall | RunStepFileS
 
 // @public
 export type RunStepType = "message_creation" | "tool_calls";
-
-// @public
-export type RunStreamEvent = "thread.run.created" | "thread.run.queued" | "thread.run.in_progress" | "thread.run.requires_action" | "thread.run.completed" | "thread.run.incomplete" | "thread.run.failed" | "thread.run.cancelling" | "thread.run.cancelled" | "thread.run.expired";
 
 // @public
 export interface SharepointToolDefinition extends ToolDefinition {
@@ -1561,9 +1356,6 @@ export interface ThreadRun {
     truncationStrategy: TruncationObject | null;
     usage: RunCompletionUsage | null;
 }
-
-// @public
-export type ThreadStreamEvent = "thread.created";
 
 // @public
 export interface ToolConnection {
