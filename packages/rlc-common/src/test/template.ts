@@ -211,6 +211,7 @@ import { setLogLevel } from "@azure/logger";
 import { describe, it } from "vitest";
 
 describe("snippets", () => {
+{{#if isModularLibrary}}
   it("ReadmeSampleCreateClient_Node", async () => {
     {{#if azureArm}}
     const subscriptionId = "00000000-0000-0000-0000-000000000000";
@@ -236,7 +237,7 @@ describe("snippets", () => {
     const client = new {{ clientClassName }}("<endpoint>", credential);
     {{/if}}
   });
-
+  {{/if}}
   it("SetLogLevel", async () => {
     setLogLevel("info");
   });
