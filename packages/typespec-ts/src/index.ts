@@ -409,7 +409,7 @@ export async function $onEmit(context: EmitContext) {
       );
       commonBuilders.push(buildTsConfig);
 
-      if (option.isModularLibrary && option.generateTest && isAzureFlavor) {
+      if (option.generateTest && isAzureFlavor) {
         for (const subClient of dpgContext.sdkPackage.clients) {
           commonBuilders.push((model) =>
             buildSnippets(model, subClient.name, option.azureSdkForJs)
