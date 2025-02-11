@@ -12,213 +12,11 @@ export declare interface AzureArmModelsCommonTypesManagedIdentityClientOptions e
     apiVersion?: string;
 }
 
-export declare interface AzureResourceManagerCommonTypesAzureEntityResource extends AzureResourceManagerCommonTypesResource {
+export declare interface AzureEntityResource extends Resource {
 }
 
-export declare interface AzureResourceManagerCommonTypesAzureEntityResourceOutput extends AzureResourceManagerCommonTypesResourceOutput {
+export declare interface AzureEntityResourceOutput extends ResourceOutput {
     readonly etag?: string;
-}
-
-export declare interface AzureResourceManagerCommonTypesErrorAdditionalInfoOutput {
-    readonly type?: string;
-    readonly info?: Record<string, any>;
-}
-
-export declare interface AzureResourceManagerCommonTypesErrorDetailOutput {
-    readonly code?: string;
-    readonly message?: string;
-    readonly target?: string;
-    readonly details?: Array<AzureResourceManagerCommonTypesErrorDetailOutput>;
-    readonly additionalInfo?: Array<AzureResourceManagerCommonTypesErrorAdditionalInfoOutput>;
-}
-
-export declare interface AzureResourceManagerCommonTypesErrorResponseOutput {
-    error?: AzureResourceManagerCommonTypesErrorDetailOutput;
-}
-
-export declare interface AzureResourceManagerCommonTypesExtensionResource extends AzureResourceManagerCommonTypesResource {
-}
-
-export declare interface AzureResourceManagerCommonTypesExtensionResourceOutput extends AzureResourceManagerCommonTypesResourceOutput {
-}
-
-export declare interface AzureResourceManagerCommonTypesIdentity {
-    type?: ResourceIdentityType;
-}
-
-export declare interface AzureResourceManagerCommonTypesIdentityOutput {
-    readonly principalId?: string;
-    readonly tenantId?: string;
-    type?: ResourceIdentityTypeOutput;
-}
-
-export declare interface AzureResourceManagerCommonTypesManagedServiceIdentity {
-    type: ManagedServiceIdentityType;
-    userAssignedIdentities?: Record<string, AzureResourceManagerCommonTypesUserAssignedIdentity>;
-}
-
-export declare interface AzureResourceManagerCommonTypesManagedServiceIdentityOutput {
-    readonly principalId?: string;
-    readonly tenantId?: string;
-    type: ManagedServiceIdentityTypeOutput;
-    userAssignedIdentities?: Record<string, AzureResourceManagerCommonTypesUserAssignedIdentityOutput>;
-}
-
-export declare interface AzureResourceManagerCommonTypesPlan {
-    name: string;
-    publisher: string;
-    product: string;
-    promotionCode?: string;
-    version?: string;
-}
-
-export declare interface AzureResourceManagerCommonTypesPlanOutput {
-    name: string;
-    publisher: string;
-    product: string;
-    promotionCode?: string;
-    version?: string;
-}
-
-export declare interface AzureResourceManagerCommonTypesPrivateEndpoint {
-}
-
-export declare interface AzureResourceManagerCommonTypesPrivateEndpointConnection extends AzureResourceManagerCommonTypesResource {
-    properties?: AzureResourceManagerCommonTypesPrivateEndpointConnectionProperties;
-}
-
-export declare interface AzureResourceManagerCommonTypesPrivateEndpointConnectionOutput extends AzureResourceManagerCommonTypesResourceOutput {
-    properties?: AzureResourceManagerCommonTypesPrivateEndpointConnectionPropertiesOutput;
-}
-
-export declare interface AzureResourceManagerCommonTypesPrivateEndpointConnectionProperties {
-    privateEndpoint?: AzureResourceManagerCommonTypesPrivateEndpoint;
-    privateLinkServiceConnectionState: AzureResourceManagerCommonTypesPrivateLinkServiceConnectionState;
-}
-
-export declare interface AzureResourceManagerCommonTypesPrivateEndpointConnectionPropertiesOutput {
-    privateEndpoint?: AzureResourceManagerCommonTypesPrivateEndpointOutput;
-    privateLinkServiceConnectionState: AzureResourceManagerCommonTypesPrivateLinkServiceConnectionStateOutput;
-    readonly provisioningState?: PrivateEndpointConnectionProvisioningStateOutput;
-}
-
-export declare interface AzureResourceManagerCommonTypesPrivateEndpointOutput {
-    readonly id?: string;
-}
-
-export declare interface AzureResourceManagerCommonTypesPrivateLinkResource extends AzureResourceManagerCommonTypesResource {
-    properties?: AzureResourceManagerCommonTypesPrivateLinkResourceProperties;
-}
-
-export declare interface AzureResourceManagerCommonTypesPrivateLinkResourceOutput extends AzureResourceManagerCommonTypesResourceOutput {
-    properties?: AzureResourceManagerCommonTypesPrivateLinkResourcePropertiesOutput;
-}
-
-export declare interface AzureResourceManagerCommonTypesPrivateLinkResourceProperties {
-    requiredZoneNames?: string[];
-}
-
-export declare interface AzureResourceManagerCommonTypesPrivateLinkResourcePropertiesOutput {
-    readonly groupId?: string;
-    readonly requiredMembers?: string[];
-    requiredZoneNames?: string[];
-}
-
-export declare interface AzureResourceManagerCommonTypesPrivateLinkServiceConnectionState {
-    status?: PrivateEndpointServiceConnectionStatus;
-    description?: string;
-    actionsRequired?: string;
-}
-
-export declare interface AzureResourceManagerCommonTypesPrivateLinkServiceConnectionStateOutput {
-    status?: PrivateEndpointServiceConnectionStatusOutput;
-    description?: string;
-    actionsRequired?: string;
-}
-
-export declare interface AzureResourceManagerCommonTypesProxyResource extends AzureResourceManagerCommonTypesResource {
-}
-
-export declare interface AzureResourceManagerCommonTypesProxyResourceOutput extends AzureResourceManagerCommonTypesResourceOutput {
-}
-
-export declare interface AzureResourceManagerCommonTypesResource {
-}
-
-export declare interface AzureResourceManagerCommonTypesResourceModelWithAllowedPropertySet extends AzureResourceManagerCommonTypesTrackedResource {
-    managedBy?: string;
-    kind?: string;
-    identity?: AzureResourceManagerCommonTypesIdentity;
-    sku?: AzureResourceManagerCommonTypesSku;
-    plan?: AzureResourceManagerCommonTypesPlan;
-}
-
-export declare interface AzureResourceManagerCommonTypesResourceModelWithAllowedPropertySetOutput extends AzureResourceManagerCommonTypesTrackedResourceOutput {
-    managedBy?: string;
-    kind?: string;
-    readonly etag?: string;
-    identity?: AzureResourceManagerCommonTypesIdentityOutput;
-    sku?: AzureResourceManagerCommonTypesSkuOutput;
-    plan?: AzureResourceManagerCommonTypesPlanOutput;
-}
-
-export declare interface AzureResourceManagerCommonTypesResourceOutput {
-    readonly id?: string;
-    readonly name?: string;
-    readonly type?: string;
-    readonly systemData?: AzureResourceManagerCommonTypesSystemDataOutput;
-}
-
-export declare interface AzureResourceManagerCommonTypesSku {
-    name: string;
-    tier?: SkuTier;
-    size?: string;
-    family?: string;
-    capacity?: number;
-}
-
-export declare interface AzureResourceManagerCommonTypesSkuOutput {
-    name: string;
-    tier?: SkuTierOutput;
-    size?: string;
-    family?: string;
-    capacity?: number;
-}
-
-export declare interface AzureResourceManagerCommonTypesSystemData {
-    createdBy?: string;
-    createdByType?: CreatedByType;
-    createdAt?: Date | string;
-    lastModifiedBy?: string;
-    lastModifiedByType?: CreatedByType;
-    lastModifiedAt?: Date | string;
-}
-
-export declare interface AzureResourceManagerCommonTypesSystemDataOutput {
-    createdBy?: string;
-    createdByType?: CreatedByTypeOutput;
-    createdAt?: string;
-    lastModifiedBy?: string;
-    lastModifiedByType?: CreatedByTypeOutput;
-    lastModifiedAt?: string;
-}
-
-export declare interface AzureResourceManagerCommonTypesTrackedResource extends AzureResourceManagerCommonTypesResource {
-    tags?: Record<string, string>;
-    location: string;
-}
-
-export declare interface AzureResourceManagerCommonTypesTrackedResourceOutput extends AzureResourceManagerCommonTypesResourceOutput {
-    tags?: Record<string, string>;
-    location: string;
-}
-
-export declare interface AzureResourceManagerCommonTypesUserAssignedIdentity {
-}
-
-export declare interface AzureResourceManagerCommonTypesUserAssignedIdentityOutput {
-    readonly clientId?: string;
-    readonly principalId?: string;
 }
 
 declare function createClient({ apiVersion, ...options }?: AzureArmModelsCommonTypesManagedIdentityClientOptions): AzureArmModelsCommonTypesManagedIdentityClient;
@@ -244,10 +42,33 @@ export declare interface CreateWithSystemAssignedBodyParam {
 
 export declare interface CreateWithSystemAssignedDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare type CreateWithSystemAssignedParameters = CreateWithSystemAssignedBodyParam & RequestParameters;
+
+export declare interface ErrorAdditionalInfoOutput {
+    readonly type?: string;
+    readonly info?: Record<string, any>;
+}
+
+export declare interface ErrorDetailOutput {
+    readonly code?: string;
+    readonly message?: string;
+    readonly target?: string;
+    readonly details?: Array<ErrorDetailOutput>;
+    readonly additionalInfo?: Array<ErrorAdditionalInfoOutput>;
+}
+
+export declare interface ErrorResponseOutput {
+    error?: ErrorDetailOutput;
+}
+
+export declare interface ExtensionResource extends Resource {
+}
+
+export declare interface ExtensionResourceOutput extends ResourceOutput {
+}
 
 export declare interface Get {
     get(options?: GetParameters): StreamableMethod<Get200Response | GetDefaultResponse>;
@@ -262,10 +83,20 @@ export declare interface Get200Response extends HttpResponse {
 
 export declare interface GetDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare type GetParameters = RequestParameters;
+
+export declare interface Identity {
+    type?: ResourceIdentityType;
+}
+
+export declare interface IdentityOutput {
+    readonly principalId?: string;
+    readonly tenantId?: string;
+    type?: ResourceIdentityTypeOutput;
+}
 
 export declare function isUnexpected(response: Get200Response | GetDefaultResponse): response is GetDefaultResponse;
 
@@ -273,14 +104,14 @@ export declare function isUnexpected(response: CreateWithSystemAssigned200Respon
 
 export declare function isUnexpected(response: UpdateWithUserAssignedAndSystemAssigned200Response | UpdateWithUserAssignedAndSystemAssignedDefaultResponse): response is UpdateWithUserAssignedAndSystemAssignedDefaultResponse;
 
-export declare interface ManagedIdentityTrackedResource extends AzureResourceManagerCommonTypesTrackedResource {
+export declare interface ManagedIdentityTrackedResource extends TrackedResource {
     properties?: ManagedIdentityTrackedResourceProperties;
-    identity?: AzureResourceManagerCommonTypesManagedServiceIdentity;
+    identity?: ManagedServiceIdentity;
 }
 
-export declare interface ManagedIdentityTrackedResourceOutput extends AzureResourceManagerCommonTypesTrackedResourceOutput {
+export declare interface ManagedIdentityTrackedResourceOutput extends TrackedResourceOutput {
     properties?: ManagedIdentityTrackedResourcePropertiesOutput;
-    identity?: AzureResourceManagerCommonTypesManagedServiceIdentityOutput;
+    identity?: ManagedServiceIdentityOutput;
 }
 
 export declare interface ManagedIdentityTrackedResourceProperties {
@@ -290,29 +121,190 @@ export declare interface ManagedIdentityTrackedResourcePropertiesOutput {
     readonly provisioningState: string;
 }
 
+export declare interface ManagedServiceIdentity {
+    type: ManagedServiceIdentityType;
+    userAssignedIdentities?: Record<string, UserAssignedIdentity>;
+}
+
+export declare interface ManagedServiceIdentityOutput {
+    readonly principalId?: string;
+    readonly tenantId?: string;
+    type: ManagedServiceIdentityTypeOutput;
+    userAssignedIdentities?: Record<string, UserAssignedIdentityOutput>;
+}
+
 export declare type ManagedServiceIdentityType = string;
 
 export declare type ManagedServiceIdentityTypeOutput = string;
+
+export declare interface Plan {
+    name: string;
+    publisher: string;
+    product: string;
+    promotionCode?: string;
+    version?: string;
+}
+
+export declare interface PlanOutput {
+    name: string;
+    publisher: string;
+    product: string;
+    promotionCode?: string;
+    version?: string;
+}
+
+export declare interface PrivateEndpoint {
+}
+
+export declare interface PrivateEndpointConnection extends Resource {
+    properties?: PrivateEndpointConnectionProperties;
+}
+
+export declare interface PrivateEndpointConnectionOutput extends ResourceOutput {
+    properties?: PrivateEndpointConnectionPropertiesOutput;
+}
+
+export declare interface PrivateEndpointConnectionProperties {
+    privateEndpoint?: PrivateEndpoint;
+    privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
+}
+
+export declare interface PrivateEndpointConnectionPropertiesOutput {
+    privateEndpoint?: PrivateEndpointOutput;
+    privateLinkServiceConnectionState: PrivateLinkServiceConnectionStateOutput;
+    readonly provisioningState?: PrivateEndpointConnectionProvisioningStateOutput;
+}
 
 export declare type PrivateEndpointConnectionProvisioningState = string;
 
 export declare type PrivateEndpointConnectionProvisioningStateOutput = string;
 
+export declare interface PrivateEndpointOutput {
+    readonly id?: string;
+}
+
 export declare type PrivateEndpointServiceConnectionStatus = string;
 
 export declare type PrivateEndpointServiceConnectionStatusOutput = string;
+
+export declare interface PrivateLinkResource extends Resource {
+    properties?: PrivateLinkResourceProperties;
+}
+
+export declare interface PrivateLinkResourceOutput extends ResourceOutput {
+    properties?: PrivateLinkResourcePropertiesOutput;
+}
+
+export declare interface PrivateLinkResourceProperties {
+    requiredZoneNames?: string[];
+}
+
+export declare interface PrivateLinkResourcePropertiesOutput {
+    readonly groupId?: string;
+    readonly requiredMembers?: string[];
+    requiredZoneNames?: string[];
+}
+
+export declare interface PrivateLinkServiceConnectionState {
+    status?: PrivateEndpointServiceConnectionStatus;
+    description?: string;
+    actionsRequired?: string;
+}
+
+export declare interface PrivateLinkServiceConnectionStateOutput {
+    status?: PrivateEndpointServiceConnectionStatusOutput;
+    description?: string;
+    actionsRequired?: string;
+}
+
+export declare interface ProxyResource extends Resource {
+}
+
+export declare interface ProxyResourceOutput extends ResourceOutput {
+}
+
+export declare interface Resource {
+}
 
 export declare type ResourceIdentityType = "SystemAssigned";
 
 export declare type ResourceIdentityTypeOutput = "SystemAssigned";
 
+export declare interface ResourceModelWithAllowedPropertySet extends TrackedResource {
+    managedBy?: string;
+    kind?: string;
+    identity?: Identity;
+    sku?: Sku;
+    plan?: Plan;
+}
+
+export declare interface ResourceModelWithAllowedPropertySetOutput extends TrackedResourceOutput {
+    managedBy?: string;
+    kind?: string;
+    readonly eTag?: string;
+    identity?: IdentityOutput;
+    sku?: SkuOutput;
+    plan?: PlanOutput;
+}
+
+export declare interface ResourceOutput {
+    readonly id?: string;
+    readonly name?: string;
+    readonly type?: string;
+    readonly systemData?: SystemDataOutput;
+}
+
 export declare interface Routes {
     (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/{managedIdentityTrackedResourceName}", subscriptionId: string, resourceGroupName: string, managedIdentityTrackedResourceName: string): Get;
+}
+
+export declare interface Sku {
+    name: string;
+    tier?: SkuTier;
+    size?: string;
+    family?: string;
+    capacity?: number;
+}
+
+export declare interface SkuOutput {
+    name: string;
+    tier?: SkuTierOutput;
+    size?: string;
+    family?: string;
+    capacity?: number;
 }
 
 export declare type SkuTier = "Free" | "Basic" | "Standard" | "Premium";
 
 export declare type SkuTierOutput = "Free" | "Basic" | "Standard" | "Premium";
+
+export declare interface SystemData {
+    createdBy?: string;
+    createdByType?: CreatedByType;
+    createdAt?: Date | string;
+    lastModifiedBy?: string;
+    lastModifiedByType?: CreatedByType;
+    lastModifiedAt?: Date | string;
+}
+
+export declare interface SystemDataOutput {
+    createdBy?: string;
+    createdByType?: CreatedByTypeOutput;
+    createdAt?: string;
+    lastModifiedBy?: string;
+    lastModifiedByType?: CreatedByTypeOutput;
+    lastModifiedAt?: string;
+}
+
+export declare interface TrackedResource extends Resource {
+    tags?: Record<string, string>;
+    location: string;
+}
+
+export declare interface TrackedResourceOutput extends ResourceOutput {
+    tags?: Record<string, string>;
+    location: string;
+}
 
 export declare interface UpdateWithUserAssignedAndSystemAssigned200Response extends HttpResponse {
     status: "200";
@@ -325,9 +317,17 @@ export declare interface UpdateWithUserAssignedAndSystemAssignedBodyParam {
 
 export declare interface UpdateWithUserAssignedAndSystemAssignedDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare type UpdateWithUserAssignedAndSystemAssignedParameters = UpdateWithUserAssignedAndSystemAssignedBodyParam & RequestParameters;
+
+export declare interface UserAssignedIdentity {
+}
+
+export declare interface UserAssignedIdentityOutput {
+    readonly principalId?: string;
+    readonly clientId?: string;
+}
 
 export { }

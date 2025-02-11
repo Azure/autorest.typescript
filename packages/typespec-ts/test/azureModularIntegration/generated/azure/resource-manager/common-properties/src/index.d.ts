@@ -6,103 +6,103 @@ export declare class CommonPropertiesClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(subscriptionId: string, options?: CommonPropertiesClientOptionalParams);
-    updateWithUserAssignedAndSystemAssigned(resourceGroupName: string, managedIdentityTrackedResourceName: string, properties: ResourceManagerCommonPropertiesManagedIdentityTrackedResource, options?: UpdateWithUserAssignedAndSystemAssignedOptionalParams): Promise<ResourceManagerCommonPropertiesManagedIdentityTrackedResource>;
-    createWithSystemAssigned(resourceGroupName: string, managedIdentityTrackedResourceName: string, resource: ResourceManagerCommonPropertiesManagedIdentityTrackedResource, options?: CreateWithSystemAssignedOptionalParams): Promise<ResourceManagerCommonPropertiesManagedIdentityTrackedResource>;
-    get(resourceGroupName: string, managedIdentityTrackedResourceName: string, options?: GetOptionalParams): Promise<ResourceManagerCommonPropertiesManagedIdentityTrackedResource>;
+    updateWithUserAssignedAndSystemAssigned(resourceGroupName: string, managedIdentityTrackedResourceName: string, properties: ManagedIdentityTrackedResource, options?: UpdateWithUserAssignedAndSystemAssignedOptionalParams): Promise<ManagedIdentityTrackedResource>;
+    createWithSystemAssigned(resourceGroupName: string, managedIdentityTrackedResourceName: string, resource: ManagedIdentityTrackedResource, options?: CreateWithSystemAssignedOptionalParams): Promise<ManagedIdentityTrackedResource>;
+    get(resourceGroupName: string, managedIdentityTrackedResourceName: string, options?: GetOptionalParams): Promise<ManagedIdentityTrackedResource>;
 }
 
 export declare interface CommonPropertiesClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 
+export declare type CreatedByType = string;
+
 export declare interface CreateWithSystemAssignedOptionalParams extends OperationOptions {
+}
+
+export declare interface ErrorAdditionalInfo {
+    readonly type?: string;
+    readonly info?: Record<string, any>;
+}
+
+export declare interface ErrorDetail {
+    readonly code?: string;
+    readonly message?: string;
+    readonly target?: string;
+    readonly details?: ErrorDetail[];
+    readonly additionalInfo?: ErrorAdditionalInfo[];
+}
+
+export declare interface ErrorResponse {
+    error?: ErrorDetail;
 }
 
 export declare interface GetOptionalParams extends OperationOptions {
 }
 
-export declare enum KnownResourceManagerCommonPropertiesVersions {
-    v2023_12_01_preview = "2023-12-01-preview"
-}
-
-export declare enum KnownResourceManagerCommonTypescreatedByType {
+export declare enum KnownCreatedByType {
     User = "User",
     Application = "Application",
     ManagedIdentity = "ManagedIdentity",
     Key = "Key"
 }
 
-export declare enum KnownResourceManagerCommonTypesManagedServiceIdentityType {
+export declare enum KnownManagedServiceIdentityType {
     None = "None",
     SystemAssigned = "SystemAssigned",
     UserAssigned = "UserAssigned",
     "SystemAssigned,UserAssigned" = "SystemAssigned,UserAssigned"
 }
 
-export declare interface ResourceManagerCommonPropertiesManagedIdentityTrackedResource extends ResourceManagerCommonTypesTrackedResource {
-    properties?: ResourceManagerCommonPropertiesManagedIdentityTrackedResourceProperties;
-    identity?: ResourceManagerCommonTypesManagedServiceIdentity;
+export declare enum KnownVersions {
+    v2023_12_01_preview = "2023-12-01-preview"
 }
 
-export declare interface ResourceManagerCommonPropertiesManagedIdentityTrackedResourceProperties {
+export declare interface ManagedIdentityTrackedResource extends TrackedResource {
+    properties?: ManagedIdentityTrackedResourceProperties;
+    identity?: ManagedServiceIdentity;
+}
+
+export declare interface ManagedIdentityTrackedResourceProperties {
     readonly provisioningState: string;
 }
 
-export declare type ResourceManagerCommonTypescreatedByType = string;
-
-export declare interface ResourceManagerCommonTypesErrorAdditionalInfo {
-    readonly type?: string;
-    readonly info?: Record<string, any>;
-}
-
-export declare interface ResourceManagerCommonTypesErrorDetail {
-    readonly code?: string;
-    readonly message?: string;
-    readonly target?: string;
-    readonly details?: ResourceManagerCommonTypesErrorDetail[];
-    readonly additionalInfo?: ResourceManagerCommonTypesErrorAdditionalInfo[];
-}
-
-export declare interface ResourceManagerCommonTypesErrorResponse {
-    error?: ResourceManagerCommonTypesErrorDetail;
-}
-
-export declare interface ResourceManagerCommonTypesManagedServiceIdentity {
+export declare interface ManagedServiceIdentity {
     readonly principalId?: string;
     readonly tenantId?: string;
-    type: ResourceManagerCommonTypesManagedServiceIdentityType;
-    userAssignedIdentities?: Record<string, ResourceManagerCommonTypesUserAssignedIdentity>;
+    type: ManagedServiceIdentityType;
+    userAssignedIdentities?: Record<string, UserAssignedIdentity>;
 }
 
-export declare type ResourceManagerCommonTypesManagedServiceIdentityType = string;
+export declare type ManagedServiceIdentityType = string;
 
-export declare interface ResourceManagerCommonTypesResource {
+export declare interface Resource {
     readonly id?: string;
     readonly name?: string;
     readonly type?: string;
-    readonly systemData?: ResourceManagerCommonTypesSystemData;
+    readonly systemData?: SystemData;
 }
 
-export declare interface ResourceManagerCommonTypesSystemData {
+export declare interface SystemData {
     createdBy?: string;
-    createdByType?: ResourceManagerCommonTypescreatedByType;
+    createdByType?: CreatedByType;
     createdAt?: Date;
     lastModifiedBy?: string;
-    lastModifiedByType?: ResourceManagerCommonTypescreatedByType;
+    lastModifiedByType?: CreatedByType;
     lastModifiedAt?: Date;
 }
 
-export declare interface ResourceManagerCommonTypesTrackedResource extends ResourceManagerCommonTypesResource {
+export declare interface TrackedResource extends Resource {
     tags?: Record<string, string>;
     location: string;
 }
 
-export declare interface ResourceManagerCommonTypesUserAssignedIdentity {
-    readonly clientId?: string;
-    readonly principalId?: string;
+export declare interface UpdateWithUserAssignedAndSystemAssignedOptionalParams extends OperationOptions {
 }
 
-export declare interface UpdateWithUserAssignedAndSystemAssignedOptionalParams extends OperationOptions {
+export declare interface UserAssignedIdentity {
+    readonly principalId?: string;
+    readonly clientId?: string;
 }
 
 export { }

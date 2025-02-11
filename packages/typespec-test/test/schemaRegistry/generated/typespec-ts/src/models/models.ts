@@ -71,6 +71,65 @@ export function schemaVersionDeserializer(item: any): SchemaVersion {
   };
 }
 
+/** Meta properties of a schema. */
+export interface SchemaProperties {
+  /** References a specific schema in the registry namespace. */
+  id: string;
+  /** Format for the schema being stored. */
+  format: SchemaFormat;
+  /** Schema group under which schema is stored. */
+  groupName: string;
+  /** Name of schema. */
+  name: string;
+  /** Version of schema. */
+  version: number;
+}
+
+export function schemaPropertiesSerializer(item: SchemaProperties): any {
+  return {
+    id: item["id"],
+    format: item["format"],
+    groupName: item["groupName"],
+    name: item["name"],
+    version: item["version"],
+  };
+}
+
+export function schemaPropertiesDeserializer(item: any): SchemaProperties {
+  return {
+    id: item["id"],
+    format: item["format"],
+    groupName: item["groupName"],
+    name: item["name"],
+    version: item["version"],
+  };
+}
+
+/** Represents the format of the schema to be stored by the Schema Registry service. */
+export type SchemaFormat = "Avro" | "Json" | "Custom" | "Protobuf";
+
+/** The schema content of a schema, along with id and meta properties. */
+export interface Schema {
+  /** The content of the schema. */
+  definition: string;
+  /** The properties of the schema. */
+  properties: SchemaProperties;
+}
+
+export function schemaSerializer(item: Schema): any {
+  return {
+    definition: item["definition"],
+    properties: schemaPropertiesSerializer(item["properties"]),
+  };
+}
+
+export function schemaDeserializer(item: any): Schema {
+  return {
+    definition: item["definition"],
+    properties: schemaPropertiesDeserializer(item["properties"]),
+  };
+}
+
 /** Type of SchemaContentTypeValues */
 export type SchemaContentTypeValues =
   | "application/json; serialization=Avro"
@@ -87,3 +146,10 @@ export enum KnownServiceApiVersions {
   /** Azure Schema Registry 2023-07-01 Version. This is the default version. */
   V2023_07_01 = "2023-07-01",
 }
+
+/** The content type for the schema. */
+export type ContentTypeEnum =
+  | "application/octet-stream"
+  | "application/json; serialization=Avro"
+  | "application/json; serialization=json"
+  | "text/vnd.ms.protobuf";

@@ -10,9 +10,43 @@ import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
+export declare interface AccessRule {
+    name?: string;
+    properties?: AccessRuleProperties;
+}
+
 export declare type AccessRuleDirection = string;
 
 export declare type AccessRuleDirectionOutput = string;
+
+export declare interface AccessRuleOutput {
+    name?: string;
+    properties?: AccessRulePropertiesOutput;
+}
+
+export declare interface AccessRuleProperties {
+    direction?: AccessRuleDirection;
+    addressPrefixes?: string[];
+    subscriptions?: {
+        id?: string;
+    }[];
+    networkSecurityPerimeters?: Array<NetworkSecurityPerimeter>;
+    fullyQualifiedDomainNames?: string[];
+    emailAddresses?: string[];
+    phoneNumbers?: string[];
+}
+
+export declare interface AccessRulePropertiesOutput {
+    direction?: AccessRuleDirectionOutput;
+    addressPrefixes?: string[];
+    subscriptions?: {
+        id?: string;
+    }[];
+    networkSecurityPerimeters?: Array<NetworkSecurityPerimeterOutput>;
+    fullyQualifiedDomainNames?: string[];
+    emailAddresses?: string[];
+    phoneNumbers?: string[];
+}
 
 export declare type AzureArmResourceClient = Client & {
     path: Routes;
@@ -22,307 +56,11 @@ export declare interface AzureArmResourceClientOptions extends ClientOptions {
     apiVersion?: string;
 }
 
-export declare interface AzureResourceManagerCommonTypesAccessRule {
-    name?: string;
-    properties?: AzureResourceManagerCommonTypesAccessRuleProperties;
+export declare interface AzureEntityResource extends Resource {
 }
 
-export declare interface AzureResourceManagerCommonTypesAccessRuleOutput {
-    name?: string;
-    properties?: AzureResourceManagerCommonTypesAccessRulePropertiesOutput;
-}
-
-export declare interface AzureResourceManagerCommonTypesAccessRuleProperties {
-    direction?: AccessRuleDirection;
-    addressPrefixes?: string[];
-    subscriptions?: {
-        id?: string;
-    }[];
-    networkSecurityPerimeters?: Array<AzureResourceManagerCommonTypesNetworkSecurityPerimeter>;
-    fullyQualifiedDomainNames?: string[];
-    emailAddresses?: string[];
-    phoneNumbers?: string[];
-}
-
-export declare interface AzureResourceManagerCommonTypesAccessRulePropertiesOutput {
-    direction?: AccessRuleDirectionOutput;
-    addressPrefixes?: string[];
-    subscriptions?: {
-        id?: string;
-    }[];
-    networkSecurityPerimeters?: Array<AzureResourceManagerCommonTypesNetworkSecurityPerimeterOutput>;
-    fullyQualifiedDomainNames?: string[];
-    emailAddresses?: string[];
-    phoneNumbers?: string[];
-}
-
-export declare interface AzureResourceManagerCommonTypesAzureEntityResource extends AzureResourceManagerCommonTypesResource {
-}
-
-export declare interface AzureResourceManagerCommonTypesAzureEntityResourceOutput extends AzureResourceManagerCommonTypesResourceOutput {
+export declare interface AzureEntityResourceOutput extends ResourceOutput {
     readonly etag?: string;
-}
-
-export declare interface AzureResourceManagerCommonTypesErrorAdditionalInfoOutput {
-    readonly type?: string;
-    readonly info?: Record<string, any>;
-}
-
-export declare interface AzureResourceManagerCommonTypesErrorDetailOutput {
-    readonly code?: string;
-    readonly message?: string;
-    readonly target?: string;
-    readonly details?: Array<AzureResourceManagerCommonTypesErrorDetailOutput>;
-    readonly additionalInfo?: Array<AzureResourceManagerCommonTypesErrorAdditionalInfoOutput>;
-}
-
-export declare interface AzureResourceManagerCommonTypesErrorResponseOutput {
-    error?: AzureResourceManagerCommonTypesErrorDetailOutput;
-}
-
-export declare interface AzureResourceManagerCommonTypesExtensionResource extends AzureResourceManagerCommonTypesResource {
-}
-
-export declare interface AzureResourceManagerCommonTypesExtensionResourceOutput extends AzureResourceManagerCommonTypesResourceOutput {
-}
-
-export declare interface AzureResourceManagerCommonTypesIdentity {
-    type?: ResourceIdentityType;
-}
-
-export declare interface AzureResourceManagerCommonTypesIdentityOutput {
-    readonly principalId?: string;
-    readonly tenantId?: string;
-    type?: ResourceIdentityTypeOutput;
-}
-
-export declare interface AzureResourceManagerCommonTypesNetworkSecurityPerimeter {
-    id?: string;
-    perimeterGuid?: string;
-    location?: string;
-}
-
-export declare interface AzureResourceManagerCommonTypesNetworkSecurityPerimeterConfiguration extends AzureResourceManagerCommonTypesProxyResource {
-    properties?: AzureResourceManagerCommonTypesNetworkSecurityPerimeterConfigurationProperties;
-}
-
-export declare interface AzureResourceManagerCommonTypesNetworkSecurityPerimeterConfigurationOutput extends AzureResourceManagerCommonTypesProxyResourceOutput {
-    properties?: AzureResourceManagerCommonTypesNetworkSecurityPerimeterConfigurationPropertiesOutput;
-}
-
-export declare interface AzureResourceManagerCommonTypesNetworkSecurityPerimeterConfigurationProperties {
-    networkSecurityPerimeter?: AzureResourceManagerCommonTypesNetworkSecurityPerimeter;
-    resourceAssociation?: AzureResourceManagerCommonTypesResourceAssociation;
-    profile?: AzureResourceManagerCommonTypesNetworkSecurityProfile;
-}
-
-export declare interface AzureResourceManagerCommonTypesNetworkSecurityPerimeterConfigurationPropertiesOutput {
-    readonly provisioningState?: NetworkSecurityPerimeterConfigurationProvisioningStateOutput;
-    readonly provisioningIssues?: Array<AzureResourceManagerCommonTypesProvisioningIssueOutput>;
-    networkSecurityPerimeter?: AzureResourceManagerCommonTypesNetworkSecurityPerimeterOutput;
-    resourceAssociation?: AzureResourceManagerCommonTypesResourceAssociationOutput;
-    profile?: AzureResourceManagerCommonTypesNetworkSecurityProfileOutput;
-}
-
-export declare interface AzureResourceManagerCommonTypesNetworkSecurityPerimeterOutput {
-    id?: string;
-    perimeterGuid?: string;
-    location?: string;
-}
-
-export declare interface AzureResourceManagerCommonTypesNetworkSecurityProfile {
-    name?: string;
-    accessRulesVersion?: number;
-    accessRules?: Array<AzureResourceManagerCommonTypesAccessRule>;
-    diagnosticSettingsVersion?: number;
-    enabledLogCategories?: string[];
-}
-
-export declare interface AzureResourceManagerCommonTypesNetworkSecurityProfileOutput {
-    name?: string;
-    accessRulesVersion?: number;
-    accessRules?: Array<AzureResourceManagerCommonTypesAccessRuleOutput>;
-    diagnosticSettingsVersion?: number;
-    enabledLogCategories?: string[];
-}
-
-export declare interface AzureResourceManagerCommonTypesPlan {
-    name: string;
-    publisher: string;
-    product: string;
-    promotionCode?: string;
-    version?: string;
-}
-
-export declare interface AzureResourceManagerCommonTypesPlanOutput {
-    name: string;
-    publisher: string;
-    product: string;
-    promotionCode?: string;
-    version?: string;
-}
-
-export declare interface AzureResourceManagerCommonTypesPrivateEndpoint {
-}
-
-export declare interface AzureResourceManagerCommonTypesPrivateEndpointConnection extends AzureResourceManagerCommonTypesResource {
-    properties?: AzureResourceManagerCommonTypesPrivateEndpointConnectionProperties;
-}
-
-export declare interface AzureResourceManagerCommonTypesPrivateEndpointConnectionOutput extends AzureResourceManagerCommonTypesResourceOutput {
-    properties?: AzureResourceManagerCommonTypesPrivateEndpointConnectionPropertiesOutput;
-}
-
-export declare interface AzureResourceManagerCommonTypesPrivateEndpointConnectionProperties {
-    privateEndpoint?: AzureResourceManagerCommonTypesPrivateEndpoint;
-    privateLinkServiceConnectionState: AzureResourceManagerCommonTypesPrivateLinkServiceConnectionState;
-}
-
-export declare interface AzureResourceManagerCommonTypesPrivateEndpointConnectionPropertiesOutput {
-    readonly groupIds?: string[];
-    privateEndpoint?: AzureResourceManagerCommonTypesPrivateEndpointOutput;
-    privateLinkServiceConnectionState: AzureResourceManagerCommonTypesPrivateLinkServiceConnectionStateOutput;
-    readonly provisioningState?: PrivateEndpointConnectionProvisioningStateOutput;
-}
-
-export declare interface AzureResourceManagerCommonTypesPrivateEndpointOutput {
-    readonly id?: string;
-}
-
-export declare interface AzureResourceManagerCommonTypesPrivateLinkResource extends AzureResourceManagerCommonTypesResource {
-    properties?: AzureResourceManagerCommonTypesPrivateLinkResourceProperties;
-}
-
-export declare interface AzureResourceManagerCommonTypesPrivateLinkResourceOutput extends AzureResourceManagerCommonTypesResourceOutput {
-    properties?: AzureResourceManagerCommonTypesPrivateLinkResourcePropertiesOutput;
-}
-
-export declare interface AzureResourceManagerCommonTypesPrivateLinkResourceProperties {
-    requiredZoneNames?: string[];
-}
-
-export declare interface AzureResourceManagerCommonTypesPrivateLinkResourcePropertiesOutput {
-    readonly groupId?: string;
-    readonly requiredMembers?: string[];
-    requiredZoneNames?: string[];
-}
-
-export declare interface AzureResourceManagerCommonTypesPrivateLinkServiceConnectionState {
-    status?: PrivateEndpointServiceConnectionStatus;
-    description?: string;
-    actionsRequired?: string;
-}
-
-export declare interface AzureResourceManagerCommonTypesPrivateLinkServiceConnectionStateOutput {
-    status?: PrivateEndpointServiceConnectionStatusOutput;
-    description?: string;
-    actionsRequired?: string;
-}
-
-export declare interface AzureResourceManagerCommonTypesProvisioningIssue {
-}
-
-export declare interface AzureResourceManagerCommonTypesProvisioningIssueOutput {
-    readonly name?: string;
-    readonly properties?: AzureResourceManagerCommonTypesProvisioningIssuePropertiesOutput;
-}
-
-export declare interface AzureResourceManagerCommonTypesProvisioningIssueProperties {
-}
-
-export declare interface AzureResourceManagerCommonTypesProvisioningIssuePropertiesOutput {
-    readonly issueType?: IssueTypeOutput;
-    readonly severity?: SeverityOutput;
-    readonly description?: string;
-    readonly suggestedResourceIds?: string[];
-    readonly suggestedAccessRules?: Array<AzureResourceManagerCommonTypesAccessRuleOutput>;
-}
-
-export declare interface AzureResourceManagerCommonTypesProxyResource extends AzureResourceManagerCommonTypesResource {
-}
-
-export declare interface AzureResourceManagerCommonTypesProxyResourceOutput extends AzureResourceManagerCommonTypesResourceOutput {
-}
-
-export declare interface AzureResourceManagerCommonTypesResource {
-}
-
-export declare interface AzureResourceManagerCommonTypesResourceAssociation {
-    name?: string;
-    accessMode?: ResourceAssociationAccessMode;
-}
-
-export declare interface AzureResourceManagerCommonTypesResourceAssociationOutput {
-    name?: string;
-    accessMode?: ResourceAssociationAccessModeOutput;
-}
-
-export declare interface AzureResourceManagerCommonTypesResourceModelWithAllowedPropertySet extends AzureResourceManagerCommonTypesTrackedResource {
-    managedBy?: string;
-    kind?: string;
-    identity?: AzureResourceManagerCommonTypesIdentity;
-    sku?: AzureResourceManagerCommonTypesSku;
-    plan?: AzureResourceManagerCommonTypesPlan;
-}
-
-export declare interface AzureResourceManagerCommonTypesResourceModelWithAllowedPropertySetOutput extends AzureResourceManagerCommonTypesTrackedResourceOutput {
-    managedBy?: string;
-    kind?: string;
-    readonly etag?: string;
-    identity?: AzureResourceManagerCommonTypesIdentityOutput;
-    sku?: AzureResourceManagerCommonTypesSkuOutput;
-    plan?: AzureResourceManagerCommonTypesPlanOutput;
-}
-
-export declare interface AzureResourceManagerCommonTypesResourceOutput {
-    readonly id?: string;
-    readonly name?: string;
-    readonly type?: string;
-    readonly systemData?: AzureResourceManagerCommonTypesSystemDataOutput;
-}
-
-export declare interface AzureResourceManagerCommonTypesSku {
-    name: string;
-    tier?: SkuTier;
-    size?: string;
-    family?: string;
-    capacity?: number;
-}
-
-export declare interface AzureResourceManagerCommonTypesSkuOutput {
-    name: string;
-    tier?: SkuTierOutput;
-    size?: string;
-    family?: string;
-    capacity?: number;
-}
-
-export declare interface AzureResourceManagerCommonTypesSystemData {
-    createdBy?: string;
-    createdByType?: CreatedByType;
-    createdAt?: Date | string;
-    lastModifiedBy?: string;
-    lastModifiedByType?: CreatedByType;
-    lastModifiedAt?: Date | string;
-}
-
-export declare interface AzureResourceManagerCommonTypesSystemDataOutput {
-    createdBy?: string;
-    createdByType?: CreatedByTypeOutput;
-    createdAt?: string;
-    lastModifiedBy?: string;
-    lastModifiedByType?: CreatedByTypeOutput;
-    lastModifiedAt?: string;
-}
-
-export declare interface AzureResourceManagerCommonTypesTrackedResource extends AzureResourceManagerCommonTypesResource {
-    tags?: Record<string, string>;
-    location: string;
-}
-
-export declare interface AzureResourceManagerCommonTypesTrackedResourceOutput extends AzureResourceManagerCommonTypesResourceOutput {
-    tags?: Record<string, string>;
-    location: string;
 }
 
 declare function createClient({ apiVersion, ...options }?: AzureArmResourceClientOptions): AzureArmResourceClient;
@@ -332,7 +70,30 @@ export declare type CreatedByType = string;
 
 export declare type CreatedByTypeOutput = string;
 
-export declare interface ExtensionsResource extends AzureResourceManagerCommonTypesExtensionResource {
+export declare interface ErrorAdditionalInfoOutput {
+    readonly type?: string;
+    readonly info?: Record<string, any>;
+}
+
+export declare interface ErrorDetailOutput {
+    readonly code?: string;
+    readonly message?: string;
+    readonly target?: string;
+    readonly details?: Array<ErrorDetailOutput>;
+    readonly additionalInfo?: Array<ErrorAdditionalInfoOutput>;
+}
+
+export declare interface ErrorResponseOutput {
+    error?: ErrorDetailOutput;
+}
+
+export declare interface ExtensionResource extends Resource {
+}
+
+export declare interface ExtensionResourceOutput extends ResourceOutput {
+}
+
+export declare interface ExtensionsResource extends ExtensionResource {
     properties?: ExtensionsResourceProperties;
 }
 
@@ -341,7 +102,7 @@ export declare interface ExtensionsResourceListResultOutput {
     nextLink?: string;
 }
 
-export declare interface ExtensionsResourceOutput extends AzureResourceManagerCommonTypesExtensionResourceOutput {
+export declare interface ExtensionsResourceOutput extends ExtensionResourceOutput {
     properties?: ExtensionsResourcePropertiesOutput;
 }
 
@@ -376,7 +137,7 @@ export declare interface ExtensionsResourcesCreateOrUpdateBodyParam {
 
 export declare interface ExtensionsResourcesCreateOrUpdateDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare interface ExtensionsResourcesCreateOrUpdateLogicalResponse extends HttpResponse {
@@ -401,7 +162,7 @@ export declare interface ExtensionsResourcesDelete204Response extends HttpRespon
 
 export declare interface ExtensionsResourcesDeleteDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare type ExtensionsResourcesDeleteParameters = RequestParameters;
@@ -425,7 +186,7 @@ export declare interface ExtensionsResourcesGet200Response extends HttpResponse 
 
 export declare interface ExtensionsResourcesGetDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare type ExtensionsResourcesGetParameters = RequestParameters;
@@ -446,7 +207,7 @@ export declare interface ExtensionsResourcesListByScope200Response extends HttpR
 
 export declare interface ExtensionsResourcesListByScopeDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare type ExtensionsResourcesListByScopeParameters = RequestParameters;
@@ -467,7 +228,7 @@ export declare interface ExtensionsResourcesUpdateBodyParam {
 
 export declare interface ExtensionsResourcesUpdateDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare type ExtensionsResourcesUpdateParameters = ExtensionsResourcesUpdateBodyParam & RequestParameters;
@@ -499,6 +260,16 @@ export declare type GetPage<TPage> = (pageLink: string) => Promise<{
     page: TPage;
     nextPageLink?: string;
 }>;
+
+export declare interface Identity {
+    type?: ResourceIdentityType;
+}
+
+export declare interface IdentityOutput {
+    readonly principalId?: string;
+    readonly tenantId?: string;
+    type?: ResourceIdentityTypeOutput;
+}
 
 export declare type IssueType = string;
 
@@ -556,7 +327,7 @@ export declare function isUnexpected(response: LocationResourcesDelete200Respons
 
 export declare function isUnexpected(response: LocationResourcesListByLocation200Response | LocationResourcesListByLocationDefaultResponse): response is LocationResourcesListByLocationDefaultResponse;
 
-export declare interface LocationResource extends AzureResourceManagerCommonTypesProxyResource {
+export declare interface LocationResource extends ProxyResource {
     properties?: LocationResourceProperties;
 }
 
@@ -565,7 +336,7 @@ export declare interface LocationResourceListResultOutput {
     nextLink?: string;
 }
 
-export declare interface LocationResourceOutput extends AzureResourceManagerCommonTypesProxyResourceOutput {
+export declare interface LocationResourceOutput extends ProxyResourceOutput {
     properties?: LocationResourcePropertiesOutput;
 }
 
@@ -594,7 +365,7 @@ export declare interface LocationResourcesCreateOrUpdateBodyParam {
 
 export declare interface LocationResourcesCreateOrUpdateDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare type LocationResourcesCreateOrUpdateParameters = LocationResourcesCreateOrUpdateBodyParam & RequestParameters;
@@ -609,7 +380,7 @@ export declare interface LocationResourcesDelete204Response extends HttpResponse
 
 export declare interface LocationResourcesDeleteDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare type LocationResourcesDeleteParameters = RequestParameters;
@@ -628,7 +399,7 @@ export declare interface LocationResourcesGet200Response extends HttpResponse {
 
 export declare interface LocationResourcesGetDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare type LocationResourcesGetParameters = RequestParameters;
@@ -644,7 +415,7 @@ export declare interface LocationResourcesListByLocation200Response extends Http
 
 export declare interface LocationResourcesListByLocationDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare type LocationResourcesListByLocationParameters = RequestParameters;
@@ -660,7 +431,7 @@ export declare interface LocationResourcesUpdateBodyParam {
 
 export declare interface LocationResourcesUpdateDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare type LocationResourcesUpdateParameters = LocationResourcesUpdateBodyParam & RequestParameters;
@@ -687,7 +458,7 @@ export declare interface NestedCreateOrReplaceBodyParam {
 
 export declare interface NestedCreateOrReplaceDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare interface NestedCreateOrReplaceLogicalResponse extends HttpResponse {
@@ -713,7 +484,7 @@ export declare interface NestedDelete204Response extends HttpResponse {
 
 export declare interface NestedDeleteDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare interface NestedDeleteLogicalResponse extends HttpResponse {
@@ -736,7 +507,7 @@ export declare interface NestedGet200Response extends HttpResponse {
 
 export declare interface NestedGetDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare type NestedGetParameters = RequestParameters;
@@ -752,12 +523,12 @@ export declare interface NestedListByTopLevelTrackedResource200Response extends 
 
 export declare interface NestedListByTopLevelTrackedResourceDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare type NestedListByTopLevelTrackedResourceParameters = RequestParameters;
 
-export declare interface NestedProxyResource extends AzureResourceManagerCommonTypesProxyResource {
+export declare interface NestedProxyResource extends ProxyResource {
     properties?: NestedProxyResourceProperties;
 }
 
@@ -766,7 +537,7 @@ export declare interface NestedProxyResourceListResultOutput {
     nextLink?: string;
 }
 
-export declare interface NestedProxyResourceOutput extends AzureResourceManagerCommonTypesProxyResourceOutput {
+export declare interface NestedProxyResourceOutput extends ProxyResourceOutput {
     properties?: NestedProxyResourcePropertiesOutput;
 }
 
@@ -800,7 +571,7 @@ export declare interface NestedUpdateBodyParam {
 
 export declare interface NestedUpdateDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare interface NestedUpdateLogicalResponse extends HttpResponse {
@@ -810,9 +581,59 @@ export declare interface NestedUpdateLogicalResponse extends HttpResponse {
 
 export declare type NestedUpdateParameters = NestedUpdateBodyParam & RequestParameters;
 
+export declare interface NetworkSecurityPerimeter {
+    id?: string;
+    perimeterGuid?: string;
+    location?: string;
+}
+
+export declare interface NetworkSecurityPerimeterConfiguration extends ProxyResource {
+    properties?: NetworkSecurityPerimeterConfigurationProperties;
+}
+
+export declare interface NetworkSecurityPerimeterConfigurationOutput extends ProxyResourceOutput {
+    properties?: NetworkSecurityPerimeterConfigurationPropertiesOutput;
+}
+
+export declare interface NetworkSecurityPerimeterConfigurationProperties {
+    networkSecurityPerimeter?: NetworkSecurityPerimeter;
+    resourceAssociation?: ResourceAssociation;
+    profile?: NetworkSecurityProfile;
+}
+
+export declare interface NetworkSecurityPerimeterConfigurationPropertiesOutput {
+    readonly provisioningState?: NetworkSecurityPerimeterConfigurationProvisioningStateOutput;
+    readonly provisioningIssues?: Array<ProvisioningIssueOutput>;
+    networkSecurityPerimeter?: NetworkSecurityPerimeterOutput;
+    resourceAssociation?: ResourceAssociationOutput;
+    profile?: NetworkSecurityProfileOutput;
+}
+
 export declare type NetworkSecurityPerimeterConfigurationProvisioningState = string;
 
 export declare type NetworkSecurityPerimeterConfigurationProvisioningStateOutput = string;
+
+export declare interface NetworkSecurityPerimeterOutput {
+    id?: string;
+    perimeterGuid?: string;
+    location?: string;
+}
+
+export declare interface NetworkSecurityProfile {
+    name?: string;
+    accessRulesVersion?: number;
+    accessRules?: Array<AccessRule>;
+    diagnosticSettingsVersion?: number;
+    enabledLogCategories?: string[];
+}
+
+export declare interface NetworkSecurityProfileOutput {
+    name?: string;
+    accessRulesVersion?: number;
+    accessRules?: Array<AccessRuleOutput>;
+    diagnosticSettingsVersion?: number;
+    enabledLogCategories?: string[];
+}
 
 export declare interface NotificationDetails {
     message: string;
@@ -841,25 +662,160 @@ export declare interface PagingOptions<TResponse> {
     customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
 }
 
+export declare interface Plan {
+    name: string;
+    publisher: string;
+    product: string;
+    promotionCode?: string;
+    version?: string;
+}
+
+export declare interface PlanOutput {
+    name: string;
+    publisher: string;
+    product: string;
+    promotionCode?: string;
+    version?: string;
+}
+
+export declare interface PrivateEndpoint {
+}
+
+export declare interface PrivateEndpointConnection extends Resource {
+    properties?: PrivateEndpointConnectionProperties;
+}
+
+export declare interface PrivateEndpointConnectionOutput extends ResourceOutput {
+    properties?: PrivateEndpointConnectionPropertiesOutput;
+}
+
+export declare interface PrivateEndpointConnectionProperties {
+    privateEndpoint?: PrivateEndpoint;
+    privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
+}
+
+export declare interface PrivateEndpointConnectionPropertiesOutput {
+    readonly groupIds?: string[];
+    privateEndpoint?: PrivateEndpointOutput;
+    privateLinkServiceConnectionState: PrivateLinkServiceConnectionStateOutput;
+    readonly provisioningState?: PrivateEndpointConnectionProvisioningStateOutput;
+}
+
 export declare type PrivateEndpointConnectionProvisioningState = string;
 
 export declare type PrivateEndpointConnectionProvisioningStateOutput = string;
+
+export declare interface PrivateEndpointOutput {
+    readonly id?: string;
+}
 
 export declare type PrivateEndpointServiceConnectionStatus = string;
 
 export declare type PrivateEndpointServiceConnectionStatusOutput = string;
 
+export declare interface PrivateLinkResource extends Resource {
+    properties?: PrivateLinkResourceProperties;
+}
+
+export declare interface PrivateLinkResourceOutput extends ResourceOutput {
+    properties?: PrivateLinkResourcePropertiesOutput;
+}
+
+export declare interface PrivateLinkResourceProperties {
+    requiredZoneNames?: string[];
+}
+
+export declare interface PrivateLinkResourcePropertiesOutput {
+    readonly groupId?: string;
+    readonly requiredMembers?: string[];
+    requiredZoneNames?: string[];
+}
+
+export declare interface PrivateLinkServiceConnectionState {
+    status?: PrivateEndpointServiceConnectionStatus;
+    description?: string;
+    actionsRequired?: string;
+}
+
+export declare interface PrivateLinkServiceConnectionStateOutput {
+    status?: PrivateEndpointServiceConnectionStatusOutput;
+    description?: string;
+    actionsRequired?: string;
+}
+
+export declare interface ProvisioningIssue {
+}
+
+export declare interface ProvisioningIssueOutput {
+    readonly name?: string;
+    readonly properties?: ProvisioningIssuePropertiesOutput;
+}
+
+export declare interface ProvisioningIssueProperties {
+}
+
+export declare interface ProvisioningIssuePropertiesOutput {
+    readonly issueType?: IssueTypeOutput;
+    readonly severity?: SeverityOutput;
+    readonly description?: string;
+    readonly suggestedResourceIds?: string[];
+    readonly suggestedAccessRules?: Array<AccessRuleOutput>;
+}
+
 export declare type ProvisioningState = string;
 
 export declare type ProvisioningStateOutput = string;
+
+export declare interface ProxyResource extends Resource {
+}
+
+export declare interface ProxyResourceOutput extends ResourceOutput {
+}
+
+export declare interface Resource {
+}
+
+export declare interface ResourceAssociation {
+    name?: string;
+    accessMode?: ResourceAssociationAccessMode;
+}
 
 export declare type ResourceAssociationAccessMode = string;
 
 export declare type ResourceAssociationAccessModeOutput = string;
 
+export declare interface ResourceAssociationOutput {
+    name?: string;
+    accessMode?: ResourceAssociationAccessModeOutput;
+}
+
 export declare type ResourceIdentityType = "SystemAssigned";
 
 export declare type ResourceIdentityTypeOutput = "SystemAssigned";
+
+export declare interface ResourceModelWithAllowedPropertySet extends TrackedResource {
+    managedBy?: string;
+    kind?: string;
+    identity?: Identity;
+    sku?: Sku;
+    plan?: Plan;
+}
+
+export declare interface ResourceModelWithAllowedPropertySetOutput extends TrackedResourceOutput {
+    managedBy?: string;
+    kind?: string;
+    readonly eTag?: string;
+    identity?: IdentityOutput;
+    sku?: SkuOutput;
+    plan?: PlanOutput;
+}
+
+export declare interface ResourceOutput {
+    readonly id?: string;
+    readonly name?: string;
+    readonly type?: string;
+    readonly systemData?: SystemDataOutput;
+}
 
 export declare type ResourceProvisioningState = string;
 
@@ -924,7 +880,7 @@ export declare interface SingletonCreateOrUpdateBodyParam {
 
 export declare interface SingletonCreateOrUpdateDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare interface SingletonCreateOrUpdateLogicalResponse extends HttpResponse {
@@ -947,7 +903,7 @@ export declare interface SingletonGetByResourceGroup200Response extends HttpResp
 
 export declare interface SingletonGetByResourceGroupDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare type SingletonGetByResourceGroupParameters = RequestParameters;
@@ -963,12 +919,12 @@ export declare interface SingletonListByResourceGroup200Response extends HttpRes
 
 export declare interface SingletonListByResourceGroupDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare type SingletonListByResourceGroupParameters = RequestParameters;
 
-export declare interface SingletonTrackedResource extends AzureResourceManagerCommonTypesTrackedResource {
+export declare interface SingletonTrackedResource extends TrackedResource {
     properties?: SingletonTrackedResourceProperties;
 }
 
@@ -977,7 +933,7 @@ export declare interface SingletonTrackedResourceListResultOutput {
     nextLink?: string;
 }
 
-export declare interface SingletonTrackedResourceOutput extends AzureResourceManagerCommonTypesTrackedResourceOutput {
+export declare interface SingletonTrackedResourceOutput extends TrackedResourceOutput {
     properties?: SingletonTrackedResourcePropertiesOutput;
 }
 
@@ -1001,14 +957,48 @@ export declare interface SingletonUpdateBodyParam {
 
 export declare interface SingletonUpdateDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare type SingletonUpdateParameters = SingletonUpdateBodyParam & RequestParameters;
 
+export declare interface Sku {
+    name: string;
+    tier?: SkuTier;
+    size?: string;
+    family?: string;
+    capacity?: number;
+}
+
+export declare interface SkuOutput {
+    name: string;
+    tier?: SkuTierOutput;
+    size?: string;
+    family?: string;
+    capacity?: number;
+}
+
 export declare type SkuTier = "Free" | "Basic" | "Standard" | "Premium";
 
 export declare type SkuTierOutput = "Free" | "Basic" | "Standard" | "Premium";
+
+export declare interface SystemData {
+    createdBy?: string;
+    createdByType?: CreatedByType;
+    createdAt?: Date | string;
+    lastModifiedBy?: string;
+    lastModifiedByType?: CreatedByType;
+    lastModifiedAt?: Date | string;
+}
+
+export declare interface SystemDataOutput {
+    createdBy?: string;
+    createdByType?: CreatedByTypeOutput;
+    createdAt?: string;
+    lastModifiedBy?: string;
+    lastModifiedByType?: CreatedByTypeOutput;
+    lastModifiedAt?: string;
+}
 
 export declare interface TopLevelActionSync {
     post(options: TopLevelActionSyncParameters): StreamableMethod<TopLevelActionSync204Response | TopLevelActionSyncDefaultResponse>;
@@ -1024,7 +1014,7 @@ export declare interface TopLevelActionSyncBodyParam {
 
 export declare interface TopLevelActionSyncDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare type TopLevelActionSyncParameters = TopLevelActionSyncBodyParam & RequestParameters;
@@ -1051,7 +1041,7 @@ export declare interface TopLevelCreateOrReplaceBodyParam {
 
 export declare interface TopLevelCreateOrReplaceDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare interface TopLevelCreateOrReplaceLogicalResponse extends HttpResponse {
@@ -1077,7 +1067,7 @@ export declare interface TopLevelDelete204Response extends HttpResponse {
 
 export declare interface TopLevelDeleteDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare interface TopLevelDeleteLogicalResponse extends HttpResponse {
@@ -1100,7 +1090,7 @@ export declare interface TopLevelGet200Response extends HttpResponse {
 
 export declare interface TopLevelGetDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare type TopLevelGetParameters = RequestParameters;
@@ -1116,7 +1106,7 @@ export declare interface TopLevelListByResourceGroup200Response extends HttpResp
 
 export declare interface TopLevelListByResourceGroupDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare type TopLevelListByResourceGroupParameters = RequestParameters;
@@ -1132,12 +1122,12 @@ export declare interface TopLevelListBySubscription200Response extends HttpRespo
 
 export declare interface TopLevelListBySubscriptionDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare type TopLevelListBySubscriptionParameters = RequestParameters;
 
-export declare interface TopLevelTrackedResource extends AzureResourceManagerCommonTypesTrackedResource {
+export declare interface TopLevelTrackedResource extends TrackedResource {
     properties?: TopLevelTrackedResourceProperties;
 }
 
@@ -1146,7 +1136,7 @@ export declare interface TopLevelTrackedResourceListResultOutput {
     nextLink?: string;
 }
 
-export declare interface TopLevelTrackedResourceOutput extends AzureResourceManagerCommonTypesTrackedResourceOutput {
+export declare interface TopLevelTrackedResourceOutput extends TrackedResourceOutput {
     properties?: TopLevelTrackedResourcePropertiesOutput;
 }
 
@@ -1180,7 +1170,7 @@ export declare interface TopLevelUpdateBodyParam {
 
 export declare interface TopLevelUpdateDefaultResponse extends HttpResponse {
     status: string;
-    body: AzureResourceManagerCommonTypesErrorResponseOutput;
+    body: ErrorResponseOutput;
 }
 
 export declare interface TopLevelUpdateLogicalResponse extends HttpResponse {
@@ -1189,5 +1179,15 @@ export declare interface TopLevelUpdateLogicalResponse extends HttpResponse {
 }
 
 export declare type TopLevelUpdateParameters = TopLevelUpdateBodyParam & RequestParameters;
+
+export declare interface TrackedResource extends Resource {
+    tags?: Record<string, string>;
+    location: string;
+}
+
+export declare interface TrackedResourceOutput extends ResourceOutput {
+    tags?: Record<string, string>;
+    location: string;
+}
 
 export { }
