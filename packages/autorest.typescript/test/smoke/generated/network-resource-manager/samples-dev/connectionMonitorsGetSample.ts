@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets a connection monitor by name.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets a connection monitor by name.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkWatcherConnectionMonitorGet.json
  */
-async function getConnectionMonitor() {
+async function getConnectionMonitor(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkWatcherName = "nw1";
@@ -35,8 +33,8 @@ async function getConnectionMonitor() {
   console.log(result);
 }
 
-async function main() {
-  getConnectionMonitor();
+async function main(): Promise<void> {
+  await getConnectionMonitor();
 }
 
 main().catch(console.error);

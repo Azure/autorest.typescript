@@ -14,9 +14,7 @@ import {
   ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Reimages the virtual machine which has an ephemeral OS disk back to its initial state.
@@ -24,7 +22,7 @@ dotenv.config();
  * @summary Reimages the virtual machine which has an ephemeral OS disk back to its initial state.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/ReimageVirtualMachine.json
  */
-async function reimageAVirtualMachine() {
+async function reimageAVirtualMachine(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmName = "myVMName";
@@ -40,8 +38,8 @@ async function reimageAVirtualMachine() {
   console.log(result);
 }
 
-async function main() {
-  reimageAVirtualMachine();
+async function main(): Promise<void> {
+  await reimageAVirtualMachine();
 }
 
 main().catch(console.error);

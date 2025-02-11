@@ -3,9 +3,7 @@
 
 import createAnomalyDetectorRestClient from "@msinternal/anomaly-detector-rest";
 import { AzureKeyCredential } from "@azure/core-auth";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Delete an existing multivariate model according to the modelId
@@ -13,7 +11,7 @@ dotenv.config();
  * @summary Delete an existing multivariate model according to the modelId
  * x-ms-original-file: specification/cognitiveservices/data-plane/AnomalyDetector/stable/v1.1/examples/DeleteModel.json
  */
-async function deleteMultivariateModel() {
+async function deleteMultivariateModel(): Promise<void> {
   const endpoint = "{Endpoint}";
   const apiVersion = "v1.1";
   const credential = new AzureKeyCredential("{Your API key}");
@@ -29,8 +27,8 @@ async function deleteMultivariateModel() {
   console.log(result);
 }
 
-async function main() {
-  deleteMultivariateModel();
+async function main(): Promise<void> {
+  await deleteMultivariateModel();
 }
 
 main().catch(console.error);

@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to List all network manager security configuration admin rules.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary List all network manager security configuration admin rules.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkManagerAdminRuleList.json
  */
-async function listSecurityAdminRules() {
+async function listSecurityAdminRules(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
@@ -41,8 +39,8 @@ async function listSecurityAdminRules() {
   console.log(resArray);
 }
 
-async function main() {
-  listSecurityAdminRules();
+async function main(): Promise<void> {
+  await listSecurityAdminRules();
 }
 
 main().catch(console.error);

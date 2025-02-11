@@ -13,9 +13,7 @@ import {
   NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Updates tags of an IpGroups resource.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Updates tags of an IpGroups resource.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/IpGroupsUpdateTags.json
  */
-async function updateIPGroups() {
+async function updateIPGroups(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const ipGroupsName = "ipGroups1";
@@ -38,8 +36,8 @@ async function updateIPGroups() {
   console.log(result);
 }
 
-async function main() {
-  updateIPGroups();
+async function main(): Promise<void> {
+  await updateIPGroups();
 }
 
 main().catch(console.error);

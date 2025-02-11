@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets all virtual network gateways by resource group.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets all virtual network gateways by resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkGatewayList.json
  */
-async function listVirtualNetworkGatewaysinResourceGroup() {
+async function listVirtualNetworkGatewaysinResourceGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const credential = new DefaultAzureCredential();
@@ -34,8 +32,8 @@ async function listVirtualNetworkGatewaysinResourceGroup() {
   console.log(resArray);
 }
 
-async function main() {
-  listVirtualNetworkGatewaysinResourceGroup();
+async function main(): Promise<void> {
+  await listVirtualNetworkGatewaysinResourceGroup();
 }
 
 main().catch(console.error);

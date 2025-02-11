@@ -5,9 +5,7 @@ import createAzureAgriFoodPlatformDataPlaneServiceClient, {
   paginate,
 } from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Search for boundaries by fields and intersecting geometry.
@@ -15,7 +13,7 @@ dotenv.config();
  * @summary Search for boundaries by fields and intersecting geometry.
  * x-ms-original-file: specification/agrifood/data-plane/Microsoft.AgFoodPlatform/preview/2021-03-31-preview/examples/Boundaries_SearchByFarmerId.json
  */
-async function boundariesSearchByFarmerId() {
+async function boundariesSearchByFarmerId(): Promise<void> {
   const endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
@@ -34,8 +32,8 @@ async function boundariesSearchByFarmerId() {
   console.log(result);
 }
 
-async function main() {
-  boundariesSearchByFarmerId();
+async function main(): Promise<void> {
+  await boundariesSearchByFarmerId();
 }
 
 main().catch(console.error);

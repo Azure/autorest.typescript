@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Deletes the specified load balancer.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Deletes the specified load balancer.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/LoadBalancerDelete.json
  */
-async function deleteLoadBalancer() {
+async function deleteLoadBalancer(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const loadBalancerName = "lb";
@@ -33,8 +31,8 @@ async function deleteLoadBalancer() {
   console.log(result);
 }
 
-async function main() {
-  deleteLoadBalancer();
+async function main(): Promise<void> {
+  await deleteLoadBalancer();
 }
 
 main().catch(console.error);

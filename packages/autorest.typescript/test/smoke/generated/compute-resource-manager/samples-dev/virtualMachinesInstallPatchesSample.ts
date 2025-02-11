@@ -13,9 +13,7 @@ import {
   ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Installs patches on the VM.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Installs patches on the VM.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/VirtualMachineInstallPatches.json
  */
-async function installPatchStateOfAVirtualMachine() {
+async function installPatchStateOfAVirtualMachine(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName =
     process.env["RESOURCE_GROUP"] || "myResourceGroupName";
@@ -46,8 +44,8 @@ async function installPatchStateOfAVirtualMachine() {
   console.log(result);
 }
 
-async function main() {
-  installPatchStateOfAVirtualMachine();
+async function main(): Promise<void> {
+  await installPatchStateOfAVirtualMachine();
 }
 
 main().catch(console.error);

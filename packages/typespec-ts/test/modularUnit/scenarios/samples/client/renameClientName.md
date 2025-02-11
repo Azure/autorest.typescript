@@ -68,14 +68,14 @@ import { TestServiceClient } from "@azure/internal-test";
  * @summary show example demo
  * x-ms-original-file: 2021-10-01-preview/json_for_read.json
  */
-async function read() {
+async function read(): Promise<void> {
   const client = new TestServiceClient();
   const result = await client.read();
   console.log(result);
 }
 
-async function main() {
-  read();
+async function main(): Promise<void> {
+  await read();
 }
 
 main().catch(console.error);

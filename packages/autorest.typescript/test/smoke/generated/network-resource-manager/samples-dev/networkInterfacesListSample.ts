@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets all network interfaces in a resource group.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets all network interfaces in a resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkInterfaceList.json
  */
-async function listNetworkInterfacesInResourceGroup() {
+async function listNetworkInterfacesInResourceGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const credential = new DefaultAzureCredential();
@@ -32,8 +30,8 @@ async function listNetworkInterfacesInResourceGroup() {
   console.log(resArray);
 }
 
-async function main() {
-  listNetworkInterfacesInResourceGroup();
+async function main(): Promise<void> {
+  await listNetworkInterfacesInResourceGroup();
 }
 
 main().catch(console.error);

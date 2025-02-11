@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Returns database service objectives.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Returns database service objectives.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/stable/2014-04-01/examples/ServiceObjectiveList.json
  */
-async function listServiceObjectives() {
+async function listServiceObjectives(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "group1";
@@ -37,8 +35,8 @@ async function listServiceObjectives() {
   console.log(resArray);
 }
 
-async function main() {
-  listServiceObjectives();
+async function main(): Promise<void> {
+  await listServiceObjectives();
 }
 
 main().catch(console.error);

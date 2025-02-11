@@ -10,7 +10,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * @summary update data product resource.
  * x-ms-original-file: 2023-11-15/DataProducts_Update_MaximumSet_Gen.json
  */
-async function dataProductsUpdateMaximumSetGen() {
+async function dataProductsUpdateMaximumSetGen(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
   const client = new NetworkAnalyticsApi(credential, subscriptionId);
@@ -38,8 +38,8 @@ async function dataProductsUpdateMaximumSetGen() {
   console.log(result);
 }
 
-async function main() {
-  dataProductsUpdateMaximumSetGen();
+async function main(): Promise<void> {
+  await dataProductsUpdateMaximumSetGen();
 }
 
 main().catch(console.error);

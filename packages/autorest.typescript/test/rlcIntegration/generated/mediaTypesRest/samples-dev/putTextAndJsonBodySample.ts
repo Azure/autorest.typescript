@@ -2,16 +2,14 @@
 // Licensed under the MIT License.
 
 import createMediaTypesClient from "@msinternal/media-types-service-rest";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation PutTextAndJsonBody
  *
  * @summary call operation PutTextAndJsonBody
  */
-async function putTextAndJsonBodySample() {
+async function putTextAndJsonBodySample(): Promise<void> {
   const client = createMediaTypesClient();
   const result = await client
     .path("/mediatypes/textAndJson")
@@ -19,8 +17,8 @@ async function putTextAndJsonBodySample() {
   console.log(result);
 }
 
-async function main() {
-  putTextAndJsonBodySample();
+async function main(): Promise<void> {
+  await putTextAndJsonBodySample();
 }
 
 main().catch(console.error);

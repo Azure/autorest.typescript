@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Lists all Virtual Router Peerings in a Virtual Router resource.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Lists all Virtual Router Peerings in a Virtual Router resource.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualRouterPeeringList.json
  */
-async function listAllVirtualRouterPeeringsForAGivenVirtualRouter() {
+async function listAllVirtualRouterPeeringsForAGivenVirtualRouter(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualRouterName = "virtualRouter";
@@ -36,8 +34,8 @@ async function listAllVirtualRouterPeeringsForAGivenVirtualRouter() {
   console.log(resArray);
 }
 
-async function main() {
-  listAllVirtualRouterPeeringsForAGivenVirtualRouter();
+async function main(): Promise<void> {
+  await listAllVirtualRouterPeeringsForAGivenVirtualRouter();
 }
 
 main().catch(console.error);

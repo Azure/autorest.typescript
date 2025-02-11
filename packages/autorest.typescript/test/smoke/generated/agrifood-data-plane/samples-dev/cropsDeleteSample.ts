@@ -3,9 +3,7 @@
 
 import createAzureAgriFoodPlatformDataPlaneServiceClient from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Deletes Crop for given crop id.
@@ -13,7 +11,7 @@ dotenv.config();
  * @summary Deletes Crop for given crop id.
  * x-ms-original-file: specification/agrifood/data-plane/Microsoft.AgFoodPlatform/preview/2021-03-31-preview/examples/Crops_Delete.json
  */
-async function cropsDelete() {
+async function cropsDelete(): Promise<void> {
   const endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
@@ -25,8 +23,8 @@ async function cropsDelete() {
   console.log(result);
 }
 
-async function main() {
-  cropsDelete();
+async function main(): Promise<void> {
+  await cropsDelete();
 }
 
 main().catch(console.error);

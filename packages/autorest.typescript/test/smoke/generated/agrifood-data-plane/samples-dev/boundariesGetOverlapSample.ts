@@ -3,9 +3,7 @@
 
 import createAzureAgriFoodPlatformDataPlaneServiceClient from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Returns overlapping acreage between two boundary Ids.
@@ -13,7 +11,7 @@ dotenv.config();
  * @summary Returns overlapping acreage between two boundary Ids.
  * x-ms-original-file: specification/agrifood/data-plane/Microsoft.AgFoodPlatform/preview/2021-03-31-preview/examples/Boundaries_GetOverlap.json
  */
-async function boundariesGetOverlap() {
+async function boundariesGetOverlap(): Promise<void> {
   const endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
@@ -37,8 +35,8 @@ async function boundariesGetOverlap() {
   console.log(result);
 }
 
-async function main() {
-  boundariesGetOverlap();
+async function main(): Promise<void> {
+  await boundariesGetOverlap();
 }
 
 main().catch(console.error);

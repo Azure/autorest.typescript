@@ -1,4 +1,4 @@
-namespace Azure.AI.Client.Agents;
+namespace Azure.AI.Projects.Agents;
 
 using TypeSpec.Versioning;
 

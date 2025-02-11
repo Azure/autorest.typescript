@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets the specified Virtual Router Peering.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets the specified Virtual Router Peering.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualRouterPeeringGet.json
  */
-async function getVirtualRouterPeering() {
+async function getVirtualRouterPeering(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualRouterName = "virtualRouter";
@@ -35,8 +33,8 @@ async function getVirtualRouterPeering() {
   console.log(result);
 }
 
-async function main() {
-  getVirtualRouterPeering();
+async function main(): Promise<void> {
+  await getVirtualRouterPeering();
 }
 
 main().catch(console.error);
