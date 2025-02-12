@@ -48,6 +48,7 @@ Enabling logging may help uncover useful information about failures. In order to
 
 ```ts 
 import { setLogLevel } from "@azure/logger";
+
 setLogLevel("info");
 ```
 

@@ -76,6 +76,7 @@ Enabling logging may help uncover useful information about failures. In order to
 
 \`\`\`ts {{#if azureSdkForJs}}snippet:SetLogLevel{{/if}}
 import { setLogLevel } from "@azure/logger";
+
 setLogLevel("info");
 \`\`\`
 
@@ -213,6 +214,7 @@ Enabling logging may help uncover useful information about failures. In order to
 
 \`\`\`ts {{#if azureSdkForJs}}snippet:SetLogLevel{{/if}}
 import { setLogLevel } from "@azure/logger";
+
 setLogLevel("info");
 \`\`\`
 

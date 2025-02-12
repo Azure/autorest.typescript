@@ -62,7 +62,7 @@ You will also need to **register a new AAD application and grant access to {{ se
 For more information about how to create an Azure AD Application check out [this guide](https://learn.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal).
 
 {{#if azureArm}}
-Using Node.js and Node-like environments, you can use the \`DefaultAzureCredential\` class to authenticate the client.
+Using Node.js and Node-like environments, you can use the `DefaultAzureCredential` class to authenticate the client.
 
 ```ts {{#if azureSdkForJs}}snippet:ReadmeSampleCreateClient_Node{{/if}}
 import { {{ clientClassName }} } from "{{ clientPackageName }}";
@@ -77,7 +77,7 @@ const client = new {{ clientClassName }}(new DefaultAzureCredential());
 ```
 {{/if}}
 
-For browser environments, use the \`InteractiveBrowserCredential\` from the \`@azure/identity\` package to authenticate.
+For browser environments, use the `InteractiveBrowserCredential` from the `@azure/identity` package to authenticate.
 
 ```ts {{#if azureSdkForJs}}snippet:ReadmeSampleCreateClient_Browser{{/if}}
 import { InteractiveBrowserCredential } from "@azure/identity";
@@ -95,7 +95,7 @@ const client = new {{ clientClassName }}(credential);
 ```
 {{/if}}
 {{else}}
-Using Node.js and Node-like environments, you can use the \`DefaultAzureCredential\` class to authenticate the client.
+Using Node.js and Node-like environments, you can use the `DefaultAzureCredential` class to authenticate the client.
 
 ```ts {{#if azureSdkForJs}}snippet:ReadmeSampleCreateClient_Node{{/if}}
 import { InteractiveBrowserCredential } from "@azure/identity";
@@ -104,7 +104,7 @@ import { {{ clientClassName }} } from "{{ clientPackageName }}";
 const client = new {{ clientClassName }}("<endpoint>", new DefaultAzureCredential());
 ```
 
-For browser environments, use the \`InteractiveBrowserCredential\` from the \`@azure/identity\` package to authenticate.
+For browser environments, use the `InteractiveBrowserCredential` from the `@azure/identity` package to authenticate.
 
 ```ts {{#if azureSdkForJs}}snippet:ReadmeSampleCreateClient_Browser{{/if}}
 import { InteractiveBrowserCredential } from "@azure/identity";
