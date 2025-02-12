@@ -13,9 +13,7 @@ import {
   SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Updates a job agent.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Updates a job agent.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/UpdateJobAgent.json
  */
-async function updateAJobAgentTags() {
+async function updateAJobAgentTags(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "group1";
@@ -41,8 +39,8 @@ async function updateAJobAgentTags() {
   console.log(result);
 }
 
-async function main() {
-  updateAJobAgentTags();
+async function main(): Promise<void> {
+  await updateAJobAgentTags();
 }
 
 main().catch(console.error);

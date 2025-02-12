@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Deletes a VirtualHubRouteTableV2.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Deletes a VirtualHubRouteTableV2.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualHubRouteTableV2Delete.json
  */
-async function virtualHubRouteTableV2Delete() {
+async function virtualHubRouteTableV2Delete(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualHubName = "virtualHub1";
@@ -35,8 +33,8 @@ async function virtualHubRouteTableV2Delete() {
   console.log(result);
 }
 
-async function main() {
-  virtualHubRouteTableV2Delete();
+async function main(): Promise<void> {
+  await virtualHubRouteTableV2Delete();
 }
 
 main().catch(console.error);

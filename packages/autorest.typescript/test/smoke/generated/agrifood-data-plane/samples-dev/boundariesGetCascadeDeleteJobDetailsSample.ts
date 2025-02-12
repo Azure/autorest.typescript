@@ -3,9 +3,7 @@
 
 import createAzureAgriFoodPlatformDataPlaneServiceClient from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Get cascade delete job for specified boundary.
@@ -13,7 +11,7 @@ dotenv.config();
  * @summary Get cascade delete job for specified boundary.
  * x-ms-original-file: specification/agrifood/data-plane/Microsoft.AgFoodPlatform/preview/2021-03-31-preview/examples/Boundaries_GetCascadeDeleteJobDetails.json
  */
-async function boundariesGetCascadeDeleteJobDetails() {
+async function boundariesGetCascadeDeleteJobDetails(): Promise<void> {
   const endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
@@ -27,8 +25,8 @@ async function boundariesGetCascadeDeleteJobDetails() {
   console.log(result);
 }
 
-async function main() {
-  boundariesGetCascadeDeleteJobDetails();
+async function main(): Promise<void> {
+  await boundariesGetCascadeDeleteJobDetails();
 }
 
 main().catch(console.error);

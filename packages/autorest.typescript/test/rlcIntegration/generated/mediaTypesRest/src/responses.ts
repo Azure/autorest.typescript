@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { HttpResponse } from "@azure-rest/core-client";
+import type { HttpResponse } from "@azure-rest/core-client";
 
 /** Analyze body, that could be different media types. */
 export interface AnalyzeBody200Response extends HttpResponse {

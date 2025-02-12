@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets a managed instance.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets a managed instance.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceGet.json
  */
-async function getManagedInstance() {
+async function getManagedInstance(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "20d7082a-0fc7-4468-82bd-542694d5042b";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
@@ -40,7 +38,7 @@ async function getManagedInstance() {
  * @summary Gets a managed instance.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceGetWithExpandEqualsAdministrators.json
  */
-async function getManagedInstanceWithExpandAdministratorsOrActivedirectory() {
+async function getManagedInstanceWithExpandAdministratorsOrActivedirectory(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "20d7082a-0fc7-4468-82bd-542694d5042b";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
@@ -54,9 +52,9 @@ async function getManagedInstanceWithExpandAdministratorsOrActivedirectory() {
   console.log(result);
 }
 
-async function main() {
-  getManagedInstance();
-  getManagedInstanceWithExpandAdministratorsOrActivedirectory();
+async function main(): Promise<void> {
+  await getManagedInstance();
+  await getManagedInstanceWithExpandAdministratorsOrActivedirectory();
 }
 
 main().catch(console.error);

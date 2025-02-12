@@ -55,6 +55,7 @@ describe("OAuth2Context in API Layer", () => {
       assert.fail("Expected an exception to be thrown.");
     } catch (err: any) {
       assert.strictEqual(err.message, "Unexpected status code: 403");
+      assert.strictEqual(err.details.error, "invalid-grant");
     }
   });
 });

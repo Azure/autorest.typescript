@@ -1,0 +1,13 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    generateMetadata: true
+    generateTest: false
+    flavor: azure
+    azureSdkForJs: false
+    isModularLibrary: true
+    hierarchyClient: false
+    "emitter-output-dir": "{project-root}"
+    packageDetails:
+      name: "@msinternal/modular-lro-rpc"

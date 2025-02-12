@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets all the available express route service providers.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets all the available express route service providers.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteProviderList.json
  */
-async function listExpressRouteProviders() {
+async function listExpressRouteProviders(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -31,8 +29,8 @@ async function listExpressRouteProviders() {
   console.log(resArray);
 }
 
-async function main() {
-  listExpressRouteProviders();
+async function main(): Promise<void> {
+  await listExpressRouteProviders();
 }
 
 main().catch(console.error);

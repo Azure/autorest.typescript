@@ -13,9 +13,7 @@ import {
   NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Creates or updates the specified ExpressRoutePort resource.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Creates or updates the specified ExpressRoutePort resource.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRoutePortCreate.json
  */
-async function expressRoutePortCreate() {
+async function expressRoutePortCreate(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const expressRoutePortName = "portName";
@@ -50,7 +48,7 @@ async function expressRoutePortCreate() {
  * @summary Creates or updates the specified ExpressRoutePort resource.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRoutePortUpdateLink.json
  */
-async function expressRoutePortUpdateLink() {
+async function expressRoutePortUpdateLink(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const expressRoutePortName = "portName";
@@ -72,9 +70,9 @@ async function expressRoutePortUpdateLink() {
   console.log(result);
 }
 
-async function main() {
-  expressRoutePortCreate();
-  expressRoutePortUpdateLink();
+async function main(): Promise<void> {
+  await expressRoutePortCreate();
+  await expressRoutePortUpdateLink();
 }
 
 main().catch(console.error);

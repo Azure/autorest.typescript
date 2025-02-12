@@ -1,0 +1,18 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    "emitter-output-dir": "{project-root}"
+    generateMetadata: true
+    generateTest: false
+    addCredentials: false
+    flavor: azure
+    azureSdkForJs: false
+    isTypeSpecTest: true
+    generateSample: true
+    isModularLibrary: false
+    title: Azure Arm models CommonTypes ManagedIdentity
+    packageDetails:
+      name: "@azure/arm-managedIdentity"
+      description: "AzureArm models CommonTypes ManagedIdentity Test Service"
+      version: "1.0.0"

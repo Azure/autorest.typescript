@@ -13,9 +13,7 @@ import {
   ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Create or update a Shared Image Gallery.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Create or update a Shared Image Gallery.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/CreateOrUpdateASimpleGalleryWithSharingProfile.json
  */
-async function createOrUpdateASimpleGalleryWithSharingProfile() {
+async function createOrUpdateASimpleGalleryWithSharingProfile(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -48,7 +46,7 @@ async function createOrUpdateASimpleGalleryWithSharingProfile() {
  * @summary Create or update a Shared Image Gallery.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/CreateOrUpdateASimpleGalleryWithSoftDeletionEnabled.json
  */
-async function createOrUpdateASimpleGalleryWithSoftDeletionEnabled() {
+async function createOrUpdateASimpleGalleryWithSoftDeletionEnabled(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -73,7 +71,7 @@ async function createOrUpdateASimpleGalleryWithSoftDeletionEnabled() {
  * @summary Create or update a Shared Image Gallery.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/CreateOrUpdateASimpleGallery.json
  */
-async function createOrUpdateASimpleGallery() {
+async function createOrUpdateASimpleGallery(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -91,10 +89,10 @@ async function createOrUpdateASimpleGallery() {
   console.log(result);
 }
 
-async function main() {
-  createOrUpdateASimpleGalleryWithSharingProfile();
-  createOrUpdateASimpleGalleryWithSoftDeletionEnabled();
-  createOrUpdateASimpleGallery();
+async function main(): Promise<void> {
+  await createOrUpdateASimpleGalleryWithSharingProfile();
+  await createOrUpdateASimpleGalleryWithSoftDeletionEnabled();
+  await createOrUpdateASimpleGallery();
 }
 
 main().catch(console.error);

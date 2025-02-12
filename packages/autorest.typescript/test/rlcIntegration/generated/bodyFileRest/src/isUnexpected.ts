@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   FilesGetFile200Response,
   FilesGetFileDefaultResponse,
   FilesGetFileLarge200Response,

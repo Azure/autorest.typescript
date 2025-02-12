@@ -2,16 +2,14 @@
 // Licensed under the MIT License.
 
 import createMultipleInheritanceRestClient from "@msinternal/multiple-inheritance-rest";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation PutCat
  *
  * @summary call operation PutCat
  */
-async function putCatSample() {
+async function putCatSample(): Promise<void> {
   const client = createMultipleInheritanceRestClient();
   const result = await client
     .path("/multipleInheritance/cat")
@@ -22,8 +20,8 @@ async function putCatSample() {
   console.log(result);
 }
 
-async function main() {
-  putCatSample();
+async function main(): Promise<void> {
+  await putCatSample();
 }
 
 main().catch(console.error);

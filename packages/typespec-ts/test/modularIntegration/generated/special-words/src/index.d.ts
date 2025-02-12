@@ -1,6 +1,6 @@
-import { ClientOptions } from '@azure-rest/core-client';
-import { OperationOptions } from '@azure-rest/core-client';
-import { Pipeline } from '@azure/core-rest-pipeline';
+import { ClientOptions } from '@typespec/ts-http-runtime';
+import { OperationOptions } from '@typespec/ts-http-runtime';
+import { Pipeline } from '@typespec/ts-http-runtime';
 
 export declare interface And {
     name: string;
@@ -106,39 +106,39 @@ export declare interface ModelPropertiesSameAsModelOptionalParams extends Operat
 }
 
 export declare interface ModelsOperations {
-    withAnd: (body: And, options?: ModelsWithAndOptionalParams) => Promise<void>;
-    withAs: (body: As, options?: ModelsWithAsOptionalParams) => Promise<void>;
-    withAssert: (body: Assert, options?: ModelsWithAssertOptionalParams) => Promise<void>;
-    withAsync: (body: Async, options?: ModelsWithAsyncOptionalParams) => Promise<void>;
-    withAwait: (body: Await, options?: ModelsWithAwaitOptionalParams) => Promise<void>;
-    withBreak: (body: Break, options?: ModelsWithBreakOptionalParams) => Promise<void>;
-    withClass: (body: Class, options?: ModelsWithClassOptionalParams) => Promise<void>;
-    withConstructor: (body: Constructor, options?: ModelsWithConstructorOptionalParams) => Promise<void>;
-    withContinue: (body: Continue, options?: ModelsWithContinueOptionalParams) => Promise<void>;
-    withDef: (body: Def, options?: ModelsWithDefOptionalParams) => Promise<void>;
-    withDel: (body: Del, options?: ModelsWithDelOptionalParams) => Promise<void>;
-    withElif: (body: Elif, options?: ModelsWithElifOptionalParams) => Promise<void>;
-    withElse: (body: Else, options?: ModelsWithElseOptionalParams) => Promise<void>;
-    withExcept: (body: Except, options?: ModelsWithExceptOptionalParams) => Promise<void>;
-    withExec: (body: Exec, options?: ModelsWithExecOptionalParams) => Promise<void>;
-    withFinally: (body: Finally, options?: ModelsWithFinallyOptionalParams) => Promise<void>;
-    withFor: (body: For, options?: ModelsWithForOptionalParams) => Promise<void>;
-    withFrom: (body: From, options?: ModelsWithFromOptionalParams) => Promise<void>;
-    withGlobal: (body: GlobalModel, options?: ModelsWithGlobalOptionalParams) => Promise<void>;
-    withIf: (body: If, options?: ModelsWithIfOptionalParams) => Promise<void>;
-    withImport: (body: Import, options?: ModelsWithImportOptionalParams) => Promise<void>;
-    withIn: (body: In, options?: ModelsWithInOptionalParams) => Promise<void>;
-    withIs: (body: Is, options?: ModelsWithIsOptionalParams) => Promise<void>;
-    withLambda: (body: Lambda, options?: ModelsWithLambdaOptionalParams) => Promise<void>;
-    withNot: (body: Not, options?: ModelsWithNotOptionalParams) => Promise<void>;
-    withOr: (body: Or, options?: ModelsWithOrOptionalParams) => Promise<void>;
-    withPass: (body: Pass, options?: ModelsWithPassOptionalParams) => Promise<void>;
-    withRaise: (body: Raise, options?: ModelsWithRaiseOptionalParams) => Promise<void>;
-    withReturn: (body: Return, options?: ModelsWithReturnOptionalParams) => Promise<void>;
-    withTry: (body: Try, options?: ModelsWithTryOptionalParams) => Promise<void>;
-    withWhile: (body: While, options?: ModelsWithWhileOptionalParams) => Promise<void>;
-    withWith: (body: With, options?: ModelsWithWithOptionalParams) => Promise<void>;
     withYield: (body: Yield, options?: ModelsWithYieldOptionalParams) => Promise<void>;
+    withWith: (body: With, options?: ModelsWithWithOptionalParams) => Promise<void>;
+    withWhile: (body: While, options?: ModelsWithWhileOptionalParams) => Promise<void>;
+    withTry: (body: Try, options?: ModelsWithTryOptionalParams) => Promise<void>;
+    withReturn: (body: Return, options?: ModelsWithReturnOptionalParams) => Promise<void>;
+    withRaise: (body: Raise, options?: ModelsWithRaiseOptionalParams) => Promise<void>;
+    withPass: (body: Pass, options?: ModelsWithPassOptionalParams) => Promise<void>;
+    withOr: (body: Or, options?: ModelsWithOrOptionalParams) => Promise<void>;
+    withNot: (body: Not, options?: ModelsWithNotOptionalParams) => Promise<void>;
+    withLambda: (body: Lambda, options?: ModelsWithLambdaOptionalParams) => Promise<void>;
+    withIs: (body: Is, options?: ModelsWithIsOptionalParams) => Promise<void>;
+    withIn: (body: In, options?: ModelsWithInOptionalParams) => Promise<void>;
+    withImport: (body: Import, options?: ModelsWithImportOptionalParams) => Promise<void>;
+    withIf: (body: If, options?: ModelsWithIfOptionalParams) => Promise<void>;
+    withGlobal: (body: GlobalModel, options?: ModelsWithGlobalOptionalParams) => Promise<void>;
+    withFrom: (body: From, options?: ModelsWithFromOptionalParams) => Promise<void>;
+    withFor: (body: For, options?: ModelsWithForOptionalParams) => Promise<void>;
+    withFinally: (body: Finally, options?: ModelsWithFinallyOptionalParams) => Promise<void>;
+    withExec: (body: Exec, options?: ModelsWithExecOptionalParams) => Promise<void>;
+    withExcept: (body: Except, options?: ModelsWithExceptOptionalParams) => Promise<void>;
+    withElse: (body: Else, options?: ModelsWithElseOptionalParams) => Promise<void>;
+    withElif: (body: Elif, options?: ModelsWithElifOptionalParams) => Promise<void>;
+    withDel: (body: Del, options?: ModelsWithDelOptionalParams) => Promise<void>;
+    withDef: (body: Def, options?: ModelsWithDefOptionalParams) => Promise<void>;
+    withContinue: (body: Continue, options?: ModelsWithContinueOptionalParams) => Promise<void>;
+    withConstructor: (body: Constructor, options?: ModelsWithConstructorOptionalParams) => Promise<void>;
+    withClass: (body: Class, options?: ModelsWithClassOptionalParams) => Promise<void>;
+    withBreak: (body: Break, options?: ModelsWithBreakOptionalParams) => Promise<void>;
+    withAwait: (body: Await, options?: ModelsWithAwaitOptionalParams) => Promise<void>;
+    withAsync: (body: Async, options?: ModelsWithAsyncOptionalParams) => Promise<void>;
+    withAssert: (body: Assert, options?: ModelsWithAssertOptionalParams) => Promise<void>;
+    withAs: (body: As, options?: ModelsWithAsOptionalParams) => Promise<void>;
+    withAnd: (body: And, options?: ModelsWithAndOptionalParams) => Promise<void>;
 }
 
 export declare interface ModelsWithAndOptionalParams extends OperationOptions {
@@ -320,39 +320,39 @@ export declare interface OperationsNotOptionalParams extends OperationOptions {
 }
 
 export declare interface OperationsOperations {
-    and: (options?: OperationsAndOptionalParams) => Promise<void>;
-    as: (options?: OperationsAsOptionalParams) => Promise<void>;
-    assert: (options?: OperationsAssertOptionalParams) => Promise<void>;
-    async: (options?: OperationsAsyncOptionalParams) => Promise<void>;
-    await: (options?: OperationsAwaitOptionalParams) => Promise<void>;
-    break: (options?: OperationsBreakOptionalParams) => Promise<void>;
-    class: (options?: OperationsClassOptionalParams) => Promise<void>;
-    constructor: (options?: OperationsConstructorOptionalParams) => Promise<void>;
-    continue: (options?: OperationsContinueOptionalParams) => Promise<void>;
-    def: (options?: OperationsDefOptionalParams) => Promise<void>;
-    del: (options?: OperationsDelOptionalParams) => Promise<void>;
-    elif: (options?: OperationsElifOptionalParams) => Promise<void>;
-    else: (options?: OperationsElseOptionalParams) => Promise<void>;
-    except: (options?: OperationsExceptOptionalParams) => Promise<void>;
-    exec: (options?: OperationsExecOptionalParams) => Promise<void>;
-    finally: (options?: OperationsFinallyOptionalParams) => Promise<void>;
-    for: (options?: OperationsForOptionalParams) => Promise<void>;
-    from: (options?: OperationsFromOptionalParams) => Promise<void>;
-    global: (options?: OperationsGlobalOptionalParams) => Promise<void>;
-    if: (options?: OperationsIfOptionalParams) => Promise<void>;
-    import: (options?: OperationsImportOptionalParams) => Promise<void>;
-    in: (options?: OperationsInOptionalParams) => Promise<void>;
-    is: (options?: OperationsIsOptionalParams) => Promise<void>;
-    lambda: (options?: OperationsLambdaOptionalParams) => Promise<void>;
-    not: (options?: OperationsNotOptionalParams) => Promise<void>;
-    or: (options?: OperationsOrOptionalParams) => Promise<void>;
-    pass: (options?: OperationsPassOptionalParams) => Promise<void>;
-    raise: (options?: OperationsRaiseOptionalParams) => Promise<void>;
-    return: (options?: OperationsReturnOptionalParams) => Promise<void>;
-    try: (options?: OperationsTryOptionalParams) => Promise<void>;
-    while: (options?: OperationsWhileOptionalParams) => Promise<void>;
-    with: (options?: OperationsWithOptionalParams) => Promise<void>;
     yield: (options?: OperationsYieldOptionalParams) => Promise<void>;
+    with: (options?: OperationsWithOptionalParams) => Promise<void>;
+    while: (options?: OperationsWhileOptionalParams) => Promise<void>;
+    try: (options?: OperationsTryOptionalParams) => Promise<void>;
+    return: (options?: OperationsReturnOptionalParams) => Promise<void>;
+    raise: (options?: OperationsRaiseOptionalParams) => Promise<void>;
+    pass: (options?: OperationsPassOptionalParams) => Promise<void>;
+    or: (options?: OperationsOrOptionalParams) => Promise<void>;
+    not: (options?: OperationsNotOptionalParams) => Promise<void>;
+    lambda: (options?: OperationsLambdaOptionalParams) => Promise<void>;
+    is: (options?: OperationsIsOptionalParams) => Promise<void>;
+    in: (options?: OperationsInOptionalParams) => Promise<void>;
+    import: (options?: OperationsImportOptionalParams) => Promise<void>;
+    if: (options?: OperationsIfOptionalParams) => Promise<void>;
+    global: (options?: OperationsGlobalOptionalParams) => Promise<void>;
+    from: (options?: OperationsFromOptionalParams) => Promise<void>;
+    for: (options?: OperationsForOptionalParams) => Promise<void>;
+    finally: (options?: OperationsFinallyOptionalParams) => Promise<void>;
+    exec: (options?: OperationsExecOptionalParams) => Promise<void>;
+    except: (options?: OperationsExceptOptionalParams) => Promise<void>;
+    else: (options?: OperationsElseOptionalParams) => Promise<void>;
+    elif: (options?: OperationsElifOptionalParams) => Promise<void>;
+    del: (options?: OperationsDelOptionalParams) => Promise<void>;
+    def: (options?: OperationsDefOptionalParams) => Promise<void>;
+    continue: (options?: OperationsContinueOptionalParams) => Promise<void>;
+    constructor: (options?: OperationsConstructorOptionalParams) => Promise<void>;
+    class: (options?: OperationsClassOptionalParams) => Promise<void>;
+    break: (options?: OperationsBreakOptionalParams) => Promise<void>;
+    await: (options?: OperationsAwaitOptionalParams) => Promise<void>;
+    async: (options?: OperationsAsyncOptionalParams) => Promise<void>;
+    assert: (options?: OperationsAssertOptionalParams) => Promise<void>;
+    as: (options?: OperationsAsOptionalParams) => Promise<void>;
+    and: (options?: OperationsAndOptionalParams) => Promise<void>;
 }
 
 export declare interface OperationsOrOptionalParams extends OperationOptions {
@@ -384,40 +384,40 @@ export declare interface Or {
 }
 
 export declare interface ParametersOperations {
-    withAnd: (and: string, options?: ParametersWithAndOptionalParams) => Promise<void>;
-    withAs: (asParam: string, options?: ParametersWithAsOptionalParams) => Promise<void>;
-    withAssert: (assertParam: string, options?: ParametersWithAssertOptionalParams) => Promise<void>;
-    withAsync: (asyncParam: string, options?: ParametersWithAsyncOptionalParams) => Promise<void>;
-    withAwait: (awaitParam: string, options?: ParametersWithAwaitOptionalParams) => Promise<void>;
-    withBreak: (breakParam: string, options?: ParametersWithBreakOptionalParams) => Promise<void>;
-    withClass: (classParam: string, options?: ParametersWithClassOptionalParams) => Promise<void>;
-    withConstructor: (constructorParam: string, options?: ParametersWithConstructorOptionalParams) => Promise<void>;
-    withContinue: (continueParam: string, options?: ParametersWithContinueOptionalParams) => Promise<void>;
-    withDef: (def: string, options?: ParametersWithDefOptionalParams) => Promise<void>;
-    withDel: (del: string, options?: ParametersWithDelOptionalParams) => Promise<void>;
-    withElif: (elif: string, options?: ParametersWithElifOptionalParams) => Promise<void>;
-    withElse: (elseParam: string, options?: ParametersWithElseOptionalParams) => Promise<void>;
-    withExcept: (except: string, options?: ParametersWithExceptOptionalParams) => Promise<void>;
-    withExec: (exec: string, options?: ParametersWithExecOptionalParams) => Promise<void>;
-    withFinally: (finallyParam: string, options?: ParametersWithFinallyOptionalParams) => Promise<void>;
-    withFor: (forParam: string, options?: ParametersWithForOptionalParams) => Promise<void>;
-    withFrom: (fromParam: string, options?: ParametersWithFromOptionalParams) => Promise<void>;
-    withGlobal: (global: string, options?: ParametersWithGlobalOptionalParams) => Promise<void>;
-    withIf: (ifParam: string, options?: ParametersWithIfOptionalParams) => Promise<void>;
-    withImport: (importParam: string, options?: ParametersWithImportOptionalParams) => Promise<void>;
-    withIn: (inParam: string, options?: ParametersWithInOptionalParams) => Promise<void>;
-    withIs: (is: string, options?: ParametersWithIsOptionalParams) => Promise<void>;
-    withLambda: (lambda: string, options?: ParametersWithLambdaOptionalParams) => Promise<void>;
-    withNot: (not: string, options?: ParametersWithNotOptionalParams) => Promise<void>;
-    withOr: (or: string, options?: ParametersWithOrOptionalParams) => Promise<void>;
-    withPass: (pass: string, options?: ParametersWithPassOptionalParams) => Promise<void>;
-    withRaise: (raise: string, options?: ParametersWithRaiseOptionalParams) => Promise<void>;
-    withReturn: (returnParam: string, options?: ParametersWithReturnOptionalParams) => Promise<void>;
-    withTry: (tryParam: string, options?: ParametersWithTryOptionalParams) => Promise<void>;
-    withWhile: (whileParam: string, options?: ParametersWithWhileOptionalParams) => Promise<void>;
-    withWith: (withParam: string, options?: ParametersWithWithOptionalParams) => Promise<void>;
-    withYield: (yieldParam: string, options?: ParametersWithYieldOptionalParams) => Promise<void>;
     withCancellationToken: (cancellationToken: string, options?: ParametersWithCancellationTokenOptionalParams) => Promise<void>;
+    withYield: (yieldParam: string, options?: ParametersWithYieldOptionalParams) => Promise<void>;
+    withWith: (withParam: string, options?: ParametersWithWithOptionalParams) => Promise<void>;
+    withWhile: (whileParam: string, options?: ParametersWithWhileOptionalParams) => Promise<void>;
+    withTry: (tryParam: string, options?: ParametersWithTryOptionalParams) => Promise<void>;
+    withReturn: (returnParam: string, options?: ParametersWithReturnOptionalParams) => Promise<void>;
+    withRaise: (raise: string, options?: ParametersWithRaiseOptionalParams) => Promise<void>;
+    withPass: (pass: string, options?: ParametersWithPassOptionalParams) => Promise<void>;
+    withOr: (or: string, options?: ParametersWithOrOptionalParams) => Promise<void>;
+    withNot: (not: string, options?: ParametersWithNotOptionalParams) => Promise<void>;
+    withLambda: (lambda: string, options?: ParametersWithLambdaOptionalParams) => Promise<void>;
+    withIs: (is: string, options?: ParametersWithIsOptionalParams) => Promise<void>;
+    withIn: (inParam: string, options?: ParametersWithInOptionalParams) => Promise<void>;
+    withImport: (importParam: string, options?: ParametersWithImportOptionalParams) => Promise<void>;
+    withIf: (ifParam: string, options?: ParametersWithIfOptionalParams) => Promise<void>;
+    withGlobal: (global: string, options?: ParametersWithGlobalOptionalParams) => Promise<void>;
+    withFrom: (fromParam: string, options?: ParametersWithFromOptionalParams) => Promise<void>;
+    withFor: (forParam: string, options?: ParametersWithForOptionalParams) => Promise<void>;
+    withFinally: (finallyParam: string, options?: ParametersWithFinallyOptionalParams) => Promise<void>;
+    withExec: (exec: string, options?: ParametersWithExecOptionalParams) => Promise<void>;
+    withExcept: (except: string, options?: ParametersWithExceptOptionalParams) => Promise<void>;
+    withElse: (elseParam: string, options?: ParametersWithElseOptionalParams) => Promise<void>;
+    withElif: (elif: string, options?: ParametersWithElifOptionalParams) => Promise<void>;
+    withDel: (del: string, options?: ParametersWithDelOptionalParams) => Promise<void>;
+    withDef: (def: string, options?: ParametersWithDefOptionalParams) => Promise<void>;
+    withContinue: (continueParam: string, options?: ParametersWithContinueOptionalParams) => Promise<void>;
+    withConstructor: (constructorParam: string, options?: ParametersWithConstructorOptionalParams) => Promise<void>;
+    withClass: (classParam: string, options?: ParametersWithClassOptionalParams) => Promise<void>;
+    withBreak: (breakParam: string, options?: ParametersWithBreakOptionalParams) => Promise<void>;
+    withAwait: (awaitParam: string, options?: ParametersWithAwaitOptionalParams) => Promise<void>;
+    withAsync: (asyncParam: string, options?: ParametersWithAsyncOptionalParams) => Promise<void>;
+    withAssert: (assertParam: string, options?: ParametersWithAssertOptionalParams) => Promise<void>;
+    withAs: (asParam: string, options?: ParametersWithAsOptionalParams) => Promise<void>;
+    withAnd: (and: string, options?: ParametersWithAndOptionalParams) => Promise<void>;
 }
 
 export declare interface ParametersWithAndOptionalParams extends OperationOptions {
@@ -542,10 +542,10 @@ export declare class SpecialWordsClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: SpecialWordsClientOptionalParams);
-    readonly models: ModelsOperations;
-    readonly modelProperties: ModelPropertiesOperations;
-    readonly operations: OperationsOperations;
     readonly parameters: ParametersOperations;
+    readonly operations: OperationsOperations;
+    readonly modelProperties: ModelPropertiesOperations;
+    readonly models: ModelsOperations;
 }
 
 export declare interface SpecialWordsClientOptionalParams extends ClientOptions {

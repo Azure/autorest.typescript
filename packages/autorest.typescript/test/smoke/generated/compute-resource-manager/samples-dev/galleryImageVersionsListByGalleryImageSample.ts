@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to List gallery image versions in a gallery image definition.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary List gallery image versions in a gallery image definition.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/ListGalleryImageVersionsInAGalleryImage.json
  */
-async function listGalleryImageVersionsInAGalleryImageDefinition() {
+async function listGalleryImageVersionsInAGalleryImageDefinition(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -38,8 +36,8 @@ async function listGalleryImageVersionsInAGalleryImageDefinition() {
   console.log(resArray);
 }
 
-async function main() {
-  listGalleryImageVersionsInAGalleryImageDefinition();
+async function main(): Promise<void> {
+  await listGalleryImageVersionsInAGalleryImageDefinition();
 }
 
 main().catch(console.error);

@@ -1,6 +1,6 @@
-import { ClientOptions } from '@azure-rest/core-client';
-import { OperationOptions } from '@azure-rest/core-client';
-import { Pipeline } from '@azure/core-rest-pipeline';
+import { ClientOptions } from '@typespec/ts-http-runtime';
+import { OperationOptions } from '@typespec/ts-http-runtime';
+import { Pipeline } from '@typespec/ts-http-runtime';
 
 export declare type EnumV2 = "enumMemberV2";
 
@@ -24,8 +24,8 @@ export declare class RemovedClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(endpointParam: string, version: Versions, options?: RemovedClientOptionalParams);
-    v2(body: ModelV2, options?: V2OptionalParams): Promise<ModelV2>;
     modelV3(body: ModelV3, options?: ModelV3OptionalParams): Promise<ModelV3>;
+    v2(body: ModelV2, options?: V2OptionalParams): Promise<ModelV2>;
 }
 
 export declare interface RemovedClientOptionalParams extends ClientOptions {

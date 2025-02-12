@@ -1,8 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { RequestParameters } from "@azure-rest/core-client";
-import { ModelInfo, DetectionRequest, LastDetectionRequest } from "./models";
+import type { RequestParameters } from "@azure-rest/core-client";
+import type {
+  ModelInfo,
+  DetectionRequest,
+  LastDetectionRequest,
+} from "./models";
 
 export type GetMultivariateBatchDetectionResultParameters = RequestParameters;
 

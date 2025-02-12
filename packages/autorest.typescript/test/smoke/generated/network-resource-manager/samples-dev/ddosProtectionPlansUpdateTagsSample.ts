@@ -13,9 +13,7 @@ import {
   NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Update a DDoS protection plan tags.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Update a DDoS protection plan tags.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/DdosProtectionPlanUpdateTags.json
  */
-async function dDoSProtectionPlanUpdateTags() {
+async function dDoSProtectionPlanUpdateTags(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const ddosProtectionPlanName = "test-plan";
@@ -38,8 +36,8 @@ async function dDoSProtectionPlanUpdateTags() {
   console.log(result);
 }
 
-async function main() {
-  dDoSProtectionPlanUpdateTags();
+async function main(): Promise<void> {
+  await dDoSProtectionPlanUpdateTags();
 }
 
 main().catch(console.error);

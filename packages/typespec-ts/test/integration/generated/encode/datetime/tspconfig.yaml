@@ -4,10 +4,9 @@ options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
     generateMetadata: true
-    generateTest: false
     addCredentials: false
-    azureSdkForJs: false
+    isModularLibrary: false
     isTypeSpecTest: true
     enableOperationGroup: true
     packageDetails:
-      name: "@msinternal/encode-datetime"
+      name: "@unbranded/encode-datetime"

@@ -2,16 +2,14 @@
 // Licensed under the MIT License.
 
 import createMediaTypesClient from "@msinternal/media-types-service-rest";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation BinaryBodyWithThreeContentTypes
  *
  * @summary call operation BinaryBodyWithThreeContentTypes
  */
-async function binaryBodyWithThreeContentTypesSample() {
+async function binaryBodyWithThreeContentTypesSample(): Promise<void> {
   const client = createMediaTypesClient();
   const result = await client
     .path("/mediatypes/binaryBodyThreeContentTypes")
@@ -19,8 +17,8 @@ async function binaryBodyWithThreeContentTypesSample() {
   console.log(result);
 }
 
-async function main() {
-  binaryBodyWithThreeContentTypesSample();
+async function main(): Promise<void> {
+  await binaryBodyWithThreeContentTypesSample();
 }
 
 main().catch(console.error);

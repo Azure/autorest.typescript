@@ -1,6 +1,6 @@
-import { ClientOptions } from '@azure-rest/core-client';
-import { OperationOptions } from '@azure-rest/core-client';
-import { Pipeline } from '@azure/core-rest-pipeline';
+import { ClientOptions } from '@typespec/ts-http-runtime';
+import { OperationOptions } from '@typespec/ts-http-runtime';
+import { Pipeline } from '@typespec/ts-http-runtime';
 
 declare interface Element_2 {
     extension?: Extension[];
@@ -21,8 +21,8 @@ export declare class RecursiveClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: RecursiveClientOptionalParams);
-    put(input: Extension, options?: PutOptionalParams): Promise<void>;
     get(options?: GetOptionalParams): Promise<Extension>;
+    put(input: Extension, options?: PutOptionalParams): Promise<void>;
 }
 
 export declare interface RecursiveClientOptionalParams extends ClientOptions {

@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Deletes the specified tap configuration from the NetworkInterface.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Deletes the specified tap configuration from the NetworkInterface.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkInterfaceTapConfigurationDelete.json
  */
-async function deleteTapConfiguration() {
+async function deleteTapConfiguration(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkInterfaceName = "test-networkinterface";
@@ -36,8 +34,8 @@ async function deleteTapConfiguration() {
   console.log(result);
 }
 
-async function main() {
-  deleteTapConfiguration();
+async function main(): Promise<void> {
+  await deleteTapConfiguration();
 }
 
 main().catch(console.error);

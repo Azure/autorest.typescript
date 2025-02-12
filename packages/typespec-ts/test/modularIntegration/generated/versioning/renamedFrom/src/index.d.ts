@@ -1,6 +1,6 @@
-import { ClientOptions } from '@azure-rest/core-client';
-import { OperationOptions } from '@azure-rest/core-client';
-import { Pipeline } from '@azure/core-rest-pipeline';
+import { ClientOptions } from '@typespec/ts-http-runtime';
+import { OperationOptions } from '@typespec/ts-http-runtime';
+import { Pipeline } from '@typespec/ts-http-runtime';
 
 export declare type NewEnum = "newEnumMember";
 
@@ -22,8 +22,8 @@ export declare class RenamedFromClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(endpointParam: string, version: Versions, options?: RenamedFromClientOptionalParams);
-    newOp(newQuery: string, body: NewModel, options?: NewOpOptionalParams): Promise<NewModel>;
     newOpInNewInterface(body: NewModel, options?: NewOpInNewInterfaceOptionalParams): Promise<NewModel>;
+    newOp(body: NewModel, newQuery: string, options?: NewOpOptionalParams): Promise<NewModel>;
 }
 
 export declare interface RenamedFromClientOptionalParams extends ClientOptions {
