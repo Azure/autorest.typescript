@@ -1,4 +1,4 @@
-# Should generate query parameter with start(\*) character
+# only: Should generate query parameter with start(\*) character
 
 ## TypeSpec
 
@@ -31,13 +31,13 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
-export function _primitiveSend(
+export function _recordSend(
   context: Client,
-  param: string,
-  options: PrimitiveOptionalParams = { requestOptions: {} },
+  param: Record<string, number>,
+  options: RecordOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/primitive?fixed=true{&param*}",
+    "/record?fixed=true{&param*}",
     {
       param: param,
     },
@@ -50,7 +50,7 @@ export function _primitiveSend(
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _primitiveDeserialize(
+export async function _recordDeserialize(
   result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["204"];
@@ -61,13 +61,13 @@ export async function _primitiveDeserialize(
   return;
 }
 
-export async function primitive(
+export async function record(
   context: Client,
-  param: string,
-  options: PrimitiveOptionalParams = { requestOptions: {} },
+  param: Record<string, number>,
+  options: RecordOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _primitiveSend(context, param, options);
-  return _primitiveDeserialize(result);
+  const result = await _recordSend(context, param, options);
+  return _recordDeserialize(result);
 }
 
 export function _arraySend(
@@ -111,13 +111,13 @@ export async function array(
   return _arrayDeserialize(result);
 }
 
-export function _recordSend(
+export function _primitiveSend(
   context: Client,
-  param: Record<string, number>,
-  options: RecordOptionalParams = { requestOptions: {} },
+  param: string,
+  options: PrimitiveOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/record?fixed=true{&param*}",
+    "/primitive?fixed=true{&param*}",
     {
       param: param,
     },
@@ -130,7 +130,7 @@ export function _recordSend(
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _recordDeserialize(
+export async function _primitiveDeserialize(
   result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["204"];
@@ -141,12 +141,12 @@ export async function _recordDeserialize(
   return;
 }
 
-export async function record(
+export async function primitive(
   context: Client,
-  param: Record<string, number>,
-  options: RecordOptionalParams = { requestOptions: {} },
+  param: string,
+  options: PrimitiveOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _recordSend(context, param, options);
-  return _recordDeserialize(result);
+  const result = await _primitiveSend(context, param, options);
+  return _primitiveDeserialize(result);
 }
 ```

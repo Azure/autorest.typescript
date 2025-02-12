@@ -266,8 +266,8 @@ export async function provideBinderWithAzureDependencies(project: Project) {
     ...SerializationHelpers,
     ...PagingHelpers,
     ...PollingHelpers,
-    ...UrlTemplateHelpers
-    ...MultipartHelpers,
+    ...UrlTemplateHelpers,
+    ...MultipartHelpers
   };
 
   const staticHelperMap = await loadStaticHelpers(project, staticHelpers, {

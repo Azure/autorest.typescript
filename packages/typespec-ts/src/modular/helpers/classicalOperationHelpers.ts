@@ -117,11 +117,7 @@ export function getClassicalOperation(
     });
   }
   if (existInterface) {
-    // only adding the property if it doesn't exist
-    const unExistingProperties = properties.filter(
-      (p) => !existInterface.getProperty(p.name)
-    );
-    existInterface.addProperties([...unExistingProperties]);
+    existInterface.addProperties([...properties]);
   } else {
     classicFile.addInterface({
       name: interfaceName,
@@ -214,13 +210,6 @@ export function getClassicalOperation(
         "",
         layer + 1
       )}Operations(context)}`;
-        // only adding the property if it doesn't exist
-        if (!returnStatement.includes(propertyAndGetterStatement)) {
-          statement = `,
-        ${propertyAndGetterStatement}Operations(context${
-        } else {
-          statement = `}`;
-        }
       }
 
       if (statement) {

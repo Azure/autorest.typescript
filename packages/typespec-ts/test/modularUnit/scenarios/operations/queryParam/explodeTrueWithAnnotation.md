@@ -1,4 +1,4 @@
-# Should generate query explode: true parameter for @query(#{ explode: true }
+# only: Should generate query explode: true parameter for @query(#{ explode: true }
 
 ## TypeSpec
 
@@ -35,47 +35,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-
-export function _optionalSend(
-  context: Client,
-  options: OptionalOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  const path = expandUrlTemplate(
-    "/annotation/optional{?select*}",
-    {
-      select: !options?.select
-        ? options?.select
-        : options?.select.map((p: any) => {
-            return p;
-          }),
-    },
-    {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
-  );
-  return context
-    .path(path)
-    .get({ ...operationOptionsToRequestParameters(options) });
-}
-
-export async function _optionalDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
-  const expectedStatuses = ["204"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return;
-}
-
-export async function optional(
-  context: Client,
-  options: OptionalOptionalParams = { requestOptions: {} },
-): Promise<void> {
-  const result = await _optionalSend(context, options);
-  return _optionalDeserialize(result);
-}
 
 export function _requiredSend(
   context: Client,
@@ -116,5 +75,46 @@ export async function required(
 ): Promise<void> {
   const result = await _requiredSend(context, select, options);
   return _requiredDeserialize(result);
+}
+
+export function _optionalSend(
+  context: Client,
+  options: OptionalOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/annotation/optional{?select*}",
+    {
+      select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
+            return p;
+          }),
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _optionalDeserialize(
+  result: PathUncheckedResponse,
+): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return;
+}
+
+export async function optional(
+  context: Client,
+  options: OptionalOptionalParams = { requestOptions: {} },
+): Promise<void> {
+  const result = await _optionalSend(context, options);
+  return _optionalDeserialize(result);
 }
 ```
