@@ -10,7 +10,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * @summary list TrafficController resources by subscription ID
  * x-ms-original-file: 2025-01-01/TrafficControllersGetList.json
  */
-async function getTrafficControllersList() {
+async function getTrafficControllersList(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "subid";
   const client = new ServiceNetworkingManagementClient(
@@ -18,14 +18,14 @@ async function getTrafficControllersList() {
     subscriptionId,
   );
   const resArray = new Array();
-  for await (let item of client.trafficControllerInterface.TrafficControllerInterface_listBySubscription()) {
+  for await (let item of client.trafficControllerInterface.listBySubscription()) {
     resArray.push(item);
   }
 
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await getTrafficControllersList();
 }
 

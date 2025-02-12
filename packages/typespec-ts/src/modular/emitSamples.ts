@@ -33,6 +33,10 @@ import {
   hasKeyCredential,
   hasTokenCredential
 } from "../utils/credentialUtils.js";
+import {
+  getMethodHierarchiesMap,
+  ServiceOperation
+} from "../utils/operationUtil.js";
 
 /**
  * Interfaces for samples generations
@@ -74,37 +78,26 @@ function emitClientSamples(
   client: SdkClientType<SdkServiceOperation>,
   options: EmitSampleOptions
 ) {
-  for (const operationOrGroup of client.methods) {
-    // handle client-level methods
-    if (operationOrGroup.kind !== "clientaccessor") {
-      emitMethodSamples(dpgContext, operationOrGroup, options);
-      continue;
+  const methodMap = getMethodHierarchiesMap(dpgContext, client);
+  for (const [prefixKey, operations] of methodMap) {
+    const prefix = prefixKey
+      .split("/")
+      .map((name) => {
+        return normalizeName(name, NameType.Property);
+      })
+      .join(".");
+    for (const op of operations) {
+      emitMethodSamples(dpgContext, op, {
+        ...options,
+        classicalMethodPrefix: prefix
+      });
     }
-    // handle operation group
-    let prefix = normalizeName(
-      operationOrGroup.response.name,
-      NameType.Property
-    );
-    // append hierarchy prefix if hierarchyClient is enabled
-    if (dpgContext.rlcOptions?.hierarchyClient === true) {
-      prefix =
-        (options.classicalMethodPrefix
-          ? `${options.classicalMethodPrefix}.`
-          : "") + prefix;
-    } else if (dpgContext.rlcOptions?.enableOperationGroup === false) {
-      prefix = "";
-    }
-
-    emitClientSamples(dpgContext, operationOrGroup.response, {
-      ...options,
-      classicalMethodPrefix: prefix
-    });
   }
 }
 
 function emitMethodSamples(
   dpgContext: SdkContext,
-  method: SdkServiceMethod<SdkServiceOperation>,
+  method: ServiceOperation,
   options: EmitSampleOptions
 ): SourceFile | undefined {
   const examples = method.operation.examples ?? [];
@@ -194,7 +187,7 @@ function emitMethodSamples(
       ? `${options.classicalMethodPrefix}.`
       : "";
     const isPaging = method.kind === "paging";
-    const methodCall = `client.${prefix}${method.name}(${methodParams.join(
+    const methodCall = `client.${prefix}${normalizeName(method.oriName ?? "", NameType.Property)}(${methodParams.join(
       ", "
     )})`;
     if (isPaging) {

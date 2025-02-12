@@ -10,23 +10,22 @@ import { DefaultAzureCredential } from "@azure/identity";
  * @summary get a SecurityPolicy
  * x-ms-original-file: 2025-01-01/SecurityPolicyGet.json
  */
-async function getSecurityPolicy() {
+async function getSecurityPolicy(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "subid";
   const client = new ServiceNetworkingManagementClient(
     credential,
     subscriptionId,
   );
-  const result =
-    await client.securityPoliciesInterface.SecurityPoliciesInterface_get(
-      "rg1",
-      "tc1",
-      "sp1",
-    );
+  const result = await client.securityPoliciesInterface.get(
+    "rg1",
+    "tc1",
+    "sp1",
+  );
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await getSecurityPolicy();
 }
 

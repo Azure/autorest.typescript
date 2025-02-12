@@ -10,20 +10,17 @@ import { DefaultAzureCredential } from "@azure/identity";
  * @summary delete a TrafficController
  * x-ms-original-file: 2025-01-01/TrafficControllerDelete.json
  */
-async function deleteTrafficController() {
+async function deleteTrafficController(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "subid";
   const client = new ServiceNetworkingManagementClient(
     credential,
     subscriptionId,
   );
-  await client.trafficControllerInterface.TrafficControllerInterface_delete(
-    "rg1",
-    "tc1",
-  );
+  await client.trafficControllerInterface.delete("rg1", "tc1");
 }
 
-async function main() {
+async function main(): Promise<void> {
   await deleteTrafficController();
 }
 

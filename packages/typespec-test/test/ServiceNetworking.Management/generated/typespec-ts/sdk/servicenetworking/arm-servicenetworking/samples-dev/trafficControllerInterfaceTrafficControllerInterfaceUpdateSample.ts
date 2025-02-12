@@ -10,23 +10,20 @@ import { DefaultAzureCredential } from "@azure/identity";
  * @summary update a TrafficController
  * x-ms-original-file: 2025-01-01/TrafficControllerPatch.json
  */
-async function patchTrafficController() {
+async function patchTrafficController(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "subid";
   const client = new ServiceNetworkingManagementClient(
     credential,
     subscriptionId,
   );
-  const result =
-    await client.trafficControllerInterface.TrafficControllerInterface_update(
-      "rg1",
-      "tc1",
-      { tags: { key1: "value1" } },
-    );
+  const result = await client.trafficControllerInterface.update("rg1", "tc1", {
+    tags: { key1: "value1" },
+  });
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await patchTrafficController();
 }
 

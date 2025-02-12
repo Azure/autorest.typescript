@@ -10,22 +10,18 @@ import { DefaultAzureCredential } from "@azure/identity";
  * @summary get a Frontend
  * x-ms-original-file: 2025-01-01/FrontendGet.json
  */
-async function getFrontend() {
+async function getFrontend(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "subid";
   const client = new ServiceNetworkingManagementClient(
     credential,
     subscriptionId,
   );
-  const result = await client.frontendsInterface.FrontendsInterface_get(
-    "rg1",
-    "tc1",
-    "fe1",
-  );
+  const result = await client.frontendsInterface.get("rg1", "tc1", "fe1");
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await getFrontend();
 }
 
