@@ -17,7 +17,6 @@ Should enable `allowReserved:true` for path parameter:
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -30,17 +29,8 @@ export function _templateSend(
   param: string,
   options: TemplateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = expandUrlTemplate(
-    "/template/{+param}",
-    {
-      param: param,
-    },
-    {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
-  );
   return context
-    .path(path)
+    .path("/template/{param}", { value: param, allowReserved: true })
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 

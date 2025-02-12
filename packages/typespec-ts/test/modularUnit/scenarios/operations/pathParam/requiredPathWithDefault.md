@@ -1,4 +1,4 @@
-# Should generate required constant path parameter in option parameter
+# Should not generate required constant path parameter
 
 Should generate required constant path parameter in option parameter.
 
@@ -20,10 +20,7 @@ Generated operation options.
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface ReadOptionalParams extends OperationOptions {
-  strDefault?: "foobar";
-  numberDefault?: 1;
-}
+export interface ReadOptionalParams extends OperationOptions {}
 ```
 
 ## Provide generated operations to call rest-level methods
@@ -34,7 +31,6 @@ Should generate operations correctly:
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -46,18 +42,8 @@ export function _readSend(
   context: Client,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = expandUrlTemplate(
-    "/{strDefault}/{numberDefault}",
-    {
-      strDefault: options[strDefault] ?? "foobar",
-      numberDefault: options[numberDefault] ?? 1,
-    },
-    {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
-  );
   return context
-    .path(path)
+    .path("/{strDefault}/{numberDefault}", "foobar", 1)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 

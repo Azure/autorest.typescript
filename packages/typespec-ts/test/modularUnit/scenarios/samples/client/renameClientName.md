@@ -1,4 +1,4 @@
-# Should generate fake api key credential in non-azure client
+# Should rename client name in samples
 
 Should generate fake api key credential in non-azure client.
 
@@ -17,7 +17,6 @@ using TypeSpec.Versioning;
   title: "Demo Service",
 })
 @versioned(Versions)
-@useAuth(ApiKeyAuth<ApiKeyLocation.header, "api-key">)
 namespace DemoService;
 
 enum Versions {
@@ -29,10 +28,11 @@ enum Versions {
 op read(name: string):  { @body body: {}};
 ```
 
-This is the tspconfig.yaml.
+The config would be like:
 
 ```yaml
-flavor: "demo"
+typespecTitleMap:
+  DemoServiceClient: TestServiceClient
 ```
 
 ## Example
@@ -60,7 +60,7 @@ Generate samples for non-hierarchy cases:
 
 ```ts samples
 /** This file path is /samples-dev/readSample.ts */
-import { DemoServiceClient } from "@azure/internal-test";
+import { TestServiceClient } from "@azure/internal-test";
 
 /**
  * This sample demonstrates how to show example demo
@@ -69,8 +69,7 @@ import { DemoServiceClient } from "@azure/internal-test";
  * x-ms-original-file: 2021-10-01-preview/json_for_read.json
  */
 async function read(): Promise<void> {
-  const credential = { key: "INPUT_YOUR_KEY_HERE" };
-  const client = new DemoServiceClient(credential);
+  const client = new TestServiceClient();
   const result = await client.read();
   console.log(result);
 }

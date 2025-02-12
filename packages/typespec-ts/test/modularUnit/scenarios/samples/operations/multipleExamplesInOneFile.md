@@ -159,7 +159,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * @summary create a Employee
  * x-ms-original-file: 2021-10-01-preview/json_for_Employees_CreateOrUpdate_maxage.json
  */
-async function employeesCreateOrUpdateMaxage() {
+async function employeesCreateOrUpdateMaxage(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
   const client = new ContosoClient(credential, subscriptionId);
@@ -185,7 +185,7 @@ async function employeesCreateOrUpdateMaxage() {
  * @summary create a Employee
  * x-ms-original-file: 2021-10-01-preview/json_for_Employees_CreateOrUpdate_minage.json
  */
-async function employeesCreateOrUpdateMinage() {
+async function employeesCreateOrUpdateMinage(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
   const client = new ContosoClient(credential, subscriptionId);
@@ -205,8 +205,8 @@ async function employeesCreateOrUpdateMinage() {
   console.log(result);
 }
 
-async function main() {
-  employeesCreateOrUpdateMaxage();
+async function main(): Promise<void> {
+  await employeesCreateOrUpdateMaxage();
   employeesCreateOrUpdateMinage();
 }
 

@@ -17,7 +17,6 @@ Should normal path parameter:
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -30,17 +29,8 @@ export function _annotationWithFalseSend(
   param: string,
   options: AnnotationWithFalseOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = expandUrlTemplate(
-    "/annotationWithFalse/{param}",
-    {
-      param: param,
-    },
-    {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
-  );
   return context
-    .path(path)
+    .path("/annotationWithFalse/{param}", param)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 

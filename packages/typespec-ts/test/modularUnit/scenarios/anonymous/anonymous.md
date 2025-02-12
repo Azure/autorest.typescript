@@ -41,8 +41,7 @@ export function barSerializer(item: Bar): any {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { Bar } from "../models/models.js";
-import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { Bar, barSerializer } from "../models/models.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -61,26 +60,18 @@ export function _readSend(
   prop5: Bar,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = expandUrlTemplate(
-    "/{pathParam}{?queryParam}",
-    {
-      pathParam: pathParam,
-      queryParam: queryParam,
-    },
-    {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
-  );
   return context
-    .path(path)
+    .path("/{pathParam}", pathParam)
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      queryParameters: { queryParam: queryParam },
       body: {
         prop1: prop1,
         prop2: prop2,
         prop3: prop3.toISOString(),
         prop4: prop4,
-        prop5: { prop1: prop5["prop1"], prop2: prop5["prop2"] },
+        prop5: barSerializer(prop5),
       },
     });
 }
@@ -162,8 +153,8 @@ export function barSerializer(item: Bar): any {
 ## Models withOptions
 
 ```ts models:withOptions
-import { OperationOptions } from "@azure-rest/core-client";
 import { Bar } from "../models/models.js";
+import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
 export interface ReadOptionalParams extends OperationOptions {
@@ -176,7 +167,7 @@ export interface ReadOptionalParams extends OperationOptions {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { barSerializer } from "../models/models.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -193,29 +184,18 @@ export function _readSend(
   prop4: string,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = expandUrlTemplate(
-    "/{pathParam}{?queryParam}",
-    {
-      pathParam: pathParam,
-      queryParam: queryParam,
-    },
-    {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
-  );
   return context
-    .path(path)
+    .path("/{pathParam}", pathParam)
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      queryParameters: { queryParam: queryParam },
       body: {
         prop1: prop1,
         prop2: prop2,
-        prop3: options?.prop3?.toISOString(),
+        prop3: !options?.prop3 ? options?.prop3 : options?.prop3.toISOString(),
         prop4: prop4,
-        prop5: {
-          prop1: options?.prop5?.["prop1"],
-          prop2: options?.prop5?.["prop2"],
-        },
+        prop5: !options?.prop5 ? options?.prop5 : barSerializer(options?.prop5),
       },
     });
 }
@@ -295,8 +275,8 @@ export function barSerializer(item: Bar): any {
 ## Bar Model withOptions
 
 ```ts models:withOptions
-import { OperationOptions } from "@azure-rest/core-client";
 import { Bar } from "../models/models.js";
+import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
 export interface ReadOptionalParams extends OperationOptions {
@@ -309,7 +289,7 @@ export interface ReadOptionalParams extends OperationOptions {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { barSerializer } from "../models/models.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -321,34 +301,21 @@ export function _readSend(
   context: Client,
   pathParam: string,
   prop1: string,
+  prop2: number,
   prop4: string,
   queryParam: string,
-  prop2: number,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = expandUrlTemplate(
-    "/{pathParam}/{prop1}{?prop4,queryParam}",
-    {
-      pathParam: pathParam,
-      prop1: prop1,
-      prop4: prop4,
-      queryParam: queryParam,
-    },
-    {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
-  );
   return context
-    .path(path)
+    .path("/{pathParam}/{prop1}", pathParam, prop1)
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      queryParameters: { prop4: prop4, queryParam: queryParam },
       body: {
         prop2: prop2,
-        prop3: options?.prop3?.toISOString(),
-        prop5: {
-          prop1: options?.prop5?.["prop1"],
-          prop2: options?.prop5?.["prop2"],
-        },
+        prop3: !options?.prop3 ? options?.prop3 : options?.prop3.toISOString(),
+        prop5: !options?.prop5 ? options?.prop5 : barSerializer(options?.prop5),
       },
     });
 }
@@ -368,18 +335,18 @@ export async function read(
   context: Client,
   pathParam: string,
   prop1: string,
+  prop2: number,
   prop4: string,
   queryParam: string,
-  prop2: number,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _readSend(
     context,
     pathParam,
     prop1,
+    prop2,
     prop4,
     queryParam,
-    prop2,
     options,
   );
   return _readDeserialize(result);
@@ -455,7 +422,6 @@ export function fooSerializer(item: Foo): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer } from "../models/models.js";
-import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -470,20 +436,12 @@ export function _readSend(
   body: Foo,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = expandUrlTemplate(
-    "/{pathParam}{?queryParam}",
-    {
-      pathParam: pathParam,
-      queryParam: queryParam,
-    },
-    {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
-  );
   return context
-    .path(path)
+    .path("/{pathParam}", pathParam)
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      queryParameters: { queryParam: queryParam },
       body: fooSerializer(body),
     });
 }
@@ -535,7 +493,6 @@ export function _readRequestSerializer(item: _ReadRequest): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { _readRequestSerializer } from "../models/models.js";
-import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -550,20 +507,12 @@ export function _readSend(
   body: Record<string, any>,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = expandUrlTemplate(
-    "/{pathParam}{?queryParam}",
-    {
-      pathParam: pathParam,
-      queryParam: queryParam,
-    },
-    {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
-  );
   return context
-    .path(path)
+    .path("/{pathParam}", pathParam)
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      queryParameters: { queryParam: queryParam },
       body: _readRequestSerializer(body),
     });
 }
@@ -629,7 +578,6 @@ export function barSerializer(item: Bar): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { _readRequestSerializer, Bar } from "../models/models.js";
-import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -647,20 +595,12 @@ export function _readSend(
   },
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = expandUrlTemplate(
-    "/{pathParam}{?queryParam}",
-    {
-      pathParam: pathParam,
-      queryParam: queryParam,
-    },
-    {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
-  );
   return context
-    .path(path)
+    .path("/{pathParam}", pathParam)
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      queryParameters: { queryParam: queryParam },
       body: _readRequestSerializer(test),
     });
 }
@@ -740,6 +680,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
       body: testSerializer(body),
     });
 }
@@ -818,6 +759,7 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
       body: testSerializer(body),
     });
 }
@@ -880,7 +822,13 @@ export function _readSend(
 ): StreamableMethod {
   return context
     .path("/")
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _readDeserialize(
@@ -942,7 +890,13 @@ export function _readSend(
 ): StreamableMethod {
   return context
     .path("/")
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _readDeserialize(
@@ -1021,7 +975,13 @@ export function _readSend(
 ): StreamableMethod {
   return context
     .path("/")
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _readDeserialize(result: PathUncheckedResponse): Promise<{
@@ -1185,7 +1145,13 @@ export function _readSend(
 ): StreamableMethod {
   return context
     .path("/")
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _readDeserialize(
@@ -1399,7 +1365,13 @@ export function _readSend(
 ): StreamableMethod {
   return context
     .path("/")
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _readDeserialize(

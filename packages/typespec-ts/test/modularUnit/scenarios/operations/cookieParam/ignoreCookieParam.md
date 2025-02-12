@@ -37,7 +37,13 @@ export function _testSend(
 ): StreamableMethod {
   return context
     .path("/")
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _testDeserialize(

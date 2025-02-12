@@ -32,7 +32,7 @@ export function _uploadFileViaBodySend(
     .path("/uploadFileViaBody")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/octet-stream",
+      contentType: "application/octet-stream",
       body: body,
     });
 }
@@ -93,7 +93,7 @@ export function _uploadFileViaBodySend(
     .path("/uploadFileViaBody")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/octet-stream",
+      contentType: "application/octet-stream",
       body: body,
     });
 }
@@ -140,7 +140,9 @@ export async function uploadFileViaBody(
 /** model interface _UploadFileRequest */
 export interface _UploadFileRequest {
   name: string;
-  file: Uint8Array;
+  file:
+    | FileContents
+    | { contents: FileContents; contentType?: string; filename?: string };
 }
 ```
 
@@ -148,10 +150,10 @@ export interface _UploadFileRequest {
 
 ```ts models function _uploadFileRequestSerializer
 export function _uploadFileRequestSerializer(item: _UploadFileRequest): any {
-  return {
-    name: item["name"],
-    file: uint8ArrayToString(item["file"], "base64"),
-  };
+  return [
+    { name: "name", body: item["name"] },
+    createFilePartDescriptor("file", item["file"]),
+  ];
 }
 ```
 
@@ -179,7 +181,7 @@ export function _uploadFileSend(
     .path("/uploadFile")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "multipart/form-data",
+      contentType: "multipart/form-data",
       body: _uploadFileRequestSerializer(body),
     });
 }
@@ -227,19 +229,23 @@ scalar BinaryBytes extends bytes;
 ## Models
 
 ```ts models
-import { uint8ArrayToString } from "@azure/core-util";
+import {
+  FileContents,
+  createFilePartDescriptor,
+} from "../static-helpers/multipartHelpers.js";
 
 /** model interface _UploadFilesRequest */
 export interface _UploadFilesRequest {
-  files: Uint8Array[];
+  files: Array<
+    | FileContents
+    | { contents: FileContents; contentType?: string; filename?: string }
+  >;
 }
 
 export function _uploadFilesRequestSerializer(item: _UploadFilesRequest): any {
-  return {
-    files: item["files"].map((p: any) => {
-      return uint8ArrayToString(p, "base64");
-    }),
-  };
+  return [
+    ...item["files"].map((x: unknown) => createFilePartDescriptor("files", x)),
+  ];
 }
 ```
 
@@ -266,7 +272,7 @@ export function _uploadFilesSend(
     .path("/uploadFiles")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "multipart/form-data",
+      contentType: "multipart/form-data",
       body: _uploadFilesRequestSerializer(body),
     });
 }
@@ -324,7 +330,13 @@ export function _downloadFileSend(
 ): StreamableMethod {
   return context
     .path("/downloadFile")
-    .post({ ...operationOptionsToRequestParameters(options) });
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/octet-stream",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _downloadFileDeserialize(
@@ -380,7 +392,13 @@ export function _downloadFileSend(
 ): StreamableMethod {
   return context
     .path("/downloadFile")
-    .post({ ...operationOptionsToRequestParameters(options) });
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/octet-stream",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _downloadFileDeserialize(
@@ -461,7 +479,13 @@ export function _downloadFileSend(
 ): StreamableMethod {
   return context
     .path("/downloadFile")
-    .post({ ...operationOptionsToRequestParameters(options) });
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "multipart/form-data",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _downloadFileDeserialize(
@@ -549,7 +573,13 @@ export function _downloadFileSend(
 ): StreamableMethod {
   return context
     .path("/downloadFile")
-    .post({ ...operationOptionsToRequestParameters(options) });
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "multipart/form-data",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _downloadFileDeserialize(
@@ -578,6 +608,73 @@ export async function downloadFile(
 }
 ```
 
+# should handle contentTypes with default value in parameters
+
+Api operations should handle contentTypes has default value
+
+## TypeSpec
+
+```tsp
+@route("/uploadFileViaBody")
+@post op uploadFileViaBody(
+  @header contentType: string = "application/octet-stream",
+  @body body: bytes
+): void;
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _uploadFileViaBodySend(
+  context: Client,
+  contentType: string,
+  body: Uint8Array,
+  options: UploadFileViaBodyOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/uploadFileViaBody")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: contentType,
+      body: body,
+    });
+}
+
+export async function _uploadFileViaBodyDeserialize(
+  result: PathUncheckedResponse,
+): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return;
+}
+
+export async function uploadFileViaBody(
+  context: Client,
+  contentType: string,
+  body: Uint8Array,
+  options: UploadFileViaBodyOptionalParams = { requestOptions: {} },
+): Promise<void> {
+  const result = await _uploadFileViaBodySend(
+    context,
+    contentType,
+    body,
+    options,
+  );
+  return _uploadFileViaBodyDeserialize(result);
+}
+```
+
 # should generate apiVersion if there's a client level apiVersion but without default value
 
 ## TypeSpec
@@ -603,290 +700,19 @@ import {
 
 export function _testSend(
   context: Client,
-  options: TestOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/")
-    .get({ ...operationOptionsToRequestParameters(options) });
-}
-
-export async function _testDeserialize(
-  result: PathUncheckedResponse,
-): Promise<string> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return result.body;
-}
-
-export async function test(
-  context: Client,
-  options: TestOptionalParams = { requestOptions: {} },
-): Promise<string> {
-  const result = await _testSend(context, options);
-  return _testDeserialize(result);
-}
-```
-
-## clientContext
-
-```ts clientContext
-import { logger } from "../logger.js";
-import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
-
-export interface TestingContext extends Client {}
-
-/** Optional parameters for the client. */
-export interface TestingClientOptionalParams extends ClientOptions {}
-
-export function createTesting(
-  endpointParam: string,
-  options: TestingClientOptionalParams = {},
-): TestingContext {
-  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
-  const userAgentPrefix = prefixFromOptions
-    ? `${prefixFromOptions} azsdk-js-api`
-    : `azsdk-js-api`;
-  const { apiVersion: _, ...updatedOptions } = {
-    ...options,
-    userAgentOptions: { userAgentPrefix },
-    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
-  };
-  const clientContext = getClient(
-    options.endpoint ?? options.baseUrl ?? String(endpointParam),
-    undefined,
-    updatedOptions,
-  );
-  clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  return clientContext;
-}
-```
-
-## classicClient
-
-```ts classicClient
-import { Pipeline } from "@azure/core-rest-pipeline";
-
-export { TestingClientOptionalParams } from "./api/testingContext.js";
-
-export class TestingClient {
-  private _client: TestingContext;
-  /** The pipeline used by this client to make requests */
-  public readonly pipeline: Pipeline;
-
-  constructor(
-    endpointParam: string,
-    options: TestingClientOptionalParams = {},
-  ) {
-    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
-    const userAgentPrefix = prefixFromOptions
-      ? `${prefixFromOptions} azsdk-js-client`
-      : `azsdk-js-client`;
-    this._client = createTesting(endpointParam, {
-      ...options,
-      userAgentOptions: { userAgentPrefix },
-    });
-    this.pipeline = this._client.pipeline;
-  }
-
-  test(options: TestOptionalParams = { requestOptions: {} }): Promise<string> {
-    return test(this._client, options);
-  }
-}
-```
-
-# shouldn't generate apiVersion if there's a client level apiVersion and with default value
-
-## TypeSpec
-
-```tsp
-model ApiVersionParameter {
-  @query
-  "api-version": string;
-}
-op test(...ApiVersionParameter): string;
-```
-
-```yaml
-mustEmptyDiagnostic: false
-needNamespaces: true
-needAzureCore: false
-withRawContent: false
-withVersionedApiVersion: true
-ignoreWeirdLine: false
-```
-
-## Operations
-
-```ts operations
-import { TestingContext as Client } from "./index.js";
-import {
-  StreamableMethod,
-  PathUncheckedResponse,
-  createRestError,
-  operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
-
-export function _testSend(
-  context: Client,
-  options: TestOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/")
-    .get({ ...operationOptionsToRequestParameters(options) });
-}
-
-export async function _testDeserialize(
-  result: PathUncheckedResponse,
-): Promise<string> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return result.body;
-}
-
-export async function test(
-  context: Client,
-  options: TestOptionalParams = { requestOptions: {} },
-): Promise<string> {
-  const result = await _testSend(context, options);
-  return _testDeserialize(result);
-}
-```
-
-## clientContext
-
-```ts clientContext
-import { logger } from "../logger.js";
-import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
-
-export interface TestingContext extends Client {}
-
-/** Optional parameters for the client. */
-export interface TestingClientOptionalParams extends ClientOptions {
-  apiVersion?: string;
-}
-
-export function createTesting(
-  endpointParam: string,
-  options: TestingClientOptionalParams = {},
-): TestingContext {
-  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
-  const userAgentPrefix = prefixFromOptions
-    ? `${prefixFromOptions} azsdk-js-api`
-    : `azsdk-js-api`;
-  const { apiVersion: _, ...updatedOptions } = {
-    ...options,
-    userAgentOptions: { userAgentPrefix },
-    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
-  };
-  const clientContext = getClient(
-    options.endpoint ?? options.baseUrl ?? String(endpointParam),
-    undefined,
-    updatedOptions,
-  );
-  clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  const apiVersion = options.apiVersion ?? "2022-05-15-preview";
-  clientContext.pipeline.addPolicy({
-    name: "ClientApiVersionPolicy",
-    sendRequest: (req, next) => {
-      // Use the apiVersion defined in request url directly
-      // Append one if there is no apiVersion and we have one at client options
-      const url = new URL(req.url);
-      if (!url.searchParams.get("api-version")) {
-        req.url = `${req.url}${
-          Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
-        }api-version=${apiVersion}`;
-      }
-
-      return next(req);
-    },
-  });
-  return clientContext;
-}
-```
-
-## classicClient
-
-```ts classicClient
-import { Pipeline } from "@azure/core-rest-pipeline";
-
-export { TestingClientOptionalParams } from "./api/testingContext.js";
-
-export class TestingClient {
-  private _client: TestingContext;
-  /** The pipeline used by this client to make requests */
-  public readonly pipeline: Pipeline;
-
-  constructor(
-    endpointParam: string,
-    options: TestingClientOptionalParams = {},
-  ) {
-    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
-    const userAgentPrefix = prefixFromOptions
-      ? `${prefixFromOptions} azsdk-js-client`
-      : `azsdk-js-client`;
-    this._client = createTesting(endpointParam, {
-      ...options,
-      userAgentOptions: { userAgentPrefix },
-    });
-    this.pipeline = this._client.pipeline;
-  }
-
-  test(options: TestOptionalParams = { requestOptions: {} }): Promise<string> {
-    return test(this._client, options);
-  }
-}
-```
-
-# should not generate apiVersion if there's no client level apiVersion
-
-## TypeSpec
-
-```tsp
-model ApiVersionParameter {
-  @query
-  "api-version": string;
-}
-@route("/test")
-op test(...ApiVersionParameter): string;
-@route("/test1")
-op test1(): string;
-```
-
-## Operations
-
-```ts operations
-import { TestingContext as Client } from "./index.js";
-import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
-import {
-  StreamableMethod,
-  PathUncheckedResponse,
-  createRestError,
-  operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
-
-export function _testSend(
-  context: Client,
   apiVersion: string,
   options: TestOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = expandUrlTemplate(
-    "/test{?api-version}",
-    {
-      "api-version": apiVersion,
-    },
-    {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
-  );
   return context
-    .path(path)
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .path("/")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { "api-version": apiVersion },
+    });
 }
 
 export async function _testDeserialize(
@@ -908,34 +734,6 @@ export async function test(
   const result = await _testSend(context, apiVersion, options);
   return _testDeserialize(result);
 }
-
-export function _test1Send(
-  context: Client,
-  options: Test1OptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/test1")
-    .get({ ...operationOptionsToRequestParameters(options) });
-}
-
-export async function _test1Deserialize(
-  result: PathUncheckedResponse,
-): Promise<string> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
-  }
-
-  return result.body;
-}
-
-export async function test1(
-  context: Client,
-  options: Test1OptionalParams = { requestOptions: {} },
-): Promise<string> {
-  const result = await _test1Send(context, options);
-  return _test1Deserialize(result);
-}
 ```
 
 ## clientContext
@@ -953,6 +751,8 @@ export function createTesting(
   endpointParam: string,
   options: TestingClientOptionalParams = {},
 ): TestingContext {
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? String(endpointParam);
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`
@@ -962,11 +762,7 @@ export function createTesting(
     userAgentOptions: { userAgentPrefix },
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
   };
-  const clientContext = getClient(
-    options.endpoint ?? options.baseUrl ?? String(endpointParam),
-    undefined,
-    updatedOptions,
-  );
+  const clientContext = getClient(endpointUrl, undefined, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   if (options.apiVersion) {
     logger.warning(
@@ -1010,11 +806,325 @@ export class TestingClient {
   ): Promise<string> {
     return test(this._client, apiVersion, options);
   }
+}
+```
+
+# shouldn't generate apiVersion if there's a client level apiVersion and with default value
+
+## TypeSpec
+
+```tsp
+model ApiVersionParameter {
+  @query
+  "api-version": string;
+}
+op test(...ApiVersionParameter): string;
+```
+
+The config would be like:
+
+```yaml
+mustEmptyDiagnostic: false
+needNamespaces: true
+needAzureCore: false
+withRawContent: false
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _testSend(
+  context: Client,
+  apiVersion: string,
+  options: TestOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { "api-version": apiVersion },
+    });
+}
+
+export async function _testDeserialize(
+  result: PathUncheckedResponse,
+): Promise<string> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return result.body;
+}
+
+export async function test(
+  context: Client,
+  apiVersion: string,
+  options: TestOptionalParams = { requestOptions: {} },
+): Promise<string> {
+  const result = await _testSend(context, apiVersion, options);
+  return _testDeserialize(result);
+}
+```
+
+## clientContext
+
+```ts clientContext
+import { logger } from "../logger.js";
+import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
+
+export interface TestingContext extends Client {}
+
+/** Optional parameters for the client. */
+export interface TestingClientOptionalParams extends ClientOptions {}
+
+export function createTesting(
+  endpointParam: string,
+  options: TestingClientOptionalParams = {},
+): TestingContext {
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? String(endpointParam);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-api`
+    : `azsdk-js-api`;
+  const { apiVersion: _, ...updatedOptions } = {
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
+  };
+  const clientContext = getClient(endpointUrl, undefined, updatedOptions);
+  clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+  if (options.apiVersion) {
+    logger.warning(
+      "This client does not support client api-version, please change it at the operation level",
+    );
+  }
+  return clientContext;
+}
+```
+
+## classicClient
+
+```ts classicClient
+import { Pipeline } from "@azure/core-rest-pipeline";
+
+export { TestingClientOptionalParams } from "./api/testingContext.js";
+
+export class TestingClient {
+  private _client: TestingContext;
+  /** The pipeline used by this client to make requests */
+  public readonly pipeline: Pipeline;
+
+  constructor(
+    endpointParam: string,
+    options: TestingClientOptionalParams = {},
+  ) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : `azsdk-js-client`;
+    this._client = createTesting(endpointParam, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
+    this.pipeline = this._client.pipeline;
+  }
+
+  test(
+    apiVersion: string,
+    options: TestOptionalParams = { requestOptions: {} },
+  ): Promise<string> {
+    return test(this._client, apiVersion, options);
+  }
+}
+```
+
+# should not generate apiVersion if there's no client level apiVersion
+
+## TypeSpec
+
+```tsp
+model ApiVersionParameter {
+  @query
+  "api-version": string;
+}
+@route("/test")
+op test(...ApiVersionParameter): string;
+@route("/test1")
+op test1(): string;
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _test1Send(
+  context: Client,
+  options: Test1OptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/test1")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
+}
+
+export async function _test1Deserialize(
+  result: PathUncheckedResponse,
+): Promise<string> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return result.body;
+}
+
+export async function test1(
+  context: Client,
+  options: Test1OptionalParams = { requestOptions: {} },
+): Promise<string> {
+  const result = await _test1Send(context, options);
+  return _test1Deserialize(result);
+}
+
+export function _testSend(
+  context: Client,
+  apiVersion: string,
+  options: TestOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/test")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { "api-version": apiVersion },
+    });
+}
+
+export async function _testDeserialize(
+  result: PathUncheckedResponse,
+): Promise<string> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return result.body;
+}
+
+export async function test(
+  context: Client,
+  apiVersion: string,
+  options: TestOptionalParams = { requestOptions: {} },
+): Promise<string> {
+  const result = await _testSend(context, apiVersion, options);
+  return _testDeserialize(result);
+}
+```
+
+## clientContext
+
+```ts clientContext
+import { logger } from "../logger.js";
+import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
+
+export interface TestingContext extends Client {}
+
+/** Optional parameters for the client. */
+export interface TestingClientOptionalParams extends ClientOptions {}
+
+export function createTesting(
+  endpointParam: string,
+  options: TestingClientOptionalParams = {},
+): TestingContext {
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? String(endpointParam);
+  const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+  const userAgentPrefix = prefixFromOptions
+    ? `${prefixFromOptions} azsdk-js-api`
+    : `azsdk-js-api`;
+  const { apiVersion: _, ...updatedOptions } = {
+    ...options,
+    userAgentOptions: { userAgentPrefix },
+    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
+  };
+  const clientContext = getClient(endpointUrl, undefined, updatedOptions);
+  clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+  if (options.apiVersion) {
+    logger.warning(
+      "This client does not support client api-version, please change it at the operation level",
+    );
+  }
+  return clientContext;
+}
+```
+
+## classicClient
+
+```ts classicClient
+import { Pipeline } from "@azure/core-rest-pipeline";
+
+export { TestingClientOptionalParams } from "./api/testingContext.js";
+
+export class TestingClient {
+  private _client: TestingContext;
+  /** The pipeline used by this client to make requests */
+  public readonly pipeline: Pipeline;
+
+  constructor(
+    endpointParam: string,
+    options: TestingClientOptionalParams = {},
+  ) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : `azsdk-js-client`;
+    this._client = createTesting(endpointParam, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
+    this.pipeline = this._client.pipeline;
+  }
 
   test1(
     options: Test1OptionalParams = { requestOptions: {} },
   ): Promise<string> {
     return test1(this._client, options);
+  }
+
+  test(
+    apiVersion: string,
+    options: TestOptionalParams = { requestOptions: {} },
+  ): Promise<string> {
+    return test(this._client, apiVersion, options);
   }
 }
 ```

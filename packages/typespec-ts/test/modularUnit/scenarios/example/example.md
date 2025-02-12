@@ -81,7 +81,6 @@ You can extract the entire operations file using `ts operations`:
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Example, exampleDeserializer } from "../models/models.js";
-import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -94,18 +93,15 @@ export function _readSend(
   id: string,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = expandUrlTemplate(
-    "/{id}",
-    {
-      id: id,
-    },
-    {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
-  );
   return context
-    .path(path)
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .path("/{id}", id)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _readDeserialize(

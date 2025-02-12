@@ -26,6 +26,8 @@ op get(
 ): NoContentResponse;
 ```
 
+The config would be like:
+
 ```yaml
 mustEmptyDiagnostic: false
 needNamespaces: false
@@ -121,6 +123,8 @@ op get(
 ): { @header("test-header") testHeader: SchemaContentTypeValues; @statusCode _: 204; };
 ```
 
+The config would be like:
+
 ```yaml
 needOptions: false
 withRawContent: true
@@ -163,6 +167,8 @@ op get(
   @body body: string,
 ): NoContentResponse;
 ```
+
+The config would be like:
 
 ```yaml
 needOptions: false
@@ -210,6 +216,8 @@ op get(
   @body body: string,
 ): NoContentResponse;
 ```
+
+The config would be like:
 
 ```yaml
 needOptions: false
@@ -270,6 +278,8 @@ op get(
     @body body: string,
 ): NoContentResponse;
 ```
+
+The config would be like:
 
 ```yaml
 needOptions: false
@@ -325,6 +335,8 @@ op get(
 ): NoContentResponse;
 ```
 
+The config would be like:
+
 ```yaml
 needOptions: false
 withRawContent: true
@@ -371,6 +383,8 @@ op get(
     @body body: string,
 ): NoContentResponse;
 ```
+
+The config would be like:
 
 ```yaml
 needOptions: false
@@ -432,6 +446,8 @@ op get(
 ): NoContentResponse;
 ```
 
+The config would be like:
+
 ```yaml
 needOptions: false
 withRawContent: true
@@ -480,6 +496,8 @@ op get(
 ): { @header("test-header") testHeader: "A" | "B"; @statusCode _: 204; };
 ```
 
+The config would be like:
+
 ```yaml
 mustEmptyDiagnostic: true
 needNamespaces: false
@@ -515,7 +533,11 @@ export function _getSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { "test-header": testHeader },
+      contentType: "application/json",
+      headers: {
+        "test-header": testHeader,
+        ...options.requestOptions?.headers,
+      },
       body: body,
     });
 }
@@ -563,6 +585,8 @@ op get(
 ): { @header("test-header") testHeader: "A" | "B" | string; @statusCode _: 204; };
 ```
 
+The config would be like:
+
 ```yaml
 mustEmptyDiagnostic: true
 needNamespaces: false
@@ -599,7 +623,11 @@ export function _getSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { "test-header": testHeader },
+      contentType: "application/json",
+      headers: {
+        "test-header": testHeader,
+        ...options.requestOptions?.headers,
+      },
       body: body,
     });
 }
@@ -658,6 +686,8 @@ op get(
 ): NoContentResponse;
 ```
 
+The config would be like:
+
 ```yaml
 needOptions: false
 withRawContent: true
@@ -704,6 +734,8 @@ op get(
     @body body: string,
 ): NoContentResponse;
 ```
+
+The config would be like:
 
 ```yaml
 needOptions: false
@@ -752,6 +784,8 @@ op get(
   @body body: string,
 ): NoContentResponse;
 ```
+
+The config would be like:
 
 ```yaml
 needOptions: false
@@ -803,6 +837,8 @@ op get(
   @body body: string,
 ): NoContentResponse;
 ```
+
+The config would be like:
 
 ```yaml
 needOptions: false
@@ -1047,6 +1083,8 @@ model Test {
 op read(@body body: Test): void;
 ```
 
+The config would be like:
+
 ```yaml
 needOptions: false
 withRawContent: false
@@ -1112,6 +1150,8 @@ model Test {
 }
 op read(@body body: Test): void;
 ```
+
+The config would be like:
 
 ```yaml
 needOptions: false

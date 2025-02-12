@@ -45,6 +45,8 @@ model InputOutputModel {
 op getModel(@body input: InputOutputModel): InputOutputModel;
 ```
 
+The config would be like:
+
 ```yaml
 needOptions: false
 withRawContent: true
@@ -101,6 +103,8 @@ model InputOutputModel {
 op getModel(@body input: InputOutputModel): InputOutputModel;
 ```
 
+The config would be like:
+
 ```yaml
 needOptions: false
 withRawContent: true
@@ -155,6 +159,8 @@ model InputOutputModel {
 @get
 op getModel(@body input: InputOutputModel): InputOutputModel;
 ```
+
+The config would be like:
 
 ```yaml
 needOptions: false
@@ -218,6 +224,8 @@ model InputOutputModel {
 op getModel(@body input: InputOutputModel): InputOutputModel;
 ```
 
+The config would be like:
+
 ```yaml
 needOptions: false
 withRawContent: true
@@ -280,7 +288,8 @@ export function _createStreamingSend(
     .path("/createStreaming")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { stream: true },
+      contentType: "application/json",
+      body: { stream: stream },
     });
 }
 
@@ -377,6 +386,11 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: fooSerializer(body),
     });
 }
@@ -430,7 +444,7 @@ export function _readSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { prop: prop.toUTCString() },
+      headers: { prop: prop.toUTCString(), ...options.requestOptions?.headers },
     });
 }
 
@@ -508,6 +522,11 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: fooSerializer(body),
     });
 }
@@ -586,6 +605,11 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: fooSerializer(body),
     });
 }
@@ -661,6 +685,11 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: fooSerializer(body),
     });
 }
@@ -727,6 +756,11 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: fooSerializer(body),
     });
 }
@@ -794,6 +828,11 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: fooSerializer(body),
     });
 }
@@ -864,6 +903,11 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: fooSerializer(body),
     });
 }
@@ -951,6 +995,11 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: fooSerializer(body),
     });
 }
@@ -1039,6 +1088,11 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: fooSerializer(body),
     });
 }
@@ -1127,6 +1181,11 @@ export function _readSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: fooSerializer(body),
     });
 }
@@ -1296,7 +1355,13 @@ export function _readSend(
 ): StreamableMethod {
   return context
     .path("/")
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _readDeserialize(
@@ -1397,7 +1462,13 @@ export function _readSend(
 ): StreamableMethod {
   return context
     .path("/")
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _readDeserialize(
@@ -1507,7 +1578,13 @@ export function _readSend(
 ): StreamableMethod {
   return context
     .path("/")
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _readDeserialize(
@@ -1635,7 +1712,13 @@ export function _readSend(
 ): StreamableMethod {
   return context
     .path("/")
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _readDeserialize(
@@ -1807,7 +1890,13 @@ export function _readSend(
 ): StreamableMethod {
   return context
     .path("/")
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _readDeserialize(
@@ -1894,7 +1983,13 @@ export function _readSend(
 ): StreamableMethod {
   return context
     .path("/")
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _readDeserialize(
@@ -2043,6 +2138,8 @@ op get(
 ): { @header("test-header") testHeader: SchemaContentTypeValues; @statusCode _: 204; };
 ```
 
+The config would be like:
+
 ```yaml
 needOptions: false
 withRawContent: true
@@ -2081,6 +2178,8 @@ op get(
 ): { @header("test-header") testHeader: "A" | "B"; @statusCode _: 204; };
 ```
 
+The config would be like:
+
 ```yaml
 needOptions: false
 withRawContent: true
@@ -2116,7 +2215,11 @@ export function _getSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { "test-header": testHeader },
+      contentType: "application/json",
+      headers: {
+        "test-header": testHeader,
+        ...options.requestOptions?.headers,
+      },
       body: body,
     });
 }
@@ -2293,6 +2396,8 @@ model Vegetables {
 op post(@body body: Vegetables): { @body body: Vegetables };
 ```
 
+The config would be like:
+
 ```yaml
 compatibilityMode: true
 ```
@@ -2385,6 +2490,8 @@ model A extends Base{
 }
 op post(@body body: A): { @body body: A };
 ```
+
+The config would be like:
 
 ```yaml
 compatibilityMode: true
