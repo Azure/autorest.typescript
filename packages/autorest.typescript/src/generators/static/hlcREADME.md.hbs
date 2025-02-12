@@ -74,8 +74,9 @@ const client = new {{ clientClassName }}(new DefaultAzureCredential(), subscript
 ```
 {{else}}
 const client = new {{ clientClassName }}(new DefaultAzureCredential());
-{{/if}}
 ```
+{{/if}}
+
 For browser environments, use the \`InteractiveBrowserCredential\` from the \`@azure/identity\` package to authenticate.
 
 ```ts {{#if azureSdkForJs}}snippet:ReadmeSampleCreateClient_Browser{{/if}}
@@ -92,7 +93,6 @@ const client = new {{ clientClassName }}(credential, subscriptionId);
 {{else}}
 const client = new {{ clientClassName }}(credential);
 ```
-{{/if}}
 {{/if}}
 {{else}}
 Using Node.js and Node-like environments, you can use the \`DefaultAzureCredential\` class to authenticate the client.
@@ -118,7 +118,6 @@ const client = new {{ clientClassName }}("<endpoint>", credential);
 ```
 {{/if}}
 {{/if}}{{/if}}
-
 ### JavaScript Bundle
 To use this client library in the browser, first you need to use a bundler. For details on how to do this, please refer to our [bundling documentation](https://aka.ms/AzureSDKBundling).
 

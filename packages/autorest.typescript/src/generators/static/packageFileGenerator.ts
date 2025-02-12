@@ -201,6 +201,7 @@ function regularAutorestPackage(
   if (generateTest) {
     packageInfo.module = `./dist-esm/src/index.js`;
     packageInfo.devDependencies["@azure/identity"] = "^4.2.1";
+    packageInfo.devDependencies["@azure/logger"] = "^1.1.4";
     packageInfo.devDependencies["@azure-tools/test-recorder"] = "^3.0.0";
     packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.1.0";
     packageInfo.devDependencies["mocha"] = "^11.0.2";
