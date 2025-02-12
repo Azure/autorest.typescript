@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to The operation to get all run commands of a Virtual Machine.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary The operation to get all run commands of a Virtual Machine.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/runCommands/ListRunCommandsInVM.json
  */
-async function listRunCommandsInAVirtualMachine() {
+async function listRunCommandsInAVirtualMachine(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmName = "myVM";
@@ -36,7 +34,7 @@ async function listRunCommandsInAVirtualMachine() {
   console.log(resArray);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await listRunCommandsInAVirtualMachine();
 }
 

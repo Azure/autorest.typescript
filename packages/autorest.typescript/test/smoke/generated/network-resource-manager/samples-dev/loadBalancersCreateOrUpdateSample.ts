@@ -13,9 +13,7 @@ import {
   NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Creates or updates a load balancer.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Creates or updates a load balancer.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/LoadBalancerCreate.json
  */
-async function createLoadBalancer() {
+async function createLoadBalancer(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const loadBalancerName = "lb";
@@ -102,7 +100,7 @@ async function createLoadBalancer() {
  * @summary Creates or updates a load balancer.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/LoadBalancerCreateWithZones.json
  */
-async function createLoadBalancerWithFrontendIPInZone1() {
+async function createLoadBalancerWithFrontendIPInZone1(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const loadBalancerName = "lb";
@@ -182,7 +180,7 @@ async function createLoadBalancerWithFrontendIPInZone1() {
  * @summary Creates or updates a load balancer.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/LoadBalancerCreateGatewayLoadBalancerConsumer.json
  */
-async function createLoadBalancerWithGatewayLoadBalancerConsumerConfigured() {
+async function createLoadBalancerWithGatewayLoadBalancerConsumerConfigured(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const loadBalancerName = "lb";
@@ -264,7 +262,7 @@ async function createLoadBalancerWithGatewayLoadBalancerConsumerConfigured() {
  * @summary Creates or updates a load balancer.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/LoadBalancerCreateGatewayLoadBalancerProviderWithOneBackendPool.json
  */
-async function createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithOneBackendPool() {
+async function createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithOneBackendPool(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const loadBalancerName = "lb";
@@ -340,7 +338,7 @@ async function createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithOn
  * @summary Creates or updates a load balancer.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/LoadBalancerCreateGatewayLoadBalancerProviderWithTwoBackendPool.json
  */
-async function createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithTwoBackendPool() {
+async function createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithTwoBackendPool(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const loadBalancerName = "lb";
@@ -412,7 +410,7 @@ async function createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithTw
  * @summary Creates or updates a load balancer.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/LoadBalancerCreateGlobalTier.json
  */
-async function createLoadBalancerWithGlobalTierAndOneRegionalLoadBalancerInItsBackendPool() {
+async function createLoadBalancerWithGlobalTierAndOneRegionalLoadBalancerInItsBackendPool(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const loadBalancerName = "lb";
@@ -488,7 +486,7 @@ async function createLoadBalancerWithGlobalTierAndOneRegionalLoadBalancerInItsBa
  * @summary Creates or updates a load balancer.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/LoadBalancerCreateStandardSku.json
  */
-async function createLoadBalancerWithStandardSku() {
+async function createLoadBalancerWithStandardSku(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const loadBalancerName = "lb";
@@ -567,7 +565,7 @@ async function createLoadBalancerWithStandardSku() {
  * @summary Creates or updates a load balancer.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/LoadBalancerCreateWithInboundNatPool.json
  */
-async function createLoadBalancerWithInboundNatPool() {
+async function createLoadBalancerWithInboundNatPool(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const loadBalancerName = "lb";
@@ -623,7 +621,7 @@ async function createLoadBalancerWithInboundNatPool() {
  * @summary Creates or updates a load balancer.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/LoadBalancerCreateWithOutboundRules.json
  */
-async function createLoadBalancerWithOutboundRules() {
+async function createLoadBalancerWithOutboundRules(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const loadBalancerName = "lb";
@@ -710,7 +708,7 @@ async function createLoadBalancerWithOutboundRules() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await createLoadBalancer();
   await createLoadBalancerWithFrontendIPInZone1();
   await createLoadBalancerWithGatewayLoadBalancerConsumerConfigured();

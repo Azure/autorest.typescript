@@ -3,9 +3,7 @@
 
 import createAnomalyDetectorRestClient from "@msinternal/anomaly-detector-rest";
 import { AzureKeyCredential } from "@azure/core-auth";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to This operation generates a model with an entire series, each point is detected with the same model. With this method, points before and after a certain point are used to determine whether it is an anomaly. The entire detection can give user an overall status of the time series.
@@ -13,7 +11,7 @@ dotenv.config();
  * @summary This operation generates a model with an entire series, each point is detected with the same model. With this method, points before and after a certain point are used to determine whether it is an anomaly. The entire detection can give user an overall status of the time series.
  * x-ms-original-file: specification/cognitiveservices/data-plane/AnomalyDetector/stable/v1.1/examples/EntireDetect.json
  */
-async function findAnomaliesForTheEntireSeriesInBatchExample() {
+async function findAnomaliesForTheEntireSeriesInBatchExample(): Promise<void> {
   const endpoint = "{Endpoint}";
   const apiVersion = "v1.1";
   const credential = new AzureKeyCredential("{Your API key}");
@@ -84,7 +82,7 @@ async function findAnomaliesForTheEntireSeriesInBatchExample() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await findAnomaliesForTheEntireSeriesInBatchExample();
 }
 

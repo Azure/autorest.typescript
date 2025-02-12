@@ -13,9 +13,7 @@ import {
   NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Creates a virtual wan p2s vpn gateway if it doesn't exist else updates the existing gateway.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Creates a virtual wan p2s vpn gateway if it doesn't exist else updates the existing gateway.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/P2SVpnGatewayPut.json
  */
-async function p2SVpnGatewayPut() {
+async function p2SVpnGatewayPut(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const gatewayName = "p2sVpnGateway1";
@@ -77,7 +75,7 @@ async function p2SVpnGatewayPut() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await p2SVpnGatewayPut();
 }
 

@@ -13,9 +13,7 @@ import {
   SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Create a outbound firewall rule with a given name.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Create a outbound firewall rule with a given name.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/OutboundFirewallRuleCreate.json
  */
-async function approveOrRejectAOutboundFirewallRuleWithAGivenName() {
+async function approveOrRejectAOutboundFirewallRuleWithAGivenName(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-7398";
@@ -41,7 +39,7 @@ async function approveOrRejectAOutboundFirewallRuleWithAGivenName() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await approveOrRejectAOutboundFirewallRuleWithAGivenName();
 }
 

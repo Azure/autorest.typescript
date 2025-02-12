@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Display information about a virtual machine scale set.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Display information about a virtual machine scale set.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/GetVirtualMachineScaleSetAutoPlacedOnDedicatedHostGroup.json
  */
-async function getAVirtualMachineScaleSetPlacedOnADedicatedHostGroupThroughAutomaticPlacement() {
+async function getAVirtualMachineScaleSetPlacedOnADedicatedHostGroupThroughAutomaticPlacement(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "myVirtualMachineScaleSet";
@@ -39,7 +37,7 @@ async function getAVirtualMachineScaleSetPlacedOnADedicatedHostGroupThroughAutom
  * @summary Display information about a virtual machine scale set.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/GetVirtualMachineScaleSetWithUserData.json
  */
-async function getAVirtualMachineScaleSetWithUserData() {
+async function getAVirtualMachineScaleSetWithUserData(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "myVirtualMachineScaleSet";
@@ -52,7 +50,7 @@ async function getAVirtualMachineScaleSetWithUserData() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await getAVirtualMachineScaleSetPlacedOnADedicatedHostGroupThroughAutomaticPlacement();
   await getAVirtualMachineScaleSetWithUserData();
 }

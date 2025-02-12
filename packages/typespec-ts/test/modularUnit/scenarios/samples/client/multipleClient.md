@@ -83,14 +83,14 @@ import { DefaultAzureCredential } from "@azure/identity";
  * @summary execute foo
  * x-ms-original-file: 2021-10-01-preview/json_for_Sub_foo.json
  */
-async function subFoo() {
+async function subFoo(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new AClient(credential);
   const result = await client.foo();
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await subFoo();
 }
 

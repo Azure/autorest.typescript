@@ -9,7 +9,7 @@ using TypeSpec.Rest;
 using TypeSpec.Http;
 using TypeSpec.Versioning;
 
-namespace Azure.AI.Client.Agents;
+namespace Azure.AI.Projects.Agents;
 
 /**
  * Create a vector store file batch.
@@ -31,7 +31,14 @@ op createVectorStoreFileBatch is Azure.Core.Foundations.Operation<
     @maxItems(500)
     @encodedName("application/json", "file_ids")
     @doc("List of file identifiers.")
-    fileIds: string[];
+    fileIds?: string[];
+
+    /** The data sources to be used. This option is mutually exclusive with fileIds. */
+    @minItems(1)
+    @maxItems(500)
+    @encodedName("application/json", "data_sources")
+    @doc("List of Azure assets.")
+    dataSources?: VectorStoreDataSource[];
 
     /** The chunking strategy used to chunk the file(s). If not set, will use the auto strategy. */
     @encodedName("application/json", "chunking_strategy")

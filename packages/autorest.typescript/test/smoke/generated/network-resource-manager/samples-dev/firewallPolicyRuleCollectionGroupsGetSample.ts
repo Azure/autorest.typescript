@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets the specified FirewallPolicyRuleCollectionGroup.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets the specified FirewallPolicyRuleCollectionGroup.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/FirewallPolicyNatRuleCollectionGroupGet.json
  */
-async function getFirewallPolicyNatRuleCollectionGroup() {
+async function getFirewallPolicyNatRuleCollectionGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const firewallPolicyName = "firewallPolicy";
@@ -41,7 +39,7 @@ async function getFirewallPolicyNatRuleCollectionGroup() {
  * @summary Gets the specified FirewallPolicyRuleCollectionGroup.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/FirewallPolicyRuleCollectionGroupGet.json
  */
-async function getFirewallPolicyRuleCollectionGroup() {
+async function getFirewallPolicyRuleCollectionGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const firewallPolicyName = "firewallPolicy";
@@ -62,7 +60,7 @@ async function getFirewallPolicyRuleCollectionGroup() {
  * @summary Gets the specified FirewallPolicyRuleCollectionGroup.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/FirewallPolicyRuleCollectionGroupWithIpGroupsGet.json
  */
-async function getFirewallPolicyRuleCollectionGroupWithIPGroups() {
+async function getFirewallPolicyRuleCollectionGroupWithIPGroups(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const firewallPolicyName = "firewallPolicy";
@@ -83,7 +81,7 @@ async function getFirewallPolicyRuleCollectionGroupWithIPGroups() {
  * @summary Gets the specified FirewallPolicyRuleCollectionGroup.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/FirewallPolicyRuleCollectionGroupWithWebCategoriesGet.json
  */
-async function getFirewallPolicyRuleCollectionGroupWithWebCategories() {
+async function getFirewallPolicyRuleCollectionGroupWithWebCategories(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "e747cc13-97d4-4a79-b463-42d7f4e558f2";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
@@ -99,7 +97,7 @@ async function getFirewallPolicyRuleCollectionGroupWithWebCategories() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await getFirewallPolicyNatRuleCollectionGroup();
   await getFirewallPolicyRuleCollectionGroup();
   await getFirewallPolicyRuleCollectionGroupWithIPGroups();

@@ -2,16 +2,14 @@
 // Licensed under the MIT License.
 
 import createMultipleInheritanceRestClient from "@msinternal/multiple-inheritance-rest";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation PutFeline
  *
  * @summary call operation PutFeline
  */
-async function putFelineSample() {
+async function putFelineSample(): Promise<void> {
   const client = createMultipleInheritanceRestClient();
   const result = await client
     .path("/multipleInheritance/feline")
@@ -22,7 +20,7 @@ async function putFelineSample() {
   console.log(result);
 }
 
-async function main() {
+async function main(): Promise<void> {
   await putFelineSample();
 }
 
