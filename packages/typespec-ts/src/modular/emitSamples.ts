@@ -105,7 +105,7 @@ function emitMethodSamples(
   }
   const project = useContext("outputProject");
   const operationPrefix = `${options.classicalMethodPrefix ?? ""} ${
-    method.oriName
+    method.oriName ?? method.name
   }`;
   const sampleFolder = join(
     dpgContext.generationPathDetail?.rootDir ?? "",
@@ -186,7 +186,7 @@ function emitMethodSamples(
       ? `${options.classicalMethodPrefix}.`
       : "";
     const isPaging = method.kind === "paging";
-    const methodCall = `client.${prefix}${normalizeName(method.oriName ?? "", NameType.Property)}(${methodParams.join(
+    const methodCall = `client.${prefix}${normalizeName(method.oriName ?? method.name, NameType.Property)}(${methodParams.join(
       ", "
     )})`;
     if (isPaging) {
@@ -204,7 +204,8 @@ function emitMethodSamples(
     }
 
     // Create a function declaration structure
-    const description = method.doc ?? `execute ${method.oriName}`;
+    const description =
+      method.doc ?? `execute ${method.oriName ?? method.name}`;
     const normalizedDescription =
       description.charAt(0).toLowerCase() + description.slice(1);
     const functionDeclaration: FunctionDeclarationStructure = {

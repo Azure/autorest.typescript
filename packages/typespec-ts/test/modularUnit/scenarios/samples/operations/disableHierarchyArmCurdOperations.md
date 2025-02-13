@@ -1,4 +1,4 @@
-# Should generate samples for ARM operations disabled hierarchy client 
+# only: Should generate samples for ARM operations disabled hierarchy client
 
 Sample generation should arm template and operations successfully disabled hierarchy client.
 
@@ -87,6 +87,7 @@ interface Employees {
   delete is ArmResourceDeleteWithoutOkAsync<Employee>;
 }
 ```
+
 This is the tspconfig.yaml.
 
 ```yaml
@@ -115,7 +116,33 @@ Raw json files.
 Generate samples for arm cases:
 
 ```ts samples
+/** This file path is /samples-dev/listSample.ts */
+import { ContosoClient } from "@azure/internal-test";
+import { DefaultAzureCredential } from "@azure/identity";
 
+/**
+ * This sample demonstrates how to list the operations for the provider
+ *
+ * @summary list the operations for the provider
+ * x-ms-original-file: 2021-10-01-preview/json_for_Operations_List.json
+ */
+async function operationsList(): Promise<void> {
+  const credential = new DefaultAzureCredential();
+  const subscriptionId = "00000000-0000-0000-0000-00000000000";
+  const client = new ContosoClient(credential, subscriptionId);
+  const resArray = new Array();
+  for await (let item of client.list()) {
+    resArray.push(item);
+  }
+
+  console.log(resArray);
+}
+
+async function main(): Promise<void> {
+  await operationsList();
+}
+
+main().catch(console.error);
 ```
 
 Raw json files.
@@ -150,7 +177,37 @@ Raw json files.
 Generate samples for arm cases:
 
 ```ts samples
+/** This file path is /samples-dev/createOrUpdateSample.ts */
+import { ContosoClient } from "@azure/internal-test";
+import { DefaultAzureCredential } from "@azure/identity";
 
+/**
+ * This sample demonstrates how to create a Employee
+ *
+ * @summary create a Employee
+ * x-ms-original-file: 2021-10-01-preview/json_for_Employees_CreateOrUpdate.json
+ */
+async function employeesCreateOrUpdate(): Promise<void> {
+  const credential = new DefaultAzureCredential();
+  const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
+  const client = new ContosoClient(credential, subscriptionId);
+  const result = await client.createOrUpdate("rgopenapi", "9KF-f-8b", {
+    properties: {
+      age: 30,
+      city: "gydhnntudughbmxlkyzrskcdkotrxn",
+      profile: "ms"
+    },
+    tags: { key2913: "urperxmkkhhkp" },
+    location: "itajgxyqozseoygnl"
+  });
+  console.log(result);
+}
+
+async function main(): Promise<void> {
+  await employeesCreateOrUpdate();
+}
+
+main().catch(console.error);
 ```
 
 Raw json files.
@@ -174,7 +231,7 @@ Raw json files.
 Generate samples for arm cases:
 
 ```ts samples
-/** This file path is /samples-dev/employeesDeleteSample.ts */
+/** This file path is /samples-dev/deleteSample.ts */
 import { ContosoClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
 
@@ -188,7 +245,7 @@ async function employeesDelete(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
   const client = new ContosoClient(credential, subscriptionId);
-  await client.employees.delete("rgopenapi", "5vX--BxSu3ux48rI4O9OQ569");
+  await client.delete("rgopenapi", "5vX--BxSu3ux48rI4O9OQ569");
 }
 
 async function main(): Promise<void> {
