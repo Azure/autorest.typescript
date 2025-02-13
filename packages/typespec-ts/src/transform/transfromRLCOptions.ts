@@ -35,11 +35,16 @@ export function transformRLCOptions(
   );
   if (
     !isAzurePackage({ options }) &&
+    emitterOptions["is-modular-library"] !== false &&
     emitterOptions.isModularLibrary !== false
   ) {
     options.isModularLibrary = true;
   }
-  if (dpgContext.arm && emitterOptions.isModularLibrary !== false) {
+  if (
+    dpgContext.arm &&
+    emitterOptions["is-modular-library"] !== false &&
+    emitterOptions.isModularLibrary !== false
+  ) {
     options.isModularLibrary = true;
   }
   const batch = getRLCClients(dpgContext);
@@ -78,8 +83,32 @@ function extractRLCOptions(
   );
   const hierarchyClient = getHierarchyClient(emitterOptions);
   const clearOutputFolder = getClearOutputFolder(emitterOptions);
+  const multiClient =
+    emitterOptions["multi-client"] || emitterOptions.multiClient;
+  const isTypeSpecTest =
+    emitterOptions["is-typespec-test"] || emitterOptions.isTypeSpecTest;
+  const title = emitterOptions.title;
+  const dependencyInfo =
+    emitterOptions["dependency-info"] || emitterOptions.dependencyInfo;
+  const productDocLink =
+    emitterOptions["product-doc-link"] || emitterOptions.productDocLink;
+  const isModularLibrary =
+    emitterOptions["is-modular-library"] || emitterOptions.isModularLibrary;
+  const compatibilityMode =
+    emitterOptions["compatibility-mode"] || emitterOptions.compatibilityMode;
+  const experimentalExtensibleEnums =
+    emitterOptions["experimental-extensible-enums"] ||
+    emitterOptions.experimentalExtensibleEnums;
+  const ignorePropertyNameNormalize =
+    emitterOptions["ignore-property-name-normalize"] ||
+    emitterOptions.ignorePropertyNameNormalize;
+  const compatibilityQueryMultiFormat =
+    emitterOptions["compatibility-query-multi-format"] ||
+    emitterOptions.compatibilityQueryMultiFormat;
+  const typespecTitleMap =
+    emitterOptions["typespec-title-map"] || emitterOptions.typespecTitleMap;
+
   return {
-    ...emitterOptions,
     ...credentialInfo,
     flavor,
     moduleKind,
@@ -96,7 +125,18 @@ function extractRLCOptions(
     enableModelNamespace,
     hierarchyClient,
     azureArm: dpgContext.arm,
-    clearOutputFolder
+    clearOutputFolder,
+    multiClient,
+    isTypeSpecTest,
+    title,
+    dependencyInfo,
+    productDocLink,
+    isModularLibrary,
+    compatibilityMode,
+    experimentalExtensibleEnums,
+    ignorePropertyNameNormalize,
+    compatibilityQueryMultiFormat,
+    typespecTitleMap
   };
 }
 
@@ -172,6 +212,12 @@ function getEnableOperationGroup(
   emitterOptions: EmitterOptions
 ) {
   if (
+    emitterOptions["enable-operation-group"] === true ||
+    emitterOptions["enable-operation-group"] === false
+  ) {
+    return emitterOptions["enable-operation-group"];
+  }
+  if (
     emitterOptions.enableOperationGroup === true ||
     emitterOptions.enableOperationGroup === false
   ) {
@@ -186,6 +232,12 @@ function getEnableModelNamespace(
   emitterOptions: EmitterOptions
 ) {
   if (
+    emitterOptions["enable-model-namespace"] === true ||
+    emitterOptions["enable-model-namespace"] === false
+  ) {
+    return emitterOptions["enable-model-namespace"];
+  }
+  if (
     emitterOptions.enableModelNamespace === true ||
     emitterOptions.enableModelNamespace === false
   ) {
@@ -197,6 +249,12 @@ function getEnableModelNamespace(
 
 function getHierarchyClient(emitterOptions: EmitterOptions) {
   if (
+    emitterOptions["hierarchy-client"] === true ||
+    emitterOptions["hierarchy-client"] === false
+  ) {
+    return emitterOptions["hierarchy-client"];
+  }
+  if (
     emitterOptions.hierarchyClient === true ||
     emitterOptions.hierarchyClient === false
   ) {
@@ -207,7 +265,10 @@ function getHierarchyClient(emitterOptions: EmitterOptions) {
 }
 
 function getClearOutputFolder(emitterOptions: EmitterOptions) {
-  if (emitterOptions.clearOutputFolder === true) {
+  if (
+    emitterOptions["clear-output-folder"] === true ||
+    emitterOptions.clearOutputFolder === true
+  ) {
     return true;
   }
   return false;
@@ -251,11 +312,14 @@ function detectIfNameConflicts(dpgContext: SdkContext) {
 }
 
 function getIncludeShortcuts(emitterOptions: EmitterOptions) {
-  return Boolean(emitterOptions.includeShortcuts);
+  return (
+    Boolean(emitterOptions["include-shortcuts"]) ||
+    Boolean(emitterOptions.includeShortcuts)
+  );
 }
 
 function getModuleKind(emitterOptions: EmitterOptions) {
-  return emitterOptions.moduleKind ?? "esm";
+  return emitterOptions["module-kind"] ?? emitterOptions.moduleKind ?? "esm";
 }
 
 function getFlavor(
@@ -292,30 +356,52 @@ function getPackageDetails(
   program: Program,
   emitterOptions: EmitterOptions
 ): PackageDetails {
-  const packageDetails: PackageDetails = {
-    ...emitterOptions.packageDetails,
-    name:
-      emitterOptions.packageDetails?.name ??
-      normalizeName(
-        emitterOptions?.title ?? getDefaultService(program)?.title ?? "",
-        NameType.Class
-      ),
-    version: emitterOptions.packageDetails?.version ?? "1.0.0-beta.1"
+  const defaultDetial = {
+    name: "@msinternal/unamedpackage",
+    nameWithoutScope: "unamedpackage",
+    version: "1.0.0-beta.1"
   };
-  if (emitterOptions.packageDetails?.name) {
-    const nameParts = emitterOptions.packageDetails?.name.split("/");
-    if (nameParts.length === 2) {
-      packageDetails.nameWithoutScope = nameParts[1];
-      packageDetails.scopeName = nameParts[0]?.replace("@", "");
+  if (emitterOptions.packageDetails !== undefined) {
+    const packageOldDetails: PackageDetails = {
+      ...emitterOptions.packageDetails,
+      name:
+        emitterOptions.packageDetails?.name ??
+        normalizeName(
+          emitterOptions?.title ?? getDefaultService(program)?.title ?? "",
+          NameType.Class
+        ),
+      version: emitterOptions.packageDetails?.version ?? "1.0.0-beta.1"
+    };
+    if (emitterOptions.packageDetails?.name) {
+      const nameOldParts = emitterOptions.packageDetails?.name.split("/");
+      if (nameOldParts.length === 2) {
+        packageOldDetails.nameWithoutScope = nameOldParts[1];
+        packageOldDetails.scopeName = nameOldParts[0]?.replace("@", "");
+      }
     }
+    return packageOldDetails ?? defaultDetial;
   }
-  return (
-    packageDetails ?? {
-      name: "@msinternal/unamedpackage",
-      nameWithoutScope: "unamedpackage",
-      version: "1.0.0-beta.1"
+  if (emitterOptions["package-details"] !== undefined) {
+    const packageDetails: PackageDetails = {
+      ...emitterOptions["package-details"],
+      name:
+        emitterOptions["package-details"]?.name ??
+        normalizeName(
+          emitterOptions?.title ?? getDefaultService(program)?.title ?? "",
+          NameType.Class
+        ),
+      version: emitterOptions["package-details"]?.version ?? "1.0.0-beta.1"
+    };
+    if (emitterOptions["package-details"]?.name) {
+      const nameParts = emitterOptions["package-details"]?.name.split("/");
+      if (nameParts.length === 2) {
+        packageDetails.nameWithoutScope = nameParts[1];
+        packageDetails.scopeName = nameParts[0]?.replace("@", "");
+      }
     }
-  );
+    return packageDetails ?? defaultDetial;
+  }
+  return defaultDetial;
 }
 
 function getServiceInfo(program: Program): ServiceInfo {
@@ -329,20 +415,28 @@ function getServiceInfo(program: Program): ServiceInfo {
 function getAzureSdkForJs(emitterOptions: EmitterOptions) {
   return emitterOptions.flavor !== "azure"
     ? false
-    : emitterOptions.azureSdkForJs === undefined ||
-        emitterOptions.azureSdkForJs === null
+    : (emitterOptions["azure-sdk-for-js"] === undefined ||
+          emitterOptions["azure-sdk-for-js"] === null) &&
+        (emitterOptions.azureSdkForJs === undefined ||
+          emitterOptions.azureSdkForJs === null)
       ? true
-      : Boolean(emitterOptions.azureSdkForJs);
+      : Boolean(emitterOptions["azure-sdk-for-js"]) ||
+        Boolean(emitterOptions.azureSdkForJs);
 }
 
 function getGenerateMetadata(emitterOptions: EmitterOptions) {
   if (
-    emitterOptions.generateMetadata === undefined ||
-    emitterOptions.generateMetadata === null
+    (emitterOptions["generate-metadata"] === undefined ||
+      emitterOptions["generate-metadata"] === null) &&
+    (emitterOptions.generateMetadata === undefined ||
+      emitterOptions.generateMetadata === null)
   ) {
     return undefined;
   }
-  return Boolean(emitterOptions.generateMetadata);
+  return (
+    Boolean(emitterOptions["generate-metadata"]) ||
+    Boolean(emitterOptions.generateMetadata)
+  );
 }
 
 /**
@@ -353,18 +447,25 @@ function getGenerateMetadata(emitterOptions: EmitterOptions) {
 function getGenerateTest(emitterOptions: EmitterOptions, flavor?: "azure") {
   if (
     flavor !== "azure" &&
+    (emitterOptions["generate-test"] === undefined ||
+      emitterOptions["generate-test"] === null) &&
     (emitterOptions.generateTest === undefined ||
       emitterOptions.generateTest === null)
   ) {
     return undefined;
   } else if (
     flavor === "azure" &&
+    (emitterOptions["generate-test"] === undefined ||
+      emitterOptions["generate-test"] === null) &&
     (emitterOptions.generateTest === undefined ||
       emitterOptions.generateTest === null)
   ) {
     return true;
   }
-  return Boolean(emitterOptions.generateTest);
+  return (
+    Boolean(emitterOptions["generate-test"]) ||
+    Boolean(emitterOptions.generateTest)
+  );
 }
 
 /**
@@ -374,12 +475,17 @@ function getGenerateTest(emitterOptions: EmitterOptions, flavor?: "azure") {
  */
 function getGenerateSample(emitterOptions: EmitterOptions) {
   if (
-    emitterOptions.generateSample === undefined ||
-    emitterOptions.generateSample === null
+    (emitterOptions["generate-sample"] === undefined ||
+      emitterOptions["generate-sample"] === null) &&
+    (emitterOptions.generateSample === undefined ||
+      emitterOptions.generateSample === null)
   ) {
     return undefined;
   }
-  return Boolean(emitterOptions.generateSample);
+  return (
+    Boolean(emitterOptions["generate-sample"]) ||
+    Boolean(emitterOptions.generateSample)
+  );
 }
 
 export function getCredentialInfo(
@@ -388,27 +494,31 @@ export function getCredentialInfo(
 ) {
   const securityInfo = processAuth(program);
   const addCredentials =
+    emitterOptions["add-credentials"] === false ||
     emitterOptions.addCredentials === false
       ? false
       : securityInfo
         ? securityInfo.addCredentials
-        : emitterOptions.addCredentials;
+        : emitterOptions["add-credentials"] || emitterOptions.addCredentials;
   const credentialScopes =
     securityInfo && securityInfo.credentialScopes
       ? securityInfo.credentialScopes
-      : emitterOptions.credentialScopes;
+      : emitterOptions["credential-scopes"] || emitterOptions.credentialScopes;
   const credentialKeyHeaderName =
     securityInfo && securityInfo.credentialKeyHeaderName
       ? securityInfo.credentialKeyHeaderName
-      : emitterOptions.credentialKeyHeaderName;
+      : emitterOptions["credential-key-header-name"] ||
+        emitterOptions.credentialKeyHeaderName;
   const customHttpAuthHeaderName =
     securityInfo && securityInfo.customHttpAuthHeaderName
       ? securityInfo.customHttpAuthHeaderName
-      : emitterOptions.customHttpAuthHeaderName;
+      : emitterOptions["custom-http-auth-header-name"] ||
+        emitterOptions.customHttpAuthHeaderName;
   const customHttpAuthSharedKeyPrefix =
     securityInfo && securityInfo.customHttpAuthSharedKeyPrefix
       ? securityInfo.customHttpAuthSharedKeyPrefix
-      : emitterOptions.customHttpAuthSharedKeyPrefix;
+      : emitterOptions["custom-http-auth-shared-key-prefix"] ||
+        emitterOptions.customHttpAuthSharedKeyPrefix;
   return {
     addCredentials,
     credentialScopes,

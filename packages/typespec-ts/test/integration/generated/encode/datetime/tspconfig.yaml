@@ -2,11 +2,11 @@ emit:
   - "@azure-tools/typespec-ts"
 options:
   "@azure-tools/typespec-ts":
-    "emitter-output-dir": "{project-root}"
-    generateMetadata: true
-    addCredentials: false
-    isModularLibrary: false
-    isTypeSpecTest: true
-    enableOperationGroup: true
-    packageDetails:
+    emitter-output-dir: "{project-root}"
+    generate-metadata: true
+    add-credentials: false
+    is-modular-library: false
+    is-typespec-test: true
+    enable-operation-group: true
+    package-details:
       name: "@unbranded/encode-datetime"

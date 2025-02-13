@@ -2,15 +2,15 @@ emit:
   - "@azure-tools/typespec-ts"
 options:
   "@azure-tools/typespec-ts":
-    "emitter-output-dir": "{project-root}"
-    generateMetadata: true
-    generateTest: false
-    addCredentials: false
-    isModularLibrary: false
-    enableOperationGroup: true
-    compatibilityQueryMultiFormat: true
-    isTypeSpecTest: true
+    emitter-output-dir: "{project-root}"
+    generate-metadata: true
+    generate-test: false
+    add-credentials: false
+    is-modular-library: false
+    enable-operation-group: true
+    compatibility-query-multi-format: true
+    is-typespec-test: true
     title: CollectionFormatClient
-    packageDetails:
+    package-details:
       name: "@unbranded/collectionFormat"
       description: "CollectionFormat Test Service"
