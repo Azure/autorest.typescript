@@ -10,7 +10,7 @@ interface ValueOptions {
   varValue?: any; // variable value
   varName?: string; // variable name
   modifier?: string; // modifier e.g *
-  reserved: boolean; // if true we'll keep reserved words with not encoding
+  reserved?: boolean; // if true we'll keep reserved words with not encoding
 }
 
 export interface UrlTemplateOptions {
@@ -21,8 +21,8 @@ export interface UrlTemplateOptions {
 // ---------------------
 // helpers
 // ---------------------
-function encodeValue(val: string, reserved: boolean, op?: string) {
-  return reserved === true || op === "+" || op === "#"
+function encodeValue(val: string, reserved?: boolean, op?: string) {
+  return (reserved ?? op === "+") || op === "#"
     ? encodeWithReserved(val)
     : encodeRFC3986URIComponent(val);
 }
@@ -188,7 +188,7 @@ export function expandUrlTemplate(
         varValue: context[varMatch[1]],
         varName: varMatch[1],
         modifier: varMatch[2] || varMatch[3],
-        reserved: option?.allowReserved ?? false,
+        reserved: option?.allowReserved,
       });
       if (varValue) {
         result.push(varValue);

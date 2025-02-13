@@ -34,11 +34,36 @@ describe("Routes Client", () => {
         assert.isUndefined(result);
     });
     it("Routes_PathParameters_ReservedExpansion_template", async () => {
-        const result = await client.pathParameters.reservedExpansion.template("foo/bar%20baz");
+        const result = await client.pathParameters.reservedExpansion.template("foo/bar baz");
         assert.isUndefined(result);
     });
+    it("Routes_PathParameters_ReservedExpansion_template & skipUrlEncoding=true", async () => {
+        // Should not encode the path parameter
+        const result = await client.pathParameters.reservedExpansion.template("foo/bar baz", {
+            requestOptions: {
+                skipUrlEncoding: true
+            }
+        });
+        assert.isUndefined(result);
+    });
+
+    it("Routes_PathParameters_ReservedExpansion_template & skipUrlEncoding=false", async () => {
+        try {
+            // Should encode the path parameter because skipUrlEncoding is explicitly set to false
+            await client.pathParameters.reservedExpansion.template("foo/bar baz", {
+                requestOptions: {
+                    skipUrlEncoding: false
+                }
+            });
+            assert.fail("Should fail this case if path parameter is not encoded");
+        }
+        catch (error: any) {
+            assert.equal(error.statusCode, 404);
+            assert.isTrue(error?.request?.url.includes("/foo%2Fbar%20ba"));
+        }
+    });
     it("Routes_PathParameters_ReservedExpansion_annotation", async () => {
-        const result = await client.pathParameters.reservedExpansion.annotation("foo/bar%20baz");
+        const result = await client.pathParameters.reservedExpansion.annotation("foo/bar baz");
         assert.isUndefined(result);
     });
     it("Routes_PathParameters_SimpleExpansion_Standard_primitive", async () => {
@@ -172,7 +197,7 @@ describe("Routes Client", () => {
         const result = await client.queryParameters.queryExpansion.explode.primitive("a");
         assert.isUndefined(result);
     });
-    it("outes_QueryParameters_QueryExpansion_Explode_array", async () => {
+    it("Routes_QueryParameters_QueryExpansion_Explode_array", async () => {
         const result = await client.queryParameters.queryExpansion.explode.array(["a", "b"]);
         assert.isUndefined(result);
     });
@@ -196,7 +221,7 @@ describe("Routes Client", () => {
         const result = await client.queryParameters.queryContinuation.explode.primitive("a");
         assert.isUndefined(result);
     });
-    it("outes_QueryParameters_QueryContinuation_Explode_array", async () => {
+    it("Routes_QueryParameters_QueryContinuation_Explode_array", async () => {
         const result = await client.queryParameters.queryContinuation.explode.array(["a", "b"]);
         assert.isUndefined(result);
     });

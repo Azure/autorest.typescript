@@ -300,20 +300,39 @@ describe("url-template", () => {
     });
 
     describe("allowReserved option", () => {
-        it("should not encode reserved characters if enable allowReserved", () => {
-            const assert = createAssertion({
-                'path': '/foo/bar',
-                'query': 'bar,baz'
-            }, { allowReserved: true });
-            assert('{path}/here{?query}', '/foo/bar/here?query=bar,baz');
-        });
+        describe("normal path", () => {
+            it("should not encode reserved characters if enable allowReserved", () => {
+                const assert = createAssertion({
+                    'path': '/foo/bar',
+                    'query': 'bar,baz'
+                }, { allowReserved: true });
+                assert('{path}/here{?query}', '/foo/bar/here?query=bar,baz');
+            });
 
-        it("should encode reserved characters if disable allowReserved", () => {
-            const assert = createAssertion({
-                'path': '/foo/bar',
-                'query': 'bar,baz'
-            }, { allowReserved: false });
-            assert('{path}/here{?query}', '%2Ffoo%2Fbar/here?query=bar%2Cbaz');
+            it("should encode reserved characters if disable allowReserved", () => {
+                const assert = createAssertion({
+                    'path': '/foo/bar',
+                    'query': 'bar,baz'
+                }, { allowReserved: false });
+                assert('{path}/here{?query}', '%2Ffoo%2Fbar/here?query=bar%2Cbaz');
+            });
+        });
+        describe("reserved path", () => {
+            it("should not encode reserved characters if enable allowReserved", () => {
+                const assert = createAssertion({
+                    'path': '/foo/bar',
+                    'query': 'bar,baz'
+                }, { allowReserved: true });
+                assert('{+path}/here{?query}', '/foo/bar/here?query=bar,baz');
+            });
+
+            it("should encode reserved characters if disable allowReserved", () => {
+                const assert = createAssertion({
+                    'path': '/foo/bar',
+                    'query': 'bar,baz'
+                }, { allowReserved: false });
+                assert('{+path}/here{?query}', '%2Ffoo%2Fbar/here?query=bar%2Cbaz');
+            });
         });
 
     });
