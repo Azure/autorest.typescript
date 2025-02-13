@@ -8,6 +8,7 @@ options:
     azureSdkForJs: false
     hierarchyClient: false
     experimentalExtensibleEnums: true
+    enableOperationGroup: true
     "emitter-output-dir": "{project-root}/generated/typespec-ts/sdk/servicenetworking/arm-servicenetworking"
     packageDetails:
       name: "@azure/arm-servicenetworking"
