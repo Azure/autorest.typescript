@@ -1,0 +1,17 @@
+
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    azureSdkForJs: true
+    isModularLibrary: true
+    generateMetadata: true
+    hierarchyClient: false
+    experimentalExtensibleEnums: true
+    enableOperationGroup: true
+    examples-directory: "{project-root}/spec/examples"
+    generateSample: true
+    "emitter-output-dir": "{project-root}/generated/typespec-ts/sdk/workloads/arm-workloadssapvirtualinstance"
+    flavor: "azure"
+    packageDetails:
+      name: "@azure/arm-workloadssapvirtualinstance"

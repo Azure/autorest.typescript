@@ -1,0 +1,86 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+export {
+  SAPApplicationServerInstancesStopOptionalParams,
+  SAPApplicationServerInstancesStartOptionalParams,
+  SAPApplicationServerInstancesListOptionalParams,
+  SAPApplicationServerInstancesDeleteOptionalParams,
+  SAPApplicationServerInstancesUpdateOptionalParams,
+  SAPApplicationServerInstancesCreateOptionalParams,
+  SAPApplicationServerInstancesGetOptionalParams,
+  SAPDatabaseInstancesStopOptionalParams,
+  SAPDatabaseInstancesStartOptionalParams,
+  SAPDatabaseInstancesListOptionalParams,
+  SAPDatabaseInstancesDeleteOptionalParams,
+  SAPDatabaseInstancesUpdateOptionalParams,
+  SAPDatabaseInstancesCreateOptionalParams,
+  SAPDatabaseInstancesGetOptionalParams,
+  SAPCentralServerInstancesStopOptionalParams,
+  SAPCentralServerInstancesStartOptionalParams,
+  SAPCentralServerInstancesListOptionalParams,
+  SAPCentralServerInstancesDeleteOptionalParams,
+  SAPCentralServerInstancesUpdateOptionalParams,
+  SAPCentralServerInstancesCreateOptionalParams,
+  SAPCentralServerInstancesGetOptionalParams,
+  SAPVirtualInstancesGetAvailabilityZoneDetailsOptionalParams,
+  SAPVirtualInstancesGetDiskConfigurationsOptionalParams,
+  SAPVirtualInstancesGetSapSupportedSkuOptionalParams,
+  SAPVirtualInstancesGetSizingRecommendationsOptionalParams,
+  SAPVirtualInstancesStopOptionalParams,
+  SAPVirtualInstancesStartOptionalParams,
+  SAPVirtualInstancesListBySubscriptionOptionalParams,
+  SAPVirtualInstancesListByResourceGroupOptionalParams,
+  SAPVirtualInstancesDeleteOptionalParams,
+  SAPVirtualInstancesUpdateOptionalParams,
+  SAPVirtualInstancesCreateOptionalParams,
+  SAPVirtualInstancesGetOptionalParams,
+  OperationsListOptionalParams,
+} from "./options.js";
+export {
+  createWorkloads,
+  WorkloadsContext,
+  WorkloadsClientOptionalParams,
+} from "./workloadsContext.js";
+export { operationsList } from "./operations/index.js";
+export {
+  sAPApplicationServerInstancesStop,
+  sAPApplicationServerInstancesStart,
+  sAPApplicationServerInstancesList,
+  sAPApplicationServerInstancesDelete,
+  sAPApplicationServerInstancesUpdate,
+  sAPApplicationServerInstancesCreate,
+  sAPApplicationServerInstancesGet,
+} from "./sAPApplicationServerInstances/index.js";
+export {
+  sAPCentralServerInstancesStop,
+  sAPCentralServerInstancesStart,
+  sAPCentralServerInstancesList,
+  sAPCentralServerInstancesDelete,
+  sAPCentralServerInstancesUpdate,
+  sAPCentralServerInstancesCreate,
+  sAPCentralServerInstancesGet,
+} from "./sAPCentralServerInstances/index.js";
+export {
+  sAPDatabaseInstancesStop,
+  sAPDatabaseInstancesStart,
+  sAPDatabaseInstancesList,
+  sAPDatabaseInstancesDelete,
+  sAPDatabaseInstancesUpdate,
+  sAPDatabaseInstancesCreate,
+  sAPDatabaseInstancesGet,
+} from "./sAPDatabaseInstances/index.js";
+export {
+  sAPVirtualInstancesGetAvailabilityZoneDetails,
+  sAPVirtualInstancesGetDiskConfigurations,
+  sAPVirtualInstancesGetSapSupportedSku,
+  sAPVirtualInstancesGetSizingRecommendations,
+  sAPVirtualInstancesStop,
+  sAPVirtualInstancesStart,
+  sAPVirtualInstancesListBySubscription,
+  sAPVirtualInstancesListByResourceGroup,
+  sAPVirtualInstancesDelete,
+  sAPVirtualInstancesUpdate,
+  sAPVirtualInstancesCreate,
+  sAPVirtualInstancesGet,
+} from "./sAPVirtualInstances/index.js";
