@@ -30,6 +30,7 @@ import { generatePagingFiles } from "./generators/pagingHelperGenerator";
 import { generateTracingFile } from "./generators/tracingFileGenerator";
 import { getAutorestOptions } from "./autorestSession";
 import { conflictResolver } from "./conflictResolver";
+import { generateSnippetsFile } from "./generators/test/snippetsGenerator";
 
 const prettierTypeScriptOptions: prettier.Options = {
   parser: "typescript",
@@ -82,6 +83,7 @@ export async function generateTypeScriptLibrary(
   generateLicenseFile(project);
   generateReadmeFile(codeModel, project, clientDetails);
   if (generateTest) {
+    generateSnippetsFile(codeModel, project, clientDetails);
     generateSampleTestFile(project);
   }
   generateTsConfig(project);

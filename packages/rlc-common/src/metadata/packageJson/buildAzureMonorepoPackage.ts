@@ -203,7 +203,7 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
       "dev-tool run vendored uglifyjs -c -m --comments --source-map \"content='./dist/index.js.map'\" -o ./dist/index.min.js ./dist/index.js",
     ...esmScripts,
     ...cjsScripts,
-    "update-snippets": "echo skipped"
+    "update-snippets": "dev-tool run update-snippets"
   };
 }
 

@@ -70,7 +70,7 @@
     "integration-test": "echo skipped",
     "integration-test:node": "echo skipped",
     "integration-test:browser": "echo skipped",
-    "update-snippets": "echo skipped"
+    "update-snippets": "dev-tool run update-snippets"
   },
   "sideEffects": false,
   "//metadata": {

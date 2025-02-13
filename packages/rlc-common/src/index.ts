@@ -21,6 +21,7 @@ export * from "./buildPollingHelper.js";
 export * from "./test/buildKarmaConfig.js";
 export * from "./test/buildRecordedClient.js";
 export * from "./test/buildSampleTest.js";
+export * from "./test/buildSnippets.js";
 export * from "./metadata/buildReadmeFile.js";
 export * from "./metadata/buildApiExtractorConfig.js";
 export * from "./metadata/buildPackageFile.js";

@@ -46,7 +46,8 @@ import {
   hasUnexpectedHelper,
   isAzurePackage,
   updatePackageFile,
-  buildSampleEnvFile
+  buildSampleEnvFile,
+  buildSnippets
 } from "@azure-tools/rlc-common";
 import {
   buildRootIndex,
@@ -407,6 +408,15 @@ export async function $onEmit(context: EmitContext) {
         buildPackageFile(model, modularPackageInfo)
       );
       commonBuilders.push(buildTsConfig);
+
+      if (option.generateTest && isAzureFlavor) {
+        for (const subClient of dpgContext.sdkPackage.clients) {
+          commonBuilders.push((model) =>
+            buildSnippets(model, subClient.name, option.azureSdkForJs)
+          );
+        }
+      }
+
       // build metadata relevant files
       await emitContentByBuilder(
         program,
