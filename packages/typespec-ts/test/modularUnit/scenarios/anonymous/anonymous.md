@@ -42,6 +42,7 @@ export function barSerializer(item: Bar): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Bar, barSerializer } from "../models/models.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -60,12 +61,21 @@ export function _readSend(
   prop5: Bar,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/{pathParam}{?queryParam}",
+    {
+      pathParam: pathParam,
+      queryParam: queryParam,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/{pathParam}", pathParam)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      queryParameters: { queryParam: queryParam },
       body: {
         prop1: prop1,
         prop2: prop2,
@@ -168,6 +178,7 @@ export interface ReadOptionalParams extends OperationOptions {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { barSerializer } from "../models/models.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -184,12 +195,21 @@ export function _readSend(
   prop4: string,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/{pathParam}{?queryParam}",
+    {
+      pathParam: pathParam,
+      queryParam: queryParam,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/{pathParam}", pathParam)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      queryParameters: { queryParam: queryParam },
       body: {
         prop1: prop1,
         prop2: prop2,
@@ -290,6 +310,7 @@ export interface ReadOptionalParams extends OperationOptions {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { barSerializer } from "../models/models.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -306,12 +327,23 @@ export function _readSend(
   queryParam: string,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/{pathParam}/{prop1}{?prop4,queryParam}",
+    {
+      pathParam: pathParam,
+      prop1: prop1,
+      prop4: prop4,
+      queryParam: queryParam,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/{pathParam}/{prop1}", pathParam, prop1)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      queryParameters: { prop4: prop4, queryParam: queryParam },
       body: {
         prop2: prop2,
         prop3: !options?.prop3 ? options?.prop3 : options?.prop3.toISOString(),
@@ -422,6 +454,7 @@ export function fooSerializer(item: Foo): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer } from "../models/models.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -436,12 +469,21 @@ export function _readSend(
   body: Foo,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/{pathParam}{?queryParam}",
+    {
+      pathParam: pathParam,
+      queryParam: queryParam,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/{pathParam}", pathParam)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      queryParameters: { queryParam: queryParam },
       body: fooSerializer(body),
     });
 }
@@ -493,6 +535,7 @@ export function _readRequestSerializer(item: _ReadRequest): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { _readRequestSerializer } from "../models/models.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -507,12 +550,21 @@ export function _readSend(
   body: Record<string, any>,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/{pathParam}{?queryParam}",
+    {
+      pathParam: pathParam,
+      queryParam: queryParam,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/{pathParam}", pathParam)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      queryParameters: { queryParam: queryParam },
       body: _readRequestSerializer(body),
     });
 }
@@ -578,6 +630,7 @@ export function barSerializer(item: Bar): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { _readRequestSerializer, Bar } from "../models/models.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -595,12 +648,21 @@ export function _readSend(
   },
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/{pathParam}{?queryParam}",
+    {
+      pathParam: pathParam,
+      queryParam: queryParam,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/{pathParam}", pathParam)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      queryParameters: { queryParam: queryParam },
       body: _readRequestSerializer(test),
     });
 }

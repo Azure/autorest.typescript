@@ -421,7 +421,7 @@ export function hasCollectionFormatInfo(
   paramFormat: string
 ) {
   return (
-    getHasMultiCollection(paramType, paramFormat) ||
+    getHasMultiCollection(paramType, paramFormat, false) ||
     getHasSsvCollection(paramType, paramFormat) ||
     getHasTsvCollection(paramType, paramFormat) ||
     getHasCsvCollection(paramType, paramFormat) ||
@@ -490,9 +490,7 @@ export function getCollectionFormatHelper(
   paramType: string,
   paramFormat: string
 ) {
-  // const detail = getSpecialSerializeInfo(paramType, paramFormat);
-  // return detail.descriptions.length > 0 ? detail.descriptions[0] : undefined;
-  if (getHasMultiCollection(paramType, paramFormat)) {
+  if (getHasMultiCollection(paramType, paramFormat, false)) {
     return resolveReference(SerializationHelpers.buildMultiCollection);
   }
 
