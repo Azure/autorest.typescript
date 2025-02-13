@@ -98,7 +98,7 @@ Raw json files.
 Generated samples.
 
 ```ts samples
-/** This file path is /samples-dev/bCFooSample.ts */
+/** This file path is /samples-dev/cFooSample.ts */
 import { TestingClient } from "@azure/internal-test";
 
 /**
@@ -109,7 +109,7 @@ import { TestingClient } from "@azure/internal-test";
  */
 async function foo(): Promise<void> {
   const client = new TestingClient();
-  const result = await client.b.c.foo({ prop2: "body name" });
+  const result = await client.c.foo({ prop2: "body name" });
   console.log(result);
 }
 
