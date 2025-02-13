@@ -10,7 +10,6 @@ import {
   SdkHttpOperationExample,
   SdkHttpParameterExampleValue,
   SdkInitializationType,
-  SdkServiceMethod,
   SdkServiceOperation,
   SdkExampleValue
 } from "@azure-tools/typespec-client-generator-core";
@@ -106,7 +105,7 @@ function emitMethodSamples(
   }
   const project = useContext("outputProject");
   const operationPrefix = `${options.classicalMethodPrefix ?? ""} ${
-    method.name
+    method.oriName
   }`;
   const sampleFolder = join(
     dpgContext.generationPathDetail?.rootDir ?? "",
@@ -205,7 +204,7 @@ function emitMethodSamples(
     }
 
     // Create a function declaration structure
-    const description = method.doc ?? `execute ${method.name}`;
+    const description = method.doc ?? `execute ${method.oriName}`;
     const normalizedDescription =
       description.charAt(0).toLowerCase() + description.slice(1);
     const functionDeclaration: FunctionDeclarationStructure = {
@@ -245,7 +244,7 @@ function buildParameterValueMap(example: SdkHttpOperationExample) {
 
 function prepareExampleParameters(
   dpgContext: SdkContext,
-  method: SdkServiceMethod<SdkServiceOperation>,
+  method: ServiceOperation,
   parameterMap: Record<string, SdkHttpParameterExampleValue>,
   topLevelClient: SdkClientType<SdkServiceOperation>
 ): ExampleValue[] {
@@ -277,7 +276,7 @@ function prepareExampleParameters(
       reportDiagnostic(dpgContext.program, {
         code: "required-sample-parameter",
         format: {
-          exampleName: method.name,
+          exampleName: method.oriName ?? method.name,
           paramName: param.name
         },
         target: NoTarget
