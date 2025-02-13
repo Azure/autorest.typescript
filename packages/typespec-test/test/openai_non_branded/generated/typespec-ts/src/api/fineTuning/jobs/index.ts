@@ -35,7 +35,7 @@ export function _cancelSend(
   const path = expandUrlTemplate(
     "/fine_tuning/jobs/{fine_tuning_job_id}/cancel",
     {
-      fineTuningJobId: fineTuningJobId,
+      fine_tuning_job_id: fineTuningJobId,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -82,7 +82,7 @@ export function _listEventsSend(
   const path = expandUrlTemplate(
     "/fine_tuning/jobs/{fine_tuning_job_id}/events{?after,limit}",
     {
-      fineTuningJobId: fineTuningJobId,
+      fine_tuning_job_id: fineTuningJobId,
       after: options?.after,
       limit: options?.limit,
     },
@@ -131,7 +131,7 @@ export function _retrieveSend(
   const path = expandUrlTemplate(
     "/fine_tuning/jobs/{fine_tuning_job_id}",
     {
-      fineTuningJobId: fineTuningJobId,
+      fine_tuning_job_id: fineTuningJobId,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

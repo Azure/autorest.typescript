@@ -35,7 +35,7 @@ export function _cancelSend(
   const path = expandUrlTemplate(
     "/fine-tunes/{fine_tune_id}/cancel",
     {
-      fineTuneId: fineTuneId,
+      fine_tune_id: fineTuneId,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -82,7 +82,7 @@ export function _listEventsSend(
   const path = expandUrlTemplate(
     "/fine-tunes/{fine_tune_id}/events{?stream}",
     {
-      fineTuneId: fineTuneId,
+      fine_tune_id: fineTuneId,
       stream: options?.stream,
     },
     {
@@ -130,7 +130,7 @@ export function _retrieveSend(
   const path = expandUrlTemplate(
     "/fine-tunes/{fine_tune_id}",
     {
-      fineTuneId: fineTuneId,
+      fine_tune_id: fineTuneId,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

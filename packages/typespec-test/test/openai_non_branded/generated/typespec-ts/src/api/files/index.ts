@@ -35,7 +35,7 @@ export function _downloadSend(
   const path = expandUrlTemplate(
     "/files/files/{file_id}/content",
     {
-      fileId: fileId,
+      file_id: fileId,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -82,7 +82,7 @@ export function _$deleteSend(
   const path = expandUrlTemplate(
     "/files/files/{file_id}",
     {
-      fileId: fileId,
+      file_id: fileId,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -134,7 +134,7 @@ export function _retrieveSend(
   const path = expandUrlTemplate(
     "/files/files/{file_id}",
     {
-      fileId: fileId,
+      file_id: fileId,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
