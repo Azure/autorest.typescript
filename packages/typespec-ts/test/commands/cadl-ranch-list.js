@@ -788,6 +788,10 @@ export const azureModularTsps = [
 
 export const modularTsps = [
   {
+    outputPath: "routes",
+    inputPath: "routes"
+  },
+  {
     outputPath: "parameters/body-optionality",
     inputPath: "parameters/body-optionality"
   },
