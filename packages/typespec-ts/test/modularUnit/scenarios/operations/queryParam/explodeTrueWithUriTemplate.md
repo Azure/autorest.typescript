@@ -1,4 +1,4 @@
-# only: Should generate query parameter with start(\*) character
+# Should generate query parameter with start(\*) character
 
 ## TypeSpec
 

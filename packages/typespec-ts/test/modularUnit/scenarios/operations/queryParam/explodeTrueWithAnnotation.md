@@ -1,4 +1,4 @@
-# only: Should generate query explode: true parameter for @query(#{ explode: true }
+# Should generate query explode: true parameter for @query(#{ explode: true }
 
 ## TypeSpec
 

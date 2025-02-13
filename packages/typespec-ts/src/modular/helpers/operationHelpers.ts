@@ -4,7 +4,11 @@ import {
   ParameterDeclarationStructure
 } from "ts-morph";
 import { NoTarget, Program } from "@typespec/compiler";
-import { PagingHelpers, PollingHelpers, UrlTemplateHelpers } from "../static-helpers-metadata.js";
+import {
+  PagingHelpers,
+  PollingHelpers,
+  UrlTemplateHelpers
+} from "../static-helpers-metadata.js";
 import {
   getNullableValidType,
   isSpreadBodyParameter,
@@ -55,6 +59,7 @@ import {
   SdkModelPropertyType,
   SdkModelType,
   SdkPagingServiceMethod,
+  SdkPathParameter,
   SdkServiceParameter,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
@@ -515,7 +520,7 @@ function getLroOnlyOperationFunction(
   ];
   const resourceLocationConfig =
     lroMetadata?.finalStateVia &&
-      allowedFinalLocation.includes(lroMetadata?.finalStateVia)
+    allowedFinalLocation.includes(lroMetadata?.finalStateVia)
       ? `resourceLocationConfig: "${lroMetadata?.finalStateVia}"`
       : "";
   const statements: string[] = [];
@@ -530,8 +535,9 @@ function getLroOnlyOperationFunction(
       .map((p) => p.name)
       .join(", ")}),
     ${resourceLocationConfig}
-  }) as ${pollerLikeReference}<${operationStateReference}<${returnType.type
-    }>, ${returnType.type}>;
+  }) as ${pollerLikeReference}<${operationStateReference}<${
+    returnType.type
+  }>, ${returnType.type}>;
   `);
 
   return {
@@ -841,14 +847,15 @@ function getCollectionFormat(
       getEncodeForType(param.type)
     )}${additionalParam})`;
   }
-  return `"${serializedName}": ${optionalParamName}?.${param.name
-    } !== undefined ? ${collectionInfo}(${serializeRequestValue(
-      context,
-      param.type,
-      `${optionalParamName}?.${param.name}`,
-      false,
-      getEncodeForType(param.type)
-    )}${additionalParam}): undefined`;
+  return `"${serializedName}": ${optionalParamName}?.${
+    param.name
+  } !== undefined ? ${collectionInfo}(${serializeRequestValue(
+    context,
+    param.type,
+    `${optionalParamName}?.${param.name}`,
+    false,
+    getEncodeForType(param.type)
+  )}${additionalParam}): undefined`;
 }
 
 function isContentType(param: SdkServiceParameter): boolean {
@@ -870,10 +877,11 @@ function getContentTypeValue(
   if (defaultValue) {
     return `contentType: ${optionalParamName}.${param.name} as any ?? "${defaultValue}"`;
   } else {
-    return `contentType: ${!param.optional
-      ? "contentType"
-      : `${optionalParamName}.` + param.name + " as any"
-      }`;
+    return `contentType: ${
+      !param.optional
+        ? "contentType"
+        : `${optionalParamName}.` + param.name + " as any"
+    }`;
   }
 }
 
@@ -975,10 +983,10 @@ function getPathParameters(
   optionalParamName: string = "options"
 ) {
   if (!operation.operation.parameters) {
-    return "";
+    return [];
   }
 
-  let pathParams = "";
+  const pathParams: string[] = [];
   for (const param of operation.operation.parameters) {
     if (param.kind === "path") {
       // Path parameters cannot be optional
@@ -987,15 +995,13 @@ function getPathParameters(
           code: "optional-path-param",
           target: NoTarget,
           format: {
-            paramName: param
+            paramName: (param as SdkPathParameter).name
           }
         });
       }
-      pathParams += `${pathParams !== "" ? "," : ""} ${getPathParamExpr(
-        param,
-        getDefaultValue(param) as string,
-        optionalParamName
-      )}`;
+      pathParams.push(
+        `${param.serializedName}: ${getPathParamExpr(param, getDefaultValue(param) as string, optionalParamName)}`
+      );
     }
   }
 
@@ -1038,7 +1044,6 @@ function getQueryParameters(
   return paramStr;
 }
 
-
 function getPathParamExpr(
   param: SdkServiceParameter,
   defaultValue?: string,
@@ -1052,16 +1057,11 @@ function getPathParamExpr(
     : param.optional
       ? `${optionalParamName}["${param.name}"]`
       : param.name;
-  const value = defaultValue
+  return defaultValue
     ? typeof defaultValue === "string"
       ? `${paramName} ?? "${defaultValue}"`
       : `${paramName} ?? ${defaultValue}`
     : paramName;
-  // TODO allowReserved is not supported in Query and Header parameter yet.
-  if (param.kind === "path" && param.allowReserved === true) {
-    return `{value: ${value}, allowReserved: true}`;
-  }
-  return value;
 }
 
 function getNullableCheck(name: string, type: SdkType) {
@@ -1178,8 +1178,9 @@ export function getResponseMapping(
   for (const property of properties) {
     const dot = propertyPath.endsWith("?") ? "." : "";
     const serializedName = getPropertySerializedName(property);
-    const restValue = `${propertyPath ? `${propertyPath}${dot}` : `${dot}`
-      }["${serializedName}"]`;
+    const restValue = `${
+      propertyPath ? `${propertyPath}${dot}` : `${dot}`
+    }["${serializedName}"]`;
 
     const nullOrUndefinedPrefix =
       property.optional || isTypeNullable(property.type)
@@ -1275,12 +1276,14 @@ export function serializeRequestValue(
         );
         return required
           ? `${getNullableCheck(
-            clientValue,
-            type
-          )} ${uint8ArrayToStringReference}(${clientValue}, "${getEncodingFormat({ format }) ?? "base64"
-          }")`
-          : `${nullOrUndefinedPrefix} ${uint8ArrayToStringReference}(${clientValue}, "${getEncodingFormat({ format }) ?? "base64"
-          }")`;
+              clientValue,
+              type
+            )} ${uint8ArrayToStringReference}(${clientValue}, "${
+              getEncodingFormat({ format }) ?? "base64"
+            }")`
+          : `${nullOrUndefinedPrefix} ${uint8ArrayToStringReference}(${clientValue}, "${
+              getEncodingFormat({ format }) ?? "base64"
+            }")`;
       }
       return clientValue;
     case "union":
@@ -1351,11 +1354,11 @@ export function deserializeResponseValue(
       }
       const deserializeFunctionName = type.valueType
         ? buildModelDeserializer(
-          context,
-          getNullableValidType(type.valueType),
-          false,
-          true
-        )
+            context,
+            getNullableValidType(type.valueType),
+            false,
+            true
+          )
         : undefined;
       if (deserializeFunctionName) {
         return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(p)})`;
@@ -1383,11 +1386,11 @@ export function deserializeResponseValue(
       } else if (isSpecialHandledUnion(type)) {
         const deserializeFunctionName = type
           ? buildModelDeserializer(
-            context,
-            getNullableValidType(type),
-            false,
-            true
-          )
+              context,
+              getNullableValidType(type),
+              false,
+              true
+            )
           : undefined;
         if (deserializeFunctionName) {
           return `${deserializeFunctionName}(${restValue})`;

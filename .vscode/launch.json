@@ -112,9 +112,9 @@
     {
       "name": "[TypeSpec] Smoke Test Debug",
       "request": "launch",
-      "cwd": "${workspaceFolder}/packages/typespec-test/test/customWrapper",
+      "cwd": "${workspaceFolder}/packages/typespec-test/test/widget_dpg",
 
-      "runtimeArgs": ["tsp", "compile", "./spec"],
+      "runtimeArgs": ["tsp", "compile", "./spec/client.tsp"],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
       "type": "pwa-node",

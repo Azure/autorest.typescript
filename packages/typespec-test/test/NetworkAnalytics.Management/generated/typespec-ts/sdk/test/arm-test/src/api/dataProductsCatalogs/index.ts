@@ -18,6 +18,7 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -31,18 +32,24 @@ export function _listBySubscriptionSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs{?api-version}",
+    {
+      subscriptionId: context.subscriptionId,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs",
-      context.subscriptionId,
-    )
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -82,19 +89,25 @@ export function _listByResourceGroupSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs{?api-version}",
+    {
+      subscriptionId: context.subscriptionId,
+      resourceGroupName: resourceGroupName,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs",
-      context.subscriptionId,
-      resourceGroupName,
-    )
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -133,19 +146,25 @@ export function _getSend(
   resourceGroupName: string,
   options: DataProductsCatalogsGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs/default{?api-version}",
+    {
+      subscriptionId: context.subscriptionId,
+      resourceGroupName: resourceGroupName,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs/default",
-      context.subscriptionId,
-      resourceGroupName,
-    )
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
