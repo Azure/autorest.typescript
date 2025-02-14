@@ -11,8 +11,12 @@ export { SchemaRegistryClient } from "./schemaRegistryClient.js";
 export {
   SchemaGroup,
   SchemaVersion,
+  SchemaProperties,
+  SchemaFormat,
+  Schema,
   SchemaContentTypeValues,
   KnownServiceApiVersions,
+  ContentTypeEnum,
 } from "./models/index.js";
 export {
   SchemaOperationsRegisterSchemaOptionalParams,
