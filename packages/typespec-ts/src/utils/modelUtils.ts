@@ -702,6 +702,9 @@ function getSchemaForModel(
     };
   }
   for (const [propName, prop] of model.properties) {
+    if (propName === "identity") {
+      prop;
+    }
     const restApiName = getWireName(dpgContext, prop);
     const name = `"${restApiName ?? propName}"`;
     if (!isSchemaProperty(program, prop)) {
@@ -857,14 +860,19 @@ function getModelName(dpgContext: SdkContext, model: Model) {
       NameType.Interface
     );
   }
-  const fullNamespacePrefix = getModelNamespaceName(
-    dpgContext,
-    model.namespace!
-  )
+  let fullNamespacePrefix = getModelNamespaceName(dpgContext, model.namespace!)
     .map((nsName) => {
       return normalizeName(nsName, NameType.Interface);
     })
     .join("");
+  if (
+    fullNamespacePrefix.startsWith("AzureResourceManager") ||
+    fullNamespacePrefix.startsWith("AzureCore") ||
+    fullNamespacePrefix.startsWith("TypeSpecRest") ||
+    fullNamespacePrefix.startsWith("TypeSpecHttp")
+  ) {
+    fullNamespacePrefix = "";
+  }
   // 5. check if this model should be namespaced
   return dpgContext.rlcOptions?.enableModelNamespace
     ? `${fullNamespacePrefix}${name}`
