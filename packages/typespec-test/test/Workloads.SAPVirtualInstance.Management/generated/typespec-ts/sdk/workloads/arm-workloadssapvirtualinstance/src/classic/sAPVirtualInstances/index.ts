@@ -78,18 +78,14 @@ export interface SAPVirtualInstancesOperations {
   stop: (
     resourceGroupName: string,
     sapVirtualInstanceName: string,
-    body: {
-      body?: StopRequest;
-    },
+    body: StopRequest,
     options?: SAPVirtualInstancesStopOptionalParams,
   ) => PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
   /** Starts the SAP application, that is the Central Services instance and Application server instances. */
   start: (
     resourceGroupName: string,
     sapVirtualInstanceName: string,
-    body: {
-      body?: StartRequest;
-    },
+    body: StartRequest,
     options?: SAPVirtualInstancesStartOptionalParams,
   ) => PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
   /** Gets all Virtual Instances for SAP solutions resources in a Subscription. */
@@ -173,9 +169,7 @@ function _getSAPVirtualInstances(context: WorkloadsContext) {
     stop: (
       resourceGroupName: string,
       sapVirtualInstanceName: string,
-      body: {
-        body?: StopRequest;
-      },
+      body: StopRequest,
       options?: SAPVirtualInstancesStopOptionalParams,
     ) =>
       sAPVirtualInstancesStop(
@@ -188,9 +182,7 @@ function _getSAPVirtualInstances(context: WorkloadsContext) {
     start: (
       resourceGroupName: string,
       sapVirtualInstanceName: string,
-      body: {
-        body?: StartRequest;
-      },
+      body: StartRequest,
       options?: SAPVirtualInstancesStartOptionalParams,
     ) =>
       sAPVirtualInstancesStart(

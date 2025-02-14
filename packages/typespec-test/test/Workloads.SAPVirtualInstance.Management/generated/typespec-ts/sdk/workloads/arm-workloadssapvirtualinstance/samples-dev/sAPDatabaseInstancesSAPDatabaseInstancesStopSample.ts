@@ -18,7 +18,7 @@ async function stopTheDatabaseInstanceOfTheSapSystem(): Promise<void> {
     "test-rg",
     "X00",
     "db0",
-    { body: { softStopTimeoutSeconds: 0 } },
+    { softStopTimeoutSeconds: 0 },
   );
   console.log(result);
 }
@@ -37,7 +37,7 @@ async function softStopTheDatabaseInstanceOfTheSapSystem(): Promise<void> {
     "test-rg",
     "X00",
     "db0",
-    { body: { softStopTimeoutSeconds: 300 } },
+    { softStopTimeoutSeconds: 300 },
   );
   console.log(result);
 }
@@ -56,7 +56,7 @@ async function softStopTheDatabaseInstanceOfTheSapSystemAndTheUnderlyingVirtualM
     "test-rg",
     "X00",
     "db0",
-    { body: { deallocateVm: true, softStopTimeoutSeconds: 300 } },
+    { deallocateVm: true, softStopTimeoutSeconds: 300 },
   );
   console.log(result);
 }
@@ -75,7 +75,7 @@ async function stopTheDatabaseInstanceOfTheSapSystemAndTheUnderlyingVirtualMachi
     "test-rg",
     "X00",
     "db0",
-    { body: { deallocateVm: true, softStopTimeoutSeconds: 0 } },
+    { deallocateVm: true, softStopTimeoutSeconds: 0 },
   );
   console.log(result);
 }

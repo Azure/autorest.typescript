@@ -37,9 +37,7 @@ export interface SAPCentralServerInstancesOperations {
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     centralInstanceName: string,
-    body: {
-      body?: StopRequest;
-    },
+    body: StopRequest,
     options?: SAPCentralServerInstancesStopOptionalParams,
   ) => PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
   /** Starts the SAP Central Services Instance. */
@@ -47,9 +45,7 @@ export interface SAPCentralServerInstancesOperations {
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     centralInstanceName: string,
-    body: {
-      body?: StartRequest;
-    },
+    body: StartRequest,
     options?: SAPCentralServerInstancesStartOptionalParams,
   ) => PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
   /** Lists the SAP Central Services Instance resource for the given Virtual Instance for SAP solutions resource. */
@@ -99,9 +95,7 @@ function _getSAPCentralServerInstances(context: WorkloadsContext) {
       resourceGroupName: string,
       sapVirtualInstanceName: string,
       centralInstanceName: string,
-      body: {
-        body?: StopRequest;
-      },
+      body: StopRequest,
       options?: SAPCentralServerInstancesStopOptionalParams,
     ) =>
       sAPCentralServerInstancesStop(
@@ -116,9 +110,7 @@ function _getSAPCentralServerInstances(context: WorkloadsContext) {
       resourceGroupName: string,
       sapVirtualInstanceName: string,
       centralInstanceName: string,
-      body: {
-        body?: StartRequest;
-      },
+      body: StartRequest,
       options?: SAPCentralServerInstancesStartOptionalParams,
     ) =>
       sAPCentralServerInstancesStart(

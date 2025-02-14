@@ -19,7 +19,7 @@ async function stopTheSapCentralServicesInstance(): Promise<void> {
       "test-rg",
       "X00",
       "centralServer",
-      { body: { softStopTimeoutSeconds: 1200 } },
+      { softStopTimeoutSeconds: 1200 },
     );
   console.log(result);
 }
@@ -39,7 +39,7 @@ async function stopTheSapCentralServicesInstanceAndItsUnderlyingVirtualMachineS(
       "test-rg",
       "X00",
       "centralServer",
-      { body: { deallocateVm: true } },
+      { deallocateVm: true },
     );
   console.log(result);
 }

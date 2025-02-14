@@ -17,7 +17,7 @@ async function softStopOfSapVirtualInstancesStop(): Promise<void> {
   const result = await client.sAPVirtualInstances.SAPVirtualInstances_stop(
     "test-rg",
     "X00",
-    { body: { softStopTimeoutSeconds: 300 } },
+    { softStopTimeoutSeconds: 300 },
   );
   console.log(result);
 }
@@ -35,7 +35,7 @@ async function softStopTheVirtualMachineSAndTheSapSystemOnIt(): Promise<void> {
   const result = await client.sAPVirtualInstances.SAPVirtualInstances_stop(
     "test-rg",
     "X00",
-    { body: { deallocateVm: true, softStopTimeoutSeconds: 300 } },
+    { deallocateVm: true, softStopTimeoutSeconds: 300 },
   );
   console.log(result);
 }
@@ -53,7 +53,7 @@ async function sAPVirtualInstancesStop(): Promise<void> {
   const result = await client.sAPVirtualInstances.SAPVirtualInstances_stop(
     "test-rg",
     "X00",
-    { body: { softStopTimeoutSeconds: 0 } },
+    { softStopTimeoutSeconds: 0 },
   );
   console.log(result);
 }
@@ -71,7 +71,7 @@ async function stopTheVirtualMachineSAndTheSapSystemOnIt(): Promise<void> {
   const result = await client.sAPVirtualInstances.SAPVirtualInstances_stop(
     "test-rg",
     "X00",
-    { body: { deallocateVm: true, softStopTimeoutSeconds: 0 } },
+    { deallocateVm: true, softStopTimeoutSeconds: 0 },
   );
   console.log(result);
 }

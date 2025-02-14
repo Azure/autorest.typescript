@@ -19,7 +19,7 @@ async function startTheSapCentralServicesInstance(): Promise<void> {
       "test-rg",
       "X00",
       "centralServer",
-      { body: {} },
+      {},
     );
   console.log(result);
 }
@@ -39,7 +39,7 @@ async function startTheVirtualMachineSAndTheSapCentralServicesInstanceOnIt(): Pr
       "test-rg",
       "X00",
       "centralServer",
-      { body: { startVm: true } },
+      { startVm: true },
     );
   console.log(result);
 }

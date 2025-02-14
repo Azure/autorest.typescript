@@ -27,11 +27,11 @@ import {
   _SAPCentralServerInstanceListResult,
   _sAPCentralServerInstanceListResultDeserializer,
 } from "../../models/models.js";
-import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -45,9 +45,7 @@ export function _sAPCentralServerInstancesStopSend(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   centralInstanceName: string,
-  body: {
-    body?: StopRequest;
-  },
+  body: StopRequest,
   options: SAPCentralServerInstancesStopOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -66,9 +64,7 @@ export function _sAPCentralServerInstancesStopSend(
         ...options.requestOptions?.headers,
       },
       queryParameters: { "api-version": context.apiVersion },
-      body: !options["body"]
-        ? options["body"]
-        : stopRequestSerializer(options["body"]),
+      body: stopRequestSerializer(body),
     });
 }
 
@@ -91,9 +87,7 @@ export function sAPCentralServerInstancesStop(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   centralInstanceName: string,
-  body: {
-    body?: StopRequest;
-  },
+  body: StopRequest,
   options: SAPCentralServerInstancesStopOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<OperationStatusResult>, OperationStatusResult> {
   return getLongRunningPoller(
@@ -122,9 +116,7 @@ export function _sAPCentralServerInstancesStartSend(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   centralInstanceName: string,
-  body: {
-    body?: StartRequest;
-  },
+  body: StartRequest,
   options: SAPCentralServerInstancesStartOptionalParams = {
     requestOptions: {},
   },
@@ -145,9 +137,7 @@ export function _sAPCentralServerInstancesStartSend(
         ...options.requestOptions?.headers,
       },
       queryParameters: { "api-version": context.apiVersion },
-      body: !options["body"]
-        ? options["body"]
-        : startRequestSerializer(options["body"]),
+      body: startRequestSerializer(body),
     });
 }
 
@@ -170,9 +160,7 @@ export function sAPCentralServerInstancesStart(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   centralInstanceName: string,
-  body: {
-    body?: StartRequest;
-  },
+  body: StartRequest,
   options: SAPCentralServerInstancesStartOptionalParams = {
     requestOptions: {},
   },

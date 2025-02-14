@@ -17,7 +17,7 @@ async function sAPVirtualInstancesStart(): Promise<void> {
   const result = await client.sAPVirtualInstances.SAPVirtualInstances_start(
     "test-rg",
     "X00",
-    { body: { startVm: true } },
+    { startVm: true },
   );
   console.log(result);
 }
@@ -35,7 +35,7 @@ async function sAPVirtualInstancesStartWithInfraOperations(): Promise<void> {
   const result = await client.sAPVirtualInstances.SAPVirtualInstances_start(
     "test-rg",
     "X00",
-    { body: { startVm: true } },
+    { startVm: true },
   );
   console.log(result);
 }

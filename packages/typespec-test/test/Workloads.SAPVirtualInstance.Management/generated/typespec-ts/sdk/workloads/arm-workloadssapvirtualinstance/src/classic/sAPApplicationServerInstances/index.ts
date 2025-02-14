@@ -37,9 +37,7 @@ export interface SAPApplicationServerInstancesOperations {
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     applicationInstanceName: string,
-    body: {
-      body?: StopRequest;
-    },
+    body: StopRequest,
     options?: SAPApplicationServerInstancesStopOptionalParams,
   ) => PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
   /** Starts the SAP Application Server Instance. */
@@ -47,9 +45,7 @@ export interface SAPApplicationServerInstancesOperations {
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     applicationInstanceName: string,
-    body: {
-      body?: StartRequest;
-    },
+    body: StartRequest,
     options?: SAPApplicationServerInstancesStartOptionalParams,
   ) => PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
   /** Lists the SAP Application Server Instance resources for a given Virtual Instance for SAP solutions resource. */
@@ -99,9 +95,7 @@ function _getSAPApplicationServerInstances(context: WorkloadsContext) {
       resourceGroupName: string,
       sapVirtualInstanceName: string,
       applicationInstanceName: string,
-      body: {
-        body?: StopRequest;
-      },
+      body: StopRequest,
       options?: SAPApplicationServerInstancesStopOptionalParams,
     ) =>
       sAPApplicationServerInstancesStop(
@@ -116,9 +110,7 @@ function _getSAPApplicationServerInstances(context: WorkloadsContext) {
       resourceGroupName: string,
       sapVirtualInstanceName: string,
       applicationInstanceName: string,
-      body: {
-        body?: StartRequest;
-      },
+      body: StartRequest,
       options?: SAPApplicationServerInstancesStartOptionalParams,
     ) =>
       sAPApplicationServerInstancesStart(

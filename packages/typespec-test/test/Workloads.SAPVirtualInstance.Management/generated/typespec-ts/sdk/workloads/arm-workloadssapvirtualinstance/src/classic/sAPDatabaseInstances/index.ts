@@ -37,9 +37,7 @@ export interface SAPDatabaseInstancesOperations {
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     databaseInstanceName: string,
-    body: {
-      body?: StopRequest;
-    },
+    body: StopRequest,
     options?: SAPDatabaseInstancesStopOptionalParams,
   ) => PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
   /** Starts the database instance of the SAP system. */
@@ -47,9 +45,7 @@ export interface SAPDatabaseInstancesOperations {
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     databaseInstanceName: string,
-    body: {
-      body?: StartRequest;
-    },
+    body: StartRequest,
     options?: SAPDatabaseInstancesStartOptionalParams,
   ) => PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
   /** Lists the Database resources associated with a Virtual Instance for SAP solutions resource. */
@@ -96,9 +92,7 @@ function _getSAPDatabaseInstances(context: WorkloadsContext) {
       resourceGroupName: string,
       sapVirtualInstanceName: string,
       databaseInstanceName: string,
-      body: {
-        body?: StopRequest;
-      },
+      body: StopRequest,
       options?: SAPDatabaseInstancesStopOptionalParams,
     ) =>
       sAPDatabaseInstancesStop(
@@ -113,9 +107,7 @@ function _getSAPDatabaseInstances(context: WorkloadsContext) {
       resourceGroupName: string,
       sapVirtualInstanceName: string,
       databaseInstanceName: string,
-      body: {
-        body?: StartRequest;
-      },
+      body: StartRequest,
       options?: SAPDatabaseInstancesStartOptionalParams,
     ) =>
       sAPDatabaseInstancesStart(

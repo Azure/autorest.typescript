@@ -19,7 +19,7 @@ async function startTheSapApplicationServerInstance(): Promise<void> {
       "test-rg",
       "X00",
       "app01",
-      { body: {} },
+      {},
     );
   console.log(result);
 }
@@ -39,7 +39,7 @@ async function startVirtualMachineAndTheSapApplicationServerInstanceOnIt(): Prom
       "test-rg",
       "X00",
       "app01",
-      { body: { startVm: true } },
+      { startVm: true },
     );
   console.log(result);
 }

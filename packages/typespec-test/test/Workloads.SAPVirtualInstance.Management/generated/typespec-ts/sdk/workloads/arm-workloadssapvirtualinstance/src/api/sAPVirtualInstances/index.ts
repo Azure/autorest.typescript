@@ -48,11 +48,11 @@ import {
   SAPAvailabilityZoneDetailsResult,
   sAPAvailabilityZoneDetailsResultDeserializer,
 } from "../../models/models.js";
-import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -293,9 +293,7 @@ export function _sAPVirtualInstancesStopSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
-  body: {
-    body?: StopRequest;
-  },
+  body: StopRequest,
   options: SAPVirtualInstancesStopOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -313,9 +311,7 @@ export function _sAPVirtualInstancesStopSend(
         ...options.requestOptions?.headers,
       },
       queryParameters: { "api-version": context.apiVersion },
-      body: !options["body"]
-        ? options["body"]
-        : stopRequestSerializer(options["body"]),
+      body: stopRequestSerializer(body),
     });
 }
 
@@ -337,9 +333,7 @@ export function sAPVirtualInstancesStop(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
-  body: {
-    body?: StopRequest;
-  },
+  body: StopRequest,
   options: SAPVirtualInstancesStopOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<OperationStatusResult>, OperationStatusResult> {
   return getLongRunningPoller(
@@ -366,9 +360,7 @@ export function _sAPVirtualInstancesStartSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
-  body: {
-    body?: StartRequest;
-  },
+  body: StartRequest,
   options: SAPVirtualInstancesStartOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -386,9 +378,7 @@ export function _sAPVirtualInstancesStartSend(
         ...options.requestOptions?.headers,
       },
       queryParameters: { "api-version": context.apiVersion },
-      body: !options["body"]
-        ? options["body"]
-        : startRequestSerializer(options["body"]),
+      body: startRequestSerializer(body),
     });
 }
 
@@ -410,9 +400,7 @@ export function sAPVirtualInstancesStart(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
-  body: {
-    body?: StartRequest;
-  },
+  body: StartRequest,
   options: SAPVirtualInstancesStartOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<OperationStatusResult>, OperationStatusResult> {
   return getLongRunningPoller(

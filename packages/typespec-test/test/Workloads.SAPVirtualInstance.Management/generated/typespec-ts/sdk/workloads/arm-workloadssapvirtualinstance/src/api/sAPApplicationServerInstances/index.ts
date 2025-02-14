@@ -27,11 +27,11 @@ import {
   StopRequest,
   stopRequestSerializer,
 } from "../../models/models.js";
-import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -45,9 +45,7 @@ export function _sAPApplicationServerInstancesStopSend(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   applicationInstanceName: string,
-  body: {
-    body?: StopRequest;
-  },
+  body: StopRequest,
   options: SAPApplicationServerInstancesStopOptionalParams = {
     requestOptions: {},
   },
@@ -68,9 +66,7 @@ export function _sAPApplicationServerInstancesStopSend(
         ...options.requestOptions?.headers,
       },
       queryParameters: { "api-version": context.apiVersion },
-      body: !options["body"]
-        ? options["body"]
-        : stopRequestSerializer(options["body"]),
+      body: stopRequestSerializer(body),
     });
 }
 
@@ -93,9 +89,7 @@ export function sAPApplicationServerInstancesStop(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   applicationInstanceName: string,
-  body: {
-    body?: StopRequest;
-  },
+  body: StopRequest,
   options: SAPApplicationServerInstancesStopOptionalParams = {
     requestOptions: {},
   },
@@ -126,9 +120,7 @@ export function _sAPApplicationServerInstancesStartSend(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   applicationInstanceName: string,
-  body: {
-    body?: StartRequest;
-  },
+  body: StartRequest,
   options: SAPApplicationServerInstancesStartOptionalParams = {
     requestOptions: {},
   },
@@ -149,9 +141,7 @@ export function _sAPApplicationServerInstancesStartSend(
         ...options.requestOptions?.headers,
       },
       queryParameters: { "api-version": context.apiVersion },
-      body: !options["body"]
-        ? options["body"]
-        : startRequestSerializer(options["body"]),
+      body: startRequestSerializer(body),
     });
 }
 
@@ -174,9 +164,7 @@ export function sAPApplicationServerInstancesStart(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   applicationInstanceName: string,
-  body: {
-    body?: StartRequest;
-  },
+  body: StartRequest,
   options: SAPApplicationServerInstancesStartOptionalParams = {
     requestOptions: {},
   },

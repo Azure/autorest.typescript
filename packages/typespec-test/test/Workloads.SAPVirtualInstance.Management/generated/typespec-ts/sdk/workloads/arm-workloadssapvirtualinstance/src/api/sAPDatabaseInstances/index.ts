@@ -27,11 +27,11 @@ import {
   _SAPDatabaseInstanceListResult,
   _sAPDatabaseInstanceListResultDeserializer,
 } from "../../models/models.js";
-import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -45,9 +45,7 @@ export function _sAPDatabaseInstancesStopSend(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   databaseInstanceName: string,
-  body: {
-    body?: StopRequest;
-  },
+  body: StopRequest,
   options: SAPDatabaseInstancesStopOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -66,9 +64,7 @@ export function _sAPDatabaseInstancesStopSend(
         ...options.requestOptions?.headers,
       },
       queryParameters: { "api-version": context.apiVersion },
-      body: !options["body"]
-        ? options["body"]
-        : stopRequestSerializer(options["body"]),
+      body: stopRequestSerializer(body),
     });
 }
 
@@ -91,9 +87,7 @@ export function sAPDatabaseInstancesStop(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   databaseInstanceName: string,
-  body: {
-    body?: StopRequest;
-  },
+  body: StopRequest,
   options: SAPDatabaseInstancesStopOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<OperationStatusResult>, OperationStatusResult> {
   return getLongRunningPoller(
@@ -122,9 +116,7 @@ export function _sAPDatabaseInstancesStartSend(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   databaseInstanceName: string,
-  body: {
-    body?: StartRequest;
-  },
+  body: StartRequest,
   options: SAPDatabaseInstancesStartOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -143,9 +135,7 @@ export function _sAPDatabaseInstancesStartSend(
         ...options.requestOptions?.headers,
       },
       queryParameters: { "api-version": context.apiVersion },
-      body: !options["body"]
-        ? options["body"]
-        : startRequestSerializer(options["body"]),
+      body: startRequestSerializer(body),
     });
 }
 
@@ -168,9 +158,7 @@ export function sAPDatabaseInstancesStart(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   databaseInstanceName: string,
-  body: {
-    body?: StartRequest;
-  },
+  body: StartRequest,
   options: SAPDatabaseInstancesStartOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<OperationStatusResult>, OperationStatusResult> {
   return getLongRunningPoller(

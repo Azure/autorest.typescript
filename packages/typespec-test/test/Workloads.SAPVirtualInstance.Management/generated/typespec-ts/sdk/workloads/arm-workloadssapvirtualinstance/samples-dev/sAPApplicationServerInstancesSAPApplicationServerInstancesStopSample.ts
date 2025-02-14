@@ -19,7 +19,7 @@ async function stopTheSapApplicationServerInstance(): Promise<void> {
       "test-rg",
       "X00",
       "app01",
-      { body: { softStopTimeoutSeconds: 0 } },
+      { softStopTimeoutSeconds: 0 },
     );
   console.log(result);
 }
@@ -39,7 +39,7 @@ async function stopTheSapApplicationServerInstanceAndItInfrastructure(): Promise
       "test-rg",
       "X00",
       "app01",
-      { body: { deallocateVm: true, softStopTimeoutSeconds: 0 } },
+      { deallocateVm: true, softStopTimeoutSeconds: 0 },
     );
   console.log(result);
 }
@@ -59,7 +59,7 @@ async function softStopTheSapApplicationServerInstance(): Promise<void> {
       "test-rg",
       "X00",
       "app01",
-      { body: { softStopTimeoutSeconds: 300 } },
+      { softStopTimeoutSeconds: 300 },
     );
   console.log(result);
 }
@@ -79,7 +79,7 @@ async function softStopTheSapApplicationServerInstanceAndItInfrastructure(): Pro
       "test-rg",
       "X00",
       "app01",
-      { body: { deallocateVm: true, softStopTimeoutSeconds: 300 } },
+      { deallocateVm: true, softStopTimeoutSeconds: 300 },
     );
   console.log(result);
 }

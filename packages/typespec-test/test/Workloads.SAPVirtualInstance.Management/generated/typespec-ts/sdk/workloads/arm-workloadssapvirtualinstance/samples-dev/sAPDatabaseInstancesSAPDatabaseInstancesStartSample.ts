@@ -18,7 +18,7 @@ async function startTheDatabaseInstanceOfTheSapSystem(): Promise<void> {
     "test-rg",
     "X00",
     "db0",
-    { body: {} },
+    {},
   );
   console.log(result);
 }
@@ -37,7 +37,7 @@ async function startVirtualMachineAndTheDatabaseInstanceOfTheSapSystemOnIt(): Pr
     "test-rg",
     "X00",
     "db0",
-    { body: { startVm: true } },
+    { startVm: true },
   );
   console.log(result);
 }
