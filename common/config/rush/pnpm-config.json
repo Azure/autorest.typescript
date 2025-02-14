@@ -3,18 +3,18 @@
   "useWorkspaces": true,
   "strictPeerDependencies": false,
   "globalOverrides": {
-    "@typespec/compiler": "0.65.0-dev.24",
-    "@typespec/http": "0.65.0-dev.5",
-    "@typespec/openapi": "0.65.0-dev.4",
-    "@typespec/rest": "0.65.0-dev.3",
-    "@typespec/versioning": "0.65.0-dev.5",
-    "@typespec/xml": "0.65.0-dev.2",
-    "@azure-tools/typespec-client-generator-core": "0.51.0-dev.15",
-    "@azure-tools/typespec-azure-core": "0.51.0-dev.2",
-    "@azure-tools/typespec-azure-resource-manager": "0.51.0-dev.9",
-    "@azure-tools/typespec-azure-rulesets": "0.51.0-dev.2",
-    "@azure-tools/typespec-autorest": "0.51.0-dev.6",
+    "@typespec/compiler": "0.66.0-dev.3",
+    "@typespec/http": "0.66.0-dev.1",
+    "@typespec/openapi": "0.66.0-dev.0",
+    "@typespec/rest": "0.66.0-dev.0",
+    "@typespec/versioning": "0.66.0-dev.0",
+    "@typespec/xml": "0.66.0-dev.0",
+    "@azure-tools/typespec-client-generator-core": "0.52.0-dev.1",
+    "@azure-tools/typespec-azure-core": "0.52.0-dev.0",
+    "@azure-tools/typespec-azure-resource-manager": "0.52.0-dev.0",
+    "@azure-tools/typespec-azure-rulesets": "0.52.0-dev.0",
+    "@azure-tools/typespec-autorest": "0.52.0-dev.0",
     "@typespec/eslint-config-typespec": "0.56.0-dev.1",
-    "@typespec/library-linter": "0.65.0-dev.2"
+    "@typespec/library-linter": "0.66.0-dev.0"
   }
 }
