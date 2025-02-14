@@ -171,7 +171,7 @@ function getNameAndPropertyMap(
   schema: ObjectSchema
 ): [string, Map<string, string>] {
   const map = new Map<string, string>();
-  for (const [key, value] of Object.entries(schema.properties!)) {
+  for (const [key, value] of Object.entries(schema.properties ?? [])) {
     map.set(key, getTypeName(value));
   }
   return [getTypeName(schema), map];
