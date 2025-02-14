@@ -1,6 +1,6 @@
-# Should generate samples for ARM operations
+# Should generate samples for ARM operations disabled hierarchy client
 
-Sample generation should arm template and operations successfully.
+Sample generation should arm template and operations successfully disabled hierarchy client.
 
 ## TypeSpec
 
@@ -86,6 +86,12 @@ interface Employees {
   createOrUpdate is ArmResourceCreateOrReplaceAsync<Employee>;
   delete is ArmResourceDeleteWithoutOkAsync<Employee>;
 }
+```
+
+This is the tspconfig.yaml.
+
+```yaml
+hierarchyClient: false
 ```
 
 ## Example

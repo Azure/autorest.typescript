@@ -576,7 +576,12 @@ export function getMethodHierarchiesMap(
     if (!method) {
       continue;
     }
-    const prefixes = method[0];
+    const prefixes =
+      context.rlcOptions?.hierarchyClient === false &&
+      context.rlcOptions?.enableOperationGroup &&
+      method[0].length > 0
+        ? [method[0][method[0].length - 1] as string]
+        : method[0];
     const operationOrGroup = method[1];
 
     if (operationOrGroup.kind === "clientaccessor") {
