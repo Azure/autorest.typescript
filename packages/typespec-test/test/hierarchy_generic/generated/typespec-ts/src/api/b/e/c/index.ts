@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { BECOp1OptionalParams, FooContext as Client } from "../../../index.js";
-import { Bea, beaSerializer } from "../../../../models/models.js";
+import { Bea, beaSerializer } from "../../../../models/b/e/models.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -19,6 +19,7 @@ export function _op1Send(
     .path("/b/e")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
       body: beaSerializer(body),
     });
 }

@@ -5,16 +5,14 @@ import { AzureKeyCredential } from "@azure/core-auth";
 import createAuthoringClient, {
   getLongRunningPoller,
 } from "@msinternal/authoring";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation SwapDeployments
  *
  * @summary call operation SwapDeployments
  */
-async function swapDeploymentsSample() {
+async function swapDeploymentsSample(): Promise<void> {
   const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAuthoringClient(endpointParam, credential);
@@ -35,8 +33,8 @@ async function swapDeploymentsSample() {
   console.log(result);
 }
 
-async function main() {
-  swapDeploymentsSample();
+async function main(): Promise<void> {
+  await swapDeploymentsSample();
 }
 
 main().catch(console.error);

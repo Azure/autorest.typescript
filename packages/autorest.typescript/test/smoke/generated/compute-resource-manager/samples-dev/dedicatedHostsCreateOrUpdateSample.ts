@@ -13,9 +13,7 @@ import {
   ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Create or update a dedicated host .
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Create or update a dedicated host .
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/CreateOrUpdateADedicatedHost.json
  */
-async function createOrUpdateADedicatedHost() {
+async function createOrUpdateADedicatedHost(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const hostGroupName = "myDedicatedHostGroup";
@@ -45,8 +43,8 @@ async function createOrUpdateADedicatedHost() {
   console.log(result);
 }
 
-async function main() {
-  createOrUpdateADedicatedHost();
+async function main(): Promise<void> {
+  await createOrUpdateADedicatedHost();
 }
 
 main().catch(console.error);

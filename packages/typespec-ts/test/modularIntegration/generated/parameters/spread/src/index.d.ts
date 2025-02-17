@@ -1,13 +1,13 @@
-import { ClientOptions } from '@azure-rest/core-client';
-import { OperationOptions } from '@azure-rest/core-client';
-import { Pipeline } from '@azure/core-rest-pipeline';
+import { ClientOptions } from '@typespec/ts-http-runtime';
+import { OperationOptions } from '@typespec/ts-http-runtime';
+import { Pipeline } from '@typespec/ts-http-runtime';
 
 export declare interface AliasOperations {
-    spreadAsRequestBody: (name: string, options?: AliasSpreadAsRequestBodyOptionalParams) => Promise<void>;
-    spreadParameterWithInnerModel: (id: string, xMsTestHeader: string, name: string, options?: AliasSpreadParameterWithInnerModelOptionalParams) => Promise<void>;
-    spreadAsRequestParameter: (id: string, xMsTestHeader: string, name: string, options?: AliasSpreadAsRequestParameterOptionalParams) => Promise<void>;
+    spreadParameterWithInnerAlias: (id: string, name: string, age: number, xMsTestHeader: string, options?: AliasSpreadParameterWithInnerAliasOptionalParams) => Promise<void>;
     spreadWithMultipleParameters: (id: string, xMsTestHeader: string, requiredString: string, requiredIntList: number[], options?: AliasSpreadWithMultipleParametersOptionalParams) => Promise<void>;
-    spreadParameterWithInnerAlias: (id: string, xMsTestHeader: string, name: string, age: number, options?: AliasSpreadParameterWithInnerAliasOptionalParams) => Promise<void>;
+    spreadAsRequestParameter: (id: string, xMsTestHeader: string, name: string, options?: AliasSpreadAsRequestParameterOptionalParams) => Promise<void>;
+    spreadParameterWithInnerModel: (id: string, name: string, xMsTestHeader: string, options?: AliasSpreadParameterWithInnerModelOptionalParams) => Promise<void>;
+    spreadAsRequestBody: (name: string, options?: AliasSpreadAsRequestBodyOptionalParams) => Promise<void>;
 }
 
 export declare interface AliasSpreadAsRequestBodyOptionalParams extends OperationOptions {
@@ -32,11 +32,11 @@ export declare interface BodyParameter {
 }
 
 export declare interface ModelOperations {
-    spreadAsRequestBody: (name: string, options?: ModelSpreadAsRequestBodyOptionalParams) => Promise<void>;
-    spreadCompositeRequestOnlyWithBody: (body: BodyParameter, options?: ModelSpreadCompositeRequestOnlyWithBodyOptionalParams) => Promise<void>;
-    spreadCompositeRequestWithoutBody: (name: string, testHeader: string, options?: ModelSpreadCompositeRequestWithoutBodyOptionalParams) => Promise<void>;
-    spreadCompositeRequest: (name: string, testHeader: string, body: BodyParameter, options?: ModelSpreadCompositeRequestOptionalParams) => Promise<void>;
     spreadCompositeRequestMix: (name: string, testHeader: string, prop: string, options?: ModelSpreadCompositeRequestMixOptionalParams) => Promise<void>;
+    spreadCompositeRequest: (name: string, testHeader: string, body: BodyParameter, options?: ModelSpreadCompositeRequestOptionalParams) => Promise<void>;
+    spreadCompositeRequestWithoutBody: (name: string, testHeader: string, options?: ModelSpreadCompositeRequestWithoutBodyOptionalParams) => Promise<void>;
+    spreadCompositeRequestOnlyWithBody: (body: BodyParameter, options?: ModelSpreadCompositeRequestOnlyWithBodyOptionalParams) => Promise<void>;
+    spreadAsRequestBody: (name: string, options?: ModelSpreadAsRequestBodyOptionalParams) => Promise<void>;
 }
 
 export declare interface ModelSpreadAsRequestBodyOptionalParams extends OperationOptions {
@@ -58,8 +58,8 @@ export declare class SpreadClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: SpreadClientOptionalParams);
-    readonly model: ModelOperations;
     readonly alias: AliasOperations;
+    readonly model: ModelOperations;
 }
 
 export declare interface SpreadClientOptionalParams extends ClientOptions {

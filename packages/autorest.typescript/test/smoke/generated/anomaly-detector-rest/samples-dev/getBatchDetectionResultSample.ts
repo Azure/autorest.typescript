@@ -3,9 +3,7 @@
 
 import createAnomalyDetectorRestClient from "@msinternal/anomaly-detector-rest";
 import { AzureKeyCredential } from "@azure/core-auth";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to For asynchronous inference, get multivariate anomaly detection result based on resultId returned by the BatchDetectAnomaly api.
@@ -13,7 +11,7 @@ dotenv.config();
  * @summary For asynchronous inference, get multivariate anomaly detection result based on resultId returned by the BatchDetectAnomaly api.
  * x-ms-original-file: specification/cognitiveservices/data-plane/AnomalyDetector/stable/v1.1/examples/GetResult.json
  */
-async function getDetectionResult() {
+async function getDetectionResult(): Promise<void> {
   const endpoint = "{Endpoint}";
   const apiVersion = "v1.1";
   const credential = new AzureKeyCredential("{Your API key}");
@@ -29,8 +27,8 @@ async function getDetectionResult() {
   console.log(result);
 }
 
-async function main() {
-  getDetectionResult();
+async function main(): Promise<void> {
+  await getDetectionResult();
 }
 
 main().catch(console.error);

@@ -9,7 +9,7 @@ using TypeSpec.Rest;
 using TypeSpec.Http;
 using TypeSpec.Versioning;
 
-namespace Azure.AI.Client.Agents;
+namespace Azure.AI.Projects.Agents;
 
 /**
  * Gets a single run step from a thread run.
@@ -38,6 +38,13 @@ op getRunStep is Azure.Core.Foundations.Operation<
     @doc("Identifier of the run step.")
     @path
     stepId: string;
+
+    @doc("""
+      A list of additional fields to include in the response.
+      Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.
+      """)
+    @query("include[]")
+    include?: RunAdditionalFieldList[];
   },
   RunStep
 >;
@@ -64,6 +71,13 @@ op listRunSteps is Azure.Core.Foundations.Operation<
     @doc("Identifier of the run.")
     @path
     runId: string;
+
+    @doc("""
+      A list of additional fields to include in the response.
+      Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.
+      """)
+    @query("include[]")
+    include?: RunAdditionalFieldList[];
 
     ...OpenAIListRequestOptions;
   },

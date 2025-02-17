@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { PathsGetEmptyParameters } from "./parameters";
-import {
+import type { PathsGetEmptyParameters } from "./parameters";
+import type {
   PathsGetEmpty200Response,
   PathsGetEmptyDefaultResponse,
 } from "./responses";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 /** Contains operations for Paths operations */
 export interface PathsOperations {

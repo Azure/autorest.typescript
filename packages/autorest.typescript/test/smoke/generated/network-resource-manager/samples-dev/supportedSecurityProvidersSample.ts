@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gives the supported security providers for the virtual wan.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gives the supported security providers for the virtual wan.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualWanSupportedSecurityProviders.json
  */
-async function supportedSecurityProviders() {
+async function supportedSecurityProviders(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualWANName = "wan1";
@@ -33,8 +31,8 @@ async function supportedSecurityProviders() {
   console.log(result);
 }
 
-async function main() {
-  supportedSecurityProviders();
+async function main(): Promise<void> {
+  await supportedSecurityProviders();
 }
 
 main().catch(console.error);

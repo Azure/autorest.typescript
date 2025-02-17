@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   AnalyzeBodyParameters,
   AnalyzeBodyNoAcceptHeaderParameters,
   ContentTypeWithEncodingParameters,
@@ -10,7 +10,7 @@ import {
   BodyThreeTypesParameters,
   PutTextAndJsonBodyParameters,
 } from "./parameters";
-import {
+import type {
   AnalyzeBody200Response,
   AnalyzeBodyNoAcceptHeader202Response,
   AnalyzeBodyNoAcceptHeaderDefaultResponse,
@@ -20,7 +20,7 @@ import {
   BodyThreeTypes200Response,
   PutTextAndJsonBody200Response,
 } from "./responses";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface AnalyzeBody {
   /** Analyze body, that could be different media types. */

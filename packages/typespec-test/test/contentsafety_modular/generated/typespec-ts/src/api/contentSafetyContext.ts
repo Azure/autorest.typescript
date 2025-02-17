@@ -7,7 +7,11 @@ import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
 
 /** Analyze harmful content */
-export interface ContentSafetyContext extends Client {}
+export interface ContentSafetyContext extends Client {
+  /** The API version to use for this operation. */
+  /** Known values of {@link KnownVersions} that the service accepts. */
+  apiVersion: string;
+}
 
 /** Optional parameters for the client. */
 export interface ContentSafetyClientOptionalParams extends ClientOptions {
@@ -59,5 +63,5 @@ export function createContentSafety(
       return next(req);
     },
   });
-  return clientContext;
+  return { ...clientContext, apiVersion } as ContentSafetyContext;
 }

@@ -22,6 +22,7 @@ import { loadStaticHelpers } from "../../src/framework/load-static-helpers.js";
 import path from "path";
 import { getDirname } from "../../src/utils/dirname.js";
 import {
+  MultipartHelpers,
   PagingHelpers,
   PollingHelpers,
   SerializationHelpers
@@ -188,7 +189,6 @@ export async function createDpgContextTestHelper(
 ): Promise<SdkContext> {
   const outputProject = new Project({ useInMemoryFileSystem: true });
   provideContext("rlcMetaTree", new Map());
-  provideContext("modularMetaTree", new Map());
   provideContext("symbolMap", new Map());
   provideContext("outputProject", outputProject);
 
@@ -264,7 +264,8 @@ export async function provideBinderWithAzureDependencies(project: Project) {
   const staticHelpers = {
     ...SerializationHelpers,
     ...PagingHelpers,
-    ...PollingHelpers
+    ...PollingHelpers,
+    ...MultipartHelpers,
   };
 
   const staticHelperMap = await loadStaticHelpers(project, staticHelpers, {

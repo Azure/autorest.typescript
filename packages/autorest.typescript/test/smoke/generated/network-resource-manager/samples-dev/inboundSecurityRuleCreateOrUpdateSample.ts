@@ -13,9 +13,7 @@ import {
   NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Creates or updates the specified Network Virtual Appliance Inbound Security Rules.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Creates or updates the specified Network Virtual Appliance Inbound Security Rules.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/InboundSecurityRulePut.json
  */
-async function createNetworkVirtualApplianceInboundSecurityRules() {
+async function createNetworkVirtualApplianceInboundSecurityRules(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkVirtualApplianceName = "nva";
@@ -49,8 +47,8 @@ async function createNetworkVirtualApplianceInboundSecurityRules() {
   console.log(result);
 }
 
-async function main() {
-  createNetworkVirtualApplianceInboundSecurityRules();
+async function main(): Promise<void> {
+  await createNetworkVirtualApplianceInboundSecurityRules();
 }
 
 main().catch(console.error);

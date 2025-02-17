@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Lists snapshots under a resource group.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Lists snapshots under a resource group.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/ListSnapshotsInAResourceGroup.json
  */
-async function listAllSnapshotsInAResourceGroup() {
+async function listAllSnapshotsInAResourceGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const credential = new DefaultAzureCredential();
@@ -34,8 +32,8 @@ async function listAllSnapshotsInAResourceGroup() {
   console.log(resArray);
 }
 
-async function main() {
-  listAllSnapshotsInAResourceGroup();
+async function main(): Promise<void> {
+  await listAllSnapshotsInAResourceGroup();
 }
 
 main().catch(console.error);

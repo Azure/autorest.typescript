@@ -1,45 +1,61 @@
 // Licensed under the MIT License.
 
-import {
-  TodoItemsAttachmentsListOptionalParams,
-  TodoItemsAttachmentsCreateAttachmentOptionalParams,
-} from "../../../api/options.js";
 import { TodoContext } from "../../../api/todoContext.js";
 import {
+  createFileAttachment,
+  createJsonAttachment,
   list,
-  createAttachment,
 } from "../../../api/todoItems/attachments/index.js";
-import { TodoAttachment, PageTodoAttachment } from "../../../models/models.js";
+import {
+  TodoAttachment,
+  FileAttachmentMultipartRequest,
+} from "../../../models/models.js";
+import { PagedAsyncIterableIterator } from "../../../static-helpers/pagingHelpers.js";
+import {
+  TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
+  TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
+  TodoItemsAttachmentsListOptionalParams,
+} from "../../../api/options.js";
 
 /** Interface representing a TodoItemsAttachments operations. */
 export interface TodoItemsAttachmentsOperations {
+  createFileAttachment: (
+    itemId: number,
+    body: FileAttachmentMultipartRequest,
+    options?: TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
+  ) => Promise<void>;
+  createJsonAttachment: (
+    itemId: number,
+    contents: TodoAttachment,
+    options?: TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
+  ) => Promise<void>;
   list: (
     itemId: number,
     options?: TodoItemsAttachmentsListOptionalParams,
-  ) => Promise<PageTodoAttachment>;
-  createAttachment: (
-    itemId: number,
-    contents: TodoAttachment,
-    options?: TodoItemsAttachmentsCreateAttachmentOptionalParams,
-  ) => Promise<void>;
+  ) => PagedAsyncIterableIterator<TodoAttachment>;
 }
 
-export function getTodoItemsAttachments(context: TodoContext) {
+function _getTodoItemsAttachments(context: TodoContext) {
   return {
-    list: (itemId: number, options?: TodoItemsAttachmentsListOptionalParams) =>
-      list(context, itemId, options),
-    createAttachment: (
+    createFileAttachment: (
+      itemId: number,
+      body: FileAttachmentMultipartRequest,
+      options?: TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
+    ) => createFileAttachment(context, itemId, body, options),
+    createJsonAttachment: (
       itemId: number,
       contents: TodoAttachment,
-      options?: TodoItemsAttachmentsCreateAttachmentOptionalParams,
-    ) => createAttachment(context, itemId, contents, options),
+      options?: TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
+    ) => createJsonAttachment(context, itemId, contents, options),
+    list: (itemId: number, options?: TodoItemsAttachmentsListOptionalParams) =>
+      list(context, itemId, options),
   };
 }
 
-export function getTodoItemsAttachmentsOperations(
+export function _getTodoItemsAttachmentsOperations(
   context: TodoContext,
 ): TodoItemsAttachmentsOperations {
   return {
-    ...getTodoItemsAttachments(context),
+    ..._getTodoItemsAttachments(context),
   };
 }

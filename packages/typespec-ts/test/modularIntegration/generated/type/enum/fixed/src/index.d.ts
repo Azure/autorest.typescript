@@ -1,6 +1,6 @@
-import { ClientOptions } from '@azure-rest/core-client';
-import { OperationOptions } from '@azure-rest/core-client';
-import { Pipeline } from '@azure/core-rest-pipeline';
+import { ClientOptions } from '@typespec/ts-http-runtime';
+import { OperationOptions } from '@typespec/ts-http-runtime';
+import { Pipeline } from '@typespec/ts-http-runtime';
 
 export declare type DaysOfWeekEnum = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
 
@@ -18,9 +18,9 @@ export declare interface StringGetKnownValueOptionalParams extends OperationOpti
 }
 
 export declare interface StringOperations {
-    getKnownValue: (options?: StringGetKnownValueOptionalParams) => Promise<DaysOfWeekEnum>;
-    putKnownValue: (body: DaysOfWeekEnum, options?: StringPutKnownValueOptionalParams) => Promise<void>;
     putUnknownValue: (body: DaysOfWeekEnum, options?: StringPutUnknownValueOptionalParams) => Promise<void>;
+    putKnownValue: (body: DaysOfWeekEnum, options?: StringPutKnownValueOptionalParams) => Promise<void>;
+    getKnownValue: (options?: StringGetKnownValueOptionalParams) => Promise<DaysOfWeekEnum>;
 }
 
 export declare interface StringPutKnownValueOptionalParams extends OperationOptions {

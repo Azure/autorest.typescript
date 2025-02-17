@@ -33,7 +33,35 @@ export interface Foo {
 
 export function fooDeserializer(item: any): Foo {
   return {
-    name: item["name"]
+    name: item["name"],
+  };
+}
+
+/** model interface ApiError */
+export interface ApiError {
+  /** A machine readable error code */
+  code: string;
+  detail?: ErrorDetail;
+}
+
+export function apiErrorDeserializer(item: any): ApiError {
+  return {
+    code: item["code"],
+    detail: !item["detail"]
+      ? item["detail"]
+      : errorDetailDeserializer(item["detail"]),
+  };
+}
+
+/** model interface ErrorDetail */
+export interface ErrorDetail {
+  /** A human readable message */
+  message: string;
+}
+
+export function errorDetailDeserializer(item: any): ErrorDetail {
+  return {
+    message: item["message"],
   };
 }
 ```
@@ -76,7 +104,7 @@ export interface Foo {
 export function fooDeserializer(item: any): Foo {
   return {
     name: item["name"],
-    options: errorDetailDeserializer(item["options"])
+    options: errorDetailDeserializer(item["options"]),
   };
 }
 
@@ -88,7 +116,23 @@ export interface ErrorDetail {
 
 export function errorDetailDeserializer(item: any): ErrorDetail {
   return {
-    message: item["message"]
+    message: item["message"],
+  };
+}
+
+/** model interface ApiError */
+export interface ApiError {
+  /** A machine readable error code */
+  code: string;
+  detail?: ErrorDetail;
+}
+
+export function apiErrorDeserializer(item: any): ApiError {
+  return {
+    code: item["code"],
+    detail: !item["detail"]
+      ? item["detail"]
+      : errorDetailDeserializer(item["detail"]),
   };
 }
 ```

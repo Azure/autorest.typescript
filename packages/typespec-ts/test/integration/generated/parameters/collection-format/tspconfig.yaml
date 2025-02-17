@@ -6,11 +6,11 @@ options:
     generateMetadata: true
     generateTest: false
     addCredentials: false
-    azureSdkForJs: false
+    isModularLibrary: false
     enableOperationGroup: true
     compatibilityQueryMultiFormat: true
     isTypeSpecTest: true
     title: CollectionFormatClient
     packageDetails:
-      name: "@msinternal/collectionFormat"
+      name: "@unbranded/collectionFormat"
       description: "CollectionFormat Test Service"

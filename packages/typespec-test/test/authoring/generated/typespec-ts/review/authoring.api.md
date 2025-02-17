@@ -4,20 +4,20 @@
 
 ```ts
 
-import { AbortSignalLike } from '@azure/abort-controller';
-import { CancelOnProgress } from '@azure/core-lro';
-import { Client } from '@azure-rest/core-client';
-import { ClientOptions } from '@azure-rest/core-client';
-import { CreateHttpPollerOptions } from '@azure/core-lro';
-import { ErrorModel } from '@azure-rest/core-client';
-import { ErrorResponse } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
-import { KeyCredential } from '@azure/core-auth';
-import { OperationState } from '@azure/core-lro';
-import { PathUncheckedResponse } from '@azure-rest/core-client';
-import { RawHttpHeaders } from '@azure/core-rest-pipeline';
-import { RequestParameters } from '@azure-rest/core-client';
-import { StreamableMethod } from '@azure-rest/core-client';
+import type { AbortSignalLike } from '@azure/abort-controller';
+import type { CancelOnProgress } from '@azure/core-lro';
+import type { Client } from '@azure-rest/core-client';
+import type { ClientOptions } from '@azure-rest/core-client';
+import type { CreateHttpPollerOptions } from '@azure/core-lro';
+import type { ErrorModel } from '@azure-rest/core-client';
+import type { ErrorResponse } from '@azure-rest/core-client';
+import type { HttpResponse } from '@azure-rest/core-client';
+import type { KeyCredential } from '@azure/core-auth';
+import type { OperationState } from '@azure/core-lro';
+import type { PathUncheckedResponse } from '@azure-rest/core-client';
+import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
+import type { RequestParameters } from '@azure-rest/core-client';
+import type { StreamableMethod } from '@azure-rest/core-client';
 
 // @public (undocumented)
 export type AuthoringClient = Client & {
@@ -114,7 +114,7 @@ export interface Delete202Headers {
 // @public
 export interface Delete202Response extends HttpResponse {
     // (undocumented)
-    body: OperationStatusOutput;
+    body: OperationStatusErrorOutput;
     // (undocumented)
     headers: RawHttpHeaders & Delete202Headers;
     // (undocumented)
@@ -144,7 +144,7 @@ export interface DeleteDeployment202Headers {
 // @public
 export interface DeleteDeployment202Response extends HttpResponse {
     // (undocumented)
-    body: OperationStatusOutput;
+    body: OperationStatusErrorOutput;
     // (undocumented)
     headers: RawHttpHeaders & DeleteDeployment202Headers;
     // (undocumented)
@@ -169,7 +169,7 @@ export interface DeleteDeploymentDefaultResponse extends HttpResponse {
 // @public
 export interface DeleteDeploymentLogicalResponse extends HttpResponse {
     // (undocumented)
-    body: OperationStatusOutput;
+    body: OperationStatusErrorOutput;
     // (undocumented)
     status: "200";
 }
@@ -180,7 +180,7 @@ export type DeleteDeploymentParameters = RequestParameters;
 // @public
 export interface DeleteLogicalResponse extends HttpResponse {
     // (undocumented)
-    body: OperationStatusOutput;
+    body: OperationStatusErrorOutput;
     // (undocumented)
     status: "200";
 }
@@ -730,7 +730,7 @@ export interface ListTrainingConfigVersionsQueryParamProperties {
 export type OperationStateOutput = string;
 
 // @public
-export interface OperationStatusOutput {
+export interface OperationStatusErrorOutput {
     error?: ErrorModel;
     id: string;
     status: OperationStateOutput;

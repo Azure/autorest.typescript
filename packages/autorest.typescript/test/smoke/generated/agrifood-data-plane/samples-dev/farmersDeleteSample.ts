@@ -3,9 +3,7 @@
 
 import createAzureAgriFoodPlatformDataPlaneServiceClient from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Deletes a specified farmer resource.
@@ -13,7 +11,7 @@ dotenv.config();
  * @summary Deletes a specified farmer resource.
  * x-ms-original-file: specification/agrifood/data-plane/Microsoft.AgFoodPlatform/preview/2021-03-31-preview/examples/Farmers_Delete.json
  */
-async function farmersDelete() {
+async function farmersDelete(): Promise<void> {
   const endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
@@ -25,8 +23,8 @@ async function farmersDelete() {
   console.log(result);
 }
 
-async function main() {
-  farmersDelete();
+async function main(): Promise<void> {
+  await farmersDelete();
 }
 
 main().catch(console.error);

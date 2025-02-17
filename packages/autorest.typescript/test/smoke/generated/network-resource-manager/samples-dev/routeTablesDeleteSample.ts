@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Deletes the specified route table.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Deletes the specified route table.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/RouteTableDelete.json
  */
-async function deleteRouteTable() {
+async function deleteRouteTable(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const routeTableName = "testrt";
@@ -33,8 +31,8 @@ async function deleteRouteTable() {
   console.log(result);
 }
 
-async function main() {
-  deleteRouteTable();
+async function main(): Promise<void> {
+  await deleteRouteTable();
 }
 
 main().catch(console.error);

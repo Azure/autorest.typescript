@@ -6,8 +6,8 @@ options:
     generateMetadata: true
     generateTest: false
     addCredentials: false
-    azureSdkForJs: false
+    isModularLibrary: false
     enableOperationGroup: true
     isTypeSpecTest: true
     packageDetails:
-      name: "@msinternal/collectionFormat"
+      name: "@unbranded/collectionFormat"

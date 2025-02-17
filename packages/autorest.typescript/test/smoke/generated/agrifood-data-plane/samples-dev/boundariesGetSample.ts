@@ -3,9 +3,7 @@
 
 import createAzureAgriFoodPlatformDataPlaneServiceClient from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets a specified boundary resource under a particular farmer.
@@ -13,7 +11,7 @@ dotenv.config();
  * @summary Gets a specified boundary resource under a particular farmer.
  * x-ms-original-file: specification/agrifood/data-plane/Microsoft.AgFoodPlatform/preview/2021-03-31-preview/examples/Boundaries_Get.json
  */
-async function boundariesGet() {
+async function boundariesGet(): Promise<void> {
   const endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
@@ -28,8 +26,8 @@ async function boundariesGet() {
   console.log(result);
 }
 
-async function main() {
-  boundariesGet();
+async function main(): Promise<void> {
+  await boundariesGet();
 }
 
 main().catch(console.error);

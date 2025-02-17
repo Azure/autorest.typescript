@@ -12,21 +12,23 @@ export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   User,
   Widget,
+  WidgetError,
   AnalyzeResult,
   NonReferencedModel,
   KnownVersions,
 } from "./models/index.js";
 export {
-  WidgetsListWidgetsOptionalParams,
-  WidgetsListWidgetsPagesOptionalParams,
-  WidgetsQueryWidgetsPagesOptionalParams,
-  WidgetsGetWidgetOptionalParams,
-  WidgetsCreateWidgetOptionalParams,
-  WidgetsCreateOrReplaceOptionalParams,
-  WidgetsUpdateWidgetOptionalParams,
-  WidgetsDeleteWidgetOptionalParams,
-  WidgetsAnalyzeWidgetOptionalParams,
+  BudgetsGetBudgetsOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,
+  WidgetsAnalyzeWidgetOptionalParams,
+  WidgetsDeleteWidgetOptionalParams,
+  WidgetsUpdateWidgetOptionalParams,
+  WidgetsCreateOrReplaceOptionalParams,
+  WidgetsCreateWidgetOptionalParams,
+  WidgetsGetWidgetOptionalParams,
+  WidgetsQueryWidgetsPagesOptionalParams,
+  WidgetsListWidgetsPagesOptionalParams,
+  WidgetsListWidgetsOptionalParams,
   WidgetServiceClientOptionalParams,
 } from "./api/index.js";
 export { BudgetsOperations, WidgetsOperations } from "./classic/index.js";

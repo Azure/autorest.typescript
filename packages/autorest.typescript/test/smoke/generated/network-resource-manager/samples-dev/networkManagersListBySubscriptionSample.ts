@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to List all network managers in a subscription.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary List all network managers in a subscription.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkManagerListAll.json
  */
-async function networkManagersList() {
+async function networkManagersList(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const credential = new DefaultAzureCredential();
@@ -32,8 +30,8 @@ async function networkManagersList() {
   console.log(resArray);
 }
 
-async function main() {
-  networkManagersList();
+async function main(): Promise<void> {
+  await networkManagersList();
 }
 
 main().catch(console.error);

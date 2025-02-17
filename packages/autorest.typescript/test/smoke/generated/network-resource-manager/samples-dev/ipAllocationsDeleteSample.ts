@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Deletes the specified IpAllocation.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Deletes the specified IpAllocation.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/IpAllocationDelete.json
  */
-async function deleteIPAllocation() {
+async function deleteIPAllocation(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const ipAllocationName = "test-ipallocation";
@@ -33,8 +31,8 @@ async function deleteIPAllocation() {
   console.log(result);
 }
 
-async function main() {
-  deleteIPAllocation();
+async function main(): Promise<void> {
+  await deleteIPAllocation();
 }
 
 main().catch(console.error);

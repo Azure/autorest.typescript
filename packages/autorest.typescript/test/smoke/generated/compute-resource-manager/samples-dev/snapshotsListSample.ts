@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Lists snapshots under a subscription.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Lists snapshots under a subscription.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/ListSnapshotsInASubscription.json
  */
-async function listAllSnapshotsInASubscription() {
+async function listAllSnapshotsInASubscription(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
@@ -31,8 +29,8 @@ async function listAllSnapshotsInASubscription() {
   console.log(resArray);
 }
 
-async function main() {
-  listAllSnapshotsInASubscription();
+async function main(): Promise<void> {
+  await listAllSnapshotsInASubscription();
 }
 
 main().catch(console.error);

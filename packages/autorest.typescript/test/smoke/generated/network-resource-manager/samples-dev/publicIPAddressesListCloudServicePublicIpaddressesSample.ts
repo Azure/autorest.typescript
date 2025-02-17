@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets information about all public IP addresses on a cloud service level.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets information about all public IP addresses on a cloud service level.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/CloudServicePublicIpListAll.json
  */
-async function listVmssPublicIP() {
+async function listVmssPublicIP(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "cs-tester";
   const cloudServiceName = "cs1";
@@ -36,8 +34,8 @@ async function listVmssPublicIP() {
   console.log(resArray);
 }
 
-async function main() {
-  listVmssPublicIP();
+async function main(): Promise<void> {
+  await listVmssPublicIP();
 }
 
 main().catch(console.error);

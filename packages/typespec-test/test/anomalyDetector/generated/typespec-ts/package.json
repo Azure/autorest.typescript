@@ -11,10 +11,12 @@
     "exports": {
       "./package.json": "./package.json",
       ".": "./src/index.ts",
-      "./models": "./src/models/index.ts",
       "./api": "./src/api/index.ts",
+      "./api/multivariate": "./src/api/multivariate/index.ts",
       "./api/univariate": "./src/api/univariate/index.ts",
-      "./api/multivariate": "./src/api/multivariate/index.ts"
+      "./models": "./src/models/index.ts",
+      "./models/multivariate": "./src/models/multivariate/index.ts",
+      "./models/univariate": "./src/models/univariate/index.ts"
     },
     "dialects": [
       "esm",
@@ -60,10 +62,10 @@
     "typescript": "~5.6.2",
     "tshy": "^2.0.0",
     "@azure/identity": "^4.2.1",
-    "@vitest/browser": "^2.0.5",
-    "@vitest/coverage-istanbul": "^2.0.5",
+    "@vitest/browser": "^3.0.3",
+    "@vitest/coverage-istanbul": "^3.0.3",
     "playwright": "^1.41.2",
-    "vitest": "^2.0.5",
+    "vitest": "^3.0.3",
     "@azure-tools/test-credential": "^2.0.0",
     "@azure-tools/test-recorder": "^4.0.0",
     "rimraf": "^5.0.5",
@@ -106,24 +108,6 @@
         "default": "./dist/commonjs/index.js"
       }
     },
-    "./models": {
-      "browser": {
-        "types": "./dist/browser/models/index.d.ts",
-        "default": "./dist/browser/models/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/models/index.d.ts",
-        "default": "./dist/react-native/models/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/models/index.d.ts",
-        "default": "./dist/esm/models/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/models/index.d.ts",
-        "default": "./dist/commonjs/models/index.js"
-      }
-    },
     "./api": {
       "browser": {
         "types": "./dist/browser/api/index.d.ts",
@@ -140,6 +124,24 @@
       "require": {
         "types": "./dist/commonjs/api/index.d.ts",
         "default": "./dist/commonjs/api/index.js"
+      }
+    },
+    "./api/multivariate": {
+      "browser": {
+        "types": "./dist/browser/api/multivariate/index.d.ts",
+        "default": "./dist/browser/api/multivariate/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/multivariate/index.d.ts",
+        "default": "./dist/react-native/api/multivariate/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/multivariate/index.d.ts",
+        "default": "./dist/esm/api/multivariate/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/multivariate/index.d.ts",
+        "default": "./dist/commonjs/api/multivariate/index.js"
       }
     },
     "./api/univariate": {
@@ -160,22 +162,58 @@
         "default": "./dist/commonjs/api/univariate/index.js"
       }
     },
-    "./api/multivariate": {
+    "./models": {
       "browser": {
-        "types": "./dist/browser/api/multivariate/index.d.ts",
-        "default": "./dist/browser/api/multivariate/index.js"
+        "types": "./dist/browser/models/index.d.ts",
+        "default": "./dist/browser/models/index.js"
       },
       "react-native": {
-        "types": "./dist/react-native/api/multivariate/index.d.ts",
-        "default": "./dist/react-native/api/multivariate/index.js"
+        "types": "./dist/react-native/models/index.d.ts",
+        "default": "./dist/react-native/models/index.js"
       },
       "import": {
-        "types": "./dist/esm/api/multivariate/index.d.ts",
-        "default": "./dist/esm/api/multivariate/index.js"
+        "types": "./dist/esm/models/index.d.ts",
+        "default": "./dist/esm/models/index.js"
       },
       "require": {
-        "types": "./dist/commonjs/api/multivariate/index.d.ts",
-        "default": "./dist/commonjs/api/multivariate/index.js"
+        "types": "./dist/commonjs/models/index.d.ts",
+        "default": "./dist/commonjs/models/index.js"
+      }
+    },
+    "./models/multivariate": {
+      "browser": {
+        "types": "./dist/browser/models/multivariate/index.d.ts",
+        "default": "./dist/browser/models/multivariate/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/models/multivariate/index.d.ts",
+        "default": "./dist/react-native/models/multivariate/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/models/multivariate/index.d.ts",
+        "default": "./dist/esm/models/multivariate/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/models/multivariate/index.d.ts",
+        "default": "./dist/commonjs/models/multivariate/index.js"
+      }
+    },
+    "./models/univariate": {
+      "browser": {
+        "types": "./dist/browser/models/univariate/index.d.ts",
+        "default": "./dist/browser/models/univariate/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/models/univariate/index.d.ts",
+        "default": "./dist/react-native/models/univariate/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/models/univariate/index.d.ts",
+        "default": "./dist/esm/models/univariate/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/models/univariate/index.d.ts",
+        "default": "./dist/commonjs/models/univariate/index.js"
       }
     }
   },

@@ -14,9 +14,7 @@ import {
   StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Extends the immutabilityPeriodSinceCreationInDays of a locked immutabilityPolicy. The only action allowed on a Locked policy will be this action. ETag in If-Match is required for this operation.
@@ -24,7 +22,7 @@ dotenv.config();
  * @summary Extends the immutabilityPeriodSinceCreationInDays of a locked immutabilityPolicy. The only action allowed on a Locked policy will be this action. ETag in If-Match is required for this operation.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/BlobContainersExtendImmutabilityPolicy.json
  */
-async function extendImmutabilityPolicy() {
+async function extendImmutabilityPolicy(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res6238";
   const accountName = "sto232";
@@ -48,8 +46,8 @@ async function extendImmutabilityPolicy() {
   console.log(result);
 }
 
-async function main() {
-  extendImmutabilityPolicy();
+async function main(): Promise<void> {
+  await extendImmutabilityPolicy();
 }
 
 main().catch(console.error);
