@@ -917,33 +917,7 @@ describe("Input/output model type", () => {
     });
 
     describe("inheritance & polymorphism", () => {
-      it.only("should handle inheritance model -> multiple types/interfaces", async () => {
-        const schemaOutput = await emitModelsFromTypeSpec(`
-        @discriminator("kind")
-        union Pet {
-          name: Cat;
-          dog: Dog;
-        }
-        model Cat {
-          kind: "cat";
-          meow: int32;
-        }
-        model Dog {
-          kind: "dog";
-          bark: string;
-        }
-        op read(): { @body body: Pet };
-        `);
-        assert.ok(schemaOutput);
-        const { inputModelFile, outputModelFile } = schemaOutput!;
-        assert.ok(!inputModelFile?.content);
-        assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-        await assertEqualContent(
-          outputModelFile?.content!,
-          ``
-        );
-      });
-      
+
       it("should handle inheritance model -> multiple types/interfaces", async () => {
         const schemaOutput = await emitModelsFromTypeSpec(`
         @discriminator("kind")
