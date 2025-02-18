@@ -1,6 +1,6 @@
-# Should generate in one file when one method has multiple samples
+# Should generate samples for ARM operations disabled hierarchy client
 
-Sample generation should generate in one file when one method has multiple samples.
+Sample generation should arm template and operations successfully disabled hierarchy client.
 
 ## TypeSpec
 
@@ -82,17 +82,74 @@ union ProvisioningState {
 
 @armResourceOperations
 interface Employees {
+  get is ArmResourceRead<Employee>;
   createOrUpdate is ArmResourceCreateOrReplaceAsync<Employee>;
+  delete is ArmResourceDeleteWithoutOkAsync<Employee>;
 }
 ```
 
-## Example and generated samples
+This is the tspconfig.yaml.
+
+```yaml
+hierarchyClient: false
+```
+
+## Example
 
 Raw json files.
 
-```json for Employees_CreateOrUpdate_maxage
+```json for Operations_List
 {
-  "title": "Employees_CreateOrUpdate_maxage",
+  "title": "Operations_List",
+  "operationId": "Operations_List",
+  "parameters": {
+    "api-version": "2021-10-01-preview"
+  },
+  "responses": {
+    "200": {
+      "body": {}
+    }
+  }
+}
+```
+
+Generate samples for arm cases:
+
+```ts samples
+/** This file path is /samples-dev/listSample.ts */
+import { ContosoClient } from "@azure/internal-test";
+import { DefaultAzureCredential } from "@azure/identity";
+
+/**
+ * This sample demonstrates how to list the operations for the provider
+ *
+ * @summary list the operations for the provider
+ * x-ms-original-file: 2021-10-01-preview/json_for_Operations_List.json
+ */
+async function operationsList(): Promise<void> {
+  const credential = new DefaultAzureCredential();
+  const subscriptionId = "00000000-0000-0000-0000-00000000000";
+  const client = new ContosoClient(credential, subscriptionId);
+  const resArray = new Array();
+  for await (let item of client.list()) {
+    resArray.push(item);
+  }
+
+  console.log(resArray);
+}
+
+async function main(): Promise<void> {
+  await operationsList();
+}
+
+main().catch(console.error);
+```
+
+Raw json files.
+
+```json for Employees_CreateOrUpdate
+{
+  "title": "Employees_CreateOrUpdate",
   "operationId": "Employees_CreateOrUpdate",
   "parameters": {
     "api-version": "2021-10-01-preview",
@@ -101,7 +158,7 @@ Raw json files.
     "employeeName": "9KF-f-8b",
     "resource": {
       "properties": {
-        "age": 110,
+        "age": 30,
         "city": "gydhnntudughbmxlkyzrskcdkotrxn",
         "profile": "ms"
       },
@@ -117,36 +174,7 @@ Raw json files.
 }
 ```
 
-Raw json files.
-
-```json for Employees_CreateOrUpdate_minage
-{
-  "title": "Employees_CreateOrUpdate_minage",
-  "operationId": "Employees_CreateOrUpdate",
-  "parameters": {
-    "api-version": "2021-10-01-preview",
-    "subscriptionId": "11809CA1-E126-4017-945E-AA795CD5C5A9",
-    "resourceGroupName": "rgopenapi",
-    "employeeName": "9KF-f-8b",
-    "resource": {
-      "properties": {
-        "age": 1,
-        "city": "gydhnntudughbmxlkyzrskcdkotrxn",
-        "profile": "ms"
-      },
-      "tags": {
-        "key2913": "urperxmkkhhkp"
-      },
-      "location": "itajgxyqozseoygnl"
-    }
-  },
-  "responses": {
-    "200": {}
-  }
-}
-```
-
-Generate one file for multiple samples:
+Generate samples for arm cases:
 
 ```ts samples
 /** This file path is /samples-dev/createOrUpdateSample.ts */
@@ -157,37 +185,15 @@ import { DefaultAzureCredential } from "@azure/identity";
  * This sample demonstrates how to create a Employee
  *
  * @summary create a Employee
- * x-ms-original-file: 2021-10-01-preview/json_for_Employees_CreateOrUpdate_maxage.json
+ * x-ms-original-file: 2021-10-01-preview/json_for_Employees_CreateOrUpdate.json
  */
-async function employeesCreateOrUpdateMaxage(): Promise<void> {
+async function employeesCreateOrUpdate(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
   const client = new ContosoClient(credential, subscriptionId);
   const result = await client.createOrUpdate("rgopenapi", "9KF-f-8b", {
     properties: {
-      age: 110,
-      city: "gydhnntudughbmxlkyzrskcdkotrxn",
-      profile: "ms",
-    },
-    tags: { key2913: "urperxmkkhhkp" },
-    location: "itajgxyqozseoygnl",
-  });
-  console.log(result);
-}
-
-/**
- * This sample demonstrates how to create a Employee
- *
- * @summary create a Employee
- * x-ms-original-file: 2021-10-01-preview/json_for_Employees_CreateOrUpdate_minage.json
- */
-async function employeesCreateOrUpdateMinage(): Promise<void> {
-  const credential = new DefaultAzureCredential();
-  const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
-  const client = new ContosoClient(credential, subscriptionId);
-  const result = await client.createOrUpdate("rgopenapi", "9KF-f-8b", {
-    properties: {
-      age: 1,
+      age: 30,
       city: "gydhnntudughbmxlkyzrskcdkotrxn",
       profile: "ms",
     },
@@ -198,8 +204,52 @@ async function employeesCreateOrUpdateMinage(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  await employeesCreateOrUpdateMaxage();
-  employeesCreateOrUpdateMinage();
+  await employeesCreateOrUpdate();
+}
+
+main().catch(console.error);
+```
+
+Raw json files.
+
+```json for Employees_Delete
+{
+  "title": "Employees_Delete",
+  "operationId": "Employees_Delete",
+  "parameters": {
+    "api-version": "2021-10-01-preview",
+    "subscriptionId": "11809CA1-E126-4017-945E-AA795CD5C5A9",
+    "resourceGroupName": "rgopenapi",
+    "employeeName": "5vX--BxSu3ux48rI4O9OQ569"
+  },
+  "responses": {
+    "202": {}
+  }
+}
+```
+
+Generate samples for arm cases:
+
+```ts samples
+/** This file path is /samples-dev/deleteSample.ts */
+import { ContosoClient } from "@azure/internal-test";
+import { DefaultAzureCredential } from "@azure/identity";
+
+/**
+ * This sample demonstrates how to delete a Employee
+ *
+ * @summary delete a Employee
+ * x-ms-original-file: 2021-10-01-preview/json_for_Employees_Delete.json
+ */
+async function employeesDelete(): Promise<void> {
+  const credential = new DefaultAzureCredential();
+  const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
+  const client = new ContosoClient(credential, subscriptionId);
+  await client.delete("rgopenapi", "5vX--BxSu3ux48rI4O9OQ569");
+}
+
+async function main(): Promise<void> {
+  await employeesDelete();
 }
 
 main().catch(console.error);
