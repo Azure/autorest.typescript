@@ -325,6 +325,8 @@ interface Metadata {
   contributingGuideURL?: string;
   /** Indicates if the package is generted to azure-sdk-for-js repo */
   azureSdkForJs?: boolean;
+  /** Indicates if the package need generate test files */
+  generateTest?: boolean;
 }
 
 export function buildReadmeFile(model: RLCModel) {
@@ -412,7 +414,8 @@ function createMetadata(model: RLCModel): Metadata | undefined {
     identityPackageURL: repoURL && `${repoURL}/tree/main/sdk/identity/identity`,
     addCredentials: model.options.addCredentials,
     contributingGuideURL: repoURL && `${repoURL}/blob/main/CONTRIBUTING.md`,
-    azureSdkForJs: model.options.azureSdkForJs
+    azureSdkForJs: model.options.azureSdkForJs,
+    generateTest: model.options.generateTest
   };
 }
 
