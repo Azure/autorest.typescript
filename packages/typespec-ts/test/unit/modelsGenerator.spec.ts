@@ -917,7 +917,6 @@ describe("Input/output model type", () => {
     });
 
     describe("inheritance & polymorphism", () => {
-
       it("should handle inheritance model -> multiple types/interfaces", async () => {
         const schemaOutput = await emitModelsFromTypeSpec(`
         @discriminator("kind")
