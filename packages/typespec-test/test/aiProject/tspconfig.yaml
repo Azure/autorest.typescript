@@ -3,13 +3,11 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
-    isModularLibrary: true
-    generateTest: false
-    azureSdkForJs: false
+    generateTest: true
     generateMetadata: true
-    "filter-out-core-models": false
+    azureSdkForJs: false
     packageDetails:
-      name: "@azure/ai-client"
+      name: "@azure/ai-projects"
     flavor: azure
 linter:
   extends:
