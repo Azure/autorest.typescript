@@ -74,7 +74,7 @@ can be used to authenticate the client.
 
 Enabling logging may help uncover useful information about failures. In order to see a log of HTTP requests and responses, set the \`AZURE_LOG_LEVEL\` environment variable to \`info\`. Alternatively, logging can be enabled at runtime by calling \`setLogLevel\` in the \`@azure/logger\`:
 
-\`\`\`ts {{#if azureSdkForJs}}snippet:SetLogLevel{{/if}}
+\`\`\`ts {{#if azureSdkForJs && generateTest}}snippet:SetLogLevel{{/if}}
 import { setLogLevel } from "@azure/logger";
 
 setLogLevel("info");
@@ -151,7 +151,7 @@ For more information about how to create an Azure AD Application check out [this
 {{#if azureArm}}
 Using Node.js and Node-like environments, you can use the \`DefaultAzureCredential\` class to authenticate the client.
 
-\`\`\`ts {{#if azureSdkForJs}}snippet:ReadmeSampleCreateClient_Node{{/if}}
+\`\`\`ts {{#if azureSdkForJs && generateTest}}snippet:ReadmeSampleCreateClient_Node{{/if}}
 import { {{ clientClassName }} } from "{{ clientPackageName }}";
 import { DefaultAzureCredential } from "@azure/identity";
 
@@ -161,7 +161,7 @@ const client = new {{ clientClassName }}(new DefaultAzureCredential(), subscript
 
 For browser environments, use the \`InteractiveBrowserCredential\` from the \`@azure/identity\` package to authenticate.
 
-\`\`\`ts {{#if azureSdkForJs}}snippet:ReadmeSampleCreateClient_Browser{{/if}}
+\`\`\`ts {{#if azureSdkForJs && generateTest}}snippet:ReadmeSampleCreateClient_Browser{{/if}}
 import { InteractiveBrowserCredential } from "@azure/identity";
 import { {{ clientClassName }} } from "{{ clientPackageName }}";
 
@@ -174,7 +174,7 @@ const client = new {{ clientClassName }}(credential, subscriptionId);
 {{else}}
 Using Node.js and Node-like environments, you can use the \`DefaultAzureCredential\` class to authenticate the client.
 
-\`\`\`ts {{#if azureSdkForJs}}snippet:ReadmeSampleCreateClient_Node{{/if}}
+\`\`\`ts {{#if azureSdkForJs && generateTest}}snippet:ReadmeSampleCreateClient_Node{{/if}}
 import { {{ clientClassName }} } from "{{ clientPackageName }}";
 import { DefaultAzureCredential } from "@azure/identity";
 
@@ -183,7 +183,7 @@ const client = new {{ clientClassName }}("<endpoint>", new DefaultAzureCredentia
 
 For browser environments, use the \`InteractiveBrowserCredential\` from the \`@azure/identity\` package to authenticate.
 
-\`\`\`ts {{#if azureSdkForJs}}snippet:ReadmeSampleCreateClient_Browser{{/if}}
+\`\`\`ts {{#if azureSdkForJs && generateTest}}snippet:ReadmeSampleCreateClient_Browser{{/if}}
 import { InteractiveBrowserCredential } from "@azure/identity";
 import { {{ clientClassName }} } from "{{ clientPackageName }}";
 
@@ -212,7 +212,7 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 Enabling logging may help uncover useful information about failures. In order to see a log of HTTP requests and responses, set the \`AZURE_LOG_LEVEL\` environment variable to \`info\`. Alternatively, logging can be enabled at runtime by calling \`setLogLevel\` in the \`@azure/logger\`:
 
-\`\`\`ts {{#if azureSdkForJs}}snippet:SetLogLevel{{/if}}
+\`\`\`ts {{#if azureSdkForJs && generateTest}}snippet:SetLogLevel{{/if}}
 import { setLogLevel } from "@azure/logger";
 
 setLogLevel("info");

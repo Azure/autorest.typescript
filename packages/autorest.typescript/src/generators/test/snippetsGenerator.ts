@@ -16,9 +16,6 @@ export function generateSnippetsFile(
     if (!generateTest || !azureSdkForJs) {
         return;
     }
-    if (!azureSdkForJs) {
-        return
-    }
     const { clientClassName } = getClientAndServiceName(
         codeModel.language,
         codeModel.info
