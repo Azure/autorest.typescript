@@ -409,7 +409,7 @@ export async function $onEmit(context: EmitContext) {
       );
       commonBuilders.push(buildTsConfig);
 
-      // TODO: need support snippets generation for multi-client cases
+      // TODO: need support snippets generation for multi-client cases. https://github.com/Azure/autorest.typescript/issues/3048
       if (option.generateTest && isAzureFlavor) {
         for (const subClient of dpgContext.sdkPackage.clients) {
           commonBuilders.push((model) =>
