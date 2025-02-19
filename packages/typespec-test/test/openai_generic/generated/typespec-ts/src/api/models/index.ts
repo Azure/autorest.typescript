@@ -8,6 +8,7 @@ import {
   ModelsRetrieveOptionalParams,
 } from "../index.js";
 import {
+  errorResponseDeserializer,
   ListModelsResponse,
   listModelsResponseDeserializer,
   Model,
@@ -43,7 +44,9 @@ export async function _$deleteDeserialize(
 ): Promise<DeleteModelResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return deleteModelResponseDeserializer(result.body);
@@ -84,7 +87,9 @@ export async function _retrieveDeserialize(
 ): Promise<Model> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return modelDeserializer(result.body);
@@ -119,7 +124,9 @@ export async function _listDeserialize(
 ): Promise<ListModelsResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return listModelsResponseDeserializer(result.body);

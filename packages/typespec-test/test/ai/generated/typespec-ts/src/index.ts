@@ -1,13 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { FileContents } from "./static-helpers/multipartHelpers.js";
 import {
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
 
-export { AIProjectClient } from "./aiProjectClient.js";
+export { AIProjectClient } from "./aIProjectClient.js";
 export {
   Evaluation,
   InputData,
@@ -39,6 +40,9 @@ export {
   InternalConnectionPropertiesAADAuth,
   InternalConnectionPropertiesSASAuth,
   CredentialsSASAuth,
+  KnownVersions,
+} from "./models/index.js";
+export {
   ToolDefinition,
   ToolDefinitionUnion,
   CodeInterpreterToolDefinition,
@@ -240,8 +244,7 @@ export {
   ListSortOrder,
   RunAdditionalFieldList,
   VectorStoreFileStatusFilter,
-  KnownVersions,
-} from "./models/index.js";
+} from "./models/agents/index.js";
 export {
   AIProjectClientOptionalParams,
   EvaluationsDisableScheduleOptionalParams,
@@ -305,3 +308,4 @@ export {
   TelemetryOperations,
 } from "./classic/index.js";
 export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
+export { FileContents };

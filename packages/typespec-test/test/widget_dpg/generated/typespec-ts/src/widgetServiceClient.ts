@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 
 import {
-  getBudgetsOperations,
+  _getBudgetsOperations,
   BudgetsOperations,
 } from "./classic/budgets/index.js";
 import {
-  getWidgetsOperations,
+  _getWidgetsOperations,
   WidgetsOperations,
 } from "./classic/widgets/index.js";
 import {
@@ -38,8 +38,8 @@ export class WidgetServiceClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this.budgets = getBudgetsOperations(this._client);
-    this.widgets = getWidgetsOperations(this._client);
+    this.budgets = _getBudgetsOperations(this._client);
+    this.widgets = _getWidgetsOperations(this._client);
   }
 
   /** The operation groups for budgets */

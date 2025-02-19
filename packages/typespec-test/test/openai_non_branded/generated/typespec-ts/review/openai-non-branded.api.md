@@ -118,7 +118,7 @@ export interface CreateChatCompletionRequest {
     model: "gpt4" | "gpt-4-0314" | "gpt-4-0613" | "gpt-4-32k" | "gpt-4-32k-0314" | "gpt-4-32k-0613" | "gpt-3.5-turbo" | "gpt-3.5-turbo-16k" | "gpt-3.5-turbo-0301" | "gpt-3.5-turbo-0613" | "gpt-3.5-turbo-16k-0613";
     n?: number | null;
     presencePenalty?: number | null;
-    stop?: Stop | null;
+    stop?: Stop;
     stream?: boolean | null;
     temperature?: number | null;
     topP?: number | null;
@@ -151,8 +151,8 @@ export interface CreateCompletionRequest {
     model: "babbage-002" | "davinci-002" | "text-davinci-003" | "text-davinci-002" | "text-davinci-001" | "code-davinci-002" | "text-curie-001" | "text-babbage-001" | "text-ada-001";
     n?: number | null;
     presencePenalty?: number | null;
-    prompt: Prompt | null;
-    stop?: Stop | null;
+    prompt: Prompt;
+    stop?: Stop;
     stream?: boolean | null;
     suffix?: string | null;
     temperature?: number | null;
@@ -225,7 +225,11 @@ export interface CreateEmbeddingResponse {
 
 // @public
 export interface CreateFileRequest {
-    file: Uint8Array;
+    file: FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    };
     purpose: string;
 }
 
@@ -258,8 +262,16 @@ export interface CreateFineTuningJobRequest {
 
 // @public
 export interface CreateImageEditRequest {
-    image: Uint8Array;
-    mask?: Uint8Array;
+    image: FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    };
+    mask?: FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    };
     n?: number | null;
     prompt: string;
     responseFormat?: ("url" | "b64_json") | null;
@@ -280,7 +292,11 @@ export interface CreateImageRequest {
 
 // @public
 export interface CreateImageVariationRequest {
-    image: Uint8Array;
+    image: FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    };
     n?: number | null;
     responseFormat?: ("url" | "b64_json") | null;
     size?: ("256x256" | "512x512" | "1024x1024") | null;
@@ -302,36 +318,40 @@ export interface CreateModerationResponse {
         flagged: boolean;
         categories: {
             hate: boolean;
-            hateThreatening: boolean;
+            "hate/threatening": boolean;
             harassment: boolean;
-            harassmentThreatening: boolean;
+            "harassment/threatening": boolean;
             selfHarm: boolean;
-            selfHarmIntent: boolean;
-            selfHarmInstructive: boolean;
+            "selfHarm/intent": boolean;
+            "selfHarm/instructive": boolean;
             sexual: boolean;
-            sexualMinors: boolean;
+            "sexual/minors": boolean;
             violence: boolean;
-            violenceGraphic: boolean;
+            "violence/graphic": boolean;
         };
         categoryScores: {
             hate: number;
-            hateThreatening: number;
+            "hate/threatening": number;
             harassment: number;
-            harassmentThreatening: number;
+            "harassment/threatening": number;
             selfHarm: number;
-            selfHarmIntent: number;
-            selfHarmInstructive: number;
+            "selfHarm/intent": number;
+            "selfHarm/instructive": number;
             sexual: number;
-            sexualMinors: number;
+            "sexual/minors": number;
             violence: number;
-            violenceGraphic: number;
+            "violence/graphic": number;
         };
     }[];
 }
 
 // @public
 export interface CreateTranscriptionRequest {
-    file: Uint8Array;
+    file: FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    };
     language?: string;
     model: "whisper-1";
     prompt?: string;
@@ -347,7 +367,11 @@ export interface CreateTranscriptionResponse {
 
 // @public
 export interface CreateTranslationRequest {
-    file: Uint8Array;
+    file: FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    };
     model: "whisper-1";
     prompt?: string;
     responseFormat?: "json" | "text" | "srt" | "verbose_json" | "vtt";
@@ -406,6 +430,27 @@ export interface EmbeddingsOperations {
     // (undocumented)
     create: (embedding: CreateEmbeddingRequest, options?: EmbeddingsCreateOptionalParams) => Promise<CreateEmbeddingResponse>;
 }
+
+// @public
+export interface ErrorModel {
+    // (undocumented)
+    code: string | null;
+    // (undocumented)
+    message: string;
+    // (undocumented)
+    param: string | null;
+    // (undocumented)
+    type: string;
+}
+
+// @public
+export interface ErrorResponse {
+    // (undocumented)
+    error: ErrorModel;
+}
+
+// @public
+export type FileContents = string | NodeJS.ReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
 
 // @public
 export interface FilesCreateOptionalParams extends OperationOptions {
@@ -752,10 +797,16 @@ export interface OpenAIFile {
 }
 
 // @public
-export type Prompt = string | string[] | number[] | number[][];
+export type Prompt = Prompt_1 | null;
 
 // @public
-export type Stop = string | string[];
+export type Prompt_1 = string | string[] | number[] | number[][];
+
+// @public
+export type Stop = Stop_1 | null;
+
+// @public
+export type Stop_1 = string | string[];
 
 // (No @packageDocumentation comment for this package)
 

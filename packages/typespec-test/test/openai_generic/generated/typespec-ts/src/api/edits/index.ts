@@ -6,6 +6,7 @@ import {
   EditsCreateOptionalParams,
 } from "../index.js";
 import {
+  errorResponseDeserializer,
   CreateEditRequest,
   createEditRequestSerializer,
   CreateEditResponse,
@@ -41,7 +42,9 @@ export async function _createDeserialize(
 ): Promise<CreateEditResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return createEditResponseDeserializer(result.body);

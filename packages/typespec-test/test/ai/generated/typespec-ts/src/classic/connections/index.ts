@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { AIProjectContext } from "../../api/aiProjectContext.js";
+import { AIProjectContext } from "../../api/aIProjectContext.js";
 import {
   getConnectionWithSecrets,
   getConnection,
@@ -9,16 +9,16 @@ import {
   getWorkspace,
 } from "../../api/connections/index.js";
 import {
+  GetWorkspaceResponse,
+  ListConnectionsResponse,
+  GetConnectionResponse,
+} from "../../models/models.js";
+import {
   ConnectionsGetConnectionWithSecretsOptionalParams,
   ConnectionsGetConnectionOptionalParams,
   ConnectionsListConnectionsOptionalParams,
   ConnectionsGetWorkspaceOptionalParams,
 } from "../../api/options.js";
-import {
-  GetWorkspaceResponse,
-  ListConnectionsResponse,
-  GetConnectionResponse,
-} from "../../models/models.js";
 
 /** Interface representing a Connections operations. */
 export interface ConnectionsOperations {
@@ -43,7 +43,7 @@ export interface ConnectionsOperations {
   ) => Promise<GetWorkspaceResponse>;
 }
 
-export function getConnections(context: AIProjectContext) {
+function _getConnections(context: AIProjectContext) {
   return {
     getConnectionWithSecrets: (
       connectionName: string,
@@ -61,10 +61,10 @@ export function getConnections(context: AIProjectContext) {
   };
 }
 
-export function getConnectionsOperations(
+export function _getConnectionsOperations(
   context: AIProjectContext,
 ): ConnectionsOperations {
   return {
-    ...getConnections(context),
+    ..._getConnections(context),
   };
 }

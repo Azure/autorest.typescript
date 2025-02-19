@@ -41,6 +41,21 @@ export function widgetDeserializer(item: any): Widget {
   };
 }
 
+/** model interface WidgetError */
+export interface WidgetError {
+  /** The HTTP error code. */
+  code: number;
+  /** A human-readable message describing the error. */
+  message: string;
+}
+
+export function widgetErrorDeserializer(item: any): WidgetError {
+  return {
+    code: item["code"],
+    message: item["message"],
+  };
+}
+
 /** model interface _ListWidgetsPagesResults */
 export interface _ListWidgetsPagesResults {
   /** The current page of results. */
@@ -97,5 +112,5 @@ export function nonReferencedModelDeserializer(item: any): NonReferencedModel {
 /** The Contoso Widget Manager service version. */
 export enum KnownVersions {
   /** Version 2022-08-31 */
-  "V1.0.0" = "1.0.0",
+  "1.0.0" = "1.0.0",
 }

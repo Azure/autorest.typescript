@@ -3,16 +3,14 @@
 
 import createOpenAIClient from "@msinternal/openai";
 import { AzureKeyCredential } from "@azure/core-auth";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation GetEmbeddings
  *
  * @summary call operation GetEmbeddings
  */
-async function getEmbeddingsSample() {
+async function getEmbeddingsSample(): Promise<void> {
   const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createOpenAIClient(endpointParam, credential);
@@ -29,8 +27,8 @@ async function getEmbeddingsSample() {
   console.log(result);
 }
 
-async function main() {
-  getEmbeddingsSample();
+async function main(): Promise<void> {
+  await getEmbeddingsSample();
 }
 
 main().catch(console.error);

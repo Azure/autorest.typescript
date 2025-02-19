@@ -5,7 +5,7 @@ export {
   createAIProject,
   AIProjectContext,
   AIProjectClientOptionalParams,
-} from "./aiProjectContext.js";
+} from "./aIProjectContext.js";
 export {
   EvaluationsDisableScheduleOptionalParams,
   EvaluationsListScheduleOptionalParams,

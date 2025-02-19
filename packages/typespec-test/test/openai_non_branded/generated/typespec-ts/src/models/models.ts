@@ -1,9 +1,10 @@
 // Licensed under the MIT License.
 
 import {
-  uint8ArrayToString,
-  stringToUint8Array,
-} from "@typespec/ts-http-runtime";
+  FileContents,
+  createFilePartDescriptor,
+} from "../static-helpers/multipartHelpers.js";
+import { stringToUint8Array } from "@typespec/ts-http-runtime";
 
 /** model interface CreateModerationRequest */
 export interface CreateModerationRequest {
@@ -48,29 +49,29 @@ export interface CreateModerationResponse {
     flagged: boolean;
     categories: {
       hate: boolean;
-      hateThreatening: boolean;
+      "hate/threatening": boolean;
       harassment: boolean;
-      harassmentThreatening: boolean;
+      "harassment/threatening": boolean;
       selfHarm: boolean;
-      selfHarmIntent: boolean;
-      selfHarmInstructive: boolean;
+      "selfHarm/intent": boolean;
+      "selfHarm/instructive": boolean;
       sexual: boolean;
-      sexualMinors: boolean;
+      "sexual/minors": boolean;
       violence: boolean;
-      violenceGraphic: boolean;
+      "violence/graphic": boolean;
     };
     categoryScores: {
       hate: number;
-      hateThreatening: number;
+      "hate/threatening": number;
       harassment: number;
-      harassmentThreatening: number;
+      "harassment/threatening": number;
       selfHarm: number;
-      selfHarmIntent: number;
-      selfHarmInstructive: number;
+      "selfHarm/intent": number;
+      "selfHarm/instructive": number;
       sexual: number;
-      sexualMinors: number;
+      "sexual/minors": number;
       violence: number;
-      violenceGraphic: number;
+      "violence/graphic": number;
     };
   }[];
 }
@@ -100,30 +101,30 @@ export interface _CreateModerationResponseResult {
   /** A list of the categories, and whether they are flagged or not. */
   categories: {
     hate: boolean;
-    hateThreatening: boolean;
+    "hate/threatening": boolean;
     harassment: boolean;
-    harassmentThreatening: boolean;
+    "harassment/threatening": boolean;
     selfHarm: boolean;
-    selfHarmIntent: boolean;
-    selfHarmInstructive: boolean;
+    "selfHarm/intent": boolean;
+    "selfHarm/instructive": boolean;
     sexual: boolean;
-    sexualMinors: boolean;
+    "sexual/minors": boolean;
     violence: boolean;
-    violenceGraphic: boolean;
+    "violence/graphic": boolean;
   };
   /** A list of the categories along with their scores as predicted by model. */
   categoryScores: {
     hate: number;
-    hateThreatening: number;
+    "hate/threatening": number;
     harassment: number;
-    harassmentThreatening: number;
+    "harassment/threatening": number;
     selfHarm: number;
-    selfHarmIntent: number;
-    selfHarmInstructive: number;
+    "selfHarm/intent": number;
+    "selfHarm/instructive": number;
     sexual: number;
-    sexualMinors: number;
+    "sexual/minors": number;
     violence: number;
-    violenceGraphic: number;
+    "violence/graphic": number;
   };
 }
 
@@ -154,11 +155,11 @@ export interface _CreateModerationResponseResultCategories {
    * based on race, gender, ethnicity, religion, nationality, sexual orientation, disability
    * status, or caste.
    */
-  hateThreatening: boolean;
+  "hate/threatening": boolean;
   /** Content that expresses, incites, or promotes harassing language towards any target. */
   harassment: boolean;
   /** Harassment content that also includes violence or serious harm towards any target. */
-  harassmentThreatening: boolean;
+  "harassment/threatening": boolean;
   /**
    * Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting,
    * and eating disorders.
@@ -168,23 +169,23 @@ export interface _CreateModerationResponseResultCategories {
    * Content where the speaker expresses that they are engaging or intend to engage in acts of
    * self-harm, such as suicide, cutting, and eating disorders.
    */
-  selfHarmIntent: boolean;
+  "selfHarm/intent": boolean;
   /**
    * Content that encourages performing acts of self-harm, such as suicide, cutting, and eating
    * disorders, or that gives instructions or advice on how to commit such acts.
    */
-  selfHarmInstructive: boolean;
+  "selfHarm/instructive": boolean;
   /**
    * Content meant to arouse sexual excitement, such as the description of sexual activity, or
    * that promotes sexual services (excluding sex education and wellness).
    */
   sexual: boolean;
   /** Sexual content that includes an individual who is under 18 years old. */
-  sexualMinors: boolean;
+  "sexual/minors": boolean;
   /** Content that depicts death, violence, or physical injury. */
   violence: boolean;
   /** Content that depicts death, violence, or physical injury in graphic detail. */
-  violenceGraphic: boolean;
+  "violence/graphic": boolean;
 }
 
 export function _createModerationResponseResultCategoriesDeserializer(
@@ -192,16 +193,16 @@ export function _createModerationResponseResultCategoriesDeserializer(
 ): _CreateModerationResponseResultCategories {
   return {
     hate: item["hate"],
-    hateThreatening: item["hate/threatening"],
+    "hate/threatening": item["hate/threatening"],
     harassment: item["harassment"],
-    harassmentThreatening: item["harassment/threatening"],
+    "harassment/threatening": item["harassment/threatening"],
     selfHarm: item["self-harm"],
-    selfHarmIntent: item["self-harm/intent"],
-    selfHarmInstructive: item["self-harm/instructive"],
+    "selfHarm/intent": item["self-harm/intent"],
+    "selfHarm/instructive": item["self-harm/instructive"],
     sexual: item["sexual"],
-    sexualMinors: item["sexual/minors"],
+    "sexual/minors": item["sexual/minors"],
     violence: item["violence"],
-    violenceGraphic: item["violence/graphic"],
+    "violence/graphic": item["violence/graphic"],
   };
 }
 
@@ -210,25 +211,25 @@ export interface _CreateModerationResponseResultCategoryScores {
   /** The score for the category 'hate'. */
   hate: number;
   /** The score for the category 'hate/threatening'. */
-  hateThreatening: number;
+  "hate/threatening": number;
   /** The score for the category 'harassment'. */
   harassment: number;
   /** The score for the category 'harassment/threatening'. */
-  harassmentThreatening: number;
+  "harassment/threatening": number;
   /** The score for the category 'self-harm'. */
   selfHarm: number;
   /** The score for the category 'self-harm/intent'. */
-  selfHarmIntent: number;
+  "selfHarm/intent": number;
   /** The score for the category 'self-harm/instructive'. */
-  selfHarmInstructive: number;
+  "selfHarm/instructive": number;
   /** The score for the category 'sexual'. */
   sexual: number;
   /** The score for the category 'sexual/minors'. */
-  sexualMinors: number;
+  "sexual/minors": number;
   /** The score for the category 'violence'. */
   violence: number;
   /** The score for the category 'violence/graphic'. */
-  violenceGraphic: number;
+  "violence/graphic": number;
 }
 
 export function _createModerationResponseResultCategoryScoresDeserializer(
@@ -236,16 +237,44 @@ export function _createModerationResponseResultCategoryScoresDeserializer(
 ): _CreateModerationResponseResultCategoryScores {
   return {
     hate: item["hate"],
-    hateThreatening: item["hate/threatening"],
+    "hate/threatening": item["hate/threatening"],
     harassment: item["harassment"],
-    harassmentThreatening: item["harassment/threatening"],
+    "harassment/threatening": item["harassment/threatening"],
     selfHarm: item["self-harm"],
-    selfHarmIntent: item["self-harm/intent"],
-    selfHarmInstructive: item["self-harm/instructive"],
+    "selfHarm/intent": item["self-harm/intent"],
+    "selfHarm/instructive": item["self-harm/instructive"],
     sexual: item["sexual"],
-    sexualMinors: item["sexual/minors"],
+    "sexual/minors": item["sexual/minors"],
     violence: item["violence"],
-    violenceGraphic: item["violence/graphic"],
+    "violence/graphic": item["violence/graphic"],
+  };
+}
+
+/** model interface ErrorResponse */
+export interface ErrorResponse {
+  error: ErrorModel;
+}
+
+export function errorResponseDeserializer(item: any): ErrorResponse {
+  return {
+    error: errorDeserializer(item["error"]),
+  };
+}
+
+/** model interface ErrorModel */
+export interface ErrorModel {
+  type: string;
+  message: string;
+  param: string | null;
+  code: string | null;
+}
+
+export function errorDeserializer(item: any): ErrorModel {
+  return {
+    type: item["type"],
+    message: item["message"],
+    param: item["param"],
+    code: item["code"],
   };
 }
 
@@ -318,13 +347,17 @@ export interface CreateImageEditRequest {
    * The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not
    * provided, image must have transparency, which will be used as the mask.
    */
-  image: Uint8Array;
+  image:
+    | FileContents
+    | { contents: FileContents; contentType?: string; filename?: string };
   /**
    * An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where
    * `image` should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions
    * as `image`.
    */
-  mask?: Uint8Array;
+  mask?:
+    | FileContents
+    | { contents: FileContents; contentType?: string; filename?: string };
   /** The number of images to generate. Must be between 1 and 10. */
   n?: number | null;
   /** The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. */
@@ -337,17 +370,23 @@ export interface CreateImageEditRequest {
 export function createImageEditRequestSerializer(
   item: CreateImageEditRequest,
 ): any {
-  return {
-    prompt: item["prompt"],
-    image: uint8ArrayToString(item["image"], "base64"),
-    mask: !item["mask"]
-      ? item["mask"]
-      : uint8ArrayToString(item["mask"], "base64"),
-    n: item["n"],
-    size: item["size"],
-    response_format: item["responseFormat"],
-    user: item["user"],
-  };
+  return [
+    { name: "prompt", body: item["prompt"] },
+    createFilePartDescriptor("image", item["image"]),
+    ...(item["mask"] === undefined
+      ? []
+      : [createFilePartDescriptor("mask", item["mask"])]),
+    ...(item["n"] === undefined ? [] : [{ name: "n", body: item["n"] }]),
+    ...(item["size"] === undefined
+      ? []
+      : [{ name: "size", body: item["size"] }]),
+    ...(item["responseFormat"] === undefined
+      ? []
+      : [{ name: "response_format", body: item["responseFormat"] }]),
+    ...(item["user"] === undefined
+      ? []
+      : [{ name: "user", body: item["user"] }]),
+  ];
 }
 
 /** model interface CreateImageVariationRequest */
@@ -356,7 +395,9 @@ export interface CreateImageVariationRequest {
    * The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB,
    * and square.
    */
-  image: Uint8Array;
+  image:
+    | FileContents
+    | { contents: FileContents; contentType?: string; filename?: string };
   /** The number of images to generate. Must be between 1 and 10. */
   n?: number | null;
   /** The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. */
@@ -369,13 +410,19 @@ export interface CreateImageVariationRequest {
 export function createImageVariationRequestSerializer(
   item: CreateImageVariationRequest,
 ): any {
-  return {
-    image: uint8ArrayToString(item["image"], "base64"),
-    n: item["n"],
-    size: item["size"],
-    response_format: item["responseFormat"],
-    user: item["user"],
-  };
+  return [
+    createFilePartDescriptor("image", item["image"]),
+    ...(item["n"] === undefined ? [] : [{ name: "n", body: item["n"] }]),
+    ...(item["size"] === undefined
+      ? []
+      : [{ name: "size", body: item["size"] }]),
+    ...(item["responseFormat"] === undefined
+      ? []
+      : [{ name: "response_format", body: item["responseFormat"] }]),
+    ...(item["user"] === undefined
+      ? []
+      : [{ name: "user", body: item["user"] }]),
+  ];
 }
 
 /** model interface ListModelsResponse */
@@ -803,7 +850,9 @@ export interface CreateFileRequest {
    *
    * If the `purpose` is set to "fine-tune", the file will be used for fine-tuning.
    */
-  file: Uint8Array;
+  file:
+    | FileContents
+    | { contents: FileContents; contentType?: string; filename?: string };
   /**
    * The intended purpose of the uploaded documents. Use "fine-tune" for
    * [fine-tuning](/docs/api-reference/fine-tuning). This allows us to validate the format of the
@@ -813,10 +862,10 @@ export interface CreateFileRequest {
 }
 
 export function createFileRequestSerializer(item: CreateFileRequest): any {
-  return {
-    file: uint8ArrayToString(item["file"], "base64"),
-    purpose: item["purpose"],
-  };
+  return [
+    createFilePartDescriptor("file", item["file"]),
+    { name: "purpose", body: item["purpose"] },
+  ];
 }
 
 /** model interface DeleteFileResponse */
@@ -1083,7 +1132,7 @@ export interface CreateCompletionRequest {
    * Note that <|endoftext|> is the document separator that the model sees during training, so if a
    * prompt is not specified the model will generate as if from the beginning of a new document.
    */
-  prompt: Prompt | null;
+  prompt: Prompt;
   /** The suffix that comes after a completion of inserted text. */
   suffix?: string | null;
   /**
@@ -1116,7 +1165,7 @@ export interface CreateCompletionRequest {
    */
   maxTokens?: number | null;
   /** Up to 4 sequences where the API will stop generating further tokens. */
-  stop?: Stop | null;
+  stop?: Stop;
   /**
    * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear
    * in the text so far, increasing the model's likelihood to talk about new topics.
@@ -1201,14 +1250,18 @@ export function createCompletionRequestSerializer(
 }
 
 /** Alias for Prompt */
-export type Prompt = string | string[] | number[] | number[][];
+export type Prompt = Prompt_1 | null;
+/** Alias for Prompt */
+export type Prompt_1 = string | string[] | number[] | number[][];
 
 export function promptSerializer(item: Prompt): any {
   return item;
 }
 
 /** Alias for Stop */
-export type Stop = string | string[];
+export type Stop = Stop_1 | null;
+/** Alias for Stop */
+export type Stop_1 = string | string[];
 
 export function stopSerializer(item: Stop): any {
   return item;
@@ -1697,7 +1750,7 @@ export interface CreateChatCompletionRequest {
    */
   maxTokens?: number | null;
   /** Up to 4 sequences where the API will stop generating further tokens. */
-  stop?: Stop | null;
+  stop?: Stop;
   /**
    * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear
    * in the text so far, increasing the model's likelihood to talk about new topics.
@@ -2021,7 +2074,9 @@ export interface CreateTranslationRequest {
    * The audio file object (not file name) to translate, in one of these formats: flac, mp3, mp4,
    * mpeg, mpga, m4a, ogg, wav, or webm.
    */
-  file: Uint8Array;
+  file:
+    | FileContents
+    | { contents: FileContents; contentType?: string; filename?: string };
   /** ID of the model to use. Only `whisper-1` is currently available. */
   model: "whisper-1";
   /**
@@ -2046,13 +2101,19 @@ export interface CreateTranslationRequest {
 export function createTranslationRequestSerializer(
   item: CreateTranslationRequest,
 ): any {
-  return {
-    file: uint8ArrayToString(item["file"], "base64"),
-    model: item["model"],
-    prompt: item["prompt"],
-    response_format: item["responseFormat"],
-    temperature: item["temperature"],
-  };
+  return [
+    createFilePartDescriptor("file", item["file"]),
+    { name: "model", body: item["model"] },
+    ...(item["prompt"] === undefined
+      ? []
+      : [{ name: "prompt", body: item["prompt"] }]),
+    ...(item["responseFormat"] === undefined
+      ? []
+      : [{ name: "response_format", body: item["responseFormat"] }]),
+    ...(item["temperature"] === undefined
+      ? []
+      : [{ name: "temperature", body: item["temperature"] }]),
+  ];
 }
 
 /** model interface CreateTranslationResponse */
@@ -2074,7 +2135,9 @@ export interface CreateTranscriptionRequest {
    * The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4,
    * mpeg, mpga, m4a, ogg, wav, or webm.
    */
-  file: Uint8Array;
+  file:
+    | FileContents
+    | { contents: FileContents; contentType?: string; filename?: string };
   /** ID of the model to use. Only `whisper-1` is currently available. */
   model: "whisper-1";
   /**
@@ -2105,14 +2168,22 @@ export interface CreateTranscriptionRequest {
 export function createTranscriptionRequestSerializer(
   item: CreateTranscriptionRequest,
 ): any {
-  return {
-    file: uint8ArrayToString(item["file"], "base64"),
-    model: item["model"],
-    prompt: item["prompt"],
-    response_format: item["responseFormat"],
-    temperature: item["temperature"],
-    language: item["language"],
-  };
+  return [
+    createFilePartDescriptor("file", item["file"]),
+    { name: "model", body: item["model"] },
+    ...(item["prompt"] === undefined
+      ? []
+      : [{ name: "prompt", body: item["prompt"] }]),
+    ...(item["responseFormat"] === undefined
+      ? []
+      : [{ name: "response_format", body: item["responseFormat"] }]),
+    ...(item["temperature"] === undefined
+      ? []
+      : [{ name: "temperature", body: item["temperature"] }]),
+    ...(item["language"] === undefined
+      ? []
+      : [{ name: "language", body: item["language"] }]),
+  ];
 }
 
 /** model interface CreateTranscriptionResponse */

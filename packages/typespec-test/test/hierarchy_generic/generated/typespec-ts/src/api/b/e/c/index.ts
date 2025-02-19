@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { BECOp1OptionalParams, FooContext as Client } from "../../../index.js";
-import { BEA, beaSerializer } from "../../../../models/models.js";
+import { Bea, beaSerializer } from "../../../../models/b/e/models.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -12,7 +12,7 @@ import {
 
 export function _op1Send(
   context: Client,
-  body: BEA,
+  body: Bea,
   options: BECOp1OptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -37,7 +37,7 @@ export async function _op1Deserialize(
 
 export async function op1(
   context: Client,
-  body: BEA,
+  body: Bea,
   options: BECOp1OptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _op1Send(context, body, options);

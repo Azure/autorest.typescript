@@ -633,6 +633,9 @@ export interface EvaluatorConfiguration {
 }
 
 // @public
+export type FileContents = string | NodeJS.ReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
+
+// @public
 export interface FileDeletionStatus {
     deleted: boolean;
     id: string;
@@ -774,7 +777,7 @@ export type InternalConnectionPropertiesUnion = InternalConnectionPropertiesApiK
 
 // @public
 export enum KnownVersions {
-    "V2024-07-01-Preview" = "2024-07-01-preview"
+    "2024-07-01-preview" = "2024-07-01-preview"
 }
 
 // @public

@@ -1,10 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { FileContents } from "./static-helpers/multipartHelpers.js";
+
 export { OpenAIClient } from "./openAIClient.js";
 export {
   CreateModerationRequest,
   CreateModerationResponse,
+  ErrorResponse,
+  ErrorModel,
   CreateImageRequest,
   ImagesResponse,
   Image,
@@ -30,7 +34,9 @@ export {
   CompletionUsage,
   CreateCompletionRequest,
   Prompt,
+  Prompt_1,
   Stop,
+  Stop_1,
   CreateCompletionResponse,
   CreateFineTuningJobRequest,
   FineTuningJob,
@@ -97,3 +103,4 @@ export {
   ChatCompletionsOperations,
   FineTuningJobsOperations,
 } from "./classic/index.js";
+export { FileContents };

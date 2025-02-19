@@ -3,16 +3,14 @@
 
 import { AzureKeyCredential } from "@azure/core-auth";
 import createAuthoringClient, { paginate } from "@msinternal/authoring";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation ListDeployments
  *
  * @summary call operation ListDeployments
  */
-async function listDeploymentsSample() {
+async function listDeploymentsSample(): Promise<void> {
   const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAuthoringClient(endpointParam, credential);
@@ -31,8 +29,8 @@ async function listDeploymentsSample() {
   console.log(result);
 }
 
-async function main() {
-  listDeploymentsSample();
+async function main(): Promise<void> {
+  await listDeploymentsSample();
 }
 
 main().catch(console.error);

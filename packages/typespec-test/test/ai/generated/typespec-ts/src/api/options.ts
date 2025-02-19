@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { ConnectionType } from "../models/models.js";
 import {
-  ConnectionType,
   ToolDefinitionUnion,
   ToolResources,
   VectorStoreDataSource,
@@ -20,7 +20,7 @@ import {
   ListSortOrder,
   RunAdditionalFieldList,
   VectorStoreFileStatusFilter,
-} from "../models/models.js";
+} from "../models/agents/models.js";
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */

@@ -13,7 +13,6 @@ options:
     isModularLibrary: true
     hierarchyClient: false
     experimentalExtensibleEnums: true
-    ignoreEnumMemberNameNormalize: true
     packageDetails:
       name: "@azure/load-testing"
       description: This package contains Microsoft Azure LoadTestingClient client library.

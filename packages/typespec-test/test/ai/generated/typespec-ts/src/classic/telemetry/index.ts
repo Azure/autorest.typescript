@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { AIProjectContext } from "../../api/aiProjectContext.js";
-import { TelemetryGetAppInsightsOptionalParams } from "../../api/options.js";
+import { AIProjectContext } from "../../api/aIProjectContext.js";
 import { getAppInsights } from "../../api/telemetry/index.js";
 import { GetAppInsightsResponse } from "../../models/models.js";
+import { TelemetryGetAppInsightsOptionalParams } from "../../api/options.js";
 
 /** Interface representing a Telemetry operations. */
 export interface TelemetryOperations {
@@ -15,7 +15,7 @@ export interface TelemetryOperations {
   ) => Promise<GetAppInsightsResponse>;
 }
 
-export function getTelemetry(context: AIProjectContext) {
+function _getTelemetry(context: AIProjectContext) {
   return {
     getAppInsights: (
       appInsightsResourceUrl: string,
@@ -24,10 +24,10 @@ export function getTelemetry(context: AIProjectContext) {
   };
 }
 
-export function getTelemetryOperations(
+export function _getTelemetryOperations(
   context: AIProjectContext,
 ): TelemetryOperations {
   return {
-    ...getTelemetry(context),
+    ..._getTelemetry(context),
   };
 }

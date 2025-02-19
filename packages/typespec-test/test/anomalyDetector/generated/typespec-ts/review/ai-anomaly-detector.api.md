@@ -30,7 +30,7 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 // @public
 export enum KnownVersions {
     // (undocumented)
-    V1_1 = "v1.1"
+    v1_1 = "v1.1"
 }
 
 // @public
@@ -227,6 +227,15 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 export interface PageSettings {
     continuationToken?: string;
 }
+
+// @public
+export interface UnivariateAnomalyDetectorError {
+    code?: UnivariateAnomalyDetectorErrorCodes;
+    message?: string;
+}
+
+// @public
+export type UnivariateAnomalyDetectorErrorCodes = "InvalidCustomInterval" | "BadArgument" | "InvalidGranularity" | "InvalidPeriod" | "InvalidModelArgument" | "InvalidSeries" | "InvalidJsonFormat" | "RequiredGranularity" | "RequiredSeries" | "InvalidImputeMode" | "InvalidImputeFixedValue";
 
 // @public
 export interface UnivariateDetectUnivariateChangePointOptionalParams extends OperationOptions {

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { AIProjectContext } from "../../api/aiProjectContext.js";
+import { AIProjectContext } from "../../api/aIProjectContext.js";
 import {
   listVectorStoreFileBatchFiles,
   cancelVectorStoreFileBatch,
@@ -69,7 +69,7 @@ import {
   VectorStoreFile,
   VectorStoreFileDeletionStatus,
   VectorStoreFileBatch,
-} from "../../models/models.js";
+} from "../../models/agents/models.js";
 import {
   AgentsListVectorStoreFileBatchFilesOptionalParams,
   AgentsCancelVectorStoreFileBatchOptionalParams,
@@ -334,7 +334,7 @@ export interface AgentsOperations {
   ) => Promise<Agent>;
 }
 
-export function getAgents(context: AIProjectContext) {
+function _getAgents(context: AIProjectContext) {
   return {
     listVectorStoreFileBatchFiles: (
       vectorStoreId: string,
@@ -497,10 +497,10 @@ export function getAgents(context: AIProjectContext) {
   };
 }
 
-export function getAgentsOperations(
+export function _getAgentsOperations(
   context: AIProjectContext,
 ): AgentsOperations {
   return {
-    ...getAgents(context),
+    ..._getAgents(context),
   };
 }
