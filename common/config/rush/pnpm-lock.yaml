@@ -257,7 +257,7 @@ importers:
       '@typescript-eslint/parser': ^6.8.0
       '@typespec/compiler': '>=0.64.0 <1.0.0'
       '@typespec/http': '>=0.64.0 <1.0.0'
-      '@typespec/http-specs': 0.1.0-alpha.7
+      '@typespec/http-specs': 0.1.0-alpha.8
       '@typespec/openapi': '>=0.64.0, <1.0.0'
       '@typespec/rest': '>=0.64.0 <1.0.0'
       '@typespec/spec-api': 0.1.0-alpha.0
@@ -317,7 +317,7 @@ importers:
       '@typescript-eslint/parser': 6.8.0_wgnkk2eh2432jxos7omdkkhhte
       '@typespec/compiler': 0.64.0
       '@typespec/http': 0.64.0_@typespec+compiler@0.64.0
-      '@typespec/http-specs': 0.1.0-alpha.7_agoisnpcmfe3xicaprge56stra
+      '@typespec/http-specs': 0.1.0-alpha.8_agoisnpcmfe3xicaprge56stra
       '@typespec/openapi': 0.64.0_3iuxys3wzzu2f6cvuvfg7gykxi
       '@typespec/rest': 0.64.0_3iuxys3wzzu2f6cvuvfg7gykxi
       '@typespec/spec-api': 0.1.0-alpha.0
@@ -2352,8 +2352,8 @@ packages:
       yaml: 2.5.1
       yargs: 17.7.2
 
-  /@typespec/http-specs/0.1.0-alpha.7_agoisnpcmfe3xicaprge56stra:
-    resolution: {integrity: sha512-FvaWiGcWPzAzPrxpZ+gkJAue99GY1mC3BSU2j1Ujy7ikECGcuQTHLwmi9xjKzS4EdZe8ZggSx6bFHm74yxtNdQ==}
+  /@typespec/http-specs/0.1.0-alpha.8_agoisnpcmfe3xicaprge56stra:
+    resolution: {integrity: sha512-1BJfxDDYe8IoRBD2eNizG4nKfscn5G4HVHqveVHHKajUPyhTjQ97IG+BQAIrGAEBJLupQzv5hVCeA1VCgzP1qA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@typespec/compiler': ~0.64.0
