@@ -995,6 +995,10 @@ model Test {
 op read(@body body: Test): void;
 ```
 
+```yaml
+mustEmptyDiagnostic: false
+```
+
 ## Model interface Test
 
 ```ts models interface Test
@@ -1180,27 +1184,27 @@ export enum KnownImageSize {
    * Very small image size of 256x256 pixels.
    * Only supported with dall-e-2 models.
    */
-  size256x256 = "256x256",
+  Size256X256 = "256x256",
   /**
    * A smaller image size of 512x512 pixels.
    * Only supported with dall-e-2 models.
    */
-  size512x512 = "512x512",
+  Size512X512 = "512x512",
   /**
    * A standard, square image size of 1024x1024 pixels.
    * Supported by both dall-e-2 and dall-e-3 models.
    */
-  size1024x1024 = "1024x1024",
+  Size1024X1024 = "1024x1024",
   /**
    * A wider image size of 1024x1792 pixels.
    * Only supported with dall-e-3 models.
    */
-  size1792x1024 = "1792x1024",
+  Size1792X1024 = "1792x1024",
   /**
    * A taller image size of 1792x1024 pixels.
    * Only supported with dall-e-3 models.
    */
-  size1024x1792 = "1024x1792",
+  Size1024X1792 = "1024x1792",
 }
 ```
 
@@ -1229,22 +1233,22 @@ op read(@body body: Test): void;
 ```ts models interface Test
 /** model interface Test */
 export interface Test {
-  color: Lr | Ud;
+  color: LR | UD;
 }
 ```
 
-## Model Alias Lr
+## Model Alias LR
 
-```ts models alias Lr
-/** Type of Lr */
-export type Lr = "left" | "right";
+```ts models alias LR
+/** Type of LR */
+export type LR = "left" | "right";
 ```
 
-## Model Alias Ud
+## Model Alias UD
 
-```ts models alias Ud
-/** Type of Ud */
-export type Ud = "up" | "down";
+```ts models alias UD
+/** Type of UD */
+export type UD = "up" | "down";
 ```
 
 # model type non-standard enum/union name

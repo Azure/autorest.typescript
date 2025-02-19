@@ -8,7 +8,11 @@ import {
   StructureKind,
   TypeAliasDeclarationStructure
 } from "ts-morph";
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import {
+  NameType,
+  normalizeName,
+  escapeNumericLiteralStart
+} from "@azure-tools/rlc-common";
 import {
   SdkArrayType,
   SdkBodyModelPropertyType,
@@ -38,10 +42,6 @@ import { addDeclaration } from "../framework/declaration.js";
 import { buildModelDeserializer } from "./serialization/buildDeserializerFunction.js";
 import { buildModelSerializer } from "./serialization/buildSerializerFunction.js";
 import { extractPagedMetadataNested } from "../utils/operationUtil.js";
-import {
-  getTypeExpression,
-  normalizeModelPropertyName
-} from "./type-expressions/get-type-expression.js";
 import path from "path";
 import { refkey } from "../framework/refkey.js";
 import { useContext } from "../contextManager.js";
@@ -54,6 +54,10 @@ import { isExtensibleEnum } from "./type-expressions/get-enum-expression.js";
 import { isDiscriminatedUnion } from "./serialization/serializeUtils.js";
 import { reportDiagnostic } from "../lib.js";
 import { NoTarget } from "@typespec/compiler";
+import {
+  getTypeExpression,
+  normalizeModelPropertyName
+} from "./type-expressions/get-type-expression.js";
 import { emitQueue } from "../framework/hooks/sdkTypes.js";
 import { resolveReference } from "../framework/reference.js";
 import { MultipartHelpers } from "./static-helpers-metadata.js";
@@ -359,7 +363,7 @@ export function buildEnumTypes(
     kind: StructureKind.Enum,
     name: `Known${normalizeModelName(context, type)}`,
     isExported: true,
-    members: type.values.map(emitEnumMember)
+    members: type.values.map((value) => emitEnumMember(context, value))
   };
 
   const enumAsUnion: TypeAliasDeclarationStructure = {
@@ -403,10 +407,33 @@ function getExtensibleEnumDescription(model: SdkEnumType): string | undefined {
   ].join(" \n");
 }
 
-function emitEnumMember(member: SdkEnumValueType): EnumMemberStructure {
+function emitEnumMember(
+  context: SdkContext,
+  member: SdkEnumValueType
+): EnumMemberStructure {
+  const normalizedMemberName = context.rlcOptions?.ignoreEnumMemberNameNormalize
+    ? escapeNumericLiteralStart(member.name, NameType.EnumMemberName) // need to normalize number also for enum member
+    : normalizeName(member.name, NameType.EnumMemberName, {
+        shouldGuard: true,
+        numberPrefixOverride:
+          member.enumType.usage === UsageFlags.ApiVersionEnum ? "V" : "num"
+      });
+  if (
+    normalizedMemberName.toLowerCase().startsWith("num") &&
+    !member.name.toLowerCase().startsWith("num")
+  ) {
+    reportDiagnostic(context.program, {
+      code: "prefix-adding-in-enum-member",
+      format: {
+        memberName: member.name,
+        normalizedName: normalizedMemberName
+      },
+      target: NoTarget
+    });
+  }
   const memberStructure: EnumMemberStructure = {
     kind: StructureKind.EnumMember,
-    name: member.name,
+    name: normalizedMemberName,
     value: member.value
   };
 

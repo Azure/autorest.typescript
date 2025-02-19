@@ -83,7 +83,7 @@ describe("Package file generation", () => {
   });
 
   describe("Azure flavor for Azure SDK for JS Monorepo", () => {
-    const libraryName = "@msinternal/test";
+    const libraryName = "test";
     const version = "1.0.0";
     const description = "Test description";
 
@@ -132,7 +132,7 @@ describe("Package file generation", () => {
       const expectedMetadata = {
         constantPaths: [
           {
-            path: "src/msinternal/test.ts",
+            path: "src/test.ts",
             prefix: "userAgentInfo"
           }
         ]
@@ -155,7 +155,7 @@ describe("Package file generation", () => {
             prefix: "package-version"
           },
           {
-            path: "src/msinternal/test.ts",
+            path: "src/test.ts",
             prefix: "userAgentInfo"
           }
         ]
@@ -470,7 +470,7 @@ describe("Package file generation", () => {
       const packageFileContent = buildPackageFile(model);
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
       expect(packageFile).to.have.property("//metadata");
-      expect(packageFile["//metadata"]["constantPaths"][0]).to.have.property("path", "src/msinternal/test.ts", "rlc");
+      expect(packageFile["//metadata"]["constantPaths"][0]).to.have.property("path", "src/test.ts", "rlc");
     });
   });
 
