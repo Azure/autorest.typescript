@@ -151,7 +151,7 @@ export async function $onEmit(context: EmitContext) {
   await buildRLCCodeModels();
 
   // 4. Generate sources
-  if (emitterOptions.isModularLibrary) {
+  if (emitterOptions["is-modular-library"] || emitterOptions.isModularLibrary) {
     await generateModularSources();
   } else {
     await generateRLCSources();
@@ -165,6 +165,7 @@ export async function $onEmit(context: EmitContext) {
       await calculateGenerationDir();
     dpgContext.generationPathDetail = generationPathDetail;
     const options: RLCOptions = transformRLCOptions(emitterOptions, dpgContext);
+    emitterOptions["is-modular-library"] = options.isModularLibrary;
     emitterOptions.isModularLibrary = options.isModularLibrary;
     // clear output folder if needed
     if (options.clearOutputFolder) {
@@ -321,7 +322,10 @@ export async function $onEmit(context: EmitContext) {
       );
     }
     // Enable modular sample generation when explicitly set to true or MPG
-    if (emitterOptions?.generateSample === true) {
+    if (
+      emitterOptions["generate-sample"] === true ||
+      emitterOptions.generateSample === true
+    ) {
       const samples = emitSamples(dpgContext);
       // Refine the rlc sample generation logic
       // TODO: remember to remove this out when RLC is splitted from Modular
@@ -486,9 +490,11 @@ export async function createContextWithDefaultOptions(
   context: EmitContext<Record<string, any>>
 ): Promise<SdkContext> {
   const flattenUnionAsEnum =
-    context.options["experimentalExtensibleEnums"] === undefined
+    context.options["experimentalExtensibleEnums"] === undefined &&
+    context.options["experimental-extensible-enums"] === undefined
       ? isArm(context)
-      : context.options["experimentalExtensibleEnums"];
+      : context.options["experimentalExtensibleEnums"] ||
+        context.options["experimental-extensible-enums"];
   const tcgcSettings = {
     "generate-protocol-methods": true,
     "generate-convenience-methods": true,

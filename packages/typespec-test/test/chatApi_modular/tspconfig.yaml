@@ -2,9 +2,9 @@ emit:
   - "@azure-tools/typespec-ts"
 options:
   "@azure-tools/typespec-ts":
-    azureSdkForJs: false
-    isModularLibrary: true
-    "emitter-output-dir": "{project-root}/generated/typespec-ts"
-    hierarchyClient: false
-    packageDetails:
+    azure-sdk-for-js: false
+    is-modular-library: true
+    emitter-output-dir: "{project-root}/generated/typespec-ts"
+    hierarchy-client: false
+    package-details:
       name: "@azure/ai-chat-protocol"

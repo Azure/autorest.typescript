@@ -2,10 +2,11 @@ emit:
   - "@azure-tools/typespec-ts"
 options:
   "@azure-tools/typespec-ts":
-    "emitter-output-dir": "{project-root}"
-    generateMetadata: true
-    generateTest: false
-    isTypeSpecTest: true
-    hierarchyClient: false
-    packageDetails:
+    emitter-output-dir: "{project-root}"
+    generate-metadata: true
+    generate-test: false
+    is-typespec-test: true
+    hierarchy-client: false
+    package-details:
       name: "@unbranded/azure-auth-union"
+      description: "Azure Auth Union Test Service"

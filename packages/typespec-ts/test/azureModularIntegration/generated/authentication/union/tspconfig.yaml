@@ -2,14 +2,14 @@ emit:
   - "@azure-tools/typespec-ts"
 options:
   "@azure-tools/typespec-ts":
-    "emitter-output-dir": "{project-root}"
-    generateMetadata: true
-    generateTest: false
+    emitter-output-dir: "{project-root}"
+    generate-metadata: true
+    generate-test: false
     flavor: azure
-    azureSdkForJs: false
-    isTypeSpecTest: true
-    isModularLibrary: true
-    hierarchyClient: false
-    packageDetails:
+    azure-sdk-for-js: false
+    is-typespec-test: true
+    is-modular-library: true
+    hierarchy-client: false
+    package-details:
       name: "@msinternal/azure-auth-union"
       description: "Azure Auth Union Test Service"
