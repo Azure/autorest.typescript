@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets the queue with the specified queue name, under the specified account if it exists.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets the queue with the specified queue name, under the specified account if it exists.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/QueueOperationGet.json
  */
-async function queueOperationGet() {
+async function queueOperationGet(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res3376";
   const accountName = "sto328";
@@ -35,8 +33,8 @@ async function queueOperationGet() {
   console.log(result);
 }
 
-async function main() {
-  queueOperationGet();
+async function main(): Promise<void> {
+  await queueOperationGet();
 }
 
 main().catch(console.error);

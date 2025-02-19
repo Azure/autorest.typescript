@@ -121,59 +121,18 @@ Raw json files.
 }
 ```
 
+This is the tspconfig.yaml.
+
+```yaml
+hierarchyClient: true
+enableOperationGroup: false
+```
+
 ## Samples
 
 Generate samples for dpg cases:
 
 ```ts samples
-/** This file path is /samples-dev/widgetsCreateOrUpdateWidgetSample.ts */
-import { WidgetManagerClient } from "@azure/internal-test";
-import { DefaultAzureCredential } from "@azure/identity";
-
-/**
- * This sample demonstrates how to creates or updates a Widget asynchronously.
- *
- * @summary creates or updates a Widget asynchronously.
- * x-ms-original-file: 2021-10-01-preview/json_for_Widgets_CreateOrUpdateWidget.json
- */
-async function widgetsCreateOrUpdateWidget() {
-  const credential = new DefaultAzureCredential();
-  const client = new WidgetManagerClient(credential);
-  const result = await client.widgets.createOrUpdateWidget("name1", {
-    manufacturerId: "manufacturer id1",
-  });
-  console.log(result);
-}
-
-async function main() {
-  widgetsCreateOrUpdateWidget();
-}
-
-main().catch(console.error);
-
-/** This file path is /samples-dev/widgetsDeleteWidgetSample.ts */
-import { WidgetManagerClient } from "@azure/internal-test";
-import { DefaultAzureCredential } from "@azure/identity";
-
-/**
- * This sample demonstrates how to delete a Widget asynchronously.
- *
- * @summary delete a Widget asynchronously.
- * x-ms-original-file: 2021-10-01-preview/json_for_Widgets_DeleteWidget.json
- */
-async function deleteWidgetByWidgetNameUsingLongRunningOperation() {
-  const credential = new DefaultAzureCredential();
-  const client = new WidgetManagerClient(credential);
-  const result = await client.widgets.deleteWidget("searchbox");
-  console.log(result);
-}
-
-async function main() {
-  deleteWidgetByWidgetNameUsingLongRunningOperation();
-}
-
-main().catch(console.error);
-
 /** This file path is /samples-dev/widgetsListWidgetsSample.ts */
 import { WidgetManagerClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
@@ -184,7 +143,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * @summary list Widget resources
  * x-ms-original-file: 2021-10-01-preview/json_for_Widgets_ListWidgets.json
  */
-async function widgetsListWidgets() {
+async function widgetsListWidgets(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new WidgetManagerClient(credential);
   const resArray = new Array();
@@ -199,8 +158,56 @@ async function widgetsListWidgets() {
   console.log(resArray);
 }
 
-async function main() {
-  widgetsListWidgets();
+async function main(): Promise<void> {
+  await widgetsListWidgets();
+}
+
+main().catch(console.error);
+
+/** This file path is /samples-dev/widgetsDeleteWidgetSample.ts */
+import { WidgetManagerClient } from "@azure/internal-test";
+import { DefaultAzureCredential } from "@azure/identity";
+
+/**
+ * This sample demonstrates how to delete a Widget asynchronously.
+ *
+ * @summary delete a Widget asynchronously.
+ * x-ms-original-file: 2021-10-01-preview/json_for_Widgets_DeleteWidget.json
+ */
+async function deleteWidgetByWidgetNameUsingLongRunningOperation(): Promise<void> {
+  const credential = new DefaultAzureCredential();
+  const client = new WidgetManagerClient(credential);
+  const result = await client.widgets.deleteWidget("searchbox");
+  console.log(result);
+}
+
+async function main(): Promise<void> {
+  await deleteWidgetByWidgetNameUsingLongRunningOperation();
+}
+
+main().catch(console.error);
+
+/** This file path is /samples-dev/widgetsCreateOrUpdateWidgetSample.ts */
+import { WidgetManagerClient } from "@azure/internal-test";
+import { DefaultAzureCredential } from "@azure/identity";
+
+/**
+ * This sample demonstrates how to creates or updates a Widget asynchronously.
+ *
+ * @summary creates or updates a Widget asynchronously.
+ * x-ms-original-file: 2021-10-01-preview/json_for_Widgets_CreateOrUpdateWidget.json
+ */
+async function widgetsCreateOrUpdateWidget(): Promise<void> {
+  const credential = new DefaultAzureCredential();
+  const client = new WidgetManagerClient(credential);
+  const result = await client.widgets.createOrUpdateWidget("name1", {
+    manufacturerId: "manufacturer id1",
+  });
+  console.log(result);
+}
+
+async function main(): Promise<void> {
+  await widgetsCreateOrUpdateWidget();
 }
 
 main().catch(console.error);

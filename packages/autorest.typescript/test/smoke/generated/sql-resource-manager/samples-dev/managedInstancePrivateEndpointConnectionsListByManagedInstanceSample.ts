@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets all private endpoint connections on a server.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets all private endpoint connections on a server.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedInstancePrivateEndpointConnectionList.json
  */
-async function getsListOfPrivateEndpointConnectionsOnAServer() {
+async function getsListOfPrivateEndpointConnectionsOnAServer(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "Default";
@@ -37,8 +35,8 @@ async function getsListOfPrivateEndpointConnectionsOnAServer() {
   console.log(resArray);
 }
 
-async function main() {
-  getsListOfPrivateEndpointConnectionsOnAServer();
+async function main(): Promise<void> {
+  await getsListOfPrivateEndpointConnectionsOnAServer();
 }
 
 main().catch(console.error);

@@ -4,9 +4,7 @@
 import createDpgCustomizationClient, {
   paginate,
 } from "@msinternal/dpg-customization-rest";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Get pages that you will either return to users in pages of raw bodies, or pages of models following growup.
@@ -14,7 +12,7 @@ dotenv.config();
  * @summary Get pages that you will either return to users in pages of raw bodies, or pages of models following growup.
  * x-ms-original-file: /@microsoft.azure/autorest.testserver/swagger/examples/nextLink.json
  */
-async function dpgNextLink() {
+async function dpgNextLink(): Promise<void> {
   const client = createDpgCustomizationClient();
   const mode = "prod";
   const initialResponse = await client
@@ -28,8 +26,8 @@ async function dpgNextLink() {
   console.log(result);
 }
 
-async function main() {
-  dpgNextLink();
+async function main(): Promise<void> {
+  await dpgNextLink();
 }
 
 main().catch(console.error);

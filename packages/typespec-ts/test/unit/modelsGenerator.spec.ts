@@ -119,6 +119,58 @@ describe("Input/output model type", () => {
       await verifyPropertyType(tspType, typeScriptType);
     });
 
+    it("should generate nullable recursive union", async () => {
+      const tspDefinition = `
+        union A {
+          null,
+          {
+            code?: string,
+            message?: string,
+            propA?: A,
+          },
+        }
+        op post(@body body: A): { @body body: A };
+      `;
+      const schemaOutput = await emitModelsFromTypeSpec(
+        tspDefinition
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+        /** Alias for A */
+        export type A = null | { code?: string; message?: string; propA?: A };
+      `
+      );
+      await assertEqualContent(
+        outputModelFile?.content!,
+        `
+        /** Alias for AOutput */
+        export type AOutput = null | {
+          code?: string;
+          message?: string;
+          propA?: AOutput;
+        };
+        `
+      );
+      const parametersOutput = await emitParameterFromTypeSpec(tspDefinition);
+      assert.ok(parametersOutput);
+      await assertEqualContent(
+        parametersOutput?.content!,
+        `
+        import type { RequestParameters } from "@azure-rest/core-client";
+        import type { A } from "./models.js";
+        
+        export interface PostBodyParam {
+          body: A;
+        }
+        
+        export type PostParameters = PostBodyParam & RequestParameters;
+        `
+      );
+    });
+
     it("should generate nullable array", async () => {
       const tspDefinition = `
       alias nullableArray = int32 | null;`;
@@ -2891,6 +2943,94 @@ describe("Input/output model type", () => {
         }
 
         export interface BaseModelOutput {}
+        `
+      });
+    });
+
+    it("should generate template model successfully even without @friendlyName", async () => {
+      const tspDefinition = `
+      model Base { }
+
+      model Templated<T> {
+        prop: T;
+      }
+
+      model Foo {
+        x: Templated<Base>;
+        y: Templated<string>;
+        z: Templated<"cat">;
+        h: Templated<true>;
+        j: Templated<1>;
+      }
+      `;
+      const tspType = "Foo";
+      const inputModelName = "Foo";
+      await verifyPropertyType(tspType, inputModelName, {
+        additionalTypeSpecDefinition: tspDefinition,
+        outputType: `FooOutput`,
+        additionalInputContent: `
+        export interface Foo {
+            x: TemplatedBase;
+            y: TemplatedString;
+            z: TemplatedCat;
+            h: TemplatedTrue;
+            j: Templated1;
+        }
+
+        export interface TemplatedBase {
+          prop: Base;
+        }
+
+        export interface Base {
+        }
+
+        export interface TemplatedString {
+          prop: string;
+        }
+
+        export interface TemplatedCat {
+          prop: "cat";
+        }
+
+        export interface TemplatedTrue {
+          prop: true;
+        }
+
+        export interface Templated1 {
+          prop: 1;
+        }
+        `,
+        additionalOutputContent: `
+        export interface FooOutput {
+            x: TemplatedBaseOutput;
+            y: TemplatedStringOutput;
+            z: TemplatedCatOutput;
+            h: TemplatedTrueOutput;
+            j: Templated1Output;
+        }
+
+        export interface TemplatedBaseOutput {
+          prop: BaseOutput;
+        }
+
+        export interface BaseOutput {
+        }
+
+        export interface TemplatedStringOutput {
+          prop: string;
+        }
+
+        export interface TemplatedCatOutput {
+          prop: "cat";
+        }
+
+        export interface TemplatedTrueOutput {
+          prop: true;
+        }
+
+        export interface Templated1Output {
+          prop: 1;
+        }
         `
       });
     });

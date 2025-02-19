@@ -13,9 +13,7 @@ import {
   NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Creates or updates a private dns zone group in the specified private endpoint.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Creates or updates a private dns zone group in the specified private endpoint.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/PrivateEndpointDnsZoneGroupCreate.json
  */
-async function createPrivateDnsZoneGroup() {
+async function createPrivateDnsZoneGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const privateEndpointName = "testPe";
@@ -47,8 +45,8 @@ async function createPrivateDnsZoneGroup() {
   console.log(result);
 }
 
-async function main() {
-  createPrivateDnsZoneGroup();
+async function main(): Promise<void> {
+  await createPrivateDnsZoneGroup();
 }
 
 main().catch(console.error);

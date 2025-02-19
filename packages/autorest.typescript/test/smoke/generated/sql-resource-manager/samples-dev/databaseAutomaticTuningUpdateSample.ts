@@ -13,9 +13,7 @@ import {
   SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Update automatic tuning properties for target database.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Update automatic tuning properties for target database.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/DatabaseAutomaticTuningUpdateMax.json
  */
-async function updatesDatabaseAutomaticTuningSettingsWithAllProperties() {
+async function updatesDatabaseAutomaticTuningSettingsWithAllProperties(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "c3aa9078-0000-0000-0000-e36f151182d7";
   const resourceGroupName =
@@ -55,7 +53,7 @@ async function updatesDatabaseAutomaticTuningSettingsWithAllProperties() {
  * @summary Update automatic tuning properties for target database.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/DatabaseAutomaticTuningUpdateMin.json
  */
-async function updatesDatabaseAutomaticTuningSettingsWithMinimalProperties() {
+async function updatesDatabaseAutomaticTuningSettingsWithMinimalProperties(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "c3aa9078-0000-0000-0000-e36f151182d7";
   const resourceGroupName =
@@ -74,9 +72,9 @@ async function updatesDatabaseAutomaticTuningSettingsWithMinimalProperties() {
   console.log(result);
 }
 
-async function main() {
-  updatesDatabaseAutomaticTuningSettingsWithAllProperties();
-  updatesDatabaseAutomaticTuningSettingsWithMinimalProperties();
+async function main(): Promise<void> {
+  await updatesDatabaseAutomaticTuningSettingsWithAllProperties();
+  await updatesDatabaseAutomaticTuningSettingsWithMinimalProperties();
 }
 
 main().catch(console.error);

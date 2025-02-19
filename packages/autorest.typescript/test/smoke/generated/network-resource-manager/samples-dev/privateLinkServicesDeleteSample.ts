@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Deletes the specified private link service.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Deletes the specified private link service.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/PrivateLinkServiceDelete.json
  */
-async function deletePrivateLinkService() {
+async function deletePrivateLinkService(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const serviceName = "testPls";
@@ -33,8 +31,8 @@ async function deletePrivateLinkService() {
   console.log(result);
 }
 
-async function main() {
-  deletePrivateLinkService();
+async function main(): Promise<void> {
+  await deletePrivateLinkService();
 }
 
 main().catch(console.error);

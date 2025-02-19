@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { ManagedServiceIdentityClient } from "@msinternal/msi-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets the identity.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets the identity.
  * x-ms-original-file: specification/msi/resource-manager/Microsoft.ManagedIdentity/stable/2018-11-30/examples/IdentityGet.json
  */
-async function identityGet() {
+async function identityGet(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rgName";
   const resourceName = "resourceName";
@@ -33,8 +31,8 @@ async function identityGet() {
   console.log(result);
 }
 
-async function main() {
-  identityGet();
+async function main(): Promise<void> {
+  await identityGet();
 }
 
 main().catch(console.error);

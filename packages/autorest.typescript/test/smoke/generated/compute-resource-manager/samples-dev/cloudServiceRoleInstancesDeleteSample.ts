@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Deletes a role instance from a cloud service.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Deletes a role instance from a cloud service.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/DeleteCloudServiceRoleInstance.json
  */
-async function deleteCloudServiceRoleInstance() {
+async function deleteCloudServiceRoleInstance(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const roleInstanceName = "{roleInstance-name}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "ConstosoRG";
@@ -35,8 +33,8 @@ async function deleteCloudServiceRoleInstance() {
   console.log(result);
 }
 
-async function main() {
-  deleteCloudServiceRoleInstance();
+async function main(): Promise<void> {
+  await deleteCloudServiceRoleInstance();
 }
 
 main().catch(console.error);

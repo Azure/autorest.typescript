@@ -148,7 +148,7 @@ import { TestingClient } from "@azure/internal-test";
  * @summary show example demo
  * x-ms-original-file: 2021-10-01-preview/json.json
  */
-async function read() {
+async function read(): Promise<void> {
   const client = new TestingClient();
   const result = await client.read("required path param", "required query", {
     widget: { name: "body name" },
@@ -157,8 +157,8 @@ async function read() {
   console.log(result);
 }
 
-async function main() {
-  read();
+async function main(): Promise<void> {
+  await read();
 }
 
 main().catch(console.error);

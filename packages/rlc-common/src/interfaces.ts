@@ -252,6 +252,7 @@ export interface RLCOptions {
   ignorePropertyNameNormalize?: boolean;
   ignoreEnumMemberNameNormalize?: boolean;
   compatibilityQueryMultiFormat?: boolean;
+  typespecTitleMap?: Record<string, string>;
 }
 
 export interface ServiceInfo {

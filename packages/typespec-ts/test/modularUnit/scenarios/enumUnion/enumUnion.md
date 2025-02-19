@@ -26,6 +26,8 @@ op get(
 ): NoContentResponse;
 ```
 
+The config would be like:
+
 ```yaml
 mustEmptyDiagnostic: false
 needNamespaces: false
@@ -121,6 +123,8 @@ op get(
 ): { @header("test-header") testHeader: SchemaContentTypeValues; @statusCode _: 204; };
 ```
 
+The config would be like:
+
 ```yaml
 needOptions: false
 withRawContent: true
@@ -163,6 +167,8 @@ op get(
   @body body: string,
 ): NoContentResponse;
 ```
+
+The config would be like:
 
 ```yaml
 needOptions: false
@@ -210,6 +216,8 @@ op get(
   @body body: string,
 ): NoContentResponse;
 ```
+
+The config would be like:
 
 ```yaml
 needOptions: false
@@ -270,6 +278,8 @@ op get(
     @body body: string,
 ): NoContentResponse;
 ```
+
+The config would be like:
 
 ```yaml
 needOptions: false
@@ -325,6 +335,8 @@ op get(
 ): NoContentResponse;
 ```
 
+The config would be like:
+
 ```yaml
 needOptions: false
 withRawContent: true
@@ -371,6 +383,8 @@ op get(
     @body body: string,
 ): NoContentResponse;
 ```
+
+The config would be like:
 
 ```yaml
 needOptions: false
@@ -432,6 +446,8 @@ op get(
 ): NoContentResponse;
 ```
 
+The config would be like:
+
 ```yaml
 needOptions: false
 withRawContent: true
@@ -479,6 +495,8 @@ op get(
     @body body: string,
 ): { @header("test-header") testHeader: "A" | "B"; @statusCode _: 204; };
 ```
+
+The config would be like:
 
 ```yaml
 mustEmptyDiagnostic: true
@@ -566,6 +584,8 @@ op get(
     @body body: string,
 ): { @header("test-header") testHeader: "A" | "B" | string; @statusCode _: 204; };
 ```
+
+The config would be like:
 
 ```yaml
 mustEmptyDiagnostic: true
@@ -666,6 +686,8 @@ op get(
 ): NoContentResponse;
 ```
 
+The config would be like:
+
 ```yaml
 needOptions: false
 withRawContent: true
@@ -712,6 +734,8 @@ op get(
     @body body: string,
 ): NoContentResponse;
 ```
+
+The config would be like:
 
 ```yaml
 needOptions: false
@@ -760,6 +784,8 @@ op get(
   @body body: string,
 ): NoContentResponse;
 ```
+
+The config would be like:
 
 ```yaml
 needOptions: false
@@ -811,6 +837,8 @@ op get(
   @body body: string,
 ): NoContentResponse;
 ```
+
+The config would be like:
 
 ```yaml
 needOptions: false
@@ -1059,6 +1087,8 @@ model Test {
 op read(@body body: Test): void;
 ```
 
+The config would be like:
+
 ```yaml
 needOptions: false
 withRawContent: false
@@ -1124,6 +1154,8 @@ model Test {
 }
 op read(@body body: Test): void;
 ```
+
+The config would be like:
 
 ```yaml
 needOptions: false

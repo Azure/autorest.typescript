@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to List all scope connections created by this network manager.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary List all scope connections created by this network manager.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkManagerScopeConnectionList.json
  */
-async function listNetworkManagerScopeConnection() {
+async function listNetworkManagerScopeConnection(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
@@ -37,8 +35,8 @@ async function listNetworkManagerScopeConnection() {
   console.log(resArray);
 }
 
-async function main() {
-  listNetworkManagerScopeConnection();
+async function main(): Promise<void> {
+  await listNetworkManagerScopeConnection();
 }
 
 main().catch(console.error);

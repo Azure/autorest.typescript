@@ -13,9 +13,7 @@ import {
   WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Description for Creates a new static site in an existing resource group, or updates an existing static site.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Description for Creates a new static site in an existing resource group, or updates an existing static site.
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/CreateOrUpdateStaticSite.json
  */
-async function createOrUpdateAStaticSite() {
+async function createOrUpdateAStaticSite(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg";
@@ -50,8 +48,8 @@ async function createOrUpdateAStaticSite() {
   console.log(result);
 }
 
-async function main() {
-  createOrUpdateAStaticSite();
+async function main(): Promise<void> {
+  await createOrUpdateAStaticSite();
 }
 
 main().catch(console.error);

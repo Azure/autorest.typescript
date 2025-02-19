@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Deletes the specified authorization from the specified express route port.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Deletes the specified authorization from the specified express route port.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRoutePortAuthorizationDelete.json
  */
-async function deleteExpressRoutePortAuthorization() {
+async function deleteExpressRoutePortAuthorization(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const expressRoutePortName = "expressRoutePortName";
@@ -35,8 +33,8 @@ async function deleteExpressRoutePortAuthorization() {
   console.log(result);
 }
 
-async function main() {
-  deleteExpressRoutePortAuthorization();
+async function main(): Promise<void> {
+  await deleteExpressRoutePortAuthorization();
 }
 
 main().catch(console.error);

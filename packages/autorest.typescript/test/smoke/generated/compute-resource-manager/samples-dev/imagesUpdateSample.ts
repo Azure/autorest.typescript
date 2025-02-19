@@ -13,9 +13,7 @@ import {
   ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Update an image.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Update an image.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/UpdateImage.json
  */
-async function updatesTagsOfAnImage() {
+async function updatesTagsOfAnImage(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const imageName = "myImage";
@@ -44,8 +42,8 @@ async function updatesTagsOfAnImage() {
   console.log(result);
 }
 
-async function main() {
-  updatesTagsOfAnImage();
+async function main(): Promise<void> {
+  await updatesTagsOfAnImage();
 }
 
 main().catch(console.error);

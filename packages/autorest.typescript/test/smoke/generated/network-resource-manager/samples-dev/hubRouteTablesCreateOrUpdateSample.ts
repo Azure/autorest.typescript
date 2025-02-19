@@ -13,9 +13,7 @@ import {
   NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Creates a RouteTable resource if it doesn't exist else updates the existing RouteTable.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Creates a RouteTable resource if it doesn't exist else updates the existing RouteTable.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/HubRouteTablePut.json
  */
-async function routeTablePut() {
+async function routeTablePut(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualHubName = "virtualHub1";
@@ -52,8 +50,8 @@ async function routeTablePut() {
   console.log(result);
 }
 
-async function main() {
-  routeTablePut();
+async function main(): Promise<void> {
+  await routeTablePut();
 }
 
 main().catch(console.error);

@@ -22,13 +22,13 @@ variables:
   TypeSpec_TESTSERVER_COVERAGE_MODULAR_AZURE_REPORT: "$(Build.SourcesDirectory)/packages/typespec-ts/coverage/spector-coverage-typescript-modular-azure.json"
   TypeSpec_TESTSERVER_COVERAGE_MODULAR_STANDARD_REPORT: "$(Build.SourcesDirectory)/packages/typespec-ts/coverage/spector-coverage-typescript-modular-standard.json"
 
-pool:
-  vmImage: ubuntu-20.04
-
 stages:
   - stage: BuildStage
     jobs:
       - job: Build
+        pool:
+          name: ${{ parameters.LinuxPool }}
+          vmImage: ${{ parameters.OSVmImage }}
         steps:
           - template: build.yml
           - script: |
@@ -241,7 +241,7 @@ stages:
           vmImage: $[coalesce(variables['OSVmImage'], '')]
         steps:
           - template: build.yml
-          - script: node $(Build.SourcesDirectory)/common/scripts/install-run-rushx.js smoke-test:contoso
+          - script: node $(Build.SourcesDirectory)/common/scripts/install-run-rushx.js smoke-test:contoso && node $(Build.SourcesDirectory)/common/scripts/install-run-rushx.js smoke-test:todo
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-test
             displayName: "Generate Contoso Code From TypeSpec"
 

@@ -498,6 +498,10 @@ export const rlcTsps = [
   {
     outputPath: "type/property/value-types",
     inputPath: "type/property/value-types"
+  },
+  {
+    outputPath: "payload/pageable",
+    inputPath: "payload/pageable"
   }
 ];
 
@@ -659,6 +663,10 @@ export const azureModularTsps = [
   {
     outputPath: "payload/media-type",
     inputPath: "payload/media-type"
+  },
+  {
+    outputPath: "payload/multipart",
+    inputPath: "payload/multipart"
   },
   {
     outputPath: "server/versions/versioned",
@@ -881,6 +889,10 @@ export const modularTsps = [
     inputPath: "payload/media-type"
   },
   {
+    outputPath: "payload/multipart",
+    inputPath: "payload/multipart"
+  },
+  {
     outputPath: "server/versions/versioned",
     inputPath: "server/versions/versioned"
   },
@@ -947,5 +959,9 @@ export const modularTsps = [
   {
     outputPath: "encode/numeric",
     inputPath: "encode/numeric"
+  },
+  {
+    outputPath: "payload/pageable",
+    inputPath: "payload/pageable"
   }
 ];

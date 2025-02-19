@@ -13,9 +13,7 @@ import {
   NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Creates a vpn connection to a scalable vpn gateway if it doesn't exist else updates the existing connection.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Creates a vpn connection to a scalable vpn gateway if it doesn't exist else updates the existing connection.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VpnConnectionPut.json
  */
-async function vpnConnectionPut() {
+async function vpnConnectionPut(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const gatewayName = "gateway1";
@@ -83,8 +81,8 @@ async function vpnConnectionPut() {
   console.log(result);
 }
 
-async function main() {
-  vpnConnectionPut();
+async function main(): Promise<void> {
+  await vpnConnectionPut();
 }
 
 main().catch(console.error);

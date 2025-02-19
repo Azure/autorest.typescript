@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Deletes the specified ServiceEndpoint policy definitions.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Deletes the specified ServiceEndpoint policy definitions.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ServiceEndpointPolicyDefinitionDelete.json
  */
-async function deleteServiceEndpointPolicyDefinitionsFromServiceEndpointPolicy() {
+async function deleteServiceEndpointPolicyDefinitionsFromServiceEndpointPolicy(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const serviceEndpointPolicyName = "testPolicy";
@@ -36,8 +34,8 @@ async function deleteServiceEndpointPolicyDefinitionsFromServiceEndpointPolicy()
   console.log(result);
 }
 
-async function main() {
-  deleteServiceEndpointPolicyDefinitionsFromServiceEndpointPolicy();
+async function main(): Promise<void> {
+  await deleteServiceEndpointPolicyDefinitionsFromServiceEndpointPolicy();
 }
 
 main().catch(console.error);

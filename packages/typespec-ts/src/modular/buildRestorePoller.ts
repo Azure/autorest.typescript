@@ -3,7 +3,7 @@ import { isLroOnlyOperation } from "./helpers/operationHelpers.js";
 import { ModularEmitterOptions } from "./interfaces.js";
 import path from "path";
 import { buildLroDeserDetailMap } from "./buildOperations.js";
-import { getClientName } from "./helpers/namingHelpers.js";
+import { getClassicalClientName } from "./helpers/namingHelpers.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { resolveReference } from "../framework/reference.js";
 import { AzurePollingDependencies } from "./external-dependencies.js";
@@ -246,7 +246,7 @@ function importClassicalClient(
   client: SdkClientType<SdkServiceOperation>,
   sourceFile: SourceFile
 ): string[] {
-  const classicalClientName = `${getClientName(client)}Client`;
+  const classicalClientName = `${getClassicalClientName(client)}`;
   sourceFile.addImportDeclaration({
     namedImports: [`${classicalClientName}`],
     moduleSpecifier: `./${normalizeName(classicalClientName, NameType.File)}.js`

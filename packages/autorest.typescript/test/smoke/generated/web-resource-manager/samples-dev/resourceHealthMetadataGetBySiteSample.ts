@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Description for Gets the category of ResourceHealthMetadata to use for the given site
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Description for Gets the category of ResourceHealthMetadata to use for the given site
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/GetResourceHealthMetadataBySite.json
  */
-async function getResourceHealthMetadata() {
+async function getResourceHealthMetadata(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "4adb32ad-8327-4cbb-b775-b84b4465bb38";
   const resourceGroupName =
@@ -35,8 +33,8 @@ async function getResourceHealthMetadata() {
   console.log(result);
 }
 
-async function main() {
-  getResourceHealthMetadata();
+async function main(): Promise<void> {
+  await getResourceHealthMetadata();
 }
 
 main().catch(console.error);
