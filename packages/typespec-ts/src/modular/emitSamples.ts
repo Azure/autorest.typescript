@@ -219,13 +219,13 @@ function emitMethodSamples(
       ]
     };
     sourceFile.addFunction(functionDeclaration);
-    exampleFunctions.push(exampleFunctionType.name);
+    exampleFunctions.push("await " + exampleFunctionType.name);
   }
   // Add statements referencing the tracked declarations
   const functions = exampleFunctions.map((f) => `${f}();`).join("\n");
   sourceFile.addStatements(`
   async function main(): Promise<void> {
-    await ${functions}
+    ${functions}
   }
 
   main().catch(console.error);`);
