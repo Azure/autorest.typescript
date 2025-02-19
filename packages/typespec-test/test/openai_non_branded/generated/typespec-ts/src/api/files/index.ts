@@ -19,6 +19,7 @@ import {
   DeleteFileResponse,
   deleteFileResponseDeserializer,
 } from "../../models/models.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -31,8 +32,17 @@ export function _downloadSend(
   fileId: string,
   options: FilesDownloadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/files/files/{file_id}/content",
+    {
+      file_id: fileId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/files/files/{file_id}/content", fileId)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -69,8 +79,17 @@ export function _$deleteSend(
   fileId: string,
   options: FilesDeleteOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/files/files/{file_id}",
+    {
+      file_id: fileId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/files/files/{file_id}", fileId)
+    .path(path)
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -112,8 +131,17 @@ export function _retrieveSend(
   fileId: string,
   options: FilesRetrieveOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/files/files/{file_id}",
+    {
+      file_id: fileId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/files/files/{file_id}", fileId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {

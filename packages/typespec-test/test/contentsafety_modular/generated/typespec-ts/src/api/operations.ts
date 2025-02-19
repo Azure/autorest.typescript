@@ -43,6 +43,7 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../static-helpers/pagingHelpers.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -55,19 +56,26 @@ export function _listTextBlocklistItemsSend(
   blocklistName: string,
   options: ListTextBlocklistItemsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/text/blocklists/{blocklistName}/blockItems{?api-version,top,skip,maxpagesize}",
+    {
+      blocklistName: blocklistName,
+      "api-version": context.apiVersion,
+      top: options?.top,
+      skip: options?.skip,
+      maxpagesize: options?.maxpagesize,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/text/blocklists/{blocklistName}/blockItems", blocklistName)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
-      },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        top: options?.top,
-        skip: options?.skip,
-        maxpagesize: options?.maxpagesize,
       },
     });
 }
@@ -104,19 +112,25 @@ export function _getTextBlocklistItemSend(
   blockItemId: string,
   options: GetTextBlocklistItemOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/text/blocklists/{blocklistName}/blockItems/{blockItemId}{?api-version}",
+    {
+      blocklistName: blocklistName,
+      blockItemId: blockItemId,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/text/blocklists/{blocklistName}/blockItems/{blockItemId}",
-      blocklistName,
-      blockItemId,
-    )
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -153,8 +167,18 @@ export function _removeBlockItemsSend(
   body: RemoveBlockItemsOptions,
   options: RemoveBlockItemsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/text/blocklists/{blocklistName}:removeBlockItems{?api-version}",
+    {
+      blocklistName: blocklistName,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/text/blocklists/{blocklistName}:removeBlockItems", blocklistName)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
@@ -162,7 +186,6 @@ export function _removeBlockItemsSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: removeBlockItemsOptionsSerializer(body),
     });
 }
@@ -200,11 +223,18 @@ export function _addOrUpdateBlockItemsSend(
   body: AddOrUpdateBlockItemsOptions,
   options: AddOrUpdateBlockItemsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/text/blocklists/{blocklistName}:addOrUpdateBlockItems{?api-version}",
+    {
+      blocklistName: blocklistName,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/text/blocklists/{blocklistName}:addOrUpdateBlockItems",
-      blocklistName,
-    )
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
@@ -212,7 +242,6 @@ export function _addOrUpdateBlockItemsSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: addOrUpdateBlockItemsOptionsSerializer(body),
     });
 }
@@ -248,15 +277,23 @@ export function _listTextBlocklistsSend(
   context: Client,
   options: ListTextBlocklistsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/text/blocklists{?api-version}",
+    {
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/text/blocklists")
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -290,15 +327,24 @@ export function _deleteTextBlocklistSend(
   blocklistName: string,
   options: DeleteTextBlocklistOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/text/blocklists/{blocklistName}{?api-version}",
+    {
+      blocklistName: blocklistName,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/text/blocklists/{blocklistName}", blocklistName)
+    .path(path)
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -333,8 +379,18 @@ export function _createOrUpdateTextBlocklistSend(
   resource: TextBlocklist,
   options: CreateOrUpdateTextBlocklistOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/text/blocklists/{blocklistName}{?api-version}",
+    {
+      blocklistName: blocklistName,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/text/blocklists/{blocklistName}", blocklistName)
+    .path(path)
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/merge-patch+json",
@@ -342,7 +398,6 @@ export function _createOrUpdateTextBlocklistSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: textBlocklistSerializer(resource),
     });
 }
@@ -379,15 +434,24 @@ export function _getTextBlocklistSend(
   blocklistName: string,
   options: GetTextBlocklistOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/text/blocklists/{blocklistName}{?api-version}",
+    {
+      blocklistName: blocklistName,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/text/blocklists/{blocklistName}", blocklistName)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -417,8 +481,17 @@ export function _analyzeImageSend(
   body: AnalyzeImageOptions,
   options: AnalyzeImageOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/image:analyze{?api-version}",
+    {
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/image:analyze")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
@@ -426,7 +499,6 @@ export function _analyzeImageSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: analyzeImageOptionsSerializer(body),
     });
 }
@@ -457,8 +529,17 @@ export function _analyzeTextSend(
   body: AnalyzeTextOptions,
   options: AnalyzeTextOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/text:analyze{?api-version}",
+    {
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/text:analyze")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
@@ -466,7 +547,6 @@ export function _analyzeTextSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: analyzeTextOptionsSerializer(body),
     });
 }
