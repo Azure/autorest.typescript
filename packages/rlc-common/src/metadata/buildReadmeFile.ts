@@ -323,7 +323,7 @@ interface Metadata {
   isReleasablePackage?: boolean;
   /** The link to the contributing guide in the repository */
   contributingGuideURL?: string;
-  /** Indicates if the package is generted to azure-sdk-for-js repo */
+  /** Indicates if the package is generated to azure-sdk-for-js repo */
   azureSdkForJs?: boolean;
   /** Indicates if the package need generate test files */
   generateTest?: boolean;
