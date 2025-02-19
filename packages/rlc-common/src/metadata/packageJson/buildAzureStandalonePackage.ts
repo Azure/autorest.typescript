@@ -55,6 +55,7 @@ function getAzureStandaloneDependencies(
 function getStandaloneDevDependencies(config: AzurePackageInfoConfig) {
   return {
     ...getAzurePackageDevDependencies(config),
+    "@microsoft/api-extractor": "^7.40.3",
     ...getStandaloneCjsDevDependencies(config)
   };
 }
