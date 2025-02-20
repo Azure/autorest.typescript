@@ -254,14 +254,16 @@ export function getModelNamespaces(
     model.kind === "union"
   ) {
     if (
-      model.clientNamespace.startsWith("Azure.ResourceManager") ||
-      model.clientNamespace.startsWith("Azure.Core") ||
-      model.crossLanguageDefinitionId.startsWith("TypeSpec.Rest.Resource") ||
-      model.crossLanguageDefinitionId === "TypeSpec.Http.File" // filter out the TypeSpec.Http.File model similar like what java does here https://github.com/microsoft/typespec/blob/main/packages/http-client-java/emitter/src/code-model-builder.ts#L2589
+      (model.namespace ?? "").startsWith("Azure.ResourceManager") ||
+      (model.namespace ?? "").startsWith("Azure.Core") ||
+      (model.crossLanguageDefinitionId ?? "").startsWith(
+        "TypeSpec.Rest.Resource"
+      ) ||
+      (model.crossLanguageDefinitionId ?? "") === "TypeSpec.Http.File" // filter out the TypeSpec.Http.File model similar like what java does here https://github.com/microsoft/typespec/blob/main/packages/http-client-java/emitter/src/code-model-builder.ts#L2589
     ) {
       return [];
     }
-    const segments = model.clientNamespace.split(".");
+    const segments = model.namespace.split(".");
     if (segments.length > rootNamespace.length) {
       while (segments[0] === rootNamespace[0]) {
         segments.shift();
@@ -421,6 +423,9 @@ function buildModelInterface(
   context: SdkContext,
   type: SdkModelType
 ): InterfaceDeclarationStructure {
+  if (type.name.endsWith("ExtensionResource")) {
+    type;
+  }
   const interfaceStructure = {
     kind: StructureKind.Interface,
     name: normalizeModelName(context, type, NameType.Interface, true),
@@ -517,17 +522,16 @@ export function normalizeModelName(
       nameType
     )}>`;
   }
-  // TODO see https://github.com/Azure/typespec-azure/issues/2125
-  if (type.kind === "nullable") {
-    return normalizeName(type.name, nameType, true);
-  }
-  if (type.kind !== "model" && type.kind !== "enum" && type.kind !== "union") {
+  if (
+    type.kind !== "model" &&
+    type.kind !== "enum" &&
+    type.kind !== "union" &&
+    type.kind !== "nullable"
+  ) {
     return getTypeExpression(context, type);
   }
-  const segments = type.crossLanguageDefinitionId.split(".");
-  segments.pop();
-  segments.shift();
-  segments.filter((segment) => segment !== context.sdkPackage.rootNamespace);
+
+  const segments = getModelNamespaces(context, type);
   let unionSuffix = "";
   if (!skipPolymorphicUnionSuffix) {
     if (type.kind === "model" && isDiscriminatedUnion(type)) {

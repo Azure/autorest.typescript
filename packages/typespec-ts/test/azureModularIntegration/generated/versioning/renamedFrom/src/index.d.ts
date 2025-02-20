@@ -7,7 +7,7 @@ export declare type NewEnum = "newEnumMember";
 export declare interface NewModel {
     newProp: string;
     enumProp: NewEnum;
-    unionProp: NewUnion;
+    unionProp: string | number;
 }
 
 export declare interface NewOpInNewInterfaceOptionalParams extends OperationOptions {
@@ -15,8 +15,6 @@ export declare interface NewOpInNewInterfaceOptionalParams extends OperationOpti
 
 export declare interface NewOpOptionalParams extends OperationOptions {
 }
-
-export declare type NewUnion = string | number;
 
 export declare class RenamedFromClient {
     private _client;
