@@ -1,5 +1,6 @@
 import {
   OperationParameter,
+  RLCOptions,
   Schema,
   buildClient,
   buildClientDefinitions,
@@ -380,7 +381,7 @@ export async function getRLCClientsFromTypeSpec(tspContent: string) {
   return clients;
 }
 
-export interface ModelConfigOptions {
+export interface ModelConfigOptions extends RLCOptions {
   needOptions?: boolean;
   withRawContent?: boolean;
   needAzureCore?: boolean;
@@ -414,12 +415,9 @@ export async function emitModularModelsFromTypeSpec(
   const project = useContext("outputProject");
   const binder = useBinder();
   let modelFile = undefined;
-  dpgContext.rlcOptions!.isModularLibrary = true;
-  dpgContext.rlcOptions!.compatibilityMode = options["compatibility-mode"];
-  dpgContext.rlcOptions!.experimentalExtensibleEnums =
-    options["experimental-extensible-enums"];
-  if (dpgContext.rlcOptions) {
-    dpgContext.rlcOptions = transformRLCOptions(dpgContext.rlcOptions, dpgContext);
+  options["is-modular-library"] = true;
+  if (options) {
+    dpgContext.rlcOptions = transformRLCOptions(options, dpgContext);
   }
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
@@ -475,10 +473,9 @@ export async function emitModularOperationsFromTypeSpec(
   const dpgContext = await createDpgContextTestHelper(context.program);
   const project = useContext("outputProject");
   const binder = useBinder();
-  dpgContext.rlcOptions!.isModularLibrary = true;
-  dpgContext.rlcOptions!.experimentalExtensibleEnums = options["experimental-extensible-enums"];
-  if (dpgContext.rlcOptions) {
-    dpgContext.rlcOptions = transformRLCOptions(dpgContext.rlcOptions, dpgContext);
+  options["is-modular-library"] = true;
+  if (options) {
+    dpgContext.rlcOptions = transformRLCOptions(options, dpgContext);
   }
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
@@ -529,10 +526,9 @@ export async function emitModularClientContextFromTypeSpec(
   const dpgContext = await createDpgContextTestHelper(context.program);
   const project = useContext("outputProject");
   const binder = useBinder();
-  dpgContext.rlcOptions!.isModularLibrary = true;
-  dpgContext.rlcOptions!.typespecTitleMap = options["typespec-title-map"];
-  if (dpgContext.rlcOptions) {
-    dpgContext.rlcOptions = transformRLCOptions(dpgContext.rlcOptions, dpgContext);
+  options["is-modular-library"] = true;
+  if (options) {
+    dpgContext.rlcOptions = transformRLCOptions(options, dpgContext);
   }
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
@@ -581,10 +577,9 @@ export async function emitModularClientFromTypeSpec(
   const dpgContext = await createDpgContextTestHelper(context.program);
   const project = useContext("outputProject");
   const binder = useBinder();
-  dpgContext.rlcOptions!.isModularLibrary = true;
-  dpgContext.rlcOptions!.typespecTitleMap = options["typespec-title-map"];
-  if (dpgContext.rlcOptions) {
-    dpgContext.rlcOptions = transformRLCOptions(dpgContext.rlcOptions, dpgContext);
+  options["is-modular-library"] = true;
+  if (options) {
+    dpgContext.rlcOptions = transformRLCOptions(options, dpgContext);
   }
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
