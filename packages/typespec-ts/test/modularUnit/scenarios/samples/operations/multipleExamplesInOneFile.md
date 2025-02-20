@@ -207,7 +207,7 @@ async function employeesCreateOrUpdateMinage(): Promise<void> {
 
 async function main(): Promise<void> {
   await employeesCreateOrUpdateMaxage();
-  employeesCreateOrUpdateMinage();
+  await employeesCreateOrUpdateMinage();
 }
 
 main().catch(console.error);
