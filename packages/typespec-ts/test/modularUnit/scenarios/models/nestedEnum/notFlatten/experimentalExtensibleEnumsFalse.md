@@ -70,15 +70,21 @@ Model generated.
 ```ts models
 /** model interface _FooRequestBody */
 export interface _FooRequestBody {
-  status: ProvisioningState;
+  status:
+    | ResourceProvisioningState
+    | "Provisioning"
+    | "Updating"
+    | "Deleting"
+    | "Accepted"
+    | string;
 }
 
 export function _fooRequestBodySerializer(item: _FooRequestBody): any {
-  return { status: provisioningStateSerializer(item["status"]) };
+  return { status: _provisioningStateSerializer(item["status"]) };
 }
 
-/** Alias for ProvisioningState */
-export type ProvisioningState =
+/** Alias for _ProvisioningState */
+export type _ProvisioningState =
   | ResourceProvisioningState
   | "Provisioning"
   | "Updating"
@@ -86,7 +92,7 @@ export type ProvisioningState =
   | "Accepted"
   | string;
 
-export function provisioningStateSerializer(item: ProvisioningState): any {
+export function _provisioningStateSerializer(item: _ProvisioningState): any {
   return item;
 }
 
