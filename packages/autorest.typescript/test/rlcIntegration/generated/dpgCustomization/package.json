@@ -80,7 +80,7 @@
     "build:debug": "tsc -p . && dev-tool run bundle && dev-tool run extract-api",
     "unit-test:node": "dev-tool run test:node-ts-input -- --timeout 1200000 --exclude 'test/**/browser/*.spec.ts' 'test/**/*.spec.ts'",
     "unit-test:browser": "dev-tool run test:browser",
-    "update-snippets": "echo skipped"
+    "update-snippets": "dev-tool run update-snippets"
   },
   "//sampleConfiguration": {
     "productName": "@msinternal/dpg-customization-rest",
