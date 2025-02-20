@@ -383,6 +383,12 @@ const libDef = {
         default: paramMessage`Please note the decimal type will be converted to number. If you strongly care about precision you can use @encode to encode it as a string for the property - ${"propertyName"}.`
       }
     },
+    "use-kebab-case-option": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`The option - ${"camalCaseOption"} is deprecated and please use this kebab-case one - ${"kababCaseOption"}.`
+      }
+    },
     "unable-serialized-type": {
       severity: "warning",
       messages: {
