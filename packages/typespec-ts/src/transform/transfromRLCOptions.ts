@@ -106,7 +106,7 @@ function extractRLCOptions(
     emitterOptions["compatibility-query-multi-format"] ||
     emitterOptions.compatibilityQueryMultiFormat;
   const typespecTitleMap =
-    emitterOptions["typespec-title-map"] || emitterOptions.typespecTitleMap;
+    emitterOptions["typespec-title-map"] ?? emitterOptions.typespecTitleMap;
 
   return {
     ...credentialInfo,

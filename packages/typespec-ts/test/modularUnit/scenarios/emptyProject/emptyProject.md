@@ -1,4 +1,4 @@
-# should not crash for an empty project
+# skip: should not crash for an empty project
 
 ## TypeSpec
 
@@ -17,4 +17,5 @@ withRawContent: true
 ## classicClient
 
 ```ts classicClient
+
 ```

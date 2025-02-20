@@ -26,7 +26,7 @@ import { buildClientContext } from "../../src/modular/buildClientContext.js";
 import { buildOperationFiles } from "../../src/modular/buildOperations.js";
 import { transformModularEmitterOptions } from "../../src/modular/buildModularOptions.js";
 import { expectDiagnosticEmpty } from "@typespec/compiler/testing";
-import { getCredentialInfo } from "../../src/transform/transfromRLCOptions.js";
+import { getCredentialInfo, transformRLCOptions } from "../../src/transform/transfromRLCOptions.js";
 import { getRLCClients } from "../../src/utils/clientUtils.js";
 import { transformHelperFunctionDetails } from "../../src/transform/transformHelperFunctionDetails.js";
 import { transformPaths } from "../../src/transform/transformPaths.js";
@@ -384,9 +384,9 @@ export interface ModelConfigOptions {
   needOptions?: boolean;
   withRawContent?: boolean;
   needAzureCore?: boolean;
-  compatibilityMode?: boolean;
+  needNamespaces?: boolean;
   mustEmptyDiagnostic?: boolean;
-  experimentalExtensibleEnums?: boolean;
+  withVersionedApiVersion?: boolean;
   [key: string]: any;
 }
 
@@ -399,9 +399,7 @@ export async function emitModularModelsFromTypeSpec(
     needOptions = false,
     withRawContent = false,
     needAzureCore = false,
-    compatibilityMode = false,
     mustEmptyDiagnostic = true,
-    experimentalExtensibleEnums = false,
   } = options;
   const context = await rlcEmitterFor(
     tspContent,
@@ -417,9 +415,12 @@ export async function emitModularModelsFromTypeSpec(
   const binder = useBinder();
   let modelFile = undefined;
   dpgContext.rlcOptions!.isModularLibrary = true;
-  dpgContext.rlcOptions!.compatibilityMode = compatibilityMode;
+  dpgContext.rlcOptions!.compatibilityMode = options["compatibility-mode"];
   dpgContext.rlcOptions!.experimentalExtensibleEnums =
-    experimentalExtensibleEnums;
+    options["experimental-extensible-enums"];
+  if (dpgContext.rlcOptions) {
+    dpgContext.rlcOptions = transformRLCOptions(dpgContext.rlcOptions, dpgContext);
+  }
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
     "",
@@ -459,37 +460,26 @@ export async function emitModularModelsFromTypeSpec(
 
 export async function emitModularOperationsFromTypeSpec(
   tspContent: string,
-  {
-    mustEmptyDiagnostic = true,
-    needNamespaces = true,
-    needAzureCore = false,
-    withRawContent = false,
-    withVersionedApiVersion = false,
-    experimentalExtensibleEnums = false
-  }: {
-    mustEmptyDiagnostic?: boolean;
-    needNamespaces?: boolean;
-    needAzureCore?: boolean;
-    withRawContent?: boolean;
-    withVersionedApiVersion?: boolean;
-    experimentalExtensibleEnums?: boolean;
-  } = {}
+  options: ModelConfigOptions = {}
 ) {
   const context = await rlcEmitterFor(
     tspContent,
     {
-      needNamespaces,
-      needAzureCore,
+      needNamespaces: options.needNamespaces,
+      needAzureCore: options.needAzureCore,
       needTCGC: false,
-      withRawContent,
-      withVersionedApiVersion
+      withRawContent: options.withRawContent,
+      withVersionedApiVersion: options.withVersionedApiVersion
     }
   );
   const dpgContext = await createDpgContextTestHelper(context.program);
   const project = useContext("outputProject");
   const binder = useBinder();
   dpgContext.rlcOptions!.isModularLibrary = true;
-  dpgContext.rlcOptions!.experimentalExtensibleEnums = experimentalExtensibleEnums;
+  dpgContext.rlcOptions!.experimentalExtensibleEnums = options["experimental-extensible-enums"];
+  if (dpgContext.rlcOptions) {
+    dpgContext.rlcOptions = transformRLCOptions(dpgContext.rlcOptions, dpgContext);
+  }
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
     "",
@@ -509,7 +499,7 @@ export async function emitModularOperationsFromTypeSpec(
       dpgContext.sdkPackage.clients[0],
       modularEmitterOptions
     );
-    if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
+    if (options.mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
       throw dpgContext.program.diagnostics;
     }
     binder.resolveAllReferences("/");
@@ -524,15 +514,7 @@ export async function emitModularOperationsFromTypeSpec(
 
 export async function emitModularClientContextFromTypeSpec(
   tspContent: string,
-  {
-    withRawContent = false,
-    withVersionedApiVersion = false,
-    typespecTitleMap = {}
-  }: {
-    withRawContent?: boolean;
-    withVersionedApiVersion?: boolean;
-    typespecTitleMap?: Record<string, string>;
-  } = {}
+  options: ModelConfigOptions = {}
 ) {
   const context = await rlcEmitterFor(
     tspContent,
@@ -540,15 +522,18 @@ export async function emitModularClientContextFromTypeSpec(
       needNamespaces: true,
       needAzureCore: false,
       needTCGC: false,
-      withRawContent,
-      withVersionedApiVersion
+      withRawContent: options.withRawContent,
+      withVersionedApiVersion: options.withVersionedApiVersion
     }
   );
   const dpgContext = await createDpgContextTestHelper(context.program);
   const project = useContext("outputProject");
   const binder = useBinder();
   dpgContext.rlcOptions!.isModularLibrary = true;
-  dpgContext.rlcOptions!.typespecTitleMap = typespecTitleMap;
+  dpgContext.rlcOptions!.typespecTitleMap = options["typespec-title-map"];
+  if (dpgContext.rlcOptions) {
+    dpgContext.rlcOptions = transformRLCOptions(dpgContext.rlcOptions, dpgContext);
+  }
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
     "",
@@ -581,15 +566,7 @@ export async function emitModularClientContextFromTypeSpec(
 
 export async function emitModularClientFromTypeSpec(
   tspContent: string,
-  {
-    withRawContent = false,
-    withVersionedApiVersion = false,
-    typespecTitleMap = {}
-  }: {
-    withRawContent?: boolean;
-    withVersionedApiVersion?: boolean;
-    typespecTitleMap?: Record<string, string>;
-  } = {}
+  options: ModelConfigOptions = {}
 ) {
   const context = await rlcEmitterFor(
     tspContent,
@@ -597,15 +574,18 @@ export async function emitModularClientFromTypeSpec(
       needNamespaces: true,
       needAzureCore: false,
       needTCGC: false,
-      withRawContent,
-      withVersionedApiVersion
+      withRawContent: options.withRawContent,
+      withVersionedApiVersion: options.withVersionedApiVersion
     }
   );
   const dpgContext = await createDpgContextTestHelper(context.program);
   const project = useContext("outputProject");
   const binder = useBinder();
   dpgContext.rlcOptions!.isModularLibrary = true;
-  dpgContext.rlcOptions!.typespecTitleMap = typespecTitleMap;
+  dpgContext.rlcOptions!.typespecTitleMap = options["typespec-title-map"];
+  if (dpgContext.rlcOptions) {
+    dpgContext.rlcOptions = transformRLCOptions(dpgContext.rlcOptions, dpgContext);
+  }
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
     "",
@@ -646,6 +626,9 @@ export async function emitSamplesFromTypeSpec(
     },
     ...configs
   });
+  if (dpgContext.rlcOptions) {
+    dpgContext.rlcOptions = transformRLCOptions(dpgContext.rlcOptions, dpgContext);
+  }
   const project = useContext("outputProject");
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,

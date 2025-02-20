@@ -1,4 +1,4 @@
-# Should not flatten extensible enum if disabling `experimentalExtensibleEnums`
+# Should not flatten extensible enum if disabling `experimental-extensible-enums`
 
 Sample generation should arm template and operations successfully.
 
