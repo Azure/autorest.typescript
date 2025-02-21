@@ -168,6 +168,7 @@ export async function $onEmit(context: EmitContext) {
     const options: RLCOptions = transformRLCOptions(emitterOptions, dpgContext);
     emitterOptions["is-modular-library"] = options.isModularLibrary;
     emitterOptions.isModularLibrary = options.isModularLibrary;
+    emitterOptions.generateSample = options.generateSample;
     // clear output folder if needed
     if (options.clearOutputFolder) {
       await fsextra.emptyDir(context.emitterOutputDir);

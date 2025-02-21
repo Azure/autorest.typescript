@@ -89,6 +89,7 @@ function extractRLCOptions(
     flavor
   );
   const generateSample: undefined | boolean = getGenerateSample(
+    dpgContext,
     program,
     emitterOptions
   );
@@ -623,7 +624,14 @@ function getGenerateTest(
  * @param emitterOptions
  * @returns
  */
-function getGenerateSample(program: Program, emitterOptions: EmitterOptions) {
+function getGenerateSample(
+  dpgContext: SdkContext,
+  program: Program,
+  emitterOptions: EmitterOptions
+) {
+  if (dpgContext.arm && emitterOptions.generateSample === undefined) {
+    return true;
+  }
   if (emitterOptions.generateSample !== undefined) {
     reportOptionDiagnostic(program, {
       kababCaseOption: "generate-sample",
