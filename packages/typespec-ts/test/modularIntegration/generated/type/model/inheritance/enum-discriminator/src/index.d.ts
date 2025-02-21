@@ -1,6 +1,6 @@
-import { ClientOptions } from '@azure-rest/core-client';
-import { OperationOptions } from '@azure-rest/core-client';
-import { Pipeline } from '@azure/core-rest-pipeline';
+import { ClientOptions } from '@typespec/ts-http-runtime';
+import { OperationOptions } from '@typespec/ts-http-runtime';
+import { Pipeline } from '@typespec/ts-http-runtime';
 
 export declare interface Cobra extends Snake {
     kind: "cobra";
@@ -19,14 +19,14 @@ export declare class EnumDiscriminatorClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: EnumDiscriminatorClientOptionalParams);
-    getExtensibleModel(options?: GetExtensibleModelOptionalParams): Promise<DogUnion>;
-    putExtensibleModel(input: DogUnion, options?: PutExtensibleModelOptionalParams): Promise<void>;
-    getExtensibleModelMissingDiscriminator(options?: GetExtensibleModelMissingDiscriminatorOptionalParams): Promise<DogUnion>;
-    getExtensibleModelWrongDiscriminator(options?: GetExtensibleModelWrongDiscriminatorOptionalParams): Promise<DogUnion>;
-    getFixedModel(options?: GetFixedModelOptionalParams): Promise<SnakeUnion>;
-    putFixedModel(input: SnakeUnion, options?: PutFixedModelOptionalParams): Promise<void>;
-    getFixedModelMissingDiscriminator(options?: GetFixedModelMissingDiscriminatorOptionalParams): Promise<SnakeUnion>;
     getFixedModelWrongDiscriminator(options?: GetFixedModelWrongDiscriminatorOptionalParams): Promise<SnakeUnion>;
+    getFixedModelMissingDiscriminator(options?: GetFixedModelMissingDiscriminatorOptionalParams): Promise<SnakeUnion>;
+    putFixedModel(input: SnakeUnion, options?: PutFixedModelOptionalParams): Promise<void>;
+    getFixedModel(options?: GetFixedModelOptionalParams): Promise<SnakeUnion>;
+    getExtensibleModelWrongDiscriminator(options?: GetExtensibleModelWrongDiscriminatorOptionalParams): Promise<DogUnion>;
+    getExtensibleModelMissingDiscriminator(options?: GetExtensibleModelMissingDiscriminatorOptionalParams): Promise<DogUnion>;
+    putExtensibleModel(input: DogUnion, options?: PutExtensibleModelOptionalParams): Promise<void>;
+    getExtensibleModel(options?: GetExtensibleModelOptionalParams): Promise<DogUnion>;
 }
 
 export declare interface EnumDiscriminatorClientOptionalParams extends ClientOptions {

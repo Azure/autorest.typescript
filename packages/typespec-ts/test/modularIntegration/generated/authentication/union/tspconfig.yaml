@@ -5,10 +5,7 @@ options:
     "emitter-output-dir": "{project-root}"
     generateMetadata: true
     generateTest: false
-    azureSdkForJs: false
     isTypeSpecTest: true
-    isModularLibrary: true
     hierarchyClient: false
     packageDetails:
-      name: "@msinternal/azure-auth-union"
-      description: "Azure Auth Union Test Service"
+      name: "@unbranded/azure-auth-union"

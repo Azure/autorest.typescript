@@ -1,14 +1,14 @@
-import { ClientOptions } from '@azure-rest/core-client';
-import { KeyCredential } from '@azure/core-auth';
-import { OperationOptions } from '@azure-rest/core-client';
-import { Pipeline } from '@azure/core-rest-pipeline';
+import { ClientOptions } from '@typespec/ts-http-runtime';
+import { KeyCredential } from '@typespec/ts-http-runtime';
+import { OperationOptions } from '@typespec/ts-http-runtime';
+import { Pipeline } from '@typespec/ts-http-runtime';
 
 export declare class ApiKeyClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(credential: KeyCredential, options?: ApiKeyClientOptionalParams);
-    valid(options?: ValidOptionalParams): Promise<void>;
     invalid(options?: InvalidOptionalParams): Promise<void>;
+    valid(options?: ValidOptionalParams): Promise<void>;
 }
 
 export declare interface ApiKeyClientOptionalParams extends ClientOptions {

@@ -2,6 +2,8 @@ import { assert } from "chai";
 import { readdirSync, readFileSync, statSync, writeFileSync } from "fs";
 import path from "path";
 import {
+  emitModularClientContextFromTypeSpec,
+  emitModularClientFromTypeSpec,
   emitModularModelsFromTypeSpec,
   emitModularOperationsFromTypeSpec,
   emitSamplesFromTypeSpec
@@ -9,6 +11,7 @@ import {
 import { assertEqualContent, ExampleJson } from "../util/testUtil.js";
 import { format } from "prettier";
 import { prettierTypeScriptOptions } from "../../src/lib.js";
+import { load as loadYaml } from "js-yaml";
 
 const SCENARIOS_LOCATION = "./test/modularUnit/scenarios";
 
@@ -32,7 +35,21 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
   "(ts|typescript) models interface {name}": async (tsp, { name }, namedUnknownArgs) => {
     const configs = namedUnknownArgs ? (namedUnknownArgs["configs"] as Record<string, string>) : {};
     const result = await emitModularModelsFromTypeSpec(tsp, configs);
-    return result!.getInterfaceOrThrow(name ?? "No name specified!").getText();
+    return result!.getInterfaceOrThrow(name ?? "No name specified!").getFullText();
+  },
+
+  // Snapshot of a particular class named {name} in the models file
+  "(ts|typescript) models alias {name}": async (tsp, { name }, namedUnknownArgs) => {
+    const configs = namedUnknownArgs ? (namedUnknownArgs["configs"] as Record<string, string>) : {};
+    const result = await emitModularModelsFromTypeSpec(tsp, configs);
+    return result!.getTypeAlias(name ?? "No name specified!")!.getFullText();
+  },
+
+  // Snapshot of a particular enum named {name} in the models file
+  "(ts|typescript) models enum {name}": async (tsp, { name }, namedUnknownArgs) => {
+    const configs = namedUnknownArgs ? (namedUnknownArgs["configs"] as Record<string, string>) : {};
+    const result = await emitModularModelsFromTypeSpec(tsp, configs);
+    return result!.getEnum(name ?? "No name specified!")!.getFullText();
   },
 
   // Snapshot of a particular function named {name} in the models file
@@ -119,6 +136,20 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
       )
       .join("\n");
     return text;
+  },
+
+  //Snapshot of the clientContext file for a given typespec
+  "(ts|typescript) clientContext": async (tsp, { }, namedUnknownArgs) => {
+    const configs = namedUnknownArgs ? (namedUnknownArgs["configs"] as Record<string, string>) : {};
+    const result = await emitModularClientContextFromTypeSpec(tsp, configs);
+    return result!.getFullText()!;
+  },
+
+  //Snapshot of the classicClient file for a given typespec
+  "(ts|typescript) classicClient": async (tsp, { }, namedUnknownArgs) => {
+    const configs = namedUnknownArgs ? (namedUnknownArgs["configs"] as Record<string, string>) : {};
+    const result = await emitModularClientFromTypeSpec(tsp, configs);
+    return result ? result!.getFullText()! : "";
   }
 };
 
@@ -161,7 +192,7 @@ function describeScenarioFile(scenarioFile: string): void {
         const yamlConfigs = codeBlocks.filter((x) =>
           x.heading.startsWith("yaml")
         );
-        const configs = parseSimpleYaml(yamlConfigs.map((x) => x.content));
+        const configs = parseYaml(yamlConfigs.map((x) => x.content));
         const outputCodeBlocks = codeBlocks.filter(
           (x) =>
             !tspBlocks.includes(x) &&
@@ -222,7 +253,7 @@ function describeScenarioFile(scenarioFile: string): void {
               writeFileSync(scenarioFile, writeScenarios(scenarios));
             }
 
-            await assertEqualContent(result, testCase.block.content, true);
+            await assertEqualContent(result, testCase.block.content, configs["ignoreWeirdLine"] as any === false ? false : true);
           });
         }
       });
@@ -268,7 +299,6 @@ function readScenarios(fileContent: string): ScenarioFile {
     const heading = isOnly
       ? rawHeading!.substring("only: ".length)
       : rawHeading!;
-
     const content = lines.join("\n");
 
     const partStrings = content.split(/^```/gm);
@@ -318,24 +348,14 @@ function writeScenarios(file: ScenarioFile): string {
   return output;
 }
 
-function parseSimpleYaml(yamlConfigs: string[]): Record<string, string> {
+function parseYaml(yamlConfigs: string[]): Record<string, any> {
   // This is a simple yaml parser that assumes that there are no nested objects.
   // It splits the yaml into lines, then splits each line by the colon and
   // creates a record from the key-value pairs.
   // This is a very simple parser and will not work for all yaml files.
-  let record: Record<string, string> = {};
+  let record: Record<string, any> = {};
   for (const yaml of yamlConfigs) {
-    const each = yaml
-      .split("\n")
-      .map((x) => x.split(":"))
-      .filter((x) => x.length === 2)
-      .reduce(
-        (acc, [key, value]) => {
-          acc[key!] = JSON.parse(value!);
-          return acc;
-        },
-        {} as Record<string, string>
-      );
+    const each = loadYaml(yaml) as Record<string, any>;
     record = { ...record, ...each };
   }
   return record;

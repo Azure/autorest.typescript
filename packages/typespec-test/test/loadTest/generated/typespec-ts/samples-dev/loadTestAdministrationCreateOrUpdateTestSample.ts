@@ -3,16 +3,14 @@
 
 import createAzureLoadTestingClient from "@azure-rest/load-testing";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation CreateOrUpdateTest
  *
  * @summary call operation CreateOrUpdateTest
  */
-async function loadTestAdministrationCreateOrUpdateTestSample() {
+async function loadTestAdministrationCreateOrUpdateTestSample(): Promise<void> {
   const endpointParam = "{Your endpointParam}";
   const credential = new DefaultAzureCredential();
   const client = createAzureLoadTestingClient(endpointParam, credential);
@@ -62,8 +60,8 @@ async function loadTestAdministrationCreateOrUpdateTestSample() {
   console.log(result);
 }
 
-async function main() {
-  loadTestAdministrationCreateOrUpdateTestSample();
+async function main(): Promise<void> {
+  await loadTestAdministrationCreateOrUpdateTestSample();
 }
 
 main().catch(console.error);

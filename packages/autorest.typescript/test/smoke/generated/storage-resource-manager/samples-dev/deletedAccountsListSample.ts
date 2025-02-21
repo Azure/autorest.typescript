@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Lists deleted accounts under the subscription.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Lists deleted accounts under the subscription.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/DeletedAccountList.json
  */
-async function deletedAccountList() {
+async function deletedAccountList(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -31,8 +29,8 @@ async function deletedAccountList() {
   console.log(resArray);
 }
 
-async function main() {
-  deletedAccountList();
+async function main(): Promise<void> {
+  await deletedAccountList();
 }
 
 main().catch(console.error);

@@ -55,7 +55,7 @@ export function buildRuntimeImports(flavor?: PackageFlavor): Imports {
       commonFallback: {
         type: "commonFallback",
         specifier: "@typespec/ts-http-runtime",
-        version: "1.0.0-alpha.20240314.2"
+        version: "0.1.0"
       }
     } as Imports;
   }
@@ -176,6 +176,7 @@ export function addImportsToFiles(
 
       if (!hasModifier) {
         return file.addImportDeclaration({
+          isTypeOnly: true,
           moduleSpecifier: specifier,
           namedImports: [...importType.importsSet!.values()]
         });

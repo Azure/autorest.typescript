@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Deletes a managed instance.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Deletes a managed instance.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceDelete.json
  */
-async function deleteManagedInstance() {
+async function deleteManagedInstance(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "20D7082A-0FC7-4468-82BD-542694D5042B";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
@@ -34,8 +32,8 @@ async function deleteManagedInstance() {
   console.log(result);
 }
 
-async function main() {
-  deleteManagedInstance();
+async function main(): Promise<void> {
+  await deleteManagedInstance();
 }
 
 main().catch(console.error);

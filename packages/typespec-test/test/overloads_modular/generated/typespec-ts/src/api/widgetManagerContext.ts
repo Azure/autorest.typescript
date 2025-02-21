@@ -6,7 +6,11 @@ import { KnownVersions } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
 
-export interface WidgetManagerContext extends Client {}
+export interface WidgetManagerContext extends Client {
+  /** The API version to use for this operation. */
+  /** Known values of {@link KnownVersions} that the service accepts. */
+  apiVersion: string;
+}
 
 /** Optional parameters for the client. */
 export interface WidgetManagerClientOptionalParams extends ClientOptions {
@@ -56,5 +60,5 @@ export function createWidgetManager(
       return next(req);
     },
   });
-  return clientContext;
+  return { ...clientContext, apiVersion } as WidgetManagerContext;
 }

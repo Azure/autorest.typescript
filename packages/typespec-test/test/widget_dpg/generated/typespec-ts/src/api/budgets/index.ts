@@ -3,9 +3,17 @@
 
 import {
   BudgetsCreateOrReplaceOptionalParams,
+  BudgetsGetBudgetsOptionalParams,
   WidgetServiceContext as Client,
 } from "../index.js";
-import { User, userSerializer, userDeserializer } from "../../models/models.js";
+import {
+  User,
+  userSerializer,
+  userDeserializer,
+  Widget,
+  widgetErrorDeserializer,
+  widgetArrayDeserializer,
+} from "../../models/models.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   StreamableMethod,
@@ -14,6 +22,46 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { PollerLike, OperationState } from "@azure/core-lro";
+
+export function _getBudgetsSend(
+  context: Client,
+  name: string,
+  options: BudgetsGetBudgetsOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
+  return context
+    .path("/budgets")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { name: name },
+    });
+}
+
+export async function _getBudgetsDeserialize(
+  result: PathUncheckedResponse,
+): Promise<Widget[]> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = widgetErrorDeserializer(result.body);
+    throw error;
+  }
+
+  return widgetArrayDeserializer(result.body);
+}
+
+export async function getBudgets(
+  context: Client,
+  name: string,
+  options: BudgetsGetBudgetsOptionalParams = { requestOptions: {} },
+): Promise<Widget[]> {
+  const result = await _getBudgetsSend(context, name, options);
+  return _getBudgetsDeserialize(result);
+}
 
 export function _createOrReplaceSend(
   context: Client,
@@ -25,7 +73,12 @@ export function _createOrReplaceSend(
     .path("/budgets/widgets/createOrReplace/users/{name}", name)
     .put({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": options?.apiVersion ?? "1.0.0" },
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { "api-version": context.apiVersion },
       body: userSerializer(resource),
     });
 }
@@ -33,7 +86,7 @@ export function _createOrReplaceSend(
 export async function _createOrReplaceDeserialize(
   result: PathUncheckedResponse,
 ): Promise<User> {
-  const expectedStatuses = ["200", "201"];
+  const expectedStatuses = ["201", "200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
@@ -51,7 +104,7 @@ export function createOrReplace(
   return getLongRunningPoller(
     context,
     _createOrReplaceDeserialize,
-    ["200", "201"],
+    ["201", "200"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,

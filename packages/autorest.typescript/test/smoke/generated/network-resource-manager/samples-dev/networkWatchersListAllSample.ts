@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets all network watchers by subscription.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets all network watchers by subscription.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkWatcherListAll.json
  */
-async function listAllNetworkWatchers() {
+async function listAllNetworkWatchers(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -31,8 +29,8 @@ async function listAllNetworkWatchers() {
   console.log(resArray);
 }
 
-async function main() {
-  listAllNetworkWatchers();
+async function main(): Promise<void> {
+  await listAllNetworkWatchers();
 }
 
 main().catch(console.error);

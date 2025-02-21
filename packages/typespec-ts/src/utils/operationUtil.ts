@@ -23,7 +23,15 @@ import {
   getWireName,
   listOperationGroups,
   listOperationsInOperationGroup,
-  SdkClient
+  SdkBodyParameter,
+  SdkClient,
+  SdkClientType,
+  SdkHttpOperation,
+  SdkHttpParameter,
+  SdkMethod,
+  SdkMethodParameter,
+  SdkServiceMethod,
+  SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 import { Model, Operation, Program, Type } from "@typespec/compiler";
 import {
@@ -408,6 +416,19 @@ export function extractPagedMetadataNested(
   return paged;
 }
 
+export function hasCollectionFormatInfo(
+  paramType: string,
+  paramFormat: string
+) {
+  return (
+    getHasMultiCollection(paramType, paramFormat) ||
+    getHasSsvCollection(paramType, paramFormat) ||
+    getHasTsvCollection(paramType, paramFormat) ||
+    getHasCsvCollection(paramType, paramFormat) ||
+    getHasPipeCollection(paramType, paramFormat)
+  );
+}
+
 export function getSpecialSerializeInfo(
   dpgContext: SdkContext,
   paramType: string,
@@ -463,19 +484,6 @@ function getHasCsvCollection(paramType: string, paramFormat: string) {
 
 function getHasPipeCollection(paramType: string, paramFormat: string) {
   return paramType === "query" && paramFormat === "pipes";
-}
-
-export function hasCollectionFormatInfo(
-  paramType: string,
-  paramFormat: string
-) {
-  return (
-    getHasMultiCollection(paramType, paramFormat) ||
-    getHasSsvCollection(paramType, paramFormat) ||
-    getHasTsvCollection(paramType, paramFormat) ||
-    getHasCsvCollection(paramType, paramFormat) ||
-    getHasPipeCollection(paramType, paramFormat)
-  );
 }
 
 export function getCollectionFormatHelper(
@@ -545,4 +553,93 @@ export function parseNextLinkName(
 export function parseItemName(paged: PagedResultMetadata): string | undefined {
   // TODO: support the nested item names
   return (paged.itemsSegments ?? [])[0];
+}
+
+export type ServiceOperation = SdkServiceMethod<SdkHttpOperation> & {
+  oriName?: string;
+};
+
+export function getMethodHierarchiesMap(
+  context: SdkContext,
+  client: SdkClientType<SdkServiceOperation>
+): Map<string, ServiceOperation[]> {
+  const methodQueue: [string[], SdkMethod<SdkHttpOperation>][] =
+    client.methods.map((m) => {
+      return [[], m];
+    });
+  const operationHierarchiesMap: Map<string, ServiceOperation[]> = new Map<
+    string,
+    ServiceOperation[]
+  >();
+  while (methodQueue.length > 0) {
+    const method = methodQueue.pop();
+    if (!method) {
+      continue;
+    }
+    const prefixes =
+      context.rlcOptions?.hierarchyClient === false &&
+      context.rlcOptions?.enableOperationGroup &&
+      method[0].length > 0
+        ? [method[0][method[0].length - 1] as string]
+        : method[0];
+    const operationOrGroup = method[1];
+
+    if (operationOrGroup.kind === "clientaccessor") {
+      operationOrGroup.response.methods.forEach((m) =>
+        methodQueue.push([[...prefixes, operationOrGroup.response.name], m])
+      );
+    } else {
+      const prefixKey =
+        context.rlcOptions?.hierarchyClient ||
+        context.rlcOptions?.enableOperationGroup
+          ? prefixes.join("/")
+          : "";
+      const groupName = prefixes
+        .map((p) => normalizeName(p, NameType.OperationGroup))
+        .join("");
+      if (
+        context.rlcOptions?.hierarchyClient === false &&
+        context.rlcOptions?.enableOperationGroup &&
+        groupName !== "" &&
+        !operationOrGroup.name.startsWith(groupName + "_")
+      ) {
+        (operationOrGroup as ServiceOperation).oriName = operationOrGroup.name;
+        operationOrGroup.name = `${groupName}_${operationOrGroup.name}`;
+      }
+
+      operationOrGroup.parameters.map((p) => {
+        return resolveParameterNameConflict(operationOrGroup, p);
+      });
+      operationOrGroup.operation.parameters.map((p) => {
+        return resolveParameterNameConflict(operationOrGroup, p);
+      });
+      if (
+        operationOrGroup.operation.bodyParam?.name === operationOrGroup.name
+      ) {
+        operationOrGroup.operation.bodyParam = resolveParameterNameConflict(
+          operationOrGroup,
+          operationOrGroup.operation.bodyParam
+        ) as SdkBodyParameter;
+      }
+      const operations = operationHierarchiesMap.get(prefixKey);
+      operationHierarchiesMap.set(prefixKey, [
+        ...(operations ?? []),
+        operationOrGroup
+      ]);
+    }
+  }
+  return operationHierarchiesMap;
+}
+
+function resolveParameterNameConflict(
+  operationOrGroup: SdkServiceMethod<SdkHttpOperation>,
+  p: SdkMethodParameter | SdkHttpParameter | SdkBodyParameter
+): SdkMethodParameter | SdkHttpParameter | SdkBodyParameter {
+  const paramName = normalizeName(p.name, NameType.Parameter, true);
+  if (paramName === operationOrGroup.name) {
+    p.name = `${paramName}Parameter`;
+  } else {
+    p.name = paramName;
+  }
+  return p;
 }

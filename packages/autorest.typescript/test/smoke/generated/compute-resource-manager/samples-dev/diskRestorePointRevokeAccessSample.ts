@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Revokes access to a diskRestorePoint.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Revokes access to a diskRestorePoint.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/EndGetAccessDiskRestorePoint.json
  */
-async function revokesAccessToADiskRestorePoint() {
+async function revokesAccessToADiskRestorePoint(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const restorePointCollectionName = "rpc";
@@ -39,8 +37,8 @@ async function revokesAccessToADiskRestorePoint() {
   console.log(result);
 }
 
-async function main() {
-  revokesAccessToADiskRestorePoint();
+async function main(): Promise<void> {
+  await revokesAccessToADiskRestorePoint();
 }
 
 main().catch(console.error);

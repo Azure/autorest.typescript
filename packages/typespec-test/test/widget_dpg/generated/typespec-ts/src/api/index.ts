@@ -2,16 +2,17 @@
 // Licensed under the MIT License.
 
 export {
-  WidgetsListWidgetsOptionalParams,
-  WidgetsListWidgetsPagesOptionalParams,
-  WidgetsQueryWidgetsPagesOptionalParams,
-  WidgetsGetWidgetOptionalParams,
-  WidgetsCreateWidgetOptionalParams,
-  WidgetsCreateOrReplaceOptionalParams,
-  WidgetsUpdateWidgetOptionalParams,
-  WidgetsDeleteWidgetOptionalParams,
-  WidgetsAnalyzeWidgetOptionalParams,
+  BudgetsGetBudgetsOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,
+  WidgetsAnalyzeWidgetOptionalParams,
+  WidgetsDeleteWidgetOptionalParams,
+  WidgetsUpdateWidgetOptionalParams,
+  WidgetsCreateOrReplaceOptionalParams,
+  WidgetsCreateWidgetOptionalParams,
+  WidgetsGetWidgetOptionalParams,
+  WidgetsQueryWidgetsPagesOptionalParams,
+  WidgetsListWidgetsPagesOptionalParams,
+  WidgetsListWidgetsOptionalParams,
 } from "./options.js";
 export {
   createWidgetService,

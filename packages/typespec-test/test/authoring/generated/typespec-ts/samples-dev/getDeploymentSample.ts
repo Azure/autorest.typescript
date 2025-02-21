@@ -3,16 +3,14 @@
 
 import createAuthoringClient from "@msinternal/authoring";
 import { AzureKeyCredential } from "@azure/core-auth";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation GetDeployment
  *
  * @summary call operation GetDeployment
  */
-async function getDeploymentSample() {
+async function getDeploymentSample(): Promise<void> {
   const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAuthoringClient(endpointParam, credential);
@@ -28,8 +26,8 @@ async function getDeploymentSample() {
   console.log(result);
 }
 
-async function main() {
-  getDeploymentSample();
+async function main(): Promise<void> {
+  await getDeploymentSample();
 }
 
 main().catch(console.error);

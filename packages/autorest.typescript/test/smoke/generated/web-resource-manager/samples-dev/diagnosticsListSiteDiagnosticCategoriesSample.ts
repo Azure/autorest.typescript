@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Description for Get Diagnostics Categories
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Description for Get Diagnostics Categories
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/Diagnostics_ListSiteDiagnosticCategories.json
  */
-async function listAppDiagnosticCategories() {
+async function listAppDiagnosticCategories(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName =
@@ -44,7 +42,7 @@ async function listAppDiagnosticCategories() {
  * @summary Description for Get Diagnostics Categories
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/Diagnostics_ListSiteDiagnosticCategoriesSlot.json
  */
-async function listAppSlotDiagnosticCategories() {
+async function listAppSlotDiagnosticCategories(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName =
@@ -62,9 +60,9 @@ async function listAppSlotDiagnosticCategories() {
   console.log(resArray);
 }
 
-async function main() {
-  listAppDiagnosticCategories();
-  listAppSlotDiagnosticCategories();
+async function main(): Promise<void> {
+  await listAppDiagnosticCategories();
+  await listAppSlotDiagnosticCategories();
 }
 
 main().catch(console.error);

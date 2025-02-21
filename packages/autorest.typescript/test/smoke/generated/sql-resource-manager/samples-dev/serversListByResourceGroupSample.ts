@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets a list of servers in a resource groups.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets a list of servers in a resource groups.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/ServerListByResourceGroup.json
  */
-async function listServersByResourceGroup() {
+async function listServersByResourceGroup(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-7398";
@@ -41,7 +39,7 @@ async function listServersByResourceGroup() {
  * @summary Gets a list of servers in a resource groups.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/ServerListByResourceGroupWithExpandEqualsAdministrators.json
  */
-async function listServersByResourceGroupWithExpandAdministrators() {
+async function listServersByResourceGroupWithExpandAdministrators(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-7398";
@@ -56,9 +54,9 @@ async function listServersByResourceGroupWithExpandAdministrators() {
   console.log(resArray);
 }
 
-async function main() {
-  listServersByResourceGroup();
-  listServersByResourceGroupWithExpandAdministrators();
+async function main(): Promise<void> {
+  await listServersByResourceGroup();
+  await listServersByResourceGroupWithExpandAdministrators();
 }
 
 main().catch(console.error);

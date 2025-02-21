@@ -2,11 +2,11 @@
 
 import { OpenAIContext } from "../../api/openAIContext.js";
 import {
-  list,
-  create,
-  retrieve,
-  $delete,
   download,
+  $delete,
+  retrieve,
+  create,
+  list,
 } from "../../api/files/index.js";
 import {
   OpenAIFile,
@@ -15,24 +15,19 @@ import {
   DeleteFileResponse,
 } from "../../models/models.js";
 import {
-  FilesListOptionalParams,
-  FilesCreateOptionalParams,
-  FilesRetrieveOptionalParams,
-  FilesDeleteOptionalParams,
   FilesDownloadOptionalParams,
+  FilesDeleteOptionalParams,
+  FilesRetrieveOptionalParams,
+  FilesCreateOptionalParams,
+  FilesListOptionalParams,
 } from "../../api/options.js";
 
 /** Interface representing a Files operations. */
 export interface FilesOperations {
-  list: (options?: FilesListOptionalParams) => Promise<ListFilesResponse>;
-  create: (
-    file: CreateFileRequest,
-    options?: FilesCreateOptionalParams,
-  ) => Promise<OpenAIFile>;
-  retrieve: (
+  download: (
     fileId: string,
-    options?: FilesRetrieveOptionalParams,
-  ) => Promise<OpenAIFile>;
+    options?: FilesDownloadOptionalParams,
+  ) => Promise<string>;
   /**
    *  @fixme delete is a reserved word that cannot be used as an operation name.
    *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
@@ -42,28 +37,33 @@ export interface FilesOperations {
     fileId: string,
     options?: FilesDeleteOptionalParams,
   ) => Promise<DeleteFileResponse>;
-  download: (
+  retrieve: (
     fileId: string,
-    options?: FilesDownloadOptionalParams,
-  ) => Promise<string>;
+    options?: FilesRetrieveOptionalParams,
+  ) => Promise<OpenAIFile>;
+  create: (
+    file: CreateFileRequest,
+    options?: FilesCreateOptionalParams,
+  ) => Promise<OpenAIFile>;
+  list: (options?: FilesListOptionalParams) => Promise<ListFilesResponse>;
 }
 
-export function getFiles(context: OpenAIContext) {
+function _getFiles(context: OpenAIContext) {
   return {
-    list: (options?: FilesListOptionalParams) => list(context, options),
-    create: (file: CreateFileRequest, options?: FilesCreateOptionalParams) =>
-      create(context, file, options),
-    retrieve: (fileId: string, options?: FilesRetrieveOptionalParams) =>
-      retrieve(context, fileId, options),
-    delete: (fileId: string, options?: FilesDeleteOptionalParams) =>
-      $delete(context, fileId, options),
     download: (fileId: string, options?: FilesDownloadOptionalParams) =>
       download(context, fileId, options),
+    delete: (fileId: string, options?: FilesDeleteOptionalParams) =>
+      $delete(context, fileId, options),
+    retrieve: (fileId: string, options?: FilesRetrieveOptionalParams) =>
+      retrieve(context, fileId, options),
+    create: (file: CreateFileRequest, options?: FilesCreateOptionalParams) =>
+      create(context, file, options),
+    list: (options?: FilesListOptionalParams) => list(context, options),
   };
 }
 
-export function getFilesOperations(context: OpenAIContext): FilesOperations {
+export function _getFilesOperations(context: OpenAIContext): FilesOperations {
   return {
-    ...getFiles(context),
+    ..._getFiles(context),
   };
 }

@@ -5,16 +5,14 @@ import { AzureKeyCredential } from "@azure/core-auth";
 import createAuthoringClient, {
   getLongRunningPoller,
 } from "@msinternal/authoring";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation Delete
  *
  * @summary call operation Delete
  */
-async function deleteSample() {
+async function deleteSample(): Promise<void> {
   const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAuthoringClient(endpointParam, credential);
@@ -27,8 +25,8 @@ async function deleteSample() {
   console.log(result);
 }
 
-async function main() {
-  deleteSample();
+async function main(): Promise<void> {
+  await deleteSample();
 }
 
 main().catch(console.error);

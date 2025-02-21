@@ -4,81 +4,28 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface AudioTranscriptionsCreateOptionalParams
-  extends OperationOptions {
-  contentType?: string;
-}
+export interface ModerationsCreateOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface AudioTranslationsCreateOptionalParams
-  extends OperationOptions {
-  contentType?: string;
-}
+export interface ImagesCreateVariationOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface ChatCompletionsCreateOptionalParams extends OperationOptions {}
+export interface ImagesCreateEditOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface FineTuningJobsCreateOptionalParams extends OperationOptions {}
+export interface ImagesCreateOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface FineTuningJobsListOptionalParams extends OperationOptions {
-  /** Identifier for the last job from the previous pagination request. */
-  after?: string;
-  /** Number of fine-tuning jobs to retrieve. */
-  limit?: number;
-}
+export interface ModelsDeleteOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface FineTuningJobsRetrieveOptionalParams
-  extends OperationOptions {}
+export interface ModelsRetrieveOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface FineTuningJobsListEventsOptionalParams
-  extends OperationOptions {
-  /** Identifier for the last event from the previous pagination request. */
-  after?: string;
-  /** Number of events to retrieve. */
-  limit?: number;
-}
+export interface ModelsListOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface FineTuningJobsCancelOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface CompletionsCreateOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface EditsCreateOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface EmbeddingsCreateOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface FilesListOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface FilesCreateOptionalParams extends OperationOptions {
-  contentType?: string;
-}
-
-/** Optional parameters. */
-export interface FilesRetrieveOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface FilesDeleteOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface FilesDownloadOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface FineTunesCreateOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface FineTunesListOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface FineTunesRetrieveOptionalParams extends OperationOptions {}
+export interface FineTunesCancelOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface FineTunesListEventsOptionalParams extends OperationOptions {
@@ -95,29 +42,72 @@ export interface FineTunesListEventsOptionalParams extends OperationOptions {
 }
 
 /** Optional parameters. */
-export interface FineTunesCancelOptionalParams extends OperationOptions {}
+export interface FineTunesRetrieveOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface ModelsListOptionalParams extends OperationOptions {}
+export interface FineTunesListOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface ModelsRetrieveOptionalParams extends OperationOptions {}
+export interface FineTunesCreateOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface ModelsDeleteOptionalParams extends OperationOptions {}
+export interface FilesDownloadOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface ImagesCreateOptionalParams extends OperationOptions {}
+export interface FilesDeleteOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface ImagesCreateEditOptionalParams extends OperationOptions {
-  contentType?: string;
+export interface FilesRetrieveOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface FilesCreateOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface FilesListOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface EmbeddingsCreateOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface EditsCreateOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface CompletionsCreateOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface FineTuningJobsCancelOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface FineTuningJobsListEventsOptionalParams
+  extends OperationOptions {
+  /** Identifier for the last event from the previous pagination request. */
+  after?: string;
+  /** Number of events to retrieve. */
+  limit?: number;
 }
 
 /** Optional parameters. */
-export interface ImagesCreateVariationOptionalParams extends OperationOptions {
-  contentType?: string;
+export interface FineTuningJobsRetrieveOptionalParams
+  extends OperationOptions {}
+
+/** Optional parameters. */
+export interface FineTuningJobsListOptionalParams extends OperationOptions {
+  /** Identifier for the last job from the previous pagination request. */
+  after?: string;
+  /** Number of fine-tuning jobs to retrieve. */
+  limit?: number;
 }
 
 /** Optional parameters. */
-export interface ModerationsCreateOptionalParams extends OperationOptions {}
+export interface FineTuningJobsCreateOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface ChatCompletionsCreateOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface AudioTranslationsCreateOptionalParams
+  extends OperationOptions {}
+
+/** Optional parameters. */
+export interface AudioTranscriptionsCreateOptionalParams
+  extends OperationOptions {}

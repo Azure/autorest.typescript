@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets a network manager security configuration admin rule.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets a network manager security configuration admin rule.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkManagerAdminRuleGet.json
  */
-async function getsSecurityAdminRule() {
+async function getsSecurityAdminRule(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
@@ -46,7 +44,7 @@ async function getsSecurityAdminRule() {
  * @summary Gets a network manager security configuration admin rule.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkManagerDefaultAdminRuleGet.json
  */
-async function getsSecurityDefaultAdminRule() {
+async function getsSecurityDefaultAdminRule(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
@@ -66,9 +64,9 @@ async function getsSecurityDefaultAdminRule() {
   console.log(result);
 }
 
-async function main() {
-  getsSecurityAdminRule();
-  getsSecurityDefaultAdminRule();
+async function main(): Promise<void> {
+  await getsSecurityAdminRule();
+  await getsSecurityDefaultAdminRule();
 }
 
 main().catch(console.error);

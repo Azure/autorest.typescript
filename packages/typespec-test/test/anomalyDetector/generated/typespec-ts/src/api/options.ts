@@ -4,23 +4,19 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface UnivariateDetectUnivariateEntireSeriesOptionalParams
+export interface MultivariateDetectMultivariateLastAnomalyOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface UnivariateDetectUnivariateLastPointOptionalParams
+export interface MultivariateDetectMultivariateBatchAnomalyOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface UnivariateDetectUnivariateChangePointOptionalParams
+export interface MultivariateGetMultivariateModelOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface MultivariateGetMultivariateBatchDetectionResultOptionalParams
-  extends OperationOptions {}
-
-/** Optional parameters. */
-export interface MultivariateTrainMultivariateModelOptionalParams
+export interface MultivariateDeleteMultivariateModelOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
@@ -33,17 +29,21 @@ export interface MultivariateListMultivariateModelsOptionalParams
 }
 
 /** Optional parameters. */
-export interface MultivariateDeleteMultivariateModelOptionalParams
+export interface MultivariateTrainMultivariateModelOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface MultivariateGetMultivariateModelOptionalParams
+export interface MultivariateGetMultivariateBatchDetectionResultOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface MultivariateDetectMultivariateBatchAnomalyOptionalParams
+export interface UnivariateDetectUnivariateChangePointOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface MultivariateDetectMultivariateLastAnomalyOptionalParams
+export interface UnivariateDetectUnivariateLastPointOptionalParams
+  extends OperationOptions {}
+
+/** Optional parameters. */
+export interface UnivariateDetectUnivariateEntireSeriesOptionalParams
   extends OperationOptions {}

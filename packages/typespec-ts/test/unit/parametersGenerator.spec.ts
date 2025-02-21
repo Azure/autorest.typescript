@@ -47,7 +47,7 @@ describe("Parameters.ts", () => {
         await assertEqualContent(
           parameters?.content!,
           `
-            import { RequestParameters } from "@azure-rest/core-client";
+            import type { RequestParameters } from "@azure-rest/core-client";
             
             export type TestParameters = RequestParameters;
             `
@@ -62,9 +62,10 @@ describe("Parameters.ts", () => {
         await assertEqualContent(
           models!.content,
           `
-          import { getClient, ClientOptions } from "@azure-rest/core-client";
+          import type { ClientOptions } from "@azure-rest/core-client";
+          import { getClient } from "@azure-rest/core-client";
           import { logger } from "./logger.js";
-          import { testClient } from "./clientDefinitions.js";
+          import type { testClient } from "./clientDefinitions.js";
           
           /** The optional parameters for the client */
           export interface testClientOptions extends ClientOptions {}
@@ -139,7 +140,7 @@ describe("Parameters.ts", () => {
         await assertEqualContent(
           parameters?.content!,
           `
-            import { RequestParameters } from "@azure-rest/core-client";
+            import type { RequestParameters } from "@azure-rest/core-client";
             
             export type TestParameters = RequestParameters;
             `
@@ -165,7 +166,7 @@ describe("Parameters.ts", () => {
         await assertEqualContent(
           parameters?.content!,
           `
-            import { RequestParameters } from "@azure-rest/core-client";
+            import type { RequestParameters } from "@azure-rest/core-client";
             
             export interface TestQueryParamProperties {
               "api-version": string;
@@ -196,7 +197,7 @@ describe("Parameters.ts", () => {
         await assertEqualContent(
           parameters?.content!,
           `
-          import { RequestParameters } from "@azure-rest/core-client";
+          import type { RequestParameters } from "@azure-rest/core-client";
           
           export interface TestQueryParamProperties {
               "user-custom-query": string;
@@ -225,7 +226,7 @@ describe("Parameters.ts", () => {
         await assertEqualContent(
           parameters?.content!,
           `
-            import { RequestParameters } from "@azure-rest/core-client";
+            import type { RequestParameters } from "@azure-rest/core-client";
             
             export interface TestQueryParamProperties {
               executionTo?: string;
@@ -255,7 +256,7 @@ describe("Parameters.ts", () => {
         await assertEqualContent(
           parameters?.content!,
           `
-          import { RequestParameters } from "@azure-rest/core-client";
+          import type { RequestParameters } from "@azure-rest/core-client";
 
           export interface TestQueryParamProperties {
               "foo": "bar" | "baz";
@@ -286,8 +287,8 @@ describe("Parameters.ts", () => {
         await assertEqualContent(
           parameters?.content!,
           `
-          import { RequestParameters } from "@azure-rest/core-client";
-          import { Foo } from "./models.js";
+          import type { RequestParameters } from "@azure-rest/core-client";
+          import type { Foo } from "./models.js";
 
           export interface TestQueryParamProperties {
               "foo": Foo;
@@ -323,8 +324,8 @@ describe("Parameters.ts", () => {
         await assertEqualContent(
           parameters?.content!,
           `
-          import { RequestParameters } from "@azure-rest/core-client";
-          import { Foo } from "./models.js";
+          import type { RequestParameters } from "@azure-rest/core-client";
+          import type { Foo } from "./models.js";
 
           export interface TestQueryParamProperties {
               "foo": Foo;
@@ -359,8 +360,8 @@ describe("Parameters.ts", () => {
       assert.ok(parameters);
       await assertEqualContent(
         parameters?.content!,
-        ` import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
-          import { RequestParameters } from "@azure-rest/core-client";
+        ` import type { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
+          import type { RequestParameters } from "@azure-rest/core-client";
           
           export interface TestHeaders {
             "execution-to"?: string;
@@ -385,7 +386,7 @@ describe("Parameters.ts", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-        import { RequestParameters } from "@azure-rest/core-client";
+        import type { RequestParameters } from "@azure-rest/core-client";
 
         export interface ReadBodyParam {
           body:unknown[];
@@ -403,7 +404,7 @@ describe("Parameters.ts", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-        import { RequestParameters } from "@azure-rest/core-client";
+        import type { RequestParameters } from "@azure-rest/core-client";
 
         export interface ReadBodyParam {
           body:string[];
@@ -422,7 +423,7 @@ describe("Parameters.ts", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-        import { RequestParameters } from "@azure-rest/core-client";
+        import type { RequestParameters } from "@azure-rest/core-client";
 
         export interface ReadBodyParam {
           body:number[];
@@ -441,7 +442,7 @@ describe("Parameters.ts", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-        import { RequestParameters } from "@azure-rest/core-client";
+        import type { RequestParameters } from "@azure-rest/core-client";
 
         export interface ReadBodyParam {
           body:number[];
@@ -460,7 +461,7 @@ describe("Parameters.ts", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-        import { RequestParameters } from "@azure-rest/core-client";
+        import type { RequestParameters } from "@azure-rest/core-client";
 
         export interface ReadBodyParam {
           body:number[];
@@ -479,7 +480,7 @@ describe("Parameters.ts", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-        import { RequestParameters } from "@azure-rest/core-client";
+        import type { RequestParameters } from "@azure-rest/core-client";
 
         export interface ReadBodyParam {
           body:boolean[];
@@ -498,7 +499,7 @@ describe("Parameters.ts", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-        import { RequestParameters } from "@azure-rest/core-client";
+        import type { RequestParameters } from "@azure-rest/core-client";
 
         export interface ReadBodyParam {
           body:string[];
@@ -517,7 +518,7 @@ describe("Parameters.ts", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-        import { RequestParameters } from "@azure-rest/core-client";
+        import type { RequestParameters } from "@azure-rest/core-client";
 
         export interface ReadBodyParam {
           body: string[];
@@ -536,7 +537,7 @@ describe("Parameters.ts", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-        import { RequestParameters } from "@azure-rest/core-client";
+        import type { RequestParameters } from "@azure-rest/core-client";
 
         export interface ReadBodyParam {
           body: Date[] | string[];
@@ -555,7 +556,7 @@ describe("Parameters.ts", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-        import { RequestParameters } from "@azure-rest/core-client";
+        import type { RequestParameters } from "@azure-rest/core-client";
 
         export interface ReadBodyParam {
           body:string[];
@@ -578,8 +579,8 @@ describe("Parameters.ts", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-        import { RequestParameters } from "@azure-rest/core-client";
-        import { SimpleModel } from "./models.js";
+        import type { RequestParameters } from "@azure-rest/core-client";
+        import type { SimpleModel } from "./models.js";
 
         export interface ReadBodyParam {
           body:Array<SimpleModel>;
@@ -602,8 +603,8 @@ describe("Parameters.ts", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-        import { RequestParameters } from "@azure-rest/core-client";
-        import { InnerModel } from "./models.js";
+        import type { RequestParameters } from "@azure-rest/core-client";
+        import type { InnerModel } from "./models.js";
 
         export interface ReadBodyParam {
           body:Array<InnerModel>;
@@ -628,8 +629,8 @@ describe("Parameters.ts", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-        import { RequestParameters } from "@azure-rest/core-client";
-        import { SimpleModel } from "./models.js";
+        import type { RequestParameters } from "@azure-rest/core-client";
+        import type { SimpleModel } from "./models.js";
 
         export interface ReadBodyParam {
           body: Record<string, SimpleModel>;
@@ -649,7 +650,7 @@ describe("Parameters.ts", () => {
       await assertEqualContent(
         parameters?.content!,
         `
-        import { RequestParameters } from "@azure-rest/core-client";
+        import type { RequestParameters } from "@azure-rest/core-client";
         
         export type ReadParameters = RequestParameters;
       `

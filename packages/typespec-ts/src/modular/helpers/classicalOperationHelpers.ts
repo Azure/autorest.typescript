@@ -6,50 +6,42 @@ import {
   SourceFile,
   StructureKind
 } from "ts-morph";
-import { Client, OperationGroup } from "../modularCodeModel.js";
-import { getClassicalLayerPrefix, getClientName } from "./namingHelpers.js";
+import { getClassicalLayerPrefix } from "./namingHelpers.js";
 import { getOperationFunction } from "./operationHelpers.js";
 import { SdkContext } from "../../utils/interfaces.js";
+import {
+  SdkClientType,
+  SdkServiceOperation
+} from "@azure-tools/typespec-client-generator-core";
+import { getModularClientOptions } from "../../utils/clientUtils.js";
+import { ServiceOperation } from "../../utils/operationUtil.js";
 
-export function shouldPromoteSubscriptionId(
-  dpgContext: SdkContext,
-  operationGroup: OperationGroup
-) {
-  const hasSubscriptionIdParameter = operationGroup.operations.some((op) =>
-    op.parameters.some((p) => p.clientName === "subscriptionId")
-  );
-  return dpgContext?.rlcOptions?.azureArm && hasSubscriptionIdParameter;
-}
 export function getClassicalOperation(
   dpgContext: SdkContext,
-  client: Client,
+  client: SdkClientType<SdkServiceOperation>,
   classicFile: SourceFile,
-  operationGroup: OperationGroup,
-  layer: number = operationGroup.namespaceHierarchies.length - 1
+  operationGroup: [string[], ServiceOperation[]],
+  layer: number = operationGroup[0].length - 1
 ) {
-  // TODO: remove this logic once client-level parameter design is finalized
-  // https://github.com/Azure/autorest.typescript/issues/2618
-  const hasSubscriptionIdPromoted = shouldPromoteSubscriptionId(
-    dpgContext,
-    operationGroup
-  );
-  const modularClientName = `${getClientName(client.tcgcClient)}Context`;
+  const prefixes = operationGroup[0];
+  const operations = operationGroup[1];
+  const { rlcClientName } = getModularClientOptions(dpgContext, client);
   const hasClientContextImport = classicFile
     .getImportDeclarations()
     .filter((i) => {
       return (
         i.getModuleSpecifierValue() ===
         `${"../".repeat(layer + 2)}api/${normalizeName(
-          modularClientName,
+          rlcClientName,
           NameType.File
         )}.js`
       );
     });
   if (!hasClientContextImport || hasClientContextImport.length === 0) {
     classicFile.addImportDeclaration({
-      namedImports: [client.rlcClientName],
+      namedImports: [rlcClientName],
       moduleSpecifier: `${"../".repeat(layer + 2)}api/${normalizeName(
-        modularClientName,
+        rlcClientName,
         NameType.File
       )}.js`
     });
@@ -60,18 +52,18 @@ export function getClassicalOperation(
     string | undefined
   >();
   const operationDeclarations: OptionalKind<FunctionDeclarationStructure>[] =
-    operationGroup.operations.map((operation) => {
+    operations.map((operation) => {
       const declarations = getOperationFunction(
         dpgContext,
-        operation,
-        modularClientName
+        [prefixes, operation],
+        rlcClientName
       );
       operationMap.set(declarations, operation.oriName);
       return declarations;
     });
 
   const interfaceNamePrefix = getClassicalLayerPrefix(
-    operationGroup,
+    prefixes,
     NameType.Interface,
     "",
     layer
@@ -81,23 +73,27 @@ export function getClassicalOperation(
     .getInterfaces()
     .filter((i) => i.getName() === interfaceName)[0];
   const properties: OptionalKind<PropertySignatureStructure>[] = [];
-  if (layer !== operationGroup.namespaceHierarchies.length - 1) {
-    properties.push({
-      kind: StructureKind.PropertySignature,
-      name:
-        normalizeName(
-          (layer === operationGroup.namespaceHierarchies.length - 1
-            ? operationGroup.namespaceHierarchies[layer]
-            : operationGroup.namespaceHierarchies[layer + 1]) ?? "",
-          NameType.Property
-        ) ?? operationGroup.propertyName,
-      type: `${getClassicalLayerPrefix(
-        operationGroup,
-        NameType.Interface,
+  if (layer !== prefixes.length - 1) {
+    const name = normalizeName(
+      (layer === prefixes.length - 1 ? prefixes[layer] : prefixes[layer + 1]) ??
         "",
-        layer + 1
-      )}Operations`
-    });
+      NameType.Property
+    );
+    if (
+      !properties.some((x) => x.name === name) &&
+      !(existInterface && existInterface.getProperty(name))
+    ) {
+      properties.push({
+        kind: StructureKind.PropertySignature,
+        name,
+        type: `${getClassicalLayerPrefix(
+          prefixes,
+          NameType.Interface,
+          "",
+          layer + 1
+        )}Operations`
+      });
+    }
   } else {
     operationDeclarations.forEach((d) => {
       properties.push({
@@ -105,9 +101,6 @@ export function getClassicalOperation(
         name: getClassicalMethodName(d),
         type: `(${d.parameters
           ?.filter((p) => p.name !== "context")
-          ?.filter(
-            (p) => !(hasSubscriptionIdPromoted && p.name === "subscriptionId")
-          )
           .map(
             (p) =>
               p.name +
@@ -134,33 +127,26 @@ export function getClassicalOperation(
     });
   }
 
-  if (layer === operationGroup.namespaceHierarchies.length - 1) {
+  if (layer === prefixes.length - 1) {
     classicFile.addFunction({
-      name: `get${getClassicalLayerPrefix(
-        operationGroup,
+      name: `_get${getClassicalLayerPrefix(
+        prefixes,
         NameType.Interface,
         "",
         layer
       )}`,
-      isExported: true,
+      isExported: false,
       parameters: [
         {
           name: "context",
-          type: client.rlcClientName
-        },
-        ...(hasSubscriptionIdPromoted
-          ? [{ name: "subscriptionId", type: "string" }]
-          : [])
+          type: rlcClientName
+        }
       ],
       statements: `return {
         ${operationDeclarations
           .map((d) => {
             return `${getClassicalMethodName(d)}: (${d.parameters
               ?.filter((p) => p.name !== "context")
-              ?.filter(
-                (p) =>
-                  !(hasSubscriptionIdPromoted && p.name === "subscriptionId")
-              )
               .map(
                 (p) =>
                   p.name +
@@ -183,8 +169,8 @@ export function getClassicalOperation(
     });
   }
 
-  const operationFunctionName = `get${getClassicalLayerPrefix(
-    operationGroup,
+  const operationFunctionName = `_get${getClassicalLayerPrefix(
+    prefixes,
     NameType.Interface,
     "",
     layer
@@ -195,73 +181,81 @@ export function getClassicalOperation(
   if (existFunction) {
     const returnStatement = existFunction.getBodyText();
     if (returnStatement) {
-      let statement = `,
-      ...get${getClassicalLayerPrefix(
-        operationGroup,
+      let statement: string | undefined = undefined;
+      if (layer !== prefixes.length - 1) {
+        const name = normalizeName(
+          prefixes[layer + 1] ?? "FIXME",
+          NameType.Property
+        );
+
+        // HACK: check if the statement includes a group of this name already to prevent an operation group appearing multiple times
+        // TODO: would be good to refactor so that we have an intermediate data structure before generating the return statement
+        if (!returnStatement.includes(`${name}:`)) {
+          statement = `,
+          ${normalizeName(
+            prefixes[layer + 1] ?? "FIXME",
+            NameType.Property
+          )}: _get${getClassicalLayerPrefix(
+            prefixes,
+            NameType.Interface,
+            "",
+            layer + 1
+          )}Operations(context)}`;
+        }
+      } else {
+        statement = `,
+      ..._get${getClassicalLayerPrefix(
+        prefixes,
         NameType.Interface,
         "",
         layer + 1
-      )}Operations(context${
-        hasSubscriptionIdPromoted ? ", subscriptionId" : ""
-      })}`;
-      if (layer !== operationGroup.namespaceHierarchies.length - 1) {
-        statement = `,
-        ${normalizeName(
-          operationGroup.namespaceHierarchies[layer + 1] ?? "FIXME",
-          NameType.Property
-        )}: get${getClassicalLayerPrefix(
-          operationGroup,
-          NameType.Interface,
-          "",
-          layer + 1
-        )}Operations(context${
-          hasSubscriptionIdPromoted ? ", subscriptionId" : ""
-        })}`;
+      )}Operations(context)}`;
       }
-      const newReturnStatement = returnStatement.replace(/}$/, statement);
-      existFunction.setBodyText(newReturnStatement);
+
+      if (statement) {
+        const newReturnStatement = returnStatement.replace(/}$/, statement);
+        existFunction.setBodyText(newReturnStatement);
+      }
     }
   } else {
-    classicFile.addFunction({
+    const functions = {
       name: operationFunctionName,
       isExported: true,
       parameters: [
         {
           name: "context",
-          type: client.rlcClientName
-        },
-        ...(hasSubscriptionIdPromoted
-          ? [{ name: "subscriptionId", type: "string" }]
-          : [])
+          type: rlcClientName
+        }
       ],
       returnType: `${getClassicalLayerPrefix(
-        operationGroup,
+        prefixes,
         NameType.Interface,
         "",
         layer
       )}Operations`,
       statements:
-        layer !== operationGroup.namespaceHierarchies.length - 1
+        layer !== prefixes.length - 1
           ? `return {
             ${normalizeName(
-              operationGroup.namespaceHierarchies[layer + 1] ?? "FIXME",
+              prefixes[layer + 1] ?? "FIXME",
               NameType.Property
-            )}: get${getClassicalLayerPrefix(
-              operationGroup,
+            )}: _get${getClassicalLayerPrefix(
+              prefixes,
               NameType.Interface,
               "",
               layer + 1
             )}Operations(context)   
       }`
           : `return {
-        ...get${getClassicalLayerPrefix(
-          operationGroup,
+        ..._get${getClassicalLayerPrefix(
+          prefixes,
           NameType.Interface,
           "",
           layer
-        )}(context${hasSubscriptionIdPromoted ? ", subscriptionId" : ""})
+        )}(context)
       }`
-    });
+    };
+    classicFile.addFunction(functions);
   }
 
   function getClassicalMethodName(

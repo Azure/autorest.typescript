@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ErrorModel } from "@azure-rest/core-client";
+import type { ErrorModel } from "@azure-rest/core-client";
 
 /** The details of a project. */
 export interface ProjectOutput {
@@ -33,7 +33,7 @@ export interface ProjectOutput {
 export interface ProjectSettingsOutput extends Record<string, string> {}
 
 /** Provides status details for long running operations. */
-export interface OperationStatusOutput {
+export interface OperationStatusErrorOutput {
   /** The unique ID of the operation. */
   id: string;
   /**

@@ -26,6 +26,7 @@ export function _op1Send(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
       body: aSerializer(body),
     });
 }

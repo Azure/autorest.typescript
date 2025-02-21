@@ -3,16 +3,14 @@
 
 import createAzureLoadTestingClient from "@azure-rest/load-testing";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation ListMetricDefinitions
  *
  * @summary call operation ListMetricDefinitions
  */
-async function loadTestRunListMetricDefinitionsSample() {
+async function loadTestRunListMetricDefinitionsSample(): Promise<void> {
   const endpointParam = "{Your endpointParam}";
   const credential = new DefaultAzureCredential();
   const client = createAzureLoadTestingClient(endpointParam, credential);
@@ -23,8 +21,8 @@ async function loadTestRunListMetricDefinitionsSample() {
   console.log(result);
 }
 
-async function main() {
-  loadTestRunListMetricDefinitionsSample();
+async function main(): Promise<void> {
+  await loadTestRunListMetricDefinitionsSample();
 }
 
 main().catch(console.error);

@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Delete a gallery image.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Delete a gallery image.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/DeleteAGalleryImage.json
  */
-async function deleteAGalleryImage() {
+async function deleteAGalleryImage(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -35,8 +33,8 @@ async function deleteAGalleryImage() {
   console.log(result);
 }
 
-async function main() {
-  deleteAGalleryImage();
+async function main(): Promise<void> {
+  await deleteAGalleryImage();
 }
 
 main().catch(console.error);

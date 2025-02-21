@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Deletes the object replication policy associated with the specified storage account.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Deletes the object replication policy associated with the specified storage account.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountDeleteObjectReplicationPolicy.json
  */
-async function storageAccountDeleteObjectReplicationPolicies() {
+async function storageAccountDeleteObjectReplicationPolicies(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res6977";
   const accountName = "sto2527";
@@ -35,8 +33,8 @@ async function storageAccountDeleteObjectReplicationPolicies() {
   console.log(result);
 }
 
-async function main() {
-  storageAccountDeleteObjectReplicationPolicies();
+async function main(): Promise<void> {
+  await storageAccountDeleteObjectReplicationPolicies();
 }
 
 main().catch(console.error);

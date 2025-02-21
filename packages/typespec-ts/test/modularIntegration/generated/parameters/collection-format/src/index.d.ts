@@ -1,13 +1,13 @@
-import { ClientOptions } from '@azure-rest/core-client';
-import { OperationOptions } from '@azure-rest/core-client';
-import { Pipeline } from '@azure/core-rest-pipeline';
+import { ClientOptions } from '@typespec/ts-http-runtime';
+import { OperationOptions } from '@typespec/ts-http-runtime';
+import { Pipeline } from '@typespec/ts-http-runtime';
 
 export declare class CollectionFormatClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: CollectionFormatClientOptionalParams);
-    readonly query: QueryOperations;
     readonly header: HeaderOperations;
+    readonly query: QueryOperations;
 }
 
 export declare interface CollectionFormatClientOptionalParams extends ClientOptions {
@@ -27,11 +27,11 @@ export declare interface QueryMultiOptionalParams extends OperationOptions {
 }
 
 export declare interface QueryOperations {
-    multi: (colors: string[], options?: QueryMultiOptionalParams) => Promise<void>;
-    ssv: (colors: string[], options?: QuerySsvOptionalParams) => Promise<void>;
-    tsv: (colors: string[], options?: QueryTsvOptionalParams) => Promise<void>;
-    pipes: (colors: string[], options?: QueryPipesOptionalParams) => Promise<void>;
     csv: (colors: string[], options?: QueryCsvOptionalParams) => Promise<void>;
+    pipes: (colors: string[], options?: QueryPipesOptionalParams) => Promise<void>;
+    tsv: (colors: string[], options?: QueryTsvOptionalParams) => Promise<void>;
+    ssv: (colors: string[], options?: QuerySsvOptionalParams) => Promise<void>;
+    multi: (colors: string[], options?: QueryMultiOptionalParams) => Promise<void>;
 }
 
 export declare interface QueryPipesOptionalParams extends OperationOptions {

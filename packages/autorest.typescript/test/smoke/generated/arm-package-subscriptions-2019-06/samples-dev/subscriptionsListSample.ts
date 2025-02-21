@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { SubscriptionClient } from "@msinternal/arm-package-subscriptions-2019-06";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets all subscriptions for a tenant.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets all subscriptions for a tenant.
  * x-ms-original-file: specification/resources/resource-manager/Microsoft.Resources/stable/2019-06-01/examples/GetSubscriptions.json
  */
-async function getAllSubscriptions() {
+async function getAllSubscriptions(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SubscriptionClient(credential);
   const resArray = new Array();
@@ -30,8 +28,8 @@ async function getAllSubscriptions() {
   console.log(resArray);
 }
 
-async function main() {
-  getAllSubscriptions();
+async function main(): Promise<void> {
+  await getAllSubscriptions();
 }
 
 main().catch(console.error);

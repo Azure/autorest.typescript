@@ -1,6 +1,6 @@
-import { ClientOptions } from '@azure-rest/core-client';
-import { OperationOptions } from '@azure-rest/core-client';
-import { Pipeline } from '@azure/core-rest-pipeline';
+import { ClientOptions } from '@typespec/ts-http-runtime';
+import { OperationOptions } from '@typespec/ts-http-runtime';
+import { Pipeline } from '@typespec/ts-http-runtime';
 
 export declare interface TestModel {
     prop: string;
@@ -14,7 +14,7 @@ export declare class TypeChangedFromClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(endpointParam: string, version: Versions, options?: TypeChangedFromClientOptionalParams);
-    test(param: string, body: TestModel, options?: TestOptionalParams): Promise<TestModel>;
+    test(body: TestModel, param: string, options?: TestOptionalParams): Promise<TestModel>;
 }
 
 export declare interface TypeChangedFromClientOptionalParams extends ClientOptions {

@@ -6,13 +6,11 @@ options:
     generateMetadata: true
     generateTest: false
     addCredentials: false
-    azureSdkForJs: false
     isTypeSpecTest: true
     enableOperationGroup: true
-    isModularLibrary: true
     # temporary only support legacy client for additional properties in modular
     compatibilityMode: true
     packageDetails:
-      name: "@msinternal/nullable-property"
+      name: "@unbranded/nullable-property"
       description: "nullable Property Test Service"
       version: "1.0.0"

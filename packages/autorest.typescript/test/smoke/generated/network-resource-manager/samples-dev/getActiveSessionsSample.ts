@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Returns the list of currently active sessions on the Bastion.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Returns the list of currently active sessions on the Bastion.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/BastionSessionsList.json
  */
-async function returnsAListOfCurrentlyActiveSessionsOnTheBastion() {
+async function returnsAListOfCurrentlyActiveSessionsOnTheBastion(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const bastionHostName = "bastionhosttenant";
@@ -36,8 +34,8 @@ async function returnsAListOfCurrentlyActiveSessionsOnTheBastion() {
   console.log(resArray);
 }
 
-async function main() {
-  returnsAListOfCurrentlyActiveSessionsOnTheBastion();
+async function main(): Promise<void> {
+  await returnsAListOfCurrentlyActiveSessionsOnTheBastion();
 }
 
 main().catch(console.error);

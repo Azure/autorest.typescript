@@ -3,16 +3,14 @@
 
 import { AzureKeyCredential } from "@azure/core-auth";
 import createAuthoringClient, { paginate } from "@msinternal/authoring";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation ListTrainingConfigVersions
  *
  * @summary call operation ListTrainingConfigVersions
  */
-async function listTrainingConfigVersionsSample() {
+async function listTrainingConfigVersionsSample(): Promise<void> {
   const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAuthoringClient(endpointParam, credential);
@@ -27,8 +25,8 @@ async function listTrainingConfigVersionsSample() {
   console.log(result);
 }
 
-async function main() {
-  listTrainingConfigVersionsSample();
+async function main(): Promise<void> {
+  await listTrainingConfigVersionsSample();
 }
 
 main().catch(console.error);

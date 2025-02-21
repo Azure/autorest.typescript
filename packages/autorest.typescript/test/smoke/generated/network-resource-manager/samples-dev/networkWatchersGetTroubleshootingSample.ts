@@ -13,9 +13,7 @@ import {
   NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Initiate troubleshooting on a specified resource.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Initiate troubleshooting on a specified resource.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkWatcherTroubleshootGet.json
  */
-async function getTroubleshooting() {
+async function getTroubleshooting(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkWatcherName = "nw1";
@@ -44,8 +42,8 @@ async function getTroubleshooting() {
   console.log(result);
 }
 
-async function main() {
-  getTroubleshooting();
+async function main(): Promise<void> {
+  await getTroubleshooting();
 }
 
 main().catch(console.error);

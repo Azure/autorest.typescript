@@ -16,7 +16,7 @@ export interface CompletionsOperations {
   ) => Promise<CreateCompletionResponse>;
 }
 
-export function getCompletions(context: OpenAIContext) {
+function _getCompletions(context: OpenAIContext) {
   return {
     create: (
       body: CreateCompletionRequest,
@@ -25,10 +25,10 @@ export function getCompletions(context: OpenAIContext) {
   };
 }
 
-export function getCompletionsOperations(
+export function _getCompletionsOperations(
   context: OpenAIContext,
 ): CompletionsOperations {
   return {
-    ...getCompletions(context),
+    ..._getCompletions(context),
   };
 }
