@@ -31,123 +31,103 @@ op getModel(@bodyRoot input: InputOutputModel): InputOutputModel;
 ## Models
 
 ```ts models
-/** model interface TypeScriptTestingInputOutputModel */
-export interface TypeScriptTestingInputOutputModel {
-  prop: TypeScriptTestingFoo;
+/** model interface InputOutputModel */
+export interface InputOutputModel {
+  prop: Foo;
 }
 
-export function typeScriptTestingInputOutputModelSerializer(
-  item: TypeScriptTestingInputOutputModel,
-): any {
-  return { prop: typeScriptTestingFooSerializer(item["prop"]) };
+export function inputOutputModelSerializer(item: InputOutputModel): any {
+  return { prop: fooSerializer(item["prop"]) };
 }
 
-export function typeScriptTestingInputOutputModelDeserializer(
-  item: any,
-): TypeScriptTestingInputOutputModel {
+export function inputOutputModelDeserializer(item: any): InputOutputModel {
   return {
-    prop: typeScriptTestingFooDeserializer(item["prop"]),
+    prop: fooDeserializer(item["prop"]),
   };
 }
 
-/** model interface TypeScriptTestingFoo */
-export interface TypeScriptTestingFoo {
-  x: TypeScriptTestingTemplatedBase;
-  y: TypeScriptTestingTemplated;
-  z: TypeScriptTestingTemplated_1;
-  h: TypeScriptTestingTemplated_2;
-  j: TypeScriptTestingTemplated_3;
+/** model interface Foo */
+export interface Foo {
+  x: TemplatedBase;
+  y: Templated;
+  z: Templated_1;
+  h: Templated_2;
+  j: Templated_3;
 }
 
-export function typeScriptTestingFooSerializer(
-  item: TypeScriptTestingFoo,
-): any {
+export function fooSerializer(item: Foo): any {
   return {
-    x: typeScriptTestingTemplatedBaseSerializer(item["x"]),
-    y: typeScriptTestingTemplatedSerializer(item["y"]),
-    z: typeScriptTestingTemplatedSerializer(item["z"]),
-    h: typeScriptTestingTemplatedSerializer(item["h"]),
-    j: typeScriptTestingTemplatedSerializer(item["j"]),
+    x: templatedBaseSerializer(item["x"]),
+    y: templatedSerializer(item["y"]),
+    z: templatedSerializer(item["z"]),
+    h: templatedSerializer(item["h"]),
+    j: templatedSerializer(item["j"]),
   };
 }
 
-export function typeScriptTestingFooDeserializer(
-  item: any,
-): TypeScriptTestingFoo {
+export function fooDeserializer(item: any): Foo {
   return {
-    x: typeScriptTestingTemplatedBaseDeserializer(item["x"]),
-    y: typeScriptTestingTemplatedDeserializer(item["y"]),
-    z: typeScriptTestingTemplatedDeserializer(item["z"]),
-    h: typeScriptTestingTemplatedDeserializer(item["h"]),
-    j: typeScriptTestingTemplatedDeserializer(item["j"]),
+    x: templatedBaseDeserializer(item["x"]),
+    y: templatedDeserializer(item["y"]),
+    z: templatedDeserializer(item["z"]),
+    h: templatedDeserializer(item["h"]),
+    j: templatedDeserializer(item["j"]),
   };
 }
 
-/** model interface TypeScriptTestingTemplatedBase */
-export interface TypeScriptTestingTemplatedBase {
-  prop: TypeScriptTestingBase;
+/** model interface TemplatedBase */
+export interface TemplatedBase {
+  prop: Base;
 }
 
-export function typeScriptTestingTemplatedBaseSerializer(
-  item: TypeScriptTestingTemplatedBase,
-): any {
-  return { prop: typeScriptTestingBaseSerializer(item["prop"]) };
+export function templatedBaseSerializer(item: TemplatedBase): any {
+  return { prop: baseSerializer(item["prop"]) };
 }
 
-export function typeScriptTestingTemplatedBaseDeserializer(
-  item: any,
-): TypeScriptTestingTemplatedBase {
+export function templatedBaseDeserializer(item: any): TemplatedBase {
   return {
-    prop: typeScriptTestingBaseDeserializer(item["prop"]),
+    prop: baseDeserializer(item["prop"]),
   };
 }
 
-/** model interface TypeScriptTestingBase */
-export interface TypeScriptTestingBase {}
+/** model interface Base */
+export interface Base {}
 
-export function typeScriptTestingBaseSerializer(
-  item: TypeScriptTestingBase,
-): any {
+export function baseSerializer(item: Base): any {
   return item;
 }
 
-export function typeScriptTestingBaseDeserializer(
-  item: any,
-): TypeScriptTestingBase {
+export function baseDeserializer(item: any): Base {
   return item;
 }
 
-/** model interface TypeScriptTestingTemplated */
-export interface TypeScriptTestingTemplated {
+/** model interface Templated */
+export interface Templated {
   prop: string;
 }
 
-export function typeScriptTestingTemplatedSerializer(
-  item: TypeScriptTestingTemplated,
-): any {
+export function templatedSerializer(item: Templated): any {
   return { prop: item["prop"] };
 }
 
-export function typeScriptTestingTemplatedDeserializer(
-  item: any,
-): TypeScriptTestingTemplated {
+export function templatedDeserializer(item: any): Templated {
   return {
     prop: item["prop"],
   };
 }
 
-/** model interface TypeScriptTestingTemplated */
-export interface TypeScriptTestingTemplated_1 {
+/** model interface Templated */
+export interface Templated_1 {
   prop: "cat";
 }
 
-/** model interface TypeScriptTestingTemplated */
-export interface TypeScriptTestingTemplated_2 {
+/** model interface Templated */
+export interface Templated_2 {
   prop: true;
 }
 
-/** model interface TypeScriptTestingTemplated */
-export interface TypeScriptTestingTemplated_3 {
+/** model interface Templated */
+export interface Templated_3 {
   prop: 1;
 }
 ```

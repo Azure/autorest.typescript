@@ -133,7 +133,7 @@ enable-operation-group: false
 Generate samples for dpg cases:
 
 ```ts samples
-/** This file path is /samples-dev/widgetsListWidgetsSample.ts */
+/** This file path is /samples-dev/listWidgetsSample.ts */
 import { WidgetManagerClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
 
@@ -147,7 +147,7 @@ async function widgetsListWidgets(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new WidgetManagerClient(credential);
   const resArray = new Array();
-  for await (let item of client.widgets.listWidgets({
+  for await (let item of client.listWidgets({
     top: 8,
     skip: 15,
     maxpagesize: 27,
@@ -164,7 +164,7 @@ async function main(): Promise<void> {
 
 main().catch(console.error);
 
-/** This file path is /samples-dev/widgetsDeleteWidgetSample.ts */
+/** This file path is /samples-dev/deleteWidgetSample.ts */
 import { WidgetManagerClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
 
@@ -177,7 +177,7 @@ import { DefaultAzureCredential } from "@azure/identity";
 async function deleteWidgetByWidgetNameUsingLongRunningOperation(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new WidgetManagerClient(credential);
-  const result = await client.widgets.deleteWidget("searchbox");
+  const result = await client.deleteWidget("searchbox");
   console.log(result);
 }
 
@@ -187,7 +187,7 @@ async function main(): Promise<void> {
 
 main().catch(console.error);
 
-/** This file path is /samples-dev/widgetsCreateOrUpdateWidgetSample.ts */
+/** This file path is /samples-dev/createOrUpdateWidgetSample.ts */
 import { WidgetManagerClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
 
@@ -200,7 +200,7 @@ import { DefaultAzureCredential } from "@azure/identity";
 async function widgetsCreateOrUpdateWidget(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new WidgetManagerClient(credential);
-  const result = await client.widgets.createOrUpdateWidget("name1", {
+  const result = await client.createOrUpdateWidget("name1", {
     manufacturerId: "manufacturer id1",
   });
   console.log(result);

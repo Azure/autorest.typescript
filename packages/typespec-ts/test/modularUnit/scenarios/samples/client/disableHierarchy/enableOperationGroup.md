@@ -56,7 +56,7 @@ Raw json files.
 Generated samples.
 
 ```ts samples
-/** This file path is /samples-dev/dBarSample.ts */
+/** This file path is /samples-dev/barSample.ts */
 import { TestingClient } from "@azure/internal-test";
 
 /**
@@ -67,7 +67,7 @@ import { TestingClient } from "@azure/internal-test";
  */
 async function bar(): Promise<void> {
   const client = new TestingClient();
-  const result = await client.d.bar({ prop1: "body name" });
+  const result = await client.bar({ prop1: "body name" });
   console.log(result);
 }
 
@@ -98,7 +98,7 @@ Raw json files.
 Generated samples.
 
 ```ts samples
-/** This file path is /samples-dev/cFooSample.ts */
+/** This file path is /samples-dev/fooSample.ts */
 import { TestingClient } from "@azure/internal-test";
 
 /**
@@ -109,7 +109,7 @@ import { TestingClient } from "@azure/internal-test";
  */
 async function foo(): Promise<void> {
   const client = new TestingClient();
-  const result = await client.c.foo({ prop2: "body name" });
+  const result = await client.foo({ prop2: "body name" });
   console.log(result);
 }
 

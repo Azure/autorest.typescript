@@ -27,7 +27,7 @@ import { buildClientContext } from "../../src/modular/buildClientContext.js";
 import { buildOperationFiles } from "../../src/modular/buildOperations.js";
 import { transformModularEmitterOptions } from "../../src/modular/buildModularOptions.js";
 import { expectDiagnosticEmpty } from "@typespec/compiler/testing";
-import { getCredentialInfo, transformRLCOptions } from "../../src/transform/transfromRLCOptions.js";
+import { getCredentialInfo } from "../../src/transform/transfromRLCOptions.js";
 import { getRLCClients } from "../../src/utils/clientUtils.js";
 import { transformHelperFunctionDetails } from "../../src/transform/transformHelperFunctionDetails.js";
 import { transformPaths } from "../../src/transform/transformPaths.js";
@@ -418,14 +418,34 @@ export async function emitModularModelsFromTypeSpec(
       withRawContent,
     }
   );
+  if (options.experimentalExtensibleEnums !== undefined) {
+    reportDiagnostic(context.program, {
+      code: "use-kebab-case-option",
+      format: {
+        kababCaseOption: "experimental-extensible-enums",
+        camalCaseOption: "experimentalExtensibleEnums"
+      },
+      target: NoTarget
+    });
+  }
+  if (options.compatibilityMode !== undefined) {
+    reportDiagnostic(context.program, {
+      code: "use-kebab-case-option",
+      format: {
+        kababCaseOption: "compatibility-mode",
+        camalCaseOption: "compatibilityMode"
+      },
+      target: NoTarget
+    });
+  }
   const dpgContext = await createDpgContextTestHelper(context.program, false, options);
   const project = useContext("outputProject");
   const binder = useBinder();
   let modelFile = undefined;
-  options["is-modular-library"] = true;
-  if (options) {
-    dpgContext.rlcOptions = transformRLCOptions(options, dpgContext);
-  }
+  dpgContext.rlcOptions!.isModularLibrary = true;
+  dpgContext.rlcOptions!.compatibilityMode = options["compatibility-mode"];
+  dpgContext.rlcOptions!.experimentalExtensibleEnums =
+    options["experimental-extensible-enums"];
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
     "",
@@ -486,11 +506,21 @@ export async function emitModularOperationsFromTypeSpec(
       withVersionedApiVersion: options.withVersionedApiVersion ? true : false
     }
   );
+  if (options.experimentalExtensibleEnums !== undefined) {
+    reportDiagnostic(context.program, {
+      code: "use-kebab-case-option",
+      format: {
+        kababCaseOption: "experimental-extensible-enums",
+        camalCaseOption: "experimentalExtensibleEnums"
+      },
+      target: NoTarget
+    });
+  }
   const dpgContext = await createDpgContextTestHelper(context.program);
   const project = useContext("outputProject");
   const binder = useBinder();
-  options["is-modular-library"] = true;
-  dpgContext.rlcOptions = transformRLCOptions(options, dpgContext);
+  dpgContext.rlcOptions!.isModularLibrary = true;
+  dpgContext.rlcOptions!.experimentalExtensibleEnums = options["experimental-extensible-enums"];
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
     "",
@@ -597,13 +627,21 @@ export async function emitModularClientFromTypeSpec(
       withVersionedApiVersion: options.withVersionedApiVersion ? true : false
     }
   );
+  if (options.typespecTitleMap !== undefined) {
+    reportDiagnostic(context.program, {
+      code: "use-kebab-case-option",
+      format: {
+        kababCaseOption: "typespec-title-map",
+        camalCaseOption: "typespecTitleMap"
+      },
+      target: NoTarget
+    });
+  }
   const dpgContext = await createDpgContextTestHelper(context.program);
   const project = useContext("outputProject");
   const binder = useBinder();
-  options["is-modular-library"] = true;
-  if (options) {
-    dpgContext.rlcOptions = transformRLCOptions(options, dpgContext);
-  }
+  dpgContext.rlcOptions!.isModularLibrary = true;
+  dpgContext.rlcOptions!.typespecTitleMap = options["typespec-title-map"];
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
     "",
@@ -644,9 +682,6 @@ export async function emitSamplesFromTypeSpec(
     },
     ...configs
   });
-  if (dpgContext.rlcOptions) {
-    dpgContext.rlcOptions = transformRLCOptions(dpgContext.rlcOptions, dpgContext);
-  }
   const project = useContext("outputProject");
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
