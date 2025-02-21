@@ -2276,7 +2276,7 @@ export interface A {
 
 ```ts models function aSerializer
 export function aSerializer(item: A): any {
-  return { prop1: item["prop1"], prop2: item["prop2"], name: item["name"] };
+  return { prop1: item["prop1"], prop2: item["prop2"] };
 }
 ```
 
@@ -2325,7 +2325,7 @@ export interface A extends B {}
 
 ```ts models function aSerializer
 export function aSerializer(item: A): any {
-  return { prop1: item["prop1"], prop2: item["prop2"], name: item["name"] };
+  return { prop1: item["prop1"], prop2: item["prop2"] };
 }
 ```
 

@@ -58,6 +58,7 @@ import {
   SdkServiceParameter,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
+import { isMetadata } from "@typespec/http";
 
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
@@ -1091,7 +1092,9 @@ export function getRequestModelProperties(
     if (property.kind === "property" && isReadOnly(property)) {
       continue;
     }
-
+    if (isMetadata(context.program, property.__raw!)) {
+      continue;
+    }
     props.push([
       getPropertySerializedName(property)!,
       getSerializationExpression(context, property, propertyPath)
