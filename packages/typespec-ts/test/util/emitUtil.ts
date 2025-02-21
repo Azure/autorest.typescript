@@ -37,7 +37,8 @@ import { transformToResponseTypes } from "../../src/transform/transformResponses
 import { useBinder } from "../../src/framework/hooks/binder.js";
 import { useContext } from "../../src/contextManager.js";
 import { emitSamples } from "../../src/modular/emitSamples.js";
-import { removeUnusedImports, renameClientName } from "../../src/index.js";
+import { removeUnusedImports, renameClientName, reportDiagnostic } from "../../src/index.js";
+import { NoTarget } from "@typespec/compiler";
 
 export async function emitPageHelperFromTypeSpec(
   tspContent: string,
@@ -402,6 +403,12 @@ export async function emitModularModelsFromTypeSpec(
     needAzureCore = false,
     mustEmptyDiagnostic = true,
   } = options;
+  if (options["experimental-extensible-enums"] === undefined) {
+    options["experimental-extensible-enums"] = false;
+  }
+  if (options["compatibility-mode"] === undefined) {
+    options["compatibility-mode"] = false;
+  }
   const context = await rlcEmitterFor(
     tspContent,
     {
@@ -460,23 +467,30 @@ export async function emitModularOperationsFromTypeSpec(
   tspContent: string,
   options: ModelConfigOptions = {}
 ) {
+  if (options.mustEmptyDiagnostic === undefined) {
+    options.mustEmptyDiagnostic = true;
+  }
+  if (options.needNamespaces === undefined) {
+    options.needNamespaces = true;
+  }
+  if (options["experimental-extensible-enums"] === undefined) {
+    options["experimental-extensible-enums"] = false;
+  }
   const context = await rlcEmitterFor(
     tspContent,
     {
       needNamespaces: options.needNamespaces,
-      needAzureCore: options.needAzureCore,
+      needAzureCore: options.needAzureCore ? true : false,
       needTCGC: false,
-      withRawContent: options.withRawContent,
-      withVersionedApiVersion: options.withVersionedApiVersion
+      withRawContent: options.withRawContent ? true : false,
+      withVersionedApiVersion: options.withVersionedApiVersion ? true : false
     }
   );
   const dpgContext = await createDpgContextTestHelper(context.program);
   const project = useContext("outputProject");
   const binder = useBinder();
   options["is-modular-library"] = true;
-  if (options) {
-    dpgContext.rlcOptions = transformRLCOptions(options, dpgContext);
-  }
+  dpgContext.rlcOptions = transformRLCOptions(options, dpgContext);
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
     "",
@@ -513,23 +527,32 @@ export async function emitModularClientContextFromTypeSpec(
   tspContent: string,
   options: ModelConfigOptions = {}
 ) {
+
   const context = await rlcEmitterFor(
     tspContent,
     {
       needNamespaces: true,
       needAzureCore: false,
       needTCGC: false,
-      withRawContent: options.withRawContent,
-      withVersionedApiVersion: options.withVersionedApiVersion
+      withRawContent: options.withRawContent ? true : false,
+      withVersionedApiVersion: options.withVersionedApiVersion ? true : false
     }
   );
+  if (options.typespecTitleMap !== undefined) {
+    reportDiagnostic(context.program, {
+      code: "use-kebab-case-option",
+      format: {
+        kababCaseOption: "typespec-title-map",
+        camalCaseOption: "typespecTitleMap"
+      },
+      target: NoTarget
+    });
+  }
   const dpgContext = await createDpgContextTestHelper(context.program);
   const project = useContext("outputProject");
   const binder = useBinder();
-  options["is-modular-library"] = true;
-  if (options) {
-    dpgContext.rlcOptions = transformRLCOptions(options, dpgContext);
-  }
+  dpgContext.rlcOptions!.isModularLibrary = true;
+  dpgContext.rlcOptions!.typespecTitleMap = options["typespec-title-map"];
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
     "",
@@ -570,8 +593,8 @@ export async function emitModularClientFromTypeSpec(
       needNamespaces: true,
       needAzureCore: false,
       needTCGC: false,
-      withRawContent: options.withRawContent,
-      withVersionedApiVersion: options.withVersionedApiVersion
+      withRawContent: options.withRawContent ? true : false,
+      withVersionedApiVersion: options.withVersionedApiVersion ? true : false
     }
   );
   const dpgContext = await createDpgContextTestHelper(context.program);
