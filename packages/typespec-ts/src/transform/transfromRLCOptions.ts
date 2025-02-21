@@ -379,7 +379,7 @@ function getGenerateSample(
   dpgContext: SdkContext,
   emitterOptions: EmitterOptions
 ) {
-  if (dpgContext.arm) {
+  if (dpgContext.arm && emitterOptions.generateSample === undefined) {
     return true;
   }
   if (
