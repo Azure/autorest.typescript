@@ -105,7 +105,7 @@ Raw json files.
 Generated samples.
 
 ```ts samples
-/** This file path is /samples-dev/opDSample.ts */
+/** This file path is /samples-dev/dOpDSample.ts */
 import { TestingClient } from "@azure/internal-test";
 
 /**
@@ -116,7 +116,7 @@ import { TestingClient } from "@azure/internal-test";
  */
 async function opD(): Promise<void> {
   const client = new TestingClient();
-  const result = await client.opD({ prop1: "body name" });
+  const result = await client.d.opD({ prop1: "body name" });
   console.log(result);
 }
 
@@ -147,7 +147,7 @@ Raw json files.
 Generated samples.
 
 ```ts samples
-/** This file path is /samples-dev/opBECSample.ts */
+/** This file path is /samples-dev/bECOpBECSample.ts */
 import { TestingClient } from "@azure/internal-test";
 
 /**
@@ -158,7 +158,7 @@ import { TestingClient } from "@azure/internal-test";
  */
 async function opBEC(): Promise<void> {
   const client = new TestingClient();
-  const result = await client.opBEC({ prop3: "body name" });
+  const result = await client.b.e.c.opBEC({ prop3: "body name" });
   console.log(result);
 }
 

@@ -672,9 +672,42 @@ export async function emitModularClientFromTypeSpec(
 export async function emitSamplesFromTypeSpec(
   tspContent: string,
   examples: ExampleJson[],
-  configs: Record<string, string> = {}
+  configs: Record<string, any> = {}
 ) {
   const context = await compileTypeSpecFor(tspContent, examples);
+  if (configs["hierarchyClient"] !== undefined) {
+    reportDiagnostic(context.program, {
+      code: "use-kebab-case-option",
+      format: {
+        kababCaseOption: "hierarchy-client",
+        camalCaseOption: "hierarchyClient"
+      },
+      target: NoTarget
+    });
+  }
+  if (configs["enableOperationGroup"] !== undefined) {
+    reportDiagnostic(context.program, {
+      code: "use-kebab-case-option",
+      format: {
+        kababCaseOption: "enable-operation-group",
+        camalCaseOption: "enableOperationGroup"
+      },
+      target: NoTarget
+    });
+  }
+  if (configs["typespecTitleMap"] !== undefined) {
+    reportDiagnostic(context.program, {
+      code: "use-kebab-case-option",
+      format: {
+        kababCaseOption: "typespec-title-map",
+        camalCaseOption: "typespecTitleMap"
+      },
+      target: NoTarget
+    });
+  }
+  configs["typespecTitleMap"] = configs["typespec-title-map"];
+  configs["hierarchyClient"] = configs["hierarchy-client"];
+  configs["enableOperationGroup"] = configs["enable-operation-group"];
   const dpgContext = await createDpgContextTestHelper(context.program, false, {
     "examples-directory": `./examples`,
     packageDetails: {

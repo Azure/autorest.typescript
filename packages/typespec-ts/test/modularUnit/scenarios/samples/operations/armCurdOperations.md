@@ -117,7 +117,7 @@ Raw json files.
 Generate samples for arm cases:
 
 ```ts samples
-/** This file path is /samples-dev/listSample.ts */
+/** This file path is /samples-dev/operationsListSample.ts */
 import { ContosoClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
 
@@ -132,7 +132,7 @@ async function operationsList(): Promise<void> {
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
   const client = new ContosoClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.list()) {
+  for await (let item of client.operations.list()) {
     resArray.push(item);
   }
 
@@ -178,7 +178,7 @@ Raw json files.
 Generate samples for arm cases:
 
 ```ts samples
-/** This file path is /samples-dev/createOrUpdateSample.ts */
+/** This file path is /samples-dev/employeesCreateOrUpdateSample.ts */
 import { ContosoClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
 
@@ -192,15 +192,19 @@ async function employeesCreateOrUpdate(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
   const client = new ContosoClient(credential, subscriptionId);
-  const result = await client.createOrUpdate("rgopenapi", "9KF-f-8b", {
-    properties: {
-      age: 30,
-      city: "gydhnntudughbmxlkyzrskcdkotrxn",
-      profile: "ms",
+  const result = await client.employees.createOrUpdate(
+    "rgopenapi",
+    "9KF-f-8b",
+    {
+      properties: {
+        age: 30,
+        city: "gydhnntudughbmxlkyzrskcdkotrxn",
+        profile: "ms",
+      },
+      tags: { key2913: "urperxmkkhhkp" },
+      location: "itajgxyqozseoygnl",
     },
-    tags: { key2913: "urperxmkkhhkp" },
-    location: "itajgxyqozseoygnl",
-  });
+  );
   console.log(result);
 }
 
@@ -232,7 +236,7 @@ Raw json files.
 Generate samples for arm cases:
 
 ```ts samples
-/** This file path is /samples-dev/deleteSample.ts */
+/** This file path is /samples-dev/employeesDeleteSample.ts */
 import { ContosoClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
 
@@ -246,7 +250,7 @@ async function employeesDelete(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
   const client = new ContosoClient(credential, subscriptionId);
-  await client.delete("rgopenapi", "5vX--BxSu3ux48rI4O9OQ569");
+  await client.employees.delete("rgopenapi", "5vX--BxSu3ux48rI4O9OQ569");
 }
 
 async function main(): Promise<void> {

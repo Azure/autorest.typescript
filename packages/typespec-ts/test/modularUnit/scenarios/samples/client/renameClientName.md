@@ -60,7 +60,7 @@ Generate samples for non-hierarchy cases:
 
 ```ts samples
 /** This file path is /samples-dev/readSample.ts */
-import { DemoServiceClient } from "@azure/internal-test";
+import { TestServiceClient } from "@azure/internal-test";
 
 /**
  * This sample demonstrates how to show example demo
@@ -69,7 +69,7 @@ import { DemoServiceClient } from "@azure/internal-test";
  * x-ms-original-file: 2021-10-01-preview/json_for_read.json
  */
 async function read(): Promise<void> {
-  const client = new DemoServiceClient();
+  const client = new TestServiceClient();
   const result = await client.read();
   console.log(result);
 }
