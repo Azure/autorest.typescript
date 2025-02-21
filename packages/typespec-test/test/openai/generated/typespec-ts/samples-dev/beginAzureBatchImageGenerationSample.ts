@@ -3,16 +3,14 @@
 
 import { AzureKeyCredential } from "@azure/core-auth";
 import createOpenAIClient, { getLongRunningPoller } from "@msinternal/openai";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation BeginAzureBatchImageGeneration
  *
  * @summary call operation BeginAzureBatchImageGeneration
  */
-async function beginAzureBatchImageGenerationSample() {
+async function beginAzureBatchImageGenerationSample(): Promise<void> {
   const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createOpenAIClient(endpointParam, credential);
@@ -32,8 +30,8 @@ async function beginAzureBatchImageGenerationSample() {
   console.log(result);
 }
 
-async function main() {
-  beginAzureBatchImageGenerationSample();
+async function main(): Promise<void> {
+  await beginAzureBatchImageGenerationSample();
 }
 
 main().catch(console.error);

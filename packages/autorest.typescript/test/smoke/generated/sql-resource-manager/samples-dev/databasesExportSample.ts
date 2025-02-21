@@ -13,9 +13,7 @@ import {
   SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Exports a database.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Exports a database.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ExportDatabaseWithNetworkIsolation.json
  */
-async function exportsADatabaseUsingPrivateLinkToCommunicateWithSqlServerAndStorageAccount() {
+async function exportsADatabaseUsingPrivateLinkToCommunicateWithSqlServerAndStorageAccount(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -62,7 +60,7 @@ async function exportsADatabaseUsingPrivateLinkToCommunicateWithSqlServerAndStor
  * @summary Exports a database.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ExportDatabase.json
  */
-async function exportsADatabase() {
+async function exportsADatabase(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -89,9 +87,9 @@ async function exportsADatabase() {
   console.log(result);
 }
 
-async function main() {
-  exportsADatabaseUsingPrivateLinkToCommunicateWithSqlServerAndStorageAccount();
-  exportsADatabase();
+async function main(): Promise<void> {
+  await exportsADatabaseUsingPrivateLinkToCommunicateWithSqlServerAndStorageAccount();
+  await exportsADatabase();
 }
 
 main().catch(console.error);

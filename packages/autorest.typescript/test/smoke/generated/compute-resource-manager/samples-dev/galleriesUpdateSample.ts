@@ -13,9 +13,7 @@ import {
   ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Update a Shared Image Gallery.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Update a Shared Image Gallery.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/UpdateASimpleGallery.json
  */
-async function updateASimpleGallery() {
+async function updateASimpleGallery(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -40,8 +38,8 @@ async function updateASimpleGallery() {
   console.log(result);
 }
 
-async function main() {
-  updateASimpleGallery();
+async function main(): Promise<void> {
+  await updateASimpleGallery();
 }
 
 main().catch(console.error);

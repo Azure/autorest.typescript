@@ -13,9 +13,7 @@ import {
   NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Lists active security admin rules in a network manager.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Lists active security admin rules in a network manager.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkManagerActiveSecurityAdminRulesList.json
  */
-async function listActiveSecurityAdminRules() {
+async function listActiveSecurityAdminRules(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
@@ -42,8 +40,8 @@ async function listActiveSecurityAdminRules() {
   console.log(result);
 }
 
-async function main() {
-  listActiveSecurityAdminRules();
+async function main(): Promise<void> {
+  await listActiveSecurityAdminRules();
 }
 
 main().catch(console.error);

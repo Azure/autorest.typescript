@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   DetectEntireSeriesParameters,
   DetectLastPointParameters,
   DetectChangePointParameters,
@@ -13,7 +13,7 @@ import {
   BatchDetectAnomalyParameters,
   LastDetectAnomalyParameters,
 } from "./parameters";
-import {
+import type {
   DetectEntireSeries200Response,
   DetectEntireSeriesDefaultResponse,
   DetectLastPoint200Response,
@@ -35,7 +35,7 @@ import {
   LastDetectAnomaly200Response,
   LastDetectAnomalyDefaultResponse,
 } from "./responses";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface DetectEntireSeries {
   /** This operation generates a model with an entire series, each point is detected with the same model. With this method, points before and after a certain point are used to determine whether it is an anomaly. The entire detection can give user an overall status of the time series. */

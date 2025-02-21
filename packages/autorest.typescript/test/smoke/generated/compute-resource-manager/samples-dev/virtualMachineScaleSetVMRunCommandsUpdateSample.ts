@@ -13,9 +13,7 @@ import {
   ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to The operation to update the VMSS VM run command.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary The operation to update the VMSS VM run command.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/runCommands/UpdateVirtualMachineScaleSetVMRunCommands.json
  */
-async function updateVirtualMachineScaleSetVMRunCommand() {
+async function updateVirtualMachineScaleSetVMRunCommand(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const vmScaleSetName = "myvmScaleSet";
@@ -45,8 +43,8 @@ async function updateVirtualMachineScaleSetVMRunCommand() {
   console.log(result);
 }
 
-async function main() {
-  updateVirtualMachineScaleSetVMRunCommand();
+async function main(): Promise<void> {
+  await updateVirtualMachineScaleSetVMRunCommand();
 }
 
 main().catch(console.error);

@@ -17,7 +17,7 @@ export interface ChatCompletionsOperations {
   ) => Promise<CreateChatCompletionResponse>;
 }
 
-export function getChatCompletions(context: OpenAIContext) {
+function _getChatCompletions(context: OpenAIContext) {
   return {
     create: (
       body: CreateChatCompletionRequest,
@@ -26,10 +26,10 @@ export function getChatCompletions(context: OpenAIContext) {
   };
 }
 
-export function getChatCompletionsOperations(
+export function _getChatCompletionsOperations(
   context: OpenAIContext,
 ): ChatCompletionsOperations {
   return {
-    ...getChatCompletions(context),
+    ..._getChatCompletions(context),
   };
 }

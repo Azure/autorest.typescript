@@ -3,9 +3,7 @@
 
 import createAzureAgriFoodPlatformDataPlaneServiceClient from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Get ImageProcessing Rasterize job's details.
@@ -13,7 +11,7 @@ dotenv.config();
  * @summary Get ImageProcessing Rasterize job's details.
  * x-ms-original-file: specification/agrifood/data-plane/Microsoft.AgFoodPlatform/preview/2021-03-31-preview/examples/ImageProcessing_GetRasterizeJob.json
  */
-async function imageProcessingGetRasterizeJob() {
+async function imageProcessingGetRasterizeJob(): Promise<void> {
   const endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
@@ -27,8 +25,8 @@ async function imageProcessingGetRasterizeJob() {
   console.log(result);
 }
 
-async function main() {
-  imageProcessingGetRasterizeJob();
+async function main(): Promise<void> {
+  await imageProcessingGetRasterizeJob();
 }
 
 main().catch(console.error);

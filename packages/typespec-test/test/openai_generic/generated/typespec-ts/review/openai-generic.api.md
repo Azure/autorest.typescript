@@ -19,8 +19,6 @@ export interface AudioOperations {
 
 // @public
 export interface AudioTranscriptionsCreateOptionalParams extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public
@@ -31,8 +29,6 @@ export interface AudioTranscriptionsOperations {
 
 // @public
 export interface AudioTranslationsCreateOptionalParams extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public
@@ -122,7 +118,7 @@ export interface CreateChatCompletionRequest {
     model: "gpt4" | "gpt-4-0314" | "gpt-4-0613" | "gpt-4-32k" | "gpt-4-32k-0314" | "gpt-4-32k-0613" | "gpt-3.5-turbo" | "gpt-3.5-turbo-16k" | "gpt-3.5-turbo-0301" | "gpt-3.5-turbo-0613" | "gpt-3.5-turbo-16k-0613";
     n?: number | null;
     presence_penalty?: number | null;
-    stop?: Stop | null;
+    stop?: Stop;
     stream?: boolean | null;
     temperature?: number | null;
     top_p?: number | null;
@@ -155,8 +151,8 @@ export interface CreateCompletionRequest {
     model: "babbage-002" | "davinci-002" | "text-davinci-003" | "text-davinci-002" | "text-davinci-001" | "code-davinci-002" | "text-curie-001" | "text-babbage-001" | "text-ada-001";
     n?: number | null;
     presence_penalty?: number | null;
-    prompt: Prompt | null;
-    stop?: Stop | null;
+    prompt: Prompt;
+    stop?: Stop;
     stream?: boolean | null;
     suffix?: string | null;
     temperature?: number | null;
@@ -229,7 +225,11 @@ export interface CreateEmbeddingResponse {
 
 // @public
 export interface CreateFileRequest {
-    file: Uint8Array;
+    file: FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    };
     purpose: string;
 }
 
@@ -262,8 +262,16 @@ export interface CreateFineTuningJobRequest {
 
 // @public
 export interface CreateImageEditRequest {
-    image: Uint8Array;
-    mask?: Uint8Array;
+    image: FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    };
+    mask?: FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    };
     n?: number | null;
     prompt: string;
     response_format?: ("url" | "b64_json") | null;
@@ -284,7 +292,11 @@ export interface CreateImageRequest {
 
 // @public
 export interface CreateImageVariationRequest {
-    image: Uint8Array;
+    image: FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    };
     n?: number | null;
     response_format?: ("url" | "b64_json") | null;
     size?: ("256x256" | "512x512" | "1024x1024") | null;
@@ -335,7 +347,11 @@ export interface CreateModerationResponse {
 
 // @public
 export interface CreateTranscriptionRequest {
-    file: Uint8Array;
+    file: FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    };
     language?: string;
     model: "whisper-1";
     prompt?: string;
@@ -351,7 +367,11 @@ export interface CreateTranscriptionResponse {
 
 // @public
 export interface CreateTranslationRequest {
-    file: Uint8Array;
+    file: FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    };
     model: "whisper-1";
     prompt?: string;
     response_format?: "json" | "text" | "srt" | "verbose_json" | "vtt";
@@ -430,9 +450,10 @@ export interface ErrorResponse {
 }
 
 // @public
+export type FileContents = string | NodeJS.ReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
+
+// @public
 export interface FilesCreateOptionalParams extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public
@@ -625,8 +646,6 @@ export interface Image {
 
 // @public
 export interface ImagesCreateEditOptionalParams extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public
@@ -635,8 +654,6 @@ export interface ImagesCreateOptionalParams extends OperationOptions {
 
 // @public
 export interface ImagesCreateVariationOptionalParams extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public
@@ -780,10 +797,16 @@ export interface OpenAIFile {
 }
 
 // @public
-export type Prompt = string | string[] | number[] | number[][];
+export type Prompt = Prompt_1 | null;
 
 // @public
-export type Stop = string | string[];
+export type Prompt_1 = string | string[] | number[] | number[][];
+
+// @public
+export type Stop = Stop_1 | null;
+
+// @public
+export type Stop_1 = string | string[];
 
 // (No @packageDocumentation comment for this package)
 

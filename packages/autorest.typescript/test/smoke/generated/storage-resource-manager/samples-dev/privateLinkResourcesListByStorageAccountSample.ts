@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets the private link resources that need to be created for a storage account.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets the private link resources that need to be created for a storage account.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountListPrivateLinkResources.json
  */
-async function storageAccountListPrivateLinkResources() {
+async function storageAccountListPrivateLinkResources(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res6977";
   const accountName = "sto2527";
@@ -33,8 +31,8 @@ async function storageAccountListPrivateLinkResources() {
   console.log(result);
 }
 
-async function main() {
-  storageAccountListPrivateLinkResources();
+async function main(): Promise<void> {
+  await storageAccountListPrivateLinkResources();
 }
 
 main().catch(console.error);

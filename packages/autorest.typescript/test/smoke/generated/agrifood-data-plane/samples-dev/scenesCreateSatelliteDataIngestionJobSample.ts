@@ -5,9 +5,7 @@ import createAzureAgriFoodPlatformDataPlaneServiceClient, {
   getLongRunningPoller,
 } from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Create a satellite data ingestion job.
@@ -15,7 +13,7 @@ dotenv.config();
  * @summary Create a satellite data ingestion job.
  * x-ms-original-file: specification/agrifood/data-plane/Microsoft.AgFoodPlatform/preview/2021-03-31-preview/examples/Scenes_CreateSatelliteDataIngestionJob.json
  */
-async function scenesCreateSatelliteDataIngestionJob() {
+async function scenesCreateSatelliteDataIngestionJob(): Promise<void> {
   const endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
@@ -31,8 +29,8 @@ async function scenesCreateSatelliteDataIngestionJob() {
   console.log(result);
 }
 
-async function main() {
-  scenesCreateSatelliteDataIngestionJob();
+async function main(): Promise<void> {
+  await scenesCreateSatelliteDataIngestionJob();
 }
 
 main().catch(console.error);

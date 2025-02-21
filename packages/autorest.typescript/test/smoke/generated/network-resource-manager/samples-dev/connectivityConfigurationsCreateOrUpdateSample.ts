@@ -13,9 +13,7 @@ import {
   NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Creates/Updates a new network manager connectivity configuration
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Creates/Updates a new network manager connectivity configuration
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkManagerConnectivityConfigurationPut.json
  */
-async function connectivityConfigurationsPut() {
+async function connectivityConfigurationsPut(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
@@ -62,8 +60,8 @@ async function connectivityConfigurationsPut() {
   console.log(result);
 }
 
-async function main() {
-  connectivityConfigurationsPut();
+async function main(): Promise<void> {
+  await connectivityConfigurationsPut();
 }
 
 main().catch(console.error);

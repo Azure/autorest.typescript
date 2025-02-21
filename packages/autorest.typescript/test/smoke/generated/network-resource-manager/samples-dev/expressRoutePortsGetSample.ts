@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Retrieves the requested ExpressRoutePort resource.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Retrieves the requested ExpressRoutePort resource.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRoutePortGet.json
  */
-async function expressRoutePortGet() {
+async function expressRoutePortGet(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const expressRoutePortName = "portName";
@@ -33,8 +31,8 @@ async function expressRoutePortGet() {
   console.log(result);
 }
 
-async function main() {
-  expressRoutePortGet();
+async function main(): Promise<void> {
+  await expressRoutePortGet();
 }
 
 main().catch(console.error);

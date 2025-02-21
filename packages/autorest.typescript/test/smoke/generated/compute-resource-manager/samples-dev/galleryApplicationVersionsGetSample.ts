@@ -13,9 +13,7 @@ import {
   ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Retrieves information about a gallery Application Version.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Retrieves information about a gallery Application Version.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/GetAGalleryApplicationVersionWithReplicationStatus.json
  */
-async function getAGalleryApplicationVersionWithReplicationStatus() {
+async function getAGalleryApplicationVersionWithReplicationStatus(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -49,7 +47,7 @@ async function getAGalleryApplicationVersionWithReplicationStatus() {
  * @summary Retrieves information about a gallery Application Version.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/GetAGalleryApplicationVersion.json
  */
-async function getAGalleryApplicationVersion() {
+async function getAGalleryApplicationVersion(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -66,9 +64,9 @@ async function getAGalleryApplicationVersion() {
   console.log(result);
 }
 
-async function main() {
-  getAGalleryApplicationVersionWithReplicationStatus();
-  getAGalleryApplicationVersion();
+async function main(): Promise<void> {
+  await getAGalleryApplicationVersionWithReplicationStatus();
+  await getAGalleryApplicationVersion();
 }
 
 main().catch(console.error);

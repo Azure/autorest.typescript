@@ -5,10 +5,10 @@ options:
     "emitter-output-dir": "{project-root}"
     generateTest: false
     addCredentials: false
-    azureSdkForJs: false
+    isModularLibrary: false
     isTypeSpecTest: true
     generateSample: true
     title: VersioningRenamedFromClient
     packageDetails:
-      name: "@msinternal/versioning-renamedFrom"
+      name: "@unbranded/versioning-renamedFrom"
       description: "Versioning RenamedFrom Service"

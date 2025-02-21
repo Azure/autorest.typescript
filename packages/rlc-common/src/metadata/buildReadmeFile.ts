@@ -68,17 +68,14 @@ After setup, you can choose which type of [credential](https://github.com/Azure/
 As an example, [DefaultAzureCredential](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#defaultazurecredential)
 can be used to authenticate the client.
 
-Set the values of the client ID, tenant ID, and client secret of the AAD application as environment variables:
-AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET
-
 ## Troubleshooting
 
 ### Logging
 
 Enabling logging may help uncover useful information about failures. In order to see a log of HTTP requests and responses, set the \`AZURE_LOG_LEVEL\` environment variable to \`info\`. Alternatively, logging can be enabled at runtime by calling \`setLogLevel\` in the \`@azure/logger\`:
 
-\`\`\`javascript
-const { setLogLevel } = require("@azure/logger");
+\`\`\`ts {{#if azureSdkForJs}}{{#if generateTest}}snippet:SetLogLevel{{/if}}{{/if}}
+import { setLogLevel } from "@azure/logger";
 
 setLogLevel("info");
 \`\`\`
@@ -148,39 +145,53 @@ npm install @azure/identity
 \`\`\`
 
 You will also need to **register a new AAD application and grant access to {{ serviceName}}** by assigning the suitable role to your service principal (note: roles such as \`"Owner"\` will not grant the necessary permissions).
-Set the values of the client ID, tenant ID, and client secret of the AAD application as environment variables: \`AZURE_CLIENT_ID\`, \`AZURE_TENANT_ID\`, \`AZURE_CLIENT_SECRET\`.
 
-For more information about how to create an Azure AD Application check out [this guide](https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal).
+For more information about how to create an Azure AD Application check out [this guide](https://learn.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal).
 
 {{#if azureArm}}
-\`\`\`javascript
-const { {{ clientClassName }} } = require("{{ clientPackageName }}");
-const { DefaultAzureCredential } = require("@azure/identity");
-// For client-side applications running in the browser, use InteractiveBrowserCredential instead of DefaultAzureCredential. See https://aka.ms/azsdk/js/identity/examples for more details.
+Using Node.js and Node-like environments, you can use the \`DefaultAzureCredential\` class to authenticate the client.
+
+\`\`\`ts {{#if azureSdkForJs}}{{#if generateTest}}snippet:ReadmeSampleCreateClient_Node{{/if}}{{/if}}
+import { {{ clientClassName }} } from "{{ clientPackageName }}";
+import { DefaultAzureCredential } from "@azure/identity";
 
 const subscriptionId = "00000000-0000-0000-0000-000000000000";
 const client = new {{ clientClassName }}(new DefaultAzureCredential(), subscriptionId);
+\`\`\`
 
-// For client-side applications running in the browser, use this code instead:
-// const credential = new InteractiveBrowserCredential({
-//   tenantId: "<YOUR_TENANT_ID>",
-//   clientId: "<YOUR_CLIENT_ID>"
-// });
-// const client = new {{ clientClassName }}(credential, subscriptionId);
+For browser environments, use the \`InteractiveBrowserCredential\` from the \`@azure/identity\` package to authenticate.
+
+\`\`\`ts {{#if azureSdkForJs}}{{#if generateTest}}snippet:ReadmeSampleCreateClient_Browser{{/if}}{{/if}}
+import { InteractiveBrowserCredential } from "@azure/identity";
+import { {{ clientClassName }} } from "{{ clientPackageName }}";
+
+const credential = new InteractiveBrowserCredential({
+  tenantId: "<YOUR_TENANT_ID>",
+  clientId: "<YOUR_CLIENT_ID>"
+ });
+const client = new {{ clientClassName }}(credential, subscriptionId);
 \`\`\`
 {{else}}
-\`\`\`javascript
-const { {{ clientClassName }} } = require("{{ clientPackageName }}");
-const { DefaultAzureCredential } = require("@azure/identity");
-// For client-side applications running in the browser, use InteractiveBrowserCredential instead of DefaultAzureCredential. See https://aka.ms/azsdk/js/identity/examples for more details.
+Using Node.js and Node-like environments, you can use the \`DefaultAzureCredential\` class to authenticate the client.
+
+\`\`\`ts {{#if azureSdkForJs}}{{#if generateTest}}snippet:ReadmeSampleCreateClient_Node{{/if}}{{/if}}
+import { {{ clientClassName }} } from "{{ clientPackageName }}";
+import { DefaultAzureCredential } from "@azure/identity";
 
 const client = new {{ clientClassName }}("<endpoint>", new DefaultAzureCredential());
-// For client-side applications running in the browser, use this code instead:
-// const credential = new InteractiveBrowserCredential({
-//   tenantId: "<YOUR_TENANT_ID>",
-//   clientId: "<YOUR_CLIENT_ID>"
-// });
-// const client = new {{ clientClassName }}("<endpoint>", credential);
+\`\`\`
+
+For browser environments, use the \`InteractiveBrowserCredential\` from the \`@azure/identity\` package to authenticate.
+
+\`\`\`ts {{#if azureSdkForJs}}{{#if generateTest}}snippet:ReadmeSampleCreateClient_Browser{{/if}}{{/if}}
+import { InteractiveBrowserCredential } from "@azure/identity";
+import { {{ clientClassName }} } from "{{ clientPackageName }}";
+
+const credential = new InteractiveBrowserCredential({
+  tenantId: "<YOUR_TENANT_ID>",
+  clientId: "<YOUR_CLIENT_ID>"
+ });
+const client = new {{ clientClassName }}("<endpoint>", credential);
 \`\`\`
 {{/if}}
 {{/if}}{{/if}}
@@ -201,8 +212,9 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 Enabling logging may help uncover useful information about failures. In order to see a log of HTTP requests and responses, set the \`AZURE_LOG_LEVEL\` environment variable to \`info\`. Alternatively, logging can be enabled at runtime by calling \`setLogLevel\` in the \`@azure/logger\`:
 
-\`\`\`javascript
-const { setLogLevel } = require("@azure/logger");
+\`\`\`ts {{#if azureSdkForJs}}{{#if generateTest}}snippet:SetLogLevel{{/if}}{{/if}}
+import { setLogLevel } from "@azure/logger";
+
 setLogLevel("info");
 \`\`\`
 
@@ -311,6 +323,10 @@ interface Metadata {
   isReleasablePackage?: boolean;
   /** The link to the contributing guide in the repository */
   contributingGuideURL?: string;
+  /** Indicates if the package is generated to azure-sdk-for-js repo */
+  azureSdkForJs?: boolean;
+  /** Indicates if the package need generate test files */
+  generateTest?: boolean;
 }
 
 export function buildReadmeFile(model: RLCModel) {
@@ -385,7 +401,7 @@ function createMetadata(model: RLCModel): Metadata | undefined {
         ? `${packageSourceURL}/samples`
         : undefined,
     apiRefURL: azureHuh
-      ? `https://docs.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlQueryParameter}`
+      ? `https://learn.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlQueryParameter}`
       : undefined,
     dependencyDescription: dependencyInfo?.description,
     dependencyLink: dependencyInfo?.link,
@@ -397,7 +413,9 @@ function createMetadata(model: RLCModel): Metadata | undefined {
     projectName: azureHuh ? "Microsoft Azure SDK for JavaScript" : undefined,
     identityPackageURL: repoURL && `${repoURL}/tree/main/sdk/identity/identity`,
     addCredentials: model.options.addCredentials,
-    contributingGuideURL: repoURL && `${repoURL}/blob/main/CONTRIBUTING.md`
+    contributingGuideURL: repoURL && `${repoURL}/blob/main/CONTRIBUTING.md`,
+    azureSdkForJs: model.options.azureSdkForJs,
+    generateTest: model.options.generateTest
   };
 }
 

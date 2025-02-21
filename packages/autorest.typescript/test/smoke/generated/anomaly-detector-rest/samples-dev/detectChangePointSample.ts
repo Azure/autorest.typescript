@@ -3,9 +3,7 @@
 
 import createAnomalyDetectorRestClient from "@msinternal/anomaly-detector-rest";
 import { AzureKeyCredential } from "@azure/core-auth";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Evaluate change point score of every series point
@@ -13,7 +11,7 @@ dotenv.config();
  * @summary Evaluate change point score of every series point
  * x-ms-original-file: specification/cognitiveservices/data-plane/AnomalyDetector/stable/v1.1/examples/ChangePointDetect.json
  */
-async function detectChangePointExample() {
+async function detectChangePointExample(): Promise<void> {
   const endpoint = "{Endpoint}";
   const apiVersion = "v1.1";
   const credential = new AzureKeyCredential("{Your API key}");
@@ -294,8 +292,8 @@ async function detectChangePointExample() {
   console.log(result);
 }
 
-async function main() {
-  detectChangePointExample();
+async function main(): Promise<void> {
+  await detectChangePointExample();
 }
 
 main().catch(console.error);

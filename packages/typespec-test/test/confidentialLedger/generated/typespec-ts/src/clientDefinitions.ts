@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   ListCollectionsParameters,
   GetEnclaveQuotesParameters,
   GetConstitutionParameters,
@@ -16,7 +16,7 @@ import {
   GetUserParameters,
   CreateOrUpdateUserParameters,
 } from "./parameters.js";
-import {
+import type {
   ListCollections200Response,
   ListCollectionsDefaultResponse,
   GetEnclaveQuotes200Response,
@@ -45,7 +45,7 @@ import {
   CreateOrUpdateUser201Response,
   CreateOrUpdateUserDefaultResponse,
 } from "./responses.js";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface ListCollections {
   /** Collection ids are user-created collections of ledger entries */

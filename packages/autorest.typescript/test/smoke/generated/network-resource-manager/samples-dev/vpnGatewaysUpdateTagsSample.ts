@@ -13,9 +13,7 @@ import {
   NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Updates virtual wan vpn gateway tags.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Updates virtual wan vpn gateway tags.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VpnGatewayUpdateTags.json
  */
-async function vpnGatewayUpdate() {
+async function vpnGatewayUpdate(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const gatewayName = "gateway1";
@@ -40,8 +38,8 @@ async function vpnGatewayUpdate() {
   console.log(result);
 }
 
-async function main() {
-  vpnGatewayUpdate();
+async function main(): Promise<void> {
+  await vpnGatewayUpdate();
 }
 
 main().catch(console.error);

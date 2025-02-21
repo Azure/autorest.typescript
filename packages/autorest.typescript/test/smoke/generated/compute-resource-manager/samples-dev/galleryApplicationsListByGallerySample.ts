@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to List gallery Application Definitions in a gallery.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary List gallery Application Definitions in a gallery.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/gallery/ListGalleryApplicationsInAGallery.json
  */
-async function listGalleryApplicationsInAGallery() {
+async function listGalleryApplicationsInAGallery(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
@@ -36,8 +34,8 @@ async function listGalleryApplicationsInAGallery() {
   console.log(resArray);
 }
 
-async function main() {
-  listGalleryApplicationsInAGallery();
+async function main(): Promise<void> {
+  await listGalleryApplicationsInAGallery();
 }
 
 main().catch(console.error);

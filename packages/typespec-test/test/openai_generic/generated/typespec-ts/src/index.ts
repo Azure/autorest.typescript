@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { FileContents } from "./static-helpers/multipartHelpers.js";
+
 export { OpenAIClient } from "./openAIClient.js";
 export {
   CreateModerationRequest,
@@ -32,7 +34,9 @@ export {
   CompletionUsage,
   CreateCompletionRequest,
   Prompt,
+  Prompt_1,
   Stop,
+  Stop_1,
   CreateCompletionResponse,
   CreateFineTuningJobRequest,
   FineTuningJob,
@@ -53,34 +57,34 @@ export {
 } from "./models/index.js";
 export {
   OpenAIClientOptionalParams,
-  AudioTranscriptionsCreateOptionalParams,
-  AudioTranslationsCreateOptionalParams,
-  ChatCompletionsCreateOptionalParams,
-  FineTuningJobsCreateOptionalParams,
-  FineTuningJobsListOptionalParams,
-  FineTuningJobsRetrieveOptionalParams,
-  FineTuningJobsListEventsOptionalParams,
-  FineTuningJobsCancelOptionalParams,
-  CompletionsCreateOptionalParams,
-  EditsCreateOptionalParams,
-  EmbeddingsCreateOptionalParams,
-  FilesListOptionalParams,
-  FilesCreateOptionalParams,
-  FilesRetrieveOptionalParams,
-  FilesDeleteOptionalParams,
-  FilesDownloadOptionalParams,
-  FineTunesCreateOptionalParams,
-  FineTunesListOptionalParams,
-  FineTunesRetrieveOptionalParams,
-  FineTunesListEventsOptionalParams,
-  FineTunesCancelOptionalParams,
-  ModelsListOptionalParams,
-  ModelsRetrieveOptionalParams,
-  ModelsDeleteOptionalParams,
-  ImagesCreateOptionalParams,
-  ImagesCreateEditOptionalParams,
-  ImagesCreateVariationOptionalParams,
   ModerationsCreateOptionalParams,
+  ImagesCreateVariationOptionalParams,
+  ImagesCreateEditOptionalParams,
+  ImagesCreateOptionalParams,
+  ModelsDeleteOptionalParams,
+  ModelsRetrieveOptionalParams,
+  ModelsListOptionalParams,
+  FineTunesCancelOptionalParams,
+  FineTunesListEventsOptionalParams,
+  FineTunesRetrieveOptionalParams,
+  FineTunesListOptionalParams,
+  FineTunesCreateOptionalParams,
+  FilesDownloadOptionalParams,
+  FilesDeleteOptionalParams,
+  FilesRetrieveOptionalParams,
+  FilesCreateOptionalParams,
+  FilesListOptionalParams,
+  EmbeddingsCreateOptionalParams,
+  EditsCreateOptionalParams,
+  CompletionsCreateOptionalParams,
+  FineTuningJobsCancelOptionalParams,
+  FineTuningJobsListEventsOptionalParams,
+  FineTuningJobsRetrieveOptionalParams,
+  FineTuningJobsListOptionalParams,
+  FineTuningJobsCreateOptionalParams,
+  ChatCompletionsCreateOptionalParams,
+  AudioTranslationsCreateOptionalParams,
+  AudioTranscriptionsCreateOptionalParams,
 } from "./api/index.js";
 export {
   AudioOperations,
@@ -99,3 +103,4 @@ export {
   ChatCompletionsOperations,
   FineTuningJobsOperations,
 } from "./classic/index.js";
+export { FileContents };

@@ -6,6 +6,7 @@ import {
   CompletionsCreateOptionalParams,
 } from "../index.js";
 import {
+  errorResponseDeserializer,
   CreateCompletionRequest,
   createCompletionRequestSerializer,
   CreateCompletionResponse,
@@ -27,6 +28,11 @@ export function _createSend(
     .path("/completions")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: createCompletionRequestSerializer(body),
     });
 }
@@ -36,7 +42,9 @@ export async function _createDeserialize(
 ): Promise<CreateCompletionResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
   }
 
   return createCompletionResponseDeserializer(result.body);

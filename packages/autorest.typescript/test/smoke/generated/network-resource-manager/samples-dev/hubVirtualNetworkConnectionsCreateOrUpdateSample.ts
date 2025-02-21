@@ -13,9 +13,7 @@ import {
   NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Creates a hub virtual network connection if it doesn't exist else updates the existing one.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Creates a hub virtual network connection if it doesn't exist else updates the existing one.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/HubVirtualNetworkConnectionPut.json
  */
-async function hubVirtualNetworkConnectionPut() {
+async function hubVirtualNetworkConnectionPut(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualHubName = "virtualHub1";
@@ -80,8 +78,8 @@ async function hubVirtualNetworkConnectionPut() {
   console.log(result);
 }
 
-async function main() {
-  hubVirtualNetworkConnectionPut();
+async function main(): Promise<void> {
+  await hubVirtualNetworkConnectionPut();
 }
 
 main().catch(console.error);

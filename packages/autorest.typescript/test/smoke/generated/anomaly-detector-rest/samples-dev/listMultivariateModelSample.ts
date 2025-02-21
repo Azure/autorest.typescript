@@ -5,9 +5,7 @@ import createAnomalyDetectorRestClient, {
   paginate,
 } from "@msinternal/anomaly-detector-rest";
 import { AzureKeyCredential } from "@azure/core-auth";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to List models of a resource.
@@ -15,7 +13,7 @@ dotenv.config();
  * @summary List models of a resource.
  * x-ms-original-file: specification/cognitiveservices/data-plane/AnomalyDetector/stable/v1.1/examples/ListModel.json
  */
-async function listMultivariateModel() {
+async function listMultivariateModel(): Promise<void> {
   const endpoint = "{Endpoint}";
   const apiVersion = "v1.1";
   const credential = new AzureKeyCredential("{Your API key}");
@@ -35,8 +33,8 @@ async function listMultivariateModel() {
   console.log(result);
 }
 
-async function main() {
-  listMultivariateModel();
+async function main(): Promise<void> {
+  await listMultivariateModel();
 }
 
 main().catch(console.error);

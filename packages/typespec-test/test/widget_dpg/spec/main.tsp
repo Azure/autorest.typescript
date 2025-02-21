@@ -78,7 +78,7 @@ model ListWidgetsPagesResults {
     @items
     results: Widget[];
     @doc("The URL to get the next set of results.")
-    @Azure.Core.nextLink
+    @TypeSpec.nextLink
     `odata.nextLink`?: string;
 }
 
@@ -177,4 +177,8 @@ interface Budgets {
     // the same name as Widgets.createOrReplace
     @route("/widgets/createOrReplace")
     op createOrReplace is ResourceOperations.LongRunningResourceCreateOrReplace<User>;
+
+    @get getBudgets(
+        @query name: string
+    ): Widget[] | WidgetError;
 }

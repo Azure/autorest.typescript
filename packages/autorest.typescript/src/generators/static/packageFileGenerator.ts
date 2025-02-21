@@ -105,10 +105,9 @@ function regularAutorestPackage(
     module: `./dist-esm/index.js`,
     types: `./types/${packageDetails.nameWithoutScope}.d.ts`,
     devDependencies: {
-      "@microsoft/api-extractor": "^7.31.1",
+      "@microsoft/api-extractor": "^7.40.3",
       mkdirp: "^3.0.1",
       typescript: "~5.6.2",
-      "uglify-js": "^3.4.9",
       rimraf: "^5.0.0",
       dotenv: "^16.0.0"
     },
@@ -180,13 +179,14 @@ function regularAutorestPackage(
 
   if (azureSdkForJs) {
     packageInfo.devDependencies["@azure/dev-tool"] = "^1.0.0";
+    delete packageInfo.devDependencies["@microsoft/api-extractor"];
     delete packageInfo.devDependencies["rimraf"];
     delete packageInfo.devDependencies["mkdirp"];
     packageInfo.scripts["build"] =
       "npm run clean && tsc && dev-tool run bundle && npm run minify && dev-tool run vendored mkdirp ./review && npm run extract-api";
     packageInfo.scripts["clean"] = "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log";
     packageInfo.scripts["extract-api"] = "dev-tool run extract-api";
-    packageInfo.scripts["update-snippets"] = "echo skipped";
+    packageInfo.scripts["update-snippets"] = "dev-tool run update-snippets";
     packageInfo.scripts["minify"] = `dev-tool run vendored uglifyjs -c -m --comments --source-map "content='./dist/index.js.map'" -o ./dist/index.min.js ./dist/index.js`;
   } else {
     packageInfo.devDependencies["@rollup/plugin-commonjs"] = "^24.0.0";
@@ -195,14 +195,16 @@ function regularAutorestPackage(
     packageInfo.devDependencies["@rollup/plugin-node-resolve"] = "^13.1.3";
     packageInfo.devDependencies["rollup"] = "^2.66.1";
     packageInfo.devDependencies["rollup-plugin-sourcemaps"] = "^0.6.3";
+    packageInfo.devDependencies["uglify-js"] = "^3.4.9";
   }
 
   if (generateTest) {
     packageInfo.module = `./dist-esm/src/index.js`;
     packageInfo.devDependencies["@azure/identity"] = "^4.2.1";
+    packageInfo.devDependencies["@azure/logger"] = "^1.1.4";
     packageInfo.devDependencies["@azure-tools/test-recorder"] = "^3.0.0";
     packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.1.0";
-    packageInfo.devDependencies["mocha"] = "^10.0.0";
+    packageInfo.devDependencies["mocha"] = "^11.0.2";
     packageInfo.devDependencies["@types/mocha"] = "^10.0.0";
     packageInfo.devDependencies["tsx"] = "^4.7.1";
     packageInfo.devDependencies["@types/chai"] = "^4.2.8";
@@ -237,7 +239,7 @@ function regularAutorestPackage(
       productName: description,
       productSlugs: ["azure"],
       disableDocsMs: true,
-      apiRefLink: `https://docs.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlQueryParameter}`
+      apiRefLink: `https://learn.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlQueryParameter}`
     };
   }
   return packageInfo;

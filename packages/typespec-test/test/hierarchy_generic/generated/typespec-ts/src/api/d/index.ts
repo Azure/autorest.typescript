@@ -19,6 +19,7 @@ export function _dOp1Send(
     .path("/d")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
       body: aSerializer(body),
     });
 }

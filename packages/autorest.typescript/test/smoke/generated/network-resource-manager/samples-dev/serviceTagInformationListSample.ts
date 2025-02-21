@@ -13,9 +13,7 @@ import {
   NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets a list of service tag information resources with pagination.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Gets a list of service tag information resources with pagination.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ServiceTagInformationListResult.json
  */
-async function getListOfServiceTags() {
+async function getListOfServiceTags(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const location = "westeurope";
   const credential = new DefaultAzureCredential();
@@ -43,7 +41,7 @@ async function getListOfServiceTags() {
  * @summary Gets a list of service tag information resources with pagination.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ServiceTagInformationListResultWithNoAddressPrefixes.json
  */
-async function getListOfServiceTagsWithNoAddressPrefixes() {
+async function getListOfServiceTagsWithNoAddressPrefixes(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const location = "westeurope";
   const noAddressPrefixes = true;
@@ -68,7 +66,7 @@ async function getListOfServiceTagsWithNoAddressPrefixes() {
  * @summary Gets a list of service tag information resources with pagination.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ServiceTagInformationListResultWithTagname.json
  */
-async function getListOfServiceTagsWithTagName() {
+async function getListOfServiceTagsWithTagName(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const location = "westeurope";
   const tagName = "ApiManagement";
@@ -85,10 +83,10 @@ async function getListOfServiceTagsWithTagName() {
   console.log(resArray);
 }
 
-async function main() {
-  getListOfServiceTags();
-  getListOfServiceTagsWithNoAddressPrefixes();
-  getListOfServiceTagsWithTagName();
+async function main(): Promise<void> {
+  await getListOfServiceTags();
+  await getListOfServiceTagsWithNoAddressPrefixes();
+  await getListOfServiceTagsWithTagName();
 }
 
 main().catch(console.error);

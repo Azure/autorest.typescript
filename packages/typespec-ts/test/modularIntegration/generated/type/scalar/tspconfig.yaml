@@ -6,11 +6,9 @@ options:
     generateMetadata: true
     generateTest: false
     addCredentials: false
-    azureSdkForJs: false
     isTypeSpecTest: true
     title: ScalarClient
-    isModularLibrary: true
     hierarchyClient: false
     packageDetails:
-      name: "@msinternal/scalar"
+      name: "@unbranded/scalar"
       description: "Scalar client"

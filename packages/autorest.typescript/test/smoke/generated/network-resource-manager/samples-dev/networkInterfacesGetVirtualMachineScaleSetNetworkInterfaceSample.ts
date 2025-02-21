@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Get the specified network interface in a virtual machine scale set.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Get the specified network interface in a virtual machine scale set.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VmssNetworkInterfaceGet.json
  */
-async function getVirtualMachineScaleSetNetworkInterface() {
+async function getVirtualMachineScaleSetNetworkInterface(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualMachineScaleSetName = "vmss1";
@@ -38,8 +36,8 @@ async function getVirtualMachineScaleSetNetworkInterface() {
   console.log(result);
 }
 
-async function main() {
-  getVirtualMachineScaleSetNetworkInterface();
+async function main(): Promise<void> {
+  await getVirtualMachineScaleSetNetworkInterface();
 }
 
 main().catch(console.error);

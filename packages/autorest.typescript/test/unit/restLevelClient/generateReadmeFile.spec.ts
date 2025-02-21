@@ -38,7 +38,7 @@ describe("generateReadmeFile", () => {
       productDocLink: "https://azure.microsoft.com/en-us/services/purview/",
       dependencyInfo: {
         link:
-          "https://docs.microsoft.com/en-us/azure/purview/create-catalog-portal#add-a-security-principal-to-a-data-plane-role",
+          "https://learn.microsoft.com/en-us/azure/purview/create-catalog-portal#add-a-security-principal-to-a-data-plane-role",
         description: "enable AAD authentication on your Purview resource"
       }
     } as autorestSession.AutorestOptions;

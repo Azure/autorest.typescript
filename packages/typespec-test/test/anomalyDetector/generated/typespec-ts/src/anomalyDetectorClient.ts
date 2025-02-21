@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 
 import {
-  getUnivariateOperations,
-  UnivariateOperations,
-} from "./classic/univariate/index.js";
-import {
-  getMultivariateOperations,
+  _getMultivariateOperations,
   MultivariateOperations,
 } from "./classic/multivariate/index.js";
+import {
+  _getUnivariateOperations,
+  UnivariateOperations,
+} from "./classic/univariate/index.js";
 import {
   createAnomalyDetector,
   AnomalyDetectorContext,
@@ -56,12 +56,12 @@ export class AnomalyDetectorClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this.univariate = getUnivariateOperations(this._client);
-    this.multivariate = getMultivariateOperations(this._client);
+    this.multivariate = _getMultivariateOperations(this._client);
+    this.univariate = _getUnivariateOperations(this._client);
   }
 
-  /** The operation groups for Univariate */
-  public readonly univariate: UnivariateOperations;
-  /** The operation groups for Multivariate */
+  /** The operation groups for multivariate */
   public readonly multivariate: MultivariateOperations;
+  /** The operation groups for univariate */
+  public readonly univariate: UnivariateOperations;
 }

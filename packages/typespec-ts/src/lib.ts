@@ -93,7 +93,15 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
     experimentalExtensibleEnums: { type: "boolean", nullable: true },
     clearOutputFolder: { type: "boolean", nullable: true },
     ignorePropertyNameNormalize: { type: "boolean", nullable: true },
-    compatibilityQueryMultiFormat: { type: "boolean", nullable: true }
+    compatibilityQueryMultiFormat: { type: "boolean", nullable: true },
+    typespecTitleMap: {
+      type: "object",
+      additionalProperties: {
+        type: "string"
+      },
+      required: [],
+      nullable: true
+    }
   },
   required: []
 };
@@ -116,7 +124,7 @@ const libDef = {
       }
     },
     "no-service-defined": {
-      severity: "error",
+      severity: "warning",
       messages: {
         default:
           "No service defined and must have one and only one service defined."

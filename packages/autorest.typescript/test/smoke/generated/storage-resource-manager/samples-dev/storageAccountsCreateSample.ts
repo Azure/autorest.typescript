@@ -13,9 +13,7 @@ import {
   StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Asynchronously creates a new storage account with the specified parameters. If an account is already created and a subsequent create request is issued with different properties, the account properties will be updated. If an account is already created and a subsequent create or update request is issued with the exact same set of properties, the request will succeed.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Asynchronously creates a new storage account with the specified parameters. If an account is already created and a subsequent create request is issued with different properties, the account properties will be updated. If an account is already created and a subsequent create or update request is issued with the exact same set of properties, the request will succeed.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/NfsV3AccountCreate.json
  */
-async function nfsV3AccountCreate() {
+async function nfsV3AccountCreate(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res9101";
   const accountName = "sto4445";
@@ -62,7 +60,7 @@ async function nfsV3AccountCreate() {
  * @summary Asynchronously creates a new storage account with the specified parameters. If an account is already created and a subsequent create request is issued with different properties, the account properties will be updated. If an account is already created and a subsequent create or update request is issued with the exact same set of properties, the request will succeed.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountCreate.json
  */
-async function storageAccountCreate() {
+async function storageAccountCreate(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res9101";
   const accountName = "sto4445";
@@ -109,7 +107,7 @@ async function storageAccountCreate() {
  * @summary Asynchronously creates a new storage account with the specified parameters. If an account is already created and a subsequent create request is issued with different properties, the account properties will be updated. If an account is already created and a subsequent create or update request is issued with the exact same set of properties, the request will succeed.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountCreateDisallowPublicNetworkAccess.json
  */
-async function storageAccountCreateDisallowPublicNetworkAccess() {
+async function storageAccountCreateDisallowPublicNetworkAccess(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res9101";
   const accountName = "sto4445";
@@ -156,7 +154,7 @@ async function storageAccountCreateDisallowPublicNetworkAccess() {
  * @summary Asynchronously creates a new storage account with the specified parameters. If an account is already created and a subsequent create request is issued with different properties, the account properties will be updated. If an account is already created and a subsequent create or update request is issued with the exact same set of properties, the request will succeed.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountCreateEnablePublicNetworkAccess.json
  */
-async function storageAccountCreateEnablePublicNetworkAccess() {
+async function storageAccountCreateEnablePublicNetworkAccess(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res9101";
   const accountName = "sto4445";
@@ -203,7 +201,7 @@ async function storageAccountCreateEnablePublicNetworkAccess() {
  * @summary Asynchronously creates a new storage account with the specified parameters. If an account is already created and a subsequent create request is issued with different properties, the account properties will be updated. If an account is already created and a subsequent create or update request is issued with the exact same set of properties, the request will succeed.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountCreateUserAssignedEncryptionIdentityWithCMK.json
  */
-async function storageAccountCreateUserAssignedEncryptionIdentityWithCmk() {
+async function storageAccountCreateUserAssignedEncryptionIdentityWithCmk(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res9101";
   const accountName = "sto4445";
@@ -251,7 +249,7 @@ async function storageAccountCreateUserAssignedEncryptionIdentityWithCmk() {
  * @summary Asynchronously creates a new storage account with the specified parameters. If an account is already created and a subsequent create request is issued with different properties, the account properties will be updated. If an account is already created and a subsequent create or update request is issued with the exact same set of properties, the request will succeed.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountCreateWithImmutabilityPolicy.json
  */
-async function storageAccountCreateWithImmutabilityPolicy() {
+async function storageAccountCreateWithImmutabilityPolicy(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res9101";
   const accountName = "sto4445";
@@ -279,13 +277,13 @@ async function storageAccountCreateWithImmutabilityPolicy() {
   console.log(result);
 }
 
-async function main() {
-  nfsV3AccountCreate();
-  storageAccountCreate();
-  storageAccountCreateDisallowPublicNetworkAccess();
-  storageAccountCreateEnablePublicNetworkAccess();
-  storageAccountCreateUserAssignedEncryptionIdentityWithCmk();
-  storageAccountCreateWithImmutabilityPolicy();
+async function main(): Promise<void> {
+  await nfsV3AccountCreate();
+  await storageAccountCreate();
+  await storageAccountCreateDisallowPublicNetworkAccess();
+  await storageAccountCreateEnablePublicNetworkAccess();
+  await storageAccountCreateUserAssignedEncryptionIdentityWithCmk();
+  await storageAccountCreateWithImmutabilityPolicy();
 }
 
 main().catch(console.error);

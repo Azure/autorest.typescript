@@ -14,9 +14,7 @@ import {
   ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Restarts one or more role instances in a cloud service.
@@ -24,7 +22,7 @@ dotenv.config();
  * @summary Restarts one or more role instances in a cloud service.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/RestartCloudServiceRoleInstances.json
  */
-async function restartCloudServiceRoleInstances() {
+async function restartCloudServiceRoleInstances(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "ConstosoRG";
   const cloudServiceName = "{cs-name}";
@@ -42,8 +40,8 @@ async function restartCloudServiceRoleInstances() {
   console.log(result);
 }
 
-async function main() {
-  restartCloudServiceRoleInstances();
+async function main(): Promise<void> {
+  await restartCloudServiceRoleInstances();
 }
 
 main().catch(console.error);

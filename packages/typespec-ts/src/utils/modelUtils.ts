@@ -51,7 +51,6 @@ import {
   isSecret,
   isStringType,
   isTemplateDeclaration,
-  isType,
   isUnknownType,
   listServices
 } from "@typespec/compiler";
@@ -391,30 +390,33 @@ function getSchemaForUnion(
   const values = [];
   let namedUnionMember = false;
 
-  if (asEnum?.open && asEnum.members.size > 0) {
-    for (const [_, member] of asEnum.members.entries()) {
-      const memberType = getSchemaForType(dpgContext, member.type, {
-        ...options,
-        needRef: false
-      });
-      values.push(memberType);
-      if (memberType.name) {
-        namedUnionMember = true;
+  if (!(options?.needRef && union.name && !asEnum)) {
+    if (asEnum?.open && asEnum.members.size > 0) {
+      for (const [_, member] of asEnum.members.entries()) {
+        const memberType = getSchemaForType(dpgContext, member.type, {
+          ...options,
+          needRef: options?.needRef ?? false
+        });
+        values.push(memberType);
+        if (memberType.name) {
+          namedUnionMember = true;
+        }
       }
-    }
-  } else {
-    for (const variant of variants) {
-      // We already know it's not a model type
-      const variantType = getSchemaForType(dpgContext, variant.type, {
-        ...options,
-        needRef: false
-      });
-      values.push(variantType);
-      if (variantType.typeName) {
-        namedUnionMember = true;
+    } else {
+      for (const variant of variants) {
+        // We already know it's not a model type
+        const variantType = getSchemaForType(dpgContext, variant.type, {
+          ...options,
+          needRef: isAnonymousModelType(variant.type) ? false : true
+        });
+        values.push(variantType);
+        if (variantType.typeName) {
+          namedUnionMember = true;
+        }
       }
     }
   }
+
   const schema: any = {};
   if (values.length > 0) {
     schema.enum = values;
@@ -434,27 +436,31 @@ function getSchemaForUnion(
               (item) => `${getTypeName(item, [SchemaContext.Output]) ?? item}`
             )
             .join(" | ");
-    if (!union.expression) {
-      const unionName = union.name
-        ? normalizeName(union.name, NameType.Interface)
-        : undefined;
-      schema.name = unionName;
-      schema.type = "object";
-      schema.typeName = unionName;
-      schema.outputTypeName = unionName + "Output";
-      schema.alias = unionAlias;
-      schema.outputAlias = outputUnionAlias;
-    } else if (union.expression && !union.name) {
-      schema.type = "union";
-      schema.typeName = unionAlias;
-      schema.outputTypeName = outputUnionAlias;
-    } else {
-      schema.type = "union";
-      schema.typeName = union.name ?? unionAlias;
-      schema.outputTypeName = union.name
-        ? union.name + "Output"
-        : outputUnionAlias;
-    }
+    schema.alias = unionAlias;
+    schema.outputAlias = outputUnionAlias;
+  }
+  if (!union.expression) {
+    const unionName = union.name
+      ? normalizeName(union.name, NameType.Interface)
+      : undefined;
+    schema.name = unionName;
+    schema.type = "object";
+    schema.typeName = unionName;
+    schema.outputTypeName = unionName + "Output";
+  } else if (union.expression && !union.name) {
+    schema.type = "union";
+    schema.typeName = schema.alias;
+    schema.outputTypeName = schema.outputAlias;
+    delete schema.alias;
+    delete schema.outputAlias;
+  } else {
+    schema.type = "union";
+    schema.typeName = union.name ?? schema.alias;
+    schema.outputTypeName = union.name
+      ? union.name + "Output"
+      : schema.outputAlias;
+    delete schema.alias;
+    delete schema.outputAlias;
   }
 
   return schema;
@@ -605,51 +611,10 @@ function getSchemaForModel(
   }
 
   const program = dpgContext.program;
-  const overridedModelName =
-    getFriendlyName(program, model) ?? getWireName(dpgContext, model);
-  const fullNamespaceName =
-    getModelNamespaceName(dpgContext, model.namespace!)
-      .map((nsName) => {
-        return normalizeName(nsName, NameType.Interface);
-      })
-      .join("") + model.name;
-  let name = model.name;
-  if (
-    !overridedModelName &&
-    model.templateMapper &&
-    model.templateMapper.args &&
-    model.templateMapper.args.length > 0 &&
-    getPagedResult(program, model)
-  ) {
-    const templateTypes = model.templateMapper.args.filter((it) =>
-      isType(it)
-    ) as Type[];
-    name =
-      templateTypes
-        .map((it: Type) => {
-          switch (it.kind) {
-            case "Model":
-              return it.name;
-            case "String":
-              return it.value;
-            default:
-              return "";
-          }
-        })
-        .join("") + "List";
-  }
-
   const isMultipartBody = isMediaTypeMultipartFormData(contentTypes ?? []);
-
   const isCoreModel = isAzureCoreErrorType(program, model);
   const modelSchema: ObjectSchema = {
-    name: isCoreModel
-      ? name
-      : overridedModelName !== name
-        ? overridedModelName
-        : dpgContext.rlcOptions?.enableModelNamespace
-          ? fullNamespaceName
-          : name,
+    name: getModelName(dpgContext, model),
     type: "object",
     isMultipartBody,
     description: getDoc(program, model) ?? "",
@@ -840,6 +805,72 @@ function getSchemaForModel(
   }
   return modelSchema;
 }
+
+/**
+ * Return the model name for a given model
+ */
+function getModelName(dpgContext: SdkContext, model: Model) {
+  const { program } = dpgContext;
+
+  // 1. check if this is an anonymous model
+  if (model.name === "") {
+    return "";
+  }
+
+  // 2. check if there's a friendly name
+  const friendlyName = getFriendlyName(program, model);
+  if (friendlyName) {
+    return friendlyName;
+  }
+
+  // 3. check if this is an Azure Core error model
+  const isCoreModel = isAzureCoreErrorType(program, model);
+  if (isCoreModel) {
+    return model.name;
+  }
+
+  // 4. check if this is a model with template arguments
+  let name = model.name;
+  if (model.templateMapper?.args) {
+    const isPage = getPagedResult(program, model);
+    const templateTypeNames = model.templateMapper.args
+      .map((arg) => (arg.entityKind === "Indeterminate" ? arg.type : arg))
+      .map((arg: any) => {
+        switch (arg.kind) {
+          case "Model":
+          case "Enum":
+          case "Union":
+          case "Scalar":
+            return arg.name ?? "";
+          case "String":
+          case "Boolean":
+          case "Number":
+            return arg.value ?? "";
+          default:
+            return "";
+        }
+      })
+      .filter((arg) => arg !== "")
+      .join(" ");
+    name = normalizeName(
+      isPage ? `${templateTypeNames} List` : `${name} ${templateTypeNames}`,
+      NameType.Interface
+    );
+  }
+  const fullNamespacePrefix = getModelNamespaceName(
+    dpgContext,
+    model.namespace!
+  )
+    .map((nsName) => {
+      return normalizeName(nsName, NameType.Interface);
+    })
+    .join("");
+  // 5. check if this model should be namespaced
+  return dpgContext.rlcOptions?.enableModelNamespace
+    ? `${fullNamespacePrefix}${name}`
+    : name;
+}
+
 // Map an typespec type to an OA schema. Returns undefined when the resulting
 // OA schema is just a regular object schema.
 function getSchemaForLiteral(type: Type): any {
@@ -1743,7 +1774,14 @@ export function isSchemaProperty(
   const queryInfo = getQueryParamName(program, property);
   const pathInfo = getPathParamName(program, property);
   const statusCodeInfo = isStatusCode(program, property);
-  return !(headerInfo || queryInfo || pathInfo || statusCodeInfo);
+  const isNonVisibility = getVisibility(program, property)?.includes("none");
+  return !(
+    headerInfo ||
+    queryInfo ||
+    pathInfo ||
+    statusCodeInfo ||
+    isNonVisibility
+  );
 }
 
 export function getEffectiveSchemaType(

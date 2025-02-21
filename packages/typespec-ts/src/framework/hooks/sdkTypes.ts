@@ -98,6 +98,7 @@ export function provideSdkTypes(context: SdkContext) {
         );
         break;
       case "nullable":
+        sdkTypesContext.types.set(sdkModel.__raw!, sdkModel);
         sdkTypesContext.types.set(sdkModel.type.__raw!, sdkModel.type);
         break;
     }

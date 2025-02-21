@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   StringGetNullParameters,
   StringPutNullParameters,
   StringGetEmptyParameters,
@@ -22,7 +22,7 @@ import {
   EnumGetReferencedConstantParameters,
   EnumPutReferencedConstantParameters,
 } from "./parameters";
-import {
+import type {
   StringGetNull200Response,
   StringGetNullDefaultResponse,
   StringPutNull200Response,
@@ -62,7 +62,7 @@ import {
   EnumPutReferencedConstant200Response,
   EnumPutReferencedConstantDefaultResponse,
 } from "./responses";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface StringGetNull {
   /** Get null string value value */

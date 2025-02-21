@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import {
-  getConfidentialLedgerOperations,
+  _getConfidentialLedgerOperations,
   ConfidentialLedgerOperations,
 } from "./classic/confidentialLedger/index.js";
 import {
@@ -34,9 +34,9 @@ export class ParametrizedHostClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this.confidentialLedger = getConfidentialLedgerOperations(this._client);
+    this.confidentialLedger = _getConfidentialLedgerOperations(this._client);
   }
 
-  /** The operation groups for ConfidentialLedger */
+  /** The operation groups for confidentialLedger */
   public readonly confidentialLedger: ConfidentialLedgerOperations;
 }

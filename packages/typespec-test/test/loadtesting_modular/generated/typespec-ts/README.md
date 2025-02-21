@@ -7,7 +7,7 @@ These APIs allow end users to create, view and run load tests using Azure Load T
 Key links:
 
 - [Package (NPM)](https://www.npmjs.com/package/@azure/load-testing)
-- [API reference documentation](https://docs.microsoft.com/javascript/api/@azure/load-testing)
+- [API reference documentation](https://learn.microsoft.com/javascript/api/@azure/load-testing)
 
 ## Getting started
 
@@ -44,22 +44,29 @@ npm install @azure/identity
 ```
 
 You will also need to **register a new AAD application and grant access to Azure LoadTestService** by assigning the suitable role to your service principal (note: roles such as `"Owner"` will not grant the necessary permissions).
-Set the values of the client ID, tenant ID, and client secret of the AAD application as environment variables: `AZURE_CLIENT_ID`, `AZURE_TENANT_ID`, `AZURE_CLIENT_SECRET`.
 
-For more information about how to create an Azure AD Application check out [this guide](https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal).
+For more information about how to create an Azure AD Application check out [this guide](https://learn.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal).
 
-```javascript
-const { LoadTestServiceClient } = require("@azure/load-testing");
-const { DefaultAzureCredential } = require("@azure/identity");
-// For client-side applications running in the browser, use InteractiveBrowserCredential instead of DefaultAzureCredential. See https://aka.ms/azsdk/js/identity/examples for more details.
+Using Node.js and Node-like environments, you can use the `DefaultAzureCredential` class to authenticate the client.
+
+```ts 
+import { LoadTestServiceClient } from "@azure/load-testing";
+import { DefaultAzureCredential } from "@azure/identity";
 
 const client = new LoadTestServiceClient("<endpoint>", new DefaultAzureCredential());
-// For client-side applications running in the browser, use this code instead:
-// const credential = new InteractiveBrowserCredential({
-//   tenantId: "<YOUR_TENANT_ID>",
-//   clientId: "<YOUR_CLIENT_ID>"
-// });
-// const client = new LoadTestServiceClient("<endpoint>", credential);
+```
+
+For browser environments, use the `InteractiveBrowserCredential` from the `@azure/identity` package to authenticate.
+
+```ts 
+import { InteractiveBrowserCredential } from "@azure/identity";
+import { LoadTestServiceClient } from "@azure/load-testing";
+
+const credential = new InteractiveBrowserCredential({
+  tenantId: "<YOUR_TENANT_ID>",
+  clientId: "<YOUR_CLIENT_ID>"
+ });
+const client = new LoadTestServiceClient("<endpoint>", credential);
 ```
 
 
@@ -78,8 +85,9 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 Enabling logging may help uncover useful information about failures. In order to see a log of HTTP requests and responses, set the `AZURE_LOG_LEVEL` environment variable to `info`. Alternatively, logging can be enabled at runtime by calling `setLogLevel` in the `@azure/logger`:
 
-```javascript
-const { setLogLevel } = require("@azure/logger");
+```ts 
+import { setLogLevel } from "@azure/logger";
+
 setLogLevel("info");
 ```
 
