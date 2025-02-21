@@ -2,14 +2,9 @@
 // Licensed under the MIT License.
 
 import { FooContext as Client, Op1OptionalParams } from "./index.js";
-import {
-  A,
-  aSerializer,
-  Ba,
-  baSerializer,
-  Bea,
-  beaSerializer,
-} from "../models/models.js";
+import { A, aSerializer } from "../models/models.js";
+import { Ba, baSerializer } from "../models/b/models.js";
+import { Bea, beaSerializer } from "../models/b/e/models.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -23,7 +18,7 @@ export function _op1Send(
   options: Op1OptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
-    .path("/")
+    .path("/d")
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
@@ -57,9 +52,10 @@ export function _op1Send(
   options: Op1OptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
-    .path("/b")
+    .path("/b/c")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
       body: baSerializer(body),
     });
 }
@@ -93,6 +89,7 @@ export function _op1Send(
     .path("/b/e")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
       body: beaSerializer(body),
     });
 }
@@ -123,9 +120,10 @@ export function _op1Send(
   options: Op1OptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
-    .path("/b/c")
+    .path("/b")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
       body: baSerializer(body),
     });
 }
@@ -156,9 +154,10 @@ export function _op1Send(
   options: Op1OptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
-    .path("/d")
+    .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
       body: aSerializer(body),
     });
 }
