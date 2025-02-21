@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { _getDOperations, DOperations } from "./classic/d/index.js";
+import { _getCOperations, COperations } from "./classic/c/index.js";
 import { _getBOperations, BOperations } from "./classic/b/index.js";
 import {
   createFoo,
@@ -31,11 +32,14 @@ export class FooClient {
     });
     this.pipeline = this._client.pipeline;
     this.d = _getDOperations(this._client);
+    this.c = _getCOperations(this._client);
     this.b = _getBOperations(this._client);
   }
 
   /** The operation groups for d */
   public readonly d: DOperations;
+  /** The operation groups for c */
+  public readonly c: COperations;
   /** The operation groups for b */
   public readonly b: BOperations;
 

@@ -8,8 +8,7 @@ export { Bea } from "./models/b/e/index.js";
 export {
   FooClientOptionalParams,
   DOp1OptionalParams,
-  BCOp1OptionalParams,
-  BECOp1OptionalParams,
+  COp1OptionalParams,
   BOp1OptionalParams,
   Op1OptionalParams,
 } from "./api/index.js";
