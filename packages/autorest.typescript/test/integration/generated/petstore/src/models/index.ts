@@ -11,6 +11,8 @@ export interface Pet {
   tags?: Tag[];
   /** pet status in the store */
   status?: PetStatus;
+  /** property to test the code generation */
+  test?: PetTest;
   /** The restriction level applied to the cluster's node resource group */
   petRestrictionLevel?: RestrictionLevel;
 }
@@ -82,6 +84,123 @@ export enum KnownPetStatus {
  * **sold**
  */
 export type PetStatus = string;
+
+/** Known values of {@link PetTest} that the service accepts. */
+export enum KnownPetTest {
+  /** QRCode */
+  QRCode = "QRCode",
+  /** PDF417 */
+  PDF417 = "PDF417",
+  /** TENYearCHDRiskObservedAGE */
+  TENYearCHDRiskObservedAGE = "TEN_YEAR_CHD_RISK_OBSERVED_AGE",
+  /** TScore */
+  TScore = "T_SCORE",
+  /** FraxScore */
+  FraxScore = "FRAX_SCORE",
+  /** UserSystem */
+  UserSystem = "user,system",
+  /** ApigeeAPIManagement */
+  ApigeeAPIManagement = "Apigee API Management",
+  /** Ipv4 */
+  Ipv4 = "Ipv4",
+  /** C4XlargeSearch */
+  C4XlargeSearch = "C4XlargeSearch",
+  /** RSA15 */
+  RSA15 = "RSA1_5",
+  /** P256 */
+  P256 = "P_256",
+  /** P256 */
+  P256 = "P256",
+  /** P256K */
+  P256K = "P256_K",
+  /** ECHSM */
+  ECHSM = "EC_HSM",
+  /** X8664 */
+  X8664 = "X86_64",
+  /** Arm64 */
+  Arm64 = "Arm64",
+  /** ConfigurationEtag */
+  ConfigurationEtag = "configurationEtag",
+  /** VCPUs */
+  VCPUs = "vCPUs",
+  /** AccountID */
+  AccountID = "ACCOUNT_ID",
+  /** ProvisionVMAgent */
+  ProvisionVMAgent = "provisionVMAgent",
+  /** MBsFoo */
+  MBsFoo = "MBsFoo",
+  /** SQLConnection */
+  SQLConnection = "SQLConnection",
+  /** VAL */
+  VAL = "VAL",
+  /** Vali */
+  Vali = "VALI",
+  /** Valid */
+  Valid = "VALID",
+  /** Valida */
+  Valida = "VALIDA",
+  /** Validat */
+  Validat = "VALIDAT",
+  /** Validate */
+  Validate = "VALIDATE",
+  /** NOTValidation */
+  NOTValidation = "NOT_VALIDATION",
+  /** OneHundredTwentyThreeFoo */
+  OneHundredTwentyThreeFoo = "123~!@#$$%^^&&**(())Foo",
+  /** 1 */
+  1 = "-1",
+  /** Zero */
+  Zero = "0",
+  /** One1 */
+  One1 = "1.1",
+  /** One2 */
+  One2 = "1.2",
+  /** TwelveMillionThreeHundredFortyFiveThousandSixHundredSeventyEight */
+  TwelveMillionThreeHundredFortyFiveThousandSixHundredSeventyEight = "12345678",
+}
+
+/**
+ * Defines values for PetTest. \
+ * {@link KnownPetTest} can be used interchangeably with PetTest,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **QRCode** \
+ * **PDF417** \
+ * **TEN_YEAR_CHD_RISK_OBSERVED_AGE** \
+ * **T_SCORE** \
+ * **FRAX_SCORE** \
+ * **user,system** \
+ * **Apigee API Management** \
+ * **Ipv4** \
+ * **C4XlargeSearch** \
+ * **RSA1_5** \
+ * **P_256** \
+ * **P256** \
+ * **P256_K** \
+ * **EC_HSM** \
+ * **X86_64** \
+ * **Arm64** \
+ * **configurationEtag** \
+ * **vCPUs** \
+ * **ACCOUNT_ID** \
+ * **provisionVMAgent** \
+ * **MBsFoo** \
+ * **SQLConnection** \
+ * **VAL** \
+ * **VALI** \
+ * **VALID** \
+ * **VALIDA** \
+ * **VALIDAT** \
+ * **VALIDATE** \
+ * **NOT_VALIDATION** \
+ * **123~!@#$$%^^&&**(())Foo** \
+ * **-1** \
+ * **0** \
+ * **1.1** \
+ * **1.2** \
+ * **12345678**
+ */
+export type PetTest = string;
 
 /** Known values of {@link RestrictionLevel} that the service accepts. */
 export enum KnownRestrictionLevel {

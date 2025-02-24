@@ -150,6 +150,10 @@ export function transformUrlInfo(
           importedModels.add,
           importedModels
         );
+        const normName = normalizeName(key, NameType.Parameter, true);
+        if (normName !== key && endpoint) {
+          endpoint = endpoint.replace(`{${key}}`, `{${normName}}`);
+        }
         urlParameters.push({
           oriName: key,
           name: normalizeName(key, NameType.Parameter, true),
