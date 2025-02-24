@@ -7,11 +7,14 @@ import {
   ToolResources,
   VectorStoreDataSource,
   VectorStoreConfiguration,
-  AgentsApiResponseFormatOption,
+  AgentsApiResponseFormat,
+  ResponseFormatJsonSchemaType,
+  AgentsApiResponseFormatMode,
   ThreadMessageOptions,
   MessageAttachment,
   TruncationObject,
-  AgentsApiToolChoiceOption,
+  AgentsNamedToolChoice,
+  AgentsApiToolChoiceOptionMode,
   UpdateToolResourcesOptions,
   AgentThreadCreationOptions,
   FilePurpose,
@@ -315,9 +318,18 @@ export interface AgentsCreateThreadAndRunOptionalParams
   /** The strategy to use for dropping messages as the context windows moves forward. */
   truncationStrategy?: TruncationObject | null;
   /** Controls whether or not and which tool is called by the model. */
-  toolChoice?: AgentsApiToolChoiceOption | null;
+  toolChoice?:
+    | (string | AgentsApiToolChoiceOptionMode | AgentsNamedToolChoice)
+    | null;
   /** Specifies the format that the model must output. */
-  responseFormat?: AgentsApiResponseFormatOption | null;
+  responseFormat?:
+    | (
+        | string
+        | AgentsApiResponseFormatMode
+        | AgentsApiResponseFormat
+        | ResponseFormatJsonSchemaType
+      )
+    | null;
   /** If `true` functions will run in parallel during tool use. */
   parallelToolCalls?: boolean;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
@@ -408,9 +420,18 @@ export interface AgentsCreateRunOptionalParams extends OperationOptions {
   /** The strategy to use for dropping messages as the context windows moves forward. */
   truncationStrategy?: TruncationObject | null;
   /** Controls whether or not and which tool is called by the model. */
-  toolChoice?: AgentsApiToolChoiceOption | null;
+  toolChoice?:
+    | (string | AgentsApiToolChoiceOptionMode | AgentsNamedToolChoice)
+    | null;
   /** Specifies the format that the model must output. */
-  responseFormat?: AgentsApiResponseFormatOption | null;
+  responseFormat?:
+    | (
+        | string
+        | AgentsApiResponseFormatMode
+        | AgentsApiResponseFormat
+        | ResponseFormatJsonSchemaType
+      )
+    | null;
   /** If `true` functions will run in parallel during tool use. */
   parallelToolCalls?: boolean;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
@@ -513,7 +534,14 @@ export interface AgentsUpdateAgentOptionalParams extends OperationOptions {
    */
   topP?: number | null;
   /** The response format of the tool calls used by this agent. */
-  responseFormat?: AgentsApiResponseFormatOption | null;
+  responseFormat?:
+    | (
+        | string
+        | AgentsApiResponseFormatMode
+        | AgentsApiResponseFormat
+        | ResponseFormatJsonSchemaType
+      )
+    | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
 }
@@ -561,7 +589,14 @@ export interface AgentsCreateAgentOptionalParams extends OperationOptions {
    */
   topP?: number | null;
   /** The response format of the tool calls used by this agent. */
-  responseFormat?: AgentsApiResponseFormatOption | null;
+  responseFormat?:
+    | (
+        | string
+        | AgentsApiResponseFormatMode
+        | AgentsApiResponseFormat
+        | ResponseFormatJsonSchemaType
+      )
+    | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata?: Record<string, string> | null;
 }

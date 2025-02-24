@@ -1143,6 +1143,9 @@ export function getResponseMapping(
     type.kind === "model" ? getAllProperties(type, allParents) : [];
   const props: string[] = [];
   for (const property of properties) {
+    if (isMetadata(context.program, property.__raw!)) {
+      continue;
+    }
     const dot = propertyPath.endsWith("?") ? "." : "";
     const serializedName = getPropertySerializedName(property);
     const restValue = `${

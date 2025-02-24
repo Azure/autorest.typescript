@@ -2,7 +2,6 @@
 
 export {
   TodoItem,
-  TodoLabels,
   TodoLabelRecord,
   Standard4XXResponse,
   ApiError,

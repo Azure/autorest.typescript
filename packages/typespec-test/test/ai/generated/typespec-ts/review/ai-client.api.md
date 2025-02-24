@@ -19,7 +19,7 @@ export interface Agent {
     model: string;
     name: string | null;
     object: "assistant";
-    responseFormat?: AgentsApiResponseFormatOption | null;
+    responseFormat?: (string | AgentsApiResponseFormatMode | AgentsApiResponseFormat | ResponseFormatJsonSchemaType) | null;
     temperature: number | null;
     toolResources: ToolResources | null;
     tools: ToolDefinitionUnion[];
@@ -42,12 +42,6 @@ export interface AgentsApiResponseFormat {
 export type AgentsApiResponseFormatMode = "auto" | "none";
 
 // @public
-export type AgentsApiResponseFormatOption = string | AgentsApiResponseFormatMode | AgentsApiResponseFormat | ResponseFormatJsonSchemaType;
-
-// @public
-export type AgentsApiToolChoiceOption = string | AgentsApiToolChoiceOptionMode | AgentsNamedToolChoice;
-
-// @public
 export type AgentsApiToolChoiceOptionMode = "none" | "auto";
 
 // @public
@@ -64,7 +58,7 @@ export interface AgentsCreateAgentOptionalParams extends OperationOptions {
     instructions?: string | null;
     metadata?: Record<string, string> | null;
     name?: string | null;
-    responseFormat?: AgentsApiResponseFormatOption | null;
+    responseFormat?: (string | AgentsApiResponseFormatMode | AgentsApiResponseFormat | ResponseFormatJsonSchemaType) | null;
     temperature?: number | null;
     toolResources?: ToolResources | null;
     tools?: ToolDefinitionUnion[];
@@ -88,10 +82,10 @@ export interface AgentsCreateRunOptionalParams extends OperationOptions {
     metadata?: Record<string, string> | null;
     model?: string | null;
     parallelToolCalls?: boolean;
-    responseFormat?: AgentsApiResponseFormatOption | null;
+    responseFormat?: (string | AgentsApiResponseFormatMode | AgentsApiResponseFormat | ResponseFormatJsonSchemaType) | null;
     stream?: boolean;
     temperature?: number | null;
-    toolChoice?: AgentsApiToolChoiceOption | null;
+    toolChoice?: (string | AgentsApiToolChoiceOptionMode | AgentsNamedToolChoice) | null;
     tools?: ToolDefinitionUnion[] | null;
     topP?: number | null;
     truncationStrategy?: TruncationObject | null;
@@ -105,11 +99,11 @@ export interface AgentsCreateThreadAndRunOptionalParams extends OperationOptions
     metadata?: Record<string, string> | null;
     model?: string | null;
     parallelToolCalls?: boolean;
-    responseFormat?: AgentsApiResponseFormatOption | null;
+    responseFormat?: (string | AgentsApiResponseFormatMode | AgentsApiResponseFormat | ResponseFormatJsonSchemaType) | null;
     stream?: boolean;
     temperature?: number | null;
     thread?: AgentThreadCreationOptions;
-    toolChoice?: AgentsApiToolChoiceOption | null;
+    toolChoice?: (string | AgentsApiToolChoiceOptionMode | AgentsNamedToolChoice) | null;
     toolResources?: UpdateToolResourcesOptions | null;
     tools?: ToolDefinitionUnion[] | null;
     topP?: number | null;
@@ -339,16 +333,13 @@ export interface AgentsSubmitToolOutputsToRunOptionalParams extends OperationOpt
 }
 
 // @public
-export type AgentStreamEvent = string | (ThreadStreamEvent | RunStreamEvent | RunStepStreamEvent | MessageStreamEvent | ErrorEvent | DoneEvent);
-
-// @public
 export interface AgentsUpdateAgentOptionalParams extends OperationOptions {
     description?: string | null;
     instructions?: string | null;
     metadata?: Record<string, string> | null;
     model?: string;
     name?: string | null;
-    responseFormat?: AgentsApiResponseFormatOption | null;
+    responseFormat?: (string | AgentsApiResponseFormatMode | AgentsApiResponseFormat | ResponseFormatJsonSchemaType) | null;
     temperature?: number | null;
     toolResources?: ToolResources;
     tools?: ToolDefinitionUnion[];
@@ -792,11 +783,8 @@ export type ListSortOrder = "asc" | "desc";
 export interface MessageAttachment {
     dataSource?: VectorStoreDataSource;
     fileId?: string;
-    tools: MessageAttachmentToolDefinition[];
+    tools: (CodeInterpreterToolDefinition | FileSearchToolDefinition)[];
 }
-
-// @public
-export type MessageAttachmentToolDefinition = CodeInterpreterToolDefinition | FileSearchToolDefinition;
 
 // @public
 export interface MessageContent {
@@ -1549,12 +1537,12 @@ export interface ThreadRun {
     object: "thread.run";
     parallelToolCalls: boolean;
     requiredAction?: RequiredActionUnion | null;
-    responseFormat: AgentsApiResponseFormatOption | null;
+    responseFormat: (string | AgentsApiResponseFormatMode | AgentsApiResponseFormat | ResponseFormatJsonSchemaType) | null;
     startedAt: Date | null;
     status: RunStatus;
     temperature?: number | null;
     threadId: string;
-    toolChoice: AgentsApiToolChoiceOption | null;
+    toolChoice: (string | AgentsApiToolChoiceOptionMode | AgentsNamedToolChoice) | null;
     toolResources?: UpdateToolResourcesOptions | null;
     tools: ToolDefinitionUnion[];
     topP?: number | null;

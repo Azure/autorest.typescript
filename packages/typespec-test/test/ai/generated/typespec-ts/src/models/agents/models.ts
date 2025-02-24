@@ -1227,22 +1227,22 @@ export function toolDefinitionUnionArrayDeserializer(
   });
 }
 
-/** Alias for AgentsApiResponseFormatOption */
-export type AgentsApiResponseFormatOption =
+/** Alias for _AgentsApiResponseFormatOption */
+export type _AgentsApiResponseFormatOption =
   | string
   | AgentsApiResponseFormatMode
   | AgentsApiResponseFormat
   | ResponseFormatJsonSchemaType;
 
-export function agentsApiResponseFormatOptionSerializer(
-  item: AgentsApiResponseFormatOption,
+export function _agentsApiResponseFormatOptionSerializer(
+  item: _AgentsApiResponseFormatOption,
 ): any {
   return item;
 }
 
-export function agentsApiResponseFormatOptionDeserializer(
+export function _agentsApiResponseFormatOptionDeserializer(
   item: any,
-): AgentsApiResponseFormatOption {
+): _AgentsApiResponseFormatOption {
   return item;
 }
 
@@ -1285,7 +1285,14 @@ export interface Agent {
    */
   topP: number | null;
   /** The response format of the tool calls used by this agent. */
-  responseFormat?: AgentsApiResponseFormatOption | null;
+  responseFormat?:
+    | (
+        | string
+        | AgentsApiResponseFormatMode
+        | AgentsApiResponseFormat
+        | ResponseFormatJsonSchemaType
+      )
+    | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata: Record<string, string> | null;
 }
@@ -1307,7 +1314,7 @@ export function agentDeserializer(item: any): Agent {
     topP: item["top_p"],
     responseFormat: !item["response_format"]
       ? item["response_format"]
-      : agentsApiResponseFormatOptionDeserializer(item["response_format"]),
+      : _agentsApiResponseFormatOptionDeserializer(item["response_format"]),
     metadata: item["metadata"],
   };
 }
@@ -1425,7 +1432,7 @@ export interface MessageAttachment {
   /** Azure asset ID. */
   dataSource?: VectorStoreDataSource;
   /** The tools to add to this file. */
-  tools: MessageAttachmentToolDefinition[];
+  tools: (CodeInterpreterToolDefinition | FileSearchToolDefinition)[];
 }
 
 export function messageAttachmentSerializer(item: MessageAttachment): any {
@@ -1449,35 +1456,35 @@ export function messageAttachmentDeserializer(item: any): MessageAttachment {
 }
 
 export function messageAttachmentToolDefinitionArraySerializer(
-  result: Array<MessageAttachmentToolDefinition>,
+  result: Array<_MessageAttachmentToolDefinition>,
 ): any[] {
   return result.map((item) => {
-    return messageAttachmentToolDefinitionSerializer(item);
+    return _messageAttachmentToolDefinitionSerializer(item);
   });
 }
 
 export function messageAttachmentToolDefinitionArrayDeserializer(
-  result: Array<MessageAttachmentToolDefinition>,
+  result: Array<_MessageAttachmentToolDefinition>,
 ): any[] {
   return result.map((item) => {
-    return messageAttachmentToolDefinitionDeserializer(item);
+    return _messageAttachmentToolDefinitionDeserializer(item);
   });
 }
 
-/** Alias for MessageAttachmentToolDefinition */
-export type MessageAttachmentToolDefinition =
+/** Alias for _MessageAttachmentToolDefinition */
+export type _MessageAttachmentToolDefinition =
   | CodeInterpreterToolDefinition
   | FileSearchToolDefinition;
 
-export function messageAttachmentToolDefinitionSerializer(
-  item: MessageAttachmentToolDefinition,
+export function _messageAttachmentToolDefinitionSerializer(
+  item: _MessageAttachmentToolDefinition,
 ): any {
   return item;
 }
 
-export function messageAttachmentToolDefinitionDeserializer(
+export function _messageAttachmentToolDefinitionDeserializer(
   item: any,
-): MessageAttachmentToolDefinition {
+): _MessageAttachmentToolDefinition {
   return item;
 }
 
@@ -1985,21 +1992,21 @@ export function functionNameDeserializer(item: any): FunctionName {
   };
 }
 
-/** Alias for AgentsApiToolChoiceOption */
-export type AgentsApiToolChoiceOption =
+/** Alias for _AgentsApiToolChoiceOption */
+export type _AgentsApiToolChoiceOption =
   | string
   | AgentsApiToolChoiceOptionMode
   | AgentsNamedToolChoice;
 
-export function agentsApiToolChoiceOptionSerializer(
-  item: AgentsApiToolChoiceOption,
+export function _agentsApiToolChoiceOptionSerializer(
+  item: _AgentsApiToolChoiceOption,
 ): any {
   return item;
 }
 
-export function agentsApiToolChoiceOptionDeserializer(
+export function _agentsApiToolChoiceOptionDeserializer(
   item: any,
-): AgentsApiToolChoiceOption {
+): _AgentsApiToolChoiceOption {
   return item;
 }
 
@@ -2055,9 +2062,18 @@ export interface ThreadRun {
   /** The strategy to use for dropping messages as the context windows moves forward. */
   truncationStrategy: TruncationObject | null;
   /** Controls whether or not and which tool is called by the model. */
-  toolChoice: AgentsApiToolChoiceOption | null;
+  toolChoice:
+    | (string | AgentsApiToolChoiceOptionMode | AgentsNamedToolChoice)
+    | null;
   /** The response format of the tool calls used in this run. */
-  responseFormat: AgentsApiResponseFormatOption | null;
+  responseFormat:
+    | (
+        | string
+        | AgentsApiResponseFormatMode
+        | AgentsApiResponseFormat
+        | ResponseFormatJsonSchemaType
+      )
+    | null;
   /** A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. */
   metadata: Record<string, string> | null;
   /** Override the tools the agent can use for this run. This is useful for modifying the behavior on a per-run basis */
@@ -2113,10 +2129,10 @@ export function threadRunDeserializer(item: any): ThreadRun {
       : truncationObjectDeserializer(item["truncation_strategy"]),
     toolChoice: !item["tool_choice"]
       ? item["tool_choice"]
-      : agentsApiToolChoiceOptionDeserializer(item["tool_choice"]),
+      : _agentsApiToolChoiceOptionDeserializer(item["tool_choice"]),
     responseFormat: !item["response_format"]
       ? item["response_format"]
-      : agentsApiResponseFormatOptionDeserializer(item["response_format"]),
+      : _agentsApiResponseFormatOptionDeserializer(item["response_format"]),
     metadata: item["metadata"],
     toolResources: !item["tool_resources"]
       ? item["tool_resources"]
@@ -4483,6 +4499,22 @@ export function runStepDeltaCodeInterpreterImageOutputObjectDeserializer(
   };
 }
 
+/** Alias for _AgentStreamEvent */
+export type _AgentStreamEvent =
+  | string
+  | (
+      | ThreadStreamEvent
+      | RunStreamEvent
+      | RunStepStreamEvent
+      | MessageStreamEvent
+      | ErrorEvent
+      | DoneEvent
+    );
+
+export function _agentStreamEventDeserializer(item: any): _AgentStreamEvent {
+  return item;
+}
+
 /** Thread operation related streaming events */
 export type ThreadStreamEvent = "thread.created";
 /** Run operation related streaming events */
@@ -4517,22 +4549,6 @@ export type MessageStreamEvent =
 export type ErrorEvent = "error";
 /** Terminal event indicating the successful end of a stream. */
 export type DoneEvent = "done";
-/** Alias for AgentStreamEvent */
-export type AgentStreamEvent =
-  | string
-  | (
-      | ThreadStreamEvent
-      | RunStreamEvent
-      | RunStepStreamEvent
-      | MessageStreamEvent
-      | ErrorEvent
-      | DoneEvent
-    );
-
-export function agentStreamEventDeserializer(item: any): AgentStreamEvent {
-  return item;
-}
-
 /** The available sorting options when requesting a list of response objects. */
 export type ListSortOrder = "asc" | "desc";
 /** A list of additional fields to include in the response. */

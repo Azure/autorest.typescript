@@ -41,7 +41,7 @@ export interface TodoItem {
   readonly updatedAt: Date;
   /** When the todo item was makred as completed */
   readonly completedAt?: Date;
-  labels?: TodoLabels;
+  labels?: string | string[] | TodoLabelRecord | TodoLabelRecord[];
   dummy?: string;
 }
 
@@ -53,7 +53,7 @@ export function todoItemSerializer(item: TodoItem): any {
     status: item["status"],
     labels: !item["labels"]
       ? item["labels"]
-      : todoLabelsSerializer(item["labels"]),
+      : _todoLabelsSerializer(item["labels"]),
     _dummy: item["dummy"],
   };
 }
@@ -73,23 +73,23 @@ export function todoItemDeserializer(item: any): TodoItem {
       : new Date(item["completedAt"]),
     labels: !item["labels"]
       ? item["labels"]
-      : todoLabelsDeserializer(item["labels"]),
+      : _todoLabelsDeserializer(item["labels"]),
     dummy: item["_dummy"],
   };
 }
 
-/** Alias for TodoLabels */
-export type TodoLabels =
+/** Alias for _TodoLabels */
+export type _TodoLabels =
   | string
   | string[]
   | TodoLabelRecord
   | TodoLabelRecord[];
 
-export function todoLabelsSerializer(item: TodoLabels): any {
+export function _todoLabelsSerializer(item: _TodoLabels): any {
   return item;
 }
 
-export function todoLabelsDeserializer(item: any): TodoLabels {
+export function _todoLabelsDeserializer(item: any): _TodoLabels {
   return item;
 }
 
@@ -230,7 +230,7 @@ export interface _CreateJsonResponse {
   readonly updatedAt: Date;
   /** When the todo item was makred as completed */
   readonly completedAt?: Date;
-  labels?: TodoLabels;
+  labels?: string | string[] | TodoLabelRecord | TodoLabelRecord[];
 }
 
 export function _createJsonResponseDeserializer(
@@ -250,7 +250,7 @@ export function _createJsonResponseDeserializer(
       : new Date(item["completedAt"]),
     labels: !item["labels"]
       ? item["labels"]
-      : todoLabelsDeserializer(item["labels"]),
+      : _todoLabelsDeserializer(item["labels"]),
   };
 }
 
@@ -298,7 +298,7 @@ export interface _CreateFormResponse {
   readonly updatedAt: Date;
   /** When the todo item was makred as completed */
   readonly completedAt?: Date;
-  labels?: TodoLabels;
+  labels?: string | string[] | TodoLabelRecord | TodoLabelRecord[];
 }
 
 export function _createFormResponseDeserializer(
@@ -318,7 +318,7 @@ export function _createFormResponseDeserializer(
       : new Date(item["completedAt"]),
     labels: !item["labels"]
       ? item["labels"]
-      : todoLabelsDeserializer(item["labels"]),
+      : _todoLabelsDeserializer(item["labels"]),
   };
 }
 
@@ -342,7 +342,7 @@ export interface _GetResponse {
   readonly updatedAt: Date;
   /** When the todo item was makred as completed */
   readonly completedAt?: Date;
-  labels?: TodoLabels;
+  labels?: string | string[] | TodoLabelRecord | TodoLabelRecord[];
 }
 
 export function _getResponseDeserializer(item: any): _GetResponse {
@@ -360,7 +360,7 @@ export function _getResponseDeserializer(item: any): _GetResponse {
       : new Date(item["completedAt"]),
     labels: !item["labels"]
       ? item["labels"]
-      : todoLabelsDeserializer(item["labels"]),
+      : _todoLabelsDeserializer(item["labels"]),
   };
 }
 
@@ -384,7 +384,7 @@ export interface _UpdateResponse {
   readonly updatedAt: Date;
   /** When the todo item was makred as completed */
   readonly completedAt?: Date;
-  labels?: TodoLabels;
+  labels?: string | string[] | TodoLabelRecord | TodoLabelRecord[];
 }
 
 export function _updateResponseDeserializer(item: any): _UpdateResponse {
@@ -402,7 +402,7 @@ export function _updateResponseDeserializer(item: any): _UpdateResponse {
       : new Date(item["completedAt"]),
     labels: !item["labels"]
       ? item["labels"]
-      : todoLabelsDeserializer(item["labels"]),
+      : _todoLabelsDeserializer(item["labels"]),
   };
 }
 
