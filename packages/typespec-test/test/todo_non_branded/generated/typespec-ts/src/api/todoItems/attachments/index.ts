@@ -23,6 +23,7 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../../static-helpers/pagingHelpers.js";
+import { expandUrlTemplate } from "../../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -38,8 +39,17 @@ export function _createFileAttachmentSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/items/{itemId}/attachments",
+    {
+      itemId: itemId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/items/{itemId}/attachments", itemId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "multipart/form-data",
@@ -96,8 +106,17 @@ export function _createJsonAttachmentSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/items/{itemId}/attachments",
+    {
+      itemId: itemId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/items/{itemId}/attachments", itemId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
@@ -151,8 +170,17 @@ export function _listSend(
   itemId: number,
   options: TodoItemsAttachmentsListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/items/{itemId}/attachments",
+    {
+      itemId: itemId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/items/{itemId}/attachments", itemId)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {

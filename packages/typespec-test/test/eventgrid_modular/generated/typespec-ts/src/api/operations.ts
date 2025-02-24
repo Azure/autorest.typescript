@@ -31,6 +31,7 @@ import {
   RejectResult,
   rejectResultDeserializer,
 } from "../models/models.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -45,12 +46,19 @@ export function _rejectCloudEventsSend(
   lockTokens: RejectOptions,
   options: RejectCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:reject{?api-version}",
+    {
+      topicName: topicName,
+      eventSubscriptionName: eventSubscriptionName,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:reject",
-      topicName,
-      eventSubscriptionName,
-    )
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; charset=utf-8",
@@ -58,7 +66,6 @@ export function _rejectCloudEventsSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: rejectOptionsSerializer(lockTokens),
     });
 }
@@ -99,12 +106,19 @@ export function _releaseCloudEventsSend(
   lockTokens: ReleaseOptions,
   options: ReleaseCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:release{?api-version}",
+    {
+      topicName: topicName,
+      eventSubscriptionName: eventSubscriptionName,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:release",
-      topicName,
-      eventSubscriptionName,
-    )
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; charset=utf-8",
@@ -112,7 +126,6 @@ export function _releaseCloudEventsSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: releaseOptionsSerializer(lockTokens),
     });
 }
@@ -153,12 +166,19 @@ export function _acknowledgeCloudEventsSend(
   lockTokens: AcknowledgeOptions,
   options: AcknowledgeCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:acknowledge{?api-version}",
+    {
+      topicName: topicName,
+      eventSubscriptionName: eventSubscriptionName,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:acknowledge",
-      topicName,
-      eventSubscriptionName,
-    )
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; charset=utf-8",
@@ -166,7 +186,6 @@ export function _acknowledgeCloudEventsSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: acknowledgeOptionsSerializer(lockTokens),
     });
 }
@@ -206,22 +225,26 @@ export function _receiveCloudEventsSend(
   eventSubscriptionName: string,
   options: ReceiveCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:receive{?api-version,maxEvents,maxWaitTime}",
+    {
+      topicName: topicName,
+      eventSubscriptionName: eventSubscriptionName,
+      "api-version": context.apiVersion,
+      maxEvents: options?.maxEvents,
+      maxWaitTime: options?.maxWaitTime,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:receive",
-      topicName,
-      eventSubscriptionName,
-    )
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
-      },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        maxEvents: options?.maxEvents,
-        maxWaitTime: options?.maxWaitTime,
       },
     });
 }
@@ -259,11 +282,20 @@ export function _publishCloudEventsSend(
   events: CloudEvent[],
   options: PublishCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/topics/{topicName}:publish", topicName).post({
+  const path = expandUrlTemplate(
+    "/topics/{topicName}:publish{?api-version}",
+    {
+      topicName: topicName,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context.path(path).post({
     ...operationOptionsToRequestParameters(options),
     contentType: "application/cloudevents-batch+json; charset=utf-8",
     headers: { accept: "application/json", ...options.requestOptions?.headers },
-    queryParameters: { "api-version": context.apiVersion },
     body: events.map((p: any) => {
       return cloudEventSerializer(p);
     }),
@@ -305,8 +337,18 @@ export function _publishCloudEventSend(
   },
   options: PublishCloudEventOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/topics/{topicName}:publish{?api-version}",
+    {
+      topicName: topicName,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/topics/{topicName}:publish", topicName)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/cloudevents+json; charset=utf-8",
@@ -314,7 +356,6 @@ export function _publishCloudEventSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: _publishCloudEventRequestSerializer(event),
     });
 }
