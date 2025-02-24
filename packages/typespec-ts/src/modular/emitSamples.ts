@@ -10,7 +10,6 @@ import {
   SdkHttpOperationExample,
   SdkHttpParameterExampleValue,
   SdkInitializationType,
-  SdkServiceMethod,
   SdkServiceOperation,
   SdkExampleValue
 } from "@azure-tools/typespec-client-generator-core";
@@ -33,6 +32,10 @@ import {
   hasKeyCredential,
   hasTokenCredential
 } from "../utils/credentialUtils.js";
+import {
+  getMethodHierarchiesMap,
+  ServiceOperation
+} from "../utils/operationUtil.js";
 
 /**
  * Interfaces for samples generations
@@ -74,37 +77,26 @@ function emitClientSamples(
   client: SdkClientType<SdkServiceOperation>,
   options: EmitSampleOptions
 ) {
-  for (const operationOrGroup of client.methods) {
-    // handle client-level methods
-    if (operationOrGroup.kind !== "clientaccessor") {
-      emitMethodSamples(dpgContext, operationOrGroup, options);
-      continue;
+  const methodMap = getMethodHierarchiesMap(dpgContext, client);
+  for (const [prefixKey, operations] of methodMap) {
+    const prefix = prefixKey
+      .split("/")
+      .map((name) => {
+        return normalizeName(name, NameType.Property);
+      })
+      .join(".");
+    for (const op of operations) {
+      emitMethodSamples(dpgContext, op, {
+        ...options,
+        classicalMethodPrefix: prefix
+      });
     }
-    // handle operation group
-    let prefix = normalizeName(
-      operationOrGroup.response.name,
-      NameType.Property
-    );
-    // append hierarchy prefix if hierarchyClient is enabled
-    if (dpgContext.rlcOptions?.hierarchyClient === true) {
-      prefix =
-        (options.classicalMethodPrefix
-          ? `${options.classicalMethodPrefix}.`
-          : "") + prefix;
-    } else if (dpgContext.rlcOptions?.enableOperationGroup === false) {
-      prefix = "";
-    }
-
-    emitClientSamples(dpgContext, operationOrGroup.response, {
-      ...options,
-      classicalMethodPrefix: prefix
-    });
   }
 }
 
 function emitMethodSamples(
   dpgContext: SdkContext,
-  method: SdkServiceMethod<SdkServiceOperation>,
+  method: ServiceOperation,
   options: EmitSampleOptions
 ): SourceFile | undefined {
   const examples = method.operation.examples ?? [];
@@ -113,7 +105,7 @@ function emitMethodSamples(
   }
   const project = useContext("outputProject");
   const operationPrefix = `${options.classicalMethodPrefix ?? ""} ${
-    method.name
+    method.oriName ?? method.name
   }`;
   const sampleFolder = join(
     dpgContext.generationPathDetail?.rootDir ?? "",
@@ -194,7 +186,7 @@ function emitMethodSamples(
       ? `${options.classicalMethodPrefix}.`
       : "";
     const isPaging = method.kind === "paging";
-    const methodCall = `client.${prefix}${method.name}(${methodParams.join(
+    const methodCall = `client.${prefix}${normalizeName(method.oriName ?? method.name, NameType.Property)}(${methodParams.join(
       ", "
     )})`;
     if (isPaging) {
@@ -212,7 +204,8 @@ function emitMethodSamples(
     }
 
     // Create a function declaration structure
-    const description = method.doc ?? `execute ${method.name}`;
+    const description =
+      method.doc ?? `execute ${method.oriName ?? method.name}`;
     const normalizedDescription =
       description.charAt(0).toLowerCase() + description.slice(1);
     const functionDeclaration: FunctionDeclarationStructure = {
@@ -229,10 +222,10 @@ function emitMethodSamples(
     exampleFunctions.push(exampleFunctionType.name);
   }
   // Add statements referencing the tracked declarations
-  const functions = exampleFunctions.map((f) => `${f}();`).join("\n");
+  const functions = exampleFunctions.map((f) => `await ${f}();`).join("\n");
   sourceFile.addStatements(`
   async function main(): Promise<void> {
-    await ${functions}
+    ${functions}
   }
 
   main().catch(console.error);`);
@@ -252,7 +245,7 @@ function buildParameterValueMap(example: SdkHttpOperationExample) {
 
 function prepareExampleParameters(
   dpgContext: SdkContext,
-  method: SdkServiceMethod<SdkServiceOperation>,
+  method: ServiceOperation,
   parameterMap: Record<string, SdkHttpParameterExampleValue>,
   topLevelClient: SdkClientType<SdkServiceOperation>
 ): ExampleValue[] {
@@ -284,7 +277,7 @@ function prepareExampleParameters(
       reportDiagnostic(dpgContext.program, {
         code: "required-sample-parameter",
         format: {
-          exampleName: method.name,
+          exampleName: method.oriName ?? method.name,
           paramName: param.name
         },
         target: NoTarget
