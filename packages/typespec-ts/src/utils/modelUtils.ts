@@ -34,6 +34,7 @@ import {
   getEncode,
   getFormat,
   getFriendlyName,
+  getLifecycleVisibilityEnum,
   getMaxLength,
   getMaxValue,
   getMinLength,
@@ -42,7 +43,7 @@ import {
   getProperty,
   getPropertyType,
   getSummary,
-  getVisibility,
+  getVisibilityForClass,
   isArrayModelType,
   isNeverType,
   isNullType,
@@ -58,6 +59,7 @@ import { GetSchemaOptions, SdkContext } from "./interfaces.js";
 import {
   HttpOperation,
   HttpOperationParameters,
+  Visibility,
   getHeaderFieldName,
   getPathParamName,
   getQueryParamName,
@@ -723,9 +725,6 @@ function getSchemaForModel(
     if (!prop.optional) {
       propSchema.required = true;
     }
-    if (name === '"propBoolean"') {
-      prop;
-    }
     const propertyDescription = getFormattedPropertyDoc(
       program,
       prop,
@@ -762,17 +761,17 @@ function getSchemaForModel(
     newPropSchema.description = propertyDescription;
 
     // Should the property be marked as readOnly?
-    const vis = getVisibility(program, prop);
-    if (vis && vis.includes("read")) {
+    const vis = getSdkVisibility(program, prop);
+    if (vis && vis.includes(Visibility.Read)) {
       const mutability = [];
-      if (vis.includes("read")) {
+      if (vis.includes(Visibility.Read)) {
         if (vis.length > 1) {
           mutability.push(SchemaContext.Output);
         } else {
           newPropSchema["readOnly"] = true;
         }
       }
-      if (vis.includes("write") || vis.includes("create")) {
+      if (vis.includes(Visibility.Create) || vis.includes(Visibility.Update)) {
         mutability.push(SchemaContext.Input);
       }
 
@@ -806,6 +805,48 @@ function getSchemaForModel(
   return modelSchema;
 }
 
+function getSdkVisibility(
+  program: Program,
+  type: ModelProperty
+): Visibility[] | undefined {
+  const lifecycle = getLifecycleVisibilityEnum(program);
+  const visibility = getVisibilityForClass(program, type, lifecycle);
+  if (visibility) {
+    const result: Visibility[] = [];
+    if (
+      lifecycle.members.get("Read") &&
+      visibility.has(lifecycle.members.get("Read")!)
+    ) {
+      result.push(Visibility.Read);
+    }
+    if (
+      lifecycle.members.get("Create") &&
+      visibility.has(lifecycle.members.get("Create")!)
+    ) {
+      result.push(Visibility.Create);
+    }
+    if (
+      lifecycle.members.get("Update") &&
+      visibility.has(lifecycle.members.get("Update")!)
+    ) {
+      result.push(Visibility.Update);
+    }
+    if (
+      lifecycle.members.get("Delete") &&
+      visibility.has(lifecycle.members.get("Delete")!)
+    ) {
+      result.push(Visibility.Delete);
+    }
+    if (
+      lifecycle.members.get("Query") &&
+      visibility.has(lifecycle.members.get("Query")!)
+    ) {
+      result.push(Visibility.Query);
+    }
+    return result;
+  }
+  return undefined;
+}
 /**
  * Return the model name for a given model
  */
@@ -857,14 +898,19 @@ function getModelName(dpgContext: SdkContext, model: Model) {
       NameType.Interface
     );
   }
-  const fullNamespacePrefix = getModelNamespaceName(
-    dpgContext,
-    model.namespace!
-  )
+  let fullNamespacePrefix = getModelNamespaceName(dpgContext, model.namespace!)
     .map((nsName) => {
       return normalizeName(nsName, NameType.Interface);
     })
     .join("");
+  if (
+    fullNamespacePrefix.startsWith("AzureResourceManager") ||
+    fullNamespacePrefix.startsWith("AzureCore") ||
+    fullNamespacePrefix.startsWith("TypeSpecRest") ||
+    fullNamespacePrefix.startsWith("TypeSpecHttp")
+  ) {
+    fullNamespacePrefix = "";
+  }
   // 5. check if this model should be namespaced
   return dpgContext.rlcOptions?.enableModelNamespace
     ? `${fullNamespacePrefix}${name}`
@@ -1774,7 +1820,9 @@ export function isSchemaProperty(
   const queryInfo = getQueryParamName(program, property);
   const pathInfo = getPathParamName(program, property);
   const statusCodeInfo = isStatusCode(program, property);
-  const isNonVisibility = getVisibility(program, property)?.includes("none");
+  const isNonVisibility = getSdkVisibility(program, property)?.includes(
+    Visibility.None
+  );
   return !(
     headerInfo ||
     queryInfo ||

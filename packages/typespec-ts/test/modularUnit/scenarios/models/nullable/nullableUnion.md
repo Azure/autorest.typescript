@@ -50,12 +50,6 @@ export type A = {
   message?: string;
   propA?: A;
 } | null;
-/** Alias for A */
-export type A_1 = {
-  code?: string;
-  message?: string;
-  propA?: A;
-} | null;
 ```
 
 ## Operations
@@ -65,7 +59,7 @@ import { TestingContext as Client } from "./index.js";
 import {
   _postRequestSerializer,
   _postRequestDeserializer,
-  A_1,
+  A,
 } from "../models/models.js";
 import {
   StreamableMethod,
@@ -76,7 +70,7 @@ import {
 
 export function _postSend(
   context: Client,
-  body: A_1,
+  body: A,
   options: PostOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -94,7 +88,7 @@ export function _postSend(
 
 export async function _postDeserialize(
   result: PathUncheckedResponse,
-): Promise<A_1> {
+): Promise<A> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -109,9 +103,9 @@ export async function _postDeserialize(
 
 export async function post(
   context: Client,
-  body: A_1,
+  body: A,
   options: PostOptionalParams = { requestOptions: {} },
-): Promise<A_1 | null> {
+): Promise<A> {
   const result = await _postSend(context, body, options);
   return _postDeserialize(result);
 }
