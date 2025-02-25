@@ -105,7 +105,7 @@ export interface TodoItem {
     dummy?: string;
     readonly id: number;
     // (undocumented)
-    labels?: string | string[] | TodoLabelRecord | TodoLabelRecord[];
+    labels?: TodoLabels;
     status: "NotStarted" | "InProgress" | "Completed";
     title: string;
     readonly updatedAt: Date;
@@ -192,7 +192,7 @@ export interface TodoItemsOperations {
         createdAt: Date;
         updatedAt: Date;
         completedAt?: Date;
-        labels?: string | string[] | TodoLabelRecord | TodoLabelRecord[];
+        labels?: TodoLabels;
     }>;
     // (undocumented)
     createJson: (item: TodoItem, options?: TodoItemsCreateJsonOptionalParams) => Promise<{
@@ -205,7 +205,7 @@ export interface TodoItemsOperations {
         createdAt: Date;
         updatedAt: Date;
         completedAt?: Date;
-        labels?: string | string[] | TodoLabelRecord | TodoLabelRecord[];
+        labels?: TodoLabels;
     }>;
     delete: (id: number, options?: TodoItemsDeleteOptionalParams) => Promise<void>;
     // (undocumented)
@@ -219,7 +219,7 @@ export interface TodoItemsOperations {
         createdAt: Date;
         updatedAt: Date;
         completedAt?: Date;
-        labels?: string | string[] | TodoLabelRecord | TodoLabelRecord[];
+        labels?: TodoLabels;
     }>;
     // (undocumented)
     list: (options?: TodoItemsListOptionalParams) => PagedAsyncIterableIterator<TodoItem>;
@@ -234,7 +234,7 @@ export interface TodoItemsOperations {
         createdAt: Date;
         updatedAt: Date;
         completedAt?: Date;
-        labels?: string | string[] | TodoLabelRecord | TodoLabelRecord[];
+        labels?: TodoLabels;
     }>;
 }
 
@@ -249,6 +249,9 @@ export interface TodoLabelRecord {
     // (undocumented)
     name: string;
 }
+
+// @public
+export type TodoLabels = string | string[] | TodoLabelRecord | TodoLabelRecord[];
 
 // @public
 export interface TodoPage {

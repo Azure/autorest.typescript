@@ -27,6 +27,7 @@ export function dataProductDeserializer(item: any): DataProduct {
     tags: item["tags"],
     location: item["location"],
     id: item["id"],
+    name: item["name"],
     type: item["type"],
     systemData: !item["systemData"]
       ? item["systemData"]
@@ -1019,6 +1020,7 @@ export function dataTypeSerializer(item: DataType): any {
 export function dataTypeDeserializer(item: any): DataType {
   return {
     id: item["id"],
+    name: item["name"],
     type: item["type"],
     systemData: !item["systemData"]
       ? item["systemData"]
@@ -1218,6 +1220,7 @@ export function dataProductsCatalogDeserializer(
 ): DataProductsCatalog {
   return {
     id: item["id"],
+    name: item["name"],
     type: item["type"],
     systemData: !item["systemData"]
       ? item["systemData"]

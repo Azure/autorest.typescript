@@ -20,7 +20,7 @@ import {
 import {
   TodoItem,
   todoItemSerializer,
-  TodoLabelRecord,
+  TodoLabels,
   standard4XXResponseDeserializer,
   standard5XXResponseDeserializer,
   todoAttachmentArraySerializer,
@@ -123,7 +123,7 @@ export async function _updateDeserialize(
   createdAt: Date;
   updatedAt: Date;
   completedAt?: Date;
-  labels?: string | string[] | TodoLabelRecord | TodoLabelRecord[];
+  labels?: TodoLabels;
 }> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -148,7 +148,7 @@ export async function update(
   createdAt: Date;
   updatedAt: Date;
   completedAt?: Date;
-  labels?: string | string[] | TodoLabelRecord | TodoLabelRecord[];
+  labels?: TodoLabels;
 }> {
   const result = await _updateSend(context, id, patch, options);
   return _updateDeserialize(result);
@@ -180,7 +180,7 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<{
   createdAt: Date;
   updatedAt: Date;
   completedAt?: Date;
-  labels?: string | string[] | TodoLabelRecord | TodoLabelRecord[];
+  labels?: TodoLabels;
 }> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -209,7 +209,7 @@ export async function get(
   createdAt: Date;
   updatedAt: Date;
   completedAt?: Date;
-  labels?: string | string[] | TodoLabelRecord | TodoLabelRecord[];
+  labels?: TodoLabels;
 }> {
   const result = await _getSend(context, id, options);
   return _getDeserialize(result);
@@ -245,7 +245,7 @@ export async function _createFormDeserialize(
   createdAt: Date;
   updatedAt: Date;
   completedAt?: Date;
-  labels?: string | string[] | TodoLabelRecord | TodoLabelRecord[];
+  labels?: TodoLabels;
 }> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -278,7 +278,7 @@ export async function createForm(
   createdAt: Date;
   updatedAt: Date;
   completedAt?: Date;
-  labels?: string | string[] | TodoLabelRecord | TodoLabelRecord[];
+  labels?: TodoLabels;
 }> {
   const result = await _createFormSend(context, body, options);
   return _createFormDeserialize(result);
@@ -319,7 +319,7 @@ export async function _createJsonDeserialize(
   createdAt: Date;
   updatedAt: Date;
   completedAt?: Date;
-  labels?: string | string[] | TodoLabelRecord | TodoLabelRecord[];
+  labels?: TodoLabels;
 }> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -352,7 +352,7 @@ export async function createJson(
   createdAt: Date;
   updatedAt: Date;
   completedAt?: Date;
-  labels?: string | string[] | TodoLabelRecord | TodoLabelRecord[];
+  labels?: TodoLabels;
 }> {
   const result = await _createJsonSend(context, item, options);
   return _createJsonDeserialize(result);

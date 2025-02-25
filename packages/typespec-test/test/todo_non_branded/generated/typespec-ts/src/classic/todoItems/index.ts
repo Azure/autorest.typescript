@@ -12,7 +12,7 @@ import {
 import { TodoItemPatch } from "../../models/todoItems/models.js";
 import {
   TodoItem,
-  TodoLabelRecord,
+  TodoLabels,
   ToDoItemMultipartRequest,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
@@ -54,7 +54,7 @@ export interface TodoItemsOperations {
     createdAt: Date;
     updatedAt: Date;
     completedAt?: Date;
-    labels?: string | string[] | TodoLabelRecord | TodoLabelRecord[];
+    labels?: TodoLabels;
   }>;
   get: (
     id: number,
@@ -69,7 +69,7 @@ export interface TodoItemsOperations {
     createdAt: Date;
     updatedAt: Date;
     completedAt?: Date;
-    labels?: string | string[] | TodoLabelRecord | TodoLabelRecord[];
+    labels?: TodoLabels;
   }>;
   createForm: (
     body: ToDoItemMultipartRequest,
@@ -84,7 +84,7 @@ export interface TodoItemsOperations {
     createdAt: Date;
     updatedAt: Date;
     completedAt?: Date;
-    labels?: string | string[] | TodoLabelRecord | TodoLabelRecord[];
+    labels?: TodoLabels;
   }>;
   createJson: (
     item: TodoItem,
@@ -99,7 +99,7 @@ export interface TodoItemsOperations {
     createdAt: Date;
     updatedAt: Date;
     completedAt?: Date;
-    labels?: string | string[] | TodoLabelRecord | TodoLabelRecord[];
+    labels?: TodoLabels;
   }>;
   list: (
     options?: TodoItemsListOptionalParams,

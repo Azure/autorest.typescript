@@ -49,7 +49,7 @@ import {
   vectorStoreDataSourceArraySerializer,
   vectorStoreConfigurationSerializer,
   toolDefinitionUnionArraySerializer,
-  _agentsApiResponseFormatOptionSerializer,
+  agentsApiResponseFormatOptionSerializer,
   Agent,
   agentDeserializer,
   OpenAIPageableListOfAgent,
@@ -68,7 +68,7 @@ import {
   OpenAIPageableListOfThreadMessage,
   openAIPageableListOfThreadMessageDeserializer,
   truncationObjectSerializer,
-  _agentsApiToolChoiceOptionSerializer,
+  agentsApiToolChoiceOptionSerializer,
   ThreadRun,
   threadRunDeserializer,
   updateToolResourcesOptionsSerializer,
@@ -1107,10 +1107,10 @@ export function _createThreadAndRunSend(
           : truncationObjectSerializer(options?.truncationStrategy),
         tool_choice: !options?.toolChoice
           ? options?.toolChoice
-          : _agentsApiToolChoiceOptionSerializer(options?.toolChoice),
+          : agentsApiToolChoiceOptionSerializer(options?.toolChoice),
         response_format: !options?.responseFormat
           ? options?.responseFormat
-          : _agentsApiResponseFormatOptionSerializer(options?.responseFormat),
+          : agentsApiResponseFormatOptionSerializer(options?.responseFormat),
         parallel_tool_calls: options?.parallelToolCalls,
         metadata: options?.metadata,
       },
@@ -1400,10 +1400,10 @@ export function _createRunSend(
         : truncationObjectSerializer(options?.truncationStrategy),
       tool_choice: !options?.toolChoice
         ? options?.toolChoice
-        : _agentsApiToolChoiceOptionSerializer(options?.toolChoice),
+        : agentsApiToolChoiceOptionSerializer(options?.toolChoice),
       response_format: !options?.responseFormat
         ? options?.responseFormat
-        : _agentsApiResponseFormatOptionSerializer(options?.responseFormat),
+        : agentsApiResponseFormatOptionSerializer(options?.responseFormat),
       parallel_tool_calls: options?.parallelToolCalls,
       metadata: options?.metadata,
     },
@@ -1856,7 +1856,7 @@ export function _updateAgentSend(
         top_p: options?.topP,
         response_format: !options?.responseFormat
           ? options?.responseFormat
-          : _agentsApiResponseFormatOptionSerializer(options?.responseFormat),
+          : agentsApiResponseFormatOptionSerializer(options?.responseFormat),
         metadata: options?.metadata,
       },
     });
@@ -1993,7 +1993,7 @@ export function _createAgentSend(
         top_p: options?.topP,
         response_format: !options?.responseFormat
           ? options?.responseFormat
-          : _agentsApiResponseFormatOptionSerializer(options?.responseFormat),
+          : agentsApiResponseFormatOptionSerializer(options?.responseFormat),
         metadata: options?.metadata,
       },
     });

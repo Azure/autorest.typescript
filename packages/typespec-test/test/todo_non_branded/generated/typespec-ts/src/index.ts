@@ -1,15 +1,16 @@
 // Licensed under the MIT License.
 
+import { FileContents } from "./static-helpers/multipartHelpers.js";
 import {
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
-import { FileContents } from "./static-helpers/multipartHelpers.js";
 
 export { TodoClient } from "./todoClient.js";
 export {
   TodoItem,
+  TodoLabels,
   TodoLabelRecord,
   Standard4XXResponse,
   ApiError,
