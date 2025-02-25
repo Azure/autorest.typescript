@@ -1,0 +1,138 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Chat Protocol",
+    "version": "0.0.0"
+  },
+  "tags": [],
+  "paths": {
+    "/chat": {
+      "post": {
+        "operationId": "getStreamedCompletion",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "content": {
+              "application/jsonl": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AIChatErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "body": {
+                    "$ref": "#/components/schemas/AIChatCompletionRequest"
+                  }
+                },
+                "required": [
+                  "body"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AIChatCompletionRequest": {
+        "type": "object",
+        "required": [
+          "messages"
+        ],
+        "properties": {
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AIChatMessage"
+            }
+          },
+          "context": {
+            "type": "object",
+            "additionalProperties": {}
+          },
+          "sessionState": {}
+        }
+      },
+      "AIChatError": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "AIChatErrorResponse": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/AIChatError"
+          }
+        }
+      },
+      "AIChatMessage": {
+        "type": "object",
+        "required": [
+          "role",
+          "content"
+        ],
+        "properties": {
+          "role": {
+            "$ref": "#/components/schemas/AIChatRole"
+          },
+          "content": {
+            "type": "string"
+          },
+          "context": {
+            "type": "object",
+            "additionalProperties": {}
+          }
+        }
+      },
+      "AIChatRole": {
+        "type": "string",
+        "enum": [
+          "assistant",
+          "user",
+          "system"
+        ]
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "{endpoint}",
+      "description": "Chat Protocol enabled endpoint",
+      "variables": {
+        "endpoint": {
+          "default": ""
+        }
+      }
+    }
+  ]
+}
