@@ -4,30 +4,38 @@
 import { Project } from "ts-morph";
 import { RLCModel } from "../interfaces.js";
 
-const restLevelTsConfigInAzureSdkForJs: (
-  model: RLCModel
-) => Record<string, any> = function (model: RLCModel) {
-  if (model.options?.moduleKind === "esm") {
+const restLevelTsConfigInAzureSdkForJs: () => Record<string, any> =
+  function () {
     return {
-      extends: "../../../tsconfig",
-      compilerOptions: {
-        module: "NodeNext",
-        moduleResolution: "NodeNext",
-        rootDir: ".",
-        skipLibCheck: true
-      },
-      include: ["src/**/*.ts", "src/**/*.mts", "src/**/*.cts", "test/**/*.ts"]
+      references: [
+        {
+          path: "./tsconfig.src.json"
+        }
+      ]
     };
-  }
-
+  };
+const tsSrcConfigInAzureSdkForJs: () => Record<string, any> = function () {
   return {
-    extends: "../../../tsconfig",
+    extends: "../../../tsconfig.lib.json"
+  };
+};
+
+const tsSampleConfigInAzureSdkForJs: (
+  clientPackageName: string
+) => Record<string, any> = function (clientPackageName) {
+  return {
+    extends: "../../../tsconfig.samples.base.json",
     compilerOptions: {
-      outDir: "./dist-esm",
-      declarationDir: "./types",
-      skipLibCheck: true
-    },
-    include: ["src/**/*.ts"]
+      paths: {
+        [clientPackageName]: ["./dist/esm"]
+      }
+    }
+  };
+};
+
+const tsTestConfigInAzureSdkForJs: () => Record<string, any> = function () {
+  return {
+    extends: ["./tsconfig.src.json", "../../../tsconfig.test.base.json"]
   };
 };
 
@@ -70,24 +78,88 @@ export function buildTsConfig(model: RLCModel) {
   const project = new Project();
 
   const restLevelTsConfig = azureSdkForJs
-    ? restLevelTsConfigInAzureSdkForJs(model)
+    ? restLevelTsConfigInAzureSdkForJs()
     : restLevelTsConfigNotInAzureSdkForJs(model);
 
-  if (generateTest) {
-    restLevelTsConfig.include.push("test/**/*.ts");
-  }
-  if (generateSample) {
-    restLevelTsConfig.include.push("samples-dev/**/*.ts");
-    restLevelTsConfig.compilerOptions["paths"] = {};
-    restLevelTsConfig.compilerOptions["paths"][clientPackageName] = [
-      "./src/index"
-    ];
+  if (!azureSdkForJs) {
+    if (generateTest) {
+      restLevelTsConfig.include.push("test/**/*.ts");
+    }
+    if (generateSample) {
+      restLevelTsConfig.include.push("samples-dev/**/*.ts");
+      restLevelTsConfig.compilerOptions["paths"] = {};
+      restLevelTsConfig.compilerOptions["paths"][clientPackageName] = [
+        "./src/index"
+      ];
+    }
+  } else {
+    if (generateSample) {
+      restLevelTsConfig.references.push({
+        path: "./tsconfig.samples.json"
+      });
+    }
+
+    if (generateTest) {
+      restLevelTsConfig.references.push({
+        path: "./tsconfig.test.json"
+      });
+    }
   }
 
   const filePath = "tsconfig.json";
   const configFile = project.createSourceFile(
     filePath,
-    JSON.stringify(restLevelTsConfig),
+    JSON.stringify(restLevelTsConfig, null, 2),
+    {
+      overwrite: true
+    }
+  );
+  return {
+    path: filePath,
+    content: configFile.getFullText()
+  };
+}
+
+export function buildTsSrcConfig() {
+  const project = new Project();
+  const filePath = "tsconfig.src.json";
+  const configFile = project.createSourceFile(
+    filePath,
+    JSON.stringify(tsSrcConfigInAzureSdkForJs(), null, 2),
+    {
+      overwrite: true
+    }
+  );
+  return {
+    path: filePath,
+    content: configFile.getFullText()
+  };
+}
+
+export function buildTsSampleConfig(model: RLCModel) {
+  const project = new Project();
+  const { packageDetails } = model.options || {};
+  const clientPackageName = packageDetails?.name ?? "";
+  const filePath = "tsconfig.sample.json";
+  const configFile = project.createSourceFile(
+    filePath,
+    JSON.stringify(tsSampleConfigInAzureSdkForJs(clientPackageName), null, 2),
+    {
+      overwrite: true
+    }
+  );
+  return {
+    path: filePath,
+    content: configFile.getFullText()
+  };
+}
+
+export function buildTsTestConfig() {
+  const project = new Project();
+  const filePath = "tsconfig.test.json";
+  const configFile = project.createSourceFile(
+    filePath,
+    JSON.stringify(tsTestConfigInAzureSdkForJs(), null, 2),
     {
       overwrite: true
     }
