@@ -117,6 +117,7 @@ export declare interface VisibilityModel {
     createProp: string[];
     updateProp: number[];
     deleteProp: boolean;
+    noneProp: "none";
 }
 
 export declare interface VisibilityModelOutput {
@@ -125,6 +126,7 @@ export declare interface VisibilityModelOutput {
     createProp: string[];
     updateProp: number[];
     deleteProp: boolean;
+    noneProp: "none";
 }
 
 export { }

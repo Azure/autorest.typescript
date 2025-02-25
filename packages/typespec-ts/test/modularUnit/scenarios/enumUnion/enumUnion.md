@@ -227,15 +227,15 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
-/** Alias for _SchemaContentTypeValues */
-export type _SchemaContentTypeValues =
+/** Alias for SchemaContentTypeValues */
+export type SchemaContentTypeValues =
   | JsonContentType
   | "text/plain; charset=utf-8"
   | "text/vnd.ms.protobuf"
   | string;
 
-export function _schemaContentTypeValuesSerializer(
-  item: _SchemaContentTypeValues,
+export function schemaContentTypeValuesSerializer(
+  item: SchemaContentTypeValues,
 ): any {
   return item;
 }
@@ -289,15 +289,15 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
-/** Alias for _SchemaContentTypeValues */
-export type _SchemaContentTypeValues =
+/** Alias for SchemaContentTypeValues */
+export type SchemaContentTypeValues =
   | JsonContentType
   | "text/plain; charset=utf-8"
   | "text/vnd.ms.protobuf"
   | string;
 
-export function _schemaContentTypeValuesSerializer(
-  item: _SchemaContentTypeValues,
+export function schemaContentTypeValuesSerializer(
+  item: SchemaContentTypeValues,
 ): any {
   return item;
 }
@@ -394,15 +394,15 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
-/** Alias for _SchemaContentTypeValues */
-export type _SchemaContentTypeValues =
+/** Alias for SchemaContentTypeValues */
+export type SchemaContentTypeValues =
   | JsonContentType
   | "text/plain; charset=utf-8"
   | "text/vnd.ms.protobuf"
   | string;
 
-export function _schemaContentTypeValuesSerializer(
-  item: _SchemaContentTypeValues,
+export function schemaContentTypeValuesSerializer(
+  item: SchemaContentTypeValues,
 ): any {
   return item;
 }
@@ -456,15 +456,15 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
-/** Alias for _SchemaContentTypeValues */
-export type _SchemaContentTypeValues =
+/** Alias for SchemaContentTypeValues */
+export type SchemaContentTypeValues =
   | JsonContentType
   | "text/plain; charset=utf-8"
   | "text/vnd.ms.protobuf"
   | string;
 
-export function _schemaContentTypeValuesSerializer(
-  item: _SchemaContentTypeValues,
+export function schemaContentTypeValuesSerializer(
+  item: SchemaContentTypeValues,
 ): any {
   return item;
 }
@@ -858,10 +858,10 @@ export function fooSerializer(item: Foo): any {
   return item;
 }
 
-/** Alias for _MixedTypes */
-export type _MixedTypes = EnumTest | string | Foo;
+/** Alias for MixedTypes */
+export type MixedTypes = EnumTest | string | Foo;
 
-export function _mixedTypesSerializer(item: _MixedTypes): any {
+export function mixedTypesSerializer(item: MixedTypes): any {
   return item;
 }
 

@@ -21,14 +21,18 @@ export declare type EnumV2 = "enumMember";
 export declare interface ModelV1 {
     prop: string;
     enumProp: EnumV1;
-    unionProp: string | number;
+    unionProp: UnionV1;
 }
 
 export declare interface ModelV2 {
     prop: string;
     enumProp: EnumV2;
-    unionProp: string | number;
+    unionProp: UnionV2;
 }
+
+export declare type UnionV1 = string | number;
+
+export declare type UnionV2 = string | number;
 
 export declare interface V1OptionalParams extends OperationOptions {
 }

@@ -9,7 +9,7 @@ export declare type EnumV3 = "enumMemberV1" | "enumMemberV2Preview";
 export declare interface ModelV2 {
     prop: string;
     enumProp: EnumV2;
-    unionProp: string | number;
+    unionProp: UnionV2;
 }
 
 export declare interface ModelV3 {
@@ -30,6 +30,8 @@ export declare class RemovedClient {
 
 export declare interface RemovedClientOptionalParams extends ClientOptions {
 }
+
+export declare type UnionV2 = string | number;
 
 export declare interface V2OptionalParams extends OperationOptions {
 }
