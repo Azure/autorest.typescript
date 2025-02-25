@@ -49,7 +49,7 @@ export type AIChatRole = "assistant" | "user" | "system";
 export class ChatClient {
     constructor(endpointParam: string, options?: ChatClientOptionalParams);
     // (undocumented)
-    getStreamedCompletion(body: AIChatCompletionRequest, options?: GetStreamedCompletionOptionalParams): Promise<string>;
+    getStreamedCompletion(body: AIChatCompletionRequest, options?: GetStreamedCompletionOptionalParams): Promise<AIChatErrorResponse>;
     readonly pipeline: Pipeline;
 }
 
@@ -59,8 +59,6 @@ export interface ChatClientOptionalParams extends ClientOptions {
 
 // @public
 export interface GetStreamedCompletionOptionalParams extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
 }
 
 // (No @packageDocumentation comment for this package)

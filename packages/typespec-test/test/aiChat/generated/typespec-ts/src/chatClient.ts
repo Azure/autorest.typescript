@@ -7,7 +7,10 @@ import {
   getStreamedCompletion,
   GetStreamedCompletionOptionalParams,
 } from "./api/index.js";
-import { AIChatCompletionRequest } from "./models/models.js";
+import {
+  AIChatCompletionRequest,
+  AIChatErrorResponse,
+} from "./models/models.js";
 import { Pipeline } from "@typespec/ts-http-runtime";
 
 export { ChatClientOptionalParams } from "./api/chatContext.js";
@@ -32,7 +35,7 @@ export class ChatClient {
   getStreamedCompletion(
     body: AIChatCompletionRequest,
     options: GetStreamedCompletionOptionalParams = { requestOptions: {} },
-  ): Promise<string> {
+  ): Promise<AIChatErrorResponse> {
     return getStreamedCompletion(this._client, body, options);
   }
 }

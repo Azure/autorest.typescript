@@ -6,7 +6,9 @@ import {
 } from "./index.js";
 import {
   AIChatCompletionRequest,
-  aIChatMessageArraySerializer,
+  aIChatCompletionRequestSerializer,
+  AIChatErrorResponse,
+  aIChatErrorResponseDeserializer,
 } from "../models/models.js";
 import {
   StreamableMethod,
@@ -24,33 +26,27 @@ export function _getStreamedCompletionSend(
     .path("/chat")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: (options.contentType as any) ?? "application/json",
-      body: {
-        body: {
-          messages: aIChatMessageArraySerializer(body["messages"]),
-          context: body["context"],
-          sessionState: body["sessionState"],
-        },
-      },
+      contentType: "application/json",
+      body: { body: aIChatCompletionRequestSerializer(body) },
     });
 }
 
 export async function _getStreamedCompletionDeserialize(
   result: PathUncheckedResponse,
-): Promise<string> {
-  const expectedStatuses = ["200", "200"];
+): Promise<AIChatErrorResponse> {
+  const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return result.body;
+  return aIChatErrorResponseDeserializer(result.body);
 }
 
 export async function getStreamedCompletion(
   context: Client,
   body: AIChatCompletionRequest,
   options: GetStreamedCompletionOptionalParams = { requestOptions: {} },
-): Promise<string> {
+): Promise<AIChatErrorResponse> {
   const result = await _getStreamedCompletionSend(context, body, options);
   return _getStreamedCompletionDeserialize(result);
 }

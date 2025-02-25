@@ -11,7 +11,7 @@ export function createChat(
   endpointParam: string,
   options: ChatClientOptionalParams = {},
 ): ChatContext {
-  const endpointUrl = options.endpoint ?? `${endpointParam}`;
+  const endpointUrl = options.endpoint ?? String(endpointParam);
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentInfo = `azsdk-js-aichat/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions

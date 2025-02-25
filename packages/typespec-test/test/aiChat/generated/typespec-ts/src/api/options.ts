@@ -3,6 +3,4 @@
 import { OperationOptions } from "@typespec/ts-http-runtime";
 
 /** Optional parameters. */
-export interface GetStreamedCompletionOptionalParams extends OperationOptions {
-  contentType?: string;
-}
+export interface GetStreamedCompletionOptionalParams extends OperationOptions {}
