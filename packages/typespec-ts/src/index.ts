@@ -413,12 +413,14 @@ export async function $onEmit(context: EmitContext) {
         buildPackageFile(model, modularPackageInfo)
       );
       commonBuilders.push(buildTsConfig);
-      commonBuilders.push(buildTsSrcConfig);
-      if (option.generateSample) {
-        commonBuilders.push(buildTsSampleConfig);
-      }
-      if (option.generateTest) {
-        commonBuilders.push(buildTsTestConfig);
+      if (option.azureSdkForJs) {
+        commonBuilders.push(buildTsSrcConfig);
+        if (option.generateSample) {
+          commonBuilders.push(buildTsSampleConfig);
+        }
+        if (option.generateTest) {
+          commonBuilders.push(buildTsTestConfig);
+        }
       }
 
       // TODO: need support snippets generation for multi-client cases. https://github.com/Azure/autorest.typescript/issues/3048
