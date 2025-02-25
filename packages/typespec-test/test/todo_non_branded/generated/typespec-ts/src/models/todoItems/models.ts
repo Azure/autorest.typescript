@@ -8,8 +8,8 @@ import {
   todoAttachmentArrayDeserializer,
 } from "../models.js";
 
-/** model interface TodoPage */
-export interface TodoPage {
+/** model interface _TodoPage */
+export interface _TodoPage {
   /** The items in the page */
   items: TodoItem[];
   /** The number of items returned in this page */
@@ -22,7 +22,7 @@ export interface TodoPage {
   nextLink?: string;
 }
 
-export function todoPageDeserializer(item: any): TodoPage {
+export function _todoPageDeserializer(item: any): _TodoPage {
   return {
     items: todoItemArrayDeserializer(item["items"]),
     pageSize: item["pageSize"],
@@ -76,12 +76,14 @@ export function todoItemPatchSerializer(item: TodoItemPatch): any {
   };
 }
 
-/** model interface PageTodoAttachment */
-export interface PageTodoAttachment {
+/** model interface _PageTodoAttachment */
+export interface _PageTodoAttachment {
   items: TodoAttachment[];
 }
 
-export function pageTodoAttachmentDeserializer(item: any): PageTodoAttachment {
+export function _pageTodoAttachmentDeserializer(
+  item: any,
+): _PageTodoAttachment {
   return {
     items: todoAttachmentArrayDeserializer(item["items"]),
   };
