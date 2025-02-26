@@ -422,7 +422,7 @@ export async function emitModularModelsFromTypeSpec(
     reportDiagnostic(context.program, {
       code: "use-kebab-case-option",
       format: {
-        kababCaseOption: "experimental-extensible-enums",
+        kebabCaseOption: "experimental-extensible-enums",
         camalCaseOption: "experimentalExtensibleEnums"
       },
       target: NoTarget
@@ -432,7 +432,7 @@ export async function emitModularModelsFromTypeSpec(
     reportDiagnostic(context.program, {
       code: "use-kebab-case-option",
       format: {
-        kababCaseOption: "compatibility-mode",
+        kebabCaseOption: "compatibility-mode",
         camalCaseOption: "compatibilityMode"
       },
       target: NoTarget
@@ -510,7 +510,7 @@ export async function emitModularOperationsFromTypeSpec(
     reportDiagnostic(context.program, {
       code: "use-kebab-case-option",
       format: {
-        kababCaseOption: "experimental-extensible-enums",
+        kebabCaseOption: "experimental-extensible-enums",
         camalCaseOption: "experimentalExtensibleEnums"
       },
       target: NoTarget
@@ -572,7 +572,7 @@ export async function emitModularClientContextFromTypeSpec(
     reportDiagnostic(context.program, {
       code: "use-kebab-case-option",
       format: {
-        kababCaseOption: "typespec-title-map",
+        kebabCaseOption: "typespec-title-map",
         camalCaseOption: "typespecTitleMap"
       },
       target: NoTarget
@@ -631,7 +631,7 @@ export async function emitModularClientFromTypeSpec(
     reportDiagnostic(context.program, {
       code: "use-kebab-case-option",
       format: {
-        kababCaseOption: "typespec-title-map",
+        kebabCaseOption: "typespec-title-map",
         camalCaseOption: "typespecTitleMap"
       },
       target: NoTarget
@@ -679,7 +679,7 @@ export async function emitSamplesFromTypeSpec(
     reportDiagnostic(context.program, {
       code: "use-kebab-case-option",
       format: {
-        kababCaseOption: "hierarchy-client",
+        kebabCaseOption: "hierarchy-client",
         camalCaseOption: "hierarchyClient"
       },
       target: NoTarget
@@ -689,7 +689,7 @@ export async function emitSamplesFromTypeSpec(
     reportDiagnostic(context.program, {
       code: "use-kebab-case-option",
       format: {
-        kababCaseOption: "enable-operation-group",
+        kebabCaseOption: "enable-operation-group",
         camalCaseOption: "enableOperationGroup"
       },
       target: NoTarget
@@ -699,7 +699,7 @@ export async function emitSamplesFromTypeSpec(
     reportDiagnostic(context.program, {
       code: "use-kebab-case-option",
       format: {
-        kababCaseOption: "typespec-title-map",
+        kebabCaseOption: "typespec-title-map",
         camalCaseOption: "typespecTitleMap"
       },
       target: NoTarget
