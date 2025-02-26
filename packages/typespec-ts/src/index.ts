@@ -152,7 +152,7 @@ export async function $onEmit(context: EmitContext) {
   await buildRLCCodeModels();
 
   // 4. Generate sources
-  if (emitterOptions["is-modular-library"] || emitterOptions.isModularLibrary) {
+  if (emitterOptions.isModularLibrary) {
     await generateModularSources();
   } else {
     await generateRLCSources();
@@ -166,7 +166,6 @@ export async function $onEmit(context: EmitContext) {
       await calculateGenerationDir();
     dpgContext.generationPathDetail = generationPathDetail;
     const options: RLCOptions = transformRLCOptions(emitterOptions, dpgContext);
-    emitterOptions["is-modular-library"] = options.isModularLibrary;
     emitterOptions.isModularLibrary = options.isModularLibrary;
     emitterOptions.generateSample = options.generateSample;
     // clear output folder if needed
@@ -324,10 +323,7 @@ export async function $onEmit(context: EmitContext) {
       );
     }
     // Enable modular sample generation when explicitly set to true or MPG
-    if (
-      emitterOptions["generate-sample"] === true ||
-      emitterOptions.generateSample === true
-    ) {
+    if (emitterOptions.generateSample === true) {
       const samples = emitSamples(dpgContext);
       // Refine the rlc sample generation logic
       // TODO: remember to remove this out when RLC is splitted from Modular
@@ -502,11 +498,11 @@ export async function createContextWithDefaultOptions(
   context: EmitContext<Record<string, any>>
 ): Promise<SdkContext> {
   const flattenUnionAsEnum =
-    context.options["experimentalExtensibleEnums"] === undefined &&
-    context.options["experimental-extensible-enums"] === undefined
+    context.options["experimental-extensible-enums"] === undefined &&
+    context.options["experimentalExtensibleEnums"] === undefined
       ? isArm(context)
-      : context.options["experimentalExtensibleEnums"] ||
-        context.options["experimental-extensible-enums"];
+      : context.options["experimental-extensible-enums"] ||
+        context.options["experimentalExtensibleEnums"];
   const tcgcSettings = {
     "generate-protocol-methods": true,
     "generate-convenience-methods": true,
@@ -531,7 +527,10 @@ export async function createContextWithDefaultOptions(
 
 // TODO: should be removed once tcgc issue is resolved https://github.com/Azure/typespec-azure/issues/1794
 function isArm(context: EmitContext<Record<string, any>>) {
-  const packageName = (context?.options["packageDetails"] ?? {})["name"] ?? "";
+  const packageName =
+    (context?.options["package-details"] ??
+      context?.options["packageDetails"] ??
+      {})["name"] ?? "";
   return packageName?.startsWith("@azure/arm-");
 }
 

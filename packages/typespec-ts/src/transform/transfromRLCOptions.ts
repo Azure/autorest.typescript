@@ -27,6 +27,9 @@ export function transformRLCOptions(
   emitterOptions: EmitterOptions,
   dpgContext: SdkContext
 ): RLCOptions {
+  // reportAllCamelOptionDiagnostics
+  reportAllCamelOptionDiagnostics(dpgContext.program, emitterOptions);
+
   // Extract the options from emitter option
   const options = extractRLCOptions(
     dpgContext,
@@ -51,17 +54,178 @@ export function transformRLCOptions(
   options.batch = batch;
   return options;
 }
-function reportOptionDiagnostic(
+function reportAllCamelOptionDiagnostics(
+  program: Program,
+  emitterOptions: EmitterOptions
+) {
+  if (emitterOptions.includeShortcuts !== undefined) {
+    reportCamelOptionDiagnostic(program, {
+      kebabCaseOption: "include-shortcuts",
+      camalCaseOption: "includeShortcuts"
+    });
+  }
+  if (emitterOptions.packageDetails !== undefined) {
+    reportCamelOptionDiagnostic(program, {
+      kebabCaseOption: "package-details",
+      camalCaseOption: "packageDetails"
+    });
+  }
+  if (emitterOptions.moduleKind !== undefined) {
+    reportCamelOptionDiagnostic(program, {
+      kebabCaseOption: "module-kind",
+      camalCaseOption: "moduleKind"
+    });
+  }
+  if (emitterOptions.azureSdkForJs !== undefined) {
+    reportCamelOptionDiagnostic(program, {
+      kebabCaseOption: "azure-sdk-for-js",
+      camalCaseOption: "azureSdkForJs"
+    });
+  }
+  if (emitterOptions.generateMetadata !== undefined) {
+    reportCamelOptionDiagnostic(program, {
+      kebabCaseOption: "generate-metadata",
+      camalCaseOption: "generateMetadata"
+    });
+  }
+  if (emitterOptions.generateTest !== undefined) {
+    reportCamelOptionDiagnostic(program, {
+      kebabCaseOption: "generate-test",
+      camalCaseOption: "generateTest"
+    });
+  }
+  if (emitterOptions.generateSample !== undefined) {
+    reportCamelOptionDiagnostic(program, {
+      kebabCaseOption: "generate-sample",
+      camalCaseOption: "generateSample"
+    });
+  }
+  if (emitterOptions.addCredentials !== undefined) {
+    reportCamelOptionDiagnostic(program, {
+      kebabCaseOption: "add-credentials",
+      camalCaseOption: "addCredentials"
+    });
+  }
+  if (emitterOptions.credentialScopes !== undefined) {
+    reportCamelOptionDiagnostic(program, {
+      kebabCaseOption: "credential-scopes",
+      camalCaseOption: "credentialScopes"
+    });
+  }
+  if (emitterOptions.credentialKeyHeaderName !== undefined) {
+    reportCamelOptionDiagnostic(program, {
+      kebabCaseOption: "credential-key-header-name",
+      camalCaseOption: "credentialKeyHeaderName"
+    });
+  }
+  if (emitterOptions.customHttpAuthHeaderName !== undefined) {
+    reportCamelOptionDiagnostic(program, {
+      kebabCaseOption: "custom-http-auth-header-name",
+      camalCaseOption: "customHttpAuthHeaderName"
+    });
+  }
+  if (emitterOptions.customHttpAuthSharedKeyPrefix !== undefined) {
+    reportCamelOptionDiagnostic(program, {
+      kebabCaseOption: "custom-http-auth-shared-key-prefix",
+      camalCaseOption: "customHttpAuthSharedKeyPrefix"
+    });
+  }
+  if (emitterOptions.enableOperationGroup !== undefined) {
+    reportCamelOptionDiagnostic(program, {
+      kebabCaseOption: "enable-operation-group",
+      camalCaseOption: "enableOperationGroup"
+    });
+  }
+  if (emitterOptions.enableModelNamespace !== undefined) {
+    reportCamelOptionDiagnostic(program, {
+      kebabCaseOption: "enable-model-namespace",
+      camalCaseOption: "enableModelNamespace"
+    });
+  }
+  if (emitterOptions.hierarchyClient !== undefined) {
+    reportCamelOptionDiagnostic(program, {
+      kebabCaseOption: "hierarchy-client",
+      camalCaseOption: "hierarchyClient"
+    });
+  }
+  if (emitterOptions.clearOutputFolder !== undefined) {
+    reportCamelOptionDiagnostic(program, {
+      kebabCaseOption: "clear-output-folder",
+      camalCaseOption: "clearOutputFolder"
+    });
+  }
+  if (emitterOptions.multiClient !== undefined) {
+    reportCamelOptionDiagnostic(program, {
+      kebabCaseOption: "multi-client",
+      camalCaseOption: "multiClient"
+    });
+  }
+  if (emitterOptions.isTypeSpecTest !== undefined) {
+    reportCamelOptionDiagnostic(program, {
+      kebabCaseOption: "is-typespec-test",
+      camalCaseOption: "isTypeSpecTest"
+    });
+  }
+  if (emitterOptions.dependencyInfo !== undefined) {
+    reportCamelOptionDiagnostic(program, {
+      kebabCaseOption: "dependency-info",
+      camalCaseOption: "dependencyInfo"
+    });
+  }
+  if (emitterOptions.productDocLink !== undefined) {
+    reportCamelOptionDiagnostic(program, {
+      kebabCaseOption: "product-doc-link",
+      camalCaseOption: "productDocLink"
+    });
+  }
+  if (emitterOptions.isModularLibrary !== undefined) {
+    reportCamelOptionDiagnostic(program, {
+      kebabCaseOption: "is-modular-library",
+      camalCaseOption: "isModularLibrary"
+    });
+  }
+  if (emitterOptions.compatibilityMode !== undefined) {
+    reportCamelOptionDiagnostic(program, {
+      kebabCaseOption: "compatibility-mode",
+      camalCaseOption: "compatibilityMode"
+    });
+  }
+  if (emitterOptions.experimentalExtensibleEnums !== undefined) {
+    reportCamelOptionDiagnostic(program, {
+      kebabCaseOption: "experimental-extensible-enums",
+      camalCaseOption: "experimentalExtensibleEnums"
+    });
+  }
+  if (emitterOptions.ignorePropertyNameNormalize !== undefined) {
+    reportCamelOptionDiagnostic(program, {
+      kebabCaseOption: "ignore-property-name-normalize",
+      camalCaseOption: "ignorePropertyNameNormalize"
+    });
+  }
+  if (emitterOptions.compatibilityQueryMultiFormat !== undefined) {
+    reportCamelOptionDiagnostic(program, {
+      kebabCaseOption: "compatibility-query-multi-format",
+      camalCaseOption: "compatibilityQueryMultiFormat"
+    });
+  }
+  if (emitterOptions.typespecTitleMap !== undefined) {
+    reportCamelOptionDiagnostic(program, {
+      kebabCaseOption: "typespec-title-map",
+      camalCaseOption: "typespecTitleMap"
+    });
+  }
+}
+function reportCamelOptionDiagnostic(
   program: Program,
   caseOption: {
-    kababCaseOption: string;
+    kebabCaseOption: string;
     camalCaseOption: string;
   }
 ) {
   reportDiagnostic(program, {
     code: "use-kebab-case-option",
     format: {
-      kababCaseOption: caseOption.kababCaseOption,
+      kebabCaseOption: caseOption.kebabCaseOption,
       camalCaseOption: caseOption.camalCaseOption
     },
     target: NoTarget
@@ -73,16 +237,14 @@ function extractRLCOptions(
   generationRootDir: string
 ): RLCOptions {
   const program = dpgContext.program;
-  const includeShortcuts = getIncludeShortcuts(program, emitterOptions);
+  const includeShortcuts = getIncludeShortcuts(emitterOptions);
   const packageDetails = getPackageDetails(program, emitterOptions);
   const flavor = getFlavor(emitterOptions, packageDetails);
-  const moduleKind = getModuleKind(program, emitterOptions);
+  const moduleKind = getModuleKind(emitterOptions);
   const serviceInfo = getServiceInfo(program);
-  const azureSdkForJs = getAzureSdkForJs(program, emitterOptions);
-  const generateMetadata: undefined | boolean = getGenerateMetadata(
-    program,
-    emitterOptions
-  );
+  const azureSdkForJs = getAzureSdkForJs(emitterOptions);
+  const generateMetadata: undefined | boolean =
+    getGenerateMetadata(emitterOptions);
   const generateTest: undefined | boolean = getGenerateTest(
     program,
     emitterOptions,
@@ -90,83 +252,20 @@ function extractRLCOptions(
   );
   const generateSample: undefined | boolean = getGenerateSample(
     dpgContext,
-    program,
     emitterOptions
   );
   const credentialInfo = getCredentialInfo(program, emitterOptions);
   const azureOutputDirectory = getAzureOutputDirectory(generationRootDir);
   const enableOperationGroup = getEnableOperationGroup(
-    program,
     dpgContext,
     emitterOptions
   );
   const enableModelNamespace = getEnableModelNamespace(
-    program,
     dpgContext,
     emitterOptions
   );
-  const hierarchyClient = getHierarchyClient(program, emitterOptions);
-  const clearOutputFolder = getClearOutputFolder(program, emitterOptions);
-  if (emitterOptions.multiClient !== undefined) {
-    reportOptionDiagnostic(program, {
-      kababCaseOption: "multi-client",
-      camalCaseOption: "multiClient"
-    });
-  }
-  if (emitterOptions.isTypeSpecTest !== undefined) {
-    reportOptionDiagnostic(program, {
-      kababCaseOption: "is-typespec-test",
-      camalCaseOption: "isTypeSpecTest"
-    });
-  }
-  if (emitterOptions.dependencyInfo !== undefined) {
-    reportOptionDiagnostic(program, {
-      kababCaseOption: "dependency-info",
-      camalCaseOption: "dependencyInfo"
-    });
-  }
-  if (emitterOptions.productDocLink !== undefined) {
-    reportOptionDiagnostic(program, {
-      kababCaseOption: "product-doc-link",
-      camalCaseOption: "productDocLink"
-    });
-  }
-  if (emitterOptions.isModularLibrary !== undefined) {
-    reportOptionDiagnostic(program, {
-      kababCaseOption: "is-modular-library",
-      camalCaseOption: "isModularLibrary"
-    });
-  }
-  if (emitterOptions.compatibilityMode !== undefined) {
-    reportOptionDiagnostic(program, {
-      kababCaseOption: "compatibility-mode",
-      camalCaseOption: "compatibilityMode"
-    });
-  }
-  if (emitterOptions.experimentalExtensibleEnums !== undefined) {
-    reportOptionDiagnostic(program, {
-      kababCaseOption: "experimental-extensible-enums",
-      camalCaseOption: "experimentalExtensibleEnums"
-    });
-  }
-  if (emitterOptions.ignorePropertyNameNormalize !== undefined) {
-    reportOptionDiagnostic(program, {
-      kababCaseOption: "ignore-property-name-normalize",
-      camalCaseOption: "ignorePropertyNameNormalize"
-    });
-  }
-  if (emitterOptions.compatibilityQueryMultiFormat !== undefined) {
-    reportOptionDiagnostic(program, {
-      kababCaseOption: "compatibility-query-multi-format",
-      camalCaseOption: "compatibilityQueryMultiFormat"
-    });
-  }
-  if (emitterOptions.typespecTitleMap !== undefined) {
-    reportOptionDiagnostic(program, {
-      kababCaseOption: "typespec-title-map",
-      camalCaseOption: "typespecTitleMap"
-    });
-  }
+  const hierarchyClient = getHierarchyClient(emitterOptions);
+  const clearOutputFolder = getClearOutputFolder(emitterOptions);
   const multiClient =
     emitterOptions["multi-client"] || emitterOptions.multiClient;
   const isTypeSpecTest =
@@ -292,16 +391,9 @@ function processAuth(program: Program) {
 }
 
 function getEnableOperationGroup(
-  program: Program,
   dpgContext: SdkContext,
   emitterOptions: EmitterOptions
 ) {
-  if (emitterOptions.enableOperationGroup !== undefined) {
-    reportOptionDiagnostic(program, {
-      kababCaseOption: "enable-operation-group",
-      camalCaseOption: "enableOperationGroup"
-    });
-  }
   if (
     emitterOptions["enable-operation-group"] === true ||
     emitterOptions["enable-operation-group"] === false
@@ -319,16 +411,9 @@ function getEnableOperationGroup(
 }
 
 function getEnableModelNamespace(
-  program: Program,
   dpgContext: SdkContext,
   emitterOptions: EmitterOptions
 ) {
-  if (emitterOptions.enableModelNamespace !== undefined) {
-    reportOptionDiagnostic(program, {
-      kababCaseOption: "enable-model-namespace",
-      camalCaseOption: "enableModelNamespace"
-    });
-  }
   if (
     emitterOptions["enable-model-namespace"] === true ||
     emitterOptions["enable-model-namespace"] === false
@@ -345,13 +430,7 @@ function getEnableModelNamespace(
   return detectModelConflicts(dpgContext);
 }
 
-function getHierarchyClient(program: Program, emitterOptions: EmitterOptions) {
-  if (emitterOptions.hierarchyClient !== undefined) {
-    reportOptionDiagnostic(program, {
-      kababCaseOption: "hierarchy-client",
-      camalCaseOption: "hierarchyClient"
-    });
-  }
+function getHierarchyClient(emitterOptions: EmitterOptions) {
   if (
     emitterOptions["hierarchy-client"] === true ||
     emitterOptions["hierarchy-client"] === false
@@ -368,16 +447,7 @@ function getHierarchyClient(program: Program, emitterOptions: EmitterOptions) {
   return true;
 }
 
-function getClearOutputFolder(
-  program: Program,
-  emitterOptions: EmitterOptions
-) {
-  if (emitterOptions.clearOutputFolder !== undefined) {
-    reportOptionDiagnostic(program, {
-      kababCaseOption: "clear-output-folder",
-      camalCaseOption: "clearOutputFolder"
-    });
-  }
+function getClearOutputFolder(emitterOptions: EmitterOptions) {
   if (
     emitterOptions["clear-output-folder"] === true ||
     emitterOptions.clearOutputFolder === true
@@ -424,26 +494,14 @@ function detectIfNameConflicts(dpgContext: SdkContext) {
   return false;
 }
 
-function getIncludeShortcuts(program: Program, emitterOptions: EmitterOptions) {
-  if (emitterOptions.includeShortcuts !== undefined) {
-    reportOptionDiagnostic(program, {
-      kababCaseOption: "include-shortcuts",
-      camalCaseOption: "includeShortcuts"
-    });
-  }
+function getIncludeShortcuts(emitterOptions: EmitterOptions) {
   return (
     Boolean(emitterOptions["include-shortcuts"]) ||
     Boolean(emitterOptions.includeShortcuts)
   );
 }
 
-function getModuleKind(program: Program, emitterOptions: EmitterOptions) {
-  if (emitterOptions.moduleKind !== undefined) {
-    reportOptionDiagnostic(program, {
-      kababCaseOption: "module-kind",
-      camalCaseOption: "moduleKind"
-    });
-  }
+function getModuleKind(emitterOptions: EmitterOptions) {
   return emitterOptions["module-kind"] ?? emitterOptions.moduleKind ?? "esm";
 }
 
@@ -487,10 +545,6 @@ function getPackageDetails(
     version: "1.0.0-beta.1"
   };
   if (emitterOptions.packageDetails !== undefined) {
-    reportOptionDiagnostic(program, {
-      kababCaseOption: "package-details",
-      camalCaseOption: "packageDetails"
-    });
     const packageOldDetails: PackageDetails = {
       ...emitterOptions.packageDetails,
       name:
@@ -541,13 +595,7 @@ function getServiceInfo(program: Program): ServiceInfo {
   };
 }
 
-function getAzureSdkForJs(program: Program, emitterOptions: EmitterOptions) {
-  if (emitterOptions.azureSdkForJs !== undefined) {
-    reportOptionDiagnostic(program, {
-      kababCaseOption: "azure-sdk-for-js",
-      camalCaseOption: "azureSdkForJs"
-    });
-  }
+function getAzureSdkForJs(emitterOptions: EmitterOptions) {
   return emitterOptions.flavor !== "azure"
     ? false
     : (emitterOptions["azure-sdk-for-js"] === undefined ||
@@ -559,13 +607,7 @@ function getAzureSdkForJs(program: Program, emitterOptions: EmitterOptions) {
         Boolean(emitterOptions.azureSdkForJs);
 }
 
-function getGenerateMetadata(program: Program, emitterOptions: EmitterOptions) {
-  if (emitterOptions.generateMetadata !== undefined) {
-    reportOptionDiagnostic(program, {
-      kababCaseOption: "generate-metadata",
-      camalCaseOption: "generateMetadata"
-    });
-  }
+function getGenerateMetadata(emitterOptions: EmitterOptions) {
   if (
     (emitterOptions["generate-metadata"] === undefined ||
       emitterOptions["generate-metadata"] === null) &&
@@ -591,8 +633,8 @@ function getGenerateTest(
   flavor?: "azure"
 ) {
   if (emitterOptions.generateTest !== undefined) {
-    reportOptionDiagnostic(program, {
-      kababCaseOption: "generate-test",
+    reportCamelOptionDiagnostic(program, {
+      kebabCaseOption: "generate-test",
       camalCaseOption: "generateTest"
     });
   }
@@ -626,17 +668,10 @@ function getGenerateTest(
  */
 function getGenerateSample(
   dpgContext: SdkContext,
-  program: Program,
   emitterOptions: EmitterOptions
 ) {
   if (dpgContext.arm && emitterOptions.generateSample === undefined) {
     return true;
-  }
-  if (emitterOptions.generateSample !== undefined) {
-    reportOptionDiagnostic(program, {
-      kababCaseOption: "generate-sample",
-      camalCaseOption: "generateSample"
-    });
   }
   if (
     (emitterOptions["generate-sample"] === undefined ||
@@ -657,36 +692,6 @@ export function getCredentialInfo(
   emitterOptions: EmitterOptions
 ) {
   const securityInfo = processAuth(program);
-  if (emitterOptions.addCredentials !== undefined) {
-    reportOptionDiagnostic(program, {
-      kababCaseOption: "add-credentials",
-      camalCaseOption: "addCredentials"
-    });
-  }
-  if (emitterOptions.credentialScopes !== undefined) {
-    reportOptionDiagnostic(program, {
-      kababCaseOption: "credential-scopes",
-      camalCaseOption: "credentialScopes"
-    });
-  }
-  if (emitterOptions.credentialKeyHeaderName !== undefined) {
-    reportOptionDiagnostic(program, {
-      kababCaseOption: "credential-key-header-name",
-      camalCaseOption: "credentialKeyHeaderName"
-    });
-  }
-  if (emitterOptions.customHttpAuthHeaderName !== undefined) {
-    reportOptionDiagnostic(program, {
-      kababCaseOption: "custom-http-auth-header-name",
-      camalCaseOption: "customHttpAuthHeaderName"
-    });
-  }
-  if (emitterOptions.customHttpAuthSharedKeyPrefix !== undefined) {
-    reportOptionDiagnostic(program, {
-      kababCaseOption: "custom-http-auth-shared-key-prefix",
-      camalCaseOption: "customHttpAuthSharedKeyPrefix"
-    });
-  }
   const addCredentials =
     emitterOptions["add-credentials"] === false ||
     emitterOptions.addCredentials === false

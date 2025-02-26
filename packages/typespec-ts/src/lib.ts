@@ -15,10 +15,6 @@ import {
 } from "@typespec/compiler";
 import { Options } from "prettier";
 
-// export interface EmitterOptions extends RLCOptions {
-//   branded?: boolean;
-// }
-
 export interface EmitterOptions extends RLCOptions {
   "include-shortcuts"?: boolean;
   "multi-client"?: boolean;
@@ -73,7 +69,7 @@ export interface EmitterOptions extends RLCOptions {
   "typespec-title-map"?: Record<string, string>;
 }
 
-export const RLCOptionsOldSchema: JSONSchemaType<RLCOptions> = {
+const _RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
   type: "object",
   additionalProperties: true,
   properties: {
@@ -255,7 +251,7 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       required: [],
       nullable: true
     },
-    ...RLCOptionsOldSchema.properties
+    ..._RLCOptionsSchema.properties
   },
   required: []
 };
@@ -386,7 +382,7 @@ const libDef = {
     "use-kebab-case-option": {
       severity: "warning",
       messages: {
-        default: paramMessage`The option - ${"camalCaseOption"} is deprecated and please use this kebab-case one - ${"kababCaseOption"}.`
+        default: paramMessage`The option - ${"camalCaseOption"} is deprecated and please use this kebab-case one - ${"kebabCaseOption"}.`
       }
     },
     "unable-serialized-type": {
