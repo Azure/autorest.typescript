@@ -205,7 +205,7 @@ stages:
                     tree .
                     npx publish-release --token $(azuresdk-github-pat) --repo autorest.typescript --owner azure --name v$(DEV_VERSION) --tag v$(DEV_VERSION) --notes='prerelease build' --prerelease --editRelease false --assets $(Pipeline.Workspace)/packages/$(TAR_NAME) --target_commitish $(Build.SourceBranchName)
                   displayName: "Publish @autorest/typescript to GitHub"
-      - deployment: PublishToGithub(RLCCommon/TypeSpecTS)
+      - deployment: PublishToGithub_RLCCommon_TypeSpecTS
         condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
         variables:
           RLC_TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackRLCCommonArtifacts.TAR_NAME'] ]
