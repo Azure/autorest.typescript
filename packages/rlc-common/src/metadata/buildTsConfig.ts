@@ -140,7 +140,7 @@ export function buildTsSampleConfig(model: RLCModel) {
   const project = new Project();
   const { packageDetails } = model.options || {};
   const clientPackageName = packageDetails?.name ?? "";
-  const filePath = "tsconfig.sample.json";
+  const filePath = "tsconfig.samples.json";
   const configFile = project.createSourceFile(
     filePath,
     JSON.stringify(tsSampleConfigInAzureSdkForJs(clientPackageName), null, 2),
