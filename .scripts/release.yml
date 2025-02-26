@@ -205,13 +205,16 @@ stages:
                     tree .
                     npx publish-release --token $(azuresdk-github-pat) --repo autorest.typescript --owner azure --name v$(DEV_VERSION) --tag v$(DEV_VERSION) --notes='prerelease build' --prerelease --editRelease false --assets $(Pipeline.Workspace)/packages/$(TAR_NAME) --target_commitish $(Build.SourceBranchName)
                   displayName: "Publish @autorest/typescript to GitHub"
-      - deployment: PublishTypeSpecTSToGithub
+      - deployment: PublishToGithub(RLCCommon/TypeSpecTS)
         condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
         variables:
-          TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackTypeSpecTSArtifacts.TAR_NAME'] ]
+          RLC_TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackRLCCommonArtifacts.TAR_NAME'] ]
+          RLC_DEV_VERSION: $[ stageDependencies.BuildStage.Build.outputs['SetRLCCommonDevVersion.DEV_VERSION'] ]
+          TS_TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackTypeSpecTSArtifacts.TAR_NAME'] ]
           DEV_VERSION: $[ stageDependencies.BuildStage.Build.outputs['SetTypeSpecTSDevVersion.DEV_VERSION'] ]
+
         environment: githubtsjssdk
-        displayName: Publish @azure-tools/typespec-ts dev version to GitHub
+        displayName: Publish @azure-tools/rlc-common and @azure-tools/typespec-ts dev version to GitHub
         pool:
           name: ${{ parameters.LinuxPool }}
           vmImage: ${{ parameters.OSVmImage }}
@@ -224,37 +227,14 @@ stages:
                     versionSpec: "18.x"
                   displayName: "Install Node.js"
                 - script: |
-                    tar zxvf $(Pipeline.Workspace)/packages/$(TAR_NAME)
+                    tar zxvf $(Pipeline.Workspace)/packages/$(RLC_TAR_NAME)
+                - script: |
+                    tar zxvf $(Pipeline.Workspace)/packages/$(TS_TAR_NAME)
                 - script: |
                     cd package
                     tree .
-                    npx publish-release --token $(azuresdk-github-pat) --repo autorest.typescript --owner azure --name v$(DEV_VERSION) --tag v$(DEV_VERSION) --notes='prerelease build' --prerelease --editRelease false --assets $(Pipeline.Workspace)/packages/$(TAR_NAME) --target_commitish $(Build.SourceBranchName)
-                  displayName: "Publish @azure-tools/typespec-ts to GitHub"
-      - deployment: PublishRLCCommonToGithub
-        condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
-        variables:
-          TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackRLCCommonArtifacts.TAR_NAME'] ]
-          DEV_VERSION: $[ stageDependencies.BuildStage.Build.outputs['SetRLCCommonDevVersion.DEV_VERSION'] ]
-        environment: githubtsjssdk
-        displayName: Publish @azure-tools/rlc-common dev version to GitHub
-        pool:
-          name: ${{ parameters.LinuxPool }}
-          vmImage: ${{ parameters.OSVmImage }}
-        strategy:
-          runOnce:
-            deploy:
-              steps:
-                - task: NodeTool@0
-                  inputs:
-                    versionSpec: "18.x"
-                  displayName: "Install Node.js"
-                - script: |
-                    tar zxvf $(Pipeline.Workspace)/packages/$(TAR_NAME)
-                - script: |
-                    cd package
-                    tree .
-                    npx publish-release --token $(azuresdk-github-pat) --repo autorest.typescript --owner azure --name v$(DEV_VERSION) --tag v$(DEV_VERSION) --notes='prerelease build' --prerelease --editRelease false --assets $(Pipeline.Workspace)/packages/$(TAR_NAME) --target_commitish $(Build.SourceBranchName)
-                  displayName: "Publish @azure-tools/rlc-common to GitHub"
+                    npx publish-release --token $(azuresdk-github-pat) --repo autorest.typescript --owner azure --name v$(DEV_VERSION) --tag v$(DEV_VERSION) --notes='prerelease build' --prerelease --editRelease false --assets $(Pipeline.Workspace)/packages/$(TS_TAR_NAME),$(Pipeline.Workspace)/packages/$(RLC_TAR_NAME) --target_commitish $(Build.SourceBranchName)
+                  displayName: "Publish @azure-tools/rlc-common @azure-tools/typespec-ts to GitHub"
       - deployment: PublishAutorestTypescriptToNpm
         condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
         variables:
