@@ -27,9 +27,6 @@ export function transformRLCOptions(
   emitterOptions: EmitterOptions,
   dpgContext: SdkContext
 ): RLCOptions {
-  // reportAllCamelOptionDiagnostics
-  reportAllCamelOptionDiagnostics(dpgContext.program, emitterOptions);
-
   // Extract the options from emitter option
   const options = extractRLCOptions(
     dpgContext,
@@ -237,6 +234,7 @@ function extractRLCOptions(
   generationRootDir: string
 ): RLCOptions {
   const program = dpgContext.program;
+  reportAllCamelOptionDiagnostics(program, emitterOptions);
   const includeShortcuts = getIncludeShortcuts(emitterOptions);
   const packageDetails = getPackageDetails(program, emitterOptions);
   const flavor = getFlavor(emitterOptions, packageDetails);
@@ -246,7 +244,6 @@ function extractRLCOptions(
   const generateMetadata: undefined | boolean =
     getGenerateMetadata(emitterOptions);
   const generateTest: undefined | boolean = getGenerateTest(
-    program,
     emitterOptions,
     flavor
   );
@@ -627,17 +624,7 @@ function getGenerateMetadata(emitterOptions: EmitterOptions) {
  * @param emitterOptions
  * @returns
  */
-function getGenerateTest(
-  program: Program,
-  emitterOptions: EmitterOptions,
-  flavor?: "azure"
-) {
-  if (emitterOptions.generateTest !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "generate-test",
-      camalCaseOption: "generateTest"
-    });
-  }
+function getGenerateTest(emitterOptions: EmitterOptions, flavor?: "azure") {
   if (
     flavor !== "azure" &&
     (emitterOptions["generate-test"] === undefined ||
