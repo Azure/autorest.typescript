@@ -62,12 +62,6 @@ export interface PageSettings {
 }
 
 // @public
-export interface PageTodoAttachment {
-    // (undocumented)
-    items: TodoAttachment[];
-}
-
-// @public
 export interface Standard4XXResponse extends ApiError {
 }
 
@@ -252,15 +246,6 @@ export interface TodoLabelRecord {
 
 // @public
 export type TodoLabels = string | string[] | TodoLabelRecord | TodoLabelRecord[];
-
-// @public
-export interface TodoPage {
-    items: TodoItem[];
-    nextLink?: string;
-    pageSize: number;
-    prevLink?: string;
-    totalSize: number;
-}
 
 // @public
 export interface User {

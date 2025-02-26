@@ -21,11 +21,9 @@ export {
   User,
 } from "./models/index.js";
 export {
-  TodoPage,
   InvalidTodoItem,
   NotFoundErrorResponse,
   TodoItemPatch,
-  PageTodoAttachment,
 } from "./models/todoItems/index.js";
 export {
   UserExistsResponse,
