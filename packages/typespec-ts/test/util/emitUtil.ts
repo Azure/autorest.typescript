@@ -27,7 +27,7 @@ import { buildClientContext } from "../../src/modular/buildClientContext.js";
 import { buildOperationFiles } from "../../src/modular/buildOperations.js";
 import { transformModularEmitterOptions } from "../../src/modular/buildModularOptions.js";
 import { expectDiagnosticEmpty } from "@typespec/compiler/testing";
-import { getCredentialInfo } from "../../src/transform/transfromRLCOptions.js";
+import { getCredentialInfo, reportCamelOptionDiagnostic } from "../../src/transform/transfromRLCOptions.js";
 import { getRLCClients } from "../../src/utils/clientUtils.js";
 import { transformHelperFunctionDetails } from "../../src/transform/transformHelperFunctionDetails.js";
 import { transformPaths } from "../../src/transform/transformPaths.js";
@@ -37,8 +37,7 @@ import { transformToResponseTypes } from "../../src/transform/transformResponses
 import { useBinder } from "../../src/framework/hooks/binder.js";
 import { useContext } from "../../src/contextManager.js";
 import { emitSamples } from "../../src/modular/emitSamples.js";
-import { removeUnusedImports, renameClientName, reportDiagnostic } from "../../src/index.js";
-import { NoTarget } from "@typespec/compiler";
+import { removeUnusedImports, renameClientName } from "../../src/index.js";
 
 export async function emitPageHelperFromTypeSpec(
   tspContent: string,
@@ -419,23 +418,15 @@ export async function emitModularModelsFromTypeSpec(
     }
   );
   if (options.experimentalExtensibleEnums !== undefined) {
-    reportDiagnostic(context.program, {
-      code: "use-kebab-case-option",
-      format: {
-        kebabCaseOption: "experimental-extensible-enums",
-        camalCaseOption: "experimentalExtensibleEnums"
-      },
-      target: NoTarget
+    reportCamelOptionDiagnostic(context.program, {
+      kebabCaseOption: "experimental-extensible-enums",
+      camalCaseOption: "experimentalExtensibleEnums"
     });
   }
   if (options.compatibilityMode !== undefined) {
-    reportDiagnostic(context.program, {
-      code: "use-kebab-case-option",
-      format: {
-        kebabCaseOption: "compatibility-mode",
-        camalCaseOption: "compatibilityMode"
-      },
-      target: NoTarget
+    reportCamelOptionDiagnostic(context.program, {
+      kebabCaseOption: "compatibility-mode",
+      camalCaseOption: "compatibilityMode"
     });
   }
   const dpgContext = await createDpgContextTestHelper(context.program, false, options);
@@ -507,13 +498,9 @@ export async function emitModularOperationsFromTypeSpec(
     }
   );
   if (options.experimentalExtensibleEnums !== undefined) {
-    reportDiagnostic(context.program, {
-      code: "use-kebab-case-option",
-      format: {
-        kebabCaseOption: "experimental-extensible-enums",
-        camalCaseOption: "experimentalExtensibleEnums"
-      },
-      target: NoTarget
+    reportCamelOptionDiagnostic(context.program, {
+      kebabCaseOption: "experimental-extensible-enums",
+      camalCaseOption: "experimentalExtensibleEnums"
     });
   }
   const dpgContext = await createDpgContextTestHelper(context.program);
@@ -569,13 +556,9 @@ export async function emitModularClientContextFromTypeSpec(
     }
   );
   if (options.typespecTitleMap !== undefined) {
-    reportDiagnostic(context.program, {
-      code: "use-kebab-case-option",
-      format: {
-        kebabCaseOption: "typespec-title-map",
-        camalCaseOption: "typespecTitleMap"
-      },
-      target: NoTarget
+    reportCamelOptionDiagnostic(context.program, {
+      kebabCaseOption: "typespec-title-map",
+      camalCaseOption: "typespecTitleMap"
     });
   }
   const dpgContext = await createDpgContextTestHelper(context.program);
@@ -628,13 +611,9 @@ export async function emitModularClientFromTypeSpec(
     }
   );
   if (options.typespecTitleMap !== undefined) {
-    reportDiagnostic(context.program, {
-      code: "use-kebab-case-option",
-      format: {
-        kebabCaseOption: "typespec-title-map",
-        camalCaseOption: "typespecTitleMap"
-      },
-      target: NoTarget
+    reportCamelOptionDiagnostic(context.program, {
+      kebabCaseOption: "typespec-title-map",
+      camalCaseOption: "typespecTitleMap"
     });
   }
   const dpgContext = await createDpgContextTestHelper(context.program);
@@ -676,33 +655,21 @@ export async function emitSamplesFromTypeSpec(
 ) {
   const context = await compileTypeSpecFor(tspContent, examples);
   if (configs["hierarchyClient"] !== undefined) {
-    reportDiagnostic(context.program, {
-      code: "use-kebab-case-option",
-      format: {
-        kebabCaseOption: "hierarchy-client",
-        camalCaseOption: "hierarchyClient"
-      },
-      target: NoTarget
+    reportCamelOptionDiagnostic(context.program, {
+      kebabCaseOption: "hierarchy-client",
+      camalCaseOption: "hierarchyClient"
     });
   }
   if (configs["enableOperationGroup"] !== undefined) {
-    reportDiagnostic(context.program, {
-      code: "use-kebab-case-option",
-      format: {
-        kebabCaseOption: "enable-operation-group",
-        camalCaseOption: "enableOperationGroup"
-      },
-      target: NoTarget
+    reportCamelOptionDiagnostic(context.program, {
+      kebabCaseOption: "enable-operation-group",
+      camalCaseOption: "enableOperationGroup"
     });
   }
   if (configs["typespecTitleMap"] !== undefined) {
-    reportDiagnostic(context.program, {
-      code: "use-kebab-case-option",
-      format: {
-        kebabCaseOption: "typespec-title-map",
-        camalCaseOption: "typespecTitleMap"
-      },
-      target: NoTarget
+    reportCamelOptionDiagnostic(context.program, {
+      kebabCaseOption: "typespec-title-map",
+      camalCaseOption: "typespecTitleMap"
     });
   }
   configs["typespecTitleMap"] = configs["typespec-title-map"];

@@ -215,7 +215,7 @@ function reportAllCamelOptionDiagnostics(
     });
   }
 }
-function reportCamelOptionDiagnostic(
+export function reportCamelOptionDiagnostic(
   program: Program,
   caseOption: {
     kebabCaseOption: string;
