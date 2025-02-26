@@ -1231,13 +1231,15 @@ export function createCompletionRequestSerializer(
 ): any {
   return {
     model: item["model"],
-    prompt: !item["prompt"] ? item["prompt"] : promptSerializer(item["prompt"]),
+    prompt: !item["prompt"]
+      ? item["prompt"]
+      : _promptSerializer(item["prompt"]),
     suffix: item["suffix"],
     temperature: item["temperature"],
     top_p: item["topP"],
     n: item["n"],
     max_tokens: item["maxTokens"],
-    stop: !item["stop"] ? item["stop"] : stopSerializer(item["stop"]),
+    stop: !item["stop"] ? item["stop"] : _stopSerializer(item["stop"]),
     presence_penalty: item["presencePenalty"],
     frequency_penalty: item["frequencyPenalty"],
     logit_bias: item["logitBias"],
@@ -1250,20 +1252,20 @@ export function createCompletionRequestSerializer(
 }
 
 /** Alias for Prompt */
-export type Prompt = Prompt_1 | null;
-/** Alias for Prompt */
-export type Prompt_1 = string | string[] | number[] | number[][];
+export type Prompt = (string | string[] | number[] | number[][]) | null;
+/** Alias for _Prompt */
+export type _Prompt = string | string[] | number[] | number[][];
 
-export function promptSerializer(item: Prompt): any {
+export function _promptSerializer(item: _Prompt): any {
   return item;
 }
 
 /** Alias for Stop */
-export type Stop = Stop_1 | null;
-/** Alias for Stop */
-export type Stop_1 = string | string[];
+export type Stop = (string | string[]) | null;
+/** Alias for _Stop */
+export type _Stop = string | string[];
 
-export function stopSerializer(item: Stop): any {
+export function _stopSerializer(item: _Stop): any {
   return item;
 }
 
@@ -1346,22 +1348,22 @@ export function _createCompletionResponseChoiceDeserializer(
     text: item["text"],
     logprobs: !item["logprobs"]
       ? item["logprobs"]
-      : _createCompletionResponseChoiceLogprobsDeserializer(item["logprobs"]),
+      : _createCompletionResponseChoiceLogprobs1Deserializer(item["logprobs"]),
     finishReason: item["finish_reason"],
   };
 }
 
-/** model interface _CreateCompletionResponseChoiceLogprobs */
-export interface _CreateCompletionResponseChoiceLogprobs {
+/** model interface _CreateCompletionResponseChoiceLogprobs1 */
+export interface _CreateCompletionResponseChoiceLogprobs1 {
   tokens: string[];
   tokenLogprobs: number[];
   topLogprobs: Record<string, number>[];
   textOffset: number[];
 }
 
-export function _createCompletionResponseChoiceLogprobsDeserializer(
+export function _createCompletionResponseChoiceLogprobs1Deserializer(
   item: any,
-): _CreateCompletionResponseChoiceLogprobs {
+): _CreateCompletionResponseChoiceLogprobs1 {
   return {
     tokens: item["tokens"].map((p: any) => {
       return p;
@@ -1562,7 +1564,7 @@ export function fineTuningJobDeserializer(item: any): FineTuningJob {
     trainedTokens: item["trained_tokens"],
     error: !item["error"]
       ? item["error"]
-      : _fineTuningJobErrorDeserializer(item["error"]),
+      : _fineTuningJobError1Deserializer(item["error"]),
   };
 }
 
@@ -1597,8 +1599,8 @@ export function _fineTuningJobHyperparametersNEpochsDeserializer(
   return item;
 }
 
-/** model interface _FineTuningJobError */
-export interface _FineTuningJobError {
+/** model interface _FineTuningJobError1 */
+export interface _FineTuningJobError1 {
   /** A human-readable error message. */
   message?: string;
   /** A machine-readable error code. */
@@ -1610,9 +1612,9 @@ export interface _FineTuningJobError {
   param?: string | null;
 }
 
-export function _fineTuningJobErrorDeserializer(
+export function _fineTuningJobError1Deserializer(
   item: any,
-): _FineTuningJobError {
+): _FineTuningJobError1 {
   return {
     message: item["message"],
     code: item["code"],
@@ -1807,7 +1809,7 @@ export function createChatCompletionRequestSerializer(
     top_p: item["topP"],
     n: item["n"],
     max_tokens: item["maxTokens"],
-    stop: !item["stop"] ? item["stop"] : stopSerializer(item["stop"]),
+    stop: !item["stop"] ? item["stop"] : _stopSerializer(item["stop"]),
     presence_penalty: item["presencePenalty"],
     frequency_penalty: item["frequencyPenalty"],
     logit_bias: item["logitBias"],
