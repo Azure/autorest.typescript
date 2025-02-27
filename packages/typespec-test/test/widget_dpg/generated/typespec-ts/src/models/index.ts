@@ -6,5 +6,6 @@ export {
   Widget,
   WidgetError,
   AnalyzeResult,
+  NonReferencedModel,
   KnownVersions,
 } from "./models.js";
