@@ -382,7 +382,7 @@ const libDef = {
     "use-kebab-case-option": {
       severity: "warning",
       messages: {
-        default: paramMessage`The option - ${"camalCaseOption"} is deprecated and please use this kebab-case one - ${"kebabCaseOption"}.`
+        default: paramMessage`The option - ${"camelCaseOption"} is deprecated and please use this kebab-case one - ${"kebabCaseOption"}.`
       }
     },
     "unable-serialized-type": {

@@ -58,157 +58,157 @@ function reportAllCamelOptionDiagnostics(
   if (emitterOptions.includeShortcuts !== undefined) {
     reportCamelOptionDiagnostic(program, {
       kebabCaseOption: "include-shortcuts",
-      camalCaseOption: "includeShortcuts"
+      camelCaseOption: "includeShortcuts"
     });
   }
   if (emitterOptions.packageDetails !== undefined) {
     reportCamelOptionDiagnostic(program, {
       kebabCaseOption: "package-details",
-      camalCaseOption: "packageDetails"
+      camelCaseOption: "packageDetails"
     });
   }
   if (emitterOptions.moduleKind !== undefined) {
     reportCamelOptionDiagnostic(program, {
       kebabCaseOption: "module-kind",
-      camalCaseOption: "moduleKind"
+      camelCaseOption: "moduleKind"
     });
   }
   if (emitterOptions.azureSdkForJs !== undefined) {
     reportCamelOptionDiagnostic(program, {
       kebabCaseOption: "azure-sdk-for-js",
-      camalCaseOption: "azureSdkForJs"
+      camelCaseOption: "azureSdkForJs"
     });
   }
   if (emitterOptions.generateMetadata !== undefined) {
     reportCamelOptionDiagnostic(program, {
       kebabCaseOption: "generate-metadata",
-      camalCaseOption: "generateMetadata"
+      camelCaseOption: "generateMetadata"
     });
   }
   if (emitterOptions.generateTest !== undefined) {
     reportCamelOptionDiagnostic(program, {
       kebabCaseOption: "generate-test",
-      camalCaseOption: "generateTest"
+      camelCaseOption: "generateTest"
     });
   }
   if (emitterOptions.generateSample !== undefined) {
     reportCamelOptionDiagnostic(program, {
       kebabCaseOption: "generate-sample",
-      camalCaseOption: "generateSample"
+      camelCaseOption: "generateSample"
     });
   }
   if (emitterOptions.addCredentials !== undefined) {
     reportCamelOptionDiagnostic(program, {
       kebabCaseOption: "add-credentials",
-      camalCaseOption: "addCredentials"
+      camelCaseOption: "addCredentials"
     });
   }
   if (emitterOptions.credentialScopes !== undefined) {
     reportCamelOptionDiagnostic(program, {
       kebabCaseOption: "credential-scopes",
-      camalCaseOption: "credentialScopes"
+      camelCaseOption: "credentialScopes"
     });
   }
   if (emitterOptions.credentialKeyHeaderName !== undefined) {
     reportCamelOptionDiagnostic(program, {
       kebabCaseOption: "credential-key-header-name",
-      camalCaseOption: "credentialKeyHeaderName"
+      camelCaseOption: "credentialKeyHeaderName"
     });
   }
   if (emitterOptions.customHttpAuthHeaderName !== undefined) {
     reportCamelOptionDiagnostic(program, {
       kebabCaseOption: "custom-http-auth-header-name",
-      camalCaseOption: "customHttpAuthHeaderName"
+      camelCaseOption: "customHttpAuthHeaderName"
     });
   }
   if (emitterOptions.customHttpAuthSharedKeyPrefix !== undefined) {
     reportCamelOptionDiagnostic(program, {
       kebabCaseOption: "custom-http-auth-shared-key-prefix",
-      camalCaseOption: "customHttpAuthSharedKeyPrefix"
+      camelCaseOption: "customHttpAuthSharedKeyPrefix"
     });
   }
   if (emitterOptions.enableOperationGroup !== undefined) {
     reportCamelOptionDiagnostic(program, {
       kebabCaseOption: "enable-operation-group",
-      camalCaseOption: "enableOperationGroup"
+      camelCaseOption: "enableOperationGroup"
     });
   }
   if (emitterOptions.enableModelNamespace !== undefined) {
     reportCamelOptionDiagnostic(program, {
       kebabCaseOption: "enable-model-namespace",
-      camalCaseOption: "enableModelNamespace"
+      camelCaseOption: "enableModelNamespace"
     });
   }
   if (emitterOptions.hierarchyClient !== undefined) {
     reportCamelOptionDiagnostic(program, {
       kebabCaseOption: "hierarchy-client",
-      camalCaseOption: "hierarchyClient"
+      camelCaseOption: "hierarchyClient"
     });
   }
   if (emitterOptions.clearOutputFolder !== undefined) {
     reportCamelOptionDiagnostic(program, {
       kebabCaseOption: "clear-output-folder",
-      camalCaseOption: "clearOutputFolder"
+      camelCaseOption: "clearOutputFolder"
     });
   }
   if (emitterOptions.multiClient !== undefined) {
     reportCamelOptionDiagnostic(program, {
       kebabCaseOption: "multi-client",
-      camalCaseOption: "multiClient"
+      camelCaseOption: "multiClient"
     });
   }
   if (emitterOptions.isTypeSpecTest !== undefined) {
     reportCamelOptionDiagnostic(program, {
       kebabCaseOption: "is-typespec-test",
-      camalCaseOption: "isTypeSpecTest"
+      camelCaseOption: "isTypeSpecTest"
     });
   }
   if (emitterOptions.dependencyInfo !== undefined) {
     reportCamelOptionDiagnostic(program, {
       kebabCaseOption: "dependency-info",
-      camalCaseOption: "dependencyInfo"
+      camelCaseOption: "dependencyInfo"
     });
   }
   if (emitterOptions.productDocLink !== undefined) {
     reportCamelOptionDiagnostic(program, {
       kebabCaseOption: "product-doc-link",
-      camalCaseOption: "productDocLink"
+      camelCaseOption: "productDocLink"
     });
   }
   if (emitterOptions.isModularLibrary !== undefined) {
     reportCamelOptionDiagnostic(program, {
       kebabCaseOption: "is-modular-library",
-      camalCaseOption: "isModularLibrary"
+      camelCaseOption: "isModularLibrary"
     });
   }
   if (emitterOptions.compatibilityMode !== undefined) {
     reportCamelOptionDiagnostic(program, {
       kebabCaseOption: "compatibility-mode",
-      camalCaseOption: "compatibilityMode"
+      camelCaseOption: "compatibilityMode"
     });
   }
   if (emitterOptions.experimentalExtensibleEnums !== undefined) {
     reportCamelOptionDiagnostic(program, {
       kebabCaseOption: "experimental-extensible-enums",
-      camalCaseOption: "experimentalExtensibleEnums"
+      camelCaseOption: "experimentalExtensibleEnums"
     });
   }
   if (emitterOptions.ignorePropertyNameNormalize !== undefined) {
     reportCamelOptionDiagnostic(program, {
       kebabCaseOption: "ignore-property-name-normalize",
-      camalCaseOption: "ignorePropertyNameNormalize"
+      camelCaseOption: "ignorePropertyNameNormalize"
     });
   }
   if (emitterOptions.compatibilityQueryMultiFormat !== undefined) {
     reportCamelOptionDiagnostic(program, {
       kebabCaseOption: "compatibility-query-multi-format",
-      camalCaseOption: "compatibilityQueryMultiFormat"
+      camelCaseOption: "compatibilityQueryMultiFormat"
     });
   }
   if (emitterOptions.typespecTitleMap !== undefined) {
     reportCamelOptionDiagnostic(program, {
       kebabCaseOption: "typespec-title-map",
-      camalCaseOption: "typespecTitleMap"
+      camelCaseOption: "typespecTitleMap"
     });
   }
 }
@@ -216,14 +216,14 @@ export function reportCamelOptionDiagnostic(
   program: Program,
   caseOption: {
     kebabCaseOption: string;
-    camalCaseOption: string;
+    camelCaseOption: string;
   }
 ) {
   reportDiagnostic(program, {
     code: "use-kebab-case-option",
     format: {
       kebabCaseOption: caseOption.kebabCaseOption,
-      camalCaseOption: caseOption.camalCaseOption
+      camelCaseOption: caseOption.camelCaseOption
     },
     target: NoTarget
   });
