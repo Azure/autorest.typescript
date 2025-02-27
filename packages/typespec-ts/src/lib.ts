@@ -166,6 +166,7 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
   type: "object",
   additionalProperties: true,
   properties: {
+    ..._RLCOptionsSchema.properties,
     "include-shortcuts": { type: "boolean", nullable: true },
     "multi-client": { type: "boolean", nullable: true },
     batch: {
@@ -250,8 +251,7 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       },
       required: [],
       nullable: true
-    },
-    ..._RLCOptionsSchema.properties
+    }
   },
   required: []
 };

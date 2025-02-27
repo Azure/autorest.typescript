@@ -22,6 +22,7 @@ import { getDefaultService } from "../utils/modelUtils.js";
 import { detectModelConflicts } from "../utils/namespaceUtils.js";
 import { getOperationName } from "../utils/operationUtil.js";
 import { getSupportedHttpAuth } from "../utils/credentialUtils.js";
+import _ from "lodash";
 
 export function transformRLCOptions(
   emitterOptions: EmitterOptions,
@@ -264,26 +265,26 @@ function extractRLCOptions(
   const hierarchyClient = getHierarchyClient(emitterOptions);
   const clearOutputFolder = getClearOutputFolder(emitterOptions);
   const multiClient =
-    emitterOptions["multi-client"] || emitterOptions.multiClient;
+    emitterOptions["multi-client"] ?? emitterOptions.multiClient;
   const isTypeSpecTest =
-    emitterOptions["is-typespec-test"] || emitterOptions.isTypeSpecTest;
+    emitterOptions["is-typespec-test"] ?? emitterOptions.isTypeSpecTest;
   const title = emitterOptions.title;
   const dependencyInfo =
     emitterOptions["dependency-info"] ?? emitterOptions.dependencyInfo;
   const productDocLink =
     emitterOptions["product-doc-link"] ?? emitterOptions.productDocLink;
   const isModularLibrary =
-    emitterOptions["is-modular-library"] || emitterOptions.isModularLibrary;
+    emitterOptions["is-modular-library"] ?? emitterOptions.isModularLibrary;
   const compatibilityMode =
-    emitterOptions["compatibility-mode"] || emitterOptions.compatibilityMode;
+    emitterOptions["compatibility-mode"] ?? emitterOptions.compatibilityMode;
   const experimentalExtensibleEnums =
-    emitterOptions["experimental-extensible-enums"] ||
+    emitterOptions["experimental-extensible-enums"] ??
     emitterOptions.experimentalExtensibleEnums;
   const ignorePropertyNameNormalize =
-    emitterOptions["ignore-property-name-normalize"] ||
+    emitterOptions["ignore-property-name-normalize"] ??
     emitterOptions.ignorePropertyNameNormalize;
   const compatibilityQueryMultiFormat =
-    emitterOptions["compatibility-query-multi-format"] ||
+    emitterOptions["compatibility-query-multi-format"] ??
     emitterOptions.compatibilityQueryMultiFormat;
   const typespecTitleMap =
     emitterOptions["typespec-title-map"] ?? emitterOptions.typespecTitleMap;
@@ -531,57 +532,70 @@ function getFlavor(
     return undefined;
   }
 }
-
-function getPackageDetails(
+function buildPackageDetails(
   program: Program,
   emitterOptions: EmitterOptions
 ): PackageDetails {
-  const defaultDetial = {
+  const defaultDetail = {
     name: "@msinternal/unamedpackage",
     nameWithoutScope: "unamedpackage",
     version: "1.0.0-beta.1"
   };
-  if (emitterOptions.packageDetails !== undefined) {
-    const packageOldDetails: PackageDetails = {
-      ...emitterOptions.packageDetails,
-      name:
-        emitterOptions.packageDetails?.name ??
-        normalizeName(
-          emitterOptions?.title ?? getDefaultService(program)?.title ?? "",
-          NameType.Class
-        ),
-      version: emitterOptions.packageDetails?.version ?? "1.0.0-beta.1"
-    };
-    if (emitterOptions.packageDetails?.name) {
-      const nameOldParts = emitterOptions.packageDetails?.name.split("/");
-      if (nameOldParts.length === 2) {
-        packageOldDetails.nameWithoutScope = nameOldParts[1];
-        packageOldDetails.scopeName = nameOldParts[0]?.replace("@", "");
-      }
+  const packageDetails: PackageDetails = {
+    ...emitterOptions["package-details"],
+    name:
+      emitterOptions["package-details"]?.name ??
+      normalizeName(
+        emitterOptions?.title ?? getDefaultService(program)?.title ?? "",
+        NameType.Class
+      ),
+    version: emitterOptions["package-details"]?.version ?? "1.0.0-beta.1"
+  };
+  if (emitterOptions["package-details"]?.name) {
+    const nameParts = emitterOptions["package-details"]?.name.split("/");
+    if (nameParts.length === 2) {
+      packageDetails.nameWithoutScope = nameParts[1];
+      packageDetails.scopeName = nameParts[0]?.replace("@", "");
     }
-    return packageOldDetails ?? defaultDetial;
   }
+  return packageDetails ?? defaultDetail;
+}
+function _buildPackageDetails(
+  program: Program,
+  emitterOptions: EmitterOptions
+): PackageDetails {
+  const defaultDetail = {
+    name: "@msinternal/unamedpackage",
+    nameWithoutScope: "unamedpackage",
+    version: "1.0.0-beta.1"
+  };
+  const packageDetails: PackageDetails = {
+    ...emitterOptions.packageDetails,
+    name:
+      emitterOptions.packageDetails?.name ??
+      normalizeName(
+        emitterOptions?.title ?? getDefaultService(program)?.title ?? "",
+        NameType.Class
+      ),
+    version: emitterOptions.packageDetails?.version ?? "1.0.0-beta.1"
+  };
+  if (emitterOptions.packageDetails?.name) {
+    const nameParts = emitterOptions.packageDetails?.name.split("/");
+    if (nameParts.length === 2) {
+      packageDetails.nameWithoutScope = nameParts[1];
+      packageDetails.scopeName = nameParts[0]?.replace("@", "");
+    }
+  }
+  return packageDetails ?? defaultDetail;
+}
+function getPackageDetails(
+  program: Program,
+  emitterOptions: EmitterOptions
+): PackageDetails {
   if (emitterOptions["package-details"] !== undefined) {
-    const packageDetails: PackageDetails = {
-      ...emitterOptions["package-details"],
-      name:
-        emitterOptions["package-details"]?.name ??
-        normalizeName(
-          emitterOptions?.title ?? getDefaultService(program)?.title ?? "",
-          NameType.Class
-        ),
-      version: emitterOptions["package-details"]?.version ?? "1.0.0-beta.1"
-    };
-    if (emitterOptions["package-details"]?.name) {
-      const nameParts = emitterOptions["package-details"]?.name.split("/");
-      if (nameParts.length === 2) {
-        packageDetails.nameWithoutScope = nameParts[1];
-        packageDetails.scopeName = nameParts[0]?.replace("@", "");
-      }
-    }
-    return packageDetails ?? defaultDetial;
+    return buildPackageDetails(program, emitterOptions);
   }
-  return defaultDetial;
+  return _buildPackageDetails(program, emitterOptions);
 }
 
 function getServiceInfo(program: Program): ServiceInfo {
@@ -685,26 +699,27 @@ export function getCredentialInfo(
       ? false
       : securityInfo
         ? securityInfo.addCredentials
-        : emitterOptions["add-credentials"] || emitterOptions.addCredentials;
+        : (emitterOptions["add-credentials"] ?? emitterOptions.addCredentials);
   const credentialScopes =
     securityInfo && securityInfo.credentialScopes
       ? securityInfo.credentialScopes
-      : emitterOptions["credential-scopes"] || emitterOptions.credentialScopes;
+      : (emitterOptions["credential-scopes"] ??
+        emitterOptions.credentialScopes);
   const credentialKeyHeaderName =
     securityInfo && securityInfo.credentialKeyHeaderName
       ? securityInfo.credentialKeyHeaderName
-      : emitterOptions["credential-key-header-name"] ||
-        emitterOptions.credentialKeyHeaderName;
+      : (emitterOptions["credential-key-header-name"] ??
+        emitterOptions.credentialKeyHeaderName);
   const customHttpAuthHeaderName =
     securityInfo && securityInfo.customHttpAuthHeaderName
       ? securityInfo.customHttpAuthHeaderName
-      : emitterOptions["custom-http-auth-header-name"] ||
-        emitterOptions.customHttpAuthHeaderName;
+      : (emitterOptions["custom-http-auth-header-name"] ??
+        emitterOptions.customHttpAuthHeaderName);
   const customHttpAuthSharedKeyPrefix =
     securityInfo && securityInfo.customHttpAuthSharedKeyPrefix
       ? securityInfo.customHttpAuthSharedKeyPrefix
-      : emitterOptions["custom-http-auth-shared-key-prefix"] ||
-        emitterOptions.customHttpAuthSharedKeyPrefix;
+      : (emitterOptions["custom-http-auth-shared-key-prefix"] ??
+        emitterOptions.customHttpAuthSharedKeyPrefix);
   return {
     addCredentials,
     credentialScopes,

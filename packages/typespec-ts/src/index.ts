@@ -501,10 +501,8 @@ export async function createContextWithDefaultOptions(
     context.options["experimental-extensible-enums"] === undefined &&
     context.options["experimentalExtensibleEnums"] === undefined
       ? isArm(context)
-      : Boolean(
-          context.options["experimental-extensible-enums"] ||
-            context.options["experimentalExtensibleEnums"]
-        );
+      : (context.options["experimental-extensible-enums"] ??
+        context.options["experimentalExtensibleEnums"]);
   const tcgcSettings = {
     "generate-protocol-methods": true,
     "generate-convenience-methods": true,
