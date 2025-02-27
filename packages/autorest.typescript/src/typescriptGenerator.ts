@@ -87,7 +87,7 @@ export async function generateTypeScriptLibrary(
     generateSampleTestFile(project);
   }
   generateTsConfig(project);
-  if (azureSdkForJs) {
+  if (azureSdkForJs && generateMetadata) {
     generateTsSrcConfig(project);
     if (generateSample) {
       generateTsSampleConfig(project);

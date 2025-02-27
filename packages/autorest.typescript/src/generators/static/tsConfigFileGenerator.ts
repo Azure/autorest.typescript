@@ -81,7 +81,7 @@ export function generateTsConfig(project: Project) {
       highLevelTsConfig.include.push("samples-dev/**/*.ts");
       highLevelTsConfig.compilerOptions["paths"] = {};
       highLevelTsConfig.compilerOptions["paths"][clientPackageName] = [
-        "./dist/esm"
+        "./src/index"
       ];
     }
   }
@@ -100,9 +100,9 @@ export function generateTsSampleConfig(project: Project) {
     packageDetails,
   } = getAutorestOptions();
   const clientPackageName = packageDetails.name;
-  highLevelTsConfig.compilerOptions["paths"] = {};
+  highLevelTsSampleConfig.compilerOptions["paths"] = {};
   highLevelTsSampleConfig.compilerOptions["paths"][clientPackageName] = [
-    "./src/index"
+    "./dist/esm"
   ];
   project.createSourceFile("tsconfig.samples.json", JSON.stringify(highLevelTsSampleConfig, null, 2), {
     overwrite: true
