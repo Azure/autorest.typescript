@@ -498,11 +498,13 @@ export async function createContextWithDefaultOptions(
   context: EmitContext<Record<string, any>>
 ): Promise<SdkContext> {
   const flattenUnionAsEnum =
-    context.options["experimentalExtensibleEnums"] === undefined &&
-    context.options["experimental-extensible-enums"] === undefined
+    context.options["experimental-extensible-enums"] === undefined &&
+    context.options["experimentalExtensibleEnums"] === undefined
       ? isArm(context)
-      : context.options["experimentalExtensibleEnums"] ||
-        context.options["experimental-extensible-enums"];
+      : Boolean(
+          context.options["experimental-extensible-enums"] ||
+            context.options["experimentalExtensibleEnums"]
+        );
   const tcgcSettings = {
     "generate-protocol-methods": true,
     "generate-convenience-methods": true,
