@@ -420,13 +420,13 @@ export async function emitModularModelsFromTypeSpec(
   if (options.experimentalExtensibleEnums !== undefined) {
     reportCamelOptionDiagnostic(context.program, {
       kebabCaseOption: "experimental-extensible-enums",
-      camalCaseOption: "experimentalExtensibleEnums"
+      camelCaseOption: "experimentalExtensibleEnums"
     });
   }
   if (options.compatibilityMode !== undefined) {
     reportCamelOptionDiagnostic(context.program, {
       kebabCaseOption: "compatibility-mode",
-      camalCaseOption: "compatibilityMode"
+      camelCaseOption: "compatibilityMode"
     });
   }
   const dpgContext = await createDpgContextTestHelper(context.program, false, options);
@@ -500,7 +500,7 @@ export async function emitModularOperationsFromTypeSpec(
   if (options.experimentalExtensibleEnums !== undefined) {
     reportCamelOptionDiagnostic(context.program, {
       kebabCaseOption: "experimental-extensible-enums",
-      camalCaseOption: "experimentalExtensibleEnums"
+      camelCaseOption: "experimentalExtensibleEnums"
     });
   }
   const dpgContext = await createDpgContextTestHelper(context.program);
@@ -558,7 +558,7 @@ export async function emitModularClientContextFromTypeSpec(
   if (options.typespecTitleMap !== undefined) {
     reportCamelOptionDiagnostic(context.program, {
       kebabCaseOption: "typespec-title-map",
-      camalCaseOption: "typespecTitleMap"
+      camelCaseOption: "typespecTitleMap"
     });
   }
   const dpgContext = await createDpgContextTestHelper(context.program);
@@ -613,7 +613,7 @@ export async function emitModularClientFromTypeSpec(
   if (options.typespecTitleMap !== undefined) {
     reportCamelOptionDiagnostic(context.program, {
       kebabCaseOption: "typespec-title-map",
-      camalCaseOption: "typespecTitleMap"
+      camelCaseOption: "typespecTitleMap"
     });
   }
   const dpgContext = await createDpgContextTestHelper(context.program);
@@ -657,19 +657,19 @@ export async function emitSamplesFromTypeSpec(
   if (configs["hierarchyClient"] !== undefined) {
     reportCamelOptionDiagnostic(context.program, {
       kebabCaseOption: "hierarchy-client",
-      camalCaseOption: "hierarchyClient"
+      camelCaseOption: "hierarchyClient"
     });
   }
   if (configs["enableOperationGroup"] !== undefined) {
     reportCamelOptionDiagnostic(context.program, {
       kebabCaseOption: "enable-operation-group",
-      camalCaseOption: "enableOperationGroup"
+      camelCaseOption: "enableOperationGroup"
     });
   }
   if (configs["typespecTitleMap"] !== undefined) {
     reportCamelOptionDiagnostic(context.program, {
       kebabCaseOption: "typespec-title-map",
-      camalCaseOption: "typespecTitleMap"
+      camelCaseOption: "typespecTitleMap"
     });
   }
   configs["typespecTitleMap"] = configs["typespec-title-map"];
