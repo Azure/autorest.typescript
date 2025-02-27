@@ -29,6 +29,7 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 
 export function _registerSchemaSend(
   context: Client,
@@ -50,7 +51,7 @@ export function _registerSchemaSend(
         ...options.requestOptions?.headers,
       },
       queryParameters: { "api-version": context.apiVersion },
-      body: content,
+      body: uint8ArrayToString(content, "base64"),
     });
 }
 
@@ -107,7 +108,7 @@ export function _getSchemaIdByContentSend(
         ...options.requestOptions?.headers,
       },
       queryParameters: { "api-version": context.apiVersion },
-      body: schemaContent,
+      body: uint8ArrayToString(schemaContent, "base64"),
     });
 }
 
@@ -174,7 +175,9 @@ export async function _getSchemaByVersionDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return typeof result.body === "string"
+    ? stringToUint8Array(result.body, "base64")
+    : result.body;
 }
 
 /** Gets one specific version of one schema. */
@@ -267,7 +270,9 @@ export async function _getSchemaByIdDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return typeof result.body === "string"
+    ? stringToUint8Array(result.body, "base64")
+    : result.body;
 }
 
 /** Gets a registered schema by its unique ID.  Azure Schema Registry guarantees that ID is unique within a namespace. Operation response type is based on serialization of schema requested. */

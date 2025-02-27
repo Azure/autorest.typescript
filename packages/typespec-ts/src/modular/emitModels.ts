@@ -26,6 +26,7 @@ import {
   SdkType,
   SdkUnionType,
   UsageFlags,
+  isPagedResultModel,
   isReadOnly
 } from "@azure-tools/typespec-client-generator-core";
 import {
@@ -37,7 +38,6 @@ import { SdkContext } from "../utils/interfaces.js";
 import { addDeclaration } from "../framework/declaration.js";
 import { buildModelDeserializer } from "./serialization/buildDeserializerFunction.js";
 import { buildModelSerializer } from "./serialization/buildSerializerFunction.js";
-import { extractPagedMetadataNested } from "../utils/operationUtil.js";
 import {
   getTypeExpression,
   normalizeModelPropertyName
@@ -254,14 +254,16 @@ export function getModelNamespaces(
     model.kind === "union"
   ) {
     if (
-      model.clientNamespace.startsWith("Azure.ResourceManager") ||
-      model.clientNamespace.startsWith("Azure.Core") ||
-      model.crossLanguageDefinitionId.startsWith("TypeSpec.Rest.Resource") ||
-      model.crossLanguageDefinitionId === "TypeSpec.Http.File" // filter out the TypeSpec.Http.File model similar like what java does here https://github.com/microsoft/typespec/blob/main/packages/http-client-java/emitter/src/code-model-builder.ts#L2589
+      (model.namespace ?? "").startsWith("Azure.ResourceManager") ||
+      (model.namespace ?? "").startsWith("Azure.Core") ||
+      (model.crossLanguageDefinitionId ?? "").startsWith(
+        "TypeSpec.Rest.Resource"
+      ) ||
+      (model.crossLanguageDefinitionId ?? "") === "TypeSpec.Http.File" // filter out the TypeSpec.Http.File model similar like what java does here https://github.com/microsoft/typespec/blob/main/packages/http-client-java/emitter/src/code-model-builder.ts#L2589
     ) {
       return [];
     }
-    const segments = model.clientNamespace.split(".");
+    const segments = model.namespace.split(".");
     if (segments.length > rootNamespace.length) {
       while (segments[0] === rootNamespace[0]) {
         segments.shift();
@@ -517,17 +519,16 @@ export function normalizeModelName(
       nameType
     )}>`;
   }
-  // TODO see https://github.com/Azure/typespec-azure/issues/2125
-  if (type.kind === "nullable") {
-    return normalizeName(type.name, nameType, true);
-  }
-  if (type.kind !== "model" && type.kind !== "enum" && type.kind !== "union") {
+  if (
+    type.kind !== "model" &&
+    type.kind !== "enum" &&
+    type.kind !== "union" &&
+    type.kind !== "nullable"
+  ) {
     return getTypeExpression(context, type);
   }
-  const segments = type.crossLanguageDefinitionId.split(".");
-  segments.pop();
-  segments.shift();
-  segments.filter((segment) => segment !== context.sdkPackage.rootNamespace);
+
+  const segments = getModelNamespaces(context, type);
   let unionSuffix = "";
   if (!skipPolymorphicUnionSuffix) {
     if (type.kind === "model" && isDiscriminatedUnion(type)) {
@@ -537,17 +538,8 @@ export function normalizeModelName(
   const namespacePrefix = context.rlcOptions?.enableModelNamespace
     ? segments.join("")
     : "";
-  let internalModelPrefix = "";
-  if (type.__raw && type.__raw.kind === "Model") {
-    // TODO: this is temporary until we have a better way in tcgc to extract the paged metadata
-    // issue link https://github.com/Azure/typespec-azure/issues/1464
-    const page = extractPagedMetadataNested(context.program, type.__raw!);
-    internalModelPrefix =
-      page && page.itemsSegments && page.itemsSegments.length > 0 ? "_" : "";
-  }
-  if (type.isGeneratedName) {
-    internalModelPrefix = "_";
-  }
+  const internalModelPrefix =
+    isPagedResultModel(context, type) || type.isGeneratedName ? "_" : "";
   return `${internalModelPrefix}${normalizeName(namespacePrefix + type.name + unionSuffix, nameType, true)}`;
 }
 

@@ -65,7 +65,10 @@ function extractRLCOptions(
     emitterOptions,
     flavor
   );
-  const generateSample: undefined | boolean = getGenerateSample(emitterOptions);
+  const generateSample: undefined | boolean = getGenerateSample(
+    dpgContext,
+    emitterOptions
+  );
   const credentialInfo = getCredentialInfo(program, emitterOptions);
   const azureOutputDirectory = getAzureOutputDirectory(generationRootDir);
   const enableOperationGroup = getEnableOperationGroup(
@@ -372,7 +375,13 @@ function getGenerateTest(emitterOptions: EmitterOptions, flavor?: "azure") {
  * @param emitterOptions
  * @returns
  */
-function getGenerateSample(emitterOptions: EmitterOptions) {
+function getGenerateSample(
+  dpgContext: SdkContext,
+  emitterOptions: EmitterOptions
+) {
+  if (dpgContext.arm && emitterOptions.generateSample === undefined) {
+    return true;
+  }
   if (
     emitterOptions.generateSample === undefined ||
     emitterOptions.generateSample === null
