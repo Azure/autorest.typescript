@@ -532,48 +532,29 @@ function getFlavor(
   }
 }
 
-function getPackageDetails(
+function buildPackageDetails(
   program: Program,
-  emitterOptions: EmitterOptions
+  emitterOptions: EmitterOptions,
+  packageOptions: string
 ): PackageDetails {
   const defaultDetial = {
     name: "@msinternal/unamedpackage",
     nameWithoutScope: "unamedpackage",
     version: "1.0.0-beta.1"
   };
-  if (emitterOptions.packageDetails !== undefined) {
-    const packageOldDetails: PackageDetails = {
-      ...emitterOptions.packageDetails,
-      name:
-        emitterOptions.packageDetails?.name ??
-        normalizeName(
-          emitterOptions?.title ?? getDefaultService(program)?.title ?? "",
-          NameType.Class
-        ),
-      version: emitterOptions.packageDetails?.version ?? "1.0.0-beta.1"
-    };
-    if (emitterOptions.packageDetails?.name) {
-      const nameOldParts = emitterOptions.packageDetails?.name.split("/");
-      if (nameOldParts.length === 2) {
-        packageOldDetails.nameWithoutScope = nameOldParts[1];
-        packageOldDetails.scopeName = nameOldParts[0]?.replace("@", "");
-      }
-    }
-    return packageOldDetails ?? defaultDetial;
-  }
-  if (emitterOptions["package-details"] !== undefined) {
+  if (emitterOptions[packageOptions] !== undefined) {
     const packageDetails: PackageDetails = {
-      ...emitterOptions["package-details"],
+      ...emitterOptions[packageOptions],
       name:
-        emitterOptions["package-details"]?.name ??
+        emitterOptions[packageOptions]?.name ??
         normalizeName(
           emitterOptions?.title ?? getDefaultService(program)?.title ?? "",
           NameType.Class
         ),
-      version: emitterOptions["package-details"]?.version ?? "1.0.0-beta.1"
+      version: emitterOptions[packageOptions]?.version ?? "1.0.0-beta.1"
     };
-    if (emitterOptions["package-details"]?.name) {
-      const nameParts = emitterOptions["package-details"]?.name.split("/");
+    if (emitterOptions[packageOptions]?.name) {
+      const nameParts = emitterOptions[packageOptions]?.name.split("/");
       if (nameParts.length === 2) {
         packageDetails.nameWithoutScope = nameParts[1];
         packageDetails.scopeName = nameParts[0]?.replace("@", "");
@@ -582,6 +563,22 @@ function getPackageDetails(
     return packageDetails ?? defaultDetial;
   }
   return defaultDetial;
+}
+function getPackageDetails(
+  program: Program,
+  emitterOptions: EmitterOptions
+): PackageDetails {
+  if (emitterOptions.packageDetails !== undefined) {
+    return buildPackageDetails(program, emitterOptions, "packageDetails");
+  }
+  if (emitterOptions["package-details"] !== undefined) {
+    return buildPackageDetails(program, emitterOptions, "package-details");
+  }
+  return {
+    name: "@msinternal/unamedpackage",
+    nameWithoutScope: "unamedpackage",
+    version: "1.0.0-beta.1"
+  };
 }
 
 function getServiceInfo(program: Program): ServiceInfo {
