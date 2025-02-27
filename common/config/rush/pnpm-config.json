@@ -9,7 +9,7 @@
     "@typespec/rest": "0.66.0-dev.0",
     "@typespec/versioning": "0.66.0-dev.0",
     "@typespec/xml": "0.66.0-dev.0",
-    "@azure-tools/typespec-client-generator-core": "0.52.0-dev.3",
+    "@azure-tools/typespec-client-generator-core": "0.52.0-dev.4",
     "@azure-tools/typespec-azure-core": "0.52.0-dev.0",
     "@azure-tools/typespec-azure-resource-manager": "0.52.0-dev.0",
     "@azure-tools/typespec-azure-rulesets": "0.52.0-dev.0",
