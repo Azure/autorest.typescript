@@ -67,7 +67,6 @@ export interface EmitterOptions extends RLCOptions {
   "compatibility-query-multi-format"?: boolean;
   branded?: boolean;
   "typespec-title-map"?: Record<string, string>;
-  [key: string]: any;
 }
 
 const _RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
