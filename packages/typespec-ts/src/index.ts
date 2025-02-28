@@ -286,7 +286,11 @@ export async function $onEmit(context: EmitContext) {
           dpgContext,
           modularEmitterOptions,
           "api",
-          subClient
+          subClient,
+          {
+            exportIndex: false,
+            recursive: true
+          }
         );
       } else {
         buildSubpathIndexFile(
@@ -295,6 +299,7 @@ export async function $onEmit(context: EmitContext) {
           "api",
           subClient,
           {
+            recursive: true,
             exportIndex: true
           }
         );

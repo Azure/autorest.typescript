@@ -6,13 +6,13 @@ import {
   _$deleteDeserialize,
   _updateDeserialize,
   _createDeserialize,
-} from "./api/dataProducts/index.js";
+} from "./api/dataProducts/operations.js";
 import {
   _deleteDataDeserialize,
   _$deleteDeserialize as _$deleteDeserializeDataTypes,
   _updateDeserialize as _updateDeserializeDataTypes,
   _createDeserialize as _createDeserializeDataTypes,
-} from "./api/dataTypes/index.js";
+} from "./api/dataTypes/operations.js";
 import { getLongRunningPoller } from "./static-helpers/pollingHelpers.js";
 import {
   OperationOptions,

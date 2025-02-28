@@ -30,3 +30,31 @@ export {
   DataProductsCatalogsGetOptionalParams,
   OperationsListOptionalParams,
 } from "./options.js";
+export {
+  listBySubscription,
+  listByResourceGroup,
+  listRolesAssignments,
+  removeUserRole,
+  addUserRole,
+  rotateKey,
+  generateStorageAccountSasToken,
+  $delete,
+  update,
+  get,
+  create,
+} from "./dataProducts/operations.js";
+export {
+  listBySubscription,
+  listByResourceGroup,
+  get,
+} from "./dataProductsCatalogs/operations.js";
+export {
+  listByDataProduct,
+  generateStorageContainerSasToken,
+  deleteData,
+  $delete,
+  update,
+  get,
+  create,
+} from "./dataTypes/operations.js";
+export { list } from "./operations/operations.js";
