@@ -15,6 +15,7 @@
   "license": "MIT",
   "files": [
     "dist/",
+    "!dist/**/*.d.*ts.map",
     "dist-esm/src/",
     "types/anomaly-detector-rest.d.ts",
     "README.md",

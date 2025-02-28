@@ -66,6 +66,7 @@ function getAzureCjsCommonInfo({
   return {
     files: [
       "dist/",
+      "!dist/**/*.d.*ts.map",
       withTests || withSamples ? "dist-esm/src/" : "dist-esm/",
       `types/${nameWithoutScope ?? name}.d.ts`,
       "README.md",
@@ -81,7 +82,14 @@ function getAzureEsmCommonInfo({ moduleKind }: AzurePackageInfoConfig) {
     return {};
   }
   return {
-    files: ["dist", "README.md", "LICENSE", "review/*", "CHANGELOG.md"]
+    files: [
+      "dist/",
+      "!dist/**/*.d.*ts.map",
+      "README.md",
+      "LICENSE",
+      "review/*",
+      "CHANGELOG.md"
+    ]
   };
 }
 
