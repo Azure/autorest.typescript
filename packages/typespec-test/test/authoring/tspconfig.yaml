@@ -3,11 +3,11 @@ emit:
   - "@azure-tools/typespec-autorest"
 options:
   "@azure-tools/typespec-autorest":
-    "emitter-output-dir": "{project-root}/generated/openapi"
+    emitter-output-dir: "{project-root}/generated/openapi"
   "@azure-tools/typespec-ts":
-    azureSdkForJs: false
-    generateSample: true
-    "emitter-output-dir": "{project-root}/generated/typespec-ts"
-    packageDetails:
+    azure-sdk-for-js: false
+    generate-sample: true
+    emitter-output-dir: "{project-root}/generated/typespec-ts"
+    package-details:
       name: "@msinternal/authoring"
       description: "Authoring Ledger Service"

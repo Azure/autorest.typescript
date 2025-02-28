@@ -91,7 +91,7 @@ interface Employees {
 This is the tspconfig.yaml.
 
 ```yaml
-hierarchyClient: false
+hierarchy-client: false
 ```
 
 ## Example

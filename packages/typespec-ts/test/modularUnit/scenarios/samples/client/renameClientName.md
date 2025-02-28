@@ -31,7 +31,7 @@ op read(name: string):  { @body body: {}};
 The config would be like:
 
 ```yaml
-typespecTitleMap:
+typespec-title-map:
   DemoServiceClient: TestServiceClient
 ```
 
