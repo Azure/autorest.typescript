@@ -242,16 +242,9 @@ function extractRLCOptions(
   const moduleKind = getModuleKind(emitterOptions);
   const serviceInfo = getServiceInfo(program);
   const azureSdkForJs = getAzureSdkForJs(emitterOptions);
-  const generateMetadata: undefined | boolean =
-    getGenerateMetadata(emitterOptions);
-  const generateTest: undefined | boolean = getGenerateTest(
-    emitterOptions,
-    flavor
-  );
-  const generateSample: undefined | boolean = getGenerateSample(
-    dpgContext,
-    emitterOptions
-  );
+  const generateMetadata = getGenerateMetadata(emitterOptions);
+  const generateTest = getGenerateTest(emitterOptions, flavor);
+  const generateSample = getGenerateSample(dpgContext, emitterOptions);
   const credentialInfo = getCredentialInfo(program, emitterOptions);
   const azureOutputDirectory = getAzureOutputDirectory(generationRootDir);
   const enableOperationGroup = getEnableOperationGroup(
