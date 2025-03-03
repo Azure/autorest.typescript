@@ -170,7 +170,7 @@ export type FindPetsByTagsResponse = Pet[];
 
 /** Optional parameters. */
 export interface FindPetsWithByteArrayOptionalParams
-  extends coreClient.OperationOptions { }
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the findPetsWithByteArray operation. */
 export type FindPetsWithByteArrayResponse = {
@@ -191,7 +191,7 @@ export type FindPetsWithByteArrayResponse = {
 };
 
 /** Optional parameters. */
-export interface GetPetByIdOptionalParams extends coreClient.OperationOptions { }
+export interface GetPetByIdOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the getPetById operation. */
 export type GetPetByIdResponse = Pet;
@@ -220,7 +220,7 @@ export interface UploadFileOptionalParams extends coreClient.OperationOptions {
 
 /** Optional parameters. */
 export interface GetInventoryOptionalParams
-  extends coreClient.OperationOptions { }
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getInventory operation. */
 export type GetInventoryResponse = { [propertyName: string]: number };
@@ -236,14 +236,14 @@ export type PlaceOrderResponse = Order;
 
 /** Optional parameters. */
 export interface GetOrderByIdOptionalParams
-  extends coreClient.OperationOptions { }
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getOrderById operation. */
 export type GetOrderByIdResponse = Order;
 
 /** Optional parameters. */
 export interface DeleteOrderOptionalParams
-  extends coreClient.OperationOptions { }
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface CreateUserOptionalParams extends coreClient.OperationOptions {
@@ -280,11 +280,11 @@ export type LoginUserResponse = {
 };
 
 /** Optional parameters. */
-export interface LogoutUserOptionalParams extends coreClient.OperationOptions { }
+export interface LogoutUserOptionalParams extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface GetUserByNameOptionalParams
-  extends coreClient.OperationOptions { }
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getUserByName operation. */
 export type GetUserByNameResponse = User;
@@ -296,7 +296,7 @@ export interface UpdateUserOptionalParams extends coreClient.OperationOptions {
 }
 
 /** Optional parameters. */
-export interface DeleteUserOptionalParams extends coreClient.OperationOptions { }
+export interface DeleteUserOptionalParams extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface PetStoreOptionalParams
