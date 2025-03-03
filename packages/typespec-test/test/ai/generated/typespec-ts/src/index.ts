@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { FileContents } from "./static-helpers/multipartHelpers.js";
 import {
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
-import { FileContents } from "./static-helpers/multipartHelpers.js";
 
 export { AIProjectClient } from "./aiProjectClient.js";
 export {
