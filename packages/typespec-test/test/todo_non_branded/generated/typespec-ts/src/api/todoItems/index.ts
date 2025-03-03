@@ -10,8 +10,8 @@ import {
   TodoItemsUpdateOptionalParams,
 } from "../index.js";
 import {
-  TodoPage,
-  todoPageDeserializer,
+  _TodoPage,
+  _todoPageDeserializer,
   invalidTodoItemDeserializer,
   notFoundErrorResponseDeserializer,
   TodoItemPatch,
@@ -376,7 +376,7 @@ export function _listSend(
 
 export async function _listDeserialize(
   result: PathUncheckedResponse,
-): Promise<TodoPage> {
+): Promise<_TodoPage> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -389,7 +389,7 @@ export async function _listDeserialize(
     throw error;
   }
 
-  return todoPageDeserializer(result.body);
+  return _todoPageDeserializer(result.body);
 }
 
 export function list(

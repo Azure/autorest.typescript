@@ -91,8 +91,8 @@ interface Employees {
 This is the tspconfig.yaml.
 
 ```yaml
-hierarchyClient: false
-enableOperationGroup: true
+hierarchy-client: false
+enable-operation-group: true
 ```
 
 ## Example

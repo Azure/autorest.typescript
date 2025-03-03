@@ -241,7 +241,7 @@ export declare interface ResourceModelWithAllowedPropertySet extends TrackedReso
 export declare interface ResourceModelWithAllowedPropertySetOutput extends TrackedResourceOutput {
     managedBy?: string;
     kind?: string;
-    readonly eTag?: string;
+    readonly etag?: string;
     identity?: IdentityOutput;
     sku?: SkuOutput;
     plan?: PlanOutput;
@@ -326,8 +326,8 @@ export declare interface UserAssignedIdentity {
 }
 
 export declare interface UserAssignedIdentityOutput {
-    readonly principalId?: string;
     readonly clientId?: string;
+    readonly principalId?: string;
 }
 
 export { }

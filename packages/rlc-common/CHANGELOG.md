@@ -1,3 +1,17 @@
+## 0.38.3 (2025-02-25)
+
+- [Feature] Update compiler version to 0.65.x. Please refer to [#2753](https://github.com/Azure/autorest.typescript/pull/2753)
+- [Bugfix] Enable `generateSample: true` if it is a mgmt package. Please refer to [#3068](https://github.com/Azure/autorest.typescript/pull/3068)
+- [Bugfix] Fix await in multi examples in one file. Please refer to [#3061](https://github.com/Azure/autorest.typescript/pull/3061)
+- [Feature] Support snippets for Modular/RLC/HLC. Please refer to [#3052](https://github.com/Azure/autorest.typescript/pull/3052)
+- [Bugfix] Fix operation hierarchies info in sample gen. Please refer to [#3023](https://github.com/Azure/autorest.typescript/pull/3023)
+- [Bugfix] Remove isDefaultSupersetOfOthers logic as no longer needed. Please refer to [#3057](https://github.com/Azure/autorest.typescript/pull/3057)
+- [Feature] Upgrade http-specs verison. Rest.Resource. Please refer to [#3053](https://github.com/Azure/autorest.typescript/pull/3053)
+- [Feature] Use recommended boilerplate LICENSE. Please refer to [#3044](https://github.com/Azure/autorest.typescript/pull/3044)
+- [Feature] remove references of api-extractor-json-types and package-json-module rules. Please refer to [#3042](https://github.com/Azure/autorest.typescript/pull/3042)
+- [Feature] Upgrade dependency vitest version to ^3.0.3 in generated packages. Please refer to [#3046](https://github.com/Azure/autorest.typescript/pull/3046)
+- [Feature] Use agents from 1ES pool. Please refer to [#3047](https://github.com/Azure/autorest.typescript/pull/3047)
+
 ## 0.38.2 (2025-01-27)
 
 - [Feature] Upgrade spector version. Please refer to [#3007](https://github.com/Azure/autorest.typescript/pull/3007)
