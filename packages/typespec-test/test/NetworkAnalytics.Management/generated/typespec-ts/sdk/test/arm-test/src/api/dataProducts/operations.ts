@@ -1,20 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  NetworkAnalyticsApiContext as Client,
-  DataProductsAddUserRoleOptionalParams,
-  DataProductsCreateOptionalParams,
-  DataProductsDeleteOptionalParams,
-  DataProductsGenerateStorageAccountSasTokenOptionalParams,
-  DataProductsGetOptionalParams,
-  DataProductsListByResourceGroupOptionalParams,
-  DataProductsListBySubscriptionOptionalParams,
-  DataProductsListRolesAssignmentsOptionalParams,
-  DataProductsRemoveUserRoleOptionalParams,
-  DataProductsRotateKeyOptionalParams,
-  DataProductsUpdateOptionalParams,
-} from "../index.js";
+import { NetworkAnalyticsApiContext as Client } from "../index.js";
 import {
   DataProduct,
   dataProductSerializer,
@@ -51,6 +38,19 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { PollerLike, OperationState } from "@azure/core-lro";
+import {
+  DataProductsListBySubscriptionOptionalParams,
+  DataProductsListByResourceGroupOptionalParams,
+  DataProductsListRolesAssignmentsOptionalParams,
+  DataProductsRemoveUserRoleOptionalParams,
+  DataProductsAddUserRoleOptionalParams,
+  DataProductsRotateKeyOptionalParams,
+  DataProductsGenerateStorageAccountSasTokenOptionalParams,
+  DataProductsDeleteOptionalParams,
+  DataProductsUpdateOptionalParams,
+  DataProductsGetOptionalParams,
+  DataProductsCreateOptionalParams,
+} from "./options.js";
 
 export function _listBySubscriptionSend(
   context: Client,

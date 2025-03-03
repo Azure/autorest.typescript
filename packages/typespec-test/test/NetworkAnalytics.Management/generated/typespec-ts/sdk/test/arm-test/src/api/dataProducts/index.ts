@@ -15,7 +15,15 @@ export {
   create,
 } from "./operations.js";
 export {
-  listBySubscription,
-  listByResourceGroup,
-  get,
-} from ".Catalogs/operations.js";
+  DataProductsListBySubscriptionOptionalParams,
+  DataProductsListByResourceGroupOptionalParams,
+  DataProductsListRolesAssignmentsOptionalParams,
+  DataProductsRemoveUserRoleOptionalParams,
+  DataProductsAddUserRoleOptionalParams,
+  DataProductsRotateKeyOptionalParams,
+  DataProductsGenerateStorageAccountSasTokenOptionalParams,
+  DataProductsDeleteOptionalParams,
+  DataProductsUpdateOptionalParams,
+  DataProductsGetOptionalParams,
+  DataProductsCreateOptionalParams,
+} from "./options.js";

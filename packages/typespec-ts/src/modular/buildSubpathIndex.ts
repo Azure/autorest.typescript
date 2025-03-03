@@ -52,10 +52,19 @@ export function buildSubpathIndexFile(
     const apiFilePattern =
       subpath === "models" ? join(folder, "models.ts") : folder;
     const apiFiles = emitterOptions.project.getSourceFiles().filter((file) => {
+      if (apiFilePattern.endsWith("src/api") && options.recursive) {
+        return (
+          file.getDirectoryPath().replace(/\\/g, "/") ===
+          apiFilePattern.replace(/\\/g, "/")
+        );
+      }
       return file
         .getFilePath()
         .replace(/\\/g, "/")
-        .startsWith(apiFilePattern.replace(/\\/g, "/"));
+        .startsWith(
+          apiFilePattern.replace(/\\/g, "/") +
+            (apiFilePattern.endsWith("models.ts") ? "" : "/")
+        );
     });
     if (apiFiles.length === 0) {
       continue;

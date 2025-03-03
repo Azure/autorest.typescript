@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  NetworkAnalyticsApiContext as Client,
-  OperationsListOptionalParams,
-} from "../index.js";
+import { NetworkAnalyticsApiContext as Client } from "../index.js";
 import {
   errorResponseDeserializer,
   _OperationListResult,
@@ -21,6 +18,7 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { OperationsListOptionalParams } from "./options.js";
 
 export function _listSend(
   context: Client,
