@@ -67,13 +67,6 @@ export const Pet: coreClient.CompositeMapper = {
           name: "String",
         },
       },
-      test: {
-        serializedName: "test",
-        xmlName: "test",
-        type: {
-          name: "String",
-        },
-      },
       petRestrictionLevel: {
         serializedName: "petRestrictionLevel",
         xmlName: "petRestrictionLevel",
@@ -257,55 +250,55 @@ export const User: coreClient.CompositeMapper = {
 };
 
 export const PathsN18Gb4PetPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema: coreClient.CompositeMapper =
-  {
-    serializedName:
+{
+  serializedName:
+    "PathsN18Gb4PetPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema",
+  type: {
+    name: "Composite",
+    className:
       "PathsN18Gb4PetPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema",
-    type: {
-      name: "Composite",
-      className:
-        "PathsN18Gb4PetPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema",
-      modelProperties: {
-        name: {
-          serializedName: "name",
-          xmlName: "name",
-          type: {
-            name: "String",
-          },
+    modelProperties: {
+      name: {
+        serializedName: "name",
+        xmlName: "name",
+        type: {
+          name: "String",
         },
-        status: {
-          serializedName: "status",
-          xmlName: "status",
-          type: {
-            name: "String",
-          },
+      },
+      status: {
+        serializedName: "status",
+        xmlName: "status",
+        type: {
+          name: "String",
         },
       },
     },
-  };
+  },
+};
 
 export const PathsQ1AtbnPetPetidUploadimagePostRequestbodyContentMultipartFormDataSchema: coreClient.CompositeMapper =
-  {
-    serializedName:
+{
+  serializedName:
+    "PathsQ1AtbnPetPetidUploadimagePostRequestbodyContentMultipartFormDataSchema",
+  type: {
+    name: "Composite",
+    className:
       "PathsQ1AtbnPetPetidUploadimagePostRequestbodyContentMultipartFormDataSchema",
-    type: {
-      name: "Composite",
-      className:
-        "PathsQ1AtbnPetPetidUploadimagePostRequestbodyContentMultipartFormDataSchema",
-      modelProperties: {
-        additionalMetadata: {
-          serializedName: "additionalMetadata",
-          xmlName: "additionalMetadata",
-          type: {
-            name: "String",
-          },
+    modelProperties: {
+      additionalMetadata: {
+        serializedName: "additionalMetadata",
+        xmlName: "additionalMetadata",
+        type: {
+          name: "String",
         },
-        file: {
-          serializedName: "file",
-          xmlName: "file",
-          type: {
-            name: "Stream",
-          },
+      },
+      file: {
+        serializedName: "file",
+        xmlName: "file",
+        type: {
+          name: "Stream",
         },
       },
     },
-  };
+  },
+};
