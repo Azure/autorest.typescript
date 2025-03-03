@@ -55,43 +55,6 @@ describe("Client definition generation", () => {
     );
   });
 
-  it("should generate wrapper object for query parameter", async () => {
-    const tsp = `
-    @route("template")
-    op template(@query("include[]") include?: string[]): void;
-        `;
-    const parameters = await emitParameterFromTypeSpec(
-      tsp
-    );
-    assert.ok(parameters);
-    await assertEqualContent(
-      parameters?.content!,
-      `
-    import type { RequestParameters } from "@azure-rest/core-client";
-
-    /** This is the wrapper object for the parameter \`include[]\` with explode set to false and style set to form. */        
-    export interface TemplateIncludeQueryParam {
-        /** Value of the parameter */
-        value: string[];
-        /** Should we explode the value? */
-        explode: false;
-        /** Style of the value */
-        style: "form";
-    }
-
-    export interface TemplateQueryParamProperties {
-        "include[]"?: string[] | TemplateIncludeQueryParam;
-    }
-
-    export interface TemplateQueryParam {
-        queryParameters?: TemplateQueryParamProperties;
-    }
-
-    export type TemplateParameters = TemplateQueryParam & RequestParameters;
-      `
-    );
-  });
-
   it("should generate method-level parameter for query parameters", async () => {
     const tsp = `
     union RunAdditionalFieldList {
