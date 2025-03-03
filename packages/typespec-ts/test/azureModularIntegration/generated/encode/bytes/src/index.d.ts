@@ -45,8 +45,8 @@ export declare interface HeaderDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface HeaderOperations {
-    base64urlArray: (value: Uint8Array[], options?: HeaderBase64urlArrayOptionalParams) => Promise<void>;
-    base64url: (value: Uint8Array, options?: HeaderBase64urlOptionalParams) => Promise<void>;
+    base64UrlArray: (value: Uint8Array[], options?: HeaderBase64urlArrayOptionalParams) => Promise<void>;
+    base64Url: (value: Uint8Array, options?: HeaderBase64urlOptionalParams) => Promise<void>;
     base64: (value: Uint8Array, options?: HeaderBase64OptionalParams) => Promise<void>;
     default: (value: Uint8Array, options?: HeaderDefaultOptionalParams) => Promise<void>;
 }
@@ -64,8 +64,8 @@ export declare interface PropertyDefaultOptionalParams extends OperationOptions 
 }
 
 export declare interface PropertyOperations {
-    base64urlArray: (body: Base64UrlArrayBytesProperty, options?: PropertyBase64urlArrayOptionalParams) => Promise<Base64UrlArrayBytesProperty>;
-    base64url: (body: Base64UrlBytesProperty, options?: PropertyBase64urlOptionalParams) => Promise<Base64UrlBytesProperty>;
+    base64UrlArray: (body: Base64UrlArrayBytesProperty, options?: PropertyBase64urlArrayOptionalParams) => Promise<Base64UrlArrayBytesProperty>;
+    base64Url: (body: Base64UrlBytesProperty, options?: PropertyBase64urlOptionalParams) => Promise<Base64UrlBytesProperty>;
     base64: (body: Base64BytesProperty, options?: PropertyBase64OptionalParams) => Promise<Base64BytesProperty>;
     default: (body: DefaultBytesProperty, options?: PropertyDefaultOptionalParams) => Promise<DefaultBytesProperty>;
 }
@@ -83,8 +83,8 @@ export declare interface QueryDefaultOptionalParams extends OperationOptions {
 }
 
 export declare interface QueryOperations {
-    base64urlArray: (value: Uint8Array[], options?: QueryBase64urlArrayOptionalParams) => Promise<void>;
-    base64url: (value: Uint8Array, options?: QueryBase64urlOptionalParams) => Promise<void>;
+    base64UrlArray: (value: Uint8Array[], options?: QueryBase64urlArrayOptionalParams) => Promise<void>;
+    base64Url: (value: Uint8Array, options?: QueryBase64urlOptionalParams) => Promise<void>;
     base64: (value: Uint8Array, options?: QueryBase64OptionalParams) => Promise<void>;
     default: (value: Uint8Array, options?: QueryDefaultOptionalParams) => Promise<void>;
 }
@@ -105,7 +105,7 @@ export declare interface RequestBodyOctetStreamOptionalParams extends OperationO
 }
 
 export declare interface RequestBodyOperations {
-    base64url: (value: Uint8Array, options?: RequestBodyBase64urlOptionalParams) => Promise<void>;
+    base64Url: (value: Uint8Array, options?: RequestBodyBase64urlOptionalParams) => Promise<void>;
     base64: (value: Uint8Array, options?: RequestBodyBase64OptionalParams) => Promise<void>;
     customContentType: (value: Uint8Array, options?: RequestBodyCustomContentTypeOptionalParams) => Promise<void>;
     octetStream: (value: Uint8Array, options?: RequestBodyOctetStreamOptionalParams) => Promise<void>;
@@ -128,7 +128,7 @@ export declare interface ResponseBodyOctetStreamOptionalParams extends Operation
 }
 
 export declare interface ResponseBodyOperations {
-    base64url: (options?: ResponseBodyBase64urlOptionalParams) => Promise<Uint8Array>;
+    base64Url: (options?: ResponseBodyBase64urlOptionalParams) => Promise<Uint8Array>;
     base64: (options?: ResponseBodyBase64OptionalParams) => Promise<Uint8Array>;
     customContentType: (options?: ResponseBodyCustomContentTypeOptionalParams) => Promise<Uint8Array>;
     octetStream: (options?: ResponseBodyOctetStreamOptionalParams) => Promise<Uint8Array>;

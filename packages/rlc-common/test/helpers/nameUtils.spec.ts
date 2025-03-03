@@ -34,6 +34,7 @@ describe("#normalizeName", () => {
       });
 
       it("should limit the charset to alphanumeric characters", () => {
+        expect(normalizeName("base64urlArray", NameType.Property)).to.equal("base64UrlArray");
         expect(normalizeName("R-10Min", NameType.EnumMemberName)).to.equal("R10Min");
         expect(normalizeName("___pascal____case6666", NameType.EnumMemberName)).to.equal("PascalCase6666");
         expect(normalizeName("system,user", NameType.EnumMemberName)).to.equal("SystemUser");
