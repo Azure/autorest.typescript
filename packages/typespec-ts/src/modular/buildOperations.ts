@@ -105,15 +105,11 @@ export function buildOperationFiles(
         dpgContext,
         op
       );
-      try {
-        operationGroupFile.addFunctions([
-          sendOperationDeclaration,
-          deserializeOperationDeclaration,
-          operationDeclaration
-        ]);
-      } catch (e) {
-        console.log(e);
-      }
+      operationGroupFile.addFunctions([
+        sendOperationDeclaration,
+        deserializeOperationDeclaration,
+        operationDeclaration
+      ]);
     });
 
     const indexPathPrefix =
