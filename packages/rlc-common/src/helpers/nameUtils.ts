@@ -176,7 +176,7 @@ export function normalizeName(
     return name.replace("$DO_NOT_NORMALIZE$", "");
   }
   const casingConvention = casingOverride ?? getCasingConvention(nameType);
-  const parts = deconstruct(name, nameType);
+  const parts = deconstruct(name);
   if (parts.length === 0) {
     return name;
   }
@@ -190,13 +190,13 @@ export function normalizeName(
   const result = shouldGuard
     ? guardReservedNames(normalized, nameType, customReservedNames)
     : normalized;
-  return escapeNumericLiteralStart(result, nameType, numberPrefixOverride);
+  return fixLeadingNumber(result, nameType, numberPrefixOverride);
 }
 
-export function escapeNumericLiteralStart(
+export function fixLeadingNumber(
   name: string,
   nameType: NameType,
-  prefix: string = "Num"
+  prefix: string = "_"
 ): string {
   const casingConvention = getCasingConvention(nameType);
   if (!name || !name.match(/^[-.]?\d/)) {
@@ -207,7 +207,7 @@ export function escapeNumericLiteralStart(
 
 function isFullyUpperCase(
   identifier: string,
-  maxUppercasePreserve: number = 6
+  maxUppercasePreserve: number = 3
 ) {
   const len = identifier.length;
   if (len > 1) {
@@ -228,82 +228,18 @@ function isFullyUpperCase(
   return false;
 }
 
-function deconstruct(identifier: string, nameType: NameType): Array<string> {
-  const parts = `${identifier}`
+function deconstruct(identifier: string): Array<string> {
+  return `${identifier}`
     .replace(/([a-z]+)([A-Z])/g, "$1 $2") // Add a space in between camelCase words(e.g. fooBar => foo Bar)
-    .replace(/(\d+)/g, " $1 ") // Adds a space after numbers(e.g. foo123 => foo123 bar)
-    .replace(/\b([_-]*)([A-Z]+)([A-Z])s([^a-z])(.*)/g, "$1$2$3« $4$5") // Add a space after a plural upper cased word(e.g. MBsFoo => MBs Foo)
-    .replace(/\b([_-]*)([A-Z]+)([A-Z])([a-z]+)/g, "$1$2 $3$4") // Add a space between an upper case word(2 char+) and the last captial case.(e.g. SQLConnection -> SQL Connection)
+    .replace(/(\d+)/g, " $1 ") // Adds a space after numbers(e.g. foo123Bar => foo123 bar)
+    .replace(/_/g, " ") // Replace underscores with spaces
+    .replace(/\b([A-Z]+)([A-Z])s([^a-z])(.*)/g, "$1$2« $3$4") // Add a space after a plural upper cased word(e.g. MBsFoo => MBs Foo)
+    .replace(/\b([A-Z]+)([A-Z])([a-z]+)/g, "$1 $2$3") // Add a space between an upper case word(2 char+) and the last captial case.(e.g. SQLConnection -> SQL Connection)
     .replace(/«/g, "s")
     .trim()
-    .split(/[^A-Za-z0-9_\-.]+/);
-  // Split by non-alphanumeric characters and try to keep _-. between numbers
-  const refinedParts: string[] = [];
-  for (let i = 0; i < parts.length; i++) {
-    const [formerReserved, part, latterReserved] = extractPartWithReserved(
-      parts[i],
-      nameType,
-      parts[i - 1] === undefined ? true : isNumber(parts[i - 1]),
-      parts[i + 1] === undefined ? true : isNumber(parts[i + 1])
-    );
-    if (formerReserved) {
-      refinedParts.push(formerReserved);
-    }
-    if (part) {
-      refinedParts.push(
-        ...part
-          .split(/[\W|_]+/)
-          .map((p) => (isFullyUpperCase(p) ? p : p.toLowerCase()))
-      );
-    }
-    if (latterReserved) {
-      refinedParts.push(latterReserved);
-    }
-  }
-  return refinedParts.filter((part) => part.trim().length > 0);
-}
-
-function isReservedChar(part: string) {
-  return ["_", "-", "."].includes(part);
-}
-
-function extractPartWithReserved(
-  part: string,
-  nameType: NameType,
-  isPrevNumber: boolean = false,
-  isNextNumber: boolean = false
-) {
-  const notOptimized = [
-    NameType.OperationGroup,
-    NameType.Interface,
-    NameType.Class,
-    NameType.Property,
-    NameType.Parameter
-  ].includes(nameType);
-  if (isPrevNumber && isNextNumber && isReservedChar(part)) {
-    return [part];
-  }
-  if (notOptimized) {
-    return [undefined, part];
-  }
-  const firstMatch = isPrevNumber && isReservedChar(part[0]);
-  const lastMatch = isNextNumber && isReservedChar(part[part.length - 1]);
-  if (firstMatch && lastMatch) {
-    return [part[0], part.substring(1, part.length - 1), part[part.length - 1]];
-  } else if (firstMatch && !lastMatch) {
-    return [part[0], part.substring(1)];
-  } else if (!firstMatch && lastMatch) {
-    return [
-      undefined,
-      part.substring(0, part.length - 1),
-      part[part.length - 1]
-    ];
-  }
-  return [undefined, part];
-}
-
-function isNumber(value?: string) {
-  return Boolean(value && value.match(/^\d+$/));
+    .split(/[\W|_]+/)
+    .map((each) => (isFullyUpperCase(each) ? each : each.toLowerCase()))
+    .filter((part) => !!part);
 }
 
 export function getModelsName(title: string): string {
@@ -332,11 +268,6 @@ function getCasingConvention(nameType: NameType) {
   }
 }
 
-/**
- * TODO: Improve this function to handle cases such as TEST -> test. Current basic implementation
- * results in TEST -> test or Test (depending on the CasingConvention). We should switch to relay
- * on Modeler four namer for this once it is stable
- */
 function toCasing(
   str: string,
   casing: CasingConvention,
