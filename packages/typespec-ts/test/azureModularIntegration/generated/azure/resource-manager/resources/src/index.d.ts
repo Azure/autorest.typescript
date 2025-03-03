@@ -83,7 +83,7 @@ export declare enum KnownProvisioningState {
 }
 
 export declare enum KnownVersions {
-    V2023_12_01_Preview = "2023-12-01-preview"
+    V20231201Preview = "2023-12-01-preview"
 }
 
 export declare interface LocationResource extends ProxyResource {

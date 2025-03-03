@@ -66,8 +66,6 @@ model Foo {
 op post(@body body: Foo): void;
 @@clientName(ExtensibleString.`-2.0`, "$DO_NOT_NORMALIZE$Item-1.0");
 @@clientName(ExtensibleString.`YES_OR_NO2`, "Yes_Or_No2");
-// Issue here: https://github.com/microsoft/typespec/issues/5081
-// @@clientName(ExtensibleNumber.3, "Enum3");
 @@clientName(Versions.`2024-07-01`, "StableVersion");
 ```
 
@@ -76,7 +74,7 @@ This is the tspconfig.yaml.
 ```yaml
 withRawContent: true
 mustEmptyDiagnostic: false
-experimentalExtensibleEnums: true
+experimental-extensible-enums: true
 ```
 
 ## Provide generated models and its serializer
@@ -93,7 +91,7 @@ export interface Foo {
 export function fooSerializer(item: Foo): any {
   return {
     extensibleString: item["extensibleString"],
-    extensibleNumber: item["extensibleNumber"],
+    extensibleNumber: item["extensibleNumber"]
   };
 }
 
@@ -104,21 +102,21 @@ export enum KnownExtensibleString {
   PascalCase2 = "PascalCase2",
   Pascalcase3 = "pascalcase3",
   Pascalcase4 = "Pascalcase4",
-  PascalCase_5 = "pascal_case_5",
+  PascalCase5 = "pascal_case_5",
   PascalCase6 = "pascal_case6",
-  _PascalCase7 = "_pascal_case7",
+  PascalCase7 = "_pascal_case7",
   PascalCase8 = "pascal, case8",
   MAXOfMLD = "MAX_of_MLD",
   YESORNO1 = "YES OR NO",
   YesOrNo2 = "YES OR NO",
   ValidationSuccess = "VALIDATION_SUCCESS",
-  _PascalCase6666 = "___pascal____case6666",
+  PascalCase6666 = "___pascal____case6666",
   _10Pascal = "_10Pascal",
-  Num090 = "090",
-  Num10 = "10",
-  Num20 = "20",
-  "Num1.0" = "1.0",
-  "Item-1.0" = "-2.0",
+  _090 = "090",
+  _10 = "10",
+  _20 = "20",
+  _10 = "1.0",
+  "Item-1.0" = "-2.0"
 }
 
 /** Type of ExtensibleString */
@@ -127,9 +125,9 @@ export type ExtensibleString = string;
 /** Known values of {@link ExtensibleNumber} that the service accepts. */
 export enum KnownExtensibleNumber {
   One = 1,
-  Num2 = 2,
-  "Num-2.1" = -2.1,
-  Num3 = 3,
+  _2 = 2,
+  _21 = -2.1,
+  _3 = 3
 }
 
 /** Type of ExtensibleNumber */
@@ -139,6 +137,6 @@ export type ExtensibleNumber = number;
 export enum KnownVersions {
   PreviewVersion = "2024-07-01-preview",
   StableVersion = "2024-07-01",
-  "V2024-08-01-Preview" = "2024-08-01-preview",
+  _20240801Preview = "2024-08-01-preview"
 }
 ```

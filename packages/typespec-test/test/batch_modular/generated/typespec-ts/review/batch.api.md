@@ -987,38 +987,38 @@ export interface GetApplicationOptionalParams extends OperationOptions {
 
 // @public
 export interface GetCertificateOptionalParams extends OperationOptions {
-    $select?: string[];
     clientRequestId?: string;
     ocpDate?: Date;
     returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface GetJobOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $select?: string[];
     clientRequestId?: string;
+    expand?: string[];
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
     ocpDate?: Date;
     returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface GetJobScheduleOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $select?: string[];
     clientRequestId?: string;
+    expand?: string[];
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
     ocpDate?: Date;
     returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
@@ -1032,10 +1032,10 @@ export interface GetJobTaskCountsOptionalParams extends OperationOptions {
 
 // @public
 export interface GetNodeExtensionOptionalParams extends OperationOptions {
-    $select?: string[];
     clientRequestId?: string;
     ocpDate?: Date;
     returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
@@ -1062,10 +1062,10 @@ export interface GetNodeFilePropertiesOptionalParams extends OperationOptions {
 
 // @public
 export interface GetNodeOptionalParams extends OperationOptions {
-    $select?: string[];
     clientRequestId?: string;
     ocpDate?: Date;
     returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
@@ -1087,15 +1087,15 @@ export interface GetNodeRemoteLoginSettingsOptionalParams extends OperationOptio
 
 // @public
 export interface GetPoolOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $select?: string[];
     clientRequestId?: string;
+    expand?: string[];
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
     ocpDate?: Date;
     returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
@@ -1122,15 +1122,15 @@ export interface GetTaskFilePropertiesOptionalParams extends OperationOptions {
 
 // @public
 export interface GetTaskOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $select?: string[];
     clientRequestId?: string;
+    expand?: string[];
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
     ocpDate?: Date;
     returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
@@ -1166,7 +1166,7 @@ export interface InboundEndpoint {
     frontendPort: number;
     name: string;
     protocol: InboundEndpointProtocol;
-    publicFQDN?: string;
+    publicFqdn?: string;
     publicIpAddress?: string;
 }
 
@@ -1395,7 +1395,7 @@ export interface JobStatistics {
 
 // @public
 export enum KnownVersions {
-    "2023-05-01.17.0" = "2023-05-01.17.0"
+    _20230501170 = "2023-05-01.17.0"
 }
 
 // @public
@@ -1416,76 +1416,76 @@ export interface ListApplicationsOptionalParams extends OperationOptions {
 
 // @public
 export interface ListCertificatesOptionalParams extends OperationOptions {
-    $filter?: string;
-    $select?: string[];
     clientRequestId?: string;
+    filter?: string;
     maxresults?: number;
     ocpDate?: Date;
     returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListJobPreparationAndReleaseTaskStatusOptionalParams extends OperationOptions {
-    $filter?: string;
-    $select?: string[];
     clientRequestId?: string;
+    filter?: string;
     maxresults?: number;
     ocpDate?: Date;
     returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListJobSchedulesOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
     clientRequestId?: string;
+    expand?: string[];
+    filter?: string;
     maxresults?: number;
     ocpDate?: Date;
     returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListJobsFromScheduleOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
     clientRequestId?: string;
+    expand?: string[];
+    filter?: string;
     maxresults?: number;
     ocpDate?: Date;
     returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListJobsOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
     clientRequestId?: string;
+    expand?: string[];
+    filter?: string;
     maxresults?: number;
     ocpDate?: Date;
     returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListNodeExtensionsOptionalParams extends OperationOptions {
-    $select?: string[];
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: Date;
     returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListNodeFilesOptionalParams extends OperationOptions {
-    $filter?: string;
     clientRequestId?: string;
+    filter?: string;
     maxresults?: number;
     ocpDate?: Date;
     recursive?: boolean;
@@ -1495,19 +1495,19 @@ export interface ListNodeFilesOptionalParams extends OperationOptions {
 
 // @public
 export interface ListNodesOptionalParams extends OperationOptions {
-    $filter?: string;
-    $select?: string[];
     clientRequestId?: string;
+    filter?: string;
     maxresults?: number;
     ocpDate?: Date;
     returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListPoolNodeCountsOptionalParams extends OperationOptions {
-    $filter?: string;
     clientRequestId?: string;
+    filter?: string;
     maxresults?: number;
     ocpDate?: Date;
     returnClientRequestId?: boolean;
@@ -1516,21 +1516,21 @@ export interface ListPoolNodeCountsOptionalParams extends OperationOptions {
 
 // @public
 export interface ListPoolsOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
     clientRequestId?: string;
+    expand?: string[];
+    filter?: string;
     maxresults?: number;
     ocpDate?: Date;
     returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListPoolUsageMetricsOptionalParams extends OperationOptions {
-    $filter?: string;
     clientRequestId?: string;
     endtime?: Date;
+    filter?: string;
     maxresults?: number;
     ocpDate?: Date;
     returnClientRequestId?: boolean;
@@ -1540,17 +1540,17 @@ export interface ListPoolUsageMetricsOptionalParams extends OperationOptions {
 
 // @public
 export interface ListSubTasksOptionalParams extends OperationOptions {
-    $select?: string[];
     clientRequestId?: string;
     ocpDate?: Date;
     returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListSupportedImagesOptionalParams extends OperationOptions {
-    $filter?: string;
     clientRequestId?: string;
+    filter?: string;
     maxresults?: number;
     ocpDate?: Date;
     returnClientRequestId?: boolean;
@@ -1559,8 +1559,8 @@ export interface ListSupportedImagesOptionalParams extends OperationOptions {
 
 // @public
 export interface ListTaskFilesOptionalParams extends OperationOptions {
-    $filter?: string;
     clientRequestId?: string;
+    filter?: string;
     maxresults?: number;
     ocpDate?: Date;
     recursive?: boolean;
@@ -1570,13 +1570,13 @@ export interface ListTaskFilesOptionalParams extends OperationOptions {
 
 // @public
 export interface ListTasksOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
     clientRequestId?: string;
+    expand?: string[];
+    filter?: string;
     maxresults?: number;
     ocpDate?: Date;
     returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 

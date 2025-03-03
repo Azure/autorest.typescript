@@ -17,7 +17,7 @@ describe("model type", () => {
                     mustEmptyDiagnostic: true
                 });
             } catch (e: any) {
-                assert.strictEqual(e[0].message, 'Enum member name 1 is normalized to Num1 with "Num" prefix.');
+                assert.strictEqual(e[0].message, 'Enum member name 1 is normalized to _1 with "_" prefix.');
             }
         });
     });

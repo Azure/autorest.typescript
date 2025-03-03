@@ -64,11 +64,10 @@ describe("Client definition generation", () => {
       tsp
     );
     assert.ok(parameters);
-    console.log(parameters?.content!);
     await assertEqualContent(
       parameters?.content!,
       `
-    import { RequestParameters } from "@azure-rest/core-client";
+    import type { RequestParameters } from "@azure-rest/core-client";
 
     /** This is the wrapper object for the parameter \`include[]\` with explode set to false and style set to form. */        
     export interface TemplateIncludeQueryParam {

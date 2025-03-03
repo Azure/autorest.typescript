@@ -40,6 +40,6 @@ Should generate KnownVersions in models.ts.
 /** The available API versions. */
 export enum KnownVersions {
   /** 2021-10-01-preview version */
-  V2021_10_01_Preview = "2021-10-01-preview",
+  V20211001Preview = "2021-10-01-preview",
 }
 ```

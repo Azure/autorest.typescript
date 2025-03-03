@@ -6,11 +6,11 @@ export declare interface Base64BytesProperty {
     value: Uint8Array;
 }
 
-export declare interface Base64urlArrayBytesProperty {
+export declare interface Base64UrlArrayBytesProperty {
     value: Uint8Array[];
 }
 
-export declare interface Base64urlBytesProperty {
+export declare interface Base64UrlBytesProperty {
     value: Uint8Array;
 }
 
@@ -64,8 +64,8 @@ export declare interface PropertyDefaultOptionalParams extends OperationOptions 
 }
 
 export declare interface PropertyOperations {
-    base64urlArray: (body: Base64urlArrayBytesProperty, options?: PropertyBase64urlArrayOptionalParams) => Promise<Base64urlArrayBytesProperty>;
-    base64url: (body: Base64urlBytesProperty, options?: PropertyBase64urlOptionalParams) => Promise<Base64urlBytesProperty>;
+    base64urlArray: (body: Base64UrlArrayBytesProperty, options?: PropertyBase64urlArrayOptionalParams) => Promise<Base64UrlArrayBytesProperty>;
+    base64url: (body: Base64UrlBytesProperty, options?: PropertyBase64urlOptionalParams) => Promise<Base64UrlBytesProperty>;
     base64: (body: Base64BytesProperty, options?: PropertyBase64OptionalParams) => Promise<Base64BytesProperty>;
     default: (body: DefaultBytesProperty, options?: PropertyDefaultOptionalParams) => Promise<DefaultBytesProperty>;
 }
