@@ -124,8 +124,8 @@ Raw json files.
 This is the tspconfig.yaml.
 
 ```yaml
-hierarchyClient: true
-enableOperationGroup: false
+hierarchy-client: true
+enable-operation-group: false
 ```
 
 ## Samples

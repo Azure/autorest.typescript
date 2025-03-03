@@ -4483,6 +4483,22 @@ export function runStepDeltaCodeInterpreterImageOutputObjectDeserializer(
   };
 }
 
+/** Alias for AgentStreamEvent */
+export type AgentStreamEvent =
+  | string
+  | (
+      | ThreadStreamEvent
+      | RunStreamEvent
+      | RunStepStreamEvent
+      | MessageStreamEvent
+      | ErrorEvent
+      | DoneEvent
+    );
+
+export function agentStreamEventDeserializer(item: any): AgentStreamEvent {
+  return item;
+}
+
 /** Thread operation related streaming events */
 export type ThreadStreamEvent = "thread.created";
 /** Run operation related streaming events */
@@ -4517,22 +4533,6 @@ export type MessageStreamEvent =
 export type ErrorEvent = "error";
 /** Terminal event indicating the successful end of a stream. */
 export type DoneEvent = "done";
-/** Alias for AgentStreamEvent */
-export type AgentStreamEvent =
-  | string
-  | (
-      | ThreadStreamEvent
-      | RunStreamEvent
-      | RunStepStreamEvent
-      | MessageStreamEvent
-      | ErrorEvent
-      | DoneEvent
-    );
-
-export function agentStreamEventDeserializer(item: any): AgentStreamEvent {
-  return item;
-}
-
 /** The available sorting options when requesting a list of response objects. */
 export type ListSortOrder = "asc" | "desc";
 /** A list of additional fields to include in the response. */

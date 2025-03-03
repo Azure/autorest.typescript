@@ -2399,7 +2399,7 @@ op post(@body body: Vegetables): { @body body: Vegetables };
 The config would be like:
 
 ```yaml
-compatibilityMode: true
+compatibility-mode: true
 ```
 
 ## Model interface Vegetables
@@ -2494,7 +2494,7 @@ op post(@body body: A): { @body body: A };
 The config would be like:
 
 ```yaml
-compatibilityMode: true
+compatibility-mode: true
 ```
 
 ## Model interface A

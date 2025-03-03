@@ -206,7 +206,6 @@ export async function createDpgContextTestHelper(
       enableModelNamespace,
       ...configs
     },
-    generationPathDetail: {},
     emitterName: "@azure-tools/typespec-ts",
     originalProgram: program
   } as SdkContext;

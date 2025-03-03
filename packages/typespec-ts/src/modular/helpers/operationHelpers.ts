@@ -63,6 +63,7 @@ import {
   SdkServiceParameter,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
+import { isMetadata } from "@typespec/http";
 
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
@@ -1127,7 +1128,9 @@ export function getRequestModelProperties(
     if (property.kind === "property" && isReadOnly(property)) {
       continue;
     }
-
+    if (isMetadata(context.program, property.__raw!)) {
+      continue;
+    }
     props.push([
       getPropertySerializedName(property)!,
       getSerializationExpression(context, property, propertyPath)
@@ -1176,6 +1179,9 @@ export function getResponseMapping(
     type.kind === "model" ? getAllProperties(type, allParents) : [];
   const props: string[] = [];
   for (const property of properties) {
+    if (isMetadata(context.program, property.__raw!)) {
+      continue;
+    }
     const dot = propertyPath.endsWith("?") ? "." : "";
     const serializedName = getPropertySerializedName(property);
     const restValue = `${
