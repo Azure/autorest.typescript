@@ -126,3 +126,4 @@ describe("Client definition generation", () => {
     );
   });
 });
+
