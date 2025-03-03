@@ -1,5 +1,6 @@
 import {
   OperationParameter,
+  RLCOptions,
   Schema,
   buildClient,
   buildClientDefinitions,
@@ -26,7 +27,7 @@ import { buildClientContext } from "../../src/modular/buildClientContext.js";
 import { buildOperationFiles } from "../../src/modular/buildOperations.js";
 import { transformModularEmitterOptions } from "../../src/modular/buildModularOptions.js";
 import { expectDiagnosticEmpty } from "@typespec/compiler/testing";
-import { getCredentialInfo } from "../../src/transform/transfromRLCOptions.js";
+import { getCredentialInfo, reportCamelOptionDiagnostic } from "../../src/transform/transfromRLCOptions.js";
 import { getRLCClients } from "../../src/utils/clientUtils.js";
 import { transformHelperFunctionDetails } from "../../src/transform/transformHelperFunctionDetails.js";
 import { transformPaths } from "../../src/transform/transformPaths.js";
@@ -380,13 +381,13 @@ export async function getRLCClientsFromTypeSpec(tspContent: string) {
   return clients;
 }
 
-export interface ModelConfigOptions {
+export interface ModelConfigOptions extends RLCOptions {
   needOptions?: boolean;
   withRawContent?: boolean;
   needAzureCore?: boolean;
-  compatibilityMode?: boolean;
+  needNamespaces?: boolean;
   mustEmptyDiagnostic?: boolean;
-  experimentalExtensibleEnums?: boolean;
+  withVersionedApiVersion?: boolean;
   [key: string]: any;
 }
 
@@ -399,10 +400,14 @@ export async function emitModularModelsFromTypeSpec(
     needOptions = false,
     withRawContent = false,
     needAzureCore = false,
-    compatibilityMode = false,
     mustEmptyDiagnostic = true,
-    experimentalExtensibleEnums = false,
   } = options;
+  if (options["experimental-extensible-enums"] === undefined) {
+    options["experimental-extensible-enums"] = false;
+  }
+  if (options["compatibility-mode"] === undefined) {
+    options["compatibility-mode"] = false;
+  }
   const context = await rlcEmitterFor(
     tspContent,
     {
@@ -412,14 +417,26 @@ export async function emitModularModelsFromTypeSpec(
       withRawContent,
     }
   );
+  if (options.experimentalExtensibleEnums !== undefined) {
+    reportCamelOptionDiagnostic(context.program, {
+      kebabCaseOption: "experimental-extensible-enums",
+      camelCaseOption: "experimentalExtensibleEnums"
+    });
+  }
+  if (options.compatibilityMode !== undefined) {
+    reportCamelOptionDiagnostic(context.program, {
+      kebabCaseOption: "compatibility-mode",
+      camelCaseOption: "compatibilityMode"
+    });
+  }
   const dpgContext = await createDpgContextTestHelper(context.program, false, options);
   const project = useContext("outputProject");
   const binder = useBinder();
   let modelFile = undefined;
   dpgContext.rlcOptions!.isModularLibrary = true;
-  dpgContext.rlcOptions!.compatibilityMode = compatibilityMode;
+  dpgContext.rlcOptions!.compatibilityMode = options["compatibility-mode"];
   dpgContext.rlcOptions!.experimentalExtensibleEnums =
-    experimentalExtensibleEnums;
+    options["experimental-extensible-enums"];
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
     "",
@@ -459,37 +476,38 @@ export async function emitModularModelsFromTypeSpec(
 
 export async function emitModularOperationsFromTypeSpec(
   tspContent: string,
-  {
-    mustEmptyDiagnostic = true,
-    needNamespaces = true,
-    needAzureCore = false,
-    withRawContent = false,
-    withVersionedApiVersion = false,
-    experimentalExtensibleEnums = false
-  }: {
-    mustEmptyDiagnostic?: boolean;
-    needNamespaces?: boolean;
-    needAzureCore?: boolean;
-    withRawContent?: boolean;
-    withVersionedApiVersion?: boolean;
-    experimentalExtensibleEnums?: boolean;
-  } = {}
+  options: ModelConfigOptions = {}
 ) {
+  if (options.mustEmptyDiagnostic === undefined) {
+    options.mustEmptyDiagnostic = true;
+  }
+  if (options.needNamespaces === undefined) {
+    options.needNamespaces = true;
+  }
+  if (options["experimental-extensible-enums"] === undefined) {
+    options["experimental-extensible-enums"] = false;
+  }
   const context = await rlcEmitterFor(
     tspContent,
     {
-      needNamespaces,
-      needAzureCore,
+      needNamespaces: options.needNamespaces,
+      needAzureCore: options.needAzureCore ? true : false,
       needTCGC: false,
-      withRawContent,
-      withVersionedApiVersion
+      withRawContent: options.withRawContent ? true : false,
+      withVersionedApiVersion: options.withVersionedApiVersion ? true : false
     }
   );
+  if (options.experimentalExtensibleEnums !== undefined) {
+    reportCamelOptionDiagnostic(context.program, {
+      kebabCaseOption: "experimental-extensible-enums",
+      camelCaseOption: "experimentalExtensibleEnums"
+    });
+  }
   const dpgContext = await createDpgContextTestHelper(context.program);
   const project = useContext("outputProject");
   const binder = useBinder();
   dpgContext.rlcOptions!.isModularLibrary = true;
-  dpgContext.rlcOptions!.experimentalExtensibleEnums = experimentalExtensibleEnums;
+  dpgContext.rlcOptions!.experimentalExtensibleEnums = options["experimental-extensible-enums"];
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
     "",
@@ -509,7 +527,7 @@ export async function emitModularOperationsFromTypeSpec(
       dpgContext.sdkPackage.clients[0],
       modularEmitterOptions
     );
-    if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
+    if (options.mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
       throw dpgContext.program.diagnostics;
     }
     binder.resolveAllReferences("/");
@@ -524,31 +542,30 @@ export async function emitModularOperationsFromTypeSpec(
 
 export async function emitModularClientContextFromTypeSpec(
   tspContent: string,
-  {
-    withRawContent = false,
-    withVersionedApiVersion = false,
-    typespecTitleMap = {}
-  }: {
-    withRawContent?: boolean;
-    withVersionedApiVersion?: boolean;
-    typespecTitleMap?: Record<string, string>;
-  } = {}
+  options: ModelConfigOptions = {}
 ) {
+
   const context = await rlcEmitterFor(
     tspContent,
     {
       needNamespaces: true,
       needAzureCore: false,
       needTCGC: false,
-      withRawContent,
-      withVersionedApiVersion
+      withRawContent: options.withRawContent ? true : false,
+      withVersionedApiVersion: options.withVersionedApiVersion ? true : false
     }
   );
+  if (options.typespecTitleMap !== undefined) {
+    reportCamelOptionDiagnostic(context.program, {
+      kebabCaseOption: "typespec-title-map",
+      camelCaseOption: "typespecTitleMap"
+    });
+  }
   const dpgContext = await createDpgContextTestHelper(context.program);
   const project = useContext("outputProject");
   const binder = useBinder();
   dpgContext.rlcOptions!.isModularLibrary = true;
-  dpgContext.rlcOptions!.typespecTitleMap = typespecTitleMap;
+  dpgContext.rlcOptions!.typespecTitleMap = options["typespec-title-map"];
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
     "",
@@ -581,15 +598,7 @@ export async function emitModularClientContextFromTypeSpec(
 
 export async function emitModularClientFromTypeSpec(
   tspContent: string,
-  {
-    withRawContent = false,
-    withVersionedApiVersion = false,
-    typespecTitleMap = {}
-  }: {
-    withRawContent?: boolean;
-    withVersionedApiVersion?: boolean;
-    typespecTitleMap?: Record<string, string>;
-  } = {}
+  options: ModelConfigOptions = {}
 ) {
   const context = await rlcEmitterFor(
     tspContent,
@@ -597,15 +606,21 @@ export async function emitModularClientFromTypeSpec(
       needNamespaces: true,
       needAzureCore: false,
       needTCGC: false,
-      withRawContent,
-      withVersionedApiVersion
+      withRawContent: options.withRawContent ? true : false,
+      withVersionedApiVersion: options.withVersionedApiVersion ? true : false
     }
   );
+  if (options.typespecTitleMap !== undefined) {
+    reportCamelOptionDiagnostic(context.program, {
+      kebabCaseOption: "typespec-title-map",
+      camelCaseOption: "typespecTitleMap"
+    });
+  }
   const dpgContext = await createDpgContextTestHelper(context.program);
   const project = useContext("outputProject");
   const binder = useBinder();
   dpgContext.rlcOptions!.isModularLibrary = true;
-  dpgContext.rlcOptions!.typespecTitleMap = typespecTitleMap;
+  dpgContext.rlcOptions!.typespecTitleMap = options["typespec-title-map"];
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
     "",
@@ -636,9 +651,30 @@ export async function emitModularClientFromTypeSpec(
 export async function emitSamplesFromTypeSpec(
   tspContent: string,
   examples: ExampleJson[],
-  configs: Record<string, string> = {}
+  configs: Record<string, any> = {}
 ) {
   const context = await compileTypeSpecFor(tspContent, examples);
+  if (configs["hierarchyClient"] !== undefined) {
+    reportCamelOptionDiagnostic(context.program, {
+      kebabCaseOption: "hierarchy-client",
+      camelCaseOption: "hierarchyClient"
+    });
+  }
+  if (configs["enableOperationGroup"] !== undefined) {
+    reportCamelOptionDiagnostic(context.program, {
+      kebabCaseOption: "enable-operation-group",
+      camelCaseOption: "enableOperationGroup"
+    });
+  }
+  if (configs["typespecTitleMap"] !== undefined) {
+    reportCamelOptionDiagnostic(context.program, {
+      kebabCaseOption: "typespec-title-map",
+      camelCaseOption: "typespecTitleMap"
+    });
+  }
+  configs["typespecTitleMap"] = configs["typespec-title-map"];
+  configs["hierarchyClient"] = configs["hierarchy-client"];
+  configs["enableOperationGroup"] = configs["enable-operation-group"];
   const dpgContext = await createDpgContextTestHelper(context.program, false, {
     "examples-directory": `./examples`,
     packageDetails: {

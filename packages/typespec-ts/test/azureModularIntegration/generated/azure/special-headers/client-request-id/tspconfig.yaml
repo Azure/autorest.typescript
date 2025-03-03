@@ -2,12 +2,12 @@ emit:
   - "@azure-tools/typespec-ts"
 options:
   "@azure-tools/typespec-ts":
-    generateMetadata: true
-    generateTest: false
+    generate-metadata: true
+    generate-test: false
     flavor: azure
-    azureSdkForJs: false
-    isModularLibrary: true
-    hierarchyClient: false
-    "emitter-output-dir": "{project-root}"
-    packageDetails:
+    azure-sdk-for-js: false
+    is-modular-library: true
+    hierarchy-client: false
+    emitter-output-dir: "{project-root}"
+    package-details:
       name: "@msinternal/modular-model-usage"
