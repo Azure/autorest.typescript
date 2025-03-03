@@ -101,8 +101,8 @@ export declare interface UpdateWithUserAssignedAndSystemAssignedOptionalParams e
 }
 
 export declare interface UserAssignedIdentity {
-    readonly principalId?: string;
     readonly clientId?: string;
+    readonly principalId?: string;
 }
 
 export { }

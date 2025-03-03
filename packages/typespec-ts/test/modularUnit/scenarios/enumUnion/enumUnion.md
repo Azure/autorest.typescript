@@ -593,7 +593,7 @@ needNamespaces: false
 needAzureCore: false
 withRawContent: true
 needOptions: false
-experimentalExtensibleEnums: true
+experimental-extensible-enums: true
 ```
 
 ## schemaOutput
@@ -844,7 +844,7 @@ The config would be like:
 needOptions: false
 withRawContent: true
 needAzureCore: false
-compatibilityMode: false
+compatibility-mode: false
 mustEmptyDiagnostic: false
 ```
 
@@ -1161,9 +1161,9 @@ The config would be like:
 needOptions: false
 withRawContent: false
 needAzureCore: false
-compatibilityMode: false
+compatibility-mode: false
 mustEmptyDiagnostic: true
-experimentalExtensibleEnums: true
+experimental-extensible-enums: true
 ```
 
 ## Model interface Test
