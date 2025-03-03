@@ -9,9 +9,9 @@ import {
   TypeAliasDeclarationStructure
 } from "ts-morph";
 import {
+  fixLeadingNumber,
   NameType,
-  normalizeName,
-  escapeNumericLiteralStart
+  normalizeName
 } from "@azure-tools/rlc-common";
 import {
   SdkArrayType,
@@ -414,15 +414,11 @@ function emitEnumMember(
   member: SdkEnumValueType
 ): EnumMemberStructure {
   const normalizedMemberName = context.rlcOptions?.ignoreEnumMemberNameNormalize
-    ? escapeNumericLiteralStart(member.name, NameType.EnumMemberName) // need to normalize number also for enum member
-    : normalizeName(member.name, NameType.EnumMemberName, {
-        shouldGuard: true,
-        numberPrefixOverride:
-          member.enumType.usage === UsageFlags.ApiVersionEnum ? "V" : "num"
-      });
+    ? fixLeadingNumber(member.name, NameType.EnumMemberName) // need to fix the leading number also for enum member
+    : normalizeName(member.name, NameType.EnumMemberName, true);
   if (
-    normalizedMemberName.toLowerCase().startsWith("num") &&
-    !member.name.toLowerCase().startsWith("num")
+    normalizedMemberName.toLowerCase().startsWith("_") &&
+    !member.name.toLowerCase().startsWith("_")
   ) {
     reportDiagnostic(context.program, {
       code: "prefix-adding-in-enum-member",

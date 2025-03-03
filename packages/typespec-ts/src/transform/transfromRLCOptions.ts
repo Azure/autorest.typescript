@@ -276,6 +276,9 @@ function extractRLCOptions(
   const ignorePropertyNameNormalize =
     emitterOptions["ignore-property-name-normalize"] ??
     emitterOptions.ignorePropertyNameNormalize;
+  const ignoreEnumMemberNameNormalize =
+    emitterOptions["ignore-enum-member-name-normalize"] ??
+    emitterOptions.ignoreEnumMemberNameNormalize;
   const compatibilityQueryMultiFormat =
     emitterOptions["compatibility-query-multi-format"] ??
     emitterOptions.compatibilityQueryMultiFormat;
@@ -310,7 +313,8 @@ function extractRLCOptions(
     experimentalExtensibleEnums,
     ignorePropertyNameNormalize,
     compatibilityQueryMultiFormat,
-    typespecTitleMap
+    typespecTitleMap,
+    ignoreEnumMemberNameNormalize
   };
 }
 

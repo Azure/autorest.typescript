@@ -67,6 +67,7 @@ export interface EmitterOptions extends RLCOptions {
   "compatibility-query-multi-format"?: boolean;
   branded?: boolean;
   "typespec-title-map"?: Record<string, string>;
+  "ignore-enum-member-name-normalize"?: boolean;
 }
 
 const _RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
@@ -244,6 +245,7 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
     "experimental-extensible-enums": { type: "boolean", nullable: true },
     "clear-output-folder": { type: "boolean", nullable: true },
     "ignore-property-name-normalize": { type: "boolean", nullable: true },
+    "ignore-enum-member-name-normalize": { type: "boolean", nullable: true },
     "compatibility-query-multi-format": { type: "boolean", nullable: true },
     "typespec-title-map": {
       type: "object",
@@ -449,7 +451,7 @@ const libDef = {
     "prefix-adding-in-enum-member": {
       severity: "warning",
       messages: {
-        default: paramMessage`Enum member name ${"memberName"} is normalized to ${"normalizedName"} with "Num" prefix.`
+        default: paramMessage`Enum member name ${"memberName"} is normalized to ${"normalizedName"} with "_" prefix.`
       }
     }
   },
