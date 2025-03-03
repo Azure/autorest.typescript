@@ -21,7 +21,7 @@ const buildDefaultDefinition = (options: DefinitionOptions) => {
       Endpoint: Endpoint
     }
   )
-  @service({
+  @service(#{
     title: "PetStoreClient",
   })
   namespace PetStore;
@@ -83,7 +83,7 @@ const buildPathDefinition = (options: DefinitionOptions) => {
       apiVersion: Versions,
     }
   )
-  @service({
+  @service(#{
     title: "PetStoreClient"
   })
   namespace PetStore;

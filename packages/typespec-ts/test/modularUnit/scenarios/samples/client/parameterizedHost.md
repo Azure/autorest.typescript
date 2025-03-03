@@ -21,7 +21,7 @@ using TypeSpec.Versioning;
 using Azure.Core;
 using OpenAPI;
 
-@service({title: "ParametrizedHost"})
+@service(#{title: "ParametrizedHost"})
 @useAuth(OAuth2Auth<[MyFlow]>)
 @versioned(Versions)
 @server(
@@ -56,7 +56,7 @@ model MyFlow {
 @doc("Identifier for collections.")
 model Collection {
   @key
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   collectionId: string;
 }
 
