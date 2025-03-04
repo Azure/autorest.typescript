@@ -64,14 +64,14 @@
   "license": "MIT",
   "devDependencies": {
     "@azure-rest/core-client": "^2.3.1",
-    "@typespec/http-specs": "0.1.0-alpha.9",
-    "@typespec/spector": "0.1.0-alpha.7",
-    "@typespec/spec-api": "0.1.0-alpha.0",
-    "@azure-tools/azure-http-specs": "0.1.0-alpha.6",
-    "@azure-tools/typespec-autorest": "0.52.0-dev.3",
-    "@azure-tools/typespec-azure-core": "0.52.0-dev.2",
-    "@azure-tools/typespec-azure-resource-manager": "0.52.0-dev.2",
-    "@azure-tools/typespec-client-generator-core": "0.52.0-dev.7",
+    "@typespec/http-specs": "next",
+    "@typespec/spector": "next",
+    "@typespec/spec-api": "next",
+    "@azure-tools/azure-http-specs": "next",
+    "@azure-tools/typespec-autorest": "next",
+    "@azure-tools/typespec-azure-core": "next",
+    "@azure-tools/typespec-azure-resource-manager": "next",
+    "@azure-tools/typespec-client-generator-core": "next",
     "@azure/abort-controller": "^2.1.2",
     "@azure/core-auth": "^1.6.0",
     "@azure/core-lro": "^3.1.0",
@@ -113,12 +113,12 @@
     "js-yaml": "^4.1.0"
   },
   "peerDependencies": {
-    "@azure-tools/typespec-azure-core": "0.52.0-dev.2",
-    "@azure-tools/typespec-client-generator-core": "0.52.0-dev.7",
-    "@typespec/compiler": "0.66.0-dev.28",
-    "@typespec/http": "0.66.0-dev.4",
-    "@typespec/rest": "0.66.0-dev.2",
-    "@typespec/versioning": "0.66.0-dev.1"
+    "@azure-tools/typespec-azure-core": "next",
+    "@azure-tools/typespec-client-generator-core": "next",
+    "@typespec/compiler": "next",
+    "@typespec/http": "next",
+    "@typespec/rest": "next",
+    "@typespec/versioning": "next"
   },
   "dependencies": {
     "@azure-tools/rlc-common": "workspace:^0.38.3",
