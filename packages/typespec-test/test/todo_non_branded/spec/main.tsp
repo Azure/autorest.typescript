@@ -245,7 +245,23 @@ namespace TodoItems {
     @pageItems items: T[];
   }
 
+  @route("list1")
   @list op list(...PaginationControls): WithStandardErrors<TodoPage>;
+
+  @route("listPetsNextLink")
+  @list op listPets(@query @pageIndex page?: int32, @query @pageSize perPage?: int32): {
+    @pageItems pets: TodoItem[];
+    @nextLink next?: url;
+    @prevLink prev?: url;
+    @firstLink first?: url;
+    @lastLink last?: url;
+  };
+  
+  @route("listPetsContinuationToken")
+  @list op listPetStores(zipCode: string, @continuationToken continuationToken?: string): {
+    @pageItems petStores: TodoItem[];
+    @continuationToken continuationToken: string;
+  };
 
   @sharedRoute
   @post

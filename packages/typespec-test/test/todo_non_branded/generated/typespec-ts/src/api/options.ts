@@ -33,6 +33,17 @@ export interface TodoItemsCreateJsonOptionalParams extends OperationOptions {
 }
 
 /** Optional parameters. */
+export interface TodoItemsListPetStoresOptionalParams extends OperationOptions {
+  continuationToken?: string;
+}
+
+/** Optional parameters. */
+export interface TodoItemsListPetsOptionalParams extends OperationOptions {
+  page?: number;
+  perPage?: number;
+}
+
+/** Optional parameters. */
 export interface TodoItemsListOptionalParams extends OperationOptions {
   /** The limit to the number of items */
   limit?: number;

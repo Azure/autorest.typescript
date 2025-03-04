@@ -172,6 +172,20 @@ export interface TodoItemsListOptionalParams extends OperationOptions {
 }
 
 // @public
+export interface TodoItemsListPetsOptionalParams extends OperationOptions {
+    // (undocumented)
+    page?: number;
+    // (undocumented)
+    perPage?: number;
+}
+
+// @public
+export interface TodoItemsListPetStoresOptionalParams extends OperationOptions {
+    // (undocumented)
+    continuationToken?: string;
+}
+
+// @public
 export interface TodoItemsOperations {
     // (undocumented)
     attachments: TodoItemsAttachmentsOperations;
@@ -217,6 +231,10 @@ export interface TodoItemsOperations {
     }>;
     // (undocumented)
     list: (options?: TodoItemsListOptionalParams) => PagedAsyncIterableIterator<TodoItem>;
+    // (undocumented)
+    listPets: (options?: TodoItemsListPetsOptionalParams) => PagedAsyncIterableIterator<TodoItem>;
+    // (undocumented)
+    listPetStores: (zipCode: string, options?: TodoItemsListPetStoresOptionalParams) => PagedAsyncIterableIterator<TodoItem>;
     // (undocumented)
     update: (id: number, patch: TodoItemPatch, options?: TodoItemsUpdateOptionalParams) => Promise<{
         id: number;

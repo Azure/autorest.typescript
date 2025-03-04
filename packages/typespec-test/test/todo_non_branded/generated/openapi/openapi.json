@@ -7,49 +7,6 @@
   "tags": [],
   "paths": {
     "/items": {
-      "get": {
-        "operationId": "TodoItems_list",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/TodoItems.PaginationControls.limit"
-          },
-          {
-            "$ref": "#/components/parameters/TodoItems.PaginationControls.offset"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The request has succeeded.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TodoItems.TodoPage"
-                }
-              }
-            }
-          },
-          "4XX": {
-            "description": "Something is wrong with you.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Standard4XXResponse"
-                }
-              }
-            }
-          },
-          "5XX": {
-            "description": "Something is wrong with me.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Standard5XXResponse"
-                }
-              }
-            }
-          }
-        }
-      },
       "post": {
         "operationId": "TodoItems_createJson_TodoItems_createForm",
         "parameters": [],
@@ -127,6 +84,171 @@
                 },
                 "attachments": {
                   "contentType": "*/*"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/items/list1": {
+      "get": {
+        "operationId": "TodoItems_list",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TodoItems.PaginationControls.limit"
+          },
+          {
+            "$ref": "#/components/parameters/TodoItems.PaginationControls.offset"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TodoItems.TodoPage"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Something is wrong with you.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Standard4XXResponse"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Something is wrong with me.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Standard5XXResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/items/listPetsContinuationToken": {
+      "post": {
+        "operationId": "TodoItems_listPetStores",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "petStores": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TodoItem"
+                      }
+                    },
+                    "continuationToken": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "petStores",
+                    "continuationToken"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "zipCode": {
+                    "type": "string"
+                  },
+                  "continuationToken": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "zipCode"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/items/listPetsNextLink": {
+      "get": {
+        "operationId": "TodoItems_listPets",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "explode": false
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "explode": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pets": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TodoItem"
+                      }
+                    },
+                    "next": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "prev": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "first": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "last": {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  },
+                  "required": [
+                    "pets"
+                  ]
                 }
               }
             }

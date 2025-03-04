@@ -38,6 +38,8 @@ export {
   TodoItemsGetOptionalParams,
   TodoItemsCreateFormOptionalParams,
   TodoItemsCreateJsonOptionalParams,
+  TodoItemsListPetStoresOptionalParams,
+  TodoItemsListPetsOptionalParams,
   TodoItemsListOptionalParams,
   UsersCreateOptionalParams,
   TodoClientOptionalParams,

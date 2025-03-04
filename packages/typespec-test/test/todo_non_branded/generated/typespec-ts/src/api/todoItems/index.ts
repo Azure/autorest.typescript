@@ -7,11 +7,15 @@ import {
   TodoItemsDeleteOptionalParams,
   TodoItemsGetOptionalParams,
   TodoItemsListOptionalParams,
+  TodoItemsListPetsOptionalParams,
+  TodoItemsListPetStoresOptionalParams,
   TodoItemsUpdateOptionalParams,
 } from "../index.js";
 import {
   _TodoPage,
   _todoPageDeserializer,
+  _listPetsResponseDeserializer,
+  _listPetStoresResponseDeserializer,
   invalidTodoItemDeserializer,
   notFoundErrorResponseDeserializer,
   TodoItemPatch,
@@ -358,12 +362,104 @@ export async function createJson(
   return _createJsonDeserialize(result);
 }
 
+export function _listPetStoresSend(
+  context: Client,
+  zipCode: string,
+  options: TodoItemsListPetStoresOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/items/listPetsContinuationToken")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      body: { zipCode: zipCode, continuationToken: options?.continuationToken },
+    });
+}
+
+export async function _listPetStoresDeserialize(
+  result: PathUncheckedResponse,
+): Promise<{
+  petStores: TodoItem[];
+  continuationToken: string;
+}> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return _listPetStoresResponseDeserializer(result.body);
+}
+
+export function listPetStores(
+  context: Client,
+  zipCode: string,
+  options: TodoItemsListPetStoresOptionalParams = { requestOptions: {} },
+): PagedAsyncIterableIterator<TodoItem> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listPetStoresSend(context, zipCode, options),
+    _listPetStoresDeserialize,
+    ["200"],
+    { itemName: "petStores" },
+  );
+}
+
+export function _listPetsSend(
+  context: Client,
+  options: TodoItemsListPetsOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/items/listPetsNextLink")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { page: options?.page, perPage: options?.perPage },
+    });
+}
+
+export async function _listPetsDeserialize(
+  result: PathUncheckedResponse,
+): Promise<{
+  pets: TodoItem[];
+  next?: string;
+  prev?: string;
+  first?: string;
+  last?: string;
+}> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return _listPetsResponseDeserializer(result.body);
+}
+
+export function listPets(
+  context: Client,
+  options: TodoItemsListPetsOptionalParams = { requestOptions: {} },
+): PagedAsyncIterableIterator<TodoItem> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listPetsSend(context, options),
+    _listPetsDeserialize,
+    ["200"],
+    { itemName: "pets", nextLinkName: "next" },
+  );
+}
+
 export function _listSend(
   context: Client,
   options: TodoItemsListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
-    .path("/items")
+    .path("/items/list1")
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
