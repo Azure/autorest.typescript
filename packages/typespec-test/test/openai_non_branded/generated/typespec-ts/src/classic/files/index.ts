@@ -7,6 +7,11 @@ import {
   retrieve,
   create,
   list,
+  FilesDownloadOptionalParams,
+  FilesDeleteOptionalParams,
+  FilesRetrieveOptionalParams,
+  FilesCreateOptionalParams,
+  FilesListOptionalParams,
 } from "../../api/files/index.js";
 import {
   OpenAIFile,
@@ -14,13 +19,6 @@ import {
   CreateFileRequest,
   DeleteFileResponse,
 } from "../../models/models.js";
-import {
-  FilesDownloadOptionalParams,
-  FilesDeleteOptionalParams,
-  FilesRetrieveOptionalParams,
-  FilesCreateOptionalParams,
-  FilesListOptionalParams,
-} from "../../api/options.js";
 
 /** Interface representing a Files operations. */
 export interface FilesOperations {

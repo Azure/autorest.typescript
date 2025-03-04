@@ -7,18 +7,16 @@ import {
   getConnection,
   listConnections,
   getWorkspace,
+  ConnectionsGetConnectionWithSecretsOptionalParams,
+  ConnectionsGetConnectionOptionalParams,
+  ConnectionsListConnectionsOptionalParams,
+  ConnectionsGetWorkspaceOptionalParams,
 } from "../../api/connections/index.js";
 import {
   GetWorkspaceResponse,
   ListConnectionsResponse,
   GetConnectionResponse,
 } from "../../models/models.js";
-import {
-  ConnectionsGetConnectionWithSecretsOptionalParams,
-  ConnectionsGetConnectionOptionalParams,
-  ConnectionsListConnectionsOptionalParams,
-  ConnectionsGetWorkspaceOptionalParams,
-} from "../../api/options.js";
 
 /** Interface representing a Connections operations. */
 export interface ConnectionsOperations {

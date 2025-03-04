@@ -52,7 +52,7 @@ export function buildSubpathIndexFile(
     const apiFilePattern =
       subpath === "models" ? join(folder, "models.ts") : folder;
     const apiFiles = emitterOptions.project.getSourceFiles().filter((file) => {
-      if (apiFilePattern.endsWith("src/api") && options.recursive) {
+      if (subpath === "api" && options.recursive) {
         return (
           file.getDirectoryPath().replace(/\\/g, "/") ===
           apiFilePattern.replace(/\\/g, "/")
@@ -69,6 +69,9 @@ export function buildSubpathIndexFile(
     if (apiFiles.length === 0) {
       continue;
     }
+    // if (subpath === "api" && !emitterOptions.project.getSourceFile(`${folder}/operations.ts`)) {
+    //   continue;
+    // }
     const indexFile = emitterOptions.project.createSourceFile(
       `${folder}/index.ts`
     );
