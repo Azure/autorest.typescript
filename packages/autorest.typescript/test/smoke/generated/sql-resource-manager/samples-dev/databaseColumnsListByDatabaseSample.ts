@@ -40,7 +40,7 @@ async function filterDatabaseColumns(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.databaseColumns.listByDatabase(
+  for await (const item of client.databaseColumns.listByDatabase(
     resourceGroupName,
     serverName,
     databaseName,
@@ -66,7 +66,7 @@ async function listDatabaseColumns(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.databaseColumns.listByDatabase(
+  for await (const item of client.databaseColumns.listByDatabase(
     resourceGroupName,
     serverName,
     databaseName,

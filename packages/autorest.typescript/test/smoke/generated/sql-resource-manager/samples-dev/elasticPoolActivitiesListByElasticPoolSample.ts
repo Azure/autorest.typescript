@@ -27,7 +27,7 @@ async function listElasticPoolActivity(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.elasticPoolActivities.listByElasticPool(
+  for await (const item of client.elasticPoolActivities.listByElasticPool(
     resourceGroupName,
     serverName,
     elasticPoolName,

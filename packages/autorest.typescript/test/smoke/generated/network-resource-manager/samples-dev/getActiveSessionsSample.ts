@@ -25,7 +25,7 @@ async function returnsAListOfCurrentlyActiveSessionsOnTheBastion(): Promise<void
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.beginListActiveSessionsAndWait(
+  for await (const item of client.beginListActiveSessionsAndWait(
     resourceGroupName,
     bastionHostName,
   )) {

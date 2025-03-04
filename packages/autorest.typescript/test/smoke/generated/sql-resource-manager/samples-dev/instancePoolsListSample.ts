@@ -24,7 +24,7 @@ async function listInstancePoolsInTheSubscription(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.instancePools.list()) {
+  for await (const item of client.instancePools.list()) {
     resArray.push(item);
   }
   console.log(resArray);

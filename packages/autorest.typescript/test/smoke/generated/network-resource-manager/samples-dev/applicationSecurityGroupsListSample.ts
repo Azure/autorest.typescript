@@ -24,7 +24,7 @@ async function listLoadBalancersInResourceGroup(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.applicationSecurityGroups.list(
+  for await (const item of client.applicationSecurityGroups.list(
     resourceGroupName,
   )) {
     resArray.push(item);

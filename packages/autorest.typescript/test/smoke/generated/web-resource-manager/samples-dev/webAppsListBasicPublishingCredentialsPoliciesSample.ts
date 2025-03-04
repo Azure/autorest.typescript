@@ -26,7 +26,7 @@ async function listPublishingCredentialsPolicies(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.webApps.listBasicPublishingCredentialsPolicies(
+  for await (const item of client.webApps.listBasicPublishingCredentialsPolicies(
     resourceGroupName,
     name,
   )) {
