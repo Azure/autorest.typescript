@@ -293,15 +293,15 @@ export function _createVectorStoreFileBatchSend(
       },
       queryParameters: { "api-version": context.apiVersion },
       body: {
-        fileIds: !options?.fileIds
+        file_ids: !options?.fileIds
           ? options?.fileIds
           : options?.fileIds.map((p: any) => {
               return p;
             }),
-        dataSources: !options?.dataSources
+        data_sources: !options?.dataSources
           ? options?.dataSources
           : vectorStoreDataSourceArraySerializer(options?.dataSources),
-        chunkingStrategy: !options?.chunkingStrategy
+        chunking_strategy: !options?.chunkingStrategy
           ? options?.chunkingStrategy
           : vectorStoreChunkingStrategyRequestUnionSerializer(
               options?.chunkingStrategy,
@@ -454,11 +454,11 @@ export function _createVectorStoreFileSend(
       },
       queryParameters: { "api-version": context.apiVersion },
       body: {
-        fileId: options?.fileId,
-        dataSources: !options?.dataSources
+        file_id: options?.fileId,
+        data_sources: !options?.dataSources
           ? options?.dataSources
           : vectorStoreDataSourceArraySerializer(options?.dataSources),
-        chunkingStrategy: !options?.chunkingStrategy
+        chunking_strategy: !options?.chunkingStrategy
           ? options?.chunkingStrategy
           : vectorStoreChunkingStrategyRequestUnionSerializer(
               options?.chunkingStrategy,
@@ -596,7 +596,7 @@ export function _modifyVectorStoreSend(
       queryParameters: { "api-version": context.apiVersion },
       body: {
         name: options?.name,
-        expiresAfter: !options?.expiresAfter
+        expires_after: !options?.expiresAfter
           ? options?.expiresAfter
           : vectorStoreExpirationPolicySerializer(options?.expiresAfter),
         metadata: options?.metadata,
@@ -673,19 +673,19 @@ export function _createVectorStoreSend(
     headers: { accept: "application/json", ...options.requestOptions?.headers },
     queryParameters: { "api-version": context.apiVersion },
     body: {
-      fileIds: !options?.fileIds
+      file_ids: !options?.fileIds
         ? options?.fileIds
         : options?.fileIds.map((p: any) => {
             return p;
           }),
       name: options?.name,
-      storeConfiguration: !options?.storeConfiguration
+      configuration: !options?.storeConfiguration
         ? options?.storeConfiguration
         : vectorStoreConfigurationSerializer(options?.storeConfiguration),
-      expiresAfter: !options?.expiresAfter
+      expires_after: !options?.expiresAfter
         ? options?.expiresAfter
         : vectorStoreExpirationPolicySerializer(options?.expiresAfter),
-      chunkingStrategy: !options?.chunkingStrategy
+      chunking_strategy: !options?.chunkingStrategy
         ? options?.chunkingStrategy
         : vectorStoreChunkingStrategyRequestUnionSerializer(
             options?.chunkingStrategy,
@@ -1085,7 +1085,7 @@ export function _createThreadAndRunSend(
       },
       queryParameters: { "api-version": context.apiVersion },
       body: {
-        assistantId: assistantId,
+        assistant_id: assistantId,
         thread: !options?.thread
           ? options?.thread
           : agentThreadCreationOptionsSerializer(options?.thread),
@@ -1094,24 +1094,24 @@ export function _createThreadAndRunSend(
         tools: !options?.tools
           ? options?.tools
           : toolDefinitionUnionArraySerializer(options?.tools),
-        toolResources: !options?.toolResources
+        tool_resources: !options?.toolResources
           ? options?.toolResources
           : updateToolResourcesOptionsSerializer(options?.toolResources),
         stream: options?.stream,
         temperature: options?.temperature,
-        topP: options?.topP,
-        maxPromptTokens: options?.maxPromptTokens,
-        maxCompletionTokens: options?.maxCompletionTokens,
-        truncationStrategy: !options?.truncationStrategy
+        top_p: options?.topP,
+        max_prompt_tokens: options?.maxPromptTokens,
+        max_completion_tokens: options?.maxCompletionTokens,
+        truncation_strategy: !options?.truncationStrategy
           ? options?.truncationStrategy
           : truncationObjectSerializer(options?.truncationStrategy),
-        toolChoice: !options?.toolChoice
+        tool_choice: !options?.toolChoice
           ? options?.toolChoice
           : agentsApiToolChoiceOptionSerializer(options?.toolChoice),
-        responseFormat: !options?.responseFormat
+        response_format: !options?.responseFormat
           ? options?.responseFormat
           : agentsApiResponseFormatOptionSerializer(options?.responseFormat),
-        parallelToolCalls: options?.parallelToolCalls,
+        parallel_tool_calls: options?.parallelToolCalls,
         metadata: options?.metadata,
       },
     });
@@ -1200,7 +1200,7 @@ export function _submitToolOutputsToRunSend(
       },
       queryParameters: { "api-version": context.apiVersion },
       body: {
-        toolOutputs: toolOutputArraySerializer(toolOutputs),
+        tool_outputs: toolOutputArraySerializer(toolOutputs),
         stream: options?.stream,
       },
     });
@@ -1380,11 +1380,11 @@ export function _createRunSend(
           }),
     },
     body: {
-      assistantId: assistantId,
+      assistant_id: assistantId,
       model: options?.model,
       instructions: options?.instructions,
-      additionalInstructions: options?.additionalInstructions,
-      additionalMessages: !options?.additionalMessages
+      additional_instructions: options?.additionalInstructions,
+      additional_messages: !options?.additionalMessages
         ? options?.additionalMessages
         : threadMessageOptionsArraySerializer(options?.additionalMessages),
       tools: !options?.tools
@@ -1392,19 +1392,19 @@ export function _createRunSend(
         : toolDefinitionUnionArraySerializer(options?.tools),
       stream: options?.stream,
       temperature: options?.temperature,
-      topP: options?.topP,
-      maxPromptTokens: options?.maxPromptTokens,
-      maxCompletionTokens: options?.maxCompletionTokens,
-      truncationStrategy: !options?.truncationStrategy
+      top_p: options?.topP,
+      max_prompt_tokens: options?.maxPromptTokens,
+      max_completion_tokens: options?.maxCompletionTokens,
+      truncation_strategy: !options?.truncationStrategy
         ? options?.truncationStrategy
         : truncationObjectSerializer(options?.truncationStrategy),
-      toolChoice: !options?.toolChoice
+      tool_choice: !options?.toolChoice
         ? options?.toolChoice
         : agentsApiToolChoiceOptionSerializer(options?.toolChoice),
-      responseFormat: !options?.responseFormat
+      response_format: !options?.responseFormat
         ? options?.responseFormat
         : agentsApiResponseFormatOptionSerializer(options?.responseFormat),
-      parallelToolCalls: options?.parallelToolCalls,
+      parallel_tool_calls: options?.parallelToolCalls,
       metadata: options?.metadata,
     },
   });
@@ -1675,7 +1675,7 @@ export function _updateThreadSend(
       },
       queryParameters: { "api-version": context.apiVersion },
       body: {
-        toolResources: !options?.toolResources
+        tool_resources: !options?.toolResources
           ? options?.toolResources
           : toolResourcesSerializer(options?.toolResources),
         metadata: options?.metadata,
@@ -1760,7 +1760,7 @@ export function _createThreadSend(
         messages: !options?.messages
           ? options?.messages
           : threadMessageOptionsArraySerializer(options?.messages),
-        toolResources: !options?.toolResources
+        tool_resources: !options?.toolResources
           ? options?.toolResources
           : toolResourcesSerializer(options?.toolResources),
         metadata: options?.metadata,
@@ -1849,12 +1849,12 @@ export function _updateAgentSend(
         tools: !options?.tools
           ? options?.tools
           : toolDefinitionUnionArraySerializer(options?.tools),
-        toolResources: !options?.toolResources
+        tool_resources: !options?.toolResources
           ? options?.toolResources
           : toolResourcesSerializer(options?.toolResources),
         temperature: options?.temperature,
-        topP: options?.topP,
-        responseFormat: !options?.responseFormat
+        top_p: options?.topP,
+        response_format: !options?.responseFormat
           ? options?.responseFormat
           : agentsApiResponseFormatOptionSerializer(options?.responseFormat),
         metadata: options?.metadata,
@@ -1986,12 +1986,12 @@ export function _createAgentSend(
         tools: !options?.tools
           ? options?.tools
           : toolDefinitionUnionArraySerializer(options?.tools),
-        toolResources: !options?.toolResources
+        tool_resources: !options?.toolResources
           ? options?.toolResources
           : toolResourcesSerializer(options?.toolResources),
         temperature: options?.temperature,
-        topP: options?.topP,
-        responseFormat: !options?.responseFormat
+        top_p: options?.topP,
+        response_format: !options?.responseFormat
           ? options?.responseFormat
           : agentsApiResponseFormatOptionSerializer(options?.responseFormat),
         metadata: options?.metadata,
