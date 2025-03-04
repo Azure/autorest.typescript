@@ -257,7 +257,7 @@ importers:
       '@typescript-eslint/parser': ^6.8.0
       '@typespec/compiler': '>=0.65.2 <1.0.0'
       '@typespec/http': '>=0.65.0 <1.0.0'
-      '@typespec/http-specs': 0.1.0-alpha.9
+      '@typespec/http-specs': 0.1.0-alpha.10
       '@typespec/openapi': '>=0.65.0, <1.0.0'
       '@typespec/rest': '>=0.65.0 <1.0.0'
       '@typespec/spec-api': 0.1.0-alpha.0
@@ -317,7 +317,7 @@ importers:
       '@typescript-eslint/parser': 6.8.0_wgnkk2eh2432jxos7omdkkhhte
       '@typespec/compiler': 0.65.2
       '@typespec/http': 0.65.0_@typespec+compiler@0.65.2
-      '@typespec/http-specs': 0.1.0-alpha.9_pplwcaamujtzpyfvtdbwatuxqi
+      '@typespec/http-specs': 0.1.0-alpha.10_pplwcaamujtzpyfvtdbwatuxqi
       '@typespec/openapi': 0.65.0_lto6tt3m2ucqza2m7nwxs6ej6m
       '@typespec/rest': 0.65.0_lto6tt3m2ucqza2m7nwxs6ej6m
       '@typespec/spec-api': 0.1.0-alpha.0
@@ -2623,11 +2623,11 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@typespec/http-specs/0.1.0-alpha.9_pplwcaamujtzpyfvtdbwatuxqi:
-    resolution: {integrity: sha512-IIzW606BcfVzAz9U6cWf4u4lGXlTy+UQI69mvW3qM5x2XfcMQJ5RRk/7vnjiendv2zVHBtW7ZRBMezqXkM6nNg==}
+  /@typespec/http-specs/0.1.0-alpha.10_pplwcaamujtzpyfvtdbwatuxqi:
+    resolution: {integrity: sha512-Tlc11Ld/ErufutvZv/k/7qc/gbjzolEraP93yUAtJ8PdXRFqunor5iHx9rzjx55+XYDa0JwFl8D1q66P7E5P5w==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@typespec/compiler': ~0.65.0
+      '@typespec/compiler': ~0.65.3
       '@typespec/http': ~0.65.0
       '@typespec/rest': ~0.65.0
       '@typespec/versioning': ~0.65.0
