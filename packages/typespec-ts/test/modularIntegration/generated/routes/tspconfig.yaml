@@ -2,12 +2,12 @@ emit:
   - "@azure-tools/typespec-ts"
 options:
   "@azure-tools/typespec-ts":
-    "emitter-output-dir": "{project-root}"
-    generateMetadata: true
-    generateTest: false
-    azureSdkForJs: false
-    isTypeSpecTest: true
-    isModularLibrary: true
-    hierarchyClient: true
-    packageDetails:
+    emitter-output-dir: "{project-root}"
+    generate-metadata: true
+    generate-test: false
+    azure-sdk-for-js: false
+    is-typespec-test: true
+    is-modular-library: true
+    hierarchy-client: true
+    package-details:
       name: "@msinternal/routes"
