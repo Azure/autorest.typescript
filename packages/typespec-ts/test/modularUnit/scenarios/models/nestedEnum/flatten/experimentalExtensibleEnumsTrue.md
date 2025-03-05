@@ -92,7 +92,7 @@ export enum KnownProvisioningState {
   /** The resource is being deleted */
   Deleting = "Deleting",
   /** The resource create request has been accepted */
-  Accepted = "Accepted"
+  Accepted = "Accepted",
 }
 
 /**

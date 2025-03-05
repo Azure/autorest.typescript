@@ -13,7 +13,7 @@ using TypeSpec.Http;
 using TypeSpec.Versioning;
 using Azure.ClientGenerator.Core;
 
-@service({
+@service(#{
   title: "Microsoft.Contoso management service",
 })
 @versioned(Microsoft.Contoso.Versions)
@@ -91,7 +91,7 @@ export interface Foo {
 export function fooSerializer(item: Foo): any {
   return {
     extensibleString: item["extensibleString"],
-    extensibleNumber: item["extensibleNumber"]
+    extensibleNumber: item["extensibleNumber"],
   };
 }
 
@@ -116,7 +116,7 @@ export enum KnownExtensibleString {
   _10 = "10",
   _20 = "20",
   _10 = "1.0",
-  "Item-1.0" = "-2.0"
+  "Item-1.0" = "-2.0",
 }
 
 /** Type of ExtensibleString */
@@ -127,7 +127,7 @@ export enum KnownExtensibleNumber {
   One = 1,
   _2 = 2,
   _21 = -2.1,
-  _3 = 3
+  _3 = 3,
 }
 
 /** Type of ExtensibleNumber */
@@ -137,6 +137,6 @@ export type ExtensibleNumber = number;
 export enum KnownVersions {
   PreviewVersion = "2024-07-01-preview",
   StableVersion = "2024-07-01",
-  _20240801Preview = "2024-08-01-preview"
+  _20240801Preview = "2024-08-01-preview",
 }
 ```
