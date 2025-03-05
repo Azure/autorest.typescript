@@ -64,7 +64,7 @@
   "license": "MIT",
   "devDependencies": {
     "@azure-rest/core-client": "^2.3.1",
-    "@typespec/http-specs": "0.1.0-alpha.9",
+    "@typespec/http-specs": "0.1.0-alpha.10",
     "@typespec/spector": "0.1.0-alpha.7",
     "@typespec/spec-api": "0.1.0-alpha.0",
     "@azure-tools/azure-http-specs": "0.1.0-alpha.6",

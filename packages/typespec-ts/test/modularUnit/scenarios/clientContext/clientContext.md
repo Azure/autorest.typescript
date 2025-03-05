@@ -256,7 +256,7 @@ op one(): void;
 The config would be like:
 
 ```yaml
-typespecTitleMap:
+typespec-title-map:
   ServiceClient: TestServiceClient
 withRawContent: true
 ignoreWeirdLine: false

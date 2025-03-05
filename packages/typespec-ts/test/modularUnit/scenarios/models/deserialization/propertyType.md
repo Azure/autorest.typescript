@@ -1,4 +1,5 @@
 # Should generate deserializer for property types
+
 Will prompt all operations into top-level.
 
 ## TypeSpec
@@ -57,7 +58,7 @@ interface D {
 This is the tspconfig.yaml.
 
 ```yaml
-experimentalExtensibleEnums: true
+experimental-extensible-enums: true
 ```
 
 ## Provide generated models and its serializer
