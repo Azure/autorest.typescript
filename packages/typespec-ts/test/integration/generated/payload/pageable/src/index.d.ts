@@ -47,9 +47,18 @@ export declare interface ServerDrivenPaginationContinuationTokenRequestHeaderRes
 
 export declare interface ServerDrivenPaginationContinuationTokenRequestHeaderResponseBodyHeaders {
     token?: string;
+    foo?: string;
 }
 
-export declare type ServerDrivenPaginationContinuationTokenRequestHeaderResponseBodyParameters = ServerDrivenPaginationContinuationTokenRequestHeaderResponseBodyHeaderParam & RequestParameters;
+export declare type ServerDrivenPaginationContinuationTokenRequestHeaderResponseBodyParameters = ServerDrivenPaginationContinuationTokenRequestHeaderResponseBodyQueryParam & ServerDrivenPaginationContinuationTokenRequestHeaderResponseBodyHeaderParam & RequestParameters;
+
+export declare interface ServerDrivenPaginationContinuationTokenRequestHeaderResponseBodyQueryParam {
+    queryParameters?: ServerDrivenPaginationContinuationTokenRequestHeaderResponseBodyQueryParamProperties;
+}
+
+export declare interface ServerDrivenPaginationContinuationTokenRequestHeaderResponseBodyQueryParamProperties {
+    bar?: string;
+}
 
 export declare interface ServerDrivenPaginationContinuationTokenRequestHeaderResponseHeader {
     get(options?: ServerDrivenPaginationContinuationTokenRequestHeaderResponseHeaderParameters): StreamableMethod<ServerDrivenPaginationContinuationTokenRequestHeaderResponseHeader200Response>;
@@ -73,9 +82,18 @@ export declare interface ServerDrivenPaginationContinuationTokenRequestHeaderRes
 
 export declare interface ServerDrivenPaginationContinuationTokenRequestHeaderResponseHeaderHeaders {
     token?: string;
+    foo?: string;
 }
 
-export declare type ServerDrivenPaginationContinuationTokenRequestHeaderResponseHeaderParameters = ServerDrivenPaginationContinuationTokenRequestHeaderResponseHeaderHeaderParam & RequestParameters;
+export declare type ServerDrivenPaginationContinuationTokenRequestHeaderResponseHeaderParameters = ServerDrivenPaginationContinuationTokenRequestHeaderResponseHeaderQueryParam & ServerDrivenPaginationContinuationTokenRequestHeaderResponseHeaderHeaderParam & RequestParameters;
+
+export declare interface ServerDrivenPaginationContinuationTokenRequestHeaderResponseHeaderQueryParam {
+    queryParameters?: ServerDrivenPaginationContinuationTokenRequestHeaderResponseHeaderQueryParamProperties;
+}
+
+export declare interface ServerDrivenPaginationContinuationTokenRequestHeaderResponseHeaderQueryParamProperties {
+    bar?: string;
+}
 
 export declare interface ServerDrivenPaginationContinuationTokenRequestQueryResponseBody {
     get(options?: ServerDrivenPaginationContinuationTokenRequestQueryResponseBodyParameters): StreamableMethod<ServerDrivenPaginationContinuationTokenRequestQueryResponseBody200Response>;
@@ -89,7 +107,15 @@ export declare interface ServerDrivenPaginationContinuationTokenRequestQueryResp
     };
 }
 
-export declare type ServerDrivenPaginationContinuationTokenRequestQueryResponseBodyParameters = ServerDrivenPaginationContinuationTokenRequestQueryResponseBodyQueryParam & RequestParameters;
+export declare interface ServerDrivenPaginationContinuationTokenRequestQueryResponseBodyHeaderParam {
+    headers?: RawHttpHeadersInput & ServerDrivenPaginationContinuationTokenRequestQueryResponseBodyHeaders;
+}
+
+export declare interface ServerDrivenPaginationContinuationTokenRequestQueryResponseBodyHeaders {
+    foo?: string;
+}
+
+export declare type ServerDrivenPaginationContinuationTokenRequestQueryResponseBodyParameters = ServerDrivenPaginationContinuationTokenRequestQueryResponseBodyQueryParam & ServerDrivenPaginationContinuationTokenRequestQueryResponseBodyHeaderParam & RequestParameters;
 
 export declare interface ServerDrivenPaginationContinuationTokenRequestQueryResponseBodyQueryParam {
     queryParameters?: ServerDrivenPaginationContinuationTokenRequestQueryResponseBodyQueryParamProperties;
@@ -97,6 +123,7 @@ export declare interface ServerDrivenPaginationContinuationTokenRequestQueryResp
 
 export declare interface ServerDrivenPaginationContinuationTokenRequestQueryResponseBodyQueryParamProperties {
     token?: string;
+    bar?: string;
 }
 
 export declare interface ServerDrivenPaginationContinuationTokenRequestQueryResponseHeader {
@@ -115,7 +142,15 @@ export declare interface ServerDrivenPaginationContinuationTokenRequestQueryResp
     headers: RawHttpHeaders & ServerDrivenPaginationContinuationTokenRequestQueryResponseHeader200Headers;
 }
 
-export declare type ServerDrivenPaginationContinuationTokenRequestQueryResponseHeaderParameters = ServerDrivenPaginationContinuationTokenRequestQueryResponseHeaderQueryParam & RequestParameters;
+export declare interface ServerDrivenPaginationContinuationTokenRequestQueryResponseHeaderHeaderParam {
+    headers?: RawHttpHeadersInput & ServerDrivenPaginationContinuationTokenRequestQueryResponseHeaderHeaders;
+}
+
+export declare interface ServerDrivenPaginationContinuationTokenRequestQueryResponseHeaderHeaders {
+    foo?: string;
+}
+
+export declare type ServerDrivenPaginationContinuationTokenRequestQueryResponseHeaderParameters = ServerDrivenPaginationContinuationTokenRequestQueryResponseHeaderQueryParam & ServerDrivenPaginationContinuationTokenRequestQueryResponseHeaderHeaderParam & RequestParameters;
 
 export declare interface ServerDrivenPaginationContinuationTokenRequestQueryResponseHeaderQueryParam {
     queryParameters?: ServerDrivenPaginationContinuationTokenRequestQueryResponseHeaderQueryParamProperties;
@@ -123,6 +158,7 @@ export declare interface ServerDrivenPaginationContinuationTokenRequestQueryResp
 
 export declare interface ServerDrivenPaginationContinuationTokenRequestQueryResponseHeaderQueryParamProperties {
     token?: string;
+    bar?: string;
 }
 
 export declare interface ServerDrivenPaginationLink {
