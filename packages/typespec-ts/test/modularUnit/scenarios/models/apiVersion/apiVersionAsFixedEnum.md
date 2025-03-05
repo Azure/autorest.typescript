@@ -13,7 +13,7 @@ import "@typespec/http";
 using TypeSpec.Versioning;
 using TypeSpec.Http;
 
-@service({
+@service(#{
   title: "Microsoft.Contoso management service",
 })
 @versioned(Microsoft.Contoso.Versions)
@@ -53,27 +53,25 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _fooSend(
   context: Client,
-  options: FooOptionalParams = { requestOptions: {} },
+  options: FooOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
   context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
-  return context
-    .path("/")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      headers: {
-        "api-version": context.apiVersion,
-        ...options.requestOptions?.headers,
-      },
-    });
+  return context.path("/").get({
+    ...operationOptionsToRequestParameters(options),
+    headers: {
+      "api-version": context.apiVersion,
+      ...options.requestOptions?.headers
+    }
+  });
 }
 
 export async function _fooDeserialize(
-  result: PathUncheckedResponse,
+  result: PathUncheckedResponse
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
@@ -85,7 +83,7 @@ export async function _fooDeserialize(
 
 export async function foo(
   context: Client,
-  options: FooOptionalParams = { requestOptions: {} },
+  options: FooOptionalParams = { requestOptions: {} }
 ): Promise<void> {
   const result = await _fooSend(context, options);
   return _fooDeserialize(result);

@@ -81,7 +81,7 @@ export async function rlcEmitterFor(
   const namespace = `
   #suppress "@azure-tools/typespec-azure-core/auth-required" "for test"
   ${withVersionedApiVersion ? "@versioned(Versions)" : ""}
-  @service({
+  @service(#{
     title: "Azure TypeScript Testing"
   })
 
@@ -169,7 +169,7 @@ using Azure.ResourceManager;`;
 function serviceStatement() {
   return `
   @versioned(Azure.TypeScript.Testing.Versions)
-  @service({
+  @service(#{
     title: "Azure TypeScript Testing",
   })
 
@@ -205,7 +205,6 @@ export async function createDpgContextTestHelper(
       enableModelNamespace,
       ...configs
     },
-    generationPathDetail: {},
     emitterName: "@azure-tools/typespec-ts",
     originalProgram: program
   } as SdkContext;

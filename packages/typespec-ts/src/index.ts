@@ -46,7 +46,8 @@ import {
   hasUnexpectedHelper,
   isAzurePackage,
   updatePackageFile,
-  buildSampleEnvFile
+  buildSampleEnvFile,
+  buildSnippets
 } from "@azure-tools/rlc-common";
 import {
   buildRootIndex,
@@ -166,6 +167,7 @@ export async function $onEmit(context: EmitContext) {
     dpgContext.generationPathDetail = generationPathDetail;
     const options: RLCOptions = transformRLCOptions(emitterOptions, dpgContext);
     emitterOptions.isModularLibrary = options.isModularLibrary;
+    emitterOptions.generateSample = options.generateSample;
     // clear output folder if needed
     if (options.clearOutputFolder) {
       await fsextra.emptyDir(context.emitterOutputDir);
@@ -321,7 +323,7 @@ export async function $onEmit(context: EmitContext) {
       );
     }
     // Enable modular sample generation when explicitly set to true or MPG
-    if (emitterOptions?.generateSample === true) {
+    if (emitterOptions.generateSample === true) {
       const samples = emitSamples(dpgContext);
       // Refine the rlc sample generation logic
       // TODO: remember to remove this out when RLC is splitted from Modular
@@ -407,6 +409,16 @@ export async function $onEmit(context: EmitContext) {
         buildPackageFile(model, modularPackageInfo)
       );
       commonBuilders.push(buildTsConfig);
+
+      // TODO: need support snippets generation for multi-client cases. https://github.com/Azure/autorest.typescript/issues/3048
+      if (option.generateTest && isAzureFlavor) {
+        for (const subClient of dpgContext.sdkPackage.clients) {
+          commonBuilders.push((model) =>
+            buildSnippets(model, subClient.name, option.azureSdkForJs)
+          );
+        }
+      }
+
       // build metadata relevant files
       await emitContentByBuilder(
         program,
@@ -486,9 +498,11 @@ export async function createContextWithDefaultOptions(
   context: EmitContext<Record<string, any>>
 ): Promise<SdkContext> {
   const flattenUnionAsEnum =
+    context.options["experimental-extensible-enums"] === undefined &&
     context.options["experimentalExtensibleEnums"] === undefined
       ? isArm(context)
-      : context.options["experimentalExtensibleEnums"];
+      : (context.options["experimental-extensible-enums"] ??
+        context.options["experimentalExtensibleEnums"]);
   const tcgcSettings = {
     "generate-protocol-methods": true,
     "generate-convenience-methods": true,
@@ -513,7 +527,10 @@ export async function createContextWithDefaultOptions(
 
 // TODO: should be removed once tcgc issue is resolved https://github.com/Azure/typespec-azure/issues/1794
 function isArm(context: EmitContext<Record<string, any>>) {
-  const packageName = (context?.options["packageDetails"] ?? {})["name"] ?? "";
+  const packageName =
+    (context?.options["package-details"] ??
+      context?.options["packageDetails"] ??
+      {})["name"] ?? "";
   return packageName?.startsWith("@azure/arm-");
 }
 

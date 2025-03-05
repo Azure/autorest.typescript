@@ -10,7 +10,7 @@ This is tsp definition.
 import "@typespec/http";
 
 using TypeSpec.Http;
-@service({
+@service(#{
   title: "Widget Service",
 })
 namespace DemoService;

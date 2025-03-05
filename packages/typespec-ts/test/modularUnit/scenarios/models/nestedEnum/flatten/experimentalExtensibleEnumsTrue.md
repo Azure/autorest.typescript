@@ -1,4 +1,4 @@
-# Should flatten extensible enum if enabling `experimentalExtensibleEnums`
+# Should flatten extensible enum if enabling `experimental-extensible-enums`
 
 Sample generation should arm template and operations successfully.
 
@@ -15,7 +15,7 @@ using Azure.ResourceManager;
 
 /** Microsoft.Contoso Resource Provider management API. */
 @armProviderNamespace
-@service({
+@service(#{
   title: "Microsoft.Contoso management service",
 })
 @versioned(Microsoft.Contoso.Versions)
@@ -60,7 +60,7 @@ Should enable `flatten-union-as-enum` option:
 
 ```yaml
 withRawContent: true
-experimentalExtensibleEnums: true
+experimental-extensible-enums: true
 ```
 
 ## Models
@@ -92,7 +92,7 @@ export enum KnownProvisioningState {
   /** The resource is being deleted */
   Deleting = "Deleting",
   /** The resource create request has been accepted */
-  Accepted = "Accepted",
+  Accepted = "Accepted"
 }
 
 /**
@@ -113,6 +113,6 @@ export type ProvisioningState = string;
 /** The available API versions. */
 export enum KnownVersions {
   /** 2021-10-01-preview version */
-  v2021_10_01_preview = "2021-10-01-preview",
+  v2021_10_01_preview = "2021-10-01-preview"
 }
 ```

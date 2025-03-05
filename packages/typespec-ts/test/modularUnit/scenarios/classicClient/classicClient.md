@@ -14,7 +14,7 @@ using TypeSpec.Versioning;
 using Azure.Core;
 using Azure.Core.Traits;
 
-@service({
+@service(#{
   title: "MultiClient"
 })
 @versioned(Client.Structure.Service.Versions)
@@ -30,7 +30,7 @@ enum Versions {
 The config would be like:
 
 ```yaml
-typespecTitleMap:
+typespec-title-map:
   ServiceClient: TestServiceClient
 withRawContent: true
 ignoreWeirdLine: false
@@ -50,7 +50,7 @@ export class TestServiceClient {
 
   constructor(
     endpointParam: string,
-    options: TestServiceClientOptionalParams = {},
+    options: TestServiceClientOptionalParams = {}
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
@@ -58,7 +58,7 @@ export class TestServiceClient {
       : `azsdk-js-client`;
     this._client = createTestService(endpointParam, {
       ...options,
-      userAgentOptions: { userAgentPrefix },
+      userAgentOptions: { userAgentPrefix }
     });
     this.pipeline = this._client.pipeline;
   }

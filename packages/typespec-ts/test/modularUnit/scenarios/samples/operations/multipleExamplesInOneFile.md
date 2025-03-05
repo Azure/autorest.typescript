@@ -21,7 +21,7 @@ using Azure.ResourceManager;
 
 /** Microsoft.Contoso Resource Provider management API. */
 @armProviderNamespace
-@service({
+@service(#{
   title: "Microsoft.Contoso management service",
 })
 @versioned(Microsoft.Contoso.Versions)
@@ -56,7 +56,7 @@ model EmployeeProperties {
   profile?: bytes;
 
   /** The status of the last operation. */
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   provisioningState?: ProvisioningState;
 }
 
@@ -149,7 +149,7 @@ Raw json files.
 Generate one file for multiple samples:
 
 ```ts samples
-/** This file path is /samples-dev/employeesCreateOrUpdateSample.ts */
+/** This file path is /samples-dev/createOrUpdateSample.ts */
 import { ContosoClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
 
@@ -163,19 +163,15 @@ async function employeesCreateOrUpdateMaxage(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
   const client = new ContosoClient(credential, subscriptionId);
-  const result = await client.employees.createOrUpdate(
-    "rgopenapi",
-    "9KF-f-8b",
-    {
-      properties: {
-        age: 110,
-        city: "gydhnntudughbmxlkyzrskcdkotrxn",
-        profile: "ms",
-      },
-      tags: { key2913: "urperxmkkhhkp" },
-      location: "itajgxyqozseoygnl",
+  const result = await client.createOrUpdate("rgopenapi", "9KF-f-8b", {
+    properties: {
+      age: 110,
+      city: "gydhnntudughbmxlkyzrskcdkotrxn",
+      profile: "ms"
     },
-  );
+    tags: { key2913: "urperxmkkhhkp" },
+    location: "itajgxyqozseoygnl"
+  });
   console.log(result);
 }
 
@@ -189,25 +185,21 @@ async function employeesCreateOrUpdateMinage(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
   const client = new ContosoClient(credential, subscriptionId);
-  const result = await client.employees.createOrUpdate(
-    "rgopenapi",
-    "9KF-f-8b",
-    {
-      properties: {
-        age: 1,
-        city: "gydhnntudughbmxlkyzrskcdkotrxn",
-        profile: "ms",
-      },
-      tags: { key2913: "urperxmkkhhkp" },
-      location: "itajgxyqozseoygnl",
+  const result = await client.createOrUpdate("rgopenapi", "9KF-f-8b", {
+    properties: {
+      age: 1,
+      city: "gydhnntudughbmxlkyzrskcdkotrxn",
+      profile: "ms"
     },
-  );
+    tags: { key2913: "urperxmkkhhkp" },
+    location: "itajgxyqozseoygnl"
+  });
   console.log(result);
 }
 
 async function main(): Promise<void> {
   await employeesCreateOrUpdateMaxage();
-  employeesCreateOrUpdateMinage();
+  await employeesCreateOrUpdateMinage();
 }
 
 main().catch(console.error);

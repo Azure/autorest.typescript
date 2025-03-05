@@ -21,7 +21,7 @@ using Azure.ResourceManager;
 
 /** Microsoft.Contoso Resource Provider management API. */
 @armProviderNamespace
-@service({
+@service(#{
   title: "Microsoft.Contoso management service",
 })
 @versioned(Microsoft.Contoso.Versions)
@@ -56,7 +56,7 @@ model EmployeeProperties {
   profile?: bytes;
 
   /** The status of the last operation. */
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   provisioningState?: ProvisioningState;
 }
 
@@ -86,6 +86,13 @@ interface Employees {
   createOrUpdate is ArmResourceCreateOrReplaceAsync<Employee>;
   delete is ArmResourceDeleteWithoutOkAsync<Employee>;
 }
+```
+
+This is the tspconfig.yaml.
+
+```yaml
+hierarchy-client: false
+enable-operation-group: true
 ```
 
 ## Example
@@ -192,11 +199,11 @@ async function employeesCreateOrUpdate(): Promise<void> {
       properties: {
         age: 30,
         city: "gydhnntudughbmxlkyzrskcdkotrxn",
-        profile: "ms",
+        profile: "ms"
       },
       tags: { key2913: "urperxmkkhhkp" },
-      location: "itajgxyqozseoygnl",
-    },
+      location: "itajgxyqozseoygnl"
+    }
   );
   console.log(result);
 }
