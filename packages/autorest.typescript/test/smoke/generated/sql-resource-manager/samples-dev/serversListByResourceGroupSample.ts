@@ -25,7 +25,7 @@ async function listServersByResourceGroup(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.servers.listByResourceGroup(
+  for await (const item of client.servers.listByResourceGroup(
     resourceGroupName,
   )) {
     resArray.push(item);
@@ -46,7 +46,7 @@ async function listServersByResourceGroupWithExpandAdministrators(): Promise<voi
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.servers.listByResourceGroup(
+  for await (const item of client.servers.listByResourceGroup(
     resourceGroupName,
   )) {
     resArray.push(item);

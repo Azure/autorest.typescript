@@ -27,7 +27,7 @@ async function getAllTargetGroupsInAnAgent(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.jobTargetGroups.listByAgent(
+  for await (const item of client.jobTargetGroups.listByAgent(
     resourceGroupName,
     serverName,
     jobAgentName,

@@ -28,7 +28,7 @@ async function getTheLongTermRetentionPoliciesForTheManagedDatabase(): Promise<v
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.managedInstanceLongTermRetentionPolicies.listByDatabase(
+  for await (const item of client.managedInstanceLongTermRetentionPolicies.listByDatabase(
     resourceGroupName,
     managedInstanceName,
     databaseName,

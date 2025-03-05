@@ -25,7 +25,7 @@ async function getAvailablePrivateEndpointTypesInTheResourceGroup(): Promise<voi
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.availablePrivateEndpointTypes.listByResourceGroup(
+  for await (const item of client.availablePrivateEndpointTypes.listByResourceGroup(
     location,
     resourceGroupName,
   )) {

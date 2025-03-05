@@ -147,7 +147,7 @@ async function widgetsListWidgets(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new WidgetManagerClient(credential);
   const resArray = new Array();
-  for await (let item of client.widgets.listWidgets({
+  for await (const item of client.widgets.listWidgets({
     top: 8,
     skip: 15,
     maxpagesize: 27

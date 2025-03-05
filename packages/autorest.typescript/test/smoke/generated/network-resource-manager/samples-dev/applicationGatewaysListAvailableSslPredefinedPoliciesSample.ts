@@ -23,7 +23,7 @@ async function getAvailableSslPredefinedPolicies(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.applicationGateways.listAvailableSslPredefinedPolicies()) {
+  for await (const item of client.applicationGateways.listAvailableSslPredefinedPolicies()) {
     resArray.push(item);
   }
   console.log(resArray);

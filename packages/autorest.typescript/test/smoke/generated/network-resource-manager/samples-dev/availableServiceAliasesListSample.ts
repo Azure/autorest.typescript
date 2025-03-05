@@ -24,7 +24,7 @@ async function getAvailableServiceAliases(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.availableServiceAliases.list(location)) {
+  for await (const item of client.availableServiceAliases.list(location)) {
     resArray.push(item);
   }
   console.log(resArray);
