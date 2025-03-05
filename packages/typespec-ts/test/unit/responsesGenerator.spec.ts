@@ -238,22 +238,59 @@ describe("Responses.ts", () => {
       );
     });
 
-    it("core error response", async () => {
+    it.only("should handle int/decimal/decimal128/int8 with encode `string` in response headers", async () => {
       const parameters = await emitResponsesFromTypeSpec(
         `
-      #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "for testing"
-      #suppress "@azure-tools/typespec-azure-core/use-standard-names" "for testing"
-      @doc("testing")
-      @get op read(): Azure.Core.Foundations.ErrorResponse;
+      alias SimpleModel = {
+        @header
+        @encode("string")
+        x: int32;
+      };
+      @route("/decimal/prop/encode")
+      @get
+      op getModel(...SimpleModel): SimpleModel;
       `,
         {
-          needAzureCore: true
+          needTCGC: true
         }
       );
       assert.ok(parameters);
       await assertEqualContent(
         parameters?.content!,
         `
+          import type { RawHttpHeaders } from "@azure/core-rest-pipeline";
+          import type { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
+      
+          export interface GetModel200Headers {
+            "x": string;
+          }
+  
+          '/** The request has succeeded. */\n' +
+          export interface GetModel200Response extends HttpResponse {
+              status: "200";
+              headers: RawHttpHeaders & GetModel200Headers;
+          }
+        `
+      );
+    });
+  });
+
+  it("core error response", async () => {
+    const parameters = await emitResponsesFromTypeSpec(
+      `
+      #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "for testing"
+      #suppress "@azure-tools/typespec-azure-core/use-standard-names" "for testing"
+      @doc("testing")
+      @get op read(): Azure.Core.Foundations.ErrorResponse;
+      `,
+      {
+        needAzureCore: true
+      }
+    );
+    assert.ok(parameters);
+    await assertEqualContent(
+      parameters?.content!,
+      `
         import type { RawHttpHeaders } from "@azure/core-rest-pipeline";
         import type { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
     
@@ -268,11 +305,11 @@ describe("Responses.ts", () => {
           headers: RawHttpHeaders & ReadDefaultHeaders;
         }
       `
-      );
-    });
+    );
+  });
 
-    it("error response not in core", async () => {
-      const tsp = `
+  it("error response not in core", async () => {
+    const tsp = `
       model Error {
         type: string;
         message: string;
@@ -290,12 +327,12 @@ describe("Responses.ts", () => {
       @doc("testing")
       @get op read(): ErrorResponse;
     `;
-      const parameters = await emitResponsesFromTypeSpec(tsp);
-      const models = await emitModelsFromTypeSpec(tsp);
-      assert.ok(parameters);
-      await assertEqualContent(
-        models?.outputModelFile?.content!,
-        `
+    const parameters = await emitResponsesFromTypeSpec(tsp);
+    const models = await emitModelsFromTypeSpec(tsp);
+    assert.ok(parameters);
+    await assertEqualContent(
+      models?.outputModelFile?.content!,
+      `
       export interface ErrorResponseOutput {
         error: ErrorModelOutput;
       }
@@ -306,10 +343,10 @@ describe("Responses.ts", () => {
         param: string | null;
         code: string | null;
       } `
-      );
-      await assertEqualContent(
-        parameters?.content!,
-        `
+    );
+    await assertEqualContent(
+      parameters?.content!,
+      `
         import type { HttpResponse } from "@azure-rest/core-client";
         import type { ErrorResponseOutput } from "./outputModels.js";
 
@@ -318,13 +355,13 @@ describe("Responses.ts", () => {
           body: ErrorResponseOutput;
         }
       `
-      );
-    });
+    );
   });
+});
 
-  describe("headers generation", () => {
-    it("merges headers from multiple responses", async () => {
-      const responses = await emitResponsesFromTypeSpec(`
+describe("headers generation", () => {
+  it("merges headers from multiple responses", async () => {
+    const responses = await emitResponsesFromTypeSpec(`
       model Key {
         key: string;
       }
@@ -332,10 +369,10 @@ describe("Responses.ts", () => {
           | { @body body: Key, @header foo: string }
           | {@header contentType: "image/png", @body body: bytes, @header bar: string };
       `);
-      assert.ok(responses);
-      await assertEqualContent(
-        responses!.content,
-        `
+    assert.ok(responses);
+    await assertEqualContent(
+      responses!.content,
+      `
       import type { RawHttpHeaders } from "@azure/core-rest-pipeline";
       import type { HttpResponse } from "@azure-rest/core-client";
       import type { KeyOutput } from "./outputModels.js";
@@ -354,19 +391,19 @@ describe("Responses.ts", () => {
         headers: RawHttpHeaders & Read200Headers;
       }
       `
-      );
-    });
+    );
   });
+});
 
-  describe("Array generation", () => {
-    it("verify string array from responses", async () => {
-      const responses = await emitResponsesFromTypeSpec(`
+describe("Array generation", () => {
+  it("verify string array from responses", async () => {
+    const responses = await emitResponsesFromTypeSpec(`
       @get op read(): string[];
       `);
-      assert.ok(responses);
-      await assertEqualContent(
-        responses!.content,
-        `
+    assert.ok(responses);
+    await assertEqualContent(
+      responses!.content,
+      `
       import type { HttpResponse } from "@azure-rest/core-client";
       
       /** The request has succeeded. */
@@ -375,17 +412,17 @@ describe("Responses.ts", () => {
         body: string[];
       }
       `
-      );
-    });
+    );
+  });
 
-    it("verify int32 array from responses", async () => {
-      const responses = await emitResponsesFromTypeSpec(`
+  it("verify int32 array from responses", async () => {
+    const responses = await emitResponsesFromTypeSpec(`
       @get op read(): int32[];
       `);
-      assert.ok(responses);
-      await assertEqualContent(
-        responses!.content,
-        `
+    assert.ok(responses);
+    await assertEqualContent(
+      responses!.content,
+      `
       import type { HttpResponse } from "@azure-rest/core-client";
       
       /** The request has succeeded. */
@@ -394,17 +431,17 @@ describe("Responses.ts", () => {
         body: number[];
       }
       `
-      );
-    });
+    );
+  });
 
-    it("verify int64 array from responses", async () => {
-      const responses = await emitResponsesFromTypeSpec(`
+  it("verify int64 array from responses", async () => {
+    const responses = await emitResponsesFromTypeSpec(`
       @get op read(): int64[];
       `);
-      assert.ok(responses);
-      await assertEqualContent(
-        responses!.content,
-        `
+    assert.ok(responses);
+    await assertEqualContent(
+      responses!.content,
+      `
       import type { HttpResponse } from "@azure-rest/core-client";
       
       /** The request has succeeded. */
@@ -413,17 +450,17 @@ describe("Responses.ts", () => {
         body: number[];
       }
       `
-      );
-    });
+    );
+  });
 
-    it("verify float32 array from responses", async () => {
-      const responses = await emitResponsesFromTypeSpec(`
+  it("verify float32 array from responses", async () => {
+    const responses = await emitResponsesFromTypeSpec(`
       @get op read(): float32[];
       `);
-      assert.ok(responses);
-      await assertEqualContent(
-        responses!.content,
-        `
+    assert.ok(responses);
+    await assertEqualContent(
+      responses!.content,
+      `
       import type { HttpResponse } from "@azure-rest/core-client";
       
       /** The request has succeeded. */
@@ -432,17 +469,17 @@ describe("Responses.ts", () => {
         body: number[];
       }
       `
-      );
-    });
+    );
+  });
 
-    it("verify boolean array from responses", async () => {
-      const responses = await emitResponsesFromTypeSpec(`
+  it("verify boolean array from responses", async () => {
+    const responses = await emitResponsesFromTypeSpec(`
       @get op read(): boolean[];
       `);
-      assert.ok(responses);
-      await assertEqualContent(
-        responses!.content,
-        `
+    assert.ok(responses);
+    await assertEqualContent(
+      responses!.content,
+      `
       import type { HttpResponse } from "@azure-rest/core-client";
       
       /** The request has succeeded. */
@@ -451,17 +488,17 @@ describe("Responses.ts", () => {
         body: boolean[];
       }
       `
-      );
-    });
+    );
+  });
 
-    it("verify bytes array from responses", async () => {
-      const responses = await emitResponsesFromTypeSpec(`
+  it("verify bytes array from responses", async () => {
+    const responses = await emitResponsesFromTypeSpec(`
       @get op read(): bytes[];
       `);
-      assert.ok(responses);
-      await assertEqualContent(
-        responses!.content,
-        `
+    assert.ok(responses);
+    await assertEqualContent(
+      responses!.content,
+      `
       import type { HttpResponse } from "@azure-rest/core-client";
       
       /** The request has succeeded. */
@@ -470,17 +507,17 @@ describe("Responses.ts", () => {
         body: string[];
       }
       `
-      );
-    });
+    );
+  });
 
-    it("verify plainDate array from responses", async () => {
-      const responses = await emitResponsesFromTypeSpec(`
+  it("verify plainDate array from responses", async () => {
+    const responses = await emitResponsesFromTypeSpec(`
       @get op read(): plainDate[];
       `);
-      assert.ok(responses);
-      await assertEqualContent(
-        responses!.content,
-        `
+    assert.ok(responses);
+    await assertEqualContent(
+      responses!.content,
+      `
       import type { HttpResponse } from "@azure-rest/core-client";
       
       /** The request has succeeded. */
@@ -489,17 +526,17 @@ describe("Responses.ts", () => {
         body: string[];
       }
       `
-      );
-    });
+    );
+  });
 
-    it("verify datetime array from responses", async () => {
-      const responses = await emitResponsesFromTypeSpec(`
+  it("verify datetime array from responses", async () => {
+    const responses = await emitResponsesFromTypeSpec(`
       @get op read(): utcDateTime[];
       `);
-      assert.ok(responses);
-      await assertEqualContent(
-        responses!.content,
-        `
+    assert.ok(responses);
+    await assertEqualContent(
+      responses!.content,
+      `
       import type { HttpResponse } from "@azure-rest/core-client";
       
       /** The request has succeeded. */
@@ -508,17 +545,17 @@ describe("Responses.ts", () => {
         body: string[];
       }
       `
-      );
-    });
+    );
+  });
 
-    it("verify duration array from responses", async () => {
-      const responses = await emitResponsesFromTypeSpec(`
+  it("verify duration array from responses", async () => {
+    const responses = await emitResponsesFromTypeSpec(`
       @get op read(): duration[];
       `);
-      assert.ok(responses);
-      await assertEqualContent(
-        responses!.content,
-        `
+    assert.ok(responses);
+    await assertEqualContent(
+      responses!.content,
+      `
       import type { HttpResponse } from "@azure-rest/core-client";
       
       /** The request has succeeded. */
@@ -527,21 +564,21 @@ describe("Responses.ts", () => {
         body: string[];
       }
       `
-      );
-    });
+    );
+  });
 
-    it("verify SimpleModel array from responses", async () => {
-      const responses = await emitResponsesFromTypeSpec(`
+  it("verify SimpleModel array from responses", async () => {
+    const responses = await emitResponsesFromTypeSpec(`
       model SimpleModel {
         prop1: string;
         prop2: int32;
       }
       @get op read(): SimpleModel[];
       `);
-      assert.ok(responses);
-      await assertEqualContent(
-        responses!.content,
-        `
+    assert.ok(responses);
+    await assertEqualContent(
+      responses!.content,
+      `
       import type { HttpResponse } from "@azure-rest/core-client";
       import type { SimpleModelOutput } from "./outputModels.js";
 
@@ -551,21 +588,21 @@ describe("Responses.ts", () => {
         body: Array<SimpleModelOutput>;
       }
       `
-      );
-    });
+    );
+  });
 
-    it("verify InnerModel array from responses", async () => {
-      const responses = await emitResponsesFromTypeSpec(`
+  it("verify InnerModel array from responses", async () => {
+    const responses = await emitResponsesFromTypeSpec(`
       model InnerModel {
         property: string;
         children?: InnerModel[];
       }
       @get op read(): InnerModel[];
       `);
-      assert.ok(responses);
-      await assertEqualContent(
-        responses!.content,
-        `
+    assert.ok(responses);
+    await assertEqualContent(
+      responses!.content,
+      `
       import type { HttpResponse } from "@azure-rest/core-client";
       import type { InnerModelOutput } from "./outputModels.js";
 
@@ -575,7 +612,7 @@ describe("Responses.ts", () => {
         body: Array<InnerModelOutput>;
       }
       `
-      );
-    });
+    );
   });
+});
 });
