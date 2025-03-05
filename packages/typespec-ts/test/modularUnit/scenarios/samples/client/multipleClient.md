@@ -16,7 +16,7 @@ using TypeSpec.Rest;
 using TypeSpec.Versioning;
 using Azure.ClientGenerator.Core;
 
-@service({
+@service(#{
   title: "Demo Service",
 })
 @versioned(Versions)
