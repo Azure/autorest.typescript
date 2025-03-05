@@ -25,7 +25,7 @@ import {
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { TokenCredential } from "@azure/core-auth";
 
-export { AIProjectClientOptionalParams } from "./api/aIProjectContext.js";
+export { AIProjectClientOptionalParams } from "./api/aiProjectContext.js";
 
 export class AIProjectClient {
   private _client: AIProjectContext;

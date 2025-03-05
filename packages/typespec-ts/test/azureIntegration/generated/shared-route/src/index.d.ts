@@ -5,7 +5,7 @@ import type { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
-declare function createClient($host: string, options?: SharedRouteClientOptions): SharedRouteClient;
+declare function createClient(host: string, options?: SharedRouteClientOptions): SharedRouteClient;
 export default createClient;
 
 export declare interface ErrorModelOutput {

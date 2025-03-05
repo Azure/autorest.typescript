@@ -5,7 +5,7 @@ import type { RawHttpHeadersInput } from '@typespec/ts-http-runtime';
 import type { RequestParameters } from '@typespec/ts-http-runtime';
 import type { StreamableMethod } from '@typespec/ts-http-runtime';
 
-declare function createClient($host: string, options?: SharedRouteClientOptions): SharedRouteClient;
+declare function createClient(host: string, options?: SharedRouteClientOptions): SharedRouteClient;
 export default createClient;
 
 export declare interface ErrorModelOutput {

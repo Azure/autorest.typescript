@@ -57,7 +57,7 @@ export function getResponseBaseName(
   return normalizeName(
     `${operationGroup}_${normalizeName(
       operationName,
-      NameType.Operation,
+      NameType.Interface,
       true
     )}_${statusCode}`,
     NameType.Interface
