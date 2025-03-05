@@ -27,7 +27,7 @@ async function listTheDatabaseManagementOperations(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.databaseOperations.listByDatabase(
+  for await (const item of client.databaseOperations.listByDatabase(
     resourceGroupName,
     serverName,
     databaseName,

@@ -26,7 +26,7 @@ async function getAllElasticPoolsInAServer(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.elasticPools.listByServer(
+  for await (const item of client.elasticPools.listByServer(
     resourceGroupName,
     serverName,
   )) {

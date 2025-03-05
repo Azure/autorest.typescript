@@ -23,7 +23,7 @@ async function listAllVirtualNetworks(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.virtualNetworks.listAll()) {
+  for await (const item of client.virtualNetworks.listAll()) {
     resArray.push(item);
   }
   console.log(resArray);

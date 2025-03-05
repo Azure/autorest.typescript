@@ -24,7 +24,7 @@ async function listVirtualNetworkTapsInResourceGroup(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.virtualNetworkTaps.listByResourceGroup(
+  for await (const item of client.virtualNetworkTaps.listByResourceGroup(
     resourceGroupName,
   )) {
     resArray.push(item);

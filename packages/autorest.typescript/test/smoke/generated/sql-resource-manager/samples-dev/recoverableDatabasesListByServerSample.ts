@@ -27,7 +27,7 @@ async function getListOfRestorableDroppedDatabases(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.recoverableDatabases.listByServer(
+  for await (const item of client.recoverableDatabases.listByServer(
     resourceGroupName,
     serverName,
   )) {

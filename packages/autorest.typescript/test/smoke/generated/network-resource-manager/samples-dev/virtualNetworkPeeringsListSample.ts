@@ -25,7 +25,7 @@ async function listPeerings(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.virtualNetworkPeerings.list(
+  for await (const item of client.virtualNetworkPeerings.list(
     resourceGroupName,
     virtualNetworkName,
   )) {
@@ -47,7 +47,7 @@ async function listPeeringsWithRemoteVirtualNetworkEncryption(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.virtualNetworkPeerings.list(
+  for await (const item of client.virtualNetworkPeerings.list(
     resourceGroupName,
     virtualNetworkName,
   )) {

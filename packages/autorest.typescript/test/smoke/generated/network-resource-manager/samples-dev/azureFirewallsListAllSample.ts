@@ -23,7 +23,7 @@ async function listAllAzureFirewallsForAGivenSubscription(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.azureFirewalls.listAll()) {
+  for await (const item of client.azureFirewalls.listAll()) {
     resArray.push(item);
   }
   console.log(resArray);

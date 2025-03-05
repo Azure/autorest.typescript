@@ -26,7 +26,7 @@ async function listManagedHsmPoolsInASubscription(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new KeyVaultManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.mhsmPrivateEndpointConnections.listByResource(
+  for await (const item of client.mhsmPrivateEndpointConnections.listByResource(
     resourceGroupName,
     name,
   )) {

@@ -26,7 +26,7 @@ async function expressRouteCrossConnectionBgpPeeringList(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.expressRouteCrossConnectionPeerings.list(
+  for await (const item of client.expressRouteCrossConnectionPeerings.list(
     resourceGroupName,
     crossConnectionName,
   )) {
