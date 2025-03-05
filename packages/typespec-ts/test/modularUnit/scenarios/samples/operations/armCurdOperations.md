@@ -88,6 +88,13 @@ interface Employees {
 }
 ```
 
+This is the tspconfig.yaml.
+
+```yaml
+hierarchy-client: false
+enable-operation-group: true
+```
+
 ## Example
 
 Raw json files.

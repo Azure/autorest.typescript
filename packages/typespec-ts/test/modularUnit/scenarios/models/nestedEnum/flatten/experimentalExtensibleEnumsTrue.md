@@ -1,4 +1,4 @@
-# Should flatten extensible enum if enabling `experimentalExtensibleEnums`
+# Should flatten extensible enum if enabling `experimental-extensible-enums`
 
 Sample generation should arm template and operations successfully.
 
@@ -60,7 +60,7 @@ Should enable `flatten-union-as-enum` option:
 
 ```yaml
 withRawContent: true
-experimentalExtensibleEnums: true
+experimental-extensible-enums: true
 ```
 
 ## Models

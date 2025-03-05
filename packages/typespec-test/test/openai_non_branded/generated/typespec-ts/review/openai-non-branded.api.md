@@ -797,16 +797,10 @@ export interface OpenAIFile {
 }
 
 // @public
-export type Prompt = Prompt_1 | null;
+export type Prompt = (string | string[] | number[] | number[][]) | null;
 
 // @public
-export type Prompt_1 = string | string[] | number[] | number[][];
-
-// @public
-export type Stop = Stop_1 | null;
-
-// @public
-export type Stop_1 = string | string[];
+export type Stop = (string | string[]) | null;
 
 // (No @packageDocumentation comment for this package)
 

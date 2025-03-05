@@ -1,14 +1,13 @@
 emit: ["@azure-tools/typespec-ts"]
 options:
   "@azure-tools/typespec-ts":
-    typespecTitleMap: 
+    typespec-title-map:
       NetworkAnalyticsClient: NetworkAnalyticsApi
     examples-directory: "{project-root}/spec/examples"
-    generateMetadata: true
-    generateTest: true
-    generateSample: true
-    azureSdkForJs: false
-    experimentalExtensibleEnums: true
-    "emitter-output-dir": "{project-root}/generated/typespec-ts/sdk/test/arm-test"
-    packageDetails:
+    generate-metadata: true
+    generate-test: true
+    azure-sdk-for-js: false
+    experimental-extensible-enums: true
+    emitter-output-dir: "{project-root}/generated/typespec-ts/sdk/test/arm-test"
+    package-details:
       name: "@azure/arm-networkanalytics"

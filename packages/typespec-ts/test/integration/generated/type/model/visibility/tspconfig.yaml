@@ -2,13 +2,13 @@ emit:
   - "@azure-tools/typespec-ts"
 options:
   "@azure-tools/typespec-ts":
-    "emitter-output-dir": "{project-root}"
-    generateMetadata: true
-    generateTest: false
-    addCredentials: false
-    isModularLibrary: false
-    isTypeSpecTest: true
-    packageDetails:
+    emitter-output-dir: "{project-root}"
+    generate-metadata: true
+    generate-test: false
+    add-credentials: false
+    is-modular-library: false
+    is-typespec-test: true
+    package-details:
       name: "@unbranded/visibility"
       description: "Visibility Test Service"
       version: "1.0.0"

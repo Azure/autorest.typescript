@@ -8,8 +8,8 @@ import {
 } from "../../index.js";
 import {
   notFoundErrorResponseDeserializer,
-  PageTodoAttachment,
-  pageTodoAttachmentDeserializer,
+  _PageTodoAttachment,
+  _pageTodoAttachmentDeserializer,
 } from "../../../models/todoItems/models.js";
 import {
   standard4XXResponseDeserializer,
@@ -164,7 +164,7 @@ export function _listSend(
 
 export async function _listDeserialize(
   result: PathUncheckedResponse,
-): Promise<PageTodoAttachment> {
+): Promise<_PageTodoAttachment> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -179,7 +179,7 @@ export async function _listDeserialize(
     throw error;
   }
 
-  return pageTodoAttachmentDeserializer(result.body);
+  return _pageTodoAttachmentDeserializer(result.body);
 }
 
 export function list(
