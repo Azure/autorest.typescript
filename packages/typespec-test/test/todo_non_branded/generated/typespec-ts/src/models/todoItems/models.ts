@@ -51,21 +51,6 @@ export function _listPetsResponseDeserializer(item: any): _ListPetsResponse {
   };
 }
 
-/** model interface _ListPetStoresResponse */
-export interface _ListPetStoresResponse {
-  petStores: TodoItem[];
-  continuationToken: string;
-}
-
-export function _listPetStoresResponseDeserializer(
-  item: any,
-): _ListPetStoresResponse {
-  return {
-    petStores: todoItemArrayDeserializer(item["petStores"]),
-    continuationToken: item["continuationToken"],
-  };
-}
-
 /** model interface InvalidTodoItem */
 export interface InvalidTodoItem extends ApiError {}
 

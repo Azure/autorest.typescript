@@ -139,10 +139,28 @@
     "/items/listPetsContinuationToken": {
       "post": {
         "operationId": "TodoItems_listPetStores",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "continuationToken",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "explode": false
+          }
+        ],
         "responses": {
           "200": {
             "description": "The request has succeeded.",
+            "headers": {
+              "continuation-token": {
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -153,14 +171,10 @@
                       "items": {
                         "$ref": "#/components/schemas/TodoItem"
                       }
-                    },
-                    "continuationToken": {
-                      "type": "string"
                     }
                   },
                   "required": [
-                    "petStores",
-                    "continuationToken"
+                    "petStores"
                   ]
                 }
               }
@@ -175,9 +189,6 @@
                 "type": "object",
                 "properties": {
                   "zipCode": {
-                    "type": "string"
-                  },
-                  "continuationToken": {
                     "type": "string"
                   }
                 },

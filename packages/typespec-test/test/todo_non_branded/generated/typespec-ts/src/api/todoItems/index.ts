@@ -15,7 +15,6 @@ import {
   _TodoPage,
   _todoPageDeserializer,
   _listPetsResponseDeserializer,
-  _listPetStoresResponseDeserializer,
   invalidTodoItemDeserializer,
   notFoundErrorResponseDeserializer,
   TodoItemPatch,
@@ -27,6 +26,7 @@ import {
   TodoLabels,
   standard4XXResponseDeserializer,
   standard5XXResponseDeserializer,
+  _listPetStoresResponseDeserializer,
   todoAttachmentArraySerializer,
   _createJsonResponseDeserializer,
   ToDoItemMultipartRequest,
@@ -376,7 +376,8 @@ export function _listPetStoresSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      body: { zipCode: zipCode, continuationToken: options?.continuationToken },
+      queryParameters: { continuationToken: options?.continuationToken },
+      body: { zipCode: zipCode },
     });
 }
 
@@ -384,7 +385,6 @@ export async function _listPetStoresDeserialize(
   result: PathUncheckedResponse,
 ): Promise<{
   petStores: TodoItem[];
-  continuationToken: string;
 }> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {

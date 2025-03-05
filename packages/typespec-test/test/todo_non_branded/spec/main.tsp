@@ -258,9 +258,9 @@ namespace TodoItems {
   };
   
   @route("listPetsContinuationToken")
-  @list op listPetStores(zipCode: string, @continuationToken continuationToken?: string): {
+  @list op listPetStores(zipCode: string, @query @continuationToken continuationToken?: string): {
     @pageItems petStores: TodoItem[];
-    @continuationToken continuationToken: string;
+    @continuationToken  @header  continuationToken: string;
   };
 
   @sharedRoute
