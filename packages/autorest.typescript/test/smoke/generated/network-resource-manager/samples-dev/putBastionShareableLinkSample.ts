@@ -42,7 +42,7 @@ async function createBastionShareableLinksForTheRequestVMS(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.beginListPutBastionShareableLinkAndWait(
+  for await (const item of client.beginListPutBastionShareableLinkAndWait(
     resourceGroupName,
     bastionHostName,
     bslRequest,

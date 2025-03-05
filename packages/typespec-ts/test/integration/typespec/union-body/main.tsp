@@ -23,7 +23,7 @@ model ReturnResponse {
   @body body: RequestRegisterCC | RequestRegisterVA
 }
 
-@service({})
+@service(#{})
 @route("/")
 namespace NicepayPlatform {
   @post

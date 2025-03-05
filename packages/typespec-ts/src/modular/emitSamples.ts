@@ -192,7 +192,7 @@ function emitMethodSamples(
     if (isPaging) {
       exampleFunctionBody.push(`const resArray = new Array();`);
       exampleFunctionBody.push(
-        `for await (let item of ${methodCall}) { resArray.push(item); }`
+        `for await (const item of ${methodCall}) { resArray.push(item); }`
       );
       exampleFunctionBody.push(`console.log(resArray);`);
     } else if (method.response.type === undefined) {

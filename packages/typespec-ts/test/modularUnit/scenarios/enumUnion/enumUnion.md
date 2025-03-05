@@ -6,7 +6,7 @@
 import "@typespec/http";
 import "@typespec/rest";
 
-@service({
+@service(#{
     title: "Widget Service",
 })
 namespace DemoService;
@@ -101,7 +101,7 @@ export async function get(
 import "@typespec/http";
 import "@typespec/rest";
 
-@service({
+@service(#{
     title: "Widget Service",
 })
 namespace DemoService;
@@ -147,7 +147,7 @@ export type SchemaContentTypeValues =
 import "@typespec/http";
 import "@typespec/rest";
 
-@service({
+@service(#{
     title: "Widget Service",
 })
 namespace DemoService;
@@ -190,7 +190,7 @@ export type SchemaContentTypeValues =
  import "@typespec/http";
 import "@typespec/rest";
 
-@service({
+@service(#{
     title: "Widget Service",
 })
 namespace DemoService;
@@ -252,7 +252,7 @@ export type JsonContentType =
 import "@typespec/http";
 import "@typespec/rest";
 
-@service({
+@service(#{
     title: "Widget Service",
 })
 namespace DemoService;
@@ -314,7 +314,7 @@ export type JsonContentType =
 import "@typespec/http";
 import "@typespec/rest";
 
-@service({
+@service(#{
     title: "Widget Service",
 })
 namespace DemoService;
@@ -357,7 +357,7 @@ export type SchemaContentTypeValues =
 import "@typespec/http";
 import "@typespec/rest";
 
-@service({
+@service(#{
     title: "Widget Service",
 })
 namespace DemoService;
@@ -419,7 +419,7 @@ export type JsonContentType =
 import "@typespec/http";
 import "@typespec/rest";
 
-@service({
+@service(#{
     title: "Widget Service",
 })
 namespace DemoService;
@@ -481,7 +481,7 @@ export type JsonContentType =
 import "@typespec/http";
 import "@typespec/rest";
 
-@service({
+@service(#{
     title: "Widget Service",
 })
 namespace DemoService;
@@ -568,7 +568,7 @@ export async function get(
 import "@typespec/http";
 import "@typespec/rest";
 
-@service({
+@service(#{
     title: "Widget Service",
 })
 namespace DemoService;
@@ -657,7 +657,7 @@ import "@typespec/http";
 import "@typespec/rest";
 import "@azure-tools/typespec-azure-core";
 
-@service({
+@service(#{
     title: "Widget Service",
 })
 namespace DemoService;
@@ -707,7 +707,7 @@ import "@typespec/http";
 import "@typespec/rest";
 import "@azure-tools/typespec-azure-core";
 
-@service({
+@service(#{
     title: "Widget Service",
 })
 namespace DemoService;
@@ -756,7 +756,7 @@ import "@typespec/http";
 import "@typespec/rest";
 import "@azure-tools/typespec-azure-core";
 
-@service({
+@service(#{
   title: "Widget Service",
 })
 namespace DemoService;
@@ -802,7 +802,7 @@ import "@typespec/http";
 import "@typespec/rest";
 import "@azure-tools/typespec-azure-core";
 
-@service({
+@service(#{
   title: "Widget Service",
 })
 namespace DemoService;

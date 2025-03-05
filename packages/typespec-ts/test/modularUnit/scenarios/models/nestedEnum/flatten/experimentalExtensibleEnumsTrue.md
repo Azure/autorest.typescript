@@ -15,7 +15,7 @@ using Azure.ResourceManager;
 
 /** Microsoft.Contoso Resource Provider management API. */
 @armProviderNamespace
-@service({
+@service(#{
   title: "Microsoft.Contoso management service",
 })
 @versioned(Microsoft.Contoso.Versions)
@@ -92,7 +92,7 @@ export enum KnownProvisioningState {
   /** The resource is being deleted */
   Deleting = "Deleting",
   /** The resource create request has been accepted */
-  Accepted = "Accepted",
+  Accepted = "Accepted"
 }
 
 /**

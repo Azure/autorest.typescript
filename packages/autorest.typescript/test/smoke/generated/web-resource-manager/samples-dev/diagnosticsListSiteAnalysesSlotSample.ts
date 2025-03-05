@@ -29,7 +29,7 @@ async function listAppAnalyses(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.diagnostics.listSiteAnalysesSlot(
+  for await (const item of client.diagnostics.listSiteAnalysesSlot(
     resourceGroupName,
     siteName,
     diagnosticCategory,
@@ -57,7 +57,7 @@ async function listAppSlotAnalyses(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.diagnostics.listSiteAnalysesSlot(
+  for await (const item of client.diagnostics.listSiteAnalysesSlot(
     resourceGroupName,
     siteName,
     diagnosticCategory,

@@ -19,7 +19,7 @@ using Azure.Core;
 using Azure.Core.Traits;
 
 @useAuth(AadOauth2Auth<["https://contoso.azure.com/.default"]>)
-@service({
+@service(#{
   title: "Contoso Widget Manager",
 })
 @versioned(Contoso.WidgetManager.Versions)
@@ -37,7 +37,7 @@ enum Versions {
 model WidgetSuite {
   @key("widgetName")
   @doc("The widget name.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   name: string;
 
   @doc("The ID of the widget's manufacturer.")
@@ -147,10 +147,10 @@ async function widgetsListWidgets(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new WidgetManagerClient(credential);
   const resArray = new Array();
-  for await (let item of client.widgets.listWidgets({
+  for await (const item of client.widgets.listWidgets({
     top: 8,
     skip: 15,
-    maxpagesize: 27,
+    maxpagesize: 27
   })) {
     resArray.push(item);
   }
@@ -201,7 +201,7 @@ async function widgetsCreateOrUpdateWidget(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new WidgetManagerClient(credential);
   const result = await client.widgets.createOrUpdateWidget("name1", {
-    manufacturerId: "manufacturer id1",
+    manufacturerId: "manufacturer id1"
   });
   console.log(result);
 }

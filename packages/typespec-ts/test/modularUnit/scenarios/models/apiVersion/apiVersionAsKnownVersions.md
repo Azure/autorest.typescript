@@ -11,7 +11,7 @@ import "@typespec/versioning";
 
 using TypeSpec.Versioning;
 
-@service({
+@service(#{
   title: "Microsoft.Contoso management service",
 })
 @versioned(Microsoft.Contoso.Versions)

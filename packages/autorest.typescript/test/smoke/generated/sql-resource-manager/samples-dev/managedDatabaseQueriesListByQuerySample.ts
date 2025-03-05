@@ -31,7 +31,7 @@ async function obtainQueryExecutionStatistics(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.managedDatabaseQueries.listByQuery(
+  for await (const item of client.managedDatabaseQueries.listByQuery(
     resourceGroupName,
     managedInstanceName,
     databaseName,
@@ -66,7 +66,7 @@ async function obtainQueryExecutionStatisticsExampleWithAllRequestParameters(): 
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.managedDatabaseQueries.listByQuery(
+  for await (const item of client.managedDatabaseQueries.listByQuery(
     resourceGroupName,
     managedInstanceName,
     databaseName,
@@ -96,7 +96,7 @@ async function obtainQueryExecutionStatisticsMinimalExampleWithOnlyMandatoryRequ
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.managedDatabaseQueries.listByQuery(
+  for await (const item of client.managedDatabaseQueries.listByQuery(
     resourceGroupName,
     managedInstanceName,
     databaseName,
