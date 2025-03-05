@@ -2140,7 +2140,7 @@ describe("Input/output model type", () => {
     it("should handle @visibility(read) -> readonly ", async () => {
       const tspDefinition = `
       model SimpleModel {
-        @visibility("read")
+        @visibility(Lifecycle.Read)
         prop: int32;
         prop1: int32;
       }
@@ -3290,7 +3290,7 @@ describe("Input/output model type", () => {
       using Azure.Core.Traits;
       using Azure.Core.Foundations;
       
-      @service({
+      @service(#{
         title: "Defender EASM",
       })
       @doc("Contoso Resource Provider management API.")
@@ -3341,32 +3341,32 @@ describe("Input/output model type", () => {
       
         @doc("The caller provided unique name for the resource.")
         @key("dataConnectionName")
-        @visibility("read")
+        @visibility(Lifecycle.Read)
         name: string;
       
         @doc("The name that can be used for display purposes.")
         displayName?: string;
       
         @doc("The date the data connection was created.")
-        @visibility("read")
+        @visibility(Lifecycle.Read)
         createdDate?: utcDateTime;
       
         @doc("The day to update the data connection on.")
         frequencyOffset?: int32;
       
         @doc("The date the data connection was last updated.")
-        @visibility("read")
+        @visibility(Lifecycle.Read)
         updatedDate?: utcDateTime;
       
         @doc("The date the data connection was last updated by user.")
-        @visibility("read")
+        @visibility(Lifecycle.Read)
         userUpdatedAt?: utcDateTime;
       
         @doc("An indicator of whether the data connection is active.")
         active?: boolean;
       
         @doc("A message that specifies details about data connection if inactive.")
-        @visibility("read")
+        @visibility(Lifecycle.Read)
         inactiveMessage?: string;
       }
       
@@ -3480,7 +3480,7 @@ describe("Input/output model type", () => {
       using Azure.Core.Traits;
       using Azure.Core.Foundations;
       
-      @service({
+      @service(#{
         title: "Defender EASM",
       })
       @doc("Contoso Resource Provider management API.")
@@ -3531,32 +3531,32 @@ describe("Input/output model type", () => {
       
         @doc("The caller provided unique name for the resource.")
         @key("dataConnectionName")
-        @visibility("read")
+        @visibility(Lifecycle.Read)
         name: string;
       
         @doc("The name that can be used for display purposes.")
         displayName?: string;
       
         @doc("The date the data connection was created.")
-        @visibility("read")
+        @visibility(Lifecycle.Read)
         createdDate?: utcDateTime;
       
         @doc("The day to update the data connection on.")
         frequencyOffset?: int32;
       
         @doc("The date the data connection was last updated.")
-        @visibility("read")
+        @visibility(Lifecycle.Read)
         updatedDate?: utcDateTime;
       
         @doc("The date the data connection was last updated by user.")
-        @visibility("read")
+        @visibility(Lifecycle.Read)
         userUpdatedAt?: utcDateTime;
       
         @doc("An indicator of whether the data connection is active.")
         active?: boolean;
       
         @doc("A message that specifies details about data connection if inactive.")
-        @visibility("read")
+        @visibility(Lifecycle.Read)
         inactiveMessage?: string;
       }
       
@@ -3701,7 +3701,7 @@ describe("Input/output model type", () => {
       import "@typespec/http";
       import "@typespec/rest";
 
-      @service({
+      @service(#{
         title: "Widget Service",
       })
       namespace DemoService;
@@ -3753,7 +3753,7 @@ describe("Input/output model type", () => {
       using TypeSpec.Http;
       using TypeSpec.Rest;
 
-      @service({
+      @service(#{
         title: "Widget Service",
       })
       namespace DemoService;
@@ -3871,7 +3871,7 @@ describe("Input/output model type", () => {
       using TypeSpec.Http;
       using TypeSpec.Rest;
 
-      @service({
+      @service(#{
         title: "Widget Service",
       })
       namespace DemoService;
@@ -4005,7 +4005,7 @@ describe("Input/output model type", () => {
       import "@typespec/http";
       import "@typespec/rest";
 
-      @service({
+      @service(#{
         title: "Widget Service",
       })
       namespace DemoService;
@@ -4089,7 +4089,7 @@ describe("Input/output model type", () => {
       import "@typespec/http";
       import "@typespec/rest";
 
-      @service({
+      @service(#{
         title: "Widget Service",
       })
       namespace DemoService;
@@ -4133,7 +4133,7 @@ describe("Input/output model type", () => {
       import "@typespec/rest";
       import "@azure-tools/typespec-azure-core";
 
-      @service({
+      @service(#{
         title: "Widget Service",
       })
       namespace DemoService;
@@ -4210,7 +4210,7 @@ describe("Input/output model type", () => {
       import "@typespec/rest";
       import "@azure-tools/typespec-azure-core";
 
-      @service({
+      @service(#{
         title: "Widget Service",
       })
       namespace DemoService;
@@ -4287,7 +4287,7 @@ describe("Input/output model type", () => {
         import "@typespec/http";
         import "@typespec/rest";
   
-        @service({
+        @service(#{
           title: "Widget Service",
         })
         namespace DemoService;
