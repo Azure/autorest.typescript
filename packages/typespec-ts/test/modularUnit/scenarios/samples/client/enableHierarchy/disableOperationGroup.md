@@ -37,8 +37,8 @@ op opTopLevel(@body body: A):  { @body body: {}};
 This is the tspconfig.yaml.
 
 ```yaml
-hierarchyClient: true
-enableOperationGroup: false
+hierarchy-client: true
+enable-operation-group: false
 ```
 
 ## Provided examples and generated samples

@@ -13,7 +13,7 @@ import "@typespec/versioning";
 using TypeSpec.Http;
 using TypeSpec.Rest;
 using TypeSpec.Versioning;
-@service({
+@service(#{
   title: "Demo Service",
 })
 @versioned(Versions)
@@ -31,7 +31,7 @@ op read(name: string):  { @body body: {}};
 The config would be like:
 
 ```yaml
-typespecTitleMap:
+typespec-title-map:
   DemoServiceClient: TestServiceClient
 ```
 

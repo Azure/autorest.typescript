@@ -25,7 +25,7 @@ using Azure.Core.Traits;
     client: ClientType = ClientType.Default,
   }
 )
-@service({
+@service(#{
   title: "MultiClient"
 })
 @versioned(Client.Structure.Service.Versions)
@@ -73,7 +73,7 @@ export interface ServiceClientOptionalParams extends ClientOptions {
 
 export function createService(
   endpointParam: string,
-  options: ServiceClientOptionalParams = {},
+  options: ServiceClientOptionalParams = {}
 ): ServiceContext {
   const clientParam = options.clientParam ?? "default";
   const endpointUrl =
@@ -87,13 +87,13 @@ export function createService(
   const { apiVersion: _, ...updatedOptions } = {
     ...options,
     userAgentOptions: { userAgentPrefix },
-    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
+    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info }
   };
   const clientContext = getClient(endpointUrl, undefined, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   if (options.apiVersion) {
     logger.warning(
-      "This client does not support client api-version, please change it at the operation level",
+      "This client does not support client api-version, please change it at the operation level"
     );
   }
   return clientContext;
@@ -127,7 +127,7 @@ using Azure.Core.Traits;
     client: ClientType = ClientType.Default,
   }
 )
-@service({
+@service(#{
   title: "MultiClient"
 })
 @versioned(Client.Structure.Service.Versions)
@@ -174,7 +174,7 @@ export interface ServiceClientOptionalParams extends ClientOptions {
 }
 
 export function createService(
-  options: ServiceClientOptionalParams = {},
+  options: ServiceClientOptionalParams = {}
 ): ServiceContext {
   const endpointParam = options.endpointParam ?? "http://localhost:3000";
   const clientParam = options.clientParam ?? "default";
@@ -189,13 +189,13 @@ export function createService(
   const { apiVersion: _, ...updatedOptions } = {
     ...options,
     userAgentOptions: { userAgentPrefix },
-    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
+    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info }
   };
   const clientContext = getClient(endpointUrl, undefined, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   if (options.apiVersion) {
     logger.warning(
-      "This client does not support client api-version, please change it at the operation level",
+      "This client does not support client api-version, please change it at the operation level"
     );
   }
   return clientContext;
@@ -229,7 +229,7 @@ using Azure.Core.Traits;
     client: ClientType = ClientType.Default,
   }
 )
-@service({
+@service(#{
   title: "MultiClient"
 })
 @versioned(Client.Structure.Service.Versions)
@@ -256,7 +256,7 @@ op one(): void;
 The config would be like:
 
 ```yaml
-typespecTitleMap:
+typespec-title-map:
   ServiceClient: TestServiceClient
 withRawContent: true
 ignoreWeirdLine: false
@@ -279,7 +279,7 @@ export interface TestServiceClientOptionalParams extends ClientOptions {
 
 export function createTestService(
   endpointParam: string,
-  options: TestServiceClientOptionalParams = {},
+  options: TestServiceClientOptionalParams = {}
 ): TestServiceContext {
   const clientParam = options.clientParam ?? "default";
   const endpointUrl =
@@ -293,13 +293,13 @@ export function createTestService(
   const { apiVersion: _, ...updatedOptions } = {
     ...options,
     userAgentOptions: { userAgentPrefix },
-    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
+    loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info }
   };
   const clientContext = getClient(endpointUrl, undefined, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   if (options.apiVersion) {
     logger.warning(
-      "This client does not support client api-version, please change it at the operation level",
+      "This client does not support client api-version, please change it at the operation level"
     );
   }
   return clientContext;

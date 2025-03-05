@@ -30,8 +30,8 @@ interface D {
 This is the tspconfig.yaml.
 
 ```yaml
-hierarchyClient: false
-enableOperationGroup: false
+hierarchy-client: false
+enable-operation-group: false
 ```
 
 ## Provide examples and generated samples

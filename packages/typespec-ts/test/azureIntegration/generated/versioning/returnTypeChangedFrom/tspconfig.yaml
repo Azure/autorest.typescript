@@ -2,14 +2,14 @@ emit:
   - "@azure-tools/typespec-ts"
 options:
   "@azure-tools/typespec-ts":
-    "emitter-output-dir": "{project-root}"
-    generateTest: false
-    addCredentials: false
+    emitter-output-dir: "{project-root}"
+    generate-test: false
+    add-credentials: false
     flavor: azure
-    azureSdkForJs: false
-    isTypeSpecTest: true
-    generateSample: true
+    azure-sdk-for-js: false
+    is-typespec-test: true
+    generate-sample: true
     title: VersioningReturnTypeChangedFromClient
-    packageDetails:
+    package-details:
       name: "@msinternal/versioning-returnTypeChangedFrom"
       description: "Versioning ReturnTypeChangedFrom Service"
