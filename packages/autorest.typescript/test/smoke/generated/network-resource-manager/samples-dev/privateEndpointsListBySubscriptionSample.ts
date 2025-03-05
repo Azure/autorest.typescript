@@ -23,7 +23,7 @@ async function listAllPrivateEndpoints(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.privateEndpoints.listBySubscription()) {
+  for await (const item of client.privateEndpoints.listBySubscription()) {
     resArray.push(item);
   }
   console.log(resArray);

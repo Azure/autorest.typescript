@@ -28,7 +28,7 @@ async function listSyncGroupsUnderAGivenDatabase(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.syncGroups.listByDatabase(
+  for await (const item of client.syncGroups.listByDatabase(
     resourceGroupName,
     serverName,
     databaseName,

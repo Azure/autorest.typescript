@@ -25,7 +25,7 @@ async function listVirtualClustersByResourceGroup(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.virtualClusters.listByResourceGroup(
+  for await (const item of client.virtualClusters.listByResourceGroup(
     resourceGroupName,
   )) {
     resArray.push(item);

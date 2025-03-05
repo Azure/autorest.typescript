@@ -26,7 +26,7 @@ async function listSecretsInTheVault(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new KeyVaultManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.secrets.list(resourceGroupName, vaultName)) {
+  for await (const item of client.secrets.list(resourceGroupName, vaultName)) {
     resArray.push(item);
   }
   console.log(resArray);
