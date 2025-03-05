@@ -1,0 +1,17 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    "emitter-output-dir": "{project-root}"
+    enableModelNamespace: true
+    generateMetadata: true
+    generateTest: false
+    addCredentials: false
+    flavor: azure
+    azureSdkForJs: false
+    isTypeSpecTest: true
+    isModularLibrary: true
+    packageDetails:
+      name: "@msinternal/client-namespace"
+      description: "Client NameSpace Test Service"
+      version: "1.0.0"
