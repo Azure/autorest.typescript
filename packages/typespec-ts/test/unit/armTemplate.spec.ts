@@ -12,7 +12,7 @@ describe("ARM template", () => {
       using TypeSpec.Versioning;
   
       @armProviderNamespace
-      @service({
+      @service(#{
         title: "App Compliance Automation Tool for Microsoft 365",
       })
       @versioned(Versions)

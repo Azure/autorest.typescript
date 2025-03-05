@@ -4,7 +4,7 @@ import "./routes.tsp";
 
 using TypeSpec.Rest;
 using TypeSpec.Http;
-@service({
+@service(#{
   title: "SharedRouteTest",
 })
 @server(
