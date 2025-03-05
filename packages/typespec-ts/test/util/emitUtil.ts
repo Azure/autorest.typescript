@@ -37,6 +37,7 @@ import { useBinder } from "../../src/framework/hooks/binder.js";
 import { useContext } from "../../src/contextManager.js";
 import { emitSamples } from "../../src/modular/emitSamples.js";
 import { removeUnusedImports, renameClientName } from "../../src/index.js";
+import { assert } from "node:console";
 
 export async function emitPageHelperFromTypeSpec(
   tspContent: string,
@@ -441,8 +442,11 @@ export async function emitModularModelsFromTypeSpec(
         modularEmitterOptions
       );
       binder.resolveAllReferences("/");
-      removeUnusedImports(modelFile);
-      modelFile.fixUnusedIdentifiers();
+      assert(modelFile);
+      if (modelFile.length > 0) {
+        removeUnusedImports(modelFile[0]!);
+        modelFile[0]!.fixUnusedIdentifiers();
+      }
     } else {
       modelFile = emitTypes(dpgContext, { sourceRoot: "" });
       binder.resolveAllReferences("/");
