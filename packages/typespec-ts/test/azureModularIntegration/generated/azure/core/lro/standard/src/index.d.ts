@@ -24,7 +24,7 @@ export declare interface ExportOptionalParams extends OperationOptions {
 }
 
 export declare enum KnownVersions {
-    v2022_12_01_preview = "2022-12-01-preview"
+    V20221201Preview = "2022-12-01-preview"
 }
 
 export declare function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: StandardClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
