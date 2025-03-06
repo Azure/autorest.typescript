@@ -1194,7 +1194,7 @@ export enum KnownImageSize {
    * A taller image size of 1792x1024 pixels.
    * Only supported with dall-e-3 models.
    */
-  size1024x1792 = "1024x1792"
+  Size1024X1792 = "1024x1792"
 }
 ```
 
