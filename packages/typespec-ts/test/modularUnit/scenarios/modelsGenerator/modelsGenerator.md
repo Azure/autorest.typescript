@@ -2289,7 +2289,7 @@ export function aSerializer(item: A): any {
 }
 ```
 
-# should generate readonly for @visibility('read')
+# should generate readonly for @visibility(Lifecycle.Read)
 
 ## TypeSpec
 
@@ -2314,7 +2314,7 @@ export function aSerializer(item: A): any {
 }
 ```
 
-# should not generate readonly for @visibility('read', 'create')
+# should not generate readonly for @visibility(Lifecycle.Read, Lifecycle.Create)
 
 ## TypeSpec
 

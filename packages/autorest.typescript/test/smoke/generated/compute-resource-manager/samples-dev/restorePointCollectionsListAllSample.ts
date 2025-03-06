@@ -23,7 +23,7 @@ async function getsTheListOfRestorePointCollectionsInASubscription(): Promise<vo
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.restorePointCollections.listAll()) {
+  for await (const item of client.restorePointCollections.listAll()) {
     resArray.push(item);
   }
   console.log(resArray);

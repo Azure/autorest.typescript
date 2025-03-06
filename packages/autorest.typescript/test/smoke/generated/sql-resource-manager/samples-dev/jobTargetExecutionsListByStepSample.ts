@@ -30,7 +30,7 @@ async function listJobStepTargetExecutions(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.jobTargetExecutions.listByStep(
+  for await (const item of client.jobTargetExecutions.listByStep(
     resourceGroupName,
     serverName,
     jobAgentName,

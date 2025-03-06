@@ -3,8 +3,8 @@
 
 export { FooClient } from "./fooClient.js";
 export { A } from "./models/index.js";
-export { Ba } from "./models/b/index.js";
-export { Bea } from "./models/b/e/index.js";
+export { BA } from "./models/b/index.js";
+export { BEA } from "./models/b/e/index.js";
 export {
   FooClientOptionalParams,
   DOp1OptionalParams,

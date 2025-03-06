@@ -2973,7 +2973,7 @@ packages:
     resolution: {integrity: sha512-tBK0gJNonuxLL9A/ob546UR2AtJuv0yzZfV1tn/afwB+P+BJKuYUGNTuP8k11uqo3BGlEk1vLOYuhy8JUS33sw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
-      '@typespec/compiler': ~0.65.0
+      '@typespec/compiler': ~0.66.0
     dependencies:
       '@typespec/compiler': 0.66.0-dev.31_@types+node@18.18.0
 

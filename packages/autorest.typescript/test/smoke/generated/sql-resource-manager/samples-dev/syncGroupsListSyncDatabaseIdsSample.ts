@@ -25,7 +25,9 @@ async function getASyncDatabaseId(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.syncGroups.listSyncDatabaseIds(locationName)) {
+  for await (const item of client.syncGroups.listSyncDatabaseIds(
+    locationName,
+  )) {
     resArray.push(item);
   }
   console.log(resArray);

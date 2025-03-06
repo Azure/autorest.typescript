@@ -258,7 +258,7 @@ export function rejectResultDeserializer(item: any): RejectResult {
 
 /** Known values of {@link ServiceApiVersions} that the service accepts. */
 export enum KnownServiceApiVersions {
-  v2023_06_01_preview = "2023-06-01-preview",
+  V20230601Preview = "2023-06-01-preview",
 }
 
 export function cloudEventArraySerializer(result: Array<CloudEvent>): any[] {

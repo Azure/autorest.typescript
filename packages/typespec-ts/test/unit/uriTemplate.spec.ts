@@ -71,7 +71,6 @@ describe("Client definition generation", () => {
       tsp
     );
     assert.ok(parameters);
-    console.log(parameters?.content);
     await assertEqualContent(
       parameters?.content!,
       `

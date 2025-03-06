@@ -15,6 +15,7 @@
   "license": "MIT",
   "files": [
     "dist/",
+    "!dist/**/*.d.*ts.map",
     "dist-esm/src/",
     "types/dpg-customization-rest.d.ts",
     "README.md",
@@ -35,7 +36,7 @@
         "prefix": "package-version"
       },
       {
-        "path": "src/dPGCustomizationClient.ts",
+        "path": "src/dpgCustomizationClient.ts",
         "prefix": "userAgentInfo"
       }
     ]

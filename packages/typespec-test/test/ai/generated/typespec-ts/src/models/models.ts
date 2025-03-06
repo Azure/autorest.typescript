@@ -808,5 +808,5 @@ export type _ =
 /** Azure AI API versions */
 export enum KnownVersions {
   /** Azure AI API version 2024-07-01-preview. */
-  "2024-07-01-preview" = "2024-07-01-preview",
+  _20240701Preview = "2024-07-01-preview",
 }

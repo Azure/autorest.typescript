@@ -24,7 +24,9 @@ async function listAllVirtualMachineImagesInAResourceGroup(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.images.listByResourceGroup(resourceGroupName)) {
+  for await (const item of client.images.listByResourceGroup(
+    resourceGroupName,
+  )) {
     resArray.push(item);
   }
   console.log(resArray);
