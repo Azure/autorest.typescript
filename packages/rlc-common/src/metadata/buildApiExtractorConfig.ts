@@ -9,12 +9,11 @@ export function buildApiExtractorConfig(model: RLCModel) {
     model.options || {};
   const project = new Project();
 
-  let mainEntryPointFilePath = "./dist/esm/index.d.ts";
+  let mainEntryPointFilePath = "dist/esm/index.d.ts";
 
   if (model.options?.moduleKind === "cjs") {
-    mainEntryPointFilePath = `./types${
-      generateTest || isModularLibrary ? "/src" : ""
-    }/index.d.ts`;
+    mainEntryPointFilePath = `./types${generateTest || isModularLibrary ? "/src" : ""
+      }/index.d.ts`;
   }
 
   const config = {
@@ -31,9 +30,8 @@ export function buildApiExtractorConfig(model: RLCModel) {
     dtsRollup: {
       enabled: true,
       untrimmedFilePath: "",
-      publicTrimmedFilePath: `./types/${
-        packageDetails?.nameWithoutScope ?? packageDetails?.name
-      }.d.ts`
+      publicTrimmedFilePath: `dist/${packageDetails?.nameWithoutScope ?? packageDetails?.name
+        }.d.ts`
     },
     messages: {
       tsdocMessageReporting: {
