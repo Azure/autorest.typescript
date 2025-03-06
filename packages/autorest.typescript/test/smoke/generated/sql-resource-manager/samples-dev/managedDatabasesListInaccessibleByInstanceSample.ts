@@ -26,7 +26,7 @@ async function listInaccessibleManagedDatabasesByManagedInstances(): Promise<voi
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.managedDatabases.listInaccessibleByInstance(
+  for await (const item of client.managedDatabases.listInaccessibleByInstance(
     resourceGroupName,
     managedInstanceName,
   )) {

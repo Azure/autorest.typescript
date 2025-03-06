@@ -21,7 +21,7 @@ using Azure.ResourceManager;
 
 /** Microsoft.Contoso Resource Provider management API. */
 @armProviderNamespace
-@service({
+@service(#{
   title: "Microsoft.Contoso management service",
 })
 @versioned(Microsoft.Contoso.Versions)
@@ -56,7 +56,7 @@ model EmployeeProperties {
   profile?: bytes;
 
   /** The status of the last operation. */
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   provisioningState?: ProvisioningState;
 }
 
@@ -131,7 +131,7 @@ async function operationsList(): Promise<void> {
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
   const client = new ContosoClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.list()) {
+  for await (const item of client.list()) {
     resArray.push(item);
   }
 

@@ -19,7 +19,7 @@ describe("NameAndEncodedName Client", () => {
   });
 
   it("should work with property language", async () => {
-    const result = await client.language({ tSName: true });
+    const result = await client.language({ tsName: true });
     assert.isUndefined(result);
   });
 

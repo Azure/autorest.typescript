@@ -247,5 +247,5 @@ export function chatChoiceRecordDeserializer(item: any): ChatChoiceRecord {
 
 /** Known values of {@link APIVersion} that the service accepts. */
 export enum KnownAPIVersion {
-  v20231001Preview = "2023-10-01-preview",
+  V20231001Preview = "2023-10-01-preview",
 }

@@ -25,7 +25,7 @@ async function loadBalancerWithBackendAddressPoolContainingBackendAddresses(): P
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.loadBalancerBackendAddressPools.list(
+  for await (const item of client.loadBalancerBackendAddressPools.list(
     resourceGroupName,
     loadBalancerName,
   )) {
@@ -47,7 +47,7 @@ async function loadBalancerBackendAddressPoolList(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.loadBalancerBackendAddressPools.list(
+  for await (const item of client.loadBalancerBackendAddressPools.list(
     resourceGroupName,
     loadBalancerName,
   )) {

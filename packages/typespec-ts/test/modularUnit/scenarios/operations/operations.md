@@ -113,6 +113,7 @@ op read(
     @header nullableOptionalHeader?: string | null,
     @header bytesHeader: bytes,
     @header @encode(BytesKnownEncoding.base64) value: bytes,
+    #suppress "deprecated" "Legacy test"
     @header({
     format: "csv",
     })

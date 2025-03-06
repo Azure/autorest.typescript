@@ -25,7 +25,7 @@ async function listsAllPrivateLinkResourcesOnApplicationGateway(): Promise<void>
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.applicationGatewayPrivateLinkResources.list(
+  for await (const item of client.applicationGatewayPrivateLinkResources.list(
     resourceGroupName,
     applicationGatewayName,
   )) {

@@ -40,18 +40,26 @@ export declare interface ServerDrivenPaginationContinuationTokenOperations {
 
 export declare interface ServerDrivenPaginationContinuationTokenRequestHeaderResponseBodyOptionalParams extends OperationOptions {
     token?: string;
+    foo?: string;
+    bar?: string;
 }
 
 export declare interface ServerDrivenPaginationContinuationTokenRequestHeaderResponseHeaderOptionalParams extends OperationOptions {
     token?: string;
+    foo?: string;
+    bar?: string;
 }
 
 export declare interface ServerDrivenPaginationContinuationTokenRequestQueryResponseBodyOptionalParams extends OperationOptions {
     token?: string;
+    foo?: string;
+    bar?: string;
 }
 
 export declare interface ServerDrivenPaginationContinuationTokenRequestQueryResponseHeaderOptionalParams extends OperationOptions {
     token?: string;
+    foo?: string;
+    bar?: string;
 }
 
 export declare interface ServerDrivenPaginationLinkOptionalParams extends OperationOptions {

@@ -1,13 +1,13 @@
-import {describe, it, beforeAll, assert} from "vitest";
+import { describe, it, beforeAll, assert } from "vitest";
 import { createSdkContextFromTypespec } from "../test-hots.js";
 import { SdkContext, SdkHttpOperation, SdkPackage, SdkUnionType, namespace as tcgcNamespace } from "@azure-tools/typespec-client-generator-core";
-import {provideSdkTypes, useSdkTypes} from "../../../src/framework/hooks/sdkTypes.js"
-import {getNamespaceFullName, isGlobalNamespace, isStdNamespace, Namespace, navigateProgram} from "@typespec/compiler"
-import {namespace as httpNamespace} from "@typespec/http"
+import { provideSdkTypes, useSdkTypes } from "../../../src/framework/hooks/sdkTypes.js"
+import { getNamespaceFullName, isGlobalNamespace, isStdNamespace, Namespace, navigateProgram } from "@typespec/compiler"
+import { namespace as httpNamespace } from "@typespec/http"
 import { provideContext } from "../../../src/contextManager.js";
 
 describe("SdkTypes hook", () => {
-    
+
     let sdkPackage: SdkPackage<SdkHttpOperation>;
     let sdkContext: SdkContext;
     beforeAll(async () => {
@@ -16,13 +16,13 @@ describe("SdkTypes hook", () => {
                 D: "d"
             };
 
-            @service({
+            @service(#{
             title: "Widget Service",
             })
             namespace DemoService{
 
             model Widget {
-            @visibility("read", "update")
+            @visibility(Lifecycle.Read, Lifecycle.Update)
             @path
             id: string;
 
@@ -86,9 +86,9 @@ describe("SdkTypes hook", () => {
         `
         sdkContext = await createSdkContextFromTypespec(spec, {});
         provideSdkTypes(sdkContext);
-        provideContext("emitContext", {tcgcContext: sdkContext, compilerContext: sdkContext.emitContext as any})
-      });
-    
+        provideContext("emitContext", { tcgcContext: sdkContext, compilerContext: sdkContext.emitContext as any })
+    });
+
     it("should setup the SdkTypeContext", async () => {
         const getSdkType = useSdkTypes();
         assert.isDefined(getSdkType);
@@ -99,7 +99,7 @@ describe("SdkTypes hook", () => {
 
         navigateProgram(sdkContext.program, {
             operation(o) {
-                const sdkMethod =  getSdkType(o);
+                const sdkMethod = getSdkType(o);
                 assert.isDefined(sdkMethod, `Couldn't find sdkOperation for ${o.name}`);
             }
         })
@@ -111,11 +111,11 @@ describe("SdkTypes hook", () => {
         navigateProgram(sdkContext.program, {
             model(m) {
                 // Filtering out namespaces declared in other libraries such as @typespec/http
-                if(isIgnoredNamespace(m.namespace)) {
+                if (isIgnoredNamespace(m.namespace)) {
                     return;
-                 }
+                }
 
-                const sdkMethod =  getSdkType(m);
+                const sdkMethod = getSdkType(m);
                 assert.isDefined(sdkMethod, `Couldn't find sdk model for ${m.name}`);
             }
         })
@@ -127,20 +127,20 @@ describe("SdkTypes hook", () => {
         navigateProgram(sdkContext.program, {
             enum(e) {
                 // Filtering out namespaces declared in other libraries such as @typespec/http
-                if(isIgnoredNamespace(e.namespace)) {
-                   return;
+                if (isIgnoredNamespace(e.namespace)) {
+                    return;
                 }
 
-                const sdkMethod =  getSdkType(e);
+                const sdkMethod = getSdkType(e);
                 assert.isDefined(sdkMethod, `Couldn't find sdk model for ${e.name}`);
             },
             union(u) {
-                if(isIgnoredNamespace(u.namespace)) {
+                if (isIgnoredNamespace(u.namespace)) {
                     return;
-                 }
- 
-                 const sdkMethod =  getSdkType(u);
-                 assert.isDefined(sdkMethod, `Couldn't find sdk union for ${u.name}`);
+                }
+
+                const sdkMethod = getSdkType(u);
+                assert.isDefined(sdkMethod, `Couldn't find sdk union for ${u.name}`);
             }
         })
     })
@@ -148,13 +148,13 @@ describe("SdkTypes hook", () => {
 
 function isIgnoredNamespace(namespace: Namespace | undefined) {
     const externalNamespaces = [httpNamespace, tcgcNamespace]
-    if(!namespace) {
+    if (!namespace) {
         return true;
     }
 
-    if(namespace) {
+    if (namespace) {
         const nsName = getNamespaceFullName(namespace);
-        if(isStdNamespace(namespace) || externalNamespaces.includes(nsName)) {
+        if (isStdNamespace(namespace) || externalNamespaces.includes(nsName)) {
             return true;
         }
     }
