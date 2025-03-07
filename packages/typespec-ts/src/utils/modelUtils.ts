@@ -486,7 +486,7 @@ function isOasString(type: Type): boolean {
     return true;
   } else if (type.kind === "Union") {
     // A union where all variants are an OasString
-    return type.options.every((o) => isOasString(o));
+    return Array.from(type.variants.values()).every((o) => isOasString(o));
   } else if (type.kind === "UnionVariant") {
     // A union variant where the type is an OasString
     return isOasString(type.type);
@@ -497,7 +497,10 @@ function isOasString(type: Type): boolean {
 function isStringLiteral(type: Type): boolean {
   return (
     type.kind === "String" ||
-    (type.kind === "Union" && type.options.every((o) => o.kind === "String")) ||
+    (type.kind === "Union" &&
+      Array.from(type.variants.values()).every(
+        (o) => o.type.kind === "String"
+      )) ||
     (type.kind === "EnumMember" &&
       typeof (type.value ?? type.name) === "string") ||
     (type.kind === "UnionVariant" && type.type.kind === "String")
@@ -1566,7 +1569,7 @@ export function predictDefaultValue(
     return;
   }
   const program = dpgContext.program;
-  const specificDefault = param?.default;
+  const specificDefault = param?.defaultValue?.type;
   if (isLiteralValue(specificDefault)) {
     return specificDefault.value;
   }
