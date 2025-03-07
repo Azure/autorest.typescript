@@ -64,7 +64,7 @@ export function getModuleExports(
       "./models": "./src/models/index.ts"
     }
   };
-  if (!emitterOptions.options.azureArm) {
+  if (emitterOptions.options.hierarchyClient) {
     exports["exports"]["./api"] = "./src/api/index.ts";
   }
 

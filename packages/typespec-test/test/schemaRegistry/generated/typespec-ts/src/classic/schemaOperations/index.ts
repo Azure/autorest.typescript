@@ -9,6 +9,12 @@ import {
   listSchemaVersions,
   getSchemaById,
   listSchemaGroups,
+  SchemaOperationsRegisterSchemaOptionalParams,
+  SchemaOperationsGetSchemaIdByContentOptionalParams,
+  SchemaOperationsGetSchemaByVersionOptionalParams,
+  SchemaOperationsListSchemaVersionsOptionalParams,
+  SchemaOperationsGetSchemaByIdOptionalParams,
+  SchemaOperationsListSchemaGroupsOptionalParams,
 } from "../../api/schemaOperations/index.js";
 import {
   SchemaGroup,
@@ -16,14 +22,6 @@ import {
   SchemaContentTypeValues,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
-import {
-  SchemaOperationsRegisterSchemaOptionalParams,
-  SchemaOperationsGetSchemaIdByContentOptionalParams,
-  SchemaOperationsGetSchemaByVersionOptionalParams,
-  SchemaOperationsListSchemaVersionsOptionalParams,
-  SchemaOperationsGetSchemaByIdOptionalParams,
-  SchemaOperationsListSchemaGroupsOptionalParams,
-} from "../../api/options.js";
 
 /** Interface representing a SchemaOperations operations. */
 export interface SchemaOperationsOperations {

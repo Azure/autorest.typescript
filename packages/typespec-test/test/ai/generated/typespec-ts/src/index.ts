@@ -245,21 +245,8 @@ export {
   RunAdditionalFieldList,
   VectorStoreFileStatusFilter,
 } from "./models/agents/index.js";
+export { AIProjectClientOptionalParams } from "./api/index.js";
 export {
-  AIProjectClientOptionalParams,
-  EvaluationsDisableScheduleOptionalParams,
-  EvaluationsListScheduleOptionalParams,
-  EvaluationsCreateOrReplaceScheduleOptionalParams,
-  EvaluationsGetScheduleOptionalParams,
-  EvaluationsUpdateOptionalParams,
-  EvaluationsListOptionalParams,
-  EvaluationsCreateOptionalParams,
-  EvaluationsGetOptionalParams,
-  TelemetryGetAppInsightsOptionalParams,
-  ConnectionsGetConnectionWithSecretsOptionalParams,
-  ConnectionsGetConnectionOptionalParams,
-  ConnectionsListConnectionsOptionalParams,
-  ConnectionsGetWorkspaceOptionalParams,
   AgentsListVectorStoreFileBatchFilesOptionalParams,
   AgentsCancelVectorStoreFileBatchOptionalParams,
   AgentsGetVectorStoreFileBatchOptionalParams,
@@ -300,7 +287,24 @@ export {
   AgentsGetAgentOptionalParams,
   AgentsListAgentsOptionalParams,
   AgentsCreateAgentOptionalParams,
-} from "./api/index.js";
+} from "./api/agents/index.js";
+export {
+  ConnectionsGetConnectionWithSecretsOptionalParams,
+  ConnectionsGetConnectionOptionalParams,
+  ConnectionsListConnectionsOptionalParams,
+  ConnectionsGetWorkspaceOptionalParams,
+} from "./api/connections/index.js";
+export {
+  EvaluationsDisableScheduleOptionalParams,
+  EvaluationsListScheduleOptionalParams,
+  EvaluationsCreateOrReplaceScheduleOptionalParams,
+  EvaluationsGetScheduleOptionalParams,
+  EvaluationsUpdateOptionalParams,
+  EvaluationsListOptionalParams,
+  EvaluationsCreateOptionalParams,
+  EvaluationsGetOptionalParams,
+} from "./api/evaluations/index.js";
+export { TelemetryGetAppInsightsOptionalParams } from "./api/telemetry/index.js";
 export {
   AgentsOperations,
   ConnectionsOperations,

@@ -8,6 +8,12 @@ import {
   createForm,
   createJson,
   list,
+  TodoItemsDeleteOptionalParams,
+  TodoItemsUpdateOptionalParams,
+  TodoItemsGetOptionalParams,
+  TodoItemsCreateFormOptionalParams,
+  TodoItemsCreateJsonOptionalParams,
+  TodoItemsListOptionalParams,
 } from "../../api/todoItems/index.js";
 import { TodoItemPatch } from "../../models/todoItems/models.js";
 import {
@@ -16,14 +22,6 @@ import {
   ToDoItemMultipartRequest,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
-import {
-  TodoItemsDeleteOptionalParams,
-  TodoItemsUpdateOptionalParams,
-  TodoItemsGetOptionalParams,
-  TodoItemsCreateFormOptionalParams,
-  TodoItemsCreateJsonOptionalParams,
-  TodoItemsListOptionalParams,
-} from "../../api/options.js";
 import {
   TodoItemsAttachmentsOperations,
   _getTodoItemsAttachmentsOperations,

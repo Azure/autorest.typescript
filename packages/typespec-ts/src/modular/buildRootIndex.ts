@@ -244,6 +244,20 @@ function exportModules(
       .map((dir) => {
         return dir.getPath().replace(/\\/g, "/");
       });
+  } else if (options.isTopLevel && moduleName === "api") {
+    folders = project
+      .getDirectories()
+      .filter((dir) => {
+        const formattedDir = dir.getPath().replace(/\\/g, "/");
+        const targetPath = join(srcPath, subfolder, moduleName).replace(
+          /\\/g,
+          "/"
+        );
+        return formattedDir.startsWith(targetPath);
+      })
+      .map((dir) => {
+        return dir.getPath().replace(/\\/g, "/");
+      });
   } else {
     folders = [join(srcPath, subfolder, moduleName).replace(/\\/g, "/")];
   }
@@ -283,6 +297,7 @@ function exportModules(
           ) {
             return false;
           }
+
           return true;
         });
       })
@@ -342,7 +357,8 @@ export function buildSubClientIndexFile(
     "api",
     {
       subfolder,
-      interfaceOnly: true
+      interfaceOnly: true,
+      recursive: true
     }
   );
   exportModules(

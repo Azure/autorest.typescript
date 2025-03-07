@@ -1,17 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  WidgetsAnalyzeWidgetOptionalParams,
-  WidgetsDeleteWidgetOptionalParams,
-  WidgetsUpdateWidgetOptionalParams,
-  WidgetsCreateOrReplaceOptionalParams,
-  WidgetsCreateWidgetOptionalParams,
-  WidgetsGetWidgetOptionalParams,
-  WidgetsQueryWidgetsPagesOptionalParams,
-  WidgetsListWidgetsPagesOptionalParams,
-  WidgetsListWidgetsOptionalParams,
-} from "../../api/options.js";
 import { WidgetServiceContext } from "../../api/widgetServiceContext.js";
 import {
   analyzeWidget,
@@ -23,6 +12,15 @@ import {
   queryWidgetsPages,
   listWidgetsPages,
   listWidgets,
+  WidgetsAnalyzeWidgetOptionalParams,
+  WidgetsDeleteWidgetOptionalParams,
+  WidgetsUpdateWidgetOptionalParams,
+  WidgetsCreateOrReplaceOptionalParams,
+  WidgetsCreateWidgetOptionalParams,
+  WidgetsGetWidgetOptionalParams,
+  WidgetsQueryWidgetsPagesOptionalParams,
+  WidgetsListWidgetsPagesOptionalParams,
+  WidgetsListWidgetsOptionalParams,
 } from "../../api/widgets/index.js";
 import { User, Widget, AnalyzeResult } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
