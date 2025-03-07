@@ -68,15 +68,12 @@ describe("ARM template", () => {
   
       op upload is ArmProviderActionAsync<OnboardRequest, OnboardResponse>;
       `;
-    const response = await emitResponsesFromTypeSpec(
-      tspContent,
-      {
-        needAzureCore: false,
-        withRawContent: true,
-        needTCGC: true,
-        withVersionedApiVersion: true,
-      }
-    );
+    const response = await emitResponsesFromTypeSpec(tspContent, {
+      needAzureCore: false,
+      withRawContent: true,
+      needTCGC: true,
+      withVersionedApiVersion: true
+    });
     assert.ok(response);
     await assertEqualContent(
       response!.content,

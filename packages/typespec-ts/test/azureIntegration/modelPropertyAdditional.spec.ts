@@ -19,10 +19,7 @@ describe("ModelsPropertyAdditional Rest Client", () => {
       .path("/type/property/additionalProperties/extendsRecordUnknown")
       .get();
     assert.strictEqual(result.status, "200");
-    assert.strictEqual(
-      result.body.name,
-      "ExtendsUnknownAdditionalProperties"
-    );
+    assert.strictEqual(result.body.name, "ExtendsUnknownAdditionalProperties");
     assert.strictEqual(result.body["prop1"], 32);
     assert.strictEqual(result.body["prop2"], true);
     assert.strictEqual(result.body["prop3"], "abc");
@@ -47,10 +44,7 @@ describe("ModelsPropertyAdditional Rest Client", () => {
       .path("/type/property/additionalProperties/extendsRecordUnknownDerived")
       .get();
     assert.strictEqual(result.status, "200");
-    assert.strictEqual(
-      result.body.name,
-      "ExtendsUnknownAdditionalProperties"
-    );
+    assert.strictEqual(result.body.name, "ExtendsUnknownAdditionalProperties");
     assert.strictEqual(result.body["index"], 314);
     assert.strictEqual(result.body["age"], 2.71875);
     assert.strictEqual(result.body["prop1"], 32);
@@ -556,9 +550,7 @@ describe("ModelsPropertyAdditional Rest Client", () => {
 
   it("should get extends different spread string additional properties", async () => {
     const result = await client
-      .path(
-        "/type/property/additionalProperties/extendsDifferentSpreadString"
-      )
+      .path("/type/property/additionalProperties/extendsDifferentSpreadString")
       .get({
         body: {
           id: 43.125,
@@ -571,9 +563,7 @@ describe("ModelsPropertyAdditional Rest Client", () => {
 
   it("should put extends different spread string additional properties", async () => {
     const result = await client
-      .path(
-        "/type/property/additionalProperties/extendsDifferentSpreadString"
-      )
+      .path("/type/property/additionalProperties/extendsDifferentSpreadString")
       .put({
         body: {
           id: 43.125,

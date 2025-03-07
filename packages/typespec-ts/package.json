@@ -26,7 +26,7 @@
     "lint:fix": "eslint src --fix --ext .ts",
     "format": "npm run -s prettier -- --write",
     "check-format": "npm run prettier -- --check",
-    "prettier": "prettier --config ./.prettierrc \"src/**/*.ts\"",
+    "prettier": "prettier --config ./.prettierrc \"(src|static|test)/**/*.!(d).ts\"",
     "check:tree": "node --loader ts-node/esm ./test/commands/check-clean-tree.ts",
     "integration-test-ci": "npm-run-all copy:typespec integration-test-ci:rlc integration-test-ci:azure-rlc integration-test-ci:modular integration-test-ci:azure-modular",
     "integration-test-ci:sequential": "npm-run-all --serial copy:typespec integration-test-ci:modular && npm run integration-test-ci:modular",

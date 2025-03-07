@@ -18,7 +18,6 @@ describe("MediaType Client", () => {
       .get({ accept: "text/plain" });
     assert.strictEqual(result.status, "200");
     assert.strictEqual(result.body, "{cat}");
-
   });
 
   it("should sendAsText", async () => {
@@ -26,7 +25,6 @@ describe("MediaType Client", () => {
       .path("/payload/media-type/string-body/sendAsText")
       .post({ body: "{cat}", contentType: "text/plain" });
     assert.strictEqual(result.status, "200");
-
   });
 
   it("should sendAsJson", async () => {
@@ -34,7 +32,6 @@ describe("MediaType Client", () => {
       .path("/payload/media-type/string-body/sendAsJson")
       .post({ body: "foo", contentType: "application/json" });
     assert.strictEqual(result.status, "200");
-
   });
 
   it("should getAsJson", async () => {
@@ -43,6 +40,5 @@ describe("MediaType Client", () => {
       .get({ accept: "application/json" });
     assert.strictEqual(result.status, "200");
     assert.strictEqual(result.body, "foo");
-
   });
 });
