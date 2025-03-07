@@ -17,11 +17,7 @@ describe("CollectionFormatClient Classical Client", () => {
   });
 
   it("should send multi format in query", async () => {
-    const result = await client.query.multi(["blue", "red", "green"], {
-      requestOptions: {
-        skipUrlEncoding: true
-      }
-    });
+    const result = await client.query.multi(["blue", "red", "green"]);
     assert.strictEqual(result, undefined);
   });
 

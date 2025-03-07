@@ -25,7 +25,8 @@ import {
   MultipartHelpers,
   PagingHelpers,
   PollingHelpers,
-  SerializationHelpers
+  SerializationHelpers,
+  UrlTemplateHelpers
 } from "../../src/modular/static-helpers-metadata.js";
 import {
   AzureCoreDependencies,
@@ -264,7 +265,8 @@ export async function provideBinderWithAzureDependencies(project: Project) {
     ...SerializationHelpers,
     ...PagingHelpers,
     ...PollingHelpers,
-    ...MultipartHelpers,
+    ...UrlTemplateHelpers,
+    ...MultipartHelpers
   };
 
   const staticHelperMap = await loadStaticHelpers(project, staticHelpers, {
