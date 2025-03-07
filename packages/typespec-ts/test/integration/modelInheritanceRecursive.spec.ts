@@ -37,9 +37,7 @@ describe("Recursive Client", () => {
   });
 
   it("Inheritance Recursive get test", async () => {
-    const result = await client
-      .path("/type/model/inheritance/recursive")
-      .get();
+    const result = await client.path("/type/model/inheritance/recursive").get();
     assert.equal(result.status, "200");
   });
 });

@@ -36,14 +36,16 @@ describe("EncodeDatetimeClient Rest Client", () => {
     });
 
     it(`should get unix timestamp`, async () => {
-      const result = await client.query.unixTimestamp(new Date("2023-06-12T10:47:44.000Z"));
+      const result = await client.query.unixTimestamp(
+        new Date("2023-06-12T10:47:44.000Z")
+      );
       assert.isUndefined(result);
     });
 
     it(`should get unix timestamp-array`, async () => {
       const result = await client.query.unixTimestampArray([
         new Date("2023-06-12T10:47:44.000Z"),
-        new Date("2023-06-14T09:17:36.000Z"),
+        new Date("2023-06-14T09:17:36.000Z")
       ]);
       assert.isUndefined(result);
     });
@@ -68,10 +70,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
       const result = await client.property.rfc7231({
         value: new Date("Fri, 26 Aug 2022 14:38:00 GMT")
       });
-      assert.deepEqual(
-        result.value,
-        new Date("Fri, 26 Aug 2022 14:38:00 GMT")
-      );
+      assert.deepEqual(result.value, new Date("Fri, 26 Aug 2022 14:38:00 GMT"));
     });
 
     it(`should get unix timestamp`, async () => {
@@ -83,7 +82,10 @@ describe("EncodeDatetimeClient Rest Client", () => {
 
     it(`should get unix timestamp-array`, async () => {
       const result = await client.property.unixTimestampArray({
-        value: [new Date("2023-06-12T10:47:44.000Z"), new Date("2023-06-14T09:17:36.000Z")]
+        value: [
+          new Date("2023-06-12T10:47:44.000Z"),
+          new Date("2023-06-14T09:17:36.000Z")
+        ]
       });
       assert.deepEqual(result.value, [
         new Date("2023-06-12T10:47:44.000Z"),
@@ -115,7 +117,9 @@ describe("EncodeDatetimeClient Rest Client", () => {
     });
 
     it(`should get unix timestamp`, async () => {
-      const result = await client.header.unixTimestamp(new Date("2023-06-12T10:47:44.000Z"));
+      const result = await client.header.unixTimestamp(
+        new Date("2023-06-12T10:47:44.000Z")
+      );
       assert.isUndefined(result);
     });
 
