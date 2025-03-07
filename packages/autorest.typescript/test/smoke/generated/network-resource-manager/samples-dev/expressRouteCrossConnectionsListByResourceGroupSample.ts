@@ -25,7 +25,7 @@ async function expressRouteCrossConnectionListByResourceGroup(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.expressRouteCrossConnections.listByResourceGroup(
+  for await (const item of client.expressRouteCrossConnections.listByResourceGroup(
     resourceGroupName,
   )) {
     resArray.push(item);

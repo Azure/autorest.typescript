@@ -28,7 +28,7 @@ using TypeSpec.Http;
 using TypeSpec.Versioning;
 
 #suppress "@azure-tools/typespec-azure-core/auth-required" "for test"
-@service({
+@service(#{
   title: "Azure TypeScript Testing"
 })
 namespace Azure.TypeScript.Testing;
@@ -86,7 +86,7 @@ using TypeSpec.Versioning;
 
 #suppress "@azure-tools/typespec-azure-core/auth-required" "for test"
 
-@service({
+@service(#{
   title: "Azure TypeScript Testing"
 })
 namespace Azure.TypeScript.Testing;
@@ -143,7 +143,7 @@ using TypeSpec.Http;
 using TypeSpec.Versioning;
 
 #suppress "@azure-tools/typespec-azure-core/auth-required" "for test"
-@service({
+@service(#{
   title: "Azure TypeScript Testing"
 })
 namespace Azure.TypeScript.Testing;
@@ -200,7 +200,7 @@ using TypeSpec.Http;
 using TypeSpec.Versioning;
 
 #suppress "@azure-tools/typespec-azure-core/auth-required" "for test"
-@service({
+@service(#{
   title: "Azure TypeScript Testing"
 })
 namespace Azure.TypeScript.Testing;
@@ -2020,7 +2020,7 @@ export async function read(
 import "@typespec/http";
 import "@typespec/rest";
 
-@service({
+@service(#{
   title: "Widget Service",
 })
 namespace DemoService;
@@ -2117,7 +2117,7 @@ export async function get(
 import "@typespec/http";
 import "@typespec/rest";
 
-@service({
+@service(#{
   title: "Widget Service",
 })
 namespace DemoService;
@@ -2164,7 +2164,7 @@ export type SchemaContentTypeValues =
 import "@typespec/http";
 import "@typespec/rest";
 
-@service({
+@service(#{
   title: "Widget Service",
 })
 namespace DemoService;
@@ -2329,13 +2329,13 @@ export function aSerializer(item: A): any {
 }
 ```
 
-# should generate readonly for @visibility('read')
+# should generate readonly for @visibility(Lifecycle.Read)
 
 ## TypeSpec
 
 ```tsp
 model A  {
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   exactVersion?: string;
 };
 op read(@body body: A): void;
@@ -2354,13 +2354,13 @@ export function aSerializer(item: A): any {
 }
 ```
 
-# should not generate readonly for @visibility('read', 'create')
+# should not generate readonly for @visibility(Lifecycle.Read, Lifecycle.Create)
 
 ## TypeSpec
 
 ```tsp
 model A  {
-  @visibility("read", "create")
+  @visibility(Lifecycle.Read, Lifecycle.Create)
   exactVersion?: string;
 };
 op read(@body body: A): void;

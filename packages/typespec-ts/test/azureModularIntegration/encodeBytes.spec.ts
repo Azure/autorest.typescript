@@ -32,14 +32,14 @@ describe("EncodeBytesClient Modular Client", () => {
     });
 
     it(`should get bytes base64url encoding`, async () => {
-      const result = await client.query.base64url(
+      const result = await client.query.base64Url(
         stringToUint8Array("dGVzdA", "base64url")
       );
       assert.isUndefined(result);
     });
 
     it(`should get bytes base64url-array`, async () => {
-      const result = await client.query.base64urlArray([
+      const result = await client.query.base64UrlArray([
         stringToUint8Array("dGVzdA", "base64url"),
         stringToUint8Array("dGVzdA", "base64url")
       ]);
@@ -69,7 +69,7 @@ describe("EncodeBytesClient Modular Client", () => {
     });
 
     it(`should post bytes base64url encoding`, async () => {
-      const result = await client.property.base64url({
+      const result = await client.property.base64Url({
         value: stringToUint8Array("dGVzdA", "base64url")
       });
       assert.deepEqual(
@@ -79,7 +79,7 @@ describe("EncodeBytesClient Modular Client", () => {
     });
 
     it(`should post bytes base64url array`, async () => {
-      const result = await client.property.base64urlArray({
+      const result = await client.property.base64UrlArray({
         value: [
           stringToUint8Array("dGVzdA", "base64url"),
           stringToUint8Array("dGVzdA", "base64url")
@@ -108,14 +108,14 @@ describe("EncodeBytesClient Modular Client", () => {
     });
 
     it(`should get bytes base64url encoding`, async () => {
-      const result = await client.header.base64url(
+      const result = await client.header.base64Url(
         stringToUint8Array("dGVzdA", "base64url")
       );
       assert.isUndefined(result);
     });
 
     it(`should get bytes  base64url-array`, async () => {
-      const result = await client.header.base64urlArray([
+      const result = await client.header.base64UrlArray([
         stringToUint8Array("dGVzdA", "base64url"),
         stringToUint8Array("dGVzdA", "base64url")
       ]);
@@ -153,7 +153,7 @@ describe("EncodeBytesClient Modular Client", () => {
     });
 
     it(`should post bytes base64url encoding`, async () => {
-      const result = await client.requestBody.base64url(
+      const result = await client.requestBody.base64Url(
         stringToUint8Array("dGVzdA", "base64url"),
         {
           requestOptions: { headers: { "content-type": "application/json" } }
@@ -188,7 +188,7 @@ describe("EncodeBytesClient Modular Client", () => {
     });
 
     it(`should get bytes base64url encoding`, async () => {
-      const result = await client.responseBody.base64url();
+      const result = await client.responseBody.base64Url();
       assert.strictEqual(uint8ArrayToString(result, "base64url"), "dGVzdA");
     });
 

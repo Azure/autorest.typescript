@@ -24,7 +24,7 @@ async function listServers(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.servers.list()) {
+  for await (const item of client.servers.list()) {
     resArray.push(item);
   }
   console.log(resArray);
@@ -42,7 +42,7 @@ async function listServersWithExpandEqualsAdministrators(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.servers.list()) {
+  for await (const item of client.servers.list()) {
     resArray.push(item);
   }
   console.log(resArray);

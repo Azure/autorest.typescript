@@ -17,6 +17,7 @@ Should enable `allowReserved:true` for path parameter:
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -29,8 +30,17 @@ export function _annotationSend(
   param: string,
   options: AnnotationOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/annotation/{+param}",
+    {
+      param: param,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/annotation/{param}", { value: param, allowReserved: true })
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 

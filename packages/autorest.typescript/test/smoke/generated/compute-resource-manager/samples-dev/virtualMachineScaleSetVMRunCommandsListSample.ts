@@ -26,7 +26,7 @@ async function listRunCommandsInVmssInstance(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.virtualMachineScaleSetVMRunCommands.list(
+  for await (const item of client.virtualMachineScaleSetVMRunCommands.list(
     resourceGroupName,
     vmScaleSetName,
     instanceId,

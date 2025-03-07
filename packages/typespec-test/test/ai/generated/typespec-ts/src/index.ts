@@ -8,7 +8,7 @@ import {
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
 
-export { AIProjectClient } from "./aIProjectClient.js";
+export { AIProjectClient } from "./aiProjectClient.js";
 export {
   Evaluation,
   InputData,

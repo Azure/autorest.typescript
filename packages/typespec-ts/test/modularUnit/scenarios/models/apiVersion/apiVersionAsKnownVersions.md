@@ -11,7 +11,7 @@ import "@typespec/versioning";
 
 using TypeSpec.Versioning;
 
-@service({
+@service(#{
   title: "Microsoft.Contoso management service",
 })
 @versioned(Microsoft.Contoso.Versions)
@@ -40,6 +40,6 @@ Should generate KnownVersions in models.ts.
 /** The available API versions. */
 export enum KnownVersions {
   /** 2021-10-01-preview version */
-  v2021_10_01_preview = "2021-10-01-preview",
+  V20211001Preview = "2021-10-01-preview",
 }
 ```

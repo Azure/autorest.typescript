@@ -27,7 +27,7 @@ async function getListOfServiceTags(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.serviceTagInformationOperations.list(
+  for await (const item of client.serviceTagInformationOperations.list(
     location,
   )) {
     resArray.push(item);
@@ -51,7 +51,7 @@ async function getListOfServiceTagsWithNoAddressPrefixes(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.serviceTagInformationOperations.list(
+  for await (const item of client.serviceTagInformationOperations.list(
     location,
     options,
   )) {
@@ -74,7 +74,7 @@ async function getListOfServiceTagsWithTagName(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.serviceTagInformationOperations.list(
+  for await (const item of client.serviceTagInformationOperations.list(
     location,
     options,
   )) {

@@ -23,7 +23,7 @@ async function listAllLoadBalancers(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.loadBalancers.listAll()) {
+  for await (const item of client.loadBalancers.listAll()) {
     resArray.push(item);
   }
   console.log(resArray);
