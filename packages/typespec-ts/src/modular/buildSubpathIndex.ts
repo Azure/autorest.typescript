@@ -69,9 +69,6 @@ export function buildSubpathIndexFile(
     if (apiFiles.length === 0) {
       continue;
     }
-    // if (subpath === "api" && !emitterOptions.project.getSourceFile(`${folder}/operations.ts`)) {
-    //   continue;
-    // }
     const indexFile = emitterOptions.project.createSourceFile(
       `${folder}/index.ts`
     );
