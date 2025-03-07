@@ -28,6 +28,7 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -40,15 +41,24 @@ export function _disableScheduleSend(
   name: string,
   options: EvaluationsDisableScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/evaluations/schedules/{name}/disable{?apiVersion}",
+    {
+      name: name,
+      apiVersion: context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/evaluations/schedules/{name}/disable", name)
+    .path(path)
     .patch({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { apiVersion: context.apiVersion },
     });
 }
 
@@ -77,8 +87,20 @@ export function _listScheduleSend(
   context: Client,
   options: EvaluationsListScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/evaluations/schedules{?api-version,top,skip,maxpagesize}",
+    {
+      "api-version": context.apiVersion,
+      top: options?.top,
+      skip: options?.skip,
+      maxpagesize: options?.maxpagesize,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/evaluations/schedules")
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -87,12 +109,6 @@ export function _listScheduleSend(
           : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
-      },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        top: options?.top,
-        skip: options?.skip,
-        maxpagesize: options?.maxpagesize,
       },
     });
 }
@@ -130,8 +146,18 @@ export function _createOrReplaceScheduleSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/evaluations/schedules/{name}{?api-version}",
+    {
+      name: name,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/evaluations/schedules/{name}", name)
+    .path(path)
     .put({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
@@ -142,7 +168,6 @@ export function _createOrReplaceScheduleSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: evaluationScheduleSerializer(resource),
     });
 }
@@ -181,8 +206,18 @@ export function _getScheduleSend(
   name: string,
   options: EvaluationsGetScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/evaluations/schedules/{name}{?api-version}",
+    {
+      name: name,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/evaluations/schedules/{name}", name)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -192,7 +227,6 @@ export function _getScheduleSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -223,8 +257,18 @@ export function _updateSend(
   resource: Evaluation,
   options: EvaluationsUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/evaluations/runs/{id}{?api-version}",
+    {
+      id: id,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/evaluations/runs/{id}", id)
+    .path(path)
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/merge-patch+json",
@@ -235,7 +279,6 @@ export function _updateSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: evaluationSerializer(resource),
     });
 }
@@ -266,8 +309,20 @@ export function _listSend(
   context: Client,
   options: EvaluationsListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/evaluations/runs{?api-version,top,skip,maxpagesize}",
+    {
+      "api-version": context.apiVersion,
+      top: options?.top,
+      skip: options?.skip,
+      maxpagesize: options?.maxpagesize,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/evaluations/runs")
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -276,12 +331,6 @@ export function _listSend(
           : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
-      },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        top: options?.top,
-        skip: options?.skip,
-        maxpagesize: options?.maxpagesize,
       },
     });
 }
@@ -316,8 +365,17 @@ export function _createSend(
   evaluation: Evaluation,
   options: EvaluationsCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/evaluations/runs:run{?apiVersion}",
+    {
+      apiVersion: context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/evaluations/runs:run")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
@@ -325,7 +383,6 @@ export function _createSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { apiVersion: context.apiVersion },
       body: evaluationSerializer(evaluation),
     });
 }
@@ -356,8 +413,18 @@ export function _getSend(
   id: string,
   options: EvaluationsGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/evaluations/runs/{id}{?api-version}",
+    {
+      id: id,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/evaluations/runs/{id}", id)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -367,7 +434,6 @@ export function _getSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
