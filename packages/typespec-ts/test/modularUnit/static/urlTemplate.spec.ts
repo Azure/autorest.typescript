@@ -341,6 +341,17 @@ describe("url-template", () => {
         );
         assert("{path}/here{?query}", "%2Ffoo%2Fbar/here?query=bar%2Cbaz");
       });
+
+      it("should encode reserved characters if not set", () => {
+        const assert = createAssertion(
+          {
+            path: "/foo/bar",
+            query: "bar,baz"
+          },
+          { allowReserved: undefined }
+        );
+        assert("{path}/here{?query}", "%2Ffoo%2Fbar/here?query=bar%2Cbaz");
+      });
     });
     describe("reserved path", () => {
       it("should not encode reserved characters if enable allowReserved", () => {
@@ -363,6 +374,17 @@ describe("url-template", () => {
           { allowReserved: false }
         );
         assert("{+path}/here{?query}", "%2Ffoo%2Fbar/here?query=bar%2Cbaz");
+      });
+
+      it("should follow defined reserved information if not set", () => {
+        const assert = createAssertion(
+          {
+            path: "/foo/bar",
+            query: "bar,baz"
+          },
+          { allowReserved: undefined }
+        );
+        assert("{+path}/here{?query}", "/foo/bar/here?query=bar%2Cbaz");
       });
     });
   });
