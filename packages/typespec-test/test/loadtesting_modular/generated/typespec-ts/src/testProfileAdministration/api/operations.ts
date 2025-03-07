@@ -19,6 +19,7 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -30,25 +31,31 @@ export function _listTestProfilesSend(
   context: Client,
   options: ListTestProfilesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/test-profiles{?api-version,maxpagesize,lastModifiedStartTime,lastModifiedEndTime,testProfileIds,testIds}",
+    {
+      "api-version": context.apiVersion,
+      maxpagesize: options?.maxpagesize,
+      lastModifiedStartTime: !options?.lastModifiedStartTime
+        ? options?.lastModifiedStartTime
+        : options?.lastModifiedStartTime.toISOString(),
+      lastModifiedEndTime: !options?.lastModifiedEndTime
+        ? options?.lastModifiedEndTime
+        : options?.lastModifiedEndTime.toISOString(),
+      testProfileIds: options?.testProfileIds,
+      testIds: options?.testIds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/test-profiles")
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
-      },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        maxpagesize: options?.maxpagesize,
-        lastModifiedStartTime: !options?.lastModifiedStartTime
-          ? options?.lastModifiedStartTime
-          : options?.lastModifiedStartTime.toISOString(),
-        lastModifiedEndTime: !options?.lastModifiedEndTime
-          ? options?.lastModifiedEndTime
-          : options?.lastModifiedEndTime.toISOString(),
-        testProfileIds: options?.testProfileIds,
-        testIds: options?.testIds,
       },
     });
 }
@@ -83,15 +90,24 @@ export function _getTestProfileSend(
   testProfileId: string,
   options: GetTestProfileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/test-profiles/{testProfileId}{?api-version}",
+    {
+      testProfileId: testProfileId,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/test-profiles/{testProfileId}", testProfileId)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -121,15 +137,24 @@ export function _deleteTestProfileSend(
   testProfileId: string,
   options: DeleteTestProfileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/test-profiles/{testProfileId}{?api-version}",
+    {
+      testProfileId: testProfileId,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/test-profiles/{testProfileId}", testProfileId)
+    .path(path)
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -160,8 +185,18 @@ export function _createOrUpdateTestProfileSend(
   body: TestProfile,
   options: CreateOrUpdateTestProfileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/test-profiles/{testProfileId}{?api-version}",
+    {
+      testProfileId: testProfileId,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/test-profiles/{testProfileId}", testProfileId)
+    .path(path)
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/merge-patch+json",
@@ -169,7 +204,6 @@ export function _createOrUpdateTestProfileSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: testProfileSerializer(body),
     });
 }
