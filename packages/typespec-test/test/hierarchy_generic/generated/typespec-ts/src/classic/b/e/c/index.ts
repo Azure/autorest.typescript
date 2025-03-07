@@ -3,16 +3,16 @@
 
 import { FooContext } from "../../../../api/fooContext.js";
 import { op1, BECOp1OptionalParams } from "../../../../api/b/e/c/index.js";
-import { Bea } from "../../../../models/b/e/models.js";
+import { BEA } from "../../../../models/b/e/models.js";
 
 /** Interface representing a BEC operations. */
 export interface BECOperations {
-  op1: (body: Bea, options?: BECOp1OptionalParams) => Promise<void>;
+  op1: (body: BEA, options?: BECOp1OptionalParams) => Promise<void>;
 }
 
 function _getBEC(context: FooContext) {
   return {
-    op1: (body: Bea, options?: BECOp1OptionalParams) =>
+    op1: (body: BEA, options?: BECOp1OptionalParams) =>
       op1(context, body, options),
   };
 }

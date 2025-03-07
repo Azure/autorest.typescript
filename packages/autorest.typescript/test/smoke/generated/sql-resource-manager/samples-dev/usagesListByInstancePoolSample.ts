@@ -31,7 +31,7 @@ async function listInstancePoolUsagesExpandedWithChildren(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.usages.listByInstancePool(
+  for await (const item of client.usages.listByInstancePool(
     resourceGroupName,
     instancePoolName,
     options,
@@ -55,7 +55,7 @@ async function listInstancePoolUsages(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.usages.listByInstancePool(
+  for await (const item of client.usages.listByInstancePool(
     resourceGroupName,
     instancePoolName,
   )) {

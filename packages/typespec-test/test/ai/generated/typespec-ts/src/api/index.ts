@@ -5,4 +5,4 @@ export {
   createAIProject,
   AIProjectContext,
   AIProjectClientOptionalParams,
-} from "./aIProjectContext.js";
+} from "./aiProjectContext.js";

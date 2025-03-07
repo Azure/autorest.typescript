@@ -68,6 +68,20 @@ stages:
             name: SetRLCCommonDevVersion
             workingDirectory: $(Build.SourcesDirectory)/packages/rlc-common
           - script: |
+              export DEV_VERSION=$(node -p -e "require('../rlc-common/package.json').version")
+              jq --arg DEV_VERSION "$DEV_VERSION" '.dependencies["@azure-tools/rlc-common"] = $DEV_VERSION' package.json > temp.json
+              mv temp.json package.json
+            condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
+            name: UpdateRLCCommonDevVersionInAutorestTypescript
+            workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
+          - script: |
+              export DEV_VERSION=$(node -p -e "require('../rlc-common/package.json').version")
+              jq --arg DEV_VERSION "$DEV_VERSION" '.dependencies["@azure-tools/rlc-common"] = $DEV_VERSION' package.json > temp.json
+              mv temp.json package.json
+            condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
+            name: UpdateRLCCommonDevVersionInTypesSpecTs
+            workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
+          - script: |
               export TAR_NAME=$(node ../../common/scripts/install-run-rush-pnpm.js pack -q)
               echo $TAR_NAME
               echo "##vso[task.setvariable variable=TAR_NAME;isOutput=true;]$TAR_NAME"

@@ -3,20 +3,20 @@
 
 import { FooContext } from "../../api/fooContext.js";
 import { op1, BOp1OptionalParams } from "../../api/b/index.js";
-import { Ba } from "../../models/b/models.js";
+import { BA } from "../../models/b/models.js";
 import { BCOperations, _getBCOperations } from "./c/index.js";
 import { BEOperations, _getBEOperations } from "./e/index.js";
 
 /** Interface representing a B operations. */
 export interface BOperations {
-  op1: (body: Ba, options?: BOp1OptionalParams) => Promise<void>;
+  op1: (body: BA, options?: BOp1OptionalParams) => Promise<void>;
   c: BCOperations;
   e: BEOperations;
 }
 
 function _getB(context: FooContext) {
   return {
-    op1: (body: Ba, options?: BOp1OptionalParams) =>
+    op1: (body: BA, options?: BOp1OptionalParams) =>
       op1(context, body, options),
   };
 }

@@ -23,7 +23,7 @@ async function storageAccountList(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.storageAccounts.list()) {
+  for await (const item of client.storageAccounts.list()) {
     resArray.push(item);
   }
   console.log(resArray);

@@ -227,7 +227,7 @@ export function _listNodeFilesSend(
         "api-version": context.apiVersion,
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
-        $filter: options?.$filter,
+        $filter: options?.filter,
         recursive: options?.recursive,
       },
     });
@@ -540,9 +540,9 @@ export function _listNodeExtensionsSend(
       queryParameters: {
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
-        $select: !options?.$select
-          ? options?.$select
-          : options?.$select.map((p: any) => {
+        $select: !options?.select
+          ? options?.select
+          : options?.select.map((p: any) => {
               return p;
             }),
       },
@@ -614,9 +614,9 @@ export function _getNodeExtensionSend(
       queryParameters: {
         "api-version": context.apiVersion,
         timeOut: options?.timeOutInSeconds,
-        $select: !options?.$select
-          ? options?.$select
-          : options?.$select.map((p: any) => {
+        $select: !options?.select
+          ? options?.select
+          : options?.select.map((p: any) => {
               return p;
             }),
       },
@@ -682,10 +682,10 @@ export function _listNodesSend(
       "api-version": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.$filter,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $filter: options?.filter,
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
     },
@@ -1228,9 +1228,9 @@ export function _getNodeSend(
     queryParameters: {
       "api-version": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
     },
@@ -1518,7 +1518,7 @@ export function _listTaskFilesSend(
         "api-version": context.apiVersion,
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
-        $filter: options?.$filter,
+        $filter: options?.filter,
         recursive: options?.recursive,
       },
     });
@@ -1996,9 +1996,9 @@ export function _listSubTasksSend(
       queryParameters: {
         "api-version": context.apiVersion,
         timeOut: options?.timeOutInSeconds,
-        $select: !options?.$select
-          ? options?.$select
-          : options?.$select.map((p: any) => {
+        $select: !options?.select
+          ? options?.select
+          : options?.select.map((p: any) => {
               return p;
             }),
       },
@@ -2159,14 +2159,14 @@ export function _getTaskSend(
     queryParameters: {
       "api-version": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.$expand
-        ? options?.$expand
-        : options?.$expand.map((p: any) => {
+      $expand: !options?.expand
+        ? options?.expand
+        : options?.expand.map((p: any) => {
             return p;
           }),
     },
@@ -2393,15 +2393,15 @@ export function _listTasksSend(
       "api-version": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.$filter,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $filter: options?.filter,
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.$expand
-        ? options?.$expand
-        : options?.$expand.map((p: any) => {
+      $expand: !options?.expand
+        ? options?.expand
+        : options?.expand.map((p: any) => {
             return p;
           }),
     },
@@ -2531,15 +2531,15 @@ export function _listJobSchedulesSend(
       "api-version": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.$filter,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $filter: options?.filter,
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.$expand
-        ? options?.$expand
-        : options?.$expand.map((p: any) => {
+      $expand: !options?.expand
+        ? options?.expand
+        : options?.expand.map((p: any) => {
             return p;
           }),
     },
@@ -3092,14 +3092,14 @@ export function _getJobScheduleSend(
     queryParameters: {
       "api-version": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.$expand
-        ? options?.$expand
-        : options?.$expand.map((p: any) => {
+      $expand: !options?.expand
+        ? options?.expand
+        : options?.expand.map((p: any) => {
             return p;
           }),
     },
@@ -3321,9 +3321,9 @@ export function _getCertificateSend(
       queryParameters: {
         "api-version": context.apiVersion,
         timeOut: options?.timeOutInSeconds,
-        $select: !options?.$select
-          ? options?.$select
-          : options?.$select.map((p: any) => {
+        $select: !options?.select
+          ? options?.select
+          : options?.select.map((p: any) => {
               return p;
             }),
       },
@@ -3538,10 +3538,10 @@ export function _listCertificatesSend(
       "api-version": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.$filter,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $filter: options?.filter,
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
     },
@@ -3726,10 +3726,10 @@ export function _listJobPreparationAndReleaseTaskStatusSend(
       queryParameters: {
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
-        $filter: options?.$filter,
-        $select: !options?.$select
-          ? options?.$select
-          : options?.$select.map((p: any) => {
+        $filter: options?.filter,
+        $select: !options?.select
+          ? options?.select
+          : options?.select.map((p: any) => {
               return p;
             }),
       },
@@ -3803,15 +3803,15 @@ export function _listJobsFromScheduleSend(
       "api-version": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.$filter,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $filter: options?.filter,
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.$expand
-        ? options?.$expand
-        : options?.$expand.map((p: any) => {
+      $expand: !options?.expand
+        ? options?.expand
+        : options?.expand.map((p: any) => {
             return p;
           }),
     },
@@ -3873,15 +3873,15 @@ export function _listJobsSend(
       "api-version": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.$filter,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $filter: options?.filter,
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.$expand
-        ? options?.$expand
-        : options?.$expand.map((p: any) => {
+      $expand: !options?.expand
+        ? options?.expand
+        : options?.expand.map((p: any) => {
             return p;
           }),
     },
@@ -4457,14 +4457,14 @@ export function _getJobSend(
     queryParameters: {
       "api-version": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.$expand
-        ? options?.$expand
-        : options?.$expand.map((p: any) => {
+      $expand: !options?.expand
+        ? options?.expand
+        : options?.expand.map((p: any) => {
             return p;
           }),
     },
@@ -4608,7 +4608,7 @@ export function _listPoolNodeCountsSend(
         "api-version": context.apiVersion,
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
-        $filter: options?.$filter,
+        $filter: options?.filter,
       },
     });
 }
@@ -4673,7 +4673,7 @@ export function _listSupportedImagesSend(
       queryParameters: {
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
-        $filter: options?.$filter,
+        $filter: options?.filter,
       },
     });
 }
@@ -5373,14 +5373,14 @@ export function _getPoolSend(
     queryParameters: {
       "api-version": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.$expand
-        ? options?.$expand
-        : options?.$expand.map((p: any) => {
+      $expand: !options?.expand
+        ? options?.expand
+        : options?.expand.map((p: any) => {
             return p;
           }),
     },
@@ -5602,15 +5602,15 @@ export function _listPoolsSend(
       "api-version": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.$filter,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $filter: options?.filter,
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.$expand
-        ? options?.$expand
-        : options?.$expand.map((p: any) => {
+      $expand: !options?.expand
+        ? options?.expand
+        : options?.expand.map((p: any) => {
             return p;
           }),
     },
@@ -5741,7 +5741,7 @@ export function _listPoolUsageMetricsSend(
         endtime: !options?.endtime
           ? options?.endtime
           : options?.endtime.toISOString(),
-        $filter: options?.$filter,
+        $filter: options?.filter,
       },
     });
 }

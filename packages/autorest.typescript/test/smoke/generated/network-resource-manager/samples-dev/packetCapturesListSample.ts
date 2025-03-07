@@ -25,7 +25,7 @@ async function listPacketCaptures(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.packetCaptures.list(
+  for await (const item of client.packetCaptures.list(
     resourceGroupName,
     networkWatcherName,
   )) {

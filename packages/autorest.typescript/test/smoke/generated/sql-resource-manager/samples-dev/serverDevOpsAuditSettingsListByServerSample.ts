@@ -26,7 +26,7 @@ async function listDevOpsAuditSettingsOfAServer(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.serverDevOpsAuditSettings.listByServer(
+  for await (const item of client.serverDevOpsAuditSettings.listByServer(
     resourceGroupName,
     serverName,
   )) {

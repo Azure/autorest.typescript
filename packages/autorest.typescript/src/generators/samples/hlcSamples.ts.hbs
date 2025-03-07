@@ -30,7 +30,7 @@ async function {{this.sampleFunctionName}}(): Promise<void> {
   const client = new {{this.clientClassName}}({{this.clientParameterNames}});
   {{#if this.isPaging}}
   const resArray = new Array();
-  for await (let item of client{{#unless this.isTopLevel}}.{{this.operationGroupName}}{{/unless}}.{{this.operationName}}({{this.methodParameterNames}})){
+  for await (const item of client{{#unless this.isTopLevel}}.{{this.operationGroupName}}{{/unless}}.{{this.operationName}}({{this.methodParameterNames}})){
     resArray.push(item);
   }
   console.log(resArray);

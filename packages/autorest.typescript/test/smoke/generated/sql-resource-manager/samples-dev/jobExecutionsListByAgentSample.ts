@@ -42,7 +42,7 @@ async function listAllJobExecutionsInAJobAgentWithFiltering(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.jobExecutions.listByAgent(
+  for await (const item of client.jobExecutions.listByAgent(
     resourceGroupName,
     serverName,
     jobAgentName,
@@ -68,7 +68,7 @@ async function listAllJobExecutionsInAJobAgent(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.jobExecutions.listByAgent(
+  for await (const item of client.jobExecutions.listByAgent(
     resourceGroupName,
     serverName,
     jobAgentName,

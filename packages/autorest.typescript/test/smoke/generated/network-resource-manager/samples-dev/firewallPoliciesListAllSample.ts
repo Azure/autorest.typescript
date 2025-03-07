@@ -23,7 +23,7 @@ async function listAllFirewallPoliciesForAGivenSubscription(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.firewallPolicies.listAll()) {
+  for await (const item of client.firewallPolicies.listAll()) {
     resArray.push(item);
   }
   console.log(resArray);

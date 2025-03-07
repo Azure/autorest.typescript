@@ -30,7 +30,7 @@ async function listVaultsInTheSpecifiedResourceGroup(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new KeyVaultManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.vaults.listByResourceGroup(
+  for await (const item of client.vaults.listByResourceGroup(
     resourceGroupName,
     options,
   )) {
