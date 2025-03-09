@@ -7,6 +7,8 @@ import {
   get,
   createForm,
   createJson,
+  listPetStores,
+  listPets,
   list,
 } from "../../api/todoItems/index.js";
 import { TodoItemPatch } from "../../models/todoItems/models.js";
@@ -22,6 +24,8 @@ import {
   TodoItemsGetOptionalParams,
   TodoItemsCreateFormOptionalParams,
   TodoItemsCreateJsonOptionalParams,
+  TodoItemsListPetStoresOptionalParams,
+  TodoItemsListPetsOptionalParams,
   TodoItemsListOptionalParams,
 } from "../../api/options.js";
 import {
@@ -101,6 +105,13 @@ export interface TodoItemsOperations {
     completedAt?: Date;
     labels?: TodoLabels;
   }>;
+  listPetStores: (
+    zipCode: string,
+    options?: TodoItemsListPetStoresOptionalParams,
+  ) => PagedAsyncIterableIterator<TodoItem>;
+  listPets: (
+    options?: TodoItemsListPetsOptionalParams,
+  ) => PagedAsyncIterableIterator<TodoItem>;
   list: (
     options?: TodoItemsListOptionalParams,
   ) => PagedAsyncIterableIterator<TodoItem>;
@@ -124,6 +135,12 @@ function _getTodoItems(context: TodoContext) {
     ) => createForm(context, body, options),
     createJson: (item: TodoItem, options?: TodoItemsCreateJsonOptionalParams) =>
       createJson(context, item, options),
+    listPetStores: (
+      zipCode: string,
+      options?: TodoItemsListPetStoresOptionalParams,
+    ) => listPetStores(context, zipCode, options),
+    listPets: (options?: TodoItemsListPetsOptionalParams) =>
+      listPets(context, options),
     list: (options?: TodoItemsListOptionalParams) => list(context, options),
   };
 }

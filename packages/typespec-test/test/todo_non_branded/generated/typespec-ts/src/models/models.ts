@@ -165,6 +165,19 @@ export function standard5XXResponseDeserializer(
   };
 }
 
+/** model interface _ListPetStoresResponse */
+export interface _ListPetStoresResponse {
+  petStores: TodoItem[];
+}
+
+export function _listPetStoresResponseDeserializer(
+  item: any,
+): _ListPetStoresResponse {
+  return {
+    petStores: todoItemArrayDeserializer(item["petStores"]),
+  };
+}
+
 /** model interface TodoAttachment */
 export interface TodoAttachment {
   /** The file name of the attachment */

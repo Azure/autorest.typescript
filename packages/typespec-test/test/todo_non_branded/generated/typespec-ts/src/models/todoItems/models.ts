@@ -32,6 +32,25 @@ export function _todoPageDeserializer(item: any): _TodoPage {
   };
 }
 
+/** model interface _ListPetsResponse */
+export interface _ListPetsResponse {
+  pets: TodoItem[];
+  next?: string;
+  prev?: string;
+  first?: string;
+  last?: string;
+}
+
+export function _listPetsResponseDeserializer(item: any): _ListPetsResponse {
+  return {
+    pets: todoItemArrayDeserializer(item["pets"]),
+    next: item["next"],
+    prev: item["prev"],
+    first: item["first"],
+    last: item["last"],
+  };
+}
+
 /** model interface InvalidTodoItem */
 export interface InvalidTodoItem extends ApiError {}
 
