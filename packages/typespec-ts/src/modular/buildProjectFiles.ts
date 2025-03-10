@@ -64,9 +64,7 @@ export function getModuleExports(
       "./models": "./src/models/index.ts"
     }
   };
-  if (emitterOptions.options.hierarchyClient) {
-    exports["exports"]["./api"] = "./src/api/index.ts";
-  }
+  exports["exports"]["./api"] = "./src/api/index.ts";
 
   return buildExportsForMultiClient(context, emitterOptions, exports);
 }
