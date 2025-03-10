@@ -22,7 +22,7 @@ try {
   }
   elseif ($UseTypeSpecNext) {
     Write-Host "Using TypeSpec.Next"
-    Invoke-LoggedCommand "npx -y @azure-tools/typespec-bump-deps@latest --use-peer-ranges ./packages/typespec-ts/package.json"
+    Invoke-LoggedCommand "npx -y @azure-tools/typespec-bump-deps@0.96 --use-peer-ranges ./packages/typespec-ts/package.json"
   }
 
   Invoke-LoggedCommand "node common/scripts/install-run-rush.js update"
