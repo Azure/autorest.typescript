@@ -2,13 +2,13 @@ steps:
   - template: build.yml
   - script: npm install -g @typespec/compiler@next
     displayName: Install @typespec/compiler@next
-  - script: npx @azure-tools/typespec-bump-deps@0.96 pnpm-config.json --add-rush-overrides
+  - script: npx @azure-tools/typespec-bump-deps@0.9.6 pnpm-config.json --add-rush-overrides
     workingDirectory: $(Build.SourcesDirectory)/common/config/rush
     displayName: "Override global pnpm-config to dev"
-  - script: npx @azure-tools/typespec-bump-deps@0.96 package.json
+  - script: npx @azure-tools/typespec-bump-deps@0.9.6 package.json
     workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
     displayName: "Override typespec-ts package.json to dev"
-  - script: npx @azure-tools/typespec-bump-deps@0.96 package.json
+  - script: npx @azure-tools/typespec-bump-deps@0.9.6 package.json
     workingDirectory: $(Build.SourcesDirectory)/packages/typespec-test
     displayName: "Override typespec-test package.json to dev"
   - template: build.yml
