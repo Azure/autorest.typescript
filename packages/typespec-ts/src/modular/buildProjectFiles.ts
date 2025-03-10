@@ -64,9 +64,7 @@ export function getModuleExports(
       "./models": "./src/models/index.ts"
     }
   };
-  if (!emitterOptions.options.azureArm) {
-    exports["exports"]["./api"] = "./src/api/index.ts";
-  }
+  exports["exports"]["./api"] = "./src/api/index.ts";
 
   return buildExportsForMultiClient(context, emitterOptions, exports);
 }

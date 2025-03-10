@@ -8,6 +8,11 @@ import {
   retrieve,
   list,
   create,
+  FineTunesCancelOptionalParams,
+  FineTunesListEventsOptionalParams,
+  FineTunesRetrieveOptionalParams,
+  FineTunesListOptionalParams,
+  FineTunesCreateOptionalParams,
 } from "../../api/fineTunes/index.js";
 import {
   CreateFineTuneRequest,
@@ -15,13 +20,6 @@ import {
   ListFineTunesResponse,
   ListFineTuneEventsResponse,
 } from "../../models/models.js";
-import {
-  FineTunesCancelOptionalParams,
-  FineTunesListEventsOptionalParams,
-  FineTunesRetrieveOptionalParams,
-  FineTunesListOptionalParams,
-  FineTunesCreateOptionalParams,
-} from "../../api/options.js";
 
 /** Interface representing a FineTunes operations. */
 export interface FineTunesOperations {

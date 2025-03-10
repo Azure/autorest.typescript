@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 
 import { WidgetServiceClient } from "./widgetServiceClient.js";
-import { _createOrReplaceDeserialize } from "./api/budgets/index.js";
-import { _createOrReplaceDeserialize as _createOrReplaceDeserializeWidgets } from "./api/widgets/index.js";
+import { _createOrReplaceDeserialize } from "./api/budgets/operations.js";
+import { _createOrReplaceDeserialize as _createOrReplaceDeserializeWidgets } from "./api/widgets/operations.js";
 import { getLongRunningPoller } from "./static-helpers/pollingHelpers.js";
 import {
   OperationOptions,

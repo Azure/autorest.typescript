@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ConnectionType } from "../models/models.js";
 import {
   ToolDefinitionUnion,
   ToolResources,
@@ -20,92 +19,8 @@ import {
   ListSortOrder,
   RunAdditionalFieldList,
   VectorStoreFileStatusFilter,
-} from "../models/agents/models.js";
+} from "../../models/agents/models.js";
 import { OperationOptions } from "@azure-rest/core-client";
-
-/** Optional parameters. */
-export interface EvaluationsDisableScheduleOptionalParams
-  extends OperationOptions {}
-
-/** Optional parameters. */
-export interface EvaluationsListScheduleOptionalParams
-  extends OperationOptions {
-  /** The number of result items to return. */
-  top?: number;
-  /** The number of result items to skip. */
-  skip?: number;
-  /** The maximum number of result items per page. */
-  maxpagesize?: number;
-  /** An opaque, globally-unique, client-generated string identifier for the request. */
-  clientRequestId?: string;
-}
-
-/** Optional parameters. */
-export interface EvaluationsCreateOrReplaceScheduleOptionalParams
-  extends OperationOptions {
-  /** An opaque, globally-unique, client-generated string identifier for the request. */
-  clientRequestId?: string;
-}
-
-/** Optional parameters. */
-export interface EvaluationsGetScheduleOptionalParams extends OperationOptions {
-  /** An opaque, globally-unique, client-generated string identifier for the request. */
-  clientRequestId?: string;
-}
-
-/** Optional parameters. */
-export interface EvaluationsUpdateOptionalParams extends OperationOptions {
-  /** An opaque, globally-unique, client-generated string identifier for the request. */
-  clientRequestId?: string;
-}
-
-/** Optional parameters. */
-export interface EvaluationsListOptionalParams extends OperationOptions {
-  /** The number of result items to return. */
-  top?: number;
-  /** The number of result items to skip. */
-  skip?: number;
-  /** The maximum number of result items per page. */
-  maxpagesize?: number;
-  /** An opaque, globally-unique, client-generated string identifier for the request. */
-  clientRequestId?: string;
-}
-
-/** Optional parameters. */
-export interface EvaluationsCreateOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface EvaluationsGetOptionalParams extends OperationOptions {
-  /** An opaque, globally-unique, client-generated string identifier for the request. */
-  clientRequestId?: string;
-}
-
-/** Optional parameters. */
-export interface TelemetryGetAppInsightsOptionalParams
-  extends OperationOptions {}
-
-/** Optional parameters. */
-export interface ConnectionsGetConnectionWithSecretsOptionalParams
-  extends OperationOptions {}
-
-/** Optional parameters. */
-export interface ConnectionsGetConnectionOptionalParams
-  extends OperationOptions {}
-
-/** Optional parameters. */
-export interface ConnectionsListConnectionsOptionalParams
-  extends OperationOptions {
-  /** Category of the workspace connection. */
-  category?: ConnectionType;
-  /** Indicates whether to list datastores. Service default: do not list datastores. */
-  includeAll?: boolean;
-  /** Target of the workspace connection. */
-  target?: string;
-}
-
-/** Optional parameters. */
-export interface ConnectionsGetWorkspaceOptionalParams
-  extends OperationOptions {}
 
 /** Optional parameters. */
 export interface AgentsListVectorStoreFileBatchFilesOptionalParams

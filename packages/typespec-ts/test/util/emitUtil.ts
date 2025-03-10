@@ -458,8 +458,10 @@ export async function emitModularModelsFromTypeSpec(
         modularEmitterOptions
       );
       binder.resolveAllReferences("/");
-      removeUnusedImports(modelFile);
-      modelFile.fixUnusedIdentifiers();
+      if (modelFile.length > 0) {
+        removeUnusedImports(modelFile[0]!);
+        modelFile[0]!.fixUnusedIdentifiers();
+      }
     } else {
       modelFile = emitTypes(dpgContext, { sourceRoot: "" });
       binder.resolveAllReferences("/");

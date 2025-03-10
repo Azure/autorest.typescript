@@ -1,19 +1,7 @@
 // Licensed under the MIT License.
 
-import { TodoAttachment } from "../models/models.js";
+import { TodoAttachment } from "../../models/models.js";
 import { OperationOptions } from "@typespec/ts-http-runtime";
-
-/** Optional parameters. */
-export interface TodoItemsAttachmentsCreateFileAttachmentOptionalParams
-  extends OperationOptions {}
-
-/** Optional parameters. */
-export interface TodoItemsAttachmentsCreateJsonAttachmentOptionalParams
-  extends OperationOptions {}
-
-/** Optional parameters. */
-export interface TodoItemsAttachmentsListOptionalParams
-  extends OperationOptions {}
 
 /** Optional parameters. */
 export interface TodoItemsDeleteOptionalParams extends OperationOptions {}
@@ -39,6 +27,3 @@ export interface TodoItemsListOptionalParams extends OperationOptions {
   /** The offset to start paginating at */
   offset?: number;
 }
-
-/** Optional parameters. */
-export interface UsersCreateOptionalParams extends OperationOptions {}

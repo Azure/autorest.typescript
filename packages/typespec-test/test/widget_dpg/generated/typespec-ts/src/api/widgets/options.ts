@@ -4,15 +4,6 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface BudgetsGetBudgetsOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface BudgetsCreateOrReplaceOptionalParams extends OperationOptions {
-  /** Delay to wait until next poll, in milliseconds. */
-  updateIntervalInMs?: number;
-}
-
-/** Optional parameters. */
 export interface WidgetsAnalyzeWidgetOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */

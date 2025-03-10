@@ -35,15 +35,3 @@ export interface MultivariateTrainMultivariateModelOptionalParams
 /** Optional parameters. */
 export interface MultivariateGetMultivariateBatchDetectionResultOptionalParams
   extends OperationOptions {}
-
-/** Optional parameters. */
-export interface UnivariateDetectUnivariateChangePointOptionalParams
-  extends OperationOptions {}
-
-/** Optional parameters. */
-export interface UnivariateDetectUnivariateLastPointOptionalParams
-  extends OperationOptions {}
-
-/** Optional parameters. */
-export interface UnivariateDetectUnivariateEntireSeriesOptionalParams
-  extends OperationOptions {}
