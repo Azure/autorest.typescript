@@ -48,7 +48,10 @@ import {
   isAzurePackage,
   updatePackageFile,
   buildSampleEnvFile,
-  buildSnippets
+  buildSnippets,
+  buildTsSrcConfig,
+  buildTsSampleConfig,
+  buildTsTestConfig
 } from "@azure-tools/rlc-common";
 import {
   buildRootIndex,
@@ -384,6 +387,7 @@ export async function $onEmit(context: EmitContext) {
       if (option.moduleKind === "esm") {
         commonBuilders.push((model) => buildVitestConfig(model, "node"));
         commonBuilders.push((model) => buildVitestConfig(model, "browser"));
+        commonBuilders.push((model) => buildVitestConfig(model, "esm"));
         commonBuilders.push((model) => buildTsTestBrowserConfig(model));
       }
       if (isAzureFlavor) {
@@ -411,6 +415,15 @@ export async function $onEmit(context: EmitContext) {
         buildPackageFile(model, modularPackageInfo)
       );
       commonBuilders.push(buildTsConfig);
+      if (option.azureSdkForJs) {
+        commonBuilders.push(buildTsSrcConfig);
+        if (option.generateSample) {
+          commonBuilders.push(buildTsSampleConfig);
+        }
+        if (option.generateTest) {
+          commonBuilders.push(buildTsTestConfig);
+        }
+      }
 
       // TODO: need support snippets generation for multi-client cases. https://github.com/Azure/autorest.typescript/issues/3048
       if (option.generateTest && isAzureFlavor) {

@@ -13,7 +13,9 @@
     "declaration": true,
     "outDir": "./dist-esm",
     "importHelpers": true,
-    "paths": { "@msinternal/web-resource-manager": ["./src/index"] }
+    "paths": {
+      "@msinternal/web-resource-manager": ["./src/index"]
+    }
   },
   "include": ["src/**/*.ts", "test/**/*.ts", "samples-dev/**/*.ts"],
   "exclude": ["node_modules"]
