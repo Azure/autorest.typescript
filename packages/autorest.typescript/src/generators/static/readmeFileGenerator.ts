@@ -101,9 +101,6 @@ function createMetadata(
     relativePackageSourcePath &&
     repoURL &&
     `${repoURL}/tree/main/${relativePackageSourcePath}`;
-  const names = relativePackageSourcePath?.split("/").slice(1);
-  const packageParentDirectoryName = names?.[0];
-  const packageDirectoryName = names?.[1];
 
   const clientPackageName = packageDetails?.name;
   const { clientClassName, serviceTitle } = getClientAndServiceName(
@@ -150,11 +147,6 @@ function createMetadata(
     samplesURL: azureArm
       ? `https://github.com/Azure-Samples/azure-samples-js-management`
       : packageSourceURL && `${packageSourceURL}/samples`,
-    impressionURL: azureHuh
-      ? packageParentDirectoryName &&
-      packageDirectoryName &&
-      `https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2F${packageParentDirectoryName}%2F${packageDirectoryName}%2FREADME.png`
-      : undefined,
     clientDescriptiveName: `${serviceName} client`,
     description: codeModel.info?.description,
     apiRefURL: azureHuh
