@@ -1,5 +1,8 @@
 import { assert } from "chai";
-import { emitClientDefinitionFromTypeSpec, emitParameterFromTypeSpec } from "../util/emitUtil.js";
+import {
+  emitClientDefinitionFromTypeSpec,
+  emitParameterFromTypeSpec
+} from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 
 describe("Client definition generation", () => {
@@ -8,9 +11,7 @@ describe("Client definition generation", () => {
     @route("template/{+param}")
     op template(param: string): void;
         `;
-    const parameters = await emitParameterFromTypeSpec(
-      tsp
-    );
+    const parameters = await emitParameterFromTypeSpec(tsp);
     assert.ok(parameters);
     await assertEqualContent(
       parameters?.content!,
@@ -29,8 +30,7 @@ describe("Client definition generation", () => {
       `
     );
 
-    const clientDef = await emitClientDefinitionFromTypeSpec(
-      tsp);
+    const clientDef = await emitClientDefinitionFromTypeSpec(tsp);
     assert.ok(clientDef);
     await assertEqualContent(
       clientDef!.content,
@@ -67,9 +67,7 @@ describe("Client definition generation", () => {
     op template(@query("include[]")
     include?: RunAdditionalFieldList[]): void;
         `;
-    const parameters = await emitParameterFromTypeSpec(
-      tsp
-    );
+    const parameters = await emitParameterFromTypeSpec(tsp);
     assert.ok(parameters);
     await assertEqualContent(
       parameters?.content!,
@@ -99,8 +97,7 @@ describe("Client definition generation", () => {
       `
     );
 
-    const clientDef = await emitClientDefinitionFromTypeSpec(
-      tsp);
+    const clientDef = await emitClientDefinitionFromTypeSpec(tsp);
     assert.ok(clientDef);
     await assertEqualContent(
       clientDef!.content,

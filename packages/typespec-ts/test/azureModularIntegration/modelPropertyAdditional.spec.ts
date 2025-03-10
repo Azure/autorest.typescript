@@ -2,7 +2,6 @@ import { assert } from "chai";
 import { AdditionalPropertiesClient } from "./generated/type/property/additional-properties/src/index.js";
 
 describe("ModelPropertyAdditional Client", () => {
-
   let client: AdditionalPropertiesClient;
 
   beforeEach(() => {

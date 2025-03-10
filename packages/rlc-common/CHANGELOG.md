@@ -1,3 +1,15 @@
+## 0.38.4 (2025-03-07)
+
+- [Feature] Upgrade http-specs version. Please refer to [#3085](https://github.com/Azure/autorest.typescript/pull/3085)
+- [Feature] Upgrade package version to latest. Please refer to [#3088](https://github.com/Azure/autorest.typescript/pull/3088)
+- [Feature] Unify the typespec options to kebab-case style. Please refer to [#2960](https://github.com/Azure/autorest.typescript/pull/2960)
+- [Feature] Normalization refinement including enum member name. Please refer to [#2839](https://github.com/Azure/autorest.typescript/pull/2839)
+- [Feature] Remove @microsoft/api-extractor from common dev dependencies of generated packages. Please refer to [#3088](https://github.com/Azure/autorest.typescript/pull/3058)
+- [Feature] Fully support url template in Modular. Please refer to [#2884](https://github.com/Azure/autorest.typescript/pull/2884)
+- [Feature] Ignore *.d.*ts.map when packing generated packages. Please refer to [#3069](https://github.com/Azure/autorest.typescript/pull/3069)
+- [Bugfix] Fix paging samples' template. Please refer to [#3086](https://github.com/Azure/autorest.typescript/pull/3086)
+- [Bugfix] Fix Issue for publish @azure-tools/rlc-common and @azure-tools/typespec-ts to github. Please refer to [#3080](https://github.com/Azure/autorest.typescript/pull/3080)
+
 ## 0.38.3 (2025-02-25)
 
 - [Feature] Update compiler version to 0.65.x. Please refer to [#2753](https://github.com/Azure/autorest.typescript/pull/2753)

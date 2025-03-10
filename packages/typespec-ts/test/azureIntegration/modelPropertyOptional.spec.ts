@@ -30,11 +30,9 @@ describe("ModelsPropertyOptional Rest Client", () => {
   });
 
   it("should put all string", async () => {
-    const result = await client
-      .path("/type/property/optional/string/all")
-      .put({
-        body: { property: "hello" }
-      });
+    const result = await client.path("/type/property/optional/string/all").put({
+      body: { property: "hello" }
+    });
     assert.strictEqual(result.status, "204");
   });
 
@@ -46,9 +44,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
   });
 
   it("should get all bytes", async () => {
-    const result = await client
-      .path("/type/property/optional/bytes/all")
-      .get();
+    const result = await client.path("/type/property/optional/bytes/all").get();
     assert.strictEqual(result.status, "200");
     assert.strictEqual(result.body.property, "aGVsbG8sIHdvcmxkIQ==");
   });
@@ -62,11 +58,9 @@ describe("ModelsPropertyOptional Rest Client", () => {
   });
 
   it("should put all bytes", async () => {
-    const result = await client
-      .path("/type/property/optional/bytes/all")
-      .put({
-        body: { property: "aGVsbG8sIHdvcmxkIQ==" }
-      });
+    const result = await client.path("/type/property/optional/bytes/all").put({
+      body: { property: "aGVsbG8sIHdvcmxkIQ==" }
+    });
     assert.strictEqual(result.status, "204");
   });
 

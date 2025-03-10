@@ -31,6 +31,7 @@ import {
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import { buildCsvCollection } from "../../static-helpers/serialization/build-csv-collection.js";
 import {
   StreamableMethod,
@@ -46,9 +47,18 @@ export function _analyzeWidgetSend(
   id: string,
   options: WidgetsAnalyzeWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/widgets/{id}/analyze",
+    {
+      id: id,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
-    .path("/widgets/{id}/analyze", id)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -86,9 +96,18 @@ export function _deleteWidgetSend(
   id: string,
   options: WidgetsDeleteWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/widgets/{id}",
+    {
+      id: id,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
-    .path("/widgets/{id}", id)
+    .path(path)
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -126,9 +145,18 @@ export function _updateWidgetSend(
   id: string,
   options: WidgetsUpdateWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/widgets/{id}",
+    {
+      id: id,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
-    .path("/widgets/{id}", id)
+    .path(path)
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
@@ -172,8 +200,18 @@ export function _createOrReplaceSend(
   resource: User,
   options: WidgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/widgets/widgets/createOrReplace/users/{name}{?api-version}",
+    {
+      name: name,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/widgets/widgets/createOrReplace/users/{name}", name)
+    .path(path)
     .put({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
@@ -181,7 +219,6 @@ export function _createOrReplaceSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: userSerializer(resource),
     });
 }
@@ -272,9 +309,18 @@ export function _getWidgetSend(
   id: string,
   options: WidgetsGetWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/widgets/{id}",
+    {
+      id: id,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
-    .path("/widgets/{id}", id)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -313,16 +359,25 @@ export function _queryWidgetsPagesSend(
   pageSize: number,
   options: WidgetsQueryWidgetsPagesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/widgets/widgets/pages{?page,pageSize}",
+    {
+      page: page,
+      pageSize: pageSize,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
-    .path("/widgets/widgets/pages")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { page: page, pageSize: pageSize },
     });
 }
 
@@ -360,16 +415,25 @@ export function _listWidgetsPagesSend(
   pageSize: number,
   options: WidgetsListWidgetsPagesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/widgets/widgets/pages{?page,pageSize}",
+    {
+      page: page,
+      pageSize: pageSize,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
-    .path("/widgets/widgets/pages")
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { page: page, pageSize: pageSize },
     });
 }
 
