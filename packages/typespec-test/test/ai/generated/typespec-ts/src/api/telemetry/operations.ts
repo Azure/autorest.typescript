@@ -6,6 +6,7 @@ import {
   GetAppInsightsResponse,
   getAppInsightsResponseDeserializer,
 } from "../../models/models.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -19,15 +20,24 @@ export function _getAppInsightsSend(
   appInsightsResourceUrl: string,
   options: TelemetryGetAppInsightsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/{appInsightsResourceUrl}{?api-version}",
+    {
+      appInsightsResourceUrl: appInsightsResourceUrl,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/{appInsightsResourceUrl}", appInsightsResourceUrl)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 

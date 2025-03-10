@@ -70,9 +70,7 @@ describe("SingleDiscriminatorClient Rest Client", () => {
 
   it("should get if missing discriminator", async () => {
     const result = await client
-      .path(
-        "/type/model/inheritance/single-discriminator/missingdiscriminator"
-      )
+      .path("/type/model/inheritance/single-discriminator/missingdiscriminator")
       .get();
     assert.strictEqual(result.status, "200");
     assert.deepEqual(result.body, { wingspan: 1 } as any);

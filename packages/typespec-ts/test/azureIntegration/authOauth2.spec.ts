@@ -40,7 +40,6 @@ describe("AuthOauth2Client Rest Client", () => {
   it("should return 204 when the token is valid", async () => {
     const result = await client.path("/authentication/oauth2/valid").get();
     assert.strictEqual(result.status, "204");
-
   });
 
   it("should return 403 when the token is invalid", async () => {

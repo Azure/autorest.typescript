@@ -32,7 +32,9 @@ describe("operations", () => {
         op read( @header nullableRequiredHeader: string | null): OkResponse;
         `;
 
-        await emitModularOperationsFromTypeSpec(tspContent, { mustEmptyDiagnostic: true });
+        await emitModularOperationsFromTypeSpec(tspContent, {
+          mustEmptyDiagnostic: true
+        });
         assert.fail("Should throw diagnostic warnings");
       } catch (e) {
         const diagnostics = e as Diagnostic[];

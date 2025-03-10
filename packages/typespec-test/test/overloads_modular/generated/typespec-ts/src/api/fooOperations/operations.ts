@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { WidgetManagerContext as Client } from "../index.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -18,8 +19,17 @@ export function _getAvatarAsJpegSend(
   image: Uint8Array,
   options: FooOperationsGetAvatarAsJpegOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/avatar{?api-version}",
+    {
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/avatar")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "image/jpeg",
@@ -27,7 +37,6 @@ export function _getAvatarAsJpegSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: image,
     });
 }
@@ -58,8 +67,17 @@ export function _getAvatarAsPngSend(
   image: Uint8Array,
   options: FooOperationsGetAvatarAsPngOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/avatar{?api-version}",
+    {
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/avatar")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "image/png",
@@ -67,7 +85,6 @@ export function _getAvatarAsPngSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: image,
     });
 }

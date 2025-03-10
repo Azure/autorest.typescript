@@ -52,30 +52,21 @@ describe("EncodeBytesClient Modular Client", () => {
       const result = await client.property.default({
         value: stringToUint8Array("dGVzdA==", "base64")
       });
-      assert.deepEqual(
-        result.value,
-        stringToUint8Array("dGVzdA==", "base64")
-      );
+      assert.deepEqual(result.value, stringToUint8Array("dGVzdA==", "base64"));
     });
 
     it(`should post bytes base64 encoding`, async () => {
       const result = await client.property.base64({
         value: stringToUint8Array("dGVzdA==", "base64")
       });
-      assert.deepEqual(
-        result.value,
-        stringToUint8Array("dGVzdA==", "base64")
-      );
+      assert.deepEqual(result.value, stringToUint8Array("dGVzdA==", "base64"));
     });
 
     it(`should post bytes base64url encoding`, async () => {
       const result = await client.property.base64Url({
         value: stringToUint8Array("dGVzdA", "base64url")
       });
-      assert.deepEqual(
-        uint8ArrayToString(result.value, "base64url"),
-        "dGVzdA"
-      );
+      assert.deepEqual(uint8ArrayToString(result.value, "base64url"), "dGVzdA");
     });
 
     it(`should post bytes base64url array`, async () => {

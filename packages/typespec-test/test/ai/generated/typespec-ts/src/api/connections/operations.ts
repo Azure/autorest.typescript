@@ -10,6 +10,7 @@ import {
   GetConnectionResponse,
   getConnectionResponseDeserializer,
 } from "../../models/models.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -31,8 +32,18 @@ export function _getConnectionWithSecretsSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/connections/{connectionName}/listsecrets{?api-version}",
+    {
+      connectionName: connectionName,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/connections/{connectionName}/listsecrets", connectionName)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
@@ -40,7 +51,6 @@ export function _getConnectionWithSecretsSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: { ignored: ignored },
     });
 }
@@ -79,15 +89,24 @@ export function _getConnectionSend(
   connectionName: string,
   options: ConnectionsGetConnectionOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/connections/{connectionName}{?api-version}",
+    {
+      connectionName: connectionName,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/connections/{connectionName}", connectionName)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -116,19 +135,25 @@ export function _listConnectionsSend(
   context: Client,
   options: ConnectionsListConnectionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/connections{?api-version,category,includeAll,target}",
+    {
+      "api-version": context.apiVersion,
+      category: options?.category,
+      includeAll: options?.includeAll,
+      target: options?.target,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/connections")
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
-      },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        category: options?.category,
-        includeAll: options?.includeAll,
-        target: options?.target,
       },
     });
 }
@@ -157,15 +182,23 @@ export function _getWorkspaceSend(
   context: Client,
   options: ConnectionsGetWorkspaceOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/{?api-version}",
+    {
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/")
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 

@@ -13,6 +13,7 @@ import {
   ListFineTuneEventsResponse,
   listFineTuneEventsResponseDeserializer,
 } from "../../models/models.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -32,8 +33,17 @@ export function _cancelSend(
   fineTuneId: string,
   options: FineTunesCancelOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/fine-tunes/{fine_tune_id}/cancel",
+    {
+      fine_tune_id: fineTuneId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/fine-tunes/{fine_tune_id}/cancel", fineTuneId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -70,15 +80,24 @@ export function _listEventsSend(
   fineTuneId: string,
   options: FineTunesListEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/fine-tunes/{fine_tune_id}/events{?stream}",
+    {
+      fine_tune_id: fineTuneId,
+      stream: options?.stream,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/fine-tunes/{fine_tune_id}/events", fineTuneId)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { stream: options?.stream },
     });
 }
 
@@ -109,8 +128,17 @@ export function _retrieveSend(
   fineTuneId: string,
   options: FineTunesRetrieveOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/fine-tunes/{fine_tune_id}",
+    {
+      fine_tune_id: fineTuneId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/fine-tunes/{fine_tune_id}", fineTuneId)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {

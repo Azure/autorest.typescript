@@ -131,35 +131,29 @@ describe("EncodeDatetimeClient Rest Client", () => {
 
   describe("header", () => {
     it(`should get default header`, async () => {
-      const result = await client
-        .path(`/encode/datetime/header/default`)
-        .get({
-          headers: {
-            value: "Fri, 26 Aug 2022 14:38:00 GMT"
-          }
-        });
+      const result = await client.path(`/encode/datetime/header/default`).get({
+        headers: {
+          value: "Fri, 26 Aug 2022 14:38:00 GMT"
+        }
+      });
       assert.strictEqual(result.status, "204");
     });
 
     it(`should get rfc3339 header`, async () => {
-      const result = await client
-        .path(`/encode/datetime/header/rfc3339`)
-        .get({
-          headers: {
-            value: "2022-08-26T18:38:00.000Z"
-          }
-        });
+      const result = await client.path(`/encode/datetime/header/rfc3339`).get({
+        headers: {
+          value: "2022-08-26T18:38:00.000Z"
+        }
+      });
       assert.strictEqual(result.status, "204");
     });
 
     it(`should get rfc7231 header`, async () => {
-      const result = await client
-        .path(`/encode/datetime/header/rfc7231`)
-        .get({
-          headers: {
-            value: "Fri, 26 Aug 2022 14:38:00 GMT"
-          }
-        });
+      const result = await client.path(`/encode/datetime/header/rfc7231`).get({
+        headers: {
+          value: "Fri, 26 Aug 2022 14:38:00 GMT"
+        }
+      });
       assert.strictEqual(result.status, "204");
     });
 
@@ -192,10 +186,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
         .path(`/encode/datetime/responseheader/default`)
         .get();
       assert.strictEqual(result.status, "204");
-      assert.strictEqual(
-        result.headers.value,
-        "Fri, 26 Aug 2022 14:38:00 GMT"
-      );
+      assert.strictEqual(result.headers.value, "Fri, 26 Aug 2022 14:38:00 GMT");
     });
 
     it(`should get rfc3339 header`, async () => {
@@ -211,10 +202,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
         .path(`/encode/datetime/responseheader/rfc7231`)
         .get();
       assert.strictEqual(result.status, "204");
-      assert.strictEqual(
-        result.headers.value,
-        "Fri, 26 Aug 2022 14:38:00 GMT"
-      );
+      assert.strictEqual(result.headers.value, "Fri, 26 Aug 2022 14:38:00 GMT");
     });
 
     it(`should get unix-timestamp header`, async () => {

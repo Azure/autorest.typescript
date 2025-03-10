@@ -60,13 +60,11 @@ describe("EncodeDatetimeClient Rest Client", () => {
 
   describe("property", () => {
     it(`should post bytes`, async () => {
-      const result = await client
-        .path(`/encode/bytes/property/default`)
-        .post({
-          body: {
-            value: "dGVzdA=="
-          }
-        });
+      const result = await client.path(`/encode/bytes/property/default`).post({
+        body: {
+          value: "dGVzdA=="
+        }
+      });
       assert.strictEqual(result.status, "200");
     });
 

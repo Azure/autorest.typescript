@@ -23,6 +23,7 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -47,8 +48,17 @@ export function _detectMultivariateLastAnomalySend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/multivariate/models/{modelId}:detect-last",
+    {
+      modelId: modelId,
+    },
+    {
+      allowReserved: optionalParams?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/multivariate/models/{modelId}:detect-last", modelId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
       contentType: "application/json",
@@ -104,8 +114,17 @@ export function _detectMultivariateBatchAnomalySend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/multivariate/models/{modelId}:detect-batch",
+    {
+      modelId: modelId,
+    },
+    {
+      allowReserved: optionalParams?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/multivariate/models/{modelId}:detect-batch", modelId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(optionalParams),
       contentType: "application/json",
@@ -162,8 +181,17 @@ export function _getMultivariateModelSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/multivariate/models/{modelId}",
+    {
+      modelId: modelId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/multivariate/models/{modelId}", modelId)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -208,8 +236,17 @@ export function _deleteMultivariateModelSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/multivariate/models/{modelId}",
+    {
+      modelId: modelId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/multivariate/models/{modelId}", modelId)
+    .path(path)
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -250,15 +287,24 @@ export function _listMultivariateModelsSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/multivariate/models{?skip,top}",
+    {
+      skip: options?.skip,
+      top: options?.top,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/multivariate/models")
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { skip: options?.skip, top: options?.top },
     });
 }
 
@@ -351,8 +397,17 @@ export function _getMultivariateBatchDetectionResultSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/multivariate/detect-batch/{resultId}",
+    {
+      resultId: resultId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/multivariate/detect-batch/{resultId}", resultId)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {

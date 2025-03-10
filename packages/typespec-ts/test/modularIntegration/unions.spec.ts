@@ -120,7 +120,6 @@ describe("Type Union Client", () => {
     assert.strictEqual(result.prop.literal, "a");
     assert.strictEqual(result.prop.int, 2);
     assert.strictEqual(result.prop.boolean, true);
-
   });
   it("should send mixed types union", async () => {
     const result = await client.mixedTypes.send({
