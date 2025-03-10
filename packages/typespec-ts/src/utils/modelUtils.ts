@@ -28,6 +28,7 @@ import {
   Type,
   Union,
   UnionVariant,
+  Value,
   getDiscriminator,
   getDoc,
   getEffectiveModelType,
@@ -486,7 +487,12 @@ function isOasString(type: Type): boolean {
     return true;
   } else if (type.kind === "Union") {
     // A union where all variants are an OasString
-    return type.options.every((o) => isOasString(o));
+    for(const variant of type.variants) {
+      if (!isOasString(variant[1].type)) {
+        return false;
+      }
+    }
+    return true;
   } else if (type.kind === "UnionVariant") {
     // A union variant where the type is an OasString
     return isOasString(type.type);
@@ -495,9 +501,17 @@ function isOasString(type: Type): boolean {
 }
 
 function isStringLiteral(type: Type): boolean {
+  if (type.kind === "Union") {
+    // A union where all variants are an OasString
+    for (const variant of type.variants) {
+      if (!isStringLiteral(variant[1].type)) {
+        return false;
+      }
+    }
+    return true;
+  }
   return (
     type.kind === "String" ||
-    (type.kind === "Union" && type.options.every((o) => o.kind === "String")) ||
     (type.kind === "EnumMember" &&
       typeof (type.value ?? type.name) === "string") ||
     (type.kind === "UnionVariant" && type.type.kind === "String")
@@ -1549,6 +1563,33 @@ export function getBodyType(route: HttpOperation): Type | undefined {
   return bodyModel;
 }
 
+export function getValueTypeValue(
+  value: Value,
+): string | boolean | null | number | Array<unknown> | object | undefined {
+  switch (value.valueKind) {
+    case "ArrayValue":
+      return value.values.map((x) => getValueTypeValue(x));
+    case "BooleanValue":
+    case "StringValue":
+    case "NullValue":
+      return value.value;
+    case "NumericValue":
+      return value.value.asNumber();
+    case "EnumValue":
+      return value.value.value ?? value.value.name;
+    case "ObjectValue":
+      return Object.fromEntries(
+        [...value.properties.keys()].map((x) => [
+          x,
+          getValueTypeValue(value.properties.get(x)!.value),
+        ]),
+      );
+    case "ScalarValue":
+      // TODO: handle scalar value
+      return undefined;
+  }
+}
+
 /**
  * Predict if the default value exists in param, we would follow the rules:
  * 1. If we have specific default literal in param
@@ -1566,7 +1607,7 @@ export function predictDefaultValue(
     return;
   }
   const program = dpgContext.program;
-  const specificDefault = param?.default;
+  const specificDefault = param?.defaultValue?.type;
   if (isLiteralValue(specificDefault)) {
     return specificDefault.value;
   }
