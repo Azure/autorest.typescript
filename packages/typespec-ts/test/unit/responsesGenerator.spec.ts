@@ -245,6 +245,10 @@ describe("Responses.ts", () => {
         @header
         @encode("string")
         x: int32;
+
+        @header
+        @encode(string)
+        y: int32;
       };
       @route("/decimal/prop/encode")
       @get
@@ -255,22 +259,10 @@ describe("Responses.ts", () => {
         }
       );
       assert.ok(parameters);
+      console.log(parameters?.content);
       await assertEqualContent(
         parameters?.content!,
-        `
-          import type { RawHttpHeaders } from "@azure/core-rest-pipeline";
-          import type { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
-      
-          export interface GetModel200Headers {
-            "x": string;
-          }
-  
-          '/** The request has succeeded. */\n' +
-          export interface GetModel200Response extends HttpResponse {
-              status: "200";
-              headers: RawHttpHeaders & GetModel200Headers;
-          }
-        `
+        ""
       );
     });
   });
@@ -614,5 +606,4 @@ describe("Array generation", () => {
       `
     );
   });
-});
 });
