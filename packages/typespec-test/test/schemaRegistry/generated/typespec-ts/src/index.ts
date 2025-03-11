@@ -18,6 +18,7 @@ export {
   KnownServiceApiVersions,
   ContentTypeEnum,
 } from "./models/index.js";
+export { SchemaRegistryClientOptionalParams } from "./api/index.js";
 export {
   SchemaOperationsRegisterSchemaOptionalParams,
   SchemaOperationsGetSchemaIdByContentOptionalParams,
@@ -25,7 +26,6 @@ export {
   SchemaOperationsListSchemaVersionsOptionalParams,
   SchemaOperationsGetSchemaByIdOptionalParams,
   SchemaOperationsListSchemaGroupsOptionalParams,
-  SchemaRegistryClientOptionalParams,
-} from "./api/index.js";
+} from "./api/schemaOperations/index.js";
 export { SchemaOperationsOperations } from "./classic/index.js";
 export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };

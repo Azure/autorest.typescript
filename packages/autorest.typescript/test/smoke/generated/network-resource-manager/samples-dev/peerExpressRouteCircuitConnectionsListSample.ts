@@ -26,7 +26,7 @@ async function listPeerExpressRouteCircuitConnection(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.peerExpressRouteCircuitConnections.list(
+  for await (const item of client.peerExpressRouteCircuitConnections.list(
     resourceGroupName,
     circuitName,
     peeringName,

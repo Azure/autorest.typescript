@@ -25,7 +25,7 @@ async function listServiceEndpointDefinitionsInServiceEndPointPolicy(): Promise<
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.serviceEndpointPolicyDefinitions.listByResourceGroup(
+  for await (const item of client.serviceEndpointPolicyDefinitions.listByResourceGroup(
     resourceGroupName,
     serviceEndpointPolicyName,
   )) {

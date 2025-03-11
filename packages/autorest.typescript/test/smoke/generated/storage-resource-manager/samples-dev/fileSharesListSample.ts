@@ -30,7 +30,7 @@ async function listDeletedShares(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.fileShares.list(
+  for await (const item of client.fileShares.list(
     resourceGroupName,
     accountName,
     options,
@@ -55,7 +55,7 @@ async function listShareSnapshots(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.fileShares.list(
+  for await (const item of client.fileShares.list(
     resourceGroupName,
     accountName,
     options,
@@ -78,7 +78,7 @@ async function listShares(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.fileShares.list(
+  for await (const item of client.fileShares.list(
     resourceGroupName,
     accountName,
   )) {

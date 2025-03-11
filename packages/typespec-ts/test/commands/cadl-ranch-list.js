@@ -511,6 +511,10 @@ export const rlcTsps = [
 
 export const azureModularTsps = [
   {
+    outputPath: "routes",
+    inputPath: "routes"
+  },
+  {
     outputPath: "azure/client-generator-core/flatten-property",
     inputPath: "azure/client-generator-core/flatten-property"
   },
@@ -795,6 +799,10 @@ export const azureModularTsps = [
 ];
 
 export const modularTsps = [
+  {
+    outputPath: "routes",
+    inputPath: "routes"
+  },
   {
     outputPath: "parameters/body-optionality",
     inputPath: "parameters/body-optionality"

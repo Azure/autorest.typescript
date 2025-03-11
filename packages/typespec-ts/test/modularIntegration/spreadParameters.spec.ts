@@ -75,7 +75,7 @@ describe("SpreadClient Client", () => {
     const result = await client.alias.spreadParameterWithInnerModel(
       "1",
       "foo",
-      "bar",
+      "bar"
     );
     assert.isUndefined(result);
   });

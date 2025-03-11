@@ -250,6 +250,7 @@ export interface RLCOptions {
   experimentalExtensibleEnums?: boolean;
   clearOutputFolder?: boolean;
   ignorePropertyNameNormalize?: boolean;
+  ignoreEnumMemberNameNormalize?: boolean;
   compatibilityQueryMultiFormat?: boolean;
   typespecTitleMap?: Record<string, string>;
 }

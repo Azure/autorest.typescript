@@ -146,7 +146,7 @@ describe("Client Factory generation", () => {
       }
       `;
       const clientFactory = await emitClientFactoryFromTypeSpec(tsp, {
-        needAzureCore: true,
+        needAzureCore: true
       });
       assert.ok(clientFactory);
       await assertEqualContent(
@@ -424,7 +424,7 @@ describe("Client Factory generation", () => {
             }]>)
           @service(#{title: "PetStoreClient"})
           namespace PetStore;
-        `,
+        `
         );
         assert.fail("Should throw diagnostic errors");
       } catch (e) {

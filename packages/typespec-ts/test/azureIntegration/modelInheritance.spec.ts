@@ -126,9 +126,7 @@ describe("NestedDiscriminatorClient Rest Client", () => {
 
   it("should get missing discriminator body", async () => {
     const result = await client
-      .path(
-        "/type/model/inheritance/nested-discriminator/missingdiscriminator"
-      )
+      .path("/type/model/inheritance/nested-discriminator/missingdiscriminator")
       .get();
     assert.strictEqual(result.status, "200");
     assert.strictEqual(result.body.age, 1);

@@ -26,7 +26,7 @@ async function listsAllAvailableResourceSkUs(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.resourceSkus.list()) {
+  for await (const item of client.resourceSkus.list()) {
     resArray.push(item);
   }
   console.log(resArray);
@@ -45,7 +45,7 @@ async function listsAllAvailableResourceSkUsForTheSpecifiedRegion(): Promise<voi
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.resourceSkus.list(options)) {
+  for await (const item of client.resourceSkus.list(options)) {
     resArray.push(item);
   }
   console.log(resArray);
@@ -64,7 +64,7 @@ async function listsAllAvailableResourceSkUsWithExtendedLocationInformation(): P
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.resourceSkus.list(options)) {
+  for await (const item of client.resourceSkus.list(options)) {
     resArray.push(item);
   }
   console.log(resArray);

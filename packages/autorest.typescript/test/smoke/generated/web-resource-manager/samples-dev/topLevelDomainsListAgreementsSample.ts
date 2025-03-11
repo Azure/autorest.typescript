@@ -32,7 +32,7 @@ async function listTopLevelDomainAgreements(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.topLevelDomains.listAgreements(
+  for await (const item of client.topLevelDomains.listAgreements(
     name,
     agreementOption,
   )) {

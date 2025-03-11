@@ -23,7 +23,7 @@ async function serviceCommunityList(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.bgpServiceCommunities.list()) {
+  for await (const item of client.bgpServiceCommunities.list()) {
     resArray.push(item);
   }
   console.log(resArray);

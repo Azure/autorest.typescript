@@ -6,6 +6,9 @@ import {
   detectUnivariateChangePoint,
   detectUnivariateLastPoint,
   detectUnivariateEntireSeries,
+  UnivariateDetectUnivariateChangePointOptionalParams,
+  UnivariateDetectUnivariateLastPointOptionalParams,
+  UnivariateDetectUnivariateEntireSeriesOptionalParams,
 } from "../../api/univariate/index.js";
 import {
   UnivariateUnivariateDetectionOptions,
@@ -14,11 +17,6 @@ import {
   UnivariateUnivariateChangePointDetectionOptions,
   UnivariateUnivariateChangePointDetectionResult,
 } from "../../models/univariate/models.js";
-import {
-  UnivariateDetectUnivariateChangePointOptionalParams,
-  UnivariateDetectUnivariateLastPointOptionalParams,
-  UnivariateDetectUnivariateEntireSeriesOptionalParams,
-} from "../../api/options.js";
 
 /** Interface representing a Univariate operations. */
 export interface UnivariateOperations {

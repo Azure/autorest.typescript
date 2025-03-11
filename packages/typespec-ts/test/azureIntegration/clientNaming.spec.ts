@@ -22,11 +22,9 @@ describe("ClientEncodedNameClient Rest Client", () => {
   });
 
   it("should work with property language", async () => {
-    const result = await client
-      .path("/client/naming/property/language")
-      .post({
-        body: { defaultName: true }
-      });
+    const result = await client.path("/client/naming/property/language").post({
+      body: { defaultName: true }
+    });
     assert.strictEqual(result.status, "204");
   });
 

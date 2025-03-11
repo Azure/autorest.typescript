@@ -1,5 +1,5 @@
 import RoutesClientFactory, {
-  RoutesClient,
+  RoutesClient
 } from "./generated/routes/src/index.js";
 import { assert } from "chai";
 describe("RoutesClient Rest Client", () => {
@@ -58,13 +58,10 @@ describe("RoutesClient Rest Client", () => {
 
   it("should have allowReserved: true with helper", async () => {
     const result = await client
-      .path(
-        "/routes/path/reserved-expansion/template/{param}",
-        {
-          value: "foo/bar baz",
-          allowReserved: true
-        }
-      )
+      .path("/routes/path/reserved-expansion/template/{param}", {
+        value: "foo/bar baz",
+        allowReserved: true
+      })
       .get();
     assert.strictEqual(result.status, "204");
   });
@@ -180,7 +177,6 @@ describe("RoutesClient Rest Client", () => {
       assert.strictEqual(result.status, "204");
     });
 
-
     it("should pass query-continuation with standard primitive correctly", async () => {
       const result = await client
         .path("/routes/query/query-continuation/standard/primitive?fixed=true")
@@ -248,5 +244,4 @@ describe("RoutesClient Rest Client", () => {
       assert.strictEqual(result.status, "204");
     });
   });
-
 });

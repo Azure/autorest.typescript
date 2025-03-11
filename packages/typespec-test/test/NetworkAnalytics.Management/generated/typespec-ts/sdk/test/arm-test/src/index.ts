@@ -68,8 +68,8 @@ export {
   ActionType,
   KnownVersions,
 } from "./models/index.js";
+export { NetworkAnalyticsApiOptionalParams } from "./api/index.js";
 export {
-  NetworkAnalyticsApiOptionalParams,
   DataProductsListBySubscriptionOptionalParams,
   DataProductsListByResourceGroupOptionalParams,
   DataProductsListRolesAssignmentsOptionalParams,
@@ -81,6 +81,13 @@ export {
   DataProductsUpdateOptionalParams,
   DataProductsGetOptionalParams,
   DataProductsCreateOptionalParams,
+} from "./api/dataProducts/index.js";
+export {
+  DataProductsCatalogsListBySubscriptionOptionalParams,
+  DataProductsCatalogsListByResourceGroupOptionalParams,
+  DataProductsCatalogsGetOptionalParams,
+} from "./api/dataProductsCatalogs/index.js";
+export {
   DataTypesListByDataProductOptionalParams,
   DataTypesGenerateStorageContainerSasTokenOptionalParams,
   DataTypesDeleteDataOptionalParams,
@@ -88,11 +95,8 @@ export {
   DataTypesUpdateOptionalParams,
   DataTypesGetOptionalParams,
   DataTypesCreateOptionalParams,
-  DataProductsCatalogsListBySubscriptionOptionalParams,
-  DataProductsCatalogsListByResourceGroupOptionalParams,
-  DataProductsCatalogsGetOptionalParams,
-  OperationsListOptionalParams,
-} from "./api/index.js";
+} from "./api/dataTypes/index.js";
+export { OperationsListOptionalParams } from "./api/operations/index.js";
 export {
   DataProductsOperations,
   DataProductsCatalogsOperations,
