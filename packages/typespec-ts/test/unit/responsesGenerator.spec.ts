@@ -238,31 +238,55 @@ describe("Responses.ts", () => {
       );
     });
 
-    it.only("should handle int/decimal/decimal128/int8 with encode `string` in response headers", async () => {
-      const parameters = await emitResponsesFromTypeSpec(
+    it("should handle int/decimal/decimal128/int8 with encode `string` in response headers", async () => {
+      const responses = await emitResponsesFromTypeSpec(
         `
       alias SimpleModel = {
         @header
         @encode("string")
         x: int32;
-
         @header
         @encode(string)
         y: int32;
+        @header
+        @encode(DateTimeKnownEncoding.rfc3339)
+        value: utcDateTime;
+        @header
+        @encode(DurationKnownEncoding.ISO8601)
+        input: duration;
+        @header
+        @encode(DurationKnownEncoding.seconds, float)
+        z: duration;
       };
       @route("/decimal/prop/encode")
       @get
       op getModel(...SimpleModel): SimpleModel;
       `,
         {
-          needTCGC: true
+          needTCGC: false
         }
       );
-      assert.ok(parameters);
-      console.log(parameters?.content);
+      assert.ok(responses);
       await assertEqualContent(
-        parameters?.content!,
-        ""
+        responses?.content!,
+        `
+        import type { RawHttpHeaders } from "@azure/core-rest-pipeline";
+        import type { HttpResponse } from "@azure-rest/core-client";
+
+        export interface GetModel200Headers {
+            "x": string;
+            "y": string;
+            "value": string;
+            "input": string;
+            "z": number;
+        }
+
+        /** The request has succeeded. */
+        export interface GetModel200Response extends HttpResponse {
+            status: "200";
+            headers: RawHttpHeaders & GetModel200Headers;
+        }
+        `
       );
     });
   });
@@ -607,3 +631,4 @@ describe("Array generation", () => {
     );
   });
 });
+
