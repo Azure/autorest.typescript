@@ -62,8 +62,12 @@ import {
   HttpOperationParameters,
   Visibility,
   getHeaderFieldName,
+  getHeaderFieldOptions,
   getPathParamName,
   getQueryParamName,
+  getQueryParamOptions,
+  isHeader,
+  isQueryParam,
   isStatusCode
 } from "@typespec/http";
 import {
@@ -427,18 +431,18 @@ function getSchemaForUnion(
       asEnum?.open && asEnum?.kind && !namedUnionMember
         ? asEnum.kind + (asEnum.nullable ? " | null" : "")
         : values
-            .map(
-              (item) => `${getTypeName(item, [SchemaContext.Input]) ?? item}`
-            )
-            .join(" | ");
+          .map(
+            (item) => `${getTypeName(item, [SchemaContext.Input]) ?? item}`
+          )
+          .join(" | ");
     const outputUnionAlias =
       asEnum?.open && asEnum?.kind && !namedUnionMember
         ? asEnum.kind + (asEnum.nullable ? " | null" : "")
         : values
-            .map(
-              (item) => `${getTypeName(item, [SchemaContext.Output]) ?? item}`
-            )
-            .join(" | ");
+          .map(
+            (item) => `${getTypeName(item, [SchemaContext.Output]) ?? item}`
+          )
+          .join(" | ");
     schema.alias = unionAlias;
     schema.outputAlias = outputUnionAlias;
   }
@@ -487,7 +491,7 @@ function isOasString(type: Type): boolean {
     return true;
   } else if (type.kind === "Union") {
     // A union where all variants are an OasString
-    for(const variant of type.variants) {
+    for (const variant of type.variants) {
       if (!isOasString(variant[1].type)) {
         return false;
       }
@@ -1198,13 +1202,11 @@ function getSchemaForRecordModel(
         schema.outputValueTypeName = `${valueType.outputTypeName}`;
       }
     } else if (isUnknownType(indexer.value!)) {
-      schema.typeName = `Record<string, ${
-        valueType.typeName ?? valueType.type
-      }>`;
-      if (usage && usage.includes(SchemaContext.Output)) {
-        schema.outputTypeName = `Record<string, ${
-          valueType.outputTypeName ?? valueType.type
+      schema.typeName = `Record<string, ${valueType.typeName ?? valueType.type
         }>`;
+      if (usage && usage.includes(SchemaContext.Output)) {
+        schema.outputTypeName = `Record<string, ${valueType.outputTypeName ?? valueType.type
+          }>`;
       }
     } else {
       schema.typeName = `Record<string, ${getTypeName(valueType, [
@@ -1907,4 +1909,21 @@ export function isBodyRequired(parameter: HttpOperationParameters) {
   return parameter.body?.type && parameter.body?.property?.optional !== true
     ? true
     : false;
+}
+
+export function getCollectionFormat(
+  context: SdkContext,
+  type: ModelProperty,
+): string | undefined {
+  const program = context.program;
+  if (isHeader(program, type)) {
+    if (type.type.kind === "Model" && isArrayModelType(context.program, type.type)) {
+      return getHeaderFieldOptions(program, type)?.explode ? "multi" : "csv";
+    }
+  } else if (isQueryParam(program, type)) {
+    if (type.type.kind === "Model" && isArrayModelType(context.program, type.type)) {
+      return getQueryParamOptions(program, type)?.explode ? "multi" : "csv";
+    }
+  }
+  return;
 }

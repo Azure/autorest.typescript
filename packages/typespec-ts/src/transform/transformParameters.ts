@@ -297,9 +297,9 @@ function transformBodyParameters(
   inputBodyType?: Type
 ): ParameterBodyMetadata | undefined {
   const bodyType =
-    (parameters.bodyType ?? parameters.bodyParameter?.type) && inputBodyType
+    parameters.body && inputBodyType
       ? inputBodyType
-      : (parameters.bodyType ?? parameters.bodyParameter?.type);
+      : parameters.body?.type;
   if (!bodyType || isVoidType(bodyType)) {
     return;
   }
@@ -378,11 +378,11 @@ function getBodyDescriptions(
   parameters: HttpOperationParameters
 ) {
   const description =
-    parameters.bodyParameter &&
+    parameters.body ? 
     getFormattedPropertyDoc(
       dpgContext.program,
-      parameters.bodyParameter,
+      parameters.body.type,
       bodySchema
-    );
+    ): "";
   return description ? [description] : [];
 }
