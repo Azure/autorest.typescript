@@ -26,7 +26,7 @@ async function getsAListOfAzureActiveDirectoryOnlyAuthenticationObject(): Promis
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.serverAzureADOnlyAuthentications.listByServer(
+  for await (const item of client.serverAzureADOnlyAuthentications.listByServer(
     resourceGroupName,
     serverName,
   )) {

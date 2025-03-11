@@ -24,7 +24,7 @@ async function getAvailableDelegations(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.availableDelegations.list(location)) {
+  for await (const item of client.availableDelegations.list(location)) {
     resArray.push(item);
   }
   console.log(resArray);

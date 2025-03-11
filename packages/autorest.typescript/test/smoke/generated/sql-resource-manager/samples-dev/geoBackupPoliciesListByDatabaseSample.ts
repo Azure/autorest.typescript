@@ -27,7 +27,7 @@ async function listGeoBackupPolicies(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.geoBackupPolicies.listByDatabase(
+  for await (const item of client.geoBackupPolicies.listByDatabase(
     resourceGroupName,
     serverName,
     databaseName,

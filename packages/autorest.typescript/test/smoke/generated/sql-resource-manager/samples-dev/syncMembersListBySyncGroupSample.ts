@@ -29,7 +29,7 @@ async function listSyncMembersUnderASyncGroup(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.syncMembers.listBySyncGroup(
+  for await (const item of client.syncMembers.listBySyncGroup(
     resourceGroupName,
     serverName,
     databaseName,

@@ -26,7 +26,7 @@ async function listJobAgentsInAServer(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.jobAgents.listByServer(
+  for await (const item of client.jobAgents.listByServer(
     resourceGroupName,
     serverName,
   )) {

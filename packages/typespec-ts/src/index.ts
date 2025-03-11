@@ -14,7 +14,8 @@ import {
   MultipartHelpers,
   PagingHelpers,
   PollingHelpers,
-  SerializationHelpers
+  SerializationHelpers,
+  UrlTemplateHelpers
 } from "./modular/static-helpers-metadata.js";
 import {
   RLCModel,
@@ -124,6 +125,7 @@ export async function $onEmit(context: EmitContext) {
       ...SerializationHelpers,
       ...PagingHelpers,
       ...PollingHelpers,
+      ...UrlTemplateHelpers,
       ...MultipartHelpers
     },
     {
@@ -289,7 +291,11 @@ export async function $onEmit(context: EmitContext) {
           dpgContext,
           modularEmitterOptions,
           "api",
-          subClient
+          subClient,
+          {
+            exportIndex: false,
+            recursive: true
+          }
         );
       } else {
         buildSubpathIndexFile(
@@ -298,6 +304,7 @@ export async function $onEmit(context: EmitContext) {
           "api",
           subClient,
           {
+            recursive: true,
             exportIndex: true
           }
         );

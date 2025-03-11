@@ -24,7 +24,7 @@ async function listsAllTheVMScaleSetsUnderTheSpecifiedSubscriptionForTheSpecifie
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.virtualMachineScaleSets.listByLocation(
+  for await (const item of client.virtualMachineScaleSets.listByLocation(
     location,
   )) {
     resArray.push(item);

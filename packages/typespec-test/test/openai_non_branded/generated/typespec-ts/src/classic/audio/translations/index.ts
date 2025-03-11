@@ -1,12 +1,14 @@
 // Licensed under the MIT License.
 
 import { OpenAIContext } from "../../../api/openAIContext.js";
-import { create } from "../../../api/audio/translations/index.js";
+import {
+  create,
+  AudioTranslationsCreateOptionalParams,
+} from "../../../api/audio/translations/index.js";
 import {
   CreateTranslationRequest,
   CreateTranslationResponse,
 } from "../../../models/models.js";
-import { AudioTranslationsCreateOptionalParams } from "../../../api/options.js";
 
 /** Interface representing a AudioTranslations operations. */
 export interface AudioTranslationsOperations {

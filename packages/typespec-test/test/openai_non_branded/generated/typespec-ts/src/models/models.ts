@@ -49,29 +49,29 @@ export interface CreateModerationResponse {
     flagged: boolean;
     categories: {
       hate: boolean;
-      "hate/threatening": boolean;
+      hateThreatening: boolean;
       harassment: boolean;
-      "harassment/threatening": boolean;
+      harassmentThreatening: boolean;
       selfHarm: boolean;
-      "selfHarm/intent": boolean;
-      "selfHarm/instructive": boolean;
+      selfHarmIntent: boolean;
+      selfHarmInstructive: boolean;
       sexual: boolean;
-      "sexual/minors": boolean;
+      sexualMinors: boolean;
       violence: boolean;
-      "violence/graphic": boolean;
+      violenceGraphic: boolean;
     };
     categoryScores: {
       hate: number;
-      "hate/threatening": number;
+      hateThreatening: number;
       harassment: number;
-      "harassment/threatening": number;
+      harassmentThreatening: number;
       selfHarm: number;
-      "selfHarm/intent": number;
-      "selfHarm/instructive": number;
+      selfHarmIntent: number;
+      selfHarmInstructive: number;
       sexual: number;
-      "sexual/minors": number;
+      sexualMinors: number;
       violence: number;
-      "violence/graphic": number;
+      violenceGraphic: number;
     };
   }[];
 }
@@ -101,30 +101,30 @@ export interface _CreateModerationResponseResult {
   /** A list of the categories, and whether they are flagged or not. */
   categories: {
     hate: boolean;
-    "hate/threatening": boolean;
+    hateThreatening: boolean;
     harassment: boolean;
-    "harassment/threatening": boolean;
+    harassmentThreatening: boolean;
     selfHarm: boolean;
-    "selfHarm/intent": boolean;
-    "selfHarm/instructive": boolean;
+    selfHarmIntent: boolean;
+    selfHarmInstructive: boolean;
     sexual: boolean;
-    "sexual/minors": boolean;
+    sexualMinors: boolean;
     violence: boolean;
-    "violence/graphic": boolean;
+    violenceGraphic: boolean;
   };
   /** A list of the categories along with their scores as predicted by model. */
   categoryScores: {
     hate: number;
-    "hate/threatening": number;
+    hateThreatening: number;
     harassment: number;
-    "harassment/threatening": number;
+    harassmentThreatening: number;
     selfHarm: number;
-    "selfHarm/intent": number;
-    "selfHarm/instructive": number;
+    selfHarmIntent: number;
+    selfHarmInstructive: number;
     sexual: number;
-    "sexual/minors": number;
+    sexualMinors: number;
     violence: number;
-    "violence/graphic": number;
+    violenceGraphic: number;
   };
 }
 
@@ -155,11 +155,11 @@ export interface _CreateModerationResponseResultCategories {
    * based on race, gender, ethnicity, religion, nationality, sexual orientation, disability
    * status, or caste.
    */
-  "hate/threatening": boolean;
+  hateThreatening: boolean;
   /** Content that expresses, incites, or promotes harassing language towards any target. */
   harassment: boolean;
   /** Harassment content that also includes violence or serious harm towards any target. */
-  "harassment/threatening": boolean;
+  harassmentThreatening: boolean;
   /**
    * Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting,
    * and eating disorders.
@@ -169,23 +169,23 @@ export interface _CreateModerationResponseResultCategories {
    * Content where the speaker expresses that they are engaging or intend to engage in acts of
    * self-harm, such as suicide, cutting, and eating disorders.
    */
-  "selfHarm/intent": boolean;
+  selfHarmIntent: boolean;
   /**
    * Content that encourages performing acts of self-harm, such as suicide, cutting, and eating
    * disorders, or that gives instructions or advice on how to commit such acts.
    */
-  "selfHarm/instructive": boolean;
+  selfHarmInstructive: boolean;
   /**
    * Content meant to arouse sexual excitement, such as the description of sexual activity, or
    * that promotes sexual services (excluding sex education and wellness).
    */
   sexual: boolean;
   /** Sexual content that includes an individual who is under 18 years old. */
-  "sexual/minors": boolean;
+  sexualMinors: boolean;
   /** Content that depicts death, violence, or physical injury. */
   violence: boolean;
   /** Content that depicts death, violence, or physical injury in graphic detail. */
-  "violence/graphic": boolean;
+  violenceGraphic: boolean;
 }
 
 export function _createModerationResponseResultCategoriesDeserializer(
@@ -193,16 +193,16 @@ export function _createModerationResponseResultCategoriesDeserializer(
 ): _CreateModerationResponseResultCategories {
   return {
     hate: item["hate"],
-    "hate/threatening": item["hate/threatening"],
+    hateThreatening: item["hate/threatening"],
     harassment: item["harassment"],
-    "harassment/threatening": item["harassment/threatening"],
+    harassmentThreatening: item["harassment/threatening"],
     selfHarm: item["self-harm"],
-    "selfHarm/intent": item["self-harm/intent"],
-    "selfHarm/instructive": item["self-harm/instructive"],
+    selfHarmIntent: item["self-harm/intent"],
+    selfHarmInstructive: item["self-harm/instructive"],
     sexual: item["sexual"],
-    "sexual/minors": item["sexual/minors"],
+    sexualMinors: item["sexual/minors"],
     violence: item["violence"],
-    "violence/graphic": item["violence/graphic"],
+    violenceGraphic: item["violence/graphic"],
   };
 }
 
@@ -211,25 +211,25 @@ export interface _CreateModerationResponseResultCategoryScores {
   /** The score for the category 'hate'. */
   hate: number;
   /** The score for the category 'hate/threatening'. */
-  "hate/threatening": number;
+  hateThreatening: number;
   /** The score for the category 'harassment'. */
   harassment: number;
   /** The score for the category 'harassment/threatening'. */
-  "harassment/threatening": number;
+  harassmentThreatening: number;
   /** The score for the category 'self-harm'. */
   selfHarm: number;
   /** The score for the category 'self-harm/intent'. */
-  "selfHarm/intent": number;
+  selfHarmIntent: number;
   /** The score for the category 'self-harm/instructive'. */
-  "selfHarm/instructive": number;
+  selfHarmInstructive: number;
   /** The score for the category 'sexual'. */
   sexual: number;
   /** The score for the category 'sexual/minors'. */
-  "sexual/minors": number;
+  sexualMinors: number;
   /** The score for the category 'violence'. */
   violence: number;
   /** The score for the category 'violence/graphic'. */
-  "violence/graphic": number;
+  violenceGraphic: number;
 }
 
 export function _createModerationResponseResultCategoryScoresDeserializer(
@@ -237,16 +237,16 @@ export function _createModerationResponseResultCategoryScoresDeserializer(
 ): _CreateModerationResponseResultCategoryScores {
   return {
     hate: item["hate"],
-    "hate/threatening": item["hate/threatening"],
+    hateThreatening: item["hate/threatening"],
     harassment: item["harassment"],
-    "harassment/threatening": item["harassment/threatening"],
+    harassmentThreatening: item["harassment/threatening"],
     selfHarm: item["self-harm"],
-    "selfHarm/intent": item["self-harm/intent"],
-    "selfHarm/instructive": item["self-harm/instructive"],
+    selfHarmIntent: item["self-harm/intent"],
+    selfHarmInstructive: item["self-harm/instructive"],
     sexual: item["sexual"],
-    "sexual/minors": item["sexual/minors"],
+    sexualMinors: item["sexual/minors"],
     violence: item["violence"],
-    "violence/graphic": item["violence/graphic"],
+    violenceGraphic: item["violence/graphic"],
   };
 }
 

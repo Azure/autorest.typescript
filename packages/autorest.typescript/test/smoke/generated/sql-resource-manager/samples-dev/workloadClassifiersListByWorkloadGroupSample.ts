@@ -29,7 +29,7 @@ async function getTheListOfWorkloadClassifiersForAWorkloadGroup(): Promise<void>
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.workloadClassifiers.listByWorkloadGroup(
+  for await (const item of client.workloadClassifiers.listByWorkloadGroup(
     resourceGroupName,
     serverName,
     databaseName,

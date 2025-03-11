@@ -23,7 +23,6 @@ describe("Access Client", () => {
       .get({ queryParameters: { name: "sample" } });
     assert.strictEqual(result.status, "200");
     assert.strictEqual(result.body.name, "sample");
-
   });
 
   it("should get public decorator in public operation", async () => {
@@ -68,9 +67,7 @@ describe("Access Client", () => {
 
   it("should get public shared model in operation", async () => {
     const result = await client
-      .path(
-        "/azure/client-generator-core/access/sharedModelInOperation/public"
-      )
+      .path("/azure/client-generator-core/access/sharedModelInOperation/public")
       .get({ queryParameters: { name: "sample" } });
     assert.strictEqual(result.status, "200");
     assert.strictEqual(result.body.name, "sample");

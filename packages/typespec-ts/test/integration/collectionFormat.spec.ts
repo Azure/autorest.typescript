@@ -2,7 +2,7 @@ import { assert } from "chai";
 import CollectionFormatClientFactory, {
   buildCsvCollection,
   buildMultiCollection,
-  CollectionFormatClient,
+  CollectionFormatClient
 } from "./generated/parameters/collection-format/src/index.js";
 describe("Collection Format Rest Client", () => {
   let client: CollectionFormatClient;

@@ -25,7 +25,7 @@ using Azure.Core.Traits;
     client: ClientType = ClientType.Default,
   }
 )
-@service({
+@service(#{
   title: "MultiClient"
 })
 @versioned(Client.Structure.Service.Versions)
@@ -127,7 +127,7 @@ using Azure.Core.Traits;
     client: ClientType = ClientType.Default,
   }
 )
-@service({
+@service(#{
   title: "MultiClient"
 })
 @versioned(Client.Structure.Service.Versions)
@@ -229,7 +229,7 @@ using Azure.Core.Traits;
     client: ClientType = ClientType.Default,
   }
 )
-@service({
+@service(#{
   title: "MultiClient"
 })
 @versioned(Client.Structure.Service.Versions)
