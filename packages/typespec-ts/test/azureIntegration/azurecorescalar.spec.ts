@@ -12,9 +12,7 @@ describe("Azure Core Saclar Rest Client", () => {
   });
 
   it("should get an Azure Location value", async () => {
-    const result = await client
-      .path("/azure/core/scalar/azureLocation")
-      .get();
+    const result = await client.path("/azure/core/scalar/azureLocation").get();
     assert.strictEqual(result.status, "200");
     assert.strictEqual(result.body, "eastus");
   });
@@ -30,11 +28,9 @@ describe("Azure Core Saclar Rest Client", () => {
   });
 
   it("should post an Azure Location value", async () => {
-    const result = await client
-      .path("/azure/core/scalar/azureLocation")
-      .post({
-        body: { location: "eastus" }
-      });
+    const result = await client.path("/azure/core/scalar/azureLocation").post({
+      body: { location: "eastus" }
+    });
     assert.strictEqual(result.status, "200");
     assert.deepEqual(result.body, { location: "eastus" });
   });

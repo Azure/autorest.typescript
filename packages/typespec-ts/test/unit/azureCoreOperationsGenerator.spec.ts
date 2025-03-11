@@ -19,7 +19,7 @@ async function compileResourceOperation(code: string) {
     #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
     model TestModel {
       @key
-      @visibility("read")
+      @visibility(Lifecycle.Read)
       @segment("test")
       name: string;
       value: int32;
@@ -45,7 +45,7 @@ async function compileResourceOperation(code: string) {
       "x-ms-response-id": int32;
       #suppress "@azure-tools/typespec-azure-core/casing-style" "for test"
       @doc("A timestamp when this job or item was created (in unix epochs).")
-      @visibility("read")
+      @visibility(Lifecycle.Read)
       created_at?: int32;
     }
 
@@ -64,8 +64,12 @@ async function compileResourceOperation(code: string) {
     #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
     ${code}
     `;
-  const parameters = await emitParameterFromTypeSpec(content, {needAzureCore: true});
-  const responses = await emitResponsesFromTypeSpec(content, {needAzureCore: true});
+  const parameters = await emitParameterFromTypeSpec(content, {
+    needAzureCore: true
+  });
+  const responses = await emitResponsesFromTypeSpec(content, {
+    needAzureCore: true
+  });
 
   return { parameters, responses };
 }

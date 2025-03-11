@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { AIProjectContext } from "../../api/aIProjectContext.js";
+import { AIProjectContext } from "../../api/aiProjectContext.js";
 import {
   listVectorStoreFileBatchFiles,
   cancelVectorStoreFileBatch,
@@ -43,34 +43,6 @@ import {
   getAgent,
   listAgents,
   createAgent,
-} from "../../api/agents/index.js";
-import {
-  Agent,
-  OpenAIPageableListOfAgent,
-  AgentDeletionStatus,
-  MessageRole,
-  AgentThread,
-  ThreadDeletionStatus,
-  ThreadMessage,
-  OpenAIPageableListOfThreadMessage,
-  ThreadRun,
-  OpenAIPageableListOfThreadRun,
-  ToolOutput,
-  RunStep,
-  OpenAIPageableListOfRunStep,
-  FileListResponse,
-  OpenAIFile,
-  FilePurpose,
-  FileDeletionStatus,
-  OpenAIPageableListOfVectorStore,
-  VectorStore,
-  VectorStoreDeletionStatus,
-  OpenAIPageableListOfVectorStoreFile,
-  VectorStoreFile,
-  VectorStoreFileDeletionStatus,
-  VectorStoreFileBatch,
-} from "../../models/agents/models.js";
-import {
   AgentsListVectorStoreFileBatchFilesOptionalParams,
   AgentsCancelVectorStoreFileBatchOptionalParams,
   AgentsGetVectorStoreFileBatchOptionalParams,
@@ -111,7 +83,33 @@ import {
   AgentsGetAgentOptionalParams,
   AgentsListAgentsOptionalParams,
   AgentsCreateAgentOptionalParams,
-} from "../../api/options.js";
+} from "../../api/agents/index.js";
+import {
+  Agent,
+  OpenAIPageableListOfAgent,
+  AgentDeletionStatus,
+  MessageRole,
+  AgentThread,
+  ThreadDeletionStatus,
+  ThreadMessage,
+  OpenAIPageableListOfThreadMessage,
+  ThreadRun,
+  OpenAIPageableListOfThreadRun,
+  ToolOutput,
+  RunStep,
+  OpenAIPageableListOfRunStep,
+  FileListResponse,
+  OpenAIFile,
+  FilePurpose,
+  FileDeletionStatus,
+  OpenAIPageableListOfVectorStore,
+  VectorStore,
+  VectorStoreDeletionStatus,
+  OpenAIPageableListOfVectorStoreFile,
+  VectorStoreFile,
+  VectorStoreFileDeletionStatus,
+  VectorStoreFileBatch,
+} from "../../models/agents/models.js";
 
 /** Interface representing a Agents operations. */
 export interface AgentsOperations {

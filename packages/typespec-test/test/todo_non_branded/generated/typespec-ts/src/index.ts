@@ -29,19 +29,21 @@ export {
   UserExistsResponse,
   InvalidUserResponse,
 } from "./models/users/index.js";
+export { TodoClientOptionalParams } from "./api/index.js";
 export {
-  TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
-  TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
-  TodoItemsAttachmentsListOptionalParams,
   TodoItemsDeleteOptionalParams,
   TodoItemsUpdateOptionalParams,
   TodoItemsGetOptionalParams,
   TodoItemsCreateFormOptionalParams,
   TodoItemsCreateJsonOptionalParams,
   TodoItemsListOptionalParams,
-  UsersCreateOptionalParams,
-  TodoClientOptionalParams,
-} from "./api/index.js";
+} from "./api/todoItems/index.js";
+export { UsersCreateOptionalParams } from "./api/users/index.js";
+export {
+  TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
+  TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
+  TodoItemsAttachmentsListOptionalParams,
+} from "./api/todoItems/attachments/index.js";
 export {
   TodoItemsOperations,
   UsersOperations,

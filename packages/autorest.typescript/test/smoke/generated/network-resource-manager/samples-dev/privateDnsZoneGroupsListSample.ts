@@ -25,7 +25,7 @@ async function listPrivateEndpointsInResourceGroup(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.privateDnsZoneGroups.list(
+  for await (const item of client.privateDnsZoneGroups.list(
     privateEndpointName,
     resourceGroupName,
   )) {

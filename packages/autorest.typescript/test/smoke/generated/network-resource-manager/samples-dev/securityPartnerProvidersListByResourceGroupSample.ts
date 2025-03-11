@@ -24,7 +24,7 @@ async function listAllSecurityPartnerProvidersForAGivenResourceGroup(): Promise<
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.securityPartnerProviders.listByResourceGroup(
+  for await (const item of client.securityPartnerProviders.listByResourceGroup(
     resourceGroupName,
   )) {
     resArray.push(item);

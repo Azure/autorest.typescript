@@ -131,9 +131,7 @@ describe("Input/output model type", () => {
         }
         op post(@body body: A): { @body body: A };
       `;
-      const schemaOutput = await emitModelsFromTypeSpec(
-        tspDefinition
-      );
+      const schemaOutput = await emitModelsFromTypeSpec(tspDefinition);
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
       await assertEqualContent(
@@ -571,7 +569,7 @@ describe("Input/output model type", () => {
           {
             needTCGC: true,
             mustEmptyDiagnostic: false
-          }// throw exception for diagnostics
+          } // throw exception for diagnostics
         );
       } catch (err: any) {
         assert.strictEqual(err.length, 2);
@@ -1904,7 +1902,7 @@ describe("Input/output model type", () => {
           @query
           @encode("seconds", float64)
           input: duration): NoContentResponse;
-        `,
+        `
         );
         assert.ok(schemaOutput);
         await assertEqualContent(
@@ -1922,7 +1920,7 @@ describe("Input/output model type", () => {
           @query
           @encode("iso8601")
           input: duration): NoContentResponse;
-        `,
+        `
         );
         assert.ok(schemaOutput);
         await assertEqualContent(
@@ -2140,7 +2138,7 @@ describe("Input/output model type", () => {
     it("should handle @visibility(read) -> readonly ", async () => {
       const tspDefinition = `
       model SimpleModel {
-        @visibility("read")
+        @visibility(Lifecycle.Read)
         prop: int32;
         prop1: int32;
       }
@@ -3290,7 +3288,7 @@ describe("Input/output model type", () => {
       using Azure.Core.Traits;
       using Azure.Core.Foundations;
       
-      @service({
+      @service(#{
         title: "Defender EASM",
       })
       @doc("Contoso Resource Provider management API.")
@@ -3341,32 +3339,32 @@ describe("Input/output model type", () => {
       
         @doc("The caller provided unique name for the resource.")
         @key("dataConnectionName")
-        @visibility("read")
+        @visibility(Lifecycle.Read)
         name: string;
       
         @doc("The name that can be used for display purposes.")
         displayName?: string;
       
         @doc("The date the data connection was created.")
-        @visibility("read")
+        @visibility(Lifecycle.Read)
         createdDate?: utcDateTime;
       
         @doc("The day to update the data connection on.")
         frequencyOffset?: int32;
       
         @doc("The date the data connection was last updated.")
-        @visibility("read")
+        @visibility(Lifecycle.Read)
         updatedDate?: utcDateTime;
       
         @doc("The date the data connection was last updated by user.")
-        @visibility("read")
+        @visibility(Lifecycle.Read)
         userUpdatedAt?: utcDateTime;
       
         @doc("An indicator of whether the data connection is active.")
         active?: boolean;
       
         @doc("A message that specifies details about data connection if inactive.")
-        @visibility("read")
+        @visibility(Lifecycle.Read)
         inactiveMessage?: string;
       }
       
@@ -3407,14 +3405,11 @@ describe("Input/output model type", () => {
         >;
       }
       `;
-      const schemaOutput = await emitModelsFromTypeSpec(
-        tspDefinition,
-        {
-          needAzureCore: true,
-          needTCGC: true,
-          withRawContent: true,
-        }
-      );
+      const schemaOutput = await emitModelsFromTypeSpec(tspDefinition, {
+        needAzureCore: true,
+        needTCGC: true,
+        withRawContent: true
+      });
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.strictEqual(inputModelFile?.path, "models.ts");
@@ -3480,7 +3475,7 @@ describe("Input/output model type", () => {
       using Azure.Core.Traits;
       using Azure.Core.Foundations;
       
-      @service({
+      @service(#{
         title: "Defender EASM",
       })
       @doc("Contoso Resource Provider management API.")
@@ -3531,32 +3526,32 @@ describe("Input/output model type", () => {
       
         @doc("The caller provided unique name for the resource.")
         @key("dataConnectionName")
-        @visibility("read")
+        @visibility(Lifecycle.Read)
         name: string;
       
         @doc("The name that can be used for display purposes.")
         displayName?: string;
       
         @doc("The date the data connection was created.")
-        @visibility("read")
+        @visibility(Lifecycle.Read)
         createdDate?: utcDateTime;
       
         @doc("The day to update the data connection on.")
         frequencyOffset?: int32;
       
         @doc("The date the data connection was last updated.")
-        @visibility("read")
+        @visibility(Lifecycle.Read)
         updatedDate?: utcDateTime;
       
         @doc("The date the data connection was last updated by user.")
-        @visibility("read")
+        @visibility(Lifecycle.Read)
         userUpdatedAt?: utcDateTime;
       
         @doc("An indicator of whether the data connection is active.")
         active?: boolean;
       
         @doc("A message that specifies details about data connection if inactive.")
-        @visibility("read")
+        @visibility(Lifecycle.Read)
         inactiveMessage?: string;
       }
       
@@ -3599,14 +3594,11 @@ describe("Input/output model type", () => {
         >;
       }
       `;
-      const schemaOutput = await emitModelsFromTypeSpec(
-        tspDefinition,
-        {
-          needAzureCore: true,
-          needTCGC: true,
-          withRawContent: true
-        }
-      );
+      const schemaOutput = await emitModelsFromTypeSpec(tspDefinition, {
+        needAzureCore: true,
+        needTCGC: true,
+        withRawContent: true
+      });
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.strictEqual(inputModelFile?.path, "models.ts");
@@ -3701,7 +3693,7 @@ describe("Input/output model type", () => {
       import "@typespec/http";
       import "@typespec/rest";
 
-      @service({
+      @service(#{
         title: "Widget Service",
       })
       namespace DemoService;
@@ -3721,12 +3713,9 @@ describe("Input/output model type", () => {
         @body body: string,
       ): NoContentResponse;
       `;
-      const schemaOutput = await emitModelsFromTypeSpec(
-        tspDefinition,
-        {
-          withRawContent: true
-        }
-      );
+      const schemaOutput = await emitModelsFromTypeSpec(tspDefinition, {
+        withRawContent: true
+      });
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.isUndefined(outputModelFile);
@@ -3753,7 +3742,7 @@ describe("Input/output model type", () => {
       using TypeSpec.Http;
       using TypeSpec.Rest;
 
-      @service({
+      @service(#{
         title: "Widget Service",
       })
       namespace DemoService;
@@ -3770,12 +3759,9 @@ describe("Input/output model type", () => {
         @body body: string,
       ): { @header("test-header") testHeader: SchemaContentTypeValues; @statusCode _: 204; };
       `;
-      const schemaOutput = await emitModelsFromTypeSpec(
-        tspDefinition,
-        {
-          withRawContent: true
-        }
-      );
+      const schemaOutput = await emitModelsFromTypeSpec(tspDefinition, {
+        withRawContent: true
+      });
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.ok(inputModelFile?.content);
@@ -3805,12 +3791,9 @@ describe("Input/output model type", () => {
         `
       );
 
-      const paramOutput = await emitParameterFromTypeSpec(
-        tspDefinition,
-        {
-          withRawContent: true
-        }
-      );
+      const paramOutput = await emitParameterFromTypeSpec(tspDefinition, {
+        withRawContent: true
+      });
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.path, "parameters.ts");
       await assertEqualContent(
@@ -3835,12 +3818,9 @@ describe("Input/output model type", () => {
         export type GetParameters = GetHeaderParam & GetBodyParam & RequestParameters;
         `
       );
-      const responseOutput = await emitResponsesFromTypeSpec(
-        tspDefinition,
-        {
-          withRawContent: true
-        }
-      );
+      const responseOutput = await emitResponsesFromTypeSpec(tspDefinition, {
+        withRawContent: true
+      });
       assert.ok(responseOutput);
       assert.strictEqual(responseOutput?.path, "responses.ts");
       await assertEqualContent(
@@ -3871,7 +3851,7 @@ describe("Input/output model type", () => {
       using TypeSpec.Http;
       using TypeSpec.Rest;
 
-      @service({
+      @service(#{
         title: "Widget Service",
       })
       namespace DemoService;
@@ -3905,12 +3885,9 @@ describe("Input/output model type", () => {
         @body body: EnumBody,
       ): { @body body: EnumBody; @statusCode _: 204; };
       `;
-      const schemaOutput = await emitModelsFromTypeSpec(
-        tspDefinition,
-        {
-          withRawContent: true
-        }
-      );
+      const schemaOutput = await emitModelsFromTypeSpec(tspDefinition, {
+        withRawContent: true
+      });
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.ok(inputModelFile?.content);
@@ -3956,12 +3933,9 @@ describe("Input/output model type", () => {
         `
       );
 
-      const paramOutput = await emitParameterFromTypeSpec(
-        tspDefinition,
-        {
-          withRawContent: true
-        }
-      );
+      const paramOutput = await emitParameterFromTypeSpec(tspDefinition, {
+        withRawContent: true
+      });
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.path, "parameters.ts");
       await assertEqualContent(
@@ -3977,12 +3951,9 @@ describe("Input/output model type", () => {
         export type GetParameters = GetBodyParam & RequestParameters;
         `
       );
-      const responseOutput = await emitResponsesFromTypeSpec(
-        tspDefinition,
-        {
-          withRawContent: true
-        }
-      );
+      const responseOutput = await emitResponsesFromTypeSpec(tspDefinition, {
+        withRawContent: true
+      });
       assert.ok(responseOutput);
       assert.strictEqual(responseOutput?.path, "responses.ts");
       await assertEqualContent(
@@ -4005,7 +3976,7 @@ describe("Input/output model type", () => {
       import "@typespec/http";
       import "@typespec/rest";
 
-      @service({
+      @service(#{
         title: "Widget Service",
       })
       namespace DemoService;
@@ -4018,22 +3989,16 @@ describe("Input/output model type", () => {
         @body body: string,
       ): { @header("test-header") testHeader: "A" | "B"; @statusCode _: 204; };
       `;
-      const schemaOutput = await emitModelsFromTypeSpec(
-        tspDefinition,
-        {
-          withRawContent: true
-        }
-      );
+      const schemaOutput = await emitModelsFromTypeSpec(tspDefinition, {
+        withRawContent: true
+      });
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.isUndefined(inputModelFile);
       assert.isUndefined(outputModelFile);
-      const paramOutput = await emitParameterFromTypeSpec(
-        tspDefinition,
-        {
-          withRawContent: true
-        }
-      );
+      const paramOutput = await emitParameterFromTypeSpec(tspDefinition, {
+        withRawContent: true
+      });
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.path, "parameters.ts");
       await assertEqualContent(
@@ -4057,12 +4022,9 @@ describe("Input/output model type", () => {
         export type GetParameters = GetHeaderParam & GetBodyParam & RequestParameters;
         `
       );
-      const responseOutput = await emitResponsesFromTypeSpec(
-        tspDefinition,
-        {
-          withRawContent: true
-        }
-      );
+      const responseOutput = await emitResponsesFromTypeSpec(tspDefinition, {
+        withRawContent: true
+      });
       assert.ok(responseOutput);
       assert.strictEqual(responseOutput?.path, "responses.ts");
       await assertEqualContent(
@@ -4089,7 +4051,7 @@ describe("Input/output model type", () => {
       import "@typespec/http";
       import "@typespec/rest";
 
-      @service({
+      @service(#{
         title: "Widget Service",
       })
       namespace DemoService;
@@ -4109,12 +4071,9 @@ describe("Input/output model type", () => {
         @body body: string,
       ): NoContentResponse;
       `;
-      const schemaOutput = await emitModelsFromTypeSpec(
-        tspDefinition,
-        {
-          withRawContent: true
-        }
-      );
+      const schemaOutput = await emitModelsFromTypeSpec(tspDefinition, {
+        withRawContent: true
+      });
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
       await assertEqualContent(
@@ -4133,7 +4092,7 @@ describe("Input/output model type", () => {
       import "@typespec/rest";
       import "@azure-tools/typespec-azure-core";
 
-      @service({
+      @service(#{
         title: "Widget Service",
       })
       namespace DemoService;
@@ -4155,13 +4114,10 @@ describe("Input/output model type", () => {
         @body body: string,
       ): NoContentResponse;
       `;
-      const schemaOutput = await emitModelsFromTypeSpec(
-        tspDefinition,
-        {
-          needAzureCore: true,
-          withRawContent: true
-        }
-      );
+      const schemaOutput = await emitModelsFromTypeSpec(tspDefinition, {
+        needAzureCore: true,
+        withRawContent: true
+      });
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
       await assertEqualContent(
@@ -4172,12 +4128,9 @@ describe("Input/output model type", () => {
       `
       );
       assert.isUndefined(outputModelFile);
-      const paramOutput = await emitParameterFromTypeSpec(
-        tspDefinition,
-        {
-          withRawContent: true,
-        }
-      );
+      const paramOutput = await emitParameterFromTypeSpec(tspDefinition, {
+        withRawContent: true
+      });
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.path, "parameters.ts");
       await assertEqualContent(
@@ -4210,7 +4163,7 @@ describe("Input/output model type", () => {
       import "@typespec/rest";
       import "@azure-tools/typespec-azure-core";
 
-      @service({
+      @service(#{
         title: "Widget Service",
       })
       namespace DemoService;
@@ -4232,13 +4185,10 @@ describe("Input/output model type", () => {
         @body body: string,
       ): NoContentResponse;
       `;
-      const schemaOutput = await emitModelsFromTypeSpec(
-        tspDefinition,
-        {
-          needAzureCore: true,
-          withRawContent: true
-        }
-      );
+      const schemaOutput = await emitModelsFromTypeSpec(tspDefinition, {
+        needAzureCore: true,
+        withRawContent: true
+      });
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
       await assertEqualContent(
@@ -4249,12 +4199,9 @@ describe("Input/output model type", () => {
         `
       );
       assert.isUndefined(outputModelFile);
-      const paramOutput = await emitParameterFromTypeSpec(
-        tspDefinition,
-        {
-          withRawContent: true
-        }
-      );
+      const paramOutput = await emitParameterFromTypeSpec(tspDefinition, {
+        withRawContent: true
+      });
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.path, "parameters.ts");
       await assertEqualContent(
@@ -4287,7 +4234,7 @@ describe("Input/output model type", () => {
         import "@typespec/http";
         import "@typespec/rest";
   
-        @service({
+        @service(#{
           title: "Widget Service",
         })
         namespace DemoService;
@@ -4308,22 +4255,16 @@ describe("Input/output model type", () => {
         ): NoContentResponse;
         `;
 
-        const schemaOutput = await emitModelsFromTypeSpec(
-          tspContent,
-          {
-            withRawContent: true
-          }
-        );
+        const schemaOutput = await emitModelsFromTypeSpec(tspContent, {
+          withRawContent: true
+        });
         assert.ok(schemaOutput);
         const { inputModelFile, outputModelFile } = schemaOutput!;
         assert.ok(inputModelFile);
         assert.isUndefined(outputModelFile);
-        const paramOutput = await emitParameterFromTypeSpec(
-          tspContent,
-          {
-            withRawContent: true
-          }
-        );
+        const paramOutput = await emitParameterFromTypeSpec(tspContent, {
+          withRawContent: true
+        });
         assert.ok(paramOutput);
         assert.fail("Should throw diagnostic warnings");
       } catch (e) {

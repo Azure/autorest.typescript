@@ -266,7 +266,11 @@ function getDocsWithKnownVersion(
   }
   const apiVersionEnum = getApiVersionEnum(dpgContext);
   if (apiVersionEnum) {
-    const [_, knownValuesEnum] = buildEnumTypes(dpgContext, apiVersionEnum);
+    const [_, knownValuesEnum] = buildEnumTypes(
+      dpgContext,
+      apiVersionEnum,
+      true
+    );
     docs.push(
       `Known values of {@link ${knownValuesEnum.name}} that the service accepts.`
     );

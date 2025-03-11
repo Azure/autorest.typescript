@@ -25,7 +25,8 @@ import {
   MultipartHelpers,
   PagingHelpers,
   PollingHelpers,
-  SerializationHelpers
+  SerializationHelpers,
+  UrlTemplateHelpers
 } from "../../src/modular/static-helpers-metadata.js";
 import {
   AzureCoreDependencies,
@@ -81,7 +82,7 @@ export async function rlcEmitterFor(
   const namespace = `
   #suppress "@azure-tools/typespec-azure-core/auth-required" "for test"
   ${withVersionedApiVersion ? "@versioned(Versions)" : ""}
-  @service({
+  @service(#{
     title: "Azure TypeScript Testing"
   })
 
@@ -169,7 +170,7 @@ using Azure.ResourceManager;`;
 function serviceStatement() {
   return `
   @versioned(Azure.TypeScript.Testing.Versions)
-  @service({
+  @service(#{
     title: "Azure TypeScript Testing",
   })
 
@@ -264,7 +265,8 @@ export async function provideBinderWithAzureDependencies(project: Project) {
     ...SerializationHelpers,
     ...PagingHelpers,
     ...PollingHelpers,
-    ...MultipartHelpers,
+    ...UrlTemplateHelpers,
+    ...MultipartHelpers
   };
 
   const staticHelperMap = await loadStaticHelpers(project, staticHelpers, {

@@ -17,7 +17,10 @@ describe("Parameters.ts", () => {
         );
         assert.fail("should throw error");
       } catch (e: any) {
-        assert.strictEqual("Parameter 'token' with type 'cookie' is not supported and we would ignore this parameter.", e[0].message);
+        assert.strictEqual(
+          "Parameter 'token' with type 'cookie' is not supported and we would ignore this parameter.",
+          e[0].message
+        );
       }
     });
 
@@ -25,10 +28,11 @@ describe("Parameters.ts", () => {
       const parameters = await emitParameterFromTypeSpec(
         `
         op test(@cookie token: string): string;
-        `
-        , {
+        `,
+        {
           mustEmptyDiagnostic: false
-        });
+        }
+      );
       assert.notDeepInclude(parameters?.content, "token");
     });
   });
@@ -52,12 +56,9 @@ describe("Parameters.ts", () => {
             export type TestParameters = RequestParameters;
             `
         );
-        const models = await emitClientFactoryFromTypeSpec(
-          tspContent,
-          {
-            needNamespaces: true
-          }
-        );
+        const models = await emitClientFactoryFromTypeSpec(tspContent, {
+          needNamespaces: true
+        });
         assert.ok(models);
         await assertEqualContent(
           models!.content,
