@@ -113,7 +113,7 @@ It does not accept any options or parameters.
         @header bytesHeader: bytes,
         @header @encode(BytesKnownEncoding.base64) value: bytes,
         @header(#{
-          format: "csv",
+          explode: true
         })
         csvArrayHeader: base64urlBytes[],
         @header utcDateHeader: utcDateTime,

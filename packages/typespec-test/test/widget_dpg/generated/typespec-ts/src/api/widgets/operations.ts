@@ -21,7 +21,7 @@ import {
 } from "../../static-helpers/pagingHelpers.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
-import { buildCsvCollection } from "../../static-helpers/serialization/build-csv-collection.js";
+import { buildMultiCollection } from "../../static-helpers/serialization/build-multi-collection.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -56,7 +56,6 @@ export function _analyzeWidgetSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path(path)
     .post({
@@ -105,7 +104,6 @@ export function _deleteWidgetSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path(path)
     .delete({
@@ -154,7 +152,6 @@ export function _updateWidgetSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path(path)
     .patch({
@@ -261,7 +258,6 @@ export function _createWidgetSend(
   color: "red" | "blue",
   options: WidgetsCreateWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path("/widgets")
     .post({
@@ -318,7 +314,6 @@ export function _getWidgetSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path(path)
     .get({
@@ -369,7 +364,6 @@ export function _queryWidgetsPagesSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path(path)
     .post({
@@ -425,7 +419,6 @@ export function _listWidgetsPagesSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path(path)
     .get({
@@ -474,7 +467,6 @@ export function _listWidgetsSend(
   utcDateHeader: Date,
   options: WidgetsListWidgetsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context.path("/widgets").get({
     ...operationOptionsToRequestParameters(options),
     headers: {
@@ -488,10 +480,11 @@ export function _listWidgetsSend(
         : {}),
       "bytes-header": uint8ArrayToString(bytesHeader, "base64"),
       value: uint8ArrayToString(value, "base64"),
-      "csv-array-header": buildCsvCollection(
+      "csv-array-header": buildMultiCollection(
         csvArrayHeader.map((p: any) => {
           return uint8ArrayToString(p, "base64url");
         }),
+        "csv-array-header",
       ),
       "utc-date-header": utcDateHeader.toUTCString(),
       ...(options?.optionalDateHeader !== undefined

@@ -3808,6 +3808,7 @@ describe("Input/output model type", () => {
         }
         
         export interface GetBodyParam {
+        /** A sequence of textual characters. */
           body: string;
         }
         
@@ -4012,6 +4013,7 @@ describe("Input/output model type", () => {
         }
         
         export interface GetBodyParam {
+        /** A sequence of textual characters. */
           body: string;
         }
         
@@ -4145,6 +4147,7 @@ describe("Input/output model type", () => {
         }
         
         export interface GetBodyParam {
+        /** A sequence of textual characters. */
           body: string;
         }
         
@@ -4216,6 +4219,7 @@ describe("Input/output model type", () => {
         }
         
         export interface GetBodyParam {
+        /** A sequence of textual characters. */
           body: string;
         }
         

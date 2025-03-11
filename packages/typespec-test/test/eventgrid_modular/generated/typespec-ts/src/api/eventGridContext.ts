@@ -4,7 +4,11 @@
 import { logger } from "../logger.js";
 import { KnownServiceApiVersions } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
-import { KeyCredential } from "@azure/core-auth";
+import {
+  KeyCredential,
+  isKeyCredential,
+  TokenCredential,
+} from "@azure/core-auth";
 
 /** Azure Messaging EventGrid Client */
 export interface EventGridContext extends Client {
@@ -23,7 +27,7 @@ export interface EventGridClientOptionalParams extends ClientOptions {
 /** Azure Messaging EventGrid Client */
 export function createEventGrid(
   endpointParam: string,
-  credential: KeyCredential,
+  credential: KeyCredential | TokenCredential,
   options: EventGridClientOptionalParams = {},
 ): EventGridContext {
   const endpointUrl =
@@ -38,12 +42,26 @@ export function createEventGrid(
     userAgentOptions: { userAgentPrefix },
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
     credentials: {
-      apiKeyHeaderName:
-        options.credentials?.apiKeyHeaderName ?? "SharedAccessKey",
+      scopes: options.credentials?.scopes ?? [
+        "https://eventgrid.azure.net/.default",
+      ],
     },
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
+
+  if (isKeyCredential(credential)) {
+    clientContext.pipeline.addPolicy({
+      name: "customKeyCredentialPolicy",
+      sendRequest(request, next) {
+        request.headers.set(
+          "Authorization",
+          "SharedAccessKey " + credential.key,
+        );
+        return next(request);
+      },
+    });
+  }
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  const apiVersion = options.apiVersion ?? "2023-06-01-preview";
+  const apiVersion = options.apiVersion ?? "2024-06-01";
   return { ...clientContext, apiVersion } as EventGridContext;
 }
