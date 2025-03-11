@@ -24,18 +24,20 @@ import type {
   LargePersonGroupOutput,
   LargePersonGroupPersonOutput,
   LargePersonGroupPersonFaceOutput,
+  CreateLivenessSessionResultOutput,
+  LivenessSessionBeforeV12Output,
+  LivenessSessionItemOutput,
+  LivenessSessionAuditEntryOutput,
+  CreateLivenessWithVerifySessionResultOutput,
+  LivenessWithVerifySessionBeforeV12Output,
+  LivenessSessionOutput,
+  LivenessWithVerifySessionOutput,
   PersonDirectoryPersonOutput,
   ListGroupReferenceResultOutput,
   PersonDirectoryFaceOutput,
   ListFaceResultOutput,
   DynamicPersonGroupOutput,
   ListPersonResultOutput,
-  LivenessSessionCreationResultOutput,
-  LivenessSessionOutput,
-  LivenessSessionItemOutput,
-  LivenessSessionAuditEntryOutput,
-  LivenessSessionWithVerifyCreationResultOutput,
-  LivenessWithVerifySessionOutput,
 } from "./outputModels.js";
 
 /** A successful call returns the long running operation status. */
@@ -87,6 +89,23 @@ export interface DetectDefaultResponse extends HttpResponse {
   status: string;
   body: FaceErrorResponseOutput;
   headers: RawHttpHeaders & DetectDefaultHeaders;
+}
+
+/** A successful call returns an array of face entries ranked by face rectangle size in descending order. An empty response indicates no faces detected. */
+export interface DetectFromSessionImageId200Response extends HttpResponse {
+  status: "200";
+  body: Array<FaceDetectionResultOutput>;
+}
+
+export interface DetectFromSessionImageIdDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface DetectFromSessionImageIdDefaultResponse extends HttpResponse {
+  status: string;
+  body: FaceErrorResponseOutput;
+  headers: RawHttpHeaders & DetectFromSessionImageIdDefaultHeaders;
 }
 
 /** A successful call returns an array of the most similar faces represented in faceId if the input parameter is faceIds or persistedFaceId if the input parameter is faceListId or largeFaceListId. */
@@ -1260,6 +1279,369 @@ export interface UpdateLargePersonGroupPersonFaceDefaultResponse
   headers: RawHttpHeaders & UpdateLargePersonGroupPersonFaceDefaultHeaders;
 }
 
+/** A successful call create a session for a client device and provide an authorization token for use by the client application for a limited purpose and time. */
+export interface CreateLivenessSessionBeforeV12200Response
+  extends HttpResponse {
+  status: "200";
+  body: CreateLivenessSessionResultOutput;
+}
+
+export interface CreateLivenessSessionBeforeV12DefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface CreateLivenessSessionBeforeV12DefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: FaceErrorResponseOutput;
+  headers: RawHttpHeaders & CreateLivenessSessionBeforeV12DefaultHeaders;
+}
+
+/** The request has succeeded. */
+export interface DeleteLivenessSessionBeforeV12200Response
+  extends HttpResponse {
+  status: "200";
+}
+
+export interface DeleteLivenessSessionBeforeV12DefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface DeleteLivenessSessionBeforeV12DefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: FaceErrorResponseOutput;
+  headers: RawHttpHeaders & DeleteLivenessSessionBeforeV12DefaultHeaders;
+}
+
+/** The request has succeeded. */
+export interface GetLivenessSessionResultBeforeV12200Response
+  extends HttpResponse {
+  status: "200";
+  body: LivenessSessionBeforeV12Output;
+}
+
+export interface GetLivenessSessionResultBeforeV12DefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface GetLivenessSessionResultBeforeV12DefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: FaceErrorResponseOutput;
+  headers: RawHttpHeaders & GetLivenessSessionResultBeforeV12DefaultHeaders;
+}
+
+/** The request has succeeded. */
+export interface GetLivenessSessions200Response extends HttpResponse {
+  status: "200";
+  body: Array<LivenessSessionItemOutput>;
+}
+
+export interface GetLivenessSessionsDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface GetLivenessSessionsDefaultResponse extends HttpResponse {
+  status: string;
+  body: FaceErrorResponseOutput;
+  headers: RawHttpHeaders & GetLivenessSessionsDefaultHeaders;
+}
+
+/** The request has succeeded. */
+export interface GetLivenessSessionAuditEntries200Response
+  extends HttpResponse {
+  status: "200";
+  body: Array<LivenessSessionAuditEntryOutput>;
+}
+
+export interface GetLivenessSessionAuditEntriesDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface GetLivenessSessionAuditEntriesDefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: FaceErrorResponseOutput;
+  headers: RawHttpHeaders & GetLivenessSessionAuditEntriesDefaultHeaders;
+}
+
+/** A successful call create a session for a client device and provide an authorization token for use by the client application for a limited purpose and time. */
+export interface CreateLivenessWithVerifySessionWithVerifyImage200Response
+  extends HttpResponse {
+  status: "200";
+  body: CreateLivenessWithVerifySessionResultOutput;
+}
+
+export interface CreateLivenessWithVerifySessionWithVerifyImageDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface CreateLivenessWithVerifySessionWithVerifyImageDefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: FaceErrorResponseOutput;
+  headers: RawHttpHeaders &
+    CreateLivenessWithVerifySessionWithVerifyImageDefaultHeaders;
+}
+
+/** A successful call create a session for a client device and provide an authorization token for use by the client application for a limited purpose and time. */
+export interface CreateLivenessWithVerifySessionBeforeV12200Response
+  extends HttpResponse {
+  status: "200";
+  body: CreateLivenessWithVerifySessionResultOutput;
+}
+
+export interface CreateLivenessWithVerifySessionBeforeV12DefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface CreateLivenessWithVerifySessionBeforeV12DefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: FaceErrorResponseOutput;
+  headers: RawHttpHeaders &
+    CreateLivenessWithVerifySessionBeforeV12DefaultHeaders;
+}
+
+/** The request has succeeded. */
+export interface DeleteLivenessWithVerifySessionBeforeV12200Response
+  extends HttpResponse {
+  status: "200";
+}
+
+export interface DeleteLivenessWithVerifySessionBeforeV12DefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface DeleteLivenessWithVerifySessionBeforeV12DefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: FaceErrorResponseOutput;
+  headers: RawHttpHeaders &
+    DeleteLivenessWithVerifySessionBeforeV12DefaultHeaders;
+}
+
+/** The request has succeeded. */
+export interface GetLivenessWithVerifySessionResultBeforeV12200Response
+  extends HttpResponse {
+  status: "200";
+  body: LivenessWithVerifySessionBeforeV12Output;
+}
+
+export interface GetLivenessWithVerifySessionResultBeforeV12DefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface GetLivenessWithVerifySessionResultBeforeV12DefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: FaceErrorResponseOutput;
+  headers: RawHttpHeaders &
+    GetLivenessWithVerifySessionResultBeforeV12DefaultHeaders;
+}
+
+/** The request has succeeded. */
+export interface GetLivenessWithVerifySessions200Response extends HttpResponse {
+  status: "200";
+  body: Array<LivenessSessionItemOutput>;
+}
+
+export interface GetLivenessWithVerifySessionsDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface GetLivenessWithVerifySessionsDefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: FaceErrorResponseOutput;
+  headers: RawHttpHeaders & GetLivenessWithVerifySessionsDefaultHeaders;
+}
+
+/** The request has succeeded. */
+export interface GetLivenessWithVerifySessionAuditEntries200Response
+  extends HttpResponse {
+  status: "200";
+  body: Array<LivenessSessionAuditEntryOutput>;
+}
+
+export interface GetLivenessWithVerifySessionAuditEntriesDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface GetLivenessWithVerifySessionAuditEntriesDefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: FaceErrorResponseOutput;
+  headers: RawHttpHeaders &
+    GetLivenessWithVerifySessionAuditEntriesDefaultHeaders;
+}
+
+export interface GetSessionImageBeforeV12200Headers {
+  /** The format of the HTTP payload. */
+  "content-type": "application/octet-stream";
+}
+
+/** The request has succeeded. */
+export interface GetSessionImageBeforeV12200Response extends HttpResponse {
+  status: "200";
+  /** Value may contain any sequence of octets */
+  body: Uint8Array;
+  headers: RawHttpHeaders & GetSessionImageBeforeV12200Headers;
+}
+
+export interface GetSessionImageBeforeV12DefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface GetSessionImageBeforeV12DefaultResponse extends HttpResponse {
+  status: string;
+  body: FaceErrorResponseOutput;
+  headers: RawHttpHeaders & GetSessionImageBeforeV12DefaultHeaders;
+}
+
+/** A successful call create a session for a client device and provide an authorization token for use by the client application for a limited purpose and time. */
+export interface CreateLivenessSession200Response extends HttpResponse {
+  status: "200";
+  body: LivenessSessionOutput;
+}
+
+export interface CreateLivenessSessionDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface CreateLivenessSessionDefaultResponse extends HttpResponse {
+  status: string;
+  body: FaceErrorResponseOutput;
+  headers: RawHttpHeaders & CreateLivenessSessionDefaultHeaders;
+}
+
+/** Successfully deleted session and all correlated data. */
+export interface DeleteLivenessSession204Response extends HttpResponse {
+  status: "204";
+}
+
+export interface DeleteLivenessSessionDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface DeleteLivenessSessionDefaultResponse extends HttpResponse {
+  status: string;
+  body: FaceErrorResponseOutput;
+  headers: RawHttpHeaders & DeleteLivenessSessionDefaultHeaders;
+}
+
+/** The request has succeeded. */
+export interface GetLivenessSessionResult200Response extends HttpResponse {
+  status: "200";
+  body: LivenessSessionOutput;
+}
+
+export interface GetLivenessSessionResultDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface GetLivenessSessionResultDefaultResponse extends HttpResponse {
+  status: string;
+  body: FaceErrorResponseOutput;
+  headers: RawHttpHeaders & GetLivenessSessionResultDefaultHeaders;
+}
+
+/** A successful call create a session for a client device and provide an authorization token for use by the client application for a limited purpose and time. */
+export interface CreateLivenessWithVerifySession200Response
+  extends HttpResponse {
+  status: "200";
+  body: LivenessWithVerifySessionOutput;
+}
+
+export interface CreateLivenessWithVerifySessionDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface CreateLivenessWithVerifySessionDefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: FaceErrorResponseOutput;
+  headers: RawHttpHeaders & CreateLivenessWithVerifySessionDefaultHeaders;
+}
+
+/** Successfully deleted session and all correlated data. */
+export interface DeleteLivenessWithVerifySession204Response
+  extends HttpResponse {
+  status: "204";
+}
+
+export interface DeleteLivenessWithVerifySessionDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface DeleteLivenessWithVerifySessionDefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: FaceErrorResponseOutput;
+  headers: RawHttpHeaders & DeleteLivenessWithVerifySessionDefaultHeaders;
+}
+
+/** The request has succeeded. */
+export interface GetLivenessWithVerifySessionResult200Response
+  extends HttpResponse {
+  status: "200";
+  body: LivenessWithVerifySessionOutput;
+}
+
+export interface GetLivenessWithVerifySessionResultDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface GetLivenessWithVerifySessionResultDefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: FaceErrorResponseOutput;
+  headers: RawHttpHeaders & GetLivenessWithVerifySessionResultDefaultHeaders;
+}
+
+export interface GetSessionImage200Headers {
+  /** The format of the HTTP payload. */
+  "content-type": "application/octet-stream";
+}
+
+/** The request has succeeded. */
+export interface GetSessionImage200Response extends HttpResponse {
+  status: "200";
+  /** Value may contain any sequence of octets */
+  body: Uint8Array;
+  headers: RawHttpHeaders & GetSessionImage200Headers;
+}
+
+export interface GetSessionImageDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface GetSessionImageDefaultResponse extends HttpResponse {
+  status: string;
+  body: FaceErrorResponseOutput;
+  headers: RawHttpHeaders & GetSessionImageDefaultHeaders;
+}
+
 export interface CreatePerson202Headers {
   "operation-location": string;
   location: string;
@@ -1685,204 +2067,4 @@ export interface GetDynamicPersonGroupPersonsDefaultResponse
   status: string;
   body: FaceErrorResponseOutput;
   headers: RawHttpHeaders & GetDynamicPersonGroupPersonsDefaultHeaders;
-}
-
-/** A successful call create a session for a client device and provide an authorization token for use by the client application for a limited purpose and time. */
-export interface CreateLivenessSession200Response extends HttpResponse {
-  status: "200";
-  body: LivenessSessionCreationResultOutput;
-}
-
-export interface CreateLivenessSessionDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface CreateLivenessSessionDefaultResponse extends HttpResponse {
-  status: string;
-  body: FaceErrorResponseOutput;
-  headers: RawHttpHeaders & CreateLivenessSessionDefaultHeaders;
-}
-
-/** The request has succeeded. */
-export interface DeleteLivenessSession200Response extends HttpResponse {
-  status: "200";
-}
-
-export interface DeleteLivenessSessionDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface DeleteLivenessSessionDefaultResponse extends HttpResponse {
-  status: string;
-  body: FaceErrorResponseOutput;
-  headers: RawHttpHeaders & DeleteLivenessSessionDefaultHeaders;
-}
-
-/** The request has succeeded. */
-export interface GetLivenessSessionResult200Response extends HttpResponse {
-  status: "200";
-  body: LivenessSessionOutput;
-}
-
-export interface GetLivenessSessionResultDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface GetLivenessSessionResultDefaultResponse extends HttpResponse {
-  status: string;
-  body: FaceErrorResponseOutput;
-  headers: RawHttpHeaders & GetLivenessSessionResultDefaultHeaders;
-}
-
-/** The request has succeeded. */
-export interface GetLivenessSessions200Response extends HttpResponse {
-  status: "200";
-  body: Array<LivenessSessionItemOutput>;
-}
-
-export interface GetLivenessSessionsDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface GetLivenessSessionsDefaultResponse extends HttpResponse {
-  status: string;
-  body: FaceErrorResponseOutput;
-  headers: RawHttpHeaders & GetLivenessSessionsDefaultHeaders;
-}
-
-/** The request has succeeded. */
-export interface GetLivenessSessionAuditEntries200Response
-  extends HttpResponse {
-  status: "200";
-  body: Array<LivenessSessionAuditEntryOutput>;
-}
-
-export interface GetLivenessSessionAuditEntriesDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface GetLivenessSessionAuditEntriesDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: FaceErrorResponseOutput;
-  headers: RawHttpHeaders & GetLivenessSessionAuditEntriesDefaultHeaders;
-}
-
-/** A successful call create a session for a client device and provide an authorization token for use by the client application for a limited purpose and time. */
-export interface CreateLivenessWithVerifySessionWithVerifyImage200Response
-  extends HttpResponse {
-  status: "200";
-  body: LivenessSessionWithVerifyCreationResultOutput;
-}
-
-export interface CreateLivenessWithVerifySessionWithVerifyImageDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface CreateLivenessWithVerifySessionWithVerifyImageDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: FaceErrorResponseOutput;
-  headers: RawHttpHeaders &
-    CreateLivenessWithVerifySessionWithVerifyImageDefaultHeaders;
-}
-
-/** A successful call create a session for a client device and provide an authorization token for use by the client application for a limited purpose and time. */
-export interface CreateLivenessWithVerifySession200Response
-  extends HttpResponse {
-  status: "200";
-  body: LivenessSessionCreationResultOutput;
-}
-
-export interface CreateLivenessWithVerifySessionDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface CreateLivenessWithVerifySessionDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: FaceErrorResponseOutput;
-  headers: RawHttpHeaders & CreateLivenessWithVerifySessionDefaultHeaders;
-}
-
-/** The request has succeeded. */
-export interface DeleteLivenessWithVerifySession200Response
-  extends HttpResponse {
-  status: "200";
-}
-
-export interface DeleteLivenessWithVerifySessionDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface DeleteLivenessWithVerifySessionDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: FaceErrorResponseOutput;
-  headers: RawHttpHeaders & DeleteLivenessWithVerifySessionDefaultHeaders;
-}
-
-/** The request has succeeded. */
-export interface GetLivenessWithVerifySessionResult200Response
-  extends HttpResponse {
-  status: "200";
-  body: LivenessWithVerifySessionOutput;
-}
-
-export interface GetLivenessWithVerifySessionResultDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface GetLivenessWithVerifySessionResultDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: FaceErrorResponseOutput;
-  headers: RawHttpHeaders & GetLivenessWithVerifySessionResultDefaultHeaders;
-}
-
-/** The request has succeeded. */
-export interface GetLivenessWithVerifySessions200Response extends HttpResponse {
-  status: "200";
-  body: Array<LivenessSessionItemOutput>;
-}
-
-export interface GetLivenessWithVerifySessionsDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface GetLivenessWithVerifySessionsDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: FaceErrorResponseOutput;
-  headers: RawHttpHeaders & GetLivenessWithVerifySessionsDefaultHeaders;
-}
-
-/** The request has succeeded. */
-export interface GetLivenessWithVerifySessionAuditEntries200Response
-  extends HttpResponse {
-  status: "200";
-  body: Array<LivenessSessionAuditEntryOutput>;
-}
-
-export interface GetLivenessWithVerifySessionAuditEntriesDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface GetLivenessWithVerifySessionAuditEntriesDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: FaceErrorResponseOutput;
-  headers: RawHttpHeaders &
-    GetLivenessWithVerifySessionAuditEntriesDefaultHeaders;
 }

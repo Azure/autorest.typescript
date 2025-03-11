@@ -8,6 +8,8 @@ import type {
   DetectFromUrlDefaultResponse,
   Detect200Response,
   DetectDefaultResponse,
+  DetectFromSessionImageId200Response,
+  DetectFromSessionImageIdDefaultResponse,
   FindSimilar200Response,
   FindSimilarDefaultResponse,
   FindSimilarFromFaceList200Response,
@@ -145,6 +147,44 @@ import type {
   GetLargePersonGroupPersonFaceDefaultResponse,
   UpdateLargePersonGroupPersonFace200Response,
   UpdateLargePersonGroupPersonFaceDefaultResponse,
+  CreateLivenessSessionBeforeV12200Response,
+  CreateLivenessSessionBeforeV12DefaultResponse,
+  GetLivenessSessions200Response,
+  GetLivenessSessionsDefaultResponse,
+  DeleteLivenessSessionBeforeV12200Response,
+  DeleteLivenessSessionBeforeV12DefaultResponse,
+  GetLivenessSessionResultBeforeV12200Response,
+  GetLivenessSessionResultBeforeV12DefaultResponse,
+  GetLivenessSessionAuditEntries200Response,
+  GetLivenessSessionAuditEntriesDefaultResponse,
+  CreateLivenessWithVerifySessionWithVerifyImage200Response,
+  CreateLivenessWithVerifySessionWithVerifyImageDefaultResponse,
+  CreateLivenessWithVerifySessionBeforeV12200Response,
+  CreateLivenessWithVerifySessionBeforeV12DefaultResponse,
+  GetLivenessWithVerifySessions200Response,
+  GetLivenessWithVerifySessionsDefaultResponse,
+  DeleteLivenessWithVerifySessionBeforeV12200Response,
+  DeleteLivenessWithVerifySessionBeforeV12DefaultResponse,
+  GetLivenessWithVerifySessionResultBeforeV12200Response,
+  GetLivenessWithVerifySessionResultBeforeV12DefaultResponse,
+  GetLivenessWithVerifySessionAuditEntries200Response,
+  GetLivenessWithVerifySessionAuditEntriesDefaultResponse,
+  GetSessionImageBeforeV12200Response,
+  GetSessionImageBeforeV12DefaultResponse,
+  CreateLivenessSession200Response,
+  CreateLivenessSessionDefaultResponse,
+  DeleteLivenessSession204Response,
+  DeleteLivenessSessionDefaultResponse,
+  GetLivenessSessionResult200Response,
+  GetLivenessSessionResultDefaultResponse,
+  CreateLivenessWithVerifySession200Response,
+  CreateLivenessWithVerifySessionDefaultResponse,
+  DeleteLivenessWithVerifySession204Response,
+  DeleteLivenessWithVerifySessionDefaultResponse,
+  GetLivenessWithVerifySessionResult200Response,
+  GetLivenessWithVerifySessionResultDefaultResponse,
+  GetSessionImage200Response,
+  GetSessionImageDefaultResponse,
   CreatePerson202Response,
   CreatePersonLogicalResponse,
   CreatePersonDefaultResponse,
@@ -193,28 +233,6 @@ import type {
   GetDynamicPersonGroupsDefaultResponse,
   GetDynamicPersonGroupPersons200Response,
   GetDynamicPersonGroupPersonsDefaultResponse,
-  CreateLivenessSession200Response,
-  CreateLivenessSessionDefaultResponse,
-  GetLivenessSessions200Response,
-  GetLivenessSessionsDefaultResponse,
-  DeleteLivenessSession200Response,
-  DeleteLivenessSessionDefaultResponse,
-  GetLivenessSessionResult200Response,
-  GetLivenessSessionResultDefaultResponse,
-  GetLivenessSessionAuditEntries200Response,
-  GetLivenessSessionAuditEntriesDefaultResponse,
-  CreateLivenessWithVerifySessionWithVerifyImage200Response,
-  CreateLivenessWithVerifySessionWithVerifyImageDefaultResponse,
-  CreateLivenessWithVerifySession200Response,
-  CreateLivenessWithVerifySessionDefaultResponse,
-  GetLivenessWithVerifySessions200Response,
-  GetLivenessWithVerifySessionsDefaultResponse,
-  DeleteLivenessWithVerifySession200Response,
-  DeleteLivenessWithVerifySessionDefaultResponse,
-  GetLivenessWithVerifySessionResult200Response,
-  GetLivenessWithVerifySessionResultDefaultResponse,
-  GetLivenessWithVerifySessionAuditEntries200Response,
-  GetLivenessWithVerifySessionAuditEntriesDefaultResponse,
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
@@ -293,6 +311,26 @@ const responseMap: Record<string, string[]> = {
     ["200"],
   "PATCH /largepersongroups/{largePersonGroupId}/persons/{personId}/persistedfaces/{persistedFaceId}":
     ["200"],
+  "POST /detectLiveness/singleModal/sessions": ["200"],
+  "GET /detectLiveness/singleModal/sessions": ["200"],
+  "DELETE /detectLiveness/singleModal/sessions/{sessionId}": ["200"],
+  "GET /detectLiveness/singleModal/sessions/{sessionId}": ["200"],
+  "GET /detectLiveness/singleModal/sessions/{sessionId}/audit": ["200"],
+  "POST /detectLivenessWithVerify/singleModal/sessions": ["200"],
+  "GET /detectLivenessWithVerify/singleModal/sessions": ["200"],
+  "DELETE /detectLivenessWithVerify/singleModal/sessions/{sessionId}": ["200"],
+  "GET /detectLivenessWithVerify/singleModal/sessions/{sessionId}": ["200"],
+  "GET /detectLivenessWithVerify/singleModal/sessions/{sessionId}/audit": [
+    "200",
+  ],
+  "GET /session/sessionImages/{sessionImageId}": ["200"],
+  "POST /detectLiveness-sessions": ["200"],
+  "DELETE /detectLiveness-sessions/{sessionId}": ["204"],
+  "GET /detectLiveness-sessions/{sessionId}": ["200"],
+  "POST /detectLivenessWithVerify-sessions": ["200"],
+  "DELETE /detectLivenessWithVerify-sessions/{sessionId}": ["204"],
+  "GET /detectLivenessWithVerify-sessions/{sessionId}": ["200"],
+  "GET /sessionImages/{sessionImageId}": ["200"],
   "GET /persons": ["200"],
   "POST /persons": ["202"],
   "GET /persons/{personId}": ["200"],
@@ -315,18 +353,6 @@ const responseMap: Record<string, string[]> = {
   "PATCH /dynamicpersongroups/{dynamicPersonGroupId}": ["202", "200"],
   "GET /dynamicpersongroups": ["200"],
   "GET /dynamicpersongroups/{dynamicPersonGroupId}/persons": ["200"],
-  "POST /detectLiveness/singleModal/sessions": ["200"],
-  "GET /detectLiveness/singleModal/sessions": ["200"],
-  "DELETE /detectLiveness/singleModal/sessions/{sessionId}": ["200"],
-  "GET /detectLiveness/singleModal/sessions/{sessionId}": ["200"],
-  "GET /detectLiveness/singleModal/sessions/{sessionId}/audit": ["200"],
-  "POST /detectLivenessWithVerify/singleModal/sessions": ["200"],
-  "GET /detectLivenessWithVerify/singleModal/sessions": ["200"],
-  "DELETE /detectLivenessWithVerify/singleModal/sessions/{sessionId}": ["200"],
-  "GET /detectLivenessWithVerify/singleModal/sessions/{sessionId}": ["200"],
-  "GET /detectLivenessWithVerify/singleModal/sessions/{sessionId}/audit": [
-    "200",
-  ],
 };
 
 export function isUnexpected(
@@ -338,6 +364,11 @@ export function isUnexpected(
 export function isUnexpected(
   response: Detect200Response | DetectDefaultResponse,
 ): response is DetectDefaultResponse;
+export function isUnexpected(
+  response:
+    | DetectFromSessionImageId200Response
+    | DetectFromSessionImageIdDefaultResponse,
+): response is DetectFromSessionImageIdDefaultResponse;
 export function isUnexpected(
   response: FindSimilar200Response | FindSimilarDefaultResponse,
 ): response is FindSimilarDefaultResponse;
@@ -636,6 +667,97 @@ export function isUnexpected(
 ): response is UpdateLargePersonGroupPersonFaceDefaultResponse;
 export function isUnexpected(
   response:
+    | CreateLivenessSessionBeforeV12200Response
+    | CreateLivenessSessionBeforeV12DefaultResponse,
+): response is CreateLivenessSessionBeforeV12DefaultResponse;
+export function isUnexpected(
+  response: GetLivenessSessions200Response | GetLivenessSessionsDefaultResponse,
+): response is GetLivenessSessionsDefaultResponse;
+export function isUnexpected(
+  response:
+    | DeleteLivenessSessionBeforeV12200Response
+    | DeleteLivenessSessionBeforeV12DefaultResponse,
+): response is DeleteLivenessSessionBeforeV12DefaultResponse;
+export function isUnexpected(
+  response:
+    | GetLivenessSessionResultBeforeV12200Response
+    | GetLivenessSessionResultBeforeV12DefaultResponse,
+): response is GetLivenessSessionResultBeforeV12DefaultResponse;
+export function isUnexpected(
+  response:
+    | GetLivenessSessionAuditEntries200Response
+    | GetLivenessSessionAuditEntriesDefaultResponse,
+): response is GetLivenessSessionAuditEntriesDefaultResponse;
+export function isUnexpected(
+  response:
+    | CreateLivenessWithVerifySessionWithVerifyImage200Response
+    | CreateLivenessWithVerifySessionWithVerifyImageDefaultResponse,
+): response is CreateLivenessWithVerifySessionWithVerifyImageDefaultResponse;
+export function isUnexpected(
+  response:
+    | CreateLivenessWithVerifySessionBeforeV12200Response
+    | CreateLivenessWithVerifySessionBeforeV12DefaultResponse,
+): response is CreateLivenessWithVerifySessionBeforeV12DefaultResponse;
+export function isUnexpected(
+  response:
+    | GetLivenessWithVerifySessions200Response
+    | GetLivenessWithVerifySessionsDefaultResponse,
+): response is GetLivenessWithVerifySessionsDefaultResponse;
+export function isUnexpected(
+  response:
+    | DeleteLivenessWithVerifySessionBeforeV12200Response
+    | DeleteLivenessWithVerifySessionBeforeV12DefaultResponse,
+): response is DeleteLivenessWithVerifySessionBeforeV12DefaultResponse;
+export function isUnexpected(
+  response:
+    | GetLivenessWithVerifySessionResultBeforeV12200Response
+    | GetLivenessWithVerifySessionResultBeforeV12DefaultResponse,
+): response is GetLivenessWithVerifySessionResultBeforeV12DefaultResponse;
+export function isUnexpected(
+  response:
+    | GetLivenessWithVerifySessionAuditEntries200Response
+    | GetLivenessWithVerifySessionAuditEntriesDefaultResponse,
+): response is GetLivenessWithVerifySessionAuditEntriesDefaultResponse;
+export function isUnexpected(
+  response:
+    | GetSessionImageBeforeV12200Response
+    | GetSessionImageBeforeV12DefaultResponse,
+): response is GetSessionImageBeforeV12DefaultResponse;
+export function isUnexpected(
+  response:
+    | CreateLivenessSession200Response
+    | CreateLivenessSessionDefaultResponse,
+): response is CreateLivenessSessionDefaultResponse;
+export function isUnexpected(
+  response:
+    | DeleteLivenessSession204Response
+    | DeleteLivenessSessionDefaultResponse,
+): response is DeleteLivenessSessionDefaultResponse;
+export function isUnexpected(
+  response:
+    | GetLivenessSessionResult200Response
+    | GetLivenessSessionResultDefaultResponse,
+): response is GetLivenessSessionResultDefaultResponse;
+export function isUnexpected(
+  response:
+    | CreateLivenessWithVerifySession200Response
+    | CreateLivenessWithVerifySessionDefaultResponse,
+): response is CreateLivenessWithVerifySessionDefaultResponse;
+export function isUnexpected(
+  response:
+    | DeleteLivenessWithVerifySession204Response
+    | DeleteLivenessWithVerifySessionDefaultResponse,
+): response is DeleteLivenessWithVerifySessionDefaultResponse;
+export function isUnexpected(
+  response:
+    | GetLivenessWithVerifySessionResult200Response
+    | GetLivenessWithVerifySessionResultDefaultResponse,
+): response is GetLivenessWithVerifySessionResultDefaultResponse;
+export function isUnexpected(
+  response: GetSessionImage200Response | GetSessionImageDefaultResponse,
+): response is GetSessionImageDefaultResponse;
+export function isUnexpected(
+  response:
     | CreatePerson202Response
     | CreatePersonLogicalResponse
     | CreatePersonDefaultResponse,
@@ -732,65 +854,14 @@ export function isUnexpected(
 ): response is GetDynamicPersonGroupPersonsDefaultResponse;
 export function isUnexpected(
   response:
-    | CreateLivenessSession200Response
-    | CreateLivenessSessionDefaultResponse,
-): response is CreateLivenessSessionDefaultResponse;
-export function isUnexpected(
-  response: GetLivenessSessions200Response | GetLivenessSessionsDefaultResponse,
-): response is GetLivenessSessionsDefaultResponse;
-export function isUnexpected(
-  response:
-    | DeleteLivenessSession200Response
-    | DeleteLivenessSessionDefaultResponse,
-): response is DeleteLivenessSessionDefaultResponse;
-export function isUnexpected(
-  response:
-    | GetLivenessSessionResult200Response
-    | GetLivenessSessionResultDefaultResponse,
-): response is GetLivenessSessionResultDefaultResponse;
-export function isUnexpected(
-  response:
-    | GetLivenessSessionAuditEntries200Response
-    | GetLivenessSessionAuditEntriesDefaultResponse,
-): response is GetLivenessSessionAuditEntriesDefaultResponse;
-export function isUnexpected(
-  response:
-    | CreateLivenessWithVerifySessionWithVerifyImage200Response
-    | CreateLivenessWithVerifySessionWithVerifyImageDefaultResponse,
-): response is CreateLivenessWithVerifySessionWithVerifyImageDefaultResponse;
-export function isUnexpected(
-  response:
-    | CreateLivenessWithVerifySession200Response
-    | CreateLivenessWithVerifySessionDefaultResponse,
-): response is CreateLivenessWithVerifySessionDefaultResponse;
-export function isUnexpected(
-  response:
-    | GetLivenessWithVerifySessions200Response
-    | GetLivenessWithVerifySessionsDefaultResponse,
-): response is GetLivenessWithVerifySessionsDefaultResponse;
-export function isUnexpected(
-  response:
-    | DeleteLivenessWithVerifySession200Response
-    | DeleteLivenessWithVerifySessionDefaultResponse,
-): response is DeleteLivenessWithVerifySessionDefaultResponse;
-export function isUnexpected(
-  response:
-    | GetLivenessWithVerifySessionResult200Response
-    | GetLivenessWithVerifySessionResultDefaultResponse,
-): response is GetLivenessWithVerifySessionResultDefaultResponse;
-export function isUnexpected(
-  response:
-    | GetLivenessWithVerifySessionAuditEntries200Response
-    | GetLivenessWithVerifySessionAuditEntriesDefaultResponse,
-): response is GetLivenessWithVerifySessionAuditEntriesDefaultResponse;
-export function isUnexpected(
-  response:
     | GetOperationResult200Response
     | GetOperationResultDefaultResponse
     | DetectFromUrl200Response
     | DetectFromUrlDefaultResponse
     | Detect200Response
     | DetectDefaultResponse
+    | DetectFromSessionImageId200Response
+    | DetectFromSessionImageIdDefaultResponse
     | FindSimilar200Response
     | FindSimilarDefaultResponse
     | FindSimilarFromFaceList200Response
@@ -928,6 +999,44 @@ export function isUnexpected(
     | GetLargePersonGroupPersonFaceDefaultResponse
     | UpdateLargePersonGroupPersonFace200Response
     | UpdateLargePersonGroupPersonFaceDefaultResponse
+    | CreateLivenessSessionBeforeV12200Response
+    | CreateLivenessSessionBeforeV12DefaultResponse
+    | GetLivenessSessions200Response
+    | GetLivenessSessionsDefaultResponse
+    | DeleteLivenessSessionBeforeV12200Response
+    | DeleteLivenessSessionBeforeV12DefaultResponse
+    | GetLivenessSessionResultBeforeV12200Response
+    | GetLivenessSessionResultBeforeV12DefaultResponse
+    | GetLivenessSessionAuditEntries200Response
+    | GetLivenessSessionAuditEntriesDefaultResponse
+    | CreateLivenessWithVerifySessionWithVerifyImage200Response
+    | CreateLivenessWithVerifySessionWithVerifyImageDefaultResponse
+    | CreateLivenessWithVerifySessionBeforeV12200Response
+    | CreateLivenessWithVerifySessionBeforeV12DefaultResponse
+    | GetLivenessWithVerifySessions200Response
+    | GetLivenessWithVerifySessionsDefaultResponse
+    | DeleteLivenessWithVerifySessionBeforeV12200Response
+    | DeleteLivenessWithVerifySessionBeforeV12DefaultResponse
+    | GetLivenessWithVerifySessionResultBeforeV12200Response
+    | GetLivenessWithVerifySessionResultBeforeV12DefaultResponse
+    | GetLivenessWithVerifySessionAuditEntries200Response
+    | GetLivenessWithVerifySessionAuditEntriesDefaultResponse
+    | GetSessionImageBeforeV12200Response
+    | GetSessionImageBeforeV12DefaultResponse
+    | CreateLivenessSession200Response
+    | CreateLivenessSessionDefaultResponse
+    | DeleteLivenessSession204Response
+    | DeleteLivenessSessionDefaultResponse
+    | GetLivenessSessionResult200Response
+    | GetLivenessSessionResultDefaultResponse
+    | CreateLivenessWithVerifySession200Response
+    | CreateLivenessWithVerifySessionDefaultResponse
+    | DeleteLivenessWithVerifySession204Response
+    | DeleteLivenessWithVerifySessionDefaultResponse
+    | GetLivenessWithVerifySessionResult200Response
+    | GetLivenessWithVerifySessionResultDefaultResponse
+    | GetSessionImage200Response
+    | GetSessionImageDefaultResponse
     | CreatePerson202Response
     | CreatePersonLogicalResponse
     | CreatePersonDefaultResponse
@@ -975,33 +1084,12 @@ export function isUnexpected(
     | GetDynamicPersonGroups200Response
     | GetDynamicPersonGroupsDefaultResponse
     | GetDynamicPersonGroupPersons200Response
-    | GetDynamicPersonGroupPersonsDefaultResponse
-    | CreateLivenessSession200Response
-    | CreateLivenessSessionDefaultResponse
-    | GetLivenessSessions200Response
-    | GetLivenessSessionsDefaultResponse
-    | DeleteLivenessSession200Response
-    | DeleteLivenessSessionDefaultResponse
-    | GetLivenessSessionResult200Response
-    | GetLivenessSessionResultDefaultResponse
-    | GetLivenessSessionAuditEntries200Response
-    | GetLivenessSessionAuditEntriesDefaultResponse
-    | CreateLivenessWithVerifySessionWithVerifyImage200Response
-    | CreateLivenessWithVerifySessionWithVerifyImageDefaultResponse
-    | CreateLivenessWithVerifySession200Response
-    | CreateLivenessWithVerifySessionDefaultResponse
-    | GetLivenessWithVerifySessions200Response
-    | GetLivenessWithVerifySessionsDefaultResponse
-    | DeleteLivenessWithVerifySession200Response
-    | DeleteLivenessWithVerifySessionDefaultResponse
-    | GetLivenessWithVerifySessionResult200Response
-    | GetLivenessWithVerifySessionResultDefaultResponse
-    | GetLivenessWithVerifySessionAuditEntries200Response
-    | GetLivenessWithVerifySessionAuditEntriesDefaultResponse,
+    | GetDynamicPersonGroupPersonsDefaultResponse,
 ): response is
   | GetOperationResultDefaultResponse
   | DetectFromUrlDefaultResponse
   | DetectDefaultResponse
+  | DetectFromSessionImageIdDefaultResponse
   | FindSimilarDefaultResponse
   | FindSimilarFromFaceListDefaultResponse
   | FindSimilarFromLargeFaceListDefaultResponse
@@ -1069,6 +1157,25 @@ export function isUnexpected(
   | DeleteLargePersonGroupPersonFaceDefaultResponse
   | GetLargePersonGroupPersonFaceDefaultResponse
   | UpdateLargePersonGroupPersonFaceDefaultResponse
+  | CreateLivenessSessionBeforeV12DefaultResponse
+  | GetLivenessSessionsDefaultResponse
+  | DeleteLivenessSessionBeforeV12DefaultResponse
+  | GetLivenessSessionResultBeforeV12DefaultResponse
+  | GetLivenessSessionAuditEntriesDefaultResponse
+  | CreateLivenessWithVerifySessionWithVerifyImageDefaultResponse
+  | CreateLivenessWithVerifySessionBeforeV12DefaultResponse
+  | GetLivenessWithVerifySessionsDefaultResponse
+  | DeleteLivenessWithVerifySessionBeforeV12DefaultResponse
+  | GetLivenessWithVerifySessionResultBeforeV12DefaultResponse
+  | GetLivenessWithVerifySessionAuditEntriesDefaultResponse
+  | GetSessionImageBeforeV12DefaultResponse
+  | CreateLivenessSessionDefaultResponse
+  | DeleteLivenessSessionDefaultResponse
+  | GetLivenessSessionResultDefaultResponse
+  | CreateLivenessWithVerifySessionDefaultResponse
+  | DeleteLivenessWithVerifySessionDefaultResponse
+  | GetLivenessWithVerifySessionResultDefaultResponse
+  | GetSessionImageDefaultResponse
   | CreatePersonDefaultResponse
   | GetPersonsDefaultResponse
   | DeletePersonDefaultResponse
@@ -1088,18 +1195,7 @@ export function isUnexpected(
   | UpdateDynamicPersonGroupWithPersonChangesDefaultResponse
   | UpdateDynamicPersonGroupDefaultResponse
   | GetDynamicPersonGroupsDefaultResponse
-  | GetDynamicPersonGroupPersonsDefaultResponse
-  | CreateLivenessSessionDefaultResponse
-  | GetLivenessSessionsDefaultResponse
-  | DeleteLivenessSessionDefaultResponse
-  | GetLivenessSessionResultDefaultResponse
-  | GetLivenessSessionAuditEntriesDefaultResponse
-  | CreateLivenessWithVerifySessionWithVerifyImageDefaultResponse
-  | CreateLivenessWithVerifySessionDefaultResponse
-  | GetLivenessWithVerifySessionsDefaultResponse
-  | DeleteLivenessWithVerifySessionDefaultResponse
-  | GetLivenessWithVerifySessionResultDefaultResponse
-  | GetLivenessWithVerifySessionAuditEntriesDefaultResponse {
+  | GetDynamicPersonGroupPersonsDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

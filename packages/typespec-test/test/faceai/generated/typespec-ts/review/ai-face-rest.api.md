@@ -27,6 +27,11 @@ export interface AccessoryItemOutput {
 export type AccessoryTypeOutput = string;
 
 // @public
+export interface AddFaceFromUrlRequest {
+    url: string;
+}
+
+// @public
 export interface AddFaceListFace200Response extends HttpResponse {
     // (undocumented)
     body: AddFaceResultOutput;
@@ -71,9 +76,7 @@ export interface AddFaceListFaceFromUrl200Response extends HttpResponse {
 // @public (undocumented)
 export interface AddFaceListFaceFromUrlBodyParam {
     // (undocumented)
-    body: {
-        url: string;
-    };
+    body: AddFaceFromUrlRequest;
 }
 
 // @public (undocumented)
@@ -193,9 +196,7 @@ export interface AddLargeFaceListFaceFromUrl200Response extends HttpResponse {
 // @public (undocumented)
 export interface AddLargeFaceListFaceFromUrlBodyParam {
     // (undocumented)
-    body: {
-        url: string;
-    };
+    body: AddFaceFromUrlRequest;
 }
 
 // @public (undocumented)
@@ -309,9 +310,7 @@ export interface AddLargePersonGroupPersonFaceFromUrl200Response extends HttpRes
 // @public (undocumented)
 export interface AddLargePersonGroupPersonFaceFromUrlBodyParam {
     // (undocumented)
-    body: {
-        url: string;
-    };
+    body: AddFaceFromUrlRequest;
 }
 
 // @public (undocumented)
@@ -578,9 +577,7 @@ export interface AddPersonGroupPersonFaceFromUrl200Response extends HttpResponse
 // @public (undocumented)
 export interface AddPersonGroupPersonFaceFromUrlBodyParam {
     // (undocumented)
-    body: {
-        url: string;
-    };
+    body: AddFaceFromUrlRequest;
 }
 
 // @public (undocumented)
@@ -650,6 +647,22 @@ export interface AddPersonGroupPersonFaceTargetFaceQueryParam {
 }
 
 // @public
+export interface AuditLivenessResponseInfoOutput {
+    body: LivenessResponseBodyOutput;
+    latencyInMilliseconds: number;
+    statusCode: number;
+}
+
+// @public
+export interface AuditRequestInfoOutput {
+    contentLength?: number;
+    contentType: string;
+    method: string;
+    url: string;
+    userAgent?: string;
+}
+
+// @public
 export type BlurLevelOutput = string;
 
 // @public
@@ -663,6 +676,13 @@ function createClient(endpointParam: string, credentials: TokenCredential | KeyC
 export default createClient;
 
 // @public
+export interface CreateCollectionRequest {
+    name: string;
+    recognitionModel?: RecognitionModel;
+    userData?: string;
+}
+
+// @public
 export interface CreateDynamicPersonGroup200Response extends HttpResponse {
     // (undocumented)
     status: "200";
@@ -671,10 +691,7 @@ export interface CreateDynamicPersonGroup200Response extends HttpResponse {
 // @public (undocumented)
 export interface CreateDynamicPersonGroupBodyParam {
     // (undocumented)
-    body: {
-        name: string;
-        userData?: string;
-    };
+    body: UserDefinedFields;
 }
 
 // @public (undocumented)
@@ -770,11 +787,7 @@ export interface CreateFaceList200Response extends HttpResponse {
 // @public (undocumented)
 export interface CreateFaceListBodyParam {
     // (undocumented)
-    body: {
-        name: string;
-        userData?: string;
-        recognitionModel?: RecognitionModel;
-    };
+    body: CreateCollectionRequest;
 }
 
 // @public (undocumented)
@@ -812,11 +825,7 @@ export interface CreateLargeFaceList200Response extends HttpResponse {
 // @public (undocumented)
 export interface CreateLargeFaceListBodyParam {
     // (undocumented)
-    body: {
-        name: string;
-        userData?: string;
-        recognitionModel?: RecognitionModel;
-    };
+    body: CreateCollectionRequest;
 }
 
 // @public (undocumented)
@@ -854,11 +863,7 @@ export interface CreateLargePersonGroup200Response extends HttpResponse {
 // @public (undocumented)
 export interface CreateLargePersonGroupBodyParam {
     // (undocumented)
-    body: {
-        name: string;
-        userData?: string;
-        recognitionModel?: RecognitionModel;
-    };
+    body: CreateCollectionRequest;
 }
 
 // @public (undocumented)
@@ -896,10 +901,7 @@ export interface CreateLargePersonGroupPerson200Response extends HttpResponse {
 // @public (undocumented)
 export interface CreateLargePersonGroupPersonBodyParam {
     // (undocumented)
-    body: {
-        name: string;
-        userData?: string;
-    };
+    body: UserDefinedFields;
 }
 
 // @public (undocumented)
@@ -922,22 +924,68 @@ export type CreateLargePersonGroupPersonParameters = CreateLargePersonGroupPerso
 
 // @public (undocumented)
 export interface CreateLivenessSession {
-    get(options?: GetLivenessSessionsParameters): StreamableMethod<GetLivenessSessions200Response | GetLivenessSessionsDefaultResponse>;
     post(options: CreateLivenessSessionParameters): StreamableMethod<CreateLivenessSession200Response | CreateLivenessSessionDefaultResponse>;
 }
 
 // @public
 export interface CreateLivenessSession200Response extends HttpResponse {
     // (undocumented)
-    body: LivenessSessionCreationResultOutput;
+    body: LivenessSessionOutput;
     // (undocumented)
     status: "200";
 }
 
 // @public (undocumented)
-export interface CreateLivenessSessionBodyParam {
+export interface CreateLivenessSessionBeforeV12 {
+    get(options?: GetLivenessSessionsParameters): StreamableMethod<GetLivenessSessions200Response | GetLivenessSessionsDefaultResponse>;
+    post(options: CreateLivenessSessionBeforeV12Parameters): StreamableMethod<CreateLivenessSessionBeforeV12200Response | CreateLivenessSessionBeforeV12DefaultResponse>;
+}
+
+// @public
+export interface CreateLivenessSessionBeforeV12200Response extends HttpResponse {
     // (undocumented)
-    body: LivenessSessionCreationContent;
+    body: CreateLivenessSessionResultOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface CreateLivenessSessionBeforeV12BodyParam {
+    body: CreateLivenessSessionContent;
+}
+
+// @public (undocumented)
+export interface CreateLivenessSessionBeforeV12DefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
+export interface CreateLivenessSessionBeforeV12DefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: FaceErrorResponseOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & CreateLivenessSessionBeforeV12DefaultHeaders;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type CreateLivenessSessionBeforeV12Parameters = CreateLivenessSessionBeforeV12BodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface CreateLivenessSessionBodyParam {
+    body: CreateLivenessSessionContent;
+}
+
+// @public
+export interface CreateLivenessSessionContent {
+    authTokenTimeToLiveInSeconds?: number;
+    deviceCorrelationId?: string;
+    deviceCorrelationIdSetInClient?: boolean;
+    enableSessionImage?: boolean;
+    livenessModelVersion?: LivenessModel;
+    livenessOperationMode: LivenessOperationMode;
+    sendResultsToClient?: boolean;
 }
 
 // @public (undocumented)
@@ -959,17 +1007,145 @@ export interface CreateLivenessSessionDefaultResponse extends HttpResponse {
 export type CreateLivenessSessionParameters = CreateLivenessSessionBodyParam & RequestParameters;
 
 // @public
+export interface CreateLivenessSessionResultOutput {
+    authToken: string;
+    sessionId: string;
+}
+
+// @public (undocumented)
+export interface CreateLivenessWithVerifySession {
+    post(options: CreateLivenessWithVerifySessionParameters): StreamableMethod<CreateLivenessWithVerifySession200Response | CreateLivenessWithVerifySessionDefaultResponse>;
+}
+
+// @public
 export interface CreateLivenessWithVerifySession200Response extends HttpResponse {
     // (undocumented)
-    body: LivenessSessionCreationResultOutput;
+    body: LivenessWithVerifySessionOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public
+export interface CreateLivenessWithVerifySessionBeforeV12200Response extends HttpResponse {
+    // (undocumented)
+    body: CreateLivenessWithVerifySessionResultOutput;
     // (undocumented)
     status: "200";
 }
 
 // @public (undocumented)
-export interface CreateLivenessWithVerifySessionBodyParam {
+export interface CreateLivenessWithVerifySessionBeforeV12BodyParam {
+    body: CreateLivenessWithVerifySessionJsonContent;
+}
+
+// @public (undocumented)
+export interface CreateLivenessWithVerifySessionBeforeV12DefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
+export interface CreateLivenessWithVerifySessionBeforeV12DefaultResponse extends HttpResponse {
     // (undocumented)
-    body: LivenessSessionCreationContent;
+    body: FaceErrorResponseOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & CreateLivenessWithVerifySessionBeforeV12DefaultHeaders;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type CreateLivenessWithVerifySessionBeforeV12Parameters = CreateLivenessWithVerifySessionBeforeV12BodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface CreateLivenessWithVerifySessionBodyParam {
+    body: CreateLivenessWithVerifySessionContent;
+}
+
+// @public
+export type CreateLivenessWithVerifySessionContent = FormData | Array<CreateLivenessWithVerifySessionContentLivenessOperationModePartDescriptor | CreateLivenessWithVerifySessionContentSendResultsToClientPartDescriptor | CreateLivenessWithVerifySessionContentDeviceCorrelationIdSetInClientPartDescriptor | CreateLivenessWithVerifySessionContentEnableSessionImagePartDescriptor | CreateLivenessWithVerifySessionContentLivenessModelVersionPartDescriptor | CreateLivenessWithVerifySessionContentDeviceCorrelationIdPartDescriptor | CreateLivenessWithVerifySessionContentAuthTokenTimeToLiveInSecondsPartDescriptor | CreateLivenessWithVerifySessionContentReturnVerifyImageHashPartDescriptor | CreateLivenessWithVerifySessionContentVerifyConfidenceThresholdPartDescriptor | CreateLivenessWithVerifySessionContentVerifyImagePartDescriptor>;
+
+// @public (undocumented)
+export interface CreateLivenessWithVerifySessionContentAuthTokenTimeToLiveInSecondsPartDescriptor {
+    // (undocumented)
+    body: number;
+    // (undocumented)
+    name: "authTokenTimeToLiveInSeconds";
+}
+
+// @public (undocumented)
+export interface CreateLivenessWithVerifySessionContentDeviceCorrelationIdPartDescriptor {
+    // (undocumented)
+    body: string;
+    // (undocumented)
+    name: "deviceCorrelationId";
+}
+
+// @public (undocumented)
+export interface CreateLivenessWithVerifySessionContentDeviceCorrelationIdSetInClientPartDescriptor {
+    // (undocumented)
+    body: boolean;
+    // (undocumented)
+    name: "deviceCorrelationIdSetInClient";
+}
+
+// @public (undocumented)
+export interface CreateLivenessWithVerifySessionContentEnableSessionImagePartDescriptor {
+    // (undocumented)
+    body: boolean;
+    // (undocumented)
+    name: "enableSessionImage";
+}
+
+// @public (undocumented)
+export interface CreateLivenessWithVerifySessionContentLivenessModelVersionPartDescriptor {
+    // (undocumented)
+    body: LivenessModel;
+    // (undocumented)
+    name: "livenessModelVersion";
+}
+
+// @public (undocumented)
+export interface CreateLivenessWithVerifySessionContentLivenessOperationModePartDescriptor {
+    // (undocumented)
+    body: LivenessOperationMode;
+    // (undocumented)
+    name: "livenessOperationMode";
+}
+
+// @public (undocumented)
+export interface CreateLivenessWithVerifySessionContentReturnVerifyImageHashPartDescriptor {
+    // (undocumented)
+    body: boolean;
+    // (undocumented)
+    name: "returnVerifyImageHash";
+}
+
+// @public (undocumented)
+export interface CreateLivenessWithVerifySessionContentSendResultsToClientPartDescriptor {
+    // (undocumented)
+    body: boolean;
+    // (undocumented)
+    name: "sendResultsToClient";
+}
+
+// @public (undocumented)
+export interface CreateLivenessWithVerifySessionContentVerifyConfidenceThresholdPartDescriptor {
+    // (undocumented)
+    body: number;
+    // (undocumented)
+    name: "verifyConfidenceThreshold";
+}
+
+// @public (undocumented)
+export interface CreateLivenessWithVerifySessionContentVerifyImagePartDescriptor {
+    // (undocumented)
+    body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
+    // (undocumented)
+    contentType?: string;
+    // (undocumented)
+    filename?: string;
+    // (undocumented)
+    name: "verifyImage";
 }
 
 // @public (undocumented)
@@ -987,28 +1163,75 @@ export interface CreateLivenessWithVerifySessionDefaultResponse extends HttpResp
     status: string;
 }
 
+// @public
+export interface CreateLivenessWithVerifySessionJsonContent {
+    authTokenTimeToLiveInSeconds?: number;
+    deviceCorrelationId?: string;
+    deviceCorrelationIdSetInClient?: boolean;
+    enableSessionImage?: boolean;
+    livenessModelVersion?: LivenessModel;
+    livenessOperationMode: LivenessOperationMode;
+    returnVerifyImageHash?: boolean;
+    sendResultsToClient?: boolean;
+    verifyConfidenceThreshold?: number;
+}
+
 // @public (undocumented)
-export type CreateLivenessWithVerifySessionParameters = CreateLivenessWithVerifySessionBodyParam & RequestParameters;
+export interface CreateLivenessWithVerifySessionMediaTypesParam {
+    contentType: "multipart/form-data";
+}
+
+// @public
+export type CreateLivenessWithVerifySessionMultipartContent = FormData | Array<CreateLivenessWithVerifySessionMultipartContentParametersPartDescriptor | CreateLivenessWithVerifySessionMultipartContentVerifyImagePartDescriptor>;
+
+// @public (undocumented)
+export interface CreateLivenessWithVerifySessionMultipartContentParametersPartDescriptor {
+    // (undocumented)
+    body: CreateLivenessWithVerifySessionJsonContent;
+    // (undocumented)
+    name: "Parameters";
+}
+
+// @public (undocumented)
+export interface CreateLivenessWithVerifySessionMultipartContentVerifyImagePartDescriptor {
+    // (undocumented)
+    body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
+    // (undocumented)
+    contentType?: string;
+    // (undocumented)
+    filename?: string;
+    // (undocumented)
+    name: "VerifyImage";
+}
+
+// @public (undocumented)
+export type CreateLivenessWithVerifySessionParameters = CreateLivenessWithVerifySessionMediaTypesParam & CreateLivenessWithVerifySessionBodyParam & RequestParameters;
+
+// @public
+export interface CreateLivenessWithVerifySessionResultOutput {
+    authToken: string;
+    sessionId: string;
+    verifyImage?: LivenessWithVerifyImageOutput;
+}
 
 // @public (undocumented)
 export interface CreateLivenessWithVerifySessionWithVerifyImage {
     get(options?: GetLivenessWithVerifySessionsParameters): StreamableMethod<GetLivenessWithVerifySessions200Response | GetLivenessWithVerifySessionsDefaultResponse>;
     post(options: CreateLivenessWithVerifySessionWithVerifyImageParameters): StreamableMethod<CreateLivenessWithVerifySessionWithVerifyImage200Response | CreateLivenessWithVerifySessionWithVerifyImageDefaultResponse>;
-    post(options: CreateLivenessWithVerifySessionParameters): StreamableMethod<CreateLivenessWithVerifySession200Response | CreateLivenessWithVerifySessionDefaultResponse>;
+    post(options: CreateLivenessWithVerifySessionBeforeV12Parameters): StreamableMethod<CreateLivenessWithVerifySessionBeforeV12200Response | CreateLivenessWithVerifySessionBeforeV12DefaultResponse>;
 }
 
 // @public
 export interface CreateLivenessWithVerifySessionWithVerifyImage200Response extends HttpResponse {
     // (undocumented)
-    body: LivenessSessionWithVerifyCreationResultOutput;
+    body: CreateLivenessWithVerifySessionResultOutput;
     // (undocumented)
     status: "200";
 }
 
 // @public (undocumented)
 export interface CreateLivenessWithVerifySessionWithVerifyImageBodyParam {
-    // (undocumented)
-    body: LivenessSessionWithVerifyImageCreationContent;
+    body: CreateLivenessWithVerifySessionMultipartContent;
 }
 
 // @public (undocumented)
@@ -1061,10 +1284,7 @@ export interface CreatePerson202Response extends HttpResponse {
 // @public (undocumented)
 export interface CreatePersonBodyParam {
     // (undocumented)
-    body: {
-        name: string;
-        userData?: string;
-    };
+    body: UserDefinedFields;
 }
 
 // @public (undocumented)
@@ -1099,11 +1319,7 @@ export interface CreatePersonGroup200Response extends HttpResponse {
 // @public (undocumented)
 export interface CreatePersonGroupBodyParam {
     // (undocumented)
-    body: {
-        name: string;
-        userData?: string;
-        recognitionModel?: RecognitionModel;
-    };
+    body: CreateCollectionRequest;
 }
 
 // @public (undocumented)
@@ -1141,10 +1357,7 @@ export interface CreatePersonGroupPerson200Response extends HttpResponse {
 // @public (undocumented)
 export interface CreatePersonGroupPersonBodyParam {
     // (undocumented)
-    body: {
-        name: string;
-        userData?: string;
-    };
+    body: UserDefinedFields;
 }
 
 // @public (undocumented)
@@ -1415,15 +1628,45 @@ export type DeleteLargePersonGroupPersonParameters = RequestParameters;
 
 // @public (undocumented)
 export interface DeleteLivenessSession {
-    delete(options?: DeleteLivenessSessionParameters): StreamableMethod<DeleteLivenessSession200Response | DeleteLivenessSessionDefaultResponse>;
+    delete(options?: DeleteLivenessSessionParameters): StreamableMethod<DeleteLivenessSession204Response | DeleteLivenessSessionDefaultResponse>;
     get(options?: GetLivenessSessionResultParameters): StreamableMethod<GetLivenessSessionResult200Response | GetLivenessSessionResultDefaultResponse>;
 }
 
 // @public
-export interface DeleteLivenessSession200Response extends HttpResponse {
+export interface DeleteLivenessSession204Response extends HttpResponse {
+    // (undocumented)
+    status: "204";
+}
+
+// @public (undocumented)
+export interface DeleteLivenessSessionBeforeV12 {
+    delete(options?: DeleteLivenessSessionBeforeV12Parameters): StreamableMethod<DeleteLivenessSessionBeforeV12200Response | DeleteLivenessSessionBeforeV12DefaultResponse>;
+    get(options?: GetLivenessSessionResultBeforeV12Parameters): StreamableMethod<GetLivenessSessionResultBeforeV12200Response | GetLivenessSessionResultBeforeV12DefaultResponse>;
+}
+
+// @public
+export interface DeleteLivenessSessionBeforeV12200Response extends HttpResponse {
     // (undocumented)
     status: "200";
 }
+
+// @public (undocumented)
+export interface DeleteLivenessSessionBeforeV12DefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
+export interface DeleteLivenessSessionBeforeV12DefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: FaceErrorResponseOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & DeleteLivenessSessionBeforeV12DefaultHeaders;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type DeleteLivenessSessionBeforeV12Parameters = RequestParameters;
 
 // @public (undocumented)
 export interface DeleteLivenessSessionDefaultHeaders {
@@ -1445,15 +1688,45 @@ export type DeleteLivenessSessionParameters = RequestParameters;
 
 // @public (undocumented)
 export interface DeleteLivenessWithVerifySession {
-    delete(options?: DeleteLivenessWithVerifySessionParameters): StreamableMethod<DeleteLivenessWithVerifySession200Response | DeleteLivenessWithVerifySessionDefaultResponse>;
+    delete(options?: DeleteLivenessWithVerifySessionParameters): StreamableMethod<DeleteLivenessWithVerifySession204Response | DeleteLivenessWithVerifySessionDefaultResponse>;
     get(options?: GetLivenessWithVerifySessionResultParameters): StreamableMethod<GetLivenessWithVerifySessionResult200Response | GetLivenessWithVerifySessionResultDefaultResponse>;
 }
 
 // @public
-export interface DeleteLivenessWithVerifySession200Response extends HttpResponse {
+export interface DeleteLivenessWithVerifySession204Response extends HttpResponse {
+    // (undocumented)
+    status: "204";
+}
+
+// @public (undocumented)
+export interface DeleteLivenessWithVerifySessionBeforeV12 {
+    delete(options?: DeleteLivenessWithVerifySessionBeforeV12Parameters): StreamableMethod<DeleteLivenessWithVerifySessionBeforeV12200Response | DeleteLivenessWithVerifySessionBeforeV12DefaultResponse>;
+    get(options?: GetLivenessWithVerifySessionResultBeforeV12Parameters): StreamableMethod<GetLivenessWithVerifySessionResultBeforeV12200Response | GetLivenessWithVerifySessionResultBeforeV12DefaultResponse>;
+}
+
+// @public
+export interface DeleteLivenessWithVerifySessionBeforeV12200Response extends HttpResponse {
     // (undocumented)
     status: "200";
 }
+
+// @public (undocumented)
+export interface DeleteLivenessWithVerifySessionBeforeV12DefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
+export interface DeleteLivenessWithVerifySessionBeforeV12DefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: FaceErrorResponseOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & DeleteLivenessWithVerifySessionBeforeV12DefaultHeaders;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type DeleteLivenessWithVerifySessionBeforeV12Parameters = RequestParameters;
 
 // @public (undocumented)
 export interface DeleteLivenessWithVerifySessionDefaultHeaders {
@@ -1677,10 +1950,74 @@ export interface DetectDefaultResponse extends HttpResponse {
     status: string;
 }
 
+// @public
+export interface DetectFromSessionImageId200Response extends HttpResponse {
+    // (undocumented)
+    body: Array<FaceDetectionResultOutput>;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface DetectFromSessionImageIdBodyParam {
+    // (undocumented)
+    body: {
+        sessionImageId: string;
+    };
+}
+
+// @public (undocumented)
+export interface DetectFromSessionImageIdDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
+export interface DetectFromSessionImageIdDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: FaceErrorResponseOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & DetectFromSessionImageIdDefaultHeaders;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export interface DetectFromSessionImageIdMediaTypesParam {
+    contentType: "application/json";
+}
+
+// @public (undocumented)
+export type DetectFromSessionImageIdParameters = DetectFromSessionImageIdQueryParam & DetectFromSessionImageIdMediaTypesParam & DetectFromSessionImageIdBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface DetectFromSessionImageIdQueryParam {
+    // (undocumented)
+    queryParameters?: DetectFromSessionImageIdQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface DetectFromSessionImageIdQueryParamProperties {
+    detectionModel?: DetectionModel;
+    faceIdTimeToLive?: number;
+    recognitionModel?: RecognitionModel;
+    returnFaceAttributes?: FaceAttributeType[] | DetectFromSessionImageIdReturnFaceAttributesQueryParam;
+    returnFaceId?: boolean;
+    returnFaceLandmarks?: boolean;
+    returnRecognitionModel?: boolean;
+}
+
+// @public
+export interface DetectFromSessionImageIdReturnFaceAttributesQueryParam {
+    explode: false;
+    style: "form";
+    value: FaceAttributeType[];
+}
+
 // @public (undocumented)
 export interface DetectFromUrl {
     post(options: DetectFromUrlParameters): StreamableMethod<DetectFromUrl200Response | DetectFromUrlDefaultResponse>;
     post(options: DetectParameters): StreamableMethod<Detect200Response | DetectDefaultResponse>;
+    post(options: DetectFromSessionImageIdParameters): StreamableMethod<DetectFromSessionImageId200Response | DetectFromSessionImageIdDefaultResponse>;
 }
 
 // @public
@@ -1911,6 +2248,11 @@ export interface FaceRectangleOutput {
 
 // @public
 export type FaceSessionStatusOutput = string;
+
+// @public
+export interface FaceUserData {
+    userData?: string;
+}
 
 // @public
 export interface FacialHairOutput {
@@ -2710,6 +3052,32 @@ export interface GetLivenessSessionResult200Response extends HttpResponse {
     status: "200";
 }
 
+// @public
+export interface GetLivenessSessionResultBeforeV12200Response extends HttpResponse {
+    // (undocumented)
+    body: LivenessSessionBeforeV12Output;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface GetLivenessSessionResultBeforeV12DefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
+export interface GetLivenessSessionResultBeforeV12DefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: FaceErrorResponseOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & GetLivenessSessionResultBeforeV12DefaultHeaders;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type GetLivenessSessionResultBeforeV12Parameters = RequestParameters;
+
 // @public (undocumented)
 export interface GetLivenessSessionResultDefaultHeaders {
     "x-ms-error-code"?: string;
@@ -2816,6 +3184,32 @@ export interface GetLivenessWithVerifySessionResult200Response extends HttpRespo
     // (undocumented)
     status: "200";
 }
+
+// @public
+export interface GetLivenessWithVerifySessionResultBeforeV12200Response extends HttpResponse {
+    // (undocumented)
+    body: LivenessWithVerifySessionBeforeV12Output;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface GetLivenessWithVerifySessionResultBeforeV12DefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
+export interface GetLivenessWithVerifySessionResultBeforeV12DefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: FaceErrorResponseOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & GetLivenessWithVerifySessionResultBeforeV12DefaultHeaders;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type GetLivenessWithVerifySessionResultBeforeV12Parameters = RequestParameters;
 
 // @public (undocumented)
 export interface GetLivenessWithVerifySessionResultDefaultHeaders {
@@ -3252,6 +3646,80 @@ export interface GetPersonsQueryParamProperties {
     top?: number;
 }
 
+// @public (undocumented)
+export interface GetSessionImage {
+    get(options?: GetSessionImageParameters): StreamableMethod<GetSessionImage200Response | GetSessionImageDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface GetSessionImage200Headers {
+    "content-type": "application/octet-stream";
+}
+
+// @public
+export interface GetSessionImage200Response extends HttpResponse {
+    body: Uint8Array;
+    // (undocumented)
+    headers: RawHttpHeaders & GetSessionImage200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface GetSessionImageBeforeV12 {
+    get(options?: GetSessionImageBeforeV12Parameters): StreamableMethod<GetSessionImageBeforeV12200Response | GetSessionImageBeforeV12DefaultResponse>;
+}
+
+// @public (undocumented)
+export interface GetSessionImageBeforeV12200Headers {
+    "content-type": "application/octet-stream";
+}
+
+// @public
+export interface GetSessionImageBeforeV12200Response extends HttpResponse {
+    body: Uint8Array;
+    // (undocumented)
+    headers: RawHttpHeaders & GetSessionImageBeforeV12200Headers;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface GetSessionImageBeforeV12DefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
+export interface GetSessionImageBeforeV12DefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: FaceErrorResponseOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & GetSessionImageBeforeV12DefaultHeaders;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type GetSessionImageBeforeV12Parameters = RequestParameters;
+
+// @public (undocumented)
+export interface GetSessionImageDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
+export interface GetSessionImageDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: FaceErrorResponseOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & GetSessionImageDefaultHeaders;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type GetSessionImageParameters = RequestParameters;
+
 // @public
 export type GlassesTypeOutput = string;
 
@@ -3504,6 +3972,9 @@ export function isUnexpected(response: DetectFromUrl200Response | DetectFromUrlD
 export function isUnexpected(response: Detect200Response | DetectDefaultResponse): response is DetectDefaultResponse;
 
 // @public (undocumented)
+export function isUnexpected(response: DetectFromSessionImageId200Response | DetectFromSessionImageIdDefaultResponse): response is DetectFromSessionImageIdDefaultResponse;
+
+// @public (undocumented)
 export function isUnexpected(response: FindSimilar200Response | FindSimilarDefaultResponse): response is FindSimilarDefaultResponse;
 
 // @public (undocumented)
@@ -3705,6 +4176,63 @@ export function isUnexpected(response: GetLargePersonGroupPersonFace200Response 
 export function isUnexpected(response: UpdateLargePersonGroupPersonFace200Response | UpdateLargePersonGroupPersonFaceDefaultResponse): response is UpdateLargePersonGroupPersonFaceDefaultResponse;
 
 // @public (undocumented)
+export function isUnexpected(response: CreateLivenessSessionBeforeV12200Response | CreateLivenessSessionBeforeV12DefaultResponse): response is CreateLivenessSessionBeforeV12DefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: GetLivenessSessions200Response | GetLivenessSessionsDefaultResponse): response is GetLivenessSessionsDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: DeleteLivenessSessionBeforeV12200Response | DeleteLivenessSessionBeforeV12DefaultResponse): response is DeleteLivenessSessionBeforeV12DefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: GetLivenessSessionResultBeforeV12200Response | GetLivenessSessionResultBeforeV12DefaultResponse): response is GetLivenessSessionResultBeforeV12DefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: GetLivenessSessionAuditEntries200Response | GetLivenessSessionAuditEntriesDefaultResponse): response is GetLivenessSessionAuditEntriesDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: CreateLivenessWithVerifySessionWithVerifyImage200Response | CreateLivenessWithVerifySessionWithVerifyImageDefaultResponse): response is CreateLivenessWithVerifySessionWithVerifyImageDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: CreateLivenessWithVerifySessionBeforeV12200Response | CreateLivenessWithVerifySessionBeforeV12DefaultResponse): response is CreateLivenessWithVerifySessionBeforeV12DefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: GetLivenessWithVerifySessions200Response | GetLivenessWithVerifySessionsDefaultResponse): response is GetLivenessWithVerifySessionsDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: DeleteLivenessWithVerifySessionBeforeV12200Response | DeleteLivenessWithVerifySessionBeforeV12DefaultResponse): response is DeleteLivenessWithVerifySessionBeforeV12DefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: GetLivenessWithVerifySessionResultBeforeV12200Response | GetLivenessWithVerifySessionResultBeforeV12DefaultResponse): response is GetLivenessWithVerifySessionResultBeforeV12DefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: GetLivenessWithVerifySessionAuditEntries200Response | GetLivenessWithVerifySessionAuditEntriesDefaultResponse): response is GetLivenessWithVerifySessionAuditEntriesDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: GetSessionImageBeforeV12200Response | GetSessionImageBeforeV12DefaultResponse): response is GetSessionImageBeforeV12DefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: CreateLivenessSession200Response | CreateLivenessSessionDefaultResponse): response is CreateLivenessSessionDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: DeleteLivenessSession204Response | DeleteLivenessSessionDefaultResponse): response is DeleteLivenessSessionDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: GetLivenessSessionResult200Response | GetLivenessSessionResultDefaultResponse): response is GetLivenessSessionResultDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: CreateLivenessWithVerifySession200Response | CreateLivenessWithVerifySessionDefaultResponse): response is CreateLivenessWithVerifySessionDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: DeleteLivenessWithVerifySession204Response | DeleteLivenessWithVerifySessionDefaultResponse): response is DeleteLivenessWithVerifySessionDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: GetLivenessWithVerifySessionResult200Response | GetLivenessWithVerifySessionResultDefaultResponse): response is GetLivenessWithVerifySessionResultDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: GetSessionImage200Response | GetSessionImageDefaultResponse): response is GetSessionImageDefaultResponse;
+
+// @public (undocumented)
 export function isUnexpected(response: CreatePerson202Response | CreatePersonLogicalResponse | CreatePersonDefaultResponse): response is CreatePersonDefaultResponse;
 
 // @public (undocumented)
@@ -3763,39 +4291,6 @@ export function isUnexpected(response: GetDynamicPersonGroups200Response | GetDy
 
 // @public (undocumented)
 export function isUnexpected(response: GetDynamicPersonGroupPersons200Response | GetDynamicPersonGroupPersonsDefaultResponse): response is GetDynamicPersonGroupPersonsDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: CreateLivenessSession200Response | CreateLivenessSessionDefaultResponse): response is CreateLivenessSessionDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: GetLivenessSessions200Response | GetLivenessSessionsDefaultResponse): response is GetLivenessSessionsDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: DeleteLivenessSession200Response | DeleteLivenessSessionDefaultResponse): response is DeleteLivenessSessionDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: GetLivenessSessionResult200Response | GetLivenessSessionResultDefaultResponse): response is GetLivenessSessionResultDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: GetLivenessSessionAuditEntries200Response | GetLivenessSessionAuditEntriesDefaultResponse): response is GetLivenessSessionAuditEntriesDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: CreateLivenessWithVerifySessionWithVerifyImage200Response | CreateLivenessWithVerifySessionWithVerifyImageDefaultResponse): response is CreateLivenessWithVerifySessionWithVerifyImageDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: CreateLivenessWithVerifySession200Response | CreateLivenessWithVerifySessionDefaultResponse): response is CreateLivenessWithVerifySessionDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: GetLivenessWithVerifySessions200Response | GetLivenessWithVerifySessionsDefaultResponse): response is GetLivenessWithVerifySessionsDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: DeleteLivenessWithVerifySession200Response | DeleteLivenessWithVerifySessionDefaultResponse): response is DeleteLivenessWithVerifySessionDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: GetLivenessWithVerifySessionResult200Response | GetLivenessWithVerifySessionResultDefaultResponse): response is GetLivenessWithVerifySessionResultDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: GetLivenessWithVerifySessionAuditEntries200Response | GetLivenessWithVerifySessionAuditEntriesDefaultResponse): response is GetLivenessWithVerifySessionAuditEntriesDefaultResponse;
 
 // @public
 export interface LandmarkCoordinateOutput {
@@ -3856,7 +4351,27 @@ export interface ListPersonResultOutput {
 }
 
 // @public
+export interface LivenessColorDecisionTargetOutput {
+    faceRectangle: FaceRectangleOutput;
+}
+
+// @public
 export type LivenessDecisionOutput = string;
+
+// @public
+export interface LivenessDecisionTargetsOutput {
+    color: LivenessColorDecisionTargetOutput;
+}
+
+// @public
+export interface LivenessErrorOutput {
+    code: string;
+    message: string;
+    targets: LivenessDecisionTargetsOutput;
+}
+
+// @public
+export type LivenessModel = string;
 
 // @public
 export type LivenessModelOutput = string;
@@ -3881,39 +4396,45 @@ export interface LivenessResponseBodyOutput extends Record<string, any> {
 }
 
 // @public
+export interface LivenessResultOutput {
+    digest: string;
+    livenessDecision?: LivenessDecisionOutput;
+    sessionImageId?: string;
+    targets: LivenessDecisionTargetsOutput;
+}
+
+// @public
+export interface LivenessSessionAttemptOutput {
+    attemptId: number;
+    attemptStatus: OperationStateOutput;
+    error?: LivenessErrorOutput;
+    result?: LivenessResultOutput;
+}
+
+// @public
 export interface LivenessSessionAuditEntryOutput {
     clientRequestId: string;
     digest: string;
     id: number;
     receivedDateTime: string;
-    request: SessionAuditEntryRequestInfoOutput;
+    request: AuditRequestInfoOutput;
     requestId: string;
-    response: SessionAuditEntryResponseInfoOutput;
+    response: AuditLivenessResponseInfoOutput;
     sessionId: string;
+    sessionImageId?: string;
+    verifyImageHash?: string;
 }
 
 // @public
-export interface LivenessSessionCreationContent {
+export interface LivenessSessionBeforeV12Output {
     authTokenTimeToLiveInSeconds?: number;
+    createdDateTime: string;
     deviceCorrelationId?: string;
-    deviceCorrelationIdSetInClient?: boolean;
-    livenessOperationMode: LivenessOperationMode;
-    sendResultsToClient?: boolean;
-}
-
-// @public
-export interface LivenessSessionCreationContentForMultipart {
-    authTokenTimeToLiveInSeconds?: number;
-    deviceCorrelationId?: string;
-    deviceCorrelationIdSetInClient?: boolean;
-    livenessOperationMode: LivenessOperationMode;
-    sendResultsToClient?: boolean;
-}
-
-// @public
-export interface LivenessSessionCreationResultOutput {
-    authToken: string;
-    sessionId: string;
+    readonly id: string;
+    result?: LivenessSessionAuditEntryOutput;
+    sessionExpired: boolean;
+    sessionStartDateTime?: string;
+    status: FaceSessionStatusOutput;
 }
 
 // @public
@@ -3928,44 +4449,16 @@ export interface LivenessSessionItemOutput {
 
 // @public
 export interface LivenessSessionOutput {
-    authTokenTimeToLiveInSeconds?: number;
-    createdDateTime: string;
-    deviceCorrelationId?: string;
-    readonly id: string;
-    result?: LivenessSessionAuditEntryOutput;
-    sessionExpired: boolean;
-    sessionStartDateTime?: string;
-    status: FaceSessionStatusOutput;
-}
-
-// @public
-export interface LivenessSessionWithVerifyCreationResultOutput {
     authToken: string;
-    sessionId: string;
-    verifyImage: LivenessWithVerifyImageOutput;
+    modelVersion?: LivenessModelOutput;
+    results: LivenessSessionResultsOutput;
+    readonly sessionId: string;
+    status: OperationStateOutput;
 }
 
 // @public
-export type LivenessSessionWithVerifyImageCreationContent = FormData | Array<LivenessSessionWithVerifyImageCreationContentParametersPartDescriptor | LivenessSessionWithVerifyImageCreationContentVerifyImagePartDescriptor>;
-
-// @public (undocumented)
-export interface LivenessSessionWithVerifyImageCreationContentParametersPartDescriptor {
-    // (undocumented)
-    body: LivenessSessionCreationContentForMultipart;
-    // (undocumented)
-    name: "Parameters";
-}
-
-// @public (undocumented)
-export interface LivenessSessionWithVerifyImageCreationContentVerifyImagePartDescriptor {
-    // (undocumented)
-    body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
-    // (undocumented)
-    contentType?: string;
-    // (undocumented)
-    filename?: string;
-    // (undocumented)
-    name: "VerifyImage";
+export interface LivenessSessionResultsOutput {
+    attempts: Array<LivenessSessionAttemptOutput>;
 }
 
 // @public
@@ -3982,7 +4475,32 @@ export interface LivenessWithVerifyOutputsOutput {
 }
 
 // @public
-export interface LivenessWithVerifySessionOutput {
+export interface LivenessWithVerifyReferenceOutput {
+    faceRectangle: FaceRectangleOutput;
+    qualityForRecognition: QualityForRecognitionOutput;
+    referenceType: ImageTypeOutput;
+}
+
+// @public
+export interface LivenessWithVerifyResultOutput {
+    digest: string;
+    livenessDecision?: LivenessDecisionOutput;
+    sessionImageId?: string;
+    targets: LivenessDecisionTargetsOutput;
+    verifyImageHash?: string;
+    verifyResult?: LivenessWithVerifyOutputsOutput;
+}
+
+// @public
+export interface LivenessWithVerifySessionAttemptOutput {
+    attemptId: number;
+    attemptStatus: OperationStateOutput;
+    error?: LivenessErrorOutput;
+    result?: LivenessWithVerifyResultOutput;
+}
+
+// @public
+export interface LivenessWithVerifySessionBeforeV12Output {
     authTokenTimeToLiveInSeconds?: number;
     createdDateTime: string;
     deviceCorrelationId?: string;
@@ -3991,6 +4509,21 @@ export interface LivenessWithVerifySessionOutput {
     sessionExpired: boolean;
     sessionStartDateTime?: string;
     status: FaceSessionStatusOutput;
+}
+
+// @public
+export interface LivenessWithVerifySessionOutput {
+    authToken: string;
+    modelVersion?: LivenessModelOutput;
+    results: LivenessWithVerifySessionResultsOutput;
+    readonly sessionId: string;
+    status: OperationStateOutput;
+}
+
+// @public
+export interface LivenessWithVerifySessionResultsOutput {
+    attempts: Array<LivenessWithVerifySessionAttemptOutput>;
+    verifyReferences: Array<LivenessWithVerifyReferenceOutput>;
 }
 
 // @public
@@ -4027,6 +4560,9 @@ export interface OperationResultOutput {
     readonly operationId: string;
     status: OperationStatusOutput;
 }
+
+// @public
+export type OperationStateOutput = string;
 
 // @public
 export type OperationStatusOutput = string;
@@ -4109,6 +4645,18 @@ export interface Routes {
     (path: "/largepersongroups/{largePersonGroupId}/persons/{personId}", largePersonGroupId: string, personId: string): DeleteLargePersonGroupPerson;
     (path: "/largepersongroups/{largePersonGroupId}/persons/{personId}/persistedfaces", largePersonGroupId: string, personId: string): AddLargePersonGroupPersonFaceFromUrl;
     (path: "/largepersongroups/{largePersonGroupId}/persons/{personId}/persistedfaces/{persistedFaceId}", largePersonGroupId: string, personId: string, persistedFaceId: string): DeleteLargePersonGroupPersonFace;
+    (path: "/detectLiveness/singleModal/sessions"): CreateLivenessSessionBeforeV12;
+    (path: "/detectLiveness/singleModal/sessions/{sessionId}", sessionId: string): DeleteLivenessSessionBeforeV12;
+    (path: "/detectLiveness/singleModal/sessions/{sessionId}/audit", sessionId: string): GetLivenessSessionAuditEntries;
+    (path: "/detectLivenessWithVerify/singleModal/sessions"): CreateLivenessWithVerifySessionWithVerifyImage;
+    (path: "/detectLivenessWithVerify/singleModal/sessions/{sessionId}", sessionId: string): DeleteLivenessWithVerifySessionBeforeV12;
+    (path: "/detectLivenessWithVerify/singleModal/sessions/{sessionId}/audit", sessionId: string): GetLivenessWithVerifySessionAuditEntries;
+    (path: "/session/sessionImages/{sessionImageId}", sessionImageId: string): GetSessionImageBeforeV12;
+    (path: "/detectLiveness-sessions"): CreateLivenessSession;
+    (path: "/detectLiveness-sessions/{sessionId}", sessionId: string): DeleteLivenessSession;
+    (path: "/detectLivenessWithVerify-sessions"): CreateLivenessWithVerifySession;
+    (path: "/detectLivenessWithVerify-sessions/{sessionId}", sessionId: string): DeleteLivenessWithVerifySession;
+    (path: "/sessionImages/{sessionImageId}", sessionImageId: string): GetSessionImage;
     (path: "/persons"): CreatePerson;
     (path: "/persons/{personId}", personId: string): DeletePerson;
     (path: "/persons/{personId}/dynamicPersonGroupReferences", personId: string): GetDynamicPersonGroupReferences;
@@ -4117,28 +4665,6 @@ export interface Routes {
     (path: "/dynamicpersongroups/{dynamicPersonGroupId}", dynamicPersonGroupId: string): CreateDynamicPersonGroupWithPerson;
     (path: "/dynamicpersongroups"): GetDynamicPersonGroups;
     (path: "/dynamicpersongroups/{dynamicPersonGroupId}/persons", dynamicPersonGroupId: string): GetDynamicPersonGroupPersons;
-    (path: "/detectLiveness/singleModal/sessions"): CreateLivenessSession;
-    (path: "/detectLiveness/singleModal/sessions/{sessionId}", sessionId: string): DeleteLivenessSession;
-    (path: "/detectLiveness/singleModal/sessions/{sessionId}/audit", sessionId: string): GetLivenessSessionAuditEntries;
-    (path: "/detectLivenessWithVerify/singleModal/sessions"): CreateLivenessWithVerifySessionWithVerifyImage;
-    (path: "/detectLivenessWithVerify/singleModal/sessions/{sessionId}", sessionId: string): DeleteLivenessWithVerifySession;
-    (path: "/detectLivenessWithVerify/singleModal/sessions/{sessionId}/audit", sessionId: string): GetLivenessWithVerifySessionAuditEntries;
-}
-
-// @public
-export interface SessionAuditEntryRequestInfoOutput {
-    contentLength?: number;
-    contentType: string;
-    method: string;
-    url: string;
-    userAgent?: string;
-}
-
-// @public
-export interface SessionAuditEntryResponseInfoOutput {
-    body: LivenessResponseBodyOutput;
-    latencyInMilliseconds: number;
-    statusCode: number;
 }
 
 // @public
@@ -4310,10 +4836,7 @@ export interface UpdateDynamicPersonGroup200Response extends HttpResponse {
 // @public (undocumented)
 export interface UpdateDynamicPersonGroupBodyParam {
     // (undocumented)
-    body: {
-        name?: string;
-        userData?: string;
-    };
+    body: UserDefinedFieldsForUpdate;
 }
 
 // @public (undocumented)
@@ -4392,10 +4915,7 @@ export interface UpdateFaceList200Response extends HttpResponse {
 // @public (undocumented)
 export interface UpdateFaceListBodyParam {
     // (undocumented)
-    body: {
-        name?: string;
-        userData?: string;
-    };
+    body: UserDefinedFieldsForUpdate;
 }
 
 // @public (undocumented)
@@ -4425,10 +4945,7 @@ export interface UpdateLargeFaceList200Response extends HttpResponse {
 // @public (undocumented)
 export interface UpdateLargeFaceListBodyParam {
     // (undocumented)
-    body: {
-        name?: string;
-        userData?: string;
-    };
+    body: UserDefinedFieldsForUpdate;
 }
 
 // @public (undocumented)
@@ -4455,9 +4972,7 @@ export interface UpdateLargeFaceListFace200Response extends HttpResponse {
 // @public (undocumented)
 export interface UpdateLargeFaceListFaceBodyParam {
     // (undocumented)
-    body: {
-        userData?: string;
-    };
+    body: FaceUserData;
 }
 
 // @public (undocumented)
@@ -4490,10 +5005,7 @@ export interface UpdateLargePersonGroup200Response extends HttpResponse {
 // @public (undocumented)
 export interface UpdateLargePersonGroupBodyParam {
     // (undocumented)
-    body: {
-        name?: string;
-        userData?: string;
-    };
+    body: UserDefinedFieldsForUpdate;
 }
 
 // @public (undocumented)
@@ -4523,10 +5035,7 @@ export interface UpdateLargePersonGroupPerson200Response extends HttpResponse {
 // @public (undocumented)
 export interface UpdateLargePersonGroupPersonBodyParam {
     // (undocumented)
-    body: {
-        name?: string;
-        userData?: string;
-    };
+    body: UserDefinedFieldsForUpdate;
 }
 
 // @public (undocumented)
@@ -4553,9 +5062,7 @@ export interface UpdateLargePersonGroupPersonFace200Response extends HttpRespons
 // @public (undocumented)
 export interface UpdateLargePersonGroupPersonFaceBodyParam {
     // (undocumented)
-    body: {
-        userData?: string;
-    };
+    body: FaceUserData;
 }
 
 // @public (undocumented)
@@ -4588,10 +5095,7 @@ export interface UpdatePerson200Response extends HttpResponse {
 // @public (undocumented)
 export interface UpdatePersonBodyParam {
     // (undocumented)
-    body: {
-        name?: string;
-        userData?: string;
-    };
+    body: UserDefinedFieldsForUpdate;
 }
 
 // @public (undocumented)
@@ -4618,9 +5122,7 @@ export interface UpdatePersonFace200Response extends HttpResponse {
 // @public (undocumented)
 export interface UpdatePersonFaceBodyParam {
     // (undocumented)
-    body: {
-        userData?: string;
-    };
+    body: FaceUserData;
 }
 
 // @public (undocumented)
@@ -4650,10 +5152,7 @@ export interface UpdatePersonGroup200Response extends HttpResponse {
 // @public (undocumented)
 export interface UpdatePersonGroupBodyParam {
     // (undocumented)
-    body: {
-        name?: string;
-        userData?: string;
-    };
+    body: UserDefinedFieldsForUpdate;
 }
 
 // @public (undocumented)
@@ -4683,10 +5182,7 @@ export interface UpdatePersonGroupPerson200Response extends HttpResponse {
 // @public (undocumented)
 export interface UpdatePersonGroupPersonBodyParam {
     // (undocumented)
-    body: {
-        name?: string;
-        userData?: string;
-    };
+    body: UserDefinedFieldsForUpdate;
 }
 
 // @public (undocumented)
@@ -4713,9 +5209,7 @@ export interface UpdatePersonGroupPersonFace200Response extends HttpResponse {
 // @public (undocumented)
 export interface UpdatePersonGroupPersonFaceBodyParam {
     // (undocumented)
-    body: {
-        userData?: string;
-    };
+    body: FaceUserData;
 }
 
 // @public (undocumented)
@@ -4741,6 +5235,18 @@ export type UpdatePersonGroupPersonParameters = UpdatePersonGroupPersonBodyParam
 
 // @public (undocumented)
 export type UpdatePersonParameters = UpdatePersonBodyParam & RequestParameters;
+
+// @public
+export interface UserDefinedFields {
+    name: string;
+    userData?: string;
+}
+
+// @public
+export interface UserDefinedFieldsForUpdate {
+    name?: string;
+    userData?: string;
+}
 
 // @public
 export interface VerificationResultOutput {
@@ -4899,7 +5405,7 @@ export interface VerifyFromPersonGroupDefaultResponse extends HttpResponse {
 export type VerifyFromPersonGroupParameters = VerifyFromPersonGroupBodyParam & RequestParameters;
 
 // @public
-export type Versions = "v1.1-preview.1";
+export type Versions = "v1.1-preview.1" | "v1.2-preview.1" | "v1.2";
 
 // (No @packageDocumentation comment for this package)
 

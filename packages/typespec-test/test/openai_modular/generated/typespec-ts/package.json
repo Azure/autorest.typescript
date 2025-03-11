@@ -49,7 +49,9 @@
     "@azure/core-auth": "^1.6.0",
     "@azure/core-rest-pipeline": "^1.5.0",
     "@azure/logger": "^1.0.0",
-    "tslib": "^2.6.2"
+    "tslib": "^2.6.2",
+    "@azure/core-lro": "^3.1.0",
+    "@azure/abort-controller": "^2.1.2"
   },
   "devDependencies": {
     "dotenv": "^16.0.0",
