@@ -1,15 +1,24 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  WidgetServiceContext as Client,
+export {
+  analyzeWidget,
+  deleteWidget,
+  updateWidget,
+  createOrReplace,
+  createWidget,
+  getWidget,
+  queryWidgetsPages,
+  listWidgetsPages,
+  listWidgets,
+} from "./operations.js";
+export {
   WidgetsAnalyzeWidgetOptionalParams,
+  WidgetsDeleteWidgetOptionalParams,
+  WidgetsUpdateWidgetOptionalParams,
   WidgetsCreateOrReplaceOptionalParams,
   WidgetsCreateWidgetOptionalParams,
-  WidgetsDeleteWidgetOptionalParams,
   WidgetsGetWidgetOptionalParams,
-  WidgetsListWidgetsOptionalParams,
-  WidgetsListWidgetsPagesOptionalParams,
   WidgetsQueryWidgetsPagesOptionalParams,
   WidgetsUpdateWidgetOptionalParams,
 } from "../index.js";
@@ -475,7 +484,7 @@ export function _listWidgetsSend(
         ? { "optional-header": options?.optionalHeader }
         : {}),
       ...(options?.nullableOptionalHeader !== undefined &&
-      options?.nullableOptionalHeader !== null
+        options?.nullableOptionalHeader !== null
         ? { "nullable-optional-header": options?.nullableOptionalHeader }
         : {}),
       "bytes-header": uint8ArrayToString(bytesHeader, "base64"),
@@ -488,18 +497,18 @@ export function _listWidgetsSend(
       "utc-date-header": utcDateHeader.toUTCString(),
       ...(options?.optionalDateHeader !== undefined
         ? {
-            "optional-date-header": !options?.optionalDateHeader
-              ? options?.optionalDateHeader
-              : options?.optionalDateHeader.toUTCString(),
-          }
+          "optional-date-header": !options?.optionalDateHeader
+            ? options?.optionalDateHeader
+            : options?.optionalDateHeader.toUTCString(),
+        }
         : {}),
       ...(options?.nullableDateHeader !== undefined &&
-      options?.nullableDateHeader !== null
+        options?.nullableDateHeader !== null
         ? {
-            "nullable-date-header": !options?.nullableDateHeader
-              ? options?.nullableDateHeader
-              : options?.nullableDateHeader.toUTCString(),
-          }
+          "nullable-date-header": !options?.nullableDateHeader
+            ? options?.nullableDateHeader
+            : options?.nullableDateHeader.toUTCString(),
+        }
         : {}),
       accept: "application/json",
       ...options.requestOptions?.headers,

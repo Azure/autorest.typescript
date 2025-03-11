@@ -1,13 +1,20 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  AnomalyDetectorContext as Client,
-  MultivariateDeleteMultivariateModelOptionalParams,
-  MultivariateDetectMultivariateBatchAnomalyOptionalParams,
+export {
+  detectMultivariateLastAnomaly,
+  detectMultivariateBatchAnomaly,
+  getMultivariateModel,
+  deleteMultivariateModel,
+  listMultivariateModels,
+  trainMultivariateModel,
+  getMultivariateBatchDetectionResult,
+} from "./operations.js";
+export {
   MultivariateDetectMultivariateLastAnomalyOptionalParams,
-  MultivariateGetMultivariateBatchDetectionResultOptionalParams,
+  MultivariateDetectMultivariateBatchAnomalyOptionalParams,
   MultivariateGetMultivariateModelOptionalParams,
+  MultivariateDeleteMultivariateModelOptionalParams,
   MultivariateListMultivariateModelsOptionalParams,
   MultivariateTrainMultivariateModelOptionalParams,
 } from "../index.js";

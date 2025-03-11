@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  BudgetsCreateOrReplaceOptionalParams,
+export { getBudgets, createOrReplace } from "./operations.js";
+export {
   BudgetsGetBudgetsOptionalParams,
   WidgetServiceContext as Client,
 } from "../index.js";
