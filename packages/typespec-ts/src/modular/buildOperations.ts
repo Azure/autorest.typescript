@@ -57,7 +57,7 @@ export function buildOperationFiles(
             .map((hierarchy) => {
               return normalizeName(hierarchy, NameType.File);
             })
-            .join("/")}/index`
+            .join("/")}/operations`
         : // When the program has no operation groups defined all operations are put
           // into a nameless operation group. We'll call this operations.
           "operations";
@@ -237,7 +237,7 @@ export function buildLroDeserDetailMap(
             .map((hierarchy) => {
               return normalizeName(hierarchy, NameType.File);
             })
-            .join("/")}/index`
+            .join("/")}/operations`
         : // When the program has no operation groups defined all operations are put
           // into a nameless operation group. We'll call this operations.
           "operations";
