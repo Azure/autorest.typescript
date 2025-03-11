@@ -186,11 +186,11 @@ https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#li
       $filter?: string;
 
       @doc("An OData $select clause.")
-      @query(#{ explode: true })
+      @query
       $select?: string[];
 
       @doc("An OData $expand clause.")
-      @query(#{ explode: true })
+      @query
       $expand?: string[];
     },
     BatchResponseHeaders & BatchPoolListResult,
@@ -821,11 +821,11 @@ https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#li
       $filter?: string;
 
       @doc("An OData $select clause.")
-      @query(#{ explode: true })
+      @query
       $select?: string[];
 
       @doc("An OData $expand clause.")
-      @query(#{ explode: true })
+      @query
       $expand?: string[];
     },
     BatchResponseHeaders & BatchJobListResult,
@@ -851,11 +851,11 @@ https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#li
       $filter?: string;
 
       @doc("An OData $select clause.")
-      @query(#{ explode: true })
+      @query
       $select?: string[];
 
       @doc("An OData $expand clause.")
-      @query(#{ explode: true })
+      @query
       $expand?: string[];
     },
     BatchResponseHeaders & BatchJobListResult,
@@ -967,7 +967,7 @@ https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#li
       $filter?: string;
 
       @doc("An OData $select clause.")
-      @query(#{ explode: true })
+      @query
       $select?: string[];
     },
     BatchResponseHeaders & CertificateListResult,
@@ -1339,11 +1339,11 @@ https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#li
       $filter?: string;
 
       @doc("An OData $select clause.")
-      @query(#{ explode: true })
+      @query
       $select?: string[];
 
       @doc("An OData $expand clause.")
-      @query(#{ explode: true })
+      @query
       $expand?: string[];
     },
     BatchResponseHeaders & BatchJobScheduleListResult,
@@ -1413,11 +1413,11 @@ https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#li
       $filter?: string;
 
       @doc("An OData $select clause.")
-      @query(#{ explode: true })
+      @query
       $select?: string[];
 
       @doc("An OData $expand clause.")
-      @query(#{ explode: true })
+      @query
       $expand?: string[];
     },
     BatchResponseHeaders & BatchTaskListResult,
@@ -2157,7 +2157,7 @@ https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#li
       $filter?: string;
 
       @doc("An OData $select clause.")
-      @query(#{ explode: true })
+      @query
       $select?: string[];
     },
     BatchResponseHeaders & BatchNodeListResult,

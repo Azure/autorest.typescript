@@ -91,10 +91,10 @@ export interface BatchApplication {
 
 // @public
 export interface BatchCertificate {
-    certificateFormat?: CertificateFormat;
-    data: Uint8Array;
+    readonly certificateFormat?: CertificateFormat;
+    readonly data: Uint8Array;
     readonly deleteCertificateError?: DeleteCertificateError;
-    password?: string;
+    readonly password?: string;
     readonly previousState?: CertificateState;
     readonly previousStateTransitionTime?: Date;
     readonly publicData?: Uint8Array;

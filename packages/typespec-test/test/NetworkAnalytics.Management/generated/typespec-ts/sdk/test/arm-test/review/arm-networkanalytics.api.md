@@ -102,7 +102,7 @@ export interface DataProductProperties {
     publisher: string;
     purviewAccount?: string;
     purviewCollection?: string;
-    redundancy?: ControlState;
+    readonly redundancy?: ControlState;
     readonly resourceGuid?: string;
 }
 
