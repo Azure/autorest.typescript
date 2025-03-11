@@ -5,7 +5,12 @@ import {
   SchemaContext
 } from "@azure-tools/rlc-common";
 import { HttpOperationParameter } from "@typespec/http";
-import { getCollectionFormat, getTypeName, isArrayType, isObjectOrDictType } from "./modelUtils.js";
+import {
+  getCollectionFormat,
+  getTypeName,
+  isArrayType,
+  isObjectOrDictType
+} from "./modelUtils.js";
 import { SdkContext } from "./interfaces.js";
 import { reportDiagnostic } from "../lib.js";
 import { NoTarget, Program } from "@typespec/compiler";
@@ -45,11 +50,8 @@ export function getParameterSerializationInfo(
         return retVal;
       }
       const name = normalizeName(`${prefix}_QueryParam`, NameType.Interface);
-      const format = getCollectionFormat(
-        dpgContext,
-        parameter.param)
+      const format = getCollectionFormat(dpgContext, parameter.param);
       if (parameter.explode === true) {
-
         if (format !== undefined && format !== "multi") {
           reportDiagnostic(dpgContext.program, {
             code: "un-supported-format-cases",

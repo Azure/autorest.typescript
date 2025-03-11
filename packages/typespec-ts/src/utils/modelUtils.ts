@@ -431,18 +431,18 @@ function getSchemaForUnion(
       asEnum?.open && asEnum?.kind && !namedUnionMember
         ? asEnum.kind + (asEnum.nullable ? " | null" : "")
         : values
-          .map(
-            (item) => `${getTypeName(item, [SchemaContext.Input]) ?? item}`
-          )
-          .join(" | ");
+            .map(
+              (item) => `${getTypeName(item, [SchemaContext.Input]) ?? item}`
+            )
+            .join(" | ");
     const outputUnionAlias =
       asEnum?.open && asEnum?.kind && !namedUnionMember
         ? asEnum.kind + (asEnum.nullable ? " | null" : "")
         : values
-          .map(
-            (item) => `${getTypeName(item, [SchemaContext.Output]) ?? item}`
-          )
-          .join(" | ");
+            .map(
+              (item) => `${getTypeName(item, [SchemaContext.Output]) ?? item}`
+            )
+            .join(" | ");
     schema.alias = unionAlias;
     schema.outputAlias = outputUnionAlias;
   }
@@ -1202,11 +1202,13 @@ function getSchemaForRecordModel(
         schema.outputValueTypeName = `${valueType.outputTypeName}`;
       }
     } else if (isUnknownType(indexer.value!)) {
-      schema.typeName = `Record<string, ${valueType.typeName ?? valueType.type
-        }>`;
+      schema.typeName = `Record<string, ${
+        valueType.typeName ?? valueType.type
+      }>`;
       if (usage && usage.includes(SchemaContext.Output)) {
-        schema.outputTypeName = `Record<string, ${valueType.outputTypeName ?? valueType.type
-          }>`;
+        schema.outputTypeName = `Record<string, ${
+          valueType.outputTypeName ?? valueType.type
+        }>`;
       }
     } else {
       schema.typeName = `Record<string, ${getTypeName(valueType, [
@@ -1566,7 +1568,7 @@ export function getBodyType(route: HttpOperation): Type | undefined {
 }
 
 export function getValueTypeValue(
-  value: Value,
+  value: Value
 ): string | boolean | null | number | Array<unknown> | object | undefined {
   switch (value.valueKind) {
     case "ArrayValue":
@@ -1583,8 +1585,8 @@ export function getValueTypeValue(
       return Object.fromEntries(
         [...value.properties.keys()].map((x) => [
           x,
-          getValueTypeValue(value.properties.get(x)!.value),
-        ]),
+          getValueTypeValue(value.properties.get(x)!.value)
+        ])
       );
     case "ScalarValue":
       // TODO: handle scalar value
@@ -1913,15 +1915,21 @@ export function isBodyRequired(parameter: HttpOperationParameters) {
 
 export function getCollectionFormat(
   context: SdkContext,
-  type: ModelProperty,
+  type: ModelProperty
 ): string | undefined {
   const program = context.program;
   if (isHeader(program, type)) {
-    if (type.type.kind === "Model" && isArrayModelType(context.program, type.type)) {
+    if (
+      type.type.kind === "Model" &&
+      isArrayModelType(context.program, type.type)
+    ) {
       return getHeaderFieldOptions(program, type)?.explode ? "multi" : "csv";
     }
   } else if (isQueryParam(program, type)) {
-    if (type.type.kind === "Model" && isArrayModelType(context.program, type.type)) {
+    if (
+      type.type.kind === "Model" &&
+      isArrayModelType(context.program, type.type)
+    ) {
       return getQueryParamOptions(program, type)?.explode ? "multi" : "csv";
     }
   }
