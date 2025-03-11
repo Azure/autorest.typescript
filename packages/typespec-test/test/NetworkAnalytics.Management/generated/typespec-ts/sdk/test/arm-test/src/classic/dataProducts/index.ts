@@ -14,6 +14,17 @@ import {
   update,
   get,
   create,
+  DataProductsListBySubscriptionOptionalParams,
+  DataProductsListByResourceGroupOptionalParams,
+  DataProductsListRolesAssignmentsOptionalParams,
+  DataProductsRemoveUserRoleOptionalParams,
+  DataProductsAddUserRoleOptionalParams,
+  DataProductsRotateKeyOptionalParams,
+  DataProductsGenerateStorageAccountSasTokenOptionalParams,
+  DataProductsDeleteOptionalParams,
+  DataProductsUpdateOptionalParams,
+  DataProductsGetOptionalParams,
+  DataProductsCreateOptionalParams,
 } from "../../api/dataProducts/index.js";
 import {
   DataProduct,
@@ -27,19 +38,6 @@ import {
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
-import {
-  DataProductsListBySubscriptionOptionalParams,
-  DataProductsListByResourceGroupOptionalParams,
-  DataProductsListRolesAssignmentsOptionalParams,
-  DataProductsRemoveUserRoleOptionalParams,
-  DataProductsAddUserRoleOptionalParams,
-  DataProductsRotateKeyOptionalParams,
-  DataProductsGenerateStorageAccountSasTokenOptionalParams,
-  DataProductsDeleteOptionalParams,
-  DataProductsUpdateOptionalParams,
-  DataProductsGetOptionalParams,
-  DataProductsCreateOptionalParams,
-} from "../../api/options.js";
 
 /** Interface representing a DataProducts operations. */
 export interface DataProductsOperations {

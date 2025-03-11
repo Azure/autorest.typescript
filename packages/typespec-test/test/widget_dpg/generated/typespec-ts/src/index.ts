@@ -17,9 +17,12 @@ export {
   NonReferencedModel,
   KnownVersions,
 } from "./models/index.js";
+export { WidgetServiceClientOptionalParams } from "./api/index.js";
 export {
   BudgetsGetBudgetsOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,
+} from "./api/budgets/index.js";
+export {
   WidgetsAnalyzeWidgetOptionalParams,
   WidgetsDeleteWidgetOptionalParams,
   WidgetsUpdateWidgetOptionalParams,
@@ -29,7 +32,6 @@ export {
   WidgetsQueryWidgetsPagesOptionalParams,
   WidgetsListWidgetsPagesOptionalParams,
   WidgetsListWidgetsOptionalParams,
-  WidgetServiceClientOptionalParams,
-} from "./api/index.js";
+} from "./api/widgets/index.js";
 export { BudgetsOperations, WidgetsOperations } from "./classic/index.js";
 export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };

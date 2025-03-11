@@ -2,12 +2,14 @@
 // Licensed under the MIT License.
 
 import { OpenAIContext } from "../../api/openAIContext.js";
-import { create } from "../../api/embeddings/index.js";
+import {
+  create,
+  EmbeddingsCreateOptionalParams,
+} from "../../api/embeddings/index.js";
 import {
   CreateEmbeddingRequest,
   CreateEmbeddingResponse,
 } from "../../models/models.js";
-import { EmbeddingsCreateOptionalParams } from "../../api/options.js";
 
 /** Interface representing a Embeddings operations. */
 export interface EmbeddingsOperations {
