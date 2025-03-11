@@ -7,7 +7,7 @@ using TypeSpec.Rest;
 using TypeSpec.Versioning;
 using global.Azure.Core.Traits;
 @versioned(WidgetService.Versions)
-@service({
+@service(#{
     title: "Widget Service"
 })
 @useAuth(BearerAuth | ApiKeyAuth<ApiKeyLocation.cookie, "session-id">)
@@ -86,7 +86,7 @@ model ListWidgetsPagesResults {
 @doc("Details about a user.")
 model User {
   @key
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   @doc("The name of user.")
   name: string;
 
@@ -112,8 +112,8 @@ It does not accept any options or parameters.
         @header nullableOptionalHeader?: string | null,
         @header bytesHeader: bytes,
         @header @encode(BytesKnownEncoding.base64) value: bytes,
-        @header({
-          format: "csv",
+        @header(#{
+          explode: true
         })
         csvArrayHeader: base64urlBytes[],
         @header utcDateHeader: utcDateTime,

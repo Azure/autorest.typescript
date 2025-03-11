@@ -186,11 +186,11 @@ https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#li
       $filter?: string;
 
       @doc("An OData $select clause.")
-      @query({ format: "csv" })
+      @query(#{ explode: true })
       $select?: string[];
 
       @doc("An OData $expand clause.")
-      @query({ format: "csv" })
+      @query(#{ explode: true })
       $expand?: string[];
     },
     BatchResponseHeaders & BatchPoolListResult,
@@ -240,14 +240,14 @@ error code PoolBeingDeleted.
     BatchClientRequestHeaders &
       BatchPoolHeaders & {
         @doc("An OData $select clause.")
-        @query({
-          format: "csv",
+        @query(#{
+          explode: true,
         })
         $select?: string[];
 
         @doc("An OData $expand clause.")
-        @query({
-          format: "csv",
+        @query(#{
+          explode: true,
         })
         $expand?: string[];
       },
@@ -571,14 +571,14 @@ that the Job is being deleted.
         jobId: string;
 
         @doc("An OData $select clause.")
-        @query({
-          format: "csv",
+        @query(#{
+          explode: true,
         })
         $select?: string[];
 
         @doc("An OData $expand clause.")
-        @query({
-          format: "csv",
+        @query(#{
+          explode: true,
         })
         $expand?: string[];
       },
@@ -821,11 +821,11 @@ https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#li
       $filter?: string;
 
       @doc("An OData $select clause.")
-      @query({ format: "csv" })
+      @query(#{ explode: true })
       $select?: string[];
 
       @doc("An OData $expand clause.")
-      @query({ format: "csv" })
+      @query(#{ explode: true })
       $expand?: string[];
     },
     BatchResponseHeaders & BatchJobListResult,
@@ -851,11 +851,11 @@ https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#li
       $filter?: string;
 
       @doc("An OData $select clause.")
-      @query({ format: "csv" })
+      @query(#{ explode: true })
       $select?: string[];
 
       @doc("An OData $expand clause.")
-      @query({ format: "csv" })
+      @query(#{ explode: true })
       $expand?: string[];
     },
     BatchResponseHeaders & BatchJobListResult,
@@ -892,8 +892,8 @@ https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#li
     $filter?: string,
 
     @doc("An OData $select clause.")
-    @query({
-      format: "csv",
+    @query(#{
+      explode: true,
     })
     $select?: string[]
   ): (BatchResponseHeaders &
@@ -967,7 +967,7 @@ https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#li
       $filter?: string;
 
       @doc("An OData $select clause.")
-      @query({ format: "csv" })
+      @query(#{ explode: true })
       $select?: string[];
     },
     BatchResponseHeaders & CertificateListResult,
@@ -1060,8 +1060,8 @@ active if you decide that you want to continue using the Certificate.
       thumbprint: string;
 
       @doc("An OData $select clause.")
-      @query({
-        format: "csv",
+      @query(#{
+        explode: true,
       })
       $select?: string[];
     },
@@ -1134,14 +1134,14 @@ though they are still counted towards Account lifetime statistics.
         jobScheduleId: string;
 
         @doc("An OData $select clause.")
-        @query({
-          format: "csv",
+        @query(#{
+          explode: true,
         })
         $select?: string[];
 
         @doc("An OData $expand clause.")
-        @query({
-          format: "csv",
+        @query(#{
+          explode: true,
         })
         $expand?: string[];
       },
@@ -1339,11 +1339,11 @@ https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#li
       $filter?: string;
 
       @doc("An OData $select clause.")
-      @query({ format: "csv" })
+      @query(#{ explode: true })
       $select?: string[];
 
       @doc("An OData $expand clause.")
-      @query({ format: "csv" })
+      @query(#{ explode: true })
       $expand?: string[];
     },
     BatchResponseHeaders & BatchJobScheduleListResult,
@@ -1413,11 +1413,11 @@ https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#li
       $filter?: string;
 
       @doc("An OData $select clause.")
-      @query({ format: "csv" })
+      @query(#{ explode: true })
       $select?: string[];
 
       @doc("An OData $expand clause.")
-      @query({ format: "csv" })
+      @query(#{ explode: true })
       $expand?: string[];
     },
     BatchResponseHeaders & BatchTaskListResult,
@@ -1513,14 +1513,14 @@ information about subtasks.
         taskId: string;
 
         @doc("An OData $select clause.")
-        @query({
-          format: "csv",
+        @query(#{
+          explode: true,
         })
         $select?: string[];
 
         @doc("An OData $expand clause.")
-        @query({
-          format: "csv",
+        @query(#{
+          explode: true,
         })
         $expand?: string[];
       },
@@ -1588,8 +1588,8 @@ Task.
       taskId: string;
 
       @doc("An OData $select clause.")
-      @query({
-        format: "csv",
+      @query(#{
+        explode: true,
       })
       $select?: string[];
     },
@@ -1893,8 +1893,8 @@ Account on a Compute Node only when it is in the idle or running state.
       nodeId: string;
 
       @doc("An OData $select clause.")
-      @query({
-        format: "csv",
+      @query(#{
+        explode: true,
       })
       $select?: string[];
     },
@@ -2157,7 +2157,7 @@ https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#li
       $filter?: string;
 
       @doc("An OData $select clause.")
-      @query({ format: "csv" })
+      @query(#{ explode: true })
       $select?: string[];
     },
     BatchResponseHeaders & BatchNodeListResult,
@@ -2187,8 +2187,8 @@ about.
       extensionName: string;
 
       @doc("An OData $select clause.")
-      @query({
-        format: "csv",
+      @query(#{
+        explode: true,
       })
       $select?: string[];
     },
@@ -2213,8 +2213,8 @@ about.
     nodeId: string,
 
     @doc("An OData $select clause.")
-    @query({
-      format: "csv",
+    @query(#{
+      explode: true,
     })
     $select?: string[]
   ): (BatchResponseHeaders & NodeVMExtensionList) | BatchError;
