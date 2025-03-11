@@ -66,7 +66,7 @@ export enum KnownWorkloadNetworkProvisioningState {
 export type WorkloadNetworkProvisioningState = string;
 
 /** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
-export interface ProxyResource extends Resource {}
+export interface ProxyResource extends Resource { }
 
 export function proxyResourceSerializer(item: ProxyResource): any {
   return item;
@@ -243,7 +243,7 @@ export function errorAdditionalInfoDeserializer(
 }
 
 /** model interface _ErrorAdditionalInfoInfo */
-export interface _ErrorAdditionalInfoInfo {}
+export interface _ErrorAdditionalInfoInfo { }
 
 export function _errorAdditionalInfoInfoDeserializer(
   item: any,
@@ -363,8 +363,8 @@ export function workloadNetworkVMGroupPropertiesSerializer(
     members: !item["members"]
       ? item["members"]
       : item["members"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     revision: item["revision"],
   };
 }
@@ -377,8 +377,8 @@ export function workloadNetworkVMGroupPropertiesDeserializer(
     members: !item["members"]
       ? item["members"]
       : item["members"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     status: item["status"],
     provisioningState: item["provisioningState"],
     revision: item["revision"],
@@ -650,8 +650,8 @@ export function workloadNetworkSegmentSubnetSerializer(
     dhcpRanges: !item["dhcpRanges"]
       ? item["dhcpRanges"]
       : item["dhcpRanges"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     gatewayAddress: item["gatewayAddress"],
   };
 }
@@ -663,8 +663,8 @@ export function workloadNetworkSegmentSubnetDeserializer(
     dhcpRanges: !item["dhcpRanges"]
       ? item["dhcpRanges"]
       : item["dhcpRanges"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     gatewayAddress: item["gatewayAddress"],
   };
 }
@@ -1202,13 +1202,13 @@ export function workloadNetworkDnsZonePropertiesSerializer(
     domain: !item["domain"]
       ? item["domain"]
       : item["domain"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     dnsServerIps: !item["dnsServerIps"]
       ? item["dnsServerIps"]
       : item["dnsServerIps"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     sourceIp: item["sourceIp"],
     dnsServices: item["dnsServices"],
     revision: item["revision"],
@@ -1223,13 +1223,13 @@ export function workloadNetworkDnsZonePropertiesDeserializer(
     domain: !item["domain"]
       ? item["domain"]
       : item["domain"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     dnsServerIps: !item["dnsServerIps"]
       ? item["dnsServerIps"]
       : item["dnsServerIps"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     sourceIp: item["sourceIp"],
     dnsServices: item["dnsServices"],
     provisioningState: item["provisioningState"],
@@ -1362,8 +1362,8 @@ export function workloadNetworkDnsServicePropertiesSerializer(
     fqdnZones: !item["fqdnZones"]
       ? item["fqdnZones"]
       : item["fqdnZones"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     logLevel: item["logLevel"],
     revision: item["revision"],
   };
@@ -1379,8 +1379,8 @@ export function workloadNetworkDnsServicePropertiesDeserializer(
     fqdnZones: !item["fqdnZones"]
       ? item["fqdnZones"]
       : item["fqdnZones"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     logLevel: item["logLevel"],
     status: item["status"],
     provisioningState: item["provisioningState"],
@@ -1563,8 +1563,8 @@ export function workloadNetworkDhcpEntityDeserializer(
     segments: !item["segments"]
       ? item["segments"]
       : item["segments"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     provisioningState: item["provisioningState"],
     revision: item["revision"],
   };
@@ -1691,8 +1691,8 @@ export function workloadNetworkDhcpServerDeserializer(
     segments: !item["segments"]
       ? item["segments"]
       : item["segments"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     provisioningState: item["provisioningState"],
     revision: item["revision"],
     serverAddress: item["serverAddress"],
@@ -1718,8 +1718,8 @@ export function workloadNetworkDhcpRelaySerializer(
     serverAddresses: !item["serverAddresses"]
       ? item["serverAddresses"]
       : item["serverAddresses"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
   };
 }
 
@@ -1732,15 +1732,15 @@ export function workloadNetworkDhcpRelayDeserializer(
     segments: !item["segments"]
       ? item["segments"]
       : item["segments"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     provisioningState: item["provisioningState"],
     revision: item["revision"],
     serverAddresses: !item["serverAddresses"]
       ? item["serverAddresses"]
       : item["serverAddresses"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
   };
 }
 
@@ -2103,13 +2103,13 @@ export function resourceSkuRestrictionInfoDeserializer(
     locations: !item["locations"]
       ? item["locations"]
       : item["locations"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     zones: !item["zones"]
       ? item["zones"]
       : item["zones"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
   };
 }
 
@@ -2341,13 +2341,13 @@ export function scriptExecutionPropertiesSerializer(
     output: !item["output"]
       ? item["output"]
       : item["output"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     namedOutputs: !item["namedOutputs"]
       ? item["namedOutputs"]
       : scriptExecutionPropertiesNamedOutputRecordSerializer(
-          item["namedOutputs"],
-        ),
+        item["namedOutputs"],
+      ),
   };
 }
 
@@ -2362,8 +2362,8 @@ export function scriptExecutionPropertiesDeserializer(
     hiddenParameters: !item["hiddenParameters"]
       ? item["hiddenParameters"]
       : scriptExecutionParameterUnionArrayDeserializer(
-          item["hiddenParameters"],
-        ),
+        item["hiddenParameters"],
+      ),
     failureReason: item["failureReason"],
     timeout: item["timeout"],
     retention: item["retention"],
@@ -2380,28 +2380,28 @@ export function scriptExecutionPropertiesDeserializer(
     output: !item["output"]
       ? item["output"]
       : item["output"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     namedOutputs: !item["namedOutputs"]
       ? item["namedOutputs"]
       : scriptExecutionPropertiesNamedOutputRecordDeserializer(
-          item["namedOutputs"],
-        ),
+        item["namedOutputs"],
+      ),
     information: !item["information"]
       ? item["information"]
       : item["information"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     warnings: !item["warnings"]
       ? item["warnings"]
       : item["warnings"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     errors: !item["errors"]
       ? item["errors"]
       : item["errors"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
   };
 }
 
@@ -2491,7 +2491,7 @@ export function scriptExecutionParameterUnionDeserializer(
       );
 
     case "Credential":
-      return pSCredentialExecutionParameterDeserializer(
+      return psCredentialExecutionParameterDeserializer(
         item as PSCredentialExecutionParameter,
       );
 
@@ -2666,7 +2666,7 @@ export function scriptExecutionPropertiesNamedOutputRecordDeserializer(
 }
 
 /** model interface _ScriptExecutionPropertiesNamedOutput */
-export interface _ScriptExecutionPropertiesNamedOutput {}
+export interface _ScriptExecutionPropertiesNamedOutput { }
 
 export function _scriptExecutionPropertiesNamedOutputSerializer(
   item: _ScriptExecutionPropertiesNamedOutput,
@@ -3187,8 +3187,8 @@ export function privateCloudSerializer(item: PrivateCloud): any {
     zones: !item["zones"]
       ? item["zones"]
       : item["zones"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
   };
 }
 
@@ -3212,8 +3212,8 @@ export function privateCloudDeserializer(item: any): PrivateCloud {
     zones: !item["zones"]
       ? item["zones"]
       : item["zones"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
   };
 }
 
@@ -3298,8 +3298,8 @@ export function privateCloudPropertiesSerializer(
     extendedNetworkBlocks: !item["extendedNetworkBlocks"]
       ? item["extendedNetworkBlocks"]
       : item["extendedNetworkBlocks"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     circuit: !item["circuit"]
       ? item["circuit"]
       : circuitSerializer(item["circuit"]),
@@ -3332,8 +3332,8 @@ export function privateCloudPropertiesDeserializer(
     extendedNetworkBlocks: !item["extendedNetworkBlocks"]
       ? item["extendedNetworkBlocks"]
       : item["extendedNetworkBlocks"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     provisioningState: item["provisioningState"],
     circuit: !item["circuit"]
       ? item["circuit"]
@@ -3352,8 +3352,8 @@ export function privateCloudPropertiesDeserializer(
     externalCloudLinks: !item["externalCloudLinks"]
       ? item["externalCloudLinks"]
       : item["externalCloudLinks"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     secondaryCircuit: !item["secondaryCircuit"]
       ? item["secondaryCircuit"]
       : circuitDeserializer(item["secondaryCircuit"]),
@@ -3383,8 +3383,8 @@ export function managementClusterSerializer(item: ManagementCluster): any {
     hosts: !item["hosts"]
       ? item["hosts"]
       : item["hosts"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     vsanDatastoreName: item["vsanDatastoreName"],
   };
 }
@@ -3397,8 +3397,8 @@ export function managementClusterDeserializer(item: any): ManagementCluster {
     hosts: !item["hosts"]
       ? item["hosts"]
       : item["hosts"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     vsanDatastoreName: item["vsanDatastoreName"],
   };
 }
@@ -4010,8 +4010,8 @@ export function privateCloudUpdatePropertiesSerializer(
     extendedNetworkBlocks: !item["extendedNetworkBlocks"]
       ? item["extendedNetworkBlocks"]
       : item["extendedNetworkBlocks"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     dnsZoneType: item["dnsZoneType"],
   };
 }
@@ -4428,13 +4428,13 @@ export function placementPolicyUpdatePropertiesSerializer(
     vmMembers: !item["vmMembers"]
       ? item["vmMembers"]
       : item["vmMembers"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     hostMembers: !item["hostMembers"]
       ? item["hostMembers"]
       : item["hostMembers"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     affinityStrength: item["affinityStrength"],
     azureHybridBenefitType: item["azureHybridBenefitType"],
   };
@@ -4665,8 +4665,8 @@ export function hostDeserializer(item: any): Host {
     zones: !item["zones"]
       ? item["zones"]
       : item["zones"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     sku: !item["sku"] ? item["sku"] : skuDeserializer(item["sku"]),
   };
 }
@@ -5470,8 +5470,8 @@ export function clusterPropertiesSerializer(item: ClusterProperties): any {
     hosts: !item["hosts"]
       ? item["hosts"]
       : item["hosts"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     vsanDatastoreName: item["vsanDatastoreName"],
   };
 }
@@ -5484,8 +5484,8 @@ export function clusterPropertiesDeserializer(item: any): ClusterProperties {
     hosts: !item["hosts"]
       ? item["hosts"]
       : item["hosts"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     vsanDatastoreName: item["vsanDatastoreName"],
   };
 }
@@ -5523,8 +5523,8 @@ export function clusterUpdatePropertiesSerializer(
     hosts: !item["hosts"]
       ? item["hosts"]
       : item["hosts"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
   };
 }
 
@@ -5563,8 +5563,8 @@ export function clusterZoneDeserializer(item: any): ClusterZone {
     hosts: !item["hosts"]
       ? item["hosts"]
       : item["hosts"].map((p: any) => {
-          return p;
-        }),
+        return p;
+      }),
     zone: item["zone"],
   };
 }
