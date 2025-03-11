@@ -12,7 +12,6 @@ import {
   normalizeName
 } from "@azure-tools/rlc-common";
 import {
-  BooleanLiteral,
   Discriminator,
   EncodeData,
   Enum,
@@ -20,11 +19,9 @@ import {
   Model,
   ModelProperty,
   NoTarget,
-  NumericLiteral,
   Program,
   Scalar,
   Service,
-  StringLiteral,
   Type,
   Union,
   UnionVariant,
@@ -1611,9 +1608,21 @@ export function predictDefaultValue(
     return;
   }
   const program = dpgContext.program;
-  const specificDefault = param?.defaultValue?.type;
-  if (isLiteralValue(specificDefault)) {
-    return specificDefault.value;
+  const specificDefault = param.defaultValue
+    ? getValueTypeValue(param.defaultValue)
+    : undefined;
+  if (specificDefault) {
+    if (typeof specificDefault === "object") {
+      reportDiagnostic(program, {
+        code: "default-value-object",
+        format: {
+          propertyName: param.name
+        },
+        target: param
+      });
+      return specificDefault.toString();
+    }
+    return specificDefault;
   }
   const serviceNamespace = getDefaultService(program)?.type;
   if (!serviceNamespace) {
@@ -1624,24 +1633,6 @@ export function predictDefaultValue(
     return defaultApiVersion;
   }
   return;
-}
-
-function isLiteralValue(
-  type?: Type
-): type is StringLiteral | NumericLiteral | BooleanLiteral {
-  if (!type) {
-    return false;
-  }
-
-  if (
-    type.kind === "Boolean" ||
-    type.kind === "String" ||
-    type.kind === "Number"
-  ) {
-    return type.value !== undefined;
-  }
-
-  return false;
 }
 
 export function getDefaultService(program: Program): Service | undefined {

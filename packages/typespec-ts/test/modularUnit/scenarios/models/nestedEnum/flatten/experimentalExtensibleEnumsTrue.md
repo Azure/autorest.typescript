@@ -92,7 +92,7 @@ export enum KnownProvisioningState {
   /** The resource is being deleted */
   Deleting = "Deleting",
   /** The resource create request has been accepted */
-  Accepted = "Accepted"
+  Accepted = "Accepted",
 }
 
 /**
@@ -113,6 +113,6 @@ export type ProvisioningState = string;
 /** The available API versions. */
 export enum KnownVersions {
   /** 2021-10-01-preview version */
-  V20211001Preview = "2021-10-01-preview"
+  V20211001Preview = "2021-10-01-preview",
 }
 ```
