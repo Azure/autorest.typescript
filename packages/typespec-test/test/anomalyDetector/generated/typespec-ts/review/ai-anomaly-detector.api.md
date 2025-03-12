@@ -23,15 +23,12 @@ export interface AnomalyDetectorClientOptionalParams extends ClientOptions {
 }
 
 // @public
+export type APIVersion = "v1.1";
+
+// @public
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
-
-// @public
-export enum KnownVersions {
-    // (undocumented)
-    V11 = "v1.1"
-}
 
 // @public
 export type MultivariateAlignMode = "Inner" | "Outer";
@@ -47,7 +44,7 @@ export interface MultivariateAlignPolicy {
 export interface MultivariateAnomalyDetectionModel {
     createdTime: Date;
     lastUpdatedTime: Date;
-    readonly modelId: string;
+    modelId: string;
     modelInfo?: MultivariateModelInfo;
 }
 
@@ -127,13 +124,13 @@ export interface MultivariateModelInfo {
     alignPolicy?: MultivariateAlignPolicy;
     dataSchema?: MultivariateDataSchema;
     dataSource: string;
-    diagnosticsInfo?: MultivariateDiagnosticsInfo;
+    readonly diagnosticsInfo?: MultivariateDiagnosticsInfo;
     displayName?: string;
     endTime: Date;
     readonly errors?: MultivariateErrorResponse[];
     slidingWindow?: number;
     startTime: Date;
-    status?: MultivariateModelStatus;
+    readonly status?: MultivariateModelStatus;
 }
 
 // @public
@@ -152,7 +149,7 @@ export interface MultivariateMultivariateBatchDetectionOptions {
     dataSource: string;
     endTime: Date;
     startTime: Date;
-    topContributorCount: number;
+    topContributorCount?: number;
 }
 
 // @public
@@ -168,14 +165,14 @@ export type MultivariateMultivariateBatchDetectionStatus = "CREATED" | "RUNNING"
 
 // @public
 export interface MultivariateMultivariateDetectionResult {
-    readonly resultId: string;
+    resultId: string;
     results: MultivariateAnomalyState[];
     summary: MultivariateMultivariateBatchDetectionResultSummary;
 }
 
 // @public
 export interface MultivariateMultivariateLastDetectionOptions {
-    topContributorCount: number;
+    topContributorCount?: number;
     variables: MultivariateVariableValues[];
 }
 
@@ -194,6 +191,12 @@ export interface MultivariateOperations {
     getMultivariateModel: (modelId: string, options?: MultivariateGetMultivariateModelOptionalParams) => Promise<MultivariateAnomalyDetectionModel>;
     listMultivariateModels: (options?: MultivariateListMultivariateModelsOptionalParams) => PagedAsyncIterableIterator<MultivariateAnomalyDetectionModel>;
     trainMultivariateModel: (modelInfo: MultivariateModelInfo, options?: MultivariateTrainMultivariateModelOptionalParams) => Promise<MultivariateAnomalyDetectionModel>;
+}
+
+// @public
+export interface MultivariateResponseError {
+    code: string;
+    message: string;
 }
 
 // @public
@@ -230,8 +233,8 @@ export interface PageSettings {
 
 // @public
 export interface UnivariateAnomalyDetectorError {
-    code?: UnivariateAnomalyDetectorErrorCodes;
-    message?: string;
+    code: UnivariateAnomalyDetectorErrorCodes;
+    message: string;
 }
 
 // @public

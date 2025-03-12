@@ -156,11 +156,11 @@ SECRET_VALUE.
   loadTestConfiguration?: LoadTestConfiguration;
 
   @doc("The input artifacts for the test.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   inputArtifacts?: TestInputArtifacts;
 
   @doc("Unique test name as identifier.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   testId?: string;
 
   @doc("The test description.")
@@ -179,19 +179,19 @@ SECRET_VALUE.
   keyvaultReferenceIdentityId?: string;
 
   @doc("The creation datetime(ISO 8601 literal format).")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   createdDateTime?: offsetDateTime;
 
   @doc("The user that created.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   createdBy?: string;
 
   @doc("The last Modified datetime(ISO 8601 literal format).")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   lastModifiedDateTime?: offsetDateTime;
 
   @doc("The user that last modified.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   lastModifiedBy?: string;
 }
 
@@ -230,11 +230,11 @@ The value to compare with the client metric. Allowed values - ‘error : [0.0 ,
   action?: PFAction;
 
   @doc("The actual value of the client metric for the test run.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   actualValue?: float32;
 
   @doc("Outcome of the test run.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   result?: PFResult;
 }
 
@@ -318,7 +318,7 @@ model TestInputArtifacts {
   inputArtifactsZipFileInfo?: FileInfo;
 
   @doc("Additional supported files for the test run")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   additionalFileInfo?: FileInfo[];
 }
 
@@ -381,23 +381,23 @@ subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/lo
   components: Record<AppComponent>;
 
   @doc("Test identifier")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   testId?: string;
 
   @doc("The creation datetime(ISO 8601 literal format).")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   createdDateTime?: offsetDateTime;
 
   @doc("The user that created.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   createdBy?: string;
 
   @doc("The last Modified datetime(ISO 8601 literal format).")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   lastModifiedDateTime?: offsetDateTime;
 
   @doc("The user that last modified.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   lastModifiedBy?: string;
 }
 
@@ -410,7 +410,7 @@ model AppComponent {
 fully qualified resource Id e.g
 subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName}
 """)
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   resourceId?: string;
 
   @doc("Azure resource name, required while creating the app component.")
@@ -423,11 +423,11 @@ subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/lo
   displayName?: string;
 
   @doc("Resource group name of the Azure resource")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   resourceGroup?: string;
 
   @doc("Subscription Id of the Azure resource")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   subscriptionId?: string;
 
   @doc("Kind of Azure resource type")
@@ -437,7 +437,7 @@ subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/lo
 @doc("Test server metrics configuration")
 model TestServerMetricConfig {
   @doc("Test identifier")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   testId?: string;
 
   @doc("""
@@ -448,19 +448,19 @@ for metric id).
   metrics?: Record<ResourceMetric>;
 
   @doc("The creation datetime(ISO 8601 literal format).")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   createdDateTime?: offsetDateTime;
 
   @doc("The user that created.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   createdBy?: string;
 
   @doc("The last Modified datetime(ISO 8601 literal format).")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   lastModifiedDateTime?: offsetDateTime;
 
   @doc("The user that last modified.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   lastModifiedBy?: string;
 }
 
@@ -471,7 +471,7 @@ https://docs.microsoft.com/en-us/rest/api/monitor/metric-definitions/list#metric
 """)
 model ResourceMetric {
   @doc("Unique name for metric.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   id?: string;
 
   @doc("Azure resource id.")
@@ -502,7 +502,7 @@ model TestRuns {
   // FIXME: is testRunId optional or required in the response? Resource key and path params cannot be optional
   @key
   @doc("Unique test run name as identifier")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   testRunId: string;
 }
 
@@ -529,26 +529,26 @@ SECRET_VALUE.
   environmentVariables?: Record<string>;
 
   @doc("Error details if there is any failure in load test run")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   errorDetails?: ErrorDetails[];
 
   @doc("Test run statistics.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   testRunStatistics?: Record<TestRunStatistics>;
 
   @doc("The load test configuration.")
   loadTestConfiguration?: LoadTestConfiguration;
 
   @doc("Collection of test run artifacts")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   testArtifacts?: TestRunArtifacts;
 
   @doc("Test result for pass/Fail criteria used during the test run.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   testResult?: PFTestResult;
 
   @doc("Number of virtual users, for which test has been run.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   virtualUsers?: int32;
 
   @doc("Display name of a testRun.")
@@ -561,120 +561,120 @@ SECRET_VALUE.
   description?: string;
 
   @doc("The test run status.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   status?: Status;
 
   @doc("The test run start DateTime(ISO 8601 literal format).")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   startDateTime?: offsetDateTime;
 
   @doc("The test run end DateTime(ISO 8601 literal format).")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   endDateTime?: offsetDateTime;
 
   @doc("Test run initiated time.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   executedDateTime?: offsetDateTime;
 
   @doc("Portal url.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   portalUrl?: string;
 
   @doc("Test run duration in milliseconds.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   duration?: int32;
 
   @doc("Subnet ID on which the load test instances should run.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   subnetId?: string;
 
   @doc("The creation datetime(ISO 8601 literal format).")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   createdDateTime?: offsetDateTime;
 
   @doc("The user that created.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   createdBy?: string;
 
   @doc("The last Modified datetime(ISO 8601 literal format).")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   lastModifiedDateTime?: offsetDateTime;
 
   @doc("The user that last modified.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   lastModifiedBy?: string;
 }
 
 @doc("Error details if there is any failure in load test run")
 model ErrorDetails {
   @doc("Error details in case test run was not successfully run.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   message?: string;
 }
 
 @doc("Test run statistics.")
 model TestRunStatistics {
   @doc("Transaction name.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   transaction?: string;
 
   @doc("Sampler count.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   sampleCount?: float32;
 
   @doc("Error count.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   errorCount?: float32;
 
   @doc("Error percentage.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   errorPct?: float32;
 
   @doc("Mean response time.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   meanResTime?: float32;
 
   @doc("Median response time.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   medianResTime?: float32;
 
   @doc("Max response time.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   maxResTime?: float32;
 
   @doc("Minimum response time.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   minResTime?: float32;
 
   @doc("90 percentile response time.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   pct1ResTime?: float32;
 
   @doc("95 percentile response time.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   pct2ResTime?: float32;
 
   @doc("99 percentile response time.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   pct3ResTime?: float32;
 
   @doc("Throughput.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   throughput?: float32;
 
   @doc("Received network bytes.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   receivedKBytesPerSec?: float32;
 
   @doc("Send network bytes.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   sentKBytesPerSec?: float32;
 }
 
 @doc("Collection of test run artifacts")
 model TestRunArtifacts {
   @doc("The input artifacts for the test run.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   inputArtifacts?: TestRunInputArtifacts;
 
   @doc("The output artifacts for the test run.")
@@ -696,7 +696,7 @@ model TestRunInputArtifacts {
   inputArtifactsZipFileInfo?: FileInfo;
 
   @doc("Additional supported files for the test run")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   additionalFileInfo?: FileInfo[];
 }
 
@@ -844,7 +844,7 @@ model Dimension {
   @key
   @doc("Dimension name")
   @path("name")
-  @visibility("query")
+  @visibility(Lifecycle.Query)
   name: string;
 }
 
@@ -879,30 +879,30 @@ subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/lo
   components: Record<AppComponent>;
 
   @doc("Test run identifier")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   testRunId?: string;
 
   @doc("The creation datetime(ISO 8601 literal format).")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   createdDateTime?: offsetDateTime;
 
   @doc("The user that created.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   createdBy?: string;
 
   @doc("The last Modified datetime(ISO 8601 literal format).")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   lastModifiedDateTime?: offsetDateTime;
 
   @doc("The user that last modified.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   lastModifiedBy?: string;
 }
 
 @doc("Test run server metrics configuration")
 model TestRunServerMetricConfig {
   @doc("Test run identifier")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   testRunId?: string;
 
   @doc("""
@@ -913,19 +913,19 @@ for metric id).
   metrics?: Record<ResourceMetric>;
 
   @doc("The creation datetime(ISO 8601 literal format).")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   createdDateTime?: offsetDateTime;
 
   @doc("The user that created.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   createdBy?: string;
 
   @doc("The last Modified datetime(ISO 8601 literal format).")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   lastModifiedDateTime?: offsetDateTime;
 
   @doc("The user that last modified.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   lastModifiedBy?: string;
 }
 

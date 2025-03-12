@@ -5,17 +5,14 @@
 ```ts
 
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorModel } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { TokenCredential } from '@azure/core-auth';
 
 // @public
 export interface AcknowledgeCloudEventsOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface AcknowledgeOptions {
-    lockTokens: string[];
 }
 
 // @public
@@ -46,16 +43,15 @@ export interface CloudEvent {
 
 // @public (undocumented)
 export class EventGridClient {
-    constructor(endpointParam: string, credential: KeyCredential, options?: EventGridClientOptionalParams);
-    acknowledgeCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: AcknowledgeOptions, options?: AcknowledgeCloudEventsOptionalParams): Promise<AcknowledgeResult>;
+    constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: EventGridClientOptionalParams);
+    acknowledgeCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: string[], options?: AcknowledgeCloudEventsOptionalParams): Promise<AcknowledgeResult>;
     readonly pipeline: Pipeline;
-    publishCloudEvent(topicName: string, event: {
-        event: CloudEvent;
-    }, options?: PublishCloudEventOptionalParams): Promise<PublishResult>;
+    publishCloudEvent(topicName: string, event: CloudEvent, options?: PublishCloudEventOptionalParams): Promise<PublishResult>;
     publishCloudEvents(topicName: string, events: CloudEvent[], options?: PublishCloudEventsOptionalParams): Promise<PublishResult>;
     receiveCloudEvents(topicName: string, eventSubscriptionName: string, options?: ReceiveCloudEventsOptionalParams): Promise<ReceiveResult>;
-    rejectCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: RejectOptions, options?: RejectCloudEventsOptionalParams): Promise<RejectResult>;
-    releaseCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: ReleaseOptions, options?: ReleaseCloudEventsOptionalParams): Promise<ReleaseResult>;
+    rejectCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: string[], options?: RejectCloudEventsOptionalParams): Promise<RejectResult>;
+    releaseCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: string[], options?: ReleaseCloudEventsOptionalParams): Promise<ReleaseResult>;
+    renewCloudEventLocks(topicName: string, eventSubscriptionName: string, lockTokens: string[], options?: RenewCloudEventLocksOptionalParams): Promise<RenewCloudEventLocksResult>;
 }
 
 // @public
@@ -65,15 +61,16 @@ export interface EventGridClientOptionalParams extends ClientOptions {
 
 // @public
 export interface FailedLockToken {
-    errorCode: string;
-    errorDescription: string;
+    error: ErrorModel;
     lockToken: string;
 }
 
 // @public
 export enum KnownServiceApiVersions {
     // (undocumented)
-    V20230601Preview = "2023-06-01-preview"
+    V20231101 = "2023-11-01",
+    // (undocumented)
+    V20240601 = "2024-06-01"
 }
 
 // @public
@@ -110,11 +107,6 @@ export interface RejectCloudEventsOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface RejectOptions {
-    lockTokens: string[];
-}
-
-// @public
 export interface RejectResult {
     failedLockTokens: FailedLockToken[];
     succeededLockTokens: string[];
@@ -122,15 +114,24 @@ export interface RejectResult {
 
 // @public
 export interface ReleaseCloudEventsOptionalParams extends OperationOptions {
+    releaseDelayInSeconds?: ReleaseDelay;
 }
 
 // @public
-export interface ReleaseOptions {
-    lockTokens: string[];
-}
+export type ReleaseDelay = "0" | "10" | "60" | "600" | "3600";
 
 // @public
 export interface ReleaseResult {
+    failedLockTokens: FailedLockToken[];
+    succeededLockTokens: string[];
+}
+
+// @public
+export interface RenewCloudEventLocksOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface RenewCloudEventLocksResult {
     failedLockTokens: FailedLockToken[];
     succeededLockTokens: string[];
 }
