@@ -8,7 +8,7 @@ import {
 } from "./static-helpers/pagingHelpers.js";
 
 export { AnomalyDetectorClient } from "./anomalyDetectorClient.js";
-export { KnownVersions } from "./models/index.js";
+export { APIVersion } from "./models/index.js";
 export {
   MultivariateMultivariateDetectionResult,
   MultivariateMultivariateBatchDetectionResultSummary,
@@ -20,6 +20,7 @@ export {
   MultivariateAnomalyValue,
   MultivariateAnomalyInterpretation,
   MultivariateCorrelationChanges,
+  MultivariateResponseError,
   MultivariateModelInfo,
   MultivariateDataSchema,
   MultivariateAlignPolicy,

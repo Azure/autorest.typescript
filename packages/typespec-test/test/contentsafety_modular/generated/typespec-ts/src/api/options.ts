@@ -17,10 +17,11 @@ export interface ListTextBlocklistItemsOptionalParams extends OperationOptions {
 export interface GetTextBlocklistItemOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface RemoveBlockItemsOptionalParams extends OperationOptions {}
+export interface RemoveBlocklistItemsOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface AddOrUpdateBlockItemsOptionalParams extends OperationOptions {}
+export interface AddOrUpdateBlocklistItemsOptionalParams
+  extends OperationOptions {}
 
 /** Optional parameters. */
 export interface ListTextBlocklistsOptionalParams extends OperationOptions {}
@@ -37,6 +38,13 @@ export interface GetTextBlocklistOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface AnalyzeImageOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface DetectTextProtectedMaterialOptionalParams
+  extends OperationOptions {}
+
+/** Optional parameters. */
+export interface ShieldPromptOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface AnalyzeTextOptionalParams extends OperationOptions {}

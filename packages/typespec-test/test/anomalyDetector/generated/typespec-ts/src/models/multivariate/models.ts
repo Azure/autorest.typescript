@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-/** Detection results for the given resultId. */
+/** Detection results for the resultId value. */
 export interface MultivariateMultivariateDetectionResult {
-  /** Result identifier, which is used to fetch the results of an inference call. */
-  readonly resultId: string;
+  /** Result identifier that's used to fetch the results of an inference call. */
+  resultId: string;
   /** Multivariate anomaly detection status. */
   summary: MultivariateMultivariateBatchDetectionResultSummary;
-  /** Detection result for each timestamp. */
+  /** Detection result for each time stamp. */
   results: MultivariateAnomalyState[];
 }
 
@@ -25,14 +25,14 @@ export function multivariateMultivariateDetectionResultDeserializer(
 
 /** Multivariate anomaly detection status. */
 export interface MultivariateMultivariateBatchDetectionResultSummary {
-  /** Status of detection results. One of CREATED, RUNNING, READY, and FAILED. */
+  /** Status of detection results. */
   status: MultivariateMultivariateBatchDetectionStatus;
-  /** Error message when detection is failed. */
+  /** Error message when detection fails. */
   errors?: MultivariateErrorResponse[];
-  /** Variable Status. */
+  /** Variable status. */
   variableStates?: MultivariateVariableState[];
   /**
-   * Detection request for batch inference. This is an asynchronous inference which
+   * Detection request for batch inference. This is an asynchronous inference that
    * will need another API to get detection results.
    */
   setupInfo: MultivariateMultivariateBatchDetectionOptions;
@@ -70,11 +70,11 @@ export function multivariateErrorResponseArrayDeserializer(
   });
 }
 
-/** ErrorResponse contains code and message that shows the error information. */
+/** Error information that the API returned. */
 export interface MultivariateErrorResponse {
-  /** The error code. */
+  /** Error code. */
   code: string;
-  /** The message explaining the error reported by the service. */
+  /** Message that explains the error that the service reported. */
   message: string;
 }
 
@@ -87,14 +87,6 @@ export function multivariateErrorResponseDeserializer(
   };
 }
 
-export function multivariateVariableStateArraySerializer(
-  result: Array<MultivariateVariableState>,
-): any[] {
-  return result.map((item) => {
-    return multivariateVariableStateSerializer(item);
-  });
-}
-
 export function multivariateVariableStateArrayDeserializer(
   result: Array<MultivariateVariableState>,
 ): any[] {
@@ -103,34 +95,18 @@ export function multivariateVariableStateArrayDeserializer(
   });
 }
 
-/** Variable Status. */
+/** Variable status. */
 export interface MultivariateVariableState {
   /** Variable name in variable states. */
   variable?: string;
   /** Proportion of missing values that need to be filled by fillNAMethod. */
   filledNARatio?: number;
-  /** Number of effective data points before applying fillNAMethod. */
+  /** Number of effective data points before fillNAMethod is applied. */
   effectiveCount?: number;
-  /** First valid timestamp with value of input data. */
+  /** First valid time stamp with a value of input data. */
   firstTimestamp?: Date;
-  /** Last valid timestamp with value of input data. */
+  /** Last valid time stamp with a value of input data. */
   lastTimestamp?: Date;
-}
-
-export function multivariateVariableStateSerializer(
-  item: MultivariateVariableState,
-): any {
-  return {
-    variable: item["variable"],
-    filledNARatio: item["filledNARatio"],
-    effectiveCount: item["effectiveCount"],
-    firstTimestamp: !item["firstTimestamp"]
-      ? item["firstTimestamp"]
-      : item["firstTimestamp"].toISOString(),
-    lastTimestamp: !item["lastTimestamp"]
-      ? item["lastTimestamp"]
-      : item["lastTimestamp"].toISOString(),
-  };
 }
 
 export function multivariateVariableStateDeserializer(
@@ -150,31 +126,29 @@ export function multivariateVariableStateDeserializer(
 }
 
 /**
- * Detection request for batch inference. This is an asynchronous inference which
+ * Detection request for batch inference. This is an asynchronous inference that
  * will need another API to get detection results.
  */
 export interface MultivariateMultivariateBatchDetectionOptions {
   /**
-   * Source link to the input data to indicate an accessible Azure storage Uri,
-   * either pointed to an Azure blob storage folder, or pointed to a CSV file in
-   * Azure blob storage based on you data schema selection. The data schema should
-   * be exactly the same with those used in the training phase.
+   * Source link to the input data to indicate an accessible Azure Storage URI.
+   * It either points to an Azure Blob Storage folder or points to a CSV file in
+   * Azure Blob Storage, based on your data schema selection. The data schema should
+   * be exactly the same as those used in the training phase. The input data must
+   * contain at least slidingWindow entries preceding the start time of the data
+   * to be detected.
    */
   dataSource: string;
+  /** Number of top contributed variables for one anomalous time stamp in the response. */
+  topContributorCount?: number;
   /**
-   * An optional field, which is used to specify the number of top contributed
-   * variables for one anomalous timestamp in the response. The default number is
-   * 10.
-   */
-  topContributorCount: number;
-  /**
-   * A required field, indicating the start time of data for detection, which should
-   * be date-time of ISO 8601 format.
+   * Start date/time of data for detection, which should
+   * be in ISO 8601 format.
    */
   startTime: Date;
   /**
-   * A required field, indicating the end time of data for detection, which should
-   * be date-time of ISO 8601 format.
+   * End date/time of data for detection, which should
+   * be in ISO 8601 format.
    */
   endTime: Date;
 }
@@ -211,11 +185,11 @@ export function multivariateAnomalyStateArrayDeserializer(
 
 /** Anomaly status and information. */
 export interface MultivariateAnomalyState {
-  /** The timestamp for this anomaly. */
+  /** Time stamp for this anomaly. */
   timestamp: Date;
-  /** The detailed value of this anomalous timestamp. */
+  /** Detailed value of this anomalous time stamp. */
   value?: MultivariateAnomalyValue;
-  /** Error message for the current timestamp. */
+  /** Error message for the current time stamp. */
   errors?: MultivariateErrorResponse[];
 }
 
@@ -233,21 +207,18 @@ export function multivariateAnomalyStateDeserializer(
   };
 }
 
-/** Detailed information of the anomalous timestamp. */
+/** Detailed information of the anomalous time stamp. */
 export interface MultivariateAnomalyValue {
-  /** True if an anomaly is detected at the current timestamp. */
+  /** True if an anomaly is detected at the current time stamp. */
   isAnomaly: boolean;
   /**
    * Indicates the significance of the anomaly. The higher the severity, the more
    * significant the anomaly is.
    */
   severity: number;
-  /**
-   * Raw anomaly score of severity, will help indicate the degree of abnormality as
-   * well.
-   */
+  /** Raw anomaly score of severity, to help indicate the degree of abnormality. */
   score: number;
-  /** Interpretation of this anomalous timestamp. */
+  /** Interpretation of this anomalous time stamp. */
   interpretation?: MultivariateAnomalyInterpretation[];
 }
 
@@ -274,16 +245,16 @@ export function multivariateAnomalyInterpretationArrayDeserializer(
   });
 }
 
-/** Interpretation of the anomalous timestamp. */
+/** Interpretation of the anomalous time stamp. */
 export interface MultivariateAnomalyInterpretation {
   /** Variable. */
   variable?: string;
   /**
-   * This score shows the percentage contributing to the anomalous timestamp. A
+   * This score shows the percentage that contributes to the anomalous time stamp. It's a
    * number between 0 and 1.
    */
   contributionScore?: number;
-  /** Correlation changes among the anomalous variables */
+  /** Correlation changes among the anomalous variables. */
   correlationChanges?: MultivariateCorrelationChanges;
 }
 
@@ -299,9 +270,9 @@ export function multivariateAnomalyInterpretationDeserializer(
   };
 }
 
-/** Correlation changes among the anomalous variables */
+/** Correlation changes among the anomalous variables. */
 export interface MultivariateCorrelationChanges {
-  /** The correlated variables that have correlation changes under an anomaly. */
+  /** Correlated variables that have correlation changes under an anomaly. */
   changedVariables?: string[];
 }
 
@@ -317,50 +288,67 @@ export function multivariateCorrelationChangesDeserializer(
   };
 }
 
+/** Error response. */
+export interface MultivariateResponseError {
+  /** Error code. */
+  code: string;
+  /** Message that explains the error that the service reported. */
+  message: string;
+}
+
+export function multivariateResponseErrorDeserializer(
+  item: any,
+): MultivariateResponseError {
+  return {
+    code: item["code"],
+    message: item["message"],
+  };
+}
+
 /**
- * Training result of a model including its status, errors and diagnostics
+ * Training result of a model, including its status, errors, and diagnostics
  * information.
  */
 export interface MultivariateModelInfo {
   /**
-   * Source link to the input data to indicate an accessible Azure storage Uri,
-   * either pointed to an Azure blob storage folder, or pointed to a CSV file in
-   * Azure blob storage based on you data schema selection.
+   * Source link to the input data to indicate an accessible Azure Storage URI.
+   * It either points to an Azure Blob Storage folder or points to a CSV file in
+   * Azure Blob Storage, based on your data schema selection.
    */
   dataSource: string;
   /**
-   * Data schema of input data source: OneTable or MultiTable. The default
-   * DataSchema is OneTable.
+   * Data schema of the input data source. The default
+   * is OneTable.
    */
   dataSchema?: MultivariateDataSchema;
   /**
-   * A required field, indicating the start time of training data, which should be
-   * date-time of ISO 8601 format.
+   * Start date/time of training data, which should be
+   * in ISO 8601 format.
    */
   startTime: Date;
   /**
-   * A required field, indicating the end time of training data, which should be
-   * date-time of ISO 8601 format.
+   * End date/time of training data, which should be
+   * in ISO 8601 format.
    */
   endTime: Date;
   /**
-   * An optional field. The display name of the model whose maximum length is 24
+   * Display name of the model. Maximum length is 24
    * characters.
    */
   displayName?: string;
   /**
-   * An optional field, indicating how many previous timestamps will be used to
-   * detect whether the timestamp is anomaly or not.
+   * Number of previous time stamps that will be used to
+   * detect whether the time stamp is an anomaly or not.
    */
   slidingWindow?: number;
-  /** An optional field, indicating the manner to align multiple variables. */
+  /** Manner of aligning multiple variables. */
   alignPolicy?: MultivariateAlignPolicy;
-  /** Model status. One of CREATED, RUNNING, READY, and FAILED. */
-  status?: MultivariateModelStatus;
-  /** Error messages when failed to create a model. */
+  /** Model status. */
+  readonly status?: MultivariateModelStatus;
+  /** Error messages after failure to create a model. */
   readonly errors?: MultivariateErrorResponse[];
-  /** Diagnostics information to help inspect the states of model or variable. */
-  diagnosticsInfo?: MultivariateDiagnosticsInfo;
+  /** Diagnostics information to help inspect the states of a model or variable. */
+  readonly diagnosticsInfo?: MultivariateDiagnosticsInfo;
 }
 
 export function multivariateModelInfoSerializer(
@@ -376,10 +364,6 @@ export function multivariateModelInfoSerializer(
     alignPolicy: !item["alignPolicy"]
       ? item["alignPolicy"]
       : multivariateAlignPolicySerializer(item["alignPolicy"]),
-    status: item["status"],
-    diagnosticsInfo: !item["diagnosticsInfo"]
-      ? item["diagnosticsInfo"]
-      : multivariateDiagnosticsInfoSerializer(item["diagnosticsInfo"]),
   };
 }
 
@@ -406,22 +390,19 @@ export function multivariateModelInfoDeserializer(
   };
 }
 
-/** Data schema of input data source: OneTable or MultiTable. The default DataSchema is OneTable. */
+/** Data schema of the input data source. The default is OneTable. */
 export type MultivariateDataSchema = "OneTable" | "MultiTable";
 
-/** An optional field, indicating the manner to align multiple variables. */
+/** Manner of aligning multiple variables. */
 export interface MultivariateAlignPolicy {
   /**
-   * An optional field, indicating how to align different variables to the same
-   * time-range. Either Inner or Outer.
+   * Field that indicates how to align different variables to the same
+   * time range.
    */
   alignMode?: MultivariateAlignMode;
-  /**
-   * An optional field, indicating how missing values will be filled. One of
-   * Previous, Subsequent, Linear, Zero, Fixed.
-   */
+  /** Field that indicates how missing values will be filled. */
   fillNAMethod?: MultivariateFillNAMethod;
-  /** An optional field. Required when fillNAMethod is Fixed. */
+  /** Field that's required when fillNAMethod is Fixed. */
   paddingValue?: number;
 }
 
@@ -447,7 +428,7 @@ export function multivariateAlignPolicyDeserializer(
 
 /** Type of MultivariateAlignMode */
 export type MultivariateAlignMode = "Inner" | "Outer";
-/** An optional field, indicating how missing values will be filled. One of Previous, Subsequent, Linear, Zero, Fixed. */
+/** Field that indicates how missing values will be filled. */
 export type MultivariateFillNAMethod =
   | "Previous"
   | "Subsequent"
@@ -461,25 +442,12 @@ export type MultivariateModelStatus =
   | "READY"
   | "FAILED";
 
-/** Diagnostics information to help inspect the states of model or variable. */
+/** Diagnostics information to help inspect the states of a model or variable. */
 export interface MultivariateDiagnosticsInfo {
   /** Model status. */
   modelState?: MultivariateModelState;
-  /** Variable Status. */
+  /** Variable status. */
   variableStates?: MultivariateVariableState[];
-}
-
-export function multivariateDiagnosticsInfoSerializer(
-  item: MultivariateDiagnosticsInfo,
-): any {
-  return {
-    modelState: !item["modelState"]
-      ? item["modelState"]
-      : multivariateModelStateSerializer(item["modelState"]),
-    variableStates: !item["variableStates"]
-      ? item["variableStates"]
-      : multivariateVariableStateArraySerializer(item["variableStates"]),
-  };
 }
 
 export function multivariateDiagnosticsInfoDeserializer(
@@ -498,7 +466,7 @@ export function multivariateDiagnosticsInfoDeserializer(
 /** Model status. */
 export interface MultivariateModelState {
   /**
-   * This indicates the number of passes of the entire training dataset the
+   * Number of passes of the entire training dataset that the
    * algorithm has completed.
    */
   epochIds?: number[];
@@ -514,33 +482,6 @@ export interface MultivariateModelState {
   validationLosses?: number[];
   /** Latency for each epoch. */
   latenciesInSeconds?: number[];
-}
-
-export function multivariateModelStateSerializer(
-  item: MultivariateModelState,
-): any {
-  return {
-    epochIds: !item["epochIds"]
-      ? item["epochIds"]
-      : item["epochIds"].map((p: any) => {
-          return p;
-        }),
-    trainLosses: !item["trainLosses"]
-      ? item["trainLosses"]
-      : item["trainLosses"].map((p: any) => {
-          return p;
-        }),
-    validationLosses: !item["validationLosses"]
-      ? item["validationLosses"]
-      : item["validationLosses"].map((p: any) => {
-          return p;
-        }),
-    latenciesInSeconds: !item["latenciesInSeconds"]
-      ? item["latenciesInSeconds"]
-      : item["latenciesInSeconds"].map((p: any) => {
-          return p;
-        }),
-  };
 }
 
 export function multivariateModelStateDeserializer(
@@ -573,13 +514,13 @@ export function multivariateModelStateDeserializer(
 /** Response of getting a model. */
 export interface MultivariateAnomalyDetectionModel {
   /** Model identifier. */
-  readonly modelId: string;
+  modelId: string;
   /** Date and time (UTC) when the model was created. */
   createdTime: Date;
   /** Date and time (UTC) when the model was last updated. */
   lastUpdatedTime: Date;
   /**
-   * Training result of a model including its status, errors and diagnostics
+   * Training result of a model, including its status, errors, and diagnostics
    * information.
    */
   modelInfo?: MultivariateModelInfo;
@@ -606,7 +547,7 @@ export interface _MultivariateModelList {
   currentCount: number;
   /** Maximum number of models that can be trained for this Anomaly Detector resource. */
   maxCount: number;
-  /** The link to fetch more models. */
+  /** Link to fetch more models. */
   nextLink?: string;
 }
 
@@ -629,19 +570,19 @@ export function multivariateAnomalyDetectionModelArrayDeserializer(
   });
 }
 
-/** Request of last detection. */
+/** Request of the last detection. */
 export interface MultivariateMultivariateLastDetectionOptions {
   /**
-   * This contains the inference data, including the name, timestamps(ISO 8601) and
+   * Contains the inference data, including the name, time stamps (ISO 8601), and
    * values of variables.
    */
   variables: MultivariateVariableValues[];
   /**
-   * An optional field, which is used to specify the number of top contributed
-   * variables for one anomalous timestamp in the response. The default number is
+   * Number of top contributed
+   * variables for one anomalous time stamp in the response. The default is
    * 10.
    */
-  topContributorCount: number;
+  topContributorCount?: number;
 }
 
 export function multivariateMultivariateLastDetectionOptionsSerializer(
@@ -663,9 +604,9 @@ export function multivariateVariableValuesArraySerializer(
 
 /** Variable values. */
 export interface MultivariateVariableValues {
-  /** Variable name of last detection request. */
+  /** Variable name of the last detection request. */
   variable: string;
-  /** Timestamps of last detection request */
+  /** Time stamps of the last detection request. */
   timestamps: string[];
   /** Values of variables. */
   values: number[];
@@ -685,9 +626,9 @@ export function multivariateVariableValuesSerializer(
   };
 }
 
-/** Results of last detection. */
+/** Results of the last detection. */
 export interface MultivariateMultivariateLastDetectionResult {
-  /** Variable Status. */
+  /** Variable status. */
   variableStates?: MultivariateVariableState[];
   /** Anomaly status and information. */
   results?: MultivariateAnomalyState[];
