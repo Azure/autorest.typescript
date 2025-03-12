@@ -183,7 +183,7 @@ model DataProductProperties {
   owners?: string[];
 
   @doc("Flag to enable or disable redundancy for data product.")
-  @visibility(Lifecycle.Read)
+  @visibility(Lifecycle.Create, Lifecycle.Read)
   redundancy?: ControlState;
 
   @doc("Purview account url for data product to connect to.")

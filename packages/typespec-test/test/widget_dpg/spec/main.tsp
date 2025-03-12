@@ -112,9 +112,7 @@ It does not accept any options or parameters.
         @header nullableOptionalHeader?: string | null,
         @header bytesHeader: bytes,
         @header @encode(BytesKnownEncoding.base64) value: bytes,
-        @header(#{
-          explode: true
-        })
+        @header
         csvArrayHeader: base64urlBytes[],
         @header utcDateHeader: utcDateTime,
         @header optionalDateHeader?: utcDateTime,
