@@ -47,7 +47,6 @@ export interface BreakSentence200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface BreakSentenceBodyParam {
-    // (undocumented)
     body: Array<InputTextElement>;
 }
 
@@ -132,7 +131,6 @@ export interface Detect200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface DetectBodyParam {
-    // (undocumented)
     body: Array<InputTextElement>;
 }
 
@@ -213,7 +211,6 @@ export interface DictionaryExamples200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface DictionaryExamplesBodyParam {
-    // (undocumented)
     body: Array<DictionaryExampleTextElement>;
 }
 
@@ -285,7 +282,6 @@ export interface DictionaryLookup200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface DictionaryLookupBodyParam {
-    // (undocumented)
     body: Array<InputTextElement>;
 }
 
@@ -535,7 +531,6 @@ export interface Translate200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface TranslateBodyParam {
-    // (undocumented)
     body: Array<InputTextElement>;
 }
 
@@ -657,7 +652,6 @@ export interface Transliterate200Response extends HttpResponse {
 
 // @public (undocumented)
 export interface TransliterateBodyParam {
-    // (undocumented)
     body: Array<InputTextElement>;
 }
 

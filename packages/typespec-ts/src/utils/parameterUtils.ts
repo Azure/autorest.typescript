@@ -50,7 +50,7 @@ export function getParameterSerializationInfo(
         return retVal;
       }
       const name = normalizeName(`${prefix}_QueryParam`, NameType.Interface);
-      const format = getCollectionFormat(dpgContext, parameter.param);
+      const format = getCollectionFormat(dpgContext, parameter);
       if (parameter.explode === true) {
         if (format !== undefined && format !== "multi") {
           reportDiagnostic(dpgContext.program, {

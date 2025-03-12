@@ -59,6 +59,7 @@ export interface TranslateHeaders {
 }
 
 export interface TranslateBodyParam {
+  /** Array of the text to be translated. */
   body: Array<InputTextElement>;
 }
 
@@ -162,6 +163,7 @@ export interface TransliterateHeaders {
 }
 
 export interface TransliterateBodyParam {
+  /** Array of the text to be transliterated. */
   body: Array<InputTextElement>;
 }
 
@@ -203,6 +205,7 @@ export interface DetectHeaders {
 }
 
 export interface DetectBodyParam {
+  /** Array of the text for which values the language detection will be applied. */
   body: Array<InputTextElement>;
 }
 
@@ -220,6 +223,7 @@ export interface BreakSentenceHeaders {
 }
 
 export interface BreakSentenceBodyParam {
+  /** Array of the text for which values the sentence boundaries will be calculated. */
   body: Array<InputTextElement>;
 }
 
@@ -255,6 +259,7 @@ export interface DictionaryLookupHeaders {
 }
 
 export interface DictionaryLookupBodyParam {
+  /** Array of the text to be sent to dictionary. */
   body: Array<InputTextElement>;
 }
 
@@ -290,6 +295,7 @@ export interface DictionaryExamplesHeaders {
 }
 
 export interface DictionaryExamplesBodyParam {
+  /** Array of the text to be sent to dictionary. */
   body: Array<DictionaryExampleTextElement>;
 }
 

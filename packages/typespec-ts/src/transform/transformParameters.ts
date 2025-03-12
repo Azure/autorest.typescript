@@ -375,10 +375,10 @@ function getBodyDescriptions(
   bodySchema: Schema,
   parameters: HttpOperationParameters
 ) {
-  const description = parameters.body
+  const description = parameters.body?.property
     ? getFormattedPropertyDoc(
         dpgContext.program,
-        parameters.body.type,
+        parameters.body.property,
         bodySchema
       )
     : "";

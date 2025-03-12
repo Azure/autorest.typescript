@@ -57,12 +57,11 @@ import { GetSchemaOptions, SdkContext } from "./interfaces.js";
 import {
   HttpOperation,
   HttpOperationParameters,
+  HttpOperationQueryParameter,
   Visibility,
   getHeaderFieldName,
-  getHeaderFieldOptions,
   getPathParamName,
   getQueryParamName,
-  getQueryParamOptions,
   isHeader,
   isQueryParam,
   isStatusCode
@@ -1906,22 +1905,23 @@ export function isBodyRequired(parameter: HttpOperationParameters) {
 
 export function getCollectionFormat(
   context: SdkContext,
-  type: ModelProperty
+  param: HttpOperationQueryParameter
 ): string | undefined {
   const program = context.program;
+  const type = param.param;
   if (isHeader(program, type)) {
     if (
       type.type.kind === "Model" &&
       isArrayModelType(context.program, type.type)
     ) {
-      return getHeaderFieldOptions(program, type)?.explode ? "multi" : "csv";
+      return param.explode ? "multi" : "csv";
     }
   } else if (isQueryParam(program, type)) {
     if (
       type.type.kind === "Model" &&
       isArrayModelType(context.program, type.type)
     ) {
-      return getQueryParamOptions(program, type)?.explode ? "multi" : "csv";
+      return param.explode ? "multi" : "csv";
     }
   }
   return;
