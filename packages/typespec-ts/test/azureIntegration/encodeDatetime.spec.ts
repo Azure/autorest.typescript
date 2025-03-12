@@ -210,7 +210,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
         .path(`/encode/datetime/responseheader/unix-timestamp`)
         .get();
       assert.strictEqual(result.status, "204");
-      assert.equal(result.headers.value, 1686566864);
+      assert.strictEqual(result.headers.value, 1686566864);
     });
   });
 });
