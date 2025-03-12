@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { stringToUint8Array } from "@azure/core-util";
+import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 
 /** Options for creating a user account for RDP or SSH access on an Azure Batch Compute Node. */
 export interface BatchNodeUserCreateOptions {
@@ -4531,17 +4531,20 @@ export interface BatchCertificate {
   /** The error that occurred on the last attempt to delete this Certificate. This property is set only if the Certificate is in the DeleteFailed state. */
   readonly deleteCertificateError?: DeleteCertificateError;
   /** The base64-encoded contents of the Certificate. The maximum size is 10KB. */
-  readonly data: Uint8Array;
+  data: Uint8Array;
   /** The format of the Certificate data. */
-  readonly certificateFormat?: CertificateFormat;
+  certificateFormat?: CertificateFormat;
   /** The password to access the Certificate's private key. This must be omitted if the Certificate format is cer. */
-  readonly password?: string;
+  password?: string;
 }
 
 export function batchCertificateSerializer(item: BatchCertificate): any {
   return {
     thumbprint: item["thumbprint"],
     thumbprintAlgorithm: item["thumbprintAlgorithm"],
+    data: uint8ArrayToString(item["data"], "base64"),
+    certificateFormat: item["certificateFormat"],
+    password: item["password"],
   };
 }
 

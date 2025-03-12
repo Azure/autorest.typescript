@@ -2,7 +2,7 @@ steps:
   - task: NodeTool@0
     inputs:
       versionSpec: "22.x"
-    displayName: "Use Node 18"
+    displayName: "Use Node 22"
   - script: |
       npm install -g @microsoft/rush
     displayName: "Install Rush"

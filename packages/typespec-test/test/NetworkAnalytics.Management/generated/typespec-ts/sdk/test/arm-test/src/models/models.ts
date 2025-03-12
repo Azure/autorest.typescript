@@ -56,7 +56,7 @@ export interface DataProductProperties {
   /** List of name or email associated with data product resource deployment. */
   owners?: string[];
   /** Flag to enable or disable redundancy for data product. */
-  readonly redundancy?: ControlState;
+  redundancy?: ControlState;
   /** Purview account url for data product to connect to. */
   purviewAccount?: string;
   /** Purview collection url for data product to connect to. */
@@ -97,6 +97,7 @@ export function dataProductPropertiesSerializer(
       : item["owners"].map((p: any) => {
           return p;
         }),
+    redundancy: item["redundancy"],
     purviewAccount: item["purviewAccount"],
     purviewCollection: item["purviewCollection"],
     privateLinksEnabled: item["privateLinksEnabled"],
