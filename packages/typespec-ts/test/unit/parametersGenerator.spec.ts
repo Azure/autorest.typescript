@@ -405,7 +405,6 @@ describe("Parameters.ts", () => {
         }
       );
       assert.ok(parameters);
-      console.log(parameters?.content + "\n******************\n");
       await assertEqualContent(
         parameters?.content!,
         `
