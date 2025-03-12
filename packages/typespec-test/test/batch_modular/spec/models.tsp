@@ -959,15 +959,15 @@ model BatchCertificate {
   deleteCertificateError?: DeleteCertificateError;
 
   @doc("The base64-encoded contents of the Certificate. The maximum size is 10KB.")
-  @visibility(Lifecycle.Read)
+  @visibility(Lifecycle.Create)
   data: bytes;
 
   @doc("The format of the Certificate data.")
-  @visibility(Lifecycle.Read)
+  @visibility(Lifecycle.Create)
   certificateFormat?: CertificateFormat;
 
   @doc("The password to access the Certificate's private key. This must be omitted if the Certificate format is cer.")
-  @visibility(Lifecycle.Read)
+  @visibility(Lifecycle.Create)
   password?: string;
 }
 

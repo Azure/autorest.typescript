@@ -21,7 +21,7 @@ import {
 } from "../../static-helpers/pagingHelpers.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
-import { buildMultiCollection } from "../../static-helpers/serialization/build-multi-collection.js";
+import { buildCsvCollection } from "../../static-helpers/serialization/build-csv-collection.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -488,11 +488,10 @@ export function _listWidgetsSend(
         : {}),
       "bytes-header": uint8ArrayToString(bytesHeader, "base64"),
       value: uint8ArrayToString(value, "base64"),
-      "csv-array-header": buildMultiCollection(
+      "csv-array-header": buildCsvCollection(
         csvArrayHeader.map((p: any) => {
           return uint8ArrayToString(p, "base64url");
         }),
-        "csv-array-header",
       ),
       "utc-date-header": utcDateHeader.toUTCString(),
       ...(options?.optionalDateHeader !== undefined
