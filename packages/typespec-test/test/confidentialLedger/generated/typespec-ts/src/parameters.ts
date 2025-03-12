@@ -11,7 +11,7 @@ export type GetConsortiumMembersParameters = RequestParameters;
 export type ListLedgerEntriesParameters = RequestParameters;
 
 export interface CreateLedgerEntryBodyParam {
-  /** Details about a ledger entry. */
+  /** The resource instance. */
   body: LedgerEntry;
 }
 
@@ -34,11 +34,11 @@ export type GetCurrentLedgerEntryParameters = GetCurrentLedgerEntryQueryParam &
   RequestParameters;
 export type DeleteUserParameters = RequestParameters;
 export type GetUserParameters = RequestParameters;
-/** Details about a Confidential ledger user. */
+/** The resource instance. */
 export type LedgerUserResourceMergeAndPatch = Partial<LedgerUser>;
 
 export interface CreateOrUpdateUserBodyParam {
-  /** Details about a Confidential ledger user. */
+  /** The resource instance. */
   body: LedgerUserResourceMergeAndPatch;
 }
 

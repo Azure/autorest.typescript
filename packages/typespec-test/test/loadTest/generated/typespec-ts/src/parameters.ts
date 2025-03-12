@@ -68,7 +68,7 @@ export type LoadTestAdministrationListTestsParameters =
 
 export interface LoadTestAdministrationUploadTestFileBodyParam {
   /**
-   * Represent a byte array
+   * The file content as application/octet-stream.
    *
    * Value may contain any sequence of octets
    */
@@ -100,11 +100,11 @@ export type LoadTestAdministrationUploadTestFileParameters =
 export type LoadTestAdministrationGetTestFileParameters = RequestParameters;
 export type LoadTestAdministrationDeleteTestFileParameters = RequestParameters;
 export type LoadTestAdministrationListTestFilesParameters = RequestParameters;
-/** Test app component */
+/** App Component model. */
 export type TestAppComponentsResourceMergeAndPatch = Partial<TestAppComponents>;
 
 export interface LoadTestAdministrationCreateOrUpdateAppComponentsBodyParam {
-  /** Test app component */
+  /** App Component model. */
   body: TestAppComponentsResourceMergeAndPatch;
 }
 
@@ -118,12 +118,12 @@ export type LoadTestAdministrationCreateOrUpdateAppComponentsParameters =
     RequestParameters;
 export type LoadTestAdministrationGetAppComponentsParameters =
   RequestParameters;
-/** Test server metrics configuration */
+/** Server metric configuration model. */
 export type TestServerMetricConfigResourceMergeAndPatch =
   Partial<TestServerMetricConfig>;
 
 export interface LoadTestAdministrationCreateOrUpdateServerMetricsConfigBodyParam {
-  /** Test server metrics configuration */
+  /** Server metric configuration model. */
   body: TestServerMetricConfigResourceMergeAndPatch;
 }
 
@@ -138,11 +138,11 @@ export type LoadTestAdministrationCreateOrUpdateServerMetricsConfigParameters =
 export type LoadTestAdministrationGetServerMetricsConfigParameters =
   RequestParameters;
 export type LoadTestRunDeleteTestRunParameters = RequestParameters;
-/** Load test run model */
+/** The resource instance. */
 export type TestRunResourceMergeAndPatch = Partial<TestRun>;
 
 export interface LoadTestRunCreateOrUpdateTestRunBodyParam {
-  /** Load test run model */
+  /** The resource instance. */
   body: TestRunResourceMergeAndPatch;
 }
 
@@ -219,7 +219,7 @@ export type LoadTestRunListMetricDefinitionsParameters =
   LoadTestRunListMetricDefinitionsQueryParam & RequestParameters;
 
 export interface LoadTestRunListMetricsBodyParam {
-  /** Filters to fetch the set of metric */
+  /** Metric dimension filter */
   body: MetricRequestPayload;
 }
 
@@ -268,12 +268,12 @@ export interface LoadTestRunListMetricDimensionValuesQueryParam {
 
 export type LoadTestRunListMetricDimensionValuesParameters =
   LoadTestRunListMetricDimensionValuesQueryParam & RequestParameters;
-/** Test run app component */
+/** App Component model. */
 export type TestRunAppComponentsResourceMergeAndPatch =
   Partial<TestRunAppComponents>;
 
 export interface LoadTestRunCreateOrUpdateAppComponentsBodyParam {
-  /** Test run app component */
+  /** App Component model. */
   body: TestRunAppComponentsResourceMergeAndPatch;
 }
 
@@ -286,12 +286,12 @@ export type LoadTestRunCreateOrUpdateAppComponentsParameters =
     LoadTestRunCreateOrUpdateAppComponentsBodyParam &
     RequestParameters;
 export type LoadTestRunGetAppComponentsParameters = RequestParameters;
-/** Test run server metrics configuration */
+/** Server metric configuration model. */
 export type TestRunServerMetricConfigResourceMergeAndPatch =
   Partial<TestRunServerMetricConfig>;
 
 export interface LoadTestRunCreateOrUpdateServerMetricsConfigBodyParam {
-  /** Test run server metrics configuration */
+  /** Server metric configuration model. */
   body: TestRunServerMetricConfigResourceMergeAndPatch;
 }
 

@@ -7,7 +7,7 @@ import type { DeploymentCreationParameters } from "./models.js";
 export type GetDeploymentParameters = RequestParameters;
 
 export interface DeployProjectBodyParam {
-  /** Deployment resource creation parameters. */
+  /** Parameter of type 'DeploymentCreationParameters' in the body. */
   body?: DeploymentCreationParameters;
 }
 

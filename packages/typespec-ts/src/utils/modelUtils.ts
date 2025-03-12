@@ -56,7 +56,9 @@ import {
 import { GetSchemaOptions, SdkContext } from "./interfaces.js";
 import {
   HttpOperation,
+  HttpOperationHeaderParameter,
   HttpOperationParameters,
+  HttpOperationPathParameter,
   HttpOperationQueryParameter,
   Visibility,
   getHeaderFieldName,
@@ -1905,7 +1907,10 @@ export function isBodyRequired(parameter: HttpOperationParameters) {
 
 export function getCollectionFormat(
   context: SdkContext,
-  param: HttpOperationQueryParameter
+  param:
+    | HttpOperationPathParameter
+    | HttpOperationQueryParameter
+    | HttpOperationHeaderParameter
 ): string | undefined {
   const program = context.program;
   const type = param.param;
