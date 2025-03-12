@@ -29,7 +29,7 @@ async function listJobStepsForTheSpecifiedVersionOfAJob(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.jobSteps.listByVersion(
+  for await (const item of client.jobSteps.listByVersion(
     resourceGroupName,
     serverName,
     jobAgentName,

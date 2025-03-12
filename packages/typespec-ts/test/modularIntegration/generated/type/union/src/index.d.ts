@@ -56,7 +56,7 @@ export declare interface IntsOnlySendOptionalParams extends OperationOptions {
 
 export declare enum KnownStringExtensibleNamedUnion {
     OptionB = "b",
-    c = "c"
+    C = "c"
 }
 
 export declare interface MixedLiteralsCases {

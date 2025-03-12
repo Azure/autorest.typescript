@@ -24,7 +24,7 @@ async function listVirtualNetworkGatewayConnectionsinResourceGroup(): Promise<vo
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.virtualNetworkGatewayConnections.list(
+  for await (const item of client.virtualNetworkGatewayConnections.list(
     resourceGroupName,
   )) {
     resArray.push(item);

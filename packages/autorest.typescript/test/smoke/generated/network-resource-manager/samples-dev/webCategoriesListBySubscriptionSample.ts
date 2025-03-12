@@ -24,7 +24,7 @@ async function listAllAzureWebCategoriesForAGivenSubscription(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.webCategories.listBySubscription()) {
+  for await (const item of client.webCategories.listBySubscription()) {
     resArray.push(item);
   }
   console.log(resArray);

@@ -46,10 +46,10 @@ describe("Azure Arm Resources Rest Client", () => {
       type: `${IDENTITY_TYPE_SYSTEM_USER_ASSIGNED_EXPECTED}`,
       userAssignedIdentities: {
         "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1":
-        {
-          principalId: `${PRINCIPAL_ID_EXPECTED}`,
-          clientId: `${CLIENT_ID_EXPECTED}`
-        }
+          {
+            principalId: `${PRINCIPAL_ID_EXPECTED}`,
+            clientId: `${CLIENT_ID_EXPECTED}`
+          }
       },
       principalId: `${PRINCIPAL_ID_EXPECTED}`,
       tenantId: `${TENANT_ID_EXPECTED}`

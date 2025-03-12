@@ -67,6 +67,7 @@ export interface EmitterOptions extends RLCOptions {
   "compatibility-query-multi-format"?: boolean;
   branded?: boolean;
   "typespec-title-map"?: Record<string, string>;
+  "ignore-enum-member-name-normalize"?: boolean;
 }
 
 const _RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
@@ -149,6 +150,7 @@ const _RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
     experimentalExtensibleEnums: { type: "boolean", nullable: true },
     clearOutputFolder: { type: "boolean", nullable: true },
     ignorePropertyNameNormalize: { type: "boolean", nullable: true },
+    ignoreEnumMemberNameNormalize: { type: "boolean", nullable: true },
     compatibilityQueryMultiFormat: { type: "boolean", nullable: true },
     typespecTitleMap: {
       type: "object",
@@ -243,6 +245,7 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
     "experimental-extensible-enums": { type: "boolean", nullable: true },
     "clear-output-folder": { type: "boolean", nullable: true },
     "ignore-property-name-normalize": { type: "boolean", nullable: true },
+    "ignore-enum-member-name-normalize": { type: "boolean", nullable: true },
     "compatibility-query-multi-format": { type: "boolean", nullable: true },
     "typespec-title-map": {
       type: "object",
@@ -443,6 +446,12 @@ const libDef = {
       severity: "warning",
       messages: {
         default: paramMessage`Parameter '${"paramName"}' with type '${"paramType"}' is not supported and we would ignore this parameter.`
+      }
+    },
+    "prefix-adding-in-enum-member": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Enum member name ${"memberName"} is normalized to ${"normalizedName"} with "_" prefix.`
       }
     }
   },

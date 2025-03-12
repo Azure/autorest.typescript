@@ -8,7 +8,7 @@ using TypeSpec.Versioning;
 using Azure.Core;
 
 @useAuth(AzureAuth)
-@service({
+@service(#{
   title: "Azure Schema Registry",
 })
 
@@ -242,7 +242,7 @@ model SchemaHeaders {
 model SchemaId {
   @key("id")
   @doc("Schema ID that uniquely identifies a schema in the registry namespace.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   id: string;
 }
 
@@ -251,7 +251,7 @@ model SchemaId {
 model SchemaGroup {
   @key("groupName")
   @doc("Name of schema group.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   groupName: string;
 }
 
@@ -261,7 +261,7 @@ model SchemaGroup {
 model SchemaNameContent {
   @key("name")
   @doc("Name of schema.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   @maxLength(50)
   @pattern("^[A-Za-z0-9][^\\\\/$:]*$")
   name: string;
@@ -276,6 +276,6 @@ model SchemaNameContent {
 model Version {
   @key("schemaVersion")
   @doc("Version number of specific schema.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   schemaVersion: int32;
 }

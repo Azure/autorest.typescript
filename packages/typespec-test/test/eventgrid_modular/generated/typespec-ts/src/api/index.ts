@@ -7,6 +7,7 @@ export {
   EventGridClientOptionalParams,
 } from "./eventGridContext.js";
 export {
+  renewCloudEventLocks,
   rejectCloudEvents,
   releaseCloudEvents,
   acknowledgeCloudEvents,
@@ -15,6 +16,7 @@ export {
   publishCloudEvent,
 } from "./operations.js";
 export {
+  RenewCloudEventLocksOptionalParams,
   RejectCloudEventsOptionalParams,
   ReleaseCloudEventsOptionalParams,
   AcknowledgeCloudEventsOptionalParams,

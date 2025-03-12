@@ -32,7 +32,7 @@ describe("VersioningRemoved Rest Client", () => {
   it("versioning removed test modelV3", async () => {
     const result = await client1.modelV3({
       id: "123",
-      enumProp: "enumMemberV1",
+      enumProp: "enumMemberV1"
     });
     assert.strictEqual(result.id, "123");
     assert.strictEqual(result.enumProp, "enumMemberV1");
@@ -41,7 +41,7 @@ describe("VersioningRemoved Rest Client", () => {
   it("versioning removed test modelV3_V2", async () => {
     const result = await client2.modelV3({
       id: "123",
-      enumProp: "enumMemberV1",
+      enumProp: "enumMemberV1"
     });
     assert.strictEqual(result.id, "123");
     assert.strictEqual(result.enumProp, "enumMemberV1");
@@ -50,7 +50,7 @@ describe("VersioningRemoved Rest Client", () => {
   it("versioning removed test modelV33_V2preview", async () => {
     const result = await clientPreview.modelV3({
       id: "123",
-      enumProp: "enumMemberV1",
+      enumProp: "enumMemberV1"
     });
     assert.strictEqual(result.id, "123");
   });

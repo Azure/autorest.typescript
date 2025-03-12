@@ -1,6 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+export interface NormalizeNameOption {
+  shouldGuard?: boolean;
+  customReservedNames?: ReservedName[];
+  casingOverride?: CasingConvention;
+  numberPrefixOverride?: string;
+}
+
 export interface ReservedName {
   name: string;
   reservedFor: NameType[];
@@ -14,7 +21,8 @@ export enum NameType {
   Parameter,
   Operation,
   OperationGroup,
-  Method
+  Method,
+  EnumMemberName
 }
 
 const Newable = [NameType.Class, NameType.Interface, NameType.OperationGroup];
@@ -135,39 +143,103 @@ export function normalizeName(
   name: string,
   nameType: NameType,
   shouldGuard?: boolean,
-  customReservedNames: ReservedName[] = [],
+  customReservedNames?: ReservedName[],
   casingOverride?: CasingConvention
+): string;
+export function normalizeName(
+  name: string,
+  nameType: NameType,
+  options?: NormalizeNameOption
+): string;
+export function normalizeName(
+  name: string,
+  nameType: NameType,
+  optionsOrShouldGuard?: NormalizeNameOption | boolean,
+  optionalCustomReservedNames?: ReservedName[],
+  optionalCasingOverride?: CasingConvention
 ): string {
+  let shouldGuard: boolean | undefined,
+    customReservedNames: ReservedName[],
+    casingOverride: CasingConvention | undefined,
+    numberPrefixOverride: string | undefined;
+  if (typeof optionsOrShouldGuard === "boolean") {
+    shouldGuard = optionsOrShouldGuard;
+    customReservedNames = optionalCustomReservedNames ?? [];
+    casingOverride = optionalCasingOverride;
+  } else {
+    shouldGuard = optionsOrShouldGuard?.shouldGuard;
+    customReservedNames = optionsOrShouldGuard?.customReservedNames ?? [];
+    casingOverride = optionsOrShouldGuard?.casingOverride;
+    numberPrefixOverride = optionsOrShouldGuard?.numberPrefixOverride;
+  }
   if (name.startsWith("$DO_NOT_NORMALIZE$")) {
     return name.replace("$DO_NOT_NORMALIZE$", "");
   }
   const casingConvention = casingOverride ?? getCasingConvention(nameType);
-  const sanitizedName = sanitizeName(name);
-  const parts = getNameParts(sanitizedName);
+  const parts = deconstruct(name);
+  if (parts.length === 0) {
+    return name;
+  }
   const [firstPart, ...otherParts] = parts;
-  const normalizedFirstPart = toCasing(firstPart, casingConvention);
+  const normalizedFirstPart = toCasing(firstPart, casingConvention, true);
   const normalizedParts = (otherParts || [])
-    .map((part) =>
-      part === "null" ? part : toCasing(part, CasingConvention.Pascal)
-    )
+    .map((part) => toCasing(part, CasingConvention.Pascal))
     .join("");
 
-  const normalized = checkBeginning(`${normalizedFirstPart}${normalizedParts}`);
-  return shouldGuard
+  const normalized = `${normalizedFirstPart}${normalizedParts}`;
+  const result = shouldGuard
     ? guardReservedNames(normalized, nameType, customReservedNames)
     : normalized;
+  return fixLeadingNumber(result, nameType, numberPrefixOverride);
 }
 
-function checkBeginning(name: string): string {
-  if (name.startsWith("@")) {
-    return name.substring(1);
+export function fixLeadingNumber(
+  name: string,
+  nameType: NameType,
+  prefix: string = "_"
+): string {
+  const casingConvention = getCasingConvention(nameType);
+  if (!name || !name.match(/^[-.]?\d/)) {
+    return name;
   }
-  return name;
+  return `${toCasing(prefix, casingConvention)}${name}`;
 }
 
-function sanitizeName(name: string): string {
-  // Remove [, ], \, " and ' from name string
-  return name.replace(/["'\\[\]]+/g, "");
+function isFullyUpperCase(
+  identifier: string,
+  maxUppercasePreserve: number = 3
+) {
+  const len = identifier.length;
+  if (len > 1) {
+    if (
+      len <= maxUppercasePreserve &&
+      identifier === identifier.toUpperCase()
+    ) {
+      return true;
+    }
+
+    if (len <= maxUppercasePreserve + 1 && identifier.endsWith("s")) {
+      const i = identifier.substring(0, len - 1);
+      if (i.toUpperCase() === i) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+function deconstruct(identifier: string): Array<string> {
+  return `${identifier}`
+    .replace(/([a-z]+)([A-Z])/g, "$1 $2") // Add a space in between camelCase words(e.g. fooBar => foo Bar)
+    .replace(/(\d+)/g, " $1 ") // Adds a space after numbers(e.g. foo123Bar => foo123 bar)
+    .replace(/_/g, " ") // Replace underscores with spaces
+    .replace(/\b([A-Z]+)([A-Z])s([^a-z])(.*)/g, "$1$2« $3$4") // Add a space after a plural upper cased word(e.g. MBsFoo => MBs Foo)
+    .replace(/\b([A-Z]+)([A-Z])([a-z]+)/g, "$1 $2$3") // Add a space between an upper case word(2 char+) and the last captial case.(e.g. SQLConnection -> SQL Connection)
+    .replace(/«/g, "s")
+    .trim()
+    .split(/[\W|_]+/)
+    .map((each) => (isFullyUpperCase(each) ? each : each.toLowerCase()))
+    .filter((part) => !!part);
 }
 
 export function getModelsName(title: string): string {
@@ -185,6 +257,7 @@ function getCasingConvention(nameType: NameType) {
     case NameType.Class:
     case NameType.Interface:
     case NameType.OperationGroup:
+    case NameType.EnumMemberName:
       return CasingConvention.Pascal;
     case NameType.File:
     case NameType.Property:
@@ -195,28 +268,20 @@ function getCasingConvention(nameType: NameType) {
   }
 }
 
-/**
- * TODO: Improve this function to handle cases such as TEST -> test. Current basic implementation
- * results in TEST -> test or Test (depending on the CasingConvention). We should switch to relay
- * on Modeler four namer for this once it is stable
- */
-function toCasing(str: string, casing: CasingConvention): string {
-  let value = str;
-  if (value === value.toUpperCase()) {
-    value = str.toLowerCase();
-  }
-
+function toCasing(
+  str: string,
+  casing: CasingConvention,
+  keepConsistent = false
+): string {
   const firstChar =
     casing === CasingConvention.Pascal
-      ? value.charAt(0).toUpperCase()
-      : value.charAt(0).toLowerCase();
-  return `${firstChar}${value.substring(1)}`;
-}
-
-function getNameParts(name: string) {
-  const parts = name.split(/[-._ ]+/).filter((part) => part.trim().length > 0);
-
-  return parts.length > 0 ? parts : [name];
+      ? str.charAt(0).toUpperCase()
+      : str.charAt(0).toLowerCase();
+  const allLowerCases =
+    casing !== CasingConvention.Pascal &&
+    keepConsistent &&
+    str.toUpperCase() === str;
+  return allLowerCases ? str.toLowerCase() : `${firstChar}${str.substring(1)}`;
 }
 
 export function pascalCase(str: string) {

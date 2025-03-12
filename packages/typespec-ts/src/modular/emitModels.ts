@@ -8,7 +8,11 @@ import {
   StructureKind,
   TypeAliasDeclarationStructure
 } from "ts-morph";
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import {
+  fixLeadingNumber,
+  NameType,
+  normalizeName
+} from "@azure-tools/rlc-common";
 import {
   SdkArrayType,
   SdkBodyModelPropertyType,
@@ -38,10 +42,6 @@ import { SdkContext } from "../utils/interfaces.js";
 import { addDeclaration } from "../framework/declaration.js";
 import { buildModelDeserializer } from "./serialization/buildDeserializerFunction.js";
 import { buildModelSerializer } from "./serialization/buildSerializerFunction.js";
-import {
-  getTypeExpression,
-  normalizeModelPropertyName
-} from "./type-expressions/get-type-expression.js";
 import path from "path";
 import { refkey } from "../framework/refkey.js";
 import { useContext } from "../contextManager.js";
@@ -54,6 +54,10 @@ import { isExtensibleEnum } from "./type-expressions/get-enum-expression.js";
 import { isDiscriminatedUnion } from "./serialization/serializeUtils.js";
 import { reportDiagnostic } from "../lib.js";
 import { NoTarget } from "@typespec/compiler";
+import {
+  getTypeExpression,
+  normalizeModelPropertyName
+} from "./type-expressions/get-type-expression.js";
 import { emitQueue } from "../framework/hooks/sdkTypes.js";
 import { resolveReference } from "../framework/reference.js";
 import { MultipartHelpers } from "./static-helpers-metadata.js";
@@ -187,7 +191,11 @@ function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
     if (!(inputUsage || outputUsage || apiVersionEnumOnly || exceptionUsage)) {
       return;
     }
-    const [enumType, knownValuesEnum] = buildEnumTypes(context, type);
+    const [enumType, knownValuesEnum] = buildEnumTypes(
+      context,
+      type,
+      isExtensibleEnum(context, type)
+    );
     if (enumType.name.startsWith("_")) {
       // skip enum generation for internal enums
       return;
@@ -355,13 +363,16 @@ function buildNullableType(context: SdkContext, type: SdkNullableType) {
 
 export function buildEnumTypes(
   context: SdkContext,
-  type: SdkEnumType
+  type: SdkEnumType,
+  reportMemberNameDiagnostic = false // if reportMemberNameDiagnostic is true, it will report diagnostic for enum member name
 ): [TypeAliasDeclarationStructure, EnumDeclarationStructure] {
   const enumDeclaration: EnumDeclarationStructure = {
     kind: StructureKind.Enum,
     name: `Known${normalizeModelName(context, type)}`,
     isExported: true,
-    members: type.values.map(emitEnumMember)
+    members: type.values.map((value) =>
+      emitEnumMember(context, value, reportMemberNameDiagnostic)
+    )
   };
 
   const enumAsUnion: TypeAliasDeclarationStructure = {
@@ -405,10 +416,31 @@ function getExtensibleEnumDescription(model: SdkEnumType): string | undefined {
   ].join(" \n");
 }
 
-function emitEnumMember(member: SdkEnumValueType): EnumMemberStructure {
+function emitEnumMember(
+  context: SdkContext,
+  member: SdkEnumValueType,
+  reportMemberNameDiagnostic = false // if reportMemberNameDiagnostic is true, it will report diagnostic for enum member name
+): EnumMemberStructure {
+  const normalizedMemberName = context.rlcOptions?.ignoreEnumMemberNameNormalize
+    ? fixLeadingNumber(member.name, NameType.EnumMemberName) // need to fix the leading number also for enum member
+    : normalizeName(member.name, NameType.EnumMemberName, true);
+  if (
+    reportMemberNameDiagnostic &&
+    normalizedMemberName.toLowerCase().startsWith("_") &&
+    !member.name.toLowerCase().startsWith("_")
+  ) {
+    reportDiagnostic(context.program, {
+      code: "prefix-adding-in-enum-member",
+      format: {
+        memberName: member.name,
+        normalizedName: normalizedMemberName
+      },
+      target: NoTarget
+    });
+  }
   const memberStructure: EnumMemberStructure = {
     kind: StructureKind.EnumMember,
-    name: member.name,
+    name: normalizedMemberName,
     value: member.value
   };
 

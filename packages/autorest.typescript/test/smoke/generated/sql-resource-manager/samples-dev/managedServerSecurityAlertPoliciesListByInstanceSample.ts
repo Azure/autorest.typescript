@@ -27,7 +27,7 @@ async function getTheManagedServerThreatDetectionPolicies(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.managedServerSecurityAlertPolicies.listByInstance(
+  for await (const item of client.managedServerSecurityAlertPolicies.listByInstance(
     resourceGroupName,
     managedInstanceName,
   )) {

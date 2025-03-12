@@ -263,11 +263,12 @@ export function getClassicalOperation(
       propertyName?: string;
     }
   ) {
-    return (
+    return normalizeName(
       operationMap.get(declaration) ??
-      declaration.propertyName ??
-      declaration.name ??
-      "FIXME"
+        declaration.propertyName ??
+        declaration.name ??
+        "FIXME",
+      NameType.Method
     );
   }
 }

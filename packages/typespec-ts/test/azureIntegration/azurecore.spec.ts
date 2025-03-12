@@ -49,14 +49,12 @@ describe("Azure Core Rest Client", () => {
   });
 
   it("should patch user", async () => {
-    const result = await client
-      .path("/azure/core/basic/users/{id}", 1)
-      .patch({
-        contentType: "application/merge-patch+json",
-        body: {
-          name: "Madge"
-        }
-      });
+    const result = await client.path("/azure/core/basic/users/{id}", 1).patch({
+      contentType: "application/merge-patch+json",
+      body: {
+        name: "Madge"
+      }
+    });
     if (isUnexpected(result)) {
       throw Error("Unexpected status code");
     }

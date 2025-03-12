@@ -32,29 +32,55 @@ type EmitterFunction = (
  */
 const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
   // Snapshot of a particular interface named {name} in the models file
-  "(ts|typescript) models interface {name}": async (tsp, { name }, namedUnknownArgs) => {
-    const configs = namedUnknownArgs ? (namedUnknownArgs["configs"] as Record<string, string>) : {};
+  "(ts|typescript) models interface {name}": async (
+    tsp,
+    { name },
+    namedUnknownArgs
+  ) => {
+    const configs = namedUnknownArgs
+      ? (namedUnknownArgs["configs"] as Record<string, string>)
+      : {};
     const result = await emitModularModelsFromTypeSpec(tsp, configs);
-    return result!.getInterfaceOrThrow(name ?? "No name specified!").getFullText();
+    return result!
+      .getInterfaceOrThrow(name ?? "No name specified!")
+      .getFullText();
   },
 
   // Snapshot of a particular class named {name} in the models file
-  "(ts|typescript) models alias {name}": async (tsp, { name }, namedUnknownArgs) => {
-    const configs = namedUnknownArgs ? (namedUnknownArgs["configs"] as Record<string, string>) : {};
+  "(ts|typescript) models alias {name}": async (
+    tsp,
+    { name },
+    namedUnknownArgs
+  ) => {
+    const configs = namedUnknownArgs
+      ? (namedUnknownArgs["configs"] as Record<string, string>)
+      : {};
     const result = await emitModularModelsFromTypeSpec(tsp, configs);
     return result!.getTypeAlias(name ?? "No name specified!")!.getFullText();
   },
 
   // Snapshot of a particular enum named {name} in the models file
-  "(ts|typescript) models enum {name}": async (tsp, { name }, namedUnknownArgs) => {
-    const configs = namedUnknownArgs ? (namedUnknownArgs["configs"] as Record<string, string>) : {};
+  "(ts|typescript) models enum {name}": async (
+    tsp,
+    { name },
+    namedUnknownArgs
+  ) => {
+    const configs = namedUnknownArgs
+      ? (namedUnknownArgs["configs"] as Record<string, string>)
+      : {};
     const result = await emitModularModelsFromTypeSpec(tsp, configs);
     return result!.getEnum(name ?? "No name specified!")!.getFullText();
   },
 
   // Snapshot of a particular function named {name} in the models file
-  "(ts|typescript) models function {name}": async (tsp, { name }, namedUnknownArgs) => {
-    const configs = namedUnknownArgs ? (namedUnknownArgs["configs"] as Record<string, string>) : {};
+  "(ts|typescript) models function {name}": async (
+    tsp,
+    { name },
+    namedUnknownArgs
+  ) => {
+    const configs = namedUnknownArgs
+      ? (namedUnknownArgs["configs"] as Record<string, string>)
+      : {};
     const result = await emitModularModelsFromTypeSpec(tsp, configs);
 
     if (result === undefined) {
@@ -65,8 +91,10 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
   },
 
   // Snapshot of the entire models file
-  "(ts|typescript) models": async (tsp, { }, namedUnknownArgs) => {
-    const configs = namedUnknownArgs ? (namedUnknownArgs["configs"] as Record<string, string>) : {};
+  "(ts|typescript) models": async (tsp, {}, namedUnknownArgs) => {
+    const configs = namedUnknownArgs
+      ? (namedUnknownArgs["configs"] as Record<string, string>)
+      : {};
     const result = await emitModularModelsFromTypeSpec(tsp, configs);
 
     if (result === undefined) {
@@ -107,8 +135,10 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
 
   // Snapshot of the entire operations file for when there is only one operation group
   // If there is more than one operations group, currently we throw
-  "(ts|typescript) operations": async (tsp, { }, namedUnknownArgs) => {
-    const configs = namedUnknownArgs ? (namedUnknownArgs["configs"] as Record<string, string>) : {};
+  "(ts|typescript) operations": async (tsp, {}, namedUnknownArgs) => {
+    const configs = namedUnknownArgs
+      ? (namedUnknownArgs["configs"] as Record<string, string>)
+      : {};
     const result = await emitModularOperationsFromTypeSpec(tsp, configs);
     assert.equal(result?.length, 1, "Expected exactly 1 source file");
     return result![0]!.getFullText();
@@ -122,7 +152,7 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
     return result![0]!.getFunctionOrThrow(name!).getText();
   },
 
-  "(ts|typescript) samples": async (tsp, { }, namedUnknownArgs) => {
+  "(ts|typescript) samples": async (tsp, {}, namedUnknownArgs) => {
     if (!namedUnknownArgs || !namedUnknownArgs["examples"]) {
       throw new Error(`Expected 'examples' to be passed in as an argument`);
     }
@@ -139,15 +169,19 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
   },
 
   //Snapshot of the clientContext file for a given typespec
-  "(ts|typescript) clientContext": async (tsp, { }, namedUnknownArgs) => {
-    const configs = namedUnknownArgs ? (namedUnknownArgs["configs"] as Record<string, string>) : {};
+  "(ts|typescript) clientContext": async (tsp, {}, namedUnknownArgs) => {
+    const configs = namedUnknownArgs
+      ? (namedUnknownArgs["configs"] as Record<string, string>)
+      : {};
     const result = await emitModularClientContextFromTypeSpec(tsp, configs);
     return result!.getFullText()!;
   },
 
   //Snapshot of the classicClient file for a given typespec
-  "(ts|typescript) classicClient": async (tsp, { }, namedUnknownArgs) => {
-    const configs = namedUnknownArgs ? (namedUnknownArgs["configs"] as Record<string, string>) : {};
+  "(ts|typescript) classicClient": async (tsp, {}, namedUnknownArgs) => {
+    const configs = namedUnknownArgs
+      ? (namedUnknownArgs["configs"] as Record<string, string>)
+      : {};
     const result = await emitModularClientFromTypeSpec(tsp, configs);
     return result ? result!.getFullText()! : "";
   }
@@ -253,7 +287,11 @@ function describeScenarioFile(scenarioFile: string): void {
               writeFileSync(scenarioFile, writeScenarios(scenarios));
             }
 
-            await assertEqualContent(result, testCase.block.content, configs["ignoreWeirdLine"] as any === false ? false : true);
+            await assertEqualContent(
+              result,
+              testCase.block.content,
+              (configs["ignoreWeirdLine"] as any) === false ? false : true
+            );
           });
         }
       });

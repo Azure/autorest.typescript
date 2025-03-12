@@ -11,17 +11,17 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
-export interface AddOrUpdateBlockItemsOptionalParams extends OperationOptions {
+export interface AddOrUpdateBlocklistItemsOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface AddOrUpdateBlockItemsOptions {
-    blockItems: TextBlockItemInfo[];
+export interface AddOrUpdateTextBlocklistItemsOptions {
+    blocklistItems: TextBlocklistItem[];
 }
 
 // @public
-export interface AddOrUpdateBlockItemsResult {
-    value?: TextBlockItem[];
+export interface AddOrUpdateTextBlocklistItemsResult {
+    blocklistItems: TextBlocklistItem[];
 }
 
 // @public
@@ -36,11 +36,11 @@ export interface AnalyzeImageOptions {
 }
 
 // @public
-export type AnalyzeImageOutputType = "FourLevels";
+export type AnalyzeImageOutputType = "FourSeverityLevels";
 
 // @public
 export interface AnalyzeImageResult {
-    analyzeResults: ImageAnalyzeSeverityResult[];
+    categoriesAnalysis: ImageCategoriesAnalysis[];
 }
 
 // @public
@@ -50,35 +50,37 @@ export interface AnalyzeTextOptionalParams extends OperationOptions {
 // @public
 export interface AnalyzeTextOptions {
     blocklistNames?: string[];
-    breakByBlocklists?: boolean;
     categories?: TextCategory[];
+    haltOnBlocklistHit?: boolean;
     outputType?: AnalyzeTextOutputType;
     text: string;
 }
 
 // @public
-export type AnalyzeTextOutputType = "FourLevels" | "EightLevels";
+export type AnalyzeTextOutputType = "FourSeverityLevels" | "EightSeverityLevels";
 
 // @public
 export interface AnalyzeTextResult {
-    analyzeResults: TextAnalyzeSeverityResult[];
-    blocklistsMatchResults?: TextBlocklistMatchResult[];
+    blocklistsMatch?: TextBlocklistMatch[];
+    categoriesAnalysis: TextCategoriesAnalysis[];
 }
 
 // @public (undocumented)
 export class ContentSafetyClient {
     constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: ContentSafetyClientOptionalParams);
-    addOrUpdateBlockItems(blocklistName: string, body: AddOrUpdateBlockItemsOptions, options?: AddOrUpdateBlockItemsOptionalParams): Promise<AddOrUpdateBlockItemsResult>;
+    addOrUpdateBlocklistItems(blocklistName: string, body: AddOrUpdateTextBlocklistItemsOptions, options?: AddOrUpdateBlocklistItemsOptionalParams): Promise<AddOrUpdateTextBlocklistItemsResult>;
     analyzeImage(body: AnalyzeImageOptions, options?: AnalyzeImageOptionalParams): Promise<AnalyzeImageResult>;
     analyzeText(body: AnalyzeTextOptions, options?: AnalyzeTextOptionalParams): Promise<AnalyzeTextResult>;
     createOrUpdateTextBlocklist(blocklistName: string, resource: TextBlocklist, options?: CreateOrUpdateTextBlocklistOptionalParams): Promise<TextBlocklist>;
     deleteTextBlocklist(blocklistName: string, options?: DeleteTextBlocklistOptionalParams): Promise<void>;
+    detectTextProtectedMaterial(body: DetectTextProtectedMaterialOptions, options?: DetectTextProtectedMaterialOptionalParams): Promise<DetectTextProtectedMaterialResult>;
     getTextBlocklist(blocklistName: string, options?: GetTextBlocklistOptionalParams): Promise<TextBlocklist>;
-    getTextBlocklistItem(blocklistName: string, blockItemId: string, options?: GetTextBlocklistItemOptionalParams): Promise<TextBlockItem>;
-    listTextBlocklistItems(blocklistName: string, options?: ListTextBlocklistItemsOptionalParams): PagedAsyncIterableIterator<TextBlockItem>;
+    getTextBlocklistItem(blocklistName: string, blocklistItemId: string, options?: GetTextBlocklistItemOptionalParams): Promise<TextBlocklistItem>;
+    listTextBlocklistItems(blocklistName: string, options?: ListTextBlocklistItemsOptionalParams): PagedAsyncIterableIterator<TextBlocklistItem>;
     listTextBlocklists(options?: ListTextBlocklistsOptionalParams): PagedAsyncIterableIterator<TextBlocklist>;
     readonly pipeline: Pipeline;
-    removeBlockItems(blocklistName: string, body: RemoveBlockItemsOptions, options?: RemoveBlockItemsOptionalParams): Promise<void>;
+    removeBlocklistItems(blocklistName: string, body: RemoveTextBlocklistItemsOptions, options?: RemoveBlocklistItemsOptionalParams): Promise<void>;
+    shieldPrompt(body: ShieldPromptOptions, options?: ShieldPromptOptionalParams): Promise<ShieldPromptResult>;
 }
 
 // @public
@@ -100,6 +102,25 @@ export interface DeleteTextBlocklistOptionalParams extends OperationOptions {
 }
 
 // @public
+export interface DetectTextProtectedMaterialOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface DetectTextProtectedMaterialOptions {
+    text: string;
+}
+
+// @public
+export interface DetectTextProtectedMaterialResult {
+    protectedMaterialAnalysis: TextProtectedMaterialAnalysisResult;
+}
+
+// @public
+export interface DocumentInjectionAnalysisResult {
+    attackDetected: boolean;
+}
+
+// @public
 export interface GetTextBlocklistItemOptionalParams extends OperationOptions {
 }
 
@@ -108,7 +129,7 @@ export interface GetTextBlocklistOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface ImageAnalyzeSeverityResult {
+export interface ImageCategoriesAnalysis {
     category: ImageCategory;
     severity?: number;
 }
@@ -125,7 +146,9 @@ export interface ImageData {
 // @public
 export enum KnownVersions {
     // (undocumented)
-    v2023_10_01 = "2023-10-01"
+    V20231001 = "2023-10-01",
+    // (undocumented)
+    V20240901 = "2024-09-01"
 }
 
 // @public
@@ -152,31 +175,28 @@ export interface PageSettings {
 }
 
 // @public
-export interface RemoveBlockItemsOptionalParams extends OperationOptions {
+export interface RemoveBlocklistItemsOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface RemoveBlockItemsOptions {
-    blockItemIds: string[];
+export interface RemoveTextBlocklistItemsOptions {
+    blocklistItemIds: string[];
 }
 
 // @public
-export interface TextAnalyzeSeverityResult {
-    category: TextCategory;
-    severity?: number;
+export interface ShieldPromptOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface TextBlockItem {
-    blockItemId: string;
-    description?: string;
-    text: string;
+export interface ShieldPromptOptions {
+    documents?: string[];
+    userPrompt?: string;
 }
 
 // @public
-export interface TextBlockItemInfo {
-    description?: string;
-    text: string;
+export interface ShieldPromptResult {
+    documentsAnalysis?: DocumentInjectionAnalysisResult[];
+    userPromptAnalysis?: UserPromptInjectionAnalysisResult;
 }
 
 // @public
@@ -186,14 +206,38 @@ export interface TextBlocklist {
 }
 
 // @public
-export interface TextBlocklistMatchResult {
-    blockItemId: string;
-    blockItemText: string;
+export interface TextBlocklistItem {
+    readonly blocklistItemId: string;
+    description?: string;
+    isRegex?: boolean;
+    text: string;
+}
+
+// @public
+export interface TextBlocklistMatch {
+    blocklistItemId: string;
+    blocklistItemText: string;
     blocklistName: string;
 }
 
 // @public
+export interface TextCategoriesAnalysis {
+    category: TextCategory;
+    severity?: number;
+}
+
+// @public
 export type TextCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
+
+// @public
+export interface TextProtectedMaterialAnalysisResult {
+    detected: boolean;
+}
+
+// @public
+export interface UserPromptInjectionAnalysisResult {
+    attackDetected: boolean;
+}
 
 // (No @packageDocumentation comment for this package)
 

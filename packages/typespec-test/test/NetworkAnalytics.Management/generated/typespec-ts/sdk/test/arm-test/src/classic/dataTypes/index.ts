@@ -10,6 +10,13 @@ import {
   update,
   get,
   create,
+  DataTypesListByDataProductOptionalParams,
+  DataTypesGenerateStorageContainerSasTokenOptionalParams,
+  DataTypesDeleteDataOptionalParams,
+  DataTypesDeleteOptionalParams,
+  DataTypesUpdateOptionalParams,
+  DataTypesGetOptionalParams,
+  DataTypesCreateOptionalParams,
 } from "../../api/dataTypes/index.js";
 import {
   DataType,
@@ -19,15 +26,6 @@ import {
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
-import {
-  DataTypesListByDataProductOptionalParams,
-  DataTypesGenerateStorageContainerSasTokenOptionalParams,
-  DataTypesDeleteDataOptionalParams,
-  DataTypesDeleteOptionalParams,
-  DataTypesUpdateOptionalParams,
-  DataTypesGetOptionalParams,
-  DataTypesCreateOptionalParams,
-} from "../../api/options.js";
 
 /** Interface representing a DataTypes operations. */
 export interface DataTypesOperations {
