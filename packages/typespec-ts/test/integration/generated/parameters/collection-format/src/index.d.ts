@@ -5,10 +5,6 @@ import type { RawHttpHeadersInput } from '@typespec/ts-http-runtime';
 import type { RequestParameters } from '@typespec/ts-http-runtime';
 import type { StreamableMethod } from '@typespec/ts-http-runtime';
 
-export declare function buildCsvCollection(items: string[] | number[]): string;
-
-export declare function buildMultiCollection(items: string[], parameterName: string): string;
-
 export declare type CollectionFormatClient = Client & {
     path: Routes;
 };
@@ -96,7 +92,7 @@ export declare interface QueryPipes204Response extends HttpResponse {
 export declare interface QueryPipesColorsQueryParam {
     value: string[];
     explode: false;
-    style: "pipeDelimited";
+    style: "form";
 }
 
 export declare type QueryPipesParameters = QueryPipesQueryParam & RequestParameters;
@@ -106,7 +102,7 @@ export declare interface QueryPipesQueryParam {
 }
 
 export declare interface QueryPipesQueryParamProperties {
-    colors: QueryPipesColorsQueryParam;
+    colors: string[] | QueryPipesColorsQueryParam;
 }
 
 export declare interface QuerySsv {
@@ -120,7 +116,7 @@ export declare interface QuerySsv204Response extends HttpResponse {
 export declare interface QuerySsvColorsQueryParam {
     value: string[];
     explode: false;
-    style: "spaceDelimited";
+    style: "form";
 }
 
 export declare type QuerySsvParameters = QuerySsvQueryParam & RequestParameters;
@@ -130,7 +126,7 @@ export declare interface QuerySsvQueryParam {
 }
 
 export declare interface QuerySsvQueryParamProperties {
-    colors: QuerySsvColorsQueryParam;
+    colors: string[] | QuerySsvColorsQueryParam;
 }
 
 export declare interface QueryTsv {
@@ -141,6 +137,12 @@ export declare interface QueryTsv204Response extends HttpResponse {
     status: "204";
 }
 
+export declare interface QueryTsvColorsQueryParam {
+    value: string[];
+    explode: false;
+    style: "form";
+}
+
 export declare type QueryTsvParameters = QueryTsvQueryParam & RequestParameters;
 
 export declare interface QueryTsvQueryParam {
@@ -148,7 +150,7 @@ export declare interface QueryTsvQueryParam {
 }
 
 export declare interface QueryTsvQueryParamProperties {
-    colors: string;
+    colors: string[] | QueryTsvColorsQueryParam;
 }
 
 export declare interface Routes {

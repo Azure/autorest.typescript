@@ -293,7 +293,7 @@ stages:
           - script: npm run check-format
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
             displayName: "Format check for TypeSpec emitter"
-          - script: export NODE_OPTIONS=--max_old_space_size=4096 && npm run test:standard
+          - script: npm run test:standard
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
             displayName: "Generate standard Test Clients from Spector"
           - script: npm run check:tree

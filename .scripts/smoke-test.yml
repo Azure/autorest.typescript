@@ -8,10 +8,10 @@ jobs:
       - template: globals.yml
     strategy:
       matrix:
-        Linux_Node22:
+        Linux_Node18:
           Pool: azsdk-pool-mms-ubuntu-2004-general
           OSVmImage: "ubuntu-20.04"
-          NodeTestVersion: "22.x"
+          NodeTestVersion: "18.x"
     pool:
       name: $[coalesce(variables['Pool'], '')]
       vmImage: $[coalesce(variables['OSVmImage'], '')]

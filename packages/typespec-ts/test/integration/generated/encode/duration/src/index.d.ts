@@ -5,8 +5,6 @@ import type { RawHttpHeadersInput } from '@typespec/ts-http-runtime';
 import type { RequestParameters } from '@typespec/ts-http-runtime';
 import type { StreamableMethod } from '@typespec/ts-http-runtime';
 
-export declare function buildCsvCollection(items: string[] | number[]): string;
-
 declare function createClient(options?: DurationClientOptions): DurationClient;
 export default createClient;
 
