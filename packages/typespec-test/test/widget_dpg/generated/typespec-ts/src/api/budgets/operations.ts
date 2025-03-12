@@ -38,6 +38,7 @@ export function _getBudgetsSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path(path)
     .get({

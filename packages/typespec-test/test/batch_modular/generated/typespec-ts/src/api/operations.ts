@@ -553,6 +553,7 @@ export function _listNodeExtensionsSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path(path)
     .get({
@@ -4035,6 +4036,7 @@ export function _listJobPreparationAndReleaseTaskStatusSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path(path)
     .get({
@@ -5062,6 +5064,7 @@ export function _listSupportedImagesSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path(path)
     .get({

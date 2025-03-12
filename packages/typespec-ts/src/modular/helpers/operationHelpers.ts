@@ -95,7 +95,7 @@ export function getSendPrivateFunction(
     (p) => p.onClient && p.kind === "query" && p.isApiVersionParam
   );
   const hasClientApiVersion = client.clientInitialization.parameters.some(
-    (p) => p.isApiVersionParam && p.onClient && p.kind === "method"
+    (p) => p.isApiVersionParam && p.onClient && p.kind === "apiVersion"
   );
   const statements: string[] = [];
   let pathStr = `"${operationPath}"`;

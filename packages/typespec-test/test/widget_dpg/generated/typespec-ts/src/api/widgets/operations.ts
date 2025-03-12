@@ -56,6 +56,7 @@ export function _analyzeWidgetSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path(path)
     .post({
@@ -104,6 +105,7 @@ export function _deleteWidgetSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path(path)
     .delete({
@@ -152,6 +154,7 @@ export function _updateWidgetSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path(path)
     .patch({
@@ -258,6 +261,7 @@ export function _createWidgetSend(
   color: "red" | "blue",
   options: WidgetsCreateWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path("/widgets")
     .post({
@@ -314,6 +318,7 @@ export function _getWidgetSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path(path)
     .get({
@@ -364,6 +369,7 @@ export function _queryWidgetsPagesSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path(path)
     .post({
@@ -419,6 +425,7 @@ export function _listWidgetsPagesSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path(path)
     .get({
@@ -467,6 +474,7 @@ export function _listWidgetsSend(
   utcDateHeader: Date,
   options: WidgetsListWidgetsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context.path("/widgets").get({
     ...operationOptionsToRequestParameters(options),
     headers: {
