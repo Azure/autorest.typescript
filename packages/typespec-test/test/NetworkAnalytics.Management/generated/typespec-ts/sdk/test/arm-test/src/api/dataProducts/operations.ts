@@ -3,10 +3,10 @@
 
 import { NetworkAnalyticsApiContext as Client } from "../index.js";
 import {
+  errorResponseDeserializer,
   DataProduct,
   dataProductSerializer,
   dataProductDeserializer,
-  errorResponseDeserializer,
   DataProductUpdate,
   dataProductUpdateSerializer,
   AccountSas,

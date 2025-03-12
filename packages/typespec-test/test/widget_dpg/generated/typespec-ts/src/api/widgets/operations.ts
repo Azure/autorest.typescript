@@ -3,15 +3,15 @@
 
 import { WidgetServiceContext as Client } from "../index.js";
 import {
-  User,
-  userSerializer,
-  userDeserializer,
   Widget,
   widgetDeserializer,
   widgetErrorDeserializer,
   _ListWidgetsPagesResults,
   _listWidgetsPagesResultsDeserializer,
   widgetArrayDeserializer,
+  User,
+  userSerializer,
+  userDeserializer,
   AnalyzeResult,
   analyzeResultDeserializer,
 } from "../../models/models.js";
@@ -19,8 +19,8 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
-import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { buildCsvCollection } from "../../static-helpers/serialization/build-csv-collection.js";
 import {
   StreamableMethod,
