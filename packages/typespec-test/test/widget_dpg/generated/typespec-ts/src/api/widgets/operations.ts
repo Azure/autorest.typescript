@@ -3,15 +3,15 @@
 
 import { WidgetServiceContext as Client } from "../index.js";
 import {
+  User,
+  userSerializer,
+  userDeserializer,
   Widget,
   widgetDeserializer,
   widgetErrorDeserializer,
   _ListWidgetsPagesResults,
   _listWidgetsPagesResultsDeserializer,
   widgetArrayDeserializer,
-  User,
-  userSerializer,
-  userDeserializer,
   AnalyzeResult,
   analyzeResultDeserializer,
 } from "../../models/models.js";

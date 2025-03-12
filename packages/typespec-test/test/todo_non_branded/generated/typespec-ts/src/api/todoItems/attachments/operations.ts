@@ -2,6 +2,11 @@
 
 import { TodoContext as Client } from "../../index.js";
 import {
+  notFoundErrorResponseDeserializer,
+  _PageTodoAttachment,
+  _pageTodoAttachmentDeserializer,
+} from "../../../models/todoItems/models.js";
+import {
   standard4XXResponseDeserializer,
   standard5XXResponseDeserializer,
   TodoAttachment,
@@ -9,11 +14,6 @@ import {
   FileAttachmentMultipartRequest,
   fileAttachmentMultipartRequestSerializer,
 } from "../../../models/models.js";
-import {
-  notFoundErrorResponseDeserializer,
-  _PageTodoAttachment,
-  _pageTodoAttachmentDeserializer,
-} from "../../../models/todoItems/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
