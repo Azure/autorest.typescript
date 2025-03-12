@@ -537,7 +537,7 @@ export function _listNodeExtensionsSend(
   options: ListNodeExtensionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/pools/{poolId}/nodes/{nodeId}/extensions{?maxresults,timeOut,$select*}",
+    "/pools/{poolId}/nodes/{nodeId}/extensions{?maxresults,timeOut,$select}",
     {
       poolId: poolId,
       nodeId: nodeId,
@@ -614,7 +614,7 @@ export function _getNodeExtensionSend(
   options: GetNodeExtensionOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/pools/{poolId}/nodes/{nodeId}/extensions/{extensionName}{?api-version,timeOut,$select*}",
+    "/pools/{poolId}/nodes/{nodeId}/extensions/{extensionName}{?api-version,timeOut,$select}",
     {
       poolId: poolId,
       nodeId: nodeId,
@@ -692,7 +692,7 @@ export function _listNodesSend(
   options: ListNodesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/pools/{poolId}/nodes{?api-version,maxresults,timeOut,$filter,$select*}",
+    "/pools/{poolId}/nodes{?api-version,maxresults,timeOut,$filter,$select}",
     {
       poolId: poolId,
       "api-version": context.apiVersion,
@@ -1300,7 +1300,7 @@ export function _getNodeSend(
   options: GetNodeOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/pools/{poolId}/nodes/{nodeId}{?api-version,timeOut,$select*}",
+    "/pools/{poolId}/nodes/{nodeId}{?api-version,timeOut,$select}",
     {
       poolId: poolId,
       nodeId: nodeId,
@@ -2128,7 +2128,7 @@ export function _listSubTasksSend(
   options: ListSubTasksOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/jobs/{jobId}/tasks/{taskId}/subtasksinfo{?api-version,timeOut,$select*}",
+    "/jobs/{jobId}/tasks/{taskId}/subtasksinfo{?api-version,timeOut,$select}",
     {
       jobId: jobId,
       taskId: taskId,
@@ -2289,7 +2289,7 @@ export function _getTaskSend(
   options: GetTaskOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/jobs/{jobId}/tasks/{taskId}{?api-version,timeOut,$select*,$expand*}",
+    "/jobs/{jobId}/tasks/{taskId}{?api-version,timeOut,$select,$expand}",
     {
       jobId: jobId,
       taskId: taskId,
@@ -2567,7 +2567,7 @@ export function _listTasksSend(
   options: ListTasksOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/jobs/{jobId}/tasks{?api-version,maxresults,timeOut,$filter,$select*,$expand*}",
+    "/jobs/{jobId}/tasks{?api-version,maxresults,timeOut,$filter,$select,$expand}",
     {
       jobId: jobId,
       "api-version": context.apiVersion,
@@ -2721,7 +2721,7 @@ export function _listJobSchedulesSend(
   options: ListJobSchedulesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/jobschedules{?api-version,maxresults,timeOut,$filter,$select*,$expand*}",
+    "/jobschedules{?api-version,maxresults,timeOut,$filter,$select,$expand}",
     {
       "api-version": context.apiVersion,
       maxresults: options?.maxresults,
@@ -3312,7 +3312,7 @@ export function _getJobScheduleSend(
   options: GetJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/jobschedules/{jobScheduleId}{?api-version,timeOut,$select*,$expand*}",
+    "/jobschedules/{jobScheduleId}{?api-version,timeOut,$select,$expand}",
     {
       jobScheduleId: jobScheduleId,
       "api-version": context.apiVersion,
@@ -3578,7 +3578,7 @@ export function _getCertificateSend(
   options: GetCertificateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint}){?api-version,timeOut,$select*}",
+    "/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint}){?api-version,timeOut,$select}",
     {
       thumbprintAlgorithm: thumbprintAlgorithm,
       thumbprint: thumbprint,
@@ -3812,7 +3812,7 @@ export function _listCertificatesSend(
   options: ListCertificatesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/certificates{?api-version,maxresults,timeOut,$filter,$select*}",
+    "/certificates{?api-version,maxresults,timeOut,$filter,$select}",
     {
       "api-version": context.apiVersion,
       maxresults: options?.maxresults,
@@ -4019,7 +4019,7 @@ export function _listJobPreparationAndReleaseTaskStatusSend(
   },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/jobs/{jobId}/jobpreparationandreleasetaskstatus{?maxresults,timeOut,$filter,$select*}",
+    "/jobs/{jobId}/jobpreparationandreleasetaskstatus{?maxresults,timeOut,$filter,$select}",
     {
       jobId: jobId,
       maxresults: options?.maxresults,
@@ -4104,7 +4104,7 @@ export function _listJobsFromScheduleSend(
   options: ListJobsFromScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/jobschedules/{jobScheduleId}/jobs{?api-version,maxresults,timeOut,$filter,$select*,$expand*}",
+    "/jobschedules/{jobScheduleId}/jobs{?api-version,maxresults,timeOut,$filter,$select,$expand}",
     {
       jobScheduleId: jobScheduleId,
       "api-version": context.apiVersion,
@@ -4183,7 +4183,7 @@ export function _listJobsSend(
   options: ListJobsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/jobs{?api-version,maxresults,timeOut,$filter,$select*,$expand*}",
+    "/jobs{?api-version,maxresults,timeOut,$filter,$select,$expand}",
     {
       "api-version": context.apiVersion,
       maxresults: options?.maxresults,
@@ -4797,7 +4797,7 @@ export function _getJobSend(
   options: GetJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/jobs/{jobId}{?api-version,timeOut,$select*,$expand*}",
+    "/jobs/{jobId}{?api-version,timeOut,$select,$expand}",
     {
       jobId: jobId,
       "api-version": context.apiVersion,
@@ -5796,7 +5796,7 @@ export function _getPoolSend(
   options: GetPoolOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/pools/{poolId}{?api-version,timeOut,$select*,$expand*}",
+    "/pools/{poolId}{?api-version,timeOut,$select,$expand}",
     {
       poolId: poolId,
       "api-version": context.apiVersion,
@@ -6067,7 +6067,7 @@ export function _listPoolsSend(
   options: ListPoolsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/pools{?api-version,maxresults,timeOut,$filter,$select*,$expand*}",
+    "/pools{?api-version,maxresults,timeOut,$filter,$select,$expand}",
     {
       "api-version": context.apiVersion,
       maxresults: options?.maxresults,

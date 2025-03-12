@@ -6,11 +6,11 @@ import type { Widget } from "./models.js";
 
 export type GetWidgetParameters = RequestParameters;
 export type GetWidgetOperationStatusParameters = RequestParameters;
-/** The resource instance. */
+/** A widget. */
 export type WidgetResourceMergeAndPatch = Partial<Widget>;
 
 export interface CreateOrUpdateWidgetBodyParam {
-  /** The resource instance. */
+  /** A widget. */
   body: WidgetResourceMergeAndPatch;
 }
 

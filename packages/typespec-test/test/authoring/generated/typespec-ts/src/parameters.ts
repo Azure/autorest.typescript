@@ -9,11 +9,11 @@ import type {
   SwapDeploymentsOptions,
 } from "./models.js";
 
-/** The resource instance. */
+/** The details of a project. */
 export type ProjectResourceMergeAndPatch = Partial<Project>;
 
 export interface CreateOrUpdateBodyParam {
-  /** The resource instance. */
+  /** The details of a project. */
   body: ProjectResourceMergeAndPatch;
 }
 
@@ -42,7 +42,7 @@ export type ExportParameters = ExportQueryParam & RequestParameters;
 export type ImportxParameters = RequestParameters;
 
 export interface TrainBodyParam {
-  /** The body of the request. */
+  /** Training job parameters. */
   body: TrainingJobOptions;
 }
 
@@ -50,7 +50,7 @@ export type TrainParameters = TrainBodyParam & RequestParameters;
 export type GetDeploymentParameters = RequestParameters;
 
 export interface DeployProjectBodyParam {
-  /** The resource instance. */
+  /** The details of a project deployment. */
   body: Deployment;
 }
 
@@ -60,7 +60,7 @@ export type DeleteDeploymentParameters = RequestParameters;
 export type ListDeploymentsParameters = RequestParameters;
 
 export interface SwapDeploymentsBodyParam {
-  /** The body schema of the operation. */
+  /** Swap deployment options. */
   body: SwapDeploymentsOptions;
 }
 

@@ -88,7 +88,7 @@ describe("bytes", () => {
     });
 
     // TODO: need to figure out the behavior
-    it.skip("@encode('base64') - should be treated as string?", async () => { });
+    it.skip("@encode('base64') - should be treated as string?", async () => {});
     it.skip("bytes in model - should be treated as base64 string?");
   });
   describe("application/json or no content type specified", () => {

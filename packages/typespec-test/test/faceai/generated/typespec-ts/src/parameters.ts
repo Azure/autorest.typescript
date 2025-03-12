@@ -77,7 +77,7 @@ export type DetectFromUrlParameters = DetectFromUrlQueryParam &
 
 export interface DetectBodyParam {
   /**
-   * The input image binary.
+   * Represent a byte array
    *
    * Value may contain any sequence of octets
    */
@@ -387,7 +387,7 @@ export type AddFaceListFaceFromUrlParameters =
 
 export interface AddFaceListFaceBodyParam {
   /**
-   * The image to be analyzed
+   * Represent a byte array
    *
    * Value may contain any sequence of octets
    */
@@ -519,7 +519,7 @@ export type AddLargeFaceListFaceFromUrlParameters =
 
 export interface AddLargeFaceListFaceBodyParam {
   /**
-   * The image to be analyzed
+   * Represent a byte array
    *
    * Value may contain any sequence of octets
    */
@@ -703,7 +703,7 @@ export type AddPersonGroupPersonFaceFromUrlParameters =
 
 export interface AddPersonGroupPersonFaceBodyParam {
   /**
-   * The image to be analyzed
+   * Represent a byte array
    *
    * Value may contain any sequence of octets
    */
@@ -876,7 +876,7 @@ export type AddLargePersonGroupPersonFaceFromUrlParameters =
 
 export interface AddLargePersonGroupPersonFaceBodyParam {
   /**
-   * The image to be analyzed
+   * Represent a byte array
    *
    * Value may contain any sequence of octets
    */
@@ -935,7 +935,7 @@ export type UpdateLargePersonGroupPersonFaceParameters =
   UpdateLargePersonGroupPersonFaceBodyParam & RequestParameters;
 
 export interface CreateLivenessSessionBeforeV12BodyParam {
-  /** Body parameter. */
+  /** Request model for creating liveness session. */
   body: CreateLivenessSessionContent;
 }
 
@@ -973,7 +973,7 @@ export type GetLivenessSessionAuditEntriesParameters =
   GetLivenessSessionAuditEntriesQueryParam & RequestParameters;
 
 export interface CreateLivenessWithVerifySessionWithVerifyImageBodyParam {
-  /** Request content of liveness with verify session creation. */
+  /** Request of liveness with verify session creation. */
   body: CreateLivenessWithVerifySessionMultipartContent;
 }
 
@@ -988,7 +988,7 @@ export type CreateLivenessWithVerifySessionWithVerifyImageParameters =
     RequestParameters;
 
 export interface CreateLivenessWithVerifySessionBeforeV12BodyParam {
-  /** Body parameter. */
+  /** Request for creating liveness with verify session. */
   body: CreateLivenessWithVerifySessionJsonContent;
 }
 
@@ -1029,7 +1029,7 @@ export type GetLivenessWithVerifySessionAuditEntriesParameters =
 export type GetSessionImageBeforeV12Parameters = RequestParameters;
 
 export interface CreateLivenessSessionBodyParam {
-  /** Body parameter. */
+  /** Request model for creating liveness session. */
   body: CreateLivenessSessionContent;
 }
 
@@ -1039,7 +1039,7 @@ export type DeleteLivenessSessionParameters = RequestParameters;
 export type GetLivenessSessionResultParameters = RequestParameters;
 
 export interface CreateLivenessWithVerifySessionBodyParam {
-  /** Request content of liveness with verify session creation. */
+  /** Request of liveness with verify session creation. */
   body: CreateLivenessWithVerifySessionContent;
 }
 
@@ -1099,7 +1099,7 @@ export type GetDynamicPersonGroupReferencesParameters =
 
 export interface AddPersonFaceBodyParam {
   /**
-   * The image to be analyzed
+   * Represent a byte array
    *
    * Value may contain any sequence of octets
    */
