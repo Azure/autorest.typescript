@@ -793,7 +793,7 @@ export const azureModularTsps = [
     inputPath: "client/namespace"
   },
   {
-    outputPath: "client/enableModeNamespace",
+    outputPath: "client/enableModelNamespace",
     inputPath: "client/namespace"
   }
 ];

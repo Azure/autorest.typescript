@@ -12,16 +12,12 @@ describe("RoutesClient Rest Client", () => {
   });
 
   it("should have Routes InInterface", async () => {
-    const result = await client
-      .path("/routes/fixed")
-      .get();
+    const result = await client.path("/routes/fixed").get();
     assert.strictEqual(result.status, "204");
   });
 
   it("should have Routes fixed", async () => {
-    const result = await client
-      .path("/routes/in-interface/fixed")
-      .get();
+    const result = await client.path("/routes/in-interface/fixed").get();
     assert.strictEqual(result.status, "204");
   });
 
