@@ -1506,28 +1506,37 @@ model Cat extends Pet {
     kind: "cat";
     meow: int32;
 }
-model Dog extends Pet {
+model PSDog extends Pet {
     kind: "dog";
     bark: string;
 }
-op read(): { @body body: Cat };
+op read(@body body: PSDog): { @body body: PSDog };
 ```
 
 ## Models
 
 ```ts models
-/** model interface Cat */
-export interface Cat extends Pet {
-  kind: "cat";
-  meow: number;
+/** model interface PSDog */
+export interface PSDog extends Pet {
+  kind: "dog";
+  bark: string;
 }
 
-export function catDeserializer(item: any): Cat {
+export function psDogSerializer(item: PSDog): any {
   return {
     kind: item["kind"],
     name: item["name"],
     weight: item["weight"],
-    meow: item["meow"],
+    bark: item["bark"],
+  };
+}
+
+export function psDogDeserializer(item: any): PSDog {
+  return {
+    kind: item["kind"],
+    name: item["name"],
+    weight: item["weight"],
+    bark: item["bark"],
   };
 }
 
@@ -1536,6 +1545,10 @@ export interface Pet {
   kind: string;
   name: string;
   weight?: number;
+}
+
+export function petSerializer(item: Pet): any {
+  return { kind: item["kind"], name: item["name"], weight: item["weight"] };
 }
 
 export function petDeserializer(item: any): Pet {
@@ -1547,12 +1560,22 @@ export function petDeserializer(item: any): Pet {
 }
 
 /** Alias for PetUnion */
-export type PetUnion = Cat | Pet;
+export type PetUnion = PSDog | Pet;
+
+export function petUnionSerializer(item: PetUnion): any {
+  switch (item.kind) {
+    case "dog":
+      return psDogSerializer(item as PSDog);
+
+    default:
+      return petSerializer(item);
+  }
+}
 
 export function petUnionDeserializer(item: any): PetUnion {
   switch (item.kind) {
-    case "cat":
-      return catDeserializer(item as Cat);
+    case "dog":
+      return psDogDeserializer(item as PSDog);
 
     default:
       return petDeserializer(item);
@@ -1564,7 +1587,7 @@ export function petUnionDeserializer(item: any): PetUnion {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { Cat, catDeserializer } from "../models/models.js";
+import { PSDog, psDogSerializer, psDogDeserializer } from "../models/models.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -1574,35 +1597,39 @@ import {
 
 export function _readSend(
   context: Client,
+  body: PSDog,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/")
-    .get({
+    .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
+      body: psDogSerializer(body),
     });
 }
 
 export async function _readDeserialize(
   result: PathUncheckedResponse,
-): Promise<Cat> {
+): Promise<PSDog> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return catDeserializer(result.body);
+  return psDogDeserializer(result.body);
 }
 
 export async function read(
   context: Client,
+  body: PSDog,
   options: ReadOptionalParams = { requestOptions: {} },
-): Promise<Cat> {
-  const result = await _readSend(context, options);
+): Promise<PSDog> {
+  const result = await _readSend(context, body, options);
   return _readDeserialize(result);
 }
 ```
