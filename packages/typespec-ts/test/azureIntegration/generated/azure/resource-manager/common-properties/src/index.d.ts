@@ -4,6 +4,58 @@ import type { HttpResponse } from '@azure-rest/core-client';
 import type { RequestParameters } from '@azure-rest/core-client';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
+export declare interface AccessRule {
+    name?: string;
+    properties?: AccessRuleProperties;
+}
+
+export declare type AccessRuleDirection = string;
+
+export declare type AccessRuleDirectionOutput = string;
+
+export declare interface AccessRuleOutput {
+    name?: string;
+    properties?: AccessRulePropertiesOutput;
+}
+
+export declare interface AccessRuleProperties {
+    direction?: AccessRuleDirection;
+    addressPrefixes?: string[];
+    subscriptions?: {
+        id?: string;
+    }[];
+    networkSecurityPerimeters?: Array<NetworkSecurityPerimeter>;
+    fullyQualifiedDomainNames?: string[];
+    emailAddresses?: string[];
+    phoneNumbers?: string[];
+}
+
+export declare interface AccessRulePropertiesOutput {
+    direction?: AccessRuleDirectionOutput;
+    addressPrefixes?: string[];
+    subscriptions?: {
+        id?: string;
+    }[];
+    networkSecurityPerimeters?: Array<NetworkSecurityPerimeterOutput>;
+    fullyQualifiedDomainNames?: string[];
+    emailAddresses?: string[];
+    phoneNumbers?: string[];
+}
+
+export declare interface ApiErrorBaseOutput {
+    code?: string;
+    target?: string;
+    message?: string;
+}
+
+export declare interface ApiErrorOutput {
+    details?: Array<ApiErrorBaseOutput>;
+    innererror?: InnerErrorOutput;
+    code?: string;
+    target?: string;
+    message?: string;
+}
+
 export declare type AzureArmModelsCommonTypesManagedIdentityClient = Client & {
     path: Routes;
 };
@@ -19,12 +71,54 @@ export declare interface AzureEntityResourceOutput extends ResourceOutput {
     readonly etag?: string;
 }
 
+export declare interface CloudErrorOutput {
+    error?: ApiErrorOutput;
+}
+
+export declare interface ConfidentialResource extends TrackedResource {
+    properties?: ConfidentialResourceProperties;
+}
+
+export declare interface ConfidentialResourceOutput extends TrackedResourceOutput {
+    properties?: ConfidentialResourcePropertiesOutput;
+}
+
+export declare interface ConfidentialResourceProperties {
+    username: string;
+}
+
+export declare interface ConfidentialResourcePropertiesOutput {
+    readonly provisioningState: string;
+    username: string;
+}
+
 declare function createClient({ apiVersion, ...options }?: AzureArmModelsCommonTypesManagedIdentityClientOptions): AzureArmModelsCommonTypesManagedIdentityClient;
 export default createClient;
 
 export declare type CreatedByType = string;
 
 export declare type CreatedByTypeOutput = string;
+
+export declare interface CreateForUserDefinedError200Response extends HttpResponse {
+    status: "200";
+    body: ConfidentialResourceOutput;
+}
+
+export declare interface CreateForUserDefinedError201Response extends HttpResponse {
+    status: "201";
+    body: ConfidentialResourceOutput;
+}
+
+export declare interface CreateForUserDefinedErrorBodyParam {
+    body: ConfidentialResource;
+}
+
+export declare interface CreateForUserDefinedErrorDefaultResponse extends HttpResponse {
+    status: string;
+    body: CloudErrorOutput;
+}
+
+export declare type CreateForUserDefinedErrorParameters = CreateForUserDefinedErrorBodyParam & RequestParameters;
 
 export declare interface CreateWithSystemAssigned200Response extends HttpResponse {
     status: "200";
@@ -46,6 +140,26 @@ export declare interface CreateWithSystemAssignedDefaultResponse extends HttpRes
 }
 
 export declare type CreateWithSystemAssignedParameters = CreateWithSystemAssignedBodyParam & RequestParameters;
+
+export declare interface DelegatedResource {
+    resourceId?: string;
+    tenantId?: string;
+    referralResource?: string;
+    location?: string;
+}
+
+export declare interface DelegatedResourceOutput {
+    resourceId?: string;
+    tenantId?: string;
+    referralResource?: string;
+    location?: string;
+}
+
+export declare interface DelegatedResources extends Record<string, DelegatedResource> {
+}
+
+export declare interface DelegatedResourcesOutput extends Record<string, DelegatedResourceOutput> {
+}
 
 export declare interface ErrorAdditionalInfoOutput {
     readonly type?: string;
@@ -86,23 +200,43 @@ export declare interface GetDefaultResponse extends HttpResponse {
     body: ErrorResponseOutput;
 }
 
+export declare interface GetForPredefinedError {
+    get(options?: GetForPredefinedErrorParameters): StreamableMethod<GetForPredefinedError200Response | GetForPredefinedErrorDefaultResponse>;
+    put(options: CreateForUserDefinedErrorParameters): StreamableMethod<CreateForUserDefinedError200Response | CreateForUserDefinedError201Response | CreateForUserDefinedErrorDefaultResponse>;
+}
+
+export declare interface GetForPredefinedError200Response extends HttpResponse {
+    status: "200";
+    body: ConfidentialResourceOutput;
+}
+
+export declare interface GetForPredefinedErrorDefaultResponse extends HttpResponse {
+    status: string;
+    body: ErrorResponseOutput;
+}
+
+export declare type GetForPredefinedErrorParameters = RequestParameters;
+
 export declare type GetParameters = RequestParameters;
 
-export declare interface Identity {
-    type?: ResourceIdentityType;
+export declare interface InnerErrorOutput {
+    exceptiontype?: string;
+    errordetail?: string;
 }
 
-export declare interface IdentityOutput {
-    readonly principalId?: string;
-    readonly tenantId?: string;
-    type?: ResourceIdentityTypeOutput;
-}
+export declare type IssueType = string;
+
+export declare type IssueTypeOutput = string;
 
 export declare function isUnexpected(response: Get200Response | GetDefaultResponse): response is GetDefaultResponse;
 
 export declare function isUnexpected(response: CreateWithSystemAssigned200Response | CreateWithSystemAssigned201Response | CreateWithSystemAssignedDefaultResponse): response is CreateWithSystemAssignedDefaultResponse;
 
 export declare function isUnexpected(response: UpdateWithUserAssignedAndSystemAssigned200Response | UpdateWithUserAssignedAndSystemAssignedDefaultResponse): response is UpdateWithUserAssignedAndSystemAssignedDefaultResponse;
+
+export declare function isUnexpected(response: GetForPredefinedError200Response | GetForPredefinedErrorDefaultResponse): response is GetForPredefinedErrorDefaultResponse;
+
+export declare function isUnexpected(response: CreateForUserDefinedError200Response | CreateForUserDefinedError201Response | CreateForUserDefinedErrorDefaultResponse): response is CreateForUserDefinedErrorDefaultResponse;
 
 export declare interface ManagedIdentityTrackedResource extends TrackedResource {
     properties?: ManagedIdentityTrackedResourceProperties;
@@ -123,19 +257,81 @@ export declare interface ManagedIdentityTrackedResourcePropertiesOutput {
 
 export declare interface ManagedServiceIdentity {
     type: ManagedServiceIdentityType;
-    userAssignedIdentities?: Record<string, UserAssignedIdentity>;
+    userAssignedIdentities?: Record<string, UserAssignedIdentity | null>;
 }
 
 export declare interface ManagedServiceIdentityOutput {
     readonly principalId?: string;
     readonly tenantId?: string;
     type: ManagedServiceIdentityTypeOutput;
-    userAssignedIdentities?: Record<string, UserAssignedIdentityOutput>;
+    userAssignedIdentities?: Record<string, UserAssignedIdentityOutput | null>;
 }
 
 export declare type ManagedServiceIdentityType = string;
 
 export declare type ManagedServiceIdentityTypeOutput = string;
+
+export declare interface ManagedServiceIdentityWithDelegation extends ManagedServiceIdentity {
+    delegatedResources?: DelegatedResources;
+}
+
+export declare interface ManagedServiceIdentityWithDelegationOutput extends ManagedServiceIdentityOutput {
+    delegatedResources?: DelegatedResourcesOutput;
+}
+
+export declare interface NetworkSecurityPerimeter {
+    id?: string;
+    perimeterGuid?: string;
+    location?: string;
+}
+
+export declare interface NetworkSecurityPerimeterConfiguration extends ProxyResource {
+    properties?: NetworkSecurityPerimeterConfigurationProperties;
+}
+
+export declare interface NetworkSecurityPerimeterConfigurationOutput extends ProxyResourceOutput {
+    properties?: NetworkSecurityPerimeterConfigurationPropertiesOutput;
+}
+
+export declare interface NetworkSecurityPerimeterConfigurationProperties {
+    networkSecurityPerimeter?: NetworkSecurityPerimeter;
+    resourceAssociation?: ResourceAssociation;
+    profile?: NetworkSecurityProfile;
+}
+
+export declare interface NetworkSecurityPerimeterConfigurationPropertiesOutput {
+    readonly provisioningState?: NetworkSecurityPerimeterConfigurationProvisioningStateOutput;
+    readonly provisioningIssues?: Array<ProvisioningIssueOutput>;
+    networkSecurityPerimeter?: NetworkSecurityPerimeterOutput;
+    resourceAssociation?: ResourceAssociationOutput;
+    profile?: NetworkSecurityProfileOutput;
+}
+
+export declare type NetworkSecurityPerimeterConfigurationProvisioningState = string;
+
+export declare type NetworkSecurityPerimeterConfigurationProvisioningStateOutput = string;
+
+export declare interface NetworkSecurityPerimeterOutput {
+    id?: string;
+    perimeterGuid?: string;
+    location?: string;
+}
+
+export declare interface NetworkSecurityProfile {
+    name?: string;
+    accessRulesVersion?: number;
+    accessRules?: Array<AccessRule>;
+    diagnosticSettingsVersion?: number;
+    enabledLogCategories?: string[];
+}
+
+export declare interface NetworkSecurityProfileOutput {
+    name?: string;
+    accessRulesVersion?: number;
+    accessRules?: Array<AccessRuleOutput>;
+    diagnosticSettingsVersion?: number;
+    enabledLogCategories?: string[];
+}
 
 export declare interface Plan {
     name: string;
@@ -170,6 +366,7 @@ export declare interface PrivateEndpointConnectionProperties {
 }
 
 export declare interface PrivateEndpointConnectionPropertiesOutput {
+    readonly groupIds?: string[];
     privateEndpoint?: PrivateEndpointOutput;
     privateLinkServiceConnectionState: PrivateLinkServiceConnectionStateOutput;
     readonly provisioningState?: PrivateEndpointConnectionProvisioningStateOutput;
@@ -217,6 +414,25 @@ export declare interface PrivateLinkServiceConnectionStateOutput {
     actionsRequired?: string;
 }
 
+export declare interface ProvisioningIssue {
+}
+
+export declare interface ProvisioningIssueOutput {
+    readonly name?: string;
+    readonly properties?: ProvisioningIssuePropertiesOutput;
+}
+
+export declare interface ProvisioningIssueProperties {
+}
+
+export declare interface ProvisioningIssuePropertiesOutput {
+    readonly issueType?: IssueTypeOutput;
+    readonly severity?: SeverityOutput;
+    readonly description?: string;
+    readonly suggestedResourceIds?: string[];
+    readonly suggestedAccessRules?: Array<AccessRuleOutput>;
+}
+
 export declare interface ProxyResource extends Resource {
 }
 
@@ -226,14 +442,24 @@ export declare interface ProxyResourceOutput extends ResourceOutput {
 export declare interface Resource {
 }
 
-export declare type ResourceIdentityType = "SystemAssigned";
+export declare interface ResourceAssociation {
+    name?: string;
+    accessMode?: ResourceAssociationAccessMode;
+}
 
-export declare type ResourceIdentityTypeOutput = "SystemAssigned";
+export declare type ResourceAssociationAccessMode = string;
+
+export declare type ResourceAssociationAccessModeOutput = string;
+
+export declare interface ResourceAssociationOutput {
+    name?: string;
+    accessMode?: ResourceAssociationAccessModeOutput;
+}
 
 export declare interface ResourceModelWithAllowedPropertySet extends TrackedResource {
     managedBy?: string;
     kind?: string;
-    identity?: Identity;
+    identity?: ManagedServiceIdentity;
     sku?: Sku;
     plan?: Plan;
 }
@@ -242,7 +468,7 @@ export declare interface ResourceModelWithAllowedPropertySetOutput extends Track
     managedBy?: string;
     kind?: string;
     readonly etag?: string;
-    identity?: IdentityOutput;
+    identity?: ManagedServiceIdentityOutput;
     sku?: SkuOutput;
     plan?: PlanOutput;
 }
@@ -256,7 +482,12 @@ export declare interface ResourceOutput {
 
 export declare interface Routes {
     (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/{managedIdentityTrackedResourceName}", subscriptionId: string, resourceGroupName: string, managedIdentityTrackedResourceName: string): Get;
+    (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.CommonProperties/confidentialResources/{confidentialResourceName}", subscriptionId: string, resourceGroupName: string, confidentialResourceName: string): GetForPredefinedError;
 }
+
+export declare type Severity = string;
+
+export declare type SeverityOutput = string;
 
 export declare interface Sku {
     name: string;

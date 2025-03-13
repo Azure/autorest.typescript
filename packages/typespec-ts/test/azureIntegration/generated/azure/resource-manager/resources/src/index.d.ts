@@ -70,6 +70,26 @@ export declare type CreatedByType = string;
 
 export declare type CreatedByTypeOutput = string;
 
+export declare interface DelegatedResource {
+    resourceId?: string;
+    tenantId?: string;
+    referralResource?: string;
+    location?: string;
+}
+
+export declare interface DelegatedResourceOutput {
+    resourceId?: string;
+    tenantId?: string;
+    referralResource?: string;
+    location?: string;
+}
+
+export declare interface DelegatedResources extends Record<string, DelegatedResource> {
+}
+
+export declare interface DelegatedResourcesOutput extends Record<string, DelegatedResourceOutput> {
+}
+
 export declare interface ErrorAdditionalInfoOutput {
     readonly type?: string;
     readonly info?: Record<string, any>;
@@ -261,16 +281,6 @@ export declare type GetPage<TPage> = (pageLink: string) => Promise<{
     nextPageLink?: string;
 }>;
 
-export declare interface Identity {
-    type?: ResourceIdentityType;
-}
-
-export declare interface IdentityOutput {
-    readonly principalId?: string;
-    readonly tenantId?: string;
-    type?: ResourceIdentityTypeOutput;
-}
-
 export declare type IssueType = string;
 
 export declare type IssueTypeOutput = string;
@@ -435,6 +445,30 @@ export declare interface LocationResourcesUpdateDefaultResponse extends HttpResp
 }
 
 export declare type LocationResourcesUpdateParameters = LocationResourcesUpdateBodyParam & RequestParameters;
+
+export declare interface ManagedServiceIdentity {
+    type: ManagedServiceIdentityType;
+    userAssignedIdentities?: Record<string, UserAssignedIdentity | null>;
+}
+
+export declare interface ManagedServiceIdentityOutput {
+    readonly principalId?: string;
+    readonly tenantId?: string;
+    type: ManagedServiceIdentityTypeOutput;
+    userAssignedIdentities?: Record<string, UserAssignedIdentityOutput | null>;
+}
+
+export declare type ManagedServiceIdentityType = string;
+
+export declare type ManagedServiceIdentityTypeOutput = string;
+
+export declare interface ManagedServiceIdentityWithDelegation extends ManagedServiceIdentity {
+    delegatedResources?: DelegatedResources;
+}
+
+export declare interface ManagedServiceIdentityWithDelegationOutput extends ManagedServiceIdentityOutput {
+    delegatedResources?: DelegatedResourcesOutput;
+}
 
 export declare interface NestedCreateOrReplace200Response extends HttpResponse {
     status: "200";
@@ -789,14 +823,10 @@ export declare interface ResourceAssociationOutput {
     accessMode?: ResourceAssociationAccessModeOutput;
 }
 
-export declare type ResourceIdentityType = "SystemAssigned";
-
-export declare type ResourceIdentityTypeOutput = "SystemAssigned";
-
 export declare interface ResourceModelWithAllowedPropertySet extends TrackedResource {
     managedBy?: string;
     kind?: string;
-    identity?: Identity;
+    identity?: ManagedServiceIdentity;
     sku?: Sku;
     plan?: Plan;
 }
@@ -805,7 +835,7 @@ export declare interface ResourceModelWithAllowedPropertySetOutput extends Track
     managedBy?: string;
     kind?: string;
     readonly etag?: string;
-    identity?: IdentityOutput;
+    identity?: ManagedServiceIdentityOutput;
     sku?: SkuOutput;
     plan?: PlanOutput;
 }
@@ -1188,6 +1218,14 @@ export declare interface TrackedResource extends Resource {
 export declare interface TrackedResourceOutput extends ResourceOutput {
     tags?: Record<string, string>;
     location: string;
+}
+
+export declare interface UserAssignedIdentity {
+}
+
+export declare interface UserAssignedIdentityOutput {
+    readonly clientId?: string;
+    readonly principalId?: string;
 }
 
 export { }
