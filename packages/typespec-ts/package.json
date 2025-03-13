@@ -86,7 +86,7 @@
     "@types/node": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^6.8.0",
     "@typescript-eslint/parser": "^6.8.0",
-    "@typespec/compiler": "next",
+    "@typespec/compiler": "0.67.0-dev.17",
     "@typespec/http": "next",
     "@typespec/openapi": "next",
     "@typespec/rest": "next",
@@ -115,7 +115,7 @@
   "peerDependencies": {
     "@azure-tools/typespec-azure-core": "next",
     "@azure-tools/typespec-client-generator-core": "next",
-    "@typespec/compiler": "next",
+    "@typespec/compiler": "0.67.0-dev.17",
     "@typespec/http": "next",
     "@typespec/rest": "next",
     "@typespec/versioning": "next"
