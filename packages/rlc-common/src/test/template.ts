@@ -202,9 +202,6 @@ describe("My test", () => {
 `;
 
 export const snippetsContent = `
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-
 {{#if isModularLibrary}}
 import { {{ clientClassName }} } from "../src/index.js";
 import { DefaultAzureCredential, InteractiveBrowserCredential } from "@azure/identity";
