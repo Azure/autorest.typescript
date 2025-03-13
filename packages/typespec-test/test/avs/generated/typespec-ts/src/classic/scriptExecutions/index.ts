@@ -3,18 +3,16 @@
 
 import { AzureVMwareSolutionAPIContext } from "../../api/azureVMwareSolutionAPIContext.js";
 import {
-  ScriptExecutionsGetExecutionLogsOptionalParams,
-  ScriptExecutionsDeleteOptionalParams,
-  ScriptExecutionsCreateOrUpdateOptionalParams,
-  ScriptExecutionsGetOptionalParams,
-  ScriptExecutionsListOptionalParams,
-} from "../../api/options.js";
-import {
   scriptExecutionsGetExecutionLogs,
   scriptExecutionsDelete,
   scriptExecutionsCreateOrUpdate,
   scriptExecutionsGet,
   scriptExecutionsList,
+  ScriptExecutionsGetExecutionLogsOptionalParams,
+  ScriptExecutionsDeleteOptionalParams,
+  ScriptExecutionsCreateOrUpdateOptionalParams,
+  ScriptExecutionsGetOptionalParams,
+  ScriptExecutionsListOptionalParams,
 } from "../../api/scriptExecutions/index.js";
 import { ScriptExecution } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";

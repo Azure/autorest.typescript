@@ -3,17 +3,6 @@
 
 import { AzureVMwareSolutionAPIContext } from "../../api/azureVMwareSolutionAPIContext.js";
 import {
-  PrivateCloudsListAdminCredentialsOptionalParams,
-  PrivateCloudsRotateNsxtPasswordOptionalParams,
-  PrivateCloudsRotateVcenterPasswordOptionalParams,
-  PrivateCloudsDeleteOptionalParams,
-  PrivateCloudsUpdateOptionalParams,
-  PrivateCloudsCreateOrUpdateOptionalParams,
-  PrivateCloudsGetOptionalParams,
-  PrivateCloudsListInSubscriptionOptionalParams,
-  PrivateCloudsListOptionalParams,
-} from "../../api/options.js";
-import {
   privateCloudsListAdminCredentials,
   privateCloudsRotateNsxtPassword,
   privateCloudsRotateVcenterPassword,
@@ -23,6 +12,15 @@ import {
   privateCloudsGet,
   privateCloudsListInSubscription,
   privateCloudsList,
+  PrivateCloudsListAdminCredentialsOptionalParams,
+  PrivateCloudsRotateNsxtPasswordOptionalParams,
+  PrivateCloudsRotateVcenterPasswordOptionalParams,
+  PrivateCloudsDeleteOptionalParams,
+  PrivateCloudsUpdateOptionalParams,
+  PrivateCloudsCreateOrUpdateOptionalParams,
+  PrivateCloudsGetOptionalParams,
+  PrivateCloudsListInSubscriptionOptionalParams,
+  PrivateCloudsListOptionalParams,
 } from "../../api/privateClouds/index.js";
 import {
   PrivateCloud,

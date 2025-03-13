@@ -9,15 +9,13 @@ import {
   clustersCreateOrUpdate,
   clustersGet,
   clustersList,
-} from "../../api/clusters/index.js";
-import {
   ClustersListZonesOptionalParams,
   ClustersDeleteOptionalParams,
   ClustersUpdateOptionalParams,
   ClustersCreateOrUpdateOptionalParams,
   ClustersGetOptionalParams,
   ClustersListOptionalParams,
-} from "../../api/options.js";
+} from "../../api/clusters/index.js";
 import {
   Cluster,
   ClusterUpdate,

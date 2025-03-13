@@ -3,86 +3,24 @@
 
 import { AzureVMwareSolutionAPIClient } from "./azureVMwareSolutionAPIClient.js";
 import {
-  _workloadNetworkVmGroupsDeleteDeserialize,
-  _workloadNetworkVmGroupsUpdateDeserialize,
-  _workloadNetworkVmGroupsCreateDeserialize,
-} from "./api/workloadNetworkVmGroups/index.js";
-import {
-  _workloadNetworkSegmentsDeleteSegmentDeserialize,
-  _workloadNetworkSegmentsUpdateDeserialize,
-  _workloadNetworkSegmentsCreateDeserialize,
-} from "./api/workloadNetworkSegments/index.js";
-import {
-  _workloadNetworkPublicIpsDeleteDeserialize,
-  _workloadNetworkPublicIpsCreateDeserialize,
-} from "./api/workloadNetworkPublicIps/index.js";
-import {
-  _workloadNetworkPortMirroringProfilesDeleteDeserialize,
-  _workloadNetworkPortMirroringProfilesUpdateDeserialize,
-  _workloadNetworkPortMirroringProfilesCreateDeserialize,
-} from "./api/workloadNetworkPortMirroringProfiles/index.js";
-import {
   _workloadNetworkDnsZonesDeleteDeserialize,
   _workloadNetworkDnsZonesUpdateDeserialize,
   _workloadNetworkDnsZonesCreateDeserialize,
-} from "./api/workloadNetworkDnsZones/index.js";
-import {
-  _workloadNetworkDnsServicesDeleteDeserialize,
-  _workloadNetworkDnsServicesUpdateDeserialize,
-  _workloadNetworkDnsServicesCreateDeserialize,
-} from "./api/workloadNetworkDnsServices/index.js";
-import {
-  _workloadNetworkDhcpConfigurationsDeleteDeserialize,
-  _workloadNetworkDhcpConfigurationsUpdateDeserialize,
-  _workloadNetworkDhcpConfigurationsCreateDeserialize,
-} from "./api/workloadNetworkDhcpConfigurations/index.js";
-import { _virtualMachinesRestrictMovementDeserialize } from "./api/virtualMachines/index.js";
+} from "./api/workloadNetworkDnsZones/operations.js";
 import {
   _scriptExecutionsDeleteDeserialize,
   _scriptExecutionsCreateOrUpdateDeserialize,
-} from "./api/scriptExecutions/index.js";
-import {
-  _pureStoragePoliciesDeleteDeserialize,
-  _pureStoragePoliciesCreateOrUpdateDeserialize,
-} from "./api/pureStoragePolicies/index.js";
+} from "./api/scriptExecutions/operations.js";
 import {
   _privateCloudsRotateNsxtPasswordDeserialize,
   _privateCloudsRotateVcenterPasswordDeserialize,
   _privateCloudsDeleteDeserialize,
   _privateCloudsCreateOrUpdateDeserialize,
-} from "./api/privateClouds/index.js";
-import {
-  _placementPoliciesDeleteDeserialize,
-  _placementPoliciesCreateOrUpdateDeserialize,
-} from "./api/placementPolicies/index.js";
-import {
-  _iscsiPathsDeleteDeserialize,
-  _iscsiPathsCreateOrUpdateDeserialize,
-} from "./api/iscsiPaths/index.js";
-import {
-  _globalReachConnectionsDeleteDeserialize,
-  _globalReachConnectionsCreateOrUpdateDeserialize,
-} from "./api/globalReachConnections/index.js";
-import {
-  _datastoresDeleteDeserialize,
-  _datastoresCreateOrUpdateDeserialize,
-} from "./api/datastores/index.js";
+} from "./api/privateClouds/operations.js";
 import {
   _clustersDeleteDeserialize,
   _clustersCreateOrUpdateDeserialize,
-} from "./api/clusters/index.js";
-import {
-  _cloudLinksDeleteDeserialize,
-  _cloudLinksCreateOrUpdateDeserialize,
-} from "./api/cloudLinks/index.js";
-import {
-  _authorizationsDeleteDeserialize,
-  _authorizationsCreateOrUpdateDeserialize,
-} from "./api/authorizations/index.js";
-import {
-  _addonsDeleteDeserialize,
-  _addonsCreateOrUpdateDeserialize,
-} from "./api/addons/index.js";
+} from "./api/clusters/operations.js";
 import { getLongRunningPoller } from "./static-helpers/pollingHelpers.js";
 import {
   OperationOptions,
@@ -161,61 +99,6 @@ interface DeserializationHelper {
 }
 
 const deserializeMap: Record<string, DeserializationHelper> = {
-  "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/vmGroups/{vmGroupId}":
-    {
-      deserializer: _workloadNetworkVmGroupsDeleteDeserialize,
-      expectedStatuses: ["200", "202", "204"],
-    },
-  "PATCH /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/vmGroups/{vmGroupId}":
-    {
-      deserializer: _workloadNetworkVmGroupsUpdateDeserialize,
-      expectedStatuses: ["200", "202"],
-    },
-  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/vmGroups/{vmGroupId}":
-    {
-      deserializer: _workloadNetworkVmGroupsCreateDeserialize,
-      expectedStatuses: ["200", "201"],
-    },
-  "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/segments/{segmentId}":
-    {
-      deserializer: _workloadNetworkSegmentsDeleteSegmentDeserialize,
-      expectedStatuses: ["200", "202", "204"],
-    },
-  "PATCH /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/segments/{segmentId}":
-    {
-      deserializer: _workloadNetworkSegmentsUpdateDeserialize,
-      expectedStatuses: ["200", "202"],
-    },
-  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/segments/{segmentId}":
-    {
-      deserializer: _workloadNetworkSegmentsCreateDeserialize,
-      expectedStatuses: ["200", "201"],
-    },
-  "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/publicIPs/{publicIPId}":
-    {
-      deserializer: _workloadNetworkPublicIpsDeleteDeserialize,
-      expectedStatuses: ["200", "202", "204"],
-    },
-  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/publicIPs/{publicIPId}":
-    {
-      deserializer: _workloadNetworkPublicIpsCreateDeserialize,
-      expectedStatuses: ["200", "201"],
-    },
-  "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles/{portMirroringId}":
-    {
-      deserializer: _workloadNetworkPortMirroringProfilesDeleteDeserialize,
-      expectedStatuses: ["200", "202", "204"],
-    },
-  "PATCH /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles/{portMirroringId}":
-    {
-      deserializer: _workloadNetworkPortMirroringProfilesUpdateDeserialize,
-      expectedStatuses: ["200", "202"],
-    },
-  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles/{portMirroringId}":
-    {
-      deserializer: _workloadNetworkPortMirroringProfilesCreateDeserialize,
-      expectedStatuses: ["200", "201"],
-    },
   "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsZones/{dnsZoneId}":
     {
       deserializer: _workloadNetworkDnsZonesDeleteDeserialize,
@@ -231,41 +114,6 @@ const deserializeMap: Record<string, DeserializationHelper> = {
       deserializer: _workloadNetworkDnsZonesCreateDeserialize,
       expectedStatuses: ["200", "201"],
     },
-  "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsServices/{dnsServiceId}":
-    {
-      deserializer: _workloadNetworkDnsServicesDeleteDeserialize,
-      expectedStatuses: ["200", "202", "204"],
-    },
-  "PATCH /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsServices/{dnsServiceId}":
-    {
-      deserializer: _workloadNetworkDnsServicesUpdateDeserialize,
-      expectedStatuses: ["200", "202"],
-    },
-  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsServices/{dnsServiceId}":
-    {
-      deserializer: _workloadNetworkDnsServicesCreateDeserialize,
-      expectedStatuses: ["200", "201"],
-    },
-  "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dhcpConfigurations/{dhcpId}":
-    {
-      deserializer: _workloadNetworkDhcpConfigurationsDeleteDeserialize,
-      expectedStatuses: ["200", "202", "204"],
-    },
-  "PATCH /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dhcpConfigurations/{dhcpId}":
-    {
-      deserializer: _workloadNetworkDhcpConfigurationsUpdateDeserialize,
-      expectedStatuses: ["200", "202"],
-    },
-  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dhcpConfigurations/{dhcpId}":
-    {
-      deserializer: _workloadNetworkDhcpConfigurationsCreateDeserialize,
-      expectedStatuses: ["200", "201"],
-    },
-  "POST /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/virtualMachines/{virtualMachineId}/restrictMovement":
-    {
-      deserializer: _virtualMachinesRestrictMovementDeserialize,
-      expectedStatuses: ["202", "200"],
-    },
   "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptExecutions/{scriptExecutionName}":
     {
       deserializer: _scriptExecutionsDeleteDeserialize,
@@ -274,16 +122,6 @@ const deserializeMap: Record<string, DeserializationHelper> = {
   "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptExecutions/{scriptExecutionName}":
     {
       deserializer: _scriptExecutionsCreateOrUpdateDeserialize,
-      expectedStatuses: ["200", "201"],
-    },
-  "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/pureStoragePolicies/{storagePolicyName}":
-    {
-      deserializer: _pureStoragePoliciesDeleteDeserialize,
-      expectedStatuses: ["202", "204", "200"],
-    },
-  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/pureStoragePolicies/{storagePolicyName}":
-    {
-      deserializer: _pureStoragePoliciesCreateOrUpdateDeserialize,
       expectedStatuses: ["200", "201"],
     },
   "POST /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/rotateNsxtPassword":
@@ -306,46 +144,6 @@ const deserializeMap: Record<string, DeserializationHelper> = {
       deserializer: _privateCloudsCreateOrUpdateDeserialize,
       expectedStatuses: ["200", "201"],
     },
-  "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/placementPolicies/{placementPolicyName}":
-    {
-      deserializer: _placementPoliciesDeleteDeserialize,
-      expectedStatuses: ["200", "202", "204"],
-    },
-  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/placementPolicies/{placementPolicyName}":
-    {
-      deserializer: _placementPoliciesCreateOrUpdateDeserialize,
-      expectedStatuses: ["200", "201"],
-    },
-  "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/iscsiPaths/default":
-    {
-      deserializer: _iscsiPathsDeleteDeserialize,
-      expectedStatuses: ["200", "202", "204"],
-    },
-  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/iscsiPaths/default":
-    {
-      deserializer: _iscsiPathsCreateOrUpdateDeserialize,
-      expectedStatuses: ["200", "201"],
-    },
-  "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/globalReachConnections/{globalReachConnectionName}":
-    {
-      deserializer: _globalReachConnectionsDeleteDeserialize,
-      expectedStatuses: ["200", "202", "204"],
-    },
-  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/globalReachConnections/{globalReachConnectionName}":
-    {
-      deserializer: _globalReachConnectionsCreateOrUpdateDeserialize,
-      expectedStatuses: ["200", "201"],
-    },
-  "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/datastores/{datastoreName}":
-    {
-      deserializer: _datastoresDeleteDeserialize,
-      expectedStatuses: ["200", "202", "204"],
-    },
-  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/datastores/{datastoreName}":
-    {
-      deserializer: _datastoresCreateOrUpdateDeserialize,
-      expectedStatuses: ["200", "201"],
-    },
   "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}":
     {
       deserializer: _clustersDeleteDeserialize,
@@ -354,36 +152,6 @@ const deserializeMap: Record<string, DeserializationHelper> = {
   "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}":
     {
       deserializer: _clustersCreateOrUpdateDeserialize,
-      expectedStatuses: ["200", "201"],
-    },
-  "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/cloudLinks/{cloudLinkName}":
-    {
-      deserializer: _cloudLinksDeleteDeserialize,
-      expectedStatuses: ["200", "202", "204"],
-    },
-  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/cloudLinks/{cloudLinkName}":
-    {
-      deserializer: _cloudLinksCreateOrUpdateDeserialize,
-      expectedStatuses: ["200", "201"],
-    },
-  "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/authorizations/{authorizationName}":
-    {
-      deserializer: _authorizationsDeleteDeserialize,
-      expectedStatuses: ["200", "202", "204"],
-    },
-  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/authorizations/{authorizationName}":
-    {
-      deserializer: _authorizationsCreateOrUpdateDeserialize,
-      expectedStatuses: ["200", "201"],
-    },
-  "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/addons/{addonName}":
-    {
-      deserializer: _addonsDeleteDeserialize,
-      expectedStatuses: ["200", "202", "204"],
-    },
-  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/addons/{addonName}":
-    {
-      deserializer: _addonsCreateOrUpdateDeserialize,
       expectedStatuses: ["200", "201"],
     },
 };

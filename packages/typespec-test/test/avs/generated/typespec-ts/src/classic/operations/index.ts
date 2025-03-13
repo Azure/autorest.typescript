@@ -2,8 +2,10 @@
 // Licensed under the MIT License.
 
 import { AzureVMwareSolutionAPIContext } from "../../api/azureVMwareSolutionAPIContext.js";
-import { operationsList } from "../../api/operations/index.js";
-import { OperationsListOptionalParams } from "../../api/options.js";
+import {
+  operationsList,
+  OperationsListOptionalParams,
+} from "../../api/operations/index.js";
 import { Operation } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 

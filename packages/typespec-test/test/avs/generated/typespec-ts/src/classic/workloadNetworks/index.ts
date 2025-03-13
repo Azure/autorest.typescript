@@ -3,12 +3,10 @@
 
 import { AzureVMwareSolutionAPIContext } from "../../api/azureVMwareSolutionAPIContext.js";
 import {
-  WorkloadNetworksListOptionalParams,
-  WorkloadNetworksGetOptionalParams,
-} from "../../api/options.js";
-import {
   workloadNetworksList,
   workloadNetworksGet,
+  WorkloadNetworksListOptionalParams,
+  WorkloadNetworksGetOptionalParams,
 } from "../../api/workloadNetworks/index.js";
 import { WorkloadNetwork } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";

@@ -3,18 +3,16 @@
 
 import { AzureVMwareSolutionAPIContext } from "../../api/azureVMwareSolutionAPIContext.js";
 import {
-  WorkloadNetworkDnsZonesDeleteOptionalParams,
-  WorkloadNetworkDnsZonesUpdateOptionalParams,
-  WorkloadNetworkDnsZonesCreateOptionalParams,
-  WorkloadNetworkDnsZonesGetOptionalParams,
-  WorkloadNetworkDnsZonesListOptionalParams,
-} from "../../api/options.js";
-import {
   workloadNetworkDnsZonesDelete,
   workloadNetworkDnsZonesUpdate,
   workloadNetworkDnsZonesCreate,
   workloadNetworkDnsZonesGet,
   workloadNetworkDnsZonesList,
+  WorkloadNetworkDnsZonesDeleteOptionalParams,
+  WorkloadNetworkDnsZonesUpdateOptionalParams,
+  WorkloadNetworkDnsZonesCreateOptionalParams,
+  WorkloadNetworkDnsZonesGetOptionalParams,
+  WorkloadNetworkDnsZonesListOptionalParams,
 } from "../../api/workloadNetworkDnsZones/index.js";
 import { WorkloadNetworkDnsZone } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
