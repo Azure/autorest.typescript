@@ -16,7 +16,7 @@
   "module": "./dist-esm/index.js",
   "types": "./types/body-array.d.ts",
   "devDependencies": {
-    "typescript": "~5.6.2",
+    "typescript": "~5.7.2",
     "dotenv": "^16.0.0",
     "@azure/dev-tool": "^1.0.0"
   },

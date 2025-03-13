@@ -31,7 +31,7 @@ model TrialMatcherResult {
   ...Response;
 
   @doc("The inference results for the Trial Matcher request.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   results?: TrialMatcherResults;
 }
 

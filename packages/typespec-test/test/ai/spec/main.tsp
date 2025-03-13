@@ -36,7 +36,7 @@ namespace Azure.AI {
     }
   ]>
 )
-@service({
+@service(#{
   title: "Azure AI",
 })
 @server(

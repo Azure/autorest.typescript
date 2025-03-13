@@ -8,7 +8,7 @@ using TypeSpec.Rest;
 using TypeSpec.Versioning;
 using Azure.Core;
 
-@service({
+@service(#{
     title: "Contoso Widget Manager",
   })
 @versioned(Contoso.WidgetManager.Versions)
@@ -24,7 +24,7 @@ enum Versions {
 model Widget {
   @key("widgetName")
   @doc("The widget name.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   name: string;
 
   @doc("The ID of the widget's manufacturer.")

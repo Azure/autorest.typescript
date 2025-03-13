@@ -1,13 +1,20 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { ReleaseDelay } from "../models/models.js";
 import { OperationOptions } from "@azure-rest/core-client";
+
+/** Optional parameters. */
+export interface RenewCloudEventLocksOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface RejectCloudEventsOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface ReleaseCloudEventsOptionalParams extends OperationOptions {}
+export interface ReleaseCloudEventsOptionalParams extends OperationOptions {
+  /** Release cloud events with the specified delay in seconds. */
+  releaseDelayInSeconds?: ReleaseDelay;
+}
 
 /** Optional parameters. */
 export interface AcknowledgeCloudEventsOptionalParams

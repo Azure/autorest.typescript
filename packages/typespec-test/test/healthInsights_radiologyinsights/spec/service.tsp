@@ -3,7 +3,7 @@ using TypeSpec.Rest;
 using TypeSpec.Http;
 using TypeSpec.Versioning;
 
-@service({
+@service(#{
   title: "Azure AI Health Insights",
 })
 @versioned(ApiVersion)
