@@ -97,10 +97,11 @@ import "@typespec/rest";
 import "@typespec/versioning";
 ${needTCGC ? 'import "@azure-tools/typespec-client-generator-core";' : ""} 
 ${needAzureCore ? 'import "@azure-tools/typespec-azure-core";' : ""} 
-${needArmTemplate
-      ? 'import "@azure-tools/typespec-azure-resource-manager";'
-      : ""
-    }
+${
+  needArmTemplate
+    ? 'import "@azure-tools/typespec-azure-resource-manager";'
+    : ""
+}
 
 using TypeSpec.Rest; 
 using TypeSpec.Http;
@@ -109,10 +110,11 @@ ${needTCGC ? "using Azure.ClientGenerator.Core;" : ""}
 ${needAzureCore ? "using Azure.Core;" : ""}
 ${needNamespaces ? namespace : ""}
 ${needArmTemplate ? "using Azure.ResourceManager;" : ""}
-${withVersionedApiVersion && needNamespaces
-      ? 'enum Versions { v2022_05_15_preview: "2022-05-15-preview"}'
-      : ""
-    }
+${
+  withVersionedApiVersion && needNamespaces
+    ? 'enum Versions { v2022_05_15_preview: "2022-05-15-preview"}'
+    : ""
+}
 ${code}
 `;
   host.addTypeSpecFile("main.tsp", content);
