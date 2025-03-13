@@ -1,6 +1,28 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+/** Details about a user. */
+export interface User {
+  /** The name of user. */
+  readonly name: string;
+  /** The role of user */
+  role: string;
+  /** The UUID of this widget. This is generated automatically by the service. */
+  id: string;
+}
+
+export function userSerializer(item: User): any {
+  return { role: item["role"], id: item["id"] };
+}
+
+export function userDeserializer(item: any): User {
+  return {
+    name: item["name"],
+    role: item["role"],
+    id: item["id"],
+  };
+}
+
 /** model interface Widget */
 export interface Widget {
   /** The UUID of this widget. This is generated automatically by the service. */
@@ -55,28 +77,6 @@ export function widgetArrayDeserializer(result: Array<Widget>): any[] {
   return result.map((item) => {
     return widgetDeserializer(item);
   });
-}
-
-/** Details about a user. */
-export interface User {
-  /** The name of user. */
-  readonly name: string;
-  /** The role of user */
-  role: string;
-  /** The UUID of this widget. This is generated automatically by the service. */
-  id: string;
-}
-
-export function userSerializer(item: User): any {
-  return { role: item["role"], id: item["id"] };
-}
-
-export function userDeserializer(item: any): User {
-  return {
-    name: item["name"],
-    role: item["role"],
-    id: item["id"],
-  };
 }
 
 /** model interface AnalyzeResult */

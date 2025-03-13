@@ -14,8 +14,8 @@ import {
   FilesListOptionalParams,
 } from "../../api/files/index.js";
 import {
-  ListFilesResponse,
   OpenAIFile,
+  ListFilesResponse,
   CreateFileRequest,
   DeleteFileResponse,
 } from "../../models/models.js";

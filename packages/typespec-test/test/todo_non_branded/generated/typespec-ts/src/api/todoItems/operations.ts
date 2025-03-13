@@ -2,11 +2,19 @@
 
 import { TodoContext as Client } from "../index.js";
 import {
-  standard4XXResponseDeserializer,
-  standard5XXResponseDeserializer,
+  _TodoPage,
+  _todoPageDeserializer,
+  invalidTodoItemDeserializer,
+  notFoundErrorResponseDeserializer,
+  TodoItemPatch,
+  todoItemPatchSerializer,
+} from "../../models/todoItems/models.js";
+import {
   TodoItem,
   todoItemSerializer,
   TodoLabels,
+  standard4XXResponseDeserializer,
+  standard5XXResponseDeserializer,
   todoAttachmentArraySerializer,
   _createJsonResponseDeserializer,
   ToDoItemMultipartRequest,
@@ -15,14 +23,6 @@ import {
   _getResponseDeserializer,
   _updateResponseDeserializer,
 } from "../../models/models.js";
-import {
-  _TodoPage,
-  _todoPageDeserializer,
-  invalidTodoItemDeserializer,
-  notFoundErrorResponseDeserializer,
-  TodoItemPatch,
-  todoItemPatchSerializer,
-} from "../../models/todoItems/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,

@@ -8,7 +8,7 @@ import {
   BudgetsGetBudgetsOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,
 } from "../../api/budgets/index.js";
-import { Widget, User } from "../../models/models.js";
+import { User, Widget } from "../../models/models.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
 /** Interface representing a Budgets operations. */
