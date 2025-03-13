@@ -24,7 +24,7 @@ export interface FaceClientOptions extends ClientOptions {
 export default function createClient(
   endpointParam: string,
   credentials: TokenCredential | KeyCredential,
-  { apiVersion = "v1.1-preview.1", ...options }: FaceClientOptions = {},
+  { apiVersion = "v1.2", ...options }: FaceClientOptions = {},
 ): FaceClient {
   const endpointUrl =
     options.endpoint ??

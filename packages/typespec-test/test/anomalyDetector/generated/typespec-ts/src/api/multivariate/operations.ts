@@ -5,9 +5,9 @@ import { AnomalyDetectorContext as Client } from "../index.js";
 import {
   MultivariateMultivariateDetectionResult,
   multivariateMultivariateDetectionResultDeserializer,
-  multivariateErrorResponseDeserializer,
   MultivariateMultivariateBatchDetectionOptions,
   multivariateMultivariateBatchDetectionOptionsSerializer,
+  multivariateResponseErrorDeserializer,
   MultivariateModelInfo,
   multivariateModelInfoSerializer,
   MultivariateAnomalyDetectionModel,
@@ -76,7 +76,7 @@ export async function _detectMultivariateLastAnomalyDeserialize(
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = multivariateErrorResponseDeserializer(result.body);
+    error.details = multivariateResponseErrorDeserializer(result.body);
     throw error;
   }
 
@@ -142,7 +142,7 @@ export async function _detectMultivariateBatchAnomalyDeserialize(
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = multivariateErrorResponseDeserializer(result.body);
+    error.details = multivariateResponseErrorDeserializer(result.body);
     throw error;
   }
 
@@ -207,7 +207,7 @@ export async function _getMultivariateModelDeserialize(
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = multivariateErrorResponseDeserializer(result.body);
+    error.details = multivariateResponseErrorDeserializer(result.body);
     throw error;
   }
 
@@ -262,7 +262,7 @@ export async function _deleteMultivariateModelDeserialize(
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = multivariateErrorResponseDeserializer(result.body);
+    error.details = multivariateResponseErrorDeserializer(result.body);
     throw error;
   }
 
@@ -314,7 +314,7 @@ export async function _listMultivariateModelsDeserialize(
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = multivariateErrorResponseDeserializer(result.body);
+    error.details = multivariateResponseErrorDeserializer(result.body);
     throw error;
   }
 
@@ -363,7 +363,7 @@ export async function _trainMultivariateModelDeserialize(
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = multivariateErrorResponseDeserializer(result.body);
+    error.details = multivariateResponseErrorDeserializer(result.body);
     throw error;
   }
 
@@ -423,7 +423,7 @@ export async function _getMultivariateBatchDetectionResultDeserialize(
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = multivariateErrorResponseDeserializer(result.body);
+    error.details = multivariateResponseErrorDeserializer(result.body);
     throw error;
   }
 
