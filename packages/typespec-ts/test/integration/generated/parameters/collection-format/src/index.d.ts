@@ -5,6 +5,10 @@ import type { RawHttpHeadersInput } from '@typespec/ts-http-runtime';
 import type { RequestParameters } from '@typespec/ts-http-runtime';
 import type { StreamableMethod } from '@typespec/ts-http-runtime';
 
+export declare function buildCsvCollection(items: string[] | number[]): string;
+
+export declare function buildMultiCollection(items: string[], parameterName: string): string;
+
 export declare type CollectionFormatClient = Client & {
     path: Routes;
 };

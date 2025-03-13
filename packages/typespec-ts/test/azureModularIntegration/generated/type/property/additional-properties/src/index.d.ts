@@ -550,12 +550,10 @@ export declare interface SpreadStringRecord extends Record<string, string> {
 export declare type WidgetData = WidgetData0 | WidgetData1;
 
 export declare interface WidgetData0 {
-    kind: "kind0";
     fooProp: string;
 }
 
 export declare interface WidgetData1 {
-    kind: "kind1";
     start: Date;
     end?: Date;
 }

@@ -30,6 +30,8 @@ export declare interface Base64UrlBytesPropertyOutput {
     value: string;
 }
 
+export declare function buildCsvCollection(items: string[] | number[]): string;
+
 export declare type BytesClient = Client & {
     path: Routes;
 };
