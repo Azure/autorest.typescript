@@ -133,34 +133,9 @@ export declare interface QuerySsvQueryParamProperties {
     colors: string[] | QuerySsvColorsQueryParam;
 }
 
-export declare interface QueryTsv {
-    get(options: QueryTsvParameters): StreamableMethod<QueryTsv204Response>;
-}
-
-export declare interface QueryTsv204Response extends HttpResponse {
-    status: "204";
-}
-
-export declare interface QueryTsvColorsQueryParam {
-    value: string[];
-    explode: false;
-    style: "form";
-}
-
-export declare type QueryTsvParameters = QueryTsvQueryParam & RequestParameters;
-
-export declare interface QueryTsvQueryParam {
-    queryParameters: QueryTsvQueryParamProperties;
-}
-
-export declare interface QueryTsvQueryParamProperties {
-    colors: string[] | QueryTsvColorsQueryParam;
-}
-
 export declare interface Routes {
     (path: "/parameters/collection-format/query/multi"): QueryMulti;
     (path: "/parameters/collection-format/query/ssv"): QuerySsv;
-    (path: "/parameters/collection-format/query/tsv"): QueryTsv;
     (path: "/parameters/collection-format/query/pipes"): QueryPipes;
     (path: "/parameters/collection-format/query/csv"): QueryCsv;
     (path: "/parameters/collection-format/header/csv"): HeaderCsv;

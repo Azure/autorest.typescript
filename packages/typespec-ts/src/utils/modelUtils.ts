@@ -64,8 +64,6 @@ import {
   getHeaderFieldName,
   getPathParamName,
   getQueryParamName,
-  isHeader,
-  isQueryParam,
   isStatusCode
 } from "@typespec/http";
 import {
@@ -1912,21 +1910,22 @@ export function getCollectionFormat(
     | HttpOperationQueryParameter
     | HttpOperationHeaderParameter
 ): string | undefined {
-  const program = context.program;
   const type = param.param;
-  if (isHeader(program, type)) {
-    if (
-      type.type.kind === "Model" &&
-      isArrayModelType(context.program, type.type)
-    ) {
-      return param.explode ? "multi" : "csv";
+  const encode = getEncode(context.program, param.param);
+  if (
+    type.type.kind === "Model" &&
+    isArrayModelType(context.program, type.type)
+  ) {
+    if (param.explode) {
+      return "multi";
     }
-  } else if (isQueryParam(program, type)) {
-    if (
-      type.type.kind === "Model" &&
-      isArrayModelType(context.program, type.type)
-    ) {
-      return param.explode ? "multi" : "csv";
+    switch (encode?.encoding) {
+      case "ArrayFormat.pipeDelimited":
+        return "pipes";
+      case "ArrayFormat.spaceDelimited":
+        return "ssv";
+      default:
+        return "csv";
     }
   }
   return;
