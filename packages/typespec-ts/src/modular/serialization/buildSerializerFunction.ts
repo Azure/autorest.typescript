@@ -166,7 +166,11 @@ function buildPolymorphicSerializer(
       throw new Error(`NYI Serialization of anonymous types`);
     }
     const subTypeName = `${normalizeName(subType.name, NameType.Interface, true)}${union}`;
-    const subtypeSerializerName = normalizeName(`${subTypeName}Serializer`, NameType.Method, true);
+    const subtypeSerializerName = normalizeName(
+      `${subTypeName}Serializer`,
+      NameType.Method,
+      true
+    );
 
     cases.push(`
         case "${discriminatedValue}":
@@ -230,7 +234,11 @@ function buildDiscriminatedUnionSerializer(
     const discriminatedValue = subType.discriminatorValue!;
     const union = subType.discriminatedSubtypes ? "Union" : "";
     const subTypeName = `${normalizeName(subType.name, NameType.Interface, true)}${union}`;
-    const subtypeSerializerName = normalizeName(`${subTypeName}Serializer`, NameType.Method, true);
+    const subtypeSerializerName = normalizeName(
+      `${subTypeName}Serializer`,
+      NameType.Method,
+      true
+    );
 
     cases.push(`
       case "${discriminatedValue}":
@@ -459,7 +467,9 @@ function buildDictTypeSerializer(
     return undefined;
   }
   const valueTypeName = normalizeName(
-    valueSerializer ? valueSerializer.replace("Serializer", "") : "", NameType.Property, true
+    valueSerializer ? valueSerializer.replace("Serializer", "") : "",
+    NameType.Property,
+    true
   );
   const serializerFunctionName = `${valueTypeName}RecordSerializer`;
   if (nameOnly) {
@@ -520,7 +530,9 @@ function buildArrayTypeSerializer(
     return undefined;
   }
   const valueTypeName = normalizeName(
-    valueSerializer ? valueSerializer.replace("Serializer", "") : "", NameType.Property, true
+    valueSerializer ? valueSerializer.replace("Serializer", "") : "",
+    NameType.Property,
+    true
   );
   const serializerFunctionName = `${valueTypeName}ArraySerializer`;
   if (nameOnly) {

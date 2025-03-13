@@ -161,7 +161,11 @@ function buildPolymorphicDeserializer(
       throw new Error(`NYI Serialization of anonymous types`);
     }
     const subTypeName = `${normalizeName(subType.name, NameType.Interface, true)}${union}`;
-    const subtypeDeserializerName = normalizeName(`${subTypeName}Deserializer`, NameType.Operation, true);
+    const subtypeDeserializerName = normalizeName(
+      `${subTypeName}Deserializer`,
+      NameType.Operation,
+      true
+    );
 
     cases.push(`
         case "${discriminatedValue}":
@@ -225,7 +229,11 @@ function buildDiscriminatedUnionDeserializer(
     const discriminatedValue = subType.discriminatorValue!;
     const union = subType.discriminatedSubtypes ? "Union" : "";
     const subTypeName = `${normalizeName(subType.name, NameType.Interface, true)}${union}`;
-    const subtypeDeserializerName = normalizeName(`${subTypeName}Deserializer`, NameType.Operation, true);
+    const subtypeDeserializerName = normalizeName(
+      `${subTypeName}Deserializer`,
+      NameType.Operation,
+      true
+    );
 
     cases.push(`
       case "${discriminatedValue}":
@@ -396,7 +404,9 @@ function buildDictTypeDeserializer(
     return undefined;
   }
   const valueTypeName = normalizeName(
-    valueDeserializer ? valueDeserializer.replace("Deserializer", "") : "", NameType.Property, true
+    valueDeserializer ? valueDeserializer.replace("Deserializer", "") : "",
+    NameType.Property,
+    true
   );
   const deserializerFunctionName = `${valueTypeName}RecordDeserializer`;
   if (nameOnly) {
@@ -457,7 +467,9 @@ function buildArrayTypeDeserializer(
     return undefined;
   }
   const valueTypeName = normalizeName(
-    valueDeserializer ? valueDeserializer.replace("Deserializer", "") : "", NameType.Property, true
+    valueDeserializer ? valueDeserializer.replace("Deserializer", "") : "",
+    NameType.Property,
+    true
   );
   const deserializerFunctionName = `${valueTypeName}ArrayDeserializer`;
   if (nameOnly) {
