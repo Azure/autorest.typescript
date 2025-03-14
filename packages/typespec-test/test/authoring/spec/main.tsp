@@ -17,7 +17,7 @@ using Azure.Core;
     Endpoint: Endpoint,
   }
 )
-@service({
+@service(#{
   title: "Microsoft Cognitive Language Service - Analyze Text Authoring",
 })
 @useAuth(ApiKeyAuth<ApiKeyLocation.header, "Ocp-Apim-Subscription-Key">)
@@ -43,7 +43,7 @@ model Project {
   @key
   @segment("projects")
   @doc("The project name.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   projectName: string;
 
   @doc("The project kind.")
@@ -65,19 +65,19 @@ model Project {
   language: string;
 
   @doc("Represents the project creation datetime.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   createdDateTime: utcDateTime;
 
   @doc("Represents the project last modification datetime.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   lastModifiedDateTime: utcDateTime;
 
   @doc("Represents the project last training datetime.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   lastTrainedDateTime: utcDateTime;
 
   @doc("Represents the project last deployment datetime.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   lastDeployedDateTime: utcDateTime;
 }
 
@@ -103,7 +103,7 @@ model Deployment {
   @doc("The name of the deployment.")
   @key("deploymentName")
   @segment("deployments")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   name: string;
 }
 
@@ -113,15 +113,15 @@ model Job {
   jobId: string;
 
   @doc("The creation date time of the job.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   createdDateTime: utcDateTime;
 
   @doc("The the last date time the job was updated.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   lastUpdatedDateTime: utcDateTime;
 
   @doc("The expiration date time of the job.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   expirationDateTime: utcDateTime;
 
   @doc("The job status.")
@@ -164,7 +164,7 @@ model DeploymentJob {
   @doc("The job ID.")
   @key("jobId")
   @segment("jobs")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   id: string;
 }
 
@@ -175,7 +175,7 @@ model SwapDeploymentsJob {
 
   @doc("The job ID.")
   @key("jobId")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   @segment("swap/jobs")
   id: string;
 }

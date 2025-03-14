@@ -13,7 +13,7 @@ using Autorest;
 using OpenAPI;
 
 @armProviderNamespace
-@service({
+@service(#{
   title: "Microsoft.NetworkAnalytics",
 })
 @versioned(Microsoft.NetworkAnalytics.Versions)
@@ -130,7 +130,7 @@ model DataProductNetworkAcls {
   virtualNetworkRule: VirtualNetworkRule[];
 
   @doc("IP rule with specific IP or IP range in CIDR format.")
-  @extension("x-ms-identifiers", [])
+  @extension("x-ms-identifiers", #[])
   ipRules: IPRules[];
 
   @doc("The list of query ips in the format of CIDR allowed to connect to query/visualization endpoint.")
@@ -159,83 +159,83 @@ model DataProduct is TrackedResource<DataProductProperties> {
 @added(Versions.v2023_11_15)
 model DataProductProperties {
   @doc("The resource GUID property of the data product resource.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   resourceGuid?: string;
 
   @doc("Latest provisioning state  of data product.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   provisioningState?: ProvisioningState;
 
   @doc("Data product publisher name.")
-  @visibility("create", "read")
+  @visibility(Lifecycle.Create, Lifecycle.Read)
   publisher: string;
 
   @doc("Product name of data product.")
-  @visibility("create", "read")
+  @visibility(Lifecycle.Create, Lifecycle.Read)
   product: string;
 
   @doc("Major version of data product.")
-  @visibility("create", "read")
+  @visibility(Lifecycle.Create, Lifecycle.Read)
   majorVersion: string;
 
   @doc("List of name or email associated with data product resource deployment.")
-  @visibility("create", "read", "update")
+  @visibility(Lifecycle.Create, Lifecycle.Read, Lifecycle.Update)
   owners?: string[];
 
   @doc("Flag to enable or disable redundancy for data product.")
-  @visibility("create", "read")
+  @visibility(Lifecycle.Create, Lifecycle.Read)
   redundancy?: ControlState;
 
   @doc("Purview account url for data product to connect to.")
-  @visibility("create", "update", "read")
+  @visibility(Lifecycle.Create, Lifecycle.Update, Lifecycle.Read)
   purviewAccount?: string;
 
   @doc("Purview collection url for data product to connect to.")
-  @visibility("create", "update", "read")
+  @visibility(Lifecycle.Create, Lifecycle.Update, Lifecycle.Read)
   purviewCollection?: string;
 
   @doc("Flag to enable or disable private link for data product resource.")
-  @visibility("create", "update", "read")
+  @visibility(Lifecycle.Create, Lifecycle.Update, Lifecycle.Read)
   privateLinksEnabled?: ControlState;
 
   @doc("Flag to enable or disable public access of data product resource.")
-  @visibility("create", "read")
+  @visibility(Lifecycle.Create, Lifecycle.Read)
   publicNetworkAccess?: ControlState;
 
   @doc("Flag to enable customer managed key encryption for data product.")
-  @visibility("create", "read")
+  @visibility(Lifecycle.Create, Lifecycle.Read)
   customerManagedKeyEncryptionEnabled?: ControlState;
 
   @doc("Customer managed encryption key details for data product.")
-  @visibility("create", "read")
+  @visibility(Lifecycle.Create, Lifecycle.Read)
   customerEncryptionKey?: EncryptionKeyDetails;
 
   @doc("Network rule set for data product.")
-  @visibility("create", "read")
+  @visibility(Lifecycle.Create, Lifecycle.Read)
   networkacls?: DataProductNetworkAcls;
 
   @doc("Managed resource group configuration.")
-  @visibility("create")
+  @visibility(Lifecycle.Create)
   managedResourceGroupConfiguration?: ManagedResourceGroupConfiguration;
 
   @doc("List of available minor versions of the data product resource.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   availableMinorVersions?: string[];
 
   @doc("Current configured minor version of the data product resource.")
-  @visibility("read", "update")
+  @visibility(Lifecycle.Read, Lifecycle.Update)
   currentMinorVersion?: string;
 
   @doc("Documentation link for the data product based on definition file.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   documentation?: string;
 
   @doc("Resource links which exposed to the customer to query the data.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   consumptionEndpoints?: ConsumptionEndpointsProperties;
 
   @doc("Key vault url.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   keyVaultUrl?: string;
 }
 
@@ -268,11 +268,11 @@ union ControlState {
 @added(Versions.v2023_11_15)
 model ConsumptionEndpointsProperties {
   @doc("Ingestion url to upload the data.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   ingestionUrl?: string;
 
   @doc("Resource Id of ingestion endpoint.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   ingestionResourceId?: Azure.Core.armResourceIdentifier<[
     {
       type: "Microsoft.Storage/storageAccounts";
@@ -280,11 +280,11 @@ model ConsumptionEndpointsProperties {
   ]>;
 
   @doc("Url to consume file type.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   fileAccessUrl?: string;
 
   @doc("Resource Id of file access endpoint.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   fileAccessResourceId?: Azure.Core.armResourceIdentifier<[
     {
       type: "Microsoft.Storage/storageAccounts";
@@ -292,11 +292,11 @@ model ConsumptionEndpointsProperties {
   ]>;
 
   @doc("Url to consume the processed data.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   queryUrl?: string;
 
   @doc("Resource Id of query endpoint.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   queryResourceId?: Azure.Core.armResourceIdentifier<[
     {
       type: "Microsoft.Kusto/clusters";
@@ -358,31 +358,31 @@ model DataType is ProxyResource<DataTypeProperties> {
 @added(Versions.v2023_11_15)
 model DataTypeProperties {
   @doc("Latest provisioning state  of data product.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   provisioningState?: ProvisioningState;
 
   @doc("State of data type.")
-  @visibility("read", "create", "update")
+  @visibility(Lifecycle.Read, Lifecycle.Create, Lifecycle.Update)
   state?: DataTypeState;
 
   @doc("Reason for the state of data type.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   stateReason?: string;
 
   @doc("Field for storage output retention in days.")
-  @visibility("read", "create", "update")
+  @visibility(Lifecycle.Read, Lifecycle.Create, Lifecycle.Update)
   storageOutputRetention?: int32;
 
   @doc("Field for database cache retention in days.")
-  @visibility("read", "create", "update")
+  @visibility(Lifecycle.Read, Lifecycle.Create, Lifecycle.Update)
   databaseCacheRetention?: int32;
 
   @doc("Field for database data retention in days.")
-  @visibility("read", "create", "update")
+  @visibility(Lifecycle.Read, Lifecycle.Create, Lifecycle.Update)
   databaseRetention?: int32;
 
   @doc("Url for data visualization.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   visualizationUrl?: string;
 }
 
@@ -416,7 +416,7 @@ model ListRoleAssignments {
   count: int32;
 
   @doc("list of role assignments")
-  @extension("x-ms-identifiers", ["roleAssignmentId"])
+  @extension("x-ms-identifiers", #["roleAssignmentId"])
   roleAssignmentResponse: RoleAssignmentDetail[];
 }
 
@@ -473,11 +473,11 @@ model DataProductsCatalog is ProxyResource<DataProductsCatalogProperties> {
 @added(Versions.v2023_11_15)
 model DataProductsCatalogProperties {
   @doc("The data catalog provisioning state.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   provisioningState?: ProvisioningState;
 
   @doc("The data product publisher information.")
-  @extension("x-ms-identifiers", [])
+  @extension("x-ms-identifiers", #[])
   publishers: PublisherInformation[];
 }
 
@@ -488,7 +488,7 @@ model PublisherInformation {
   publisherName: string;
 
   @doc("Data product information.")
-  @extension("x-ms-identifiers", [])
+  @extension("x-ms-identifiers", #[])
   dataProducts: DataProductInformation[];
 }
 
@@ -502,7 +502,7 @@ model DataProductInformation {
   description: string;
 
   @doc("Version information of data product.")
-  @extension("x-ms-identifiers", [])
+  @extension("x-ms-identifiers", #[])
   dataProductVersions: DataProductVersion[];
 }
 
