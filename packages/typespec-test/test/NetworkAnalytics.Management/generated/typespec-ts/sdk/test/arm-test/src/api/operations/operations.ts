@@ -3,10 +3,10 @@
 
 import { NetworkAnalyticsApiContext as Client } from "../index.js";
 import {
-  errorResponseDeserializer,
   _OperationListResult,
   _operationListResultDeserializer,
   Operation,
+  errorResponseDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,

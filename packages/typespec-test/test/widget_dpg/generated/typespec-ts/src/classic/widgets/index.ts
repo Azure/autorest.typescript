@@ -22,7 +22,7 @@ import {
   WidgetsListWidgetsPagesOptionalParams,
   WidgetsListWidgetsOptionalParams,
 } from "../../api/widgets/index.js";
-import { User, Widget, AnalyzeResult } from "../../models/models.js";
+import { Widget, User, AnalyzeResult } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 

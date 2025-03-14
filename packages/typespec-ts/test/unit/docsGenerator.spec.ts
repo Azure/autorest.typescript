@@ -50,7 +50,7 @@ describe("Doc generation testing", () => {
         import type { RequestParameters } from "@azure-rest/core-client";
 
         export interface CreateOrUpdateUserBodyParam {
-          /** A sequence of textual characters. */
+          /** Details about username. */
           body: string;
         }
 
@@ -76,7 +76,6 @@ describe("Doc generation testing", () => {
         import type { UserDetailsParameter } from "./models.js";
 
         export interface CreateOrUpdateUserBodyParam {
-          /** Body type details */
           body: UserDetailsParameter;
         }
 

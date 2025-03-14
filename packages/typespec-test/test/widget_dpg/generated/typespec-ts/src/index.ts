@@ -10,9 +10,9 @@ import {
 export { WidgetServiceClient } from "./widgetServiceClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
-  User,
   Widget,
   WidgetError,
+  User,
   AnalyzeResult,
   NonReferencedModel,
   KnownVersions,

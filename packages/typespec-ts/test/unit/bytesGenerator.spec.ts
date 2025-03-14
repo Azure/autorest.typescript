@@ -24,11 +24,7 @@ describe("bytes", () => {
             import type { RequestParameters } from "@azure-rest/core-client";
             
             export interface UploadFileViaBodyBodyParam {
-              /**
-              * Represent a byte array
-              *
-              * Value may contain any sequence of octets
-              */
+              /** Value may contain any sequence of octets */
               body:
               | string
               | Uint8Array
@@ -64,11 +60,7 @@ describe("bytes", () => {
             import type { RequestParameters } from "@azure-rest/core-client";
             
             export interface UploadFileViaBodyBodyParam {
-              /**
-              * Represent a byte array
-              *
-              * Value may contain any sequence of octets
-              */
+              /** Value may contain any sequence of octets */
               body:
               | string
               | Uint8Array
@@ -88,7 +80,7 @@ describe("bytes", () => {
     });
 
     // TODO: need to figure out the behavior
-    it.skip("@encode('base64') - should be treated as string?", async () => {});
+    it.skip("@encode('base64') - should be treated as string?", async () => { });
     it.skip("bytes in model - should be treated as base64 string?");
   });
   describe("application/json or no content type specified", () => {
@@ -104,7 +96,6 @@ describe("bytes", () => {
         `import type { RequestParameters } from "@azure-rest/core-client";
            
           export interface ReadBodyParam {
-          /** Represent a byte array */
             body: string;
           }
 
@@ -128,7 +119,6 @@ describe("bytes", () => {
         `import type { RequestParameters } from "@azure-rest/core-client";
                   
           export interface ReadBodyParam {
-          /** Represent a byte array */
             body: string;
           }
           
@@ -503,7 +493,6 @@ describe("bytes", () => {
       import type { SchemaContentTypeValues } from "./models.js";
 
       export interface ReadBodyParam {
-      /** Represent a byte array */
         body: string;
       }
 
@@ -533,11 +522,7 @@ describe("bytes", () => {
       import type { SchemaContentTypeValues } from "./models.js";
 
       export interface ReadBodyParam {
-         /**
-          * Represent a byte array
-          *
-          * Value may contain any sequence of octets
-          */
+        /** Value may contain any sequence of octets */
         body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream;
       }
 
