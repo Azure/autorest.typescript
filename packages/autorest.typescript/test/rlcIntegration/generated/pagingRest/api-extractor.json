@@ -6,7 +6,7 @@
   "dtsRollup": {
     "enabled": true,
     "untrimmedFilePath": "",
-    "publicTrimmedFilePath": "./types/paging-service.d.ts"
+    "publicTrimmedFilePath": "dist/paging-service.d.ts"
   },
   "messages": {
     "tsdocMessageReporting": { "default": { "logLevel": "none" } },

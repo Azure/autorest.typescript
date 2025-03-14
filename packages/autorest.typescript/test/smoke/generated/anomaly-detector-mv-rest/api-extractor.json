@@ -6,7 +6,7 @@
   "dtsRollup": {
     "enabled": true,
     "untrimmedFilePath": "",
-    "publicTrimmedFilePath": "./types/anomaly-detector-mv-rest.d.ts"
+    "publicTrimmedFilePath": "dist/anomaly-detector-mv-rest.d.ts"
   },
   "messages": {
     "tsdocMessageReporting": { "default": { "logLevel": "none" } },

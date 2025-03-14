@@ -337,7 +337,7 @@ export declare interface ResponseHeaderUnixTimestamp {
 }
 
 export declare interface ResponseHeaderUnixTimestamp204Headers {
-    value: string;
+    value: number;
 }
 
 export declare interface ResponseHeaderUnixTimestamp204Response extends HttpResponse {
