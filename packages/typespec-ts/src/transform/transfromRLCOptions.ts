@@ -636,14 +636,9 @@ function getGenerateMetadata(emitterOptions: EmitterOptions) {
  * @returns
  */
 function getGenerateTest(emitterOptions: EmitterOptions, flavor?: "azure") {
-  if (
-    flavor !== "azure" &&
-    (emitterOptions["generate-test"] === undefined ||
-      emitterOptions["generate-test"] === null) &&
-    (emitterOptions.generateTest === undefined ||
-      emitterOptions.generateTest === null)
-  ) {
-    return undefined;
+  // Always disable generateTest for unbranded packages
+  if (flavor !== "azure") {
+    return false;
   } else if (
     flavor === "azure" &&
     (emitterOptions["generate-test"] === undefined ||

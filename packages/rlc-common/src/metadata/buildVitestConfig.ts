@@ -4,81 +4,35 @@
 import { Project } from "ts-morph";
 import { RLCModel } from "../interfaces.js";
 
-const nodeConfig = `export default defineConfig({
-  test: {
-    "reporters": ["basic", "junit"],
-    "outputFile": {
-      "junit": "test-results.browser.xml"
-    },
-    "fakeTimers": {
-      "toFake": ["setTimeout", "Date"]
-    },
-    "watch": false,
-    "include": ["test/**/*.spec.ts"],
-    "exclude": ["test/**/browser/*.spec.ts"],
-    "coverage": {
-      "include": ["src/**/*.ts"],
-      "exclude": [
-        "src/**/*-browser.mts",
-        "src/**/*-react-native.mts",
-        "vitest*.config.ts",
-        "samples-dev/**/*.ts"
-      ],
-      "provider": "istanbul",
-      "reporter": ["text", "json", "html"],
-      "reportsDirectory": "coverage"
-    },
-    testTimeout: 1200000,
-    hookTimeout: 1200000
-  }
-});`;
-
-const browserConfig = (options: {
-  isAzureSdkForJs: boolean;
-}) => `process.env.RECORDINGS_RELATIVE_PATH = relativeRecordingsPath();
-
-export default defineConfig({
-    "define": {
-      "process.env": process.env
-    },
-    "test": {
-      "reporters": ["basic", "junit"],
-      "outputFile": {
-        "junit": "test-results.browser.xml"
-      },
-      "browser": {
-        "enabled": true,
-        "headless": true,
-        "name": "chromium",
-        "provider": "playwright"
-      },
-      "fakeTimers": {
-        "toFake": ["setTimeout", "Date"]
-      },
-      "watch": false,
-      "include": ${
-        options.isAzureSdkForJs
-          ? `["dist-test/browser/**/*.spec.js"]`
-          : `["test/**/*.spec.ts"]`
-      },
-      "coverage": {
-        "include":  ${
-          options.isAzureSdkForJs
-            ? `["dist-test/browser/**/*.spec.js"]`
-            : `["test/**/*.spec.ts"]`
-        },
-        "provider": "istanbul",
-        "reporter": ["text", "json", "html"],
-        "reportsDirectory": "coverage-browser"
-      },
+const nodeConfig = `
+export default mergeConfig(
+  viteConfig,
+  defineConfig({
+    test: {
       testTimeout: 1200000,
-      hookTimeout: 1200000
-    }
-  });`;
+      hookTimeout: 1200000,
+    },
+  }),
+);`;
+
+const browserConfig = `
+export default mergeConfig(
+  viteConfig,
+  defineConfig({
+    test: {
+      include: ["dist-test/browser/test/**/*.spec.js"],
+      testTimeout: 1200000,
+      hookTimeout: 1200000,
+    },
+  }),
+);`;
+
+const esmConfig = `
+export default mergeConfig(vitestConfig, vitestEsmConfig);`;
 
 export function buildVitestConfig(
   model: RLCModel,
-  platform: "browser" | "node"
+  platform: "browser" | "node" | "esm"
 ) {
   if (
     model.options?.generateMetadata === false ||
@@ -89,30 +43,57 @@ export function buildVitestConfig(
 
   const project = new Project();
 
-  const isAzureSdkForJs = model.options?.azureSdkForJs ?? false;
-  let filePath = "vitest.config.ts";
-  let config = nodeConfig;
+  let filePath;
+  let config;
+  let configFile;
 
-  if (platform === "browser") {
+  if (platform === "node") {
+    filePath = "vitest.config.ts";
+    config = nodeConfig;
+    configFile = project.createSourceFile(filePath, config, {
+      overwrite: true
+    });
+    configFile.addImportDeclaration({
+      moduleSpecifier: "vitest/config",
+      namedImports: ["defineConfig", "mergeConfig"]
+    });
+    configFile.addImportDeclaration({
+      moduleSpecifier: "../../../vitest.shared.config.ts",
+      namespaceImport: "viteConfig"
+    });
+  } else if (platform === "browser") {
     filePath = "vitest.browser.config.ts";
-    config = browserConfig({
-      isAzureSdkForJs
+    config = browserConfig;
+    configFile = project.createSourceFile(filePath, config, {
+      overwrite: true
+    });
+    configFile.addImportDeclaration({
+      moduleSpecifier: "vitest/config",
+      namedImports: ["defineConfig", "mergeConfig"]
+    });
+    configFile.addImportDeclaration({
+      moduleSpecifier: "../../../vitest.browser.shared.config.ts",
+      namespaceImport: "viteConfig"
+    });
+  } else {
+    filePath = "vitest.esm.config.ts";
+    config = esmConfig;
+    configFile = project.createSourceFile(filePath, config, {
+      overwrite: true
+    });
+    configFile.addImportDeclaration({
+      moduleSpecifier: "vitest/config",
+      namedImports: ["mergeConfig"]
+    });
+    configFile.addImportDeclaration({
+      moduleSpecifier: "./vitest.config.ts",
+      namespaceImport: "vitestConfig"
+    });
+    configFile.addImportDeclaration({
+      moduleSpecifier: "../../../vitest.esm.shared.config.ts",
+      namespaceImport: "vitestEsmConfig"
     });
   }
-
-  const configFile = project.createSourceFile(filePath, config, {
-    overwrite: true
-  });
-
-  configFile.addImportDeclaration({
-    moduleSpecifier: "vitest/config",
-    namedImports: ["defineConfig"]
-  });
-
-  configFile.addImportDeclaration({
-    moduleSpecifier: "@azure-tools/test-recorder",
-    namedImports: ["relativeRecordingsPath"]
-  });
 
   return {
     path: filePath,
