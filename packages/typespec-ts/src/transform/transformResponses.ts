@@ -152,7 +152,10 @@ function transformHeaders(
         usage: [SchemaContext.Output],
         relevantProperty: value
       }) as Schema;
-      const type = getTypeName(typeSchema, [SchemaContext.Output]);
+      let type = getTypeName(typeSchema, [SchemaContext.Output]);
+      if (type !== "string") {
+        type = "string";
+      }
       getImportedModelName(typeSchema, [SchemaContext.Output])?.forEach(
         importedModels.add,
         importedModels

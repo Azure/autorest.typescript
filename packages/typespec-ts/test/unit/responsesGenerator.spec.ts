@@ -238,7 +238,7 @@ describe("Responses.ts", () => {
       );
     });
 
-    it("should handle int/decimal/decimal128/int8 with encode `string` in response headers", async () => {
+    it.only("should handle int/decimal/decimal128/int8 with encode `string` in response headers", async () => {
       const responses = await emitResponsesFromTypeSpec(
         `
       alias SimpleModel = {
@@ -257,6 +257,10 @@ describe("Responses.ts", () => {
         @header
         @encode(DurationKnownEncoding.seconds, float)
         z: duration;
+        @header
+        number: int64;
+        @header
+        float: float;
       };
       @route("/decimal/prop/encode")
       @get
@@ -278,7 +282,9 @@ describe("Responses.ts", () => {
             "y": string;
             "value": string;
             "input": string;
-            "z": number;
+            "z": string;
+            "number": string;
+            "float": string;
         }
 
         /** The request has succeeded. */
