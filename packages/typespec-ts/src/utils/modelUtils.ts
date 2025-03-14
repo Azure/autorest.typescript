@@ -1920,9 +1920,9 @@ export function getCollectionFormat(
       return "multi";
     }
     switch (encode?.encoding) {
-      case "ArrayFormat.pipeDelimited":
+      case "ArrayEncoding.pipeDelimited":
         return "pipes";
-      case "ArrayFormat.spaceDelimited":
+      case "ArrayEncoding.spaceDelimited":
         return "ssv";
       default:
         return "csv";

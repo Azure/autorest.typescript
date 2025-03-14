@@ -47,9 +47,9 @@ export function getParameterSerializationInfo(
       const name = normalizeName(`${prefix}_QueryParam`, NameType.Interface);
       const encode = getEncode(dpgContext.program, parameter.param);
       const format =
-        encode?.encoding === "ArrayFormat.pipeDelimited" ||
-        encode?.encoding === "ArrayFormat.spaceDelimited"
-          ? encode.encoding.replace("ArrayFormat.", "")
+        encode?.encoding === "ArrayEncoding.pipeDelimited" ||
+        encode?.encoding === "ArrayEncoding.spaceDelimited"
+          ? encode.encoding.replace("ArrayEncoding.", "")
           : undefined;
       let wrapperType: Schema = buildExplodeAndStyle(
         name,

@@ -96,7 +96,7 @@ export declare interface QueryPipes204Response extends HttpResponse {
 export declare interface QueryPipesColorsQueryParam {
     value: string[];
     explode: false;
-    style: "form";
+    style: "pipeDelimited";
 }
 
 export declare type QueryPipesParameters = QueryPipesQueryParam & RequestParameters;
@@ -106,7 +106,7 @@ export declare interface QueryPipesQueryParam {
 }
 
 export declare interface QueryPipesQueryParamProperties {
-    colors: string[] | QueryPipesColorsQueryParam;
+    colors: QueryPipesColorsQueryParam;
 }
 
 export declare interface QuerySsv {
@@ -120,7 +120,7 @@ export declare interface QuerySsv204Response extends HttpResponse {
 export declare interface QuerySsvColorsQueryParam {
     value: string[];
     explode: false;
-    style: "form";
+    style: "spaceDelimited";
 }
 
 export declare type QuerySsvParameters = QuerySsvQueryParam & RequestParameters;
@@ -130,7 +130,7 @@ export declare interface QuerySsvQueryParam {
 }
 
 export declare interface QuerySsvQueryParamProperties {
-    colors: string[] | QuerySsvColorsQueryParam;
+    colors: QuerySsvColorsQueryParam;
 }
 
 export declare interface Routes {
