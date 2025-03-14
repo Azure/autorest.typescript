@@ -3,7 +3,7 @@
   "useWorkspaces": true,
   "strictPeerDependencies": false,
   "globalOverrides": {
-    "@typespec/compiler": "0.67.0-dev.17",
+    "@typespec/compiler": "next",
     "@typespec/http": "next",
     "@typespec/openapi": "next",
     "@typespec/rest": "next",
