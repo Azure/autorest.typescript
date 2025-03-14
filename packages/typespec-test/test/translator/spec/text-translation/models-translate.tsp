@@ -12,8 +12,8 @@ namespace Translator.TextTranslation;
 model TranslateParameters {
     ...CommonParameters;
 
-    @query({
-      format: "multi"
+    @query(#{
+      explode: true
     })
     @doc("""
     Specifies the language of the output text. The target language must be one of the supported languages included 
