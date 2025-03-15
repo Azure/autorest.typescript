@@ -12,6 +12,280 @@ import {
   DoneEvent,
 } from "./agents/models.js";
 
+/** Alias for _MessageAttachmentTool */
+export type _MessageAttachmentTool =
+  | CodeInterpreterToolDefinition
+  | FileSearchToolDefinition;
+
+export function _messageAttachmentToolSerializer(
+  item: _MessageAttachmentTool,
+): any {
+  return item;
+}
+
+export function _messageAttachmentToolDeserializer(
+  item: any,
+): _MessageAttachmentTool {
+  return item;
+}
+
+/** Response from the Workspace - Get operation */
+export interface GetWorkspaceResponse {
+  /** A unique identifier for the resource */
+  id: string;
+  /** The name of the resource */
+  name: string;
+  /** The properties of the resource */
+  properties: WorkspaceProperties;
+}
+
+export function getWorkspaceResponseDeserializer(
+  item: any,
+): GetWorkspaceResponse {
+  return {
+    id: item["id"],
+    name: item["name"],
+    properties: workspacePropertiesDeserializer(item["properties"]),
+  };
+}
+
+/** workspace properties */
+export interface WorkspaceProperties {
+  /** Authentication type of the connection target */
+  applicationInsights: string;
+}
+
+export function workspacePropertiesDeserializer(
+  item: any,
+): WorkspaceProperties {
+  return {
+    applicationInsights: item["applicationInsights"],
+  };
+}
+
+/** Response from the list operation */
+export interface ListConnectionsResponse {
+  /** A list of connection list secrets */
+  value: GetConnectionResponse[];
+}
+
+export function listConnectionsResponseDeserializer(
+  item: any,
+): ListConnectionsResponse {
+  return {
+    value: getConnectionResponseArrayDeserializer(item["value"]),
+  };
+}
+
+export function getConnectionResponseArrayDeserializer(
+  result: Array<GetConnectionResponse>,
+): any[] {
+  return result.map((item) => {
+    return getConnectionResponseDeserializer(item);
+  });
+}
+
+/** Response from the listSecrets operation */
+export interface GetConnectionResponse {
+  /** A unique identifier for the connection */
+  id: string;
+  /** The name of the resource */
+  name: string;
+  /** The properties of the resource */
+  properties: InternalConnectionPropertiesUnion;
+}
+
+export function getConnectionResponseDeserializer(
+  item: any,
+): GetConnectionResponse {
+  return {
+    id: item["id"],
+    name: item["name"],
+    properties: internalConnectionPropertiesUnionDeserializer(
+      item["properties"],
+    ),
+  };
+}
+
+/** Connection properties */
+export interface InternalConnectionProperties {
+  /** Authentication type of the connection target */
+  /** The discriminator possible values: ApiKey, AAD, SAS */
+  authType: AuthenticationType;
+  /** Category of the connection */
+  category: ConnectionType;
+  /** The connection URL to be used for this service */
+  target: string;
+}
+
+export function internalConnectionPropertiesDeserializer(
+  item: any,
+): InternalConnectionProperties {
+  return {
+    authType: item["authType"],
+    category: item["category"],
+    target: item["target"],
+  };
+}
+
+/** Alias for InternalConnectionPropertiesUnion */
+export type InternalConnectionPropertiesUnion =
+  | InternalConnectionPropertiesApiKeyAuth
+  | InternalConnectionPropertiesAADAuth
+  | InternalConnectionPropertiesSASAuth
+  | InternalConnectionProperties;
+
+export function internalConnectionPropertiesUnionDeserializer(
+  item: any,
+): InternalConnectionPropertiesUnion {
+  switch (item.authType) {
+    case "ApiKey":
+      return internalConnectionPropertiesApiKeyAuthDeserializer(
+        item as InternalConnectionPropertiesApiKeyAuth,
+      );
+
+    case "AAD":
+      return internalConnectionPropertiesAADAuthDeserializer(
+        item as InternalConnectionPropertiesAADAuth,
+      );
+
+    case "SAS":
+      return internalConnectionPropertiesSASAuthDeserializer(
+        item as InternalConnectionPropertiesSASAuth,
+      );
+
+    default:
+      return internalConnectionPropertiesDeserializer(item);
+  }
+}
+
+/** Authentication type used by Azure AI service to connect to another service */
+export type AuthenticationType = "ApiKey" | "AAD" | "SAS";
+/** The Type (or category) of the connection */
+export type ConnectionType =
+  | "AzureOpenAI"
+  | "Serverless"
+  | "AzureBlob"
+  | "AIServices"
+  | "CognitiveSearch";
+
+/** Connection properties for connections with API key authentication */
+export interface InternalConnectionPropertiesApiKeyAuth
+  extends InternalConnectionProperties {
+  /** Authentication type of the connection target */
+  authType: "ApiKey";
+  /** Credentials will only be present for authType=ApiKey */
+  credentials: CredentialsApiKeyAuth;
+}
+
+export function internalConnectionPropertiesApiKeyAuthDeserializer(
+  item: any,
+): InternalConnectionPropertiesApiKeyAuth {
+  return {
+    authType: item["authType"],
+    category: item["category"],
+    target: item["target"],
+    credentials: credentialsApiKeyAuthDeserializer(item["credentials"]),
+  };
+}
+
+/** The credentials needed for API key authentication */
+export interface CredentialsApiKeyAuth {
+  /** The API key */
+  key: string;
+}
+
+export function credentialsApiKeyAuthDeserializer(
+  item: any,
+): CredentialsApiKeyAuth {
+  return {
+    key: item["key"],
+  };
+}
+
+/** Connection properties for connections with AAD authentication (aka `Entra ID passthrough`) */
+export interface InternalConnectionPropertiesAADAuth
+  extends InternalConnectionProperties {
+  /** Authentication type of the connection target */
+  authType: "AAD";
+}
+
+export function internalConnectionPropertiesAADAuthDeserializer(
+  item: any,
+): InternalConnectionPropertiesAADAuth {
+  return {
+    authType: item["authType"],
+    category: item["category"],
+    target: item["target"],
+  };
+}
+
+/** Connection properties for connections with SAS authentication */
+export interface InternalConnectionPropertiesSASAuth
+  extends InternalConnectionProperties {
+  /** Authentication type of the connection target */
+  authType: "SAS";
+  /** Credentials will only be present for authType=ApiKey */
+  credentials: CredentialsSASAuth;
+}
+
+export function internalConnectionPropertiesSASAuthDeserializer(
+  item: any,
+): InternalConnectionPropertiesSASAuth {
+  return {
+    authType: item["authType"],
+    category: item["category"],
+    target: item["target"],
+    credentials: credentialsSASAuthDeserializer(item["credentials"]),
+  };
+}
+
+/** The credentials needed for Shared Access Signatures (SAS) authentication */
+export interface CredentialsSASAuth {
+  /** The Shared Access Signatures (SAS) token */
+  sas: string;
+}
+
+export function credentialsSASAuthDeserializer(item: any): CredentialsSASAuth {
+  return {
+    sas: item["SAS"],
+  };
+}
+
+/** Response from getting properties of the Application Insights resource */
+export interface GetAppInsightsResponse {
+  /** A unique identifier for the resource */
+  id: string;
+  /** The name of the resource */
+  name: string;
+  /** The properties of the resource */
+  properties: AppInsightsProperties;
+}
+
+export function getAppInsightsResponseDeserializer(
+  item: any,
+): GetAppInsightsResponse {
+  return {
+    id: item["id"],
+    name: item["name"],
+    properties: appInsightsPropertiesDeserializer(item["properties"]),
+  };
+}
+
+/** The properties of the Application Insights resource */
+export interface AppInsightsProperties {
+  /** Authentication type of the connection target */
+  connectionString: string;
+}
+
+export function appInsightsPropertiesDeserializer(
+  item: any,
+): AppInsightsProperties {
+  return {
+    connectionString: item["ConnectionString"],
+  };
+}
+
 /** Evaluation Definition */
 export interface Evaluation {
   /** Identifier of the evaluation. */
@@ -520,280 +794,6 @@ export function evaluationScheduleArrayDeserializer(
   return result.map((item) => {
     return evaluationScheduleDeserializer(item);
   });
-}
-
-/** Response from getting properties of the Application Insights resource */
-export interface GetAppInsightsResponse {
-  /** A unique identifier for the resource */
-  id: string;
-  /** The name of the resource */
-  name: string;
-  /** The properties of the resource */
-  properties: AppInsightsProperties;
-}
-
-export function getAppInsightsResponseDeserializer(
-  item: any,
-): GetAppInsightsResponse {
-  return {
-    id: item["id"],
-    name: item["name"],
-    properties: appInsightsPropertiesDeserializer(item["properties"]),
-  };
-}
-
-/** The properties of the Application Insights resource */
-export interface AppInsightsProperties {
-  /** Authentication type of the connection target */
-  connectionString: string;
-}
-
-export function appInsightsPropertiesDeserializer(
-  item: any,
-): AppInsightsProperties {
-  return {
-    connectionString: item["ConnectionString"],
-  };
-}
-
-/** Response from the Workspace - Get operation */
-export interface GetWorkspaceResponse {
-  /** A unique identifier for the resource */
-  id: string;
-  /** The name of the resource */
-  name: string;
-  /** The properties of the resource */
-  properties: WorkspaceProperties;
-}
-
-export function getWorkspaceResponseDeserializer(
-  item: any,
-): GetWorkspaceResponse {
-  return {
-    id: item["id"],
-    name: item["name"],
-    properties: workspacePropertiesDeserializer(item["properties"]),
-  };
-}
-
-/** workspace properties */
-export interface WorkspaceProperties {
-  /** Authentication type of the connection target */
-  applicationInsights: string;
-}
-
-export function workspacePropertiesDeserializer(
-  item: any,
-): WorkspaceProperties {
-  return {
-    applicationInsights: item["applicationInsights"],
-  };
-}
-
-/** Response from the list operation */
-export interface ListConnectionsResponse {
-  /** A list of connection list secrets */
-  value: GetConnectionResponse[];
-}
-
-export function listConnectionsResponseDeserializer(
-  item: any,
-): ListConnectionsResponse {
-  return {
-    value: getConnectionResponseArrayDeserializer(item["value"]),
-  };
-}
-
-export function getConnectionResponseArrayDeserializer(
-  result: Array<GetConnectionResponse>,
-): any[] {
-  return result.map((item) => {
-    return getConnectionResponseDeserializer(item);
-  });
-}
-
-/** Response from the listSecrets operation */
-export interface GetConnectionResponse {
-  /** A unique identifier for the connection */
-  id: string;
-  /** The name of the resource */
-  name: string;
-  /** The properties of the resource */
-  properties: InternalConnectionPropertiesUnion;
-}
-
-export function getConnectionResponseDeserializer(
-  item: any,
-): GetConnectionResponse {
-  return {
-    id: item["id"],
-    name: item["name"],
-    properties: internalConnectionPropertiesUnionDeserializer(
-      item["properties"],
-    ),
-  };
-}
-
-/** Connection properties */
-export interface InternalConnectionProperties {
-  /** Authentication type of the connection target */
-  /** The discriminator possible values: ApiKey, AAD, SAS */
-  authType: AuthenticationType;
-  /** Category of the connection */
-  category: ConnectionType;
-  /** The connection URL to be used for this service */
-  target: string;
-}
-
-export function internalConnectionPropertiesDeserializer(
-  item: any,
-): InternalConnectionProperties {
-  return {
-    authType: item["authType"],
-    category: item["category"],
-    target: item["target"],
-  };
-}
-
-/** Alias for InternalConnectionPropertiesUnion */
-export type InternalConnectionPropertiesUnion =
-  | InternalConnectionPropertiesApiKeyAuth
-  | InternalConnectionPropertiesAADAuth
-  | InternalConnectionPropertiesSASAuth
-  | InternalConnectionProperties;
-
-export function internalConnectionPropertiesUnionDeserializer(
-  item: any,
-): InternalConnectionPropertiesUnion {
-  switch (item.authType) {
-    case "ApiKey":
-      return internalConnectionPropertiesApiKeyAuthDeserializer(
-        item as InternalConnectionPropertiesApiKeyAuth,
-      );
-
-    case "AAD":
-      return internalConnectionPropertiesAADAuthDeserializer(
-        item as InternalConnectionPropertiesAADAuth,
-      );
-
-    case "SAS":
-      return internalConnectionPropertiesSASAuthDeserializer(
-        item as InternalConnectionPropertiesSASAuth,
-      );
-
-    default:
-      return internalConnectionPropertiesDeserializer(item);
-  }
-}
-
-/** Authentication type used by Azure AI service to connect to another service */
-export type AuthenticationType = "ApiKey" | "AAD" | "SAS";
-/** The Type (or category) of the connection */
-export type ConnectionType =
-  | "AzureOpenAI"
-  | "Serverless"
-  | "AzureBlob"
-  | "AIServices"
-  | "CognitiveSearch";
-
-/** Connection properties for connections with API key authentication */
-export interface InternalConnectionPropertiesApiKeyAuth
-  extends InternalConnectionProperties {
-  /** Authentication type of the connection target */
-  authType: "ApiKey";
-  /** Credentials will only be present for authType=ApiKey */
-  credentials: CredentialsApiKeyAuth;
-}
-
-export function internalConnectionPropertiesApiKeyAuthDeserializer(
-  item: any,
-): InternalConnectionPropertiesApiKeyAuth {
-  return {
-    authType: item["authType"],
-    category: item["category"],
-    target: item["target"],
-    credentials: credentialsApiKeyAuthDeserializer(item["credentials"]),
-  };
-}
-
-/** The credentials needed for API key authentication */
-export interface CredentialsApiKeyAuth {
-  /** The API key */
-  key: string;
-}
-
-export function credentialsApiKeyAuthDeserializer(
-  item: any,
-): CredentialsApiKeyAuth {
-  return {
-    key: item["key"],
-  };
-}
-
-/** Connection properties for connections with AAD authentication (aka `Entra ID passthrough`) */
-export interface InternalConnectionPropertiesAADAuth
-  extends InternalConnectionProperties {
-  /** Authentication type of the connection target */
-  authType: "AAD";
-}
-
-export function internalConnectionPropertiesAADAuthDeserializer(
-  item: any,
-): InternalConnectionPropertiesAADAuth {
-  return {
-    authType: item["authType"],
-    category: item["category"],
-    target: item["target"],
-  };
-}
-
-/** Connection properties for connections with SAS authentication */
-export interface InternalConnectionPropertiesSASAuth
-  extends InternalConnectionProperties {
-  /** Authentication type of the connection target */
-  authType: "SAS";
-  /** Credentials will only be present for authType=ApiKey */
-  credentials: CredentialsSASAuth;
-}
-
-export function internalConnectionPropertiesSASAuthDeserializer(
-  item: any,
-): InternalConnectionPropertiesSASAuth {
-  return {
-    authType: item["authType"],
-    category: item["category"],
-    target: item["target"],
-    credentials: credentialsSASAuthDeserializer(item["credentials"]),
-  };
-}
-
-/** The credentials needed for Shared Access Signatures (SAS) authentication */
-export interface CredentialsSASAuth {
-  /** The Shared Access Signatures (SAS) token */
-  sas: string;
-}
-
-export function credentialsSASAuthDeserializer(item: any): CredentialsSASAuth {
-  return {
-    sas: item["SAS"],
-  };
-}
-
-/** Alias for _MessageAttachmentTool */
-export type _MessageAttachmentTool =
-  | CodeInterpreterToolDefinition
-  | FileSearchToolDefinition;
-
-export function _messageAttachmentToolSerializer(
-  item: _MessageAttachmentTool,
-): any {
-  return item;
-}
-
-export function _messageAttachmentToolDeserializer(
-  item: any,
-): _MessageAttachmentTool {
-  return item;
 }
 
 /** Alias for _ */

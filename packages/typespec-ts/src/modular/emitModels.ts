@@ -709,7 +709,6 @@ function visitClient(
   client: SdkClientType<SdkServiceOperation>
 ) {
   // Comment this out for now, as client initialization is not used in the generated code
-  // visitType(client.initialization, emitQueue);
   client.methods.forEach((method) => visitClientMethod(context, method));
 }
 

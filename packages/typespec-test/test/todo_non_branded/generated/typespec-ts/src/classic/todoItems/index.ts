@@ -15,12 +15,12 @@ import {
   TodoItemsCreateJsonOptionalParams,
   TodoItemsListOptionalParams,
 } from "../../api/todoItems/index.js";
-import { TodoItemPatch } from "../../models/todoItems/models.js";
 import {
   TodoItem,
   TodoLabels,
   ToDoItemMultipartRequest,
 } from "../../models/models.js";
+import { TodoItemPatch } from "../../models/todoItems/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import {
   TodoItemsAttachmentsOperations,

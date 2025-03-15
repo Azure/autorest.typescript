@@ -198,7 +198,7 @@ export function buildClientContext(
       apiVersionPolicyStatement += `const apiVersion = options.apiVersion ?? "${apiVersionParam.clientDefaultValue}";`;
     }
 
-    if (apiVersionParam.kind === "method") {
+    if (apiVersionParam.kind === "apiVersion") {
       apiVersionPolicyStatement += `
       clientContext.pipeline.addPolicy({
         name: 'ClientApiVersionPolicy',

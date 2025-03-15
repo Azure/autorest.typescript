@@ -1,9 +1,9 @@
 // Licensed under the MIT License.
 
 import {
+  ApiError,
   todoItemArrayDeserializer,
   TodoItem,
-  ApiError,
   TodoAttachment,
   todoAttachmentArrayDeserializer,
 } from "../models.js";

@@ -3,10 +3,10 @@
 import { OpenAIContext as Client } from "../index.js";
 import {
   errorResponseDeserializer,
-  OpenAIFile,
-  openAIFileDeserializer,
   ListFilesResponse,
   listFilesResponseDeserializer,
+  OpenAIFile,
+  openAIFileDeserializer,
   CreateFileRequest,
   createFileRequestSerializer,
   DeleteFileResponse,

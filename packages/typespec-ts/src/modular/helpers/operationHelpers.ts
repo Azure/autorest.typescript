@@ -92,10 +92,10 @@ export function getSendPrivateFunction(
   const operationMethod = operation.operation.verb.toLowerCase();
   const optionalParamName = getOptionalParamsName(parameters);
   const hasQueryApiVersion = operation.operation.parameters.some(
-    (p) => p.isApiVersionParam && p.onClient && p.kind === "query"
+    (p) => p.onClient && p.kind === "query" && p.isApiVersionParam
   );
-  const hasClientApiVersion = client.initialization.properties.some(
-    (p) => p.isApiVersionParam && p.onClient && p.kind === "method"
+  const hasClientApiVersion = client.clientInitialization.parameters.some(
+    (p) => p.isApiVersionParam && p.onClient && p.kind === "apiVersion"
   );
   const statements: string[] = [];
   let pathStr = `"${operationPath}"`;
@@ -1160,7 +1160,8 @@ export function getRequestModelMapping(
 function getPropertySerializedName(property: SdkModelPropertyType) {
   return property.kind !== "credential" &&
     property.kind !== "method" &&
-    property.kind !== "endpoint"
+    property.kind !== "endpoint" &&
+    property.kind !== "apiVersion"
     ? property.serializedName
     : property.name;
 }

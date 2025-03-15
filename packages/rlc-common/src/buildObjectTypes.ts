@@ -385,7 +385,7 @@ function getDiscriminatorProperty(
         model.options?.sourceFrom === "Swagger"
           ? discriminators
           : schemaUsage.includes(SchemaContext.Output)
-            ? objectSchema.discriminator?.outputTypeName ?? inputTypeName
+            ? (objectSchema.discriminator?.outputTypeName ?? inputTypeName)
             : inputTypeName
     };
   }

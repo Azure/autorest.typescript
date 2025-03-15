@@ -2,11 +2,11 @@
 
 import { OpenAIContext as Client } from "../../index.js";
 import {
-  errorResponseDeserializer,
   CreateTranscriptionRequest,
   createTranscriptionRequestSerializer,
   CreateTranscriptionResponse,
   createTranscriptionResponseDeserializer,
+  errorResponseDeserializer,
 } from "../../../models/models.js";
 import {
   StreamableMethod,

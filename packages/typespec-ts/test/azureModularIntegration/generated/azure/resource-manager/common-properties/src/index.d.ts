@@ -2,10 +2,30 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
+export declare interface ApiError {
+    details?: ApiErrorBase[];
+    innererror?: InnerError;
+    code?: string;
+    target?: string;
+    message?: string;
+}
+
+export declare interface ApiErrorBase {
+    code?: string;
+    target?: string;
+    message?: string;
+}
+
+export declare interface CloudError {
+    error?: ApiError;
+}
+
 export declare class CommonPropertiesClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(subscriptionId: string, options?: CommonPropertiesClientOptionalParams);
+    createForUserDefinedError(resourceGroupName: string, confidentialResourceName: string, resource: ConfidentialResource, options?: CreateForUserDefinedErrorOptionalParams): Promise<ConfidentialResource>;
+    getForPredefinedError(resourceGroupName: string, confidentialResourceName: string, options?: GetForPredefinedErrorOptionalParams): Promise<ConfidentialResource>;
     updateWithUserAssignedAndSystemAssigned(resourceGroupName: string, managedIdentityTrackedResourceName: string, properties: ManagedIdentityTrackedResource, options?: UpdateWithUserAssignedAndSystemAssignedOptionalParams): Promise<ManagedIdentityTrackedResource>;
     createWithSystemAssigned(resourceGroupName: string, managedIdentityTrackedResourceName: string, resource: ManagedIdentityTrackedResource, options?: CreateWithSystemAssignedOptionalParams): Promise<ManagedIdentityTrackedResource>;
     get(resourceGroupName: string, managedIdentityTrackedResourceName: string, options?: GetOptionalParams): Promise<ManagedIdentityTrackedResource>;
@@ -15,7 +35,19 @@ export declare interface CommonPropertiesClientOptionalParams extends ClientOpti
     apiVersion?: string;
 }
 
+export declare interface ConfidentialResource extends TrackedResource {
+    properties?: ConfidentialResourceProperties;
+}
+
+export declare interface ConfidentialResourceProperties {
+    readonly provisioningState: string;
+    username: string;
+}
+
 export declare type CreatedByType = string;
+
+export declare interface CreateForUserDefinedErrorOptionalParams extends OperationOptions {
+}
 
 export declare interface CreateWithSystemAssignedOptionalParams extends OperationOptions {
 }
@@ -37,7 +69,15 @@ export declare interface ErrorResponse {
     error?: ErrorDetail;
 }
 
+export declare interface GetForPredefinedErrorOptionalParams extends OperationOptions {
+}
+
 export declare interface GetOptionalParams extends OperationOptions {
+}
+
+export declare interface InnerError {
+    exceptiontype?: string;
+    errordetail?: string;
 }
 
 export declare enum KnownCreatedByType {

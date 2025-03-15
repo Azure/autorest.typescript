@@ -3,7 +3,7 @@ options:
   "@azure-tools/typespec-ts":
     typespec-title-map:
       NetworkAnalyticsClient: NetworkAnalyticsApi
-    examples-directory: "{project-root}/spec/examples"
+    examples-dir: "{project-root}/spec/examples"
     generate-metadata: true
     generate-test: true
     azure-sdk-for-js: false

@@ -2,11 +2,11 @@
 
 import { OpenAIContext as Client } from "../index.js";
 import {
+  errorResponseDeserializer,
   CreateModerationRequest,
   createModerationRequestSerializer,
   CreateModerationResponse,
   createModerationResponseDeserializer,
-  errorResponseDeserializer,
 } from "../../models/models.js";
 import {
   StreamableMethod,

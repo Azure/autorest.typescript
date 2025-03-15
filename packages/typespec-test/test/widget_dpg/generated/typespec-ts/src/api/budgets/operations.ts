@@ -3,12 +3,12 @@
 
 import { WidgetServiceContext as Client } from "../index.js";
 import {
-  User,
-  userSerializer,
-  userDeserializer,
   Widget,
   widgetErrorDeserializer,
   widgetArrayDeserializer,
+  User,
+  userSerializer,
+  userDeserializer,
 } from "../../models/models.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";

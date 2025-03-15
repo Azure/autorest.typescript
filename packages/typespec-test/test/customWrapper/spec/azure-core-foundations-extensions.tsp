@@ -18,15 +18,13 @@ namespace Azure.Core.Foundations.Extensions;
 */
 
 @doc("for internal use")
-@knownValues(DefaultLroTypesKV)
-scalar DefaultLroType extends string;
-enum DefaultLroTypesKV {
+enum DefaultLroType {
   Default: "default",
 }
 
 @doc("List {name} resources", TResource)
 op CustomResourceList<
-  TResource extends object,
+  TResource extends {},
   TCustom extends Foundations.CustomizationFields = {}
 > is Foundations.ResourceList<
   TResource,
@@ -37,8 +35,8 @@ op CustomResourceList<
 @doc("Creates or replaces a {name}", TResource)
 @createsOrReplacesResource(TResource)
 op CustomResourceCreateOrReplace<
-  TResource extends object,
-  TResourceCreateParams extends object
+  TResource extends {},
+  TResourceCreateParams extends {}
 > is Foundations.ResourceOperation<
   TResource,
   TResourceCreateParams,
@@ -46,29 +44,29 @@ op CustomResourceCreateOrReplace<
 >;
 
 @doc("A wrapper for optional parameter in the body. The intent of model is to add description to 'body'")
-model CustomBodyWrapper<T extends object> {
+model CustomBodyWrapper<T extends {}> {
   @doc("Parameter of type '{name}' in the body.", T)
   @body
   body?: T;
 }
 
 @doc("A wrapper for required parameter in the body. The intent of model is to add description to 'body' and make it requred.")
-model CustomRequiredBodyWrapper<T extends object> {
+model CustomRequiredBodyWrapper<T extends {}> {
   @doc("Parameter of type '{name}' in the body.", T)
   @body
   body: T;
 }
 
 @doc("A {name} resource was successfully created.", T)
-model CustomResourceCreatedResponse<T extends object> {
+model CustomResourceCreatedResponse<T extends {}> {
   ...TypeSpec.Http.Response<201>;
   @body body: T;
 }
 
-model CustomResourceOkResponse<T extends object> {
+model CustomResourceOkResponse<T extends {}> {
   ...TypeSpec.Http.Response<200>;
   @body body: T;
 }
 
-alias CustomResourceCreatedOrOkResponse<T extends object> = CustomResourceCreatedResponse<T> | CustomResourceOkResponse<T>;
+alias CustomResourceCreatedOrOkResponse<T extends {}> = CustomResourceCreatedResponse<T> | CustomResourceOkResponse<T>;
 

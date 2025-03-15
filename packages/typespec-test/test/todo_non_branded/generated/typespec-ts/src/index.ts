@@ -9,16 +9,16 @@ import {
 
 export { TodoClient } from "./todoClient.js";
 export {
+  User,
+  ApiError,
+  Standard4XXResponse,
+  Standard5XXResponse,
   TodoItem,
   TodoLabels,
   TodoLabelRecord,
-  Standard4XXResponse,
-  ApiError,
-  Standard5XXResponse,
   TodoAttachment,
   ToDoItemMultipartRequest,
   FileAttachmentMultipartRequest,
-  User,
 } from "./models/index.js";
 export {
   InvalidTodoItem,

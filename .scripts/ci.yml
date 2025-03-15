@@ -118,10 +118,10 @@ stages:
           - template: globals.yml
         strategy:
           matrix:
-            Linux_Node18:
+            Linux_Node22:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: "ubuntu-20.04"
-              NodeTestVersion: "18.x"
+              NodeTestVersion: "22.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
@@ -140,10 +140,10 @@ stages:
           - template: globals.yml
         strategy:
           matrix:
-            Linux_Node18:
+            Linux_Node22:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: "ubuntu-20.04"
-              NodeTestVersion: "18.x"
+              NodeTestVersion: "22.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
@@ -167,14 +167,14 @@ stages:
           - template: globals.yml
         strategy:
           matrix:
-            macOS_Node18:
+            macOS_Node22:
               Pool:
               OSVmImage: "macOS-latest"
-              NodeTestVersion: "18.x"
-            Linux_Node18:
+              NodeTestVersion: "22.x"
+            Linux_Node22:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: "ubuntu-20.04"
-              NodeTestVersion: "18.x"
+              NodeTestVersion: "22.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
@@ -224,10 +224,10 @@ stages:
           - template: globals.yml
         strategy:
           matrix:
-            Linux_Node20:
+            Linux_Node22:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: "ubuntu-20.04"
-              NodeTestVersion: "20.x"
+              NodeTestVersion: "22.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
@@ -249,7 +249,7 @@ stages:
             Windows_Latest:
               Pool:
               OSVmImage: ${{ parameters.Windows_Latest }}
-              NodeTestVersion: "20.x"
+              NodeTestVersion: "22.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
@@ -265,14 +265,14 @@ stages:
           - template: globals.yml
         strategy:
           matrix:
-            macOS_Node20:
+            macOS_Node22:
               Pool:
               OSVmImage: "macOS-latest"
-              NodeTestVersion: "20.x"
-            Linux_Node20:
+              NodeTestVersion: "22.x"
+            Linux_Node22:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: "ubuntu-20.04"
-              NodeTestVersion: "20.x"
+              NodeTestVersion: "22.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
@@ -335,14 +335,14 @@ stages:
           - template: globals.yml
         strategy:
           matrix:
-            macOS_Node20:
+            macOS_Node22:
               Pool:
               OSVmImage: "macOS-latest"
-              NodeTestVersion: "20.x"
-            Linux_Node20:
+              NodeTestVersion: "22.x"
+            Linux_Node22:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: "ubuntu-20.04"
-              NodeTestVersion: "20.x"
+              NodeTestVersion: "22.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
