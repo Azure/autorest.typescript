@@ -161,13 +161,14 @@ function buildPolymorphicSerializer(
     ) {
       return;
     }
-    const union = subType?.discriminatedSubtypes ? "Union" : "";
+    const union = subType?.discriminatedSubtypes ? "_Union" : "";
     if (!subType || subType?.name) {
       throw new Error(`NYI Serialization of anonymous types`);
     }
-    const subTypeName = `${normalizeName(subType.name, NameType.Interface, true)}${union}`;
+    const rawSubTypeName = `${subType.name}${union}`;
+    const subTypeName = `${normalizeName(rawSubTypeName, NameType.Interface, true)}`;
     const subtypeSerializerName = normalizeName(
-      `${subTypeName}Serializer`,
+      `${rawSubTypeName}_Serializer`,
       NameType.Method,
       true
     );
