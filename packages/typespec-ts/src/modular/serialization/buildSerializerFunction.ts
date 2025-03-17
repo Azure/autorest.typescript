@@ -7,8 +7,6 @@ import {
   SdkUnionType,
   UsageFlags
 } from "@azure-tools/typespec-client-generator-core";
-import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
-
 import { SdkContext } from "../../utils/interfaces.js";
 import {
   getAllAncestors,
@@ -18,7 +16,7 @@ import {
   getSerializationExpression
 } from "../helpers/operationHelpers.js";
 import { normalizeModelName } from "../emitModels.js";
-import { NameType } from "@azure-tools/rlc-common";
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
 import {
   isDiscriminatedUnion,
@@ -163,12 +161,17 @@ function buildPolymorphicSerializer(
     ) {
       return;
     }
-    const union = subType?.discriminatedSubtypes ? "Union" : "";
+    const union = subType?.discriminatedSubtypes ? "_Union" : "";
     if (!subType || subType?.name) {
       throw new Error(`NYI Serialization of anonymous types`);
     }
-    const subTypeName = `${toPascalCase(subType.name)}${union}`;
-    const subtypeSerializerName = toCamelCase(`${subTypeName}Serializer`);
+    const rawSubTypeName = `${subType.name}${union}`;
+    const subTypeName = `${normalizeName(rawSubTypeName, NameType.Interface, true)}`;
+    const subtypeSerializerName = normalizeName(
+      `${rawSubTypeName}_Serializer`,
+      NameType.Method,
+      true
+    );
 
     cases.push(`
         case "${discriminatedValue}":
@@ -231,8 +234,12 @@ function buildDiscriminatedUnionSerializer(
     }
     const discriminatedValue = subType.discriminatorValue!;
     const union = subType.discriminatedSubtypes ? "Union" : "";
-    const subTypeName = `${toPascalCase(subType.name)}${union}`;
-    const subtypeSerializerName = toCamelCase(`${subTypeName}Serializer`);
+    const subTypeName = `${normalizeName(subType.name, NameType.Interface, true)}${union}`;
+    const subtypeSerializerName = normalizeName(
+      `${subTypeName}Serializer`,
+      NameType.Method,
+      true
+    );
 
     cases.push(`
       case "${discriminatedValue}":
@@ -460,8 +467,10 @@ function buildDictTypeSerializer(
   if (typeof valueSerializer !== "string") {
     return undefined;
   }
-  const valueTypeName = toCamelCase(
-    valueSerializer ? valueSerializer.replace("Serializer", "") : ""
+  const valueTypeName = normalizeName(
+    valueSerializer ? valueSerializer.replace("Serializer", "") : "",
+    NameType.Property,
+    true
   );
   const serializerFunctionName = `${valueTypeName}RecordSerializer`;
   if (nameOnly) {
@@ -521,8 +530,10 @@ function buildArrayTypeSerializer(
   if (typeof valueSerializer !== "string") {
     return undefined;
   }
-  const valueTypeName = toCamelCase(
-    valueSerializer ? valueSerializer.replace("Serializer", "") : ""
+  const valueTypeName = normalizeName(
+    valueSerializer ? valueSerializer.replace("Serializer", "") : "",
+    NameType.Property,
+    true
   );
   const serializerFunctionName = `${valueTypeName}ArraySerializer`;
   if (nameOnly) {
