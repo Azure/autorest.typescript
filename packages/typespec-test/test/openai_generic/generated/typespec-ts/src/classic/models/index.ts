@@ -2,17 +2,19 @@
 // Licensed under the MIT License.
 
 import { OpenAIContext } from "../../api/openAIContext.js";
-import { $delete, retrieve, list } from "../../api/models/index.js";
+import {
+  $delete,
+  retrieve,
+  list,
+  ModelsDeleteOptionalParams,
+  ModelsRetrieveOptionalParams,
+  ModelsListOptionalParams,
+} from "../../api/models/index.js";
 import {
   ListModelsResponse,
   Model,
   DeleteModelResponse,
 } from "../../models/models.js";
-import {
-  ModelsDeleteOptionalParams,
-  ModelsRetrieveOptionalParams,
-  ModelsListOptionalParams,
-} from "../../api/options.js";
 
 /** Interface representing a Models operations. */
 export interface ModelsOperations {
@@ -32,7 +34,7 @@ export interface ModelsOperations {
   list: (options?: ModelsListOptionalParams) => Promise<ListModelsResponse>;
 }
 
-export function getModels(context: OpenAIContext) {
+function _getModels(context: OpenAIContext) {
   return {
     delete: (model: string, options?: ModelsDeleteOptionalParams) =>
       $delete(context, model, options),
@@ -42,8 +44,8 @@ export function getModels(context: OpenAIContext) {
   };
 }
 
-export function getModelsOperations(context: OpenAIContext): ModelsOperations {
+export function _getModelsOperations(context: OpenAIContext): ModelsOperations {
   return {
-    ...getModels(context),
+    ..._getModels(context),
   };
 }

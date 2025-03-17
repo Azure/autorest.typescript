@@ -7,6 +7,11 @@ import {
   retrieve,
   list,
   create,
+  FineTunesCancelOptionalParams,
+  FineTunesListEventsOptionalParams,
+  FineTunesRetrieveOptionalParams,
+  FineTunesListOptionalParams,
+  FineTunesCreateOptionalParams,
 } from "../../api/fineTunes/index.js";
 import {
   CreateFineTuneRequest,
@@ -14,13 +19,6 @@ import {
   ListFineTunesResponse,
   ListFineTuneEventsResponse,
 } from "../../models/models.js";
-import {
-  FineTunesCancelOptionalParams,
-  FineTunesListEventsOptionalParams,
-  FineTunesRetrieveOptionalParams,
-  FineTunesListOptionalParams,
-  FineTunesCreateOptionalParams,
-} from "../../api/options.js";
 
 /** Interface representing a FineTunes operations. */
 export interface FineTunesOperations {
@@ -45,7 +43,7 @@ export interface FineTunesOperations {
   ) => Promise<FineTune>;
 }
 
-export function getFineTunes(context: OpenAIContext) {
+function _getFineTunes(context: OpenAIContext) {
   return {
     cancel: (fineTuneId: string, options?: FineTunesCancelOptionalParams) =>
       cancel(context, fineTuneId, options),
@@ -63,10 +61,10 @@ export function getFineTunes(context: OpenAIContext) {
   };
 }
 
-export function getFineTunesOperations(
+export function _getFineTunesOperations(
   context: OpenAIContext,
 ): FineTunesOperations {
   return {
-    ...getFineTunes(context),
+    ..._getFineTunes(context),
   };
 }

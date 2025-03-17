@@ -1,18 +1,18 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { NetworkAnalyticsClient } from "./networkAnalyticsClient.js";
+import { NetworkAnalyticsApi } from "./networkAnalyticsApi.js";
 import {
   _$deleteDeserialize,
   _updateDeserialize,
   _createDeserialize,
-} from "./api/dataProducts/index.js";
+} from "./api/dataProducts/operations.js";
 import {
   _deleteDataDeserialize,
-  _$deleteDeserialize as _$deleteDeserializeDataTypes,
+  _$deleteDeserialize as _deleteDeserializeDataTypes,
   _updateDeserialize as _updateDeserializeDataTypes,
   _createDeserialize as _createDeserializeDataTypes,
-} from "./api/dataTypes/index.js";
+} from "./api/dataTypes/operations.js";
 import { getLongRunningPoller } from "./static-helpers/pollingHelpers.js";
 import {
   OperationOptions,
@@ -46,7 +46,7 @@ export interface RestorePollerOptions<
  * needs to be constructed after the original one is not in scope.
  */
 export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
-  client: NetworkAnalyticsClient,
+  client: NetworkAnalyticsApi,
   serializedState: string,
   sourceOperation: (
     ...args: any[]
@@ -107,7 +107,7 @@ const deserializeMap: Record<string, DeserializationHelper> = {
     },
   "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}":
     {
-      deserializer: _$deleteDeserializeDataTypes,
+      deserializer: _deleteDeserializeDataTypes,
       expectedStatuses: ["202", "204", "200"],
     },
   "PATCH /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}":

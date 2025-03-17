@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { NetworkAnalyticsContext } from "../../api/networkAnalyticsContext.js";
+import { NetworkAnalyticsApiContext } from "../../api/networkAnalyticsApiContext.js";
 import {
   listByDataProduct,
   generateStorageContainerSasToken,
@@ -10,6 +10,13 @@ import {
   update,
   get,
   create,
+  DataTypesListByDataProductOptionalParams,
+  DataTypesGenerateStorageContainerSasTokenOptionalParams,
+  DataTypesDeleteDataOptionalParams,
+  DataTypesDeleteOptionalParams,
+  DataTypesUpdateOptionalParams,
+  DataTypesGetOptionalParams,
+  DataTypesCreateOptionalParams,
 } from "../../api/dataTypes/index.js";
 import {
   DataType,
@@ -19,15 +26,6 @@ import {
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
-import {
-  DataTypesListByDataProductOptionalParams,
-  DataTypesGenerateStorageContainerSasTokenOptionalParams,
-  DataTypesDeleteDataOptionalParams,
-  DataTypesDeleteOptionalParams,
-  DataTypesUpdateOptionalParams,
-  DataTypesGetOptionalParams,
-  DataTypesCreateOptionalParams,
-} from "../../api/options.js";
 
 /** Interface representing a DataTypes operations. */
 export interface DataTypesOperations {
@@ -90,7 +88,7 @@ export interface DataTypesOperations {
   ) => PollerLike<OperationState<DataType>, DataType>;
 }
 
-export function getDataTypes(context: NetworkAnalyticsContext) {
+function _getDataTypes(context: NetworkAnalyticsApiContext) {
   return {
     listByDataProduct: (
       resourceGroupName: string,
@@ -181,10 +179,10 @@ export function getDataTypes(context: NetworkAnalyticsContext) {
   };
 }
 
-export function getDataTypesOperations(
-  context: NetworkAnalyticsContext,
+export function _getDataTypesOperations(
+  context: NetworkAnalyticsApiContext,
 ): DataTypesOperations {
   return {
-    ...getDataTypes(context),
+    ..._getDataTypes(context),
   };
 }

@@ -11,7 +11,7 @@ describe("Client Factory generation", () => {
         "localhost",
         "Language Service"
       )
-      @service( {title: "PetStoreClient"})
+      @service(#{title: "PetStoreClient"})
       namespace PetStore;
       `);
       assert.ok(models);
@@ -67,7 +67,7 @@ describe("Client Factory generation", () => {
               Endpoint: Endpoint,
             }
           )
-          @service( {title: "PetStoreClient"})
+          @service(#{title: "PetStoreClient"})
           namespace PetStore;
           @doc("The endpoint to use.")
           scalar Endpoint extends string;
@@ -131,7 +131,7 @@ describe("Client Factory generation", () => {
           Version: Version
         }
       )
-      @service( {title: "PetStoreClient"})
+      @service(#{title: "PetStoreClient"})
       namespace PetStore;
       @doc("The endpoint to use.")
       scalar Endpoint extends string;
@@ -146,7 +146,7 @@ describe("Client Factory generation", () => {
       }
       `;
       const clientFactory = await emitClientFactoryFromTypeSpec(tsp, {
-        needAzureCore: true,
+        needAzureCore: true
       });
       assert.ok(clientFactory);
       await assertEqualContent(
@@ -210,7 +210,7 @@ describe("Client Factory generation", () => {
                 Version: Versions
               }
             )
-            @service( {title: "PetStoreClient"})
+            @service(#{title: "PetStoreClient"})
             namespace PetStore;
             @doc("The endpoint to use.")
             scalar Endpoint extends string;
@@ -288,7 +288,7 @@ describe("Client Factory generation", () => {
                 Version: Versions
               }
             )
-            @service( {title: "PetStoreClient"})
+            @service(#{title: "PetStoreClient"})
             namespace PetStore;
             @doc("The endpoint to use.")
             scalar Endpoint extends string;
@@ -361,7 +361,7 @@ describe("Client Factory generation", () => {
   describe("should handle no @server definition", () => {
     it("should set default endpoint parameter when no @server", async () => {
       const models = await emitClientFactoryFromTypeSpec(`
-      @service( {title: "PetStoreClient"})
+      @service(#{title: "PetStoreClient"})
       namespace PetStore;
       `);
       assert.ok(models);
@@ -422,9 +422,9 @@ describe("Client Factory generation", () => {
               authorizationUrl: "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
               scopes: []
             }]>)
-          @service( {title: "PetStoreClient"})
+          @service(#{title: "PetStoreClient"})
           namespace PetStore;
-        `,
+        `
         );
         assert.fail("Should throw diagnostic errors");
       } catch (e) {
@@ -446,7 +446,7 @@ describe("Client Factory generation", () => {
             authorizationUrl: "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
             scopes: []
           }]>)
-        @service( {title: "PetStoreClient"})
+        @service(#{title: "PetStoreClient"})
         namespace PetStore;
       `,
         {
@@ -512,7 +512,7 @@ describe("Client Factory generation", () => {
             authorizationUrl: "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
             scopes: ["https://petstor.com/default"]
           }]>)
-      @service( {title: "PetStoreClient"})
+      @service(#{title: "PetStoreClient"})
       namespace PetStore;
       `);
       assert.ok(models);
@@ -576,7 +576,7 @@ describe("Client Factory generation", () => {
             authorizationUrl: "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
             scopes: ["https://petstor.com/default"]
           }]>)
-      @service( {title: "PetStoreClient"})
+      @service(#{title: "PetStoreClient"})
       namespace PetStore;
       `);
       assert.ok(models);

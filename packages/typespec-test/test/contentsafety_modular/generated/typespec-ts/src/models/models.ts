@@ -58,120 +58,119 @@ export function textBlocklistArrayDeserializer(
   });
 }
 
-/** The request of adding blockItems to text blocklist. */
-export interface AddOrUpdateBlockItemsOptions {
-  /** Array of blockItemInfo to add. */
-  blockItems: TextBlockItemInfo[];
+/** The request to add blocklistItems to a text blocklist. */
+export interface AddOrUpdateTextBlocklistItemsOptions {
+  /** Array of blocklistItems to add. */
+  blocklistItems: TextBlocklistItem[];
 }
 
-export function addOrUpdateBlockItemsOptionsSerializer(
-  item: AddOrUpdateBlockItemsOptions,
+export function addOrUpdateTextBlocklistItemsOptionsSerializer(
+  item: AddOrUpdateTextBlocklistItemsOptions,
 ): any {
-  return { blockItems: textBlockItemInfoArraySerializer(item["blockItems"]) };
-}
-
-export function textBlockItemInfoArraySerializer(
-  result: Array<TextBlockItemInfo>,
-): any[] {
-  return result.map((item) => {
-    return textBlockItemInfoSerializer(item);
-  });
-}
-
-/** Block item info in text blocklist. */
-export interface TextBlockItemInfo {
-  /** Block item description. */
-  description?: string;
-  /** Block item content. */
-  text: string;
-}
-
-export function textBlockItemInfoSerializer(item: TextBlockItemInfo): any {
-  return { description: item["description"], text: item["text"] };
-}
-
-/** The response of adding blockItems to text blocklist. */
-export interface AddOrUpdateBlockItemsResult {
-  /** Array of blockItems added. */
-  value?: TextBlockItem[];
-}
-
-export function addOrUpdateBlockItemsResultDeserializer(
-  item: any,
-): AddOrUpdateBlockItemsResult {
   return {
-    value: !item["value"]
-      ? item["value"]
-      : textBlockItemArrayDeserializer(item["value"]),
+    blocklistItems: textBlocklistItemArraySerializer(item["blocklistItems"]),
   };
 }
 
-export function textBlockItemArrayDeserializer(
-  result: Array<TextBlockItem>,
+export function textBlocklistItemArraySerializer(
+  result: Array<TextBlocklistItem>,
 ): any[] {
   return result.map((item) => {
-    return textBlockItemDeserializer(item);
+    return textBlocklistItemSerializer(item);
   });
 }
 
-/** Item in TextBlocklist. */
-export interface TextBlockItem {
-  /** Block Item Id. It will be uuid. */
-  blockItemId: string;
-  /** Block item description. */
-  description?: string;
-  /** Block item content. */
-  text: string;
+export function textBlocklistItemArrayDeserializer(
+  result: Array<TextBlocklistItem>,
+): any[] {
+  return result.map((item) => {
+    return textBlocklistItemDeserializer(item);
+  });
 }
 
-export function textBlockItemDeserializer(item: any): TextBlockItem {
+/** Item in a TextBlocklist. */
+export interface TextBlocklistItem {
+  /** The service will generate a BlocklistItemId, which will be a UUID. */
+  readonly blocklistItemId: string;
+  /** BlocklistItem description. */
+  description?: string;
+  /** BlocklistItem content. The length is counted using Unicode code point. */
+  text: string;
+  /** An optional properties indicating whether this item is to be matched as a regular expression. */
+  isRegex?: boolean;
+}
+
+export function textBlocklistItemSerializer(item: TextBlocklistItem): any {
   return {
-    blockItemId: item["blockItemId"],
     description: item["description"],
     text: item["text"],
+    isRegex: item["isRegex"],
   };
 }
 
-/** The request of removing blockItems from text blocklist. */
-export interface RemoveBlockItemsOptions {
-  /** Array of blockItemIds to remove. */
-  blockItemIds: string[];
+export function textBlocklistItemDeserializer(item: any): TextBlocklistItem {
+  return {
+    blocklistItemId: item["blocklistItemId"],
+    description: item["description"],
+    text: item["text"],
+    isRegex: item["isRegex"],
+  };
 }
 
-export function removeBlockItemsOptionsSerializer(
-  item: RemoveBlockItemsOptions,
+/** The response of adding blocklistItems to the text blocklist. */
+export interface AddOrUpdateTextBlocklistItemsResult {
+  /** Array of blocklistItems have been added. */
+  blocklistItems: TextBlocklistItem[];
+}
+
+export function addOrUpdateTextBlocklistItemsResultDeserializer(
+  item: any,
+): AddOrUpdateTextBlocklistItemsResult {
+  return {
+    blocklistItems: textBlocklistItemArrayDeserializer(item["blocklistItems"]),
+  };
+}
+
+/** The request to remove blocklistItems from a text blocklist. */
+export interface RemoveTextBlocklistItemsOptions {
+  /** Array of blocklistItemIds to remove. */
+  blocklistItemIds: string[];
+}
+
+export function removeTextBlocklistItemsOptionsSerializer(
+  item: RemoveTextBlocklistItemsOptions,
 ): any {
   return {
-    blockItemIds: item["blockItemIds"].map((p: any) => {
+    blocklistItemIds: item["blocklistItemIds"].map((p: any) => {
       return p;
     }),
   };
 }
 
-/** Paged collection of TextBlockItem items */
-export interface _PagedTextBlockItem {
-  /** The TextBlockItem items on this page */
-  value: TextBlockItem[];
+/** Paged collection of TextBlocklistItem items */
+export interface _PagedTextBlocklistItem {
+  /** The TextBlocklistItem items on this page */
+  value: TextBlocklistItem[];
   /** The link to the next page of items */
   nextLink?: string;
 }
 
-export function _pagedTextBlockItemDeserializer(
+export function _pagedTextBlocklistItemDeserializer(
   item: any,
-): _PagedTextBlockItem {
+): _PagedTextBlocklistItem {
   return {
-    value: textBlockItemArrayDeserializer(item["value"]),
+    value: textBlocklistItemArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
 }
 
-/** The analysis request of the image. */
+/** The image analysis request. */
 export interface AnalyzeImageOptions {
-  /** The image needs to be analyzed. */
+  /** The image to be analyzed. */
   image: ImageData;
-  /** The categories will be analyzed. If not assigned, a default set of the categories' analysis results will be returned. */
+  /** The categories will be analyzed. If they are not assigned, a default set of analysis results for the categories will be returned. */
   categories?: ImageCategory[];
-  /** The type of image analysis output. If not assigned, the default value is "FourLevels". */
+  /** This refers to the type of image analysis output. If no value is assigned, the default value will be "FourSeverityLevels". */
   outputType?: AnalyzeImageOutputType;
 }
 
@@ -187,11 +186,11 @@ export function analyzeImageOptionsSerializer(item: AnalyzeImageOptions): any {
   };
 }
 
-/** The content or blob url of image, could be base64 encoding bytes or blob url. You can choose only one of them. If both are given, the request will be refused. The maximum size of image is 2048 pixels * 2048 pixels, no larger than 4MB at the same time. The minimum size of image is 50 pixels * 50 pixels. */
+/** The image can be either base64 encoded bytes or a blob URL. You can choose only one of these options. If both are provided, the request will be refused. The maximum image size is 2048 x 2048 pixels and should not exceed 4 MB, while the minimum image size is 50 x 50 pixels. */
 export interface ImageData {
-  /** Base64 encoding of image. */
+  /** The Base64 encoding of the image. */
   content?: Uint8Array;
-  /** The blob url of image. */
+  /** The blob url of the image. */
   blobUrl?: string;
 }
 
@@ -204,61 +203,61 @@ export function imageDataSerializer(item: ImageData): any {
   };
 }
 
-/** Image analyze category */
+/** The harm category supported in Image content analysis. */
 export type ImageCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
 /** The type of image analysis output. */
-export type AnalyzeImageOutputType = "FourLevels";
+export type AnalyzeImageOutputType = "FourSeverityLevels";
 
-/** The analysis response of the image. */
+/** The image analysis response. */
 export interface AnalyzeImageResult {
   /** Analysis result for categories. */
-  analyzeResults: ImageAnalyzeSeverityResult[];
+  categoriesAnalysis: ImageCategoriesAnalysis[];
 }
 
 export function analyzeImageResultDeserializer(item: any): AnalyzeImageResult {
   return {
-    analyzeResults: imageAnalyzeSeverityResultArrayDeserializer(
-      item["analyzeResults"],
+    categoriesAnalysis: imageCategoriesAnalysisArrayDeserializer(
+      item["categoriesAnalysis"],
     ),
   };
 }
 
-export function imageAnalyzeSeverityResultArrayDeserializer(
-  result: Array<ImageAnalyzeSeverityResult>,
+export function imageCategoriesAnalysisArrayDeserializer(
+  result: Array<ImageCategoriesAnalysis>,
 ): any[] {
   return result.map((item) => {
-    return imageAnalyzeSeverityResultDeserializer(item);
+    return imageCategoriesAnalysisDeserializer(item);
   });
 }
 
 /** Image analysis result. */
-export interface ImageAnalyzeSeverityResult {
-  /** The image category. */
+export interface ImageCategoriesAnalysis {
+  /** The image analysis category. */
   category: ImageCategory;
-  /** This field is decided by outputType in request, if choose "FourLevels", the value could be 0,2,4,6. The higher the severity of input content, the larger this value is. */
+  /** The value increases with the severity of the input content. The value of this field is determined by the output type specified in the request. The output type could be ‘FourSeverityLevels’, and the output value can be 0, 2, 4, 6. */
   severity?: number;
 }
 
-export function imageAnalyzeSeverityResultDeserializer(
+export function imageCategoriesAnalysisDeserializer(
   item: any,
-): ImageAnalyzeSeverityResult {
+): ImageCategoriesAnalysis {
   return {
     category: item["category"],
     severity: item["severity"],
   };
 }
 
-/** The analysis request of the text. */
+/** The text analysis request. */
 export interface AnalyzeTextOptions {
-  /** The text needs to be scanned. We support at most 10k Unicode characters (unicode code points) in text of one request. */
+  /** The text to be analyzed. We support a maximum of 10k Unicode characters (Unicode code points) in the text of one request. */
   text: string;
-  /** The categories will be analyzed. If not assigned, a default set of the categories' analysis results will be returned. */
+  /** The categories will be analyzed. If they are not assigned, a default set of analysis results for the categories will be returned. */
   categories?: TextCategory[];
   /** The names of blocklists. */
   blocklistNames?: string[];
   /** When set to true, further analyses of harmful content will not be performed in cases where blocklists are hit. When set to false, all analyses of harmful content will be performed, whether or not blocklists are hit. */
-  breakByBlocklists?: boolean;
-  /** The type of text analysis output. If not assigned, the default value is "FourLevels". */
+  haltOnBlocklistHit?: boolean;
+  /** This refers to the type of text analysis output. If no value is assigned, the default value will be "FourSeverityLevels". */
   outputType?: AnalyzeTextOutputType;
 }
 
@@ -275,91 +274,210 @@ export function analyzeTextOptionsSerializer(item: AnalyzeTextOptions): any {
       : item["blocklistNames"].map((p: any) => {
           return p;
         }),
-    breakByBlocklists: item["breakByBlocklists"],
+    haltOnBlocklistHit: item["haltOnBlocklistHit"],
     outputType: item["outputType"],
   };
 }
 
-/** Text analyze category */
+/** The harm category supported in Text content analysis. */
 export type TextCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
 /** The type of text analysis output. */
-export type AnalyzeTextOutputType = "FourLevels" | "EightLevels";
+export type AnalyzeTextOutputType =
+  | "FourSeverityLevels"
+  | "EightSeverityLevels";
 
-/** The analysis response of the text */
+/** The text analysis response. */
 export interface AnalyzeTextResult {
-  /** The details of blocklist match. */
-  blocklistsMatchResults?: TextBlocklistMatchResult[];
+  /** The blocklist match details. */
+  blocklistsMatch?: TextBlocklistMatch[];
   /** Analysis result for categories. */
-  analyzeResults: TextAnalyzeSeverityResult[];
+  categoriesAnalysis: TextCategoriesAnalysis[];
 }
 
 export function analyzeTextResultDeserializer(item: any): AnalyzeTextResult {
   return {
-    blocklistsMatchResults: !item["blocklistsMatchResults"]
-      ? item["blocklistsMatchResults"]
-      : textBlocklistMatchResultArrayDeserializer(
-          item["blocklistsMatchResults"],
-        ),
-    analyzeResults: textAnalyzeSeverityResultArrayDeserializer(
-      item["analyzeResults"],
+    blocklistsMatch: !item["blocklistsMatch"]
+      ? item["blocklistsMatch"]
+      : textBlocklistMatchArrayDeserializer(item["blocklistsMatch"]),
+    categoriesAnalysis: textCategoriesAnalysisArrayDeserializer(
+      item["categoriesAnalysis"],
     ),
   };
 }
 
-export function textBlocklistMatchResultArrayDeserializer(
-  result: Array<TextBlocklistMatchResult>,
+export function textBlocklistMatchArrayDeserializer(
+  result: Array<TextBlocklistMatch>,
 ): any[] {
   return result.map((item) => {
-    return textBlocklistMatchResultDeserializer(item);
+    return textBlocklistMatchDeserializer(item);
   });
 }
 
 /** The result of blocklist match. */
-export interface TextBlocklistMatchResult {
-  /** The name of matched blocklist. */
+export interface TextBlocklistMatch {
+  /** The name of the matched blocklist. */
   blocklistName: string;
-  /** The id of matched item. */
-  blockItemId: string;
-  /** The content of matched item. */
-  blockItemText: string;
+  /** The ID of the matched item. */
+  blocklistItemId: string;
+  /** The content of the matched item. */
+  blocklistItemText: string;
 }
 
-export function textBlocklistMatchResultDeserializer(
-  item: any,
-): TextBlocklistMatchResult {
+export function textBlocklistMatchDeserializer(item: any): TextBlocklistMatch {
   return {
     blocklistName: item["blocklistName"],
-    blockItemId: item["blockItemId"],
-    blockItemText: item["blockItemText"],
+    blocklistItemId: item["blocklistItemId"],
+    blocklistItemText: item["blocklistItemText"],
   };
 }
 
-export function textAnalyzeSeverityResultArrayDeserializer(
-  result: Array<TextAnalyzeSeverityResult>,
+export function textCategoriesAnalysisArrayDeserializer(
+  result: Array<TextCategoriesAnalysis>,
 ): any[] {
   return result.map((item) => {
-    return textAnalyzeSeverityResultDeserializer(item);
+    return textCategoriesAnalysisDeserializer(item);
   });
 }
 
 /** Text analysis result. */
-export interface TextAnalyzeSeverityResult {
-  /** The text category. */
+export interface TextCategoriesAnalysis {
+  /** The text analysis category. */
   category: TextCategory;
-  /** This field is decided by outputType in request, if choose "FourLevels", the value could be 0,2,4,6. The higher the severity of input content, the larger this value is. */
+  /** The value increases with the severity of the input content. The value of this field is determined by the output type specified in the request. The output type could be ‘FourSeverityLevels’ or ‘EightSeverity Levels’, and the output value can be 0, 2, 4, 6 or 0, 1, 2, 3, 4, 5, 6, or 7. */
   severity?: number;
 }
 
-export function textAnalyzeSeverityResultDeserializer(
+export function textCategoriesAnalysisDeserializer(
   item: any,
-): TextAnalyzeSeverityResult {
+): TextCategoriesAnalysis {
   return {
     category: item["category"],
     severity: item["severity"],
   };
 }
 
+/** The request of analyzing potential direct or indirect injection attacks. */
+export interface ShieldPromptOptions {
+  /** The user prompt to be analyzed, which may contain direct injection attacks. */
+  userPrompt?: string;
+  /** The documents to be analyzed, which may contain direct or indirect injection attacks. */
+  documents?: string[];
+}
+
+export function shieldPromptOptionsSerializer(item: ShieldPromptOptions): any {
+  return {
+    userPrompt: item["userPrompt"],
+    documents: !item["documents"]
+      ? item["documents"]
+      : item["documents"].map((p: any) => {
+          return p;
+        }),
+  };
+}
+
+/** The combined analysis results of potential direct or indirect injection attacks. */
+export interface ShieldPromptResult {
+  /** Direct injection attacks analysis result for the given user prompt. */
+  userPromptAnalysis?: UserPromptInjectionAnalysisResult;
+  /** Direct and indirect injection attacks analysis result for the given documents. */
+  documentsAnalysis?: DocumentInjectionAnalysisResult[];
+}
+
+export function shieldPromptResultDeserializer(item: any): ShieldPromptResult {
+  return {
+    userPromptAnalysis: !item["userPromptAnalysis"]
+      ? item["userPromptAnalysis"]
+      : userPromptInjectionAnalysisResultDeserializer(
+          item["userPromptAnalysis"],
+        ),
+    documentsAnalysis: !item["documentsAnalysis"]
+      ? item["documentsAnalysis"]
+      : documentInjectionAnalysisResultArrayDeserializer(
+          item["documentsAnalysis"],
+        ),
+  };
+}
+
+/** The individual analysis result of potential injection attacks in the given user prompt. */
+export interface UserPromptInjectionAnalysisResult {
+  /** Whether a potential injection attack is detected or not. */
+  attackDetected: boolean;
+}
+
+export function userPromptInjectionAnalysisResultDeserializer(
+  item: any,
+): UserPromptInjectionAnalysisResult {
+  return {
+    attackDetected: item["attackDetected"],
+  };
+}
+
+export function documentInjectionAnalysisResultArrayDeserializer(
+  result: Array<DocumentInjectionAnalysisResult>,
+): any[] {
+  return result.map((item) => {
+    return documentInjectionAnalysisResultDeserializer(item);
+  });
+}
+
+/** The individual analysis result of potential injection attacks in the given documents. */
+export interface DocumentInjectionAnalysisResult {
+  /** Whether a potential injection attack is detected or not. */
+  attackDetected: boolean;
+}
+
+export function documentInjectionAnalysisResultDeserializer(
+  item: any,
+): DocumentInjectionAnalysisResult {
+  return {
+    attackDetected: item["attackDetected"],
+  };
+}
+
+/** The request of detecting potential protected material present in the given text. */
+export interface DetectTextProtectedMaterialOptions {
+  /** The text to be analyzed, which may contain protected material. The characters will be counted in Unicode code points. */
+  text: string;
+}
+
+export function detectTextProtectedMaterialOptionsSerializer(
+  item: DetectTextProtectedMaterialOptions,
+): any {
+  return { text: item["text"] };
+}
+
+/** The combined detection results of potential protected material. */
+export interface DetectTextProtectedMaterialResult {
+  /** Analysis result for the given text. */
+  protectedMaterialAnalysis: TextProtectedMaterialAnalysisResult;
+}
+
+export function detectTextProtectedMaterialResultDeserializer(
+  item: any,
+): DetectTextProtectedMaterialResult {
+  return {
+    protectedMaterialAnalysis: textProtectedMaterialAnalysisResultDeserializer(
+      item["protectedMaterialAnalysis"],
+    ),
+  };
+}
+
+/** The individual detection result of potential protected material. */
+export interface TextProtectedMaterialAnalysisResult {
+  /** Whether potential protected material is detected or not. */
+  detected: boolean;
+}
+
+export function textProtectedMaterialAnalysisResultDeserializer(
+  item: any,
+): TextProtectedMaterialAnalysisResult {
+  return {
+    detected: item["detected"],
+  };
+}
+
 /** Known values of {@link Versions} that the service accepts. */
 export enum KnownVersions {
-  v2023_10_01 = "2023-10-01",
+  V20231001 = "2023-10-01",
+  V20240901 = "2024-09-01",
 }

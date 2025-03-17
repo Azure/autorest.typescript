@@ -13,9 +13,7 @@ import {
   NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Updates tags of a Security Partner Provider resource.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Updates tags of a Security Partner Provider resource.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/SecurityPartnerProviderUpdateTags.json
  */
-async function updateSecurityPartnerProviderTags() {
+async function updateSecurityPartnerProviderTags(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const securityPartnerProviderName = "securityPartnerProvider";
@@ -38,8 +36,8 @@ async function updateSecurityPartnerProviderTags() {
   console.log(result);
 }
 
-async function main() {
-  updateSecurityPartnerProviderTags();
+async function main(): Promise<void> {
+  await updateSecurityPartnerProviderTags();
 }
 
 main().catch(console.error);

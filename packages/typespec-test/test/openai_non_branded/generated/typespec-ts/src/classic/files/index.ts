@@ -7,6 +7,11 @@ import {
   retrieve,
   create,
   list,
+  FilesDownloadOptionalParams,
+  FilesDeleteOptionalParams,
+  FilesRetrieveOptionalParams,
+  FilesCreateOptionalParams,
+  FilesListOptionalParams,
 } from "../../api/files/index.js";
 import {
   OpenAIFile,
@@ -14,13 +19,6 @@ import {
   CreateFileRequest,
   DeleteFileResponse,
 } from "../../models/models.js";
-import {
-  FilesDownloadOptionalParams,
-  FilesDeleteOptionalParams,
-  FilesRetrieveOptionalParams,
-  FilesCreateOptionalParams,
-  FilesListOptionalParams,
-} from "../../api/options.js";
 
 /** Interface representing a Files operations. */
 export interface FilesOperations {
@@ -48,7 +46,7 @@ export interface FilesOperations {
   list: (options?: FilesListOptionalParams) => Promise<ListFilesResponse>;
 }
 
-export function getFiles(context: OpenAIContext) {
+function _getFiles(context: OpenAIContext) {
   return {
     download: (fileId: string, options?: FilesDownloadOptionalParams) =>
       download(context, fileId, options),
@@ -62,8 +60,8 @@ export function getFiles(context: OpenAIContext) {
   };
 }
 
-export function getFilesOperations(context: OpenAIContext): FilesOperations {
+export function _getFilesOperations(context: OpenAIContext): FilesOperations {
   return {
-    ...getFiles(context),
+    ..._getFiles(context),
   };
 }

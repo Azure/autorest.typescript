@@ -1,6 +1,59 @@
-## 6.0.32 (Unreleased)
+## 6.0.36 (2025-03-07)
 
+- [Feature] Upgrade http-specs version. Please refer to [#3085](https://github.com/Azure/autorest.typescript/pull/3085)
+- [Feature] Upgrade package version to latest. Please refer to [#3088](https://github.com/Azure/autorest.typescript/pull/3088)
+- [Feature] Unify the typespec options to kebab-case style. Please refer to [#2960](https://github.com/Azure/autorest.typescript/pull/2960)
+- [Feature] Normalization refinement including enum member name. Please refer to [#2839](https://github.com/Azure/autorest.typescript/pull/2839)
+- [Feature] Remove @microsoft/api-extractor from common dev dependencies of generated packages. Please refer to [#3088](https://github.com/Azure/autorest.typescript/pull/3058)
+- [Feature] Fully support url template in Modular. Please refer to [#2884](https://github.com/Azure/autorest.typescript/pull/2884)
+- [Feature] Ignore *.d.*ts.map when packing generated packages. Please refer to [#3069](https://github.com/Azure/autorest.typescript/pull/3069)
+- [Bugfix] Fix paging samples' template. Please refer to [#3086](https://github.com/Azure/autorest.typescript/pull/3086)
+- [Bugfix] Fix Issue for publish @azure-tools/rlc-common and @azure-tools/typespec-ts to github. Please refer to [#3080](https://github.com/Azure/autorest.typescript/pull/3080)
+
+## 6.0.35 (2025-02-25)
+
+- [Feature] Update compiler version to 0.65.x. Please refer to [#2753](https://github.com/Azure/autorest.typescript/pull/2753)
+- [Bugfix] Enable `generateSample: true` if it is a mgmt package. Please refer to [#3068](https://github.com/Azure/autorest.typescript/pull/3068)
+- [Bugfix] Fix await in multi examples in one file. Please refer to [#3061](https://github.com/Azure/autorest.typescript/pull/3061)
+- [Feature] Support snippets for Modular/RLC/HLC. Please refer to [#3052](https://github.com/Azure/autorest.typescript/pull/3052)
+- [Bugfix] Fix operation hierarchies info in sample gen. Please refer to [#3023](https://github.com/Azure/autorest.typescript/pull/3023)
+- [Bugfix] Remove isDefaultSupersetOfOthers logic as no longer needed. Please refer to [#3057](https://github.com/Azure/autorest.typescript/pull/3057)
+- [Feature] Upgrade http-specs verison. Rest.Resource. Please refer to [#3053](https://github.com/Azure/autorest.typescript/pull/3053)
+- [Feature] Use recommended boilerplate LICENSE. Please refer to [#3044](https://github.com/Azure/autorest.typescript/pull/3044)
+- [Feature] remove references of api-extractor-json-types and package-json-module rules. Please refer to [#3042](https://github.com/Azure/autorest.typescript/pull/3042)
+- [Feature] Upgrade dependency vitest version to ^3.0.3 in generated packages. Please refer to [#3046](https://github.com/Azure/autorest.typescript/pull/3046)
+- [Feature] Use agents from 1ES pool. Please refer to [#3047](https://github.com/Azure/autorest.typescript/pull/3047)
+
+## 6.0.34 (2025-01-27)
+
+- [Feature] Upgrade spector version. Please refer to [#3007](https://github.com/Azure/autorest.typescript/pull/3007)
+- [Feature] Generate nullable as type alias and resolve recursive reference in union. Please refer to [#2989](https://github.com/Azure/autorest.typescript/pull/2989)
+- [Bugfix] Add await for sync function. Please refer to [#3014](https://github.com/Azure/autorest.typescript/pull/3014)
+- [Bugfix] Fix crossLanguageDefinitionId with TypeSpec.Rest.Resource. Please refer to [#3010](https://github.com/Azure/autorest.typescript/pull/3010)
+- [Bugfix] Remove mkdirp ./review as dev-tool handles that. Please refer to [#3015](https://github.com/Azure/autorest.typescript/pull/3015)
+- [Bugfix] Should not filter serializedName out for endpoint. Please refer to [#3017](https://github.com/Azure/autorest.typescript/pull/3017)
+- [Bugfix] Update sample template for Modular/RLC/HLC. Please refer to [#2998](https://github.com/Azure/autorest.typescript/pull/2998)
+- [Bugfix] Fix generation issue and update the ai projects to the latest one. Please refer to [#3037](https://github.com/Azure/autorest.typescript/pull/3037)
+
+## 6.0.33 (2025-01-17)
+
+- [Bugfix] Fix windows env issue in model namespace hierarchy. Please refer to [#3008](https://github.com/Azure/autorest.typescript/pull/3008)
+
+## 6.0.32 (2025-01-16)
+
+- [Feature] Upgrade compiler version to 0.64. Please refer to [#3006](https://github.com/Azure/autorest.typescript/pull/3006)
+- [Feature] Multipart/form-data support for typespec-todo. Please refer to [#2984](https://github.com/Azure/autorest.typescript/pull/2984)
+- [Feature] Model namespaces hierarchies. Please refer to [#2969](https://github.com/Azure/autorest.typescript/pull/2969)
+- [Feature] Support title config for typespec generation. Please refer to [#2941](https://github.com/Azure/autorest.typescript/pull/2941)
+- [Feature] Support the customized error responses in deserializer. Please refer to [#2978](https://github.com/Azure/autorest.typescript/pull/2978)
+- [Feature] Migration of SDK Client Packages from CADL Ranch to Typespec & Typespec. Please refer to [#2936](https://github.com/Azure/autorest.typescript/pull/2936)
+- [Feature] Eable `isTypeOnly` for RLC ImportDeclarations. Please refer to [#2963](https://github.com/Azure/autorest.typescript/pull/2963)
 - [Feature] Add a flag to generate ESM compatible source code. Please refer to [#2925](https://github.com/Azure/autorest.typescript/pull/2925)
+- [Feature] Set `isModularLibrary` to `true` for unbranded and mgmt plane. Please refer to [#2973](https://github.com/Azure/autorest.typescript/pull/2973)
+- [Feature] Use `learn.microsoft.com` in generated packages. Please refer to [#2977](https://github.com/Azure/autorest.typescript/pull/2977)
+- [Bugfix] Fix the duplicated template name without friendlyName in RLC. Please refer to [#2976](https://github.com/Azure/autorest.typescript/pull/2976)
+- [Bugfix] Rename the inner method name with `_methodName`. Please refer to [#2983](https://github.com/Azure/autorest.typescript/pull/2983)
+- [Bugfix] Do not crash for an empty project. Please refer to [#2972](https://github.com/Azure/autorest.typescript/pull/2972)
 
 ## 6.0.31 (2024-12-27)
 

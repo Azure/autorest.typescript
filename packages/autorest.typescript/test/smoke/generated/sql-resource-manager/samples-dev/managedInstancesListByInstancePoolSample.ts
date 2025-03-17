@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets a list of all managed instances in an instance pool.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets a list of all managed instances in an instance pool.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceListByInstancePool.json
  */
-async function listManagedInstancesByInstancePool() {
+async function listManagedInstancesByInstancePool(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "20D7082A-0FC7-4468-82BD-542694D5042B";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "Test1";
@@ -28,7 +26,7 @@ async function listManagedInstancesByInstancePool() {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.managedInstances.listByInstancePool(
+  for await (const item of client.managedInstances.listByInstancePool(
     resourceGroupName,
     instancePoolName,
   )) {
@@ -43,7 +41,7 @@ async function listManagedInstancesByInstancePool() {
  * @summary Gets a list of all managed instances in an instance pool.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ManagedInstanceListByInstancePoolWithExpandEqualsAdministrators.json
  */
-async function listManagedInstancesByInstancePoolWithExpandAdministratorsOrActivedirectory() {
+async function listManagedInstancesByInstancePoolWithExpandAdministratorsOrActivedirectory(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "20D7082A-0FC7-4468-82BD-542694D5042B";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "Test1";
@@ -51,7 +49,7 @@ async function listManagedInstancesByInstancePoolWithExpandAdministratorsOrActiv
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.managedInstances.listByInstancePool(
+  for await (const item of client.managedInstances.listByInstancePool(
     resourceGroupName,
     instancePoolName,
   )) {
@@ -60,9 +58,9 @@ async function listManagedInstancesByInstancePoolWithExpandAdministratorsOrActiv
   console.log(resArray);
 }
 
-async function main() {
-  listManagedInstancesByInstancePool();
-  listManagedInstancesByInstancePoolWithExpandAdministratorsOrActivedirectory();
+async function main(): Promise<void> {
+  await listManagedInstancesByInstancePool();
+  await listManagedInstancesByInstancePoolWithExpandAdministratorsOrActivedirectory();
 }
 
 main().catch(console.error);

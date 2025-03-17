@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets a job execution.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets a job execution.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/GetJobExecution.json
  */
-async function getAJobExecution() {
+async function getAJobExecution(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "group1";
@@ -40,8 +38,8 @@ async function getAJobExecution() {
   console.log(result);
 }
 
-async function main() {
-  getAJobExecution();
+async function main(): Promise<void> {
+  await getAJobExecution();
 }
 
 main().catch(console.error);

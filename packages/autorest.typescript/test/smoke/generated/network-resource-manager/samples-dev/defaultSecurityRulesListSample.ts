@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets all default security rules in a network security group.
@@ -20,14 +18,14 @@ dotenv.config();
  * @summary Gets all default security rules in a network security group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/DefaultSecurityRuleList.json
  */
-async function defaultSecurityRuleList() {
+async function defaultSecurityRuleList(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const networkSecurityGroupName = "nsg1";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.defaultSecurityRules.list(
+  for await (const item of client.defaultSecurityRules.list(
     resourceGroupName,
     networkSecurityGroupName,
   )) {
@@ -36,8 +34,8 @@ async function defaultSecurityRuleList() {
   console.log(resArray);
 }
 
-async function main() {
-  defaultSecurityRuleList();
+async function main(): Promise<void> {
+  await defaultSecurityRuleList();
 }
 
 main().catch(console.error);

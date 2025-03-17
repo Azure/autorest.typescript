@@ -1,0 +1,13 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    generate-metadata: true
+    generate-test: false
+    azure-sdk-for-js: false
+    flavor: azure
+    is-modular-library: true
+    hierarchy-client: false
+    emitter-output-dir: "{project-root}"
+    package-details:
+      name: "@msinternal/srv-driven-main"

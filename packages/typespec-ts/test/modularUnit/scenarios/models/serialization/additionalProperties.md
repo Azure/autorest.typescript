@@ -20,7 +20,7 @@ interface D {
 This is the tsp configuration.
 
 ```yaml
-compatibilityMode: true
+compatibility-mode: true
 ```
 
 ## Provide generated models and its serializer

@@ -271,7 +271,7 @@ export function dataProductNetworkAclsSerializer(
     virtualNetworkRule: virtualNetworkRuleArraySerializer(
       item["virtualNetworkRule"],
     ),
-    ipRules: iPRulesArraySerializer(item["ipRules"]),
+    ipRules: ipRulesArraySerializer(item["ipRules"]),
     allowedQueryIpRangeList: item["allowedQueryIpRangeList"].map((p: any) => {
       return p;
     }),
@@ -286,7 +286,7 @@ export function dataProductNetworkAclsDeserializer(
     virtualNetworkRule: virtualNetworkRuleArrayDeserializer(
       item["virtualNetworkRule"],
     ),
-    ipRules: iPRulesArrayDeserializer(item["ipRules"]),
+    ipRules: ipRulesArrayDeserializer(item["ipRules"]),
     allowedQueryIpRangeList: item["allowedQueryIpRangeList"].map((p: any) => {
       return p;
     }),
@@ -332,15 +332,15 @@ export function virtualNetworkRuleDeserializer(item: any): VirtualNetworkRule {
   };
 }
 
-export function iPRulesArraySerializer(result: Array<IPRules>): any[] {
+export function ipRulesArraySerializer(result: Array<IPRules>): any[] {
   return result.map((item) => {
-    return iPRulesSerializer(item);
+    return ipRulesSerializer(item);
   });
 }
 
-export function iPRulesArrayDeserializer(result: Array<IPRules>): any[] {
+export function ipRulesArrayDeserializer(result: Array<IPRules>): any[] {
   return result.map((item) => {
-    return iPRulesDeserializer(item);
+    return ipRulesDeserializer(item);
   });
 }
 
@@ -352,11 +352,11 @@ export interface IPRules {
   action: string;
 }
 
-export function iPRulesSerializer(item: IPRules): any {
+export function ipRulesSerializer(item: IPRules): any {
   return { value: item["value"], action: item["action"] };
 }
 
-export function iPRulesDeserializer(item: any): IPRules {
+export function ipRulesDeserializer(item: any): IPRules {
   return {
     value: item["value"],
     action: item["action"],
@@ -519,10 +519,10 @@ export function userAssignedIdentityRecordDeserializer(
 
 /** User assigned identity properties */
 export interface UserAssignedIdentity {
-  /** The principal ID of the assigned identity. */
-  readonly principalId?: string;
   /** The client ID of the assigned identity. */
   readonly clientId?: string;
+  /** The principal ID of the assigned identity. */
+  readonly principalId?: string;
 }
 
 export function userAssignedIdentitySerializer(
@@ -535,8 +535,8 @@ export function userAssignedIdentityDeserializer(
   item: any,
 ): UserAssignedIdentity {
   return {
-    principalId: item["principalId"],
     clientId: item["clientId"],
+    principalId: item["principalId"],
   };
 }
 
@@ -646,6 +646,92 @@ export enum KnownCreatedByType {
  * **Key**: The entity was created by a key.
  */
 export type CreatedByType = string;
+
+/** Common error response for all Azure Resource Manager APIs to return error details for failed operations. */
+export interface ErrorResponse {
+  /** The error object. */
+  error?: ErrorDetail;
+}
+
+export function errorResponseDeserializer(item: any): ErrorResponse {
+  return {
+    error: !item["error"]
+      ? item["error"]
+      : errorDetailDeserializer(item["error"]),
+  };
+}
+
+/** The error detail. */
+export interface ErrorDetail {
+  /** The error code. */
+  readonly code?: string;
+  /** The error message. */
+  readonly message?: string;
+  /** The error target. */
+  readonly target?: string;
+  /** The error details. */
+  readonly details?: ErrorDetail[];
+  /** The error additional info. */
+  readonly additionalInfo?: ErrorAdditionalInfo[];
+}
+
+export function errorDetailDeserializer(item: any): ErrorDetail {
+  return {
+    code: item["code"],
+    message: item["message"],
+    target: item["target"],
+    details: !item["details"]
+      ? item["details"]
+      : errorDetailArrayDeserializer(item["details"]),
+    additionalInfo: !item["additionalInfo"]
+      ? item["additionalInfo"]
+      : errorAdditionalInfoArrayDeserializer(item["additionalInfo"]),
+  };
+}
+
+export function errorDetailArrayDeserializer(
+  result: Array<ErrorDetail>,
+): any[] {
+  return result.map((item) => {
+    return errorDetailDeserializer(item);
+  });
+}
+
+export function errorAdditionalInfoArrayDeserializer(
+  result: Array<ErrorAdditionalInfo>,
+): any[] {
+  return result.map((item) => {
+    return errorAdditionalInfoDeserializer(item);
+  });
+}
+
+/** The resource management error additional info. */
+export interface ErrorAdditionalInfo {
+  /** The additional info type. */
+  readonly type?: string;
+  /** The additional info. */
+  readonly info?: Record<string, any>;
+}
+
+export function errorAdditionalInfoDeserializer(
+  item: any,
+): ErrorAdditionalInfo {
+  return {
+    type: item["type"],
+    info: !item["info"]
+      ? item["info"]
+      : _errorAdditionalInfoInfoDeserializer(item["info"]),
+  };
+}
+
+/** model interface _ErrorAdditionalInfoInfo */
+export interface _ErrorAdditionalInfoInfo {}
+
+export function _errorAdditionalInfoInfoDeserializer(
+  item: any,
+): _ErrorAdditionalInfoInfo {
+  return item;
+}
 
 /** The type used for update operations of the DataProduct. */
 export interface DataProductUpdate {
@@ -1335,11 +1421,11 @@ export function operationDisplayDeserializer(item: any): OperationDisplay {
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export enum KnownOrigin {
   /** Indicates the operation is initiated by a user. */
-  user = "user",
+  User = "user",
   /** Indicates the operation is initiated by a system. */
-  system = "system",
+  System = "system",
   /** Indicates the operation is initiated by a user or system. */
-  "user,system" = "user,system",
+  UserSystem = "user,system",
 }
 
 /**
@@ -1371,5 +1457,5 @@ export type ActionType = string;
 /** The available API versions for the Microsoft.NetworkAnalytics RP. */
 export enum KnownVersions {
   /** The 2023-11-15 stable version. */
-  v2023_11_15 = "2023-11-15",
+  V20231115 = "2023-11-15",
 }

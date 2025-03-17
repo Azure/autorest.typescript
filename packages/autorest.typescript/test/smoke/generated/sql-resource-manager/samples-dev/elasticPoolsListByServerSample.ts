@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets all elastic pools in a server.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets all elastic pools in a server.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ElasticPoolListByServer.json
  */
-async function getAllElasticPoolsInAServer() {
+async function getAllElasticPoolsInAServer(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-2369";
@@ -28,7 +26,7 @@ async function getAllElasticPoolsInAServer() {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.elasticPools.listByServer(
+  for await (const item of client.elasticPools.listByServer(
     resourceGroupName,
     serverName,
   )) {
@@ -37,8 +35,8 @@ async function getAllElasticPoolsInAServer() {
   console.log(resArray);
 }
 
-async function main() {
-  getAllElasticPoolsInAServer();
+async function main(): Promise<void> {
+  await getAllElasticPoolsInAServer();
 }
 
 main().catch(console.error);

@@ -83,6 +83,7 @@ import {
 import {
   BatchNodeUserCreateOptions,
   batchNodeUserCreateOptionsSerializer,
+  batchErrorDeserializer,
   BatchNodeUserUpdateOptions,
   batchNodeUserUpdateOptionsSerializer,
   BatchNode,
@@ -187,6 +188,7 @@ import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../static-helpers/pagingHelpers.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -201,8 +203,23 @@ export function _listNodeFilesSend(
   nodeId: string,
   options: ListNodeFilesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/files{?api-version,maxresults,timeOut,$filter,recursive}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      "api-version": context.apiVersion,
+      maxresults: options?.maxresults,
+      timeOut: options?.timeOutInSeconds,
+      $filter: options?.filter,
+      recursive: options?.recursive,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/nodes/{nodeId}/files", poolId, nodeId)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -222,13 +239,6 @@ export function _listNodeFilesSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        maxresults: options?.maxresults,
-        timeOut: options?.timeOutInSeconds,
-        $filter: options?.$filter,
-        recursive: options?.recursive,
-      },
     });
 }
 
@@ -237,7 +247,9 @@ export async function _listNodeFilesDeserialize(
 ): Promise<_NodeFileListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _nodeFileListResultDeserializer(result.body);
@@ -266,13 +278,21 @@ export function _getNodeFilePropertiesSend(
   filePath: string,
   options: GetNodeFilePropertiesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/files/{filePath}{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      filePath: filePath,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/pools/{poolId}/nodes/{nodeId}/files/{filePath}",
-      poolId,
-      nodeId,
-      filePath,
-    )
+    .path(path)
     .head({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -306,10 +326,6 @@ export function _getNodeFilePropertiesSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
     });
 }
 
@@ -318,7 +334,9 @@ export async function _getNodeFilePropertiesDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -349,13 +367,21 @@ export function _getNodeFileSend(
   filePath: string,
   options: GetNodeFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/files/{filePath}{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      filePath: filePath,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/pools/{poolId}/nodes/{nodeId}/files/{filePath}",
-      poolId,
-      nodeId,
-      filePath,
-    )
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -392,10 +418,6 @@ export function _getNodeFileSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
     });
 }
 
@@ -404,7 +426,9 @@ export async function _getNodeFileDeserialize(
 ): Promise<Uint8Array> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return typeof result.body === "string"
@@ -437,13 +461,22 @@ export function _deleteNodeFileSend(
   filePath: string,
   options: DeleteNodeFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/files/{filePath}{?api-version,timeOut,recursive}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      filePath: filePath,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+      recursive: options?.recursive,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/pools/{poolId}/nodes/{nodeId}/files/{filePath}",
-      poolId,
-      nodeId,
-      filePath,
-    )
+    .path(path)
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -463,11 +496,6 @@ export function _deleteNodeFileSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-        recursive: options?.recursive,
-      },
     });
 }
 
@@ -476,7 +504,9 @@ export async function _deleteNodeFileDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -506,9 +536,26 @@ export function _listNodeExtensionsSend(
   nodeId: string,
   options: ListNodeExtensionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/extensions{?maxresults,timeOut,$select}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      maxresults: options?.maxresults,
+      timeOut: options?.timeOutInSeconds,
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
+            return p;
+          }),
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
-    .path("/pools/{poolId}/nodes/{nodeId}/extensions", poolId, nodeId)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -528,15 +575,6 @@ export function _listNodeExtensionsSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        maxresults: options?.maxresults,
-        timeOut: options?.timeOutInSeconds,
-        $select: !options?.$select
-          ? options?.$select
-          : options?.$select.map((p: any) => {
-              return p;
-            }),
-      },
     });
 }
 
@@ -545,7 +583,9 @@ export async function _listNodeExtensionsDeserialize(
 ): Promise<_NodeVMExtensionList> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _nodeVMExtensionListDeserializer(result.body);
@@ -574,13 +614,26 @@ export function _getNodeExtensionSend(
   extensionName: string,
   options: GetNodeExtensionOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/extensions/{extensionName}{?api-version,timeOut,$select}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      extensionName: extensionName,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
+            return p;
+          }),
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/pools/{poolId}/nodes/{nodeId}/extensions/{extensionName}",
-      poolId,
-      nodeId,
-      extensionName,
-    )
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -600,15 +653,6 @@ export function _getNodeExtensionSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-        $select: !options?.$select
-          ? options?.$select
-          : options?.$select.map((p: any) => {
-              return p;
-            }),
-      },
     });
 }
 
@@ -617,7 +661,9 @@ export async function _getNodeExtensionDeserialize(
 ): Promise<NodeVMExtension> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return nodeVMExtensionDeserializer(result.body);
@@ -646,37 +692,46 @@ export function _listNodesSend(
   poolId: string,
   options: ListNodesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/pools/{poolId}/nodes", poolId).get({
-    ...operationOptionsToRequestParameters(options),
-    headers: {
-      ...(options?.ocpDate !== undefined
-        ? {
-            "ocp-date": !options?.ocpDate
-              ? options?.ocpDate
-              : options?.ocpDate.toUTCString(),
-          }
-        : {}),
-      ...(options?.clientRequestId !== undefined
-        ? { "client-request-id": options?.clientRequestId }
-        : {}),
-      ...(options?.returnClientRequestId !== undefined
-        ? { "return-client-request-id": options?.returnClientRequestId }
-        : {}),
-      accept: "application/json",
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes{?api-version,maxresults,timeOut,$filter,$select}",
+    {
+      poolId: poolId,
       "api-version": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.$filter,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $filter: options?.filter,
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
     },
-  });
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        ...(options?.ocpDate !== undefined
+          ? {
+              "ocp-date": !options?.ocpDate
+                ? options?.ocpDate
+                : options?.ocpDate.toUTCString(),
+            }
+          : {}),
+        ...(options?.clientRequestId !== undefined
+          ? { "client-request-id": options?.clientRequestId }
+          : {}),
+        ...(options?.returnClientRequestId !== undefined
+          ? { "return-client-request-id": options?.returnClientRequestId }
+          : {}),
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _listNodesDeserialize(
@@ -684,7 +739,9 @@ export async function _listNodesDeserialize(
 ): Promise<_BatchNodeListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _batchNodeListResultDeserializer(result.body);
@@ -712,12 +769,20 @@ export function _uploadNodeLogsSend(
   body: UploadBatchServiceLogsOptions,
   options: UploadNodeLogsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/uploadbatchservicelogs{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/pools/{poolId}/nodes/{nodeId}/uploadbatchservicelogs",
-      poolId,
-      nodeId,
-    )
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; odata=minimalmetadata",
@@ -738,10 +803,6 @@ export function _uploadNodeLogsSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
       body: uploadBatchServiceLogsOptionsSerializer(body),
     });
 }
@@ -751,7 +812,9 @@ export async function _uploadNodeLogsDeserialize(
 ): Promise<UploadBatchServiceLogsResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return uploadBatchServiceLogsResultDeserializer(result.body);
@@ -786,8 +849,20 @@ export function _getNodeRemoteDesktopFileSend(
   nodeId: string,
   options: GetNodeRemoteDesktopFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/rdp{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/nodes/{nodeId}/rdp", poolId, nodeId)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -807,10 +882,6 @@ export function _getNodeRemoteDesktopFileSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
     });
 }
 
@@ -819,7 +890,9 @@ export async function _getNodeRemoteDesktopFileDeserialize(
 ): Promise<Uint8Array> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return typeof result.body === "string"
@@ -854,8 +927,20 @@ export function _getNodeRemoteLoginSettingsSend(
   nodeId: string,
   options: GetNodeRemoteLoginSettingsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/remoteloginsettings{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/nodes/{nodeId}/remoteloginsettings", poolId, nodeId)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -875,10 +960,6 @@ export function _getNodeRemoteLoginSettingsSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
     });
 }
 
@@ -887,7 +968,9 @@ export async function _getNodeRemoteLoginSettingsDeserialize(
 ): Promise<BatchNodeRemoteLoginSettingsResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return batchNodeRemoteLoginSettingsResultDeserializer(result.body);
@@ -921,8 +1004,20 @@ export function _enableNodeSchedulingSend(
   nodeId: string,
   options: EnableNodeSchedulingOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/enablescheduling{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/nodes/{nodeId}/enablescheduling", poolId, nodeId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -942,10 +1037,6 @@ export function _enableNodeSchedulingSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
     });
 }
 
@@ -954,7 +1045,9 @@ export async function _enableNodeSchedulingDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -985,8 +1078,20 @@ export function _disableNodeSchedulingSend(
   nodeId: string,
   options: DisableNodeSchedulingOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/disablescheduling{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/nodes/{nodeId}/disablescheduling", poolId, nodeId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; odata=minimalmetadata",
@@ -1007,10 +1112,6 @@ export function _disableNodeSchedulingSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
       body: !options["body"]
         ? options["body"]
         : nodeDisableSchedulingOptionsSerializer(options["body"]),
@@ -1022,7 +1123,9 @@ export async function _disableNodeSchedulingDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -1053,8 +1156,20 @@ export function _reimageNodeSend(
   nodeId: string,
   options: ReimageNodeOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/reimage{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/nodes/{nodeId}/reimage", poolId, nodeId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; odata=minimalmetadata",
@@ -1075,10 +1190,6 @@ export function _reimageNodeSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
       body: !options["body"]
         ? options["body"]
         : nodeReimageOptionsSerializer(options["body"]),
@@ -1090,7 +1201,9 @@ export async function _reimageNodeDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -1117,8 +1230,20 @@ export function _rebootNodeSend(
   nodeId: string,
   options: RebootNodeOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/reboot{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/nodes/{nodeId}/reboot", poolId, nodeId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; odata=minimalmetadata",
@@ -1139,10 +1264,6 @@ export function _rebootNodeSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
       body: !options["body"]
         ? options["body"]
         : nodeRebootOptionsSerializer(options["body"]),
@@ -1154,7 +1275,9 @@ export async function _rebootNodeDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -1177,35 +1300,45 @@ export function _getNodeSend(
   nodeId: string,
   options: GetNodeOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/pools/{poolId}/nodes/{nodeId}", poolId, nodeId).get({
-    ...operationOptionsToRequestParameters(options),
-    headers: {
-      ...(options?.clientRequestId !== undefined
-        ? { "client-request-id": options?.clientRequestId }
-        : {}),
-      ...(options?.returnClientRequestId !== undefined
-        ? { "return-client-request-id": options?.returnClientRequestId }
-        : {}),
-      ...(options?.ocpDate !== undefined
-        ? {
-            "ocp-date": !options?.ocpDate
-              ? options?.ocpDate
-              : options?.ocpDate.toUTCString(),
-          }
-        : {}),
-      accept: "application/json",
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}{?api-version,timeOut,$select}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
       "api-version": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
     },
-  });
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        ...(options?.clientRequestId !== undefined
+          ? { "client-request-id": options?.clientRequestId }
+          : {}),
+        ...(options?.returnClientRequestId !== undefined
+          ? { "return-client-request-id": options?.returnClientRequestId }
+          : {}),
+        ...(options?.ocpDate !== undefined
+          ? {
+              "ocp-date": !options?.ocpDate
+                ? options?.ocpDate
+                : options?.ocpDate.toUTCString(),
+            }
+          : {}),
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _getNodeDeserialize(
@@ -1213,7 +1346,9 @@ export async function _getNodeDeserialize(
 ): Promise<BatchNode> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return batchNodeDeserializer(result.body);
@@ -1238,13 +1373,21 @@ export function _replaceNodeUserSend(
   body: BatchNodeUserUpdateOptions,
   options: ReplaceNodeUserOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/users/{userName}{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      userName: userName,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/pools/{poolId}/nodes/{nodeId}/users/{userName}",
-      poolId,
-      nodeId,
-      userName,
-    )
+    .path(path)
     .put({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; odata=minimalmetadata",
@@ -1265,10 +1408,6 @@ export function _replaceNodeUserSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchNodeUserUpdateOptionsSerializer(body),
     });
 }
@@ -1278,7 +1417,9 @@ export async function _replaceNodeUserDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -1316,13 +1457,21 @@ export function _deleteNodeUserSend(
   userName: string,
   options: DeleteNodeUserOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/users/{userName}{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      userName: userName,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/pools/{poolId}/nodes/{nodeId}/users/{userName}",
-      poolId,
-      nodeId,
-      userName,
-    )
+    .path(path)
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -1342,10 +1491,6 @@ export function _deleteNodeUserSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
     });
 }
 
@@ -1354,7 +1499,9 @@ export async function _deleteNodeUserDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -1388,8 +1535,20 @@ export function _createNodeUserSend(
   body: BatchNodeUserCreateOptions,
   options: CreateNodeUserOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/nodes/{nodeId}/users{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      nodeId: nodeId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/nodes/{nodeId}/users", poolId, nodeId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; odata=minimalmetadata",
@@ -1410,10 +1569,6 @@ export function _createNodeUserSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchNodeUserCreateOptionsSerializer(body),
     });
 }
@@ -1423,7 +1578,9 @@ export async function _createNodeUserDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -1456,8 +1613,23 @@ export function _listTaskFilesSend(
   taskId: string,
   options: ListTaskFilesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/tasks/{taskId}/files{?api-version,maxresults,timeOut,$filter,recursive}",
+    {
+      jobId: jobId,
+      taskId: taskId,
+      "api-version": context.apiVersion,
+      maxresults: options?.maxresults,
+      timeOut: options?.timeOutInSeconds,
+      $filter: options?.filter,
+      recursive: options?.recursive,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}/tasks/{taskId}/files", jobId, taskId)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -1477,13 +1649,6 @@ export function _listTaskFilesSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        maxresults: options?.maxresults,
-        timeOut: options?.timeOutInSeconds,
-        $filter: options?.$filter,
-        recursive: options?.recursive,
-      },
     });
 }
 
@@ -1492,7 +1657,9 @@ export async function _listTaskFilesDeserialize(
 ): Promise<_NodeFileListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _nodeFileListResultDeserializer(result.body);
@@ -1521,13 +1688,21 @@ export function _getTaskFilePropertiesSend(
   filePath: string,
   options: GetTaskFilePropertiesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/tasks/{taskId}/files/{filePath}{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      taskId: taskId,
+      filePath: filePath,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/jobs/{jobId}/tasks/{taskId}/files/{filePath}",
-      jobId,
-      taskId,
-      filePath,
-    )
+    .path(path)
     .head({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -1561,10 +1736,6 @@ export function _getTaskFilePropertiesSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
     });
 }
 
@@ -1573,7 +1744,9 @@ export async function _getTaskFilePropertiesDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -1604,13 +1777,21 @@ export function _getTaskFileSend(
   filePath: string,
   options: GetTaskFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/tasks/{taskId}/files/{filePath}{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      taskId: taskId,
+      filePath: filePath,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/jobs/{jobId}/tasks/{taskId}/files/{filePath}",
-      jobId,
-      taskId,
-      filePath,
-    )
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -1647,10 +1828,6 @@ export function _getTaskFileSend(
         accept: "application/octet-stream",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
     });
 }
 
@@ -1659,7 +1836,9 @@ export async function _getTaskFileDeserialize(
 ): Promise<Uint8Array> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return result.body;
@@ -1690,13 +1869,22 @@ export function _deleteTaskFileSend(
   filePath: string,
   options: DeleteTaskFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/tasks/{taskId}/files/{filePath}{?api-version,timeOut,recursive}",
+    {
+      jobId: jobId,
+      taskId: taskId,
+      filePath: filePath,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+      recursive: options?.recursive,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/jobs/{jobId}/tasks/{taskId}/files/{filePath}",
-      jobId,
-      taskId,
-      filePath,
-    )
+    .path(path)
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -1716,11 +1904,6 @@ export function _deleteTaskFileSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-        recursive: options?.recursive,
-      },
     });
 }
 
@@ -1729,7 +1912,9 @@ export async function _deleteTaskFileDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -1759,8 +1944,20 @@ export function _reactivateTaskSend(
   taskId: string,
   options: ReactivateTaskOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/tasks/{taskId}/reactivate{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      taskId: taskId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}/tasks/{taskId}/reactivate", jobId, taskId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -1800,10 +1997,6 @@ export function _reactivateTaskSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
     });
 }
 
@@ -1812,7 +2005,9 @@ export async function _reactivateTaskDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -1843,8 +2038,20 @@ export function _terminateTaskSend(
   taskId: string,
   options: TerminateTaskOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/tasks/{taskId}/terminate{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      taskId: taskId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}/tasks/{taskId}/terminate", jobId, taskId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -1884,10 +2091,6 @@ export function _terminateTaskSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
     });
 }
 
@@ -1896,7 +2099,9 @@ export async function _terminateTaskDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -1923,8 +2128,25 @@ export function _listSubTasksSend(
   taskId: string,
   options: ListSubTasksOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/tasks/{taskId}/subtasksinfo{?api-version,timeOut,$select}",
+    {
+      jobId: jobId,
+      taskId: taskId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
+            return p;
+          }),
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}/tasks/{taskId}/subtasksinfo", jobId, taskId)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -1944,15 +2166,6 @@ export function _listSubTasksSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-        $select: !options?.$select
-          ? options?.$select
-          : options?.$select.map((p: any) => {
-              return p;
-            }),
-      },
     });
 }
 
@@ -1961,7 +2174,9 @@ export async function _listSubTasksDeserialize(
 ): Promise<BatchTaskListSubtasksResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return batchTaskListSubtasksResultDeserializer(result.body);
@@ -1985,8 +2200,20 @@ export function _replaceTaskSend(
   body: BatchTask,
   options: ReplaceTaskOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/tasks/{taskId}{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      taskId: taskId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}/tasks/{taskId}", jobId, taskId)
+    .path(path)
     .put({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; odata=minimalmetadata",
@@ -2027,10 +2254,6 @@ export function _replaceTaskSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchTaskSerializer(body),
     });
 }
@@ -2040,7 +2263,9 @@ export async function _replaceTaskDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -2064,60 +2289,70 @@ export function _getTaskSend(
   taskId: string,
   options: GetTaskOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/jobs/{jobId}/tasks/{taskId}", jobId, taskId).get({
-    ...operationOptionsToRequestParameters(options),
-    headers: {
-      ...(options?.clientRequestId !== undefined
-        ? { "client-request-id": options?.clientRequestId }
-        : {}),
-      ...(options?.returnClientRequestId !== undefined
-        ? { "return-client-request-id": options?.returnClientRequestId }
-        : {}),
-      ...(options?.ocpDate !== undefined
-        ? {
-            "ocp-date": !options?.ocpDate
-              ? options?.ocpDate
-              : options?.ocpDate.toUTCString(),
-          }
-        : {}),
-      ...(options?.ifMatch !== undefined
-        ? { "if-match": options?.ifMatch }
-        : {}),
-      ...(options?.ifNoneMatch !== undefined
-        ? { "if-none-match": options?.ifNoneMatch }
-        : {}),
-      ...(options?.ifModifiedSince !== undefined
-        ? {
-            "if-modified-since": !options?.ifModifiedSince
-              ? options?.ifModifiedSince
-              : options?.ifModifiedSince.toUTCString(),
-          }
-        : {}),
-      ...(options?.ifUnmodifiedSince !== undefined
-        ? {
-            "if-unmodified-since": !options?.ifUnmodifiedSince
-              ? options?.ifUnmodifiedSince
-              : options?.ifUnmodifiedSince.toUTCString(),
-          }
-        : {}),
-      accept: "application/json",
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/tasks/{taskId}{?api-version,timeOut,$select,$expand}",
+    {
+      jobId: jobId,
+      taskId: taskId,
       "api-version": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.$expand
-        ? options?.$expand
-        : options?.$expand.map((p: any) => {
+      $expand: !options?.expand
+        ? options?.expand
+        : options?.expand.map((p: any) => {
             return p;
           }),
     },
-  });
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        ...(options?.clientRequestId !== undefined
+          ? { "client-request-id": options?.clientRequestId }
+          : {}),
+        ...(options?.returnClientRequestId !== undefined
+          ? { "return-client-request-id": options?.returnClientRequestId }
+          : {}),
+        ...(options?.ocpDate !== undefined
+          ? {
+              "ocp-date": !options?.ocpDate
+                ? options?.ocpDate
+                : options?.ocpDate.toUTCString(),
+            }
+          : {}),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? {
+              "if-modified-since": !options?.ifModifiedSince
+                ? options?.ifModifiedSince
+                : options?.ifModifiedSince.toUTCString(),
+            }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? {
+              "if-unmodified-since": !options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince
+                : options?.ifUnmodifiedSince.toUTCString(),
+            }
+          : {}),
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _getTaskDeserialize(
@@ -2125,7 +2360,9 @@ export async function _getTaskDeserialize(
 ): Promise<BatchTask> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return batchTaskDeserializer(result.body);
@@ -2152,8 +2389,20 @@ export function _deleteTaskSend(
   taskId: string,
   options: DeleteTaskOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/tasks/{taskId}{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      taskId: taskId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}/tasks/{taskId}", jobId, taskId)
+    .path(path)
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -2193,10 +2442,6 @@ export function _deleteTaskSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
     });
 }
 
@@ -2205,7 +2450,9 @@ export async function _deleteTaskDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -2234,8 +2481,19 @@ export function _createTaskCollectionSend(
   collection: BatchTaskCollection,
   options: CreateTaskCollectionOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/addtaskcollection{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}/addtaskcollection", jobId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; odata=minimalmetadata",
@@ -2256,10 +2514,6 @@ export function _createTaskCollectionSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchTaskCollectionSerializer(collection),
     });
 }
@@ -2269,7 +2523,9 @@ export async function _createTaskCollectionDeserialize(
 ): Promise<TaskAddCollectionResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return taskAddCollectionResultDeserializer(result.body);
@@ -2311,42 +2567,51 @@ export function _listTasksSend(
   jobId: string,
   options: ListTasksOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/jobs/{jobId}/tasks", jobId).get({
-    ...operationOptionsToRequestParameters(options),
-    headers: {
-      ...(options?.ocpDate !== undefined
-        ? {
-            "ocp-date": !options?.ocpDate
-              ? options?.ocpDate
-              : options?.ocpDate.toUTCString(),
-          }
-        : {}),
-      ...(options?.clientRequestId !== undefined
-        ? { "client-request-id": options?.clientRequestId }
-        : {}),
-      ...(options?.returnClientRequestId !== undefined
-        ? { "return-client-request-id": options?.returnClientRequestId }
-        : {}),
-      accept: "application/json",
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/tasks{?api-version,maxresults,timeOut,$filter,$select,$expand}",
+    {
+      jobId: jobId,
       "api-version": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.$filter,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $filter: options?.filter,
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.$expand
-        ? options?.$expand
-        : options?.$expand.map((p: any) => {
+      $expand: !options?.expand
+        ? options?.expand
+        : options?.expand.map((p: any) => {
             return p;
           }),
     },
-  });
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        ...(options?.ocpDate !== undefined
+          ? {
+              "ocp-date": !options?.ocpDate
+                ? options?.ocpDate
+                : options?.ocpDate.toUTCString(),
+            }
+          : {}),
+        ...(options?.clientRequestId !== undefined
+          ? { "client-request-id": options?.clientRequestId }
+          : {}),
+        ...(options?.returnClientRequestId !== undefined
+          ? { "return-client-request-id": options?.returnClientRequestId }
+          : {}),
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _listTasksDeserialize(
@@ -2354,7 +2619,9 @@ export async function _listTasksDeserialize(
 ): Promise<_BatchTaskListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _batchTaskListResultDeserializer(result.body);
@@ -2385,8 +2652,19 @@ export function _createTaskSend(
   body: BatchTaskCreateOptions,
   options: CreateTaskOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/tasks{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}/tasks", jobId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; odata=minimalmetadata",
@@ -2407,10 +2685,6 @@ export function _createTaskSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchTaskCreateOptionsSerializer(body),
     });
 }
@@ -2420,7 +2694,9 @@ export async function _createTaskDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -2445,42 +2721,50 @@ export function _listJobSchedulesSend(
   context: Client,
   options: ListJobSchedulesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/jobschedules").get({
-    ...operationOptionsToRequestParameters(options),
-    headers: {
-      ...(options?.ocpDate !== undefined
-        ? {
-            "ocp-date": !options?.ocpDate
-              ? options?.ocpDate
-              : options?.ocpDate.toUTCString(),
-          }
-        : {}),
-      ...(options?.clientRequestId !== undefined
-        ? { "client-request-id": options?.clientRequestId }
-        : {}),
-      ...(options?.returnClientRequestId !== undefined
-        ? { "return-client-request-id": options?.returnClientRequestId }
-        : {}),
-      accept: "application/json",
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: {
+  const path = expandUrlTemplate(
+    "/jobschedules{?api-version,maxresults,timeOut,$filter,$select,$expand}",
+    {
       "api-version": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.$filter,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $filter: options?.filter,
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.$expand
-        ? options?.$expand
-        : options?.$expand.map((p: any) => {
+      $expand: !options?.expand
+        ? options?.expand
+        : options?.expand.map((p: any) => {
             return p;
           }),
     },
-  });
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        ...(options?.ocpDate !== undefined
+          ? {
+              "ocp-date": !options?.ocpDate
+                ? options?.ocpDate
+                : options?.ocpDate.toUTCString(),
+            }
+          : {}),
+        ...(options?.clientRequestId !== undefined
+          ? { "client-request-id": options?.clientRequestId }
+          : {}),
+        ...(options?.returnClientRequestId !== undefined
+          ? { "return-client-request-id": options?.returnClientRequestId }
+          : {}),
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _listJobSchedulesDeserialize(
@@ -2488,7 +2772,9 @@ export async function _listJobSchedulesDeserialize(
 ): Promise<_BatchJobScheduleListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _batchJobScheduleListResultDeserializer(result.body);
@@ -2513,8 +2799,18 @@ export function _createJobScheduleSend(
   body: BatchJobScheduleCreateOptions,
   options: CreateJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobschedules{?api-version,timeOut}",
+    {
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobschedules")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; odata=minimalmetadata",
@@ -2535,10 +2831,6 @@ export function _createJobScheduleSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchJobScheduleCreateOptionsSerializer(body),
     });
 }
@@ -2548,7 +2840,9 @@ export async function _createJobScheduleDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -2569,8 +2863,19 @@ export function _terminateJobScheduleSend(
   jobScheduleId: string,
   options: TerminateJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobschedules/{jobScheduleId}/terminate{?api-version,timeOut}",
+    {
+      jobScheduleId: jobScheduleId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobschedules/{jobScheduleId}/terminate", jobScheduleId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -2610,10 +2915,6 @@ export function _terminateJobScheduleSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
     });
 }
 
@@ -2622,7 +2923,9 @@ export async function _terminateJobScheduleDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -2647,8 +2950,19 @@ export function _enableJobScheduleSend(
   jobScheduleId: string,
   options: EnableJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobschedules/{jobScheduleId}/enable{?api-version,timeOut}",
+    {
+      jobScheduleId: jobScheduleId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobschedules/{jobScheduleId}/enable", jobScheduleId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -2688,10 +3002,6 @@ export function _enableJobScheduleSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
     });
 }
 
@@ -2700,7 +3010,9 @@ export async function _enableJobScheduleDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -2721,8 +3033,19 @@ export function _disableJobScheduleSend(
   jobScheduleId: string,
   options: DisableJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobschedules/{jobScheduleId}/disable{?api-version,timeOut}",
+    {
+      jobScheduleId: jobScheduleId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobschedules/{jobScheduleId}/disable", jobScheduleId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -2762,10 +3085,6 @@ export function _disableJobScheduleSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
     });
 }
 
@@ -2774,7 +3093,9 @@ export async function _disableJobScheduleDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -2796,8 +3117,19 @@ export function _replaceJobScheduleSend(
   body: BatchJobSchedule,
   options: ReplaceJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobschedules/{jobScheduleId}{?api-version,timeOut}",
+    {
+      jobScheduleId: jobScheduleId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobschedules/{jobScheduleId}", jobScheduleId)
+    .path(path)
     .put({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; odata=minimalmetadata",
@@ -2838,10 +3170,6 @@ export function _replaceJobScheduleSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchJobScheduleSerializer(body),
     });
 }
@@ -2851,7 +3179,9 @@ export async function _replaceJobScheduleDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -2885,8 +3215,19 @@ export function _updateJobScheduleSend(
   body: BatchJobScheduleUpdateOptions,
   options: UpdateJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobschedules/{jobScheduleId}{?api-version,timeOut}",
+    {
+      jobScheduleId: jobScheduleId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobschedules/{jobScheduleId}", jobScheduleId)
+    .path(path)
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; odata=minimalmetadata",
@@ -2927,10 +3268,6 @@ export function _updateJobScheduleSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchJobScheduleUpdateOptionsSerializer(body),
     });
 }
@@ -2940,7 +3277,9 @@ export async function _updateJobScheduleDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -2973,60 +3312,69 @@ export function _getJobScheduleSend(
   jobScheduleId: string,
   options: GetJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/jobschedules/{jobScheduleId}", jobScheduleId).get({
-    ...operationOptionsToRequestParameters(options),
-    headers: {
-      ...(options?.clientRequestId !== undefined
-        ? { "client-request-id": options?.clientRequestId }
-        : {}),
-      ...(options?.returnClientRequestId !== undefined
-        ? { "return-client-request-id": options?.returnClientRequestId }
-        : {}),
-      ...(options?.ocpDate !== undefined
-        ? {
-            "ocp-date": !options?.ocpDate
-              ? options?.ocpDate
-              : options?.ocpDate.toUTCString(),
-          }
-        : {}),
-      ...(options?.ifMatch !== undefined
-        ? { "if-match": options?.ifMatch }
-        : {}),
-      ...(options?.ifNoneMatch !== undefined
-        ? { "if-none-match": options?.ifNoneMatch }
-        : {}),
-      ...(options?.ifModifiedSince !== undefined
-        ? {
-            "if-modified-since": !options?.ifModifiedSince
-              ? options?.ifModifiedSince
-              : options?.ifModifiedSince.toUTCString(),
-          }
-        : {}),
-      ...(options?.ifUnmodifiedSince !== undefined
-        ? {
-            "if-unmodified-since": !options?.ifUnmodifiedSince
-              ? options?.ifUnmodifiedSince
-              : options?.ifUnmodifiedSince.toUTCString(),
-          }
-        : {}),
-      accept: "application/json",
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: {
+  const path = expandUrlTemplate(
+    "/jobschedules/{jobScheduleId}{?api-version,timeOut,$select,$expand}",
+    {
+      jobScheduleId: jobScheduleId,
       "api-version": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.$expand
-        ? options?.$expand
-        : options?.$expand.map((p: any) => {
+      $expand: !options?.expand
+        ? options?.expand
+        : options?.expand.map((p: any) => {
             return p;
           }),
     },
-  });
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        ...(options?.clientRequestId !== undefined
+          ? { "client-request-id": options?.clientRequestId }
+          : {}),
+        ...(options?.returnClientRequestId !== undefined
+          ? { "return-client-request-id": options?.returnClientRequestId }
+          : {}),
+        ...(options?.ocpDate !== undefined
+          ? {
+              "ocp-date": !options?.ocpDate
+                ? options?.ocpDate
+                : options?.ocpDate.toUTCString(),
+            }
+          : {}),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? {
+              "if-modified-since": !options?.ifModifiedSince
+                ? options?.ifModifiedSince
+                : options?.ifModifiedSince.toUTCString(),
+            }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? {
+              "if-unmodified-since": !options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince
+                : options?.ifUnmodifiedSince.toUTCString(),
+            }
+          : {}),
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _getJobScheduleDeserialize(
@@ -3034,7 +3382,9 @@ export async function _getJobScheduleDeserialize(
 ): Promise<BatchJobSchedule> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return batchJobScheduleDeserializer(result.body);
@@ -3055,8 +3405,19 @@ export function _deleteJobScheduleSend(
   jobScheduleId: string,
   options: DeleteJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobschedules/{jobScheduleId}{?api-version,timeOut}",
+    {
+      jobScheduleId: jobScheduleId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobschedules/{jobScheduleId}", jobScheduleId)
+    .path(path)
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -3096,10 +3457,6 @@ export function _deleteJobScheduleSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
     });
 }
 
@@ -3108,7 +3465,9 @@ export async function _deleteJobScheduleDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -3135,8 +3494,19 @@ export function _jobScheduleExistsSend(
   jobScheduleId: string,
   options: JobScheduleExistsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobschedules/{jobScheduleId}{?api-version,timeOut}",
+    {
+      jobScheduleId: jobScheduleId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobschedules/{jobScheduleId}", jobScheduleId)
+    .path(path)
     .head({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -3176,10 +3546,6 @@ export function _jobScheduleExistsSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
     });
 }
 
@@ -3188,7 +3554,9 @@ export async function _jobScheduleExistsDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200", "404"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -3210,12 +3578,25 @@ export function _getCertificateSend(
   thumbprint: string,
   options: GetCertificateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint}){?api-version,timeOut,$select}",
+    {
+      thumbprintAlgorithm: thumbprintAlgorithm,
+      thumbprint: thumbprint,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
+            return p;
+          }),
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint})",
-      thumbprintAlgorithm,
-      thumbprint,
-    )
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -3235,15 +3616,6 @@ export function _getCertificateSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-        $select: !options?.$select
-          ? options?.$select
-          : options?.$select.map((p: any) => {
-              return p;
-            }),
-      },
     });
 }
 
@@ -3252,7 +3624,9 @@ export async function _getCertificateDeserialize(
 ): Promise<BatchCertificate> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return batchCertificateDeserializer(result.body);
@@ -3280,12 +3654,20 @@ export function _deleteCertificateSend(
   thumbprint: string,
   options: DeleteCertificateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint}){?api-version,timeOut}",
+    {
+      thumbprintAlgorithm: thumbprintAlgorithm,
+      thumbprint: thumbprint,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint})",
-      thumbprintAlgorithm,
-      thumbprint,
-    )
+    .path(path)
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -3305,10 +3687,6 @@ export function _deleteCertificateSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
     });
 }
 
@@ -3317,7 +3695,9 @@ export async function _deleteCertificateDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -3355,12 +3735,20 @@ export function _cancelCertificateDeletionSend(
   thumbprint: string,
   options: CancelCertificateDeletionOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint})/canceldelete{?api-version,timeOut}",
+    {
+      thumbprintAlgorithm: thumbprintAlgorithm,
+      thumbprint: thumbprint,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint})/canceldelete",
-      thumbprintAlgorithm,
-      thumbprint,
-    )
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -3380,10 +3768,6 @@ export function _cancelCertificateDeletionSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
     });
 }
 
@@ -3392,7 +3776,9 @@ export async function _cancelCertificateDeletionDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -3426,37 +3812,45 @@ export function _listCertificatesSend(
   context: Client,
   options: ListCertificatesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/certificates").get({
-    ...operationOptionsToRequestParameters(options),
-    headers: {
-      ...(options?.ocpDate !== undefined
-        ? {
-            "ocp-date": !options?.ocpDate
-              ? options?.ocpDate
-              : options?.ocpDate.toUTCString(),
-          }
-        : {}),
-      ...(options?.clientRequestId !== undefined
-        ? { "client-request-id": options?.clientRequestId }
-        : {}),
-      ...(options?.returnClientRequestId !== undefined
-        ? { "return-client-request-id": options?.returnClientRequestId }
-        : {}),
-      accept: "application/json",
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: {
+  const path = expandUrlTemplate(
+    "/certificates{?api-version,maxresults,timeOut,$filter,$select}",
+    {
       "api-version": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.$filter,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $filter: options?.filter,
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
     },
-  });
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        ...(options?.ocpDate !== undefined
+          ? {
+              "ocp-date": !options?.ocpDate
+                ? options?.ocpDate
+                : options?.ocpDate.toUTCString(),
+            }
+          : {}),
+        ...(options?.clientRequestId !== undefined
+          ? { "client-request-id": options?.clientRequestId }
+          : {}),
+        ...(options?.returnClientRequestId !== undefined
+          ? { "return-client-request-id": options?.returnClientRequestId }
+          : {}),
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _listCertificatesDeserialize(
@@ -3464,7 +3858,9 @@ export async function _listCertificatesDeserialize(
 ): Promise<_CertificateListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _certificateListResultDeserializer(result.body);
@@ -3489,8 +3885,18 @@ export function _createCertificateSend(
   body: BatchCertificate,
   options: CreateCertificateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/certificates{?api-version,timeOut}",
+    {
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/certificates")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; odata=minimalmetadata",
@@ -3511,10 +3917,6 @@ export function _createCertificateSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchCertificateSerializer(body),
     });
 }
@@ -3524,7 +3926,9 @@ export async function _createCertificateDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -3545,8 +3949,19 @@ export function _getJobTaskCountsSend(
   jobId: string,
   options: GetJobTaskCountsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/taskcounts{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}/taskcounts", jobId)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -3566,10 +3981,6 @@ export function _getJobTaskCountsSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
     });
 }
 
@@ -3578,7 +3989,9 @@ export async function _getJobTaskCountsDeserialize(
 ): Promise<TaskCountsResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return taskCountsResultDeserializer(result.body);
@@ -3606,9 +4019,26 @@ export function _listJobPreparationAndReleaseTaskStatusSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/jobpreparationandreleasetaskstatus{?maxresults,timeOut,$filter,$select}",
+    {
+      jobId: jobId,
+      maxresults: options?.maxresults,
+      timeOut: options?.timeOutInSeconds,
+      $filter: options?.filter,
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
+            return p;
+          }),
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
-    .path("/jobs/{jobId}/jobpreparationandreleasetaskstatus", jobId)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -3628,16 +4058,6 @@ export function _listJobPreparationAndReleaseTaskStatusSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        maxresults: options?.maxresults,
-        timeOut: options?.timeOutInSeconds,
-        $filter: options?.$filter,
-        $select: !options?.$select
-          ? options?.$select
-          : options?.$select.map((p: any) => {
-              return p;
-            }),
-      },
     });
 }
 
@@ -3646,7 +4066,9 @@ export async function _listJobPreparationAndReleaseTaskStatusDeserialize(
 ): Promise<_BatchJobListPreparationAndReleaseTaskStatusResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _batchJobListPreparationAndReleaseTaskStatusResultDeserializer(
@@ -3683,42 +4105,51 @@ export function _listJobsFromScheduleSend(
   jobScheduleId: string,
   options: ListJobsFromScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/jobschedules/{jobScheduleId}/jobs", jobScheduleId).get({
-    ...operationOptionsToRequestParameters(options),
-    headers: {
-      ...(options?.ocpDate !== undefined
-        ? {
-            "ocp-date": !options?.ocpDate
-              ? options?.ocpDate
-              : options?.ocpDate.toUTCString(),
-          }
-        : {}),
-      ...(options?.clientRequestId !== undefined
-        ? { "client-request-id": options?.clientRequestId }
-        : {}),
-      ...(options?.returnClientRequestId !== undefined
-        ? { "return-client-request-id": options?.returnClientRequestId }
-        : {}),
-      accept: "application/json",
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: {
+  const path = expandUrlTemplate(
+    "/jobschedules/{jobScheduleId}/jobs{?api-version,maxresults,timeOut,$filter,$select,$expand}",
+    {
+      jobScheduleId: jobScheduleId,
       "api-version": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.$filter,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $filter: options?.filter,
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.$expand
-        ? options?.$expand
-        : options?.$expand.map((p: any) => {
+      $expand: !options?.expand
+        ? options?.expand
+        : options?.expand.map((p: any) => {
             return p;
           }),
     },
-  });
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        ...(options?.ocpDate !== undefined
+          ? {
+              "ocp-date": !options?.ocpDate
+                ? options?.ocpDate
+                : options?.ocpDate.toUTCString(),
+            }
+          : {}),
+        ...(options?.clientRequestId !== undefined
+          ? { "client-request-id": options?.clientRequestId }
+          : {}),
+        ...(options?.returnClientRequestId !== undefined
+          ? { "return-client-request-id": options?.returnClientRequestId }
+          : {}),
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _listJobsFromScheduleDeserialize(
@@ -3726,7 +4157,9 @@ export async function _listJobsFromScheduleDeserialize(
 ): Promise<_BatchJobListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _batchJobListResultDeserializer(result.body);
@@ -3751,42 +4184,50 @@ export function _listJobsSend(
   context: Client,
   options: ListJobsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/jobs").get({
-    ...operationOptionsToRequestParameters(options),
-    headers: {
-      ...(options?.ocpDate !== undefined
-        ? {
-            "ocp-date": !options?.ocpDate
-              ? options?.ocpDate
-              : options?.ocpDate.toUTCString(),
-          }
-        : {}),
-      ...(options?.clientRequestId !== undefined
-        ? { "client-request-id": options?.clientRequestId }
-        : {}),
-      ...(options?.returnClientRequestId !== undefined
-        ? { "return-client-request-id": options?.returnClientRequestId }
-        : {}),
-      accept: "application/json",
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: {
+  const path = expandUrlTemplate(
+    "/jobs{?api-version,maxresults,timeOut,$filter,$select,$expand}",
+    {
       "api-version": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.$filter,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $filter: options?.filter,
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.$expand
-        ? options?.$expand
-        : options?.$expand.map((p: any) => {
+      $expand: !options?.expand
+        ? options?.expand
+        : options?.expand.map((p: any) => {
             return p;
           }),
     },
-  });
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        ...(options?.ocpDate !== undefined
+          ? {
+              "ocp-date": !options?.ocpDate
+                ? options?.ocpDate
+                : options?.ocpDate.toUTCString(),
+            }
+          : {}),
+        ...(options?.clientRequestId !== undefined
+          ? { "client-request-id": options?.clientRequestId }
+          : {}),
+        ...(options?.returnClientRequestId !== undefined
+          ? { "return-client-request-id": options?.returnClientRequestId }
+          : {}),
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _listJobsDeserialize(
@@ -3794,7 +4235,9 @@ export async function _listJobsDeserialize(
 ): Promise<_BatchJobListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _batchJobListResultDeserializer(result.body);
@@ -3819,8 +4262,18 @@ export function _createJobSend(
   body: BatchJobCreateOptions,
   options: CreateJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs{?api-version,timeOut}",
+    {
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; odata=minimalmetadata",
@@ -3841,10 +4294,6 @@ export function _createJobSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchJobCreateOptionsSerializer(body),
     });
 }
@@ -3854,7 +4303,9 @@ export async function _createJobDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -3885,8 +4336,19 @@ export function _terminateJobSend(
   jobId: string,
   options: TerminateJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/terminate{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}/terminate", jobId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; odata=minimalmetadata",
@@ -3927,10 +4389,6 @@ export function _terminateJobSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
       body: !options["body"]
         ? options["body"]
         : batchJobTerminateOptionsSerializer(options["body"]),
@@ -3942,7 +4400,9 @@ export async function _terminateJobDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -3970,8 +4430,19 @@ export function _enableJobSend(
   jobId: string,
   options: EnableJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/enable{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}/enable", jobId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -4011,10 +4482,6 @@ export function _enableJobSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
     });
 }
 
@@ -4023,7 +4490,9 @@ export async function _enableJobDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -4052,8 +4521,19 @@ export function _disableJobSend(
   body: BatchJobDisableOptions,
   options: DisableJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}/disable{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}/disable", jobId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; odata=minimalmetadata",
@@ -4094,10 +4574,6 @@ export function _disableJobSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchJobDisableOptionsSerializer(body),
     });
 }
@@ -4107,7 +4583,9 @@ export async function _disableJobDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -4139,8 +4617,19 @@ export function _replaceJobSend(
   body: BatchJob,
   options: ReplaceJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}", jobId)
+    .path(path)
     .put({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; odata=minimalmetadata",
@@ -4181,10 +4670,6 @@ export function _replaceJobSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchJobSerializer(body),
     });
 }
@@ -4194,7 +4679,9 @@ export async function _replaceJobDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -4221,8 +4708,19 @@ export function _updateJobSend(
   body: BatchJobUpdateOptions,
   options: UpdateJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}", jobId)
+    .path(path)
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; odata=minimalmetadata",
@@ -4263,10 +4761,6 @@ export function _updateJobSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchJobUpdateOptionsSerializer(body),
     });
 }
@@ -4276,7 +4770,9 @@ export async function _updateJobDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -4302,60 +4798,69 @@ export function _getJobSend(
   jobId: string,
   options: GetJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/jobs/{jobId}", jobId).get({
-    ...operationOptionsToRequestParameters(options),
-    headers: {
-      ...(options?.clientRequestId !== undefined
-        ? { "client-request-id": options?.clientRequestId }
-        : {}),
-      ...(options?.returnClientRequestId !== undefined
-        ? { "return-client-request-id": options?.returnClientRequestId }
-        : {}),
-      ...(options?.ocpDate !== undefined
-        ? {
-            "ocp-date": !options?.ocpDate
-              ? options?.ocpDate
-              : options?.ocpDate.toUTCString(),
-          }
-        : {}),
-      ...(options?.ifMatch !== undefined
-        ? { "if-match": options?.ifMatch }
-        : {}),
-      ...(options?.ifNoneMatch !== undefined
-        ? { "if-none-match": options?.ifNoneMatch }
-        : {}),
-      ...(options?.ifModifiedSince !== undefined
-        ? {
-            "if-modified-since": !options?.ifModifiedSince
-              ? options?.ifModifiedSince
-              : options?.ifModifiedSince.toUTCString(),
-          }
-        : {}),
-      ...(options?.ifUnmodifiedSince !== undefined
-        ? {
-            "if-unmodified-since": !options?.ifUnmodifiedSince
-              ? options?.ifUnmodifiedSince
-              : options?.ifUnmodifiedSince.toUTCString(),
-          }
-        : {}),
-      accept: "application/json",
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}{?api-version,timeOut,$select,$expand}",
+    {
+      jobId: jobId,
       "api-version": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.$expand
-        ? options?.$expand
-        : options?.$expand.map((p: any) => {
+      $expand: !options?.expand
+        ? options?.expand
+        : options?.expand.map((p: any) => {
             return p;
           }),
     },
-  });
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        ...(options?.clientRequestId !== undefined
+          ? { "client-request-id": options?.clientRequestId }
+          : {}),
+        ...(options?.returnClientRequestId !== undefined
+          ? { "return-client-request-id": options?.returnClientRequestId }
+          : {}),
+        ...(options?.ocpDate !== undefined
+          ? {
+              "ocp-date": !options?.ocpDate
+                ? options?.ocpDate
+                : options?.ocpDate.toUTCString(),
+            }
+          : {}),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? {
+              "if-modified-since": !options?.ifModifiedSince
+                ? options?.ifModifiedSince
+                : options?.ifModifiedSince.toUTCString(),
+            }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? {
+              "if-unmodified-since": !options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince
+                : options?.ifUnmodifiedSince.toUTCString(),
+            }
+          : {}),
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _getJobDeserialize(
@@ -4363,7 +4868,9 @@ export async function _getJobDeserialize(
 ): Promise<BatchJob> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return batchJobDeserializer(result.body);
@@ -4384,8 +4891,19 @@ export function _deleteJobSend(
   jobId: string,
   options: DeleteJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/jobs/{jobId}{?api-version,timeOut}",
+    {
+      jobId: jobId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/jobs/{jobId}", jobId)
+    .path(path)
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -4425,10 +4943,6 @@ export function _deleteJobSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
     });
 }
 
@@ -4437,7 +4951,9 @@ export async function _deleteJobDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -4466,8 +4982,20 @@ export function _listPoolNodeCountsSend(
   context: Client,
   options: ListPoolNodeCountsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/nodecounts{?api-version,maxresults,timeOut,$filter}",
+    {
+      "api-version": context.apiVersion,
+      maxresults: options?.maxresults,
+      timeOut: options?.timeOutInSeconds,
+      $filter: options?.filter,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/nodecounts")
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -4487,12 +5015,6 @@ export function _listPoolNodeCountsSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        maxresults: options?.maxresults,
-        timeOut: options?.timeOutInSeconds,
-        $filter: options?.$filter,
-      },
     });
 }
 
@@ -4501,7 +5023,9 @@ export async function _listPoolNodeCountsDeserialize(
 ): Promise<_PoolNodeCountsListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _poolNodeCountsListResultDeserializer(result.body);
@@ -4529,9 +5053,20 @@ export function _listSupportedImagesSend(
   context: Client,
   options: ListSupportedImagesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/supportedimages{?maxresults,timeOut,$filter}",
+    {
+      maxresults: options?.maxresults,
+      timeOut: options?.timeOutInSeconds,
+      $filter: options?.filter,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
-    .path("/supportedimages")
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -4551,11 +5086,6 @@ export function _listSupportedImagesSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        maxresults: options?.maxresults,
-        timeOut: options?.timeOutInSeconds,
-        $filter: options?.$filter,
-      },
     });
 }
 
@@ -4564,7 +5094,9 @@ export async function _listSupportedImagesDeserialize(
 ): Promise<_AccountListSupportedImagesResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _accountListSupportedImagesResultDeserializer(result.body);
@@ -4590,8 +5122,19 @@ export function _removeNodesSend(
   body: NodeRemoveOptions,
   options: RemoveNodesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/removenodes{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/removenodes", poolId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; odata=minimalmetadata",
@@ -4632,10 +5175,6 @@ export function _removeNodesSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
       body: nodeRemoveOptionsSerializer(body),
     });
 }
@@ -4645,7 +5184,9 @@ export async function _removeNodesDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -4672,8 +5213,19 @@ export function _replacePoolPropertiesSend(
   body: BatchPoolReplaceOptions,
   options: ReplacePoolPropertiesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/updateproperties{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/updateproperties", poolId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; odata=minimalmetadata",
@@ -4694,10 +5246,6 @@ export function _replacePoolPropertiesSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchPoolReplaceOptionsSerializer(body),
     });
 }
@@ -4707,7 +5255,9 @@ export async function _replacePoolPropertiesDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -4738,8 +5288,19 @@ export function _stopPoolResizeSend(
   poolId: string,
   options: StopPoolResizeOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/stopresize{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/stopresize", poolId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -4779,10 +5340,6 @@ export function _stopPoolResizeSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
     });
 }
 
@@ -4791,7 +5348,9 @@ export async function _stopPoolResizeDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -4821,8 +5380,19 @@ export function _resizePoolSend(
   body: BatchPoolResizeOptions,
   options: ResizePoolOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/resize{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/resize", poolId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; odata=minimalmetadata",
@@ -4863,10 +5433,6 @@ export function _resizePoolSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchPoolResizeOptionsSerializer(body),
     });
 }
@@ -4876,7 +5442,9 @@ export async function _resizePoolDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -4907,8 +5475,19 @@ export function _evaluatePoolAutoScaleSend(
   body: BatchPoolEvaluateAutoScaleOptions,
   options: EvaluatePoolAutoScaleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/evaluateautoscale{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/evaluateautoscale", poolId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; odata=minimalmetadata",
@@ -4929,10 +5508,6 @@ export function _evaluatePoolAutoScaleSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchPoolEvaluateAutoScaleOptionsSerializer(body),
     });
 }
@@ -4942,7 +5517,9 @@ export async function _evaluatePoolAutoScaleDeserialize(
 ): Promise<AutoScaleRun> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return autoScaleRunDeserializer(result.body);
@@ -4974,8 +5551,19 @@ export function _enablePoolAutoScaleSend(
   body: BatchPoolEnableAutoScaleOptions,
   options: EnablePoolAutoScaleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/enableautoscale{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/enableautoscale", poolId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; odata=minimalmetadata",
@@ -5016,10 +5604,6 @@ export function _enablePoolAutoScaleSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchPoolEnableAutoScaleOptionsSerializer(body),
     });
 }
@@ -5029,7 +5613,9 @@ export async function _enablePoolAutoScaleDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -5058,8 +5644,19 @@ export function _disablePoolAutoScaleSend(
   poolId: string,
   options: DisablePoolAutoScaleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}/disableautoscale{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}/disableautoscale", poolId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -5079,10 +5676,6 @@ export function _disablePoolAutoScaleSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
     });
 }
 
@@ -5091,7 +5684,9 @@ export async function _disablePoolAutoScaleDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -5113,8 +5708,19 @@ export function _updatePoolSend(
   body: BatchPoolUpdateOptions,
   options: UpdatePoolOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}", poolId)
+    .path(path)
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; odata=minimalmetadata",
@@ -5155,10 +5761,6 @@ export function _updatePoolSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchPoolUpdateOptionsSerializer(body),
     });
 }
@@ -5168,7 +5770,9 @@ export async function _updatePoolDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -5194,60 +5798,69 @@ export function _getPoolSend(
   poolId: string,
   options: GetPoolOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/pools/{poolId}", poolId).get({
-    ...operationOptionsToRequestParameters(options),
-    headers: {
-      ...(options?.clientRequestId !== undefined
-        ? { "client-request-id": options?.clientRequestId }
-        : {}),
-      ...(options?.returnClientRequestId !== undefined
-        ? { "return-client-request-id": options?.returnClientRequestId }
-        : {}),
-      ...(options?.ocpDate !== undefined
-        ? {
-            "ocp-date": !options?.ocpDate
-              ? options?.ocpDate
-              : options?.ocpDate.toUTCString(),
-          }
-        : {}),
-      ...(options?.ifMatch !== undefined
-        ? { "if-match": options?.ifMatch }
-        : {}),
-      ...(options?.ifNoneMatch !== undefined
-        ? { "if-none-match": options?.ifNoneMatch }
-        : {}),
-      ...(options?.ifModifiedSince !== undefined
-        ? {
-            "if-modified-since": !options?.ifModifiedSince
-              ? options?.ifModifiedSince
-              : options?.ifModifiedSince.toUTCString(),
-          }
-        : {}),
-      ...(options?.ifUnmodifiedSince !== undefined
-        ? {
-            "if-unmodified-since": !options?.ifUnmodifiedSince
-              ? options?.ifUnmodifiedSince
-              : options?.ifUnmodifiedSince.toUTCString(),
-          }
-        : {}),
-      accept: "application/json",
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}{?api-version,timeOut,$select,$expand}",
+    {
+      poolId: poolId,
       "api-version": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.$expand
-        ? options?.$expand
-        : options?.$expand.map((p: any) => {
+      $expand: !options?.expand
+        ? options?.expand
+        : options?.expand.map((p: any) => {
             return p;
           }),
     },
-  });
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        ...(options?.clientRequestId !== undefined
+          ? { "client-request-id": options?.clientRequestId }
+          : {}),
+        ...(options?.returnClientRequestId !== undefined
+          ? { "return-client-request-id": options?.returnClientRequestId }
+          : {}),
+        ...(options?.ocpDate !== undefined
+          ? {
+              "ocp-date": !options?.ocpDate
+                ? options?.ocpDate
+                : options?.ocpDate.toUTCString(),
+            }
+          : {}),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? {
+              "if-modified-since": !options?.ifModifiedSince
+                ? options?.ifModifiedSince
+                : options?.ifModifiedSince.toUTCString(),
+            }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? {
+              "if-unmodified-since": !options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince
+                : options?.ifUnmodifiedSince.toUTCString(),
+            }
+          : {}),
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _getPoolDeserialize(
@@ -5255,7 +5868,9 @@ export async function _getPoolDeserialize(
 ): Promise<BatchPool> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return batchPoolDeserializer(result.body);
@@ -5276,8 +5891,19 @@ export function _poolExistsSend(
   poolId: string,
   options: PoolExistsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}", poolId)
+    .path(path)
     .head({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -5317,10 +5943,6 @@ export function _poolExistsSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
     });
 }
 
@@ -5329,7 +5951,9 @@ export async function _poolExistsDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["404", "200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -5350,8 +5974,19 @@ export function _deletePoolSend(
   poolId: string,
   options: DeletePoolOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools/{poolId}{?api-version,timeOut}",
+    {
+      poolId: poolId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools/{poolId}", poolId)
+    .path(path)
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -5391,10 +6026,6 @@ export function _deletePoolSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
     });
 }
 
@@ -5403,7 +6034,9 @@ export async function _deletePoolDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -5436,42 +6069,50 @@ export function _listPoolsSend(
   context: Client,
   options: ListPoolsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/pools").get({
-    ...operationOptionsToRequestParameters(options),
-    headers: {
-      ...(options?.ocpDate !== undefined
-        ? {
-            "ocp-date": !options?.ocpDate
-              ? options?.ocpDate
-              : options?.ocpDate.toUTCString(),
-          }
-        : {}),
-      ...(options?.clientRequestId !== undefined
-        ? { "client-request-id": options?.clientRequestId }
-        : {}),
-      ...(options?.returnClientRequestId !== undefined
-        ? { "return-client-request-id": options?.returnClientRequestId }
-        : {}),
-      accept: "application/json",
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: {
+  const path = expandUrlTemplate(
+    "/pools{?api-version,maxresults,timeOut,$filter,$select,$expand}",
+    {
       "api-version": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.$filter,
-      $select: !options?.$select
-        ? options?.$select
-        : options?.$select.map((p: any) => {
+      $filter: options?.filter,
+      $select: !options?.select
+        ? options?.select
+        : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.$expand
-        ? options?.$expand
-        : options?.$expand.map((p: any) => {
+      $expand: !options?.expand
+        ? options?.expand
+        : options?.expand.map((p: any) => {
             return p;
           }),
     },
-  });
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        ...(options?.ocpDate !== undefined
+          ? {
+              "ocp-date": !options?.ocpDate
+                ? options?.ocpDate
+                : options?.ocpDate.toUTCString(),
+            }
+          : {}),
+        ...(options?.clientRequestId !== undefined
+          ? { "client-request-id": options?.clientRequestId }
+          : {}),
+        ...(options?.returnClientRequestId !== undefined
+          ? { "return-client-request-id": options?.returnClientRequestId }
+          : {}),
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _listPoolsDeserialize(
@@ -5479,7 +6120,9 @@ export async function _listPoolsDeserialize(
 ): Promise<_BatchPoolListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _batchPoolListResultDeserializer(result.body);
@@ -5504,8 +6147,18 @@ export function _createPoolSend(
   body: BatchPoolCreateOptions,
   options: CreatePoolOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/pools{?api-version,timeOut}",
+    {
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/pools")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json; odata=minimalmetadata",
@@ -5526,10 +6179,6 @@ export function _createPoolSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
       body: batchPoolCreateOptionsSerializer(body),
     });
 }
@@ -5539,7 +6188,9 @@ export async function _createPoolDeserialize(
 ): Promise<void> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return;
@@ -5563,8 +6214,26 @@ export function _listPoolUsageMetricsSend(
   context: Client,
   options: ListPoolUsageMetricsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/poolusagemetrics{?api-version,maxresults,timeOut,starttime,endtime,$filter}",
+    {
+      "api-version": context.apiVersion,
+      maxresults: options?.maxresults,
+      timeOut: options?.timeOutInSeconds,
+      starttime: !options?.starttime
+        ? options?.starttime
+        : options?.starttime.toISOString(),
+      endtime: !options?.endtime
+        ? options?.endtime
+        : options?.endtime.toISOString(),
+      $filter: options?.filter,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/poolusagemetrics")
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -5584,18 +6253,6 @@ export function _listPoolUsageMetricsSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        maxresults: options?.maxresults,
-        timeOut: options?.timeOutInSeconds,
-        starttime: !options?.starttime
-          ? options?.starttime
-          : options?.starttime.toISOString(),
-        endtime: !options?.endtime
-          ? options?.endtime
-          : options?.endtime.toISOString(),
-        $filter: options?.$filter,
-      },
     });
 }
 
@@ -5604,7 +6261,9 @@ export async function _listPoolUsageMetricsDeserialize(
 ): Promise<_PoolListUsageMetricsResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _poolListUsageMetricsResultDeserializer(result.body);
@@ -5636,8 +6295,19 @@ export function _getApplicationSend(
   applicationId: string,
   options: GetApplicationOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/applications/{applicationId}{?api-version,timeOut}",
+    {
+      applicationId: applicationId,
+      "api-version": context.apiVersion,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/applications/{applicationId}", applicationId)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -5657,10 +6327,6 @@ export function _getApplicationSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        timeOut: options?.timeOutInSeconds,
-      },
     });
 }
 
@@ -5669,7 +6335,9 @@ export async function _getApplicationDeserialize(
 ): Promise<BatchApplication> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return batchApplicationDeserializer(result.body);
@@ -5695,8 +6363,19 @@ export function _listApplicationsSend(
   context: Client,
   options: ListApplicationsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/applications{?api-version,maxresults,timeOut}",
+    {
+      "api-version": context.apiVersion,
+      maxresults: options?.maxresults,
+      timeOut: options?.timeOutInSeconds,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/applications")
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
@@ -5716,11 +6395,6 @@ export function _listApplicationsSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        maxresults: options?.maxresults,
-        timeOut: options?.timeOutInSeconds,
-      },
     });
 }
 
@@ -5729,7 +6403,9 @@ export async function _listApplicationsDeserialize(
 ): Promise<_ApplicationListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
-    throw createRestError(result);
+    const error = createRestError(result);
+    error.details = batchErrorDeserializer(result.body);
+    throw error;
   }
 
   return _applicationListResultDeserializer(result.body);

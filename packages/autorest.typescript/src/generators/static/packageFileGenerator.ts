@@ -107,7 +107,7 @@ function regularAutorestPackage(
     devDependencies: {
       "@microsoft/api-extractor": "^7.40.3",
       mkdirp: "^3.0.1",
-      typescript: "~5.6.2",
+      typescript: "~5.7.2",
       rimraf: "^5.0.0",
       dotenv: "^16.0.0"
     },
@@ -186,7 +186,7 @@ function regularAutorestPackage(
       "npm run clean && tsc && dev-tool run bundle && npm run minify && dev-tool run vendored mkdirp ./review && npm run extract-api";
     packageInfo.scripts["clean"] = "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log";
     packageInfo.scripts["extract-api"] = "dev-tool run extract-api";
-    packageInfo.scripts["update-snippets"] = "echo skipped";
+    packageInfo.scripts["update-snippets"] = "dev-tool run update-snippets";
     packageInfo.scripts["minify"] = `dev-tool run vendored uglifyjs -c -m --comments --source-map "content='./dist/index.js.map'" -o ./dist/index.min.js ./dist/index.js`;
   } else {
     packageInfo.devDependencies["@rollup/plugin-commonjs"] = "^24.0.0";
@@ -201,6 +201,7 @@ function regularAutorestPackage(
   if (generateTest) {
     packageInfo.module = `./dist-esm/src/index.js`;
     packageInfo.devDependencies["@azure/identity"] = "^4.2.1";
+    packageInfo.devDependencies["@azure/logger"] = "^1.1.4";
     packageInfo.devDependencies["@azure-tools/test-recorder"] = "^3.0.0";
     packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.1.0";
     packageInfo.devDependencies["mocha"] = "^11.0.2";

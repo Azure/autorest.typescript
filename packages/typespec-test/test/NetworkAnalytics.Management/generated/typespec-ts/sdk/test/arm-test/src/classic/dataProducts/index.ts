@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { NetworkAnalyticsContext } from "../../api/networkAnalyticsContext.js";
+import { NetworkAnalyticsApiContext } from "../../api/networkAnalyticsApiContext.js";
 import {
   listBySubscription,
   listByResourceGroup,
@@ -14,6 +14,17 @@ import {
   update,
   get,
   create,
+  DataProductsListBySubscriptionOptionalParams,
+  DataProductsListByResourceGroupOptionalParams,
+  DataProductsListRolesAssignmentsOptionalParams,
+  DataProductsRemoveUserRoleOptionalParams,
+  DataProductsAddUserRoleOptionalParams,
+  DataProductsRotateKeyOptionalParams,
+  DataProductsGenerateStorageAccountSasTokenOptionalParams,
+  DataProductsDeleteOptionalParams,
+  DataProductsUpdateOptionalParams,
+  DataProductsGetOptionalParams,
+  DataProductsCreateOptionalParams,
 } from "../../api/dataProducts/index.js";
 import {
   DataProduct,
@@ -27,19 +38,6 @@ import {
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
-import {
-  DataProductsListBySubscriptionOptionalParams,
-  DataProductsListByResourceGroupOptionalParams,
-  DataProductsListRolesAssignmentsOptionalParams,
-  DataProductsRemoveUserRoleOptionalParams,
-  DataProductsAddUserRoleOptionalParams,
-  DataProductsRotateKeyOptionalParams,
-  DataProductsGenerateStorageAccountSasTokenOptionalParams,
-  DataProductsDeleteOptionalParams,
-  DataProductsUpdateOptionalParams,
-  DataProductsGetOptionalParams,
-  DataProductsCreateOptionalParams,
-} from "../../api/options.js";
 
 /** Interface representing a DataProducts operations. */
 export interface DataProductsOperations {
@@ -120,7 +118,7 @@ export interface DataProductsOperations {
   ) => PollerLike<OperationState<DataProduct>, DataProduct>;
 }
 
-export function getDataProducts(context: NetworkAnalyticsContext) {
+function _getDataProducts(context: NetworkAnalyticsApiContext) {
   return {
     listBySubscription: (
       options?: DataProductsListBySubscriptionOptionalParams,
@@ -207,10 +205,10 @@ export function getDataProducts(context: NetworkAnalyticsContext) {
   };
 }
 
-export function getDataProductsOperations(
-  context: NetworkAnalyticsContext,
+export function _getDataProductsOperations(
+  context: NetworkAnalyticsApiContext,
 ): DataProductsOperations {
   return {
-    ...getDataProducts(context),
+    ..._getDataProducts(context),
   };
 }

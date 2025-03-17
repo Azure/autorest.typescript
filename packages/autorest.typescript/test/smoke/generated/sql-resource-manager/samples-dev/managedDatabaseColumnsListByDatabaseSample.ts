@@ -13,9 +13,7 @@ import {
   SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to List managed database columns
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary List managed database columns
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedColumnsListByDatabaseMax.json
  */
-async function filterManagedDatabaseColumns() {
+async function filterManagedDatabaseColumns(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myRG";
@@ -42,7 +40,7 @@ async function filterManagedDatabaseColumns() {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.managedDatabaseColumns.listByDatabase(
+  for await (const item of client.managedDatabaseColumns.listByDatabase(
     resourceGroupName,
     managedInstanceName,
     databaseName,
@@ -59,7 +57,7 @@ async function filterManagedDatabaseColumns() {
  * @summary List managed database columns
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ManagedColumnsListByDatabaseMin.json
  */
-async function listManagedDatabaseColumns() {
+async function listManagedDatabaseColumns(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myRG";
@@ -68,7 +66,7 @@ async function listManagedDatabaseColumns() {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.managedDatabaseColumns.listByDatabase(
+  for await (const item of client.managedDatabaseColumns.listByDatabase(
     resourceGroupName,
     managedInstanceName,
     databaseName,
@@ -78,9 +76,9 @@ async function listManagedDatabaseColumns() {
   console.log(resArray);
 }
 
-async function main() {
-  filterManagedDatabaseColumns();
-  listManagedDatabaseColumns();
+async function main(): Promise<void> {
+  await filterManagedDatabaseColumns();
+  await listManagedDatabaseColumns();
 }
 
 main().catch(console.error);

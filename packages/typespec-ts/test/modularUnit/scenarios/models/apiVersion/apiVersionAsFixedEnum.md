@@ -13,7 +13,7 @@ import "@typespec/http";
 using TypeSpec.Versioning;
 using TypeSpec.Http;
 
-@service({
+@service(#{
   title: "Microsoft.Contoso management service",
 })
 @versioned(Microsoft.Contoso.Versions)

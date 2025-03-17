@@ -5,8 +5,8 @@ import type { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import type { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 import type {
   WidgetOutput,
-  ResourceOperationStatusOutput,
-  OperationStatusOutput,
+  ResourceOperationStatusWidgetWidgetErrorOutput,
+  OperationStatusErrorOutput,
   PagedWidgetOutput,
 } from "./outputModels.js";
 
@@ -30,7 +30,7 @@ export interface GetWidgetDefaultResponse extends HttpResponse {
 /** The request has succeeded. */
 export interface GetWidgetOperationStatus200Response extends HttpResponse {
   status: "200";
-  body: ResourceOperationStatusOutput;
+  body: ResourceOperationStatusWidgetWidgetErrorOutput;
 }
 
 export interface GetWidgetOperationStatusDefaultHeaders {
@@ -93,7 +93,7 @@ export interface DeleteWidget202Headers {
 /** The request has been accepted for processing, but processing has not yet completed. */
 export interface DeleteWidget202Response extends HttpResponse {
   status: "202";
-  body: OperationStatusOutput;
+  body: OperationStatusErrorOutput;
   headers: RawHttpHeaders & DeleteWidget202Headers;
 }
 
@@ -111,7 +111,7 @@ export interface DeleteWidgetDefaultResponse extends HttpResponse {
 /** The final response for long-running deleteWidget operation */
 export interface DeleteWidgetLogicalResponse extends HttpResponse {
   status: "200";
-  body: OperationStatusOutput;
+  body: OperationStatusErrorOutput;
 }
 
 /** The request has succeeded. */

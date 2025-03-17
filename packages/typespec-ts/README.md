@@ -55,7 +55,7 @@ One can further configure the SDK generated, using the emitter options on `@azur
 ```yaml
 options:
   "@azure-tools/typespec-ts":
-    packageDetails:
+    package-details:
       name: "@azure-rest/confidential-ledger"
       description: "Confidential Ledger Service"
 ```
@@ -78,12 +78,22 @@ Provide the metadata for `package.json`, `README.md` and user-agent information.
 | description | description used in package.json file                                                            |
 | version     | detailed version for your released package, the default vaule is `1.0.0-beta.1`                  |
 
-### title
+### title (only for RLC generation)
 
-Generally the codegen will leverage the title defined in `@client` and `@service` decorator in TypeSpec to name our client. But if you'd like to override it you could config the `title` info.
+Generally the codegen will leverage the title defined in `@client` and `@service` decorator in TypeSpec to name our RLC client. But if you'd like to override it you could config the `title` info.
 
 ```yaml
 title: AnomalyDetectorRest
+```
+
+### typespecTitleMap (only for Modular generation)
+
+Generally the codegen will leverage the title defined in `@client` and `@service` decorator in TypeSpec to name our modular client. But if you'd like to override it you could config the `typespec-title-map` info. The key is the client name from typespec, and the value is the client name we'd like to rename. This also support config multiple clients
+
+```yaml
+typespec-title-map: 
+  AnomalyDetectorClient: AnomalyDetectorRest
+  AnomalyDetectorClient2: AnomalyDetectorRest2
 ```
 
 ### generateMetadata
@@ -93,19 +103,19 @@ To indicate if the codegen needs to generate metadata files which includes `pack
 By default we'll enable the option but if you'd like to disable this feature you could set it as `false`.
 
 ```yaml
-generateMetadata: false
+generate-metadata: false
 ```
 
 ### generateTest
 
 To allow the codegen generating test sample files and updating testing configuration. And the default value is `true` and you could also turn it off as `false`.
 
-### includeShortcuts
+### "includeShortcuts"
 
 To allow the codegen generating shortcut methods in client definition. This is an experimental feature so we disable it by default. If you want to try it just turn it on.
 
 ```yaml
-includeShortcuts: true
+"include-shortcuts": true
 ```
 
 ### azureSdkForJs
@@ -129,28 +139,28 @@ To enable credential in `tspconfig.yaml` and we need to provide more details to 
 
 ### credentialScopes
 
-If we enable the option `addCredentials` and specify `credentialScopes` the details we would enable the AADToken authentication.
+If we enable the option `add-credentials` and specify `credential-scopes` the details we would enable the AADToken authentication.
 
 ```yaml
-addCredentials: true
-credentialScopes: https://yourendpoint.azure.com/.default
+add-credentials: true
+credential-scopes: https://yourendpoint.azure.com/.default
 ```
 
 ### credentialKeyHeaderName
 
-If we enable the option `addCredentials` and specify `credentialKeyHeaderName` the details we would enable the AzureKey authentication.
+If we enable the option `add-credentials` and specify `credential-key-header-name` the details we would enable the AzureKey authentication.
 
 ```yaml
-addCredentials: true
-credentialKeyHeaderName: Your-Subscription-Key
+add-credentials: true
+credential-key-header-name: Your-Subscription-Key
 ```
 
 ### clearOutputFolder
 
-If we enable this option `clearOutputFolder` we would empty the whole output folder. By default we only empty the sources folder which means any metadata files will not be removed if it is at project root. This would be useful in pipeline.
+If we enable this option `clear-output-folder` we would empty the whole output folder. By default we only empty the sources folder which means any metadata files will not be removed if it is at project root. This would be useful in pipeline.
 
 ```yaml
-clearOutputFolder: true
+clear-output-folder: true
 ```
 
 ### compatibilityMode
@@ -158,7 +168,7 @@ clearOutputFolder: true
 By default, this option will be disabled. If this option is enabled, it will affect the generation of the additional property feature for the Modular client.
 
 ```yaml
-compatibilityMode: true
+compatibility-mode: true
 ```
 
 ### compatibilityQueryMultiFormat
@@ -166,7 +176,7 @@ compatibilityMode: true
 By default, this option will be disabled. If this option is enabled, we should generate the backward-compatible code for query parameter serialization for array types in RLC.
 
 ```yaml
-compatibilityQueryMultiFormat: true
+compatibility-query-multi-format: true
 ```
 
 # Contributing

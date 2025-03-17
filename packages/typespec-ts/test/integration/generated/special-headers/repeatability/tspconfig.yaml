@@ -2,11 +2,11 @@ emit:
   - "@azure-tools/typespec-ts"
 options:
   "@azure-tools/typespec-ts":
-    "emitter-output-dir": "{project-root}"
-    generateMetadata: true
-    generateTest: false
-    addCredentials: false
-    azureSdkForJs: false
-    isTypeSpecTest: true
-    packageDetails:
-      name: "@msinternal/repeatable-header"
+    emitter-output-dir: "{project-root}"
+    generate-metadata: true
+    generate-test: false
+    add-credentials: false
+    is-modular-library: false
+    is-typespec-test: true
+    package-details:
+      name: "@unbranded/repeatable-header"

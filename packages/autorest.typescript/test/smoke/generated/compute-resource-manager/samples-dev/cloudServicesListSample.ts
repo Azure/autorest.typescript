@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets a list of all cloud services under a resource group. Use nextLink property in the response to get the next page of Cloud Services. Do this till nextLink is null to fetch all the Cloud Services.
@@ -20,20 +18,20 @@ dotenv.config();
  * @summary Gets a list of all cloud services under a resource group. Use nextLink property in the response to get the next page of Cloud Services. Do this till nextLink is null to fetch all the Cloud Services.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/ListCloudServicesInResourceGroup.json
  */
-async function listCloudServicesInAResourceGroup() {
+async function listCloudServicesInAResourceGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "ConstosoRG";
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.cloudServices.list(resourceGroupName)) {
+  for await (const item of client.cloudServices.list(resourceGroupName)) {
     resArray.push(item);
   }
   console.log(resArray);
 }
 
-async function main() {
-  listCloudServicesInAResourceGroup();
+async function main(): Promise<void> {
+  await listCloudServicesInAResourceGroup();
 }
 
 main().catch(console.error);

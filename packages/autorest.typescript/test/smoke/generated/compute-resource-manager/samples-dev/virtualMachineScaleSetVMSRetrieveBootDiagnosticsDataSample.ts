@@ -13,9 +13,7 @@ import {
   ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to The operation to retrieve SAS URIs of boot diagnostic logs for a virtual machine in a VM scale set.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary The operation to retrieve SAS URIs of boot diagnostic logs for a virtual machine in a VM scale set.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/RetrieveBootDiagnosticsDataVMScaleSetVM.json
  */
-async function retrieveBootDiagnosticsDataOfAVirtualMachine() {
+async function retrieveBootDiagnosticsDataOfAVirtualMachine(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "ResourceGroup";
   const vmScaleSetName = "myvmScaleSet";
@@ -43,8 +41,8 @@ async function retrieveBootDiagnosticsDataOfAVirtualMachine() {
   console.log(result);
 }
 
-async function main() {
-  retrieveBootDiagnosticsDataOfAVirtualMachine();
+async function main(): Promise<void> {
+  await retrieveBootDiagnosticsDataOfAVirtualMachine();
 }
 
 main().catch(console.error);

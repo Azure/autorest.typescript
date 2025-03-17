@@ -1,7 +1,7 @@
-import { ClientOptions } from '@azure-rest/core-client';
-import { KeyCredential } from '@azure/core-auth';
-import { OperationOptions } from '@azure-rest/core-client';
-import { Pipeline } from '@azure/core-rest-pipeline';
+import { ClientOptions } from '@typespec/ts-http-runtime';
+import { KeyCredential } from '@typespec/ts-http-runtime';
+import { OperationOptions } from '@typespec/ts-http-runtime';
+import { Pipeline } from '@typespec/ts-http-runtime';
 
 export declare class CustomClient {
     private _client;
@@ -12,6 +12,10 @@ export declare class CustomClient {
 }
 
 export declare interface CustomClientOptionalParams extends ClientOptions {
+}
+
+export declare interface InvalidAuth {
+    error: string;
 }
 
 export declare interface InvalidOptionalParams extends OperationOptions {

@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Description for Gets the category of ResourceHealthMetadata to use for the given site as a collection
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Description for Gets the category of ResourceHealthMetadata to use for the given site as a collection
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/ListResourceHealthMetadataBySite.json
  */
-async function listResourceHealthMetadataForASite() {
+async function listResourceHealthMetadataForASite(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "4adb32ad-8327-4cbb-b775-b84b4465bb38";
   const resourceGroupName =
@@ -29,7 +27,7 @@ async function listResourceHealthMetadataForASite() {
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.resourceHealthMetadataOperations.listBySite(
+  for await (const item of client.resourceHealthMetadataOperations.listBySite(
     resourceGroupName,
     name,
   )) {
@@ -38,8 +36,8 @@ async function listResourceHealthMetadataForASite() {
   console.log(resArray);
 }
 
-async function main() {
-  listResourceHealthMetadataForASite();
+async function main(): Promise<void> {
+  await listResourceHealthMetadataForASite();
 }
 
 main().catch(console.error);

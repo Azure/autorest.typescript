@@ -3,9 +3,7 @@
 
 import createAnomalyDetectorRestClient from "@msinternal/anomaly-detector-rest";
 import { AzureKeyCredential } from "@azure/core-auth";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Get detailed information of multivariate model, including the training status and variables used in the model.
@@ -13,7 +11,7 @@ dotenv.config();
  * @summary Get detailed information of multivariate model, including the training status and variables used in the model.
  * x-ms-original-file: specification/cognitiveservices/data-plane/AnomalyDetector/stable/v1.1/examples/GetModel.json
  */
-async function getMultivariateModel() {
+async function getMultivariateModel(): Promise<void> {
   const endpoint = "{Endpoint}";
   const apiVersion = "v1.1";
   const credential = new AzureKeyCredential("{Your API key}");
@@ -29,8 +27,8 @@ async function getMultivariateModel() {
   console.log(result);
 }
 
-async function main() {
-  getMultivariateModel();
+async function main(): Promise<void> {
+  await getMultivariateModel();
 }
 
 main().catch(console.error);

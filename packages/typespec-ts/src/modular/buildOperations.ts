@@ -12,7 +12,6 @@ import {
 
 import { OperationPathAndDeserDetails } from "./interfaces.js";
 import { SdkContext } from "../utils/interfaces.js";
-import { addImportBySymbol } from "../utils/importHelper.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getOperationName } from "./helpers/namingHelpers.js";
 import {
@@ -58,7 +57,7 @@ export function buildOperationFiles(
             .map((hierarchy) => {
               return normalizeName(hierarchy, NameType.File);
             })
-            .join("/")}/index`
+            .join("/")}/operations`
         : // When the program has no operation groups defined all operations are put
           // into a nameless operation group. We'll call this operations.
           "operations";
@@ -119,7 +118,6 @@ export function buildOperationFiles(
       namedImports: [`${rlcClientName} as Client`],
       moduleSpecifier: `${indexPathPrefix}index.js`
     });
-    addImportBySymbol("serializeRecord", operationGroupFile);
     operationGroupFile.fixUnusedIdentifiers();
 
     operationFiles.add(operationGroupFile);
@@ -239,7 +237,7 @@ export function buildLroDeserDetailMap(
             .map((hierarchy) => {
               return normalizeName(hierarchy, NameType.File);
             })
-            .join("/")}/index`
+            .join("/")}/operations`
         : // When the program has no operation groups defined all operations are put
           // into a nameless operation group. We'll call this operations.
           "operations";

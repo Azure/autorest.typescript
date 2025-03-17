@@ -8,18 +8,25 @@ import {
   SdkUnionType,
   UsageFlags
 } from "@azure-tools/typespec-client-generator-core";
-import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
-
 import { SdkContext } from "../../utils/interfaces.js";
-import { getAllAncestors, getAllProperties, getRequestModelMapping } from "../helpers/operationHelpers.js";
+import {
+  getAllAncestors,
+  getAllProperties,
+  getPropertyFullName,
+  getRequestModelMapping,
+  getSerializationExpression
+} from "../helpers/operationHelpers.js";
 import { normalizeModelName } from "../emitModels.js";
-import { NameType } from "@azure-tools/rlc-common";
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
 import {
   isDiscriminatedUnion,
   isSupportedSerializeType,
   ModelSerializeOptions
 } from "./serializeUtils.js";
+import { MultipartHelpers } from "../static-helpers-metadata.js";
+import { resolveReference } from "../../framework/reference.js";
+import { isOrExtendsHttpFile } from "@typespec/http";
 
 export function buildModelSerializer(
   context: SdkContext,
@@ -44,7 +51,10 @@ export function buildModelSerializer(
       // throw new Error(`NYI Serialization of anonymous types`);
       return undefined;
     }
-    if (isAzureCoreErrorType(context.program, type.__raw!)) {
+    if (
+      isAzureCoreErrorType(context.program, type.__raw!) ||
+      isOrExtendsHttpFile(context.program, type.__raw!)
+    ) {
       return undefined;
     }
   }
@@ -152,12 +162,17 @@ function buildPolymorphicSerializer(
     ) {
       return;
     }
-    const union = subType?.discriminatedSubtypes ? "Union" : "";
+    const union = subType?.discriminatedSubtypes ? "_Union" : "";
     if (!subType || subType?.name) {
       throw new Error(`NYI Serialization of anonymous types`);
     }
-    const subTypeName = `${toPascalCase(subType.name)}${union}`;
-    const subtypeSerializerName = toCamelCase(`${subTypeName}Serializer`);
+    const rawSubTypeName = `${subType.name}${union}`;
+    const subTypeName = `${normalizeName(rawSubTypeName, NameType.Interface, true)}`;
+    const subtypeSerializerName = normalizeName(
+      `${rawSubTypeName}_Serializer`,
+      NameType.Method,
+      true
+    );
 
     cases.push(`
         case "${discriminatedValue}":
@@ -220,8 +235,12 @@ function buildDiscriminatedUnionSerializer(
     }
     const discriminatedValue = subType.discriminatorValue!;
     const union = subType.discriminatedSubtypes ? "Union" : "";
-    const subTypeName = `${toPascalCase(subType.name)}${union}`;
-    const subtypeSerializerName = toCamelCase(`${subTypeName}Serializer`);
+    const subTypeName = `${normalizeName(subType.name, NameType.Interface, true)}${union}`;
+    const subtypeSerializerName = normalizeName(
+      `${subTypeName}Serializer`,
+      NameType.Method,
+      true
+    );
 
     cases.push(`
       case "${discriminatedValue}":
@@ -332,33 +351,90 @@ function buildModelTypeSerializer(
     statements: ["return item;"]
   };
 
-  const additionalPropertiesSpread = getAdditionalPropertiesStatement(context, type);
-  const { directAssignment, propertiesStr } = getRequestModelMapping(
-    context,
-    type,
-    "item"
-  );
-  if (additionalPropertiesSpread) {
-    propertiesStr.unshift(additionalPropertiesSpread);
-  }
-  const serializeContent =
-    directAssignment === true
-      ? propertiesStr.join(",")
-      : `{${propertiesStr.join(",")}}`;
+  if (
+    (type.usage & UsageFlags.Input) === UsageFlags.Input &&
+    (type.usage & UsageFlags.MultipartFormData) === UsageFlags.MultipartFormData
+  ) {
+    // For MFD models, serialize into an array of parts
+    // TODO: cleaner abstraction, quite a bit of duplication with the non-MFD stuff here
+    const parts: string[] = [];
 
-  const output = [];
+    const properties = getAllProperties(type, getAllAncestors(type));
+    for (const property of properties) {
+      if (property.kind !== "property") {
+        continue;
+      }
+      const expr = getSerializationExpression(context, property, "item");
 
-  // don't emit a serializer if there is nothing to serialize
-  if (propertiesStr.length) {
-    output.push(`
+      let partDefinition: string;
+      if (property.isMultipartFileInput) {
+        const createFilePartDescriptorDefinition = resolveReference(
+          MultipartHelpers.createFilePartDescriptor
+        );
+
+        const itemPath = property.multipartOptions?.isMulti
+          ? "x"
+          : getPropertyFullName(context, property, "item");
+        partDefinition = `${createFilePartDescriptorDefinition}("${property.serializedName}", ${itemPath}, )`;
+
+        // If the TypeSpec doesn't specify a default content type, TCGC will infer a default of "*/*".
+        // In this case, we actually want the content type to be left unset so that Core will take care of
+        // setting the content type correctly.
+        const contentType =
+          property.multipartOptions?.defaultContentTypes?.[0] === "*/*"
+            ? undefined
+            : property.multipartOptions?.defaultContentTypes?.[0];
+
+        if (property.multipartOptions?.isMulti) {
+          partDefinition = `...(item["${property.serializedName}"].map((x: unknown) => ${createFilePartDescriptorDefinition}("${property.serializedName}", x${contentType ? `", ${contentType}"` : ""})))`;
+        } else {
+          partDefinition = `${createFilePartDescriptorDefinition}("${property.serializedName}", item["${property.serializedName}"]${contentType ? `, "${contentType}"` : ""})`;
+        }
+      } else if (property.multipartOptions?.isMulti) {
+        partDefinition = `...((${expr}).map((x: unknown) => ({ name: "${property.serializedName}", body: x })))`;
+      } else {
+        partDefinition = `{ name: "${property.serializedName}", body: (${expr}) }`;
+      }
+
+      if (property.optional) {
+        parts.push(
+          `...(${getPropertyFullName(context, property, "item")} === undefined ? [] : [${partDefinition}])`
+        );
+      } else {
+        parts.push(partDefinition);
+      }
+
+      // TODO: How to handle additionalProperties for MFD?
+    }
+
+    serializerFunction.statements = [`return [${parts.join(",")}]`];
+  } else {
+    // This is only handling the compatibility mode, will need to update when we handle additionalProperties property.
+    const additionalPropertiesSpread = hasAdditionalProperties(type)
+      ? "...item"
+      : "";
+
+    const propertiesStr = getRequestModelMapping(context, type, "item");
+
+    if (additionalPropertiesSpread) {
+      propertiesStr.unshift(additionalPropertiesSpread);
+    }
+    const serializeContent = `{${propertiesStr.join(",")}}`;
+
+    const output = [];
+
+    // don't emit a serializer if there is nothing to serialize
+    if (propertiesStr.length) {
+      output.push(`
         return ${serializeContent}
       `);
-  } else {
-    output.push(`
+    } else {
+      output.push(`
         return item;
       `);
+    }
+    serializerFunction.statements = output;
   }
-  serializerFunction.statements = output;
   return serializerFunction;
 }
 
@@ -405,8 +481,10 @@ function buildDictTypeSerializer(
   if (typeof valueSerializer !== "string") {
     return undefined;
   }
-  const valueTypeName = toCamelCase(
-    valueSerializer ? valueSerializer.replace("Serializer", "") : ""
+  const valueTypeName = normalizeName(
+    valueSerializer ? valueSerializer.replace("Serializer", "") : "",
+    NameType.Property,
+    true
   );
   const serializerFunctionName = `${valueTypeName}RecordSerializer`;
   if (nameOnly) {
@@ -466,8 +544,10 @@ function buildArrayTypeSerializer(
   if (typeof valueSerializer !== "string") {
     return undefined;
   }
-  const valueTypeName = toCamelCase(
-    valueSerializer ? valueSerializer.replace("Serializer", "") : ""
+  const valueTypeName = normalizeName(
+    valueSerializer ? valueSerializer.replace("Serializer", "") : "",
+    NameType.Property,
+    true
   );
   const serializerFunctionName = `${valueTypeName}ArraySerializer`;
   if (nameOnly) {

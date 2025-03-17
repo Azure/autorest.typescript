@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets a list of recoverable databases
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets a list of recoverable databases
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/stable/2014-04-01-legacy/examples/RecoverableDatabaseList.json
  */
-async function getListOfRestorableDroppedDatabases() {
+async function getListOfRestorableDroppedDatabases(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -29,7 +27,7 @@ async function getListOfRestorableDroppedDatabases() {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.recoverableDatabases.listByServer(
+  for await (const item of client.recoverableDatabases.listByServer(
     resourceGroupName,
     serverName,
   )) {
@@ -38,8 +36,8 @@ async function getListOfRestorableDroppedDatabases() {
   console.log(resArray);
 }
 
-async function main() {
-  getListOfRestorableDroppedDatabases();
+async function main(): Promise<void> {
+  await getListOfRestorableDroppedDatabases();
 }
 
 main().catch(console.error);

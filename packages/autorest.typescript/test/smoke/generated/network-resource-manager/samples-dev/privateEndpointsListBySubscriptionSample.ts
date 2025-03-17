@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets all private endpoints in a subscription.
@@ -20,19 +18,19 @@ dotenv.config();
  * @summary Gets all private endpoints in a subscription.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/PrivateEndpointListAll.json
  */
-async function listAllPrivateEndpoints() {
+async function listAllPrivateEndpoints(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.privateEndpoints.listBySubscription()) {
+  for await (const item of client.privateEndpoints.listBySubscription()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
 
-async function main() {
-  listAllPrivateEndpoints();
+async function main(): Promise<void> {
+  await listAllPrivateEndpoints();
 }
 
 main().catch(console.error);

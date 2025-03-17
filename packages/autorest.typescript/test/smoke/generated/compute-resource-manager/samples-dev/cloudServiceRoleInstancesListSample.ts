@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets the list of all role instances in a cloud service. Use nextLink property in the response to get the next page of role instances. Do this till nextLink is null to fetch all the role instances.
@@ -20,14 +18,14 @@ dotenv.config();
  * @summary Gets the list of all role instances in a cloud service. Use nextLink property in the response to get the next page of role instances. Do this till nextLink is null to fetch all the role instances.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-03-01/examples/ListCloudServiceRolesInstances.json
  */
-async function listRoleInstancesInACloudService() {
+async function listRoleInstancesInACloudService(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "ConstosoRG";
   const cloudServiceName = "{cs-name}";
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.cloudServiceRoleInstances.list(
+  for await (const item of client.cloudServiceRoleInstances.list(
     resourceGroupName,
     cloudServiceName,
   )) {
@@ -36,8 +34,8 @@ async function listRoleInstancesInACloudService() {
   console.log(resArray);
 }
 
-async function main() {
-  listRoleInstancesInACloudService();
+async function main(): Promise<void> {
+  await listRoleInstancesInACloudService();
 }
 
 main().catch(console.error);

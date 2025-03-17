@@ -15,6 +15,7 @@
   "license": "MIT",
   "files": [
     "dist/",
+    "!dist/**/*.d.*ts.map",
     "dist-esm/",
     "types/lro-rest.d.ts",
     "README.md",
@@ -33,12 +34,12 @@
   },
   "devDependencies": {
     "dotenv": "^16.0.0",
-    "@microsoft/api-extractor": "^7.40.3",
     "@types/node": "^18.0.0",
     "eslint": "^9.9.0",
-    "typescript": "~5.6.2",
+    "typescript": "~5.7.2",
     "autorest": "latest",
     "source-map-support": "^0.5.9",
+    "@microsoft/api-extractor": "^7.40.3",
     "@rollup/plugin-commonjs": "^24.0.0",
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-multi-entry": "^6.0.0",

@@ -13,9 +13,7 @@ import {
   ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Creates or updates a snapshot.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Creates or updates a snapshot.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/CreateASnapshotByImportingAnUnmanagedBlobFromADifferentSubscription.json
  */
-async function createASnapshotByImportingAnUnmanagedBlobFromADifferentSubscription() {
+async function createASnapshotByImportingAnUnmanagedBlobFromADifferentSubscription(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const snapshotName = "mySnapshot1";
@@ -53,7 +51,7 @@ async function createASnapshotByImportingAnUnmanagedBlobFromADifferentSubscripti
  * @summary Creates or updates a snapshot.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/CreateASnapshotByImportingAnUnmanagedBlobFromTheSameSubscription.json
  */
-async function createASnapshotByImportingAnUnmanagedBlobFromTheSameSubscription() {
+async function createASnapshotByImportingAnUnmanagedBlobFromTheSameSubscription(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const snapshotName = "mySnapshot1";
@@ -81,7 +79,7 @@ async function createASnapshotByImportingAnUnmanagedBlobFromTheSameSubscription(
  * @summary Creates or updates a snapshot.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/CreateASnapshotFromAnExistingSnapshotInDifferentRegion.json
  */
-async function createASnapshotFromAnExistingSnapshotInTheSameOrADifferentSubscriptionInADifferentRegion() {
+async function createASnapshotFromAnExistingSnapshotInTheSameOrADifferentSubscriptionInADifferentRegion(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const snapshotName = "mySnapshot2";
@@ -109,7 +107,7 @@ async function createASnapshotFromAnExistingSnapshotInTheSameOrADifferentSubscri
  * @summary Creates or updates a snapshot.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/CreateASnapshotFromAnExistingSnapshot.json
  */
-async function createASnapshotFromAnExistingSnapshotInTheSameOrADifferentSubscription() {
+async function createASnapshotFromAnExistingSnapshotInTheSameOrADifferentSubscription(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const snapshotName = "mySnapshot2";
@@ -131,11 +129,11 @@ async function createASnapshotFromAnExistingSnapshotInTheSameOrADifferentSubscri
   console.log(result);
 }
 
-async function main() {
-  createASnapshotByImportingAnUnmanagedBlobFromADifferentSubscription();
-  createASnapshotByImportingAnUnmanagedBlobFromTheSameSubscription();
-  createASnapshotFromAnExistingSnapshotInTheSameOrADifferentSubscriptionInADifferentRegion();
-  createASnapshotFromAnExistingSnapshotInTheSameOrADifferentSubscription();
+async function main(): Promise<void> {
+  await createASnapshotByImportingAnUnmanagedBlobFromADifferentSubscription();
+  await createASnapshotByImportingAnUnmanagedBlobFromTheSameSubscription();
+  await createASnapshotFromAnExistingSnapshotInTheSameOrADifferentSubscriptionInADifferentRegion();
+  await createASnapshotFromAnExistingSnapshotInTheSameOrADifferentSubscription();
 }
 
 main().catch(console.error);

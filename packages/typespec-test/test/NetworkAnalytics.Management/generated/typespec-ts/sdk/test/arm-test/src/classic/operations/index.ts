@@ -1,9 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { NetworkAnalyticsContext } from "../../api/networkAnalyticsContext.js";
-import { list } from "../../api/operations/index.js";
-import { OperationsListOptionalParams } from "../../api/options.js";
+import { NetworkAnalyticsApiContext } from "../../api/networkAnalyticsApiContext.js";
+import {
+  list,
+  OperationsListOptionalParams,
+} from "../../api/operations/index.js";
 import { Operation } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 
@@ -15,16 +17,16 @@ export interface OperationsOperations {
   ) => PagedAsyncIterableIterator<Operation>;
 }
 
-export function getOperations(context: NetworkAnalyticsContext) {
+function _getOperations(context: NetworkAnalyticsApiContext) {
   return {
     list: (options?: OperationsListOptionalParams) => list(context, options),
   };
 }
 
-export function getOperationsOperations(
-  context: NetworkAnalyticsContext,
+export function _getOperationsOperations(
+  context: NetworkAnalyticsApiContext,
 ): OperationsOperations {
   return {
-    ...getOperations(context),
+    ..._getOperations(context),
   };
 }

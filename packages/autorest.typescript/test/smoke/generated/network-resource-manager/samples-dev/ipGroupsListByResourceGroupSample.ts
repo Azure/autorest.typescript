@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets all IpGroups in a resource group.
@@ -20,13 +18,13 @@ dotenv.config();
  * @summary Gets all IpGroups in a resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/IpGroupsListByResourceGroup.json
  */
-async function listByResourceGroupIPGroups() {
+async function listByResourceGroupIPGroups(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.ipGroups.listByResourceGroup(
+  for await (const item of client.ipGroups.listByResourceGroup(
     resourceGroupName,
   )) {
     resArray.push(item);
@@ -34,8 +32,8 @@ async function listByResourceGroupIPGroups() {
   console.log(resArray);
 }
 
-async function main() {
-  listByResourceGroupIPGroups();
+async function main(): Promise<void> {
+  await listByResourceGroupIPGroups();
 }
 
 main().catch(console.error);

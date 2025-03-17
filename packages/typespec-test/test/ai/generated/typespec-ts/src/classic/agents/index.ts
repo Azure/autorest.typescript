@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { AzureAIContext } from "../../api/azureAIContext.js";
+import { AIProjectContext } from "../../api/aiProjectContext.js";
 import {
   listVectorStoreFileBatchFiles,
   cancelVectorStoreFileBatch,
@@ -43,35 +43,6 @@ import {
   getAgent,
   listAgents,
   createAgent,
-} from "../../api/agents/index.js";
-import {
-  Agent,
-  OpenAIPageableListOfAgent,
-  AgentDeletionStatus,
-  MessageRole,
-  AgentThread,
-  ThreadDeletionStatus,
-  ThreadMessage,
-  OpenAIPageableListOfThreadMessage,
-  ThreadRun,
-  OpenAIPageableListOfThreadRun,
-  ToolOutput,
-  RunStep,
-  OpenAIPageableListOfRunStep,
-  FileListResponse,
-  OpenAIFile,
-  FilePurpose,
-  FileDeletionStatus,
-  FileContentResponse,
-  OpenAIPageableListOfVectorStore,
-  VectorStore,
-  VectorStoreDeletionStatus,
-  OpenAIPageableListOfVectorStoreFile,
-  VectorStoreFile,
-  VectorStoreFileDeletionStatus,
-  VectorStoreFileBatch,
-} from "../../models/models.js";
-import {
   AgentsListVectorStoreFileBatchFilesOptionalParams,
   AgentsCancelVectorStoreFileBatchOptionalParams,
   AgentsGetVectorStoreFileBatchOptionalParams,
@@ -112,7 +83,33 @@ import {
   AgentsGetAgentOptionalParams,
   AgentsListAgentsOptionalParams,
   AgentsCreateAgentOptionalParams,
-} from "../../api/options.js";
+} from "../../api/agents/index.js";
+import {
+  Agent,
+  OpenAIPageableListOfAgent,
+  AgentDeletionStatus,
+  MessageRole,
+  AgentThread,
+  ThreadDeletionStatus,
+  ThreadMessage,
+  OpenAIPageableListOfThreadMessage,
+  ThreadRun,
+  OpenAIPageableListOfThreadRun,
+  ToolOutput,
+  RunStep,
+  OpenAIPageableListOfRunStep,
+  FileListResponse,
+  OpenAIFile,
+  FilePurpose,
+  FileDeletionStatus,
+  OpenAIPageableListOfVectorStore,
+  VectorStore,
+  VectorStoreDeletionStatus,
+  OpenAIPageableListOfVectorStoreFile,
+  VectorStoreFile,
+  VectorStoreFileDeletionStatus,
+  VectorStoreFileBatch,
+} from "../../models/agents/models.js";
 
 /** Interface representing a Agents operations. */
 export interface AgentsOperations {
@@ -137,7 +134,6 @@ export interface AgentsOperations {
   /** Create a vector store file batch. */
   createVectorStoreFileBatch: (
     vectorStoreId: string,
-    fileIds: string[],
     options?: AgentsCreateVectorStoreFileBatchOptionalParams,
   ) => Promise<VectorStoreFileBatch>;
   /**
@@ -158,7 +154,6 @@ export interface AgentsOperations {
   /** Create a vector store file by attaching a file to a vector store. */
   createVectorStoreFile: (
     vectorStoreId: string,
-    fileId: string,
     options?: AgentsCreateVectorStoreFileOptionalParams,
   ) => Promise<VectorStoreFile>;
   /** Returns a list of vector store files. */
@@ -189,11 +184,11 @@ export interface AgentsOperations {
   listVectorStores: (
     options?: AgentsListVectorStoresOptionalParams,
   ) => Promise<OpenAIPageableListOfVectorStore>;
-  /** Returns information about a specific file. Does not retrieve file content. */
+  /** Retrieves the raw content of a specific file. */
   getFileContent: (
     fileId: string,
     options?: AgentsGetFileContentOptionalParams,
-  ) => Promise<FileContentResponse>;
+  ) => Promise<Uint8Array>;
   /** Returns information about a specific file. Does not retrieve file content. */
   getFile: (
     fileId: string,
@@ -337,7 +332,7 @@ export interface AgentsOperations {
   ) => Promise<Agent>;
 }
 
-export function getAgents(context: AzureAIContext) {
+function _getAgents(context: AIProjectContext) {
   return {
     listVectorStoreFileBatchFiles: (
       vectorStoreId: string,
@@ -357,9 +352,8 @@ export function getAgents(context: AzureAIContext) {
     ) => getVectorStoreFileBatch(context, vectorStoreId, batchId, options),
     createVectorStoreFileBatch: (
       vectorStoreId: string,
-      fileIds: string[],
       options?: AgentsCreateVectorStoreFileBatchOptionalParams,
-    ) => createVectorStoreFileBatch(context, vectorStoreId, fileIds, options),
+    ) => createVectorStoreFileBatch(context, vectorStoreId, options),
     deleteVectorStoreFile: (
       vectorStoreId: string,
       fileId: string,
@@ -372,9 +366,8 @@ export function getAgents(context: AzureAIContext) {
     ) => getVectorStoreFile(context, vectorStoreId, fileId, options),
     createVectorStoreFile: (
       vectorStoreId: string,
-      fileId: string,
       options?: AgentsCreateVectorStoreFileOptionalParams,
-    ) => createVectorStoreFile(context, vectorStoreId, fileId, options),
+    ) => createVectorStoreFile(context, vectorStoreId, options),
     listVectorStoreFiles: (
       vectorStoreId: string,
       options?: AgentsListVectorStoreFilesOptionalParams,
@@ -502,8 +495,10 @@ export function getAgents(context: AzureAIContext) {
   };
 }
 
-export function getAgentsOperations(context: AzureAIContext): AgentsOperations {
+export function _getAgentsOperations(
+  context: AIProjectContext,
+): AgentsOperations {
   return {
-    ...getAgents(context),
+    ..._getAgents(context),
   };
 }

@@ -1,19 +1,17 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { NetworkAnalyticsContext } from "../../api/networkAnalyticsContext.js";
+import { NetworkAnalyticsApiContext } from "../../api/networkAnalyticsApiContext.js";
 import {
   listBySubscription,
   listByResourceGroup,
   get,
-} from "../../api/dataProductsCatalogs/index.js";
-import { DataProductsCatalog } from "../../models/models.js";
-import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
-import {
   DataProductsCatalogsListBySubscriptionOptionalParams,
   DataProductsCatalogsListByResourceGroupOptionalParams,
   DataProductsCatalogsGetOptionalParams,
-} from "../../api/options.js";
+} from "../../api/dataProductsCatalogs/index.js";
+import { DataProductsCatalog } from "../../models/models.js";
+import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 
 /** Interface representing a DataProductsCatalogs operations. */
 export interface DataProductsCatalogsOperations {
@@ -33,7 +31,7 @@ export interface DataProductsCatalogsOperations {
   ) => Promise<DataProductsCatalog>;
 }
 
-export function getDataProductsCatalogs(context: NetworkAnalyticsContext) {
+function _getDataProductsCatalogs(context: NetworkAnalyticsApiContext) {
   return {
     listBySubscription: (
       options?: DataProductsCatalogsListBySubscriptionOptionalParams,
@@ -49,10 +47,10 @@ export function getDataProductsCatalogs(context: NetworkAnalyticsContext) {
   };
 }
 
-export function getDataProductsCatalogsOperations(
-  context: NetworkAnalyticsContext,
+export function _getDataProductsCatalogsOperations(
+  context: NetworkAnalyticsApiContext,
 ): DataProductsCatalogsOperations {
   return {
-    ...getDataProductsCatalogs(context),
+    ..._getDataProductsCatalogs(context),
   };
 }

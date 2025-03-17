@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { AzureAIContext } from "../../api/azureAIContext.js";
+import { AIProjectContext } from "../../api/aiProjectContext.js";
 import {
-  deleteSchedule,
+  disableSchedule,
   listSchedule,
   createOrReplaceSchedule,
   getSchedule,
@@ -11,9 +11,7 @@ import {
   list,
   create,
   get,
-} from "../../api/evaluations/index.js";
-import {
-  EvaluationsDeleteScheduleOptionalParams,
+  EvaluationsDisableScheduleOptionalParams,
   EvaluationsListScheduleOptionalParams,
   EvaluationsCreateOrReplaceScheduleOptionalParams,
   EvaluationsGetScheduleOptionalParams,
@@ -21,16 +19,16 @@ import {
   EvaluationsListOptionalParams,
   EvaluationsCreateOptionalParams,
   EvaluationsGetOptionalParams,
-} from "../../api/options.js";
+} from "../../api/evaluations/index.js";
 import { Evaluation, EvaluationSchedule } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 
 /** Interface representing a Evaluations operations. */
 export interface EvaluationsOperations {
-  /** Resource delete operation template. */
-  deleteSchedule: (
-    id: string,
-    options?: EvaluationsDeleteScheduleOptionalParams,
+  /** Disable the evaluation schedule. */
+  disableSchedule: (
+    name: string,
+    options?: EvaluationsDisableScheduleOptionalParams,
   ) => Promise<void>;
   /** Resource list operation template. */
   listSchedule: (
@@ -38,13 +36,13 @@ export interface EvaluationsOperations {
   ) => PagedAsyncIterableIterator<EvaluationSchedule>;
   /** Create or replace operation template. */
   createOrReplaceSchedule: (
-    id: string,
+    name: string,
     resource: EvaluationSchedule,
     options?: EvaluationsCreateOrReplaceScheduleOptionalParams,
   ) => Promise<EvaluationSchedule>;
   /** Resource read operation template. */
   getSchedule: (
-    id: string,
+    name: string,
     options?: EvaluationsGetScheduleOptionalParams,
   ) => Promise<EvaluationSchedule>;
   /** Resource update operation template. */
@@ -69,21 +67,23 @@ export interface EvaluationsOperations {
   ) => Promise<Evaluation>;
 }
 
-export function getEvaluations(context: AzureAIContext) {
+function _getEvaluations(context: AIProjectContext) {
   return {
-    deleteSchedule: (
-      id: string,
-      options?: EvaluationsDeleteScheduleOptionalParams,
-    ) => deleteSchedule(context, id, options),
+    disableSchedule: (
+      name: string,
+      options?: EvaluationsDisableScheduleOptionalParams,
+    ) => disableSchedule(context, name, options),
     listSchedule: (options?: EvaluationsListScheduleOptionalParams) =>
       listSchedule(context, options),
     createOrReplaceSchedule: (
-      id: string,
+      name: string,
       resource: EvaluationSchedule,
       options?: EvaluationsCreateOrReplaceScheduleOptionalParams,
-    ) => createOrReplaceSchedule(context, id, resource, options),
-    getSchedule: (id: string, options?: EvaluationsGetScheduleOptionalParams) =>
-      getSchedule(context, id, options),
+    ) => createOrReplaceSchedule(context, name, resource, options),
+    getSchedule: (
+      name: string,
+      options?: EvaluationsGetScheduleOptionalParams,
+    ) => getSchedule(context, name, options),
     update: (
       id: string,
       resource: Evaluation,
@@ -99,10 +99,10 @@ export function getEvaluations(context: AzureAIContext) {
   };
 }
 
-export function getEvaluationsOperations(
-  context: AzureAIContext,
+export function _getEvaluationsOperations(
+  context: AIProjectContext,
 ): EvaluationsOperations {
   return {
-    ...getEvaluations(context),
+    ..._getEvaluations(context),
   };
 }

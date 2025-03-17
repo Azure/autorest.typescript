@@ -3,16 +3,14 @@
 
 import createAzureLoadTestingClient from "@azure-rest/load-testing";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation StopTestRun
  *
  * @summary call operation StopTestRun
  */
-async function loadTestRunStopTestRunSample() {
+async function loadTestRunStopTestRunSample(): Promise<void> {
   const endpointParam = "{Your endpointParam}";
   const credential = new DefaultAzureCredential();
   const client = createAzureLoadTestingClient(endpointParam, credential);
@@ -23,8 +21,8 @@ async function loadTestRunStopTestRunSample() {
   console.log(result);
 }
 
-async function main() {
-  loadTestRunStopTestRunSample();
+async function main(): Promise<void> {
+  await loadTestRunStopTestRunSample();
 }
 
 main().catch(console.error);

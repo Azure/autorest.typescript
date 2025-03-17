@@ -74,21 +74,26 @@ export function getClassicalOperation(
     .filter((i) => i.getName() === interfaceName)[0];
   const properties: OptionalKind<PropertySignatureStructure>[] = [];
   if (layer !== prefixes.length - 1) {
-    properties.push({
-      kind: StructureKind.PropertySignature,
-      name: normalizeName(
-        (layer === prefixes.length - 1
-          ? prefixes[layer]
-          : prefixes[layer + 1]) ?? "",
-        NameType.Property
-      ),
-      type: `${getClassicalLayerPrefix(
-        prefixes,
-        NameType.Interface,
+    const name = normalizeName(
+      (layer === prefixes.length - 1 ? prefixes[layer] : prefixes[layer + 1]) ??
         "",
-        layer + 1
-      )}Operations`
-    });
+      NameType.Property
+    );
+    if (
+      !properties.some((x) => x.name === name) &&
+      !(existInterface && existInterface.getProperty(name))
+    ) {
+      properties.push({
+        kind: StructureKind.PropertySignature,
+        name,
+        type: `${getClassicalLayerPrefix(
+          prefixes,
+          NameType.Interface,
+          "",
+          layer + 1
+        )}Operations`
+      });
+    }
   } else {
     operationDeclarations.forEach((d) => {
       properties.push({
@@ -124,13 +129,13 @@ export function getClassicalOperation(
 
   if (layer === prefixes.length - 1) {
     classicFile.addFunction({
-      name: `get${getClassicalLayerPrefix(
+      name: `_get${getClassicalLayerPrefix(
         prefixes,
         NameType.Interface,
         "",
         layer
       )}`,
-      isExported: true,
+      isExported: false,
       parameters: [
         {
           name: "context",
@@ -164,7 +169,7 @@ export function getClassicalOperation(
     });
   }
 
-  const operationFunctionName = `get${getClassicalLayerPrefix(
+  const operationFunctionName = `_get${getClassicalLayerPrefix(
     prefixes,
     NameType.Interface,
     "",
@@ -176,27 +181,41 @@ export function getClassicalOperation(
   if (existFunction) {
     const returnStatement = existFunction.getBodyText();
     if (returnStatement) {
-      let statement = `,
-      ...get${getClassicalLayerPrefix(
+      let statement: string | undefined = undefined;
+      if (layer !== prefixes.length - 1) {
+        const name = normalizeName(
+          prefixes[layer + 1] ?? "FIXME",
+          NameType.Property
+        );
+
+        // HACK: check if the statement includes a group of this name already to prevent an operation group appearing multiple times
+        // TODO: would be good to refactor so that we have an intermediate data structure before generating the return statement
+        if (!returnStatement.includes(`${name}:`)) {
+          statement = `,
+          ${normalizeName(
+            prefixes[layer + 1] ?? "FIXME",
+            NameType.Property
+          )}: _get${getClassicalLayerPrefix(
+            prefixes,
+            NameType.Interface,
+            "",
+            layer + 1
+          )}Operations(context)}`;
+        }
+      } else {
+        statement = `,
+      ..._get${getClassicalLayerPrefix(
         prefixes,
         NameType.Interface,
         "",
         layer + 1
       )}Operations(context)}`;
-      if (layer !== prefixes.length - 1) {
-        statement = `,
-        ${normalizeName(
-          prefixes[layer + 1] ?? "FIXME",
-          NameType.Property
-        )}: get${getClassicalLayerPrefix(
-          prefixes,
-          NameType.Interface,
-          "",
-          layer + 1
-        )}Operations(context)}`;
       }
-      const newReturnStatement = returnStatement.replace(/}$/, statement);
-      existFunction.setBodyText(newReturnStatement);
+
+      if (statement) {
+        const newReturnStatement = returnStatement.replace(/}$/, statement);
+        existFunction.setBodyText(newReturnStatement);
+      }
     }
   } else {
     const functions = {
@@ -220,7 +239,7 @@ export function getClassicalOperation(
             ${normalizeName(
               prefixes[layer + 1] ?? "FIXME",
               NameType.Property
-            )}: get${getClassicalLayerPrefix(
+            )}: _get${getClassicalLayerPrefix(
               prefixes,
               NameType.Interface,
               "",
@@ -228,7 +247,7 @@ export function getClassicalOperation(
             )}Operations(context)   
       }`
           : `return {
-        ...get${getClassicalLayerPrefix(
+        ..._get${getClassicalLayerPrefix(
           prefixes,
           NameType.Interface,
           "",
@@ -244,11 +263,12 @@ export function getClassicalOperation(
       propertyName?: string;
     }
   ) {
-    return (
+    return normalizeName(
       operationMap.get(declaration) ??
-      declaration.propertyName ??
-      declaration.name ??
-      "FIXME"
+        declaration.propertyName ??
+        declaration.name ??
+        "FIXME",
+      NameType.Method
     );
   }
 }

@@ -66,6 +66,7 @@ function getAzureCjsCommonInfo({
   return {
     files: [
       "dist/",
+      "!dist/**/*.d.*ts.map",
       withTests || withSamples ? "dist-esm/src/" : "dist-esm/",
       `types/${nameWithoutScope ?? name}.d.ts`,
       "README.md",
@@ -81,7 +82,14 @@ function getAzureEsmCommonInfo({ moduleKind }: AzurePackageInfoConfig) {
     return {};
   }
   return {
-    files: ["dist", "README.md", "LICENSE", "review/*", "CHANGELOG.md"]
+    files: [
+      "dist/",
+      "!dist/**/*.d.*ts.map",
+      "README.md",
+      "LICENSE",
+      "review/*",
+      "CHANGELOG.md"
+    ]
   };
 }
 
@@ -131,10 +139,10 @@ function getAzurePackageEsmDevDependencies({
   if (withTests) {
     devDependencies = {
       ...devDependencies,
-      "@vitest/browser": "^2.0.5",
-      "@vitest/coverage-istanbul": "^2.0.5",
+      "@vitest/browser": "^3.0.3",
+      "@vitest/coverage-istanbul": "^3.0.3",
       playwright: "^1.41.2",
-      vitest: "^2.0.5",
+      vitest: "^3.0.3",
       "@azure-tools/test-credential": "^2.0.0",
       "@azure-tools/test-recorder": "^4.0.0"
     };

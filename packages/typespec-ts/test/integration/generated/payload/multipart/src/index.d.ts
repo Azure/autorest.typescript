@@ -1,8 +1,8 @@
-import type { Client } from '@azure-rest/core-client';
-import type { ClientOptions } from '@azure-rest/core-client';
-import type { HttpResponse } from '@azure-rest/core-client';
-import type { RequestParameters } from '@azure-rest/core-client';
-import type { StreamableMethod } from '@azure-rest/core-client';
+import type { Client } from '@typespec/ts-http-runtime';
+import type { ClientOptions } from '@typespec/ts-http-runtime';
+import type { HttpResponse } from '@typespec/ts-http-runtime';
+import type { RequestParameters } from '@typespec/ts-http-runtime';
+import type { StreamableMethod } from '@typespec/ts-http-runtime';
 
 export declare interface Address {
     city: string;
@@ -26,27 +26,31 @@ export declare type ComplexHttpPartsModelRequest = FormData | Array<ComplexHttpP
 
 export declare interface ComplexHttpPartsModelRequestAddressPartDescriptor {
     name: "address";
-    body: HttpPart;
+    body: HttpPartAddress;
 }
 
 export declare interface ComplexHttpPartsModelRequestIdPartDescriptor {
     name: "id";
-    body: HttpPart;
+    body: HttpPartString;
 }
 
 export declare interface ComplexHttpPartsModelRequestPicturesPartDescriptor {
     name: "pictures";
-    body: Array<HttpPart>;
+    body: Array<HttpPartFileRequiredMetaData>;
+    filename?: string;
+    contentType?: string;
 }
 
 export declare interface ComplexHttpPartsModelRequestPreviousAddressesPartDescriptor {
     name: "previousAddresses";
-    body: HttpPart;
+    body: HttpPartArray;
 }
 
 export declare interface ComplexHttpPartsModelRequestProfileImagePartDescriptor {
     name: "profileImage";
-    body: HttpPart;
+    body: HttpPartFileRequiredMetaData;
+    filename?: string;
+    contentType?: string;
 }
 
 export declare type ComplexPartsRequest = FormData | Array<ComplexPartsRequestIdPartDescriptor | ComplexPartsRequestAddressPartDescriptor | ComplexPartsRequestProfileImagePartDescriptor | ComplexPartsRequestPicturesPartDescriptor>;
@@ -82,21 +86,27 @@ export declare type FileWithHttpPartOptionalContentTypeRequest = FormData | Arra
 
 export declare interface FileWithHttpPartOptionalContentTypeRequestProfileImagePartDescriptor {
     name: "profileImage";
-    body: HttpPart;
+    body: HttpPartFileOptionalContentType;
+    filename?: string;
+    contentType?: string;
 }
 
 export declare type FileWithHttpPartRequiredContentTypeRequest = FormData | Array<FileWithHttpPartRequiredContentTypeRequestProfileImagePartDescriptor>;
 
 export declare interface FileWithHttpPartRequiredContentTypeRequestProfileImagePartDescriptor {
     name: "profileImage";
-    body: HttpPart;
+    body: HttpPartFileRequiredMetaData;
+    filename?: string;
+    contentType?: string;
 }
 
 export declare type FileWithHttpPartSpecificContentTypeRequest = FormData | Array<FileWithHttpPartSpecificContentTypeRequestProfileImagePartDescriptor>;
 
 export declare interface FileWithHttpPartSpecificContentTypeRequestProfileImagePartDescriptor {
     name: "profileImage";
-    body: HttpPart;
+    body: HttpPartFileSpecificContentType;
+    filename?: string;
+    contentType?: string;
 }
 
 export declare interface FormDataAnonymousModel {
@@ -324,6 +334,24 @@ export declare interface FormDataMultiBinaryPartsMediaTypesParam {
 export declare type FormDataMultiBinaryPartsParameters = FormDataMultiBinaryPartsMediaTypesParam & FormDataMultiBinaryPartsBodyParam & RequestParameters;
 
 export declare interface HttpPart {
+}
+
+export declare interface HttpPartAddress {
+}
+
+export declare interface HttpPartArray {
+}
+
+export declare interface HttpPartFileOptionalContentType {
+}
+
+export declare interface HttpPartFileRequiredMetaData {
+}
+
+export declare interface HttpPartFileSpecificContentType {
+}
+
+export declare interface HttpPartString {
 }
 
 export declare type JsonPartRequest = FormData | Array<JsonPartRequestAddressPartDescriptor | JsonPartRequestProfileImagePartDescriptor>;

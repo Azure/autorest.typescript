@@ -11,9 +11,11 @@ import {
 import { EmitContext, Program } from "@typespec/compiler";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import {
+  MultipartHelpers,
   PagingHelpers,
   PollingHelpers,
-  SerializationHelpers
+  SerializationHelpers,
+  UrlTemplateHelpers
 } from "./modular/static-helpers-metadata.js";
 import {
   RLCModel,
@@ -45,7 +47,8 @@ import {
   hasUnexpectedHelper,
   isAzurePackage,
   updatePackageFile,
-  buildSampleEnvFile
+  buildSampleEnvFile,
+  buildSnippets
 } from "@azure-tools/rlc-common";
 import {
   buildRootIndex,
@@ -67,10 +70,13 @@ import { buildApiOptions } from "./modular/emitModelsOptions.js";
 import { buildOperationFiles } from "./modular/buildOperations.js";
 import { buildRestorePoller } from "./modular/buildRestorePoller.js";
 import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
-import { createSdkContext } from "@azure-tools/typespec-client-generator-core";
+import {
+  createSdkContext,
+  SdkClientType,
+  SdkServiceOperation
+} from "@azure-tools/typespec-client-generator-core";
 import { transformModularEmitterOptions } from "./modular/buildModularOptions.js";
 import { emitLoggerFile } from "./modular/emitLoggerFile.js";
-import { emitSerializerHelpersFile } from "./modular/buildHelperSerializers.js";
 import { emitTypes } from "./modular/emitModels.js";
 import { existsSync } from "fs";
 import { getModuleExports } from "./modular/buildProjectFiles.js";
@@ -115,7 +121,9 @@ export async function $onEmit(context: EmitContext) {
     {
       ...SerializationHelpers,
       ...PagingHelpers,
-      ...PollingHelpers
+      ...PollingHelpers,
+      ...UrlTemplateHelpers,
+      ...MultipartHelpers
     },
     {
       sourcesDir: dpgContext.generationPathDetail?.modularSourcesDir,
@@ -161,6 +169,7 @@ export async function $onEmit(context: EmitContext) {
     dpgContext.generationPathDetail = generationPathDetail;
     const options: RLCOptions = transformRLCOptions(emitterOptions, dpgContext);
     emitterOptions.isModularLibrary = options.isModularLibrary;
+    emitterOptions.generateSample = options.generateSample;
     // clear output folder if needed
     if (options.clearOutputFolder) {
       await fsextra.emptyDir(context.emitterOutputDir);
@@ -239,7 +248,6 @@ export async function $onEmit(context: EmitContext) {
     const modularSourcesRoot =
       dpgContext.generationPathDetail?.modularSourcesDir ?? "src";
     const project = useContext("outputProject");
-    emitSerializerHelpersFile(project, modularSourcesRoot);
     modularEmitterOptions = transformModularEmitterOptions(
       dpgContext,
       modularSourcesRoot,
@@ -262,17 +270,15 @@ export async function $onEmit(context: EmitContext) {
     const isMultiClients = dpgContext.sdkPackage.clients.length > 1;
 
     emitTypes(dpgContext, { sourceRoot: modularSourcesRoot });
-    buildSubpathIndexFile(dpgContext, modularEmitterOptions, "models");
-    // Enable modular sample generation when explicitly set to true or MPG
-    if (emitterOptions?.generateSample === true) {
-      const samples = emitSamples(dpgContext);
-      // Refine the rlc sample generation logic
-      // TODO: remember to remove this out when RLC is splitted from Modular
-      if (samples.length > 0) {
-        dpgContext.rlcOptions!.generateSample = true;
-      }
-    }
+    buildSubpathIndexFile(
+      dpgContext,
+      modularEmitterOptions,
+      "models",
+      undefined,
+      { recursive: true }
+    );
     for (const subClient of dpgContext.sdkPackage.clients) {
+      await renameClientName(subClient, modularEmitterOptions);
       buildApiOptions(dpgContext, subClient, modularEmitterOptions);
       buildOperationFiles(dpgContext, subClient, modularEmitterOptions);
       buildClientContext(dpgContext, subClient, modularEmitterOptions);
@@ -282,7 +288,11 @@ export async function $onEmit(context: EmitContext) {
           dpgContext,
           modularEmitterOptions,
           "api",
-          subClient
+          subClient,
+          {
+            exportIndex: false,
+            recursive: true
+          }
         );
       } else {
         buildSubpathIndexFile(
@@ -291,6 +301,7 @@ export async function $onEmit(context: EmitContext) {
           "api",
           subClient,
           {
+            recursive: true,
             exportIndex: true
           }
         );
@@ -317,6 +328,15 @@ export async function $onEmit(context: EmitContext) {
         modularEmitterOptions,
         rootIndexFile
       );
+    }
+    // Enable modular sample generation when explicitly set to true or MPG
+    if (emitterOptions.generateSample === true) {
+      const samples = emitSamples(dpgContext);
+      // Refine the rlc sample generation logic
+      // TODO: remember to remove this out when RLC is splitted from Modular
+      if (samples.length > 0) {
+        dpgContext.rlcOptions!.generateSample = true;
+      }
     }
 
     binder.resolveAllReferences(modularSourcesRoot);
@@ -396,6 +416,16 @@ export async function $onEmit(context: EmitContext) {
         buildPackageFile(model, modularPackageInfo)
       );
       commonBuilders.push(buildTsConfig);
+
+      // TODO: need support snippets generation for multi-client cases. https://github.com/Azure/autorest.typescript/issues/3048
+      if (option.generateTest && isAzureFlavor) {
+        for (const subClient of dpgContext.sdkPackage.clients) {
+          commonBuilders.push((model) =>
+            buildSnippets(model, subClient.name, option.azureSdkForJs)
+          );
+        }
+      }
+
       // build metadata relevant files
       await emitContentByBuilder(
         program,
@@ -475,9 +505,11 @@ export async function createContextWithDefaultOptions(
   context: EmitContext<Record<string, any>>
 ): Promise<SdkContext> {
   const flattenUnionAsEnum =
+    context.options["experimental-extensible-enums"] === undefined &&
     context.options["experimentalExtensibleEnums"] === undefined
       ? isArm(context)
-      : context.options["experimentalExtensibleEnums"];
+      : (context.options["experimental-extensible-enums"] ??
+        context.options["experimentalExtensibleEnums"]);
   const tcgcSettings = {
     "generate-protocol-methods": true,
     "generate-convenience-methods": true,
@@ -502,6 +534,21 @@ export async function createContextWithDefaultOptions(
 
 // TODO: should be removed once tcgc issue is resolved https://github.com/Azure/typespec-azure/issues/1794
 function isArm(context: EmitContext<Record<string, any>>) {
-  const packageName = (context?.options["packageDetails"] ?? {})["name"] ?? "";
+  const packageName =
+    (context?.options["package-details"] ??
+      context?.options["packageDetails"] ??
+      {})["name"] ?? "";
   return packageName?.startsWith("@azure/arm-");
+}
+
+export async function renameClientName(
+  client: SdkClientType<SdkServiceOperation>,
+  emitterOptions: ModularEmitterOptions
+) {
+  if (
+    emitterOptions.options.typespecTitleMap &&
+    emitterOptions.options.typespecTitleMap[client.name]
+  ) {
+    client.name = emitterOptions.options.typespecTitleMap[client.name]!;
+  }
 }

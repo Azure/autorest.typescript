@@ -4,6 +4,7 @@
 export {
   User,
   Widget,
+  WidgetError,
   AnalyzeResult,
   NonReferencedModel,
   KnownVersions,

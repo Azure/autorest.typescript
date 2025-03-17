@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets all the load balancer backed address pools.
@@ -20,14 +18,14 @@ dotenv.config();
  * @summary Gets all the load balancer backed address pools.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/LBBackendAddressPoolListWithBackendAddressesPoolType.json
  */
-async function loadBalancerWithBackendAddressPoolContainingBackendAddresses() {
+async function loadBalancerWithBackendAddressPoolContainingBackendAddresses(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const loadBalancerName = "lb";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.loadBalancerBackendAddressPools.list(
+  for await (const item of client.loadBalancerBackendAddressPools.list(
     resourceGroupName,
     loadBalancerName,
   )) {
@@ -42,14 +40,14 @@ async function loadBalancerWithBackendAddressPoolContainingBackendAddresses() {
  * @summary Gets all the load balancer backed address pools.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/LoadBalancerBackendAddressPoolList.json
  */
-async function loadBalancerBackendAddressPoolList() {
+async function loadBalancerBackendAddressPoolList(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "testrg";
   const loadBalancerName = "lb";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.loadBalancerBackendAddressPools.list(
+  for await (const item of client.loadBalancerBackendAddressPools.list(
     resourceGroupName,
     loadBalancerName,
   )) {
@@ -58,9 +56,9 @@ async function loadBalancerBackendAddressPoolList() {
   console.log(resArray);
 }
 
-async function main() {
-  loadBalancerWithBackendAddressPoolContainingBackendAddresses();
-  loadBalancerBackendAddressPoolList();
+async function main(): Promise<void> {
+  await loadBalancerWithBackendAddressPoolContainingBackendAddresses();
+  await loadBalancerBackendAddressPoolList();
 }
 
 main().catch(console.error);

@@ -11,10 +11,12 @@
     "exports": {
       "./package.json": "./package.json",
       ".": "./src/index.ts",
-      "./models": "./src/models/index.ts",
       "./api": "./src/api/index.ts",
       "./api/multivariate": "./src/api/multivariate/index.ts",
-      "./api/univariate": "./src/api/univariate/index.ts"
+      "./api/univariate": "./src/api/univariate/index.ts",
+      "./models": "./src/models/index.ts",
+      "./models/multivariate": "./src/models/multivariate/index.ts",
+      "./models/univariate": "./src/models/univariate/index.ts"
     },
     "dialects": [
       "esm",
@@ -38,7 +40,8 @@
   "author": "Microsoft Corporation",
   "license": "MIT",
   "files": [
-    "dist",
+    "dist/",
+    "!dist/**/*.d.*ts.map",
     "README.md",
     "LICENSE",
     "review/*",
@@ -54,18 +57,18 @@
   },
   "devDependencies": {
     "dotenv": "^16.0.0",
-    "@microsoft/api-extractor": "^7.40.3",
     "@types/node": "^18.0.0",
     "eslint": "^9.9.0",
-    "typescript": "~5.6.2",
+    "typescript": "~5.7.2",
     "tshy": "^2.0.0",
     "@azure/identity": "^4.2.1",
-    "@vitest/browser": "^2.0.5",
-    "@vitest/coverage-istanbul": "^2.0.5",
+    "@vitest/browser": "^3.0.3",
+    "@vitest/coverage-istanbul": "^3.0.3",
     "playwright": "^1.41.2",
-    "vitest": "^2.0.5",
+    "vitest": "^3.0.3",
     "@azure-tools/test-credential": "^2.0.0",
     "@azure-tools/test-recorder": "^4.0.0",
+    "@microsoft/api-extractor": "^7.40.3",
     "rimraf": "^5.0.5",
     "mkdirp": "^3.0.1"
   },
@@ -104,24 +107,6 @@
       "require": {
         "types": "./dist/commonjs/index.d.ts",
         "default": "./dist/commonjs/index.js"
-      }
-    },
-    "./models": {
-      "browser": {
-        "types": "./dist/browser/models/index.d.ts",
-        "default": "./dist/browser/models/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/models/index.d.ts",
-        "default": "./dist/react-native/models/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/models/index.d.ts",
-        "default": "./dist/esm/models/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/models/index.d.ts",
-        "default": "./dist/commonjs/models/index.js"
       }
     },
     "./api": {
@@ -176,6 +161,60 @@
       "require": {
         "types": "./dist/commonjs/api/univariate/index.d.ts",
         "default": "./dist/commonjs/api/univariate/index.js"
+      }
+    },
+    "./models": {
+      "browser": {
+        "types": "./dist/browser/models/index.d.ts",
+        "default": "./dist/browser/models/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/models/index.d.ts",
+        "default": "./dist/react-native/models/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/models/index.d.ts",
+        "default": "./dist/esm/models/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/models/index.d.ts",
+        "default": "./dist/commonjs/models/index.js"
+      }
+    },
+    "./models/multivariate": {
+      "browser": {
+        "types": "./dist/browser/models/multivariate/index.d.ts",
+        "default": "./dist/browser/models/multivariate/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/models/multivariate/index.d.ts",
+        "default": "./dist/react-native/models/multivariate/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/models/multivariate/index.d.ts",
+        "default": "./dist/esm/models/multivariate/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/models/multivariate/index.d.ts",
+        "default": "./dist/commonjs/models/multivariate/index.js"
+      }
+    },
+    "./models/univariate": {
+      "browser": {
+        "types": "./dist/browser/models/univariate/index.d.ts",
+        "default": "./dist/browser/models/univariate/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/models/univariate/index.d.ts",
+        "default": "./dist/react-native/models/univariate/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/models/univariate/index.d.ts",
+        "default": "./dist/esm/models/univariate/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/models/univariate/index.d.ts",
+        "default": "./dist/commonjs/models/univariate/index.js"
       }
     }
   },

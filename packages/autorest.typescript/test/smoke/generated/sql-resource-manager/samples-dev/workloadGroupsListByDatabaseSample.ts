@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets the list of workload groups
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets the list of workload groups
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/GetWorkloadGroupList.json
  */
-async function getTheListOfWorkloadGroupsForADataWarehouse() {
+async function getTheListOfWorkloadGroupsForADataWarehouse(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -30,7 +28,7 @@ async function getTheListOfWorkloadGroupsForADataWarehouse() {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.workloadGroups.listByDatabase(
+  for await (const item of client.workloadGroups.listByDatabase(
     resourceGroupName,
     serverName,
     databaseName,
@@ -40,8 +38,8 @@ async function getTheListOfWorkloadGroupsForADataWarehouse() {
   console.log(resArray);
 }
 
-async function main() {
-  getTheListOfWorkloadGroupsForADataWarehouse();
+async function main(): Promise<void> {
+  await getTheListOfWorkloadGroupsForADataWarehouse();
 }
 
 main().catch(console.error);

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { NetworkAnalyticsClient } from "@azure/arm-networkanalytics";
+import { NetworkAnalyticsApi } from "@azure/arm-networkanalytics";
 import { DefaultAzureCredential } from "@azure/identity";
 
 /**
@@ -10,10 +10,10 @@ import { DefaultAzureCredential } from "@azure/identity";
  * @summary create data product resource.
  * x-ms-original-file: 2023-11-15/DataProducts_Create_MaximumSet_Gen.json
  */
-async function dataProductsCreateMaximumSetGen() {
+async function dataProductsCreateMaximumSetGen(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
-  const client = new NetworkAnalyticsClient(credential, subscriptionId);
+  const client = new NetworkAnalyticsApi(credential, subscriptionId);
   const result = await client.dataProducts.create(
     "aoiresourceGroupName",
     "dataproduct01",
@@ -68,8 +68,8 @@ async function dataProductsCreateMaximumSetGen() {
   console.log(result);
 }
 
-async function main() {
-  dataProductsCreateMaximumSetGen();
+async function main(): Promise<void> {
+  await dataProductsCreateMaximumSetGen();
 }
 
 main().catch(console.error);

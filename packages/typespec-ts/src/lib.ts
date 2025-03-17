@@ -1,7 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { RLCOptions } from "@azure-tools/rlc-common";
+import {
+  PackageDetails,
+  DependencyInfo,
+  ServiceInfo,
+  PackageFlavor,
+  RLCOptions
+} from "@azure-tools/rlc-common";
 import {
   createTypeSpecLibrary,
   JSONSchemaType,
@@ -10,10 +16,61 @@ import {
 import { Options } from "prettier";
 
 export interface EmitterOptions extends RLCOptions {
+  "include-shortcuts"?: boolean;
+  "multi-client"?: boolean;
+  batch?: any[];
+  "package-details"?: PackageDetails;
+  "add-credentials"?: boolean;
+  /** Three possiblie values:
+   * - undefined, no credentialScopes and relevant settings would be generated
+   * - [], which means we would generate TokenCredential but no credentialScopes and relevant settings
+   * - ["..."], which means we would generate credentialScopes and relevant settings with the given values
+   */
+  "credential-scopes"?: string[];
+  "credential-key-header-name"?: string;
+  "custom-http-auth-header-name"?: string;
+  "custom-http-auth-shared-key-prefix"?: string;
+  /**
+   * Three possible values:
+   * - undefined, the default behavior which means we would generate metadata if the package.json file is absent
+   * - true, which means we would always generate new files or override existing files
+   * - false, which means we would not generate any files no matter there exists or not
+   */
+  "generate-metadata"?: boolean;
+  /**
+   * Three possible values:
+   * - undefined, the default behavior which means we would generate test if there is no `test` folder
+   * - true, which means we would always generate new files or override existing files
+   * - false, which means we would not generate any files no matter there exists or not
+   */
+  "generate-test"?: boolean;
+  "generate-sample"?: boolean;
+  "azure-sdk-for-js"?: boolean;
+  "azure-output-directory"?: string;
+  "is-typespec-test"?: boolean;
+  title?: string;
+  "dependency-info"?: DependencyInfo;
+  "product-doc-link"?: string;
+  "service-info"?: ServiceInfo;
+  "azure-arm"?: boolean;
+  "source-from"?: "TypeSpec" | "Swagger";
+  "is-modular-library"?: boolean;
+  "module-kind"?: "esm" | "cjs";
+  "enable-operation-group"?: boolean;
+  flavor?: PackageFlavor;
+  "enable-model-namespace"?: boolean;
+  "hierarchy-client"?: boolean;
+  "compatibility-mode"?: boolean;
+  "experimental-extensible-enums"?: boolean;
+  "clear-output-folder"?: boolean;
+  "ignore-property-name-normalize"?: boolean;
+  "compatibility-query-multi-format"?: boolean;
   branded?: boolean;
+  "typespec-title-map"?: Record<string, string>;
+  "ignore-enum-member-name-normalize"?: boolean;
 }
 
-export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
+const _RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
   type: "object",
   additionalProperties: true,
   properties: {
@@ -93,7 +150,111 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
     experimentalExtensibleEnums: { type: "boolean", nullable: true },
     clearOutputFolder: { type: "boolean", nullable: true },
     ignorePropertyNameNormalize: { type: "boolean", nullable: true },
-    compatibilityQueryMultiFormat: { type: "boolean", nullable: true }
+    ignoreEnumMemberNameNormalize: { type: "boolean", nullable: true },
+    compatibilityQueryMultiFormat: { type: "boolean", nullable: true },
+    typespecTitleMap: {
+      type: "object",
+      additionalProperties: {
+        type: "string"
+      },
+      required: [],
+      nullable: true
+    }
+  },
+  required: []
+};
+
+export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
+  type: "object",
+  additionalProperties: true,
+  properties: {
+    ..._RLCOptionsSchema.properties,
+    "include-shortcuts": { type: "boolean", nullable: true },
+    "multi-client": { type: "boolean", nullable: true },
+    batch: {
+      type: "array",
+      nullable: true,
+      items: {
+        type: "string"
+      }
+    },
+    "package-details": {
+      type: "object",
+      additionalProperties: true,
+      properties: {
+        name: { type: "string", nullable: false },
+        scopeName: { type: "string", nullable: true },
+        nameWithoutScope: { type: "string", nullable: true },
+        description: { type: "string", nullable: true },
+        version: { type: "string", nullable: true }
+      },
+      required: ["name"],
+      nullable: true
+    },
+    "add-credentials": { type: "boolean", nullable: true },
+    "credential-scopes": {
+      type: "array",
+      nullable: true,
+      items: { type: "string" }
+    },
+    "credential-key-header-name": { type: "string", nullable: true },
+    "custom-http-auth-header-name": { type: "string", nullable: true },
+    "custom-http-auth-shared-key-prefix": { type: "string", nullable: true },
+    "generate-metadata": { type: "boolean", nullable: true },
+    "generate-test": { type: "boolean", nullable: true },
+    "generate-sample": { type: "boolean", nullable: true },
+    "azure-sdk-for-js": { type: "boolean", nullable: true },
+    "azure-output-directory": { type: "string", nullable: true },
+    "is-typespec-test": { type: "boolean", nullable: true },
+    title: { type: "string", nullable: true },
+    "dependency-info": {
+      type: "object",
+      additionalProperties: true,
+      properties: {
+        link: { type: "string", nullable: false },
+        description: { type: "string", nullable: false }
+      },
+      required: [],
+      nullable: true
+    },
+    "product-doc-link": { type: "string", nullable: true },
+    "service-info": {
+      type: "object",
+      additionalProperties: true,
+      properties: {
+        title: { type: "string", nullable: true },
+        description: { type: "string", nullable: true }
+      },
+      nullable: true
+    },
+    "azure-arm": { type: "boolean", nullable: true },
+    "source-from": { type: "string", nullable: true },
+    "is-modular-library": { type: "boolean", nullable: true, default: false },
+    "enable-operation-group": { type: "boolean", nullable: true },
+    "enable-model-namespace": { type: "boolean", nullable: true },
+    "hierarchy-client": { type: "boolean", nullable: true },
+    branded: { type: "boolean", nullable: true },
+    flavor: { type: "string", nullable: true },
+    "module-kind": {
+      type: "string",
+      nullable: true,
+      enum: ["esm", "cjs"],
+      default: "esm"
+    },
+    "compatibility-mode": { type: "boolean", nullable: true },
+    "experimental-extensible-enums": { type: "boolean", nullable: true },
+    "clear-output-folder": { type: "boolean", nullable: true },
+    "ignore-property-name-normalize": { type: "boolean", nullable: true },
+    "ignore-enum-member-name-normalize": { type: "boolean", nullable: true },
+    "compatibility-query-multi-format": { type: "boolean", nullable: true },
+    "typespec-title-map": {
+      type: "object",
+      additionalProperties: {
+        type: "string"
+      },
+      required: [],
+      nullable: true
+    }
   },
   required: []
 };
@@ -221,6 +382,12 @@ const libDef = {
         default: paramMessage`Please note the decimal type will be converted to number. If you strongly care about precision you can use @encode to encode it as a string for the property - ${"propertyName"}.`
       }
     },
+    "use-kebab-case-option": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`The option - ${"camelCaseOption"} is deprecated and please use this kebab-case one - ${"kebabCaseOption"}.`
+      }
+    },
     "unable-serialized-type": {
       severity: "warning",
       messages: {
@@ -279,6 +446,12 @@ const libDef = {
       severity: "warning",
       messages: {
         default: paramMessage`Parameter '${"paramName"}' with type '${"paramType"}' is not supported and we would ignore this parameter.`
+      }
+    },
+    "prefix-adding-in-enum-member": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Enum member name ${"memberName"} is normalized to ${"normalizedName"} with "_" prefix.`
       }
     }
   },

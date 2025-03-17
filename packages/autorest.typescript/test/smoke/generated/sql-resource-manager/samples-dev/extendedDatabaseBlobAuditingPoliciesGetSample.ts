@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets an extended database's blob auditing policy.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets an extended database's blob auditing policy.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ExtendedDatabaseBlobAuditingGet.json
  */
-async function getAnExtendedDatabaseBlobAuditingPolicy() {
+async function getAnExtendedDatabaseBlobAuditingPolicy(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -37,8 +35,8 @@ async function getAnExtendedDatabaseBlobAuditingPolicy() {
   console.log(result);
 }
 
-async function main() {
-  getAnExtendedDatabaseBlobAuditingPolicy();
+async function main(): Promise<void> {
+  await getAnExtendedDatabaseBlobAuditingPolicy();
 }
 
 main().catch(console.error);

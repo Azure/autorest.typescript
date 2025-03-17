@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Description for Get available Web app frameworks and their versions
@@ -20,18 +18,18 @@ dotenv.config();
  * @summary Description for Get available Web app frameworks and their versions
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/GetWebAppStacks.json
  */
-async function getWebAppStacks() {
+async function getWebAppStacks(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential);
   const resArray = new Array();
-  for await (let item of client.provider.listWebAppStacks()) {
+  for await (const item of client.provider.listWebAppStacks()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
 
-async function main() {
-  getWebAppStacks();
+async function main(): Promise<void> {
+  await getWebAppStacks();
 }
 
 main().catch(console.error);

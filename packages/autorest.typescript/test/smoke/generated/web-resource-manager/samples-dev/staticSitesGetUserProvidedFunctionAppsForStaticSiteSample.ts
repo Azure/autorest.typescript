@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Description for Gets the details of the user provided function apps registered with a static site
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Description for Gets the details of the user provided function apps registered with a static site
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/GetUserProvidedFunctionAppsForStaticSite.json
  */
-async function getDetailsOfTheUserProvidedFunctionAppsRegisteredWithAStaticSite() {
+async function getDetailsOfTheUserProvidedFunctionAppsRegisteredWithAStaticSite(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg";
@@ -28,7 +26,7 @@ async function getDetailsOfTheUserProvidedFunctionAppsRegisteredWithAStaticSite(
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.staticSites.listUserProvidedFunctionAppsForStaticSite(
+  for await (const item of client.staticSites.listUserProvidedFunctionAppsForStaticSite(
     resourceGroupName,
     name,
   )) {
@@ -37,8 +35,8 @@ async function getDetailsOfTheUserProvidedFunctionAppsRegisteredWithAStaticSite(
   console.log(resArray);
 }
 
-async function main() {
-  getDetailsOfTheUserProvidedFunctionAppsRegisteredWithAStaticSite();
+async function main(): Promise<void> {
+  await getDetailsOfTheUserProvidedFunctionAppsRegisteredWithAStaticSite();
 }
 
 main().catch(console.error);

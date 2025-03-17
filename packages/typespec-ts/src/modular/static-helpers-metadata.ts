@@ -71,3 +71,23 @@ export const PollingHelpers = {
     location: "pollingHelpers.ts"
   }
 } as const;
+
+export const UrlTemplateHelpers = {
+  parseTemplate: {
+    kind: "function",
+    name: "expandUrlTemplate",
+    location: "urlTemplate.ts"
+  }
+} as const;
+export const MultipartHelpers = {
+  FileContents: {
+    kind: "typeAlias",
+    name: "FileContents",
+    location: "multipartHelpers.ts"
+  },
+  createFilePartDescriptor: {
+    kind: "function",
+    name: "createFilePartDescriptor",
+    location: "multipartHelpers.ts"
+  }
+} as const;

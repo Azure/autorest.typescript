@@ -12,7 +12,7 @@ describe("ARM template", () => {
       using TypeSpec.Versioning;
   
       @armProviderNamespace
-      @service({
+      @service(#{
         title: "App Compliance Automation Tool for Microsoft 365",
       })
       @versioned(Versions)
@@ -68,15 +68,12 @@ describe("ARM template", () => {
   
       op upload is ArmProviderActionAsync<OnboardRequest, OnboardResponse>;
       `;
-    const response = await emitResponsesFromTypeSpec(
-      tspContent,
-      {
-        needAzureCore: false,
-        withRawContent: true,
-        needTCGC: true,
-        withVersionedApiVersion: true,
-      }
-    );
+    const response = await emitResponsesFromTypeSpec(tspContent, {
+      needAzureCore: false,
+      withRawContent: true,
+      needTCGC: true,
+      withVersionedApiVersion: true
+    });
     assert.ok(response);
     await assertEqualContent(
       response!.content,

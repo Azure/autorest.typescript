@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets all subnets in a virtual network.
@@ -20,14 +18,14 @@ dotenv.config();
  * @summary Gets all subnets in a virtual network.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/SubnetList.json
  */
-async function listSubnets() {
+async function listSubnets(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "subnet-test";
   const virtualNetworkName = "vnetname";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.subnets.list(
+  for await (const item of client.subnets.list(
     resourceGroupName,
     virtualNetworkName,
   )) {
@@ -36,8 +34,8 @@ async function listSubnets() {
   console.log(resArray);
 }
 
-async function main() {
-  listSubnets();
+async function main(): Promise<void> {
+  await listSubnets();
 }
 
 main().catch(console.error);

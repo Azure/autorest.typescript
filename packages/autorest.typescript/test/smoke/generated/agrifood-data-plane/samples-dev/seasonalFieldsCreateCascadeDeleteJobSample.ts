@@ -5,9 +5,7 @@ import createAzureAgriFoodPlatformDataPlaneServiceClient, {
   getLongRunningPoller,
 } from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Create a cascade delete job for specified seasonal field.
@@ -15,7 +13,7 @@ dotenv.config();
  * @summary Create a cascade delete job for specified seasonal field.
  * x-ms-original-file: specification/agrifood/data-plane/Microsoft.AgFoodPlatform/preview/2021-03-31-preview/examples/SeasonalFields_CreateCascadeDeleteJob.json
  */
-async function seasonalFieldsCreateCascadeDeleteJob() {
+async function seasonalFieldsCreateCascadeDeleteJob(): Promise<void> {
   const endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
@@ -36,8 +34,8 @@ async function seasonalFieldsCreateCascadeDeleteJob() {
   console.log(result);
 }
 
-async function main() {
-  seasonalFieldsCreateCascadeDeleteJob();
+async function main(): Promise<void> {
+  await seasonalFieldsCreateCascadeDeleteJob();
 }
 
 main().catch(console.error);

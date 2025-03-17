@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Lists all connection monitors for the specified Network Watcher.
@@ -20,14 +18,14 @@ dotenv.config();
  * @summary Lists all connection monitors for the specified Network Watcher.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkWatcherConnectionMonitorList.json
  */
-async function listConnectionMonitors() {
+async function listConnectionMonitors(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkWatcherName = "nw1";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.connectionMonitors.list(
+  for await (const item of client.connectionMonitors.list(
     resourceGroupName,
     networkWatcherName,
   )) {
@@ -36,8 +34,8 @@ async function listConnectionMonitors() {
   console.log(resArray);
 }
 
-async function main() {
-  listConnectionMonitors();
+async function main(): Promise<void> {
+  await listConnectionMonitors();
 }
 
 main().catch(console.error);

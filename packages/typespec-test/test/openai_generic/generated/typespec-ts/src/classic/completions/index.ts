@@ -2,12 +2,14 @@
 // Licensed under the MIT License.
 
 import { OpenAIContext } from "../../api/openAIContext.js";
-import { create } from "../../api/completions/index.js";
+import {
+  create,
+  CompletionsCreateOptionalParams,
+} from "../../api/completions/index.js";
 import {
   CreateCompletionRequest,
   CreateCompletionResponse,
 } from "../../models/models.js";
-import { CompletionsCreateOptionalParams } from "../../api/options.js";
 
 /** Interface representing a Completions operations. */
 export interface CompletionsOperations {
@@ -17,7 +19,7 @@ export interface CompletionsOperations {
   ) => Promise<CreateCompletionResponse>;
 }
 
-export function getCompletions(context: OpenAIContext) {
+function _getCompletions(context: OpenAIContext) {
   return {
     create: (
       body: CreateCompletionRequest,
@@ -26,10 +28,10 @@ export function getCompletions(context: OpenAIContext) {
   };
 }
 
-export function getCompletionsOperations(
+export function _getCompletionsOperations(
   context: OpenAIContext,
 ): CompletionsOperations {
   return {
-    ...getCompletions(context),
+    ..._getCompletions(context),
   };
 }

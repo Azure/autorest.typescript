@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets the list of workload classifiers for a workload group
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets the list of workload classifiers for a workload group
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/GetWorkloadClassifierList.json
  */
-async function getTheListOfWorkloadClassifiersForAWorkloadGroup() {
+async function getTheListOfWorkloadClassifiersForAWorkloadGroup(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -31,7 +29,7 @@ async function getTheListOfWorkloadClassifiersForAWorkloadGroup() {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.workloadClassifiers.listByWorkloadGroup(
+  for await (const item of client.workloadClassifiers.listByWorkloadGroup(
     resourceGroupName,
     serverName,
     databaseName,
@@ -42,8 +40,8 @@ async function getTheListOfWorkloadClassifiersForAWorkloadGroup() {
   console.log(resArray);
 }
 
-async function main() {
-  getTheListOfWorkloadClassifiersForAWorkloadGroup();
+async function main(): Promise<void> {
+  await getTheListOfWorkloadClassifiersForAWorkloadGroup();
 }
 
 main().catch(console.error);

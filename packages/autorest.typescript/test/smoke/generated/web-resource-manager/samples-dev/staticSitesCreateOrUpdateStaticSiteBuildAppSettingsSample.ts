@@ -13,9 +13,7 @@ import {
   WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Description for Creates or updates the app settings of a static site build.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Description for Creates or updates the app settings of a static site build.
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/CreateOrUpdateStaticSiteBuildAppSettings.json
  */
-async function createsOrUpdatesTheFunctionAppSettingsOfAStaticSiteBuild() {
+async function createsOrUpdatesTheFunctionAppSettingsOfAStaticSiteBuild(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg";
@@ -44,8 +42,8 @@ async function createsOrUpdatesTheFunctionAppSettingsOfAStaticSiteBuild() {
   console.log(result);
 }
 
-async function main() {
-  createsOrUpdatesTheFunctionAppSettingsOfAStaticSiteBuild();
+async function main(): Promise<void> {
+  await createsOrUpdatesTheFunctionAppSettingsOfAStaticSiteBuild();
 }
 
 main().catch(console.error);

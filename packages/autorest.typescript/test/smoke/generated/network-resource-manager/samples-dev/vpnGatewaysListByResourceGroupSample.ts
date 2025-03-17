@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Lists all the VpnGateways in a resource group.
@@ -20,13 +18,13 @@ dotenv.config();
  * @summary Lists all the VpnGateways in a resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VpnGatewayListByResourceGroup.json
  */
-async function vpnGatewayListByResourceGroup() {
+async function vpnGatewayListByResourceGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.vpnGateways.listByResourceGroup(
+  for await (const item of client.vpnGateways.listByResourceGroup(
     resourceGroupName,
   )) {
     resArray.push(item);
@@ -34,8 +32,8 @@ async function vpnGatewayListByResourceGroup() {
   console.log(resArray);
 }
 
-async function main() {
-  vpnGatewayListByResourceGroup();
+async function main(): Promise<void> {
+  await vpnGatewayListByResourceGroup();
 }
 
 main().catch(console.error);

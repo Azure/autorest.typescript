@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Lists auditing settings of a server.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Lists auditing settings of a server.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ServerAuditingSettingsList.json
  */
-async function listAuditingSettingsOfAServer() {
+async function listAuditingSettingsOfAServer(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -29,7 +27,7 @@ async function listAuditingSettingsOfAServer() {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.serverBlobAuditingPolicies.listByServer(
+  for await (const item of client.serverBlobAuditingPolicies.listByServer(
     resourceGroupName,
     serverName,
   )) {
@@ -38,8 +36,8 @@ async function listAuditingSettingsOfAServer() {
   console.log(resArray);
 }
 
-async function main() {
-  listAuditingSettingsOfAServer();
+async function main(): Promise<void> {
+  await listAuditingSettingsOfAServer();
 }
 
 main().catch(console.error);

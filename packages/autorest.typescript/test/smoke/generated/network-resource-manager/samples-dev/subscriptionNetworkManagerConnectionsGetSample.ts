@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Get a specified connection created by this subscription.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Get a specified connection created by this subscription.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkManagerConnectionSubscriptionGet.json
  */
-async function getSubscriptionNetworkManagerConnection() {
+async function getSubscriptionNetworkManagerConnection(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const networkManagerConnectionName = "TestNMConnection";
@@ -32,8 +30,8 @@ async function getSubscriptionNetworkManagerConnection() {
   console.log(result);
 }
 
-async function main() {
-  getSubscriptionNetworkManagerConnection();
+async function main(): Promise<void> {
+  await getSubscriptionNetworkManagerConnection();
 }
 
 main().catch(console.error);

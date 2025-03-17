@@ -2,13 +2,16 @@
 // Licensed under the MIT License.
 
 import { DemoServiceContext } from "../../api/demoServiceContext.js";
-import { test4, test3, test2, test1 } from "../../api/a/index.js";
 import {
+  test4,
+  test3,
+  test2,
+  test1,
   ATest4OptionalParams,
   ATest3OptionalParams,
   ATest2OptionalParams,
   ATest1OptionalParams,
-} from "../../api/options.js";
+} from "../../api/a/index.js";
 
 /** Interface representing a A operations. */
 export interface AOperations {
@@ -33,7 +36,7 @@ export interface AOperations {
   ) => Promise<void>;
 }
 
-export function getA(context: DemoServiceContext) {
+function _getA(context: DemoServiceContext) {
   return {
     test4: (
       body: {
@@ -54,8 +57,8 @@ export function getA(context: DemoServiceContext) {
   };
 }
 
-export function getAOperations(context: DemoServiceContext): AOperations {
+export function _getAOperations(context: DemoServiceContext): AOperations {
   return {
-    ...getA(context),
+    ..._getA(context),
   };
 }

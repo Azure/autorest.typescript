@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets a list of all servers in the subscription.
@@ -20,13 +18,13 @@ dotenv.config();
  * @summary Gets a list of all servers in the subscription.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/ServerList.json
  */
-async function listServers() {
+async function listServers(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.servers.list()) {
+  for await (const item of client.servers.list()) {
     resArray.push(item);
   }
   console.log(resArray);
@@ -38,21 +36,21 @@ async function listServers() {
  * @summary Gets a list of all servers in the subscription.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-02-01-preview/examples/ServerListWithExpandEqualsAdministrators.json
  */
-async function listServersWithExpandEqualsAdministrators() {
+async function listServersWithExpandEqualsAdministrators(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.servers.list()) {
+  for await (const item of client.servers.list()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
 
-async function main() {
-  listServers();
-  listServersWithExpandEqualsAdministrators();
+async function main(): Promise<void> {
+  await listServers();
+  await listServersWithExpandEqualsAdministrators();
 }
 
 main().catch(console.error);

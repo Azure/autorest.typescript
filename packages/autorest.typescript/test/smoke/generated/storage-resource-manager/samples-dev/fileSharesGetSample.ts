@@ -13,9 +13,7 @@ import {
   StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets properties of a specified share.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Gets properties of a specified share.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/FileSharesGet_Stats.json
  */
-async function getShareStats() {
+async function getShareStats(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res9871";
   const accountName = "sto6217";
@@ -47,7 +45,7 @@ async function getShareStats() {
  * @summary Gets properties of a specified share.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/FileSharesGet.json
  */
-async function getShares() {
+async function getShares(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res9871";
   const accountName = "sto6217";
@@ -62,9 +60,9 @@ async function getShares() {
   console.log(result);
 }
 
-async function main() {
-  getShareStats();
-  getShares();
+async function main(): Promise<void> {
+  await getShareStats();
+  await getShares();
 }
 
 main().catch(console.error);

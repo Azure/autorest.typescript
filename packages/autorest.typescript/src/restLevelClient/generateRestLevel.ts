@@ -32,7 +32,8 @@ import {
   buildSerializeHelper,
   buildLogger,
   buildSamples,
-  updatePackageFile
+  updatePackageFile,
+  buildSnippets
 } from "@azure-tools/rlc-common";
 import {
   generateFileByBuilder,
@@ -87,6 +88,8 @@ export async function generateRestLevelClient() {
     generateFileByBuilder(project, buildRecordedClientFile, rlcModels);
     // buildSampleTest
     generateFileByBuilder(project, buildSampleTest, rlcModels);
+    // buildSnippets
+    generateFileByBuilder(project, buildSnippets, rlcModels);
   }
 
   // buildResponseTypes

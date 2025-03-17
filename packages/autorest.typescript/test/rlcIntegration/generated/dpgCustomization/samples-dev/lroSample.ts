@@ -4,9 +4,7 @@
 import createDpgCustomizationClient, {
   getLongRunningPoller,
 } from "@msinternal/dpg-customization-rest";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Long running put request that will either return to end users a final payload of a raw body, or a final payload of a model after the SDK has grown up.
@@ -14,7 +12,7 @@ dotenv.config();
  * @summary Long running put request that will either return to end users a final payload of a raw body, or a final payload of a model after the SDK has grown up.
  * x-ms-original-file: /@microsoft.azure/autorest.testserver/swagger/examples/lro.json
  */
-async function dpgLro() {
+async function dpgLro(): Promise<void> {
   const client = createDpgCustomizationClient();
   const mode = "prod";
   const initialResponse = await client
@@ -25,8 +23,8 @@ async function dpgLro() {
   console.log(result);
 }
 
-async function main() {
-  dpgLro();
+async function main(): Promise<void> {
+  await dpgLro();
 }
 
 main().catch(console.error);

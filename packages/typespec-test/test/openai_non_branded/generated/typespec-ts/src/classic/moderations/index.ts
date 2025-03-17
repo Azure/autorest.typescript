@@ -1,12 +1,14 @@
 // Licensed under the MIT License.
 
 import { OpenAIContext } from "../../api/openAIContext.js";
-import { create } from "../../api/moderations/index.js";
+import {
+  create,
+  ModerationsCreateOptionalParams,
+} from "../../api/moderations/index.js";
 import {
   CreateModerationRequest,
   CreateModerationResponse,
 } from "../../models/models.js";
-import { ModerationsCreateOptionalParams } from "../../api/options.js";
 
 /** Interface representing a Moderations operations. */
 export interface ModerationsOperations {
@@ -16,7 +18,7 @@ export interface ModerationsOperations {
   ) => Promise<CreateModerationResponse>;
 }
 
-export function getModerations(context: OpenAIContext) {
+function _getModerations(context: OpenAIContext) {
   return {
     create: (
       content: CreateModerationRequest,
@@ -25,10 +27,10 @@ export function getModerations(context: OpenAIContext) {
   };
 }
 
-export function getModerationsOperations(
+export function _getModerationsOperations(
   context: OpenAIContext,
 ): ModerationsOperations {
   return {
-    ...getModerations(context),
+    ..._getModerations(context),
   };
 }

@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Returns all of the private link service ids that can be linked to a Private Endpoint with auto approved in this subscription in this region.
@@ -20,13 +18,13 @@ dotenv.config();
  * @summary Returns all of the private link service ids that can be linked to a Private Endpoint with auto approved in this subscription in this region.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/AutoApprovedPrivateLinkServicesGet.json
  */
-async function getListOfPrivateLinkServiceIdThatCanBeLinkedToAPrivateEndPointWithAutoApproved() {
+async function getListOfPrivateLinkServiceIdThatCanBeLinkedToAPrivateEndPointWithAutoApproved(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
   const location = "regionName";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.privateLinkServices.listAutoApprovedPrivateLinkServices(
+  for await (const item of client.privateLinkServices.listAutoApprovedPrivateLinkServices(
     location,
   )) {
     resArray.push(item);
@@ -34,8 +32,8 @@ async function getListOfPrivateLinkServiceIdThatCanBeLinkedToAPrivateEndPointWit
   console.log(resArray);
 }
 
-async function main() {
-  getListOfPrivateLinkServiceIdThatCanBeLinkedToAPrivateEndPointWithAutoApproved();
+async function main(): Promise<void> {
+  await getListOfPrivateLinkServiceIdThatCanBeLinkedToAPrivateEndPointWithAutoApproved();
 }
 
 main().catch(console.error);

@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Lists diskRestorePoints under a vmRestorePoint.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Lists diskRestorePoints under a vmRestorePoint.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/ListDiskRestorePointsInVmRestorePoint.json
  */
-async function getAnIncrementalDiskRestorePointResource() {
+async function getAnIncrementalDiskRestorePointResource(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const restorePointCollectionName = "rpc";
@@ -28,7 +26,7 @@ async function getAnIncrementalDiskRestorePointResource() {
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.diskRestorePointOperations.listByRestorePoint(
+  for await (const item of client.diskRestorePointOperations.listByRestorePoint(
     resourceGroupName,
     restorePointCollectionName,
     vmRestorePointName,
@@ -38,8 +36,8 @@ async function getAnIncrementalDiskRestorePointResource() {
   console.log(resArray);
 }
 
-async function main() {
-  getAnIncrementalDiskRestorePointResource();
+async function main(): Promise<void> {
+  await getAnIncrementalDiskRestorePointResource();
 }
 
 main().catch(console.error);

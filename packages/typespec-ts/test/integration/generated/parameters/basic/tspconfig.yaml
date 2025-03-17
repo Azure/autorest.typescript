@@ -2,12 +2,12 @@ emit:
   - "@azure-tools/typespec-ts"
 options:
   "@azure-tools/typespec-ts":
-    "emitter-output-dir": "{project-root}"
-    generateMetadata: true
-    generateTest: false
-    addCredentials: false
-    azureSdkForJs: false
-    enableOperationGroup: true
-    isTypeSpecTest: true
-    packageDetails:
-      name: "@msinternal/parameterBasic"
+    emitter-output-dir: "{project-root}"
+    generate-metadata: true
+    generate-test: false
+    add-credentials: false
+    is-modular-library: false
+    enable-operation-group: true
+    is-typespec-test: true
+    package-details:
+      name: "@unbranded/parameterBasic"

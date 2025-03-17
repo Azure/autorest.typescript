@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { ManagedServiceIdentityClient } from "@msinternal/msi-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Lists all the userAssignedIdentities available under the specified ResourceGroup.
@@ -20,13 +18,13 @@ dotenv.config();
  * @summary Lists all the userAssignedIdentities available under the specified ResourceGroup.
  * x-ms-original-file: specification/msi/resource-manager/Microsoft.ManagedIdentity/stable/2018-11-30/examples/IdentityListByResourceGroup.json
  */
-async function identityListByResourceGroup() {
+async function identityListByResourceGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rgName";
   const credential = new DefaultAzureCredential();
   const client = new ManagedServiceIdentityClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.userAssignedIdentities.listByResourceGroup(
+  for await (const item of client.userAssignedIdentities.listByResourceGroup(
     resourceGroupName,
   )) {
     resArray.push(item);
@@ -34,8 +32,8 @@ async function identityListByResourceGroup() {
   console.log(resArray);
 }
 
-async function main() {
-  identityListByResourceGroup();
+async function main(): Promise<void> {
+  await identityListByResourceGroup();
 }
 
 main().catch(console.error);

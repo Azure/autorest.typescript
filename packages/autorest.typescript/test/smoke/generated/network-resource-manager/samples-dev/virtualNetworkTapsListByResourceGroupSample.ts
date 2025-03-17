@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets all the VirtualNetworkTaps in a subscription.
@@ -20,13 +18,13 @@ dotenv.config();
  * @summary Gets all the VirtualNetworkTaps in a subscription.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkTapList.json
  */
-async function listVirtualNetworkTapsInResourceGroup() {
+async function listVirtualNetworkTapsInResourceGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.virtualNetworkTaps.listByResourceGroup(
+  for await (const item of client.virtualNetworkTaps.listByResourceGroup(
     resourceGroupName,
   )) {
     resArray.push(item);
@@ -34,8 +32,8 @@ async function listVirtualNetworkTapsInResourceGroup() {
   console.log(resArray);
 }
 
-async function main() {
-  listVirtualNetworkTapsInResourceGroup();
+async function main(): Promise<void> {
+  await listVirtualNetworkTapsInResourceGroup();
 }
 
 main().catch(console.error);

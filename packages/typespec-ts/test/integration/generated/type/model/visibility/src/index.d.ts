@@ -1,8 +1,8 @@
-import type { Client } from '@azure-rest/core-client';
-import type { ClientOptions } from '@azure-rest/core-client';
-import type { HttpResponse } from '@azure-rest/core-client';
-import type { RequestParameters } from '@azure-rest/core-client';
-import type { StreamableMethod } from '@azure-rest/core-client';
+import type { Client } from '@typespec/ts-http-runtime';
+import type { ClientOptions } from '@typespec/ts-http-runtime';
+import type { HttpResponse } from '@typespec/ts-http-runtime';
+import type { RequestParameters } from '@typespec/ts-http-runtime';
+import type { StreamableMethod } from '@typespec/ts-http-runtime';
 
 declare function createClient(options?: VisibilityClientOptions): VisibilityClient;
 export default createClient;
@@ -117,6 +117,7 @@ export declare interface VisibilityModel {
     createProp: string[];
     updateProp: number[];
     deleteProp: boolean;
+    noneProp: "none";
 }
 
 export declare interface VisibilityModelOutput {
@@ -125,6 +126,7 @@ export declare interface VisibilityModelOutput {
     createProp: string[];
     updateProp: number[];
     deleteProp: boolean;
+    noneProp: "none";
 }
 
 export { }

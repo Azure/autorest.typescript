@@ -29,7 +29,11 @@ export type AudioTranscriptionFormat = "json" | "verbose_json" | "text" | "srt" 
 
 // @public
 export interface AudioTranscriptionOptions {
-    file: Uint8Array;
+    file: FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    };
     filename?: string;
     language?: string;
     model?: string;
@@ -77,7 +81,11 @@ export type AudioTranslationFormat = "json" | "verbose_json" | "text" | "srt" | 
 
 // @public
 export interface AudioTranslationOptions {
-    file: Uint8Array;
+    file: FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    };
     filename?: string;
     model?: string;
     prompt?: string;
@@ -706,6 +714,9 @@ export interface EmbeddingsUsage {
 }
 
 // @public
+export type FileContents = string | NodeJS.ReadableStream | ReadableStream<Uint8Array> | Uint8Array | Blob;
+
+// @public
 export interface FunctionCall {
     arguments: string;
     name: string;
@@ -823,13 +834,13 @@ export type ImageSize = "256x256" | "512x512" | "1024x1024" | "1792x1024" | "102
 // @public
 export enum KnownServiceApiVersions {
     // (undocumented)
-    v2022_12_01 = "2022-12-01",
+    V20221201 = "2022-12-01",
     // (undocumented)
-    v2023_05_15 = "2023-05-15",
+    V20230515 = "2023-05-15",
     // (undocumented)
-    v2024_02_01 = "2024-02-01",
+    V20240201 = "2024-02-01",
     // (undocumented)
-    v2024_06_01 = "2024-06-01"
+    V20240601 = "2024-06-01"
 }
 
 // @public

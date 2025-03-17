@@ -27,7 +27,7 @@ describe("#transformSchemas", () => {
         type: "string",
         description: undefined,
         required: true,
-        usage: ["input", "output"]
+        usage: ["output", "input"]
       } as any);
     });
 
@@ -39,7 +39,7 @@ describe("#transformSchemas", () => {
         format: "int32",
         description: undefined,
         required: true,
-        usage: ["input", "output"]
+        usage: ["output", "input"]
       } as any);
     });
 
@@ -69,7 +69,7 @@ describe("#transformSchemas", () => {
         },
         description: undefined,
         typeName: "string[]",
-        usage: ["input", "output"],
+        usage: ["output", "input"],
         required: true
       } as any);
     });
@@ -86,7 +86,7 @@ describe("#transformSchemas", () => {
         },
         description: undefined,
         typeName: `"sss"[]`,
-        usage: ["input", "output"],
+        usage: ["output", "input"],
         required: true
       } as any);
     });
@@ -106,7 +106,7 @@ describe("#transformSchemas", () => {
         },
         description: undefined,
         typeName: "Record<string, undefined>",
-        usage: ["input", "output"],
+        usage: ["output", "input"],
         required: true
       } as any);
     });
@@ -175,7 +175,7 @@ describe("#transformSchemas", () => {
             alias: '"English" | "Chinese"',
             outputAlias: '"English" | "Chinese"',
             required: true,
-            usage: ["input", "output"],
+            usage: ["output", "input"],
             description: undefined,
             enum: [
               {
@@ -231,7 +231,7 @@ describe("#transformSchemas", () => {
             alias: '"English" | "Chinese" | OtherValues',
             outputAlias: '"English" | "Chinese" | OtherValuesOutput',
             required: true,
-            usage: ["input", "output"],
+            usage: ["output", "input"],
             description: undefined,
             enum: [
               {
@@ -285,7 +285,7 @@ describe("#transformSchemas", () => {
             typeName: '"a" | "test"',
             outputTypeName: '"a" | "test"',
             required: true,
-            usage: ["input", "output"],
+            usage: ["output", "input"],
             description: undefined
           } as any);
         });
@@ -316,7 +316,7 @@ describe("#transformSchemas", () => {
             typeName: "string | number | boolean | Date | string",
             outputTypeName: "string | number | boolean | string",
             required: true,
-            usage: ["input", "output"],
+            usage: ["output", "input"],
             description: undefined
           } as any);
         });
@@ -374,7 +374,7 @@ describe("#transformSchemas", () => {
           alias: '"English" | "Chinese"',
           outputAlias: '"English" | "Chinese"',
           required: true,
-          usage: ["input", "output"]
+          usage: ["output", "input"]
         } as any);
       });
 
@@ -408,7 +408,7 @@ describe("#transformSchemas", () => {
           description: undefined,
           isConstant: true,
           required: true,
-          usage: ["input", "output"]
+          usage: ["output", "input"]
         } as any);
       });
     });
@@ -451,14 +451,7 @@ describe("#transformSchemas", () => {
             fromCore: false,
             isMultipartBody: false,
             typeName: "A",
-            properties: {
-              '"foo"': {
-                description: undefined,
-                required: true,
-                type: "string",
-                usage: ["input", "output"]
-              }
-            },
+            properties: {},
             outputTypeName: "AOutput",
             usage: ["input", "output"]
           },
@@ -469,20 +462,13 @@ describe("#transformSchemas", () => {
             fromCore: false,
             isMultipartBody: false,
             typeName: "B",
-            properties: {
-              '"bar"': {
-                description: undefined,
-                required: true,
-                type: "string",
-                usage: ["input", "output"]
-              }
-            },
+            properties: {},
             outputTypeName: "BOutput",
             usage: ["input", "output"]
           }
         ],
         required: true,
-        usage: ["input", "output"]
+        usage: ["output", "input"]
       } as any);
     });
 
@@ -525,7 +511,7 @@ describe("#transformSchemas", () => {
           usage: ["input", "output"]
         },
         required: true,
-        usage: ["input", "output"]
+        usage: ["output", "input"]
       } as any);
     });
 
@@ -542,7 +528,7 @@ describe("#transformSchemas", () => {
         @get
         op getModel(@body input: Test): Test;
       `,
-        {needAzureCore: true}
+        { needAzureCore: true }
       );
       assert.isNotNull(schemaOutput);
       const first = schemaOutput?.[0] as ObjectSchema;
@@ -568,7 +554,7 @@ describe("#transformSchemas", () => {
           usage: ["input", "output"]
         },
         required: true,
-        usage: ["input", "output"]
+        usage: ["output", "input"]
       } as any);
     });
 
@@ -611,14 +597,7 @@ describe("#transformSchemas", () => {
               fromCore: false,
               isMultipartBody: false,
               typeName: "A",
-              properties: {
-                '"foo"': {
-                  type: "string",
-                  description: undefined,
-                  required: true,
-                  usage: ["input", "output"]
-                }
-              },
+              properties: {},
               outputTypeName: "AOutput",
               usage: ["input", "output"]
             },
@@ -629,14 +608,7 @@ describe("#transformSchemas", () => {
               fromCore: false,
               isMultipartBody: false,
               typeName: "B",
-              properties: {
-                '"baz"': {
-                  type: "string",
-                  description: undefined,
-                  required: true,
-                  usage: ["input", "output"]
-                }
-              },
+              properties: {},
               outputTypeName: "BOutput",
               usage: ["input", "output"]
             }
@@ -646,7 +618,7 @@ describe("#transformSchemas", () => {
           outputTypeName: "AOutput | BOutput"
         },
         required: true,
-        usage: ["input", "output"]
+        usage: ["output", "input"]
       } as any);
     });
   });
@@ -664,7 +636,7 @@ describe("#transformSchemas", () => {
         typeName: "Record<string, unknown>",
         outputTypeName: "Record<string, any>",
         properties: {},
-        usage: ["input", "output"],
+        usage: ["output", "input"],
         required: true
       } as any);
     });
@@ -692,16 +664,16 @@ describe("#transformSchemas", () => {
             type: "string",
             description: "Description for name",
             required: true,
-            usage: ["input", "output"]
+            usage: ["output", "input"]
           },
           '"arguments"': {
             type: "string",
             description: "Description for arguments",
             required: true,
-            usage: ["input", "output"]
+            usage: ["output", "input"]
           }
         },
-        usage: ["input", "output"],
+        usage: ["output", "input"],
         required: true
       } as any);
     });
@@ -730,7 +702,7 @@ describe("#transformSchemas", () => {
             typeName: '{"foo": {"bar": string;};}',
             outputTypeName: '{"foo": {"bar": string;};}',
             required: true,
-            usage: ["input", "output"],
+            usage: ["output", "input"],
             properties: {
               '"foo"': {
                 name: "",
@@ -741,20 +713,20 @@ describe("#transformSchemas", () => {
                 typeName: '{"bar": string;}',
                 outputTypeName: '{"bar": string;}',
                 required: true,
-                usage: ["input", "output"],
+                usage: ["output", "input"],
                 properties: {
                   '"bar"': {
                     type: "string",
                     description: undefined,
                     required: true,
-                    usage: ["input", "output"]
+                    usage: ["output", "input"]
                   }
                 }
               }
             }
           }
         },
-        usage: ["input", "output"],
+        usage: ["output", "input"],
         required: true
       } as any);
     });
@@ -783,11 +755,11 @@ describe("#transformSchemas", () => {
             typeName: "Test",
             outputTypeName: "TestOutput",
             properties: {},
-            usage: ["input", "output"],
+            usage: ["output", "input"],
             required: true
           }
         },
-        usage: ["input", "output"],
+        usage: ["output", "input"],
         required: true
       } as any);
     });
@@ -804,7 +776,7 @@ describe("#transformSchemas", () => {
         description: undefined,
         typeName: '{"name": string;}[]',
         outputTypeName: '{"name": string;}[]',
-        usage: ["input", "output"],
+        usage: ["output", "input"],
         required: true,
         items: {
           name: "",
@@ -819,7 +791,7 @@ describe("#transformSchemas", () => {
               type: "string",
               description: "Description for name",
               required: true,
-              usage: ["input", "output"]
+              usage: ["output", "input"]
             }
           },
           usage: ["input", "output"]
@@ -841,7 +813,7 @@ describe("#transformSchemas", () => {
         valueTypeName: "",
         outputTypeName: 'Record<string, {"name": string;}>',
         outputValueTypeName: '{"name": string;}',
-        usage: ["input", "output"],
+        usage: ["output", "input"],
         required: true,
         additionalProperties: {
           name: "",
@@ -856,7 +828,7 @@ describe("#transformSchemas", () => {
               type: "string",
               description: "Description for name",
               required: true,
-              usage: ["input", "output"]
+              usage: ["output", "input"]
             }
           },
           usage: ["input", "output"]
@@ -876,7 +848,7 @@ describe("#transformSchemas", () => {
         typeName: '{"name": string;} | null',
         outputTypeName: '{"name": string;} | null',
         required: true,
-        usage: ["input", "output"],
+        usage: ["output", "input"],
         description: undefined,
         enum: [
           {
@@ -892,7 +864,7 @@ describe("#transformSchemas", () => {
                 type: "string",
                 description: "Description for name",
                 required: true,
-                usage: ["input", "output"]
+                usage: ["output", "input"]
               }
             },
             usage: ["input", "output"]

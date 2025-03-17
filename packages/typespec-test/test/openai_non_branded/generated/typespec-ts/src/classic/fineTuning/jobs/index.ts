@@ -7,6 +7,11 @@ import {
   retrieve,
   list,
   create,
+  FineTuningJobsCancelOptionalParams,
+  FineTuningJobsListEventsOptionalParams,
+  FineTuningJobsRetrieveOptionalParams,
+  FineTuningJobsListOptionalParams,
+  FineTuningJobsCreateOptionalParams,
 } from "../../../api/fineTuning/jobs/index.js";
 import {
   CreateFineTuningJobRequest,
@@ -14,13 +19,6 @@ import {
   ListPaginatedFineTuningJobsResponse,
   ListFineTuningJobEventsResponse,
 } from "../../../models/models.js";
-import {
-  FineTuningJobsCancelOptionalParams,
-  FineTuningJobsListEventsOptionalParams,
-  FineTuningJobsRetrieveOptionalParams,
-  FineTuningJobsListOptionalParams,
-  FineTuningJobsCreateOptionalParams,
-} from "../../../api/options.js";
 
 /** Interface representing a FineTuningJobs operations. */
 export interface FineTuningJobsOperations {
@@ -53,7 +51,7 @@ export interface FineTuningJobsOperations {
   ) => Promise<FineTuningJob>;
 }
 
-export function getFineTuningJobs(context: OpenAIContext) {
+function _getFineTuningJobs(context: OpenAIContext) {
   return {
     cancel: (
       fineTuningJobId: string,
@@ -76,10 +74,10 @@ export function getFineTuningJobs(context: OpenAIContext) {
   };
 }
 
-export function getFineTuningJobsOperations(
+export function _getFineTuningJobsOperations(
   context: OpenAIContext,
 ): FineTuningJobsOperations {
   return {
-    ...getFineTuningJobs(context),
+    ..._getFineTuningJobs(context),
   };
 }

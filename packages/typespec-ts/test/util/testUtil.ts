@@ -22,9 +22,11 @@ import { loadStaticHelpers } from "../../src/framework/load-static-helpers.js";
 import path from "path";
 import { getDirname } from "../../src/utils/dirname.js";
 import {
+  MultipartHelpers,
   PagingHelpers,
   PollingHelpers,
-  SerializationHelpers
+  SerializationHelpers,
+  UrlTemplateHelpers
 } from "../../src/modular/static-helpers-metadata.js";
 import {
   AzureCoreDependencies,
@@ -80,7 +82,7 @@ export async function rlcEmitterFor(
   const namespace = `
   #suppress "@azure-tools/typespec-azure-core/auth-required" "for test"
   ${withVersionedApiVersion ? "@versioned(Versions)" : ""}
-  @service({
+  @service(#{
     title: "Azure TypeScript Testing"
   })
 
@@ -95,10 +97,11 @@ import "@typespec/rest";
 import "@typespec/versioning";
 ${needTCGC ? 'import "@azure-tools/typespec-client-generator-core";' : ""} 
 ${needAzureCore ? 'import "@azure-tools/typespec-azure-core";' : ""} 
-${needArmTemplate
-      ? 'import "@azure-tools/typespec-azure-resource-manager";'
-      : ""
-    }
+${
+  needArmTemplate
+    ? 'import "@azure-tools/typespec-azure-resource-manager";'
+    : ""
+}
 
 using TypeSpec.Rest; 
 using TypeSpec.Http;
@@ -107,10 +110,11 @@ ${needTCGC ? "using Azure.ClientGenerator.Core;" : ""}
 ${needAzureCore ? "using Azure.Core;" : ""}
 ${needNamespaces ? namespace : ""}
 ${needArmTemplate ? "using Azure.ResourceManager;" : ""}
-${withVersionedApiVersion && needNamespaces
-      ? 'enum Versions { v2022_05_15_preview: "2022-05-15-preview"}'
-      : ""
-    }
+${
+  withVersionedApiVersion && needNamespaces
+    ? 'enum Versions { v2022_05_15_preview: "2022-05-15-preview"}'
+    : ""
+}
 ${code}
 `;
   host.addTypeSpecFile("main.tsp", content);
@@ -168,7 +172,7 @@ using Azure.ResourceManager;`;
 function serviceStatement() {
   return `
   @versioned(Azure.TypeScript.Testing.Versions)
-  @service({
+  @service(#{
     title: "Azure TypeScript Testing",
   })
 
@@ -204,7 +208,6 @@ export async function createDpgContextTestHelper(
       enableModelNamespace,
       ...configs
     },
-    generationPathDetail: {},
     emitterName: "@azure-tools/typespec-ts",
     originalProgram: program
   } as SdkContext;
@@ -263,7 +266,9 @@ export async function provideBinderWithAzureDependencies(project: Project) {
   const staticHelpers = {
     ...SerializationHelpers,
     ...PagingHelpers,
-    ...PollingHelpers
+    ...PollingHelpers,
+    ...UrlTemplateHelpers,
+    ...MultipartHelpers
   };
 
   const staticHelperMap = await loadStaticHelpers(project, staticHelpers, {

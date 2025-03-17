@@ -1,6 +1,6 @@
-import { ClientOptions } from '@azure-rest/core-client';
-import { OperationOptions } from '@azure-rest/core-client';
-import { Pipeline } from '@azure/core-rest-pipeline';
+import { ClientOptions } from '@typespec/ts-http-runtime';
+import { OperationOptions } from '@typespec/ts-http-runtime';
+import { Pipeline } from '@typespec/ts-http-runtime';
 
 export declare interface Cat {
     name: string;
@@ -56,7 +56,7 @@ export declare interface IntsOnlySendOptionalParams extends OperationOptions {
 
 export declare enum KnownStringExtensibleNamedUnion {
     OptionB = "b",
-    c = "c"
+    C = "c"
 }
 
 export declare interface MixedLiteralsCases {

@@ -5,11 +5,9 @@ import { WidgetManagerContext } from "../../api/widgetManagerContext.js";
 import {
   getAvatarAsJpeg,
   getAvatarAsPng,
-} from "../../api/fooOperations/index.js";
-import {
   FooOperationsGetAvatarAsJpegOptionalParams,
   FooOperationsGetAvatarAsPngOptionalParams,
-} from "../../api/options.js";
+} from "../../api/fooOperations/index.js";
 
 /** Interface representing a FooOperations operations. */
 export interface FooOperationsOperations {
@@ -25,7 +23,7 @@ export interface FooOperationsOperations {
   ) => Promise<void>;
 }
 
-export function getFooOperations(context: WidgetManagerContext) {
+function _getFooOperations(context: WidgetManagerContext) {
   return {
     getAvatarAsJpeg: (
       image: Uint8Array,
@@ -38,10 +36,10 @@ export function getFooOperations(context: WidgetManagerContext) {
   };
 }
 
-export function getFooOperationsOperations(
+export function _getFooOperationsOperations(
   context: WidgetManagerContext,
 ): FooOperationsOperations {
   return {
-    ...getFooOperations(context),
+    ..._getFooOperations(context),
   };
 }

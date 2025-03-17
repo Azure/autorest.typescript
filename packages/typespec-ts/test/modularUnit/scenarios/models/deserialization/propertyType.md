@@ -1,4 +1,5 @@
 # Should generate deserializer for property types
+
 Will prompt all operations into top-level.
 
 ## TypeSpec
@@ -32,6 +33,7 @@ model SimpleModel {
   propStringArrayOptional?: string[];
   propSimpleUnionArrayOptional?: (string | boolean | int32)[];
   propRecordOfString: Record<string>;
+  propRecordOfDate: Record<utcDateTime>;
   propRecordOfBoolean: Record<boolean>;
   propRecordOfNumber: Record<int32>;
   propRecordOfSimpleUnion: Record<string | boolean | int32>;
@@ -56,7 +58,7 @@ interface D {
 This is the tspconfig.yaml.
 
 ```yaml
-experimentalExtensibleEnums: true
+experimental-extensible-enums: true
 ```
 
 ## Provide generated models and its serializer
@@ -91,6 +93,7 @@ export interface SimpleModel {
   propStringArrayOptional?: string[];
   propSimpleUnionArrayOptional?: (string | boolean | number)[];
   propRecordOfString: Record<string, string>;
+  propRecordOfDate: Record<string, Date>;
   propRecordOfBoolean: Record<string, boolean>;
   propRecordOfNumber: Record<string, number>;
   propRecordOfSimpleUnion: Record<string, string | boolean | number>;
@@ -165,6 +168,7 @@ export function simpleModelDeserializer(item: any): SimpleModel {
           item["propSimpleUnionArrayOptional"],
         ),
     propRecordOfString: item["propRecordOfString"],
+    propRecordOfDate: item["propRecordOfDate"],
     propRecordOfBoolean: item["propRecordOfBoolean"],
     propRecordOfNumber: item["propRecordOfNumber"],
     propRecordOfSimpleUnion:

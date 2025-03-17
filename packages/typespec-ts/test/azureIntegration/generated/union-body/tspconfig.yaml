@@ -1,0 +1,15 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    emitter-output-dir: "{project-root}"
+    generate-test: true
+    add-credentials: false
+    flavor: azure
+    azure-sdk-for-js: false
+    is-typespec-test: true
+    generate-sample: true
+    title: UnionBodyClient
+    package-details:
+      name: "@msinternal/union-body"
+      description: "Union Body Test Service"

@@ -5,16 +5,14 @@ import { DefaultAzureCredential } from "@azure/identity";
 import createAzureLoadTestingClient, {
   paginate,
 } from "@azure-rest/load-testing";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to call operation ListMetricDimensionValues
  *
  * @summary call operation ListMetricDimensionValues
  */
-async function loadTestRunListMetricDimensionValuesSample() {
+async function loadTestRunListMetricDimensionValuesSample(): Promise<void> {
   const endpointParam = "{Your endpointParam}";
   const credential = new DefaultAzureCredential();
   const client = createAzureLoadTestingClient(endpointParam, credential);
@@ -42,8 +40,8 @@ async function loadTestRunListMetricDimensionValuesSample() {
   console.log(result);
 }
 
-async function main() {
-  loadTestRunListMetricDimensionValuesSample();
+async function main(): Promise<void> {
+  await loadTestRunListMetricDimensionValuesSample();
 }
 
 main().catch(console.error);
