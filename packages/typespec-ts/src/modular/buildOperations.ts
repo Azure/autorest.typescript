@@ -54,17 +54,18 @@ export function buildOperationFiles(
     const operationFileName =
       prefixes.length > 0 && prefixKey !== ""
         ? `${prefixes
-          .map((hierarchy) => {
-            return normalizeName(hierarchy, NameType.File);
-          })
-          .join("/")}/operations`
+            .map((hierarchy) => {
+              return normalizeName(hierarchy, NameType.File);
+            })
+            .join("/")}/operations`
         : // When the program has no operation groups defined all operations are put
-        // into a nameless operation group. We'll call this operations.
-        "operations";
+          // into a nameless operation group. We'll call this operations.
+          "operations";
 
     const srcPath = emitterOptions.modularOptions.sourceRoot;
-    const filepath = `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""
-      }api/${operationFileName}.ts`;
+    const filepath = `${srcPath}/${
+      subfolder && subfolder !== "" ? subfolder + "/" : ""
+    }api/${operationFileName}.ts`;
 
     const operationGroupFile =
       emitterOptions.project.createSourceFile(filepath);
@@ -136,7 +137,8 @@ export function importDeserializeUtils(
     return i.getModuleSpecifierValue().endsWith(`utils/${serializeType}.js`);
   });
   const modelsFile = project.getSourceFile(
-    `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""
+    `${srcPath}/${
+      subfolder && subfolder !== "" ? subfolder + "/" : ""
     }utils/${serializeType}Util.ts`
   );
   const deserializeUtil: string[] = [];
@@ -232,13 +234,13 @@ export function buildLroDeserDetailMap(
     const operationFileName =
       prefixes.length > 0 && prefixKey !== ""
         ? `${prefixes
-          .map((hierarchy) => {
-            return normalizeName(hierarchy, NameType.File);
-          })
-          .join("/")}/operations`
+            .map((hierarchy) => {
+              return normalizeName(hierarchy, NameType.File);
+            })
+            .join("/")}/operations`
         : // When the program has no operation groups defined all operations are put
-        // into a nameless operation group. We'll call this operations.
-        "operations";
+          // into a nameless operation group. We'll call this operations.
+          "operations";
     map.set(
       `./api/${operationFileName}.js`,
       lroOperations.map((o) => {
