@@ -269,7 +269,7 @@ export declare interface RequestBodyBase64204Response extends HttpResponse {
 }
 
 export declare interface RequestBodyBase64BodyParam {
-    body: string;
+    body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream;
 }
 
 export declare type RequestBodyBase64Parameters = RequestBodyBase64BodyParam & RequestParameters;
@@ -283,7 +283,7 @@ export declare interface RequestBodyBase64Url204Response extends HttpResponse {
 }
 
 export declare interface RequestBodyBase64UrlBodyParam {
-    body: string;
+    body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream;
 }
 
 export declare type RequestBodyBase64UrlParameters = RequestBodyBase64UrlBodyParam & RequestParameters;
@@ -315,7 +315,7 @@ export declare interface RequestBodyDefault204Response extends HttpResponse {
 }
 
 export declare interface RequestBodyDefaultBodyParam {
-    body: string;
+    body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream;
 }
 
 export declare type RequestBodyDefaultParameters = RequestBodyDefaultBodyParam & RequestParameters;
@@ -344,7 +344,7 @@ export declare interface ResponseBodyBase64 {
 
 export declare interface ResponseBodyBase64200Response extends HttpResponse {
     status: "200";
-    body: string;
+    body: Uint8Array;
 }
 
 export declare type ResponseBodyBase64Parameters = RequestParameters;
@@ -382,7 +382,7 @@ export declare interface ResponseBodyDefault {
 
 export declare interface ResponseBodyDefault200Response extends HttpResponse {
     status: "200";
-    body: string;
+    body: Uint8Array;
 }
 
 export declare type ResponseBodyDefaultParameters = RequestParameters;

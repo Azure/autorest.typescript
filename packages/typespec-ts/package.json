@@ -39,7 +39,7 @@
     "start-test-server:azure-rlc": "mkdirp -p coverage && npx tsp-spector serve ./node_modules/@azure-tools/azure-http-specs/specs ./node_modules/@typespec/http-specs/specs --coverageFile ./coverage/spector-coverage-typescript-rlc-azure.json",
     "start-test-server:modular": "mkdirp -p coverage && npx tsp-spector serve ./node_modules/@typespec/http-specs/specs --port 3002  --coverageFile ./coverage/spector-coverage-typescript-modular-standard.json",
     "start-test-server:azure-modular": "mkdirp -p coverage && npx tsp-spector serve ./node_modules/@azure-tools/azure-http-specs/specs ./node_modules/@typespec/http-specs/specs --port 3002  --coverageFile ./coverage/spector-coverage-typescript-modular-azure.json",
-    "copy:typespec": "rm -rf temp && mkdirp -p temp/specs && cp -r ./node_modules/@typespec/http-specs/specs/* ./temp/specs && cp -r ./node_modules/@azure-tools/azure-http-specs/specs/* ./temp/specs && cp -r ./test/integration/typespec/* ./temp/specs",
+    "copy:typespec": "rm -rf temp && mkdirp -p temp/specs && mkdirp -p temp/assets && cp -r ./node_modules/@typespec/http-specs/specs/* ./temp/specs && cp -r ./node_modules/@azure-tools/azure-http-specs/specs/* ./temp/specs && cp -r ./test/integration/typespec/* ./temp/specs && cp -r ./node_modules/@typespec/http-specs/assets/* ./temp/assets",
     "generate-and-run:rlc": "npm run generate-tsp-only:rlc && npm run integration-test:alone:rlc && npm run stop-test-server -- -p 3000",
     "generate-and-run:azure-rlc": "npm run generate-tsp-only:azure-rlc && npm run integration-test:alone:azure-rlc && npm run stop-test-server -- -p 3000",
     "generate-and-run:modular": "npm run generate-tsp-only:modular && npm run integration-test:alone:modular && npm run stop-test-server -- -p 3002",

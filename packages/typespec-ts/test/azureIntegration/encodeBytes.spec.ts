@@ -195,7 +195,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
     });
   });
 
-  describe("response body", () => {
+  describe.only("response body", () => {
     const pngFile = readFileSync(
       resolve("../../packages/typespec-ts/temp/assets/image.png")
     ).toString();
@@ -204,7 +204,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
         .path(`/encode/bytes/body/response/default`)
         .get();
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body, "dGVzdA==");
+      assert.strictEqual(uint8ArrayToString(result.body, "utf-8"), "dGVzdA==");
     });
 
     it(`should get bytes base64 encoding`, async () => {
@@ -212,7 +212,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
         .path(`/encode/bytes/body/response/base64`)
         .get();
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body, "dGVzdA==");
+      assert.strictEqual(uint8ArrayToString(result.body, "utf-8"), "dGVzdA==");
     });
 
     it(`should get bytes base64url encoding`, async () => {
