@@ -9,9 +9,9 @@ import {
 } from "./api/dataProducts/operations.js";
 import {
   _deleteDataDeserialize,
-  _$deleteDeserialize as _deleteDeserializeDataTypes,
-  _updateDeserialize as _updateDeserializeDataTypes,
-  _createDeserialize as _createDeserializeDataTypes,
+  _$deleteDeserialize as _$deleteDeserializeDataTypesOperations,
+  _updateDeserialize as _updateDeserializeDataTypesOperations,
+  _createDeserialize as _createDeserializeDataTypesOperations,
 } from "./api/dataTypes/operations.js";
 import { getLongRunningPoller } from "./static-helpers/pollingHelpers.js";
 import {
@@ -107,17 +107,17 @@ const deserializeMap: Record<string, DeserializationHelper> = {
     },
   "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}":
     {
-      deserializer: _deleteDeserializeDataTypes,
+      deserializer: _$deleteDeserializeDataTypesOperations,
       expectedStatuses: ["202", "204", "200"],
     },
   "PATCH /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}":
     {
-      deserializer: _updateDeserializeDataTypes,
+      deserializer: _updateDeserializeDataTypesOperations,
       expectedStatuses: ["200", "202"],
     },
   "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}":
     {
-      deserializer: _createDeserializeDataTypes,
+      deserializer: _createDeserializeDataTypesOperations,
       expectedStatuses: ["200", "201"],
     },
 };

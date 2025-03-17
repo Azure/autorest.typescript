@@ -3,7 +3,7 @@
 
 import { WidgetServiceClient } from "./widgetServiceClient.js";
 import { _createOrReplaceDeserialize } from "./api/budgets/operations.js";
-import { _createOrReplaceDeserialize as _createOrReplaceDeserializeWidgets } from "./api/widgets/operations.js";
+import { _createOrReplaceDeserialize as _createOrReplaceDeserializeWidgetsOperations } from "./api/widgets/operations.js";
 import { getLongRunningPoller } from "./static-helpers/pollingHelpers.js";
 import {
   OperationOptions,
@@ -87,7 +87,7 @@ const deserializeMap: Record<string, DeserializationHelper> = {
     expectedStatuses: ["201", "200"],
   },
   "PUT /widgets/widgets/createOrReplace/users/{name}": {
-    deserializer: _createOrReplaceDeserializeWidgets,
+    deserializer: _createOrReplaceDeserializeWidgetsOperations,
     expectedStatuses: ["201", "200"],
   },
 };
