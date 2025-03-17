@@ -39,7 +39,7 @@ import {
   SAPApplicationServerInstancesGetOptionalParams,
 } from "./options.js";
 
-export function _sAPApplicationServerInstancesStopSend(
+export function _sapApplicationServerInstancesStopSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -76,7 +76,7 @@ export function _sAPApplicationServerInstancesStopSend(
     });
 }
 
-export async function _sAPApplicationServerInstancesStopDeserialize(
+export async function _sapApplicationServerInstancesStopDeserialize(
   result: PathUncheckedResponse,
 ): Promise<OperationStatusResult> {
   const expectedStatuses = ["202", "200"];
@@ -90,7 +90,7 @@ export async function _sAPApplicationServerInstancesStopDeserialize(
 }
 
 /** Stops the SAP Application Server Instance. */
-export function sAPApplicationServerInstancesStop(
+export function sapApplicationServerInstancesStop(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -101,13 +101,13 @@ export function sAPApplicationServerInstancesStop(
 ): PollerLike<OperationState<OperationStatusResult>, OperationStatusResult> {
   return getLongRunningPoller(
     context,
-    _sAPApplicationServerInstancesStopDeserialize,
+    _sapApplicationServerInstancesStopDeserialize,
     ["202", "200"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
       getInitialResponse: () =>
-        _sAPApplicationServerInstancesStopSend(
+        _sapApplicationServerInstancesStopSend(
           context,
           resourceGroupName,
           sapVirtualInstanceName,
@@ -119,7 +119,7 @@ export function sAPApplicationServerInstancesStop(
   ) as PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
 }
 
-export function _sAPApplicationServerInstancesStartSend(
+export function _sapApplicationServerInstancesStartSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -156,7 +156,7 @@ export function _sAPApplicationServerInstancesStartSend(
     });
 }
 
-export async function _sAPApplicationServerInstancesStartDeserialize(
+export async function _sapApplicationServerInstancesStartDeserialize(
   result: PathUncheckedResponse,
 ): Promise<OperationStatusResult> {
   const expectedStatuses = ["202", "200"];
@@ -170,7 +170,7 @@ export async function _sAPApplicationServerInstancesStartDeserialize(
 }
 
 /** Starts the SAP Application Server Instance. */
-export function sAPApplicationServerInstancesStart(
+export function sapApplicationServerInstancesStart(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -181,13 +181,13 @@ export function sAPApplicationServerInstancesStart(
 ): PollerLike<OperationState<OperationStatusResult>, OperationStatusResult> {
   return getLongRunningPoller(
     context,
-    _sAPApplicationServerInstancesStartDeserialize,
+    _sapApplicationServerInstancesStartDeserialize,
     ["202", "200"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
       getInitialResponse: () =>
-        _sAPApplicationServerInstancesStartSend(
+        _sapApplicationServerInstancesStartSend(
           context,
           resourceGroupName,
           sapVirtualInstanceName,
@@ -199,7 +199,7 @@ export function sAPApplicationServerInstancesStart(
   ) as PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
 }
 
-export function _sAPApplicationServerInstancesListSend(
+export function _sapApplicationServerInstancesListSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -230,7 +230,7 @@ export function _sAPApplicationServerInstancesListSend(
     });
 }
 
-export async function _sAPApplicationServerInstancesListDeserialize(
+export async function _sapApplicationServerInstancesListDeserialize(
   result: PathUncheckedResponse,
 ): Promise<_SAPApplicationServerInstanceListResult> {
   const expectedStatuses = ["200"];
@@ -244,7 +244,7 @@ export async function _sAPApplicationServerInstancesListDeserialize(
 }
 
 /** Lists the SAP Application Server Instance resources for a given Virtual Instance for SAP solutions resource. */
-export function sAPApplicationServerInstancesList(
+export function sapApplicationServerInstancesList(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -255,19 +255,19 @@ export function sAPApplicationServerInstancesList(
   return buildPagedAsyncIterator(
     context,
     () =>
-      _sAPApplicationServerInstancesListSend(
+      _sapApplicationServerInstancesListSend(
         context,
         resourceGroupName,
         sapVirtualInstanceName,
         options,
       ),
-    _sAPApplicationServerInstancesListDeserialize,
+    _sapApplicationServerInstancesListDeserialize,
     ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }
 
-export function _sAPApplicationServerInstancesDeleteSend(
+export function _sapApplicationServerInstancesDeleteSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -300,7 +300,7 @@ export function _sAPApplicationServerInstancesDeleteSend(
     });
 }
 
-export async function _sAPApplicationServerInstancesDeleteDeserialize(
+export async function _sapApplicationServerInstancesDeleteDeserialize(
   result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["202", "204", "200"];
@@ -314,7 +314,7 @@ export async function _sAPApplicationServerInstancesDeleteDeserialize(
 }
 
 /** Deletes the SAP Application Server Instance resource. &lt;br&gt;&lt;br&gt;This operation will be used by service only. Delete by end user will return a Bad Request error. */
-export function sAPApplicationServerInstancesDelete(
+export function sapApplicationServerInstancesDelete(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -325,13 +325,13 @@ export function sAPApplicationServerInstancesDelete(
 ): PollerLike<OperationState<void>, void> {
   return getLongRunningPoller(
     context,
-    _sAPApplicationServerInstancesDeleteDeserialize,
+    _sapApplicationServerInstancesDeleteDeserialize,
     ["202", "204", "200"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
       getInitialResponse: () =>
-        _sAPApplicationServerInstancesDeleteSend(
+        _sapApplicationServerInstancesDeleteSend(
           context,
           resourceGroupName,
           sapVirtualInstanceName,
@@ -343,7 +343,7 @@ export function sAPApplicationServerInstancesDelete(
   ) as PollerLike<OperationState<void>, void>;
 }
 
-export function _sAPApplicationServerInstancesUpdateSend(
+export function _sapApplicationServerInstancesUpdateSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -379,7 +379,7 @@ export function _sAPApplicationServerInstancesUpdateSend(
     });
 }
 
-export async function _sAPApplicationServerInstancesUpdateDeserialize(
+export async function _sapApplicationServerInstancesUpdateDeserialize(
   result: PathUncheckedResponse,
 ): Promise<SAPApplicationServerInstance> {
   const expectedStatuses = ["200"];
@@ -393,7 +393,7 @@ export async function _sAPApplicationServerInstancesUpdateDeserialize(
 }
 
 /** Puts the SAP Application Server Instance resource. */
-export async function sAPApplicationServerInstancesUpdate(
+export async function sapApplicationServerInstancesUpdate(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -403,7 +403,7 @@ export async function sAPApplicationServerInstancesUpdate(
     requestOptions: {},
   },
 ): Promise<SAPApplicationServerInstance> {
-  const result = await _sAPApplicationServerInstancesUpdateSend(
+  const result = await _sapApplicationServerInstancesUpdateSend(
     context,
     resourceGroupName,
     sapVirtualInstanceName,
@@ -411,10 +411,10 @@ export async function sAPApplicationServerInstancesUpdate(
     properties,
     options,
   );
-  return _sAPApplicationServerInstancesUpdateDeserialize(result);
+  return _sapApplicationServerInstancesUpdateDeserialize(result);
 }
 
-export function _sAPApplicationServerInstancesCreateSend(
+export function _sapApplicationServerInstancesCreateSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -450,7 +450,7 @@ export function _sAPApplicationServerInstancesCreateSend(
     });
 }
 
-export async function _sAPApplicationServerInstancesCreateDeserialize(
+export async function _sapApplicationServerInstancesCreateDeserialize(
   result: PathUncheckedResponse,
 ): Promise<SAPApplicationServerInstance> {
   const expectedStatuses = ["200", "201"];
@@ -464,7 +464,7 @@ export async function _sAPApplicationServerInstancesCreateDeserialize(
 }
 
 /** Puts the SAP Application Server Instance resource. &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will return a Bad Request error. */
-export function sAPApplicationServerInstancesCreate(
+export function sapApplicationServerInstancesCreate(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -479,13 +479,13 @@ export function sAPApplicationServerInstancesCreate(
 > {
   return getLongRunningPoller(
     context,
-    _sAPApplicationServerInstancesCreateDeserialize,
+    _sapApplicationServerInstancesCreateDeserialize,
     ["200", "201"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
       getInitialResponse: () =>
-        _sAPApplicationServerInstancesCreateSend(
+        _sapApplicationServerInstancesCreateSend(
           context,
           resourceGroupName,
           sapVirtualInstanceName,
@@ -501,7 +501,7 @@ export function sAPApplicationServerInstancesCreate(
   >;
 }
 
-export function _sAPApplicationServerInstancesGetSend(
+export function _sapApplicationServerInstancesGetSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -534,7 +534,7 @@ export function _sAPApplicationServerInstancesGetSend(
     });
 }
 
-export async function _sAPApplicationServerInstancesGetDeserialize(
+export async function _sapApplicationServerInstancesGetDeserialize(
   result: PathUncheckedResponse,
 ): Promise<SAPApplicationServerInstance> {
   const expectedStatuses = ["200"];
@@ -548,7 +548,7 @@ export async function _sAPApplicationServerInstancesGetDeserialize(
 }
 
 /** Gets the SAP Application Server Instance corresponding to the Virtual Instance for SAP solutions resource. */
-export async function sAPApplicationServerInstancesGet(
+export async function sapApplicationServerInstancesGet(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -557,12 +557,12 @@ export async function sAPApplicationServerInstancesGet(
     requestOptions: {},
   },
 ): Promise<SAPApplicationServerInstance> {
-  const result = await _sAPApplicationServerInstancesGetSend(
+  const result = await _sapApplicationServerInstancesGetSend(
     context,
     resourceGroupName,
     sapVirtualInstanceName,
     applicationInstanceName,
     options,
   );
-  return _sAPApplicationServerInstancesGetDeserialize(result);
+  return _sapApplicationServerInstancesGetDeserialize(result);
 }

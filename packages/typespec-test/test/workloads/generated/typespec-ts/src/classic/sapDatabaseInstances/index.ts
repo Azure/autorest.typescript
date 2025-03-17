@@ -3,13 +3,13 @@
 
 import { WorkloadsContext } from "../../api/workloadsContext.js";
 import {
-  sAPDatabaseInstancesStop,
-  sAPDatabaseInstancesStart,
-  sAPDatabaseInstancesList,
-  sAPDatabaseInstancesDelete,
-  sAPDatabaseInstancesUpdate,
-  sAPDatabaseInstancesCreate,
-  sAPDatabaseInstancesGet,
+  sapDatabaseInstancesStop,
+  sapDatabaseInstancesStart,
+  sapDatabaseInstancesList,
+  sapDatabaseInstancesDelete,
+  sapDatabaseInstancesUpdate,
+  sapDatabaseInstancesCreate,
+  sapDatabaseInstancesGet,
   SAPDatabaseInstancesStopOptionalParams,
   SAPDatabaseInstancesStartOptionalParams,
   SAPDatabaseInstancesListOptionalParams,
@@ -88,7 +88,7 @@ function _getSAPDatabaseInstances(context: WorkloadsContext) {
       databaseInstanceName: string,
       options?: SAPDatabaseInstancesStopOptionalParams,
     ) =>
-      sAPDatabaseInstancesStop(
+      sapDatabaseInstancesStop(
         context,
         resourceGroupName,
         sapVirtualInstanceName,
@@ -101,7 +101,7 @@ function _getSAPDatabaseInstances(context: WorkloadsContext) {
       databaseInstanceName: string,
       options?: SAPDatabaseInstancesStartOptionalParams,
     ) =>
-      sAPDatabaseInstancesStart(
+      sapDatabaseInstancesStart(
         context,
         resourceGroupName,
         sapVirtualInstanceName,
@@ -113,7 +113,7 @@ function _getSAPDatabaseInstances(context: WorkloadsContext) {
       sapVirtualInstanceName: string,
       options?: SAPDatabaseInstancesListOptionalParams,
     ) =>
-      sAPDatabaseInstancesList(
+      sapDatabaseInstancesList(
         context,
         resourceGroupName,
         sapVirtualInstanceName,
@@ -125,7 +125,7 @@ function _getSAPDatabaseInstances(context: WorkloadsContext) {
       databaseInstanceName: string,
       options?: SAPDatabaseInstancesDeleteOptionalParams,
     ) =>
-      sAPDatabaseInstancesDelete(
+      sapDatabaseInstancesDelete(
         context,
         resourceGroupName,
         sapVirtualInstanceName,
@@ -139,7 +139,7 @@ function _getSAPDatabaseInstances(context: WorkloadsContext) {
       properties: UpdateSAPDatabaseInstanceRequest,
       options?: SAPDatabaseInstancesUpdateOptionalParams,
     ) =>
-      sAPDatabaseInstancesUpdate(
+      sapDatabaseInstancesUpdate(
         context,
         resourceGroupName,
         sapVirtualInstanceName,
@@ -154,7 +154,7 @@ function _getSAPDatabaseInstances(context: WorkloadsContext) {
       resource: SAPDatabaseInstance,
       options?: SAPDatabaseInstancesCreateOptionalParams,
     ) =>
-      sAPDatabaseInstancesCreate(
+      sapDatabaseInstancesCreate(
         context,
         resourceGroupName,
         sapVirtualInstanceName,
@@ -168,7 +168,7 @@ function _getSAPDatabaseInstances(context: WorkloadsContext) {
       databaseInstanceName: string,
       options?: SAPDatabaseInstancesGetOptionalParams,
     ) =>
-      sAPDatabaseInstancesGet(
+      sapDatabaseInstancesGet(
         context,
         resourceGroupName,
         sapVirtualInstanceName,

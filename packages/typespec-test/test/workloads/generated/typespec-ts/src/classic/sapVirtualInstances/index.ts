@@ -3,18 +3,18 @@
 
 import { WorkloadsContext } from "../../api/workloadsContext.js";
 import {
-  sAPVirtualInstancesGetAvailabilityZoneDetails,
-  sAPVirtualInstancesGetDiskConfigurations,
-  sAPVirtualInstancesGetSapSupportedSku,
-  sAPVirtualInstancesGetSizingRecommendations,
-  sAPVirtualInstancesStop,
-  sAPVirtualInstancesStart,
-  sAPVirtualInstancesListBySubscription,
-  sAPVirtualInstancesListByResourceGroup,
-  sAPVirtualInstancesDelete,
-  sAPVirtualInstancesUpdate,
-  sAPVirtualInstancesCreate,
-  sAPVirtualInstancesGet,
+  sapVirtualInstancesGetAvailabilityZoneDetails,
+  sapVirtualInstancesGetDiskConfigurations,
+  sapVirtualInstancesGetSapSupportedSku,
+  sapVirtualInstancesGetSizingRecommendations,
+  sapVirtualInstancesStop,
+  sapVirtualInstancesStart,
+  sapVirtualInstancesListBySubscription,
+  sapVirtualInstancesListByResourceGroup,
+  sapVirtualInstancesDelete,
+  sapVirtualInstancesUpdate,
+  sapVirtualInstancesCreate,
+  sapVirtualInstancesGet,
   SAPVirtualInstancesGetAvailabilityZoneDetailsOptionalParams,
   SAPVirtualInstancesGetDiskConfigurationsOptionalParams,
   SAPVirtualInstancesGetSapSupportedSkuOptionalParams,
@@ -126,7 +126,7 @@ function _getSAPVirtualInstances(context: WorkloadsContext) {
       body: SAPAvailabilityZoneDetailsRequest,
       options?: SAPVirtualInstancesGetAvailabilityZoneDetailsOptionalParams,
     ) =>
-      sAPVirtualInstancesGetAvailabilityZoneDetails(
+      sapVirtualInstancesGetAvailabilityZoneDetails(
         context,
         location,
         body,
@@ -137,7 +137,7 @@ function _getSAPVirtualInstances(context: WorkloadsContext) {
       body: SAPDiskConfigurationsRequest,
       options?: SAPVirtualInstancesGetDiskConfigurationsOptionalParams,
     ) =>
-      sAPVirtualInstancesGetDiskConfigurations(
+      sapVirtualInstancesGetDiskConfigurations(
         context,
         location,
         body,
@@ -148,13 +148,13 @@ function _getSAPVirtualInstances(context: WorkloadsContext) {
       body: SAPSupportedSkusRequest,
       options?: SAPVirtualInstancesGetSapSupportedSkuOptionalParams,
     ) =>
-      sAPVirtualInstancesGetSapSupportedSku(context, location, body, options),
+      sapVirtualInstancesGetSapSupportedSku(context, location, body, options),
     getSizingRecommendations: (
       location: string,
       body: SAPSizingRecommendationRequest,
       options?: SAPVirtualInstancesGetSizingRecommendationsOptionalParams,
     ) =>
-      sAPVirtualInstancesGetSizingRecommendations(
+      sapVirtualInstancesGetSizingRecommendations(
         context,
         location,
         body,
@@ -165,7 +165,7 @@ function _getSAPVirtualInstances(context: WorkloadsContext) {
       sapVirtualInstanceName: string,
       options?: SAPVirtualInstancesStopOptionalParams,
     ) =>
-      sAPVirtualInstancesStop(
+      sapVirtualInstancesStop(
         context,
         resourceGroupName,
         sapVirtualInstanceName,
@@ -176,7 +176,7 @@ function _getSAPVirtualInstances(context: WorkloadsContext) {
       sapVirtualInstanceName: string,
       options?: SAPVirtualInstancesStartOptionalParams,
     ) =>
-      sAPVirtualInstancesStart(
+      sapVirtualInstancesStart(
         context,
         resourceGroupName,
         sapVirtualInstanceName,
@@ -184,12 +184,12 @@ function _getSAPVirtualInstances(context: WorkloadsContext) {
       ),
     listBySubscription: (
       options?: SAPVirtualInstancesListBySubscriptionOptionalParams,
-    ) => sAPVirtualInstancesListBySubscription(context, options),
+    ) => sapVirtualInstancesListBySubscription(context, options),
     listByResourceGroup: (
       resourceGroupName: string,
       options?: SAPVirtualInstancesListByResourceGroupOptionalParams,
     ) =>
-      sAPVirtualInstancesListByResourceGroup(
+      sapVirtualInstancesListByResourceGroup(
         context,
         resourceGroupName,
         options,
@@ -199,7 +199,7 @@ function _getSAPVirtualInstances(context: WorkloadsContext) {
       sapVirtualInstanceName: string,
       options?: SAPVirtualInstancesDeleteOptionalParams,
     ) =>
-      sAPVirtualInstancesDelete(
+      sapVirtualInstancesDelete(
         context,
         resourceGroupName,
         sapVirtualInstanceName,
@@ -211,7 +211,7 @@ function _getSAPVirtualInstances(context: WorkloadsContext) {
       properties: UpdateSAPVirtualInstanceRequest,
       options?: SAPVirtualInstancesUpdateOptionalParams,
     ) =>
-      sAPVirtualInstancesUpdate(
+      sapVirtualInstancesUpdate(
         context,
         resourceGroupName,
         sapVirtualInstanceName,
@@ -224,7 +224,7 @@ function _getSAPVirtualInstances(context: WorkloadsContext) {
       resource: SAPVirtualInstance,
       options?: SAPVirtualInstancesCreateOptionalParams,
     ) =>
-      sAPVirtualInstancesCreate(
+      sapVirtualInstancesCreate(
         context,
         resourceGroupName,
         sapVirtualInstanceName,
@@ -236,7 +236,7 @@ function _getSAPVirtualInstances(context: WorkloadsContext) {
       sapVirtualInstanceName: string,
       options?: SAPVirtualInstancesGetOptionalParams,
     ) =>
-      sAPVirtualInstancesGet(
+      sapVirtualInstancesGet(
         context,
         resourceGroupName,
         sapVirtualInstanceName,

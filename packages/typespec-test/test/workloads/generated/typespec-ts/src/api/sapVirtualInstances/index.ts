@@ -2,18 +2,18 @@
 // Licensed under the MIT License.
 
 export {
-  sAPVirtualInstancesGetAvailabilityZoneDetails,
-  sAPVirtualInstancesGetDiskConfigurations,
-  sAPVirtualInstancesGetSapSupportedSku,
-  sAPVirtualInstancesGetSizingRecommendations,
-  sAPVirtualInstancesStop,
-  sAPVirtualInstancesStart,
-  sAPVirtualInstancesListBySubscription,
-  sAPVirtualInstancesListByResourceGroup,
-  sAPVirtualInstancesDelete,
-  sAPVirtualInstancesUpdate,
-  sAPVirtualInstancesCreate,
-  sAPVirtualInstancesGet,
+  sapVirtualInstancesGetAvailabilityZoneDetails,
+  sapVirtualInstancesGetDiskConfigurations,
+  sapVirtualInstancesGetSapSupportedSku,
+  sapVirtualInstancesGetSizingRecommendations,
+  sapVirtualInstancesStop,
+  sapVirtualInstancesStart,
+  sapVirtualInstancesListBySubscription,
+  sapVirtualInstancesListByResourceGroup,
+  sapVirtualInstancesDelete,
+  sapVirtualInstancesUpdate,
+  sapVirtualInstancesCreate,
+  sapVirtualInstancesGet,
 } from "./operations.js";
 export {
   SAPVirtualInstancesGetAvailabilityZoneDetailsOptionalParams,

@@ -3,13 +3,13 @@
 
 import { WorkloadsContext } from "../../api/workloadsContext.js";
 import {
-  sAPApplicationServerInstancesStop,
-  sAPApplicationServerInstancesStart,
-  sAPApplicationServerInstancesList,
-  sAPApplicationServerInstancesDelete,
-  sAPApplicationServerInstancesUpdate,
-  sAPApplicationServerInstancesCreate,
-  sAPApplicationServerInstancesGet,
+  sapApplicationServerInstancesStop,
+  sapApplicationServerInstancesStart,
+  sapApplicationServerInstancesList,
+  sapApplicationServerInstancesDelete,
+  sapApplicationServerInstancesUpdate,
+  sapApplicationServerInstancesCreate,
+  sapApplicationServerInstancesGet,
   SAPApplicationServerInstancesStopOptionalParams,
   SAPApplicationServerInstancesStartOptionalParams,
   SAPApplicationServerInstancesListOptionalParams,
@@ -91,7 +91,7 @@ function _getSAPApplicationServerInstances(context: WorkloadsContext) {
       applicationInstanceName: string,
       options?: SAPApplicationServerInstancesStopOptionalParams,
     ) =>
-      sAPApplicationServerInstancesStop(
+      sapApplicationServerInstancesStop(
         context,
         resourceGroupName,
         sapVirtualInstanceName,
@@ -104,7 +104,7 @@ function _getSAPApplicationServerInstances(context: WorkloadsContext) {
       applicationInstanceName: string,
       options?: SAPApplicationServerInstancesStartOptionalParams,
     ) =>
-      sAPApplicationServerInstancesStart(
+      sapApplicationServerInstancesStart(
         context,
         resourceGroupName,
         sapVirtualInstanceName,
@@ -116,7 +116,7 @@ function _getSAPApplicationServerInstances(context: WorkloadsContext) {
       sapVirtualInstanceName: string,
       options?: SAPApplicationServerInstancesListOptionalParams,
     ) =>
-      sAPApplicationServerInstancesList(
+      sapApplicationServerInstancesList(
         context,
         resourceGroupName,
         sapVirtualInstanceName,
@@ -128,7 +128,7 @@ function _getSAPApplicationServerInstances(context: WorkloadsContext) {
       applicationInstanceName: string,
       options?: SAPApplicationServerInstancesDeleteOptionalParams,
     ) =>
-      sAPApplicationServerInstancesDelete(
+      sapApplicationServerInstancesDelete(
         context,
         resourceGroupName,
         sapVirtualInstanceName,
@@ -142,7 +142,7 @@ function _getSAPApplicationServerInstances(context: WorkloadsContext) {
       properties: UpdateSAPApplicationInstanceRequest,
       options?: SAPApplicationServerInstancesUpdateOptionalParams,
     ) =>
-      sAPApplicationServerInstancesUpdate(
+      sapApplicationServerInstancesUpdate(
         context,
         resourceGroupName,
         sapVirtualInstanceName,
@@ -157,7 +157,7 @@ function _getSAPApplicationServerInstances(context: WorkloadsContext) {
       resource: SAPApplicationServerInstance,
       options?: SAPApplicationServerInstancesCreateOptionalParams,
     ) =>
-      sAPApplicationServerInstancesCreate(
+      sapApplicationServerInstancesCreate(
         context,
         resourceGroupName,
         sapVirtualInstanceName,
@@ -171,7 +171,7 @@ function _getSAPApplicationServerInstances(context: WorkloadsContext) {
       applicationInstanceName: string,
       options?: SAPApplicationServerInstancesGetOptionalParams,
     ) =>
-      sAPApplicationServerInstancesGet(
+      sapApplicationServerInstancesGet(
         context,
         resourceGroupName,
         sapVirtualInstanceName,

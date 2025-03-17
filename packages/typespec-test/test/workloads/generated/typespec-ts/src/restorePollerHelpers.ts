@@ -3,29 +3,29 @@
 
 import { WorkloadsClient } from "./workloadsClient.js";
 import {
-  _sAPApplicationServerInstancesStopDeserialize,
-  _sAPApplicationServerInstancesStartDeserialize,
-  _sAPApplicationServerInstancesDeleteDeserialize,
-  _sAPApplicationServerInstancesCreateDeserialize,
+  _sapApplicationServerInstancesStopDeserialize,
+  _sapApplicationServerInstancesStartDeserialize,
+  _sapApplicationServerInstancesDeleteDeserialize,
+  _sapApplicationServerInstancesCreateDeserialize,
 } from "./api/sapApplicationServerInstances/operations.js";
 import {
-  _sAPDatabaseInstancesStopDeserialize,
-  _sAPDatabaseInstancesStartDeserialize,
-  _sAPDatabaseInstancesDeleteDeserialize,
-  _sAPDatabaseInstancesCreateDeserialize,
+  _sapDatabaseInstancesStopDeserialize,
+  _sapDatabaseInstancesStartDeserialize,
+  _sapDatabaseInstancesDeleteDeserialize,
+  _sapDatabaseInstancesCreateDeserialize,
 } from "./api/sapDatabaseInstances/operations.js";
 import {
-  _sAPCentralServerInstancesStopDeserialize,
-  _sAPCentralServerInstancesStartDeserialize,
-  _sAPCentralServerInstancesDeleteDeserialize,
-  _sAPCentralServerInstancesCreateDeserialize,
+  _sapCentralServerInstancesStopDeserialize,
+  _sapCentralServerInstancesStartDeserialize,
+  _sapCentralServerInstancesDeleteDeserialize,
+  _sapCentralServerInstancesCreateDeserialize,
 } from "./api/sapCentralServerInstances/operations.js";
 import {
-  _sAPVirtualInstancesStopDeserialize,
-  _sAPVirtualInstancesStartDeserialize,
-  _sAPVirtualInstancesDeleteDeserialize,
-  _sAPVirtualInstancesUpdateDeserialize,
-  _sAPVirtualInstancesCreateDeserialize,
+  _sapVirtualInstancesStopDeserialize,
+  _sapVirtualInstancesStartDeserialize,
+  _sapVirtualInstancesDeleteDeserialize,
+  _sapVirtualInstancesUpdateDeserialize,
+  _sapVirtualInstancesCreateDeserialize,
 } from "./api/sapVirtualInstances/operations.js";
 import { getLongRunningPoller } from "./static-helpers/pollingHelpers.js";
 import {
@@ -107,87 +107,87 @@ interface DeserializationHelper {
 const deserializeMap: Record<string, DeserializationHelper> = {
   "POST /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapVirtualInstances/{sapVirtualInstanceName}/applicationInstances/{applicationInstanceName}/stop":
     {
-      deserializer: _sAPApplicationServerInstancesStopDeserialize,
+      deserializer: _sapApplicationServerInstancesStopDeserialize,
       expectedStatuses: ["202", "200"],
     },
   "POST /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapVirtualInstances/{sapVirtualInstanceName}/applicationInstances/{applicationInstanceName}/start":
     {
-      deserializer: _sAPApplicationServerInstancesStartDeserialize,
+      deserializer: _sapApplicationServerInstancesStartDeserialize,
       expectedStatuses: ["202", "200"],
     },
   "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapVirtualInstances/{sapVirtualInstanceName}/applicationInstances/{applicationInstanceName}":
     {
-      deserializer: _sAPApplicationServerInstancesDeleteDeserialize,
+      deserializer: _sapApplicationServerInstancesDeleteDeserialize,
       expectedStatuses: ["202", "204", "200"],
     },
   "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapVirtualInstances/{sapVirtualInstanceName}/applicationInstances/{applicationInstanceName}":
     {
-      deserializer: _sAPApplicationServerInstancesCreateDeserialize,
+      deserializer: _sapApplicationServerInstancesCreateDeserialize,
       expectedStatuses: ["200", "201"],
     },
   "POST /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapVirtualInstances/{sapVirtualInstanceName}/databaseInstances/{databaseInstanceName}/stop":
     {
-      deserializer: _sAPDatabaseInstancesStopDeserialize,
+      deserializer: _sapDatabaseInstancesStopDeserialize,
       expectedStatuses: ["202", "200"],
     },
   "POST /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapVirtualInstances/{sapVirtualInstanceName}/databaseInstances/{databaseInstanceName}/start":
     {
-      deserializer: _sAPDatabaseInstancesStartDeserialize,
+      deserializer: _sapDatabaseInstancesStartDeserialize,
       expectedStatuses: ["202", "200"],
     },
   "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapVirtualInstances/{sapVirtualInstanceName}/databaseInstances/{databaseInstanceName}":
     {
-      deserializer: _sAPDatabaseInstancesDeleteDeserialize,
+      deserializer: _sapDatabaseInstancesDeleteDeserialize,
       expectedStatuses: ["202", "204", "200"],
     },
   "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapVirtualInstances/{sapVirtualInstanceName}/databaseInstances/{databaseInstanceName}":
     {
-      deserializer: _sAPDatabaseInstancesCreateDeserialize,
+      deserializer: _sapDatabaseInstancesCreateDeserialize,
       expectedStatuses: ["200", "201"],
     },
   "POST /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapVirtualInstances/{sapVirtualInstanceName}/centralInstances/{centralInstanceName}/stop":
     {
-      deserializer: _sAPCentralServerInstancesStopDeserialize,
+      deserializer: _sapCentralServerInstancesStopDeserialize,
       expectedStatuses: ["202", "200"],
     },
   "POST /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapVirtualInstances/{sapVirtualInstanceName}/centralInstances/{centralInstanceName}/start":
     {
-      deserializer: _sAPCentralServerInstancesStartDeserialize,
+      deserializer: _sapCentralServerInstancesStartDeserialize,
       expectedStatuses: ["202", "200"],
     },
   "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapVirtualInstances/{sapVirtualInstanceName}/centralInstances/{centralInstanceName}":
     {
-      deserializer: _sAPCentralServerInstancesDeleteDeserialize,
+      deserializer: _sapCentralServerInstancesDeleteDeserialize,
       expectedStatuses: ["202", "204", "200"],
     },
   "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapVirtualInstances/{sapVirtualInstanceName}/centralInstances/{centralInstanceName}":
     {
-      deserializer: _sAPCentralServerInstancesCreateDeserialize,
+      deserializer: _sapCentralServerInstancesCreateDeserialize,
       expectedStatuses: ["200", "201"],
     },
   "POST /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapVirtualInstances/{sapVirtualInstanceName}/stop":
     {
-      deserializer: _sAPVirtualInstancesStopDeserialize,
+      deserializer: _sapVirtualInstancesStopDeserialize,
       expectedStatuses: ["202", "200"],
     },
   "POST /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapVirtualInstances/{sapVirtualInstanceName}/start":
     {
-      deserializer: _sAPVirtualInstancesStartDeserialize,
+      deserializer: _sapVirtualInstancesStartDeserialize,
       expectedStatuses: ["202", "200"],
     },
   "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapVirtualInstances/{sapVirtualInstanceName}":
     {
-      deserializer: _sAPVirtualInstancesDeleteDeserialize,
+      deserializer: _sapVirtualInstancesDeleteDeserialize,
       expectedStatuses: ["202", "204", "200"],
     },
   "PATCH /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapVirtualInstances/{sapVirtualInstanceName}":
     {
-      deserializer: _sAPVirtualInstancesUpdateDeserialize,
+      deserializer: _sapVirtualInstancesUpdateDeserialize,
       expectedStatuses: ["200", "202"],
     },
   "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapVirtualInstances/{sapVirtualInstanceName}":
     {
-      deserializer: _sAPVirtualInstancesCreateDeserialize,
+      deserializer: _sapVirtualInstancesCreateDeserialize,
       expectedStatuses: ["200", "201"],
     },
 };

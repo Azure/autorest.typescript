@@ -39,7 +39,7 @@ import {
   SAPDatabaseInstancesGetOptionalParams,
 } from "./options.js";
 
-export function _sAPDatabaseInstancesStopSend(
+export function _sapDatabaseInstancesStopSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -74,7 +74,7 @@ export function _sAPDatabaseInstancesStopSend(
     });
 }
 
-export async function _sAPDatabaseInstancesStopDeserialize(
+export async function _sapDatabaseInstancesStopDeserialize(
   result: PathUncheckedResponse,
 ): Promise<OperationStatusResult> {
   const expectedStatuses = ["202", "200"];
@@ -88,7 +88,7 @@ export async function _sAPDatabaseInstancesStopDeserialize(
 }
 
 /** Stops the database instance of the SAP system. */
-export function sAPDatabaseInstancesStop(
+export function sapDatabaseInstancesStop(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -97,13 +97,13 @@ export function sAPDatabaseInstancesStop(
 ): PollerLike<OperationState<OperationStatusResult>, OperationStatusResult> {
   return getLongRunningPoller(
     context,
-    _sAPDatabaseInstancesStopDeserialize,
+    _sapDatabaseInstancesStopDeserialize,
     ["202", "200"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
       getInitialResponse: () =>
-        _sAPDatabaseInstancesStopSend(
+        _sapDatabaseInstancesStopSend(
           context,
           resourceGroupName,
           sapVirtualInstanceName,
@@ -115,7 +115,7 @@ export function sAPDatabaseInstancesStop(
   ) as PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
 }
 
-export function _sAPDatabaseInstancesStartSend(
+export function _sapDatabaseInstancesStartSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -150,7 +150,7 @@ export function _sAPDatabaseInstancesStartSend(
     });
 }
 
-export async function _sAPDatabaseInstancesStartDeserialize(
+export async function _sapDatabaseInstancesStartDeserialize(
   result: PathUncheckedResponse,
 ): Promise<OperationStatusResult> {
   const expectedStatuses = ["202", "200"];
@@ -164,7 +164,7 @@ export async function _sAPDatabaseInstancesStartDeserialize(
 }
 
 /** Starts the database instance of the SAP system. */
-export function sAPDatabaseInstancesStart(
+export function sapDatabaseInstancesStart(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -173,13 +173,13 @@ export function sAPDatabaseInstancesStart(
 ): PollerLike<OperationState<OperationStatusResult>, OperationStatusResult> {
   return getLongRunningPoller(
     context,
-    _sAPDatabaseInstancesStartDeserialize,
+    _sapDatabaseInstancesStartDeserialize,
     ["202", "200"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
       getInitialResponse: () =>
-        _sAPDatabaseInstancesStartSend(
+        _sapDatabaseInstancesStartSend(
           context,
           resourceGroupName,
           sapVirtualInstanceName,
@@ -191,7 +191,7 @@ export function sAPDatabaseInstancesStart(
   ) as PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
 }
 
-export function _sAPDatabaseInstancesListSend(
+export function _sapDatabaseInstancesListSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -220,7 +220,7 @@ export function _sAPDatabaseInstancesListSend(
     });
 }
 
-export async function _sAPDatabaseInstancesListDeserialize(
+export async function _sapDatabaseInstancesListDeserialize(
   result: PathUncheckedResponse,
 ): Promise<_SAPDatabaseInstanceListResult> {
   const expectedStatuses = ["200"];
@@ -234,7 +234,7 @@ export async function _sAPDatabaseInstancesListDeserialize(
 }
 
 /** Lists the Database resources associated with a Virtual Instance for SAP solutions resource. */
-export function sAPDatabaseInstancesList(
+export function sapDatabaseInstancesList(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -243,19 +243,19 @@ export function sAPDatabaseInstancesList(
   return buildPagedAsyncIterator(
     context,
     () =>
-      _sAPDatabaseInstancesListSend(
+      _sapDatabaseInstancesListSend(
         context,
         resourceGroupName,
         sapVirtualInstanceName,
         options,
       ),
-    _sAPDatabaseInstancesListDeserialize,
+    _sapDatabaseInstancesListDeserialize,
     ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }
 
-export function _sAPDatabaseInstancesDeleteSend(
+export function _sapDatabaseInstancesDeleteSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -286,7 +286,7 @@ export function _sAPDatabaseInstancesDeleteSend(
     });
 }
 
-export async function _sAPDatabaseInstancesDeleteDeserialize(
+export async function _sapDatabaseInstancesDeleteDeserialize(
   result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["202", "204", "200"];
@@ -300,7 +300,7 @@ export async function _sAPDatabaseInstancesDeleteDeserialize(
 }
 
 /** Deletes the Database resource corresponding to a Virtual Instance for SAP solutions resource. &lt;br&gt;&lt;br&gt;This will be used by service only. Delete by end user will return a Bad Request error. */
-export function sAPDatabaseInstancesDelete(
+export function sapDatabaseInstancesDelete(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -309,13 +309,13 @@ export function sAPDatabaseInstancesDelete(
 ): PollerLike<OperationState<void>, void> {
   return getLongRunningPoller(
     context,
-    _sAPDatabaseInstancesDeleteDeserialize,
+    _sapDatabaseInstancesDeleteDeserialize,
     ["202", "204", "200"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
       getInitialResponse: () =>
-        _sAPDatabaseInstancesDeleteSend(
+        _sapDatabaseInstancesDeleteSend(
           context,
           resourceGroupName,
           sapVirtualInstanceName,
@@ -327,7 +327,7 @@ export function sAPDatabaseInstancesDelete(
   ) as PollerLike<OperationState<void>, void>;
 }
 
-export function _sAPDatabaseInstancesUpdateSend(
+export function _sapDatabaseInstancesUpdateSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -361,7 +361,7 @@ export function _sAPDatabaseInstancesUpdateSend(
     });
 }
 
-export async function _sAPDatabaseInstancesUpdateDeserialize(
+export async function _sapDatabaseInstancesUpdateDeserialize(
   result: PathUncheckedResponse,
 ): Promise<SAPDatabaseInstance> {
   const expectedStatuses = ["200"];
@@ -375,7 +375,7 @@ export async function _sAPDatabaseInstancesUpdateDeserialize(
 }
 
 /** Updates the Database resource. */
-export async function sAPDatabaseInstancesUpdate(
+export async function sapDatabaseInstancesUpdate(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -383,7 +383,7 @@ export async function sAPDatabaseInstancesUpdate(
   properties: UpdateSAPDatabaseInstanceRequest,
   options: SAPDatabaseInstancesUpdateOptionalParams = { requestOptions: {} },
 ): Promise<SAPDatabaseInstance> {
-  const result = await _sAPDatabaseInstancesUpdateSend(
+  const result = await _sapDatabaseInstancesUpdateSend(
     context,
     resourceGroupName,
     sapVirtualInstanceName,
@@ -391,10 +391,10 @@ export async function sAPDatabaseInstancesUpdate(
     properties,
     options,
   );
-  return _sAPDatabaseInstancesUpdateDeserialize(result);
+  return _sapDatabaseInstancesUpdateDeserialize(result);
 }
 
-export function _sAPDatabaseInstancesCreateSend(
+export function _sapDatabaseInstancesCreateSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -428,7 +428,7 @@ export function _sAPDatabaseInstancesCreateSend(
     });
 }
 
-export async function _sAPDatabaseInstancesCreateDeserialize(
+export async function _sapDatabaseInstancesCreateDeserialize(
   result: PathUncheckedResponse,
 ): Promise<SAPDatabaseInstance> {
   const expectedStatuses = ["200", "201"];
@@ -442,7 +442,7 @@ export async function _sAPDatabaseInstancesCreateDeserialize(
 }
 
 /** Creates the Database resource corresponding to the Virtual Instance for SAP solutions resource. &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will return a Bad Request error. */
-export function sAPDatabaseInstancesCreate(
+export function sapDatabaseInstancesCreate(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -452,13 +452,13 @@ export function sAPDatabaseInstancesCreate(
 ): PollerLike<OperationState<SAPDatabaseInstance>, SAPDatabaseInstance> {
   return getLongRunningPoller(
     context,
-    _sAPDatabaseInstancesCreateDeserialize,
+    _sapDatabaseInstancesCreateDeserialize,
     ["200", "201"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
       getInitialResponse: () =>
-        _sAPDatabaseInstancesCreateSend(
+        _sapDatabaseInstancesCreateSend(
           context,
           resourceGroupName,
           sapVirtualInstanceName,
@@ -471,7 +471,7 @@ export function sAPDatabaseInstancesCreate(
   ) as PollerLike<OperationState<SAPDatabaseInstance>, SAPDatabaseInstance>;
 }
 
-export function _sAPDatabaseInstancesGetSend(
+export function _sapDatabaseInstancesGetSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -502,7 +502,7 @@ export function _sAPDatabaseInstancesGetSend(
     });
 }
 
-export async function _sAPDatabaseInstancesGetDeserialize(
+export async function _sapDatabaseInstancesGetDeserialize(
   result: PathUncheckedResponse,
 ): Promise<SAPDatabaseInstance> {
   const expectedStatuses = ["200"];
@@ -516,19 +516,19 @@ export async function _sAPDatabaseInstancesGetDeserialize(
 }
 
 /** Gets the SAP Database Instance resource. */
-export async function sAPDatabaseInstancesGet(
+export async function sapDatabaseInstancesGet(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   databaseInstanceName: string,
   options: SAPDatabaseInstancesGetOptionalParams = { requestOptions: {} },
 ): Promise<SAPDatabaseInstance> {
-  const result = await _sAPDatabaseInstancesGetSend(
+  const result = await _sapDatabaseInstancesGetSend(
     context,
     resourceGroupName,
     sapVirtualInstanceName,
     databaseInstanceName,
     options,
   );
-  return _sAPDatabaseInstancesGetDeserialize(result);
+  return _sapDatabaseInstancesGetDeserialize(result);
 }

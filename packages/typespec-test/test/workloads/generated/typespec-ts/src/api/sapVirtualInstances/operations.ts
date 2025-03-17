@@ -60,7 +60,7 @@ import {
   SAPVirtualInstancesGetOptionalParams,
 } from "./options.js";
 
-export function _sAPVirtualInstancesGetAvailabilityZoneDetailsSend(
+export function _sapVirtualInstancesGetAvailabilityZoneDetailsSend(
   context: Client,
   location: string,
   body: SAPAvailabilityZoneDetailsRequest,
@@ -92,7 +92,7 @@ export function _sAPVirtualInstancesGetAvailabilityZoneDetailsSend(
     });
 }
 
-export async function _sAPVirtualInstancesGetAvailabilityZoneDetailsDeserialize(
+export async function _sapVirtualInstancesGetAvailabilityZoneDetailsDeserialize(
   result: PathUncheckedResponse,
 ): Promise<SAPAvailabilityZoneDetailsResult> {
   const expectedStatuses = ["200"];
@@ -106,7 +106,7 @@ export async function _sAPVirtualInstancesGetAvailabilityZoneDetailsDeserialize(
 }
 
 /** Get the recommended SAP Availability Zone Pair Details for your region. */
-export async function sAPVirtualInstancesGetAvailabilityZoneDetails(
+export async function sapVirtualInstancesGetAvailabilityZoneDetails(
   context: Client,
   location: string,
   body: SAPAvailabilityZoneDetailsRequest,
@@ -114,16 +114,16 @@ export async function sAPVirtualInstancesGetAvailabilityZoneDetails(
     requestOptions: {},
   },
 ): Promise<SAPAvailabilityZoneDetailsResult> {
-  const result = await _sAPVirtualInstancesGetAvailabilityZoneDetailsSend(
+  const result = await _sapVirtualInstancesGetAvailabilityZoneDetailsSend(
     context,
     location,
     body,
     options,
   );
-  return _sAPVirtualInstancesGetAvailabilityZoneDetailsDeserialize(result);
+  return _sapVirtualInstancesGetAvailabilityZoneDetailsDeserialize(result);
 }
 
-export function _sAPVirtualInstancesGetDiskConfigurationsSend(
+export function _sapVirtualInstancesGetDiskConfigurationsSend(
   context: Client,
   location: string,
   body: SAPDiskConfigurationsRequest,
@@ -155,7 +155,7 @@ export function _sAPVirtualInstancesGetDiskConfigurationsSend(
     });
 }
 
-export async function _sAPVirtualInstancesGetDiskConfigurationsDeserialize(
+export async function _sapVirtualInstancesGetDiskConfigurationsDeserialize(
   result: PathUncheckedResponse,
 ): Promise<SAPDiskConfigurationsResult> {
   const expectedStatuses = ["200"];
@@ -169,7 +169,7 @@ export async function _sAPVirtualInstancesGetDiskConfigurationsDeserialize(
 }
 
 /** Get the SAP Disk Configuration Layout prod/non-prod SAP System. */
-export async function sAPVirtualInstancesGetDiskConfigurations(
+export async function sapVirtualInstancesGetDiskConfigurations(
   context: Client,
   location: string,
   body: SAPDiskConfigurationsRequest,
@@ -177,16 +177,16 @@ export async function sAPVirtualInstancesGetDiskConfigurations(
     requestOptions: {},
   },
 ): Promise<SAPDiskConfigurationsResult> {
-  const result = await _sAPVirtualInstancesGetDiskConfigurationsSend(
+  const result = await _sapVirtualInstancesGetDiskConfigurationsSend(
     context,
     location,
     body,
     options,
   );
-  return _sAPVirtualInstancesGetDiskConfigurationsDeserialize(result);
+  return _sapVirtualInstancesGetDiskConfigurationsDeserialize(result);
 }
 
-export function _sAPVirtualInstancesGetSapSupportedSkuSend(
+export function _sapVirtualInstancesGetSapSupportedSkuSend(
   context: Client,
   location: string,
   body: SAPSupportedSkusRequest,
@@ -218,7 +218,7 @@ export function _sAPVirtualInstancesGetSapSupportedSkuSend(
     });
 }
 
-export async function _sAPVirtualInstancesGetSapSupportedSkuDeserialize(
+export async function _sapVirtualInstancesGetSapSupportedSkuDeserialize(
   result: PathUncheckedResponse,
 ): Promise<SAPSupportedResourceSkusResult> {
   const expectedStatuses = ["200"];
@@ -232,7 +232,7 @@ export async function _sAPVirtualInstancesGetSapSupportedSkuDeserialize(
 }
 
 /** Get a list of SAP supported SKUs for ASCS, Application and Database tier. */
-export async function sAPVirtualInstancesGetSapSupportedSku(
+export async function sapVirtualInstancesGetSapSupportedSku(
   context: Client,
   location: string,
   body: SAPSupportedSkusRequest,
@@ -240,16 +240,16 @@ export async function sAPVirtualInstancesGetSapSupportedSku(
     requestOptions: {},
   },
 ): Promise<SAPSupportedResourceSkusResult> {
-  const result = await _sAPVirtualInstancesGetSapSupportedSkuSend(
+  const result = await _sapVirtualInstancesGetSapSupportedSkuSend(
     context,
     location,
     body,
     options,
   );
-  return _sAPVirtualInstancesGetSapSupportedSkuDeserialize(result);
+  return _sapVirtualInstancesGetSapSupportedSkuDeserialize(result);
 }
 
-export function _sAPVirtualInstancesGetSizingRecommendationsSend(
+export function _sapVirtualInstancesGetSizingRecommendationsSend(
   context: Client,
   location: string,
   body: SAPSizingRecommendationRequest,
@@ -281,7 +281,7 @@ export function _sAPVirtualInstancesGetSizingRecommendationsSend(
     });
 }
 
-export async function _sAPVirtualInstancesGetSizingRecommendationsDeserialize(
+export async function _sapVirtualInstancesGetSizingRecommendationsDeserialize(
   result: PathUncheckedResponse,
 ): Promise<SAPSizingRecommendationResultUnion> {
   const expectedStatuses = ["200"];
@@ -295,7 +295,7 @@ export async function _sAPVirtualInstancesGetSizingRecommendationsDeserialize(
 }
 
 /** Gets the sizing recommendations. */
-export async function sAPVirtualInstancesGetSizingRecommendations(
+export async function sapVirtualInstancesGetSizingRecommendations(
   context: Client,
   location: string,
   body: SAPSizingRecommendationRequest,
@@ -303,16 +303,16 @@ export async function sAPVirtualInstancesGetSizingRecommendations(
     requestOptions: {},
   },
 ): Promise<SAPSizingRecommendationResultUnion> {
-  const result = await _sAPVirtualInstancesGetSizingRecommendationsSend(
+  const result = await _sapVirtualInstancesGetSizingRecommendationsSend(
     context,
     location,
     body,
     options,
   );
-  return _sAPVirtualInstancesGetSizingRecommendationsDeserialize(result);
+  return _sapVirtualInstancesGetSizingRecommendationsDeserialize(result);
 }
 
-export function _sAPVirtualInstancesStopSend(
+export function _sapVirtualInstancesStopSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -345,7 +345,7 @@ export function _sAPVirtualInstancesStopSend(
     });
 }
 
-export async function _sAPVirtualInstancesStopDeserialize(
+export async function _sapVirtualInstancesStopDeserialize(
   result: PathUncheckedResponse,
 ): Promise<OperationStatusResult> {
   const expectedStatuses = ["202", "200"];
@@ -359,7 +359,7 @@ export async function _sAPVirtualInstancesStopDeserialize(
 }
 
 /** Stops the SAP Application, that is the Application server instances and Central Services instance. */
-export function sAPVirtualInstancesStop(
+export function sapVirtualInstancesStop(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -367,13 +367,13 @@ export function sAPVirtualInstancesStop(
 ): PollerLike<OperationState<OperationStatusResult>, OperationStatusResult> {
   return getLongRunningPoller(
     context,
-    _sAPVirtualInstancesStopDeserialize,
+    _sapVirtualInstancesStopDeserialize,
     ["202", "200"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
       getInitialResponse: () =>
-        _sAPVirtualInstancesStopSend(
+        _sapVirtualInstancesStopSend(
           context,
           resourceGroupName,
           sapVirtualInstanceName,
@@ -384,7 +384,7 @@ export function sAPVirtualInstancesStop(
   ) as PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
 }
 
-export function _sAPVirtualInstancesStartSend(
+export function _sapVirtualInstancesStartSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -417,7 +417,7 @@ export function _sAPVirtualInstancesStartSend(
     });
 }
 
-export async function _sAPVirtualInstancesStartDeserialize(
+export async function _sapVirtualInstancesStartDeserialize(
   result: PathUncheckedResponse,
 ): Promise<OperationStatusResult> {
   const expectedStatuses = ["202", "200"];
@@ -431,7 +431,7 @@ export async function _sAPVirtualInstancesStartDeserialize(
 }
 
 /** Starts the SAP application, that is the Central Services instance and Application server instances. */
-export function sAPVirtualInstancesStart(
+export function sapVirtualInstancesStart(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -439,13 +439,13 @@ export function sAPVirtualInstancesStart(
 ): PollerLike<OperationState<OperationStatusResult>, OperationStatusResult> {
   return getLongRunningPoller(
     context,
-    _sAPVirtualInstancesStartDeserialize,
+    _sapVirtualInstancesStartDeserialize,
     ["202", "200"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
       getInitialResponse: () =>
-        _sAPVirtualInstancesStartSend(
+        _sapVirtualInstancesStartSend(
           context,
           resourceGroupName,
           sapVirtualInstanceName,
@@ -456,7 +456,7 @@ export function sAPVirtualInstancesStart(
   ) as PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
 }
 
-export function _sAPVirtualInstancesListBySubscriptionSend(
+export function _sapVirtualInstancesListBySubscriptionSend(
   context: Client,
   options: SAPVirtualInstancesListBySubscriptionOptionalParams = {
     requestOptions: {},
@@ -483,7 +483,7 @@ export function _sAPVirtualInstancesListBySubscriptionSend(
     });
 }
 
-export async function _sAPVirtualInstancesListBySubscriptionDeserialize(
+export async function _sapVirtualInstancesListBySubscriptionDeserialize(
   result: PathUncheckedResponse,
 ): Promise<_SAPVirtualInstanceListResult> {
   const expectedStatuses = ["200"];
@@ -497,7 +497,7 @@ export async function _sAPVirtualInstancesListBySubscriptionDeserialize(
 }
 
 /** Gets all Virtual Instances for SAP solutions resources in a Subscription. */
-export function sAPVirtualInstancesListBySubscription(
+export function sapVirtualInstancesListBySubscription(
   context: Client,
   options: SAPVirtualInstancesListBySubscriptionOptionalParams = {
     requestOptions: {},
@@ -505,14 +505,14 @@ export function sAPVirtualInstancesListBySubscription(
 ): PagedAsyncIterableIterator<SAPVirtualInstance> {
   return buildPagedAsyncIterator(
     context,
-    () => _sAPVirtualInstancesListBySubscriptionSend(context, options),
-    _sAPVirtualInstancesListBySubscriptionDeserialize,
+    () => _sapVirtualInstancesListBySubscriptionSend(context, options),
+    _sapVirtualInstancesListBySubscriptionDeserialize,
     ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }
 
-export function _sAPVirtualInstancesListByResourceGroupSend(
+export function _sapVirtualInstancesListByResourceGroupSend(
   context: Client,
   resourceGroupName: string,
   options: SAPVirtualInstancesListByResourceGroupOptionalParams = {
@@ -541,7 +541,7 @@ export function _sAPVirtualInstancesListByResourceGroupSend(
     });
 }
 
-export async function _sAPVirtualInstancesListByResourceGroupDeserialize(
+export async function _sapVirtualInstancesListByResourceGroupDeserialize(
   result: PathUncheckedResponse,
 ): Promise<_SAPVirtualInstanceListResult> {
   const expectedStatuses = ["200"];
@@ -555,7 +555,7 @@ export async function _sAPVirtualInstancesListByResourceGroupDeserialize(
 }
 
 /** Gets all Virtual Instances for SAP solutions resources in a Resource Group. */
-export function sAPVirtualInstancesListByResourceGroup(
+export function sapVirtualInstancesListByResourceGroup(
   context: Client,
   resourceGroupName: string,
   options: SAPVirtualInstancesListByResourceGroupOptionalParams = {
@@ -565,18 +565,18 @@ export function sAPVirtualInstancesListByResourceGroup(
   return buildPagedAsyncIterator(
     context,
     () =>
-      _sAPVirtualInstancesListByResourceGroupSend(
+      _sapVirtualInstancesListByResourceGroupSend(
         context,
         resourceGroupName,
         options,
       ),
-    _sAPVirtualInstancesListByResourceGroupDeserialize,
+    _sapVirtualInstancesListByResourceGroupDeserialize,
     ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }
 
-export function _sAPVirtualInstancesDeleteSend(
+export function _sapVirtualInstancesDeleteSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -605,7 +605,7 @@ export function _sAPVirtualInstancesDeleteSend(
     });
 }
 
-export async function _sAPVirtualInstancesDeleteDeserialize(
+export async function _sapVirtualInstancesDeleteDeserialize(
   result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["202", "204", "200"];
@@ -619,7 +619,7 @@ export async function _sAPVirtualInstancesDeleteDeserialize(
 }
 
 /** Deletes a Virtual Instance for SAP solutions resource and its child resources, that is the associated Central Services Instance, Application Server Instances and Database Instance. */
-export function sAPVirtualInstancesDelete(
+export function sapVirtualInstancesDelete(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -627,13 +627,13 @@ export function sAPVirtualInstancesDelete(
 ): PollerLike<OperationState<void>, void> {
   return getLongRunningPoller(
     context,
-    _sAPVirtualInstancesDeleteDeserialize,
+    _sapVirtualInstancesDeleteDeserialize,
     ["202", "204", "200"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
       getInitialResponse: () =>
-        _sAPVirtualInstancesDeleteSend(
+        _sapVirtualInstancesDeleteSend(
           context,
           resourceGroupName,
           sapVirtualInstanceName,
@@ -644,7 +644,7 @@ export function sAPVirtualInstancesDelete(
   ) as PollerLike<OperationState<void>, void>;
 }
 
-export function _sAPVirtualInstancesUpdateSend(
+export function _sapVirtualInstancesUpdateSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -676,7 +676,7 @@ export function _sAPVirtualInstancesUpdateSend(
     });
 }
 
-export async function _sAPVirtualInstancesUpdateDeserialize(
+export async function _sapVirtualInstancesUpdateDeserialize(
   result: PathUncheckedResponse,
 ): Promise<SAPVirtualInstance> {
   const expectedStatuses = ["200", "202"];
@@ -690,7 +690,7 @@ export async function _sAPVirtualInstancesUpdateDeserialize(
 }
 
 /** Updates a Virtual Instance for SAP solutions resource */
-export function sAPVirtualInstancesUpdate(
+export function sapVirtualInstancesUpdate(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -699,13 +699,13 @@ export function sAPVirtualInstancesUpdate(
 ): PollerLike<OperationState<SAPVirtualInstance>, SAPVirtualInstance> {
   return getLongRunningPoller(
     context,
-    _sAPVirtualInstancesUpdateDeserialize,
+    _sapVirtualInstancesUpdateDeserialize,
     ["200", "202"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
       getInitialResponse: () =>
-        _sAPVirtualInstancesUpdateSend(
+        _sapVirtualInstancesUpdateSend(
           context,
           resourceGroupName,
           sapVirtualInstanceName,
@@ -717,7 +717,7 @@ export function sAPVirtualInstancesUpdate(
   ) as PollerLike<OperationState<SAPVirtualInstance>, SAPVirtualInstance>;
 }
 
-export function _sAPVirtualInstancesCreateSend(
+export function _sapVirtualInstancesCreateSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -749,7 +749,7 @@ export function _sAPVirtualInstancesCreateSend(
     });
 }
 
-export async function _sAPVirtualInstancesCreateDeserialize(
+export async function _sapVirtualInstancesCreateDeserialize(
   result: PathUncheckedResponse,
 ): Promise<SAPVirtualInstance> {
   const expectedStatuses = ["200", "201"];
@@ -763,7 +763,7 @@ export async function _sAPVirtualInstancesCreateDeserialize(
 }
 
 /** Creates a Virtual Instance for SAP solutions (VIS) resource */
-export function sAPVirtualInstancesCreate(
+export function sapVirtualInstancesCreate(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -772,13 +772,13 @@ export function sAPVirtualInstancesCreate(
 ): PollerLike<OperationState<SAPVirtualInstance>, SAPVirtualInstance> {
   return getLongRunningPoller(
     context,
-    _sAPVirtualInstancesCreateDeserialize,
+    _sapVirtualInstancesCreateDeserialize,
     ["200", "201"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
       getInitialResponse: () =>
-        _sAPVirtualInstancesCreateSend(
+        _sapVirtualInstancesCreateSend(
           context,
           resourceGroupName,
           sapVirtualInstanceName,
@@ -790,7 +790,7 @@ export function sAPVirtualInstancesCreate(
   ) as PollerLike<OperationState<SAPVirtualInstance>, SAPVirtualInstance>;
 }
 
-export function _sAPVirtualInstancesGetSend(
+export function _sapVirtualInstancesGetSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -819,7 +819,7 @@ export function _sAPVirtualInstancesGetSend(
     });
 }
 
-export async function _sAPVirtualInstancesGetDeserialize(
+export async function _sapVirtualInstancesGetDeserialize(
   result: PathUncheckedResponse,
 ): Promise<SAPVirtualInstance> {
   const expectedStatuses = ["200"];
@@ -833,17 +833,17 @@ export async function _sAPVirtualInstancesGetDeserialize(
 }
 
 /** Gets a Virtual Instance for SAP solutions resource */
-export async function sAPVirtualInstancesGet(
+export async function sapVirtualInstancesGet(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   options: SAPVirtualInstancesGetOptionalParams = { requestOptions: {} },
 ): Promise<SAPVirtualInstance> {
-  const result = await _sAPVirtualInstancesGetSend(
+  const result = await _sapVirtualInstancesGetSend(
     context,
     resourceGroupName,
     sapVirtualInstanceName,
     options,
   );
-  return _sAPVirtualInstancesGetDeserialize(result);
+  return _sapVirtualInstancesGetDeserialize(result);
 }

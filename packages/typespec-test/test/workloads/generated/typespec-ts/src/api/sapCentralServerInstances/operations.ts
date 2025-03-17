@@ -39,7 +39,7 @@ import {
   SAPCentralServerInstancesGetOptionalParams,
 } from "./options.js";
 
-export function _sAPCentralServerInstancesStopSend(
+export function _sapCentralServerInstancesStopSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -74,7 +74,7 @@ export function _sAPCentralServerInstancesStopSend(
     });
 }
 
-export async function _sAPCentralServerInstancesStopDeserialize(
+export async function _sapCentralServerInstancesStopDeserialize(
   result: PathUncheckedResponse,
 ): Promise<OperationStatusResult> {
   const expectedStatuses = ["202", "200"];
@@ -88,7 +88,7 @@ export async function _sAPCentralServerInstancesStopDeserialize(
 }
 
 /** Stops the SAP Central Services Instance. */
-export function sAPCentralServerInstancesStop(
+export function sapCentralServerInstancesStop(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -97,13 +97,13 @@ export function sAPCentralServerInstancesStop(
 ): PollerLike<OperationState<OperationStatusResult>, OperationStatusResult> {
   return getLongRunningPoller(
     context,
-    _sAPCentralServerInstancesStopDeserialize,
+    _sapCentralServerInstancesStopDeserialize,
     ["202", "200"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
       getInitialResponse: () =>
-        _sAPCentralServerInstancesStopSend(
+        _sapCentralServerInstancesStopSend(
           context,
           resourceGroupName,
           sapVirtualInstanceName,
@@ -115,7 +115,7 @@ export function sAPCentralServerInstancesStop(
   ) as PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
 }
 
-export function _sAPCentralServerInstancesStartSend(
+export function _sapCentralServerInstancesStartSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -152,7 +152,7 @@ export function _sAPCentralServerInstancesStartSend(
     });
 }
 
-export async function _sAPCentralServerInstancesStartDeserialize(
+export async function _sapCentralServerInstancesStartDeserialize(
   result: PathUncheckedResponse,
 ): Promise<OperationStatusResult> {
   const expectedStatuses = ["202", "200"];
@@ -166,7 +166,7 @@ export async function _sAPCentralServerInstancesStartDeserialize(
 }
 
 /** Starts the SAP Central Services Instance. */
-export function sAPCentralServerInstancesStart(
+export function sapCentralServerInstancesStart(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -177,13 +177,13 @@ export function sAPCentralServerInstancesStart(
 ): PollerLike<OperationState<OperationStatusResult>, OperationStatusResult> {
   return getLongRunningPoller(
     context,
-    _sAPCentralServerInstancesStartDeserialize,
+    _sapCentralServerInstancesStartDeserialize,
     ["202", "200"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
       getInitialResponse: () =>
-        _sAPCentralServerInstancesStartSend(
+        _sapCentralServerInstancesStartSend(
           context,
           resourceGroupName,
           sapVirtualInstanceName,
@@ -195,7 +195,7 @@ export function sAPCentralServerInstancesStart(
   ) as PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
 }
 
-export function _sAPCentralServerInstancesListSend(
+export function _sapCentralServerInstancesListSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -224,7 +224,7 @@ export function _sAPCentralServerInstancesListSend(
     });
 }
 
-export async function _sAPCentralServerInstancesListDeserialize(
+export async function _sapCentralServerInstancesListDeserialize(
   result: PathUncheckedResponse,
 ): Promise<_SAPCentralServerInstanceListResult> {
   const expectedStatuses = ["200"];
@@ -238,7 +238,7 @@ export async function _sAPCentralServerInstancesListDeserialize(
 }
 
 /** Lists the SAP Central Services Instance resource for the given Virtual Instance for SAP solutions resource. */
-export function sAPCentralServerInstancesList(
+export function sapCentralServerInstancesList(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -247,19 +247,19 @@ export function sAPCentralServerInstancesList(
   return buildPagedAsyncIterator(
     context,
     () =>
-      _sAPCentralServerInstancesListSend(
+      _sapCentralServerInstancesListSend(
         context,
         resourceGroupName,
         sapVirtualInstanceName,
         options,
       ),
-    _sAPCentralServerInstancesListDeserialize,
+    _sapCentralServerInstancesListDeserialize,
     ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
 }
 
-export function _sAPCentralServerInstancesDeleteSend(
+export function _sapCentralServerInstancesDeleteSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -292,7 +292,7 @@ export function _sAPCentralServerInstancesDeleteSend(
     });
 }
 
-export async function _sAPCentralServerInstancesDeleteDeserialize(
+export async function _sapCentralServerInstancesDeleteDeserialize(
   result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["202", "204", "200"];
@@ -306,7 +306,7 @@ export async function _sAPCentralServerInstancesDeleteDeserialize(
 }
 
 /** Deletes the SAP Central Services Instance resource. &lt;br&gt;&lt;br&gt;This will be used by service only. Delete operation on this resource by end user will return a Bad Request error. You can delete the parent resource, which is the Virtual Instance for SAP solutions resource, using the delete operation on it. */
-export function sAPCentralServerInstancesDelete(
+export function sapCentralServerInstancesDelete(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -317,13 +317,13 @@ export function sAPCentralServerInstancesDelete(
 ): PollerLike<OperationState<void>, void> {
   return getLongRunningPoller(
     context,
-    _sAPCentralServerInstancesDeleteDeserialize,
+    _sapCentralServerInstancesDeleteDeserialize,
     ["202", "204", "200"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
       getInitialResponse: () =>
-        _sAPCentralServerInstancesDeleteSend(
+        _sapCentralServerInstancesDeleteSend(
           context,
           resourceGroupName,
           sapVirtualInstanceName,
@@ -335,7 +335,7 @@ export function sAPCentralServerInstancesDelete(
   ) as PollerLike<OperationState<void>, void>;
 }
 
-export function _sAPCentralServerInstancesUpdateSend(
+export function _sapCentralServerInstancesUpdateSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -371,7 +371,7 @@ export function _sAPCentralServerInstancesUpdateSend(
     });
 }
 
-export async function _sAPCentralServerInstancesUpdateDeserialize(
+export async function _sapCentralServerInstancesUpdateDeserialize(
   result: PathUncheckedResponse,
 ): Promise<SAPCentralServerInstance> {
   const expectedStatuses = ["200"];
@@ -385,7 +385,7 @@ export async function _sAPCentralServerInstancesUpdateDeserialize(
 }
 
 /** Updates the SAP Central Services Instance resource. &lt;br&gt;&lt;br&gt;This can be used to update tags on the resource. */
-export async function sAPCentralServerInstancesUpdate(
+export async function sapCentralServerInstancesUpdate(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -395,7 +395,7 @@ export async function sAPCentralServerInstancesUpdate(
     requestOptions: {},
   },
 ): Promise<SAPCentralServerInstance> {
-  const result = await _sAPCentralServerInstancesUpdateSend(
+  const result = await _sapCentralServerInstancesUpdateSend(
     context,
     resourceGroupName,
     sapVirtualInstanceName,
@@ -403,10 +403,10 @@ export async function sAPCentralServerInstancesUpdate(
     properties,
     options,
   );
-  return _sAPCentralServerInstancesUpdateDeserialize(result);
+  return _sapCentralServerInstancesUpdateDeserialize(result);
 }
 
-export function _sAPCentralServerInstancesCreateSend(
+export function _sapCentralServerInstancesCreateSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -442,7 +442,7 @@ export function _sAPCentralServerInstancesCreateSend(
     });
 }
 
-export async function _sAPCentralServerInstancesCreateDeserialize(
+export async function _sapCentralServerInstancesCreateDeserialize(
   result: PathUncheckedResponse,
 ): Promise<SAPCentralServerInstance> {
   const expectedStatuses = ["200", "201"];
@@ -456,7 +456,7 @@ export async function _sAPCentralServerInstancesCreateDeserialize(
 }
 
 /** Creates the SAP Central Services Instance resource. &lt;br&gt;&lt;br&gt;This will be used by service only. PUT operation on this resource by end user will return a Bad Request error. */
-export function sAPCentralServerInstancesCreate(
+export function sapCentralServerInstancesCreate(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -471,13 +471,13 @@ export function sAPCentralServerInstancesCreate(
 > {
   return getLongRunningPoller(
     context,
-    _sAPCentralServerInstancesCreateDeserialize,
+    _sapCentralServerInstancesCreateDeserialize,
     ["200", "201"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
       getInitialResponse: () =>
-        _sAPCentralServerInstancesCreateSend(
+        _sapCentralServerInstancesCreateSend(
           context,
           resourceGroupName,
           sapVirtualInstanceName,
@@ -493,7 +493,7 @@ export function sAPCentralServerInstancesCreate(
   >;
 }
 
-export function _sAPCentralServerInstancesGetSend(
+export function _sapCentralServerInstancesGetSend(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
@@ -524,7 +524,7 @@ export function _sAPCentralServerInstancesGetSend(
     });
 }
 
-export async function _sAPCentralServerInstancesGetDeserialize(
+export async function _sapCentralServerInstancesGetDeserialize(
   result: PathUncheckedResponse,
 ): Promise<SAPCentralServerInstance> {
   const expectedStatuses = ["200"];
@@ -538,19 +538,19 @@ export async function _sAPCentralServerInstancesGetDeserialize(
 }
 
 /** Gets the SAP Central Services Instance resource. */
-export async function sAPCentralServerInstancesGet(
+export async function sapCentralServerInstancesGet(
   context: Client,
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   centralInstanceName: string,
   options: SAPCentralServerInstancesGetOptionalParams = { requestOptions: {} },
 ): Promise<SAPCentralServerInstance> {
-  const result = await _sAPCentralServerInstancesGetSend(
+  const result = await _sapCentralServerInstancesGetSend(
     context,
     resourceGroupName,
     sapVirtualInstanceName,
     centralInstanceName,
     options,
   );
-  return _sAPCentralServerInstancesGetDeserialize(result);
+  return _sapCentralServerInstancesGetDeserialize(result);
 }

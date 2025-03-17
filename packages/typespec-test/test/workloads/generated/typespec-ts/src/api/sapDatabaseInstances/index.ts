@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 
 export {
-  sAPDatabaseInstancesStop,
-  sAPDatabaseInstancesStart,
-  sAPDatabaseInstancesList,
-  sAPDatabaseInstancesDelete,
-  sAPDatabaseInstancesUpdate,
-  sAPDatabaseInstancesCreate,
-  sAPDatabaseInstancesGet,
+  sapDatabaseInstancesStop,
+  sapDatabaseInstancesStart,
+  sapDatabaseInstancesList,
+  sapDatabaseInstancesDelete,
+  sapDatabaseInstancesUpdate,
+  sapDatabaseInstancesCreate,
+  sapDatabaseInstancesGet,
 } from "./operations.js";
 export {
   SAPDatabaseInstancesStopOptionalParams,

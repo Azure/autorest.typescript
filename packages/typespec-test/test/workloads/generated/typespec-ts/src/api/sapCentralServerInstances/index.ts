@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 
 export {
-  sAPCentralServerInstancesStop,
-  sAPCentralServerInstancesStart,
-  sAPCentralServerInstancesList,
-  sAPCentralServerInstancesDelete,
-  sAPCentralServerInstancesUpdate,
-  sAPCentralServerInstancesCreate,
-  sAPCentralServerInstancesGet,
+  sapCentralServerInstancesStop,
+  sapCentralServerInstancesStart,
+  sapCentralServerInstancesList,
+  sapCentralServerInstancesDelete,
+  sapCentralServerInstancesUpdate,
+  sapCentralServerInstancesCreate,
+  sapCentralServerInstancesGet,
 } from "./operations.js";
 export {
   SAPCentralServerInstancesStopOptionalParams,

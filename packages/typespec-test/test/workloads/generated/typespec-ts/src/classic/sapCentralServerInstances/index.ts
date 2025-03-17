@@ -3,13 +3,13 @@
 
 import { WorkloadsContext } from "../../api/workloadsContext.js";
 import {
-  sAPCentralServerInstancesStop,
-  sAPCentralServerInstancesStart,
-  sAPCentralServerInstancesList,
-  sAPCentralServerInstancesDelete,
-  sAPCentralServerInstancesUpdate,
-  sAPCentralServerInstancesCreate,
-  sAPCentralServerInstancesGet,
+  sapCentralServerInstancesStop,
+  sapCentralServerInstancesStart,
+  sapCentralServerInstancesList,
+  sapCentralServerInstancesDelete,
+  sapCentralServerInstancesUpdate,
+  sapCentralServerInstancesCreate,
+  sapCentralServerInstancesGet,
   SAPCentralServerInstancesStopOptionalParams,
   SAPCentralServerInstancesStartOptionalParams,
   SAPCentralServerInstancesListOptionalParams,
@@ -91,7 +91,7 @@ function _getSAPCentralServerInstances(context: WorkloadsContext) {
       centralInstanceName: string,
       options?: SAPCentralServerInstancesStopOptionalParams,
     ) =>
-      sAPCentralServerInstancesStop(
+      sapCentralServerInstancesStop(
         context,
         resourceGroupName,
         sapVirtualInstanceName,
@@ -104,7 +104,7 @@ function _getSAPCentralServerInstances(context: WorkloadsContext) {
       centralInstanceName: string,
       options?: SAPCentralServerInstancesStartOptionalParams,
     ) =>
-      sAPCentralServerInstancesStart(
+      sapCentralServerInstancesStart(
         context,
         resourceGroupName,
         sapVirtualInstanceName,
@@ -116,7 +116,7 @@ function _getSAPCentralServerInstances(context: WorkloadsContext) {
       sapVirtualInstanceName: string,
       options?: SAPCentralServerInstancesListOptionalParams,
     ) =>
-      sAPCentralServerInstancesList(
+      sapCentralServerInstancesList(
         context,
         resourceGroupName,
         sapVirtualInstanceName,
@@ -128,7 +128,7 @@ function _getSAPCentralServerInstances(context: WorkloadsContext) {
       centralInstanceName: string,
       options?: SAPCentralServerInstancesDeleteOptionalParams,
     ) =>
-      sAPCentralServerInstancesDelete(
+      sapCentralServerInstancesDelete(
         context,
         resourceGroupName,
         sapVirtualInstanceName,
@@ -142,7 +142,7 @@ function _getSAPCentralServerInstances(context: WorkloadsContext) {
       properties: UpdateSAPCentralInstanceRequest,
       options?: SAPCentralServerInstancesUpdateOptionalParams,
     ) =>
-      sAPCentralServerInstancesUpdate(
+      sapCentralServerInstancesUpdate(
         context,
         resourceGroupName,
         sapVirtualInstanceName,
@@ -157,7 +157,7 @@ function _getSAPCentralServerInstances(context: WorkloadsContext) {
       resource: SAPCentralServerInstance,
       options?: SAPCentralServerInstancesCreateOptionalParams,
     ) =>
-      sAPCentralServerInstancesCreate(
+      sapCentralServerInstancesCreate(
         context,
         resourceGroupName,
         sapVirtualInstanceName,
@@ -171,7 +171,7 @@ function _getSAPCentralServerInstances(context: WorkloadsContext) {
       centralInstanceName: string,
       options?: SAPCentralServerInstancesGetOptionalParams,
     ) =>
-      sAPCentralServerInstancesGet(
+      sapCentralServerInstancesGet(
         context,
         resourceGroupName,
         sapVirtualInstanceName,
