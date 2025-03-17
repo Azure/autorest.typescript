@@ -14,7 +14,7 @@ import "./moderation";
 using TypeSpec.Http;
 
 /** The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details. */
-@service({
+@service(#{
   title: "OpenAI API",
   termsOfService: "https://openai.com/policies/terms-of-use",
   contact: {
