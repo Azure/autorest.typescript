@@ -31,12 +31,14 @@ import {
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
+import { useContext } from "../contextManager.js";
 
 export function buildClassicalClient(
   dpgContext: SdkContext,
   client: SdkClientType<SdkServiceOperation>,
   emitterOptions: ModularEmitterOptions
 ) {
+  const project = useContext("outputProject");
   const dependencies = useDependencies();
   const modularClientName = getClientName(client);
   const classicalClientName = `${getClassicalClientName(client)}`;
@@ -53,7 +55,7 @@ export function buildClassicalClient(
     client
   );
 
-  const clientFile = emitterOptions.project.createSourceFile(
+  const clientFile = project.createSourceFile(
     `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""}${normalizeName(
       classicalClientName,
       NameType.File

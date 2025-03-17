@@ -10,6 +10,7 @@ import {
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 import { getModularClientOptions } from "../utils/clientUtils.js";
+import { useContext } from "../contextManager.js";
 
 export function buildClassicOperationFiles(
   dpgContext: SdkContext,
@@ -17,6 +18,7 @@ export function buildClassicOperationFiles(
   emitterOptions: ModularEmitterOptions
 ) {
   // const sdkPackage = dpgContext.sdkPackage;
+  const project = useContext("outputProject");
   const { subfolder } = getModularClientOptions(dpgContext, client);
   const classicOperationFiles: Map<string, SourceFile> = new Map<
     string,
@@ -41,7 +43,7 @@ export function buildClassicOperationFiles(
       const srcPath = emitterOptions.modularOptions.sourceRoot;
       const classicFile =
         classicOperationFiles.get(classicOperationFileName) ??
-        emitterOptions.project.createSourceFile(
+        project.createSourceFile(
           `${srcPath}/${
             subfolder && subfolder !== "" ? subfolder + "/" : ""
           }classic/${classicOperationFileName}.ts`
@@ -74,7 +76,7 @@ export function buildClassicOperationFiles(
         const srcPath = emitterOptions.modularOptions.sourceRoot;
         const classicFile =
           classicOperationFiles.get(classicOperationFileName) ??
-          emitterOptions.project.createSourceFile(
+          project.createSourceFile(
             `${srcPath}/${
               subfolder && subfolder !== "" ? subfolder + "/" : ""
             }classic/${classicOperationFileName}.ts`
@@ -109,6 +111,7 @@ function importApis(
   prefixes: string[],
   layer: number = prefixes.length - 1
 ) {
+  const project = useContext("outputProject");
   const { subfolder } = getModularClientOptions(context, client);
   const classicOperationFileName =
     prefixes.length > 0 && prefixes[0] !== ""
@@ -118,7 +121,7 @@ function importApis(
         "index";
 
   const srcPath = emitterOptions.modularOptions.sourceRoot;
-  const apiFile = emitterOptions.project.getSourceFile(
+  const apiFile = project.getSourceFile(
     `${srcPath}/${
       subfolder && subfolder !== "" ? subfolder + "/" : ""
     }api/${classicOperationFileName}.ts`

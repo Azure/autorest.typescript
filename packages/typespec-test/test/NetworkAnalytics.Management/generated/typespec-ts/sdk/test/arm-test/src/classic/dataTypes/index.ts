@@ -24,6 +24,15 @@ import {
   ContainerSaS,
   ContainerSasToken,
 } from "../../models/models.js";
+import {
+  DataTypesListByDataProductOptionalParams,
+  DataTypesGenerateStorageContainerSasTokenOptionalParams,
+  DataTypesDeleteDataOptionalParams,
+  DataTypesDeleteOptionalParams,
+  DataTypesUpdateOptionalParams,
+  DataTypesGetOptionalParams,
+  DataTypesCreateOptionalParams,
+} from "../../api/dataTypes/options.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
@@ -33,7 +42,7 @@ export interface DataTypesOperations {
   listByDataProduct: (
     resourceGroupName: string,
     dataProductName: string,
-    options?: DataTypesListByDataProductOptionalParams,
+    options: DataTypesListByDataProductOptionalParams,
   ) => PagedAsyncIterableIterator<DataType>;
   /** Generate sas token for storage container. */
   generateStorageContainerSasToken: (
@@ -41,7 +50,7 @@ export interface DataTypesOperations {
     dataProductName: string,
     dataTypeName: string,
     body: ContainerSaS,
-    options?: DataTypesGenerateStorageContainerSasTokenOptionalParams,
+    options: DataTypesGenerateStorageContainerSasTokenOptionalParams,
   ) => Promise<ContainerSasToken>;
   /** Delete data for data type. */
   deleteData: (
@@ -49,7 +58,7 @@ export interface DataTypesOperations {
     dataProductName: string,
     dataTypeName: string,
     body: Record<string, any>,
-    options?: DataTypesDeleteDataOptionalParams,
+    options: DataTypesDeleteDataOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
   /** Delete data type resource. */
   /**
@@ -61,7 +70,7 @@ export interface DataTypesOperations {
     resourceGroupName: string,
     dataProductName: string,
     dataTypeName: string,
-    options?: DataTypesDeleteOptionalParams,
+    options: DataTypesDeleteOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
   /** Update data type resource. */
   update: (
@@ -69,14 +78,14 @@ export interface DataTypesOperations {
     dataProductName: string,
     dataTypeName: string,
     properties: DataTypeUpdate,
-    options?: DataTypesUpdateOptionalParams,
+    options: DataTypesUpdateOptionalParams,
   ) => PollerLike<OperationState<DataType>, DataType>;
   /** Retrieve data type resource. */
   get: (
     resourceGroupName: string,
     dataProductName: string,
     dataTypeName: string,
-    options?: DataTypesGetOptionalParams,
+    options: DataTypesGetOptionalParams,
   ) => Promise<DataType>;
   /** Create data type resource. */
   create: (
@@ -84,7 +93,7 @@ export interface DataTypesOperations {
     dataProductName: string,
     dataTypeName: string,
     resource: DataType,
-    options?: DataTypesCreateOptionalParams,
+    options: DataTypesCreateOptionalParams,
   ) => PollerLike<OperationState<DataType>, DataType>;
 }
 
@@ -93,7 +102,7 @@ function _getDataTypes(context: NetworkAnalyticsApiContext) {
     listByDataProduct: (
       resourceGroupName: string,
       dataProductName: string,
-      options?: DataTypesListByDataProductOptionalParams,
+      options: DataTypesListByDataProductOptionalParams,
     ) =>
       listByDataProduct(context, resourceGroupName, dataProductName, options),
     generateStorageContainerSasToken: (
@@ -101,7 +110,7 @@ function _getDataTypes(context: NetworkAnalyticsApiContext) {
       dataProductName: string,
       dataTypeName: string,
       body: ContainerSaS,
-      options?: DataTypesGenerateStorageContainerSasTokenOptionalParams,
+      options: DataTypesGenerateStorageContainerSasTokenOptionalParams,
     ) =>
       generateStorageContainerSasToken(
         context,
@@ -116,7 +125,7 @@ function _getDataTypes(context: NetworkAnalyticsApiContext) {
       dataProductName: string,
       dataTypeName: string,
       body: Record<string, any>,
-      options?: DataTypesDeleteDataOptionalParams,
+      options: DataTypesDeleteDataOptionalParams,
     ) =>
       deleteData(
         context,
@@ -130,7 +139,7 @@ function _getDataTypes(context: NetworkAnalyticsApiContext) {
       resourceGroupName: string,
       dataProductName: string,
       dataTypeName: string,
-      options?: DataTypesDeleteOptionalParams,
+      options: DataTypesDeleteOptionalParams,
     ) =>
       $delete(
         context,
@@ -144,7 +153,7 @@ function _getDataTypes(context: NetworkAnalyticsApiContext) {
       dataProductName: string,
       dataTypeName: string,
       properties: DataTypeUpdate,
-      options?: DataTypesUpdateOptionalParams,
+      options: DataTypesUpdateOptionalParams,
     ) =>
       update(
         context,
@@ -158,7 +167,7 @@ function _getDataTypes(context: NetworkAnalyticsApiContext) {
       resourceGroupName: string,
       dataProductName: string,
       dataTypeName: string,
-      options?: DataTypesGetOptionalParams,
+      options: DataTypesGetOptionalParams,
     ) =>
       get(context, resourceGroupName, dataProductName, dataTypeName, options),
     create: (
@@ -166,7 +175,7 @@ function _getDataTypes(context: NetworkAnalyticsApiContext) {
       dataProductName: string,
       dataTypeName: string,
       resource: DataType,
-      options?: DataTypesCreateOptionalParams,
+      options: DataTypesCreateOptionalParams,
     ) =>
       create(
         context,

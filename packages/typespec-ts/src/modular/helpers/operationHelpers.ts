@@ -355,7 +355,7 @@ function getOperationSignatureParameters(
   clientType: string
 ): OptionalKind<ParameterDeclarationStructure>[] {
   const operation = method[1];
-  const optionsType = getOperationOptionsName(method, true);
+  const optionsType = resolveReference(refkey(method[1], "operationOptions"));
   const parameters: Map<
     string,
     OptionalKind<ParameterDeclarationStructure>

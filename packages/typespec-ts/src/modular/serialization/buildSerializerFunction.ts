@@ -26,6 +26,7 @@ import {
 import { MultipartHelpers } from "../static-helpers-metadata.js";
 import { resolveReference } from "../../framework/reference.js";
 import { isOrExtendsHttpFile } from "@typespec/http";
+import { refkey } from "../../framework/refkey.js";
 
 export function buildModelSerializer(
   context: SdkContext,
@@ -126,7 +127,7 @@ function buildPolymorphicSerializer(
     NameType.Operation
   )}Serializer`;
   if (nameOnly) {
-    return serializeFunctionName;
+    return resolveReference(refkey(type, "serializer"));
   }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -215,7 +216,7 @@ function buildDiscriminatedUnionSerializer(
     NameType.Operation
   )}Serializer`;
   if (nameOnly) {
-    return serializeFunctionName;
+    return resolveReference(refkey(type, "serializer"));
   }
   const baseSerializerName = `${normalizeModelName(
     context,
@@ -293,11 +294,11 @@ function buildUnionSerializer(
     NameType.Operation
   )}Serializer`;
   if (nameOnly) {
-    return serializerFunctionName;
+    return resolveReference(refkey(type, "serializer"));
   }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
-    name: `${normalizeModelName(context, type, NameType.Operation)}Serializer`,
+    name: serializerFunctionName,
     isExported: true,
     parameters: [
       {
@@ -329,7 +330,7 @@ function buildModelTypeSerializer(
     options.skipDiscriminatedUnionSuffix
   )}Serializer`;
   if (options.nameOnly) {
-    return serializerFunctionName;
+    return resolveReference(refkey(type, "serializer"));
   }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -474,7 +475,7 @@ function buildDictTypeSerializer(
   );
   const serializerFunctionName = `${valueTypeName}RecordSerializer`;
   if (nameOnly) {
-    return serializerFunctionName;
+    return resolveReference(refkey(type.valueType, "serializer"));
   }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -537,7 +538,7 @@ function buildArrayTypeSerializer(
   );
   const serializerFunctionName = `${valueTypeName}ArraySerializer`;
   if (nameOnly) {
-    return serializerFunctionName;
+    return resolveReference(refkey(type.valueType, "serializer"));
   }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,

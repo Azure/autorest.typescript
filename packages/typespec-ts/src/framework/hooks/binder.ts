@@ -236,6 +236,7 @@ class BinderImp implements Binder {
       }
     });
 
+    this.cleanUnusedImports();
     this.cleanUnreferencedHelpers(sourceRoot);
   }
 
@@ -280,13 +281,15 @@ class BinderImp implements Binder {
       } else {
         declarationSourceFile = declaration[SourceFileSymbol]!;
       }
-
-      if (file !== declarationSourceFile) {
-        this.trackReference(declarationKey, file);
-        const importDec = this.addImport(file, declarationSourceFile, name);
-        name = importDec.alias ?? name;
+      const occurences = countPlaceholderOccurrences(file, placeholderKey);
+      if (occurences > 0) {
+        if (file !== declarationSourceFile) {
+          this.trackReference(declarationKey, file);
+          const importDec = this.addImport(file, declarationSourceFile, name);
+          name = importDec.alias ?? name;
+        }
+        replacePlaceholder(file, placeholderKey, name);
       }
-      replacePlaceholder(file, placeholderKey, name);
     }
   }
 
@@ -296,6 +299,12 @@ class BinderImp implements Binder {
     }
 
     this.references.get(refkey)!.add(sourceFile);
+  }
+
+  private cleanUnusedImports() {
+    this.project.getSourceFiles().map((file) => {
+      file.fixUnusedIdentifiers();
+    });
   }
 
   private cleanUnreferencedHelpers(sourceRoot: string) {

@@ -31,6 +31,7 @@ import {
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 import { getModularClientOptions } from "../utils/clientUtils.js";
+import { useContext } from "../contextManager.js";
 
 /**
  * This function gets the path of the file containing the modular client context
@@ -57,6 +58,7 @@ export function buildClientContext(
   client: SdkClientType<SdkServiceOperation>,
   emitterOptions: ModularEmitterOptions
 ): SourceFile {
+  const project = useContext("outputProject");
   const dependencies = useDependencies();
   const name = getClientName(client);
   const { rlcClientName } = getModularClientOptions(dpgContext, client);
@@ -65,7 +67,7 @@ export function buildClientContext(
     requiredOnly: true,
     apiVersionAsRequired: true
   });
-  const clientContextFile = emitterOptions.project.createSourceFile(
+  const clientContextFile = project.createSourceFile(
     getClientContextPath(dpgContext, client, emitterOptions)
   );
 
