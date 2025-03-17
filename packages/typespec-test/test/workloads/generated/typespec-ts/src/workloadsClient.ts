@@ -1,20 +1,21 @@
+// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
 import {
-  _getSapApplicationServerInstancesOperations,
-  SapApplicationServerInstancesOperations,
+  _getSAPApplicationServerInstancesOperations,
+  SAPApplicationServerInstancesOperations,
 } from "./classic/sapApplicationServerInstances/index.js";
 import {
-  _getSapDatabaseInstancesOperations,
-  SapDatabaseInstancesOperations,
+  _getSAPDatabaseInstancesOperations,
+  SAPDatabaseInstancesOperations,
 } from "./classic/sapDatabaseInstances/index.js";
 import {
-  _getSapCentralServerInstancesOperations,
-  SapCentralServerInstancesOperations,
+  _getSAPCentralServerInstancesOperations,
+  SAPCentralServerInstancesOperations,
 } from "./classic/sapCentralServerInstances/index.js";
 import {
-  _getSapVirtualInstancesOperations,
-  SapVirtualInstancesOperations,
+  _getSAPVirtualInstancesOperations,
+  SAPVirtualInstancesOperations,
 } from "./classic/sapVirtualInstances/index.js";
 import {
   _getOperationsOperations,
@@ -25,7 +26,8 @@ import {
   WorkloadsContext,
   WorkloadsClientOptionalParams,
 } from "./api/index.js";
-import { Pipeline, TokenCredential } from "@typespec/ts-http-runtime";
+import { Pipeline } from "@azure/core-rest-pipeline";
+import { TokenCredential } from "@azure/core-auth";
 
 export { WorkloadsClientOptionalParams } from "./api/workloadsContext.js";
 
@@ -50,25 +52,25 @@ export class WorkloadsClient {
     });
     this.pipeline = this._client.pipeline;
     this.sapApplicationServerInstances =
-      _getSapApplicationServerInstancesOperations(this._client);
-    this.sapDatabaseInstances = _getSapDatabaseInstancesOperations(
+      _getSAPApplicationServerInstancesOperations(this._client);
+    this.sapDatabaseInstances = _getSAPDatabaseInstancesOperations(
       this._client,
     );
-    this.sapCentralServerInstances = _getSapCentralServerInstancesOperations(
+    this.sapCentralServerInstances = _getSAPCentralServerInstancesOperations(
       this._client,
     );
-    this.sapVirtualInstances = _getSapVirtualInstancesOperations(this._client);
+    this.sapVirtualInstances = _getSAPVirtualInstancesOperations(this._client);
     this.operations = _getOperationsOperations(this._client);
   }
 
   /** The operation groups for sapApplicationServerInstances */
-  public readonly sapApplicationServerInstances: SapApplicationServerInstancesOperations;
+  public readonly sapApplicationServerInstances: SAPApplicationServerInstancesOperations;
   /** The operation groups for sapDatabaseInstances */
-  public readonly sapDatabaseInstances: SapDatabaseInstancesOperations;
+  public readonly sapDatabaseInstances: SAPDatabaseInstancesOperations;
   /** The operation groups for sapCentralServerInstances */
-  public readonly sapCentralServerInstances: SapCentralServerInstancesOperations;
+  public readonly sapCentralServerInstances: SAPCentralServerInstancesOperations;
   /** The operation groups for sapVirtualInstances */
-  public readonly sapVirtualInstances: SapVirtualInstancesOperations;
+  public readonly sapVirtualInstances: SAPVirtualInstancesOperations;
   /** The operation groups for operations */
   public readonly operations: OperationsOperations;
 }

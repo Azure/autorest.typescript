@@ -1,7 +1,8 @@
+// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
 import { StartRequest, StopRequest } from "../../models/models.js";
-import { OperationOptions } from "@typespec/ts-http-runtime";
+import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
 export interface SAPCentralServerInstancesStopOptionalParams

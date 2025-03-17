@@ -192,23 +192,26 @@ function buildClientOperationGroups(
         clientClass.addMethod(method);
       });
     } else {
-      const groupName = normalizeName(prefixes[0] ?? "", NameType.Property);
+      // The `rawGroupName` is used to any places where we need normalized name twice
+      const rawGroupName = normalizeName(prefixes[0] ?? "", NameType.Interface);
       const operationName = `_get${normalizeName(
-        groupName,
+        rawGroupName,
         NameType.OperationGroup
       )}Operations`;
       const propertyType = `${normalizeName(
-        groupName,
+        rawGroupName,
         NameType.OperationGroup
       )}Operations`;
+      // The `groupName` is used to any places where we don't need normalized name again
+      const groupName = normalizeName(rawGroupName, NameType.Property);
       const existProperty = clientClass.getProperties().filter((p) => {
-        return p.getName() === groupName;
+        return p.getName() === normalizeName(groupName, NameType.Property);
       });
       if (!existProperty || existProperty.length === 0) {
         clientFile.addImportDeclaration({
           namedImports: [operationName, propertyType],
           moduleSpecifier: `./classic/${normalizeName(
-            groupName,
+            rawGroupName,
             NameType.File
           )}/index.js`
         });
@@ -223,7 +226,7 @@ function buildClientOperationGroups(
           .getConstructors()[0]
           ?.addStatements(
             `this.${groupName} = _get${normalizeName(
-              groupName,
+              rawGroupName,
               NameType.OperationGroup
             )}Operations(this._client)`
           );

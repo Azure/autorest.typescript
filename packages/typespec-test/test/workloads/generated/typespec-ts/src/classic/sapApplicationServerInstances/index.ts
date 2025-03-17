@@ -1,3 +1,4 @@
+// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
 import { WorkloadsContext } from "../../api/workloadsContext.js";
@@ -23,6 +24,7 @@ import {
   OperationStatusResult,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
+import { PollerLike, OperationState } from "@azure/core-lro";
 
 /** Interface representing a SAPApplicationServerInstances operations. */
 export interface SAPApplicationServerInstancesOperations {
@@ -32,20 +34,14 @@ export interface SAPApplicationServerInstancesOperations {
     sapVirtualInstanceName: string,
     applicationInstanceName: string,
     options?: SAPApplicationServerInstancesStopOptionalParams,
-  ) => __PLACEHOLDER_o169__<
-    __PLACEHOLDER_o170__<OperationStatusResult>,
-    OperationStatusResult
-  >;
+  ) => PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
   /** Starts the SAP Application Server Instance. */
   start: (
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     applicationInstanceName: string,
     options?: SAPApplicationServerInstancesStartOptionalParams,
-  ) => __PLACEHOLDER_o169__<
-    __PLACEHOLDER_o170__<OperationStatusResult>,
-    OperationStatusResult
-  >;
+  ) => PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
   /** Lists the SAP Application Server Instance resources for a given Virtual Instance for SAP solutions resource. */
   list: (
     resourceGroupName: string,
@@ -58,7 +54,7 @@ export interface SAPApplicationServerInstancesOperations {
     sapVirtualInstanceName: string,
     applicationInstanceName: string,
     options?: SAPApplicationServerInstancesDeleteOptionalParams,
-  ) => __PLACEHOLDER_o169__<__PLACEHOLDER_o170__<void>, void>;
+  ) => PollerLike<OperationState<void>, void>;
   /** Puts the SAP Application Server Instance resource. */
   update: (
     resourceGroupName: string,
@@ -74,8 +70,8 @@ export interface SAPApplicationServerInstancesOperations {
     applicationInstanceName: string,
     resource: SAPApplicationServerInstance,
     options?: SAPApplicationServerInstancesCreateOptionalParams,
-  ) => __PLACEHOLDER_o169__<
-    __PLACEHOLDER_o170__<SAPApplicationServerInstance>,
+  ) => PollerLike<
+    OperationState<SAPApplicationServerInstance>,
     SAPApplicationServerInstance
   >;
   /** Gets the SAP Application Server Instance corresponding to the Virtual Instance for SAP solutions resource. */

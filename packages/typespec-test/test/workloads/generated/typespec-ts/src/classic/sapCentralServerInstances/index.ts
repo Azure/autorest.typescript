@@ -1,3 +1,4 @@
+// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
 import { WorkloadsContext } from "../../api/workloadsContext.js";
@@ -23,6 +24,7 @@ import {
   UpdateSAPCentralInstanceRequest,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
+import { PollerLike, OperationState } from "@azure/core-lro";
 
 /** Interface representing a SAPCentralServerInstances operations. */
 export interface SAPCentralServerInstancesOperations {
@@ -32,20 +34,14 @@ export interface SAPCentralServerInstancesOperations {
     sapVirtualInstanceName: string,
     centralInstanceName: string,
     options?: SAPCentralServerInstancesStopOptionalParams,
-  ) => __PLACEHOLDER_o169__<
-    __PLACEHOLDER_o170__<OperationStatusResult>,
-    OperationStatusResult
-  >;
+  ) => PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
   /** Starts the SAP Central Services Instance. */
   start: (
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     centralInstanceName: string,
     options?: SAPCentralServerInstancesStartOptionalParams,
-  ) => __PLACEHOLDER_o169__<
-    __PLACEHOLDER_o170__<OperationStatusResult>,
-    OperationStatusResult
-  >;
+  ) => PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
   /** Lists the SAP Central Services Instance resource for the given Virtual Instance for SAP solutions resource. */
   list: (
     resourceGroupName: string,
@@ -58,7 +54,7 @@ export interface SAPCentralServerInstancesOperations {
     sapVirtualInstanceName: string,
     centralInstanceName: string,
     options?: SAPCentralServerInstancesDeleteOptionalParams,
-  ) => __PLACEHOLDER_o169__<__PLACEHOLDER_o170__<void>, void>;
+  ) => PollerLike<OperationState<void>, void>;
   /** Updates the SAP Central Services Instance resource. &lt;br&gt;&lt;br&gt;This can be used to update tags on the resource. */
   update: (
     resourceGroupName: string,
@@ -74,8 +70,8 @@ export interface SAPCentralServerInstancesOperations {
     centralInstanceName: string,
     resource: SAPCentralServerInstance,
     options?: SAPCentralServerInstancesCreateOptionalParams,
-  ) => __PLACEHOLDER_o169__<
-    __PLACEHOLDER_o170__<SAPCentralServerInstance>,
+  ) => PollerLike<
+    OperationState<SAPCentralServerInstance>,
     SAPCentralServerInstance
   >;
   /** Gets the SAP Central Services Instance resource. */

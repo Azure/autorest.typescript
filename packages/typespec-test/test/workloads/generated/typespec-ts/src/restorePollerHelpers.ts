@@ -1,3 +1,4 @@
+// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
 import { WorkloadsClient } from "./workloadsClient.js";
@@ -30,8 +31,14 @@ import { getLongRunningPoller } from "./static-helpers/pollingHelpers.js";
 import {
   OperationOptions,
   PathUncheckedResponse,
-  AbortSignalLike,
-} from "@typespec/ts-http-runtime";
+} from "@azure-rest/core-client";
+import { AbortSignalLike } from "@azure/abort-controller";
+import {
+  PollerLike,
+  OperationState,
+  deserializeState,
+  ResourceLocationConfig,
+} from "@azure/core-lro";
 
 export interface RestorePollerOptions<
   TResult,
@@ -57,10 +64,10 @@ export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
   serializedState: string,
   sourceOperation: (
     ...args: any[]
-  ) => __PLACEHOLDER_o169__<__PLACEHOLDER_o170__<TResult>, TResult>,
+  ) => PollerLike<OperationState<TResult>, TResult>,
   options?: RestorePollerOptions<TResult>,
-): __PLACEHOLDER_o169__<__PLACEHOLDER_o170__<TResult>, TResult> {
-  const pollerConfig = __PLACEHOLDER_o179__(serializedState).config;
+): PollerLike<OperationState<TResult>, TResult> {
+  const pollerConfig = deserializeState(serializedState).config;
   const { initialRequestUrl, requestMethod, metadata } = pollerConfig;
   if (!initialRequestUrl || !requestMethod) {
     throw new Error(
@@ -68,7 +75,7 @@ export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
     );
   }
   const resourceLocationConfig = metadata?.["resourceLocationConfig"] as
-    | __PLACEHOLDER_o181__
+    | ResourceLocationConfig
     | undefined;
   const { deserializer, expectedStatuses = [] } =
     getDeserializationHelper(initialRequestUrl, requestMethod) ?? {};

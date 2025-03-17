@@ -1,3 +1,4 @@
+// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
 import { WorkloadsContext as Client } from "../index.js";
@@ -17,7 +18,7 @@ import {
   PathUncheckedResponse,
   createRestError,
   operationOptionsToRequestParameters,
-} from "@typespec/ts-http-runtime";
+} from "@azure-rest/core-client";
 import { OperationsListOptionalParams } from "./options.js";
 
 export function _operationsListSend(

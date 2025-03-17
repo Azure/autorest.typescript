@@ -1,3 +1,4 @@
+// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
 import { WorkloadsContext as Client } from "../index.js";
@@ -31,18 +32,19 @@ import {
   SAPAvailabilityZoneDetailsResult,
   sapAvailabilityZoneDetailsResultDeserializer,
 } from "../../models/models.js";
-import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
   operationOptionsToRequestParameters,
-} from "@typespec/ts-http-runtime";
+} from "@azure-rest/core-client";
+import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   SAPVirtualInstancesGetAvailabilityZoneDetailsOptionalParams,
   SAPVirtualInstancesGetDiskConfigurationsOptionalParams,
@@ -362,10 +364,7 @@ export function sAPVirtualInstancesStop(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   options: SAPVirtualInstancesStopOptionalParams = { requestOptions: {} },
-): __PLACEHOLDER_o169__<
-  __PLACEHOLDER_o170__<OperationStatusResult>,
-  OperationStatusResult
-> {
+): PollerLike<OperationState<OperationStatusResult>, OperationStatusResult> {
   return getLongRunningPoller(
     context,
     _sAPVirtualInstancesStopDeserialize,
@@ -382,10 +381,7 @@ export function sAPVirtualInstancesStop(
         ),
       resourceLocationConfig: "location",
     },
-  ) as __PLACEHOLDER_o169__<
-    __PLACEHOLDER_o170__<OperationStatusResult>,
-    OperationStatusResult
-  >;
+  ) as PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
 }
 
 export function _sAPVirtualInstancesStartSend(
@@ -440,10 +436,7 @@ export function sAPVirtualInstancesStart(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   options: SAPVirtualInstancesStartOptionalParams = { requestOptions: {} },
-): __PLACEHOLDER_o169__<
-  __PLACEHOLDER_o170__<OperationStatusResult>,
-  OperationStatusResult
-> {
+): PollerLike<OperationState<OperationStatusResult>, OperationStatusResult> {
   return getLongRunningPoller(
     context,
     _sAPVirtualInstancesStartDeserialize,
@@ -460,10 +453,7 @@ export function sAPVirtualInstancesStart(
         ),
       resourceLocationConfig: "location",
     },
-  ) as __PLACEHOLDER_o169__<
-    __PLACEHOLDER_o170__<OperationStatusResult>,
-    OperationStatusResult
-  >;
+  ) as PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
 }
 
 export function _sAPVirtualInstancesListBySubscriptionSend(
@@ -634,7 +624,7 @@ export function sAPVirtualInstancesDelete(
   resourceGroupName: string,
   sapVirtualInstanceName: string,
   options: SAPVirtualInstancesDeleteOptionalParams = { requestOptions: {} },
-): __PLACEHOLDER_o169__<__PLACEHOLDER_o170__<void>, void> {
+): PollerLike<OperationState<void>, void> {
   return getLongRunningPoller(
     context,
     _sAPVirtualInstancesDeleteDeserialize,
@@ -651,7 +641,7 @@ export function sAPVirtualInstancesDelete(
         ),
       resourceLocationConfig: "location",
     },
-  ) as __PLACEHOLDER_o169__<__PLACEHOLDER_o170__<void>, void>;
+  ) as PollerLike<OperationState<void>, void>;
 }
 
 export function _sAPVirtualInstancesUpdateSend(
@@ -706,10 +696,7 @@ export function sAPVirtualInstancesUpdate(
   sapVirtualInstanceName: string,
   properties: UpdateSAPVirtualInstanceRequest,
   options: SAPVirtualInstancesUpdateOptionalParams = { requestOptions: {} },
-): __PLACEHOLDER_o169__<
-  __PLACEHOLDER_o170__<SAPVirtualInstance>,
-  SAPVirtualInstance
-> {
+): PollerLike<OperationState<SAPVirtualInstance>, SAPVirtualInstance> {
   return getLongRunningPoller(
     context,
     _sAPVirtualInstancesUpdateDeserialize,
@@ -727,10 +714,7 @@ export function sAPVirtualInstancesUpdate(
         ),
       resourceLocationConfig: "location",
     },
-  ) as __PLACEHOLDER_o169__<
-    __PLACEHOLDER_o170__<SAPVirtualInstance>,
-    SAPVirtualInstance
-  >;
+  ) as PollerLike<OperationState<SAPVirtualInstance>, SAPVirtualInstance>;
 }
 
 export function _sAPVirtualInstancesCreateSend(
@@ -785,10 +769,7 @@ export function sAPVirtualInstancesCreate(
   sapVirtualInstanceName: string,
   resource: SAPVirtualInstance,
   options: SAPVirtualInstancesCreateOptionalParams = { requestOptions: {} },
-): __PLACEHOLDER_o169__<
-  __PLACEHOLDER_o170__<SAPVirtualInstance>,
-  SAPVirtualInstance
-> {
+): PollerLike<OperationState<SAPVirtualInstance>, SAPVirtualInstance> {
   return getLongRunningPoller(
     context,
     _sAPVirtualInstancesCreateDeserialize,
@@ -806,10 +787,7 @@ export function sAPVirtualInstancesCreate(
         ),
       resourceLocationConfig: "azure-async-operation",
     },
-  ) as __PLACEHOLDER_o169__<
-    __PLACEHOLDER_o170__<SAPVirtualInstance>,
-    SAPVirtualInstance
-  >;
+  ) as PollerLike<OperationState<SAPVirtualInstance>, SAPVirtualInstance>;
 }
 
 export function _sAPVirtualInstancesGetSend(

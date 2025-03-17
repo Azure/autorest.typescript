@@ -1,3 +1,4 @@
+// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
 import { WorkloadsContext } from "../../api/workloadsContext.js";
@@ -23,6 +24,7 @@ import {
   UpdateSAPDatabaseInstanceRequest,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
+import { PollerLike, OperationState } from "@azure/core-lro";
 
 /** Interface representing a SAPDatabaseInstances operations. */
 export interface SAPDatabaseInstancesOperations {
@@ -32,20 +34,14 @@ export interface SAPDatabaseInstancesOperations {
     sapVirtualInstanceName: string,
     databaseInstanceName: string,
     options?: SAPDatabaseInstancesStopOptionalParams,
-  ) => __PLACEHOLDER_o169__<
-    __PLACEHOLDER_o170__<OperationStatusResult>,
-    OperationStatusResult
-  >;
+  ) => PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
   /** Starts the database instance of the SAP system. */
   start: (
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     databaseInstanceName: string,
     options?: SAPDatabaseInstancesStartOptionalParams,
-  ) => __PLACEHOLDER_o169__<
-    __PLACEHOLDER_o170__<OperationStatusResult>,
-    OperationStatusResult
-  >;
+  ) => PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
   /** Lists the Database resources associated with a Virtual Instance for SAP solutions resource. */
   list: (
     resourceGroupName: string,
@@ -58,7 +54,7 @@ export interface SAPDatabaseInstancesOperations {
     sapVirtualInstanceName: string,
     databaseInstanceName: string,
     options?: SAPDatabaseInstancesDeleteOptionalParams,
-  ) => __PLACEHOLDER_o169__<__PLACEHOLDER_o170__<void>, void>;
+  ) => PollerLike<OperationState<void>, void>;
   /** Updates the Database resource. */
   update: (
     resourceGroupName: string,
@@ -74,10 +70,7 @@ export interface SAPDatabaseInstancesOperations {
     databaseInstanceName: string,
     resource: SAPDatabaseInstance,
     options?: SAPDatabaseInstancesCreateOptionalParams,
-  ) => __PLACEHOLDER_o169__<
-    __PLACEHOLDER_o170__<SAPDatabaseInstance>,
-    SAPDatabaseInstance
-  >;
+  ) => PollerLike<OperationState<SAPDatabaseInstance>, SAPDatabaseInstance>;
   /** Gets the SAP Database Instance resource. */
   get: (
     resourceGroupName: string,

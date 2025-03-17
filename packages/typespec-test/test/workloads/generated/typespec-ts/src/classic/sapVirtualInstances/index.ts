@@ -1,3 +1,4 @@
+// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
 import { WorkloadsContext } from "../../api/workloadsContext.js";
@@ -41,6 +42,7 @@ import {
   SAPAvailabilityZoneDetailsResult,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
+import { PollerLike, OperationState } from "@azure/core-lro";
 
 /** Interface representing a SAPVirtualInstances operations. */
 export interface SAPVirtualInstancesOperations {
@@ -73,19 +75,13 @@ export interface SAPVirtualInstancesOperations {
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     options?: SAPVirtualInstancesStopOptionalParams,
-  ) => __PLACEHOLDER_o169__<
-    __PLACEHOLDER_o170__<OperationStatusResult>,
-    OperationStatusResult
-  >;
+  ) => PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
   /** Starts the SAP application, that is the Central Services instance and Application server instances. */
   start: (
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     options?: SAPVirtualInstancesStartOptionalParams,
-  ) => __PLACEHOLDER_o169__<
-    __PLACEHOLDER_o170__<OperationStatusResult>,
-    OperationStatusResult
-  >;
+  ) => PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
   /** Gets all Virtual Instances for SAP solutions resources in a Subscription. */
   listBySubscription: (
     options?: SAPVirtualInstancesListBySubscriptionOptionalParams,
@@ -100,27 +96,21 @@ export interface SAPVirtualInstancesOperations {
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     options?: SAPVirtualInstancesDeleteOptionalParams,
-  ) => __PLACEHOLDER_o169__<__PLACEHOLDER_o170__<void>, void>;
+  ) => PollerLike<OperationState<void>, void>;
   /** Updates a Virtual Instance for SAP solutions resource */
   update: (
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     properties: UpdateSAPVirtualInstanceRequest,
     options?: SAPVirtualInstancesUpdateOptionalParams,
-  ) => __PLACEHOLDER_o169__<
-    __PLACEHOLDER_o170__<SAPVirtualInstance>,
-    SAPVirtualInstance
-  >;
+  ) => PollerLike<OperationState<SAPVirtualInstance>, SAPVirtualInstance>;
   /** Creates a Virtual Instance for SAP solutions (VIS) resource */
   create: (
     resourceGroupName: string,
     sapVirtualInstanceName: string,
     resource: SAPVirtualInstance,
     options?: SAPVirtualInstancesCreateOptionalParams,
-  ) => __PLACEHOLDER_o169__<
-    __PLACEHOLDER_o170__<SAPVirtualInstance>,
-    SAPVirtualInstance
-  >;
+  ) => PollerLike<OperationState<SAPVirtualInstance>, SAPVirtualInstance>;
   /** Gets a Virtual Instance for SAP solutions resource */
   get: (
     resourceGroupName: string,

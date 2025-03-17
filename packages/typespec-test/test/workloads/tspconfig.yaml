@@ -11,5 +11,5 @@ options:
     experimental-extensible-enums: true
     emitter-output-dir: "{project-root}/generated/typespec-ts/"
     package-details:
-      name: "@arm-workloadssapvirtualinstance"
+      name: "@azure/arm-workloadssapvirtualinstance"
     package-dir: "arm-workloadssapvirtualinstance"

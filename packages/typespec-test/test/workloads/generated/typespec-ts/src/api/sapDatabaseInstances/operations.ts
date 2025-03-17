@@ -1,3 +1,4 @@
+// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
 import { WorkloadsContext as Client } from "../index.js";
@@ -15,18 +16,19 @@ import {
   _SAPDatabaseInstanceListResult,
   _sapDatabaseInstanceListResultDeserializer,
 } from "../../models/models.js";
-import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
   operationOptionsToRequestParameters,
-} from "@typespec/ts-http-runtime";
+} from "@azure-rest/core-client";
+import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   SAPDatabaseInstancesStopOptionalParams,
   SAPDatabaseInstancesStartOptionalParams,
@@ -92,10 +94,7 @@ export function sAPDatabaseInstancesStop(
   sapVirtualInstanceName: string,
   databaseInstanceName: string,
   options: SAPDatabaseInstancesStopOptionalParams = { requestOptions: {} },
-): __PLACEHOLDER_o169__<
-  __PLACEHOLDER_o170__<OperationStatusResult>,
-  OperationStatusResult
-> {
+): PollerLike<OperationState<OperationStatusResult>, OperationStatusResult> {
   return getLongRunningPoller(
     context,
     _sAPDatabaseInstancesStopDeserialize,
@@ -113,10 +112,7 @@ export function sAPDatabaseInstancesStop(
         ),
       resourceLocationConfig: "location",
     },
-  ) as __PLACEHOLDER_o169__<
-    __PLACEHOLDER_o170__<OperationStatusResult>,
-    OperationStatusResult
-  >;
+  ) as PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
 }
 
 export function _sAPDatabaseInstancesStartSend(
@@ -174,10 +170,7 @@ export function sAPDatabaseInstancesStart(
   sapVirtualInstanceName: string,
   databaseInstanceName: string,
   options: SAPDatabaseInstancesStartOptionalParams = { requestOptions: {} },
-): __PLACEHOLDER_o169__<
-  __PLACEHOLDER_o170__<OperationStatusResult>,
-  OperationStatusResult
-> {
+): PollerLike<OperationState<OperationStatusResult>, OperationStatusResult> {
   return getLongRunningPoller(
     context,
     _sAPDatabaseInstancesStartDeserialize,
@@ -195,10 +188,7 @@ export function sAPDatabaseInstancesStart(
         ),
       resourceLocationConfig: "location",
     },
-  ) as __PLACEHOLDER_o169__<
-    __PLACEHOLDER_o170__<OperationStatusResult>,
-    OperationStatusResult
-  >;
+  ) as PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
 }
 
 export function _sAPDatabaseInstancesListSend(
@@ -316,7 +306,7 @@ export function sAPDatabaseInstancesDelete(
   sapVirtualInstanceName: string,
   databaseInstanceName: string,
   options: SAPDatabaseInstancesDeleteOptionalParams = { requestOptions: {} },
-): __PLACEHOLDER_o169__<__PLACEHOLDER_o170__<void>, void> {
+): PollerLike<OperationState<void>, void> {
   return getLongRunningPoller(
     context,
     _sAPDatabaseInstancesDeleteDeserialize,
@@ -334,7 +324,7 @@ export function sAPDatabaseInstancesDelete(
         ),
       resourceLocationConfig: "location",
     },
-  ) as __PLACEHOLDER_o169__<__PLACEHOLDER_o170__<void>, void>;
+  ) as PollerLike<OperationState<void>, void>;
 }
 
 export function _sAPDatabaseInstancesUpdateSend(
@@ -459,10 +449,7 @@ export function sAPDatabaseInstancesCreate(
   databaseInstanceName: string,
   resource: SAPDatabaseInstance,
   options: SAPDatabaseInstancesCreateOptionalParams = { requestOptions: {} },
-): __PLACEHOLDER_o169__<
-  __PLACEHOLDER_o170__<SAPDatabaseInstance>,
-  SAPDatabaseInstance
-> {
+): PollerLike<OperationState<SAPDatabaseInstance>, SAPDatabaseInstance> {
   return getLongRunningPoller(
     context,
     _sAPDatabaseInstancesCreateDeserialize,
@@ -481,10 +468,7 @@ export function sAPDatabaseInstancesCreate(
         ),
       resourceLocationConfig: "azure-async-operation",
     },
-  ) as __PLACEHOLDER_o169__<
-    __PLACEHOLDER_o170__<SAPDatabaseInstance>,
-    SAPDatabaseInstance
-  >;
+  ) as PollerLike<OperationState<SAPDatabaseInstance>, SAPDatabaseInstance>;
 }
 
 export function _sAPDatabaseInstancesGetSend(

@@ -1,3 +1,4 @@
+// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
 import { WorkloadsContext as Client } from "../index.js";
@@ -15,18 +16,19 @@ import {
   operationStatusResultDeserializer,
   stopRequestSerializer,
 } from "../../models/models.js";
-import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
   operationOptionsToRequestParameters,
-} from "@typespec/ts-http-runtime";
+} from "@azure-rest/core-client";
+import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   SAPApplicationServerInstancesStopOptionalParams,
   SAPApplicationServerInstancesStartOptionalParams,
@@ -96,10 +98,7 @@ export function sAPApplicationServerInstancesStop(
   options: SAPApplicationServerInstancesStopOptionalParams = {
     requestOptions: {},
   },
-): __PLACEHOLDER_o169__<
-  __PLACEHOLDER_o170__<OperationStatusResult>,
-  OperationStatusResult
-> {
+): PollerLike<OperationState<OperationStatusResult>, OperationStatusResult> {
   return getLongRunningPoller(
     context,
     _sAPApplicationServerInstancesStopDeserialize,
@@ -117,10 +116,7 @@ export function sAPApplicationServerInstancesStop(
         ),
       resourceLocationConfig: "location",
     },
-  ) as __PLACEHOLDER_o169__<
-    __PLACEHOLDER_o170__<OperationStatusResult>,
-    OperationStatusResult
-  >;
+  ) as PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
 }
 
 export function _sAPApplicationServerInstancesStartSend(
@@ -182,10 +178,7 @@ export function sAPApplicationServerInstancesStart(
   options: SAPApplicationServerInstancesStartOptionalParams = {
     requestOptions: {},
   },
-): __PLACEHOLDER_o169__<
-  __PLACEHOLDER_o170__<OperationStatusResult>,
-  OperationStatusResult
-> {
+): PollerLike<OperationState<OperationStatusResult>, OperationStatusResult> {
   return getLongRunningPoller(
     context,
     _sAPApplicationServerInstancesStartDeserialize,
@@ -203,10 +196,7 @@ export function sAPApplicationServerInstancesStart(
         ),
       resourceLocationConfig: "location",
     },
-  ) as __PLACEHOLDER_o169__<
-    __PLACEHOLDER_o170__<OperationStatusResult>,
-    OperationStatusResult
-  >;
+  ) as PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
 }
 
 export function _sAPApplicationServerInstancesListSend(
@@ -332,7 +322,7 @@ export function sAPApplicationServerInstancesDelete(
   options: SAPApplicationServerInstancesDeleteOptionalParams = {
     requestOptions: {},
   },
-): __PLACEHOLDER_o169__<__PLACEHOLDER_o170__<void>, void> {
+): PollerLike<OperationState<void>, void> {
   return getLongRunningPoller(
     context,
     _sAPApplicationServerInstancesDeleteDeserialize,
@@ -350,7 +340,7 @@ export function sAPApplicationServerInstancesDelete(
         ),
       resourceLocationConfig: "location",
     },
-  ) as __PLACEHOLDER_o169__<__PLACEHOLDER_o170__<void>, void>;
+  ) as PollerLike<OperationState<void>, void>;
 }
 
 export function _sAPApplicationServerInstancesUpdateSend(
@@ -483,8 +473,8 @@ export function sAPApplicationServerInstancesCreate(
   options: SAPApplicationServerInstancesCreateOptionalParams = {
     requestOptions: {},
   },
-): __PLACEHOLDER_o169__<
-  __PLACEHOLDER_o170__<SAPApplicationServerInstance>,
+): PollerLike<
+  OperationState<SAPApplicationServerInstance>,
   SAPApplicationServerInstance
 > {
   return getLongRunningPoller(
@@ -505,8 +495,8 @@ export function sAPApplicationServerInstancesCreate(
         ),
       resourceLocationConfig: "azure-async-operation",
     },
-  ) as __PLACEHOLDER_o169__<
-    __PLACEHOLDER_o170__<SAPApplicationServerInstance>,
+  ) as PollerLike<
+    OperationState<SAPApplicationServerInstance>,
     SAPApplicationServerInstance
   >;
 }

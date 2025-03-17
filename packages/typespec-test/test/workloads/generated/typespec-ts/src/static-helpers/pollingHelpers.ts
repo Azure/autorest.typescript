@@ -1,3 +1,4 @@
+// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
 import {
@@ -13,7 +14,7 @@ import {
   Client,
   PathUncheckedResponse,
   createRestError,
-} from "@typespec/ts-http-runtime";
+} from "@azure-rest/core-client";
 import { AbortSignalLike } from "@azure/abort-controller";
 
 export interface GetLongRunningPollerOptions<TResponse> {

@@ -1,3 +1,4 @@
+// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
 import nodeResolve from "@rollup/plugin-node-resolve";

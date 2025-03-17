@@ -1,3 +1,4 @@
+// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
 import { WorkloadsContext as Client } from "../index.js";
@@ -15,18 +16,19 @@ import {
   _SAPCentralServerInstanceListResult,
   _sapCentralServerInstanceListResultDeserializer,
 } from "../../models/models.js";
-import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
   operationOptionsToRequestParameters,
-} from "@typespec/ts-http-runtime";
+} from "@azure-rest/core-client";
+import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   SAPCentralServerInstancesStopOptionalParams,
   SAPCentralServerInstancesStartOptionalParams,
@@ -92,10 +94,7 @@ export function sAPCentralServerInstancesStop(
   sapVirtualInstanceName: string,
   centralInstanceName: string,
   options: SAPCentralServerInstancesStopOptionalParams = { requestOptions: {} },
-): __PLACEHOLDER_o169__<
-  __PLACEHOLDER_o170__<OperationStatusResult>,
-  OperationStatusResult
-> {
+): PollerLike<OperationState<OperationStatusResult>, OperationStatusResult> {
   return getLongRunningPoller(
     context,
     _sAPCentralServerInstancesStopDeserialize,
@@ -113,10 +112,7 @@ export function sAPCentralServerInstancesStop(
         ),
       resourceLocationConfig: "location",
     },
-  ) as __PLACEHOLDER_o169__<
-    __PLACEHOLDER_o170__<OperationStatusResult>,
-    OperationStatusResult
-  >;
+  ) as PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
 }
 
 export function _sAPCentralServerInstancesStartSend(
@@ -178,10 +174,7 @@ export function sAPCentralServerInstancesStart(
   options: SAPCentralServerInstancesStartOptionalParams = {
     requestOptions: {},
   },
-): __PLACEHOLDER_o169__<
-  __PLACEHOLDER_o170__<OperationStatusResult>,
-  OperationStatusResult
-> {
+): PollerLike<OperationState<OperationStatusResult>, OperationStatusResult> {
   return getLongRunningPoller(
     context,
     _sAPCentralServerInstancesStartDeserialize,
@@ -199,10 +192,7 @@ export function sAPCentralServerInstancesStart(
         ),
       resourceLocationConfig: "location",
     },
-  ) as __PLACEHOLDER_o169__<
-    __PLACEHOLDER_o170__<OperationStatusResult>,
-    OperationStatusResult
-  >;
+  ) as PollerLike<OperationState<OperationStatusResult>, OperationStatusResult>;
 }
 
 export function _sAPCentralServerInstancesListSend(
@@ -324,7 +314,7 @@ export function sAPCentralServerInstancesDelete(
   options: SAPCentralServerInstancesDeleteOptionalParams = {
     requestOptions: {},
   },
-): __PLACEHOLDER_o169__<__PLACEHOLDER_o170__<void>, void> {
+): PollerLike<OperationState<void>, void> {
   return getLongRunningPoller(
     context,
     _sAPCentralServerInstancesDeleteDeserialize,
@@ -342,7 +332,7 @@ export function sAPCentralServerInstancesDelete(
         ),
       resourceLocationConfig: "location",
     },
-  ) as __PLACEHOLDER_o169__<__PLACEHOLDER_o170__<void>, void>;
+  ) as PollerLike<OperationState<void>, void>;
 }
 
 export function _sAPCentralServerInstancesUpdateSend(
@@ -475,8 +465,8 @@ export function sAPCentralServerInstancesCreate(
   options: SAPCentralServerInstancesCreateOptionalParams = {
     requestOptions: {},
   },
-): __PLACEHOLDER_o169__<
-  __PLACEHOLDER_o170__<SAPCentralServerInstance>,
+): PollerLike<
+  OperationState<SAPCentralServerInstance>,
   SAPCentralServerInstance
 > {
   return getLongRunningPoller(
@@ -497,8 +487,8 @@ export function sAPCentralServerInstancesCreate(
         ),
       resourceLocationConfig: "azure-async-operation",
     },
-  ) as __PLACEHOLDER_o169__<
-    __PLACEHOLDER_o170__<SAPCentralServerInstance>,
+  ) as PollerLike<
+    OperationState<SAPCentralServerInstance>,
     SAPCentralServerInstance
   >;
 }
