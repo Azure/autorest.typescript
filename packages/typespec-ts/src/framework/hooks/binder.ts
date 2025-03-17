@@ -54,7 +54,7 @@ class BinderImp implements Binder {
   private symbolsBySourceFile = new Map<SourceFile, Set<string>>();
   private project: Project;
   private dependencies: Record<string, ReferenceableSymbol>;
-  public staticHelpers: Map<string, StaticHelperMetadata>;
+  private staticHelpers: Map<string, StaticHelperMetadata>;
 
   constructor(project: Project, options: BinderOptions = {}) {
     this.project = project;
@@ -226,10 +226,6 @@ class BinderImp implements Binder {
    */
   resolveAllReferences(sourceRoot: string): void {
     this.project.getSourceFiles().map((file) => {
-      console.log("Resolving references in file", file.getFilePath());
-      if (file.getFilePath().includes("sapCentralServerInstances")) {
-        console.log("Resolving references in file", file.getFilePath());
-      }
       this.resolveDeclarationReferences(file);
       this.resolveDependencyReferences(file);
       const importStructures = this.imports.get(file);
