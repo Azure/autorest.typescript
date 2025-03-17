@@ -1,7 +1,8 @@
 import {
   FunctionDeclarationStructure,
   OptionalKind,
-  ParameterDeclarationStructure
+  ParameterDeclarationStructure,
+  StructureKind
 } from "ts-morph";
 import { NoTarget, Program } from "@typespec/compiler";
 import {
@@ -411,7 +412,7 @@ export function getOperationFunction(
   context: SdkContext,
   method: [string[], ServiceOperation],
   clientType: string
-): OptionalKind<FunctionDeclarationStructure> & { propertyName?: string } {
+): FunctionDeclarationStructure & { propertyName?: string } {
   const operation = method[1];
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
@@ -449,6 +450,7 @@ export function getOperationFunction(
   }
   const { name, fixme = [] } = getOperationName(operation);
   const functionStatement = {
+    kind: StructureKind.Function,
     docs: [
       ...getDocsFromDescription(operation.doc),
       ...getFixmeForMultilineDocs(fixme)
@@ -472,7 +474,7 @@ export function getOperationFunction(
   return {
     ...functionStatement,
     statements
-  };
+  } as FunctionDeclarationStructure & { propertyName?: string };
 }
 
 function getLroOnlyOperationFunction(
@@ -480,7 +482,7 @@ function getLroOnlyOperationFunction(
   method: [string[], SdkLroServiceMethod<SdkHttpOperation>],
   clientType: string,
   optionalParamName: string = "options"
-) {
+): FunctionDeclarationStructure & { propertyName?: string } {
   const operation = method[1];
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
@@ -494,6 +496,7 @@ function getLroOnlyOperationFunction(
     AzurePollingDependencies.OperationState
   );
   const functionStatement = {
+    kind: StructureKind.Function,
     docs: [
       ...getDocsFromDescription(operation.doc),
       ...getFixmeForMultilineDocs(fixme)
@@ -544,7 +547,7 @@ function getLroOnlyOperationFunction(
   return {
     ...functionStatement,
     statements
-  };
+  } as FunctionDeclarationStructure & { propertyName?: string };
 }
 
 function buildLroReturnType(
@@ -566,7 +569,7 @@ function getPagingOnlyOperationFunction(
   context: SdkContext,
   method: [string[], SdkPagingServiceMethod<SdkHttpOperation>],
   clientType: string
-) {
+): FunctionDeclarationStructure & { propertyName?: string } {
   const operation = method[1];
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
@@ -590,6 +593,7 @@ function getPagingOnlyOperationFunction(
     PagingHelpers.BuildPagedAsyncIterator
   );
   const functionStatement = {
+    kind: StructureKind.Function,
     docs: [
       ...getDocsFromDescription(operation.doc),
       ...getFixmeForMultilineDocs(fixme)
@@ -626,7 +630,7 @@ function getPagingOnlyOperationFunction(
   return {
     ...functionStatement,
     statements
-  };
+  } as FunctionDeclarationStructure & { propertyName?: string };
 }
 
 export function getOperationOptionsName(

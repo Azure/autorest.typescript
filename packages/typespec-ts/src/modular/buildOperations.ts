@@ -94,9 +94,13 @@ export function buildOperationFiles(
       );
       operationGroupFile.addFunctions([
         sendOperationDeclaration,
-        deserializeOperationDeclaration,
-        operationDeclaration
+        deserializeOperationDeclaration
       ]);
+      addDeclaration(
+        operationGroupFile,
+        operationDeclaration,
+        refkey(op, "api")
+      );
     });
 
     const indexPathPrefix =

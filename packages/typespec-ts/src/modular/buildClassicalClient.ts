@@ -32,6 +32,7 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
 import { useContext } from "../contextManager.js";
+import { refkey } from "../framework/refkey.js";
 
 export function buildClassicalClient(
   dpgContext: SdkContext,
@@ -163,7 +164,7 @@ function generateMethod(
     kind: StructureKind.Method,
     returnType: declarations.returnType,
     parameters: declarations.parameters?.filter((p) => p.name !== "context"),
-    statements: `return ${declarations.name}(${[
+    statements: `return ${resolveReference(refkey(method[1], "api"))}(${[
       "this._client",
       ...[
         declarations.parameters

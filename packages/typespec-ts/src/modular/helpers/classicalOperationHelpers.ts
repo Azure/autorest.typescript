@@ -15,6 +15,8 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { getModularClientOptions } from "../../utils/clientUtils.js";
 import { ServiceOperation } from "../../utils/operationUtil.js";
+import { refkey } from "../../framework/refkey.js";
+import { resolveReference } from "../../framework/reference.js";
 
 export function getClassicalOperation(
   dpgContext: SdkContext,
@@ -51,6 +53,10 @@ export function getClassicalOperation(
     OptionalKind<FunctionDeclarationStructure>,
     string | undefined
   >();
+  const operationKeyMap = new Map<
+    OptionalKind<FunctionDeclarationStructure>,
+    string | undefined
+  >();
   const operationDeclarations: OptionalKind<FunctionDeclarationStructure>[] =
     operations.map((operation) => {
       const declarations = getOperationFunction(
@@ -59,6 +65,10 @@ export function getClassicalOperation(
         rlcClientName
       );
       operationMap.set(declarations, operation.oriName);
+      operationKeyMap.set(
+        declarations,
+        resolveReference(refkey(operation, "api"))
+      );
       return declarations;
     });
 
@@ -157,7 +167,7 @@ export function getClassicalOperation(
                   ": " +
                   p.type
               )
-              .join(",")}) => ${d.name}(${[
+              .join(",")}) => ${operationKeyMap.get(d)}(${[
               "context",
               ...[
                 d.parameters?.map((p) => p.name).filter((p) => p !== "context")

@@ -3,30 +3,6 @@
 
 import { NetworkAnalyticsApiContext } from "../../api/networkAnalyticsApiContext.js";
 import {
-  listBySubscription,
-  listByResourceGroup,
-  listRolesAssignments,
-  removeUserRole,
-  addUserRole,
-  rotateKey,
-  generateStorageAccountSasToken,
-  $delete,
-  update,
-  get,
-  create,
-  DataProductsListBySubscriptionOptionalParams,
-  DataProductsListByResourceGroupOptionalParams,
-  DataProductsListRolesAssignmentsOptionalParams,
-  DataProductsRemoveUserRoleOptionalParams,
-  DataProductsAddUserRoleOptionalParams,
-  DataProductsRotateKeyOptionalParams,
-  DataProductsGenerateStorageAccountSasTokenOptionalParams,
-  DataProductsDeleteOptionalParams,
-  DataProductsUpdateOptionalParams,
-  DataProductsGetOptionalParams,
-  DataProductsCreateOptionalParams,
-} from "../../api/dataProducts/index.js";
-import {
   DataProduct,
   DataProductUpdate,
   AccountSas,
@@ -49,6 +25,19 @@ import {
   DataProductsGetOptionalParams,
   DataProductsCreateOptionalParams,
 } from "../../api/dataProducts/options.js";
+import {
+  listBySubscription,
+  listByResourceGroup,
+  listRolesAssignments,
+  removeUserRole,
+  addUserRole,
+  rotateKey,
+  generateStorageAccountSasToken,
+  $delete,
+  update,
+  get,
+  create,
+} from "../../api/dataProducts/operations.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
