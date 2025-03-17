@@ -268,10 +268,10 @@ export function dataProductNetworkAclsSerializer(
   item: DataProductNetworkAcls,
 ): any {
   return {
-    virtualNetworkRule: placeholderO29SserializerArraySerializer(
+    virtualNetworkRule: virtualNetworkRuleSerializerArraySerializer(
       item["virtualNetworkRule"],
     ),
-    ipRules: placeholderO30SserializerArraySerializer(item["ipRules"]),
+    ipRules: ipRulesSerializerArraySerializer(item["ipRules"]),
     allowedQueryIpRangeList: item["allowedQueryIpRangeList"].map((p: any) => {
       return p;
     }),
@@ -283,10 +283,10 @@ export function dataProductNetworkAclsDeserializer(
   item: any,
 ): DataProductNetworkAcls {
   return {
-    virtualNetworkRule: placeholderO29SdeserializerArrayDeserializer(
+    virtualNetworkRule: virtualNetworkRuleDeserializerArrayDeserializer(
       item["virtualNetworkRule"],
     ),
-    ipRules: placeholderO30SdeserializerArrayDeserializer(item["ipRules"]),
+    ipRules: ipRulesDeserializerArrayDeserializer(item["ipRules"]),
     allowedQueryIpRangeList: item["allowedQueryIpRangeList"].map((p: any) => {
       return p;
     }),
@@ -294,7 +294,7 @@ export function dataProductNetworkAclsDeserializer(
   };
 }
 
-export function placeholderO29SserializerArraySerializer(
+export function virtualNetworkRuleSerializerArraySerializer(
   result: Array<VirtualNetworkRule>,
 ): any[] {
   return result.map((item) => {
@@ -302,7 +302,7 @@ export function placeholderO29SserializerArraySerializer(
   });
 }
 
-export function placeholderO29SdeserializerArrayDeserializer(
+export function virtualNetworkRuleDeserializerArrayDeserializer(
   result: Array<VirtualNetworkRule>,
 ): any[] {
   return result.map((item) => {
@@ -332,7 +332,7 @@ export function virtualNetworkRuleDeserializer(item: any): VirtualNetworkRule {
   };
 }
 
-export function placeholderO30SserializerArraySerializer(
+export function ipRulesSerializerArraySerializer(
   result: Array<IPRules>,
 ): any[] {
   return result.map((item) => {
@@ -340,7 +340,7 @@ export function placeholderO30SserializerArraySerializer(
   });
 }
 
-export function placeholderO30SdeserializerArrayDeserializer(
+export function ipRulesDeserializerArrayDeserializer(
   result: Array<IPRules>,
 ): any[] {
   return result.map((item) => {
@@ -456,7 +456,7 @@ export function managedServiceIdentityV4Serializer(
     type: item["type"],
     userAssignedIdentities: !item["userAssignedIdentities"]
       ? item["userAssignedIdentities"]
-      : placeholderO37SserializerRecordSerializer(
+      : userAssignedIdentitySerializerRecordSerializer(
           item["userAssignedIdentities"],
         ),
   };
@@ -471,7 +471,7 @@ export function managedServiceIdentityV4Deserializer(
     type: item["type"],
     userAssignedIdentities: !item["userAssignedIdentities"]
       ? item["userAssignedIdentities"]
-      : placeholderO37SdeserializerRecordDeserializer(
+      : userAssignedIdentityDeserializerRecordDeserializer(
           item["userAssignedIdentities"],
         ),
   };
@@ -501,7 +501,7 @@ export enum KnownManagedServiceIdentityType {
  */
 export type ManagedServiceIdentityType = string;
 
-export function placeholderO37SserializerRecordSerializer(
+export function userAssignedIdentitySerializerRecordSerializer(
   item: Record<string, UserAssignedIdentity>,
 ): Record<string, any> {
   const result: Record<string, any> = {};
@@ -513,7 +513,7 @@ export function placeholderO37SserializerRecordSerializer(
   return result;
 }
 
-export function placeholderO37SdeserializerRecordDeserializer(
+export function userAssignedIdentityDeserializerRecordDeserializer(
   item: Record<string, any>,
 ): Record<string, UserAssignedIdentity> {
   const result: Record<string, any> = {};
@@ -690,14 +690,16 @@ export function errorDetailDeserializer(item: any): ErrorDetail {
     target: item["target"],
     details: !item["details"]
       ? item["details"]
-      : placeholderO42SdeserializerArrayDeserializer(item["details"]),
+      : errorDetailDeserializerArrayDeserializer(item["details"]),
     additionalInfo: !item["additionalInfo"]
       ? item["additionalInfo"]
-      : placeholderO44SdeserializerArrayDeserializer(item["additionalInfo"]),
+      : errorAdditionalInfoDeserializerArrayDeserializer(
+          item["additionalInfo"],
+        ),
   };
 }
 
-export function placeholderO42SdeserializerArrayDeserializer(
+export function errorDetailDeserializerArrayDeserializer(
   result: Array<ErrorDetail>,
 ): any[] {
   return result.map((item) => {
@@ -705,7 +707,7 @@ export function placeholderO42SdeserializerArrayDeserializer(
   });
 }
 
-export function placeholderO44SdeserializerArrayDeserializer(
+export function errorAdditionalInfoDeserializerArrayDeserializer(
   result: Array<ErrorAdditionalInfo>,
 ): any[] {
   return result.map((item) => {
@@ -958,13 +960,13 @@ export function listRoleAssignmentsDeserializer(
 ): ListRoleAssignments {
   return {
     count: item["count"],
-    roleAssignmentResponse: placeholderO58SdeserializerArrayDeserializer(
+    roleAssignmentResponse: roleAssignmentDetailDeserializerArrayDeserializer(
       item["roleAssignmentResponse"],
     ),
   };
 }
 
-export function placeholderO58SserializerArraySerializer(
+export function roleAssignmentDetailSerializerArraySerializer(
   result: Array<RoleAssignmentDetail>,
 ): any[] {
   return result.map((item) => {
@@ -972,7 +974,7 @@ export function placeholderO58SserializerArraySerializer(
   });
 }
 
-export function placeholderO58SdeserializerArrayDeserializer(
+export function roleAssignmentDetailDeserializerArrayDeserializer(
   result: Array<RoleAssignmentDetail>,
 ): any[] {
   return result.map((item) => {
@@ -992,12 +994,12 @@ export function _dataProductListResultDeserializer(
   item: any,
 ): _DataProductListResult {
   return {
-    value: placeholderO19SdeserializerArrayDeserializer(item["value"]),
+    value: dataProductDeserializerArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
 }
 
-export function placeholderO19SserializerArraySerializer(
+export function dataProductSerializerArraySerializer(
   result: Array<DataProduct>,
 ): any[] {
   return result.map((item) => {
@@ -1005,7 +1007,7 @@ export function placeholderO19SserializerArraySerializer(
   });
 }
 
-export function placeholderO19SdeserializerArrayDeserializer(
+export function dataProductDeserializerArrayDeserializer(
   result: Array<DataProduct>,
 ): any[] {
   return result.map((item) => {
@@ -1202,12 +1204,12 @@ export function _dataTypeListResultDeserializer(
   item: any,
 ): _DataTypeListResult {
   return {
-    value: placeholderO67SdeserializerArrayDeserializer(item["value"]),
+    value: dataTypeDeserializerArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
 }
 
-export function placeholderO67SserializerArraySerializer(
+export function dataTypeSerializerArraySerializer(
   result: Array<DataType>,
 ): any[] {
   return result.map((item) => {
@@ -1215,7 +1217,7 @@ export function placeholderO67SserializerArraySerializer(
   });
 }
 
-export function placeholderO67SdeserializerArrayDeserializer(
+export function dataTypeDeserializerArrayDeserializer(
   result: Array<DataType>,
 ): any[] {
   return result.map((item) => {
@@ -1258,13 +1260,13 @@ export function dataProductsCatalogPropertiesDeserializer(
 ): DataProductsCatalogProperties {
   return {
     provisioningState: item["provisioningState"],
-    publishers: placeholderO78SdeserializerArrayDeserializer(
+    publishers: publisherInformationDeserializerArrayDeserializer(
       item["publishers"],
     ),
   };
 }
 
-export function placeholderO78SdeserializerArrayDeserializer(
+export function publisherInformationDeserializerArrayDeserializer(
   result: Array<PublisherInformation>,
 ): any[] {
   return result.map((item) => {
@@ -1285,13 +1287,13 @@ export function publisherInformationDeserializer(
 ): PublisherInformation {
   return {
     publisherName: item["publisherName"],
-    dataProducts: placeholderO80SdeserializerArrayDeserializer(
+    dataProducts: dataProductInformationDeserializerArrayDeserializer(
       item["dataProducts"],
     ),
   };
 }
 
-export function placeholderO80SdeserializerArrayDeserializer(
+export function dataProductInformationDeserializerArrayDeserializer(
   result: Array<DataProductInformation>,
 ): any[] {
   return result.map((item) => {
@@ -1315,13 +1317,13 @@ export function dataProductInformationDeserializer(
   return {
     dataProductName: item["dataProductName"],
     description: item["description"],
-    dataProductVersions: placeholderO82SdeserializerArrayDeserializer(
+    dataProductVersions: dataProductVersionDeserializerArrayDeserializer(
       item["dataProductVersions"],
     ),
   };
 }
 
-export function placeholderO82SdeserializerArrayDeserializer(
+export function dataProductVersionDeserializerArrayDeserializer(
   result: Array<DataProductVersion>,
 ): any[] {
   return result.map((item) => {
@@ -1353,12 +1355,12 @@ export function _dataProductsCatalogListResultDeserializer(
   item: any,
 ): _DataProductsCatalogListResult {
   return {
-    value: placeholderO77SdeserializerArrayDeserializer(item["value"]),
+    value: dataProductsCatalogDeserializerArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
 }
 
-export function placeholderO77SdeserializerArrayDeserializer(
+export function dataProductsCatalogDeserializerArrayDeserializer(
   result: Array<DataProductsCatalog>,
 ): any[] {
   return result.map((item) => {
@@ -1378,12 +1380,12 @@ export function _operationListResultDeserializer(
   item: any,
 ): _OperationListResult {
   return {
-    value: placeholderO86SdeserializerArrayDeserializer(item["value"]),
+    value: operationDeserializerArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
 }
 
-export function placeholderO86SdeserializerArrayDeserializer(
+export function operationDeserializerArrayDeserializer(
   result: Array<Operation>,
 ): any[] {
   return result.map((item) => {

@@ -407,14 +407,10 @@ function buildDictTypeDeserializer(
   if (typeof valueDeserializer !== "string") {
     return undefined;
   }
-  const valueTypeName = normalizeName(
-    valueDeserializer ? valueDeserializer.replace("Deserializer", "") : "",
-    NameType.Property,
-    true
-  );
-  const deserializerFunctionName = `${valueTypeName}RecordDeserializer`;
+
+  const deserializerFunctionName = `${valueDeserializer}RecordDeserializer`;
   if (nameOnly) {
-    return resolveReference(refkey(type, "record", "deserializer"));
+    return deserializerFunctionName;
   }
   const deserializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -470,14 +466,9 @@ function buildArrayTypeDeserializer(
   if (typeof valueDeserializer !== "string") {
     return undefined;
   }
-  const valueTypeName = normalizeName(
-    valueDeserializer ? valueDeserializer.replace("Deserializer", "") : "",
-    NameType.Property,
-    true
-  );
-  const deserializerFunctionName = `${valueTypeName}ArrayDeserializer`;
+  const deserializerFunctionName = `${valueDeserializer}ArrayDeserializer`;
   if (nameOnly) {
-    return resolveReference(refkey(type, "array", "deserializer"));
+    return deserializerFunctionName;
   }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
