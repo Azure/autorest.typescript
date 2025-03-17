@@ -80,7 +80,7 @@ describe("bytes", () => {
     });
 
     // TODO: need to figure out the behavior
-    it.skip("@encode('base64') - should be treated as string?", async () => {});
+    it.skip("@encode('base64') - should be treated as string?", async () => { });
     it.skip("bytes in model - should be treated as base64 string?");
   });
   describe("application/json or no content type specified", () => {
@@ -119,7 +119,12 @@ describe("bytes", () => {
         `import type { RequestParameters } from "@azure-rest/core-client";
                   
           export interface ReadBodyParam {
-            body: string;
+            /** Value may contain any sequence of octets */
+            body:
+              | string
+              | Uint8Array
+              | ReadableStream<Uint8Array>
+              | NodeJS.ReadableStream;
           }
           
           export type ReadParameters = ReadBodyParam & RequestParameters;
