@@ -26,9 +26,7 @@ export interface GuardedName {
   fixme?: string[];
 }
 
-export function getOperationName(
-  operation: ServiceOperation,
-): GuardedName {
+export function getOperationName(operation: ServiceOperation): GuardedName {
   if (isReservedName(operation.name, NameType.Operation)) {
     return {
       name: `$${operation.name}`,
