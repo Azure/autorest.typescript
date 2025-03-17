@@ -409,7 +409,10 @@ function buildModelTypeSerializer(
     serializerFunction.statements = [`return [${parts.join(",")}]`];
   } else {
     // This is only handling the compatibility mode, will need to update when we handle additionalProperties property.
-    const additionalPropertiesSpread = getAdditionalPropertiesStatement(context, type);
+    const additionalPropertiesSpread = getAdditionalPropertiesStatement(
+      context,
+      type
+    );
 
     const propertiesStr = getRequestModelMapping(context, type, "item");
 
@@ -435,9 +438,14 @@ function buildModelTypeSerializer(
   return serializerFunction;
 }
 
-function getAdditionalPropertiesStatement(context: SdkContext, type: SdkModelType): string | undefined {
+function getAdditionalPropertiesStatement(
+  context: SdkContext,
+  type: SdkModelType
+): string | undefined {
   return hasAdditionalProperties(type)
-    ? (context.rlcOptions?.compatibilityMode === true ? "...item" : "...item.additionalProperties")
+    ? context.rlcOptions?.compatibilityMode === true
+      ? "...item"
+      : "...item.additionalProperties"
     : undefined;
 }
 

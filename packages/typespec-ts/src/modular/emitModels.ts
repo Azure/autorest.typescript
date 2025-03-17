@@ -511,7 +511,9 @@ function addExtendedDictInfo(
     if (!modelInterface.extends) {
       modelInterface.extends = [];
     }
-    modelInterface.extends.push(`Record<string, ${anyType ? "any" : additionalPropertiesType}>`);
+    modelInterface.extends.push(
+      `Record<string, ${anyType ? "any" : additionalPropertiesType}>`
+    );
   } else {
     const additionalPropertiesType = model.additionalProperties
       ? getTypeExpression(context, model.additionalProperties)
