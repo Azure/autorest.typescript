@@ -114,7 +114,7 @@ export function getClassicalOperation(
           .map(
             (p) =>
               p.name +
-              (p.type?.toString().endsWith("OptionalParams") ||
+              (p.type?.toString().endsWith("operationOptions__") ||
               p.hasQuestionToken
                 ? "?"
                 : "") +
@@ -160,7 +160,7 @@ export function getClassicalOperation(
               .map(
                 (p) =>
                   p.name +
-                  (p.type?.toString().endsWith("OptionalParams") ||
+                  (p.type?.toString().endsWith("operationOptions__") ||
                   p.hasQuestionToken
                     ? "?"
                     : "") +

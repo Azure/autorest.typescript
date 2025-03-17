@@ -19,32 +19,32 @@ import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.j
 export interface DataProductsCatalogsOperations {
   /** List data catalog by subscription. */
   listBySubscription: (
-    options: DataProductsCatalogsListBySubscriptionOptionalParams,
+    options?: DataProductsCatalogsListBySubscriptionOptionalParams,
   ) => PagedAsyncIterableIterator<DataProductsCatalog>;
   /** List data catalog by resource group. */
   listByResourceGroup: (
     resourceGroupName: string,
-    options: DataProductsCatalogsListByResourceGroupOptionalParams,
+    options?: DataProductsCatalogsListByResourceGroupOptionalParams,
   ) => PagedAsyncIterableIterator<DataProductsCatalog>;
   /** Retrieve data type resource. */
   get: (
     resourceGroupName: string,
-    options: DataProductsCatalogsGetOptionalParams,
+    options?: DataProductsCatalogsGetOptionalParams,
   ) => Promise<DataProductsCatalog>;
 }
 
 function _getDataProductsCatalogs(context: NetworkAnalyticsApiContext) {
   return {
     listBySubscription: (
-      options: DataProductsCatalogsListBySubscriptionOptionalParams,
+      options?: DataProductsCatalogsListBySubscriptionOptionalParams,
     ) => listBySubscription(context, options),
     listByResourceGroup: (
       resourceGroupName: string,
-      options: DataProductsCatalogsListByResourceGroupOptionalParams,
+      options?: DataProductsCatalogsListByResourceGroupOptionalParams,
     ) => listByResourceGroup(context, resourceGroupName, options),
     get: (
       resourceGroupName: string,
-      options: DataProductsCatalogsGetOptionalParams,
+      options?: DataProductsCatalogsGetOptionalParams,
     ) => get(context, resourceGroupName, options),
   };
 }

@@ -135,9 +135,9 @@ export interface DataProductsCatalogsListBySubscriptionOptionalParams extends Op
 
 // @public
 export interface DataProductsCatalogsOperations {
-    get: (resourceGroupName: string, options: DataProductsCatalogsGetOptionalParams) => Promise<DataProductsCatalog>;
-    listByResourceGroup: (resourceGroupName: string, options: DataProductsCatalogsListByResourceGroupOptionalParams) => PagedAsyncIterableIterator<DataProductsCatalog>;
-    listBySubscription: (options: DataProductsCatalogsListBySubscriptionOptionalParams) => PagedAsyncIterableIterator<DataProductsCatalog>;
+    get: (resourceGroupName: string, options?: DataProductsCatalogsGetOptionalParams) => Promise<DataProductsCatalog>;
+    listByResourceGroup: (resourceGroupName: string, options?: DataProductsCatalogsListByResourceGroupOptionalParams) => PagedAsyncIterableIterator<DataProductsCatalog>;
+    listBySubscription: (options?: DataProductsCatalogsListBySubscriptionOptionalParams) => PagedAsyncIterableIterator<DataProductsCatalog>;
 }
 
 // @public
@@ -172,17 +172,17 @@ export interface DataProductsListRolesAssignmentsOptionalParams extends Operatio
 
 // @public
 export interface DataProductsOperations {
-    addUserRole: (resourceGroupName: string, dataProductName: string, body: RoleAssignmentCommonProperties, options: DataProductsAddUserRoleOptionalParams) => Promise<RoleAssignmentDetail>;
-    create: (resourceGroupName: string, dataProductName: string, resource: DataProduct, options: DataProductsCreateOptionalParams) => PollerLike<OperationState<DataProduct>, DataProduct>;
-    delete: (resourceGroupName: string, dataProductName: string, options: DataProductsDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
-    generateStorageAccountSasToken: (resourceGroupName: string, dataProductName: string, body: AccountSas, options: DataProductsGenerateStorageAccountSasTokenOptionalParams) => Promise<AccountSasToken>;
-    get: (resourceGroupName: string, dataProductName: string, options: DataProductsGetOptionalParams) => Promise<DataProduct>;
-    listByResourceGroup: (resourceGroupName: string, options: DataProductsListByResourceGroupOptionalParams) => PagedAsyncIterableIterator<DataProduct>;
-    listBySubscription: (options: DataProductsListBySubscriptionOptionalParams) => PagedAsyncIterableIterator<DataProduct>;
-    listRolesAssignments: (resourceGroupName: string, dataProductName: string, body: Record<string, any>, options: DataProductsListRolesAssignmentsOptionalParams) => Promise<ListRoleAssignments>;
-    removeUserRole: (resourceGroupName: string, dataProductName: string, body: RoleAssignmentDetail, options: DataProductsRemoveUserRoleOptionalParams) => Promise<void>;
-    rotateKey: (resourceGroupName: string, dataProductName: string, body: KeyVaultInfo, options: DataProductsRotateKeyOptionalParams) => Promise<void>;
-    update: (resourceGroupName: string, dataProductName: string, properties: DataProductUpdate, options: DataProductsUpdateOptionalParams) => PollerLike<OperationState<DataProduct>, DataProduct>;
+    addUserRole: (resourceGroupName: string, dataProductName: string, body: RoleAssignmentCommonProperties, options?: DataProductsAddUserRoleOptionalParams) => Promise<RoleAssignmentDetail>;
+    create: (resourceGroupName: string, dataProductName: string, resource: DataProduct, options?: DataProductsCreateOptionalParams) => PollerLike<OperationState<DataProduct>, DataProduct>;
+    delete: (resourceGroupName: string, dataProductName: string, options?: DataProductsDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
+    generateStorageAccountSasToken: (resourceGroupName: string, dataProductName: string, body: AccountSas, options?: DataProductsGenerateStorageAccountSasTokenOptionalParams) => Promise<AccountSasToken>;
+    get: (resourceGroupName: string, dataProductName: string, options?: DataProductsGetOptionalParams) => Promise<DataProduct>;
+    listByResourceGroup: (resourceGroupName: string, options?: DataProductsListByResourceGroupOptionalParams) => PagedAsyncIterableIterator<DataProduct>;
+    listBySubscription: (options?: DataProductsListBySubscriptionOptionalParams) => PagedAsyncIterableIterator<DataProduct>;
+    listRolesAssignments: (resourceGroupName: string, dataProductName: string, body: Record<string, any>, options?: DataProductsListRolesAssignmentsOptionalParams) => Promise<ListRoleAssignments>;
+    removeUserRole: (resourceGroupName: string, dataProductName: string, body: RoleAssignmentDetail, options?: DataProductsRemoveUserRoleOptionalParams) => Promise<void>;
+    rotateKey: (resourceGroupName: string, dataProductName: string, body: KeyVaultInfo, options?: DataProductsRotateKeyOptionalParams) => Promise<void>;
+    update: (resourceGroupName: string, dataProductName: string, properties: DataProductUpdate, options?: DataProductsUpdateOptionalParams) => PollerLike<OperationState<DataProduct>, DataProduct>;
 }
 
 // @public
@@ -267,13 +267,13 @@ export interface DataTypesListByDataProductOptionalParams extends OperationOptio
 
 // @public
 export interface DataTypesOperations {
-    create: (resourceGroupName: string, dataProductName: string, dataTypeName: string, resource: DataType, options: DataTypesCreateOptionalParams) => PollerLike<OperationState<DataType>, DataType>;
-    delete: (resourceGroupName: string, dataProductName: string, dataTypeName: string, options: DataTypesDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
-    deleteData: (resourceGroupName: string, dataProductName: string, dataTypeName: string, body: Record<string, any>, options: DataTypesDeleteDataOptionalParams) => PollerLike<OperationState<void>, void>;
-    generateStorageContainerSasToken: (resourceGroupName: string, dataProductName: string, dataTypeName: string, body: ContainerSaS, options: DataTypesGenerateStorageContainerSasTokenOptionalParams) => Promise<ContainerSasToken>;
-    get: (resourceGroupName: string, dataProductName: string, dataTypeName: string, options: DataTypesGetOptionalParams) => Promise<DataType>;
-    listByDataProduct: (resourceGroupName: string, dataProductName: string, options: DataTypesListByDataProductOptionalParams) => PagedAsyncIterableIterator<DataType>;
-    update: (resourceGroupName: string, dataProductName: string, dataTypeName: string, properties: DataTypeUpdate, options: DataTypesUpdateOptionalParams) => PollerLike<OperationState<DataType>, DataType>;
+    create: (resourceGroupName: string, dataProductName: string, dataTypeName: string, resource: DataType, options?: DataTypesCreateOptionalParams) => PollerLike<OperationState<DataType>, DataType>;
+    delete: (resourceGroupName: string, dataProductName: string, dataTypeName: string, options?: DataTypesDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
+    deleteData: (resourceGroupName: string, dataProductName: string, dataTypeName: string, body: Record<string, any>, options?: DataTypesDeleteDataOptionalParams) => PollerLike<OperationState<void>, void>;
+    generateStorageContainerSasToken: (resourceGroupName: string, dataProductName: string, dataTypeName: string, body: ContainerSaS, options?: DataTypesGenerateStorageContainerSasTokenOptionalParams) => Promise<ContainerSasToken>;
+    get: (resourceGroupName: string, dataProductName: string, dataTypeName: string, options?: DataTypesGetOptionalParams) => Promise<DataType>;
+    listByDataProduct: (resourceGroupName: string, dataProductName: string, options?: DataTypesListByDataProductOptionalParams) => PagedAsyncIterableIterator<DataType>;
+    update: (resourceGroupName: string, dataProductName: string, dataTypeName: string, properties: DataTypeUpdate, options?: DataTypesUpdateOptionalParams) => PollerLike<OperationState<DataType>, DataType>;
 }
 
 // @public
@@ -467,7 +467,7 @@ export interface OperationsListOptionalParams extends OperationOptions {
 
 // @public
 export interface OperationsOperations {
-    list: (options: OperationsListOptionalParams) => PagedAsyncIterableIterator<Operation>;
+    list: (options?: OperationsListOptionalParams) => PagedAsyncIterableIterator<Operation>;
 }
 
 // @public
