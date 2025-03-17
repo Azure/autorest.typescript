@@ -2,7 +2,6 @@ import { FunctionDeclarationStructure, StructureKind } from "ts-morph";
 import {
   SdkArrayType,
   SdkDictionaryType,
-  SdkModelPropertyType,
   SdkModelType,
   SdkType,
   SdkUnionType,
@@ -410,9 +409,7 @@ function buildModelTypeSerializer(
     serializerFunction.statements = [`return [${parts.join(",")}]`];
   } else {
     // This is only handling the compatibility mode, will need to update when we handle additionalProperties property.
-    const additionalPropertiesSpread = hasAdditionalProperties(type)
-      ? "...item"
-      : "";
+    const additionalPropertiesSpread = getAdditionalPropertiesStatement(context, type);
 
     const propertiesStr = getRequestModelMapping(context, type, "item");
 
@@ -440,15 +437,8 @@ function buildModelTypeSerializer(
 
 function getAdditionalPropertiesStatement(context: SdkContext, type: SdkModelType): string | undefined {
   return hasAdditionalProperties(type)
-    ? (!context.rlcOptions?.compatibilityMode && hasAdditionalPropertiesProperty(type) ? "...item.additionalProperties" : "...item")
+    ? (context.rlcOptions?.compatibilityMode === true ? "...item" : "...item.additionalProperties")
     : undefined;
-}
-
-function hasAdditionalPropertiesProperty(type: SdkModelType) {
-  const allParents = getAllAncestors(type);
-  const properties: SdkModelPropertyType[] =
-    getAllProperties(type, allParents) ?? [];
-  return properties.some((p) => p.name === "additionalProperties");
 }
 
 function buildDictTypeSerializer(

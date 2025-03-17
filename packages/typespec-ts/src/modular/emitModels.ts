@@ -492,28 +492,34 @@ function addExtendedDictInfo(
   const additionalPropertiesType = model.additionalProperties
     ? getTypeExpression(context, model.additionalProperties)
     : undefined;
-  if (
-    (model.properties &&
-      model.properties.length > 0 &&
-      model.additionalProperties &&
-      model.properties?.every((p) => {
+  if (context.rlcOptions?.compatibilityMode) {
+    let anyType = true;
+    if (!additionalPropertiesType) {
+      // case 1: if additionalProperties is not defined, we should use any type
+      anyType = true;
+    } else if (model.properties?.length === 0) {
+      // case 2: if additionalProperties is defined and model.properties is empty, we should use additionalProperties type
+      anyType = false;
+    } else {
+      // case 3: if additionalProperties is defined and model.properties is not empty, we should check if all properties are compatible with additionalProperties type
+      anyType = !model.properties.every((p) => {
         return additionalPropertiesType?.includes(
           getTypeExpression(context, p.type)
         );
-      })) ||
-    (model.properties?.length === 0 && model.additionalProperties)
-  ) {
-    modelInterface.extends = [
-      ...(modelInterface.extends ?? []),
-      `Record<string, ${additionalPropertiesType ?? "any"}>`
-    ];
-  } else if (context.rlcOptions?.compatibilityMode) {
+      });
+    }
     if (!modelInterface.extends) {
       modelInterface.extends = [];
     }
-    modelInterface.extends.push(`Record<string, any>`);
+    modelInterface.extends.push(`Record<string, ${anyType ? "any" : additionalPropertiesType}>`);
   } else {
-    modelInterface.properties?.push({
+    const additionalPropertiesType = model.additionalProperties
+      ? getTypeExpression(context, model.additionalProperties)
+      : undefined;
+    if (!modelInterface.properties) {
+      modelInterface.properties = [];
+    }
+    modelInterface.properties.push({
       name: "additionalProperties",
       docs: ["Additional properties"],
       hasQuestionToken: true,
