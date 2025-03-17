@@ -205,12 +205,13 @@ describe("EncodeDatetimeClient Rest Client", () => {
       assert.strictEqual(result.headers.value, "Fri, 26 Aug 2022 14:38:00 GMT");
     });
 
-    it(`should get unix-timestamp header`, async () => {
+    //TODO revert this skipped case after merging https://github.com/microsoft/typespec/pull/6423
+    it.skip(`should get unix-timestamp header`, async () => {
       const result = await client
         .path(`/encode/datetime/responseheader/unix-timestamp`)
         .get();
       assert.strictEqual(result.status, "204");
-      assert.strictEqual(result.headers.value, "1686566864");
+      assert.strictEqual(result.headers.value, 1686566864);
     });
   });
 });
