@@ -29,8 +29,6 @@ import {
   getDocsFromDescription,
   getFixmeForMultilineDocs
 } from "./docsHelpers.js";
-import { toPascalCase } from "../../utils/casingUtils.js";
-
 import { AzurePollingDependencies } from "../external-dependencies.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { buildModelDeserializer } from "../serialization/buildDeserializerFunction.js";
@@ -521,7 +519,7 @@ function getLroOnlyOperationFunction(
   ];
   const resourceLocationConfig =
     lroMetadata?.finalStateVia &&
-    allowedFinalLocation.includes(lroMetadata?.finalStateVia)
+      allowedFinalLocation.includes(lroMetadata?.finalStateVia)
       ? `resourceLocationConfig: "${lroMetadata?.finalStateVia}"`
       : "";
   const statements: string[] = [];
@@ -536,9 +534,8 @@ function getLroOnlyOperationFunction(
       .map((p) => p.name)
       .join(", ")}),
     ${resourceLocationConfig}
-  }) as ${pollerLikeReference}<${operationStateReference}<${
-    returnType.type
-  }>, ${returnType.type}>;
+  }) as ${pollerLikeReference}<${operationStateReference}<${returnType.type
+    }>, ${returnType.type}>;
   `);
 
   return {
@@ -639,7 +636,7 @@ export function getOperationOptionsName(
     includeGroupName && operation.name.indexOf("_") === -1
       ? getClassicalLayerPrefix(prefixes, NameType.Interface)
       : "";
-  const optionName = `${prefix}${toPascalCase(operation.name)}OptionalParams`;
+  const optionName = `${prefix}${normalizeName(operation.name, NameType.Interface)}OptionalParams`;
   return optionName;
 }
 
@@ -848,15 +845,14 @@ function getCollectionFormat(
       getEncodeForType(param.type)
     )}${additionalParam})`;
   }
-  return `"${serializedName}": ${optionalParamName}?.${
-    param.name
-  } !== undefined ? ${collectionInfo}(${serializeRequestValue(
-    context,
-    param.type,
-    `${optionalParamName}?.${param.name}`,
-    false,
-    getEncodeForType(param.type)
-  )}${additionalParam}): undefined`;
+  return `"${serializedName}": ${optionalParamName}?.${param.name
+    } !== undefined ? ${collectionInfo}(${serializeRequestValue(
+      context,
+      param.type,
+      `${optionalParamName}?.${param.name}`,
+      false,
+      getEncodeForType(param.type)
+    )}${additionalParam}): undefined`;
 }
 
 function isContentType(param: SdkServiceParameter): boolean {
@@ -878,11 +874,10 @@ function getContentTypeValue(
   if (defaultValue) {
     return `contentType: ${optionalParamName}.${param.name} as any ?? "${defaultValue}"`;
   } else {
-    return `contentType: ${
-      !param.optional
-        ? "contentType"
-        : `${optionalParamName}.` + param.name + " as any"
-    }`;
+    return `contentType: ${!param.optional
+      ? "contentType"
+      : `${optionalParamName}.` + param.name + " as any"
+      }`;
   }
 }
 
@@ -1184,9 +1179,8 @@ export function getResponseMapping(
     }
     const dot = propertyPath.endsWith("?") ? "." : "";
     const serializedName = getPropertySerializedName(property);
-    const restValue = `${
-      propertyPath ? `${propertyPath}${dot}` : `${dot}`
-    }["${serializedName}"]`;
+    const restValue = `${propertyPath ? `${propertyPath}${dot}` : `${dot}`
+      }["${serializedName}"]`;
 
     const nullOrUndefinedPrefix =
       property.optional || isTypeNullable(property.type)
@@ -1282,14 +1276,12 @@ export function serializeRequestValue(
         );
         return required
           ? `${getNullableCheck(
-              clientValue,
-              type
-            )} ${uint8ArrayToStringReference}(${clientValue}, "${
-              getEncodingFormat({ format }) ?? "base64"
-            }")`
-          : `${nullOrUndefinedPrefix} ${uint8ArrayToStringReference}(${clientValue}, "${
-              getEncodingFormat({ format }) ?? "base64"
-            }")`;
+            clientValue,
+            type
+          )} ${uint8ArrayToStringReference}(${clientValue}, "${getEncodingFormat({ format }) ?? "base64"
+          }")`
+          : `${nullOrUndefinedPrefix} ${uint8ArrayToStringReference}(${clientValue}, "${getEncodingFormat({ format }) ?? "base64"
+          }")`;
       }
       return clientValue;
     case "union":
@@ -1360,11 +1352,11 @@ export function deserializeResponseValue(
       }
       const deserializeFunctionName = type.valueType
         ? buildModelDeserializer(
-            context,
-            getNullableValidType(type.valueType),
-            false,
-            true
-          )
+          context,
+          getNullableValidType(type.valueType),
+          false,
+          true
+        )
         : undefined;
       if (deserializeFunctionName) {
         return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(p)})`;
@@ -1392,11 +1384,11 @@ export function deserializeResponseValue(
       } else if (isSpecialHandledUnion(type)) {
         const deserializeFunctionName = type
           ? buildModelDeserializer(
-              context,
-              getNullableValidType(type),
-              false,
-              true
-            )
+            context,
+            getNullableValidType(type),
+            false,
+            true
+          )
           : undefined;
         if (deserializeFunctionName) {
           return `${deserializeFunctionName}(${restValue})`;
