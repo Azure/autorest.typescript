@@ -354,7 +354,6 @@ function buildModelTypeDeserializer(
   };
   const nullabilityPrefix = "";
 
-  // This is only handling the compatibility mode, will need to update when we handle additionalProperties property.
   const additionalPropertiesSpread =
     getAdditionalPropertiesStatement(context, type) ?? "";
 
