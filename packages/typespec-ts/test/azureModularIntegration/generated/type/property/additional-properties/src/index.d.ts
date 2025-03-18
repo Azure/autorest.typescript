@@ -9,7 +9,6 @@ export declare class AdditionalPropertiesClient {
     readonly spreadRecordNonDiscriminatedUnion3: SpreadRecordNonDiscriminatedUnion3Operations;
     readonly spreadRecordNonDiscriminatedUnion2: SpreadRecordNonDiscriminatedUnion2Operations;
     readonly spreadRecordNonDiscriminatedUnion: SpreadRecordNonDiscriminatedUnionOperations;
-    readonly spreadRecordDiscriminatedUnion: SpreadRecordDiscriminatedUnionOperations;
     readonly spreadRecordUnion: SpreadRecordUnionOperations;
     readonly multipleSpread: MultipleSpreadOperations;
     readonly extendsDifferentSpreadModelArray: ExtendsDifferentSpreadModelArrayOperations;
@@ -457,21 +456,6 @@ export declare interface SpreadModelRecord extends Record<string, ModelForRecord
     knownProp: ModelForRecord;
 }
 
-export declare interface SpreadRecordDiscriminatedUnionGetOptionalParams extends OperationOptions {
-}
-
-export declare interface SpreadRecordDiscriminatedUnionOperations {
-    put: (body: SpreadRecordForDiscriminatedUnion, options?: SpreadRecordDiscriminatedUnionPutOptionalParams) => Promise<void>;
-    get: (options?: SpreadRecordDiscriminatedUnionGetOptionalParams) => Promise<SpreadRecordForDiscriminatedUnion>;
-}
-
-export declare interface SpreadRecordDiscriminatedUnionPutOptionalParams extends OperationOptions {
-}
-
-export declare interface SpreadRecordForDiscriminatedUnion extends Record<string, any> {
-    name: string;
-}
-
 export declare interface SpreadRecordForNonDiscriminatedUnion extends Record<string, any> {
     name: string;
 }
@@ -547,13 +531,13 @@ export declare interface SpreadStringRecord extends Record<string, string> {
     name: string;
 }
 
-export declare type WidgetData = WidgetData0 | WidgetData1;
-
 export declare interface WidgetData0 {
+    kind: "kind0";
     fooProp: string;
 }
 
 export declare interface WidgetData1 {
+    kind: "kind1";
     start: Date;
     end?: Date;
 }
