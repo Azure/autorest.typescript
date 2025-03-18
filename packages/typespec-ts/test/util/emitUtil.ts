@@ -37,9 +37,8 @@ import { transformSchemas } from "../../src/transform/transformSchemas.js";
 import { transformToParameterTypes } from "../../src/transform/transformParameters.js";
 import { transformToResponseTypes } from "../../src/transform/transformResponses.js";
 import { useBinder } from "../../src/framework/hooks/binder.js";
-import { useContext } from "../../src/contextManager.js";
 import { emitSamples } from "../../src/modular/emitSamples.js";
-import { removeUnusedImports, renameClientName } from "../../src/index.js";
+import { renameClientName } from "../../src/index.js";
 
 export async function emitPageHelperFromTypeSpec(
   tspContent: string,
@@ -414,7 +413,6 @@ export async function emitModularModelsFromTypeSpec(
     false,
     options
   );
-  const project = useContext("outputProject");
   const binder = useBinder();
   let modelFile = undefined;
   dpgContext.rlcOptions!.isModularLibrary = true;
@@ -424,7 +422,6 @@ export async function emitModularModelsFromTypeSpec(
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
     "",
-    project,
     {
       casing: "camel"
     }
@@ -443,7 +440,6 @@ export async function emitModularModelsFromTypeSpec(
       );
       binder.resolveAllReferences("/");
       if (modelFile.length > 0) {
-        removeUnusedImports(modelFile[0]!);
         modelFile[0]!.fixUnusedIdentifiers();
       }
     } else {
@@ -487,7 +483,6 @@ export async function emitModularOperationsFromTypeSpec(
     });
   }
   const dpgContext = await createDpgContextTestHelper(context.program);
-  const project = useContext("outputProject");
   const binder = useBinder();
   dpgContext.rlcOptions!.isModularLibrary = true;
   dpgContext.rlcOptions!.experimentalExtensibleEnums =
@@ -495,7 +490,6 @@ export async function emitModularOperationsFromTypeSpec(
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
     "",
-    project,
     {
       casing: "camel"
     }
@@ -519,7 +513,6 @@ export async function emitModularOperationsFromTypeSpec(
     }
     binder.resolveAllReferences("/");
     for (const file of res) {
-      removeUnusedImports(file);
       file.fixUnusedIdentifiers();
     }
     return res;
@@ -545,14 +538,12 @@ export async function emitModularClientContextFromTypeSpec(
     });
   }
   const dpgContext = await createDpgContextTestHelper(context.program);
-  const project = useContext("outputProject");
   const binder = useBinder();
   dpgContext.rlcOptions!.isModularLibrary = true;
   dpgContext.rlcOptions!.typespecTitleMap = options["typespec-title-map"];
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
     "",
-    project,
     {
       casing: "camel"
     }
@@ -570,7 +561,6 @@ export async function emitModularClientContextFromTypeSpec(
       modularEmitterOptions
     );
     binder.resolveAllReferences("modularPackageFolder/src");
-    removeUnusedImports(res);
     res.fixUnusedIdentifiers();
     return res;
   }
@@ -596,14 +586,12 @@ export async function emitModularClientFromTypeSpec(
     });
   }
   const dpgContext = await createDpgContextTestHelper(context.program);
-  const project = useContext("outputProject");
   const binder = useBinder();
   dpgContext.rlcOptions!.isModularLibrary = true;
   dpgContext.rlcOptions!.typespecTitleMap = options["typespec-title-map"];
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
     "",
-    project,
     {
       casing: "camel"
     }
@@ -660,11 +648,9 @@ export async function emitSamplesFromTypeSpec(
     },
     ...configs
   });
-  const project = useContext("outputProject");
   const modularEmitterOptions = transformModularEmitterOptions(
     dpgContext,
     "",
-    project,
     {
       casing: "camel"
     }
