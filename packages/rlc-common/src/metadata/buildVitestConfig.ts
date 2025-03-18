@@ -39,14 +39,9 @@ export function buildVitestNodeConfig(model: RLCModel) {
   }
 
   const project = new Project();
-
-  let filePath;
-  let config;
-  let configFile;
-
-  filePath = "vitest.config.ts";
-  config = nodeConfig;
-  configFile = project.createSourceFile(filePath, config, {
+  const filePath = "vitest.config.ts";
+  const config = nodeConfig;
+  const configFile = project.createSourceFile(filePath, config, {
     overwrite: true
   });
   configFile.addImportDeclaration({
@@ -73,14 +68,9 @@ export function buildVitestBrowserConfig(model: RLCModel) {
   }
 
   const project = new Project();
-
-  let filePath;
-  let config;
-  let configFile;
-
-  filePath = "vitest.browser.config.ts";
-  config = browserConfig;
-  configFile = project.createSourceFile(filePath, config, {
+  const filePath = "vitest.browser.config.ts";
+  const config = browserConfig;
+  const configFile = project.createSourceFile(filePath, config, {
     overwrite: true
   });
   configFile.addImportDeclaration({
@@ -107,14 +97,9 @@ export function buildVitestEsmConfig(model: RLCModel) {
   }
 
   const project = new Project();
-
-  let filePath;
-  let config;
-  let configFile;
-
-  filePath = "vitest.esm.config.ts";
-  config = esmConfig;
-  configFile = project.createSourceFile(filePath, config, {
+  const filePath = "vitest.esm.config.ts";
+  const config = esmConfig;
+  const configFile = project.createSourceFile(filePath, config, {
     overwrite: true
   });
   configFile.addImportDeclaration({
