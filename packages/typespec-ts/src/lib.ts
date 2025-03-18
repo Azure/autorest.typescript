@@ -447,6 +447,12 @@ const libDef = {
       messages: {
         default: paramMessage`Enum member name ${"memberName"} is normalized to ${"normalizedName"} with "_" prefix.`
       }
+    },
+    "property-name-conflict": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`The property name ${"propertyName"} has conflicts with others and please use @clientName to rename it.`
+      }
     }
   },
   emitter: {

@@ -43,7 +43,7 @@ export function simpleModelDeserializer(item: any): SimpleModel {
 }
 ```
 
-# Should generate deserializer for additional properties for legacy code
+# Should generate deserializer for additional properties for non-legacy code
 
 ## TypeSpec
 
@@ -67,6 +67,14 @@ model UnionModel {
     propB: string;
 }
 
+model NameConflictModel {
+    ...Record<string>;
+    additionalProperties: Record<int32>;
+    propA: string;
+    propB: string;
+}
+
+
 @route("/serialize")
 interface D {
   @route("bar")
@@ -75,6 +83,8 @@ interface D {
   op baz(): { @body body: EmptyModel };
   @route("bas")
   op bas(): { @body body: UnionModel };
+  @route("bab")
+  op bab(): { @body body: NameConflictModel };
 }
 ```
 
@@ -82,6 +92,7 @@ This is the tsp configuration.
 
 ```yaml
 compatibility-mode: false
+mustEmptyDiagnostic: false
 ```
 
 ## Provide generated models and its serializer
@@ -142,5 +153,27 @@ export function _unionModelAdditionalPropertyDeserializer(
   item: any
 ): _UnionModelAdditionalProperty {
   return item;
+}
+
+/** model interface NameConflictModel */
+export interface NameConflictModel {
+  additionalProperties: Record<string, number>;
+  propA: string;
+  propB: string;
+  /** Additional properties */
+  additionalPropertiesBag?: Record<string, string>;
+}
+
+export function nameConflictModelDeserializer(item: any): NameConflictModel {
+  return {
+    additionalPropertiesBag: serializeRecord(item, [
+      "additionalProperties",
+      "propA",
+      "propB"
+    ]),
+    additionalProperties: item["additionalProperties"],
+    propA: item["propA"],
+    propB: item["propB"]
+  };
 }
 ```

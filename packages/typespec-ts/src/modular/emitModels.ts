@@ -61,6 +61,8 @@ import {
 import { emitQueue } from "../framework/hooks/sdkTypes.js";
 import { resolveReference } from "../framework/reference.js";
 import { MultipartHelpers } from "./static-helpers-metadata.js";
+import { getAllAncestors } from "./helpers/operationHelpers.js";
+import { getAllProperties } from "./helpers/operationHelpers.js";
 
 type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
   extends?: string[];
@@ -493,16 +495,18 @@ function addExtendedDictInfo(
     ? getTypeExpression(context, model.additionalProperties)
     : undefined;
   if (context.rlcOptions?.compatibilityMode) {
+    const ancestors = getAllAncestors(model);
+    const properties = getAllProperties(model, ancestors);
     let anyType = true;
     if (!additionalPropertiesType) {
       // case 1: if additionalProperties is not defined, we should use any type
       anyType = true;
-    } else if (model.properties?.length === 0) {
+    } else if (properties.length === 0) {
       // case 2: if additionalProperties is defined and model.properties is empty, we should use additionalProperties type
       anyType = false;
     } else {
       // case 3: if additionalProperties is defined and model.properties is not empty, we should check if all properties are compatible with additionalProperties type
-      anyType = !model.properties.every((p) => {
+      anyType = !properties.every((p) => {
         return additionalPropertiesType?.includes(
           getTypeExpression(context, p.type)
         );
@@ -518,17 +522,37 @@ function addExtendedDictInfo(
     const additionalPropertiesType = model.additionalProperties
       ? getTypeExpression(context, model.additionalProperties)
       : undefined;
+    const name = getAdditionalPropertiesName(model);
+    if (name !== "additionalProperties") {
+      // report diagnostic for additionalProperties
+      reportDiagnostic(context.program, {
+        code: "property-name-conflict",
+        format: {
+          propertyName: "additionalProperties"
+        },
+        target: NoTarget
+      });
+    }
     if (!modelInterface.properties) {
       modelInterface.properties = [];
     }
     modelInterface.properties.push({
-      name: "additionalProperties",
+      name,
       docs: ["Additional properties"],
       hasQuestionToken: true,
       isReadonly: false,
       type: `Record<string, ${additionalPropertiesType ?? "any"}>`
     });
   }
+}
+
+export function getAdditionalPropertiesName(model: SdkModelType): string {
+  const ancestors = getAllAncestors(model);
+  const properties = getAllProperties(model, ancestors);
+  const nameConflict = properties.find(
+    (p) => p.name === "additionalProperties"
+  );
+  return nameConflict ? "additionalPropertiesBag" : "additionalProperties";
 }
 
 export function normalizeModelName(

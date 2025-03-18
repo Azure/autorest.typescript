@@ -15,7 +15,10 @@ import {
   getRequestModelMapping,
   getSerializationExpression
 } from "../helpers/operationHelpers.js";
-import { normalizeModelName } from "../emitModels.js";
+import {
+  getAdditionalPropertiesName,
+  normalizeModelName
+} from "../emitModels.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
 import {
@@ -441,10 +444,11 @@ function getAdditionalPropertiesStatement(
   context: SdkContext,
   type: SdkModelType
 ): string | undefined {
+  const additionalPropertiesName = getAdditionalPropertiesName(type);
   return hasAdditionalProperties(type)
     ? context.rlcOptions?.compatibilityMode === true
       ? "...item"
-      : "...item.additionalProperties"
+      : `...item.${additionalPropertiesName}`
     : undefined;
 }
 

@@ -179,7 +179,7 @@ export function simpleModelSerializer(item: SimpleModel): any {
 }
 ```
 
-# skip: Should generate union `additionalProperties` bag for non-legacy code if multiple additional properties
+# Should generate union `additionalProperties` bag for non-legacy code if multiple additional properties
 
 ## TypeSpec
 
@@ -237,7 +237,7 @@ export function _simpleModelAdditionalPropertySerializer(
 }
 ```
 
-# skip: Should generate ser function for `additionalProperties` bag for non-legacy code
+# Should generate `additionalProperties` bag if we have another same name property as `additionalProperties`
 
 ## TypeSpec
 
@@ -245,14 +245,28 @@ This is tsp definition.
 
 ```tsp
 model SimpleModel {
-    ...Record<utcDateTime>;
+    ...Record<string>;
+    additionalProperties: Record<int32>;
+    propA: string;
+    propB: string;
+}
+
+model BarModel {
+  additionalProperties: Record<int32>;
+}
+
+model FooModel extends BarModel{
+    ...Record<string>;
     propA: string;
     propB: string;
 }
 
 @route("/serialize")
 interface D {
+  @route("bar")
   op bar(@body body: SimpleModel): void;
+  @route("foo")
+  op foo(@body body: FooModel): void;
 }
 ```
 
@@ -260,6 +274,7 @@ This is the tsp configuration.
 
 ```yaml
 compatibility-mode: false
+mustEmptyDiagnostic: false
 ```
 
 ## Provide generated models and its serializer
@@ -269,17 +284,45 @@ Generated Models.
 ```ts models
 /** model interface SimpleModel */
 export interface SimpleModel {
+  additionalProperties: Record<string, number>;
   propA: string;
   propB: string;
   /** Additional properties */
-  additionalProperties?: Record<string, Date>;
+  additionalPropertiesBag?: Record<string, string>;
 }
 
 export function simpleModelSerializer(item: SimpleModel): any {
   return {
-    ...item.additionalProperties,
+    ...item.additionalPropertiesBag,
+    additionalProperties: item["additionalProperties"],
     propA: item["propA"],
     propB: item["propB"]
   };
+}
+
+/** model interface FooModel */
+export interface FooModel extends BarModel {
+  propA: string;
+  propB: string;
+  /** Additional properties */
+  additionalPropertiesBag?: Record<string, string>;
+}
+
+export function fooModelSerializer(item: FooModel): any {
+  return {
+    ...item.additionalPropertiesBag,
+    additionalProperties: item["additionalProperties"],
+    propA: item["propA"],
+    propB: item["propB"]
+  };
+}
+
+/** model interface BarModel */
+export interface BarModel {
+  additionalProperties: Record<string, number>;
+}
+
+export function barModelSerializer(item: BarModel): any {
+  return { additionalProperties: item["additionalProperties"] };
 }
 ```

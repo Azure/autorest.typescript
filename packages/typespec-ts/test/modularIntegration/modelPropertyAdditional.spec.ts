@@ -19,7 +19,7 @@ describe("ModelPropertyAdditional Client", () => {
     assert.deepEqual(result, {
       name: "abc",
       additionalProperties: {
-        prop: 43.125,
+        prop: 43.125
       },
       derivedProp: 43.125
     });
@@ -28,7 +28,7 @@ describe("ModelPropertyAdditional Client", () => {
     const result = await client.extendsDifferentSpreadFloat.put({
       name: "abc",
       additionalProperties: {
-        prop: 43.125,
+        prop: 43.125
       },
       derivedProp: 43.125
     });
@@ -39,7 +39,7 @@ describe("ModelPropertyAdditional Client", () => {
     assert.deepEqual(result, {
       knownProp: "abc",
       additionalProperties: {
-        prop: { state: "ok" },
+        prop: { state: "ok" }
       },
       derivedProp: { state: "ok" }
     });
@@ -48,7 +48,7 @@ describe("ModelPropertyAdditional Client", () => {
     const result = await client.extendsDifferentSpreadModel.put({
       knownProp: "abc",
       additionalProperties: {
-        prop: { state: "ok" },
+        prop: { state: "ok" }
       },
       derivedProp: { state: "ok" }
     });
@@ -59,7 +59,7 @@ describe("ModelPropertyAdditional Client", () => {
     assert.deepEqual(result, {
       knownProp: "abc",
       additionalProperties: {
-        prop: [{ state: "ok" }, { state: "ok" }],
+        prop: [{ state: "ok" }, { state: "ok" }]
       },
       derivedProp: [{ state: "ok" }, { state: "ok" }]
     });
@@ -68,7 +68,7 @@ describe("ModelPropertyAdditional Client", () => {
     const result = await client.extendsDifferentSpreadModelArray.put({
       knownProp: "abc",
       additionalProperties: {
-        prop: [{ state: "ok" }, { state: "ok" }],
+        prop: [{ state: "ok" }, { state: "ok" }]
       },
       derivedProp: [{ state: "ok" }, { state: "ok" }]
     });
@@ -79,7 +79,7 @@ describe("ModelPropertyAdditional Client", () => {
     assert.deepEqual(result, {
       id: 43.125,
       additionalProperties: {
-        prop: "abc",
+        prop: "abc"
       },
       derivedProp: "abc"
     });
@@ -88,7 +88,7 @@ describe("ModelPropertyAdditional Client", () => {
     const result = await client.extendsDifferentSpreadString.put({
       id: 43.125,
       additionalProperties: {
-        prop: "abc",
+        prop: "abc"
       },
       derivedProp: "abc"
     });
@@ -397,7 +397,7 @@ describe("ModelPropertyAdditional Client", () => {
       additionalProperties: {
         prop1: "abc",
         prop2: 43.125
-      },
+      }
     });
   });
   it("should put multiple Spread value", async () => {
@@ -406,7 +406,7 @@ describe("ModelPropertyAdditional Client", () => {
       additionalProperties: {
         prop1: "abc",
         prop2: 43.125
-      },
+      }
     });
     assert.equal(result, undefined);
   });
@@ -699,7 +699,7 @@ describe("ModelPropertyAdditional Client", () => {
       additionalProperties: {
         prop1: "abc",
         prop2: 43.125
-      },
+      }
     });
   });
   it("should put spread Record Union value", async () => {
@@ -708,7 +708,7 @@ describe("ModelPropertyAdditional Client", () => {
       additionalProperties: {
         prop1: "abc",
         prop2: 43.125
-      },
+      }
     });
     assert.equal(result, undefined);
   });
