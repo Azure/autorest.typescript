@@ -182,10 +182,13 @@ class BinderImp implements Binder {
     if (typeof fileWhereImportPointsTo === "string") {
       moduleSpecifier = fileWhereImportPointsTo;
     } else {
+      const relative = fileWhereImportIsAdded
+        .getRelativePathTo(fileWhereImportPointsTo)
+        .replace(".ts", ".js");
       moduleSpecifier =
-        fileWhereImportIsAdded.getRelativePathAsModuleSpecifierTo(
-          fileWhereImportPointsTo
-        ) + ".js";
+        relative.startsWith(".") || relative.startsWith("/")
+          ? relative
+          : `./${relative}`;
     }
 
     const importStructures = this.imports.get(fileWhereImportIsAdded) || [];
@@ -266,16 +269,11 @@ class BinderImp implements Binder {
       ...this.staticHelpers
     ]) {
       const placeholderKey = this.serializePlaceholder(declarationKey);
-      if (
-        isStaticHelperMetadata(declaration) &&
-        !countPlaceholderOccurrences(file, placeholderKey)
-      ) {
+      const occurences = countPlaceholderOccurrences(file, placeholderKey);
+      if (isStaticHelperMetadata(declaration) || !occurences) {
         continue;
       }
 
-      if (placeholderKey === "__PLACEHOLDER_o123_sarray_sserializer__") {
-        declaration;
-      }
       let name = declaration.name;
       let declarationSourceFile: SourceFile;
 
@@ -284,15 +282,13 @@ class BinderImp implements Binder {
       } else {
         declarationSourceFile = declaration[SourceFileSymbol]!;
       }
-      const occurences = countPlaceholderOccurrences(file, placeholderKey);
-      if (occurences > 0) {
-        if (file !== declarationSourceFile) {
-          this.trackReference(declarationKey, file);
-          const importDec = this.addImport(file, declarationSourceFile, name);
-          name = importDec.alias ?? name;
-        }
-        replacePlaceholder(file, placeholderKey, name);
+
+      if (file !== declarationSourceFile) {
+        this.trackReference(declarationKey, file);
+        const importDec = this.addImport(file, declarationSourceFile, name);
+        name = importDec.alias ?? name;
       }
+      replacePlaceholder(file, placeholderKey, name);
     }
   }
 

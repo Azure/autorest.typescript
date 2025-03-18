@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { FooContext } from "../../../api/fooContext.js";
+import { BECOperations, _getBECOperations } from "./c/index.js";
 
 /** Interface representing a BE operations. */
 export interface BEOperations {

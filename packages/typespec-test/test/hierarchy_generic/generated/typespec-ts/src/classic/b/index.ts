@@ -5,6 +5,8 @@ import { FooContext } from "../../api/fooContext.js";
 import { BA } from "../../models/b/models.js";
 import { BOp1OptionalParams } from "../../api/b/options.js";
 import { op1 } from "../../api/b/operations.js";
+import { BCOperations, _getBCOperations } from "./c/index.js";
+import { BEOperations, _getBEOperations } from "./e/index.js";
 
 /** Interface representing a B operations. */
 export interface BOperations {
