@@ -1922,12 +1922,15 @@ export function chatCompletionFunctionsSerializer(
 }
 
 /** model interface ChatCompletionFunctionParameters */
-export interface ChatCompletionFunctionParameters extends Record<string, any> {}
+export interface ChatCompletionFunctionParameters {
+  /** Additional properties */
+  additionalProperties?: Record<string, any>;
+}
 
 export function chatCompletionFunctionParametersSerializer(
   item: ChatCompletionFunctionParameters,
 ): any {
-  return { ...item };
+  return { ...item.additionalProperties };
 }
 
 /** Alias for _CreateChatCompletionRequestFunctionCall1 */
