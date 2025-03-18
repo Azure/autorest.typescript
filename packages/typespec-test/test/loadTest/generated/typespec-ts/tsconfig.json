@@ -22,5 +22,5 @@
       "@azure-rest/load-testing": ["./src/index"]
     }
   },
-  "include": ["src/**/*.ts", "test/**/*.ts", "samples-dev/**/*.ts"]
+  "include": ["src/**/*.ts", "samples-dev/**/*.ts"]
 }
