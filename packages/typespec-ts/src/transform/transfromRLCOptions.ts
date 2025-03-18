@@ -607,12 +607,12 @@ function getAzureSdkForJs(emitterOptions: EmitterOptions) {
   return emitterOptions.flavor !== "azure"
     ? false
     : (emitterOptions["azure-sdk-for-js"] === undefined ||
-      emitterOptions["azure-sdk-for-js"] === null) &&
-      (emitterOptions.azureSdkForJs === undefined ||
-        emitterOptions.azureSdkForJs === null)
+          emitterOptions["azure-sdk-for-js"] === null) &&
+        (emitterOptions.azureSdkForJs === undefined ||
+          emitterOptions.azureSdkForJs === null)
       ? true
       : Boolean(emitterOptions["azure-sdk-for-js"]) ||
-      Boolean(emitterOptions.azureSdkForJs);
+        Boolean(emitterOptions.azureSdkForJs);
 }
 
 function getGenerateMetadata(emitterOptions: EmitterOptions) {
@@ -637,14 +637,10 @@ function getGenerateMetadata(emitterOptions: EmitterOptions) {
  */
 function getGenerateTest(emitterOptions: EmitterOptions) {
   // Disable generateTest if azureSdkForJS is false
-  if (!getAzureSdkForJs(emitterOptions)
-  ) {
+  if (!getAzureSdkForJs(emitterOptions)) {
     return false;
   }
-  return (
-    emitterOptions["generate-test"] ??
-    emitterOptions.generateTest
-  );
+  return emitterOptions["generate-test"] ?? emitterOptions.generateTest;
 }
 
 /**
@@ -680,7 +676,7 @@ export function getCredentialInfo(
   const securityInfo = processAuth(program);
   const addCredentials =
     emitterOptions["add-credentials"] === false ||
-      emitterOptions.addCredentials === false
+    emitterOptions.addCredentials === false
       ? false
       : securityInfo
         ? securityInfo.addCredentials

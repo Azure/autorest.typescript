@@ -137,10 +137,10 @@ export async function $onEmit(context: EmitContext) {
   );
   const extraDependencies = isAzurePackage({ options: rlcOptions })
     ? {
-      ...AzurePollingDependencies,
-      ...AzureCoreDependencies,
-      ...AzureIdentityDependencies
-    }
+        ...AzurePollingDependencies,
+        ...AzureCoreDependencies,
+        ...AzureIdentityDependencies
+      }
     : { ...DefaultCoreDependencies };
   const binder = provideBinder(outputProject, {
     staticHelpers,
@@ -208,8 +208,8 @@ export async function $onEmit(context: EmitContext) {
   async function clearSrcFolder() {
     await fsextra.emptyDir(
       dpgContext.generationPathDetail?.modularSourcesDir ??
-      dpgContext.generationPathDetail?.rlcSourcesDir ??
-      ""
+        dpgContext.generationPathDetail?.rlcSourcesDir ??
+        ""
     );
   }
 
@@ -526,7 +526,7 @@ export async function createContextWithDefaultOptions(
 ): Promise<SdkContext> {
   const flattenUnionAsEnum =
     context.options["experimental-extensible-enums"] === undefined &&
-      context.options["experimentalExtensibleEnums"] === undefined
+    context.options["experimentalExtensibleEnums"] === undefined
       ? isArm(context)
       : (context.options["experimental-extensible-enums"] ??
         context.options["experimentalExtensibleEnums"]);

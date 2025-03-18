@@ -30,9 +30,7 @@ export default mergeConfig(
 const esmConfig = `
 export default mergeConfig(vitestConfig, vitestEsmConfig);`;
 
-export function buildVitestNodeConfig(
-  model: RLCModel,
-) {
+export function buildVitestNodeConfig(model: RLCModel) {
   if (
     model.options?.generateMetadata === false ||
     model.options?.generateTest === false
@@ -66,9 +64,7 @@ export function buildVitestNodeConfig(
   };
 }
 
-export function buildVitestBrowserConfig(
-  model: RLCModel,
-) {
+export function buildVitestBrowserConfig(model: RLCModel) {
   if (
     model.options?.generateMetadata === false ||
     model.options?.generateTest === false
@@ -102,9 +98,7 @@ export function buildVitestBrowserConfig(
   };
 }
 
-export function buildVitestEsmConfig(
-  model: RLCModel,
-) {
+export function buildVitestEsmConfig(model: RLCModel) {
   if (
     model.options?.generateMetadata === false ||
     model.options?.generateTest === false

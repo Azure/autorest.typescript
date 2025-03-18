@@ -102,8 +102,7 @@ function getEsmEntrypointInformation(config: PackageCommonInfoConfig) {
 
 export function getTshyConfig(config: PackageCommonInfoConfig) {
   const { exports = {} } = config;
-  const tshyConfig: Record<string, any> =
-  {
+  const tshyConfig: Record<string, any> = {
     exports: {
       "./package.json": "./package.json",
       ".": "./src/index.ts",
@@ -112,9 +111,9 @@ export function getTshyConfig(config: PackageCommonInfoConfig) {
     dialects: ["esm", "commonjs"],
     esmDialects: ["browser", "react-native"],
     selfLink: false
-  }
+  };
   if (config.azureSdkForJs) {
-    tshyConfig["project"] = "./tsconfig.src.json"
+    tshyConfig["project"] = "./tsconfig.src.json";
   }
   return tshyConfig;
 }
