@@ -9,7 +9,11 @@ import {
   UsageFlags
 } from "@azure-tools/typespec-client-generator-core";
 import { SdkContext } from "../../utils/interfaces.js";
-import { getAllAncestors, getAllProperties, getResponseMapping } from "../helpers/operationHelpers.js";
+import {
+  getAllAncestors,
+  getAllProperties,
+  getResponseMapping
+} from "../helpers/operationHelpers.js";
 import { normalizeModelName } from "../emitModels.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
@@ -384,8 +388,11 @@ function getAdditionalPropertiesStatement(
   const allParents = getAllAncestors(type);
   const properties: SdkModelPropertyType[] =
     getAllProperties(type, allParents) ?? [];
-  const excludeProperties = properties.filter((p) => !!p.name).map((p) => `"${p.name}"`);
-  const excludePropertiesStr = excludeProperties.length > 0 ? `[${excludeProperties.join(",")}]` : "";
+  const excludeProperties = properties
+    .filter((p) => !!p.name)
+    .map((p) => `"${p.name}"`);
+  const excludePropertiesStr =
+    excludeProperties.length > 0 ? `[${excludeProperties.join(",")}]` : "";
   return hasAdditionalProperties(type)
     ? context.rlcOptions?.compatibilityMode === true
       ? "...item,"

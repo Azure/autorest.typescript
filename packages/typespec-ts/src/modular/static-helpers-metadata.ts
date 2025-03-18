@@ -28,7 +28,7 @@ export const SerializationHelpers = {
     kind: "function",
     name: "serializeRecord",
     location: "serialization/serialize-record.ts"
-  },
+  }
 } as const;
 
 export const PagingHelpers = {
