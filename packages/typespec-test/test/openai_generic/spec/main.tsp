@@ -17,7 +17,7 @@ using TypeSpec.Http;
 @service(#{
   title: "OpenAI API",
   termsOfService: "https://openai.com/policies/terms-of-use",
-  contact: {
+  contact: #{
     name: "OpenAI Support",
     url: "https://help.openai.com",
   },
