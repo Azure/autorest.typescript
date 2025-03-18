@@ -10,7 +10,6 @@ import { ReferenceableSymbol } from "../dependency.js";
 import { provideDependencies, useDependencies } from "./useDependencies.js";
 import { refkey } from "../refkey.js";
 import {
-  isStaticHelperMetadata,
   SourceFileSymbol,
   StaticHelperMetadata
 } from "../load-static-helpers.js";
@@ -270,7 +269,7 @@ class BinderImp implements Binder {
     ]) {
       const placeholderKey = this.serializePlaceholder(declarationKey);
       const occurences = countPlaceholderOccurrences(file, placeholderKey);
-      if (isStaticHelperMetadata(declaration) || !occurences) {
+      if (!occurences) {
         continue;
       }
 

@@ -23,6 +23,10 @@ import {
   createJson,
   list,
 } from "../../api/todoItems/operations.js";
+import {
+  TodoItemsAttachmentsOperations,
+  _getTodoItemsAttachmentsOperations,
+} from "./attachments/index.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 
 /** Interface representing a TodoItems operations. */
