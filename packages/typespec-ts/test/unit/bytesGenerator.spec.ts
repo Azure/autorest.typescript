@@ -80,7 +80,7 @@ describe("bytes", () => {
     });
 
     // TODO: need to figure out the behavior
-    it.skip("@encode('base64') - should be treated as string?", async () => {});
+    it.skip("@encode('base64') - should be treated as string?", async () => { });
     it.skip("bytes in model - should be treated as base64 string?");
   });
   describe("application/json or no content type specified", () => {
@@ -172,6 +172,7 @@ describe("bytes", () => {
         const parameters = await emitParameterFromTypeSpec(
           `
               @route("/uploadFile")
+              #suppress "deprecated" "For test"
               @post op uploadFile(
               @header contentType: "multipart/form-data",
               @body body: {
@@ -235,6 +236,7 @@ describe("bytes", () => {
         const parameters = await emitParameterFromTypeSpec(
           `
               @route("/uploadFile")
+              #suppress "deprecated" "For test"
               @post op uploadFile(
               @header contentType: "multipart/form-data",
               @body body: {
@@ -297,6 +299,7 @@ describe("bytes", () => {
         const parameters = await emitParameterFromTypeSpec(
           `
               @route("/uploadFile")
+              #suppress "deprecated" "For test"
               @post op uploadFile(
               @header contentType: "multipart/form-data",
               @body body: {
@@ -349,6 +352,7 @@ describe("bytes", () => {
             unionBytes: bytes | int32;
           }
           @route("/uploadFile")
+          #suppress "deprecated" "For test"
           @post op uploadFile(
           @header contentType: "multipart/form-data",
           @body body: Foo;
@@ -440,6 +444,7 @@ describe("bytes", () => {
             bar: Bar;
           }
           @route("/uploadFile")
+          #suppress "deprecated" "For test"
           @post op uploadFile(
           @header contentType: "multipart/form-data",
           @body body: Foo;
