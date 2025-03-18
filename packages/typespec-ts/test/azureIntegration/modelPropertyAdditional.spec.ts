@@ -741,18 +741,18 @@ describe("ModelsPropertyAdditional Rest Client", () => {
           prop1: [
             {
               kind: "kind1",
-              start: "2021-01-01T00:00:00Z",
+              start: "2021-01-01T00:00:00Z"
             },
             {
               kind: "kind1",
-              start: "2021-01-01T00:00:00Z",
-            },
+              start: "2021-01-01T00:00:00Z"
+            }
           ],
           prop2: {
             kind: "kind1",
             start: "2021-01-01T00:00:00Z",
-            end: "2021-01-02T00:00:00Z",
-          },
+            end: "2021-01-02T00:00:00Z"
+          }
         }
       });
     assert.strictEqual(result.status, "204");
