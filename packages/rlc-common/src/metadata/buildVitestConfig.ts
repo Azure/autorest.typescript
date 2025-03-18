@@ -30,9 +30,8 @@ export default mergeConfig(
 const esmConfig = `
 export default mergeConfig(vitestConfig, vitestEsmConfig);`;
 
-export function buildVitestConfig(
+export function buildVitestNodeConfig(
   model: RLCModel,
-  platform: "browser" | "node" | "esm"
 ) {
   if (
     model.options?.generateMetadata === false ||
@@ -47,53 +46,95 @@ export function buildVitestConfig(
   let config;
   let configFile;
 
-  if (platform === "node") {
-    filePath = "vitest.config.ts";
-    config = nodeConfig;
-    configFile = project.createSourceFile(filePath, config, {
-      overwrite: true
-    });
-    configFile.addImportDeclaration({
-      moduleSpecifier: "vitest/config",
-      namedImports: ["defineConfig", "mergeConfig"]
-    });
-    configFile.addImportDeclaration({
-      moduleSpecifier: "../../../vitest.shared.config.ts",
-      namespaceImport: "viteConfig"
-    });
-  } else if (platform === "browser") {
-    filePath = "vitest.browser.config.ts";
-    config = browserConfig;
-    configFile = project.createSourceFile(filePath, config, {
-      overwrite: true
-    });
-    configFile.addImportDeclaration({
-      moduleSpecifier: "vitest/config",
-      namedImports: ["defineConfig", "mergeConfig"]
-    });
-    configFile.addImportDeclaration({
-      moduleSpecifier: "../../../vitest.browser.shared.config.ts",
-      namespaceImport: "viteConfig"
-    });
-  } else {
-    filePath = "vitest.esm.config.ts";
-    config = esmConfig;
-    configFile = project.createSourceFile(filePath, config, {
-      overwrite: true
-    });
-    configFile.addImportDeclaration({
-      moduleSpecifier: "vitest/config",
-      namedImports: ["mergeConfig"]
-    });
-    configFile.addImportDeclaration({
-      moduleSpecifier: "./vitest.config.ts",
-      namespaceImport: "vitestConfig"
-    });
-    configFile.addImportDeclaration({
-      moduleSpecifier: "../../../vitest.esm.shared.config.ts",
-      namespaceImport: "vitestEsmConfig"
-    });
+  filePath = "vitest.config.ts";
+  config = nodeConfig;
+  configFile = project.createSourceFile(filePath, config, {
+    overwrite: true
+  });
+  configFile.addImportDeclaration({
+    moduleSpecifier: "vitest/config",
+    namedImports: ["defineConfig", "mergeConfig"]
+  });
+  configFile.addImportDeclaration({
+    moduleSpecifier: "../../../vitest.shared.config.ts",
+    namespaceImport: "viteConfig"
+  });
+
+  return {
+    path: filePath,
+    content: configFile.getFullText()
+  };
+}
+
+export function buildVitestBrowserConfig(
+  model: RLCModel,
+) {
+  if (
+    model.options?.generateMetadata === false ||
+    model.options?.generateTest === false
+  ) {
+    return;
   }
+
+  const project = new Project();
+
+  let filePath;
+  let config;
+  let configFile;
+
+  filePath = "vitest.browser.config.ts";
+  config = browserConfig;
+  configFile = project.createSourceFile(filePath, config, {
+    overwrite: true
+  });
+  configFile.addImportDeclaration({
+    moduleSpecifier: "vitest/config",
+    namedImports: ["defineConfig", "mergeConfig"]
+  });
+  configFile.addImportDeclaration({
+    moduleSpecifier: "../../../vitest.browser.shared.config.ts",
+    namespaceImport: "viteConfig"
+  });
+
+  return {
+    path: filePath,
+    content: configFile.getFullText()
+  };
+}
+
+export function buildVitestEsmConfig(
+  model: RLCModel,
+) {
+  if (
+    model.options?.generateMetadata === false ||
+    model.options?.generateTest === false
+  ) {
+    return;
+  }
+
+  const project = new Project();
+
+  let filePath;
+  let config;
+  let configFile;
+
+  filePath = "vitest.esm.config.ts";
+  config = esmConfig;
+  configFile = project.createSourceFile(filePath, config, {
+    overwrite: true
+  });
+  configFile.addImportDeclaration({
+    moduleSpecifier: "vitest/config",
+    namedImports: ["mergeConfig"]
+  });
+  configFile.addImportDeclaration({
+    moduleSpecifier: "./vitest.config.ts",
+    namespaceImport: "vitestConfig"
+  });
+  configFile.addImportDeclaration({
+    moduleSpecifier: "../../../vitest.esm.shared.config.ts",
+    namespaceImport: "vitestEsmConfig"
+  });
 
   return {
     path: filePath,

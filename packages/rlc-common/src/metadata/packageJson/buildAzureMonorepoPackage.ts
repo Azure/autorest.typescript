@@ -176,11 +176,10 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
   return {
     ...getCommonPackageScripts(config),
     "build:samples": config.withSamples
-      ? "dev-tool run typecheck --paths samples-dev/*.ts && dev-tool samples publish -f"
+      ? "tsc -p tsconfig.samples.json && dev-tool samples publish -f"
       : "echo skipped",
-    "check-format": `dev-tool run vendored prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
-      config.withSamples ? '"samples-dev/*.ts"' : ""
-    }`,
+    "check-format": `dev-tool run vendored prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${config.withSamples ? '"samples-dev/*.ts"' : ""
+      }`,
     clean:
       "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
     "execute:samples": config.withSamples
@@ -188,9 +187,8 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
       : "echo skipped",
     "extract-api":
       "dev-tool run vendored rimraf review && dev-tool run extract-api",
-    format: `dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
-      config.withSamples ? '"samples-dev/*.ts"' : ""
-    }`,
+    format: `dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${config.withSamples ? '"samples-dev/*.ts"' : ""
+      }`,
     "integration-test:browser": "echo skipped",
     "integration-test:node": "echo skipped",
     "generate:client": "echo skipped",
