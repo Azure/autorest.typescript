@@ -2469,19 +2469,27 @@ mustEmptyDiagnostic: false
 ## Models
 
 ```ts models
+import { serializeRecord } from "../static-helpers/serialization/serialize-record.js";
+
 /** model interface Vegetables */
-export interface Vegetables extends Record<string, number | string> {
+export interface Vegetables {
   carrots: number;
   beans: number;
+  /** Additional properties */
+  additionalProperties?: Record<string, number | string>;
 }
 
 export function vegetablesSerializer(item: Vegetables): any {
-  return { ...item, carrots: item["carrots"], beans: item["beans"] };
+  return {
+    ...item.additionalProperties,
+    carrots: item["carrots"],
+    beans: item["beans"],
+  };
 }
 
 export function vegetablesDeserializer(item: any): Vegetables {
   return {
-    ...item,
+    additionalProperties: serializeRecord(item, ["carrots", "beans"]),
     carrots: item["carrots"],
     beans: item["beans"],
   };
