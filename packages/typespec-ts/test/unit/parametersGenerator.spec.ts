@@ -376,6 +376,57 @@ describe("Parameters.ts", () => {
           `
       );
     });
+    it("should handle int/decimal/decimal128/int8 with encode `string` in parameter headers", async () => {
+      const parameters = await emitParameterFromTypeSpec(
+        `
+          alias SimpleModel = {
+            @header
+            @encode("string")
+            x: int32;
+            @header
+            @encode(string)
+            y: int32;
+            @header
+            @encode(DateTimeKnownEncoding.rfc3339)
+            value: utcDateTime;
+            @header
+            @encode(DurationKnownEncoding.ISO8601)
+            input: duration;
+            @header
+            @encode(DurationKnownEncoding.seconds, float)
+            z: duration;
+          };
+          @route("/decimal/prop/encode")
+          @get
+          op getModel(...SimpleModel): SimpleModel;
+          `,
+        {
+          needTCGC: false
+        }
+      );
+      assert.ok(parameters);
+      await assertEqualContent(
+        parameters?.content!,
+        `
+        import type { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
+        import type { RequestParameters } from "@azure-rest/core-client";
+
+        export interface GetModelHeaders {
+            "x": string;
+            "y": string;
+            "value": string;
+            "input": string;
+            "z": number;
+        }
+
+        export interface GetModelHeaderParam {
+            headers: RawHttpHeadersInput & GetModelHeaders;
+        }
+
+        export type GetModelParameters = GetModelHeaderParam & RequestParameters;
+        `
+      );
+    });
   });
 
   describe("array as request body", () => {
