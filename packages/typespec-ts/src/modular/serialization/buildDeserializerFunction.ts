@@ -2,13 +2,14 @@ import { FunctionDeclarationStructure, StructureKind } from "ts-morph";
 import {
   SdkArrayType,
   SdkDictionaryType,
+  SdkModelPropertyType,
   SdkModelType,
   SdkType,
   SdkUnionType,
   UsageFlags
 } from "@azure-tools/typespec-client-generator-core";
 import { SdkContext } from "../../utils/interfaces.js";
-import { getResponseMapping } from "../helpers/operationHelpers.js";
+import { getAllAncestors, getAllProperties, getResponseMapping } from "../helpers/operationHelpers.js";
 import { normalizeModelName } from "../emitModels.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
@@ -17,6 +18,8 @@ import {
   isSupportedSerializeType,
   ModelSerializeOptions
 } from "./serializeUtils.js";
+import { resolveReference } from "../../framework/reference.js";
+import { SerializationHelpers } from "../static-helpers-metadata.js";
 
 export function buildModelDeserializer(
   context: SdkContext,
@@ -348,9 +351,8 @@ function buildModelTypeDeserializer(
   const nullabilityPrefix = "";
 
   // This is only handling the compatibility mode, will need to update when we handle additionalProperties property.
-  const additionalPropertiesSpread = hasAdditionalProperties(type)
-    ? "...item,"
-    : "";
+  const additionalPropertiesSpread =
+    getAdditionalPropertiesStatement(context, type) ?? "";
 
   const propertiesStr = getResponseMapping(context, type, "item");
   const propertiesDeserialization = propertiesStr.filter((p) => p.trim());
@@ -373,6 +375,22 @@ function buildModelTypeDeserializer(
   }
   deserializerFunction.statements = output;
   return deserializerFunction;
+}
+
+function getAdditionalPropertiesStatement(
+  context: SdkContext,
+  type: SdkModelType
+): string | undefined {
+  const allParents = getAllAncestors(type);
+  const properties: SdkModelPropertyType[] =
+    getAllProperties(type, allParents) ?? [];
+  const excludeProperties = properties.filter((p) => !!p.name).map((p) => `"${p.name}"`);
+  const excludePropertiesStr = excludeProperties.length > 0 ? `[${excludeProperties.join(",")}]` : "";
+  return hasAdditionalProperties(type)
+    ? context.rlcOptions?.compatibilityMode === true
+      ? "...item,"
+      : `additionalProperties: ${resolveReference(SerializationHelpers.serializeRecord)}(item, ${excludePropertiesStr}),`
+    : undefined;
 }
 
 function buildDictTypeDeserializer(
