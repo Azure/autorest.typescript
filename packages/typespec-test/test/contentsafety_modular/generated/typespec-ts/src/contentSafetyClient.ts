@@ -31,19 +31,19 @@ import {
   AnalyzeTextOptionalParams,
 } from "./api/index.js";
 import {
+  TextBlocklist,
+  AddOrUpdateTextBlocklistItemsOptions,
+  TextBlocklistItem,
+  AddOrUpdateTextBlocklistItemsResult,
+  RemoveTextBlocklistItemsOptions,
+  AnalyzeImageOptions,
+  AnalyzeImageResult,
   AnalyzeTextOptions,
   AnalyzeTextResult,
   ShieldPromptOptions,
   ShieldPromptResult,
   DetectTextProtectedMaterialOptions,
   DetectTextProtectedMaterialResult,
-  AnalyzeImageOptions,
-  AnalyzeImageResult,
-  TextBlocklist,
-  AddOrUpdateTextBlocklistItemsOptions,
-  TextBlocklistItem,
-  AddOrUpdateTextBlocklistItemsResult,
-  RemoveTextBlocklistItemsOptions,
 } from "./models/models.js";
 import { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";
 import { Pipeline } from "@azure/core-rest-pipeline";

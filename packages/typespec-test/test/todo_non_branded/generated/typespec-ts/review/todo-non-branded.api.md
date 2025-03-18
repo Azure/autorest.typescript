@@ -176,60 +176,16 @@ export interface TodoItemsOperations {
     // (undocumented)
     attachments: TodoItemsAttachmentsOperations;
     // (undocumented)
-    createForm: (body: ToDoItemMultipartRequest, options?: TodoItemsCreateFormOptionalParams) => Promise<{
-        id: number;
-        title: string;
-        createdBy: number;
-        assignedTo?: number;
-        description?: string;
-        status: "NotStarted" | "InProgress" | "Completed";
-        createdAt: Date;
-        updatedAt: Date;
-        completedAt?: Date;
-        labels?: TodoLabels;
-    }>;
+    createForm: (body: ToDoItemMultipartRequest, options?: TodoItemsCreateFormOptionalParams) => Promise<TodoItem>;
     // (undocumented)
-    createJson: (item: TodoItem, options?: TodoItemsCreateJsonOptionalParams) => Promise<{
-        id: number;
-        title: string;
-        createdBy: number;
-        assignedTo?: number;
-        description?: string;
-        status: "NotStarted" | "InProgress" | "Completed";
-        createdAt: Date;
-        updatedAt: Date;
-        completedAt?: Date;
-        labels?: TodoLabels;
-    }>;
+    createJson: (item: TodoItem, options?: TodoItemsCreateJsonOptionalParams) => Promise<TodoItem>;
     delete: (id: number, options?: TodoItemsDeleteOptionalParams) => Promise<void>;
     // (undocumented)
-    get: (id: number, options?: TodoItemsGetOptionalParams) => Promise<{
-        id: number;
-        title: string;
-        createdBy: number;
-        assignedTo?: number;
-        description?: string;
-        status: "NotStarted" | "InProgress" | "Completed";
-        createdAt: Date;
-        updatedAt: Date;
-        completedAt?: Date;
-        labels?: TodoLabels;
-    }>;
+    get: (id: number, options?: TodoItemsGetOptionalParams) => Promise<TodoItem>;
     // (undocumented)
     list: (options?: TodoItemsListOptionalParams) => PagedAsyncIterableIterator<TodoItem>;
     // (undocumented)
-    update: (id: number, patch: TodoItemPatch, options?: TodoItemsUpdateOptionalParams) => Promise<{
-        id: number;
-        title: string;
-        createdBy: number;
-        assignedTo?: number;
-        description?: string;
-        status: "NotStarted" | "InProgress" | "Completed";
-        createdAt: Date;
-        updatedAt: Date;
-        completedAt?: Date;
-        labels?: TodoLabels;
-    }>;
+    update: (id: number, patch: TodoItemPatch, options?: TodoItemsUpdateOptionalParams) => Promise<TodoItem>;
 }
 
 // @public
@@ -256,6 +212,15 @@ export interface User {
 }
 
 // @public
+export interface UserCreatedResponse {
+    email: string;
+    readonly id: number;
+    password: string;
+    token: string;
+    username: string;
+}
+
+// @public
 export interface UserExistsResponse extends ApiError {
     // (undocumented)
     code: "user-exists";
@@ -268,12 +233,7 @@ export interface UsersCreateOptionalParams extends OperationOptions {
 // @public
 export interface UsersOperations {
     // (undocumented)
-    create: (user: User, options?: UsersCreateOptionalParams) => Promise<{
-        id: number;
-        username: string;
-        email: string;
-        token: string;
-    }>;
+    create: (user: User, options?: UsersCreateOptionalParams) => Promise<UserCreatedResponse>;
 }
 
 // (No @packageDocumentation comment for this package)

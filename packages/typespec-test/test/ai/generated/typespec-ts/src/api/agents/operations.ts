@@ -70,7 +70,7 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
+import { uint8ArrayToString } from "@azure/core-util";
 import {
   AgentsListVectorStoreFileBatchFilesOptionalParams,
   AgentsCancelVectorStoreFileBatchOptionalParams,
@@ -867,7 +867,7 @@ export function _getFileContentSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        accept: "application/json",
+        accept: "application/octet-stream",
         ...options.requestOptions?.headers,
       },
     });
@@ -881,9 +881,7 @@ export async function _getFileContentDeserialize(
     throw createRestError(result);
   }
 
-  return typeof result.body === "string"
-    ? stringToUint8Array(result.body, "base64")
-    : result.body;
+  return result.body;
 }
 
 /** Retrieves the raw content of a specific file. */

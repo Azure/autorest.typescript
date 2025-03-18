@@ -1,30 +1,15 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { FileContents } from "./static-helpers/multipartHelpers.js";
 import {
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
+import { FileContents } from "./static-helpers/multipartHelpers.js";
 
 export { AIProjectClient } from "./aiProjectClient.js";
 export {
-  GetWorkspaceResponse,
-  WorkspaceProperties,
-  ListConnectionsResponse,
-  GetConnectionResponse,
-  InternalConnectionProperties,
-  InternalConnectionPropertiesUnion,
-  AuthenticationType,
-  ConnectionType,
-  InternalConnectionPropertiesApiKeyAuth,
-  CredentialsApiKeyAuth,
-  InternalConnectionPropertiesAADAuth,
-  InternalConnectionPropertiesSASAuth,
-  CredentialsSASAuth,
-  GetAppInsightsResponse,
-  AppInsightsProperties,
   Evaluation,
   InputData,
   InputDataUnion,
@@ -40,6 +25,21 @@ export {
   RecurrenceSchedule,
   WeekDays,
   CronTrigger,
+  GetAppInsightsResponse,
+  AppInsightsProperties,
+  GetWorkspaceResponse,
+  WorkspaceProperties,
+  ListConnectionsResponse,
+  GetConnectionResponse,
+  InternalConnectionProperties,
+  InternalConnectionPropertiesUnion,
+  AuthenticationType,
+  ConnectionType,
+  InternalConnectionPropertiesApiKeyAuth,
+  CredentialsApiKeyAuth,
+  InternalConnectionPropertiesAADAuth,
+  InternalConnectionPropertiesSASAuth,
+  CredentialsSASAuth,
   KnownVersions,
 } from "./models/index.js";
 export {

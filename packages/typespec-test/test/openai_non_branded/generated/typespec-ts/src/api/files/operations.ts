@@ -3,10 +3,10 @@
 import { OpenAIContext as Client } from "../index.js";
 import {
   errorResponseDeserializer,
-  ListFilesResponse,
-  listFilesResponseDeserializer,
   OpenAIFile,
   openAIFileDeserializer,
+  ListFilesResponse,
+  listFilesResponseDeserializer,
   CreateFileRequest,
   createFileRequestSerializer,
   DeleteFileResponse,
@@ -45,10 +45,7 @@ export function _downloadSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "text/plain", ...options.requestOptions?.headers },
     });
 }
 
