@@ -299,8 +299,26 @@ function addSerializationFunctions(
     type,
     skipDiscriminatedUnion
   );
-  const serializerRefkey = refkey(type, "serializer");
-  const deserailizerRefKey = refkey(type, "deserializer");
+  let typeName = undefined;
+  switch (type.kind) {
+    case "array":
+      typeName = "array";
+      break;
+    case "dict":
+      typeName = "record";
+      break;
+    default:
+      break;
+  }
+
+  const serializerRefkey =
+    type.kind === "array" || type.kind === "dict"
+      ? refkey(type.valueType, typeName, "serializer")
+      : refkey(type, "serializer");
+  const deserailizerRefKey =
+    type.kind === "array" || type.kind === "dict"
+      ? refkey(type.valueType, typeName, "deserializer")
+      : refkey(type, "deserializer");
   if (
     serializationFunction &&
     typeof serializationFunction !== "string" &&
@@ -534,11 +552,18 @@ export function normalizeModelName(
     | SdkDictionaryType
     | SdkNullableType,
   nameType: NameType = NameType.Interface,
-  skipPolymorphicUnionSuffix = false
+  skipPolymorphicUnionSuffix = false,
+  rawModelName?: boolean
 ): string {
   if (type.kind === "array") {
+    if (rawModelName) {
+      return `${normalizeModelName(context, type.valueType as any, nameType)}Array`;
+    }
     return `Array<${normalizeModelName(context, type.valueType as any, nameType)}>`;
   } else if (type.kind === "dict") {
+    if (rawModelName) {
+      return `${normalizeModelName(context, type.valueType as any, nameType)}Record`;
+    }
     return `Record<string, ${normalizeModelName(
       context,
       type.valueType as any,

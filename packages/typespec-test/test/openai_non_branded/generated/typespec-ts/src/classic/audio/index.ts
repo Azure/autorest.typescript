@@ -1,14 +1,6 @@
 // Licensed under the MIT License.
 
 import { OpenAIContext } from "../../api/openAIContext.js";
-import {
-  AudioTranscriptionsOperations,
-  _getAudioTranscriptionsOperations,
-} from "./transcriptions/index.js";
-import {
-  AudioTranslationsOperations,
-  _getAudioTranslationsOperations,
-} from "./translations/index.js";
 
 /** Interface representing a Audio operations. */
 export interface AudioOperations {

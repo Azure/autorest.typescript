@@ -20,6 +20,15 @@ import {
   multivariateMultivariateLastDetectionResultDeserializer,
 } from "../../models/multivariate/models.js";
 import {
+  MultivariateDetectMultivariateLastAnomalyOptionalParams,
+  MultivariateDetectMultivariateBatchAnomalyOptionalParams,
+  MultivariateGetMultivariateModelOptionalParams,
+  MultivariateDeleteMultivariateModelOptionalParams,
+  MultivariateListMultivariateModelsOptionalParams,
+  MultivariateTrainMultivariateModelOptionalParams,
+  MultivariateGetMultivariateBatchDetectionResultOptionalParams,
+} from "./options.js";
+import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
@@ -30,15 +39,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  MultivariateDetectMultivariateLastAnomalyOptionalParams,
-  MultivariateDetectMultivariateBatchAnomalyOptionalParams,
-  MultivariateGetMultivariateModelOptionalParams,
-  MultivariateDeleteMultivariateModelOptionalParams,
-  MultivariateListMultivariateModelsOptionalParams,
-  MultivariateTrainMultivariateModelOptionalParams,
-  MultivariateGetMultivariateBatchDetectionResultOptionalParams,
-} from "./options.js";
 
 export function _detectMultivariateLastAnomalySend(
   context: Client,

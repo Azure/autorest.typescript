@@ -24,6 +24,14 @@ import {
   _updateResponseDeserializer,
 } from "../../models/models.js";
 import {
+  TodoItemsDeleteOptionalParams,
+  TodoItemsUpdateOptionalParams,
+  TodoItemsGetOptionalParams,
+  TodoItemsCreateFormOptionalParams,
+  TodoItemsCreateJsonOptionalParams,
+  TodoItemsListOptionalParams,
+} from "./options.js";
+import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
@@ -34,14 +42,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@typespec/ts-http-runtime";
-import {
-  TodoItemsDeleteOptionalParams,
-  TodoItemsUpdateOptionalParams,
-  TodoItemsGetOptionalParams,
-  TodoItemsCreateFormOptionalParams,
-  TodoItemsCreateJsonOptionalParams,
-  TodoItemsListOptionalParams,
-} from "./options.js";
 
 export function _$deleteSend(
   context: Client,

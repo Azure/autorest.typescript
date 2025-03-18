@@ -468,9 +468,9 @@ function buildDictTypeSerializer(
   if (typeof valueSerializer !== "string") {
     return undefined;
   }
-  const serializerFunctionName = `${valueSerializer}RecordSerializer`;
+  const serializerFunctionName = `${normalizeModelName(context, type, NameType.Operation, false, true)}Serializer`;
   if (nameOnly) {
-    return serializerFunctionName;
+    return resolveReference(refkey(type.valueType, "record", "serializer"));
   }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -526,9 +526,9 @@ function buildArrayTypeSerializer(
   if (typeof valueSerializer !== "string") {
     return undefined;
   }
-  const serializerFunctionName = `${valueSerializer}ArraySerializer`;
+  const serializerFunctionName = `${normalizeModelName(context, type, NameType.Operation, false, true)}Serializer`;
   if (nameOnly) {
-    return serializerFunctionName;
+    return resolveReference(refkey(type.valueType, "array", "serializer"));
   }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,

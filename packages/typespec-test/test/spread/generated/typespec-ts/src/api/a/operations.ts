@@ -7,17 +7,17 @@ import {
   _test4RequestSerializer,
 } from "../../models/models.js";
 import {
-  StreamableMethod,
-  PathUncheckedResponse,
-  createRestError,
-  operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
-import {
   ATest4OptionalParams,
   ATest3OptionalParams,
   ATest2OptionalParams,
   ATest1OptionalParams,
 } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
 
 export function _test4Send(
   context: Client,

@@ -345,8 +345,9 @@ function getOptionalParamsName(
   parameters: OptionalKind<ParameterDeclarationStructure>[]
 ) {
   return (
-    parameters.filter((p) => p.type?.toString().endsWith("OptionalParams"))[0]
-      ?.name ?? "options"
+    parameters.filter((p) =>
+      p.type?.toString().endsWith("operationOptions__")
+    )[0]?.name ?? "options"
   );
 }
 

@@ -273,6 +273,9 @@ class BinderImp implements Binder {
         continue;
       }
 
+      if (placeholderKey === "__PLACEHOLDER_o123_sarray_sserializer__") {
+        declaration;
+      }
       let name = declaration.name;
       let declarationSourceFile: SourceFile;
 
@@ -302,9 +305,9 @@ class BinderImp implements Binder {
   }
 
   private cleanUnusedImports() {
-    this.project.getSourceFiles().map((file) => {
-      file.fixUnusedIdentifiers();
-    });
+    // this.project.getSourceFiles().map((file) => {
+    //   file.fixUnusedIdentifiers();
+    // });
   }
 
   private cleanUnreferencedHelpers(sourceRoot: string) {

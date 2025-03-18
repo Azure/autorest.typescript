@@ -1,14 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  TestProfileRunContext as Client,
-  CreateOrUpdateTestProfileRunOptionalParams,
-  DeleteTestProfileRunOptionalParams,
-  GetTestProfileRunOptionalParams,
-  ListTestProfileRunsOptionalParams,
-  StopTestProfileRunOptionalParams,
-} from "./index.js";
+import { TestProfileRunContext as Client } from "./index.js";
 import {
   TestProfileRun,
   testProfileRunSerializer,
@@ -16,6 +9,13 @@ import {
   _PagedTestProfileRun,
   _pagedTestProfileRunDeserializer,
 } from "../../models/models.js";
+import {
+  StopTestProfileRunOptionalParams,
+  ListTestProfileRunsOptionalParams,
+  GetTestProfileRunOptionalParams,
+  DeleteTestProfileRunOptionalParams,
+  CreateOrUpdateTestProfileRunOptionalParams,
+} from "./options.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,

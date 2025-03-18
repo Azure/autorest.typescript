@@ -51,6 +51,24 @@ export class DemoServiceClient {
 export interface DemoServiceClientOptionalParams extends ClientOptions {
 }
 
+// @public
+export interface _Test3Request {
+    // (undocumented)
+    prop: string;
+}
+
+// @public (undocumented)
+export function _test3RequestSerializer(item: _Test3Request): any;
+
+// @public
+export interface _Test4Request {
+    // (undocumented)
+    prop: string;
+}
+
+// @public (undocumented)
+export function _test4RequestSerializer(item: _Test4Request): any;
+
 // (No @packageDocumentation comment for this package)
 
 ```

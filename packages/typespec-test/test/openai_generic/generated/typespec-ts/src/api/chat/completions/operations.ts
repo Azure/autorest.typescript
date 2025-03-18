@@ -9,13 +9,13 @@ import {
   CreateChatCompletionResponse,
   createChatCompletionResponseDeserializer,
 } from "../../../models/models.js";
+import { ChatCompletionsCreateOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { ChatCompletionsCreateOptionalParams } from "./options.js";
 
 export function _createSend(
   context: Client,

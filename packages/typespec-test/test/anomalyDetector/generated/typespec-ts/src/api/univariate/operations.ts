@@ -16,16 +16,16 @@ import {
   univariateUnivariateChangePointDetectionResultDeserializer,
 } from "../../models/univariate/models.js";
 import {
+  UnivariateDetectUnivariateChangePointOptionalParams,
+  UnivariateDetectUnivariateLastPointOptionalParams,
+  UnivariateDetectUnivariateEntireSeriesOptionalParams,
+} from "./options.js";
+import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  UnivariateDetectUnivariateChangePointOptionalParams,
-  UnivariateDetectUnivariateLastPointOptionalParams,
-  UnivariateDetectUnivariateEntireSeriesOptionalParams,
-} from "./options.js";
 
 export function _detectUnivariateChangePointSend(
   context: Client,
