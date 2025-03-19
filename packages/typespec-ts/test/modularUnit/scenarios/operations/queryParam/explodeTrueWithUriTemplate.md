@@ -1,4 +1,4 @@
-# Should generate query parameter with start(\*) character
+# only: Should generate query parameter with start(\*) character
 
 ## TypeSpec
 
@@ -9,10 +9,10 @@ This is tsp definition.
 op primitive(param: string): void;
 
 @route("array?fixed=true{&param*}")
-op _array(param: string[]): void;
+op `array`(param: string[]): void;
 
 @route("record?fixed=true{&param*}")
-op _record(param: Record<int32>): void;
+op `record`(param: Record<int32>): void;
 ```
 
 ## Provide generated operations to call rest-level methods
