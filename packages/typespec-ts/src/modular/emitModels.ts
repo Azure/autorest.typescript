@@ -116,18 +116,20 @@ export function emitTypes(
   const modelFiles = outputProject.getSourceFiles(
     sourceRoot + "/models/**/*.ts"
   );
+  const result = [];
   for (const modelFile of modelFiles) {
     if (
       modelFile.getInterfaces().length === 0 &&
       modelFile.getTypeAliases().length === 0 &&
       modelFile.getEnums().length === 0
     ) {
-      modelFile.delete();
+      outputProject.removeSourceFile(modelFile);
       continue;
     }
+    result.push(modelFile);
   }
 
-  return modelFiles;
+  return result;
 }
 
 function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {

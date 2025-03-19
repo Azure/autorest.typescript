@@ -69,6 +69,9 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
       ? (namedUnknownArgs["configs"] as Record<string, string>)
       : {};
     const result = await emitModularModelsFromTypeSpec(tsp, configs);
+    if (result === undefined) {
+      return "// (file was not generated)";
+    }
     return result!.getEnum(name ?? "No name specified!")!.getFullText();
   },
 
