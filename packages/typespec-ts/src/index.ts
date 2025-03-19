@@ -390,11 +390,7 @@ export async function $onEmit(context: EmitContext) {
         buildLicenseFile,
         buildSampleEnvFile
       ];
-      if (
-        option.moduleKind === "esm" &&
-        option.generateTest &&
-        option.azureSdkForJs
-      ) {
+      if (option.generateTest) {
         commonBuilders.push((model) => buildVitestConfig(model, "node"));
         commonBuilders.push((model) => buildVitestConfig(model, "esm"));
         commonBuilders.push((model) => buildVitestConfig(model, "browser"));
