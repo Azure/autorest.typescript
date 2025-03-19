@@ -1,20 +1,5 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/pnpm-config.schema.json",
   "useWorkspaces": true,
-  "strictPeerDependencies": false,
-  "globalOverrides": {
-    "@typespec/compiler": "next",
-    "@typespec/http": "next",
-    "@typespec/openapi": "next",
-    "@typespec/rest": "next",
-    "@typespec/versioning": "next",
-    "@typespec/xml": "next",
-    "@azure-tools/typespec-client-generator-core": "next",
-    "@azure-tools/typespec-azure-core": "next",
-    "@azure-tools/typespec-azure-resource-manager": "next",
-    "@azure-tools/typespec-azure-rulesets": "next",
-    "@azure-tools/typespec-autorest": "next",
-    "@typespec/eslint-config-typespec": "next",
-    "@typespec/library-linter": "next"
-  }
+  "strictPeerDependencies": false
 }

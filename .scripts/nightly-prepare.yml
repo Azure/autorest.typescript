@@ -1,5 +1,4 @@
 steps:
-  - template: build.yml
   - script: npm install -g @typespec/compiler@next
     displayName: Install @typespec/compiler@next
   - script: npx @azure-tools/typespec-bump-deps@latest pnpm-config.json --add-rush-overrides
