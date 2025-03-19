@@ -16,6 +16,7 @@ Api operations should handle contentTypes has binary data
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { UploadFileViaBodyOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -77,6 +78,7 @@ scalar BinaryBytes extends bytes;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { UploadFileViaBodyOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -162,6 +164,7 @@ export function _uploadFileRequestSerializer(item: _UploadFileRequest): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { _uploadFileRequestSerializer } from "../models/models.js";
+import { UploadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -254,6 +257,7 @@ export function _uploadFilesRequestSerializer(item: _UploadFilesRequest): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { _uploadFilesRequestSerializer } from "../models/models.js";
+import { UploadFilesOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -317,6 +321,7 @@ op downloadFile(): {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { DownloadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -379,6 +384,7 @@ op downloadFile(): {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { DownloadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -466,6 +472,7 @@ export function _downloadFileResponseDeserializer(
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { _downloadFileResponseDeserializer } from "../models/models.js";
+import { DownloadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -560,6 +567,7 @@ export function _downloadFileResponseDeserializer(
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { _downloadFileResponseDeserializer } from "../models/models.js";
+import { DownloadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -626,6 +634,7 @@ Api operations should handle contentTypes has default value
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { UploadFileViaBodyOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -691,6 +700,7 @@ op test(...ApiVersionParameter): string;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { TestOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
@@ -811,9 +821,9 @@ export class TestingClient {
 
   test(
     apiVersion: string,
-    options: TestOptionalParams = { requestOptions: {} },
+    options: __PLACEHOLDER_o157_soperationOptions__ = { requestOptions: {} },
   ): Promise<string> {
-    return test(this._client, apiVersion, options);
+    return __PLACEHOLDER_o157_sapi__(this._client, apiVersion, options);
   }
 }
 ```
@@ -843,6 +853,7 @@ withRawContent: false
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { TestOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
@@ -963,9 +974,9 @@ export class TestingClient {
 
   test(
     apiVersion: string,
-    options: TestOptionalParams = { requestOptions: {} },
+    options: __PLACEHOLDER_o159_soperationOptions__ = { requestOptions: {} },
   ): Promise<string> {
-    return test(this._client, apiVersion, options);
+    return __PLACEHOLDER_o159_sapi__(this._client, apiVersion, options);
   }
 }
 ```
@@ -989,6 +1000,7 @@ op test1(): string;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { Test1OptionalParams, TestOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
@@ -1142,16 +1154,16 @@ export class TestingClient {
   }
 
   test1(
-    options: Test1OptionalParams = { requestOptions: {} },
+    options: __PLACEHOLDER_o162_soperationOptions__ = { requestOptions: {} },
   ): Promise<string> {
-    return test1(this._client, options);
+    return __PLACEHOLDER_o162_sapi__(this._client, options);
   }
 
   test(
     apiVersion: string,
-    options: TestOptionalParams = { requestOptions: {} },
+    options: __PLACEHOLDER_o163_soperationOptions__ = { requestOptions: {} },
   ): Promise<string> {
-    return test(this._client, apiVersion, options);
+    return __PLACEHOLDER_o163_sapi__(this._client, apiVersion, options);
   }
 }
 ```

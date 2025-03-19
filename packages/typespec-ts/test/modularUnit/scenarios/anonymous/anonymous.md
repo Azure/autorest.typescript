@@ -42,6 +42,7 @@ export function barSerializer(item: Bar): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Bar, barSerializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
@@ -178,6 +179,7 @@ export interface ReadOptionalParams extends OperationOptions {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { barSerializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
@@ -310,6 +312,7 @@ export interface ReadOptionalParams extends OperationOptions {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { barSerializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
@@ -454,6 +457,7 @@ export function fooSerializer(item: Foo): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
@@ -535,6 +539,7 @@ export function _readRequestSerializer(item: _ReadRequest): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { _readRequestSerializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
@@ -630,6 +635,7 @@ export function barSerializer(item: Bar): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { _readRequestSerializer, Bar } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
@@ -726,6 +732,7 @@ export function testSerializer(item: Test): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Test, testSerializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -805,6 +812,7 @@ export function testSerializer(item: Test): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Test, testSerializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -871,6 +879,7 @@ export function _readResponseDeserializer(item: any): _ReadResponse {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { _readResponseDeserializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -939,6 +948,7 @@ export function publishResultDeserializer(item: any): PublishResult {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { PublishResult, publishResultDeserializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -1024,6 +1034,7 @@ export function _readResponseFooDeserializer(item: any): _ReadResponseFoo {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { _readResponseDeserializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -1106,10 +1117,10 @@ export interface ReturnBody {
 export function returnBodyDeserializer(item: any): ReturnBody {
   return {
     emptyAnomyous: _returnBodyEmptyAnomyousDeserializer(item["emptyAnomyous"]),
-    emptyAnomyousArray: returnBodyEmptyAnomyousArrayArrayDeserializer(
+    emptyAnomyousArray: _returnBodyEmptyAnomyousArrayArrayDeserializer(
       item["emptyAnomyousArray"],
     ),
-    emptyAnomyousDict: returnBodyEmptyAnomyousDictRecordDeserializer(
+    emptyAnomyousDict: _returnBodyEmptyAnomyousDictRecordDeserializer(
       item["emptyAnomyousDict"],
     ),
     emptyModel: emptyModelDeserializer(item["emptyModel"]),
@@ -1127,7 +1138,7 @@ export function _returnBodyEmptyAnomyousDeserializer(
   return item;
 }
 
-export function returnBodyEmptyAnomyousArrayArrayDeserializer(
+export function _returnBodyEmptyAnomyousArrayArrayDeserializer(
   result: Array<_ReturnBodyEmptyAnomyousArray>,
 ): any[] {
   return result.map((item) => {
@@ -1144,7 +1155,7 @@ export function _returnBodyEmptyAnomyousArrayDeserializer(
   return item;
 }
 
-export function returnBodyEmptyAnomyousDictRecordDeserializer(
+export function _returnBodyEmptyAnomyousDictRecordDeserializer(
   item: Record<string, any>,
 ): Record<string, _ReturnBodyEmptyAnomyousDict> {
   const result: Record<string, any> = {};
@@ -1194,6 +1205,7 @@ export function emptyModelRecordDeserializer(
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { ReturnBody, returnBodyDeserializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -1319,10 +1331,10 @@ export function _fozBazDeserializer(item: any): _FozBaz {
     nonemptyAnomyous: _fozBazNonemptyAnomyousDeserializer(
       item["nonemptyAnomyous"],
     ),
-    nonemptyAnomyousArray: fozBazNonemptyAnomyousArrayArrayDeserializer(
+    nonemptyAnomyousArray: _fozBazNonemptyAnomyousArrayArrayDeserializer(
       item["nonemptyAnomyousArray"],
     ),
-    nonemptyAnomyousDict: fozBazNonemptyAnomyousDictRecordDeserializer(
+    nonemptyAnomyousDict: _fozBazNonemptyAnomyousDictRecordDeserializer(
       item["nonemptyAnomyousDict"],
     ),
   };
@@ -1360,7 +1372,7 @@ export function _fozBazNonemptyAnomyousDeserializer(
   };
 }
 
-export function fozBazNonemptyAnomyousArrayArrayDeserializer(
+export function _fozBazNonemptyAnomyousArrayArrayDeserializer(
   result: Array<_FozBazNonemptyAnomyousArray>,
 ): any[] {
   return result.map((item) => {
@@ -1381,7 +1393,7 @@ export function _fozBazNonemptyAnomyousArrayDeserializer(
   };
 }
 
-export function fozBazNonemptyAnomyousDictRecordDeserializer(
+export function _fozBazNonemptyAnomyousDictRecordDeserializer(
   item: Record<string, any>,
 ): Record<string, _FozBazNonemptyAnomyousDict> {
   const result: Record<string, any> = {};
@@ -1414,6 +1426,7 @@ export function _fozBazNonemptyAnomyousDictDeserializer(
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Foz, fozDeserializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

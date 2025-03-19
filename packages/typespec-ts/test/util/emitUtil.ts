@@ -497,6 +497,11 @@ export async function emitModularOperationsFromTypeSpec(
       dpgContext.sdkPackage.clients[0],
       modularEmitterOptions
     );
+    buildApiOptions(
+      dpgContext,
+      dpgContext.sdkPackage.clients[0],
+      modularEmitterOptions
+    );
     if (
       options.mustEmptyDiagnostic &&
       dpgContext.program.diagnostics.length > 0
@@ -548,7 +553,7 @@ export async function emitModularClientContextFromTypeSpec(
       dpgContext.sdkPackage.clients[0],
       modularEmitterOptions
     );
-    binder.resolveAllReferences("modularPackageFolder/src");
+    binder.resolveAllReferences("/");
     res.fixUnusedIdentifiers();
     return res;
   }
