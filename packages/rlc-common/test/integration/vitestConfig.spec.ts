@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { buildVitestBrowserConfig } from "../../src/metadata/buildVitestConfig.js";
+import { buildVitestConfig } from "../../src/metadata/buildVitestConfig.js";
 import "mocha";
 import { createMockModel } from "./mockHelper.js";
 
@@ -11,7 +11,7 @@ describe("vitest.config", () => {
         isMonorepo: true
       });
 
-      const result = buildVitestBrowserConfig(model);
+      const result = buildVitestConfig(model, "browser");
       expect(result?.content).includes(
         `include: ["dist-test/browser/test/**/*.spec.js"]`
       );

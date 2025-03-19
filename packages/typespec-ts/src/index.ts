@@ -42,9 +42,7 @@ import {
   buildTopLevelIndex,
   buildTsConfig,
   buildTsTestBrowserConfig,
-  buildVitestNodeConfig,
-  buildVitestBrowserConfig,
-  buildVitestEsmConfig,
+  buildVitestConfig,
   getClientName,
   hasUnexpectedHelper,
   isAzurePackage,
@@ -397,9 +395,9 @@ export async function $onEmit(context: EmitContext) {
         option.generateTest &&
         option.azureSdkForJs
       ) {
-        commonBuilders.push((model) => buildVitestNodeConfig(model));
-        commonBuilders.push((model) => buildVitestBrowserConfig(model));
-        commonBuilders.push((model) => buildVitestEsmConfig(model));
+        commonBuilders.push((model) => buildVitestConfig(model, "node"));
+        commonBuilders.push((model) => buildVitestConfig(model, "esm"));
+        commonBuilders.push((model) => buildVitestConfig(model, "browser"));
         commonBuilders.push((model) => buildTsTestBrowserConfig(model));
       }
       if (isAzureFlavor) {
