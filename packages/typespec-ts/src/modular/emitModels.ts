@@ -123,7 +123,7 @@ export function emitTypes(
       modelFile.getEnums().length === 0
     ) {
       modelFile.delete();
-      return;
+      continue;
     }
   }
 
