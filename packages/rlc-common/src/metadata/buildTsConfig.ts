@@ -14,29 +14,25 @@ const restLevelTsConfigInAzureSdkForJs: () => Record<string, any> =
       ]
     };
   };
-const tsSrcConfigInAzureSdkForJs =
-  `{
+const tsSrcConfigInAzureSdkForJs = `{
     extends: "../../../tsconfig.lib.json"
-  };
-}`;
+  }`;
 
-const tsSampleConfigInAzureSdkForJs: (
-  clientPackageName: string
-) => string = function (clientPackageName) {
-  return `{
+const tsSampleConfigInAzureSdkForJs: (clientPackageName: string) => string =
+  function (clientPackageName) {
+    return `{
     extends: "../../../tsconfig.samples.base.json",
     compilerOptions: {
       paths: {
-        [${clientPackageName}]: ["./dist/esm"]
+        "${clientPackageName}": ["./dist/esm"]
       }
     }
   }`;
-};
+  };
 
 const tsTestConfigInAzureSdkForJs = `{
     extends: ["./tsconfig.src.json", "../../../tsconfig.test.base.json"]
-  };
-}`;
+  }`;
 
 const restLevelTsConfigNotInAzureSdkForJs: (
   model: RLCModel
@@ -74,7 +70,7 @@ export function buildTsConfig(model: RLCModel) {
   const { generateTest, generateSample } = model.options || {};
   // Take the undefined as true by default
   const clientPackageName = packageDetails?.name ?? "";
-
+  const project = new Project();
   const restLevelTsConfig = azureSdkForJs
     ? restLevelTsConfigInAzureSdkForJs()
     : restLevelTsConfigNotInAzureSdkForJs(model);
@@ -104,9 +100,17 @@ export function buildTsConfig(model: RLCModel) {
     }
   }
 
+  const filePath = "tsconfig.json";
+  const configFile = project.createSourceFile(
+    filePath,
+    JSON.stringify(restLevelTsConfig, null, 2),
+    {
+      overwrite: true
+    }
+  );
   return {
-    path: "tsconfig.json",
-    content: `${restLevelTsConfig}`
+    path: filePath,
+    content: configFile.getFullText()
   };
 }
 
