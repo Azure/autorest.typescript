@@ -32,6 +32,7 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { getModularClientOptions } from "../utils/clientUtils.js";
 import { useContext } from "../contextManager.js";
+import { refkey } from "../framework/refkey.js";
 
 /**
  * This function gets the path of the file containing the modular client context
@@ -274,7 +275,7 @@ function getDocsWithKnownVersion(
       true
     );
     docs.push(
-      `Known values of {@link ${knownValuesEnum.name}} that the service accepts.`
+      `Known values of {@link ${resolveReference(refkey(knownValuesEnum.name, "knownValues"))}} that the service accepts.`
     );
   }
   return docs;

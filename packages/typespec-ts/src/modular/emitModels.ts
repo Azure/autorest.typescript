@@ -202,7 +202,11 @@ function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
     }
     if (apiVersionEnumOnly) {
       // generate known values enum only for api version enums
-      addDeclaration(sourceFile, knownValuesEnum, refkey(type, "knownValues"));
+      addDeclaration(
+        sourceFile,
+        knownValuesEnum,
+        refkey(knownValuesEnum.name, "knownValues")
+      );
     } else {
       if (isExtensibleEnum(context, type)) {
         addDeclaration(
