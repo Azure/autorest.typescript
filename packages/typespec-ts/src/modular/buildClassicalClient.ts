@@ -192,7 +192,7 @@ function buildClientOperationGroups(
         clientClass.addMethod(method);
       });
     } else {
-      // The `rawGroupName` is used to any places where we need normalized name twice
+      // The `rawGroupName` is used to any places where we need normalized name twice so we need to keep the raw as PascalCase.
       const rawGroupName = normalizeName(prefixes[0] ?? "", NameType.Interface);
       const operationName = `_get${normalizeName(
         rawGroupName,
