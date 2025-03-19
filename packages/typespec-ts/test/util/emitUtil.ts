@@ -419,13 +419,9 @@ export async function emitModularModelsFromTypeSpec(
   dpgContext.rlcOptions!.compatibilityMode = options["compatibility-mode"];
   dpgContext.rlcOptions!.experimentalExtensibleEnums =
     options["experimental-extensible-enums"];
-  const modularEmitterOptions = transformModularEmitterOptions(
-    dpgContext,
-    "",
-    {
-      casing: "camel"
-    }
-  );
+  const modularEmitterOptions = transformModularEmitterOptions(dpgContext, "", {
+    casing: "camel"
+  });
   if (
     dpgContext.sdkPackage.clients &&
     dpgContext.sdkPackage.clients.length > 0 &&
@@ -487,13 +483,9 @@ export async function emitModularOperationsFromTypeSpec(
   dpgContext.rlcOptions!.isModularLibrary = true;
   dpgContext.rlcOptions!.experimentalExtensibleEnums =
     options["experimental-extensible-enums"];
-  const modularEmitterOptions = transformModularEmitterOptions(
-    dpgContext,
-    "",
-    {
-      casing: "camel"
-    }
-  );
+  const modularEmitterOptions = transformModularEmitterOptions(dpgContext, "", {
+    casing: "camel"
+  });
   if (
     dpgContext.sdkPackage.clients &&
     dpgContext.sdkPackage.clients.length > 0 &&
@@ -541,13 +533,9 @@ export async function emitModularClientContextFromTypeSpec(
   const binder = useBinder();
   dpgContext.rlcOptions!.isModularLibrary = true;
   dpgContext.rlcOptions!.typespecTitleMap = options["typespec-title-map"];
-  const modularEmitterOptions = transformModularEmitterOptions(
-    dpgContext,
-    "",
-    {
-      casing: "camel"
-    }
-  );
+  const modularEmitterOptions = transformModularEmitterOptions(dpgContext, "", {
+    casing: "camel"
+  });
   if (
     dpgContext.sdkPackage.clients &&
     dpgContext.sdkPackage.clients.length > 0 &&
@@ -589,13 +577,9 @@ export async function emitModularClientFromTypeSpec(
   const binder = useBinder();
   dpgContext.rlcOptions!.isModularLibrary = true;
   dpgContext.rlcOptions!.typespecTitleMap = options["typespec-title-map"];
-  const modularEmitterOptions = transformModularEmitterOptions(
-    dpgContext,
-    "",
-    {
-      casing: "camel"
-    }
-  );
+  const modularEmitterOptions = transformModularEmitterOptions(dpgContext, "", {
+    casing: "camel"
+  });
   if (
     dpgContext.sdkPackage.clients &&
     dpgContext.sdkPackage.clients.length > 0 &&
@@ -648,13 +632,9 @@ export async function emitSamplesFromTypeSpec(
     },
     ...configs
   });
-  const modularEmitterOptions = transformModularEmitterOptions(
-    dpgContext,
-    "",
-    {
-      casing: "camel"
-    }
-  );
+  const modularEmitterOptions = transformModularEmitterOptions(dpgContext, "", {
+    casing: "camel"
+  });
   for (const subClient of dpgContext.sdkPackage.clients) {
     await renameClientName(subClient, modularEmitterOptions);
   }
