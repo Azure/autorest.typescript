@@ -557,12 +557,12 @@ export function normalizeModelName(
 ): string {
   if (type.kind === "array") {
     if (rawModelName) {
-      return `${normalizeModelName(context, type.valueType as any, nameType)}Array`;
+      return `${normalizeModelName(context, type.valueType as any, nameType, skipPolymorphicUnionSuffix, rawModelName)}Array`;
     }
     return `Array<${normalizeModelName(context, type.valueType as any, nameType)}>`;
   } else if (type.kind === "dict") {
     if (rawModelName) {
-      return `${normalizeModelName(context, type.valueType as any, nameType)}Record`;
+      return `${normalizeModelName(context, type.valueType as any, nameType, skipPolymorphicUnionSuffix, rawModelName)}Record`;
     }
     return `Record<string, ${normalizeModelName(
       context,
