@@ -14,30 +14,29 @@ const restLevelTsConfigInAzureSdkForJs: () => Record<string, any> =
       ]
     };
   };
-const tsSrcConfigInAzureSdkForJs: () => Record<string, any> = function () {
-  return {
+const tsSrcConfigInAzureSdkForJs =
+  `{
     extends: "../../../tsconfig.lib.json"
   };
-};
+}`;
 
 const tsSampleConfigInAzureSdkForJs: (
   clientPackageName: string
-) => Record<string, any> = function (clientPackageName) {
-  return {
+) => string = function (clientPackageName) {
+  return `{
     extends: "../../../tsconfig.samples.base.json",
     compilerOptions: {
       paths: {
-        [clientPackageName]: ["./dist/esm"]
+        [${clientPackageName}]: ["./dist/esm"]
       }
     }
-  };
+  }`;
 };
 
-const tsTestConfigInAzureSdkForJs: () => Record<string, any> = function () {
-  return {
+const tsTestConfigInAzureSdkForJs = `{
     extends: ["./tsconfig.src.json", "../../../tsconfig.test.base.json"]
   };
-};
+}`;
 
 const restLevelTsConfigNotInAzureSdkForJs: (
   model: RLCModel
@@ -75,7 +74,6 @@ export function buildTsConfig(model: RLCModel) {
   const { generateTest, generateSample } = model.options || {};
   // Take the undefined as true by default
   const clientPackageName = packageDetails?.name ?? "";
-  const project = new Project();
 
   const restLevelTsConfig = azureSdkForJs
     ? restLevelTsConfigInAzureSdkForJs()
@@ -106,66 +104,30 @@ export function buildTsConfig(model: RLCModel) {
     }
   }
 
-  const filePath = "tsconfig.json";
-  const configFile = project.createSourceFile(
-    filePath,
-    JSON.stringify(restLevelTsConfig, null, 2),
-    {
-      overwrite: true
-    }
-  );
   return {
-    path: filePath,
-    content: configFile.getFullText()
+    path: "tsconfig.json",
+    content: `${restLevelTsConfig}`
   };
 }
 
 export function buildTsSrcConfig() {
-  const project = new Project();
-  const filePath = "tsconfig.src.json";
-  const configFile = project.createSourceFile(
-    filePath,
-    JSON.stringify(tsSrcConfigInAzureSdkForJs(), null, 2),
-    {
-      overwrite: true
-    }
-  );
   return {
-    path: filePath,
-    content: configFile.getFullText()
+    path: "tsconfig.src.json",
+    content: tsSrcConfigInAzureSdkForJs
   };
 }
 
 export function buildTsSampleConfig(model: RLCModel) {
-  const project = new Project();
   const { packageDetails } = model.options || {};
-  const clientPackageName = packageDetails?.name ?? "";
-  const filePath = "tsconfig.samples.json";
-  const configFile = project.createSourceFile(
-    filePath,
-    JSON.stringify(tsSampleConfigInAzureSdkForJs(clientPackageName), null, 2),
-    {
-      overwrite: true
-    }
-  );
   return {
-    path: filePath,
-    content: configFile.getFullText()
+    path: "tsconfig.samples.json",
+    content: tsSampleConfigInAzureSdkForJs(packageDetails?.name ?? "")
   };
 }
 
 export function buildTsTestConfig() {
-  const project = new Project();
-  const filePath = "tsconfig.test.json";
-  const configFile = project.createSourceFile(
-    filePath,
-    JSON.stringify(tsTestConfigInAzureSdkForJs(), null, 2),
-    {
-      overwrite: true
-    }
-  );
   return {
-    path: filePath,
-    content: configFile.getFullText()
+    path: "tsconfig.test.json",
+    content: tsTestConfigInAzureSdkForJs
   };
 }
