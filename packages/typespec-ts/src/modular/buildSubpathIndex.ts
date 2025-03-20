@@ -121,13 +121,15 @@ export function buildSubpathIndexFile(
             !["PagedResult", "BuildPagedAsyncIteratorOptions"].includes(ex)
         );
       }
-      indexFile.addExportDeclaration({
-        moduleSpecifier: `.${filePath
-          .replace(indexFile.getDirectoryPath(), "")
-          .replace(/\\/g, "/")
-          .replace(".ts", "")}.js`,
-        namedExports
-      });
+      if (namedExports.length > 0) {
+        indexFile.addExportDeclaration({
+          moduleSpecifier: `.${filePath
+            .replace(indexFile.getDirectoryPath(), "")
+            .replace(/\\/g, "/")
+            .replace(".ts", "")}.js`,
+          namedExports
+        });
+      }
     }
   }
 }

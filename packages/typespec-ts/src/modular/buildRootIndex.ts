@@ -313,10 +313,12 @@ function exportModules(
       .replace(indexFile.getDirectoryPath(), "")
       .replace(/\\/g, "/")
       .replace(".ts", "")}.js`;
-    indexFile.addExportDeclaration({
-      moduleSpecifier,
-      namedExports
-    });
+    if (namedExports.length > 0) {
+      indexFile.addExportDeclaration({
+        moduleSpecifier,
+        namedExports
+      });
+    }
   }
 }
 
