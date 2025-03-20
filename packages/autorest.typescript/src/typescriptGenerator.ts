@@ -18,7 +18,7 @@ import { generateApiExtractorConfig } from "./generators/static/apiExtractorConf
 import { generateLicenseFile } from "./generators/static/licenseFileGenerator";
 import { generateReadmeFile } from "./generators/static/readmeFileGenerator";
 import { generateSampleTestFile } from "./generators/test/sampleTestGenerator";
-import { generateTsConfig } from "./generators/static/tsConfigFileGenerator";
+import { generateTsConfig, generateTsSampleConfig, generateTsSrcConfig, generateTsTestConfig } from "./generators/static/tsConfigFileGenerator";
 import { generateRollupConfig } from "./generators/static/rollupConfigFileGenerator";
 import { generateOperations } from "./generators/operationGenerator";
 import { generateOperationsInterfaces } from "./generators/operationInterfaceGenerator";
@@ -87,6 +87,15 @@ export async function generateTypeScriptLibrary(
     generateSampleTestFile(project);
   }
   generateTsConfig(project);
+  if (azureSdkForJs && generateMetadata) {
+    generateTsSrcConfig(project);
+    if (generateSample) {
+      generateTsSampleConfig(project);
+    }
+    if (generateTest) {
+      generateTsTestConfig(project);
+    }
+  }
 
   if (!azureSdkForJs) {
     // azure-sdk-for-js repo uses dev-tool run bundle

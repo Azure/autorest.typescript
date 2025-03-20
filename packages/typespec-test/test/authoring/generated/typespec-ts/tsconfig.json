@@ -18,7 +18,9 @@
     "moduleResolution": "NodeNext",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "paths": { "@msinternal/authoring": ["./src/index"] }
+    "paths": {
+      "@msinternal/authoring": ["./src/index"]
+    }
   },
-  "include": ["src/**/*.ts", "test/**/*.ts", "samples-dev/**/*.ts"]
+  "include": ["src/**/*.ts", "samples-dev/**/*.ts"]
 }

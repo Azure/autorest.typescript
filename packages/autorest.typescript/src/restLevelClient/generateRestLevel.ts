@@ -33,7 +33,11 @@ import {
   buildLogger,
   buildSamples,
   updatePackageFile,
-  buildSnippets
+  buildSnippets,
+  buildTsTestBrowserConfig,
+  buildTsSrcConfig,
+  buildTsSampleConfig,
+  buildTsTestConfig
 } from "@azure-tools/rlc-common";
 import {
   generateFileByBuilder,
@@ -52,7 +56,9 @@ export async function generateRestLevelClient() {
     srcPath,
     generateTest,
     generateMetadata,
-    azureOutputDirectory
+    azureOutputDirectory,
+    azureSdkForJs,
+    generateSample
   } = getAutorestOptions();
 
   const project = new Project({
@@ -126,6 +132,20 @@ export async function generateRestLevelClient() {
     generateFileByBuilder(project, buildPackageFile, rlcModels);
     // buildTsConfig
     generateFileByBuilder(project, buildTsConfig, rlcModels);
+    if (azureSdkForJs) {
+      // buildTsSrcConfig
+      generateFileByBuilder(project, buildTsSrcConfig, rlcModels);
+      if (generateSample) {
+        // buildTsSampleConfig
+        generateFileByBuilder(project, buildTsSampleConfig, rlcModels);
+      }
+      if (generateTest) {
+        // buildTsTestBrowserConfig
+        generateFileByBuilder(project, buildTsTestBrowserConfig, rlcModels);
+        // buildTstestConfig
+        generateFileByBuilder(project, buildTsTestConfig, rlcModels);
+      }
+    }
   } else {
     // update package.json if existing
     const packageJsonContent = JSON.parse(await host.readFile("package.json"));

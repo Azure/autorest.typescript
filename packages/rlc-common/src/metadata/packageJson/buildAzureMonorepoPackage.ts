@@ -176,7 +176,7 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
   return {
     ...getCommonPackageScripts(config),
     "build:samples": config.withSamples
-      ? "dev-tool run typecheck --paths samples-dev/*.ts && dev-tool samples publish -f"
+      ? "tsc -p tsconfig.samples.json && dev-tool samples publish -f"
       : "echo skipped",
     "check-format": `dev-tool run vendored prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
       config.withSamples ? '"samples-dev/*.ts"' : ""
