@@ -233,7 +233,7 @@ importers:
   ../../packages/typespec-ts:
     specifiers:
       '@azure-rest/core-client': ^2.3.1
-      '@azure-tools/azure-http-specs': 0.1.0-alpha.9
+      '@azure-tools/azure-http-specs': 0.1.0-alpha.10
       '@azure-tools/rlc-common': workspace:^0.38.4
       '@azure-tools/typespec-autorest': '>=0.53.0 <1.0.0'
       '@azure-tools/typespec-azure-core': '>=0.53.0 <1.0.0'
@@ -257,7 +257,7 @@ importers:
       '@typescript-eslint/parser': ^6.8.0
       '@typespec/compiler': '>=0.67.1 <1.0.0'
       '@typespec/http': '>=0.67.1 <1.0.0'
-      '@typespec/http-specs': 0.1.0-alpha.14
+      '@typespec/http-specs': 0.1.0-alpha.15-dev.3
       '@typespec/openapi': '>=0.67.1 <1.0.0'
       '@typespec/rest': '>=0.67.1 <1.0.0'
       '@typespec/spec-api': 0.1.0-alpha.1
@@ -294,7 +294,7 @@ importers:
       tslib: 2.6.2
     devDependencies:
       '@azure-rest/core-client': 2.3.1
-      '@azure-tools/azure-http-specs': 0.1.0-alpha.9_wiu6mof62d7ulmyrdus3foxvl4
+      '@azure-tools/azure-http-specs': 0.1.0-alpha.10_wiu6mof62d7ulmyrdus3foxvl4
       '@azure-tools/typespec-autorest': 0.53.0_45t2i75l3m7t5av5f4u7yyrt3i
       '@azure-tools/typespec-azure-core': 0.53.0_2paad3gqmmlqblk4z7fis6dzly
       '@azure-tools/typespec-azure-resource-manager': 0.53.0_v6tml33iot5y7vz3uif5wtiyly
@@ -317,7 +317,7 @@ importers:
       '@typescript-eslint/parser': 6.8.0_fpjybyg5oocuhouzibf5qu2ht4
       '@typespec/compiler': 0.67.1_@types+node@18.18.0
       '@typespec/http': 0.67.1_26n2yrwoyvutwry2fnxvlwek5y
-      '@typespec/http-specs': 0.1.0-alpha.14_qs6ss2ceikklepg3cxuscrsm3y
+      '@typespec/http-specs': 0.1.0-alpha.15-dev.3_qs6ss2ceikklepg3cxuscrsm3y
       '@typespec/openapi': 0.67.1_r4qwch4ocmkjqchifprkmf2w5a
       '@typespec/rest': 0.67.1_r4qwch4ocmkjqchifprkmf2w5a
       '@typespec/spec-api': 0.1.0-alpha.1
@@ -446,16 +446,16 @@ packages:
       proper-lockfile: 2.0.1
     dev: false
 
-  /@azure-tools/azure-http-specs/0.1.0-alpha.9_wiu6mof62d7ulmyrdus3foxvl4:
-    resolution: {integrity: sha512-eygzmoU/MnbhUB54C/fgRX3/98j3we6MYmrLhHSeLtLxVKG3upBxS7gHF0l7jnCE8+jMoaQ1o1WL7xLZuVEifg==}
+  /@azure-tools/azure-http-specs/0.1.0-alpha.10_wiu6mof62d7ulmyrdus3foxvl4:
+    resolution: {integrity: sha512-BhWKqX6EMx16jMylLQG1m+Ncl5xoycqOTgxmaUkWNlFT0xT4AZqq1P5l15DgS77imJqHqI9VDOqt/vzN0LCJAQ==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       '@azure-tools/typespec-azure-core': ^0.53.0
-      '@typespec/compiler': ^0.67.0
-      '@typespec/http': ^0.67.0
-      '@typespec/rest': ^0.67.0
-      '@typespec/versioning': ^0.67.0
-      '@typespec/xml': ^0.67.0
+      '@typespec/compiler': ^0.67.1
+      '@typespec/http': ^0.67.1
+      '@typespec/rest': ^0.67.1
+      '@typespec/versioning': ^0.67.1
+      '@typespec/xml': ^0.67.1
     dependencies:
       '@azure-tools/typespec-azure-core': 0.53.0_2paad3gqmmlqblk4z7fis6dzly
       '@typespec/compiler': 0.67.1_@types+node@18.18.0
@@ -2586,15 +2586,15 @@ packages:
     dependencies:
       '@typespec/compiler': 0.67.1_@types+node@18.18.0
 
-  /@typespec/http-specs/0.1.0-alpha.14_qs6ss2ceikklepg3cxuscrsm3y:
-    resolution: {integrity: sha512-kiptMHJUaxQD3SswqaV4QQr3KwAFVmLDn/IYUu6z7SicGoT5jJk3b8yNZ7wK+sfc9jhugpJ92oHFbV90CfiLLQ==}
+  /@typespec/http-specs/0.1.0-alpha.15-dev.3_qs6ss2ceikklepg3cxuscrsm3y:
+    resolution: {integrity: sha512-pWrtceHjixwFv6SX1nkSu5WG7odm83FqnKLVzmO5Y29MD4DCgu1AhqtDM7UJ1GZgfHPbZS0zh9gj/01vxEhkdQ==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@typespec/compiler': ^0.67.1
-      '@typespec/http': ^0.67.1
-      '@typespec/rest': ^0.67.1
-      '@typespec/versioning': ^0.67.1
-      '@typespec/xml': ^0.67.1
+      '@typespec/compiler': ^0.67.1 || >=0.68.0-dev <0.68.0
+      '@typespec/http': ^0.67.1 || >=0.68.0-dev <0.68.0
+      '@typespec/rest': ^0.67.1 || >=0.68.0-dev <0.68.0
+      '@typespec/versioning': ^0.67.1 || >=0.68.0-dev <0.68.0
+      '@typespec/xml': ^0.67.1 || >=0.68.0-dev <0.68.0
     dependencies:
       '@typespec/compiler': 0.67.1_@types+node@18.18.0
       '@typespec/http': 0.67.1_26n2yrwoyvutwry2fnxvlwek5y

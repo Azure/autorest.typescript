@@ -269,10 +269,14 @@ export declare interface RequestBodyBase64204Response extends HttpResponse {
 }
 
 export declare interface RequestBodyBase64BodyParam {
-    body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream;
+    body: string;
 }
 
-export declare type RequestBodyBase64Parameters = RequestBodyBase64BodyParam & RequestParameters;
+export declare interface RequestBodyBase64MediaTypesParam {
+    contentType: "application/json";
+}
+
+export declare type RequestBodyBase64Parameters = RequestBodyBase64MediaTypesParam & RequestBodyBase64BodyParam & RequestParameters;
 
 export declare interface RequestBodyBase64Url {
     post(options: RequestBodyBase64UrlParameters): StreamableMethod<RequestBodyBase64Url204Response>;
@@ -283,10 +287,14 @@ export declare interface RequestBodyBase64Url204Response extends HttpResponse {
 }
 
 export declare interface RequestBodyBase64UrlBodyParam {
-    body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream;
+    body: string;
 }
 
-export declare type RequestBodyBase64UrlParameters = RequestBodyBase64UrlBodyParam & RequestParameters;
+export declare interface RequestBodyBase64UrlMediaTypesParam {
+    contentType: "application/json";
+}
+
+export declare type RequestBodyBase64UrlParameters = RequestBodyBase64UrlMediaTypesParam & RequestBodyBase64UrlBodyParam & RequestParameters;
 
 export declare interface RequestBodyCustomContentType {
     post(options: RequestBodyCustomContentTypeParameters): StreamableMethod<RequestBodyCustomContentType204Response>;
@@ -342,9 +350,14 @@ export declare interface ResponseBodyBase64 {
     get(options?: ResponseBodyBase64Parameters): StreamableMethod<ResponseBodyBase64200Response>;
 }
 
+export declare interface ResponseBodyBase64200Headers {
+    "content-type": "application/json";
+}
+
 export declare interface ResponseBodyBase64200Response extends HttpResponse {
     status: "200";
-    body: Uint8Array;
+    body: string;
+    headers: RawHttpHeaders & ResponseBodyBase64200Headers;
 }
 
 export declare type ResponseBodyBase64Parameters = RequestParameters;
@@ -353,9 +366,14 @@ export declare interface ResponseBodyBase64Url {
     get(options?: ResponseBodyBase64UrlParameters): StreamableMethod<ResponseBodyBase64Url200Response>;
 }
 
+export declare interface ResponseBodyBase64Url200Headers {
+    "content-type": "application/json";
+}
+
 export declare interface ResponseBodyBase64Url200Response extends HttpResponse {
     status: "200";
     body: string;
+    headers: RawHttpHeaders & ResponseBodyBase64Url200Headers;
 }
 
 export declare type ResponseBodyBase64UrlParameters = RequestParameters;

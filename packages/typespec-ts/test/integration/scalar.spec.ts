@@ -24,7 +24,7 @@ describe("Scalar Client", () => {
   it("should put string value", async () => {
     const result = await client
       .path("/type/scalar/string")
-      .put({ body: "test", headers: { "content-type": "text/plain" } });
+      .put({ contentType: "application/json", body: "test" });
     assert.strictEqual(result.status, "204");
   });
 
@@ -37,7 +37,7 @@ describe("Scalar Client", () => {
   it("should put boolean value", async () => {
     const result = await client
       .path("/type/scalar/boolean")
-      .put({ body: true });
+      .put({ contentType: "application/json", body: true });
     assert.strictEqual(result.status, "204");
   });
 
@@ -50,7 +50,7 @@ describe("Scalar Client", () => {
   it("should put unknown value", async () => {
     const result = await client
       .path("/type/scalar/unknown")
-      .put({ body: "test", headers: { "content-type": "text/plain" } });
+      .put({ contentType: "application/json", body: "test" });
     assert.strictEqual(result.status, "204");
   });
 
@@ -65,7 +65,7 @@ describe("Scalar Client", () => {
   it("should put decimal request body", async () => {
     const result = await client
       .path("/type/scalar/decimal/resquest_body")
-      .put({ body: 0.33333 });
+      .put({ contentType: "application/json", body: 0.33333 });
     assert.strictEqual(result.status, "204");
   });
 
@@ -87,7 +87,7 @@ describe("Scalar Client", () => {
   it("should put decimal128 request body", async () => {
     const result = await client
       .path("/type/scalar/decimal128/resquest_body")
-      .put({ body: 0.33333 });
+      .put({ contentType: "application/json", body: 0.33333 });
     assert.strictEqual(result.status, "204");
   });
 
@@ -110,7 +110,7 @@ describe("Scalar Client", () => {
     });
     const result = await client
       .path("/type/scalar/decimal/verify")
-      .post({ body: total });
+      .post({ contentType: "application/json", body: total });
     assert.strictEqual(result.status, "400");
   });
 
@@ -125,7 +125,7 @@ describe("Scalar Client", () => {
     });
     const result = await client
       .path("/type/scalar/decimal128/verify")
-      .post({ body: total });
+      .post({ contentType: "application/json", body: total });
     assert.strictEqual(result.status, "400");
   });
 });

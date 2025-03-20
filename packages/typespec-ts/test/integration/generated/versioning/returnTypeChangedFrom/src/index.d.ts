@@ -1,6 +1,7 @@
 import type { Client } from '@typespec/ts-http-runtime';
 import type { ClientOptions } from '@typespec/ts-http-runtime';
 import type { HttpResponse } from '@typespec/ts-http-runtime';
+import type { RawHttpHeaders } from '@typespec/ts-http-runtime';
 import type { RequestParameters } from '@typespec/ts-http-runtime';
 import type { StreamableMethod } from '@typespec/ts-http-runtime';
 
@@ -15,9 +16,14 @@ export declare interface Test {
     post(options: TestParameters): StreamableMethod<Test200Response>;
 }
 
+export declare interface Test200Headers {
+    "content-type": "application/json";
+}
+
 export declare interface Test200Response extends HttpResponse {
     status: "200";
     body: string;
+    headers: RawHttpHeaders & Test200Headers;
 }
 
 export declare interface TestBodyParam {
