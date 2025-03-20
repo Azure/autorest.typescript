@@ -11,6 +11,7 @@ import {
 import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
 import { getModularClientOptions } from "../utils/clientUtils.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import { useContext } from "../contextManager.js";
 
 // ====== UTILITIES ======
 
@@ -19,12 +20,13 @@ export function buildApiOptions(
   client: SdkClientType<SdkServiceOperation>,
   emitterOptions: ModularEmitterOptions
 ) {
+  const project = useContext("outputProject");
   const modelOptionsFiles = [];
   const { subfolder } = getModularClientOptions(context, client);
   const methodMap = getMethodHierarchiesMap(context, client);
   for (const [prefixKey, operations] of methodMap) {
     const prefixes = prefixKey.split("/");
-    const modelOptionsFile = emitterOptions.project.createSourceFile(
+    const modelOptionsFile = project.createSourceFile(
       path.join(
         emitterOptions.modularOptions.sourceRoot,
         subfolder ?? "",

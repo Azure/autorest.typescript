@@ -2,13 +2,12 @@
 // Licensed under the MIT License.
 
 import { WidgetServiceContext } from "../../api/widgetServiceContext.js";
+import { User, Widget } from "../../models/models.js";
 import {
-  getBudgets,
-  createOrReplace,
   BudgetsGetBudgetsOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,
-} from "../../api/budgets/index.js";
-import { User, Widget } from "../../models/models.js";
+} from "../../api/budgets/options.js";
+import { getBudgets, createOrReplace } from "../../api/budgets/operations.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
 /** Interface representing a Budgets operations. */

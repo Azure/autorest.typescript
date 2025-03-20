@@ -18,6 +18,15 @@ import {
   _dataTypeListResultDeserializer,
 } from "../../models/models.js";
 import {
+  DataTypesListByDataProductOptionalParams,
+  DataTypesGenerateStorageContainerSasTokenOptionalParams,
+  DataTypesDeleteDataOptionalParams,
+  DataTypesDeleteOptionalParams,
+  DataTypesUpdateOptionalParams,
+  DataTypesGetOptionalParams,
+  DataTypesCreateOptionalParams,
+} from "./options.js";
+import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
@@ -30,15 +39,6 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { PollerLike, OperationState } from "@azure/core-lro";
-import {
-  DataTypesListByDataProductOptionalParams,
-  DataTypesGenerateStorageContainerSasTokenOptionalParams,
-  DataTypesDeleteDataOptionalParams,
-  DataTypesDeleteOptionalParams,
-  DataTypesUpdateOptionalParams,
-  DataTypesGetOptionalParams,
-  DataTypesCreateOptionalParams,
-} from "./options.js";
 
 export function _listByDataProductSend(
   context: Client,

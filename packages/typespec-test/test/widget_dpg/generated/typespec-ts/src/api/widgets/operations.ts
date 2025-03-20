@@ -16,6 +16,17 @@ import {
   analyzeResultDeserializer,
 } from "../../models/models.js";
 import {
+  WidgetsAnalyzeWidgetOptionalParams,
+  WidgetsDeleteWidgetOptionalParams,
+  WidgetsUpdateWidgetOptionalParams,
+  WidgetsCreateOrReplaceOptionalParams,
+  WidgetsCreateWidgetOptionalParams,
+  WidgetsGetWidgetOptionalParams,
+  WidgetsQueryWidgetsPagesOptionalParams,
+  WidgetsListWidgetsPagesOptionalParams,
+  WidgetsListWidgetsOptionalParams,
+} from "./options.js";
+import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
@@ -30,17 +41,6 @@ import {
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
 import { PollerLike, OperationState } from "@azure/core-lro";
-import {
-  WidgetsAnalyzeWidgetOptionalParams,
-  WidgetsDeleteWidgetOptionalParams,
-  WidgetsUpdateWidgetOptionalParams,
-  WidgetsCreateOrReplaceOptionalParams,
-  WidgetsCreateWidgetOptionalParams,
-  WidgetsGetWidgetOptionalParams,
-  WidgetsQueryWidgetsPagesOptionalParams,
-  WidgetsListWidgetsPagesOptionalParams,
-  WidgetsListWidgetsOptionalParams,
-} from "./options.js";
 
 export function _analyzeWidgetSend(
   context: Client,

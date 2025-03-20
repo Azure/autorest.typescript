@@ -16,6 +16,7 @@ Api operations should handle contentTypes has binary data
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { UploadFileViaBodyOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -75,6 +76,7 @@ scalar BinaryBytes extends bytes;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { UploadFileViaBodyOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -160,6 +162,7 @@ export function _uploadFileRequestSerializer(item: _UploadFileRequest): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { _uploadFileRequestSerializer } from "../models/models.js";
+import { UploadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -252,6 +255,7 @@ export function _uploadFilesRequestSerializer(item: _UploadFilesRequest): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { _uploadFilesRequestSerializer } from "../models/models.js";
+import { UploadFilesOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -313,6 +317,7 @@ op downloadFile(): {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { DownloadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -373,6 +378,7 @@ op downloadFile(): {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { DownloadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -459,6 +465,7 @@ export function _downloadFileResponseDeserializer(
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { _downloadFileResponseDeserializer } from "../models/models.js";
+import { DownloadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -552,6 +559,7 @@ export function _downloadFileResponseDeserializer(
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { _downloadFileResponseDeserializer } from "../models/models.js";
+import { DownloadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -616,6 +624,7 @@ Api operations should handle contentTypes has default value
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { UploadFileViaBodyOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -679,6 +688,7 @@ op test(...ApiVersionParameter): string;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { TestOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
@@ -771,6 +781,8 @@ export function createTesting(
 ## classicClient
 
 ```ts classicClient
+import { TestOptionalParams } from "./api/options.js";
+import { test } from "./api/operations.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { TestingClientOptionalParams } from "./api/testingContext.js";
@@ -829,6 +841,7 @@ withRawContent: false
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { TestOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
@@ -921,6 +934,8 @@ export function createTesting(
 ## classicClient
 
 ```ts classicClient
+import { TestOptionalParams } from "./api/options.js";
+import { test } from "./api/operations.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { TestingClientOptionalParams } from "./api/testingContext.js";
@@ -973,6 +988,7 @@ op test1(): string;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { Test1OptionalParams, TestOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
@@ -1097,6 +1113,8 @@ export function createTesting(
 ## classicClient
 
 ```ts classicClient
+import { Test1OptionalParams, TestOptionalParams } from "./api/options.js";
+import { test1, test } from "./api/operations.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { TestingClientOptionalParams } from "./api/testingContext.js";

@@ -12,6 +12,7 @@ import {
 import { getModularClientOptions } from "../utils/clientUtils.js";
 import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
 import { join } from "path/posix";
+import { useContext } from "../contextManager.js";
 
 export function buildRootIndex(
   context: SdkContext,
@@ -19,7 +20,7 @@ export function buildRootIndex(
   emitterOptions: ModularEmitterOptions,
   rootIndexFile: SourceFile
 ) {
-  const { project } = emitterOptions;
+  const project = useContext("outputProject");
   const srcPath = emitterOptions.modularOptions.sourceRoot;
   const { subfolder } = getModularClientOptions(context, client);
   const clientName = `${getClassicalClientName(client)}`;
@@ -312,10 +313,12 @@ function exportModules(
       .replace(indexFile.getDirectoryPath(), "")
       .replace(/\\/g, "/")
       .replace(".ts", "")}.js`;
-    indexFile.addExportDeclaration({
-      moduleSpecifier,
-      namedExports
-    });
+    if (namedExports.length > 0) {
+      indexFile.addExportDeclaration({
+        moduleSpecifier,
+        namedExports
+      });
+    }
   }
 }
 
@@ -324,9 +327,10 @@ export function buildSubClientIndexFile(
   client: SdkClientType<SdkServiceOperation>,
   emitterOptions: ModularEmitterOptions
 ) {
+  const project = useContext("outputProject");
   const { subfolder } = getModularClientOptions(context, client);
   const srcPath = emitterOptions.modularOptions.sourceRoot;
-  const subClientIndexFile = emitterOptions.project.createSourceFile(
+  const subClientIndexFile = project.createSourceFile(
     `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""}index.ts`,
     undefined,
     { overwrite: true }
@@ -335,7 +339,7 @@ export function buildSubClientIndexFile(
   const clientFilePath = `${srcPath}/${
     subfolder && subfolder !== "" ? subfolder + "/" : ""
   }${normalizeName(clientName, NameType.File)}.ts`;
-  const clientFile = emitterOptions.project.getSourceFile(clientFilePath);
+  const clientFile = project.getSourceFile(clientFilePath);
 
   if (!clientFile) {
     throw new Error(`Couldn't find client file: ${clientFilePath}`);
@@ -344,29 +348,17 @@ export function buildSubClientIndexFile(
   exportClassicalClient(client, subClientIndexFile, subfolder ?? "", true);
   exportRestoreHelpers(
     subClientIndexFile,
-    emitterOptions.project,
+    project,
     srcPath,
     clientName,
     subfolder
   );
-  exportModules(
-    subClientIndexFile,
-    emitterOptions.project,
-    srcPath,
-    clientName,
-    "api",
-    {
-      subfolder,
-      interfaceOnly: true,
-      recursive: true
-    }
-  );
-  exportModules(
-    subClientIndexFile,
-    emitterOptions.project,
-    srcPath,
-    clientName,
-    "classic",
-    { subfolder }
-  );
+  exportModules(subClientIndexFile, project, srcPath, clientName, "api", {
+    subfolder,
+    interfaceOnly: true,
+    recursive: true
+  });
+  exportModules(subClientIndexFile, project, srcPath, clientName, "classic", {
+    subfolder
+  });
 }

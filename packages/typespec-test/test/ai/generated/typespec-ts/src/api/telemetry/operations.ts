@@ -6,6 +6,7 @@ import {
   GetAppInsightsResponse,
   getAppInsightsResponseDeserializer,
 } from "../../models/models.js";
+import { TelemetryGetAppInsightsOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
@@ -13,7 +14,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { TelemetryGetAppInsightsOptionalParams } from "./options.js";
 
 export function _getAppInsightsSend(
   context: Client,

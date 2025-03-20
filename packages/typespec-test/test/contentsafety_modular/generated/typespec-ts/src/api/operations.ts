@@ -1,21 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  AddOrUpdateBlocklistItemsOptionalParams,
-  AnalyzeImageOptionalParams,
-  AnalyzeTextOptionalParams,
-  ContentSafetyContext as Client,
-  CreateOrUpdateTextBlocklistOptionalParams,
-  DeleteTextBlocklistOptionalParams,
-  DetectTextProtectedMaterialOptionalParams,
-  GetTextBlocklistItemOptionalParams,
-  GetTextBlocklistOptionalParams,
-  ListTextBlocklistItemsOptionalParams,
-  ListTextBlocklistsOptionalParams,
-  RemoveBlocklistItemsOptionalParams,
-  ShieldPromptOptionalParams,
-} from "./index.js";
+import { ContentSafetyContext as Client } from "./index.js";
 import {
   TextBlocklist,
   textBlocklistSerializer,
@@ -50,10 +36,24 @@ import {
   detectTextProtectedMaterialResultDeserializer,
 } from "../models/models.js";
 import {
+  ListTextBlocklistItemsOptionalParams,
+  GetTextBlocklistItemOptionalParams,
+  RemoveBlocklistItemsOptionalParams,
+  AddOrUpdateBlocklistItemsOptionalParams,
+  ListTextBlocklistsOptionalParams,
+  DeleteTextBlocklistOptionalParams,
+  CreateOrUpdateTextBlocklistOptionalParams,
+  GetTextBlocklistOptionalParams,
+  AnalyzeImageOptionalParams,
+  DetectTextProtectedMaterialOptionalParams,
+  ShieldPromptOptionalParams,
+  AnalyzeTextOptionalParams,
+} from "./options.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../static-helpers/pagingHelpers.js";
-import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

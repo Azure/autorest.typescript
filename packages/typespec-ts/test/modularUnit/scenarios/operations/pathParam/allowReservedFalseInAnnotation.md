@@ -17,6 +17,7 @@ Should normal path parameter:
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { AnnotationWithFalseOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,

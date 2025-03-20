@@ -1,6 +1,7 @@
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import {
   FunctionDeclarationStructure,
+  InterfaceDeclarationStructure,
   OptionalKind,
   PropertySignatureStructure,
   SourceFile,
@@ -15,6 +16,9 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { getModularClientOptions } from "../../utils/clientUtils.js";
 import { ServiceOperation } from "../../utils/operationUtil.js";
+import { refkey } from "../../framework/refkey.js";
+import { resolveReference } from "../../framework/reference.js";
+import { addDeclaration } from "../../framework/declaration.js";
 
 export function getClassicalOperation(
   dpgContext: SdkContext,
@@ -51,6 +55,10 @@ export function getClassicalOperation(
     OptionalKind<FunctionDeclarationStructure>,
     string | undefined
   >();
+  const operationKeyMap = new Map<
+    OptionalKind<FunctionDeclarationStructure>,
+    string | undefined
+  >();
   const operationDeclarations: OptionalKind<FunctionDeclarationStructure>[] =
     operations.map((operation) => {
       const declarations = getOperationFunction(
@@ -59,6 +67,10 @@ export function getClassicalOperation(
         rlcClientName
       );
       operationMap.set(declarations, operation.oriName);
+      operationKeyMap.set(
+        declarations,
+        resolveReference(refkey(operation, "api"))
+      );
       return declarations;
     });
 
@@ -69,6 +81,12 @@ export function getClassicalOperation(
     layer
   );
   const interfaceName = `${interfaceNamePrefix}Operations`;
+  const nextLayerInterfaceName = `${getClassicalLayerPrefix(
+    prefixes,
+    NameType.Interface,
+    "",
+    layer + 1
+  )}Operations`;
   const existInterface = classicFile
     .getInterfaces()
     .filter((i) => i.getName() === interfaceName)[0];
@@ -86,12 +104,9 @@ export function getClassicalOperation(
       properties.push({
         kind: StructureKind.PropertySignature,
         name,
-        type: `${getClassicalLayerPrefix(
-          prefixes,
-          NameType.Interface,
-          "",
-          layer + 1
-        )}Operations`
+        type: resolveReference(
+          refkey(nextLayerInterfaceName, layer + 1, "classicOperations")
+        )
       });
     }
   } else {
@@ -104,7 +119,7 @@ export function getClassicalOperation(
           .map(
             (p) =>
               p.name +
-              (p.type?.toString().endsWith("OptionalParams") ||
+              (p.type?.toString().endsWith("operationOptions__") ||
               p.hasQuestionToken
                 ? "?"
                 : "") +
@@ -119,22 +134,30 @@ export function getClassicalOperation(
   if (existInterface) {
     existInterface.addProperties([...properties]);
   } else {
-    classicFile.addInterface({
+    const interfaceDeclaration: InterfaceDeclarationStructure = {
+      kind: StructureKind.Interface,
       name: interfaceName,
       isExported: true,
       properties,
       docs: [`Interface representing a ${interfaceNamePrefix} operations.`]
-    });
+    };
+    addDeclaration(
+      classicFile,
+      interfaceDeclaration,
+      refkey(interfaceName, layer, "classicOperations")
+    );
   }
 
+  const functionName = `_get${getClassicalLayerPrefix(
+    prefixes,
+    NameType.Interface,
+    "",
+    layer
+  )}`;
   if (layer === prefixes.length - 1) {
-    classicFile.addFunction({
-      name: `_get${getClassicalLayerPrefix(
-        prefixes,
-        NameType.Interface,
-        "",
-        layer
-      )}`,
+    const functionDeclaration: FunctionDeclarationStructure = {
+      kind: StructureKind.Function,
+      name: functionName,
       isExported: false,
       parameters: [
         {
@@ -150,14 +173,14 @@ export function getClassicalOperation(
               .map(
                 (p) =>
                   p.name +
-                  (p.type?.toString().endsWith("OptionalParams") ||
+                  (p.type?.toString().endsWith("operationOptions__") ||
                   p.hasQuestionToken
                     ? "?"
                     : "") +
                   ": " +
                   p.type
               )
-              .join(",")}) => ${d.name}(${[
+              .join(",")}) => ${operationKeyMap.get(d)}(${[
               "context",
               ...[
                 d.parameters?.map((p) => p.name).filter((p) => p !== "context")
@@ -166,7 +189,12 @@ export function getClassicalOperation(
           })
           .join(",")}
       }`
-    });
+    };
+    addDeclaration(
+      classicFile,
+      functionDeclaration,
+      refkey(functionName, layer, "getClassicOperation")
+    );
   }
 
   const operationFunctionName = `_get${getClassicalLayerPrefix(
@@ -174,6 +202,12 @@ export function getClassicalOperation(
     NameType.Interface,
     "",
     layer
+  )}Operations`;
+  const nextLayerOperationFunctionName = `_get${getClassicalLayerPrefix(
+    prefixes,
+    NameType.Interface,
+    "",
+    layer + 1
   )}Operations`;
   const existFunction = classicFile
     .getFunctions()
@@ -195,21 +229,11 @@ export function getClassicalOperation(
           ${normalizeName(
             prefixes[layer + 1] ?? "FIXME",
             NameType.Property
-          )}: _get${getClassicalLayerPrefix(
-            prefixes,
-            NameType.Interface,
-            "",
-            layer + 1
-          )}Operations(context)}`;
+          )}: ${resolveReference(refkey(nextLayerOperationFunctionName, layer + 1, "getClassicOperations"))}(context)}`;
         }
       } else {
         statement = `,
-      ..._get${getClassicalLayerPrefix(
-        prefixes,
-        NameType.Interface,
-        "",
-        layer + 1
-      )}Operations(context)}`;
+      ...${resolveReference(refkey(nextLayerOperationFunctionName, layer + 1, "getClassicOperations"))}(context)}`;
       }
 
       if (statement) {
@@ -218,7 +242,8 @@ export function getClassicalOperation(
       }
     }
   } else {
-    const functions = {
+    const functions: FunctionDeclarationStructure = {
+      kind: StructureKind.Function,
       name: operationFunctionName,
       isExported: true,
       parameters: [
@@ -227,35 +252,26 @@ export function getClassicalOperation(
           type: rlcClientName
         }
       ],
-      returnType: `${getClassicalLayerPrefix(
-        prefixes,
-        NameType.Interface,
-        "",
-        layer
-      )}Operations`,
+      returnType: resolveReference(
+        refkey(interfaceName, layer, "classicOperations")
+      ),
       statements:
         layer !== prefixes.length - 1
           ? `return {
             ${normalizeName(
               prefixes[layer + 1] ?? "FIXME",
               NameType.Property
-            )}: _get${getClassicalLayerPrefix(
-              prefixes,
-              NameType.Interface,
-              "",
-              layer + 1
-            )}Operations(context)   
+            )}: ${resolveReference(refkey(nextLayerOperationFunctionName, layer + 1, "getClassicOperations"))}(context)   
       }`
           : `return {
-        ..._get${getClassicalLayerPrefix(
-          prefixes,
-          NameType.Interface,
-          "",
-          layer
-        )}(context)
+        ...${resolveReference(refkey(functionName, layer, "getClassicOperation"))}(context)
       }`
     };
-    classicFile.addFunction(functions);
+    addDeclaration(
+      classicFile,
+      functions,
+      refkey(operationFunctionName, layer, "getClassicOperations")
+    );
   }
 
   function getClassicalMethodName(

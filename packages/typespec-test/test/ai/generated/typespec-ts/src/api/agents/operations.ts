@@ -63,14 +63,6 @@ import {
   VectorStoreFileBatch,
   vectorStoreFileBatchDeserializer,
 } from "../../models/agents/models.js";
-import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
-import {
-  StreamableMethod,
-  PathUncheckedResponse,
-  createRestError,
-  operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
-import { uint8ArrayToString } from "@azure/core-util";
 import {
   AgentsListVectorStoreFileBatchFilesOptionalParams,
   AgentsCancelVectorStoreFileBatchOptionalParams,
@@ -113,6 +105,14 @@ import {
   AgentsListAgentsOptionalParams,
   AgentsCreateAgentOptionalParams,
 } from "./options.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+import { uint8ArrayToString } from "@azure/core-util";
 
 export function _listVectorStoreFileBatchFilesSend(
   context: Client,

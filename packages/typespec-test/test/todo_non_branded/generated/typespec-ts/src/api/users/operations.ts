@@ -13,13 +13,13 @@ import {
   userExistsResponseDeserializer,
   invalidUserResponseDeserializer,
 } from "../../models/users/models.js";
+import { UsersCreateOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
   operationOptionsToRequestParameters,
 } from "@typespec/ts-http-runtime";
-import { UsersCreateOptionalParams } from "./options.js";
 
 export function _createSend(
   context: Client,

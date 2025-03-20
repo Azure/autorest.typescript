@@ -24,6 +24,7 @@ Should normal path parameter:
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { TestOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

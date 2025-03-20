@@ -12,13 +12,6 @@ import {
   DeleteFileResponse,
   deleteFileResponseDeserializer,
 } from "../../models/models.js";
-import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
-import {
-  StreamableMethod,
-  PathUncheckedResponse,
-  createRestError,
-  operationOptionsToRequestParameters,
-} from "@typespec/ts-http-runtime";
 import {
   FilesDownloadOptionalParams,
   FilesDeleteOptionalParams,
@@ -26,6 +19,13 @@ import {
   FilesCreateOptionalParams,
   FilesListOptionalParams,
 } from "./options.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@typespec/ts-http-runtime";
 
 export function _downloadSend(
   context: Client,

@@ -13,13 +13,6 @@ import {
   DeleteFileResponse,
   deleteFileResponseDeserializer,
 } from "../../models/models.js";
-import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
-import {
-  StreamableMethod,
-  PathUncheckedResponse,
-  createRestError,
-  operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
 import {
   FilesDownloadOptionalParams,
   FilesDeleteOptionalParams,
@@ -27,6 +20,13 @@ import {
   FilesCreateOptionalParams,
   FilesListOptionalParams,
 } from "./options.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
 
 export function _downloadSend(
   context: Client,

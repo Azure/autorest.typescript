@@ -1,6 +1,16 @@
 // Licensed under the MIT License.
 
 import { TodoContext } from "../../api/todoContext.js";
+import { TodoItem, ToDoItemMultipartRequest } from "../../models/models.js";
+import { TodoItemPatch } from "../../models/todoItems/models.js";
+import {
+  TodoItemsDeleteOptionalParams,
+  TodoItemsUpdateOptionalParams,
+  TodoItemsGetOptionalParams,
+  TodoItemsCreateFormOptionalParams,
+  TodoItemsCreateJsonOptionalParams,
+  TodoItemsListOptionalParams,
+} from "../../api/todoItems/options.js";
 import {
   $delete,
   update,
@@ -8,20 +18,12 @@ import {
   createForm,
   createJson,
   list,
-  TodoItemsDeleteOptionalParams,
-  TodoItemsUpdateOptionalParams,
-  TodoItemsGetOptionalParams,
-  TodoItemsCreateFormOptionalParams,
-  TodoItemsCreateJsonOptionalParams,
-  TodoItemsListOptionalParams,
-} from "../../api/todoItems/index.js";
-import { TodoItemPatch } from "../../models/todoItems/models.js";
-import { TodoItem, ToDoItemMultipartRequest } from "../../models/models.js";
-import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
+} from "../../api/todoItems/operations.js";
 import {
   TodoItemsAttachmentsOperations,
   _getTodoItemsAttachmentsOperations,
 } from "./attachments/index.js";
+import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 
 /** Interface representing a TodoItems operations. */
 export interface TodoItemsOperations {

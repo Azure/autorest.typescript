@@ -23,6 +23,11 @@ Should enable URI template parse for parameters:
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import {
+  RecordOptionalParams,
+  ArrayOptionalParams,
+  PrimitiveOptionalParams,
+} from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,

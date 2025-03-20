@@ -2,23 +2,25 @@
 
 import { OpenAIContext } from "../../api/openAIContext.js";
 import {
-  download,
-  $delete,
-  retrieve,
-  create,
-  list,
-  FilesDownloadOptionalParams,
-  FilesDeleteOptionalParams,
-  FilesRetrieveOptionalParams,
-  FilesCreateOptionalParams,
-  FilesListOptionalParams,
-} from "../../api/files/index.js";
-import {
   OpenAIFile,
   ListFilesResponse,
   CreateFileRequest,
   DeleteFileResponse,
 } from "../../models/models.js";
+import {
+  FilesDownloadOptionalParams,
+  FilesDeleteOptionalParams,
+  FilesRetrieveOptionalParams,
+  FilesCreateOptionalParams,
+  FilesListOptionalParams,
+} from "../../api/files/options.js";
+import {
+  download,
+  $delete,
+  retrieve,
+  create,
+  list,
+} from "../../api/files/operations.js";
 
 /** Interface representing a Files operations. */
 export interface FilesOperations {

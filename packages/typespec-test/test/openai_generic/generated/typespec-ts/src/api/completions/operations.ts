@@ -9,13 +9,13 @@ import {
   CreateCompletionResponse,
   createCompletionResponseDeserializer,
 } from "../../models/models.js";
+import { CompletionsCreateOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { CompletionsCreateOptionalParams } from "./options.js";
 
 export function _createSend(
   context: Client,

@@ -3,13 +3,12 @@
 
 import { NetworkAnalyticsApiContext } from "../../api/networkAnalyticsApiContext.js";
 import {
-  listByDataProduct,
-  generateStorageContainerSasToken,
-  deleteData,
-  $delete,
-  update,
-  get,
-  create,
+  DataType,
+  DataTypeUpdate,
+  ContainerSaS,
+  ContainerSasToken,
+} from "../../models/models.js";
+import {
   DataTypesListByDataProductOptionalParams,
   DataTypesGenerateStorageContainerSasTokenOptionalParams,
   DataTypesDeleteDataOptionalParams,
@@ -17,13 +16,16 @@ import {
   DataTypesUpdateOptionalParams,
   DataTypesGetOptionalParams,
   DataTypesCreateOptionalParams,
-} from "../../api/dataTypes/index.js";
+} from "../../api/dataTypes/options.js";
 import {
-  DataType,
-  DataTypeUpdate,
-  ContainerSaS,
-  ContainerSasToken,
-} from "../../models/models.js";
+  listByDataProduct,
+  generateStorageContainerSasToken,
+  deleteData,
+  $delete,
+  update,
+  get,
+  create,
+} from "../../api/dataTypes/operations.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 

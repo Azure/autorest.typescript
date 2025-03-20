@@ -8,6 +8,7 @@ import {
   _operationListResultDeserializer,
   Operation,
 } from "../../models/models.js";
+import { OperationsListOptionalParams } from "./options.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
@@ -19,7 +20,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { OperationsListOptionalParams } from "./options.js";
 
 export function _listSend(
   context: Client,

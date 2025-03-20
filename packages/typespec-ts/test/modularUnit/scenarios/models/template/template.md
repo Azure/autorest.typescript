@@ -59,9 +59,9 @@ export function fooSerializer(item: Foo): any {
   return {
     x: templatedBaseSerializer(item["x"]),
     y: templatedSerializer(item["y"]),
-    z: templatedSerializer(item["z"]),
-    h: templatedSerializer(item["h"]),
-    j: templatedSerializer(item["j"]),
+    z: __PLACEHOLDER_o353_sserializer__(item["z"]),
+    h: __PLACEHOLDER_o354_sserializer__(item["h"]),
+    j: __PLACEHOLDER_o355_sserializer__(item["j"]),
   };
 }
 
@@ -69,9 +69,9 @@ export function fooDeserializer(item: any): Foo {
   return {
     x: templatedBaseDeserializer(item["x"]),
     y: templatedDeserializer(item["y"]),
-    z: templatedDeserializer(item["z"]),
-    h: templatedDeserializer(item["h"]),
-    j: templatedDeserializer(item["j"]),
+    z: __PLACEHOLDER_o353_sdeserializer__(item["z"]),
+    h: __PLACEHOLDER_o354_sdeserializer__(item["h"]),
+    j: __PLACEHOLDER_o355_sdeserializer__(item["j"]),
   };
 }
 

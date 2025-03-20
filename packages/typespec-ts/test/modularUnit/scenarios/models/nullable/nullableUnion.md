@@ -61,6 +61,7 @@ import {
   _postRequestDeserializer,
   A,
 } from "../models/models.js";
+import { PostOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
