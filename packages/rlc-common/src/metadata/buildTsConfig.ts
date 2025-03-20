@@ -4,32 +4,35 @@
 import { Project } from "ts-morph";
 import { RLCModel } from "../interfaces.js";
 
-const restLevelTsConfigInAzureSdkForJs: (
-  model: RLCModel
-) => Record<string, any> = function (model: RLCModel) {
-  if (model.options?.moduleKind === "esm") {
+const restLevelTsConfigInAzureSdkForJs: () => Record<string, any> =
+  function () {
     return {
-      extends: "../../../tsconfig",
-      compilerOptions: {
-        module: "NodeNext",
-        moduleResolution: "NodeNext",
-        rootDir: ".",
-        skipLibCheck: true
-      },
-      include: ["src/**/*.ts", "src/**/*.mts", "src/**/*.cts", "test/**/*.ts"]
+      references: [
+        {
+          path: "./tsconfig.src.json"
+        }
+      ]
     };
-  }
-
-  return {
-    extends: "../../../tsconfig",
-    compilerOptions: {
-      outDir: "./dist-esm",
-      declarationDir: "./types",
-      skipLibCheck: true
-    },
-    include: ["src/**/*.ts"]
   };
-};
+const tsSrcConfigInAzureSdkForJs = `{
+    extends: "../../../tsconfig.lib.json"
+  }`;
+
+const tsSampleConfigInAzureSdkForJs: (clientPackageName: string) => string =
+  function (clientPackageName) {
+    return `{
+    extends: "../../../tsconfig.samples.base.json",
+    compilerOptions: {
+      paths: {
+        "${clientPackageName}": ["./dist/esm"]
+      }
+    }
+  }`;
+  };
+
+const tsTestConfigInAzureSdkForJs = `{
+    extends: ["./tsconfig.src.json", "../../../tsconfig.test.base.json"]
+  }`;
 
 const restLevelTsConfigNotInAzureSdkForJs: (
   model: RLCModel
@@ -68,26 +71,39 @@ export function buildTsConfig(model: RLCModel) {
   // Take the undefined as true by default
   const clientPackageName = packageDetails?.name ?? "";
   const project = new Project();
-
   const restLevelTsConfig = azureSdkForJs
-    ? restLevelTsConfigInAzureSdkForJs(model)
+    ? restLevelTsConfigInAzureSdkForJs()
     : restLevelTsConfigNotInAzureSdkForJs(model);
 
-  if (generateTest) {
-    restLevelTsConfig.include.push("test/**/*.ts");
-  }
-  if (generateSample) {
-    restLevelTsConfig.include.push("samples-dev/**/*.ts");
-    restLevelTsConfig.compilerOptions["paths"] = {};
-    restLevelTsConfig.compilerOptions["paths"][clientPackageName] = [
-      "./src/index"
-    ];
+  if (!azureSdkForJs) {
+    if (generateTest) {
+      restLevelTsConfig.include.push("test/**/*.ts");
+    }
+    if (generateSample) {
+      restLevelTsConfig.include.push("samples-dev/**/*.ts");
+      restLevelTsConfig.compilerOptions["paths"] = {};
+      restLevelTsConfig.compilerOptions["paths"][clientPackageName] = [
+        "./src/index"
+      ];
+    }
+  } else {
+    if (generateSample) {
+      restLevelTsConfig.references.push({
+        path: "./tsconfig.samples.json"
+      });
+    }
+
+    if (generateTest) {
+      restLevelTsConfig.references.push({
+        path: "./tsconfig.test.json"
+      });
+    }
   }
 
   const filePath = "tsconfig.json";
   const configFile = project.createSourceFile(
     filePath,
-    JSON.stringify(restLevelTsConfig),
+    JSON.stringify(restLevelTsConfig, null, 2),
     {
       overwrite: true
     }
@@ -95,5 +111,27 @@ export function buildTsConfig(model: RLCModel) {
   return {
     path: filePath,
     content: configFile.getFullText()
+  };
+}
+
+export function buildTsSrcConfig() {
+  return {
+    path: "tsconfig.src.json",
+    content: tsSrcConfigInAzureSdkForJs
+  };
+}
+
+export function buildTsSampleConfig(model: RLCModel) {
+  const { packageDetails } = model.options || {};
+  return {
+    path: "tsconfig.samples.json",
+    content: tsSampleConfigInAzureSdkForJs(packageDetails?.name ?? "")
+  };
+}
+
+export function buildTsTestConfig() {
+  return {
+    path: "tsconfig.test.json",
+    content: tsTestConfigInAzureSdkForJs
   };
 }

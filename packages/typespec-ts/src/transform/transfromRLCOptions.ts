@@ -243,7 +243,7 @@ function extractRLCOptions(
   const serviceInfo = getServiceInfo(program);
   const azureSdkForJs = getAzureSdkForJs(emitterOptions);
   const generateMetadata = getGenerateMetadata(emitterOptions);
-  const generateTest = getGenerateTest(emitterOptions, flavor);
+  const generateTest = getGenerateTest(emitterOptions);
   const generateSample = getGenerateSample(dpgContext, emitterOptions);
   const credentialInfo = getCredentialInfo(program, emitterOptions);
   const azureOutputDirectory = getAzureOutputDirectory(generationRootDir);
@@ -635,28 +635,12 @@ function getGenerateMetadata(emitterOptions: EmitterOptions) {
  * @param emitterOptions
  * @returns
  */
-function getGenerateTest(emitterOptions: EmitterOptions, flavor?: "azure") {
-  if (
-    flavor !== "azure" &&
-    (emitterOptions["generate-test"] === undefined ||
-      emitterOptions["generate-test"] === null) &&
-    (emitterOptions.generateTest === undefined ||
-      emitterOptions.generateTest === null)
-  ) {
-    return undefined;
-  } else if (
-    flavor === "azure" &&
-    (emitterOptions["generate-test"] === undefined ||
-      emitterOptions["generate-test"] === null) &&
-    (emitterOptions.generateTest === undefined ||
-      emitterOptions.generateTest === null)
-  ) {
-    return true;
+function getGenerateTest(emitterOptions: EmitterOptions) {
+  // Disable generateTest if azureSdkForJS is false
+  if (!getAzureSdkForJs(emitterOptions)) {
+    return false;
   }
-  return (
-    Boolean(emitterOptions["generate-test"]) ||
-    Boolean(emitterOptions.generateTest)
-  );
+  return emitterOptions["generate-test"] ?? emitterOptions.generateTest;
 }
 
 /**
