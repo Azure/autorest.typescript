@@ -6,6 +6,7 @@ import MultiPartClientFactory, {
 import { resolve } from "path";
 import { readFile } from "fs/promises";
 import { fileURLToPath } from "url";
+
 describe("MultiPartClient Rest Client", () => {
   let client: MultiPartClient;
 
@@ -173,6 +174,153 @@ describe("MultiPartClient Rest Client", () => {
         ]
       });
 
+      assert.strictEqual(result.status, "204");
+    });
+  });
+
+  describe("HttpPart", () => {
+    it("JSON array and file array", async () => {
+      const profileImage = await readFile(imgPath);
+      const png = await readFile(pngPath);
+
+      const result = await client
+        .path("/multipart/form-data/complex-parts-with-httppart")
+        .post({
+          contentType: "multipart/form-data",
+          body: [
+            {
+              name: "profileImage",
+              body: profileImage,
+              filename: "image.jpg"
+            },
+            {
+              name: "pictures",
+              body: png,
+              filename: "profileImage.jpg"
+            },
+            {
+              name: "pictures",
+              body: png,
+              filename: "image.png"
+            },
+            {
+              name: "id",
+              body: "123"
+            },
+            {
+              name: "address",
+              body: {
+                city: "X"
+              }
+            },
+            {
+              name: "previousAddresses",
+              body: [
+                {
+                  city: "Y"
+                },
+                {
+                  city: "Z"
+                }
+              ]
+            }
+          ]
+        });
+
+      assert.strictEqual(result.status, "204");
+    });
+
+    it("multipart/form-data optional content type", async () => {
+      const profileImage = await readFile(imgPath);
+
+      const res1 = await client
+        .path("/multipart/form-data/file-with-http-part-optional-content-type")
+        .post({
+          contentType: "multipart/form-data",
+          body: [
+            {
+              name: "profileImage",
+              filename: "profileImage.jpg",
+              body: profileImage
+            }
+          ]
+        });
+
+      assert.strictEqual(res1.status, "204");
+
+      const res2 = await client
+        .path("/multipart/form-data/file-with-http-part-optional-content-type")
+        .post({
+          contentType: "multipart/form-data",
+          body: [
+            {
+              name: "profileImage",
+              filename: "profileImage.jpg",
+              body: profileImage,
+              contentType: "application/octet-stream"
+            }
+          ]
+        });
+
+      assert.strictEqual(res2.status, "204");
+    });
+
+    it("required content type", async () => {
+      const profileImage = await readFile(imgPath);
+
+      const result = await client
+        .path(
+          "/multipart/form-data/check-filename-and-required-content-type-with-httppart"
+        )
+        .post({
+          contentType: "multipart/form-data",
+          body: [
+            {
+              name: "profileImage",
+              contentType: "application/octet-stream",
+              filename: "profileImage.jpg",
+              body: profileImage
+            }
+          ]
+        });
+
+      assert.strictEqual(result.status, "204");
+    });
+
+    it("filename and specific content type", async () => {
+      const profileImage = await readFile(imgPath);
+
+      const result = await client
+        .path(
+          "/multipart/form-data/check-filename-and-specific-content-type-with-httppart"
+        )
+        .post({
+          contentType: "multipart/form-data",
+          body: [
+            {
+              name: "profileImage",
+              contentType: "image/jpg",
+              filename: "hello.jpg",
+              body: profileImage
+            }
+          ]
+        });
+
+      assert.strictEqual(result.status, "204");
+    });
+
+    it("non-string float", async () => {
+      const result = await client
+        .path("/multipart/form-data/non-string-float")
+        .post({
+          contentType: "multipart/form-data",
+          body: [
+            {
+              name: "temperature",
+              body: 0.5
+            }
+          ]
+        });
       assert.strictEqual(result.status, "204");
     });
   });
