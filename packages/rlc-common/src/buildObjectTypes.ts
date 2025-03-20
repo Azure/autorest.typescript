@@ -115,7 +115,7 @@ function buildMultipartPartDefinitions(
 
     const isFileUpload = signature.type?.toString().includes("File") ?? false;
 
-    let additionalProperties: any[] = [];
+    const additionalProperties: any[] = [];
 
     if ((propertySchema as any).multipartOptions) {
       const multipartOptions: any = (propertySchema as any).multipartOptions;
