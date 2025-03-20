@@ -13,7 +13,7 @@ describe("vitest.config", () => {
 
       const result = buildVitestConfig(model, "browser");
       expect(result?.content).includes(
-        `"include": ["dist-test/browser/**/*.spec.js"]`
+        `include: ["dist-test/browser/test/**/*.spec.js"]`
       );
     });
   });
