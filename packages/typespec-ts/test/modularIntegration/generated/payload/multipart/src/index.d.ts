@@ -72,21 +72,6 @@ export declare interface FileWithHttpPartSpecificContentTypeRequest {
     };
 }
 
-export declare interface _FloatRequest {
-    temperature: {
-        body: number;
-        contentType: "text/plain";
-    };
-}
-
-export declare function _floatRequestSerializer(item: _FloatRequest): any;
-
-export declare interface _FloatRequestTemperature {
-    body: number;
-}
-
-export declare function _floatRequestTemperatureSerializer(item: _FloatRequestTemperature): any;
-
 export declare interface FormDataAnonymousModelOptionalParams extends OperationOptions {
 }
 
