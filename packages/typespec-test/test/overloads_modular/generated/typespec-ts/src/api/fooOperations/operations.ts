@@ -2,6 +2,10 @@
 // Licensed under the MIT License.
 
 import { WidgetManagerContext as Client } from "../index.js";
+import {
+  FooOperationsGetAvatarAsJpegOptionalParams,
+  FooOperationsGetAvatarAsPngOptionalParams,
+} from "./options.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
@@ -9,10 +13,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  FooOperationsGetAvatarAsJpegOptionalParams,
-  FooOperationsGetAvatarAsPngOptionalParams,
-} from "./options.js";
 
 export function _getAvatarAsJpegSend(
   context: Client,

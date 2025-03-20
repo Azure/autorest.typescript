@@ -13,16 +13,16 @@ import {
   createImageVariationRequestSerializer,
 } from "../../models/models.js";
 import {
+  ImagesCreateVariationOptionalParams,
+  ImagesCreateEditOptionalParams,
+  ImagesCreateOptionalParams,
+} from "./options.js";
+import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
   operationOptionsToRequestParameters,
 } from "@typespec/ts-http-runtime";
-import {
-  ImagesCreateVariationOptionalParams,
-  ImagesCreateEditOptionalParams,
-  ImagesCreateOptionalParams,
-} from "./options.js";
 
 export function _createVariationSend(
   context: Client,

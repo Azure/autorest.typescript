@@ -1,21 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  LoadTestAdministrationContext as Client,
-  CreateOrUpdateAppComponentsOptionalParams,
-  CreateOrUpdateServerMetricsConfigOptionalParams,
-  CreateOrUpdateTestOptionalParams,
-  DeleteTestFileOptionalParams,
-  DeleteTestOptionalParams,
-  GetAppComponentsOptionalParams,
-  GetServerMetricsConfigOptionalParams,
-  GetTestFileOptionalParams,
-  GetTestOptionalParams,
-  ListTestFilesOptionalParams,
-  ListTestsOptionalParams,
-  UploadTestFileOptionalParams,
-} from "./index.js";
+import { LoadTestAdministrationContext as Client } from "./index.js";
 import {
   Test,
   testSerializer,
@@ -33,6 +19,20 @@ import {
   _PagedTest,
   _pagedTestDeserializer,
 } from "../../models/models.js";
+import {
+  DeleteTestOptionalParams,
+  DeleteTestFileOptionalParams,
+  UploadTestFileOptionalParams,
+  ListTestsOptionalParams,
+  ListTestFilesOptionalParams,
+  GetTestFileOptionalParams,
+  GetTestOptionalParams,
+  GetServerMetricsConfigOptionalParams,
+  GetAppComponentsOptionalParams,
+  CreateOrUpdateServerMetricsConfigOptionalParams,
+  CreateOrUpdateAppComponentsOptionalParams,
+  CreateOrUpdateTestOptionalParams,
+} from "./options.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,

@@ -5,20 +5,6 @@ import {
   createEventGrid,
   EventGridContext,
   EventGridClientOptionalParams,
-  renewCloudEventLocks,
-  rejectCloudEvents,
-  releaseCloudEvents,
-  acknowledgeCloudEvents,
-  receiveCloudEvents,
-  publishCloudEvents,
-  publishCloudEvent,
-  RenewCloudEventLocksOptionalParams,
-  RejectCloudEventsOptionalParams,
-  ReleaseCloudEventsOptionalParams,
-  AcknowledgeCloudEventsOptionalParams,
-  ReceiveCloudEventsOptionalParams,
-  PublishCloudEventsOptionalParams,
-  PublishCloudEventOptionalParams,
 } from "./api/index.js";
 import {
   CloudEvent,
@@ -29,6 +15,24 @@ import {
   RejectResult,
   RenewCloudEventLocksResult,
 } from "./models/models.js";
+import {
+  RenewCloudEventLocksOptionalParams,
+  RejectCloudEventsOptionalParams,
+  ReleaseCloudEventsOptionalParams,
+  AcknowledgeCloudEventsOptionalParams,
+  ReceiveCloudEventsOptionalParams,
+  PublishCloudEventsOptionalParams,
+  PublishCloudEventOptionalParams,
+} from "./api/options.js";
+import {
+  renewCloudEventLocks,
+  rejectCloudEvents,
+  releaseCloudEvents,
+  acknowledgeCloudEvents,
+  receiveCloudEvents,
+  publishCloudEvents,
+  publishCloudEvent,
+} from "./api/operations.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
 

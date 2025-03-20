@@ -9,13 +9,13 @@ import {
   CreateTranscriptionResponse,
   createTranscriptionResponseDeserializer,
 } from "../../../models/models.js";
+import { AudioTranscriptionsCreateOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { AudioTranscriptionsCreateOptionalParams } from "./options.js";
 
 export function _createSend(
   context: Client,

@@ -10,6 +10,12 @@ import {
   GetConnectionResponse,
   getConnectionResponseDeserializer,
 } from "../../models/models.js";
+import {
+  ConnectionsGetConnectionWithSecretsOptionalParams,
+  ConnectionsGetConnectionOptionalParams,
+  ConnectionsListConnectionsOptionalParams,
+  ConnectionsGetWorkspaceOptionalParams,
+} from "./options.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
@@ -17,12 +23,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  ConnectionsGetConnectionWithSecretsOptionalParams,
-  ConnectionsGetConnectionOptionalParams,
-  ConnectionsListConnectionsOptionalParams,
-  ConnectionsGetWorkspaceOptionalParams,
-} from "./options.js";
 
 export function _getConnectionWithSecretsSend(
   context: Client,

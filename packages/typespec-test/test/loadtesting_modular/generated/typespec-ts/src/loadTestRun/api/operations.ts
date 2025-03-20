@@ -1,23 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  LoadTestRunContext as Client,
-  CreateOrUpdateAppComponentsOptionalParams,
-  CreateOrUpdateServerMetricsConfigOptionalParams,
-  CreateOrUpdateTestRunOptionalParams,
-  DeleteTestRunOptionalParams,
-  GetAppComponentsOptionalParams,
-  GetServerMetricsConfigOptionalParams,
-  GetTestRunFileOptionalParams,
-  GetTestRunOptionalParams,
-  ListMetricDefinitionsOptionalParams,
-  ListMetricDimensionValuesOptionalParams,
-  ListMetricNamespacesOptionalParams,
-  ListMetricsOptionalParams,
-  ListTestRunsOptionalParams,
-  StopTestRunOptionalParams,
-} from "./index.js";
+import { LoadTestRunContext as Client } from "./index.js";
 import {
   TestRun,
   testRunSerializer,
@@ -43,6 +27,22 @@ import {
   _PagedTestRun,
   _pagedTestRunDeserializer,
 } from "../../models/models.js";
+import {
+  StopTestRunOptionalParams,
+  ListTestRunsOptionalParams,
+  ListMetricsOptionalParams,
+  ListMetricNamespacesOptionalParams,
+  ListMetricDefinitionsOptionalParams,
+  ListMetricDimensionValuesOptionalParams,
+  GetTestRunFileOptionalParams,
+  GetTestRunOptionalParams,
+  GetServerMetricsConfigOptionalParams,
+  GetAppComponentsOptionalParams,
+  DeleteTestRunOptionalParams,
+  CreateOrUpdateServerMetricsConfigOptionalParams,
+  CreateOrUpdateAppComponentsOptionalParams,
+  CreateOrUpdateTestRunOptionalParams,
+} from "./options.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,

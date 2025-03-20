@@ -1,16 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  AcknowledgeCloudEventsOptionalParams,
-  EventGridContext as Client,
-  PublishCloudEventOptionalParams,
-  PublishCloudEventsOptionalParams,
-  ReceiveCloudEventsOptionalParams,
-  RejectCloudEventsOptionalParams,
-  ReleaseCloudEventsOptionalParams,
-  RenewCloudEventLocksOptionalParams,
-} from "./index.js";
+import { EventGridContext as Client } from "./index.js";
 import {
   CloudEvent,
   cloudEventSerializer,
@@ -27,6 +18,15 @@ import {
   RenewCloudEventLocksResult,
   renewCloudEventLocksResultDeserializer,
 } from "../models/models.js";
+import {
+  RenewCloudEventLocksOptionalParams,
+  RejectCloudEventsOptionalParams,
+  ReleaseCloudEventsOptionalParams,
+  AcknowledgeCloudEventsOptionalParams,
+  ReceiveCloudEventsOptionalParams,
+  PublishCloudEventsOptionalParams,
+  PublishCloudEventOptionalParams,
+} from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,

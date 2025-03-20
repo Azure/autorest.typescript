@@ -1,18 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  OpenAIContext as Client,
-  GenerateSpeechFromTextOptionalParams,
-  GetAudioTranscriptionAsPlainTextOptionalParams,
-  GetAudioTranscriptionAsResponseObjectOptionalParams,
-  GetAudioTranslationAsPlainTextOptionalParams,
-  GetAudioTranslationAsResponseObjectOptionalParams,
-  GetChatCompletionsOptionalParams,
-  GetCompletionsOptionalParams,
-  GetEmbeddingsOptionalParams,
-  GetImageGenerationsOptionalParams,
-} from "./index.js";
+import { OpenAIContext as Client } from "./index.js";
 import {
   AudioTranscriptionOptions,
   audioTranscriptionOptionsSerializer,
@@ -41,6 +30,17 @@ import {
   Embeddings,
   embeddingsDeserializer,
 } from "../models/models.js";
+import {
+  GetEmbeddingsOptionalParams,
+  GenerateSpeechFromTextOptionalParams,
+  GetImageGenerationsOptionalParams,
+  GetChatCompletionsOptionalParams,
+  GetCompletionsOptionalParams,
+  GetAudioTranslationAsResponseObjectOptionalParams,
+  GetAudioTranslationAsPlainTextOptionalParams,
+  GetAudioTranscriptionAsResponseObjectOptionalParams,
+  GetAudioTranscriptionAsPlainTextOptionalParams,
+} from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,

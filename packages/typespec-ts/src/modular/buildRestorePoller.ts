@@ -16,12 +16,14 @@ import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
 import { getModularClientOptions } from "../utils/clientUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { useDependencies } from "../framework/hooks/useDependencies.js";
+import { useContext } from "../contextManager.js";
 
 export function buildRestorePoller(
   context: SdkContext,
   client: SdkClientType<SdkServiceOperation>,
   emitterOptions: ModularEmitterOptions
 ) {
+  const project = useContext("outputProject");
   const dependencies = useDependencies();
   const { subfolder } = getModularClientOptions(context, client);
   const methodMap = getMethodHierarchiesMap(context, client);
@@ -37,13 +39,9 @@ export function buildRestorePoller(
       subfolder && subfolder !== "" ? subfolder + "/" : ""
     }restorePollerHelpers.ts`
   );
-  const restorePollerFile = emitterOptions.project.createSourceFile(
-    filePath,
-    undefined,
-    {
-      overwrite: true
-    }
-  );
+  const restorePollerFile = project.createSourceFile(filePath, undefined, {
+    overwrite: true
+  });
 
   const clientNames = importClassicalClient(client, restorePollerFile);
   const deserializeMap = importDeserializeHelpers(

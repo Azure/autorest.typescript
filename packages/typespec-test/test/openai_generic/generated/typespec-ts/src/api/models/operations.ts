@@ -11,6 +11,11 @@ import {
   DeleteModelResponse,
   deleteModelResponseDeserializer,
 } from "../../models/models.js";
+import {
+  ModelsDeleteOptionalParams,
+  ModelsRetrieveOptionalParams,
+  ModelsListOptionalParams,
+} from "./options.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
@@ -18,11 +23,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  ModelsDeleteOptionalParams,
-  ModelsRetrieveOptionalParams,
-  ModelsListOptionalParams,
-} from "./options.js";
 
 export function _$deleteSend(
   context: Client,

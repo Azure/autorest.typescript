@@ -3,13 +3,13 @@
 
 import { FooContext as Client } from "../index.js";
 import { A, aSerializer } from "../../models/models.js";
+import { DOp1OptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { DOp1OptionalParams } from "./options.js";
 
 export function _op1Send(
   context: Client,

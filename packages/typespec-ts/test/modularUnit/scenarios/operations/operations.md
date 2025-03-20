@@ -12,6 +12,7 @@ op read(@body param: void): void;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -60,6 +61,7 @@ op read(): { @body _: void;};
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -134,6 +136,7 @@ mustEmptyDiagnostic: false
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { ReadOptionalParams } from "./options.js";
 import { buildCsvCollection } from "../static-helpers/serialization/build-csv-collection.js";
 import {
   StreamableMethod,
@@ -250,6 +253,7 @@ mustEmptyDiagnostic: false
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -311,6 +315,7 @@ op read(@body bars?: Bar[]): OkResponse;
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { barSerializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -370,6 +375,7 @@ op read(@body bars: Bar[]): OkResponse;
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Bar, barSerializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -428,7 +434,8 @@ op read(): { a: Bar}[] | null;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { Bar, readResponseArrayDeserializer } from "../models/models.js";
+import { Bar, _readResponseArrayDeserializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -461,7 +468,7 @@ export async function _readDeserialize(result: PathUncheckedResponse): Promise<
     throw createRestError(result);
   }
 
-  return readResponseArrayDeserializer(result.body);
+  return _readResponseArrayDeserializer(result.body);
 }
 
 export async function read(
@@ -494,6 +501,7 @@ op read(@body bars?: Bar[]): Bar[] | null;
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Bar, barSerializer, barArrayDeserializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -560,6 +568,7 @@ op read(@body body: Foo): OkResponse;
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -625,6 +634,7 @@ op read(): Foo;
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Foo, fooDeserializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -698,6 +708,7 @@ needAzureCore: true
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { errorDeserializer, _Bar, _barDeserializer } from "../models/models.js";
+import { TestOptionalParams } from "./options.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
@@ -782,6 +793,7 @@ mustEmptyDiagnostic: false
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { errorDeserializer, Bar, barDeserializer } from "../models/models.js";
+import { TestOptionalParams } from "./options.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
@@ -876,6 +888,7 @@ import {
   _Child,
   _childDeserializer,
 } from "../models/models.js";
+import { TestOptionalParams } from "./options.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
