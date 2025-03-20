@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { serializeRecord } from "../../../static-helpers/serialization/serialize-record.js";
+
 export function resourceArraySerializer(result: Array<Resource>): any[] {
   return result.map((item) => {
     return resourceSerializer(item);
@@ -34,7 +36,7 @@ export interface Resource {
 
 export function resourceSerializer(item: Resource): any {
   return {
-    ...item,
+    ...item.additionalProperties,
     resourceType: item["resourceType"],
     id: item["id"],
     meta: !item["meta"] ? item["meta"] : metaSerializer(item["meta"]),
@@ -45,7 +47,13 @@ export function resourceSerializer(item: Resource): any {
 
 export function resourceDeserializer(item: any): Resource {
   return {
-    ...item,
+    additionalProperties: serializeRecord(item, [
+      "resourceType",
+      "id",
+      "meta",
+      "implicitRules",
+      "language",
+    ]),
     resourceType: item["resourceType"],
     id: item["id"],
     meta: !item["meta"] ? item["meta"] : metaDeserializer(item["meta"]),
@@ -761,7 +769,47 @@ export interface Observation extends DomainResource {
 
 export function observationDeserializer(item: any): Observation {
   return {
-    ...item,
+    additionalProperties: serializeRecord(item, [
+      "resourceType",
+      "text",
+      "contained",
+      "extension",
+      "modifierExtension",
+      "id",
+      "meta",
+      "implicitRules",
+      "language",
+      "identifier",
+      "status",
+      "category",
+      "code",
+      "subject",
+      "encounter",
+      "effectiveDateTime",
+      "effectivePeriod",
+      "effectiveInstant",
+      "issued",
+      "valueQuantity",
+      "valueCodeableConcept",
+      "valueString",
+      "valueBoolean",
+      "valueInteger",
+      "valueRange",
+      "valueRatio",
+      "valueSampledData",
+      "valueTime",
+      "valueDateTime",
+      "valuePeriod",
+      "dataAbsentReason",
+      "interpretation",
+      "note",
+      "bodySite",
+      "method",
+      "referenceRange",
+      "hasMember",
+      "derivedFrom",
+      "component",
+    ]),
     resourceType: item["resourceType"],
     text: !item["text"] ? item["text"] : narrativeDeserializer(item["text"]),
     contained: !item["contained"]
@@ -1077,7 +1125,17 @@ export interface DomainResource extends Resource {
 
 export function domainResourceDeserializer(item: any): DomainResource {
   return {
-    ...item,
+    additionalProperties: serializeRecord(item, [
+      "resourceType",
+      "id",
+      "meta",
+      "implicitRules",
+      "language",
+      "text",
+      "contained",
+      "extension",
+      "modifierExtension",
+    ]),
     resourceType: item["resourceType"],
     id: item["id"],
     meta: !item["meta"] ? item["meta"] : metaDeserializer(item["meta"]),

@@ -15,7 +15,10 @@ import {
   getRequestModelMapping,
   getSerializationExpression
 } from "../helpers/operationHelpers.js";
-import { normalizeModelName } from "../emitModels.js";
+import {
+  getAdditionalPropertiesName,
+  normalizeModelName
+} from "../emitModels.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
 import {
@@ -408,10 +411,10 @@ function buildModelTypeSerializer(
 
     serializerFunction.statements = [`return [${parts.join(",")}]`];
   } else {
-    // This is only handling the compatibility mode, will need to update when we handle additionalProperties property.
-    const additionalPropertiesSpread = hasAdditionalProperties(type)
-      ? "...item"
-      : "";
+    const additionalPropertiesSpread = getAdditionalPropertiesStatement(
+      context,
+      type
+    );
 
     const propertiesStr = getRequestModelMapping(context, type, "item");
 
@@ -435,6 +438,18 @@ function buildModelTypeSerializer(
     serializerFunction.statements = output;
   }
   return serializerFunction;
+}
+
+function getAdditionalPropertiesStatement(
+  context: SdkContext,
+  type: SdkModelType
+): string | undefined {
+  const additionalPropertiesName = getAdditionalPropertiesName(type);
+  return hasAdditionalProperties(type)
+    ? context.rlcOptions?.compatibilityMode === true
+      ? "...item"
+      : `...item.${additionalPropertiesName}`
+    : undefined;
 }
 
 function buildDictTypeSerializer(

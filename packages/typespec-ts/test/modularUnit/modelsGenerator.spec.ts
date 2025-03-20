@@ -3,8 +3,6 @@ import {
   emitModularModelsFromTypeSpec,
   emitModularOperationsFromTypeSpec
 } from "../util/emitUtil.js";
-
-import { Diagnostic } from "@typespec/compiler";
 import { assert } from "chai";
 
 describe("inheritance & polymorphism", () => {
@@ -98,31 +96,5 @@ describe("inheritance & polymorphism", () => {
       }
       `
     );
-  });
-});
-
-describe("spread record", () => {
-  it("should fail to handle model additional properties from spread record of int64 | string in non compatible mode", async () => {
-    try {
-      await emitModularModelsFromTypeSpec(
-        `
-      model Vegetables {
-        ...Record<int64 | string>;
-        carrots: int64;
-        beans: boolean;
-      }
-      op post(@body body: Vegetables): { @body body: Vegetables };
-      `
-      );
-      assert.fail("Should throw diagnostic warnings");
-    } catch (e) {
-      const diagnostics = e as Diagnostic[];
-      assert.equal(diagnostics.length, 1);
-      assert.equal(
-        diagnostics[0]?.code,
-        "@azure-tools/typespec-ts/compatible-additional-properties"
-      );
-      assert.equal(diagnostics[0]?.severity, "warning");
-    }
   });
 });

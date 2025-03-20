@@ -23,6 +23,11 @@ export const SerializationHelpers = {
     kind: "function",
     name: "buildTsvCollection",
     location: "serialization/build-tsv-collection.ts"
+  },
+  serializeRecord: {
+    kind: "function",
+    name: "serializeRecord",
+    location: "serialization/serialize-record.ts"
   }
 } as const;
 
