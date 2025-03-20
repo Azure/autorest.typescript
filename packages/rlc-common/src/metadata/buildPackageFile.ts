@@ -36,7 +36,8 @@ export function buildPackageFile(
     nameWithoutScope: model.options?.packageDetails?.nameWithoutScope,
     exports,
     azureArm: model.options?.azureArm,
-    isModularLibrary: model.options?.isModularLibrary ?? false
+    isModularLibrary: model.options?.isModularLibrary ?? false,
+    azureSdkForJs: model.options?.azureSdkForJs
   };
 
   let packageInfo: Record<string, any> = buildFlavorlessPackage(config);

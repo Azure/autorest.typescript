@@ -24,12 +24,34 @@ const highLevelTsConfig: Record<string, any> = {
   exclude: ["node_modules"]
 };
 
+const highLevelTsConfigInAzureSdkForJs: Record<string, any> = {
+  references: [
+    {
+      path: "./tsconfig.src.json"
+    }
+  ]
+}
+
+const highLevelTsSrcConfig: Record<string, any> = {
+  extends: "../../../tsconfig.lib.json"
+}
+
+const highLevelTsSampleConfig: Record<string, any> = {
+  extends: "../../../tsconfig.samples.base.json",
+  compilerOptions: {}
+}
+
+const highLevelTsTestConfig: Record<string, any> = {
+  extends: ["./tsconfig.src.json", "../../../tsconfig.test.base.json"]
+}
+
 export function generateTsConfig(project: Project) {
   const {
     generateMetadata,
     generateTest,
     packageDetails,
-    generateSample
+    generateSample,
+    azureSdkForJs,
   } = getAutorestOptions();
 
   if (!generateMetadata) {
@@ -37,18 +59,57 @@ export function generateTsConfig(project: Project) {
   }
 
   const clientPackageName = packageDetails.name;
-  if (generateTest) {
-    highLevelTsConfig.include.push("test/**/*.ts");
-  }
+  if (azureSdkForJs) {
+    if (generateSample) {
+      highLevelTsConfigInAzureSdkForJs.references.push({
+        path: "./tsconfig.samples.json"
+      });
+    }
 
-  if (generateSample) {
-    highLevelTsConfig.include.push("samples-dev/**/*.ts");
-    highLevelTsConfig.compilerOptions["paths"] = {};
-    highLevelTsConfig.compilerOptions["paths"][clientPackageName] = [
-      "./src/index"
-    ];
+    if (generateTest) {
+      highLevelTsConfigInAzureSdkForJs.references.push({
+        path: "./tsconfig.test.json"
+      });
+    }
   }
-  project.createSourceFile("tsconfig.json", JSON.stringify(highLevelTsConfig), {
+  else {
+    if (generateTest) {
+      highLevelTsConfig.include.push("test/**/*.ts");
+    }
+
+    if (generateSample) {
+      highLevelTsConfig.include.push("samples-dev/**/*.ts");
+      highLevelTsConfig.compilerOptions["paths"] = {};
+      highLevelTsConfig.compilerOptions["paths"][clientPackageName] = [
+        "./src/index"
+      ];
+    }
+  }
+  project.createSourceFile("tsconfig.json", JSON.stringify(azureSdkForJs ? highLevelTsConfigInAzureSdkForJs : highLevelTsConfig, null, 2), {
+    overwrite: true
+  });
+}
+
+export function generateTsSrcConfig(project: Project) {
+  project.createSourceFile("tsconfig.src.json", JSON.stringify(highLevelTsSrcConfig, null, 2), {
+    overwrite: true
+  });
+}
+export function generateTsSampleConfig(project: Project) {
+  const {
+    packageDetails,
+  } = getAutorestOptions();
+  const clientPackageName = packageDetails.name;
+  highLevelTsSampleConfig.compilerOptions["paths"] = {};
+  highLevelTsSampleConfig.compilerOptions["paths"][clientPackageName] = [
+    "./dist/esm"
+  ];
+  project.createSourceFile("tsconfig.samples.json", JSON.stringify(highLevelTsSampleConfig, null, 2), {
+    overwrite: true
+  });
+}
+export function generateTsTestConfig(project: Project) {
+  project.createSourceFile("tsconfig.test.json", JSON.stringify(highLevelTsTestConfig, null, 2), {
     overwrite: true
   });
 }
