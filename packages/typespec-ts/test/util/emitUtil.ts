@@ -554,7 +554,6 @@ export async function emitModularClientContextFromTypeSpec(
       modularEmitterOptions
     );
     binder.resolveAllReferences("/");
-    res.fixUnusedIdentifiers();
     return res;
   }
   expectDiagnosticEmpty(dpgContext.program.diagnostics);
@@ -591,6 +590,16 @@ export async function emitModularClientFromTypeSpec(
     dpgContext.sdkPackage.clients[0]
   ) {
     renameClientName(dpgContext.sdkPackage.clients[0], modularEmitterOptions);
+    buildApiOptions(
+      dpgContext,
+      dpgContext.sdkPackage.clients[0],
+      modularEmitterOptions
+    );
+    buildOperationFiles(
+      dpgContext,
+      dpgContext.sdkPackage.clients[0],
+      modularEmitterOptions
+    );
     const res = buildClassicalClient(
       dpgContext,
       dpgContext.sdkPackage.clients[0],

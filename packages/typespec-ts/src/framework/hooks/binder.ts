@@ -238,7 +238,6 @@ class BinderImp implements Binder {
       }
     });
 
-    this.cleanUnusedImports();
     this.cleanUnreferencedHelpers(sourceRoot);
   }
 
@@ -297,12 +296,6 @@ class BinderImp implements Binder {
     }
 
     this.references.get(refkey)!.add(sourceFile);
-  }
-
-  private cleanUnusedImports() {
-    // this.project.getSourceFiles().map((file) => {
-    //   file.fixUnusedIdentifiers();
-    // });
   }
 
   private cleanUnreferencedHelpers(sourceRoot: string) {

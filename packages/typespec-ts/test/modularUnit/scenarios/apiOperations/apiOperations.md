@@ -795,6 +795,8 @@ export function createTesting(
 ## classicClient
 
 ```ts classicClient
+import { TestOptionalParams } from "./api/options.js";
+import { test } from "./api/operations.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { TestingClientOptionalParams } from "./api/testingContext.js";
@@ -821,9 +823,9 @@ export class TestingClient {
 
   test(
     apiVersion: string,
-    options: __PLACEHOLDER_o157_soperationOptions__ = { requestOptions: {} },
+    options: TestOptionalParams = { requestOptions: {} },
   ): Promise<string> {
-    return __PLACEHOLDER_o157_sapi__(this._client, apiVersion, options);
+    return test(this._client, apiVersion, options);
   }
 }
 ```
@@ -948,6 +950,8 @@ export function createTesting(
 ## classicClient
 
 ```ts classicClient
+import { TestOptionalParams } from "./api/options.js";
+import { test } from "./api/operations.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { TestingClientOptionalParams } from "./api/testingContext.js";
@@ -974,9 +978,9 @@ export class TestingClient {
 
   test(
     apiVersion: string,
-    options: __PLACEHOLDER_o159_soperationOptions__ = { requestOptions: {} },
+    options: TestOptionalParams = { requestOptions: {} },
   ): Promise<string> {
-    return __PLACEHOLDER_o159_sapi__(this._client, apiVersion, options);
+    return test(this._client, apiVersion, options);
   }
 }
 ```
@@ -1129,6 +1133,8 @@ export function createTesting(
 ## classicClient
 
 ```ts classicClient
+import { Test1OptionalParams, TestOptionalParams } from "./api/options.js";
+import { test1, test } from "./api/operations.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { TestingClientOptionalParams } from "./api/testingContext.js";
@@ -1154,16 +1160,16 @@ export class TestingClient {
   }
 
   test1(
-    options: __PLACEHOLDER_o162_soperationOptions__ = { requestOptions: {} },
+    options: Test1OptionalParams = { requestOptions: {} },
   ): Promise<string> {
-    return __PLACEHOLDER_o162_sapi__(this._client, options);
+    return test1(this._client, options);
   }
 
   test(
     apiVersion: string,
-    options: __PLACEHOLDER_o163_soperationOptions__ = { requestOptions: {} },
+    options: TestOptionalParams = { requestOptions: {} },
   ): Promise<string> {
-    return __PLACEHOLDER_o163_sapi__(this._client, apiVersion, options);
+    return test(this._client, apiVersion, options);
   }
 }
 ```
