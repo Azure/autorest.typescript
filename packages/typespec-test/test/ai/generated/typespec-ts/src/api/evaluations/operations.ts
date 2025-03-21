@@ -6,11 +6,13 @@ import {
   Evaluation,
   evaluationSerializer,
   evaluationDeserializer,
-  _PagedEvaluation,
-  _pagedEvaluationDeserializer,
   EvaluationSchedule,
   evaluationScheduleSerializer,
   evaluationScheduleDeserializer,
+} from "../../models/azure/ai/projects/models.js";
+import {
+  _PagedEvaluation,
+  _pagedEvaluationDeserializer,
   _PagedEvaluationSchedule,
   _pagedEvaluationScheduleDeserializer,
 } from "../../models/models.js";

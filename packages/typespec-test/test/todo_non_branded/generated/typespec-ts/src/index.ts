@@ -16,20 +16,16 @@ export {
   ApiError,
   Standard5XXResponse,
   TodoAttachment,
-  ToDoItemMultipartRequest,
-  FileAttachmentMultipartRequest,
-  User,
-} from "./models/index.js";
-export {
   InvalidTodoItem,
+  ToDoItemMultipartRequest,
   NotFoundErrorResponse,
   TodoItemPatch,
-} from "./models/todoItems/index.js";
-export {
+  FileAttachmentMultipartRequest,
+  User,
   UserCreatedResponse,
   UserExistsResponse,
   InvalidUserResponse,
-} from "./models/users/index.js";
+} from "./models/index.js";
 export { TodoClientOptionalParams } from "./api/index.js";
 export {
   TodoItemsDeleteOptionalParams,

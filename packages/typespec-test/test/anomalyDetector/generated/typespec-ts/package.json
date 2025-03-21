@@ -15,8 +15,8 @@
       "./api/multivariate": "./src/api/multivariate/index.ts",
       "./api/univariate": "./src/api/univariate/index.ts",
       "./models": "./src/models/index.ts",
-      "./models/multivariate": "./src/models/multivariate/index.ts",
-      "./models/univariate": "./src/models/univariate/index.ts"
+      "./models/anomalyDetector/multivariate": "./src/models/anomalyDetector/multivariate/index.ts",
+      "./models/anomalyDetector/univariate": "./src/models/anomalyDetector/univariate/index.ts"
     },
     "dialects": [
       "esm",
@@ -165,40 +165,40 @@
         "default": "./dist/commonjs/models/index.js"
       }
     },
-    "./models/multivariate": {
+    "./models/anomalyDetector/multivariate": {
       "browser": {
-        "types": "./dist/browser/models/multivariate/index.d.ts",
-        "default": "./dist/browser/models/multivariate/index.js"
+        "types": "./dist/browser/models/anomalyDetector/multivariate/index.d.ts",
+        "default": "./dist/browser/models/anomalyDetector/multivariate/index.js"
       },
       "react-native": {
-        "types": "./dist/react-native/models/multivariate/index.d.ts",
-        "default": "./dist/react-native/models/multivariate/index.js"
+        "types": "./dist/react-native/models/anomalyDetector/multivariate/index.d.ts",
+        "default": "./dist/react-native/models/anomalyDetector/multivariate/index.js"
       },
       "import": {
-        "types": "./dist/esm/models/multivariate/index.d.ts",
-        "default": "./dist/esm/models/multivariate/index.js"
+        "types": "./dist/esm/models/anomalyDetector/multivariate/index.d.ts",
+        "default": "./dist/esm/models/anomalyDetector/multivariate/index.js"
       },
       "require": {
-        "types": "./dist/commonjs/models/multivariate/index.d.ts",
-        "default": "./dist/commonjs/models/multivariate/index.js"
+        "types": "./dist/commonjs/models/anomalyDetector/multivariate/index.d.ts",
+        "default": "./dist/commonjs/models/anomalyDetector/multivariate/index.js"
       }
     },
-    "./models/univariate": {
+    "./models/anomalyDetector/univariate": {
       "browser": {
-        "types": "./dist/browser/models/univariate/index.d.ts",
-        "default": "./dist/browser/models/univariate/index.js"
+        "types": "./dist/browser/models/anomalyDetector/univariate/index.d.ts",
+        "default": "./dist/browser/models/anomalyDetector/univariate/index.js"
       },
       "react-native": {
-        "types": "./dist/react-native/models/univariate/index.d.ts",
-        "default": "./dist/react-native/models/univariate/index.js"
+        "types": "./dist/react-native/models/anomalyDetector/univariate/index.d.ts",
+        "default": "./dist/react-native/models/anomalyDetector/univariate/index.js"
       },
       "import": {
-        "types": "./dist/esm/models/univariate/index.d.ts",
-        "default": "./dist/esm/models/univariate/index.js"
+        "types": "./dist/esm/models/anomalyDetector/univariate/index.d.ts",
+        "default": "./dist/esm/models/anomalyDetector/univariate/index.js"
       },
       "require": {
-        "types": "./dist/commonjs/models/univariate/index.d.ts",
-        "default": "./dist/commonjs/models/univariate/index.js"
+        "types": "./dist/commonjs/models/anomalyDetector/univariate/index.d.ts",
+        "default": "./dist/commonjs/models/anomalyDetector/univariate/index.js"
       }
     }
   },

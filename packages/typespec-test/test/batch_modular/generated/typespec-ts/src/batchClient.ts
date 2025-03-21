@@ -43,7 +43,7 @@ import {
   BatchPoolReplaceOptions,
   NodeRemoveOptions,
   BatchApplication,
-} from "./models/models.js";
+} from "./models/azure/batch/models.js";
 import {
   ListNodeFilesOptionalParams,
   GetNodeFilePropertiesOptionalParams,

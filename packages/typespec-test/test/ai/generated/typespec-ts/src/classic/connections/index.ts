@@ -6,7 +6,7 @@ import {
   GetWorkspaceResponse,
   ListConnectionsResponse,
   GetConnectionResponse,
-} from "../../models/models.js";
+} from "../../models/azure/ai/projects/models.js";
 import {
   ConnectionsGetConnectionWithSecretsOptionalParams,
   ConnectionsGetConnectionOptionalParams,

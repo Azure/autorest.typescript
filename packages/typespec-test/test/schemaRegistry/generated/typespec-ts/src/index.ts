@@ -17,7 +17,7 @@ export {
   SchemaContentTypeValues,
   KnownServiceApiVersions,
   ContentTypeEnum,
-} from "./models/index.js";
+} from "./models/azure/schemaRegistry/index.js";
 export { SchemaRegistryClientOptionalParams } from "./api/index.js";
 export {
   SchemaOperationsRegisterSchemaOptionalParams,

@@ -2,18 +2,18 @@
 // Licensed under the MIT License.
 
 import { FooContext } from "../../../api/fooContext.js";
-import { BA } from "../../../models/b/models.js";
+import { FooBA } from "../../../models/foo/b/models.js";
 import { BCOp1OptionalParams } from "../../../api/b/c/options.js";
 import { op1 } from "../../../api/b/c/operations.js";
 
 /** Interface representing a BC operations. */
 export interface BCOperations {
-  op1: (body: BA, options?: BCOp1OptionalParams) => Promise<void>;
+  op1: (body: FooBA, options?: BCOp1OptionalParams) => Promise<void>;
 }
 
 function _getBC(context: FooContext) {
   return {
-    op1: (body: BA, options?: BCOp1OptionalParams) =>
+    op1: (body: FooBA, options?: BCOp1OptionalParams) =>
       op1(context, body, options),
   };
 }

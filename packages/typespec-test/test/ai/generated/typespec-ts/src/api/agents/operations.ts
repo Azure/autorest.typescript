@@ -62,7 +62,7 @@ import {
   vectorStoreFileDeletionStatusDeserializer,
   VectorStoreFileBatch,
   vectorStoreFileBatchDeserializer,
-} from "../../models/agents/models.js";
+} from "../../models/azure/ai/projects/agents/models.js";
 import {
   AgentsListVectorStoreFileBatchFilesOptionalParams,
   AgentsCancelVectorStoreFileBatchOptionalParams,

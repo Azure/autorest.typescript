@@ -3,18 +3,18 @@
 
 import { AnomalyDetectorContext as Client } from "../index.js";
 import {
-  UnivariateUnivariateDetectionOptions,
-  univariateUnivariateDetectionOptionsSerializer,
-  UnivariateUnivariateEntireDetectionResult,
-  univariateUnivariateEntireDetectionResultDeserializer,
-  univariateAnomalyDetectorErrorDeserializer,
-  UnivariateUnivariateLastDetectionResult,
-  univariateUnivariateLastDetectionResultDeserializer,
-  UnivariateUnivariateChangePointDetectionOptions,
-  univariateUnivariateChangePointDetectionOptionsSerializer,
-  UnivariateUnivariateChangePointDetectionResult,
-  univariateUnivariateChangePointDetectionResultDeserializer,
-} from "../../models/univariate/models.js";
+  AnomalyDetectorUnivariateUnivariateDetectionOptions,
+  anomalyDetectorUnivariateUnivariateDetectionOptionsSerializer,
+  AnomalyDetectorUnivariateUnivariateEntireDetectionResult,
+  anomalyDetectorUnivariateUnivariateEntireDetectionResultDeserializer,
+  anomalyDetectorUnivariateAnomalyDetectorErrorDeserializer,
+  AnomalyDetectorUnivariateUnivariateLastDetectionResult,
+  anomalyDetectorUnivariateUnivariateLastDetectionResultDeserializer,
+  AnomalyDetectorUnivariateUnivariateChangePointDetectionOptions,
+  anomalyDetectorUnivariateUnivariateChangePointDetectionOptionsSerializer,
+  AnomalyDetectorUnivariateUnivariateChangePointDetectionResult,
+  anomalyDetectorUnivariateUnivariateChangePointDetectionResultDeserializer,
+} from "../../models/anomalyDetector/univariate/models.js";
 import {
   UnivariateDetectUnivariateChangePointOptionalParams,
   UnivariateDetectUnivariateLastPointOptionalParams,
@@ -29,7 +29,7 @@ import {
 
 export function _detectUnivariateChangePointSend(
   context: Client,
-  options: UnivariateUnivariateChangePointDetectionOptions,
+  options: AnomalyDetectorUnivariateUnivariateChangePointDetectionOptions,
   optionalParams: UnivariateDetectUnivariateChangePointOptionalParams = {
     requestOptions: {},
   },
@@ -43,21 +43,25 @@ export function _detectUnivariateChangePointSend(
         accept: "application/json",
         ...optionalParams.requestOptions?.headers,
       },
-      body: univariateUnivariateChangePointDetectionOptionsSerializer(options),
+      body: anomalyDetectorUnivariateUnivariateChangePointDetectionOptionsSerializer(
+        options,
+      ),
     });
 }
 
 export async function _detectUnivariateChangePointDeserialize(
   result: PathUncheckedResponse,
-): Promise<UnivariateUnivariateChangePointDetectionResult> {
+): Promise<AnomalyDetectorUnivariateUnivariateChangePointDetectionResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = univariateAnomalyDetectorErrorDeserializer(result.body);
+    error.details = anomalyDetectorUnivariateAnomalyDetectorErrorDeserializer(
+      result.body,
+    );
     throw error;
   }
 
-  return univariateUnivariateChangePointDetectionResultDeserializer(
+  return anomalyDetectorUnivariateUnivariateChangePointDetectionResultDeserializer(
     result.body,
   );
 }
@@ -65,11 +69,11 @@ export async function _detectUnivariateChangePointDeserialize(
 /** Evaluate change point score of every series point */
 export async function detectUnivariateChangePoint(
   context: Client,
-  options: UnivariateUnivariateChangePointDetectionOptions,
+  options: AnomalyDetectorUnivariateUnivariateChangePointDetectionOptions,
   optionalParams: UnivariateDetectUnivariateChangePointOptionalParams = {
     requestOptions: {},
   },
-): Promise<UnivariateUnivariateChangePointDetectionResult> {
+): Promise<AnomalyDetectorUnivariateUnivariateChangePointDetectionResult> {
   const result = await _detectUnivariateChangePointSend(
     context,
     options,
@@ -80,7 +84,7 @@ export async function detectUnivariateChangePoint(
 
 export function _detectUnivariateLastPointSend(
   context: Client,
-  options: UnivariateUnivariateDetectionOptions,
+  options: AnomalyDetectorUnivariateUnivariateDetectionOptions,
   optionalParams: UnivariateDetectUnivariateLastPointOptionalParams = {
     requestOptions: {},
   },
@@ -94,21 +98,27 @@ export function _detectUnivariateLastPointSend(
         accept: "application/json",
         ...optionalParams.requestOptions?.headers,
       },
-      body: univariateUnivariateDetectionOptionsSerializer(options),
+      body: anomalyDetectorUnivariateUnivariateDetectionOptionsSerializer(
+        options,
+      ),
     });
 }
 
 export async function _detectUnivariateLastPointDeserialize(
   result: PathUncheckedResponse,
-): Promise<UnivariateUnivariateLastDetectionResult> {
+): Promise<AnomalyDetectorUnivariateUnivariateLastDetectionResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = univariateAnomalyDetectorErrorDeserializer(result.body);
+    error.details = anomalyDetectorUnivariateAnomalyDetectorErrorDeserializer(
+      result.body,
+    );
     throw error;
   }
 
-  return univariateUnivariateLastDetectionResultDeserializer(result.body);
+  return anomalyDetectorUnivariateUnivariateLastDetectionResultDeserializer(
+    result.body,
+  );
 }
 
 /**
@@ -117,11 +127,11 @@ export async function _detectUnivariateLastPointDeserialize(
  */
 export async function detectUnivariateLastPoint(
   context: Client,
-  options: UnivariateUnivariateDetectionOptions,
+  options: AnomalyDetectorUnivariateUnivariateDetectionOptions,
   optionalParams: UnivariateDetectUnivariateLastPointOptionalParams = {
     requestOptions: {},
   },
-): Promise<UnivariateUnivariateLastDetectionResult> {
+): Promise<AnomalyDetectorUnivariateUnivariateLastDetectionResult> {
   const result = await _detectUnivariateLastPointSend(
     context,
     options,
@@ -132,7 +142,7 @@ export async function detectUnivariateLastPoint(
 
 export function _detectUnivariateEntireSeriesSend(
   context: Client,
-  options: UnivariateUnivariateDetectionOptions,
+  options: AnomalyDetectorUnivariateUnivariateDetectionOptions,
   optionalParams: UnivariateDetectUnivariateEntireSeriesOptionalParams = {
     requestOptions: {},
   },
@@ -146,21 +156,27 @@ export function _detectUnivariateEntireSeriesSend(
         accept: "application/json",
         ...optionalParams.requestOptions?.headers,
       },
-      body: univariateUnivariateDetectionOptionsSerializer(options),
+      body: anomalyDetectorUnivariateUnivariateDetectionOptionsSerializer(
+        options,
+      ),
     });
 }
 
 export async function _detectUnivariateEntireSeriesDeserialize(
   result: PathUncheckedResponse,
-): Promise<UnivariateUnivariateEntireDetectionResult> {
+): Promise<AnomalyDetectorUnivariateUnivariateEntireDetectionResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = univariateAnomalyDetectorErrorDeserializer(result.body);
+    error.details = anomalyDetectorUnivariateAnomalyDetectorErrorDeserializer(
+      result.body,
+    );
     throw error;
   }
 
-  return univariateUnivariateEntireDetectionResultDeserializer(result.body);
+  return anomalyDetectorUnivariateUnivariateEntireDetectionResultDeserializer(
+    result.body,
+  );
 }
 
 /**
@@ -171,11 +187,11 @@ export async function _detectUnivariateEntireSeriesDeserialize(
  */
 export async function detectUnivariateEntireSeries(
   context: Client,
-  options: UnivariateUnivariateDetectionOptions,
+  options: AnomalyDetectorUnivariateUnivariateDetectionOptions,
   optionalParams: UnivariateDetectUnivariateEntireSeriesOptionalParams = {
     requestOptions: {},
   },
-): Promise<UnivariateUnivariateEntireDetectionResult> {
+): Promise<AnomalyDetectorUnivariateUnivariateEntireDetectionResult> {
   const result = await _detectUnivariateEntireSeriesSend(
     context,
     options,

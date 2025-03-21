@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { AIProjectContext } from "../../api/aiProjectContext.js";
-import { GetAppInsightsResponse } from "../../models/models.js";
+import { GetAppInsightsResponse } from "../../models/azure/ai/projects/models.js";
 import { TelemetryGetAppInsightsOptionalParams } from "../../api/telemetry/options.js";
 import { getAppInsights } from "../../api/telemetry/operations.js";
 

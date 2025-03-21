@@ -1,8 +1,11 @@
 // Licensed under the MIT License.
 
 import { TodoContext } from "../../api/todoContext.js";
-import { TodoItem, ToDoItemMultipartRequest } from "../../models/models.js";
-import { TodoItemPatch } from "../../models/todoItems/models.js";
+import {
+  TodoItem,
+  ToDoItemMultipartRequest,
+  TodoItemPatch,
+} from "../../models/models.js";
 import {
   TodoItemsDeleteOptionalParams,
   TodoItemsUpdateOptionalParams,

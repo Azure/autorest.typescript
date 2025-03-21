@@ -2,101 +2,109 @@
 // Licensed under the MIT License.
 
 /** Detection results for the resultId value. */
-export interface MultivariateMultivariateDetectionResult {
+export interface AnomalyDetectorMultivariateMultivariateDetectionResult {
   /** Result identifier that's used to fetch the results of an inference call. */
   resultId: string;
   /** Multivariate anomaly detection status. */
-  summary: MultivariateMultivariateBatchDetectionResultSummary;
+  summary: AnomalyDetectorMultivariateMultivariateBatchDetectionResultSummary;
   /** Detection result for each time stamp. */
-  results: MultivariateAnomalyState[];
+  results: AnomalyDetectorMultivariateAnomalyState[];
 }
 
-export function multivariateMultivariateDetectionResultDeserializer(
+export function anomalyDetectorMultivariateMultivariateDetectionResultDeserializer(
   item: any,
-): MultivariateMultivariateDetectionResult {
+): AnomalyDetectorMultivariateMultivariateDetectionResult {
   return {
     resultId: item["resultId"],
-    summary: multivariateMultivariateBatchDetectionResultSummaryDeserializer(
-      item["summary"],
+    summary:
+      anomalyDetectorMultivariateMultivariateBatchDetectionResultSummaryDeserializer(
+        item["summary"],
+      ),
+    results: anomalyDetectorMultivariateAnomalyStateArrayDeserializer(
+      item["results"],
     ),
-    results: multivariateAnomalyStateArrayDeserializer(item["results"]),
   };
 }
 
 /** Multivariate anomaly detection status. */
-export interface MultivariateMultivariateBatchDetectionResultSummary {
+export interface AnomalyDetectorMultivariateMultivariateBatchDetectionResultSummary {
   /** Status of detection results. */
-  status: MultivariateMultivariateBatchDetectionStatus;
+  status: AnomalyDetectorMultivariateMultivariateBatchDetectionStatus;
   /** Error message when detection fails. */
-  errors?: MultivariateErrorResponse[];
+  errors?: AnomalyDetectorMultivariateErrorResponse[];
   /** Variable status. */
-  variableStates?: MultivariateVariableState[];
+  variableStates?: AnomalyDetectorMultivariateVariableState[];
   /**
    * Detection request for batch inference. This is an asynchronous inference that
    * will need another API to get detection results.
    */
-  setupInfo: MultivariateMultivariateBatchDetectionOptions;
+  setupInfo: AnomalyDetectorMultivariateMultivariateBatchDetectionOptions;
 }
 
-export function multivariateMultivariateBatchDetectionResultSummaryDeserializer(
+export function anomalyDetectorMultivariateMultivariateBatchDetectionResultSummaryDeserializer(
   item: any,
-): MultivariateMultivariateBatchDetectionResultSummary {
+): AnomalyDetectorMultivariateMultivariateBatchDetectionResultSummary {
   return {
     status: item["status"],
     errors: !item["errors"]
       ? item["errors"]
-      : multivariateErrorResponseArrayDeserializer(item["errors"]),
+      : anomalyDetectorMultivariateErrorResponseArrayDeserializer(
+          item["errors"],
+        ),
     variableStates: !item["variableStates"]
       ? item["variableStates"]
-      : multivariateVariableStateArrayDeserializer(item["variableStates"]),
-    setupInfo: multivariateMultivariateBatchDetectionOptionsDeserializer(
-      item["setupInfo"],
-    ),
+      : anomalyDetectorMultivariateVariableStateArrayDeserializer(
+          item["variableStates"],
+        ),
+    setupInfo:
+      anomalyDetectorMultivariateMultivariateBatchDetectionOptionsDeserializer(
+        item["setupInfo"],
+      ),
   };
 }
 
-/** Type of MultivariateMultivariateBatchDetectionStatus */
-export type MultivariateMultivariateBatchDetectionStatus =
+/** Type of AnomalyDetectorMultivariateMultivariateBatchDetectionStatus */
+export type AnomalyDetectorMultivariateMultivariateBatchDetectionStatus =
   | "CREATED"
   | "RUNNING"
   | "READY"
   | "FAILED";
 
-export function multivariateErrorResponseArrayDeserializer(
-  result: Array<MultivariateErrorResponse>,
+export function anomalyDetectorMultivariateErrorResponseArrayDeserializer(
+  result: Array<AnomalyDetectorMultivariateErrorResponse>,
 ): any[] {
   return result.map((item) => {
-    return multivariateErrorResponseDeserializer(item);
+    return anomalyDetectorMultivariateErrorResponseDeserializer(item);
   });
 }
 
 /** Error information that the API returned. */
-export interface MultivariateErrorResponse {
+export interface AnomalyDetectorMultivariateErrorResponse {
   /** Error code. */
   code: string;
   /** Message that explains the error that the service reported. */
   message: string;
 }
 
-export function multivariateErrorResponseDeserializer(
+export function anomalyDetectorMultivariateErrorResponseDeserializer(
   item: any,
-): MultivariateErrorResponse {
+): AnomalyDetectorMultivariateErrorResponse {
   return {
     code: item["code"],
     message: item["message"],
   };
 }
 
-export function multivariateVariableStateArrayDeserializer(
-  result: Array<MultivariateVariableState>,
+export function anomalyDetectorMultivariateVariableStateArrayDeserializer(
+  result: Array<AnomalyDetectorMultivariateVariableState>,
 ): any[] {
   return result.map((item) => {
-    return multivariateVariableStateDeserializer(item);
+    return anomalyDetectorMultivariateVariableStateDeserializer(item);
   });
 }
 
 /** Variable status. */
-export interface MultivariateVariableState {
+export interface AnomalyDetectorMultivariateVariableState {
   /** Variable name in variable states. */
   variable?: string;
   /** Proportion of missing values that need to be filled by fillNAMethod. */
@@ -109,9 +117,9 @@ export interface MultivariateVariableState {
   lastTimestamp?: Date;
 }
 
-export function multivariateVariableStateDeserializer(
+export function anomalyDetectorMultivariateVariableStateDeserializer(
   item: any,
-): MultivariateVariableState {
+): AnomalyDetectorMultivariateVariableState {
   return {
     variable: item["variable"],
     filledNARatio: item["filledNARatio"],
@@ -129,7 +137,7 @@ export function multivariateVariableStateDeserializer(
  * Detection request for batch inference. This is an asynchronous inference that
  * will need another API to get detection results.
  */
-export interface MultivariateMultivariateBatchDetectionOptions {
+export interface AnomalyDetectorMultivariateMultivariateBatchDetectionOptions {
   /**
    * Source link to the input data to indicate an accessible Azure Storage URI.
    * It either points to an Azure Blob Storage folder or points to a CSV file in
@@ -153,8 +161,8 @@ export interface MultivariateMultivariateBatchDetectionOptions {
   endTime: Date;
 }
 
-export function multivariateMultivariateBatchDetectionOptionsSerializer(
-  item: MultivariateMultivariateBatchDetectionOptions,
+export function anomalyDetectorMultivariateMultivariateBatchDetectionOptionsSerializer(
+  item: AnomalyDetectorMultivariateMultivariateBatchDetectionOptions,
 ): any {
   return {
     dataSource: item["dataSource"],
@@ -164,9 +172,9 @@ export function multivariateMultivariateBatchDetectionOptionsSerializer(
   };
 }
 
-export function multivariateMultivariateBatchDetectionOptionsDeserializer(
+export function anomalyDetectorMultivariateMultivariateBatchDetectionOptionsDeserializer(
   item: any,
-): MultivariateMultivariateBatchDetectionOptions {
+): AnomalyDetectorMultivariateMultivariateBatchDetectionOptions {
   return {
     dataSource: item["dataSource"],
     topContributorCount: item["topContributorCount"],
@@ -175,40 +183,42 @@ export function multivariateMultivariateBatchDetectionOptionsDeserializer(
   };
 }
 
-export function multivariateAnomalyStateArrayDeserializer(
-  result: Array<MultivariateAnomalyState>,
+export function anomalyDetectorMultivariateAnomalyStateArrayDeserializer(
+  result: Array<AnomalyDetectorMultivariateAnomalyState>,
 ): any[] {
   return result.map((item) => {
-    return multivariateAnomalyStateDeserializer(item);
+    return anomalyDetectorMultivariateAnomalyStateDeserializer(item);
   });
 }
 
 /** Anomaly status and information. */
-export interface MultivariateAnomalyState {
+export interface AnomalyDetectorMultivariateAnomalyState {
   /** Time stamp for this anomaly. */
   timestamp: Date;
   /** Detailed value of this anomalous time stamp. */
-  value?: MultivariateAnomalyValue;
+  value?: AnomalyDetectorMultivariateAnomalyValue;
   /** Error message for the current time stamp. */
-  errors?: MultivariateErrorResponse[];
+  errors?: AnomalyDetectorMultivariateErrorResponse[];
 }
 
-export function multivariateAnomalyStateDeserializer(
+export function anomalyDetectorMultivariateAnomalyStateDeserializer(
   item: any,
-): MultivariateAnomalyState {
+): AnomalyDetectorMultivariateAnomalyState {
   return {
     timestamp: new Date(item["timestamp"]),
     value: !item["value"]
       ? item["value"]
-      : multivariateAnomalyValueDeserializer(item["value"]),
+      : anomalyDetectorMultivariateAnomalyValueDeserializer(item["value"]),
     errors: !item["errors"]
       ? item["errors"]
-      : multivariateErrorResponseArrayDeserializer(item["errors"]),
+      : anomalyDetectorMultivariateErrorResponseArrayDeserializer(
+          item["errors"],
+        ),
   };
 }
 
 /** Detailed information of the anomalous time stamp. */
-export interface MultivariateAnomalyValue {
+export interface AnomalyDetectorMultivariateAnomalyValue {
   /** True if an anomaly is detected at the current time stamp. */
   isAnomaly: boolean;
   /**
@@ -219,34 +229,34 @@ export interface MultivariateAnomalyValue {
   /** Raw anomaly score of severity, to help indicate the degree of abnormality. */
   score: number;
   /** Interpretation of this anomalous time stamp. */
-  interpretation?: MultivariateAnomalyInterpretation[];
+  interpretation?: AnomalyDetectorMultivariateAnomalyInterpretation[];
 }
 
-export function multivariateAnomalyValueDeserializer(
+export function anomalyDetectorMultivariateAnomalyValueDeserializer(
   item: any,
-): MultivariateAnomalyValue {
+): AnomalyDetectorMultivariateAnomalyValue {
   return {
     isAnomaly: item["isAnomaly"],
     severity: item["severity"],
     score: item["score"],
     interpretation: !item["interpretation"]
       ? item["interpretation"]
-      : multivariateAnomalyInterpretationArrayDeserializer(
+      : anomalyDetectorMultivariateAnomalyInterpretationArrayDeserializer(
           item["interpretation"],
         ),
   };
 }
 
-export function multivariateAnomalyInterpretationArrayDeserializer(
-  result: Array<MultivariateAnomalyInterpretation>,
+export function anomalyDetectorMultivariateAnomalyInterpretationArrayDeserializer(
+  result: Array<AnomalyDetectorMultivariateAnomalyInterpretation>,
 ): any[] {
   return result.map((item) => {
-    return multivariateAnomalyInterpretationDeserializer(item);
+    return anomalyDetectorMultivariateAnomalyInterpretationDeserializer(item);
   });
 }
 
 /** Interpretation of the anomalous time stamp. */
-export interface MultivariateAnomalyInterpretation {
+export interface AnomalyDetectorMultivariateAnomalyInterpretation {
   /** Variable. */
   variable?: string;
   /**
@@ -255,30 +265,32 @@ export interface MultivariateAnomalyInterpretation {
    */
   contributionScore?: number;
   /** Correlation changes among the anomalous variables. */
-  correlationChanges?: MultivariateCorrelationChanges;
+  correlationChanges?: AnomalyDetectorMultivariateCorrelationChanges;
 }
 
-export function multivariateAnomalyInterpretationDeserializer(
+export function anomalyDetectorMultivariateAnomalyInterpretationDeserializer(
   item: any,
-): MultivariateAnomalyInterpretation {
+): AnomalyDetectorMultivariateAnomalyInterpretation {
   return {
     variable: item["variable"],
     contributionScore: item["contributionScore"],
     correlationChanges: !item["correlationChanges"]
       ? item["correlationChanges"]
-      : multivariateCorrelationChangesDeserializer(item["correlationChanges"]),
+      : anomalyDetectorMultivariateCorrelationChangesDeserializer(
+          item["correlationChanges"],
+        ),
   };
 }
 
 /** Correlation changes among the anomalous variables. */
-export interface MultivariateCorrelationChanges {
+export interface AnomalyDetectorMultivariateCorrelationChanges {
   /** Correlated variables that have correlation changes under an anomaly. */
   changedVariables?: string[];
 }
 
-export function multivariateCorrelationChangesDeserializer(
+export function anomalyDetectorMultivariateCorrelationChangesDeserializer(
   item: any,
-): MultivariateCorrelationChanges {
+): AnomalyDetectorMultivariateCorrelationChanges {
   return {
     changedVariables: !item["changedVariables"]
       ? item["changedVariables"]
@@ -289,16 +301,16 @@ export function multivariateCorrelationChangesDeserializer(
 }
 
 /** Error response. */
-export interface MultivariateResponseError {
+export interface AnomalyDetectorMultivariateResponseError {
   /** Error code. */
   code: string;
   /** Message that explains the error that the service reported. */
   message: string;
 }
 
-export function multivariateResponseErrorDeserializer(
+export function anomalyDetectorMultivariateResponseErrorDeserializer(
   item: any,
-): MultivariateResponseError {
+): AnomalyDetectorMultivariateResponseError {
   return {
     code: item["code"],
     message: item["message"],
@@ -309,7 +321,7 @@ export function multivariateResponseErrorDeserializer(
  * Training result of a model, including its status, errors, and diagnostics
  * information.
  */
-export interface MultivariateModelInfo {
+export interface AnomalyDetectorMultivariateModelInfo {
   /**
    * Source link to the input data to indicate an accessible Azure Storage URI.
    * It either points to an Azure Blob Storage folder or points to a CSV file in
@@ -320,7 +332,7 @@ export interface MultivariateModelInfo {
    * Data schema of the input data source. The default
    * is OneTable.
    */
-  dataSchema?: MultivariateDataSchema;
+  dataSchema?: AnomalyDetectorMultivariateDataSchema;
   /**
    * Start date/time of training data, which should be
    * in ISO 8601 format.
@@ -342,17 +354,17 @@ export interface MultivariateModelInfo {
    */
   slidingWindow?: number;
   /** Manner of aligning multiple variables. */
-  alignPolicy?: MultivariateAlignPolicy;
+  alignPolicy?: AnomalyDetectorMultivariateAlignPolicy;
   /** Model status. */
-  readonly status?: MultivariateModelStatus;
+  readonly status?: AnomalyDetectorMultivariateModelStatus;
   /** Error messages after failure to create a model. */
-  readonly errors?: MultivariateErrorResponse[];
+  readonly errors?: AnomalyDetectorMultivariateErrorResponse[];
   /** Diagnostics information to help inspect the states of a model or variable. */
-  readonly diagnosticsInfo?: MultivariateDiagnosticsInfo;
+  readonly diagnosticsInfo?: AnomalyDetectorMultivariateDiagnosticsInfo;
 }
 
-export function multivariateModelInfoSerializer(
-  item: MultivariateModelInfo,
+export function anomalyDetectorMultivariateModelInfoSerializer(
+  item: AnomalyDetectorMultivariateModelInfo,
 ): any {
   return {
     dataSource: item["dataSource"],
@@ -363,13 +375,13 @@ export function multivariateModelInfoSerializer(
     slidingWindow: item["slidingWindow"],
     alignPolicy: !item["alignPolicy"]
       ? item["alignPolicy"]
-      : multivariateAlignPolicySerializer(item["alignPolicy"]),
+      : anomalyDetectorMultivariateAlignPolicySerializer(item["alignPolicy"]),
   };
 }
 
-export function multivariateModelInfoDeserializer(
+export function anomalyDetectorMultivariateModelInfoDeserializer(
   item: any,
-): MultivariateModelInfo {
+): AnomalyDetectorMultivariateModelInfo {
   return {
     dataSource: item["dataSource"],
     dataSchema: item["dataSchema"],
@@ -379,35 +391,39 @@ export function multivariateModelInfoDeserializer(
     slidingWindow: item["slidingWindow"],
     alignPolicy: !item["alignPolicy"]
       ? item["alignPolicy"]
-      : multivariateAlignPolicyDeserializer(item["alignPolicy"]),
+      : anomalyDetectorMultivariateAlignPolicyDeserializer(item["alignPolicy"]),
     status: item["status"],
     errors: !item["errors"]
       ? item["errors"]
-      : multivariateErrorResponseArrayDeserializer(item["errors"]),
+      : anomalyDetectorMultivariateErrorResponseArrayDeserializer(
+          item["errors"],
+        ),
     diagnosticsInfo: !item["diagnosticsInfo"]
       ? item["diagnosticsInfo"]
-      : multivariateDiagnosticsInfoDeserializer(item["diagnosticsInfo"]),
+      : anomalyDetectorMultivariateDiagnosticsInfoDeserializer(
+          item["diagnosticsInfo"],
+        ),
   };
 }
 
 /** Data schema of the input data source. The default is OneTable. */
-export type MultivariateDataSchema = "OneTable" | "MultiTable";
+export type AnomalyDetectorMultivariateDataSchema = "OneTable" | "MultiTable";
 
 /** Manner of aligning multiple variables. */
-export interface MultivariateAlignPolicy {
+export interface AnomalyDetectorMultivariateAlignPolicy {
   /**
    * Field that indicates how to align different variables to the same
    * time range.
    */
-  alignMode?: MultivariateAlignMode;
+  alignMode?: AnomalyDetectorMultivariateAlignMode;
   /** Field that indicates how missing values will be filled. */
-  fillNAMethod?: MultivariateFillNAMethod;
+  fillNAMethod?: AnomalyDetectorMultivariateFillNAMethod;
   /** Field that's required when fillNAMethod is Fixed. */
   paddingValue?: number;
 }
 
-export function multivariateAlignPolicySerializer(
-  item: MultivariateAlignPolicy,
+export function anomalyDetectorMultivariateAlignPolicySerializer(
+  item: AnomalyDetectorMultivariateAlignPolicy,
 ): any {
   return {
     alignMode: item["alignMode"],
@@ -416,9 +432,9 @@ export function multivariateAlignPolicySerializer(
   };
 }
 
-export function multivariateAlignPolicyDeserializer(
+export function anomalyDetectorMultivariateAlignPolicyDeserializer(
   item: any,
-): MultivariateAlignPolicy {
+): AnomalyDetectorMultivariateAlignPolicy {
   return {
     alignMode: item["alignMode"],
     fillNAMethod: item["fillNAMethod"],
@@ -426,45 +442,47 @@ export function multivariateAlignPolicyDeserializer(
   };
 }
 
-/** Type of MultivariateAlignMode */
-export type MultivariateAlignMode = "Inner" | "Outer";
+/** Type of AnomalyDetectorMultivariateAlignMode */
+export type AnomalyDetectorMultivariateAlignMode = "Inner" | "Outer";
 /** Field that indicates how missing values will be filled. */
-export type MultivariateFillNAMethod =
+export type AnomalyDetectorMultivariateFillNAMethod =
   | "Previous"
   | "Subsequent"
   | "Linear"
   | "Zero"
   | "Fixed";
-/** Type of MultivariateModelStatus */
-export type MultivariateModelStatus =
+/** Type of AnomalyDetectorMultivariateModelStatus */
+export type AnomalyDetectorMultivariateModelStatus =
   | "CREATED"
   | "RUNNING"
   | "READY"
   | "FAILED";
 
 /** Diagnostics information to help inspect the states of a model or variable. */
-export interface MultivariateDiagnosticsInfo {
+export interface AnomalyDetectorMultivariateDiagnosticsInfo {
   /** Model status. */
-  modelState?: MultivariateModelState;
+  modelState?: AnomalyDetectorMultivariateModelState;
   /** Variable status. */
-  variableStates?: MultivariateVariableState[];
+  variableStates?: AnomalyDetectorMultivariateVariableState[];
 }
 
-export function multivariateDiagnosticsInfoDeserializer(
+export function anomalyDetectorMultivariateDiagnosticsInfoDeserializer(
   item: any,
-): MultivariateDiagnosticsInfo {
+): AnomalyDetectorMultivariateDiagnosticsInfo {
   return {
     modelState: !item["modelState"]
       ? item["modelState"]
-      : multivariateModelStateDeserializer(item["modelState"]),
+      : anomalyDetectorMultivariateModelStateDeserializer(item["modelState"]),
     variableStates: !item["variableStates"]
       ? item["variableStates"]
-      : multivariateVariableStateArrayDeserializer(item["variableStates"]),
+      : anomalyDetectorMultivariateVariableStateArrayDeserializer(
+          item["variableStates"],
+        ),
   };
 }
 
 /** Model status. */
-export interface MultivariateModelState {
+export interface AnomalyDetectorMultivariateModelState {
   /**
    * Number of passes of the entire training dataset that the
    * algorithm has completed.
@@ -484,9 +502,9 @@ export interface MultivariateModelState {
   latenciesInSeconds?: number[];
 }
 
-export function multivariateModelStateDeserializer(
+export function anomalyDetectorMultivariateModelStateDeserializer(
   item: any,
-): MultivariateModelState {
+): AnomalyDetectorMultivariateModelState {
   return {
     epochIds: !item["epochIds"]
       ? item["epochIds"]
@@ -512,7 +530,7 @@ export function multivariateModelStateDeserializer(
 }
 
 /** Response of getting a model. */
-export interface MultivariateAnomalyDetectionModel {
+export interface AnomalyDetectorMultivariateAnomalyDetectionModel {
   /** Model identifier. */
   modelId: string;
   /** Date and time (UTC) when the model was created. */
@@ -523,26 +541,26 @@ export interface MultivariateAnomalyDetectionModel {
    * Training result of a model, including its status, errors, and diagnostics
    * information.
    */
-  modelInfo?: MultivariateModelInfo;
+  modelInfo?: AnomalyDetectorMultivariateModelInfo;
 }
 
-export function multivariateAnomalyDetectionModelDeserializer(
+export function anomalyDetectorMultivariateAnomalyDetectionModelDeserializer(
   item: any,
-): MultivariateAnomalyDetectionModel {
+): AnomalyDetectorMultivariateAnomalyDetectionModel {
   return {
     modelId: item["modelId"],
     createdTime: new Date(item["createdTime"]),
     lastUpdatedTime: new Date(item["lastUpdatedTime"]),
     modelInfo: !item["modelInfo"]
       ? item["modelInfo"]
-      : multivariateModelInfoDeserializer(item["modelInfo"]),
+      : anomalyDetectorMultivariateModelInfoDeserializer(item["modelInfo"]),
   };
 }
 
 /** Response of listing models. */
-export interface _MultivariateModelList {
+export interface _AnomalyDetectorMultivariateModelList {
   /** List of models. */
-  models: MultivariateAnomalyDetectionModel[];
+  models: AnomalyDetectorMultivariateAnomalyDetectionModel[];
   /** Number of trained multivariate models. */
   currentCount: number;
   /** Maximum number of models that can be trained for this Anomaly Detector resource. */
@@ -551,32 +569,34 @@ export interface _MultivariateModelList {
   nextLink?: string;
 }
 
-export function _multivariateModelListDeserializer(
+export function _anomalyDetectorMultivariateModelListDeserializer(
   item: any,
-): _MultivariateModelList {
+): _AnomalyDetectorMultivariateModelList {
   return {
-    models: multivariateAnomalyDetectionModelArrayDeserializer(item["models"]),
+    models: anomalyDetectorMultivariateAnomalyDetectionModelArrayDeserializer(
+      item["models"],
+    ),
     currentCount: item["currentCount"],
     maxCount: item["maxCount"],
     nextLink: item["nextLink"],
   };
 }
 
-export function multivariateAnomalyDetectionModelArrayDeserializer(
-  result: Array<MultivariateAnomalyDetectionModel>,
+export function anomalyDetectorMultivariateAnomalyDetectionModelArrayDeserializer(
+  result: Array<AnomalyDetectorMultivariateAnomalyDetectionModel>,
 ): any[] {
   return result.map((item) => {
-    return multivariateAnomalyDetectionModelDeserializer(item);
+    return anomalyDetectorMultivariateAnomalyDetectionModelDeserializer(item);
   });
 }
 
 /** Request of the last detection. */
-export interface MultivariateMultivariateLastDetectionOptions {
+export interface AnomalyDetectorMultivariateMultivariateLastDetectionOptions {
   /**
    * Contains the inference data, including the name, time stamps (ISO 8601), and
    * values of variables.
    */
-  variables: MultivariateVariableValues[];
+  variables: AnomalyDetectorMultivariateVariableValues[];
   /**
    * Number of top contributed
    * variables for one anomalous time stamp in the response. The default is
@@ -585,25 +605,27 @@ export interface MultivariateMultivariateLastDetectionOptions {
   topContributorCount?: number;
 }
 
-export function multivariateMultivariateLastDetectionOptionsSerializer(
-  item: MultivariateMultivariateLastDetectionOptions,
+export function anomalyDetectorMultivariateMultivariateLastDetectionOptionsSerializer(
+  item: AnomalyDetectorMultivariateMultivariateLastDetectionOptions,
 ): any {
   return {
-    variables: multivariateVariableValuesArraySerializer(item["variables"]),
+    variables: anomalyDetectorMultivariateVariableValuesArraySerializer(
+      item["variables"],
+    ),
     topContributorCount: item["topContributorCount"],
   };
 }
 
-export function multivariateVariableValuesArraySerializer(
-  result: Array<MultivariateVariableValues>,
+export function anomalyDetectorMultivariateVariableValuesArraySerializer(
+  result: Array<AnomalyDetectorMultivariateVariableValues>,
 ): any[] {
   return result.map((item) => {
-    return multivariateVariableValuesSerializer(item);
+    return anomalyDetectorMultivariateVariableValuesSerializer(item);
   });
 }
 
 /** Variable values. */
-export interface MultivariateVariableValues {
+export interface AnomalyDetectorMultivariateVariableValues {
   /** Variable name of the last detection request. */
   variable: string;
   /** Time stamps of the last detection request. */
@@ -612,8 +634,8 @@ export interface MultivariateVariableValues {
   values: number[];
 }
 
-export function multivariateVariableValuesSerializer(
-  item: MultivariateVariableValues,
+export function anomalyDetectorMultivariateVariableValuesSerializer(
+  item: AnomalyDetectorMultivariateVariableValues,
 ): any {
   return {
     variable: item["variable"],
@@ -627,22 +649,26 @@ export function multivariateVariableValuesSerializer(
 }
 
 /** Results of the last detection. */
-export interface MultivariateMultivariateLastDetectionResult {
+export interface AnomalyDetectorMultivariateMultivariateLastDetectionResult {
   /** Variable status. */
-  variableStates?: MultivariateVariableState[];
+  variableStates?: AnomalyDetectorMultivariateVariableState[];
   /** Anomaly status and information. */
-  results?: MultivariateAnomalyState[];
+  results?: AnomalyDetectorMultivariateAnomalyState[];
 }
 
-export function multivariateMultivariateLastDetectionResultDeserializer(
+export function anomalyDetectorMultivariateMultivariateLastDetectionResultDeserializer(
   item: any,
-): MultivariateMultivariateLastDetectionResult {
+): AnomalyDetectorMultivariateMultivariateLastDetectionResult {
   return {
     variableStates: !item["variableStates"]
       ? item["variableStates"]
-      : multivariateVariableStateArrayDeserializer(item["variableStates"]),
+      : anomalyDetectorMultivariateVariableStateArrayDeserializer(
+          item["variableStates"],
+        ),
     results: !item["results"]
       ? item["results"]
-      : multivariateAnomalyStateArrayDeserializer(item["results"]),
+      : anomalyDetectorMultivariateAnomalyStateArrayDeserializer(
+          item["results"],
+        ),
   };
 }

@@ -5,7 +5,7 @@ import { ParametrizedHostContext as Client } from "../index.js";
 import {
   Collection,
   collectionArrayDeserializer,
-} from "../../models/models.js";
+} from "../../models/azure/test/parametrizedHost/models.js";
 import { ConfidentialLedgerListCollectionsOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
