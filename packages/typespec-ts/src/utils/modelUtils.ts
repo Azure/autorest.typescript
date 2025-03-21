@@ -61,8 +61,11 @@ import {
   HttpOperationParameters,
   Visibility,
   getHeaderFieldName,
+  getHttpFileModel,
+  getHttpPart,
   getPathParamName,
   getQueryParamName,
+  isBody,
   isStatusCode
 } from "@typespec/http";
 import {
@@ -151,7 +154,7 @@ export function getSchemaForType(
   dpgContext: SdkContext,
   typeInput: Type,
   options?: GetSchemaOptions
-) {
+): any {
   const program = dpgContext.program;
   const { usage } = options ?? {};
   const type = getEffectiveModelFromType(dpgContext, typeInput);
@@ -171,6 +174,40 @@ export function getSchemaForType(
   }
 
   if (type.kind === "Model") {
+    const httpPart = getHttpPart(program, type);
+    if (httpPart) {
+      const fileModel = getHttpFileModel(program, httpPart.type);
+      if (fileModel) {
+        const schema: any = getSchemaForType(
+          dpgContext,
+          fileModel.contents,
+          options
+        );
+        return {
+          ...schema,
+          multipartOptions: {
+            filenameSchema: {
+              required: !fileModel.filename.optional,
+              ...getSchemaForType(dpgContext, fileModel.filename, options)
+            },
+            contentTypeSchema: {
+              required: !fileModel.contentType.optional,
+              ...getSchemaForType(dpgContext, fileModel.contentType, options)
+            }
+          }
+        };
+      } else {
+        // extract body if required
+        const body =
+          (httpPart.type.kind === "Model" &&
+            [...httpPart.type.properties.values()].find((x) =>
+              isBody(program, x)
+            )) ||
+          httpPart.type;
+        return getSchemaForType(dpgContext, body, options);
+      }
+    }
+
     const schema = getSchemaForModel(dpgContext, type, options) as any;
     if (isAnonymousObjectSchema(schema)) {
       if (Object.keys(schema.properties ?? {}).length === 0) {
