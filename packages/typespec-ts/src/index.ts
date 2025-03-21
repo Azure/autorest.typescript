@@ -390,7 +390,18 @@ export async function $onEmit(context: EmitContext) {
     const shouldGenerateMetadata =
       option.generateMetadata === true ||
       (option.generateMetadata === undefined && !hasPackageFile);
-    // TODO detect whether test folder exists. If yes generateTest should be false.
+    const existingTestFolderPath = join(
+      dpgContext.generationPathDetail?.metadataDir ?? "",
+      "test"
+    );
+    const hasTestFolder = await existsSync(existingTestFolderPath);
+    if (option.azureSdkForJs && option.generateTest === undefined) {
+      if (hasTestFolder) {
+        option.generateTest = false;
+      } else {
+        option.generateTest = true;
+      }
+    }
     if (shouldGenerateMetadata) {
       const commonBuilders = [
         buildRollupConfig,
