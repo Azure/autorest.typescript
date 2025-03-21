@@ -3,13 +3,13 @@
 
 import { FooContext as Client } from "../../../index.js";
 import { BEA, beaSerializer } from "../../../../models/b/e/models.js";
+import { BECOp1OptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { BECOp1OptionalParams } from "./options.js";
 
 export function _op1Send(
   context: Client,

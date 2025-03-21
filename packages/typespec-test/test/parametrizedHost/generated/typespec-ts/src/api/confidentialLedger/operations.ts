@@ -6,6 +6,7 @@ import {
   Collection,
   collectionArrayDeserializer,
 } from "../../models/models.js";
+import { ConfidentialLedgerListCollectionsOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
@@ -13,7 +14,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { ConfidentialLedgerListCollectionsOptionalParams } from "./options.js";
 
 export function _listCollectionsSend(
   context: Client,

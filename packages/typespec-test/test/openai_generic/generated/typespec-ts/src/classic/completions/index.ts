@@ -3,13 +3,11 @@
 
 import { OpenAIContext } from "../../api/openAIContext.js";
 import {
-  create,
-  CompletionsCreateOptionalParams,
-} from "../../api/completions/index.js";
-import {
   CreateCompletionRequest,
   CreateCompletionResponse,
 } from "../../models/models.js";
+import { CompletionsCreateOptionalParams } from "../../api/completions/options.js";
+import { create } from "../../api/completions/operations.js";
 
 /** Interface representing a Completions operations. */
 export interface CompletionsOperations {

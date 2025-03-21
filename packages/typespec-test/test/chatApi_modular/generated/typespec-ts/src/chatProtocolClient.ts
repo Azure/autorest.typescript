@@ -5,10 +5,6 @@ import {
   createChatProtocol,
   ChatProtocolContext,
   ChatProtocolClientOptionalParams,
-  create,
-  createStreaming,
-  CreateOptionalParams,
-  CreateStreamingOptionalParams,
 } from "./api/index.js";
 import {
   StreamingChatCompletionOptionsRecord,
@@ -16,6 +12,11 @@ import {
   ChatCompletionOptionsRecord,
   ChatCompletionRecord,
 } from "./models/models.js";
+import {
+  CreateOptionalParams,
+  CreateStreamingOptionalParams,
+} from "./api/options.js";
+import { create, createStreaming } from "./api/operations.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
 

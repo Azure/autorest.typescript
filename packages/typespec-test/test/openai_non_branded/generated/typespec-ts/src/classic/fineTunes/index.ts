@@ -2,23 +2,25 @@
 
 import { OpenAIContext } from "../../api/openAIContext.js";
 import {
-  cancel,
-  listEvents,
-  retrieve,
-  list,
-  create,
-  FineTunesCancelOptionalParams,
-  FineTunesListEventsOptionalParams,
-  FineTunesRetrieveOptionalParams,
-  FineTunesListOptionalParams,
-  FineTunesCreateOptionalParams,
-} from "../../api/fineTunes/index.js";
-import {
   CreateFineTuneRequest,
   FineTune,
   ListFineTunesResponse,
   ListFineTuneEventsResponse,
 } from "../../models/models.js";
+import {
+  FineTunesCancelOptionalParams,
+  FineTunesListEventsOptionalParams,
+  FineTunesRetrieveOptionalParams,
+  FineTunesListOptionalParams,
+  FineTunesCreateOptionalParams,
+} from "../../api/fineTunes/options.js";
+import {
+  cancel,
+  listEvents,
+  retrieve,
+  list,
+  create,
+} from "../../api/fineTunes/operations.js";
 
 /** Interface representing a FineTunes operations. */
 export interface FineTunesOperations {

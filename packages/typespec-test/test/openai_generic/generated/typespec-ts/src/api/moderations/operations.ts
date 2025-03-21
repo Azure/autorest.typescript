@@ -9,13 +9,13 @@ import {
   createModerationResponseDeserializer,
   errorResponseDeserializer,
 } from "../../models/models.js";
+import { ModerationsCreateOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { ModerationsCreateOptionalParams } from "./options.js";
 
 export function _createSend(
   context: Client,

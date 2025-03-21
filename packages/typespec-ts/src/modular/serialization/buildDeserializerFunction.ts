@@ -17,6 +17,8 @@ import {
   isSupportedSerializeType,
   ModelSerializeOptions
 } from "./serializeUtils.js";
+import { refkey } from "../../framework/refkey.js";
+import { resolveReference } from "../../framework/reference.js";
 
 export function buildModelDeserializer(
   context: SdkContext,
@@ -121,7 +123,7 @@ function buildPolymorphicDeserializer(
     NameType.Operation
   )}Deserializer`;
   if (nameOnly) {
-    return deserializeFunctionName;
+    return resolveReference(refkey(type, "deserializer"));
   }
   const deserializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -211,7 +213,7 @@ function buildDiscriminatedUnionDeserializer(
     NameType.Operation
   )}Deserializer`;
   if (nameOnly) {
-    return deserializeFunctionName;
+    return resolveReference(refkey(type, "deserializer"));
   }
   const baseDeserializerName = `${normalizeModelName(
     context,
@@ -289,7 +291,7 @@ function buildUnionDeserializer(
     NameType.Operation
   )}Deserializer`;
   if (nameOnly) {
-    return deserializerFunctionName;
+    return resolveReference(refkey(type, "deserializer"));
   }
   const deserializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -325,7 +327,7 @@ function buildModelTypeDeserializer(
     options.skipDiscriminatedUnionSuffix
   )}Deserializer`;
   if (options.nameOnly) {
-    return deserializerFunctionName;
+    return resolveReference(refkey(type, "deserializer"));
   }
   const deserializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -405,18 +407,14 @@ function buildDictTypeDeserializer(
   if (typeof valueDeserializer !== "string") {
     return undefined;
   }
-  const valueTypeName = normalizeName(
-    valueDeserializer ? valueDeserializer.replace("Deserializer", "") : "",
-    NameType.Property,
-    true
-  );
-  const deserializerFunctionName = `${valueTypeName}RecordDeserializer`;
+
+  const deserializerFunctionName = `${normalizeModelName(context, type, NameType.Operation, false, true)}Deserializer`;
   if (nameOnly) {
-    return deserializerFunctionName;
+    return resolveReference(refkey(type.valueType, "record", "deserializer"));
   }
   const deserializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
-    name: `${valueTypeName}RecordDeserializer`,
+    name: deserializerFunctionName,
     isExported: true,
     parameters: [
       {
@@ -468,14 +466,9 @@ function buildArrayTypeDeserializer(
   if (typeof valueDeserializer !== "string") {
     return undefined;
   }
-  const valueTypeName = normalizeName(
-    valueDeserializer ? valueDeserializer.replace("Deserializer", "") : "",
-    NameType.Property,
-    true
-  );
-  const deserializerFunctionName = `${valueTypeName}ArrayDeserializer`;
+  const deserializerFunctionName = `${normalizeModelName(context, type, NameType.Operation, false, true)}Deserializer`;
   if (nameOnly) {
-    return deserializerFunctionName;
+    return resolveReference(refkey(type.valueType, "array", "deserializer"));
   }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,

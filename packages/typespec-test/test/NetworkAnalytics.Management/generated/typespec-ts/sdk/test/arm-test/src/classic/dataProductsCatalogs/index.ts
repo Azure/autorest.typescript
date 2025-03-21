@@ -2,15 +2,17 @@
 // Licensed under the MIT License.
 
 import { NetworkAnalyticsApiContext } from "../../api/networkAnalyticsApiContext.js";
+import { DataProductsCatalog } from "../../models/models.js";
+import {
+  DataProductsCatalogsListBySubscriptionOptionalParams,
+  DataProductsCatalogsListByResourceGroupOptionalParams,
+  DataProductsCatalogsGetOptionalParams,
+} from "../../api/dataProductsCatalogs/options.js";
 import {
   listBySubscription,
   listByResourceGroup,
   get,
-  DataProductsCatalogsListBySubscriptionOptionalParams,
-  DataProductsCatalogsListByResourceGroupOptionalParams,
-  DataProductsCatalogsGetOptionalParams,
-} from "../../api/dataProductsCatalogs/index.js";
-import { DataProductsCatalog } from "../../models/models.js";
+} from "../../api/dataProductsCatalogs/operations.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 
 /** Interface representing a DataProductsCatalogs operations. */

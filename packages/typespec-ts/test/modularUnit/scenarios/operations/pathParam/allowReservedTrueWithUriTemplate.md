@@ -17,6 +17,7 @@ Should enable `allowReserved:true` for path parameter:
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { TemplateOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,

@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  RadiologyInsightsContext as Client,
-  InferRadiologyInsightsOptionalParams,
-} from "./index.js";
+import { RadiologyInsightsContext as Client } from "./index.js";
 import {
   PatientRecord,
   radiologyInsightsModelConfigurationSerializer,
@@ -12,6 +9,7 @@ import {
   RadiologyInsightsInferenceResult,
   radiologyInsightsInferenceResultDeserializer,
 } from "../models/models.js";
+import { InferRadiologyInsightsOptionalParams } from "./options.js";
 import { getLongRunningPoller } from "../static-helpers/pollingHelpers.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {

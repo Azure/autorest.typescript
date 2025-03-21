@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  ChatProtocolContext as Client,
-  CreateOptionalParams,
-  CreateStreamingOptionalParams,
-} from "./index.js";
+import { ChatProtocolContext as Client } from "./index.js";
 import {
   StreamingChatCompletionOptionsRecord,
   streamingChatCompletionOptionsRecordSerializer,
@@ -16,6 +12,10 @@ import {
   ChatCompletionRecord,
   chatCompletionRecordDeserializer,
 } from "../models/models.js";
+import {
+  CreateOptionalParams,
+  CreateStreamingOptionalParams,
+} from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

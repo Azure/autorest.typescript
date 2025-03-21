@@ -1,13 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  TestProfileAdministrationContext as Client,
-  CreateOrUpdateTestProfileOptionalParams,
-  DeleteTestProfileOptionalParams,
-  GetTestProfileOptionalParams,
-  ListTestProfilesOptionalParams,
-} from "./index.js";
+import { TestProfileAdministrationContext as Client } from "./index.js";
 import {
   TestProfile,
   testProfileSerializer,
@@ -15,6 +9,12 @@ import {
   _PagedTestProfile,
   _pagedTestProfileDeserializer,
 } from "../../models/models.js";
+import {
+  ListTestProfilesOptionalParams,
+  GetTestProfileOptionalParams,
+  DeleteTestProfileOptionalParams,
+  CreateOrUpdateTestProfileOptionalParams,
+} from "./options.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,

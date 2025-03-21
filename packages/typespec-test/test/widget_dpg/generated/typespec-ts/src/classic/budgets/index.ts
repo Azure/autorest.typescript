@@ -3,10 +3,10 @@
 
 import { SAPWidgetServiceContext } from "../../api/sapWidgetServiceContext.js";
 import {
-  getBudgets,
-  createOrReplace,
   BudgetsGetBudgetsOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,
+  getBudgets,
+  createOrReplace,
 } from "../../api/budgets/index.js";
 import { SAPUser, Widget } from "../../models/models.js";
 import { PollerLike, OperationState } from "@azure/core-lro";

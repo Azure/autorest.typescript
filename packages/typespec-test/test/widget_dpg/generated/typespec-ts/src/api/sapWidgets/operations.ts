@@ -483,7 +483,7 @@ export function _sapListWidgetsSend(
         ? { "optional-header": options?.optionalHeader }
         : {}),
       ...(options?.nullableOptionalHeader !== undefined &&
-      options?.nullableOptionalHeader !== null
+        options?.nullableOptionalHeader !== null
         ? { "nullable-optional-header": options?.nullableOptionalHeader }
         : {}),
       "bytes-header": uint8ArrayToString(bytesHeader, "base64"),
@@ -496,18 +496,18 @@ export function _sapListWidgetsSend(
       "utc-date-header": utcDateHeader.toUTCString(),
       ...(options?.optionalDateHeader !== undefined
         ? {
-            "optional-date-header": !options?.optionalDateHeader
-              ? options?.optionalDateHeader
-              : options?.optionalDateHeader.toUTCString(),
-          }
+          "optional-date-header": !options?.optionalDateHeader
+            ? options?.optionalDateHeader
+            : options?.optionalDateHeader.toUTCString(),
+        }
         : {}),
       ...(options?.nullableDateHeader !== undefined &&
-      options?.nullableDateHeader !== null
+        options?.nullableDateHeader !== null
         ? {
-            "nullable-date-header": !options?.nullableDateHeader
-              ? options?.nullableDateHeader
-              : options?.nullableDateHeader.toUTCString(),
-          }
+          "nullable-date-header": !options?.nullableDateHeader
+            ? options?.nullableDateHeader
+            : options?.nullableDateHeader.toUTCString(),
+        }
         : {}),
       accept: "application/json",
       ...options.requestOptions?.headers,

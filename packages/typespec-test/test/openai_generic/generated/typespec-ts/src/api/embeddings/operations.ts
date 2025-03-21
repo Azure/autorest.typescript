@@ -9,13 +9,13 @@ import {
   CreateEmbeddingResponse,
   createEmbeddingResponseDeserializer,
 } from "../../models/models.js";
+import { EmbeddingsCreateOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { EmbeddingsCreateOptionalParams } from "./options.js";
 
 export function _createSend(
   context: Client,
