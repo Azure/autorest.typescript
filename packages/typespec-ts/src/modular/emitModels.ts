@@ -261,7 +261,7 @@ export function getModelNamespaces(
   context: SdkContext,
   model: SdkType
 ): string[] {
-  const rootNamespace = context.sdkPackage.rootNamespace.split(".");
+  const rootNamespace = context.sdkPackage.namespaces;
   if (
     model.kind === "model" ||
     model.kind === "enum" ||

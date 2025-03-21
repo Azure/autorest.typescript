@@ -96,7 +96,7 @@ export function getSendPrivateFunction(
     (p) => p.onClient && p.kind === "query" && p.isApiVersionParam
   );
   const hasClientApiVersion = client.clientInitialization.parameters.some(
-    (p) => p.isApiVersionParam && p.onClient && p.kind === "apiVersion"
+    (p) => p.isApiVersionParam && p.onClient && p.kind === "method"
   );
   const statements: string[] = [];
   let pathStr = `"${operationPath}"`;
@@ -1165,8 +1165,7 @@ export function getRequestModelMapping(
 function getPropertySerializedName(property: SdkModelPropertyType) {
   return property.kind !== "credential" &&
     property.kind !== "method" &&
-    property.kind !== "endpoint" &&
-    property.kind !== "apiVersion"
+    property.kind !== "endpoint"
     ? property.serializedName
     : property.name;
 }
