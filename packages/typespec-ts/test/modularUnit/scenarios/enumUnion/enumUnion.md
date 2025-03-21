@@ -56,24 +56,26 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _getSend(
   context: Client,
   contentType: SchemaContentTypeValues,
   body: string,
-  options: GetOptionalParams = { requestOptions: {} }
+  options: GetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/").post({
-    ...operationOptionsToRequestParameters(options),
-    contentType: contentType,
-    body: body
-  });
+  return context
+    .path("/")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: contentType,
+      body: body,
+    });
 }
 
 export async function _getDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
@@ -87,7 +89,7 @@ export async function get(
   context: Client,
   contentType: SchemaContentTypeValues,
   body: string,
-  options: GetOptionalParams = { requestOptions: {} }
+  options: GetOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _getSend(context, contentType, body, options);
   return _getDeserialize(result);
@@ -226,23 +228,12 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
-/** Alias for SchemaContentTypeValues */
+/** Type of SchemaContentTypeValues */
 export type SchemaContentTypeValues =
-  | JsonContentType
-  | "text/plain; charset=utf-8"
-  | "text/vnd.ms.protobuf"
-  | string;
-
-export function schemaContentTypeValuesSerializer(
-  item: SchemaContentTypeValues
-): any {
-  return item;
-}
-
-/** Type of JsonContentType */
-export type JsonContentType =
   | "application/json; serialization=Avro"
-  | "application/json; serialization=json";
+  | "application/json; serialization=json"
+  | "text/plain; charset=utf-8"
+  | "text/vnd.ms.protobuf";
 ```
 
 # union contains enum with string element
@@ -288,23 +279,12 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
-/** Alias for SchemaContentTypeValues */
+/** Type of SchemaContentTypeValues */
 export type SchemaContentTypeValues =
-  | JsonContentType
-  | "text/plain; charset=utf-8"
-  | "text/vnd.ms.protobuf"
-  | string;
-
-export function schemaContentTypeValuesSerializer(
-  item: SchemaContentTypeValues
-): any {
-  return item;
-}
-
-/** Type of JsonContentType */
-export type JsonContentType =
   | "application/json; serialization=Avro"
-  | "application/json; serialization=json";
+  | "application/json; serialization=json"
+  | "text/plain; charset=utf-8"
+  | "text/vnd.ms.protobuf";
 ```
 
 # union with string as extensible enum
@@ -393,23 +373,12 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
-/** Alias for SchemaContentTypeValues */
+/** Type of SchemaContentTypeValues */
 export type SchemaContentTypeValues =
-  | JsonContentType
-  | "text/plain; charset=utf-8"
-  | "text/vnd.ms.protobuf"
-  | string;
-
-export function schemaContentTypeValuesSerializer(
-  item: SchemaContentTypeValues
-): any {
-  return item;
-}
-
-/** Type of JsonContentType */
-export type JsonContentType =
   | "application/json; serialization=Avro"
-  | "application/json; serialization=json";
+  | "application/json; serialization=json"
+  | "text/plain; charset=utf-8"
+  | "text/vnd.ms.protobuf";
 ```
 
 # union contains enum with string element
@@ -455,23 +424,12 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
-/** Alias for SchemaContentTypeValues */
+/** Type of SchemaContentTypeValues */
 export type SchemaContentTypeValues =
-  | JsonContentType
-  | "text/plain; charset=utf-8"
-  | "text/vnd.ms.protobuf"
-  | string;
-
-export function schemaContentTypeValuesSerializer(
-  item: SchemaContentTypeValues
-): any {
-  return item;
-}
-
-/** Type of JsonContentType */
-export type JsonContentType =
   | "application/json; serialization=Avro"
-  | "application/json; serialization=json";
+  | "application/json; serialization=json"
+  | "text/plain; charset=utf-8"
+  | "text/vnd.ms.protobuf";
 ```
 
 # anonymous union with "|" fixed in regular headers
@@ -520,28 +478,30 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _getSend(
   context: Client,
   testHeader: "A" | "B",
   body: string,
-  options: GetOptionalParams = { requestOptions: {} }
+  options: GetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/").post({
-    ...operationOptionsToRequestParameters(options),
-    contentType: "text/plain",
-    headers: {
-      "test-header": testHeader,
-      ...options.requestOptions?.headers
-    },
-    body: body
-  });
+  return context
+    .path("/")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "text/plain",
+      headers: {
+        "test-header": testHeader,
+        ...options.requestOptions?.headers,
+      },
+      body: body,
+    });
 }
 
 export async function _getDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
@@ -555,7 +515,7 @@ export async function get(
   context: Client,
   testHeader: "A" | "B",
   body: string,
-  options: GetOptionalParams = { requestOptions: {} }
+  options: GetOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _getSend(context, testHeader, body, options);
   return _getDeserialize(result);
@@ -609,28 +569,30 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _getSend(
   context: Client,
   testHeader: string,
   body: string,
-  options: GetOptionalParams = { requestOptions: {} }
+  options: GetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/").post({
-    ...operationOptionsToRequestParameters(options),
-    contentType: "text/plain",
-    headers: {
-      "test-header": testHeader,
-      ...options.requestOptions?.headers
-    },
-    body: body
-  });
+  return context
+    .path("/")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "text/plain",
+      headers: {
+        "test-header": testHeader,
+        ...options.requestOptions?.headers,
+      },
+      body: body,
+    });
 }
 
 export async function _getDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
@@ -644,7 +606,7 @@ export async function get(
   context: Client,
   testHeader: string,
   body: string,
-  options: GetOptionalParams = { requestOptions: {} }
+  options: GetOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _getSend(context, testHeader, body, options);
   return _getDeserialize(result);
@@ -1197,7 +1159,7 @@ export enum KnownImageSize {
    * A taller image size of 1792x1024 pixels.
    * Only supported with dall-e-3 models.
    */
-  Size1024X1792 = "1024x1792"
+  Size1024X1792 = "1024x1792",
 }
 ```
 
@@ -1226,7 +1188,7 @@ op read(@body body: Test): void;
 ```ts models interface Test
 /** model interface Test */
 export interface Test {
-  color: LR | UD;
+  color: "left" | "right" | "up" | "down";
 }
 ```
 
@@ -1269,7 +1231,7 @@ op read(@body body: Test): void;
 ```ts models interface Test
 /** model interface Test */
 export interface Test {
-  color: LeftAndRight | UpAndDown;
+  color: "left" | "right" | "up" | "down";
 }
 ```
 

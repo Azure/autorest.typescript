@@ -30,7 +30,11 @@ export declare interface TestBodyParam {
     body: string;
 }
 
-export declare type TestParameters = TestBodyParam & RequestParameters;
+export declare interface TestMediaTypesParam {
+    contentType: "application/json";
+}
+
+export declare type TestParameters = TestMediaTypesParam & TestBodyParam & RequestParameters;
 
 export declare type VersioningReturnTypeChangedFromClient = Client & {
     path: Routes;

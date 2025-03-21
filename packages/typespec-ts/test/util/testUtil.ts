@@ -103,9 +103,9 @@ ${
     : ""
 }
 
-using TypeSpec.Rest; 
-using TypeSpec.Http;
-using TypeSpec.Versioning;
+using Rest; 
+using Http;
+using Versioning;
 ${needTCGC ? "using Azure.ClientGenerator.Core;" : ""}
 ${needAzureCore ? "using Azure.Core;" : ""}
 ${needNamespaces ? namespace : ""}
@@ -161,9 +161,9 @@ import "@azure-tools/typespec-client-generator-core";
 import "@azure-tools/typespec-azure-core";
 import "@azure-tools/typespec-azure-resource-manager";
 
-using TypeSpec.Rest; 
-using TypeSpec.Http;
-using TypeSpec.Versioning;
+using Rest; 
+using Http;
+using Versioning;
 using Azure.ClientGenerator.Core;
 using Azure.Core;
 using Azure.ResourceManager;`;
