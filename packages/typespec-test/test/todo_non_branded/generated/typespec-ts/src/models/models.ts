@@ -9,6 +9,30 @@ import {
   stringToUint8Array,
 } from "@typespec/ts-http-runtime";
 
+/** model interface _TodoPage */
+export interface _TodoPage {
+  /** The items in the page */
+  items: TodoItem[];
+  /** The number of items returned in this page */
+  pageSize: number;
+  /** The total number of items */
+  totalSize: number;
+  /** A link to the previous page, if it exists */
+  prevLink?: string;
+  /** A link to the next page, if it exists */
+  nextLink?: string;
+}
+
+export function _todoPageDeserializer(item: any): _TodoPage {
+  return {
+    items: todoItemArrayDeserializer(item["items"]),
+    pageSize: item["pageSize"],
+    totalSize: item["totalSize"],
+    prevLink: item["prevLink"],
+    nextLink: item["nextLink"],
+  };
+}
+
 export function todoItemArraySerializer(result: Array<TodoItem>): any[] {
   return result.map((item) => {
     return todoItemSerializer(item);
@@ -210,47 +234,13 @@ export function todoAttachmentArrayDeserializer(
   });
 }
 
-/** model interface _CreateJsonResponse */
-export interface _CreateJsonResponse {
-  /** The item's unique id */
-  readonly id: number;
-  /** The item's title */
-  title: string;
-  /** User that created the todo */
-  readonly createdBy: number;
-  /** User that the todo is assigned to */
-  assignedTo?: number;
-  /** A longer description of the todo item in markdown format */
-  description?: string;
-  /** The status of the todo item */
-  status: "NotStarted" | "InProgress" | "Completed";
-  /** When the todo item was created. */
-  readonly createdAt: Date;
-  /** When the todo item was last updated */
-  readonly updatedAt: Date;
-  /** When the todo item was makred as completed */
-  readonly completedAt?: Date;
-  labels?: TodoLabels;
-}
+/** model interface InvalidTodoItem */
+export interface InvalidTodoItem extends ApiError {}
 
-export function _createJsonResponseDeserializer(
-  item: any,
-): _CreateJsonResponse {
+export function invalidTodoItemDeserializer(item: any): InvalidTodoItem {
   return {
-    id: item["id"],
-    title: item["title"],
-    createdBy: item["createdBy"],
-    assignedTo: item["assignedTo"],
-    description: item["description"],
-    status: item["status"],
-    createdAt: new Date(item["createdAt"]),
-    updatedAt: new Date(item["updatedAt"]),
-    completedAt: !item["completedAt"]
-      ? item["completedAt"]
-      : new Date(item["completedAt"]),
-    labels: !item["labels"]
-      ? item["labels"]
-      : todoLabelsDeserializer(item["labels"]),
+    code: item["code"],
+    message: item["message"],
   };
 }
 
@@ -278,131 +268,50 @@ export function toDoItemMultipartRequestSerializer(
   ];
 }
 
-/** model interface _CreateFormResponse */
-export interface _CreateFormResponse {
-  /** The item's unique id */
-  readonly id: number;
-  /** The item's title */
-  title: string;
-  /** User that created the todo */
-  readonly createdBy: number;
-  /** User that the todo is assigned to */
-  assignedTo?: number;
-  /** A longer description of the todo item in markdown format */
-  description?: string;
-  /** The status of the todo item */
-  status: "NotStarted" | "InProgress" | "Completed";
-  /** When the todo item was created. */
-  readonly createdAt: Date;
-  /** When the todo item was last updated */
-  readonly updatedAt: Date;
-  /** When the todo item was makred as completed */
-  readonly completedAt?: Date;
-  labels?: TodoLabels;
+/** model interface NotFoundErrorResponse */
+export interface NotFoundErrorResponse {
+  code: "not-found";
 }
 
-export function _createFormResponseDeserializer(
+export function notFoundErrorResponseDeserializer(
   item: any,
-): _CreateFormResponse {
+): NotFoundErrorResponse {
   return {
-    id: item["id"],
-    title: item["title"],
-    createdBy: item["createdBy"],
-    assignedTo: item["assignedTo"],
-    description: item["description"],
-    status: item["status"],
-    createdAt: new Date(item["createdAt"]),
-    updatedAt: new Date(item["updatedAt"]),
-    completedAt: !item["completedAt"]
-      ? item["completedAt"]
-      : new Date(item["completedAt"]),
-    labels: !item["labels"]
-      ? item["labels"]
-      : todoLabelsDeserializer(item["labels"]),
+    code: item["code"],
   };
 }
 
-/** model interface _GetResponse */
-export interface _GetResponse {
-  /** The item's unique id */
-  readonly id: number;
+/** model interface TodoItemPatch */
+export interface TodoItemPatch {
   /** The item's title */
-  title: string;
-  /** User that created the todo */
-  readonly createdBy: number;
+  title?: string;
   /** User that the todo is assigned to */
-  assignedTo?: number;
+  assignedTo?: number | null;
   /** A longer description of the todo item in markdown format */
-  description?: string;
+  description?: string | null;
   /** The status of the todo item */
-  status: "NotStarted" | "InProgress" | "Completed";
-  /** When the todo item was created. */
-  readonly createdAt: Date;
-  /** When the todo item was last updated */
-  readonly updatedAt: Date;
-  /** When the todo item was makred as completed */
-  readonly completedAt?: Date;
-  labels?: TodoLabels;
+  status?: "NotStarted" | "InProgress" | "Completed";
 }
 
-export function _getResponseDeserializer(item: any): _GetResponse {
+export function todoItemPatchSerializer(item: TodoItemPatch): any {
   return {
-    id: item["id"],
     title: item["title"],
-    createdBy: item["createdBy"],
     assignedTo: item["assignedTo"],
     description: item["description"],
     status: item["status"],
-    createdAt: new Date(item["createdAt"]),
-    updatedAt: new Date(item["updatedAt"]),
-    completedAt: !item["completedAt"]
-      ? item["completedAt"]
-      : new Date(item["completedAt"]),
-    labels: !item["labels"]
-      ? item["labels"]
-      : todoLabelsDeserializer(item["labels"]),
   };
 }
 
-/** model interface _UpdateResponse */
-export interface _UpdateResponse {
-  /** The item's unique id */
-  readonly id: number;
-  /** The item's title */
-  title: string;
-  /** User that created the todo */
-  readonly createdBy: number;
-  /** User that the todo is assigned to */
-  assignedTo?: number;
-  /** A longer description of the todo item in markdown format */
-  description?: string;
-  /** The status of the todo item */
-  status: "NotStarted" | "InProgress" | "Completed";
-  /** When the todo item was created. */
-  readonly createdAt: Date;
-  /** When the todo item was last updated */
-  readonly updatedAt: Date;
-  /** When the todo item was makred as completed */
-  readonly completedAt?: Date;
-  labels?: TodoLabels;
+/** model interface _PageTodoAttachment */
+export interface _PageTodoAttachment {
+  items: TodoAttachment[];
 }
 
-export function _updateResponseDeserializer(item: any): _UpdateResponse {
+export function _pageTodoAttachmentDeserializer(
+  item: any,
+): _PageTodoAttachment {
   return {
-    id: item["id"],
-    title: item["title"],
-    createdBy: item["createdBy"],
-    assignedTo: item["assignedTo"],
-    description: item["description"],
-    status: item["status"],
-    createdAt: new Date(item["createdAt"]),
-    updatedAt: new Date(item["updatedAt"]),
-    completedAt: !item["completedAt"]
-      ? item["completedAt"]
-      : new Date(item["completedAt"]),
-    labels: !item["labels"]
-      ? item["labels"]
-      : todoLabelsDeserializer(item["labels"]),
+    items: todoAttachmentArrayDeserializer(item["items"]),
   };
 }
 
@@ -442,23 +351,57 @@ export function userSerializer(item: User): any {
   };
 }
 
-/** model interface _CreateResponse */
-export interface _CreateResponse {
+/** model interface UserCreatedResponse */
+export interface UserCreatedResponse {
   /** An autogenerated unique id for the user */
   readonly id: number;
   /** The user's username */
   username: string;
   /** The user's email address */
   email: string;
+  /**
+   * The user's password, provided when creating a user
+   * but is otherwise not visible (and hashed by the backend)
+   */
+  password: string;
   /** The token to use to construct the validate email address url */
   token: string;
 }
 
-export function _createResponseDeserializer(item: any): _CreateResponse {
+export function userCreatedResponseDeserializer(
+  item: any,
+): UserCreatedResponse {
   return {
     id: item["id"],
     username: item["username"],
     email: item["email"],
+    password: item["password"],
     token: item["token"],
+  };
+}
+
+/** The user already exists */
+export interface UserExistsResponse extends ApiError {
+  code: "user-exists";
+}
+
+export function userExistsResponseDeserializer(item: any): UserExistsResponse {
+  return {
+    code: item["code"],
+    message: item["message"],
+  };
+}
+
+/** The user is invalid (e.g. forgot to enter email address) */
+export interface InvalidUserResponse extends ApiError {
+  code: "invalid-user";
+}
+
+export function invalidUserResponseDeserializer(
+  item: any,
+): InvalidUserResponse {
+  return {
+    code: item["code"],
+    message: item["message"],
   };
 }

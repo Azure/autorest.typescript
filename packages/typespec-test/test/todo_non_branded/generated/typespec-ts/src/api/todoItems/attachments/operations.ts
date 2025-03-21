@@ -6,14 +6,12 @@ import {
   standard5XXResponseDeserializer,
   TodoAttachment,
   todoAttachmentSerializer,
-  FileAttachmentMultipartRequest,
-  fileAttachmentMultipartRequestSerializer,
-} from "../../../models/models.js";
-import {
   notFoundErrorResponseDeserializer,
   _PageTodoAttachment,
   _pageTodoAttachmentDeserializer,
-} from "../../../models/todoItems/models.js";
+  FileAttachmentMultipartRequest,
+  fileAttachmentMultipartRequestSerializer,
+} from "../../../models/models.js";
 import {
   TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
   TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,

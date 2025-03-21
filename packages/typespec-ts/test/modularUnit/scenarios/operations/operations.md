@@ -116,9 +116,7 @@ op read(
     @header bytesHeader: bytes,
     @header @encode(BytesKnownEncoding.base64) value: bytes,
     #suppress "deprecated" "Legacy test"
-    @header({
-    format: "csv",
-    })
+    @header
     csvArrayHeader: base64urlBytes[],
     @header utcDateHeader: utcDateTime,
     @header optionalDateHeader?: utcDateTime,
@@ -314,7 +312,7 @@ op read(@body bars?: Bar[]): OkResponse;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { barSerializer } from "../models/models.js";
+import { barSerializer } from "../models/azure/typeScript/testing/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -374,7 +372,10 @@ op read(@body bars: Bar[]): OkResponse;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { Bar, barSerializer } from "../models/models.js";
+import {
+  Bar,
+  barSerializer,
+} from "../models/azure/typeScript/testing/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -434,7 +435,10 @@ op read(): { a: Bar}[] | null;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { Bar, _readResponseArrayDeserializer } from "../models/models.js";
+import {
+  Bar,
+  _readResponseArrayDeserializer,
+} from "../models/azure/typeScript/testing/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -500,7 +504,11 @@ op read(@body bars?: Bar[]): Bar[] | null;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { Bar, barSerializer, barArrayDeserializer } from "../models/models.js";
+import {
+  Bar,
+  barSerializer,
+  barArrayDeserializer,
+} from "../models/azure/typeScript/testing/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -567,7 +575,10 @@ op read(@body body: Foo): OkResponse;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { Foo, fooSerializer } from "../models/models.js";
+import {
+  Foo,
+  fooSerializer,
+} from "../models/azure/typeScript/testing/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -633,7 +644,10 @@ op read(): Foo;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { Foo, fooDeserializer } from "../models/models.js";
+import {
+  Foo,
+  fooDeserializer,
+} from "../models/azure/typeScript/testing/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -707,7 +721,11 @@ needAzureCore: true
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { errorDeserializer, _Bar, _barDeserializer } from "../models/models.js";
+import {
+  errorDeserializer,
+  _Bar,
+  _barDeserializer,
+} from "../models/azure/typeScript/testing/models.js";
 import { TestOptionalParams } from "./options.js";
 import {
   PagedAsyncIterableIterator,
@@ -792,7 +810,11 @@ mustEmptyDiagnostic: false
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { errorDeserializer, Bar, barDeserializer } from "../models/models.js";
+import {
+  errorDeserializer,
+  Bar,
+  barDeserializer,
+} from "../models/azure/typeScript/testing/models.js";
 import { TestOptionalParams } from "./options.js";
 import {
   PagedAsyncIterableIterator,
@@ -887,7 +909,7 @@ import {
   errorDeserializer,
   _Child,
   _childDeserializer,
-} from "../models/models.js";
+} from "../models/azure/typeScript/testing/models.js";
 import { TestOptionalParams } from "./options.js";
 import {
   PagedAsyncIterableIterator,

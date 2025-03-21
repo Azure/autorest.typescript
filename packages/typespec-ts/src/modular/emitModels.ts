@@ -261,7 +261,7 @@ export function getModelNamespaces(
   context: SdkContext,
   model: SdkType
 ): string[] {
-  const rootNamespace = context.sdkPackage.rootNamespace.split(".");
+  const rootNamespace = context.sdkPackage.namespaces;
   if (
     model.kind === "model" ||
     model.kind === "enum" ||
@@ -734,7 +734,6 @@ function visitClient(
   client: SdkClientType<SdkServiceOperation>
 ) {
   // Comment this out for now, as client initialization is not used in the generated code
-  // visitType(client.initialization, emitQueue);
   client.methods.forEach((method) => visitClientMethod(context, method));
 }
 

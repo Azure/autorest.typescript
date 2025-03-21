@@ -127,7 +127,9 @@ export async function uploadFileViaBody(
 
 ```tsp
 @route("/uploadFile")
-@post op uploadFile(
+@post
+#suppress "deprecated" "For test"
+op uploadFile(
     @header contentType: "multipart/form-data",
     @body body: {
         name: string;
@@ -163,7 +165,7 @@ export function _uploadFileRequestSerializer(item: _UploadFileRequest): any {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { _uploadFileRequestSerializer } from "../models/models.js";
+import { _uploadFileRequestSerializer } from "../models/azure/typeScript/testing/models.js";
 import { UploadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -221,7 +223,9 @@ export async function uploadFile(
 scalar BinaryBytes extends bytes;
 
 @route("/uploadFiles")
-@post op uploadFiles(
+@post
+#suppress "deprecated" "For test"
+op uploadFiles(
   @header contentType: "multipart/form-data",
   @body body: {
     files: BinaryBytes[];
@@ -235,7 +239,7 @@ scalar BinaryBytes extends bytes;
 import {
   FileContents,
   createFilePartDescriptor,
-} from "../static-helpers/multipartHelpers.js";
+} from "../../../../static-helpers/multipartHelpers.js";
 
 /** model interface _UploadFilesRequest */
 export interface _UploadFilesRequest {
@@ -256,7 +260,7 @@ export function _uploadFilesRequestSerializer(item: _UploadFilesRequest): any {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { _uploadFilesRequestSerializer } from "../models/models.js";
+import { _uploadFilesRequestSerializer } from "../models/azure/typeScript/testing/models.js";
 import { UploadFilesOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -434,6 +438,7 @@ export async function downloadFile(
 ```tsp
 @route("/downloadFile")
 @post
+#suppress "deprecated" "For test"
 op downloadFile(): {
   @header contentType: "multipart/form-data";
   @body body: {
@@ -471,7 +476,7 @@ export function _downloadFileResponseDeserializer(
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { _downloadFileResponseDeserializer } from "../models/models.js";
+import { _downloadFileResponseDeserializer } from "../models/azure/typeScript/testing/models.js";
 import { DownloadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -530,6 +535,7 @@ scalar BinaryBytes extends bytes;
 
 @route("/downloadFile")
 @post
+#suppress "deprecated" "For test"
 op downloadFile(): {
   @header contentType: "multipart/form-data";
   @body body: {
@@ -566,7 +572,7 @@ export function _downloadFileResponseDeserializer(
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { _downloadFileResponseDeserializer } from "../models/models.js";
+import { _downloadFileResponseDeserializer } from "../models/azure/typeScript/testing/models.js";
 import { DownloadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -727,10 +733,7 @@ export function _testSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "text/plain", ...options.requestOptions?.headers },
     });
 }
 
@@ -882,10 +885,7 @@ export function _testSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "text/plain", ...options.requestOptions?.headers },
     });
 }
 
@@ -1021,10 +1021,7 @@ export function _test1Send(
     .path("/test1")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "text/plain", ...options.requestOptions?.headers },
     });
 }
 
@@ -1065,10 +1062,7 @@ export function _testSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "text/plain", ...options.requestOptions?.headers },
     });
 }
 

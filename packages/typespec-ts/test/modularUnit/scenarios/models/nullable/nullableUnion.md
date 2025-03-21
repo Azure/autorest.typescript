@@ -60,7 +60,7 @@ import {
   _postRequestSerializer,
   _postRequestDeserializer,
   A,
-} from "../models/models.js";
+} from "../models/azure/typeScript/testing/models.js";
 import { PostOptionalParams } from "./options.js";
 import {
   StreamableMethod,

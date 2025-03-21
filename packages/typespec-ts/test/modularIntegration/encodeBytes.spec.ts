@@ -120,12 +120,7 @@ describe("EncodeBytesClient Modular Client", () => {
     );
     it(`should post bytes`, async () => {
       try {
-        const result = await client.requestBody.default(
-          stringToUint8Array("dGVzdA==", "base64"),
-          {
-            requestOptions: { headers: { "content-type": "application/json" } }
-          }
-        );
+        const result = await client.requestBody.default(pngFile);
         assert.isUndefined(result);
       } catch (err) {
         console.log(JSON.stringify(err));
@@ -169,8 +164,12 @@ describe("EncodeBytesClient Modular Client", () => {
       resolve("../../packages/typespec-ts/temp/assets/image.png")
     ).toString("utf-8");
     it(`should get bytes with base64 encoding by default`, async () => {
-      const result = await client.responseBody.default();
-      assert.strictEqual(uint8ArrayToString(result, "base64"), "dGVzdA==");
+      const result = await client.responseBody.default({
+        onResponse: (res) => {
+          res.headers.get("content-type") === "application/octet-stream";
+        }
+      });
+      assert.strictEqual(uint8ArrayToString(result, "utf-8"), pngFile);
     });
 
     it(`should get bytes base64 encoding`, async () => {

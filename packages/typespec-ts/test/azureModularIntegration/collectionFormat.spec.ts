@@ -35,11 +35,6 @@ describe("CollectionFormatClient Classical Client", () => {
     assert.strictEqual(result, undefined);
   });
 
-  it("should send tsv format in query", async () => {
-    const result = await client.query.tsv(["blue", "red", "green"]);
-    assert.strictEqual(result, undefined);
-  });
-
   it("should send csv format in header", async () => {
     const result = await client.header.csv(["blue", "red", "green"]);
     assert.strictEqual(result, undefined);

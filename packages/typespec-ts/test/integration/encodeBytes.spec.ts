@@ -148,8 +148,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
       const result = await client
         .path(`/encode/bytes/body/request/default`)
         .post({
-          contentType: "application/json",
-          body: "dGVzdA=="
+          body: pngFile
         });
       assert.strictEqual(result.status, "204");
     });
@@ -199,12 +198,12 @@ describe("EncodeDatetimeClient Rest Client", () => {
     const pngFile = readFileSync(
       resolve("../../packages/typespec-ts/temp/assets/image.png")
     ).toString();
-    it(`should get bytes with base64 encoding by default`, async () => {
+    it(`should get bytes with oct-stream by default`, async () => {
       const result = await client
         .path(`/encode/bytes/body/response/default`)
         .get();
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body, "dGVzdA==");
+      assert.strictEqual(uint8ArrayToString(result.body, "utf-8"), pngFile);
     });
 
     it(`should get bytes base64 encoding`, async () => {

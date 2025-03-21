@@ -433,7 +433,7 @@ describe("ModelPropertyAdditional Client", () => {
     assert.equal(result, undefined);
   });
   it("should get spread Record Discriminated Union value", async () => {
-    const result = await client.spreadRecordDiscriminatedUnion.get();
+    const result = await client.spreadRecordNonDiscriminatedUnion.get();
     assert.deepEqual(result, {
       name: "abc",
       prop1: {
@@ -448,7 +448,7 @@ describe("ModelPropertyAdditional Client", () => {
     });
   });
   it("should put spread Record Discriminated Union value", async () => {
-    const result = await client.spreadRecordDiscriminatedUnion.put({
+    const result = await client.spreadRecordNonDiscriminatedUnion.put({
       name: "abc",
       prop1: {
         kind: "kind0",

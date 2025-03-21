@@ -148,8 +148,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
       const result = await client
         .path(`/encode/bytes/body/request/default`)
         .post({
-          contentType: "application/json",
-          body: "dGVzdA=="
+          body: pngFile
         });
       assert.strictEqual(result.status, "204");
     });
@@ -204,7 +203,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
         .path(`/encode/bytes/body/response/default`)
         .get();
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body, "dGVzdA==");
+      assert.strictEqual(uint8ArrayToString(result.body, "utf-8"), pngFile);
     });
 
     it(`should get bytes base64 encoding`, async () => {

@@ -14,7 +14,7 @@ export {
   ChatCompletionRecord,
   ChatChoiceRecord,
   KnownAPIVersion,
-} from "./models/index.js";
+} from "./models/azure/ai/chatProtocol/index.js";
 export {
   ChatProtocolClientOptionalParams,
   CreateOptionalParams,

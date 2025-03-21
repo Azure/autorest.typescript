@@ -41,7 +41,10 @@ export function barSerializer(item: Bar): any {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { Bar, barSerializer } from "../models/models.js";
+import {
+  Bar,
+  barSerializer,
+} from "../models/azure/typeScript/testing/models.js";
 import { ReadOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
@@ -164,7 +167,7 @@ export function barSerializer(item: Bar): any {
 ## Models withOptions
 
 ```ts models:withOptions
-import { Bar } from "../models/models.js";
+import { Bar } from "../models/azure/typeScript/testing/models.js";
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
@@ -178,7 +181,7 @@ export interface ReadOptionalParams extends OperationOptions {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { barSerializer } from "../models/models.js";
+import { barSerializer } from "../models/azure/typeScript/testing/models.js";
 import { ReadOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
@@ -297,7 +300,7 @@ export function barSerializer(item: Bar): any {
 ## Bar Model withOptions
 
 ```ts models:withOptions
-import { Bar } from "../models/models.js";
+import { Bar } from "../models/azure/typeScript/testing/models.js";
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
@@ -311,7 +314,7 @@ export interface ReadOptionalParams extends OperationOptions {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { barSerializer } from "../models/models.js";
+import { barSerializer } from "../models/azure/typeScript/testing/models.js";
 import { ReadOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
@@ -456,7 +459,10 @@ export function fooSerializer(item: Foo): any {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { Foo, fooSerializer } from "../models/models.js";
+import {
+  Foo,
+  fooSerializer,
+} from "../models/azure/typeScript/testing/models.js";
 import { ReadOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
@@ -538,7 +544,7 @@ export function _readRequestSerializer(item: _ReadRequest): any {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { _readRequestSerializer } from "../models/models.js";
+import { _readRequestSerializer } from "../models/azure/typeScript/testing/models.js";
 import { ReadOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
@@ -634,7 +640,10 @@ export function barSerializer(item: Bar): any {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { _readRequestSerializer, Bar } from "../models/models.js";
+import {
+  _readRequestSerializer,
+  Bar,
+} from "../models/azure/typeScript/testing/models.js";
 import { ReadOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
@@ -731,7 +740,10 @@ export function testSerializer(item: Test): any {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { Test, testSerializer } from "../models/models.js";
+import {
+  Test,
+  testSerializer,
+} from "../models/azure/typeScript/testing/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -811,7 +823,10 @@ export function testSerializer(item: Test): any {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { Test, testSerializer } from "../models/models.js";
+import {
+  Test,
+  testSerializer,
+} from "../models/azure/typeScript/testing/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -878,7 +893,7 @@ export function _readResponseDeserializer(item: any): _ReadResponse {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { _readResponseDeserializer } from "../models/models.js";
+import { _readResponseDeserializer } from "../models/azure/typeScript/testing/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -947,7 +962,10 @@ export function publishResultDeserializer(item: any): PublishResult {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { PublishResult, publishResultDeserializer } from "../models/models.js";
+import {
+  PublishResult,
+  publishResultDeserializer,
+} from "../models/azure/typeScript/testing/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -1033,7 +1051,7 @@ export function _readResponseFooDeserializer(item: any): _ReadResponseFoo {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { _readResponseDeserializer } from "../models/models.js";
+import { _readResponseDeserializer } from "../models/azure/typeScript/testing/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -1204,7 +1222,10 @@ export function emptyModelRecordDeserializer(
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { ReturnBody, returnBodyDeserializer } from "../models/models.js";
+import {
+  ReturnBody,
+  returnBodyDeserializer,
+} from "../models/azure/typeScript/testing/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -1425,7 +1446,10 @@ export function _fozBazNonemptyAnomyousDictDeserializer(
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { Foz, fozDeserializer } from "../models/models.js";
+import {
+  Foz,
+  fozDeserializer,
+} from "../models/azure/typeScript/testing/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,

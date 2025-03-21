@@ -239,7 +239,7 @@ model ChatCompletionRequestMessage {
 // TODO: Fill in example here.
 @extension(
   "x-oaiMeta",
-  {
+  #{
     name: "The chat completion object",
     group: "chat",
     example: "",
@@ -375,7 +375,7 @@ union Prompt {
  */
 @extension(
   "x-oaiMeta",
-  {
+  #{
     name: "The  completion object",
     legacy: true,
     example: "", // fill in

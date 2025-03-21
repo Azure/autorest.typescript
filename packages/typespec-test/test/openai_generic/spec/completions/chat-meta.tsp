@@ -2,7 +2,7 @@ using TypeSpec.OpenAPI;
 
 @@extension(OpenAI.Completions.create,
   "x-oaiMeta",
-  {
+  #{
     name: "Create chat completion",
     group: "chat",
     returns: """
@@ -10,10 +10,10 @@ using TypeSpec.OpenAPI;
       [chat completion chunk](/docs/api-reference/chat/streaming) objects if the request is streamed.
       """,
     path: "create",
-    examples: [
-      {
+    examples: #[
+      #{
         title: "No streaming",
-        request: {
+        request: #{
           curl: """
             curl https://api.openai.com/v1/chat/completions \\
             -H "Content-Type: application/json" \\
@@ -85,9 +85,9 @@ using TypeSpec.OpenAPI;
           }
           """,
       },
-      {
+      #{
         title: "Streaming",
-        request: {
+        request: #{
           curl: """
             curl https://api.openai.com/v1/chat/completions \\
             -H "Content-Type: application/json" \\

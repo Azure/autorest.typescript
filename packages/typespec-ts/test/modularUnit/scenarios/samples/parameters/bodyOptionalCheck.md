@@ -57,7 +57,7 @@ Raw json files.
 Generated operation options.
 
 ```ts models:withOptions
-import { BodyParameter } from "../models/models.js";
+import { BodyParameter } from "../models/azure/typeScript/testing/models.js";
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
@@ -78,7 +78,7 @@ import { TestingContext as Client } from "./index.js";
 import {
   bodyParameterSerializer,
   _readResponseDeserializer,
-} from "../models/models.js";
+} from "../models/azure/typeScript/testing/models.js";
 import { ReadOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {

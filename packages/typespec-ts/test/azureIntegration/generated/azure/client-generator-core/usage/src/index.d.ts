@@ -40,6 +40,20 @@ export declare interface ModelInReadOnlyPropertyBodyParam {
 
 export declare type ModelInReadOnlyPropertyParameters = ModelInReadOnlyPropertyBodyParam & RequestParameters;
 
+export declare interface OrphanModelSerializable {
+    put(options: OrphanModelSerializableParameters): StreamableMethod<OrphanModelSerializable204Response>;
+}
+
+export declare interface OrphanModelSerializable204Response extends HttpResponse {
+    status: "204";
+}
+
+export declare interface OrphanModelSerializableBodyParam {
+    body: unknown;
+}
+
+export declare type OrphanModelSerializableParameters = OrphanModelSerializableBodyParam & RequestParameters;
+
 export declare interface OutputModelOutput {
     name: string;
 }
@@ -74,6 +88,7 @@ export declare interface Routes {
     (path: "/azure/client-generator-core/usage/inputToInputOutput"): InputToInputOutput;
     (path: "/azure/client-generator-core/usage/outputToInputOutput"): OutputToInputOutput;
     (path: "/azure/client-generator-core/usage/modelInReadOnlyProperty"): ModelInReadOnlyProperty;
+    (path: "/azure/client-generator-core/usage/orphanModelSerializable"): OrphanModelSerializable;
 }
 
 export declare type UsageClient = Client & {

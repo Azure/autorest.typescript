@@ -41,7 +41,7 @@ export {
   InternalConnectionPropertiesSASAuth,
   CredentialsSASAuth,
   KnownVersions,
-} from "./models/index.js";
+} from "./models/azure/ai/projects/index.js";
 export {
   ToolDefinition,
   ToolDefinitionUnion,
@@ -234,17 +234,17 @@ export {
   RunStepDeltaCodeInterpreterLogOutput,
   RunStepDeltaCodeInterpreterImageOutput,
   RunStepDeltaCodeInterpreterImageOutputObject,
-  AgentStreamEvent,
+  ListSortOrder,
+  RunAdditionalFieldList,
+  VectorStoreFileStatusFilter,
   ThreadStreamEvent,
   RunStreamEvent,
   RunStepStreamEvent,
   MessageStreamEvent,
   ErrorEvent,
   DoneEvent,
-  ListSortOrder,
-  RunAdditionalFieldList,
-  VectorStoreFileStatusFilter,
-} from "./models/agents/index.js";
+  AgentStreamEvent,
+} from "./models/azure/ai/projects/agents/index.js";
 export { AIProjectClientOptionalParams } from "./api/index.js";
 export {
   AgentsListVectorStoreFileBatchFilesOptionalParams,

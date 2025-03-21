@@ -21,10 +21,8 @@ describe("ExtensibleEnums Rest Client", () => {
     const result = await client
       .path("/type/enum/extensible/string/known-value")
       .put({
-        body: "Monday",
-        headers: {
-          "content-type": "text/plain"
-        }
+        contentType: "application/json",
+        body: "Monday"
       });
     assert.strictEqual(result.status, "204");
   });
@@ -41,10 +39,8 @@ describe("ExtensibleEnums Rest Client", () => {
     const result = await client
       .path("/type/enum/extensible/string/unknown-value")
       .put({
-        body: "Weekend",
-        headers: {
-          "content-type": "text/plain"
-        }
+        contentType: "application/json",
+        body: "Weekend"
       });
     assert.strictEqual(result.status, "204");
   });

@@ -6,12 +6,11 @@ import {
   standard5XXResponseDeserializer,
   User,
   userSerializer,
-  _createResponseDeserializer,
-} from "../../models/models.js";
-import {
+  UserCreatedResponse,
+  userCreatedResponseDeserializer,
   userExistsResponseDeserializer,
   invalidUserResponseDeserializer,
-} from "../../models/users/models.js";
+} from "../../models/models.js";
 import { UsersCreateOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -40,12 +39,7 @@ export function _createSend(
 
 export async function _createDeserialize(
   result: PathUncheckedResponse,
-): Promise<{
-  id: number;
-  username: string;
-  email: string;
-  token: string;
-}> {
+): Promise<UserCreatedResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -62,19 +56,14 @@ export async function _createDeserialize(
     throw error;
   }
 
-  return _createResponseDeserializer(result.body);
+  return userCreatedResponseDeserializer(result.body);
 }
 
 export async function create(
   context: Client,
   user: User,
   options: UsersCreateOptionalParams = { requestOptions: {} },
-): Promise<{
-  id: number;
-  username: string;
-  email: string;
-  token: string;
-}> {
+): Promise<UserCreatedResponse> {
   const result = await _createSend(context, user, options);
   return _createDeserialize(result);
 }

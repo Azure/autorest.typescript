@@ -3,22 +3,22 @@
 
 import { AnomalyDetectorContext as Client } from "../index.js";
 import {
-  MultivariateMultivariateDetectionResult,
-  multivariateMultivariateDetectionResultDeserializer,
-  MultivariateMultivariateBatchDetectionOptions,
-  multivariateMultivariateBatchDetectionOptionsSerializer,
-  multivariateResponseErrorDeserializer,
-  MultivariateModelInfo,
-  multivariateModelInfoSerializer,
-  MultivariateAnomalyDetectionModel,
-  multivariateAnomalyDetectionModelDeserializer,
-  _MultivariateModelList,
-  _multivariateModelListDeserializer,
-  MultivariateMultivariateLastDetectionOptions,
-  multivariateMultivariateLastDetectionOptionsSerializer,
-  MultivariateMultivariateLastDetectionResult,
-  multivariateMultivariateLastDetectionResultDeserializer,
-} from "../../models/multivariate/models.js";
+  AnomalyDetectorMultivariateMultivariateDetectionResult,
+  anomalyDetectorMultivariateMultivariateDetectionResultDeserializer,
+  AnomalyDetectorMultivariateMultivariateBatchDetectionOptions,
+  anomalyDetectorMultivariateMultivariateBatchDetectionOptionsSerializer,
+  anomalyDetectorMultivariateResponseErrorDeserializer,
+  AnomalyDetectorMultivariateModelInfo,
+  anomalyDetectorMultivariateModelInfoSerializer,
+  AnomalyDetectorMultivariateAnomalyDetectionModel,
+  anomalyDetectorMultivariateAnomalyDetectionModelDeserializer,
+  _AnomalyDetectorMultivariateModelList,
+  _anomalyDetectorMultivariateModelListDeserializer,
+  AnomalyDetectorMultivariateMultivariateLastDetectionOptions,
+  anomalyDetectorMultivariateMultivariateLastDetectionOptionsSerializer,
+  AnomalyDetectorMultivariateMultivariateLastDetectionResult,
+  anomalyDetectorMultivariateMultivariateLastDetectionResultDeserializer,
+} from "../../models/anomalyDetector/multivariate/models.js";
 import {
   MultivariateDetectMultivariateLastAnomalyOptionalParams,
   MultivariateDetectMultivariateBatchAnomalyOptionalParams,
@@ -43,7 +43,7 @@ import {
 export function _detectMultivariateLastAnomalySend(
   context: Client,
   modelId: string,
-  options: MultivariateMultivariateLastDetectionOptions,
+  options: AnomalyDetectorMultivariateMultivariateLastDetectionOptions,
   optionalParams: MultivariateDetectMultivariateLastAnomalyOptionalParams = {
     requestOptions: {},
   },
@@ -66,21 +66,27 @@ export function _detectMultivariateLastAnomalySend(
         accept: "application/json",
         ...optionalParams.requestOptions?.headers,
       },
-      body: multivariateMultivariateLastDetectionOptionsSerializer(options),
+      body: anomalyDetectorMultivariateMultivariateLastDetectionOptionsSerializer(
+        options,
+      ),
     });
 }
 
 export async function _detectMultivariateLastAnomalyDeserialize(
   result: PathUncheckedResponse,
-): Promise<MultivariateMultivariateLastDetectionResult> {
+): Promise<AnomalyDetectorMultivariateMultivariateLastDetectionResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = multivariateResponseErrorDeserializer(result.body);
+    error.details = anomalyDetectorMultivariateResponseErrorDeserializer(
+      result.body,
+    );
     throw error;
   }
 
-  return multivariateMultivariateLastDetectionResultDeserializer(result.body);
+  return anomalyDetectorMultivariateMultivariateLastDetectionResultDeserializer(
+    result.body,
+  );
 }
 
 /**
@@ -92,11 +98,11 @@ export async function _detectMultivariateLastAnomalyDeserialize(
 export async function detectMultivariateLastAnomaly(
   context: Client,
   modelId: string,
-  options: MultivariateMultivariateLastDetectionOptions,
+  options: AnomalyDetectorMultivariateMultivariateLastDetectionOptions,
   optionalParams: MultivariateDetectMultivariateLastAnomalyOptionalParams = {
     requestOptions: {},
   },
-): Promise<MultivariateMultivariateLastDetectionResult> {
+): Promise<AnomalyDetectorMultivariateMultivariateLastDetectionResult> {
   const result = await _detectMultivariateLastAnomalySend(
     context,
     modelId,
@@ -109,7 +115,7 @@ export async function detectMultivariateLastAnomaly(
 export function _detectMultivariateBatchAnomalySend(
   context: Client,
   modelId: string,
-  options: MultivariateMultivariateBatchDetectionOptions,
+  options: AnomalyDetectorMultivariateMultivariateBatchDetectionOptions,
   optionalParams: MultivariateDetectMultivariateBatchAnomalyOptionalParams = {
     requestOptions: {},
   },
@@ -132,21 +138,27 @@ export function _detectMultivariateBatchAnomalySend(
         accept: "application/json",
         ...optionalParams.requestOptions?.headers,
       },
-      body: multivariateMultivariateBatchDetectionOptionsSerializer(options),
+      body: anomalyDetectorMultivariateMultivariateBatchDetectionOptionsSerializer(
+        options,
+      ),
     });
 }
 
 export async function _detectMultivariateBatchAnomalyDeserialize(
   result: PathUncheckedResponse,
-): Promise<MultivariateMultivariateDetectionResult> {
+): Promise<AnomalyDetectorMultivariateMultivariateDetectionResult> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = multivariateResponseErrorDeserializer(result.body);
+    error.details = anomalyDetectorMultivariateResponseErrorDeserializer(
+      result.body,
+    );
     throw error;
   }
 
-  return multivariateMultivariateDetectionResultDeserializer(result.body);
+  return anomalyDetectorMultivariateMultivariateDetectionResultDeserializer(
+    result.body,
+  );
 }
 
 /**
@@ -160,11 +172,11 @@ export async function _detectMultivariateBatchAnomalyDeserialize(
 export async function detectMultivariateBatchAnomaly(
   context: Client,
   modelId: string,
-  options: MultivariateMultivariateBatchDetectionOptions,
+  options: AnomalyDetectorMultivariateMultivariateBatchDetectionOptions,
   optionalParams: MultivariateDetectMultivariateBatchAnomalyOptionalParams = {
     requestOptions: {},
   },
-): Promise<MultivariateMultivariateDetectionResult> {
+): Promise<AnomalyDetectorMultivariateMultivariateDetectionResult> {
   const result = await _detectMultivariateBatchAnomalySend(
     context,
     modelId,
@@ -203,15 +215,19 @@ export function _getMultivariateModelSend(
 
 export async function _getMultivariateModelDeserialize(
   result: PathUncheckedResponse,
-): Promise<MultivariateAnomalyDetectionModel> {
+): Promise<AnomalyDetectorMultivariateAnomalyDetectionModel> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = multivariateResponseErrorDeserializer(result.body);
+    error.details = anomalyDetectorMultivariateResponseErrorDeserializer(
+      result.body,
+    );
     throw error;
   }
 
-  return multivariateAnomalyDetectionModelDeserializer(result.body);
+  return anomalyDetectorMultivariateAnomalyDetectionModelDeserializer(
+    result.body,
+  );
 }
 
 /**
@@ -224,7 +240,7 @@ export async function getMultivariateModel(
   options: MultivariateGetMultivariateModelOptionalParams = {
     requestOptions: {},
   },
-): Promise<MultivariateAnomalyDetectionModel> {
+): Promise<AnomalyDetectorMultivariateAnomalyDetectionModel> {
   const result = await _getMultivariateModelSend(context, modelId, options);
   return _getMultivariateModelDeserialize(result);
 }
@@ -262,7 +278,9 @@ export async function _deleteMultivariateModelDeserialize(
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = multivariateResponseErrorDeserializer(result.body);
+    error.details = anomalyDetectorMultivariateResponseErrorDeserializer(
+      result.body,
+    );
     throw error;
   }
 
@@ -310,15 +328,17 @@ export function _listMultivariateModelsSend(
 
 export async function _listMultivariateModelsDeserialize(
   result: PathUncheckedResponse,
-): Promise<_MultivariateModelList> {
+): Promise<_AnomalyDetectorMultivariateModelList> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = multivariateResponseErrorDeserializer(result.body);
+    error.details = anomalyDetectorMultivariateResponseErrorDeserializer(
+      result.body,
+    );
     throw error;
   }
 
-  return _multivariateModelListDeserializer(result.body);
+  return _anomalyDetectorMultivariateModelListDeserializer(result.body);
 }
 
 /** List models of a resource. */
@@ -327,7 +347,7 @@ export function listMultivariateModels(
   options: MultivariateListMultivariateModelsOptionalParams = {
     requestOptions: {},
   },
-): PagedAsyncIterableIterator<MultivariateAnomalyDetectionModel> {
+): PagedAsyncIterableIterator<AnomalyDetectorMultivariateAnomalyDetectionModel> {
   return buildPagedAsyncIterator(
     context,
     () => _listMultivariateModelsSend(context, options),
@@ -339,7 +359,7 @@ export function listMultivariateModels(
 
 export function _trainMultivariateModelSend(
   context: Client,
-  modelInfo: MultivariateModelInfo,
+  modelInfo: AnomalyDetectorMultivariateModelInfo,
   options: MultivariateTrainMultivariateModelOptionalParams = {
     requestOptions: {},
   },
@@ -353,21 +373,25 @@ export function _trainMultivariateModelSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      body: multivariateModelInfoSerializer(modelInfo),
+      body: anomalyDetectorMultivariateModelInfoSerializer(modelInfo),
     });
 }
 
 export async function _trainMultivariateModelDeserialize(
   result: PathUncheckedResponse,
-): Promise<MultivariateAnomalyDetectionModel> {
+): Promise<AnomalyDetectorMultivariateAnomalyDetectionModel> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = multivariateResponseErrorDeserializer(result.body);
+    error.details = anomalyDetectorMultivariateResponseErrorDeserializer(
+      result.body,
+    );
     throw error;
   }
 
-  return multivariateAnomalyDetectionModelDeserializer(result.body);
+  return anomalyDetectorMultivariateAnomalyDetectionModelDeserializer(
+    result.body,
+  );
 }
 
 /**
@@ -381,11 +405,11 @@ export async function _trainMultivariateModelDeserialize(
  */
 export async function trainMultivariateModel(
   context: Client,
-  modelInfo: MultivariateModelInfo,
+  modelInfo: AnomalyDetectorMultivariateModelInfo,
   options: MultivariateTrainMultivariateModelOptionalParams = {
     requestOptions: {},
   },
-): Promise<MultivariateAnomalyDetectionModel> {
+): Promise<AnomalyDetectorMultivariateAnomalyDetectionModel> {
   const result = await _trainMultivariateModelSend(context, modelInfo, options);
   return _trainMultivariateModelDeserialize(result);
 }
@@ -419,15 +443,19 @@ export function _getMultivariateBatchDetectionResultSend(
 
 export async function _getMultivariateBatchDetectionResultDeserialize(
   result: PathUncheckedResponse,
-): Promise<MultivariateMultivariateDetectionResult> {
+): Promise<AnomalyDetectorMultivariateMultivariateDetectionResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
-    error.details = multivariateResponseErrorDeserializer(result.body);
+    error.details = anomalyDetectorMultivariateResponseErrorDeserializer(
+      result.body,
+    );
     throw error;
   }
 
-  return multivariateMultivariateDetectionResultDeserializer(result.body);
+  return anomalyDetectorMultivariateMultivariateDetectionResultDeserializer(
+    result.body,
+  );
 }
 
 /**
@@ -440,7 +468,7 @@ export async function getMultivariateBatchDetectionResult(
   options: MultivariateGetMultivariateBatchDetectionResultOptionalParams = {
     requestOptions: {},
   },
-): Promise<MultivariateMultivariateDetectionResult> {
+): Promise<AnomalyDetectorMultivariateMultivariateDetectionResult> {
   const result = await _getMultivariateBatchDetectionResultSend(
     context,
     resultId,

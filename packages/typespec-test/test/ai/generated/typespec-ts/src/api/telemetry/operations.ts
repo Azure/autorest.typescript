@@ -5,7 +5,7 @@ import { AIProjectContext as Client } from "../index.js";
 import {
   GetAppInsightsResponse,
   getAppInsightsResponseDeserializer,
-} from "../../models/models.js";
+} from "../../models/azure/ai/projects/models.js";
 import { TelemetryGetAppInsightsOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {

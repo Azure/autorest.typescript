@@ -18,7 +18,7 @@ describe("VersioningReturnTypeChangedFrom Rest Client", () => {
   it("versioning returnTypeChangedFrom test", async () => {
     const result = await client.path("/test").post({
       body: "test",
-      contentType: "text/plain"
+      contentType: "application/json"
     });
     assert.strictEqual(result.status, "200");
     assert.strictEqual(result.body, "test");

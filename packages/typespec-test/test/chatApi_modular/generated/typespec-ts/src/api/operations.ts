@@ -11,7 +11,7 @@ import {
   chatCompletionOptionsRecordSerializer,
   ChatCompletionRecord,
   chatCompletionRecordDeserializer,
-} from "../models/models.js";
+} from "../models/azure/ai/chatProtocol/models.js";
 import {
   CreateOptionalParams,
   CreateStreamingOptionalParams,

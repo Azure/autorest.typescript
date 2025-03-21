@@ -945,7 +945,7 @@
     "securitySchemes": {
       "BearerAuth": {
         "type": "http",
-        "scheme": "bearer"
+        "scheme": "Bearer"
       },
       "ApiKeyAuth": {
         "type": "apiKey",
