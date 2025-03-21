@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { WidgetServiceContext as Client } from "../index.js";
+import { SAPWidgetServiceContext as Client } from "../index.js";
 import {
-  User,
-  userSerializer,
-  userDeserializer,
+  SAPUser,
+  sapUserSerializer,
+  sapUserDeserializer,
   Widget,
   widgetErrorDeserializer,
   widgetArrayDeserializer,
@@ -75,7 +75,7 @@ export async function getBudgets(
 export function _createOrReplaceSend(
   context: Client,
   name: string,
-  resource: User,
+  resource: SAPUser,
   options: BudgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -97,28 +97,28 @@ export function _createOrReplaceSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      body: userSerializer(resource),
+      body: sapUserSerializer(resource),
     });
 }
 
 export async function _createOrReplaceDeserialize(
   result: PathUncheckedResponse,
-): Promise<User> {
+): Promise<SAPUser> {
   const expectedStatuses = ["201", "200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return userDeserializer(result.body);
+  return sapUserDeserializer(result.body);
 }
 
 /** Long-running resource create or replace operation template. */
 export function createOrReplace(
   context: Client,
   name: string,
-  resource: User,
+  resource: SAPUser,
   options: BudgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
-): PollerLike<OperationState<User>, User> {
+): PollerLike<OperationState<SAPUser>, SAPUser> {
   return getLongRunningPoller(
     context,
     _createOrReplaceDeserialize,
@@ -130,5 +130,5 @@ export function createOrReplace(
         _createOrReplaceSend(context, name, resource, options),
       resourceLocationConfig: "original-uri",
     },
-  ) as PollerLike<OperationState<User>, User>;
+  ) as PollerLike<OperationState<SAPUser>, SAPUser>;
 }

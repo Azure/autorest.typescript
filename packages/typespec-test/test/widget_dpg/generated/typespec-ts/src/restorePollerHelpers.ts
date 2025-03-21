@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { WidgetServiceClient } from "./widgetServiceClient.js";
+import { SAPWidgetServiceClient } from "./sapWidgetServiceClient.js";
 import { _createOrReplaceDeserialize } from "./api/budgets/operations.js";
-import { _createOrReplaceDeserialize as _createOrReplaceDeserializeWidgets } from "./api/widgets/operations.js";
+import { _createOrReplaceDeserialize as _createOrReplaceDeserializeSapWidgets } from "./api/sapWidgets/operations.js";
 import { getLongRunningPoller } from "./static-helpers/pollingHelpers.js";
 import {
   OperationOptions,
@@ -37,7 +37,7 @@ export interface RestorePollerOptions<
  * needs to be constructed after the original one is not in scope.
  */
 export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
-  client: WidgetServiceClient,
+  client: SAPWidgetServiceClient,
   serializedState: string,
   sourceOperation: (
     ...args: any[]
@@ -87,7 +87,7 @@ const deserializeMap: Record<string, DeserializationHelper> = {
     expectedStatuses: ["201", "200"],
   },
   "PUT /widgets/widgets/createOrReplace/users/{name}": {
-    deserializer: _createOrReplaceDeserializeWidgets,
+    deserializer: _createOrReplaceDeserializeSapWidgets,
     expectedStatuses: ["201", "200"],
   },
 };

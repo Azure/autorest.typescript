@@ -30,8 +30,6 @@ import {
   getDocsFromDescription,
   getFixmeForMultilineDocs
 } from "./docsHelpers.js";
-import { toPascalCase } from "../../utils/casingUtils.js";
-
 import { AzurePollingDependencies } from "../external-dependencies.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { buildModelDeserializer } from "../serialization/buildDeserializerFunction.js";
@@ -644,7 +642,7 @@ export function getOperationOptionsName(
     includeGroupName && operation.name.indexOf("_") === -1
       ? getClassicalLayerPrefix(prefixes, NameType.Interface)
       : "";
-  const optionName = `${prefix}${toPascalCase(operation.name)}OptionalParams`;
+  const optionName = `${prefix}${normalizeName(operation.name, NameType.Interface)}OptionalParams`;
   return optionName;
 }
 

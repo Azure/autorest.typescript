@@ -9,7 +9,7 @@ import {
 } from "./api/dataProducts/operations.js";
 import {
   _deleteDataDeserialize,
-  _$deleteDeserialize as _deleteDeserializeDataTypes,
+  _$deleteDeserialize as _$deleteDeserializeDataTypes,
   _updateDeserialize as _updateDeserializeDataTypes,
   _createDeserialize as _createDeserializeDataTypes,
 } from "./api/dataTypes/operations.js";
@@ -107,7 +107,7 @@ const deserializeMap: Record<string, DeserializationHelper> = {
     },
   "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}":
     {
-      deserializer: _deleteDeserializeDataTypes,
+      deserializer: _$deleteDeserializeDataTypes,
       expectedStatuses: ["202", "204", "200"],
     },
   "PATCH /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}":
