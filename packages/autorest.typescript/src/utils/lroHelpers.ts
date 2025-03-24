@@ -4,7 +4,7 @@
 export const createLroImports = (useLegacyLro?: boolean) =>
   useLegacyLro
     ? ["PollerLike", "PollOperationState", "LroEngine"]
-    : ["SimplePollerLike", "OperationState", "createHttpPoller"];
+    : ["SimplePollerLike", "OperationState"];
 
 export function createLroType(inputs: {
   useLegacyLro?: boolean;

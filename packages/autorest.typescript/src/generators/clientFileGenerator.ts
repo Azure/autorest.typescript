@@ -33,7 +33,6 @@ import { EndpointDetails } from "../transforms/urlTransforms";
 import { PackageDetails } from "../models/packageDetails";
 import { getSecurityInfoFromModel } from "../utils/schemaHelpers";
 import { createLroImports } from "../utils/lroHelpers";
-import { getImportModuleName } from "../utils/nameConstructors";
 
 type OperationDeclarationDetails = { name: string; typeName: string };
 
@@ -45,7 +44,6 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     packageDetails,
     coreHttpCompatMode,
     useLegacyLro,
-    moduleKind
   } = getAutorestOptions();
   const { addCredentials } = getSecurityInfoFromModel(clientDetails.security);
   const hasMappers = !!clientDetails.mappers.length;
@@ -115,6 +113,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
       "SendRequest"
     ];
     clientFile.addImportDeclaration({
+      isTypeOnly: true,
       namedImports: coreRestPipelineImports,
       moduleSpecifier: "@azure/core-rest-pipeline"
     });
@@ -127,6 +126,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     });
     if (hasCredentials) {
       clientFile.addImportDeclaration({
+        isTypeOnly: true,
         namespaceImport: "coreAuth",
         moduleSpecifier: "@azure/core-auth"
       });
@@ -144,7 +144,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     });
     clientFile.addImportDeclaration({
       namedImports: ["createLroSpec"],
-      moduleSpecifier: getImportModuleName(`./lroImpl`, moduleKind)
+      moduleSpecifier: `./lroImpl.js`
     });
   }
 
@@ -158,10 +158,11 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
             true /* shouldGuard */
           )}Impl`
       ),
-      moduleSpecifier: getImportModuleName({ cjsName: "./operations", esModulesName: "./operations/index.js" }, moduleKind)
+      moduleSpecifier: "./operations/index.js"
     });
 
     clientFile.addImportDeclaration({
+      isTypeOnly: true,
       namedImports: importedOperations.map(
         o =>
           `${normalizeName(
@@ -170,7 +171,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
             true /* shouldGuard */
           )}`
       ),
-      moduleSpecifier: getImportModuleName({ cjsName: "./operationsInterfaces", esModulesName: "./operationsInterfaces/index.js" }, moduleKind)
+      moduleSpecifier: "./operationsInterfaces/index.js"
     });
   }
 
@@ -178,7 +179,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     addTracingOperationImports(clientFile, ".");
     clientFile.addImportDeclaration({
       namespaceImport: "Parameters",
-      moduleSpecifier: getImportModuleName("./models/parameters", moduleKind)
+      moduleSpecifier: "./models/parameters.js"
     });
   }
 
@@ -186,7 +187,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   if (hasInlineOperations && hasMappers) {
     clientFile.addImportDeclaration({
       namespaceImport: "Mappers",
-      moduleSpecifier: getImportModuleName("./models/mappers", moduleKind)
+      moduleSpecifier: "./models/mappers.js"
     });
   }
 
@@ -242,8 +243,9 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   // Use named import from Models
   if (importedModels.size) {
     clientFile.addImportDeclaration({
+      isTypeOnly: true,
       namedImports: [...importedModels],
-      moduleSpecifier: getImportModuleName({ cjsName: "./models", esModulesName: "./models/index.js" }, moduleKind)
+      moduleSpecifier: "./models/index.js"
     });
   }
 

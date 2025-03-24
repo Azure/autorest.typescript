@@ -51,7 +51,6 @@ import {
 import { calculateMethodName } from "./utils/operationsUtils";
 import { getAutorestOptions } from "../autorestSession";
 import { createLroImports, createLroType } from "../utils/lroHelpers";
-import { getImportModuleName } from "../utils/nameConstructors";
 
 /**
  * Function that writes the code for all the operations.
@@ -66,7 +65,7 @@ export function generateOperations(
   clientDetails: ClientDetails,
   project: Project
 ): void {
-  const { srcPath, moduleKind } = getAutorestOptions();
+  const { srcPath } = getAutorestOptions();
   let fileNames: string[] = [];
 
   // Toplevel operations are inlined in the client
@@ -89,7 +88,7 @@ export function generateOperations(
     operationIndexFile.addExportDeclarations(
       fileNames.map(fileName => {
         return {
-          moduleSpecifier: getImportModuleName(`./${fileName}`, moduleKind)
+          moduleSpecifier: `./${fileName}.js`
         } as ExportDeclarationStructure;
       })
     );
@@ -466,7 +465,6 @@ function addClass(
   clientDetails: ClientDetails
 ) {
   let importedModels = new Set<string>();
-  const { moduleKind } = getAutorestOptions();
 
   let allModelsNames = getAllModelsNames(clientDetails);
 
@@ -527,8 +525,9 @@ function addClass(
     });
 
     operationGroupFile.addImportDeclaration({
+      isTypeOnly: true,
       namedImports,
-      moduleSpecifier: getImportModuleName({ cjsName: "../models", esModulesName: "../models/index.js" }, moduleKind)
+      moduleSpecifier: "../models/index.js"
     });
   }
 }
@@ -1237,7 +1236,7 @@ function addImports(
   operationGroupFile: SourceFile,
   clientDetails: ClientDetails
 ) {
-  const { useCoreV2, useLegacyLro, moduleKind } = getAutorestOptions();
+  const { useCoreV2, useLegacyLro } = getAutorestOptions();
 
   const { className, mappers } = clientDetails;
   addPagingEsNextRef(operationGroupDetails.operations, operationGroupFile);
@@ -1251,8 +1250,9 @@ function addImports(
   );
 
   operationGroupFile.addImportDeclaration({
+    isTypeOnly: true,
     namedImports: [`${operationGroupInterfaceName}`],
-    moduleSpecifier: getImportModuleName({ cjsName: "../operationsInterfaces", esModulesName: "../operationsInterfaces/index.js" }, moduleKind)
+    moduleSpecifier: "../operationsInterfaces/index.js"
   });
 
   if (!useCoreV2) {
@@ -1282,14 +1282,14 @@ function addImports(
   if (mappers.length) {
     operationGroupFile.addImportDeclaration({
       namespaceImport: "Mappers",
-      moduleSpecifier: getImportModuleName("../models/mappers", moduleKind)
+      moduleSpecifier: "../models/mappers.js"
     });
   }
 
   if (shouldImportParameters(clientDetails)) {
     operationGroupFile.addImportDeclaration({
       namespaceImport: "Parameters",
-      moduleSpecifier: getImportModuleName("../models/parameters", moduleKind)
+      moduleSpecifier: "../models/parameters.js"
     });
   }
 
@@ -1298,18 +1298,26 @@ function addImports(
   const clientFileName = normalizeName(clientClassName, NameType.File);
 
   operationGroupFile.addImportDeclaration({
+    isTypeOnly: true,
     namedImports: [`${clientClassName}`],
-    moduleSpecifier: getImportModuleName(`../${clientFileName}`, moduleKind)
+    moduleSpecifier: `../${clientFileName}.js`
   });
 
   if (hasLroOperation(operationGroupDetails)) {
     operationGroupFile.addImportDeclaration({
+      isTypeOnly: true,
       namedImports: createLroImports(useLegacyLro),
       moduleSpecifier: "@azure/core-lro"
     });
+    if (!useLegacyLro) {
+      operationGroupFile.addImportDeclaration({
+        namedImports: ["createHttpPoller"],
+        moduleSpecifier: "@azure/core-lro"
+      });
+    }
     operationGroupFile.addImportDeclaration({
       namedImports: ["createLroSpec"],
-      moduleSpecifier: getImportModuleName(`../lroImpl`, moduleKind)
+      moduleSpecifier: `../lroImpl.js`
     });
   }
 }
