@@ -1,18 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  OpenAIContext as Client,
-  GenerateSpeechFromTextOptionalParams,
-  GetAudioTranscriptionAsPlainTextOptionalParams,
-  GetAudioTranscriptionAsResponseObjectOptionalParams,
-  GetAudioTranslationAsPlainTextOptionalParams,
-  GetAudioTranslationAsResponseObjectOptionalParams,
-  GetChatCompletionsOptionalParams,
-  GetCompletionsOptionalParams,
-  GetEmbeddingsOptionalParams,
-  GetImageGenerationsOptionalParams,
-} from "./index.js";
+import { OpenAIContext as Client } from "./index.js";
 import {
   AudioTranscriptionOptions,
   audioTranscriptionOptionsSerializer,
@@ -42,6 +31,18 @@ import {
   embeddingsDeserializer,
 } from "../models/models.js";
 import {
+  GetEmbeddingsOptionalParams,
+  GenerateSpeechFromTextOptionalParams,
+  GetImageGenerationsOptionalParams,
+  GetChatCompletionsOptionalParams,
+  GetCompletionsOptionalParams,
+  GetAudioTranslationAsResponseObjectOptionalParams,
+  GetAudioTranslationAsPlainTextOptionalParams,
+  GetAudioTranscriptionAsResponseObjectOptionalParams,
+  GetAudioTranscriptionAsPlainTextOptionalParams,
+} from "./options.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
@@ -54,8 +55,18 @@ export function _getEmbeddingsSend(
   body: EmbeddingsOptions,
   options: GetEmbeddingsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/deployments/{deploymentId}/embeddings{?api-version}",
+    {
+      deploymentId: deploymentId,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/deployments/{deploymentId}/embeddings", deploymentId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
@@ -63,7 +74,6 @@ export function _getEmbeddingsSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: embeddingsOptionsSerializer(body),
     });
 }
@@ -96,8 +106,18 @@ export function _generateSpeechFromTextSend(
   body: SpeechGenerationOptions,
   options: GenerateSpeechFromTextOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/deployments/{deploymentId}/audio/speech{?api-version}",
+    {
+      deploymentId: deploymentId,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/deployments/{deploymentId}/audio/speech", deploymentId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
@@ -105,7 +125,6 @@ export function _generateSpeechFromTextSend(
         accept: "application/octet-stream",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: speechGenerationOptionsSerializer(body),
     });
 }
@@ -143,8 +162,18 @@ export function _getImageGenerationsSend(
   body: ImageGenerationOptions,
   options: GetImageGenerationsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/deployments/{deploymentId}/images/generations{?api-version}",
+    {
+      deploymentId: deploymentId,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/deployments/{deploymentId}/images/generations", deploymentId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
@@ -152,7 +181,6 @@ export function _getImageGenerationsSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: imageGenerationOptionsSerializer(body),
     });
 }
@@ -190,8 +218,18 @@ export function _getChatCompletionsSend(
   body: ChatCompletionsOptions,
   options: GetChatCompletionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/deployments/{deploymentId}/chat/completions{?api-version}",
+    {
+      deploymentId: deploymentId,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/deployments/{deploymentId}/chat/completions", deploymentId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
@@ -199,7 +237,6 @@ export function _getChatCompletionsSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: chatCompletionsOptionsSerializer(body),
     });
 }
@@ -241,8 +278,18 @@ export function _getCompletionsSend(
   body: CompletionsOptions,
   options: GetCompletionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/deployments/{deploymentId}/completions{?api-version}",
+    {
+      deploymentId: deploymentId,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/deployments/{deploymentId}/completions", deploymentId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
@@ -250,7 +297,6 @@ export function _getCompletionsSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: completionsOptionsSerializer(body),
     });
 }
@@ -294,8 +340,18 @@ export function _getAudioTranslationAsResponseObjectSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/deployments/{deploymentId}/audio/translations{?api-version}",
+    {
+      deploymentId: deploymentId,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/deployments/{deploymentId}/audio/translations", deploymentId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "multipart/form-data",
@@ -303,7 +359,6 @@ export function _getAudioTranslationAsResponseObjectSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: audioTranslationOptionsSerializer(body),
     });
 }
@@ -345,13 +400,22 @@ export function _getAudioTranslationAsPlainTextSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/deployments/{deploymentId}/audio/translations{?api-version}",
+    {
+      deploymentId: deploymentId,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/deployments/{deploymentId}/audio/translations", deploymentId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "multipart/form-data",
       headers: { accept: "text/plain", ...options.requestOptions?.headers },
-      queryParameters: { "api-version": context.apiVersion },
       body: audioTranslationOptionsSerializer(body),
     });
 }
@@ -393,8 +457,18 @@ export function _getAudioTranscriptionAsResponseObjectSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/deployments/{deploymentId}/audio/transcriptions{?api-version}",
+    {
+      deploymentId: deploymentId,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/deployments/{deploymentId}/audio/transcriptions", deploymentId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "multipart/form-data",
@@ -402,7 +476,6 @@ export function _getAudioTranscriptionAsResponseObjectSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: audioTranscriptionOptionsSerializer(body),
     });
 }
@@ -447,13 +520,22 @@ export function _getAudioTranscriptionAsPlainTextSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/deployments/{deploymentId}/audio/transcriptions{?api-version}",
+    {
+      deploymentId: deploymentId,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/deployments/{deploymentId}/audio/transcriptions", deploymentId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "multipart/form-data",
       headers: { accept: "text/plain", ...options.requestOptions?.headers },
-      queryParameters: { "api-version": context.apiVersion },
       body: audioTranscriptionOptionsSerializer(body),
     });
 }

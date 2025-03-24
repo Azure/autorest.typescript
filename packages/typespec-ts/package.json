@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/typespec-ts",
-  "version": "0.38.3",
+  "version": "0.38.4",
   "description": "An experimental TypeSpec emitter for TypeScript RLC",
   "main": "dist/src/index.js",
   "type": "module",
@@ -26,7 +26,7 @@
     "lint:fix": "eslint src --fix --ext .ts",
     "format": "npm run -s prettier -- --write",
     "check-format": "npm run prettier -- --check",
-    "prettier": "prettier --config ./.prettierrc \"src/**/*.ts\"",
+    "prettier": "prettier --config ./.prettierrc \"{src,test,static}/**/*.ts\" \"!test/**/generated/**/*.ts\"",
     "check:tree": "node --loader ts-node/esm ./test/commands/check-clean-tree.ts",
     "integration-test-ci": "npm-run-all copy:typespec integration-test-ci:rlc integration-test-ci:azure-rlc integration-test-ci:modular integration-test-ci:azure-modular",
     "integration-test-ci:sequential": "npm-run-all --serial copy:typespec integration-test-ci:modular && npm run integration-test-ci:modular",
@@ -58,7 +58,7 @@
     "stop-test-server": "npx tsp-spector server stop",
     "unit-test": "npm-run-all --parallel unit-test:rlc unit-test:modular",
     "unit-test:rlc": "cross-env TS_NODE_PROJECT=tsconfig.json mocha -r ts-node/register --experimental-specifier-resolution=node --experimental-modules=true  --timeout 36000 './test/unit/**/*.spec.ts'",
-    "unit-test:modular": "cross-env TS_NODE_PROJECT=tsconfig.json mocha -r ts-node/register --experimental-specifier-resolution=node --experimental-modules=true  --no-timeout './test/modularUnit/**/*.spec.ts'"
+    "unit-test:modular": "cross-env TS_NODE_PROJECT=tsconfig.test.json mocha -r ts-node/register --experimental-specifier-resolution=node --experimental-modules=true  --no-timeout './test/modularUnit/**/*.spec.ts'"
   },
   "author": "Jose Heredia <joheredi@microsoft.com>",
   "license": "MIT",
@@ -103,7 +103,7 @@
     "prettier": "^3.3.3",
     "rimraf": "^5.0.0",
     "ts-node": "~10.9.1",
-    "typescript": "~5.6.2",
+    "typescript": "~5.7.2",
     "vitest": "~1.6.0",
     "@vitest/coverage-v8": "~1.6.0",
     "@vitest/coverage-istanbul": "~1.6.0",
@@ -121,7 +121,7 @@
     "@typespec/versioning": ">=0.66.0 <1.0.0"
   },
   "dependencies": {
-    "@azure-tools/rlc-common": "workspace:^0.38.3",
+    "@azure-tools/rlc-common": "workspace:^0.38.4",
     "fs-extra": "^11.1.0",
     "lodash": "^4.17.21",
     "prettier": "^3.3.3",

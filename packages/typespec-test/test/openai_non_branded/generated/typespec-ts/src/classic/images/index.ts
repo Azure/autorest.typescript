@@ -1,7 +1,6 @@
 // Licensed under the MIT License.
 
 import { OpenAIContext } from "../../api/openAIContext.js";
-import { createVariation, createEdit, create } from "../../api/images/index.js";
 import {
   CreateImageRequest,
   ImagesResponse,
@@ -12,7 +11,12 @@ import {
   ImagesCreateVariationOptionalParams,
   ImagesCreateEditOptionalParams,
   ImagesCreateOptionalParams,
-} from "../../api/options.js";
+} from "../../api/images/options.js";
+import {
+  createVariation,
+  createEdit,
+  create,
+} from "../../api/images/operations.js";
 
 /** Interface representing a Images operations. */
 export interface ImagesOperations {

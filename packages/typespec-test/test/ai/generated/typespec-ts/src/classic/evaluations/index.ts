@@ -2,18 +2,7 @@
 // Licensed under the MIT License.
 
 import { AIProjectContext } from "../../api/aiProjectContext.js";
-import {
-  disableSchedule,
-  listSchedule,
-  createOrReplaceSchedule,
-  getSchedule,
-  update,
-  list,
-  create,
-  get,
-} from "../../api/evaluations/index.js";
 import { Evaluation, EvaluationSchedule } from "../../models/models.js";
-import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import {
   EvaluationsDisableScheduleOptionalParams,
   EvaluationsListScheduleOptionalParams,
@@ -23,7 +12,18 @@ import {
   EvaluationsListOptionalParams,
   EvaluationsCreateOptionalParams,
   EvaluationsGetOptionalParams,
-} from "../../api/options.js";
+} from "../../api/evaluations/options.js";
+import {
+  disableSchedule,
+  listSchedule,
+  createOrReplaceSchedule,
+  getSchedule,
+  update,
+  list,
+  create,
+  get,
+} from "../../api/evaluations/operations.js";
+import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 
 /** Interface representing a Evaluations operations. */
 export interface EvaluationsOperations {

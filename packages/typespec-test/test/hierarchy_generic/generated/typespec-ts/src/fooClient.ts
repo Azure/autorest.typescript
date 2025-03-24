@@ -3,14 +3,10 @@
 
 import { _getDOperations, DOperations } from "./classic/d/index.js";
 import { _getBOperations, BOperations } from "./classic/b/index.js";
-import {
-  createFoo,
-  FooContext,
-  FooClientOptionalParams,
-  op1,
-  Op1OptionalParams,
-} from "./api/index.js";
+import { createFoo, FooContext, FooClientOptionalParams } from "./api/index.js";
 import { A } from "./models/models.js";
+import { Op1OptionalParams } from "./api/options.js";
+import { op1 } from "./api/operations.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { FooClientOptionalParams } from "./api/fooContext.js";

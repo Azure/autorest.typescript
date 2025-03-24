@@ -10,7 +10,6 @@ import { ReferenceableSymbol } from "../dependency.js";
 import { provideDependencies, useDependencies } from "./useDependencies.js";
 import { refkey } from "../refkey.js";
 import {
-  isStaticHelperMetadata,
   SourceFileSymbol,
   StaticHelperMetadata
 } from "../load-static-helpers.js";
@@ -182,10 +181,13 @@ class BinderImp implements Binder {
     if (typeof fileWhereImportPointsTo === "string") {
       moduleSpecifier = fileWhereImportPointsTo;
     } else {
+      const relative = fileWhereImportIsAdded
+        .getRelativePathTo(fileWhereImportPointsTo)
+        .replace(".ts", ".js");
       moduleSpecifier =
-        fileWhereImportIsAdded.getRelativePathAsModuleSpecifierTo(
-          fileWhereImportPointsTo
-        ) + ".js";
+        relative.startsWith(".") || relative.startsWith("/")
+          ? relative
+          : `./${relative}`;
     }
 
     const importStructures = this.imports.get(fileWhereImportIsAdded) || [];
@@ -265,10 +267,8 @@ class BinderImp implements Binder {
       ...this.staticHelpers
     ]) {
       const placeholderKey = this.serializePlaceholder(declarationKey);
-      if (
-        isStaticHelperMetadata(declaration) &&
-        !countPlaceholderOccurrences(file, placeholderKey)
-      ) {
+      const occurences = countPlaceholderOccurrences(file, placeholderKey);
+      if (!occurences) {
         continue;
       }
 

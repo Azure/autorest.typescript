@@ -7,6 +7,7 @@ import { ModularEmitterOptions } from "./interfaces.js";
 import { join } from "path";
 import { SdkContext } from "../utils/interfaces.js";
 import { getModularClientOptions } from "../utils/clientUtils.js";
+import { useContext } from "../contextManager.js";
 
 export interface buildSubpathIndexFileOptions {
   exportIndex?: boolean;
@@ -21,6 +22,7 @@ export function buildSubpathIndexFile(
   client?: SdkClientType<SdkServiceOperation>,
   options: buildSubpathIndexFileOptions = {}
 ) {
+  const project = useContext("outputProject");
   const subfolder = client
     ? (getModularClientOptions(context, client).subfolder ?? "")
     : "";
@@ -29,7 +31,7 @@ export function buildSubpathIndexFile(
   const skipFiles = ["pagingHelpers.ts", "pollingHelpers.ts"];
   let folders = [];
   if (options.recursive) {
-    folders = emitterOptions.project
+    folders = project
       .getDirectories()
       .filter((dir) => {
         const formattedDir = dir.getPath().replace(/\\/g, "/");
@@ -39,7 +41,7 @@ export function buildSubpathIndexFile(
         );
         return (
           formattedDir.startsWith(targetPath) &&
-          !emitterOptions.project.getSourceFile(`${formattedDir}/index.ts`)
+          !project.getSourceFile(`${formattedDir}/index.ts`)
         );
       })
       .map((dir) => {
@@ -51,18 +53,25 @@ export function buildSubpathIndexFile(
   for (const folder of folders) {
     const apiFilePattern =
       subpath === "models" ? join(folder, "models.ts") : folder;
-    const apiFiles = emitterOptions.project.getSourceFiles().filter((file) => {
+    const apiFiles = project.getSourceFiles().filter((file) => {
+      if (subpath === "api" && options.recursive) {
+        return (
+          file.getDirectoryPath().replace(/\\/g, "/") ===
+          apiFilePattern.replace(/\\/g, "/")
+        );
+      }
       return file
         .getFilePath()
         .replace(/\\/g, "/")
-        .startsWith(apiFilePattern.replace(/\\/g, "/"));
+        .startsWith(
+          apiFilePattern.replace(/\\/g, "/") +
+            (apiFilePattern.endsWith("models.ts") ? "" : "/")
+        );
     });
     if (apiFiles.length === 0) {
       continue;
     }
-    const indexFile = emitterOptions.project.createSourceFile(
-      `${folder}/index.ts`
-    );
+    const indexFile = project.createSourceFile(`${folder}/index.ts`);
     for (const file of apiFiles) {
       const filePath = file.getFilePath();
       if (!options.exportIndex && filePath.endsWith("index.ts")) {
@@ -112,13 +121,15 @@ export function buildSubpathIndexFile(
             !["PagedResult", "BuildPagedAsyncIteratorOptions"].includes(ex)
         );
       }
-      indexFile.addExportDeclaration({
-        moduleSpecifier: `.${filePath
-          .replace(indexFile.getDirectoryPath(), "")
-          .replace(/\\/g, "/")
-          .replace(".ts", "")}.js`,
-        namedExports
-      });
+      if (namedExports.length > 0) {
+        indexFile.addExportDeclaration({
+          moduleSpecifier: `.${filePath
+            .replace(indexFile.getDirectoryPath(), "")
+            .replace(/\\/g, "/")
+            .replace(".ts", "")}.js`,
+          namedExports
+        });
+      }
     }
   }
 }

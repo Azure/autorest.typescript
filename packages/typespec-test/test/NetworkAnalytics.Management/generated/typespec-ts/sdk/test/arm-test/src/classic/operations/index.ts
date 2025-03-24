@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 import { NetworkAnalyticsApiContext } from "../../api/networkAnalyticsApiContext.js";
-import { list } from "../../api/operations/index.js";
-import { OperationsListOptionalParams } from "../../api/options.js";
 import { Operation } from "../../models/models.js";
+import { OperationsListOptionalParams } from "../../api/operations/options.js";
+import { list } from "../../api/operations/operations.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 
 /** Interface representing a Operations operations. */

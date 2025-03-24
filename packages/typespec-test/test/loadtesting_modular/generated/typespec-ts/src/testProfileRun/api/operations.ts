@@ -1,14 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  TestProfileRunContext as Client,
-  CreateOrUpdateTestProfileRunOptionalParams,
-  DeleteTestProfileRunOptionalParams,
-  GetTestProfileRunOptionalParams,
-  ListTestProfileRunsOptionalParams,
-  StopTestProfileRunOptionalParams,
-} from "./index.js";
+import { TestProfileRunContext as Client } from "./index.js";
 import {
   TestProfileRun,
   testProfileRunSerializer,
@@ -17,9 +10,17 @@ import {
   _pagedTestProfileRunDeserializer,
 } from "../../models/models.js";
 import {
+  StopTestProfileRunOptionalParams,
+  ListTestProfileRunsOptionalParams,
+  GetTestProfileRunOptionalParams,
+  DeleteTestProfileRunOptionalParams,
+  CreateOrUpdateTestProfileRunOptionalParams,
+} from "./options.js";
+import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -32,15 +33,24 @@ export function _stopTestProfileRunSend(
   testProfileRunId: string,
   options: StopTestProfileRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/test-profile-runs/{testProfileRunId}:stop{?api-version}",
+    {
+      testProfileRunId: testProfileRunId,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/test-profile-runs/{testProfileRunId}:stop", testProfileRunId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -73,38 +83,44 @@ export function _listTestProfileRunsSend(
   context: Client,
   options: ListTestProfileRunsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/test-profile-runs{?api-version,maxpagesize,minStartDateTime,maxStartDateTime,minEndDateTime,maxEndDateTime,createdDateStartTime,createdDateEndTime,testProfileRunIds,testProfileIds,statuses}",
+    {
+      "api-version": context.apiVersion,
+      maxpagesize: options?.maxpagesize,
+      minStartDateTime: !options?.minStartDateTime
+        ? options?.minStartDateTime
+        : options?.minStartDateTime.toISOString(),
+      maxStartDateTime: !options?.maxStartDateTime
+        ? options?.maxStartDateTime
+        : options?.maxStartDateTime.toISOString(),
+      minEndDateTime: !options?.minEndDateTime
+        ? options?.minEndDateTime
+        : options?.minEndDateTime.toISOString(),
+      maxEndDateTime: !options?.maxEndDateTime
+        ? options?.maxEndDateTime
+        : options?.maxEndDateTime.toISOString(),
+      createdDateStartTime: !options?.createdDateStartTime
+        ? options?.createdDateStartTime
+        : options?.createdDateStartTime.toISOString(),
+      createdDateEndTime: !options?.createdDateEndTime
+        ? options?.createdDateEndTime
+        : options?.createdDateEndTime.toISOString(),
+      testProfileRunIds: options?.testProfileRunIds,
+      testProfileIds: options?.testProfileIds,
+      statuses: options?.statuses,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/test-profile-runs")
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
-      },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        maxpagesize: options?.maxpagesize,
-        minStartDateTime: !options?.minStartDateTime
-          ? options?.minStartDateTime
-          : options?.minStartDateTime.toISOString(),
-        maxStartDateTime: !options?.maxStartDateTime
-          ? options?.maxStartDateTime
-          : options?.maxStartDateTime.toISOString(),
-        minEndDateTime: !options?.minEndDateTime
-          ? options?.minEndDateTime
-          : options?.minEndDateTime.toISOString(),
-        maxEndDateTime: !options?.maxEndDateTime
-          ? options?.maxEndDateTime
-          : options?.maxEndDateTime.toISOString(),
-        createdDateStartTime: !options?.createdDateStartTime
-          ? options?.createdDateStartTime
-          : options?.createdDateStartTime.toISOString(),
-        createdDateEndTime: !options?.createdDateEndTime
-          ? options?.createdDateEndTime
-          : options?.createdDateEndTime.toISOString(),
-        testProfileRunIds: options?.testProfileRunIds,
-        testProfileIds: options?.testProfileIds,
-        statuses: options?.statuses,
       },
     });
 }
@@ -139,15 +155,24 @@ export function _getTestProfileRunSend(
   testProfileRunId: string,
   options: GetTestProfileRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/test-profile-runs/{testProfileRunId}{?api-version}",
+    {
+      testProfileRunId: testProfileRunId,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/test-profile-runs/{testProfileRunId}", testProfileRunId)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -181,15 +206,24 @@ export function _deleteTestProfileRunSend(
   testProfileRunId: string,
   options: DeleteTestProfileRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/test-profile-runs/{testProfileRunId}{?api-version}",
+    {
+      testProfileRunId: testProfileRunId,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/test-profile-runs/{testProfileRunId}", testProfileRunId)
+    .path(path)
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -224,8 +258,18 @@ export function _createOrUpdateTestProfileRunSend(
   body: TestProfileRun,
   options: CreateOrUpdateTestProfileRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/test-profile-runs/{testProfileRunId}{?api-version}",
+    {
+      testProfileRunId: testProfileRunId,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/test-profile-runs/{testProfileRunId}", testProfileRunId)
+    .path(path)
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/merge-patch+json",
@@ -233,7 +277,6 @@ export function _createOrUpdateTestProfileRunSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: testProfileRunSerializer(body),
     });
 }

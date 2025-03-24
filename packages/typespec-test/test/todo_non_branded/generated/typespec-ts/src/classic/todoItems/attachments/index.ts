@@ -2,20 +2,20 @@
 
 import { TodoContext } from "../../../api/todoContext.js";
 import {
-  createFileAttachment,
-  createJsonAttachment,
-  list,
-} from "../../../api/todoItems/attachments/index.js";
-import {
   TodoAttachment,
   FileAttachmentMultipartRequest,
 } from "../../../models/models.js";
-import { PagedAsyncIterableIterator } from "../../../static-helpers/pagingHelpers.js";
 import {
   TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
   TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
   TodoItemsAttachmentsListOptionalParams,
-} from "../../../api/options.js";
+} from "../../../api/todoItems/attachments/options.js";
+import {
+  createFileAttachment,
+  createJsonAttachment,
+  list,
+} from "../../../api/todoItems/attachments/operations.js";
+import { PagedAsyncIterableIterator } from "../../../static-helpers/pagingHelpers.js";
 
 /** Interface representing a TodoItemsAttachments operations. */
 export interface TodoItemsAttachmentsOperations {

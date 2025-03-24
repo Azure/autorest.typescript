@@ -1,10 +1,15 @@
 import {
   FunctionDeclarationStructure,
   OptionalKind,
-  ParameterDeclarationStructure
+  ParameterDeclarationStructure,
+  StructureKind
 } from "ts-morph";
 import { NoTarget, Program } from "@typespec/compiler";
-import { PagingHelpers, PollingHelpers } from "../static-helpers-metadata.js";
+import {
+  PagingHelpers,
+  PollingHelpers,
+  UrlTemplateHelpers
+} from "../static-helpers-metadata.js";
 import {
   getNullableValidType,
   isSpreadBodyParameter,
@@ -55,6 +60,7 @@ import {
   SdkModelPropertyType,
   SdkModelType,
   SdkPagingServiceMethod,
+  SdkPathParameter,
   SdkServiceParameter,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
@@ -93,6 +99,19 @@ export function getSendPrivateFunction(
     (p) => p.isApiVersionParam && p.onClient && p.kind === "method"
   );
   const statements: string[] = [];
+  let pathStr = `"${operationPath}"`;
+  const urlTemplateParams = [
+    ...getPathParameters(dpgContext, operation),
+    ...getQueryParameters(dpgContext, operation)
+  ];
+  if (urlTemplateParams.length > 0) {
+    statements.push(`const path = ${resolveReference(UrlTemplateHelpers.parseTemplate)}("${operation.operation.uriTemplate}", {
+        ${urlTemplateParams.join(",\n")}
+        },{
+      allowReserved: ${optionalParamName}?.requestOptions?.skipUrlEncoding
+    });`);
+    pathStr = "path";
+  }
   if (hasClientApiVersion && !hasQueryApiVersion) {
     statements.push(
       `context.pipeline.removePolicy({ name: "ClientApiVersionPolicy"});`
@@ -100,11 +119,7 @@ export function getSendPrivateFunction(
   }
 
   statements.push(
-    `return context.path("${operationPath}", ${getPathParameters(
-      dpgContext,
-      operation,
-      optionalParamName
-    )}).${operationMethod}({...${resolveReference(dependencies.operationOptionsToRequestParameters)}(${optionalParamName}), ${getRequestParameters(
+    `return context.path(${pathStr}).${operationMethod}({...${resolveReference(dependencies.operationOptionsToRequestParameters)}(${optionalParamName}), ${getHeaderAndBodyParameters(
       dpgContext,
       operation,
       optionalParamName
@@ -330,8 +345,9 @@ function getOptionalParamsName(
   parameters: OptionalKind<ParameterDeclarationStructure>[]
 ) {
   return (
-    parameters.filter((p) => p.type?.toString().endsWith("OptionalParams"))[0]
-      ?.name ?? "options"
+    parameters.filter((p) =>
+      p.type?.toString().endsWith("operationOptions__")
+    )[0]?.name ?? "options"
   );
 }
 
@@ -341,7 +357,7 @@ function getOperationSignatureParameters(
   clientType: string
 ): OptionalKind<ParameterDeclarationStructure>[] {
   const operation = method[1];
-  const optionsType = getOperationOptionsName(method, true);
+  const optionsType = resolveReference(refkey(method[1], "operationOptions"));
   const parameters: Map<
     string,
     OptionalKind<ParameterDeclarationStructure>
@@ -397,7 +413,7 @@ export function getOperationFunction(
   context: SdkContext,
   method: [string[], ServiceOperation],
   clientType: string
-): OptionalKind<FunctionDeclarationStructure> & { propertyName?: string } {
+): FunctionDeclarationStructure & { propertyName?: string } {
   const operation = method[1];
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
@@ -435,6 +451,7 @@ export function getOperationFunction(
   }
   const { name, fixme = [] } = getOperationName(operation);
   const functionStatement = {
+    kind: StructureKind.Function,
     docs: [
       ...getDocsFromDescription(operation.doc),
       ...getFixmeForMultilineDocs(fixme)
@@ -458,7 +475,7 @@ export function getOperationFunction(
   return {
     ...functionStatement,
     statements
-  };
+  } as FunctionDeclarationStructure & { propertyName?: string };
 }
 
 function getLroOnlyOperationFunction(
@@ -466,7 +483,7 @@ function getLroOnlyOperationFunction(
   method: [string[], SdkLroServiceMethod<SdkHttpOperation>],
   clientType: string,
   optionalParamName: string = "options"
-) {
+): FunctionDeclarationStructure & { propertyName?: string } {
   const operation = method[1];
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
@@ -480,6 +497,7 @@ function getLroOnlyOperationFunction(
     AzurePollingDependencies.OperationState
   );
   const functionStatement = {
+    kind: StructureKind.Function,
     docs: [
       ...getDocsFromDescription(operation.doc),
       ...getFixmeForMultilineDocs(fixme)
@@ -530,7 +548,7 @@ function getLroOnlyOperationFunction(
   return {
     ...functionStatement,
     statements
-  };
+  } as FunctionDeclarationStructure & { propertyName?: string };
 }
 
 function buildLroReturnType(
@@ -552,7 +570,7 @@ function getPagingOnlyOperationFunction(
   context: SdkContext,
   method: [string[], SdkPagingServiceMethod<SdkHttpOperation>],
   clientType: string
-) {
+): FunctionDeclarationStructure & { propertyName?: string } {
   const operation = method[1];
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
@@ -576,6 +594,7 @@ function getPagingOnlyOperationFunction(
     PagingHelpers.BuildPagedAsyncIterator
   );
   const functionStatement = {
+    kind: StructureKind.Function,
     docs: [
       ...getDocsFromDescription(operation.doc),
       ...getFixmeForMultilineDocs(fixme)
@@ -612,7 +631,7 @@ function getPagingOnlyOperationFunction(
   return {
     ...functionStatement,
     statements
-  };
+  } as FunctionDeclarationStructure & { propertyName?: string };
 }
 
 export function getOperationOptionsName(
@@ -634,7 +653,7 @@ export function getOperationOptionsName(
  * RLC internally. This will translate High Level parameters into the RLC ones.
  * Figuring out what goes in headers, body, path and qsp.
  */
-function getRequestParameters(
+function getHeaderAndBodyParameters(
   dpgContext: SdkContext,
   operation: ServiceOperation,
   optionalParamName: string = "options"
@@ -650,16 +669,15 @@ function getRequestParameters(
     operation.operation.parameters.find(isContentType);
 
   const parametersImplementation: Record<
-    "header" | "query" | "body",
+    "header" | "body",
     { paramMap: string; param: SdkServiceParameter }[]
   > = {
     header: [],
-    query: [],
     body: []
   };
 
   for (const param of operationParameters) {
-    if (param.kind === "header" || param.kind === "query") {
+    if (param.kind === "header") {
       // skip tcgc generated contentType and accept non constant type header parameter
       if (
         param.isGeneratedName &&
@@ -692,12 +710,6 @@ function getRequestParameters(
         )
       )
       .join(",\n")}, ...${optionalParamName}.requestOptions?.headers },`;
-  }
-
-  if (parametersImplementation.query.length) {
-    paramStr = `${paramStr}\nqueryParameters: {${parametersImplementation.query
-      .map((i) => i.paramMap)
-      .join(",\n")}},`;
   }
   if (
     operation.operation.bodyParam === undefined &&
@@ -977,10 +989,10 @@ function getPathParameters(
   optionalParamName: string = "options"
 ) {
   if (!operation.operation.parameters) {
-    return "";
+    return [];
   }
 
-  let pathParams = "";
+  const pathParams: string[] = [];
   for (const param of operation.operation.parameters) {
     if (param.kind === "path") {
       // Path parameters cannot be optional
@@ -989,19 +1001,53 @@ function getPathParameters(
           code: "optional-path-param",
           target: NoTarget,
           format: {
-            paramName: param
+            paramName: (param as SdkPathParameter).name
           }
         });
       }
-      pathParams += `${pathParams !== "" ? "," : ""} ${getPathParamExpr(
-        param,
-        getDefaultValue(param) as string,
-        optionalParamName
-      )}`;
+      pathParams.push(
+        `${param.serializedName}: ${getPathParamExpr(param, getDefaultValue(param) as string, optionalParamName)}`
+      );
     }
   }
 
   return pathParams;
+}
+
+/**
+ * Extract the query parameters
+ */
+function getQueryParameters(
+  dpgContext: SdkContext,
+  operation: ServiceOperation
+): string[] {
+  if (!operation.parameters) {
+    return [];
+  }
+  const operationParameters = operation.operation.parameters.filter(
+    (p) => (!p.onClient || p.isApiVersionParam) && !isContentType(p)
+  );
+  const parametersImplementation: Record<
+    "query",
+    { paramMap: string; param: SdkServiceParameter }[]
+  > = {
+    query: []
+  };
+
+  for (const param of operationParameters) {
+    if (param.kind === "query") {
+      parametersImplementation[param.kind].push({
+        paramMap: getParameterMap(dpgContext, param),
+        param
+      });
+    }
+  }
+
+  const paramStr: string[] = parametersImplementation.query.map(
+    (i) => i.paramMap
+  );
+
+  return paramStr;
 }
 
 function getPathParamExpr(
@@ -1017,16 +1063,11 @@ function getPathParamExpr(
     : param.optional
       ? `${optionalParamName}["${param.name}"]`
       : param.name;
-  const value = defaultValue
+  return defaultValue
     ? typeof defaultValue === "string"
       ? `${paramName} ?? "${defaultValue}"`
       : `${paramName} ?? ${defaultValue}`
     : paramName;
-  // TODO allowReserved is not supported in Query and Header parameter yet.
-  if (param.kind === "path" && param.allowReserved === true) {
-    return `{value: ${value}, allowReserved: true}`;
-  }
-  return value;
 }
 
 function getNullableCheck(name: string, type: SdkType) {

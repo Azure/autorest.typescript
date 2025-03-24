@@ -156,24 +156,20 @@ describe("EncodeDurationClient Rest Client", () => {
 
   describe("header", () => {
     it(`should get default header`, async () => {
-      const result = await client
-        .path(`/encode/duration/header/default`)
-        .get({
-          headers: {
-            duration: "P40D"
-          }
-        });
+      const result = await client.path(`/encode/duration/header/default`).get({
+        headers: {
+          duration: "P40D"
+        }
+      });
       assert.strictEqual(result.status, "204");
     });
 
     it(`should get iso8601 header`, async () => {
-      const result = await client
-        .path(`/encode/duration/header/iso8601`)
-        .get({
-          headers: {
-            duration: "P40D"
-          }
-        });
+      const result = await client.path(`/encode/duration/header/iso8601`).get({
+        headers: {
+          duration: "P40D"
+        }
+      });
       assert.strictEqual(result.status, "204");
     });
 

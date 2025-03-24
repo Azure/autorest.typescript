@@ -79,6 +79,8 @@ import {
   bodyParameterSerializer,
   _readResponseDeserializer,
 } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -92,18 +94,25 @@ export function _readSend(
   requiredQuery: string,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/{name}{?requiredQuery,optionalQuery}",
+    {
+      name: name,
+      requiredQuery: requiredQuery,
+      optionalQuery: options?.optionalQuery,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/{name}", name)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
-      },
-      queryParameters: {
-        requiredQuery: requiredQuery,
-        optionalQuery: options?.optionalQuery,
       },
       body: !options["widget"]
         ? options["widget"]

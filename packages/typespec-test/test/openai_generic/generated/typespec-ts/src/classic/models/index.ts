@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import { OpenAIContext } from "../../api/openAIContext.js";
-import { $delete, retrieve, list } from "../../api/models/index.js";
 import {
   ListModelsResponse,
   Model,
@@ -12,7 +11,8 @@ import {
   ModelsDeleteOptionalParams,
   ModelsRetrieveOptionalParams,
   ModelsListOptionalParams,
-} from "../../api/options.js";
+} from "../../api/models/options.js";
+import { $delete, retrieve, list } from "../../api/models/operations.js";
 
 /** Interface representing a Models operations. */
 export interface ModelsOperations {

@@ -13,6 +13,7 @@ export interface PackageCommonInfoConfig {
   dependencies?: Record<string, string>;
   azureArm?: boolean;
   isModularLibrary?: boolean;
+  azureSdkForJs?: boolean;
 }
 
 /**
@@ -44,7 +45,7 @@ export function getCommonPackageDevDependencies(
   return {
     "@types/node": "^18.0.0",
     eslint: "^9.9.0",
-    typescript: "~5.6.2",
+    typescript: "~5.7.2",
     ...getEsmDevDependencies(config)
   };
 }
@@ -101,7 +102,7 @@ function getEsmEntrypointInformation(config: PackageCommonInfoConfig) {
 
 export function getTshyConfig(config: PackageCommonInfoConfig) {
   const { exports = {} } = config;
-  return {
+  const tshyConfig: Record<string, any> = {
     exports: {
       "./package.json": "./package.json",
       ".": "./src/index.ts",
@@ -111,6 +112,10 @@ export function getTshyConfig(config: PackageCommonInfoConfig) {
     esmDialects: ["browser", "react-native"],
     selfLink: false
   };
+  if (config.azureSdkForJs) {
+    tshyConfig["project"] = "./tsconfig.src.json";
+  }
+  return tshyConfig;
 }
 
 export function getCommonPackageScripts({

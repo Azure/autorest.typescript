@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  RadiologyInsightsContext as Client,
-  InferRadiologyInsightsOptionalParams,
-} from "./index.js";
+import { RadiologyInsightsContext as Client } from "./index.js";
 import {
   PatientRecord,
   radiologyInsightsModelConfigurationSerializer,
@@ -12,7 +9,9 @@ import {
   RadiologyInsightsInferenceResult,
   radiologyInsightsInferenceResultDeserializer,
 } from "../models/models.js";
+import { InferRadiologyInsightsOptionalParams } from "./options.js";
 import { getLongRunningPoller } from "../static-helpers/pollingHelpers.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -26,8 +25,17 @@ export function _inferRadiologyInsightsSend(
   patients: PatientRecord[],
   options: InferRadiologyInsightsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/radiology-insights/jobs{?api-version}",
+    {
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/radiology-insights/jobs")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
@@ -45,7 +53,6 @@ export function _inferRadiologyInsightsSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: {
         patients: patientRecordArraySerializer(patients),
         configuration: !options?.configuration

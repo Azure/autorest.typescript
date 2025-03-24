@@ -3,15 +3,6 @@
 
 import { AnomalyDetectorContext } from "../../api/anomalyDetectorContext.js";
 import {
-  detectMultivariateLastAnomaly,
-  detectMultivariateBatchAnomaly,
-  getMultivariateModel,
-  deleteMultivariateModel,
-  listMultivariateModels,
-  trainMultivariateModel,
-  getMultivariateBatchDetectionResult,
-} from "../../api/multivariate/index.js";
-import {
   MultivariateMultivariateDetectionResult,
   MultivariateMultivariateBatchDetectionOptions,
   MultivariateModelInfo,
@@ -19,7 +10,6 @@ import {
   MultivariateMultivariateLastDetectionOptions,
   MultivariateMultivariateLastDetectionResult,
 } from "../../models/multivariate/models.js";
-import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import {
   MultivariateDetectMultivariateLastAnomalyOptionalParams,
   MultivariateDetectMultivariateBatchAnomalyOptionalParams,
@@ -28,7 +18,17 @@ import {
   MultivariateListMultivariateModelsOptionalParams,
   MultivariateTrainMultivariateModelOptionalParams,
   MultivariateGetMultivariateBatchDetectionResultOptionalParams,
-} from "../../api/options.js";
+} from "../../api/multivariate/options.js";
+import {
+  detectMultivariateLastAnomaly,
+  detectMultivariateBatchAnomaly,
+  getMultivariateModel,
+  deleteMultivariateModel,
+  listMultivariateModels,
+  trainMultivariateModel,
+  getMultivariateBatchDetectionResult,
+} from "../../api/multivariate/operations.js";
+import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 
 /** Interface representing a Multivariate operations. */
 export interface MultivariateOperations {

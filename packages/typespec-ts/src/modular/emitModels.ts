@@ -116,18 +116,20 @@ export function emitTypes(
   const modelFiles = outputProject.getSourceFiles(
     sourceRoot + "/models/**/*.ts"
   );
+  const result = [];
   for (const modelFile of modelFiles) {
     if (
       modelFile.getInterfaces().length === 0 &&
       modelFile.getTypeAliases().length === 0 &&
       modelFile.getEnums().length === 0
     ) {
-      modelFile.delete();
-      return;
+      outputProject.removeSourceFile(modelFile);
+      continue;
     }
+    result.push(modelFile);
   }
 
-  return modelFiles;
+  return result;
 }
 
 function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
@@ -202,7 +204,11 @@ function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
     }
     if (apiVersionEnumOnly) {
       // generate known values enum only for api version enums
-      addDeclaration(sourceFile, knownValuesEnum, refkey(type, "knownValues"));
+      addDeclaration(
+        sourceFile,
+        knownValuesEnum,
+        refkey(knownValuesEnum.name, "knownValues")
+      );
     } else {
       if (isExtensibleEnum(context, type)) {
         addDeclaration(
@@ -299,17 +305,33 @@ function addSerializationFunctions(
     type,
     skipDiscriminatedUnion
   );
+  let typeName = undefined;
+  switch (type.kind) {
+    case "array":
+      typeName = "array";
+      break;
+    case "dict":
+      typeName = "record";
+      break;
+    default:
+      break;
+  }
+
+  const serializerRefkey =
+    type.kind === "array" || type.kind === "dict"
+      ? refkey(type.valueType, typeName, "serializer")
+      : refkey(type, "serializer");
+  const deserailizerRefKey =
+    type.kind === "array" || type.kind === "dict"
+      ? refkey(type.valueType, typeName, "deserializer")
+      : refkey(type, "deserializer");
   if (
     serializationFunction &&
     typeof serializationFunction !== "string" &&
     serializationFunction.name &&
     !sourceFile.getFunction(serializationFunction.name)
   ) {
-    addDeclaration(
-      sourceFile,
-      serializationFunction,
-      refkey(type, "serializer")
-    );
+    addDeclaration(sourceFile, serializationFunction, serializerRefkey);
   }
   const deserializationFunction = buildModelDeserializer(
     context,
@@ -322,11 +344,7 @@ function addSerializationFunctions(
     deserializationFunction.name &&
     !sourceFile.getFunction(deserializationFunction.name)
   ) {
-    addDeclaration(
-      sourceFile,
-      deserializationFunction,
-      refkey(type, "deserializer")
-    );
+    addDeclaration(sourceFile, deserializationFunction, deserailizerRefKey);
   }
 }
 
@@ -540,11 +558,18 @@ export function normalizeModelName(
     | SdkDictionaryType
     | SdkNullableType,
   nameType: NameType = NameType.Interface,
-  skipPolymorphicUnionSuffix = false
+  skipPolymorphicUnionSuffix = false,
+  rawModelName?: boolean
 ): string {
   if (type.kind === "array") {
+    if (rawModelName) {
+      return `${normalizeModelName(context, type.valueType as any, nameType, skipPolymorphicUnionSuffix, rawModelName)}Array`;
+    }
     return `Array<${normalizeModelName(context, type.valueType as any, nameType)}>`;
   } else if (type.kind === "dict") {
+    if (rawModelName) {
+      return `${normalizeModelName(context, type.valueType as any, nameType, skipPolymorphicUnionSuffix, rawModelName)}Record`;
+    }
     return `Record<string, ${normalizeModelName(
       context,
       type.valueType as any,

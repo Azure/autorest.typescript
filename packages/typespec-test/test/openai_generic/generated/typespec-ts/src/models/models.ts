@@ -83,11 +83,11 @@ export function createModerationResponseDeserializer(
   return {
     id: item["id"],
     model: item["model"],
-    results: createModerationResponseResultArrayDeserializer(item["results"]),
+    results: _createModerationResponseResultArrayDeserializer(item["results"]),
   };
 }
 
-export function createModerationResponseResultArrayDeserializer(
+export function _createModerationResponseResultArrayDeserializer(
   result: Array<_CreateModerationResponseResult>,
 ): any[] {
   return result.map((item) => {
@@ -1054,12 +1054,12 @@ export function createEditResponseDeserializer(item: any): CreateEditResponse {
   return {
     object: item["object"],
     created: new Date(item["created"] * 1000),
-    choices: createEditResponseChoiceArrayDeserializer(item["choices"]),
+    choices: _createEditResponseChoiceArrayDeserializer(item["choices"]),
     usage: completionUsageDeserializer(item["usage"]),
   };
 }
 
-export function createEditResponseChoiceArrayDeserializer(
+export function _createEditResponseChoiceArrayDeserializer(
   result: Array<_CreateEditResponseChoice>,
 ): any[] {
   return result.map((item) => {
@@ -1306,14 +1306,14 @@ export function createCompletionResponseDeserializer(
     object: item["object"],
     created: new Date(item["created"] * 1000),
     model: item["model"],
-    choices: createCompletionResponseChoiceArrayDeserializer(item["choices"]),
+    choices: _createCompletionResponseChoiceArrayDeserializer(item["choices"]),
     usage: !item["usage"]
       ? item["usage"]
       : completionUsageDeserializer(item["usage"]),
   };
 }
 
-export function createCompletionResponseChoiceArrayDeserializer(
+export function _createCompletionResponseChoiceArrayDeserializer(
   result: Array<_CreateCompletionResponseChoice>,
 ): any[] {
   return result.map((item) => {
@@ -1982,7 +1982,7 @@ export function createChatCompletionResponseDeserializer(
     object: item["object"],
     created: new Date(item["created"] * 1000),
     model: item["model"],
-    choices: createChatCompletionResponseChoiceArrayDeserializer(
+    choices: _createChatCompletionResponseChoiceArrayDeserializer(
       item["choices"],
     ),
     usage: !item["usage"]
@@ -1991,7 +1991,7 @@ export function createChatCompletionResponseDeserializer(
   };
 }
 
-export function createChatCompletionResponseChoiceArrayDeserializer(
+export function _createChatCompletionResponseChoiceArrayDeserializer(
   result: Array<_CreateChatCompletionResponseChoice>,
 ): any[] {
   return result.map((item) => {

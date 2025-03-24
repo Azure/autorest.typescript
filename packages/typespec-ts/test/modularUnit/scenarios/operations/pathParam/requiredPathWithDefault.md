@@ -31,6 +31,8 @@ Should generate operations correctly:
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { ReadOptionalParams } from "./options.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -42,8 +44,18 @@ export function _readSend(
   context: Client,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/{strDefault}/{numberDefault}",
+    {
+      strDefault: "foobar",
+      numberDefault: 1,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/{strDefault}/{numberDefault}", "foobar", 1)
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 

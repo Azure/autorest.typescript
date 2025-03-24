@@ -3,19 +3,6 @@
 
 import { NetworkAnalyticsApiContext } from "../../api/networkAnalyticsApiContext.js";
 import {
-  listBySubscription,
-  listByResourceGroup,
-  listRolesAssignments,
-  removeUserRole,
-  addUserRole,
-  rotateKey,
-  generateStorageAccountSasToken,
-  $delete,
-  update,
-  get,
-  create,
-} from "../../api/dataProducts/index.js";
-import {
   DataProduct,
   DataProductUpdate,
   AccountSas,
@@ -25,8 +12,6 @@ import {
   RoleAssignmentDetail,
   ListRoleAssignments,
 } from "../../models/models.js";
-import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
-import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   DataProductsListBySubscriptionOptionalParams,
   DataProductsListByResourceGroupOptionalParams,
@@ -39,7 +24,22 @@ import {
   DataProductsUpdateOptionalParams,
   DataProductsGetOptionalParams,
   DataProductsCreateOptionalParams,
-} from "../../api/options.js";
+} from "../../api/dataProducts/options.js";
+import {
+  listBySubscription,
+  listByResourceGroup,
+  listRolesAssignments,
+  removeUserRole,
+  addUserRole,
+  rotateKey,
+  generateStorageAccountSasToken,
+  $delete,
+  update,
+  get,
+  create,
+} from "../../api/dataProducts/operations.js";
+import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
+import { PollerLike, OperationState } from "@azure/core-lro";
 
 /** Interface representing a DataProducts operations. */
 export interface DataProductsOperations {

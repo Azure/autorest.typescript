@@ -149,7 +149,8 @@ function transformHeaders(
         continue;
       }
       const typeSchema = getSchemaForType(dpgContext, value!.type, {
-        usage: [SchemaContext.Output]
+        usage: [SchemaContext.Output],
+        relevantProperty: value
       }) as Schema;
       const type = getTypeName(typeSchema, [SchemaContext.Output]);
       getImportedModelName(typeSchema, [SchemaContext.Output])?.forEach(

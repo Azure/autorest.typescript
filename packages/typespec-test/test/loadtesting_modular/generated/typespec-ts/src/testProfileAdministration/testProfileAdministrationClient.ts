@@ -2,19 +2,23 @@
 // Licensed under the MIT License.
 
 import {
-  listTestProfiles,
-  getTestProfile,
-  deleteTestProfile,
-  createOrUpdateTestProfile,
-  ListTestProfilesOptionalParams,
-  GetTestProfileOptionalParams,
-  DeleteTestProfileOptionalParams,
-  CreateOrUpdateTestProfileOptionalParams,
   createTestProfileAdministration,
   TestProfileAdministrationContext,
   TestProfileAdministrationClientOptionalParams,
 } from "./api/index.js";
 import { TestProfile } from "../models/models.js";
+import {
+  ListTestProfilesOptionalParams,
+  GetTestProfileOptionalParams,
+  DeleteTestProfileOptionalParams,
+  CreateOrUpdateTestProfileOptionalParams,
+} from "./api/options.js";
+import {
+  listTestProfiles,
+  getTestProfile,
+  deleteTestProfile,
+  createOrUpdateTestProfile,
+} from "./api/operations.js";
 import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { TokenCredential } from "@azure/core-auth";

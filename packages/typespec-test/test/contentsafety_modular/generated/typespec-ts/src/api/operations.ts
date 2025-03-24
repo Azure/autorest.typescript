@@ -1,35 +1,23 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  AddOrUpdateBlockItemsOptionalParams,
-  AnalyzeImageOptionalParams,
-  AnalyzeTextOptionalParams,
-  ContentSafetyContext as Client,
-  CreateOrUpdateTextBlocklistOptionalParams,
-  DeleteTextBlocklistOptionalParams,
-  GetTextBlocklistItemOptionalParams,
-  GetTextBlocklistOptionalParams,
-  ListTextBlocklistItemsOptionalParams,
-  ListTextBlocklistsOptionalParams,
-  RemoveBlockItemsOptionalParams,
-} from "./index.js";
+import { ContentSafetyContext as Client } from "./index.js";
 import {
   TextBlocklist,
   textBlocklistSerializer,
   textBlocklistDeserializer,
   _PagedTextBlocklist,
   _pagedTextBlocklistDeserializer,
-  AddOrUpdateBlockItemsOptions,
-  addOrUpdateBlockItemsOptionsSerializer,
-  AddOrUpdateBlockItemsResult,
-  addOrUpdateBlockItemsResultDeserializer,
-  TextBlockItem,
-  textBlockItemDeserializer,
-  RemoveBlockItemsOptions,
-  removeBlockItemsOptionsSerializer,
-  _PagedTextBlockItem,
-  _pagedTextBlockItemDeserializer,
+  AddOrUpdateTextBlocklistItemsOptions,
+  addOrUpdateTextBlocklistItemsOptionsSerializer,
+  TextBlocklistItem,
+  textBlocklistItemDeserializer,
+  AddOrUpdateTextBlocklistItemsResult,
+  addOrUpdateTextBlocklistItemsResultDeserializer,
+  RemoveTextBlocklistItemsOptions,
+  removeTextBlocklistItemsOptionsSerializer,
+  _PagedTextBlocklistItem,
+  _pagedTextBlocklistItemDeserializer,
   AnalyzeImageOptions,
   analyzeImageOptionsSerializer,
   AnalyzeImageResult,
@@ -38,11 +26,34 @@ import {
   analyzeTextOptionsSerializer,
   AnalyzeTextResult,
   analyzeTextResultDeserializer,
+  ShieldPromptOptions,
+  shieldPromptOptionsSerializer,
+  ShieldPromptResult,
+  shieldPromptResultDeserializer,
+  DetectTextProtectedMaterialOptions,
+  detectTextProtectedMaterialOptionsSerializer,
+  DetectTextProtectedMaterialResult,
+  detectTextProtectedMaterialResultDeserializer,
 } from "../models/models.js";
+import {
+  ListTextBlocklistItemsOptionalParams,
+  GetTextBlocklistItemOptionalParams,
+  RemoveBlocklistItemsOptionalParams,
+  AddOrUpdateBlocklistItemsOptionalParams,
+  ListTextBlocklistsOptionalParams,
+  DeleteTextBlocklistOptionalParams,
+  CreateOrUpdateTextBlocklistOptionalParams,
+  GetTextBlocklistOptionalParams,
+  AnalyzeImageOptionalParams,
+  DetectTextProtectedMaterialOptionalParams,
+  ShieldPromptOptionalParams,
+  AnalyzeTextOptionalParams,
+} from "./options.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../static-helpers/pagingHelpers.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -55,40 +66,47 @@ export function _listTextBlocklistItemsSend(
   blocklistName: string,
   options: ListTextBlocklistItemsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/text/blocklists/{blocklistName}/blocklistItems{?api-version,top,skip,maxpagesize}",
+    {
+      blocklistName: blocklistName,
+      "api-version": context.apiVersion,
+      top: options?.top,
+      skip: options?.skip,
+      maxpagesize: options?.maxpagesize,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/text/blocklists/{blocklistName}/blockItems", blocklistName)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        top: options?.top,
-        skip: options?.skip,
-        maxpagesize: options?.maxpagesize,
-      },
     });
 }
 
 export async function _listTextBlocklistItemsDeserialize(
   result: PathUncheckedResponse,
-): Promise<_PagedTextBlockItem> {
+): Promise<_PagedTextBlocklistItem> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return _pagedTextBlockItemDeserializer(result.body);
+  return _pagedTextBlocklistItemDeserializer(result.body);
 }
 
-/** Get all blockItems in a text blocklist */
+/** Get all blocklistItems in a text blocklist. */
 export function listTextBlocklistItems(
   context: Client,
   blocklistName: string,
   options: ListTextBlocklistItemsOptionalParams = { requestOptions: {} },
-): PagedAsyncIterableIterator<TextBlockItem> {
+): PagedAsyncIterableIterator<TextBlocklistItem> {
   return buildPagedAsyncIterator(
     context,
     () => _listTextBlocklistItemsSend(context, blocklistName, options),
@@ -101,60 +119,76 @@ export function listTextBlocklistItems(
 export function _getTextBlocklistItemSend(
   context: Client,
   blocklistName: string,
-  blockItemId: string,
+  blocklistItemId: string,
   options: GetTextBlocklistItemOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/text/blocklists/{blocklistName}/blocklistItems/{blocklistItemId}{?api-version}",
+    {
+      blocklistName: blocklistName,
+      blocklistItemId: blocklistItemId,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/text/blocklists/{blocklistName}/blockItems/{blockItemId}",
-      blocklistName,
-      blockItemId,
-    )
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
 export async function _getTextBlocklistItemDeserialize(
   result: PathUncheckedResponse,
-): Promise<TextBlockItem> {
+): Promise<TextBlocklistItem> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return textBlockItemDeserializer(result.body);
+  return textBlocklistItemDeserializer(result.body);
 }
 
-/** Get blockItem By blockItemId from a text blocklist. */
+/** Get blocklistItem by blocklistName and blocklistItemId from a text blocklist. */
 export async function getTextBlocklistItem(
   context: Client,
   blocklistName: string,
-  blockItemId: string,
+  blocklistItemId: string,
   options: GetTextBlocklistItemOptionalParams = { requestOptions: {} },
-): Promise<TextBlockItem> {
+): Promise<TextBlocklistItem> {
   const result = await _getTextBlocklistItemSend(
     context,
     blocklistName,
-    blockItemId,
+    blocklistItemId,
     options,
   );
   return _getTextBlocklistItemDeserialize(result);
 }
 
-export function _removeBlockItemsSend(
+export function _removeBlocklistItemsSend(
   context: Client,
   blocklistName: string,
-  body: RemoveBlockItemsOptions,
-  options: RemoveBlockItemsOptionalParams = { requestOptions: {} },
+  body: RemoveTextBlocklistItemsOptions,
+  options: RemoveBlocklistItemsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/text/blocklists/{blocklistName}:removeBlocklistItems{?api-version}",
+    {
+      blocklistName: blocklistName,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/text/blocklists/{blocklistName}:removeBlockItems", blocklistName)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
@@ -162,12 +196,11 @@ export function _removeBlockItemsSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
-      body: removeBlockItemsOptionsSerializer(body),
+      body: removeTextBlocklistItemsOptionsSerializer(body),
     });
 }
 
-export async function _removeBlockItemsDeserialize(
+export async function _removeBlocklistItemsDeserialize(
   result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["204"];
@@ -178,33 +211,40 @@ export async function _removeBlockItemsDeserialize(
   return;
 }
 
-/** Remove blockItems from a text blocklist. You can remove at most 100 BlockItems in one request. */
-export async function removeBlockItems(
+/** Remove blocklistItems from a text blocklist. You can remove at most 100 BlocklistItems in one request. */
+export async function removeBlocklistItems(
   context: Client,
   blocklistName: string,
-  body: RemoveBlockItemsOptions,
-  options: RemoveBlockItemsOptionalParams = { requestOptions: {} },
+  body: RemoveTextBlocklistItemsOptions,
+  options: RemoveBlocklistItemsOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _removeBlockItemsSend(
+  const result = await _removeBlocklistItemsSend(
     context,
     blocklistName,
     body,
     options,
   );
-  return _removeBlockItemsDeserialize(result);
+  return _removeBlocklistItemsDeserialize(result);
 }
 
-export function _addOrUpdateBlockItemsSend(
+export function _addOrUpdateBlocklistItemsSend(
   context: Client,
   blocklistName: string,
-  body: AddOrUpdateBlockItemsOptions,
-  options: AddOrUpdateBlockItemsOptionalParams = { requestOptions: {} },
+  body: AddOrUpdateTextBlocklistItemsOptions,
+  options: AddOrUpdateBlocklistItemsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/text/blocklists/{blocklistName}:addOrUpdateBlocklistItems{?api-version}",
+    {
+      blocklistName: blocklistName,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/text/blocklists/{blocklistName}:addOrUpdateBlockItems",
-      blocklistName,
-    )
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
@@ -212,51 +252,58 @@ export function _addOrUpdateBlockItemsSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
-      body: addOrUpdateBlockItemsOptionsSerializer(body),
+      body: addOrUpdateTextBlocklistItemsOptionsSerializer(body),
     });
 }
 
-export async function _addOrUpdateBlockItemsDeserialize(
+export async function _addOrUpdateBlocklistItemsDeserialize(
   result: PathUncheckedResponse,
-): Promise<AddOrUpdateBlockItemsResult> {
+): Promise<AddOrUpdateTextBlocklistItemsResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return addOrUpdateBlockItemsResultDeserializer(result.body);
+  return addOrUpdateTextBlocklistItemsResultDeserializer(result.body);
 }
 
-/** Add or update blockItems to a text blocklist. You can add or update at most 100 BlockItems in one request. */
-export async function addOrUpdateBlockItems(
+/** Add or update blocklistItems to a text blocklist. You can add or update at most 100 blocklistItems in one request. */
+export async function addOrUpdateBlocklistItems(
   context: Client,
   blocklistName: string,
-  body: AddOrUpdateBlockItemsOptions,
-  options: AddOrUpdateBlockItemsOptionalParams = { requestOptions: {} },
-): Promise<AddOrUpdateBlockItemsResult> {
-  const result = await _addOrUpdateBlockItemsSend(
+  body: AddOrUpdateTextBlocklistItemsOptions,
+  options: AddOrUpdateBlocklistItemsOptionalParams = { requestOptions: {} },
+): Promise<AddOrUpdateTextBlocklistItemsResult> {
+  const result = await _addOrUpdateBlocklistItemsSend(
     context,
     blocklistName,
     body,
     options,
   );
-  return _addOrUpdateBlockItemsDeserialize(result);
+  return _addOrUpdateBlocklistItemsDeserialize(result);
 }
 
 export function _listTextBlocklistsSend(
   context: Client,
   options: ListTextBlocklistsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/text/blocklists{?api-version}",
+    {
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/text/blocklists")
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -290,15 +337,24 @@ export function _deleteTextBlocklistSend(
   blocklistName: string,
   options: DeleteTextBlocklistOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/text/blocklists/{blocklistName}{?api-version}",
+    {
+      blocklistName: blocklistName,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/text/blocklists/{blocklistName}", blocklistName)
+    .path(path)
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -333,8 +389,18 @@ export function _createOrUpdateTextBlocklistSend(
   resource: TextBlocklist,
   options: CreateOrUpdateTextBlocklistOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/text/blocklists/{blocklistName}{?api-version}",
+    {
+      blocklistName: blocklistName,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/text/blocklists/{blocklistName}", blocklistName)
+    .path(path)
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/merge-patch+json",
@@ -342,7 +408,6 @@ export function _createOrUpdateTextBlocklistSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: textBlocklistSerializer(resource),
     });
 }
@@ -358,7 +423,7 @@ export async function _createOrUpdateTextBlocklistDeserialize(
   return textBlocklistDeserializer(result.body);
 }
 
-/** Updates a text blocklist, if blocklistName does not exist, create a new blocklist. */
+/** Updates a text blocklist. If the blocklistName does not exist, a new blocklist will be created. */
 export async function createOrUpdateTextBlocklist(
   context: Client,
   blocklistName: string,
@@ -379,15 +444,24 @@ export function _getTextBlocklistSend(
   blocklistName: string,
   options: GetTextBlocklistOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/text/blocklists/{blocklistName}{?api-version}",
+    {
+      blocklistName: blocklistName,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/text/blocklists/{blocklistName}", blocklistName)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -417,8 +491,17 @@ export function _analyzeImageSend(
   body: AnalyzeImageOptions,
   options: AnalyzeImageOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/image:analyze{?api-version}",
+    {
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/image:analyze")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
@@ -426,7 +509,6 @@ export function _analyzeImageSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: analyzeImageOptionsSerializer(body),
     });
 }
@@ -442,7 +524,7 @@ export async function _analyzeImageDeserialize(
   return analyzeImageResultDeserializer(result.body);
 }
 
-/** A sync API for harmful content analysis for image. Currently, we support four categories: Hate, SelfHarm, Sexual, Violence. */
+/** A synchronous API for the analysis of potentially harmful image content. Currently, it supports four categories: Hate, SelfHarm, Sexual, and Violence. */
 export async function analyzeImage(
   context: Client,
   body: AnalyzeImageOptions,
@@ -452,13 +534,22 @@ export async function analyzeImage(
   return _analyzeImageDeserialize(result);
 }
 
-export function _analyzeTextSend(
+export function _detectTextProtectedMaterialSend(
   context: Client,
-  body: AnalyzeTextOptions,
-  options: AnalyzeTextOptionalParams = { requestOptions: {} },
+  body: DetectTextProtectedMaterialOptions,
+  options: DetectTextProtectedMaterialOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/text:detectProtectedMaterial{?api-version}",
+    {
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/text:analyze")
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
@@ -466,7 +557,102 @@ export function _analyzeTextSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
+      body: detectTextProtectedMaterialOptionsSerializer(body),
+    });
+}
+
+export async function _detectTextProtectedMaterialDeserialize(
+  result: PathUncheckedResponse,
+): Promise<DetectTextProtectedMaterialResult> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return detectTextProtectedMaterialResultDeserializer(result.body);
+}
+
+/** A synchronous API for detecting protected material in the given text. */
+export async function detectTextProtectedMaterial(
+  context: Client,
+  body: DetectTextProtectedMaterialOptions,
+  options: DetectTextProtectedMaterialOptionalParams = { requestOptions: {} },
+): Promise<DetectTextProtectedMaterialResult> {
+  const result = await _detectTextProtectedMaterialSend(context, body, options);
+  return _detectTextProtectedMaterialDeserialize(result);
+}
+
+export function _shieldPromptSend(
+  context: Client,
+  body: ShieldPromptOptions,
+  options: ShieldPromptOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/text:shieldPrompt{?api-version}",
+    {
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      body: shieldPromptOptionsSerializer(body),
+    });
+}
+
+export async function _shieldPromptDeserialize(
+  result: PathUncheckedResponse,
+): Promise<ShieldPromptResult> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return shieldPromptResultDeserializer(result.body);
+}
+
+/** A synchronous API for shielding prompt from direct and indirect injection attacks. */
+export async function shieldPrompt(
+  context: Client,
+  body: ShieldPromptOptions,
+  options: ShieldPromptOptionalParams = { requestOptions: {} },
+): Promise<ShieldPromptResult> {
+  const result = await _shieldPromptSend(context, body, options);
+  return _shieldPromptDeserialize(result);
+}
+
+export function _analyzeTextSend(
+  context: Client,
+  body: AnalyzeTextOptions,
+  options: AnalyzeTextOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/text:analyze{?api-version}",
+    {
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
       body: analyzeTextOptionsSerializer(body),
     });
 }
@@ -482,7 +668,7 @@ export async function _analyzeTextDeserialize(
   return analyzeTextResultDeserializer(result.body);
 }
 
-/** A sync API for harmful content analysis for text. Currently, we support four categories: Hate, SelfHarm, Sexual, Violence. */
+/** A synchronous API for the analysis of potentially harmful text content. Currently, it supports four categories: Hate, SelfHarm, Sexual, and Violence. */
 export async function analyzeText(
   context: Client,
   body: AnalyzeTextOptions,

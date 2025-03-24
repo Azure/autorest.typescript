@@ -1,23 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  LoadTestRunContext as Client,
-  CreateOrUpdateAppComponentsOptionalParams,
-  CreateOrUpdateServerMetricsConfigOptionalParams,
-  CreateOrUpdateTestRunOptionalParams,
-  DeleteTestRunOptionalParams,
-  GetAppComponentsOptionalParams,
-  GetServerMetricsConfigOptionalParams,
-  GetTestRunFileOptionalParams,
-  GetTestRunOptionalParams,
-  ListMetricDefinitionsOptionalParams,
-  ListMetricDimensionValuesOptionalParams,
-  ListMetricNamespacesOptionalParams,
-  ListMetricsOptionalParams,
-  ListTestRunsOptionalParams,
-  StopTestRunOptionalParams,
-} from "./index.js";
+import { LoadTestRunContext as Client } from "./index.js";
 import {
   TestRun,
   testRunSerializer,
@@ -44,9 +28,26 @@ import {
   _pagedTestRunDeserializer,
 } from "../../models/models.js";
 import {
+  StopTestRunOptionalParams,
+  ListTestRunsOptionalParams,
+  ListMetricsOptionalParams,
+  ListMetricNamespacesOptionalParams,
+  ListMetricDefinitionsOptionalParams,
+  ListMetricDimensionValuesOptionalParams,
+  GetTestRunFileOptionalParams,
+  GetTestRunOptionalParams,
+  GetServerMetricsConfigOptionalParams,
+  GetAppComponentsOptionalParams,
+  DeleteTestRunOptionalParams,
+  CreateOrUpdateServerMetricsConfigOptionalParams,
+  CreateOrUpdateAppComponentsOptionalParams,
+  CreateOrUpdateTestRunOptionalParams,
+} from "./options.js";
+import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -59,15 +60,24 @@ export function _stopTestRunSend(
   testRunId: string,
   options: StopTestRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/test-runs/{testRunId}:stop{?api-version}",
+    {
+      testRunId: testRunId,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/test-runs/{testRunId}:stop", testRunId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -96,27 +106,33 @@ export function _listTestRunsSend(
   context: Client,
   options: ListTestRunsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/test-runs{?api-version,orderby,search,testId,executionFrom,executionTo,status,maxpagesize}",
+    {
+      "api-version": context.apiVersion,
+      orderby: options?.orderby,
+      search: options?.search,
+      testId: options?.testId,
+      executionFrom: !options?.executionFrom
+        ? options?.executionFrom
+        : options?.executionFrom.toISOString(),
+      executionTo: !options?.executionTo
+        ? options?.executionTo
+        : options?.executionTo.toISOString(),
+      status: options?.status,
+      maxpagesize: options?.maxpagesize,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/test-runs")
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
-      },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        orderby: options?.orderby,
-        search: options?.search,
-        testId: options?.testId,
-        executionFrom: !options?.executionFrom
-          ? options?.executionFrom
-          : options?.executionFrom.toISOString(),
-        executionTo: !options?.executionTo
-          ? options?.executionTo
-          : options?.executionTo.toISOString(),
-        status: options?.status,
-        maxpagesize: options?.maxpagesize,
       },
     });
 }
@@ -154,22 +170,29 @@ export function _listMetricsSend(
   timespan: string,
   options: ListMetricsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/test-runs/{testRunId}/metrics{?api-version,aggregation,metricname,interval,metricNamespace,timespan}",
+    {
+      testRunId: testRunId,
+      "api-version": context.apiVersion,
+      aggregation: options?.aggregation,
+      metricname: metricname,
+      interval: options?.interval,
+      metricNamespace: metricNamespace,
+      timespan: timespan,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/test-runs/{testRunId}/metrics", testRunId)
+    .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
-      },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        aggregation: options?.aggregation,
-        metricname: metricname,
-        interval: options?.interval,
-        metricNamespace: metricNamespace,
-        timespan: timespan,
       },
       body: !options["body"]
         ? options["body"]
@@ -219,15 +242,24 @@ export function _listMetricNamespacesSend(
   testRunId: string,
   options: ListMetricNamespacesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/test-runs/{testRunId}/metric-namespaces{?api-version}",
+    {
+      testRunId: testRunId,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/test-runs/{testRunId}/metric-namespaces", testRunId)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -258,17 +290,24 @@ export function _listMetricDefinitionsSend(
   metricNamespace: string,
   options: ListMetricDefinitionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/test-runs/{testRunId}/metric-definitions{?api-version,metricNamespace}",
+    {
+      testRunId: testRunId,
+      "api-version": context.apiVersion,
+      metricNamespace: metricNamespace,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/test-runs/{testRunId}/metric-definitions", testRunId)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
-      },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        metricNamespace: metricNamespace,
       },
     });
 }
@@ -309,24 +348,28 @@ export function _listMetricDimensionValuesSend(
   timespan: string,
   options: ListMetricDimensionValuesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/test-runs/{testRunId}/metric-dimensions/{name}/values{?api-version,metricname,interval,metricNamespace,timespan}",
+    {
+      testRunId: testRunId,
+      name: name,
+      "api-version": context.apiVersion,
+      metricname: metricname,
+      interval: options?.interval,
+      metricNamespace: metricNamespace,
+      timespan: timespan,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path(
-      "/test-runs/{testRunId}/metric-dimensions/{name}/values",
-      testRunId,
-      name,
-    )
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
-      },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        metricname: metricname,
-        interval: options?.interval,
-        metricNamespace: metricNamespace,
-        timespan: timespan,
       },
     });
 }
@@ -370,15 +413,25 @@ export function _getTestRunFileSend(
   fileName: string,
   options: GetTestRunFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/test-runs/{testRunId}/files/{fileName}{?api-version}",
+    {
+      testRunId: testRunId,
+      fileName: fileName,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/test-runs/{testRunId}/files/{fileName}", testRunId, fileName)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -414,15 +467,24 @@ export function _getTestRunSend(
   testRunId: string,
   options: GetTestRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/test-runs/{testRunId}{?api-version}",
+    {
+      testRunId: testRunId,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/test-runs/{testRunId}", testRunId)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -452,15 +514,24 @@ export function _getServerMetricsConfigSend(
   testRunId: string,
   options: GetServerMetricsConfigOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/test-runs/{testRunId}/server-metrics-config{?api-version}",
+    {
+      testRunId: testRunId,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/test-runs/{testRunId}/server-metrics-config", testRunId)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -490,15 +561,24 @@ export function _getAppComponentsSend(
   testRunId: string,
   options: GetAppComponentsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/test-runs/{testRunId}/app-components{?api-version}",
+    {
+      testRunId: testRunId,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/test-runs/{testRunId}/app-components", testRunId)
+    .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -531,15 +611,24 @@ export function _deleteTestRunSend(
   testRunId: string,
   options: DeleteTestRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/test-runs/{testRunId}{?api-version}",
+    {
+      testRunId: testRunId,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/test-runs/{testRunId}", testRunId)
+    .path(path)
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
     });
 }
 
@@ -572,8 +661,18 @@ export function _createOrUpdateServerMetricsConfigSend(
     requestOptions: {},
   },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/test-runs/{testRunId}/server-metrics-config{?api-version}",
+    {
+      testRunId: testRunId,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/test-runs/{testRunId}/server-metrics-config", testRunId)
+    .path(path)
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/merge-patch+json",
@@ -581,7 +680,6 @@ export function _createOrUpdateServerMetricsConfigSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: testRunServerMetricConfigSerializer(body),
     });
 }
@@ -621,8 +719,18 @@ export function _createOrUpdateAppComponentsSend(
   body: TestRunAppComponents,
   options: CreateOrUpdateAppComponentsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/test-runs/{testRunId}/app-components{?api-version}",
+    {
+      testRunId: testRunId,
+      "api-version": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/test-runs/{testRunId}/app-components", testRunId)
+    .path(path)
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/merge-patch+json",
@@ -630,7 +738,6 @@ export function _createOrUpdateAppComponentsSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      queryParameters: { "api-version": context.apiVersion },
       body: testRunAppComponentsSerializer(body),
     });
 }
@@ -668,18 +775,25 @@ export function _createOrUpdateTestRunSend(
   body: TestRun,
   options: CreateOrUpdateTestRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/test-runs/{testRunId}{?api-version,oldTestRunId}",
+    {
+      testRunId: testRunId,
+      "api-version": context.apiVersion,
+      oldTestRunId: options?.oldTestRunId,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/test-runs/{testRunId}", testRunId)
+    .path(path)
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/merge-patch+json",
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
-      },
-      queryParameters: {
-        "api-version": context.apiVersion,
-        oldTestRunId: options?.oldTestRunId,
       },
       body: testRunSerializer(body),
     });
