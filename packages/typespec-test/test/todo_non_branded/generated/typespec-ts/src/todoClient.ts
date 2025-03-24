@@ -1,15 +1,15 @@
 // Licensed under the MIT License.
 
 import {
-  _getTodoItemsOperations,
-  TodoItemsOperations,
-} from "./classic/todoItems/index.js";
-import { _getUsersOperations, UsersOperations } from "./classic/users/index.js";
-import {
   createTodo,
   TodoContext,
   TodoClientOptionalParams,
 } from "./api/index.js";
+import {
+  TodoItemsOperations,
+  _getTodoItemsOperations,
+} from "./classic/todoItems/index.js";
+import { UsersOperations, _getUsersOperations } from "./classic/users/index.js";
 import { Pipeline, KeyCredential } from "@typespec/ts-http-runtime";
 
 export { TodoClientOptionalParams } from "./api/todoContext.js";

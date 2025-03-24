@@ -188,7 +188,7 @@ function buildClientOperationGroups(
   const methodMap = getMethodHierarchiesMap(dpgContext, client);
   for (const [prefixKey, operations] of methodMap) {
     const prefixes = prefixKey.split("/");
-    const layer = prefixes.length - 1;
+    const layer = 0;
     if (prefixKey === "") {
       operations.forEach((op) => {
         const method = generateMethod(dpgContext, clientType, [prefixes, op]);
