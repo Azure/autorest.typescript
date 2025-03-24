@@ -87,9 +87,11 @@ export async function generateTypeScriptLibrary(
   if (generateTest) {
     generateSnippetsFile(codeModel, project, clientDetails);
     generateSampleTestFile(project);
-    generateVitestConfig(project, "node");
-    generateVitestConfig(project, "browser");
-    generateVitestConfig(project, "esm");
+    if (azureSdkForJs) {
+      generateVitestConfig(project, "node");
+      generateVitestConfig(project, "browser");
+      generateVitestConfig(project, "esm");
+    }
   }
   generateTsConfig(project);
   generateTsBrowserConfig(project);

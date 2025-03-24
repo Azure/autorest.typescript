@@ -2,6 +2,9 @@ import { Project } from "ts-morph";
 import { getAutorestOptions } from "../../autorestSession";
 
 const nodeConfig = `
+import { defineConfig, mergeConfig } from "vitest/config";
+import viteConfig from "../../../vitest.shared.config.ts";
+
 export default mergeConfig(
   viteConfig,
   defineConfig({
@@ -13,6 +16,9 @@ export default mergeConfig(
 );`;
 
 const browserConfig = `
+import { defineConfig, mergeConfig } from "vitest/config";
+import viteConfig from "../../../vitest.browser.shared.config.ts";
+
 export default mergeConfig(
   viteConfig,
   defineConfig({
@@ -25,6 +31,10 @@ export default mergeConfig(
 );`;
 
 const esmConfig = `
+import { mergeConfig } from "vitest/config";
+import vitestConfig from "./vitest.config.ts";
+import vitestEsmConfig from "../../../vitest.esm.shared.config.ts";
+
 export default mergeConfig(vitestConfig, vitestEsmConfig);`;
 
 export function generateVitestConfig(
@@ -39,56 +49,18 @@ export function generateVitestConfig(
     ) {
         return;
     }
-
-    let filePath;
-    let config;
-    let configFile;
-
-    if (platform === "node") {
-        filePath = "vitest.config.ts";
-        config = nodeConfig;
-        configFile = project.createSourceFile(filePath, config, {
-            overwrite: true
-        });
-        configFile.addImportDeclaration({
-            moduleSpecifier: "vitest/config",
-            namedImports: ["defineConfig", "mergeConfig"]
-        });
-        configFile.addImportDeclaration({
-            moduleSpecifier: "../../../vitest.shared.config.ts",
-            namespaceImport: "viteConfig"
-        });
-    } else if (platform === "browser") {
-        filePath = "vitest.browser.config.ts";
-        config = browserConfig;
-        configFile = project.createSourceFile(filePath, config, {
-            overwrite: true
-        });
-        configFile.addImportDeclaration({
-            moduleSpecifier: "vitest/config",
-            namedImports: ["defineConfig", "mergeConfig"]
-        });
-        configFile.addImportDeclaration({
-            moduleSpecifier: "../../../vitest.browser.shared.config.ts",
-            namespaceImport: "viteConfig"
-        });
-    } else {
-        filePath = "vitest.esm.config.ts";
-        config = esmConfig;
-        configFile = project.createSourceFile(filePath, config, {
-            overwrite: true
-        });
-        configFile.addImportDeclaration({
-            moduleSpecifier: "vitest/config",
-            namedImports: ["mergeConfig"]
-        });
-        configFile.addImportDeclaration({
-            moduleSpecifier: "./vitest.config.ts",
-            namespaceImport: "vitestConfig"
-        });
-        configFile.addImportDeclaration({
-            moduleSpecifier: "../../../vitest.esm.shared.config.ts",
-            namespaceImport: "vitestEsmConfig"
-        });
+    switch (platform) {
+        case "browser":
+            project.createSourceFile("vitest.browser.config.ts", browserConfig, {
+                overwrite: true
+            });
+        case "node":
+            project.createSourceFile("vitest.config.ts", nodeConfig, {
+                overwrite: true
+            });
+        case "esm":
+            project.createSourceFile("vitest.esm.config.ts", esmConfig, {
+                overwrite: true
+            });
     }
 }

@@ -1,6 +1,3 @@
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-
 import type { AbortSignalLike } from "@azure/abort-controller";
 import type { LongRunningOperation, LroResponse } from "@azure/core-lro";
 

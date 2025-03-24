@@ -5,21 +5,10 @@ import { Project } from "ts-morph";
 import { getAutorestOptions } from "../../autorestSession";
 
 const highLevelTsBrowserConfig: Record<string, any> = {
-    extends: "./.tshy/build.json",
-    include: [
-        "./src/**/*.ts",
-        "./src/**/*.mts",
-        "./test/**/*.spec.ts",
-        "./test/**/*.mts"
-    ],
-    exclude: [
-        "./test/**/node/**/*.ts"
-    ],
-    compilerOptions: {
-        outDir: "./dist-test/browser",
-        rootDir: ".",
-        skipLibCheck: true
-    }
+    "extends": [
+        "./tsconfig.test.json",
+        "../../../tsconfig.browser.base.json"
+    ]
 };
 
 export function generateTsBrowserConfig(project: Project) {
