@@ -44,7 +44,7 @@ export function generateApiExtractorConfig(project: Project) {
     }
   };
 
-  project.createSourceFile("api-extractor.json", JSON.stringify(config), {
+  project.createSourceFile("api-extractor.json", JSON.stringify(config, null, 2), {
     overwrite: true
   });
 }

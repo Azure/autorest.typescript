@@ -38,29 +38,29 @@ import vitestEsmConfig from "../../../vitest.esm.shared.config.ts";
 export default mergeConfig(vitestConfig, vitestEsmConfig);`;
 
 export function generateVitestConfig(
-    project: Project,
-    platform: "browser" | "node" | "esm"
+  project: Project,
+  platform: "browser" | "node" | "esm"
 ) {
-    const { generateTest, generateMetadata, azureSdkForJs } = getAutorestOptions();
-    if (
-        azureSdkForJs === false ||
-        generateMetadata === false ||
-        generateTest === false
-    ) {
-        return;
-    }
-    switch (platform) {
-        case "browser":
-            project.createSourceFile("vitest.browser.config.ts", browserConfig, {
-                overwrite: true
-            });
-        case "node":
-            project.createSourceFile("vitest.config.ts", nodeConfig, {
-                overwrite: true
-            });
-        case "esm":
-            project.createSourceFile("vitest.esm.config.ts", esmConfig, {
-                overwrite: true
-            });
-    }
+  const { generateTest, generateMetadata, azureSdkForJs } = getAutorestOptions();
+  if (
+    azureSdkForJs === false ||
+    generateMetadata === false ||
+    generateTest === false
+  ) {
+    return;
+  }
+  switch (platform) {
+    case "browser":
+      project.createSourceFile("vitest.browser.config.ts", browserConfig, {
+        overwrite: true
+      });
+    case "node":
+      project.createSourceFile("vitest.config.ts", nodeConfig, {
+        overwrite: true
+      });
+    case "esm":
+      project.createSourceFile("vitest.esm.config.ts", esmConfig, {
+        overwrite: true
+      });
+  }
 }
