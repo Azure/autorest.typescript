@@ -711,7 +711,7 @@ describe("ModelsPropertyAdditional Rest Client", () => {
   it("should get spread record discriminate union additional properties", async () => {
     const result = await client
       .path(
-        "/type/property/additionalProperties/spreadRecordDiscriminatedUnion"
+        "/type/property/additionalProperties/spreadRecordNonDiscriminatedUnion3"
       )
       .get({
         body: {
@@ -733,15 +733,21 @@ describe("ModelsPropertyAdditional Rest Client", () => {
   it("should put spread record discriminate union additional properties", async () => {
     const result = await client
       .path(
-        "/type/property/additionalProperties/spreadRecordDiscriminatedUnion"
+        "/type/property/additionalProperties/spreadRecordNonDiscriminatedUnion3"
       )
       .put({
         body: {
           name: "abc",
-          prop1: {
-            kind: "kind0",
-            fooProp: "abc"
-          },
+          prop1: [
+            {
+              kind: "kind1",
+              start: "2021-01-01T00:00:00Z"
+            },
+            {
+              kind: "kind1",
+              start: "2021-01-01T00:00:00Z"
+            }
+          ],
           prop2: {
             kind: "kind1",
             start: "2021-01-01T00:00:00Z",

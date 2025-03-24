@@ -1,11 +1,7 @@
 // Licensed under the MIT License.
 
 import { TodoContext } from "../../api/todoContext.js";
-import {
-  TodoItem,
-  TodoLabels,
-  ToDoItemMultipartRequest,
-} from "../../models/models.js";
+import { TodoItem, ToDoItemMultipartRequest } from "../../models/models.js";
 import { TodoItemPatch } from "../../models/todoItems/models.js";
 import {
   TodoItemsDeleteOptionalParams,
@@ -44,63 +40,16 @@ export interface TodoItemsOperations {
     id: number,
     patch: TodoItemPatch,
     options?: TodoItemsUpdateOptionalParams,
-  ) => Promise<{
-    id: number;
-    title: string;
-    createdBy: number;
-    assignedTo?: number;
-    description?: string;
-    status: "NotStarted" | "InProgress" | "Completed";
-    createdAt: Date;
-    updatedAt: Date;
-    completedAt?: Date;
-    labels?: TodoLabels;
-  }>;
-  get: (
-    id: number,
-    options?: TodoItemsGetOptionalParams,
-  ) => Promise<{
-    id: number;
-    title: string;
-    createdBy: number;
-    assignedTo?: number;
-    description?: string;
-    status: "NotStarted" | "InProgress" | "Completed";
-    createdAt: Date;
-    updatedAt: Date;
-    completedAt?: Date;
-    labels?: TodoLabels;
-  }>;
+  ) => Promise<TodoItem>;
+  get: (id: number, options?: TodoItemsGetOptionalParams) => Promise<TodoItem>;
   createForm: (
     body: ToDoItemMultipartRequest,
     options?: TodoItemsCreateFormOptionalParams,
-  ) => Promise<{
-    id: number;
-    title: string;
-    createdBy: number;
-    assignedTo?: number;
-    description?: string;
-    status: "NotStarted" | "InProgress" | "Completed";
-    createdAt: Date;
-    updatedAt: Date;
-    completedAt?: Date;
-    labels?: TodoLabels;
-  }>;
+  ) => Promise<TodoItem>;
   createJson: (
     item: TodoItem,
     options?: TodoItemsCreateJsonOptionalParams,
-  ) => Promise<{
-    id: number;
-    title: string;
-    createdBy: number;
-    assignedTo?: number;
-    description?: string;
-    status: "NotStarted" | "InProgress" | "Completed";
-    createdAt: Date;
-    updatedAt: Date;
-    completedAt?: Date;
-    labels?: TodoLabels;
-  }>;
+  ) => Promise<TodoItem>;
   list: (
     options?: TodoItemsListOptionalParams,
   ) => PagedAsyncIterableIterator<TodoItem>;
