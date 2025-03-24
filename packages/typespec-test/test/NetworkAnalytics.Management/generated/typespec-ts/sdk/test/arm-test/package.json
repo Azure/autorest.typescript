@@ -16,8 +16,7 @@
       "./api/dataTypes": "./src/api/dataTypes/index.ts",
       "./api/dataProductsCatalogs": "./src/api/dataProductsCatalogs/index.ts",
       "./api/operations": "./src/api/operations/index.ts",
-      "./models": "./src/models/index.ts",
-      "./models/networkAnalytics": "./src/models/networkAnalytics/index.ts"
+      "./models": "./src/models/index.ts"
     },
     "dialects": [
       "esm",
@@ -202,24 +201,6 @@
       "require": {
         "types": "./dist/commonjs/models/index.d.ts",
         "default": "./dist/commonjs/models/index.js"
-      }
-    },
-    "./models/networkAnalytics": {
-      "browser": {
-        "types": "./dist/browser/models/networkAnalytics/index.d.ts",
-        "default": "./dist/browser/models/networkAnalytics/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/models/networkAnalytics/index.d.ts",
-        "default": "./dist/react-native/models/networkAnalytics/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/models/networkAnalytics/index.d.ts",
-        "default": "./dist/esm/models/networkAnalytics/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/models/networkAnalytics/index.d.ts",
-        "default": "./dist/commonjs/models/networkAnalytics/index.js"
       }
     }
   },

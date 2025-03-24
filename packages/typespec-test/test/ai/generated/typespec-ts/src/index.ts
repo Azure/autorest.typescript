@@ -41,7 +41,7 @@ export {
   InternalConnectionPropertiesSASAuth,
   CredentialsSASAuth,
   KnownVersions,
-} from "./models/projects/index.js";
+} from "./models/index.js";
 export {
   ToolDefinition,
   ToolDefinitionUnion,
@@ -244,7 +244,7 @@ export {
   ErrorEvent,
   DoneEvent,
   AgentStreamEvent,
-} from "./models/projects/agents/index.js";
+} from "./models/agents/index.js";
 export { AIProjectClientOptionalParams } from "./api/index.js";
 export {
   AgentsListVectorStoreFileBatchFilesOptionalParams,

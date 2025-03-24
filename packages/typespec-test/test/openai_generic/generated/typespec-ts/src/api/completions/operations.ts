@@ -8,7 +8,7 @@ import {
   createCompletionRequestSerializer,
   CreateCompletionResponse,
   createCompletionResponseDeserializer,
-} from "../../models/openAI/models.js";
+} from "../../models/models.js";
 import { CompletionsCreateOptionalParams } from "./options.js";
 import {
   StreamableMethod,

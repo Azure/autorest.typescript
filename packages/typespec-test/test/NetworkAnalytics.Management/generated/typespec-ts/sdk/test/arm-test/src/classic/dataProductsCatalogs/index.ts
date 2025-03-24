@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { NetworkAnalyticsApiContext } from "../../api/networkAnalyticsApiContext.js";
-import { DataProductsCatalog } from "../../models/networkAnalytics/models.js";
+import { DataProductsCatalog } from "../../models/models.js";
 import {
   DataProductsCatalogsListBySubscriptionOptionalParams,
   DataProductsCatalogsListByResourceGroupOptionalParams,

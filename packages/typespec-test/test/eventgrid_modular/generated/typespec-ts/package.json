@@ -12,7 +12,7 @@
       "./package.json": "./package.json",
       ".": "./src/index.ts",
       "./api": "./src/api/index.ts",
-      "./models/eventGrid": "./src/models/eventGrid/index.ts"
+      "./models": "./src/models/index.ts"
     },
     "dialects": [
       "esm",
@@ -107,22 +107,22 @@
         "default": "./dist/commonjs/api/index.js"
       }
     },
-    "./models/eventGrid": {
+    "./models": {
       "browser": {
-        "types": "./dist/browser/models/eventGrid/index.d.ts",
-        "default": "./dist/browser/models/eventGrid/index.js"
+        "types": "./dist/browser/models/index.d.ts",
+        "default": "./dist/browser/models/index.js"
       },
       "react-native": {
-        "types": "./dist/react-native/models/eventGrid/index.d.ts",
-        "default": "./dist/react-native/models/eventGrid/index.js"
+        "types": "./dist/react-native/models/index.d.ts",
+        "default": "./dist/react-native/models/index.js"
       },
       "import": {
-        "types": "./dist/esm/models/eventGrid/index.d.ts",
-        "default": "./dist/esm/models/eventGrid/index.js"
+        "types": "./dist/esm/models/index.d.ts",
+        "default": "./dist/esm/models/index.js"
       },
       "require": {
-        "types": "./dist/commonjs/models/eventGrid/index.d.ts",
-        "default": "./dist/commonjs/models/eventGrid/index.js"
+        "types": "./dist/commonjs/models/index.d.ts",
+        "default": "./dist/commonjs/models/index.js"
       }
     }
   },

@@ -7,7 +7,7 @@ import {
   ListFilesResponse,
   CreateFileRequest,
   DeleteFileResponse,
-} from "../../models/openAI/models.js";
+} from "../../models/models.js";
 import {
   FilesDownloadOptionalParams,
   FilesDeleteOptionalParams,

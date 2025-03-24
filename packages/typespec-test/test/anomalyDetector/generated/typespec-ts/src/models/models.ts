@@ -1,4 +1,5 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export { AnomalyDetectorAPIVersion } from "./models.js";
+/** Type of APIVersion */
+export type APIVersion = "v1.1";

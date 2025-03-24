@@ -27,7 +27,7 @@ import {
   VectorStoreFile,
   VectorStoreFileDeletionStatus,
   VectorStoreFileBatch,
-} from "../../models/projects/agents/models.js";
+} from "../../models/agents/models.js";
 import {
   AgentsListVectorStoreFileBatchFilesOptionalParams,
   AgentsCancelVectorStoreFileBatchOptionalParams,

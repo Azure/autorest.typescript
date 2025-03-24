@@ -16,9 +16,9 @@
       "./api/b/c": "./src/api/b/c/index.ts",
       "./api/b/e/c": "./src/api/b/e/c/index.ts",
       "./api/b": "./src/api/b/index.ts",
-      "./models/foo": "./src/models/foo/index.ts",
-      "./models/foo/b": "./src/models/foo/b/index.ts",
-      "./models/foo/b/e": "./src/models/foo/b/e/index.ts"
+      "./models": "./src/models/index.ts",
+      "./models/b": "./src/models/b/index.ts",
+      "./models/b/e": "./src/models/b/e/index.ts"
     },
     "dialects": [
       "esm",
@@ -185,58 +185,58 @@
         "default": "./dist/commonjs/api/b/index.js"
       }
     },
-    "./models/foo": {
+    "./models": {
       "browser": {
-        "types": "./dist/browser/models/foo/index.d.ts",
-        "default": "./dist/browser/models/foo/index.js"
+        "types": "./dist/browser/models/index.d.ts",
+        "default": "./dist/browser/models/index.js"
       },
       "react-native": {
-        "types": "./dist/react-native/models/foo/index.d.ts",
-        "default": "./dist/react-native/models/foo/index.js"
+        "types": "./dist/react-native/models/index.d.ts",
+        "default": "./dist/react-native/models/index.js"
       },
       "import": {
-        "types": "./dist/esm/models/foo/index.d.ts",
-        "default": "./dist/esm/models/foo/index.js"
+        "types": "./dist/esm/models/index.d.ts",
+        "default": "./dist/esm/models/index.js"
       },
       "require": {
-        "types": "./dist/commonjs/models/foo/index.d.ts",
-        "default": "./dist/commonjs/models/foo/index.js"
+        "types": "./dist/commonjs/models/index.d.ts",
+        "default": "./dist/commonjs/models/index.js"
       }
     },
-    "./models/foo/b": {
+    "./models/b": {
       "browser": {
-        "types": "./dist/browser/models/foo/b/index.d.ts",
-        "default": "./dist/browser/models/foo/b/index.js"
+        "types": "./dist/browser/models/b/index.d.ts",
+        "default": "./dist/browser/models/b/index.js"
       },
       "react-native": {
-        "types": "./dist/react-native/models/foo/b/index.d.ts",
-        "default": "./dist/react-native/models/foo/b/index.js"
+        "types": "./dist/react-native/models/b/index.d.ts",
+        "default": "./dist/react-native/models/b/index.js"
       },
       "import": {
-        "types": "./dist/esm/models/foo/b/index.d.ts",
-        "default": "./dist/esm/models/foo/b/index.js"
+        "types": "./dist/esm/models/b/index.d.ts",
+        "default": "./dist/esm/models/b/index.js"
       },
       "require": {
-        "types": "./dist/commonjs/models/foo/b/index.d.ts",
-        "default": "./dist/commonjs/models/foo/b/index.js"
+        "types": "./dist/commonjs/models/b/index.d.ts",
+        "default": "./dist/commonjs/models/b/index.js"
       }
     },
-    "./models/foo/b/e": {
+    "./models/b/e": {
       "browser": {
-        "types": "./dist/browser/models/foo/b/e/index.d.ts",
-        "default": "./dist/browser/models/foo/b/e/index.js"
+        "types": "./dist/browser/models/b/e/index.d.ts",
+        "default": "./dist/browser/models/b/e/index.js"
       },
       "react-native": {
-        "types": "./dist/react-native/models/foo/b/e/index.d.ts",
-        "default": "./dist/react-native/models/foo/b/e/index.js"
+        "types": "./dist/react-native/models/b/e/index.d.ts",
+        "default": "./dist/react-native/models/b/e/index.js"
       },
       "import": {
-        "types": "./dist/esm/models/foo/b/e/index.d.ts",
-        "default": "./dist/esm/models/foo/b/e/index.js"
+        "types": "./dist/esm/models/b/e/index.d.ts",
+        "default": "./dist/esm/models/b/e/index.js"
       },
       "require": {
-        "types": "./dist/commonjs/models/foo/b/e/index.d.ts",
-        "default": "./dist/commonjs/models/foo/b/e/index.js"
+        "types": "./dist/commonjs/models/b/e/index.d.ts",
+        "default": "./dist/commonjs/models/b/e/index.js"
       }
     }
   },

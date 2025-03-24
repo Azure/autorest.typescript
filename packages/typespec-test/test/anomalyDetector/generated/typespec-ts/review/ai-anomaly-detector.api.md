@@ -9,9 +9,6 @@ import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-// @public
-export type AnomalyDetectorAPIVersion = "v1.1";
-
 // @public (undocumented)
 export class AnomalyDetectorClient {
     constructor(endpointParam: string, credential: KeyCredential, options?: AnomalyDetectorClientOptionalParams);
@@ -26,232 +23,60 @@ export interface AnomalyDetectorClientOptionalParams extends ClientOptions {
 }
 
 // @public
-export type AnomalyDetectorMultivariateAlignMode = "Inner" | "Outer";
+export type APIVersion = "v1.1";
 
 // @public
-export interface AnomalyDetectorMultivariateAlignPolicy {
-    alignMode?: AnomalyDetectorMultivariateAlignMode;
-    fillNAMethod?: AnomalyDetectorMultivariateFillNAMethod;
+export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
+    continuationToken?: string;
+};
+
+// @public
+export type MultivariateAlignMode = "Inner" | "Outer";
+
+// @public
+export interface MultivariateAlignPolicy {
+    alignMode?: MultivariateAlignMode;
+    fillNAMethod?: MultivariateFillNAMethod;
     paddingValue?: number;
 }
 
 // @public
-export interface AnomalyDetectorMultivariateAnomalyDetectionModel {
+export interface MultivariateAnomalyDetectionModel {
     createdTime: Date;
     lastUpdatedTime: Date;
     modelId: string;
-    modelInfo?: AnomalyDetectorMultivariateModelInfo;
+    modelInfo?: MultivariateModelInfo;
 }
 
 // @public
-export interface AnomalyDetectorMultivariateAnomalyInterpretation {
+export interface MultivariateAnomalyInterpretation {
     contributionScore?: number;
-    correlationChanges?: AnomalyDetectorMultivariateCorrelationChanges;
+    correlationChanges?: MultivariateCorrelationChanges;
     variable?: string;
 }
 
 // @public
-export interface AnomalyDetectorMultivariateAnomalyState {
-    errors?: AnomalyDetectorMultivariateErrorResponse[];
+export interface MultivariateAnomalyState {
+    errors?: MultivariateErrorResponse[];
     timestamp: Date;
-    value?: AnomalyDetectorMultivariateAnomalyValue;
+    value?: MultivariateAnomalyValue;
 }
 
 // @public
-export interface AnomalyDetectorMultivariateAnomalyValue {
-    interpretation?: AnomalyDetectorMultivariateAnomalyInterpretation[];
+export interface MultivariateAnomalyValue {
+    interpretation?: MultivariateAnomalyInterpretation[];
     isAnomaly: boolean;
     score: number;
     severity: number;
 }
 
 // @public
-export interface AnomalyDetectorMultivariateCorrelationChanges {
+export interface MultivariateCorrelationChanges {
     changedVariables?: string[];
 }
 
 // @public
-export type AnomalyDetectorMultivariateDataSchema = "OneTable" | "MultiTable";
-
-// @public
-export interface AnomalyDetectorMultivariateDiagnosticsInfo {
-    modelState?: AnomalyDetectorMultivariateModelState;
-    variableStates?: AnomalyDetectorMultivariateVariableState[];
-}
-
-// @public
-export interface AnomalyDetectorMultivariateErrorResponse {
-    code: string;
-    message: string;
-}
-
-// @public
-export type AnomalyDetectorMultivariateFillNAMethod = "Previous" | "Subsequent" | "Linear" | "Zero" | "Fixed";
-
-// @public
-export interface AnomalyDetectorMultivariateModelInfo {
-    alignPolicy?: AnomalyDetectorMultivariateAlignPolicy;
-    dataSchema?: AnomalyDetectorMultivariateDataSchema;
-    dataSource: string;
-    readonly diagnosticsInfo?: AnomalyDetectorMultivariateDiagnosticsInfo;
-    displayName?: string;
-    endTime: Date;
-    readonly errors?: AnomalyDetectorMultivariateErrorResponse[];
-    slidingWindow?: number;
-    startTime: Date;
-    readonly status?: AnomalyDetectorMultivariateModelStatus;
-}
-
-// @public
-export interface AnomalyDetectorMultivariateModelState {
-    epochIds?: number[];
-    latenciesInSeconds?: number[];
-    trainLosses?: number[];
-    validationLosses?: number[];
-}
-
-// @public
-export type AnomalyDetectorMultivariateModelStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
-
-// @public
-export interface AnomalyDetectorMultivariateMultivariateBatchDetectionOptions {
-    dataSource: string;
-    endTime: Date;
-    startTime: Date;
-    topContributorCount?: number;
-}
-
-// @public
-export interface AnomalyDetectorMultivariateMultivariateBatchDetectionResultSummary {
-    errors?: AnomalyDetectorMultivariateErrorResponse[];
-    setupInfo: AnomalyDetectorMultivariateMultivariateBatchDetectionOptions;
-    status: AnomalyDetectorMultivariateMultivariateBatchDetectionStatus;
-    variableStates?: AnomalyDetectorMultivariateVariableState[];
-}
-
-// @public
-export type AnomalyDetectorMultivariateMultivariateBatchDetectionStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
-
-// @public
-export interface AnomalyDetectorMultivariateMultivariateDetectionResult {
-    resultId: string;
-    results: AnomalyDetectorMultivariateAnomalyState[];
-    summary: AnomalyDetectorMultivariateMultivariateBatchDetectionResultSummary;
-}
-
-// @public
-export interface AnomalyDetectorMultivariateMultivariateLastDetectionOptions {
-    topContributorCount?: number;
-    variables: AnomalyDetectorMultivariateVariableValues[];
-}
-
-// @public
-export interface AnomalyDetectorMultivariateMultivariateLastDetectionResult {
-    results?: AnomalyDetectorMultivariateAnomalyState[];
-    variableStates?: AnomalyDetectorMultivariateVariableState[];
-}
-
-// @public
-export interface AnomalyDetectorMultivariateResponseError {
-    code: string;
-    message: string;
-}
-
-// @public
-export interface AnomalyDetectorMultivariateVariableState {
-    effectiveCount?: number;
-    filledNARatio?: number;
-    firstTimestamp?: Date;
-    lastTimestamp?: Date;
-    variable?: string;
-}
-
-// @public
-export interface AnomalyDetectorMultivariateVariableValues {
-    timestamps: string[];
-    values: number[];
-    variable: string;
-}
-
-// @public
-export interface AnomalyDetectorUnivariateAnomalyDetectorError {
-    code: AnomalyDetectorUnivariateAnomalyDetectorErrorCodes;
-    message: string;
-}
-
-// @public
-export type AnomalyDetectorUnivariateAnomalyDetectorErrorCodes = "InvalidCustomInterval" | "BadArgument" | "InvalidGranularity" | "InvalidPeriod" | "InvalidModelArgument" | "InvalidSeries" | "InvalidJsonFormat" | "RequiredGranularity" | "RequiredSeries" | "InvalidImputeMode" | "InvalidImputeFixedValue";
-
-// @public
-export type AnomalyDetectorUnivariateImputeMode = "auto" | "previous" | "linear" | "fixed" | "zero" | "notFill";
-
-// @public
-export type AnomalyDetectorUnivariateTimeGranularity = "yearly" | "monthly" | "weekly" | "daily" | "hourly" | "minutely" | "secondly" | "microsecond" | "none";
-
-// @public
-export interface AnomalyDetectorUnivariateTimeSeriesPoint {
-    timestamp?: Date;
-    value: number;
-}
-
-// @public
-export interface AnomalyDetectorUnivariateUnivariateChangePointDetectionOptions {
-    customInterval?: number;
-    granularity: AnomalyDetectorUnivariateTimeGranularity;
-    period?: number;
-    series: AnomalyDetectorUnivariateTimeSeriesPoint[];
-    stableTrendWindow?: number;
-    threshold?: number;
-}
-
-// @public
-export interface AnomalyDetectorUnivariateUnivariateChangePointDetectionResult {
-    confidenceScores?: number[];
-    isChangePoint?: boolean[];
-    readonly period?: number;
-}
-
-// @public
-export interface AnomalyDetectorUnivariateUnivariateDetectionOptions {
-    customInterval?: number;
-    granularity?: AnomalyDetectorUnivariateTimeGranularity;
-    imputeFixedValue?: number;
-    imputeMode?: AnomalyDetectorUnivariateImputeMode;
-    maxAnomalyRatio?: number;
-    period?: number;
-    sensitivity?: number;
-    series: AnomalyDetectorUnivariateTimeSeriesPoint[];
-}
-
-// @public
-export interface AnomalyDetectorUnivariateUnivariateEntireDetectionResult {
-    expectedValues: number[];
-    isAnomaly: boolean[];
-    isNegativeAnomaly: boolean[];
-    isPositiveAnomaly: boolean[];
-    lowerMargins: number[];
-    period: number;
-    severity?: number[];
-    upperMargins: number[];
-}
-
-// @public
-export interface AnomalyDetectorUnivariateUnivariateLastDetectionResult {
-    expectedValue: number;
-    isAnomaly: boolean;
-    isNegativeAnomaly: boolean;
-    isPositiveAnomaly: boolean;
-    lowerMargin: number;
-    period: number;
-    severity?: number;
-    suggestedWindow: number;
-    upperMargin: number;
-}
-
-// @public
-export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
-    continuationToken?: string;
-};
+export type MultivariateDataSchema = "OneTable" | "MultiTable";
 
 // @public
 export interface MultivariateDeleteMultivariateModelOptionalParams extends OperationOptions {
@@ -264,6 +89,21 @@ export interface MultivariateDetectMultivariateBatchAnomalyOptionalParams extend
 // @public
 export interface MultivariateDetectMultivariateLastAnomalyOptionalParams extends OperationOptions {
 }
+
+// @public
+export interface MultivariateDiagnosticsInfo {
+    modelState?: MultivariateModelState;
+    variableStates?: MultivariateVariableState[];
+}
+
+// @public
+export interface MultivariateErrorResponse {
+    code: string;
+    message: string;
+}
+
+// @public
+export type MultivariateFillNAMethod = "Previous" | "Subsequent" | "Linear" | "Zero" | "Fixed";
 
 // @public
 export interface MultivariateGetMultivariateBatchDetectionResultOptionalParams extends OperationOptions {
@@ -280,18 +120,103 @@ export interface MultivariateListMultivariateModelsOptionalParams extends Operat
 }
 
 // @public
+export interface MultivariateModelInfo {
+    alignPolicy?: MultivariateAlignPolicy;
+    dataSchema?: MultivariateDataSchema;
+    dataSource: string;
+    readonly diagnosticsInfo?: MultivariateDiagnosticsInfo;
+    displayName?: string;
+    endTime: Date;
+    readonly errors?: MultivariateErrorResponse[];
+    slidingWindow?: number;
+    startTime: Date;
+    readonly status?: MultivariateModelStatus;
+}
+
+// @public
+export interface MultivariateModelState {
+    epochIds?: number[];
+    latenciesInSeconds?: number[];
+    trainLosses?: number[];
+    validationLosses?: number[];
+}
+
+// @public
+export type MultivariateModelStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
+
+// @public
+export interface MultivariateMultivariateBatchDetectionOptions {
+    dataSource: string;
+    endTime: Date;
+    startTime: Date;
+    topContributorCount?: number;
+}
+
+// @public
+export interface MultivariateMultivariateBatchDetectionResultSummary {
+    errors?: MultivariateErrorResponse[];
+    setupInfo: MultivariateMultivariateBatchDetectionOptions;
+    status: MultivariateMultivariateBatchDetectionStatus;
+    variableStates?: MultivariateVariableState[];
+}
+
+// @public
+export type MultivariateMultivariateBatchDetectionStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
+
+// @public
+export interface MultivariateMultivariateDetectionResult {
+    resultId: string;
+    results: MultivariateAnomalyState[];
+    summary: MultivariateMultivariateBatchDetectionResultSummary;
+}
+
+// @public
+export interface MultivariateMultivariateLastDetectionOptions {
+    topContributorCount?: number;
+    variables: MultivariateVariableValues[];
+}
+
+// @public
+export interface MultivariateMultivariateLastDetectionResult {
+    results?: MultivariateAnomalyState[];
+    variableStates?: MultivariateVariableState[];
+}
+
+// @public
 export interface MultivariateOperations {
     deleteMultivariateModel: (modelId: string, options?: MultivariateDeleteMultivariateModelOptionalParams) => Promise<void>;
-    detectMultivariateBatchAnomaly: (modelId: string, options: AnomalyDetectorMultivariateMultivariateBatchDetectionOptions, optionalParams?: MultivariateDetectMultivariateBatchAnomalyOptionalParams) => Promise<AnomalyDetectorMultivariateMultivariateDetectionResult>;
-    detectMultivariateLastAnomaly: (modelId: string, options: AnomalyDetectorMultivariateMultivariateLastDetectionOptions, optionalParams?: MultivariateDetectMultivariateLastAnomalyOptionalParams) => Promise<AnomalyDetectorMultivariateMultivariateLastDetectionResult>;
-    getMultivariateBatchDetectionResult: (resultId: string, options?: MultivariateGetMultivariateBatchDetectionResultOptionalParams) => Promise<AnomalyDetectorMultivariateMultivariateDetectionResult>;
-    getMultivariateModel: (modelId: string, options?: MultivariateGetMultivariateModelOptionalParams) => Promise<AnomalyDetectorMultivariateAnomalyDetectionModel>;
-    listMultivariateModels: (options?: MultivariateListMultivariateModelsOptionalParams) => PagedAsyncIterableIterator<AnomalyDetectorMultivariateAnomalyDetectionModel>;
-    trainMultivariateModel: (modelInfo: AnomalyDetectorMultivariateModelInfo, options?: MultivariateTrainMultivariateModelOptionalParams) => Promise<AnomalyDetectorMultivariateAnomalyDetectionModel>;
+    detectMultivariateBatchAnomaly: (modelId: string, options: MultivariateMultivariateBatchDetectionOptions, optionalParams?: MultivariateDetectMultivariateBatchAnomalyOptionalParams) => Promise<MultivariateMultivariateDetectionResult>;
+    detectMultivariateLastAnomaly: (modelId: string, options: MultivariateMultivariateLastDetectionOptions, optionalParams?: MultivariateDetectMultivariateLastAnomalyOptionalParams) => Promise<MultivariateMultivariateLastDetectionResult>;
+    getMultivariateBatchDetectionResult: (resultId: string, options?: MultivariateGetMultivariateBatchDetectionResultOptionalParams) => Promise<MultivariateMultivariateDetectionResult>;
+    getMultivariateModel: (modelId: string, options?: MultivariateGetMultivariateModelOptionalParams) => Promise<MultivariateAnomalyDetectionModel>;
+    listMultivariateModels: (options?: MultivariateListMultivariateModelsOptionalParams) => PagedAsyncIterableIterator<MultivariateAnomalyDetectionModel>;
+    trainMultivariateModel: (modelInfo: MultivariateModelInfo, options?: MultivariateTrainMultivariateModelOptionalParams) => Promise<MultivariateAnomalyDetectionModel>;
+}
+
+// @public
+export interface MultivariateResponseError {
+    code: string;
+    message: string;
 }
 
 // @public
 export interface MultivariateTrainMultivariateModelOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface MultivariateVariableState {
+    effectiveCount?: number;
+    filledNARatio?: number;
+    firstTimestamp?: Date;
+    lastTimestamp?: Date;
+    variable?: string;
+}
+
+// @public
+export interface MultivariateVariableValues {
+    timestamps: string[];
+    values: number[];
+    variable: string;
 }
 
 // @public
@@ -307,6 +232,15 @@ export interface PageSettings {
 }
 
 // @public
+export interface UnivariateAnomalyDetectorError {
+    code: UnivariateAnomalyDetectorErrorCodes;
+    message: string;
+}
+
+// @public
+export type UnivariateAnomalyDetectorErrorCodes = "InvalidCustomInterval" | "BadArgument" | "InvalidGranularity" | "InvalidPeriod" | "InvalidModelArgument" | "InvalidSeries" | "InvalidJsonFormat" | "RequiredGranularity" | "RequiredSeries" | "InvalidImputeMode" | "InvalidImputeFixedValue";
+
+// @public
 export interface UnivariateDetectUnivariateChangePointOptionalParams extends OperationOptions {
 }
 
@@ -319,10 +253,76 @@ export interface UnivariateDetectUnivariateLastPointOptionalParams extends Opera
 }
 
 // @public
+export type UnivariateImputeMode = "auto" | "previous" | "linear" | "fixed" | "zero" | "notFill";
+
+// @public
 export interface UnivariateOperations {
-    detectUnivariateChangePoint: (options: AnomalyDetectorUnivariateUnivariateChangePointDetectionOptions, optionalParams?: UnivariateDetectUnivariateChangePointOptionalParams) => Promise<AnomalyDetectorUnivariateUnivariateChangePointDetectionResult>;
-    detectUnivariateEntireSeries: (options: AnomalyDetectorUnivariateUnivariateDetectionOptions, optionalParams?: UnivariateDetectUnivariateEntireSeriesOptionalParams) => Promise<AnomalyDetectorUnivariateUnivariateEntireDetectionResult>;
-    detectUnivariateLastPoint: (options: AnomalyDetectorUnivariateUnivariateDetectionOptions, optionalParams?: UnivariateDetectUnivariateLastPointOptionalParams) => Promise<AnomalyDetectorUnivariateUnivariateLastDetectionResult>;
+    detectUnivariateChangePoint: (options: UnivariateUnivariateChangePointDetectionOptions, optionalParams?: UnivariateDetectUnivariateChangePointOptionalParams) => Promise<UnivariateUnivariateChangePointDetectionResult>;
+    detectUnivariateEntireSeries: (options: UnivariateUnivariateDetectionOptions, optionalParams?: UnivariateDetectUnivariateEntireSeriesOptionalParams) => Promise<UnivariateUnivariateEntireDetectionResult>;
+    detectUnivariateLastPoint: (options: UnivariateUnivariateDetectionOptions, optionalParams?: UnivariateDetectUnivariateLastPointOptionalParams) => Promise<UnivariateUnivariateLastDetectionResult>;
+}
+
+// @public
+export type UnivariateTimeGranularity = "yearly" | "monthly" | "weekly" | "daily" | "hourly" | "minutely" | "secondly" | "microsecond" | "none";
+
+// @public
+export interface UnivariateTimeSeriesPoint {
+    timestamp?: Date;
+    value: number;
+}
+
+// @public
+export interface UnivariateUnivariateChangePointDetectionOptions {
+    customInterval?: number;
+    granularity: UnivariateTimeGranularity;
+    period?: number;
+    series: UnivariateTimeSeriesPoint[];
+    stableTrendWindow?: number;
+    threshold?: number;
+}
+
+// @public
+export interface UnivariateUnivariateChangePointDetectionResult {
+    confidenceScores?: number[];
+    isChangePoint?: boolean[];
+    readonly period?: number;
+}
+
+// @public
+export interface UnivariateUnivariateDetectionOptions {
+    customInterval?: number;
+    granularity?: UnivariateTimeGranularity;
+    imputeFixedValue?: number;
+    imputeMode?: UnivariateImputeMode;
+    maxAnomalyRatio?: number;
+    period?: number;
+    sensitivity?: number;
+    series: UnivariateTimeSeriesPoint[];
+}
+
+// @public
+export interface UnivariateUnivariateEntireDetectionResult {
+    expectedValues: number[];
+    isAnomaly: boolean[];
+    isNegativeAnomaly: boolean[];
+    isPositiveAnomaly: boolean[];
+    lowerMargins: number[];
+    period: number;
+    severity?: number[];
+    upperMargins: number[];
+}
+
+// @public
+export interface UnivariateUnivariateLastDetectionResult {
+    expectedValue: number;
+    isAnomaly: boolean;
+    isNegativeAnomaly: boolean;
+    isPositiveAnomaly: boolean;
+    lowerMargin: number;
+    period: number;
+    severity?: number;
+    suggestedWindow: number;
+    upperMargin: number;
 }
 
 // (No @packageDocumentation comment for this package)

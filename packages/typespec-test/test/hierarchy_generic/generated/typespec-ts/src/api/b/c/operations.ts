@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { FooContext as Client } from "../../index.js";
-import { FooBA, fooBASerializer } from "../../../models/foo/b/models.js";
+import { BA, baSerializer } from "../../../models/b/models.js";
 import { BCOp1OptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -13,7 +13,7 @@ import {
 
 export function _op1Send(
   context: Client,
-  body: FooBA,
+  body: BA,
   options: BCOp1OptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -21,7 +21,7 @@ export function _op1Send(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      body: fooBASerializer(body),
+      body: baSerializer(body),
     });
 }
 
@@ -38,7 +38,7 @@ export async function _op1Deserialize(
 
 export async function op1(
   context: Client,
-  body: FooBA,
+  body: BA,
   options: BCOp1OptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _op1Send(context, body, options);

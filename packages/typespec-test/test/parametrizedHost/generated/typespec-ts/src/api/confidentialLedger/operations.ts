@@ -5,7 +5,7 @@ import { ParametrizedHostContext as Client } from "../index.js";
 import {
   Collection,
   collectionArrayDeserializer,
-} from "../../models/parametrizedHost/models.js";
+} from "../../models/models.js";
 import { ConfidentialLedgerListCollectionsOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {

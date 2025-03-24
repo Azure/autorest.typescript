@@ -3,12 +3,12 @@
 
 import { AnomalyDetectorContext } from "../../api/anomalyDetectorContext.js";
 import {
-  AnomalyDetectorUnivariateUnivariateDetectionOptions,
-  AnomalyDetectorUnivariateUnivariateEntireDetectionResult,
-  AnomalyDetectorUnivariateUnivariateLastDetectionResult,
-  AnomalyDetectorUnivariateUnivariateChangePointDetectionOptions,
-  AnomalyDetectorUnivariateUnivariateChangePointDetectionResult,
-} from "../../models/anomalyDetector/univariate/models.js";
+  UnivariateUnivariateDetectionOptions,
+  UnivariateUnivariateEntireDetectionResult,
+  UnivariateUnivariateLastDetectionResult,
+  UnivariateUnivariateChangePointDetectionOptions,
+  UnivariateUnivariateChangePointDetectionResult,
+} from "../../models/univariate/models.js";
 import {
   UnivariateDetectUnivariateChangePointOptionalParams,
   UnivariateDetectUnivariateLastPointOptionalParams,
@@ -24,17 +24,17 @@ import {
 export interface UnivariateOperations {
   /** Evaluate change point score of every series point */
   detectUnivariateChangePoint: (
-    options: AnomalyDetectorUnivariateUnivariateChangePointDetectionOptions,
+    options: UnivariateUnivariateChangePointDetectionOptions,
     optionalParams?: UnivariateDetectUnivariateChangePointOptionalParams,
-  ) => Promise<AnomalyDetectorUnivariateUnivariateChangePointDetectionResult>;
+  ) => Promise<UnivariateUnivariateChangePointDetectionResult>;
   /**
    * This operation generates a model using the points that you sent into the API,
    * and based on all data to determine whether the last point is anomalous.
    */
   detectUnivariateLastPoint: (
-    options: AnomalyDetectorUnivariateUnivariateDetectionOptions,
+    options: UnivariateUnivariateDetectionOptions,
     optionalParams?: UnivariateDetectUnivariateLastPointOptionalParams,
-  ) => Promise<AnomalyDetectorUnivariateUnivariateLastDetectionResult>;
+  ) => Promise<UnivariateUnivariateLastDetectionResult>;
   /**
    * This operation generates a model with an entire series, each point is detected
    * with the same model. With this method, points before and after a certain point
@@ -42,23 +42,23 @@ export interface UnivariateOperations {
    * user an overall status of the time series.
    */
   detectUnivariateEntireSeries: (
-    options: AnomalyDetectorUnivariateUnivariateDetectionOptions,
+    options: UnivariateUnivariateDetectionOptions,
     optionalParams?: UnivariateDetectUnivariateEntireSeriesOptionalParams,
-  ) => Promise<AnomalyDetectorUnivariateUnivariateEntireDetectionResult>;
+  ) => Promise<UnivariateUnivariateEntireDetectionResult>;
 }
 
 function _getUnivariate(context: AnomalyDetectorContext) {
   return {
     detectUnivariateChangePoint: (
-      options: AnomalyDetectorUnivariateUnivariateChangePointDetectionOptions,
+      options: UnivariateUnivariateChangePointDetectionOptions,
       optionalParams?: UnivariateDetectUnivariateChangePointOptionalParams,
     ) => detectUnivariateChangePoint(context, options, optionalParams),
     detectUnivariateLastPoint: (
-      options: AnomalyDetectorUnivariateUnivariateDetectionOptions,
+      options: UnivariateUnivariateDetectionOptions,
       optionalParams?: UnivariateDetectUnivariateLastPointOptionalParams,
     ) => detectUnivariateLastPoint(context, options, optionalParams),
     detectUnivariateEntireSeries: (
-      options: AnomalyDetectorUnivariateUnivariateDetectionOptions,
+      options: UnivariateUnivariateDetectionOptions,
       optionalParams?: UnivariateDetectUnivariateEntireSeriesOptionalParams,
     ) => detectUnivariateEntireSeries(context, options, optionalParams),
   };

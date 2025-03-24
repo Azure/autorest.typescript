@@ -3,7 +3,7 @@
 import {
   FileContents,
   createFilePartDescriptor,
-} from "../../static-helpers/multipartHelpers.js";
+} from "../static-helpers/multipartHelpers.js";
 import {
   uint8ArrayToString,
   stringToUint8Array,

@@ -105,7 +105,7 @@ import {
   _applicationListResultDeserializer,
   BatchApplication,
   batchApplicationDeserializer,
-} from "../models/batch/models.js";
+} from "../models/models.js";
 import {
   ListNodeFilesOptionalParams,
   GetNodeFilePropertiesOptionalParams,

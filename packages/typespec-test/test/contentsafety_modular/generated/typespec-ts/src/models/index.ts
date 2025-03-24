@@ -1,2 +1,30 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
+
+export {
+  TextBlocklist,
+  AddOrUpdateTextBlocklistItemsOptions,
+  TextBlocklistItem,
+  AddOrUpdateTextBlocklistItemsResult,
+  RemoveTextBlocklistItemsOptions,
+  AnalyzeImageOptions,
+  ImageData,
+  ImageCategory,
+  AnalyzeImageOutputType,
+  AnalyzeImageResult,
+  ImageCategoriesAnalysis,
+  AnalyzeTextOptions,
+  TextCategory,
+  AnalyzeTextOutputType,
+  AnalyzeTextResult,
+  TextBlocklistMatch,
+  TextCategoriesAnalysis,
+  ShieldPromptOptions,
+  ShieldPromptResult,
+  UserPromptInjectionAnalysisResult,
+  DocumentInjectionAnalysisResult,
+  DetectTextProtectedMaterialOptions,
+  DetectTextProtectedMaterialResult,
+  TextProtectedMaterialAnalysisResult,
+  KnownVersions,
+} from "./models.js";

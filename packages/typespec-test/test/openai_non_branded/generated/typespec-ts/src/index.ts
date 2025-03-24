@@ -51,7 +51,7 @@ export {
   CreateTranslationResponse,
   CreateTranscriptionRequest,
   CreateTranscriptionResponse,
-} from "./models/openAI/index.js";
+} from "./models/index.js";
 export { OpenAIClientOptionalParams } from "./api/index.js";
 export { CompletionsCreateOptionalParams } from "./api/completions/index.js";
 export { EditsCreateOptionalParams } from "./api/edits/index.js";

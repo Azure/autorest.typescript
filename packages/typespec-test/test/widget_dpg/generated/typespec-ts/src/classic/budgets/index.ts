@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { WidgetServiceContext } from "../../api/widgetServiceContext.js";
-import { User, Widget } from "../../models/widgetService/models.js";
+import { User, Widget } from "../../models/models.js";
 import {
   BudgetsGetBudgetsOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,

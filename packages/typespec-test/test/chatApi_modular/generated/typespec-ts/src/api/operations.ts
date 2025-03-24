@@ -11,7 +11,7 @@ import {
   chatCompletionOptionsRecordSerializer,
   ChatCompletionRecord,
   chatCompletionRecordDeserializer,
-} from "../models/chatProtocol/models.js";
+} from "../models/models.js";
 import {
   CreateOptionalParams,
   CreateStreamingOptionalParams,

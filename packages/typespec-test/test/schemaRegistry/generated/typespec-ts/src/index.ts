@@ -17,7 +17,7 @@ export {
   SchemaContentTypeValues,
   KnownServiceApiVersions,
   ContentTypeEnum,
-} from "./models/schemaRegistry/index.js";
+} from "./models/index.js";
 export { SchemaRegistryClientOptionalParams } from "./api/index.js";
 export {
   SchemaOperationsRegisterSchemaOptionalParams,

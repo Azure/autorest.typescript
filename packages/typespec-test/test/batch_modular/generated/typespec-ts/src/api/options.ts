@@ -6,7 +6,7 @@ import {
   NodeReimageOptions,
   NodeDisableSchedulingOptions,
   BatchJobTerminateOptions,
-} from "../models/batch/models.js";
+} from "../models/models.js";
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */

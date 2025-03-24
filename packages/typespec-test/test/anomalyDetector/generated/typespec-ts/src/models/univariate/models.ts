@@ -2,20 +2,20 @@
 // Licensed under the MIT License.
 
 /** Request of the entire or last anomaly detection. */
-export interface AnomalyDetectorUnivariateUnivariateDetectionOptions {
+export interface UnivariateUnivariateDetectionOptions {
   /**
    * Time series data points. Points should be sorted by time stamp in ascending
    * order to match the anomaly detection result. If the data is not sorted
    * correctly or there's a duplicated time stamp, the API won't work. In such
    * a case, an error message is returned.
    */
-  series: AnomalyDetectorUnivariateTimeSeriesPoint[];
+  series: UnivariateTimeSeriesPoint[];
   /**
    * Argument that indicates time granularity. If granularity is not present, the value
    * is none by default. If granularity is none, the time stamp property in the time
    * series point can be absent.
    */
-  granularity?: AnomalyDetectorUnivariateTimeGranularity;
+  granularity?: UnivariateTimeGranularity;
   /**
    * A custom interval is used to set a nonstandard time interval. For example, if the
    * series is 5 minutes, the request can be set as {"granularity":"minutely",
@@ -39,7 +39,7 @@ export interface AnomalyDetectorUnivariateUnivariateDetectionOptions {
    * Specifies how to deal with missing values in the input series. It's used
    * when granularity is not "none".
    */
-  imputeMode?: AnomalyDetectorUnivariateImputeMode;
+  imputeMode?: UnivariateImputeMode;
   /**
    * Specifies the value to fill. It's used when granularity is not "none"
    * and imputeMode is "fixed".
@@ -47,13 +47,11 @@ export interface AnomalyDetectorUnivariateUnivariateDetectionOptions {
   imputeFixedValue?: number;
 }
 
-export function anomalyDetectorUnivariateUnivariateDetectionOptionsSerializer(
-  item: AnomalyDetectorUnivariateUnivariateDetectionOptions,
+export function univariateUnivariateDetectionOptionsSerializer(
+  item: UnivariateUnivariateDetectionOptions,
 ): any {
   return {
-    series: anomalyDetectorUnivariateTimeSeriesPointArraySerializer(
-      item["series"],
-    ),
+    series: univariateTimeSeriesPointArraySerializer(item["series"]),
     granularity: item["granularity"],
     customInterval: item["customInterval"],
     period: item["period"],
@@ -64,24 +62,24 @@ export function anomalyDetectorUnivariateUnivariateDetectionOptionsSerializer(
   };
 }
 
-export function anomalyDetectorUnivariateTimeSeriesPointArraySerializer(
-  result: Array<AnomalyDetectorUnivariateTimeSeriesPoint>,
+export function univariateTimeSeriesPointArraySerializer(
+  result: Array<UnivariateTimeSeriesPoint>,
 ): any[] {
   return result.map((item) => {
-    return anomalyDetectorUnivariateTimeSeriesPointSerializer(item);
+    return univariateTimeSeriesPointSerializer(item);
   });
 }
 
 /** Definition of input time series points. */
-export interface AnomalyDetectorUnivariateTimeSeriesPoint {
+export interface UnivariateTimeSeriesPoint {
   /** Argument that indicates the time stamp of a data point (ISO8601 format). */
   timestamp?: Date;
   /** Measurement of that point. */
   value: number;
 }
 
-export function anomalyDetectorUnivariateTimeSeriesPointSerializer(
-  item: AnomalyDetectorUnivariateTimeSeriesPoint,
+export function univariateTimeSeriesPointSerializer(
+  item: UnivariateTimeSeriesPoint,
 ): any {
   return {
     timestamp: !item["timestamp"]
@@ -91,8 +89,8 @@ export function anomalyDetectorUnivariateTimeSeriesPointSerializer(
   };
 }
 
-/** Type of AnomalyDetectorUnivariateTimeGranularity */
-export type AnomalyDetectorUnivariateTimeGranularity =
+/** Type of UnivariateTimeGranularity */
+export type UnivariateTimeGranularity =
   | "yearly"
   | "monthly"
   | "weekly"
@@ -102,8 +100,8 @@ export type AnomalyDetectorUnivariateTimeGranularity =
   | "secondly"
   | "microsecond"
   | "none";
-/** Type of AnomalyDetectorUnivariateImputeMode */
-export type AnomalyDetectorUnivariateImputeMode =
+/** Type of UnivariateImputeMode */
+export type UnivariateImputeMode =
   | "auto"
   | "previous"
   | "linear"
@@ -112,7 +110,7 @@ export type AnomalyDetectorUnivariateImputeMode =
   | "notFill";
 
 /** Response of the entire anomaly detection. */
-export interface AnomalyDetectorUnivariateUnivariateEntireDetectionResult {
+export interface UnivariateUnivariateEntireDetectionResult {
   /**
    * Frequency extracted from the series. Zero means no recurrent pattern has been
    * found.
@@ -167,9 +165,9 @@ export interface AnomalyDetectorUnivariateUnivariateEntireDetectionResult {
   severity?: number[];
 }
 
-export function anomalyDetectorUnivariateUnivariateEntireDetectionResultDeserializer(
+export function univariateUnivariateEntireDetectionResultDeserializer(
   item: any,
-): AnomalyDetectorUnivariateUnivariateEntireDetectionResult {
+): UnivariateUnivariateEntireDetectionResult {
   return {
     period: item["period"],
     expectedValues: item["expectedValues"].map((p: any) => {
@@ -199,24 +197,24 @@ export function anomalyDetectorUnivariateUnivariateEntireDetectionResultDeserial
 }
 
 /** Error information that the API returned. */
-export interface AnomalyDetectorUnivariateAnomalyDetectorError {
+export interface UnivariateAnomalyDetectorError {
   /** Error code. */
-  code: AnomalyDetectorUnivariateAnomalyDetectorErrorCodes;
+  code: UnivariateAnomalyDetectorErrorCodes;
   /** Message that explains the error that the service reported. */
   message: string;
 }
 
-export function anomalyDetectorUnivariateAnomalyDetectorErrorDeserializer(
+export function univariateAnomalyDetectorErrorDeserializer(
   item: any,
-): AnomalyDetectorUnivariateAnomalyDetectorError {
+): UnivariateAnomalyDetectorError {
   return {
     code: item["code"],
     message: item["message"],
   };
 }
 
-/** Type of AnomalyDetectorUnivariateAnomalyDetectorErrorCodes */
-export type AnomalyDetectorUnivariateAnomalyDetectorErrorCodes =
+/** Type of UnivariateAnomalyDetectorErrorCodes */
+export type UnivariateAnomalyDetectorErrorCodes =
   | "InvalidCustomInterval"
   | "BadArgument"
   | "InvalidGranularity"
@@ -230,7 +228,7 @@ export type AnomalyDetectorUnivariateAnomalyDetectorErrorCodes =
   | "InvalidImputeFixedValue";
 
 /** Response of the last anomaly detection. */
-export interface AnomalyDetectorUnivariateUnivariateLastDetectionResult {
+export interface UnivariateUnivariateLastDetectionResult {
   /**
    * Frequency extracted from the series. Zero means no recurrent pattern has been
    * found.
@@ -275,9 +273,9 @@ export interface AnomalyDetectorUnivariateUnivariateLastDetectionResult {
   severity?: number;
 }
 
-export function anomalyDetectorUnivariateUnivariateLastDetectionResultDeserializer(
+export function univariateUnivariateLastDetectionResultDeserializer(
   item: any,
-): AnomalyDetectorUnivariateUnivariateLastDetectionResult {
+): UnivariateUnivariateLastDetectionResult {
   return {
     period: item["period"],
     suggestedWindow: item["suggestedWindow"],
@@ -292,14 +290,14 @@ export function anomalyDetectorUnivariateUnivariateLastDetectionResultDeserializ
 }
 
 /** Request of change point detection. */
-export interface AnomalyDetectorUnivariateUnivariateChangePointDetectionOptions {
+export interface UnivariateUnivariateChangePointDetectionOptions {
   /**
    * Time series data points. Points should be sorted by time stamp in ascending
    * order to match the change point detection result.
    */
-  series: AnomalyDetectorUnivariateTimeSeriesPoint[];
+  series: UnivariateTimeSeriesPoint[];
   /** Granularity is used to verify whether the input series is valid. */
-  granularity: AnomalyDetectorUnivariateTimeGranularity;
+  granularity: UnivariateTimeGranularity;
   /**
    * A custom interval is used to set a nonstandard time interval. For example, if the
    * series is 5 minutes, the request can be set as {"granularity":"minutely",
@@ -324,13 +322,11 @@ export interface AnomalyDetectorUnivariateUnivariateChangePointDetectionOptions 
   threshold?: number;
 }
 
-export function anomalyDetectorUnivariateUnivariateChangePointDetectionOptionsSerializer(
-  item: AnomalyDetectorUnivariateUnivariateChangePointDetectionOptions,
+export function univariateUnivariateChangePointDetectionOptionsSerializer(
+  item: UnivariateUnivariateChangePointDetectionOptions,
 ): any {
   return {
-    series: anomalyDetectorUnivariateTimeSeriesPointArraySerializer(
-      item["series"],
-    ),
+    series: univariateTimeSeriesPointArraySerializer(item["series"]),
     granularity: item["granularity"],
     customInterval: item["customInterval"],
     period: item["period"],
@@ -340,7 +336,7 @@ export function anomalyDetectorUnivariateUnivariateChangePointDetectionOptionsSe
 }
 
 /** Response of change point detection. */
-export interface AnomalyDetectorUnivariateUnivariateChangePointDetectionResult {
+export interface UnivariateUnivariateChangePointDetectionResult {
   /**
    * Frequency extracted from the series. Zero means no recurrent pattern has been
    * found.
@@ -356,9 +352,9 @@ export interface AnomalyDetectorUnivariateUnivariateChangePointDetectionResult {
   confidenceScores?: number[];
 }
 
-export function anomalyDetectorUnivariateUnivariateChangePointDetectionResultDeserializer(
+export function univariateUnivariateChangePointDetectionResultDeserializer(
   item: any,
-): AnomalyDetectorUnivariateUnivariateChangePointDetectionResult {
+): UnivariateUnivariateChangePointDetectionResult {
   return {
     period: item["period"],
     isChangePoint: !item["isChangePoint"]

@@ -8,7 +8,7 @@ import {
   notFoundErrorResponseDeserializer,
   TodoItemPatch,
   todoItemPatchSerializer,
-} from "../../models/todo/todoItems/models.js";
+} from "../../models/todoItems/models.js";
 import {
   TodoItem,
   todoItemSerializer,
@@ -18,7 +18,7 @@ import {
   todoAttachmentArraySerializer,
   ToDoItemMultipartRequest,
   toDoItemMultipartRequestSerializer,
-} from "../../models/todo/models.js";
+} from "../../models/models.js";
 import {
   TodoItemsDeleteOptionalParams,
   TodoItemsUpdateOptionalParams,

@@ -11,7 +11,7 @@ import {
   listFineTunesResponseDeserializer,
   ListFineTuneEventsResponse,
   listFineTuneEventsResponseDeserializer,
-} from "../../models/openAI/models.js";
+} from "../../models/models.js";
 import {
   FineTunesCancelOptionalParams,
   FineTunesListEventsOptionalParams,

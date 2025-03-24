@@ -16,7 +16,7 @@ export {
   AnalyzeResult,
   NonReferencedModel,
   KnownVersions,
-} from "./models/widgetService/index.js";
+} from "./models/index.js";
 export { WidgetServiceClientOptionalParams } from "./api/index.js";
 export {
   BudgetsGetBudgetsOptionalParams,

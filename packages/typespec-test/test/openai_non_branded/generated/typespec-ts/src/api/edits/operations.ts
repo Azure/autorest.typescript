@@ -7,7 +7,7 @@ import {
   createEditRequestSerializer,
   CreateEditResponse,
   createEditResponseDeserializer,
-} from "../../models/openAI/models.js";
+} from "../../models/models.js";
 import { EditsCreateOptionalParams } from "./options.js";
 import {
   StreamableMethod,

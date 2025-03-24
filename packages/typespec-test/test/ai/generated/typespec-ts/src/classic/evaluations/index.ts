@@ -2,10 +2,7 @@
 // Licensed under the MIT License.
 
 import { AIProjectContext } from "../../api/aiProjectContext.js";
-import {
-  Evaluation,
-  EvaluationSchedule,
-} from "../../models/projects/models.js";
+import { Evaluation, EvaluationSchedule } from "../../models/models.js";
 import {
   EvaluationsDisableScheduleOptionalParams,
   EvaluationsListScheduleOptionalParams,

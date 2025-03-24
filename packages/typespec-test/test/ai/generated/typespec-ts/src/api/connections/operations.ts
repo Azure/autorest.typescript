@@ -9,7 +9,7 @@ import {
   listConnectionsResponseDeserializer,
   GetConnectionResponse,
   getConnectionResponseDeserializer,
-} from "../../models/projects/models.js";
+} from "../../models/models.js";
 import {
   ConnectionsGetConnectionWithSecretsOptionalParams,
   ConnectionsGetConnectionOptionalParams,

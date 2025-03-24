@@ -6,7 +6,7 @@ import {
   SchemaGroup,
   SchemaVersion,
   SchemaContentTypeValues,
-} from "../../models/schemaRegistry/models.js";
+} from "../../models/models.js";
 import {
   SchemaOperationsRegisterSchemaOptionalParams,
   SchemaOperationsGetSchemaIdByContentOptionalParams,

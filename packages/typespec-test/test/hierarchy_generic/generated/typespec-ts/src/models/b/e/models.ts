@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-/** model interface FooBEA */
-export interface FooBEA {
+/** model interface BEA */
+export interface BEA {
   prop3: string;
 }
 
-export function fooBEASerializer(item: FooBEA): any {
+export function beaSerializer(item: BEA): any {
   return { prop3: item["prop3"] };
 }

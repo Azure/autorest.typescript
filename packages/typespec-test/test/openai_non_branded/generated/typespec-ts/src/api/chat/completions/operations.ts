@@ -7,7 +7,7 @@ import {
   createChatCompletionRequestSerializer,
   CreateChatCompletionResponse,
   createChatCompletionResponseDeserializer,
-} from "../../../models/openAI/models.js";
+} from "../../../models/models.js";
 import { ChatCompletionsCreateOptionalParams } from "./options.js";
 import {
   StreamableMethod,

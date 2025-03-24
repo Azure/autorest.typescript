@@ -4,7 +4,7 @@ import { OpenAIContext } from "../../../api/openAIContext.js";
 import {
   CreateTranslationRequest,
   CreateTranslationResponse,
-} from "../../../models/openAI/models.js";
+} from "../../../models/models.js";
 import { AudioTranslationsCreateOptionalParams } from "../../../api/audio/translations/options.js";
 import { create } from "../../../api/audio/translations/operations.js";
 

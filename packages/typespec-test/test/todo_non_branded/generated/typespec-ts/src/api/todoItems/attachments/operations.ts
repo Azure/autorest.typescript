@@ -8,12 +8,12 @@ import {
   todoAttachmentSerializer,
   FileAttachmentMultipartRequest,
   fileAttachmentMultipartRequestSerializer,
-} from "../../../models/todo/models.js";
+} from "../../../models/models.js";
 import {
   notFoundErrorResponseDeserializer,
   _PageTodoAttachment,
   _pageTodoAttachmentDeserializer,
-} from "../../../models/todo/todoItems/models.js";
+} from "../../../models/todoItems/models.js";
 import {
   TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
   TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,

@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 export { FooClient } from "./fooClient.js";
-export { FooA } from "./models/foo/index.js";
-export { FooBA } from "./models/foo/b/index.js";
-export { FooBEA } from "./models/foo/b/e/index.js";
+export { A } from "./models/index.js";
+export { BA } from "./models/b/index.js";
+export { BEA } from "./models/b/e/index.js";
 export { FooClientOptionalParams, Op1OptionalParams } from "./api/index.js";
 export { BOp1OptionalParams } from "./api/b/index.js";
 export { DOp1OptionalParams } from "./api/d/index.js";

@@ -19,17 +19,17 @@ export {
   ToDoItemMultipartRequest,
   FileAttachmentMultipartRequest,
   User,
-} from "./models/todo/index.js";
+} from "./models/index.js";
 export {
   InvalidTodoItem,
   NotFoundErrorResponse,
   TodoItemPatch,
-} from "./models/todo/todoItems/index.js";
+} from "./models/todoItems/index.js";
 export {
   UserCreatedResponse,
   UserExistsResponse,
   InvalidUserResponse,
-} from "./models/todo/users/index.js";
+} from "./models/users/index.js";
 export { TodoClientOptionalParams } from "./api/index.js";
 export {
   TodoItemsDeleteOptionalParams,

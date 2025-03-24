@@ -43,7 +43,7 @@ import {
   BatchPoolReplaceOptions,
   NodeRemoveOptions,
   BatchApplication,
-} from "./models/batch/models.js";
+} from "./models/models.js";
 import {
   ListNodeFilesOptionalParams,
   GetNodeFilePropertiesOptionalParams,

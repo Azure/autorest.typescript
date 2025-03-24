@@ -5,7 +5,7 @@ import { OpenAIContext } from "../../api/openAIContext.js";
 import {
   CreateModerationRequest,
   CreateModerationResponse,
-} from "../../models/openAI/models.js";
+} from "../../models/models.js";
 import { ModerationsCreateOptionalParams } from "../../api/moderations/options.js";
 import { create } from "../../api/moderations/operations.js";
 

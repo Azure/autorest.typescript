@@ -263,8 +263,8 @@ function traverseRootNamespace(
   rootNamespace: string[]
 ): string[] {
   for (const namespace of namespaces) {
+    rootNamespace.push(namespace.name);
     if (namespace.clients.length === 0 && namespace.models.length === 0 && namespace.enums.length === 0 && namespace.unions.length === 0) {
-      rootNamespace.push(namespace.name);
       return traverseRootNamespace(
         namespace.namespaces,
         rootNamespace

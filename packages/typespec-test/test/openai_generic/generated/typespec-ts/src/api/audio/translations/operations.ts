@@ -8,7 +8,7 @@ import {
   createTranslationRequestSerializer,
   CreateTranslationResponse,
   createTranslationResponseDeserializer,
-} from "../../../models/openAI/models.js";
+} from "../../../models/models.js";
 import { AudioTranslationsCreateOptionalParams } from "./options.js";
 import {
   StreamableMethod,

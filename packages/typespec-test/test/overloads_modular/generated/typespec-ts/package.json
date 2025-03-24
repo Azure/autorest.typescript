@@ -13,7 +13,7 @@
       ".": "./src/index.ts",
       "./api": "./src/api/index.ts",
       "./api/fooOperations": "./src/api/fooOperations/index.ts",
-      "./models/widgetManager": "./src/models/widgetManager/index.ts"
+      "./models": "./src/models/index.ts"
     },
     "dialects": [
       "esm",
@@ -126,22 +126,22 @@
         "default": "./dist/commonjs/api/fooOperations/index.js"
       }
     },
-    "./models/widgetManager": {
+    "./models": {
       "browser": {
-        "types": "./dist/browser/models/widgetManager/index.d.ts",
-        "default": "./dist/browser/models/widgetManager/index.js"
+        "types": "./dist/browser/models/index.d.ts",
+        "default": "./dist/browser/models/index.js"
       },
       "react-native": {
-        "types": "./dist/react-native/models/widgetManager/index.d.ts",
-        "default": "./dist/react-native/models/widgetManager/index.js"
+        "types": "./dist/react-native/models/index.d.ts",
+        "default": "./dist/react-native/models/index.js"
       },
       "import": {
-        "types": "./dist/esm/models/widgetManager/index.d.ts",
-        "default": "./dist/esm/models/widgetManager/index.js"
+        "types": "./dist/esm/models/index.d.ts",
+        "default": "./dist/esm/models/index.js"
       },
       "require": {
-        "types": "./dist/commonjs/models/widgetManager/index.d.ts",
-        "default": "./dist/commonjs/models/widgetManager/index.js"
+        "types": "./dist/commonjs/models/index.d.ts",
+        "default": "./dist/commonjs/models/index.js"
       }
     }
   },

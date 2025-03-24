@@ -6,6 +6,8 @@ import {
   TextBlocklist,
   textBlocklistSerializer,
   textBlocklistDeserializer,
+  _PagedTextBlocklist,
+  _pagedTextBlocklistDeserializer,
   AddOrUpdateTextBlocklistItemsOptions,
   addOrUpdateTextBlocklistItemsOptionsSerializer,
   TextBlocklistItem,
@@ -14,6 +16,8 @@ import {
   addOrUpdateTextBlocklistItemsResultDeserializer,
   RemoveTextBlocklistItemsOptions,
   removeTextBlocklistItemsOptionsSerializer,
+  _PagedTextBlocklistItem,
+  _pagedTextBlocklistItemDeserializer,
   AnalyzeImageOptions,
   analyzeImageOptionsSerializer,
   AnalyzeImageResult,
@@ -30,12 +34,6 @@ import {
   detectTextProtectedMaterialOptionsSerializer,
   DetectTextProtectedMaterialResult,
   detectTextProtectedMaterialResultDeserializer,
-} from "../models/contentSafety/models.js";
-import {
-  _PagedTextBlocklist,
-  _pagedTextBlocklistDeserializer,
-  _PagedTextBlocklistItem,
-  _pagedTextBlocklistItemDeserializer,
 } from "../models/models.js";
 import {
   ListTextBlocklistItemsOptionalParams,

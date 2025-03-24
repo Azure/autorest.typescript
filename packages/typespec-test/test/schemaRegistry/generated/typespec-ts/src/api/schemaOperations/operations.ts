@@ -5,14 +5,12 @@ import { SchemaRegistryContext as Client } from "../index.js";
 import {
   _PagedSchemaGroup,
   _pagedSchemaGroupDeserializer,
+  SchemaGroup,
   _PagedVersion,
   _pagedVersionDeserializer,
-} from "../../models/models.js";
-import {
-  SchemaGroup,
   SchemaVersion,
   SchemaContentTypeValues,
-} from "../../models/schemaRegistry/models.js";
+} from "../../models/models.js";
 import {
   SchemaOperationsRegisterSchemaOptionalParams,
   SchemaOperationsGetSchemaIdByContentOptionalParams,

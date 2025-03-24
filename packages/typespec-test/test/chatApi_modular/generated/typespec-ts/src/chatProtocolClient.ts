@@ -11,7 +11,7 @@ import {
   ChatCompletionChunkRecord,
   ChatCompletionOptionsRecord,
   ChatCompletionRecord,
-} from "./models/chatProtocol/models.js";
+} from "./models/models.js";
 import {
   CreateOptionalParams,
   CreateStreamingOptionalParams,

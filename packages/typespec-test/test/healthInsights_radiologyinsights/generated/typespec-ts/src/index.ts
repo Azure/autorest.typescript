@@ -3,7 +3,6 @@
 
 export { RadiologyInsightsClient } from "./radiologyInsightsClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
-export { RepeatabilityResult } from "./models/index.js";
 export {
   PatientRecord,
   PatientInfo,
@@ -50,8 +49,9 @@ export {
   ImagingProcedureRecommendation,
   FollowupCommunicationInference,
   MedicalProfessionalType,
+  RepeatabilityResult,
   KnownApiVersion,
-} from "./models/azureHealthInsights/index.js";
+} from "./models/index.js";
 export {
   Resource,
   Meta,

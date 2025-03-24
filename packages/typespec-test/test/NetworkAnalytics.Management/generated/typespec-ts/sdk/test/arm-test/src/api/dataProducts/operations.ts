@@ -6,6 +6,9 @@ import {
   DataProduct,
   dataProductSerializer,
   dataProductDeserializer,
+  errorResponseDeserializer,
+  DataProductUpdate,
+  dataProductUpdateSerializer,
   AccountSas,
   accountSasSerializer,
   AccountSasToken,
@@ -20,11 +23,6 @@ import {
   _listRolesAssignmentsRequestSerializer,
   ListRoleAssignments,
   listRoleAssignmentsDeserializer,
-} from "../../models/networkAnalytics/models.js";
-import {
-  errorResponseDeserializer,
-  DataProductUpdate,
-  dataProductUpdateSerializer,
   _DataProductListResult,
   _dataProductListResultDeserializer,
 } from "../../models/models.js";

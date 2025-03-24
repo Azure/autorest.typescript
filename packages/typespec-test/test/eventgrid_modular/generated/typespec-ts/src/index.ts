@@ -15,7 +15,7 @@ export {
   RenewCloudEventLocksResult,
   ReleaseDelay,
   KnownServiceApiVersions,
-} from "./models/eventGrid/index.js";
+} from "./models/index.js";
 export {
   EventGridClientOptionalParams,
   RenewCloudEventLocksOptionalParams,

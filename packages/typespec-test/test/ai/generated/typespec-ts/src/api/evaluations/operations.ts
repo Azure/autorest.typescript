@@ -6,13 +6,11 @@ import {
   Evaluation,
   evaluationSerializer,
   evaluationDeserializer,
+  _PagedEvaluation,
+  _pagedEvaluationDeserializer,
   EvaluationSchedule,
   evaluationScheduleSerializer,
   evaluationScheduleDeserializer,
-} from "../../models/projects/models.js";
-import {
-  _PagedEvaluation,
-  _pagedEvaluationDeserializer,
   _PagedEvaluationSchedule,
   _pagedEvaluationScheduleDeserializer,
 } from "../../models/models.js";

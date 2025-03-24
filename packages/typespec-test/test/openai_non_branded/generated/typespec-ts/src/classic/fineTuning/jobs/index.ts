@@ -6,7 +6,7 @@ import {
   FineTuningJob,
   ListPaginatedFineTuningJobsResponse,
   ListFineTuningJobEventsResponse,
-} from "../../../models/openAI/models.js";
+} from "../../../models/models.js";
 import {
   FineTuningJobsCancelOptionalParams,
   FineTuningJobsListEventsOptionalParams,

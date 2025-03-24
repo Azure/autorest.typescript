@@ -5,7 +5,7 @@ import { OpenAIContext } from "../../api/openAIContext.js";
 import {
   CreateCompletionRequest,
   CreateCompletionResponse,
-} from "../../models/openAI/models.js";
+} from "../../models/models.js";
 import { CompletionsCreateOptionalParams } from "../../api/completions/options.js";
 import { create } from "../../api/completions/operations.js";
 

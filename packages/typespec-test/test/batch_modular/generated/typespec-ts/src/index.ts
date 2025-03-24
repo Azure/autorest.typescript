@@ -201,7 +201,7 @@ export {
   NodeRemoveOptions,
   BatchApplication,
   KnownVersions,
-} from "./models/batch/index.js";
+} from "./models/index.js";
 export {
   BatchClientOptionalParams,
   ListNodeFilesOptionalParams,

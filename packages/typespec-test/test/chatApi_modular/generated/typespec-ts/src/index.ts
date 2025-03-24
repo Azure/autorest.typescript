@@ -14,7 +14,7 @@ export {
   ChatCompletionRecord,
   ChatChoiceRecord,
   KnownAPIVersion,
-} from "./models/chatProtocol/index.js";
+} from "./models/index.js";
 export {
   ChatProtocolClientOptionalParams,
   CreateOptionalParams,

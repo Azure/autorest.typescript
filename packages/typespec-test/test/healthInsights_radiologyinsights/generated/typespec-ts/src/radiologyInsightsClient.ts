@@ -9,7 +9,7 @@ import {
 import {
   PatientRecord,
   RadiologyInsightsInferenceResult,
-} from "./models/azureHealthInsights/models.js";
+} from "./models/models.js";
 import { InferRadiologyInsightsOptionalParams } from "./api/options.js";
 import { inferRadiologyInsights } from "./api/operations.js";
 import { Pipeline } from "@azure/core-rest-pipeline";

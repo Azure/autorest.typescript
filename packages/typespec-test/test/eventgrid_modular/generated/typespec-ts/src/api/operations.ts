@@ -17,7 +17,7 @@ import {
   rejectResultDeserializer,
   RenewCloudEventLocksResult,
   renewCloudEventLocksResultDeserializer,
-} from "../models/eventGrid/models.js";
+} from "../models/models.js";
 import {
   RenewCloudEventLocksOptionalParams,
   RejectCloudEventsOptionalParams,

@@ -4,14 +4,14 @@
 import { NetworkAnalyticsApiContext } from "../../api/networkAnalyticsApiContext.js";
 import {
   DataProduct,
+  DataProductUpdate,
   AccountSas,
   AccountSasToken,
   KeyVaultInfo,
   RoleAssignmentCommonProperties,
   RoleAssignmentDetail,
   ListRoleAssignments,
-} from "../../models/networkAnalytics/models.js";
-import { DataProductUpdate } from "../../models/models.js";
+} from "../../models/models.js";
 import {
   DataProductsListBySubscriptionOptionalParams,
   DataProductsListByResourceGroupOptionalParams,

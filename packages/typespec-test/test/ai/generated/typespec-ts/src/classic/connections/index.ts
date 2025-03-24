@@ -6,7 +6,7 @@ import {
   GetWorkspaceResponse,
   ListConnectionsResponse,
   GetConnectionResponse,
-} from "../../models/projects/models.js";
+} from "../../models/models.js";
 import {
   ConnectionsGetConnectionWithSecretsOptionalParams,
   ConnectionsGetConnectionOptionalParams,

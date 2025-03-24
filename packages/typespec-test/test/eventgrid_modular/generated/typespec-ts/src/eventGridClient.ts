@@ -14,7 +14,7 @@ import {
   ReleaseResult,
   RejectResult,
   RenewCloudEventLocksResult,
-} from "./models/eventGrid/models.js";
+} from "./models/models.js";
 import {
   RenewCloudEventLocksOptionalParams,
   RejectCloudEventsOptionalParams,

@@ -3,13 +3,13 @@
 
 import { AnomalyDetectorContext } from "../../api/anomalyDetectorContext.js";
 import {
-  AnomalyDetectorMultivariateMultivariateDetectionResult,
-  AnomalyDetectorMultivariateMultivariateBatchDetectionOptions,
-  AnomalyDetectorMultivariateModelInfo,
-  AnomalyDetectorMultivariateAnomalyDetectionModel,
-  AnomalyDetectorMultivariateMultivariateLastDetectionOptions,
-  AnomalyDetectorMultivariateMultivariateLastDetectionResult,
-} from "../../models/anomalyDetector/multivariate/models.js";
+  MultivariateMultivariateDetectionResult,
+  MultivariateMultivariateBatchDetectionOptions,
+  MultivariateModelInfo,
+  MultivariateAnomalyDetectionModel,
+  MultivariateMultivariateLastDetectionOptions,
+  MultivariateMultivariateLastDetectionResult,
+} from "../../models/multivariate/models.js";
 import {
   MultivariateDetectMultivariateLastAnomalyOptionalParams,
   MultivariateDetectMultivariateBatchAnomalyOptionalParams,
@@ -40,9 +40,9 @@ export interface MultivariateOperations {
    */
   detectMultivariateLastAnomaly: (
     modelId: string,
-    options: AnomalyDetectorMultivariateMultivariateLastDetectionOptions,
+    options: MultivariateMultivariateLastDetectionOptions,
     optionalParams?: MultivariateDetectMultivariateLastAnomalyOptionalParams,
-  ) => Promise<AnomalyDetectorMultivariateMultivariateLastDetectionResult>;
+  ) => Promise<MultivariateMultivariateLastDetectionResult>;
   /**
    * Submit multivariate anomaly detection task with the modelId of trained model
    * and inference data, the input schema should be the same with the training
@@ -53,9 +53,9 @@ export interface MultivariateOperations {
    */
   detectMultivariateBatchAnomaly: (
     modelId: string,
-    options: AnomalyDetectorMultivariateMultivariateBatchDetectionOptions,
+    options: MultivariateMultivariateBatchDetectionOptions,
     optionalParams?: MultivariateDetectMultivariateBatchAnomalyOptionalParams,
-  ) => Promise<AnomalyDetectorMultivariateMultivariateDetectionResult>;
+  ) => Promise<MultivariateMultivariateDetectionResult>;
   /**
    * Get detailed information of multivariate model, including the training status
    * and variables used in the model.
@@ -63,7 +63,7 @@ export interface MultivariateOperations {
   getMultivariateModel: (
     modelId: string,
     options?: MultivariateGetMultivariateModelOptionalParams,
-  ) => Promise<AnomalyDetectorMultivariateAnomalyDetectionModel>;
+  ) => Promise<MultivariateAnomalyDetectionModel>;
   /** Delete an existing multivariate model according to the modelId */
   deleteMultivariateModel: (
     modelId: string,
@@ -72,7 +72,7 @@ export interface MultivariateOperations {
   /** List models of a resource. */
   listMultivariateModels: (
     options?: MultivariateListMultivariateModelsOptionalParams,
-  ) => PagedAsyncIterableIterator<AnomalyDetectorMultivariateAnomalyDetectionModel>;
+  ) => PagedAsyncIterableIterator<MultivariateAnomalyDetectionModel>;
   /**
    * Create and train a multivariate anomaly detection model. The request must
    * include a source parameter to indicate an externally accessible Azure blob
@@ -83,9 +83,9 @@ export interface MultivariateOperations {
    * timestamp column.
    */
   trainMultivariateModel: (
-    modelInfo: AnomalyDetectorMultivariateModelInfo,
+    modelInfo: MultivariateModelInfo,
     options?: MultivariateTrainMultivariateModelOptionalParams,
-  ) => Promise<AnomalyDetectorMultivariateAnomalyDetectionModel>;
+  ) => Promise<MultivariateAnomalyDetectionModel>;
   /**
    * For asynchronous inference, get multivariate anomaly detection result based on
    * resultId returned by the BatchDetectAnomaly api.
@@ -93,20 +93,20 @@ export interface MultivariateOperations {
   getMultivariateBatchDetectionResult: (
     resultId: string,
     options?: MultivariateGetMultivariateBatchDetectionResultOptionalParams,
-  ) => Promise<AnomalyDetectorMultivariateMultivariateDetectionResult>;
+  ) => Promise<MultivariateMultivariateDetectionResult>;
 }
 
 function _getMultivariate(context: AnomalyDetectorContext) {
   return {
     detectMultivariateLastAnomaly: (
       modelId: string,
-      options: AnomalyDetectorMultivariateMultivariateLastDetectionOptions,
+      options: MultivariateMultivariateLastDetectionOptions,
       optionalParams?: MultivariateDetectMultivariateLastAnomalyOptionalParams,
     ) =>
       detectMultivariateLastAnomaly(context, modelId, options, optionalParams),
     detectMultivariateBatchAnomaly: (
       modelId: string,
-      options: AnomalyDetectorMultivariateMultivariateBatchDetectionOptions,
+      options: MultivariateMultivariateBatchDetectionOptions,
       optionalParams?: MultivariateDetectMultivariateBatchAnomalyOptionalParams,
     ) =>
       detectMultivariateBatchAnomaly(context, modelId, options, optionalParams),
@@ -122,7 +122,7 @@ function _getMultivariate(context: AnomalyDetectorContext) {
       options?: MultivariateListMultivariateModelsOptionalParams,
     ) => listMultivariateModels(context, options),
     trainMultivariateModel: (
-      modelInfo: AnomalyDetectorMultivariateModelInfo,
+      modelInfo: MultivariateModelInfo,
       options?: MultivariateTrainMultivariateModelOptionalParams,
     ) => trainMultivariateModel(context, modelInfo, options),
     getMultivariateBatchDetectionResult: (
