@@ -16,6 +16,17 @@ import {
   analyzeResultDeserializer,
 } from "../../models/models.js";
 import {
+  SAPWidgetsAnalyzeWidgetOptionalParams,
+  SAPWidgetsDeleteWidgetOptionalParams,
+  SAPWidgetsUpdateWidgetOptionalParams,
+  SAPWidgetsCreateOrReplaceOptionalParams,
+  SAPWidgetsCreateWidgetOptionalParams,
+  SAPWidgetsGetWidgetOptionalParams,
+  SAPWidgetsQueryWidgetsPagesOptionalParams,
+  SAPWidgetsListWidgetsPagesOptionalParams,
+  SAPWidgetsSAPListWidgetsOptionalParams,
+} from "./options.js";
+import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
@@ -30,17 +41,6 @@ import {
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
 import { PollerLike, OperationState } from "@azure/core-lro";
-import {
-  SAPWidgetsAnalyzeWidgetOptionalParams,
-  SAPWidgetsDeleteWidgetOptionalParams,
-  SAPWidgetsUpdateWidgetOptionalParams,
-  SAPWidgetsCreateOrReplaceOptionalParams,
-  SAPWidgetsCreateWidgetOptionalParams,
-  SAPWidgetsGetWidgetOptionalParams,
-  SAPWidgetsQueryWidgetsPagesOptionalParams,
-  SAPWidgetsListWidgetsPagesOptionalParams,
-  SAPWidgetsSAPListWidgetsOptionalParams,
-} from "./options.js";
 
 export function _analyzeWidgetSend(
   context: Client,
@@ -483,7 +483,7 @@ export function _sapListWidgetsSend(
         ? { "optional-header": options?.optionalHeader }
         : {}),
       ...(options?.nullableOptionalHeader !== undefined &&
-        options?.nullableOptionalHeader !== null
+      options?.nullableOptionalHeader !== null
         ? { "nullable-optional-header": options?.nullableOptionalHeader }
         : {}),
       "bytes-header": uint8ArrayToString(bytesHeader, "base64"),
@@ -496,18 +496,18 @@ export function _sapListWidgetsSend(
       "utc-date-header": utcDateHeader.toUTCString(),
       ...(options?.optionalDateHeader !== undefined
         ? {
-          "optional-date-header": !options?.optionalDateHeader
-            ? options?.optionalDateHeader
-            : options?.optionalDateHeader.toUTCString(),
-        }
+            "optional-date-header": !options?.optionalDateHeader
+              ? options?.optionalDateHeader
+              : options?.optionalDateHeader.toUTCString(),
+          }
         : {}),
       ...(options?.nullableDateHeader !== undefined &&
-        options?.nullableDateHeader !== null
+      options?.nullableDateHeader !== null
         ? {
-          "nullable-date-header": !options?.nullableDateHeader
-            ? options?.nullableDateHeader
-            : options?.nullableDateHeader.toUTCString(),
-        }
+            "nullable-date-header": !options?.nullableDateHeader
+              ? options?.nullableDateHeader
+              : options?.nullableDateHeader.toUTCString(),
+          }
         : {}),
       accept: "application/json",
       ...options.requestOptions?.headers,

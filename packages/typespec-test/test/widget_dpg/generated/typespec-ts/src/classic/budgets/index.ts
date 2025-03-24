@@ -2,13 +2,12 @@
 // Licensed under the MIT License.
 
 import { SAPWidgetServiceContext } from "../../api/sapWidgetServiceContext.js";
+import { SAPUser, Widget } from "../../models/models.js";
 import {
   BudgetsGetBudgetsOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,
-  getBudgets,
-  createOrReplace,
-} from "../../api/budgets/index.js";
-import { SAPUser, Widget } from "../../models/models.js";
+} from "../../api/budgets/options.js";
+import { getBudgets, createOrReplace } from "../../api/budgets/operations.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
 /** Interface representing a Budgets operations. */

@@ -2,6 +2,18 @@
 // Licensed under the MIT License.
 
 import { SAPWidgetServiceContext } from "../../api/sapWidgetServiceContext.js";
+import { SAPUser, Widget, AnalyzeResult } from "../../models/models.js";
+import {
+  SAPWidgetsAnalyzeWidgetOptionalParams,
+  SAPWidgetsDeleteWidgetOptionalParams,
+  SAPWidgetsUpdateWidgetOptionalParams,
+  SAPWidgetsCreateOrReplaceOptionalParams,
+  SAPWidgetsCreateWidgetOptionalParams,
+  SAPWidgetsGetWidgetOptionalParams,
+  SAPWidgetsQueryWidgetsPagesOptionalParams,
+  SAPWidgetsListWidgetsPagesOptionalParams,
+  SAPWidgetsSAPListWidgetsOptionalParams,
+} from "../../api/sapWidgets/options.js";
 import {
   analyzeWidget,
   deleteWidget,
@@ -12,17 +24,7 @@ import {
   queryWidgetsPages,
   listWidgetsPages,
   sapListWidgets,
-  SAPWidgetsAnalyzeWidgetOptionalParams,
-  SAPWidgetsDeleteWidgetOptionalParams,
-  SAPWidgetsUpdateWidgetOptionalParams,
-  SAPWidgetsCreateOrReplaceOptionalParams,
-  SAPWidgetsCreateWidgetOptionalParams,
-  SAPWidgetsGetWidgetOptionalParams,
-  SAPWidgetsQueryWidgetsPagesOptionalParams,
-  SAPWidgetsListWidgetsPagesOptionalParams,
-  SAPWidgetsSAPListWidgetsOptionalParams,
-} from "../../api/sapWidgets/index.js";
-import { SAPUser, Widget, AnalyzeResult } from "../../models/models.js";
+} from "../../api/sapWidgets/operations.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
