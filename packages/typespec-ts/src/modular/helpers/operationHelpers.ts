@@ -93,9 +93,9 @@ export function getSendPrivateFunction(
   const operationMethod = operation.operation.verb.toLowerCase();
   const optionalParamName = getOptionalParamsName(parameters);
   const hasQueryApiVersion = operation.operation.parameters.some(
-    (p) => p.isApiVersionParam && p.onClient && p.kind === "query"
+    (p) => p.onClient && p.kind === "query" && p.isApiVersionParam
   );
-  const hasClientApiVersion = client.initialization.properties.some(
+  const hasClientApiVersion = client.clientInitialization.parameters.some(
     (p) => p.isApiVersionParam && p.onClient && p.kind === "method"
   );
   const statements: string[] = [];

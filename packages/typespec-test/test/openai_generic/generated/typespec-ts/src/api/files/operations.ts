@@ -46,10 +46,7 @@ export function _downloadSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "text/plain", ...options.requestOptions?.headers },
     });
 }
 

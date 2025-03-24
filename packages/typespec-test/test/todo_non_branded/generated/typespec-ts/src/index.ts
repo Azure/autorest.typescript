@@ -26,6 +26,7 @@ export {
   TodoItemPatch,
 } from "./models/todoItems/index.js";
 export {
+  UserCreatedResponse,
   UserExistsResponse,
   InvalidUserResponse,
 } from "./models/users/index.js";

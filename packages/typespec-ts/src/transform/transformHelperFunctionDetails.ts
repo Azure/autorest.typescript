@@ -16,6 +16,7 @@ import {
   parseItemName,
   parseNextLinkName
 } from "../utils/operationUtil.js";
+import { getCollectionFormat } from "../utils/modelUtils.js";
 
 export function transformHelperFunctionDetails(
   client: SdkClient,
@@ -182,10 +183,11 @@ function extractSpecialSerializeInfo(
   for (const clientOp of clientOperations) {
     const route = getHttpOperationWithCache(dpgContext, clientOp);
     route.parameters.parameters.forEach((parameter) => {
+      const format = getCollectionFormat(dpgContext, parameter as any);
       const serializeInfo = getSpecialSerializeInfo(
         dpgContext,
         parameter.type,
-        (parameter as any).format
+        format!
       );
       hasMultiCollection = hasMultiCollection
         ? hasMultiCollection
@@ -201,10 +203,11 @@ function extractSpecialSerializeInfo(
     for (const op of operations) {
       const route = getHttpOperationWithCache(dpgContext, op);
       route.parameters.parameters.forEach((parameter) => {
+        const format = getCollectionFormat(dpgContext, parameter as any);
         const serializeInfo = getSpecialSerializeInfo(
           dpgContext,
           parameter.type,
-          (parameter as any).format
+          format!
         );
         hasMultiCollection = hasMultiCollection
           ? hasMultiCollection

@@ -9,7 +9,7 @@ using TypeSpec.Versioning;
 
 #suppress "@azure-tools/typespec-azure-core/casing-style" "Using the AI acronym similar to what was done for OpenAI"
 @doc("Azure APIs for the Azure Chat protocol.")
-@service({
+@service(#{
   title: "Azure ML Chat",
 })
 @useAuth(

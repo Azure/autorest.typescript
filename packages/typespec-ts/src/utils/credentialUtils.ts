@@ -1,7 +1,7 @@
 import { NoTarget, Program } from "@typespec/compiler";
 import { Authentication, HttpAuth } from "@typespec/http";
 import { reportDiagnostic } from "../lib.js";
-import { SdkInitializationType } from "@azure-tools/typespec-client-generator-core";
+import { SdkClientInitializationType } from "@azure-tools/typespec-client-generator-core";
 
 /**
  * Get supported HTTP authentication schemes and filter out unsupported ones.
@@ -51,18 +51,22 @@ export function isSupportedTokenCredential(auth: HttpAuth): boolean {
   return auth.type === "oauth2";
 }
 
-export function hasKeyCredential(initialization: SdkInitializationType) {
+export function hasKeyCredential(initialization: SdkClientInitializationType) {
   const authScheme = getAuthScheme(initialization);
   return authScheme.some((auth) => isSupportedKeyCredential(auth));
 }
 
-export function hasTokenCredential(initialization: SdkInitializationType) {
+export function hasTokenCredential(
+  initialization: SdkClientInitializationType
+) {
   const authScheme = getAuthScheme(initialization);
   return authScheme.some((auth) => isSupportedTokenCredential(auth));
 }
 
-function getAuthScheme(initialization: SdkInitializationType): HttpAuth[] {
-  const credentialParams = initialization.properties?.find(
+function getAuthScheme(
+  initialization: SdkClientInitializationType
+): HttpAuth[] {
+  const credentialParams = initialization.parameters?.find(
     (param) => param.kind === "credential"
   );
   if (!credentialParams) {
