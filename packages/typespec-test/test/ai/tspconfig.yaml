@@ -7,7 +7,7 @@ options:
     generate-test: false
     azure-sdk-for-js: false
     generate-metadata: true
-    filter-out-core-models: fals
+    filter-out-core-models: false
     package-details:
       name: "@azure/ai-client"
     flavor: azure
