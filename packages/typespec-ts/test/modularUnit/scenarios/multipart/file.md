@@ -16,7 +16,7 @@ This basic case uses TypeSpec's `Http.File`, which specifies an optional `filena
 import {
   FileContents,
   createFilePartDescriptor,
-} from "../../../../static-helpers/multipartHelpers.js";
+} from "../static-helpers/multipartHelpers.js";
 
 /** model interface RequestBody */
 export interface RequestBody {
@@ -34,10 +34,7 @@ export function requestBodySerializer(item: RequestBody): any {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  RequestBody,
-  requestBodySerializer,
-} from "../models/azure/typeScript/testing/models.js";
+import { RequestBody, requestBodySerializer } from "../models/models.js";
 import { DoThingOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -103,7 +100,7 @@ The filename must be provided _somehow_. This can either be done by passing a `F
 import {
   FileContents,
   createFilePartDescriptor,
-} from "../../../../static-helpers/multipartHelpers.js";
+} from "../static-helpers/multipartHelpers.js";
 
 /** model interface RequestBody */
 export interface RequestBody {
@@ -137,7 +134,7 @@ op doThing(@header contentType: "multipart/form-data", @multipartBody bodyParam:
 import {
   FileContents,
   createFilePartDescriptor,
-} from "../../../../static-helpers/multipartHelpers.js";
+} from "../static-helpers/multipartHelpers.js";
 
 /** model interface RequestBody */
 export interface RequestBody {
@@ -169,7 +166,7 @@ Each provided file in the input corresponds to one part in the multipart request
 import {
   FileContents,
   createFilePartDescriptor,
-} from "../../../../static-helpers/multipartHelpers.js";
+} from "../static-helpers/multipartHelpers.js";
 
 /** model interface RequestBody */
 export interface RequestBody {

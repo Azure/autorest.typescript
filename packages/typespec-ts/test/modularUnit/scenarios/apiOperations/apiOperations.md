@@ -165,7 +165,7 @@ export function _uploadFileRequestSerializer(item: _UploadFileRequest): any {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { _uploadFileRequestSerializer } from "../models/azure/typeScript/testing/models.js";
+import { _uploadFileRequestSerializer } from "../models/models.js";
 import { UploadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -239,7 +239,7 @@ op uploadFiles(
 import {
   FileContents,
   createFilePartDescriptor,
-} from "../../../../static-helpers/multipartHelpers.js";
+} from "../static-helpers/multipartHelpers.js";
 
 /** model interface _UploadFilesRequest */
 export interface _UploadFilesRequest {
@@ -260,7 +260,7 @@ export function _uploadFilesRequestSerializer(item: _UploadFilesRequest): any {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { _uploadFilesRequestSerializer } from "../models/azure/typeScript/testing/models.js";
+import { _uploadFilesRequestSerializer } from "../models/models.js";
 import { UploadFilesOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -476,7 +476,7 @@ export function _downloadFileResponseDeserializer(
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { _downloadFileResponseDeserializer } from "../models/azure/typeScript/testing/models.js";
+import { _downloadFileResponseDeserializer } from "../models/models.js";
 import { DownloadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -572,7 +572,7 @@ export function _downloadFileResponseDeserializer(
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { _downloadFileResponseDeserializer } from "../models/azure/typeScript/testing/models.js";
+import { _downloadFileResponseDeserializer } from "../models/models.js";
 import { DownloadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,

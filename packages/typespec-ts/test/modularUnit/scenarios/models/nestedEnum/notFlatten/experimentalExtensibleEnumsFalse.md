@@ -74,18 +74,24 @@ export interface _FooRequestBody {
 }
 
 export function _fooRequestBodySerializer(item: _FooRequestBody): any {
-  return { status: item["status"] };
+  return { status: provisioningStateSerializer(item["status"]) };
 }
 
-/** The resource provisioning state. */
+/** Alias for ProvisioningState */
 export type ProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
+  | ResourceProvisioningState
   | "Provisioning"
   | "Updating"
   | "Deleting"
-  | "Accepted";
+  | "Accepted"
+  | string;
+
+export function provisioningStateSerializer(item: ProvisioningState): any {
+  return item;
+}
+
+/** The provisioning state of a resource type. */
+export type ResourceProvisioningState = "Succeeded" | "Failed" | "Canceled";
 
 /** The available API versions. */
 export enum KnownVersions {

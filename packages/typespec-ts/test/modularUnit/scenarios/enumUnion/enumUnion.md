@@ -228,12 +228,23 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
-/** Type of SchemaContentTypeValues */
+/** Alias for SchemaContentTypeValues */
 export type SchemaContentTypeValues =
-  | "application/json; serialization=Avro"
-  | "application/json; serialization=json"
+  | JsonContentType
   | "text/plain; charset=utf-8"
-  | "text/vnd.ms.protobuf";
+  | "text/vnd.ms.protobuf"
+  | string;
+
+export function schemaContentTypeValuesSerializer(
+  item: SchemaContentTypeValues,
+): any {
+  return item;
+}
+
+/** Type of JsonContentType */
+export type JsonContentType =
+  | "application/json; serialization=Avro"
+  | "application/json; serialization=json";
 ```
 
 # union contains enum with string element
@@ -279,12 +290,23 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
-/** Type of SchemaContentTypeValues */
+/** Alias for SchemaContentTypeValues */
 export type SchemaContentTypeValues =
-  | "application/json; serialization=Avro"
-  | "application/json; serialization=json"
+  | JsonContentType
   | "text/plain; charset=utf-8"
-  | "text/vnd.ms.protobuf";
+  | "text/vnd.ms.protobuf"
+  | string;
+
+export function schemaContentTypeValuesSerializer(
+  item: SchemaContentTypeValues,
+): any {
+  return item;
+}
+
+/** Type of JsonContentType */
+export type JsonContentType =
+  | "application/json; serialization=Avro"
+  | "application/json; serialization=json";
 ```
 
 # union with string as extensible enum
@@ -373,12 +395,23 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
-/** Type of SchemaContentTypeValues */
+/** Alias for SchemaContentTypeValues */
 export type SchemaContentTypeValues =
-  | "application/json; serialization=Avro"
-  | "application/json; serialization=json"
+  | JsonContentType
   | "text/plain; charset=utf-8"
-  | "text/vnd.ms.protobuf";
+  | "text/vnd.ms.protobuf"
+  | string;
+
+export function schemaContentTypeValuesSerializer(
+  item: SchemaContentTypeValues,
+): any {
+  return item;
+}
+
+/** Type of JsonContentType */
+export type JsonContentType =
+  | "application/json; serialization=Avro"
+  | "application/json; serialization=json";
 ```
 
 # union contains enum with string element
@@ -424,12 +457,23 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
-/** Type of SchemaContentTypeValues */
+/** Alias for SchemaContentTypeValues */
 export type SchemaContentTypeValues =
-  | "application/json; serialization=Avro"
-  | "application/json; serialization=json"
+  | JsonContentType
   | "text/plain; charset=utf-8"
-  | "text/vnd.ms.protobuf";
+  | "text/vnd.ms.protobuf"
+  | string;
+
+export function schemaContentTypeValuesSerializer(
+  item: SchemaContentTypeValues,
+): any {
+  return item;
+}
+
+/** Type of JsonContentType */
+export type JsonContentType =
+  | "application/json; serialization=Avro"
+  | "application/json; serialization=json";
 ```
 
 # anonymous union with "|" fixed in regular headers
@@ -1188,7 +1232,7 @@ op read(@body body: Test): void;
 ```ts models interface Test
 /** model interface Test */
 export interface Test {
-  color: "left" | "right" | "up" | "down";
+  color: LR | UD;
 }
 ```
 
@@ -1231,7 +1275,7 @@ op read(@body body: Test): void;
 ```ts models interface Test
 /** model interface Test */
 export interface Test {
-  color: "left" | "right" | "up" | "down";
+  color: LeftAndRight | UpAndDown;
 }
 ```
 

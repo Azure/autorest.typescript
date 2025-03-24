@@ -60,7 +60,7 @@ ignoreWeirdLine: false
 
 ```ts clientContext
 import { logger } from "../logger.js";
-import { ClientType } from "../models/client/structure/service/models.js";
+import { ClientType } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 
 export interface ServiceContext extends Client {}
@@ -162,7 +162,7 @@ ignoreWeirdLine: false
 
 ```ts clientContext
 import { logger } from "../logger.js";
-import { ClientType } from "../models/client/structure/service/models.js";
+import { ClientType } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 
 export interface ServiceContext extends Client {}
@@ -266,7 +266,7 @@ ignoreWeirdLine: false
 
 ```ts clientContext
 import { logger } from "../logger.js";
-import { ClientType } from "../models/client/structure/service/models.js";
+import { ClientType } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 
 export interface TestServiceContext extends Client {}

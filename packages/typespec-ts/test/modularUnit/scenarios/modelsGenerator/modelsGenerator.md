@@ -370,11 +370,7 @@ export function fooDeserializer(item: any): Foo {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  Foo,
-  fooSerializer,
-  fooDeserializer,
-} from "../models/azure/typeScript/testing/models.js";
+import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -512,11 +508,7 @@ export function fooSerializer(item: Foo): any {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  Foo,
-  fooSerializer,
-  fooDeserializer,
-} from "../models/azure/typeScript/testing/models.js";
+import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -600,11 +592,7 @@ export function fooSerializer(item: Foo): any {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  Foo,
-  fooSerializer,
-  fooDeserializer,
-} from "../models/azure/typeScript/testing/models.js";
+import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -685,11 +673,7 @@ export function fooSerializer(item: Foo): any {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  Foo,
-  fooSerializer,
-  fooDeserializer,
-} from "../models/azure/typeScript/testing/models.js";
+import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -761,11 +745,7 @@ export interface Foo {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  Foo,
-  fooSerializer,
-  fooDeserializer,
-} from "../models/azure/typeScript/testing/models.js";
+import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -838,11 +818,7 @@ export interface Foo {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  Foo,
-  fooSerializer,
-  fooDeserializer,
-} from "../models/azure/typeScript/testing/models.js";
+import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -918,11 +894,7 @@ export interface Foo {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  Foo,
-  fooSerializer,
-  fooDeserializer,
-} from "../models/azure/typeScript/testing/models.js";
+import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -1015,11 +987,7 @@ export function fooDeserializer(item: any): Foo {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  Foo,
-  fooSerializer,
-  fooDeserializer,
-} from "../models/azure/typeScript/testing/models.js";
+import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -1113,11 +1081,7 @@ export function fooDeserializer(item: any): Foo {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  Foo,
-  fooSerializer,
-  fooDeserializer,
-} from "../models/azure/typeScript/testing/models.js";
+import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -1211,11 +1175,7 @@ export function fooDeserializer(item: any): Foo {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  Foo,
-  fooSerializer,
-  fooDeserializer,
-} from "../models/azure/typeScript/testing/models.js";
+import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -1286,7 +1246,48 @@ op read(): { @body body: Cat | Dog };
 ## Models
 
 ```ts models
-import { Cat, Dog } from "./azure/typeScript/testing/models.js";
+/** model interface Cat */
+export interface Cat extends Pet {
+  kind: "cat";
+  meow: number;
+}
+
+export function catDeserializer(item: any): Cat {
+  return {
+    name: item["name"],
+    weight: item["weight"],
+    kind: item["kind"],
+    meow: item["meow"],
+  };
+}
+
+/** model interface Pet */
+export interface Pet {
+  name: string;
+  weight?: number;
+}
+
+export function petDeserializer(item: any): Pet {
+  return {
+    name: item["name"],
+    weight: item["weight"],
+  };
+}
+
+/** model interface Dog */
+export interface Dog extends Pet {
+  kind: "dog";
+  bark: string;
+}
+
+export function dogDeserializer(item: any): Dog {
+  return {
+    name: item["name"],
+    weight: item["weight"],
+    kind: item["kind"],
+    bark: item["bark"],
+  };
+}
 
 /** Alias for _ReadResponse */
 export type _ReadResponse = Cat | Dog;
@@ -1352,10 +1353,7 @@ export function petDeserializer(item: any): Pet {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  Cat,
-  catDeserializer,
-} from "../models/azure/typeScript/testing/models.js";
+import { Cat, catDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -1463,10 +1461,7 @@ export function animalDeserializer(item: any): Animal {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  Cat,
-  catDeserializer,
-} from "../models/azure/typeScript/testing/models.js";
+import { Cat, catDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -1606,11 +1601,7 @@ export function petUnionDeserializer(item: any): PetUnion {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  PSDog,
-  psDogSerializer,
-  psDogDeserializer,
-} from "../models/azure/typeScript/testing/models.js";
+import { PSDog, psDogSerializer, psDogDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -1749,10 +1740,7 @@ export function dogDeserializer(item: any): Dog {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  petUnionDeserializer,
-  PetUnion,
-} from "../models/azure/typeScript/testing/models.js";
+import { petUnionDeserializer, PetUnion } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -1931,10 +1919,7 @@ export function petUnionArrayDeserializer(result: Array<PetUnion>): any[] {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  petUnionDeserializer,
-  PetUnion,
-} from "../models/azure/typeScript/testing/models.js";
+import { petUnionDeserializer, PetUnion } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -2028,10 +2013,7 @@ export function barDeserializer(item: any): Bar {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  Foo,
-  fooDeserializer,
-} from "../models/azure/typeScript/testing/models.js";
+import { Foo, fooDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -2507,6 +2489,24 @@ mustEmptyDiagnostic: false
 ## Models
 
 ```ts models
+/** model interface Vegetables */
+export interface Vegetables extends Record<string, number | string> {
+  carrots: number;
+  beans: number;
+}
+
+export function vegetablesSerializer(item: Vegetables): any {
+  return { ...item, carrots: item["carrots"], beans: item["beans"] };
+}
+
+export function vegetablesDeserializer(item: any): Vegetables {
+  return {
+    ...item,
+    carrots: item["carrots"],
+    beans: item["beans"],
+  };
+}
+
 /** Alias for _VegetablesAdditionalProperty */
 export type _VegetablesAdditionalProperty = number | string;
 

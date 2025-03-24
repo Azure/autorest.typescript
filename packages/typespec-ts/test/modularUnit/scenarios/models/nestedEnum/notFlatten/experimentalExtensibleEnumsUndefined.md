@@ -40,6 +40,13 @@ withRawContent: true
 Model generated.
 
 ```ts models
-/** Type of Foo */
-export type Foo = "test" | "foo" | "bar";
+/** Alias for Foo */
+export type Foo = "bar" | Baz | string;
+
+export function fooSerializer(item: Foo): any {
+  return item;
+}
+
+/** Type of Baz */
+export type Baz = "test" | "foo";
 ```
