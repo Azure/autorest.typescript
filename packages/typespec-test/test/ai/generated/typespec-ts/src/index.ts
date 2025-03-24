@@ -234,16 +234,16 @@ export {
   RunStepDeltaCodeInterpreterLogOutput,
   RunStepDeltaCodeInterpreterImageOutput,
   RunStepDeltaCodeInterpreterImageOutputObject,
-  ListSortOrder,
-  RunAdditionalFieldList,
-  VectorStoreFileStatusFilter,
+  AgentStreamEvent,
   ThreadStreamEvent,
   RunStreamEvent,
   RunStepStreamEvent,
   MessageStreamEvent,
   ErrorEvent,
   DoneEvent,
-  AgentStreamEvent,
+  ListSortOrder,
+  RunAdditionalFieldList,
+  VectorStoreFileStatusFilter,
 } from "./models/agents/index.js";
 export { AIProjectClientOptionalParams } from "./api/index.js";
 export {

@@ -521,7 +521,6 @@ export async function createContextWithDefaultOptions(
   const tcgcSettings = {
     "generate-protocol-methods": true,
     "generate-convenience-methods": true,
-    "flatten-union-as-enum": flattenUnionAsEnum,
     emitters: [
       {
         main: "@azure-tools/typespec-ts",
@@ -536,7 +535,10 @@ export async function createContextWithDefaultOptions(
 
   return (await createSdkContext(
     context,
-    context.program.emitters[0]?.metadata.name ?? "@azure-tools/typespec-ts"
+    context.program.emitters[0]?.metadata.name ?? "@azure-tools/typespec-ts",
+    {
+      flattenUnionAsEnum,  
+    }
   )) as SdkContext;
 }
 

@@ -4483,17 +4483,22 @@ export function runStepDeltaCodeInterpreterImageOutputObjectDeserializer(
   };
 }
 
-/** The available sorting options when requesting a list of response objects. */
-export type ListSortOrder = "asc" | "desc";
-/** A list of additional fields to include in the response. */
-export type RunAdditionalFieldList =
-  "step_details.tool_calls[*].file_search.results[*].content";
-/** Query parameter filter for vector store file retrieval endpoint */
-export type VectorStoreFileStatusFilter =
-  | "in_progress"
-  | "completed"
-  | "failed"
-  | "cancelled";
+/** Alias for AgentStreamEvent */
+export type AgentStreamEvent =
+  | string
+  | (
+      | ThreadStreamEvent
+      | RunStreamEvent
+      | RunStepStreamEvent
+      | MessageStreamEvent
+      | ErrorEvent
+      | DoneEvent
+    );
+
+export function agentStreamEventDeserializer(item: any): AgentStreamEvent {
+  return item;
+}
+
 /** Thread operation related streaming events */
 export type ThreadStreamEvent = "thread.created";
 /** Run operation related streaming events */
@@ -4528,47 +4533,14 @@ export type MessageStreamEvent =
 export type ErrorEvent = "error";
 /** Terminal event indicating the successful end of a stream. */
 export type DoneEvent = "done";
-/**
- * Each event in a server-sent events stream has an `event` and `data` property:
- *
- * ```
- * event: thread.created
- * data: {"id": "thread_123", "object": "thread", ...}
- * ```
- *
- * We emit events whenever a new object is created, transitions to a new state, or is being
- * streamed in parts (deltas). For example, we emit `thread.run.created` when a new run
- * is created, `thread.run.completed` when a run completes, and so on. When an Agent chooses
- * to create a message during a run, we emit a `thread.message.created event`, a
- * `thread.message.in_progress` event, many `thread.message.delta` events, and finally a
- * `thread.message.completed` event.
- *
- * We may add additional events over time, so we recommend handling unknown events gracefully
- * in your code.
- */
-export type AgentStreamEvent =
-  | "thread.created"
-  | "thread.run.created"
-  | "thread.run.queued"
-  | "thread.run.in_progress"
-  | "thread.run.requires_action"
-  | "thread.run.completed"
-  | "thread.run.incomplete"
-  | "thread.run.failed"
-  | "thread.run.cancelling"
-  | "thread.run.cancelled"
-  | "thread.run.expired"
-  | "thread.run.step.created"
-  | "thread.run.step.in_progress"
-  | "thread.run.step.delta"
-  | "thread.run.step.completed"
-  | "thread.run.step.failed"
-  | "thread.run.step.cancelled"
-  | "thread.run.step.expired"
-  | "thread.message.created"
-  | "thread.message.in_progress"
-  | "thread.message.delta"
-  | "thread.message.completed"
-  | "thread.message.incomplete"
-  | "error"
-  | "done";
+/** The available sorting options when requesting a list of response objects. */
+export type ListSortOrder = "asc" | "desc";
+/** A list of additional fields to include in the response. */
+export type RunAdditionalFieldList =
+  "step_details.tool_calls[*].file_search.results[*].content";
+/** Query parameter filter for vector store file retrieval endpoint */
+export type VectorStoreFileStatusFilter =
+  | "in_progress"
+  | "completed"
+  | "failed"
+  | "cancelled";
