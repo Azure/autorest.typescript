@@ -9,12 +9,6 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
 // @public
-export interface A {
-    // (undocumented)
-    prop1: string;
-}
-
-// @public
 export interface BCOp1OptionalParams extends OperationOptions {
 }
 
@@ -61,7 +55,13 @@ export interface DOp1OptionalParams extends OperationOptions {
 // @public
 export interface DOperations {
     // (undocumented)
-    op1: (body: A, options?: DOp1OptionalParams) => Promise<void>;
+    op1: (body: FooA, options?: DOp1OptionalParams) => Promise<void>;
+}
+
+// @public
+export interface FooA {
+    // (undocumented)
+    prop1: string;
 }
 
 // @public
@@ -82,7 +82,7 @@ export class FooClient {
     readonly b: BOperations;
     readonly d: DOperations;
     // (undocumented)
-    op1(body: A, options?: Op1OptionalParams): Promise<void>;
+    op1(body: FooA, options?: Op1OptionalParams): Promise<void>;
     readonly pipeline: Pipeline;
 }
 

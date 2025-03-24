@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { RadiologyInsightsModelConfiguration } from "../models/models.js";
+import { RadiologyInsightsModelConfiguration } from "../models/azureHealthInsights/models.js";
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */

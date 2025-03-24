@@ -2,18 +2,19 @@
 // Licensed under the MIT License.
 
 import { FooContext } from "../../api/fooContext.js";
-import { A } from "../../models/models.js";
+import { FooA } from "../../models/foo/models.js";
 import { DOp1OptionalParams } from "../../api/d/options.js";
 import { op1 } from "../../api/d/operations.js";
 
 /** Interface representing a D operations. */
 export interface DOperations {
-  op1: (body: A, options?: DOp1OptionalParams) => Promise<void>;
+  op1: (body: FooA, options?: DOp1OptionalParams) => Promise<void>;
 }
 
 function _getD(context: FooContext) {
   return {
-    op1: (body: A, options?: DOp1OptionalParams) => op1(context, body, options),
+    op1: (body: FooA, options?: DOp1OptionalParams) =>
+      op1(context, body, options),
   };
 }
 

@@ -20,7 +20,7 @@ import {
   SpeechGenerationOptions,
   EmbeddingsOptions,
   Embeddings,
-} from "./models/models.js";
+} from "./models/azure/openAI/models.js";
 import {
   GetEmbeddingsOptionalParams,
   GenerateSpeechFromTextOptionalParams,

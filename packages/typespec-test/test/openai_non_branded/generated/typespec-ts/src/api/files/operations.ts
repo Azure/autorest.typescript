@@ -11,7 +11,7 @@ import {
   createFileRequestSerializer,
   DeleteFileResponse,
   deleteFileResponseDeserializer,
-} from "../../models/models.js";
+} from "../../models/openAI/models.js";
 import {
   FilesDownloadOptionalParams,
   FilesDeleteOptionalParams,

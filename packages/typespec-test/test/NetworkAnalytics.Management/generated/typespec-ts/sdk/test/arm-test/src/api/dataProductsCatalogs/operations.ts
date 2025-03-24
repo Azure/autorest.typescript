@@ -4,11 +4,13 @@
 import { NetworkAnalyticsApiContext as Client } from "../index.js";
 import {
   errorResponseDeserializer,
-  DataProductsCatalog,
-  dataProductsCatalogDeserializer,
   _DataProductsCatalogListResult,
   _dataProductsCatalogListResultDeserializer,
 } from "../../models/models.js";
+import {
+  DataProductsCatalog,
+  dataProductsCatalogDeserializer,
+} from "../../models/networkAnalytics/models.js";
 import {
   DataProductsCatalogsListBySubscriptionOptionalParams,
   DataProductsCatalogsListByResourceGroupOptionalParams,

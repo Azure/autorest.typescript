@@ -9,7 +9,7 @@ import {
   EvaluationSchedule,
   evaluationScheduleSerializer,
   evaluationScheduleDeserializer,
-} from "../../models/azure/ai/projects/models.js";
+} from "../../models/projects/models.js";
 import {
   _PagedEvaluation,
   _pagedEvaluationDeserializer,

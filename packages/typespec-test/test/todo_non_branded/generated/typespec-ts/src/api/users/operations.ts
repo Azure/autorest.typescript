@@ -6,11 +6,13 @@ import {
   standard5XXResponseDeserializer,
   User,
   userSerializer,
+} from "../../models/todo/models.js";
+import {
   UserCreatedResponse,
   userCreatedResponseDeserializer,
   userExistsResponseDeserializer,
   invalidUserResponseDeserializer,
-} from "../../models/models.js";
+} from "../../models/todo/users/models.js";
 import { UsersCreateOptionalParams } from "./options.js";
 import {
   StreamableMethod,

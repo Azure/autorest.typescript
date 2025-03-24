@@ -7,7 +7,7 @@ import {
   FineTune,
   ListFineTunesResponse,
   ListFineTuneEventsResponse,
-} from "../../models/models.js";
+} from "../../models/openAI/models.js";
 import {
   FineTunesCancelOptionalParams,
   FineTunesListEventsOptionalParams,

@@ -7,7 +7,7 @@ import {
   CreateModerationResponse,
   createModerationResponseDeserializer,
   errorResponseDeserializer,
-} from "../../models/models.js";
+} from "../../models/openAI/models.js";
 import { ModerationsCreateOptionalParams } from "./options.js";
 import {
   StreamableMethod,

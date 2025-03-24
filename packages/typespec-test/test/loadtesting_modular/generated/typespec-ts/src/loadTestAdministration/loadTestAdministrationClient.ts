@@ -11,7 +11,7 @@ import {
   TestFileInfo,
   TestAppComponents,
   TestServerMetricConfig,
-} from "../models/models.js";
+} from "../models/microsoft/loadTestService/models.js";
 import {
   DeleteTestOptionalParams,
   DeleteTestFileOptionalParams,

@@ -14,7 +14,7 @@ import {
   widgetArrayDeserializer,
   AnalyzeResult,
   analyzeResultDeserializer,
-} from "../../models/models.js";
+} from "../../models/widgetService/models.js";
 import {
   WidgetsAnalyzeWidgetOptionalParams,
   WidgetsDeleteWidgetOptionalParams,

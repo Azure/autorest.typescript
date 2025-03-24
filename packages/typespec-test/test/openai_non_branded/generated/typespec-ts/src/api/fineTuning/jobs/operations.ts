@@ -11,7 +11,7 @@ import {
   listPaginatedFineTuningJobsResponseDeserializer,
   ListFineTuningJobEventsResponse,
   listFineTuningJobEventsResponseDeserializer,
-} from "../../../models/models.js";
+} from "../../../models/openAI/models.js";
 import {
   FineTuningJobsCancelOptionalParams,
   FineTuningJobsListEventsOptionalParams,

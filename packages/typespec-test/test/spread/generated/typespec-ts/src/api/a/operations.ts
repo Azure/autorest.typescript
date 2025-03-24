@@ -5,7 +5,7 @@ import { DemoServiceContext as Client } from "../index.js";
 import {
   _test3RequestSerializer,
   _test4RequestSerializer,
-} from "../../models/models.js";
+} from "../../models/demoService/models.js";
 import {
   ATest4OptionalParams,
   ATest3OptionalParams,

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { ParametrizedHostContext } from "../../api/parametrizedHostContext.js";
-import { Collection } from "../../models/azure/test/parametrizedHost/models.js";
+import { Collection } from "../../models/parametrizedHost/models.js";
 import { ConfidentialLedgerListCollectionsOptionalParams } from "../../api/confidentialLedger/options.js";
 import { listCollections } from "../../api/confidentialLedger/operations.js";
 

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { FileType } from "../../models/models.js";
+import { FileType } from "../../models/microsoft/loadTestService/models.js";
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */

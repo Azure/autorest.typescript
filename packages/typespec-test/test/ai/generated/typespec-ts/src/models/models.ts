@@ -6,11 +6,11 @@ import {
   evaluationArrayDeserializer,
   EvaluationSchedule,
   evaluationScheduleArrayDeserializer,
-} from "./azure/ai/projects/models.js";
+} from "./projects/models.js";
 import {
   CodeInterpreterToolDefinition,
   FileSearchToolDefinition,
-} from "./azure/ai/projects/agents/models.js";
+} from "./projects/agents/models.js";
 
 /** Paged collection of Evaluation items */
 export interface _PagedEvaluation {

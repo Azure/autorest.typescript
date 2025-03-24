@@ -5,7 +5,7 @@ import {
   ListModelsResponse,
   Model,
   DeleteModelResponse,
-} from "../../models/models.js";
+} from "../../models/openAI/models.js";
 import {
   ModelsDeleteOptionalParams,
   ModelsRetrieveOptionalParams,

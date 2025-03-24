@@ -6,7 +6,7 @@ import {
   SchemaGroup,
   SchemaVersion,
   SchemaContentTypeValues,
-} from "../../models/azure/schemaRegistry/models.js";
+} from "../../models/schemaRegistry/models.js";
 import {
   SchemaOperationsRegisterSchemaOptionalParams,
   SchemaOperationsGetSchemaIdByContentOptionalParams,

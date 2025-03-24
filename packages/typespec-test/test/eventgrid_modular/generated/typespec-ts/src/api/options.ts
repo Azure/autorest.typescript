@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ReleaseDelay } from "../models/models.js";
+import { ReleaseDelay } from "../models/eventGrid/models.js";
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */

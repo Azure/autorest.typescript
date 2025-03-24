@@ -6,6 +6,8 @@ import {
   TestProfileRun,
   testProfileRunSerializer,
   testProfileRunDeserializer,
+} from "../../models/microsoft/loadTestService/models.js";
+import {
   _PagedTestProfileRun,
   _pagedTestProfileRunDeserializer,
 } from "../../models/models.js";
@@ -16,11 +18,11 @@ import {
   DeleteTestProfileRunOptionalParams,
   CreateOrUpdateTestProfileRunOptionalParams,
 } from "./options.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
-import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

@@ -4,19 +4,21 @@
 import { NetworkAnalyticsApiContext as Client } from "../index.js";
 import {
   errorResponseDeserializer,
+  DataTypeUpdate,
+  dataTypeUpdateSerializer,
+  _DataTypeListResult,
+  _dataTypeListResultDeserializer,
+} from "../../models/models.js";
+import {
   DataType,
   dataTypeSerializer,
   dataTypeDeserializer,
-  DataTypeUpdate,
-  dataTypeUpdateSerializer,
   _deleteDataRequestSerializer,
   ContainerSaS,
   containerSaSSerializer,
   ContainerSasToken,
   containerSasTokenDeserializer,
-  _DataTypeListResult,
-  _dataTypeListResultDeserializer,
-} from "../../models/models.js";
+} from "../../models/networkAnalytics/models.js";
 import {
   DataTypesListByDataProductOptionalParams,
   DataTypesGenerateStorageContainerSasTokenOptionalParams,

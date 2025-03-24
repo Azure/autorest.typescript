@@ -4,19 +4,21 @@ import { TodoContext as Client } from "../index.js";
 import {
   _TodoPage,
   _todoPageDeserializer,
+  invalidTodoItemDeserializer,
+  notFoundErrorResponseDeserializer,
+  TodoItemPatch,
+  todoItemPatchSerializer,
+} from "../../models/todo/todoItems/models.js";
+import {
   TodoItem,
   todoItemSerializer,
   todoItemDeserializer,
   standard4XXResponseDeserializer,
   standard5XXResponseDeserializer,
   todoAttachmentArraySerializer,
-  invalidTodoItemDeserializer,
   ToDoItemMultipartRequest,
   toDoItemMultipartRequestSerializer,
-  notFoundErrorResponseDeserializer,
-  TodoItemPatch,
-  todoItemPatchSerializer,
-} from "../../models/models.js";
+} from "../../models/todo/models.js";
 import {
   TodoItemsDeleteOptionalParams,
   TodoItemsUpdateOptionalParams,

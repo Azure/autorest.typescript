@@ -7,7 +7,7 @@ import {
   ImagesResponse,
   CreateImageEditRequest,
   CreateImageVariationRequest,
-} from "../../models/models.js";
+} from "../../models/openAI/models.js";
 import {
   ImagesCreateVariationOptionalParams,
   ImagesCreateEditOptionalParams,

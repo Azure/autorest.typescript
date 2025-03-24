@@ -9,6 +9,9 @@ import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
+// @public
+export type AnomalyDetectorAPIVersion = "v1.1";
+
 // @public (undocumented)
 export class AnomalyDetectorClient {
     constructor(endpointParam: string, credential: KeyCredential, options?: AnomalyDetectorClientOptionalParams);
@@ -244,9 +247,6 @@ export interface AnomalyDetectorUnivariateUnivariateLastDetectionResult {
     suggestedWindow: number;
     upperMargin: number;
 }
-
-// @public
-export type APIVersion = "v1.1";
 
 // @public
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {

@@ -14,7 +14,7 @@
       "./api": "./src/api/index.ts",
       "./api/multivariate": "./src/api/multivariate/index.ts",
       "./api/univariate": "./src/api/univariate/index.ts",
-      "./models": "./src/models/index.ts",
+      "./models/anomalyDetector": "./src/models/anomalyDetector/index.ts",
       "./models/anomalyDetector/multivariate": "./src/models/anomalyDetector/multivariate/index.ts",
       "./models/anomalyDetector/univariate": "./src/models/anomalyDetector/univariate/index.ts"
     },
@@ -147,22 +147,22 @@
         "default": "./dist/commonjs/api/univariate/index.js"
       }
     },
-    "./models": {
+    "./models/anomalyDetector": {
       "browser": {
-        "types": "./dist/browser/models/index.d.ts",
-        "default": "./dist/browser/models/index.js"
+        "types": "./dist/browser/models/anomalyDetector/index.d.ts",
+        "default": "./dist/browser/models/anomalyDetector/index.js"
       },
       "react-native": {
-        "types": "./dist/react-native/models/index.d.ts",
-        "default": "./dist/react-native/models/index.js"
+        "types": "./dist/react-native/models/anomalyDetector/index.d.ts",
+        "default": "./dist/react-native/models/anomalyDetector/index.js"
       },
       "import": {
-        "types": "./dist/esm/models/index.d.ts",
-        "default": "./dist/esm/models/index.js"
+        "types": "./dist/esm/models/anomalyDetector/index.d.ts",
+        "default": "./dist/esm/models/anomalyDetector/index.js"
       },
       "require": {
-        "types": "./dist/commonjs/models/index.d.ts",
-        "default": "./dist/commonjs/models/index.js"
+        "types": "./dist/commonjs/models/anomalyDetector/index.d.ts",
+        "default": "./dist/commonjs/models/anomalyDetector/index.js"
       }
     },
     "./models/anomalyDetector/multivariate": {

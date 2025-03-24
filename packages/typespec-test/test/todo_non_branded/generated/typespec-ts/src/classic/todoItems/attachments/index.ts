@@ -4,7 +4,7 @@ import { TodoContext } from "../../../api/todoContext.js";
 import {
   TodoAttachment,
   FileAttachmentMultipartRequest,
-} from "../../../models/models.js";
+} from "../../../models/todo/models.js";
 import {
   TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
   TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,

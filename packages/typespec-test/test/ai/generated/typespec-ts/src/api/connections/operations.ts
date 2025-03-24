@@ -9,7 +9,7 @@ import {
   listConnectionsResponseDeserializer,
   GetConnectionResponse,
   getConnectionResponseDeserializer,
-} from "../../models/azure/ai/projects/models.js";
+} from "../../models/projects/models.js";
 import {
   ConnectionsGetConnectionWithSecretsOptionalParams,
   ConnectionsGetConnectionOptionalParams,

@@ -20,7 +20,7 @@ import {
   ShieldPromptResult,
   DetectTextProtectedMaterialOptions,
   DetectTextProtectedMaterialResult,
-} from "./models/models.js";
+} from "./models/contentSafety/models.js";
 import {
   ListTextBlocklistItemsOptionalParams,
   GetTextBlocklistItemOptionalParams,

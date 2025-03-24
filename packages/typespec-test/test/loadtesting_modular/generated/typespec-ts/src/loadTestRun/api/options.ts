@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { TimeGrain, MetricRequestPayload } from "../../models/models.js";
+import {
+  TimeGrain,
+  MetricRequestPayload,
+} from "../../models/microsoft/loadTestService/models.js";
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */

@@ -8,7 +8,7 @@ import {
 } from "./static-helpers/pagingHelpers.js";
 
 export { AnomalyDetectorClient } from "./anomalyDetectorClient.js";
-export { APIVersion } from "./models/index.js";
+export { AnomalyDetectorAPIVersion } from "./models/anomalyDetector/index.js";
 export {
   AnomalyDetectorMultivariateMultivariateDetectionResult,
   AnomalyDetectorMultivariateMultivariateBatchDetectionResultSummary,

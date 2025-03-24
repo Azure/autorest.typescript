@@ -9,7 +9,7 @@ import {
   modelDeserializer,
   DeleteModelResponse,
   deleteModelResponseDeserializer,
-} from "../../models/models.js";
+} from "../../models/openAI/models.js";
 import {
   ModelsDeleteOptionalParams,
   ModelsRetrieveOptionalParams,

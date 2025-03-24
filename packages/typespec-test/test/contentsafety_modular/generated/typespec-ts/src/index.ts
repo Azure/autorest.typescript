@@ -34,7 +34,7 @@ export {
   DetectTextProtectedMaterialResult,
   TextProtectedMaterialAnalysisResult,
   KnownVersions,
-} from "./models/index.js";
+} from "./models/contentSafety/index.js";
 export {
   ContentSafetyClientOptionalParams,
   ListTextBlocklistItemsOptionalParams,

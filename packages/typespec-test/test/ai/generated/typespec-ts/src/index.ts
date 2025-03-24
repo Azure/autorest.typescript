@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { FileContents } from "./static-helpers/multipartHelpers.js";
 import {
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
-import { FileContents } from "./static-helpers/multipartHelpers.js";
 
 export { AIProjectClient } from "./aiProjectClient.js";
 export {
@@ -41,7 +41,7 @@ export {
   InternalConnectionPropertiesSASAuth,
   CredentialsSASAuth,
   KnownVersions,
-} from "./models/azure/ai/projects/index.js";
+} from "./models/projects/index.js";
 export {
   ToolDefinition,
   ToolDefinitionUnion,
@@ -244,7 +244,7 @@ export {
   ErrorEvent,
   DoneEvent,
   AgentStreamEvent,
-} from "./models/azure/ai/projects/agents/index.js";
+} from "./models/projects/agents/index.js";
 export { AIProjectClientOptionalParams } from "./api/index.js";
 export {
   AgentsListVectorStoreFileBatchFilesOptionalParams,

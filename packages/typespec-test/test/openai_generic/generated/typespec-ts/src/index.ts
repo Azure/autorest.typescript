@@ -52,7 +52,7 @@ export {
   CreateTranslationResponse,
   CreateTranscriptionRequest,
   CreateTranscriptionResponse,
-} from "./models/index.js";
+} from "./models/openAI/index.js";
 export { OpenAIClientOptionalParams } from "./api/index.js";
 export { CompletionsCreateOptionalParams } from "./api/completions/index.js";
 export { EditsCreateOptionalParams } from "./api/edits/index.js";

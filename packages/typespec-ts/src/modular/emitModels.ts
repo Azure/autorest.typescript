@@ -24,6 +24,7 @@ import {
   SdkMethod,
   SdkModelPropertyType,
   SdkModelType,
+  SdkNamespace,
   SdkNullableType,
   SdkServiceMethod,
   SdkServiceOperation,
@@ -31,7 +32,7 @@ import {
   SdkUnionType,
   UsageFlags,
   isPagedResultModel,
-  isReadOnly
+  isReadOnly,
 } from "@azure-tools/typespec-client-generator-core";
 import {
   getExternalModel,
@@ -257,11 +258,29 @@ export function getModelsPath(
   );
 }
 
+function traverseRootNamespace(
+  namespaces: SdkNamespace<SdkServiceOperation>[],
+  rootNamespace: string[]
+): string[] {
+  for (const namespace of namespaces) {
+    if (namespace.clients.length === 0 && namespace.models.length === 0 && namespace.enums.length === 0 && namespace.unions.length === 0) {
+      rootNamespace.push(namespace.name);
+      return traverseRootNamespace(
+        namespace.namespaces,
+        rootNamespace
+      );
+    } else {
+      return rootNamespace;
+    }
+  }
+  return [];
+}
+
 export function getModelNamespaces(
   context: SdkContext,
   model: SdkType
 ): string[] {
-  const rootNamespace = context.sdkPackage.namespaces;
+  const rootNamespace = traverseRootNamespace(context.sdkPackage.namespaces, []);
   if (
     model.kind === "model" ||
     model.kind === "enum" ||

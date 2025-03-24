@@ -6,7 +6,7 @@ import {
   SchemaGroup,
   schemaVersionArrayDeserializer,
   SchemaVersion,
-} from "./azure/schemaRegistry/models.js";
+} from "./schemaRegistry/models.js";
 
 /** Paged collection of SchemaGroup items */
 export interface _PagedSchemaGroup {

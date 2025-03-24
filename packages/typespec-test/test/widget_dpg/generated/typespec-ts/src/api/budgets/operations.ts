@@ -9,7 +9,7 @@ import {
   Widget,
   widgetErrorDeserializer,
   widgetArrayDeserializer,
-} from "../../models/models.js";
+} from "../../models/widgetService/models.js";
 import {
   BudgetsGetBudgetsOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,

@@ -24,6 +24,8 @@ import {
   _Metrics,
   _metricsDeserializer,
   TimeSeriesElement,
+} from "../../models/microsoft/loadTestService/models.js";
+import {
   _PagedTestRun,
   _pagedTestRunDeserializer,
 } from "../../models/models.js";
@@ -43,11 +45,11 @@ import {
   CreateOrUpdateAppComponentsOptionalParams,
   CreateOrUpdateTestRunOptionalParams,
 } from "./options.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
-import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

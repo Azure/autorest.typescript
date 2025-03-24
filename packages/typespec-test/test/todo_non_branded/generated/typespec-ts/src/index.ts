@@ -1,11 +1,11 @@
 // Licensed under the MIT License.
 
+import { FileContents } from "./static-helpers/multipartHelpers.js";
 import {
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
-import { FileContents } from "./static-helpers/multipartHelpers.js";
 
 export { TodoClient } from "./todoClient.js";
 export {
@@ -16,16 +16,20 @@ export {
   ApiError,
   Standard5XXResponse,
   TodoAttachment,
-  InvalidTodoItem,
   ToDoItemMultipartRequest,
-  NotFoundErrorResponse,
-  TodoItemPatch,
   FileAttachmentMultipartRequest,
   User,
+} from "./models/todo/index.js";
+export {
+  InvalidTodoItem,
+  NotFoundErrorResponse,
+  TodoItemPatch,
+} from "./models/todo/todoItems/index.js";
+export {
   UserCreatedResponse,
   UserExistsResponse,
   InvalidUserResponse,
-} from "./models/index.js";
+} from "./models/todo/users/index.js";
 export { TodoClientOptionalParams } from "./api/index.js";
 export {
   TodoItemsDeleteOptionalParams,

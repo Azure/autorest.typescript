@@ -2,7 +2,11 @@
 // Licensed under the MIT License.
 
 import { WidgetServiceContext } from "../../api/widgetServiceContext.js";
-import { User, Widget, AnalyzeResult } from "../../models/models.js";
+import {
+  User,
+  Widget,
+  AnalyzeResult,
+} from "../../models/widgetService/models.js";
 import {
   WidgetsAnalyzeWidgetOptionalParams,
   WidgetsDeleteWidgetOptionalParams,

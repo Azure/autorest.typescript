@@ -7,7 +7,7 @@ import {
   createEmbeddingRequestSerializer,
   CreateEmbeddingResponse,
   createEmbeddingResponseDeserializer,
-} from "../../models/models.js";
+} from "../../models/openAI/models.js";
 import { EmbeddingsCreateOptionalParams } from "./options.js";
 import {
   StreamableMethod,

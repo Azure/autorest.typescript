@@ -19,7 +19,7 @@ import {
   ListSortOrder,
   RunAdditionalFieldList,
   VectorStoreFileStatusFilter,
-} from "../../models/azure/ai/projects/agents/models.js";
+} from "../../models/projects/agents/models.js";
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */

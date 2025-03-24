@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { logger } from "../logger.js";
-import { KnownServiceApiVersions } from "../models/azure/schemaRegistry/models.js";
+import { KnownServiceApiVersions } from "../models/schemaRegistry/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 

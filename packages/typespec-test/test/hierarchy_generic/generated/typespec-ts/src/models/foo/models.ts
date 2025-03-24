@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-/** model interface A */
-export interface A {
+/** model interface FooA */
+export interface FooA {
   prop1: string;
 }
 
-export function aSerializer(item: A): any {
+export function fooASerializer(item: FooA): any {
   return { prop1: item["prop1"] };
 }

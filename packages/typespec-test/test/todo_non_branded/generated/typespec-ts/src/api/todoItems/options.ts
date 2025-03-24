@@ -1,6 +1,6 @@
 // Licensed under the MIT License.
 
-import { TodoAttachment } from "../../models/models.js";
+import { TodoAttachment } from "../../models/todo/models.js";
 import { OperationOptions } from "@typespec/ts-http-runtime";
 
 /** Optional parameters. */

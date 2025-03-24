@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { logger } from "../logger.js";
-import { KnownVersions } from "../models/models.js";
+import { KnownVersions } from "../models/widgetService/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { KeyCredential, isKeyCredential } from "@azure/core-auth";
 

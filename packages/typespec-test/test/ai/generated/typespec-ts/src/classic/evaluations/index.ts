@@ -5,7 +5,7 @@ import { AIProjectContext } from "../../api/aiProjectContext.js";
 import {
   Evaluation,
   EvaluationSchedule,
-} from "../../models/azure/ai/projects/models.js";
+} from "../../models/projects/models.js";
 import {
   EvaluationsDisableScheduleOptionalParams,
   EvaluationsListScheduleOptionalParams,

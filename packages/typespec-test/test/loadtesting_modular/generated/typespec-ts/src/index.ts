@@ -91,7 +91,7 @@ export {
   KnownRecommendationCategory,
   RecommendationCategory,
   KnownAPIVersions,
-} from "./models/index.js";
+} from "./models/microsoft/loadTestService/index.js";
 export {
   LoadTestAdministrationClientOptionalParams,
   DeleteTestOptionalParams,

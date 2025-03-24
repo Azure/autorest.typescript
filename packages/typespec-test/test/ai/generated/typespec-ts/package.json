@@ -17,8 +17,8 @@
       "./api/connections": "./src/api/connections/index.ts",
       "./api/agents": "./src/api/agents/index.ts",
       "./models": "./src/models/index.ts",
-      "./models/azure/ai/projects": "./src/models/azure/ai/projects/index.ts",
-      "./models/azure/ai/projects/agents": "./src/models/azure/ai/projects/agents/index.ts"
+      "./models/projects": "./src/models/projects/index.ts",
+      "./models/projects/agents": "./src/models/projects/agents/index.ts"
     },
     "dialects": [
       "esm",
@@ -203,40 +203,40 @@
         "default": "./dist/commonjs/models/index.js"
       }
     },
-    "./models/azure/ai/projects": {
+    "./models/projects": {
       "browser": {
-        "types": "./dist/browser/models/azure/ai/projects/index.d.ts",
-        "default": "./dist/browser/models/azure/ai/projects/index.js"
+        "types": "./dist/browser/models/projects/index.d.ts",
+        "default": "./dist/browser/models/projects/index.js"
       },
       "react-native": {
-        "types": "./dist/react-native/models/azure/ai/projects/index.d.ts",
-        "default": "./dist/react-native/models/azure/ai/projects/index.js"
+        "types": "./dist/react-native/models/projects/index.d.ts",
+        "default": "./dist/react-native/models/projects/index.js"
       },
       "import": {
-        "types": "./dist/esm/models/azure/ai/projects/index.d.ts",
-        "default": "./dist/esm/models/azure/ai/projects/index.js"
+        "types": "./dist/esm/models/projects/index.d.ts",
+        "default": "./dist/esm/models/projects/index.js"
       },
       "require": {
-        "types": "./dist/commonjs/models/azure/ai/projects/index.d.ts",
-        "default": "./dist/commonjs/models/azure/ai/projects/index.js"
+        "types": "./dist/commonjs/models/projects/index.d.ts",
+        "default": "./dist/commonjs/models/projects/index.js"
       }
     },
-    "./models/azure/ai/projects/agents": {
+    "./models/projects/agents": {
       "browser": {
-        "types": "./dist/browser/models/azure/ai/projects/agents/index.d.ts",
-        "default": "./dist/browser/models/azure/ai/projects/agents/index.js"
+        "types": "./dist/browser/models/projects/agents/index.d.ts",
+        "default": "./dist/browser/models/projects/agents/index.js"
       },
       "react-native": {
-        "types": "./dist/react-native/models/azure/ai/projects/agents/index.d.ts",
-        "default": "./dist/react-native/models/azure/ai/projects/agents/index.js"
+        "types": "./dist/react-native/models/projects/agents/index.d.ts",
+        "default": "./dist/react-native/models/projects/agents/index.js"
       },
       "import": {
-        "types": "./dist/esm/models/azure/ai/projects/agents/index.d.ts",
-        "default": "./dist/esm/models/azure/ai/projects/agents/index.js"
+        "types": "./dist/esm/models/projects/agents/index.d.ts",
+        "default": "./dist/esm/models/projects/agents/index.js"
       },
       "require": {
-        "types": "./dist/commonjs/models/azure/ai/projects/agents/index.d.ts",
-        "default": "./dist/commonjs/models/azure/ai/projects/agents/index.js"
+        "types": "./dist/commonjs/models/projects/agents/index.d.ts",
+        "default": "./dist/commonjs/models/projects/agents/index.js"
       }
     }
   },

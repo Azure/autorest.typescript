@@ -4,8 +4,8 @@ import { TodoContext } from "../../api/todoContext.js";
 import {
   TodoItem,
   ToDoItemMultipartRequest,
-  TodoItemPatch,
-} from "../../models/models.js";
+} from "../../models/todo/models.js";
+import { TodoItemPatch } from "../../models/todo/todoItems/models.js";
 import {
   TodoItemsDeleteOptionalParams,
   TodoItemsUpdateOptionalParams,

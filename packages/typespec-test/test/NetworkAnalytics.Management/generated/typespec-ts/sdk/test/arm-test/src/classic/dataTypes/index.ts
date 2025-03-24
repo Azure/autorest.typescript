@@ -4,10 +4,10 @@
 import { NetworkAnalyticsApiContext } from "../../api/networkAnalyticsApiContext.js";
 import {
   DataType,
-  DataTypeUpdate,
   ContainerSaS,
   ContainerSasToken,
-} from "../../models/models.js";
+} from "../../models/networkAnalytics/models.js";
+import { DataTypeUpdate } from "../../models/models.js";
 import {
   DataTypesListByDataProductOptionalParams,
   DataTypesGenerateStorageContainerSasTokenOptionalParams,

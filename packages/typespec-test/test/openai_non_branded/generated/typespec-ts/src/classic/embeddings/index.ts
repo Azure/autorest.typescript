@@ -4,7 +4,7 @@ import { OpenAIContext } from "../../api/openAIContext.js";
 import {
   CreateEmbeddingRequest,
   CreateEmbeddingResponse,
-} from "../../models/models.js";
+} from "../../models/openAI/models.js";
 import { EmbeddingsCreateOptionalParams } from "../../api/embeddings/options.js";
 import { create } from "../../api/embeddings/operations.js";
 
