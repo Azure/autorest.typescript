@@ -24,8 +24,6 @@ import {
   _Metrics,
   _metricsDeserializer,
   TimeSeriesElement,
-} from "../../models/microsoft/loadTestService/models.js";
-import {
   _PagedTestRun,
   _pagedTestRunDeserializer,
 } from "../../models/models.js";

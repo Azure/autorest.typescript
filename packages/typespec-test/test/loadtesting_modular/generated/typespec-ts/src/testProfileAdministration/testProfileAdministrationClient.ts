@@ -6,7 +6,7 @@ import {
   TestProfileAdministrationContext,
   TestProfileAdministrationClientOptionalParams,
 } from "./api/index.js";
-import { TestProfile } from "../models/microsoft/loadTestService/models.js";
+import { TestProfile } from "../models/models.js";
 import {
   ListTestProfilesOptionalParams,
   GetTestProfileOptionalParams,

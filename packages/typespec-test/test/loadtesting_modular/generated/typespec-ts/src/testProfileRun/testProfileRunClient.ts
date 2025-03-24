@@ -6,7 +6,7 @@ import {
   TestProfileRunContext,
   TestProfileRunClientOptionalParams,
 } from "./api/index.js";
-import { TestProfileRun } from "../models/microsoft/loadTestService/models.js";
+import { TestProfileRun } from "../models/models.js";
 import {
   StopTestProfileRunOptionalParams,
   ListTestProfileRunsOptionalParams,

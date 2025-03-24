@@ -14,8 +14,6 @@ import {
   TestServerMetricConfig,
   testServerMetricConfigSerializer,
   testServerMetricConfigDeserializer,
-} from "../../models/microsoft/loadTestService/models.js";
-import {
   _PagedTestFileInfo,
   _pagedTestFileInfoDeserializer,
   _PagedTest,

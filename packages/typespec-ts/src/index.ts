@@ -537,7 +537,7 @@ export async function createContextWithDefaultOptions(
     context,
     context.program.emitters[0]?.metadata.name ?? "@azure-tools/typespec-ts",
     {
-      flattenUnionAsEnum,  
+      flattenUnionAsEnum
     }
   )) as SdkContext;
 }

@@ -15,7 +15,7 @@ import {
   MetricDefinitionCollection,
   MetricNamespaceCollection,
   TimeSeriesElement,
-} from "../models/microsoft/loadTestService/models.js";
+} from "../models/models.js";
 import {
   StopTestRunOptionalParams,
   ListTestRunsOptionalParams,

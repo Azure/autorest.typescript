@@ -29,7 +29,7 @@ import {
   embeddingsOptionsSerializer,
   Embeddings,
   embeddingsDeserializer,
-} from "../models/azure/openAI/models.js";
+} from "../models/models.js";
 import {
   GetEmbeddingsOptionalParams,
   GenerateSpeechFromTextOptionalParams,

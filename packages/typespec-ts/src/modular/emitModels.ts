@@ -24,7 +24,6 @@ import {
   SdkMethod,
   SdkModelPropertyType,
   SdkModelType,
-  SdkNamespace,
   SdkNullableType,
   SdkServiceMethod,
   SdkServiceOperation,
@@ -33,6 +32,7 @@ import {
   UsageFlags,
   isPagedResultModel,
   isReadOnly,
+  listAllServiceNamespaces
 } from "@azure-tools/typespec-client-generator-core";
 import {
   getExternalModel,
@@ -54,7 +54,7 @@ import {
 import { isExtensibleEnum } from "./type-expressions/get-enum-expression.js";
 import { isDiscriminatedUnion } from "./serialization/serializeUtils.js";
 import { reportDiagnostic } from "../lib.js";
-import { NoTarget } from "@typespec/compiler";
+import { getNamespaceFullName, NoTarget } from "@typespec/compiler";
 import {
   getTypeExpression,
   normalizeModelPropertyName
@@ -258,29 +258,13 @@ export function getModelsPath(
   );
 }
 
-function traverseRootNamespace(
-  namespaces: SdkNamespace<SdkServiceOperation>[],
-  rootNamespace: string[]
-): string[] {
-  for (const namespace of namespaces) {
-    rootNamespace.push(namespace.name);
-    if (namespace.clients.length === 0 && namespace.models.length === 0 && namespace.enums.length === 0 && namespace.unions.length === 0) {
-      return traverseRootNamespace(
-        namespace.namespaces,
-        rootNamespace
-      );
-    } else {
-      return rootNamespace;
-    }
-  }
-  return [];
-}
-
 export function getModelNamespaces(
   context: SdkContext,
   model: SdkType
 ): string[] {
-  const rootNamespace = traverseRootNamespace(context.sdkPackage.namespaces, []);
+  const deepestNamespace = getNamespaceFullName(
+    listAllServiceNamespaces(context)[0]!
+  );
   if (
     model.kind === "model" ||
     model.kind === "enum" ||
@@ -297,6 +281,7 @@ export function getModelNamespaces(
       return [];
     }
     const segments = model.namespace.split(".");
+    const rootNamespace = deepestNamespace.split(".") ?? [];
     if (segments.length > rootNamespace.length) {
       while (segments[0] === rootNamespace[0]) {
         segments.shift();

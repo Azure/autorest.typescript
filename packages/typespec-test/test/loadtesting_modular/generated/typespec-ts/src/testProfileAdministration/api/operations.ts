@@ -6,8 +6,6 @@ import {
   TestProfile,
   testProfileSerializer,
   testProfileDeserializer,
-} from "../../models/microsoft/loadTestService/models.js";
-import {
   _PagedTestProfile,
   _pagedTestProfileDeserializer,
 } from "../../models/models.js";

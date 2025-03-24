@@ -146,7 +146,7 @@ export {
   EmbeddingItem,
   EmbeddingsUsage,
   KnownServiceApiVersions,
-} from "./models/azure/openAI/index.js";
+} from "./models/index.js";
 export {
   OpenAIClientOptionalParams,
   GetEmbeddingsOptionalParams,
