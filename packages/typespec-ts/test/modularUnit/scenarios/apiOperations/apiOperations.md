@@ -127,7 +127,9 @@ export async function uploadFileViaBody(
 
 ```tsp
 @route("/uploadFile")
-@post op uploadFile(
+@post
+#suppress "deprecated" "For test"
+op uploadFile(
     @header contentType: "multipart/form-data",
     @body body: {
         name: string;
@@ -221,7 +223,9 @@ export async function uploadFile(
 scalar BinaryBytes extends bytes;
 
 @route("/uploadFiles")
-@post op uploadFiles(
+@post
+#suppress "deprecated" "For test"
+op uploadFiles(
   @header contentType: "multipart/form-data",
   @body body: {
     files: BinaryBytes[];
@@ -434,6 +438,7 @@ export async function downloadFile(
 ```tsp
 @route("/downloadFile")
 @post
+#suppress "deprecated" "For test"
 op downloadFile(): {
   @header contentType: "multipart/form-data";
   @body body: {
@@ -530,6 +535,7 @@ scalar BinaryBytes extends bytes;
 
 @route("/downloadFile")
 @post
+#suppress "deprecated" "For test"
 op downloadFile(): {
   @header contentType: "multipart/form-data";
   @body body: {
@@ -727,10 +733,7 @@ export function _testSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "text/plain", ...options.requestOptions?.headers },
     });
 }
 
@@ -882,10 +885,7 @@ export function _testSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "text/plain", ...options.requestOptions?.headers },
     });
 }
 
@@ -1021,10 +1021,7 @@ export function _test1Send(
     .path("/test1")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "text/plain", ...options.requestOptions?.headers },
     });
 }
 
@@ -1065,10 +1062,7 @@ export function _testSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "text/plain", ...options.requestOptions?.headers },
     });
 }
 

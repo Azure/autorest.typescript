@@ -6,24 +6,24 @@ import { KnownVersions } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { KeyCredential, isKeyCredential } from "@azure/core-auth";
 
-export interface WidgetServiceContext extends Client {
+export interface SAPWidgetServiceContext extends Client {
   /** The API version to use for this operation. */
   /** Known values of {@link KnownVersions} that the service accepts. */
   apiVersion: string;
 }
 
 /** Optional parameters for the client. */
-export interface WidgetServiceClientOptionalParams extends ClientOptions {
+export interface SAPWidgetServiceClientOptionalParams extends ClientOptions {
   /** The API version to use for this operation. */
   /** Known values of {@link KnownVersions} that the service accepts. */
   apiVersion?: string;
 }
 
-export function createWidgetService(
+export function createSAPWidgetService(
   endpointParam: string,
   credential: KeyCredential,
-  options: WidgetServiceClientOptionalParams = {},
-): WidgetServiceContext {
+  options: SAPWidgetServiceClientOptionalParams = {},
+): SAPWidgetServiceContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? String(endpointParam);
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
@@ -64,5 +64,5 @@ export function createWidgetService(
       return next(req);
     },
   });
-  return { ...clientContext, apiVersion } as WidgetServiceContext;
+  return { ...clientContext, apiVersion } as SAPWidgetServiceContext;
 }

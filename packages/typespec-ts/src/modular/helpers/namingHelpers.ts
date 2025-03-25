@@ -8,7 +8,6 @@ import {
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 import { ServiceOperation } from "../../utils/operationUtil.js";
-import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
 
 export function getClientName(
   client: SdkClientType<SdkServiceOperation>
@@ -27,11 +26,7 @@ export interface GuardedName {
   fixme?: string[];
 }
 
-export function getOperationName(
-  operation: ServiceOperation,
-  options: { casing: "camel" | "pascal" } = { casing: "camel" }
-): GuardedName {
-  const casingFn = options.casing === "camel" ? toCamelCase : toPascalCase;
+export function getOperationName(operation: ServiceOperation): GuardedName {
   if (isReservedName(operation.name, NameType.Operation)) {
     return {
       name: `$${operation.name}`,
@@ -44,7 +39,7 @@ export function getOperationName(
   }
 
   return {
-    name: normalizeName(casingFn(operation.name), NameType.Operation, true)
+    name: normalizeName(operation.name, NameType.Operation, true)
   };
 }
 

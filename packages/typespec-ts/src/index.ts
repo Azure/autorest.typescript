@@ -390,7 +390,18 @@ export async function $onEmit(context: EmitContext) {
     const shouldGenerateMetadata =
       option.generateMetadata === true ||
       (option.generateMetadata === undefined && !hasPackageFile);
-    // TODO detect whether test folder exists. If yes generateTest should be false.
+    const existingTestFolderPath = join(
+      dpgContext.generationPathDetail?.metadataDir ?? "",
+      "test"
+    );
+    const hasTestFolder = await existsSync(existingTestFolderPath);
+    if (option.azureSdkForJs && option.generateTest === undefined) {
+      if (hasTestFolder) {
+        option.generateTest = false;
+      } else {
+        option.generateTest = true;
+      }
+    }
     if (shouldGenerateMetadata) {
       const commonBuilders = [
         buildRollupConfig,
@@ -510,7 +521,6 @@ export async function createContextWithDefaultOptions(
   const tcgcSettings = {
     "generate-protocol-methods": true,
     "generate-convenience-methods": true,
-    "flatten-union-as-enum": flattenUnionAsEnum,
     emitters: [
       {
         main: "@azure-tools/typespec-ts",
@@ -525,7 +535,10 @@ export async function createContextWithDefaultOptions(
 
   return (await createSdkContext(
     context,
-    context.program.emitters[0]?.metadata.name ?? "@azure-tools/typespec-ts"
+    context.program.emitters[0]?.metadata.name ?? "@azure-tools/typespec-ts",
+    {
+      flattenUnionAsEnum
+    }
   )) as SdkContext;
 }
 

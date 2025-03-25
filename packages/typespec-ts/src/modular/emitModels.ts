@@ -31,7 +31,8 @@ import {
   SdkUnionType,
   UsageFlags,
   isPagedResultModel,
-  isReadOnly
+  isReadOnly,
+  listAllServiceNamespaces
 } from "@azure-tools/typespec-client-generator-core";
 import {
   getExternalModel,
@@ -53,7 +54,7 @@ import {
 import { isExtensibleEnum } from "./type-expressions/get-enum-expression.js";
 import { isDiscriminatedUnion } from "./serialization/serializeUtils.js";
 import { reportDiagnostic } from "../lib.js";
-import { NoTarget } from "@typespec/compiler";
+import { getNamespaceFullName, NoTarget } from "@typespec/compiler";
 import {
   getTypeExpression,
   normalizeModelPropertyName
@@ -261,7 +262,9 @@ export function getModelNamespaces(
   context: SdkContext,
   model: SdkType
 ): string[] {
-  const rootNamespace = context.sdkPackage.rootNamespace.split(".");
+  const deepestNamespace = getNamespaceFullName(
+    listAllServiceNamespaces(context)[0]!
+  );
   if (
     model.kind === "model" ||
     model.kind === "enum" ||
@@ -278,6 +281,7 @@ export function getModelNamespaces(
       return [];
     }
     const segments = model.namespace.split(".");
+    const rootNamespace = deepestNamespace.split(".") ?? [];
     if (segments.length > rootNamespace.length) {
       while (segments[0] === rootNamespace[0]) {
         segments.shift();
@@ -734,7 +738,6 @@ function visitClient(
   client: SdkClientType<SdkServiceOperation>
 ) {
   // Comment this out for now, as client initialization is not used in the generated code
-  // visitType(client.initialization, emitQueue);
   client.methods.forEach((method) => visitClientMethod(context, method));
 }
 

@@ -29,7 +29,6 @@ export declare interface QueryMultiOptionalParams extends OperationOptions {
 export declare interface QueryOperations {
     csv: (colors: string[], options?: QueryCsvOptionalParams) => Promise<void>;
     pipes: (colors: string[], options?: QueryPipesOptionalParams) => Promise<void>;
-    tsv: (colors: string[], options?: QueryTsvOptionalParams) => Promise<void>;
     ssv: (colors: string[], options?: QuerySsvOptionalParams) => Promise<void>;
     multi: (colors: string[], options?: QueryMultiOptionalParams) => Promise<void>;
 }
@@ -38,9 +37,6 @@ export declare interface QueryPipesOptionalParams extends OperationOptions {
 }
 
 export declare interface QuerySsvOptionalParams extends OperationOptions {
-}
-
-export declare interface QueryTsvOptionalParams extends OperationOptions {
 }
 
 export { }

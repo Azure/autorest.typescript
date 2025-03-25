@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 /** Details about a user. */
-export interface User {
+export interface SAPUser {
   /** The name of user. */
   readonly name: string;
   /** The role of user */
@@ -11,11 +11,11 @@ export interface User {
   id: string;
 }
 
-export function userSerializer(item: User): any {
+export function sapUserSerializer(item: SAPUser): any {
   return { role: item["role"], id: item["id"] };
 }
 
-export function userDeserializer(item: any): User {
+export function sapUserDeserializer(item: any): SAPUser {
   return {
     name: item["name"],
     role: item["role"],

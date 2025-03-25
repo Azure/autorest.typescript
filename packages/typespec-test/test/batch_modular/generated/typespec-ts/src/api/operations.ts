@@ -195,7 +195,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { stringToUint8Array } from "@azure/core-util";
 
 export function _listNodeFilesSend(
   context: Client,
@@ -415,7 +414,7 @@ export function _getNodeFileSend(
         ...(options?.ocpRange !== undefined
           ? { "ocp-range": options?.ocpRange }
           : {}),
-        accept: "application/json",
+        accept: "application/octet-stream",
         ...options.requestOptions?.headers,
       },
     });
@@ -431,9 +430,7 @@ export async function _getNodeFileDeserialize(
     throw error;
   }
 
-  return typeof result.body === "string"
-    ? stringToUint8Array(result.body, "base64")
-    : result.body;
+  return result.body;
 }
 
 /** Returns the content of the specified Compute Node file. */
@@ -879,7 +876,7 @@ export function _getNodeRemoteDesktopFileSend(
                 : options?.ocpDate.toUTCString(),
             }
           : {}),
-        accept: "application/json",
+        accept: "application/octet-stream",
         ...options.requestOptions?.headers,
       },
     });
@@ -895,9 +892,7 @@ export async function _getNodeRemoteDesktopFileDeserialize(
     throw error;
   }
 
-  return typeof result.body === "string"
-    ? stringToUint8Array(result.body, "base64")
-    : result.body;
+  return result.body;
 }
 
 /**

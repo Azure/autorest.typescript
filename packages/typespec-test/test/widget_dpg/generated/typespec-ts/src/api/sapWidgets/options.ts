@@ -4,13 +4,15 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface WidgetsAnalyzeWidgetOptionalParams extends OperationOptions {}
+export interface SAPWidgetsAnalyzeWidgetOptionalParams
+  extends OperationOptions {}
 
 /** Optional parameters. */
-export interface WidgetsDeleteWidgetOptionalParams extends OperationOptions {}
+export interface SAPWidgetsDeleteWidgetOptionalParams
+  extends OperationOptions {}
 
 /** Optional parameters. */
-export interface WidgetsUpdateWidgetOptionalParams extends OperationOptions {
+export interface SAPWidgetsUpdateWidgetOptionalParams extends OperationOptions {
   /** The weight of the widget. This is an int32, but must be greater than zero. */
   weight?: number;
   /** The color of the widget. */
@@ -18,27 +20,30 @@ export interface WidgetsUpdateWidgetOptionalParams extends OperationOptions {
 }
 
 /** Optional parameters. */
-export interface WidgetsCreateOrReplaceOptionalParams extends OperationOptions {
+export interface SAPWidgetsCreateOrReplaceOptionalParams
+  extends OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
 }
 
 /** Optional parameters. */
-export interface WidgetsCreateWidgetOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface WidgetsGetWidgetOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface WidgetsQueryWidgetsPagesOptionalParams
+export interface SAPWidgetsCreateWidgetOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface WidgetsListWidgetsPagesOptionalParams
+export interface SAPWidgetsGetWidgetOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface SAPWidgetsQueryWidgetsPagesOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface WidgetsListWidgetsOptionalParams extends OperationOptions {
+export interface SAPWidgetsListWidgetsPagesOptionalParams
+  extends OperationOptions {}
+
+/** Optional parameters. */
+export interface SAPWidgetsSAPListWidgetsOptionalParams
+  extends OperationOptions {
   optionalHeader?: string;
   nullableOptionalHeader?: string | null;
   optionalDateHeader?: Date;
