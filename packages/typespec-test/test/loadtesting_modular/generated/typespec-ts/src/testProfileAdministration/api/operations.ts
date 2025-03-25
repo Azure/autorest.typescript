@@ -32,7 +32,7 @@ export function _listTestProfilesSend(
   options: ListTestProfilesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/test-profiles{?api-version,maxpagesize,lastModifiedStartTime,lastModifiedEndTime,testProfileIds,testIds}",
+    "/test-profiles{?api%2Dversion,maxpagesize,lastModifiedStartTime,lastModifiedEndTime,testProfileIds,testIds}",
     {
       "api-version": context.apiVersion,
       maxpagesize: options?.maxpagesize,
@@ -91,7 +91,7 @@ export function _getTestProfileSend(
   options: GetTestProfileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/test-profiles/{testProfileId}{?api-version}",
+    "/test-profiles/{testProfileId}{?api%2Dversion}",
     {
       testProfileId: testProfileId,
       "api-version": context.apiVersion,
@@ -138,7 +138,7 @@ export function _deleteTestProfileSend(
   options: DeleteTestProfileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/test-profiles/{testProfileId}{?api-version}",
+    "/test-profiles/{testProfileId}{?api%2Dversion}",
     {
       testProfileId: testProfileId,
       "api-version": context.apiVersion,
@@ -186,7 +186,7 @@ export function _createOrUpdateTestProfileSend(
   options: CreateOrUpdateTestProfileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/test-profiles/{testProfileId}{?api-version}",
+    "/test-profiles/{testProfileId}{?api%2Dversion}",
     {
       testProfileId: testProfileId,
       "api-version": context.apiVersion,

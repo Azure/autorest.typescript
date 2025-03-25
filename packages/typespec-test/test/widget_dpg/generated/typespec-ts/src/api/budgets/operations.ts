@@ -79,7 +79,7 @@ export function _createOrReplaceSend(
   options: BudgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/budgets/widgets/createOrReplace/users/{name}{?api-version}",
+    "/budgets/widgets/createOrReplace/users/{name}{?api%2Dversion}",
     {
       name: name,
       "api-version": context.apiVersion,

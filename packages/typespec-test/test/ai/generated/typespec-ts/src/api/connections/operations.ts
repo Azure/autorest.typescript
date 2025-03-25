@@ -33,7 +33,7 @@ export function _getConnectionWithSecretsSend(
   },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/connections/{connectionName}/listsecrets{?api-version}",
+    "/connections/{connectionName}/listsecrets{?api%2Dversion}",
     {
       connectionName: connectionName,
       "api-version": context.apiVersion,
@@ -90,7 +90,7 @@ export function _getConnectionSend(
   options: ConnectionsGetConnectionOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/connections/{connectionName}{?api-version}",
+    "/connections/{connectionName}{?api%2Dversion}",
     {
       connectionName: connectionName,
       "api-version": context.apiVersion,
@@ -136,7 +136,7 @@ export function _listConnectionsSend(
   options: ConnectionsListConnectionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/connections{?api-version,category,includeAll,target}",
+    "/connections{?api%2Dversion,category,includeAll,target}",
     {
       "api-version": context.apiVersion,
       category: options?.category,
@@ -183,7 +183,7 @@ export function _getWorkspaceSend(
   options: ConnectionsGetWorkspaceOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/{?api-version}",
+    "/{?api%2Dversion}",
     {
       "api-version": context.apiVersion,
     },

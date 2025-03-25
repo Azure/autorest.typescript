@@ -721,7 +721,7 @@ export function _testSend(
   options: TestOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/{?api-version}",
+    "/{?api%2Dversion}",
     {
       "api-version": apiVersion,
     },
@@ -873,7 +873,7 @@ export function _testSend(
   options: TestOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/{?api-version}",
+    "/{?api%2Dversion}",
     {
       "api-version": apiVersion,
     },
@@ -1050,7 +1050,7 @@ export function _testSend(
   options: TestOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/test{?api-version}",
+    "/test{?api%2Dversion}",
     {
       "api-version": apiVersion,
     },

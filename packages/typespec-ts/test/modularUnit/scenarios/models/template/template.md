@@ -50,18 +50,18 @@ export function inputOutputModelDeserializer(item: any): InputOutputModel {
 export interface Foo {
   x: TemplatedBase;
   y: Templated;
-  z: Templated_1;
-  h: Templated_2;
-  j: Templated_3;
+  z: Templated1;
+  h: Templated2;
+  j: Templated3;
 }
 
 export function fooSerializer(item: Foo): any {
   return {
     x: templatedBaseSerializer(item["x"]),
     y: templatedSerializer(item["y"]),
-    z: __PLACEHOLDER_o353_sserializer__(item["z"]),
-    h: __PLACEHOLDER_o354_sserializer__(item["h"]),
-    j: __PLACEHOLDER_o355_sserializer__(item["j"]),
+    z: templated1Serializer(item["z"]),
+    h: templated2Serializer(item["h"]),
+    j: templated3Serializer(item["j"]),
   };
 }
 
@@ -69,9 +69,9 @@ export function fooDeserializer(item: any): Foo {
   return {
     x: templatedBaseDeserializer(item["x"]),
     y: templatedDeserializer(item["y"]),
-    z: __PLACEHOLDER_o353_sdeserializer__(item["z"]),
-    h: __PLACEHOLDER_o354_sdeserializer__(item["h"]),
-    j: __PLACEHOLDER_o355_sdeserializer__(item["j"]),
+    z: templated1Deserializer(item["z"]),
+    h: templated2Deserializer(item["h"]),
+    j: templated3Deserializer(item["j"]),
   };
 }
 
@@ -116,18 +116,48 @@ export function templatedDeserializer(item: any): Templated {
   };
 }
 
-/** model interface Templated */
-export interface Templated_1 {
+/** model interface Templated1 */
+export interface Templated1 {
   prop: "cat";
 }
 
-/** model interface Templated */
-export interface Templated_2 {
+export function templated1Serializer(item: Templated1): any {
+  return { prop: item["prop"] };
+}
+
+export function templated1Deserializer(item: any): Templated1 {
+  return {
+    prop: item["prop"],
+  };
+}
+
+/** model interface Templated2 */
+export interface Templated2 {
   prop: true;
 }
 
-/** model interface Templated */
-export interface Templated_3 {
+export function templated2Serializer(item: Templated2): any {
+  return { prop: item["prop"] };
+}
+
+export function templated2Deserializer(item: any): Templated2 {
+  return {
+    prop: item["prop"],
+  };
+}
+
+/** model interface Templated3 */
+export interface Templated3 {
   prop: 1;
+}
+
+export function templated3Serializer(item: Templated3): any {
+  return { prop: item["prop"] };
+}
+
+export function templated3Deserializer(item: any): Templated3 {
+  return {
+    prop: item["prop"],
+  };
 }
 ```

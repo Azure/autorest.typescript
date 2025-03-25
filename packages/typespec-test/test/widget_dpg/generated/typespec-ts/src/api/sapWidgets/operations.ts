@@ -201,7 +201,7 @@ export function _createOrReplaceSend(
   options: SAPWidgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/widgets/widgets/createOrReplace/users/{name}{?api-version}",
+    "/widgets/widgets/createOrReplace/users/{name}{?api%2Dversion}",
     {
       name: name,
       "api-version": context.apiVersion,
