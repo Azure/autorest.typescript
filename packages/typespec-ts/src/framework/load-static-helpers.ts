@@ -12,6 +12,7 @@ import { refkey } from "./refkey.js";
 import { resolveProjectRoot } from "../utils/resolve-project-root.js";
 import { isAzurePackage } from "@azure-tools/rlc-common";
 import { ModularEmitterOptions } from "../modular/interfaces.js";
+import { reportTSDiagnostic } from "../utils/emitUtil.js";
 export const SourceFileSymbol = Symbol("SourceFile");
 export interface StaticHelperMetadata {
   name: string;
@@ -191,7 +192,7 @@ async function traverseDirectory(
 
     return result;
   } catch (error) {
-    console.error(`Error traversing directory ${directory}:`, error);
+    reportTSDiagnostic("error", `Error traversing directory ${directory}:`);
     throw error;
   }
 }
