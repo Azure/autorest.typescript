@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "dependencies": {
-    "@azure-tools/typespec-ts": "workspace:^0.38.4",
+    "@azure-tools/typespec-ts": "workspace:^0.38.5",
     "@typespec/openapi": ">=0.67.1 <1.0.0",
     "@azure-tools/typespec-autorest": ">=0.53.0 <1.0.0",
     "@typespec/openapi3": ">=0.67.1 <1.0.0",
