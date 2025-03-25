@@ -1,7 +1,7 @@
 import "@typespec/http";
 import "@typespec/rest";
 
-@service({
+@service(#{
   title: "Widget Service",
 })
 namespace DemoService;

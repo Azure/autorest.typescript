@@ -143,8 +143,6 @@ describe("MultiPartClient Rest Client", () => {
           body: [
             { name: "id", body: "123" },
             { name: "address", body: { city: "X" } },
-            // body is a JSON array
-            { name: "previousAddresses", body: [{ city: "Y" }, { city: "Z" }] },
             {
               name: "profileImage",
               body: profileImage,

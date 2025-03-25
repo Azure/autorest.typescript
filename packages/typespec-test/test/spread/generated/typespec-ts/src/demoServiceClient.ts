@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { _getAOperations, AOperations } from "./classic/a/index.js";
 import {
   createDemoService,
   DemoServiceContext,
   DemoServiceClientOptionalParams,
 } from "./api/index.js";
+import { AOperations, _getAOperations } from "./classic/a/index.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { DemoServiceClientOptionalParams } from "./api/demoServiceContext.js";

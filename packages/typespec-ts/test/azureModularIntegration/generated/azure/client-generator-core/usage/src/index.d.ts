@@ -13,7 +13,11 @@ export declare interface ModelInReadOnlyPropertyOptionalParams extends Operation
 }
 
 export declare interface OrphanModel {
-    name: string;
+    modelName: string;
+    description: string;
+}
+
+export declare interface OrphanModelSerializableOptionalParams extends OperationOptions {
 }
 
 export declare interface OutputModel {
@@ -35,6 +39,7 @@ export declare class UsageClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: UsageClientOptionalParams);
+    orphanModelSerializable(body: any, options?: OrphanModelSerializableOptionalParams): Promise<void>;
     modelInReadOnlyProperty(body: RoundTripModel, options?: ModelInReadOnlyPropertyOptionalParams): Promise<RoundTripModel>;
     outputToInputOutput(options?: OutputToInputOutputOptionalParams): Promise<OutputModel>;
     inputToInputOutput(body: InputModel, options?: InputToInputOutputOptionalParams): Promise<void>;

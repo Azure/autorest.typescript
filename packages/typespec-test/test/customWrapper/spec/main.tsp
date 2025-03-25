@@ -62,7 +62,7 @@ model Deployment {
 }
 
 @doc("Deployment resource creation parameters.")
-@withVisibility("create")
+@withVisibility(Lifecycle.Create)
 model DeploymentCreationParameters {
   ...Deployment;
 }

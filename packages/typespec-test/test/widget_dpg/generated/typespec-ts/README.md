@@ -1,6 +1,6 @@
-# WidgetService client library for JavaScript
+# SAPWidgetService client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for WidgetService client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for SAPWidgetService client.
 
 Widget Service
 
@@ -20,7 +20,7 @@ See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUP
 
 ### Install the `@msinternal/widget_dpg` package
 
-Install the WidgetService client library for JavaScript with `npm`:
+Install the SAPWidgetService client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/widget_dpg
@@ -33,7 +33,7 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ## Key concepts
 
-### WidgetServiceClient
+### SAPWidgetServiceClient
 
-`WidgetServiceClient` is the primary interface for developers using the WidgetService client library. Explore the methods on this client object to understand the different features of the WidgetService service that you can access.
+`SAPWidgetServiceClient` is the primary interface for developers using the SAPWidgetService client library. Explore the methods on this client object to understand the different features of the SAPWidgetService service that you can access.
 

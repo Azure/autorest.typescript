@@ -4,6 +4,20 @@ import type { HttpResponse } from '@azure-rest/core-client';
 import type { RequestParameters } from '@azure-rest/core-client';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
+export declare interface ApiErrorBaseOutput {
+    code?: string;
+    target?: string;
+    message?: string;
+}
+
+export declare interface ApiErrorOutput {
+    details?: Array<ApiErrorBaseOutput>;
+    innererror?: InnerErrorOutput;
+    code?: string;
+    target?: string;
+    message?: string;
+}
+
 export declare type AzureArmModelsCommonTypesManagedIdentityClient = Client & {
     path: Routes;
 };
@@ -19,12 +33,54 @@ export declare interface AzureEntityResourceOutput extends ResourceOutput {
     readonly etag?: string;
 }
 
+export declare interface CloudErrorOutput {
+    error?: ApiErrorOutput;
+}
+
+export declare interface ConfidentialResource extends TrackedResource {
+    properties?: ConfidentialResourceProperties;
+}
+
+export declare interface ConfidentialResourceOutput extends TrackedResourceOutput {
+    properties?: ConfidentialResourcePropertiesOutput;
+}
+
+export declare interface ConfidentialResourceProperties {
+    username: string;
+}
+
+export declare interface ConfidentialResourcePropertiesOutput {
+    readonly provisioningState: string;
+    username: string;
+}
+
 declare function createClient({ apiVersion, ...options }?: AzureArmModelsCommonTypesManagedIdentityClientOptions): AzureArmModelsCommonTypesManagedIdentityClient;
 export default createClient;
 
 export declare type CreatedByType = string;
 
 export declare type CreatedByTypeOutput = string;
+
+export declare interface CreateForUserDefinedError200Response extends HttpResponse {
+    status: "200";
+    body: ConfidentialResourceOutput;
+}
+
+export declare interface CreateForUserDefinedError201Response extends HttpResponse {
+    status: "201";
+    body: ConfidentialResourceOutput;
+}
+
+export declare interface CreateForUserDefinedErrorBodyParam {
+    body: ConfidentialResource;
+}
+
+export declare interface CreateForUserDefinedErrorDefaultResponse extends HttpResponse {
+    status: string;
+    body: CloudErrorOutput;
+}
+
+export declare type CreateForUserDefinedErrorParameters = CreateForUserDefinedErrorBodyParam & RequestParameters;
 
 export declare interface CreateWithSystemAssigned200Response extends HttpResponse {
     status: "200";
@@ -86,6 +142,23 @@ export declare interface GetDefaultResponse extends HttpResponse {
     body: ErrorResponseOutput;
 }
 
+export declare interface GetForPredefinedError {
+    get(options?: GetForPredefinedErrorParameters): StreamableMethod<GetForPredefinedError200Response | GetForPredefinedErrorDefaultResponse>;
+    put(options: CreateForUserDefinedErrorParameters): StreamableMethod<CreateForUserDefinedError200Response | CreateForUserDefinedError201Response | CreateForUserDefinedErrorDefaultResponse>;
+}
+
+export declare interface GetForPredefinedError200Response extends HttpResponse {
+    status: "200";
+    body: ConfidentialResourceOutput;
+}
+
+export declare interface GetForPredefinedErrorDefaultResponse extends HttpResponse {
+    status: string;
+    body: ErrorResponseOutput;
+}
+
+export declare type GetForPredefinedErrorParameters = RequestParameters;
+
 export declare type GetParameters = RequestParameters;
 
 export declare interface Identity {
@@ -98,11 +171,20 @@ export declare interface IdentityOutput {
     type?: ResourceIdentityTypeOutput;
 }
 
+export declare interface InnerErrorOutput {
+    exceptiontype?: string;
+    errordetail?: string;
+}
+
 export declare function isUnexpected(response: Get200Response | GetDefaultResponse): response is GetDefaultResponse;
 
 export declare function isUnexpected(response: CreateWithSystemAssigned200Response | CreateWithSystemAssigned201Response | CreateWithSystemAssignedDefaultResponse): response is CreateWithSystemAssignedDefaultResponse;
 
 export declare function isUnexpected(response: UpdateWithUserAssignedAndSystemAssigned200Response | UpdateWithUserAssignedAndSystemAssignedDefaultResponse): response is UpdateWithUserAssignedAndSystemAssignedDefaultResponse;
+
+export declare function isUnexpected(response: GetForPredefinedError200Response | GetForPredefinedErrorDefaultResponse): response is GetForPredefinedErrorDefaultResponse;
+
+export declare function isUnexpected(response: CreateForUserDefinedError200Response | CreateForUserDefinedError201Response | CreateForUserDefinedErrorDefaultResponse): response is CreateForUserDefinedErrorDefaultResponse;
 
 export declare interface ManagedIdentityTrackedResource extends TrackedResource {
     properties?: ManagedIdentityTrackedResourceProperties;
@@ -256,6 +338,7 @@ export declare interface ResourceOutput {
 
 export declare interface Routes {
     (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/{managedIdentityTrackedResourceName}", subscriptionId: string, resourceGroupName: string, managedIdentityTrackedResourceName: string): Get;
+    (path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.CommonProperties/confidentialResources/{confidentialResourceName}", subscriptionId: string, resourceGroupName: string, confidentialResourceName: string): GetForPredefinedError;
 }
 
 export declare interface Sku {
