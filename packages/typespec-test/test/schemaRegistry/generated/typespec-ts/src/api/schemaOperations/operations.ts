@@ -43,7 +43,7 @@ export function _registerSchemaSend(
   },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/$schemaGroups/{groupName}/schemas/{name}{?api-version}",
+    "/$schemaGroups/{groupName}/schemas/{name}{?api%2Dversion}",
     {
       groupName: groupName,
       name: name,
@@ -110,7 +110,7 @@ export function _getSchemaIdByContentSend(
   },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/$schemaGroups/{groupName}/schemas/{name}:get-id{?api-version}",
+    "/$schemaGroups/{groupName}/schemas/{name}:get-id{?api%2Dversion}",
     {
       groupName: groupName,
       name: name,
@@ -176,7 +176,7 @@ export function _getSchemaByVersionSend(
   },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/$schemaGroups/{groupName}/schemas/{name}/versions/{schemaVersion}{?api-version}",
+    "/$schemaGroups/{groupName}/schemas/{name}/versions/{schemaVersion}{?api%2Dversion}",
     {
       groupName: groupName,
       name: name,
@@ -234,7 +234,7 @@ export function _listSchemaVersionsSend(
   },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/$schemaGroups/{groupName}/schemas/{name}/versions{?api-version}",
+    "/$schemaGroups/{groupName}/schemas/{name}/versions{?api%2Dversion}",
     {
       groupName: groupName,
       name: name,
@@ -290,7 +290,7 @@ export function _getSchemaByIdSend(
   options: SchemaOperationsGetSchemaByIdOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/$schemaGroups/$schemas/{id}{?api-version}",
+    "/$schemaGroups/$schemas/{id}{?api%2Dversion}",
     {
       id: id,
       "api-version": context.apiVersion,
@@ -334,7 +334,7 @@ export function _listSchemaGroupsSend(
   },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/$schemaGroups{?api-version}",
+    "/$schemaGroups{?api%2Dversion}",
     {
       "api-version": context.apiVersion,
     },

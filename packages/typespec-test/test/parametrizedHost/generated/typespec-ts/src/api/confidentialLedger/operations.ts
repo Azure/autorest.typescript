@@ -22,7 +22,7 @@ export function _listCollectionsSend(
   },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/app/collections{?api-version}",
+    "/app/collections{?api%2Dversion}",
     {
       "api-version": context.apiVersion,
     },

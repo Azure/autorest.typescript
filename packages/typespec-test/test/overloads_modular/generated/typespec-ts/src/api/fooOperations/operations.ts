@@ -20,7 +20,7 @@ export function _getAvatarAsJpegSend(
   options: FooOperationsGetAvatarAsJpegOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/avatar{?api-version}",
+    "/avatar{?api%2Dversion}",
     {
       "api-version": context.apiVersion,
     },
@@ -68,7 +68,7 @@ export function _getAvatarAsPngSend(
   options: FooOperationsGetAvatarAsPngOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/avatar{?api-version}",
+    "/avatar{?api%2Dversion}",
     {
       "api-version": context.apiVersion,
     },

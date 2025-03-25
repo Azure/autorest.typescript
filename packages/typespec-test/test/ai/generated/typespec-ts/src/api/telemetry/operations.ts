@@ -21,7 +21,7 @@ export function _getAppInsightsSend(
   options: TelemetryGetAppInsightsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/{appInsightsResourceUrl}{?api-version}",
+    "/{appInsightsResourceUrl}{?api%2Dversion}",
     {
       appInsightsResourceUrl: appInsightsResourceUrl,
       "api-version": context.apiVersion,
