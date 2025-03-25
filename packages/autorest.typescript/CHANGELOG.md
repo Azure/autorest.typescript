@@ -1,19 +1,21 @@
 ## 6.0.37 (2025-03-24)
 
 - [Feature] Improve generateTest config. Please refer to [#3125](https://github.com/Azure/autorest.typescript/pull/3125)
-- [Feature] Support tsconfig changes, vitest config changes and api-extractor changes from migration tool for codegen. Please refer to [#3081](https://github.com/Azure/autorest.typescript/pull/3081)
-- [Feature] Remove Impressions in HLC readme.md and update Api-extractor template for modular. Please refer to [#3092](https://github.com/Azure/autorest.typescript/pull/3092)
-- [Feature] Update smoke test specs to remove deprecated typespec usage. Please refer to [#3103](https://github.com/Azure/autorest.typescript/pull/3103)
+- [Feature] Support esm generation.
+  - Support tsconfig changes, vitest config changes and api-extractor changes from migration tool for codegen. Please refer to [#3081](https://github.com/Azure/autorest.typescript/pull/3081)
+  - Remove Impressions in HLC readme.md and update Api-extractor template for modular. Please refer to [#3092](https://github.com/Azure/autorest.typescript/pull/3092)
+  - Fix duplicate license header generations for snippets. Please refer to [#3106](https://github.com/Azure/autorest.typescript/pull/3106)
 - [Feature] To not expose internal operations for hierarchy client true. Please refer to [#3082](https://github.com/Azure/autorest.typescript/pull/3082)
-- [Feature] Upgrade dev dependency typescript version to `~5.7.2~. Please refer to [#3100](https://github.com/Azure/autorest.typescript/pull/3100)
 - [Feature] upgrade to compiler 0.67.x. Please refer to [#3071](https://github.com/Azure/autorest.typescript/pull/3071)
-- [Feature] Update format script. Please refer to [#3094](https://github.com/Azure/autorest.typescript/pull/3094)
-- [Feature] Remove the modular normalization and directly use the rlc-common ones. Please refer to [#3115](https://github.com/Azure/autorest.typescript/pull/3115)
-- [Bugfix] Fix perf issue in binder and dependency management. Please refer to [#3119](https://github.com/Azure/autorest.typescript/pull/3119)
+- [Feature] Fully support binder to manage dependency and fix performance issue. Please refer to [#3119](https://github.com/Azure/autorest.typescript/pull/3119)
+- [Bugfix] Fix name normalization issues.
+  - Remove the modular normalization and directly use the rlc-common ones. Please refer to [#3115](https://github.com/Azure/autorest.typescript/pull/3115)
+  - Fix the ser/deser name normalization inconsistency issue in modular. Please refer to [#3102](https://github.com/Azure/autorest.typescript/pull/3102)
 - [Bugfix] Fix incorrect references to discriminated model serializers. Please refer to [#3108](https://github.com/Azure/autorest.typescript/pull/3108)
-- [Bugfix] Fix duplicate license header generations for snippets. Please refer to [#3106](https://github.com/Azure/autorest.typescript/pull/3106)
 - [Bugfix] Fix the encode issue for header in RLC. Please refer to [#3089](https://github.com/Azure/autorest.typescript/pull/3089)
-- [Bugfix] Fix the ser/deser name normalization inconsistency issue in modular. Please refer to [#3102](https://github.com/Azure/autorest.typescript/pull/3102)
+- [Others] Update smoke test specs to remove deprecated typespec usage. Please refer to [#3103](https://github.com/Azure/autorest.typescript/pull/3103)
+- [Others] Update format script. Please refer to [#3094](https://github.com/Azure/autorest.typescript/pull/3094)
+- [Others] Upgrade dev dependency typescript version to `~5.7.2~. Please refer to [#3100](https://github.com/Azure/autorest.typescript/pull/3100)
 
 ## 6.0.36 (2025-03-07)
 
