@@ -12,12 +12,14 @@ export function getModelNamespaceName(
   namespace: Namespace
 ): string[] {
   const result: string[] = [];
-  namespace &&
-  !isGlobalNamespace(dpgContext.program, namespace) &&
-  !isService(dpgContext.program, namespace)
-    ? (result.push(...getModelNamespaceName(dpgContext, namespace.namespace!)),
-      result.push(namespace.name))
-    : result;
+  if (
+    namespace &&
+    !isGlobalNamespace(dpgContext.program, namespace) &&
+    !isService(dpgContext.program, namespace)
+  ) {
+    result.push(...getModelNamespaceName(dpgContext, namespace.namespace!));
+    result.push(namespace.name);
+  }
   return result;
 }
 
@@ -50,14 +52,15 @@ export function getOperationNamespaceInterfaceName(
       );
     }
     result.push(operation.interface.name);
-  } else if (operation.namespace) {
+  } else if (
+    operation.namespace &&
     !isGlobalNamespace(dpgContext.program, operation.namespace) &&
     !isService(dpgContext.program, operation.namespace)
-      ? (result.push(
-          ...getModelNamespaceName(dpgContext, operation.namespace.namespace!)
-        ),
-        result.push(operation.namespace.name))
-      : result;
+  ) {
+    result.push(
+      ...getModelNamespaceName(dpgContext, operation.namespace.namespace!)
+    );
+    result.push(operation.namespace.name);
   }
   return result;
 }

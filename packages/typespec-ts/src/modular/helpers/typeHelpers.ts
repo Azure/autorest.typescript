@@ -65,7 +65,7 @@ export function buildPropertyNameMapper(model: SdkType) {
       continue;
     }
 
-    mapper.set(prop.serializedName, prop.name);
+    mapper.set(prop.serializationOptions.json!.name, prop.name);
   }
   return mapper;
 }
