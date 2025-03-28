@@ -45,11 +45,13 @@ export function generateMappers(
 
   if (!useCoreV2) {
     mappersFile.addImportDeclaration({
+      isTypeOnly: true,
       namespaceImport: "coreHttp",
       moduleSpecifier: "@azure/core-http"
     });
   } else {
     mappersFile.addImportDeclaration({
+      isTypeOnly: true,
       namespaceImport: "coreClient",
       moduleSpecifier: "@azure/core-client"
     });
@@ -243,8 +245,8 @@ function writeDiscriminatorsMapping(
 
 type ModelPropertiesType =
   | {
-      [propertyName: string]: Mapper;
-    }
+    [propertyName: string]: Mapper;
+  }
   | undefined;
 
 export function writeMapper(writer: CodeBlockWriter, mapper: Mapper) {
