@@ -107,7 +107,7 @@ function regularAutorestPackage(
     devDependencies: {
       "@microsoft/api-extractor": "^7.40.3",
       mkdirp: "^3.0.1",
-      typescript: "~5.7.2",
+      typescript: "~5.8.2",
       rimraf: "^5.0.0",
       dotenv: "^16.0.0"
     },

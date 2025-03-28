@@ -45,7 +45,7 @@ export function getCommonPackageDevDependencies(
   return {
     "@types/node": "^18.0.0",
     eslint: "^9.9.0",
-    typescript: "~5.7.2",
+    typescript: "~5.8.2",
     ...getEsmDevDependencies(config)
   };
 }
