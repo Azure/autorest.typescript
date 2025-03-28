@@ -253,7 +253,6 @@ export function buildClient(model: RLCModel): File | undefined {
   ) {
     clientFile.addImportDeclarations([
       {
-        isTypeOnly: true,
         namedImports: credentialTypes.concat(
           includeKeyCredentialHelper ? ["isKeyCredential"] : []
         ),
