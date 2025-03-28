@@ -1184,9 +1184,7 @@ function getPropertySerializedName(property: SdkModelPropertyType) {
     property.kind !== "method" &&
     property.kind !== "endpoint" &&
     property.kind !== "responseheader"
-    ? property.kind == "property"
-      ? property.serializedName
-      : property.serializedName
+    ? property.serializedName
     : property.name;
 }
 
