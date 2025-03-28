@@ -375,7 +375,7 @@ function buildModelTypeSerializer(
         const itemPath = property.multipartOptions?.isMulti
           ? "x"
           : getPropertyFullName(context, property, "item");
-        partDefinition = `${createFilePartDescriptorDefinition}("${property.serializationOptions.json?.name}", ${itemPath}, )`;
+        partDefinition = `${createFilePartDescriptorDefinition}("${property.serializedName}", ${itemPath}, )`;
 
         // If the TypeSpec doesn't specify a default content type, TCGC will infer a default of "*/*".
         // In this case, we actually want the content type to be left unset so that Core will take care of
@@ -386,14 +386,14 @@ function buildModelTypeSerializer(
             : property.multipartOptions?.defaultContentTypes?.[0];
 
         if (property.multipartOptions?.isMulti) {
-          partDefinition = `...(item["${property.serializationOptions.json?.name}"].map((x: unknown) => ${createFilePartDescriptorDefinition}("${property.serializationOptions.json?.name}", x${contentType ? `", ${contentType}"` : ""})))`;
+          partDefinition = `...(item["${property.serializedName}"].map((x: unknown) => ${createFilePartDescriptorDefinition}("${property.serializedName}", x${contentType ? `", ${contentType}"` : ""})))`;
         } else {
-          partDefinition = `${createFilePartDescriptorDefinition}("${property.serializationOptions.json?.name}", item["${property.serializationOptions.json?.name}"]${contentType ? `, "${contentType}"` : ""})`;
+          partDefinition = `${createFilePartDescriptorDefinition}("${property.serializedName}", item["${property.serializedName}"]${contentType ? `, "${contentType}"` : ""})`;
         }
       } else if (property.multipartOptions?.isMulti) {
-        partDefinition = `...((${expr}).map((x: unknown) => ({ name: "${property.serializationOptions.json?.name}", body: x })))`;
+        partDefinition = `...((${expr}).map((x: unknown) => ({ name: "${property.serializedName}", body: x })))`;
       } else {
-        partDefinition = `{ name: "${property.serializationOptions.json?.name}", body: (${expr}) }`;
+        partDefinition = `{ name: "${property.serializedName}", body: (${expr}) }`;
       }
 
       if (property.optional) {
