@@ -4,11 +4,8 @@
 import type { ClientOptions } from "@azure-rest/core-client";
 import { getClient } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
-import {
-  TokenCredential,
-  KeyCredential,
-  isKeyCredential,
-} from "@azure/core-auth";
+import type { TokenCredential, KeyCredential } from "@azure/core-auth";
+import { isKeyCredential } from "@azure/core-auth";
 import type { EventGridClient } from "./clientDefinitions.js";
 
 /** The optional parameters for the client */
