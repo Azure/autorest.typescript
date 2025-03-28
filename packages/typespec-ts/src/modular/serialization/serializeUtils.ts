@@ -56,8 +56,7 @@ export function isSpecialUnionVariant(
         })
         ?.some(
           (p) =>
-            (p.kind === "property" &&
-              p.name !== p.serializedName) ||
+            (p.kind === "property" && p.name !== p.serializedName) ||
             isSpecialUnionVariant(p.type, [...variantStack, p.type])
         )) ||
     isPolymorphicUnion(t) ||
@@ -104,8 +103,8 @@ export function isDiscriminatedUnion(
   }
   return Boolean(
     type?.kind === "model" &&
-    type.discriminatorProperty &&
-    type.discriminatedSubtypes
+      type.discriminatorProperty &&
+      type.discriminatedSubtypes
   );
 }
 
