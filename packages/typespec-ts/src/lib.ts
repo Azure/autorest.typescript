@@ -461,6 +461,24 @@ const libDef = {
       messages: {
         default: paramMessage`Please note the default value is an object type.`
       }
+    },
+    "js-diagnostic-error": {
+      severity: "error",
+      messages: {
+        default: paramMessage`JavaScript emitter error: ${"message"}`
+      }
+    },
+    "js-diagnostic-warning": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`JavaScript emitter warning: ${"message"}`
+      }
+    },
+    "js-diagnostic-info": {
+      severity: "info",
+      messages: {
+        default: paramMessage`JavaScript emitter info: ${"message"}`
+      }
     }
   },
   emitter: {
