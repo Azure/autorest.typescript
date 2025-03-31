@@ -693,7 +693,6 @@ export declare interface Routes {
     (path: "/type/property/additionalProperties/extendsDifferentSpreadModelArray"): ExtendsDifferentSpreadModelArrayGet;
     (path: "/type/property/additionalProperties/multipleSpreadRecord"): MultipleSpreadGet;
     (path: "/type/property/additionalProperties/spreadRecordUnion"): SpreadRecordUnionGet;
-    (path: "/type/property/additionalProperties/spreadRecordDiscriminatedUnion"): SpreadRecordDiscriminatedUnionGet;
     (path: "/type/property/additionalProperties/spreadRecordNonDiscriminatedUnion"): SpreadRecordNonDiscriminatedUnionGet;
     (path: "/type/property/additionalProperties/spreadRecordNonDiscriminatedUnion2"): SpreadRecordNonDiscriminatedUnion2Get;
     (path: "/type/property/additionalProperties/spreadRecordNonDiscriminatedUnion3"): SpreadRecordNonDiscriminatedUnion3Get;
@@ -877,36 +876,6 @@ export declare interface SpreadModelRecordOutput extends Record<string, ModelFor
     knownProp: ModelForRecordOutput;
 }
 
-export declare interface SpreadRecordDiscriminatedUnionGet {
-    get(options?: SpreadRecordDiscriminatedUnionGetParameters): StreamableMethod<SpreadRecordDiscriminatedUnionGet200Response>;
-    put(options: SpreadRecordDiscriminatedUnionPutParameters): StreamableMethod<SpreadRecordDiscriminatedUnionPut204Response>;
-}
-
-export declare interface SpreadRecordDiscriminatedUnionGet200Response extends HttpResponse {
-    status: "200";
-    body: SpreadRecordForDiscriminatedUnionOutput;
-}
-
-export declare type SpreadRecordDiscriminatedUnionGetParameters = RequestParameters;
-
-export declare interface SpreadRecordDiscriminatedUnionPut204Response extends HttpResponse {
-    status: "204";
-}
-
-export declare interface SpreadRecordDiscriminatedUnionPutBodyParam {
-    body: SpreadRecordForDiscriminatedUnion;
-}
-
-export declare type SpreadRecordDiscriminatedUnionPutParameters = SpreadRecordDiscriminatedUnionPutBodyParam & RequestParameters;
-
-export declare interface SpreadRecordForDiscriminatedUnion extends Record<string, unknown> {
-    name: string;
-}
-
-export declare interface SpreadRecordForDiscriminatedUnionOutput extends Record<string, any> {
-    name: string;
-}
-
 export declare interface SpreadRecordForNonDiscriminatedUnion extends Record<string, unknown> {
     name: string;
 }
@@ -1057,8 +1026,6 @@ export declare interface SpreadStringRecordOutput extends Record<string, string>
     name: string;
 }
 
-export declare type WidgetData = WidgetData0 | WidgetData1;
-
 export declare interface WidgetData0 {
     kind: "kind0";
     fooProp: string;
@@ -1090,7 +1057,5 @@ export declare interface WidgetData2Output {
     kind: "kind1";
     start: string;
 }
-
-export declare type WidgetDataOutput = WidgetData0Output | WidgetData1Output;
 
 export { }

@@ -2,6 +2,7 @@
 
 import { TodoContext } from "../../api/todoContext.js";
 import { User } from "../../models/models.js";
+import { UserCreatedResponse } from "../../models/users/models.js";
 import { UsersCreateOptionalParams } from "../../api/users/options.js";
 import { create } from "../../api/users/operations.js";
 
@@ -10,12 +11,7 @@ export interface UsersOperations {
   create: (
     user: User,
     options?: UsersCreateOptionalParams,
-  ) => Promise<{
-    id: number;
-    username: string;
-    email: string;
-    token: string;
-  }>;
+  ) => Promise<UserCreatedResponse>;
 }
 
 function _getUsers(context: TodoContext) {

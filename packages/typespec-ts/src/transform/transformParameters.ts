@@ -32,6 +32,7 @@ import {
 import { NoTarget, Type, isVoidType } from "@typespec/compiler";
 import {
   getBodyType,
+  getCollectionFormat,
   getFormattedPropertyDoc,
   getImportedModelName,
   getSchemaForType,
@@ -158,11 +159,12 @@ function getParameterMetadata(
   const name = getParameterName(parameter.name);
   let description =
     getFormattedPropertyDoc(program, parameter.param, schema) ?? "";
-  if (isArrayType(schema)) {
+  const format = getCollectionFormat(dpgContext, parameter as any);
+  if (isArrayType(schema) && format) {
     const serializeInfo = getSpecialSerializeInfo(
       dpgContext,
       parameter.type,
-      (parameter as any).format
+      format
     );
     if (serializeInfo.hasMultiCollection || serializeInfo.hasCsvCollection) {
       description += `${description ? "\n" : ""}This parameter could be formatted as ${serializeInfo.collectionInfo.join(
@@ -175,7 +177,7 @@ function getParameterMetadata(
           : ""
       }.`;
     }
-    if ((parameter as any).format === "tsv") {
+    if (format === "tsv") {
       description += `${description ? "\n" : ""}This parameter could be formatted as tsv collection string.`;
     }
   }
@@ -297,9 +299,7 @@ function transformBodyParameters(
   inputBodyType?: Type
 ): ParameterBodyMetadata | undefined {
   const bodyType =
-    (parameters.bodyType ?? parameters.bodyParameter?.type) && inputBodyType
-      ? inputBodyType
-      : (parameters.bodyType ?? parameters.bodyParameter?.type);
+    parameters.body && inputBodyType ? inputBodyType : parameters.body?.type;
   if (!bodyType || isVoidType(bodyType)) {
     return;
   }
@@ -377,12 +377,12 @@ function getBodyDescriptions(
   bodySchema: Schema,
   parameters: HttpOperationParameters
 ) {
-  const description =
-    parameters.bodyParameter &&
-    getFormattedPropertyDoc(
-      dpgContext.program,
-      parameters.bodyParameter,
-      bodySchema
-    );
+  const description = parameters.body?.property
+    ? getFormattedPropertyDoc(
+        dpgContext.program,
+        parameters.body.property,
+        bodySchema
+      )
+    : "";
   return description ? [description] : [];
 }

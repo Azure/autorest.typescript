@@ -213,11 +213,11 @@ export function buildLroDeserDetailMap(
         const deserName = `_${name}Deserialize`;
         let renamedDeserName = undefined;
         if (existingNames.has(deserName)) {
-          const newName = `${name}Deserialize_${operationFileName
-            .split("/")
-            .slice(0, -1)
-            .join("_")}`;
-          renamedDeserName = `_${normalizeName(newName, NameType.Method)}`;
+          const newName = `${name}Deserialize${normalizeName(
+            operationFileName.split("/").slice(0, -1).join("_"),
+            NameType.Interface
+          )}`;
+          renamedDeserName = `_${newName}`;
         }
         existingNames.add(deserName);
         return {

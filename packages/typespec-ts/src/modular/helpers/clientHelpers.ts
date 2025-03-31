@@ -43,7 +43,7 @@ export function getClientParameters(
   }
 ) {
   const clientParams: (SdkParameter | SdkHttpParameter)[] = [];
-  for (const property of client.initialization.properties) {
+  for (const property of client.clientInitialization.parameters) {
     if (
       property.type.kind === "union" &&
       property.type.variantTypes[0]?.kind === "endpoint"
@@ -283,8 +283,8 @@ export function buildGetClientCredentialParam(
       emitterOptions.options.credentialKeyHeaderName)
   ) {
     return (
-      client.initialization.properties.find((x) => isCredentialType(x))?.name ??
-      "undefined"
+      client.clientInitialization.parameters.find((x) => isCredentialType(x))
+        ?.name ?? "undefined"
     );
   } else {
     return "undefined";

@@ -119,7 +119,12 @@ describe("bytes", () => {
         `import type { RequestParameters } from "@azure-rest/core-client";
                   
           export interface ReadBodyParam {
-            body: string;
+            /** Value may contain any sequence of octets */
+            body:
+              | string
+              | Uint8Array
+              | ReadableStream<Uint8Array>
+              | NodeJS.ReadableStream;
           }
           
           export type ReadParameters = ReadBodyParam & RequestParameters;
@@ -167,6 +172,7 @@ describe("bytes", () => {
         const parameters = await emitParameterFromTypeSpec(
           `
               @route("/uploadFile")
+              #suppress "deprecated" "For test"
               @post op uploadFile(
               @header contentType: "multipart/form-data",
               @body body: {
@@ -230,6 +236,7 @@ describe("bytes", () => {
         const parameters = await emitParameterFromTypeSpec(
           `
               @route("/uploadFile")
+              #suppress "deprecated" "For test"
               @post op uploadFile(
               @header contentType: "multipart/form-data",
               @body body: {
@@ -292,6 +299,7 @@ describe("bytes", () => {
         const parameters = await emitParameterFromTypeSpec(
           `
               @route("/uploadFile")
+              #suppress "deprecated" "For test"
               @post op uploadFile(
               @header contentType: "multipart/form-data",
               @body body: {
@@ -344,6 +352,7 @@ describe("bytes", () => {
             unionBytes: bytes | int32;
           }
           @route("/uploadFile")
+          #suppress "deprecated" "For test"
           @post op uploadFile(
           @header contentType: "multipart/form-data",
           @body body: Foo;
@@ -435,6 +444,7 @@ describe("bytes", () => {
             bar: Bar;
           }
           @route("/uploadFile")
+          #suppress "deprecated" "For test"
           @post op uploadFile(
           @header contentType: "multipart/form-data",
           @body body: Foo;
