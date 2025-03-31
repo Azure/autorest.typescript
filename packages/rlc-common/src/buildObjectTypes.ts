@@ -110,9 +110,37 @@ function buildMultipartPartDefinitions(
 
   for (const signature of propertySignatures) {
     const name = signature.name;
+    const propertySchema = schema.properties?.[name];
     const typeName = getMultipartPartTypeName(schema.name, name);
 
     const isFileUpload = signature.type?.toString().includes("File") ?? false;
+
+    const additionalProperties: any[] = [];
+
+    if ((propertySchema as any).multipartOptions) {
+      const multipartOptions: any = (propertySchema as any).multipartOptions;
+      if (multipartOptions.filenameSchema) {
+        additionalProperties.push(
+          getPropertySignature(
+            { name: "filename", ...multipartOptions.filenameSchema },
+            [SchemaContext.Input],
+            importedModels
+          )
+        );
+      }
+      if (multipartOptions.contentTypeSchema) {
+        additionalProperties.push(
+          getPropertySignature(
+            { name: "contentType", ...multipartOptions.contentTypeSchema },
+            [SchemaContext.Input],
+            importedModels
+          )
+        );
+      }
+    } else if (isFileUpload) {
+      // default additional file metadata properties (legacy)
+      additionalProperties.push(...MULTIPART_FILE_METADATA_PROPERTIES);
+    }
 
     structures.push({
       kind: StructureKind.Interface,
@@ -127,7 +155,7 @@ function buildMultipartPartDefinitions(
           name: "body",
           type: signature.type
         },
-        ...(isFileUpload ? MULTIPART_FILE_METADATA_PROPERTIES : [])
+        ...additionalProperties
       ]
     });
   }
