@@ -59,7 +59,7 @@ export function _getEmbeddingsSend(
     "/deployments/{deploymentId}/embeddings{?api%2Dversion}",
     {
       deploymentId: deploymentId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -110,7 +110,7 @@ export function _generateSpeechFromTextSend(
     "/deployments/{deploymentId}/audio/speech{?api%2Dversion}",
     {
       deploymentId: deploymentId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -166,7 +166,7 @@ export function _getImageGenerationsSend(
     "/deployments/{deploymentId}/images/generations{?api%2Dversion}",
     {
       deploymentId: deploymentId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -222,7 +222,7 @@ export function _getChatCompletionsSend(
     "/deployments/{deploymentId}/chat/completions{?api%2Dversion}",
     {
       deploymentId: deploymentId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -282,7 +282,7 @@ export function _getCompletionsSend(
     "/deployments/{deploymentId}/completions{?api%2Dversion}",
     {
       deploymentId: deploymentId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -344,7 +344,7 @@ export function _getAudioTranslationAsResponseObjectSend(
     "/deployments/{deploymentId}/audio/translations{?api%2Dversion}",
     {
       deploymentId: deploymentId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -404,7 +404,7 @@ export function _getAudioTranslationAsPlainTextSend(
     "/deployments/{deploymentId}/audio/translations{?api%2Dversion}",
     {
       deploymentId: deploymentId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -461,7 +461,7 @@ export function _getAudioTranscriptionAsResponseObjectSend(
     "/deployments/{deploymentId}/audio/transcriptions{?api%2Dversion}",
     {
       deploymentId: deploymentId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -524,7 +524,7 @@ export function _getAudioTranscriptionAsPlainTextSend(
     "/deployments/{deploymentId}/audio/transcriptions{?api%2Dversion}",
     {
       deploymentId: deploymentId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

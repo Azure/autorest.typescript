@@ -313,11 +313,11 @@ model LivenessSessionAuditEntry {
 model CreateLivenessWithVerifySessionMultipartContent {
   #suppress "@azure-tools/typespec-azure-core/casing-style"
   @doc("The parameters for creating session.")
-  Parameters: CreateLivenessWithVerifySessionJsonContent;
+  Parameters: HttpPart<CreateLivenessWithVerifySessionJsonContent>;
 
   #suppress "@azure-tools/typespec-azure-core/casing-style"
   @doc("The image stream for verify. Content-Disposition header field for this part must have filename.")
-  VerifyImage: bytes;
+  VerifyImage: HttpPart<bytes>;
 }
 
 #suppress "@azure-tools/typespec-azure-core/casing-style" "Workaround for update model in new version."
@@ -330,7 +330,7 @@ model CreateLivenessWithVerifySessionRequestBeforeV1_2 {
   contentType: "multipart/form-data";
 
   @doc("Request content of liveness with verify session creation.")
-  @body
+  @multipartBody
   body: CreateLivenessWithVerifySessionMultipartContent;
 }
 
@@ -505,7 +505,7 @@ model CreateLivenessWithVerifySessionRequest {
   contentType: "multipart/form-data";
 
   @doc("Request content of liveness with verify session creation.")
-  @body
+  @multipartBody
   body: CreateLivenessWithVerifySessionContent;
 }
 
@@ -513,14 +513,12 @@ model CreateLivenessWithVerifySessionRequest {
 @doc("Request of liveness with verify session creation.")
 model CreateLivenessWithVerifySessionContent is CreateLivenessSessionContent {
   @doc("Whether or not return the verify image hash.")
-  returnVerifyImageHash?: boolean;
+  returnVerifyImageHash?: HttpPart<boolean>;
 
   @doc("Threshold for confidence of the face verification. Please refer to the documentation for more details. https://learn.microsoft.com/legal/cognitive-services/face/characteristics-and-limitations?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext#recognition-confidence-score")
-  @minValue(0)
-  @maxValue(1)
-  verifyConfidenceThreshold?: float32;
+  verifyConfidenceThreshold?: HttpPart<float32>;
 
   #suppress "@azure-tools/typespec-azure-core/casing-style"
   @doc("The image stream for verify. Content-Disposition header field for this part must have filename.")
-  verifyImage: bytes;
+  verifyImage: HttpPart<bytes>;
 }

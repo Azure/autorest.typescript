@@ -1,7 +1,9 @@
 import "../common/models.tsp";
+import "@typespec/http";
 
 namespace OpenAI;
 using TypeSpec.OpenAPI;
+using TypeSpec.Http;
 
 alias SharedImageProperties = {
   /** The number of images to generate. Must be between 1 and 10. */
@@ -44,20 +46,20 @@ model Image {
 
 model CreateImageEditRequest {
   /** A text description of the desired image(s). The maximum length is 1000 characters. */
-  prompt: string;
+  prompt: HttpPart<string>;
 
   /**
    * The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not
    * provided, image must have transparency, which will be used as the mask.
    */
-  image: bytes;
+  image: HttpPart<bytes>;
 
   /**
    *  An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where
    * `image` should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions
    * as `image`.
    */
-  mask?: bytes;
+  mask?: HttpPart<bytes>;
 
   ...SharedImageProperties;
 }
@@ -67,7 +69,7 @@ model CreateImageVariationRequest {
    * The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB,
    * and square.
    */
-  image: bytes;
+  image: HttpPart<bytes>;
 
   ...SharedImageProperties;
 }
