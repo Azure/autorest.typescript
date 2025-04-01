@@ -52,7 +52,7 @@ describe("VersioningRemoved Rest Client", () => {
   // The only way is to cast to any
   it.skip("versioning removed test modelV33_V2preview", async () => {
     const result = await clientPreview.modelV3({
-      id: "123",
+      id: "123"
       // `enumProp` is removed in v2preview so we need to use as any to avoid type error
     } as any);
     assert.strictEqual(result.id, "123");
