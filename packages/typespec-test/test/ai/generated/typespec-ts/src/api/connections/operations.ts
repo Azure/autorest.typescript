@@ -36,7 +36,7 @@ export function _getConnectionWithSecretsSend(
     "/connections/{connectionName}/listsecrets{?api%2Dversion}",
     {
       connectionName: connectionName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -93,7 +93,7 @@ export function _getConnectionSend(
     "/connections/{connectionName}{?api%2Dversion}",
     {
       connectionName: connectionName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -138,7 +138,7 @@ export function _listConnectionsSend(
   const path = expandUrlTemplate(
     "/connections{?api%2Dversion,category,includeAll,target}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       category: options?.category,
       includeAll: options?.includeAll,
       target: options?.target,
@@ -185,7 +185,7 @@ export function _getWorkspaceSend(
   const path = expandUrlTemplate(
     "/{?api%2Dversion}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

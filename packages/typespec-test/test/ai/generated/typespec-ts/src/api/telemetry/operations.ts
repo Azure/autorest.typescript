@@ -24,7 +24,7 @@ export function _getAppInsightsSend(
     "/{appInsightsResourceUrl}{?api%2Dversion}",
     {
       appInsightsResourceUrl: appInsightsResourceUrl,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

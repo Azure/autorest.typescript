@@ -147,10 +147,7 @@ export interface AgentsGetFileOptionalParams extends OperationOptions {}
 export interface AgentsDeleteFileOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface AgentsUploadFileOptionalParams extends OperationOptions {
-  /** The name of the file. */
-  filename?: string;
-}
+export interface AgentsUploadFileOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface AgentsListFilesOptionalParams extends OperationOptions {

@@ -44,6 +44,7 @@ import {
   OpenAIFile,
   openAIFileDeserializer,
   FilePurpose,
+  _uploadFileRequestSerializer,
   FileDeletionStatus,
   fileDeletionStatusDeserializer,
   OpenAIPageableListOfVectorStore,
@@ -112,7 +113,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString } from "@azure/core-util";
 
 export function _listVectorStoreFileBatchFilesSend(
   context: Client,
@@ -127,7 +127,7 @@ export function _listVectorStoreFileBatchFilesSend(
     {
       vectorStoreId: vectorStoreId,
       batchId: batchId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       filter: options?.filter,
       limit: options?.limit,
       order: options?.order,
@@ -191,7 +191,7 @@ export function _cancelVectorStoreFileBatchSend(
     {
       vectorStoreId: vectorStoreId,
       batchId: batchId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -248,7 +248,7 @@ export function _getVectorStoreFileBatchSend(
     {
       vectorStoreId: vectorStoreId,
       batchId: batchId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -303,7 +303,7 @@ export function _createVectorStoreFileBatchSend(
     "/vector_stores/{vectorStoreId}/file_batches{?api%2Dversion}",
     {
       vectorStoreId: vectorStoreId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -369,7 +369,7 @@ export function _deleteVectorStoreFileSend(
     {
       vectorStoreId: vectorStoreId,
       fileId: fileId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -427,7 +427,7 @@ export function _getVectorStoreFileSend(
     {
       vectorStoreId: vectorStoreId,
       fileId: fileId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -480,7 +480,7 @@ export function _createVectorStoreFileSend(
     "/vector_stores/{vectorStoreId}/files{?api%2Dversion}",
     {
       vectorStoreId: vectorStoreId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -543,7 +543,7 @@ export function _listVectorStoreFilesSend(
     "/vector_stores/{vectorStoreId}/files{?api%2Dversion,filter,limit,order,after,before}",
     {
       vectorStoreId: vectorStoreId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       filter: options?.filter,
       limit: options?.limit,
       order: options?.order,
@@ -599,7 +599,7 @@ export function _deleteVectorStoreSend(
     "/vector_stores/{vectorStoreId}{?api%2Dversion}",
     {
       vectorStoreId: vectorStoreId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -646,7 +646,7 @@ export function _modifyVectorStoreSend(
     "/vector_stores/{vectorStoreId}{?api%2Dversion}",
     {
       vectorStoreId: vectorStoreId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -701,7 +701,7 @@ export function _getVectorStoreSend(
     "/vector_stores/{vectorStoreId}{?api%2Dversion}",
     {
       vectorStoreId: vectorStoreId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -746,7 +746,7 @@ export function _createVectorStoreSend(
   const path = expandUrlTemplate(
     "/vector_stores{?api%2Dversion}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -806,7 +806,7 @@ export function _listVectorStoresSend(
   const path = expandUrlTemplate(
     "/vector_stores{?api%2Dversion,limit,order,after,before}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       limit: options?.limit,
       order: options?.order,
       after: options?.after,
@@ -856,7 +856,7 @@ export function _getFileContentSend(
     "/files/{fileId}/content{?api%2Dversion}",
     {
       fileId: fileId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -903,7 +903,7 @@ export function _getFileSend(
     "/files/{fileId}{?api%2Dversion}",
     {
       fileId: fileId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -950,7 +950,7 @@ export function _deleteFileSend(
     "/files/{fileId}{?api%2Dversion}",
     {
       fileId: fileId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -990,14 +990,17 @@ export async function deleteFile(
 
 export function _uploadFileSend(
   context: Client,
-  file: Uint8Array,
-  purpose: FilePurpose,
+  body: {
+    file: Uint8Array;
+    purpose: FilePurpose;
+    filename?: string;
+  },
   options: AgentsUploadFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/files{?api%2Dversion}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1012,11 +1015,7 @@ export function _uploadFileSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      body: {
-        file: uint8ArrayToString(file, "base64"),
-        purpose: purpose,
-        filename: options?.filename,
-      },
+      body: _uploadFileRequestSerializer(body),
     });
 }
 
@@ -1034,11 +1033,14 @@ export async function _uploadFileDeserialize(
 /** Uploads a file for use by other operations. */
 export async function uploadFile(
   context: Client,
-  file: Uint8Array,
-  purpose: FilePurpose,
+  body: {
+    file: Uint8Array;
+    purpose: FilePurpose;
+    filename?: string;
+  },
   options: AgentsUploadFileOptionalParams = { requestOptions: {} },
 ): Promise<OpenAIFile> {
-  const result = await _uploadFileSend(context, file, purpose, options);
+  const result = await _uploadFileSend(context, body, options);
   return _uploadFileDeserialize(result);
 }
 
@@ -1049,7 +1051,7 @@ export function _listFilesSend(
   const path = expandUrlTemplate(
     "/files{?api%2Dversion,purpose}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       purpose: options?.purpose,
     },
     {
@@ -1098,8 +1100,8 @@ export function _listRunStepsSend(
     {
       threadId: threadId,
       runId: runId,
-      "api-version": context.apiVersion,
-      "include[]": !options?.include
+      "api%2Dversion": context.apiVersion,
+      "include%5B%5D": !options?.include
         ? options?.include
         : options?.include.map((p: any) => {
             return p;
@@ -1159,8 +1161,8 @@ export function _getRunStepSend(
       threadId: threadId,
       runId: runId,
       stepId: stepId,
-      "api-version": context.apiVersion,
-      "include[]": !options?.include
+      "api%2Dversion": context.apiVersion,
+      "include%5B%5D": !options?.include
         ? options?.include
         : options?.include.map((p: any) => {
             return p;
@@ -1218,7 +1220,7 @@ export function _createThreadAndRunSend(
   const path = expandUrlTemplate(
     "/threads/runs{?api%2Dversion}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1298,7 +1300,7 @@ export function _cancelRunSend(
     {
       threadId: threadId,
       runId: runId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1349,7 +1351,7 @@ export function _submitToolOutputsToRunSend(
     {
       threadId: threadId,
       runId: runId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1411,7 +1413,7 @@ export function _updateRunSend(
     {
       threadId: threadId,
       runId: runId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1463,7 +1465,7 @@ export function _getRunSend(
     {
       threadId: threadId,
       runId: runId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1511,7 +1513,7 @@ export function _listRunsSend(
     "/threads/{threadId}/runs{?api%2Dversion,limit,order,after,before}",
     {
       threadId: threadId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       limit: options?.limit,
       order: options?.order,
       after: options?.after,
@@ -1563,8 +1565,8 @@ export function _createRunSend(
     "/threads/{threadId}/runs{?api%2Dversion,include%5B%5D}",
     {
       threadId: threadId,
-      "api-version": context.apiVersion,
-      "include[]": !options?.include
+      "api%2Dversion": context.apiVersion,
+      "include%5B%5D": !options?.include
         ? options?.include
         : options?.include.map((p: any) => {
             return p;
@@ -1647,7 +1649,7 @@ export function _updateMessageSend(
     {
       threadId: threadId,
       messageId: messageId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1704,7 +1706,7 @@ export function _getMessageSend(
     {
       threadId: threadId,
       messageId: messageId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1752,7 +1754,7 @@ export function _listMessagesSend(
     "/threads/{threadId}/messages{?api%2Dversion,runId,limit,order,after,before}",
     {
       threadId: threadId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       runId: options?.runId,
       limit: options?.limit,
       order: options?.order,
@@ -1806,7 +1808,7 @@ export function _createMessageSend(
     "/threads/{threadId}/messages{?api%2Dversion}",
     {
       threadId: threadId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1870,7 +1872,7 @@ export function _deleteThreadSend(
     "/threads/{threadId}{?api%2Dversion}",
     {
       threadId: threadId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1917,7 +1919,7 @@ export function _updateThreadSend(
     "/threads/{threadId}{?api%2Dversion}",
     {
       threadId: threadId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1971,7 +1973,7 @@ export function _getThreadSend(
     "/threads/{threadId}{?api%2Dversion}",
     {
       threadId: threadId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -2016,7 +2018,7 @@ export function _createThreadSend(
   const path = expandUrlTemplate(
     "/threads{?api%2Dversion}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -2072,7 +2074,7 @@ export function _deleteAgentSend(
     "/assistants/{assistantId}{?api%2Dversion}",
     {
       assistantId: assistantId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -2119,7 +2121,7 @@ export function _updateAgentSend(
     "/assistants/{assistantId}{?api%2Dversion}",
     {
       assistantId: assistantId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -2185,7 +2187,7 @@ export function _getAgentSend(
     "/assistants/{assistantId}{?api%2Dversion}",
     {
       assistantId: assistantId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -2230,7 +2232,7 @@ export function _listAgentsSend(
   const path = expandUrlTemplate(
     "/assistants{?api%2Dversion,limit,order,after,before}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       limit: options?.limit,
       order: options?.order,
       after: options?.after,
@@ -2279,7 +2281,7 @@ export function _createAgentSend(
   const path = expandUrlTemplate(
     "/assistants{?api%2Dversion}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
