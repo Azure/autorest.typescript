@@ -54,7 +54,7 @@ export function _deleteTestSend(
     "/tests/{testId}{?api%2Dversion}",
     {
       testId: testId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -103,7 +103,7 @@ export function _deleteTestFileSend(
     {
       testId: testId,
       fileName: fileName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -154,7 +154,7 @@ export function _uploadTestFileSend(
     {
       testId: testId,
       fileName: fileName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       fileType: options?.fileType,
     },
     {
@@ -214,7 +214,7 @@ export function _listTestsSend(
   const path = expandUrlTemplate(
     "/tests{?api%2Dversion,orderby,search,lastModifiedStartTime,lastModifiedEndTime,maxpagesize}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       orderby: options?.orderby,
       search: options?.search,
       lastModifiedStartTime: !options?.lastModifiedStartTime
@@ -277,7 +277,7 @@ export function _listTestFilesSend(
     "/tests/{testId}/files{?api%2Dversion}",
     {
       testId: testId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -331,7 +331,7 @@ export function _getTestFileSend(
     {
       testId: testId,
       fileName: fileName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -379,7 +379,7 @@ export function _getTestSend(
     "/tests/{testId}{?api%2Dversion}",
     {
       testId: testId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -426,7 +426,7 @@ export function _getServerMetricsConfigSend(
     "/tests/{testId}/server-metrics-config{?api%2Dversion}",
     {
       testId: testId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -473,7 +473,7 @@ export function _getAppComponentsSend(
     "/tests/{testId}/app-components{?api%2Dversion}",
     {
       testId: testId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -523,7 +523,7 @@ export function _createOrUpdateServerMetricsConfigSend(
     "/tests/{testId}/server-metrics-config{?api%2Dversion}",
     {
       testId: testId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -581,7 +581,7 @@ export function _createOrUpdateAppComponentsSend(
     "/tests/{testId}/app-components{?api%2Dversion}",
     {
       testId: testId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -637,7 +637,7 @@ export function _createOrUpdateTestSend(
     "/tests/{testId}{?api%2Dversion}",
     {
       testId: testId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

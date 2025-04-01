@@ -47,7 +47,7 @@ export function _registerSchemaSend(
     {
       groupName: groupName,
       name: name,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -114,7 +114,7 @@ export function _getSchemaIdByContentSend(
     {
       groupName: groupName,
       name: name,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -181,7 +181,7 @@ export function _getSchemaByVersionSend(
       groupName: groupName,
       name: name,
       schemaVersion: schemaVersion,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -238,7 +238,7 @@ export function _listSchemaVersionsSend(
     {
       groupName: groupName,
       name: name,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -293,7 +293,7 @@ export function _getSchemaByIdSend(
     "/$schemaGroups/$schemas/{id}{?api%2Dversion}",
     {
       id: id,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -336,7 +336,7 @@ export function _listSchemaGroupsSend(
   const path = expandUrlTemplate(
     "/$schemaGroups{?api%2Dversion}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

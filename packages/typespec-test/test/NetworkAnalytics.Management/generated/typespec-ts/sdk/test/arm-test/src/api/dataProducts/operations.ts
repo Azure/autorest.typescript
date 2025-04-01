@@ -3,10 +3,10 @@
 
 import { NetworkAnalyticsApiContext as Client } from "../index.js";
 import {
+  errorResponseDeserializer,
   DataProduct,
   dataProductSerializer,
   dataProductDeserializer,
-  errorResponseDeserializer,
   DataProductUpdate,
   dataProductUpdateSerializer,
   AccountSas,
@@ -63,7 +63,7 @@ export function _listBySubscriptionSend(
     "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkAnalytics/dataProducts{?api%2Dversion}",
     {
       subscriptionId: context.subscriptionId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -121,7 +121,7 @@ export function _listByResourceGroupSend(
     {
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -183,7 +183,7 @@ export function _listRolesAssignmentsSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -248,7 +248,7 @@ export function _removeUserRoleSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -311,7 +311,7 @@ export function _addUserRoleSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -374,7 +374,7 @@ export function _rotateKeySend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -439,7 +439,7 @@ export function _generateStorageAccountSasTokenSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -503,7 +503,7 @@ export function _$deleteSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -572,7 +572,7 @@ export function _updateSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -639,7 +639,7 @@ export function _getSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -698,7 +698,7 @@ export function _createSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

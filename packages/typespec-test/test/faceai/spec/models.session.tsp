@@ -23,23 +23,23 @@ union LivenessOperationMode {
 @doc("Request model for creating liveness session.")
 model CreateLivenessSessionContent {
   @doc("Type of liveness mode the client should follow.")
-  livenessOperationMode: LivenessOperationMode;
+  livenessOperationMode: HttpPart<LivenessOperationMode>;
 
   @removed(Versions.v1_2)
   @doc("Whether or not to allow a '200 - Success' response body to be sent to the client, which may be undesirable for security reasons. Default is false, clients will receive a '204 - NoContent' empty body response. Regardless of selection, calling Session GetResult will always contain a response body enabling business logic to be implemented.")
-  sendResultsToClient?: boolean;
+  sendResultsToClient?: HttpPart<boolean>;
 
   @doc("Whether or not to allow client to set their own 'deviceCorrelationId' via the Vision SDK. Default is false, and 'deviceCorrelationId' must be set in this request body.")
-  deviceCorrelationIdSetInClient?: boolean;
+  deviceCorrelationIdSetInClient?: HttpPart<boolean>;
 
   @doc("Whether or not store the session image.")
   @added(Versions.v1_2_preview_1)
-  enableSessionImage?: boolean;
+  enableSessionImage?: HttpPart<boolean>;
 
   @doc("The model version used for liveness classification. This is an optional parameter, and if this is not specified, then the latest supported model version will be chosen")
   @renamedFrom(Versions.v1_2, "livenessSingleModalModel")
   @added(Versions.v1_2_preview_1)
-  livenessModelVersion?: LivenessModel;
+  livenessModelVersion?: HttpPart<LivenessModel>;
 
   ...LivenessSessionData;
 }
@@ -62,12 +62,10 @@ model CreateLivenessWithVerifySessionJsonContent
 @doc("Data for liveness session.")
 model LivenessSessionData {
   @doc("Unique Guid per each end-user device. This is to provide rate limiting and anti-hammering. If 'deviceCorrelationIdSetInClient' is true in this request, this 'deviceCorrelationId' must be null.")
-  deviceCorrelationId?: string;
+  deviceCorrelationId?: HttpPart<string>;
 
   @doc("Seconds the session should last for. Range is 60 to 86400 seconds. Default value is 600.")
-  @minValue(60)
-  @maxValue(86400)
-  authTokenTimeToLiveInSeconds?: int32 = 600;
+  authTokenTimeToLiveInSeconds?: HttpPart<int32>;
 }
 
 @doc("Session data returned for enumeration.")

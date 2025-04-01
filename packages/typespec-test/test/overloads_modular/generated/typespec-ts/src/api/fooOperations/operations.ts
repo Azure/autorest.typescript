@@ -22,7 +22,7 @@ export function _getAvatarAsJpegSend(
   const path = expandUrlTemplate(
     "/avatar{?api%2Dversion}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -70,7 +70,7 @@ export function _getAvatarAsPngSend(
   const path = expandUrlTemplate(
     "/avatar{?api%2Dversion}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

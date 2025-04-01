@@ -47,7 +47,7 @@ export function _renewCloudEventLocksSend(
     {
       topicName: topicName,
       eventSubscriptionName: eventSubscriptionName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -106,7 +106,7 @@ export function _rejectCloudEventsSend(
     {
       topicName: topicName,
       eventSubscriptionName: eventSubscriptionName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -165,7 +165,7 @@ export function _releaseCloudEventsSend(
     {
       topicName: topicName,
       eventSubscriptionName: eventSubscriptionName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       releaseDelayInSeconds: options?.releaseDelayInSeconds,
     },
     {
@@ -225,7 +225,7 @@ export function _acknowledgeCloudEventsSend(
     {
       topicName: topicName,
       eventSubscriptionName: eventSubscriptionName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -283,7 +283,7 @@ export function _receiveCloudEventsSend(
     {
       topicName: topicName,
       eventSubscriptionName: eventSubscriptionName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       maxEvents: options?.maxEvents,
       maxWaitTime: options?.maxWaitTime,
     },
@@ -339,7 +339,7 @@ export function _publishCloudEventsSend(
     "/topics/{topicName}:publish{?api%2Dversion}",
     {
       topicName: topicName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -392,7 +392,7 @@ export function _publishCloudEventSend(
     "/topics/{topicName}:publish{?api%2Dversion}",
     {
       topicName: topicName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

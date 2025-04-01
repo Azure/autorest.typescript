@@ -52,7 +52,7 @@ export function _listByDataProductSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -121,7 +121,7 @@ export function _generateStorageContainerSasTokenSend(
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
       dataTypeName: dataTypeName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -190,7 +190,7 @@ export function _deleteDataSend(
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
       dataTypeName: dataTypeName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -266,7 +266,7 @@ export function _$deleteSend(
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
       dataTypeName: dataTypeName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -344,7 +344,7 @@ export function _updateSend(
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
       dataTypeName: dataTypeName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -415,7 +415,7 @@ export function _getSend(
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
       dataTypeName: dataTypeName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -478,7 +478,7 @@ export function _createSend(
       resourceGroupName: resourceGroupName,
       dataProductName: dataProductName,
       dataTypeName: dataTypeName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

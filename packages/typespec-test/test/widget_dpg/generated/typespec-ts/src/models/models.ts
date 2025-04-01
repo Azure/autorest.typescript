@@ -1,27 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-/** Details about a user. */
-export interface SAPUser {
-  /** The name of user. */
-  readonly name: string;
-  /** The role of user */
-  role: string;
-  /** The UUID of this widget. This is generated automatically by the service. */
-  id: string;
-}
-
-export function sapUserSerializer(item: SAPUser): any {
-  return { role: item["role"], id: item["id"] };
-}
-
-export function sapUserDeserializer(item: any): SAPUser {
-  return {
-    name: item["name"],
-    role: item["role"],
-    id: item["id"],
-  };
-}
+import { KeyCredential } from "@azure/core-auth";
 
 /** model interface Widget */
 export interface Widget {
@@ -79,6 +59,28 @@ export function widgetArrayDeserializer(result: Array<Widget>): any[] {
   });
 }
 
+/** Details about a user. */
+export interface SAPUser {
+  /** The name of user. */
+  readonly name: string;
+  /** The role of user */
+  role: string;
+  /** The UUID of this widget. This is generated automatically by the service. */
+  id: string;
+}
+
+export function sapUserSerializer(item: SAPUser): any {
+  return { role: item["role"], id: item["id"] };
+}
+
+export function sapUserDeserializer(item: any): SAPUser {
+  return {
+    name: item["name"],
+    role: item["role"],
+    id: item["id"],
+  };
+}
+
 /** model interface AnalyzeResult */
 export interface AnalyzeResult {
   summary: string;
@@ -114,3 +116,6 @@ export enum KnownVersions {
   /** Version 2022-08-31 */
   _100 = "1.0.0",
 }
+
+/** Alias for _SAPWidgetServiceCredentialUnion */
+export type _SAPWidgetServiceCredentialUnion = KeyCredential | KeyCredential;

@@ -34,7 +34,7 @@ export function _listTestProfilesSend(
   const path = expandUrlTemplate(
     "/test-profiles{?api%2Dversion,maxpagesize,lastModifiedStartTime,lastModifiedEndTime,testProfileIds,testIds}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       maxpagesize: options?.maxpagesize,
       lastModifiedStartTime: !options?.lastModifiedStartTime
         ? options?.lastModifiedStartTime
@@ -94,7 +94,7 @@ export function _getTestProfileSend(
     "/test-profiles/{testProfileId}{?api%2Dversion}",
     {
       testProfileId: testProfileId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -141,7 +141,7 @@ export function _deleteTestProfileSend(
     "/test-profiles/{testProfileId}{?api%2Dversion}",
     {
       testProfileId: testProfileId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -189,7 +189,7 @@ export function _createOrUpdateTestProfileSend(
     "/test-profiles/{testProfileId}{?api%2Dversion}",
     {
       testProfileId: testProfileId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

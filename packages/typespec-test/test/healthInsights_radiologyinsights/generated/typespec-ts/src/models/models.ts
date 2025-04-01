@@ -1093,3 +1093,6 @@ export type RepeatabilityResult = "accepted" | "rejected";
 export enum KnownApiVersion {
   V20230901Preview = "2023-09-01-preview",
 }
+
+/** Alias for _AzureHealthInsightsEndpoint */
+export type _AzureHealthInsightsEndpoint = string | string;

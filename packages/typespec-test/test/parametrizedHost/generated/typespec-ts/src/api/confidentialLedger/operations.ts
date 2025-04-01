@@ -24,7 +24,7 @@ export function _listCollectionsSend(
   const path = expandUrlTemplate(
     "/app/collections{?api%2Dversion}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

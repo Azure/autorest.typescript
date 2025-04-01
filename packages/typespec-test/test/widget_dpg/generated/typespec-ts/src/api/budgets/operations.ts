@@ -3,12 +3,12 @@
 
 import { SAPWidgetServiceContext as Client } from "../index.js";
 import {
-  SAPUser,
-  sapUserSerializer,
-  sapUserDeserializer,
   Widget,
   widgetErrorDeserializer,
   widgetArrayDeserializer,
+  SAPUser,
+  sapUserSerializer,
+  sapUserDeserializer,
 } from "../../models/models.js";
 import {
   BudgetsGetBudgetsOptionalParams,
@@ -82,7 +82,7 @@ export function _createOrReplaceSend(
     "/budgets/widgets/createOrReplace/users/{name}{?api%2Dversion}",
     {
       name: name,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

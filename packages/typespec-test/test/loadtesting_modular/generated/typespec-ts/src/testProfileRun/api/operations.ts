@@ -37,7 +37,7 @@ export function _stopTestProfileRunSend(
     "/test-profile-runs/{testProfileRunId}:stop{?api%2Dversion}",
     {
       testProfileRunId: testProfileRunId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -86,7 +86,7 @@ export function _listTestProfileRunsSend(
   const path = expandUrlTemplate(
     "/test-profile-runs{?api%2Dversion,maxpagesize,minStartDateTime,maxStartDateTime,minEndDateTime,maxEndDateTime,createdDateStartTime,createdDateEndTime,testProfileRunIds,testProfileIds,statuses}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       maxpagesize: options?.maxpagesize,
       minStartDateTime: !options?.minStartDateTime
         ? options?.minStartDateTime
@@ -159,7 +159,7 @@ export function _getTestProfileRunSend(
     "/test-profile-runs/{testProfileRunId}{?api%2Dversion}",
     {
       testProfileRunId: testProfileRunId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -210,7 +210,7 @@ export function _deleteTestProfileRunSend(
     "/test-profile-runs/{testProfileRunId}{?api%2Dversion}",
     {
       testProfileRunId: testProfileRunId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -262,7 +262,7 @@ export function _createOrUpdateTestProfileRunSend(
     "/test-profile-runs/{testProfileRunId}{?api%2Dversion}",
     {
       testProfileRunId: testProfileRunId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

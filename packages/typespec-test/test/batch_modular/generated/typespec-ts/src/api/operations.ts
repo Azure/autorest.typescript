@@ -3,81 +3,11 @@
 
 import { BatchContext as Client } from "./index.js";
 import {
-  BatchNodeUserCreateOptions,
-  batchNodeUserCreateOptionsSerializer,
+  _ApplicationListResult,
+  _applicationListResultDeserializer,
+  BatchApplication,
+  batchApplicationDeserializer,
   batchErrorDeserializer,
-  BatchNodeUserUpdateOptions,
-  batchNodeUserUpdateOptionsSerializer,
-  BatchNode,
-  batchNodeDeserializer,
-  nodeRebootOptionsSerializer,
-  nodeReimageOptionsSerializer,
-  nodeDisableSchedulingOptionsSerializer,
-  BatchNodeRemoteLoginSettingsResult,
-  batchNodeRemoteLoginSettingsResultDeserializer,
-  UploadBatchServiceLogsOptions,
-  uploadBatchServiceLogsOptionsSerializer,
-  UploadBatchServiceLogsResult,
-  uploadBatchServiceLogsResultDeserializer,
-  _BatchNodeListResult,
-  _batchNodeListResultDeserializer,
-  NodeVMExtension,
-  nodeVMExtensionDeserializer,
-  _NodeVMExtensionList,
-  _nodeVMExtensionListDeserializer,
-  _NodeFileListResult,
-  _nodeFileListResultDeserializer,
-  NodeFile,
-  BatchTaskCreateOptions,
-  batchTaskCreateOptionsSerializer,
-  _BatchTaskListResult,
-  _batchTaskListResultDeserializer,
-  BatchTask,
-  batchTaskSerializer,
-  batchTaskDeserializer,
-  BatchTaskCollection,
-  batchTaskCollectionSerializer,
-  TaskAddCollectionResult,
-  taskAddCollectionResultDeserializer,
-  BatchTaskListSubtasksResult,
-  batchTaskListSubtasksResultDeserializer,
-  BatchJobSchedule,
-  batchJobScheduleSerializer,
-  batchJobScheduleDeserializer,
-  BatchJobScheduleUpdateOptions,
-  batchJobScheduleUpdateOptionsSerializer,
-  BatchJobScheduleCreateOptions,
-  batchJobScheduleCreateOptionsSerializer,
-  _BatchJobScheduleListResult,
-  _batchJobScheduleListResultDeserializer,
-  BatchCertificate,
-  batchCertificateSerializer,
-  batchCertificateDeserializer,
-  _CertificateListResult,
-  _certificateListResultDeserializer,
-  BatchJob,
-  batchJobSerializer,
-  batchJobDeserializer,
-  BatchJobUpdateOptions,
-  batchJobUpdateOptionsSerializer,
-  BatchJobDisableOptions,
-  batchJobDisableOptionsSerializer,
-  batchJobTerminateOptionsSerializer,
-  BatchJobCreateOptions,
-  batchJobCreateOptionsSerializer,
-  _BatchJobListResult,
-  _batchJobListResultDeserializer,
-  _BatchJobListPreparationAndReleaseTaskStatusResult,
-  _batchJobListPreparationAndReleaseTaskStatusResultDeserializer,
-  JobPreparationAndReleaseTaskExecutionInformation,
-  TaskCountsResult,
-  taskCountsResultDeserializer,
-  _AccountListSupportedImagesResult,
-  _accountListSupportedImagesResultDeserializer,
-  ImageInformation,
-  _PoolNodeCountsListResult,
-  _poolNodeCountsListResultDeserializer,
-  PoolNodeCounts,
   _PoolListUsageMetricsResult,
   _poolListUsageMetricsResultDeserializer,
   PoolUsageMetrics,
@@ -101,10 +31,80 @@ import {
   batchPoolReplaceOptionsSerializer,
   NodeRemoveOptions,
   nodeRemoveOptionsSerializer,
-  _ApplicationListResult,
-  _applicationListResultDeserializer,
-  BatchApplication,
-  batchApplicationDeserializer,
+  _AccountListSupportedImagesResult,
+  _accountListSupportedImagesResultDeserializer,
+  ImageInformation,
+  _PoolNodeCountsListResult,
+  _poolNodeCountsListResultDeserializer,
+  PoolNodeCounts,
+  BatchJob,
+  batchJobSerializer,
+  batchJobDeserializer,
+  BatchJobUpdateOptions,
+  batchJobUpdateOptionsSerializer,
+  BatchJobDisableOptions,
+  batchJobDisableOptionsSerializer,
+  batchJobTerminateOptionsSerializer,
+  BatchJobCreateOptions,
+  batchJobCreateOptionsSerializer,
+  _BatchJobListResult,
+  _batchJobListResultDeserializer,
+  _BatchJobListPreparationAndReleaseTaskStatusResult,
+  _batchJobListPreparationAndReleaseTaskStatusResultDeserializer,
+  JobPreparationAndReleaseTaskExecutionInformation,
+  TaskCountsResult,
+  taskCountsResultDeserializer,
+  BatchCertificate,
+  batchCertificateSerializer,
+  batchCertificateDeserializer,
+  _CertificateListResult,
+  _certificateListResultDeserializer,
+  BatchJobSchedule,
+  batchJobScheduleSerializer,
+  batchJobScheduleDeserializer,
+  BatchJobScheduleUpdateOptions,
+  batchJobScheduleUpdateOptionsSerializer,
+  BatchJobScheduleCreateOptions,
+  batchJobScheduleCreateOptionsSerializer,
+  _BatchJobScheduleListResult,
+  _batchJobScheduleListResultDeserializer,
+  BatchTaskCreateOptions,
+  batchTaskCreateOptionsSerializer,
+  _BatchTaskListResult,
+  _batchTaskListResultDeserializer,
+  BatchTask,
+  batchTaskSerializer,
+  batchTaskDeserializer,
+  BatchTaskCollection,
+  batchTaskCollectionSerializer,
+  TaskAddCollectionResult,
+  taskAddCollectionResultDeserializer,
+  BatchTaskListSubtasksResult,
+  batchTaskListSubtasksResultDeserializer,
+  _NodeFileListResult,
+  _nodeFileListResultDeserializer,
+  NodeFile,
+  BatchNodeUserCreateOptions,
+  batchNodeUserCreateOptionsSerializer,
+  BatchNodeUserUpdateOptions,
+  batchNodeUserUpdateOptionsSerializer,
+  BatchNode,
+  batchNodeDeserializer,
+  nodeRebootOptionsSerializer,
+  nodeReimageOptionsSerializer,
+  nodeDisableSchedulingOptionsSerializer,
+  BatchNodeRemoteLoginSettingsResult,
+  batchNodeRemoteLoginSettingsResultDeserializer,
+  UploadBatchServiceLogsOptions,
+  uploadBatchServiceLogsOptionsSerializer,
+  UploadBatchServiceLogsResult,
+  uploadBatchServiceLogsResultDeserializer,
+  _BatchNodeListResult,
+  _batchNodeListResultDeserializer,
+  NodeVMExtension,
+  nodeVMExtensionDeserializer,
+  _NodeVMExtensionList,
+  _nodeVMExtensionListDeserializer,
 } from "../models/models.js";
 import {
   ListNodeFilesOptionalParams,
@@ -207,10 +207,10 @@ export function _listNodeFilesSend(
     {
       poolId: poolId,
       nodeId: nodeId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.filter,
+      "%24filter": options?.filter,
       recursive: options?.recursive,
     },
     {
@@ -283,7 +283,7 @@ export function _getNodeFilePropertiesSend(
       poolId: poolId,
       nodeId: nodeId,
       filePath: filePath,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -372,7 +372,7 @@ export function _getNodeFileSend(
       poolId: poolId,
       nodeId: nodeId,
       filePath: filePath,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -464,7 +464,7 @@ export function _deleteNodeFileSend(
       poolId: poolId,
       nodeId: nodeId,
       filePath: filePath,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
       recursive: options?.recursive,
     },
@@ -540,7 +540,7 @@ export function _listNodeExtensionsSend(
       nodeId: nodeId,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $select: !options?.select
+      "%24select": !options?.select
         ? options?.select
         : options?.select.map((p: any) => {
             return p;
@@ -617,9 +617,9 @@ export function _getNodeExtensionSend(
       poolId: poolId,
       nodeId: nodeId,
       extensionName: extensionName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
-      $select: !options?.select
+      "%24select": !options?.select
         ? options?.select
         : options?.select.map((p: any) => {
             return p;
@@ -693,11 +693,11 @@ export function _listNodesSend(
     "/pools/{poolId}/nodes{?api%2Dversion,maxresults,timeOut,%24filter,%24select}",
     {
       poolId: poolId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.filter,
-      $select: !options?.select
+      "%24filter": options?.filter,
+      "%24select": !options?.select
         ? options?.select
         : options?.select.map((p: any) => {
             return p;
@@ -771,7 +771,7 @@ export function _uploadNodeLogsSend(
     {
       poolId: poolId,
       nodeId: nodeId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -851,7 +851,7 @@ export function _getNodeRemoteDesktopFileSend(
     {
       poolId: poolId,
       nodeId: nodeId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -927,7 +927,7 @@ export function _getNodeRemoteLoginSettingsSend(
     {
       poolId: poolId,
       nodeId: nodeId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -1004,7 +1004,7 @@ export function _enableNodeSchedulingSend(
     {
       poolId: poolId,
       nodeId: nodeId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -1078,7 +1078,7 @@ export function _disableNodeSchedulingSend(
     {
       poolId: poolId,
       nodeId: nodeId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -1156,7 +1156,7 @@ export function _reimageNodeSend(
     {
       poolId: poolId,
       nodeId: nodeId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -1230,7 +1230,7 @@ export function _rebootNodeSend(
     {
       poolId: poolId,
       nodeId: nodeId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -1300,9 +1300,9 @@ export function _getNodeSend(
     {
       poolId: poolId,
       nodeId: nodeId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
-      $select: !options?.select
+      "%24select": !options?.select
         ? options?.select
         : options?.select.map((p: any) => {
             return p;
@@ -1374,7 +1374,7 @@ export function _replaceNodeUserSend(
       poolId: poolId,
       nodeId: nodeId,
       userName: userName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -1458,7 +1458,7 @@ export function _deleteNodeUserSend(
       poolId: poolId,
       nodeId: nodeId,
       userName: userName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -1535,7 +1535,7 @@ export function _createNodeUserSend(
     {
       poolId: poolId,
       nodeId: nodeId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -1613,10 +1613,10 @@ export function _listTaskFilesSend(
     {
       jobId: jobId,
       taskId: taskId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.filter,
+      "%24filter": options?.filter,
       recursive: options?.recursive,
     },
     {
@@ -1689,7 +1689,7 @@ export function _getTaskFilePropertiesSend(
       jobId: jobId,
       taskId: taskId,
       filePath: filePath,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -1778,7 +1778,7 @@ export function _getTaskFileSend(
       jobId: jobId,
       taskId: taskId,
       filePath: filePath,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -1870,7 +1870,7 @@ export function _deleteTaskFileSend(
       jobId: jobId,
       taskId: taskId,
       filePath: filePath,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
       recursive: options?.recursive,
     },
@@ -1944,7 +1944,7 @@ export function _reactivateTaskSend(
     {
       jobId: jobId,
       taskId: taskId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -2038,7 +2038,7 @@ export function _terminateTaskSend(
     {
       jobId: jobId,
       taskId: taskId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -2128,9 +2128,9 @@ export function _listSubTasksSend(
     {
       jobId: jobId,
       taskId: taskId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
-      $select: !options?.select
+      "%24select": !options?.select
         ? options?.select
         : options?.select.map((p: any) => {
             return p;
@@ -2200,7 +2200,7 @@ export function _replaceTaskSend(
     {
       jobId: jobId,
       taskId: taskId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -2289,14 +2289,14 @@ export function _getTaskSend(
     {
       jobId: jobId,
       taskId: taskId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
-      $select: !options?.select
+      "%24select": !options?.select
         ? options?.select
         : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.expand
+      "%24expand": !options?.expand
         ? options?.expand
         : options?.expand.map((p: any) => {
             return p;
@@ -2389,7 +2389,7 @@ export function _deleteTaskSend(
     {
       jobId: jobId,
       taskId: taskId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -2480,7 +2480,7 @@ export function _createTaskCollectionSend(
     "/jobs/{jobId}/addtaskcollection{?api%2Dversion,timeOut}",
     {
       jobId: jobId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -2566,16 +2566,16 @@ export function _listTasksSend(
     "/jobs/{jobId}/tasks{?api%2Dversion,maxresults,timeOut,%24filter,%24select,%24expand}",
     {
       jobId: jobId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.filter,
-      $select: !options?.select
+      "%24filter": options?.filter,
+      "%24select": !options?.select
         ? options?.select
         : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.expand
+      "%24expand": !options?.expand
         ? options?.expand
         : options?.expand.map((p: any) => {
             return p;
@@ -2651,7 +2651,7 @@ export function _createTaskSend(
     "/jobs/{jobId}/tasks{?api%2Dversion,timeOut}",
     {
       jobId: jobId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -2719,16 +2719,16 @@ export function _listJobSchedulesSend(
   const path = expandUrlTemplate(
     "/jobschedules{?api%2Dversion,maxresults,timeOut,%24filter,%24select,%24expand}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.filter,
-      $select: !options?.select
+      "%24filter": options?.filter,
+      "%24select": !options?.select
         ? options?.select
         : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.expand
+      "%24expand": !options?.expand
         ? options?.expand
         : options?.expand.map((p: any) => {
             return p;
@@ -2797,7 +2797,7 @@ export function _createJobScheduleSend(
   const path = expandUrlTemplate(
     "/jobschedules{?api%2Dversion,timeOut}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -2862,7 +2862,7 @@ export function _terminateJobScheduleSend(
     "/jobschedules/{jobScheduleId}/terminate{?api%2Dversion,timeOut}",
     {
       jobScheduleId: jobScheduleId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -2949,7 +2949,7 @@ export function _enableJobScheduleSend(
     "/jobschedules/{jobScheduleId}/enable{?api%2Dversion,timeOut}",
     {
       jobScheduleId: jobScheduleId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -3032,7 +3032,7 @@ export function _disableJobScheduleSend(
     "/jobschedules/{jobScheduleId}/disable{?api%2Dversion,timeOut}",
     {
       jobScheduleId: jobScheduleId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -3116,7 +3116,7 @@ export function _replaceJobScheduleSend(
     "/jobschedules/{jobScheduleId}{?api%2Dversion,timeOut}",
     {
       jobScheduleId: jobScheduleId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -3214,7 +3214,7 @@ export function _updateJobScheduleSend(
     "/jobschedules/{jobScheduleId}{?api%2Dversion,timeOut}",
     {
       jobScheduleId: jobScheduleId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -3311,14 +3311,14 @@ export function _getJobScheduleSend(
     "/jobschedules/{jobScheduleId}{?api%2Dversion,timeOut,%24select,%24expand}",
     {
       jobScheduleId: jobScheduleId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
-      $select: !options?.select
+      "%24select": !options?.select
         ? options?.select
         : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.expand
+      "%24expand": !options?.expand
         ? options?.expand
         : options?.expand.map((p: any) => {
             return p;
@@ -3404,7 +3404,7 @@ export function _deleteJobScheduleSend(
     "/jobschedules/{jobScheduleId}{?api%2Dversion,timeOut}",
     {
       jobScheduleId: jobScheduleId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -3493,7 +3493,7 @@ export function _jobScheduleExistsSend(
     "/jobschedules/{jobScheduleId}{?api%2Dversion,timeOut}",
     {
       jobScheduleId: jobScheduleId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -3578,9 +3578,9 @@ export function _getCertificateSend(
     {
       thumbprintAlgorithm: thumbprintAlgorithm,
       thumbprint: thumbprint,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
-      $select: !options?.select
+      "%24select": !options?.select
         ? options?.select
         : options?.select.map((p: any) => {
             return p;
@@ -3654,7 +3654,7 @@ export function _deleteCertificateSend(
     {
       thumbprintAlgorithm: thumbprintAlgorithm,
       thumbprint: thumbprint,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -3735,7 +3735,7 @@ export function _cancelCertificateDeletionSend(
     {
       thumbprintAlgorithm: thumbprintAlgorithm,
       thumbprint: thumbprint,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -3810,11 +3810,11 @@ export function _listCertificatesSend(
   const path = expandUrlTemplate(
     "/certificates{?api%2Dversion,maxresults,timeOut,%24filter,%24select}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.filter,
-      $select: !options?.select
+      "%24filter": options?.filter,
+      "%24select": !options?.select
         ? options?.select
         : options?.select.map((p: any) => {
             return p;
@@ -3883,7 +3883,7 @@ export function _createCertificateSend(
   const path = expandUrlTemplate(
     "/certificates{?api%2Dversion,timeOut}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -3948,7 +3948,7 @@ export function _getJobTaskCountsSend(
     "/jobs/{jobId}/taskcounts{?api%2Dversion,timeOut}",
     {
       jobId: jobId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -4020,8 +4020,8 @@ export function _listJobPreparationAndReleaseTaskStatusSend(
       jobId: jobId,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.filter,
-      $select: !options?.select
+      "%24filter": options?.filter,
+      "%24select": !options?.select
         ? options?.select
         : options?.select.map((p: any) => {
             return p;
@@ -4104,16 +4104,16 @@ export function _listJobsFromScheduleSend(
     "/jobschedules/{jobScheduleId}/jobs{?api%2Dversion,maxresults,timeOut,%24filter,%24select,%24expand}",
     {
       jobScheduleId: jobScheduleId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.filter,
-      $select: !options?.select
+      "%24filter": options?.filter,
+      "%24select": !options?.select
         ? options?.select
         : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.expand
+      "%24expand": !options?.expand
         ? options?.expand
         : options?.expand.map((p: any) => {
             return p;
@@ -4182,16 +4182,16 @@ export function _listJobsSend(
   const path = expandUrlTemplate(
     "/jobs{?api%2Dversion,maxresults,timeOut,%24filter,%24select,%24expand}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.filter,
-      $select: !options?.select
+      "%24filter": options?.filter,
+      "%24select": !options?.select
         ? options?.select
         : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.expand
+      "%24expand": !options?.expand
         ? options?.expand
         : options?.expand.map((p: any) => {
             return p;
@@ -4260,7 +4260,7 @@ export function _createJobSend(
   const path = expandUrlTemplate(
     "/jobs{?api%2Dversion,timeOut}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -4335,7 +4335,7 @@ export function _terminateJobSend(
     "/jobs/{jobId}/terminate{?api%2Dversion,timeOut}",
     {
       jobId: jobId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -4429,7 +4429,7 @@ export function _enableJobSend(
     "/jobs/{jobId}/enable{?api%2Dversion,timeOut}",
     {
       jobId: jobId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -4520,7 +4520,7 @@ export function _disableJobSend(
     "/jobs/{jobId}/disable{?api%2Dversion,timeOut}",
     {
       jobId: jobId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -4616,7 +4616,7 @@ export function _replaceJobSend(
     "/jobs/{jobId}{?api%2Dversion,timeOut}",
     {
       jobId: jobId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -4707,7 +4707,7 @@ export function _updateJobSend(
     "/jobs/{jobId}{?api%2Dversion,timeOut}",
     {
       jobId: jobId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -4797,14 +4797,14 @@ export function _getJobSend(
     "/jobs/{jobId}{?api%2Dversion,timeOut,%24select,%24expand}",
     {
       jobId: jobId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
-      $select: !options?.select
+      "%24select": !options?.select
         ? options?.select
         : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.expand
+      "%24expand": !options?.expand
         ? options?.expand
         : options?.expand.map((p: any) => {
             return p;
@@ -4890,7 +4890,7 @@ export function _deleteJobSend(
     "/jobs/{jobId}{?api%2Dversion,timeOut}",
     {
       jobId: jobId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -4980,10 +4980,10 @@ export function _listPoolNodeCountsSend(
   const path = expandUrlTemplate(
     "/nodecounts{?api%2Dversion,maxresults,timeOut,%24filter}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.filter,
+      "%24filter": options?.filter,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -5053,7 +5053,7 @@ export function _listSupportedImagesSend(
     {
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.filter,
+      "%24filter": options?.filter,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -5121,7 +5121,7 @@ export function _removeNodesSend(
     "/pools/{poolId}/removenodes{?api%2Dversion,timeOut}",
     {
       poolId: poolId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -5212,7 +5212,7 @@ export function _replacePoolPropertiesSend(
     "/pools/{poolId}/updateproperties{?api%2Dversion,timeOut}",
     {
       poolId: poolId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -5287,7 +5287,7 @@ export function _stopPoolResizeSend(
     "/pools/{poolId}/stopresize{?api%2Dversion,timeOut}",
     {
       poolId: poolId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -5379,7 +5379,7 @@ export function _resizePoolSend(
     "/pools/{poolId}/resize{?api%2Dversion,timeOut}",
     {
       poolId: poolId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -5474,7 +5474,7 @@ export function _evaluatePoolAutoScaleSend(
     "/pools/{poolId}/evaluateautoscale{?api%2Dversion,timeOut}",
     {
       poolId: poolId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -5550,7 +5550,7 @@ export function _enablePoolAutoScaleSend(
     "/pools/{poolId}/enableautoscale{?api%2Dversion,timeOut}",
     {
       poolId: poolId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -5643,7 +5643,7 @@ export function _disablePoolAutoScaleSend(
     "/pools/{poolId}/disableautoscale{?api%2Dversion,timeOut}",
     {
       poolId: poolId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -5707,7 +5707,7 @@ export function _updatePoolSend(
     "/pools/{poolId}{?api%2Dversion,timeOut}",
     {
       poolId: poolId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -5797,14 +5797,14 @@ export function _getPoolSend(
     "/pools/{poolId}{?api%2Dversion,timeOut,%24select,%24expand}",
     {
       poolId: poolId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
-      $select: !options?.select
+      "%24select": !options?.select
         ? options?.select
         : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.expand
+      "%24expand": !options?.expand
         ? options?.expand
         : options?.expand.map((p: any) => {
             return p;
@@ -5890,7 +5890,7 @@ export function _poolExistsSend(
     "/pools/{poolId}{?api%2Dversion,timeOut}",
     {
       poolId: poolId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -5973,7 +5973,7 @@ export function _deletePoolSend(
     "/pools/{poolId}{?api%2Dversion,timeOut}",
     {
       poolId: poolId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -6067,16 +6067,16 @@ export function _listPoolsSend(
   const path = expandUrlTemplate(
     "/pools{?api%2Dversion,maxresults,timeOut,%24filter,%24select,%24expand}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      $filter: options?.filter,
-      $select: !options?.select
+      "%24filter": options?.filter,
+      "%24select": !options?.select
         ? options?.select
         : options?.select.map((p: any) => {
             return p;
           }),
-      $expand: !options?.expand
+      "%24expand": !options?.expand
         ? options?.expand
         : options?.expand.map((p: any) => {
             return p;
@@ -6145,7 +6145,7 @@ export function _createPoolSend(
   const path = expandUrlTemplate(
     "/pools{?api%2Dversion,timeOut}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -6212,7 +6212,7 @@ export function _listPoolUsageMetricsSend(
   const path = expandUrlTemplate(
     "/poolusagemetrics{?api%2Dversion,maxresults,timeOut,starttime,endtime,%24filter}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
       starttime: !options?.starttime
@@ -6221,7 +6221,7 @@ export function _listPoolUsageMetricsSend(
       endtime: !options?.endtime
         ? options?.endtime
         : options?.endtime.toISOString(),
-      $filter: options?.filter,
+      "%24filter": options?.filter,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -6294,7 +6294,7 @@ export function _getApplicationSend(
     "/applications/{applicationId}{?api%2Dversion,timeOut}",
     {
       applicationId: applicationId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
     },
     {
@@ -6361,7 +6361,7 @@ export function _listApplicationsSend(
   const path = expandUrlTemplate(
     "/applications{?api%2Dversion,maxresults,timeOut}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
     },

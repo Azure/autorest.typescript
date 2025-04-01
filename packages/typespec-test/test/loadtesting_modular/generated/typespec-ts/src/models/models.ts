@@ -2556,3 +2556,12 @@ export enum KnownAPIVersions {
   /** The 2024-05-01-preview version of the Azure Load Testing API. */
   V20240501Preview = "2024-05-01-preview",
 }
+
+/** Alias for _LoadTestServiceEndpoint */
+export type _LoadTestServiceEndpoint = string | string;
+/** Alias for _LoadTestServiceEndpoint */
+export type _LoadTestServiceEndpoint_1 = string | string;
+/** Alias for _LoadTestServiceEndpoint */
+export type _LoadTestServiceEndpoint_2 = string | string;
+/** Alias for _LoadTestServiceEndpoint */
+export type _LoadTestServiceEndpoint_3 = string | string;

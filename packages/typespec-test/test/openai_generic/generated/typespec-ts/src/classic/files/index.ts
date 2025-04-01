@@ -3,8 +3,8 @@
 
 import { OpenAIContext } from "../../api/openAIContext.js";
 import {
-  OpenAIFile,
   ListFilesResponse,
+  OpenAIFile,
   CreateFileRequest,
   DeleteFileResponse,
 } from "../../models/models.js";

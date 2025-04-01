@@ -3,6 +3,22 @@
 
 import { ContentSafetyContext as Client } from "./index.js";
 import {
+  AnalyzeTextOptions,
+  analyzeTextOptionsSerializer,
+  AnalyzeTextResult,
+  analyzeTextResultDeserializer,
+  ShieldPromptOptions,
+  shieldPromptOptionsSerializer,
+  ShieldPromptResult,
+  shieldPromptResultDeserializer,
+  DetectTextProtectedMaterialOptions,
+  detectTextProtectedMaterialOptionsSerializer,
+  DetectTextProtectedMaterialResult,
+  detectTextProtectedMaterialResultDeserializer,
+  AnalyzeImageOptions,
+  analyzeImageOptionsSerializer,
+  AnalyzeImageResult,
+  analyzeImageResultDeserializer,
   TextBlocklist,
   textBlocklistSerializer,
   textBlocklistDeserializer,
@@ -18,22 +34,6 @@ import {
   removeTextBlocklistItemsOptionsSerializer,
   _PagedTextBlocklistItem,
   _pagedTextBlocklistItemDeserializer,
-  AnalyzeImageOptions,
-  analyzeImageOptionsSerializer,
-  AnalyzeImageResult,
-  analyzeImageResultDeserializer,
-  AnalyzeTextOptions,
-  analyzeTextOptionsSerializer,
-  AnalyzeTextResult,
-  analyzeTextResultDeserializer,
-  ShieldPromptOptions,
-  shieldPromptOptionsSerializer,
-  ShieldPromptResult,
-  shieldPromptResultDeserializer,
-  DetectTextProtectedMaterialOptions,
-  detectTextProtectedMaterialOptionsSerializer,
-  DetectTextProtectedMaterialResult,
-  detectTextProtectedMaterialResultDeserializer,
 } from "../models/models.js";
 import {
   ListTextBlocklistItemsOptionalParams,
@@ -70,7 +70,7 @@ export function _listTextBlocklistItemsSend(
     "/text/blocklists/{blocklistName}/blocklistItems{?api%2Dversion,top,skip,maxpagesize}",
     {
       blocklistName: blocklistName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       top: options?.top,
       skip: options?.skip,
       maxpagesize: options?.maxpagesize,
@@ -127,7 +127,7 @@ export function _getTextBlocklistItemSend(
     {
       blocklistName: blocklistName,
       blocklistItemId: blocklistItemId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -181,7 +181,7 @@ export function _removeBlocklistItemsSend(
     "/text/blocklists/{blocklistName}:removeBlocklistItems{?api%2Dversion}",
     {
       blocklistName: blocklistName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -237,7 +237,7 @@ export function _addOrUpdateBlocklistItemsSend(
     "/text/blocklists/{blocklistName}:addOrUpdateBlocklistItems{?api%2Dversion}",
     {
       blocklistName: blocklistName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -290,7 +290,7 @@ export function _listTextBlocklistsSend(
   const path = expandUrlTemplate(
     "/text/blocklists{?api%2Dversion}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -341,7 +341,7 @@ export function _deleteTextBlocklistSend(
     "/text/blocklists/{blocklistName}{?api%2Dversion}",
     {
       blocklistName: blocklistName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -393,7 +393,7 @@ export function _createOrUpdateTextBlocklistSend(
     "/text/blocklists/{blocklistName}{?api%2Dversion}",
     {
       blocklistName: blocklistName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -448,7 +448,7 @@ export function _getTextBlocklistSend(
     "/text/blocklists/{blocklistName}{?api%2Dversion}",
     {
       blocklistName: blocklistName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -494,7 +494,7 @@ export function _analyzeImageSend(
   const path = expandUrlTemplate(
     "/image:analyze{?api%2Dversion}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -542,7 +542,7 @@ export function _detectTextProtectedMaterialSend(
   const path = expandUrlTemplate(
     "/text:detectProtectedMaterial{?api%2Dversion}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -590,7 +590,7 @@ export function _shieldPromptSend(
   const path = expandUrlTemplate(
     "/text:shieldPrompt{?api%2Dversion}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -638,7 +638,7 @@ export function _analyzeTextSend(
   const path = expandUrlTemplate(
     "/text:analyze{?api%2Dversion}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
