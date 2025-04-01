@@ -62,13 +62,13 @@ export declare type OneParameters = RequestParameters;
 export declare interface Routes {
     (path: "/one"): One;
     (path: "/two"): Two;
-    (path: "/seven"): Seven;
     (path: "/eight"): Eight;
-    (path: "/nine"): Nine;
     (path: "/three"): Three;
     (path: "/four"): Four;
     (path: "/five"): Five;
     (path: "/six"): Six;
+    (path: "/seven"): Seven;
+    (path: "/nine"): Nine;
 }
 
 export declare type ServiceClient = Client & {
