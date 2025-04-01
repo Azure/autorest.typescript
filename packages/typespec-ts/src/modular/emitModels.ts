@@ -59,7 +59,10 @@ import {
   getTypeExpression,
   normalizeModelPropertyName
 } from "./type-expressions/get-type-expression.js";
-import { emitQueue } from "../framework/hooks/sdkTypes.js";
+import {
+  emitQueue,
+  getAllOperationsFromClient
+} from "../framework/hooks/sdkTypes.js";
 import { resolveReference } from "../framework/reference.js";
 import { MultipartHelpers } from "./static-helpers-metadata.js";
 
@@ -737,8 +740,14 @@ function visitClient(
   context: SdkContext,
   client: SdkClientType<SdkServiceOperation>
 ) {
+  // visit the client initialization parameters
+  client.clientInitialization.parameters.forEach((parameter) => {
+    visitType(context, parameter.type);
+  });
   // Comment this out for now, as client initialization is not used in the generated code
-  client.methods.forEach((method) => visitClientMethod(context, method));
+  getAllOperationsFromClient(client).forEach((method) =>
+    visitClientMethod(context, method)
+  );
 }
 
 function visitClientMethod(
@@ -752,14 +761,6 @@ function visitClientMethod(
     case "basic":
       visitMethod(context, method);
       visitOperation(context, method.operation);
-      break;
-    case "clientaccessor":
-      method.response.methods.forEach((responseMethod) =>
-        visitClientMethod(context, responseMethod)
-      );
-      method.parameters.forEach((parameter) => {
-        visitType(context, parameter.type);
-      });
       break;
     default:
       throw new Error(`Unknown sdk method kind: ${(method as any).kind}`);
