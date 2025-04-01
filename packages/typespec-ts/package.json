@@ -88,7 +88,7 @@
     "@typescript-eslint/parser": "^6.8.0",
     "@typespec/compiler": "next",
     "@typespec/http": "next",
-    "@typespec/openapi": "next",
+    "@typespec/openapi": "next1",
     "@typespec/rest": "next",
     "@typespec/ts-http-runtime": "0.1.0",
     "@typespec/versioning": "next",
