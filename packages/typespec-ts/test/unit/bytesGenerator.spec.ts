@@ -4,7 +4,7 @@ import {
   emitParameterFromTypeSpec
 } from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
-describe.only("bytes", () => {
+describe("bytes", () => {
   describe("application/octet-stream", () => {
     it("@encode('binary') - should be treated as raw binary payload", async () => {
       const parameters = await emitParameterFromTypeSpec(
