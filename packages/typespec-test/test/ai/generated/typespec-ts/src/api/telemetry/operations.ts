@@ -21,10 +21,10 @@ export function _getAppInsightsSend(
   options: TelemetryGetAppInsightsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/{appInsightsResourceUrl}{?api-version}",
+    "/{appInsightsResourceUrl}{?api%2Dversion}",
     {
       appInsightsResourceUrl: appInsightsResourceUrl,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
