@@ -1,5 +1,7 @@
+import "@typespec/http";
 namespace OpenAI;
 using TypeSpec.OpenAPI;
+using TypeSpec.Http;
 
 model ListFilesResponse {
   object: string; // presumably this is always some constant, but not defined.
@@ -12,14 +14,14 @@ model CreateFileRequest {
    *
    * If the `purpose` is set to "fine-tune", the file will be used for fine-tuning.
    */
-  file: bytes;
+  file: HttpPart<bytes>;
 
   /**
    * The intended purpose of the uploaded documents. Use "fine-tune" for
    * [fine-tuning](/docs/api-reference/fine-tuning). This allows us to validate the format of the
    * uploaded file.
    */
-  purpose: string;
+  purpose: HttpPart<string>;
 }
 
 /** The `File` object represents a document that has been uploaded to OpenAI. */

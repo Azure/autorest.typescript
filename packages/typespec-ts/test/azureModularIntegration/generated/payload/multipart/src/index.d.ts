@@ -130,7 +130,9 @@ export declare interface FormDataMultiBinaryPartsOptionalParams extends Operatio
 }
 
 export declare interface FormDataOperations {
-    anonymousModel: (profileImage: Uint8Array, options?: FormDataAnonymousModelOptionalParams) => Promise<void>;
+    anonymousModel: (body: {
+        profileImage: Uint8Array;
+    }, options?: FormDataAnonymousModelOptionalParams) => Promise<void>;
     checkFileNameAndContentType: (body: MultiPartRequest, options?: FormDataCheckFileNameAndContentTypeOptionalParams) => Promise<void>;
     multiBinaryParts: (body: MultiBinaryPartsRequest, options?: FormDataMultiBinaryPartsOptionalParams) => Promise<void>;
     binaryArrayParts: (body: BinaryArrayPartsRequest, options?: FormDataBinaryArrayPartsOptionalParams) => Promise<void>;
