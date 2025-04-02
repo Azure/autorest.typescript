@@ -3,11 +3,11 @@
 
 import { OpenAIContext as Client } from "../index.js";
 import {
-  errorResponseDeserializer,
   CreateCompletionRequest,
   createCompletionRequestSerializer,
   CreateCompletionResponse,
   createCompletionResponseDeserializer,
+  errorResponseDeserializer,
 } from "../../models/models.js";
 import { CompletionsCreateOptionalParams } from "./options.js";
 import {

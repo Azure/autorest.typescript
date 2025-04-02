@@ -3,10 +3,10 @@
 
 import { NetworkAnalyticsApiContext as Client } from "../index.js";
 import {
+  errorResponseDeserializer,
   DataProduct,
   dataProductSerializer,
   dataProductDeserializer,
-  errorResponseDeserializer,
   DataProductUpdate,
   dataProductUpdateSerializer,
   AccountSas,
@@ -39,11 +39,11 @@ import {
   DataProductsGetOptionalParams,
   DataProductsCreateOptionalParams,
 } from "./options.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
-import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
