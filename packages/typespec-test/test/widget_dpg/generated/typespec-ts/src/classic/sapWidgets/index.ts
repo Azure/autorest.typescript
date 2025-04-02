@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { SAPWidgetServiceContext } from "../../api/sapWidgetServiceContext.js";
-import { Widget, SAPUser, AnalyzeResult } from "../../models/models.js";
+import { SAPUser, Widget, AnalyzeResult } from "../../models/models.js";
 import {
   SAPWidgetsAnalyzeWidgetOptionalParams,
   SAPWidgetsDeleteWidgetOptionalParams,

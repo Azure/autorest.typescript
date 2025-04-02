@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 
 import {
-  BatchJobTerminateOptions,
   NodeRebootOptions,
   NodeReimageOptions,
   NodeDisableSchedulingOptions,
+  BatchJobTerminateOptions,
 } from "../models/models.js";
 import { OperationOptions } from "@azure-rest/core-client";
 

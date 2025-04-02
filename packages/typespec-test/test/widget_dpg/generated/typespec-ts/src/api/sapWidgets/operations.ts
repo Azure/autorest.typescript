@@ -3,15 +3,15 @@
 
 import { SAPWidgetServiceContext as Client } from "../index.js";
 import {
+  SAPUser,
+  sapUserSerializer,
+  sapUserDeserializer,
   Widget,
   widgetDeserializer,
   widgetErrorDeserializer,
   _ListWidgetsPagesResults,
   _listWidgetsPagesResultsDeserializer,
   widgetArrayDeserializer,
-  SAPUser,
-  sapUserSerializer,
-  sapUserDeserializer,
   AnalyzeResult,
   analyzeResultDeserializer,
 } from "../../models/models.js";

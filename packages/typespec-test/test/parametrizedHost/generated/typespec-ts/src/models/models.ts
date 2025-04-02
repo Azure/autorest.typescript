@@ -12,9 +12,6 @@ export function collectionDeserializer(item: any): Collection {
   };
 }
 
-/** Alias for _ParametrizedHostEndpoint */
-export type _ParametrizedHostEndpoint = string | string;
-
 export function collectionArrayDeserializer(result: Array<Collection>): any[] {
   return result.map((item) => {
     return collectionDeserializer(item);

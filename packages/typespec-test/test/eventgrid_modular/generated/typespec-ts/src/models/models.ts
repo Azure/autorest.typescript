@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
-import { KeyCredential, TokenCredential } from "@azure/core-auth";
 import { ErrorModel } from "@azure-rest/core-client";
 
 /** Properties of an event published to an Azure Messaging EventGrid Namespace topic using the CloudEvent 1.0 Schema. */
@@ -231,9 +230,6 @@ export enum KnownServiceApiVersions {
   V20231101 = "2023-11-01",
   V20240601 = "2024-06-01",
 }
-
-/** Alias for _EventGridCredentialUnion */
-export type _EventGridCredentialUnion = KeyCredential | TokenCredential;
 
 export function cloudEventArraySerializer(result: Array<CloudEvent>): any[] {
   return result.map((item) => {

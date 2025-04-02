@@ -7,19 +7,19 @@ import {
   ContentSafetyClientOptionalParams,
 } from "./api/index.js";
 import {
+  TextBlocklist,
+  AddOrUpdateTextBlocklistItemsOptions,
+  TextBlocklistItem,
+  AddOrUpdateTextBlocklistItemsResult,
+  RemoveTextBlocklistItemsOptions,
+  AnalyzeImageOptions,
+  AnalyzeImageResult,
   AnalyzeTextOptions,
   AnalyzeTextResult,
   ShieldPromptOptions,
   ShieldPromptResult,
   DetectTextProtectedMaterialOptions,
   DetectTextProtectedMaterialResult,
-  AnalyzeImageOptions,
-  AnalyzeImageResult,
-  TextBlocklist,
-  AddOrUpdateTextBlocklistItemsOptions,
-  TextBlocklistItem,
-  AddOrUpdateTextBlocklistItemsResult,
-  RemoveTextBlocklistItemsOptions,
 } from "./models/models.js";
 import {
   ListTextBlocklistItemsOptionalParams,
