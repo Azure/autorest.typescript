@@ -740,10 +740,6 @@ function visitClient(
   context: SdkContext,
   client: SdkClientType<SdkServiceOperation>
 ) {
-  // visit the client initialization parameters
-  client.clientInitialization.parameters.forEach((parameter) => {
-    visitType(context, parameter.type);
-  });
   // Comment this out for now, as client initialization is not used in the generated code
   getAllOperationsFromClient(client).forEach((method) =>
     visitClientMethod(context, method)

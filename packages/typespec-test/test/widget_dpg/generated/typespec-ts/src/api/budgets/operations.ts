@@ -3,12 +3,12 @@
 
 import { SAPWidgetServiceContext as Client } from "../index.js";
 import {
-  Widget,
-  widgetErrorDeserializer,
-  widgetArrayDeserializer,
   SAPUser,
   sapUserSerializer,
   sapUserDeserializer,
+  Widget,
+  widgetErrorDeserializer,
+  widgetArrayDeserializer,
 } from "../../models/models.js";
 import {
   BudgetsGetBudgetsOptionalParams,

@@ -9,6 +9,17 @@ import {
 
 export { ContentSafetyClient } from "./contentSafetyClient.js";
 export {
+  TextBlocklist,
+  AddOrUpdateTextBlocklistItemsOptions,
+  TextBlocklistItem,
+  AddOrUpdateTextBlocklistItemsResult,
+  RemoveTextBlocklistItemsOptions,
+  AnalyzeImageOptions,
+  ImageData,
+  ImageCategory,
+  AnalyzeImageOutputType,
+  AnalyzeImageResult,
+  ImageCategoriesAnalysis,
   AnalyzeTextOptions,
   TextCategory,
   AnalyzeTextOutputType,
@@ -22,17 +33,6 @@ export {
   DetectTextProtectedMaterialOptions,
   DetectTextProtectedMaterialResult,
   TextProtectedMaterialAnalysisResult,
-  AnalyzeImageOptions,
-  ImageData,
-  ImageCategory,
-  AnalyzeImageOutputType,
-  AnalyzeImageResult,
-  ImageCategoriesAnalysis,
-  TextBlocklist,
-  AddOrUpdateTextBlocklistItemsOptions,
-  TextBlocklistItem,
-  AddOrUpdateTextBlocklistItemsResult,
-  RemoveTextBlocklistItemsOptions,
   KnownVersions,
 } from "./models/index.js";
 export {

@@ -5,7 +5,6 @@ import {
   FileContents,
   createFilePartDescriptor,
 } from "../static-helpers/multipartHelpers.js";
-import { KeyCredential, TokenCredential } from "@azure/core-auth";
 import { ErrorModel } from "@azure-rest/core-client";
 
 /** The configuration information for an audio transcription request. */
@@ -3905,8 +3904,3 @@ export enum KnownServiceApiVersions {
   V20240201 = "2024-02-01",
   V20240601 = "2024-06-01",
 }
-
-/** Alias for _OpenAIEndpoint */
-export type _OpenAIEndpoint = string | string;
-/** Alias for _OpenAICredentialUnion */
-export type _OpenAICredentialUnion = KeyCredential | TokenCredential;

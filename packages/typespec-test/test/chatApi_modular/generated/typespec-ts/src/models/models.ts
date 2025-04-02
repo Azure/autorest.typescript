@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { KeyCredential, TokenCredential } from "@azure/core-auth";
-
 /** The configuration for a streaming chat completion request. */
 export interface StreamingChatCompletionOptionsRecord {
   /** The collection of context messages associated with this completion request. */
@@ -251,6 +249,3 @@ export function chatChoiceRecordDeserializer(item: any): ChatChoiceRecord {
 export enum KnownAPIVersion {
   V20231001Preview = "2023-10-01-preview",
 }
-
-/** Alias for _ChatProtocolCredentialUnion */
-export type _ChatProtocolCredentialUnion = KeyCredential | TokenCredential;
