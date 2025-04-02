@@ -740,6 +740,8 @@ function visitClient(
   context: SdkContext,
   client: SdkClientType<SdkServiceOperation>
 ) {
+  // TODO: include the client parameters
+  // https://github.com/Azure/autorest.typescript/issues/3148
   // Comment this out for now, as client initialization is not used in the generated code
   getAllOperationsFromClient(client).forEach((method) =>
     visitClientMethod(context, method)
