@@ -15,13 +15,12 @@ import { writeMapper } from "./mappersGenerator";
 import { shouldImportParameters } from "./utils/importUtils";
 import { logger } from "../utils/logger";
 import { getAutorestOptions } from "../autorestSession";
-import { getImportModuleName } from "../utils/nameConstructors";
 
 export function generateParameters(
   clientDetails: ClientDetails,
   project: Project
 ): void {
-  const { useCoreV2, srcPath, moduleKind } = getAutorestOptions();
+  const { useCoreV2, srcPath } = getAutorestOptions();
   if (!shouldImportParameters(clientDetails)) {
     logger.verbose(
       "There are no parameters to generate, skipping parameters file generation"
@@ -38,6 +37,7 @@ export function generateParameters(
   const importedCoreHttp = getCoreHttpImports(clientDetails);
   if (importedCoreHttp.length) {
     parametersFile.addImportDeclaration({
+      isTypeOnly: true,
       namedImports: importedCoreHttp,
       moduleSpecifier: !useCoreV2 ? "@azure/core-http" : "@azure/core-client"
     });
@@ -47,7 +47,7 @@ export function generateParameters(
   if (importedMappers.length) {
     parametersFile.addImportDeclaration({
       namedImports: importedMappers,
-      moduleSpecifier: getImportModuleName("../models/mappers", moduleKind)
+      moduleSpecifier: "../models/mappers.js"
     });
   }
 

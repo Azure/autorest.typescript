@@ -31,6 +31,8 @@ import { generateTracingFile } from "./generators/tracingFileGenerator";
 import { getAutorestOptions } from "./autorestSession";
 import { conflictResolver } from "./conflictResolver";
 import { generateSnippetsFile } from "./generators/test/snippetsGenerator";
+import { generateTsBrowserConfig } from "./generators/static/tsconfigBrowserFileGenerator";
+import { generateVitestConfig } from "./generators/test/vitestGenerator";
 
 const prettierTypeScriptOptions: prettier.Options = {
   parser: "typescript",
@@ -85,8 +87,14 @@ export async function generateTypeScriptLibrary(
   if (generateTest) {
     generateSnippetsFile(codeModel, project, clientDetails);
     generateSampleTestFile(project);
+    if (azureSdkForJs) {
+      generateVitestConfig(project, "node");
+      generateVitestConfig(project, "browser");
+      generateVitestConfig(project, "esm");
+    }
   }
   generateTsConfig(project);
+  generateTsBrowserConfig(project);
   if (azureSdkForJs && generateMetadata) {
     generateTsSrcConfig(project);
     if (generateSample) {

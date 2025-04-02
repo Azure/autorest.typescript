@@ -20,7 +20,6 @@ import {
   getPagingResponseBodyType
 } from "./responseTypeUtils";
 import { getAutorestOptions } from "../../autorestSession";
-import { getImportModuleName } from "../../utils/nameConstructors";
 
 type MethodParameter = OptionalKind<
   ParameterDeclarationStructure & {
@@ -55,17 +54,17 @@ export function addPagingImports(
   sourceFile: SourceFile,
   isClient = false
 ) {
-  const { disablePagingAsyncIterators, moduleKind } = getAutorestOptions();
+  const { disablePagingAsyncIterators } = getAutorestOptions();
   if (!disablePagingAsyncIterators && hasAsyncIteratorOperations(operations)) {
-    const pagingHelperPath = isClient ? "./pagingHelper" : "../pagingHelper";
     sourceFile.addImportDeclarations([
       {
+        isTypeOnly: true,
         namedImports: ["PagedAsyncIterableIterator", "PageSettings"],
         moduleSpecifier: "@azure/core-paging"
       },
       {
         namedImports: ["setContinuationToken"],
-        moduleSpecifier: getImportModuleName(pagingHelperPath, moduleKind)
+        moduleSpecifier: isClient ? "./pagingHelper.js" : "../pagingHelper.js"
       }
     ]);
   }
