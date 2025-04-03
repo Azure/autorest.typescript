@@ -261,7 +261,7 @@ importers:
       '@typespec/openapi': ^1.0.0-0
       '@typespec/rest': '>=0.68.0 <1.0.0'
       '@typespec/spec-api': 0.1.0-alpha.3
-      '@typespec/spector': 0.1.0-alpha.10
+      '@typespec/spector': 0.1.0-alpha.11-dev.2
       '@typespec/ts-http-runtime': 0.1.0
       '@typespec/versioning': '>=0.68.0 <1.0.0'
       '@vitest/coverage-istanbul': ~1.6.0
@@ -321,7 +321,7 @@ importers:
       '@typespec/openapi': 1.0.0-rc.0_4e32z2przwofgibohebjzcbmo4
       '@typespec/rest': 0.68.0_4e32z2przwofgibohebjzcbmo4
       '@typespec/spec-api': 0.1.0-alpha.3
-      '@typespec/spector': 0.1.0-alpha.10_gqzydccxzwgbexblggbdlmppse
+      '@typespec/spector': 0.1.0-alpha.11-dev.2_gqzydccxzwgbexblggbdlmppse
       '@typespec/ts-http-runtime': 0.1.0
       '@typespec/versioning': 0.68.0_uy6wzwh7iyeowktic6jumt3tsy
       '@vitest/coverage-istanbul': 1.6.0_vitest@1.6.0
@@ -462,7 +462,7 @@ packages:
       '@typespec/http': 1.0.0-rc.0_ivwfdbwlaxqif2dljtnccdcjoa
       '@typespec/rest': 0.68.0_4e32z2przwofgibohebjzcbmo4
       '@typespec/spec-api': 0.1.0-alpha.3
-      '@typespec/spector': 0.1.0-alpha.10_gqzydccxzwgbexblggbdlmppse
+      '@typespec/spector': 0.1.0-alpha.11-dev.2_gqzydccxzwgbexblggbdlmppse
       '@typespec/versioning': 0.68.0_uy6wzwh7iyeowktic6jumt3tsy
       '@typespec/xml': 0.68.0_uy6wzwh7iyeowktic6jumt3tsy
     transitivePeerDependencies:
@@ -2643,7 +2643,7 @@ packages:
       '@typespec/http': 1.0.0-rc.0_ivwfdbwlaxqif2dljtnccdcjoa
       '@typespec/rest': 0.68.0_4e32z2przwofgibohebjzcbmo4
       '@typespec/spec-api': 0.1.0-alpha.3
-      '@typespec/spector': 0.1.0-alpha.10_gqzydccxzwgbexblggbdlmppse
+      '@typespec/spector': 0.1.0-alpha.11-dev.2_gqzydccxzwgbexblggbdlmppse
       '@typespec/versioning': 0.68.0_uy6wzwh7iyeowktic6jumt3tsy
       '@typespec/xml': 0.68.0_uy6wzwh7iyeowktic6jumt3tsy
       deep-equal: 2.2.2
@@ -2773,8 +2773,8 @@ packages:
       - supports-color
     dev: true
 
-  /@typespec/spector/0.1.0-alpha.10_gqzydccxzwgbexblggbdlmppse:
-    resolution: {integrity: sha512-2M/LwXh+YKf0lT9tLV5a9OSI99g8X8ZeyHIUUenddE99gFqi41ql92k1LW/CT1jz4/pmoXMnWx3L+U439EXcHg==}
+  /@typespec/spector/0.1.0-alpha.11-dev.2_gqzydccxzwgbexblggbdlmppse:
+    resolution: {integrity: sha512-dlVKSECFDddsKcRpuaB81Sd6krpGMH7q6E212ast5UVjt+JhJK2Egqy+F/ys3tNdgTW3PFkhqeIbiU52JNOWGg==}
     engines: {node: '>=16.0.0'}
     hasBin: true
     dependencies:
