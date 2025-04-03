@@ -1,6 +1,7 @@
 ## 0.38.6 (2025-04-03)
 
-- [Feature] Upgrade to the latest dependency in early April. Please refer to [#3135](https://github.com/Azure/autorest.typescript/pull/3135)
+- [Feature] Upgrade dev dependency typescript version to ~5.8.2. Please refer to [#3120](https://github.com/Azure/autorest.typescript/pull/3120)
+- [Feature] Upgrade to the latest dev dependency before TypeSpec GA. Please refer to [#3135](https://github.com/Azure/autorest.typescript/pull/3135)
 - [Bugfix] Fix eventGrid build error. Please refer to [#3143](https://github.com/Azure/autorest.typescript/pull/3143)
 - [Feature] Basic HttpPart support for RLC. Please refer to [#3124](https://github.com/Azure/autorest.typescript/pull/3124)
 
