@@ -10,9 +10,9 @@ import {
 export { SAPWidgetServiceClient } from "./sapWidgetServiceClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
-  SAPUser,
   Widget,
   WidgetError,
+  SAPUser,
   AnalyzeResult,
   NonReferencedModel,
   KnownVersions,

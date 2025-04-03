@@ -56,10 +56,10 @@ export function _getEmbeddingsSend(
   options: GetEmbeddingsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/deployments/{deploymentId}/embeddings{?api-version}",
+    "/deployments/{deploymentId}/embeddings{?api%2Dversion}",
     {
       deploymentId: deploymentId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -107,10 +107,10 @@ export function _generateSpeechFromTextSend(
   options: GenerateSpeechFromTextOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/deployments/{deploymentId}/audio/speech{?api-version}",
+    "/deployments/{deploymentId}/audio/speech{?api%2Dversion}",
     {
       deploymentId: deploymentId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -163,10 +163,10 @@ export function _getImageGenerationsSend(
   options: GetImageGenerationsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/deployments/{deploymentId}/images/generations{?api-version}",
+    "/deployments/{deploymentId}/images/generations{?api%2Dversion}",
     {
       deploymentId: deploymentId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -219,10 +219,10 @@ export function _getChatCompletionsSend(
   options: GetChatCompletionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/deployments/{deploymentId}/chat/completions{?api-version}",
+    "/deployments/{deploymentId}/chat/completions{?api%2Dversion}",
     {
       deploymentId: deploymentId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -279,10 +279,10 @@ export function _getCompletionsSend(
   options: GetCompletionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/deployments/{deploymentId}/completions{?api-version}",
+    "/deployments/{deploymentId}/completions{?api%2Dversion}",
     {
       deploymentId: deploymentId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -341,10 +341,10 @@ export function _getAudioTranslationAsResponseObjectSend(
   },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/deployments/{deploymentId}/audio/translations{?api-version}",
+    "/deployments/{deploymentId}/audio/translations{?api%2Dversion}",
     {
       deploymentId: deploymentId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -401,10 +401,10 @@ export function _getAudioTranslationAsPlainTextSend(
   },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/deployments/{deploymentId}/audio/translations{?api-version}",
+    "/deployments/{deploymentId}/audio/translations{?api%2Dversion}",
     {
       deploymentId: deploymentId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -458,10 +458,10 @@ export function _getAudioTranscriptionAsResponseObjectSend(
   },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/deployments/{deploymentId}/audio/transcriptions{?api-version}",
+    "/deployments/{deploymentId}/audio/transcriptions{?api%2Dversion}",
     {
       deploymentId: deploymentId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -521,10 +521,10 @@ export function _getAudioTranscriptionAsPlainTextSend(
   },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/deployments/{deploymentId}/audio/transcriptions{?api-version}",
+    "/deployments/{deploymentId}/audio/transcriptions{?api%2Dversion}",
     {
       deploymentId: deploymentId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
