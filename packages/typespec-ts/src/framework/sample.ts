@@ -70,9 +70,13 @@ sourceFile2.addStatements(`let obj: ${modelReference} = { id: 1 };`);
 binder.resolveAllReferences("/modularPackageFolder/src");
 
 // Output the generated files
+// eslint-disable-next-line no-console
 console.log("// test.ts");
+// eslint-disable-next-line no-console
 console.log(sourceFile.getFullText());
+// eslint-disable-next-line no-console
 console.log("// test2.ts");
+// eslint-disable-next-line no-console
 console.log(sourceFile2.getFullText());
 
 // Output
