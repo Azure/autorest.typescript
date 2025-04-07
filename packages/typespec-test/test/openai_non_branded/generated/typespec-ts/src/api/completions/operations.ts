@@ -2,19 +2,19 @@
 
 import { OpenAIContext as Client } from "../index.js";
 import {
-  errorResponseDeserializer,
   CreateCompletionRequest,
   createCompletionRequestSerializer,
   CreateCompletionResponse,
   createCompletionResponseDeserializer,
+  errorResponseDeserializer,
 } from "../../models/models.js";
+import { CompletionsCreateOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
   operationOptionsToRequestParameters,
 } from "@typespec/ts-http-runtime";
-import { CompletionsCreateOptionalParams } from "./options.js";
 
 export function _createSend(
   context: Client,

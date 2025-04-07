@@ -273,6 +273,7 @@ model StreamingChatCompletionOptions {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { CreateStreamingOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -370,6 +371,7 @@ export function fooDeserializer(item: any): Foo {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -428,6 +430,7 @@ op read(@header prop: utcDateTime): OkResponse;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -506,6 +509,7 @@ export function fooSerializer(item: Foo): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -589,6 +593,7 @@ export function fooSerializer(item: Foo): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -669,6 +674,7 @@ export function fooSerializer(item: Foo): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -740,6 +746,7 @@ export interface Foo {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -812,6 +819,7 @@ export interface Foo {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -887,6 +895,7 @@ export interface Foo {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -979,6 +988,7 @@ export function fooDeserializer(item: any): Foo {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -1072,6 +1082,7 @@ export function fooDeserializer(item: any): Foo {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -1165,6 +1176,7 @@ export function fooDeserializer(item: any): Foo {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer, fooDeserializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -1342,6 +1354,7 @@ export function petDeserializer(item: any): Pet {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Cat, catDeserializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -1449,6 +1462,7 @@ export function animalDeserializer(item: any): Animal {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Cat, catDeserializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -1588,6 +1602,7 @@ export function petUnionDeserializer(item: any): PetUnion {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { PSDog, psDogSerializer, psDogDeserializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -1726,6 +1741,7 @@ export function dogDeserializer(item: any): Dog {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { petUnionDeserializer, PetUnion } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -1904,6 +1920,7 @@ export function petUnionArrayDeserializer(result: Array<PetUnion>): any[] {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { petUnionDeserializer, PetUnion } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -1997,6 +2014,7 @@ export function barDeserializer(item: any): Bar {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Foo, fooDeserializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -2092,6 +2110,7 @@ export type SchemaContentTypeValues =
 ```ts operations
 import { DemoServiceContext as Client } from "./index.js";
 import { SchemaContentTypeValues } from "../models/models.js";
+import { GetOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -2225,6 +2244,7 @@ needAzureCore: false
 
 ```ts operations
 import { DemoServiceContext as Client } from "./index.js";
+import { GetOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -2242,7 +2262,7 @@ export function _getSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: "text/plain",
       headers: {
         "test-header": testHeader,
         ...options.requestOptions?.headers,

@@ -31,12 +31,15 @@ import {
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
+import { useContext } from "../contextManager.js";
+import { refkey } from "../framework/refkey.js";
 
 export function buildClassicalClient(
   dpgContext: SdkContext,
   client: SdkClientType<SdkServiceOperation>,
   emitterOptions: ModularEmitterOptions
 ) {
+  const project = useContext("outputProject");
   const dependencies = useDependencies();
   const modularClientName = getClientName(client);
   const classicalClientName = `${getClassicalClientName(client)}`;
@@ -53,7 +56,7 @@ export function buildClassicalClient(
     client
   );
 
-  const clientFile = emitterOptions.project.createSourceFile(
+  const clientFile = project.createSourceFile(
     `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""}${normalizeName(
       classicalClientName,
       NameType.File
@@ -121,7 +124,7 @@ export function buildClassicalClient(
   ]);
   constructor.addStatements(`this.pipeline = this._client.pipeline;`);
 
-  buildClientOperationGroups(clientFile, client, dpgContext, clientClass);
+  buildClientOperationGroups(client, dpgContext, clientClass);
   importAllApis(clientFile, srcPath, subfolder ?? "");
   clientFile.fixUnusedIdentifiers();
   return clientFile;
@@ -161,7 +164,7 @@ function generateMethod(
     kind: StructureKind.Method,
     returnType: declarations.returnType,
     parameters: declarations.parameters?.filter((p) => p.name !== "context"),
-    statements: `return ${declarations.name}(${[
+    statements: `return ${resolveReference(refkey(method[1], "api"))}(${[
       "this._client",
       ...[
         declarations.parameters
@@ -173,7 +176,6 @@ function generateMethod(
   return result;
 }
 function buildClientOperationGroups(
-  clientFile: SourceFile,
   client: SdkClientType<SdkServiceOperation>,
   dpgContext: SdkContext,
   clientClass: ClassDeclaration
@@ -186,35 +188,34 @@ function buildClientOperationGroups(
   const methodMap = getMethodHierarchiesMap(dpgContext, client);
   for (const [prefixKey, operations] of methodMap) {
     const prefixes = prefixKey.split("/");
+    const layer = 0;
     if (prefixKey === "") {
       operations.forEach((op) => {
         const method = generateMethod(dpgContext, clientType, [prefixes, op]);
         clientClass.addMethod(method);
       });
     } else {
-      const groupName = normalizeName(prefixes[0] ?? "", NameType.Property);
+      // The `rawGroupName` is used to any places where we need normalized name twice so we need to keep the raw as PascalCase.
+      const rawGroupName = normalizeName(prefixes[0] ?? "", NameType.Interface);
       const operationName = `_get${normalizeName(
-        groupName,
+        rawGroupName,
         NameType.OperationGroup
       )}Operations`;
       const propertyType = `${normalizeName(
-        groupName,
+        rawGroupName,
         NameType.OperationGroup
       )}Operations`;
+      // The `groupName` is used to any places where we don't need normalized name again
+      const groupName = normalizeName(rawGroupName, NameType.Property);
       const existProperty = clientClass.getProperties().filter((p) => {
-        return p.getName() === groupName;
+        return p.getName() === normalizeName(groupName, NameType.Property);
       });
       if (!existProperty || existProperty.length === 0) {
-        clientFile.addImportDeclaration({
-          namedImports: [operationName, propertyType],
-          moduleSpecifier: `./classic/${normalizeName(
-            groupName,
-            NameType.File
-          )}/index.js`
-        });
         clientClass.addProperty({
           name: groupName,
-          type: propertyType,
+          type: resolveReference(
+            refkey(propertyType, layer, "classicOperations")
+          ),
           scope: Scope.Public,
           isReadonly: true,
           docs: ["The operation groups for " + groupName]
@@ -222,10 +223,7 @@ function buildClientOperationGroups(
         clientClass
           .getConstructors()[0]
           ?.addStatements(
-            `this.${groupName} = _get${normalizeName(
-              groupName,
-              NameType.OperationGroup
-            )}Operations(this._client)`
+            `this.${groupName} = ${resolveReference(refkey(operationName, layer, "getClassicOperations"))}(this._client)`
           );
       }
     }

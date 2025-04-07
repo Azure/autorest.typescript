@@ -5,18 +5,23 @@ import {
   createContentSafety,
   ContentSafetyContext,
   ContentSafetyClientOptionalParams,
-  listTextBlocklistItems,
-  getTextBlocklistItem,
-  removeBlocklistItems,
-  addOrUpdateBlocklistItems,
-  listTextBlocklists,
-  deleteTextBlocklist,
-  createOrUpdateTextBlocklist,
-  getTextBlocklist,
-  analyzeImage,
-  detectTextProtectedMaterial,
-  shieldPrompt,
-  analyzeText,
+} from "./api/index.js";
+import {
+  AnalyzeTextOptions,
+  AnalyzeTextResult,
+  ShieldPromptOptions,
+  ShieldPromptResult,
+  DetectTextProtectedMaterialOptions,
+  DetectTextProtectedMaterialResult,
+  AnalyzeImageOptions,
+  AnalyzeImageResult,
+  TextBlocklist,
+  AddOrUpdateTextBlocklistItemsOptions,
+  TextBlocklistItem,
+  AddOrUpdateTextBlocklistItemsResult,
+  RemoveTextBlocklistItemsOptions,
+} from "./models/models.js";
+import {
   ListTextBlocklistItemsOptionalParams,
   GetTextBlocklistItemOptionalParams,
   RemoveBlocklistItemsOptionalParams,
@@ -29,22 +34,21 @@ import {
   DetectTextProtectedMaterialOptionalParams,
   ShieldPromptOptionalParams,
   AnalyzeTextOptionalParams,
-} from "./api/index.js";
+} from "./api/options.js";
 import {
-  TextBlocklist,
-  AddOrUpdateTextBlocklistItemsOptions,
-  TextBlocklistItem,
-  AddOrUpdateTextBlocklistItemsResult,
-  RemoveTextBlocklistItemsOptions,
-  AnalyzeImageOptions,
-  AnalyzeImageResult,
-  AnalyzeTextOptions,
-  AnalyzeTextResult,
-  ShieldPromptOptions,
-  ShieldPromptResult,
-  DetectTextProtectedMaterialOptions,
-  DetectTextProtectedMaterialResult,
-} from "./models/models.js";
+  listTextBlocklistItems,
+  getTextBlocklistItem,
+  removeBlocklistItems,
+  addOrUpdateBlocklistItems,
+  listTextBlocklists,
+  deleteTextBlocklist,
+  createOrUpdateTextBlocklist,
+  getTextBlocklist,
+  analyzeImage,
+  detectTextProtectedMaterial,
+  shieldPrompt,
+  analyzeText,
+} from "./api/operations.js";
 import { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";

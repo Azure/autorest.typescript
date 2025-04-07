@@ -2,6 +2,16 @@
 
 import { TodoContext as Client } from "../index.js";
 import {
+  standard4XXResponseDeserializer,
+  standard5XXResponseDeserializer,
+  TodoItem,
+  todoItemSerializer,
+  todoItemDeserializer,
+  todoAttachmentArraySerializer,
+  ToDoItemMultipartRequest,
+  toDoItemMultipartRequestSerializer,
+} from "../../models/models.js";
+import {
   _TodoPage,
   _todoPageDeserializer,
   invalidTodoItemDeserializer,
@@ -10,19 +20,13 @@ import {
   todoItemPatchSerializer,
 } from "../../models/todoItems/models.js";
 import {
-  TodoItem,
-  todoItemSerializer,
-  TodoLabels,
-  standard4XXResponseDeserializer,
-  standard5XXResponseDeserializer,
-  todoAttachmentArraySerializer,
-  _createJsonResponseDeserializer,
-  ToDoItemMultipartRequest,
-  toDoItemMultipartRequestSerializer,
-  _createFormResponseDeserializer,
-  _getResponseDeserializer,
-  _updateResponseDeserializer,
-} from "../../models/models.js";
+  TodoItemsDeleteOptionalParams,
+  TodoItemsUpdateOptionalParams,
+  TodoItemsGetOptionalParams,
+  TodoItemsCreateFormOptionalParams,
+  TodoItemsCreateJsonOptionalParams,
+  TodoItemsListOptionalParams,
+} from "./options.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
@@ -34,14 +38,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@typespec/ts-http-runtime";
-import {
-  TodoItemsDeleteOptionalParams,
-  TodoItemsUpdateOptionalParams,
-  TodoItemsGetOptionalParams,
-  TodoItemsCreateFormOptionalParams,
-  TodoItemsCreateJsonOptionalParams,
-  TodoItemsListOptionalParams,
-} from "./options.js";
 
 export function _$deleteSend(
   context: Client,
@@ -132,24 +128,13 @@ export function _updateSend(
 
 export async function _updateDeserialize(
   result: PathUncheckedResponse,
-): Promise<{
-  id: number;
-  title: string;
-  createdBy: number;
-  assignedTo?: number;
-  description?: string;
-  status: "NotStarted" | "InProgress" | "Completed";
-  createdAt: Date;
-  updatedAt: Date;
-  completedAt?: Date;
-  labels?: TodoLabels;
-}> {
+): Promise<TodoItem> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return _updateResponseDeserializer(result.body);
+  return todoItemDeserializer(result.body);
 }
 
 export async function update(
@@ -157,18 +142,7 @@ export async function update(
   id: number,
   patch: TodoItemPatch,
   options: TodoItemsUpdateOptionalParams = { requestOptions: {} },
-): Promise<{
-  id: number;
-  title: string;
-  createdBy: number;
-  assignedTo?: number;
-  description?: string;
-  status: "NotStarted" | "InProgress" | "Completed";
-  createdAt: Date;
-  updatedAt: Date;
-  completedAt?: Date;
-  labels?: TodoLabels;
-}> {
+): Promise<TodoItem> {
   const result = await _updateSend(context, id, patch, options);
   return _updateDeserialize(result);
 }
@@ -198,18 +172,9 @@ export function _getSend(
     });
 }
 
-export async function _getDeserialize(result: PathUncheckedResponse): Promise<{
-  id: number;
-  title: string;
-  createdBy: number;
-  assignedTo?: number;
-  description?: string;
-  status: "NotStarted" | "InProgress" | "Completed";
-  createdAt: Date;
-  updatedAt: Date;
-  completedAt?: Date;
-  labels?: TodoLabels;
-}> {
+export async function _getDeserialize(
+  result: PathUncheckedResponse,
+): Promise<TodoItem> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -220,25 +185,14 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<{
     throw error;
   }
 
-  return _getResponseDeserializer(result.body);
+  return todoItemDeserializer(result.body);
 }
 
 export async function get(
   context: Client,
   id: number,
   options: TodoItemsGetOptionalParams = { requestOptions: {} },
-): Promise<{
-  id: number;
-  title: string;
-  createdBy: number;
-  assignedTo?: number;
-  description?: string;
-  status: "NotStarted" | "InProgress" | "Completed";
-  createdAt: Date;
-  updatedAt: Date;
-  completedAt?: Date;
-  labels?: TodoLabels;
-}> {
+): Promise<TodoItem> {
   const result = await _getSend(context, id, options);
   return _getDeserialize(result);
 }
@@ -263,18 +217,7 @@ export function _createFormSend(
 
 export async function _createFormDeserialize(
   result: PathUncheckedResponse,
-): Promise<{
-  id: number;
-  title: string;
-  createdBy: number;
-  assignedTo?: number;
-  description?: string;
-  status: "NotStarted" | "InProgress" | "Completed";
-  createdAt: Date;
-  updatedAt: Date;
-  completedAt?: Date;
-  labels?: TodoLabels;
-}> {
+): Promise<TodoItem> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -289,25 +232,14 @@ export async function _createFormDeserialize(
     throw error;
   }
 
-  return _createFormResponseDeserializer(result.body);
+  return todoItemDeserializer(result.body);
 }
 
 export async function createForm(
   context: Client,
   body: ToDoItemMultipartRequest,
   options: TodoItemsCreateFormOptionalParams = { requestOptions: {} },
-): Promise<{
-  id: number;
-  title: string;
-  createdBy: number;
-  assignedTo?: number;
-  description?: string;
-  status: "NotStarted" | "InProgress" | "Completed";
-  createdAt: Date;
-  updatedAt: Date;
-  completedAt?: Date;
-  labels?: TodoLabels;
-}> {
+): Promise<TodoItem> {
   const result = await _createFormSend(context, body, options);
   return _createFormDeserialize(result);
 }
@@ -337,18 +269,7 @@ export function _createJsonSend(
 
 export async function _createJsonDeserialize(
   result: PathUncheckedResponse,
-): Promise<{
-  id: number;
-  title: string;
-  createdBy: number;
-  assignedTo?: number;
-  description?: string;
-  status: "NotStarted" | "InProgress" | "Completed";
-  createdAt: Date;
-  updatedAt: Date;
-  completedAt?: Date;
-  labels?: TodoLabels;
-}> {
+): Promise<TodoItem> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -363,25 +284,14 @@ export async function _createJsonDeserialize(
     throw error;
   }
 
-  return _createJsonResponseDeserializer(result.body);
+  return todoItemDeserializer(result.body);
 }
 
 export async function createJson(
   context: Client,
   item: TodoItem,
   options: TodoItemsCreateJsonOptionalParams = { requestOptions: {} },
-): Promise<{
-  id: number;
-  title: string;
-  createdBy: number;
-  assignedTo?: number;
-  description?: string;
-  status: "NotStarted" | "InProgress" | "Completed";
-  createdAt: Date;
-  updatedAt: Date;
-  completedAt?: Date;
-  labels?: TodoLabels;
-}> {
+): Promise<TodoItem> {
   const result = await _createJsonSend(context, item, options);
   return _createJsonDeserialize(result);
 }

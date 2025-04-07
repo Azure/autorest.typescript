@@ -4,22 +4,15 @@
 import { OpenAIContext as Client } from "../index.js";
 import {
   errorResponseDeserializer,
-  OpenAIFile,
-  openAIFileDeserializer,
   ListFilesResponse,
   listFilesResponseDeserializer,
+  OpenAIFile,
+  openAIFileDeserializer,
   CreateFileRequest,
   createFileRequestSerializer,
   DeleteFileResponse,
   deleteFileResponseDeserializer,
 } from "../../models/models.js";
-import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
-import {
-  StreamableMethod,
-  PathUncheckedResponse,
-  createRestError,
-  operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
 import {
   FilesDownloadOptionalParams,
   FilesDeleteOptionalParams,
@@ -27,6 +20,13 @@ import {
   FilesCreateOptionalParams,
   FilesListOptionalParams,
 } from "./options.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
 
 export function _downloadSend(
   context: Client,
@@ -46,10 +46,7 @@ export function _downloadSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "text/plain", ...options.requestOptions?.headers },
     });
 }
 

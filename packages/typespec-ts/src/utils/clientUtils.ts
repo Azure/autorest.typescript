@@ -1,26 +1,27 @@
 import {
   SdkClient,
   SdkClientType,
-  SdkServiceOperation
+  SdkServiceOperation,
+  listAllServiceNamespaces
 } from "@azure-tools/typespec-client-generator-core";
-import { getNamespaceFullName, listServices } from "@typespec/compiler";
+import { getNamespaceFullName } from "@typespec/compiler";
 import { SdkContext } from "./interfaces.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { ModularClientOptions } from "../modular/interfaces.js";
 
 export function getRLCClients(dpgContext: SdkContext): SdkClient[] {
-  const services = listServices(dpgContext.program);
+  const services = listAllServiceNamespaces(dpgContext);
 
   return services.map((service) => {
-    const clientName = service.type.name + "Client";
+    const clientName = service.name + "Client";
     return {
       kind: "SdkClient",
       name: clientName,
-      service: service.type,
-      type: service.type,
+      service: service,
+      type: service,
       arm: Boolean(dpgContext.arm),
       crossLanguageDefinitionId: `${getNamespaceFullName(
-        service.type
+        service
       )}.${clientName}`
     };
   });

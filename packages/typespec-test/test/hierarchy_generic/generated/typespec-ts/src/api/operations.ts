@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { FooContext as Client, Op1OptionalParams } from "./index.js";
+import { FooContext as Client } from "./index.js";
 import { A, aSerializer } from "../models/models.js";
+import { Op1OptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

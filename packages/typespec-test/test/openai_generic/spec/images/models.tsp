@@ -1,19 +1,21 @@
 import "../common/models.tsp";
+import "@typespec/http";
 
 namespace OpenAI;
 using TypeSpec.OpenAPI;
+using TypeSpec.Http;
 
 alias SharedImageProperties = {
   /** The number of images to generate. Must be between 1 and 10. */
-  n?: ImagesN | null = 1;
+  n?: HttpPart<ImagesN | null>;
 
   /** The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. */
-  size?: IMAGE_SIZES | null = "1024x1024";
+  size?: HttpPart<IMAGE_SIZES | null>;
 
   /** The format in which the generated images are returned. Must be one of `url` or `b64_json`. */
-  response_format?: "url" | "b64_json" | null = "url";
+  response_format?: HttpPart<"url" | "b64_json" | null>;
 
-  user?: User;
+  user?: HttpPart<User>;
 };
 
 model CreateImageRequest {
@@ -44,20 +46,20 @@ model Image {
 
 model CreateImageEditRequest {
   /** A text description of the desired image(s). The maximum length is 1000 characters. */
-  prompt: string;
+  prompt: HttpPart<string>;
 
   /**
    * The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not
    * provided, image must have transparency, which will be used as the mask.
    */
-  image: bytes;
+  image: HttpPart<bytes>;
 
   /**
    *  An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where
    * `image` should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions
    * as `image`.
    */
-  mask?: bytes;
+  mask?: HttpPart<bytes>;
 
   ...SharedImageProperties;
 }
@@ -67,7 +69,7 @@ model CreateImageVariationRequest {
    * The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB,
    * and square.
    */
-  image: bytes;
+  image: HttpPart<bytes>;
 
   ...SharedImageProperties;
 }

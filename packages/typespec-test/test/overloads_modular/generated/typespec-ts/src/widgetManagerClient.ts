@@ -2,14 +2,14 @@
 // Licensed under the MIT License.
 
 import {
-  _getFooOperationsOperations,
-  FooOperationsOperations,
-} from "./classic/fooOperations/index.js";
-import {
   createWidgetManager,
   WidgetManagerContext,
   WidgetManagerClientOptionalParams,
 } from "./api/index.js";
+import {
+  FooOperationsOperations,
+  _getFooOperationsOperations,
+} from "./classic/fooOperations/index.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
 

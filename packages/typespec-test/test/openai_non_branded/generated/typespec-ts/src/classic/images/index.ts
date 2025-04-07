@@ -2,19 +2,21 @@
 
 import { OpenAIContext } from "../../api/openAIContext.js";
 import {
-  createVariation,
-  createEdit,
-  create,
-  ImagesCreateVariationOptionalParams,
-  ImagesCreateEditOptionalParams,
-  ImagesCreateOptionalParams,
-} from "../../api/images/index.js";
-import {
   CreateImageRequest,
   ImagesResponse,
   CreateImageEditRequest,
   CreateImageVariationRequest,
 } from "../../models/models.js";
+import {
+  ImagesCreateVariationOptionalParams,
+  ImagesCreateEditOptionalParams,
+  ImagesCreateOptionalParams,
+} from "../../api/images/options.js";
+import {
+  createVariation,
+  createEdit,
+  create,
+} from "../../api/images/operations.js";
 
 /** Interface representing a Images operations. */
 export interface ImagesOperations {

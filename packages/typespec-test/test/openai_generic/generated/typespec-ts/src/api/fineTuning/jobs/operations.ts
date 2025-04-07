@@ -13,13 +13,6 @@ import {
   ListFineTuningJobEventsResponse,
   listFineTuningJobEventsResponseDeserializer,
 } from "../../../models/models.js";
-import { expandUrlTemplate } from "../../../static-helpers/urlTemplate.js";
-import {
-  StreamableMethod,
-  PathUncheckedResponse,
-  createRestError,
-  operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
 import {
   FineTuningJobsCancelOptionalParams,
   FineTuningJobsListEventsOptionalParams,
@@ -27,6 +20,13 @@ import {
   FineTuningJobsListOptionalParams,
   FineTuningJobsCreateOptionalParams,
 } from "./options.js";
+import { expandUrlTemplate } from "../../../static-helpers/urlTemplate.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
 
 export function _cancelSend(
   context: Client,

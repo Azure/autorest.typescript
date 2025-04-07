@@ -10,6 +10,12 @@ import {
   GetConnectionResponse,
   getConnectionResponseDeserializer,
 } from "../../models/models.js";
+import {
+  ConnectionsGetConnectionWithSecretsOptionalParams,
+  ConnectionsGetConnectionOptionalParams,
+  ConnectionsListConnectionsOptionalParams,
+  ConnectionsGetWorkspaceOptionalParams,
+} from "./options.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
@@ -17,12 +23,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  ConnectionsGetConnectionWithSecretsOptionalParams,
-  ConnectionsGetConnectionOptionalParams,
-  ConnectionsListConnectionsOptionalParams,
-  ConnectionsGetWorkspaceOptionalParams,
-} from "./options.js";
 
 export function _getConnectionWithSecretsSend(
   context: Client,
@@ -33,10 +33,10 @@ export function _getConnectionWithSecretsSend(
   },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/connections/{connectionName}/listsecrets{?api-version}",
+    "/connections/{connectionName}/listsecrets{?api%2Dversion}",
     {
       connectionName: connectionName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -90,10 +90,10 @@ export function _getConnectionSend(
   options: ConnectionsGetConnectionOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/connections/{connectionName}{?api-version}",
+    "/connections/{connectionName}{?api%2Dversion}",
     {
       connectionName: connectionName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -136,9 +136,9 @@ export function _listConnectionsSend(
   options: ConnectionsListConnectionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/connections{?api-version,category,includeAll,target}",
+    "/connections{?api%2Dversion,category,includeAll,target}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       category: options?.category,
       includeAll: options?.includeAll,
       target: options?.target,
@@ -183,9 +183,9 @@ export function _getWorkspaceSend(
   options: ConnectionsGetWorkspaceOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/{?api-version}",
+    "/{?api%2Dversion}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

@@ -24,6 +24,7 @@ Should normal path parameter:
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { TestOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -39,10 +40,7 @@ export function _testSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "text/plain", ...options.requestOptions?.headers },
     });
 }
 

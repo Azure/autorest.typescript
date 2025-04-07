@@ -3,20 +3,22 @@
 
 import { AnomalyDetectorContext } from "../../api/anomalyDetectorContext.js";
 import {
-  detectUnivariateChangePoint,
-  detectUnivariateLastPoint,
-  detectUnivariateEntireSeries,
-  UnivariateDetectUnivariateChangePointOptionalParams,
-  UnivariateDetectUnivariateLastPointOptionalParams,
-  UnivariateDetectUnivariateEntireSeriesOptionalParams,
-} from "../../api/univariate/index.js";
-import {
   UnivariateUnivariateDetectionOptions,
   UnivariateUnivariateEntireDetectionResult,
   UnivariateUnivariateLastDetectionResult,
   UnivariateUnivariateChangePointDetectionOptions,
   UnivariateUnivariateChangePointDetectionResult,
 } from "../../models/univariate/models.js";
+import {
+  UnivariateDetectUnivariateChangePointOptionalParams,
+  UnivariateDetectUnivariateLastPointOptionalParams,
+  UnivariateDetectUnivariateEntireSeriesOptionalParams,
+} from "../../api/univariate/options.js";
+import {
+  detectUnivariateChangePoint,
+  detectUnivariateLastPoint,
+  detectUnivariateEntireSeries,
+} from "../../api/univariate/operations.js";
 
 /** Interface representing a Univariate operations. */
 export interface UnivariateOperations {

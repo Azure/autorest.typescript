@@ -1,6 +1,7 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
 import type { StreamableMethod } from '@azure-rest/core-client';
@@ -29,9 +30,14 @@ export declare interface Get {
     post(options: PostParameters): StreamableMethod<Post200Response>;
 }
 
+export declare interface Get200Headers {
+    "content-type": "application/json";
+}
+
 export declare interface Get200Response extends HttpResponse {
     status: "200";
     body: string;
+    headers: RawHttpHeaders & Get200Headers;
 }
 
 export declare type GetParameters = RequestParameters;
@@ -63,7 +69,11 @@ export declare interface PostBodyParam {
     body: AzureLocationModel;
 }
 
-export declare type PostParameters = PostBodyParam & RequestParameters;
+export declare interface PostMediaTypesParam {
+    contentType: "application/json";
+}
+
+export declare type PostParameters = PostMediaTypesParam & PostBodyParam & RequestParameters;
 
 export declare interface Put204Response extends HttpResponse {
     status: "204";
@@ -73,7 +83,11 @@ export declare interface PutBodyParam {
     body: string;
 }
 
-export declare type PutParameters = PutBodyParam & RequestParameters;
+export declare interface PutMediaTypesParam {
+    contentType: "application/json";
+}
+
+export declare type PutParameters = PutMediaTypesParam & PutBodyParam & RequestParameters;
 
 export declare interface Query {
     post(options: QueryParameters): StreamableMethod<Query204Response>;

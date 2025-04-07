@@ -12,6 +12,14 @@ import {
   SchemaContentTypeValues,
 } from "../../models/models.js";
 import {
+  SchemaOperationsRegisterSchemaOptionalParams,
+  SchemaOperationsGetSchemaIdByContentOptionalParams,
+  SchemaOperationsGetSchemaByVersionOptionalParams,
+  SchemaOperationsListSchemaVersionsOptionalParams,
+  SchemaOperationsGetSchemaByIdOptionalParams,
+  SchemaOperationsListSchemaGroupsOptionalParams,
+} from "./options.js";
+import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
@@ -23,14 +31,6 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
-import {
-  SchemaOperationsRegisterSchemaOptionalParams,
-  SchemaOperationsGetSchemaIdByContentOptionalParams,
-  SchemaOperationsGetSchemaByVersionOptionalParams,
-  SchemaOperationsListSchemaVersionsOptionalParams,
-  SchemaOperationsGetSchemaByIdOptionalParams,
-  SchemaOperationsListSchemaGroupsOptionalParams,
-} from "./options.js";
 
 export function _registerSchemaSend(
   context: Client,
@@ -43,11 +43,11 @@ export function _registerSchemaSend(
   },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/$schemaGroups/{groupName}/schemas/{name}{?api-version}",
+    "/$schemaGroups/{groupName}/schemas/{name}{?api%2Dversion}",
     {
       groupName: groupName,
       name: name,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -110,11 +110,11 @@ export function _getSchemaIdByContentSend(
   },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/$schemaGroups/{groupName}/schemas/{name}:get-id{?api-version}",
+    "/$schemaGroups/{groupName}/schemas/{name}:get-id{?api%2Dversion}",
     {
       groupName: groupName,
       name: name,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -176,12 +176,12 @@ export function _getSchemaByVersionSend(
   },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/$schemaGroups/{groupName}/schemas/{name}/versions/{schemaVersion}{?api-version}",
+    "/$schemaGroups/{groupName}/schemas/{name}/versions/{schemaVersion}{?api%2Dversion}",
     {
       groupName: groupName,
       name: name,
       schemaVersion: schemaVersion,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -234,11 +234,11 @@ export function _listSchemaVersionsSend(
   },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/$schemaGroups/{groupName}/schemas/{name}/versions{?api-version}",
+    "/$schemaGroups/{groupName}/schemas/{name}/versions{?api%2Dversion}",
     {
       groupName: groupName,
       name: name,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -290,10 +290,10 @@ export function _getSchemaByIdSend(
   options: SchemaOperationsGetSchemaByIdOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/$schemaGroups/$schemas/{id}{?api-version}",
+    "/$schemaGroups/$schemas/{id}{?api%2Dversion}",
     {
       id: id,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -334,9 +334,9 @@ export function _listSchemaGroupsSend(
   },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/$schemaGroups{?api-version}",
+    "/$schemaGroups{?api%2Dversion}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

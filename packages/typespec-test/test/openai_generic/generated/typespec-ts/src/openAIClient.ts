@@ -2,42 +2,42 @@
 // Licensed under the MIT License.
 
 import {
-  _getModerationsOperations,
-  ModerationsOperations,
-} from "./classic/moderations/index.js";
-import {
-  _getImagesOperations,
-  ImagesOperations,
-} from "./classic/images/index.js";
-import {
-  _getModelsOperations,
-  ModelsOperations,
-} from "./classic/models/index.js";
-import {
-  _getFineTunesOperations,
-  FineTunesOperations,
-} from "./classic/fineTunes/index.js";
-import { _getFilesOperations, FilesOperations } from "./classic/files/index.js";
-import {
-  _getEmbeddingsOperations,
-  EmbeddingsOperations,
-} from "./classic/embeddings/index.js";
-import { _getEditsOperations, EditsOperations } from "./classic/edits/index.js";
-import {
-  _getCompletionsOperations,
-  CompletionsOperations,
-} from "./classic/completions/index.js";
-import {
-  _getFineTuningOperations,
-  FineTuningOperations,
-} from "./classic/fineTuning/index.js";
-import { _getChatOperations, ChatOperations } from "./classic/chat/index.js";
-import { _getAudioOperations, AudioOperations } from "./classic/audio/index.js";
-import {
   createOpenAI,
   OpenAIContext,
   OpenAIClientOptionalParams,
 } from "./api/index.js";
+import {
+  ModerationsOperations,
+  _getModerationsOperations,
+} from "./classic/moderations/index.js";
+import {
+  ImagesOperations,
+  _getImagesOperations,
+} from "./classic/images/index.js";
+import {
+  ModelsOperations,
+  _getModelsOperations,
+} from "./classic/models/index.js";
+import {
+  FineTunesOperations,
+  _getFineTunesOperations,
+} from "./classic/fineTunes/index.js";
+import { FilesOperations, _getFilesOperations } from "./classic/files/index.js";
+import {
+  EmbeddingsOperations,
+  _getEmbeddingsOperations,
+} from "./classic/embeddings/index.js";
+import { EditsOperations, _getEditsOperations } from "./classic/edits/index.js";
+import {
+  CompletionsOperations,
+  _getCompletionsOperations,
+} from "./classic/completions/index.js";
+import {
+  FineTuningOperations,
+  _getFineTuningOperations,
+} from "./classic/fineTuning/index.js";
+import { ChatOperations, _getChatOperations } from "./classic/chat/index.js";
+import { AudioOperations, _getAudioOperations } from "./classic/audio/index.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { KeyCredential } from "@azure/core-auth";
 

@@ -2,6 +2,10 @@
 // Licensed under the MIT License.
 
 import { WidgetManagerContext as Client } from "../index.js";
+import {
+  FooOperationsGetAvatarAsJpegOptionalParams,
+  FooOperationsGetAvatarAsPngOptionalParams,
+} from "./options.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
@@ -9,10 +13,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  FooOperationsGetAvatarAsJpegOptionalParams,
-  FooOperationsGetAvatarAsPngOptionalParams,
-} from "./options.js";
 
 export function _getAvatarAsJpegSend(
   context: Client,
@@ -20,9 +20,9 @@ export function _getAvatarAsJpegSend(
   options: FooOperationsGetAvatarAsJpegOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/avatar{?api-version}",
+    "/avatar{?api%2Dversion}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -68,9 +68,9 @@ export function _getAvatarAsPngSend(
   options: FooOperationsGetAvatarAsPngOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/avatar{?api-version}",
+    "/avatar{?api%2Dversion}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

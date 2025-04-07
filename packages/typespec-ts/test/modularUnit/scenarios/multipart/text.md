@@ -33,6 +33,7 @@ export function requestBodySerializer(item: RequestBody): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { RequestBody, requestBodySerializer } from "../models/models.js";
+import { DoThingOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

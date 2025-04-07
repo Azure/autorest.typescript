@@ -3,11 +3,12 @@
 
 import { NetworkAnalyticsApiContext as Client } from "../index.js";
 import {
-  errorResponseDeserializer,
   _OperationListResult,
   _operationListResultDeserializer,
   Operation,
+  errorResponseDeserializer,
 } from "../../models/models.js";
+import { OperationsListOptionalParams } from "./options.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
@@ -19,16 +20,15 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { OperationsListOptionalParams } from "./options.js";
 
 export function _listSend(
   context: Client,
   options: OperationsListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/providers/Microsoft.NetworkAnalytics/operations{?api-version}",
+    "/providers/Microsoft.NetworkAnalytics/operations{?api%2Dversion}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

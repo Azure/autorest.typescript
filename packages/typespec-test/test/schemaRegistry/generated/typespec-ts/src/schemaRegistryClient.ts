@@ -2,14 +2,14 @@
 // Licensed under the MIT License.
 
 import {
-  _getSchemaOperationsOperations,
-  SchemaOperationsOperations,
-} from "./classic/schemaOperations/index.js";
-import {
   createSchemaRegistry,
   SchemaRegistryContext,
   SchemaRegistryClientOptionalParams,
 } from "./api/index.js";
+import {
+  SchemaOperationsOperations,
+  _getSchemaOperationsOperations,
+} from "./classic/schemaOperations/index.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { TokenCredential } from "@azure/core-auth";
 

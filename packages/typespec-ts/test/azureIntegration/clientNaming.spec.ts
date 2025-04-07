@@ -79,7 +79,7 @@ describe("ClientEncodedNameClient Rest Client", () => {
   it("should work with union enum name", async () => {
     const result = await client
       .path("/client/naming/union-enum/union-enum-name")
-      .post({ body: "value1", headers: { "content-type": "text/plain" } });
+      .post({ contentType: "application/json", body: "value1" });
     assert.strictEqual(result.status, "204");
   });
 
@@ -87,8 +87,8 @@ describe("ClientEncodedNameClient Rest Client", () => {
     const result = await client
       .path("/client/naming/union-enum/union-enum-member-name")
       .post({
-        body: "value1",
-        headers: { "content-type": "text/plain" }
+        contentType: "application/json",
+        body: "value1"
       });
     assert.strictEqual(result.status, "204");
   });

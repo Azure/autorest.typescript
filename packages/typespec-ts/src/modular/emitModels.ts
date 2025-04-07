@@ -31,7 +31,8 @@ import {
   SdkUnionType,
   UsageFlags,
   isPagedResultModel,
-  isReadOnly
+  isReadOnly,
+  listAllServiceNamespaces
 } from "@azure-tools/typespec-client-generator-core";
 import {
   getExternalModel,
@@ -53,12 +54,15 @@ import {
 import { isExtensibleEnum } from "./type-expressions/get-enum-expression.js";
 import { isDiscriminatedUnion } from "./serialization/serializeUtils.js";
 import { reportDiagnostic } from "../lib.js";
-import { NoTarget } from "@typespec/compiler";
+import { getNamespaceFullName, NoTarget } from "@typespec/compiler";
 import {
   getTypeExpression,
   normalizeModelPropertyName
 } from "./type-expressions/get-type-expression.js";
-import { emitQueue } from "../framework/hooks/sdkTypes.js";
+import {
+  emitQueue,
+  getAllOperationsFromClient
+} from "../framework/hooks/sdkTypes.js";
 import { resolveReference } from "../framework/reference.js";
 import { MultipartHelpers } from "./static-helpers-metadata.js";
 
@@ -116,18 +120,20 @@ export function emitTypes(
   const modelFiles = outputProject.getSourceFiles(
     sourceRoot + "/models/**/*.ts"
   );
+  const result = [];
   for (const modelFile of modelFiles) {
     if (
       modelFile.getInterfaces().length === 0 &&
       modelFile.getTypeAliases().length === 0 &&
       modelFile.getEnums().length === 0
     ) {
-      modelFile.delete();
-      return;
+      outputProject.removeSourceFile(modelFile);
+      continue;
     }
+    result.push(modelFile);
   }
 
-  return modelFiles;
+  return result;
 }
 
 function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
@@ -202,7 +208,11 @@ function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
     }
     if (apiVersionEnumOnly) {
       // generate known values enum only for api version enums
-      addDeclaration(sourceFile, knownValuesEnum, refkey(type, "knownValues"));
+      addDeclaration(
+        sourceFile,
+        knownValuesEnum,
+        refkey(knownValuesEnum.name, "knownValues")
+      );
     } else {
       if (isExtensibleEnum(context, type)) {
         addDeclaration(
@@ -255,7 +265,9 @@ export function getModelNamespaces(
   context: SdkContext,
   model: SdkType
 ): string[] {
-  const rootNamespace = context.sdkPackage.rootNamespace.split(".");
+  const deepestNamespace = getNamespaceFullName(
+    listAllServiceNamespaces(context)[0]!
+  );
   if (
     model.kind === "model" ||
     model.kind === "enum" ||
@@ -272,6 +284,7 @@ export function getModelNamespaces(
       return [];
     }
     const segments = model.namespace.split(".");
+    const rootNamespace = deepestNamespace.split(".") ?? [];
     if (segments.length > rootNamespace.length) {
       while (segments[0] === rootNamespace[0]) {
         segments.shift();
@@ -299,17 +312,33 @@ function addSerializationFunctions(
     type,
     skipDiscriminatedUnion
   );
+  let typeName = undefined;
+  switch (type.kind) {
+    case "array":
+      typeName = "array";
+      break;
+    case "dict":
+      typeName = "record";
+      break;
+    default:
+      break;
+  }
+
+  const serializerRefkey =
+    type.kind === "array" || type.kind === "dict"
+      ? refkey(type.valueType, typeName, "serializer")
+      : refkey(type, "serializer");
+  const deserailizerRefKey =
+    type.kind === "array" || type.kind === "dict"
+      ? refkey(type.valueType, typeName, "deserializer")
+      : refkey(type, "deserializer");
   if (
     serializationFunction &&
     typeof serializationFunction !== "string" &&
     serializationFunction.name &&
     !sourceFile.getFunction(serializationFunction.name)
   ) {
-    addDeclaration(
-      sourceFile,
-      serializationFunction,
-      refkey(type, "serializer")
-    );
+    addDeclaration(sourceFile, serializationFunction, serializerRefkey);
   }
   const deserializationFunction = buildModelDeserializer(
     context,
@@ -322,11 +351,7 @@ function addSerializationFunctions(
     deserializationFunction.name &&
     !sourceFile.getFunction(deserializationFunction.name)
   ) {
-    addDeclaration(
-      sourceFile,
-      deserializationFunction,
-      refkey(type, "deserializer")
-    );
+    addDeclaration(sourceFile, deserializationFunction, deserailizerRefKey);
   }
 }
 
@@ -540,11 +565,18 @@ export function normalizeModelName(
     | SdkDictionaryType
     | SdkNullableType,
   nameType: NameType = NameType.Interface,
-  skipPolymorphicUnionSuffix = false
+  skipPolymorphicUnionSuffix = false,
+  rawModelName?: boolean
 ): string {
   if (type.kind === "array") {
+    if (rawModelName) {
+      return `${normalizeModelName(context, type.valueType as any, nameType, skipPolymorphicUnionSuffix, rawModelName)}Array`;
+    }
     return `Array<${normalizeModelName(context, type.valueType as any, nameType)}>`;
   } else if (type.kind === "dict") {
+    if (rawModelName) {
+      return `${normalizeModelName(context, type.valueType as any, nameType, skipPolymorphicUnionSuffix, rawModelName)}Record`;
+    }
     return `Record<string, ${normalizeModelName(
       context,
       type.valueType as any,
@@ -708,9 +740,12 @@ function visitClient(
   context: SdkContext,
   client: SdkClientType<SdkServiceOperation>
 ) {
+  // TODO: include the client parameters
+  // https://github.com/Azure/autorest.typescript/issues/3148
   // Comment this out for now, as client initialization is not used in the generated code
-  // visitType(client.initialization, emitQueue);
-  client.methods.forEach((method) => visitClientMethod(context, method));
+  getAllOperationsFromClient(client).forEach((method) =>
+    visitClientMethod(context, method)
+  );
 }
 
 function visitClientMethod(
@@ -724,14 +759,6 @@ function visitClientMethod(
     case "basic":
       visitMethod(context, method);
       visitOperation(context, method.operation);
-      break;
-    case "clientaccessor":
-      method.response.methods.forEach((responseMethod) =>
-        visitClientMethod(context, responseMethod)
-      );
-      method.parameters.forEach((parameter) => {
-        visitType(context, parameter.type);
-      });
       break;
     default:
       throw new Error(`Unknown sdk method kind: ${(method as any).kind}`);
