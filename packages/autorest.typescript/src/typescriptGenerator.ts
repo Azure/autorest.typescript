@@ -31,8 +31,8 @@ import { generateTracingFile } from "./generators/tracingFileGenerator";
 import { getAutorestOptions } from "./autorestSession";
 import { conflictResolver } from "./conflictResolver";
 import { generateSnippetsFile } from "./generators/test/snippetsGenerator";
-import { generateTsBrowserConfig } from "./generators/static/tsconfigBrowserFileGenerator";
 import { generateVitestConfig } from "./generators/test/vitestGenerator";
+import { generateTsBrowserConfig } from "./generators/static/tsConfigBrowserFileGenerator";
 
 const prettierTypeScriptOptions: prettier.Options = {
   parser: "typescript",
