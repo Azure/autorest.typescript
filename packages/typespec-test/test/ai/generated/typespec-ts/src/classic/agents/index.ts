@@ -203,8 +203,11 @@ export interface AgentsOperations {
   ) => Promise<FileDeletionStatus>;
   /** Uploads a file for use by other operations. */
   uploadFile: (
-    file: Uint8Array,
-    purpose: FilePurpose,
+    body: {
+      file: Uint8Array;
+      purpose: FilePurpose;
+      filename?: string;
+    },
     options?: AgentsUploadFileOptionalParams,
   ) => Promise<OpenAIFile>;
   /** Gets a list of previously uploaded files. */
@@ -399,10 +402,13 @@ function _getAgents(context: AIProjectContext) {
     deleteFile: (fileId: string, options?: AgentsDeleteFileOptionalParams) =>
       deleteFile(context, fileId, options),
     uploadFile: (
-      file: Uint8Array,
-      purpose: FilePurpose,
+      body: {
+        file: Uint8Array;
+        purpose: FilePurpose;
+        filename?: string;
+      },
       options?: AgentsUploadFileOptionalParams,
-    ) => uploadFile(context, file, purpose, options),
+    ) => uploadFile(context, body, options),
     listFiles: (options?: AgentsListFilesOptionalParams) =>
       listFiles(context, options),
     listRunSteps: (

@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 export {
-  SAPUser,
   Widget,
   WidgetError,
+  SAPUser,
   AnalyzeResult,
   NonReferencedModel,
   KnownVersions,

@@ -1,6 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import {
+  FileContents,
+  createFilePartDescriptor,
+} from "../../static-helpers/multipartHelpers.js";
+
 /** An abstract representation of an input tool definition that an agent can use. */
 export interface ToolDefinition {
   /** The object type. */
@@ -3271,6 +3276,28 @@ export type FileState =
   | "error"
   | "deleting"
   | "deleted";
+
+/** model interface _UploadFileRequest */
+export interface _UploadFileRequest {
+  /** The file data, in bytes. */
+  file:
+    | FileContents
+    | { contents: FileContents; contentType?: string; filename?: string };
+  /** The intended purpose of the uploaded file. Use `assistants` for Agents and Message files, `vision` for Agents image file inputs, `batch` for Batch API, and `fine-tune` for Fine-tuning. */
+  purpose: FilePurpose;
+  /** The name of the file. */
+  filename?: string;
+}
+
+export function _uploadFileRequestSerializer(item: _UploadFileRequest): any {
+  return [
+    createFilePartDescriptor("file", item["file"], "application/octet-stream"),
+    { name: "purpose", body: item["purpose"] },
+    ...(item["filename"] === undefined
+      ? []
+      : [{ name: "filename", body: item["filename"] }]),
+  ];
+}
 
 /** A status response from a file deletion operation. */
 export interface FileDeletionStatus {

@@ -44,6 +44,7 @@ import {
   OpenAIFile,
   openAIFileDeserializer,
   FilePurpose,
+  _uploadFileRequestSerializer,
   FileDeletionStatus,
   fileDeletionStatusDeserializer,
   OpenAIPageableListOfVectorStore,
@@ -112,7 +113,6 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString } from "@azure/core-util";
 
 export function _listVectorStoreFileBatchFilesSend(
   context: Client,
@@ -123,11 +123,11 @@ export function _listVectorStoreFileBatchFilesSend(
   },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/vector_stores/{vectorStoreId}/file_batches/{batchId}/files{?api-version,filter,limit,order,after,before}",
+    "/vector_stores/{vectorStoreId}/file_batches/{batchId}/files{?api%2Dversion,filter,limit,order,after,before}",
     {
       vectorStoreId: vectorStoreId,
       batchId: batchId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       filter: options?.filter,
       limit: options?.limit,
       order: options?.order,
@@ -187,11 +187,11 @@ export function _cancelVectorStoreFileBatchSend(
   },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/vector_stores/{vectorStoreId}/file_batches/{batchId}/cancel{?api-version}",
+    "/vector_stores/{vectorStoreId}/file_batches/{batchId}/cancel{?api%2Dversion}",
     {
       vectorStoreId: vectorStoreId,
       batchId: batchId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -244,11 +244,11 @@ export function _getVectorStoreFileBatchSend(
   options: AgentsGetVectorStoreFileBatchOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/vector_stores/{vectorStoreId}/file_batches/{batchId}{?api-version}",
+    "/vector_stores/{vectorStoreId}/file_batches/{batchId}{?api%2Dversion}",
     {
       vectorStoreId: vectorStoreId,
       batchId: batchId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -300,10 +300,10 @@ export function _createVectorStoreFileBatchSend(
   },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/vector_stores/{vectorStoreId}/file_batches{?api-version}",
+    "/vector_stores/{vectorStoreId}/file_batches{?api%2Dversion}",
     {
       vectorStoreId: vectorStoreId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -365,11 +365,11 @@ export function _deleteVectorStoreFileSend(
   options: AgentsDeleteVectorStoreFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/vector_stores/{vectorStoreId}/files/{fileId}{?api-version}",
+    "/vector_stores/{vectorStoreId}/files/{fileId}{?api%2Dversion}",
     {
       vectorStoreId: vectorStoreId,
       fileId: fileId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -423,11 +423,11 @@ export function _getVectorStoreFileSend(
   options: AgentsGetVectorStoreFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/vector_stores/{vectorStoreId}/files/{fileId}{?api-version}",
+    "/vector_stores/{vectorStoreId}/files/{fileId}{?api%2Dversion}",
     {
       vectorStoreId: vectorStoreId,
       fileId: fileId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -477,10 +477,10 @@ export function _createVectorStoreFileSend(
   options: AgentsCreateVectorStoreFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/vector_stores/{vectorStoreId}/files{?api-version}",
+    "/vector_stores/{vectorStoreId}/files{?api%2Dversion}",
     {
       vectorStoreId: vectorStoreId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -540,10 +540,10 @@ export function _listVectorStoreFilesSend(
   options: AgentsListVectorStoreFilesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/vector_stores/{vectorStoreId}/files{?api-version,filter,limit,order,after,before}",
+    "/vector_stores/{vectorStoreId}/files{?api%2Dversion,filter,limit,order,after,before}",
     {
       vectorStoreId: vectorStoreId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       filter: options?.filter,
       limit: options?.limit,
       order: options?.order,
@@ -596,10 +596,10 @@ export function _deleteVectorStoreSend(
   options: AgentsDeleteVectorStoreOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/vector_stores/{vectorStoreId}{?api-version}",
+    "/vector_stores/{vectorStoreId}{?api%2Dversion}",
     {
       vectorStoreId: vectorStoreId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -643,10 +643,10 @@ export function _modifyVectorStoreSend(
   options: AgentsModifyVectorStoreOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/vector_stores/{vectorStoreId}{?api-version}",
+    "/vector_stores/{vectorStoreId}{?api%2Dversion}",
     {
       vectorStoreId: vectorStoreId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -698,10 +698,10 @@ export function _getVectorStoreSend(
   options: AgentsGetVectorStoreOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/vector_stores/{vectorStoreId}{?api-version}",
+    "/vector_stores/{vectorStoreId}{?api%2Dversion}",
     {
       vectorStoreId: vectorStoreId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -744,9 +744,9 @@ export function _createVectorStoreSend(
   options: AgentsCreateVectorStoreOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/vector_stores{?api-version}",
+    "/vector_stores{?api%2Dversion}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -804,9 +804,9 @@ export function _listVectorStoresSend(
   options: AgentsListVectorStoresOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/vector_stores{?api-version,limit,order,after,before}",
+    "/vector_stores{?api%2Dversion,limit,order,after,before}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       limit: options?.limit,
       order: options?.order,
       after: options?.after,
@@ -853,10 +853,10 @@ export function _getFileContentSend(
   options: AgentsGetFileContentOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/files/{fileId}/content{?api-version}",
+    "/files/{fileId}/content{?api%2Dversion}",
     {
       fileId: fileId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -900,10 +900,10 @@ export function _getFileSend(
   options: AgentsGetFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/files/{fileId}{?api-version}",
+    "/files/{fileId}{?api%2Dversion}",
     {
       fileId: fileId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -947,10 +947,10 @@ export function _deleteFileSend(
   options: AgentsDeleteFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/files/{fileId}{?api-version}",
+    "/files/{fileId}{?api%2Dversion}",
     {
       fileId: fileId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -990,14 +990,17 @@ export async function deleteFile(
 
 export function _uploadFileSend(
   context: Client,
-  file: Uint8Array,
-  purpose: FilePurpose,
+  body: {
+    file: Uint8Array;
+    purpose: FilePurpose;
+    filename?: string;
+  },
   options: AgentsUploadFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/files{?api-version}",
+    "/files{?api%2Dversion}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1012,11 +1015,7 @@ export function _uploadFileSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      body: {
-        file: uint8ArrayToString(file, "base64"),
-        purpose: purpose,
-        filename: options?.filename,
-      },
+      body: _uploadFileRequestSerializer(body),
     });
 }
 
@@ -1034,11 +1033,14 @@ export async function _uploadFileDeserialize(
 /** Uploads a file for use by other operations. */
 export async function uploadFile(
   context: Client,
-  file: Uint8Array,
-  purpose: FilePurpose,
+  body: {
+    file: Uint8Array;
+    purpose: FilePurpose;
+    filename?: string;
+  },
   options: AgentsUploadFileOptionalParams = { requestOptions: {} },
 ): Promise<OpenAIFile> {
-  const result = await _uploadFileSend(context, file, purpose, options);
+  const result = await _uploadFileSend(context, body, options);
   return _uploadFileDeserialize(result);
 }
 
@@ -1047,9 +1049,9 @@ export function _listFilesSend(
   options: AgentsListFilesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/files{?api-version,purpose}",
+    "/files{?api%2Dversion,purpose}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       purpose: options?.purpose,
     },
     {
@@ -1094,12 +1096,12 @@ export function _listRunStepsSend(
   options: AgentsListRunStepsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}/runs/{runId}/steps{?api-version,include[],limit,order,after,before}",
+    "/threads/{threadId}/runs/{runId}/steps{?api%2Dversion,include%5B%5D,limit,order,after,before}",
     {
       threadId: threadId,
       runId: runId,
-      "api-version": context.apiVersion,
-      "include[]": !options?.include
+      "api%2Dversion": context.apiVersion,
+      "include%5B%5D": !options?.include
         ? options?.include
         : options?.include.map((p: any) => {
             return p;
@@ -1154,13 +1156,13 @@ export function _getRunStepSend(
   options: AgentsGetRunStepOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}/runs/{runId}/steps/{stepId}{?api-version,include[]}",
+    "/threads/{threadId}/runs/{runId}/steps/{stepId}{?api%2Dversion,include%5B%5D}",
     {
       threadId: threadId,
       runId: runId,
       stepId: stepId,
-      "api-version": context.apiVersion,
-      "include[]": !options?.include
+      "api%2Dversion": context.apiVersion,
+      "include%5B%5D": !options?.include
         ? options?.include
         : options?.include.map((p: any) => {
             return p;
@@ -1216,9 +1218,9 @@ export function _createThreadAndRunSend(
   options: AgentsCreateThreadAndRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/runs{?api-version}",
+    "/threads/runs{?api%2Dversion}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1294,11 +1296,11 @@ export function _cancelRunSend(
   options: AgentsCancelRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}/runs/{runId}/cancel{?api-version}",
+    "/threads/{threadId}/runs/{runId}/cancel{?api%2Dversion}",
     {
       threadId: threadId,
       runId: runId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1345,11 +1347,11 @@ export function _submitToolOutputsToRunSend(
   options: AgentsSubmitToolOutputsToRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}/runs/{runId}/submit_tool_outputs{?api-version}",
+    "/threads/{threadId}/runs/{runId}/submit_tool_outputs{?api%2Dversion}",
     {
       threadId: threadId,
       runId: runId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1407,11 +1409,11 @@ export function _updateRunSend(
   options: AgentsUpdateRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}/runs/{runId}{?api-version}",
+    "/threads/{threadId}/runs/{runId}{?api%2Dversion}",
     {
       threadId: threadId,
       runId: runId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1459,11 +1461,11 @@ export function _getRunSend(
   options: AgentsGetRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}/runs/{runId}{?api-version}",
+    "/threads/{threadId}/runs/{runId}{?api%2Dversion}",
     {
       threadId: threadId,
       runId: runId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1508,10 +1510,10 @@ export function _listRunsSend(
   options: AgentsListRunsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}/runs{?api-version,limit,order,after,before}",
+    "/threads/{threadId}/runs{?api%2Dversion,limit,order,after,before}",
     {
       threadId: threadId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       limit: options?.limit,
       order: options?.order,
       after: options?.after,
@@ -1560,11 +1562,11 @@ export function _createRunSend(
   options: AgentsCreateRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}/runs{?api-version,include[]}",
+    "/threads/{threadId}/runs{?api%2Dversion,include%5B%5D}",
     {
       threadId: threadId,
-      "api-version": context.apiVersion,
-      "include[]": !options?.include
+      "api%2Dversion": context.apiVersion,
+      "include%5B%5D": !options?.include
         ? options?.include
         : options?.include.map((p: any) => {
             return p;
@@ -1643,11 +1645,11 @@ export function _updateMessageSend(
   options: AgentsUpdateMessageOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}/messages/{messageId}{?api-version}",
+    "/threads/{threadId}/messages/{messageId}{?api%2Dversion}",
     {
       threadId: threadId,
       messageId: messageId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1700,11 +1702,11 @@ export function _getMessageSend(
   options: AgentsGetMessageOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}/messages/{messageId}{?api-version}",
+    "/threads/{threadId}/messages/{messageId}{?api%2Dversion}",
     {
       threadId: threadId,
       messageId: messageId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1749,10 +1751,10 @@ export function _listMessagesSend(
   options: AgentsListMessagesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}/messages{?api-version,runId,limit,order,after,before}",
+    "/threads/{threadId}/messages{?api%2Dversion,runId,limit,order,after,before}",
     {
       threadId: threadId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       runId: options?.runId,
       limit: options?.limit,
       order: options?.order,
@@ -1803,10 +1805,10 @@ export function _createMessageSend(
   options: AgentsCreateMessageOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}/messages{?api-version}",
+    "/threads/{threadId}/messages{?api%2Dversion}",
     {
       threadId: threadId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1867,10 +1869,10 @@ export function _deleteThreadSend(
   options: AgentsDeleteThreadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}{?api-version}",
+    "/threads/{threadId}{?api%2Dversion}",
     {
       threadId: threadId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1914,10 +1916,10 @@ export function _updateThreadSend(
   options: AgentsUpdateThreadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}{?api-version}",
+    "/threads/{threadId}{?api%2Dversion}",
     {
       threadId: threadId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1968,10 +1970,10 @@ export function _getThreadSend(
   options: AgentsGetThreadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads/{threadId}{?api-version}",
+    "/threads/{threadId}{?api%2Dversion}",
     {
       threadId: threadId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -2014,9 +2016,9 @@ export function _createThreadSend(
   options: AgentsCreateThreadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/threads{?api-version}",
+    "/threads{?api%2Dversion}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -2069,10 +2071,10 @@ export function _deleteAgentSend(
   options: AgentsDeleteAgentOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/assistants/{assistantId}{?api-version}",
+    "/assistants/{assistantId}{?api%2Dversion}",
     {
       assistantId: assistantId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -2116,10 +2118,10 @@ export function _updateAgentSend(
   options: AgentsUpdateAgentOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/assistants/{assistantId}{?api-version}",
+    "/assistants/{assistantId}{?api%2Dversion}",
     {
       assistantId: assistantId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -2182,10 +2184,10 @@ export function _getAgentSend(
   options: AgentsGetAgentOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/assistants/{assistantId}{?api-version}",
+    "/assistants/{assistantId}{?api%2Dversion}",
     {
       assistantId: assistantId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -2228,9 +2230,9 @@ export function _listAgentsSend(
   options: AgentsListAgentsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/assistants{?api-version,limit,order,after,before}",
+    "/assistants{?api%2Dversion,limit,order,after,before}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       limit: options?.limit,
       order: options?.order,
       after: options?.after,
@@ -2277,9 +2279,9 @@ export function _createAgentSend(
   options: AgentsCreateAgentOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/assistants{?api-version}",
+    "/assistants{?api%2Dversion}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
