@@ -1,0 +1,18 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    emitter-output-dir: "{project-root}"
+    generate-metadata: true
+    generate-test: false
+    add-credentials: false
+    flavor: azure
+    azure-sdk-for-js: false
+    is-typespec-test: true
+    title: VersioningRemovedClient
+    is-modular-library: true
+    hierarchy-client: false
+    api-version: "v3"
+    package-details:
+      name: "@msinternal/versionning-removed"
+      description: "Versioning Removed Test Service"
