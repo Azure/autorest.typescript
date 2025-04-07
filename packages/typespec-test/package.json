@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "dependencies": {
-    "@azure-tools/typespec-ts": "workspace:^0.38.5",
+    "@azure-tools/typespec-ts": "workspace:^0.38.6",
     "@typespec/openapi": "next",
     "@azure-tools/typespec-autorest": "next",
     "@typespec/openapi3": "next",
@@ -21,7 +21,7 @@
   "devDependencies": {
     "ts-node": "^8.5.2",
     "@types/node": "^18.0.0",
-    "typescript": "~5.7.2",
+    "typescript": "~5.8.2",
     "@types/mocha": "^5.2.7"
   },
   "scripts": {
