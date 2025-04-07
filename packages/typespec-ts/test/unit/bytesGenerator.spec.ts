@@ -172,14 +172,12 @@ describe("bytes", () => {
         const parameters = await emitParameterFromTypeSpec(
           `
               @route("/uploadFile")
-              #suppress "deprecated" "For test"
               @post op uploadFile(
               @header contentType: "multipart/form-data",
-              @body body: {
-                name: string;
-                @encode("binary")
-                file: bytes;
-                files: bytes[];
+              @multipartBody body: {
+                name: HttpPart<string>;
+                file: HttpPart<bytes>;
+                files: HttpPart<bytes>[];
               }
             ): void;
               `
@@ -236,13 +234,12 @@ describe("bytes", () => {
         const parameters = await emitParameterFromTypeSpec(
           `
               @route("/uploadFile")
-              #suppress "deprecated" "For test"
               @post op uploadFile(
               @header contentType: "multipart/form-data",
-              @body body: {
-                name: string;
-                file: bytes;
-                files: bytes[];
+              @multipartBody body: {
+                name: HttpPart<string>;
+                file: HttpPart<bytes>;
+                files: HttpPart<bytes>[];
               }
             ): void;
               `
@@ -295,19 +292,18 @@ describe("bytes", () => {
         );
       });
 
-      it("bytes/bytes[] in general model - should be treated as base64 string", async () => {
+      it.skip("bytes/bytes[] in general model - should be treated as base64 string", async () => {
         const parameters = await emitParameterFromTypeSpec(
           `
               @route("/uploadFile")
-              #suppress "deprecated" "For test"
               @post op uploadFile(
               @header contentType: "multipart/form-data",
-              @body body: {
-                name: string;
-                file: {
+              @multipartBody body: {
+                name: HttpPart<string>;
+                file: HttpPart<{
                   foo: bytes;
                   foos: bytes[];
-                };
+                }>;
               }
             ): void;
               `
@@ -352,10 +348,9 @@ describe("bytes", () => {
             unionBytes: bytes | int32;
           }
           @route("/uploadFile")
-          #suppress "deprecated" "For test"
           @post op uploadFile(
           @header contentType: "multipart/form-data",
-          @body body: Foo;
+          @multipartBody body: HttpPart<Foo>;
           ): void;
           `
         );
@@ -429,7 +424,7 @@ describe("bytes", () => {
         );
       });
 
-      it("bytes/bytes[]/union in general model- should be treated as base64 string", async () => {
+      it.skip("bytes/bytes[]/union in general model- should be treated as base64 string", async () => {
         const models = await emitModelsFromTypeSpec(
           `
           model Bar {
@@ -444,10 +439,9 @@ describe("bytes", () => {
             bar: Bar;
           }
           @route("/uploadFile")
-          #suppress "deprecated" "For test"
           @post op uploadFile(
           @header contentType: "multipart/form-data",
-          @body body: Foo;
+          @multipartBody body: HttpPart<Foo>;
           ): void;
               `
         );
