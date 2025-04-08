@@ -48,7 +48,7 @@ export function _createSend(
       },
       body: {
         messages: chatMessageUnionArraySerializer(messages),
-        stream: stream,
+        stream: false,
         sessionState: options?.sessionState,
         context: options?.context,
       },
@@ -103,7 +103,7 @@ export function _createStreamingSend(
       },
       body: {
         messages: chatMessageUnionArraySerializer(messages),
-        stream: stream,
+        stream: true,
         sessionState: options?.sessionState,
         context: options?.context,
       },

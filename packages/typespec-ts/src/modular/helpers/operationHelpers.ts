@@ -1328,6 +1328,8 @@ export function serializeRequestValue(
       }
     case "model": // this is to build serialization logic for spread model types
       return `{${getRequestModelMapping(context, type, "").join(",")}}`;
+    case "constant":
+      return `${nullOrUndefinedPrefix}${getConstantValue(type)}`;
     case "nullable":
       return serializeRequestValue(
         context,
@@ -1425,6 +1427,8 @@ export function deserializeResponseValue(
       }
     case "model": // generate deserialize logic for spread model types
       return `{${getResponseMapping(context, type, "").join(",")}}`;
+    case "constant":
+      return `${nullOrUndefinedPrefix}${getConstantValue(type)}`;
     case "nullable":
       return deserializeResponseValue(
         context,
