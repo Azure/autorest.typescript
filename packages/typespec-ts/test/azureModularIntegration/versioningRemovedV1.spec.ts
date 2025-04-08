@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import { RemovedClient } from "./generated/versioning/removedV1/src/index.js";
 
-describe.only("VersioningRemoved Rest Client", () => {
+describe("VersioningRemoved Rest Client", () => {
     let client1: RemovedClient;
 
     beforeEach(() => {
