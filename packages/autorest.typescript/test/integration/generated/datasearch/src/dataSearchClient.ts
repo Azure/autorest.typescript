@@ -7,14 +7,14 @@
  */
 
 import * as coreHttpCompat from "@azure/core-http-compat";
-import {
+import type {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import { DocumentsImpl } from "./operations";
-import { Documents } from "./operationsInterfaces";
-import { DataSearchClientOptionalParams } from "./models";
+import { DocumentsImpl } from "./operations/index.js";
+import type { Documents } from "./operationsInterfaces/index.js";
+import type { DataSearchClientOptionalParams } from "./models/index.js";
 
 export class DataSearchClient extends coreHttpCompat.ExtendedServiceClient {
   endpoint: string;

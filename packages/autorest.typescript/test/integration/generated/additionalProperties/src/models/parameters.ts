@@ -6,7 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { OperationParameter, OperationURLParameter } from "@azure/core-client";
+import type {
+  OperationParameter,
+  OperationURLParameter,
+} from "@azure/core-client";
 import {
   PetAPTrue as PetAPTrueMapper,
   CatAPTrue as CatAPTrueMapper,
@@ -14,7 +17,7 @@ import {
   PetAPString as PetAPStringMapper,
   PetAPInProperties as PetAPInPropertiesMapper,
   PetAPInPropertiesWithAPString as PetAPInPropertiesWithAPStringMapper,
-} from "../models/mappers";
+} from "../models/mappers.js";
 
 export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],

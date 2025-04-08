@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { SimplePollerLike, OperationState } from "@azure/core-lro";
-import {
+import type { SimplePollerLike, OperationState } from "@azure/core-lro";
+import type {
   LROsCustomHeaderPutAsyncRetrySucceededOptionalParams,
   LROsCustomHeaderPutAsyncRetrySucceededResponse,
   LROsCustomHeaderPut201CreatingSucceeded200OptionalParams,
@@ -16,7 +16,7 @@ import {
   LROsCustomHeaderPost202Retry200Response,
   LROsCustomHeaderPostAsyncRetrySucceededOptionalParams,
   LROsCustomHeaderPostAsyncRetrySucceededResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a LROsCustomHeader. */
 export interface LROsCustomHeader {

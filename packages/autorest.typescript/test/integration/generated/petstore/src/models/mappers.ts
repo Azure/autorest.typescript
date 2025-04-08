@@ -1,4 +1,4 @@
-import * as coreClient from "@azure/core-client";
+import type * as coreClient from "@azure/core-client";
 
 export const Pet: coreClient.CompositeMapper = {
   serializedName: "Pet",

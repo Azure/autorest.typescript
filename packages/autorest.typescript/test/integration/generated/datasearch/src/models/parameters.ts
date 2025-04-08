@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   OperationParameter,
   OperationURLParameter,
   OperationQueryParameter,
@@ -16,7 +16,7 @@ import {
   SuggestRequest as SuggestRequestMapper,
   IndexBatch as IndexBatchMapper,
   AutocompleteRequest as AutocompleteRequestMapper,
-} from "../models/mappers";
+} from "../models/mappers.js";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",

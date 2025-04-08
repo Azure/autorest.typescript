@@ -1,20 +1,17 @@
-import { IntegrationRuntimeObjectMetadata } from "../operationsInterfaces";
+import type { IntegrationRuntimeObjectMetadata } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { DataFactoryClient } from "../dataFactoryClient";
-import {
-  SimplePollerLike,
-  OperationState,
-  createHttpPoller,
-} from "@azure/core-lro";
-import { createLroSpec } from "../lroImpl";
-import {
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import type { DataFactoryClient } from "../dataFactoryClient.js";
+import type { SimplePollerLike, OperationState } from "@azure/core-lro";
+import { createHttpPoller } from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl.js";
+import type {
   IntegrationRuntimeObjectMetadataRefreshOptionalParams,
   IntegrationRuntimeObjectMetadataRefreshResponse,
   IntegrationRuntimeObjectMetadataGetOptionalParams,
   IntegrationRuntimeObjectMetadataGetResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing IntegrationRuntimeObjectMetadata operations. */
 export class IntegrationRuntimeObjectMetadataImpl

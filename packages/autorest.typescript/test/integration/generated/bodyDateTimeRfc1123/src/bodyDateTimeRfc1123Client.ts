@@ -7,9 +7,9 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { Datetimerfc1123Impl } from "./operations";
-import { Datetimerfc1123 } from "./operationsInterfaces";
-import { BodyDateTimeRfc1123ClientOptionalParams } from "./models";
+import { Datetimerfc1123Impl } from "./operations/index.js";
+import type { Datetimerfc1123 } from "./operationsInterfaces/index.js";
+import type { BodyDateTimeRfc1123ClientOptionalParams } from "./models/index.js";
 
 export class BodyDateTimeRfc1123Client extends coreClient.ServiceClient {
   $host: string;

@@ -1,4 +1,4 @@
-import * as coreClient from "@azure/core-client";
+import type * as coreClient from "@azure/core-client";
 
 /** Known values of {@link Enum0} that the service accepts. */
 export enum KnownEnum0 {

@@ -7,8 +7,8 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import * as coreAuth from "@azure/core-auth";
-import { IoTSpacesClientOptionalParams } from "./models";
+import type * as coreAuth from "@azure/core-auth";
+import type { IoTSpacesClientOptionalParams } from "./models/index.js";
 
 export class IoTSpacesClient extends coreClient.ServiceClient {
   /**

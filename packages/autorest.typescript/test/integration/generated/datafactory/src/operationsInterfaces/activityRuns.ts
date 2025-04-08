@@ -1,8 +1,8 @@
-import {
+import type {
   RunFilterParameters,
   ActivityRunsQueryByPipelineRunOptionalParams,
   ActivityRunsQueryByPipelineRunResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a ActivityRuns. */
 export interface ActivityRuns {

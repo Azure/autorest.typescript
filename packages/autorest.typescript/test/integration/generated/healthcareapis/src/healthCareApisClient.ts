@@ -1,5 +1,5 @@
 import * as coreClient from "@azure/core-client";
-import {
+import type {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
@@ -16,8 +16,8 @@ import {
   FhirServicesImpl,
   OperationsImpl,
   OperationResultsImpl,
-} from "./operations";
-import {
+} from "./operations/index.js";
+import type {
   Services,
   PrivateEndpointConnections,
   PrivateLinkResources,
@@ -29,8 +29,8 @@ import {
   FhirServices,
   Operations,
   OperationResults,
-} from "./operationsInterfaces";
-import { HealthCareApisClientOptionalParams } from "./models";
+} from "./operationsInterfaces/index.js";
+import type { HealthCareApisClientOptionalParams } from "./models/index.js";
 
 export class HealthCareApisClient extends coreClient.ServiceClient {
   $host: string;

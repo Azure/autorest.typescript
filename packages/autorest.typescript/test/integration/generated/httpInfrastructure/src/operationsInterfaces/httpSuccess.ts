@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   HttpSuccessHead200OptionalParams,
   HttpSuccessGet200OptionalParams,
   HttpSuccessGet200Response,
@@ -28,7 +28,7 @@ import {
   HttpSuccessPost204OptionalParams,
   HttpSuccessDelete204OptionalParams,
   HttpSuccessHead404OptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a HttpSuccess. */
 export interface HttpSuccess {

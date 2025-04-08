@@ -6,12 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Enum } from "../operationsInterfaces";
+import type { Enum } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { BodyStringClient } from "../bodyStringClient";
-import {
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import type { BodyStringClient } from "../bodyStringClient.js";
+import type {
   EnumGetNotExpandableOptionalParams,
   EnumGetNotExpandableResponse,
   Colors,
@@ -23,7 +23,7 @@ import {
   EnumGetReferencedConstantResponse,
   RefColorConstant,
   EnumPutReferencedConstantOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing Enum operations. */
 export class EnumImpl implements Enum {

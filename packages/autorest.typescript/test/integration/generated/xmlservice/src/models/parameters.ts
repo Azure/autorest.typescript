@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   OperationParameter,
   OperationURLParameter,
   OperationQueryParameter,
@@ -21,7 +21,7 @@ import {
   JsonInput as JsonInputMapper,
   ModelWithByteProperty as ModelWithBytePropertyMapper,
   ModelWithUrlProperty as ModelWithUrlPropertyMapper,
-} from "../models/mappers";
+} from "../models/mappers.js";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",

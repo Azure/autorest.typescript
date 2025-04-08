@@ -1,9 +1,9 @@
 import * as coreClient from "@azure/core-client";
 import * as coreHttpCompat from "@azure/core-http-compat";
-import * as coreAuth from "@azure/core-auth";
-import * as Parameters from "./models/parameters";
-import * as Mappers from "./models/mappers";
-import {
+import type * as coreAuth from "@azure/core-auth";
+import * as Parameters from "./models/parameters.js";
+import * as Mappers from "./models/mappers.js";
+import type {
   PetStoreOptionalParams,
   AddPetUsingByteArray$binaryOptionalParams,
   AddPetUsingByteArray$xmlOptionalParams,
@@ -37,7 +37,7 @@ import {
   GetUserByNameResponse,
   UpdateUserOptionalParams,
   DeleteUserOptionalParams,
-} from "./models";
+} from "./models/index.js";
 
 export class PetStore extends coreHttpCompat.ExtendedServiceClient {
   $host: string;

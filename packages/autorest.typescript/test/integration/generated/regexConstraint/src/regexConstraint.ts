@@ -7,12 +7,12 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import * as Parameters from "./models/parameters";
-import {
+import * as Parameters from "./models/parameters.js";
+import type {
   RegexConstraintOptionalParams,
   ApiV1ValueGetOptionalParams,
   ApiV1ValueGetResponse,
-} from "./models";
+} from "./models/index.js";
 
 export class RegexConstraint extends coreClient.ServiceClient {
   $host: string;

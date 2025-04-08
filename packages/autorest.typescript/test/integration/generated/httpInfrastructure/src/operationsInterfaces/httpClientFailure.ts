@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   HttpClientFailureHead400OptionalParams,
   HttpClientFailureGet400OptionalParams,
   HttpClientFailureOptions400OptionalParams,
@@ -33,7 +33,7 @@ import {
   HttpClientFailureGet416OptionalParams,
   HttpClientFailureDelete417OptionalParams,
   HttpClientFailureHead429OptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a HttpClientFailure. */
 export interface HttpClientFailure {

@@ -6,6 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./models";
-export { BodyDictionaryClient } from "./bodyDictionaryClient";
-export * from "./operationsInterfaces";
+export * from "./models/index.js";
+export { BodyDictionaryClient } from "./bodyDictionaryClient.js";
+export * from "./operationsInterfaces/index.js";

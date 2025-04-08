@@ -7,7 +7,7 @@
  */
 
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
-import {
+import type {
   ExplicitPutOptionalBinaryBodyOptionalParams,
   ExplicitPutRequiredBinaryBodyOptionalParams,
   ExplicitPostRequiredIntegerParameterOptionalParams,
@@ -37,7 +37,7 @@ import {
   ExplicitPostOptionalArrayPropertyOptionalParams,
   ExplicitPostRequiredArrayHeaderOptionalParams,
   ExplicitPostOptionalArrayHeaderOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Explicit. */
 export interface Explicit {

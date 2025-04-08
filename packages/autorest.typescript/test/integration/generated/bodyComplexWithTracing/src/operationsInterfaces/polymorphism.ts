@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   PolymorphismGetValidOptionalParams,
   PolymorphismGetValidResponse,
   FishUnion,
@@ -24,7 +24,7 @@ import {
   PolymorphismPutMissingDiscriminatorOptionalParams,
   PolymorphismPutMissingDiscriminatorResponse,
   PolymorphismPutValidMissingRequiredOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Polymorphism. */
 export interface Polymorphism {

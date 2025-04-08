@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   HttpRedirectsHead300OptionalParams,
   HttpRedirectsHead300Response,
   HttpRedirectsGet300OptionalParams,
@@ -39,7 +39,7 @@ import {
   HttpRedirectsPost307Response,
   HttpRedirectsDelete307OptionalParams,
   HttpRedirectsDelete307Response,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a HttpRedirects. */
 export interface HttpRedirects {

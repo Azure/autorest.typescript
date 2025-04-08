@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   Datetimerfc1123GetNullOptionalParams,
   Datetimerfc1123GetNullResponse,
   Datetimerfc1123GetInvalidOptionalParams,
@@ -23,7 +23,7 @@ import {
   Datetimerfc1123PutUtcMinDateTimeOptionalParams,
   Datetimerfc1123GetUtcMinDateTimeOptionalParams,
   Datetimerfc1123GetUtcMinDateTimeResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Datetimerfc1123. */
 export interface Datetimerfc1123 {

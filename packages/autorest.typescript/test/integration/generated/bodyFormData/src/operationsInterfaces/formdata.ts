@@ -7,14 +7,14 @@
  */
 
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
-import {
+import type {
   FormdataUploadFileOptionalParams,
   FormdataUploadFileResponse,
   FormdataUploadFileViaBodyOptionalParams,
   FormdataUploadFileViaBodyResponse,
   FormdataUploadFilesOptionalParams,
   FormdataUploadFilesResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Formdata. */
 export interface Formdata {

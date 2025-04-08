@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   DocumentsCountOptionalParams,
   DocumentsCountResponse,
   DocumentsSearchGetOptionalParams,
@@ -29,7 +29,7 @@ import {
   AutocompleteRequest,
   DocumentsAutocompletePostOptionalParams,
   DocumentsAutocompletePostResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Documents. */
 export interface Documents {

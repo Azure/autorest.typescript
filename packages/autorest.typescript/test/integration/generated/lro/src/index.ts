@@ -6,6 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./models";
-export { LROClient } from "./lROClient";
-export * from "./operationsInterfaces";
+export * from "./models/index.js";
+export { LROClient } from "./lROClient.js";
+export * from "./operationsInterfaces/index.js";

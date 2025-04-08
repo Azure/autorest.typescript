@@ -1,6 +1,6 @@
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { SimplePollerLike, OperationState } from "@azure/core-lro";
-import {
+import type { PagedAsyncIterableIterator } from "@azure/core-paging";
+import type { SimplePollerLike, OperationState } from "@azure/core-lro";
+import type {
   DataFlowDebugSessionInfo,
   DataFlowDebugSessionQueryByFactoryOptionalParams,
   CreateDataFlowDebugSessionRequest,
@@ -14,7 +14,7 @@ import {
   DataFlowDebugCommandRequest,
   DataFlowDebugSessionExecuteCommandOptionalParams,
   DataFlowDebugSessionExecuteCommandResponse,
-} from "../models";
+} from "../models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a DataFlowDebugSession. */

@@ -6,12 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   IntPutOptionalParams,
   IntPutResponse,
   IntGetOptionalParams,
   IntGetResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Int. */
 export interface Int {

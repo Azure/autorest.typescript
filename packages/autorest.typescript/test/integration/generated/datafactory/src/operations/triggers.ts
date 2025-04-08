@@ -1,17 +1,17 @@
-import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
-import { setContinuationToken } from "../pagingHelper";
-import { Triggers } from "../operationsInterfaces";
+import type {
+  PagedAsyncIterableIterator,
+  PageSettings,
+} from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper.js";
+import type { Triggers } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { DataFactoryClient } from "../dataFactoryClient";
-import {
-  SimplePollerLike,
-  OperationState,
-  createHttpPoller,
-} from "@azure/core-lro";
-import { createLroSpec } from "../lroImpl";
-import {
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import type { DataFactoryClient } from "../dataFactoryClient.js";
+import type { SimplePollerLike, OperationState } from "@azure/core-lro";
+import { createHttpPoller } from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl.js";
+import type {
   TriggerResource,
   TriggersListByFactoryNextOptionalParams,
   TriggersListByFactoryOptionalParams,
@@ -33,7 +33,7 @@ import {
   TriggersStartOptionalParams,
   TriggersStopOptionalParams,
   TriggersListByFactoryNextResponse,
-} from "../models";
+} from "../models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Triggers operations. */

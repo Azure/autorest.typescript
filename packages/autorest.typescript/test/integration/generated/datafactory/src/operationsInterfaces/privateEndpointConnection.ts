@@ -1,11 +1,11 @@
-import {
+import type {
   PrivateLinkConnectionApprovalRequestResource,
   PrivateEndpointConnectionCreateOrUpdateOptionalParams,
   PrivateEndpointConnectionCreateOrUpdateResponse,
   PrivateEndpointConnectionGetOptionalParams,
   PrivateEndpointConnectionGetResponse,
   PrivateEndpointConnectionDeleteOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a PrivateEndpointConnection. */
 export interface PrivateEndpointConnection {

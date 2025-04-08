@@ -7,7 +7,7 @@
  */
 
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
-import {
+import type {
   PathCreateOptionalParams,
   PathCreateResponse,
   PathUpdateAction,
@@ -23,7 +23,7 @@ import {
   PathGetPropertiesResponse,
   PathDeleteOptionalParams,
   PathDeleteResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a PathOperations. */
 export interface PathOperations {

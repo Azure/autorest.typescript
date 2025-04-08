@@ -6,12 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   PolymorphicrecursiveGetValidOptionalParams,
   PolymorphicrecursiveGetValidResponse,
   FishUnion,
   PolymorphicrecursivePutValidOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Polymorphicrecursive. */
 export interface Polymorphicrecursive {

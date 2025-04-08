@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
-import * as coreHttpCompat from "@azure/core-http-compat";
+import type * as coreClient from "@azure/core-client";
+import type * as coreHttpCompat from "@azure/core-http-compat";
 
 /** Optional parameters. */
 export interface HomeOptionalParams extends coreClient.OperationOptions {}

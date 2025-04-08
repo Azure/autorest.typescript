@@ -6,19 +6,16 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { tracingClient } from "../tracing";
-import { LrosaDs } from "../operationsInterfaces";
+import { tracingClient } from "../tracing.js";
+import type { LrosaDs } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { LROClient } from "../lROClient";
-import {
-  SimplePollerLike,
-  OperationState,
-  createHttpPoller,
-} from "@azure/core-lro";
-import { createLroSpec } from "../lroImpl";
-import {
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import type { LROClient } from "../lROClient.js";
+import type { SimplePollerLike, OperationState } from "@azure/core-lro";
+import { createHttpPoller } from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl.js";
+import type {
   LrosaDsPutNonRetry400OptionalParams,
   LrosaDsPutNonRetry400Response,
   LrosaDsPutNonRetry201Creating400OptionalParams,
@@ -70,7 +67,7 @@ import {
   LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse,
   LrosaDsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams,
   LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing LrosaDs operations. */
 export class LrosaDsImpl implements LrosaDs {

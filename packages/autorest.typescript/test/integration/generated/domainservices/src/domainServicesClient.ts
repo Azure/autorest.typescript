@@ -1,5 +1,5 @@
 import * as coreClient from "@azure/core-client";
-import {
+import type {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
@@ -9,14 +9,14 @@ import {
   DomainServicesImpl,
   OuContainerOperationsImpl,
   OuContainerOperationGrpImpl,
-} from "./operations";
-import {
+} from "./operations/index.js";
+import type {
   DomainServiceOperations,
   DomainServices,
   OuContainerOperations,
   OuContainerOperationGrp,
-} from "./operationsInterfaces";
-import { DomainServicesClientOptionalParams } from "./models";
+} from "./operationsInterfaces/index.js";
+import type { DomainServicesClientOptionalParams } from "./models/index.js";
 
 export class DomainServicesClient extends coreClient.ServiceClient {
   $host: string;

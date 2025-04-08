@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   EnumGetNotExpandableOptionalParams,
   EnumGetNotExpandableResponse,
   Colors,
@@ -18,7 +18,7 @@ import {
   EnumGetReferencedConstantResponse,
   RefColorConstant,
   EnumPutReferencedConstantOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Enum. */
 export interface Enum {

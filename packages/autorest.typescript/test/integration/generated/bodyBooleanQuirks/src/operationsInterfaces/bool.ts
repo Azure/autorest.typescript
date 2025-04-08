@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   BoolGetTrueOptionalParams,
   BoolGetTrueResponse,
   BoolPutTrueOptionalParams,
@@ -17,7 +17,7 @@ import {
   BoolGetNullResponse,
   BoolGetInvalidOptionalParams,
   BoolGetInvalidResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Bool. */
 export interface Bool {

@@ -6,13 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { tracingClient } from "../tracing";
-import { Dictionary } from "../operationsInterfaces";
+import { tracingClient } from "../tracing.js";
+import type { Dictionary } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { BodyComplexWithTracing } from "../bodyComplexWithTracing";
-import {
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import type { BodyComplexWithTracing } from "../bodyComplexWithTracing.js";
+import type {
   DictionaryGetValidOptionalParams,
   DictionaryGetValidResponse,
   DictionaryWrapper,
@@ -24,7 +24,7 @@ import {
   DictionaryGetNullResponse,
   DictionaryGetNotProvidedOptionalParams,
   DictionaryGetNotProvidedResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing Dictionary operations. */
 export class DictionaryImpl implements Dictionary {

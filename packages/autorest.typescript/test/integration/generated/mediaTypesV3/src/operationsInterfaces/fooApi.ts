@@ -7,14 +7,14 @@
  */
 
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
-import {
+import type {
   FooApiPostSendOnDefault$binaryOptionalParams,
   FooApiPostSendOnDefault$textOptionalParams,
   FooApiPostSendOnDefaultResponse,
   FooApiPostSend$binaryOptionalParams,
   FooApiPostSend$textOptionalParams,
   FooApiPostSendResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a FooApi. */
 export interface FooApi {

@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   DateGetNullOptionalParams,
   DateGetNullResponse,
   DateGetInvalidDateOptionalParams,
@@ -21,7 +21,7 @@ import {
   DatePutMinDateOptionalParams,
   DateGetMinDateOptionalParams,
   DateGetMinDateResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a DateOperations. */
 export interface DateOperations {

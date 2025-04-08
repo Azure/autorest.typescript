@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   DictionaryGetNullOptionalParams,
   DictionaryGetNullResponse,
   DictionaryGetEmptyOptionalParams,
@@ -123,7 +123,7 @@ import {
   DictionaryGetDictionaryValidOptionalParams,
   DictionaryGetDictionaryValidResponse,
   DictionaryPutDictionaryValidOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Dictionary. */
 export interface Dictionary {

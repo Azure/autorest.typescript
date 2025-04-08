@@ -7,9 +7,9 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { DatetimeImpl } from "./operations";
-import { Datetime } from "./operationsInterfaces";
-import { BodyDateTimeClientOptionalParams } from "./models";
+import { DatetimeImpl } from "./operations/index.js";
+import type { Datetime } from "./operationsInterfaces/index.js";
+import type { BodyDateTimeClientOptionalParams } from "./models/index.js";
 
 export class BodyDateTimeClient extends coreClient.ServiceClient {
   $host: string;

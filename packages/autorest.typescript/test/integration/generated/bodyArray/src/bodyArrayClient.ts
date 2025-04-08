@@ -7,9 +7,9 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { ArrayImpl } from "./operations";
-import { Array } from "./operationsInterfaces";
-import { BodyArrayClientOptionalParams } from "./models";
+import { ArrayImpl } from "./operations/index.js";
+import type { Array } from "./operationsInterfaces/index.js";
+import type { BodyArrayClientOptionalParams } from "./models/index.js";
 
 export class BodyArrayClient extends coreClient.ServiceClient {
   $host: string;

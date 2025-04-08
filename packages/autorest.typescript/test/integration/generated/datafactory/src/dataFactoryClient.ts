@@ -1,5 +1,5 @@
 import * as coreClient from "@azure/core-client";
-import {
+import type {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
@@ -25,8 +25,8 @@ import {
   PrivateEndPointConnectionsImpl,
   PrivateEndpointConnectionImpl,
   PrivateLinkResourcesImpl,
-} from "./operations";
-import {
+} from "./operations/index.js";
+import type {
   Operations,
   Factories,
   ExposureControl,
@@ -47,8 +47,8 @@ import {
   PrivateEndPointConnections,
   PrivateEndpointConnection,
   PrivateLinkResources,
-} from "./operationsInterfaces";
-import { DataFactoryClientOptionalParams } from "./models";
+} from "./operationsInterfaces/index.js";
+import type { DataFactoryClientOptionalParams } from "./models/index.js";
 
 export class DataFactoryClient extends coreClient.ServiceClient {
   $host: string;

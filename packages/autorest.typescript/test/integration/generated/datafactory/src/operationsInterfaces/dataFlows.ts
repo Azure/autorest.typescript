@@ -1,5 +1,5 @@
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import {
+import type { PagedAsyncIterableIterator } from "@azure/core-paging";
+import type {
   DataFlowResource,
   DataFlowsListByFactoryOptionalParams,
   DataFlowsCreateOrUpdateOptionalParams,
@@ -7,7 +7,7 @@ import {
   DataFlowsGetOptionalParams,
   DataFlowsGetResponse,
   DataFlowsDeleteOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a DataFlows. */

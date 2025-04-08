@@ -6,12 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Duration } from "../operationsInterfaces";
+import type { Duration } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { BodyDurationClient } from "../bodyDurationClient";
-import {
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import type { BodyDurationClient } from "../bodyDurationClient.js";
+import type {
   DurationGetNullOptionalParams,
   DurationGetNullResponse,
   DurationPutPositiveDurationOptionalParams,
@@ -19,7 +19,7 @@ import {
   DurationGetPositiveDurationResponse,
   DurationGetInvalidOptionalParams,
   DurationGetInvalidResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing Duration operations. */
 export class DurationImpl implements Duration {

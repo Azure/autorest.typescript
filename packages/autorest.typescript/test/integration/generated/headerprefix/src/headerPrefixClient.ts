@@ -1,7 +1,7 @@
 import * as coreClient from "@azure/core-client";
-import { QueueImpl } from "./operations";
-import { Queue } from "./operationsInterfaces";
-import { HeaderPrefixClientOptionalParams } from "./models";
+import { QueueImpl } from "./operations/index.js";
+import type { Queue } from "./operationsInterfaces/index.js";
+import type { HeaderPrefixClientOptionalParams } from "./models/index.js";
 
 export class HeaderPrefixClient extends coreClient.ServiceClient {
   $host: string;

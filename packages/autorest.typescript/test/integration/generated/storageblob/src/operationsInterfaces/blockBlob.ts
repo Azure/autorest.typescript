@@ -1,12 +1,12 @@
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
-import {
+import type {
   BlockBlobStageBlockOptionalParams,
   BlockBlobStageBlockResponse,
   BlockBlobUploadOptionalParams,
   BlockBlobUploadResponse,
   BlockBlobPutBlobFromUrlOptionalParams,
   BlockBlobPutBlobFromUrlResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a BlockBlob. */
 export interface BlockBlob {

@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   DatetimeGetNullOptionalParams,
   DatetimeGetNullResponse,
   DatetimeGetInvalidOptionalParams,
@@ -44,7 +44,7 @@ import {
   DatetimeGetLocalNegativeOffsetMinDateTimeResponse,
   DatetimeGetLocalNoOffsetMinDateTimeOptionalParams,
   DatetimeGetLocalNoOffsetMinDateTimeResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Datetime. */
 export interface Datetime {

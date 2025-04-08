@@ -7,14 +7,14 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import {
+import type {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import { GroupImpl } from "./operations";
-import { Group } from "./operationsInterfaces";
-import { UserAgentCoreV2ClientOptionalParams } from "./models";
+import { GroupImpl } from "./operations/index.js";
+import type { Group } from "./operationsInterfaces/index.js";
+import type { UserAgentCoreV2ClientOptionalParams } from "./models/index.js";
 
 export class UserAgentCoreV2Client extends coreClient.ServiceClient {
   $host: string;

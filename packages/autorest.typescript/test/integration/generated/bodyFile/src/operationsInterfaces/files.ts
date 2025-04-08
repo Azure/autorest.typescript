@@ -6,14 +6,14 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   FilesGetFileOptionalParams,
   FilesGetFileResponse,
   FilesGetFileLargeOptionalParams,
   FilesGetFileLargeResponse,
   FilesGetEmptyFileOptionalParams,
   FilesGetEmptyFileResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Files. */
 export interface Files {

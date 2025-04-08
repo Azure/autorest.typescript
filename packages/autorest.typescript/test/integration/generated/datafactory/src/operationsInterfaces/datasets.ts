@@ -1,5 +1,5 @@
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import {
+import type { PagedAsyncIterableIterator } from "@azure/core-paging";
+import type {
   DatasetResource,
   DatasetsListByFactoryOptionalParams,
   DatasetsCreateOrUpdateOptionalParams,
@@ -7,7 +7,7 @@ import {
   DatasetsGetOptionalParams,
   DatasetsGetResponse,
   DatasetsDeleteOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a Datasets. */

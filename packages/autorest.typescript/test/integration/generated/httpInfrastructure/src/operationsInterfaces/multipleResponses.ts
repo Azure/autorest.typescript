@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   MultipleResponsesGet200Model204NoModelDefaultError200ValidOptionalParams,
   MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse,
   MultipleResponsesGet200Model204NoModelDefaultError204ValidOptionalParams,
@@ -62,7 +62,7 @@ import {
   MultipleResponsesGet200ModelA400InvalidResponse,
   MultipleResponsesGet200ModelA202ValidOptionalParams,
   MultipleResponsesGet200ModelA202ValidResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a MultipleResponses. */
 export interface MultipleResponses {

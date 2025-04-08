@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { SimplePollerLike, OperationState } from "@azure/core-lro";
-import {
+import type { SimplePollerLike, OperationState } from "@azure/core-lro";
+import type {
   LRORetrysPut201CreatingSucceeded200OptionalParams,
   LRORetrysPut201CreatingSucceeded200Response,
   LRORetrysPutAsyncRelativeRetrySucceededOptionalParams,
@@ -22,7 +22,7 @@ import {
   LRORetrysPost202Retry200Response,
   LRORetrysPostAsyncRelativeRetrySucceededOptionalParams,
   LRORetrysPostAsyncRelativeRetrySucceededResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a LRORetrys. */
 export interface LRORetrys {

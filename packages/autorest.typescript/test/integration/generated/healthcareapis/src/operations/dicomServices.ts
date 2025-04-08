@@ -1,17 +1,17 @@
-import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
-import { setContinuationToken } from "../pagingHelper";
-import { DicomServices } from "../operationsInterfaces";
+import type {
+  PagedAsyncIterableIterator,
+  PageSettings,
+} from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper.js";
+import type { DicomServices } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { HealthCareApisClient } from "../healthCareApisClient";
-import {
-  SimplePollerLike,
-  OperationState,
-  createHttpPoller,
-} from "@azure/core-lro";
-import { createLroSpec } from "../lroImpl";
-import {
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import type { HealthCareApisClient } from "../healthCareApisClient.js";
+import type { SimplePollerLike, OperationState } from "@azure/core-lro";
+import { createHttpPoller } from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl.js";
+import type {
   DicomService,
   DicomServicesListByWorkspaceNextOptionalParams,
   DicomServicesListByWorkspaceOptionalParams,
@@ -25,7 +25,7 @@ import {
   DicomServicesUpdateResponse,
   DicomServicesDeleteOptionalParams,
   DicomServicesListByWorkspaceNextResponse,
-} from "../models";
+} from "../models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing DicomServices operations. */

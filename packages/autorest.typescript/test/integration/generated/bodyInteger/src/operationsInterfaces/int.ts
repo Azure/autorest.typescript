@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   IntGetNullOptionalParams,
   IntGetNullResponse,
   IntGetInvalidOptionalParams,
@@ -30,7 +30,7 @@ import {
   IntGetInvalidUnixTimeResponse,
   IntGetNullUnixTimeOptionalParams,
   IntGetNullUnixTimeResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Int. */
 export interface Int {

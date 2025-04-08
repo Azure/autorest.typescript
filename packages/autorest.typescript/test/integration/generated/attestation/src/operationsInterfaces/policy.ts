@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   AttestationType,
   PolicyGetOptionalParams,
   PolicyGetResponse,
@@ -14,7 +14,7 @@ import {
   PolicySetModelResponse,
   PolicyResetOptionalParams,
   PolicyResetResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Policy. */
 export interface Policy {

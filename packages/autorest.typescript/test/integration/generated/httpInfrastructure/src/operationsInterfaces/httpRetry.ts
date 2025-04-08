@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   HttpRetryHead408OptionalParams,
   HttpRetryPut500OptionalParams,
   HttpRetryPatch500OptionalParams,
@@ -17,7 +17,7 @@ import {
   HttpRetryDelete503OptionalParams,
   HttpRetryPut504OptionalParams,
   HttpRetryPatch504OptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a HttpRetry. */
 export interface HttpRetry {

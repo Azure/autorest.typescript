@@ -7,9 +7,9 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { BoolImpl } from "./operations";
-import { Bool } from "./operationsInterfaces";
-import { BodyBooleanClientOptionalParams } from "./models";
+import { BoolImpl } from "./operations/index.js";
+import type { Bool } from "./operationsInterfaces/index.js";
+import type { BodyBooleanClientOptionalParams } from "./models/index.js";
 
 export class BodyBooleanClient extends coreClient.ServiceClient {
   $host: string;

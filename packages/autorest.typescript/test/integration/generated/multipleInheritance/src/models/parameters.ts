@@ -6,14 +6,17 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { OperationParameter, OperationURLParameter } from "@azure/core-client";
+import type {
+  OperationParameter,
+  OperationURLParameter,
+} from "@azure/core-client";
 import {
   Horse as HorseMapper,
   Pet as PetMapper,
   Feline as FelineMapper,
   Cat as CatMapper,
   Kitten as KittenMapper,
-} from "../models/mappers";
+} from "../models/mappers.js";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",

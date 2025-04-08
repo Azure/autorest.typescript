@@ -8,9 +8,9 @@
 
 import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
-import * as Parameters from "./models/parameters";
-import * as Mappers from "./models/mappers";
-import {
+import * as Parameters from "./models/parameters.js";
+import * as Mappers from "./models/mappers.js";
+import type {
   MediaTypesClientOptionalParams,
   ContentType,
   AnalyzeBody$binaryOptionalParams,
@@ -33,7 +33,7 @@ import {
   PutTextAndJsonBody$textOptionalParams,
   PutTextAndJsonBody$jsonOptionalParams,
   PutTextAndJsonBodyResponse,
-} from "./models";
+} from "./models/index.js";
 
 export class MediaTypesClient extends coreClient.ServiceClient {
   $host: string;

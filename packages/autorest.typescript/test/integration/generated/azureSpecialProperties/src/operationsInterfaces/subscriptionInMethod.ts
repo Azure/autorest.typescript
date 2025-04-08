@@ -6,12 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   SubscriptionInMethodPostMethodLocalValidOptionalParams,
   SubscriptionInMethodPostMethodLocalNullOptionalParams,
   SubscriptionInMethodPostPathLocalValidOptionalParams,
   SubscriptionInMethodPostSwaggerLocalValidOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a SubscriptionInMethod. */
 export interface SubscriptionInMethod {

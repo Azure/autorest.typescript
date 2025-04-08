@@ -6,12 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   HttpServerFailureHead501OptionalParams,
   HttpServerFailureGet501OptionalParams,
   HttpServerFailurePost505OptionalParams,
   HttpServerFailureDelete505OptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a HttpServerFailure. */
 export interface HttpServerFailure {

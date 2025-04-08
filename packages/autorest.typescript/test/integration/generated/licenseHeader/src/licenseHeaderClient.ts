@@ -7,18 +7,18 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import {
+import type {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import * as Parameters from "./models/parameters";
-import {
+import * as Parameters from "./models/parameters.js";
+import type {
   Enum0,
   LicenseHeaderClientOptionalParams,
   ApiV1ValueGetOptionalParams,
   ApiV1ValueGetResponse,
-} from "./models";
+} from "./models/index.js";
 
 export class LicenseHeaderClient extends coreClient.ServiceClient {
   $host: string;

@@ -6,5 +6,5 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./int";
-export * from "./float";
+export * from "./int.js";
+export * from "./float.js";

@@ -7,9 +7,9 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { AuthenticationImpl } from "./operations";
-import { Authentication } from "./operationsInterfaces";
-import { SealedChoiceClientOptionalParams } from "./models";
+import { AuthenticationImpl } from "./operations/index.js";
+import type { Authentication } from "./operationsInterfaces/index.js";
+import type { SealedChoiceClientOptionalParams } from "./models/index.js";
 
 export class SealedChoiceClient extends coreClient.ServiceClient {
   $host: string;

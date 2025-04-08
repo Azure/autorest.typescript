@@ -1,5 +1,5 @@
 import * as coreClient from "@azure/core-client";
-import {
+import type {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
@@ -8,13 +8,13 @@ import {
   OperationsImpl,
   DpsCertificateImpl,
   IotDpsResourceImpl,
-} from "./operations";
-import {
+} from "./operations/index.js";
+import type {
   Operations,
   DpsCertificate,
   IotDpsResource,
-} from "./operationsInterfaces";
-import { DeviceProvisioningClientOptionalParams } from "./models";
+} from "./operationsInterfaces/index.js";
+import type { DeviceProvisioningClientOptionalParams } from "./models/index.js";
 
 export class DeviceProvisioningClient extends coreClient.ServiceClient {
   $host: string;

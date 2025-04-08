@@ -1,16 +1,16 @@
-import { PrivateEndpointConnection } from "../operationsInterfaces";
+import type { PrivateEndpointConnection } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { DataFactoryClient } from "../dataFactoryClient";
-import {
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import type { DataFactoryClient } from "../dataFactoryClient.js";
+import type {
   PrivateLinkConnectionApprovalRequestResource,
   PrivateEndpointConnectionCreateOrUpdateOptionalParams,
   PrivateEndpointConnectionCreateOrUpdateResponse,
   PrivateEndpointConnectionGetOptionalParams,
   PrivateEndpointConnectionGetResponse,
   PrivateEndpointConnectionDeleteOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing PrivateEndpointConnection operations. */
 export class PrivateEndpointConnectionImpl

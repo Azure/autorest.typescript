@@ -6,17 +6,17 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { HttpServerFailure } from "../operationsInterfaces";
+import type { HttpServerFailure } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { HttpInfrastructureClient } from "../httpInfrastructureClient";
-import {
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import type { HttpInfrastructureClient } from "../httpInfrastructureClient.js";
+import type {
   HttpServerFailureHead501OptionalParams,
   HttpServerFailureGet501OptionalParams,
   HttpServerFailurePost505OptionalParams,
   HttpServerFailureDelete505OptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing HttpServerFailure operations. */
 export class HttpServerFailureImpl implements HttpServerFailure {

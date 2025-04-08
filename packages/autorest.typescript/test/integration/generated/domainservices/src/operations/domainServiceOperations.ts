@@ -1,17 +1,20 @@
-import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
-import { setContinuationToken } from "../pagingHelper";
-import { DomainServiceOperations } from "../operationsInterfaces";
+import type {
+  PagedAsyncIterableIterator,
+  PageSettings,
+} from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper.js";
+import type { DomainServiceOperations } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { DomainServicesClient } from "../domainServicesClient";
-import {
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import type { DomainServicesClient } from "../domainServicesClient.js";
+import type {
   OperationEntity,
   DomainServiceOperationsListNextOptionalParams,
   DomainServiceOperationsListOptionalParams,
   DomainServiceOperationsListResponse,
   DomainServiceOperationsListNextResponse,
-} from "../models";
+} from "../models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing DomainServiceOperations operations. */

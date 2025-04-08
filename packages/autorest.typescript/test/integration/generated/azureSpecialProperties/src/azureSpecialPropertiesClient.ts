@@ -7,12 +7,12 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import {
+import type {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import * as coreAuth from "@azure/core-auth";
+import type * as coreAuth from "@azure/core-auth";
 import {
   XMsClientRequestIdImpl,
   SubscriptionInCredentialsImpl,
@@ -22,8 +22,8 @@ import {
   SkipUrlEncodingImpl,
   OdataImpl,
   HeaderImpl,
-} from "./operations";
-import {
+} from "./operations/index.js";
+import type {
   XMsClientRequestId,
   SubscriptionInCredentials,
   SubscriptionInMethod,
@@ -32,8 +32,8 @@ import {
   SkipUrlEncoding,
   Odata,
   Header,
-} from "./operationsInterfaces";
-import { AzureSpecialPropertiesClientOptionalParams } from "./models";
+} from "./operationsInterfaces/index.js";
+import type { AzureSpecialPropertiesClientOptionalParams } from "./models/index.js";
 
 export class AzureSpecialPropertiesClient extends coreClient.ServiceClient {
   $host: string;

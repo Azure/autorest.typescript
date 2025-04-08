@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   XmlGetComplexTypeRefNoMetaOptionalParams,
   XmlGetComplexTypeRefNoMetaResponse,
   RootWithRefAndNoMeta,
@@ -70,7 +70,7 @@ import {
   XmlGetUriResponse,
   ModelWithUrlProperty,
   XmlPutUriOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Xml. */
 export interface Xml {

@@ -6,10 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   BarApiPostSendOnDefaultOptionalParams,
   BarApiPostSendOnDefaultResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a BarApi. */
 export interface BarApi {

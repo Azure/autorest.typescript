@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   SkipUrlEncodingGetMethodPathValidOptionalParams,
   SkipUrlEncodingGetPathValidOptionalParams,
   SkipUrlEncodingGetSwaggerPathValidOptionalParams,
@@ -14,7 +14,7 @@ import {
   SkipUrlEncodingGetMethodQueryNullOptionalParams,
   SkipUrlEncodingGetPathQueryValidOptionalParams,
   SkipUrlEncodingGetSwaggerQueryValidOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a SkipUrlEncoding. */
 export interface SkipUrlEncoding {

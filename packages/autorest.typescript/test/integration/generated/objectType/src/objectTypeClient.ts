@@ -7,13 +7,13 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import * as Parameters from "./models/parameters";
-import {
+import * as Parameters from "./models/parameters.js";
+import type {
   ObjectTypeClientOptionalParams,
   GetOptionalParams,
   GetResponse,
   PutOptionalParams,
-} from "./models";
+} from "./models/index.js";
 
 export class ObjectTypeClient extends coreClient.ServiceClient {
   $host: string;

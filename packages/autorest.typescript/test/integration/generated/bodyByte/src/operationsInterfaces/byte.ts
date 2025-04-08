@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   ByteGetNullOptionalParams,
   ByteGetNullResponse,
   ByteGetEmptyOptionalParams,
@@ -16,7 +16,7 @@ import {
   BytePutNonAsciiOptionalParams,
   ByteGetInvalidOptionalParams,
   ByteGetInvalidResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Byte. */
 export interface Byte {

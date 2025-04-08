@@ -6,13 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PathOperations } from "../operationsInterfaces";
+import type { PathOperations } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { DataLakeStorageClient } from "../dataLakeStorageClient";
-import {
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import type { DataLakeStorageClient } from "../dataLakeStorageClient.js";
+import type {
   PathCreateOptionalParams,
   PathCreateResponse,
   PathUpdateAction,
@@ -28,7 +28,7 @@ import {
   PathGetPropertiesResponse,
   PathDeleteOptionalParams,
   PathDeleteResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing PathOperations operations. */
 export class PathOperationsImpl implements PathOperations {

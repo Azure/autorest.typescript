@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   ParameterGroupingPostRequiredParameters,
   ParameterGroupingPostRequiredOptionalParams,
   ParameterGroupingPostOptionalOptionalParams,
@@ -14,7 +14,7 @@ import {
   ParameterGroupingPostMultiParamGroupsOptionalParams,
   ParameterGroupingPostSharedParameterGroupObjectOptionalParams,
   ParameterGroupingGroupWithConstantOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a ParameterGrouping. */
 export interface ParameterGrouping {

@@ -1,4 +1,4 @@
-import {
+import type {
   ExposureControlRequest,
   ExposureControlGetFeatureValueOptionalParams,
   ExposureControlGetFeatureValueResponse,
@@ -7,7 +7,7 @@ import {
   ExposureControlBatchRequest,
   ExposureControlQueryFeatureValuesByFactoryOptionalParams,
   ExposureControlQueryFeatureValuesByFactoryResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a ExposureControl. */
 export interface ExposureControl {

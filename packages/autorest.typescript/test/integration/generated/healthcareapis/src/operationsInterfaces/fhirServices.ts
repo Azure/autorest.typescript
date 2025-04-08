@@ -1,6 +1,6 @@
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { SimplePollerLike, OperationState } from "@azure/core-lro";
-import {
+import type { PagedAsyncIterableIterator } from "@azure/core-paging";
+import type { SimplePollerLike, OperationState } from "@azure/core-lro";
+import type {
   FhirService,
   FhirServicesListByWorkspaceOptionalParams,
   FhirServicesGetOptionalParams,
@@ -11,7 +11,7 @@ import {
   FhirServicesUpdateOptionalParams,
   FhirServicesUpdateResponse,
   FhirServicesDeleteOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a FhirServices. */

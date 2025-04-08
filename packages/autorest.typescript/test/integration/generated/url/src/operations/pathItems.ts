@@ -6,17 +6,17 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PathItems } from "../operationsInterfaces";
+import type { PathItems } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { UrlClient } from "../urlClient";
-import {
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import type { UrlClient } from "../urlClient.js";
+import type {
   PathItemsGetAllWithValuesOptionalParams,
   PathItemsGetGlobalQueryNullOptionalParams,
   PathItemsGetGlobalAndLocalQueryNullOptionalParams,
   PathItemsGetLocalPathItemQueryNullOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing PathItems operations. */
 export class PathItemsImpl implements PathItems {

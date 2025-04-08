@@ -6,18 +6,18 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { tracingClient } from "../tracing";
-import { Readonlyproperty } from "../operationsInterfaces";
+import { tracingClient } from "../tracing.js";
+import type { Readonlyproperty } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { BodyComplexWithTracing } from "../bodyComplexWithTracing";
-import {
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import type { BodyComplexWithTracing } from "../bodyComplexWithTracing.js";
+import type {
   ReadonlypropertyGetValidOptionalParams,
   ReadonlypropertyGetValidResponse,
   ReadonlyObj,
   ReadonlypropertyPutValidOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing Readonlyproperty operations. */
 export class ReadonlypropertyImpl implements Readonlyproperty {

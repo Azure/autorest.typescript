@@ -6,12 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { HttpRetry } from "../operationsInterfaces";
+import type { HttpRetry } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { HttpInfrastructureClient } from "../httpInfrastructureClient";
-import {
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import type { HttpInfrastructureClient } from "../httpInfrastructureClient.js";
+import type {
   HttpRetryHead408OptionalParams,
   HttpRetryPut500OptionalParams,
   HttpRetryPatch500OptionalParams,
@@ -22,7 +22,7 @@ import {
   HttpRetryDelete503OptionalParams,
   HttpRetryPut504OptionalParams,
   HttpRetryPatch504OptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing HttpRetry operations. */
 export class HttpRetryImpl implements HttpRetry {

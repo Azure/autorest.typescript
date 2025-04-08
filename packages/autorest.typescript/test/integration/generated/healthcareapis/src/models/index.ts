@@ -1,4 +1,4 @@
-import * as coreClient from "@azure/core-client";
+import type * as coreClient from "@azure/core-client";
 
 /** The properties of a service instance. */
 export interface ServicesProperties {

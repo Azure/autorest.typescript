@@ -7,7 +7,7 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import {
+import type {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
@@ -22,8 +22,8 @@ import {
   PolymorphicrecursiveImpl,
   ReadonlypropertyImpl,
   FlattencomplexImpl,
-} from "./operations";
-import {
+} from "./operations/index.js";
+import type {
   Basic,
   Primitive,
   Array,
@@ -33,8 +33,8 @@ import {
   Polymorphicrecursive,
   Readonlyproperty,
   Flattencomplex,
-} from "./operationsInterfaces";
-import { BodyComplexClientOptionalParams } from "./models";
+} from "./operationsInterfaces/index.js";
+import type { BodyComplexClientOptionalParams } from "./models/index.js";
 
 export class BodyComplexClient extends coreClient.ServiceClient {
   $host: string;

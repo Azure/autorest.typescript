@@ -7,9 +7,9 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { PagingImpl } from "./operations";
-import { Paging } from "./operationsInterfaces";
-import { CustomUrlPagingClientOptionalParams } from "./models";
+import { PagingImpl } from "./operations/index.js";
+import type { Paging } from "./operationsInterfaces/index.js";
+import type { CustomUrlPagingClientOptionalParams } from "./models/index.js";
 
 export class CustomUrlPagingClient extends coreClient.ServiceClient {
   host: string;

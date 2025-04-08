@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   ArrayGetNullOptionalParams,
   ArrayGetNullResponse,
   ArrayGetInvalidOptionalParams,
@@ -130,7 +130,7 @@ import {
   ArrayGetDictionaryValidOptionalParams,
   ArrayGetDictionaryValidResponse,
   ArrayPutDictionaryValidOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Array. */
 export interface Array {

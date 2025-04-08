@@ -7,9 +7,9 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { HeaderImpl } from "./operations";
-import { Header } from "./operationsInterfaces";
-import { HeaderClientOptionalParams } from "./models";
+import { HeaderImpl } from "./operations/index.js";
+import type { Header } from "./operationsInterfaces/index.js";
+import type { HeaderClientOptionalParams } from "./models/index.js";
 
 export class HeaderClient extends coreClient.ServiceClient {
   $host: string;

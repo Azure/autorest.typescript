@@ -6,17 +6,17 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Pet } from "../operationsInterfaces";
+import type { Pet } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { ExtensibleEnumsClient } from "../extensibleEnumsClient";
-import {
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import type { ExtensibleEnumsClient } from "../extensibleEnumsClient.js";
+import type {
   PetGetByPetIdOptionalParams,
   PetGetByPetIdResponse,
   PetAddPetOptionalParams,
   PetAddPetResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing Pet operations. */
 export class PetImpl implements Pet {

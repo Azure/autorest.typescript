@@ -1,12 +1,12 @@
-import { Queue } from "../operationsInterfaces";
+import type { Queue } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { HeaderPrefixClient } from "../headerPrefixClient";
-import {
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import type { HeaderPrefixClient } from "../headerPrefixClient.js";
+import type {
   QueueGetPropertiesOptionalParams,
   QueueGetPropertiesResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing Queue operations. */
 export class QueueImpl implements Queue {

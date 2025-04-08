@@ -1,11 +1,14 @@
-import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
-import { setContinuationToken } from "../pagingHelper";
-import { ManagedVirtualNetworks } from "../operationsInterfaces";
+import type {
+  PagedAsyncIterableIterator,
+  PageSettings,
+} from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper.js";
+import type { ManagedVirtualNetworks } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { DataFactoryClient } from "../dataFactoryClient";
-import {
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import type { DataFactoryClient } from "../dataFactoryClient.js";
+import type {
   ManagedVirtualNetworkResource,
   ManagedVirtualNetworksListByFactoryNextOptionalParams,
   ManagedVirtualNetworksListByFactoryOptionalParams,
@@ -15,7 +18,7 @@ import {
   ManagedVirtualNetworksGetOptionalParams,
   ManagedVirtualNetworksGetResponse,
   ManagedVirtualNetworksListByFactoryNextResponse,
-} from "../models";
+} from "../models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing ManagedVirtualNetworks operations. */

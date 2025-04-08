@@ -1,15 +1,15 @@
-import { TriggerRuns } from "../operationsInterfaces";
+import type { TriggerRuns } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { DataFactoryClient } from "../dataFactoryClient";
-import {
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import type { DataFactoryClient } from "../dataFactoryClient.js";
+import type {
   TriggerRunsRerunOptionalParams,
   TriggerRunsCancelOptionalParams,
   RunFilterParameters,
   TriggerRunsQueryByFactoryOptionalParams,
   TriggerRunsQueryByFactoryResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing TriggerRuns operations. */
 export class TriggerRunsImpl implements TriggerRuns {

@@ -7,9 +7,9 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { ParameterGroupingImpl } from "./operations";
-import { ParameterGrouping } from "./operationsInterfaces";
-import { AzureParameterGroupingClientOptionalParams } from "./models";
+import { ParameterGroupingImpl } from "./operations/index.js";
+import type { ParameterGrouping } from "./operationsInterfaces/index.js";
+import type { AzureParameterGroupingClientOptionalParams } from "./models/index.js";
 
 export class AzureParameterGroupingClient extends coreClient.ServiceClient {
   $host: string;

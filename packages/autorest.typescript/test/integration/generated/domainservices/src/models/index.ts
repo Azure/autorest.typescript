@@ -1,4 +1,4 @@
-import * as coreClient from "@azure/core-client";
+import type * as coreClient from "@azure/core-client";
 
 /** The list of domain service operation response. */
 export interface OperationEntityListResult {

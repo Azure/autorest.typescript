@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   QueriesArrayStringMultiNullOptionalParams,
   QueriesArrayStringMultiEmptyOptionalParams,
   QueriesArrayStringMultiValidOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Queries. */
 export interface Queries {

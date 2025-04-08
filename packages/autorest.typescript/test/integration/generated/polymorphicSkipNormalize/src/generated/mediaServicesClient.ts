@@ -1,5 +1,5 @@
 import * as coreClient from "@azure/core-client";
-import { MediaServicesClientOptionalParams } from "./models";
+import type { MediaServicesClientOptionalParams } from "./models/index.js";
 
 export class MediaServicesClient extends coreClient.ServiceClient {
   /**

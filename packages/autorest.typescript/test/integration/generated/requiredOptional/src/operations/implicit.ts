@@ -6,12 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Implicit } from "../operationsInterfaces";
+import type { Implicit } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { RequiredOptionalClient } from "../requiredOptionalClient";
-import {
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import type { RequiredOptionalClient } from "../requiredOptionalClient.js";
+import type {
   ImplicitGetRequiredPathOptionalParams,
   ImplicitPutOptionalQueryOptionalParams,
   ImplicitPutOptionalHeaderOptionalParams,
@@ -20,7 +20,7 @@ import {
   ImplicitGetRequiredGlobalPathOptionalParams,
   ImplicitGetRequiredGlobalQueryOptionalParams,
   ImplicitGetOptionalGlobalQueryOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing Implicit operations. */
 export class ImplicitImpl implements Implicit {

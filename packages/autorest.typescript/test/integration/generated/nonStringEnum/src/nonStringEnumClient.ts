@@ -7,9 +7,9 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { IntImpl, FloatImpl } from "./operations";
-import { Int, Float } from "./operationsInterfaces";
-import { NonStringEnumClientOptionalParams } from "./models";
+import { IntImpl, FloatImpl } from "./operations/index.js";
+import type { Int, Float } from "./operationsInterfaces/index.js";
+import type { NonStringEnumClientOptionalParams } from "./models/index.js";
 
 export class NonStringEnumClient extends coreClient.ServiceClient {
   $host: string;

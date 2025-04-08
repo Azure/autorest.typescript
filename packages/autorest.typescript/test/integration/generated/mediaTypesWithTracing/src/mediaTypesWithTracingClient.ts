@@ -8,10 +8,10 @@
 
 import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
-import { tracingClient } from "./tracing";
-import * as Parameters from "./models/parameters";
-import * as Mappers from "./models/mappers";
-import {
+import { tracingClient } from "./tracing.js";
+import * as Parameters from "./models/parameters.js";
+import * as Mappers from "./models/mappers.js";
+import type {
   MediaTypesWithTracingClientOptionalParams,
   ContentType,
   AnalyzeBody$binaryOptionalParams,
@@ -34,7 +34,7 @@ import {
   PutTextAndJsonBody$textOptionalParams,
   PutTextAndJsonBody$jsonOptionalParams,
   PutTextAndJsonBodyResponse,
-} from "./models";
+} from "./models/index.js";
 
 export class MediaTypesWithTracingClient extends coreClient.ServiceClient {
   $host: string;

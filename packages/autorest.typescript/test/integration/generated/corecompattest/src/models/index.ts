@@ -1,6 +1,6 @@
-import * as coreClient from "@azure/core-client";
-import * as coreRestPipeline from "@azure/core-rest-pipeline";
-import * as coreHttpCompat from "@azure/core-http-compat";
+import type * as coreClient from "@azure/core-client";
+import type * as coreRestPipeline from "@azure/core-rest-pipeline";
+import type * as coreHttpCompat from "@azure/core-http-compat";
 
 /** A group of properties representing a pet. */
 export interface Pet {

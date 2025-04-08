@@ -7,13 +7,13 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import * as Parameters from "./models/parameters";
-import * as Mappers from "./models/mappers";
-import {
+import * as Parameters from "./models/parameters.js";
+import * as Mappers from "./models/mappers.js";
+import type {
   MapperRequiredClientOptionalParams,
   UpdateCertificateIssuerOptionalParams,
   UpdateCertificateIssuerResponse,
-} from "./models";
+} from "./models/index.js";
 
 export class MapperRequiredClient extends coreClient.ServiceClient {
   $host: string;

@@ -1,11 +1,11 @@
-import {
+import type {
   RunFilterParameters,
   PipelineRunsQueryByFactoryOptionalParams,
   PipelineRunsQueryByFactoryResponse,
   PipelineRunsGetOptionalParams,
   PipelineRunsGetResponse,
   PipelineRunsCancelOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a PipelineRuns. */
 export interface PipelineRuns {

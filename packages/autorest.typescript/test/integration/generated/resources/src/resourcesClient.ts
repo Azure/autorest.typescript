@@ -7,15 +7,15 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import {
+import type {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import * as coreAuth from "@azure/core-auth";
-import { ResourceGroupsImpl } from "./operations";
-import { ResourceGroups } from "./operationsInterfaces";
-import { ResourcesClientOptionalParams } from "./models";
+import type * as coreAuth from "@azure/core-auth";
+import { ResourceGroupsImpl } from "./operations/index.js";
+import type { ResourceGroups } from "./operationsInterfaces/index.js";
+import type { ResourcesClientOptionalParams } from "./models/index.js";
 
 export class ResourcesClient extends coreClient.ServiceClient {
   $host: string;

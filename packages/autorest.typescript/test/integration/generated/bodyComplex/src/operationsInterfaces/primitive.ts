@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   PrimitiveGetIntOptionalParams,
   PrimitiveGetIntResponse,
   IntWrapper,
@@ -51,7 +51,7 @@ import {
   PrimitiveGetByteResponse,
   ByteWrapper,
   PrimitivePutByteOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Primitive. */
 export interface Primitive {

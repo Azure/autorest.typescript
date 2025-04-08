@@ -6,13 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   SubscriptionInCredentialsPostMethodGlobalValidOptionalParams,
   SubscriptionInCredentialsPostMethodGlobalNullOptionalParams,
   SubscriptionInCredentialsPostMethodGlobalNotProvidedValidOptionalParams,
   SubscriptionInCredentialsPostPathGlobalValidOptionalParams,
   SubscriptionInCredentialsPostSwaggerGlobalValidOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a SubscriptionInCredentials. */
 export interface SubscriptionInCredentials {

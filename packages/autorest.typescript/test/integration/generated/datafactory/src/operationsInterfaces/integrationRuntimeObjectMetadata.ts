@@ -1,10 +1,10 @@
-import { SimplePollerLike, OperationState } from "@azure/core-lro";
-import {
+import type { SimplePollerLike, OperationState } from "@azure/core-lro";
+import type {
   IntegrationRuntimeObjectMetadataRefreshOptionalParams,
   IntegrationRuntimeObjectMetadataRefreshResponse,
   IntegrationRuntimeObjectMetadataGetOptionalParams,
   IntegrationRuntimeObjectMetadataGetResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a IntegrationRuntimeObjectMetadata. */
 export interface IntegrationRuntimeObjectMetadata {

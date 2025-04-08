@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   StringGetNullOptionalParams,
   StringGetNullResponse,
   StringPutNullOptionalParams,
@@ -28,7 +28,7 @@ import {
   StringPutBase64UrlEncodedOptionalParams,
   StringGetNullBase64UrlEncodedOptionalParams,
   StringGetNullBase64UrlEncodedResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a StringOperations. */
 export interface StringOperations {

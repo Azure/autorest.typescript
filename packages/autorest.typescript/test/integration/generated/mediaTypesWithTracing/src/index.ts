@@ -6,5 +6,5 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./models";
-export { MediaTypesWithTracingClient } from "./mediaTypesWithTracingClient";
+export * from "./models/index.js";
+export { MediaTypesWithTracingClient } from "./mediaTypesWithTracingClient.js";

@@ -6,6 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./models";
-export { BodyComplexWithTracing } from "./bodyComplexWithTracing";
-export * from "./operationsInterfaces";
+export * from "./models/index.js";
+export { BodyComplexWithTracing } from "./bodyComplexWithTracing.js";
+export * from "./operationsInterfaces/index.js";

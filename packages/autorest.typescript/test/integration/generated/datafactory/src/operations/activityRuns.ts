@@ -1,13 +1,13 @@
-import { ActivityRuns } from "../operationsInterfaces";
+import type { ActivityRuns } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { DataFactoryClient } from "../dataFactoryClient";
-import {
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import type { DataFactoryClient } from "../dataFactoryClient.js";
+import type {
   RunFilterParameters,
   ActivityRunsQueryByPipelineRunOptionalParams,
   ActivityRunsQueryByPipelineRunResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing ActivityRuns operations. */
 export class ActivityRunsImpl implements ActivityRuns {

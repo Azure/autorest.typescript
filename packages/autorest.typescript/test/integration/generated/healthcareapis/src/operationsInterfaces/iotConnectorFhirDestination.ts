@@ -1,12 +1,12 @@
-import { SimplePollerLike, OperationState } from "@azure/core-lro";
-import {
+import type { SimplePollerLike, OperationState } from "@azure/core-lro";
+import type {
   IotConnectorFhirDestinationGetOptionalParams,
   IotConnectorFhirDestinationGetResponse,
   IotFhirDestination,
   IotConnectorFhirDestinationCreateOrUpdateOptionalParams,
   IotConnectorFhirDestinationCreateOrUpdateResponse,
   IotConnectorFhirDestinationDeleteOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a IotConnectorFhirDestination. */
 export interface IotConnectorFhirDestination {

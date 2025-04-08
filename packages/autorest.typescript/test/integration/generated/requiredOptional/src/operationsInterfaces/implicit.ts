@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   ImplicitGetRequiredPathOptionalParams,
   ImplicitPutOptionalQueryOptionalParams,
   ImplicitPutOptionalHeaderOptionalParams,
@@ -15,7 +15,7 @@ import {
   ImplicitGetRequiredGlobalPathOptionalParams,
   ImplicitGetRequiredGlobalQueryOptionalParams,
   ImplicitGetOptionalGlobalQueryOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Implicit. */
 export interface Implicit {

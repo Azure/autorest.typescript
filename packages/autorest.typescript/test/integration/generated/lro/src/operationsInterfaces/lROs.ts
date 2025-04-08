@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { SimplePollerLike, OperationState } from "@azure/core-lro";
-import {
+import type { SimplePollerLike, OperationState } from "@azure/core-lro";
+import type {
   LROsPut200SucceededOptionalParams,
   LROsPut200SucceededResponse,
   LROsPatch200SucceededIgnoreHeadersOptionalParams,
@@ -95,7 +95,7 @@ import {
   LROsPostAsyncRetryFailedResponse,
   LROsPostAsyncRetrycanceledOptionalParams,
   LROsPostAsyncRetrycanceledResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a LROs. */
 export interface LROs {

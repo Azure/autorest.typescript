@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   BasicGetValidOptionalParams,
   BasicGetValidResponse,
   BasicDef,
@@ -19,7 +19,7 @@ import {
   BasicGetNullResponse,
   BasicGetNotProvidedOptionalParams,
   BasicGetNotProvidedResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Basic. */
 export interface Basic {

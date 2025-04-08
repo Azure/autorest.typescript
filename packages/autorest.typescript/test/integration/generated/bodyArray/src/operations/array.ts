@@ -6,12 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { Array } from "../operationsInterfaces";
+import type { Array } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { BodyArrayClient } from "../bodyArrayClient";
-import {
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import type { BodyArrayClient } from "../bodyArrayClient.js";
+import type {
   ArrayGetNullOptionalParams,
   ArrayGetNullResponse,
   ArrayGetInvalidOptionalParams,
@@ -135,7 +135,7 @@ import {
   ArrayGetDictionaryValidOptionalParams,
   ArrayGetDictionaryValidResponse,
   ArrayPutDictionaryValidOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing Array operations. */
 export class ArrayImpl implements Array {

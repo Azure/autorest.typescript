@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   NumberGetNullOptionalParams,
   NumberGetNullResponse,
   NumberGetInvalidFloatOptionalParams,
@@ -45,7 +45,7 @@ import {
   NumberPutSmallDecimalOptionalParams,
   NumberGetSmallDecimalOptionalParams,
   NumberGetSmallDecimalResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a NumberOperations. */
 export interface NumberOperations {

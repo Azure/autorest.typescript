@@ -7,9 +7,9 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { QueriesImpl } from "./operations";
-import { Queries } from "./operationsInterfaces";
-import { UrlMultiClientOptionalParams } from "./models";
+import { QueriesImpl } from "./operations/index.js";
+import type { Queries } from "./operationsInterfaces/index.js";
+import type { UrlMultiClientOptionalParams } from "./models/index.js";
 
 export class UrlMultiClient extends coreClient.ServiceClient {
   $host: string;
