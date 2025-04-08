@@ -507,7 +507,11 @@ export const rlcTsps = [
 
 export const azureModularTsps = [
   {
-    outputPath: "versioning/removedV1",
+    outputPath: "versioning/removed/v2preview",
+    inputPath: "versioning/removed"
+  },
+  {
+    outputPath: "versioning/removed/v1",
     inputPath: "versioning/removed"
   },
   {
@@ -737,7 +741,7 @@ export const azureModularTsps = [
     inputPath: "versioning/madeOptional"
   },
   {
-    outputPath: "versioning/removed",
+    outputPath: "versioning/removed/v2",
     inputPath: "versioning/removed"
   },
   {
@@ -791,6 +795,14 @@ export const azureModularTsps = [
 ];
 
 export const modularTsps = [
+  {
+    outputPath: "versioning/removed/v2preview",
+    inputPath: "versioning/removed"
+  },
+  {
+    outputPath: "versioning/removed/v1",
+    inputPath: "versioning/removed"
+  },
   {
     outputPath: "routes",
     inputPath: "routes"
@@ -953,7 +965,7 @@ export const modularTsps = [
     inputPath: "versioning/madeOptional"
   },
   {
-    outputPath: "versioning/removed",
+    outputPath: "versioning/removed/v2",
     inputPath: "versioning/removed"
   },
   {
