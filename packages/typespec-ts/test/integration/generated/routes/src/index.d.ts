@@ -650,6 +650,10 @@ export declare interface Routes {
     (path: "/routes/path/template-only/{param}", param: string): PathParametersTemplateOnly;
     (path: "/routes/path/explicit/{param}", param: string): PathParametersExplicit;
     (path: "/routes/path/annotation-only/{param}", param: string): PathParametersAnnotationOnly;
+    (path: "/routes/query/template-only"): QueryParametersTemplateOnly;
+    (path: "/routes/query/explicit"): QueryParametersExplicit;
+    (path: "/routes/query/annotation-only"): QueryParametersAnnotationOnly;
+    (path: "/routes/in-interface/fixed"): InInterfaceFixed;
     (path: "/routes/path/reserved-expansion/template/{param}", param: PathParametersReservedExpansionTemplateParamPathParam): PathParametersReservedExpansionTemplate;
     (path: "/routes/path/reserved-expansion/annotation/{param}", param: PathParametersReservedExpansionAnnotationParamPathParam): PathParametersReservedExpansionAnnotation;
     (path: "/routes/path/simple/standard/primitive{param}", param: string): PathParametersSimpleExpansionStandardPrimitive;
@@ -676,9 +680,6 @@ export declare interface Routes {
     (path: "/routes/path/matrix/explode/primitive{param}", param: string): PathParametersMatrixExpansionExplodePrimitive;
     (path: "/routes/path/matrix/explode/array{param}", param: string[]): PathParametersMatrixExpansionExplodeArray;
     (path: "/routes/path/matrix/explode/record{param}", param: Record<string, number>): PathParametersMatrixExpansionExplodeRecord;
-    (path: "/routes/query/template-only"): QueryParametersTemplateOnly;
-    (path: "/routes/query/explicit"): QueryParametersExplicit;
-    (path: "/routes/query/annotation-only"): QueryParametersAnnotationOnly;
     (path: "/routes/query/query-expansion/standard/primitive"): QueryParametersQueryExpansionStandardPrimitive;
     (path: "/routes/query/query-expansion/standard/array"): QueryParametersQueryExpansionStandardArray;
     (path: "/routes/query/query-expansion/standard/record"): QueryParametersQueryExpansionStandardRecord;
@@ -691,7 +692,6 @@ export declare interface Routes {
     (path: "/routes/query/query-continuation/explode/primitive?fixed=true"): QueryParametersQueryContinuationExplodePrimitive;
     (path: "/routes/query/query-continuation/explode/array?fixed=true"): QueryParametersQueryContinuationExplodeArray;
     (path: "/routes/query/query-continuation/explode/record?fixed=true"): QueryParametersQueryContinuationExplodeRecord;
-    (path: "/routes/in-interface/fixed"): InInterfaceFixed;
 }
 
 export declare type RoutesClient = Client & {

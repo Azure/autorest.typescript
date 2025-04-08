@@ -17,7 +17,7 @@ namespace Audio {
     @summary("Transcribes audio into the input language.")
     create(
       @header contentType: "multipart/form-data",
-      @body audio: CreateTranscriptionRequest,
+      @multipartBody audio: CreateTranscriptionRequest,
     ): CreateTranscriptionResponse | ErrorResponse;
   }
 
@@ -29,7 +29,7 @@ namespace Audio {
     @summary("Transcribes audio into the input language.")
     create(
       @header contentType: "multipart/form-data",
-      @body audio: CreateTranslationRequest,
+      @multipartBody audio: CreateTranslationRequest,
     ): CreateTranslationResponse | ErrorResponse;
   }
 }

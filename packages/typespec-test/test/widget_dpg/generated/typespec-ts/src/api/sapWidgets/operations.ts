@@ -3,15 +3,15 @@
 
 import { SAPWidgetServiceContext as Client } from "../index.js";
 import {
-  SAPUser,
-  sapUserSerializer,
-  sapUserDeserializer,
   Widget,
   widgetDeserializer,
   widgetErrorDeserializer,
   _ListWidgetsPagesResults,
   _listWidgetsPagesResultsDeserializer,
   widgetArrayDeserializer,
+  SAPUser,
+  sapUserSerializer,
+  sapUserDeserializer,
   AnalyzeResult,
   analyzeResultDeserializer,
 } from "../../models/models.js";
@@ -201,10 +201,10 @@ export function _createOrReplaceSend(
   options: SAPWidgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/widgets/widgets/createOrReplace/users/{name}{?api-version}",
+    "/widgets/widgets/createOrReplace/users/{name}{?api%2Dversion}",
     {
       name: name,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

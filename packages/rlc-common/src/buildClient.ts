@@ -254,15 +254,24 @@ export function buildClient(model: RLCModel): File | undefined {
     clientFile.addImportDeclarations([
       {
         isTypeOnly: true,
-        namedImports: credentialTypes.concat(
-          includeKeyCredentialHelper ? ["isKeyCredential"] : []
-        ),
+        namedImports: credentialTypes,
         moduleSpecifier: getImportSpecifier(
           "coreAuth",
           model.importInfo.runtimeImports
         )
       }
     ]);
+    if (includeKeyCredentialHelper) {
+      clientFile.addImportDeclarations([
+        {
+          namedImports: ["isKeyCredential"],
+          moduleSpecifier: getImportSpecifier(
+            "coreAuth",
+            model.importInfo.runtimeImports
+          )
+        }
+      ]);
+    }
   }
   clientFile.addImportDeclarations([
     {

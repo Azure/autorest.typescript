@@ -2,10 +2,10 @@
 
 import { TodoContext as Client } from "../index.js";
 import {
-  standard4XXResponseDeserializer,
-  standard5XXResponseDeserializer,
   User,
   userSerializer,
+  standard4XXResponseDeserializer,
+  standard5XXResponseDeserializer,
 } from "../../models/models.js";
 import {
   UserCreatedResponse,

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { SAPWidgetServiceContext } from "../../api/sapWidgetServiceContext.js";
-import { SAPUser, Widget } from "../../models/models.js";
+import { Widget, SAPUser } from "../../models/models.js";
 import {
   BudgetsGetBudgetsOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,

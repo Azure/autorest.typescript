@@ -130,7 +130,7 @@ export declare interface ListWithPageDefaultResponse extends HttpResponse {
 export declare type ListWithPageParameters = RequestParameters;
 
 export declare interface ListWithParameters {
-    get(options: ListWithParametersParameters): StreamableMethod<ListWithParameters200Response | ListWithParametersDefaultResponse>;
+    post(options: ListWithParametersParameters): StreamableMethod<ListWithParameters200Response | ListWithParametersDefaultResponse>;
 }
 
 export declare interface ListWithParameters200Response extends HttpResponse {

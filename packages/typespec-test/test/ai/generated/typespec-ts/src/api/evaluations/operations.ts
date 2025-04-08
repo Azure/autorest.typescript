@@ -88,9 +88,9 @@ export function _listScheduleSend(
   options: EvaluationsListScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/evaluations/schedules{?api-version,top,skip,maxpagesize}",
+    "/evaluations/schedules{?api%2Dversion,top,skip,maxpagesize}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       top: options?.top,
       skip: options?.skip,
       maxpagesize: options?.maxpagesize,
@@ -147,10 +147,10 @@ export function _createOrReplaceScheduleSend(
   },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/evaluations/schedules/{name}{?api-version}",
+    "/evaluations/schedules/{name}{?api%2Dversion}",
     {
       name: name,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -207,10 +207,10 @@ export function _getScheduleSend(
   options: EvaluationsGetScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/evaluations/schedules/{name}{?api-version}",
+    "/evaluations/schedules/{name}{?api%2Dversion}",
     {
       name: name,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -258,10 +258,10 @@ export function _updateSend(
   options: EvaluationsUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/evaluations/runs/{id}{?api-version}",
+    "/evaluations/runs/{id}{?api%2Dversion}",
     {
       id: id,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -310,9 +310,9 @@ export function _listSend(
   options: EvaluationsListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/evaluations/runs{?api-version,top,skip,maxpagesize}",
+    "/evaluations/runs{?api%2Dversion,top,skip,maxpagesize}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       top: options?.top,
       skip: options?.skip,
       maxpagesize: options?.maxpagesize,
@@ -414,10 +414,10 @@ export function _getSend(
   options: EvaluationsGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/evaluations/runs/{id}{?api-version}",
+    "/evaluations/runs/{id}{?api%2Dversion}",
     {
       id: id,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
