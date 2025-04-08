@@ -6,12 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { FileServices } from "../operationsInterfaces";
+import type { FileServices } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { StorageManagementClient } from "../storageManagementClient";
-import {
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import type { StorageManagementClient } from "../storageManagementClient.js";
+import type {
   FileServicesListOptionalParams,
   FileServicesListResponse,
   FileServiceProperties,
@@ -19,7 +19,7 @@ import {
   FileServicesSetServicePropertiesResponse,
   FileServicesGetServicePropertiesOptionalParams,
   FileServicesGetServicePropertiesResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing FileServices operations. */
 export class FileServicesImpl implements FileServices {

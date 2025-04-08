@@ -6,10 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   MaintenanceWindowOptionsGetOptionalParams,
   MaintenanceWindowOptionsGetResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a MaintenanceWindowOptionsOperations. */
 export interface MaintenanceWindowOptionsOperations {

@@ -7,15 +7,15 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import {
+import type {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import * as coreAuth from "@azure/core-auth";
-import { DeploymentScriptsImpl } from "./operations";
-import { DeploymentScripts } from "./operationsInterfaces";
-import { DeploymentScriptsClientOptionalParams } from "./models";
+import type * as coreAuth from "@azure/core-auth";
+import { DeploymentScriptsImpl } from "./operations/index.js";
+import type { DeploymentScripts } from "./operationsInterfaces/index.js";
+import type { DeploymentScriptsClientOptionalParams } from "./models/index.js";
 
 export class DeploymentScriptsClient extends coreClient.ServiceClient {
   $host: string;

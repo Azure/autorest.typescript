@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   FileServicesListOptionalParams,
   FileServicesListResponse,
   FileServiceProperties,
@@ -14,7 +14,7 @@ import {
   FileServicesSetServicePropertiesResponse,
   FileServicesGetServicePropertiesOptionalParams,
   FileServicesGetServicePropertiesResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a FileServices. */
 export interface FileServices {

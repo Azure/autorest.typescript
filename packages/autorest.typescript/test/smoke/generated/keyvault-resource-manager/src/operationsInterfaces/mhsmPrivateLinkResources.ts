@@ -6,10 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   MhsmPrivateLinkResourcesListByMhsmResourceOptionalParams,
   MhsmPrivateLinkResourcesListByMhsmResourceResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a MhsmPrivateLinkResources. */
 export interface MhsmPrivateLinkResources {

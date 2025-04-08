@@ -94,7 +94,6 @@ export async function generateTypeScriptLibrary(
     }
   }
   generateTsConfig(project);
-  generateTsBrowserConfig(project);
   if (azureSdkForJs && generateMetadata) {
     generateTsSrcConfig(project);
     if (generateSample) {
@@ -102,6 +101,7 @@ export async function generateTypeScriptLibrary(
     }
     if (generateTest) {
       generateTsTestConfig(project);
+      generateTsBrowserConfig(project);
     }
   }
 

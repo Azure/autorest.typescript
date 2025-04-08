@@ -6,14 +6,17 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
-import { setContinuationToken } from "../pagingHelper";
-import { ResourceLinks } from "../operationsInterfaces";
+import type {
+  PagedAsyncIterableIterator,
+  PageSettings,
+} from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper.js";
+import type { ResourceLinks } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { ManagementLinkClient } from "../managementLinkClient";
-import {
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import type { ManagementLinkClient } from "../managementLinkClient.js";
+import type {
   ResourceLink,
   ResourceLinksListAtSubscriptionNextOptionalParams,
   ResourceLinksListAtSubscriptionOptionalParams,
@@ -28,7 +31,7 @@ import {
   ResourceLinksGetResponse,
   ResourceLinksListAtSubscriptionNextResponse,
   ResourceLinksListAtSourceScopeNextResponse,
-} from "../models";
+} from "../models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing ResourceLinks operations. */

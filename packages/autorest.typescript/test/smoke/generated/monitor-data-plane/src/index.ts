@@ -6,6 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./models";
-export { MonitorClient } from "./monitorClient";
-export * from "./operationsInterfaces";
+export * from "./models/index.js";
+export { MonitorClient } from "./monitorClient.js";
+export * from "./operationsInterfaces/index.js";

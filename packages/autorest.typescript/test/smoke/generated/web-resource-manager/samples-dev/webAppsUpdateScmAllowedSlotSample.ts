@@ -6,12 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import {
-  CsmPublishingCredentialsPoliciesEntity,
-  WebSiteManagementClient,
-} from "@msinternal/web-resource-manager";
+import type { CsmPublishingCredentialsPoliciesEntity } from "@msinternal/web-resource-manager";
+import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import "dotenv/config";
 

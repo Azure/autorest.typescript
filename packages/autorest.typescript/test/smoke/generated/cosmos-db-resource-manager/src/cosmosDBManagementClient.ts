@@ -7,12 +7,12 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import {
+import type {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import * as coreAuth from "@azure/core-auth";
+import type * as coreAuth from "@azure/core-auth";
 import {
   DatabaseAccountsImpl,
   OperationsImpl,
@@ -45,8 +45,8 @@ import {
   RestorableMongodbResourcesImpl,
   CassandraClustersImpl,
   CassandraDataCentersImpl,
-} from "./operations";
-import {
+} from "./operations/index.js";
+import type {
   DatabaseAccounts,
   Operations,
   Database,
@@ -78,8 +78,8 @@ import {
   RestorableMongodbResources,
   CassandraClusters,
   CassandraDataCenters,
-} from "./operationsInterfaces";
-import { CosmosDBManagementClientOptionalParams } from "./models";
+} from "./operationsInterfaces/index.js";
+import type { CosmosDBManagementClientOptionalParams } from "./models/index.js";
 
 export class CosmosDBManagementClient extends coreClient.ServiceClient {
   $host: string;

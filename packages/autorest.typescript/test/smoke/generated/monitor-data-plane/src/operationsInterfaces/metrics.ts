@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   AzureMetricsDocument,
   MetricsCreateOptionalParams,
   MetricsCreateResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Metrics. */
 export interface Metrics {

@@ -7,15 +7,21 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import {
+import type {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import * as coreAuth from "@azure/core-auth";
-import { ApplicationsImpl, ApplicationDefinitionsImpl } from "./operations";
-import { Applications, ApplicationDefinitions } from "./operationsInterfaces";
-import { ApplicationClientOptionalParams } from "./models";
+import type * as coreAuth from "@azure/core-auth";
+import {
+  ApplicationsImpl,
+  ApplicationDefinitionsImpl,
+} from "./operations/index.js";
+import type {
+  Applications,
+  ApplicationDefinitions,
+} from "./operationsInterfaces/index.js";
+import type { ApplicationClientOptionalParams } from "./models/index.js";
 
 export class ApplicationClient extends coreClient.ServiceClient {
   $host: string;

@@ -7,23 +7,23 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import {
+import type {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import * as coreAuth from "@azure/core-auth";
+import type * as coreAuth from "@azure/core-auth";
 import {
   PolicyAssignmentsImpl,
   PolicyDefinitionsImpl,
   PolicySetDefinitionsImpl,
-} from "./operations";
-import {
+} from "./operations/index.js";
+import type {
   PolicyAssignments,
   PolicyDefinitions,
   PolicySetDefinitions,
-} from "./operationsInterfaces";
-import { PolicyClientOptionalParams } from "./models";
+} from "./operationsInterfaces/index.js";
+import type { PolicyClientOptionalParams } from "./models/index.js";
 
 export class PolicyClient extends coreClient.ServiceClient {
   $host: string;

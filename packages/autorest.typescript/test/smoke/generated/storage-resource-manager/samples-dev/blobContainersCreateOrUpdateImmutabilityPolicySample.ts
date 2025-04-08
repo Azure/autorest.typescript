@@ -6,13 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import {
+import type {
   ImmutabilityPolicy,
   BlobContainersCreateOrUpdateImmutabilityPolicyOptionalParams,
-  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
+import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import "dotenv/config";
 

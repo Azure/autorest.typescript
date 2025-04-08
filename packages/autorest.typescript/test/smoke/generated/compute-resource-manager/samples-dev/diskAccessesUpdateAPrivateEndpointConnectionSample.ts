@@ -6,12 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import {
-  PrivateEndpointConnection,
-  ComputeManagementClient,
-} from "@msinternal/compute-resource-manager";
+import type { PrivateEndpointConnection } from "@msinternal/compute-resource-manager";
+import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import "dotenv/config";
 

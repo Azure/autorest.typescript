@@ -124,11 +124,11 @@ function regularAutorestPackage(
     ],
     scripts: {
       build:
-        "npm run clean && tsc && rollup -c 2>&1 && npm run minify && mkdirp ./review && npm run extract-api",
+        "npm run clean && tshy && npm run extract-api",
       minify: `uglifyjs -c -m --comments --source-map "content='./dist/index.js.map'" -o ./dist/index.min.js ./dist/index.js`,
       prepack: "npm run build",
       pack: "npm pack 2>&1",
-      "extract-api": "api-extractor run --local",
+      "extract-api": "rimraf review && mkdirp ./review && api-extractor run --local",
       lint: "echo skipped",
       clean:
         "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
@@ -160,16 +160,6 @@ function regularAutorestPackage(
     },
     autoPublish: true,
     type: "module",
-    tshy: {
-      project: "./tsconfig.src.json",
-      exports: {
-        "./package.json": "./package.json",
-        ".": "./src/index.ts",
-      },
-      dialects: ["esm", "commonjs"],
-      esmDialects: ["browser", "react-native"],
-      selfLink: false,
-    },
     browser: "./dist/browser/index.js",
     "react-native": "./dist/react-native/index.js"
   };
@@ -178,6 +168,16 @@ function regularAutorestPackage(
   }
 
   if (azureSdkForJs) {
+    packageInfo["tshy"] = {
+      project: "./tsconfig.src.json",
+      exports: {
+        "./package.json": "./package.json",
+        ".": "./src/index.ts",
+      },
+      dialects: ["esm", "commonjs"],
+      esmDialects: ["browser", "react-native"],
+      selfLink: false,
+    };
     packageInfo.devDependencies["@azure/dev-tool"] = "^1.0.0";
     delete packageInfo.devDependencies["@microsoft/api-extractor"];
     delete packageInfo.devDependencies["rimraf"];
@@ -198,14 +198,18 @@ function regularAutorestPackage(
     packageInfo.devDependencies["rollup"] = "^2.66.1";
     packageInfo.devDependencies["rollup-plugin-sourcemaps"] = "^0.6.3";
     packageInfo.devDependencies["uglify-js"] = "^3.4.9";
+    packageInfo.devDependencies["tshy"] = "^2.0.0";
   }
 
   if (generateTest) {
     packageInfo.devDependencies["@azure/identity"] = "^4.6.0";
     packageInfo.devDependencies["@azure/logger"] = "^1.1.4";
-    packageInfo.devDependencies["@azure-tools/test-recorder"] = "^4.1.0";
+    // TODO need unify the version when 4.1.0 released
+    packageInfo.devDependencies["@azure-tools/test-recorder"] = azureSdkForJs ? "^4.1.0" : "^4.0.0";
     packageInfo.devDependencies["@azure-tools/test-credential"] = "^2.0.0";
-    packageInfo.devDependencies["@azure-tools/test-utils-vitest"] = "^1.0.0";
+    if (azureSdkForJs) {
+      packageInfo.devDependencies["@azure-tools/test-utils-vitest"] = "^1.0.0";
+    }
     packageInfo.devDependencies["@types/node"] = "^18.0.0";
     packageInfo.devDependencies["@vitest/browser"] = "^3.0.9";
     packageInfo.devDependencies["@vitest/coverage-istanbul"] = "^3.0.9";

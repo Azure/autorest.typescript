@@ -6,10 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   RecommendedSensitivityLabelUpdateList,
   ManagedDatabaseRecommendedSensitivityLabelsUpdateOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a ManagedDatabaseRecommendedSensitivityLabels. */
 export interface ManagedDatabaseRecommendedSensitivityLabels {

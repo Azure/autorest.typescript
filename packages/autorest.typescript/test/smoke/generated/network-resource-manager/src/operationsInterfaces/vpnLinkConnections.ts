@@ -6,15 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { SimplePollerLike, OperationState } from "@azure/core-lro";
-import {
+import type { PagedAsyncIterableIterator } from "@azure/core-paging";
+import type { SimplePollerLike, OperationState } from "@azure/core-lro";
+import type {
   VpnSiteLinkConnection,
   VpnLinkConnectionsListByVpnConnectionOptionalParams,
   VpnLinkConnectionsResetConnectionOptionalParams,
   VpnLinkConnectionsGetIkeSasOptionalParams,
   VpnLinkConnectionsGetIkeSasResponse,
-} from "../models";
+} from "../models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a VpnLinkConnections. */

@@ -7,12 +7,12 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import {
+import type {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import * as coreAuth from "@azure/core-auth";
+import type * as coreAuth from "@azure/core-auth";
 import {
   OperationsImpl,
   SkusImpl,
@@ -33,8 +33,8 @@ import {
   QueueImpl,
   TableServicesImpl,
   TableOperationsImpl,
-} from "./operations";
-import {
+} from "./operations/index.js";
+import type {
   Operations,
   Skus,
   StorageAccounts,
@@ -54,8 +54,8 @@ import {
   Queue,
   TableServices,
   TableOperations,
-} from "./operationsInterfaces";
-import { StorageManagementClientOptionalParams } from "./models";
+} from "./operationsInterfaces/index.js";
+import type { StorageManagementClientOptionalParams } from "./models/index.js";
 
 export class StorageManagementClient extends coreClient.ServiceClient {
   $host: string;

@@ -6,21 +6,18 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { VpnSitesConfiguration } from "../operationsInterfaces";
+import type { VpnSitesConfiguration } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { NetworkManagementClient } from "../networkManagementClient";
-import {
-  SimplePollerLike,
-  OperationState,
-  createHttpPoller,
-} from "@azure/core-lro";
-import { createLroSpec } from "../lroImpl";
-import {
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import type { NetworkManagementClient } from "../networkManagementClient.js";
+import type { SimplePollerLike, OperationState } from "@azure/core-lro";
+import { createHttpPoller } from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl.js";
+import type {
   GetVpnSitesConfigurationRequest,
   VpnSitesConfigurationDownloadOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing VpnSitesConfiguration operations. */
 export class VpnSitesConfigurationImpl implements VpnSitesConfiguration {

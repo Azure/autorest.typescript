@@ -6,18 +6,18 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { ServerAutomaticTuningOperations } from "../operationsInterfaces";
+import type { ServerAutomaticTuningOperations } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { SqlManagementClient } from "../sqlManagementClient";
-import {
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import type { SqlManagementClient } from "../sqlManagementClient.js";
+import type {
   ServerAutomaticTuningGetOptionalParams,
   ServerAutomaticTuningGetResponse,
   ServerAutomaticTuning,
   ServerAutomaticTuningUpdateOptionalParams,
   ServerAutomaticTuningUpdateResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing ServerAutomaticTuningOperations operations. */
 export class ServerAutomaticTuningOperationsImpl

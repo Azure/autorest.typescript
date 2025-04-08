@@ -6,22 +6,19 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { InboundSecurityRuleOperations } from "../operationsInterfaces";
+import type { InboundSecurityRuleOperations } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { NetworkManagementClient } from "../networkManagementClient";
-import {
-  SimplePollerLike,
-  OperationState,
-  createHttpPoller,
-} from "@azure/core-lro";
-import { createLroSpec } from "../lroImpl";
-import {
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import type { NetworkManagementClient } from "../networkManagementClient.js";
+import type { SimplePollerLike, OperationState } from "@azure/core-lro";
+import { createHttpPoller } from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl.js";
+import type {
   InboundSecurityRule,
   InboundSecurityRuleCreateOrUpdateOptionalParams,
   InboundSecurityRuleCreateOrUpdateResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Class containing InboundSecurityRuleOperations operations. */
 export class InboundSecurityRuleOperationsImpl

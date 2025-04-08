@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   DatabaseRecommendedActionsListByDatabaseAdvisorOptionalParams,
   DatabaseRecommendedActionsListByDatabaseAdvisorResponse,
   DatabaseRecommendedActionsGetOptionalParams,
@@ -14,7 +14,7 @@ import {
   RecommendedAction,
   DatabaseRecommendedActionsUpdateOptionalParams,
   DatabaseRecommendedActionsUpdateResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a DatabaseRecommendedActions. */
 export interface DatabaseRecommendedActions {

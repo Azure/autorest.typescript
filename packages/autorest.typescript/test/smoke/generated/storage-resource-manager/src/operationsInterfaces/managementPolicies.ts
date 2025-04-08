@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   ManagementPolicyName,
   ManagementPoliciesGetOptionalParams,
   ManagementPoliciesGetResponse,
@@ -14,7 +14,7 @@ import {
   ManagementPoliciesCreateOrUpdateOptionalParams,
   ManagementPoliciesCreateOrUpdateResponse,
   ManagementPoliciesDeleteOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a ManagementPolicies. */
 export interface ManagementPolicies {

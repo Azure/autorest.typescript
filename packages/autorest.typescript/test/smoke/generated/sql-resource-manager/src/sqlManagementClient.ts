@@ -7,7 +7,7 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import * as coreAuth from "@azure/core-auth";
+import type * as coreAuth from "@azure/core-auth";
 import {
   RecoverableDatabasesImpl,
   DataMaskingPoliciesImpl,
@@ -127,8 +127,8 @@ import {
   RestorableDroppedDatabasesImpl,
   RestorableDroppedManagedDatabasesImpl,
   ServerConnectionPoliciesImpl,
-} from "./operations";
-import {
+} from "./operations/index.js";
+import type {
   RecoverableDatabases,
   DataMaskingPolicies,
   DataMaskingRules,
@@ -247,8 +247,8 @@ import {
   RestorableDroppedDatabases,
   RestorableDroppedManagedDatabases,
   ServerConnectionPolicies,
-} from "./operationsInterfaces";
-import { SqlManagementClientOptionalParams } from "./models";
+} from "./operationsInterfaces/index.js";
+import type { SqlManagementClientOptionalParams } from "./models/index.js";
 
 export class SqlManagementClient extends coreClient.ServiceClient {
   $host: string;

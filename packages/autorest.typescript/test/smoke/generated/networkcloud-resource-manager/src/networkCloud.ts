@@ -7,12 +7,12 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import {
+import type {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import * as coreAuth from "@azure/core-auth";
+import type * as coreAuth from "@azure/core-auth";
 import {
   OperationsImpl,
   BareMetalMachinesImpl,
@@ -33,8 +33,8 @@ import {
   MetricsConfigurationsImpl,
   AgentPoolsImpl,
   ConsolesImpl,
-} from "./operations";
-import {
+} from "./operations/index.js";
+import type {
   Operations,
   BareMetalMachines,
   CloudServicesNetworks,
@@ -54,8 +54,8 @@ import {
   MetricsConfigurations,
   AgentPools,
   Consoles,
-} from "./operationsInterfaces";
-import { NetworkCloudOptionalParams } from "./models";
+} from "./operationsInterfaces/index.js";
+import type { NetworkCloudOptionalParams } from "./models/index.js";
 
 export class NetworkCloud extends coreClient.ServiceClient {
   $host: string;

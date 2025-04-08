@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import {
+import type {
   OperationParameter,
   OperationURLParameter,
   OperationQueryParameter,
@@ -101,7 +101,7 @@ import {
   ManagedInstance as ManagedInstanceMapper,
   ManagedInstanceUpdate as ManagedInstanceUpdateMapper,
   ServerConnectionPolicy as ServerConnectionPolicyMapper,
-} from "../models/mappers";
+} from "../models/mappers.js";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",

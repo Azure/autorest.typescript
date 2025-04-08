@@ -139,9 +139,16 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
 
   if (hasInlineOperations && hasLro) {
     clientFile.addImportDeclaration({
+      isTypeOnly: true,
       namedImports: createLroImports(useLegacyLro),
       moduleSpecifier: "@azure/core-lro"
     });
+    if (!useLegacyLro) {
+      clientFile.addImportDeclaration({
+        namedImports: ["createHttpPoller"],
+        moduleSpecifier: "@azure/core-lro"
+      });
+    }
     clientFile.addImportDeclaration({
       namedImports: ["createLroSpec"],
       moduleSpecifier: `./lroImpl.js`

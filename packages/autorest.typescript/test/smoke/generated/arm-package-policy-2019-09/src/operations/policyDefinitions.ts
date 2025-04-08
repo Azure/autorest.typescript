@@ -6,14 +6,17 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
-import { setContinuationToken } from "../pagingHelper";
-import { PolicyDefinitions } from "../operationsInterfaces";
+import type {
+  PagedAsyncIterableIterator,
+  PageSettings,
+} from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper.js";
+import type { PolicyDefinitions } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { PolicyClient } from "../policyClient";
-import {
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import type { PolicyClient } from "../policyClient.js";
+import type {
   PolicyDefinition,
   PolicyDefinitionsListNextOptionalParams,
   PolicyDefinitionsListOptionalParams,
@@ -39,7 +42,7 @@ import {
   PolicyDefinitionsListNextResponse,
   PolicyDefinitionsListBuiltInNextResponse,
   PolicyDefinitionsListByManagementGroupNextResponse,
-} from "../models";
+} from "../models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing PolicyDefinitions operations. */
