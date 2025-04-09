@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { ValueTypesClient } from "./generated/type//property/value-types/src/index.js";
+import { ValueTypesClient } from "./generated/type/property/value-types/src/index.js";
 import { stringToUint8Array } from "@azure/core-util";
 
 interface TypeDetail {
