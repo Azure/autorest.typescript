@@ -3,31 +3,33 @@
 ## TypeSpec
 
 ```tsp
-@doc("The configuration for a streaming chat completion request.")
 model StreamingChatCompletionOptions {
-
-  @doc("Indicates whether the completion is a streaming or non-streaming completion.")
   stream: true;
+  messages: string;
+  index: safeint;
 }
 op read(@path id: string): {
   @bodyRoot result: StreamingChatCompletionOptions
 };
 ```
 
-## Operations
+## Models
 
 ```ts models
-/** The configuration for a streaming chat completion request. */
+/** model interface StreamingChatCompletionOptions */
 export interface StreamingChatCompletionOptions {
-  /** Indicates whether the completion is a streaming or non-streaming completion. */
   stream: true;
+  messages: string;
+  index: number;
 }
 
 export function streamingChatCompletionOptionsDeserializer(
   item: any
 ): StreamingChatCompletionOptions {
   return {
-    stream: true
+    stream: true,
+    messages: item["messages"],
+    index: item["index"]
   };
 }
 ```
