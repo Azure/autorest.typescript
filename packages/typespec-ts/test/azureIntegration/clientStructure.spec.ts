@@ -50,7 +50,7 @@ describe("ClientStructureClient Rest Client", () => {
     );
     client4 = ServiceOperationGroupClientFactory(
       "http://localhost:3000",
-      "default",
+      "client-operation-group",
       {
         allowInsecureConnection: true
       }
