@@ -2222,7 +2222,7 @@ export function _getSend(
 ): StreamableMethod {
   return context.path("/").post({
     ...operationOptionsToRequestParameters(options),
-    contentType: "application/json",
+    contentType: "text/plain",
     headers: {
       "test-header": testHeader,
       ...options.requestOptions?.headers
