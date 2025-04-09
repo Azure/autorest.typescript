@@ -62,7 +62,7 @@ import { provideContext, useContext } from "./contextManager.js";
 
 import { EmitterOptions } from "./lib.js";
 import { ModularEmitterOptions } from "./modular/interfaces.js";
-import { Project, SourceFile } from "ts-morph";
+import { Project } from "ts-morph";
 import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import {
@@ -95,6 +95,7 @@ import { emitSamples } from "./modular/emitSamples.js";
 export * from "./lib.js";
 
 export async function $onEmit(context: EmitContext) {
+  console.time("onEmit");
   if (context.program.compilerOptions.noEmit || context.program.hasError()) {
     return;
   }
@@ -102,7 +103,9 @@ export async function $onEmit(context: EmitContext) {
   const outputProject = new Project();
   const program: Program = context.program;
   const emitterOptions: EmitterOptions = context.options;
+  console.time("onEmit: create context");
   const dpgContext = await createContextWithDefaultOptions(context);
+  console.timeEnd("onEmit: create context");
   // Enrich the dpg context with path detail and common options
   await enrichDpgContext();
   const rlcOptions = dpgContext.rlcOptions ?? {};
@@ -119,6 +122,7 @@ export async function $onEmit(context: EmitContext) {
     compilerContext: context,
     tcgcContext: dpgContext
   });
+  console.time("onEmit: load static helpers");
   const staticHelpers = await loadStaticHelpers(
     outputProject,
     {
@@ -133,6 +137,7 @@ export async function $onEmit(context: EmitContext) {
       options: rlcOptions
     }
   );
+  console.timeEnd("onEmit: load static helpers");
   const extraDependencies = isAzurePackage({ options: rlcOptions })
     ? {
         ...AzurePollingDependencies,
@@ -140,6 +145,7 @@ export async function $onEmit(context: EmitContext) {
         ...AzureIdentityDependencies
       }
     : { ...DefaultCoreDependencies };
+  console.time("onEmit: provide binder");
   const binder = provideBinder(outputProject, {
     staticHelpers,
     dependencies: {
@@ -147,6 +153,7 @@ export async function $onEmit(context: EmitContext) {
     }
   });
   provideSdkTypes(dpgContext);
+  console.timeEnd("onEmit: provide binder");
 
   const rlcCodeModels: RLCModel[] = [];
   let modularEmitterOptions: ModularEmitterOptions;
@@ -154,7 +161,9 @@ export async function $onEmit(context: EmitContext) {
   await clearSrcFolder();
   // 2. Generate RLC code model
   // TODO: skip this step in modular once modular generator is sufficiently decoupled
+  console.time("onEmit: build RLC code models");
   await buildRLCCodeModels();
+  console.timeEnd("onEmit: build RLC code models");
 
   // 4. Generate sources
   if (emitterOptions.isModularLibrary) {
@@ -248,13 +257,13 @@ export async function $onEmit(context: EmitContext) {
   }
 
   async function generateModularSources() {
+    console.time("onEmit: generate modular sources");
     const modularSourcesRoot =
       dpgContext.generationPathDetail?.modularSourcesDir ?? "src";
     const project = useContext("outputProject");
     modularEmitterOptions = transformModularEmitterOptions(
       dpgContext,
       modularSourcesRoot,
-      project,
       {
         casing: "camel"
       }
@@ -271,8 +280,9 @@ export async function $onEmit(context: EmitContext) {
     );
 
     const isMultiClients = dpgContext.sdkPackage.clients.length > 1;
-
+    console.time("onEmit: emit models");
     emitTypes(dpgContext, { sourceRoot: modularSourcesRoot });
+    console.timeEnd("onEmit: emit models");
     buildSubpathIndexFile(
       dpgContext,
       modularEmitterOptions,
@@ -280,6 +290,7 @@ export async function $onEmit(context: EmitContext) {
       undefined,
       { recursive: true }
     );
+    console.time("onEmit: emit source files");
     for (const subClient of dpgContext.sdkPackage.clients) {
       await renameClientName(subClient, modularEmitterOptions);
       buildApiOptions(dpgContext, subClient, modularEmitterOptions);
@@ -332,9 +343,12 @@ export async function $onEmit(context: EmitContext) {
         rootIndexFile
       );
     }
+    console.timeEnd("onEmit: emit source files");
     // Enable modular sample generation when explicitly set to true or MPG
     if (emitterOptions.generateSample === true) {
+      console.time("onEmit: emit samples");
       const samples = emitSamples(dpgContext);
+      console.timeEnd("onEmit: emit samples");
       // Refine the rlc sample generation logic
       // TODO: remember to remove this out when RLC is splitted from Modular
       if (samples.length > 0) {
@@ -342,26 +356,21 @@ export async function $onEmit(context: EmitContext) {
       }
     }
 
+    console.time("onEmit: resolve references");
     binder.resolveAllReferences(modularSourcesRoot);
+    console.timeEnd("onEmit: resolve references");
+
+    console.time("onEmit: generate files");
 
     for (const file of project.getSourceFiles()) {
-      file.fixMissingImports(
-        {},
-        {
-          importModuleSpecifierEnding: "js",
-          importModuleSpecifierPreference: "relative",
-          includePackageJsonAutoImports: "off",
-          excludeLibrarySymbolsInNavTo: true
-        }
-      );
-      await removeUnusedImports(file);
-      file.fixUnusedIdentifiers();
       await emitContentByBuilder(
         program,
         () => ({ content: file.getFullText(), path: file.getFilePath() }),
         modularEmitterOptions as any
       );
     }
+    console.timeEnd("onEmit: generate files");
+    console.timeEnd("onEmit: generate modular sources");
   }
 
   async function generateMetadataAndTest(context: SdkContext) {
@@ -381,7 +390,18 @@ export async function $onEmit(context: EmitContext) {
     const shouldGenerateMetadata =
       option.generateMetadata === true ||
       (option.generateMetadata === undefined && !hasPackageFile);
-    // TODO detect whether test folder exists. If yes generateTest should be false.
+    const existingTestFolderPath = join(
+      dpgContext.generationPathDetail?.metadataDir ?? "",
+      "test"
+    );
+    const hasTestFolder = await existsSync(existingTestFolderPath);
+    if (option.azureSdkForJs && option.generateTest === undefined) {
+      if (hasTestFolder) {
+        option.generateTest = false;
+      } else {
+        option.generateTest = true;
+      }
+    }
     if (shouldGenerateMetadata) {
       const commonBuilders = [
         buildRollupConfig,
@@ -486,33 +506,7 @@ export async function $onEmit(context: EmitContext) {
       .map((subClient) => getClientContextPath(context, subClient, options))
       .map((path) => path.substring(path.indexOf("src")));
   }
-}
-
-export async function removeUnusedImports(file: SourceFile) {
-  file.getImportDeclarations().map((importDeclaration) => {
-    importDeclaration.getFullText();
-    importDeclaration.getNamedImports().map((namedImport) => {
-      namedImport.getFullText();
-      if (
-        namedImport
-          .getNameNode()
-          .findReferencesAsNodes()
-          .filter((n) => {
-            return n.getSourceFile().getFilePath() === file.getFilePath();
-          }).length === 1
-      ) {
-        namedImport.remove();
-      }
-    });
-    if (importDeclaration.getNamedImports().length === 0) {
-      importDeclaration.remove();
-    }
-  });
-  file.getExportDeclarations().map((exportDeclaration) => {
-    if (exportDeclaration.getNamedExports().length === 0) {
-      exportDeclaration.remove();
-    }
-  });
+  console.timeEnd("onEmit");
 }
 
 export async function createContextWithDefaultOptions(
@@ -527,7 +521,6 @@ export async function createContextWithDefaultOptions(
   const tcgcSettings = {
     "generate-protocol-methods": true,
     "generate-convenience-methods": true,
-    "flatten-union-as-enum": flattenUnionAsEnum,
     emitters: [
       {
         main: "@azure-tools/typespec-ts",
@@ -542,7 +535,10 @@ export async function createContextWithDefaultOptions(
 
   return (await createSdkContext(
     context,
-    context.program.emitters[0]?.metadata.name ?? "@azure-tools/typespec-ts"
+    context.program.emitters[0]?.metadata.name ?? "@azure-tools/typespec-ts",
+    {
+      flattenUnionAsEnum
+    }
   )) as SdkContext;
 }
 

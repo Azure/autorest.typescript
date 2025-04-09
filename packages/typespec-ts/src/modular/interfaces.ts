@@ -1,5 +1,4 @@
 import { RLCOptions } from "@azure-tools/rlc-common";
-import { Project } from "ts-morph";
 
 export interface ModularOptions {
   sourceRoot: string;
@@ -9,7 +8,6 @@ export interface ModularOptions {
 export interface ModularEmitterOptions {
   options: RLCOptions;
   modularOptions: ModularOptions;
-  project: Project;
 }
 
 export interface ModularClientOptions {

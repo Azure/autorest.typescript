@@ -3,13 +3,11 @@
 
 import { OpenAIContext } from "../../api/openAIContext.js";
 import {
-  create,
-  EmbeddingsCreateOptionalParams,
-} from "../../api/embeddings/index.js";
-import {
   CreateEmbeddingRequest,
   CreateEmbeddingResponse,
 } from "../../models/models.js";
+import { EmbeddingsCreateOptionalParams } from "../../api/embeddings/options.js";
+import { create } from "../../api/embeddings/operations.js";
 
 /** Interface representing a Embeddings operations. */
 export interface EmbeddingsOperations {

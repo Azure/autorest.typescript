@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  RadiologyInsightsContext as Client,
-  InferRadiologyInsightsOptionalParams,
-} from "./index.js";
+import { RadiologyInsightsContext as Client } from "./index.js";
 import {
   PatientRecord,
   radiologyInsightsModelConfigurationSerializer,
@@ -12,6 +9,7 @@ import {
   RadiologyInsightsInferenceResult,
   radiologyInsightsInferenceResultDeserializer,
 } from "../models/models.js";
+import { InferRadiologyInsightsOptionalParams } from "./options.js";
 import { getLongRunningPoller } from "../static-helpers/pollingHelpers.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
@@ -28,9 +26,9 @@ export function _inferRadiologyInsightsSend(
   options: InferRadiologyInsightsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/radiology-insights/jobs{?api-version}",
+    "/radiology-insights/jobs{?api%2Dversion}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

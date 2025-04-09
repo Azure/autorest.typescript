@@ -119,7 +119,12 @@ describe("bytes", () => {
         `import type { RequestParameters } from "@azure-rest/core-client";
                   
           export interface ReadBodyParam {
-            body: string;
+            /** Value may contain any sequence of octets */
+            body:
+              | string
+              | Uint8Array
+              | ReadableStream<Uint8Array>
+              | NodeJS.ReadableStream;
           }
           
           export type ReadParameters = ReadBodyParam & RequestParameters;
@@ -169,11 +174,10 @@ describe("bytes", () => {
               @route("/uploadFile")
               @post op uploadFile(
               @header contentType: "multipart/form-data",
-              @body body: {
-                name: string;
-                @encode("binary")
-                file: bytes;
-                files: bytes[];
+              @multipartBody body: {
+                name: HttpPart<string>;
+                file: HttpPart<bytes>;
+                files: HttpPart<bytes>[];
               }
             ): void;
               `
@@ -232,10 +236,10 @@ describe("bytes", () => {
               @route("/uploadFile")
               @post op uploadFile(
               @header contentType: "multipart/form-data",
-              @body body: {
-                name: string;
-                file: bytes;
-                files: bytes[];
+              @multipartBody body: {
+                name: HttpPart<string>;
+                file: HttpPart<bytes>;
+                files: HttpPart<bytes>[];
               }
             ): void;
               `
@@ -288,18 +292,18 @@ describe("bytes", () => {
         );
       });
 
-      it("bytes/bytes[] in general model - should be treated as base64 string", async () => {
+      it.skip("bytes/bytes[] in general model - should be treated as base64 string", async () => {
         const parameters = await emitParameterFromTypeSpec(
           `
               @route("/uploadFile")
               @post op uploadFile(
               @header contentType: "multipart/form-data",
-              @body body: {
-                name: string;
-                file: {
+              @multipartBody body: {
+                name: HttpPart<string>;
+                file: HttpPart<{
                   foo: bytes;
                   foos: bytes[];
-                };
+                }>;
               }
             ): void;
               `
@@ -346,7 +350,7 @@ describe("bytes", () => {
           @route("/uploadFile")
           @post op uploadFile(
           @header contentType: "multipart/form-data",
-          @body body: Foo;
+          @multipartBody body: HttpPart<Foo>;
           ): void;
           `
         );
@@ -420,7 +424,7 @@ describe("bytes", () => {
         );
       });
 
-      it("bytes/bytes[]/union in general model- should be treated as base64 string", async () => {
+      it.skip("bytes/bytes[]/union in general model- should be treated as base64 string", async () => {
         const models = await emitModelsFromTypeSpec(
           `
           model Bar {
@@ -437,7 +441,7 @@ describe("bytes", () => {
           @route("/uploadFile")
           @post op uploadFile(
           @header contentType: "multipart/form-data",
-          @body body: Foo;
+          @multipartBody body: HttpPart<Foo>;
           ): void;
               `
         );

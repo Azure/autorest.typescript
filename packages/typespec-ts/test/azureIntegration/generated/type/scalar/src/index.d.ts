@@ -1,6 +1,7 @@
 import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
+import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
 import type { StreamableMethod } from '@azure-rest/core-client';
 
@@ -9,9 +10,14 @@ export declare interface BooleanModelGet {
     put(options: BooleanModelPutParameters): StreamableMethod<BooleanModelPut204Response>;
 }
 
+export declare interface BooleanModelGet200Headers {
+    "content-type": "application/json";
+}
+
 export declare interface BooleanModelGet200Response extends HttpResponse {
     status: "200";
     body: boolean;
+    headers: RawHttpHeaders & BooleanModelGet200Headers;
 }
 
 export declare type BooleanModelGetParameters = RequestParameters;
@@ -24,7 +30,11 @@ export declare interface BooleanModelPutBodyParam {
     body: boolean;
 }
 
-export declare type BooleanModelPutParameters = BooleanModelPutBodyParam & RequestParameters;
+export declare interface BooleanModelPutMediaTypesParam {
+    contentType: "application/json";
+}
+
+export declare type BooleanModelPutParameters = BooleanModelPutMediaTypesParam & BooleanModelPutBodyParam & RequestParameters;
 
 declare function createClient(options?: ScalarClientOptions): ScalarClient;
 export default createClient;
@@ -41,7 +51,11 @@ export declare interface Decimal128TypeRequestBodyBodyParam {
     body: number;
 }
 
-export declare type Decimal128TypeRequestBodyParameters = Decimal128TypeRequestBodyBodyParam & RequestParameters;
+export declare interface Decimal128TypeRequestBodyMediaTypesParam {
+    contentType: "application/json";
+}
+
+export declare type Decimal128TypeRequestBodyParameters = Decimal128TypeRequestBodyMediaTypesParam & Decimal128TypeRequestBodyBodyParam & RequestParameters;
 
 export declare interface Decimal128TypeRequestParameter {
     get(options: Decimal128TypeRequestParameterParameters): StreamableMethod<Decimal128TypeRequestParameter204Response>;
@@ -65,9 +79,14 @@ export declare interface Decimal128TypeResponseBody {
     get(options?: Decimal128TypeResponseBodyParameters): StreamableMethod<Decimal128TypeResponseBody200Response>;
 }
 
+export declare interface Decimal128TypeResponseBody200Headers {
+    "content-type": "application/json";
+}
+
 export declare interface Decimal128TypeResponseBody200Response extends HttpResponse {
     status: "200";
     body: number;
+    headers: RawHttpHeaders & Decimal128TypeResponseBody200Headers;
 }
 
 export declare type Decimal128TypeResponseBodyParameters = RequestParameters;
@@ -95,7 +114,11 @@ export declare interface Decimal128VerifyVerifyBodyParam {
     body: number;
 }
 
-export declare type Decimal128VerifyVerifyParameters = Decimal128VerifyVerifyBodyParam & RequestParameters;
+export declare interface Decimal128VerifyVerifyMediaTypesParam {
+    contentType: "application/json";
+}
+
+export declare type Decimal128VerifyVerifyParameters = Decimal128VerifyVerifyMediaTypesParam & Decimal128VerifyVerifyBodyParam & RequestParameters;
 
 export declare interface DecimalTypeRequestBody {
     put(options: DecimalTypeRequestBodyParameters): StreamableMethod<DecimalTypeRequestBody204Response>;
@@ -109,7 +132,11 @@ export declare interface DecimalTypeRequestBodyBodyParam {
     body: number;
 }
 
-export declare type DecimalTypeRequestBodyParameters = DecimalTypeRequestBodyBodyParam & RequestParameters;
+export declare interface DecimalTypeRequestBodyMediaTypesParam {
+    contentType: "application/json";
+}
+
+export declare type DecimalTypeRequestBodyParameters = DecimalTypeRequestBodyMediaTypesParam & DecimalTypeRequestBodyBodyParam & RequestParameters;
 
 export declare interface DecimalTypeRequestParameter {
     get(options: DecimalTypeRequestParameterParameters): StreamableMethod<DecimalTypeRequestParameter204Response>;
@@ -133,9 +160,14 @@ export declare interface DecimalTypeResponseBody {
     get(options?: DecimalTypeResponseBodyParameters): StreamableMethod<DecimalTypeResponseBody200Response>;
 }
 
+export declare interface DecimalTypeResponseBody200Headers {
+    "content-type": "application/json";
+}
+
 export declare interface DecimalTypeResponseBody200Response extends HttpResponse {
     status: "200";
     body: number;
+    headers: RawHttpHeaders & DecimalTypeResponseBody200Headers;
 }
 
 export declare type DecimalTypeResponseBodyParameters = RequestParameters;
@@ -163,7 +195,11 @@ export declare interface DecimalVerifyVerifyBodyParam {
     body: number;
 }
 
-export declare type DecimalVerifyVerifyParameters = DecimalVerifyVerifyBodyParam & RequestParameters;
+export declare interface DecimalVerifyVerifyMediaTypesParam {
+    contentType: "application/json";
+}
+
+export declare type DecimalVerifyVerifyParameters = DecimalVerifyVerifyMediaTypesParam & DecimalVerifyVerifyBodyParam & RequestParameters;
 
 export declare interface Routes {
     (path: "/type/scalar/string"): StringModelGet;
@@ -193,9 +229,14 @@ export declare interface StringModelGet {
     put(options: StringModelPutParameters): StreamableMethod<StringModelPut204Response>;
 }
 
+export declare interface StringModelGet200Headers {
+    "content-type": "application/json";
+}
+
 export declare interface StringModelGet200Response extends HttpResponse {
     status: "200";
     body: string;
+    headers: RawHttpHeaders & StringModelGet200Headers;
 }
 
 export declare type StringModelGetParameters = RequestParameters;
@@ -208,16 +249,25 @@ export declare interface StringModelPutBodyParam {
     body: string;
 }
 
-export declare type StringModelPutParameters = StringModelPutBodyParam & RequestParameters;
+export declare interface StringModelPutMediaTypesParam {
+    contentType: "application/json";
+}
+
+export declare type StringModelPutParameters = StringModelPutMediaTypesParam & StringModelPutBodyParam & RequestParameters;
 
 export declare interface UnknownGet {
     get(options?: UnknownGetParameters): StreamableMethod<UnknownGet200Response>;
     put(options: UnknownPutParameters): StreamableMethod<UnknownPut204Response>;
 }
 
+export declare interface UnknownGet200Headers {
+    "content-type": "application/json";
+}
+
 export declare interface UnknownGet200Response extends HttpResponse {
     status: "200";
     body: any;
+    headers: RawHttpHeaders & UnknownGet200Headers;
 }
 
 export declare type UnknownGetParameters = RequestParameters;
@@ -230,6 +280,10 @@ export declare interface UnknownPutBodyParam {
     body: unknown;
 }
 
-export declare type UnknownPutParameters = UnknownPutBodyParam & RequestParameters;
+export declare interface UnknownPutMediaTypesParam {
+    contentType: "application/json";
+}
+
+export declare type UnknownPutParameters = UnknownPutMediaTypesParam & UnknownPutBodyParam & RequestParameters;
 
 export { }

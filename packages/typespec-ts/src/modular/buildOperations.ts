@@ -1,6 +1,10 @@
 import { ModularEmitterOptions } from "./interfaces.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
-import { Project, SourceFile } from "ts-morph";
+import {
+  SourceFile,
+  InterfaceDeclarationStructure,
+  StructureKind
+} from "ts-morph";
 import {
   getDeserializePrivateFunction,
   getExpectedStatuses,
@@ -30,6 +34,9 @@ import {
 } from "../utils/operationUtil.js";
 import { resolveReference } from "../framework/reference.js";
 import { useDependencies } from "../framework/hooks/useDependencies.js";
+import { addDeclaration } from "../framework/declaration.js";
+import { refkey } from "../framework/refkey.js";
+import { useContext } from "../contextManager.js";
 
 /**
  * This function creates a file under /api for each operation group.
@@ -41,6 +48,7 @@ export function buildOperationFiles(
   client: SdkClientType<SdkServiceOperation>,
   emitterOptions: ModularEmitterOptions
 ) {
+  const project = useContext("outputProject");
   const operationFiles: Set<SourceFile> = new Set();
   const { subfolder, rlcClientName } = getModularClientOptions(
     dpgContext,
@@ -67,28 +75,7 @@ export function buildOperationFiles(
       subfolder && subfolder !== "" ? subfolder + "/" : ""
     }api/${operationFileName}.ts`;
 
-    const operationGroupFile =
-      emitterOptions.project.createSourceFile(filepath);
-    // Import the deserializeUtils
-    importDeserializeUtils(
-      srcPath,
-      operationGroupFile,
-      emitterOptions.project,
-      "deserialize",
-      subfolder,
-      prefixes.length
-    );
-
-    // Import the serializeUtils
-    importDeserializeUtils(
-      srcPath,
-      operationGroupFile,
-      emitterOptions.project,
-      "serialize",
-      subfolder,
-      prefixes.length
-    );
-
+    const operationGroupFile = project.createSourceFile(filepath);
     operations.forEach((op) => {
       const operationDeclaration = getOperationFunction(
         dpgContext,
@@ -107,9 +94,13 @@ export function buildOperationFiles(
       );
       operationGroupFile.addFunctions([
         sendOperationDeclaration,
-        deserializeOperationDeclaration,
-        operationDeclaration
+        deserializeOperationDeclaration
       ]);
+      addDeclaration(
+        operationGroupFile,
+        operationDeclaration,
+        refkey(op, "api")
+      );
     });
 
     const indexPathPrefix =
@@ -123,38 +114,6 @@ export function buildOperationFiles(
     operationFiles.add(operationGroupFile);
   }
   return Array.from(operationFiles);
-}
-
-export function importDeserializeUtils(
-  srcPath: string,
-  sourceFile: SourceFile,
-  project: Project,
-  serializeType: string,
-  subfolder: string = "",
-  importLayer: number = 0
-) {
-  const hasModelsImport = sourceFile.getImportDeclarations().some((i) => {
-    return i.getModuleSpecifierValue().endsWith(`utils/${serializeType}.js`);
-  });
-  const modelsFile = project.getSourceFile(
-    `${srcPath}/${
-      subfolder && subfolder !== "" ? subfolder + "/" : ""
-    }utils/${serializeType}Util.ts`
-  );
-  const deserializeUtil: string[] = [];
-
-  for (const entry of modelsFile?.getExportedDeclarations().entries() ?? []) {
-    deserializeUtil.push(entry[0]);
-  }
-
-  if (deserializeUtil.length > 0 && !hasModelsImport) {
-    sourceFile.addImportDeclaration({
-      moduleSpecifier: `${"../".repeat(
-        importLayer + 1
-      )}utils/${serializeType}Util.js`,
-      namedImports: deserializeUtil
-    });
-  }
 }
 
 /**
@@ -194,7 +153,8 @@ export function buildOperationOptions(
   const operationOptionsReference = resolveReference(
     dependencies.OperationOptions
   );
-  sourceFile.addInterface({
+  const operationOptionsInterface: InterfaceDeclarationStructure = {
+    kind: StructureKind.Interface,
     name,
     isExported: true,
     extends: [operationOptionsReference],
@@ -210,7 +170,12 @@ export function buildOperationOptions(
       })
     ),
     docs: [`Optional parameters.`]
-  });
+  };
+  addDeclaration(
+    sourceFile,
+    operationOptionsInterface,
+    refkey(method[1], "operationOptions")
+  );
 }
 
 /**
@@ -248,11 +213,11 @@ export function buildLroDeserDetailMap(
         const deserName = `_${name}Deserialize`;
         let renamedDeserName = undefined;
         if (existingNames.has(deserName)) {
-          const newName = `${name}Deserialize_${operationFileName
-            .split("/")
-            .slice(0, -1)
-            .join("_")}`;
-          renamedDeserName = `_${normalizeName(newName, NameType.Method)}`;
+          const newName = `${name}Deserialize${normalizeName(
+            operationFileName.split("/").slice(0, -1).join("_"),
+            NameType.Interface
+          )}`;
+          renamedDeserName = `_${newName}`;
         }
         existingNames.add(deserName);
         return {

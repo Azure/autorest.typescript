@@ -9,10 +9,10 @@ This is tsp definition.
 op primitive(param: string): void;
 
 @route("array?fixed=true{&param*}")
-op array(param: string[]): void;
+op `array`(param: string[]): void;
 
 @route("record?fixed=true{&param*}")
-op record(param: Record<int32>): void;
+op `record`(param: Record<int32>): void;
 ```
 
 ## Provide generated operations to call rest-level methods
@@ -23,6 +23,11 @@ Should enable URI template parse for parameters:
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import {
+  RecordOptionalParams,
+  ArrayOptionalParams,
+  PrimitiveOptionalParams,
+} from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,

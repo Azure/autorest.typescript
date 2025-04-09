@@ -2,26 +2,26 @@
 // Licensed under the MIT License.
 
 import {
-  _getDataProductsOperations,
-  DataProductsOperations,
-} from "./classic/dataProducts/index.js";
-import {
-  _getDataTypesOperations,
-  DataTypesOperations,
-} from "./classic/dataTypes/index.js";
-import {
-  _getDataProductsCatalogsOperations,
-  DataProductsCatalogsOperations,
-} from "./classic/dataProductsCatalogs/index.js";
-import {
-  _getOperationsOperations,
-  OperationsOperations,
-} from "./classic/operations/index.js";
-import {
   createNetworkAnalyticsApi,
   NetworkAnalyticsApiContext,
   NetworkAnalyticsApiOptionalParams,
 } from "./api/index.js";
+import {
+  DataProductsOperations,
+  _getDataProductsOperations,
+} from "./classic/dataProducts/index.js";
+import {
+  DataTypesOperations,
+  _getDataTypesOperations,
+} from "./classic/dataTypes/index.js";
+import {
+  DataProductsCatalogsOperations,
+  _getDataProductsCatalogsOperations,
+} from "./classic/dataProductsCatalogs/index.js";
+import {
+  OperationsOperations,
+  _getOperationsOperations,
+} from "./classic/operations/index.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { TokenCredential } from "@azure/core-auth";
 

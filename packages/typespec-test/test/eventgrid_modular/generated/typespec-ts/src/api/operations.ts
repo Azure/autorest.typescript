@@ -1,16 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  AcknowledgeCloudEventsOptionalParams,
-  EventGridContext as Client,
-  PublishCloudEventOptionalParams,
-  PublishCloudEventsOptionalParams,
-  ReceiveCloudEventsOptionalParams,
-  RejectCloudEventsOptionalParams,
-  ReleaseCloudEventsOptionalParams,
-  RenewCloudEventLocksOptionalParams,
-} from "./index.js";
+import { EventGridContext as Client } from "./index.js";
 import {
   CloudEvent,
   cloudEventSerializer,
@@ -27,6 +18,15 @@ import {
   RenewCloudEventLocksResult,
   renewCloudEventLocksResultDeserializer,
 } from "../models/models.js";
+import {
+  RenewCloudEventLocksOptionalParams,
+  RejectCloudEventsOptionalParams,
+  ReleaseCloudEventsOptionalParams,
+  AcknowledgeCloudEventsOptionalParams,
+  ReceiveCloudEventsOptionalParams,
+  PublishCloudEventsOptionalParams,
+  PublishCloudEventOptionalParams,
+} from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
@@ -43,11 +43,11 @@ export function _renewCloudEventLocksSend(
   options: RenewCloudEventLocksOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:renewLock{?api-version}",
+    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:renewLock{?api%2Dversion}",
     {
       topicName: topicName,
       eventSubscriptionName: eventSubscriptionName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -102,11 +102,11 @@ export function _rejectCloudEventsSend(
   options: RejectCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:reject{?api-version}",
+    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:reject{?api%2Dversion}",
     {
       topicName: topicName,
       eventSubscriptionName: eventSubscriptionName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -161,11 +161,11 @@ export function _releaseCloudEventsSend(
   options: ReleaseCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:release{?api-version,releaseDelayInSeconds}",
+    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:release{?api%2Dversion,releaseDelayInSeconds}",
     {
       topicName: topicName,
       eventSubscriptionName: eventSubscriptionName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       releaseDelayInSeconds: options?.releaseDelayInSeconds,
     },
     {
@@ -221,11 +221,11 @@ export function _acknowledgeCloudEventsSend(
   options: AcknowledgeCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:acknowledge{?api-version}",
+    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:acknowledge{?api%2Dversion}",
     {
       topicName: topicName,
       eventSubscriptionName: eventSubscriptionName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -279,11 +279,11 @@ export function _receiveCloudEventsSend(
   options: ReceiveCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:receive{?api-version,maxEvents,maxWaitTime}",
+    "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:receive{?api%2Dversion,maxEvents,maxWaitTime}",
     {
       topicName: topicName,
       eventSubscriptionName: eventSubscriptionName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       maxEvents: options?.maxEvents,
       maxWaitTime: options?.maxWaitTime,
     },
@@ -336,10 +336,10 @@ export function _publishCloudEventsSend(
   options: PublishCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/topics/{topicName}:publish{?api-version}",
+    "/topics/{topicName}:publish{?api%2Dversion}",
     {
       topicName: topicName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -389,10 +389,10 @@ export function _publishCloudEventSend(
   options: PublishCloudEventOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/topics/{topicName}:publish{?api-version}",
+    "/topics/{topicName}:publish{?api%2Dversion}",
     {
       topicName: topicName,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

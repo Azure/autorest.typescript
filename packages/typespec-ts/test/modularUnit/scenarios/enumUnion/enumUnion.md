@@ -51,6 +51,7 @@ export type SchemaContentTypeValues =
 ```ts operations
 import { DemoServiceContext as Client } from "./index.js";
 import { SchemaContentTypeValues } from "../models/models.js";
+import { GetOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -516,6 +517,7 @@ needOptions: false
 
 ```ts operations
 import { DemoServiceContext as Client } from "./index.js";
+import { GetOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -533,7 +535,7 @@ export function _getSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: "text/plain",
       headers: {
         "test-header": testHeader,
         ...options.requestOptions?.headers,
@@ -606,6 +608,7 @@ experimental-extensible-enums: true
 
 ```ts operations
 import { DemoServiceContext as Client } from "./index.js";
+import { GetOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -623,7 +626,7 @@ export function _getSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
+      contentType: "text/plain",
       headers: {
         "test-header": testHeader,
         ...options.requestOptions?.headers,

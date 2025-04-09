@@ -1,7 +1,19 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { WidgetServiceContext } from "../../api/widgetServiceContext.js";
+import { SAPWidgetServiceContext } from "../../api/sapWidgetServiceContext.js";
+import { Widget, SAPUser, AnalyzeResult } from "../../models/models.js";
+import {
+  SAPWidgetsAnalyzeWidgetOptionalParams,
+  SAPWidgetsDeleteWidgetOptionalParams,
+  SAPWidgetsUpdateWidgetOptionalParams,
+  SAPWidgetsCreateOrReplaceOptionalParams,
+  SAPWidgetsCreateWidgetOptionalParams,
+  SAPWidgetsGetWidgetOptionalParams,
+  SAPWidgetsQueryWidgetsPagesOptionalParams,
+  SAPWidgetsListWidgetsPagesOptionalParams,
+  SAPWidgetsSAPListWidgetsOptionalParams,
+} from "../../api/sapWidgets/options.js";
 import {
   analyzeWidget,
   deleteWidget,
@@ -11,32 +23,22 @@ import {
   getWidget,
   queryWidgetsPages,
   listWidgetsPages,
-  listWidgets,
-  WidgetsAnalyzeWidgetOptionalParams,
-  WidgetsDeleteWidgetOptionalParams,
-  WidgetsUpdateWidgetOptionalParams,
-  WidgetsCreateOrReplaceOptionalParams,
-  WidgetsCreateWidgetOptionalParams,
-  WidgetsGetWidgetOptionalParams,
-  WidgetsQueryWidgetsPagesOptionalParams,
-  WidgetsListWidgetsPagesOptionalParams,
-  WidgetsListWidgetsOptionalParams,
-} from "../../api/widgets/index.js";
-import { User, Widget, AnalyzeResult } from "../../models/models.js";
+  sapListWidgets,
+} from "../../api/sapWidgets/operations.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
-/** Interface representing a Widgets operations. */
-export interface WidgetsOperations {
+/** Interface representing a SAPWidgets operations. */
+export interface SAPWidgetsOperations {
   /** Analyze a widget. The only guarantee is that this method will return a string containing the results of the analysis. */
   analyzeWidget: (
     id: string,
-    options?: WidgetsAnalyzeWidgetOptionalParams,
+    options?: SAPWidgetsAnalyzeWidgetOptionalParams,
   ) => Promise<AnalyzeResult>;
   /** Delete a widget by ID. */
   deleteWidget: (
     id: string,
-    options?: WidgetsDeleteWidgetOptionalParams,
+    options?: SAPWidgetsDeleteWidgetOptionalParams,
   ) => Promise<void>;
   /**
    * Update the contents of the widget. The widget ID is required in the input, but cannot be changed. All other fields
@@ -44,14 +46,14 @@ export interface WidgetsOperations {
    */
   updateWidget: (
     id: string,
-    options?: WidgetsUpdateWidgetOptionalParams,
+    options?: SAPWidgetsUpdateWidgetOptionalParams,
   ) => Promise<Widget>;
   /** Long-running resource create or replace operation template. */
   createOrReplace: (
     name: string,
-    resource: User,
-    options?: WidgetsCreateOrReplaceOptionalParams,
-  ) => PollerLike<OperationState<User>, User>;
+    resource: SAPUser,
+    options?: SAPWidgetsCreateOrReplaceOptionalParams,
+  ) => PollerLike<OperationState<SAPUser>, SAPUser>;
   /**
    * Create a new widget.
    *
@@ -61,77 +63,83 @@ export interface WidgetsOperations {
   createWidget: (
     weight: number,
     color: "red" | "blue",
-    options?: WidgetsCreateWidgetOptionalParams,
+    options?: SAPWidgetsCreateWidgetOptionalParams,
   ) => Promise<Widget>;
   /** Get a widget by ID. */
   getWidget: (
     id: string,
-    options?: WidgetsGetWidgetOptionalParams,
+    options?: SAPWidgetsGetWidgetOptionalParams,
   ) => Promise<Widget>;
   queryWidgetsPages: (
     page: number,
     pageSize: number,
-    options?: WidgetsQueryWidgetsPagesOptionalParams,
+    options?: SAPWidgetsQueryWidgetsPagesOptionalParams,
   ) => PagedAsyncIterableIterator<Widget>;
   listWidgetsPages: (
     page: number,
     pageSize: number,
-    options?: WidgetsListWidgetsPagesOptionalParams,
+    options?: SAPWidgetsListWidgetsPagesOptionalParams,
   ) => PagedAsyncIterableIterator<Widget>;
   /**
    * List all widgets in the system. This operation is not paginated, and returns a simple array of widgets.
    *
    * It does not accept any options or parameters.
    */
-  listWidgets: (
+  sapListWidgets: (
     requiredHeader: string,
     bytesHeader: Uint8Array,
     value: Uint8Array,
     csvArrayHeader: Uint8Array[],
     utcDateHeader: Date,
-    options?: WidgetsListWidgetsOptionalParams,
+    options?: SAPWidgetsSAPListWidgetsOptionalParams,
   ) => Promise<Widget[]>;
 }
 
-function _getWidgets(context: WidgetServiceContext) {
+function _getSAPWidgets(context: SAPWidgetServiceContext) {
   return {
-    analyzeWidget: (id: string, options?: WidgetsAnalyzeWidgetOptionalParams) =>
-      analyzeWidget(context, id, options),
-    deleteWidget: (id: string, options?: WidgetsDeleteWidgetOptionalParams) =>
-      deleteWidget(context, id, options),
-    updateWidget: (id: string, options?: WidgetsUpdateWidgetOptionalParams) =>
-      updateWidget(context, id, options),
+    analyzeWidget: (
+      id: string,
+      options?: SAPWidgetsAnalyzeWidgetOptionalParams,
+    ) => analyzeWidget(context, id, options),
+    deleteWidget: (
+      id: string,
+      options?: SAPWidgetsDeleteWidgetOptionalParams,
+    ) => deleteWidget(context, id, options),
+    updateWidget: (
+      id: string,
+      options?: SAPWidgetsUpdateWidgetOptionalParams,
+    ) => updateWidget(context, id, options),
     createOrReplace: (
       name: string,
-      resource: User,
-      options?: WidgetsCreateOrReplaceOptionalParams,
+      resource: SAPUser,
+      options?: SAPWidgetsCreateOrReplaceOptionalParams,
     ) => createOrReplace(context, name, resource, options),
     createWidget: (
       weight: number,
       color: "red" | "blue",
-      options?: WidgetsCreateWidgetOptionalParams,
+      options?: SAPWidgetsCreateWidgetOptionalParams,
     ) => createWidget(context, weight, color, options),
-    getWidget: (id: string, options?: WidgetsGetWidgetOptionalParams) =>
+    getWidget: (id: string, options?: SAPWidgetsGetWidgetOptionalParams) =>
       getWidget(context, id, options),
     queryWidgetsPages: (
       page: number,
       pageSize: number,
-      options?: WidgetsQueryWidgetsPagesOptionalParams,
+      options?: SAPWidgetsQueryWidgetsPagesOptionalParams,
     ) => queryWidgetsPages(context, page, pageSize, options),
     listWidgetsPages: (
       page: number,
       pageSize: number,
-      options?: WidgetsListWidgetsPagesOptionalParams,
+      options?: SAPWidgetsListWidgetsPagesOptionalParams,
     ) => listWidgetsPages(context, page, pageSize, options),
-    listWidgets: (
+    sapListWidgets: (
       requiredHeader: string,
       bytesHeader: Uint8Array,
       value: Uint8Array,
       csvArrayHeader: Uint8Array[],
       utcDateHeader: Date,
-      options?: WidgetsListWidgetsOptionalParams,
+      options?: SAPWidgetsSAPListWidgetsOptionalParams,
     ) =>
-      listWidgets(
+      sapListWidgets(
         context,
         requiredHeader,
         bytesHeader,
@@ -143,10 +151,10 @@ function _getWidgets(context: WidgetServiceContext) {
   };
 }
 
-export function _getWidgetsOperations(
-  context: WidgetServiceContext,
-): WidgetsOperations {
+export function _getSAPWidgetsOperations(
+  context: SAPWidgetServiceContext,
+): SAPWidgetsOperations {
   return {
-    ..._getWidgets(context),
+    ..._getSAPWidgets(context),
   };
 }

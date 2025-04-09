@@ -3,24 +3,26 @@
 
 import { SchemaRegistryContext } from "../../api/schemaRegistryContext.js";
 import {
-  registerSchema,
-  getSchemaIdByContent,
-  getSchemaByVersion,
-  listSchemaVersions,
-  getSchemaById,
-  listSchemaGroups,
+  SchemaGroup,
+  SchemaVersion,
+  SchemaContentTypeValues,
+} from "../../models/models.js";
+import {
   SchemaOperationsRegisterSchemaOptionalParams,
   SchemaOperationsGetSchemaIdByContentOptionalParams,
   SchemaOperationsGetSchemaByVersionOptionalParams,
   SchemaOperationsListSchemaVersionsOptionalParams,
   SchemaOperationsGetSchemaByIdOptionalParams,
   SchemaOperationsListSchemaGroupsOptionalParams,
-} from "../../api/schemaOperations/index.js";
+} from "../../api/schemaOperations/options.js";
 import {
-  SchemaGroup,
-  SchemaVersion,
-  SchemaContentTypeValues,
-} from "../../models/models.js";
+  registerSchema,
+  getSchemaIdByContent,
+  getSchemaByVersion,
+  listSchemaVersions,
+  getSchemaById,
+  listSchemaGroups,
+} from "../../api/schemaOperations/operations.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 
 /** Interface representing a SchemaOperations operations. */

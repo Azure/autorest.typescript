@@ -6,12 +6,12 @@ using Azure.Core;
 using TypeSpec.Rest;
 using TypeSpec.Versioning;
 using global.Azure.Core.Traits;
-@versioned(WidgetService.Versions)
+@versioned(SAPWidgetService.Versions)
 @service(#{
     title: "Widget Service"
 })
 @useAuth(BearerAuth | ApiKeyAuth<ApiKeyLocation.cookie, "session-id">)
-namespace WidgetService;
+namespace SAPWidgetService;
 
 /** The Contoso Widget Manager service version. */
 enum Versions {
@@ -84,7 +84,7 @@ model ListWidgetsPagesResults {
 
 @resource("users")
 @doc("Details about a user.")
-model User {
+model SAPUser {
   @key
   @visibility(Lifecycle.Read)
   @doc("The name of user.")
@@ -99,14 +99,14 @@ model User {
 
 @route("/widgets")
 @tag("Widgets")
-interface Widgets {
+interface SAPWidgets {
     @doc("""
 List all widgets in the system. This operation is not paginated, and returns a simple array of widgets.
 
 It does not accept any options or parameters.
 """)
 
-    @get listWidgets(
+    @get SAPListWidgets(
         @header requiredHeader: string, 
         @header optionalHeader?: string,  
         @header nullableOptionalHeader?: string | null,
@@ -149,7 +149,7 @@ result in an error.
     } | WidgetError;
 
     @route("/widgets/createOrReplace")
-    op createOrReplace is ResourceOperations.LongRunningResourceCreateOrReplace<User>;
+    op createOrReplace is ResourceOperations.LongRunningResourceCreateOrReplace<SAPUser>;
 
     @doc("""
 Update the contents of the widget. The widget ID is required in the input, but cannot be changed. All other fields
@@ -174,7 +174,7 @@ are optional and will be updated within the widget if provided.
 interface Budgets { 
     // the same name as Widgets.createOrReplace
     @route("/widgets/createOrReplace")
-    op createOrReplace is ResourceOperations.LongRunningResourceCreateOrReplace<User>;
+    op createOrReplace is ResourceOperations.LongRunningResourceCreateOrReplace<SAPUser>;
 
     @get getBudgets(
         @query name: string

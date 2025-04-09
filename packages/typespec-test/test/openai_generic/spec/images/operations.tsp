@@ -25,7 +25,7 @@ interface Images {
   @summary("Creates an edited or extended image given an original image and a prompt.")
   createEdit(
     @header contentType: "multipart/form-data",
-    @body image: CreateImageEditRequest,
+    @multipartBody image: CreateImageEditRequest,
   ): ImagesResponse | ErrorResponse;
 
   @route("variations")
@@ -35,6 +35,6 @@ interface Images {
   @summary("Creates an edited or extended image given an original image and a prompt.")
   createVariation(
     @header contentType: "multipart/form-data",
-    @body image: CreateImageVariationRequest,
+    @multipartBody image: CreateImageVariationRequest,
   ): ImagesResponse | ErrorResponse;
 }

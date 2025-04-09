@@ -8,6 +8,10 @@ This is tsp definition.
 model SelectQueryParameter {
   @query(#{ explode: true })
   select?: string[];
+  @query("bar")
+  foo: string;
+  @query
+  "api-version": string;
 }
 @route("annotation/optional")
 op optional(...SelectQueryParameter): void;
@@ -28,6 +32,7 @@ Should enable URI template parse for parameters:
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { RequiredOptionalParams, OptionalOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
@@ -79,16 +84,20 @@ export async function required(
 
 export function _optionalSend(
   context: Client,
+  foo: string,
+  apiVersion: string,
   options: OptionalOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/annotation/optional{?select*}",
+    "/annotation/optional{?select*,bar,api%2Dversion}",
     {
       select: !options?.select
         ? options?.select
         : options?.select.map((p: any) => {
             return p;
           }),
+      bar: foo,
+      "api%2Dversion": apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -112,9 +121,11 @@ export async function _optionalDeserialize(
 
 export async function optional(
   context: Client,
+  foo: string,
+  apiVersion: string,
   options: OptionalOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _optionalSend(context, options);
+  const result = await _optionalSend(context, foo, apiVersion, options);
   return _optionalDeserialize(result);
 }
 ```

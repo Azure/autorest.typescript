@@ -26,31 +26,31 @@ export declare type ComplexHttpPartsModelRequest = FormData | Array<ComplexHttpP
 
 export declare interface ComplexHttpPartsModelRequestAddressPartDescriptor {
     name: "address";
-    body: HttpPartAddress;
+    body: Address;
 }
 
 export declare interface ComplexHttpPartsModelRequestIdPartDescriptor {
     name: "id";
-    body: HttpPartString;
+    body: string;
 }
 
 export declare interface ComplexHttpPartsModelRequestPicturesPartDescriptor {
     name: "pictures";
-    body: Array<HttpPartFileRequiredMetaData>;
+    body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
     filename?: string;
     contentType?: string;
 }
 
 export declare interface ComplexHttpPartsModelRequestPreviousAddressesPartDescriptor {
     name: "previousAddresses";
-    body: HttpPartArray;
+    body: Array<Address>;
 }
 
 export declare interface ComplexHttpPartsModelRequestProfileImagePartDescriptor {
     name: "profileImage";
-    body: HttpPartFileRequiredMetaData;
-    filename?: string;
-    contentType?: string;
+    body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
+    filename: string;
+    contentType: string;
 }
 
 export declare type ComplexPartsRequest = FormData | Array<ComplexPartsRequestIdPartDescriptor | ComplexPartsRequestAddressPartDescriptor | ComplexPartsRequestProfileImagePartDescriptor | ComplexPartsRequestPicturesPartDescriptor>;
@@ -86,8 +86,8 @@ export declare type FileWithHttpPartOptionalContentTypeRequest = FormData | Arra
 
 export declare interface FileWithHttpPartOptionalContentTypeRequestProfileImagePartDescriptor {
     name: "profileImage";
-    body: HttpPartFileOptionalContentType;
-    filename?: string;
+    body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
+    filename: string;
     contentType?: string;
 }
 
@@ -95,18 +95,18 @@ export declare type FileWithHttpPartRequiredContentTypeRequest = FormData | Arra
 
 export declare interface FileWithHttpPartRequiredContentTypeRequestProfileImagePartDescriptor {
     name: "profileImage";
-    body: HttpPartFileRequiredMetaData;
-    filename?: string;
-    contentType?: string;
+    body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
+    filename: string;
+    contentType: string;
 }
 
 export declare type FileWithHttpPartSpecificContentTypeRequest = FormData | Array<FileWithHttpPartSpecificContentTypeRequestProfileImagePartDescriptor>;
 
 export declare interface FileWithHttpPartSpecificContentTypeRequestProfileImagePartDescriptor {
     name: "profileImage";
-    body: HttpPartFileSpecificContentType;
-    filename?: string;
-    contentType?: string;
+    body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
+    filename: string;
+    contentType: "image/jpg";
 }
 
 export declare interface FormDataAnonymousModel {
@@ -287,7 +287,7 @@ export declare interface FormDataHttpPartsNonStringFloat204Response extends Http
 export declare interface FormDataHttpPartsNonStringFloatBodyParam {
     body: FormData | Array<{
         name: "temperature";
-        body: HttpPart;
+        body: number;
     }>;
 }
 
@@ -332,27 +332,6 @@ export declare interface FormDataMultiBinaryPartsMediaTypesParam {
 }
 
 export declare type FormDataMultiBinaryPartsParameters = FormDataMultiBinaryPartsMediaTypesParam & FormDataMultiBinaryPartsBodyParam & RequestParameters;
-
-export declare interface HttpPart {
-}
-
-export declare interface HttpPartAddress {
-}
-
-export declare interface HttpPartArray {
-}
-
-export declare interface HttpPartFileOptionalContentType {
-}
-
-export declare interface HttpPartFileRequiredMetaData {
-}
-
-export declare interface HttpPartFileSpecificContentType {
-}
-
-export declare interface HttpPartString {
-}
 
 export declare type JsonPartRequest = FormData | Array<JsonPartRequestAddressPartDescriptor | JsonPartRequestProfileImagePartDescriptor>;
 

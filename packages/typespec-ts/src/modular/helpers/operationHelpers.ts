@@ -1,7 +1,8 @@
 import {
   FunctionDeclarationStructure,
   OptionalKind,
-  ParameterDeclarationStructure
+  ParameterDeclarationStructure,
+  StructureKind
 } from "ts-morph";
 import { NoTarget, Program } from "@typespec/compiler";
 import {
@@ -29,8 +30,6 @@ import {
   getDocsFromDescription,
   getFixmeForMultilineDocs
 } from "./docsHelpers.js";
-import { toPascalCase } from "../../utils/casingUtils.js";
-
 import { AzurePollingDependencies } from "../external-dependencies.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { buildModelDeserializer } from "../serialization/buildDeserializerFunction.js";
@@ -92,9 +91,9 @@ export function getSendPrivateFunction(
   const operationMethod = operation.operation.verb.toLowerCase();
   const optionalParamName = getOptionalParamsName(parameters);
   const hasQueryApiVersion = operation.operation.parameters.some(
-    (p) => p.isApiVersionParam && p.onClient && p.kind === "query"
+    (p) => p.onClient && p.kind === "query" && p.isApiVersionParam
   );
-  const hasClientApiVersion = client.initialization.properties.some(
+  const hasClientApiVersion = client.clientInitialization.parameters.some(
     (p) => p.isApiVersionParam && p.onClient && p.kind === "method"
   );
   const statements: string[] = [];
@@ -344,8 +343,9 @@ function getOptionalParamsName(
   parameters: OptionalKind<ParameterDeclarationStructure>[]
 ) {
   return (
-    parameters.filter((p) => p.type?.toString().endsWith("OptionalParams"))[0]
-      ?.name ?? "options"
+    parameters.filter((p) =>
+      p.type?.toString().endsWith("operationOptions__")
+    )[0]?.name ?? "options"
   );
 }
 
@@ -355,7 +355,7 @@ function getOperationSignatureParameters(
   clientType: string
 ): OptionalKind<ParameterDeclarationStructure>[] {
   const operation = method[1];
-  const optionsType = getOperationOptionsName(method, true);
+  const optionsType = resolveReference(refkey(method[1], "operationOptions"));
   const parameters: Map<
     string,
     OptionalKind<ParameterDeclarationStructure>
@@ -411,7 +411,7 @@ export function getOperationFunction(
   context: SdkContext,
   method: [string[], ServiceOperation],
   clientType: string
-): OptionalKind<FunctionDeclarationStructure> & { propertyName?: string } {
+): FunctionDeclarationStructure & { propertyName?: string } {
   const operation = method[1];
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
@@ -449,6 +449,7 @@ export function getOperationFunction(
   }
   const { name, fixme = [] } = getOperationName(operation);
   const functionStatement = {
+    kind: StructureKind.Function,
     docs: [
       ...getDocsFromDescription(operation.doc),
       ...getFixmeForMultilineDocs(fixme)
@@ -472,7 +473,7 @@ export function getOperationFunction(
   return {
     ...functionStatement,
     statements
-  };
+  } as FunctionDeclarationStructure & { propertyName?: string };
 }
 
 function getLroOnlyOperationFunction(
@@ -480,7 +481,7 @@ function getLroOnlyOperationFunction(
   method: [string[], SdkLroServiceMethod<SdkHttpOperation>],
   clientType: string,
   optionalParamName: string = "options"
-) {
+): FunctionDeclarationStructure & { propertyName?: string } {
   const operation = method[1];
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
@@ -494,6 +495,7 @@ function getLroOnlyOperationFunction(
     AzurePollingDependencies.OperationState
   );
   const functionStatement = {
+    kind: StructureKind.Function,
     docs: [
       ...getDocsFromDescription(operation.doc),
       ...getFixmeForMultilineDocs(fixme)
@@ -544,7 +546,7 @@ function getLroOnlyOperationFunction(
   return {
     ...functionStatement,
     statements
-  };
+  } as FunctionDeclarationStructure & { propertyName?: string };
 }
 
 function buildLroReturnType(
@@ -566,7 +568,7 @@ function getPagingOnlyOperationFunction(
   context: SdkContext,
   method: [string[], SdkPagingServiceMethod<SdkHttpOperation>],
   clientType: string
-) {
+): FunctionDeclarationStructure & { propertyName?: string } {
   const operation = method[1];
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
@@ -590,6 +592,7 @@ function getPagingOnlyOperationFunction(
     PagingHelpers.BuildPagedAsyncIterator
   );
   const functionStatement = {
+    kind: StructureKind.Function,
     docs: [
       ...getDocsFromDescription(operation.doc),
       ...getFixmeForMultilineDocs(fixme)
@@ -626,7 +629,7 @@ function getPagingOnlyOperationFunction(
   return {
     ...functionStatement,
     statements
-  };
+  } as FunctionDeclarationStructure & { propertyName?: string };
 }
 
 export function getOperationOptionsName(
@@ -639,7 +642,7 @@ export function getOperationOptionsName(
     includeGroupName && operation.name.indexOf("_") === -1
       ? getClassicalLayerPrefix(prefixes, NameType.Interface)
       : "";
-  const optionName = `${prefix}${toPascalCase(operation.name)}OptionalParams`;
+  const optionName = `${prefix}${normalizeName(operation.name, NameType.Interface)}OptionalParams`;
   return optionName;
 }
 
@@ -1032,7 +1035,12 @@ function getQueryParameters(
   for (const param of operationParameters) {
     if (param.kind === "query") {
       parametersImplementation[param.kind].push({
-        paramMap: getParameterMap(dpgContext, param),
+        paramMap: getParameterMap(dpgContext, {
+          ...param,
+          // TODO: remember to remove this hack once compiler gives us a name
+          // https://github.com/microsoft/typespec/issues/6743
+          serializedName: getUriTemplateQueryParamName(param.serializedName)
+        }),
         param
       });
     }
@@ -1043,6 +1051,15 @@ function getQueryParameters(
   );
 
   return paramStr;
+}
+
+function getUriTemplateQueryParamName(name: string) {
+  return `${escapeUriTemplateParamName(name)}`;
+}
+function escapeUriTemplateParamName(name: string) {
+  return encodeURIComponent(name).replace(/[:-]/g, function (c) {
+    return "%" + c.charCodeAt(0).toString(16).toUpperCase();
+  });
 }
 
 function getPathParamExpr(

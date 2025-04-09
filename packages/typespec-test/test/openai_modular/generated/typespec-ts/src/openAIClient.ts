@@ -5,24 +5,6 @@ import {
   createOpenAI,
   OpenAIContext,
   OpenAIClientOptionalParams,
-  getEmbeddings,
-  generateSpeechFromText,
-  getImageGenerations,
-  getChatCompletions,
-  getCompletions,
-  getAudioTranslationAsResponseObject,
-  getAudioTranslationAsPlainText,
-  getAudioTranscriptionAsResponseObject,
-  getAudioTranscriptionAsPlainText,
-  GetEmbeddingsOptionalParams,
-  GenerateSpeechFromTextOptionalParams,
-  GetImageGenerationsOptionalParams,
-  GetChatCompletionsOptionalParams,
-  GetCompletionsOptionalParams,
-  GetAudioTranslationAsResponseObjectOptionalParams,
-  GetAudioTranslationAsPlainTextOptionalParams,
-  GetAudioTranscriptionAsResponseObjectOptionalParams,
-  GetAudioTranscriptionAsPlainTextOptionalParams,
 } from "./api/index.js";
 import {
   AudioTranscriptionOptions,
@@ -39,6 +21,28 @@ import {
   EmbeddingsOptions,
   Embeddings,
 } from "./models/models.js";
+import {
+  GetEmbeddingsOptionalParams,
+  GenerateSpeechFromTextOptionalParams,
+  GetImageGenerationsOptionalParams,
+  GetChatCompletionsOptionalParams,
+  GetCompletionsOptionalParams,
+  GetAudioTranslationAsResponseObjectOptionalParams,
+  GetAudioTranslationAsPlainTextOptionalParams,
+  GetAudioTranscriptionAsResponseObjectOptionalParams,
+  GetAudioTranscriptionAsPlainTextOptionalParams,
+} from "./api/options.js";
+import {
+  getEmbeddings,
+  generateSpeechFromText,
+  getImageGenerations,
+  getChatCompletions,
+  getCompletions,
+  getAudioTranslationAsResponseObject,
+  getAudioTranslationAsPlainText,
+  getAudioTranscriptionAsResponseObject,
+  getAudioTranscriptionAsPlainText,
+} from "./api/operations.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
 
