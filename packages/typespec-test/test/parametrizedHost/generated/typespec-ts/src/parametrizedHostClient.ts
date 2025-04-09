@@ -2,14 +2,14 @@
 // Licensed under the MIT License.
 
 import {
-  _getConfidentialLedgerOperations,
-  ConfidentialLedgerOperations,
-} from "./classic/confidentialLedger/index.js";
-import {
   createParametrizedHost,
   ParametrizedHostContext,
   ParametrizedHostClientOptionalParams,
 } from "./api/index.js";
+import {
+  ConfidentialLedgerOperations,
+  _getConfidentialLedgerOperations,
+} from "./classic/confidentialLedger/index.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { TokenCredential } from "@azure/core-auth";
 

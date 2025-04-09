@@ -9,9 +9,9 @@ import {
   SdkClientType,
   SdkHttpOperationExample,
   SdkHttpParameterExampleValue,
-  SdkInitializationType,
   SdkServiceOperation,
-  SdkExampleValue
+  SdkExampleValue,
+  SdkClientInitializationType
 } from "@azure-tools/typespec-client-generator-core";
 import {
   isAzurePackage,
@@ -254,7 +254,7 @@ function prepareExampleParameters(
   const result: ExampleValue[] = [];
   const credentialExampleValue = getCredentialExampleValue(
     dpgContext,
-    topLevelClient.initialization
+    topLevelClient.clientInitialization
   );
   if (credentialExampleValue) {
     result.push(credentialExampleValue);
@@ -363,7 +363,7 @@ function prepareExampleParameters(
 
 function getCredentialExampleValue(
   dpgContext: SdkContext,
-  initialization: SdkInitializationType
+  initialization: SdkClientInitializationType
 ): ExampleValue | undefined {
   const keyCredential = hasKeyCredential(initialization),
     tokenCredential = hasTokenCredential(initialization);

@@ -26,9 +26,9 @@ export function _inferRadiologyInsightsSend(
   options: InferRadiologyInsightsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/radiology-insights/jobs{?api-version}",
+    "/radiology-insights/jobs{?api%2Dversion}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

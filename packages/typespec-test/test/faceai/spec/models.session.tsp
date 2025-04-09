@@ -23,23 +23,23 @@ union LivenessOperationMode {
 @doc("Request model for creating liveness session.")
 model CreateLivenessSessionContent {
   @doc("Type of liveness mode the client should follow.")
-  livenessOperationMode: LivenessOperationMode;
+  livenessOperationMode: HttpPart<LivenessOperationMode>;
 
   @removed(Versions.v1_2)
   @doc("Whether or not to allow a '200 - Success' response body to be sent to the client, which may be undesirable for security reasons. Default is false, clients will receive a '204 - NoContent' empty body response. Regardless of selection, calling Session GetResult will always contain a response body enabling business logic to be implemented.")
-  sendResultsToClient?: boolean;
+  sendResultsToClient?: HttpPart<boolean>;
 
   @doc("Whether or not to allow client to set their own 'deviceCorrelationId' via the Vision SDK. Default is false, and 'deviceCorrelationId' must be set in this request body.")
-  deviceCorrelationIdSetInClient?: boolean;
+  deviceCorrelationIdSetInClient?: HttpPart<boolean>;
 
   @doc("Whether or not store the session image.")
   @added(Versions.v1_2_preview_1)
-  enableSessionImage?: boolean;
+  enableSessionImage?: HttpPart<boolean>;
 
   @doc("The model version used for liveness classification. This is an optional parameter, and if this is not specified, then the latest supported model version will be chosen")
   @renamedFrom(Versions.v1_2, "livenessSingleModalModel")
   @added(Versions.v1_2_preview_1)
-  livenessModelVersion?: LivenessModel;
+  livenessModelVersion?: HttpPart<LivenessModel>;
 
   ...LivenessSessionData;
 }
@@ -62,12 +62,10 @@ model CreateLivenessWithVerifySessionJsonContent
 @doc("Data for liveness session.")
 model LivenessSessionData {
   @doc("Unique Guid per each end-user device. This is to provide rate limiting and anti-hammering. If 'deviceCorrelationIdSetInClient' is true in this request, this 'deviceCorrelationId' must be null.")
-  deviceCorrelationId?: string;
+  deviceCorrelationId?: HttpPart<string>;
 
   @doc("Seconds the session should last for. Range is 60 to 86400 seconds. Default value is 600.")
-  @minValue(60)
-  @maxValue(86400)
-  authTokenTimeToLiveInSeconds?: int32 = 600;
+  authTokenTimeToLiveInSeconds?: HttpPart<int32>;
 }
 
 @doc("Session data returned for enumeration.")
@@ -313,11 +311,11 @@ model LivenessSessionAuditEntry {
 model CreateLivenessWithVerifySessionMultipartContent {
   #suppress "@azure-tools/typespec-azure-core/casing-style"
   @doc("The parameters for creating session.")
-  Parameters: CreateLivenessWithVerifySessionJsonContent;
+  Parameters: HttpPart<CreateLivenessWithVerifySessionJsonContent>;
 
   #suppress "@azure-tools/typespec-azure-core/casing-style"
   @doc("The image stream for verify. Content-Disposition header field for this part must have filename.")
-  VerifyImage: bytes;
+  VerifyImage: HttpPart<bytes>;
 }
 
 #suppress "@azure-tools/typespec-azure-core/casing-style" "Workaround for update model in new version."
@@ -330,7 +328,7 @@ model CreateLivenessWithVerifySessionRequestBeforeV1_2 {
   contentType: "multipart/form-data";
 
   @doc("Request content of liveness with verify session creation.")
-  @body
+  @multipartBody
   body: CreateLivenessWithVerifySessionMultipartContent;
 }
 
@@ -505,7 +503,7 @@ model CreateLivenessWithVerifySessionRequest {
   contentType: "multipart/form-data";
 
   @doc("Request content of liveness with verify session creation.")
-  @body
+  @multipartBody
   body: CreateLivenessWithVerifySessionContent;
 }
 
@@ -513,14 +511,12 @@ model CreateLivenessWithVerifySessionRequest {
 @doc("Request of liveness with verify session creation.")
 model CreateLivenessWithVerifySessionContent is CreateLivenessSessionContent {
   @doc("Whether or not return the verify image hash.")
-  returnVerifyImageHash?: boolean;
+  returnVerifyImageHash?: HttpPart<boolean>;
 
   @doc("Threshold for confidence of the face verification. Please refer to the documentation for more details. https://learn.microsoft.com/legal/cognitive-services/face/characteristics-and-limitations?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext#recognition-confidence-score")
-  @minValue(0)
-  @maxValue(1)
-  verifyConfidenceThreshold?: float32;
+  verifyConfidenceThreshold?: HttpPart<float32>;
 
   #suppress "@azure-tools/typespec-azure-core/casing-style"
   @doc("The image stream for verify. Content-Disposition header field for this part must have filename.")
-  verifyImage: bytes;
+  verifyImage: HttpPart<bytes>;
 }

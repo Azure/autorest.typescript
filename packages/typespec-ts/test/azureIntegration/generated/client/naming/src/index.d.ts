@@ -193,7 +193,11 @@ export declare interface UnionEnumUnionEnumMemberNameBodyParam {
     body: ExtensibleEnum;
 }
 
-export declare type UnionEnumUnionEnumMemberNameParameters = UnionEnumUnionEnumMemberNameBodyParam & RequestParameters;
+export declare interface UnionEnumUnionEnumMemberNameMediaTypesParam {
+    contentType: "application/json";
+}
+
+export declare type UnionEnumUnionEnumMemberNameParameters = UnionEnumUnionEnumMemberNameMediaTypesParam & UnionEnumUnionEnumMemberNameBodyParam & RequestParameters;
 
 export declare interface UnionEnumUnionEnumName {
     post(options: UnionEnumUnionEnumNameParameters): StreamableMethod<UnionEnumUnionEnumName204Response>;
@@ -207,6 +211,10 @@ export declare interface UnionEnumUnionEnumNameBodyParam {
     body: ServerExtensibleEnum;
 }
 
-export declare type UnionEnumUnionEnumNameParameters = UnionEnumUnionEnumNameBodyParam & RequestParameters;
+export declare interface UnionEnumUnionEnumNameMediaTypesParam {
+    contentType: "application/json";
+}
+
+export declare type UnionEnumUnionEnumNameParameters = UnionEnumUnionEnumNameMediaTypesParam & UnionEnumUnionEnumNameBodyParam & RequestParameters;
 
 export { }

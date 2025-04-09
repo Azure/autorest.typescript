@@ -1,30 +1,30 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { WidgetServiceContext as Client } from "../index.js";
+import { SAPWidgetServiceContext as Client } from "../index.js";
 import {
-  User,
-  userSerializer,
-  userDeserializer,
   Widget,
   widgetDeserializer,
   widgetErrorDeserializer,
   _ListWidgetsPagesResults,
   _listWidgetsPagesResultsDeserializer,
   widgetArrayDeserializer,
+  SAPUser,
+  sapUserSerializer,
+  sapUserDeserializer,
   AnalyzeResult,
   analyzeResultDeserializer,
 } from "../../models/models.js";
 import {
-  WidgetsAnalyzeWidgetOptionalParams,
-  WidgetsDeleteWidgetOptionalParams,
-  WidgetsUpdateWidgetOptionalParams,
-  WidgetsCreateOrReplaceOptionalParams,
-  WidgetsCreateWidgetOptionalParams,
-  WidgetsGetWidgetOptionalParams,
-  WidgetsQueryWidgetsPagesOptionalParams,
-  WidgetsListWidgetsPagesOptionalParams,
-  WidgetsListWidgetsOptionalParams,
+  SAPWidgetsAnalyzeWidgetOptionalParams,
+  SAPWidgetsDeleteWidgetOptionalParams,
+  SAPWidgetsUpdateWidgetOptionalParams,
+  SAPWidgetsCreateOrReplaceOptionalParams,
+  SAPWidgetsCreateWidgetOptionalParams,
+  SAPWidgetsGetWidgetOptionalParams,
+  SAPWidgetsQueryWidgetsPagesOptionalParams,
+  SAPWidgetsListWidgetsPagesOptionalParams,
+  SAPWidgetsSAPListWidgetsOptionalParams,
 } from "./options.js";
 import {
   PagedAsyncIterableIterator,
@@ -45,7 +45,7 @@ import { PollerLike, OperationState } from "@azure/core-lro";
 export function _analyzeWidgetSend(
   context: Client,
   id: string,
-  options: WidgetsAnalyzeWidgetOptionalParams = { requestOptions: {} },
+  options: SAPWidgetsAnalyzeWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/widgets/{id}/analyze",
@@ -85,7 +85,7 @@ export async function _analyzeWidgetDeserialize(
 export async function analyzeWidget(
   context: Client,
   id: string,
-  options: WidgetsAnalyzeWidgetOptionalParams = { requestOptions: {} },
+  options: SAPWidgetsAnalyzeWidgetOptionalParams = { requestOptions: {} },
 ): Promise<AnalyzeResult> {
   const result = await _analyzeWidgetSend(context, id, options);
   return _analyzeWidgetDeserialize(result);
@@ -94,7 +94,7 @@ export async function analyzeWidget(
 export function _deleteWidgetSend(
   context: Client,
   id: string,
-  options: WidgetsDeleteWidgetOptionalParams = { requestOptions: {} },
+  options: SAPWidgetsDeleteWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/widgets/{id}",
@@ -134,7 +134,7 @@ export async function _deleteWidgetDeserialize(
 export async function deleteWidget(
   context: Client,
   id: string,
-  options: WidgetsDeleteWidgetOptionalParams = { requestOptions: {} },
+  options: SAPWidgetsDeleteWidgetOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _deleteWidgetSend(context, id, options);
   return _deleteWidgetDeserialize(result);
@@ -143,7 +143,7 @@ export async function deleteWidget(
 export function _updateWidgetSend(
   context: Client,
   id: string,
-  options: WidgetsUpdateWidgetOptionalParams = { requestOptions: {} },
+  options: SAPWidgetsUpdateWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/widgets/{id}",
@@ -188,7 +188,7 @@ export async function _updateWidgetDeserialize(
 export async function updateWidget(
   context: Client,
   id: string,
-  options: WidgetsUpdateWidgetOptionalParams = { requestOptions: {} },
+  options: SAPWidgetsUpdateWidgetOptionalParams = { requestOptions: {} },
 ): Promise<Widget> {
   const result = await _updateWidgetSend(context, id, options);
   return _updateWidgetDeserialize(result);
@@ -197,14 +197,14 @@ export async function updateWidget(
 export function _createOrReplaceSend(
   context: Client,
   name: string,
-  resource: User,
-  options: WidgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
+  resource: SAPUser,
+  options: SAPWidgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/widgets/widgets/createOrReplace/users/{name}{?api-version}",
+    "/widgets/widgets/createOrReplace/users/{name}{?api%2Dversion}",
     {
       name: name,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -219,28 +219,28 @@ export function _createOrReplaceSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      body: userSerializer(resource),
+      body: sapUserSerializer(resource),
     });
 }
 
 export async function _createOrReplaceDeserialize(
   result: PathUncheckedResponse,
-): Promise<User> {
+): Promise<SAPUser> {
   const expectedStatuses = ["201", "200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return userDeserializer(result.body);
+  return sapUserDeserializer(result.body);
 }
 
 /** Long-running resource create or replace operation template. */
 export function createOrReplace(
   context: Client,
   name: string,
-  resource: User,
-  options: WidgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
-): PollerLike<OperationState<User>, User> {
+  resource: SAPUser,
+  options: SAPWidgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
+): PollerLike<OperationState<SAPUser>, SAPUser> {
   return getLongRunningPoller(
     context,
     _createOrReplaceDeserialize,
@@ -252,14 +252,14 @@ export function createOrReplace(
         _createOrReplaceSend(context, name, resource, options),
       resourceLocationConfig: "original-uri",
     },
-  ) as PollerLike<OperationState<User>, User>;
+  ) as PollerLike<OperationState<SAPUser>, SAPUser>;
 }
 
 export function _createWidgetSend(
   context: Client,
   weight: number,
   color: "red" | "blue",
-  options: WidgetsCreateWidgetOptionalParams = { requestOptions: {} },
+  options: SAPWidgetsCreateWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
@@ -298,7 +298,7 @@ export async function createWidget(
   context: Client,
   weight: number,
   color: "red" | "blue",
-  options: WidgetsCreateWidgetOptionalParams = { requestOptions: {} },
+  options: SAPWidgetsCreateWidgetOptionalParams = { requestOptions: {} },
 ): Promise<Widget> {
   const result = await _createWidgetSend(context, weight, color, options);
   return _createWidgetDeserialize(result);
@@ -307,7 +307,7 @@ export async function createWidget(
 export function _getWidgetSend(
   context: Client,
   id: string,
-  options: WidgetsGetWidgetOptionalParams = { requestOptions: {} },
+  options: SAPWidgetsGetWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/widgets/{id}",
@@ -347,7 +347,7 @@ export async function _getWidgetDeserialize(
 export async function getWidget(
   context: Client,
   id: string,
-  options: WidgetsGetWidgetOptionalParams = { requestOptions: {} },
+  options: SAPWidgetsGetWidgetOptionalParams = { requestOptions: {} },
 ): Promise<Widget> {
   const result = await _getWidgetSend(context, id, options);
   return _getWidgetDeserialize(result);
@@ -357,7 +357,7 @@ export function _queryWidgetsPagesSend(
   context: Client,
   page: number,
   pageSize: number,
-  options: WidgetsQueryWidgetsPagesOptionalParams = { requestOptions: {} },
+  options: SAPWidgetsQueryWidgetsPagesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/widgets/widgets/pages{?page,pageSize}",
@@ -398,7 +398,7 @@ export function queryWidgetsPages(
   context: Client,
   page: number,
   pageSize: number,
-  options: WidgetsQueryWidgetsPagesOptionalParams = { requestOptions: {} },
+  options: SAPWidgetsQueryWidgetsPagesOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<Widget> {
   return buildPagedAsyncIterator(
     context,
@@ -413,7 +413,7 @@ export function _listWidgetsPagesSend(
   context: Client,
   page: number,
   pageSize: number,
-  options: WidgetsListWidgetsPagesOptionalParams = { requestOptions: {} },
+  options: SAPWidgetsListWidgetsPagesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/widgets/widgets/pages{?page,pageSize}",
@@ -454,7 +454,7 @@ export function listWidgetsPages(
   context: Client,
   page: number,
   pageSize: number,
-  options: WidgetsListWidgetsPagesOptionalParams = { requestOptions: {} },
+  options: SAPWidgetsListWidgetsPagesOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<Widget> {
   return buildPagedAsyncIterator(
     context,
@@ -465,14 +465,14 @@ export function listWidgetsPages(
   );
 }
 
-export function _listWidgetsSend(
+export function _sapListWidgetsSend(
   context: Client,
   requiredHeader: string,
   bytesHeader: Uint8Array,
   value: Uint8Array,
   csvArrayHeader: Uint8Array[],
   utcDateHeader: Date,
-  options: WidgetsListWidgetsOptionalParams = { requestOptions: {} },
+  options: SAPWidgetsSAPListWidgetsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context.path("/widgets").get({
@@ -515,7 +515,7 @@ export function _listWidgetsSend(
   });
 }
 
-export async function _listWidgetsDeserialize(
+export async function _sapListWidgetsDeserialize(
   result: PathUncheckedResponse,
 ): Promise<Widget[]> {
   const expectedStatuses = ["200"];
@@ -533,16 +533,16 @@ export async function _listWidgetsDeserialize(
  *
  * It does not accept any options or parameters.
  */
-export async function listWidgets(
+export async function sapListWidgets(
   context: Client,
   requiredHeader: string,
   bytesHeader: Uint8Array,
   value: Uint8Array,
   csvArrayHeader: Uint8Array[],
   utcDateHeader: Date,
-  options: WidgetsListWidgetsOptionalParams = { requestOptions: {} },
+  options: SAPWidgetsSAPListWidgetsOptionalParams = { requestOptions: {} },
 ): Promise<Widget[]> {
-  const result = await _listWidgetsSend(
+  const result = await _sapListWidgetsSend(
     context,
     requiredHeader,
     bytesHeader,
@@ -551,5 +551,5 @@ export async function listWidgets(
     utcDateHeader,
     options,
   );
-  return _listWidgetsDeserialize(result);
+  return _sapListWidgetsDeserialize(result);
 }

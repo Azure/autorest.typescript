@@ -116,9 +116,7 @@ op read(
     @header bytesHeader: bytes,
     @header @encode(BytesKnownEncoding.base64) value: bytes,
     #suppress "deprecated" "Legacy test"
-    @header({
-    format: "csv",
-    })
+    @header
     csvArrayHeader: base64urlBytes[],
     @header utcDateHeader: utcDateTime,
     @header optionalDateHeader?: utcDateTime,

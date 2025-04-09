@@ -31,7 +31,8 @@ import {
   SdkUnionType,
   UsageFlags,
   isPagedResultModel,
-  isReadOnly
+  isReadOnly,
+  listAllServiceNamespaces
 } from "@azure-tools/typespec-client-generator-core";
 import {
   getExternalModel,
@@ -53,12 +54,15 @@ import {
 import { isExtensibleEnum } from "./type-expressions/get-enum-expression.js";
 import { isDiscriminatedUnion } from "./serialization/serializeUtils.js";
 import { reportDiagnostic } from "../lib.js";
-import { NoTarget } from "@typespec/compiler";
+import { getNamespaceFullName, NoTarget } from "@typespec/compiler";
 import {
   getTypeExpression,
   normalizeModelPropertyName
 } from "./type-expressions/get-type-expression.js";
-import { emitQueue } from "../framework/hooks/sdkTypes.js";
+import {
+  emitQueue,
+  getAllOperationsFromClient
+} from "../framework/hooks/sdkTypes.js";
 import { resolveReference } from "../framework/reference.js";
 import { MultipartHelpers } from "./static-helpers-metadata.js";
 
@@ -261,7 +265,9 @@ export function getModelNamespaces(
   context: SdkContext,
   model: SdkType
 ): string[] {
-  const rootNamespace = context.sdkPackage.rootNamespace.split(".");
+  const deepestNamespace = getNamespaceFullName(
+    listAllServiceNamespaces(context)[0]!
+  );
   if (
     model.kind === "model" ||
     model.kind === "enum" ||
@@ -278,6 +284,7 @@ export function getModelNamespaces(
       return [];
     }
     const segments = model.namespace.split(".");
+    const rootNamespace = deepestNamespace.split(".") ?? [];
     if (segments.length > rootNamespace.length) {
       while (segments[0] === rootNamespace[0]) {
         segments.shift();
@@ -733,9 +740,12 @@ function visitClient(
   context: SdkContext,
   client: SdkClientType<SdkServiceOperation>
 ) {
+  // TODO: include the client parameters
+  // https://github.com/Azure/autorest.typescript/issues/3148
   // Comment this out for now, as client initialization is not used in the generated code
-  // visitType(client.initialization, emitQueue);
-  client.methods.forEach((method) => visitClientMethod(context, method));
+  getAllOperationsFromClient(client).forEach((method) =>
+    visitClientMethod(context, method)
+  );
 }
 
 function visitClientMethod(
@@ -749,14 +759,6 @@ function visitClientMethod(
     case "basic":
       visitMethod(context, method);
       visitOperation(context, method.operation);
-      break;
-    case "clientaccessor":
-      method.response.methods.forEach((responseMethod) =>
-        visitClientMethod(context, responseMethod)
-      );
-      method.parameters.forEach((parameter) => {
-        visitType(context, parameter.type);
-      });
       break;
     default:
       throw new Error(`Unknown sdk method kind: ${(method as any).kind}`);

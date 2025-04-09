@@ -2,18 +2,18 @@
 // Licensed under the MIT License.
 
 import {
-  _getMultivariateOperations,
-  MultivariateOperations,
-} from "./classic/multivariate/index.js";
-import {
-  _getUnivariateOperations,
-  UnivariateOperations,
-} from "./classic/univariate/index.js";
-import {
   createAnomalyDetector,
   AnomalyDetectorContext,
   AnomalyDetectorClientOptionalParams,
 } from "./api/index.js";
+import {
+  MultivariateOperations,
+  _getMultivariateOperations,
+} from "./classic/multivariate/index.js";
+import {
+  UnivariateOperations,
+  _getUnivariateOperations,
+} from "./classic/univariate/index.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { KeyCredential } from "@azure/core-auth";
 

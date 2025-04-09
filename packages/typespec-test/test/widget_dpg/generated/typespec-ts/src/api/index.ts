@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 export {
-  createWidgetService,
-  WidgetServiceContext,
-  WidgetServiceClientOptionalParams,
-} from "./widgetServiceContext.js";
+  createSAPWidgetService,
+  SAPWidgetServiceContext,
+  SAPWidgetServiceClientOptionalParams,
+} from "./sapWidgetServiceContext.js";

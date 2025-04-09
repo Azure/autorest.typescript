@@ -38,7 +38,7 @@ describe("Azure Core Page Rest Client", () => {
     const validBody = { inputName: "Madge" };
     const initialResponse = await client
       .path("/azure/core/page/parameters")
-      .get({
+      .post({
         body: validBody,
         queryParameters: {
           another: "Second"

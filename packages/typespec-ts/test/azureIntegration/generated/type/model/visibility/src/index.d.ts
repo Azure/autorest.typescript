@@ -35,7 +35,15 @@ export declare interface GetModelBodyParam {
     body: VisibilityModel;
 }
 
-export declare type GetModelParameters = GetModelBodyParam & RequestParameters;
+export declare type GetModelParameters = GetModelQueryParam & GetModelBodyParam & RequestParameters;
+
+export declare interface GetModelQueryParam {
+    queryParameters: GetModelQueryParamProperties;
+}
+
+export declare interface GetModelQueryParamProperties {
+    queryProp: number;
+}
 
 export declare interface HeadModel200Response extends HttpResponse {
     status: "200";
@@ -45,7 +53,15 @@ export declare interface HeadModelBodyParam {
     body: VisibilityModel;
 }
 
-export declare type HeadModelParameters = HeadModelBodyParam & RequestParameters;
+export declare type HeadModelParameters = HeadModelQueryParam & HeadModelBodyParam & RequestParameters;
+
+export declare interface HeadModelQueryParam {
+    queryParameters: HeadModelQueryParamProperties;
+}
+
+export declare interface HeadModelQueryParamProperties {
+    queryProp: number;
+}
 
 export declare interface PatchModel204Response extends HttpResponse {
     status: "204";
@@ -113,7 +129,6 @@ export declare interface VisibilityClientOptions extends ClientOptions {
 }
 
 export declare interface VisibilityModel {
-    queryProp: number;
     createProp: string[];
     updateProp: number[];
     deleteProp: boolean;
@@ -122,7 +137,6 @@ export declare interface VisibilityModel {
 
 export declare interface VisibilityModelOutput {
     readonly readProp: string;
-    queryProp: number;
     createProp: string[];
     updateProp: number[];
     deleteProp: boolean;

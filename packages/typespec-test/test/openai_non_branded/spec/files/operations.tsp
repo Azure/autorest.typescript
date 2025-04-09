@@ -23,7 +23,7 @@ interface Files {
   @operationId("createFile")
   create(
     @header contentType: "multipart/form-data",
-    @body file: CreateFileRequest,
+    @multipartBody file: CreateFileRequest,
   ): OpenAIFile | ErrorResponse;
 
   @tag("OpenAI")
