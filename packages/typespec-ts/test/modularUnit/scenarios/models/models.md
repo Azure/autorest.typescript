@@ -5,8 +5,8 @@
 ```tsp
 model StreamingChatCompletionOptions {
   stream: true;
-  messages: string;
-  index: int32;
+  messages: "aaaaa";
+  index: 123;
 }
 op read(@path id: string): {
   @bodyRoot result: StreamingChatCompletionOptions
@@ -19,8 +19,8 @@ op read(@path id: string): {
 /** model interface StreamingChatCompletionOptions */
 export interface StreamingChatCompletionOptions {
   stream: true;
-  messages: string;
-  index: number;
+  messages: "aaaaa";
+  index: 123;
 }
 
 export function streamingChatCompletionOptionsDeserializer(
@@ -28,8 +28,8 @@ export function streamingChatCompletionOptionsDeserializer(
 ): StreamingChatCompletionOptions {
   return {
     stream: true,
-    messages: item["messages"],
-    index: item["index"]
+    messages: "aaaaa",
+    index: 123
   };
 }
 ```
