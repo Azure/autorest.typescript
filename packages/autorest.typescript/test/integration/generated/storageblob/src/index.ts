@@ -1,3 +1,3 @@
-export * from "./models/index.js";
-export { StorageBlobClient } from "./storageBlobClient.js";
-export * from "./operationsInterfaces/index.js";
+export * from "./models";
+export { StorageBlobClient } from "./storageBlobClient";
+export * from "./operationsInterfaces";

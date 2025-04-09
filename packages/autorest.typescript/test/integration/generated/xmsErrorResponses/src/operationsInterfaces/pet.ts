@@ -12,7 +12,7 @@ import type {
   PetDoSomethingOptionalParams,
   PetDoSomethingResponse,
   PetHasModelsParamOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a Pet. */
 export interface Pet {

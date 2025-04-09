@@ -11,7 +11,7 @@ import type {
   OperationURLParameter,
   OperationQueryParameter,
 } from "@azure/core-client";
-import { KeyValue as KeyValueMapper } from "../models/mappers.js";
+import { KeyValue as KeyValueMapper } from "../models/mappers";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",

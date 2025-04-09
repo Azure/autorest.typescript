@@ -6,6 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./models/index.js";
-export { XmsErrorResponsesClient } from "./xmsErrorResponsesClient.js";
-export * from "./operationsInterfaces/index.js";
+export * from "./models";
+export { XmsErrorResponsesClient } from "./xmsErrorResponsesClient";
+export * from "./operationsInterfaces";

@@ -12,13 +12,13 @@ import type {
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import * as Parameters from "./models/parameters.js";
+import * as Parameters from "./models/parameters";
 import type {
   Enum0,
   NoMappersClientOptionalParams,
   ApiV1ValueGetOptionalParams,
   ApiV1ValueGetResponse,
-} from "./models/index.js";
+} from "./models";
 
 export class NoMappersClient extends coreClient.ServiceClient {
   $host: string;

@@ -1,7 +1,7 @@
 import type {
   ProductApiV1ValueGetOptionalParams,
   ProductApiV1ValueGetResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a ProductOperations. */
 export interface ProductOperations {

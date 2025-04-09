@@ -25,7 +25,7 @@ import {
   PrivateEndPointConnectionsImpl,
   PrivateEndpointConnectionImpl,
   PrivateLinkResourcesImpl,
-} from "./operations/index.js";
+} from "./operations";
 import type {
   Operations,
   Factories,
@@ -47,8 +47,8 @@ import type {
   PrivateEndPointConnections,
   PrivateEndpointConnection,
   PrivateLinkResources,
-} from "./operationsInterfaces/index.js";
-import type { DataFactoryClientOptionalParams } from "./models/index.js";
+} from "./operationsInterfaces";
+import type { DataFactoryClientOptionalParams } from "./models";
 
 export class DataFactoryClient extends coreClient.ServiceClient {
   $host: string;

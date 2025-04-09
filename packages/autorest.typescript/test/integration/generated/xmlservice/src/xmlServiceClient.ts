@@ -7,9 +7,9 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { XmlImpl } from "./operations/index.js";
-import type { Xml } from "./operationsInterfaces/index.js";
-import type { XmlServiceClientOptionalParams } from "./models/index.js";
+import { XmlImpl } from "./operations";
+import type { Xml } from "./operationsInterfaces";
+import type { XmlServiceClientOptionalParams } from "./models";
 
 export class XmlServiceClient extends coreClient.ServiceClient {
   $host: string;

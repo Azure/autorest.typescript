@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Documents } from "../operationsInterfaces/index.js";
+import type { Documents } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { DataSearchClient } from "../dataSearchClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { DataSearchClient } from "../dataSearchClient";
 import type {
   DocumentsCountOptionalParams,
   DocumentsCountResponse,
@@ -34,7 +34,7 @@ import type {
   AutocompleteRequest,
   DocumentsAutocompletePostOptionalParams,
   DocumentsAutocompletePostResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing Documents operations. */
 export class DocumentsImpl implements Documents {

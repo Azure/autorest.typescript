@@ -2,7 +2,7 @@ import type { PagedAsyncIterableIterator } from "@azure/core-paging";
 import type {
   IotFhirDestination,
   FhirDestinationsListByIotConnectorOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a FhirDestinations. */

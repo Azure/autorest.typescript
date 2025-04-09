@@ -6,5 +6,5 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./models/index.js";
-export { ReportClient } from "./reportClient.js";
+export * from "./models";
+export { ReportClient } from "./reportClient";

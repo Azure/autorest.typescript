@@ -1,14 +1,14 @@
-import type { PrivateLinkResources } from "../operationsInterfaces/index.js";
+import type { PrivateLinkResources } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { HealthCareApisClient } from "../healthCareApisClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { HealthCareApisClient } from "../healthCareApisClient";
 import type {
   PrivateLinkResourcesListByServiceOptionalParams,
   PrivateLinkResourcesListByServiceResponse,
   PrivateLinkResourcesGetOptionalParams,
   PrivateLinkResourcesGetResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing PrivateLinkResources operations. */
 export class PrivateLinkResourcesImpl implements PrivateLinkResources {

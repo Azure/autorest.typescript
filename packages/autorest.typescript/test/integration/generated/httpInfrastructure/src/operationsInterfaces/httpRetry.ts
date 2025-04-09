@@ -17,7 +17,7 @@ import type {
   HttpRetryDelete503OptionalParams,
   HttpRetryPut504OptionalParams,
   HttpRetryPatch504OptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a HttpRetry. */
 export interface HttpRetry {

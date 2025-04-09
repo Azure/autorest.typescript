@@ -2,7 +2,7 @@ import type { PagedAsyncIterableIterator } from "@azure/core-paging";
 import type {
   PrivateEndpointConnectionResource,
   PrivateEndPointConnectionsListByFactoryOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a PrivateEndPointConnections. */

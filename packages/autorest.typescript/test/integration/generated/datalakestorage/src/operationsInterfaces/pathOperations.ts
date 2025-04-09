@@ -23,7 +23,7 @@ import type {
   PathGetPropertiesResponse,
   PathDeleteOptionalParams,
   PathDeleteResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a PathOperations. */
 export interface PathOperations {

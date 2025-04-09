@@ -7,9 +7,9 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { IntImpl } from "./operations/index.js";
-import type { Int } from "./operationsInterfaces/index.js";
-import type { BodyIntegerClientOptionalParams } from "./models/index.js";
+import { IntImpl } from "./operations";
+import type { Int } from "./operationsInterfaces";
+import type { BodyIntegerClientOptionalParams } from "./models";
 
 export class BodyIntegerClient extends coreClient.ServiceClient {
   $host: string;

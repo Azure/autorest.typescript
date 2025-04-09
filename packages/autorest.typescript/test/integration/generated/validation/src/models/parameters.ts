@@ -11,7 +11,7 @@ import type {
   OperationURLParameter,
   OperationQueryParameter,
 } from "@azure/core-client";
-import { Product as ProductMapper } from "../models/mappers.js";
+import { Product as ProductMapper } from "../models/mappers";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",

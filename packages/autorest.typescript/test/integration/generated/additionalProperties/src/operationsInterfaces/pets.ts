@@ -25,7 +25,7 @@ import type {
   PetAPInPropertiesWithAPString,
   PetsCreateAPInPropertiesWithAPStringOptionalParams,
   PetsCreateAPInPropertiesWithAPStringResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a Pets. */
 export interface Pets {

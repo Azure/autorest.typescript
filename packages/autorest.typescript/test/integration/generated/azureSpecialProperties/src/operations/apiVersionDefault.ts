@@ -6,17 +6,17 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { ApiVersionDefault } from "../operationsInterfaces/index.js";
+import type { ApiVersionDefault } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient";
 import type {
   ApiVersionDefaultGetMethodGlobalValidOptionalParams,
   ApiVersionDefaultGetMethodGlobalNotProvidedValidOptionalParams,
   ApiVersionDefaultGetPathGlobalValidOptionalParams,
   ApiVersionDefaultGetSwaggerGlobalValidOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing ApiVersionDefault operations. */
 export class ApiVersionDefaultImpl implements ApiVersionDefault {

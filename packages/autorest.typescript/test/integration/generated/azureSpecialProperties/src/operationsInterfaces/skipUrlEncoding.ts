@@ -14,7 +14,7 @@ import type {
   SkipUrlEncodingGetMethodQueryNullOptionalParams,
   SkipUrlEncodingGetPathQueryValidOptionalParams,
   SkipUrlEncodingGetSwaggerQueryValidOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a SkipUrlEncoding. */
 export interface SkipUrlEncoding {

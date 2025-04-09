@@ -6,15 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { ResourceGroups } from "../operationsInterfaces/index.js";
+import type { ResourceGroups } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { ResourcesClient } from "../resourcesClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { ResourcesClient } from "../resourcesClient";
 import type {
   ResourceGroupsCheckExistenceOptionalParams,
   ResourceGroupsCheckExistenceResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing ResourceGroups operations. */
 export class ResourceGroupsImpl implements ResourceGroups {

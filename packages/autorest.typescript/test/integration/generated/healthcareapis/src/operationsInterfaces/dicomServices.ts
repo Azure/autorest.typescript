@@ -11,7 +11,7 @@ import type {
   DicomServicesUpdateOptionalParams,
   DicomServicesUpdateResponse,
   DicomServicesDeleteOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a DicomServices. */

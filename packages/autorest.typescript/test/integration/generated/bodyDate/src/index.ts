@@ -6,6 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./models/index.js";
-export { BodyDateClient } from "./bodyDateClient.js";
-export * from "./operationsInterfaces/index.js";
+export * from "./models";
+export { BodyDateClient } from "./bodyDateClient";
+export * from "./operationsInterfaces";

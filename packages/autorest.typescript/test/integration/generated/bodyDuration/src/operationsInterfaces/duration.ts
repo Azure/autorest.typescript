@@ -14,7 +14,7 @@ import type {
   DurationGetPositiveDurationResponse,
   DurationGetInvalidOptionalParams,
   DurationGetInvalidResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a Duration. */
 export interface Duration {

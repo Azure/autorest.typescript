@@ -1,2 +1,2 @@
-export * from "./productOperations.js";
-export * from "./pipelineOperations.js";
+export * from "./productOperations";
+export * from "./pipelineOperations";

@@ -6,17 +6,17 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Polymorphicrecursive } from "../operationsInterfaces/index.js";
+import type { Polymorphicrecursive } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { BodyComplexClient } from "../bodyComplexClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { BodyComplexClient } from "../bodyComplexClient";
 import type {
   PolymorphicrecursiveGetValidOptionalParams,
   PolymorphicrecursiveGetValidResponse,
   FishUnion,
   PolymorphicrecursivePutValidOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing Polymorphicrecursive operations. */
 export class PolymorphicrecursiveImpl implements Polymorphicrecursive {

@@ -7,7 +7,7 @@ import {
   Pet as PetMapper,
   Order as OrderMapper,
   User as UserMapper,
-} from "../models/mappers.js";
+} from "../models/mappers";
 
 export const contentType: OperationParameter = {
   parameterPath: "contentType",

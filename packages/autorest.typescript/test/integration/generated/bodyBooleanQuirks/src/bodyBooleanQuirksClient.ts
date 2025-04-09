@@ -7,9 +7,9 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { BoolImpl } from "./operations/index.js";
-import type { Bool } from "./operationsInterfaces/index.js";
-import type { BodyBooleanQuirksClientOptionalParams } from "./models/index.js";
+import { BoolImpl } from "./operations";
+import type { Bool } from "./operationsInterfaces";
+import type { BodyBooleanQuirksClientOptionalParams } from "./models";
 
 export class BodyBooleanQuirksClient extends coreClient.ServiceClient {
   $host: string;

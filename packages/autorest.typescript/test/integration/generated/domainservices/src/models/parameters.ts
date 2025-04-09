@@ -6,7 +6,7 @@ import type {
 import {
   DomainService as DomainServiceMapper,
   ContainerAccount as ContainerAccountMapper,
-} from "../models/mappers.js";
+} from "../models/mappers";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",

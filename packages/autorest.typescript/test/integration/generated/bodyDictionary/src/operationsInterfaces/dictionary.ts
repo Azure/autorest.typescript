@@ -123,7 +123,7 @@ import type {
   DictionaryGetDictionaryValidOptionalParams,
   DictionaryGetDictionaryValidResponse,
   DictionaryPutDictionaryValidOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a Dictionary. */
 export interface Dictionary {

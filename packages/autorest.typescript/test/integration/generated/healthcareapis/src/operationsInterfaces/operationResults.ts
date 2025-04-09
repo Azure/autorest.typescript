@@ -1,7 +1,7 @@
 import type {
   OperationResultsGetOptionalParams,
   OperationResultsGetResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a OperationResults. */
 export interface OperationResults {

@@ -7,9 +7,9 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { ImplicitImpl, ExplicitImpl } from "./operations/index.js";
-import type { Implicit, Explicit } from "./operationsInterfaces/index.js";
-import type { RequiredOptionalClientOptionalParams } from "./models/index.js";
+import { ImplicitImpl, ExplicitImpl } from "./operations";
+import type { Implicit, Explicit } from "./operationsInterfaces";
+import type { RequiredOptionalClientOptionalParams } from "./models";
 
 export class RequiredOptionalClient extends coreClient.ServiceClient {
   $host: string;

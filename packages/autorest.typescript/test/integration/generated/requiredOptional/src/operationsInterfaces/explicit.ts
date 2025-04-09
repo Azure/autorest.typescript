@@ -37,7 +37,7 @@ import type {
   ExplicitPostOptionalArrayPropertyOptionalParams,
   ExplicitPostRequiredArrayHeaderOptionalParams,
   ExplicitPostOptionalArrayHeaderOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a Explicit. */
 export interface Explicit {

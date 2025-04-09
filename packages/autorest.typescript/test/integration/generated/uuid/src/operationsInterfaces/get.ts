@@ -6,10 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
-  GetUuidOptionalParams,
-  GetUuidResponse,
-} from "../models/index.js";
+import type { GetUuidOptionalParams, GetUuidResponse } from "../models";
 
 /** Interface representing a Get. */
 export interface Get {

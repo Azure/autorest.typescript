@@ -14,7 +14,7 @@ import type {
   FormdataUploadFileViaBodyResponse,
   FormdataUploadFilesOptionalParams,
   FormdataUploadFilesResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a Formdata. */
 export interface Formdata {

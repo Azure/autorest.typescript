@@ -6,14 +6,14 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Paging } from "../operationsInterfaces/index.js";
+import type { Paging } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { PagingNoIteratorsClient } from "../pagingNoIteratorsClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { PagingNoIteratorsClient } from "../pagingNoIteratorsClient";
 import type { SimplePollerLike, OperationState } from "@azure/core-lro";
 import { createHttpPoller } from "@azure/core-lro";
-import { createLroSpec } from "../lroImpl.js";
+import { createLroSpec } from "../lroImpl";
 import type {
   PagingGetNoItemNamePagesOptionalParams,
   PagingGetNoItemNamePagesResponse,
@@ -108,7 +108,7 @@ import type {
   PagingReplaceApiVersionNextResponse,
   PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams,
   PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing Paging operations. */
 export class PagingImpl implements Paging {

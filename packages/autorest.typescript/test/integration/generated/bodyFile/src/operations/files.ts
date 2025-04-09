@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Files } from "../operationsInterfaces/index.js";
+import type { Files } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { BodyFileClient } from "../bodyFileClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { BodyFileClient } from "../bodyFileClient";
 import type {
   FilesGetFileOptionalParams,
   FilesGetFileResponse,
@@ -18,7 +18,7 @@ import type {
   FilesGetFileLargeResponse,
   FilesGetEmptyFileOptionalParams,
   FilesGetEmptyFileResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing Files operations. */
 export class FilesImpl implements Files {

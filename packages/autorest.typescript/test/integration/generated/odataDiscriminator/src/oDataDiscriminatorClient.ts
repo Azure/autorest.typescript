@@ -12,14 +12,14 @@ import type {
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import * as Parameters from "./models/parameters.js";
-import * as Mappers from "./models/mappers.js";
+import * as Parameters from "./models/parameters";
+import * as Mappers from "./models/mappers";
 import type {
   Enum0,
   ODataDiscriminatorClientOptionalParams,
   ApiV1ValueGetOptionalParams,
   ApiV1ValueGetResponse,
-} from "./models/index.js";
+} from "./models";
 
 export class ODataDiscriminatorClient extends coreClient.ServiceClient {
   $host: string;

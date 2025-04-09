@@ -11,7 +11,7 @@ import type {
   TimeGetResponse,
   TimePutOptionalParams,
   TimePutResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a Time. */
 export interface Time {

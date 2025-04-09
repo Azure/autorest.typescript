@@ -7,9 +7,9 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { BarApiImpl, FooApiImpl } from "./operations/index.js";
-import type { BarApi, FooApi } from "./operationsInterfaces/index.js";
-import type { MediaTypesV3ClientOptionalParams } from "./models/index.js";
+import { BarApiImpl, FooApiImpl } from "./operations";
+import type { BarApi, FooApi } from "./operationsInterfaces";
+import type { MediaTypesV3ClientOptionalParams } from "./models";
 
 export class MediaTypesV3Client extends coreClient.ServiceClient {
   $host: string;

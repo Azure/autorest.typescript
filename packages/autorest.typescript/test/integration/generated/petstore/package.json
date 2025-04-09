@@ -54,7 +54,6 @@
     "constantPaths": [{ "path": "src/petStore.ts", "prefix": "packageDetails" }]
   },
   "autoPublish": true,
-  "type": "module",
   "browser": "./dist/browser/index.js",
   "react-native": "./dist/react-native/index.js",
   "tshy": {

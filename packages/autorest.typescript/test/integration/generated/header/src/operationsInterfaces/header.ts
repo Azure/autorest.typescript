@@ -50,7 +50,7 @@ import type {
   HeaderResponseEnumOptionalParams,
   HeaderResponseEnumResponse,
   HeaderCustomRequestIdOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a Header. */
 export interface Header {

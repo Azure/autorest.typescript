@@ -7,9 +7,9 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { FormdataImpl } from "./operations/index.js";
-import type { Formdata } from "./operationsInterfaces/index.js";
-import type { BodyFormDataClientOptionalParams } from "./models/index.js";
+import { FormdataImpl } from "./operations";
+import type { Formdata } from "./operationsInterfaces";
+import type { BodyFormDataClientOptionalParams } from "./models";
 
 export class BodyFormDataClient extends coreClient.ServiceClient {
   $host: string;

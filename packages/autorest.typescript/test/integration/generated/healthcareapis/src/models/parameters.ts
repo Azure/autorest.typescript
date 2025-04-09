@@ -17,7 +17,7 @@ import {
   IotFhirDestination as IotFhirDestinationMapper,
   FhirService as FhirServiceMapper,
   FhirServicePatchResource as FhirServicePatchResourceMapper,
-} from "../models/mappers.js";
+} from "../models/mappers";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",

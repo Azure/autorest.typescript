@@ -11,7 +11,7 @@ import type {
   PetGetByPetIdResponse,
   PetAddPetOptionalParams,
   PetAddPetResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a Pet. */
 export interface Pet {

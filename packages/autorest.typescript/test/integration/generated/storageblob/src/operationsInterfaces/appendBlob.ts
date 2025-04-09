@@ -2,7 +2,7 @@ import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import type {
   AppendBlobAppendBlockOptionalParams,
   AppendBlobAppendBlockResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a AppendBlob. */
 export interface AppendBlob {

@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Dictionary } from "../operationsInterfaces/index.js";
+import type { Dictionary } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { BodyDictionaryClient } from "../bodyDictionaryClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { BodyDictionaryClient } from "../bodyDictionaryClient";
 import type {
   DictionaryGetNullOptionalParams,
   DictionaryGetNullResponse,
@@ -128,7 +128,7 @@ import type {
   DictionaryGetDictionaryValidOptionalParams,
   DictionaryGetDictionaryValidResponse,
   DictionaryPutDictionaryValidOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing Dictionary operations. */
 export class DictionaryImpl implements Dictionary {

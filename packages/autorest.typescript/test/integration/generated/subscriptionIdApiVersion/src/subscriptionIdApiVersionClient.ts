@@ -12,9 +12,9 @@ import type {
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import { GroupImpl } from "./operations/index.js";
-import type { Group } from "./operationsInterfaces/index.js";
-import type { SubscriptionIdApiVersionClientOptionalParams } from "./models/index.js";
+import { GroupImpl } from "./operations";
+import type { Group } from "./operationsInterfaces";
+import type { SubscriptionIdApiVersionClientOptionalParams } from "./models";
 
 export class SubscriptionIdApiVersionClient extends coreClient.ServiceClient {
   $host: string;

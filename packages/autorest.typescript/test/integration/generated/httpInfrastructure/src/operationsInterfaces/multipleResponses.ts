@@ -62,7 +62,7 @@ import type {
   MultipleResponsesGet200ModelA400InvalidResponse,
   MultipleResponsesGet200ModelA202ValidOptionalParams,
   MultipleResponsesGet200ModelA202ValidResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a MultipleResponses. */
 export interface MultipleResponses {

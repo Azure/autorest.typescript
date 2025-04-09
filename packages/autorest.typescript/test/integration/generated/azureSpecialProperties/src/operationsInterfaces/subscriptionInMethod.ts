@@ -11,7 +11,7 @@ import type {
   SubscriptionInMethodPostMethodLocalNullOptionalParams,
   SubscriptionInMethodPostPathLocalValidOptionalParams,
   SubscriptionInMethodPostSwaggerLocalValidOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a SubscriptionInMethod. */
 export interface SubscriptionInMethod {

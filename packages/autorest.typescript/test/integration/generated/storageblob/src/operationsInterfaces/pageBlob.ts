@@ -2,7 +2,7 @@ import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import type {
   PageBlobUploadPagesOptionalParams,
   PageBlobUploadPagesResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a PageBlob. */
 export interface PageBlob {

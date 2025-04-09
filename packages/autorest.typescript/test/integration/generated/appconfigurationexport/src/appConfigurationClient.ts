@@ -16,9 +16,9 @@ import type {
   PagedAsyncIterableIterator,
   PageSettings,
 } from "@azure/core-paging";
-import { setContinuationToken } from "./pagingHelper.js";
-import * as Parameters from "./models/parameters.js";
-import * as Mappers from "./models/mappers.js";
+import { setContinuationToken } from "./pagingHelper";
+import * as Parameters from "./models/parameters";
+import * as Mappers from "./models/mappers";
 import type {
   AppConfigurationClientOptionalParams,
   Key,
@@ -60,7 +60,7 @@ import type {
   GetKeyValuesNextResponse,
   GetLabelsNextResponse,
   GetRevisionsNextResponse,
-} from "./models/index.js";
+} from "./models";
 
 /// <reference lib="esnext.asynciterable" />
 /** @internal */

@@ -2,19 +2,19 @@ import type {
   PagedAsyncIterableIterator,
   PageSettings,
 } from "@azure/core-paging";
-import { setContinuationToken } from "../pagingHelper.js";
-import type { OuContainerOperations } from "../operationsInterfaces/index.js";
+import { setContinuationToken } from "../pagingHelper";
+import type { OuContainerOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { DomainServicesClient } from "../domainServicesClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { DomainServicesClient } from "../domainServicesClient";
 import type {
   OperationEntity,
   OuContainerOperationsListNextOptionalParams,
   OuContainerOperationsListOptionalParams,
   OuContainerOperationsListResponse,
   OuContainerOperationsListNextResponse,
-} from "../models/index.js";
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing OuContainerOperations operations. */

@@ -6,10 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./httpFailure.js";
-export * from "./httpSuccess.js";
-export * from "./httpRedirects.js";
-export * from "./httpClientFailure.js";
-export * from "./httpServerFailure.js";
-export * from "./httpRetry.js";
-export * from "./multipleResponses.js";
+export * from "./httpFailure";
+export * from "./httpSuccess";
+export * from "./httpRedirects";
+export * from "./httpClientFailure";
+export * from "./httpServerFailure";
+export * from "./httpRetry";
+export * from "./multipleResponses";

@@ -9,7 +9,7 @@
 import type {
   ResourceGroupsCheckExistenceOptionalParams,
   ResourceGroupsCheckExistenceResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a ResourceGroups. */
 export interface ResourceGroups {

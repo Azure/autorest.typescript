@@ -32,7 +32,7 @@ import {
   ManagedVirtualNetworkResource as ManagedVirtualNetworkResourceMapper,
   ManagedPrivateEndpointResource as ManagedPrivateEndpointResourceMapper,
   PrivateLinkConnectionApprovalRequestResource as PrivateLinkConnectionApprovalRequestResourceMapper,
-} from "../models/mappers.js";
+} from "../models/mappers";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",

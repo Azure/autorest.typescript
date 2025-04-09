@@ -6,6 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./models/index.js";
-export { CustomUrlClient } from "./customUrlClient.js";
-export * from "./operationsInterfaces/index.js";
+export * from "./models";
+export { CustomUrlClient } from "./customUrlClient";
+export * from "./operationsInterfaces";

@@ -2,7 +2,7 @@ import type {
   RunFilterParameters,
   ActivityRunsQueryByPipelineRunOptionalParams,
   ActivityRunsQueryByPipelineRunResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a ActivityRuns. */
 export interface ActivityRuns {

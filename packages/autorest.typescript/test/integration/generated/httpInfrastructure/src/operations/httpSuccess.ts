@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { HttpSuccess } from "../operationsInterfaces/index.js";
+import type { HttpSuccess } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { HttpInfrastructureClient } from "../httpInfrastructureClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { HttpInfrastructureClient } from "../httpInfrastructureClient";
 import type {
   HttpSuccessHead200OptionalParams,
   HttpSuccessGet200OptionalParams,
@@ -33,7 +33,7 @@ import type {
   HttpSuccessPost204OptionalParams,
   HttpSuccessDelete204OptionalParams,
   HttpSuccessHead404OptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing HttpSuccess operations. */
 export class HttpSuccessImpl implements HttpSuccess {

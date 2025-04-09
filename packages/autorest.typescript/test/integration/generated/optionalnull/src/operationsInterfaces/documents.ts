@@ -1,4 +1,4 @@
-import type { DocumentsSearchGetOptionalParams } from "../models/index.js";
+import type { DocumentsSearchGetOptionalParams } from "../models";
 
 /** Interface representing a Documents. */
 export interface Documents {

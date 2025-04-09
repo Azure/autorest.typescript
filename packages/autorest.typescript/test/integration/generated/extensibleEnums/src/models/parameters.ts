@@ -10,7 +10,7 @@ import type {
   OperationParameter,
   OperationURLParameter,
 } from "@azure/core-client";
-import { PetDef as PetDefMapper } from "../models/mappers.js";
+import { PetDef as PetDefMapper } from "../models/mappers";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",

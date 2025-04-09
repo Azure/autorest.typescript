@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Datetimerfc1123 } from "../operationsInterfaces/index.js";
+import type { Datetimerfc1123 } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { BodyDateTimeRfc1123Client } from "../bodyDateTimeRfc1123Client.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { BodyDateTimeRfc1123Client } from "../bodyDateTimeRfc1123Client";
 import type {
   Datetimerfc1123GetNullOptionalParams,
   Datetimerfc1123GetNullResponse,
@@ -28,7 +28,7 @@ import type {
   Datetimerfc1123PutUtcMinDateTimeOptionalParams,
   Datetimerfc1123GetUtcMinDateTimeOptionalParams,
   Datetimerfc1123GetUtcMinDateTimeResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing Datetimerfc1123 operations. */
 export class Datetimerfc1123Impl implements Datetimerfc1123 {

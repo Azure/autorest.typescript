@@ -11,7 +11,7 @@ import type {
   FhirServicesUpdateOptionalParams,
   FhirServicesUpdateResponse,
   FhirServicesDeleteOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a FhirServices. */

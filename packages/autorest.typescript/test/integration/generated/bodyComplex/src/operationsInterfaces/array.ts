@@ -16,7 +16,7 @@ import type {
   ArrayPutEmptyOptionalParams,
   ArrayGetNotProvidedOptionalParams,
   ArrayGetNotProvidedResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a Array. */
 export interface Array {

@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { NumberOperations } from "../operationsInterfaces/index.js";
+import type { NumberOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { BodyNumberClient } from "../bodyNumberClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { BodyNumberClient } from "../bodyNumberClient";
 import type {
   NumberGetNullOptionalParams,
   NumberGetNullResponse,
@@ -50,7 +50,7 @@ import type {
   NumberPutSmallDecimalOptionalParams,
   NumberGetSmallDecimalOptionalParams,
   NumberGetSmallDecimalResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing NumberOperations operations. */
 export class NumberOperationsImpl implements NumberOperations {

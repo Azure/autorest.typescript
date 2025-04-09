@@ -21,7 +21,7 @@ import {
   ClassOptionalWrapper as ClassOptionalWrapperMapper,
   ArrayWrapper as ArrayWrapperMapper,
   ArrayOptionalWrapper as ArrayOptionalWrapperMapper,
-} from "../models/mappers.js";
+} from "../models/mappers";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",

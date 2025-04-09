@@ -7,9 +7,9 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { ByteImpl } from "./operations/index.js";
-import type { Byte } from "./operationsInterfaces/index.js";
-import type { BodyByteClientOptionalParams } from "./models/index.js";
+import { ByteImpl } from "./operations";
+import type { Byte } from "./operationsInterfaces";
+import type { BodyByteClientOptionalParams } from "./models";
 
 export class BodyByteClient extends coreClient.ServiceClient {
   $host: string;

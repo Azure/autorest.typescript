@@ -45,6 +45,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const azureSdkForJs = await getAzureSdkForJs(host);
   const dependencyInfo = await getDependencyInfo(host);
   const flavor = await getFlavor(host);
+  const moduleKind = await getModuleKind(host);
 
   return {
     azureArm,
@@ -79,7 +80,8 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     coreHttpCompatMode,
     dependencyInfo,
     useLegacyLro,
-    flavor
+    flavor,
+    moduleKind
   };
 }
 
@@ -398,4 +400,8 @@ async function getDependencyInfo(
   throw new Error(
     "Invalid dependency-info. Make sure that link and description are defined"
   );
+}
+
+async function getModuleKind(host: AutorestExtensionHost): Promise<AutorestOptions["moduleKind"]> {
+  return (await host.getValue("module-kind")) || "esm";
 }

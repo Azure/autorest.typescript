@@ -1,7 +1,7 @@
 import type {
   FileUploadRangeFromURLOptionalParams,
   FileUploadRangeFromURLResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a File. */
 export interface File {

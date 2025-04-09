@@ -6,6 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./models/index.js";
-export { BodyBooleanClient } from "./bodyBooleanClient.js";
-export * from "./operationsInterfaces/index.js";
+export * from "./models";
+export { BodyBooleanClient } from "./bodyBooleanClient";
+export * from "./operationsInterfaces";

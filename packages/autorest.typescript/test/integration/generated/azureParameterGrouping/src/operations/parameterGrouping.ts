@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { ParameterGrouping } from "../operationsInterfaces/index.js";
+import type { ParameterGrouping } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { AzureParameterGroupingClient } from "../azureParameterGroupingClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { AzureParameterGroupingClient } from "../azureParameterGroupingClient";
 import type {
   ParameterGroupingPostRequiredParameters,
   ParameterGroupingPostRequiredOptionalParams,
@@ -19,7 +19,7 @@ import type {
   ParameterGroupingPostMultiParamGroupsOptionalParams,
   ParameterGroupingPostSharedParameterGroupObjectOptionalParams,
   ParameterGroupingGroupWithConstantOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing ParameterGrouping operations. */
 export class ParameterGroupingImpl implements ParameterGrouping {

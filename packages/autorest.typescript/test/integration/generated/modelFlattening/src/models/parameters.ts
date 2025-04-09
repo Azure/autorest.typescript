@@ -13,7 +13,7 @@ import type {
 import {
   ResourceCollection as ResourceCollectionMapper,
   SimpleProduct as SimpleProductMapper,
-} from "../models/mappers.js";
+} from "../models/mappers";
 
 export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],

@@ -39,7 +39,7 @@ import type {
   HttpRedirectsPost307Response,
   HttpRedirectsDelete307OptionalParams,
   HttpRedirectsDelete307Response,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a HttpRedirects. */
 export interface HttpRedirects {

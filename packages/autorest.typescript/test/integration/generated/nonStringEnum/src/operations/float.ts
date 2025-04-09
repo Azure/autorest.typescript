@@ -6,16 +6,16 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Float } from "../operationsInterfaces/index.js";
+import type { Float } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Parameters from "../models/parameters.js";
-import type { NonStringEnumClient } from "../nonStringEnumClient.js";
+import * as Parameters from "../models/parameters";
+import type { NonStringEnumClient } from "../nonStringEnumClient";
 import type {
   FloatPutOptionalParams,
   FloatPutResponse,
   FloatGetOptionalParams,
   FloatGetResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing Float operations. */
 export class FloatImpl implements Float {

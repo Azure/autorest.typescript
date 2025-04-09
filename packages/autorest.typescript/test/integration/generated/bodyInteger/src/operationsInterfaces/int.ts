@@ -30,7 +30,7 @@ import type {
   IntGetInvalidUnixTimeResponse,
   IntGetNullUnixTimeOptionalParams,
   IntGetNullUnixTimeResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a Int. */
 export interface Int {

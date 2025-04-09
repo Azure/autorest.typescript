@@ -15,7 +15,7 @@ import {
   HttpServerFailureImpl,
   HttpRetryImpl,
   MultipleResponsesImpl,
-} from "./operations/index.js";
+} from "./operations";
 import type {
   HttpFailure,
   HttpSuccess,
@@ -24,8 +24,8 @@ import type {
   HttpServerFailure,
   HttpRetry,
   MultipleResponses,
-} from "./operationsInterfaces/index.js";
-import type { HttpInfrastructureClientOptionalParams } from "./models/index.js";
+} from "./operationsInterfaces";
+import type { HttpInfrastructureClientOptionalParams } from "./models";
 
 export class HttpInfrastructureClient extends coreClient.ServiceClient {
   $host: string;

@@ -17,7 +17,7 @@ import type {
   BoolGetNullResponse,
   BoolGetInvalidOptionalParams,
   BoolGetInvalidResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a Bool. */
 export interface Bool {

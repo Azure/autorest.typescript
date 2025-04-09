@@ -6,15 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { tracingClient } from "../tracing.js";
-import type { LRORetrys } from "../operationsInterfaces/index.js";
+import { tracingClient } from "../tracing";
+import type { LRORetrys } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { LROClient } from "../lROClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { LROClient } from "../lROClient";
 import type { SimplePollerLike, OperationState } from "@azure/core-lro";
 import { createHttpPoller } from "@azure/core-lro";
-import { createLroSpec } from "../lroImpl.js";
+import { createLroSpec } from "../lroImpl";
 import type {
   LRORetrysPut201CreatingSucceeded200OptionalParams,
   LRORetrysPut201CreatingSucceeded200Response,
@@ -30,7 +30,7 @@ import type {
   LRORetrysPost202Retry200Response,
   LRORetrysPostAsyncRelativeRetrySucceededOptionalParams,
   LRORetrysPostAsyncRelativeRetrySucceededResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing LRORetrys operations. */
 export class LRORetrysImpl implements LRORetrys {

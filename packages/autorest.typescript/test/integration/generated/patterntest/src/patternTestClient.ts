@@ -8,12 +8,12 @@
 
 import * as coreClient from "@azure/core-client";
 import * as coreHttpCompat from "@azure/core-http-compat";
-import * as Parameters from "./models/parameters.js";
+import * as Parameters from "./models/parameters";
 import type {
   PatternTestClientOptionalParams,
   HomeOptionalParams,
   HomeResponse,
-} from "./models/index.js";
+} from "./models";
 
 export class PatternTestClient extends coreHttpCompat.ExtendedServiceClient {
   $host: string;

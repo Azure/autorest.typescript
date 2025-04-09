@@ -10,7 +10,7 @@ import type {
   QueriesArrayStringMultiNullOptionalParams,
   QueriesArrayStringMultiEmptyOptionalParams,
   QueriesArrayStringMultiValidOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a Queries. */
 export interface Queries {

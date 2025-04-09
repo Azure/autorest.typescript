@@ -18,7 +18,7 @@ import type {
   EnumGetReferencedConstantResponse,
   RefColorConstant,
   EnumPutReferencedConstantOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a Enum. */
 export interface Enum {

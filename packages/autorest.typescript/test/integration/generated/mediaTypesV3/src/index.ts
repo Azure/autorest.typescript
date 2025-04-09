@@ -6,6 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./models/index.js";
-export { MediaTypesV3Client } from "./mediaTypesV3Client.js";
-export * from "./operationsInterfaces/index.js";
+export * from "./models";
+export { MediaTypesV3Client } from "./mediaTypesV3Client";
+export * from "./operationsInterfaces";

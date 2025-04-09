@@ -7,9 +7,9 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { StringOperationsImpl, EnumImpl } from "./operations/index.js";
-import type { StringOperations, Enum } from "./operationsInterfaces/index.js";
-import type { BodyStringClientOptionalParams } from "./models/index.js";
+import { StringOperationsImpl, EnumImpl } from "./operations";
+import type { StringOperations, Enum } from "./operationsInterfaces";
+import type { BodyStringClientOptionalParams } from "./models";
 
 export class BodyStringClient extends coreClient.ServiceClient {
   $host: string;

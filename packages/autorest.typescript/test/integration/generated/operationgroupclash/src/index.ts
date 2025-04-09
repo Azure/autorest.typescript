@@ -1,3 +1,3 @@
-export * from "./models/index.js";
-export { OperationGroupClashClient } from "./operationGroupClashClient.js";
-export * from "./operationsInterfaces/index.js";
+export * from "./models";
+export { OperationGroupClashClient } from "./operationGroupClashClient";
+export * from "./operationsInterfaces";

@@ -6,5 +6,5 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./models/index.js";
-export { IoTSpacesClient } from "./ioTSpacesClient.js";
+export * from "./models";
+export { IoTSpacesClient } from "./ioTSpacesClient";

@@ -6,6 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./models/index.js";
-export { BodyArrayClient } from "./bodyArrayClient.js";
-export * from "./operationsInterfaces/index.js";
+export * from "./models";
+export { BodyArrayClient } from "./bodyArrayClient";
+export * from "./operationsInterfaces";

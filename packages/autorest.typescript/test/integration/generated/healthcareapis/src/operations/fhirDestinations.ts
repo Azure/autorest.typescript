@@ -2,19 +2,19 @@ import type {
   PagedAsyncIterableIterator,
   PageSettings,
 } from "@azure/core-paging";
-import { setContinuationToken } from "../pagingHelper.js";
-import type { FhirDestinations } from "../operationsInterfaces/index.js";
+import { setContinuationToken } from "../pagingHelper";
+import type { FhirDestinations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { HealthCareApisClient } from "../healthCareApisClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { HealthCareApisClient } from "../healthCareApisClient";
 import type {
   IotFhirDestination,
   FhirDestinationsListByIotConnectorNextOptionalParams,
   FhirDestinationsListByIotConnectorOptionalParams,
   FhirDestinationsListByIotConnectorResponse,
   FhirDestinationsListByIotConnectorNextResponse,
-} from "../models/index.js";
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing FhirDestinations operations. */

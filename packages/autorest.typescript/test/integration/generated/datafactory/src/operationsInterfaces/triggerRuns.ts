@@ -4,7 +4,7 @@ import type {
   RunFilterParameters,
   TriggerRunsQueryByFactoryOptionalParams,
   TriggerRunsQueryByFactoryResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a TriggerRuns. */
 export interface TriggerRuns {

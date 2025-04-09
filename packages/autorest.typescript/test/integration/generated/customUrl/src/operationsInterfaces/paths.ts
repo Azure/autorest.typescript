@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { PathsGetEmptyOptionalParams } from "../models/index.js";
+import type { PathsGetEmptyOptionalParams } from "../models";
 
 /** Interface representing a Paths. */
 export interface Paths {

@@ -1,12 +1,12 @@
-import type { ProductOperations } from "../operationsInterfaces/index.js";
+import type { ProductOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { OperationGroupClashClient } from "../operationGroupClashClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { OperationGroupClashClient } from "../operationGroupClashClient";
 import type {
   ProductApiV1ValueGetOptionalParams,
   ProductApiV1ValueGetResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing ProductOperations operations. */
 export class ProductOperationsImpl implements ProductOperations {

@@ -1,7 +1,7 @@
 import type {
   QueueGetPropertiesOptionalParams,
   QueueGetPropertiesResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a Queue. */
 export interface Queue {

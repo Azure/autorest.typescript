@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { GetUrlOptionalParams, GetUrlResponse } from "../models/index.js";
+import type { GetUrlOptionalParams, GetUrlResponse } from "../models";
 
 /** Interface representing a Get. */
 export interface Get {

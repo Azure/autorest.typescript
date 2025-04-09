@@ -10,8 +10,8 @@ import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import type { SimplePollerLike, OperationState } from "@azure/core-lro";
 import { createHttpPoller } from "@azure/core-lro";
-import { createLroSpec } from "./lroImpl.js";
-import * as Parameters from "./models/parameters.js";
+import { createLroSpec } from "./lroImpl";
+import * as Parameters from "./models/parameters";
 import type {
   MediaTypesV3LROClientOptionalParams,
   SendOnDefault$binaryOptionalParams,
@@ -19,7 +19,7 @@ import type {
   Send$binaryOptionalParams,
   Send$textOptionalParams,
   SendResponse,
-} from "./models/index.js";
+} from "./models";
 
 export class MediaTypesV3LROClient extends coreClient.ServiceClient {
   $host: string;

@@ -6,5 +6,5 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./models/index.js";
-export { NoOperationsClient } from "./noOperationsClient.js";
+export * from "./models";
+export { NoOperationsClient } from "./noOperationsClient";

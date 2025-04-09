@@ -1,3 +1,3 @@
-export * from "./pageBlob.js";
-export * from "./blockBlob.js";
-export * from "./appendBlob.js";
+export * from "./pageBlob";
+export * from "./blockBlob";
+export * from "./appendBlob";

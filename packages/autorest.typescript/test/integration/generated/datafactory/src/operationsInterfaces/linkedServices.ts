@@ -7,7 +7,7 @@ import type {
   LinkedServicesGetOptionalParams,
   LinkedServicesGetResponse,
   LinkedServicesDeleteOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a LinkedServices. */

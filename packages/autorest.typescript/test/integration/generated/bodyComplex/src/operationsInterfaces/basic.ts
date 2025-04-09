@@ -19,7 +19,7 @@ import type {
   BasicGetNullResponse,
   BasicGetNotProvidedOptionalParams,
   BasicGetNotProvidedResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a Basic. */
 export interface Basic {

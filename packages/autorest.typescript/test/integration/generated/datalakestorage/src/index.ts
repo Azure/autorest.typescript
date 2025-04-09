@@ -6,6 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./models/index.js";
-export { DataLakeStorageClient } from "./dataLakeStorageClient.js";
-export * from "./operationsInterfaces/index.js";
+export * from "./models";
+export { DataLakeStorageClient } from "./dataLakeStorageClient";
+export * from "./operationsInterfaces";

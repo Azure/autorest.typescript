@@ -7,13 +7,13 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import * as Parameters from "./models/parameters.js";
-import * as Mappers from "./models/mappers.js";
+import * as Parameters from "./models/parameters";
+import * as Mappers from "./models/mappers";
 import type {
   ReportClientOptionalParams,
   GetReportOptionalParams,
   GetReportResponse,
-} from "./models/index.js";
+} from "./models";
 
 export class ReportClient extends coreClient.ServiceClient {
   $host: string;

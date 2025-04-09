@@ -24,7 +24,7 @@ import type {
   PolymorphismPutMissingDiscriminatorOptionalParams,
   PolymorphismPutMissingDiscriminatorResponse,
   PolymorphismPutValidMissingRequiredOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a Polymorphism. */
 export interface Polymorphism {

@@ -16,7 +16,7 @@ import {
   FhirServicesImpl,
   OperationsImpl,
   OperationResultsImpl,
-} from "./operations/index.js";
+} from "./operations";
 import type {
   Services,
   PrivateEndpointConnections,
@@ -29,8 +29,8 @@ import type {
   FhirServices,
   Operations,
   OperationResults,
-} from "./operationsInterfaces/index.js";
-import type { HealthCareApisClientOptionalParams } from "./models/index.js";
+} from "./operationsInterfaces";
+import type { HealthCareApisClientOptionalParams } from "./models";
 
 export class HealthCareApisClient extends coreClient.ServiceClient {
   $host: string;

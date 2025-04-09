@@ -1,12 +1,12 @@
-import type { File } from "../operationsInterfaces/index.js";
+import type { File } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { StorageFileShareClient } from "../storageFileShareClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { StorageFileShareClient } from "../storageFileShareClient";
 import type {
   FileUploadRangeFromURLOptionalParams,
   FileUploadRangeFromURLResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing File operations. */
 export class FileImpl implements File {

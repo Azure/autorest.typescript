@@ -7,7 +7,7 @@ import type {
   DataFlowsGetOptionalParams,
   DataFlowsGetResponse,
   DataFlowsDeleteOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a DataFlows. */

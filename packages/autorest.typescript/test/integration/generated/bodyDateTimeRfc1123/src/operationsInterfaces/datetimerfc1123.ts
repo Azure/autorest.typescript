@@ -23,7 +23,7 @@ import type {
   Datetimerfc1123PutUtcMinDateTimeOptionalParams,
   Datetimerfc1123GetUtcMinDateTimeOptionalParams,
   Datetimerfc1123GetUtcMinDateTimeResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a Datetimerfc1123. */
 export interface Datetimerfc1123 {

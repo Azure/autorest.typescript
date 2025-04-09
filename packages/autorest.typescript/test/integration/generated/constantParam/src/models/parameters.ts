@@ -11,7 +11,7 @@ import type {
   OperationURLParameter,
   OperationQueryParameter,
 } from "@azure/core-client";
-import { LanguageBatchInput as LanguageBatchInputMapper } from "../models/mappers.js";
+import { LanguageBatchInput as LanguageBatchInputMapper } from "../models/mappers";
 
 export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],

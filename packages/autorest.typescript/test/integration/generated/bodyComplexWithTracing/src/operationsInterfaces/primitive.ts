@@ -51,7 +51,7 @@ import type {
   PrimitiveGetByteResponse,
   ByteWrapper,
   PrimitivePutByteOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a Primitive. */
 export interface Primitive {

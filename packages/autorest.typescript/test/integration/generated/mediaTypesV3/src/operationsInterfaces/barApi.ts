@@ -9,7 +9,7 @@
 import type {
   BarApiPostSendOnDefaultOptionalParams,
   BarApiPostSendOnDefaultResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a BarApi. */
 export interface BarApi {

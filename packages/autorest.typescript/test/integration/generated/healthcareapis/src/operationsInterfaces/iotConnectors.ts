@@ -11,7 +11,7 @@ import type {
   IotConnectorsUpdateOptionalParams,
   IotConnectorsUpdateResponse,
   IotConnectorsDeleteOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a IotConnectors. */

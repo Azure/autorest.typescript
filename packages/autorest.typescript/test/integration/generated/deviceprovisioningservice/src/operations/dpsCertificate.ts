@@ -1,8 +1,8 @@
-import type { DpsCertificate } from "../operationsInterfaces/index.js";
+import type { DpsCertificate } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { DeviceProvisioningClient } from "../deviceProvisioningClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { DeviceProvisioningClient } from "../deviceProvisioningClient";
 import type {
   DpsCertificateGetOptionalParams,
   DpsCertificateGetResponse,
@@ -17,7 +17,7 @@ import type {
   VerificationCodeRequest,
   DpsCertificateVerifyCertificateOptionalParams,
   DpsCertificateVerifyCertificateResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing DpsCertificate operations. */
 export class DpsCertificateImpl implements DpsCertificate {

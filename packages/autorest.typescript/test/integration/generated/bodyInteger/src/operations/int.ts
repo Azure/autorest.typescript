@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Int } from "../operationsInterfaces/index.js";
+import type { Int } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { BodyIntegerClient } from "../bodyIntegerClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { BodyIntegerClient } from "../bodyIntegerClient";
 import type {
   IntGetNullOptionalParams,
   IntGetNullResponse,
@@ -35,7 +35,7 @@ import type {
   IntGetInvalidUnixTimeResponse,
   IntGetNullUnixTimeOptionalParams,
   IntGetNullUnixTimeResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing Int operations. */
 export class IntImpl implements Int {

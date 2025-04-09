@@ -7,9 +7,9 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { PathsImpl } from "./operations/index.js";
-import type { Paths } from "./operationsInterfaces/index.js";
-import type { CustomUrlClientOptionalParams } from "./models/index.js";
+import { PathsImpl } from "./operations";
+import type { Paths } from "./operationsInterfaces";
+import type { CustomUrlClientOptionalParams } from "./models";
 
 export class CustomUrlClient extends coreClient.ServiceClient {
   host: string;

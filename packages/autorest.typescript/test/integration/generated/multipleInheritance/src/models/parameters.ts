@@ -16,7 +16,7 @@ import {
   Feline as FelineMapper,
   Cat as CatMapper,
   Kitten as KittenMapper,
-} from "../models/mappers.js";
+} from "../models/mappers";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",

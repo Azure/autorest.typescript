@@ -6,7 +6,7 @@ import type {
   ManagedVirtualNetworksCreateOrUpdateResponse,
   ManagedVirtualNetworksGetOptionalParams,
   ManagedVirtualNetworksGetResponse,
-} from "../models/index.js";
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a ManagedVirtualNetworks. */

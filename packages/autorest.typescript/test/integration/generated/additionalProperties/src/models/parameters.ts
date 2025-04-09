@@ -17,7 +17,7 @@ import {
   PetAPString as PetAPStringMapper,
   PetAPInProperties as PetAPInPropertiesMapper,
   PetAPInPropertiesWithAPString as PetAPInPropertiesWithAPStringMapper,
-} from "../models/mappers.js";
+} from "../models/mappers";
 
 export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],

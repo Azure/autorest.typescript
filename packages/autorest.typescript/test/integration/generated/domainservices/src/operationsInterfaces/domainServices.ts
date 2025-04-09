@@ -11,7 +11,7 @@ import type {
   DomainServicesDeleteOptionalParams,
   DomainServicesUpdateOptionalParams,
   DomainServicesUpdateResponse,
-} from "../models/index.js";
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a DomainServices. */

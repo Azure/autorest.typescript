@@ -11,7 +11,7 @@ import type {
   OperationURLParameter,
   OperationQueryParameter,
 } from "@azure/core-client";
-import { BodyParam as BodyParamMapper } from "../models/mappers.js";
+import { BodyParam as BodyParamMapper } from "../models/mappers";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",

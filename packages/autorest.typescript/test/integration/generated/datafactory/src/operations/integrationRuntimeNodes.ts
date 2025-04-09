@@ -1,8 +1,8 @@
-import type { IntegrationRuntimeNodes } from "../operationsInterfaces/index.js";
+import type { IntegrationRuntimeNodes } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { DataFactoryClient } from "../dataFactoryClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { DataFactoryClient } from "../dataFactoryClient";
 import type {
   IntegrationRuntimeNodesGetOptionalParams,
   IntegrationRuntimeNodesGetResponse,
@@ -12,7 +12,7 @@ import type {
   IntegrationRuntimeNodesUpdateResponse,
   IntegrationRuntimeNodesGetIpAddressOptionalParams,
   IntegrationRuntimeNodesGetIpAddressResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing IntegrationRuntimeNodes operations. */
 export class IntegrationRuntimeNodesImpl implements IntegrationRuntimeNodes {

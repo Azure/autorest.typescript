@@ -6,12 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { tracingClient } from "../tracing.js";
-import type { Polymorphism } from "../operationsInterfaces/index.js";
+import { tracingClient } from "../tracing";
+import type { Polymorphism } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { BodyComplexWithTracing } from "../bodyComplexWithTracing.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { BodyComplexWithTracing } from "../bodyComplexWithTracing";
 import type {
   PolymorphismGetValidOptionalParams,
   PolymorphismGetValidResponse,
@@ -30,7 +30,7 @@ import type {
   PolymorphismPutMissingDiscriminatorOptionalParams,
   PolymorphismPutMissingDiscriminatorResponse,
   PolymorphismPutValidMissingRequiredOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing Polymorphism operations. */
 export class PolymorphismImpl implements Polymorphism {

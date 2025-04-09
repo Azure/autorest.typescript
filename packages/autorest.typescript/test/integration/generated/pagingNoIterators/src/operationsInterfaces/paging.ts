@@ -101,7 +101,7 @@ import type {
   PagingReplaceApiVersionNextResponse,
   PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams,
   PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a Paging. */
 export interface Paging {

@@ -19,7 +19,7 @@ import type {
   TriggersUnsubscribeFromEventsResponse,
   TriggersStartOptionalParams,
   TriggersStopOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a Triggers. */

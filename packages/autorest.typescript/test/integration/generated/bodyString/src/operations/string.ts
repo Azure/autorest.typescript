@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { StringOperations } from "../operationsInterfaces/index.js";
+import type { StringOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { BodyStringClient } from "../bodyStringClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { BodyStringClient } from "../bodyStringClient";
 import type {
   StringGetNullOptionalParams,
   StringGetNullResponse,
@@ -33,7 +33,7 @@ import type {
   StringPutBase64UrlEncodedOptionalParams,
   StringGetNullBase64UrlEncodedOptionalParams,
   StringGetNullBase64UrlEncodedResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing StringOperations operations. */
 export class StringOperationsImpl implements StringOperations {

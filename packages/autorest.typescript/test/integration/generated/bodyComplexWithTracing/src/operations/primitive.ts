@@ -6,12 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { tracingClient } from "../tracing.js";
-import type { Primitive } from "../operationsInterfaces/index.js";
+import { tracingClient } from "../tracing";
+import type { Primitive } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { BodyComplexWithTracing } from "../bodyComplexWithTracing.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { BodyComplexWithTracing } from "../bodyComplexWithTracing";
 import type {
   PrimitiveGetIntOptionalParams,
   PrimitiveGetIntResponse,
@@ -57,7 +57,7 @@ import type {
   PrimitiveGetByteResponse,
   ByteWrapper,
   PrimitivePutByteOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing Primitive operations. */
 export class PrimitiveImpl implements Primitive {

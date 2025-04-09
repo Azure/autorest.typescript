@@ -10,12 +10,12 @@ import type {
   PagedAsyncIterableIterator,
   PageSettings,
 } from "@azure/core-paging";
-import { setContinuationToken } from "../pagingHelper.js";
-import type { Paging } from "../operationsInterfaces/index.js";
+import { setContinuationToken } from "../pagingHelper";
+import type { Paging } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { CustomUrlPagingClient } from "../customUrlPagingClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { CustomUrlPagingClient } from "../customUrlPagingClient";
 import type {
   Product,
   PagingGetPagesPartialUrlNextOptionalParams,
@@ -26,7 +26,7 @@ import type {
   PagingGetPagesPartialUrlOperationResponse,
   PagingGetPagesPartialUrlOperationNextResponse,
   PagingGetPagesPartialUrlNextResponse,
-} from "../models/index.js";
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Paging operations. */

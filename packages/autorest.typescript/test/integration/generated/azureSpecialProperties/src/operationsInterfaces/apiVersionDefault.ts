@@ -11,7 +11,7 @@ import type {
   ApiVersionDefaultGetMethodGlobalNotProvidedValidOptionalParams,
   ApiVersionDefaultGetPathGlobalValidOptionalParams,
   ApiVersionDefaultGetSwaggerGlobalValidOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a ApiVersionDefault. */
 export interface ApiVersionDefault {

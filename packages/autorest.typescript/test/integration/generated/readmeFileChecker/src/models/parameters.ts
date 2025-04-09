@@ -7,7 +7,7 @@ import {
   SecretSetParameters as SecretSetParametersMapper,
   SecretUpdateParameters as SecretUpdateParametersMapper,
   SecretRestoreParameters as SecretRestoreParametersMapper,
-} from "../models/mappers.js";
+} from "../models/mappers";
 
 export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],

@@ -13,7 +13,7 @@ import type {
   FilesGetFileLargeResponse,
   FilesGetEmptyFileOptionalParams,
   FilesGetEmptyFileResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a Files. */
 export interface Files {

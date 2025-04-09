@@ -7,9 +7,9 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { TimeImpl } from "./operations/index.js";
-import type { Time } from "./operationsInterfaces/index.js";
-import type { BodyTimeClientOptionalParams } from "./models/index.js";
+import { TimeImpl } from "./operations";
+import type { Time } from "./operationsInterfaces";
+import type { BodyTimeClientOptionalParams } from "./models";
 
 export class BodyTimeClient extends coreClient.ServiceClient {
   $host: string;

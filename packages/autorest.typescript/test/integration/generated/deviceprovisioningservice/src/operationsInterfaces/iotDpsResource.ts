@@ -36,7 +36,7 @@ import type {
   IotDpsResourceCreateOrUpdatePrivateEndpointConnectionResponse,
   IotDpsResourceDeletePrivateEndpointConnectionOptionalParams,
   IotDpsResourceDeletePrivateEndpointConnectionResponse,
-} from "../models/index.js";
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a IotDpsResource. */

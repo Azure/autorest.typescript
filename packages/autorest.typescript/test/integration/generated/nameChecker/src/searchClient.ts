@@ -4,9 +4,9 @@ import type {
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import { DocumentsImpl } from "./operations/index.js";
-import type { Documents } from "./operationsInterfaces/index.js";
-import type { SearchClientOptionalParams } from "./models/index.js";
+import { DocumentsImpl } from "./operations";
+import type { Documents } from "./operationsInterfaces";
+import type { SearchClientOptionalParams } from "./models";
 
 export class SearchClient extends coreClient.ServiceClient {
   endpoint: string;

@@ -12,9 +12,9 @@ import type {
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import { PagingImpl } from "./operations/index.js";
-import type { Paging } from "./operationsInterfaces/index.js";
-import type { PagingClientOptionalParams } from "./models/index.js";
+import { PagingImpl } from "./operations";
+import type { Paging } from "./operationsInterfaces";
+import type { PagingClientOptionalParams } from "./models";
 
 export class PagingClient extends coreClient.ServiceClient {
   $host: string;

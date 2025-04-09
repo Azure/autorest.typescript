@@ -6,6 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./models/index.js";
-export { UserAgentCoreV1Client } from "./userAgentCoreV1Client.js";
-export * from "./operationsInterfaces/index.js";
+export * from "./models";
+export { UserAgentCoreV1Client } from "./userAgentCoreV1Client";
+export * from "./operationsInterfaces";

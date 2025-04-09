@@ -4,18 +4,12 @@ import type {
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import {
-  ProductOperationsImpl,
-  PipelineOperationsImpl,
-} from "./operations/index.js";
+import { ProductOperationsImpl, PipelineOperationsImpl } from "./operations";
 import type {
   ProductOperations,
   PipelineOperations,
-} from "./operationsInterfaces/index.js";
-import type {
-  Enum0,
-  OperationGroupClashClientOptionalParams,
-} from "./models/index.js";
+} from "./operationsInterfaces";
+import type { Enum0, OperationGroupClashClientOptionalParams } from "./models";
 
 export class OperationGroupClashClient extends coreClient.ServiceClient {
   $host: string;

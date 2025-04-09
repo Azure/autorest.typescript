@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Policy } from "../operationsInterfaces/index.js";
+import type { Policy } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { GeneratedClient } from "../generatedClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { GeneratedClient } from "../generatedClient";
 import type {
   AttestationType,
   PolicyGetOptionalParams,
@@ -19,7 +19,7 @@ import type {
   PolicySetModelResponse,
   PolicyResetOptionalParams,
   PolicyResetResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing Policy operations. */
 export class PolicyImpl implements Policy {

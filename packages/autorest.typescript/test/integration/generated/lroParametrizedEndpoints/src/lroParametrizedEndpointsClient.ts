@@ -9,16 +9,16 @@
 import * as coreClient from "@azure/core-client";
 import type { SimplePollerLike, OperationState } from "@azure/core-lro";
 import { createHttpPoller } from "@azure/core-lro";
-import { createLroSpec } from "./lroImpl.js";
-import * as Parameters from "./models/parameters.js";
-import * as Mappers from "./models/mappers.js";
+import { createLroSpec } from "./lroImpl";
+import * as Parameters from "./models/parameters";
+import * as Mappers from "./models/mappers";
 import type {
   LroParametrizedEndpointsClientOptionalParams,
   PollWithParameterizedEndpointsOptionalParams,
   PollWithParameterizedEndpointsResponse,
   PollWithConstantParameterizedEndpointsOptionalParams,
   PollWithConstantParameterizedEndpointsResponse,
-} from "./models/index.js";
+} from "./models";
 
 export class LroParametrizedEndpointsClient extends coreClient.ServiceClient {
   host: string;

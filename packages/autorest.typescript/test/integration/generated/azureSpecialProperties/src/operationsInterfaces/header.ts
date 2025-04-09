@@ -14,7 +14,7 @@ import type {
   HeaderCustomNamedRequestIdParamGroupingResponse,
   HeaderCustomNamedRequestIdHeadOptionalParams,
   HeaderCustomNamedRequestIdHeadResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a Header. */
 export interface Header {

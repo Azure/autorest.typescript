@@ -11,7 +11,7 @@ import type {
   ApiVersionLocalGetMethodLocalNullOptionalParams,
   ApiVersionLocalGetPathLocalValidOptionalParams,
   ApiVersionLocalGetSwaggerLocalValidOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a ApiVersionLocal. */
 export interface ApiVersionLocal {

@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Get } from "../operationsInterfaces/index.js";
+import type { Get } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Parameters from "../models/parameters.js";
-import type { UrlClient } from "../urlClient.js";
-import type { GetUrlOptionalParams, GetUrlResponse } from "../models/index.js";
+import * as Parameters from "../models/parameters";
+import type { UrlClient } from "../urlClient";
+import type { GetUrlOptionalParams, GetUrlResponse } from "../models";
 
 /** Class containing Get operations. */
 export class GetImpl implements Get {

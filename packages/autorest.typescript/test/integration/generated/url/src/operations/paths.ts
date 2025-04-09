@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Paths } from "../operationsInterfaces/index.js";
+import type { Paths } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { UrlClient } from "../urlClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { UrlClient } from "../urlClient";
 import type {
   PathsGetBooleanTrueOptionalParams,
   PathsGetBooleanFalseOptionalParams,
@@ -40,7 +40,7 @@ import type {
   PathsBase64UrlOptionalParams,
   PathsArrayCsvInPathOptionalParams,
   PathsUnixTimeUrlOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing Paths operations. */
 export class PathsImpl implements Paths {

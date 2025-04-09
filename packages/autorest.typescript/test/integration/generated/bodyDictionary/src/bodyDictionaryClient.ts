@@ -7,9 +7,9 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { DictionaryImpl } from "./operations/index.js";
-import type { Dictionary } from "./operationsInterfaces/index.js";
-import type { BodyDictionaryClientOptionalParams } from "./models/index.js";
+import { DictionaryImpl } from "./operations";
+import type { Dictionary } from "./operationsInterfaces";
+import type { BodyDictionaryClientOptionalParams } from "./models";
 
 export class BodyDictionaryClient extends coreClient.ServiceClient {
   $host: string;

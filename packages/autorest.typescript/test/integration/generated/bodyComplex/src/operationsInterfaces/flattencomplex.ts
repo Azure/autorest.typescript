@@ -9,7 +9,7 @@
 import type {
   FlattencomplexGetValidOptionalParams,
   FlattencomplexGetValidResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a Flattencomplex. */
 export interface Flattencomplex {

@@ -42,7 +42,7 @@ import type {
   QueriesArrayStringSsvValidOptionalParams,
   QueriesArrayStringTsvValidOptionalParams,
   QueriesArrayStringPipesValidOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a Queries. */
 export interface Queries {

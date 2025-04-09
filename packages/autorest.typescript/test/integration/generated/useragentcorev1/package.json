@@ -52,7 +52,6 @@
     ]
   },
   "autoPublish": true,
-  "type": "module",
   "browser": "./dist/browser/index.js",
   "react-native": "./dist/react-native/index.js",
   "tshy": {

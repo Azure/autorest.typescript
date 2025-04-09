@@ -1,12 +1,12 @@
-import type { PipelineOperations } from "../operationsInterfaces/index.js";
+import type { PipelineOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { OperationGroupClashClient } from "../operationGroupClashClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { OperationGroupClashClient } from "../operationGroupClashClient";
 import type {
   PipelineApiV1ValueGetOptionalParams,
   PipelineApiV1ValueGetResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing PipelineOperations operations. */
 export class PipelineOperationsImpl implements PipelineOperations {

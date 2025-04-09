@@ -130,7 +130,7 @@ import type {
   ArrayGetDictionaryValidOptionalParams,
   ArrayGetDictionaryValidResponse,
   ArrayPutDictionaryValidOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a Array. */
 export interface Array {

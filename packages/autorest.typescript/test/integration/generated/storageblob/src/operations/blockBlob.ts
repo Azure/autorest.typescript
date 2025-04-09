@@ -1,9 +1,9 @@
-import type { BlockBlob } from "../operationsInterfaces/index.js";
+import type { BlockBlob } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { StorageBlobClient } from "../storageBlobClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { StorageBlobClient } from "../storageBlobClient";
 import type {
   BlockBlobStageBlockOptionalParams,
   BlockBlobStageBlockResponse,
@@ -11,7 +11,7 @@ import type {
   BlockBlobUploadResponse,
   BlockBlobPutBlobFromUrlOptionalParams,
   BlockBlobPutBlobFromUrlResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing BlockBlob operations. */
 export class BlockBlobImpl implements BlockBlob {

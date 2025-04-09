@@ -12,9 +12,9 @@ import type {
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import { PolicyImpl } from "./operations/index.js";
-import type { Policy } from "./operationsInterfaces/index.js";
-import type { GeneratedClientOptionalParams } from "./models/index.js";
+import { PolicyImpl } from "./operations";
+import type { Policy } from "./operationsInterfaces";
+import type { GeneratedClientOptionalParams } from "./models";
 
 /** @internal */
 export class GeneratedClient extends coreClient.ServiceClient {

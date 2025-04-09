@@ -1,8 +1,8 @@
-import type { PipelineRuns } from "../operationsInterfaces/index.js";
+import type { PipelineRuns } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { DataFactoryClient } from "../dataFactoryClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { DataFactoryClient } from "../dataFactoryClient";
 import type {
   RunFilterParameters,
   PipelineRunsQueryByFactoryOptionalParams,
@@ -10,7 +10,7 @@ import type {
   PipelineRunsGetOptionalParams,
   PipelineRunsGetResponse,
   PipelineRunsCancelOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing PipelineRuns operations. */
 export class PipelineRunsImpl implements PipelineRuns {

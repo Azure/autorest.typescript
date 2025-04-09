@@ -6,6 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./models/index.js";
-export { BodyDateTimeRfc1123Client } from "./bodyDateTimeRfc1123Client.js";
-export * from "./operationsInterfaces/index.js";
+export * from "./models";
+export { BodyDateTimeRfc1123Client } from "./bodyDateTimeRfc1123Client";
+export * from "./operationsInterfaces";

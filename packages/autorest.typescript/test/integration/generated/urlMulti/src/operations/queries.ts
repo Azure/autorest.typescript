@@ -6,16 +6,16 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Queries } from "../operationsInterfaces/index.js";
+import type { Queries } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { UrlMultiClient } from "../urlMultiClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { UrlMultiClient } from "../urlMultiClient";
 import type {
   QueriesArrayStringMultiNullOptionalParams,
   QueriesArrayStringMultiEmptyOptionalParams,
   QueriesArrayStringMultiValidOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing Queries operations. */
 export class QueriesImpl implements Queries {

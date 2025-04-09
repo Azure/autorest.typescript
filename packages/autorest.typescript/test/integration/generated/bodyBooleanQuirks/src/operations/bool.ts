@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Bool } from "../operationsInterfaces/index.js";
+import type { Bool } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { BodyBooleanQuirksClient } from "../bodyBooleanQuirksClient.js";
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { BodyBooleanQuirksClient } from "../bodyBooleanQuirksClient";
 import type {
   BoolGetTrueOptionalParams,
   BoolGetTrueResponse,
@@ -22,7 +22,7 @@ import type {
   BoolGetNullResponse,
   BoolGetInvalidOptionalParams,
   BoolGetInvalidResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing Bool operations. */
 export class BoolImpl implements Bool {

@@ -4,7 +4,7 @@ import type {
   IntegrationRuntimeObjectMetadataRefreshResponse,
   IntegrationRuntimeObjectMetadataGetOptionalParams,
   IntegrationRuntimeObjectMetadataGetResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a IntegrationRuntimeObjectMetadata. */
 export interface IntegrationRuntimeObjectMetadata {
