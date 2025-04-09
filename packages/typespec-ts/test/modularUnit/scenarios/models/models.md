@@ -6,7 +6,7 @@
 model StreamingChatCompletionOptions {
   stream: true;
   messages: string;
-  index: safeint;
+  index: int32;
 }
 op read(@path id: string): {
   @bodyRoot result: StreamingChatCompletionOptions
