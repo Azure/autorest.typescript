@@ -450,13 +450,16 @@ const libDef = {
         default: paramMessage`Enum member name ${"memberName"} is normalized to ${"normalizedName"} with "_" prefix.`
       }
     },
-    "property-name-conflict": {
     "default-value-object": {
       severity: "warning",
       messages: {
+        default: paramMessage`Please note the default value is an object type.`
+      }
+    },
+    "property-name-conflict": {
       severity: "warning",
       messages: {
-        default: paramMessage`Please note the default value is an object type.`
+        default: paramMessage`The property name ${"propertyName"} has conflicts with others and please use @clientName to rename it.`
       }
     }
   },

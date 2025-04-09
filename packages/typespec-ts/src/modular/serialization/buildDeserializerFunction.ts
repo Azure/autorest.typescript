@@ -24,7 +24,6 @@ import {
   isSupportedSerializeType,
   ModelSerializeOptions
 } from "./serializeUtils.js";
-import { resolveReference } from "../../framework/reference.js";
 import { SerializationHelpers } from "../static-helpers-metadata.js";
 import { refkey } from "../../framework/refkey.js";
 import { resolveReference } from "../../framework/reference.js";
