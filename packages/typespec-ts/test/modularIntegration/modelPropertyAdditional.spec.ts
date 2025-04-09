@@ -538,7 +538,7 @@ describe("ModelPropertyAdditional Client", () => {
   });
   // TODO: https://github.com/Azure/autorest.typescript/issues/3122
   it.skip("should get spread Record Discriminated Union value", async () => {
-    const result = await client.spreadRecordDiscriminatedUnion.get();
+    const result = await client.spreadRecordNonDiscriminatedUnion.get();
     assert.deepEqual(result, {
       name: "abc",
       additionalProperties: {
@@ -556,7 +556,7 @@ describe("ModelPropertyAdditional Client", () => {
   });
   // TODO: https://github.com/Azure/autorest.typescript/issues/3122
   it.skip("should put spread Record Discriminated Union value", async () => {
-    const result = await client.spreadRecordDiscriminatedUnion.put({
+    const result = await client.spreadRecordNonDiscriminatedUnion.put({
       name: "abc",
       additionalProperties: {
         prop1: {
