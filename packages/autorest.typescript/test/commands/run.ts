@@ -36,10 +36,10 @@ export async function runAutorest(
     generateSample,
     lenientModelDeduplication,
     flavor,
+    moduleKind
   } = options;
-  let autorestCommand = `autorest${
-    /^win/.test(process.platform) ? ".cmd" : ""
-  }`;
+  let autorestCommand = `autorest${/^win/.test(process.platform) ? ".cmd" : ""
+    }`;
   let commandArguments: string[] = [`--typescript`];
   let outputPrefix = "";
 
@@ -143,7 +143,7 @@ export async function runAutorest(
     commandArguments.push(`--generate-sample=${generateSample}`);
   }
 
-  if(flavor === undefined) {
+  if (flavor === undefined) {
     commandArguments.push(`--flavor=azure`);
   } else {
     commandArguments.push(`--flavor=${flavor}`);
@@ -160,6 +160,10 @@ export async function runAutorest(
   );
   if (debugging) {
     commandArguments.push(`--typescript.debugger`);
+  }
+
+  if (moduleKind) {
+    commandArguments.push(`--module-kind=${moduleKind}`);
   }
 
   if (extraParams !== undefined && extraParams.length > 0) {

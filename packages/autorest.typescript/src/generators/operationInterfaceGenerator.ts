@@ -30,6 +30,7 @@ import {
 import { calculateMethodName } from "./utils/operationsUtils";
 import { getAutorestOptions } from "../autorestSession";
 import { createLroType } from "../utils/lroHelpers";
+import { getImportModuleName } from "../utils/nameConstructors";
 
 /**
  * Function that writes the code for all the operations.
@@ -44,7 +45,7 @@ export function generateOperationsInterfaces(
   clientDetails: ClientDetails,
   project: Project
 ): void {
-  const { srcPath } = getAutorestOptions();
+  const { srcPath, moduleKind } = getAutorestOptions();
   let fileNames: string[] = [];
 
   // Toplevel operations are inlined in the client
@@ -67,7 +68,7 @@ export function generateOperationsInterfaces(
     operationIndexFile.addExportDeclarations(
       fileNames.map(fileName => {
         return {
-          moduleSpecifier: `./${fileName}.js`
+          moduleSpecifier: getImportModuleName(`./${fileName}`, moduleKind)
         } as ExportDeclarationStructure;
       })
     );
@@ -128,6 +129,8 @@ function addInterface(
   operationGroupDetails: OperationGroupDetails,
   clientDetails: ClientDetails
 ) {
+  const { moduleKind } = getAutorestOptions();
+
   let importedModels = new Set<string>();
 
   let allModelsNames = getAllModelsNames(clientDetails);
@@ -165,7 +168,7 @@ function addInterface(
     operationGroupFile.addImportDeclaration({
       isTypeOnly: true,
       namedImports,
-      moduleSpecifier: "../models/index.js"
+      moduleSpecifier: getImportModuleName({ cjsName: "../models", esModulesName: "../models/index.js" }, moduleKind)
     });
   }
 }

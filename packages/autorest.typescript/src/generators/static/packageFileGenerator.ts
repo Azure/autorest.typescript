@@ -60,7 +60,8 @@ function regularAutorestPackage(
     generateTest,
     generateSample,
     coreHttpCompatMode,
-    azureSdkForJs
+    azureSdkForJs,
+    moduleKind
   } = getAutorestOptions();
   const { model } = getSession();
   const { addCredentials } = getSecurityInfoFromModel(model.security);
@@ -159,14 +160,15 @@ function regularAutorestPackage(
       ]
     },
     autoPublish: true,
-    type: "module",
     browser: "./dist/browser/index.js",
     "react-native": "./dist/react-native/index.js"
   };
   if (azureOutputDirectory) {
     packageInfo.homepage = `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}`;
   }
-
+  if (moduleKind !== "cjs") {
+    packageInfo["type"] = "module";
+  }
   if (azureSdkForJs) {
     packageInfo["tshy"] = {
       project: "./tsconfig.src.json",

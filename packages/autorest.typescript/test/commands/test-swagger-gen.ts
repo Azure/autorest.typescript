@@ -26,6 +26,7 @@ interface SwaggerConfig {
   coreHttpCompatMode?: boolean;
   generateSample?: boolean;
   lenientModelDeduplication?: boolean;
+  moduleKind?: "cjs" | "esm";
 }
 
 const package_version = "1.0.0-preview1";
@@ -33,6 +34,7 @@ let whiteList: string[] = [];
 
 let testSwaggers: { [name: string]: SwaggerConfig } = {
   additionalProperties: {
+    moduleKind: "cjs",
     swaggerOrConfig: "additionalProperties.json",
     clientName: "AdditionalPropertiesClient",
     packageName: "additional-properties",
@@ -45,6 +47,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     azureSdkForJs: false
   },
   arrayConstraints: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/arrayConstraints.md",
     clientName: "ArrayConstraintsClient",
     packageName: "array-constraints-client",
@@ -55,6 +58,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   attestation: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/attestation.json",
     clientName: "GeneratedClient",
     packageName: "attestation",
@@ -66,6 +70,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   azureParameterGrouping: {
+    moduleKind: "cjs",
     swaggerOrConfig: "azure-parameter-grouping.json",
     clientName: "AzureParameterGroupingClient",
     packageName: "azure-parameter-grouping",
@@ -76,6 +81,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   azureReport: {
+    moduleKind: "cjs",
     swaggerOrConfig: "azure-report.json",
     clientName: "ReportClient",
     packageName: "zzzAzureReport",
@@ -86,6 +92,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   azureSpecialProperties: {
+    moduleKind: "cjs",
     swaggerOrConfig: "azure-special-properties.json",
     clientName: "AzureSpecialPropertiesClient",
     packageName: "azure-special-properties",
@@ -99,6 +106,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   bodyArray: {
+    moduleKind: "cjs",
     swaggerOrConfig: "body-array.json",
     clientName: "BodyArrayClient",
     packageName: "body-array",
@@ -109,6 +117,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   bodyBoolean: {
+    moduleKind: "cjs",
     swaggerOrConfig: "body-boolean.json",
     clientName: "BodyBooleanClient",
     packageName: "body-boolean",
@@ -119,6 +128,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   bodyBooleanQuirks: {
+    moduleKind: "cjs",
     swaggerOrConfig: "body-boolean.quirks.json",
     clientName: "BodyBooleanQuirksClient",
     packageName: "body-boolean-quirks",
@@ -129,6 +139,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   bodyByte: {
+    moduleKind: "cjs",
     swaggerOrConfig: "body-byte.json",
     clientName: "BodyByteClient",
     packageName: "body-byte",
@@ -139,6 +150,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   bodyComplex: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/bodyComplex.md",
     clientName: "BodyComplexClient",
     packageName: "body-complex",
@@ -149,6 +161,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   bodyComplexWithTracing: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/bodyComplex.md",
     clientName: "bodyComplexWithTracing",
     packageName: "body-complex-tracing",
@@ -163,6 +176,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   bodyDate: {
+    moduleKind: "cjs",
     swaggerOrConfig: "body-date.json",
     clientName: "BodyDateClient",
     packageName: "body-date",
@@ -173,6 +187,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   bodyDateTime: {
+    moduleKind: "cjs",
     swaggerOrConfig: "body-datetime.json",
     clientName: "BodyDateTimeClient",
     packageName: "body-datetime",
@@ -183,6 +198,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   bodyDateTimeRfc1123: {
+    moduleKind: "cjs",
     swaggerOrConfig: "body-datetime-rfc1123.json",
     clientName: "BodyDateTimeRfc1123Client",
     packageName: "body-datetime-rfc1123",
@@ -193,6 +209,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   bodyDictionary: {
+    moduleKind: "cjs",
     swaggerOrConfig: "body-dictionary.json",
     clientName: "BodyDictionaryClient",
     packageName: "body-dictionary",
@@ -203,6 +220,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   bodyDuration: {
+    moduleKind: "cjs",
     swaggerOrConfig: "body-duration.json",
     clientName: "BodyDurationClient",
     packageName: "body-duration",
@@ -213,6 +231,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   bodyFile: {
+    moduleKind: "cjs",
     swaggerOrConfig: "body-file.json",
     clientName: "BodyFileClient",
     packageName: "body-file",
@@ -223,6 +242,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   bodyInteger: {
+    moduleKind: "cjs",
     swaggerOrConfig: "body-integer.json",
     clientName: "BodyIntegerClient",
     packageName: "body-integer",
@@ -233,6 +253,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   bodyNumber: {
+    moduleKind: "cjs",
     swaggerOrConfig: "body-number.json",
     clientName: "BodyNumberClient",
     packageName: "body-number",
@@ -243,6 +264,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   bodyString: {
+    moduleKind: "cjs",
     swaggerOrConfig: "body-string.json",
     clientName: "BodyStringClient",
     packageName: "body-string",
@@ -253,6 +275,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   bodyTime: {
+    moduleKind: "cjs",
     swaggerOrConfig: "body-time.json",
     clientName: "BodyTimeClient",
     packageName: "body-time",
@@ -263,6 +286,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   customUrl: {
+    moduleKind: "cjs",
     swaggerOrConfig: "custom-baseUrl.json",
     clientName: "CustomUrlClient",
     packageName: "custom-url",
@@ -273,6 +297,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   customUrlMoreOptions: {
+    moduleKind: "cjs",
     swaggerOrConfig: "custom-baseUrl-more-options.json",
     clientName: "CustomUrlMoreOptionsClient",
     packageName: "custom-url-MoreOptions",
@@ -283,6 +308,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   customUrlPaging: {
+    moduleKind: "cjs",
     swaggerOrConfig: "custom-baseUrl-paging.json",
     clientName: "CustomUrlPagingClient",
     packageName: "custom-url-paging",
@@ -293,6 +319,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   header: {
+    moduleKind: "cjs",
     swaggerOrConfig: "header.json",
     clientName: "HeaderClient",
     packageName: "header",
@@ -303,6 +330,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   httpInfrastructure: {
+    moduleKind: "cjs",
     swaggerOrConfig: "httpInfrastructure.json",
     clientName: "HttpInfrastructureClient",
     packageName: "httpInfrastructure",
@@ -313,6 +341,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   lro: {
+    moduleKind: "cjs",
     swaggerOrConfig: "lro.json",
     clientName: "LROClient",
     packageName: "lro",
@@ -327,6 +356,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     }
   },
   lroParametrizedEndpoints: {
+    moduleKind: "cjs",
     swaggerOrConfig: "lro-parameterized-endpoints.json",
     clientName: "LroParametrizedEndpointsClient",
     packageName: "lro-parameterized-endpoints",
@@ -337,6 +367,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   mediaTypes: {
+    moduleKind: "cjs",
     swaggerOrConfig: "media_types.json",
     clientName: "MediaTypesClient",
     packageName: "media-types-service",
@@ -348,6 +379,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     lenientModelDeduplication: true
   },
   mediaTypesWithTracing: {
+    moduleKind: "cjs",
     swaggerOrConfig: "media_types.json",
     clientName: "mediaTypesWithTracingClient",
     packageName: "media-types-service-tracing",
@@ -363,6 +395,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     lenientModelDeduplication: true
   },
   mediaTypesV3: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/media-types-v3.json",
     clientName: "MediaTypesV3Client",
     packageName: "media-types-v3-client",
@@ -373,6 +406,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   mediaTypesV3Lro: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/media-types-v3-lro.json",
     clientName: "MediaTypesV3LROClient",
     packageName: "media-types-v3-lro-client",
@@ -382,6 +416,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   modelFlattening: {
+    moduleKind: "cjs",
     swaggerOrConfig: "model-flattening.json",
     clientName: "ModelFlatteningClient",
     packageName: "model-flattening",
@@ -392,6 +427,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   multipleInheritance: {
+    moduleKind: "cjs",
     swaggerOrConfig: "multiple-inheritance.json",
     clientName: "MultipleInheritanceClient",
     packageName: "multiple-inheritance",
@@ -402,6 +438,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   noMappers: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/no-mappers.json",
     clientName: "NoMappersClient",
     packageName: "no-mappers",
@@ -412,6 +449,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   noOperation: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/noOperation.json",
     clientName: "NoOperationsClient",
     packageName: "no-operation",
@@ -422,6 +460,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   nonStringEnum: {
+    moduleKind: "cjs",
     swaggerOrConfig: "non-string-enum.json",
     clientName: "NonStringEnumClient",
     packageName: "non-string-num",
@@ -432,6 +471,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   objectType: {
+    moduleKind: "cjs",
     swaggerOrConfig: "object-type.json",
     clientName: "ObjectTypeClient",
     packageName: "object-type",
@@ -442,6 +482,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   paging: {
+    moduleKind: "cjs",
     swaggerOrConfig: "paging.json",
     clientName: "PagingClient",
     packageName: "paging-service",
@@ -456,6 +497,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   pagingNoIterators: {
+    moduleKind: "cjs",
     swaggerOrConfig: "paging.json",
     clientName: "PagingNoIteratorsClient",
     packageName: "paging-no-iterators",
@@ -467,6 +509,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   requiredOptional: {
+    moduleKind: "cjs",
     swaggerOrConfig: "required-optional.json",
     clientName: "RequiredOptionalClient",
     packageName: "required-optional",
@@ -477,6 +520,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   regexConstraint: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/regex-constraint.json",
     clientName: "RegexConstraint",
     packageName: "regex-constraint",
@@ -487,6 +531,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   report: {
+    moduleKind: "cjs",
     swaggerOrConfig: "report.json",
     clientName: "ReportClient",
     packageName: "zzzReport",
@@ -497,6 +542,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   uuid: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/uuid.json",
     clientName: "UuidClient",
     packageName: "uuid",
@@ -507,6 +553,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   url: {
+    moduleKind: "cjs",
     swaggerOrConfig: "url.json",
     clientName: "UrlClient",
     packageName: "url",
@@ -517,6 +564,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   urlMulti: {
+    moduleKind: "cjs",
     swaggerOrConfig: "url-multi-collectionFormat.json",
     clientName: "UrlMultiClient",
     packageName: "url-multi",
@@ -527,6 +575,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   url2: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/url.json",
     clientName: "UrlClient",
     packageName: "url",
@@ -537,6 +586,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   xmlservice: {
+    moduleKind: "cjs",
     swaggerOrConfig: "xml-service.json",
     clientName: "XmlServiceClient",
     packageName: "xml-service",
@@ -547,6 +597,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   noLicenseHeader: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/license-header.json",
     clientName: "NoLicenseHeaderClient",
     packageName: "nolicense-header",
@@ -556,6 +607,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   licenseHeader: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/license-header.json",
     clientName: "LicenseHeaderClient",
     packageName: "license-header",
@@ -566,6 +618,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   subscriptionIdApiVersion: {
+    moduleKind: "cjs",
     swaggerOrConfig: "subscriptionId-apiVersion.json",
     clientName: "SubscriptionIdApiVersionClient",
     packageName: "subscriptionid-apiversion",
@@ -576,6 +629,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   bodyFormData: {
+    moduleKind: "cjs",
     swaggerOrConfig: "body-formdata.json",
     clientName: "BodyFormDataClient",
     packageName: "body-formdata",
@@ -586,6 +640,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   validation: {
+    moduleKind: "cjs",
     swaggerOrConfig: "validation.json",
     clientName: "ValidationClient",
     packageName: "validation",
@@ -596,6 +651,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   extensibleEnums: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/extensibleEnums.md",
     clientName: "ExtensibleEnumsClient",
     packageName: "extensible-enums",
@@ -606,6 +662,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   xmsErrorResponses: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/xmsErrorResponses.md",
     clientName: "XmsErrorResponsesClient",
     packageName: "xms-error-responses",
@@ -616,6 +673,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   odataDiscriminator: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/odata-discriminator.json",
     clientName: "ODataDiscriminatorClient",
     packageName: "odata-discriminator",
@@ -626,6 +684,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   appconfiguration: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/appconfiguration.json",
     clientName: "AppConfigurationClient",
     packageName: "appconfiguration",
@@ -636,6 +695,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   appconfigurationexport: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/appconfiguration.json",
     clientName: "AppConfigurationClient",
     packageName: "appconfiguration",
@@ -647,6 +707,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   mapperrequired: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/mapperrequired.json",
     clientName: "MapperRequiredClient",
     packageName: "mapperrequired",
@@ -657,6 +718,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   readmeFileChecker: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/keyvaults-secrets.md",
     clientName: "KeyVaultClient",
     packageName: "keyvault-secrets",
@@ -666,6 +728,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   nameChecker: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/Data.md",
     clientName: "SearchClient",
     packageName: "search-documents",
@@ -675,6 +738,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   polymorphicSkipNormalize: {
+    moduleKind: "cjs",
     swaggerOrConfig:
       "test/integration/swaggers/MediaServices_polymorphic_skipNormalize.md",
     clientName: "MediaServicesClient",
@@ -685,6 +749,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   petstore: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/petstore.json",
     clientName: "PetStore",
     packageName: "petstore",
@@ -694,6 +759,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   textanalytics: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/textAnalytics.md",
     clientName: "GeneratedClient",
     packageName: "textanalytics",
@@ -705,6 +771,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   constantParam: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/textAnalytics.json",
     clientName: "GeneratedClient",
     packageName: "constantParam",
@@ -716,6 +783,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   storagefileshare: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/storagefileshare.json",
     clientName: "StorageFileShareClient",
     packageName: "storagefileshare",
@@ -724,6 +792,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   optionalnull: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/optionalnull.json",
     clientName: "OptionalNullClient",
     packageName: "optionalnull",
@@ -733,6 +802,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   storageblob: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/storageblob.json",
     clientName: "StorageBlobClient",
     packageName: "storageblob",
@@ -741,6 +811,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   headerprefix: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/headerprefix.json",
     clientName: "HeaderPrefixClient",
     packageName: "headerprefix",
@@ -749,6 +820,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   operationgroupclash: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/operationGroupClash.json",
     clientName: "OperationGroupClashClient",
     packageName: "operationgroupclash",
@@ -758,6 +830,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   domainservices: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/domainservices.md",
     clientName: "DomainServicesClient",
     packageName: "domainservices",
@@ -767,6 +840,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   deviceprovisioningservice: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/deviceprovisioningservices.md",
     clientName: "DeviceProvisioningClient",
     packageName: "deviceprovisioning",
@@ -776,6 +850,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   datafactory: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/datafactory.md",
     clientName: "DataFactoryClient",
     packageName: "datafactory",
@@ -785,6 +860,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   healthcareapis: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/healthcareapis.md",
     clientName: "HealthCareApisClient",
     packageName: "healthcareapis",
@@ -794,6 +870,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   useragentcorev1: {
+    moduleKind: "cjs",
     swaggerOrConfig: "subscriptionId-apiVersion.json",
     clientName: "UserAgentCoreV1Client",
     packageName: "useragent-corev1",
@@ -804,6 +881,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   useragentcorev2: {
+    moduleKind: "cjs",
     swaggerOrConfig: "subscriptionId-apiVersion.json",
     clientName: "UserAgentCoreV2Client",
     packageName: "useragent-corev2",
@@ -814,6 +892,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   iotspaces: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/iotspaces.json",
     clientName: "IoTSpacesClient",
     packageName: "iotspaces",
@@ -825,6 +904,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   resources: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/resources.json",
     clientName: "ResourcesClient",
     packageName: "resources",
@@ -837,6 +917,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   sealedchoice: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/sealedchoice.json",
     clientName: "SealedChoiceClient",
     packageName: "sealedchoice",
@@ -847,6 +928,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   datalakestorage: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/datalakestorage.json",
     clientName: "DataLakeStorageClient",
     packageName: "datalakestorage",
@@ -857,6 +939,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   corecompattest: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/petstore.json",
     clientName: "PetStore",
     packageName: "petstore",
@@ -867,6 +950,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     coreHttpCompatMode: true
   },
   datasearch: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/dataSearch.json",
     clientName: "DataSearchClient",
     packageName: "data-search",
@@ -880,6 +964,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     azureSdkForJs: false
   },
   patterntest: {
+    moduleKind: "cjs",
     swaggerOrConfig: "test/integration/swaggers/patterntest.yml",
     clientName: "PatternTestClient",
     packageName: "pattern-test",
@@ -1146,7 +1231,8 @@ const generateSwaggers = async (
       generateTest,
       rlcShortcut,
       coreHttpCompatMode,
-      generateSample
+      generateSample,
+      moduleKind
     } = testSwaggers[name];
 
     let swaggerPath = swaggerOrConfig;
@@ -1195,7 +1281,8 @@ const generateSwaggers = async (
         isTestPackage,
         generateTest,
         coreHttpCompatMode,
-        generateSample
+        generateSample,
+        moduleKind
       },
       isDebugging
     );
