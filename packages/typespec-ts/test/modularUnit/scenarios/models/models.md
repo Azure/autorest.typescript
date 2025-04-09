@@ -8,7 +8,7 @@ model StreamingChatCompletionOptions {
   messages: "aaaaa";
   index: 123;
 }
-op read(@path id: string): {
+op read(@path id: string; @body body: StreamingChatCompletionOptions): {
   @bodyRoot result: StreamingChatCompletionOptions
 };
 ```
@@ -21,6 +21,12 @@ export interface StreamingChatCompletionOptions {
   stream: true;
   messages: "aaaaa";
   index: 123;
+}
+
+export function streamingChatCompletionOptionsSerializer(
+  item: StreamingChatCompletionOptions
+): any {
+  return { stream: true, messages: "aaaaa", index: 123 };
 }
 
 export function streamingChatCompletionOptionsDeserializer(
@@ -40,6 +46,7 @@ export function streamingChatCompletionOptionsDeserializer(
 import { TestingContext as Client } from "./index.js";
 import {
   StreamingChatCompletionOptions,
+  streamingChatCompletionOptionsSerializer,
   streamingChatCompletionOptionsDeserializer
 } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
@@ -54,6 +61,7 @@ import {
 export function _readSend(
   context: Client,
   id: string,
+  body: StreamingChatCompletionOptions,
   options: ReadOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -65,12 +73,14 @@ export function _readSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding
     }
   );
-  return context.path(path).get({
+  return context.path(path).post({
     ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
     headers: {
       accept: "application/json",
       ...options.requestOptions?.headers
-    }
+    },
+    body: streamingChatCompletionOptionsSerializer(body)
   });
 }
 
@@ -88,9 +98,10 @@ export async function _readDeserialize(
 export async function read(
   context: Client,
   id: string,
+  body: StreamingChatCompletionOptions,
   options: ReadOptionalParams = { requestOptions: {} }
 ): Promise<StreamingChatCompletionOptions> {
-  const result = await _readSend(context, id, options);
+  const result = await _readSend(context, id, body, options);
   return _readDeserialize(result);
 }
 ```
