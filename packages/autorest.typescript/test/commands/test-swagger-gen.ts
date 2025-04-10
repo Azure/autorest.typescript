@@ -1172,6 +1172,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   azureReport: {
+    moduleKind: "cjs",
     swaggerOrConfig: "azure-report.json",
     clientName: "ReportClient",
     packageName: "zzzAzureReport",
@@ -1182,6 +1183,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   report: {
+    moduleKind: "cjs",
     swaggerOrConfig: "report.json",
     clientName: "ReportClient",
     packageName: "zzzReport",
