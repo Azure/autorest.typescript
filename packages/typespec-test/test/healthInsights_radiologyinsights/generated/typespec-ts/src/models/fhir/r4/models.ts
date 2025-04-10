@@ -36,7 +36,7 @@ export interface Resource {
 
 export function resourceSerializer(item: Resource): any {
   return {
-    ...item.additionalProperties,
+    ...serializeRecord(item.additionalProperties),
     resourceType: item["resourceType"],
     id: item["id"],
     meta: !item["meta"] ? item["meta"] : metaSerializer(item["meta"]),

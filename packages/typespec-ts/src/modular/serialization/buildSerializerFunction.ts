@@ -443,9 +443,14 @@ function getAdditionalPropertiesStatement(
     false,
     true
   );
+  const params = [`item.${getAdditionalPropertiesName(type)}`];
+  if (typeof deserializerFunction === "string") {
+    params.push("undefined");
+    params.push(deserializerFunction);
+  }
   return context.rlcOptions?.compatibilityMode === true
     ? "...item"
-    : `...${resolveReference(SerializationHelpers.serializeRecord)}(item.${getAdditionalPropertiesName(type)}, undefined, ${deserializerFunction})`;
+    : `...${resolveReference(SerializationHelpers.serializeRecord)}(${params.join(",")})`;
 }
 
 function buildDictTypeSerializer(

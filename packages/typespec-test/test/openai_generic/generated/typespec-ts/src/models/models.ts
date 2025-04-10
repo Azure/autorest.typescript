@@ -5,6 +5,7 @@ import {
   FileContents,
   createFilePartDescriptor,
 } from "../static-helpers/multipartHelpers.js";
+import { serializeRecord } from "../static-helpers/serialization/serialize-record.js";
 import { stringToUint8Array } from "@azure/core-util";
 
 /** model interface CreateCompletionRequest */
@@ -1767,7 +1768,7 @@ export interface ChatCompletionFunctionParameters {
 export function chatCompletionFunctionParametersSerializer(
   item: ChatCompletionFunctionParameters,
 ): any {
-  return { ...item.additionalProperties };
+  return { ...serializeRecord(item.additionalProperties) };
 }
 
 /** Alias for _CreateChatCompletionRequestFunctionCall */
