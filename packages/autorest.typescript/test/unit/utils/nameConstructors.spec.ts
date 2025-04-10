@@ -39,9 +39,9 @@ describe("#getImportModuleName", () => {
     });
 
     describe("when omitting module kind", () => {
-        it("defaults to cjs", () => {
+        it("defaults to esm", () => {
             const name: ModuleName = "myModule";
-            expect(getImportModuleName(name)).to.equal("myModule");
+            expect(getImportModuleName(name)).to.equal("myModule.js");
         });
     });
 });
