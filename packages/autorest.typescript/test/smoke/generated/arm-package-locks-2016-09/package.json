@@ -87,9 +87,9 @@
     ]
   },
   "autoPublish": true,
-  "type": "module",
   "browser": "./dist/browser/index.js",
   "react-native": "./dist/react-native/index.js",
+  "type": "module",
   "tshy": {
     "exports": {
       "./package.json": "./package.json",
