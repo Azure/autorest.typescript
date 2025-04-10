@@ -38,7 +38,7 @@ export function simpleModelDeserializer(item: any): SimpleModel {
   return {
     ...item,
     propA: item["propA"],
-    propB: item["propB"]
+    propB: item["propB"],
   };
 }
 ```
@@ -114,7 +114,7 @@ export function simpleModelDeserializer(item: any): SimpleModel {
   return {
     additionalProperties: serializeRecord(item, ["propA", "propB"]),
     propA: item["propA"],
-    propB: item["propB"]
+    propB: item["propB"],
   };
 }
 
@@ -126,7 +126,7 @@ export interface EmptyModel {
 
 export function emptyModelDeserializer(item: any): EmptyModel {
   return {
-    additionalProperties: serializeRecord(item)
+    additionalProperties: serializeRecord(item, []),
   };
 }
 
@@ -140,9 +140,13 @@ export interface UnionModel {
 
 export function unionModelDeserializer(item: any): UnionModel {
   return {
-    additionalProperties: serializeRecord(item, ["propA", "propB"]),
+    additionalProperties: serializeRecord(
+      item,
+      ["propA", "propB"],
+      _unionModelAdditionalPropertyDeserializer,
+    ),
     propA: item["propA"],
-    propB: item["propB"]
+    propB: item["propB"],
   };
 }
 
@@ -150,7 +154,7 @@ export function unionModelDeserializer(item: any): UnionModel {
 export type _UnionModelAdditionalProperty = string | number;
 
 export function _unionModelAdditionalPropertyDeserializer(
-  item: any
+  item: any,
 ): _UnionModelAdditionalProperty {
   return item;
 }
@@ -169,11 +173,11 @@ export function nameConflictModelDeserializer(item: any): NameConflictModel {
     additionalPropertiesBag: serializeRecord(item, [
       "additionalProperties",
       "propA",
-      "propB"
+      "propB",
     ]),
     additionalProperties: item["additionalProperties"],
     propA: item["propA"],
-    propB: item["propB"]
+    propB: item["propB"],
   };
 }
 ```

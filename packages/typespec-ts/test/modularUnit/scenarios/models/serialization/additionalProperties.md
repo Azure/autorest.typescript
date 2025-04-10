@@ -1,4 +1,4 @@
-# Should generate serializer for additional properties
+# Should generate serializer for additional properties with `additionalProperties` property for legacy code
 
 ## TypeSpec
 
@@ -6,14 +6,23 @@ This is tsp definition.
 
 ```tsp
 model SimpleModel {
+    ...Record<int32>;
     ...Record<string>;
     propA: string;
     propB: string;
 }
 
+model ComplexModel {
+    ...Record<SimpleModel>;
+    propA: SimpleModel;
+}
+
 @route("/serialize")
 interface D {
+  @route("/simple")
   op bar(@body body: SimpleModel): void;
+  @route("/complex")
+  op baz(@body body: ComplexModel): void;
 }
 ```
 
@@ -28,60 +37,44 @@ compatibility-mode: true
 Generated Models.
 
 ```ts models
+import { serializeRecord } from "../static-helpers/serialization/serialize-record.js";
+
 /** model interface SimpleModel */
-export interface SimpleModel extends Record<string, string> {
+export interface SimpleModel extends Record<string, number | string> {
   propA: string;
   propB: string;
-}
-
-export function simpleModelSerializer(item: SimpleModel): any {
-  return { ...item, propA: item["propA"], propB: item["propB"] };
-}
-```
-
-# Should generate serializer for additional properties with `additionalProperties` property for non-legacy code
-
-## TypeSpec
-
-This is tsp definition.
-
-```tsp
-model SimpleModel {
-    ...Record<int32>;
-    propA: string;
-    propB: string;
-}
-
-@route("/serialize")
-interface D {
-  op bar(@body body: SimpleModel): void;
-}
-```
-
-This is the tsp configuration.
-
-```yaml
-compatibility-mode: false
-```
-
-## Provide generated models and its serializer
-
-Generated Models.
-
-```ts models
-/** model interface SimpleModel */
-export interface SimpleModel {
-  propA: string;
-  propB: string;
-  /** Additional properties */
-  additionalProperties?: Record<string, number>;
 }
 
 export function simpleModelSerializer(item: SimpleModel): any {
   return {
-    ...item.additionalProperties,
+    ...serializeRecord(
+      item,
+      undefined,
+      _simpleModelAdditionalPropertySerializer,
+    ),
     propA: item["propA"],
-    propB: item["propB"]
+    propB: item["propB"],
+  };
+}
+
+/** Alias for _SimpleModelAdditionalProperty */
+export type _SimpleModelAdditionalProperty = number | string;
+
+export function _simpleModelAdditionalPropertySerializer(
+  item: _SimpleModelAdditionalProperty,
+): any {
+  return item;
+}
+
+/** model interface ComplexModel */
+export interface ComplexModel extends Record<string, SimpleModel> {
+  propA: SimpleModel;
+}
+
+export function complexModelSerializer(item: ComplexModel): any {
+  return {
+    ...serializeRecord(item, undefined, simpleModelSerializer),
+    propA: simpleModelSerializer(item["propA"]),
   };
 }
 ```
@@ -127,7 +120,7 @@ export function simpleModelSerializer(item: SimpleModel): any {
   return {
     additionalProperties: item["additionalProperties"],
     propA: item["propA"],
-    propB: item["propB"]
+    propB: item["propB"],
   };
 }
 ```
@@ -145,9 +138,17 @@ model SimpleModel {
     propB: string;
 }
 
+model ComplexModel {
+    ...Record<SimpleModel>;
+    propA: SimpleModel;
+}
+
 @route("/serialize")
 interface D {
+  @route("/simple")
   op bar(@body body: SimpleModel): void;
+  @route("/complex")
+  op baz(@body body: ComplexModel): void;
 }
 ```
 
@@ -162,6 +163,8 @@ compatibility-mode: false
 Generated Models.
 
 ```ts models
+import { serializeRecord } from "../static-helpers/serialization/serialize-record.js";
+
 /** model interface SimpleModel */
 export interface SimpleModel {
   propA: string;
@@ -174,7 +177,25 @@ export function simpleModelSerializer(item: SimpleModel): any {
   return {
     ...item.additionalProperties,
     propA: item["propA"],
-    propB: item["propB"]
+    propB: item["propB"],
+  };
+}
+
+/** model interface ComplexModel */
+export interface ComplexModel {
+  propA: SimpleModel;
+  /** Additional properties */
+  additionalProperties?: Record<string, SimpleModel>;
+}
+
+export function complexModelSerializer(item: ComplexModel): any {
+  return {
+    ...serializeRecord(
+      item.additionalProperties,
+      undefined,
+      simpleModelSerializer,
+    ),
+    propA: simpleModelSerializer(item["propA"]),
   };
 }
 ```
@@ -211,6 +232,8 @@ compatibility-mode: false
 Generated Models.
 
 ```ts models
+import { serializeRecord } from "../static-helpers/serialization/serialize-record.js";
+
 /** model interface SimpleModel */
 export interface SimpleModel {
   propA: string;
@@ -221,9 +244,13 @@ export interface SimpleModel {
 
 export function simpleModelSerializer(item: SimpleModel): any {
   return {
-    ...item.additionalProperties,
+    ...serializeRecord(
+      item.additionalProperties,
+      undefined,
+      _simpleModelAdditionalPropertySerializer,
+    ),
     propA: item["propA"],
-    propB: item["propB"]
+    propB: item["propB"],
   };
 }
 
@@ -231,7 +258,7 @@ export function simpleModelSerializer(item: SimpleModel): any {
 export type _SimpleModelAdditionalProperty = string | number | boolean;
 
 export function _simpleModelAdditionalPropertySerializer(
-  item: _SimpleModelAdditionalProperty
+  item: _SimpleModelAdditionalProperty,
 ): any {
   return item;
 }
@@ -296,7 +323,7 @@ export function simpleModelSerializer(item: SimpleModel): any {
     ...item.additionalPropertiesBag,
     additionalProperties: item["additionalProperties"],
     propA: item["propA"],
-    propB: item["propB"]
+    propB: item["propB"],
   };
 }
 
@@ -313,7 +340,7 @@ export function fooModelSerializer(item: FooModel): any {
     ...item.additionalPropertiesBag,
     additionalProperties: item["additionalProperties"],
     propA: item["propA"],
-    propB: item["propB"]
+    propB: item["propB"],
   };
 }
 

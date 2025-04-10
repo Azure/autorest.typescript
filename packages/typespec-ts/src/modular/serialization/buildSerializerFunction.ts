@@ -26,10 +26,14 @@ import {
   isSupportedSerializeType,
   ModelSerializeOptions
 } from "./serializeUtils.js";
-import { MultipartHelpers } from "../static-helpers-metadata.js";
+import {
+  MultipartHelpers,
+  SerializationHelpers
+} from "../static-helpers-metadata.js";
 import { resolveReference } from "../../framework/reference.js";
 import { isOrExtendsHttpFile } from "@typespec/http";
 import { refkey } from "../../framework/refkey.js";
+import { getAdditionalPropertiesType } from "../helpers/typeHelpers.js";
 
 export function buildModelSerializer(
   context: SdkContext,
@@ -89,22 +93,6 @@ export function buildModelSerializer(
     default:
       return undefined;
   }
-}
-
-function hasAdditionalProperties(type: SdkType | undefined) {
-  if (!type || !("additionalProperties" in type)) {
-    return false;
-  }
-
-  if (type.additionalProperties) {
-    return true;
-  }
-
-  if (type.baseModel) {
-    return hasAdditionalProperties(type.baseModel);
-  }
-
-  return false;
 }
 
 function buildPolymorphicSerializer(
@@ -445,12 +433,24 @@ function getAdditionalPropertiesStatement(
   context: SdkContext,
   type: SdkModelType
 ): string | undefined {
-  const additionalPropertiesName = getAdditionalPropertiesName(type);
-  return hasAdditionalProperties(type)
-    ? context.rlcOptions?.compatibilityMode === true
-      ? "...item"
-      : `...item.${additionalPropertiesName}`
-    : undefined;
+  const additionalPropertyType = getAdditionalPropertiesType(type);
+  if (!additionalPropertyType) {
+    return undefined;
+  }
+  const deserializerFunction = buildModelSerializer(
+    context,
+    additionalPropertyType,
+    false,
+    true
+  );
+  const additionalPropertiesName =
+    context.rlcOptions?.compatibilityMode === true
+      ? ""
+      : `.${getAdditionalPropertiesName(type)}`;
+  const itemBagName = `item${additionalPropertiesName}`;
+  return typeof deserializerFunction === "string"
+    ? `...${resolveReference(SerializationHelpers.serializeRecord)}(${itemBagName}, undefined, ${deserializerFunction})`
+    : `...${itemBagName}`;
 }
 
 function buildDictTypeSerializer(

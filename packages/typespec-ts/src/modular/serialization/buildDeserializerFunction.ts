@@ -27,6 +27,7 @@ import {
 import { SerializationHelpers } from "../static-helpers-metadata.js";
 import { refkey } from "../../framework/refkey.js";
 import { resolveReference } from "../../framework/reference.js";
+import { getAdditionalPropertiesType } from "../helpers/typeHelpers.js";
 
 export function buildModelDeserializer(
   context: SdkContext,
@@ -84,28 +85,6 @@ export function buildModelDeserializer(
     default:
       return undefined;
   }
-}
-
-function hasAdditionalProperties(type: SdkType | undefined) {
-  if (
-    !type ||
-    !(
-      "additionalProperties" in type ||
-      (type.kind === "model" && hasAdditionalProperties(type.baseModel))
-    )
-  ) {
-    return false;
-  }
-
-  if (type.additionalProperties) {
-    return true;
-  }
-
-  if (type.baseModel) {
-    return hasAdditionalProperties(type.baseModel);
-  }
-
-  return false;
 }
 
 function buildPolymorphicDeserializer(
@@ -387,19 +366,35 @@ function getAdditionalPropertiesStatement(
   context: SdkContext,
   type: SdkModelType
 ): string | undefined {
+  const additionalPropertyType = getAdditionalPropertiesType(type);
+  if (!additionalPropertyType) {
+    return undefined;
+  }
   const allParents = getAllAncestors(type);
   const properties = getAllProperties(type, allParents);
   const excludeProperties = properties
     .filter((p) => !!p.name)
     .map((p) => `"${p.name}"`);
-  const excludePropertiesStr =
-    excludeProperties.length > 0 ? `[${excludeProperties.join(",")}]` : "";
-  const additionalPropertiesName = getAdditionalPropertiesName(type);
-  return hasAdditionalProperties(type)
-    ? context.rlcOptions?.compatibilityMode === true
-      ? "...item,"
-      : `${additionalPropertiesName}: ${resolveReference(SerializationHelpers.serializeRecord)}(item, ${excludePropertiesStr}),`
-    : undefined;
+  const params = ["item"];
+  params.push(`[${excludeProperties.join(",")}]`);
+  const deserializerFunction = buildModelDeserializer(
+    context,
+    additionalPropertyType,
+    false,
+    true
+  );
+  const hasDereserializer = typeof deserializerFunction === "string";
+  if (hasDereserializer) {
+    params.push(deserializerFunction);
+  }
+  if (context.rlcOptions?.compatibilityMode === true && !hasDereserializer) {
+    return `...item, `;
+  }
+  const prefix =
+    context.rlcOptions?.compatibilityMode === true
+      ? "..."
+      : `${getAdditionalPropertiesName(type)}: `;
+  return `${prefix}${resolveReference(SerializationHelpers.serializeRecord)}(${params.join(" ,")}), `;
 }
 
 function buildDictTypeDeserializer(

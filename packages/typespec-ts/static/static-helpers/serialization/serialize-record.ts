@@ -1,9 +1,19 @@
-export function serializeRecord(item: any, excludeProperties: string[] = []) {
+export function serializeRecord(
+  item: any,
+  excludes?: string[],
+  serializer?: (item: any) => any
+) {
+  excludes = excludes ?? [];
   let res: any = {};
   for (let key of Object.keys(item)) {
-    if (!excludeProperties.includes(key)) {
+    if (excludes.includes(key) || item[key] === undefined) {
+      continue;
+    }
+    if (serializer) {
+      res[key] = serializer(item[key]);
+    } else {
       res[key] = item[key] as any;
     }
   }
-  return Object.keys(res).length === 0 ? undefined : res;
+  return res;
 }
