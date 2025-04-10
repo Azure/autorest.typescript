@@ -383,18 +383,12 @@ function getAdditionalPropertiesStatement(
     false,
     true
   );
-  const hasDereserializer = typeof deserializerFunction === "string";
-  if (hasDereserializer) {
+  if (typeof deserializerFunction === "string") {
     params.push(deserializerFunction);
   }
-  if (context.rlcOptions?.compatibilityMode === true && !hasDereserializer) {
-    return `...item, `;
-  }
-  const prefix =
-    context.rlcOptions?.compatibilityMode === true
-      ? "..."
-      : `${getAdditionalPropertiesName(type)}: `;
-  return `${prefix}${resolveReference(SerializationHelpers.serializeRecord)}(${params.join(" ,")}), `;
+  return context.rlcOptions?.compatibilityMode === true
+    ? "...item,"
+    : `${getAdditionalPropertiesName(type)}: ${resolveReference(SerializationHelpers.serializeRecord)}(${params.join(",")}),`;
 }
 
 function buildDictTypeDeserializer(

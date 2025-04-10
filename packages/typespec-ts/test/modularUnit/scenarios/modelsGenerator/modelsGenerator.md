@@ -2463,15 +2463,7 @@ export interface Vegetables extends Record<string, number | string> {
 
 ```ts models function vegetablesSerializer
 export function vegetablesSerializer(item: Vegetables): any {
-  return {
-    ...serializeRecord(
-      item,
-      undefined,
-      _vegetablesAdditionalPropertySerializer,
-    ),
-    carrots: item["carrots"],
-    beans: item["beans"],
-  };
+  return { ...item, carrots: item["carrots"], beans: item["beans"] };
 }
 ```
 
