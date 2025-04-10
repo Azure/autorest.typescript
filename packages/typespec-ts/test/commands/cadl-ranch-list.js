@@ -303,6 +303,10 @@ export const azureRlcTsps = [
   {
     outputPath: "azure/example/basic",
     inputPath: "azure/example/basic"
+  },
+  {
+    outputPath: "client/namespace",
+    inputPath: "client/namespace"
   }
 ];
 
@@ -506,6 +510,14 @@ export const rlcTsps = [
 ];
 
 export const azureModularTsps = [
+  {
+    outputPath: "versioning/removed/v2preview",
+    inputPath: "versioning/removed"
+  },
+  {
+    outputPath: "versioning/removed/v1",
+    inputPath: "versioning/removed"
+  },
   {
     outputPath: "routes",
     inputPath: "routes"
@@ -733,7 +745,7 @@ export const azureModularTsps = [
     inputPath: "versioning/madeOptional"
   },
   {
-    outputPath: "versioning/removed",
+    outputPath: "versioning/removed/v2",
     inputPath: "versioning/removed"
   },
   {
@@ -783,10 +795,26 @@ export const azureModularTsps = [
   {
     outputPath: "azure/payload/pageable",
     inputPath: "azure/payload/pageable"
+  },
+  {
+    outputPath: "client/namespace",
+    inputPath: "client/namespace"
+  },
+  {
+    outputPath: "client/enableModelNamespace",
+    inputPath: "client/namespace"
   }
 ];
 
 export const modularTsps = [
+  {
+    outputPath: "versioning/removed/v2preview",
+    inputPath: "versioning/removed"
+  },
+  {
+    outputPath: "versioning/removed/v1",
+    inputPath: "versioning/removed"
+  },
   {
     outputPath: "routes",
     inputPath: "routes"
@@ -949,7 +977,7 @@ export const modularTsps = [
     inputPath: "versioning/madeOptional"
   },
   {
-    outputPath: "versioning/removed",
+    outputPath: "versioning/removed/v2",
     inputPath: "versioning/removed"
   },
   {

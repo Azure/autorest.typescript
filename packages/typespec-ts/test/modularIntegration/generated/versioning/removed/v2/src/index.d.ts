@@ -1,6 +1,6 @@
-import { ClientOptions } from '@typespec/ts-http-runtime';
-import { OperationOptions } from '@typespec/ts-http-runtime';
-import { Pipeline } from '@typespec/ts-http-runtime';
+import { ClientOptions } from '@azure-rest/core-client';
+import { OperationOptions } from '@azure-rest/core-client';
+import { Pipeline } from '@azure/core-rest-pipeline';
 
 export declare type EnumV2 = "enumMemberV2";
 
