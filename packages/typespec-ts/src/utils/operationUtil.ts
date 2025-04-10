@@ -561,10 +561,17 @@ export function getMethodHierarchiesMap(
   context: SdkContext,
   client: SdkClientType<SdkServiceOperation>
 ): Map<string, ServiceOperation[]> {
-  const methodQueue: [string[], SdkMethod<SdkHttpOperation>][] =
-    client.methods.map((m) => {
-      return [[], m];
+  const methodQueue: [
+    string[],
+    SdkMethod<SdkHttpOperation> | SdkClientType<SdkServiceOperation>
+  ][] = client.methods.map((m) => {
+    return [[], m];
+  });
+  if (client.children) {
+    client.children.forEach((child) => {
+      methodQueue.push([[], child]);
     });
+  }
   const operationHierarchiesMap: Map<string, ServiceOperation[]> = new Map<
     string,
     ServiceOperation[]
@@ -582,10 +589,15 @@ export function getMethodHierarchiesMap(
         : method[0];
     const operationOrGroup = method[1];
 
-    if (operationOrGroup.kind === "clientaccessor") {
-      operationOrGroup.response.methods.forEach((m) =>
-        methodQueue.push([[...prefixes, operationOrGroup.response.name], m])
+    if (operationOrGroup.kind === "client") {
+      operationOrGroup.methods.forEach((m) =>
+        methodQueue.push([[...prefixes, operationOrGroup.name], m])
       );
+      if (operationOrGroup.children) {
+        operationOrGroup.children.forEach((child) =>
+          methodQueue.push([[...prefixes, operationOrGroup.name], child])
+        );
+      }
     } else {
       const prefixKey =
         context.rlcOptions?.hierarchyClient ||

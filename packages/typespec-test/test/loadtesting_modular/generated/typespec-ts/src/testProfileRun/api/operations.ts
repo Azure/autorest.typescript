@@ -34,10 +34,10 @@ export function _stopTestProfileRunSend(
   options: StopTestProfileRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/test-profile-runs/{testProfileRunId}:stop{?api-version}",
+    "/test-profile-runs/{testProfileRunId}:stop{?api%2Dversion}",
     {
       testProfileRunId: testProfileRunId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -84,9 +84,9 @@ export function _listTestProfileRunsSend(
   options: ListTestProfileRunsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/test-profile-runs{?api-version,maxpagesize,minStartDateTime,maxStartDateTime,minEndDateTime,maxEndDateTime,createdDateStartTime,createdDateEndTime,testProfileRunIds,testProfileIds,statuses}",
+    "/test-profile-runs{?api%2Dversion,maxpagesize,minStartDateTime,maxStartDateTime,minEndDateTime,maxEndDateTime,createdDateStartTime,createdDateEndTime,testProfileRunIds,testProfileIds,statuses}",
     {
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
       maxpagesize: options?.maxpagesize,
       minStartDateTime: !options?.minStartDateTime
         ? options?.minStartDateTime
@@ -156,10 +156,10 @@ export function _getTestProfileRunSend(
   options: GetTestProfileRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/test-profile-runs/{testProfileRunId}{?api-version}",
+    "/test-profile-runs/{testProfileRunId}{?api%2Dversion}",
     {
       testProfileRunId: testProfileRunId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -207,10 +207,10 @@ export function _deleteTestProfileRunSend(
   options: DeleteTestProfileRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/test-profile-runs/{testProfileRunId}{?api-version}",
+    "/test-profile-runs/{testProfileRunId}{?api%2Dversion}",
     {
       testProfileRunId: testProfileRunId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -259,10 +259,10 @@ export function _createOrUpdateTestProfileRunSend(
   options: CreateOrUpdateTestProfileRunOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/test-profile-runs/{testProfileRunId}{?api-version}",
+    "/test-profile-runs/{testProfileRunId}{?api%2Dversion}",
     {
       testProfileRunId: testProfileRunId,
-      "api-version": context.apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

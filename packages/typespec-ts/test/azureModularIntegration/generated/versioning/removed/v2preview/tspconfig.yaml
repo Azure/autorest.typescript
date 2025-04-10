@@ -6,9 +6,13 @@ options:
     generate-metadata: true
     generate-test: false
     add-credentials: false
+    flavor: azure
+    azure-sdk-for-js: false
     is-typespec-test: true
     title: VersioningRemovedClient
+    is-modular-library: true
     hierarchy-client: false
+    api-version: "v2preview"
     package-details:
-      name: "@unbranded/versionning-removed"
+      name: "@msinternal/versionning-removed"
       description: "Versioning Removed Test Service"

@@ -1054,7 +1054,12 @@ function getQueryParameters(
   for (const param of operationParameters) {
     if (param.kind === "query") {
       parametersImplementation[param.kind].push({
-        paramMap: getParameterMap(dpgContext, param),
+        paramMap: getParameterMap(dpgContext, {
+          ...param,
+          // TODO: remember to remove this hack once compiler gives us a name
+          // https://github.com/microsoft/typespec/issues/6743
+          serializedName: getUriTemplateQueryParamName(param.serializedName)
+        }),
         param
       });
     }
@@ -1065,6 +1070,15 @@ function getQueryParameters(
   );
 
   return paramStr;
+}
+
+function getUriTemplateQueryParamName(name: string) {
+  return `${escapeUriTemplateParamName(name)}`;
+}
+function escapeUriTemplateParamName(name: string) {
+  return encodeURIComponent(name).replace(/[:-]/g, function (c) {
+    return "%" + c.charCodeAt(0).toString(16).toUpperCase();
+  });
 }
 
 function getPathParamExpr(
