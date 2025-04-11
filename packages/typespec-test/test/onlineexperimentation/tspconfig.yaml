@@ -1,0 +1,12 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    emitter-output-dir: "{project-root}/generated/typespec-ts"
+    examples-dir: "{project-root}/spec/examples"
+    generate-metadata: true
+    azure-sdk-for-js: false
+    flavor: "azure"
+    experimental-extensible-enums: true
+    package-details:
+      name: "@azure/arm-onlineexperimentation"
