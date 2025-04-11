@@ -183,7 +183,7 @@ function regularAutorestPackage(
     delete packageInfo.devDependencies["rimraf"];
     delete packageInfo.devDependencies["mkdirp"];
     packageInfo.scripts["build"] =
-      "npm run clean && tsc && dev-tool run bundle && npm run minify && dev-tool run vendored mkdirp ./review && npm run extract-api";
+      "npm run clean && tsc && npm run minify && dev-tool run vendored mkdirp ./review && npm run extract-api";
     packageInfo.scripts["clean"] = "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log";
     packageInfo.scripts["extract-api"] = "dev-tool run extract-api";
     packageInfo.scripts["update-snippets"] = "dev-tool run update-snippets";

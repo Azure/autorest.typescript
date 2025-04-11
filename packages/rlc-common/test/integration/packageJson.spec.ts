@@ -308,7 +308,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "test",
-        "npm run clean && dev-tool run build-package && npm run unit-test:node && dev-tool run bundle && npm run unit-test:browser && npm run integration-test"
+        "npm run clean && dev-tool run build-package && npm run unit-test:node && npm run unit-test:browser && npm run integration-test"
       );
       expect(packageFile.scripts).to.have.property(
         "unit-test:browser",
@@ -395,7 +395,7 @@ describe("Package file generation", () => {
 
       expect(packageFile.scripts).to.have.property(
         "build",
-        "npm run clean && tsc -p . && dev-tool run bundle && dev-tool run extract-api"
+        "npm run clean && tsc -p . && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "build:node",
@@ -403,11 +403,11 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "build:test",
-        "tsc -p . && dev-tool run bundle"
+        "tsc -p ."
       );
       expect(packageFile.scripts).to.have.property(
         "build:debug",
-        "tsc -p . && dev-tool run bundle && dev-tool run extract-api"
+        "tsc -p . && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "integration-test:browser",

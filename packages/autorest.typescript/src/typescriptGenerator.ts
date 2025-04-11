@@ -98,7 +98,6 @@ export async function generateTypeScriptLibrary(
   }
 
   if (!azureSdkForJs) {
-    // azure-sdk-for-js repo uses dev-tool run bundle
     generateRollupConfig(project);
   }
 
