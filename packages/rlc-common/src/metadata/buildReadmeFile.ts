@@ -169,6 +169,7 @@ const credential = new InteractiveBrowserCredential({
   tenantId: "<YOUR_TENANT_ID>",
   clientId: "<YOUR_CLIENT_ID>"
  });
+const subscriptionId = "00000000-0000-0000-0000-000000000000";
 const client = new {{ clientClassName }}(credential, subscriptionId);
 \`\`\`
 {{else}}
@@ -430,9 +431,9 @@ function getServiceName(model: RLCModel) {
   let simpleServiceName =
     batch && batch.length > 1
       ? normalizeName(
-          packageDetails!.nameWithoutScope ?? packageDetails?.name ?? "",
-          NameType.Class
-        )
+        packageDetails!.nameWithoutScope ?? packageDetails?.name ?? "",
+        NameType.Class
+      )
       : normalizeName(serviceTitle, NameType.Class);
   simpleServiceName =
     /**
