@@ -214,7 +214,7 @@ function getEsmScripts({ moduleKind }: AzureMonorepoInfoConfig) {
 
   return {
     "build:test":
-      "npm run clean && dev-tool run build-package && dev-tool run build-test",
+      "echo skipped",
     build:
       "npm run clean && dev-tool run build-package && dev-tool run extract-api",
     "test:node":
