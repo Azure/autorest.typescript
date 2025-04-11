@@ -56,6 +56,7 @@ export function isSpecialUnionVariant(
         })
         ?.some(
           (p) =>
+            // eslint-disable-next-line
             (p.kind === "property" && p.name !== p.serializedName) ||
             isSpecialUnionVariant(p.type, [...variantStack, p.type])
         )) ||
@@ -103,8 +104,8 @@ export function isDiscriminatedUnion(
   }
   return Boolean(
     type?.kind === "model" &&
-      type.discriminatorProperty &&
-      type.discriminatedSubtypes
+    type.discriminatorProperty &&
+    type.discriminatedSubtypes
   );
 }
 
