@@ -69,7 +69,7 @@ export interface AoaiModelConfig extends AWidgetData {
 
 export function aoaiModelConfigDeserializer(item: any): AoaiModelConfig {
   return {
-    kind: item["kind"],
+    kind: "kind0",
     fooProp: item["fooProp"],
   };
 }
@@ -83,7 +83,7 @@ export interface MaasModelConfig extends AWidgetData {
 
 export function maasModelConfigDeserializer(item: any): MaasModelConfig {
   return {
-    kind: item["kind"],
+    kind: "kind1",
     start: new Date(item["start"]),
     end: !item["end"] ? item["end"] : new Date(item["end"]),
   };

@@ -122,12 +122,12 @@ export interface Templated1 {
 }
 
 export function templated1Serializer(item: Templated1): any {
-  return { prop: item["prop"] };
+  return { prop: "cat" };
 }
 
 export function templated1Deserializer(item: any): Templated1 {
   return {
-    prop: item["prop"],
+    prop: "cat",
   };
 }
 
@@ -137,12 +137,12 @@ export interface Templated2 {
 }
 
 export function templated2Serializer(item: Templated2): any {
-  return { prop: item["prop"] };
+  return { prop: true };
 }
 
 export function templated2Deserializer(item: any): Templated2 {
   return {
-    prop: item["prop"],
+    prop: true,
   };
 }
 
@@ -152,12 +152,12 @@ export interface Templated3 {
 }
 
 export function templated3Serializer(item: Templated3): any {
-  return { prop: item["prop"] };
+  return { prop: 1 };
 }
 
 export function templated3Deserializer(item: any): Templated3 {
   return {
-    prop: item["prop"],
+    prop: 1,
   };
 }
 ```
