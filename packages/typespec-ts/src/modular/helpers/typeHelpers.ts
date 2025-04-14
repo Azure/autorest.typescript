@@ -64,7 +64,7 @@ export function buildPropertyNameMapper(model: SdkType) {
     if (prop.kind !== "property") {
       continue;
     }
-
+    // eslint-disable-next-line
     mapper.set(prop.serializedName, prop.name);
   }
   return mapper;
