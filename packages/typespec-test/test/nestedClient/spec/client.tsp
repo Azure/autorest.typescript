@@ -8,9 +8,10 @@ model StorageClientInitialization {
 }
 model BlobClientInitialization {
     accountName: string;
+    @paramAlias("blob")
     blobName: string;
 }
 
 @@clientInitialization(StorageClient, StorageClientInitialization);
-@@clientInitialization(StorageClient.BlobClient, BlobClientInitialization);
+@@clientInitialization(StorageClient.BlobClient, { parameters: BlobClientInitialization, initializedBy: InitializedBy.individually | InitializedBy.parent });
 
