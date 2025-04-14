@@ -190,9 +190,18 @@ export function getDeserializePrivateFunction(
     : restResponse
       ? restResponse.type
       : response.type;
-  const lroSubPath = isLroOnly
-    ? operation?.lroMetadata?.finalResponse?.resultPath
+  const lroSubSegments = isLroOnly
+    ? operation?.lroMetadata?.finalResponse?.resultSegments
     : undefined;
+
+  let lroSubPath;
+  if (lroSubSegments && lroSubSegments.length > 0) {
+    lroSubPath = lroSubSegments
+      .map((property) => {
+        return property.name;
+      })
+      .join(".");
+  }
 
   const deserializePrefix = "result.body";
 
@@ -608,8 +617,18 @@ function getPagingOnlyOperationFunction(
   const statements: string[] = [];
   const options = [];
   // TODO: follow up on https://github.com/Azure/typespec-azure/issues/2103
-  const nextLinkName = operation.nextLinkPath;
-  const itemName = operation.response.resultPath;
+  const nextLinkSegments = operation.pagingMetadata.nextLinkSegments;
+  const nextLinkName = nextLinkSegments
+    ?.map((property) => {
+      return property.name;
+    })
+    .join(".");
+  const itemSegments = operation.response.resultSegments;
+  const itemName = itemSegments
+    ?.map((property) => {
+      return property.name;
+    })
+    .join(".");
   if (itemName) {
     options.push(`itemName: "${itemName}"`);
   }
@@ -1177,8 +1196,10 @@ export function getRequestModelMapping(
 function getPropertySerializedName(property: SdkModelPropertyType) {
   return property.kind !== "credential" &&
     property.kind !== "method" &&
-    property.kind !== "endpoint"
-    ? property.serializedName
+    property.kind !== "endpoint" &&
+    property.kind !== "responseheader"
+    ? // eslint-disable-next-line
+      property.serializedName
     : property.name;
 }
 
@@ -1468,14 +1489,16 @@ export function getAllProperties(
       propertiesMap.set(prop.name, prop);
     });
   });
-  type.kind === "model" &&
+  if (type.kind === "model" && type.properties) {
     type.properties
-      ?.filter((p) => {
+      .filter((p) => {
         return p.kind === "property";
       })
       .forEach((p) => {
         propertiesMap.set(p.name, p);
       });
+  }
+
   return [...propertiesMap.values()];
 }
 
