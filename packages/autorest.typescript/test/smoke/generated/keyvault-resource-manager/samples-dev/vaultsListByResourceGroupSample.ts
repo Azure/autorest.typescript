@@ -13,9 +13,7 @@ import {
   KeyVaultManagementClient,
 } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to The List operation gets information about the vaults associated with the subscription and within the specified resource group.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary The List operation gets information about the vaults associated with the subscription and within the specified resource group.
  * x-ms-original-file: specification/keyvault/resource-manager/Microsoft.KeyVault/preview/2021-06-01-preview/examples/listVaultByResourceGroup.json
  */
-async function listVaultsInTheSpecifiedResourceGroup() {
+async function listVaultsInTheSpecifiedResourceGroup(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sample-group";
@@ -32,7 +30,7 @@ async function listVaultsInTheSpecifiedResourceGroup() {
   const credential = new DefaultAzureCredential();
   const client = new KeyVaultManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.vaults.listByResourceGroup(
+  for await (const item of client.vaults.listByResourceGroup(
     resourceGroupName,
     options,
   )) {
@@ -41,8 +39,8 @@ async function listVaultsInTheSpecifiedResourceGroup() {
   console.log(resArray);
 }
 
-async function main() {
-  listVaultsInTheSpecifiedResourceGroup();
+async function main(): Promise<void> {
+  await listVaultsInTheSpecifiedResourceGroup();
 }
 
 main().catch(console.error);

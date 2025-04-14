@@ -8,7 +8,11 @@ import {
   StructureKind,
   TypeAliasDeclarationStructure
 } from "ts-morph";
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import {
+  fixLeadingNumber,
+  NameType,
+  normalizeName
+} from "@azure-tools/rlc-common";
 import {
   SdkArrayType,
   SdkBodyModelPropertyType,
@@ -22,10 +26,13 @@ import {
   SdkModelType,
   SdkNullableType,
   SdkServiceMethod,
+  SdkServiceOperation,
   SdkType,
   SdkUnionType,
   UsageFlags,
-  isReadOnly
+  isPagedResultModel,
+  isReadOnly,
+  listAllServiceNamespaces
 } from "@azure-tools/typespec-client-generator-core";
 import {
   getExternalModel,
@@ -34,18 +41,12 @@ import {
 
 import { SdkContext } from "../utils/interfaces.js";
 import { addDeclaration } from "../framework/declaration.js";
-import { addImportBySymbol } from "../utils/importHelper.js";
 import { buildModelDeserializer } from "./serialization/buildDeserializerFunction.js";
 import { buildModelSerializer } from "./serialization/buildSerializerFunction.js";
-import { extractPagedMetadataNested } from "../utils/operationUtil.js";
-import {
-  getTypeExpression,
-  normalizeModelPropertyName
-} from "./type-expressions/get-type-expression.js";
 import path from "path";
 import { refkey } from "../framework/refkey.js";
 import { useContext } from "../contextManager.js";
-import { isMetadata } from "@typespec/http";
+import { isMetadata, isOrExtendsHttpFile } from "@typespec/http";
 import {
   isAzureCoreErrorType,
   isAzureCoreLroType
@@ -53,8 +54,17 @@ import {
 import { isExtensibleEnum } from "./type-expressions/get-enum-expression.js";
 import { isDiscriminatedUnion } from "./serialization/serializeUtils.js";
 import { reportDiagnostic } from "../lib.js";
-import { NoTarget } from "@typespec/compiler";
-import { emitQueue } from "../framework/hooks/sdkTypes.js";
+import { getNamespaceFullName, NoTarget } from "@typespec/compiler";
+import {
+  getTypeExpression,
+  normalizeModelPropertyName
+} from "./type-expressions/get-type-expression.js";
+import {
+  emitQueue,
+  getAllOperationsFromClient
+} from "../framework/hooks/sdkTypes.js";
+import { resolveReference } from "../framework/reference.js";
+import { MultipartHelpers } from "./static-helpers-metadata.js";
 
 type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
   extends?: string[];
@@ -76,29 +86,19 @@ function isGenerableType(
     type.kind === "union" ||
     type.kind === "dict" ||
     type.kind === "array" ||
-    type.kind === "nullable"
+    (type.kind === "nullable" &&
+      isGenerableType(type.type) &&
+      Boolean(type.name) &&
+      !type.isGeneratedName)
   );
 }
 export function emitTypes(
   context: SdkContext,
   { sourceRoot }: { sourceRoot: string }
 ) {
-  const { sdkPackage } = context;
   const outputProject = useContext("outputProject");
 
-  const modelsFilePath = getModelsPath(sourceRoot);
   let sourceFile;
-  if (
-    emitQueue.size > 0 &&
-    (sdkPackage.models.length > 0 || sdkPackage.enums.length > 0)
-  ) {
-    sourceFile = outputProject.createSourceFile(modelsFilePath);
-    if (!sourceFile) {
-      throw new Error(`Failed to create source file at ${modelsFilePath}`);
-    }
-  } else {
-    return;
-  }
 
   for (const type of emitQueue) {
     if (!isGenerableType(type)) {
@@ -107,19 +107,33 @@ export function emitTypes(
     if (isAzureCoreLroType(type.__raw)) {
       continue;
     }
+
+    const namespaces = getModelNamespaces(context, type);
+    const filepath = getModelsPath(sourceRoot, namespaces);
+    sourceFile = outputProject.getSourceFile(filepath);
+    if (!sourceFile) {
+      sourceFile = outputProject.createSourceFile(filepath);
+    }
     emitType(context, type, sourceFile);
   }
 
-  if (
-    sourceFile.getInterfaces().length === 0 &&
-    sourceFile.getTypeAliases().length === 0 &&
-    sourceFile.getEnums().length === 0
-  ) {
-    sourceFile.delete();
-    return;
+  const modelFiles = outputProject.getSourceFiles(
+    sourceRoot + "/models/**/*.ts"
+  );
+  const result = [];
+  for (const modelFile of modelFiles) {
+    if (
+      modelFile.getInterfaces().length === 0 &&
+      modelFile.getTypeAliases().length === 0 &&
+      modelFile.getEnums().length === 0
+    ) {
+      outputProject.removeSourceFile(modelFile);
+      continue;
+    }
+    result.push(modelFile);
   }
-  addImportBySymbol("serializeRecord", sourceFile);
-  return sourceFile;
+
+  return result;
 }
 
 function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
@@ -127,11 +141,15 @@ function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
     if (isAzureCoreErrorType(context.program, type.__raw)) {
       return;
     }
+    if (isOrExtendsHttpFile(context.program, type.__raw!)) {
+      return;
+    }
     if (
       !type.usage ||
       (type.usage !== undefined &&
         (type.usage & UsageFlags.Output) !== UsageFlags.Output &&
-        (type.usage & UsageFlags.Input) !== UsageFlags.Input)
+        (type.usage & UsageFlags.Input) !== UsageFlags.Input &&
+        (type.usage & UsageFlags.Exception) !== UsageFlags.Exception)
     ) {
       return;
     }
@@ -174,17 +192,27 @@ function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
     const apiVersionEnumOnly = type.usage === UsageFlags.ApiVersionEnum;
     const inputUsage = (type.usage & UsageFlags.Input) === UsageFlags.Input;
     const outputUsage = (type.usage & UsageFlags.Output) === UsageFlags.Output;
-    if (!(inputUsage || outputUsage || apiVersionEnumOnly)) {
+    const exceptionUsage =
+      (type.usage & UsageFlags.Exception) === UsageFlags.Exception;
+    if (!(inputUsage || outputUsage || apiVersionEnumOnly || exceptionUsage)) {
       return;
     }
-    const [enumType, knownValuesEnum] = buildEnumTypes(context, type);
+    const [enumType, knownValuesEnum] = buildEnumTypes(
+      context,
+      type,
+      isExtensibleEnum(context, type)
+    );
     if (enumType.name.startsWith("_")) {
       // skip enum generation for internal enums
       return;
     }
     if (apiVersionEnumOnly) {
       // generate known values enum only for api version enums
-      addDeclaration(sourceFile, knownValuesEnum, refkey(type, "knownValues"));
+      addDeclaration(
+        sourceFile,
+        knownValuesEnum,
+        refkey(knownValuesEnum.name, "knownValues")
+      );
     } else {
       if (isExtensibleEnum(context, type)) {
         addDeclaration(
@@ -203,6 +231,9 @@ function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
     addSerializationFunctions(context, type, sourceFile);
   } else if (type.kind === "array") {
     addSerializationFunctions(context, type, sourceFile);
+  } else if (type.kind === "nullable") {
+    const nullableType = buildNullableType(context, type);
+    addDeclaration(sourceFile, nullableType, type);
   }
 }
 
@@ -216,8 +247,58 @@ export function getApiVersionEnum(context: SdkContext) {
   return apiVersionEnum;
 }
 
-export function getModelsPath(sourceRoot: string): string {
-  return path.join(...[sourceRoot, "models", `models.ts`]);
+export function getModelsPath(
+  sourceRoot: string,
+  modelNamespace: string[] = []
+): string {
+  return path.join(
+    ...[
+      sourceRoot,
+      "models",
+      ...modelNamespace.map((n) => normalizeName(n, NameType.File)),
+      `models.ts`
+    ]
+  );
+}
+
+export function getModelNamespaces(
+  context: SdkContext,
+  model: SdkType
+): string[] {
+  const deepestNamespace = getNamespaceFullName(
+    listAllServiceNamespaces(context)[0]!
+  );
+  if (
+    model.kind === "model" ||
+    model.kind === "enum" ||
+    model.kind === "union"
+  ) {
+    if (
+      (model.namespace ?? "").startsWith("Azure.ResourceManager") ||
+      (model.namespace ?? "").startsWith("Azure.Core") ||
+      (model.crossLanguageDefinitionId ?? "").startsWith(
+        "TypeSpec.Rest.Resource"
+      ) ||
+      (model.crossLanguageDefinitionId ?? "") === "TypeSpec.Http.File" // filter out the TypeSpec.Http.File model similar like what java does here https://github.com/microsoft/typespec/blob/main/packages/http-client-java/emitter/src/code-model-builder.ts#L2589
+    ) {
+      return [];
+    }
+    const segments = model.namespace.split(".");
+    const rootNamespace = deepestNamespace.split(".") ?? [];
+    if (segments.length > rootNamespace.length) {
+      while (segments[0] === rootNamespace[0]) {
+        segments.shift();
+        rootNamespace.shift();
+      }
+      return segments;
+    }
+    return [];
+  } else if (model.kind === "array" || model.kind === "dict") {
+    return getModelNamespaces(context, model.valueType);
+  } else if (model.kind === "nullable") {
+    return getModelNamespaces(context, model.type);
+  }
+  return [];
 }
 
 function addSerializationFunctions(
@@ -231,17 +312,33 @@ function addSerializationFunctions(
     type,
     skipDiscriminatedUnion
   );
+  let typeName = undefined;
+  switch (type.kind) {
+    case "array":
+      typeName = "array";
+      break;
+    case "dict":
+      typeName = "record";
+      break;
+    default:
+      break;
+  }
+
+  const serializerRefkey =
+    type.kind === "array" || type.kind === "dict"
+      ? refkey(type.valueType, typeName, "serializer")
+      : refkey(type, "serializer");
+  const deserailizerRefKey =
+    type.kind === "array" || type.kind === "dict"
+      ? refkey(type.valueType, typeName, "deserializer")
+      : refkey(type, "deserializer");
   if (
     serializationFunction &&
     typeof serializationFunction !== "string" &&
     serializationFunction.name &&
     !sourceFile.getFunction(serializationFunction.name)
   ) {
-    addDeclaration(
-      sourceFile,
-      serializationFunction,
-      refkey(type, "serializer")
-    );
+    addDeclaration(sourceFile, serializationFunction, serializerRefkey);
   }
   const deserializationFunction = buildModelDeserializer(
     context,
@@ -254,11 +351,7 @@ function addSerializationFunctions(
     deserializationFunction.name &&
     !sourceFile.getFunction(deserializationFunction.name)
   ) {
-    addDeclaration(
-      sourceFile,
-      deserializationFunction,
-      refkey(type, "deserializer")
-    );
+    addDeclaration(sourceFile, deserializationFunction, deserailizerRefKey);
   }
 }
 
@@ -280,15 +373,31 @@ function buildUnionType(
   return unionDeclaration;
 }
 
+function buildNullableType(context: SdkContext, type: SdkNullableType) {
+  const nullableDeclaration: TypeAliasDeclarationStructure = {
+    kind: StructureKind.TypeAlias,
+    name: normalizeModelName(context, type),
+    isExported: true,
+    type: getTypeExpression(context, type.type) + " | null"
+  };
+  nullableDeclaration.docs = [
+    type.doc ?? `Alias for ${nullableDeclaration.name}`
+  ];
+  return nullableDeclaration;
+}
+
 export function buildEnumTypes(
   context: SdkContext,
-  type: SdkEnumType
+  type: SdkEnumType,
+  reportMemberNameDiagnostic = false // if reportMemberNameDiagnostic is true, it will report diagnostic for enum member name
 ): [TypeAliasDeclarationStructure, EnumDeclarationStructure] {
   const enumDeclaration: EnumDeclarationStructure = {
     kind: StructureKind.Enum,
     name: `Known${normalizeModelName(context, type)}`,
     isExported: true,
-    members: type.values.map(emitEnumMember)
+    members: type.values.map((value) =>
+      emitEnumMember(context, value, reportMemberNameDiagnostic)
+    )
   };
 
   const enumAsUnion: TypeAliasDeclarationStructure = {
@@ -332,10 +441,31 @@ function getExtensibleEnumDescription(model: SdkEnumType): string | undefined {
   ].join(" \n");
 }
 
-function emitEnumMember(member: SdkEnumValueType): EnumMemberStructure {
+function emitEnumMember(
+  context: SdkContext,
+  member: SdkEnumValueType,
+  reportMemberNameDiagnostic = false // if reportMemberNameDiagnostic is true, it will report diagnostic for enum member name
+): EnumMemberStructure {
+  const normalizedMemberName = context.rlcOptions?.ignoreEnumMemberNameNormalize
+    ? fixLeadingNumber(member.name, NameType.EnumMemberName) // need to fix the leading number also for enum member
+    : normalizeName(member.name, NameType.EnumMemberName, true);
+  if (
+    reportMemberNameDiagnostic &&
+    normalizedMemberName.toLowerCase().startsWith("_") &&
+    !member.name.toLowerCase().startsWith("_")
+  ) {
+    reportDiagnostic(context.program, {
+      code: "prefix-adding-in-enum-member",
+      format: {
+        memberName: member.name,
+        normalizedName: normalizedMemberName
+      },
+      target: NoTarget
+    });
+  }
   const memberStructure: EnumMemberStructure = {
     kind: StructureKind.EnumMember,
-    name: member.name,
+    name: normalizedMemberName,
     value: member.value
   };
 
@@ -346,7 +476,7 @@ function emitEnumMember(member: SdkEnumValueType): EnumMemberStructure {
   return memberStructure;
 }
 
-export function buildModelInterface(
+function buildModelInterface(
   context: SdkContext,
   type: SdkModelType
 ): InterfaceDeclarationStructure {
@@ -408,6 +538,13 @@ function addExtendedDictInfo(
     }
     modelInterface.extends.push(`Record<string, any>`);
   } else {
+    reportDiagnostic(context.program, {
+      code: "compatible-additional-properties",
+      format: {
+        modelName: modelInterface?.name ?? ""
+      },
+      target: NoTarget
+    });
     modelInterface.properties?.push({
       name: "additionalProperties",
       docs: ["Additional properties"],
@@ -425,26 +562,37 @@ export function normalizeModelName(
     | SdkEnumType
     | SdkUnionType
     | SdkArrayType
-    | SdkDictionaryType,
+    | SdkDictionaryType
+    | SdkNullableType,
   nameType: NameType = NameType.Interface,
-  skipPolymorphicUnionSuffix = false
+  skipPolymorphicUnionSuffix = false,
+  rawModelName?: boolean
 ): string {
   if (type.kind === "array") {
+    if (rawModelName) {
+      return `${normalizeModelName(context, type.valueType as any, nameType, skipPolymorphicUnionSuffix, rawModelName)}Array`;
+    }
     return `Array<${normalizeModelName(context, type.valueType as any, nameType)}>`;
   } else if (type.kind === "dict") {
+    if (rawModelName) {
+      return `${normalizeModelName(context, type.valueType as any, nameType, skipPolymorphicUnionSuffix, rawModelName)}Record`;
+    }
     return `Record<string, ${normalizeModelName(
       context,
       type.valueType as any,
       nameType
     )}>`;
   }
-  if (type.kind !== "model" && type.kind !== "enum" && type.kind !== "union") {
+  if (
+    type.kind !== "model" &&
+    type.kind !== "enum" &&
+    type.kind !== "union" &&
+    type.kind !== "nullable"
+  ) {
     return getTypeExpression(context, type);
   }
-  const segments = type.crossLanguageDefinitionId.split(".");
-  segments.pop();
-  segments.shift();
-  segments.filter((segment) => segment !== context.sdkPackage.rootNamespace);
+
+  const segments = getModelNamespaces(context, type);
   let unionSuffix = "";
   if (!skipPolymorphicUnionSuffix) {
     if (type.kind === "model" && isDiscriminatedUnion(type)) {
@@ -454,17 +602,8 @@ export function normalizeModelName(
   const namespacePrefix = context.rlcOptions?.enableModelNamespace
     ? segments.join("")
     : "";
-  let internalModelPrefix = "";
-  if (type.__raw && type.__raw.kind === "Model") {
-    // TODO: this is temporary until we have a better way in tcgc to extract the paged metadata
-    // issue link https://github.com/Azure/typespec-azure/issues/1464
-    const page = extractPagedMetadataNested(context.program, type.__raw!);
-    internalModelPrefix =
-      page && page.itemsSegments && page.itemsSegments.length > 0 ? "_" : "";
-  }
-  if (type.isGeneratedName) {
-    internalModelPrefix = "_";
-  }
+  const internalModelPrefix =
+    isPagedResultModel(context, type) || type.isGeneratedName ? "_" : "";
   return `${internalModelPrefix}${normalizeName(namespacePrefix + type.name + unionSuffix, nameType, true)}`;
 }
 
@@ -516,10 +655,54 @@ function buildModelProperty(
       target: NoTarget
     });
   }
+
+  let typeExpression: string;
+  // eslint-disable-next-line
+  if (property.kind === "property" && property.isMultipartFileInput) {
+    // eslint-disable-next-line
+    const multipartOptions = property.multipartOptions;
+    typeExpression = "{";
+    typeExpression += `contents: ${resolveReference(MultipartHelpers.FileContents)};`;
+
+    const isContentTypeOptional =
+      multipartOptions?.contentType === undefined ||
+      multipartOptions.contentType.optional ||
+      multipartOptions.defaultContentTypes.length > 0;
+    const isFilenameOptional =
+      multipartOptions?.filename === undefined ||
+      multipartOptions.filename.optional;
+
+    const contentTypeType = multipartOptions?.contentType
+      ? getTypeExpression(context, multipartOptions.contentType.type)
+      : "string";
+    const filenameType = multipartOptions?.filename
+      ? getTypeExpression(context, multipartOptions.filename.type)
+      : "string";
+
+    typeExpression += `contentType${isContentTypeOptional ? "?" : ""}: ${contentTypeType};`;
+    typeExpression += `filename${isFilenameOptional ? "?" : ""}: ${filenameType};`;
+
+    typeExpression += "}";
+
+    if (isContentTypeOptional && isFilenameOptional) {
+      // Allow passing content directly if both filename and content type are optional
+      typeExpression = `(${resolveReference(MultipartHelpers.FileContents)}) | ${typeExpression}`;
+    } else {
+      // If either one is required, still accept File at the top level since it requires a filename
+      typeExpression = `File | ${typeExpression}`;
+    }
+
+    if (property.type.kind === "array") {
+      typeExpression = `Array<${typeExpression}>`;
+    }
+  } else {
+    typeExpression = getTypeExpression(context, property.type);
+  }
+
   const propertyStructure: PropertySignatureStructure = {
     kind: StructureKind.PropertySignature,
     name: normalizedPropName,
-    type: getTypeExpression(context, property.type),
+    type: typeExpression,
     hasQuestionToken: property.optional,
     isReadonly: isReadOnly(property as SdkBodyModelPropertyType)
   };
@@ -557,11 +740,14 @@ export function visitPackageTypes(context: SdkContext) {
 
 function visitClient(
   context: SdkContext,
-  client: SdkClientType<SdkHttpOperation>
+  client: SdkClientType<SdkServiceOperation>
 ) {
+  // TODO: include the client parameters
+  // https://github.com/Azure/autorest.typescript/issues/3148
   // Comment this out for now, as client initialization is not used in the generated code
-  // visitType(client.initialization, emitQueue);
-  client.methods.forEach((method) => visitClientMethod(context, method));
+  getAllOperationsFromClient(client).forEach((method) =>
+    visitClientMethod(context, method)
+  );
 }
 
 function visitClientMethod(
@@ -575,14 +761,6 @@ function visitClientMethod(
     case "basic":
       visitMethod(context, method);
       visitOperation(context, method.operation);
-      break;
-    case "clientaccessor":
-      method.response.methods.forEach((responseMethod) =>
-        visitClientMethod(context, responseMethod)
-      );
-      method.parameters.forEach((parameter) => {
-        visitType(context, parameter.type);
-      });
       break;
     default:
       throw new Error(`Unknown sdk method kind: ${(method as any).kind}`);
@@ -634,32 +812,32 @@ function visitType(context: SdkContext, type: SdkType | undefined) {
       visitType(context, type.additionalProperties);
     }
     for (const property of type.properties) {
-      if (!emitQueue.has(property.type as any)) {
+      if (!emitQueue.has(property.type)) {
         visitType(context, property.type);
       }
     }
     if (type.discriminatedSubtypes) {
       for (const subType of Object.values(type.discriminatedSubtypes)) {
-        if (!emitQueue.has(subType as any)) {
+        if (!emitQueue.has(subType)) {
           visitType(context, subType);
         }
       }
     }
   }
   if (type.kind === "array") {
-    if (!emitQueue.has(type.valueType as any)) {
+    if (!emitQueue.has(type.valueType)) {
       visitType(context, type.valueType);
     }
   }
   if (type.kind === "dict") {
-    if (!emitQueue.has(type.valueType as any)) {
+    if (!emitQueue.has(type.valueType)) {
       visitType(context, type.valueType);
     }
   }
   if (type.kind === "union") {
     emitQueue.add(type);
     for (const value of type.variantTypes) {
-      if (!emitQueue.has(value as any)) {
+      if (!emitQueue.has(value)) {
         visitType(context, value);
       }
     }

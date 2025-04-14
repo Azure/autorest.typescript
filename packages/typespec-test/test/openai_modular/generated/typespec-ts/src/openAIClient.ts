@@ -5,24 +5,6 @@ import {
   createOpenAI,
   OpenAIContext,
   OpenAIClientOptionalParams,
-  getAudioTranscriptionAsPlainText,
-  getAudioTranscriptionAsResponseObject,
-  getAudioTranslationAsPlainText,
-  getAudioTranslationAsResponseObject,
-  getCompletions,
-  getChatCompletions,
-  getImageGenerations,
-  generateSpeechFromText,
-  getEmbeddings,
-  GetAudioTranscriptionAsPlainTextOptionalParams,
-  GetAudioTranscriptionAsResponseObjectOptionalParams,
-  GetAudioTranslationAsPlainTextOptionalParams,
-  GetAudioTranslationAsResponseObjectOptionalParams,
-  GetCompletionsOptionalParams,
-  GetChatCompletionsOptionalParams,
-  GetImageGenerationsOptionalParams,
-  GenerateSpeechFromTextOptionalParams,
-  GetEmbeddingsOptionalParams,
 } from "./api/index.js";
 import {
   AudioTranscriptionOptions,
@@ -39,6 +21,28 @@ import {
   EmbeddingsOptions,
   Embeddings,
 } from "./models/models.js";
+import {
+  GetEmbeddingsOptionalParams,
+  GenerateSpeechFromTextOptionalParams,
+  GetImageGenerationsOptionalParams,
+  GetChatCompletionsOptionalParams,
+  GetCompletionsOptionalParams,
+  GetAudioTranslationAsResponseObjectOptionalParams,
+  GetAudioTranslationAsPlainTextOptionalParams,
+  GetAudioTranscriptionAsResponseObjectOptionalParams,
+  GetAudioTranscriptionAsPlainTextOptionalParams,
+} from "./api/options.js";
+import {
+  getEmbeddings,
+  generateSpeechFromText,
+  getImageGenerations,
+  getChatCompletions,
+  getCompletions,
+  getAudioTranslationAsResponseObject,
+  getAudioTranslationAsPlainText,
+  getAudioTranscriptionAsResponseObject,
+  getAudioTranscriptionAsPlainText,
+} from "./api/operations.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
 
@@ -65,18 +69,84 @@ export class OpenAIClient {
     this.pipeline = this._client.pipeline;
   }
 
-  /**
-   * Gets transcribed text and associated metadata from provided spoken audio data. Audio will be transcribed in the
-   * written language corresponding to the language it was spoken in.
-   */
-  getAudioTranscriptionAsPlainText(
+  /** Return the embeddings for a given prompt. */
+  getEmbeddings(
     deploymentId: string,
-    body: AudioTranscriptionOptions,
-    options: GetAudioTranscriptionAsPlainTextOptionalParams = {
+    body: EmbeddingsOptions,
+    options: GetEmbeddingsOptionalParams = { requestOptions: {} },
+  ): Promise<Embeddings> {
+    return getEmbeddings(this._client, deploymentId, body, options);
+  }
+
+  /** Generates text-to-speech audio from the input text. */
+  generateSpeechFromText(
+    deploymentId: string,
+    body: SpeechGenerationOptions,
+    options: GenerateSpeechFromTextOptionalParams = { requestOptions: {} },
+  ): Promise<Uint8Array> {
+    return generateSpeechFromText(this._client, deploymentId, body, options);
+  }
+
+  /** Creates an image given a prompt. */
+  getImageGenerations(
+    deploymentId: string,
+    body: ImageGenerationOptions,
+    options: GetImageGenerationsOptionalParams = { requestOptions: {} },
+  ): Promise<ImageGenerations> {
+    return getImageGenerations(this._client, deploymentId, body, options);
+  }
+
+  /**
+   * Gets chat completions for the provided chat messages.
+   * Completions support a wide variety of tasks and generate text that continues from or "completes"
+   * provided prompt data.
+   */
+  getChatCompletions(
+    deploymentId: string,
+    body: ChatCompletionsOptions,
+    options: GetChatCompletionsOptionalParams = { requestOptions: {} },
+  ): Promise<ChatCompletions> {
+    return getChatCompletions(this._client, deploymentId, body, options);
+  }
+
+  /**
+   * Gets completions for the provided input prompts.
+   * Completions support a wide variety of tasks and generate text that continues from or "completes"
+   * provided prompt data.
+   */
+  getCompletions(
+    deploymentId: string,
+    body: CompletionsOptions,
+    options: GetCompletionsOptionalParams = { requestOptions: {} },
+  ): Promise<Completions> {
+    return getCompletions(this._client, deploymentId, body, options);
+  }
+
+  /** Gets English language transcribed text and associated metadata from provided spoken audio data. */
+  getAudioTranslationAsResponseObject(
+    deploymentId: string,
+    body: AudioTranslationOptions,
+    options: GetAudioTranslationAsResponseObjectOptionalParams = {
+      requestOptions: {},
+    },
+  ): Promise<AudioTranslation> {
+    return getAudioTranslationAsResponseObject(
+      this._client,
+      deploymentId,
+      body,
+      options,
+    );
+  }
+
+  /** Gets English language transcribed text and associated metadata from provided spoken audio data. */
+  getAudioTranslationAsPlainText(
+    deploymentId: string,
+    body: AudioTranslationOptions,
+    options: GetAudioTranslationAsPlainTextOptionalParams = {
       requestOptions: {},
     },
   ): Promise<string> {
-    return getAudioTranscriptionAsPlainText(
+    return getAudioTranslationAsPlainText(
       this._client,
       deploymentId,
       body,
@@ -103,88 +173,22 @@ export class OpenAIClient {
     );
   }
 
-  /** Gets English language transcribed text and associated metadata from provided spoken audio data. */
-  getAudioTranslationAsPlainText(
+  /**
+   * Gets transcribed text and associated metadata from provided spoken audio data. Audio will be transcribed in the
+   * written language corresponding to the language it was spoken in.
+   */
+  getAudioTranscriptionAsPlainText(
     deploymentId: string,
-    body: AudioTranslationOptions,
-    options: GetAudioTranslationAsPlainTextOptionalParams = {
+    body: AudioTranscriptionOptions,
+    options: GetAudioTranscriptionAsPlainTextOptionalParams = {
       requestOptions: {},
     },
   ): Promise<string> {
-    return getAudioTranslationAsPlainText(
+    return getAudioTranscriptionAsPlainText(
       this._client,
       deploymentId,
       body,
       options,
     );
-  }
-
-  /** Gets English language transcribed text and associated metadata from provided spoken audio data. */
-  getAudioTranslationAsResponseObject(
-    deploymentId: string,
-    body: AudioTranslationOptions,
-    options: GetAudioTranslationAsResponseObjectOptionalParams = {
-      requestOptions: {},
-    },
-  ): Promise<AudioTranslation> {
-    return getAudioTranslationAsResponseObject(
-      this._client,
-      deploymentId,
-      body,
-      options,
-    );
-  }
-
-  /**
-   * Gets completions for the provided input prompts.
-   * Completions support a wide variety of tasks and generate text that continues from or "completes"
-   * provided prompt data.
-   */
-  getCompletions(
-    deploymentId: string,
-    body: CompletionsOptions,
-    options: GetCompletionsOptionalParams = { requestOptions: {} },
-  ): Promise<Completions> {
-    return getCompletions(this._client, deploymentId, body, options);
-  }
-
-  /**
-   * Gets chat completions for the provided chat messages.
-   * Completions support a wide variety of tasks and generate text that continues from or "completes"
-   * provided prompt data.
-   */
-  getChatCompletions(
-    deploymentId: string,
-    body: ChatCompletionsOptions,
-    options: GetChatCompletionsOptionalParams = { requestOptions: {} },
-  ): Promise<ChatCompletions> {
-    return getChatCompletions(this._client, deploymentId, body, options);
-  }
-
-  /** Creates an image given a prompt. */
-  getImageGenerations(
-    deploymentId: string,
-    body: ImageGenerationOptions,
-    options: GetImageGenerationsOptionalParams = { requestOptions: {} },
-  ): Promise<ImageGenerations> {
-    return getImageGenerations(this._client, deploymentId, body, options);
-  }
-
-  /** Generates text-to-speech audio from the input text. */
-  generateSpeechFromText(
-    deploymentId: string,
-    body: SpeechGenerationOptions,
-    options: GenerateSpeechFromTextOptionalParams = { requestOptions: {} },
-  ): Promise<Uint8Array> {
-    return generateSpeechFromText(this._client, deploymentId, body, options);
-  }
-
-  /** Return the embeddings for a given prompt. */
-  getEmbeddings(
-    deploymentId: string,
-    body: EmbeddingsOptions,
-    options: GetEmbeddingsOptionalParams = { requestOptions: {} },
-  ): Promise<Embeddings> {
-    return getEmbeddings(this._client, deploymentId, body, options);
   }
 }

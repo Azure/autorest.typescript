@@ -9,7 +9,7 @@ using TypeSpec.Http;
 using TypeSpec.Versioning;
 using Azure.ClientGenerator.Core;
 
-namespace Azure.AI.Client.Agents;
+namespace Azure.AI.Projects.Agents;
 
 /**
  * Gets a list of previously uploaded files.
@@ -53,22 +53,24 @@ op uploadFile is Azure.Core.Foundations.Operation<
     @header
     contentType: "multipart/form-data";
 
-    @doc("The file data, in bytes.")
-    @clientName("Data", "csharp")
-    file: bytes;
+    @multipartBody body: {
+      @doc("The file data, in bytes.")
+      @clientName("Data", "csharp")
+      file: HttpPart<bytes>;
 
-    @doc("The intended purpose of the uploaded file. Use `assistants` for Agents and Message files, `vision` for Agents image file inputs, `batch` for Batch API, and `fine-tune` for Fine-tuning.")
-    purpose: FilePurpose;
+      @doc("The intended purpose of the uploaded file. Use `assistants` for Agents and Message files, `vision` for Agents image file inputs, `batch` for Batch API, and `fine-tune` for Fine-tuning.")
+      purpose: HttpPart<FilePurpose>;
 
-    /*
-     * Spec note: filename is not documented as a distinct option but functionally should be one. The value is encoded
-     *            in the multipart Content-Disposition header for the data section and can be provided independently of
-     *            any specific data source like a file. It can be inferred in some circumstances (as when using direct
-     *            file input, like curl does) but should remain configurable when using a stream or other data source
-     *            lacking an a priori name.
-     */
-    @doc("The name of the file.")
-    filename?: string;
+      /*
+       * Spec note: filename is not documented as a distinct option but functionally should be one. The value is encoded
+       *            in the multipart Content-Disposition header for the data section and can be provided independently of
+       *            any specific data source like a file. It can be inferred in some circumstances (as when using direct
+       *            file input, like curl does) but should remain configurable when using a stream or other data source
+       *            lacking an a priori name.
+       */
+      @doc("The name of the file.")
+      filename?: HttpPart<string>;
+    };
   },
   OpenAIFile
 >;
@@ -110,7 +112,7 @@ op getFile is Azure.Core.Foundations.Operation<
 #suppress "@azure-tools/typespec-azure-core/operation-missing-api-version" "not yet versioned"
 @get
 @route("/files/{fileId}/content")
-@doc("Returns information about a specific file. Does not retrieve file content.")
+@doc("Retrieves the raw content of a specific file.")
 op getFileContent is Azure.Core.Foundations.Operation<
   {
     @doc("The ID of the file to retrieve.")
@@ -118,5 +120,5 @@ op getFileContent is Azure.Core.Foundations.Operation<
     @encodedName("application/json", "file_id")
     fileId: string;
   },
-  FileContentResponse
+  bytes
 >;

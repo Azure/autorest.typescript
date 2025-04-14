@@ -64,6 +64,8 @@ interface Metadata {
   hasMultiClients?: boolean;
   /** Indicates if we have a client-level subscription id paramter */
   hasClientSubscriptionId?: boolean;
+  /** Indicates if the package is generted to azure-sdk-for-js repo */
+  azureSdkForJs?: boolean;
 }
 
 /**
@@ -83,7 +85,8 @@ function createMetadata(
     productDocLink,
     dependencyInfo,
     multiClient,
-    batch
+    batch,
+    azureSdkForJs
   } = getAutorestOptions();
   const { addCredentials } = getSecurityInfoFromModel(codeModel.security);
 
@@ -98,9 +101,6 @@ function createMetadata(
     relativePackageSourcePath &&
     repoURL &&
     `${repoURL}/tree/main/${relativePackageSourcePath}`;
-  const names = relativePackageSourcePath?.split("/").slice(1);
-  const packageParentDirectoryName = names?.[0];
-  const packageDirectoryName = names?.[1];
 
   const clientPackageName = packageDetails?.name;
   const { clientClassName, serviceTitle } = getClientAndServiceName(
@@ -147,15 +147,10 @@ function createMetadata(
     samplesURL: azureArm
       ? `https://github.com/Azure-Samples/azure-samples-js-management`
       : packageSourceURL && `${packageSourceURL}/samples`,
-    impressionURL: azureHuh
-      ? packageParentDirectoryName &&
-        packageDirectoryName &&
-        `https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2F${packageParentDirectoryName}%2F${packageDirectoryName}%2FREADME.png`
-      : undefined,
     clientDescriptiveName: `${serviceName} client`,
     description: codeModel.info?.description,
     apiRefURL: azureHuh
-      ? `https://docs.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlQueryParameter}`
+      ? `https://learn.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlQueryParameter}`
       : undefined,
     packageNPMURL: `https://www.npmjs.com/package/${clientPackageName}`,
     contributingGuideURL: repoURL && `${repoURL}/blob/main/CONTRIBUTING.md`,
@@ -168,7 +163,8 @@ function createMetadata(
     dependencyDescription: dependencyInfo?.description,
     dependencyLink: dependencyInfo?.link,
     hasMultiClients: multiClient && batch && batch.length > 1,
-    hasClientSubscriptionId: hasClientSubscriptionId(clientDetails?.samples)
+    hasClientSubscriptionId: hasClientSubscriptionId(clientDetails?.samples),
+    azureSdkForJs: azureSdkForJs
   };
 }
 
@@ -192,7 +188,7 @@ export function generateReadmeFile(
   });
 }
 
-function hasClientSubscriptionId(samples?: SampleGroup[]) {
+export function hasClientSubscriptionId(samples?: SampleGroup[]) {
   if (!samples || samples.length === 0) {
     // have the subscription id parameter in constructor if no samples
     return true;
@@ -204,7 +200,7 @@ function hasClientSubscriptionId(samples?: SampleGroup[]) {
   });
 }
 
-function getClientAndServiceName(
+export function getClientAndServiceName(
   codeModelLanguage: Languages,
   codeModelInfo: Info
 ) {

@@ -11,18 +11,15 @@
     "exports": {
       "./package.json": "./package.json",
       ".": "./src/index.ts",
+      "./models": "./src/models/index.ts",
       "./loadTestAdministration": "./src/loadTestAdministration/index.ts",
       "./loadTestAdministration/api": "./src/loadTestAdministration/api/index.ts",
-      "./loadTestAdministration/models": "./src/loadTestAdministration/models/index.ts",
       "./loadTestRun": "./src/loadTestRun/index.ts",
       "./loadTestRun/api": "./src/loadTestRun/api/index.ts",
-      "./loadTestRun/models": "./src/loadTestRun/models/index.ts",
       "./testProfileAdministration": "./src/testProfileAdministration/index.ts",
       "./testProfileAdministration/api": "./src/testProfileAdministration/api/index.ts",
-      "./testProfileAdministration/models": "./src/testProfileAdministration/models/index.ts",
       "./testProfileRun": "./src/testProfileRun/index.ts",
-      "./testProfileRun/api": "./src/testProfileRun/api/index.ts",
-      "./testProfileRun/models": "./src/testProfileRun/models/index.ts"
+      "./testProfileRun/api": "./src/testProfileRun/api/index.ts"
     },
     "dialects": [
       "esm",
@@ -46,7 +43,8 @@
   "author": "Microsoft Corporation",
   "license": "MIT",
   "files": [
-    "dist",
+    "dist/",
+    "!dist/**/*.d.*ts.map",
     "README.md",
     "LICENSE",
     "review/*",
@@ -62,18 +60,11 @@
   },
   "devDependencies": {
     "dotenv": "^16.0.0",
-    "@microsoft/api-extractor": "^7.40.3",
     "@types/node": "^18.0.0",
-    "eslint": "^8.55.0",
-    "typescript": "~5.6.2",
+    "eslint": "^9.9.0",
+    "typescript": "~5.8.2",
     "tshy": "^2.0.0",
-    "@azure/identity": "^4.2.1",
-    "@vitest/browser": "^2.0.5",
-    "@vitest/coverage-istanbul": "^2.0.5",
-    "playwright": "^1.41.2",
-    "vitest": "^2.0.5",
-    "@azure-tools/test-credential": "^2.0.0",
-    "@azure-tools/test-recorder": "^4.0.0",
+    "@microsoft/api-extractor": "^7.40.3",
     "rimraf": "^5.0.5",
     "mkdirp": "^3.0.1"
   },
@@ -83,15 +74,6 @@
     "pack": "npm pack 2>&1",
     "lint": "eslint package.json api-extractor.json src",
     "lint:fix": "eslint package.json api-extractor.json src --fix --fix-type [problem,suggestion]",
-    "unit-test": "npm run unit-test:node && npm run unit-test:browser",
-    "unit-test:browser": "vitest -c vitest.browser.config.ts",
-    "unit-test:node": "vitest -c vitest.config.ts",
-    "integration-test": "npm run integration-test:node && npm run integration-test:browser",
-    "integration-test:browser": "echo skipped",
-    "integration-test:node": "echo skipped",
-    "test:browser": "npm run clean && npm run build:test && npm run unit-test:browser && npm run integration-test:browser",
-    "test:node": "npm run clean && tshy && npm run unit-test:node && npm run integration-test:node",
-    "test": "npm run clean && tshy && npm run unit-test:node && npm run unit-test:browser && npm run integration-test",
     "build": "npm run clean && tshy && npm run extract-api"
   },
   "exports": {
@@ -112,6 +94,24 @@
       "require": {
         "types": "./dist/commonjs/index.d.ts",
         "default": "./dist/commonjs/index.js"
+      }
+    },
+    "./models": {
+      "browser": {
+        "types": "./dist/browser/models/index.d.ts",
+        "default": "./dist/browser/models/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/models/index.d.ts",
+        "default": "./dist/react-native/models/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/models/index.d.ts",
+        "default": "./dist/esm/models/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/models/index.d.ts",
+        "default": "./dist/commonjs/models/index.js"
       }
     },
     "./loadTestAdministration": {
@@ -150,24 +150,6 @@
         "default": "./dist/commonjs/loadTestAdministration/api/index.js"
       }
     },
-    "./loadTestAdministration/models": {
-      "browser": {
-        "types": "./dist/browser/loadTestAdministration/models/index.d.ts",
-        "default": "./dist/browser/loadTestAdministration/models/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/loadTestAdministration/models/index.d.ts",
-        "default": "./dist/react-native/loadTestAdministration/models/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/loadTestAdministration/models/index.d.ts",
-        "default": "./dist/esm/loadTestAdministration/models/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/loadTestAdministration/models/index.d.ts",
-        "default": "./dist/commonjs/loadTestAdministration/models/index.js"
-      }
-    },
     "./loadTestRun": {
       "browser": {
         "types": "./dist/browser/loadTestRun/index.d.ts",
@@ -202,24 +184,6 @@
       "require": {
         "types": "./dist/commonjs/loadTestRun/api/index.d.ts",
         "default": "./dist/commonjs/loadTestRun/api/index.js"
-      }
-    },
-    "./loadTestRun/models": {
-      "browser": {
-        "types": "./dist/browser/loadTestRun/models/index.d.ts",
-        "default": "./dist/browser/loadTestRun/models/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/loadTestRun/models/index.d.ts",
-        "default": "./dist/react-native/loadTestRun/models/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/loadTestRun/models/index.d.ts",
-        "default": "./dist/esm/loadTestRun/models/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/loadTestRun/models/index.d.ts",
-        "default": "./dist/commonjs/loadTestRun/models/index.js"
       }
     },
     "./testProfileAdministration": {
@@ -258,24 +222,6 @@
         "default": "./dist/commonjs/testProfileAdministration/api/index.js"
       }
     },
-    "./testProfileAdministration/models": {
-      "browser": {
-        "types": "./dist/browser/testProfileAdministration/models/index.d.ts",
-        "default": "./dist/browser/testProfileAdministration/models/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/testProfileAdministration/models/index.d.ts",
-        "default": "./dist/react-native/testProfileAdministration/models/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/testProfileAdministration/models/index.d.ts",
-        "default": "./dist/esm/testProfileAdministration/models/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/testProfileAdministration/models/index.d.ts",
-        "default": "./dist/commonjs/testProfileAdministration/models/index.js"
-      }
-    },
     "./testProfileRun": {
       "browser": {
         "types": "./dist/browser/testProfileRun/index.d.ts",
@@ -310,24 +256,6 @@
       "require": {
         "types": "./dist/commonjs/testProfileRun/api/index.d.ts",
         "default": "./dist/commonjs/testProfileRun/api/index.js"
-      }
-    },
-    "./testProfileRun/models": {
-      "browser": {
-        "types": "./dist/browser/testProfileRun/models/index.d.ts",
-        "default": "./dist/browser/testProfileRun/models/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/testProfileRun/models/index.d.ts",
-        "default": "./dist/react-native/testProfileRun/models/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/testProfileRun/models/index.d.ts",
-        "default": "./dist/esm/testProfileRun/models/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/testProfileRun/models/index.d.ts",
-        "default": "./dist/commonjs/testProfileRun/models/index.js"
       }
     }
   },

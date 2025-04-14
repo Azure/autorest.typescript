@@ -53,6 +53,7 @@ export function exampleDeserializer(item: any): Example {
 You can also extract a specific model interface using `ts models interface <model name>`:
 
 ```ts models interface Example
+/** model interface Example */
 export interface Example {
   id: string;
 }
@@ -80,6 +81,8 @@ You can extract the entire operations file using `ts operations`:
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Example, exampleDeserializer } from "../models/models.js";
+import { ReadOptionalParams } from "./options.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -92,9 +95,24 @@ export function _readSend(
   id: string,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/{id}",
+    {
+      id: id,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/{id}", id)
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _readDeserialize(

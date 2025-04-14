@@ -1,36 +1,45 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { WidgetServiceContext } from "../../api/widgetServiceContext.js";
-import { createOrReplace } from "../../api/budgets/index.js";
-import { User } from "../../models/models.js";
+import { SAPWidgetServiceContext } from "../../api/sapWidgetServiceContext.js";
+import { Widget, SAPUser } from "../../models/models.js";
+import {
+  BudgetsGetBudgetsOptionalParams,
+  BudgetsCreateOrReplaceOptionalParams,
+} from "../../api/budgets/options.js";
+import { getBudgets, createOrReplace } from "../../api/budgets/operations.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
-import { BudgetsCreateOrReplaceOptionalParams } from "../../api/options.js";
 
 /** Interface representing a Budgets operations. */
 export interface BudgetsOperations {
+  getBudgets: (
+    name: string,
+    options?: BudgetsGetBudgetsOptionalParams,
+  ) => Promise<Widget[]>;
   /** Long-running resource create or replace operation template. */
   createOrReplace: (
     name: string,
-    resource: User,
+    resource: SAPUser,
     options?: BudgetsCreateOrReplaceOptionalParams,
-  ) => PollerLike<OperationState<User>, User>;
+  ) => PollerLike<OperationState<SAPUser>, SAPUser>;
 }
 
-export function getBudgets(context: WidgetServiceContext) {
+function _getBudgets(context: SAPWidgetServiceContext) {
   return {
+    getBudgets: (name: string, options?: BudgetsGetBudgetsOptionalParams) =>
+      getBudgets(context, name, options),
     createOrReplace: (
       name: string,
-      resource: User,
+      resource: SAPUser,
       options?: BudgetsCreateOrReplaceOptionalParams,
     ) => createOrReplace(context, name, resource, options),
   };
 }
 
-export function getBudgetsOperations(
-  context: WidgetServiceContext,
+export function _getBudgetsOperations(
+  context: SAPWidgetServiceContext,
 ): BudgetsOperations {
   return {
-    ...getBudgets(context),
+    ..._getBudgets(context),
   };
 }

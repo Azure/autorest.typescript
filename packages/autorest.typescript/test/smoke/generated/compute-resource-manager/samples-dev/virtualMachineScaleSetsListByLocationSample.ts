@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets all the VM scale sets under the specified subscription for the specified location.
@@ -20,13 +18,13 @@ dotenv.config();
  * @summary Gets all the VM scale sets under the specified subscription for the specified location.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/ListVirtualMachineScaleSetsInASubscriptionByLocation.json
  */
-async function listsAllTheVMScaleSetsUnderTheSpecifiedSubscriptionForTheSpecifiedLocation() {
+async function listsAllTheVMScaleSetsUnderTheSpecifiedSubscriptionForTheSpecifiedLocation(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const location = "eastus";
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.virtualMachineScaleSets.listByLocation(
+  for await (const item of client.virtualMachineScaleSets.listByLocation(
     location,
   )) {
     resArray.push(item);
@@ -34,8 +32,8 @@ async function listsAllTheVMScaleSetsUnderTheSpecifiedSubscriptionForTheSpecifie
   console.log(resArray);
 }
 
-async function main() {
-  listsAllTheVMScaleSetsUnderTheSpecifiedSubscriptionForTheSpecifiedLocation();
+async function main(): Promise<void> {
+  await listsAllTheVMScaleSetsUnderTheSpecifiedSubscriptionForTheSpecifiedLocation();
 }
 
 main().catch(console.error);

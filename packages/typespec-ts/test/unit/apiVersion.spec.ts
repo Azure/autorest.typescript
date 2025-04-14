@@ -21,7 +21,7 @@ const buildDefaultDefinition = (options: DefinitionOptions) => {
       Endpoint: Endpoint
     }
   )
-  @service({
+  @service(#{
     title: "PetStoreClient",
   })
   namespace PetStore;
@@ -83,7 +83,7 @@ const buildPathDefinition = (options: DefinitionOptions) => {
       apiVersion: Versions,
     }
   )
-  @service({
+  @service(#{
     title: "PetStoreClient"
   })
   namespace PetStore;
@@ -136,9 +136,10 @@ const buildDefaultReturn = (
         }`
         : "";
   return `
-  import { getClient, ClientOptions } from "@azure-rest/core-client";
+  import type { ClientOptions } from "@azure-rest/core-client";
+  import { getClient } from "@azure-rest/core-client";
   import { logger } from "./logger.js";
-  import { testClient } from "./clientDefinitions.js";
+  import type { testClient } from "./clientDefinitions.js";
   
   /** The optional parameters for the client */
   export interface testClientOptions extends ClientOptions ${
@@ -234,10 +235,11 @@ const buildDefaultReturn = (
 
 const buildPathReturn_WithDefault = () => {
   return `
-  import { getClient, ClientOptions } from "@azure-rest/core-client";
+  import type { ClientOptions } from "@azure-rest/core-client";
+  import { getClient } from "@azure-rest/core-client";
   import { logger } from "./logger.js";
-  import { testClient } from "./clientDefinitions.js";
-  import { Versions } from "./models.js";
+  import type { testClient } from "./clientDefinitions.js";
+  import type { Versions } from "./models.js";
   /** The optional parameters for the client */
   export interface testClientOptions extends ClientOptions {
     /** Api Version */
@@ -278,10 +280,11 @@ const buildPathReturn_WithDefault = () => {
 
 const buildPathReturn_WithoutDefault = () => {
   return `
-  import { getClient, ClientOptions } from "@azure-rest/core-client";
+  import type { ClientOptions } from "@azure-rest/core-client";
+  import { getClient } from "@azure-rest/core-client";
   import { logger } from "./logger.js";
-  import { testClient } from "./clientDefinitions.js";
-  import { Versions } from "./models.js";
+  import type { testClient } from "./clientDefinitions.js";
+  import type { Versions } from "./models.js";
   /** The optional parameters for the client */
   export interface testClientOptions extends ClientOptions {}
   /**

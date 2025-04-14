@@ -7,19 +7,26 @@ import {
   SdkUnionType,
   UsageFlags
 } from "@azure-tools/typespec-client-generator-core";
-import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
-
 import { SdkContext } from "../../utils/interfaces.js";
-import { getRequestModelMapping } from "../helpers/operationHelpers.js";
-import { getType } from "../buildCodeModel.js";
+import {
+  getAllAncestors,
+  getAllProperties,
+  getPropertyFullName,
+  getRequestModelMapping,
+  getSerializationExpression
+} from "../helpers/operationHelpers.js";
 import { normalizeModelName } from "../emitModels.js";
-import { NameType } from "@azure-tools/rlc-common";
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
 import {
   isDiscriminatedUnion,
   isSupportedSerializeType,
   ModelSerializeOptions
 } from "./serializeUtils.js";
+import { MultipartHelpers } from "../static-helpers-metadata.js";
+import { resolveReference } from "../../framework/reference.js";
+import { isOrExtendsHttpFile } from "@typespec/http";
+import { refkey } from "../../framework/refkey.js";
 
 export function buildModelSerializer(
   context: SdkContext,
@@ -44,7 +51,10 @@ export function buildModelSerializer(
       // throw new Error(`NYI Serialization of anonymous types`);
       return undefined;
     }
-    if (isAzureCoreErrorType(context.program, type.__raw!)) {
+    if (
+      isAzureCoreErrorType(context.program, type.__raw!) ||
+      isOrExtendsHttpFile(context.program, type.__raw!)
+    ) {
       return undefined;
     }
   }
@@ -117,7 +127,7 @@ function buildPolymorphicSerializer(
     NameType.Operation
   )}Serializer`;
   if (nameOnly) {
-    return serializeFunctionName;
+    return resolveReference(refkey(type, "serializer"));
   }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -152,12 +162,17 @@ function buildPolymorphicSerializer(
     ) {
       return;
     }
-    const union = subType?.discriminatedSubtypes ? "Union" : "";
+    const union = subType?.discriminatedSubtypes ? "_Union" : "";
     if (!subType || subType?.name) {
       throw new Error(`NYI Serialization of anonymous types`);
     }
-    const subTypeName = `${toPascalCase(subType.name)}${union}`;
-    const subtypeSerializerName = toCamelCase(`${subTypeName}Serializer`);
+    const rawSubTypeName = `${subType.name}${union}`;
+    const subTypeName = `${normalizeName(rawSubTypeName, NameType.Interface, true)}`;
+    const subtypeSerializerName = normalizeName(
+      `${rawSubTypeName}_Serializer`,
+      NameType.Method,
+      true
+    );
 
     cases.push(`
         case "${discriminatedValue}":
@@ -201,7 +216,7 @@ function buildDiscriminatedUnionSerializer(
     NameType.Operation
   )}Serializer`;
   if (nameOnly) {
-    return serializeFunctionName;
+    return resolveReference(refkey(type, "serializer"));
   }
   const baseSerializerName = `${normalizeModelName(
     context,
@@ -220,8 +235,12 @@ function buildDiscriminatedUnionSerializer(
     }
     const discriminatedValue = subType.discriminatorValue!;
     const union = subType.discriminatedSubtypes ? "Union" : "";
-    const subTypeName = `${toPascalCase(subType.name)}${union}`;
-    const subtypeSerializerName = toCamelCase(`${subTypeName}Serializer`);
+    const subTypeName = `${normalizeName(subType.name, NameType.Interface, true)}${union}`;
+    const subtypeSerializerName = normalizeName(
+      `${subTypeName}Serializer`,
+      NameType.Method,
+      true
+    );
 
     cases.push(`
       case "${discriminatedValue}":
@@ -275,11 +294,11 @@ function buildUnionSerializer(
     NameType.Operation
   )}Serializer`;
   if (nameOnly) {
-    return serializerFunctionName;
+    return resolveReference(refkey(type, "serializer"));
   }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
-    name: `${normalizeModelName(context, type, NameType.Operation)}Serializer`,
+    name: serializerFunctionName,
     isExported: true,
     parameters: [
       {
@@ -311,7 +330,7 @@ function buildModelTypeSerializer(
     options.skipDiscriminatedUnionSuffix
   )}Serializer`;
   if (options.nameOnly) {
-    return serializerFunctionName;
+    return resolveReference(refkey(type, "serializer"));
   }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -332,37 +351,93 @@ function buildModelTypeSerializer(
     statements: ["return item;"]
   };
 
-  // This is only handling the compatibility mode, will need to update when we handle additionalProperties property.
-  const additionalPropertiesSpread = hasAdditionalProperties(type)
-    ? "...item"
-    : "";
+  if (
+    (type.usage & UsageFlags.Input) === UsageFlags.Input &&
+    (type.usage & UsageFlags.MultipartFormData) === UsageFlags.MultipartFormData
+  ) {
+    // For MFD models, serialize into an array of parts
+    // TODO: cleaner abstraction, quite a bit of duplication with the non-MFD stuff here
+    const parts: string[] = [];
 
-  const { directAssignment, propertiesStr } = getRequestModelMapping(
-    context,
-    getType(context, type.__raw!),
-    "item"
-  );
-  if (additionalPropertiesSpread) {
-    propertiesStr.unshift(additionalPropertiesSpread);
-  }
-  const serializeContent =
-    directAssignment === true
-      ? propertiesStr.join(",")
-      : `{${propertiesStr.join(",")}}`;
+    const properties = getAllProperties(type, getAllAncestors(type));
+    for (const property of properties) {
+      if (property.kind !== "property") {
+        continue;
+      }
+      const expr = getSerializationExpression(context, property, "item");
 
-  const output = [];
+      let partDefinition: string;
+      // eslint-disable-next-line
+      if (property.isMultipartFileInput) {
+        const createFilePartDescriptorDefinition = resolveReference(
+          MultipartHelpers.createFilePartDescriptor
+        );
+        // eslint-disable-next-line
+        const itemPath = property.multipartOptions?.isMulti
+          ? "x"
+          : getPropertyFullName(context, property, "item");
+        /* eslint-disable */
+        partDefinition = `${createFilePartDescriptorDefinition}("${property.serializedName}", ${itemPath}, )`;
 
-  // don't emit a serializer if there is nothing to serialize
-  if (propertiesStr.length) {
-    output.push(`
+        // If the TypeSpec doesn't specify a default content type, TCGC will infer a default of "*/*".
+        // In this case, we actually want the content type to be left unset so that Core will take care of
+        // setting the content type correctly.
+        // eslint-disable
+        const contentType =
+          property.multipartOptions?.defaultContentTypes?.[0] === "*/*"
+            ? undefined
+            : property.multipartOptions?.defaultContentTypes?.[0];
+
+        if (property.multipartOptions?.isMulti) {
+          partDefinition = `...(item["${property.serializedName}"].map((x: unknown) => ${createFilePartDescriptorDefinition}("${property.serializedName}", x${contentType ? `,"${contentType}"` : ""})))`;
+        } else {
+          partDefinition = `${createFilePartDescriptorDefinition}("${property.serializedName}", item["${property.serializedName}"]${contentType ? `, "${contentType}"` : ""})`;
+        }
+      } else if (property.multipartOptions?.isMulti) {
+        partDefinition = `...((${expr}).map((x: unknown) => ({ name: "${property.serializedName}", body: x })))`;
+      } else {
+        partDefinition = `{ name: "${property.serializedName}", body: (${expr}) }`;
+      }
+      /* eslint-disable */
+      if (property.optional) {
+        parts.push(
+          `...(${getPropertyFullName(context, property, "item")} === undefined ? [] : [${partDefinition}])`
+        );
+      } else {
+        parts.push(partDefinition);
+      }
+
+      // TODO: How to handle additionalProperties for MFD?
+    }
+
+    serializerFunction.statements = [`return [${parts.join(",")}]`];
+  } else {
+    // This is only handling the compatibility mode, will need to update when we handle additionalProperties property.
+    const additionalPropertiesSpread = hasAdditionalProperties(type)
+      ? "...item"
+      : "";
+
+    const propertiesStr = getRequestModelMapping(context, type, "item");
+
+    if (additionalPropertiesSpread) {
+      propertiesStr.unshift(additionalPropertiesSpread);
+    }
+    const serializeContent = `{${propertiesStr.join(",")}}`;
+
+    const output = [];
+
+    // don't emit a serializer if there is nothing to serialize
+    if (propertiesStr.length) {
+      output.push(`
         return ${serializeContent}
       `);
-  } else {
-    output.push(`
+    } else {
+      output.push(`
         return item;
       `);
+    }
+    serializerFunction.statements = output;
   }
-  serializerFunction.statements = output;
   return serializerFunction;
 }
 
@@ -396,12 +471,9 @@ function buildDictTypeSerializer(
   if (typeof valueSerializer !== "string") {
     return undefined;
   }
-  const valueTypeName = toCamelCase(
-    valueSerializer ? valueSerializer.replace("Serializer", "") : ""
-  );
-  const serializerFunctionName = `${valueTypeName}RecordSerializer`;
+  const serializerFunctionName = `${normalizeModelName(context, type, NameType.Operation, false, true)}Serializer`;
   if (nameOnly) {
-    return serializerFunctionName;
+    return resolveReference(refkey(type.valueType, "record", "serializer"));
   }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -457,12 +529,9 @@ function buildArrayTypeSerializer(
   if (typeof valueSerializer !== "string") {
     return undefined;
   }
-  const valueTypeName = toCamelCase(
-    valueSerializer ? valueSerializer.replace("Serializer", "") : ""
-  );
-  const serializerFunctionName = `${valueTypeName}ArraySerializer`;
+  const serializerFunctionName = `${normalizeModelName(context, type, NameType.Operation, false, true)}Serializer`;
   if (nameOnly) {
-    return serializerFunctionName;
+    return resolveReference(refkey(type.valueType, "array", "serializer"));
   }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,

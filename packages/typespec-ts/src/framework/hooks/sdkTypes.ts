@@ -98,6 +98,7 @@ export function provideSdkTypes(context: SdkContext) {
         );
         break;
       case "nullable":
+        sdkTypesContext.types.set(sdkModel.__raw!, sdkModel);
         sdkTypesContext.types.set(sdkModel.type.__raw!, sdkModel.type);
         break;
     }
@@ -125,16 +126,17 @@ export function provideSdkTypes(context: SdkContext) {
   provideContext("sdkTypes", sdkTypesContext);
 }
 
-function getAllOperationsFromClient(client: SdkClientType<SdkHttpOperation>) {
-  const methodQueue = [...client.methods];
+export function getAllOperationsFromClient(
+  client: SdkClientType<SdkHttpOperation>
+) {
+  const clientQueue = [client];
   const operations: SdkServiceMethod<SdkHttpOperation>[] = [];
-  while (methodQueue.length > 0) {
-    const method = methodQueue.pop()!;
-    if (method.kind === "clientaccessor") {
-      method.response.methods.forEach((m) => methodQueue.push(m));
-    } else {
-      operations.push(method);
+  while (clientQueue.length > 0) {
+    const client = clientQueue.pop()!;
+    if (client.children) {
+      clientQueue.push(...client.children);
     }
+    operations.push(...client.methods);
   }
 
   return operations;

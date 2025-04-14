@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets information about all network interfaces in a role instance in a cloud service.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets information about all network interfaces in a role instance in a cloud service.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/CloudServiceRoleInstanceNetworkInterfaceList.json
  */
-async function listCloudServiceRoleInstanceNetworkInterfaces() {
+async function listCloudServiceRoleInstanceNetworkInterfaces(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const cloudServiceName = "cs1";
@@ -28,7 +26,7 @@ async function listCloudServiceRoleInstanceNetworkInterfaces() {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.networkInterfaces.listCloudServiceRoleInstanceNetworkInterfaces(
+  for await (const item of client.networkInterfaces.listCloudServiceRoleInstanceNetworkInterfaces(
     resourceGroupName,
     cloudServiceName,
     roleInstanceName,
@@ -38,8 +36,8 @@ async function listCloudServiceRoleInstanceNetworkInterfaces() {
   console.log(resArray);
 }
 
-async function main() {
-  listCloudServiceRoleInstanceNetworkInterfaces();
+async function main(): Promise<void> {
+  await listCloudServiceRoleInstanceNetworkInterfaces();
 }
 
 main().catch(console.error);

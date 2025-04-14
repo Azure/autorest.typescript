@@ -1,7 +1,7 @@
 import {
   modularTsps,
-  nonBrandedModularTsps,
-  nonBrandedRlcTsps,
+  azureModularTsps,
+  azureRlcTsps,
   rlcTsps
 } from "./cadl-ranch-list.js";
 import { runTypespec } from "./run.js";
@@ -16,14 +16,14 @@ async function generateTypeSpecs(tag = "rlc", isDebugging, pathFilter) {
     case "modular":
       list = modularTsps;
       break;
-    case "non-branded-rlc":
-      list = nonBrandedRlcTsps;
+    case "azure-rlc":
+      list = azureRlcTsps;
       break;
-    case "non-branded-modular":
-      list = nonBrandedModularTsps;
+    case "azure-modular":
+      list = azureModularTsps;
       break;
     default:
-      list = rlcTsps;
+      list = modularTsps;
       break;
   }
 

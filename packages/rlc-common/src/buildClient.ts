@@ -206,7 +206,17 @@ export function buildClient(model: RLCModel): File | undefined {
   }logger`;
   clientFile.addImportDeclarations([
     {
-      namedImports: ["getClient", "ClientOptions"],
+      isTypeOnly: true,
+      namedImports: ["ClientOptions"],
+      moduleSpecifier: getImportSpecifier(
+        "restClient",
+        model.importInfo.runtimeImports
+      )
+    }
+  ]);
+  clientFile.addImportDeclarations([
+    {
+      namedImports: ["getClient"],
       moduleSpecifier: getImportSpecifier(
         "restClient",
         model.importInfo.runtimeImports
@@ -243,18 +253,29 @@ export function buildClient(model: RLCModel): File | undefined {
   ) {
     clientFile.addImportDeclarations([
       {
-        namedImports: credentialTypes.concat(
-          includeKeyCredentialHelper ? ["isKeyCredential"] : []
-        ),
+        isTypeOnly: true,
+        namedImports: credentialTypes,
         moduleSpecifier: getImportSpecifier(
           "coreAuth",
           model.importInfo.runtimeImports
         )
       }
     ]);
+    if (includeKeyCredentialHelper) {
+      clientFile.addImportDeclarations([
+        {
+          namedImports: ["isKeyCredential"],
+          moduleSpecifier: getImportSpecifier(
+            "coreAuth",
+            model.importInfo.runtimeImports
+          )
+        }
+      ]);
+    }
   }
   clientFile.addImportDeclarations([
     {
+      isTypeOnly: true,
       namedImports: [`${clientInterfaceName}`],
       moduleSpecifier: getImportModuleName(
         {
@@ -271,6 +292,7 @@ export function buildClient(model: RLCModel): File | undefined {
   ) {
     clientFile.addImportDeclarations([
       {
+        isTypeOnly: true,
         namedImports: Array.from(
           model.importInfo.internalImports.rlcClientFactory.importsSet!
         ),
@@ -339,10 +361,17 @@ export function getClientFactoryBody(
         `\${${urlParameter.name}}`
       );
     });
-
-    endpointUrl = `options.endpoint ?? options.baseUrl ?? \`${parsedEndpoint}\``;
+    if (model.options.flavor !== "azure") {
+      endpointUrl = `options.endpoint ?? \`${parsedEndpoint}\``;
+    } else {
+      endpointUrl = `options.endpoint ?? options.baseUrl ?? \`${parsedEndpoint}\``;
+    }
   } else {
-    endpointUrl = `options.endpoint ?? options.baseUrl ?? "${endpoint}"`;
+    if (model.options.flavor !== "azure") {
+      endpointUrl = `options.endpoint ??"${endpoint}"`;
+    } else {
+      endpointUrl = `options.endpoint ?? options.baseUrl ?? "${endpoint}"`;
+    }
   }
 
   if (!model.options.isModularLibrary && !clientPackageName.endsWith("-rest")) {

@@ -2,14 +2,14 @@
 // Licensed under the MIT License.
 
 import {
-  getSchemaOperationsOperations,
-  SchemaOperationsOperations,
-} from "./classic/schemaOperations/index.js";
-import {
   createSchemaRegistry,
   SchemaRegistryContext,
   SchemaRegistryClientOptionalParams,
 } from "./api/index.js";
+import {
+  SchemaOperationsOperations,
+  _getSchemaOperationsOperations,
+} from "./classic/schemaOperations/index.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { TokenCredential } from "@azure/core-auth";
 
@@ -22,7 +22,7 @@ export class SchemaRegistryClient {
 
   /** SchemaRegistryClient is a client for registering and retrieving schemas from the Azure Schema Registry service. */
   constructor(
-    fullyQualifiedNamespace: string,
+    endpointParam: string,
     credential: TokenCredential,
     options: SchemaRegistryClientOptionalParams = {},
   ) {
@@ -30,14 +30,14 @@ export class SchemaRegistryClient {
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : `azsdk-js-client`;
-    this._client = createSchemaRegistry(fullyQualifiedNamespace, credential, {
+    this._client = createSchemaRegistry(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this.schemaOperations = getSchemaOperationsOperations(this._client);
+    this.schemaOperations = _getSchemaOperationsOperations(this._client);
   }
 
-  /** The operation groups for SchemaOperations */
+  /** The operation groups for schemaOperations */
   public readonly schemaOperations: SchemaOperationsOperations;
 }

@@ -2,14 +2,12 @@ emit:
   - "@azure-tools/typespec-ts"
 options:
   "@azure-tools/typespec-ts":
-    "emitter-output-dir": "{project-root}"
-    generateMetadata: true
-    generateTest: false
-    addCredentials: false
-    azureSdkForJs: false
-    isTypeSpecTest: true
-    enableOperationGroup: true
-    isModularLibrary: true
-    hierarchyClient: false
-    packageDetails:
-      name: "@msinternal/encode-datatime"
+    emitter-output-dir: "{project-root}"
+    generate-metadata: true
+    generate-test: false
+    add-credentials: false
+    is-typespec-test: true
+    enable-operation-group: true
+    hierarchy-client: false
+    package-details:
+      name: "@unbranded/encode-datatime"

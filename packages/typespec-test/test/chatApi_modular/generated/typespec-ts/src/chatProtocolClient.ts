@@ -5,10 +5,6 @@ import {
   createChatProtocol,
   ChatProtocolContext,
   ChatProtocolClientOptionalParams,
-  createStreaming,
-  create,
-  CreateStreamingOptionalParams,
-  CreateOptionalParams,
 } from "./api/index.js";
 import {
   StreamingChatCompletionOptionsRecord,
@@ -16,6 +12,11 @@ import {
   ChatCompletionOptionsRecord,
   ChatCompletionRecord,
 } from "./models/models.js";
+import {
+  CreateOptionalParams,
+  CreateStreamingOptionalParams,
+} from "./api/options.js";
+import { create, createStreaming } from "./api/operations.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
 
@@ -43,19 +44,19 @@ export class ChatProtocolClient {
     this.pipeline = this._client.pipeline;
   }
 
-  /** Creates a new streaming chat completion. */
-  createStreaming(
-    body: StreamingChatCompletionOptionsRecord,
-    options: CreateStreamingOptionalParams = { requestOptions: {} },
-  ): Promise<ChatCompletionChunkRecord> {
-    return createStreaming(this._client, body, options);
-  }
-
   /** Creates a new chat completion. */
   create(
     body: ChatCompletionOptionsRecord,
     options: CreateOptionalParams = { requestOptions: {} },
   ): Promise<ChatCompletionRecord> {
     return create(this._client, body, options);
+  }
+
+  /** Creates a new streaming chat completion. */
+  createStreaming(
+    body: StreamingChatCompletionOptionsRecord,
+    options: CreateStreamingOptionalParams = { requestOptions: {} },
+  ): Promise<ChatCompletionChunkRecord> {
+    return createStreaming(this._client, body, options);
   }
 }

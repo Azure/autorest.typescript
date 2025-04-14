@@ -1,0 +1,16 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    emitter-output-dir: "{project-root}"
+    generate-metadata: true
+    generate-test: false
+    add-credentials: false
+    flavor: azure
+    azure-sdk-for-js: false
+    is-typespec-test: true
+    enable-operation-group: true
+    package-details:
+      name: "@msinternal/additional-property"
+      description: "additional Property Test Service"
+      version: "1.0.0"

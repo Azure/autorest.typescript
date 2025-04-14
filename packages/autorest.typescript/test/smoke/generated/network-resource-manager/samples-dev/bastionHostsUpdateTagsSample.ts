@@ -13,9 +13,7 @@ import {
   NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Updates Tags for BastionHost resource
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Updates Tags for BastionHost resource
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/BastionHostPatch.json
  */
-async function patchBastionHost() {
+async function patchBastionHost(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const bastionHostName = "bastionhosttenant";
@@ -38,8 +36,8 @@ async function patchBastionHost() {
   console.log(result);
 }
 
-async function main() {
-  patchBastionHost();
+async function main(): Promise<void> {
+  await patchBastionHost();
 }
 
 main().catch(console.error);

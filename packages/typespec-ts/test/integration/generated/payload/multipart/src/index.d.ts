@@ -1,8 +1,8 @@
-import { Client } from '@azure-rest/core-client';
-import { ClientOptions } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
-import { RequestParameters } from '@azure-rest/core-client';
-import { StreamableMethod } from '@azure-rest/core-client';
+import type { Client } from '@typespec/ts-http-runtime';
+import type { ClientOptions } from '@typespec/ts-http-runtime';
+import type { HttpResponse } from '@typespec/ts-http-runtime';
+import type { RequestParameters } from '@typespec/ts-http-runtime';
+import type { StreamableMethod } from '@typespec/ts-http-runtime';
 
 export declare interface Address {
     city: string;
@@ -26,27 +26,31 @@ export declare type ComplexHttpPartsModelRequest = FormData | Array<ComplexHttpP
 
 export declare interface ComplexHttpPartsModelRequestAddressPartDescriptor {
     name: "address";
-    body: HttpPart;
+    body: Address;
 }
 
 export declare interface ComplexHttpPartsModelRequestIdPartDescriptor {
     name: "id";
-    body: HttpPart;
+    body: string;
 }
 
 export declare interface ComplexHttpPartsModelRequestPicturesPartDescriptor {
     name: "pictures";
-    body: Array<HttpPart>;
+    body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
+    filename?: string;
+    contentType?: string;
 }
 
 export declare interface ComplexHttpPartsModelRequestPreviousAddressesPartDescriptor {
     name: "previousAddresses";
-    body: HttpPart;
+    body: Array<Address>;
 }
 
 export declare interface ComplexHttpPartsModelRequestProfileImagePartDescriptor {
     name: "profileImage";
-    body: HttpPart;
+    body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
+    filename: string;
+    contentType: string;
 }
 
 export declare type ComplexPartsRequest = FormData | Array<ComplexPartsRequestIdPartDescriptor | ComplexPartsRequestAddressPartDescriptor | ComplexPartsRequestProfileImagePartDescriptor | ComplexPartsRequestPicturesPartDescriptor>;
@@ -82,21 +86,27 @@ export declare type FileWithHttpPartOptionalContentTypeRequest = FormData | Arra
 
 export declare interface FileWithHttpPartOptionalContentTypeRequestProfileImagePartDescriptor {
     name: "profileImage";
-    body: HttpPart;
+    body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
+    filename: string;
+    contentType?: string;
 }
 
 export declare type FileWithHttpPartRequiredContentTypeRequest = FormData | Array<FileWithHttpPartRequiredContentTypeRequestProfileImagePartDescriptor>;
 
 export declare interface FileWithHttpPartRequiredContentTypeRequestProfileImagePartDescriptor {
     name: "profileImage";
-    body: HttpPart;
+    body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
+    filename: string;
+    contentType: string;
 }
 
 export declare type FileWithHttpPartSpecificContentTypeRequest = FormData | Array<FileWithHttpPartSpecificContentTypeRequestProfileImagePartDescriptor>;
 
 export declare interface FileWithHttpPartSpecificContentTypeRequestProfileImagePartDescriptor {
     name: "profileImage";
-    body: HttpPart;
+    body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
+    filename: string;
+    contentType: "image/jpg";
 }
 
 export declare interface FormDataAnonymousModel {
@@ -277,7 +287,7 @@ export declare interface FormDataHttpPartsNonStringFloat204Response extends Http
 export declare interface FormDataHttpPartsNonStringFloatBodyParam {
     body: FormData | Array<{
         name: "temperature";
-        body: HttpPart;
+        body: number;
     }>;
 }
 
@@ -322,9 +332,6 @@ export declare interface FormDataMultiBinaryPartsMediaTypesParam {
 }
 
 export declare type FormDataMultiBinaryPartsParameters = FormDataMultiBinaryPartsMediaTypesParam & FormDataMultiBinaryPartsBodyParam & RequestParameters;
-
-export declare interface HttpPart {
-}
 
 export declare type JsonPartRequest = FormData | Array<JsonPartRequestAddressPartDescriptor | JsonPartRequestProfileImagePartDescriptor>;
 

@@ -18,12 +18,13 @@ export function buildFlavorlessPackage(config: PackageCommonInfoConfig) {
     scripts: getFlavorlessScripts(config),
     devDependencies: {
       ...getCommonPackageDevDependencies(config),
+      "@microsoft/api-extractor": "^7.40.3",
       rimraf: "^5.0.5",
       mkdirp: "^3.0.1"
     },
     dependencies: {
       ...commonPackageDependencies,
-      "@typespec/ts-http-runtime": "1.0.0-alpha.20240314.2"
+      "@typespec/ts-http-runtime": "0.1.0"
     }
   };
 

@@ -12,23 +12,23 @@ using TypeSpec.Versioning;
 using Azure.Core;
 using Azure.Core.Traits;
 
-namespace Azure.AI.Client;
+namespace Azure.AI.Projects;
 
 @doc("Metadata pertaining to creation and last modification of the resource.")
 model SystemData {
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   @doc("The timestamp the resource was created at.")
   createdAt?: utcDateTime;
 
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   @doc("The identity that created the resource.")
   createdBy?: string;
 
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   @doc("The identity type that created the resource.")
   createdByType?: string;
 
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   @doc("The timestamp of resource last modification (UTC)")
   lastModifiedAt?: utcDateTime;
 }
@@ -54,12 +54,12 @@ model InputData {
   type: string;
 }
 
-@doc("Data Source for Application Insight.")
-model AppInsightsConfiguration extends InputData {
-  @visibility("read")
+@doc("Data Source for Application Insights.")
+model ApplicationInsightsConfiguration extends InputData {
+  @visibility(Lifecycle.Read)
   type: "app_insights";
 
-  @doc("LogAnalytic Workspace resourceID associated with AppInsights")
+  @doc("LogAnalytic Workspace resourceID associated with ApplicationInsights")
   resourceId: string;
 
   @doc("Query to fetch the data.")
@@ -67,11 +67,14 @@ model AppInsightsConfiguration extends InputData {
 
   @doc("Service name.")
   serviceName: string;
+
+  @doc("Connection String to connect to ApplicationInsights.")
+  connectionString?: string;
 }
 
 @doc("Dataset as source for evaluation.")
 model Dataset extends InputData {
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   type: "dataset";
 
   @doc("Evaluation input data")
@@ -89,7 +92,7 @@ model Trigger {
 #suppress "@azure-tools/typespec-azure-core/no-string-discriminator" "Needed since suggestion is not supported to generate swagger in OpenAPIv2"
 @doc("Recurrence Trigger Definition")
 model RecurrenceTrigger extends Trigger {
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   type: "Recurrence";
 
   @doc("The frequency to trigger schedule.")
@@ -99,13 +102,13 @@ model RecurrenceTrigger extends Trigger {
   interval: int32;
 
   @doc("The recurrence schedule.")
-  schedule: RecurrenceSchedule;
+  schedule?: RecurrenceSchedule;
 }
 
 #suppress "@azure-tools/typespec-azure-core/no-string-discriminator" "Needed since suggestion is not supported to generate swagger in OpenAPIv2"
 @doc("Cron Trigger Definition")
 model CronTrigger extends Trigger {
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   type: "Cron";
 
   @doc("Cron expression for the trigger.")
@@ -116,39 +119,39 @@ model CronTrigger extends Trigger {
 @resource("runs")
 model Evaluation {
   @key("id")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   @doc("Identifier of the evaluation.")
   @pattern("^[a-zA-Z0-9][a-zA-Z0-9-_]*$")
   @maxLength(254)
   id: string;
 
   @doc("Data for evaluation.")
-  @visibility("read", "create")
+  @visibility(Lifecycle.Read, Lifecycle.Create)
   data: InputData;
 
-  @doc("Display Name for evaluation. It helps to find evaluation easily in AI Studio. It does not need to be unique.")
+  @doc("Display Name for evaluation. It helps to find the evaluation easily in AI Foundry. It does not need to be unique.")
   displayName?: string;
 
   @doc("Description of the evaluation. It can be used to store additional information about the evaluation and is mutable.")
   description?: string;
 
   @doc("Metadata containing createdBy and modifiedBy information.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   systemData?: SystemData;
 
   @doc("Status of the evaluation. It is set by service and is read-only.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   status?: string;
 
   @doc("Evaluation's tags. Unlike properties, tags are fully mutable.")
   tags?: Record<string>;
 
   @doc("Evaluation's properties. Unlike tags, properties are add-only. Once added, a property cannot be removed.")
-  @visibility("read", "create")
+  @visibility(Lifecycle.Read, Lifecycle.Create)
   properties?: Record<string>;
 
   @doc("Evaluators to be used for the evaluation.")
-  @visibility("read", "create")
+  @visibility(Lifecycle.Read, Lifecycle.Create)
   evaluators: Record<EvaluatorConfiguration>;
 }
 
@@ -176,18 +179,6 @@ union WeekDays {
   string,
 }
 
-@doc("Recurrence Definition")
-model Recurrence {
-  @doc("The frequency to trigger schedule.")
-  frequency: Frequency;
-
-  @doc("Specifies schedule interval in conjunction with frequency")
-  interval: int32;
-
-  @doc("The recurrence schedule.")
-  schedule: RecurrenceSchedule;
-}
-
 @doc("RecurrenceSchedule Definition")
 model RecurrenceSchedule {
   @doc("List of hours for the schedule.")
@@ -197,63 +188,55 @@ model RecurrenceSchedule {
   minutes: int32[];
 
   @doc("List of days for the schedule.")
-  weekDays: WeekDays[];
+  weekDays?: WeekDays[];
 
   @doc("List of month days for the schedule")
-  monthDays: int32[];
-}
-
-@doc("SamplingStrategy Definition")
-model SamplingStrategy {
-  @doc("Sampling rate")
-  rate: float32;
+  monthDays?: int32[];
 }
 
 @doc("Evaluation Schedule Definition")
 // NoteNote: I modeled ScheduledEvaluation as a type of Evaluation. But can also be modeled as a separate Schedule entity. We can discuss
 @resource("schedules")
 model EvaluationSchedule {
-  @key("id")
-  @visibility("read")
-  @doc("Identifier of the evaluation.")
+  @key("name")
+  @visibility(Lifecycle.Read)
+  @doc("Name of the schedule, which also serves as the unique identifier for the evaluation")
   @pattern("^[a-zA-Z0-9][a-zA-Z0-9-_]*$")
   @maxLength(254)
-  id: string;
+  name: string;
 
   @doc("Data for evaluation.")
-  @visibility("read", "create")
-  data: InputData;
-
-  @doc("Display Name for evaluation. It helps to find evaluation easily in AI Studio. It does not need to be unique.")
-  displayName?: string;
+  @visibility(Lifecycle.Read, Lifecycle.Create)
+  data: ApplicationInsightsConfiguration;
 
   @doc("Description of the evaluation. It can be used to store additional information about the evaluation and is mutable.")
   description?: string;
 
   @doc("Metadata containing createdBy and modifiedBy information.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   systemData?: SystemData;
 
-  @doc("Status of the evaluation. It is set by service and is read-only.")
-  @visibility("read")
-  provisioningStatus?: string;
+  @doc("Provisioning State of the evaluation. It is set by service and is read-only.")
+  @visibility(Lifecycle.Read)
+  provisioningState?: string;
 
   @doc("Evaluation's tags. Unlike properties, tags are fully mutable.")
   tags?: Record<string>;
 
   @doc("Evaluation's properties. Unlike tags, properties are add-only. Once added, a property cannot be removed.")
-  @visibility("read", "create")
+  @visibility(Lifecycle.Read, Lifecycle.Create)
   properties?: Record<string>;
 
+  @doc("Enabled status of the evaluation. It is set by service and is read-only.")
+  @visibility(Lifecycle.Read)
+  isEnabled?: string;
+
   @doc("Evaluators to be used for the evaluation.")
-  @visibility("read", "create")
+  @visibility(Lifecycle.Read, Lifecycle.Create)
   evaluators: Record<EvaluatorConfiguration>;
 
   @doc("Trigger for the evaluation.")
   trigger: Trigger;
-
-  @doc("Sampling strategy for the evaluation.")
-  samplingStrategy: SamplingStrategy;
 }
 
 // Define the response model with status code 201

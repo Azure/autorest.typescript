@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Description for Get all Static Sites for a subscription.
@@ -20,20 +18,20 @@ dotenv.config();
  * @summary Description for Get all Static Sites for a subscription.
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/GetAllStaticSites.json
  */
-async function getAllStaticSitesInASubscription() {
+async function getAllStaticSitesInASubscription(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.staticSites.list()) {
+  for await (const item of client.staticSites.list()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
 
-async function main() {
-  getAllStaticSitesInASubscription();
+async function main(): Promise<void> {
+  await getAllStaticSitesInASubscription();
 }
 
 main().catch(console.error);

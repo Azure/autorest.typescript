@@ -1,20 +1,16 @@
-import { ClientOptions } from '@azure-rest/core-client';
-import { OperationOptions } from '@azure-rest/core-client';
-import { Pipeline } from '@azure/core-rest-pipeline';
+import { ClientOptions } from '@typespec/ts-http-runtime';
+import { OperationOptions } from '@typespec/ts-http-runtime';
+import { Pipeline } from '@typespec/ts-http-runtime';
 
 export declare type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-export declare interface ListOptionalParams extends OperationOptions {
-    maxpagesize?: number;
-}
-
 export declare class PageableClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: PageableClientOptionalParams);
-    list(options?: ListOptionalParams): PagedAsyncIterableIterator<User>;
+    readonly serverDrivenPagination: ServerDrivenPaginationOperations;
 }
 
 export declare interface PageableClientOptionalParams extends ClientOptions {
@@ -30,8 +26,48 @@ export declare interface PageSettings {
     continuationToken?: string;
 }
 
-export declare interface User {
+export declare interface Pet {
+    id: string;
     name: string;
+}
+
+export declare interface ServerDrivenPaginationContinuationTokenOperations {
+    requestHeaderResponseHeader: (options?: ServerDrivenPaginationContinuationTokenRequestHeaderResponseHeaderOptionalParams) => PagedAsyncIterableIterator<Pet>;
+    requestQueryResponseHeader: (options?: ServerDrivenPaginationContinuationTokenRequestQueryResponseHeaderOptionalParams) => PagedAsyncIterableIterator<Pet>;
+    requestHeaderResponseBody: (options?: ServerDrivenPaginationContinuationTokenRequestHeaderResponseBodyOptionalParams) => PagedAsyncIterableIterator<Pet>;
+    requestQueryResponseBody: (options?: ServerDrivenPaginationContinuationTokenRequestQueryResponseBodyOptionalParams) => PagedAsyncIterableIterator<Pet>;
+}
+
+export declare interface ServerDrivenPaginationContinuationTokenRequestHeaderResponseBodyOptionalParams extends OperationOptions {
+    token?: string;
+    foo?: string;
+    bar?: string;
+}
+
+export declare interface ServerDrivenPaginationContinuationTokenRequestHeaderResponseHeaderOptionalParams extends OperationOptions {
+    token?: string;
+    foo?: string;
+    bar?: string;
+}
+
+export declare interface ServerDrivenPaginationContinuationTokenRequestQueryResponseBodyOptionalParams extends OperationOptions {
+    token?: string;
+    foo?: string;
+    bar?: string;
+}
+
+export declare interface ServerDrivenPaginationContinuationTokenRequestQueryResponseHeaderOptionalParams extends OperationOptions {
+    token?: string;
+    foo?: string;
+    bar?: string;
+}
+
+export declare interface ServerDrivenPaginationLinkOptionalParams extends OperationOptions {
+}
+
+export declare interface ServerDrivenPaginationOperations {
+    link: (options?: ServerDrivenPaginationLinkOptionalParams) => PagedAsyncIterableIterator<Pet>;
+    continuationToken: ServerDrivenPaginationContinuationTokenOperations;
 }
 
 export { }

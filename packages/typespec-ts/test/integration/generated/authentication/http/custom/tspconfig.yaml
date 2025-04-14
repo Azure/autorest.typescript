@@ -2,11 +2,11 @@ emit:
   - "@azure-tools/typespec-ts"
 options:
   "@azure-tools/typespec-ts":
-    "emitter-output-dir": "{project-root}"
-    azureSdkForJs: false
-    isTypeSpecTest: true
+    emitter-output-dir: "{project-root}"
+    is-modular-library: false
+    is-typespec-test: true
     title: AuthHttpCustomClient
-    packageDetails:
-      name: "@msinternal/auth-httpcustom"
+    package-details:
+      name: "@unbranded/auth-httpcustom"
       description: "Auth Http Custom Test Service"
       version: "1.0.0"

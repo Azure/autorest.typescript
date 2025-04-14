@@ -2,14 +2,14 @@
 // Licensed under the MIT License.
 
 import {
-  getConfidentialLedgerOperations,
-  ConfidentialLedgerOperations,
-} from "./classic/confidentialLedger/index.js";
-import {
   createParametrizedHost,
   ParametrizedHostContext,
   ParametrizedHostClientOptionalParams,
 } from "./api/index.js";
+import {
+  ConfidentialLedgerOperations,
+  _getConfidentialLedgerOperations,
+} from "./classic/confidentialLedger/index.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { TokenCredential } from "@azure/core-auth";
 
@@ -34,9 +34,9 @@ export class ParametrizedHostClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this.confidentialLedger = getConfidentialLedgerOperations(this._client);
+    this.confidentialLedger = _getConfidentialLedgerOperations(this._client);
   }
 
-  /** The operation groups for ConfidentialLedger */
+  /** The operation groups for confidentialLedger */
   public readonly confidentialLedger: ConfidentialLedgerOperations;
 }

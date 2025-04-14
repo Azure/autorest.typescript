@@ -1,7 +1,7 @@
 {
   "name": "@azure/ai-client",
   "version": "1.0.0-beta.1",
-  "description": "A generated SDK for ClientClient.",
+  "description": "A generated SDK for ProjectsClient.",
   "engines": {
     "node": ">=18.0.0"
   },
@@ -11,11 +11,13 @@
     "exports": {
       "./package.json": "./package.json",
       ".": "./src/index.ts",
-      "./models": "./src/models/index.ts",
       "./api": "./src/api/index.ts",
-      "./api/agents": "./src/api/agents/index.ts",
+      "./api/evaluations": "./src/api/evaluations/index.ts",
+      "./api/telemetry": "./src/api/telemetry/index.ts",
       "./api/connections": "./src/api/connections/index.ts",
-      "./api/evaluations": "./src/api/evaluations/index.ts"
+      "./api/agents": "./src/api/agents/index.ts",
+      "./models": "./src/models/index.ts",
+      "./models/agents": "./src/models/agents/index.ts"
     },
     "dialects": [
       "esm",
@@ -39,7 +41,8 @@
   "author": "Microsoft Corporation",
   "license": "MIT",
   "files": [
-    "dist",
+    "dist/",
+    "!dist/**/*.d.*ts.map",
     "README.md",
     "LICENSE",
     "review/*",
@@ -55,11 +58,11 @@
   },
   "devDependencies": {
     "dotenv": "^16.0.0",
-    "@microsoft/api-extractor": "^7.40.3",
     "@types/node": "^18.0.0",
-    "eslint": "^8.55.0",
-    "typescript": "~5.6.2",
+    "eslint": "^9.9.0",
+    "typescript": "~5.8.2",
     "tshy": "^2.0.0",
+    "@microsoft/api-extractor": "^7.40.3",
     "rimraf": "^5.0.5",
     "mkdirp": "^3.0.1"
   },
@@ -91,24 +94,6 @@
         "default": "./dist/commonjs/index.js"
       }
     },
-    "./models": {
-      "browser": {
-        "types": "./dist/browser/models/index.d.ts",
-        "default": "./dist/browser/models/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/models/index.d.ts",
-        "default": "./dist/react-native/models/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/models/index.d.ts",
-        "default": "./dist/esm/models/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/models/index.d.ts",
-        "default": "./dist/commonjs/models/index.js"
-      }
-    },
     "./api": {
       "browser": {
         "types": "./dist/browser/api/index.d.ts",
@@ -127,22 +112,40 @@
         "default": "./dist/commonjs/api/index.js"
       }
     },
-    "./api/agents": {
+    "./api/evaluations": {
       "browser": {
-        "types": "./dist/browser/api/agents/index.d.ts",
-        "default": "./dist/browser/api/agents/index.js"
+        "types": "./dist/browser/api/evaluations/index.d.ts",
+        "default": "./dist/browser/api/evaluations/index.js"
       },
       "react-native": {
-        "types": "./dist/react-native/api/agents/index.d.ts",
-        "default": "./dist/react-native/api/agents/index.js"
+        "types": "./dist/react-native/api/evaluations/index.d.ts",
+        "default": "./dist/react-native/api/evaluations/index.js"
       },
       "import": {
-        "types": "./dist/esm/api/agents/index.d.ts",
-        "default": "./dist/esm/api/agents/index.js"
+        "types": "./dist/esm/api/evaluations/index.d.ts",
+        "default": "./dist/esm/api/evaluations/index.js"
       },
       "require": {
-        "types": "./dist/commonjs/api/agents/index.d.ts",
-        "default": "./dist/commonjs/api/agents/index.js"
+        "types": "./dist/commonjs/api/evaluations/index.d.ts",
+        "default": "./dist/commonjs/api/evaluations/index.js"
+      }
+    },
+    "./api/telemetry": {
+      "browser": {
+        "types": "./dist/browser/api/telemetry/index.d.ts",
+        "default": "./dist/browser/api/telemetry/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/telemetry/index.d.ts",
+        "default": "./dist/react-native/api/telemetry/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/telemetry/index.d.ts",
+        "default": "./dist/esm/api/telemetry/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/telemetry/index.d.ts",
+        "default": "./dist/commonjs/api/telemetry/index.js"
       }
     },
     "./api/connections": {
@@ -163,22 +166,58 @@
         "default": "./dist/commonjs/api/connections/index.js"
       }
     },
-    "./api/evaluations": {
+    "./api/agents": {
       "browser": {
-        "types": "./dist/browser/api/evaluations/index.d.ts",
-        "default": "./dist/browser/api/evaluations/index.js"
+        "types": "./dist/browser/api/agents/index.d.ts",
+        "default": "./dist/browser/api/agents/index.js"
       },
       "react-native": {
-        "types": "./dist/react-native/api/evaluations/index.d.ts",
-        "default": "./dist/react-native/api/evaluations/index.js"
+        "types": "./dist/react-native/api/agents/index.d.ts",
+        "default": "./dist/react-native/api/agents/index.js"
       },
       "import": {
-        "types": "./dist/esm/api/evaluations/index.d.ts",
-        "default": "./dist/esm/api/evaluations/index.js"
+        "types": "./dist/esm/api/agents/index.d.ts",
+        "default": "./dist/esm/api/agents/index.js"
       },
       "require": {
-        "types": "./dist/commonjs/api/evaluations/index.d.ts",
-        "default": "./dist/commonjs/api/evaluations/index.js"
+        "types": "./dist/commonjs/api/agents/index.d.ts",
+        "default": "./dist/commonjs/api/agents/index.js"
+      }
+    },
+    "./models": {
+      "browser": {
+        "types": "./dist/browser/models/index.d.ts",
+        "default": "./dist/browser/models/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/models/index.d.ts",
+        "default": "./dist/react-native/models/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/models/index.d.ts",
+        "default": "./dist/esm/models/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/models/index.d.ts",
+        "default": "./dist/commonjs/models/index.js"
+      }
+    },
+    "./models/agents": {
+      "browser": {
+        "types": "./dist/browser/models/agents/index.d.ts",
+        "default": "./dist/browser/models/agents/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/models/agents/index.d.ts",
+        "default": "./dist/react-native/models/agents/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/models/agents/index.d.ts",
+        "default": "./dist/esm/models/agents/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/models/agents/index.d.ts",
+        "default": "./dist/commonjs/models/agents/index.js"
       }
     }
   },

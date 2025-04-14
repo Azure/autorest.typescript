@@ -16,9 +16,7 @@
   "module": "./dist-esm/index.js",
   "types": "./types/regex-constraint.d.ts",
   "devDependencies": {
-    "@microsoft/api-extractor": "^7.31.1",
-    "typescript": "~5.6.2",
-    "uglify-js": "^3.4.9",
+    "typescript": "~5.8.2",
     "dotenv": "^16.0.0",
     "@azure/dev-tool": "^1.0.0"
   },
@@ -46,7 +44,7 @@
   ],
   "scripts": {
     "build": "npm run clean && tsc && dev-tool run bundle && npm run minify && dev-tool run vendored mkdirp ./review && npm run extract-api",
-    "minify": "uglifyjs -c -m --comments --source-map \"content='./dist/index.js.map'\" -o ./dist/index.min.js ./dist/index.js",
+    "minify": "dev-tool run vendored uglifyjs -c -m --comments --source-map \"content='./dist/index.js.map'\" -o ./dist/index.min.js ./dist/index.js",
     "prepack": "npm run build",
     "pack": "npm pack 2>&1",
     "extract-api": "dev-tool run extract-api",
@@ -68,7 +66,7 @@
     "integration-test": "echo skipped",
     "integration-test:node": "echo skipped",
     "integration-test:browser": "echo skipped",
-    "update-snippets": "echo skipped"
+    "update-snippets": "dev-tool run update-snippets"
   },
   "sideEffects": false,
   "//metadata": {

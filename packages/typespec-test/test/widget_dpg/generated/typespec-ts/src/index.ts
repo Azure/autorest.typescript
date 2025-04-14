@@ -7,28 +7,31 @@ import {
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
 
-export { WidgetServiceClient } from "./widgetServiceClient.js";
+export { SAPWidgetServiceClient } from "./sapWidgetServiceClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
-  User,
   Widget,
   WidgetError,
+  SAPUser,
   AnalyzeResult,
   NonReferencedModel,
   KnownVersions,
 } from "./models/index.js";
+export { SAPWidgetServiceClientOptionalParams } from "./api/index.js";
 export {
-  WidgetsListWidgetsOptionalParams,
-  WidgetsListWidgetsPagesOptionalParams,
-  WidgetsQueryWidgetsPagesOptionalParams,
-  WidgetsGetWidgetOptionalParams,
-  WidgetsCreateWidgetOptionalParams,
-  WidgetsCreateOrReplaceOptionalParams,
-  WidgetsUpdateWidgetOptionalParams,
-  WidgetsDeleteWidgetOptionalParams,
-  WidgetsAnalyzeWidgetOptionalParams,
+  BudgetsGetBudgetsOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,
-  WidgetServiceClientOptionalParams,
-} from "./api/index.js";
-export { BudgetsOperations, WidgetsOperations } from "./classic/index.js";
+} from "./api/budgets/index.js";
+export {
+  SAPWidgetsAnalyzeWidgetOptionalParams,
+  SAPWidgetsDeleteWidgetOptionalParams,
+  SAPWidgetsUpdateWidgetOptionalParams,
+  SAPWidgetsCreateOrReplaceOptionalParams,
+  SAPWidgetsCreateWidgetOptionalParams,
+  SAPWidgetsGetWidgetOptionalParams,
+  SAPWidgetsQueryWidgetsPagesOptionalParams,
+  SAPWidgetsListWidgetsPagesOptionalParams,
+  SAPWidgetsSAPListWidgetsOptionalParams,
+} from "./api/sapWidgets/index.js";
+export { BudgetsOperations, SAPWidgetsOperations } from "./classic/index.js";
 export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };

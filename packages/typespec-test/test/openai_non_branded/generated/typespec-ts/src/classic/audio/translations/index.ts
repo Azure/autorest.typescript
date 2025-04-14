@@ -1,12 +1,12 @@
 // Licensed under the MIT License.
 
 import { OpenAIContext } from "../../../api/openAIContext.js";
-import { create } from "../../../api/audio/translations/index.js";
 import {
   CreateTranslationRequest,
   CreateTranslationResponse,
 } from "../../../models/models.js";
-import { AudioTranslationsCreateOptionalParams } from "../../../api/options.js";
+import { AudioTranslationsCreateOptionalParams } from "../../../api/audio/translations/options.js";
+import { create } from "../../../api/audio/translations/operations.js";
 
 /** Interface representing a AudioTranslations operations. */
 export interface AudioTranslationsOperations {
@@ -16,7 +16,7 @@ export interface AudioTranslationsOperations {
   ) => Promise<CreateTranslationResponse>;
 }
 
-export function getAudioTranslations(context: OpenAIContext) {
+function _getAudioTranslations(context: OpenAIContext) {
   return {
     create: (
       audio: CreateTranslationRequest,
@@ -25,10 +25,10 @@ export function getAudioTranslations(context: OpenAIContext) {
   };
 }
 
-export function getAudioTranslationsOperations(
+export function _getAudioTranslationsOperations(
   context: OpenAIContext,
 ): AudioTranslationsOperations {
   return {
-    ...getAudioTranslations(context),
+    ..._getAudioTranslations(context),
   };
 }

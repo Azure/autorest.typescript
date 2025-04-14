@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets all the virtual machines under the specified subscription for the specified location.
@@ -20,20 +18,20 @@ dotenv.config();
  * @summary Gets all the virtual machines under the specified subscription for the specified location.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-07-01/examples/compute/ListVirtualMachinesInASubscriptionByLocation.json
  */
-async function listsAllTheVirtualMachinesUnderTheSpecifiedSubscriptionForTheSpecifiedLocation() {
+async function listsAllTheVirtualMachinesUnderTheSpecifiedSubscriptionForTheSpecifiedLocation(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscriptionId}";
   const location = "eastus";
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.virtualMachines.listByLocation(location)) {
+  for await (const item of client.virtualMachines.listByLocation(location)) {
     resArray.push(item);
   }
   console.log(resArray);
 }
 
-async function main() {
-  listsAllTheVirtualMachinesUnderTheSpecifiedSubscriptionForTheSpecifiedLocation();
+async function main(): Promise<void> {
+  await listsAllTheVirtualMachinesUnderTheSpecifiedSubscriptionForTheSpecifiedLocation();
 }
 
 main().catch(console.error);

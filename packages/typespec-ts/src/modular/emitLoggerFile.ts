@@ -1,12 +1,12 @@
-import { Project } from "ts-morph";
-import { ModularCodeModel } from "./modularCodeModel.js";
+import { useContext } from "../contextManager.js";
+import { ModularEmitterOptions } from "./interfaces.js";
 
 export function emitLoggerFile(
-  codeModel: ModularCodeModel,
-  project: Project,
+  emitterOptions: ModularEmitterOptions,
   srcPath: string = "src"
 ) {
-  if (codeModel.options.flavor !== "azure") {
+  const project = useContext("outputProject");
+  if (emitterOptions.options.flavor !== "azure") {
     return;
   }
 
@@ -20,8 +20,8 @@ export function emitLoggerFile(
   });
 
   const name =
-    codeModel.options.packageDetails?.nameWithoutScope ??
-    codeModel.options.packageDetails?.name;
+    emitterOptions.options.packageDetails?.nameWithoutScope ??
+    emitterOptions.options.packageDetails?.name;
   sourceFile.addStatements(
     `export const logger = createClientLogger("${name}");`
   );

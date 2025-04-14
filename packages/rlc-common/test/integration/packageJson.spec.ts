@@ -83,7 +83,7 @@ describe("Package file generation", () => {
   });
 
   describe("Azure flavor for Azure SDK for JS Monorepo", () => {
-    const libraryName = "@msinternal/test";
+    const libraryName = "test";
     const version = "1.0.0";
     const description = "Test description";
 
@@ -132,7 +132,7 @@ describe("Package file generation", () => {
       const expectedMetadata = {
         constantPaths: [
           {
-            path: "src/msinternal/test.ts",
+            path: "src/test.ts",
             prefix: "userAgentInfo"
           }
         ]
@@ -155,7 +155,7 @@ describe("Package file generation", () => {
             prefix: "package-version"
           },
           {
-            path: "src/msinternal/test.ts",
+            path: "src/test.ts",
             prefix: "userAgentInfo"
           }
         ]
@@ -178,7 +178,7 @@ describe("Package file generation", () => {
         productName: `${libraryName}`,
         productSlugs: ["azure"],
         disableDocsMs: true,
-        apiRefLink: `https://docs.microsoft.com/javascript/api/${libraryName}`
+        apiRefLink: `https://learn.microsoft.com/javascript/api/${libraryName}`
       };
 
       expect(packageFile).to.have.property("//sampleConfiguration");
@@ -200,7 +200,7 @@ describe("Package file generation", () => {
         productName: `${libraryName}`,
         productSlugs: ["azure"],
         disableDocsMs: true,
-        apiRefLink: `https://docs.microsoft.com/javascript/api/${libraryName}?view=azure-node-preview`
+        apiRefLink: `https://learn.microsoft.com/javascript/api/${libraryName}?view=azure-node-preview`
       };
 
       expect(packageFile).to.have.property("//sampleConfiguration");
@@ -247,6 +247,7 @@ describe("Package file generation", () => {
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
 
       const expectedTshy = {
+        project: "./tsconfig.src.json",
         exports: { "./package.json": "./package.json", ".": "./src/index.ts" },
         dialects: ["esm", "commonjs"],
         esmDialects: ["browser", "react-native"],
@@ -299,7 +300,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "build",
-        "npm run clean && dev-tool run build-package && dev-tool run vendored mkdirp ./review && dev-tool run extract-api"
+        "npm run clean && dev-tool run build-package && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "test:node",
@@ -323,7 +324,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "extract-api",
-        "dev-tool run vendored rimraf review && dev-tool run vendored mkdirp ./review && dev-tool run extract-api"
+        "dev-tool run vendored rimraf review && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "integration-test",
@@ -352,7 +353,7 @@ describe("Package file generation", () => {
       expect(packageFile.devDependencies).to.have.property("dotenv");
       expect(packageFile.devDependencies).to.have.property("mocha");
       expect(packageFile.devDependencies).to.have.property("@types/mocha");
-      expect(packageFile.devDependencies).to.have.property("cross-env");
+      expect(packageFile.devDependencies).to.not.have.property("cross-env");
       expect(packageFile.devDependencies).to.have.property("@types/chai");
       expect(packageFile.devDependencies).to.have.property("chai");
       expect(packageFile.devDependencies).to.have.property(
@@ -394,11 +395,11 @@ describe("Package file generation", () => {
 
       expect(packageFile.scripts).to.have.property(
         "build",
-        "npm run clean && tsc -p . && dev-tool run bundle && dev-tool run vendored mkdirp ./review && dev-tool run extract-api"
+        "npm run clean && tsc -p . && dev-tool run bundle && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "build:node",
-        "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1"
+        "tsc -p . && dev-tool run vendored cross-env ONLY_NODE=true rollup -c 2>&1"
       );
       expect(packageFile.scripts).to.have.property(
         "build:test",
@@ -430,7 +431,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "extract-api",
-        "dev-tool run vendored rimraf review && dev-tool run vendored mkdirp ./review && dev-tool run extract-api"
+        "dev-tool run vendored rimraf review && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "integration-test",
@@ -470,7 +471,7 @@ describe("Package file generation", () => {
       const packageFileContent = buildPackageFile(model);
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
       expect(packageFile).to.have.property("//metadata");
-      expect(packageFile["//metadata"]["constantPaths"][0]).to.have.property("path", "src/msinternal/test.ts", "rlc");
+      expect(packageFile["//metadata"]["constantPaths"][0]).to.have.property("path", "src/test.ts", "rlc");
     });
   });
 

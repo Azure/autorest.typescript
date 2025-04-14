@@ -2,53 +2,55 @@
 // Licensed under the MIT License.
 
 import { logger } from "../logger.js";
-import { KnownVersions } from "../models/models.js";
+import { APIVersion } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { KeyCredential } from "@azure/core-auth";
 
 /**
  * The Anomaly Detector API detects anomalies automatically in time series data.
- * It supports two kinds of mode, one is for stateless using, another is for
- * stateful using. In stateless mode, there are three functionalities. Entire
- * Detect is for detecting the whole series with model trained by the time series,
- * Last Detect is detecting last point with model trained by points before.
- * ChangePoint Detect is for detecting trend changes in time series. In stateful
- * mode, user can store time series, the stored time series will be used for
- * detection anomalies. Under this mode, user can still use the above three
- * functionalities by only giving a time range without preparing time series in
- * client side. Besides the above three functionalities, stateful model also
- * provide group based detection and labeling service. By leveraging labeling
- * service user can provide labels for each detection result, these labels will be
+ * It supports both a stateless detection mode and a
+ * stateful detection mode. In stateless mode, there are three functionalities. Entire
+ * Detect is for detecting the whole series, with the model trained by the time series.
+ * Last Detect is for detecting the last point, with the model trained by points before.
+ * ChangePoint Detect is for detecting trend changes in the time series. In stateful
+ * mode, the user can store time series. The stored time series will be used for
+ * detection anomalies. In this mode, the user can still use the preceding three
+ * functionalities by only giving a time range without preparing time series on the
+ * client side. Besides the preceding three functionalities, the stateful model
+ * provides group-based detection and labeling services. By using the labeling
+ * service, the user can provide labels for each detection result. These labels will be
  * used for retuning or regenerating detection models. Inconsistency detection is
- * a kind of group based detection, this detection will find inconsistency ones in
- * a set of time series. By using anomaly detector service, business customers can
+ * a kind of group-based detection that finds inconsistencies in
+ * a set of time series. By using the anomaly detector service, business customers can
  * discover incidents and establish a logic flow for root cause analysis.
  */
-export interface AnomalyDetectorContext extends Client {}
+export interface AnomalyDetectorContext extends Client {
+  /** Api Version */
+  apiVersion: APIVersion;
+}
 
 /** Optional parameters for the client. */
 export interface AnomalyDetectorClientOptionalParams extends ClientOptions {
   /** Api Version */
-  /** Known values of {@link KnownVersions} that the service accepts. */
   apiVersion?: string;
 }
 
 /**
  * The Anomaly Detector API detects anomalies automatically in time series data.
- * It supports two kinds of mode, one is for stateless using, another is for
- * stateful using. In stateless mode, there are three functionalities. Entire
- * Detect is for detecting the whole series with model trained by the time series,
- * Last Detect is detecting last point with model trained by points before.
- * ChangePoint Detect is for detecting trend changes in time series. In stateful
- * mode, user can store time series, the stored time series will be used for
- * detection anomalies. Under this mode, user can still use the above three
- * functionalities by only giving a time range without preparing time series in
- * client side. Besides the above three functionalities, stateful model also
- * provide group based detection and labeling service. By leveraging labeling
- * service user can provide labels for each detection result, these labels will be
+ * It supports both a stateless detection mode and a
+ * stateful detection mode. In stateless mode, there are three functionalities. Entire
+ * Detect is for detecting the whole series, with the model trained by the time series.
+ * Last Detect is for detecting the last point, with the model trained by points before.
+ * ChangePoint Detect is for detecting trend changes in the time series. In stateful
+ * mode, the user can store time series. The stored time series will be used for
+ * detection anomalies. In this mode, the user can still use the preceding three
+ * functionalities by only giving a time range without preparing time series on the
+ * client side. Besides the preceding three functionalities, the stateful model
+ * provides group-based detection and labeling services. By using the labeling
+ * service, the user can provide labels for each detection result. These labels will be
  * used for retuning or regenerating detection models. Inconsistency detection is
- * a kind of group based detection, this detection will find inconsistency ones in
- * a set of time series. By using anomaly detector service, business customers can
+ * a kind of group-based detection that finds inconsistencies in
+ * a set of time series. By using the anomaly detector service, business customers can
  * discover incidents and establish a logic flow for root cause analysis.
  */
 export function createAnomalyDetector(
@@ -77,5 +79,5 @@ export function createAnomalyDetector(
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  return clientContext;
+  return { ...clientContext, apiVersion } as AnomalyDetectorContext;
 }

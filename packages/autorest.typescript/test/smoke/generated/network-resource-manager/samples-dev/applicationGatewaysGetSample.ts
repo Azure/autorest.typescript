@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets the specified application gateway.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets the specified application gateway.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ApplicationGatewayGet.json
  */
-async function getApplicationGateway() {
+async function getApplicationGateway(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const applicationGatewayName = "appgw";
@@ -33,8 +31,8 @@ async function getApplicationGateway() {
   console.log(result);
 }
 
-async function main() {
-  getApplicationGateway();
+async function main(): Promise<void> {
+  await getApplicationGateway();
 }
 
 main().catch(console.error);

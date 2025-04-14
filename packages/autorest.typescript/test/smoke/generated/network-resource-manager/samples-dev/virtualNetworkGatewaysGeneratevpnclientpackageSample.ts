@@ -13,9 +13,7 @@ import {
   NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Generates VPN client package for P2S client of the virtual network gateway in the specified resource group.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Generates VPN client package for P2S client of the virtual network gateway in the specified resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/VirtualNetworkGatewayGenerateVpnClientPackage.json
  */
-async function generateVpnClientPackage() {
+async function generateVpnClientPackage(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkGatewayName = "vpngw";
@@ -39,8 +37,8 @@ async function generateVpnClientPackage() {
   console.log(result);
 }
 
-async function main() {
-  generateVpnClientPackage();
+async function main(): Promise<void> {
+  await generateVpnClientPackage();
 }
 
 main().catch(console.error);

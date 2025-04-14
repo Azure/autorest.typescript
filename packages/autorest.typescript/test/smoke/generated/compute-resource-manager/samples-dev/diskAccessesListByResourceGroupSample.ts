@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Lists all the disk access resources under a resource group.
@@ -20,13 +18,13 @@ dotenv.config();
  * @summary Lists all the disk access resources under a resource group.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/ListDiskAccessesInAResourceGroup.json
  */
-async function listAllDiskAccessResourcesInAResourceGroup() {
+async function listAllDiskAccessResourcesInAResourceGroup(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.diskAccesses.listByResourceGroup(
+  for await (const item of client.diskAccesses.listByResourceGroup(
     resourceGroupName,
   )) {
     resArray.push(item);
@@ -34,8 +32,8 @@ async function listAllDiskAccessResourcesInAResourceGroup() {
   console.log(resArray);
 }
 
-async function main() {
-  listAllDiskAccessResourcesInAResourceGroup();
+async function main(): Promise<void> {
+  await listAllDiskAccessResourcesInAResourceGroup();
 }
 
 main().catch(console.error);

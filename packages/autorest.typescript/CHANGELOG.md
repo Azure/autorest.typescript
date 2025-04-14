@@ -1,3 +1,122 @@
+## 6.0.38 (2025-04-03)
+
+- [Feature] Upgrade dev dependency typescript version to ~5.8.2. Please refer to [#3120](https://github.com/Azure/autorest.typescript/pull/3120)
+- [Feature] Upgrade to the latest dev dependency before TypeSpec GA. Please refer to [#3135](https://github.com/Azure/autorest.typescript/pull/3135)
+- [Bugfix] Fix eventGrid build error. Please refer to [#3143](https://github.com/Azure/autorest.typescript/pull/3143)
+- [Feature] Basic HttpPart support for RLC. Please refer to [#3124](https://github.com/Azure/autorest.typescript/pull/3124)
+
+## 6.0.37 (2025-03-24)
+
+- [Feature] Improve generateTest config. Please refer to [#3125](https://github.com/Azure/autorest.typescript/pull/3125)
+- [Feature] Support esm generation.
+  - Support tsconfig changes, vitest config changes and api-extractor changes from migration tool for codegen. Please refer to [#3081](https://github.com/Azure/autorest.typescript/pull/3081)
+  - Remove Impressions in HLC readme.md and update Api-extractor template for modular. Please refer to [#3092](https://github.com/Azure/autorest.typescript/pull/3092)
+  - Fix duplicate license header generations for snippets. Please refer to [#3106](https://github.com/Azure/autorest.typescript/pull/3106)
+- [Feature] To not expose internal operations for hierarchy client true. Please refer to [#3082](https://github.com/Azure/autorest.typescript/pull/3082)
+- [Feature] upgrade to compiler 0.67.x. Please refer to [#3071](https://github.com/Azure/autorest.typescript/pull/3071)
+- [Feature] Fully support binder to manage dependency and fix performance issue. Please refer to [#3119](https://github.com/Azure/autorest.typescript/pull/3119)
+- [Bugfix] Fix name normalization issues.
+  - Remove the modular normalization and directly use the rlc-common ones. Please refer to [#3115](https://github.com/Azure/autorest.typescript/pull/3115)
+  - Fix the ser/deser name normalization inconsistency issue in modular. Please refer to [#3102](https://github.com/Azure/autorest.typescript/pull/3102)
+- [Bugfix] Fix incorrect references to discriminated model serializers. Please refer to [#3108](https://github.com/Azure/autorest.typescript/pull/3108)
+- [Bugfix] Fix the encode issue for header in RLC. Please refer to [#3089](https://github.com/Azure/autorest.typescript/pull/3089)
+- [Others] Update smoke test specs to remove deprecated typespec usage. Please refer to [#3103](https://github.com/Azure/autorest.typescript/pull/3103)
+- [Others] Update format script. Please refer to [#3094](https://github.com/Azure/autorest.typescript/pull/3094)
+- [Others] Upgrade dev dependency typescript version to `~5.7.2~. Please refer to [#3100](https://github.com/Azure/autorest.typescript/pull/3100)
+
+## 6.0.36 (2025-03-07)
+
+- [Feature] Upgrade http-specs version. Please refer to [#3085](https://github.com/Azure/autorest.typescript/pull/3085)
+- [Feature] Upgrade package version to latest. Please refer to [#3088](https://github.com/Azure/autorest.typescript/pull/3088)
+- [Feature] Unify the typespec options to kebab-case style. Please refer to [#2960](https://github.com/Azure/autorest.typescript/pull/2960)
+- [Feature] Normalization refinement including enum member name. Please refer to [#2839](https://github.com/Azure/autorest.typescript/pull/2839)
+- [Feature] Remove @microsoft/api-extractor from common dev dependencies of generated packages. Please refer to [#3088](https://github.com/Azure/autorest.typescript/pull/3058)
+- [Feature] Fully support url template in Modular. Please refer to [#2884](https://github.com/Azure/autorest.typescript/pull/2884)
+- [Feature] Ignore *.d.*ts.map when packing generated packages. Please refer to [#3069](https://github.com/Azure/autorest.typescript/pull/3069)
+- [Bugfix] Fix paging samples' template. Please refer to [#3086](https://github.com/Azure/autorest.typescript/pull/3086)
+- [Bugfix] Fix Issue for publish @azure-tools/rlc-common and @azure-tools/typespec-ts to github. Please refer to [#3080](https://github.com/Azure/autorest.typescript/pull/3080)
+
+## 6.0.35 (2025-02-25)
+
+- [Feature] Update compiler version to 0.65.x. Please refer to [#2753](https://github.com/Azure/autorest.typescript/pull/2753)
+- [Bugfix] Enable `generateSample: true` if it is a mgmt package. Please refer to [#3068](https://github.com/Azure/autorest.typescript/pull/3068)
+- [Bugfix] Fix await in multi examples in one file. Please refer to [#3061](https://github.com/Azure/autorest.typescript/pull/3061)
+- [Feature] Support snippets for Modular/RLC/HLC. Please refer to [#3052](https://github.com/Azure/autorest.typescript/pull/3052)
+- [Bugfix] Fix operation hierarchies info in sample gen. Please refer to [#3023](https://github.com/Azure/autorest.typescript/pull/3023)
+- [Bugfix] Remove isDefaultSupersetOfOthers logic as no longer needed. Please refer to [#3057](https://github.com/Azure/autorest.typescript/pull/3057)
+- [Feature] Upgrade http-specs verison. Rest.Resource. Please refer to [#3053](https://github.com/Azure/autorest.typescript/pull/3053)
+- [Feature] Use recommended boilerplate LICENSE. Please refer to [#3044](https://github.com/Azure/autorest.typescript/pull/3044)
+- [Feature] remove references of api-extractor-json-types and package-json-module rules. Please refer to [#3042](https://github.com/Azure/autorest.typescript/pull/3042)
+- [Feature] Upgrade dependency vitest version to ^3.0.3 in generated packages. Please refer to [#3046](https://github.com/Azure/autorest.typescript/pull/3046)
+- [Feature] Use agents from 1ES pool. Please refer to [#3047](https://github.com/Azure/autorest.typescript/pull/3047)
+
+## 6.0.34 (2025-01-27)
+
+- [Feature] Upgrade spector version. Please refer to [#3007](https://github.com/Azure/autorest.typescript/pull/3007)
+- [Feature] Generate nullable as type alias and resolve recursive reference in union. Please refer to [#2989](https://github.com/Azure/autorest.typescript/pull/2989)
+- [Bugfix] Add await for sync function. Please refer to [#3014](https://github.com/Azure/autorest.typescript/pull/3014)
+- [Bugfix] Fix crossLanguageDefinitionId with TypeSpec.Rest.Resource. Please refer to [#3010](https://github.com/Azure/autorest.typescript/pull/3010)
+- [Bugfix] Remove mkdirp ./review as dev-tool handles that. Please refer to [#3015](https://github.com/Azure/autorest.typescript/pull/3015)
+- [Bugfix] Should not filter serializedName out for endpoint. Please refer to [#3017](https://github.com/Azure/autorest.typescript/pull/3017)
+- [Bugfix] Update sample template for Modular/RLC/HLC. Please refer to [#2998](https://github.com/Azure/autorest.typescript/pull/2998)
+- [Bugfix] Fix generation issue and update the ai projects to the latest one. Please refer to [#3037](https://github.com/Azure/autorest.typescript/pull/3037)
+
+## 6.0.33 (2025-01-17)
+
+- [Bugfix] Fix windows env issue in model namespace hierarchy. Please refer to [#3008](https://github.com/Azure/autorest.typescript/pull/3008)
+
+## 6.0.32 (2025-01-16)
+
+- [Feature] Upgrade compiler version to 0.64. Please refer to [#3006](https://github.com/Azure/autorest.typescript/pull/3006)
+- [Feature] Multipart/form-data support for typespec-todo. Please refer to [#2984](https://github.com/Azure/autorest.typescript/pull/2984)
+- [Feature] Model namespaces hierarchies. Please refer to [#2969](https://github.com/Azure/autorest.typescript/pull/2969)
+- [Feature] Support title config for typespec generation. Please refer to [#2941](https://github.com/Azure/autorest.typescript/pull/2941)
+- [Feature] Support the customized error responses in deserializer. Please refer to [#2978](https://github.com/Azure/autorest.typescript/pull/2978)
+- [Feature] Migration of SDK Client Packages from CADL Ranch to Typespec & Typespec. Please refer to [#2936](https://github.com/Azure/autorest.typescript/pull/2936)
+- [Feature] Eable `isTypeOnly` for RLC ImportDeclarations. Please refer to [#2963](https://github.com/Azure/autorest.typescript/pull/2963)
+- [Feature] Add a flag to generate ESM compatible source code. Please refer to [#2925](https://github.com/Azure/autorest.typescript/pull/2925)
+- [Feature] Set `isModularLibrary` to `true` for unbranded and mgmt plane. Please refer to [#2973](https://github.com/Azure/autorest.typescript/pull/2973)
+- [Feature] Use `learn.microsoft.com` in generated packages. Please refer to [#2977](https://github.com/Azure/autorest.typescript/pull/2977)
+- [Bugfix] Fix the duplicated template name without friendlyName in RLC. Please refer to [#2976](https://github.com/Azure/autorest.typescript/pull/2976)
+- [Bugfix] Rename the inner method name with `_methodName`. Please refer to [#2983](https://github.com/Azure/autorest.typescript/pull/2983)
+- [Bugfix] Do not crash for an empty project. Please refer to [#2972](https://github.com/Azure/autorest.typescript/pull/2972)
+
+## 6.0.31 (2024-12-27)
+
+- [Feature] Sdk package methods adoption. Please refer to [#2943](https://github.com/Azure/autorest.typescript/pull/2943)
+  - Adopt to sdkPackage methods;
+  - Support client level path parameter in general;
+  - ContentType/accept header parameter logic change;
+  - ApiVersion and its policy related change;
+  - Adjust parameter order change aligned with spec in spread cases;
+  - The bytes type gets generated inconsistent as before;
+  - Replace core related dependencies in static helper.
+- [Feature] Upgrade mocha to ^11.0.2 for generated packages. Please refer to [#2945](https://github.com/Azure/autorest.typescript/pull/2945)
+- [Feature] use azsdkEslint.config helper in eslint.config.mjs. Please refer to [#2949](https://github.com/Azure/autorest.typescript/pull/2949)
+- [Feature] Upgrade typespec http runtime version to v0.1.0 for unbranded client. Please refer to [#2947](https://github.com/Azure/autorest.typescript/pull/2947)
+
+## 6.0.30 (2024-12-12)
+
+- [Feature] Support tcgc type for ModelProperty, remove baseUrl in unbranded client and remove property if visibility with none. Please refer to [#2927](https://github.com/Azure/autorest.typescript/pull/2927)
+- [Feature] Upgrade typespec compiler to v0.63 and cadl ranch spec to the latest. Please refer to [#2942](https://github.com/Azure/autorest.typescript/pull/2942)
+- [Bugfix] Disable generation if enabling noEmit flag. Please refer to [#2948](https://github.com/Azure/autorest.typescript/pull/2948)
+- [Bugfix] Upgrade tcgc to ignore error model generation in MPG if it is not referenced. Please refer to [#2934](https://github.com/Azure/autorest.typescript/pull/2934)
+- [Feature] Refactor existing modular unit tests as scenario tests. Please refer to [#2915](https://github.com/Azure/autorest.typescript/pull/2915)
+
+## 6.0.29 (2024-11-29)
+
+- [Feature] Upgrade eslint version to ^9.9.0. Please refer to [#2928](https://github.com/Azure/autorest.typescript/pull/2928)
+- [Feature] Upgrade compiler to v0.62.x and tcgc in Nov. Please refer to [#2892](https://github.com/Azure/autorest.typescript/pull/2892)
+- [Feature] Update azureSdkForJs default value when flavor !== azure. Please refer to [#2921](https://github.com/Azure/autorest.typescript/pull/2921)
+- [Feature] Remove uglify-js dep generation for autorest.typescript. Please refer to [#2920](https://github.com/Azure/autorest.typescript/pull/2920)
+- [Feature] Check no-emit flag. Please refer to [#2908](https://github.com/Azure/autorest.typescript/pull/2908)
+- [Feature] URI template support in RLC. Please refer to [#2814](https://github.com/Azure/autorest.typescript/pull/2814)
+- [Feature] Uprade cadl ranch version to v0.16.1. Please refer to [#2907](https://github.com/Azure/autorest.typescript/pull/2907)
+- [Feature] Move to use dev-tool vendored version of cross-env and uglify-js for JS repository. Please refer to [#2895](https://github.com/Azure/autorest.typescript/pull/2895)
+- [Bugfix] Fix tsp rlc logger.ts generation. Please refer to [#2904](https://github.com/Azure/autorest.typescript/pull/2904)
+- [Bugfix] Fix unix timestamps. Please refer to [#2135](https://github.com/Azure/autorest.typescript/pull/2135)
+- [Bugfix] Fix readme issues and duplicated licence lines issue. Please refer to [#2922](https://github.com/Azure/autorest.typescript/pull/2922)
+
 ## 6.0.28 (2024-11-11)
 
 - [Feature] Generate knownable api version and fix flattening enum issue. Please refer to [#2889](https://github.com/Azure/autorest.typescript/pull/2889)

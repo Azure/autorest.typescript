@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Lists the specified network group.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Lists the specified network group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkManagerGroupList.json
  */
-async function networkGroupsList() {
+async function networkGroupsList(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
@@ -28,7 +26,7 @@ async function networkGroupsList() {
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.networkGroups.list(
+  for await (const item of client.networkGroups.list(
     resourceGroupName,
     networkManagerName,
   )) {
@@ -37,8 +35,8 @@ async function networkGroupsList() {
   console.log(resArray);
 }
 
-async function main() {
-  networkGroupsList();
+async function main(): Promise<void> {
+  await networkGroupsList();
 }
 
 main().catch(console.error);

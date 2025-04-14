@@ -1,0 +1,18 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    emitter-output-dir: "{project-root}"
+    generate-metadata: true
+    generate-test: false
+    add-credentials: false
+    flavor: azure
+    azure-sdk-for-js: false
+    is-typespec-test: true
+    is-modular-library: true
+    hierarchy-client: false
+    experimental-extensible-enums: true
+    package-details:
+      name: "@azure/arm-managedIdentity"
+      description: "Azure Arm ManagedIdentity Test Service"
+      version: "1.0.0"

@@ -2,23 +2,23 @@
 
 import { OpenAIContext } from "../../api/openAIContext.js";
 import {
-  AudioTranscriptionsOperations,
-  getAudioTranscriptionsOperations,
-} from "./transcriptions/index.js";
-import {
   AudioTranslationsOperations,
-  getAudioTranslationsOperations,
+  _getAudioTranslationsOperations,
 } from "./translations/index.js";
+import {
+  AudioTranscriptionsOperations,
+  _getAudioTranscriptionsOperations,
+} from "./transcriptions/index.js";
 
 /** Interface representing a Audio operations. */
 export interface AudioOperations {
-  transcriptions: AudioTranscriptionsOperations;
   translations: AudioTranslationsOperations;
+  transcriptions: AudioTranscriptionsOperations;
 }
 
-export function getAudioOperations(context: OpenAIContext): AudioOperations {
+export function _getAudioOperations(context: OpenAIContext): AudioOperations {
   return {
-    transcriptions: getAudioTranscriptionsOperations(context),
-    translations: getAudioTranslationsOperations(context),
+    translations: _getAudioTranslationsOperations(context),
+    transcriptions: _getAudioTranscriptionsOperations(context),
   };
 }

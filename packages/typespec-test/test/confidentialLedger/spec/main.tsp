@@ -14,7 +14,7 @@ using OpenAPI;
 // ** Service description **
 //
 
-@service({
+@service(#{
   title: "Confidential Ledger Service",
 })
 @useAuth(OAuth2Auth<[MyFlow]>)
@@ -68,7 +68,7 @@ model CollectionIdParameter {
 model Collection {
   @key
   @doc("The collection id.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   collectionId: string;
 }
 
@@ -78,12 +78,12 @@ model LedgerEntry {
   @doc("Contents of the ledger entry.")
   contents: string;
 
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   @doc("The collection id.")
   collectionId: string;
 
   @key
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   @doc("A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read.")
   transactionId: TransactionId;
 }
@@ -103,7 +103,7 @@ model LedgerUser {
   @key
   @doc("The user id, either an AAD object ID or certificate fingerprint.")
   @extension("x-ms-skip-url-encoding", true)
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   userId: string;
 
   @doc("The user's assigned role.")
@@ -163,7 +163,7 @@ model PagedLedgerEntries {
   state: LedgerQueryState;
 
   @doc("Path from which to retrieve the next page of results.")
-  @Azure.Core.nextLink
+  @TypeSpec.nextLink
   nextLink?: ResourceLocation<LedgerEntry>;
 }
 

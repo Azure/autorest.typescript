@@ -1,17 +1,17 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Client, HttpResponse } from "@azure-rest/core-client";
-import { AbortSignalLike } from "@azure/abort-controller";
-import {
+import type { Client, HttpResponse } from "@azure-rest/core-client";
+import type { AbortSignalLike } from "@azure/abort-controller";
+import type {
   CancelOnProgress,
   CreateHttpPollerOptions,
   RunningOperation,
   OperationResponse,
   OperationState,
-  createHttpPoller,
 } from "@azure/core-lro";
-import {
+import { createHttpPoller } from "@azure/core-lro";
+import type {
   TrainLargeFaceList202Response,
   TrainLargeFaceListDefaultResponse,
   TrainLargeFaceListLogicalResponse,
@@ -21,27 +21,6 @@ import {
   TrainLargePersonGroup202Response,
   TrainLargePersonGroupDefaultResponse,
   TrainLargePersonGroupLogicalResponse,
-  CreatePerson202Response,
-  CreatePersonDefaultResponse,
-  CreatePersonLogicalResponse,
-  DeletePerson202Response,
-  DeletePersonDefaultResponse,
-  DeletePersonLogicalResponse,
-  AddPersonFace202Response,
-  AddPersonFaceDefaultResponse,
-  AddPersonFaceLogicalResponse,
-  DeletePersonFace202Response,
-  DeletePersonFaceDefaultResponse,
-  DeletePersonFaceLogicalResponse,
-  CreateDynamicPersonGroupWithPerson202Response,
-  CreateDynamicPersonGroupWithPersonDefaultResponse,
-  CreateDynamicPersonGroupWithPersonLogicalResponse,
-  DeleteDynamicPersonGroup202Response,
-  DeleteDynamicPersonGroupDefaultResponse,
-  DeleteDynamicPersonGroupLogicalResponse,
-  UpdateDynamicPersonGroupWithPersonChanges202Response,
-  UpdateDynamicPersonGroupWithPersonChangesDefaultResponse,
-  UpdateDynamicPersonGroupWithPersonChangesLogicalResponse,
 } from "./responses.js";
 
 /**
@@ -153,71 +132,6 @@ export async function getLongRunningPoller<
   initialResponse:
     | TrainLargePersonGroup202Response
     | TrainLargePersonGroupDefaultResponse,
-  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
-): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
-export async function getLongRunningPoller<
-  TResult extends CreatePersonLogicalResponse | CreatePersonDefaultResponse,
->(
-  client: Client,
-  initialResponse: CreatePerson202Response | CreatePersonDefaultResponse,
-  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
-): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
-export async function getLongRunningPoller<
-  TResult extends DeletePersonLogicalResponse | DeletePersonDefaultResponse,
->(
-  client: Client,
-  initialResponse: DeletePerson202Response | DeletePersonDefaultResponse,
-  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
-): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
-export async function getLongRunningPoller<
-  TResult extends AddPersonFaceLogicalResponse | AddPersonFaceDefaultResponse,
->(
-  client: Client,
-  initialResponse: AddPersonFace202Response | AddPersonFaceDefaultResponse,
-  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
-): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
-export async function getLongRunningPoller<
-  TResult extends
-    | DeletePersonFaceLogicalResponse
-    | DeletePersonFaceDefaultResponse,
->(
-  client: Client,
-  initialResponse:
-    | DeletePersonFace202Response
-    | DeletePersonFaceDefaultResponse,
-  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
-): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
-export async function getLongRunningPoller<
-  TResult extends
-    | CreateDynamicPersonGroupWithPersonLogicalResponse
-    | CreateDynamicPersonGroupWithPersonDefaultResponse,
->(
-  client: Client,
-  initialResponse:
-    | CreateDynamicPersonGroupWithPerson202Response
-    | CreateDynamicPersonGroupWithPersonDefaultResponse,
-  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
-): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
-export async function getLongRunningPoller<
-  TResult extends
-    | DeleteDynamicPersonGroupLogicalResponse
-    | DeleteDynamicPersonGroupDefaultResponse,
->(
-  client: Client,
-  initialResponse:
-    | DeleteDynamicPersonGroup202Response
-    | DeleteDynamicPersonGroupDefaultResponse,
-  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
-): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
-export async function getLongRunningPoller<
-  TResult extends
-    | UpdateDynamicPersonGroupWithPersonChangesLogicalResponse
-    | UpdateDynamicPersonGroupWithPersonChangesDefaultResponse,
->(
-  client: Client,
-  initialResponse:
-    | UpdateDynamicPersonGroupWithPersonChanges202Response
-    | UpdateDynamicPersonGroupWithPersonChangesDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<TResult extends HttpResponse>(

@@ -1,0 +1,15 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    emitter-output-dir: "{project-root}"
+    generate-test: false
+    add-credentials: false
+    flavor: azure
+    azure-sdk-for-js: false
+    is-typespec-test: true
+    is-modular-library: true
+    package-details:
+      name: "@msinternal/client-operation-group"
+      description: "Client Structure OperaitonGroup Test Service"
+      version: "1.0.0"

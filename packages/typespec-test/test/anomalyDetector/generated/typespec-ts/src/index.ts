@@ -8,6 +8,7 @@ import {
 } from "./static-helpers/pagingHelpers.js";
 
 export { AnomalyDetectorClient } from "./anomalyDetectorClient.js";
+export { APIVersion } from "./models/index.js";
 export {
   MultivariateMultivariateDetectionResult,
   MultivariateMultivariateBatchDetectionResultSummary,
@@ -19,6 +20,7 @@ export {
   MultivariateAnomalyValue,
   MultivariateAnomalyInterpretation,
   MultivariateCorrelationChanges,
+  MultivariateResponseError,
   MultivariateModelInfo,
   MultivariateDataSchema,
   MultivariateAlignPolicy,
@@ -31,6 +33,8 @@ export {
   MultivariateMultivariateLastDetectionOptions,
   MultivariateVariableValues,
   MultivariateMultivariateLastDetectionResult,
+} from "./models/multivariate/index.js";
+export {
   UnivariateUnivariateDetectionOptions,
   UnivariateTimeSeriesPoint,
   UnivariateTimeGranularity,
@@ -41,21 +45,22 @@ export {
   UnivariateUnivariateLastDetectionResult,
   UnivariateUnivariateChangePointDetectionOptions,
   UnivariateUnivariateChangePointDetectionResult,
-  KnownVersions,
-} from "./models/index.js";
+} from "./models/univariate/index.js";
+export { AnomalyDetectorClientOptionalParams } from "./api/index.js";
 export {
-  AnomalyDetectorClientOptionalParams,
-  UnivariateDetectUnivariateEntireSeriesOptionalParams,
-  UnivariateDetectUnivariateLastPointOptionalParams,
-  UnivariateDetectUnivariateChangePointOptionalParams,
-  MultivariateGetMultivariateBatchDetectionResultOptionalParams,
-  MultivariateTrainMultivariateModelOptionalParams,
-  MultivariateListMultivariateModelsOptionalParams,
-  MultivariateDeleteMultivariateModelOptionalParams,
-  MultivariateGetMultivariateModelOptionalParams,
-  MultivariateDetectMultivariateBatchAnomalyOptionalParams,
   MultivariateDetectMultivariateLastAnomalyOptionalParams,
-} from "./api/index.js";
+  MultivariateDetectMultivariateBatchAnomalyOptionalParams,
+  MultivariateGetMultivariateModelOptionalParams,
+  MultivariateDeleteMultivariateModelOptionalParams,
+  MultivariateListMultivariateModelsOptionalParams,
+  MultivariateTrainMultivariateModelOptionalParams,
+  MultivariateGetMultivariateBatchDetectionResultOptionalParams,
+} from "./api/multivariate/index.js";
+export {
+  UnivariateDetectUnivariateChangePointOptionalParams,
+  UnivariateDetectUnivariateLastPointOptionalParams,
+  UnivariateDetectUnivariateEntireSeriesOptionalParams,
+} from "./api/univariate/index.js";
 export {
   MultivariateOperations,
   UnivariateOperations,

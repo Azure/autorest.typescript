@@ -1,9 +1,9 @@
-import { Client } from '@azure-rest/core-client';
-import { ClientOptions } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
-import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
-import { RequestParameters } from '@azure-rest/core-client';
-import { StreamableMethod } from '@azure-rest/core-client';
+import type { Client } from '@typespec/ts-http-runtime';
+import type { ClientOptions } from '@typespec/ts-http-runtime';
+import type { HttpResponse } from '@typespec/ts-http-runtime';
+import type { RawHttpHeadersInput } from '@typespec/ts-http-runtime';
+import type { RequestParameters } from '@typespec/ts-http-runtime';
+import type { StreamableMethod } from '@typespec/ts-http-runtime';
 
 export declare function buildCsvCollection(items: string[] | number[]): string;
 
@@ -133,28 +133,9 @@ export declare interface QuerySsvQueryParamProperties {
     colors: QuerySsvColorsQueryParam;
 }
 
-export declare interface QueryTsv {
-    get(options: QueryTsvParameters): StreamableMethod<QueryTsv204Response>;
-}
-
-export declare interface QueryTsv204Response extends HttpResponse {
-    status: "204";
-}
-
-export declare type QueryTsvParameters = QueryTsvQueryParam & RequestParameters;
-
-export declare interface QueryTsvQueryParam {
-    queryParameters: QueryTsvQueryParamProperties;
-}
-
-export declare interface QueryTsvQueryParamProperties {
-    colors: string;
-}
-
 export declare interface Routes {
     (path: "/parameters/collection-format/query/multi"): QueryMulti;
     (path: "/parameters/collection-format/query/ssv"): QuerySsv;
-    (path: "/parameters/collection-format/query/tsv"): QueryTsv;
     (path: "/parameters/collection-format/query/pipes"): QueryPipes;
     (path: "/parameters/collection-format/query/csv"): QueryCsv;
     (path: "/parameters/collection-format/header/csv"): HeaderCsv;

@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets a list of all the queues under the specified storage account
@@ -20,21 +18,21 @@ dotenv.config();
  * @summary Gets a list of all the queues under the specified storage account
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/QueueOperationList.json
  */
-async function queueOperationList() {
+async function queueOperationList(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res9290";
   const accountName = "sto328";
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.queue.list(resourceGroupName, accountName)) {
+  for await (const item of client.queue.list(resourceGroupName, accountName)) {
     resArray.push(item);
   }
   console.log(resArray);
 }
 
-async function main() {
-  queueOperationList();
+async function main(): Promise<void> {
+  await queueOperationList();
 }
 
 main().catch(console.error);

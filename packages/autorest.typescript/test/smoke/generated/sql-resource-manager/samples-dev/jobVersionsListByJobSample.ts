@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets all versions of a job.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets all versions of a job.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/ListJobVersions.json
  */
-async function getAllVersionsOfAJob() {
+async function getAllVersionsOfAJob(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "group1";
@@ -30,7 +28,7 @@ async function getAllVersionsOfAJob() {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.jobVersions.listByJob(
+  for await (const item of client.jobVersions.listByJob(
     resourceGroupName,
     serverName,
     jobAgentName,
@@ -41,8 +39,8 @@ async function getAllVersionsOfAJob() {
   console.log(resArray);
 }
 
-async function main() {
-  getAllVersionsOfAJob();
+async function main(): Promise<void> {
+  await getAllVersionsOfAJob();
 }
 
 main().catch(console.error);

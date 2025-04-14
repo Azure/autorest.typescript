@@ -1,13 +1,13 @@
-import { ClientOptions } from '@azure-rest/core-client';
-import { OperationOptions } from '@azure-rest/core-client';
-import { Pipeline } from '@azure/core-rest-pipeline';
+import { ClientOptions } from '@typespec/ts-http-runtime';
+import { OperationOptions } from '@typespec/ts-http-runtime';
+import { Pipeline } from '@typespec/ts-http-runtime';
 
 export declare class BasicClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: BasicClientOptionalParams);
-    readonly explicitBody: ExplicitBodyOperations;
     readonly implicitBody: ImplicitBodyOperations;
+    readonly explicitBody: ExplicitBodyOperations;
 }
 
 export declare interface BasicClientOptionalParams extends ClientOptions {

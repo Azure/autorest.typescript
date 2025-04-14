@@ -1,8 +1,8 @@
-import { Client } from '@azure-rest/core-client';
-import { ClientOptions } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
-import { RequestParameters } from '@azure-rest/core-client';
-import { StreamableMethod } from '@azure-rest/core-client';
+import type { Client } from '@typespec/ts-http-runtime';
+import type { ClientOptions } from '@typespec/ts-http-runtime';
+import type { HttpResponse } from '@typespec/ts-http-runtime';
+import type { RequestParameters } from '@typespec/ts-http-runtime';
+import type { StreamableMethod } from '@typespec/ts-http-runtime';
 
 declare function createClient(options?: VisibilityClientOptions): VisibilityClient;
 export default createClient;
@@ -35,7 +35,15 @@ export declare interface GetModelBodyParam {
     body: VisibilityModel;
 }
 
-export declare type GetModelParameters = GetModelBodyParam & RequestParameters;
+export declare type GetModelParameters = GetModelQueryParam & GetModelBodyParam & RequestParameters;
+
+export declare interface GetModelQueryParam {
+    queryParameters: GetModelQueryParamProperties;
+}
+
+export declare interface GetModelQueryParamProperties {
+    queryProp: number;
+}
 
 export declare interface HeadModel200Response extends HttpResponse {
     status: "200";
@@ -45,7 +53,15 @@ export declare interface HeadModelBodyParam {
     body: VisibilityModel;
 }
 
-export declare type HeadModelParameters = HeadModelBodyParam & RequestParameters;
+export declare type HeadModelParameters = HeadModelQueryParam & HeadModelBodyParam & RequestParameters;
+
+export declare interface HeadModelQueryParam {
+    queryParameters: HeadModelQueryParamProperties;
+}
+
+export declare interface HeadModelQueryParamProperties {
+    queryProp: number;
+}
 
 export declare interface PatchModel204Response extends HttpResponse {
     status: "204";
@@ -113,18 +129,18 @@ export declare interface VisibilityClientOptions extends ClientOptions {
 }
 
 export declare interface VisibilityModel {
-    queryProp: number;
     createProp: string[];
     updateProp: number[];
     deleteProp: boolean;
+    noneProp: "none";
 }
 
 export declare interface VisibilityModelOutput {
     readonly readProp: string;
-    queryProp: number;
     createProp: string[];
     updateProp: number[];
     deleteProp: boolean;
+    noneProp: "none";
 }
 
 export { }

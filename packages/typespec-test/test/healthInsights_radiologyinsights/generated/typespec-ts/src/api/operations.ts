@@ -1,18 +1,17 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  RadiologyInsightsContext as Client,
-  InferRadiologyInsightsOptionalParams,
-} from "./index.js";
+import { RadiologyInsightsContext as Client } from "./index.js";
 import {
   PatientRecord,
-  patientRecordSerializer,
-  radiologyInsightsInferenceOptionsSerializer,
+  radiologyInsightsModelConfigurationSerializer,
+  patientRecordArraySerializer,
   RadiologyInsightsInferenceResult,
   radiologyInsightsInferenceResultDeserializer,
 } from "../models/models.js";
+import { InferRadiologyInsightsOptionalParams } from "./options.js";
 import { getLongRunningPoller } from "../static-helpers/pollingHelpers.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -26,41 +25,43 @@ export function _inferRadiologyInsightsSend(
   patients: PatientRecord[],
   options: InferRadiologyInsightsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/radiology-insights/jobs").post({
-    ...operationOptionsToRequestParameters(options),
-    headers: {
-      ...(options?.repeatabilityRequestId !== undefined
-        ? { "Repeatability-Request-ID": options?.repeatabilityRequestId }
-        : {}),
-      ...(options?.repeatabilityFirstSent !== undefined
-        ? {
-            "Repeatability-First-Sent": !options?.repeatabilityFirstSent
-              ? options?.repeatabilityFirstSent
-              : options?.repeatabilityFirstSent.toUTCString(),
-          }
-        : {}),
+  const path = expandUrlTemplate(
+    "/radiology-insights/jobs{?api%2Dversion}",
+    {
+      "api%2Dversion": context.apiVersion,
     },
-    body: {
-      patients: patients.map((p: any) => {
-        return patientRecordSerializer(p);
-      }),
-      configuration: {
-        verbose: options?.configuration?.["verbose"],
-        includeEvidence: options?.configuration?.["includeEvidence"],
-        inferenceTypes: !options?.configuration?.["inferenceTypes"]
-          ? options?.configuration?.["inferenceTypes"]
-          : options?.configuration?.["inferenceTypes"].map((p: any) => {
-              return p;
-            }),
-        inferenceOptions: !options?.configuration?.["inferenceOptions"]
-          ? options?.configuration?.["inferenceOptions"]
-          : radiologyInsightsInferenceOptionsSerializer(
-              options?.configuration?.["inferenceOptions"],
-            ),
-        locale: options?.configuration?.["locale"],
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        ...(options?.repeatabilityRequestId !== undefined
+          ? { "Repeatability-Request-ID": options?.repeatabilityRequestId }
+          : {}),
+        ...(options?.repeatabilityFirstSent !== undefined
+          ? {
+              "Repeatability-First-Sent": !options?.repeatabilityFirstSent
+                ? options?.repeatabilityFirstSent
+                : options?.repeatabilityFirstSent.toUTCString(),
+            }
+          : {}),
+        accept: "application/json",
+        ...options.requestOptions?.headers,
       },
-    },
-  });
+      body: {
+        patients: patientRecordArraySerializer(patients),
+        configuration: !options?.configuration
+          ? options?.configuration
+          : radiologyInsightsModelConfigurationSerializer(
+              options?.configuration,
+            ),
+      },
+    });
 }
 
 export async function _inferRadiologyInsightsDeserialize(

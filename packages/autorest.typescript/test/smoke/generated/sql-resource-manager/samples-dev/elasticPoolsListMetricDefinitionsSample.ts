@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Returns elastic pool metric definitions.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Returns elastic pool metric definitions.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/stable/2014-04-01/examples/ElasticPoolMetricsDefinitionsList.json
  */
-async function listDatabaseUsageMetrics() {
+async function listDatabaseUsageMetrics(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "sqlcrudtest-6730";
@@ -29,7 +27,7 @@ async function listDatabaseUsageMetrics() {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.elasticPools.listMetricDefinitions(
+  for await (const item of client.elasticPools.listMetricDefinitions(
     resourceGroupName,
     serverName,
     elasticPoolName,
@@ -39,8 +37,8 @@ async function listDatabaseUsageMetrics() {
   console.log(resArray);
 }
 
-async function main() {
-  listDatabaseUsageMetrics();
+async function main(): Promise<void> {
+  await listDatabaseUsageMetrics();
 }
 
 main().catch(console.error);

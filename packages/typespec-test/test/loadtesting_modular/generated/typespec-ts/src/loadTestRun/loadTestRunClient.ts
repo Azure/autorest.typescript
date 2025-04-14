@@ -5,34 +5,6 @@ import {
   createLoadTestRun,
   LoadTestRunContext,
   LoadTestRunClientOptionalParams,
-  createOrUpdateTestRun,
-  createOrUpdateAppComponents,
-  createOrUpdateServerMetricsConfig,
-  deleteTestRun,
-  getAppComponents,
-  getServerMetricsConfig,
-  getTestRun,
-  getTestRunFile,
-  listMetricDimensionValues,
-  listMetricDefinitions,
-  listMetricNamespaces,
-  listMetrics,
-  listTestRuns,
-  stopTestRun,
-  CreateOrUpdateTestRunOptionalParams,
-  CreateOrUpdateAppComponentsOptionalParams,
-  CreateOrUpdateServerMetricsConfigOptionalParams,
-  DeleteTestRunOptionalParams,
-  GetAppComponentsOptionalParams,
-  GetServerMetricsConfigOptionalParams,
-  GetTestRunOptionalParams,
-  GetTestRunFileOptionalParams,
-  ListMetricDimensionValuesOptionalParams,
-  ListMetricDefinitionsOptionalParams,
-  ListMetricNamespacesOptionalParams,
-  ListMetricsOptionalParams,
-  ListTestRunsOptionalParams,
-  StopTestRunOptionalParams,
 } from "./api/index.js";
 import {
   TestRun,
@@ -44,6 +16,38 @@ import {
   MetricNamespaceCollection,
   TimeSeriesElement,
 } from "../models/models.js";
+import {
+  StopTestRunOptionalParams,
+  ListTestRunsOptionalParams,
+  ListMetricsOptionalParams,
+  ListMetricNamespacesOptionalParams,
+  ListMetricDefinitionsOptionalParams,
+  ListMetricDimensionValuesOptionalParams,
+  GetTestRunFileOptionalParams,
+  GetTestRunOptionalParams,
+  GetServerMetricsConfigOptionalParams,
+  GetAppComponentsOptionalParams,
+  DeleteTestRunOptionalParams,
+  CreateOrUpdateServerMetricsConfigOptionalParams,
+  CreateOrUpdateAppComponentsOptionalParams,
+  CreateOrUpdateTestRunOptionalParams,
+} from "./api/options.js";
+import {
+  stopTestRun,
+  listTestRuns,
+  listMetrics,
+  listMetricNamespaces,
+  listMetricDefinitions,
+  listMetricDimensionValues,
+  getTestRunFile,
+  getTestRun,
+  getServerMetricsConfig,
+  getAppComponents,
+  deleteTestRun,
+  createOrUpdateServerMetricsConfig,
+  createOrUpdateAppComponents,
+  createOrUpdateTestRun,
+} from "./api/operations.js";
 import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { TokenCredential } from "@azure/core-auth";
@@ -71,82 +75,59 @@ export class LoadTestRunClient {
     this.pipeline = this._client.pipeline;
   }
 
-  /** Create and start a new test run with the given test run Id. */
-  createOrUpdateTestRun(
+  /** Stop test run by test run Id. */
+  stopTestRun(
     testRunId: string,
-    body: TestRun,
-    options: CreateOrUpdateTestRunOptionalParams = { requestOptions: {} },
+    options: StopTestRunOptionalParams = { requestOptions: {} },
   ): Promise<TestRun> {
-    return createOrUpdateTestRun(this._client, testRunId, body, options);
+    return stopTestRun(this._client, testRunId, options);
   }
 
-  /** Add an app component to a test run by providing the resource Id, name and type. */
-  createOrUpdateAppComponents(
-    testRunId: string,
-    body: TestRunAppComponents,
-    options: CreateOrUpdateAppComponentsOptionalParams = { requestOptions: {} },
-  ): Promise<TestRunAppComponents> {
-    return createOrUpdateAppComponents(this._client, testRunId, body, options);
+  /** Get all test runs for the given filters. */
+  listTestRuns(
+    options: ListTestRunsOptionalParams = { requestOptions: {} },
+  ): PagedAsyncIterableIterator<TestRun> {
+    return listTestRuns(this._client, options);
   }
 
-  /** Configure server metrics for a test run */
-  createOrUpdateServerMetricsConfig(
+  /** List the metric values for a load test run. */
+  listMetrics(
     testRunId: string,
-    body: TestRunServerMetricConfig,
-    options: CreateOrUpdateServerMetricsConfigOptionalParams = {
-      requestOptions: {},
-    },
-  ): Promise<TestRunServerMetricConfig> {
-    return createOrUpdateServerMetricsConfig(
+    metricname: string,
+    metricNamespace: string,
+    timespan: string,
+    options: ListMetricsOptionalParams = { requestOptions: {} },
+  ): PagedAsyncIterableIterator<TimeSeriesElement> {
+    return listMetrics(
       this._client,
       testRunId,
-      body,
+      metricname,
+      metricNamespace,
+      timespan,
       options,
     );
   }
 
-  /** Delete an existing load test run by providing the testRunId. */
-  deleteTestRun(
+  /** List the metric namespaces for a load test run. */
+  listMetricNamespaces(
     testRunId: string,
-    options: DeleteTestRunOptionalParams = { requestOptions: {} },
-  ): Promise<void> {
-    return deleteTestRun(this._client, testRunId, options);
+    options: ListMetricNamespacesOptionalParams = { requestOptions: {} },
+  ): Promise<MetricNamespaceCollection> {
+    return listMetricNamespaces(this._client, testRunId, options);
   }
 
-  /**
-   * Get associated app component (collection of azure resources) for the given test
-   * run.
-   */
-  getAppComponents(
+  /** List the metric definitions for a load test run. */
+  listMetricDefinitions(
     testRunId: string,
-    options: GetAppComponentsOptionalParams = { requestOptions: {} },
-  ): Promise<TestRunAppComponents> {
-    return getAppComponents(this._client, testRunId, options);
-  }
-
-  /** Get associated server metrics configuration for the given test run. */
-  getServerMetricsConfig(
-    testRunId: string,
-    options: GetServerMetricsConfigOptionalParams = { requestOptions: {} },
-  ): Promise<TestRunServerMetricConfig> {
-    return getServerMetricsConfig(this._client, testRunId, options);
-  }
-
-  /** Get test run details by test run Id. */
-  getTestRun(
-    testRunId: string,
-    options: GetTestRunOptionalParams = { requestOptions: {} },
-  ): Promise<TestRun> {
-    return getTestRun(this._client, testRunId, options);
-  }
-
-  /** Get test run file by file name. */
-  getTestRunFile(
-    testRunId: string,
-    fileName: string,
-    options: GetTestRunFileOptionalParams = { requestOptions: {} },
-  ): Promise<TestRunFileInfo> {
-    return getTestRunFile(this._client, testRunId, fileName, options);
+    metricNamespace: string,
+    options: ListMetricDefinitionsOptionalParams = { requestOptions: {} },
+  ): Promise<MetricDefinitionCollection> {
+    return listMetricDefinitions(
+      this._client,
+      testRunId,
+      metricNamespace,
+      options,
+    );
   }
 
   /** List the dimension values for the given metric dimension name. */
@@ -169,58 +150,81 @@ export class LoadTestRunClient {
     );
   }
 
-  /** List the metric definitions for a load test run. */
-  listMetricDefinitions(
+  /** Get test run file by file name. */
+  getTestRunFile(
     testRunId: string,
-    metricNamespace: string,
-    options: ListMetricDefinitionsOptionalParams = { requestOptions: {} },
-  ): Promise<MetricDefinitionCollection> {
-    return listMetricDefinitions(
-      this._client,
-      testRunId,
-      metricNamespace,
-      options,
-    );
+    fileName: string,
+    options: GetTestRunFileOptionalParams = { requestOptions: {} },
+  ): Promise<TestRunFileInfo> {
+    return getTestRunFile(this._client, testRunId, fileName, options);
   }
 
-  /** List the metric namespaces for a load test run. */
-  listMetricNamespaces(
+  /** Get test run details by test run Id. */
+  getTestRun(
     testRunId: string,
-    options: ListMetricNamespacesOptionalParams = { requestOptions: {} },
-  ): Promise<MetricNamespaceCollection> {
-    return listMetricNamespaces(this._client, testRunId, options);
-  }
-
-  /** List the metric values for a load test run. */
-  listMetrics(
-    testRunId: string,
-    metricname: string,
-    metricNamespace: string,
-    timespan: string,
-    options: ListMetricsOptionalParams = { requestOptions: {} },
-  ): PagedAsyncIterableIterator<TimeSeriesElement> {
-    return listMetrics(
-      this._client,
-      testRunId,
-      metricname,
-      metricNamespace,
-      timespan,
-      options,
-    );
-  }
-
-  /** Get all test runs for the given filters. */
-  listTestRuns(
-    options: ListTestRunsOptionalParams = { requestOptions: {} },
-  ): PagedAsyncIterableIterator<TestRun> {
-    return listTestRuns(this._client, options);
-  }
-
-  /** Stop test run by test run Id. */
-  stopTestRun(
-    testRunId: string,
-    options: StopTestRunOptionalParams = { requestOptions: {} },
+    options: GetTestRunOptionalParams = { requestOptions: {} },
   ): Promise<TestRun> {
-    return stopTestRun(this._client, testRunId, options);
+    return getTestRun(this._client, testRunId, options);
+  }
+
+  /** Get associated server metrics configuration for the given test run. */
+  getServerMetricsConfig(
+    testRunId: string,
+    options: GetServerMetricsConfigOptionalParams = { requestOptions: {} },
+  ): Promise<TestRunServerMetricConfig> {
+    return getServerMetricsConfig(this._client, testRunId, options);
+  }
+
+  /**
+   * Get associated app component (collection of azure resources) for the given test
+   * run.
+   */
+  getAppComponents(
+    testRunId: string,
+    options: GetAppComponentsOptionalParams = { requestOptions: {} },
+  ): Promise<TestRunAppComponents> {
+    return getAppComponents(this._client, testRunId, options);
+  }
+
+  /** Delete an existing load test run by providing the testRunId. */
+  deleteTestRun(
+    testRunId: string,
+    options: DeleteTestRunOptionalParams = { requestOptions: {} },
+  ): Promise<void> {
+    return deleteTestRun(this._client, testRunId, options);
+  }
+
+  /** Configure server metrics for a test run */
+  createOrUpdateServerMetricsConfig(
+    testRunId: string,
+    body: TestRunServerMetricConfig,
+    options: CreateOrUpdateServerMetricsConfigOptionalParams = {
+      requestOptions: {},
+    },
+  ): Promise<TestRunServerMetricConfig> {
+    return createOrUpdateServerMetricsConfig(
+      this._client,
+      testRunId,
+      body,
+      options,
+    );
+  }
+
+  /** Add an app component to a test run by providing the resource Id, name and type. */
+  createOrUpdateAppComponents(
+    testRunId: string,
+    body: TestRunAppComponents,
+    options: CreateOrUpdateAppComponentsOptionalParams = { requestOptions: {} },
+  ): Promise<TestRunAppComponents> {
+    return createOrUpdateAppComponents(this._client, testRunId, body, options);
+  }
+
+  /** Create and start a new test run with the given test run Id. */
+  createOrUpdateTestRun(
+    testRunId: string,
+    body: TestRun,
+    options: CreateOrUpdateTestRunOptionalParams = { requestOptions: {} },
+  ): Promise<TestRun> {
+    return createOrUpdateTestRun(this._client, testRunId, body, options);
   }
 }

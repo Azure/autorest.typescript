@@ -18,19 +18,12 @@ export function buildTsTestBrowserConfig(model: RLCModel) {
   const project = new Project();
 
   const content = {
-    extends: "./.tshy/build.json",
-    include: ["src/**/*.ts", "src/**/*.mts", "test/**/*.spec.ts"],
-    exclude: ["test/**/node/**/*.ts"],
-    compilerOptions: {
-      outDir: "./dist-test/browser",
-      rootDir: ".",
-      skipLibCheck: true
-    }
+    extends: ["./tsconfig.test.json", "../../../tsconfig.browser.base.json"]
   };
 
   const configFile = project.createSourceFile(
     filePath,
-    JSON.stringify(content),
+    JSON.stringify(content, null, 2),
     {
       overwrite: true
     }

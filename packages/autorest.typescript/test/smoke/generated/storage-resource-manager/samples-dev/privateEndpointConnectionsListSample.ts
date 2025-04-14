@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to List all the private endpoint connections associated with the storage account.
@@ -20,14 +18,14 @@ dotenv.config();
  * @summary List all the private endpoint connections associated with the storage account.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/StorageAccountListPrivateEndpointConnections.json
  */
-async function storageAccountListPrivateEndpointConnections() {
+async function storageAccountListPrivateEndpointConnections(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res6977";
   const accountName = "sto2527";
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.privateEndpointConnections.list(
+  for await (const item of client.privateEndpointConnections.list(
     resourceGroupName,
     accountName,
   )) {
@@ -36,8 +34,8 @@ async function storageAccountListPrivateEndpointConnections() {
   console.log(resArray);
 }
 
-async function main() {
-  storageAccountListPrivateEndpointConnections();
+async function main(): Promise<void> {
+  await storageAccountListPrivateEndpointConnections();
 }
 
 main().catch(console.error);

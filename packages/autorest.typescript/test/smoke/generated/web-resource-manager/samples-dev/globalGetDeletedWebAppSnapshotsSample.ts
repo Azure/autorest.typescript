@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Description for Get all deleted apps for a subscription.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Description for Get all deleted apps for a subscription.
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/GetDeletedWebAppSnapshots.json
  */
-async function getDeletedWebAppSnapshots() {
+async function getDeletedWebAppSnapshots(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const deletedSiteId = "9";
@@ -30,8 +28,8 @@ async function getDeletedWebAppSnapshots() {
   console.log(result);
 }
 
-async function main() {
-  getDeletedWebAppSnapshots();
+async function main(): Promise<void> {
+  await getDeletedWebAppSnapshots();
 }
 
 main().catch(console.error);

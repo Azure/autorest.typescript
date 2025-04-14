@@ -18,7 +18,7 @@ using Azure.Core.Foundations.Extensions;
     Endpoint: Endpoint,
   }
 )
-@service({
+@service(#{
   title: "Microsoft Cognitive Language Service - Analyze Text Authoring",
 })
 @useAuth(ApiKeyAuth<ApiKeyLocation.header, "Ocp-Apim-Subscription-Key">)
@@ -41,7 +41,7 @@ scalar Endpoint extends string;
 model Deployment {
   @doc("The name of the deployment.")
   @key("deploymentName")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   @segment("deployments")
   name: string;
 
@@ -62,7 +62,7 @@ model Deployment {
 }
 
 @doc("Deployment resource creation parameters.")
-@withVisibility("create")
+@withVisibility(Lifecycle.Create)
 model DeploymentCreationParameters {
   ...Deployment;
 }

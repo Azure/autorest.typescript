@@ -13,9 +13,7 @@ import {
   WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Description for Gets all legal agreements that user needs to accept before purchasing a domain.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Description for Gets all legal agreements that user needs to accept before purchasing a domain.
  * x-ms-original-file: specification/web/resource-manager/Microsoft.DomainRegistration/stable/2021-02-01/examples/ListTopLevelDomainAgreements.json
  */
-async function listTopLevelDomainAgreements() {
+async function listTopLevelDomainAgreements(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const name = "in";
@@ -34,7 +32,7 @@ async function listTopLevelDomainAgreements() {
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.topLevelDomains.listAgreements(
+  for await (const item of client.topLevelDomains.listAgreements(
     name,
     agreementOption,
   )) {
@@ -43,8 +41,8 @@ async function listTopLevelDomainAgreements() {
   console.log(resArray);
 }
 
-async function main() {
-  listTopLevelDomainAgreements();
+async function main(): Promise<void> {
+  await listTopLevelDomainAgreements();
 }
 
 main().catch(console.error);

@@ -580,7 +580,9 @@ export type CachingType = "none" | "readonly" | "readwrite";
 
 // @public
 export interface CancelCertificateDeletionOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
@@ -648,50 +650,57 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 
 // @public
 export interface CreateCertificateOptionalParams extends OperationOptions {
-    apiVersion?: string;
-    contentType?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface CreateJobOptionalParams extends OperationOptions {
-    apiVersion?: string;
-    contentType?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface CreateJobScheduleOptionalParams extends OperationOptions {
-    apiVersion?: string;
-    contentType?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface CreateNodeUserOptionalParams extends OperationOptions {
-    apiVersion?: string;
-    contentType?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface CreatePoolOptionalParams extends OperationOptions {
-    apiVersion?: string;
-    contentType?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface CreateTaskCollectionOptionalParams extends OperationOptions {
-    apiVersion?: string;
-    contentType?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface CreateTaskOptionalParams extends OperationOptions {
-    apiVersion?: string;
-    contentType?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
@@ -712,67 +721,83 @@ export interface DeleteCertificateError {
 
 // @public
 export interface DeleteCertificateOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface DeleteJobOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface DeleteJobScheduleOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface DeleteNodeFileOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
     recursive?: boolean;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface DeleteNodeUserOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface DeletePoolOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface DeleteTaskFileOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
     recursive?: boolean;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface DeleteTaskOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
@@ -795,36 +820,42 @@ export type DisableJobOption = "requeue" | "terminate" | "wait";
 
 // @public
 export interface DisableJobOptionalParams extends OperationOptions {
-    apiVersion?: string;
-    contentType?: string;
+    clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface DisableJobScheduleOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface DisableNodeSchedulingOptionalParams extends OperationOptions {
-    apiVersion?: string;
     body?: NodeDisableSchedulingOptions;
-    contentType?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface DisablePoolAutoScaleOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
@@ -844,38 +875,45 @@ export type ElevationLevel = "nonadmin" | "admin";
 
 // @public
 export interface EnableJobOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface EnableJobScheduleOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface EnableNodeSchedulingOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface EnablePoolAutoScaleOptionalParams extends OperationOptions {
-    apiVersion?: string;
-    contentType?: string;
+    clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
@@ -896,8 +934,9 @@ export interface ErrorMessage {
 
 // @public
 export interface EvaluatePoolAutoScaleOptionalParams extends OperationOptions {
-    apiVersion?: string;
-    contentType?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
@@ -940,128 +979,158 @@ export interface FileProperties {
 
 // @public
 export interface GetApplicationOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface GetCertificateOptionalParams extends OperationOptions {
-    $select?: string[];
-    apiVersion?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface GetJobOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $select?: string[];
-    apiVersion?: string;
+    clientRequestId?: string;
+    expand?: string[];
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface GetJobScheduleOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $select?: string[];
-    apiVersion?: string;
+    clientRequestId?: string;
+    expand?: string[];
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface GetJobTaskCountsOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface GetNodeExtensionOptionalParams extends OperationOptions {
-    $select?: string[];
-    apiVersion?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface GetNodeFileOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
     ifModifiedSince?: Date;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
     ocpRange?: string;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface GetNodeFilePropertiesOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
     ifModifiedSince?: Date;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface GetNodeOptionalParams extends OperationOptions {
-    $select?: string[];
-    apiVersion?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface GetNodeRemoteDesktopFileOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface GetNodeRemoteLoginSettingsOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface GetPoolOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $select?: string[];
-    apiVersion?: string;
+    clientRequestId?: string;
+    expand?: string[];
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface GetTaskFileOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
     ifModifiedSince?: Date;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
     ocpRange?: string;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface GetTaskFilePropertiesOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
     ifModifiedSince?: Date;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface GetTaskOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $select?: string[];
-    apiVersion?: string;
+    clientRequestId?: string;
+    expand?: string[];
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
@@ -1097,7 +1166,7 @@ export interface InboundEndpoint {
     frontendPort: number;
     name: string;
     protocol: InboundEndpointProtocol;
-    publicFQDN?: string;
+    publicFqdn?: string;
     publicIpAddress?: string;
 }
 
@@ -1245,11 +1314,13 @@ export interface JobScheduleExecutionInformation {
 
 // @public
 export interface JobScheduleExistsOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
@@ -1324,7 +1395,7 @@ export interface JobStatistics {
 
 // @public
 export enum KnownVersions {
-    "2023-05-01.17.0" = "2023-05-01.17.0"
+    _20230501170 = "2023-05-01.17.0"
 }
 
 // @public
@@ -1336,141 +1407,176 @@ export interface LinuxUserConfiguration {
 
 // @public
 export interface ListApplicationsOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
     maxresults?: number;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListCertificatesOptionalParams extends OperationOptions {
-    $filter?: string;
-    $select?: string[];
-    apiVersion?: string;
+    clientRequestId?: string;
+    filter?: string;
     maxresults?: number;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListJobPreparationAndReleaseTaskStatusOptionalParams extends OperationOptions {
-    $filter?: string;
-    $select?: string[];
+    clientRequestId?: string;
+    filter?: string;
     maxresults?: number;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListJobSchedulesOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
-    apiVersion?: string;
+    clientRequestId?: string;
+    expand?: string[];
+    filter?: string;
     maxresults?: number;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListJobsFromScheduleOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
-    apiVersion?: string;
+    clientRequestId?: string;
+    expand?: string[];
+    filter?: string;
     maxresults?: number;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListJobsOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
-    apiVersion?: string;
+    clientRequestId?: string;
+    expand?: string[];
+    filter?: string;
     maxresults?: number;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListNodeExtensionsOptionalParams extends OperationOptions {
-    $select?: string[];
+    clientRequestId?: string;
     maxresults?: number;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListNodeFilesOptionalParams extends OperationOptions {
-    $filter?: string;
-    apiVersion?: string;
+    clientRequestId?: string;
+    filter?: string;
     maxresults?: number;
+    ocpDate?: Date;
     recursive?: boolean;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListNodesOptionalParams extends OperationOptions {
-    $filter?: string;
-    $select?: string[];
-    apiVersion?: string;
+    clientRequestId?: string;
+    filter?: string;
     maxresults?: number;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListPoolNodeCountsOptionalParams extends OperationOptions {
-    $filter?: string;
-    apiVersion?: string;
+    clientRequestId?: string;
+    filter?: string;
     maxresults?: number;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListPoolsOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
-    apiVersion?: string;
+    clientRequestId?: string;
+    expand?: string[];
+    filter?: string;
     maxresults?: number;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListPoolUsageMetricsOptionalParams extends OperationOptions {
-    $filter?: string;
-    apiVersion?: string;
+    clientRequestId?: string;
     endtime?: Date;
+    filter?: string;
     maxresults?: number;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     starttime?: Date;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListSubTasksOptionalParams extends OperationOptions {
-    $select?: string[];
-    apiVersion?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListSupportedImagesOptionalParams extends OperationOptions {
-    $filter?: string;
+    clientRequestId?: string;
+    filter?: string;
     maxresults?: number;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListTaskFilesOptionalParams extends OperationOptions {
-    $filter?: string;
-    apiVersion?: string;
+    clientRequestId?: string;
+    filter?: string;
     maxresults?: number;
+    ocpDate?: Date;
     recursive?: boolean;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ListTasksOptionalParams extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
-    apiVersion?: string;
+    clientRequestId?: string;
+    expand?: string[];
+    filter?: string;
     maxresults?: number;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
@@ -1664,11 +1770,13 @@ export interface PoolEndpointConfiguration {
 
 // @public
 export interface PoolExistsOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
@@ -1746,19 +1854,22 @@ export interface PublicIpAddressConfiguration {
 
 // @public
 export interface ReactivateTaskOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface RebootNodeOptionalParams extends OperationOptions {
-    apiVersion?: string;
     body?: NodeRebootOptions;
-    contentType?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
@@ -1770,67 +1881,74 @@ export interface RecentJob {
 
 // @public
 export interface ReimageNodeOptionalParams extends OperationOptions {
-    apiVersion?: string;
     body?: NodeReimageOptions;
-    contentType?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface RemoveNodesOptionalParams extends OperationOptions {
-    apiVersion?: string;
-    contentType?: string;
+    clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ReplaceJobOptionalParams extends OperationOptions {
-    apiVersion?: string;
-    contentType?: string;
+    clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ReplaceJobScheduleOptionalParams extends OperationOptions {
-    apiVersion?: string;
-    contentType?: string;
+    clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ReplaceNodeUserOptionalParams extends OperationOptions {
-    apiVersion?: string;
-    contentType?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ReplacePoolPropertiesOptionalParams extends OperationOptions {
-    apiVersion?: string;
-    contentType?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface ReplaceTaskOptionalParams extends OperationOptions {
-    apiVersion?: string;
-    contentType?: string;
+    clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
@@ -1843,12 +1961,13 @@ export interface ResizeError {
 
 // @public
 export interface ResizePoolOptionalParams extends OperationOptions {
-    apiVersion?: string;
-    contentType?: string;
+    clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
@@ -1923,11 +2042,13 @@ export type StatusLevelTypes = "Error" | "Info" | "Warning";
 
 // @public
 export interface StopPoolResizeOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
@@ -2089,66 +2210,74 @@ export interface TaskStatistics {
 
 // @public
 export interface TerminateJobOptionalParams extends OperationOptions {
-    apiVersion?: string;
     body?: BatchJobTerminateOptions;
-    contentType?: string;
+    clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface TerminateJobScheduleOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface TerminateTaskOptionalParams extends OperationOptions {
-    apiVersion?: string;
+    clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface UpdateJobOptionalParams extends OperationOptions {
-    apiVersion?: string;
-    contentType?: string;
+    clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface UpdateJobScheduleOptionalParams extends OperationOptions {
-    apiVersion?: string;
-    contentType?: string;
+    clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public
 export interface UpdatePoolOptionalParams extends OperationOptions {
-    apiVersion?: string;
-    contentType?: string;
+    clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 
@@ -2168,8 +2297,9 @@ export interface UploadBatchServiceLogsResult {
 
 // @public
 export interface UploadNodeLogsOptionalParams extends OperationOptions {
-    apiVersion?: string;
-    contentType?: string;
+    clientRequestId?: string;
+    ocpDate?: Date;
+    returnClientRequestId?: boolean;
     timeOutInSeconds?: number;
 }
 

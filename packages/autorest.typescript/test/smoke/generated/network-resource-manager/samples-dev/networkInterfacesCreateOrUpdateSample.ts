@@ -13,9 +13,7 @@ import {
   NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Creates or updates a network interface.
@@ -23,7 +21,7 @@ dotenv.config();
  * @summary Creates or updates a network interface.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkInterfaceCreate.json
  */
-async function createNetworkInterface() {
+async function createNetworkInterface(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkInterfaceName = "test-nic";
@@ -59,7 +57,7 @@ async function createNetworkInterface() {
  * @summary Creates or updates a network interface.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkInterfaceCreateGatewayLoadBalancerConsumer.json
  */
-async function createNetworkInterfaceWithGatewayLoadBalancerConsumerConfigured() {
+async function createNetworkInterfaceWithGatewayLoadBalancerConsumerConfigured(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const networkInterfaceName = "test-nic";
@@ -91,9 +89,9 @@ async function createNetworkInterfaceWithGatewayLoadBalancerConsumerConfigured()
   console.log(result);
 }
 
-async function main() {
-  createNetworkInterface();
-  createNetworkInterfaceWithGatewayLoadBalancerConsumerConfigured();
+async function main(): Promise<void> {
+  await createNetworkInterface();
+  await createNetworkInterfaceWithGatewayLoadBalancerConsumerConfigured();
 }
 
 main().catch(console.error);

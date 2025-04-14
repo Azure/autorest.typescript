@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
-import { RequestParameters } from "@azure-rest/core-client";
-import {
+import type { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
+import type { RequestParameters } from "@azure-rest/core-client";
+import type {
   TextTypes,
   ProfanityActions,
   ProfanityMarkers,
@@ -63,12 +63,12 @@ export interface TranslateBodyParam {
   body: Array<InputTextElement>;
 }
 
-/** This is the wrapper object for the parameter `to` with explode set to true and style set to form. */
+/** This is the wrapper object for the parameter `to` with explode set to false and style set to form. */
 export interface TranslateToQueryParam {
   /** Value of the parameter */
   value: string[];
   /** Should we explode the value? */
-  explode: true;
+  explode: false;
   /** Style of the value */
   style: "form";
 }
@@ -79,9 +79,8 @@ export interface TranslateQueryParamProperties {
    * in the translation scope. For example, use to=de to translate to German.
    * It's possible to translate to multiple languages simultaneously by repeating the parameter in the query string.
    * For example, use to=de&to=it to translate to German and Italian.
-   * This parameter could be formatted as multi collection string, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request.
    */
-  to: TranslateToQueryParam | string;
+  to: string[] | TranslateToQueryParam;
   /**
    * Specifies the language of the input text. Find which languages are available to translate from by
    * looking up supported languages using the translation scope. If the from parameter isn't specified,

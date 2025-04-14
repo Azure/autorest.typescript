@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets a dropped database's short term retention policy list.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets a dropped database's short term retention policy list.
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2020-11-01-preview/examples/GetListManagedShortTermRetentionPolicyRestorableDropped.json
  */
-async function getTheShortTermRetentionPolicyListForTheDatabase() {
+async function getTheShortTermRetentionPolicyListForTheDatabase(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -30,7 +28,7 @@ async function getTheShortTermRetentionPolicyListForTheDatabase() {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.managedRestorableDroppedDatabaseBackupShortTermRetentionPolicies.listByRestorableDroppedDatabase(
+  for await (const item of client.managedRestorableDroppedDatabaseBackupShortTermRetentionPolicies.listByRestorableDroppedDatabase(
     resourceGroupName,
     managedInstanceName,
     restorableDroppedDatabaseId,
@@ -40,8 +38,8 @@ async function getTheShortTermRetentionPolicyListForTheDatabase() {
   console.log(resArray);
 }
 
-async function main() {
-  getTheShortTermRetentionPolicyListForTheDatabase();
+async function main(): Promise<void> {
+  await getTheShortTermRetentionPolicyListForTheDatabase();
 }
 
 main().catch(console.error);

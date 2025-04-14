@@ -1,108 +1,110 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { AzureAIContext } from "../../api/azureAIContext.js";
-import {
-  get,
-  create,
-  list,
-  update,
-  getSchedule,
-  createOrReplaceSchedule,
-  listSchedule,
-  deleteSchedule,
-} from "../../api/evaluations/index.js";
-import {
-  EvaluationsGetOptionalParams,
-  EvaluationsCreateOptionalParams,
-  EvaluationsListOptionalParams,
-  EvaluationsUpdateOptionalParams,
-  EvaluationsGetScheduleOptionalParams,
-  EvaluationsCreateOrReplaceScheduleOptionalParams,
-  EvaluationsListScheduleOptionalParams,
-  EvaluationsDeleteScheduleOptionalParams,
-} from "../../api/options.js";
+import { AIProjectContext } from "../../api/aiProjectContext.js";
 import { Evaluation, EvaluationSchedule } from "../../models/models.js";
+import {
+  EvaluationsDisableScheduleOptionalParams,
+  EvaluationsListScheduleOptionalParams,
+  EvaluationsCreateOrReplaceScheduleOptionalParams,
+  EvaluationsGetScheduleOptionalParams,
+  EvaluationsUpdateOptionalParams,
+  EvaluationsListOptionalParams,
+  EvaluationsCreateOptionalParams,
+  EvaluationsGetOptionalParams,
+} from "../../api/evaluations/options.js";
+import {
+  disableSchedule,
+  listSchedule,
+  createOrReplaceSchedule,
+  getSchedule,
+  update,
+  list,
+  create,
+  get,
+} from "../../api/evaluations/operations.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 
 /** Interface representing a Evaluations operations. */
 export interface EvaluationsOperations {
-  /** Resource read operation template. */
-  get: (
-    id: string,
-    options?: EvaluationsGetOptionalParams,
-  ) => Promise<Evaluation>;
-  /** Run the evaluation. */
-  create: (
-    evaluation: Evaluation,
-    options?: EvaluationsCreateOptionalParams,
-  ) => Promise<Evaluation>;
+  /** Disable the evaluation schedule. */
+  disableSchedule: (
+    name: string,
+    options?: EvaluationsDisableScheduleOptionalParams,
+  ) => Promise<void>;
   /** Resource list operation template. */
-  list: (
-    options?: EvaluationsListOptionalParams,
-  ) => PagedAsyncIterableIterator<Evaluation>;
+  listSchedule: (
+    options?: EvaluationsListScheduleOptionalParams,
+  ) => PagedAsyncIterableIterator<EvaluationSchedule>;
+  /** Create or replace operation template. */
+  createOrReplaceSchedule: (
+    name: string,
+    resource: EvaluationSchedule,
+    options?: EvaluationsCreateOrReplaceScheduleOptionalParams,
+  ) => Promise<EvaluationSchedule>;
+  /** Resource read operation template. */
+  getSchedule: (
+    name: string,
+    options?: EvaluationsGetScheduleOptionalParams,
+  ) => Promise<EvaluationSchedule>;
   /** Resource update operation template. */
   update: (
     id: string,
     resource: Evaluation,
     options?: EvaluationsUpdateOptionalParams,
   ) => Promise<Evaluation>;
-  /** Resource read operation template. */
-  getSchedule: (
-    id: string,
-    options?: EvaluationsGetScheduleOptionalParams,
-  ) => Promise<EvaluationSchedule>;
-  /** Create or replace operation template. */
-  createOrReplaceSchedule: (
-    id: string,
-    resource: EvaluationSchedule,
-    options?: EvaluationsCreateOrReplaceScheduleOptionalParams,
-  ) => Promise<EvaluationSchedule>;
   /** Resource list operation template. */
-  listSchedule: (
-    options?: EvaluationsListScheduleOptionalParams,
-  ) => PagedAsyncIterableIterator<EvaluationSchedule>;
-  /** Resource delete operation template. */
-  deleteSchedule: (
+  list: (
+    options?: EvaluationsListOptionalParams,
+  ) => PagedAsyncIterableIterator<Evaluation>;
+  /** Run the evaluation. */
+  create: (
+    evaluation: Evaluation,
+    options?: EvaluationsCreateOptionalParams,
+  ) => Promise<Evaluation>;
+  /** Resource read operation template. */
+  get: (
     id: string,
-    options?: EvaluationsDeleteScheduleOptionalParams,
-  ) => Promise<void>;
+    options?: EvaluationsGetOptionalParams,
+  ) => Promise<Evaluation>;
 }
 
-export function getEvaluations(context: AzureAIContext) {
+function _getEvaluations(context: AIProjectContext) {
   return {
-    get: (id: string, options?: EvaluationsGetOptionalParams) =>
-      get(context, id, options),
-    create: (
-      evaluation: Evaluation,
-      options?: EvaluationsCreateOptionalParams,
-    ) => create(context, evaluation, options),
-    list: (options?: EvaluationsListOptionalParams) => list(context, options),
+    disableSchedule: (
+      name: string,
+      options?: EvaluationsDisableScheduleOptionalParams,
+    ) => disableSchedule(context, name, options),
+    listSchedule: (options?: EvaluationsListScheduleOptionalParams) =>
+      listSchedule(context, options),
+    createOrReplaceSchedule: (
+      name: string,
+      resource: EvaluationSchedule,
+      options?: EvaluationsCreateOrReplaceScheduleOptionalParams,
+    ) => createOrReplaceSchedule(context, name, resource, options),
+    getSchedule: (
+      name: string,
+      options?: EvaluationsGetScheduleOptionalParams,
+    ) => getSchedule(context, name, options),
     update: (
       id: string,
       resource: Evaluation,
       options?: EvaluationsUpdateOptionalParams,
     ) => update(context, id, resource, options),
-    getSchedule: (id: string, options?: EvaluationsGetScheduleOptionalParams) =>
-      getSchedule(context, id, options),
-    createOrReplaceSchedule: (
-      id: string,
-      resource: EvaluationSchedule,
-      options?: EvaluationsCreateOrReplaceScheduleOptionalParams,
-    ) => createOrReplaceSchedule(context, id, resource, options),
-    listSchedule: (options?: EvaluationsListScheduleOptionalParams) =>
-      listSchedule(context, options),
-    deleteSchedule: (
-      id: string,
-      options?: EvaluationsDeleteScheduleOptionalParams,
-    ) => deleteSchedule(context, id, options),
+    list: (options?: EvaluationsListOptionalParams) => list(context, options),
+    create: (
+      evaluation: Evaluation,
+      options?: EvaluationsCreateOptionalParams,
+    ) => create(context, evaluation, options),
+    get: (id: string, options?: EvaluationsGetOptionalParams) =>
+      get(context, id, options),
   };
 }
 
-export function getEvaluationsOperations(
-  context: AzureAIContext,
+export function _getEvaluationsOperations(
+  context: AIProjectContext,
 ): EvaluationsOperations {
   return {
-    ...getEvaluations(context),
+    ..._getEvaluations(context),
   };
 }

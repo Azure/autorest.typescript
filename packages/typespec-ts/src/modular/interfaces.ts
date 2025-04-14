@@ -1,12 +1,18 @@
-import { OptionalKind, ParameterDeclarationStructure } from "ts-morph";
-import { Parameter } from "./modularCodeModel.js";
+import { RLCOptions } from "@azure-tools/rlc-common";
 
-export interface ClientDetails {
-  name: string;
-  params?: OptionalKind<ParameterDeclarationStructure>[];
-  description: string;
-  baseUrl?: string;
-  credentialsParam?: Parameter;
+export interface ModularOptions {
+  sourceRoot: string;
+  compatibilityMode: boolean;
+  experimentalExtensibleEnums: boolean;
+}
+export interface ModularEmitterOptions {
+  options: RLCOptions;
+  modularOptions: ModularOptions;
+}
+
+export interface ModularClientOptions {
+  subfolder?: string;
+  rlcClientName: string;
 }
 
 export interface OperationPathAndDeserDetails {

@@ -19,9 +19,9 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 
 // @public
 export enum KnownServiceApiVersions {
-    V2021_10 = "2021-10",
-    V2022_10 = "2022-10",
-    V2023_07_01 = "2023-07-01"
+    V202110 = "2021-10",
+    V202210 = "2022-10",
+    V20230701 = "2023-07-01"
 }
 
 // @public
@@ -80,7 +80,7 @@ export interface SchemaOperationsOperations {
     getSchemaIdByContent: (groupName: string, name: string, contentType: SchemaContentTypeValues, schemaContent: Uint8Array, options?: SchemaOperationsGetSchemaIdByContentOptionalParams) => Promise<void>;
     listSchemaGroups: (options?: SchemaOperationsListSchemaGroupsOptionalParams) => PagedAsyncIterableIterator<SchemaGroup>;
     listSchemaVersions: (groupName: string, name: string, options?: SchemaOperationsListSchemaVersionsOptionalParams) => PagedAsyncIterableIterator<SchemaVersion>;
-    registerSchema: (groupName: string, name: string, contentType: SchemaContentTypeValues, content: Uint8Array, options?: SchemaOperationsRegisterSchemaOptionalParams) => Promise<void>;
+    registerSchema: (groupName: string, name: string, content: Uint8Array, contentType: SchemaContentTypeValues, options?: SchemaOperationsRegisterSchemaOptionalParams) => Promise<void>;
 }
 
 // @public
@@ -98,7 +98,7 @@ export interface SchemaProperties {
 
 // @public (undocumented)
 export class SchemaRegistryClient {
-    constructor(fullyQualifiedNamespace: string, credential: TokenCredential, options?: SchemaRegistryClientOptionalParams);
+    constructor(endpointParam: string, credential: TokenCredential, options?: SchemaRegistryClientOptionalParams);
     readonly pipeline: Pipeline;
     readonly schemaOperations: SchemaOperationsOperations;
 }

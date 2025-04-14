@@ -7,19 +7,18 @@ import {
   SdkUnionType,
   UsageFlags
 } from "@azure-tools/typespec-client-generator-core";
-import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
-
 import { SdkContext } from "../../utils/interfaces.js";
 import { getResponseMapping } from "../helpers/operationHelpers.js";
-import { getType } from "../buildCodeModel.js";
 import { normalizeModelName } from "../emitModels.js";
-import { NameType } from "@azure-tools/rlc-common";
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
 import {
   isDiscriminatedUnion,
   isSupportedSerializeType,
   ModelSerializeOptions
 } from "./serializeUtils.js";
+import { refkey } from "../../framework/refkey.js";
+import { resolveReference } from "../../framework/reference.js";
 
 export function buildModelDeserializer(
   context: SdkContext,
@@ -35,7 +34,8 @@ export function buildModelDeserializer(
     if (
       !type.usage ||
       (type.usage !== undefined &&
-        (type.usage & UsageFlags.Output) !== UsageFlags.Output)
+        (type.usage & UsageFlags.Output) !== UsageFlags.Output &&
+        (type.usage & UsageFlags.Exception) !== UsageFlags.Exception)
     ) {
       return undefined;
     }
@@ -123,7 +123,7 @@ function buildPolymorphicDeserializer(
     NameType.Operation
   )}Deserializer`;
   if (nameOnly) {
-    return deserializeFunctionName;
+    return resolveReference(refkey(type, "deserializer"));
   }
   const deserializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -158,12 +158,18 @@ function buildPolymorphicDeserializer(
     ) {
       return;
     }
-    const union = subType?.discriminatedSubtypes ? "Union" : "";
+    const union = subType?.discriminatedSubtypes ? "_Union" : "";
     if (!subType || subType?.name) {
       throw new Error(`NYI Serialization of anonymous types`);
     }
-    const subTypeName = `${toPascalCase(subType.name)}${union}`;
-    const subtypeDeserializerName = toCamelCase(`${subTypeName}Deserializer`);
+
+    const rawSubTypeName = `${subType.name}${union}`;
+    const subTypeName = `${normalizeName(rawSubTypeName, NameType.Interface, true)}`;
+    const subtypeDeserializerName = normalizeName(
+      `${subTypeName}Deserializer`,
+      NameType.Operation,
+      true
+    );
 
     cases.push(`
         case "${discriminatedValue}":
@@ -207,7 +213,7 @@ function buildDiscriminatedUnionDeserializer(
     NameType.Operation
   )}Deserializer`;
   if (nameOnly) {
-    return deserializeFunctionName;
+    return resolveReference(refkey(type, "deserializer"));
   }
   const baseDeserializerName = `${normalizeModelName(
     context,
@@ -226,8 +232,12 @@ function buildDiscriminatedUnionDeserializer(
     }
     const discriminatedValue = subType.discriminatorValue!;
     const union = subType.discriminatedSubtypes ? "Union" : "";
-    const subTypeName = `${toPascalCase(subType.name)}${union}`;
-    const subtypeDeserializerName = toCamelCase(`${subTypeName}Deserializer`);
+    const subTypeName = `${normalizeName(subType.name, NameType.Interface, true)}${union}`;
+    const subtypeDeserializerName = normalizeName(
+      `${subTypeName}Deserializer`,
+      NameType.Operation,
+      true
+    );
 
     cases.push(`
       case "${discriminatedValue}":
@@ -281,7 +291,7 @@ function buildUnionDeserializer(
     NameType.Operation
   )}Deserializer`;
   if (nameOnly) {
-    return deserializerFunctionName;
+    return resolveReference(refkey(type, "deserializer"));
   }
   const deserializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -317,7 +327,7 @@ function buildModelTypeDeserializer(
     options.skipDiscriminatedUnionSuffix
   )}Deserializer`;
   if (options.nameOnly) {
-    return deserializerFunctionName;
+    return resolveReference(refkey(type, "deserializer"));
   }
   const deserializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -344,11 +354,7 @@ function buildModelTypeDeserializer(
     ? "...item,"
     : "";
 
-  const propertiesStr = getResponseMapping(
-    context,
-    getType(context, type.__raw!),
-    "item"
-  );
+  const propertiesStr = getResponseMapping(context, type, "item");
   const propertiesDeserialization = propertiesStr.filter((p) => p.trim());
 
   const output = [];
@@ -401,16 +407,14 @@ function buildDictTypeDeserializer(
   if (typeof valueDeserializer !== "string") {
     return undefined;
   }
-  const valueTypeName = toCamelCase(
-    valueDeserializer ? valueDeserializer.replace("Deserializer", "") : ""
-  );
-  const deserializerFunctionName = `${valueTypeName}RecordDeserializer`;
+
+  const deserializerFunctionName = `${normalizeModelName(context, type, NameType.Operation, false, true)}Deserializer`;
   if (nameOnly) {
-    return deserializerFunctionName;
+    return resolveReference(refkey(type.valueType, "record", "deserializer"));
   }
   const deserializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
-    name: `${valueTypeName}RecordDeserializer`,
+    name: deserializerFunctionName,
     isExported: true,
     parameters: [
       {
@@ -462,12 +466,9 @@ function buildArrayTypeDeserializer(
   if (typeof valueDeserializer !== "string") {
     return undefined;
   }
-  const valueTypeName = toCamelCase(
-    valueDeserializer ? valueDeserializer.replace("Deserializer", "") : ""
-  );
-  const deserializerFunctionName = `${valueTypeName}ArrayDeserializer`;
+  const deserializerFunctionName = `${normalizeModelName(context, type, NameType.Operation, false, true)}Deserializer`;
   if (nameOnly) {
-    return deserializerFunctionName;
+    return resolveReference(refkey(type.valueType, "array", "deserializer"));
   }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,

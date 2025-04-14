@@ -5,9 +5,7 @@ import createAzureAgriFoodPlatformDataPlaneServiceClient, {
   paginate,
 } from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Returns a paginated list of weather data.
@@ -15,7 +13,7 @@ dotenv.config();
  * @summary Returns a paginated list of weather data.
  * x-ms-original-file: specification/agrifood/data-plane/Microsoft.AgFoodPlatform/preview/2021-03-31-preview/examples/Weather_List.json
  */
-async function weatherList() {
+async function weatherList(): Promise<void> {
   const endpoint = "{Endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
@@ -41,8 +39,8 @@ async function weatherList() {
   console.log(result);
 }
 
-async function main() {
-  weatherList();
+async function main(): Promise<void> {
+  await weatherList();
 }
 
 main().catch(console.error);

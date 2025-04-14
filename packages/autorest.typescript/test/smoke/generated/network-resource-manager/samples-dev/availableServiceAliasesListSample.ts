@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets all available service aliases for this subscription in this region.
@@ -20,20 +18,20 @@ dotenv.config();
  * @summary Gets all available service aliases for this subscription in this region.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/AvailableServiceAliasesList.json
  */
-async function getAvailableServiceAliases() {
+async function getAvailableServiceAliases(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subId";
   const location = "westcentralus";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.availableServiceAliases.list(location)) {
+  for await (const item of client.availableServiceAliases.list(location)) {
     resArray.push(item);
   }
   console.log(resArray);
 }
 
-async function main() {
-  getAvailableServiceAliases();
+async function main(): Promise<void> {
+  await getAvailableServiceAliases();
 }
 
 main().catch(console.error);

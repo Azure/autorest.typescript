@@ -1,6 +1,6 @@
-import { ClientOptions } from '@azure-rest/core-client';
-import { OperationOptions } from '@azure-rest/core-client';
-import { Pipeline } from '@azure/core-rest-pipeline';
+import { ClientOptions } from '@typespec/ts-http-runtime';
+import { OperationOptions } from '@typespec/ts-http-runtime';
+import { Pipeline } from '@typespec/ts-http-runtime';
 
 export declare interface Fish {
     kind: string;
@@ -29,12 +29,12 @@ export declare class NestedDiscriminatorClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: NestedDiscriminatorClientOptionalParams);
-    getModel(options?: GetModelOptionalParams): Promise<FishUnion>;
-    putModel(input: FishUnion, options?: PutModelOptionalParams): Promise<void>;
-    getRecursiveModel(options?: GetRecursiveModelOptionalParams): Promise<FishUnion>;
-    putRecursiveModel(input: FishUnion, options?: PutRecursiveModelOptionalParams): Promise<void>;
-    getMissingDiscriminator(options?: GetMissingDiscriminatorOptionalParams): Promise<FishUnion>;
     getWrongDiscriminator(options?: GetWrongDiscriminatorOptionalParams): Promise<FishUnion>;
+    getMissingDiscriminator(options?: GetMissingDiscriminatorOptionalParams): Promise<FishUnion>;
+    putRecursiveModel(input: FishUnion, options?: PutRecursiveModelOptionalParams): Promise<void>;
+    getRecursiveModel(options?: GetRecursiveModelOptionalParams): Promise<FishUnion>;
+    putModel(input: FishUnion, options?: PutModelOptionalParams): Promise<void>;
+    getModel(options?: GetModelOptionalParams): Promise<FishUnion>;
 }
 
 export declare interface NestedDiscriminatorClientOptionalParams extends ClientOptions {

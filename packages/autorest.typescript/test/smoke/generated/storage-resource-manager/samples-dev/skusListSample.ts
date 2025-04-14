@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { StorageManagementClient } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Lists the available SKUs supported by Microsoft.Storage for given subscription.
@@ -20,19 +18,19 @@ dotenv.config();
  * @summary Lists the available SKUs supported by Microsoft.Storage for given subscription.
  * x-ms-original-file: specification/storage/resource-manager/Microsoft.Storage/stable/2021-06-01/examples/SKUList.json
  */
-async function skuList() {
+async function skuList(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.skus.list()) {
+  for await (const item of client.skus.list()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
 
-async function main() {
-  skuList();
+async function main(): Promise<void> {
+  await skuList();
 }
 
 main().catch(console.error);

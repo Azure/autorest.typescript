@@ -17,24 +17,24 @@ model HealthInsightsOperationStatus<
 > {
   @key("operationId")
   @doc("The unique ID of the operation.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   id: Azure.Core.uuid;
 
   @doc("The status of the operation")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   @lroStatus
   status: JobStatus;
 
   @doc("The date and time when the processing job was created.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   createdDateTime?: utcDateTime;
 
   @doc("The date and time when the processing job is set to expire.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   expirationDateTime?: utcDateTime;
 
   @doc("The date and time when the processing job was last updated.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   lastUpdateDateTime?: utcDateTime;
 
   @doc("Error object that describes the error when status is \"Failed\".")

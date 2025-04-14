@@ -13,7 +13,7 @@ import "@typespec/http";
 using TypeSpec.Versioning;
 using TypeSpec.Http;
 
-@service({
+@service(#{
   title: "Microsoft.Contoso management service",
 })
 @versioned(Microsoft.Contoso.Versions)
@@ -49,7 +49,7 @@ Should normal operation with enum parameter:
 
 ```ts operations
 import { ContosoContext as Client } from "./index.js";
-import { Versions } from "../models/models.js";
+import { FooOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -59,14 +59,17 @@ import {
 
 export function _fooSend(
   context: Client,
-  apiVersion: Versions,
   options: FooOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { "api-version": apiVersion },
+      headers: {
+        "api-version": context.apiVersion,
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
@@ -83,10 +86,9 @@ export async function _fooDeserialize(
 
 export async function foo(
   context: Client,
-  apiVersion: Versions,
   options: FooOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _fooSend(context, apiVersion, options);
+  const result = await _fooSend(context, options);
   return _fooDeserialize(result);
 }
 ```

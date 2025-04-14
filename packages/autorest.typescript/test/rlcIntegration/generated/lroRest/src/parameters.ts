@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { RequestParameters } from "@azure-rest/core-client";
-import { Product, Sku, SubProduct } from "./models";
+import type { RequestParameters } from "@azure-rest/core-client";
+import type { Product, Sku, SubProduct } from "./models";
 
 export interface LROsPut200SucceededBodyParam {
   /** Product to put */

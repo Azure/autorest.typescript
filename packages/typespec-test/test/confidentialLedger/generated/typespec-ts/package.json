@@ -34,7 +34,8 @@
   "author": "Microsoft Corporation",
   "license": "MIT",
   "files": [
-    "dist",
+    "dist/",
+    "!dist/**/*.d.*ts.map",
     "README.md",
     "LICENSE",
     "review/*",
@@ -49,11 +50,11 @@
   },
   "devDependencies": {
     "dotenv": "^16.0.0",
-    "@microsoft/api-extractor": "^7.40.3",
     "@types/node": "^18.0.0",
-    "eslint": "^8.55.0",
-    "typescript": "~5.6.2",
+    "eslint": "^9.9.0",
+    "typescript": "~5.8.2",
     "tshy": "^2.0.0",
+    "@microsoft/api-extractor": "^7.40.3",
     "rimraf": "^5.0.5",
     "mkdirp": "^3.0.1"
   },

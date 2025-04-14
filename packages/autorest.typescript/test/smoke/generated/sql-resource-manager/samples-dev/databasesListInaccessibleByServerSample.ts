@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { SqlManagementClient } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets a list of inaccessible databases in a logical server
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets a list of inaccessible databases in a logical server
  * x-ms-original-file: specification/sql/resource-manager/Microsoft.Sql/preview/2021-05-01-preview/examples/ListVCoreInaccessibleDatabasesByServer.json
  */
-async function getsAListOfInaccessibleDatabasesInALogicalServer() {
+async function getsAListOfInaccessibleDatabasesInALogicalServer(): Promise<void> {
   const subscriptionId =
     process.env["SUBSCRIPTION_ID"] || "00000000-1111-2222-3333-444444444444";
   const resourceGroupName =
@@ -29,7 +27,7 @@ async function getsAListOfInaccessibleDatabasesInALogicalServer() {
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.databases.listInaccessibleByServer(
+  for await (const item of client.databases.listInaccessibleByServer(
     resourceGroupName,
     serverName,
   )) {
@@ -38,8 +36,8 @@ async function getsAListOfInaccessibleDatabasesInALogicalServer() {
   console.log(resArray);
 }
 
-async function main() {
-  getsAListOfInaccessibleDatabasesInALogicalServer();
+async function main(): Promise<void> {
+  await getsAListOfInaccessibleDatabasesInALogicalServer();
 }
 
 main().catch(console.error);

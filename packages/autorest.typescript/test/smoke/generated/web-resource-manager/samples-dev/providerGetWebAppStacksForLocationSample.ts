@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Description for Get available Web app frameworks and their versions for location
@@ -20,12 +18,12 @@ dotenv.config();
  * @summary Description for Get available Web app frameworks and their versions for location
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/GetWebAppStacksForLocation.json
  */
-async function getLocationsWebAppStacks() {
+async function getLocationsWebAppStacks(): Promise<void> {
   const location = "westus";
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential);
   const resArray = new Array();
-  for await (let item of client.provider.listWebAppStacksForLocation(
+  for await (const item of client.provider.listWebAppStacksForLocation(
     location,
   )) {
     resArray.push(item);
@@ -33,8 +31,8 @@ async function getLocationsWebAppStacks() {
   console.log(resArray);
 }
 
-async function main() {
-  getLocationsWebAppStacks();
+async function main(): Promise<void> {
+  await getLocationsWebAppStacks();
 }
 
 main().catch(console.error);

@@ -2,14 +2,14 @@
 // Licensed under the MIT License.
 
 import {
-  getFooOperationsOperations,
-  FooOperationsOperations,
-} from "./classic/fooOperations/index.js";
-import {
   createWidgetManager,
   WidgetManagerContext,
   WidgetManagerClientOptionalParams,
 } from "./api/index.js";
+import {
+  FooOperationsOperations,
+  _getFooOperationsOperations,
+} from "./classic/fooOperations/index.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
 
@@ -34,9 +34,9 @@ export class WidgetManagerClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this.fooOperations = getFooOperationsOperations(this._client);
+    this.fooOperations = _getFooOperationsOperations(this._client);
   }
 
-  /** The operation groups for FooOperations */
+  /** The operation groups for fooOperations */
   public readonly fooOperations: FooOperationsOperations;
 }

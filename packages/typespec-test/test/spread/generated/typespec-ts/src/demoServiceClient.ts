@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { getAOperations, AOperations } from "./classic/a/index.js";
 import {
   createDemoService,
   DemoServiceContext,
   DemoServiceClientOptionalParams,
 } from "./api/index.js";
+import { AOperations, _getAOperations } from "./classic/a/index.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { DemoServiceClientOptionalParams } from "./api/demoServiceContext.js";
@@ -29,9 +29,9 @@ export class DemoServiceClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this.a = getAOperations(this._client);
+    this.a = _getAOperations(this._client);
   }
 
-  /** The operation groups for A */
+  /** The operation groups for a */
   public readonly a: AOperations;
 }

@@ -1,20 +1,20 @@
-import { ClientOptions } from '@azure-rest/core-client';
-import { OperationOptions } from '@azure-rest/core-client';
-import { Pipeline } from '@azure/core-rest-pipeline';
+import { ClientOptions } from '@typespec/ts-http-runtime';
+import { OperationOptions } from '@typespec/ts-http-runtime';
+import { Pipeline } from '@typespec/ts-http-runtime';
 
 export declare enum KnownVersions {
-    v2021_01_01_preview = "2021-01-01-preview",
-    v2022_12_01_preview = "2022-12-01-preview"
+    V20210101Preview = "2021-01-01-preview",
+    V20221201Preview = "2022-12-01-preview"
 }
 
 export declare class VersionedClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(endpointParam: string, options?: VersionedClientOptionalParams);
-    withoutApiVersion(options?: WithoutApiVersionOptionalParams): Promise<void>;
-    withQueryApiVersion(options?: WithQueryApiVersionOptionalParams): Promise<void>;
-    withPathApiVersion(apiVersion: string, options?: WithPathApiVersionOptionalParams): Promise<void>;
     withQueryOldApiVersion(options?: WithQueryOldApiVersionOptionalParams): Promise<void>;
+    withPathApiVersion(options?: WithPathApiVersionOptionalParams): Promise<void>;
+    withQueryApiVersion(options?: WithQueryApiVersionOptionalParams): Promise<void>;
+    withoutApiVersion(options?: WithoutApiVersionOptionalParams): Promise<void>;
 }
 
 export declare interface VersionedClientOptionalParams extends ClientOptions {
@@ -28,11 +28,9 @@ export declare interface WithPathApiVersionOptionalParams extends OperationOptio
 }
 
 export declare interface WithQueryApiVersionOptionalParams extends OperationOptions {
-    apiVersion?: string;
 }
 
 export declare interface WithQueryOldApiVersionOptionalParams extends OperationOptions {
-    apiVersion?: string;
 }
 
 export { }

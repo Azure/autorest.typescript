@@ -19,7 +19,7 @@ using Azure.Core;
 using Azure.Core.Traits;
 
 @useAuth(AadOauth2Auth<["https://contoso.azure.com/.default"]>)
-@service({
+@service(#{
   title: "Contoso Widget Manager",
 })
 @versioned(Contoso.WidgetManager.Versions)
@@ -37,7 +37,7 @@ enum Versions {
 model WidgetSuite {
   @key("widgetName")
   @doc("The widget name.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   name: string;
 
   @doc("The ID of the widget's manufacturer.")
@@ -121,32 +121,45 @@ Raw json files.
 }
 ```
 
+This is the tspconfig.yaml.
+
+```yaml
+hierarchy-client: true
+enable-operation-group: false
+```
+
 ## Samples
 
 Generate samples for dpg cases:
 
 ```ts samples
-/** This file path is /samples-dev/widgetsCreateOrUpdateWidgetSample.ts */
+/** This file path is /samples-dev/widgetsListWidgetsSample.ts */
 import { WidgetManagerClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
 
 /**
- * This sample demonstrates how to creates or updates a Widget asynchronously.
+ * This sample demonstrates how to list Widget resources
  *
- * @summary creates or updates a Widget asynchronously.
- * x-ms-original-file: 2021-10-01-preview/json_for_Widgets_CreateOrUpdateWidget.json
+ * @summary list Widget resources
+ * x-ms-original-file: 2021-10-01-preview/json_for_Widgets_ListWidgets.json
  */
-async function widgetsCreateOrUpdateWidget() {
+async function widgetsListWidgets(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new WidgetManagerClient(credential);
-  const result = await client.widgets.createOrUpdateWidget("name1", {
-    manufacturerId: "manufacturer id1",
-  });
-  console.log(result);
+  const resArray = new Array();
+  for await (const item of client.widgets.listWidgets({
+    top: 8,
+    skip: 15,
+    maxpagesize: 27,
+  })) {
+    resArray.push(item);
+  }
+
+  console.log(resArray);
 }
 
-async function main() {
-  widgetsCreateOrUpdateWidget();
+async function main(): Promise<void> {
+  await widgetsListWidgets();
 }
 
 main().catch(console.error);
@@ -161,46 +174,40 @@ import { DefaultAzureCredential } from "@azure/identity";
  * @summary delete a Widget asynchronously.
  * x-ms-original-file: 2021-10-01-preview/json_for_Widgets_DeleteWidget.json
  */
-async function deleteWidgetByWidgetNameUsingLongRunningOperation() {
+async function deleteWidgetByWidgetNameUsingLongRunningOperation(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new WidgetManagerClient(credential);
   const result = await client.widgets.deleteWidget("searchbox");
   console.log(result);
 }
 
-async function main() {
-  deleteWidgetByWidgetNameUsingLongRunningOperation();
+async function main(): Promise<void> {
+  await deleteWidgetByWidgetNameUsingLongRunningOperation();
 }
 
 main().catch(console.error);
 
-/** This file path is /samples-dev/widgetsListWidgetsSample.ts */
+/** This file path is /samples-dev/widgetsCreateOrUpdateWidgetSample.ts */
 import { WidgetManagerClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
 
 /**
- * This sample demonstrates how to list Widget resources
+ * This sample demonstrates how to creates or updates a Widget asynchronously.
  *
- * @summary list Widget resources
- * x-ms-original-file: 2021-10-01-preview/json_for_Widgets_ListWidgets.json
+ * @summary creates or updates a Widget asynchronously.
+ * x-ms-original-file: 2021-10-01-preview/json_for_Widgets_CreateOrUpdateWidget.json
  */
-async function widgetsListWidgets() {
+async function widgetsCreateOrUpdateWidget(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = new WidgetManagerClient(credential);
-  const resArray = new Array();
-  for await (let item of client.widgets.listWidgets({
-    top: 8,
-    skip: 15,
-    maxpagesize: 27,
-  })) {
-    resArray.push(item);
-  }
-
-  console.log(resArray);
+  const result = await client.widgets.createOrUpdateWidget("name1", {
+    manufacturerId: "manufacturer id1",
+  });
+  console.log(result);
 }
 
-async function main() {
-  widgetsListWidgets();
+async function main(): Promise<void> {
+  await widgetsCreateOrUpdateWidget();
 }
 
 main().catch(console.error);

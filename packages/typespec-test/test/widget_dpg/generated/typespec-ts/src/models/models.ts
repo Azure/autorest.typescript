@@ -1,28 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-/** Details about a user. */
-export interface User {
-  /** The name of user. */
-  readonly name: string;
-  /** The role of user */
-  role: string;
-  /** The UUID of this widget. This is generated automatically by the service. */
-  id: string;
-}
-
-export function userSerializer(item: User): any {
-  return { role: item["role"], id: item["id"] };
-}
-
-export function userDeserializer(item: any): User {
-  return {
-    name: item["name"],
-    role: item["role"],
-    id: item["id"],
-  };
-}
-
 /** model interface Widget */
 export interface Widget {
   /** The UUID of this widget. This is generated automatically by the service. */
@@ -79,6 +57,28 @@ export function widgetArrayDeserializer(result: Array<Widget>): any[] {
   });
 }
 
+/** Details about a user. */
+export interface SAPUser {
+  /** The name of user. */
+  readonly name: string;
+  /** The role of user */
+  role: string;
+  /** The UUID of this widget. This is generated automatically by the service. */
+  id: string;
+}
+
+export function sapUserSerializer(item: SAPUser): any {
+  return { role: item["role"], id: item["id"] };
+}
+
+export function sapUserDeserializer(item: any): SAPUser {
+  return {
+    name: item["name"],
+    role: item["role"],
+    id: item["id"],
+  };
+}
+
 /** model interface AnalyzeResult */
 export interface AnalyzeResult {
   summary: string;
@@ -112,5 +112,5 @@ export function nonReferencedModelDeserializer(item: any): NonReferencedModel {
 /** The Contoso Widget Manager service version. */
 export enum KnownVersions {
   /** Version 2022-08-31 */
-  "1.0.0" = "1.0.0",
+  _100 = "1.0.0",
 }

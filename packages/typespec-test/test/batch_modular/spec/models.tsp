@@ -586,7 +586,7 @@ model ApplicationListResult {
 
   #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The URL to get the next set of results.")
-  @Azure.Core.nextLink
+  @TypeSpec.nextLink
   `odata.nextLink`?: string;
 }
 
@@ -642,7 +642,7 @@ model PoolListUsageMetricsResult {
 
   #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The URL to get the next set of results.")
-  @Azure.Core.nextLink
+  @TypeSpec.nextLink
   `odata.nextLink`?: string;
 }
 
@@ -673,7 +673,7 @@ model AccountListSupportedImagesResult {
 
   #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The URL to get the next set of results.")
-  @Azure.Core.nextLink
+  @TypeSpec.nextLink
   `odata.nextLink`?: string;
 }
 
@@ -725,7 +725,7 @@ model ImageReference {
   virtualMachineImageId?: string;
 
   @doc("The specific version of the platform image or marketplace image used to create the node. This read-only field differs from 'version' only if the value specified for 'version' when the pool was created was 'latest'.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   exactVersion?: string;
 }
 
@@ -738,7 +738,7 @@ model PoolNodeCountsListResult {
 
   #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The URL to get the next set of results.")
-  @Azure.Core.nextLink
+  @TypeSpec.nextLink
   `odata.nextLink`?: string;
 }
 
@@ -931,43 +931,43 @@ model BatchCertificate {
   thumbprintAlgorithm: string;
 
   @doc("The URL of the Certificate.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   url?: string;
 
   @doc("The state of the Certificate.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   state?: CertificateState;
 
   @doc("The time at which the Certificate entered its current state.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   stateTransitionTime?: utcDateTime;
 
   @doc("The previous state of the Certificate. This property is not set if the Certificate is in its initial active state.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   previousState?: CertificateState;
 
   @doc("The time at which the Certificate entered its previous state. This property is not set if the Certificate is in its initial Active state.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   previousStateTransitionTime?: utcDateTime;
 
   @doc("The public part of the Certificate as a base-64 encoded .cer file.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   publicData?: bytes;
 
   @doc("The error that occurred on the last attempt to delete this Certificate. This property is set only if the Certificate is in the DeleteFailed state.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   deleteCertificateError?: DeleteCertificateError;
 
   @doc("The base64-encoded contents of the Certificate. The maximum size is 10KB.")
-  @visibility("create")
+  @visibility(Lifecycle.Create)
   data: bytes;
 
   @doc("The format of the Certificate data.")
-  @visibility("create")
+  @visibility(Lifecycle.Create)
   certificateFormat?: CertificateFormat;
 
   @doc("The password to access the Certificate's private key. This must be omitted if the Certificate format is cer.")
-  @visibility("create")
+  @visibility(Lifecycle.Create)
   password?: string;
 }
 
@@ -1001,7 +1001,7 @@ model CertificateListResult {
 
   #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The URL to get the next set of results.")
-  @Azure.Core.nextLink
+  @TypeSpec.nextLink
   `odata.nextLink`?: string;
 }
 
@@ -1017,7 +1017,7 @@ model NodeFileListResult {
 
   #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The URL to get the next set of results.")
-  @Azure.Core.nextLink
+  @TypeSpec.nextLink
   `odata.nextLink`?: string;
 }
 
@@ -1060,43 +1060,43 @@ specification used to create each Job.
 """)
 model BatchJobSchedule {
   @doc("A string that uniquely identifies the schedule within the Account.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   id?: string;
 
   @doc("The display name for the schedule.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   displayName?: string;
 
   @doc("The URL of the Job Schedule.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   url?: string;
 
   @doc("The ETag of the Job Schedule. This is an opaque string. You can use it to detect whether the Job Schedule has changed between requests. In particular, you can be pass the ETag with an Update Job Schedule request to specify that your changes should take effect only if nobody else has modified the schedule in the meantime.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   eTag?: string;
 
   @doc("The last modified time of the Job Schedule. This is the last time at which the schedule level data, such as the Job specification or recurrence information, changed. It does not factor in job-level changes such as new Jobs being created or Jobs changing state.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   lastModified?: utcDateTime;
 
   @doc("The creation time of the Job Schedule.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   creationTime?: utcDateTime;
 
   @doc("The current state of the Job Schedule.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   state?: JobScheduleState;
 
   @doc("The time at which the Job Schedule entered the current state.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   stateTransitionTime?: utcDateTime;
 
   @doc("The previous state of the Job Schedule. This property is not present if the Job Schedule is in its initial active state.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   previousState?: JobScheduleState;
 
   @doc("The time at which the Job Schedule entered its previous state. This property is not present if the Job Schedule is in its initial active state.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   previousStateTransitionTime?: utcDateTime;
 
   @doc("The schedule according to which Jobs will be created. All times are fixed respective to UTC and are not impacted by daylight saving time.")
@@ -1106,14 +1106,14 @@ model BatchJobSchedule {
   jobSpecification: JobSpecification;
 
   @doc("Information about Jobs that have been and will be run under this schedule.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   executionInfo?: JobScheduleExecutionInformation;
 
   @doc("A list of name-value pairs associated with the schedule as metadata. The Batch service does not assign any meaning to metadata; it is solely for the use of user code.")
   metadata?: MetadataItem[];
 
   @doc("The lifetime resource usage statistics for the Job Schedule. The statistics may not be immediately available. The Batch service performs periodic roll-up of statistics. The typical delay is about 30 minutes.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   stats?: JobScheduleStatistics;
 }
 
@@ -2228,54 +2228,54 @@ model BatchJobScheduleListResult {
 
   #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The URL to get the next set of results.")
-  @Azure.Core.nextLink
+  @TypeSpec.nextLink
   `odata.nextLink`?: string;
 }
 
 @doc("An Azure Batch Job.")
 model BatchJob {
   @doc("A string that uniquely identifies the Job within the Account. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within an Account that differ only by case).")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   id?: string;
 
   @doc("The display name for the Job.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   displayName?: string;
 
   @doc("Whether Tasks in the Job can define dependencies on each other. The default is false.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   usesTaskDependencies?: boolean;
 
   @doc("The URL of the Job.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   url?: string;
 
   @doc("The ETag of the Job. This is an opaque string. You can use it to detect whether the Job has changed between requests. In particular, you can be pass the ETag when updating a Job to specify that your changes should take effect only if nobody else has modified the Job in the meantime.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   eTag?: string;
 
   @doc("The last modified time of the Job. This is the last time at which the Job level data, such as the Job state or priority, changed. It does not factor in task-level changes such as adding new Tasks or Tasks changing state.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   lastModified?: utcDateTime;
 
   @doc("The creation time of the Job.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   creationTime?: utcDateTime;
 
   @doc("The current state of the Job.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   state?: JobState;
 
   @doc("The time at which the Job entered its current state.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   stateTransitionTime?: utcDateTime;
 
   @doc("The previous state of the Job. This property is not set if the Job is in its initial Active state.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   previousState?: JobState;
 
   @doc("The time at which the Job entered its previous state. This property is not set if the Job is in its initial Active state.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   previousStateTransitionTime?: utcDateTime;
 
   @doc("The priority of the Job. Priority values can range from -1000 to 1000, with -1000 being the lowest priority and 1000 being the highest priority. The default value is 0.")
@@ -2291,19 +2291,19 @@ model BatchJob {
   constraints?: JobConstraints;
 
   @doc("Details of a Job Manager Task to be launched when the Job is started.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   jobManagerTask?: JobManagerTask;
 
   @doc("The Job Preparation Task. The Job Preparation Task is a special Task run on each Compute Node before any other Task of the Job.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   jobPreparationTask?: JobPreparationTask;
 
   @doc("The Job Release Task. The Job Release Task is a special Task run at the end of the Job on each Compute Node that has run any other Task of the Job.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   jobReleaseTask?: JobReleaseTask;
 
   @doc("The list of common environment variable settings. These environment variables are set for all Tasks in the Job (including the Job Manager, Job Preparation and Job Release Tasks). Individual Tasks can override an environment setting specified here by specifying the same setting name with a different value.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   commonEnvironmentSettings?: EnvironmentSetting[];
 
   @doc("The Pool settings associated with the Job.")
@@ -2313,22 +2313,22 @@ model BatchJob {
   onAllTasksComplete?: OnAllTasksComplete;
 
   @doc("The action the Batch service should take when any Task in the Job fails. A Task is considered to have failed if has a failureInfo. A failureInfo is set if the Task completes with a non-zero exit code after exhausting its retry count, or if there was an error starting the Task, for example due to a resource file download error. The default is noaction.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   onTaskFailure?: OnTaskFailure;
 
   @doc("The network configuration for the Job.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   networkConfiguration?: JobNetworkConfiguration;
 
   @doc("A list of name-value pairs associated with the Job as metadata. The Batch service does not assign any meaning to metadata; it is solely for the use of user code.")
   metadata?: MetadataItem[];
 
   @doc("The execution information for the Job.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   executionInfo?: JobExecutionInformation;
 
   @doc("Resource usage statistics for the entire lifetime of the Job. This property is populated only if the CloudJob was retrieved with an expand clause including the 'stats' attribute; otherwise it is null. The statistics may not be immediately available. The Batch service performs periodic roll-up of statistics. The typical delay is about 30 minutes.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   stats?: JobStatistics;
 }
 
@@ -2461,7 +2461,7 @@ model BatchJobListResult {
 
   #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The URL to get the next set of results.")
-  @Azure.Core.nextLink
+  @TypeSpec.nextLink
   `odata.nextLink`?: string;
 }
 
@@ -2477,7 +2477,7 @@ model BatchJobListPreparationAndReleaseTaskStatusResult {
 
   #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The URL to get the next set of results.")
-  @Azure.Core.nextLink
+  @TypeSpec.nextLink
   `odata.nextLink`?: string;
 }
 
@@ -2646,103 +2646,103 @@ model TaskSlotCounts {
 @doc("A Pool in the Azure Batch service.")
 model BatchPool {
   @doc("A string that uniquely identifies the Pool within the Account. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within an Account that differ only by case).")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   id?: string;
 
   @doc("The display name for the Pool. The display name need not be unique and can contain any Unicode characters up to a maximum length of 1024.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   displayName?: string;
 
   @doc("The URL of the Pool.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   url?: string;
 
   @doc("The ETag of the Pool. This is an opaque string. You can use it to detect whether the Pool has changed between requests. In particular, you can be pass the ETag when updating a Pool to specify that your changes should take effect only if nobody else has modified the Pool in the meantime.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   eTag?: string;
 
   @doc("The last modified time of the Pool. This is the last time at which the Pool level data, such as the targetDedicatedNodes or enableAutoscale settings, changed. It does not factor in node-level changes such as a Compute Node changing state.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   lastModified?: utcDateTime;
 
   @doc("The creation time of the Pool.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   creationTime?: utcDateTime;
 
   @doc("The current state of the Pool.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   state?: PoolState;
 
   @doc("The time at which the Pool entered its current state.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   stateTransitionTime?: utcDateTime;
 
   @doc("Whether the Pool is resizing.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   allocationState?: AllocationState;
 
   @doc("The time at which the Pool entered its current allocation state.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   allocationStateTransitionTime?: utcDateTime;
 
   @doc("The size of virtual machines in the Pool. All virtual machines in a Pool are the same size. For information about available sizes of virtual machines in Pools, see Choose a VM size for Compute Nodes in an Azure Batch Pool (https://docs.microsoft.com/azure/batch/batch-pool-vm-sizes).")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   vmSize?: string;
 
   @doc("The cloud service configuration for the Pool. This property and virtualMachineConfiguration are mutually exclusive and one of the properties must be specified. This property cannot be specified if the Batch Account was created with its poolAllocationMode property set to 'UserSubscription'.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   cloudServiceConfiguration?: CloudServiceConfiguration;
 
   @doc("The virtual machine configuration for the Pool. This property and cloudServiceConfiguration are mutually exclusive and one of the properties must be specified.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   virtualMachineConfiguration?: VirtualMachineConfiguration;
 
   @doc("The timeout for allocation of Compute Nodes to the Pool. This is the timeout for the most recent resize operation. (The initial sizing when the Pool is created counts as a resize.) The default value is 15 minutes.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   resizeTimeout?: duration;
 
   @doc("A list of errors encountered while performing the last resize on the Pool. This property is set only if one or more errors occurred during the last Pool resize, and only when the Pool allocationState is Steady.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   resizeErrors?: ResizeError[];
 
   @doc("The number of dedicated Compute Nodes currently in the Pool.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   currentDedicatedNodes?: int32;
 
   @doc("The number of Spot/Low-priority Compute Nodes currently in the Pool. Spot/Low-priority Compute Nodes which have been preempted are included in this count.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   currentLowPriorityNodes?: int32;
 
   @doc("The desired number of dedicated Compute Nodes in the Pool.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   targetDedicatedNodes?: int32;
 
   @doc("The desired number of Spot/Low-priority Compute Nodes in the Pool.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   targetLowPriorityNodes?: int32;
 
   @doc("Whether the Pool size should automatically adjust over time. If false, at least one of targetDedicatedNodes and targetLowPriorityNodes must be specified. If true, the autoScaleFormula property is required and the Pool automatically resizes according to the formula. The default value is false.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   enableAutoScale?: boolean;
 
   @doc("A formula for the desired number of Compute Nodes in the Pool. This property is set only if the Pool automatically scales, i.e. enableAutoScale is true.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   autoScaleFormula?: string;
 
   @doc("The time interval at which to automatically adjust the Pool size according to the autoscale formula. This property is set only if the Pool automatically scales, i.e. enableAutoScale is true.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   autoScaleEvaluationInterval?: duration;
 
   @doc("The results and errors from the last execution of the autoscale formula. This property is set only if the Pool automatically scales, i.e. enableAutoScale is true.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   autoScaleRun?: AutoScaleRun;
 
   @doc("Whether the Pool permits direct communication between Compute Nodes. This imposes restrictions on which Compute Nodes can be assigned to the Pool. Specifying this value can reduce the chance of the requested number of Compute Nodes to be allocated in the Pool.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   enableInterNodeCommunication?: boolean;
 
   @doc("The network configuration for the Pool.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   networkConfiguration?: NetworkConfiguration;
 
   @doc("A Task specified to run on each Compute Node as it joins the Pool.")
@@ -2754,50 +2754,50 @@ For Linux Compute Nodes, the Certificates are stored in a directory inside the T
 For Certificates with visibility of 'remoteUser', a 'certs' directory is created in the user's home directory (e.g., /home/{user-name}/certs) and Certificates are placed in that directory.
 Warning: This property is deprecated and will be removed after February, 2024. Please use the [Azure KeyVault Extension](https://learn.microsoft.com/azure/batch/batch-certificate-migration-guide) instead.
 """)
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   certificateReferences?: CertificateReference[];
 
   @doc("The list of Packages to be installed on each Compute Node in the Pool. Changes to Package references affect all new Nodes joining the Pool, but do not affect Compute Nodes that are already in the Pool until they are rebooted or reimaged. There is a maximum of 10 Package references on any given Pool.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   applicationPackageReferences?: ApplicationPackageReference[];
 
   @doc("The list of application licenses the Batch service will make available on each Compute Node in the Pool. The list of application licenses must be a subset of available Batch service application licenses. If a license is requested which is not supported, Pool creation will fail.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   applicationLicenses?: string[];
 
   @doc("The number of task slots that can be used to run concurrent tasks on a single compute node in the pool. The default value is 1. The maximum value is the smaller of 4 times the number of cores of the vmSize of the pool or 256.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   taskSlotsPerNode?: int32;
 
   @doc("How Tasks are distributed across Compute Nodes in a Pool. If not specified, the default is spread.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   taskSchedulingPolicy?: TaskSchedulingPolicy;
 
   @doc("The list of user Accounts to be created on each Compute Node in the Pool.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   userAccounts?: UserAccount[];
 
   @doc("A list of name-value pairs associated with the Pool as metadata.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   metadata?: MetadataItem[];
 
   @doc("Utilization and resource usage statistics for the entire lifetime of the Pool. This property is populated only if the CloudPool was retrieved with an expand clause including the 'stats' attribute; otherwise it is null. The statistics may not be immediately available. The Batch service performs periodic roll-up of statistics. The typical delay is about 30 minutes.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   stats?: PoolStatistics;
 
   @doc("A list of file systems to mount on each node in the pool. This supports Azure Files, NFS, CIFS/SMB, and Blobfuse.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   mountConfiguration?: MountConfiguration[];
 
   @doc("The identity of the Batch pool, if configured. The list of user identities associated with the Batch pool. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   identity?: BatchPoolIdentity;
 
   @doc("The desired node communication mode for the pool. If omitted, the default value is Default.")
   targetNodeCommunicationMode?: NodeCommunicationMode;
 
   @doc("The current state of the pool communication mode.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   currentNodeCommunicationMode?: NodeCommunicationMode;
 }
 
@@ -2981,11 +2981,11 @@ model UserAssignedIdentity {
   resourceId: string;
 
   @doc("The client id of the user assigned identity.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   clientId?: string;
 
   @doc("The principal id of the user assigned identity.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   principalId?: string;
 }
 
@@ -2998,7 +2998,7 @@ model BatchPoolListResult {
 
   #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The URL to get the next set of results.")
-  @Azure.Core.nextLink
+  @TypeSpec.nextLink
   `odata.nextLink`?: string;
 }
 
@@ -3057,110 +3057,110 @@ for long running Tasks is to use some form of checkpointing.
 """)
 model BatchTask {
   @doc("A string that uniquely identifies the Task within the Job. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   id?: string;
 
   @doc("A display name for the Task. The display name need not be unique and can contain any Unicode characters up to a maximum length of 1024.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   displayName?: string;
 
   @doc("The URL of the Task.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   url?: string;
 
   @doc("The ETag of the Task. This is an opaque string. You can use it to detect whether the Task has changed between requests. In particular, you can be pass the ETag when updating a Task to specify that your changes should take effect only if nobody else has modified the Task in the meantime.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   eTag?: string;
 
   @doc("The last modified time of the Task.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   lastModified?: utcDateTime;
 
   @doc("The creation time of the Task.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   creationTime?: utcDateTime;
 
   @doc("How the Batch service should respond when the Task completes.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   exitConditions?: ExitConditions;
 
   @doc("The current state of the Task.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   state?: TaskState;
 
   @doc("The time at which the Task entered its current state.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   stateTransitionTime?: utcDateTime;
 
   @doc("The previous state of the Task. This property is not set if the Task is in its initial Active state.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   previousState?: TaskState;
 
   @doc("The time at which the Task entered its previous state. This property is not set if the Task is in its initial Active state.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   previousStateTransitionTime?: utcDateTime;
 
   @doc("The command line of the Task. For multi-instance Tasks, the command line is executed as the primary Task, after the primary Task and all subtasks have finished executing the coordination command line. The command line does not run under a shell, and therefore cannot take advantage of shell features such as environment variable expansion. If you want to take advantage of such features, you should invoke the shell in the command line, for example using \"cmd /c MyCommand\" in Windows or \"/bin/sh -c MyCommand\" in Linux. If the command line refers to file paths, it should use a relative path (relative to the Task working directory), or use the Batch provided environment variable (https://docs.microsoft.com/en-us/azure/batch/batch-compute-node-environment-variables).")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   commandLine?: string;
 
   @doc("The settings for the container under which the Task runs. If the Pool that will run this Task has containerConfiguration set, this must be set as well. If the Pool that will run this Task doesn't have containerConfiguration set, this must not be set. When this is specified, all directories recursively below the AZ_BATCH_NODE_ROOT_DIR (the root of Azure Batch directories on the node) are mapped into the container, all Task environment variables are mapped into the container, and the Task command line is executed in the container. Files produced in the container outside of AZ_BATCH_NODE_ROOT_DIR might not be reflected to the host disk, meaning that Batch file APIs will not be able to access those files.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   containerSettings?: TaskContainerSettings;
 
   @doc("A list of files that the Batch service will download to the Compute Node before running the command line. For multi-instance Tasks, the resource files will only be downloaded to the Compute Node on which the primary Task is executed. There is a maximum size for the list of resource files.  When the max size is exceeded, the request will fail and the response error code will be RequestEntityTooLarge. If this occurs, the collection of ResourceFiles must be reduced in size. This can be achieved using .zip files, Application Packages, or Docker Containers.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   resourceFiles?: ResourceFile[];
 
   @doc("A list of files that the Batch service will upload from the Compute Node after running the command line. For multi-instance Tasks, the files will only be uploaded from the Compute Node on which the primary Task is executed.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   outputFiles?: OutputFile[];
 
   @doc("A list of environment variable settings for the Task.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   environmentSettings?: EnvironmentSetting[];
 
   @doc("A locality hint that can be used by the Batch service to select a Compute Node on which to start the new Task.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   affinityInfo?: AffinityInformation;
 
   @doc("The execution constraints that apply to this Task.")
   constraints?: TaskConstraints;
 
   @doc("The number of scheduling slots that the Task requires to run. The default is 1. A Task can only be scheduled to run on a compute node if the node has enough free scheduling slots available. For multi-instance Tasks, this must be 1.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   requiredSlots?: int32;
 
   @doc("The user identity under which the Task runs. If omitted, the Task runs as a non-administrative user unique to the Task.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   userIdentity?: UserIdentity;
 
   @doc("Information about the execution of the Task.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   executionInfo?: TaskExecutionInformation;
 
   @doc("Information about the Compute Node on which the Task ran.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   nodeInfo?: BatchNodeInformation;
 
   @doc("An object that indicates that the Task is a multi-instance Task, and contains information about how to run the multi-instance Task.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   multiInstanceSettings?: MultiInstanceSettings;
 
   @doc("Resource usage statistics for the Task.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   stats?: TaskStatistics;
 
   @doc("The Tasks that this Task depends on. This Task will not be scheduled until all Tasks that it depends on have completed successfully. If any of those Tasks fail and exhaust their retry counts, this Task will never be scheduled.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   dependsOn?: TaskDependencies;
 
   @doc("A list of Packages that the Batch service will deploy to the Compute Node before running the command line. Application packages are downloaded and deployed to a shared directory, not the Task working directory. Therefore, if a referenced package is already on the Node, and is up to date, then it is not re-downloaded; the existing copy on the Compute Node is used. If a referenced Package cannot be installed, for example because the package has been deleted or because download failed, the Task fails.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   applicationPackageReferences?: ApplicationPackageReference[];
 
   @doc("The settings for an authentication token that the Task can use to perform Batch service operations. If this property is set, the Batch service provides the Task with an authentication token which can be used to authenticate Batch service operations without requiring an Account access key. The token is provided via the AZ_BATCH_AUTHENTICATION_TOKEN environment variable. The operations that the Task can carry out using the token depend on the settings. For example, a Task can request Job permissions in order to add other Tasks to the Job, or check the status of the Job or of other Tasks under the Job.")
-  @visibility("read")
+  @visibility(Lifecycle.Read)
   authenticationTokenSettings?: AuthenticationTokenSettings;
 }
 
@@ -3422,7 +3422,7 @@ model BatchTaskListResult {
 
   #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The URL to get the next set of results.")
-  @Azure.Core.nextLink
+  @TypeSpec.nextLink
   `odata.nextLink`?: string;
 }
 
@@ -3783,7 +3783,7 @@ model BatchNodeListResult {
 
   #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The URL to get the next set of results.")
-  @Azure.Core.nextLink
+  @TypeSpec.nextLink
   `odata.nextLink`?: string;
 }
 
@@ -3840,6 +3840,6 @@ model NodeVMExtensionList {
   value?: NodeVMExtension[];
 
   @doc("The URL to get the next set of results.")
-  @Azure.Core.nextLink
+  @TypeSpec.nextLink
   `odata.nextLink`?: string;
 }

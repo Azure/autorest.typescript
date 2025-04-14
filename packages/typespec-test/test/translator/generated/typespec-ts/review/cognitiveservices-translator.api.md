@@ -4,13 +4,13 @@
 
 ```ts
 
-import { Client } from '@azure-rest/core-client';
-import { ClientOptions } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
-import { RawHttpHeaders } from '@azure/core-rest-pipeline';
-import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
-import { RequestParameters } from '@azure-rest/core-client';
-import { StreamableMethod } from '@azure-rest/core-client';
+import type { Client } from '@azure-rest/core-client';
+import type { ClientOptions } from '@azure-rest/core-client';
+import type { HttpResponse } from '@azure-rest/core-client';
+import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
+import type { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
+import type { RequestParameters } from '@azure-rest/core-client';
+import type { StreamableMethod } from '@azure-rest/core-client';
 
 // @public
 export interface AlignmentOutput {
@@ -96,9 +96,6 @@ export interface BreakSentenceQueryParamProperties {
     language?: string;
     script?: string;
 }
-
-// @public (undocumented)
-export function buildMultiCollection(items: string[], parameterName: string): string;
 
 // @public
 export interface CommonScriptModelOutput {
@@ -591,13 +588,13 @@ export interface TranslateQueryParamProperties {
     profanityMarker?: ProfanityMarkers;
     suggestedFrom?: string;
     textType?: TextTypes;
-    to: TranslateToQueryParam | string;
+    to: string[] | TranslateToQueryParam;
     toScript?: string;
 }
 
 // @public
 export interface TranslateToQueryParam {
-    explode: true;
+    explode: false;
     style: "form";
     value: string[];
 }

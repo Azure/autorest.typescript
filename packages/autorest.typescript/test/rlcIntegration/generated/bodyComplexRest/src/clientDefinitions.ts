@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
+import type {
   BasicGetValidParameters,
   BasicPutValidParameters,
   BasicGetInvalidParameters,
@@ -58,7 +58,7 @@ import {
   ReadonlypropertyPutValidParameters,
   FlattencomplexGetValidParameters,
 } from "./parameters";
-import {
+import type {
   BasicGetValid200Response,
   BasicGetValidDefaultResponse,
   BasicPutValid200Response,
@@ -169,7 +169,7 @@ import {
   ReadonlypropertyPutValidDefaultResponse,
   FlattencomplexGetValid200Response,
 } from "./responses";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface BasicGetValid {
   /** Get complex type {id: 2, name: 'abc', color: 'YELLOW'} */

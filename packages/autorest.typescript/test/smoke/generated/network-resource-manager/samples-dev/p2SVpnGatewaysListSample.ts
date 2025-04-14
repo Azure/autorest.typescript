@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Lists all the P2SVpnGateways in a subscription.
@@ -20,19 +18,19 @@ dotenv.config();
  * @summary Lists all the P2SVpnGateways in a subscription.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/P2SVpnGatewayList.json
  */
-async function p2SVpnGatewayListBySubscription() {
+async function p2SVpnGatewayListBySubscription(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.p2SVpnGateways.list()) {
+  for await (const item of client.p2SVpnGateways.list()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
 
-async function main() {
-  p2SVpnGatewayListBySubscription();
+async function main(): Promise<void> {
+  await p2SVpnGatewayListBySubscription();
 }
 
 main().catch(console.error);

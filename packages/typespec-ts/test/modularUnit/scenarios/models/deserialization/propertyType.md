@@ -1,4 +1,5 @@
 # Should generate deserializer for property types
+
 Will prompt all operations into top-level.
 
 ## TypeSpec
@@ -32,6 +33,7 @@ model SimpleModel {
   propStringArrayOptional?: string[];
   propSimpleUnionArrayOptional?: (string | boolean | int32)[];
   propRecordOfString: Record<string>;
+  propRecordOfDate: Record<utcDateTime>;
   propRecordOfBoolean: Record<boolean>;
   propRecordOfNumber: Record<int32>;
   propRecordOfSimpleUnion: Record<string | boolean | int32>;
@@ -56,7 +58,7 @@ interface D {
 This is the tspconfig.yaml.
 
 ```yaml
-experimentalExtensibleEnums: true
+experimental-extensible-enums: true
 ```
 
 ## Provide generated models and its serializer
@@ -91,6 +93,7 @@ export interface SimpleModel {
   propStringArrayOptional?: string[];
   propSimpleUnionArrayOptional?: (string | boolean | number)[];
   propRecordOfString: Record<string, string>;
+  propRecordOfDate: Record<string, Date>;
   propRecordOfBoolean: Record<string, boolean>;
   propRecordOfNumber: Record<string, number>;
   propRecordOfSimpleUnion: Record<string, string | boolean | number>;
@@ -151,7 +154,7 @@ export function simpleModelDeserializer(item: any): SimpleModel {
     propNumberArray: item["propNumberArray"].map((p: any) => {
       return p;
     }),
-    propSimpleUnionArray: simpleModelPropSimpleUnionArrayArrayDeserializer(
+    propSimpleUnionArray: _simpleModelPropSimpleUnionArrayArrayDeserializer(
       item["propSimpleUnionArray"],
     ),
     propStringArrayOptional: !item["propStringArrayOptional"]
@@ -161,14 +164,15 @@ export function simpleModelDeserializer(item: any): SimpleModel {
         }),
     propSimpleUnionArrayOptional: !item["propSimpleUnionArrayOptional"]
       ? item["propSimpleUnionArrayOptional"]
-      : simpleModelPropSimpleUnionArrayOptionalArrayDeserializer(
+      : _simpleModelPropSimpleUnionArrayOptionalArrayDeserializer(
           item["propSimpleUnionArrayOptional"],
         ),
     propRecordOfString: item["propRecordOfString"],
+    propRecordOfDate: item["propRecordOfDate"],
     propRecordOfBoolean: item["propRecordOfBoolean"],
     propRecordOfNumber: item["propRecordOfNumber"],
     propRecordOfSimpleUnion:
-      simpleModelPropRecordOfSimpleUnionRecordDeserializer(
+      _simpleModelPropRecordOfSimpleUnionRecordDeserializer(
         item["propRecordOfSimpleUnion"],
       ),
     propRecordOfStringOptional: item["propRecordOfStringOptional"],
@@ -186,21 +190,21 @@ export function simpleModelDeserializer(item: any): SimpleModel {
           return p;
         }),
     propRecordOfUnionArray:
-      simpleModelPropRecordOfUnionArrayArrayRecordDeserializer(
+      _simpleModelPropRecordOfUnionArrayArrayRecordDeserializer(
         item["propRecordOfUnionArray"],
       ),
     propRecordOfUnionArrayOptional: !item["propRecordOfUnionArrayOptional"]
       ? item["propRecordOfUnionArrayOptional"]
-      : simpleModelPropRecordOfUnionArrayOptionalArrayRecordDeserializer(
+      : _simpleModelPropRecordOfUnionArrayOptionalArrayRecordDeserializer(
           item["propRecordOfUnionArrayOptional"],
         ),
     propArrayOfRecordOfUnion:
-      simpleModelPropArrayOfRecordOfUnionRecordArrayDeserializer(
+      _simpleModelPropArrayOfRecordOfUnionRecordArrayDeserializer(
         item["propArrayOfRecordOfUnion"],
       ),
     propArrayOfRecordOfUnionOptional: !item["propArrayOfRecordOfUnionOptional"]
       ? item["propArrayOfRecordOfUnionOptional"]
-      : simpleModelPropArrayOfRecordOfUnionOptionalRecordArrayDeserializer(
+      : _simpleModelPropArrayOfRecordOfUnionOptionalRecordArrayDeserializer(
           item["propArrayOfRecordOfUnionOptional"],
         ),
     propEncoded: item["prop_encoded"],
@@ -234,7 +238,7 @@ export function _simpleModelPropMixedTypeLiteralDeserializer(
   return item;
 }
 
-export function simpleModelPropSimpleUnionArrayArrayDeserializer(
+export function _simpleModelPropSimpleUnionArrayArrayDeserializer(
   result: Array<_SimpleModelPropSimpleUnionArray>,
 ): any[] {
   return result.map((item) => {
@@ -251,7 +255,7 @@ export function _simpleModelPropSimpleUnionArrayDeserializer(
   return item;
 }
 
-export function simpleModelPropSimpleUnionArrayOptionalArrayDeserializer(
+export function _simpleModelPropSimpleUnionArrayOptionalArrayDeserializer(
   result: Array<_SimpleModelPropSimpleUnionArrayOptional>,
 ): any[] {
   return result.map((item) => {
@@ -271,7 +275,7 @@ export function _simpleModelPropSimpleUnionArrayOptionalDeserializer(
   return item;
 }
 
-export function simpleModelPropRecordOfSimpleUnionRecordDeserializer(
+export function _simpleModelPropRecordOfSimpleUnionRecordDeserializer(
   item: Record<string, any>,
 ): Record<string, _SimpleModelPropRecordOfSimpleUnion> {
   const result: Record<string, any> = {};
@@ -292,19 +296,19 @@ export function _simpleModelPropRecordOfSimpleUnionDeserializer(
   return item;
 }
 
-export function simpleModelPropRecordOfUnionArrayArrayRecordDeserializer(
+export function _simpleModelPropRecordOfUnionArrayArrayRecordDeserializer(
   item: Record<string, any>,
 ): Record<string, Array<_SimpleModelPropRecordOfUnionArray>> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
     result[key] = !item[key]
       ? item[key]
-      : simpleModelPropRecordOfUnionArrayArrayDeserializer(item[key]);
+      : _simpleModelPropRecordOfUnionArrayArrayDeserializer(item[key]);
   });
   return result;
 }
 
-export function simpleModelPropRecordOfUnionArrayArrayDeserializer(
+export function _simpleModelPropRecordOfUnionArrayArrayDeserializer(
   result: Array<_SimpleModelPropRecordOfUnionArray>,
 ): any[] {
   return result.map((item) => {
@@ -321,19 +325,19 @@ export function _simpleModelPropRecordOfUnionArrayDeserializer(
   return item;
 }
 
-export function simpleModelPropRecordOfUnionArrayOptionalArrayRecordDeserializer(
+export function _simpleModelPropRecordOfUnionArrayOptionalArrayRecordDeserializer(
   item: Record<string, any>,
 ): Record<string, Array<_SimpleModelPropRecordOfUnionArrayOptional>> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
     result[key] = !item[key]
       ? item[key]
-      : simpleModelPropRecordOfUnionArrayOptionalArrayDeserializer(item[key]);
+      : _simpleModelPropRecordOfUnionArrayOptionalArrayDeserializer(item[key]);
   });
   return result;
 }
 
-export function simpleModelPropRecordOfUnionArrayOptionalArrayDeserializer(
+export function _simpleModelPropRecordOfUnionArrayOptionalArrayDeserializer(
   result: Array<_SimpleModelPropRecordOfUnionArrayOptional>,
 ): any[] {
   return result.map((item) => {
@@ -353,15 +357,15 @@ export function _simpleModelPropRecordOfUnionArrayOptionalDeserializer(
   return item;
 }
 
-export function simpleModelPropArrayOfRecordOfUnionRecordArrayDeserializer(
+export function _simpleModelPropArrayOfRecordOfUnionRecordArrayDeserializer(
   result: Array<Record<string, _SimpleModelPropArrayOfRecordOfUnion>>,
 ): any[] {
   return result.map((item) => {
-    return simpleModelPropArrayOfRecordOfUnionRecordDeserializer(item);
+    return _simpleModelPropArrayOfRecordOfUnionRecordDeserializer(item);
   });
 }
 
-export function simpleModelPropArrayOfRecordOfUnionRecordDeserializer(
+export function _simpleModelPropArrayOfRecordOfUnionRecordDeserializer(
   item: Record<string, any>,
 ): Record<string, _SimpleModelPropArrayOfRecordOfUnion> {
   const result: Record<string, any> = {};
@@ -382,15 +386,15 @@ export function _simpleModelPropArrayOfRecordOfUnionDeserializer(
   return item;
 }
 
-export function simpleModelPropArrayOfRecordOfUnionOptionalRecordArrayDeserializer(
+export function _simpleModelPropArrayOfRecordOfUnionOptionalRecordArrayDeserializer(
   result: Array<Record<string, _SimpleModelPropArrayOfRecordOfUnionOptional>>,
 ): any[] {
   return result.map((item) => {
-    return simpleModelPropArrayOfRecordOfUnionOptionalRecordDeserializer(item);
+    return _simpleModelPropArrayOfRecordOfUnionOptionalRecordDeserializer(item);
   });
 }
 
-export function simpleModelPropArrayOfRecordOfUnionOptionalRecordDeserializer(
+export function _simpleModelPropArrayOfRecordOfUnionOptionalRecordDeserializer(
   item: Record<string, any>,
 ): Record<string, _SimpleModelPropArrayOfRecordOfUnionOptional> {
   const result: Record<string, any> = {};

@@ -1,12 +1,54 @@
 // Licensed under the MIT License.
 
-import TodoClient from "./todoClient.js";
+import { FileContents } from "./static-helpers/multipartHelpers.js";
+import {
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./static-helpers/pagingHelpers.js";
 
-export * from "./todoClient.js";
-export * from "./parameters.js";
-export * from "./responses.js";
-export * from "./clientDefinitions.js";
-export * from "./models.js";
-export * from "./outputModels.js";
-
-export default TodoClient;
+export { TodoClient } from "./todoClient.js";
+export {
+  User,
+  ApiError,
+  Standard4XXResponse,
+  Standard5XXResponse,
+  TodoItem,
+  TodoLabels,
+  TodoLabelRecord,
+  TodoAttachment,
+  ToDoItemMultipartRequest,
+  FileAttachmentMultipartRequest,
+} from "./models/index.js";
+export {
+  InvalidTodoItem,
+  NotFoundErrorResponse,
+  TodoItemPatch,
+} from "./models/todoItems/index.js";
+export {
+  UserCreatedResponse,
+  UserExistsResponse,
+  InvalidUserResponse,
+} from "./models/users/index.js";
+export { TodoClientOptionalParams } from "./api/index.js";
+export {
+  TodoItemsDeleteOptionalParams,
+  TodoItemsUpdateOptionalParams,
+  TodoItemsGetOptionalParams,
+  TodoItemsCreateFormOptionalParams,
+  TodoItemsCreateJsonOptionalParams,
+  TodoItemsListOptionalParams,
+} from "./api/todoItems/index.js";
+export { UsersCreateOptionalParams } from "./api/users/index.js";
+export {
+  TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
+  TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
+  TodoItemsAttachmentsListOptionalParams,
+} from "./api/todoItems/attachments/index.js";
+export {
+  TodoItemsOperations,
+  UsersOperations,
+  TodoItemsAttachmentsOperations,
+} from "./classic/index.js";
+export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
+export { FileContents };

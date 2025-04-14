@@ -37,8 +37,8 @@ op opTopLevel(@body body: A):  { @body body: {}};
 This is the tspconfig.yaml.
 
 ```yaml
-hierarchyClient: true
-enableOperationGroup: true
+hierarchy-client: true
+enable-operation-group: true
 ```
 
 ## Provided examples and generated samples
@@ -72,14 +72,14 @@ import { TestingClient } from "@azure/internal-test";
  * @summary show example opTopLevel
  * x-ms-original-file: 2021-10-01-preview/json_for_opTopLevel.json
  */
-async function opTopLevel() {
+async function opTopLevel(): Promise<void> {
   const client = new TestingClient();
   const result = await client.opTopLevel({ prop1: "body name" });
   console.log(result);
 }
 
-async function main() {
-  opTopLevel();
+async function main(): Promise<void> {
+  await opTopLevel();
 }
 
 main().catch(console.error);
@@ -114,14 +114,14 @@ import { TestingClient } from "@azure/internal-test";
  * @summary show example opD
  * x-ms-original-file: 2021-10-01-preview/json_for_opD.json
  */
-async function opD() {
+async function opD(): Promise<void> {
   const client = new TestingClient();
   const result = await client.d.opD({ prop1: "body name" });
   console.log(result);
 }
 
-async function main() {
-  opD();
+async function main(): Promise<void> {
+  await opD();
 }
 
 main().catch(console.error);
@@ -156,14 +156,14 @@ import { TestingClient } from "@azure/internal-test";
  * @summary execute opBEC
  * x-ms-original-file: 2021-10-01-preview/json_for_opBEC.json
  */
-async function opBEC() {
+async function opBEC(): Promise<void> {
   const client = new TestingClient();
   const result = await client.b.e.c.opBEC({ prop3: "body name" });
   console.log(result);
 }
 
-async function main() {
-  opBEC();
+async function main(): Promise<void> {
+  await opBEC();
 }
 
 main().catch(console.error);

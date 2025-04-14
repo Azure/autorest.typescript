@@ -23,7 +23,7 @@ async function generatePagingHelper(code: string) {
     @doc("List of items.")
     customizedItems: T[];
   
-    @global.Azure.Core.nextLink
+    @TypeSpec.nextLink
     @doc("Link to fetch more items.")
     #suppress "@azure-tools/typespec-azure-core/casing-style" "for test"
     \`@odata.nextLink\`?: string;
@@ -33,7 +33,7 @@ async function generatePagingHelper(code: string) {
   model Widget {
     @key("widgetName")
     @doc("The widget name.")
-    @visibility("read")
+    @visibility(Lifecycle.Read)
     name: string;
   }
     ${code}

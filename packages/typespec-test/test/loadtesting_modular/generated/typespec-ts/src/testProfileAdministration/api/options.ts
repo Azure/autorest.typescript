@@ -4,19 +4,6 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface CreateOrUpdateTestProfileOptionalParams
-  extends OperationOptions {
-  /** This request has a JSON Merge Patch body. */
-  contentType?: string;
-}
-
-/** Optional parameters. */
-export interface DeleteTestProfileOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface GetTestProfileOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
 export interface ListTestProfilesOptionalParams extends OperationOptions {
   /** Maximum number of results to include in a single response. */
   maxpagesize?: number;
@@ -29,3 +16,13 @@ export interface ListTestProfilesOptionalParams extends OperationOptions {
   /** Comma separated list IDs of the tests which should be associated with the test profiles to fetch. */
   testIds?: string;
 }
+
+/** Optional parameters. */
+export interface GetTestProfileOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface DeleteTestProfileOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface CreateOrUpdateTestProfileOptionalParams
+  extends OperationOptions {}

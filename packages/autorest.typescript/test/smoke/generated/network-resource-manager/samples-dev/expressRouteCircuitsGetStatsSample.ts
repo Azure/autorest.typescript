@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { NetworkManagementClient } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Gets all the stats from an express route circuit in a resource group.
@@ -20,7 +18,7 @@ dotenv.config();
  * @summary Gets all the stats from an express route circuit in a resource group.
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/ExpressRouteCircuitStats.json
  */
-async function getExpressRouteCircuitTrafficStats() {
+async function getExpressRouteCircuitTrafficStats(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "subid";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const circuitName = "circuitName";
@@ -33,8 +31,8 @@ async function getExpressRouteCircuitTrafficStats() {
   console.log(result);
 }
 
-async function main() {
-  getExpressRouteCircuitTrafficStats();
+async function main(): Promise<void> {
+  await getExpressRouteCircuitTrafficStats();
 }
 
 main().catch(console.error);

@@ -11,16 +11,17 @@ describe("Client Factory generation", () => {
         "localhost",
         "Language Service"
       )
-      @service( {title: "PetStoreClient"})
+      @service(#{title: "PetStoreClient"})
       namespace PetStore;
       `);
       assert.ok(models);
       await assertEqualContent(
         models!.content,
         `
-        import { getClient, ClientOptions } from "@azure-rest/core-client";
+        import type { ClientOptions } from "@azure-rest/core-client";
+        import { getClient } from "@azure-rest/core-client";
         import { logger } from "./logger.js";
-        import { testClient } from "./clientDefinitions.js";
+        import type { testClient } from "./clientDefinitions.js";
 
         /** The optional parameters for the client */
         export interface testClientOptions extends ClientOptions {}
@@ -66,7 +67,7 @@ describe("Client Factory generation", () => {
               Endpoint: Endpoint,
             }
           )
-          @service( {title: "PetStoreClient"})
+          @service(#{title: "PetStoreClient"})
           namespace PetStore;
           @doc("The endpoint to use.")
           scalar Endpoint extends string;
@@ -75,9 +76,10 @@ describe("Client Factory generation", () => {
       await assertEqualContent(
         models!.content,
         `
-          import { getClient, ClientOptions } from "@azure-rest/core-client";
+          import type { ClientOptions } from "@azure-rest/core-client";
+          import { getClient } from "@azure-rest/core-client";
           import { logger } from "./logger.js";
-          import { testClient } from "./clientDefinitions.js";
+          import type { testClient } from "./clientDefinitions.js";
           
           /** The optional parameters for the client */
           export interface testClientOptions extends ClientOptions {}
@@ -129,7 +131,7 @@ describe("Client Factory generation", () => {
           Version: Version
         }
       )
-      @service( {title: "PetStoreClient"})
+      @service(#{title: "PetStoreClient"})
       namespace PetStore;
       @doc("The endpoint to use.")
       scalar Endpoint extends string;
@@ -144,16 +146,17 @@ describe("Client Factory generation", () => {
       }
       `;
       const clientFactory = await emitClientFactoryFromTypeSpec(tsp, {
-        needAzureCore: true,
+        needAzureCore: true
       });
       assert.ok(clientFactory);
       await assertEqualContent(
         clientFactory!.content,
         `
-            import { getClient, ClientOptions } from "@azure-rest/core-client";
+            import type { ClientOptions } from "@azure-rest/core-client";
+            import { getClient } from "@azure-rest/core-client";
             import { logger } from "./logger.js";
-            import { testClient } from "./clientDefinitions.js";
-            import { Version } from "./models.js";
+            import type { testClient } from "./clientDefinitions.js";
+            import type { Version } from "./models.js";
             
             /** The optional parameters for the client */
             export interface testClientOptions extends ClientOptions {}
@@ -207,7 +210,7 @@ describe("Client Factory generation", () => {
                 Version: Versions
               }
             )
-            @service( {title: "PetStoreClient"})
+            @service(#{title: "PetStoreClient"})
             namespace PetStore;
             @doc("The endpoint to use.")
             scalar Endpoint extends string;
@@ -226,10 +229,11 @@ describe("Client Factory generation", () => {
       await assertEqualContent(
         models!.content,
         `
-            import { getClient, ClientOptions } from "@azure-rest/core-client";
+            import type { ClientOptions } from "@azure-rest/core-client";
+            import { getClient } from "@azure-rest/core-client";
             import { logger } from "./logger.js";
-            import { testClient } from "./clientDefinitions.js";
-            import { Versions } from "./models.js";
+            import type { testClient } from "./clientDefinitions.js";
+            import type { Versions } from "./models.js";
             
             /** The optional parameters for the client */
             export interface testClientOptions extends ClientOptions {}
@@ -284,7 +288,7 @@ describe("Client Factory generation", () => {
                 Version: Versions
               }
             )
-            @service( {title: "PetStoreClient"})
+            @service(#{title: "PetStoreClient"})
             namespace PetStore;
             @doc("The endpoint to use.")
             scalar Endpoint extends string;
@@ -303,10 +307,11 @@ describe("Client Factory generation", () => {
       await assertEqualContent(
         models!.content,
         `
-            import { getClient, ClientOptions } from "@azure-rest/core-client";
+            import type { ClientOptions } from "@azure-rest/core-client";
+            import { getClient } from "@azure-rest/core-client";
             import { logger } from "./logger.js";
-            import { testClient } from "./clientDefinitions.js";
-            import { Versions } from "./models.js";
+            import type { testClient } from "./clientDefinitions.js";
+            import type { Versions } from "./models.js";
             
             /** The optional parameters for the client */
             export interface testClientOptions extends ClientOptions {
@@ -356,16 +361,17 @@ describe("Client Factory generation", () => {
   describe("should handle no @server definition", () => {
     it("should set default endpoint parameter when no @server", async () => {
       const models = await emitClientFactoryFromTypeSpec(`
-      @service( {title: "PetStoreClient"})
+      @service(#{title: "PetStoreClient"})
       namespace PetStore;
       `);
       assert.ok(models);
       await assertEqualContent(
         models!.content,
         `
-        import { getClient, ClientOptions } from "@azure-rest/core-client";
+        import type { ClientOptions } from "@azure-rest/core-client";
+        import { getClient } from "@azure-rest/core-client";
         import { logger } from "./logger.js";
-        import { testClient } from "./clientDefinitions.js";
+        import type { testClient } from "./clientDefinitions.js";
         
         /** The optional parameters for the client */
         export interface testClientOptions extends ClientOptions {}
@@ -416,9 +422,9 @@ describe("Client Factory generation", () => {
               authorizationUrl: "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
               scopes: []
             }]>)
-          @service( {title: "PetStoreClient"})
+          @service(#{title: "PetStoreClient"})
           namespace PetStore;
-        `,
+        `
         );
         assert.fail("Should throw diagnostic errors");
       } catch (e) {
@@ -440,7 +446,7 @@ describe("Client Factory generation", () => {
             authorizationUrl: "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
             scopes: []
           }]>)
-        @service( {title: "PetStoreClient"})
+        @service(#{title: "PetStoreClient"})
         namespace PetStore;
       `,
         {
@@ -453,10 +459,11 @@ describe("Client Factory generation", () => {
       await assertEqualContent(
         factoryFile!.content,
         `
-      import { getClient, ClientOptions } from "@azure-rest/core-client";
+      import type { ClientOptions } from "@azure-rest/core-client";
+      import { getClient } from "@azure-rest/core-client";
       import { logger } from "./logger.js";
-      import { TokenCredential } from "@azure/core-auth";
-      import { testClient } from "./clientDefinitions.js";
+      import type { TokenCredential } from "@azure/core-auth";
+      import type { testClient } from "./clientDefinitions.js";
       
       /** The optional parameters for the client */
       export interface testClientOptions extends ClientOptions {}
@@ -505,17 +512,18 @@ describe("Client Factory generation", () => {
             authorizationUrl: "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
             scopes: ["https://petstor.com/default"]
           }]>)
-      @service( {title: "PetStoreClient"})
+      @service(#{title: "PetStoreClient"})
       namespace PetStore;
       `);
       assert.ok(models);
       await assertEqualContent(
         models!.content,
         `
-        import { getClient, ClientOptions } from "@azure-rest/core-client";
+        import type { ClientOptions } from "@azure-rest/core-client";
+        import { getClient } from "@azure-rest/core-client";
         import { logger } from "./logger.js";
-        import { TokenCredential, KeyCredential } from "@azure/core-auth";
-        import { testClient } from "./clientDefinitions.js";
+        import type { TokenCredential, KeyCredential } from "@azure/core-auth";
+        import type { testClient } from "./clientDefinitions.js";
         
         /** The optional parameters for the client */
         export interface testClientOptions extends ClientOptions {}
@@ -568,21 +576,19 @@ describe("Client Factory generation", () => {
             authorizationUrl: "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
             scopes: ["https://petstor.com/default"]
           }]>)
-      @service( {title: "PetStoreClient"})
+      @service(#{title: "PetStoreClient"})
       namespace PetStore;
       `);
       assert.ok(models);
       await assertEqualContent(
         models!.content,
         `
-        import { getClient, ClientOptions } from "@azure-rest/core-client";
+        import type { ClientOptions } from "@azure-rest/core-client";
+        import { getClient } from "@azure-rest/core-client";
         import { logger } from "./logger.js";
-        import {
-          TokenCredential,
-          KeyCredential,
-          isKeyCredential,
-        } from "@azure/core-auth";
-        import { testClient } from "./clientDefinitions.js";
+        import type { TokenCredential, KeyCredential } from "@azure/core-auth";
+        import { isKeyCredential } from "@azure/core-auth";
+        import type { testClient } from "./clientDefinitions.js";
         
         /** The optional parameters for the client */
         export interface testClientOptions extends ClientOptions {}

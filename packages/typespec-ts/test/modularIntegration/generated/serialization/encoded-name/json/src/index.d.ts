@@ -1,6 +1,6 @@
-import { ClientOptions } from '@azure-rest/core-client';
-import { OperationOptions } from '@azure-rest/core-client';
-import { Pipeline } from '@azure/core-rest-pipeline';
+import { ClientOptions } from '@typespec/ts-http-runtime';
+import { OperationOptions } from '@typespec/ts-http-runtime';
+import { Pipeline } from '@typespec/ts-http-runtime';
 
 export declare interface GetOptionalParams extends OperationOptions {
 }
@@ -9,8 +9,8 @@ export declare class JsonClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: JsonClientOptionalParams);
-    send(body: JsonEncodedNameModel, options?: SendOptionalParams): Promise<void>;
     get(options?: GetOptionalParams): Promise<JsonEncodedNameModel>;
+    send(body: JsonEncodedNameModel, options?: SendOptionalParams): Promise<void>;
 }
 
 export declare interface JsonClientOptionalParams extends ClientOptions {

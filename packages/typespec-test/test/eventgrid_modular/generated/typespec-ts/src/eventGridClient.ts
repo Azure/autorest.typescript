@@ -5,32 +5,36 @@ import {
   createEventGrid,
   EventGridContext,
   EventGridClientOptionalParams,
-  publishCloudEvent,
-  publishCloudEvents,
-  receiveCloudEvents,
-  acknowledgeCloudEvents,
-  releaseCloudEvents,
-  rejectCloudEvents,
-  PublishCloudEventOptionalParams,
-  PublishCloudEventsOptionalParams,
-  ReceiveCloudEventsOptionalParams,
-  AcknowledgeCloudEventsOptionalParams,
-  ReleaseCloudEventsOptionalParams,
-  RejectCloudEventsOptionalParams,
 } from "./api/index.js";
 import {
   CloudEvent,
   PublishResult,
   ReceiveResult,
-  AcknowledgeOptions,
   AcknowledgeResult,
-  ReleaseOptions,
   ReleaseResult,
-  RejectOptions,
   RejectResult,
+  RenewCloudEventLocksResult,
 } from "./models/models.js";
+import {
+  RenewCloudEventLocksOptionalParams,
+  RejectCloudEventsOptionalParams,
+  ReleaseCloudEventsOptionalParams,
+  AcknowledgeCloudEventsOptionalParams,
+  ReceiveCloudEventsOptionalParams,
+  PublishCloudEventsOptionalParams,
+  PublishCloudEventOptionalParams,
+} from "./api/options.js";
+import {
+  renewCloudEventLocks,
+  rejectCloudEvents,
+  releaseCloudEvents,
+  acknowledgeCloudEvents,
+  receiveCloudEvents,
+  publishCloudEvents,
+  publishCloudEvent,
+} from "./api/operations.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { KeyCredential } from "@azure/core-auth";
+import { KeyCredential, TokenCredential } from "@azure/core-auth";
 
 export { EventGridClientOptionalParams } from "./api/eventGridContext.js";
 
@@ -42,7 +46,7 @@ export class EventGridClient {
   /** Azure Messaging EventGrid Client */
   constructor(
     endpointParam: string,
-    credential: KeyCredential,
+    credential: KeyCredential | TokenCredential,
     options: EventGridClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
@@ -56,27 +60,71 @@ export class EventGridClient {
     this.pipeline = this._client.pipeline;
   }
 
-  /** Publish Single Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status code with an empty JSON object in response. Otherwise, the server can return various error codes. For example, 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410: which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error. */
-  publishCloudEvent(
+  /** Renew locks for a batch of Cloud Events. The response will include the set of successfully renewed lock tokens, along with other failed lock tokens with their corresponding error information. Successfully renewed locks will ensure that the associated event is only available to the consumer that holds the renewed lock. */
+  renewCloudEventLocks(
     topicName: string,
-    event: {
-      event: CloudEvent;
-    },
-    options: PublishCloudEventOptionalParams = { requestOptions: {} },
-  ): Promise<PublishResult> {
-    return publishCloudEvent(this._client, topicName, event, options);
+    eventSubscriptionName: string,
+    lockTokens: string[],
+    options: RenewCloudEventLocksOptionalParams = { requestOptions: {} },
+  ): Promise<RenewCloudEventLocksResult> {
+    return renewCloudEventLocks(
+      this._client,
+      topicName,
+      eventSubscriptionName,
+      lockTokens,
+      options,
+    );
   }
 
-  /** Publish Batch Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status code with an empty JSON object in response. Otherwise, the server can return various error codes. For example, 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410: which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error. */
-  publishCloudEvents(
+  /** Reject a batch of Cloud Events. The response will include the set of successfully rejected lock tokens, along with other failed lock tokens with their corresponding error information. Successfully rejected events will be dead-lettered and can no longer be received by a consumer. */
+  rejectCloudEvents(
     topicName: string,
-    events: CloudEvent[],
-    options: PublishCloudEventsOptionalParams = { requestOptions: {} },
-  ): Promise<PublishResult> {
-    return publishCloudEvents(this._client, topicName, events, options);
+    eventSubscriptionName: string,
+    lockTokens: string[],
+    options: RejectCloudEventsOptionalParams = { requestOptions: {} },
+  ): Promise<RejectResult> {
+    return rejectCloudEvents(
+      this._client,
+      topicName,
+      eventSubscriptionName,
+      lockTokens,
+      options,
+    );
   }
 
-  /** Receive Batch of Cloud Events from the Event Subscription. */
+  /** Release a batch of Cloud Events. The response will include the set of successfully released lock tokens, along with other failed lock tokens with their corresponding error information. Successfully released events can be received by consumers. */
+  releaseCloudEvents(
+    topicName: string,
+    eventSubscriptionName: string,
+    lockTokens: string[],
+    options: ReleaseCloudEventsOptionalParams = { requestOptions: {} },
+  ): Promise<ReleaseResult> {
+    return releaseCloudEvents(
+      this._client,
+      topicName,
+      eventSubscriptionName,
+      lockTokens,
+      options,
+    );
+  }
+
+  /** Acknowledge a batch of Cloud Events. The response will include the set of successfully acknowledged lock tokens, along with other failed lock tokens with their corresponding error information. Successfully acknowledged events will no longer be available to be received by any consumer. */
+  acknowledgeCloudEvents(
+    topicName: string,
+    eventSubscriptionName: string,
+    lockTokens: string[],
+    options: AcknowledgeCloudEventsOptionalParams = { requestOptions: {} },
+  ): Promise<AcknowledgeResult> {
+    return acknowledgeCloudEvents(
+      this._client,
+      topicName,
+      eventSubscriptionName,
+      lockTokens,
+      options,
+    );
+  }
+
+  /** Receive a batch of Cloud Events from a subscription. */
   receiveCloudEvents(
     topicName: string,
     eventSubscriptionName: string,
@@ -90,51 +138,21 @@ export class EventGridClient {
     );
   }
 
-  /** Acknowledge batch of Cloud Events. The server responds with an HTTP 200 status code if at least one event is successfully acknowledged. The response body will include the set of successfully acknowledged lockTokens, along with other failed lockTokens with their corresponding error information. Successfully acknowledged events will no longer be available to any consumer. */
-  acknowledgeCloudEvents(
+  /** Publish a batch of Cloud Events to a namespace topic. */
+  publishCloudEvents(
     topicName: string,
-    eventSubscriptionName: string,
-    lockTokens: AcknowledgeOptions,
-    options: AcknowledgeCloudEventsOptionalParams = { requestOptions: {} },
-  ): Promise<AcknowledgeResult> {
-    return acknowledgeCloudEvents(
-      this._client,
-      topicName,
-      eventSubscriptionName,
-      lockTokens,
-      options,
-    );
+    events: CloudEvent[],
+    options: PublishCloudEventsOptionalParams = { requestOptions: {} },
+  ): Promise<PublishResult> {
+    return publishCloudEvents(this._client, topicName, events, options);
   }
 
-  /** Release batch of Cloud Events. The server responds with an HTTP 200 status code if at least one event is successfully released. The response body will include the set of successfully released lockTokens, along with other failed lockTokens with their corresponding error information. */
-  releaseCloudEvents(
+  /** Publish a single Cloud Event to a namespace topic. */
+  publishCloudEvent(
     topicName: string,
-    eventSubscriptionName: string,
-    lockTokens: ReleaseOptions,
-    options: ReleaseCloudEventsOptionalParams = { requestOptions: {} },
-  ): Promise<ReleaseResult> {
-    return releaseCloudEvents(
-      this._client,
-      topicName,
-      eventSubscriptionName,
-      lockTokens,
-      options,
-    );
-  }
-
-  /** Reject batch of Cloud Events. */
-  rejectCloudEvents(
-    topicName: string,
-    eventSubscriptionName: string,
-    lockTokens: RejectOptions,
-    options: RejectCloudEventsOptionalParams = { requestOptions: {} },
-  ): Promise<RejectResult> {
-    return rejectCloudEvents(
-      this._client,
-      topicName,
-      eventSubscriptionName,
-      lockTokens,
-      options,
-    );
+    event: CloudEvent,
+    options: PublishCloudEventOptionalParams = { requestOptions: {} },
+  ): Promise<PublishResult> {
+    return publishCloudEvent(this._client, topicName, event, options);
   }
 }

@@ -66,6 +66,7 @@ function getAzureCjsCommonInfo({
   return {
     files: [
       "dist/",
+      "!dist/**/*.d.*ts.map",
       withTests || withSamples ? "dist-esm/src/" : "dist-esm/",
       `types/${nameWithoutScope ?? name}.d.ts`,
       "README.md",
@@ -81,7 +82,14 @@ function getAzureEsmCommonInfo({ moduleKind }: AzurePackageInfoConfig) {
     return {};
   }
   return {
-    files: ["dist", "README.md", "LICENSE", "review/*", "CHANGELOG.md"]
+    files: [
+      "dist/",
+      "!dist/**/*.d.*ts.map",
+      "README.md",
+      "LICENSE",
+      "review/*",
+      "CHANGELOG.md"
+    ]
   };
 }
 
@@ -96,15 +104,14 @@ function getAzurePackageCjsDevDependencies({
     "@azure-tools/test-credential": "^1.1.0",
     "@azure-tools/test-recorder": "^3.0.0",
     nyc: "^15.1.0",
-    mocha: "^10.0.0",
+    mocha: "^11.0.2",
     "@types/mocha": "^10.0.0",
-    "cross-env": "^7.0.2",
     "@types/chai": "^4.2.8",
     chai: "^4.2.0",
     "karma-chrome-launcher": "^3.0.0",
     "karma-coverage": "^2.0.0",
     "karma-env-preprocessor": "^0.1.1",
-    "karma-firefox-launcher": "^2.1.2",
+    "karma-firefox-launcher": "^2.1.3",
     "karma-junit-reporter": "^2.0.1",
     "karma-mocha-reporter": "^2.2.5",
     "karma-mocha": "^2.0.1",
@@ -132,10 +139,10 @@ function getAzurePackageEsmDevDependencies({
   if (withTests) {
     devDependencies = {
       ...devDependencies,
-      "@vitest/browser": "^2.0.5",
-      "@vitest/coverage-istanbul": "^2.0.5",
+      "@vitest/browser": "^3.0.3",
+      "@vitest/coverage-istanbul": "^3.0.3",
       playwright: "^1.41.2",
-      vitest: "^2.0.5",
+      vitest: "^3.0.3",
       "@azure-tools/test-credential": "^2.0.0",
       "@azure-tools/test-recorder": "^4.0.0"
     };

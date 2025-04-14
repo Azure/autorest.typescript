@@ -6,40 +6,6 @@
   },
   "tags": [],
   "paths": {
-    "/forgot-password": {
-      "post": {
-        "operationId": "Users_forgotPassword",
-        "description": "Sends a reset token to the user's email address",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "The request has succeeded."
-          },
-          "404": {
-            "description": "The server cannot find the requested resource."
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "email": {
-                    "type": "string",
-                    "description": "The user's email address"
-                  }
-                },
-                "required": [
-                  "email"
-                ]
-              }
-            }
-          }
-        }
-      }
-    },
     "/items": {
       "get": {
         "operationId": "TodoItems_list",
@@ -58,6 +24,26 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TodoItems.TodoPage"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Something is wrong with you.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Standard4XXResponse"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Something is wrong with me.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Standard5XXResponse"
                 }
               }
             }
@@ -87,6 +73,26 @@
                 }
               }
             }
+          },
+          "4XX": {
+            "description": "Something is wrong with you.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Standard4XXResponse"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Something is wrong with me.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Standard5XXResponse"
+                }
+              }
+            }
           }
         },
         "requestBody": {
@@ -97,46 +103,31 @@
                 "type": "object",
                 "properties": {
                   "item": {
-                    "$ref": "#/components/schemas/TodoItem"
+                    "$ref": "#/components/schemas/TodoItemCreate"
                   },
                   "attachments": {
                     "type": "array",
                     "items": {
-                      "$ref": "#/components/schemas/TodoUrlAttachment"
-                    }
-                  }
-                },
-                "required": [
-                  "item",
-                  "attachments"
-                ]
-              }
-            },
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "item": {
-                    "$ref": "#/components/schemas/TodoItem"
-                  },
-                  "attachments": {
-                    "type": "array",
-                    "items": {
-                      "anyOf": [
-                        {
-                          "$ref": "#/components/schemas/TodoUrlAttachment"
-                        },
-                        {
-                          "type": "string",
-                          "format": "byte"
-                        }
-                      ]
+                      "$ref": "#/components/schemas/TodoAttachment"
                     }
                   }
                 },
                 "required": [
                   "item"
                 ]
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ToDoItemMultipartRequest"
+              },
+              "encoding": {
+                "item": {
+                  "contentType": "application/json"
+                },
+                "attachments": {
+                  "contentType": "*/*"
+                }
               }
             }
           }
@@ -153,7 +144,8 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int64"
+              "format": "int64",
+              "readOnly": true
             }
           }
         ],
@@ -169,7 +161,14 @@
             }
           },
           "404": {
-            "description": "The server cannot find the requested resource."
+            "description": "The server cannot find the requested resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TodoItems.NotFoundErrorResponse"
+                }
+              }
+            }
           }
         }
       },
@@ -182,7 +181,8 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int64"
+              "format": "int64",
+              "readOnly": true
             }
           }
         ],
@@ -203,12 +203,7 @@
           "content": {
             "application/merge-patch+json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "patch": {
-                    "$ref": "#/components/schemas/TodoItems.TodoItemPatch"
-                  }
-                }
+                "$ref": "#/components/schemas/TodoItems.TodoItemPatch"
               }
             }
           }
@@ -223,16 +218,44 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int64"
+              "format": "int64",
+              "readOnly": true
             }
           }
         ],
         "responses": {
-          "200": {
-            "description": "The request has succeeded."
+          "204": {
+            "description": "There is no content to send for this request, but the headers may be useful."
           },
           "404": {
-            "description": "The server cannot find the requested resource."
+            "description": "The server cannot find the requested resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TodoItems.NotFoundErrorResponse"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Something is wrong with you.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Standard4XXResponse"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Something is wrong with me.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Standard5XXResponse"
+                }
+              }
+            }
           }
         }
       }
@@ -247,7 +270,8 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int64"
+              "format": "int64",
+              "readOnly": true
             }
           }
         ],
@@ -257,21 +281,56 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/TodoAttachment"
+                  "type": "object",
+                  "required": [
+                    "items"
+                  ],
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TodoAttachment"
+                      }
+                    }
                   }
                 }
               }
             }
           },
           "404": {
-            "description": "The server cannot find the requested resource."
+            "description": "The server cannot find the requested resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TodoItems.NotFoundErrorResponse"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Something is wrong with you.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Standard4XXResponse"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Something is wrong with me.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Standard5XXResponse"
+                }
+              }
+            }
           }
         }
       },
       "post": {
-        "operationId": "Attachments_createUrlAttachment_Attachments_createFileAttachment",
+        "operationId": "Attachments_createJsonAttachment_Attachments_createFileAttachment",
         "parameters": [
           {
             "name": "itemId",
@@ -279,16 +338,44 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int64"
+              "format": "int64",
+              "readOnly": true
             }
           }
         ],
         "responses": {
-          "200": {
-            "description": "The request has succeeded."
+          "204": {
+            "description": "There is no content to send for this request, but the headers may be useful."
           },
           "404": {
-            "description": "The server cannot find the requested resource."
+            "description": "The server cannot find the requested resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TodoItems.NotFoundErrorResponse"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Something is wrong with you.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Standard4XXResponse"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Something is wrong with me.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Standard5XXResponse"
+                }
+              }
+            }
           }
         },
         "requestBody": {
@@ -296,105 +383,19 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "contents": {
-                    "$ref": "#/components/schemas/TodoUrlAttachment"
-                  }
-                },
-                "required": [
-                  "contents"
-                ]
+                "$ref": "#/components/schemas/TodoAttachment"
               }
             },
             "multipart/form-data": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "contents": {
-                    "type": "string",
-                    "format": "binary"
-                  }
-                },
-                "required": [
-                  "contents"
-                ]
+                "$ref": "#/components/schemas/FileAttachmentMultipartRequest"
+              },
+              "encoding": {
+                "contents": {
+                  "contentType": "*/*"
+                }
               }
             }
-          }
-        }
-      }
-    },
-    "/login": {
-      "post": {
-        "operationId": "Users_login",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "The request has succeeded."
-          },
-          "401": {
-            "description": "Access is unauthorized."
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "username": {
-                    "type": "string",
-                    "maxLength": 50,
-                    "description": "The user's username"
-                  },
-                  "password": {
-                    "type": "string",
-                    "description": "The user's password, provided when creating a user\nbut is otherwise not visible (and hashed by the backend)"
-                  }
-                },
-                "required": [
-                  "username",
-                  "password"
-                ]
-              }
-            }
-          }
-        }
-      }
-    },
-    "/logout": {
-      "get": {
-        "operationId": "Users_logout",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "The request has succeeded."
-          }
-        }
-      }
-    },
-    "/reset-password": {
-      "get": {
-        "operationId": "Users_resetPassword",
-        "parameters": [
-          {
-            "name": "resetToken",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "explode": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The request has succeeded."
-          },
-          "404": {
-            "description": "The server cannot find the requested resource."
           }
         }
       }
@@ -433,6 +434,26 @@
                 }
               }
             }
+          },
+          "4XX": {
+            "description": "Something is wrong with you.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Standard4XXResponse"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Something is wrong with me.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Standard5XXResponse"
+                }
+              }
+            }
           }
         },
         "requestBody": {
@@ -440,56 +461,23 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "user": {
-                    "$ref": "#/components/schemas/User"
-                  }
-                },
-                "required": [
-                  "user"
-                ]
+                "$ref": "#/components/schemas/User"
               }
             }
           }
-        }
-      }
-    },
-    "/validate": {
-      "get": {
-        "operationId": "Users_validate",
-        "parameters": [
-          {
-            "name": "token",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "explode": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The request has succeeded."
-          },
-          "422": {
-            "description": "The user is invalid (e.g. forgot to enter email address)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Users.InvalidUserResponse"
-                }
-              }
-            }
-          }
-        }
+        },
+        "security": [
+          {}
+        ]
       }
     }
   },
   "security": [
     {
       "BearerAuth": []
+    },
+    {
+      "ApiKeyAuth": []
     }
   ],
   "components": {
@@ -497,7 +485,7 @@
       "TodoItems.PaginationControls.limit": {
         "name": "limit",
         "in": "query",
-        "required": true,
+        "required": false,
         "description": "The limit to the number of items",
         "schema": {
           "type": "integer",
@@ -509,7 +497,7 @@
       "TodoItems.PaginationControls.offset": {
         "name": "offset",
         "in": "query",
-        "required": true,
+        "required": false,
         "description": "The offset to start paginating at",
         "schema": {
           "type": "integer",
@@ -520,7 +508,7 @@
       }
     },
     "schemas": {
-      "Error": {
+      "ApiError": {
         "type": "object",
         "required": [
           "code",
@@ -533,34 +521,67 @@
           },
           "message": {
             "type": "string",
-            "description": "A human readable message"
+            "description": "A human readable message",
+            "x-ms-primary-error-message": true
           }
         }
       },
-      "TodoAttachment": {
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/TodoFileAttachment"
-          },
-          {
-            "$ref": "#/components/schemas/TodoUrlAttachment"
+      "FileAttachmentMultipartRequest": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "string",
+            "format": "binary"
           }
+        },
+        "required": [
+          "contents"
         ]
       },
-      "TodoFileAttachment": {
+      "Standard4XXResponse": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ApiError"
+          }
+        ],
+        "description": "Something is wrong with you."
+      },
+      "Standard5XXResponse": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ApiError"
+          }
+        ],
+        "description": "Something is wrong with me."
+      },
+      "ToDoItemMultipartRequest": {
+        "type": "object",
+        "properties": {
+          "item": {
+            "$ref": "#/components/schemas/TodoItemCreate"
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "binary"
+            }
+          }
+        },
+        "required": [
+          "item"
+        ]
+      },
+      "TodoAttachment": {
         "type": "object",
         "required": [
-          "todoItemId",
           "filename",
           "mediaType",
-          "url"
+          "contents"
         ],
         "properties": {
-          "todoItemId": {
-            "type": "integer",
-            "format": "int64",
-            "description": "The todo item this is attached to"
-          },
           "filename": {
             "type": "string",
             "maxLength": 255,
@@ -570,10 +591,10 @@
             "type": "string",
             "description": "The media type of the attachment"
           },
-          "url": {
+          "contents": {
             "type": "string",
-            "format": "uri",
-            "description": "The url where the attachment can be downloaded from"
+            "format": "byte",
+            "description": "The contents of the file"
           }
         }
       },
@@ -583,19 +604,16 @@
           "id",
           "title",
           "createdBy",
-          "ownedBy",
-          "description",
           "status",
           "createdAt",
-          "updatedAt",
-          "completedAt",
-          "labels"
+          "updatedAt"
         ],
         "properties": {
           "id": {
             "type": "integer",
             "format": "int64",
-            "description": "The item's unique id"
+            "description": "The item's unique id",
+            "readOnly": true
           },
           "title": {
             "type": "string",
@@ -608,7 +626,7 @@
             "description": "User that created the todo",
             "readOnly": true
           },
-          "ownedBy": {
+          "assignedTo": {
             "type": "integer",
             "format": "int64",
             "description": "User that the todo is assigned to",
@@ -646,30 +664,23 @@
             "readOnly": true
           },
           "labels": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TodoLabel"
-            }
+            "$ref": "#/components/schemas/TodoLabels"
           }
         }
       },
-      "TodoItems.InvalidTodoItem": {
+      "TodoItemCreate": {
         "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Error"
-          }
-        ]
-      },
-      "TodoItems.TodoItemPatch": {
-        "type": "object",
+        "required": [
+          "title",
+          "status"
+        ],
         "properties": {
           "title": {
             "type": "string",
             "maxLength": 255,
             "description": "The item's title"
           },
-          "ownedBy": {
+          "assignedTo": {
             "type": "integer",
             "format": "int64",
             "description": "User that the todo is assigned to",
@@ -687,6 +698,65 @@
               "Completed"
             ],
             "description": "The status of the todo item"
+          },
+          "labels": {
+            "$ref": "#/components/schemas/TodoLabels"
+          },
+          "_dummy": {
+            "type": "string"
+          }
+        }
+      },
+      "TodoItems.InvalidTodoItem": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ApiError"
+          }
+        ]
+      },
+      "TodoItems.NotFoundErrorResponse": {
+        "type": "object",
+        "required": [
+          "code"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "not-found"
+            ]
+          }
+        }
+      },
+      "TodoItems.TodoItemPatch": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 255,
+            "description": "The item's title"
+          },
+          "assignedTo": {
+            "type": "integer",
+            "format": "int64",
+            "description": "User that the todo is assigned to",
+            "readOnly": true,
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "A longer description of the todo item in markdown format",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "NotStarted",
+              "InProgress",
+              "Completed"
+            ],
+            "description": "The status of the todo item"
           }
         }
       },
@@ -694,7 +764,8 @@
         "type": "object",
         "required": [
           "items",
-          "pagination"
+          "pageSize",
+          "totalSize"
         ],
         "properties": {
           "items": {
@@ -704,52 +775,56 @@
             },
             "description": "The items in the page"
           },
-          "pagination": {
-            "type": "object",
-            "properties": {
-              "pageSize": {
-                "type": "integer",
-                "format": "int32",
-                "description": "The number of items returned in this page"
-              },
-              "totalSize": {
-                "type": "integer",
-                "format": "int32",
-                "description": "The total number of items"
-              },
-              "limit": {
-                "type": "integer",
-                "format": "int32",
-                "description": "The limit to the number of items",
-                "default": 50
-              },
-              "offset": {
-                "type": "integer",
-                "format": "int32",
-                "description": "The offset to start paginating at",
-                "default": 0
-              },
-              "prevLink": {
-                "type": "string",
-                "format": "uri",
-                "description": "A link to the previous page, if it exists"
-              },
-              "nextLink": {
-                "type": "string",
-                "format": "uri",
-                "description": "A link to the next page, if it exists"
-              }
-            },
-            "required": [
-              "pageSize",
-              "totalSize",
-              "limit",
-              "offset"
-            ]
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The number of items returned in this page"
+          },
+          "totalSize": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The total number of items"
+          },
+          "limit": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The limit to the number of items",
+            "default": 50
+          },
+          "offset": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The offset to start paginating at",
+            "default": 0
+          },
+          "prevLink": {
+            "type": "string",
+            "format": "uri",
+            "description": "A link to the previous page, if it exists"
+          },
+          "nextLink": {
+            "type": "string",
+            "format": "uri",
+            "description": "A link to the next page, if it exists"
           }
         }
       },
-      "TodoLabel": {
+      "TodoLabelRecord": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string",
+            "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+          }
+        }
+      },
+      "TodoLabels": {
         "anyOf": [
           {
             "type": "string"
@@ -771,38 +846,6 @@
           }
         ]
       },
-      "TodoLabelRecord": {
-        "type": "object",
-        "required": [
-          "name"
-        ],
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "color": {
-            "type": "string"
-          }
-        }
-      },
-      "TodoUrlAttachment": {
-        "type": "object",
-        "required": [
-          "description",
-          "url"
-        ],
-        "properties": {
-          "description": {
-            "type": "string",
-            "description": "A description of the URL"
-          },
-          "url": {
-            "type": "string",
-            "format": "uri",
-            "description": "The url"
-          }
-        }
-      },
       "User": {
         "type": "object",
         "required": [
@@ -813,6 +856,7 @@
         "properties": {
           "username": {
             "type": "string",
+            "minLength": 2,
             "maxLength": 50,
             "description": "The user's username"
           },
@@ -828,9 +872,20 @@
       },
       "Users.InvalidUserResponse": {
         "type": "object",
+        "required": [
+          "code"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "invalid-user"
+            ]
+          }
+        },
         "allOf": [
           {
-            "$ref": "#/components/schemas/Error"
+            "$ref": "#/components/schemas/ApiError"
           }
         ],
         "description": "The user is invalid (e.g. forgot to enter email address)"
@@ -852,6 +907,7 @@
           },
           "username": {
             "type": "string",
+            "minLength": 2,
             "maxLength": 50,
             "description": "The user's username"
           },
@@ -867,9 +923,20 @@
       },
       "Users.UserExistsResponse": {
         "type": "object",
+        "required": [
+          "code"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "user-exists"
+            ]
+          }
+        },
         "allOf": [
           {
-            "$ref": "#/components/schemas/Error"
+            "$ref": "#/components/schemas/ApiError"
           }
         ],
         "description": "The user already exists"
@@ -878,7 +945,12 @@
     "securitySchemes": {
       "BearerAuth": {
         "type": "http",
-        "scheme": "bearer"
+        "scheme": "Bearer"
+      },
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "session-id"
       }
     }
   }

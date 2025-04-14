@@ -1,6 +1,6 @@
-import { ClientOptions } from '@azure-rest/core-client';
-import { OperationOptions } from '@azure-rest/core-client';
-import { Pipeline } from '@azure/core-rest-pipeline';
+import { ClientOptions } from '@typespec/ts-http-runtime';
+import { OperationOptions } from '@typespec/ts-http-runtime';
+import { Pipeline } from '@typespec/ts-http-runtime';
 
 export declare class MediaTypeClient {
     private _client;
@@ -19,18 +19,16 @@ export declare interface StringBodyGetAsTextOptionalParams extends OperationOpti
 }
 
 export declare interface StringBodyOperations {
-    sendAsText: (text: string, options?: StringBodySendAsTextOptionalParams) => Promise<void>;
-    getAsText: (options?: StringBodyGetAsTextOptionalParams) => Promise<string>;
-    sendAsJson: (text: string, options?: StringBodySendAsJsonOptionalParams) => Promise<void>;
     getAsJson: (options?: StringBodyGetAsJsonOptionalParams) => Promise<string>;
+    sendAsJson: (text: string, options?: StringBodySendAsJsonOptionalParams) => Promise<void>;
+    getAsText: (options?: StringBodyGetAsTextOptionalParams) => Promise<string>;
+    sendAsText: (text: string, options?: StringBodySendAsTextOptionalParams) => Promise<void>;
 }
 
 export declare interface StringBodySendAsJsonOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 export declare interface StringBodySendAsTextOptionalParams extends OperationOptions {
-    contentType?: string;
 }
 
 export { }

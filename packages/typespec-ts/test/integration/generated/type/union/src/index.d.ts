@@ -1,8 +1,8 @@
-import { Client } from '@azure-rest/core-client';
-import { ClientOptions } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
-import { RequestParameters } from '@azure-rest/core-client';
-import { StreamableMethod } from '@azure-rest/core-client';
+import type { Client } from '@typespec/ts-http-runtime';
+import type { ClientOptions } from '@typespec/ts-http-runtime';
+import type { HttpResponse } from '@typespec/ts-http-runtime';
+import type { RequestParameters } from '@typespec/ts-http-runtime';
+import type { StreamableMethod } from '@typespec/ts-http-runtime';
 
 export declare interface Cat {
     name: string;
@@ -24,13 +24,13 @@ export declare interface DogOutput {
 }
 
 export declare interface EnumsOnlyCases {
-    lr: Lr | Ud;
-    ud: Ud | Ud;
+    lr: LR | UD;
+    ud: UD | UD;
 }
 
 export declare interface EnumsOnlyCasesOutput {
-    lr: LrOutput | UdOutput;
-    ud: UdOutput | UdOutput;
+    lr: LROutput | UDOutput;
+    ud: UDOutput | UDOutput;
 }
 
 export declare interface EnumsOnlyGet {
@@ -111,9 +111,9 @@ export declare interface IntsOnlySendBodyParam {
 
 export declare type IntsOnlySendParameters = IntsOnlySendBodyParam & RequestParameters;
 
-export declare type Lr = "left" | "right";
+export declare type LR = "left" | "right";
 
-export declare type LrOutput = "left" | "right";
+export declare type LROutput = "left" | "right";
 
 export declare interface MixedLiteralsCases {
     stringLiteral: "a" | 2 | 3.3 | true;
@@ -354,9 +354,9 @@ export declare interface StringsOnlySendBodyParam {
 
 export declare type StringsOnlySendParameters = StringsOnlySendBodyParam & RequestParameters;
 
-export declare type Ud = "up" | "down";
+export declare type UD = "up" | "down";
 
-export declare type UdOutput = "up" | "down";
+export declare type UDOutput = "up" | "down";
 
 export declare type UnionsClient = Client & {
     path: Routes;

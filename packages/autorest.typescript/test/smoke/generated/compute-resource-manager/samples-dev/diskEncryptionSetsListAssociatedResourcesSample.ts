@@ -10,9 +10,7 @@
 // Licensed under the MIT License.
 import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import "dotenv/config";
 
 /**
  * This sample demonstrates how to Lists all resources that are encrypted with this disk encryption set.
@@ -20,14 +18,14 @@ dotenv.config();
  * @summary Lists all resources that are encrypted with this disk encryption set.
  * x-ms-original-file: specification/compute/resource-manager/Microsoft.Compute/stable/2021-04-01/examples/ListDiskEncryptionSetAssociatedResources.json
  */
-async function listAllResourcesThatAreEncryptedWithThisDiskEncryptionSet() {
+async function listAllResourcesThatAreEncryptedWithThisDiskEncryptionSet(): Promise<void> {
   const subscriptionId = process.env["SUBSCRIPTION_ID"] || "{subscription-id}";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const diskEncryptionSetName = "myDiskEncryptionSet";
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const resArray = new Array();
-  for await (let item of client.diskEncryptionSets.listAssociatedResources(
+  for await (const item of client.diskEncryptionSets.listAssociatedResources(
     resourceGroupName,
     diskEncryptionSetName,
   )) {
@@ -36,8 +34,8 @@ async function listAllResourcesThatAreEncryptedWithThisDiskEncryptionSet() {
   console.log(resArray);
 }
 
-async function main() {
-  listAllResourcesThatAreEncryptedWithThisDiskEncryptionSet();
+async function main(): Promise<void> {
+  await listAllResourcesThatAreEncryptedWithThisDiskEncryptionSet();
 }
 
 main().catch(console.error);
