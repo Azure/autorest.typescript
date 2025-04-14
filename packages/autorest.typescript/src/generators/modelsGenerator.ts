@@ -56,23 +56,19 @@ export function generateModels(clientDetails: ClientDetails, project: Project) {
 
   if (!useCoreV2) {
     modelsIndexFile.addImportDeclaration({
-      isTypeOnly: true,
       namespaceImport: "coreHttp",
       moduleSpecifier: "@azure/core-http"
     });
   } else {
     modelsIndexFile.addImportDeclaration({
-      isTypeOnly: true,
       namespaceImport: "coreClient",
       moduleSpecifier: "@azure/core-client"
     });
     modelsIndexFile.addImportDeclaration({
-      isTypeOnly: true,
       namespaceImport: "coreRestPipeline",
       moduleSpecifier: "@azure/core-rest-pipeline"
     });
     modelsIndexFile.addImportDeclaration({
-      isTypeOnly: true,
       namespaceImport: "coreHttpCompat",
       moduleSpecifier: "@azure/core-http-compat"
     });

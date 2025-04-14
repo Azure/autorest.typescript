@@ -36,7 +36,6 @@ export async function runAutorest(
     generateSample,
     lenientModelDeduplication,
     flavor,
-    moduleKind
   } = options;
   let autorestCommand = `autorest${/^win/.test(process.platform) ? ".cmd" : ""
     }`;
@@ -160,10 +159,6 @@ export async function runAutorest(
   );
   if (debugging) {
     commandArguments.push(`--typescript.debugger`);
-  }
-
-  if (moduleKind) {
-    commandArguments.push(`--module-kind=${moduleKind}`);
   }
 
   if (extraParams !== undefined && extraParams.length > 0) {

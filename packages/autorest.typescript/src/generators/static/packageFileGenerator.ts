@@ -61,7 +61,7 @@ function regularAutorestPackage(
     generateSample,
     coreHttpCompatMode,
     azureSdkForJs,
-    moduleKind
+    isTestPackage
   } = getAutorestOptions();
   const { model } = getSession();
   const { addCredentials } = getSecurityInfoFromModel(model.security);
@@ -105,6 +105,7 @@ function regularAutorestPackage(
     main: "./dist/commonjs/index.js",
     module: "./dist/esm/index.js",
     types: "./dist/commonjs/index.d.ts",
+    type: "module",
     devDependencies: {
       "@microsoft/api-extractor": "^7.40.3",
       mkdirp: "^3.0.1",
@@ -165,9 +166,6 @@ function regularAutorestPackage(
   };
   if (azureOutputDirectory) {
     packageInfo.homepage = `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}`;
-  }
-  if (moduleKind !== "cjs") {
-    packageInfo["type"] = "module";
   }
   if (azureSdkForJs) {
     packageInfo["tshy"] = {

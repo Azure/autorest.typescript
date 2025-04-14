@@ -45,13 +45,11 @@ export function generateMappers(
 
   if (!useCoreV2) {
     mappersFile.addImportDeclaration({
-      isTypeOnly: true,
       namespaceImport: "coreHttp",
       moduleSpecifier: "@azure/core-http"
     });
   } else {
     mappersFile.addImportDeclaration({
-      isTypeOnly: true,
       namespaceImport: "coreClient",
       moduleSpecifier: "@azure/core-client"
     });

@@ -30,7 +30,6 @@ import {
 import { calculateMethodName } from "./utils/operationsUtils";
 import { getAutorestOptions } from "../autorestSession";
 import { createLroType } from "../utils/lroHelpers";
-import { getImportModuleName } from "../utils/nameConstructors";
 
 /**
  * Function that writes the code for all the operations.
@@ -45,7 +44,7 @@ export function generateOperationsInterfaces(
   clientDetails: ClientDetails,
   project: Project
 ): void {
-  const { srcPath, moduleKind } = getAutorestOptions();
+  const { srcPath, isTestPackage } = getAutorestOptions();
   let fileNames: string[] = [];
 
   // Toplevel operations are inlined in the client
@@ -68,7 +67,7 @@ export function generateOperationsInterfaces(
     operationIndexFile.addExportDeclarations(
       fileNames.map(fileName => {
         return {
-          moduleSpecifier: getImportModuleName(`./${fileName}`, moduleKind)
+          moduleSpecifier: isTestPackage ? `./${fileName}` : `./${fileName}.js`
         } as ExportDeclarationStructure;
       })
     );
@@ -129,7 +128,7 @@ function addInterface(
   operationGroupDetails: OperationGroupDetails,
   clientDetails: ClientDetails
 ) {
-  const { moduleKind } = getAutorestOptions();
+  const { isTestPackage } = getAutorestOptions();
 
   let importedModels = new Set<string>();
 
@@ -166,9 +165,8 @@ function addInterface(
     });
 
     operationGroupFile.addImportDeclaration({
-      isTypeOnly: true,
       namedImports,
-      moduleSpecifier: getImportModuleName({ cjsName: "../models", esModulesName: "../models/index.js" }, moduleKind)
+      moduleSpecifier: isTestPackage ? "../models" : "../models/index.js"
     });
   }
 }
@@ -267,7 +265,6 @@ function addImports(
 
   if (hasLroOperation(operationGroupDetails)) {
     operationGroupFile.addImportDeclaration({
-      isTypeOnly: true,
       namedImports: useLegacyLro
         ? ["PollerLike", "PollOperationState"]
         : ["SimplePollerLike", "OperationState"],

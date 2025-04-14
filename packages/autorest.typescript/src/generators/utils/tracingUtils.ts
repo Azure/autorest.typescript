@@ -1,6 +1,5 @@
 import { SourceFile } from "ts-morph";
 import { getAutorestOptions } from "../../autorestSession";
-import { getImportModuleName } from "../../utils/nameConstructors";
 
 /**
  * Adds the required imports to have operations tracing
@@ -11,12 +10,12 @@ export function addTracingOperationImports(
   sourceFile: SourceFile,
   traverseToRoot = ".."
 ) {
-  const { tracingInfo, moduleKind } = getAutorestOptions();
+  const { tracingInfo, isTestPackage } = getAutorestOptions();
   if (tracingInfo) {
     sourceFile.addImportDeclarations([
       {
         namedImports: ["tracingClient"],
-        moduleSpecifier: getImportModuleName(`${traverseToRoot}/tracing`, moduleKind)
+        moduleSpecifier: isTestPackage ? `${traverseToRoot}/tracing` : `${traverseToRoot}/tracing..js`
       }
     ]);
   }
