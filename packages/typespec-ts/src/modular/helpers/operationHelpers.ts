@@ -1023,7 +1023,7 @@ function getPathParameters(
         });
       }
       pathParams.push(
-        `${param.serializedName}: ${getPathParamExpr(param, getDefaultValue(param) as string, optionalParamName)}`
+        `"${param.serializedName}": ${getPathParamExpr(param, getDefaultValue(param) as string, optionalParamName)}`
       );
     }
   }
