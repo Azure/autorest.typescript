@@ -1,7 +1,6 @@
 import { Project, SourceFile } from "ts-morph";
 import { ClientDetails } from "../models/clientDetails";
 import { getAutorestOptions } from "../autorestSession";
-import { getImportModuleName } from "../utils/nameConstructors";
 export function generateIndexFile(
   project: Project,
   clientDetails?: ClientDetails
@@ -22,21 +21,21 @@ export function generateIndexFile(
 }
 
 function generateHLCIndex(clientDetails: ClientDetails, file: SourceFile) {
-  const { disablePagingAsyncIterators, moduleKind } = getAutorestOptions();
+  const { disablePagingAsyncIterators, isTestPackage } = getAutorestOptions();
   if (clientDetails.options.hasPaging && !disablePagingAsyncIterators) {
     file.addStatements([`/// <reference lib="esnext.asynciterable" />`]);
     file.addExportDeclaration({
-      moduleSpecifier: getImportModuleName("./pagingHelper", moduleKind),
+      moduleSpecifier: isTestPackage ? "./pagingHelper" : "./pagingHelper.js",
       namedExports: ["getContinuationToken"]
     });
   }
 
   file.addExportDeclarations([
     {
-      moduleSpecifier: getImportModuleName({ cjsName: "./models", esModulesName: "./models/index.js" }, moduleKind),
+      moduleSpecifier: isTestPackage ? "./models" : "./models/index.js",
     },
     {
-      moduleSpecifier: getImportModuleName(`./${clientDetails.sourceFileName}`, moduleKind),
+      moduleSpecifier: isTestPackage ? `./${clientDetails.sourceFileName}` : `./${clientDetails.sourceFileName}.js`,
       namedExports: [clientDetails.className]
     }
   ]);
@@ -48,7 +47,7 @@ function generateHLCIndex(clientDetails: ClientDetails, file: SourceFile) {
   if (operationGroups.length) {
     file.addExportDeclarations([
       {
-        moduleSpecifier: getImportModuleName({ cjsName: "./operationsInterfaces", esModulesName: "./operationsInterfaces/index.js" }, moduleKind),
+        moduleSpecifier: isTestPackage ? "./operationsInterfaces" : "./operationsInterfaces/index.js",
       }
     ]);
   }

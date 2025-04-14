@@ -15,13 +15,12 @@ import { writeMapper } from "./mappersGenerator";
 import { shouldImportParameters } from "./utils/importUtils";
 import { logger } from "../utils/logger";
 import { getAutorestOptions } from "../autorestSession";
-import { getImportModuleName } from "../utils/nameConstructors";
 
 export function generateParameters(
   clientDetails: ClientDetails,
   project: Project
 ): void {
-  const { useCoreV2, srcPath, moduleKind } = getAutorestOptions();
+  const { useCoreV2, srcPath, isTestPackage } = getAutorestOptions();
   if (!shouldImportParameters(clientDetails)) {
     logger.verbose(
       "There are no parameters to generate, skipping parameters file generation"
@@ -47,7 +46,7 @@ export function generateParameters(
   if (importedMappers.length) {
     parametersFile.addImportDeclaration({
       namedImports: importedMappers,
-      moduleSpecifier: getImportModuleName("../models/mappers", moduleKind)
+      moduleSpecifier: isTestPackage ? "../models/mappers" : "../models/mappers.js"
     });
   }
 
