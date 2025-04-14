@@ -1,11 +1,9 @@
+import {
 {{#if importedTypes.length }}
-  import type {
   {{#each importedTypes}}
   {{this}},
   {{/each}}
-  } from "{{clientPackageName}}";
 {{/if}}
-import {
   {{clientClassName}}, 
 } from "{{clientPackageName}}";
 import { DefaultAzureCredential } from "@azure/identity";
