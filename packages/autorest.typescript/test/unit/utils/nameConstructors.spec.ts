@@ -11,7 +11,7 @@ describe("#getImportModuleName", () => {
     describe("when using cjs", () => {
         it("generates the correct module name for simple files", () => {
             const name: ModuleName = "myModule";
-            expect(getImportModuleName(name, false)).to.equal("myModule");
+            expect(getImportModuleName(name, true)).to.equal("myModule");
         });
 
         it("generates the correct module name for directories", () => {
@@ -19,14 +19,14 @@ describe("#getImportModuleName", () => {
                 cjsName: "myModule",
                 esModulesName: "myModule/index.js"
             };
-            expect(getImportModuleName(name, false)).to.equal("myModule");
+            expect(getImportModuleName(name, true)).to.equal("myModule");
         });
     });
 
     describe("when using esm", () => {
         it("generates the correct module name for simple files", () => {
             const name: ModuleName = "myModule";
-            expect(getImportModuleName(name, true)).to.equal("myModule.js");
+            expect(getImportModuleName(name, false)).to.equal("myModule.js");
         });
 
         it("generates the correct module name for directories", () => {
@@ -34,7 +34,7 @@ describe("#getImportModuleName", () => {
                 cjsName: "myModule",
                 esModulesName: "myModule/index.js"
             };
-            expect(getImportModuleName(name, true)).to.equal("myModule/index.js");
+            expect(getImportModuleName(name, false)).to.equal("myModule/index.js");
         });
     });
 
