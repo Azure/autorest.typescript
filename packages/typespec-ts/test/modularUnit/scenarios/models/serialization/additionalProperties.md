@@ -187,6 +187,72 @@ export function complexModelSerializer(item: ComplexModel): any {
 }
 ```
 
+// TODO: enable this case once confirmed https://github.com/microsoft/typespec/issues/6983
+
+# skip: Should generate `additionalProperties` bag for non-legacy code if additional property is overrode
+
+## TypeSpec
+
+This is tsp definition.
+
+```tsp
+model SimpleModel {
+    ...Record<string>;
+}
+
+model ComplexModel {
+    ...Record<SimpleModel>;
+}
+
+@route("/serialize")
+interface D {
+  @route("/simple")
+  op bar(@body body: SimpleModel): void;
+  @route("/complex")
+  op baz(@body body: ComplexModel): void;
+}
+```
+
+This is the tsp configuration.
+
+```yaml
+compatibility-mode: false
+```
+
+## Provide generated models and its serializer
+
+Generated Models.
+
+```ts models
+import { serializeRecord } from "../static-helpers/serialization/serialize-record.js";
+
+/** model interface SimpleModel */
+export interface SimpleModel {
+  /** Additional properties */
+  additionalProperties?: Record<string, string>;
+}
+
+export function simpleModelSerializer(item: SimpleModel): any {
+  return { ...serializeRecord(item.additionalProperties) };
+}
+
+/** model interface ComplexModel */
+export interface ComplexModel {
+  /** Additional properties */
+  additionalProperties?: Record<string, SimpleModel>;
+}
+
+export function complexModelSerializer(item: ComplexModel): any {
+  return {
+    ...serializeRecord(
+      item.additionalProperties,
+      undefined,
+      simpleModelSerializer
+    )
+  };
+}
+```
+
 # Should generate union `additionalProperties` bag for non-legacy code if multiple additional properties
 
 ## TypeSpec
