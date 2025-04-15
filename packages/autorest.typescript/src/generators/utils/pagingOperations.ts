@@ -20,6 +20,7 @@ import {
   getPagingResponseBodyType
 } from "./responseTypeUtils";
 import { getAutorestOptions } from "../../autorestSession";
+import { getImportModuleName } from "../../utils/nameConstructors";
 
 type MethodParameter = OptionalKind<
   ParameterDeclarationStructure & {
@@ -64,7 +65,7 @@ export function addPagingImports(
       },
       {
         namedImports: ["setContinuationToken"],
-        moduleSpecifier: isTestPackage ? `${pagingHelperPath}` : `${pagingHelperPath}.js`
+        moduleSpecifier: getImportModuleName(pagingHelperPath, isTestPackage)
       }
     ]);
   }

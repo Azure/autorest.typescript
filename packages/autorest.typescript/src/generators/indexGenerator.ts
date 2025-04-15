@@ -1,6 +1,7 @@
 import { Project, SourceFile } from "ts-morph";
 import { ClientDetails } from "../models/clientDetails";
 import { getAutorestOptions } from "../autorestSession";
+import { getImportModuleName } from "../utils/nameConstructors";
 export function generateIndexFile(
   project: Project,
   clientDetails?: ClientDetails
@@ -25,17 +26,17 @@ function generateHLCIndex(clientDetails: ClientDetails, file: SourceFile) {
   if (clientDetails.options.hasPaging && !disablePagingAsyncIterators) {
     file.addStatements([`/// <reference lib="esnext.asynciterable" />`]);
     file.addExportDeclaration({
-      moduleSpecifier: isTestPackage ? "./pagingHelper" : "./pagingHelper.js",
+      moduleSpecifier: getImportModuleName("./pagingHelper", isTestPackage),
       namedExports: ["getContinuationToken"]
     });
   }
 
   file.addExportDeclarations([
     {
-      moduleSpecifier: isTestPackage ? "./models" : "./models/index.js",
+      moduleSpecifier: getImportModuleName({ cjsName: "./models", esModulesName: "./models/index.js" }, isTestPackage),
     },
     {
-      moduleSpecifier: isTestPackage ? `./${clientDetails.sourceFileName}` : `./${clientDetails.sourceFileName}.js`,
+      moduleSpecifier: getImportModuleName(`./${clientDetails.sourceFileName}`, isTestPackage),
       namedExports: [clientDetails.className]
     }
   ]);
@@ -47,7 +48,7 @@ function generateHLCIndex(clientDetails: ClientDetails, file: SourceFile) {
   if (operationGroups.length) {
     file.addExportDeclarations([
       {
-        moduleSpecifier: isTestPackage ? "./operationsInterfaces" : "./operationsInterfaces/index.js",
+        moduleSpecifier: getImportModuleName({ cjsName: "./operationsInterfaces", esModulesName: "./operationsInterfaces/index.js" }, isTestPackage),
       }
     ]);
   }

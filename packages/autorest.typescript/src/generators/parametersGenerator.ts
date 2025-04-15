@@ -15,6 +15,7 @@ import { writeMapper } from "./mappersGenerator";
 import { shouldImportParameters } from "./utils/importUtils";
 import { logger } from "../utils/logger";
 import { getAutorestOptions } from "../autorestSession";
+import { getImportModuleName } from "../utils/nameConstructors";
 
 export function generateParameters(
   clientDetails: ClientDetails,
@@ -46,7 +47,7 @@ export function generateParameters(
   if (importedMappers.length) {
     parametersFile.addImportDeclaration({
       namedImports: importedMappers,
-      moduleSpecifier: isTestPackage ? "../models/mappers" : "../models/mappers.js"
+      moduleSpecifier: getImportModuleName("../models/mappers", isTestPackage)
     });
   }
 

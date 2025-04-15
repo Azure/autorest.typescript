@@ -30,6 +30,7 @@ import {
 import { calculateMethodName } from "./utils/operationsUtils";
 import { getAutorestOptions } from "../autorestSession";
 import { createLroType } from "../utils/lroHelpers";
+import { getImportModuleName } from "../utils/nameConstructors";
 
 /**
  * Function that writes the code for all the operations.
@@ -67,7 +68,7 @@ export function generateOperationsInterfaces(
     operationIndexFile.addExportDeclarations(
       fileNames.map(fileName => {
         return {
-          moduleSpecifier: isTestPackage ? `./${fileName}` : `./${fileName}.js`
+          moduleSpecifier: getImportModuleName(`./${fileName}`, isTestPackage)
         } as ExportDeclarationStructure;
       })
     );
@@ -166,7 +167,7 @@ function addInterface(
 
     operationGroupFile.addImportDeclaration({
       namedImports,
-      moduleSpecifier: isTestPackage ? "../models" : "../models/index.js"
+      moduleSpecifier: getImportModuleName({ cjsName: "../models", esModulesName: "../models/index.js" }, isTestPackage)
     });
   }
 }
