@@ -8,8 +8,8 @@
 
 import * as coreClient from "@azure/core-client";
 import { ByteImpl } from "./operations";
-import type { Byte } from "./operationsInterfaces";
-import type { BodyByteClientOptionalParams } from "./models";
+import { Byte } from "./operationsInterfaces";
+import { BodyByteClientOptionalParams } from "./models";
 
 export class BodyByteClient extends coreClient.ServiceClient {
   $host: string;

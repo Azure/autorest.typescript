@@ -6,11 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
-  OperationParameter,
-  OperationURLParameter,
-} from "@azure/core-client";
-import { AzureMetricsDocument as AzureMetricsDocumentMapper } from "../models/mappers.js";
+import { OperationParameter, OperationURLParameter } from "@azure/core-client";
+import { AzureMetricsDocument as AzureMetricsDocumentMapper } from "../models/mappers";
 
 export const body: OperationParameter = {
   parameterPath: "body",

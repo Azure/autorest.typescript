@@ -6,16 +6,16 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Metrics } from "../operationsInterfaces/index.js";
+import type { Metrics } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { MonitorClient } from "../monitorClient.js";
-import type {
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { MonitorClient } from "../monitorClient";
+import {
   AzureMetricsDocument,
   MetricsCreateOptionalParams,
   MetricsCreateResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing Metrics operations. */
 export class MetricsImpl implements Metrics {

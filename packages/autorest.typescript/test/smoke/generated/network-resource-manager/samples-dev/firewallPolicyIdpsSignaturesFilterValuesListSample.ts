@@ -6,8 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { SignatureOverridesFilterValuesQuery } from "@msinternal/network-resource-manager";
-import { NetworkManagementClient } from "@msinternal/network-resource-manager";
+import {
+  SignatureOverridesFilterValuesQuery,
+  NetworkManagementClient,
+} from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import "dotenv/config";
 

@@ -8,8 +8,8 @@
 
 import * as coreClient from "@azure/core-client";
 import { FilesImpl } from "./operations";
-import type { Files } from "./operationsInterfaces";
-import type { BodyFileClientOptionalParams } from "./models";
+import { Files } from "./operationsInterfaces";
+import { BodyFileClientOptionalParams } from "./models";
 
 export class BodyFileClient extends coreClient.ServiceClient {
   $host: string;

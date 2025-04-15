@@ -6,8 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { VirtualMachineScaleSetVMsDeleteOptionalParams } from "@msinternal/compute-resource-manager";
-import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
+import {
+  VirtualMachineScaleSetVMsDeleteOptionalParams,
+  ComputeManagementClient,
+} from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import "dotenv/config";
 

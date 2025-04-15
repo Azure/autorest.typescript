@@ -6,18 +6,18 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { DataMaskingPolicies } from "../operationsInterfaces/index.js";
+import type { DataMaskingPolicies } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { SqlManagementClient } from "../sqlManagementClient.js";
-import type {
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { SqlManagementClient } from "../sqlManagementClient";
+import {
   DataMaskingPolicy,
   DataMaskingPoliciesCreateOrUpdateOptionalParams,
   DataMaskingPoliciesCreateOrUpdateResponse,
   DataMaskingPoliciesGetOptionalParams,
   DataMaskingPoliciesGetResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing DataMaskingPolicies operations. */
 export class DataMaskingPoliciesImpl implements DataMaskingPolicies {

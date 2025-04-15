@@ -6,8 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { VirtualMachineUpdate } from "@msinternal/compute-resource-manager";
-import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
+import {
+  VirtualMachineUpdate,
+  ComputeManagementClient,
+} from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import "dotenv/config";
 

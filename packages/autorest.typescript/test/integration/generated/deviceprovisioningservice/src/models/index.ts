@@ -1,4 +1,4 @@
-import type * as coreClient from "@azure/core-client";
+import * as coreClient from "@azure/core-client";
 
 /** Result of the request to list provisioning service operations. It contains a list of operations and a URL link to get the next set of results. */
 export interface OperationListResult {

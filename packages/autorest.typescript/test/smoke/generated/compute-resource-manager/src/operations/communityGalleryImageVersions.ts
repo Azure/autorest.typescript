@@ -6,15 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { CommunityGalleryImageVersions } from "../operationsInterfaces/index.js";
+import type { CommunityGalleryImageVersions } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { ComputeManagementClient } from "../computeManagementClient.js";
-import type {
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { ComputeManagementClient } from "../computeManagementClient";
+import {
   CommunityGalleryImageVersionsGetOptionalParams,
   CommunityGalleryImageVersionsGetResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing CommunityGalleryImageVersions operations. */
 export class CommunityGalleryImageVersionsImpl

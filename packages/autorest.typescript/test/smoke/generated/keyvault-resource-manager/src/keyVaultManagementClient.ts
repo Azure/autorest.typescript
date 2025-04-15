@@ -7,12 +7,12 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import type {
+import {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import type * as coreAuth from "@azure/core-auth";
+import * as coreAuth from "@azure/core-auth";
 import {
   KeysImpl,
   VaultsImpl,
@@ -23,8 +23,8 @@ import {
   MhsmPrivateLinkResourcesImpl,
   OperationsImpl,
   SecretsImpl,
-} from "./operations/index.js";
-import type {
+} from "./operations";
+import {
   Keys,
   Vaults,
   PrivateEndpointConnections,
@@ -34,8 +34,8 @@ import type {
   MhsmPrivateLinkResources,
   Operations,
   Secrets,
-} from "./operationsInterfaces/index.js";
-import type { KeyVaultManagementClientOptionalParams } from "./models/index.js";
+} from "./operationsInterfaces";
+import { KeyVaultManagementClientOptionalParams } from "./models";
 
 export class KeyVaultManagementClient extends coreClient.ServiceClient {
   $host: string;

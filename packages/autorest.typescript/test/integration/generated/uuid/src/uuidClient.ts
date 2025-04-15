@@ -8,8 +8,8 @@
 
 import * as coreClient from "@azure/core-client";
 import { GetImpl } from "./operations";
-import type { Get } from "./operationsInterfaces";
-import type { UuidClientOptionalParams } from "./models";
+import { Get } from "./operationsInterfaces";
+import { UuidClientOptionalParams } from "./models";
 
 export class UuidClient extends coreClient.ServiceClient {
   $host: string;

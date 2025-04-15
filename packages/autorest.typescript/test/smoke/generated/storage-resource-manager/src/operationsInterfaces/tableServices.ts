@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
+import {
   TableServicesListOptionalParams,
   TableServicesListResponse,
   TableServiceProperties,
@@ -14,7 +14,7 @@ import type {
   TableServicesSetServicePropertiesResponse,
   TableServicesGetServicePropertiesOptionalParams,
   TableServicesGetServicePropertiesResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a TableServices. */
 export interface TableServices {

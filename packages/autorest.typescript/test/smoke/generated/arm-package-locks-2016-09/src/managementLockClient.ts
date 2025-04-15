@@ -7,21 +7,18 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import type {
+import {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import type * as coreAuth from "@azure/core-auth";
+import * as coreAuth from "@azure/core-auth";
+import { AuthorizationOperationsImpl, ManagementLocksImpl } from "./operations";
 import {
-  AuthorizationOperationsImpl,
-  ManagementLocksImpl,
-} from "./operations/index.js";
-import type {
   AuthorizationOperations,
   ManagementLocks,
-} from "./operationsInterfaces/index.js";
-import type { ManagementLockClientOptionalParams } from "./models/index.js";
+} from "./operationsInterfaces";
+import { ManagementLockClientOptionalParams } from "./models";
 
 export class ManagementLockClient extends coreClient.ServiceClient {
   $host: string;

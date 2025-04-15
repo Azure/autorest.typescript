@@ -8,8 +8,8 @@
 
 import * as coreClient from "@azure/core-client";
 import { ArrayImpl } from "./operations";
-import type { Array } from "./operationsInterfaces";
-import type { BodyArrayClientOptionalParams } from "./models";
+import { Array } from "./operationsInterfaces";
+import { BodyArrayClientOptionalParams } from "./models";
 
 export class BodyArrayClient extends coreClient.ServiceClient {
   $host: string;

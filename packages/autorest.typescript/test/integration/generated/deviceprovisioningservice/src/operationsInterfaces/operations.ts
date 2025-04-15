@@ -1,5 +1,5 @@
-import type { PagedAsyncIterableIterator } from "@azure/core-paging";
-import type { Operation, OperationsListOptionalParams } from "../models";
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { Operation, OperationsListOptionalParams } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a Operations. */

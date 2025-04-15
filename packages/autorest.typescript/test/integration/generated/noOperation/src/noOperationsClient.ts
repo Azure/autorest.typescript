@@ -7,7 +7,7 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import type { NoOperationsClientOptionalParams } from "./models";
+import { NoOperationsClientOptionalParams } from "./models";
 
 export class NoOperationsClient extends coreClient.ServiceClient {
   /**

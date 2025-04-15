@@ -8,7 +8,7 @@
 
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "./models/parameters";
-import type {
+import {
   ObjectTypeClientOptionalParams,
   GetOptionalParams,
   GetResponse,

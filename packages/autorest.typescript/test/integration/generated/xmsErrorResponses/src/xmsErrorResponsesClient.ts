@@ -8,8 +8,8 @@
 
 import * as coreClient from "@azure/core-client";
 import { PetImpl } from "./operations";
-import type { Pet } from "./operationsInterfaces";
-import type { XmsErrorResponsesClientOptionalParams } from "./models";
+import { Pet } from "./operationsInterfaces";
+import { XmsErrorResponsesClientOptionalParams } from "./models";
 
 export class XmsErrorResponsesClient extends coreClient.ServiceClient {
   $host: string;

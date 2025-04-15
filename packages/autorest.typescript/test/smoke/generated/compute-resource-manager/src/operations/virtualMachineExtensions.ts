@@ -6,15 +6,18 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { VirtualMachineExtensions } from "../operationsInterfaces/index.js";
+import type { VirtualMachineExtensions } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { ComputeManagementClient } from "../computeManagementClient.js";
-import type { SimplePollerLike, OperationState } from "@azure/core-lro";
-import { createHttpPoller } from "@azure/core-lro";
-import { createLroSpec } from "../lroImpl.js";
-import type {
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { ComputeManagementClient } from "../computeManagementClient";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller,
+} from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl";
+import {
   VirtualMachineExtension,
   VirtualMachineExtensionsCreateOrUpdateOptionalParams,
   VirtualMachineExtensionsCreateOrUpdateResponse,
@@ -26,7 +29,7 @@ import type {
   VirtualMachineExtensionsGetResponse,
   VirtualMachineExtensionsListOptionalParams,
   VirtualMachineExtensionsListResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing VirtualMachineExtensions operations. */
 export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {

@@ -1,7 +1,7 @@
 import * as coreClient from "@azure/core-client";
 import { DocumentsImpl } from "./operations";
-import type { Documents } from "./operationsInterfaces";
-import type { OptionalNullClientOptionalParams } from "./models";
+import { Documents } from "./operationsInterfaces";
+import { OptionalNullClientOptionalParams } from "./models";
 
 export class OptionalNullClient extends coreClient.ServiceClient {
   $host: string;

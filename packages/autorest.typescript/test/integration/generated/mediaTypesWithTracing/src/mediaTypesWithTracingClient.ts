@@ -11,7 +11,7 @@ import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import { tracingClient } from "./tracing";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
-import type {
+import {
   MediaTypesWithTracingClientOptionalParams,
   ContentType,
   AnalyzeBody$binaryOptionalParams,

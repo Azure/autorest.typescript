@@ -6,6 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./policyAssignments.js";
-export * from "./policyDefinitions.js";
-export * from "./policySetDefinitions.js";
+export * from "./policyAssignments";
+export * from "./policyDefinitions";
+export * from "./policySetDefinitions";

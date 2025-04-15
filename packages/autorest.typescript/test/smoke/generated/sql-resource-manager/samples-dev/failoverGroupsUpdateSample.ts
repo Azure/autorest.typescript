@@ -6,8 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { FailoverGroupUpdate } from "@msinternal/sql-resource-manager";
-import { SqlManagementClient } from "@msinternal/sql-resource-manager";
+import {
+  FailoverGroupUpdate,
+  SqlManagementClient,
+} from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import "dotenv/config";
 

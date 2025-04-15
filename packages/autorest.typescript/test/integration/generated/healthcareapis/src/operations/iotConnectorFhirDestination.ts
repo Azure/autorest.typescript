@@ -3,10 +3,13 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import type { HealthCareApisClient } from "../healthCareApisClient";
-import type { SimplePollerLike, OperationState } from "@azure/core-lro";
-import { createHttpPoller } from "@azure/core-lro";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller,
+} from "@azure/core-lro";
 import { createLroSpec } from "../lroImpl";
-import type {
+import {
   IotConnectorFhirDestinationGetOptionalParams,
   IotConnectorFhirDestinationGetResponse,
   IotFhirDestination,

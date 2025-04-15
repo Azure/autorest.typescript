@@ -7,7 +7,7 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import type {
+import {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
@@ -23,7 +23,7 @@ import {
   ReadonlypropertyImpl,
   FlattencomplexImpl,
 } from "./operations";
-import type {
+import {
   Basic,
   Primitive,
   Array,
@@ -34,7 +34,7 @@ import type {
   Readonlyproperty,
   Flattencomplex,
 } from "./operationsInterfaces";
-import type { BodyComplexWithTracingOptionalParams } from "./models";
+import { BodyComplexWithTracingOptionalParams } from "./models";
 
 export class BodyComplexWithTracing extends coreClient.ServiceClient {
   $host: string;

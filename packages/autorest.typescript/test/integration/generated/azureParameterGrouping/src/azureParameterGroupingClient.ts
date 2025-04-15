@@ -8,8 +8,8 @@
 
 import * as coreClient from "@azure/core-client";
 import { ParameterGroupingImpl } from "./operations";
-import type { ParameterGrouping } from "./operationsInterfaces";
-import type { AzureParameterGroupingClientOptionalParams } from "./models";
+import { ParameterGrouping } from "./operationsInterfaces";
+import { AzureParameterGroupingClientOptionalParams } from "./models";
 
 export class AzureParameterGroupingClient extends coreClient.ServiceClient {
   $host: string;

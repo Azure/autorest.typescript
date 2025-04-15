@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { SimplePollerLike, OperationState } from "@azure/core-lro";
-import type {
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
+import {
   LrosaDsPutNonRetry400OptionalParams,
   LrosaDsPutNonRetry400Response,
   LrosaDsPutNonRetry201Creating400OptionalParams,

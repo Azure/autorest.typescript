@@ -7,14 +7,14 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import type {
+import {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
 import { PagingImpl } from "./operations";
-import type { Paging } from "./operationsInterfaces";
-import type { PagingClientOptionalParams } from "./models";
+import { Paging } from "./operationsInterfaces";
+import { PagingClientOptionalParams } from "./models";
 
 export class PagingClient extends coreClient.ServiceClient {
   $host: string;

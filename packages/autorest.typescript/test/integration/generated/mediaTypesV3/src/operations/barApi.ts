@@ -10,7 +10,7 @@ import type { BarApi } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "../models/parameters";
 import type { MediaTypesV3Client } from "../mediaTypesV3Client";
-import type {
+import {
   BarApiPostSendOnDefaultOptionalParams,
   BarApiPostSendOnDefaultResponse,
 } from "../models";

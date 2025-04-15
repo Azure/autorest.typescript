@@ -1,5 +1,5 @@
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
-import type {
+import {
   BlockBlobStageBlockOptionalParams,
   BlockBlobStageBlockResponse,
   BlockBlobUploadOptionalParams,

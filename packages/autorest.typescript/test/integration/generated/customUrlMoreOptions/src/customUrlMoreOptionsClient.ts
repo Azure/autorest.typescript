@@ -8,8 +8,8 @@
 
 import * as coreClient from "@azure/core-client";
 import { PathsImpl } from "./operations";
-import type { Paths } from "./operationsInterfaces";
-import type { CustomUrlMoreOptionsClientOptionalParams } from "./models";
+import { Paths } from "./operationsInterfaces";
+import { CustomUrlMoreOptionsClientOptionalParams } from "./models";
 
 export class CustomUrlMoreOptionsClient extends coreClient.ServiceClient {
   dnsSuffix: string;

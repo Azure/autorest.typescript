@@ -7,13 +7,13 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import type {
+import {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
 import * as Parameters from "./models/parameters";
-import type {
+import {
   Enum0,
   NoMappersClientOptionalParams,
   ApiV1ValueGetOptionalParams,

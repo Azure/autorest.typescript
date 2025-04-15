@@ -7,14 +7,14 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import type {
+import {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
 import { GroupImpl } from "./operations";
-import type { Group } from "./operationsInterfaces";
-import type { SubscriptionIdApiVersionClientOptionalParams } from "./models";
+import { Group } from "./operationsInterfaces";
+import { SubscriptionIdApiVersionClientOptionalParams } from "./models";
 
 export class SubscriptionIdApiVersionClient extends coreClient.ServiceClient {
   $host: string;

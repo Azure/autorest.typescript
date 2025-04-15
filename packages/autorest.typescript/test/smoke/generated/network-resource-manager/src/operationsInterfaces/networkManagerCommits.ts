@@ -6,12 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { SimplePollerLike, OperationState } from "@azure/core-lro";
-import type {
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
+import {
   NetworkManagerCommit,
   NetworkManagerCommitsPostOptionalParams,
   NetworkManagerCommitsPostResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a NetworkManagerCommits. */
 export interface NetworkManagerCommits {

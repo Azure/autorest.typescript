@@ -6,6 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./systemAssignedIdentities.js";
-export * from "./operations.js";
-export * from "./userAssignedIdentities.js";
+export * from "./systemAssignedIdentities";
+export * from "./operations";
+export * from "./userAssignedIdentities";

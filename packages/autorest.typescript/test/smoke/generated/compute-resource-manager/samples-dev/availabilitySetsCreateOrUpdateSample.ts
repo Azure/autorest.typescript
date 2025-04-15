@@ -6,8 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { AvailabilitySet } from "@msinternal/compute-resource-manager";
-import { ComputeManagementClient } from "@msinternal/compute-resource-manager";
+import {
+  AvailabilitySet,
+  ComputeManagementClient,
+} from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import "dotenv/config";
 

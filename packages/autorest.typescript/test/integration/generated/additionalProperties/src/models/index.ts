@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type * as coreClient from "@azure/core-client";
+import * as coreClient from "@azure/core-client";
 
 export interface PetAPTrue {
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */

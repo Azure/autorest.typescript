@@ -6,11 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { SimplePollerLike, OperationState } from "@azure/core-lro";
-import type {
-  TdeCertificate,
-  TdeCertificatesCreateOptionalParams,
-} from "../models/index.js";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
+import { TdeCertificate, TdeCertificatesCreateOptionalParams } from "../models";
 
 /** Interface representing a TdeCertificates. */
 export interface TdeCertificates {

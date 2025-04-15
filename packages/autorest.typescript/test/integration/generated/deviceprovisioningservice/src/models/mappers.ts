@@ -1,4 +1,4 @@
-import type * as coreClient from "@azure/core-client";
+import * as coreClient from "@azure/core-client";
 
 export const OperationListResult: coreClient.CompositeMapper = {
   type: {

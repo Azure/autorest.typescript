@@ -8,8 +8,8 @@
 
 import * as coreClient from "@azure/core-client";
 import { NumberOperationsImpl } from "./operations";
-import type { NumberOperations } from "./operationsInterfaces";
-import type { BodyNumberClientOptionalParams } from "./models";
+import { NumberOperations } from "./operationsInterfaces";
+import { BodyNumberClientOptionalParams } from "./models";
 
 export class BodyNumberClient extends coreClient.ServiceClient {
   $host: string;

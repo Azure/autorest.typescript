@@ -6,15 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { PagedAsyncIterableIterator } from "@azure/core-paging";
-import type {
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import {
   OAuth2PermissionGrant,
   OAuth2PermissionGrantListNextOptionalParams,
   OAuth2PermissionGrantListOptionalParams,
   OAuth2PermissionGrantCreateOptionalParams,
   OAuth2PermissionGrantCreateResponse,
   OAuth2PermissionGrantDeleteOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a OAuth2PermissionGrantOperations. */

@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
+import {
   OperationParameter,
   OperationURLParameter,
   OperationQueryParameter,
@@ -14,7 +14,7 @@ import type {
 import {
   DeploymentScript as DeploymentScriptMapper,
   DeploymentScriptUpdateParameter as DeploymentScriptUpdateParameterMapper,
-} from "../models/mappers.js";
+} from "../models/mappers";
 
 export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],

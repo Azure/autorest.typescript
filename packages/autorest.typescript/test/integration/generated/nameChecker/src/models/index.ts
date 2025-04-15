@@ -1,4 +1,4 @@
-import type * as coreClient from "@azure/core-client";
+import * as coreClient from "@azure/core-client";
 
 /** Describes an error condition for the Azure Cognitive Search API. */
 export interface SearchError {

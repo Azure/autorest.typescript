@@ -10,7 +10,7 @@ import type { Float } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "../models/parameters";
 import type { NonStringEnumClient } from "../nonStringEnumClient";
-import type {
+import {
   FloatPutOptionalParams,
   FloatPutResponse,
   FloatGetOptionalParams,

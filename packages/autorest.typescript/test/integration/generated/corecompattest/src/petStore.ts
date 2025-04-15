@@ -1,9 +1,9 @@
 import * as coreClient from "@azure/core-client";
 import * as coreHttpCompat from "@azure/core-http-compat";
-import type * as coreAuth from "@azure/core-auth";
+import * as coreAuth from "@azure/core-auth";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
-import type {
+import {
   PetStoreOptionalParams,
   AddPetUsingByteArray$binaryOptionalParams,
   AddPetUsingByteArray$xmlOptionalParams,

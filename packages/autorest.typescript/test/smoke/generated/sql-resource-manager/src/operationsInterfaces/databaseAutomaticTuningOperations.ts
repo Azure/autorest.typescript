@@ -6,13 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
+import {
   DatabaseAutomaticTuningGetOptionalParams,
   DatabaseAutomaticTuningGetResponse,
   DatabaseAutomaticTuning,
   DatabaseAutomaticTuningUpdateOptionalParams,
   DatabaseAutomaticTuningUpdateResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a DatabaseAutomaticTuningOperations. */
 export interface DatabaseAutomaticTuningOperations {

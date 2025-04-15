@@ -6,8 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { RouteMap } from "@msinternal/network-resource-manager";
-import { NetworkManagementClient } from "@msinternal/network-resource-manager";
+import {
+  RouteMap,
+  NetworkManagementClient,
+} from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import "dotenv/config";
 

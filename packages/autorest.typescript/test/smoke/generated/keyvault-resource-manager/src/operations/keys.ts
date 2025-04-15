@@ -6,17 +6,14 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
-  PagedAsyncIterableIterator,
-  PageSettings,
-} from "@azure/core-paging";
-import { setContinuationToken } from "../pagingHelper.js";
-import type { Keys } from "../operationsInterfaces/index.js";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "../pagingHelper";
+import type { Keys } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { KeyVaultManagementClient } from "../keyVaultManagementClient.js";
-import type {
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { KeyVaultManagementClient } from "../keyVaultManagementClient";
+import {
   Key,
   KeysListNextOptionalParams,
   KeysListOptionalParams,
@@ -33,7 +30,7 @@ import type {
   KeysGetVersionResponse,
   KeysListNextResponse,
   KeysListVersionsNextResponse,
-} from "../models/index.js";
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Keys operations. */

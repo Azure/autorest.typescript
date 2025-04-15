@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
+import {
   RestoreDetailsName,
   ManagedDatabaseRestoreDetailsGetOptionalParams,
   ManagedDatabaseRestoreDetailsGetResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a ManagedDatabaseRestoreDetails. */
 export interface ManagedDatabaseRestoreDetails {

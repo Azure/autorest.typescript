@@ -7,12 +7,12 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import type {
+import {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import type * as coreAuth from "@azure/core-auth";
+import * as coreAuth from "@azure/core-auth";
 import {
   XMsClientRequestIdImpl,
   SubscriptionInCredentialsImpl,
@@ -23,7 +23,7 @@ import {
   OdataImpl,
   HeaderImpl,
 } from "./operations";
-import type {
+import {
   XMsClientRequestId,
   SubscriptionInCredentials,
   SubscriptionInMethod,
@@ -33,7 +33,7 @@ import type {
   Odata,
   Header,
 } from "./operationsInterfaces";
-import type { AzureSpecialPropertiesClientOptionalParams } from "./models";
+import { AzureSpecialPropertiesClientOptionalParams } from "./models";
 
 export class AzureSpecialPropertiesClient extends coreClient.ServiceClient {
   $host: string;

@@ -6,8 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { VaultsListOptionalParams } from "@msinternal/keyvault-resource-manager";
-import { KeyVaultManagementClient } from "@msinternal/keyvault-resource-manager";
+import {
+  VaultsListOptionalParams,
+  KeyVaultManagementClient,
+} from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import "dotenv/config";
 

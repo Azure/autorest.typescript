@@ -6,8 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { ScopeConnection } from "@msinternal/network-resource-manager";
-import { NetworkManagementClient } from "@msinternal/network-resource-manager";
+import {
+  ScopeConnection,
+  NetworkManagementClient,
+} from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import "dotenv/config";
 

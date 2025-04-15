@@ -11,7 +11,7 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import type { HttpInfrastructureClient } from "../httpInfrastructureClient";
-import type {
+import {
   MultipleResponsesGet200Model204NoModelDefaultError200ValidOptionalParams,
   MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse,
   MultipleResponsesGet200Model204NoModelDefaultError204ValidOptionalParams,

@@ -13,13 +13,13 @@ import {
   LrosaDsImpl,
   LROsCustomHeaderImpl,
 } from "./operations";
-import type {
+import {
   LROs,
   LRORetrys,
   LrosaDs,
   LROsCustomHeader,
 } from "./operationsInterfaces";
-import type { LROClientOptionalParams } from "./models";
+import { LROClientOptionalParams } from "./models";
 
 export class LROClient extends coreClient.ServiceClient {
   $host: string;

@@ -3,7 +3,7 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import type { HeaderPrefixClient } from "../headerPrefixClient";
-import type {
+import {
   QueueGetPropertiesOptionalParams,
   QueueGetPropertiesResponse,
 } from "../models";

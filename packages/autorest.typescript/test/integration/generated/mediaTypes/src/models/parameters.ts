@@ -6,10 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
-  OperationParameter,
-  OperationURLParameter,
-} from "@azure/core-client";
+import { OperationParameter, OperationURLParameter } from "@azure/core-client";
 import { SourcePath as SourcePathMapper } from "../models/mappers";
 
 export const contentType: OperationParameter = {

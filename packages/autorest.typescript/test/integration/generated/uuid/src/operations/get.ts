@@ -10,7 +10,7 @@ import type { Get } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "../models/parameters";
 import type { UuidClient } from "../uuidClient";
-import type { GetUuidOptionalParams, GetUuidResponse } from "../models";
+import { GetUuidOptionalParams, GetUuidResponse } from "../models";
 
 /** Class containing Get operations. */
 export class GetImpl implements Get {

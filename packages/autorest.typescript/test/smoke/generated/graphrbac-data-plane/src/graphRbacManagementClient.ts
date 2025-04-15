@@ -7,12 +7,12 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import type {
+import {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import type * as coreAuth from "@azure/core-auth";
+import * as coreAuth from "@azure/core-auth";
 import {
   SignedInUserImpl,
   ApplicationsImpl,
@@ -23,8 +23,8 @@ import {
   ObjectsImpl,
   DomainsImpl,
   OAuth2PermissionGrantOperationsImpl,
-} from "./operations/index.js";
-import type {
+} from "./operations";
+import {
   SignedInUser,
   Applications,
   DeletedApplications,
@@ -34,8 +34,8 @@ import type {
   Objects,
   Domains,
   OAuth2PermissionGrantOperations,
-} from "./operationsInterfaces/index.js";
-import type { GraphRbacManagementClientOptionalParams } from "./models/index.js";
+} from "./operationsInterfaces";
+import { GraphRbacManagementClientOptionalParams } from "./models";
 
 export class GraphRbacManagementClient extends coreClient.ServiceClient {
   $host: string;

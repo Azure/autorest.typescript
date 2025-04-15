@@ -7,12 +7,12 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import type {
+import {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import type * as coreAuth from "@azure/core-auth";
+import * as coreAuth from "@azure/core-auth";
 import {
   OperationsImpl,
   DeploymentsImpl,
@@ -21,8 +21,8 @@ import {
   ResourceGroupsImpl,
   TagsImpl,
   DeploymentOperationsImpl,
-} from "./operations/index.js";
-import type {
+} from "./operations";
+import {
   Operations,
   Deployments,
   Providers,
@@ -30,8 +30,8 @@ import type {
   ResourceGroups,
   Tags,
   DeploymentOperations,
-} from "./operationsInterfaces/index.js";
-import type { ResourceManagementClientOptionalParams } from "./models/index.js";
+} from "./operationsInterfaces";
+import { ResourceManagementClientOptionalParams } from "./models";
 
 export class ResourceManagementClient extends coreClient.ServiceClient {
   $host: string;

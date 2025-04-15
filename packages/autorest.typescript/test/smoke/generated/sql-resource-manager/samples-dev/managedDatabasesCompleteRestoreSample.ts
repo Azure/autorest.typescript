@@ -6,8 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { CompleteDatabaseRestoreDefinition } from "@msinternal/sql-resource-manager";
-import { SqlManagementClient } from "@msinternal/sql-resource-manager";
+import {
+  CompleteDatabaseRestoreDefinition,
+  SqlManagementClient,
+} from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import "dotenv/config";
 

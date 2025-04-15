@@ -1,12 +1,12 @@
 import * as coreClient from "@azure/core-client";
-import type {
+import {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
 import { DocumentsImpl } from "./operations";
-import type { Documents } from "./operationsInterfaces";
-import type { SearchClientOptionalParams } from "./models";
+import { Documents } from "./operationsInterfaces";
+import { SearchClientOptionalParams } from "./models";
 
 export class SearchClient extends coreClient.ServiceClient {
   endpoint: string;

@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { SimplePollerLike, OperationState } from "@azure/core-lro";
-import type {
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
+import {
   LRORetrysPut201CreatingSucceeded200OptionalParams,
   LRORetrysPut201CreatingSucceeded200Response,
   LRORetrysPutAsyncRelativeRetrySucceededOptionalParams,

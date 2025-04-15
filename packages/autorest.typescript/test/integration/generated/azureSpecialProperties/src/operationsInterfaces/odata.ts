@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { OdataGetWithFilterOptionalParams } from "../models";
+import { OdataGetWithFilterOptionalParams } from "../models";
 
 /** Interface representing a Odata. */
 export interface Odata {

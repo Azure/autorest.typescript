@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
+import {
   OperationParameter,
   OperationURLParameter,
   OperationQueryParameter,
@@ -150,7 +150,7 @@ import {
   HubRouteTable as HubRouteTableMapper,
   RoutingIntent as RoutingIntentMapper,
   WebApplicationFirewallPolicy as WebApplicationFirewallPolicyMapper,
-} from "../models/mappers.js";
+} from "../models/mappers";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",

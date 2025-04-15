@@ -4,9 +4,7 @@
   "author": "Microsoft Corporation",
   "description": "A generated SDK for ApplicationClient.",
   "version": "1.0.0-beta.1",
-  "engines": {
-    "node": ">=18.0.0"
-  },
+  "engines": { "node": ">=18.0.0" },
   "dependencies": {
     "@azure/core-lro": "^2.5.4",
     "@azure/abort-controller": "^2.1.2",
@@ -16,18 +14,12 @@
     "@azure/core-rest-pipeline": "^1.19.0",
     "tslib": "^2.8.1"
   },
-  "keywords": [
-    "node",
-    "azure",
-    "typescript",
-    "browser",
-    "isomorphic",
-    "cloud"
-  ],
+  "keywords": ["node", "azure", "typescript", "browser", "isomorphic", "cloud"],
   "license": "MIT",
   "main": "./dist/commonjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/commonjs/index.d.ts",
+  "type": "module",
   "devDependencies": {
     "@microsoft/api-extractor": "^7.40.3",
     "mkdirp": "^3.0.1",
@@ -44,16 +36,8 @@
     "tshy": "^2.0.0"
   },
   "repository": "github:Azure/azure-sdk-for-js",
-  "bugs": {
-    "url": "https://github.com/Azure/azure-sdk-for-js/issues"
-  },
-  "files": [
-    "dist/",
-    "README.md",
-    "LICENSE",
-    "review/*",
-    "CHANGELOG.md"
-  ],
+  "bugs": { "url": "https://github.com/Azure/azure-sdk-for-js/issues" },
+  "files": ["dist/", "README.md", "LICENSE", "review/*", "CHANGELOG.md"],
   "scripts": {
     "build": "npm run clean && tshy && npm run extract-api",
     "minify": "uglifyjs -c -m --comments --source-map \"content='./dist/index.js.map'\" -o ./dist/index.min.js ./dist/index.js",
@@ -82,33 +66,10 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      {
-        "path": "src/applicationClient.ts",
-        "prefix": "packageDetails"
-      }
+      { "path": "src/applicationClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true,
   "browser": "./dist/browser/index.js",
-  "react-native": "./dist/react-native/index.js",
-  "type": "module",
-  "tshy": {
-    "exports": {
-      "./package.json": "./package.json",
-      ".": "./src/index.ts"
-    }
-  },
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "import": {
-        "types": "./dist/esm/index.d.ts",
-        "default": "./dist/esm/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/index.d.ts",
-        "default": "./dist/commonjs/index.js"
-      }
-    }
-  }
+  "react-native": "./dist/react-native/index.js"
 }

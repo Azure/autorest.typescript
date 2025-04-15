@@ -7,7 +7,7 @@
  */
 
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
-import type {
+import {
   FooApiPostSendOnDefault$binaryOptionalParams,
   FooApiPostSendOnDefault$textOptionalParams,
   FooApiPostSendOnDefaultResponse,

@@ -12,7 +12,7 @@ import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import type { BodyFormDataClient } from "../bodyFormDataClient";
-import type {
+import {
   FormdataUploadFileOptionalParams,
   FormdataUploadFileResponse,
   FormdataUploadFileViaBodyOptionalParams,

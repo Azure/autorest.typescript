@@ -6,13 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
+import {
   ServerAutomaticTuningGetOptionalParams,
   ServerAutomaticTuningGetResponse,
   ServerAutomaticTuning,
   ServerAutomaticTuningUpdateOptionalParams,
   ServerAutomaticTuningUpdateResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a ServerAutomaticTuningOperations. */
 export interface ServerAutomaticTuningOperations {

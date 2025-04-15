@@ -7,20 +7,20 @@
  */
 
 import { tracingClient } from "../tracing";
-import type {
-  PagedAsyncIterableIterator,
-  PageSettings,
-} from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { setContinuationToken } from "../pagingHelper";
 import type { Paging } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import type { PagingClient } from "../pagingClient";
-import type { SimplePollerLike, OperationState } from "@azure/core-lro";
-import { createHttpPoller } from "@azure/core-lro";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller,
+} from "@azure/core-lro";
 import { createLroSpec } from "../lroImpl";
-import type {
+import {
   Product,
   PagingGetNoItemNamePagesNextOptionalParams,
   PagingGetNoItemNamePagesOptionalParams,

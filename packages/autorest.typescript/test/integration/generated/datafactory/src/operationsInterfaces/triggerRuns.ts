@@ -1,4 +1,4 @@
-import type {
+import {
   TriggerRunsRerunOptionalParams,
   TriggerRunsCancelOptionalParams,
   RunFilterParameters,

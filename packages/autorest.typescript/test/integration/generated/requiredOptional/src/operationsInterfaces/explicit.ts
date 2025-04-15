@@ -7,7 +7,7 @@
  */
 
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
-import type {
+import {
   ExplicitPutOptionalBinaryBodyOptionalParams,
   ExplicitPutRequiredBinaryBodyOptionalParams,
   ExplicitPostRequiredIntegerParameterOptionalParams,

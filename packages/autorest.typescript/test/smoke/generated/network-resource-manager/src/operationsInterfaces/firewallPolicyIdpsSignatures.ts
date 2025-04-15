@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
+import {
   IdpsQueryObject,
   FirewallPolicyIdpsSignaturesListOptionalParams,
   FirewallPolicyIdpsSignaturesListResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a FirewallPolicyIdpsSignatures. */
 export interface FirewallPolicyIdpsSignatures {

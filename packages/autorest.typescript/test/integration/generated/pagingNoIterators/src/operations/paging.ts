@@ -11,10 +11,13 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import type { PagingNoIteratorsClient } from "../pagingNoIteratorsClient";
-import type { SimplePollerLike, OperationState } from "@azure/core-lro";
-import { createHttpPoller } from "@azure/core-lro";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller,
+} from "@azure/core-lro";
 import { createLroSpec } from "../lroImpl";
-import type {
+import {
   PagingGetNoItemNamePagesOptionalParams,
   PagingGetNoItemNamePagesResponse,
   PagingGetEmptyNextLinkNamePagesOptionalParams,

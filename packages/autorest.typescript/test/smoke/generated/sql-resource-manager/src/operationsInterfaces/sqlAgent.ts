@@ -6,13 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
+import {
   SqlAgentGetOptionalParams,
   SqlAgentGetResponse,
   SqlAgentConfiguration,
   SqlAgentCreateOrUpdateOptionalParams,
   SqlAgentCreateOrUpdateResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a SqlAgent. */
 export interface SqlAgent {

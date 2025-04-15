@@ -11,7 +11,7 @@ import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import * as Parameters from "../models/parameters";
 import type { MediaTypesV3Client } from "../mediaTypesV3Client";
-import type {
+import {
   FooApiPostSendOnDefault$binaryOptionalParams,
   FooApiPostSendOnDefault$textOptionalParams,
   FooApiPostSendOnDefaultResponse,

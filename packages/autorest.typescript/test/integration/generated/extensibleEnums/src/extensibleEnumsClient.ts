@@ -8,8 +8,8 @@
 
 import * as coreClient from "@azure/core-client";
 import { PetImpl } from "./operations";
-import type { Pet } from "./operationsInterfaces";
-import type { ExtensibleEnumsClientOptionalParams } from "./models";
+import { Pet } from "./operationsInterfaces";
+import { ExtensibleEnumsClientOptionalParams } from "./models";
 
 export class ExtensibleEnumsClient extends coreClient.ServiceClient {
   $host: string;

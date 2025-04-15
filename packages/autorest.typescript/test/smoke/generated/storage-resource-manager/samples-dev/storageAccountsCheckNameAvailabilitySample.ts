@@ -6,8 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { StorageAccountCheckNameAvailabilityParameters } from "@msinternal/storage-resource-manager";
-import { StorageManagementClient } from "@msinternal/storage-resource-manager";
+import {
+  StorageAccountCheckNameAvailabilityParameters,
+  StorageManagementClient,
+} from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import "dotenv/config";
 

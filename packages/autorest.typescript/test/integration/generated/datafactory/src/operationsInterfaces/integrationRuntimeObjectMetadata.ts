@@ -1,5 +1,5 @@
-import type { SimplePollerLike, OperationState } from "@azure/core-lro";
-import type {
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
+import {
   IntegrationRuntimeObjectMetadataRefreshOptionalParams,
   IntegrationRuntimeObjectMetadataRefreshResponse,
   IntegrationRuntimeObjectMetadataGetOptionalParams,

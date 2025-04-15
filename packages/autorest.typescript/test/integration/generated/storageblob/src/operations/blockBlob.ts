@@ -4,7 +4,7 @@ import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import type { StorageBlobClient } from "../storageBlobClient";
-import type {
+import {
   BlockBlobStageBlockOptionalParams,
   BlockBlobStageBlockResponse,
   BlockBlobUploadOptionalParams,

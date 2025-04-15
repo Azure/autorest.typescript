@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
+import {
   VirtualMachineImagesEdgeZoneGetOptionalParams,
   VirtualMachineImagesEdgeZoneGetResponse,
   VirtualMachineImagesEdgeZoneListOptionalParams,
@@ -17,7 +17,7 @@ import type {
   VirtualMachineImagesEdgeZoneListPublishersResponse,
   VirtualMachineImagesEdgeZoneListSkusOptionalParams,
   VirtualMachineImagesEdgeZoneListSkusResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a VirtualMachineImagesEdgeZone. */
 export interface VirtualMachineImagesEdgeZone {

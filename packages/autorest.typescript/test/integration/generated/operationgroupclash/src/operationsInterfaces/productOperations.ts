@@ -1,4 +1,4 @@
-import type {
+import {
   ProductApiV1ValueGetOptionalParams,
   ProductApiV1ValueGetResponse,
 } from "../models";

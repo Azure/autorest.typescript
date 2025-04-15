@@ -8,8 +8,8 @@
 
 import * as coreClient from "@azure/core-client";
 import { StringOperationsImpl, EnumImpl } from "./operations";
-import type { StringOperations, Enum } from "./operationsInterfaces";
-import type { BodyStringClientOptionalParams } from "./models";
+import { StringOperations, Enum } from "./operationsInterfaces";
+import { BodyStringClientOptionalParams } from "./models";
 
 export class BodyStringClient extends coreClient.ServiceClient {
   $host: string;

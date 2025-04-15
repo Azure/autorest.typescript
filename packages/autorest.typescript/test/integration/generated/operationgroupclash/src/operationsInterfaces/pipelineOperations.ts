@@ -1,4 +1,4 @@
-import type {
+import {
   PipelineApiV1ValueGetOptionalParams,
   PipelineApiV1ValueGetResponse,
 } from "../models";

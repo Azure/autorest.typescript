@@ -1,7 +1,7 @@
 import * as coreClient from "@azure/core-client";
 import { PageBlobImpl, BlockBlobImpl, AppendBlobImpl } from "./operations";
-import type { PageBlob, BlockBlob, AppendBlob } from "./operationsInterfaces";
-import type { StorageBlobClientOptionalParams } from "./models";
+import { PageBlob, BlockBlob, AppendBlob } from "./operationsInterfaces";
+import { StorageBlobClientOptionalParams } from "./models";
 
 export class StorageBlobClient extends coreClient.ServiceClient {
   url: string;

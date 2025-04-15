@@ -8,8 +8,8 @@
 
 import * as coreClient from "@azure/core-client";
 import { ImplicitImpl, ExplicitImpl } from "./operations";
-import type { Implicit, Explicit } from "./operationsInterfaces";
-import type { RequiredOptionalClientOptionalParams } from "./models";
+import { Implicit, Explicit } from "./operationsInterfaces";
+import { RequiredOptionalClientOptionalParams } from "./models";
 
 export class RequiredOptionalClient extends coreClient.ServiceClient {
   $host: string;

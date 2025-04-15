@@ -1,4 +1,4 @@
-import type {
+import {
   OperationURLParameter,
   OperationQueryParameter,
 } from "@azure/core-client";

@@ -6,12 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { DatabaseRecommendedActions } from "../operationsInterfaces/index.js";
+import type { DatabaseRecommendedActions } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { SqlManagementClient } from "../sqlManagementClient.js";
-import type {
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { SqlManagementClient } from "../sqlManagementClient";
+import {
   DatabaseRecommendedActionsListByDatabaseAdvisorOptionalParams,
   DatabaseRecommendedActionsListByDatabaseAdvisorResponse,
   DatabaseRecommendedActionsGetOptionalParams,
@@ -19,7 +19,7 @@ import type {
   RecommendedAction,
   DatabaseRecommendedActionsUpdateOptionalParams,
   DatabaseRecommendedActionsUpdateResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing DatabaseRecommendedActions operations. */
 export class DatabaseRecommendedActionsImpl

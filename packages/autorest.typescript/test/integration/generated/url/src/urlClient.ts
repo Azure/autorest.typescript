@@ -8,8 +8,8 @@
 
 import * as coreClient from "@azure/core-client";
 import { PathsImpl, QueriesImpl, PathItemsImpl } from "./operations";
-import type { Paths, Queries, PathItems } from "./operationsInterfaces";
-import type { UrlClientOptionalParams } from "./models";
+import { Paths, Queries, PathItems } from "./operationsInterfaces";
+import { UrlClientOptionalParams } from "./models";
 
 export class UrlClient extends coreClient.ServiceClient {
   $host: string;

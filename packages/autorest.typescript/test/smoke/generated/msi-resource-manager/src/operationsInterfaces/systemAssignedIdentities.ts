@@ -6,10 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
+import {
   SystemAssignedIdentitiesGetByScopeOptionalParams,
   SystemAssignedIdentitiesGetByScopeResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a SystemAssignedIdentities. */
 export interface SystemAssignedIdentities {

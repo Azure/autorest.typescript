@@ -6,15 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { ResourceNavigationLinks } from "../operationsInterfaces/index.js";
+import type { ResourceNavigationLinks } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { NetworkManagementClient } from "../networkManagementClient.js";
-import type {
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { NetworkManagementClient } from "../networkManagementClient";
+import {
   ResourceNavigationLinksListOptionalParams,
   ResourceNavigationLinksListResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing ResourceNavigationLinks operations. */
 export class ResourceNavigationLinksImpl implements ResourceNavigationLinks {

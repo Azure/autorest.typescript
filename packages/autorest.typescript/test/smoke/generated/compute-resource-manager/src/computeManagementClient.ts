@@ -7,7 +7,7 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import type * as coreAuth from "@azure/core-auth";
+import * as coreAuth from "@azure/core-auth";
 import {
   OperationsImpl,
   AvailabilitySetsImpl,
@@ -58,8 +58,8 @@ import {
   CloudServicesImpl,
   CloudServicesUpdateDomainImpl,
   CloudServiceOperatingSystemsImpl,
-} from "./operations/index.js";
-import type {
+} from "./operations";
+import {
   Operations,
   AvailabilitySets,
   ProximityPlacementGroups,
@@ -109,8 +109,8 @@ import type {
   CloudServices,
   CloudServicesUpdateDomain,
   CloudServiceOperatingSystems,
-} from "./operationsInterfaces/index.js";
-import type { ComputeManagementClientOptionalParams } from "./models/index.js";
+} from "./operationsInterfaces";
+import { ComputeManagementClientOptionalParams } from "./models";
 
 export class ComputeManagementClient extends coreClient.ServiceClient {
   $host: string;

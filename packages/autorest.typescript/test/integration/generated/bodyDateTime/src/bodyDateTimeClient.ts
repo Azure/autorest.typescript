@@ -8,8 +8,8 @@
 
 import * as coreClient from "@azure/core-client";
 import { DatetimeImpl } from "./operations";
-import type { Datetime } from "./operationsInterfaces";
-import type { BodyDateTimeClientOptionalParams } from "./models";
+import { Datetime } from "./operationsInterfaces";
+import { BodyDateTimeClientOptionalParams } from "./models";
 
 export class BodyDateTimeClient extends coreClient.ServiceClient {
   $host: string;

@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
+import {
   ServerAdvisorsListByServerOptionalParams,
   ServerAdvisorsListByServerResponse,
   ServerAdvisorsGetOptionalParams,
@@ -14,7 +14,7 @@ import type {
   Advisor,
   ServerAdvisorsUpdateOptionalParams,
   ServerAdvisorsUpdateResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a ServerAdvisors. */
 export interface ServerAdvisors {

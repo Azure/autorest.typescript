@@ -8,8 +8,8 @@
 
 import * as coreClient from "@azure/core-client";
 import { PetsImpl } from "./operations";
-import type { Pets } from "./operationsInterfaces";
-import type { AdditionalPropertiesClientOptionalParams } from "./models";
+import { Pets } from "./operationsInterfaces";
+import { AdditionalPropertiesClientOptionalParams } from "./models";
 
 export class AdditionalPropertiesClient extends coreClient.ServiceClient {
   $host: string;

@@ -9,7 +9,7 @@
 import * as coreClient from "@azure/core-client";
 import * as coreHttpCompat from "@azure/core-http-compat";
 import * as Parameters from "./models/parameters";
-import type {
+import {
   PatternTestClientOptionalParams,
   HomeOptionalParams,
   HomeResponse,

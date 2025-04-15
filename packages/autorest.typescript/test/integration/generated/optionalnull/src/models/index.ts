@@ -1,4 +1,4 @@
-import type * as coreClient from "@azure/core-client";
+import * as coreClient from "@azure/core-client";
 
 /** Captions are the most representative passages from the document relatively to the search query. They are often used as document summary. Captions are only returned for queries of type 'semantic'.. */
 export interface CaptionResult {

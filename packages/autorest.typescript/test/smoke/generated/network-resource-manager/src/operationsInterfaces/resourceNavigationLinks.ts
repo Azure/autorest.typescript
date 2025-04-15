@@ -6,10 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
+import {
   ResourceNavigationLinksListOptionalParams,
   ResourceNavigationLinksListResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a ResourceNavigationLinks. */
 export interface ResourceNavigationLinks {

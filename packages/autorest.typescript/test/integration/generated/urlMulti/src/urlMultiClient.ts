@@ -8,8 +8,8 @@
 
 import * as coreClient from "@azure/core-client";
 import { QueriesImpl } from "./operations";
-import type { Queries } from "./operationsInterfaces";
-import type { UrlMultiClientOptionalParams } from "./models";
+import { Queries } from "./operationsInterfaces";
+import { UrlMultiClientOptionalParams } from "./models";
 
 export class UrlMultiClient extends coreClient.ServiceClient {
   $host: string;

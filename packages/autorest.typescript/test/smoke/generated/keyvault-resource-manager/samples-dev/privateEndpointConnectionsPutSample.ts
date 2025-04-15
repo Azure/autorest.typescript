@@ -6,8 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { PrivateEndpointConnection } from "@msinternal/keyvault-resource-manager";
-import { KeyVaultManagementClient } from "@msinternal/keyvault-resource-manager";
+import {
+  PrivateEndpointConnection,
+  KeyVaultManagementClient,
+} from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import "dotenv/config";
 

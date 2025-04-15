@@ -10,7 +10,7 @@ import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
-import type {
+import {
   MediaTypesClientOptionalParams,
   ContentType,
   AnalyzeBody$binaryOptionalParams,

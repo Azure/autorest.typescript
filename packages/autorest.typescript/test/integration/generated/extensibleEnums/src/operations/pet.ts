@@ -11,7 +11,7 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import type { ExtensibleEnumsClient } from "../extensibleEnumsClient";
-import type {
+import {
   PetGetByPetIdOptionalParams,
   PetGetByPetIdResponse,
   PetAddPetOptionalParams,

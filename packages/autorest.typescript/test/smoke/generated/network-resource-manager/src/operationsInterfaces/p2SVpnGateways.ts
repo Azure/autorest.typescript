@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { PagedAsyncIterableIterator } from "@azure/core-paging";
-import type { SimplePollerLike, OperationState } from "@azure/core-lro";
-import type {
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
+import {
   P2SVpnGateway,
   P2SVpnGatewaysListByResourceGroupOptionalParams,
   P2SVpnGatewaysListOptionalParams,
@@ -32,7 +32,7 @@ import type {
   P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse,
   P2SVpnConnectionRequest,
   P2SVpnGatewaysDisconnectP2SVpnConnectionsOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a P2SVpnGateways. */

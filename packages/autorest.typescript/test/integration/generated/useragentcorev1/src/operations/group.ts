@@ -11,7 +11,7 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import type { UserAgentCoreV1Client } from "../userAgentCoreV1Client";
-import type {
+import {
   GroupGetSampleResourceGroupOptionalParams,
   GroupGetSampleResourceGroupResponse,
 } from "../models";

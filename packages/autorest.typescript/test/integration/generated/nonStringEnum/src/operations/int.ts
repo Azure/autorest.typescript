@@ -10,7 +10,7 @@ import type { Int } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "../models/parameters";
 import type { NonStringEnumClient } from "../nonStringEnumClient";
-import type {
+import {
   IntPutOptionalParams,
   IntPutResponse,
   IntGetOptionalParams,

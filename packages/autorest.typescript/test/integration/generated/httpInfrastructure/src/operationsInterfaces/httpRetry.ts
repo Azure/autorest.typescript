@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
+import {
   HttpRetryHead408OptionalParams,
   HttpRetryPut500OptionalParams,
   HttpRetryPatch500OptionalParams,

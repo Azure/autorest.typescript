@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
+import {
   MultipleResponsesGet200Model204NoModelDefaultError200ValidOptionalParams,
   MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse,
   MultipleResponsesGet200Model204NoModelDefaultError204ValidOptionalParams,

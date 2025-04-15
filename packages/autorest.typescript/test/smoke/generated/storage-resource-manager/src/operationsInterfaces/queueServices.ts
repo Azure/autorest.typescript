@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
+import {
   QueueServicesListOptionalParams,
   QueueServicesListResponse,
   QueueServiceProperties,
@@ -14,7 +14,7 @@ import type {
   QueueServicesSetServicePropertiesResponse,
   QueueServicesGetServicePropertiesOptionalParams,
   QueueServicesGetServicePropertiesResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a QueueServices. */
 export interface QueueServices {

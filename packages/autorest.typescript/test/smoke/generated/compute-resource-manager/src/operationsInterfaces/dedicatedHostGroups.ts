@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { PagedAsyncIterableIterator } from "@azure/core-paging";
-import type {
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import {
   DedicatedHostGroup,
   DedicatedHostGroupsListByResourceGroupOptionalParams,
   DedicatedHostGroupsListBySubscriptionOptionalParams,
@@ -19,7 +19,7 @@ import type {
   DedicatedHostGroupsDeleteOptionalParams,
   DedicatedHostGroupsGetOptionalParams,
   DedicatedHostGroupsGetResponse,
-} from "../models/index.js";
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a DedicatedHostGroups. */

@@ -6,10 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
+import {
   VpnSiteLinkConnectionsGetOptionalParams,
   VpnSiteLinkConnectionsGetResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a VpnSiteLinkConnections. */
 export interface VpnSiteLinkConnections {

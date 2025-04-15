@@ -6,17 +6,14 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
-  PagedAsyncIterableIterator,
-  PageSettings,
-} from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { setContinuationToken } from "../pagingHelper";
 import type { Paging } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import type { CustomUrlPagingClient } from "../customUrlPagingClient";
-import type {
+import {
   Product,
   PagingGetPagesPartialUrlNextOptionalParams,
   PagingGetPagesPartialUrlOptionalParams,

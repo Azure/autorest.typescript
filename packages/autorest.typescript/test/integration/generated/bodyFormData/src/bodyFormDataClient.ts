@@ -8,8 +8,8 @@
 
 import * as coreClient from "@azure/core-client";
 import { FormdataImpl } from "./operations";
-import type { Formdata } from "./operationsInterfaces";
-import type { BodyFormDataClientOptionalParams } from "./models";
+import { Formdata } from "./operationsInterfaces";
+import { BodyFormDataClientOptionalParams } from "./models";
 
 export class BodyFormDataClient extends coreClient.ServiceClient {
   $host: string;

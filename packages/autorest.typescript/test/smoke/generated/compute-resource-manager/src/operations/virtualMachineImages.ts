@@ -6,12 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { VirtualMachineImages } from "../operationsInterfaces/index.js";
+import type { VirtualMachineImages } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { ComputeManagementClient } from "../computeManagementClient.js";
-import type {
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { ComputeManagementClient } from "../computeManagementClient";
+import {
   VirtualMachineImagesGetOptionalParams,
   VirtualMachineImagesGetResponse,
   VirtualMachineImagesListOptionalParams,
@@ -22,7 +22,7 @@ import type {
   VirtualMachineImagesListPublishersResponse,
   VirtualMachineImagesListSkusOptionalParams,
   VirtualMachineImagesListSkusResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing VirtualMachineImages operations. */
 export class VirtualMachineImagesImpl implements VirtualMachineImages {

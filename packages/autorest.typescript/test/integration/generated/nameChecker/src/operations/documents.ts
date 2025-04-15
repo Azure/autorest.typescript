@@ -3,7 +3,7 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import type { SearchClient } from "../searchClient";
-import type {
+import {
   DocumentsCountOptionalParams,
   DocumentsCountResponse,
   DocumentsSearchGetOptionalParams,

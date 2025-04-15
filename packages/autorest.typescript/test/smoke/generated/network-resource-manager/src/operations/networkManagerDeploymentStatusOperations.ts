@@ -6,16 +6,16 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { NetworkManagerDeploymentStatusOperations } from "../operationsInterfaces/index.js";
+import type { NetworkManagerDeploymentStatusOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { NetworkManagementClient } from "../networkManagementClient.js";
-import type {
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { NetworkManagementClient } from "../networkManagementClient";
+import {
   NetworkManagerDeploymentStatusParameter,
   NetworkManagerDeploymentStatusListOptionalParams,
   NetworkManagerDeploymentStatusListResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing NetworkManagerDeploymentStatusOperations operations. */
 export class NetworkManagerDeploymentStatusOperationsImpl

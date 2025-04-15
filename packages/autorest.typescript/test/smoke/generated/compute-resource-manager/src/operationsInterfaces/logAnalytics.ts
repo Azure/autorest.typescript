@@ -6,15 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { SimplePollerLike, OperationState } from "@azure/core-lro";
-import type {
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
+import {
   RequestRateByIntervalInput,
   LogAnalyticsExportRequestRateByIntervalOptionalParams,
   LogAnalyticsExportRequestRateByIntervalResponse,
   ThrottledRequestsInput,
   LogAnalyticsExportThrottledRequestsOptionalParams,
   LogAnalyticsExportThrottledRequestsResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a LogAnalytics. */
 export interface LogAnalytics {

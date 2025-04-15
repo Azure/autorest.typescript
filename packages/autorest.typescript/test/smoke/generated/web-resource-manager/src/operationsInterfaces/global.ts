@@ -6,13 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
+import {
   GlobalGetDeletedWebAppOptionalParams,
   GlobalGetDeletedWebAppResponse,
   GlobalGetDeletedWebAppSnapshotsOptionalParams,
   GlobalGetDeletedWebAppSnapshotsResponse,
   GlobalGetSubscriptionOperationWithAsyncResponseOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a Global. */
 export interface Global {

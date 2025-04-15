@@ -8,8 +8,8 @@
 
 import * as coreClient from "@azure/core-client";
 import { DictionaryImpl } from "./operations";
-import type { Dictionary } from "./operationsInterfaces";
-import type { BodyDictionaryClientOptionalParams } from "./models";
+import { Dictionary } from "./operationsInterfaces";
+import { BodyDictionaryClientOptionalParams } from "./models";
 
 export class BodyDictionaryClient extends coreClient.ServiceClient {
   $host: string;

@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
+import {
   OperationParameter,
   OperationURLParameter,
   OperationQueryParameter,
@@ -20,7 +20,7 @@ import {
   ResourceGroup as ResourceGroupMapper,
   ResourceGroupPatchable as ResourceGroupPatchableMapper,
   ExportTemplateRequest as ExportTemplateRequestMapper,
-} from "../models/mappers.js";
+} from "../models/mappers";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",

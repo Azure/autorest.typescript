@@ -1,17 +1,17 @@
-import type {
-  PagedAsyncIterableIterator,
-  PageSettings,
-} from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { setContinuationToken } from "../pagingHelper";
 import type { IotConnectors } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import type { HealthCareApisClient } from "../healthCareApisClient";
-import type { SimplePollerLike, OperationState } from "@azure/core-lro";
-import { createHttpPoller } from "@azure/core-lro";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller,
+} from "@azure/core-lro";
 import { createLroSpec } from "../lroImpl";
-import type {
+import {
   IotConnector,
   IotConnectorsListByWorkspaceNextOptionalParams,
   IotConnectorsListByWorkspaceOptionalParams,

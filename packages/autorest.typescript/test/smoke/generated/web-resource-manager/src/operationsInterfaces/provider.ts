@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { PagedAsyncIterableIterator } from "@azure/core-paging";
-import type {
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import {
   ApplicationStackResource,
   ProviderGetAvailableStacksOptionalParams,
   FunctionAppStack,
@@ -19,7 +19,7 @@ import type {
   ProviderListOperationsOptionalParams,
   ProviderGetWebAppStacksOptionalParams,
   ProviderGetAvailableStacksOnPremOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a Provider. */

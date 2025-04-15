@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
+import {
   HttpServerFailureHead501OptionalParams,
   HttpServerFailureGet501OptionalParams,
   HttpServerFailurePost505OptionalParams,

@@ -7,14 +7,14 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import type {
+import {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
 import { PolicyImpl } from "./operations";
-import type { Policy } from "./operationsInterfaces";
-import type { GeneratedClientOptionalParams } from "./models";
+import { Policy } from "./operationsInterfaces";
+import { GeneratedClientOptionalParams } from "./models";
 
 /** @internal */
 export class GeneratedClient extends coreClient.ServiceClient {

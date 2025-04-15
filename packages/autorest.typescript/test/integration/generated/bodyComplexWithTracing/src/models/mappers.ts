@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type * as coreClient from "@azure/core-client";
+import * as coreClient from "@azure/core-client";
 
 export const BasicDef: coreClient.CompositeMapper = {
   type: {

@@ -1,5 +1,5 @@
-import type { PagedAsyncIterableIterator } from "@azure/core-paging";
-import type {
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import {
   PipelineResource,
   PipelinesListByFactoryOptionalParams,
   PipelinesCreateOrUpdateOptionalParams,

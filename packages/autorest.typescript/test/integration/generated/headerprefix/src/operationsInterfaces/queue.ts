@@ -1,4 +1,4 @@
-import type {
+import {
   QueueGetPropertiesOptionalParams,
   QueueGetPropertiesResponse,
 } from "../models";

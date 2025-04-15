@@ -1,5 +1,5 @@
 import * as coreClient from "@azure/core-client";
-import type {
+import {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
@@ -17,7 +17,7 @@ import {
   OperationsImpl,
   OperationResultsImpl,
 } from "./operations";
-import type {
+import {
   Services,
   PrivateEndpointConnections,
   PrivateLinkResources,
@@ -30,7 +30,7 @@ import type {
   Operations,
   OperationResults,
 } from "./operationsInterfaces";
-import type { HealthCareApisClientOptionalParams } from "./models";
+import { HealthCareApisClientOptionalParams } from "./models";
 
 export class HealthCareApisClient extends coreClient.ServiceClient {
   $host: string;

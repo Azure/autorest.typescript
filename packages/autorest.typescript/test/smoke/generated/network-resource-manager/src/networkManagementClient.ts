@@ -7,15 +7,15 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import type * as coreAuth from "@azure/core-auth";
-import type {
-  PagedAsyncIterableIterator,
-  PageSettings,
-} from "@azure/core-paging";
-import { setContinuationToken } from "./pagingHelper.js";
-import type { SimplePollerLike, OperationState } from "@azure/core-lro";
-import { createHttpPoller } from "@azure/core-lro";
-import { createLroSpec } from "./lroImpl.js";
+import * as coreAuth from "@azure/core-auth";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
+import { setContinuationToken } from "./pagingHelper";
+import {
+  SimplePollerLike,
+  OperationState,
+  createHttpPoller,
+} from "@azure/core-lro";
+import { createLroSpec } from "./lroImpl";
 import {
   ApplicationGatewaysImpl,
   ApplicationGatewayPrivateLinkResourcesImpl,
@@ -148,8 +148,8 @@ import {
   HubRouteTablesImpl,
   RoutingIntentOperationsImpl,
   WebApplicationFirewallPoliciesImpl,
-} from "./operations/index.js";
-import type {
+} from "./operations";
+import {
   ApplicationGateways,
   ApplicationGatewayPrivateLinkResources,
   ApplicationGatewayPrivateEndpointConnections,
@@ -281,10 +281,10 @@ import type {
   HubRouteTables,
   RoutingIntentOperations,
   WebApplicationFirewallPolicies,
-} from "./operationsInterfaces/index.js";
-import * as Parameters from "./models/parameters.js";
-import * as Mappers from "./models/mappers.js";
-import type {
+} from "./operationsInterfaces";
+import * as Parameters from "./models/parameters";
+import * as Mappers from "./models/mappers";
+import {
   NetworkManagementClientOptionalParams,
   BastionShareableLink,
   BastionShareableLinkListRequest,
@@ -327,7 +327,7 @@ import type {
   GetBastionShareableLinkNextResponse,
   GetActiveSessionsNextResponse,
   DisconnectActiveSessionsNextResponse,
-} from "./models/index.js";
+} from "./models";
 
 /// <reference lib="esnext.asynciterable" />
 export class NetworkManagementClient extends coreClient.ServiceClient {

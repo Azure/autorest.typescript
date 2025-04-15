@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type * as coreClient from "@azure/core-client";
-import type * as coreRestPipeline from "@azure/core-rest-pipeline";
+import * as coreClient from "@azure/core-client";
+import * as coreRestPipeline from "@azure/core-rest-pipeline";
 
 /** Uri or local path to source data. */
 export interface SourcePath {

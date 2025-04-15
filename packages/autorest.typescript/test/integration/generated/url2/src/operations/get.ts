@@ -10,7 +10,7 @@ import type { Get } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "../models/parameters";
 import type { UrlClient } from "../urlClient";
-import type { GetUrlOptionalParams, GetUrlResponse } from "../models";
+import { GetUrlOptionalParams, GetUrlResponse } from "../models";
 
 /** Class containing Get operations. */
 export class GetImpl implements Get {

@@ -3,7 +3,7 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import type { OperationGroupClashClient } from "../operationGroupClashClient";
-import type {
+import {
   PipelineApiV1ValueGetOptionalParams,
   PipelineApiV1ValueGetResponse,
 } from "../models";

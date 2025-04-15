@@ -6,14 +6,14 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { PagedAsyncIterableIterator } from "@azure/core-paging";
-import type {
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import {
   DirectoryObjectUnion,
   SignedInUserListOwnedObjectsNextOptionalParams,
   SignedInUserListOwnedObjectsOptionalParams,
   SignedInUserGetOptionalParams,
   SignedInUserGetResponse,
-} from "../models/index.js";
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a SignedInUser. */

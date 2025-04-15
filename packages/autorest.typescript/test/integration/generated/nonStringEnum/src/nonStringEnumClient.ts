@@ -8,8 +8,8 @@
 
 import * as coreClient from "@azure/core-client";
 import { IntImpl, FloatImpl } from "./operations";
-import type { Int, Float } from "./operationsInterfaces";
-import type { NonStringEnumClientOptionalParams } from "./models";
+import { Int, Float } from "./operationsInterfaces";
+import { NonStringEnumClientOptionalParams } from "./models";
 
 export class NonStringEnumClient extends coreClient.ServiceClient {
   $host: string;

@@ -1,7 +1,7 @@
 import * as coreClient from "@azure/core-client";
 import { FileImpl } from "./operations";
-import type { File } from "./operationsInterfaces";
-import type { StorageFileShareClientOptionalParams } from "./models";
+import { File } from "./operationsInterfaces";
+import { StorageFileShareClientOptionalParams } from "./models";
 
 export class StorageFileShareClient extends coreClient.ServiceClient {
   url: string;

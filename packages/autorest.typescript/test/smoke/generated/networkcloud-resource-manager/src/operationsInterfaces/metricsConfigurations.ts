@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { PagedAsyncIterableIterator } from "@azure/core-paging";
-import type { SimplePollerLike, OperationState } from "@azure/core-lro";
-import type {
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
+import {
   ClusterMetricsConfiguration,
   MetricsConfigurationsListByClusterOptionalParams,
   MetricsConfigurationsGetOptionalParams,
@@ -18,7 +18,7 @@ import type {
   MetricsConfigurationsDeleteOptionalParams,
   MetricsConfigurationsUpdateOptionalParams,
   MetricsConfigurationsUpdateResponse,
-} from "../models/index.js";
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a MetricsConfigurations. */

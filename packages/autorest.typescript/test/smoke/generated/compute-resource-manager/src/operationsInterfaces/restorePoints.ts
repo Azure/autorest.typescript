@@ -6,15 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { SimplePollerLike, OperationState } from "@azure/core-lro";
-import type {
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
+import {
   RestorePoint,
   RestorePointsCreateOptionalParams,
   RestorePointsCreateResponse,
   RestorePointsDeleteOptionalParams,
   RestorePointsGetOptionalParams,
   RestorePointsGetResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a RestorePoints. */
 export interface RestorePoints {

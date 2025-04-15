@@ -3,7 +3,7 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import type { OptionalNullClient } from "../optionalNullClient";
-import type { DocumentsSearchGetOptionalParams } from "../models";
+import { DocumentsSearchGetOptionalParams } from "../models";
 
 /** Class containing Documents operations. */
 export class DocumentsImpl implements Documents {

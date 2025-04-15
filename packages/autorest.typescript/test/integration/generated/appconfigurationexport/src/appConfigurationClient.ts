@@ -7,19 +7,16 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import type {
+import {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import type {
-  PagedAsyncIterableIterator,
-  PageSettings,
-} from "@azure/core-paging";
+import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { setContinuationToken } from "./pagingHelper";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
-import type {
+import {
   AppConfigurationClientOptionalParams,
   Key,
   GetKeysNextOptionalParams,

@@ -1,4 +1,4 @@
-import type {
+import {
   OperationResultsGetOptionalParams,
   OperationResultsGetResponse,
 } from "../models";

@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { PagedAsyncIterableIterator } from "@azure/core-paging";
-import type {
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import {
   JobStep,
   JobStepsListByVersionOptionalParams,
   JobStepsListByJobOptionalParams,
@@ -18,7 +18,7 @@ import type {
   JobStepsCreateOrUpdateOptionalParams,
   JobStepsCreateOrUpdateResponse,
   JobStepsDeleteOptionalParams,
-} from "../models/index.js";
+} from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a JobSteps. */

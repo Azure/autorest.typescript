@@ -6,13 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
+import {
   DataMaskingPolicy,
   DataMaskingPoliciesCreateOrUpdateOptionalParams,
   DataMaskingPoliciesCreateOrUpdateResponse,
   DataMaskingPoliciesGetOptionalParams,
   DataMaskingPoliciesGetResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a DataMaskingPolicies. */
 export interface DataMaskingPolicies {

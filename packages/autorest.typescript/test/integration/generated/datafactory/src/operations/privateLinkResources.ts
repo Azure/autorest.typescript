@@ -3,7 +3,7 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import type { DataFactoryClient } from "../dataFactoryClient";
-import type {
+import {
   PrivateLinkResourcesGetOptionalParams,
   PrivateLinkResourcesGetResponse,
 } from "../models";

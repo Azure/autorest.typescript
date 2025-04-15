@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
+import {
   SignaturesOverrides,
   FirewallPolicyIdpsSignaturesOverridesPatchOptionalParams,
   FirewallPolicyIdpsSignaturesOverridesPatchResponse,
@@ -16,7 +16,7 @@ import type {
   FirewallPolicyIdpsSignaturesOverridesGetResponse,
   FirewallPolicyIdpsSignaturesOverridesListOptionalParams,
   FirewallPolicyIdpsSignaturesOverridesListResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a FirewallPolicyIdpsSignaturesOverrides. */
 export interface FirewallPolicyIdpsSignaturesOverrides {

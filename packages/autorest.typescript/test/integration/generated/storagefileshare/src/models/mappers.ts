@@ -1,4 +1,4 @@
-import type * as coreClient from "@azure/core-client";
+import * as coreClient from "@azure/core-client";
 
 export const StorageError: coreClient.CompositeMapper = {
   serializedName: "StorageError",

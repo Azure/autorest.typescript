@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
+import {
   OperationParameter,
   OperationURLParameter,
   OperationQueryParameter,
@@ -36,7 +36,7 @@ import {
   QueueServiceProperties as QueueServicePropertiesMapper,
   StorageQueue as StorageQueueMapper,
   TableServiceProperties as TableServicePropertiesMapper,
-} from "../models/mappers.js";
+} from "../models/mappers";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",

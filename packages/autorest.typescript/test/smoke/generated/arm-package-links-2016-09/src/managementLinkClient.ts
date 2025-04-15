@@ -7,18 +7,15 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import type {
+import {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import type * as coreAuth from "@azure/core-auth";
-import { OperationsImpl, ResourceLinksImpl } from "./operations/index.js";
-import type {
-  Operations,
-  ResourceLinks,
-} from "./operationsInterfaces/index.js";
-import type { ManagementLinkClientOptionalParams } from "./models/index.js";
+import * as coreAuth from "@azure/core-auth";
+import { OperationsImpl, ResourceLinksImpl } from "./operations";
+import { Operations, ResourceLinks } from "./operationsInterfaces";
+import { ManagementLinkClientOptionalParams } from "./models";
 
 export class ManagementLinkClient extends coreClient.ServiceClient {
   $host: string;

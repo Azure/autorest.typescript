@@ -8,8 +8,8 @@
 
 import * as coreClient from "@azure/core-client";
 import { XmlImpl } from "./operations";
-import type { Xml } from "./operationsInterfaces";
-import type { XmlServiceClientOptionalParams } from "./models";
+import { Xml } from "./operationsInterfaces";
+import { XmlServiceClientOptionalParams } from "./models";
 
 export class XmlServiceClient extends coreClient.ServiceClient {
   $host: string;

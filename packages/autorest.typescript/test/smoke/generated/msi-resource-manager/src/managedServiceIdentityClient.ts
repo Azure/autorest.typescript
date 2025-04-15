@@ -7,23 +7,23 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import type {
+import {
   PipelineRequest,
   PipelineResponse,
   SendRequest,
 } from "@azure/core-rest-pipeline";
-import type * as coreAuth from "@azure/core-auth";
+import * as coreAuth from "@azure/core-auth";
 import {
   SystemAssignedIdentitiesImpl,
   OperationsImpl,
   UserAssignedIdentitiesImpl,
-} from "./operations/index.js";
-import type {
+} from "./operations";
+import {
   SystemAssignedIdentities,
   Operations,
   UserAssignedIdentities,
-} from "./operationsInterfaces/index.js";
-import type { ManagedServiceIdentityClientOptionalParams } from "./models/index.js";
+} from "./operationsInterfaces";
+import { ManagedServiceIdentityClientOptionalParams } from "./models";
 
 export class ManagedServiceIdentityClient extends coreClient.ServiceClient {
   $host: string;

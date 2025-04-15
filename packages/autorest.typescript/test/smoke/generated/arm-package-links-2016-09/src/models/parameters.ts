@@ -6,12 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type {
+import {
   OperationParameter,
   OperationURLParameter,
   OperationQueryParameter,
 } from "@azure/core-client";
-import { ResourceLink as ResourceLinkMapper } from "../models/mappers.js";
+import { ResourceLink as ResourceLinkMapper } from "../models/mappers";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",

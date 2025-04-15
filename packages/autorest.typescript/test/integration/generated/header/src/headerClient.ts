@@ -8,8 +8,8 @@
 
 import * as coreClient from "@azure/core-client";
 import { HeaderImpl } from "./operations";
-import type { Header } from "./operationsInterfaces";
-import type { HeaderClientOptionalParams } from "./models";
+import { Header } from "./operationsInterfaces";
+import { HeaderClientOptionalParams } from "./models";
 
 export class HeaderClient extends coreClient.ServiceClient {
   $host: string;

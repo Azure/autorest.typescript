@@ -8,8 +8,8 @@
 
 import * as coreHttp from "@azure/core-http";
 import { GroupImpl } from "./operations";
-import type { Group } from "./operationsInterfaces";
-import type { UserAgentCoreV1ClientOptionalParams } from "./models";
+import { Group } from "./operationsInterfaces";
+import { UserAgentCoreV1ClientOptionalParams } from "./models";
 
 const packageName = "@msinternal/useragent-corev1";
 const packageVersion = "1.0.0-preview1";

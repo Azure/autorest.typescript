@@ -6,12 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { DatabaseAdvisors } from "../operationsInterfaces/index.js";
+import type { DatabaseAdvisors } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { SqlManagementClient } from "../sqlManagementClient.js";
-import type {
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { SqlManagementClient } from "../sqlManagementClient";
+import {
   DatabaseAdvisorsListByDatabaseOptionalParams,
   DatabaseAdvisorsListByDatabaseResponse,
   DatabaseAdvisorsGetOptionalParams,
@@ -19,7 +19,7 @@ import type {
   Advisor,
   DatabaseAdvisorsUpdateOptionalParams,
   DatabaseAdvisorsUpdateResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing DatabaseAdvisors operations. */
 export class DatabaseAdvisorsImpl implements DatabaseAdvisors {

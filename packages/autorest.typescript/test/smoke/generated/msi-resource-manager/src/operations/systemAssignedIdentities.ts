@@ -6,15 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { SystemAssignedIdentities } from "../operationsInterfaces/index.js";
+import type { SystemAssignedIdentities } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers.js";
-import * as Parameters from "../models/parameters.js";
-import type { ManagedServiceIdentityClient } from "../managedServiceIdentityClient.js";
-import type {
+import * as Mappers from "../models/mappers";
+import * as Parameters from "../models/parameters";
+import type { ManagedServiceIdentityClient } from "../managedServiceIdentityClient";
+import {
   SystemAssignedIdentitiesGetByScopeOptionalParams,
   SystemAssignedIdentitiesGetByScopeResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Class containing SystemAssignedIdentities operations. */
 export class SystemAssignedIdentitiesImpl implements SystemAssignedIdentities {

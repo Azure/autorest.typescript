@@ -6,8 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { SimplePollerLike, OperationState } from "@azure/core-lro";
-import type {
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
+import {
   DdosCustomPoliciesDeleteOptionalParams,
   DdosCustomPoliciesGetOptionalParams,
   DdosCustomPoliciesGetResponse,
@@ -17,7 +17,7 @@ import type {
   TagsObject,
   DdosCustomPoliciesUpdateTagsOptionalParams,
   DdosCustomPoliciesUpdateTagsResponse,
-} from "../models/index.js";
+} from "../models";
 
 /** Interface representing a DdosCustomPolicies. */
 export interface DdosCustomPolicies {

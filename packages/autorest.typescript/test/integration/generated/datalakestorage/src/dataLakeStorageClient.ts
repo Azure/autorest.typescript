@@ -8,8 +8,8 @@
 
 import * as coreClient from "@azure/core-client";
 import { PathOperationsImpl } from "./operations";
-import type { PathOperations } from "./operationsInterfaces";
-import type { DataLakeStorageClientOptionalParams } from "./models";
+import { PathOperations } from "./operationsInterfaces";
+import { DataLakeStorageClientOptionalParams } from "./models";
 
 export class DataLakeStorageClient extends coreClient.ServiceClient {
   url: string;

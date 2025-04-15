@@ -12,7 +12,7 @@ import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import type { RequiredOptionalClient } from "../requiredOptionalClient";
-import type {
+import {
   ExplicitPutOptionalBinaryBodyOptionalParams,
   ExplicitPutRequiredBinaryBodyOptionalParams,
   ExplicitPostRequiredIntegerParameterOptionalParams,

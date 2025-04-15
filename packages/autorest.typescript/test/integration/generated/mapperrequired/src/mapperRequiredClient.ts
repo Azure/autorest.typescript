@@ -9,7 +9,7 @@
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
-import type {
+import {
   MapperRequiredClientOptionalParams,
   UpdateCertificateIssuerOptionalParams,
   UpdateCertificateIssuerResponse,

@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type * as coreHttp from "@azure/core-http";
+import * as coreHttp from "@azure/core-http";
 
 export const SampleResourceGroup: coreHttp.CompositeMapper = {
   type: {
