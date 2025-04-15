@@ -16,7 +16,6 @@ import {
   OperationState,
   createHttpPoller,
 } from "@azure/core-lro";
-import { createHttpPoller } from "@azure/core-lro";
 import { createLroSpec } from "../lroImpl.js";
 import {
   ExpressRouteGatewaysListBySubscriptionOptionalParams,
