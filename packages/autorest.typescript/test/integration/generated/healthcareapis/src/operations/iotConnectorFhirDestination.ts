@@ -1,8 +1,8 @@
-import type { IotConnectorFhirDestination } from "../operationsInterfaces";
+import { IotConnectorFhirDestination } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { HealthCareApisClient } from "../healthCareApisClient";
+import { HealthCareApisClient } from "../healthCareApisClient";
 import {
   SimplePollerLike,
   OperationState,

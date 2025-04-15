@@ -8,11 +8,11 @@
 
 import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { setContinuationToken } from "../pagingHelper";
-import type { AvailableEndpointServices } from "../operationsInterfaces";
+import { AvailableEndpointServices } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { NetworkManagementClient } from "../networkManagementClient";
+import { NetworkManagementClient } from "../networkManagementClient";
 import {
   EndpointServiceResult,
   AvailableEndpointServicesListNextOptionalParams,

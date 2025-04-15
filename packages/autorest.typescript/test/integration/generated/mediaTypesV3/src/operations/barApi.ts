@@ -6,10 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { BarApi } from "../operationsInterfaces";
+import { BarApi } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "../models/parameters";
-import type { MediaTypesV3Client } from "../mediaTypesV3Client";
+import { MediaTypesV3Client } from "../mediaTypesV3Client";
 import {
   BarApiPostSendOnDefaultOptionalParams,
   BarApiPostSendOnDefaultResponse,

@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Dictionary } from "../operationsInterfaces";
+import { Dictionary } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { BodyDictionaryClient } from "../bodyDictionaryClient";
+import { BodyDictionaryClient } from "../bodyDictionaryClient";
 import {
   DictionaryGetNullOptionalParams,
   DictionaryGetNullResponse,

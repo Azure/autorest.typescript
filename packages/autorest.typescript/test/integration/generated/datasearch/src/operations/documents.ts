@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Documents } from "../operationsInterfaces";
+import { Documents } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { DataSearchClient } from "../dataSearchClient";
+import { DataSearchClient } from "../dataSearchClient";
 import {
   DocumentsCountOptionalParams,
   DocumentsCountResponse,

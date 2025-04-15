@@ -8,11 +8,11 @@
 
 import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { setContinuationToken } from "../pagingHelper";
-import type { Features } from "../operationsInterfaces";
+import { Features } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { FeatureClient } from "../featureClient";
+import { FeatureClient } from "../featureClient";
 import {
   FeatureResult,
   FeaturesListAllNextOptionalParams,

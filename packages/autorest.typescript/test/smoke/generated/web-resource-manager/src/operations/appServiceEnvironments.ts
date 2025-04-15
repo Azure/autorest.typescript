@@ -8,11 +8,11 @@
 
 import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { setContinuationToken } from "../pagingHelper";
-import type { AppServiceEnvironments } from "../operationsInterfaces";
+import { AppServiceEnvironments } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { WebSiteManagementClient } from "../webSiteManagementClient";
+import { WebSiteManagementClient } from "../webSiteManagementClient";
 import {
   SimplePollerLike,
   OperationState,

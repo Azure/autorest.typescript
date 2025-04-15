@@ -1,8 +1,8 @@
-import type { Queue } from "../operationsInterfaces";
+import { Queue } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { HeaderPrefixClient } from "../headerPrefixClient";
+import { HeaderPrefixClient } from "../headerPrefixClient";
 import {
   QueueGetPropertiesOptionalParams,
   QueueGetPropertiesResponse,

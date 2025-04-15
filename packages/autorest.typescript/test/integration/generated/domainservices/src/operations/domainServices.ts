@@ -1,10 +1,10 @@
 import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { setContinuationToken } from "../pagingHelper";
-import type { DomainServices } from "../operationsInterfaces";
+import { DomainServices } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { DomainServicesClient } from "../domainServicesClient";
+import { DomainServicesClient } from "../domainServicesClient";
 import {
   SimplePollerLike,
   OperationState,

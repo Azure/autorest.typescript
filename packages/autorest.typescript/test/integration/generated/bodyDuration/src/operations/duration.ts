@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Duration } from "../operationsInterfaces";
+import { Duration } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { BodyDurationClient } from "../bodyDurationClient";
+import { BodyDurationClient } from "../bodyDurationClient";
 import {
   DurationGetNullOptionalParams,
   DurationGetNullResponse,

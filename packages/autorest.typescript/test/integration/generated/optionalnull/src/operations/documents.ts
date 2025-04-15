@@ -1,8 +1,8 @@
-import type { Documents } from "../operationsInterfaces";
+import { Documents } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { OptionalNullClient } from "../optionalNullClient";
+import { OptionalNullClient } from "../optionalNullClient";
 import { DocumentsSearchGetOptionalParams } from "../models";
 
 /** Class containing Documents operations. */

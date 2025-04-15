@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Datetimerfc1123 } from "../operationsInterfaces";
+import { Datetimerfc1123 } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { BodyDateTimeRfc1123Client } from "../bodyDateTimeRfc1123Client";
+import { BodyDateTimeRfc1123Client } from "../bodyDateTimeRfc1123Client";
 import {
   Datetimerfc1123GetNullOptionalParams,
   Datetimerfc1123GetNullResponse,

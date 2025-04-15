@@ -6,10 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Float } from "../operationsInterfaces";
+import { Float } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "../models/parameters";
-import type { NonStringEnumClient } from "../nonStringEnumClient";
+import { NonStringEnumClient } from "../nonStringEnumClient";
 import {
   FloatPutOptionalParams,
   FloatPutResponse,

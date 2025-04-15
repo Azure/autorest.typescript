@@ -8,11 +8,11 @@
 
 import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { setContinuationToken } from "../pagingHelper";
-import type { BgpServiceCommunities } from "../operationsInterfaces";
+import { BgpServiceCommunities } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { NetworkManagementClient } from "../networkManagementClient";
+import { NetworkManagementClient } from "../networkManagementClient";
 import {
   BgpServiceCommunity,
   BgpServiceCommunitiesListNextOptionalParams,

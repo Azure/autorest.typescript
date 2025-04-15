@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Queries } from "../operationsInterfaces";
+import { Queries } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { UrlClient } from "../urlClient";
+import { UrlClient } from "../urlClient";
 import {
   QueriesGetBooleanTrueOptionalParams,
   QueriesGetBooleanFalseOptionalParams,

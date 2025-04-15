@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Global } from "../operationsInterfaces";
+import { Global } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { WebSiteManagementClient } from "../webSiteManagementClient";
+import { WebSiteManagementClient } from "../webSiteManagementClient";
 import {
   GlobalGetDeletedWebAppOptionalParams,
   GlobalGetDeletedWebAppResponse,

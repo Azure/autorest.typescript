@@ -8,11 +8,11 @@
 
 import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { setContinuationToken } from "../pagingHelper";
-import type { PolicyDefinitions } from "../operationsInterfaces";
+import { PolicyDefinitions } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { PolicyClient } from "../policyClient";
+import { PolicyClient } from "../policyClient";
 import {
   PolicyDefinition,
   PolicyDefinitionsListNextOptionalParams,

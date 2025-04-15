@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Group } from "../operationsInterfaces";
+import { Group } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { UserAgentCoreV2Client } from "../userAgentCoreV2Client";
+import { UserAgentCoreV2Client } from "../userAgentCoreV2Client";
 import {
   GroupGetSampleResourceGroupOptionalParams,
   GroupGetSampleResourceGroupResponse,

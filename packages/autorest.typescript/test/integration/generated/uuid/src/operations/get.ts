@@ -6,10 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Get } from "../operationsInterfaces";
+import { Get } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "../models/parameters";
-import type { UuidClient } from "../uuidClient";
+import { UuidClient } from "../uuidClient";
 import { GetUuidOptionalParams, GetUuidResponse } from "../models";
 
 /** Class containing Get operations. */

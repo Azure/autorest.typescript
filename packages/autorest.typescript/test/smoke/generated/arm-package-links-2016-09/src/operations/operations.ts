@@ -8,11 +8,11 @@
 
 import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { setContinuationToken } from "../pagingHelper";
-import type { Operations } from "../operationsInterfaces";
+import { Operations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { ManagementLinkClient } from "../managementLinkClient";
+import { ManagementLinkClient } from "../managementLinkClient";
 import {
   Operation,
   OperationsListNextOptionalParams,

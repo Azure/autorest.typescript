@@ -6,10 +6,10 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Int } from "../operationsInterfaces";
+import { Int } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "../models/parameters";
-import type { NonStringEnumClient } from "../nonStringEnumClient";
+import { NonStringEnumClient } from "../nonStringEnumClient";
 import {
   IntPutOptionalParams,
   IntPutResponse,

@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Paths } from "../operationsInterfaces";
+import { Paths } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { CustomUrlClient } from "../customUrlClient";
+import { CustomUrlClient } from "../customUrlClient";
 import { PathsGetEmptyOptionalParams } from "../models";
 
 /** Class containing Paths operations. */

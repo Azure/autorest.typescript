@@ -1,9 +1,9 @@
 import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
-import type { PrivateEndpointConnections } from "../operationsInterfaces";
+import { PrivateEndpointConnections } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { HealthCareApisClient } from "../healthCareApisClient";
+import { HealthCareApisClient } from "../healthCareApisClient";
 import {
   SimplePollerLike,
   OperationState,

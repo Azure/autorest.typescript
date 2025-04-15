@@ -7,11 +7,11 @@
  */
 
 import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
-import type { DataMaskingRules } from "../operationsInterfaces";
+import { DataMaskingRules } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { SqlManagementClient } from "../sqlManagementClient";
+import { SqlManagementClient } from "../sqlManagementClient";
 import {
   DataMaskingRule,
   DataMaskingRulesListByDatabaseOptionalParams,

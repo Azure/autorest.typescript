@@ -9,11 +9,11 @@
 import { tracingClient } from "../tracing";
 import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { setContinuationToken } from "../pagingHelper";
-import type { Paging } from "../operationsInterfaces";
+import { Paging } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { PagingClient } from "../pagingClient";
+import { PagingClient } from "../pagingClient";
 import {
   SimplePollerLike,
   OperationState,

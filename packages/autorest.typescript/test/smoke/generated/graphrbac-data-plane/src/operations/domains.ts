@@ -7,11 +7,11 @@
  */
 
 import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
-import type { Domains } from "../operationsInterfaces";
+import { Domains } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { GraphRbacManagementClient } from "../graphRbacManagementClient";
+import { GraphRbacManagementClient } from "../graphRbacManagementClient";
 import {
   Domain,
   DomainsListOptionalParams,

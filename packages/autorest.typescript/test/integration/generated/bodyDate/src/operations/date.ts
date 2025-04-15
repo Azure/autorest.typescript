@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { DateOperations } from "../operationsInterfaces";
+import { DateOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { BodyDateClient } from "../bodyDateClient";
+import { BodyDateClient } from "../bodyDateClient";
 import {
   DateGetNullOptionalParams,
   DateGetNullResponse,

@@ -1,8 +1,8 @@
-import type { File } from "../operationsInterfaces";
+import { File } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { StorageFileShareClient } from "../storageFileShareClient";
+import { StorageFileShareClient } from "../storageFileShareClient";
 import {
   FileUploadRangeFromURLOptionalParams,
   FileUploadRangeFromURLResponse,

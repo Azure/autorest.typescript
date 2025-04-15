@@ -6,12 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Formdata } from "../operationsInterfaces";
+import { Formdata } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { BodyFormDataClient } from "../bodyFormDataClient";
+import { BodyFormDataClient } from "../bodyFormDataClient";
 import {
   FormdataUploadFileOptionalParams,
   FormdataUploadFileResponse,

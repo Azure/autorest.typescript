@@ -8,11 +8,11 @@
 
 import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { setContinuationToken } from "../pagingHelper";
-import type { ProximityPlacementGroups } from "../operationsInterfaces";
+import { ProximityPlacementGroups } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { ComputeManagementClient } from "../computeManagementClient";
+import { ComputeManagementClient } from "../computeManagementClient";
 import {
   ProximityPlacementGroup,
   ProximityPlacementGroupsListBySubscriptionNextOptionalParams,

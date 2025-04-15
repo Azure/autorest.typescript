@@ -1,8 +1,8 @@
-import type { PipelineOperations } from "../operationsInterfaces";
+import { PipelineOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { OperationGroupClashClient } from "../operationGroupClashClient";
+import { OperationGroupClashClient } from "../operationGroupClashClient";
 import {
   PipelineApiV1ValueGetOptionalParams,
   PipelineApiV1ValueGetResponse,

@@ -7,11 +7,11 @@
  */
 
 import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
-import type { Usages } from "../operationsInterfaces";
+import { Usages } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { StorageManagementClient } from "../storageManagementClient";
+import { StorageManagementClient } from "../storageManagementClient";
 import {
   Usage,
   UsagesListByLocationOptionalParams,

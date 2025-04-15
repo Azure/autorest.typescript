@@ -8,11 +8,11 @@
 
 import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { setContinuationToken } from "../pagingHelper";
-import type { ExtendedDatabaseBlobAuditingPolicies } from "../operationsInterfaces";
+import { ExtendedDatabaseBlobAuditingPolicies } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { SqlManagementClient } from "../sqlManagementClient";
+import { SqlManagementClient } from "../sqlManagementClient";
 import {
   ExtendedDatabaseBlobAuditingPolicy,
   ExtendedDatabaseBlobAuditingPoliciesListByDatabaseNextOptionalParams,

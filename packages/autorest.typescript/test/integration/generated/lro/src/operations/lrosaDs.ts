@@ -7,11 +7,11 @@
  */
 
 import { tracingClient } from "../tracing";
-import type { LrosaDs } from "../operationsInterfaces";
+import { LrosaDs } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { LROClient } from "../lROClient";
+import { LROClient } from "../lROClient";
 import {
   SimplePollerLike,
   OperationState,

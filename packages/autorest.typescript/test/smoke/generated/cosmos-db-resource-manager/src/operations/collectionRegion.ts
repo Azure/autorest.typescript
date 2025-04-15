@@ -7,11 +7,11 @@
  */
 
 import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
-import type { CollectionRegion } from "../operationsInterfaces";
+import { CollectionRegion } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { CosmosDBManagementClient } from "../cosmosDBManagementClient";
+import { CosmosDBManagementClient } from "../cosmosDBManagementClient";
 import {
   Metric,
   CollectionRegionListMetricsOptionalParams,

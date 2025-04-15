@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Policy } from "../operationsInterfaces";
+import { Policy } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { GeneratedClient } from "../generatedClient";
+import { GeneratedClient } from "../generatedClient";
 import {
   AttestationType,
   PolicyGetOptionalParams,

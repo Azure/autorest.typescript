@@ -1,9 +1,9 @@
-import type { PageBlob } from "../operationsInterfaces";
+import { PageBlob } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { StorageBlobClient } from "../storageBlobClient";
+import { StorageBlobClient } from "../storageBlobClient";
 import {
   PageBlobUploadPagesOptionalParams,
   PageBlobUploadPagesResponse,

@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { FooApi } from "../operationsInterfaces";
+import { FooApi } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import * as Parameters from "../models/parameters";
-import type { MediaTypesV3Client } from "../mediaTypesV3Client";
+import { MediaTypesV3Client } from "../mediaTypesV3Client";
 import {
   FooApiPostSendOnDefault$binaryOptionalParams,
   FooApiPostSendOnDefault$textOptionalParams,

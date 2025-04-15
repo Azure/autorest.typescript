@@ -1,8 +1,8 @@
-import type { IntegrationRuntimeObjectMetadata } from "../operationsInterfaces";
+import { IntegrationRuntimeObjectMetadata } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { DataFactoryClient } from "../dataFactoryClient";
+import { DataFactoryClient } from "../dataFactoryClient";
 import {
   SimplePollerLike,
   OperationState,

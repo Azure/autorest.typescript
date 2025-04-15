@@ -8,11 +8,11 @@
 
 import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
 import { setContinuationToken } from "../pagingHelper";
-import type { EncryptionScopes } from "../operationsInterfaces";
+import { EncryptionScopes } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { StorageManagementClient } from "../storageManagementClient";
+import { StorageManagementClient } from "../storageManagementClient";
 import {
   EncryptionScope,
   EncryptionScopesListNextOptionalParams,

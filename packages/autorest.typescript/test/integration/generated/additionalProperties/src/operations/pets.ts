@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { Pets } from "../operationsInterfaces";
+import { Pets } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import type { AdditionalPropertiesClient } from "../additionalPropertiesClient";
+import { AdditionalPropertiesClient } from "../additionalPropertiesClient";
 import {
   PetAPTrue,
   PetsCreateAPTrueOptionalParams,
