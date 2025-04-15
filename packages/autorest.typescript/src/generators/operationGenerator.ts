@@ -1307,12 +1307,6 @@ function addImports(
       namedImports: createLroImports(useLegacyLro),
       moduleSpecifier: "@azure/core-lro"
     });
-    if (!useLegacyLro) {
-      operationGroupFile.addImportDeclaration({
-        namedImports: ["createHttpPoller"],
-        moduleSpecifier: "@azure/core-lro"
-      });
-    }
     operationGroupFile.addImportDeclaration({
       namedImports: ["createLroSpec"],
       moduleSpecifier: getImportModuleName(`../lroImpl`, isTestPackage)
