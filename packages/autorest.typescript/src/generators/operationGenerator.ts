@@ -51,6 +51,7 @@ import {
 import { calculateMethodName } from "./utils/operationsUtils";
 import { getAutorestOptions } from "../autorestSession";
 import { createLroImports, createLroType } from "../utils/lroHelpers";
+import { getImportModuleName } from "../utils/nameConstructors";
 
 /**
  * Function that writes the code for all the operations.
@@ -88,7 +89,7 @@ export function generateOperations(
     operationIndexFile.addExportDeclarations(
       fileNames.map(fileName => {
         return {
-          moduleSpecifier: isTestPackage ? `./${fileName}` : `./${fileName}.js`
+          moduleSpecifier: getImportModuleName(`./${fileName}`, isTestPackage)
         } as ExportDeclarationStructure;
       })
     );
@@ -527,7 +528,7 @@ function addClass(
 
     operationGroupFile.addImportDeclaration({
       namedImports,
-      moduleSpecifier: isTestPackage ? "../models" : "../models/index.js"
+      moduleSpecifier: getImportModuleName({ cjsName: "../models", esModulesName: "../models/index.js" }, isTestPackage)
     });
   }
 }
@@ -1251,7 +1252,7 @@ function addImports(
 
   operationGroupFile.addImportDeclaration({
     namedImports: [`${operationGroupInterfaceName}`],
-    moduleSpecifier: isTestPackage ? "../operationsInterfaces" : "../operationsInterfaces/index.js"
+    moduleSpecifier: getImportModuleName({ cjsName: "../operationsInterfaces", esModulesName: "../operationsInterfaces/index.js" }, isTestPackage)
   });
 
   if (!useCoreV2) {
@@ -1281,14 +1282,14 @@ function addImports(
   if (mappers.length) {
     operationGroupFile.addImportDeclaration({
       namespaceImport: "Mappers",
-      moduleSpecifier: isTestPackage ? "../models/mappers" : "../models/mappers.js"
+      moduleSpecifier: getImportModuleName("../models/mappers", isTestPackage)
     });
   }
 
   if (shouldImportParameters(clientDetails)) {
     operationGroupFile.addImportDeclaration({
       namespaceImport: "Parameters",
-      moduleSpecifier: isTestPackage ? "../models/parameters" : "../models/parameters.js"
+      moduleSpecifier: getImportModuleName("../models/parameters", isTestPackage)
     });
   }
 
@@ -1298,7 +1299,7 @@ function addImports(
 
   operationGroupFile.addImportDeclaration({
     namedImports: [`${clientClassName}`],
-    moduleSpecifier: isTestPackage ? `../${clientFileName}` : `../${clientFileName}.js`
+    moduleSpecifier: getImportModuleName(`../${clientFileName}`, isTestPackage)
   });
 
   if (hasLroOperation(operationGroupDetails)) {
@@ -1306,9 +1307,15 @@ function addImports(
       namedImports: createLroImports(useLegacyLro),
       moduleSpecifier: "@azure/core-lro"
     });
+    if (!useLegacyLro) {
+      operationGroupFile.addImportDeclaration({
+        namedImports: ["createHttpPoller"],
+        moduleSpecifier: "@azure/core-lro"
+      });
+    }
     operationGroupFile.addImportDeclaration({
       namedImports: ["createLroSpec"],
-      moduleSpecifier: isTestPackage ? `../lroImpl` : `../lroImpl.js`
+      moduleSpecifier: getImportModuleName(`../lroImpl`, isTestPackage)
     });
   }
 }
