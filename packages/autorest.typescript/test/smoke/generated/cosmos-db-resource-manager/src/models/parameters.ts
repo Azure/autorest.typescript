@@ -38,7 +38,7 @@ import {
   ClusterResource as ClusterResourceMapper,
   CommandPostBody as CommandPostBodyMapper,
   DataCenterResource as DataCenterResourceMapper,
-} from "../models/mappers";
+} from "../models/mappers.js";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",

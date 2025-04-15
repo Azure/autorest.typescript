@@ -17,6 +17,13 @@ The Azure Storage Management API.
 See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md) for more details.
 
 
+### Install the `@msinternal/storage-resource-manager` package
+
+Install the StorageManagement client library for JavaScript with `npm`:
+
+```bash
+npm install @msinternal/storage-resource-manager
+```
 
 
 ### JavaScript Bundle

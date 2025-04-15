@@ -7,18 +7,19 @@
  */
 
 import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
-import { setContinuationToken } from "../pagingHelper";
-import { DeploymentScripts } from "../operationsInterfaces";
+import { setContinuationToken } from "../pagingHelper.js";
+import { DeploymentScripts } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { DeploymentScriptsClient } from "../deploymentScriptsClient";
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import { DeploymentScriptsClient } from "../deploymentScriptsClient.js";
 import {
   SimplePollerLike,
   OperationState,
   createHttpPoller,
 } from "@azure/core-lro";
-import { createLroSpec } from "../lroImpl";
+import { createHttpPoller } from "@azure/core-lro";
+import { createLroSpec } from "../lroImpl.js";
 import {
   DeploymentScriptUnion,
   DeploymentScriptsListBySubscriptionNextOptionalParams,
@@ -40,7 +41,7 @@ import {
   DeploymentScriptsGetLogsDefaultResponse,
   DeploymentScriptsListBySubscriptionNextResponse,
   DeploymentScriptsListByResourceGroupNextResponse,
-} from "../models";
+} from "../models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing DeploymentScripts operations. */

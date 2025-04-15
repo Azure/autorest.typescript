@@ -6,8 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import type { RecorderStartOptions } from "@azure-tools/test-recorder";
-import { Recorder } from "@azure-tools/test-recorder";
+import { Recorder, RecorderStartOptions } from "@azure-tools/test-recorder";
 import { afterEach, beforeEach, describe, it, assert } from "vitest";
 
 const replaceableVariables: Record<string, string> = {

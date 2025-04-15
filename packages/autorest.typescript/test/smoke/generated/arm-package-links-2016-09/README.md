@@ -17,6 +17,13 @@ Azure resources can be linked together to form logical relationships. You can es
 See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md) for more details.
 
 
+### Install the `@msinternal/arm-package-links-2016-09` package
+
+Install the ManagementLink client library for JavaScript with `npm`:
+
+```bash
+npm install @msinternal/arm-package-links-2016-09
+```
 
 
 ### JavaScript Bundle

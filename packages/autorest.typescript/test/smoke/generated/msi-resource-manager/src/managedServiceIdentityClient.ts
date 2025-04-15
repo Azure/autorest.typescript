@@ -17,13 +17,13 @@ import {
   SystemAssignedIdentitiesImpl,
   OperationsImpl,
   UserAssignedIdentitiesImpl,
-} from "./operations";
+} from "./operations/index.js";
 import {
   SystemAssignedIdentities,
   Operations,
   UserAssignedIdentities,
-} from "./operationsInterfaces";
-import { ManagedServiceIdentityClientOptionalParams } from "./models";
+} from "./operationsInterfaces/index.js";
+import { ManagedServiceIdentityClientOptionalParams } from "./models/index.js";
 
 export class ManagedServiceIdentityClient extends coreClient.ServiceClient {
   $host: string;

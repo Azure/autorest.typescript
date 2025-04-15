@@ -17,6 +17,13 @@ ARM applications
 See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md) for more details.
 
 
+### Install the `@msinternal/arm-package-managedapplications-2018-06` package
+
+Install the Application client library for JavaScript with `npm`:
+
+```bash
+npm install @msinternal/arm-package-managedapplications-2018-06
+```
 
 
 ### JavaScript Bundle

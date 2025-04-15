@@ -15,7 +15,7 @@ import {
   PolicyAssignment as PolicyAssignmentMapper,
   PolicyDefinition as PolicyDefinitionMapper,
   PolicySetDefinition as PolicySetDefinitionMapper,
-} from "../models/mappers";
+} from "../models/mappers.js";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",
