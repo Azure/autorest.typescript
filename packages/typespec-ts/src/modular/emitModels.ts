@@ -682,7 +682,9 @@ function buildModelProperty(
   }
 
   let typeExpression: string;
+  // eslint-disable-next-line
   if (property.kind === "property" && property.isMultipartFileInput) {
+    // eslint-disable-next-line
     const multipartOptions = property.multipartOptions;
     typeExpression = "{";
     typeExpression += `contents: ${resolveReference(MultipartHelpers.FileContents)};`;
