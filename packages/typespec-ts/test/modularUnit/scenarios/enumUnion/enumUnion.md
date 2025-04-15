@@ -955,7 +955,7 @@ export interface Test {
 
 ```ts models function testSerializer
 export function testSerializer(item: Test): any {
-  return { content: !item["content"] ? item["content"] : "red" };
+  return { content: item["content"] };
 }
 ```
 
@@ -1317,7 +1317,7 @@ export interface Test {
 
 ```ts models function testSerializer
 export function testSerializer(item: Test): any {
-  return { content: !item["content"] ? item["content"] : 1 };
+  return { content: item["content"] };
 }
 ```
 

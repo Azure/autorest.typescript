@@ -61,12 +61,12 @@ export interface InputOutputModel {
 }
 
 export function inputOutputModelSerializer(item: InputOutputModel): any {
-  return { prop: true };
+  return { prop: item["prop"] };
 }
 
 export function inputOutputModelDeserializer(item: any): InputOutputModel {
   return {
-    prop: true,
+    prop: item["prop"],
   };
 }
 ```
@@ -119,12 +119,12 @@ export interface InputOutputModel {
 }
 
 export function inputOutputModelSerializer(item: InputOutputModel): any {
-  return { prop: 1 };
+  return { prop: item["prop"] };
 }
 
 export function inputOutputModelDeserializer(item: any): InputOutputModel {
   return {
-    prop: 1,
+    prop: item["prop"],
   };
 }
 ```
@@ -176,12 +176,12 @@ export interface InputOutputModel {
 }
 
 export function inputOutputModelSerializer(item: InputOutputModel): any {
-  return { prop: "foo" };
+  return { prop: item["prop"] };
 }
 
 export function inputOutputModelDeserializer(item: any): InputOutputModel {
   return {
-    prop: "foo",
+    prop: item["prop"],
   };
 }
 ```
@@ -1256,7 +1256,7 @@ export function catDeserializer(item: any): Cat {
   return {
     name: item["name"],
     weight: item["weight"],
-    kind: "cat",
+    kind: item["kind"],
     meow: item["meow"],
   };
 }
@@ -1284,7 +1284,7 @@ export function dogDeserializer(item: any): Dog {
   return {
     name: item["name"],
     weight: item["weight"],
-    kind: "dog",
+    kind: item["kind"],
     bark: item["bark"],
   };
 }
@@ -1330,7 +1330,7 @@ export function catDeserializer(item: any): Cat {
   return {
     name: item["name"],
     weight: item["weight"],
-    kind: "cat",
+    kind: item["kind"],
     meow: item["meow"],
   };
 }
@@ -1428,7 +1428,7 @@ export function catDeserializer(item: any): Cat {
   return {
     weight: item["weight"],
     name: item["name"],
-    kind: "cat",
+    kind: item["kind"],
     meow: item["meow"],
   };
 }
@@ -1538,7 +1538,7 @@ export interface PSDog extends Pet {
 
 export function psDogSerializer(item: PSDog): any {
   return {
-    kind: "dog",
+    kind: item["kind"],
     name: item["name"],
     weight: item["weight"],
     bark: item["bark"],
@@ -1547,7 +1547,7 @@ export function psDogSerializer(item: PSDog): any {
 
 export function psDogDeserializer(item: any): PSDog {
   return {
-    kind: "dog",
+    kind: item["kind"],
     name: item["name"],
     weight: item["weight"],
     bark: item["bark"],
@@ -1713,7 +1713,7 @@ export interface Cat extends Pet {
 
 export function catDeserializer(item: any): Cat {
   return {
-    kind: "cat",
+    kind: item["kind"],
     name: item["name"],
     weight: item["weight"],
     meow: item["meow"],
@@ -1728,7 +1728,7 @@ export interface Dog extends Pet {
 
 export function dogDeserializer(item: any): Dog {
   return {
-    kind: "dog",
+    kind: item["kind"],
     name: item["name"],
     weight: item["weight"],
     bark: item["bark"],
@@ -1854,7 +1854,7 @@ export interface Cat extends Pet {
 
 export function catDeserializer(item: any): Cat {
   return {
-    kind: "cat",
+    kind: item["kind"],
     name: item["name"],
     weight: item["weight"],
     meow: item["meow"],
@@ -1870,7 +1870,7 @@ export interface Dog extends Pet {
 
 export function dogDeserializer(item: any): Dog {
   return {
-    kind: "dog",
+    kind: item["kind"],
     name: item["name"],
     weight: item["weight"],
     type: item["type"],
@@ -1900,7 +1900,7 @@ export interface Gold extends Dog {
 export function goldDeserializer(item: any): Gold {
   return {
     kind: item["kind"],
-    type: "gold",
+    type: item["type"],
     bark: item["bark"],
     name: item["name"],
     weight: item["weight"],

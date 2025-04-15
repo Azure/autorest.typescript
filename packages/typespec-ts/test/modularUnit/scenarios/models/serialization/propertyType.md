@@ -121,12 +121,10 @@ export function simpleModelSerializer(item: SimpleModel): any {
       : _simpleModelPropSimpleUnionOptionalSerializer(
           item["propSimpleUnionOptional"],
         ),
-    propStringLiteral: "A",
-    propBooleanLiteral: false,
-    propNumberLiteral: 1,
-    propStringLiteralOptional: !item["propStringLiteralOptional"]
-      ? item["propStringLiteralOptional"]
-      : "A",
+    propStringLiteral: item["propStringLiteral"],
+    propBooleanLiteral: item["propBooleanLiteral"],
+    propNumberLiteral: item["propNumberLiteral"],
+    propStringLiteralOptional: item["propStringLiteralOptional"],
     propStringUnion: item["propStringUnion"],
     propStringUnionOptioanl: item["propStringUnionOptioanl"],
     propStringUnionNullable: item["propStringUnionNullable"],
