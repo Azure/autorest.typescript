@@ -1250,7 +1250,6 @@ function addImports(
   );
 
   operationGroupFile.addImportDeclaration({
-    isTypeOnly: true,
     namedImports: [`${operationGroupInterfaceName}`],
     moduleSpecifier: isTestPackage ? "../operationsInterfaces" : "../operationsInterfaces/index.js"
   });
@@ -1298,7 +1297,6 @@ function addImports(
   const clientFileName = normalizeName(clientClassName, NameType.File);
 
   operationGroupFile.addImportDeclaration({
-    isTypeOnly: true,
     namedImports: [`${clientClassName}`],
     moduleSpecifier: isTestPackage ? `../${clientFileName}` : `../${clientFileName}.js`
   });
