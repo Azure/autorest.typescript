@@ -200,7 +200,7 @@ model SimpleModel {
     ...Record<string>;
 }
 
-model ComplexModel {
+model ComplexModel extends SimpleModel {
     ...Record<SimpleModel>;
 }
 
@@ -237,7 +237,7 @@ export function simpleModelSerializer(item: SimpleModel): any {
 }
 
 /** model interface ComplexModel */
-export interface ComplexModel {
+export interface ComplexModel extends SimpleModel {
   /** Additional properties */
   additionalProperties?: Record<string, SimpleModel>;
 }
