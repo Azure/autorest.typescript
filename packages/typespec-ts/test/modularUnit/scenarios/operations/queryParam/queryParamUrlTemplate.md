@@ -19,7 +19,7 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _readSend(
@@ -28,28 +28,30 @@ export function _readSend(
   keyName: string,
   keyVersion: string,
   parameters: string,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/{pathParam}{?key%2Dname,key%2Dversion}",
     {
       pathParam: pathParam,
       "key%2Dname": keyName,
-      "key%2Dversion": keyVersion
+      "key%2Dversion": keyVersion,
     },
     {
-      allowReserved: options?.requestOptions?.skipUrlEncoding
-    }
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
-  return context.path(path).post({
-    ...operationOptionsToRequestParameters(options),
-    contentType: "text/plain",
-    body: parameters
-  });
+  return context
+    .path(path)
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "text/plain",
+      body: parameters,
+    });
 }
 
 export async function _readDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -65,7 +67,7 @@ export async function read(
   keyName: string,
   keyVersion: string,
   parameters: string,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _readSend(
     context,
@@ -73,7 +75,7 @@ export async function read(
     keyName,
     keyVersion,
     parameters,
-    options
+    options,
   );
   return _readDeserialize(result);
 }
