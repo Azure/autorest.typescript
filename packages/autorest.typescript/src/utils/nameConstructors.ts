@@ -15,10 +15,10 @@ export type ModuleName =
  * @example
  *
  * ```ts
- * getImportModuleName("myModule", "true") // returns "myModule"
- * getImportModuleName("myModule", "false") // returns "myModule.js"
- * getImportModuleName({ cjsName: "myModule", esModulesName: "myModule/index.js" }, "true") // returns "myModule"
- * getImportModuleName({ cjsName: "myModule", esModulesName: "myModule/index.js" }, "false") // returns "myModule/index.js"
+ * getImportModuleName("myModule", true) // returns "myModule"
+ * getImportModuleName("myModule", false) // returns "myModule.js"
+ * getImportModuleName({ cjsName: "myModule", esModulesName: "myModule/index.js" }, true) // returns "myModule"
+ * getImportModuleName({ cjsName: "myModule", esModulesName: "myModule/index.js" }, false) // returns "myModule/index.js"
  */
 // TODO remove this function after migrating the configs for integration
 export function getImportModuleName(
