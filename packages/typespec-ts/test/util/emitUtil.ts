@@ -26,10 +26,7 @@ import { buildClientContext } from "../../src/modular/buildClientContext.js";
 import { buildOperationFiles } from "../../src/modular/buildOperations.js";
 import { transformModularEmitterOptions } from "../../src/modular/buildModularOptions.js";
 import { expectDiagnosticEmpty } from "@typespec/compiler/testing";
-import {
-  getCredentialInfo,
-  reportCamelOptionDiagnostic
-} from "../../src/transform/transfromRLCOptions.js";
+import { getCredentialInfo } from "../../src/transform/transfromRLCOptions.js";
 import { getRLCClients } from "../../src/utils/clientUtils.js";
 import { transformHelperFunctionDetails } from "../../src/transform/transformHelperFunctionDetails.js";
 import { transformPaths } from "../../src/transform/transformPaths.js";
@@ -38,7 +35,10 @@ import { transformToParameterTypes } from "../../src/transform/transformParamete
 import { transformToResponseTypes } from "../../src/transform/transformResponses.js";
 import { useBinder } from "../../src/framework/hooks/binder.js";
 import { emitSamples } from "../../src/modular/emitSamples.js";
-import { renameClientName } from "../../src/index.js";
+import {
+  renameClientName,
+  reportCamelOptionDiagnostic
+} from "../../src/index.js";
 
 export async function emitPageHelperFromTypeSpec(
   tspContent: string,

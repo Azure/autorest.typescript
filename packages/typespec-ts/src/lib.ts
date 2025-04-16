@@ -5,8 +5,7 @@ import {
   PackageDetails,
   DependencyInfo,
   ServiceInfo,
-  PackageFlavor,
-  RLCOptions
+  PackageFlavor
 } from "@azure-tools/rlc-common";
 import {
   createTypeSpecLibrary,
@@ -15,7 +14,7 @@ import {
 } from "@typespec/compiler";
 import { Options } from "prettier";
 
-export interface EmitterOptions extends RLCOptions {
+export interface EmitterOptions {
   "include-shortcuts"?: boolean;
   "multi-client"?: boolean;
   batch?: any[];
@@ -71,105 +70,10 @@ export interface EmitterOptions extends RLCOptions {
   "default-value-object"?: boolean;
 }
 
-const _RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
-  type: "object",
-  additionalProperties: true,
-  properties: {
-    includeShortcuts: { type: "boolean", nullable: true },
-    multiClient: { type: "boolean", nullable: true },
-    batch: {
-      type: "array",
-      nullable: true,
-      items: {
-        type: "string"
-      }
-    },
-    packageDetails: {
-      type: "object",
-      additionalProperties: true,
-      properties: {
-        name: { type: "string", nullable: false },
-        scopeName: { type: "string", nullable: true },
-        nameWithoutScope: { type: "string", nullable: true },
-        description: { type: "string", nullable: true },
-        version: { type: "string", nullable: true }
-      },
-      required: ["name"],
-      nullable: true
-    },
-    addCredentials: { type: "boolean", nullable: true },
-    credentialScopes: {
-      type: "array",
-      nullable: true,
-      items: { type: "string" }
-    },
-    credentialKeyHeaderName: { type: "string", nullable: true },
-    customHttpAuthHeaderName: { type: "string", nullable: true },
-    customHttpAuthSharedKeyPrefix: { type: "string", nullable: true },
-    generateMetadata: { type: "boolean", nullable: true },
-    generateTest: { type: "boolean", nullable: true },
-    generateSample: { type: "boolean", nullable: true },
-    azureSdkForJs: { type: "boolean", nullable: true },
-    azureOutputDirectory: { type: "string", nullable: true },
-    isTypeSpecTest: { type: "boolean", nullable: true },
-    title: { type: "string", nullable: true },
-    dependencyInfo: {
-      type: "object",
-      additionalProperties: true,
-      properties: {
-        link: { type: "string", nullable: false },
-        description: { type: "string", nullable: false }
-      },
-      required: [],
-      nullable: true
-    },
-    productDocLink: { type: "string", nullable: true },
-    serviceInfo: {
-      type: "object",
-      additionalProperties: true,
-      properties: {
-        title: { type: "string", nullable: true },
-        description: { type: "string", nullable: true }
-      },
-      nullable: true
-    },
-    azureArm: { type: "boolean", nullable: true },
-    sourceFrom: { type: "string", nullable: true },
-    isModularLibrary: { type: "boolean", nullable: true, default: false },
-    enableOperationGroup: { type: "boolean", nullable: true },
-    enableModelNamespace: { type: "boolean", nullable: true },
-    hierarchyClient: { type: "boolean", nullable: true },
-    branded: { type: "boolean", nullable: true },
-    flavor: { type: "string", nullable: true },
-    moduleKind: {
-      type: "string",
-      nullable: true,
-      enum: ["esm", "cjs"],
-      default: "esm"
-    },
-    compatibilityMode: { type: "boolean", nullable: true },
-    experimentalExtensibleEnums: { type: "boolean", nullable: true },
-    clearOutputFolder: { type: "boolean", nullable: true },
-    ignorePropertyNameNormalize: { type: "boolean", nullable: true },
-    ignoreEnumMemberNameNormalize: { type: "boolean", nullable: true },
-    compatibilityQueryMultiFormat: { type: "boolean", nullable: true },
-    typespecTitleMap: {
-      type: "object",
-      additionalProperties: {
-        type: "string"
-      },
-      required: [],
-      nullable: true
-    }
-  },
-  required: []
-};
-
 export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
   type: "object",
   additionalProperties: true,
   properties: {
-    ..._RLCOptionsSchema.properties,
     "include-shortcuts": { type: "boolean", nullable: true },
     "multi-client": { type: "boolean", nullable: true },
     batch: {
@@ -385,7 +289,7 @@ const libDef = {
       }
     },
     "use-kebab-case-option": {
-      severity: "warning",
+      severity: "error",
       messages: {
         default: paramMessage`The option - ${"camelCaseOption"} is deprecated and please use this kebab-case one - ${"kebabCaseOption"}.`
       }
