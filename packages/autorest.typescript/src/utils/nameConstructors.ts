@@ -20,7 +20,7 @@ export type ModuleName =
  * getImportModuleName({ cjsName: "myModule", esModulesName: "myModule/index.js" }, true) // returns "myModule"
  * getImportModuleName({ cjsName: "myModule", esModulesName: "myModule/index.js" }, false) // returns "myModule/index.js"
  */
-// TODO remove this function after migrating the configs for integration
+// TODO remove this function after migrating the configs for integration. Issue: https://github.com/Azure/autorest.typescript/issues/3166
 export function getImportModuleName(
     name: ModuleName,
     isTestPackage?: boolean
