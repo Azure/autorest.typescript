@@ -13,7 +13,7 @@ import {
   SignedInUserListOwnedObjectsOptionalParams,
   SignedInUserGetOptionalParams,
   SignedInUserGetResponse,
-} from "../models";
+} from "../models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a SignedInUser. */

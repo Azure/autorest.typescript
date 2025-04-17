@@ -805,7 +805,8 @@ function buildBodyParameter(
     !bodyParameter.optional,
     isBinaryPayload(context, bodyParameter.__raw!, bodyParameter.contentTypes)
       ? "binary"
-      : getEncodeForType(bodyParameter.type)
+      : getEncodeForType(bodyParameter.type),
+    true
   );
   return `\nbody: ${serializedBody.startsWith(nullOrUndefinedPrefix) ? "" : nullOrUndefinedPrefix}${serializedBody},`;
 }
@@ -867,7 +868,8 @@ function getCollectionFormat(
       param.type,
       param.name,
       true,
-      getEncodeForType(param.type)
+      getEncodeForType(param.type),
+      true
     )}${additionalParam})`;
   }
   return `"${serializedName}": ${optionalParamName}?.${
@@ -877,7 +879,8 @@ function getCollectionFormat(
     param.type,
     `${optionalParamName}?.${param.name}`,
     false,
-    getEncodeForType(param.type)
+    getEncodeForType(param.type),
+    true
   )}${additionalParam}): undefined`;
 }
 
@@ -928,7 +931,8 @@ function getRequired(context: SdkContext, param: SdkModelPropertyType) {
     param.type,
     clientValue,
     true,
-    getEncodeForType(param.type)
+    getEncodeForType(param.type),
+    true
   )}`;
 }
 
@@ -968,7 +972,8 @@ function getOptional(
     param.type,
     paramName,
     false,
-    getEncodeForType(param.type)
+    getEncodeForType(param.type),
+    true
   )}`;
 }
 
@@ -1143,7 +1148,8 @@ export function getSerializationExpression(
       property.type,
       propertyFullName,
       !property.optional,
-      getEncodeForType(property.type)
+      getEncodeForType(property.type),
+      propertyPath === "" ? true : false
     );
   }
 }
@@ -1268,7 +1274,8 @@ export function serializeRequestValue(
   type: SdkType,
   clientValue: string,
   required: boolean,
-  format?: string
+  format?: string,
+  isTopLevel: boolean = false
 ): string {
   const getSdkType = useSdkTypes();
   const dependencies = useDependencies();
@@ -1349,6 +1356,11 @@ export function serializeRequestValue(
       }
     case "model": // this is to build serialization logic for spread model types
       return `{${getRequestModelMapping(context, type, "").join(",")}}`;
+    case "constant":
+      if (isTopLevel) {
+        return `${nullOrUndefinedPrefix}${getConstantValue(type)}`;
+      }
+      return clientValue;
     case "nullable":
       return serializeRequestValue(
         context,

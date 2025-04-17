@@ -17,6 +17,13 @@ Provides operations for working with resources and resource groups.
 See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md) for more details.
 
 
+### Install the `@msinternal/arm-package-resources-2019-08` package
+
+Install the ResourceManagement client library for JavaScript with `npm`:
+
+```bash
+npm install @msinternal/arm-package-resources-2019-08
+```
 
 
 ### JavaScript Bundle

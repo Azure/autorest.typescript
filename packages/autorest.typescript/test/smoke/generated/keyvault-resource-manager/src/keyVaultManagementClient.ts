@@ -23,7 +23,7 @@ import {
   MhsmPrivateLinkResourcesImpl,
   OperationsImpl,
   SecretsImpl,
-} from "./operations";
+} from "./operations/index.js";
 import {
   Keys,
   Vaults,
@@ -34,8 +34,8 @@ import {
   MhsmPrivateLinkResources,
   Operations,
   Secrets,
-} from "./operationsInterfaces";
-import { KeyVaultManagementClientOptionalParams } from "./models";
+} from "./operationsInterfaces/index.js";
+import { KeyVaultManagementClientOptionalParams } from "./models/index.js";
 
 export class KeyVaultManagementClient extends coreClient.ServiceClient {
   $host: string;

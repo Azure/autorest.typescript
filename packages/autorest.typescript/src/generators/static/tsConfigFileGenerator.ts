@@ -18,7 +18,8 @@ const highLevelTsConfig: Record<string, any> = {
     lib: ["es6", "dom"],
     declaration: true,
     outDir: "./dist-esm",
-    importHelpers: true
+    importHelpers: true,
+    skipLibCheck: true
   },
   include: ["src/**/*.ts"],
   exclude: ["node_modules"]

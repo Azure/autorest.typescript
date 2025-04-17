@@ -13,9 +13,17 @@ import {
   SendRequest,
 } from "@azure/core-rest-pipeline";
 import * as coreAuth from "@azure/core-auth";
-import { OperationsImpl, SubscriptionsImpl, TenantsImpl } from "./operations";
-import { Operations, Subscriptions, Tenants } from "./operationsInterfaces";
-import { SubscriptionClientOptionalParams } from "./models";
+import {
+  OperationsImpl,
+  SubscriptionsImpl,
+  TenantsImpl,
+} from "./operations/index.js";
+import {
+  Operations,
+  Subscriptions,
+  Tenants,
+} from "./operationsInterfaces/index.js";
+import { SubscriptionClientOptionalParams } from "./models/index.js";
 
 export class SubscriptionClient extends coreClient.ServiceClient {
   $host: string;

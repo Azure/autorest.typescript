@@ -8,9 +8,9 @@
 
 import * as coreClient from "@azure/core-client";
 import * as coreAuth from "@azure/core-auth";
-import { MetricsImpl } from "./operations";
-import { Metrics } from "./operationsInterfaces";
-import { MonitorClientOptionalParams } from "./models";
+import { MetricsImpl } from "./operations/index.js";
+import { Metrics } from "./operationsInterfaces/index.js";
+import { MonitorClientOptionalParams } from "./models/index.js";
 
 export class MonitorClient extends coreClient.ServiceClient {
   $host: string;
