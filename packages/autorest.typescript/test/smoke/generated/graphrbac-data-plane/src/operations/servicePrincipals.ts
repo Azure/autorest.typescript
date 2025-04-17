@@ -7,12 +7,12 @@
  */
 
 import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
-import { setContinuationToken } from "../pagingHelper";
-import { ServicePrincipals } from "../operationsInterfaces";
+import { setContinuationToken } from "../pagingHelper.js";
+import { ServicePrincipals } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { GraphRbacManagementClient } from "../graphRbacManagementClient";
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import { GraphRbacManagementClient } from "../graphRbacManagementClient.js";
 import {
   ServicePrincipal,
   ServicePrincipalsListNextOptionalParams,
@@ -42,7 +42,7 @@ import {
   PasswordCredentialsUpdateParameters,
   ServicePrincipalsUpdatePasswordCredentialsOptionalParams,
   ServicePrincipalsListOwnersNextResponse,
-} from "../models";
+} from "../models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing ServicePrincipals operations. */

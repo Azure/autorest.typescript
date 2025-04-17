@@ -21,7 +21,7 @@ import {
   ResourceGroupsImpl,
   TagsImpl,
   DeploymentOperationsImpl,
-} from "./operations";
+} from "./operations/index.js";
 import {
   Operations,
   Deployments,
@@ -30,8 +30,8 @@ import {
   ResourceGroups,
   Tags,
   DeploymentOperations,
-} from "./operationsInterfaces";
-import { ResourceManagementClientOptionalParams } from "./models";
+} from "./operationsInterfaces/index.js";
+import { ResourceManagementClientOptionalParams } from "./models/index.js";
 
 export class ResourceManagementClient extends coreClient.ServiceClient {
   $host: string;

@@ -17,6 +17,13 @@ The Azure management API provides a RESTful set of web services that interact wi
 See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md) for more details.
 
 
+### Install the `@msinternal/keyvault-resource-manager` package
+
+Install the KeyVaultManagement client library for JavaScript with `npm`:
+
+```bash
+npm install @msinternal/keyvault-resource-manager
+```
 
 
 ### JavaScript Bundle

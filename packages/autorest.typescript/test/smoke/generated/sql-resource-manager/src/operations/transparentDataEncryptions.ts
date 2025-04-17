@@ -7,12 +7,12 @@
  */
 
 import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
-import { setContinuationToken } from "../pagingHelper";
-import { TransparentDataEncryptions } from "../operationsInterfaces";
+import { setContinuationToken } from "../pagingHelper.js";
+import { TransparentDataEncryptions } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { SqlManagementClient } from "../sqlManagementClient";
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import { SqlManagementClient } from "../sqlManagementClient.js";
 import {
   LogicalDatabaseTransparentDataEncryption,
   TransparentDataEncryptionsListByDatabaseNextOptionalParams,
@@ -24,7 +24,7 @@ import {
   TransparentDataEncryptionsCreateOrUpdateOptionalParams,
   TransparentDataEncryptionsCreateOrUpdateResponse,
   TransparentDataEncryptionsListByDatabaseNextResponse,
-} from "../models";
+} from "../models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing TransparentDataEncryptions operations. */

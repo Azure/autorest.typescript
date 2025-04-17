@@ -11,7 +11,7 @@ import {
   InboundSecurityRule,
   InboundSecurityRuleCreateOrUpdateOptionalParams,
   InboundSecurityRuleCreateOrUpdateResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a InboundSecurityRuleOperations. */
 export interface InboundSecurityRuleOperations {

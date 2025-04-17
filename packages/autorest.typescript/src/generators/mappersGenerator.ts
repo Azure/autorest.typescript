@@ -243,8 +243,8 @@ function writeDiscriminatorsMapping(
 
 type ModelPropertiesType =
   | {
-      [propertyName: string]: Mapper;
-    }
+    [propertyName: string]: Mapper;
+  }
   | undefined;
 
 export function writeMapper(writer: CodeBlockWriter, mapper: Mapper) {

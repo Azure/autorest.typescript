@@ -25,7 +25,7 @@ import {
   VirtualHubsGetInboundRoutesOptionalParams,
   GetOutboundRoutesParameters,
   VirtualHubsGetOutboundRoutesOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a VirtualHubs. */

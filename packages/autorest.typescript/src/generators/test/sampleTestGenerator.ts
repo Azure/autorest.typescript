@@ -14,7 +14,7 @@ export function generateSampleTestFile(project: Project) {
     encoding: "utf-8"
   });
   const readmeFileContents = hbs.compile(file, { noEscape: true });
-  project.createSourceFile("test/sampleTest.ts", readmeFileContents(metadata), {
+  project.createSourceFile("test/sampleTest.spec.ts", readmeFileContents(metadata), {
     overwrite: true
   });
 }

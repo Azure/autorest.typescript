@@ -45,7 +45,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     packageDetails,
     coreHttpCompatMode,
     useLegacyLro,
-    moduleKind
+    isTestPackage
   } = getAutorestOptions();
   const { addCredentials } = getSecurityInfoFromModel(clientDetails.security);
   const hasMappers = !!clientDetails.mappers.length;
@@ -144,7 +144,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     });
     clientFile.addImportDeclaration({
       namedImports: ["createLroSpec"],
-      moduleSpecifier: getImportModuleName(`./lroImpl`, moduleKind)
+      moduleSpecifier: getImportModuleName(`./lroImpl`, isTestPackage)
     });
   }
 
@@ -158,7 +158,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
             true /* shouldGuard */
           )}Impl`
       ),
-      moduleSpecifier: getImportModuleName({ cjsName: "./operations", esModulesName: "./operations/index.js" }, moduleKind)
+      moduleSpecifier: getImportModuleName({ cjsName: "./operations", esModulesName: "./operations/index.js" }, isTestPackage)
     });
 
     clientFile.addImportDeclaration({
@@ -170,7 +170,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
             true /* shouldGuard */
           )}`
       ),
-      moduleSpecifier: getImportModuleName({ cjsName: "./operationsInterfaces", esModulesName: "./operationsInterfaces/index.js" }, moduleKind)
+      moduleSpecifier: getImportModuleName({ cjsName: "./operationsInterfaces", esModulesName: "./operationsInterfaces/index.js" }, isTestPackage)
     });
   }
 
@@ -178,7 +178,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     addTracingOperationImports(clientFile, ".");
     clientFile.addImportDeclaration({
       namespaceImport: "Parameters",
-      moduleSpecifier: getImportModuleName("./models/parameters", moduleKind)
+      moduleSpecifier: getImportModuleName("./models/parameters", isTestPackage)
     });
   }
 
@@ -186,7 +186,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   if (hasInlineOperations && hasMappers) {
     clientFile.addImportDeclaration({
       namespaceImport: "Mappers",
-      moduleSpecifier: getImportModuleName("./models/mappers", moduleKind)
+      moduleSpecifier: getImportModuleName("./models/mappers", isTestPackage)
     });
   }
 
@@ -243,7 +243,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   if (importedModels.size) {
     clientFile.addImportDeclaration({
       namedImports: [...importedModels],
-      moduleSpecifier: getImportModuleName({ cjsName: "./models", esModulesName: "./models/index.js" }, moduleKind)
+      moduleSpecifier: getImportModuleName({ cjsName: "./models", esModulesName: "./models/index.js" }, isTestPackage)
     });
   }
 

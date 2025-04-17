@@ -20,7 +20,7 @@ import {
   ResourceGroup as ResourceGroupMapper,
   ResourceGroupPatchable as ResourceGroupPatchableMapper,
   ExportTemplateRequest as ExportTemplateRequestMapper,
-} from "../models/mappers";
+} from "../models/mappers.js";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",

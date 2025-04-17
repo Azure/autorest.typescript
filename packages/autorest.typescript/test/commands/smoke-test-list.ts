@@ -42,11 +42,11 @@ const getArmReadmes = (): SpecDefinition[] => {
     params:
       tag === "package-subscriptions-2019-06"
         ? [
-            AutorestParams.GenerateSamples,
-            AutorestParams.GenerateTest,
-            AutorestParams.NotAzureSdkForJs,
-            `--tag=${tag}`
-          ]
+          AutorestParams.GenerateSamples,
+          AutorestParams.GenerateTest,
+          AutorestParams.NotAzureSdkForJs,
+          `--tag=${tag}`
+        ]
         : [AutorestParams.NotAzureSdkForJs, `--tag=${tag}`],
     outputFolderName: `arm-${tag}`,
     buildTag: "ci_1"

@@ -698,7 +698,7 @@ import {
   WebAppsUpdateVnetConnectionGatewayResponse,
   WebAppsGetWebJobOptionalParams,
   WebAppsGetWebJobResponse,
-} from "../models";
+} from "../models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a WebApps. */
