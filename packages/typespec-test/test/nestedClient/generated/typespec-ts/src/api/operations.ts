@@ -1,7 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { StorageContext as Client, DownloadOptionalParams } from "./index.js";
+import { StorageContext as Client } from "./index.js";
+import { DownloadOptionalParams } from "./options.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -13,8 +15,17 @@ export function _downloadSend(
   context: Client,
   options: DownloadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/account/{accountName}",
+    {
+      accountName: context.accountName,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
   return context
-    .path("/account/{accountName}", context.accountName)
+    .path(path)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 

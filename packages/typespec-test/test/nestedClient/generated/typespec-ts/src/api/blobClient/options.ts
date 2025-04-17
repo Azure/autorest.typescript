@@ -4,4 +4,4 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface DownloadOptionalParams extends OperationOptions {}
+export interface BlobClientDownloadOptionalParams extends OperationOptions {}

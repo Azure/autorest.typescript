@@ -2,14 +2,17 @@
 // Licensed under the MIT License.
 
 import {
-  download,
-  DownloadOptionalParams,
   createStorage,
   StorageContext,
   StorageClientOptionalParams,
 } from "./api/index.js";
+import { DownloadOptionalParams } from "./api/options.js";
+import { download } from "./api/operations.js";
+import {
+  BlobClientOperations,
+  _getBlobClientOperations,
+} from "./classic/blobClient/index.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { BlobClient } from "./blob/blobClient.js";
 
 export { StorageClientOptionalParams } from "./api/storageContext.js";
 
@@ -17,7 +20,6 @@ export class StorageClient {
   private _client: StorageContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
-  private endpointParam: string;
 
   constructor(
     endpointParam: string,
@@ -33,16 +35,15 @@ export class StorageClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this.endpointParam = endpointParam;
+    this.blobClient = _getBlobClientOperations(this._client);
   }
+
+  /** The operation groups for blobClient */
+  public readonly blobClient: BlobClientOperations;
 
   download(
     options: DownloadOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return download(this._client, options);
-  }
-
-  getBlobClient(blobName: string): BlobClient {
-    return new BlobClient(this.endpointParam, this._client.accountName, blobName);
   }
 }

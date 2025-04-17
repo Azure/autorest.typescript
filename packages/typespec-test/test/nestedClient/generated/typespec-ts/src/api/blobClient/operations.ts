@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { BlobContext as Client } from "./index.js";
-import { DownloadOptionalParams } from "./options.js";
+import { StorageContext as Client } from "../index.js";
+import { DownloadOptionalParams } from "../../blob/api/options.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,

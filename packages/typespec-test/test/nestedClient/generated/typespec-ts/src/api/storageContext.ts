@@ -16,6 +16,8 @@ export function createStorage(
   accountName: string,
   options: StorageClientOptionalParams = {},
 ): StorageContext {
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? String(endpointParam);
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentInfo = `azsdk-js-nestedclient/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions
@@ -26,16 +28,12 @@ export function createStorage(
     userAgentOptions: { userAgentPrefix },
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
   };
-  const clientContext = getClient(
-    options.endpoint ?? options.baseUrl ?? String(endpointParam),
-    undefined,
-    updatedOptions,
-  );
+  const clientContext = getClient(endpointUrl, undefined, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   if (options.apiVersion) {
     logger.warning(
       "This client does not support client api-version, please change it at the operation level",
     );
   }
-  return { ...clientContext, accountName };
+  return { ...clientContext, accountName } as StorageContext;
 }

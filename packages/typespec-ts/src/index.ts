@@ -83,7 +83,7 @@ import { emitLoggerFile } from "./modular/emitLoggerFile.js";
 import { emitTypes } from "./modular/emitModels.js";
 import { existsSync } from "fs";
 import { getModuleExports } from "./modular/buildProjectFiles.js";
-import { getRLCClients } from "./utils/clientUtils.js";
+import { getModularClients, getRLCClients } from "./utils/clientUtils.js";
 import { join } from "path";
 import { loadStaticHelpers } from "./framework/load-static-helpers.js";
 import { provideBinder } from "./framework/hooks/binder.js";
@@ -291,7 +291,7 @@ export async function $onEmit(context: EmitContext) {
       { recursive: true }
     );
     console.time("onEmit: emit source files");
-    for (const subClient of dpgContext.sdkPackage.clients) {
+    for (const subClient of getModularClients(dpgContext)) {
       await renameClientName(subClient, modularEmitterOptions);
       buildApiOptions(dpgContext, subClient, modularEmitterOptions);
       buildOperationFiles(dpgContext, subClient, modularEmitterOptions);
