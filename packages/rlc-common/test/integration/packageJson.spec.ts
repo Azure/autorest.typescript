@@ -296,7 +296,7 @@ describe("Package file generation", () => {
 
       expect(packageFile.scripts).to.have.property(
         "build:test",
-        "npm run clean && dev-tool run build-package && dev-tool run build-test"
+        "echo skipped"
       );
       expect(packageFile.scripts).to.have.property(
         "build",
