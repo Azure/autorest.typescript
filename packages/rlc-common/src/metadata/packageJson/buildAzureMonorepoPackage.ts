@@ -213,8 +213,7 @@ function getEsmScripts({ moduleKind }: AzureMonorepoInfoConfig) {
   }
 
   return {
-    "build:test":
-      "echo skipped",
+    "build:test": "echo skipped",
     build:
       "npm run clean && dev-tool run build-package && dev-tool run extract-api",
     "test:node":
@@ -232,13 +231,11 @@ function getCjsScripts({ moduleKind }: AzureMonorepoInfoConfig) {
   }
 
   return {
-    build:
-      "npm run clean && tsc -p . && dev-tool run extract-api",
+    build: "npm run clean && tsc -p . && dev-tool run extract-api",
     "build:node":
       "tsc -p . && dev-tool run vendored cross-env ONLY_NODE=true rollup -c 2>&1",
     "build:test": "tsc -p .",
-    "build:debug":
-      "tsc -p . && dev-tool run extract-api",
+    "build:debug": "tsc -p . && dev-tool run extract-api",
     "integration-test:browser": "dev-tool run test:browser",
     "integration-test:node":
       "dev-tool run test:node-js-input -- --timeout 5000000 'dist-esm/test/**/*.spec.js'",
