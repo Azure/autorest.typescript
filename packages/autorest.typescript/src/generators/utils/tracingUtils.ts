@@ -11,12 +11,12 @@ export function addTracingOperationImports(
   sourceFile: SourceFile,
   traverseToRoot = ".."
 ) {
-  const { tracingInfo, moduleKind } = getAutorestOptions();
+  const { tracingInfo, isTestPackage } = getAutorestOptions();
   if (tracingInfo) {
     sourceFile.addImportDeclarations([
       {
         namedImports: ["tracingClient"],
-        moduleSpecifier: getImportModuleName(`${traverseToRoot}/tracing`, moduleKind)
+        moduleSpecifier: getImportModuleName(`${traverseToRoot}/tracing`, isTestPackage)
       }
     ]);
   }

@@ -7,12 +7,12 @@
  */
 
 import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
-import { setContinuationToken } from "../pagingHelper";
-import { Objects } from "../operationsInterfaces";
+import { setContinuationToken } from "../pagingHelper.js";
+import { Objects } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { GraphRbacManagementClient } from "../graphRbacManagementClient";
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import { GraphRbacManagementClient } from "../graphRbacManagementClient.js";
 import {
   DirectoryObjectUnion,
   ObjectsGetObjectsByObjectIdsNextOptionalParams,
@@ -20,7 +20,7 @@ import {
   ObjectsGetObjectsByObjectIdsOptionalParams,
   ObjectsGetObjectsByObjectIdsResponse,
   ObjectsGetObjectsByObjectIdsNextResponse,
-} from "../models";
+} from "../models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Objects operations. */

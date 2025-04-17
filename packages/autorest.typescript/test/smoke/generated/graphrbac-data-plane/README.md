@@ -17,6 +17,13 @@ The Graph RBAC Management Client
 See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md) for more details.
 
 
+### Install the `@msinternal/graphrbac-data-plane` package
+
+Install the GraphRbacManagement client library for JavaScript with `npm`:
+
+```bash
+npm install @msinternal/graphrbac-data-plane
+```
 
 
 ### JavaScript Bundle

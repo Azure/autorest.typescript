@@ -17,6 +17,13 @@ The Managed Service Identity Client.
 See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md) for more details.
 
 
+### Install the `@msinternal/msi-resource-manager` package
+
+Install the ManagedServiceIdentity client library for JavaScript with `npm`:
+
+```bash
+npm install @msinternal/msi-resource-manager
+```
 
 
 ### JavaScript Bundle

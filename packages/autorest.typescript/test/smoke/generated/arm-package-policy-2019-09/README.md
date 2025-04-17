@@ -17,6 +17,13 @@ To manage and control access to your resources, you can define customized polici
 See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md) for more details.
 
 
+### Install the `@msinternal/arm-package-policy-2019-09` package
+
+Install the Policy client library for JavaScript with `npm`:
+
+```bash
+npm install @msinternal/arm-package-policy-2019-09
+```
 
 
 ### JavaScript Bundle

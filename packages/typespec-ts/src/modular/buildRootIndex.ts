@@ -117,6 +117,7 @@ function exportFileContentsType(
   if (
     context.sdkPackage.models.some((x) =>
       x.properties.some(
+        // eslint-disable-next-line
         (y) => y.kind === "property" && y.multipartOptions?.isFilePart
       )
     )

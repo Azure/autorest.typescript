@@ -60,7 +60,8 @@ function regularAutorestPackage(
     generateTest,
     generateSample,
     coreHttpCompatMode,
-    azureSdkForJs
+    azureSdkForJs,
+    isTestPackage
   } = getAutorestOptions();
   const { model } = getSession();
   const { addCredentials } = getSecurityInfoFromModel(model.security);
@@ -88,22 +89,23 @@ function regularAutorestPackage(
     dependencies: {
       ...(hasLro && { "@azure/core-lro": "^2.5.4" }),
       ...(hasLro && { "@azure/abort-controller": "^2.1.2" }),
-      ...(hasAsyncIterators && { "@azure/core-paging": "^1.2.0" }),
-      ...(useCoreV2 && { "@azure/core-client": "^1.7.0" }),
-      ...(useCoreV2 && addCredentials && { "@azure/core-auth": "^1.6.0" }),
+      ...(hasAsyncIterators && { "@azure/core-paging": "^1.6.2" }),
+      ...(useCoreV2 && { "@azure/core-client": "^1.9.2" }),
+      ...(useCoreV2 && addCredentials && { "@azure/core-auth": "^1.9.0" }),
       ...(useCoreV2 && {
-        "@azure/core-rest-pipeline": "^1.14.0"
+        "@azure/core-rest-pipeline": "^1.19.0"
       }),
       ...(tracingInfo && {
-        "@azure/core-tracing": "^1.0.0"
+        "@azure/core-tracing": "^1.2.0"
       }),
-      tslib: "^2.2.0"
+      tslib: "^2.8.1"
     },
-    keywords: ["node", "azure", "typescript", "browser", "isomorphic"],
+    keywords: ["node", "azure", "typescript", "browser", "isomorphic", "cloud"],
     license: "MIT",
-    main: `./dist/index.js`,
-    module: `./dist-esm/index.js`,
-    types: `./types/${packageDetails.nameWithoutScope}.d.ts`,
+    main: "./dist/commonjs/index.js",
+    module: "./dist/esm/index.js",
+    types: "./dist/commonjs/index.d.ts",
+    type: "module",
     devDependencies: {
       "@microsoft/api-extractor": "^7.40.3",
       mkdirp: "^3.0.1",
@@ -111,37 +113,24 @@ function regularAutorestPackage(
       rimraf: "^5.0.0",
       dotenv: "^16.0.0"
     },
-    repository: {
-      type: "git",
-      url: "https://github.com/Azure/azure-sdk-for-js.git"
-    },
+    repository: "github:Azure/azure-sdk-for-js",
     bugs: {
       url: "https://github.com/Azure/azure-sdk-for-js/issues"
     },
     files: [
-      "dist/**/*.js",
-      "dist/**/*.js.map",
-      "dist/**/*.d.ts",
-      "dist/**/*.d.ts.map",
-      "dist-esm/**/*.js",
-      "dist-esm/**/*.js.map",
-      "dist-esm/**/*.d.ts",
-      "dist-esm/**/*.d.ts.map",
-      `${srcPath}/**/*.ts`,
+      "dist/",
       "README.md",
       "LICENSE",
-      "tsconfig.json",
       "review/*",
       "CHANGELOG.md",
-      "types/*"
     ],
     scripts: {
       build:
-        "npm run clean && tsc && rollup -c 2>&1 && npm run minify && mkdirp ./review && npm run extract-api",
+        "npm run clean && tshy && npm run extract-api",
       minify: `uglifyjs -c -m --comments --source-map "content='./dist/index.js.map'" -o ./dist/index.min.js ./dist/index.js`,
       prepack: "npm run build",
       pack: "npm pack 2>&1",
-      "extract-api": "api-extractor run --local",
+      "extract-api": "rimraf review && mkdirp ./review && api-extractor run --local",
       lint: "echo skipped",
       clean:
         "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
@@ -171,23 +160,36 @@ function regularAutorestPackage(
         }
       ]
     },
-    autoPublish: true
+    autoPublish: true,
+    browser: "./dist/browser/index.js",
+    "react-native": "./dist/react-native/index.js"
   };
   if (azureOutputDirectory) {
     packageInfo.homepage = `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}`;
   }
-
   if (azureSdkForJs) {
+    packageInfo["tshy"] = {
+      project: "./tsconfig.src.json",
+      exports: {
+        "./package.json": "./package.json",
+        ".": "./src/index.ts",
+      },
+      dialects: ["esm", "commonjs"],
+      esmDialects: ["browser", "react-native"],
+      selfLink: false,
+    };
     packageInfo.devDependencies["@azure/dev-tool"] = "^1.0.0";
     delete packageInfo.devDependencies["@microsoft/api-extractor"];
     delete packageInfo.devDependencies["rimraf"];
     delete packageInfo.devDependencies["mkdirp"];
     packageInfo.scripts["build"] =
-      "npm run clean && tsc && npm run minify && dev-tool run vendored mkdirp ./review && npm run extract-api";
+      "npm run clean && dev-tool run build-package && dev-tool run extract-api";
     packageInfo.scripts["clean"] = "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log";
     packageInfo.scripts["extract-api"] = "dev-tool run extract-api";
     packageInfo.scripts["update-snippets"] = "dev-tool run update-snippets";
     packageInfo.scripts["minify"] = `dev-tool run vendored uglifyjs -c -m --comments --source-map "content='./dist/index.js.map'" -o ./dist/index.min.js ./dist/index.js`;
+    packageInfo.scripts["check-format"] = "dev-tool run vendored prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.{ts,cts,mts}\" \"test/**/*.{ts,cts,mts}\" \"*.{js,cjs,mjs,json}\" ";
+    packageInfo.scripts["format"] = "dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.{ts,cts,mts}\" \"test/**/*.{ts,cts,mts}\" \"*.{js,cjs,mjs,json}\" ";
   } else {
     packageInfo.devDependencies["@rollup/plugin-commonjs"] = "^24.0.0";
     packageInfo.devDependencies["@rollup/plugin-json"] = "^6.0.0";
@@ -196,21 +198,23 @@ function regularAutorestPackage(
     packageInfo.devDependencies["rollup"] = "^2.66.1";
     packageInfo.devDependencies["rollup-plugin-sourcemaps"] = "^0.6.3";
     packageInfo.devDependencies["uglify-js"] = "^3.4.9";
+    packageInfo.devDependencies["tshy"] = "^2.0.0";
   }
 
   if (generateTest) {
-    packageInfo.module = `./dist-esm/src/index.js`;
-    packageInfo.devDependencies["@azure/identity"] = "^4.2.1";
+    packageInfo.devDependencies["@azure/identity"] = "^4.6.0";
     packageInfo.devDependencies["@azure/logger"] = "^1.1.4";
-    packageInfo.devDependencies["@azure-tools/test-recorder"] = "^3.0.0";
-    packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.1.0";
-    packageInfo.devDependencies["mocha"] = "^11.0.2";
-    packageInfo.devDependencies["@types/mocha"] = "^10.0.0";
-    packageInfo.devDependencies["tsx"] = "^4.7.1";
-    packageInfo.devDependencies["@types/chai"] = "^4.2.8";
-    packageInfo.devDependencies["chai"] = "^4.2.0";
+    // TODO need unify the version when 4.1.0 released
+    packageInfo.devDependencies["@azure-tools/test-recorder"] = azureSdkForJs ? "^4.1.0" : "^4.0.0";
+    packageInfo.devDependencies["@azure-tools/test-credential"] = "^2.0.0";
+    if (azureSdkForJs) {
+      packageInfo.devDependencies["@azure-tools/test-utils-vitest"] = "^1.0.0";
+    }
     packageInfo.devDependencies["@types/node"] = "^18.0.0";
-    packageInfo.devDependencies["ts-node"] = "^10.0.0";
+    packageInfo.devDependencies["@vitest/browser"] = "^3.0.9";
+    packageInfo.devDependencies["@vitest/coverage-istanbul"] = "^3.0.9";
+    packageInfo.devDependencies["playwright"] = "^1.50.1";
+    packageInfo.devDependencies["vitest"] = "^3.0.9";
 
     packageInfo.scripts["test"] = "npm run integration-test";
     packageInfo.scripts["unit-test"] =
@@ -220,9 +224,9 @@ function regularAutorestPackage(
 
     if (azureSdkForJs) {
       packageInfo.scripts["unit-test:node"] =
-        "dev-tool run vendored cross-env TEST_MODE=playback npm run integration-test:node";
+        "dev-tool run test:vitest";
       packageInfo.scripts["integration-test:node"] =
-        "dev-tool run test:node-ts-input -- --timeout 1200000 'test/*.ts'";
+        "dev-tool run test:vitest --esm";
     } else {
       packageInfo.devDependencies["cross-env"] = "^7.0.2";
       packageInfo.scripts["unit-test:node"] =
