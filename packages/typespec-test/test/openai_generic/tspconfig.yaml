@@ -4,6 +4,7 @@ options:
   "@azure-tools/typespec-ts":
     is-modular-library: true
     emitter-output-dir: "{project-root}/generated/typespec-ts"
+    azure-sdk-for-js: false
     ignore-property-name-normalize: true
     package-details:
       name: "@msinternal/openai-generic"
