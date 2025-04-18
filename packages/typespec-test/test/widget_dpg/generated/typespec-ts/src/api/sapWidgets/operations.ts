@@ -164,7 +164,9 @@ export function _updateWidgetSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      body: { weight: options?.weight, color: options?.color },
+      body: !options["updateWidgetRequest"]
+        ? options["updateWidgetRequest"]
+        : { weight: options?.weight, color: options?.color },
     });
 }
 
