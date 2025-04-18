@@ -239,6 +239,7 @@ function extractRLCOptions(
   const includeShortcuts = getIncludeShortcuts(emitterOptions);
   const packageDetails = getPackageDetails(program, emitterOptions);
   const flavor = getFlavor(emitterOptions, packageDetails);
+  emitterOptions.flavor = flavor;
   const moduleKind = getModuleKind(emitterOptions);
   const serviceInfo = getServiceInfo(program);
   const azureSdkForJs = getAzureSdkForJs(emitterOptions);
