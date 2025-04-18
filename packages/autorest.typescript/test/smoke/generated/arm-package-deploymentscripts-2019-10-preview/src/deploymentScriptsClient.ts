@@ -13,9 +13,9 @@ import {
   SendRequest,
 } from "@azure/core-rest-pipeline";
 import * as coreAuth from "@azure/core-auth";
-import { DeploymentScriptsImpl } from "./operations";
-import { DeploymentScripts } from "./operationsInterfaces";
-import { DeploymentScriptsClientOptionalParams } from "./models";
+import { DeploymentScriptsImpl } from "./operations/index.js";
+import { DeploymentScripts } from "./operationsInterfaces/index.js";
+import { DeploymentScriptsClientOptionalParams } from "./models/index.js";
 
 export class DeploymentScriptsClient extends coreClient.ServiceClient {
   $host: string;

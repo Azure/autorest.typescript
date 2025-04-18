@@ -19,7 +19,7 @@ import {
   ClusterManagersDeleteOptionalParams,
   ClusterManagersUpdateOptionalParams,
   ClusterManagersUpdateResponse,
-} from "../models";
+} from "../models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a ClusterManagers. */

@@ -14,7 +14,7 @@ import {
   OAuth2PermissionGrantCreateOptionalParams,
   OAuth2PermissionGrantCreateResponse,
   OAuth2PermissionGrantDeleteOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a OAuth2PermissionGrantOperations. */

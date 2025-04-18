@@ -45,7 +45,7 @@ export function generateOperationsInterfaces(
   clientDetails: ClientDetails,
   project: Project
 ): void {
-  const { srcPath, moduleKind } = getAutorestOptions();
+  const { srcPath, isTestPackage } = getAutorestOptions();
   let fileNames: string[] = [];
 
   // Toplevel operations are inlined in the client
@@ -68,7 +68,7 @@ export function generateOperationsInterfaces(
     operationIndexFile.addExportDeclarations(
       fileNames.map(fileName => {
         return {
-          moduleSpecifier: getImportModuleName(`./${fileName}`, moduleKind)
+          moduleSpecifier: getImportModuleName(`./${fileName}`, isTestPackage)
         } as ExportDeclarationStructure;
       })
     );
@@ -129,7 +129,7 @@ function addInterface(
   operationGroupDetails: OperationGroupDetails,
   clientDetails: ClientDetails
 ) {
-  const { moduleKind } = getAutorestOptions();
+  const { isTestPackage } = getAutorestOptions();
 
   let importedModels = new Set<string>();
 
@@ -167,7 +167,7 @@ function addInterface(
 
     operationGroupFile.addImportDeclaration({
       namedImports,
-      moduleSpecifier: getImportModuleName({ cjsName: "../models", esModulesName: "../models/index.js" }, moduleKind)
+      moduleSpecifier: getImportModuleName({ cjsName: "../models", esModulesName: "../models/index.js" }, isTestPackage)
     });
   }
 }

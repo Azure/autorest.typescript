@@ -6,12 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./signedInUser";
-export * from "./applications";
-export * from "./deletedApplications";
-export * from "./groups";
-export * from "./servicePrincipals";
-export * from "./users";
-export * from "./objects";
-export * from "./domains";
-export * from "./oAuth2PermissionGrantOperations";
+export * from "./signedInUser.js";
+export * from "./applications.js";
+export * from "./deletedApplications.js";
+export * from "./groups.js";
+export * from "./servicePrincipals.js";
+export * from "./users.js";
+export * from "./objects.js";
+export * from "./domains.js";
+export * from "./oAuth2PermissionGrantOperations.js";

@@ -36,7 +36,7 @@ import {
   QueueServiceProperties as QueueServicePropertiesMapper,
   StorageQueue as StorageQueueMapper,
   TableServiceProperties as TableServicePropertiesMapper,
-} from "../models/mappers";
+} from "../models/mappers.js";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",

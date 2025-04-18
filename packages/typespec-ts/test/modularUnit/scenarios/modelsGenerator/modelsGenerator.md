@@ -290,7 +290,7 @@ export function _createStreamingSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      body: { stream: stream },
+      body: { stream: true },
     });
 }
 

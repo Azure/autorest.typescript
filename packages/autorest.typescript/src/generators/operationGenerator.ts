@@ -66,7 +66,7 @@ export function generateOperations(
   clientDetails: ClientDetails,
   project: Project
 ): void {
-  const { srcPath, moduleKind } = getAutorestOptions();
+  const { srcPath, isTestPackage } = getAutorestOptions();
   let fileNames: string[] = [];
 
   // Toplevel operations are inlined in the client
@@ -89,7 +89,7 @@ export function generateOperations(
     operationIndexFile.addExportDeclarations(
       fileNames.map(fileName => {
         return {
-          moduleSpecifier: getImportModuleName(`./${fileName}`, moduleKind)
+          moduleSpecifier: getImportModuleName(`./${fileName}`, isTestPackage)
         } as ExportDeclarationStructure;
       })
     );
@@ -466,7 +466,7 @@ function addClass(
   clientDetails: ClientDetails
 ) {
   let importedModels = new Set<string>();
-  const { moduleKind } = getAutorestOptions();
+  const { isTestPackage } = getAutorestOptions();
 
   let allModelsNames = getAllModelsNames(clientDetails);
 
@@ -528,7 +528,7 @@ function addClass(
 
     operationGroupFile.addImportDeclaration({
       namedImports,
-      moduleSpecifier: getImportModuleName({ cjsName: "../models", esModulesName: "../models/index.js" }, moduleKind)
+      moduleSpecifier: getImportModuleName({ cjsName: "../models", esModulesName: "../models/index.js" }, isTestPackage)
     });
   }
 }
@@ -1237,7 +1237,7 @@ function addImports(
   operationGroupFile: SourceFile,
   clientDetails: ClientDetails
 ) {
-  const { useCoreV2, useLegacyLro, moduleKind } = getAutorestOptions();
+  const { useCoreV2, useLegacyLro, isTestPackage } = getAutorestOptions();
 
   const { className, mappers } = clientDetails;
   addPagingEsNextRef(operationGroupDetails.operations, operationGroupFile);
@@ -1252,7 +1252,7 @@ function addImports(
 
   operationGroupFile.addImportDeclaration({
     namedImports: [`${operationGroupInterfaceName}`],
-    moduleSpecifier: getImportModuleName({ cjsName: "../operationsInterfaces", esModulesName: "../operationsInterfaces/index.js" }, moduleKind)
+    moduleSpecifier: getImportModuleName({ cjsName: "../operationsInterfaces", esModulesName: "../operationsInterfaces/index.js" }, isTestPackage)
   });
 
   if (!useCoreV2) {
@@ -1282,14 +1282,14 @@ function addImports(
   if (mappers.length) {
     operationGroupFile.addImportDeclaration({
       namespaceImport: "Mappers",
-      moduleSpecifier: getImportModuleName("../models/mappers", moduleKind)
+      moduleSpecifier: getImportModuleName("../models/mappers", isTestPackage)
     });
   }
 
   if (shouldImportParameters(clientDetails)) {
     operationGroupFile.addImportDeclaration({
       namespaceImport: "Parameters",
-      moduleSpecifier: getImportModuleName("../models/parameters", moduleKind)
+      moduleSpecifier: getImportModuleName("../models/parameters", isTestPackage)
     });
   }
 
@@ -1299,7 +1299,7 @@ function addImports(
 
   operationGroupFile.addImportDeclaration({
     namedImports: [`${clientClassName}`],
-    moduleSpecifier: getImportModuleName(`../${clientFileName}`, moduleKind)
+    moduleSpecifier: getImportModuleName(`../${clientFileName}`, isTestPackage)
   });
 
   if (hasLroOperation(operationGroupDetails)) {
@@ -1309,7 +1309,7 @@ function addImports(
     });
     operationGroupFile.addImportDeclaration({
       namedImports: ["createLroSpec"],
-      moduleSpecifier: getImportModuleName(`../lroImpl`, moduleKind)
+      moduleSpecifier: getImportModuleName(`../lroImpl`, isTestPackage)
     });
   }
 }
