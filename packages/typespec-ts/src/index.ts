@@ -173,6 +173,10 @@ export async function $onEmit(context: EmitContext) {
   }
 
   // 5. Generate metadata and test files
+  let apiVersion: string | undefined;
+  for (const version of dpgContext.__clientToApiVersionClientDefaultValue.values()) {
+    apiVersion = version;
+  }
   await generateMetadataAndTest(dpgContext);
 
   async function enrichDpgContext() {
@@ -372,7 +376,12 @@ export async function $onEmit(context: EmitContext) {
     console.timeEnd("onEmit: generate files");
     console.timeEnd("onEmit: generate modular sources");
   }
-
+  function buildMetaDataJson() {
+    return {
+      path: "metadata.json",
+      content: `{"api-version" : "${apiVersion}","emitter-version": "0.38.6"}`
+    };
+  }
   async function generateMetadataAndTest(context: SdkContext) {
     const project = useContext("outputProject");
     if (rlcCodeModels.length === 0 || !rlcCodeModels[0]) {
@@ -443,6 +452,7 @@ export async function $onEmit(context: EmitContext) {
       commonBuilders.push(buildTsConfig);
       if (option.azureSdkForJs) {
         commonBuilders.push(buildTsSrcConfig);
+        commonBuilders.push(buildMetaDataJson);
         if (option.generateSample) {
           commonBuilders.push(buildTsSampleConfig);
         }
