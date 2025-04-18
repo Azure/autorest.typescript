@@ -4,6 +4,30 @@ import {
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
 
+export function getAdditionalPropertiesType(
+  type: SdkType | undefined
+): SdkType | undefined {
+  if (
+    !type ||
+    !(
+      "additionalProperties" in type ||
+      (type.kind === "model" && getAdditionalPropertiesType(type.baseModel))
+    )
+  ) {
+    return undefined;
+  }
+
+  if (type.additionalProperties) {
+    return type.additionalProperties;
+  }
+
+  if (type.baseModel) {
+    return getAdditionalPropertiesType(type.baseModel);
+  }
+
+  return undefined;
+}
+
 export function isTypeNullable(type: SdkType) {
   return Boolean(type.kind === "nullable");
 }
