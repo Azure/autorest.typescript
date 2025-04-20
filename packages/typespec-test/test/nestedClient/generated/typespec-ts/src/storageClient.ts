@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { BlobClient } from "./blob/blobClient.js";
 import {
   createStorage,
   StorageContext,
@@ -16,6 +17,8 @@ export class StorageClient {
   private _client: StorageContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
+  /** The endpoint parameter used by this client to make requests. This is the base URL for the client. */
+  private _endpointParam: string;
 
   constructor(
     endpointParam: string,
@@ -31,11 +34,20 @@ export class StorageClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
+    this._endpointParam = endpointParam;
   }
 
   download(
     options: DownloadOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return download(this._client, options);
+  }
+
+  getBlobClient(blobName: string): BlobClient {
+    return new BlobClient(
+      this._endpointParam,
+      this._client.accountName,
+      blobName,
+    );
   }
 }
