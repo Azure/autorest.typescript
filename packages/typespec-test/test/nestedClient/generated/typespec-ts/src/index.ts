@@ -6,8 +6,6 @@ export {
   DownloadOptionalParams,
   StorageClientOptionalParams,
 } from "./api/index.js";
-export { BlobClientDownloadOptionalParams } from "./api/blobClient/index.js";
-export { BlobClientOperations } from "./classic/index.js";
 export { BlobClient } from "./blob/blobClient.js";
 export {
   BlobClientOptionalParams,

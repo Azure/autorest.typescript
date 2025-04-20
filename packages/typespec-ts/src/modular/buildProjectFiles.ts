@@ -3,7 +3,10 @@ import { NameType } from "@azure-tools/rlc-common";
 import { ModularEmitterOptions } from "./interfaces.js";
 import { getClassicalLayerPrefix } from "./helpers/namingHelpers.js";
 import { SdkContext } from "@azure-tools/typespec-client-generator-core";
-import { getModularClientOptions } from "../utils/clientUtils.js";
+import {
+  getClientHierarchyMap,
+  getModularClientOptions
+} from "../utils/clientUtils.js";
 import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
 import { useContext } from "../contextManager.js";
 import path from "path/posix";
@@ -13,10 +16,10 @@ function buildExportsForMultiClient(
   emitterOptions: ModularEmitterOptions,
   packageInfo: any
 ) {
-  if (context.sdkPackage.clients.length > 1) {
-    delete packageInfo.exports["./api"];
-    for (const client of context.sdkPackage.clients) {
-      const { subfolder } = getModularClientOptions(context, client);
+  const clientMap = getClientHierarchyMap(context);
+  for (const [hierarchy, client] of clientMap) {
+    const { subfolder } = getModularClientOptions([hierarchy, client]);
+    if (subfolder !== "") {
       packageInfo.exports[`./${subfolder}`] = `./src/${subfolder}/index.ts`;
 
       packageInfo.exports[`./${subfolder}/api`] =
@@ -25,8 +28,9 @@ function buildExportsForMultiClient(
   }
 
   if (emitterOptions.options.hierarchyClient) {
-    for (const client of context.sdkPackage.clients) {
-      const { subfolder } = getModularClientOptions(context, client);
+    for (const flattenedClient of clientMap) {
+      const { subfolder } = getModularClientOptions(flattenedClient);
+      const client = flattenedClient[1];
       const methodMap = getMethodHierarchiesMap(context, client);
       for (const [prefixKey, _] of methodMap) {
         const prefixes = prefixKey.split("/");

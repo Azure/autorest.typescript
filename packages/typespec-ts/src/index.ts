@@ -83,7 +83,7 @@ import { emitLoggerFile } from "./modular/emitLoggerFile.js";
 import { emitTypes } from "./modular/emitModels.js";
 import { existsSync } from "fs";
 import { getModuleExports } from "./modular/buildProjectFiles.js";
-import { getModularClients, getRLCClients } from "./utils/clientUtils.js";
+import { getClientHierarchyMap, getRLCClients } from "./utils/clientUtils.js";
 import { join } from "path";
 import { loadStaticHelpers } from "./framework/load-static-helpers.js";
 import { provideBinder } from "./framework/hooks/binder.js";
@@ -283,58 +283,37 @@ export async function $onEmit(context: EmitContext) {
     console.time("onEmit: emit models");
     emitTypes(dpgContext, { sourceRoot: modularSourcesRoot });
     console.timeEnd("onEmit: emit models");
-    buildSubpathIndexFile(
-      dpgContext,
-      modularEmitterOptions,
-      "models",
-      undefined,
-      { recursive: true }
-    );
+    buildSubpathIndexFile(modularEmitterOptions, "models", undefined, {
+      recursive: true
+    });
     console.time("onEmit: emit source files");
-    for (const subClient of getModularClients(dpgContext)) {
-      await renameClientName(subClient, modularEmitterOptions);
+    const clientMap = getClientHierarchyMap(dpgContext);
+    for (const subClient of clientMap) {
+      await renameClientName(subClient[1], modularEmitterOptions);
       buildApiOptions(dpgContext, subClient, modularEmitterOptions);
       buildOperationFiles(dpgContext, subClient, modularEmitterOptions);
       buildClientContext(dpgContext, subClient, modularEmitterOptions);
       buildRestorePoller(dpgContext, subClient, modularEmitterOptions);
       if (dpgContext.rlcOptions?.hierarchyClient) {
-        buildSubpathIndexFile(
-          dpgContext,
-          modularEmitterOptions,
-          "api",
-          subClient,
-          {
-            exportIndex: false,
-            recursive: true
-          }
-        );
+        buildSubpathIndexFile(modularEmitterOptions, "api", subClient, {
+          exportIndex: false,
+          recursive: true
+        });
       } else {
-        buildSubpathIndexFile(
-          dpgContext,
-          modularEmitterOptions,
-          "api",
-          subClient,
-          {
-            recursive: true,
-            exportIndex: true
-          }
-        );
+        buildSubpathIndexFile(modularEmitterOptions, "api", subClient, {
+          recursive: true,
+          exportIndex: true
+        });
       }
 
       buildClassicalClient(dpgContext, subClient, modularEmitterOptions);
       buildClassicOperationFiles(dpgContext, subClient, modularEmitterOptions);
-      buildSubpathIndexFile(
-        dpgContext,
-        modularEmitterOptions,
-        "classic",
-        subClient,
-        {
-          exportIndex: true,
-          interfaceOnly: true
-        }
-      );
+      buildSubpathIndexFile(modularEmitterOptions, "classic", subClient, {
+        exportIndex: true,
+        interfaceOnly: true
+      });
       if (isMultiClients) {
-        buildSubClientIndexFile(dpgContext, subClient, modularEmitterOptions);
+        buildSubClientIndexFile(subClient, modularEmitterOptions);
       }
       buildRootIndex(
         dpgContext,
@@ -505,8 +484,9 @@ export async function $onEmit(context: EmitContext) {
     context: SdkContext,
     options: ModularEmitterOptions
   ) {
-    return context.sdkPackage.clients
-      .map((subClient) => getClientContextPath(context, subClient, options))
+    const clientMap = getClientHierarchyMap(context);
+    return Array.from(clientMap)
+      .map((subClient) => getClientContextPath(subClient, options))
       .map((path) => path.substring(path.indexOf("src")));
   }
   console.timeEnd("onEmit");

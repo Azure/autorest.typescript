@@ -33,8 +33,6 @@ export class StorageClient {
     constructor(endpointParam: string, accountName: string, options?: StorageClientOptionalParams);
     // (undocumented)
     download(options?: DownloadOptionalParams): Promise<void>;
-    // (undocumented)
-    getBlobClient(blobName: string): BlobClient;
     readonly pipeline: Pipeline;
 }
 

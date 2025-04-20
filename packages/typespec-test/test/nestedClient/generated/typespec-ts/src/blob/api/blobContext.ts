@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { logger } from "../logger.js";
+import { logger } from "../../logger.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 
 export interface BlobContext extends Client {

@@ -8,10 +8,6 @@ import {
 } from "./api/index.js";
 import { DownloadOptionalParams } from "./api/options.js";
 import { download } from "./api/operations.js";
-import {
-  BlobClientOperations,
-  _getBlobClientOperations,
-} from "./classic/blobClient/index.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { StorageClientOptionalParams } from "./api/storageContext.js";
@@ -35,11 +31,7 @@ export class StorageClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this.blobClient = _getBlobClientOperations(this._client);
   }
-
-  /** The operation groups for blobClient */
-  public readonly blobClient: BlobClientOperations;
 
   download(
     options: DownloadOptionalParams = { requestOptions: {} },

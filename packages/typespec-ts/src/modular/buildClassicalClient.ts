@@ -36,10 +36,11 @@ import { refkey } from "../framework/refkey.js";
 
 export function buildClassicalClient(
   dpgContext: SdkContext,
-  client: SdkClientType<SdkServiceOperation>,
+  clientMap: [string[], SdkClientType<SdkServiceOperation>],
   emitterOptions: ModularEmitterOptions
 ) {
   const project = useContext("outputProject");
+  const [_hierarchy, client] = clientMap;
   const dependencies = useDependencies();
   const modularClientName = getClientName(client);
   const classicalClientName = `${getClassicalClientName(client)}`;
@@ -51,10 +52,7 @@ export function buildClassicalClient(
     requiredOnly: true
   });
   const srcPath = emitterOptions.modularOptions.sourceRoot;
-  const { subfolder, rlcClientName } = getModularClientOptions(
-    dpgContext,
-    client
-  );
+  const { subfolder, rlcClientName } = getModularClientOptions(clientMap);
 
   const clientFile = project.createSourceFile(
     `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""}${normalizeName(
@@ -124,7 +122,7 @@ export function buildClassicalClient(
   ]);
   constructor.addStatements(`this.pipeline = this._client.pipeline;`);
 
-  buildClientOperationGroups(client, dpgContext, clientClass);
+  buildClientOperationGroups(clientMap, dpgContext, clientClass);
   importAllApis(clientFile, srcPath, subfolder ?? "");
   clientFile.fixUnusedIdentifiers();
   return clientFile;
@@ -176,12 +174,13 @@ function generateMethod(
   return result;
 }
 function buildClientOperationGroups(
-  client: SdkClientType<SdkServiceOperation>,
+  clientMap: [string[], SdkClientType<SdkServiceOperation>],
   dpgContext: SdkContext,
   clientClass: ClassDeclaration
 ) {
   let clientType = "Client";
-  const { subfolder } = getModularClientOptions(dpgContext, client);
+  const [_hierarchy, client] = clientMap;
+  const { subfolder } = getModularClientOptions(clientMap);
   if (subfolder && subfolder !== "") {
     clientType = `Client.${clientClass.getName()}`;
   }

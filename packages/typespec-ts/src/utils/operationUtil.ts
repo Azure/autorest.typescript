@@ -567,11 +567,6 @@ export function getMethodHierarchiesMap(
   ][] = client.methods.map((m) => {
     return [[], m];
   });
-  if (client.children) {
-    client.children.forEach((child) => {
-      methodQueue.push([[], child]);
-    });
-  }
   const operationHierarchiesMap: Map<string, ServiceOperation[]> = new Map<
     string,
     ServiceOperation[]
