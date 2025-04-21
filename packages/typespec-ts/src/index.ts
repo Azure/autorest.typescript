@@ -8,7 +8,7 @@ import {
   AzurePollingDependencies,
   DefaultCoreDependencies
 } from "./modular/external-dependencies.js";
-import { EmitContext, NoTarget, Program } from "@typespec/compiler";
+import { EmitContext, Program } from "@typespec/compiler";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import {
   MultipartHelpers,
@@ -60,7 +60,7 @@ import {
 import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
 import { provideContext, useContext } from "./contextManager.js";
 
-import { EmitterOptions, reportDiagnostic } from "./lib.js";
+import { EmitterOptions } from "./lib.js";
 import { ModularEmitterOptions } from "./modular/interfaces.js";
 import { Project } from "ts-morph";
 import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
@@ -103,7 +103,6 @@ export async function $onEmit(context: EmitContext) {
   const outputProject = new Project();
   const program: Program = context.program;
   const emitterOptions: EmitterOptions = context.options;
-  reportAllCamelOptionDiagnostics(program, context.options);
   console.time("onEmit: create context");
   const dpgContext = await createContextWithDefaultOptions(context);
   console.timeEnd("onEmit: create context");
@@ -562,181 +561,4 @@ export async function renameClientName(
   ) {
     client.name = emitterOptions.options.typespecTitleMap[client.name]!;
   }
-}
-function reportAllCamelOptionDiagnostics(
-  program: Program,
-  emitterOptions: Record<string, any>
-) {
-  if (emitterOptions["includeShortcuts"] !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "include-shortcuts",
-      camelCaseOption: "includeShortcuts"
-    });
-  }
-  if (emitterOptions["packageDetails"] !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "package-details",
-      camelCaseOption: "packageDetails"
-    });
-  }
-  if (emitterOptions["moduleKind"] !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "module-kind",
-      camelCaseOption: "moduleKind"
-    });
-  }
-  if (emitterOptions["azureSdkForJs"] !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "azure-sdk-for-js",
-      camelCaseOption: "azureSdkForJs"
-    });
-  }
-  if (emitterOptions["generateMetadata"] !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "generate-metadata",
-      camelCaseOption: "generateMetadata"
-    });
-  }
-  if (emitterOptions["generateTest"] !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "generate-test",
-      camelCaseOption: "generateTest"
-    });
-  }
-  if (emitterOptions["generateSample"] !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "generate-sample",
-      camelCaseOption: "generateSample"
-    });
-  }
-  if (emitterOptions["addCredentials"] !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "add-credentials",
-      camelCaseOption: "addCredentials"
-    });
-  }
-  if (emitterOptions["credentialScopes"] !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "credential-scopes",
-      camelCaseOption: "credentialScopes"
-    });
-  }
-  if (emitterOptions["credentialKeyHeaderName"] !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "credential-key-header-name",
-      camelCaseOption: "credentialKeyHeaderName"
-    });
-  }
-  if (emitterOptions["customHttpAuthHeaderName"] !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "custom-http-auth-header-name",
-      camelCaseOption: "customHttpAuthHeaderName"
-    });
-  }
-  if (emitterOptions["customHttpAuthSharedKeyPrefix"] !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "custom-http-auth-shared-key-prefix",
-      camelCaseOption: "customHttpAuthSharedKeyPrefix"
-    });
-  }
-  if (emitterOptions["enableOperationGroup"] !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "enable-operation-group",
-      camelCaseOption: "enableOperationGroup"
-    });
-  }
-  if (emitterOptions["enableModelNamespace"] !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "enable-model-namespace",
-      camelCaseOption: "enableModelNamespace"
-    });
-  }
-  if (emitterOptions["hierarchyClient"] !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "hierarchy-client",
-      camelCaseOption: "hierarchyClient"
-    });
-  }
-  if (emitterOptions["clearOutputFolder"] !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "clear-output-folder",
-      camelCaseOption: "clearOutputFolder"
-    });
-  }
-  if (emitterOptions["multiClient"] !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "multi-client",
-      camelCaseOption: "multiClient"
-    });
-  }
-  if (emitterOptions["isTypeSpecTest"] !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "is-typespec-test",
-      camelCaseOption: "isTypeSpecTest"
-    });
-  }
-  if (emitterOptions["dependencyInfo"] !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "dependency-info",
-      camelCaseOption: "dependencyInfo"
-    });
-  }
-  if (emitterOptions["productDocLink"] !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "product-doc-link",
-      camelCaseOption: "productDocLink"
-    });
-  }
-  if (emitterOptions["isModularLibrary"] !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "is-modular-library",
-      camelCaseOption: "isModularLibrary"
-    });
-  }
-  if (emitterOptions["compatibilityMode"] !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "compatibility-mode",
-      camelCaseOption: "compatibilityMode"
-    });
-  }
-  if (emitterOptions["experimentalExtensibleEnums"] !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "experimental-extensible-enums",
-      camelCaseOption: "experimentalExtensibleEnums"
-    });
-  }
-  if (emitterOptions["ignorePropertyNameNormalize"] !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "ignore-property-name-normalize",
-      camelCaseOption: "ignorePropertyNameNormalize"
-    });
-  }
-  if (emitterOptions["compatibilityQueryMultiFormat"] !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "compatibility-query-multi-format",
-      camelCaseOption: "compatibilityQueryMultiFormat"
-    });
-  }
-  if (emitterOptions["typespecTitleMap"] !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "typespec-title-map",
-      camelCaseOption: "typespecTitleMap"
-    });
-  }
-}
-export function reportCamelOptionDiagnostic(
-  program: Program,
-  caseOption: {
-    kebabCaseOption: string;
-    camelCaseOption: string;
-  }
-) {
-  reportDiagnostic(program, {
-    code: "use-kebab-case-option",
-    format: {
-      kebabCaseOption: caseOption.kebabCaseOption,
-      camelCaseOption: caseOption.camelCaseOption
-    },
-    target: NoTarget
-  });
 }
