@@ -43,7 +43,8 @@ export interface ChatCompletionFunctionCallOption {
 }
 
 // @public
-export interface ChatCompletionFunctionParameters extends Record<string, any> {
+export interface ChatCompletionFunctionParameters {
+    additionalProperties?: Record<string, any>;
 }
 
 // @public

@@ -808,6 +808,10 @@ export const azureModularTsps = [
 
 export const modularTsps = [
   {
+    outputPath: "type/property/additional-properties",
+    inputPath: "type/property/additional-properties"
+  },
+  {
     outputPath: "versioning/removed/v2preview",
     inputPath: "versioning/removed"
   },
