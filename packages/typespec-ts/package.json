@@ -71,7 +71,7 @@
     "@azure-tools/typespec-autorest": "next",
     "@azure-tools/typespec-azure-core": "next",
     "@azure-tools/typespec-azure-resource-manager": "next",
-    "@azure-tools/typespec-client-generator-core": "next",
+    "@azure-tools/typespec-client-generator-core": "0.54.2",
     "@azure/abort-controller": "^2.1.2",
     "@azure/core-auth": "^1.6.0",
     "@azure/core-lro": "^3.1.0",
