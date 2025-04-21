@@ -14,7 +14,7 @@ import {
   DeletedApplicationsRestoreOptionalParams,
   DeletedApplicationsRestoreResponse,
   DeletedApplicationsHardDeleteOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a DeletedApplications. */

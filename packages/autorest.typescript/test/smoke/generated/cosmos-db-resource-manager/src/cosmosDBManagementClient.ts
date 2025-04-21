@@ -45,7 +45,7 @@ import {
   RestorableMongodbResourcesImpl,
   CassandraClustersImpl,
   CassandraDataCentersImpl,
-} from "./operations";
+} from "./operations/index.js";
 import {
   DatabaseAccounts,
   Operations,
@@ -78,8 +78,8 @@ import {
   RestorableMongodbResources,
   CassandraClusters,
   CassandraDataCenters,
-} from "./operationsInterfaces";
-import { CosmosDBManagementClientOptionalParams } from "./models";
+} from "./operationsInterfaces/index.js";
+import { CosmosDBManagementClientOptionalParams } from "./models/index.js";
 
 export class CosmosDBManagementClient extends coreClient.ServiceClient {
   $host: string;

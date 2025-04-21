@@ -13,6 +13,7 @@
     "declaration": true,
     "outDir": "./dist-esm",
     "importHelpers": true,
+    "skipLibCheck": true,
     "paths": {
       "@msinternal/sql-resource-manager": ["./src/index"]
     }

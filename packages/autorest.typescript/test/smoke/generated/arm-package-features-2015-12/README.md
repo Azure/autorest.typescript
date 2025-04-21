@@ -17,6 +17,13 @@ Azure Feature Exposure Control (AFEC) provides a mechanism for the resource prov
 See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md) for more details.
 
 
+### Install the `@msinternal/arm-package-features-2015-12` package
+
+Install the Feature client library for JavaScript with `npm`:
+
+```bash
+npm install @msinternal/arm-package-features-2015-12
+```
 
 
 ### JavaScript Bundle

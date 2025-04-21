@@ -39,7 +39,7 @@ import {
   ExportDatabaseDefinition,
   DatabasesExportOptionalParams,
   DatabasesExportResponse,
-} from "../models";
+} from "../models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a Databases. */

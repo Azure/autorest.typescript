@@ -7,7 +7,7 @@
  */
 
 import { OperationParameter, OperationURLParameter } from "@azure/core-client";
-import { AzureMetricsDocument as AzureMetricsDocumentMapper } from "../models/mappers";
+import { AzureMetricsDocument as AzureMetricsDocumentMapper } from "../models/mappers.js";
 
 export const body: OperationParameter = {
   parameterPath: "body",
