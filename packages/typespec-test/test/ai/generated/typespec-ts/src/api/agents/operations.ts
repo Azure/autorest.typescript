@@ -313,23 +313,21 @@ export function _createVectorStoreFileBatchSend(
     ...operationOptionsToRequestParameters(options),
     contentType: "application/json",
     headers: { accept: "application/json", ...options.requestOptions?.headers },
-    body: !options["createVectorStoreFileBatchRequest"]
-      ? options["createVectorStoreFileBatchRequest"]
-      : {
-          file_ids: !options?.fileIds
-            ? options?.fileIds
-            : options?.fileIds.map((p: any) => {
-                return p;
-              }),
-          data_sources: !options?.dataSources
-            ? options?.dataSources
-            : vectorStoreDataSourceArraySerializer(options?.dataSources),
-          chunking_strategy: !options?.chunkingStrategy
-            ? options?.chunkingStrategy
-            : vectorStoreChunkingStrategyRequestUnionSerializer(
-                options?.chunkingStrategy,
-              ),
-        },
+    body: {
+      file_ids: !options?.fileIds
+        ? options?.fileIds
+        : options?.fileIds.map((p: any) => {
+            return p;
+          }),
+      data_sources: !options?.dataSources
+        ? options?.dataSources
+        : vectorStoreDataSourceArraySerializer(options?.dataSources),
+      chunking_strategy: !options?.chunkingStrategy
+        ? options?.chunkingStrategy
+        : vectorStoreChunkingStrategyRequestUnionSerializer(
+            options?.chunkingStrategy,
+          ),
+    },
   });
 }
 
@@ -497,19 +495,17 @@ export function _createVectorStoreFileSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      body: !options["createVectorStoreFileRequest"]
-        ? options["createVectorStoreFileRequest"]
-        : {
-            file_id: options?.fileId,
-            data_sources: !options?.dataSources
-              ? options?.dataSources
-              : vectorStoreDataSourceArraySerializer(options?.dataSources),
-            chunking_strategy: !options?.chunkingStrategy
-              ? options?.chunkingStrategy
-              : vectorStoreChunkingStrategyRequestUnionSerializer(
-                  options?.chunkingStrategy,
-                ),
-          },
+      body: {
+        file_id: options?.fileId,
+        data_sources: !options?.dataSources
+          ? options?.dataSources
+          : vectorStoreDataSourceArraySerializer(options?.dataSources),
+        chunking_strategy: !options?.chunkingStrategy
+          ? options?.chunkingStrategy
+          : vectorStoreChunkingStrategyRequestUnionSerializer(
+              options?.chunkingStrategy,
+            ),
+      },
     });
 }
 
@@ -665,15 +661,13 @@ export function _modifyVectorStoreSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      body: !options["modifyVectorStoreRequest"]
-        ? options["modifyVectorStoreRequest"]
-        : {
-            name: options?.name,
-            expires_after: !options?.expiresAfter
-              ? options?.expiresAfter
-              : vectorStoreExpirationPolicySerializer(options?.expiresAfter),
-            metadata: options?.metadata,
-          },
+      body: {
+        name: options?.name,
+        expires_after: !options?.expiresAfter
+          ? options?.expiresAfter
+          : vectorStoreExpirationPolicySerializer(options?.expiresAfter),
+        metadata: options?.metadata,
+      },
     });
 }
 
@@ -762,28 +756,26 @@ export function _createVectorStoreSend(
     ...operationOptionsToRequestParameters(options),
     contentType: "application/json",
     headers: { accept: "application/json", ...options.requestOptions?.headers },
-    body: !options["createVectorStoreRequest"]
-      ? options["createVectorStoreRequest"]
-      : {
-          file_ids: !options?.fileIds
-            ? options?.fileIds
-            : options?.fileIds.map((p: any) => {
-                return p;
-              }),
-          name: options?.name,
-          configuration: !options?.storeConfiguration
-            ? options?.storeConfiguration
-            : vectorStoreConfigurationSerializer(options?.storeConfiguration),
-          expires_after: !options?.expiresAfter
-            ? options?.expiresAfter
-            : vectorStoreExpirationPolicySerializer(options?.expiresAfter),
-          chunking_strategy: !options?.chunkingStrategy
-            ? options?.chunkingStrategy
-            : vectorStoreChunkingStrategyRequestUnionSerializer(
-                options?.chunkingStrategy,
-              ),
-          metadata: options?.metadata,
-        },
+    body: {
+      file_ids: !options?.fileIds
+        ? options?.fileIds
+        : options?.fileIds.map((p: any) => {
+            return p;
+          }),
+      name: options?.name,
+      configuration: !options?.storeConfiguration
+        ? options?.storeConfiguration
+        : vectorStoreConfigurationSerializer(options?.storeConfiguration),
+      expires_after: !options?.expiresAfter
+        ? options?.expiresAfter
+        : vectorStoreExpirationPolicySerializer(options?.expiresAfter),
+      chunking_strategy: !options?.chunkingStrategy
+        ? options?.chunkingStrategy
+        : vectorStoreChunkingStrategyRequestUnionSerializer(
+            options?.chunkingStrategy,
+          ),
+      metadata: options?.metadata,
+    },
   });
 }
 
@@ -1436,9 +1428,7 @@ export function _updateRunSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      body: !options["updateRunRequest"]
-        ? options["updateRunRequest"]
-        : { metadata: options?.metadata },
+      body: { metadata: options?.metadata },
     });
 }
 
@@ -1674,9 +1664,7 @@ export function _updateMessageSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      body: !options["updateMessageRequest"]
-        ? options["updateMessageRequest"]
-        : { metadata: options?.metadata },
+      body: { metadata: options?.metadata },
     });
 }
 
@@ -1946,14 +1934,12 @@ export function _updateThreadSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      body: !options["updateThreadRequest"]
-        ? options["updateThreadRequest"]
-        : {
-            tool_resources: !options?.toolResources
-              ? options?.toolResources
-              : toolResourcesSerializer(options?.toolResources),
-            metadata: options?.metadata,
-          },
+      body: {
+        tool_resources: !options?.toolResources
+          ? options?.toolResources
+          : toolResourcesSerializer(options?.toolResources),
+        metadata: options?.metadata,
+      },
     });
 }
 
@@ -2047,17 +2033,15 @@ export function _createThreadSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      body: !options["createThreadRequest"]
-        ? options["createThreadRequest"]
-        : {
-            messages: !options?.messages
-              ? options?.messages
-              : threadMessageOptionsArraySerializer(options?.messages),
-            tool_resources: !options?.toolResources
-              ? options?.toolResources
-              : toolResourcesSerializer(options?.toolResources),
-            metadata: options?.metadata,
-          },
+      body: {
+        messages: !options?.messages
+          ? options?.messages
+          : threadMessageOptionsArraySerializer(options?.messages),
+        tool_resources: !options?.toolResources
+          ? options?.toolResources
+          : toolResourcesSerializer(options?.toolResources),
+        metadata: options?.metadata,
+      },
     });
 }
 
@@ -2152,28 +2136,24 @@ export function _updateAgentSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      body: !options["updateAgentRequest"]
-        ? options["updateAgentRequest"]
-        : {
-            model: options?.model,
-            name: options?.name,
-            description: options?.description,
-            instructions: options?.instructions,
-            tools: !options?.tools
-              ? options?.tools
-              : toolDefinitionUnionArraySerializer(options?.tools),
-            tool_resources: !options?.toolResources
-              ? options?.toolResources
-              : toolResourcesSerializer(options?.toolResources),
-            temperature: options?.temperature,
-            top_p: options?.topP,
-            response_format: !options?.responseFormat
-              ? options?.responseFormat
-              : agentsApiResponseFormatOptionSerializer(
-                  options?.responseFormat,
-                ),
-            metadata: options?.metadata,
-          },
+      body: {
+        model: options?.model,
+        name: options?.name,
+        description: options?.description,
+        instructions: options?.instructions,
+        tools: !options?.tools
+          ? options?.tools
+          : toolDefinitionUnionArraySerializer(options?.tools),
+        tool_resources: !options?.toolResources
+          ? options?.toolResources
+          : toolResourcesSerializer(options?.toolResources),
+        temperature: options?.temperature,
+        top_p: options?.topP,
+        response_format: !options?.responseFormat
+          ? options?.responseFormat
+          : agentsApiResponseFormatOptionSerializer(options?.responseFormat),
+        metadata: options?.metadata,
+      },
     });
 }
 
