@@ -23,7 +23,7 @@ import {
   ObjectsImpl,
   DomainsImpl,
   OAuth2PermissionGrantOperationsImpl,
-} from "./operations";
+} from "./operations/index.js";
 import {
   SignedInUser,
   Applications,
@@ -34,8 +34,8 @@ import {
   Objects,
   Domains,
   OAuth2PermissionGrantOperations,
-} from "./operationsInterfaces";
-import { GraphRbacManagementClientOptionalParams } from "./models";
+} from "./operationsInterfaces/index.js";
+import { GraphRbacManagementClientOptionalParams } from "./models/index.js";
 
 export class GraphRbacManagementClient extends coreClient.ServiceClient {
   $host: string;

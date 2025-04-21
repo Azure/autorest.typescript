@@ -17,13 +17,13 @@ import {
   PolicyAssignmentsImpl,
   PolicyDefinitionsImpl,
   PolicySetDefinitionsImpl,
-} from "./operations";
+} from "./operations/index.js";
 import {
   PolicyAssignments,
   PolicyDefinitions,
   PolicySetDefinitions,
-} from "./operationsInterfaces";
-import { PolicyClientOptionalParams } from "./models";
+} from "./operationsInterfaces/index.js";
+import { PolicyClientOptionalParams } from "./models/index.js";
 
 export class PolicyClient extends coreClient.ServiceClient {
   $host: string;

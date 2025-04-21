@@ -9,7 +9,7 @@
 import {
   CommunityGalleryImagesGetOptionalParams,
   CommunityGalleryImagesGetResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a CommunityGalleryImages. */
 export interface CommunityGalleryImages {

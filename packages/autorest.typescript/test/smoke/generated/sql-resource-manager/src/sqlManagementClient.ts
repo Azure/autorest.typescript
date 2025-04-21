@@ -127,7 +127,7 @@ import {
   RestorableDroppedDatabasesImpl,
   RestorableDroppedManagedDatabasesImpl,
   ServerConnectionPoliciesImpl,
-} from "./operations";
+} from "./operations/index.js";
 import {
   RecoverableDatabases,
   DataMaskingPolicies,
@@ -247,8 +247,8 @@ import {
   RestorableDroppedDatabases,
   RestorableDroppedManagedDatabases,
   ServerConnectionPolicies,
-} from "./operationsInterfaces";
-import { SqlManagementClientOptionalParams } from "./models";
+} from "./operationsInterfaces/index.js";
+import { SqlManagementClientOptionalParams } from "./models/index.js";
 
 export class SqlManagementClient extends coreClient.ServiceClient {
   $host: string;

@@ -1,8 +1,8 @@
 export type ModuleName =
-  | string
-  | {
-      esModulesName: string;
-      cjsName: string;
+    | string
+    | {
+        esModulesName: string;
+        cjsName: string;
     };
 
 /**
@@ -10,26 +10,24 @@ export type ModuleName =
  * library being generated.
  *
  * @param name The name of the module to import - this can be a string representing the base name of the module or an object with the cjsName and esModulesName properties. *
- * @param moduleKind The type of module being generated. This can be either "cjs" or "esm".
+ * @param isTestPackage If isTestPackage is true which means we will not generate .js suffix when importing files
  *
  * @example
  *
  * ```ts
- * getImportModuleName("myModule", "cjs") // returns "myModule"
- * getImportModuleName("myModule", "esm") // returns "myModule.js"
- * getImportModuleName({ cjsName: "myModule", esModulesName: "myModule/index.js" }, "cjs") // returns "myModule"
- * getImportModuleName({ cjsName: "myModule", esModulesName: "myModule/index.js" }, "esm") // returns "myModule/index.js"
+ * getImportModuleName("myModule", true) // returns "myModule"
+ * getImportModuleName("myModule", false) // returns "myModule.js"
+ * getImportModuleName({ cjsName: "myModule", esModulesName: "myModule/index.js" }, true) // returns "myModule"
+ * getImportModuleName({ cjsName: "myModule", esModulesName: "myModule/index.js" }, false) // returns "myModule/index.js"
  */
+// TODO remove this function after migrating the configs for integration. Issue: https://github.com/Azure/autorest.typescript/issues/3166
 export function getImportModuleName(
-  name: ModuleName,
-  moduleKind?: "cjs" | "esm"
+    name: ModuleName,
+    isTestPackage?: boolean
 ): string {
-  const cjsName = typeof name === "string" ? name : name.cjsName;
-  const esModulesName =
-    typeof name === "string" ? `${name}.js` : name.esModulesName;
-  if (moduleKind === "esm") {
-    return esModulesName;
-  }
-  // CJS is considered the default in autorest.typescript
-  return cjsName;
+    if (isTestPackage) {
+        return typeof name === "string" ? name : name.cjsName;
+    } else {
+        return typeof name === "string" ? `${name}.js` : name.esModulesName;
+    }
 }

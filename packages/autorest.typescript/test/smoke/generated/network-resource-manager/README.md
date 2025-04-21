@@ -17,6 +17,13 @@ Network Client
 See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md) for more details.
 
 
+### Install the `@msinternal/network-resource-manager` package
+
+Install the NetworkManagement client library for JavaScript with `npm`:
+
+```bash
+npm install @msinternal/network-resource-manager
+```
 
 
 ### JavaScript Bundle

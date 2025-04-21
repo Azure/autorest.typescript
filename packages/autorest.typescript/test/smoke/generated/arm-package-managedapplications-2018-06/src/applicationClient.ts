@@ -13,9 +13,15 @@ import {
   SendRequest,
 } from "@azure/core-rest-pipeline";
 import * as coreAuth from "@azure/core-auth";
-import { ApplicationsImpl, ApplicationDefinitionsImpl } from "./operations";
-import { Applications, ApplicationDefinitions } from "./operationsInterfaces";
-import { ApplicationClientOptionalParams } from "./models";
+import {
+  ApplicationsImpl,
+  ApplicationDefinitionsImpl,
+} from "./operations/index.js";
+import {
+  Applications,
+  ApplicationDefinitions,
+} from "./operationsInterfaces/index.js";
+import { ApplicationClientOptionalParams } from "./models/index.js";
 
 export class ApplicationClient extends coreClient.ServiceClient {
   $host: string;
