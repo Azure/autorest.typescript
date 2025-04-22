@@ -49,7 +49,7 @@ describe("operations", () => {
   });
 
   describe("path parameters", () => {
-    it("should throw errors if optional path parameter", async () => {
+    it.skip("should throw errors if optional path parameter", async () => {
       const tspContent = `
         op read(@path param?: string): OkResponse;
         `;

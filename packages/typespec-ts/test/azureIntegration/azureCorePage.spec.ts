@@ -41,6 +41,7 @@ describe("Azure Core Page Rest Client", () => {
       .post({
         body: validBody,
         queryParameters: {
+          "api-version": "xx",
           another: "Second"
         }
       });
