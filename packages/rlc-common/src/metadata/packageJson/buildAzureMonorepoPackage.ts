@@ -3,9 +3,7 @@
 
 import {
   AzurePackageInfoConfig,
-  getAzureCommonPackageInfo,
-  getAzurePackageDependencies,
-  getAzurePackageDevDependencies
+  getAzureCommonPackageInfo
 } from "./azurePackageCommon.js";
 import {
   getCommonPackageScripts,
@@ -36,20 +34,45 @@ export function buildAzureMonorepoPackage(config: AzureMonorepoInfoConfig) {
  * Builds the dependencies for an Azure package that will be hosted in the azure-sdk-for-js mono repo.
  */
 export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
-  const esmDevDependencies = getEsmDevDependencies(config);
-  const cjsDevDependencies = getCjsDevDependencies(config);
-  const azurePackageDevDependencies = getAzurePackageDevDependencies(config);
-  delete azurePackageDevDependencies["tshy"];
+  const { hasLro, dependencies, withTests } = config;
+
+  const runtimeDeps = {
+    ...dependencies,
+    "@azure-rest/core-client": "workspace:*",
+    ...(hasLro && { "@azure/abort-controller": "workspace:*" }),
+    "@azure/core-auth": "workspace:*",
+    ...(hasLro && { "@azure/core-lro": "workspace:*" }),
+    "@azure/core-rest-pipeline": "workspace:*",
+    "@azure/core-util": "workspace:*",
+    "@azure/logger": "workspace:*",
+    tslib: "catalog:"
+  };
+
+  const testDeps = withTests
+    ? {
+        "@vitest/browser": "catalog:testing",
+        "@vitest/coverage-istanbul": "catalog:testing",
+        dotenv: "catalog:testing",
+        playwright: "catalog:testing",
+        typescript: "catalog:",
+        vitest: "catalog:testing"
+      }
+    : {
+        typescript: "catalog:"
+      };
+
   return {
-    dependencies: {
-      ...getAzurePackageDependencies(config)
-    },
+    dependencies: runtimeDeps,
     devDependencies: {
-      ...azurePackageDevDependencies,
-      "@azure/dev-tool": "^1.0.0",
-      "@azure/eslint-plugin-azure-sdk": "^3.0.0",
-      ...esmDevDependencies,
-      ...cjsDevDependencies
+      "@azure-tools/test-credential": "workspace:*",
+      "@azure-tools/test-recorder": "workspace:*",
+      "@azure-tools/test-utils-vitest": "workspace:*",
+      "@azure/dev-tool": "workspace:*",
+      "@azure/eslint-plugin-azure-sdk": "workspace:*",
+      "@azure/identity": "catalog:internal",
+      "@azure/logger": "workspace:*",
+      "@types/node": "catalog:",
+      ...testDeps
     }
   };
 }
@@ -99,60 +122,6 @@ function getSampleMetadata({
       disableDocsMs: true,
       apiRefLink: `https://learn.microsoft.com/javascript/api/${name}${apiRefUrlQueryParameter}`
     }
-  };
-}
-
-function getEsmDevDependencies({
-  moduleKind,
-  withTests
-}: AzureMonorepoInfoConfig) {
-  if (moduleKind !== "esm") {
-    return {};
-  }
-
-  if (withTests) {
-    return {
-      "@vitest/browser": "^3.0.3",
-      "@vitest/coverage-istanbul": "^3.0.3",
-      playwright: "^1.41.2",
-      vitest: "^3.0.3"
-    };
-  } else return {};
-}
-
-function getCjsDevDependencies({
-  moduleKind,
-  withTests
-}: AzureMonorepoInfoConfig) {
-  if (moduleKind !== "cjs") {
-    return {};
-  }
-
-  let testDevDependencies: Record<string, string> = {};
-  if (withTests) {
-    testDevDependencies = {
-      dotenv: "^16.0.0",
-      mocha: "^11.0.2",
-      "@types/mocha": "^10.0.0",
-      "@types/chai": "^4.2.8",
-      chai: "^4.2.0",
-      "karma-chrome-launcher": "^3.0.0",
-      "karma-coverage": "^2.0.0",
-      "karma-env-preprocessor": "^0.1.1",
-      "karma-firefox-launcher": "^2.1.3",
-      "karma-junit-reporter": "^2.0.1",
-      "karma-mocha-reporter": "^2.2.5",
-      "karma-mocha": "^2.0.1",
-      "karma-source-map-support": "~1.4.0",
-      "karma-sourcemap-loader": "^0.3.8",
-      karma: "^6.2.0",
-      nyc: "^15.1.0",
-      tsx: "^4.7.1"
-    };
-  }
-
-  return {
-    ...testDevDependencies
   };
 }
 
