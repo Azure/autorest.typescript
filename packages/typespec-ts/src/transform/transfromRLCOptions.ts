@@ -239,11 +239,12 @@ function extractRLCOptions(
   const includeShortcuts = getIncludeShortcuts(emitterOptions);
   const packageDetails = getPackageDetails(program, emitterOptions);
   const flavor = getFlavor(emitterOptions, packageDetails);
+  emitterOptions.flavor = flavor;
   const moduleKind = getModuleKind(emitterOptions);
   const serviceInfo = getServiceInfo(program);
-  const azureSdkForJs = getAzureSdkForJs(emitterOptions, flavor);
+  const azureSdkForJs = getAzureSdkForJs(emitterOptions);
   const generateMetadata = getGenerateMetadata(emitterOptions);
-  const generateTest = getGenerateTest(emitterOptions, flavor);
+  const generateTest = getGenerateTest(emitterOptions);
   const generateSample = getGenerateSample(dpgContext, emitterOptions);
   const credentialInfo = getCredentialInfo(program, emitterOptions);
   const azureOutputDirectory = getAzureOutputDirectory(generationRootDir);
@@ -603,11 +604,8 @@ function getServiceInfo(program: Program): ServiceInfo {
   };
 }
 
-function getAzureSdkForJs(
-  emitterOptions: EmitterOptions,
-  flavor: PackageFlavor
-) {
-  return flavor !== "azure"
+function getAzureSdkForJs(emitterOptions: EmitterOptions) {
+  return emitterOptions.flavor !== "azure"
     ? false
     : (emitterOptions["azure-sdk-for-js"] === undefined ||
           emitterOptions["azure-sdk-for-js"] === null) &&
@@ -638,12 +636,9 @@ function getGenerateMetadata(emitterOptions: EmitterOptions) {
  * @param emitterOptions
  * @returns
  */
-function getGenerateTest(
-  emitterOptions: EmitterOptions,
-  flavor: PackageFlavor
-) {
+function getGenerateTest(emitterOptions: EmitterOptions) {
   // Disable generateTest if azureSdkForJS is false
-  if (!getAzureSdkForJs(emitterOptions, flavor)) {
+  if (!getAzureSdkForJs(emitterOptions)) {
     return false;
   }
   return emitterOptions["generate-test"] ?? emitterOptions.generateTest;
