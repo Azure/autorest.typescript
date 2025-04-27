@@ -1,4 +1,4 @@
-# only: Should support path parameters
+# Should support path parameters
 
 ## TypeSpec
 
@@ -7,8 +7,6 @@ This is tsp definition.
 ```tsp
 op read(@path param?: string): OkResponse;
 ```
-
-## Provide generated operations to call rest-level methods
 
 ## Operations
 
@@ -22,21 +20,21 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 
 export function _readSend(
   context: Client,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/{/param}",
     {
-      param: options["param"],
+      param: options["param"]
     },
     {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
+      allowReserved: options?.requestOptions?.skipUrlEncoding
+    }
   );
   return context
     .path(path)
@@ -44,7 +42,7 @@ export function _readSend(
 }
 
 export async function _readDeserialize(
-  result: PathUncheckedResponse,
+  result: PathUncheckedResponse
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -56,9 +54,20 @@ export async function _readDeserialize(
 
 export async function read(
   context: Client,
-  options: ReadOptionalParams = { requestOptions: {} },
+  options: ReadOptionalParams = { requestOptions: {} }
 ): Promise<void> {
   const result = await _readSend(context, options);
   return _readDeserialize(result);
+}
+```
+
+## Options should include optional path parameter
+
+```ts models:withOptions
+import { OperationOptions } from "@azure-rest/core-client";
+
+/** Optional parameters. */
+export interface ReadOptionalParams extends OperationOptions {
+  param?: string;
 }
 ```

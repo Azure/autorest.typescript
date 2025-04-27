@@ -1013,16 +1013,6 @@ function getPathParameters(
   const pathParams: string[] = [];
   for (const param of operation.operation.parameters) {
     if (param.kind === "path") {
-      // Path parameters cannot be optional
-      if (param.optional) {
-        // reportDiagnostic(dpgContext.program, {
-        //   code: "optional-path-param",
-        //   target: NoTarget,
-        //   format: {
-        //     paramName: (param as SdkPathParameter).name
-        //   }
-        // });
-      }
       pathParams.push(
         `"${param.serializedName}": ${getPathParamExpr(param, getDefaultValue(param) as string, optionalParamName)}`
       );
