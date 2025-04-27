@@ -1,4 +1,4 @@
-# skip: Should generate samples for different types
+# Should generate samples for different types
 
 Sample generation should handle different types in body.
 
