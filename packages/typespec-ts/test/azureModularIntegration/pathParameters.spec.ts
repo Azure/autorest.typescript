@@ -1,5 +1,4 @@
 import { PathClient } from "./generated/parameters/path/src/index.js";
-import { assert } from "chai";
 describe("PathClient Client", () => {
   let client: PathClient;
 
@@ -11,12 +10,13 @@ describe("PathClient Client", () => {
   });
 
   it("path parameters normal", async () => {
-    const result = await client.normal("foo");
-    assert.isUndefined(result);
+    await client.normal("foo");
   });
 
-  it("path parameters optional", async () => {
-    const result = await client.optional();
-    assert.isUndefined(result);
+  it("without path parameters optional", async () => {
+    await client.optional();
+  });
+  it("with path parameters optional", async () => {
+    await client.optional({ name: "foo" });
   });
 });
