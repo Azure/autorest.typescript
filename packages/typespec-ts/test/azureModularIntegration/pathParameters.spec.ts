@@ -13,7 +13,7 @@ describe("PathClient Client", () => {
     await client.normal("foo");
   });
 
-  it("without path parameters optional", async () => {
+  it("without setting optional path parameter", async () => {
     await client.optional();
   });
   it("with path parameters optional", async () => {
