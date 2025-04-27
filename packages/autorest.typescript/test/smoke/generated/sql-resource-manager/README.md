@@ -17,6 +17,13 @@ The Azure SQL Database management API provides a RESTful set of web services tha
 See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md) for more details.
 
 
+### Install the `@msinternal/sql-resource-manager` package
+
+Install the SqlManagement client library for JavaScript with `npm`:
+
+```bash
+npm install @msinternal/sql-resource-manager
+```
 
 
 ### JavaScript Bundle

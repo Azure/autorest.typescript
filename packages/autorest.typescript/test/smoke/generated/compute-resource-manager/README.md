@@ -17,6 +17,13 @@ Compute Client
 See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md) for more details.
 
 
+### Install the `@msinternal/compute-resource-manager` package
+
+Install the ComputeManagement client library for JavaScript with `npm`:
+
+```bash
+npm install @msinternal/compute-resource-manager
+```
 
 
 ### JavaScript Bundle

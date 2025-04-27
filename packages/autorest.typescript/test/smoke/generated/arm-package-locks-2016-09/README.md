@@ -17,6 +17,13 @@ Azure resources can be locked to prevent other users in your organization from d
 See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md) for more details.
 
 
+### Install the `@msinternal/arm-package-locks-2016-09` package
+
+Install the ManagementLock client library for JavaScript with `npm`:
+
+```bash
+npm install @msinternal/arm-package-locks-2016-09
+```
 
 
 ### JavaScript Bundle

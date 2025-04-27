@@ -17,6 +17,13 @@ The APIs listed in this specification can be used to manage Deployment Scripts r
 See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md) for more details.
 
 
+### Install the `@msinternal/arm-package-deploymentscripts-2019-10-preview` package
+
+Install the DeploymentScripts client library for JavaScript with `npm`:
+
+```bash
+npm install @msinternal/arm-package-deploymentscripts-2019-10-preview
+```
 
 
 ### JavaScript Bundle

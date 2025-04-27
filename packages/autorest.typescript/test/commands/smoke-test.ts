@@ -54,7 +54,7 @@ const generateFromReadme = async ({
         nameWithoutScope: ""
       },
       allowInsecureConnection: true,
-      isTestPackage: true
+      isTestPackage: false
     },
     false,
     params

@@ -290,7 +290,7 @@ export function _createStreamingSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      body: { stream: stream },
+      body: { stream: true },
     });
 }
 
@@ -2483,25 +2483,41 @@ op post(@body body: Vegetables): { @body body: Vegetables };
 Should ingore the warning `@azure-tools/typespec-ts/compatible-additional-properties`:
 
 ```yaml
-mustEmptyDiagnostic: false
+mustEmptyDiagnostic: true
 ```
 
 ## Models
 
 ```ts models
+import { serializeRecord } from "../static-helpers/serialization/serialize-record.js";
+
 /** model interface Vegetables */
-export interface Vegetables extends Record<string, number | string> {
+export interface Vegetables {
   carrots: number;
   beans: number;
+  /** Additional properties */
+  additionalProperties?: Record<string, number | string>;
 }
 
 export function vegetablesSerializer(item: Vegetables): any {
-  return { ...item, carrots: item["carrots"], beans: item["beans"] };
+  return {
+    ...serializeRecord(
+      item.additionalProperties,
+      undefined,
+      _vegetablesAdditionalPropertySerializer,
+    ),
+    carrots: item["carrots"],
+    beans: item["beans"],
+  };
 }
 
 export function vegetablesDeserializer(item: any): Vegetables {
   return {
-    ...item,
+    additionalProperties: serializeRecord(
+      item,
+      ["carrots", "beans"],
+      _vegetablesAdditionalPropertyDeserializer,
+    ),
     carrots: item["carrots"],
     beans: item["beans"],
   };

@@ -17,6 +17,13 @@ Azure Cosmos DB Database Service Resource Provider REST API
 See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md) for more details.
 
 
+### Install the `@msinternal/cosmos-db-resource-manager` package
+
+Install the CosmosDBManagement client library for JavaScript with `npm`:
+
+```bash
+npm install @msinternal/cosmos-db-resource-manager
+```
 
 
 ### JavaScript Bundle

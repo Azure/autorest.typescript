@@ -17,6 +17,13 @@ WebSite Management Client
 See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md) for more details.
 
 
+### Install the `@msinternal/web-resource-manager` package
+
+Install the WebSiteManagement client library for JavaScript with `npm`:
+
+```bash
+npm install @msinternal/web-resource-manager
+```
 
 
 ### JavaScript Bundle
