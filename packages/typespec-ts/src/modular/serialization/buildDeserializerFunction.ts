@@ -8,8 +8,15 @@ import {
   UsageFlags
 } from "@azure-tools/typespec-client-generator-core";
 import { SdkContext } from "../../utils/interfaces.js";
-import { getResponseMapping } from "../helpers/operationHelpers.js";
-import { normalizeModelName } from "../emitModels.js";
+import {
+  getAllAncestors,
+  getAllProperties,
+  getResponseMapping
+} from "../helpers/operationHelpers.js";
+import {
+  getAdditionalPropertiesName,
+  normalizeModelName
+} from "../emitModels.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
 import {
@@ -17,8 +24,10 @@ import {
   isSupportedSerializeType,
   ModelSerializeOptions
 } from "./serializeUtils.js";
+import { SerializationHelpers } from "../static-helpers-metadata.js";
 import { refkey } from "../../framework/refkey.js";
 import { resolveReference } from "../../framework/reference.js";
+import { getAdditionalPropertiesType } from "../helpers/typeHelpers.js";
 
 export function buildModelDeserializer(
   context: SdkContext,
@@ -76,28 +85,6 @@ export function buildModelDeserializer(
     default:
       return undefined;
   }
-}
-
-function hasAdditionalProperties(type: SdkType | undefined) {
-  if (
-    !type ||
-    !(
-      "additionalProperties" in type ||
-      (type.kind === "model" && hasAdditionalProperties(type.baseModel))
-    )
-  ) {
-    return false;
-  }
-
-  if (type.additionalProperties) {
-    return true;
-  }
-
-  if (type.baseModel) {
-    return hasAdditionalProperties(type.baseModel);
-  }
-
-  return false;
 }
 
 function buildPolymorphicDeserializer(
@@ -349,10 +336,8 @@ function buildModelTypeDeserializer(
   };
   const nullabilityPrefix = "";
 
-  // This is only handling the compatibility mode, will need to update when we handle additionalProperties property.
-  const additionalPropertiesSpread = hasAdditionalProperties(type)
-    ? "...item,"
-    : "";
+  const additionalPropertiesSpread =
+    getAdditionalPropertiesStatement(context, type) ?? "";
 
   const propertiesStr = getResponseMapping(context, type, "item");
   const propertiesDeserialization = propertiesStr.filter((p) => p.trim());
@@ -375,6 +360,35 @@ function buildModelTypeDeserializer(
   }
   deserializerFunction.statements = output;
   return deserializerFunction;
+}
+
+function getAdditionalPropertiesStatement(
+  context: SdkContext,
+  type: SdkModelType
+): string | undefined {
+  const additionalPropertyType = getAdditionalPropertiesType(type);
+  if (!additionalPropertyType) {
+    return undefined;
+  }
+  const allParents = getAllAncestors(type);
+  const properties = getAllProperties(type, allParents);
+  const excludeProperties = properties
+    .filter((p) => !!p.name)
+    .map((p) => `"${p.name}"`);
+  const params = ["item"];
+  params.push(`[${excludeProperties.join(",")}]`);
+  const deserializerFunction = buildModelDeserializer(
+    context,
+    additionalPropertyType,
+    false,
+    true
+  );
+  if (typeof deserializerFunction === "string") {
+    params.push(deserializerFunction);
+  }
+  return context.rlcOptions?.compatibilityMode === true
+    ? "...item,"
+    : `${getAdditionalPropertiesName(type)}: ${resolveReference(SerializationHelpers.serializeRecord)}(${params.join(",")}),`;
 }
 
 function buildDictTypeDeserializer(
