@@ -16,7 +16,7 @@ describe("PathClient Client", () => {
   it("without setting optional path parameter", async () => {
     await client.optional();
   });
-  it("with path parameters optional", async () => {
+  it("with setting path parameter as `foo`", async () => {
     await client.optional({ name: "foo" });
   });
 });
