@@ -47,17 +47,4 @@ describe("operations", () => {
       }
     });
   });
-
-  describe("path parameters", () => {
-    it.skip("should throw errors if optional path parameter", async () => {
-      const tspContent = `
-        op read(@path param?: string): OkResponse;
-        `;
-      try {
-        await emitModularOperationsFromTypeSpec(tspContent);
-      } catch (e: any) {
-        assert.match(e.message, /Path parameter 'param' cannot be optional/);
-      }
-    });
-  });
 });
