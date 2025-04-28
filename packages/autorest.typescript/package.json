@@ -1,6 +1,6 @@
 {
   "name": "@autorest/typescript",
-  "version": "6.1.0",
+  "version": "6.0.39",
   "scripts": {
     "build": "tsc -p . && npm run copyFiles",
     "build:test:browser:rlc": "tsc -p tsconfig.browser-test.json && ts-node test/commands/prepare-deps.ts --browser && webpack --config webpack.config.test.js --env mode=rlc",

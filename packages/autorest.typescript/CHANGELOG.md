@@ -1,9 +1,9 @@
-## 6.1.0 (2025-04-28)
+## 6.0.39 (2025-04-28)
 
 - [Feature] Support optional path parameter for Modular. Please refer to [#3152](https://github.com/Azure/autorest.typescript/pull/3152)
-- [Feature] Update flavor config. Please refer to [#3173](https://github.com/Azure/autorest.typescript/pull/3173)
-- [Feature] Support additional properties in non-legacy Modular. Please refer to [#2981](https://github.com/Azure/autorest.typescript/pull/2981)
-- [Bugfix] Remove duplicate license header for hlc. Please refer to [#3171](https://github.com/Azure/autorest.typescript/pull/3171)
+- [Feature] Fix the flavor config issue. Please refer to [#3173](https://github.com/Azure/autorest.typescript/pull/3173)
+- [Feature] Support additional properties for non-legacy case in Modular. Please refer to [#2981](https://github.com/Azure/autorest.typescript/pull/2981)
+- [Bugfix] Remove duplicated license header for HLC. Please refer to [#3171](https://github.com/Azure/autorest.typescript/pull/3171)
 - [Feature] Migrate to ESM for HLC. Please refer to [#3128](https://github.com/Azure/autorest.typescript/pull/3128)
 - [Feature] Add support for constant body property. Please refer to [#3133](https://github.com/Azure/autorest.typescript/pull/3133)
 - [Feature] Add no-deprecated lint rule for typespec-ts. Please refer to [#3141](https://github.com/Azure/autorest.typescript/pull/3141)
