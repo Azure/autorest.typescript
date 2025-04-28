@@ -191,21 +191,21 @@ importers:
 
   ../../packages/typespec-test:
     specifiers:
-      '@azure-tools/typespec-autorest': next
-      '@azure-tools/typespec-azure-core': next
-      '@azure-tools/typespec-azure-resource-manager': next
-      '@azure-tools/typespec-azure-rulesets': next
-      '@azure-tools/typespec-client-generator-core': next
+      '@azure-tools/typespec-autorest': 0.56.0-dev.2
+      '@azure-tools/typespec-azure-core': 0.56.0-dev.1
+      '@azure-tools/typespec-azure-resource-manager': 0.56.0-dev.1
+      '@azure-tools/typespec-azure-rulesets': 0.56.0-dev.0
+      '@azure-tools/typespec-client-generator-core': 0.56.0-dev.4
       '@azure-tools/typespec-ts': workspace:^0.38.6
       '@types/mocha': ^5.2.7
       '@types/node': ^18.0.0
-      '@typespec/compiler': next
-      '@typespec/http': next
-      '@typespec/json-schema': next
-      '@typespec/openapi': next
-      '@typespec/openapi3': next
-      '@typespec/rest': next
-      '@typespec/versioning': next
+      '@typespec/compiler': 1.0.0-rc.2-dev.8
+      '@typespec/http': 1.0.0-rc.2-dev.1
+      '@typespec/json-schema': 1.0.0-rc.2-dev.0
+      '@typespec/openapi': 1.0.0-rc.2-dev.0
+      '@typespec/openapi3': 1.0.0-rc.2-dev.1
+      '@typespec/rest': 0.70.0-dev.0
+      '@typespec/versioning': 0.70.0-dev.0
       prettier: ^3.1.0
       ts-node: ^8.5.2
       typescript: ~5.8.2
@@ -233,12 +233,12 @@ importers:
   ../../packages/typespec-ts:
     specifiers:
       '@azure-rest/core-client': ^2.3.1
-      '@azure-tools/azure-http-specs': next
+      '@azure-tools/azure-http-specs': 0.1.0-alpha.16-dev.2
       '@azure-tools/rlc-common': workspace:^0.38.6
-      '@azure-tools/typespec-autorest': next
-      '@azure-tools/typespec-azure-core': next
-      '@azure-tools/typespec-azure-resource-manager': next
-      '@azure-tools/typespec-client-generator-core': next
+      '@azure-tools/typespec-autorest': 0.56.0-dev.2
+      '@azure-tools/typespec-azure-core': 0.56.0-dev.1
+      '@azure-tools/typespec-azure-resource-manager': 0.56.0-dev.1
+      '@azure-tools/typespec-client-generator-core': 0.56.0-dev.4
       '@azure/abort-controller': ^2.1.2
       '@azure/core-auth': ^1.6.0
       '@azure/core-lro': ^3.1.0
@@ -255,15 +255,15 @@ importers:
       '@types/node': ^18.0.0
       '@typescript-eslint/eslint-plugin': ^8.28.0
       '@typescript-eslint/parser': ^8.28.0
-      '@typespec/compiler': next
-      '@typespec/http': next
-      '@typespec/http-specs': next
-      '@typespec/openapi': next
-      '@typespec/rest': next
-      '@typespec/spec-api': next
-      '@typespec/spector': next
+      '@typespec/compiler': 1.0.0-rc.2-dev.8
+      '@typespec/http': 1.0.0-rc.2-dev.1
+      '@typespec/http-specs': 0.1.0-alpha.21-dev.2
+      '@typespec/openapi': 1.0.0-rc.2-dev.0
+      '@typespec/rest': 0.70.0-dev.0
+      '@typespec/spec-api': 0.1.0-alpha.5-dev.2
+      '@typespec/spector': 0.1.0-alpha.13-dev.1
       '@typespec/ts-http-runtime': 0.1.0
-      '@typespec/versioning': next
+      '@typespec/versioning': 0.70.0-dev.0
       '@vitest/coverage-istanbul': ~1.6.0
       '@vitest/coverage-v8': ~1.6.0
       chai: ^4.3.6
@@ -4488,7 +4488,7 @@ packages:
       is-string: 1.0.7
       is-typed-array: 1.1.12
       is-weakref: 1.0.2
-      object-inspect: 1.13.2
+      object-inspect: 1.13.4
       object-keys: 1.1.1
       object.assign: 4.1.4
       regexp.prototype.flags: 1.5.1
@@ -6868,11 +6868,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /object-inspect/1.13.2:
-    resolution: {integrity: sha512-IRZSRuzJiynemAXPYtPe5BoI/RESNYR7TYm50MC5Mqbd3Jmw5y790sErYw3V6SryFJD64b74qQQs9wn5Bg/k3g==}
-    engines: {node: '>= 0.4'}
-    dev: true
-
   /object-inspect/1.13.4:
     resolution: {integrity: sha512-W67iLl4J2EXEGTbfeHCffrjDfitvLANg0UlX3wFUUSTx92KXRFegMHUVgSqE+wvhAbi4WqjGg9czysTV2Epbew==}
     engines: {node: '>= 0.4'}
@@ -7887,7 +7882,7 @@ packages:
       call-bind: 1.0.7
       es-errors: 1.3.0
       get-intrinsic: 1.3.0
-      object-inspect: 1.13.2
+      object-inspect: 1.13.4
     dev: true
 
   /side-channel/1.1.0:
