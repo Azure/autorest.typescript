@@ -253,6 +253,7 @@ export interface RLCOptions {
   ignoreEnumMemberNameNormalize?: boolean;
   compatibilityQueryMultiFormat?: boolean;
   typespecTitleMap?: Record<string, string>;
+  hasSubscriptionId?: boolean;
 }
 
 export interface ServiceInfo {

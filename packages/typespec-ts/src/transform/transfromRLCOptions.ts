@@ -23,6 +23,7 @@ import { detectModelConflicts } from "../utils/namespaceUtils.js";
 import { getOperationName } from "../utils/operationUtil.js";
 import { getSupportedHttpAuth } from "../utils/credentialUtils.js";
 import _ from "lodash";
+import { getClientParameters } from "../modular/helpers/clientHelpers.js";
 
 export function transformRLCOptions(
   emitterOptions: EmitterOptions,
@@ -284,6 +285,7 @@ function extractRLCOptions(
     emitterOptions.compatibilityQueryMultiFormat;
   const typespecTitleMap =
     emitterOptions["typespec-title-map"] ?? emitterOptions.typespecTitleMap;
+  const hasSubscriptionId = getSubscriptionId(dpgContext);
 
   return {
     ...credentialInfo,
@@ -314,7 +316,8 @@ function extractRLCOptions(
     ignorePropertyNameNormalize,
     compatibilityQueryMultiFormat,
     typespecTitleMap,
-    ignoreEnumMemberNameNormalize
+    ignoreEnumMemberNameNormalize,
+    hasSubscriptionId
   };
 }
 
@@ -720,4 +723,17 @@ function getAzureOutputDirectory(emitterOutputDir: string): string | undefined {
   return sdkReletivePath?.substring(0, 3) === "sdk"
     ? sdkReletivePath
     : undefined;
+}
+
+export function getSubscriptionId(dpgContext: SdkContext) {
+  for (const client of dpgContext.sdkPackage.clients) {
+    if (
+      getClientParameters(client, dpgContext)
+        .map((item) => item.name)
+        .includes("subscriptionId")
+    ) {
+      return true;
+    }
+  }
+  return false;
 }

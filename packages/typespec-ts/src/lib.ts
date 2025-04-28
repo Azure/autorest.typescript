@@ -160,7 +160,8 @@ const _RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
       },
       required: [],
       nullable: true
-    }
+    },
+    hasSubscriptionId: { type: "boolean", nullable: true }
   },
   required: []
 };
