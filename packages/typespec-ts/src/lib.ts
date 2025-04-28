@@ -426,12 +426,6 @@ const libDef = {
         default: paramMessage`Property name ${"propertyName"} is normalized to ${"normalizedName"}.`
       }
     },
-    "optional-path-param": {
-      severity: "error",
-      messages: {
-        default: paramMessage`Path parameter '${"paramName"}' cannot be optional.`
-      }
-    },
     "un-supported-format-cases": {
       severity: "warning",
       messages: {
