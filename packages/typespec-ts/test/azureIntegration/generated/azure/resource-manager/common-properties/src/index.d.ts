@@ -409,8 +409,8 @@ export declare interface UserAssignedIdentity {
 }
 
 export declare interface UserAssignedIdentityOutput {
-    readonly clientId?: string;
     readonly principalId?: string;
+    readonly clientId?: string;
 }
 
 export { }
