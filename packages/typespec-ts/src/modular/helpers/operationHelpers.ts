@@ -98,7 +98,7 @@ export function getSendPrivateFunction(
   const statements: string[] = [];
   let pathStr = `"${operationPath}"`;
   const urlTemplateParams = [
-    ...getPathParameters(dpgContext, operation),
+    ...getPathParameters(operation),
     ...getQueryParameters(dpgContext, operation)
   ];
   if (urlTemplateParams.length > 0) {
