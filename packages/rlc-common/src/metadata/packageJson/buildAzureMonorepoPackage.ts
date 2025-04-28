@@ -199,8 +199,6 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
     "lint:fix":
       "eslint package.json api-extractor.json src test --fix --fix-type [problem,suggestion]",
     lint: "eslint package.json api-extractor.json src test",
-    minify:
-      "dev-tool run vendored uglifyjs -c -m --comments --source-map \"content='./dist/index.js.map'\" -o ./dist/index.min.js ./dist/index.js",
     ...esmScripts,
     ...cjsScripts,
     "update-snippets": "dev-tool run update-snippets"
