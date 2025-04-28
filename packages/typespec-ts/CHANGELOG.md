@@ -1,3 +1,15 @@
+## 0.39.0 (2025-04-28)
+
+- [Feature] Support optional path parameter for Modular. Please refer to [#3152](https://github.com/Azure/autorest.typescript/pull/3152)
+- [Feature] Fix the flavor config issue. Please refer to [#3173](https://github.com/Azure/autorest.typescript/pull/3173)
+- [Feature] Support additional properties for non-legacy case in Modular. Please refer to [#2981](https://github.com/Azure/autorest.typescript/pull/2981)
+- [Bugfix] Remove duplicated license header for HLC. Please refer to [#3171](https://github.com/Azure/autorest.typescript/pull/3171)
+- [Feature] Migrate to ESM for HLC. Please refer to [#3128](https://github.com/Azure/autorest.typescript/pull/3128)
+- [Feature] Add support for constant body property. Please refer to [#3133](https://github.com/Azure/autorest.typescript/pull/3133)
+- [Feature] Add no-deprecated lint rule for typespec-ts. Please refer to [#3141](https://github.com/Azure/autorest.typescript/pull/3141)
+- [Bugfix] Fix serialize name normalize in url template. Please refer to [#3130](https://github.com/Azure/autorest.typescript/pull/3130)
+- [Feature] Refine the api-version removed test cases. Please refer to [#3153](https://github.com/Azure/autorest.typescript/pull/3153)
+
 ## 0.38.6 (2025-04-03)
 
 - [Feature] Upgrade dev dependency typescript version to ~5.8.2. Please refer to [#3120](https://github.com/Azure/autorest.typescript/pull/3120)

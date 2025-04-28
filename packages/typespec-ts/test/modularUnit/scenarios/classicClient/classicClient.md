@@ -25,6 +25,8 @@ enum Versions {
   @useDependency(Azure.Core.Versions.v1_0_Preview_2)
   `2022-08-30`,
 }
+
+op foo(): void;
 ```
 
 The config would be like:
@@ -39,6 +41,8 @@ ignoreWeirdLine: false
 ## classicClient
 
 ```ts classicClient
+import { FooOptionalParams } from "./api/options.js";
+import { foo } from "./api/operations.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { TestServiceClientOptionalParams } from "./api/testServiceContext.js";
@@ -50,7 +54,7 @@ export class TestServiceClient {
 
   constructor(
     endpointParam: string,
-    options: TestServiceClientOptionalParams = {},
+    options: TestServiceClientOptionalParams = {}
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
@@ -58,9 +62,13 @@ export class TestServiceClient {
       : `azsdk-js-client`;
     this._client = createTestService(endpointParam, {
       ...options,
-      userAgentOptions: { userAgentPrefix },
+      userAgentOptions: { userAgentPrefix }
     });
     this.pipeline = this._client.pipeline;
+  }
+
+  foo(options: FooOptionalParams = { requestOptions: {} }): Promise<void> {
+    return foo(this._client, options);
   }
 }
 ```
