@@ -1005,7 +1005,6 @@ function getDefaultValue(param: SdkServiceParameter) {
  * Extracts the path parameters
  */
 function getPathParameters(
-  _dpgContext: SdkContext,
   operation: ServiceOperation,
   optionalParamName: string = "options"
 ) {
