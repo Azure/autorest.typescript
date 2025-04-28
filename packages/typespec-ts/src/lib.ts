@@ -396,12 +396,6 @@ const libDef = {
         default: paramMessage`Please note the header ${"type"} is not serializable.`
       }
     },
-    "compatible-additional-properties": {
-      severity: "warning",
-      messages: {
-        default: paramMessage`Please note that only compatible additional properties is supported for now. You can enable compatibilityMode to generate compatible additional properties for the model - ${"modelName"}.`
-      }
-    },
     "default-response-body-type": {
       severity: "warning",
       messages: {
@@ -432,12 +426,6 @@ const libDef = {
         default: paramMessage`Property name ${"propertyName"} is normalized to ${"normalizedName"}.`
       }
     },
-    "optional-path-param": {
-      severity: "error",
-      messages: {
-        default: paramMessage`Path parameter '${"paramName"}' cannot be optional.`
-      }
-    },
     "un-supported-format-cases": {
       severity: "warning",
       messages: {
@@ -460,6 +448,12 @@ const libDef = {
       severity: "warning",
       messages: {
         default: paramMessage`Please note the default value is an object type.`
+      }
+    },
+    "property-name-conflict": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`The property name ${"propertyName"} has conflicts with others and please use @clientName to rename it.`
       }
     }
   },
