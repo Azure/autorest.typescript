@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import type { RequestParameters } from "@azure-rest/core-client";
-import type { PostInput } from "./models.js";
+import type { PostInput } from "./models";
 
 export interface ParamsHeadNoParamsQueryParamProperties {
   /** I'm a new input optional parameter */

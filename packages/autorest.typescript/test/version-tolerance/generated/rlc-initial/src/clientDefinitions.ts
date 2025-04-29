@@ -7,14 +7,14 @@ import type {
   ParamsPutRequiredOptionalParameters,
   ParamsPostParametersParameters,
   ParamsGetOptionalParameters,
-} from "./parameters.js";
+} from "./parameters";
 import type {
   ParamsHeadNoParams200Response,
   ParamsGetRequired200Response,
   ParamsPutRequiredOptional200Response,
   ParamsPostParameters200Response,
   ParamsGetOptional200Response,
-} from "./responses.js";
+} from "./responses";
 import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 /** Contains operations for Params operations */
