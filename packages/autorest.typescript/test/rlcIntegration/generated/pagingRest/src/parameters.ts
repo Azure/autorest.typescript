@@ -3,7 +3,7 @@
 
 import type { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import type { RequestParameters } from "@azure-rest/core-client";
-import type { BodyParam } from "./models";
+import type { BodyParam } from "./models.js";
 
 export type PagingGetNoItemNamePagesParameters = RequestParameters;
 export type PagingGetEmptyNextLinkNamePagesParameters = RequestParameters;

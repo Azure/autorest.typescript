@@ -3,7 +3,7 @@
 
 import type { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import type { HttpResponse } from "@azure-rest/core-client";
-import type { ErrorModelOutput } from "./outputModels";
+import type { ErrorModelOutput } from "./outputModels.js";
 
 /** Send a post request with header value "User-Agent": "overwrite" */
 export interface HeaderParamExistingKey200Response extends HttpResponse {

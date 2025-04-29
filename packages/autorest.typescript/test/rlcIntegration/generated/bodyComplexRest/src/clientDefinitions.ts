@@ -57,7 +57,7 @@ import type {
   ReadonlypropertyGetValidParameters,
   ReadonlypropertyPutValidParameters,
   FlattencomplexGetValidParameters,
-} from "./parameters";
+} from "./parameters.js";
 import type {
   BasicGetValid200Response,
   BasicGetValidDefaultResponse,
@@ -168,7 +168,7 @@ import type {
   ReadonlypropertyPutValid200Response,
   ReadonlypropertyPutValidDefaultResponse,
   FlattencomplexGetValid200Response,
-} from "./responses";
+} from "./responses.js";
 import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface BasicGetValid {

@@ -25,7 +25,7 @@ import type {
   SalmonOutput,
   ReadonlyObjOutput,
   MyBaseTypeOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 /** Get complex type {id: 2, name: 'abc', color: 'YELLOW'} */
 export interface BasicGetValid200Response extends HttpResponse {

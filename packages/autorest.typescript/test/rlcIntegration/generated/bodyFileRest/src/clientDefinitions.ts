@@ -5,7 +5,7 @@ import type {
   FilesGetFileParameters,
   FilesGetFileLargeParameters,
   FilesGetEmptyFileParameters,
-} from "./parameters";
+} from "./parameters.js";
 import type {
   FilesGetFile200Response,
   FilesGetFileDefaultResponse,
@@ -13,7 +13,7 @@ import type {
   FilesGetFileLargeDefaultResponse,
   FilesGetEmptyFile200Response,
   FilesGetEmptyFileDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetFile {

@@ -8,7 +8,7 @@ import type {
   CloudErrorOutput,
   SkuOutput,
   SubProductOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Succeeded’. */
 export interface LROsPut200Succeeded200Response extends HttpResponse {

@@ -3,9 +3,9 @@
 
 import type { ClientOptions } from "@azure-rest/core-client";
 import { getClient } from "@azure-rest/core-client";
-import { logger } from "./logger";
+import { logger } from "./logger.js";
 import type { TokenCredential } from "@azure/core-auth";
-import type { MultipleUrlParameterRestClient } from "./clientDefinitions";
+import type { MultipleUrlParameterRestClient } from "./clientDefinitions.js";
 
 /** The optional parameters for the client */
 export interface MultipleUrlParameterRestClientOptions extends ClientOptions {}

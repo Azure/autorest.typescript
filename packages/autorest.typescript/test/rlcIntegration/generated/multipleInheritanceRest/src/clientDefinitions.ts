@@ -12,7 +12,7 @@ import type {
   PutCatParameters,
   GetKittenParameters,
   PutKittenParameters,
-} from "./parameters";
+} from "./parameters.js";
 import type {
   GetHorse200Response,
   GetHorseDefaultResponse,
@@ -29,7 +29,7 @@ import type {
   GetKitten200Response,
   GetKittenDefaultResponse,
   PutKitten200Response,
-} from "./responses";
+} from "./responses.js";
 import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 /** Contains operations for Client operations */

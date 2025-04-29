@@ -6,13 +6,13 @@ import type {
   PostModelParameters,
   GetPagesParameters,
   LroParameters,
-} from "./parameters";
+} from "./parameters.js";
 import type {
   GetModel200Response,
   PostModel200Response,
   GetPages200Response,
   Lro200Response,
-} from "./responses";
+} from "./responses.js";
 import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 /** Contains operations for Client operations */

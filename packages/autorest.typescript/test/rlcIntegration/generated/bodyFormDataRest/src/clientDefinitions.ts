@@ -5,7 +5,7 @@ import type {
   FormdataUploadFileParameters,
   FormdataUploadFileViaBodyParameters,
   FormdataUploadFilesParameters,
-} from "./parameters";
+} from "./parameters.js";
 import type {
   FormdataUploadFile200Response,
   FormdataUploadFileDefaultResponse,
@@ -13,7 +13,7 @@ import type {
   FormdataUploadFileViaBodyDefaultResponse,
   FormdataUploadFiles200Response,
   FormdataUploadFilesDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface UploadFile {

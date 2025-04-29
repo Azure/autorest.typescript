@@ -7,7 +7,7 @@ import type {
   ProductResultOutput,
   OdataProductResultOutput,
   ProductResultValueWithXMSClientNameOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 /** A paging operation that must return result of the default 'value' node. */
 export interface PagingGetNoItemNamePages200Response extends HttpResponse {

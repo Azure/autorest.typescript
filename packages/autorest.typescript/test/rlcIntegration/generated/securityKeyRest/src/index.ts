@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import SecurityKeyRestClient from "./securityKeyRestClient";
+import SecurityKeyRestClient from "./securityKeyRestClient.js";
 
-export * from "./securityKeyRestClient";
-export * from "./parameters";
-export * from "./responses";
-export * from "./clientDefinitions";
+export * from "./securityKeyRestClient.js";
+export * from "./parameters.js";
+export * from "./responses.js";
+export * from "./clientDefinitions.js";
 
 export default SecurityKeyRestClient;

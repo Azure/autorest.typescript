@@ -23,7 +23,7 @@ import type {
   SparkJobDefinitionResource,
   SqlScriptResource,
   TriggerResource,
-} from "./models";
+} from "./models.js";
 
 export type KqlScriptsGetAllParameters = RequestParameters;
 

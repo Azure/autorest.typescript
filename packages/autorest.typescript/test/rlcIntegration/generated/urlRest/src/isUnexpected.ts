@@ -134,7 +134,7 @@ import type {
   PathItemsGetGlobalAndLocalQueryNullDefaultResponse,
   PathItemsGetLocalPathItemQueryNull200Response,
   PathItemsGetLocalPathItemQueryNullDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "GET /paths/bool/true/{boolPath}": ["200"],

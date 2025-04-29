@@ -83,7 +83,7 @@ import type {
   LROsCustomHeaderPut201CreatingSucceeded200Parameters,
   LROsCustomHeaderPost202Retry200Parameters,
   LROsCustomHeaderPostAsyncRetrySucceededParameters,
-} from "./parameters";
+} from "./parameters.js";
 import type {
   LROsPut200Succeeded200Response,
   LROsPut200Succeeded204Response,
@@ -271,7 +271,7 @@ import type {
   LROsCustomHeaderPost202Retry200DefaultResponse,
   LROsCustomHeaderPostAsyncRetrySucceeded202Response,
   LROsCustomHeaderPostAsyncRetrySucceededDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface LROsPut200Succeeded {

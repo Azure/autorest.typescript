@@ -11,7 +11,7 @@ import type {
   EntityPartialUpdateEntityAttributeByGuidParameters,
   EntityDeleteByGuidParameters,
   EntityExportGuidParameters,
-} from "./parameters";
+} from "./parameters.js";
 import type {
   EntityCreateOrUpdate200Response,
   EntityCreateOrUpdateDefaultResponse,
@@ -31,7 +31,7 @@ import type {
   EntityDeleteByGuidDefaultResponse,
   EntityExportGuid202Response,
   EntityExportGuidDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 /** Contains operations for Entity operations */

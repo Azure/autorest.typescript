@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import type { RequestParameters } from "@azure-rest/core-client";
-import type { RefColorConstant } from "./models";
+import type { RefColorConstant } from "./models.js";
 
 export type StringGetNullParameters = RequestParameters;
 

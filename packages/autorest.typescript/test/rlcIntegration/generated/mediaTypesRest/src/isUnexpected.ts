@@ -4,7 +4,7 @@
 import type {
   AnalyzeBodyNoAcceptHeader202Response,
   AnalyzeBodyNoAcceptHeaderDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "POST /mediatypes/analyze": ["200"],

@@ -12,7 +12,7 @@ import type {
   GetMultivariateModelParameters,
   BatchDetectAnomalyParameters,
   LastDetectAnomalyParameters,
-} from "./parameters";
+} from "./parameters.js";
 import type {
   DetectEntireSeries200Response,
   DetectEntireSeriesDefaultResponse,
@@ -34,7 +34,7 @@ import type {
   BatchDetectAnomalyDefaultResponse,
   LastDetectAnomaly200Response,
   LastDetectAnomalyDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface DetectEntireSeries {

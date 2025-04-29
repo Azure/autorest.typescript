@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "module": "es6",
+    "module": "NodeNext",
     "lib": [],
     "declaration": true,
     "declarationMap": true,
@@ -15,11 +15,9 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
+    "moduleResolution": "NodeNext",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "outDir": "./dist-esm",
-    "declarationDir": "./types",
     "paths": {
       "@msinternal/body-string-rest": ["./src/index"]
     }

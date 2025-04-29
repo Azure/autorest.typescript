@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import type { HttpResponse } from "@azure-rest/core-client";
-import type { ErrorModelOutput } from "./outputModels";
+import type { ErrorModelOutput } from "./outputModels.js";
 
 /** Get file */
 export interface FilesGetFile200Response extends HttpResponse {

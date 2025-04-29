@@ -8,7 +8,7 @@ import type {
   FilesGetFileLargeDefaultResponse,
   FilesGetEmptyFile200Response,
   FilesGetEmptyFileDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "GET /files/stream/nonempty": ["200"],

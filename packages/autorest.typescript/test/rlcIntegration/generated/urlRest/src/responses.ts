@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import type { HttpResponse } from "@azure-rest/core-client";
-import type { ErrorModelOutput } from "./outputModels";
+import type { ErrorModelOutput } from "./outputModels.js";
 
 /** Get true Boolean value on path */
 export interface PathsGetBooleanTrue200Response extends HttpResponse {

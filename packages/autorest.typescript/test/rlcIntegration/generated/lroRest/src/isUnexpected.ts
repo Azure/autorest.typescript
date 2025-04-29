@@ -188,7 +188,7 @@ import type {
   LROsCustomHeaderPost202Retry200DefaultResponse,
   LROsCustomHeaderPostAsyncRetrySucceeded202Response,
   LROsCustomHeaderPostAsyncRetrySucceededDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "GET /lro/put/200/succeeded": ["200", "204"],

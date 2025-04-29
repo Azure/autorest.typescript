@@ -113,7 +113,7 @@ import type {
   MultipleResponsesGet200ModelA400ValidParameters,
   MultipleResponsesGet200ModelA400InvalidParameters,
   MultipleResponsesGet200ModelA202ValidParameters,
-} from "./parameters";
+} from "./parameters.js";
 import type {
   HttpFailureGetEmptyError200Response,
   HttpFailureGetEmptyErrorDefaultResponse,
@@ -332,7 +332,7 @@ import type {
   MultipleResponsesGet200ModelA400Valid200Response,
   MultipleResponsesGet200ModelA400Invalid200Response,
   MultipleResponsesGet200ModelA202Valid200Response,
-} from "./responses";
+} from "./responses.js";
 import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 /** Contains operations for HttpFailure operations */

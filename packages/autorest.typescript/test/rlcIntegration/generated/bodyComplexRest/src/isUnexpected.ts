@@ -110,7 +110,7 @@ import type {
   ReadonlypropertyGetValidDefaultResponse,
   ReadonlypropertyPutValid200Response,
   ReadonlypropertyPutValidDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "GET /complex/basic/valid": ["200"],

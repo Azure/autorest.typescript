@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import type { HeadParameters } from "./parameters";
-import type { Head200Response } from "./responses";
+import type { HeadParameters } from "./parameters.js";
+import type { Head200Response } from "./responses.js";
 import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 /** Contains operations for Client operations */

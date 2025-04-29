@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import type { RequestParameters } from "@azure-rest/core-client";
-import type { SourcePath } from "./models";
+import type { SourcePath } from "./models.js";
 
 export interface AnalyzeBodyBodyParam {
   /**
