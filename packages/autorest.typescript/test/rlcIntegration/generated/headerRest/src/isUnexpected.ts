@@ -60,7 +60,7 @@ import type {
   HeaderResponseEnumDefaultResponse,
   HeaderCustomRequestId200Response,
   HeaderCustomRequestIdDefaultResponse,
-} from "./responses.js";
+} from "./responses";
 
 const responseMap: Record<string, string[]> = {
   "POST /header/param/existingkey": ["200"],

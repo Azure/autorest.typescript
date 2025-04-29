@@ -3,8 +3,8 @@
 
 import type { ClientOptions } from "@azure-rest/core-client";
 import { getClient } from "@azure-rest/core-client";
-import { logger } from "./logger";
-import type { DPGClient } from "./clientDefinitions";
+import { logger } from "./logger.js";
+import type { DPGClient } from "./clientDefinitions.js";
 
 /** The optional parameters for the client */
 export interface DPGClientOptions extends ClientOptions {}

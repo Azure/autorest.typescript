@@ -54,7 +54,7 @@ import type {
   PagingNextFragmentWithGroupingDefaultResponse,
   PagingGetPagingModelWithItemNameWithXMSClientName200Response,
   PagingGetPagingModelWithItemNameWithXMSClientNameDefaultResponse,
-} from "./responses.js";
+} from "./responses";
 
 const responseMap: Record<string, string[]> = {
   "GET /paging/noitemname": ["200"],

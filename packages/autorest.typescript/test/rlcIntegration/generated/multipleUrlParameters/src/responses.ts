@@ -7,7 +7,7 @@ import type {
   ErrorResponseOutput,
   AtlasEntitiesWithExtInfoOutput,
   AtlasEntityWithExtInfoOutput,
-} from "./outputModels.js";
+} from "./outputModels";
 
 /**
  * Create or update an entity in Atlas.

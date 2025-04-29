@@ -2,10 +2,7 @@
 // Licensed under the MIT License.
 
 import type { HttpResponse } from "@azure-rest/core-client";
-import type {
-  ErrorModelOutput,
-  RefColorConstantOutput,
-} from "./outputModels.js";
+import type { ErrorModelOutput, RefColorConstantOutput } from "./outputModels";
 
 /** Get null string value value */
 export interface StringGetNull200Response extends HttpResponse {

@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import DPGCustomizationClient from "./dpgCustomizationClient.js";
+import DPGCustomizationClient from "./dpgCustomizationClient";
 
-export * from "./dpgCustomizationClient.js";
-export * from "./parameters.js";
-export * from "./responses.js";
-export * from "./clientDefinitions.js";
-export * from "./models.js";
-export * from "./outputModels.js";
-export * from "./paginateHelper.js";
-export * from "./pollingHelper.js";
+export * from "./dpgCustomizationClient";
+export * from "./parameters";
+export * from "./responses";
+export * from "./clientDefinitions";
+export * from "./models";
+export * from "./outputModels";
+export * from "./paginateHelper";
+export * from "./pollingHelper";
 
 export default DPGCustomizationClient;

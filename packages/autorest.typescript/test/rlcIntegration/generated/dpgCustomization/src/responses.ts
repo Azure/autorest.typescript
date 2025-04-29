@@ -6,7 +6,7 @@ import type {
   ProductOutput,
   ProductResultOutput,
   LROProductOutput,
-} from "./outputModels.js";
+} from "./outputModels";
 
 /** Get models that you will either return to end users as a raw body, or with a model added during grow up. */
 export interface GetModel200Response extends HttpResponse {

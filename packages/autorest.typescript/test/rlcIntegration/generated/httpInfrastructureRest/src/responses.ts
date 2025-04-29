@@ -9,7 +9,7 @@ import type {
   BOutput,
   COutput,
   DOutput,
-} from "./outputModels.js";
+} from "./outputModels";
 
 /** Get empty error form server */
 export interface HttpFailureGetEmptyError200Response extends HttpResponse {

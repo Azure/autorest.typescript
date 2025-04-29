@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import DPGClient from "./dpgClient";
+import DPGClient from "./dpgClient.js";
 
-export * from "./dpgClient";
-export * from "./parameters";
-export * from "./responses";
-export * from "./clientDefinitions";
-export * from "./models";
+export * from "./dpgClient.js";
+export * from "./parameters.js";
+export * from "./responses.js";
+export * from "./clientDefinitions.js";
+export * from "./models.js";
 
 export default DPGClient;

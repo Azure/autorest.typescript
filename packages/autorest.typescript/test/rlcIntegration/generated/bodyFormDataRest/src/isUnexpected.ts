@@ -8,7 +8,7 @@ import type {
   FormdataUploadFileViaBodyDefaultResponse,
   FormdataUploadFiles200Response,
   FormdataUploadFilesDefaultResponse,
-} from "./responses.js";
+} from "./responses";
 
 const responseMap: Record<string, string[]> = {
   "POST /formdata/stream/uploadfile": ["200"],

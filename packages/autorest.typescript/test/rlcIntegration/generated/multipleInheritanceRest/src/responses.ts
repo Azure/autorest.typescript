@@ -9,7 +9,7 @@ import type {
   FelineOutput,
   CatOutput,
   KittenOutput,
-} from "./outputModels.js";
+} from "./outputModels";
 
 /** Get a horse with name 'Fred' and isAShowHorse true */
 export interface GetHorse200Response extends HttpResponse {

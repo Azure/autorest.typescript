@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import type { RequestParameters } from "@azure-rest/core-client";
-import type { Product, Sku, SubProduct } from "./models.js";
+import type { Product, Sku, SubProduct } from "./models";
 
 export interface LROsPut200SucceededBodyParam {
   /** Product to put */

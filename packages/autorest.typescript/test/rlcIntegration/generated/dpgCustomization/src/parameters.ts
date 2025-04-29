@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import type { RequestParameters } from "@azure-rest/core-client";
-import type { Input } from "./models.js";
+import type { Input } from "./models";
 
 export type GetModelParameters = RequestParameters;
 

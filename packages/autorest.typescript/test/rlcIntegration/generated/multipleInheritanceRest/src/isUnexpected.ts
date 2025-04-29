@@ -12,7 +12,7 @@ import type {
   GetCatDefaultResponse,
   GetKitten200Response,
   GetKittenDefaultResponse,
-} from "./responses.js";
+} from "./responses";
 
 const responseMap: Record<string, string[]> = {
   "GET /multipleInheritance/horse": ["200"],

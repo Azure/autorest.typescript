@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import type { RequestParameters } from "@azure-rest/core-client";
-import type { PostInput } from "./models";
+import type { PostInput } from "./models.js";
 
 export type ParamsHeadNoParamsParameters = RequestParameters;
 

@@ -3,8 +3,8 @@
 
 import type { ClientOptions } from "@azure-rest/core-client";
 import { getClient } from "@azure-rest/core-client";
-import { logger } from "./logger.js";
-import type { HeaderRestClient } from "./clientDefinitions.js";
+import { logger } from "./logger";
+import type { HeaderRestClient } from "./clientDefinitions";
 
 /** The optional parameters for the client */
 export interface HeaderRestClientOptions extends ClientOptions {}

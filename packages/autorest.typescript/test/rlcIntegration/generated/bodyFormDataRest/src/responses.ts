@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import type { HttpResponse } from "@azure-rest/core-client";
-import type { ErrorModelOutput } from "./outputModels.js";
+import type { ErrorModelOutput } from "./outputModels";
 
 /** Upload file */
 export interface FormdataUploadFile200Response extends HttpResponse {

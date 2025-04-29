@@ -31,7 +31,7 @@ import type {
   HeaderParamEnumParameters,
   HeaderResponseEnumParameters,
   HeaderCustomRequestIdParameters,
-} from "./parameters.js";
+} from "./parameters";
 import type {
   HeaderParamExistingKey200Response,
   HeaderParamExistingKeyDefaultResponse,
@@ -91,7 +91,7 @@ import type {
   HeaderResponseEnumDefaultResponse,
   HeaderCustomRequestId200Response,
   HeaderCustomRequestIdDefaultResponse,
-} from "./responses.js";
+} from "./responses";
 import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface ParamExistingKey {

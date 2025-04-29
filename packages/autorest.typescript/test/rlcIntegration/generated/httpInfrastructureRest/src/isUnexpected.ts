@@ -176,7 +176,7 @@ import type {
   MultipleResponsesGetDefaultNone400InvalidDefaultResponse,
   MultipleResponsesGetDefaultNone400None200Response,
   MultipleResponsesGetDefaultNone400NoneDefaultResponse,
-} from "./responses.js";
+} from "./responses";
 
 const responseMap: Record<string, string[]> = {
   "GET /http/failure/emptybody/error": ["200"],

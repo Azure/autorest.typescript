@@ -21,7 +21,7 @@ import type {
   EnumPutReferencedParameters,
   EnumGetReferencedConstantParameters,
   EnumPutReferencedConstantParameters,
-} from "./parameters.js";
+} from "./parameters";
 import type {
   StringGetNull200Response,
   StringGetNullDefaultResponse,
@@ -61,7 +61,7 @@ import type {
   EnumGetReferencedConstantDefaultResponse,
   EnumPutReferencedConstant200Response,
   EnumPutReferencedConstantDefaultResponse,
-} from "./responses.js";
+} from "./responses";
 import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface StringGetNull {

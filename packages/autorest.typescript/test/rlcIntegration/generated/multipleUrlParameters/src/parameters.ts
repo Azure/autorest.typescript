@@ -6,7 +6,7 @@ import type {
   AtlasEntityWithExtInfo,
   AtlasEntitiesWithExtInfo,
   ClassificationAssociateRequest,
-} from "./models.js";
+} from "./models";
 
 export interface EntityCreateOrUpdatePathParameters {
   /** Account Name */

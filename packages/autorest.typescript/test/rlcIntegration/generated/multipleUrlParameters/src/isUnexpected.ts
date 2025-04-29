@@ -20,7 +20,7 @@ import type {
   EntityDeleteByGuidDefaultResponse,
   EntityExportGuid202Response,
   EntityExportGuidDefaultResponse,
-} from "./responses.js";
+} from "./responses";
 
 const responseMap: Record<string, string[]> = {
   "POST /entity": ["200"],

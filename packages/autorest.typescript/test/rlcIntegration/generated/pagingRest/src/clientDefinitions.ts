@@ -28,7 +28,7 @@ import type {
   PagingNextFragmentParameters,
   PagingNextFragmentWithGroupingParameters,
   PagingGetPagingModelWithItemNameWithXMSClientNameParameters,
-} from "./parameters.js";
+} from "./parameters";
 import type {
   PagingGetNoItemNamePages200Response,
   PagingGetNoItemNamePagesDefaultResponse,
@@ -82,7 +82,7 @@ import type {
   PagingNextFragmentWithGroupingDefaultResponse,
   PagingGetPagingModelWithItemNameWithXMSClientName200Response,
   PagingGetPagingModelWithItemNameWithXMSClientNameDefaultResponse,
-} from "./responses.js";
+} from "./responses";
 import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetNoItemNamePages {

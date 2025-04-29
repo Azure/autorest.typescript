@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import type { RequestParameters } from "@azure-rest/core-client";
-import type { Horse, Pet, Feline, Cat, Kitten } from "./models.js";
+import type { Horse, Pet, Feline, Cat, Kitten } from "./models";
 
 export type GetHorseParameters = RequestParameters;
 

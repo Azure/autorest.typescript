@@ -9,7 +9,7 @@ import type {
   BinaryBodyWithThreeContentTypesParameters,
   BodyThreeTypesParameters,
   PutTextAndJsonBodyParameters,
-} from "./parameters.js";
+} from "./parameters";
 import type {
   AnalyzeBody200Response,
   AnalyzeBodyNoAcceptHeader202Response,
@@ -19,7 +19,7 @@ import type {
   BinaryBodyWithThreeContentTypes200Response,
   BodyThreeTypes200Response,
   PutTextAndJsonBody200Response,
-} from "./responses.js";
+} from "./responses";
 import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface AnalyzeBody {

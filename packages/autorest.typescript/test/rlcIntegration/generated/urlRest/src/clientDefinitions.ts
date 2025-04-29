@@ -68,7 +68,7 @@ import type {
   PathItemsGetGlobalQueryNullParameters,
   PathItemsGetGlobalAndLocalQueryNullParameters,
   PathItemsGetLocalPathItemQueryNullParameters,
-} from "./parameters.js";
+} from "./parameters";
 import type {
   PathsGetBooleanTrue200Response,
   PathsGetBooleanTrueDefaultResponse,
@@ -202,7 +202,7 @@ import type {
   PathItemsGetGlobalAndLocalQueryNullDefaultResponse,
   PathItemsGetLocalPathItemQueryNull200Response,
   PathItemsGetLocalPathItemQueryNullDefaultResponse,
-} from "./responses.js";
+} from "./responses";
 import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 /** Contains operations for Paths operations */

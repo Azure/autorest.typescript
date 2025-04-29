@@ -3,8 +3,8 @@
 
 import type { ClientOptions } from "@azure-rest/core-client";
 import { getClient } from "@azure-rest/core-client";
-import { logger } from "./logger.js";
-import type { BodyStringRestClient } from "./clientDefinitions.js";
+import { logger } from "./logger";
+import type { BodyStringRestClient } from "./clientDefinitions";
 
 /** The optional parameters for the client */
 export interface BodyStringRestClientOptions extends ClientOptions {}

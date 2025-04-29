@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import BodyStringRest from "./bodyStringRest.js";
+import BodyStringRest from "./bodyStringRest";
 
-export * from "./bodyStringRest.js";
-export * from "./parameters.js";
-export * from "./responses.js";
-export * from "./clientDefinitions.js";
-export * from "./isUnexpected.js";
-export * from "./models.js";
-export * from "./outputModels.js";
+export * from "./bodyStringRest";
+export * from "./parameters";
+export * from "./responses";
+export * from "./clientDefinitions";
+export * from "./isUnexpected";
+export * from "./models";
+export * from "./outputModels";
 
 export default BodyStringRest;

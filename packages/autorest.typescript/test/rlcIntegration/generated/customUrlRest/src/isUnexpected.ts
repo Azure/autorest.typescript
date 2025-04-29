@@ -4,7 +4,7 @@
 import type {
   PathsGetEmpty200Response,
   PathsGetEmptyDefaultResponse,
-} from "./responses.js";
+} from "./responses";
 
 const responseMap: Record<string, string[]> = { "GET /customuri": ["200"] };
 

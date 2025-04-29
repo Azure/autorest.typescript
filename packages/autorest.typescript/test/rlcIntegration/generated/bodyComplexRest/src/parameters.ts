@@ -21,7 +21,7 @@ import type {
   Fish,
   Salmon,
   ReadonlyObj,
-} from "./models.js";
+} from "./models";
 
 export type BasicGetValidParameters = RequestParameters;
 

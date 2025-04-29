@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import HeaderRestClient from "./headerRestClient.js";
+import HeaderRestClient from "./headerRestClient";
 
-export * from "./headerRestClient.js";
-export * from "./parameters.js";
-export * from "./responses.js";
-export * from "./clientDefinitions.js";
-export * from "./isUnexpected.js";
-export * from "./outputModels.js";
+export * from "./headerRestClient";
+export * from "./parameters";
+export * from "./responses";
+export * from "./clientDefinitions";
+export * from "./isUnexpected";
+export * from "./outputModels";
 
 export default HeaderRestClient;

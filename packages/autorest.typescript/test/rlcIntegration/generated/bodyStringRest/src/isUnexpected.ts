@@ -40,7 +40,7 @@ import type {
   EnumGetReferencedConstantDefaultResponse,
   EnumPutReferencedConstant200Response,
   EnumPutReferencedConstantDefaultResponse,
-} from "./responses.js";
+} from "./responses";
 
 const responseMap: Record<string, string[]> = {
   "GET /string/null": ["200"],
