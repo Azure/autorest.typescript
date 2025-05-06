@@ -242,9 +242,9 @@ function extractRLCOptions(
   const flavor = getFlavor(emitterOptions, packageDetails);
   const moduleKind = getModuleKind(emitterOptions);
   const serviceInfo = getServiceInfo(program);
-  const azureSdkForJs = getAzureSdkForJs(emitterOptions);
+  const azureSdkForJs = getAzureSdkForJs(emitterOptions, flavor);
   const generateMetadata = getGenerateMetadata(emitterOptions);
-  const generateTest = getGenerateTest(emitterOptions);
+  const generateTest = getGenerateTest(emitterOptions, flavor);
   const generateSample = getGenerateSample(dpgContext, emitterOptions);
   const credentialInfo = getCredentialInfo(program, emitterOptions);
   const azureOutputDirectory = getAzureOutputDirectory(generationRootDir);
@@ -606,8 +606,11 @@ function getServiceInfo(program: Program): ServiceInfo {
   };
 }
 
-function getAzureSdkForJs(emitterOptions: EmitterOptions) {
-  return emitterOptions.flavor !== "azure"
+function getAzureSdkForJs(
+  emitterOptions: EmitterOptions,
+  flavor: PackageFlavor
+) {
+  return flavor !== "azure"
     ? false
     : (emitterOptions["azure-sdk-for-js"] === undefined ||
           emitterOptions["azure-sdk-for-js"] === null) &&
@@ -638,9 +641,12 @@ function getGenerateMetadata(emitterOptions: EmitterOptions) {
  * @param emitterOptions
  * @returns
  */
-function getGenerateTest(emitterOptions: EmitterOptions) {
+function getGenerateTest(
+  emitterOptions: EmitterOptions,
+  flavor: PackageFlavor
+) {
   // Disable generateTest if azureSdkForJS is false
-  if (!getAzureSdkForJs(emitterOptions)) {
+  if (!getAzureSdkForJs(emitterOptions, flavor)) {
     return false;
   }
   return emitterOptions["generate-test"] ?? emitterOptions.generateTest;
