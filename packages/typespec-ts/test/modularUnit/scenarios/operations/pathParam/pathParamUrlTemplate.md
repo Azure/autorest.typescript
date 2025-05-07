@@ -14,7 +14,7 @@ model KeyBundle {
 #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "Foundations.Operation is necessary for Key Vault"
 @summary("The update key operation changes specified attributes of a stored key and can be applied to any key type and key version stored in Azure Key Vault.")
 @route("/keys/{key-name}/{key-version}")
-@patch(#{implicitOptionality: false})
+@patch(#{implicitOptionality: true})
 op updateKey is KeyVaultOperation<
   {
     /**
@@ -57,7 +57,7 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _updateKeySend(
@@ -65,32 +65,34 @@ export function _updateKeySend(
   keyName: string,
   keyVersion: string,
   parameters: string,
-  options: UpdateKeyOptionalParams = { requestOptions: {} }
+  options: UpdateKeyOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/keys/{key-name}/{key-version}{?api%2Dversion}",
     {
       "key-name": keyName,
       "key-version": keyVersion,
-      "api%2Dversion": context.apiVersion
+      "api%2Dversion": context.apiVersion,
     },
     {
-      allowReserved: options?.requestOptions?.skipUrlEncoding
-    }
-  );
-  return context.path(path).put({
-    ...operationOptionsToRequestParameters(options),
-    contentType: "text/plain",
-    headers: {
-      accept: "application/json",
-      ...options.requestOptions?.headers
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
-    body: parameters
-  });
+  );
+  return context
+    .path(path)
+    .patch({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "text/plain",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      body: parameters,
+    });
 }
 
 export async function _updateKeyDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<KeyBundle> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -106,14 +108,14 @@ export async function updateKey(
   keyName: string,
   keyVersion: string,
   parameters: string,
-  options: UpdateKeyOptionalParams = { requestOptions: {} }
+  options: UpdateKeyOptionalParams = { requestOptions: {} },
 ): Promise<KeyBundle> {
   const result = await _updateKeySend(
     context,
     keyName,
     keyVersion,
     parameters,
-    options
+    options,
   );
   return _updateKeyDeserialize(result);
 }
