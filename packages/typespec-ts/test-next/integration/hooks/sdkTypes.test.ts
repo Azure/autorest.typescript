@@ -54,7 +54,7 @@ describe("SdkTypes hook", () => {
             @get list(): Widget[] | Error;
             @get read(@path id: string): Widget | Error;
             @post create(...Widget): Widget | Error;
-            @put update(...Widget): Widget | Error;
+            @patch(#{implicitOptionality: false}) update(...Widget): Widget | Error;
             @delete delete(@path id: string): void | Error;
             @route("{id}/analyze") @post analyze(@path id: string): string | Error;
             }
