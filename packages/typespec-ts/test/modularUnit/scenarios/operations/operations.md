@@ -312,7 +312,7 @@ op read(@body bars?: Bar[]): OkResponse;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { barSerializer } from "../models/models.js";
+import { barArraySerializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -325,15 +325,15 @@ export function _readSend(
   context: Client,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/").post({
-    ...operationOptionsToRequestParameters(options),
-    contentType: "application/json",
-    body: !options["bars"]
-      ? options["bars"]
-      : options["bars"].map((p: any) => {
-          return barSerializer(p);
-        }),
-  });
+  return context
+    .path("/")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      body: !options["bars"]
+        ? options["bars"]
+        : barArraySerializer(options["bars"]),
+    });
 }
 
 export async function _readDeserialize(
@@ -372,7 +372,7 @@ op read(@body bars: Bar[]): OkResponse;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { Bar, barSerializer } from "../models/models.js";
+import { Bar, barArraySerializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -386,13 +386,13 @@ export function _readSend(
   bars: Bar[],
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/").post({
-    ...operationOptionsToRequestParameters(options),
-    contentType: "application/json",
-    body: bars.map((p: any) => {
-      return barSerializer(p);
-    }),
-  });
+  return context
+    .path("/")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      body: barArraySerializer(bars),
+    });
 }
 
 export async function _readDeserialize(
@@ -498,7 +498,11 @@ op read(@body bars?: Bar[]): Bar[] | null;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { Bar, barSerializer, barArrayDeserializer } from "../models/models.js";
+import {
+  Bar,
+  barArraySerializer,
+  barArrayDeserializer,
+} from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -511,16 +515,19 @@ export function _readSend(
   context: Client,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/").post({
-    ...operationOptionsToRequestParameters(options),
-    contentType: "application/json",
-    headers: { accept: "application/json", ...options.requestOptions?.headers },
-    body: !options["bars"]
-      ? options["bars"]
-      : options["bars"].map((p: any) => {
-          return barSerializer(p);
-        }),
-  });
+  return context
+    .path("/")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      body: !options["bars"]
+        ? options["bars"]
+        : barArraySerializer(options["bars"]),
+    });
 }
 
 export async function _readDeserialize(

@@ -17,6 +17,7 @@ import {
   rejectResultDeserializer,
   RenewCloudEventLocksResult,
   renewCloudEventLocksResultDeserializer,
+  cloudEventArraySerializer,
 } from "../models/models.js";
 import {
   RenewCloudEventLocksOptionalParams,
@@ -345,14 +346,17 @@ export function _publishCloudEventsSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  return context.path(path).post({
-    ...operationOptionsToRequestParameters(options),
-    contentType: "application/cloudevents-batch+json; charset=utf-8",
-    headers: { accept: "application/json", ...options.requestOptions?.headers },
-    body: events.map((p: any) => {
-      return cloudEventSerializer(p);
-    }),
-  });
+  return context
+    .path(path)
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/cloudevents-batch+json; charset=utf-8",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      body: cloudEventArraySerializer(events),
+    });
 }
 
 export async function _publishCloudEventsDeserialize(
