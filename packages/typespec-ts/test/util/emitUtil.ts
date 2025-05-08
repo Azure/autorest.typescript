@@ -26,10 +26,7 @@ import { buildClientContext } from "../../src/modular/buildClientContext.js";
 import { buildOperationFiles } from "../../src/modular/buildOperations.js";
 import { transformModularEmitterOptions } from "../../src/modular/buildModularOptions.js";
 import { expectDiagnosticEmpty } from "@typespec/compiler/testing";
-import {
-  getCredentialInfo,
-  reportCamelOptionDiagnostic
-} from "../../src/transform/transfromRLCOptions.js";
+import { getCredentialInfo } from "../../src/transform/transfromRLCOptions.js";
 import { getRLCClients } from "../../src/utils/clientUtils.js";
 import { transformHelperFunctionDetails } from "../../src/transform/transformHelperFunctionDetails.js";
 import { transformPaths } from "../../src/transform/transformPaths.js";
@@ -396,18 +393,6 @@ export async function emitModularModelsFromTypeSpec(
     needTCGC: false,
     withRawContent
   });
-  if (options.experimentalExtensibleEnums !== undefined) {
-    reportCamelOptionDiagnostic(context.program, {
-      kebabCaseOption: "experimental-extensible-enums",
-      camelCaseOption: "experimentalExtensibleEnums"
-    });
-  }
-  if (options.compatibilityMode !== undefined) {
-    reportCamelOptionDiagnostic(context.program, {
-      kebabCaseOption: "compatibility-mode",
-      camelCaseOption: "compatibilityMode"
-    });
-  }
   const dpgContext = await createDpgContextTestHelper(
     context.program,
     false,
@@ -472,12 +457,6 @@ export async function emitModularOperationsFromTypeSpec(
     withRawContent: options.withRawContent ? true : false,
     withVersionedApiVersion: options.withVersionedApiVersion ? true : false
   });
-  if (options.experimentalExtensibleEnums !== undefined) {
-    reportCamelOptionDiagnostic(context.program, {
-      kebabCaseOption: "experimental-extensible-enums",
-      camelCaseOption: "experimentalExtensibleEnums"
-    });
-  }
   const dpgContext = await createDpgContextTestHelper(context.program);
   const binder = useBinder();
   dpgContext.rlcOptions!.isModularLibrary = true;
@@ -528,12 +507,6 @@ export async function emitModularClientContextFromTypeSpec(
     withRawContent: options.withRawContent ? true : false,
     withVersionedApiVersion: options.withVersionedApiVersion ? true : false
   });
-  if (options.typespecTitleMap !== undefined) {
-    reportCamelOptionDiagnostic(context.program, {
-      kebabCaseOption: "typespec-title-map",
-      camelCaseOption: "typespecTitleMap"
-    });
-  }
   const dpgContext = await createDpgContextTestHelper(context.program);
   const binder = useBinder();
   dpgContext.rlcOptions!.isModularLibrary = true;
@@ -571,12 +544,6 @@ export async function emitModularClientFromTypeSpec(
     withRawContent: options.withRawContent ? true : false,
     withVersionedApiVersion: options.withVersionedApiVersion ? true : false
   });
-  if (options.typespecTitleMap !== undefined) {
-    reportCamelOptionDiagnostic(context.program, {
-      kebabCaseOption: "typespec-title-map",
-      camelCaseOption: "typespecTitleMap"
-    });
-  }
   const dpgContext = await createDpgContextTestHelper(context.program);
   const binder = useBinder();
   dpgContext.rlcOptions!.isModularLibrary = true;
@@ -618,24 +585,6 @@ export async function emitSamplesFromTypeSpec(
   configs: Record<string, any> = {}
 ) {
   const context = await compileTypeSpecFor(tspContent, examples);
-  if (configs["hierarchyClient"] !== undefined) {
-    reportCamelOptionDiagnostic(context.program, {
-      kebabCaseOption: "hierarchy-client",
-      camelCaseOption: "hierarchyClient"
-    });
-  }
-  if (configs["enableOperationGroup"] !== undefined) {
-    reportCamelOptionDiagnostic(context.program, {
-      kebabCaseOption: "enable-operation-group",
-      camelCaseOption: "enableOperationGroup"
-    });
-  }
-  if (configs["typespecTitleMap"] !== undefined) {
-    reportCamelOptionDiagnostic(context.program, {
-      kebabCaseOption: "typespec-title-map",
-      camelCaseOption: "typespecTitleMap"
-    });
-  }
   configs["typespecTitleMap"] = configs["typespec-title-map"];
   configs["hierarchyClient"] = configs["hierarchy-client"];
   configs["enableOperationGroup"] = configs["enable-operation-group"];
