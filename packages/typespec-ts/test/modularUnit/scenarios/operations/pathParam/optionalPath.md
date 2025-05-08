@@ -28,7 +28,7 @@ export function _readSend(
   options: ReadOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/{/param}",
+    "{/param}",
     {
       param: options["param"]
     },
