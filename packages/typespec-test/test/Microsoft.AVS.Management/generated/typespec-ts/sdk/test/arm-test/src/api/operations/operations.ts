@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { AzureVMwareSolutionAPIContext as Client } from "../index.js";
+import { DataReplicationContext as Client } from "../index.js";
 import {
   _OperationListResult,
   _operationListResultDeserializer,
@@ -26,7 +26,7 @@ export function _listSend(
   options: OperationsListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/providers/Microsoft.AVS/operations{?api%2Dversion}",
+    "/providers/Microsoft.DataReplication/operations{?api%2Dversion}",
     {
       "api%2Dversion": context.apiVersion,
     },

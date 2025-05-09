@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { AzureVMwareSolutionAPIContext } from "../../api/azureVMwareSolutionAPIContext.js";
+import { DataReplicationContext } from "../../api/dataReplicationContext.js";
 import { Operation } from "../../models/models.js";
 import { OperationsListOptionalParams } from "../../api/operations/options.js";
 import { list } from "../../api/operations/operations.js";
@@ -15,14 +15,14 @@ export interface OperationsOperations {
   ) => PagedAsyncIterableIterator<Operation>;
 }
 
-function _getOperations(context: AzureVMwareSolutionAPIContext) {
+function _getOperations(context: DataReplicationContext) {
   return {
     list: (options?: OperationsListOptionalParams) => list(context, options),
   };
 }
 
 export function _getOperationsOperations(
-  context: AzureVMwareSolutionAPIContext,
+  context: DataReplicationContext,
 ): OperationsOperations {
   return {
     ..._getOperations(context),

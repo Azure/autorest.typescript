@@ -1,8 +1,6 @@
 emit: ["@azure-tools/typespec-ts"]
 options:
   "@azure-tools/typespec-ts":
-    typespec-title-map:
-      AzureVMwareSolutionAPIClient: AzureVMwareSolutionAPI
     examples-dir: "{project-root}/spec/examples"
     generate-metadata: true
     generate-test: true
@@ -11,4 +9,4 @@ options:
     emitter-output-dir: "{project-root}/generated/typespec-ts/sdk/test/arm-test"
     flavor: "azure"
     package-details:
-      name: "@azure/arm-avs"
+      name: "@azure/arm-test"

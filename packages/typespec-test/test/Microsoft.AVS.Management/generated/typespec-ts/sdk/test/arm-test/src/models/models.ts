@@ -193,48 +193,25 @@ export function _errorAdditionalInfoInfoDeserializer(
   return item;
 }
 
-/** The response of a Addon list operation. */
-export interface _AddonList {
-  /** The Addon items on this page */
-  value: Addon[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _addonListDeserializer(item: any): _AddonList {
-  return {
-    value: addonArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function addonArraySerializer(result: Array<Addon>): any[] {
-  return result.map((item) => {
-    return addonSerializer(item);
-  });
-}
-
-export function addonArrayDeserializer(result: Array<Addon>): any[] {
-  return result.map((item) => {
-    return addonDeserializer(item);
-  });
-}
-
-/** An addon resource */
-export interface Addon extends ProxyResource {
+/** Email configuration model. */
+export interface EmailConfigurationModel extends ProxyResource {
   /** The resource-specific properties for this resource. */
-  properties?: AddonProperties;
+  properties?: EmailConfigurationModelProperties;
 }
 
-export function addonSerializer(item: Addon): any {
+export function emailConfigurationModelSerializer(
+  item: EmailConfigurationModel,
+): any {
   return {
     properties: !item["properties"]
       ? item["properties"]
-      : addonPropertiesSerializer(item["properties"]),
+      : emailConfigurationModelPropertiesSerializer(item["properties"]),
   };
 }
 
-export function addonDeserializer(item: any): Addon {
+export function emailConfigurationModelDeserializer(
+  item: any,
+): EmailConfigurationModel {
   return {
     id: item["id"],
     name: item["name"],
@@ -244,81 +221,83 @@ export function addonDeserializer(item: any): Addon {
       : systemDataDeserializer(item["systemData"]),
     properties: !item["properties"]
       ? item["properties"]
-      : addonPropertiesDeserializer(item["properties"]),
+      : emailConfigurationModelPropertiesDeserializer(item["properties"]),
   };
 }
 
-/** The properties of an addon */
-export interface AddonProperties {
-  /** Addon type */
-  addonType: AddonType;
-  /** The state of the addon provisioning */
-  readonly provisioningState?: AddonProvisioningState;
+/** Email configuration model properties. */
+export interface EmailConfigurationModelProperties {
+  /** Gets or sets a value indicating whether to send email to subscription administrator. */
+  sendToOwners: boolean;
+  /** Gets or sets the custom email address for sending emails. */
+  customEmailAddresses?: string[];
+  /** Gets or sets the locale for the email notification. */
+  locale?: string;
+  /** Gets or sets the provisioning state of the email configuration. */
+  readonly provisioningState?: ProvisioningState;
 }
 
-export function addonPropertiesSerializer(item: AddonProperties): any {
-  return { addonType: item["addonType"] };
-}
-
-export function addonPropertiesDeserializer(item: any): AddonProperties {
+export function emailConfigurationModelPropertiesSerializer(
+  item: EmailConfigurationModelProperties,
+): any {
   return {
-    addonType: item["addonType"],
+    sendToOwners: item["sendToOwners"],
+    customEmailAddresses: !item["customEmailAddresses"]
+      ? item["customEmailAddresses"]
+      : item["customEmailAddresses"].map((p: any) => {
+          return p;
+        }),
+    locale: item["locale"],
+  };
+}
+
+export function emailConfigurationModelPropertiesDeserializer(
+  item: any,
+): EmailConfigurationModelProperties {
+  return {
+    sendToOwners: item["sendToOwners"],
+    customEmailAddresses: !item["customEmailAddresses"]
+      ? item["customEmailAddresses"]
+      : item["customEmailAddresses"].map((p: any) => {
+          return p;
+        }),
+    locale: item["locale"],
     provisioningState: item["provisioningState"],
   };
 }
 
-/** Addon type */
-export enum KnownAddonType {
-  SRM = "SRM",
-  VR = "VR",
-  HCX = "HCX",
-  Arc = "Arc",
-}
-
-/**
- * Addon type \
- * {@link KnownAddonType} can be used interchangeably with AddonType,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **SRM** \
- * **VR** \
- * **HCX** \
- * **Arc**
- */
-export type AddonType = string;
-
-/** Addon provisioning state */
-export enum KnownAddonProvisioningState {
-  /** Resource has been created. */
-  Succeeded = "Succeeded",
+/** Gets or sets the provisioning state of the email configuration. */
+export enum KnownProvisioningState {
+  /** Resource creation has been canceled */
+  Canceled = "Canceled",
+  /** Resource is being created. */
+  Creating = "Creating",
+  /** Resource is being deleted. */
+  Deleting = "Deleting",
+  /** Resource has been deleted. */
+  Deleted = "Deleted",
   /** Resource creation failed. */
   Failed = "Failed",
-  /** Resource creation was canceled. */
-  Canceled = "Canceled",
-  /** is cancelled */
-  Cancelled = "Cancelled",
-  /** is building */
-  Building = "Building",
-  /** is deleting */
-  Deleting = "Deleting",
-  /** is updating */
+  /** Resource creation/update succeeded. */
+  Succeeded = "Succeeded",
+  /** Resource is being updated. */
   Updating = "Updating",
 }
 
 /**
- * Addon provisioning state \
- * {@link KnownAddonProvisioningState} can be used interchangeably with AddonProvisioningState,
+ * Gets or sets the provisioning state of the email configuration. \
+ * {@link KnownProvisioningState} can be used interchangeably with ProvisioningState,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
- * **Succeeded**: Resource has been created. \
+ * **Canceled**: Resource creation has been canceled \
+ * **Creating**: Resource is being created. \
+ * **Deleting**: Resource is being deleted. \
+ * **Deleted**: Resource has been deleted. \
  * **Failed**: Resource creation failed. \
- * **Canceled**: Resource creation was canceled. \
- * **Cancelled**: is cancelled \
- * **Building**: is building \
- * **Deleting**: is deleting \
- * **Updating**: is updating
+ * **Succeeded**: Resource creation\/update succeeded. \
+ * **Updating**: Resource is being updated.
  */
-export type AddonProvisioningState = string;
+export type ProvisioningState = string;
 
 /** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
 export interface ProxyResource extends Resource {}
@@ -420,1913 +399,61 @@ export enum KnownCreatedByType {
  */
 export type CreatedByType = string;
 
-/** The response of a ExpressRouteAuthorization list operation. */
-export interface _ExpressRouteAuthorizationList {
-  /** The ExpressRouteAuthorization items on this page */
-  value: ExpressRouteAuthorization[];
+/** The response of a EmailConfigurationModel list operation. */
+export interface _EmailConfigurationModelListResult {
+  /** The EmailConfigurationModel items on this page */
+  value: EmailConfigurationModel[];
   /** The link to the next page of items */
   nextLink?: string;
 }
 
-export function _expressRouteAuthorizationListDeserializer(
+export function _emailConfigurationModelListResultDeserializer(
   item: any,
-): _ExpressRouteAuthorizationList {
+): _EmailConfigurationModelListResult {
   return {
-    value: expressRouteAuthorizationArrayDeserializer(item["value"]),
+    value: emailConfigurationModelArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
 }
 
-export function expressRouteAuthorizationArraySerializer(
-  result: Array<ExpressRouteAuthorization>,
+export function emailConfigurationModelArraySerializer(
+  result: Array<EmailConfigurationModel>,
 ): any[] {
   return result.map((item) => {
-    return expressRouteAuthorizationSerializer(item);
+    return emailConfigurationModelSerializer(item);
   });
 }
 
-export function expressRouteAuthorizationArrayDeserializer(
-  result: Array<ExpressRouteAuthorization>,
+export function emailConfigurationModelArrayDeserializer(
+  result: Array<EmailConfigurationModel>,
 ): any[] {
   return result.map((item) => {
-    return expressRouteAuthorizationDeserializer(item);
+    return emailConfigurationModelDeserializer(item);
   });
 }
 
-/** ExpressRoute Circuit Authorization */
-export interface ExpressRouteAuthorization extends ProxyResource {
+/** Vault model. */
+export interface VaultModel extends TrackedResource {
   /** The resource-specific properties for this resource. */
-  properties?: ExpressRouteAuthorizationProperties;
-}
-
-export function expressRouteAuthorizationSerializer(
-  item: ExpressRouteAuthorization,
-): any {
-  return {
-    properties: !item["properties"]
-      ? item["properties"]
-      : expressRouteAuthorizationPropertiesSerializer(item["properties"]),
-  };
-}
-
-export function expressRouteAuthorizationDeserializer(
-  item: any,
-): ExpressRouteAuthorization {
-  return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : expressRouteAuthorizationPropertiesDeserializer(item["properties"]),
-  };
-}
-
-/** The properties of an ExpressRoute Circuit Authorization resource */
-export interface ExpressRouteAuthorizationProperties {
-  /** The state of the ExpressRoute Circuit Authorization provisioning */
-  readonly provisioningState?: ExpressRouteAuthorizationProvisioningState;
-  /** The ID of the ExpressRoute Circuit Authorization */
-  readonly expressRouteAuthorizationId?: string;
-  /** The key of the ExpressRoute Circuit Authorization */
-  readonly expressRouteAuthorizationKey?: string;
-  /** The ID of the ExpressRoute Circuit */
-  expressRouteId?: string;
-}
-
-export function expressRouteAuthorizationPropertiesSerializer(
-  item: ExpressRouteAuthorizationProperties,
-): any {
-  return { expressRouteId: item["expressRouteId"] };
-}
-
-export function expressRouteAuthorizationPropertiesDeserializer(
-  item: any,
-): ExpressRouteAuthorizationProperties {
-  return {
-    provisioningState: item["provisioningState"],
-    expressRouteAuthorizationId: item["expressRouteAuthorizationId"],
-    expressRouteAuthorizationKey: item["expressRouteAuthorizationKey"],
-    expressRouteId: item["expressRouteId"],
-  };
-}
-
-/** Express Route Circuit Authorization provisioning state */
-export enum KnownExpressRouteAuthorizationProvisioningState {
-  /** Resource has been created. */
-  Succeeded = "Succeeded",
-  /** Resource creation failed. */
-  Failed = "Failed",
-  /** Resource creation was canceled. */
-  Canceled = "Canceled",
-  /** is updating */
-  Updating = "Updating",
-}
-
-/**
- * Express Route Circuit Authorization provisioning state \
- * {@link KnownExpressRouteAuthorizationProvisioningState} can be used interchangeably with ExpressRouteAuthorizationProvisioningState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Succeeded**: Resource has been created. \
- * **Failed**: Resource creation failed. \
- * **Canceled**: Resource creation was canceled. \
- * **Updating**: is updating
- */
-export type ExpressRouteAuthorizationProvisioningState = string;
-
-/** The response of a CloudLink list operation. */
-export interface _CloudLinkList {
-  /** The CloudLink items on this page */
-  value: CloudLink[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _cloudLinkListDeserializer(item: any): _CloudLinkList {
-  return {
-    value: cloudLinkArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function cloudLinkArraySerializer(result: Array<CloudLink>): any[] {
-  return result.map((item) => {
-    return cloudLinkSerializer(item);
-  });
-}
-
-export function cloudLinkArrayDeserializer(result: Array<CloudLink>): any[] {
-  return result.map((item) => {
-    return cloudLinkDeserializer(item);
-  });
-}
-
-/** A cloud link resource */
-export interface CloudLink extends ProxyResource {
-  /** The resource-specific properties for this resource. */
-  properties?: CloudLinkProperties;
-}
-
-export function cloudLinkSerializer(item: CloudLink): any {
-  return {
-    properties: !item["properties"]
-      ? item["properties"]
-      : cloudLinkPropertiesSerializer(item["properties"]),
-  };
-}
-
-export function cloudLinkDeserializer(item: any): CloudLink {
-  return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : cloudLinkPropertiesDeserializer(item["properties"]),
-  };
-}
-
-/** The properties of a cloud link. */
-export interface CloudLinkProperties {
-  /** The provisioning state of the resource. */
-  readonly provisioningState?: CloudLinkProvisioningState;
-  /** The state of the cloud link. */
-  readonly status?: CloudLinkStatus;
-  /** Identifier of the other private cloud participating in the link. */
-  linkedCloud?: string;
-}
-
-export function cloudLinkPropertiesSerializer(item: CloudLinkProperties): any {
-  return { linkedCloud: item["linkedCloud"] };
-}
-
-export function cloudLinkPropertiesDeserializer(
-  item: any,
-): CloudLinkProperties {
-  return {
-    provisioningState: item["provisioningState"],
-    status: item["status"],
-    linkedCloud: item["linkedCloud"],
-  };
-}
-
-/** cloud link provisioning state */
-export enum KnownCloudLinkProvisioningState {
-  /** Resource has been created. */
-  Succeeded = "Succeeded",
-  /** Resource creation failed. */
-  Failed = "Failed",
-  /** Resource creation was canceled. */
-  Canceled = "Canceled",
-}
-
-/**
- * cloud link provisioning state \
- * {@link KnownCloudLinkProvisioningState} can be used interchangeably with CloudLinkProvisioningState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Succeeded**: Resource has been created. \
- * **Failed**: Resource creation failed. \
- * **Canceled**: Resource creation was canceled.
- */
-export type CloudLinkProvisioningState = string;
-
-/** Cloud Link status */
-export enum KnownCloudLinkStatus {
-  /** is active */
-  Active = "Active",
-  /** is building */
-  Building = "Building",
-  /** is deleting */
-  Deleting = "Deleting",
-  /** is failed */
-  Failed = "Failed",
-  /** is disconnected */
-  Disconnected = "Disconnected",
-}
-
-/**
- * Cloud Link status \
- * {@link KnownCloudLinkStatus} can be used interchangeably with CloudLinkStatus,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Active**: is active \
- * **Building**: is building \
- * **Deleting**: is deleting \
- * **Failed**: is failed \
- * **Disconnected**: is disconnected
- */
-export type CloudLinkStatus = string;
-
-/** The response of a Cluster list operation. */
-export interface _ClusterList {
-  /** The Cluster items on this page */
-  value: Cluster[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _clusterListDeserializer(item: any): _ClusterList {
-  return {
-    value: clusterArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function clusterArraySerializer(result: Array<Cluster>): any[] {
-  return result.map((item) => {
-    return clusterSerializer(item);
-  });
-}
-
-export function clusterArrayDeserializer(result: Array<Cluster>): any[] {
-  return result.map((item) => {
-    return clusterDeserializer(item);
-  });
-}
-
-/** A cluster resource */
-export interface Cluster extends ProxyResource {
-  /** The resource-specific properties for this resource. */
-  properties?: ClusterProperties;
-  /** The SKU (Stock Keeping Unit) assigned to this resource. */
-  sku: Sku;
-}
-
-export function clusterSerializer(item: Cluster): any {
-  return {
-    properties: !item["properties"]
-      ? item["properties"]
-      : clusterPropertiesSerializer(item["properties"]),
-    sku: skuSerializer(item["sku"]),
-  };
-}
-
-export function clusterDeserializer(item: any): Cluster {
-  return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : clusterPropertiesDeserializer(item["properties"]),
-    sku: skuDeserializer(item["sku"]),
-  };
-}
-
-/** The properties of a cluster */
-export interface ClusterProperties {
-  /** The cluster size */
-  clusterSize?: number;
-  /** The state of the cluster provisioning */
-  readonly provisioningState?: ClusterProvisioningState;
-  /** The identity */
-  readonly clusterId?: number;
-  /** The hosts */
-  hosts?: string[];
-  /** Name of the vsan datastore associated with the cluster */
-  vsanDatastoreName?: string;
-}
-
-export function clusterPropertiesSerializer(item: ClusterProperties): any {
-  return {
-    clusterSize: item["clusterSize"],
-    hosts: !item["hosts"]
-      ? item["hosts"]
-      : item["hosts"].map((p: any) => {
-          return p;
-        }),
-    vsanDatastoreName: item["vsanDatastoreName"],
-  };
-}
-
-export function clusterPropertiesDeserializer(item: any): ClusterProperties {
-  return {
-    clusterSize: item["clusterSize"],
-    provisioningState: item["provisioningState"],
-    clusterId: item["clusterId"],
-    hosts: !item["hosts"]
-      ? item["hosts"]
-      : item["hosts"].map((p: any) => {
-          return p;
-        }),
-    vsanDatastoreName: item["vsanDatastoreName"],
-  };
-}
-
-/** Cluster provisioning state */
-export enum KnownClusterProvisioningState {
-  /** Resource has been created. */
-  Succeeded = "Succeeded",
-  /** Resource creation failed. */
-  Failed = "Failed",
-  /** Resource creation was canceled. */
-  Canceled = "Canceled",
-  /** is cancelled */
-  Cancelled = "Cancelled",
-  /** is deleting */
-  Deleting = "Deleting",
-  /** is updating */
-  Updating = "Updating",
-}
-
-/**
- * Cluster provisioning state \
- * {@link KnownClusterProvisioningState} can be used interchangeably with ClusterProvisioningState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Succeeded**: Resource has been created. \
- * **Failed**: Resource creation failed. \
- * **Canceled**: Resource creation was canceled. \
- * **Cancelled**: is cancelled \
- * **Deleting**: is deleting \
- * **Updating**: is updating
- */
-export type ClusterProvisioningState = string;
-
-/** The resource model definition representing SKU */
-export interface Sku {
-  /** The name of the SKU. Ex - P3. It is typically a letter+number code */
-  name: string;
-  /** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
-  tier?: SkuTier;
-  /** The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. */
-  size?: string;
-  /** If the service has different generations of hardware, for the same SKU, then that can be captured here. */
-  family?: string;
-  /** If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted. */
-  capacity?: number;
-}
-
-export function skuSerializer(item: Sku): any {
-  return {
-    name: item["name"],
-    tier: item["tier"],
-    size: item["size"],
-    family: item["family"],
-    capacity: item["capacity"],
-  };
-}
-
-export function skuDeserializer(item: any): Sku {
-  return {
-    name: item["name"],
-    tier: item["tier"],
-    size: item["size"],
-    family: item["family"],
-    capacity: item["capacity"],
-  };
-}
-
-/** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
-export type SkuTier = "Free" | "Basic" | "Standard" | "Premium";
-
-/** An update of a cluster resource */
-export interface ClusterUpdate {
-  /** The SKU (Stock Keeping Unit) assigned to this resource. */
-  sku?: Sku;
-  /** The properties of a cluster resource that may be updated */
-  properties?: ClusterUpdateProperties;
-}
-
-export function clusterUpdateSerializer(item: ClusterUpdate): any {
-  return {
-    sku: !item["sku"] ? item["sku"] : skuSerializer(item["sku"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : clusterUpdatePropertiesSerializer(item["properties"]),
-  };
-}
-
-/** The properties of a cluster that may be updated */
-export interface ClusterUpdateProperties {
-  /** The cluster size */
-  clusterSize?: number;
-  /** The hosts */
-  hosts?: string[];
-}
-
-export function clusterUpdatePropertiesSerializer(
-  item: ClusterUpdateProperties,
-): any {
-  return {
-    clusterSize: item["clusterSize"],
-    hosts: !item["hosts"]
-      ? item["hosts"]
-      : item["hosts"].map((p: any) => {
-          return p;
-        }),
-  };
-}
-
-/** List of all zones and associated hosts for a cluster */
-export interface ClusterZoneList {
-  /** Zone and associated hosts info */
-  zones?: ClusterZone[];
-}
-
-export function clusterZoneListDeserializer(item: any): ClusterZoneList {
-  return {
-    zones: !item["zones"]
-      ? item["zones"]
-      : clusterZoneArrayDeserializer(item["zones"]),
-  };
-}
-
-export function clusterZoneArrayDeserializer(
-  result: Array<ClusterZone>,
-): any[] {
-  return result.map((item) => {
-    return clusterZoneDeserializer(item);
-  });
-}
-
-/** Zone and associated hosts info */
-export interface ClusterZone {
-  /** List of hosts belonging to the availability zone in a cluster */
-  readonly hosts?: string[];
-  /** Availability zone identifier */
-  readonly zone?: string;
-}
-
-export function clusterZoneDeserializer(item: any): ClusterZone {
-  return {
-    hosts: !item["hosts"]
-      ? item["hosts"]
-      : item["hosts"].map((p: any) => {
-          return p;
-        }),
-    zone: item["zone"],
-  };
-}
-
-/** The response of a Datastore list operation. */
-export interface _DatastoreList {
-  /** The Datastore items on this page */
-  value: Datastore[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _datastoreListDeserializer(item: any): _DatastoreList {
-  return {
-    value: datastoreArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function datastoreArraySerializer(result: Array<Datastore>): any[] {
-  return result.map((item) => {
-    return datastoreSerializer(item);
-  });
-}
-
-export function datastoreArrayDeserializer(result: Array<Datastore>): any[] {
-  return result.map((item) => {
-    return datastoreDeserializer(item);
-  });
-}
-
-/** A datastore resource */
-export interface Datastore extends ProxyResource {
-  /** The resource-specific properties for this resource. */
-  properties?: DatastoreProperties;
-}
-
-export function datastoreSerializer(item: Datastore): any {
-  return {
-    properties: !item["properties"]
-      ? item["properties"]
-      : datastorePropertiesSerializer(item["properties"]),
-  };
-}
-
-export function datastoreDeserializer(item: any): Datastore {
-  return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : datastorePropertiesDeserializer(item["properties"]),
-  };
-}
-
-/** The properties of a datastore */
-export interface DatastoreProperties {
-  /** The state of the datastore provisioning */
-  readonly provisioningState?: DatastoreProvisioningState;
-  /** An Azure NetApp Files volume */
-  netAppVolume?: NetAppVolume;
-  /** An iSCSI volume */
-  diskPoolVolume?: DiskPoolVolume;
-  /** An Elastic SAN volume */
-  elasticSanVolume?: ElasticSanVolume;
-  /** A Pure Storage volume */
-  pureStorageVolume?: PureStorageVolume;
-  /** The operational status of the datastore */
-  readonly status?: DatastoreStatus;
-}
-
-export function datastorePropertiesSerializer(item: DatastoreProperties): any {
-  return {
-    netAppVolume: !item["netAppVolume"]
-      ? item["netAppVolume"]
-      : netAppVolumeSerializer(item["netAppVolume"]),
-    diskPoolVolume: !item["diskPoolVolume"]
-      ? item["diskPoolVolume"]
-      : diskPoolVolumeSerializer(item["diskPoolVolume"]),
-    elasticSanVolume: !item["elasticSanVolume"]
-      ? item["elasticSanVolume"]
-      : elasticSanVolumeSerializer(item["elasticSanVolume"]),
-    pureStorageVolume: !item["pureStorageVolume"]
-      ? item["pureStorageVolume"]
-      : pureStorageVolumeSerializer(item["pureStorageVolume"]),
-  };
-}
-
-export function datastorePropertiesDeserializer(
-  item: any,
-): DatastoreProperties {
-  return {
-    provisioningState: item["provisioningState"],
-    netAppVolume: !item["netAppVolume"]
-      ? item["netAppVolume"]
-      : netAppVolumeDeserializer(item["netAppVolume"]),
-    diskPoolVolume: !item["diskPoolVolume"]
-      ? item["diskPoolVolume"]
-      : diskPoolVolumeDeserializer(item["diskPoolVolume"]),
-    elasticSanVolume: !item["elasticSanVolume"]
-      ? item["elasticSanVolume"]
-      : elasticSanVolumeDeserializer(item["elasticSanVolume"]),
-    pureStorageVolume: !item["pureStorageVolume"]
-      ? item["pureStorageVolume"]
-      : pureStorageVolumeDeserializer(item["pureStorageVolume"]),
-    status: item["status"],
-  };
-}
-
-/** datastore provisioning state */
-export enum KnownDatastoreProvisioningState {
-  /** Resource has been created. */
-  Succeeded = "Succeeded",
-  /** Resource creation failed. */
-  Failed = "Failed",
-  /** Resource creation was canceled. */
-  Canceled = "Canceled",
-  /** is cancelled */
-  Cancelled = "Cancelled",
-  /** is pending */
-  Pending = "Pending",
-  /** is creating */
-  Creating = "Creating",
-  /** is updating */
-  Updating = "Updating",
-  /** is deleting */
-  Deleting = "Deleting",
-}
-
-/**
- * datastore provisioning state \
- * {@link KnownDatastoreProvisioningState} can be used interchangeably with DatastoreProvisioningState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Succeeded**: Resource has been created. \
- * **Failed**: Resource creation failed. \
- * **Canceled**: Resource creation was canceled. \
- * **Cancelled**: is cancelled \
- * **Pending**: is pending \
- * **Creating**: is creating \
- * **Updating**: is updating \
- * **Deleting**: is deleting
- */
-export type DatastoreProvisioningState = string;
-
-/** An Azure NetApp Files volume from Microsoft.NetApp provider */
-export interface NetAppVolume {
-  /** Azure resource ID of the NetApp volume */
-  id: string;
-}
-
-export function netAppVolumeSerializer(item: NetAppVolume): any {
-  return { id: item["id"] };
-}
-
-export function netAppVolumeDeserializer(item: any): NetAppVolume {
-  return {
-    id: item["id"],
-  };
-}
-
-/** An iSCSI volume from Microsoft.StoragePool provider */
-export interface DiskPoolVolume {
-  /** Azure resource ID of the iSCSI target */
-  targetId: string;
-  /** Name of the LUN to be used for datastore */
-  lunName: string;
-  /**
-   * Mode that describes whether the LUN has to be mounted as a datastore or
-   * attached as a LUN
-   */
-  mountOption?: MountOptionEnum;
-  /** Device path */
-  readonly path?: string;
-}
-
-export function diskPoolVolumeSerializer(item: DiskPoolVolume): any {
-  return {
-    targetId: item["targetId"],
-    lunName: item["lunName"],
-    mountOption: item["mountOption"],
-  };
-}
-
-export function diskPoolVolumeDeserializer(item: any): DiskPoolVolume {
-  return {
-    targetId: item["targetId"],
-    lunName: item["lunName"],
-    mountOption: item["mountOption"],
-    path: item["path"],
-  };
-}
-
-/** mount option */
-export enum KnownMountOptionEnum {
-  /** is mount */
-  Mount = "MOUNT",
-  /** is attach */
-  Attach = "ATTACH",
-}
-
-/**
- * mount option \
- * {@link KnownMountOptionEnum} can be used interchangeably with MountOptionEnum,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **MOUNT**: is mount \
- * **ATTACH**: is attach
- */
-export type MountOptionEnum = string;
-
-/** An Elastic SAN volume from Microsoft.ElasticSan provider */
-export interface ElasticSanVolume {
-  /** Azure resource ID of the Elastic SAN Volume */
-  targetId: string;
-}
-
-export function elasticSanVolumeSerializer(item: ElasticSanVolume): any {
-  return { targetId: item["targetId"] };
-}
-
-export function elasticSanVolumeDeserializer(item: any): ElasticSanVolume {
-  return {
-    targetId: item["targetId"],
-  };
-}
-
-/** A Pure Storage volume from PureStorage.Block provider */
-export interface PureStorageVolume {
-  /** Azure resource ID of the Pure Storage Pool */
-  storagePoolId: string;
-  /** Volume size to be used to create a Virtual Volumes (vVols) datastore */
-  sizeGb: number;
-}
-
-export function pureStorageVolumeSerializer(item: PureStorageVolume): any {
-  return { storagePoolId: item["storagePoolId"], sizeGb: item["sizeGb"] };
-}
-
-export function pureStorageVolumeDeserializer(item: any): PureStorageVolume {
-  return {
-    storagePoolId: item["storagePoolId"],
-    sizeGb: item["sizeGb"],
-  };
-}
-
-/** datastore status */
-export enum KnownDatastoreStatus {
-  /** is unknown */
-  Unknown = "Unknown",
-  /** is accessible */
-  Accessible = "Accessible",
-  /** is inaccessible */
-  Inaccessible = "Inaccessible",
-  /** is attached */
-  Attached = "Attached",
-  /** is detached */
-  Detached = "Detached",
-  /** is lost communication */
-  LostCommunication = "LostCommunication",
-  /** is dead or error */
-  DeadOrError = "DeadOrError",
-}
-
-/**
- * datastore status \
- * {@link KnownDatastoreStatus} can be used interchangeably with DatastoreStatus,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Unknown**: is unknown \
- * **Accessible**: is accessible \
- * **Inaccessible**: is inaccessible \
- * **Attached**: is attached \
- * **Detached**: is detached \
- * **LostCommunication**: is lost communication \
- * **DeadOrError**: is dead or error
- */
-export type DatastoreStatus = string;
-
-/** The response of a GlobalReachConnection list operation. */
-export interface _GlobalReachConnectionList {
-  /** The GlobalReachConnection items on this page */
-  value: GlobalReachConnection[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _globalReachConnectionListDeserializer(
-  item: any,
-): _GlobalReachConnectionList {
-  return {
-    value: globalReachConnectionArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function globalReachConnectionArraySerializer(
-  result: Array<GlobalReachConnection>,
-): any[] {
-  return result.map((item) => {
-    return globalReachConnectionSerializer(item);
-  });
-}
-
-export function globalReachConnectionArrayDeserializer(
-  result: Array<GlobalReachConnection>,
-): any[] {
-  return result.map((item) => {
-    return globalReachConnectionDeserializer(item);
-  });
-}
-
-/** A global reach connection resource */
-export interface GlobalReachConnection extends ProxyResource {
-  /** The resource-specific properties for this resource. */
-  properties?: GlobalReachConnectionProperties;
-}
-
-export function globalReachConnectionSerializer(
-  item: GlobalReachConnection,
-): any {
-  return {
-    properties: !item["properties"]
-      ? item["properties"]
-      : globalReachConnectionPropertiesSerializer(item["properties"]),
-  };
-}
-
-export function globalReachConnectionDeserializer(
-  item: any,
-): GlobalReachConnection {
-  return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : globalReachConnectionPropertiesDeserializer(item["properties"]),
-  };
-}
-
-/** The properties of a global reach connection */
-export interface GlobalReachConnectionProperties {
-  /** The state of the  ExpressRoute Circuit Authorization provisioning */
-  readonly provisioningState?: GlobalReachConnectionProvisioningState;
-  /**
-   * The network used for global reach carved out from the original network block
-   * provided for the private cloud
-   */
-  readonly addressPrefix?: string;
-  /**
-   * Authorization key from the peer express route used for the global reach
-   * connection
-   */
-  authorizationKey?: string;
-  /** The connection status of the global reach connection */
-  readonly circuitConnectionStatus?: GlobalReachConnectionStatus;
-  /**
-   * Identifier of the ExpressRoute Circuit to peer with in the global reach
-   * connection
-   */
-  peerExpressRouteCircuit?: string;
-  /**
-   * The ID of the Private Cloud's ExpressRoute Circuit that is participating in the
-   * global reach connection
-   */
-  expressRouteId?: string;
-}
-
-export function globalReachConnectionPropertiesSerializer(
-  item: GlobalReachConnectionProperties,
-): any {
-  return {
-    authorizationKey: item["authorizationKey"],
-    peerExpressRouteCircuit: item["peerExpressRouteCircuit"],
-    expressRouteId: item["expressRouteId"],
-  };
-}
-
-export function globalReachConnectionPropertiesDeserializer(
-  item: any,
-): GlobalReachConnectionProperties {
-  return {
-    provisioningState: item["provisioningState"],
-    addressPrefix: item["addressPrefix"],
-    authorizationKey: item["authorizationKey"],
-    circuitConnectionStatus: item["circuitConnectionStatus"],
-    peerExpressRouteCircuit: item["peerExpressRouteCircuit"],
-    expressRouteId: item["expressRouteId"],
-  };
-}
-
-/** Global Reach Connection provisioning state */
-export enum KnownGlobalReachConnectionProvisioningState {
-  /** Resource has been created. */
-  Succeeded = "Succeeded",
-  /** Resource creation failed. */
-  Failed = "Failed",
-  /** Resource creation was canceled. */
-  Canceled = "Canceled",
-  /** is updating */
-  Updating = "Updating",
-}
-
-/**
- * Global Reach Connection provisioning state \
- * {@link KnownGlobalReachConnectionProvisioningState} can be used interchangeably with GlobalReachConnectionProvisioningState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Succeeded**: Resource has been created. \
- * **Failed**: Resource creation failed. \
- * **Canceled**: Resource creation was canceled. \
- * **Updating**: is updating
- */
-export type GlobalReachConnectionProvisioningState = string;
-
-/** Global Reach Connection status */
-export enum KnownGlobalReachConnectionStatus {
-  /** is connected */
-  Connected = "Connected",
-  /** is connecting */
-  Connecting = "Connecting",
-  /** is disconnected */
-  Disconnected = "Disconnected",
-}
-
-/**
- * Global Reach Connection status \
- * {@link KnownGlobalReachConnectionStatus} can be used interchangeably with GlobalReachConnectionStatus,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Connected**: is connected \
- * **Connecting**: is connecting \
- * **Disconnected**: is disconnected
- */
-export type GlobalReachConnectionStatus = string;
-
-/** The response of a HcxEnterpriseSite list operation. */
-export interface _HcxEnterpriseSiteList {
-  /** The HcxEnterpriseSite items on this page */
-  value: HcxEnterpriseSite[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _hcxEnterpriseSiteListDeserializer(
-  item: any,
-): _HcxEnterpriseSiteList {
-  return {
-    value: hcxEnterpriseSiteArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function hcxEnterpriseSiteArraySerializer(
-  result: Array<HcxEnterpriseSite>,
-): any[] {
-  return result.map((item) => {
-    return hcxEnterpriseSiteSerializer(item);
-  });
-}
-
-export function hcxEnterpriseSiteArrayDeserializer(
-  result: Array<HcxEnterpriseSite>,
-): any[] {
-  return result.map((item) => {
-    return hcxEnterpriseSiteDeserializer(item);
-  });
-}
-
-/** An HCX Enterprise Site resource */
-export interface HcxEnterpriseSite extends ProxyResource {
-  /** The resource-specific properties for this resource. */
-  properties?: HcxEnterpriseSiteProperties;
-}
-
-export function hcxEnterpriseSiteSerializer(item: HcxEnterpriseSite): any {
-  return {
-    properties: !item["properties"]
-      ? item["properties"]
-      : hcxEnterpriseSitePropertiesSerializer(item["properties"]),
-  };
-}
-
-export function hcxEnterpriseSiteDeserializer(item: any): HcxEnterpriseSite {
-  return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : hcxEnterpriseSitePropertiesDeserializer(item["properties"]),
-  };
-}
-
-/** The properties of an HCX Enterprise Site */
-export interface HcxEnterpriseSiteProperties {
-  /** The provisioning state of the resource. */
-  readonly provisioningState?: HcxEnterpriseSiteProvisioningState;
-  /** The activation key */
-  readonly activationKey?: string;
-  /** The status of the HCX Enterprise Site */
-  readonly status?: HcxEnterpriseSiteStatus;
-}
-
-export function hcxEnterpriseSitePropertiesSerializer(
-  item: HcxEnterpriseSiteProperties,
-): any {
-  return item;
-}
-
-export function hcxEnterpriseSitePropertiesDeserializer(
-  item: any,
-): HcxEnterpriseSiteProperties {
-  return {
-    provisioningState: item["provisioningState"],
-    activationKey: item["activationKey"],
-    status: item["status"],
-  };
-}
-
-/** HCX Enterprise Site provisioning state */
-export enum KnownHcxEnterpriseSiteProvisioningState {
-  /** Resource has been created. */
-  Succeeded = "Succeeded",
-  /** Resource creation failed. */
-  Failed = "Failed",
-  /** Resource creation was canceled. */
-  Canceled = "Canceled",
-}
-
-/**
- * HCX Enterprise Site provisioning state \
- * {@link KnownHcxEnterpriseSiteProvisioningState} can be used interchangeably with HcxEnterpriseSiteProvisioningState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Succeeded**: Resource has been created. \
- * **Failed**: Resource creation failed. \
- * **Canceled**: Resource creation was canceled.
- */
-export type HcxEnterpriseSiteProvisioningState = string;
-
-/** HCX Enterprise Site status */
-export enum KnownHcxEnterpriseSiteStatus {
-  /** is available */
-  Available = "Available",
-  /** is consumed */
-  Consumed = "Consumed",
-  /** is deactivated */
-  Deactivated = "Deactivated",
-  /** is deleted */
-  Deleted = "Deleted",
-}
-
-/**
- * HCX Enterprise Site status \
- * {@link KnownHcxEnterpriseSiteStatus} can be used interchangeably with HcxEnterpriseSiteStatus,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Available**: is available \
- * **Consumed**: is consumed \
- * **Deactivated**: is deactivated \
- * **Deleted**: is deleted
- */
-export type HcxEnterpriseSiteStatus = string;
-
-/** The response of a Host list operation. */
-export interface _HostListResult {
-  /** The Host items on this page */
-  value: Host[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _hostListResultDeserializer(item: any): _HostListResult {
-  return {
-    value: hostArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function hostArrayDeserializer(result: Array<Host>): any[] {
-  return result.map((item) => {
-    return hostDeserializer(item);
-  });
-}
-
-/** A host resource */
-export interface Host extends ProxyResource {
-  /** The resource-specific properties for this resource. */
-  properties?: HostPropertiesUnion;
-  /** The availability zones. */
-  zones?: string[];
-  /** The SKU (Stock Keeping Unit) assigned to this resource. */
-  sku?: Sku;
-}
-
-export function hostDeserializer(item: any): Host {
-  return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : hostPropertiesUnionDeserializer(item["properties"]),
-    zones: !item["zones"]
-      ? item["zones"]
-      : item["zones"].map((p: any) => {
-          return p;
-        }),
-    sku: !item["sku"] ? item["sku"] : skuDeserializer(item["sku"]),
-  };
-}
-
-/** The properties of a host. */
-export interface HostProperties {
-  /** The kind of host */
-  /** The discriminator possible values: General, Specialized */
-  kind: HostKind;
-  /** The state of the host provisioning. */
-  readonly provisioningState?: HostProvisioningState;
-  /** Display name of the host in VMware vCenter. */
-  displayName?: string;
-  /** vCenter managed object reference ID of the host. */
-  readonly moRefId?: string;
-  /** Fully qualified domain name of the host. */
-  readonly fqdn?: string;
-  /** If provided, the host is in maintenance. The value is the reason for maintenance. */
-  maintenance?: HostMaintenance;
-  readonly faultDomain?: string;
-}
-
-export function hostPropertiesDeserializer(item: any): HostProperties {
-  return {
-    kind: item["kind"],
-    provisioningState: item["provisioningState"],
-    displayName: item["displayName"],
-    moRefId: item["moRefId"],
-    fqdn: item["fqdn"],
-    maintenance: item["maintenance"],
-    faultDomain: item["faultDomain"],
-  };
-}
-
-/** Alias for HostPropertiesUnion */
-export type HostPropertiesUnion =
-  | GeneralHostProperties
-  | SpecializedHostProperties
-  | HostProperties;
-
-export function hostPropertiesUnionDeserializer(
-  item: any,
-): HostPropertiesUnion {
-  switch (item.kind) {
-    case "General":
-      return generalHostPropertiesDeserializer(item as GeneralHostProperties);
-
-    case "Specialized":
-      return specializedHostPropertiesDeserializer(
-        item as SpecializedHostProperties,
-      );
-
-    default:
-      return hostPropertiesDeserializer(item);
-  }
-}
-
-/** The kind of host. */
-export enum KnownHostKind {
-  General = "General",
-  Specialized = "Specialized",
-}
-
-/**
- * The kind of host. \
- * {@link KnownHostKind} can be used interchangeably with HostKind,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **General** \
- * **Specialized**
- */
-export type HostKind = string;
-
-/** provisioning state of the host */
-export enum KnownHostProvisioningState {
-  /** Resource has been created. */
-  Succeeded = "Succeeded",
-  /** Resource creation failed. */
-  Failed = "Failed",
-  /** Resource creation was canceled. */
-  Canceled = "Canceled",
-}
-
-/**
- * provisioning state of the host \
- * {@link KnownHostProvisioningState} can be used interchangeably with HostProvisioningState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Succeeded**: Resource has been created. \
- * **Failed**: Resource creation failed. \
- * **Canceled**: Resource creation was canceled.
- */
-export type HostProvisioningState = string;
-
-/** The reason for host maintenance. */
-export enum KnownHostMaintenance {
-  /** The host is a replacement host. */
-  Replacement = "Replacement",
-  /** The host is for an upgrade, such as an upgrade to ESXi, NSX-T, or other component. */
-  Upgrade = "Upgrade",
-}
-
-/**
- * The reason for host maintenance. \
- * {@link KnownHostMaintenance} can be used interchangeably with HostMaintenance,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Replacement**: The host is a replacement host. \
- * **Upgrade**: The host is for an upgrade, such as an upgrade to ESXi, NSX-T, or other component.
- */
-export type HostMaintenance = string;
-
-/** The properties of a general host. */
-export interface GeneralHostProperties extends HostProperties {
-  /** The kind of host. */
-  kind: "General";
-}
-
-export function generalHostPropertiesDeserializer(
-  item: any,
-): GeneralHostProperties {
-  return {
-    kind: item["kind"],
-    provisioningState: item["provisioningState"],
-    displayName: item["displayName"],
-    moRefId: item["moRefId"],
-    fqdn: item["fqdn"],
-    maintenance: item["maintenance"],
-    faultDomain: item["faultDomain"],
-  };
-}
-
-/** The properties of a specialized host. */
-export interface SpecializedHostProperties extends HostProperties {
-  /** The kind of host is specialized. */
-  kind: "Specialized";
-}
-
-export function specializedHostPropertiesDeserializer(
-  item: any,
-): SpecializedHostProperties {
-  return {
-    kind: item["kind"],
-    provisioningState: item["provisioningState"],
-    displayName: item["displayName"],
-    moRefId: item["moRefId"],
-    fqdn: item["fqdn"],
-    maintenance: item["maintenance"],
-    faultDomain: item["faultDomain"],
-  };
-}
-
-/** The response of a IscsiPath list operation. */
-export interface _IscsiPathListResult {
-  /** The IscsiPath items on this page */
-  value: IscsiPath[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _iscsiPathListResultDeserializer(
-  item: any,
-): _IscsiPathListResult {
-  return {
-    value: iscsiPathArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function iscsiPathArraySerializer(result: Array<IscsiPath>): any[] {
-  return result.map((item) => {
-    return iscsiPathSerializer(item);
-  });
-}
-
-export function iscsiPathArrayDeserializer(result: Array<IscsiPath>): any[] {
-  return result.map((item) => {
-    return iscsiPathDeserializer(item);
-  });
-}
-
-/** An iSCSI path resource */
-export interface IscsiPath extends ProxyResource {
-  /** The resource-specific properties for this resource. */
-  properties?: IscsiPathProperties;
-}
-
-export function iscsiPathSerializer(item: IscsiPath): any {
-  return {
-    properties: !item["properties"]
-      ? item["properties"]
-      : iscsiPathPropertiesSerializer(item["properties"]),
-  };
-}
-
-export function iscsiPathDeserializer(item: any): IscsiPath {
-  return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : iscsiPathPropertiesDeserializer(item["properties"]),
-  };
-}
-
-/** The properties of an iSCSI path resource */
-export interface IscsiPathProperties {
-  /** The state of the iSCSI path provisioning */
-  readonly provisioningState?: IscsiPathProvisioningState;
-  /** CIDR Block for iSCSI path. */
-  networkBlock: string;
-}
-
-export function iscsiPathPropertiesSerializer(item: IscsiPathProperties): any {
-  return { networkBlock: item["networkBlock"] };
-}
-
-export function iscsiPathPropertiesDeserializer(
-  item: any,
-): IscsiPathProperties {
-  return {
-    provisioningState: item["provisioningState"],
-    networkBlock: item["networkBlock"],
-  };
-}
-
-/** private cloud provisioning state */
-export enum KnownIscsiPathProvisioningState {
-  /** Resource has been created. */
-  Succeeded = "Succeeded",
-  /** Resource creation failed. */
-  Failed = "Failed",
-  /** Resource creation was canceled. */
-  Canceled = "Canceled",
-  /** is pending */
-  Pending = "Pending",
-  /** is building */
-  Building = "Building",
-  /** is deleting */
-  Deleting = "Deleting",
-  /** is updating */
-  Updating = "Updating",
-}
-
-/**
- * private cloud provisioning state \
- * {@link KnownIscsiPathProvisioningState} can be used interchangeably with IscsiPathProvisioningState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Succeeded**: Resource has been created. \
- * **Failed**: Resource creation failed. \
- * **Canceled**: Resource creation was canceled. \
- * **Pending**: is pending \
- * **Building**: is building \
- * **Deleting**: is deleting \
- * **Updating**: is updating
- */
-export type IscsiPathProvisioningState = string;
-
-/** Subscription trial availability */
-export interface Trial {
-  /** Trial status */
-  readonly status?: TrialStatus;
-  /** Number of trial hosts available */
-  readonly availableHosts?: number;
-}
-
-export function trialDeserializer(item: any): Trial {
-  return {
-    status: item["status"],
-    availableHosts: item["availableHosts"],
-  };
-}
-
-/** trial status */
-export enum KnownTrialStatus {
-  /** is available */
-  TrialAvailable = "TrialAvailable",
-  /** is used */
-  TrialUsed = "TrialUsed",
-  /** is disabled */
-  TrialDisabled = "TrialDisabled",
-}
-
-/**
- * trial status \
- * {@link KnownTrialStatus} can be used interchangeably with TrialStatus,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **TrialAvailable**: is available \
- * **TrialUsed**: is used \
- * **TrialDisabled**: is disabled
- */
-export type TrialStatus = string;
-
-/** Subscription quotas */
-export interface Quota {
-  /** Remaining hosts quota by sku type */
-  readonly hostsRemaining?: Record<string, number>;
-  /** Host quota is active for current subscription */
-  readonly quotaEnabled?: QuotaEnabled;
-}
-
-export function quotaDeserializer(item: any): Quota {
-  return {
-    hostsRemaining: item["hostsRemaining"],
-    quotaEnabled: item["quotaEnabled"],
-  };
-}
-
-/** quota enabled */
-export enum KnownQuotaEnabled {
-  /** is enabled */
-  Enabled = "Enabled",
-  /** is disabled */
-  Disabled = "Disabled",
-}
-
-/**
- * quota enabled \
- * {@link KnownQuotaEnabled} can be used interchangeably with QuotaEnabled,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Enabled**: is enabled \
- * **Disabled**: is disabled
- */
-export type QuotaEnabled = string;
-
-/** The response of a PlacementPolicy list operation. */
-export interface _PlacementPoliciesList {
-  /** The PlacementPolicy items on this page */
-  value: PlacementPolicy[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _placementPoliciesListDeserializer(
-  item: any,
-): _PlacementPoliciesList {
-  return {
-    value: placementPolicyArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function placementPolicyArraySerializer(
-  result: Array<PlacementPolicy>,
-): any[] {
-  return result.map((item) => {
-    return placementPolicySerializer(item);
-  });
-}
-
-export function placementPolicyArrayDeserializer(
-  result: Array<PlacementPolicy>,
-): any[] {
-  return result.map((item) => {
-    return placementPolicyDeserializer(item);
-  });
-}
-
-/** A vSphere Distributed Resource Scheduler (DRS) placement policy */
-export interface PlacementPolicy extends ProxyResource {
-  /** The resource-specific properties for this resource. */
-  properties?: PlacementPolicyPropertiesUnion;
-}
-
-export function placementPolicySerializer(item: PlacementPolicy): any {
-  return {
-    properties: !item["properties"]
-      ? item["properties"]
-      : placementPolicyPropertiesUnionSerializer(item["properties"]),
-  };
-}
-
-export function placementPolicyDeserializer(item: any): PlacementPolicy {
-  return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : placementPolicyPropertiesUnionDeserializer(item["properties"]),
-  };
-}
-
-/** Abstract placement policy properties */
-export interface PlacementPolicyProperties {
-  /** Placement Policy type */
-  /** The discriminator possible values: VmVm, VmHost */
-  type: PlacementPolicyType;
-  /** Whether the placement policy is enabled or disabled */
-  state?: PlacementPolicyState;
-  /** Display name of the placement policy */
-  displayName?: string;
-  /** The provisioning state */
-  readonly provisioningState?: PlacementPolicyProvisioningState;
-}
-
-export function placementPolicyPropertiesSerializer(
-  item: PlacementPolicyProperties,
-): any {
-  return {
-    type: item["type"],
-    state: item["state"],
-    displayName: item["displayName"],
-  };
-}
-
-export function placementPolicyPropertiesDeserializer(
-  item: any,
-): PlacementPolicyProperties {
-  return {
-    type: item["type"],
-    state: item["state"],
-    displayName: item["displayName"],
-    provisioningState: item["provisioningState"],
-  };
-}
-
-/** Alias for PlacementPolicyPropertiesUnion */
-export type PlacementPolicyPropertiesUnion =
-  | VmVmPlacementPolicyProperties
-  | VmHostPlacementPolicyProperties
-  | PlacementPolicyProperties;
-
-export function placementPolicyPropertiesUnionSerializer(
-  item: PlacementPolicyPropertiesUnion,
-): any {
-  switch (item.type) {
-    case "VmVm":
-      return vmVmPlacementPolicyPropertiesSerializer(
-        item as VmVmPlacementPolicyProperties,
-      );
-
-    case "VmHost":
-      return vmHostPlacementPolicyPropertiesSerializer(
-        item as VmHostPlacementPolicyProperties,
-      );
-
-    default:
-      return placementPolicyPropertiesSerializer(item);
-  }
-}
-
-export function placementPolicyPropertiesUnionDeserializer(
-  item: any,
-): PlacementPolicyPropertiesUnion {
-  switch (item.type) {
-    case "VmVm":
-      return vmVmPlacementPolicyPropertiesDeserializer(
-        item as VmVmPlacementPolicyProperties,
-      );
-
-    case "VmHost":
-      return vmHostPlacementPolicyPropertiesDeserializer(
-        item as VmHostPlacementPolicyProperties,
-      );
-
-    default:
-      return placementPolicyPropertiesDeserializer(item);
-  }
-}
-
-/** Placement Policy type */
-export enum KnownPlacementPolicyType {
-  VmVm = "VmVm",
-  VmHost = "VmHost",
-}
-
-/**
- * Placement Policy type \
- * {@link KnownPlacementPolicyType} can be used interchangeably with PlacementPolicyType,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **VmVm** \
- * **VmHost**
- */
-export type PlacementPolicyType = string;
-
-/** Placement Policy state */
-export enum KnownPlacementPolicyState {
-  /** is enabled */
-  Enabled = "Enabled",
-  /** is disabled */
-  Disabled = "Disabled",
-}
-
-/**
- * Placement Policy state \
- * {@link KnownPlacementPolicyState} can be used interchangeably with PlacementPolicyState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Enabled**: is enabled \
- * **Disabled**: is disabled
- */
-export type PlacementPolicyState = string;
-
-/** Placement Policy provisioning state */
-export enum KnownPlacementPolicyProvisioningState {
-  /** Resource has been created. */
-  Succeeded = "Succeeded",
-  /** Resource creation failed. */
-  Failed = "Failed",
-  /** Resource creation was canceled. */
-  Canceled = "Canceled",
-  /** is building */
-  Building = "Building",
-  /** is deleting */
-  Deleting = "Deleting",
-  /** is updating */
-  Updating = "Updating",
-}
-
-/**
- * Placement Policy provisioning state \
- * {@link KnownPlacementPolicyProvisioningState} can be used interchangeably with PlacementPolicyProvisioningState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Succeeded**: Resource has been created. \
- * **Failed**: Resource creation failed. \
- * **Canceled**: Resource creation was canceled. \
- * **Building**: is building \
- * **Deleting**: is deleting \
- * **Updating**: is updating
- */
-export type PlacementPolicyProvisioningState = string;
-
-/** VM-VM placement policy properties */
-export interface VmVmPlacementPolicyProperties
-  extends PlacementPolicyProperties {
-  /** Virtual machine members list */
-  vmMembers: string[];
-  /** placement policy affinity type */
-  affinityType: AffinityType;
-  /** placement policy type */
-  type: "VmVm";
-}
-
-export function vmVmPlacementPolicyPropertiesSerializer(
-  item: VmVmPlacementPolicyProperties,
-): any {
-  return {
-    type: item["type"],
-    state: item["state"],
-    displayName: item["displayName"],
-    vmMembers: item["vmMembers"].map((p: any) => {
-      return p;
-    }),
-    affinityType: item["affinityType"],
-  };
-}
-
-export function vmVmPlacementPolicyPropertiesDeserializer(
-  item: any,
-): VmVmPlacementPolicyProperties {
-  return {
-    type: item["type"],
-    state: item["state"],
-    displayName: item["displayName"],
-    provisioningState: item["provisioningState"],
-    vmMembers: item["vmMembers"].map((p: any) => {
-      return p;
-    }),
-    affinityType: item["affinityType"],
-  };
-}
-
-/** Affinity type */
-export enum KnownAffinityType {
-  /** is affinity */
-  Affinity = "Affinity",
-  /** is anti-affinity */
-  AntiAffinity = "AntiAffinity",
-}
-
-/**
- * Affinity type \
- * {@link KnownAffinityType} can be used interchangeably with AffinityType,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Affinity**: is affinity \
- * **AntiAffinity**: is anti-affinity
- */
-export type AffinityType = string;
-
-/** VM-Host placement policy properties */
-export interface VmHostPlacementPolicyProperties
-  extends PlacementPolicyProperties {
-  /** Virtual machine members list */
-  vmMembers: string[];
-  /** Host members list */
-  hostMembers: string[];
-  /** placement policy affinity type */
-  affinityType: AffinityType;
-  /** vm-host placement policy affinity strength (should/must) */
-  affinityStrength?: AffinityStrength;
-  /** placement policy azure hybrid benefit opt-in type */
-  azureHybridBenefitType?: AzureHybridBenefitType;
-  /** placement policy type */
-  type: "VmHost";
-}
-
-export function vmHostPlacementPolicyPropertiesSerializer(
-  item: VmHostPlacementPolicyProperties,
-): any {
-  return {
-    type: item["type"],
-    state: item["state"],
-    displayName: item["displayName"],
-    vmMembers: item["vmMembers"].map((p: any) => {
-      return p;
-    }),
-    hostMembers: item["hostMembers"].map((p: any) => {
-      return p;
-    }),
-    affinityType: item["affinityType"],
-    affinityStrength: item["affinityStrength"],
-    azureHybridBenefitType: item["azureHybridBenefitType"],
-  };
-}
-
-export function vmHostPlacementPolicyPropertiesDeserializer(
-  item: any,
-): VmHostPlacementPolicyProperties {
-  return {
-    type: item["type"],
-    state: item["state"],
-    displayName: item["displayName"],
-    provisioningState: item["provisioningState"],
-    vmMembers: item["vmMembers"].map((p: any) => {
-      return p;
-    }),
-    hostMembers: item["hostMembers"].map((p: any) => {
-      return p;
-    }),
-    affinityType: item["affinityType"],
-    affinityStrength: item["affinityStrength"],
-    azureHybridBenefitType: item["azureHybridBenefitType"],
-  };
-}
-
-/** Affinity Strength */
-export enum KnownAffinityStrength {
-  /** is should */
-  Should = "Should",
-  /** is must */
-  Must = "Must",
-}
-
-/**
- * Affinity Strength \
- * {@link KnownAffinityStrength} can be used interchangeably with AffinityStrength,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Should**: is should \
- * **Must**: is must
- */
-export type AffinityStrength = string;
-
-/** Azure Hybrid Benefit type */
-export enum KnownAzureHybridBenefitType {
-  /** is SqlHost */
-  SqlHost = "SqlHost",
-  /** is None */
-  None = "None",
-}
-
-/**
- * Azure Hybrid Benefit type \
- * {@link KnownAzureHybridBenefitType} can be used interchangeably with AzureHybridBenefitType,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **SqlHost**: is SqlHost \
- * **None**: is None
- */
-export type AzureHybridBenefitType = string;
-
-/** An update of a DRS placement policy resource */
-export interface PlacementPolicyUpdate {
-  /** The properties of a placement policy resource that may be updated */
-  properties?: PlacementPolicyUpdateProperties;
-}
-
-export function placementPolicyUpdateSerializer(
-  item: PlacementPolicyUpdate,
-): any {
-  return {
-    properties: !item["properties"]
-      ? item["properties"]
-      : placementPolicyUpdatePropertiesSerializer(item["properties"]),
-  };
-}
-
-/** The properties of a placement policy resource that may be updated */
-export interface PlacementPolicyUpdateProperties {
-  /** Whether the placement policy is enabled or disabled */
-  state?: PlacementPolicyState;
-  /** Virtual machine members list */
-  vmMembers?: string[];
-  /** Host members list */
-  hostMembers?: string[];
-  /** vm-host placement policy affinity strength (should/must) */
-  affinityStrength?: AffinityStrength;
-  /** placement policy azure hybrid benefit opt-in type */
-  azureHybridBenefitType?: AzureHybridBenefitType;
-}
-
-export function placementPolicyUpdatePropertiesSerializer(
-  item: PlacementPolicyUpdateProperties,
-): any {
-  return {
-    state: item["state"],
-    vmMembers: !item["vmMembers"]
-      ? item["vmMembers"]
-      : item["vmMembers"].map((p: any) => {
-          return p;
-        }),
-    hostMembers: !item["hostMembers"]
-      ? item["hostMembers"]
-      : item["hostMembers"].map((p: any) => {
-          return p;
-        }),
-    affinityStrength: item["affinityStrength"],
-    azureHybridBenefitType: item["azureHybridBenefitType"],
-  };
-}
-
-/** The response of a PrivateCloud list operation. */
-export interface _PrivateCloudList {
-  /** The PrivateCloud items on this page */
-  value: PrivateCloud[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _privateCloudListDeserializer(item: any): _PrivateCloudList {
-  return {
-    value: privateCloudArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function privateCloudArraySerializer(
-  result: Array<PrivateCloud>,
-): any[] {
-  return result.map((item) => {
-    return privateCloudSerializer(item);
-  });
-}
-
-export function privateCloudArrayDeserializer(
-  result: Array<PrivateCloud>,
-): any[] {
-  return result.map((item) => {
-    return privateCloudDeserializer(item);
-  });
-}
-
-/** A private cloud resource */
-export interface PrivateCloud extends TrackedResource {
-  /** The resource-specific properties for this resource. */
-  properties?: PrivateCloudProperties;
-  /** The SKU (Stock Keeping Unit) assigned to this resource. */
-  sku: Sku;
+  properties?: VaultModelProperties;
   /** The managed service identities assigned to this resource. */
-  identity?: SystemAssignedServiceIdentity;
-  /** The availability zones. */
-  zones?: string[];
+  identity?: ManagedServiceIdentity;
 }
 
-export function privateCloudSerializer(item: PrivateCloud): any {
+export function vaultModelSerializer(item: VaultModel): any {
   return {
     tags: item["tags"],
     location: item["location"],
     properties: !item["properties"]
       ? item["properties"]
-      : privateCloudPropertiesSerializer(item["properties"]),
-    sku: skuSerializer(item["sku"]),
+      : vaultModelPropertiesSerializer(item["properties"]),
     identity: !item["identity"]
       ? item["identity"]
-      : systemAssignedServiceIdentitySerializer(item["identity"]),
-    zones: !item["zones"]
-      ? item["zones"]
-      : item["zones"].map((p: any) => {
-          return p;
-        }),
+      : managedServiceIdentitySerializer(item["identity"]),
   };
 }
 
-export function privateCloudDeserializer(item: any): PrivateCloud {
+export function vaultModelDeserializer(item: any): VaultModel {
   return {
     tags: item["tags"],
     location: item["location"],
@@ -2338,651 +465,135 @@ export function privateCloudDeserializer(item: any): PrivateCloud {
       : systemDataDeserializer(item["systemData"]),
     properties: !item["properties"]
       ? item["properties"]
-      : privateCloudPropertiesDeserializer(item["properties"]),
-    sku: skuDeserializer(item["sku"]),
+      : vaultModelPropertiesDeserializer(item["properties"]),
     identity: !item["identity"]
       ? item["identity"]
-      : systemAssignedServiceIdentityDeserializer(item["identity"]),
-    zones: !item["zones"]
-      ? item["zones"]
-      : item["zones"].map((p: any) => {
-          return p;
-        }),
+      : managedServiceIdentityDeserializer(item["identity"]),
   };
 }
 
-/** The properties of a private cloud resource */
-export interface PrivateCloudProperties {
-  /** The default cluster used for management */
-  managementCluster: ManagementCluster;
-  /** Connectivity to internet is enabled or disabled */
-  internet?: InternetEnum;
-  /** vCenter Single Sign On Identity Sources */
-  identitySources?: IdentitySource[];
-  /** Properties describing how the cloud is distributed across availability zones */
-  availability?: AvailabilityProperties;
-  /** Customer managed key encryption, can be enabled or disabled */
-  encryption?: Encryption;
-  /**
-   * Array of additional networks noncontiguous with networkBlock. Networks must be
-   * unique and non-overlapping across VNet in your subscription, on-premise, and
-   * this privateCloud networkBlock attribute. Make sure the CIDR format conforms to
-   * (A.B.C.D/X).
-   */
-  extendedNetworkBlocks?: string[];
-  /** The provisioning state */
-  readonly provisioningState?: PrivateCloudProvisioningState;
-  /** An ExpressRoute Circuit */
-  circuit?: Circuit;
-  /** The endpoints */
-  readonly endpoints?: Endpoints;
-  /**
-   * The block of addresses should be unique across VNet in your subscription as
-   * well as on-premise. Make sure the CIDR format is conformed to (A.B.C.D/X) where
-   * A,B,C,D are between 0 and 255, and X is between 0 and 22
-   */
-  networkBlock: string;
-  /** Network used to access vCenter Server and NSX-T Manager */
-  readonly managementNetwork?: string;
-  /** Used for virtual machine cold migration, cloning, and snapshot migration */
-  readonly provisioningNetwork?: string;
-  /** Used for live migration of virtual machines */
-  readonly vmotionNetwork?: string;
-  /** Optionally, set the vCenter admin password when the private cloud is created */
-  vcenterPassword?: string;
-  /** Optionally, set the NSX-T Manager password when the private cloud is created */
-  nsxtPassword?: string;
-  /** Thumbprint of the vCenter Server SSL certificate */
-  readonly vcenterCertificateThumbprint?: string;
-  /** Thumbprint of the NSX-T Manager SSL certificate */
-  readonly nsxtCertificateThumbprint?: string;
-  /** Array of cloud link IDs from other clouds that connect to this one */
-  readonly externalCloudLinks?: string[];
-  /**
-   * A secondary expressRoute circuit from a separate AZ. Only present in a
-   * stretched private cloud
-   */
-  secondaryCircuit?: Circuit;
-  /**
-   * Flag to indicate whether the private cloud has the quota for provisioned NSX
-   * Public IP count raised from 64 to 1024
-   */
-  readonly nsxPublicIpQuotaRaised?: NsxPublicIpQuotaRaisedEnum;
-  /** Azure resource ID of the virtual network */
-  virtualNetworkId?: string;
-  /** The type of DNS zone to use. */
-  dnsZoneType?: DnsZoneType;
+/** Vault properties. */
+export interface VaultModelProperties {
+  /** Gets or sets the provisioning state of the vault. */
+  readonly provisioningState?: ProvisioningState;
+  /** Gets or sets the service resource Id. */
+  readonly serviceResourceId?: string;
+  /** Gets or sets the type of vault. */
+  vaultType?: ReplicationVaultType;
 }
 
-export function privateCloudPropertiesSerializer(
-  item: PrivateCloudProperties,
+export function vaultModelPropertiesSerializer(
+  item: VaultModelProperties,
 ): any {
-  return {
-    managementCluster: managementClusterSerializer(item["managementCluster"]),
-    internet: item["internet"],
-    identitySources: !item["identitySources"]
-      ? item["identitySources"]
-      : identitySourceArraySerializer(item["identitySources"]),
-    availability: !item["availability"]
-      ? item["availability"]
-      : availabilityPropertiesSerializer(item["availability"]),
-    encryption: !item["encryption"]
-      ? item["encryption"]
-      : encryptionSerializer(item["encryption"]),
-    extendedNetworkBlocks: !item["extendedNetworkBlocks"]
-      ? item["extendedNetworkBlocks"]
-      : item["extendedNetworkBlocks"].map((p: any) => {
-          return p;
-        }),
-    circuit: !item["circuit"]
-      ? item["circuit"]
-      : circuitSerializer(item["circuit"]),
-    networkBlock: item["networkBlock"],
-    vcenterPassword: item["vcenterPassword"],
-    nsxtPassword: item["nsxtPassword"],
-    secondaryCircuit: !item["secondaryCircuit"]
-      ? item["secondaryCircuit"]
-      : circuitSerializer(item["secondaryCircuit"]),
-    virtualNetworkId: item["virtualNetworkId"],
-    dnsZoneType: item["dnsZoneType"],
-  };
+  return { vaultType: item["vaultType"] };
 }
 
-export function privateCloudPropertiesDeserializer(
+export function vaultModelPropertiesDeserializer(
   item: any,
-): PrivateCloudProperties {
+): VaultModelProperties {
   return {
-    managementCluster: managementClusterDeserializer(item["managementCluster"]),
-    internet: item["internet"],
-    identitySources: !item["identitySources"]
-      ? item["identitySources"]
-      : identitySourceArrayDeserializer(item["identitySources"]),
-    availability: !item["availability"]
-      ? item["availability"]
-      : availabilityPropertiesDeserializer(item["availability"]),
-    encryption: !item["encryption"]
-      ? item["encryption"]
-      : encryptionDeserializer(item["encryption"]),
-    extendedNetworkBlocks: !item["extendedNetworkBlocks"]
-      ? item["extendedNetworkBlocks"]
-      : item["extendedNetworkBlocks"].map((p: any) => {
-          return p;
-        }),
     provisioningState: item["provisioningState"],
-    circuit: !item["circuit"]
-      ? item["circuit"]
-      : circuitDeserializer(item["circuit"]),
-    endpoints: !item["endpoints"]
-      ? item["endpoints"]
-      : endpointsDeserializer(item["endpoints"]),
-    networkBlock: item["networkBlock"],
-    managementNetwork: item["managementNetwork"],
-    provisioningNetwork: item["provisioningNetwork"],
-    vmotionNetwork: item["vmotionNetwork"],
-    vcenterPassword: item["vcenterPassword"],
-    nsxtPassword: item["nsxtPassword"],
-    vcenterCertificateThumbprint: item["vcenterCertificateThumbprint"],
-    nsxtCertificateThumbprint: item["nsxtCertificateThumbprint"],
-    externalCloudLinks: !item["externalCloudLinks"]
-      ? item["externalCloudLinks"]
-      : item["externalCloudLinks"].map((p: any) => {
-          return p;
-        }),
-    secondaryCircuit: !item["secondaryCircuit"]
-      ? item["secondaryCircuit"]
-      : circuitDeserializer(item["secondaryCircuit"]),
-    nsxPublicIpQuotaRaised: item["nsxPublicIpQuotaRaised"],
-    virtualNetworkId: item["virtualNetworkId"],
-    dnsZoneType: item["dnsZoneType"],
+    serviceResourceId: item["serviceResourceId"],
+    vaultType: item["vaultType"],
   };
 }
 
-/** The properties of a management cluster */
-export interface ManagementCluster {
-  /** The cluster size */
-  clusterSize?: number;
-  /** The state of the cluster provisioning */
-  readonly provisioningState?: ClusterProvisioningState;
-  /** The identity */
-  readonly clusterId?: number;
-  /** The hosts */
-  hosts?: string[];
-  /** Name of the vsan datastore associated with the cluster */
-  vsanDatastoreName?: string;
-}
-
-export function managementClusterSerializer(item: ManagementCluster): any {
-  return {
-    clusterSize: item["clusterSize"],
-    hosts: !item["hosts"]
-      ? item["hosts"]
-      : item["hosts"].map((p: any) => {
-          return p;
-        }),
-    vsanDatastoreName: item["vsanDatastoreName"],
-  };
-}
-
-export function managementClusterDeserializer(item: any): ManagementCluster {
-  return {
-    clusterSize: item["clusterSize"],
-    provisioningState: item["provisioningState"],
-    clusterId: item["clusterId"],
-    hosts: !item["hosts"]
-      ? item["hosts"]
-      : item["hosts"].map((p: any) => {
-          return p;
-        }),
-    vsanDatastoreName: item["vsanDatastoreName"],
-  };
-}
-
-/** Whether internet is enabled or disabled */
-export enum KnownInternetEnum {
-  /** is enabled */
-  Enabled = "Enabled",
-  /** is disabled */
-  Disabled = "Disabled",
+/** Gets or sets the type of vault. */
+export enum KnownReplicationVaultType {
+  /** Disaster recovery vault. */
+  DisasterRecovery = "DisasterRecovery",
+  /** Migrate vault. */
+  Migrate = "Migrate",
 }
 
 /**
- * Whether internet is enabled or disabled \
- * {@link KnownInternetEnum} can be used interchangeably with InternetEnum,
+ * Gets or sets the type of vault. \
+ * {@link KnownReplicationVaultType} can be used interchangeably with ReplicationVaultType,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
- * **Enabled**: is enabled \
- * **Disabled**: is disabled
+ * **DisasterRecovery**: Disaster recovery vault. \
+ * **Migrate**: Migrate vault.
  */
-export type InternetEnum = string;
+export type ReplicationVaultType = string;
 
-export function identitySourceArraySerializer(
-  result: Array<IdentitySource>,
-): any[] {
-  return result.map((item) => {
-    return identitySourceSerializer(item);
-  });
-}
-
-export function identitySourceArrayDeserializer(
-  result: Array<IdentitySource>,
-): any[] {
-  return result.map((item) => {
-    return identitySourceDeserializer(item);
-  });
-}
-
-/** vCenter Single Sign On Identity Source */
-export interface IdentitySource {
-  /** The name of the identity source */
-  name?: string;
-  /** The domain's NetBIOS name */
-  alias?: string;
-  /** The domain's DNS name */
-  domain?: string;
-  /** The base distinguished name for users */
-  baseUserDN?: string;
-  /** The base distinguished name for groups */
-  baseGroupDN?: string;
-  /** Primary server URL */
-  primaryServer?: string;
-  /** Secondary server URL */
-  secondaryServer?: string;
-  /** Protect LDAP communication using SSL certificate (LDAPS) */
-  ssl?: SslEnum;
-  /**
-   * The ID of an Active Directory user with a minimum of read-only access to Base
-   * DN for users and group
-   */
-  username?: string;
-  /**
-   * The password of the Active Directory user with a minimum of read-only access to
-   * Base DN for users and groups.
-   */
-  password?: string;
-}
-
-export function identitySourceSerializer(item: IdentitySource): any {
-  return {
-    name: item["name"],
-    alias: item["alias"],
-    domain: item["domain"],
-    baseUserDN: item["baseUserDN"],
-    baseGroupDN: item["baseGroupDN"],
-    primaryServer: item["primaryServer"],
-    secondaryServer: item["secondaryServer"],
-    ssl: item["ssl"],
-    username: item["username"],
-    password: item["password"],
-  };
-}
-
-export function identitySourceDeserializer(item: any): IdentitySource {
-  return {
-    name: item["name"],
-    alias: item["alias"],
-    domain: item["domain"],
-    baseUserDN: item["baseUserDN"],
-    baseGroupDN: item["baseGroupDN"],
-    primaryServer: item["primaryServer"],
-    secondaryServer: item["secondaryServer"],
-    ssl: item["ssl"],
-    username: item["username"],
-    password: item["password"],
-  };
-}
-
-/** Whether SSL is enabled or disabled */
-export enum KnownSslEnum {
-  /** is enabled */
-  Enabled = "Enabled",
-  /** is disabled */
-  Disabled = "Disabled",
-}
-
-/**
- * Whether SSL is enabled or disabled \
- * {@link KnownSslEnum} can be used interchangeably with SslEnum,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Enabled**: is enabled \
- * **Disabled**: is disabled
- */
-export type SslEnum = string;
-
-/** The properties describing private cloud availability zone distribution */
-export interface AvailabilityProperties {
-  /** The availability strategy for the private cloud */
-  strategy?: AvailabilityStrategy;
-  /** The primary availability zone for the private cloud */
-  zone?: number;
-  /** The secondary availability zone for the private cloud */
-  secondaryZone?: number;
-}
-
-export function availabilityPropertiesSerializer(
-  item: AvailabilityProperties,
-): any {
-  return {
-    strategy: item["strategy"],
-    zone: item["zone"],
-    secondaryZone: item["secondaryZone"],
-  };
-}
-
-export function availabilityPropertiesDeserializer(
-  item: any,
-): AvailabilityProperties {
-  return {
-    strategy: item["strategy"],
-    zone: item["zone"],
-    secondaryZone: item["secondaryZone"],
-  };
-}
-
-/** Whether the private clouds is available in a single zone or two zones */
-export enum KnownAvailabilityStrategy {
-  /** in single zone */
-  SingleZone = "SingleZone",
-  /** in two zones */
-  DualZone = "DualZone",
-}
-
-/**
- * Whether the private clouds is available in a single zone or two zones \
- * {@link KnownAvailabilityStrategy} can be used interchangeably with AvailabilityStrategy,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **SingleZone**: in single zone \
- * **DualZone**: in two zones
- */
-export type AvailabilityStrategy = string;
-
-/** The properties of customer managed encryption key */
-export interface Encryption {
-  /** Status of customer managed encryption key */
-  status?: EncryptionState;
-  /** The key vault where the encryption key is stored */
-  keyVaultProperties?: EncryptionKeyVaultProperties;
-}
-
-export function encryptionSerializer(item: Encryption): any {
-  return {
-    status: item["status"],
-    keyVaultProperties: !item["keyVaultProperties"]
-      ? item["keyVaultProperties"]
-      : encryptionKeyVaultPropertiesSerializer(item["keyVaultProperties"]),
-  };
-}
-
-export function encryptionDeserializer(item: any): Encryption {
-  return {
-    status: item["status"],
-    keyVaultProperties: !item["keyVaultProperties"]
-      ? item["keyVaultProperties"]
-      : encryptionKeyVaultPropertiesDeserializer(item["keyVaultProperties"]),
-  };
-}
-
-/** Whether encryption is enabled or disabled */
-export enum KnownEncryptionState {
-  /** is enabled */
-  Enabled = "Enabled",
-  /** is disabled */
-  Disabled = "Disabled",
-}
-
-/**
- * Whether encryption is enabled or disabled \
- * {@link KnownEncryptionState} can be used interchangeably with EncryptionState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Enabled**: is enabled \
- * **Disabled**: is disabled
- */
-export type EncryptionState = string;
-
-/** An Encryption Key */
-export interface EncryptionKeyVaultProperties {
-  /** The name of the key. */
-  keyName?: string;
-  /** The version of the key. */
-  keyVersion?: string;
-  /** The auto-detected version of the key if versionType is auto-detected. */
-  readonly autoDetectedKeyVersion?: string;
-  /** The URL of the vault. */
-  keyVaultUrl?: string;
-  /** The state of key provided */
-  readonly keyState?: EncryptionKeyStatus;
-  /** Property of the key if user provided or auto detected */
-  readonly versionType?: EncryptionVersionType;
-}
-
-export function encryptionKeyVaultPropertiesSerializer(
-  item: EncryptionKeyVaultProperties,
-): any {
-  return {
-    keyName: item["keyName"],
-    keyVersion: item["keyVersion"],
-    keyVaultUrl: item["keyVaultUrl"],
-  };
-}
-
-export function encryptionKeyVaultPropertiesDeserializer(
-  item: any,
-): EncryptionKeyVaultProperties {
-  return {
-    keyName: item["keyName"],
-    keyVersion: item["keyVersion"],
-    autoDetectedKeyVersion: item["autoDetectedKeyVersion"],
-    keyVaultUrl: item["keyVaultUrl"],
-    keyState: item["keyState"],
-    versionType: item["versionType"],
-  };
-}
-
-/** Whether the the encryption key is connected or access denied */
-export enum KnownEncryptionKeyStatus {
-  /** is connected */
-  Connected = "Connected",
-  /** is access denied */
-  AccessDenied = "AccessDenied",
-}
-
-/**
- * Whether the the encryption key is connected or access denied \
- * {@link KnownEncryptionKeyStatus} can be used interchangeably with EncryptionKeyStatus,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Connected**: is connected \
- * **AccessDenied**: is access denied
- */
-export type EncryptionKeyStatus = string;
-
-/** Whether the encryption version is fixed or auto-detected */
-export enum KnownEncryptionVersionType {
-  /** is fixed */
-  Fixed = "Fixed",
-  /** is auto-detected */
-  AutoDetected = "AutoDetected",
-}
-
-/**
- * Whether the encryption version is fixed or auto-detected \
- * {@link KnownEncryptionVersionType} can be used interchangeably with EncryptionVersionType,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Fixed**: is fixed \
- * **AutoDetected**: is auto-detected
- */
-export type EncryptionVersionType = string;
-
-/** private cloud provisioning state */
-export enum KnownPrivateCloudProvisioningState {
-  /** Resource has been created. */
-  Succeeded = "Succeeded",
-  /** Resource creation failed. */
-  Failed = "Failed",
-  /** Resource creation was canceled. */
-  Canceled = "Canceled",
-  /** is cancelled */
-  Cancelled = "Cancelled",
-  /** is pending */
-  Pending = "Pending",
-  /** is building */
-  Building = "Building",
-  /** is deleting */
-  Deleting = "Deleting",
-  /** is updating */
-  Updating = "Updating",
-}
-
-/**
- * private cloud provisioning state \
- * {@link KnownPrivateCloudProvisioningState} can be used interchangeably with PrivateCloudProvisioningState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Succeeded**: Resource has been created. \
- * **Failed**: Resource creation failed. \
- * **Canceled**: Resource creation was canceled. \
- * **Cancelled**: is cancelled \
- * **Pending**: is pending \
- * **Building**: is building \
- * **Deleting**: is deleting \
- * **Updating**: is updating
- */
-export type PrivateCloudProvisioningState = string;
-
-/** An ExpressRoute Circuit */
-export interface Circuit {
-  /** CIDR of primary subnet */
-  readonly primarySubnet?: string;
-  /** CIDR of secondary subnet */
-  readonly secondarySubnet?: string;
-  /** Identifier of the ExpressRoute Circuit (Microsoft Colo only) */
-  readonly expressRouteID?: string;
-  /** ExpressRoute Circuit private peering identifier */
-  readonly expressRoutePrivatePeeringID?: string;
-}
-
-export function circuitSerializer(item: Circuit): any {
-  return item;
-}
-
-export function circuitDeserializer(item: any): Circuit {
-  return {
-    primarySubnet: item["primarySubnet"],
-    secondarySubnet: item["secondarySubnet"],
-    expressRouteID: item["expressRouteID"],
-    expressRoutePrivatePeeringID: item["expressRoutePrivatePeeringID"],
-  };
-}
-
-/** Endpoint addresses */
-export interface Endpoints {
-  /** Endpoint FQDN for the NSX-T Data Center manager */
-  readonly nsxtManager?: string;
-  /** Endpoint FQDN for Virtual Center Server Appliance */
-  readonly vcsa?: string;
-  /** Endpoint FQDN for the HCX Cloud Manager */
-  readonly hcxCloudManager?: string;
-  /** Endpoint IP for the NSX-T Data Center manager */
-  readonly nsxtManagerIp?: string;
-  /** Endpoint IP for Virtual Center Server Appliance */
-  readonly vcenterIp?: string;
-  /** Endpoint IP for the HCX Cloud Manager */
-  readonly hcxCloudManagerIp?: string;
-}
-
-export function endpointsDeserializer(item: any): Endpoints {
-  return {
-    nsxtManager: item["nsxtManager"],
-    vcsa: item["vcsa"],
-    hcxCloudManager: item["hcxCloudManager"],
-    nsxtManagerIp: item["nsxtManagerIp"],
-    vcenterIp: item["vcenterIp"],
-    hcxCloudManagerIp: item["hcxCloudManagerIp"],
-  };
-}
-
-/** NSX public IP quota raised */
-export enum KnownNsxPublicIpQuotaRaisedEnum {
-  /** is enabled */
-  Enabled = "Enabled",
-  /** is disabled */
-  Disabled = "Disabled",
-}
-
-/**
- * NSX public IP quota raised \
- * {@link KnownNsxPublicIpQuotaRaisedEnum} can be used interchangeably with NsxPublicIpQuotaRaisedEnum,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Enabled**: is enabled \
- * **Disabled**: is disabled
- */
-export type NsxPublicIpQuotaRaisedEnum = string;
-
-/** The type of DNS zone. */
-export enum KnownDnsZoneType {
-  /** Primary DNS zone. */
-  Public = "Public",
-  /** Private DNS zone. */
-  Private = "Private",
-}
-
-/**
- * The type of DNS zone. \
- * {@link KnownDnsZoneType} can be used interchangeably with DnsZoneType,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Public**: Primary DNS zone. \
- * **Private**: Private DNS zone.
- */
-export type DnsZoneType = string;
-
-/** Managed service identity (either system assigned, or none) */
-export interface SystemAssignedServiceIdentity {
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface ManagedServiceIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   readonly principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   readonly tenantId?: string;
   /** The type of managed identity assigned to this resource. */
-  type: SystemAssignedServiceIdentityType;
+  type: ManagedServiceIdentityType;
+  /** The identities assigned to this resource by the user. */
+  userAssignedIdentities?: Record<string, UserAssignedIdentity | null>;
 }
 
-export function systemAssignedServiceIdentitySerializer(
-  item: SystemAssignedServiceIdentity,
+export function managedServiceIdentitySerializer(
+  item: ManagedServiceIdentity,
 ): any {
-  return { type: item["type"] };
+  return {
+    type: item["type"],
+    userAssignedIdentities: item["userAssignedIdentities"],
+  };
 }
 
-export function systemAssignedServiceIdentityDeserializer(
+export function managedServiceIdentityDeserializer(
   item: any,
-): SystemAssignedServiceIdentity {
+): ManagedServiceIdentity {
   return {
     principalId: item["principalId"],
     tenantId: item["tenantId"],
     type: item["type"],
+    userAssignedIdentities: item["userAssignedIdentities"],
   };
 }
 
-/** Type of managed service identity (either system assigned, or none). */
-export enum KnownSystemAssignedServiceIdentityType {
-  /** No managed system identity. */
+/** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
+export enum KnownManagedServiceIdentityType {
+  /** No managed identity. */
   None = "None",
-  /** System assigned managed system identity. */
+  /** System assigned managed identity. */
   SystemAssigned = "SystemAssigned",
+  /** User assigned managed identity. */
+  UserAssigned = "UserAssigned",
+  /** System and user assigned managed identity. */
+  SystemAssignedUserAssigned = "SystemAssigned,UserAssigned",
 }
 
 /**
- * Type of managed service identity (either system assigned, or none). \
- * {@link KnownSystemAssignedServiceIdentityType} can be used interchangeably with SystemAssignedServiceIdentityType,
+ * Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). \
+ * {@link KnownManagedServiceIdentityType} can be used interchangeably with ManagedServiceIdentityType,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
- * **None**: No managed system identity. \
- * **SystemAssigned**: System assigned managed system identity.
+ * **None**: No managed identity. \
+ * **SystemAssigned**: System assigned managed identity. \
+ * **UserAssigned**: User assigned managed identity. \
+ * **SystemAssigned,UserAssigned**: System and user assigned managed identity.
  */
-export type SystemAssignedServiceIdentityType = string;
+export type ManagedServiceIdentityType = string;
+
+/** User assigned identity properties */
+export interface UserAssignedIdentity {
+  /** The principal ID of the assigned identity. */
+  readonly principalId?: string;
+  /** The client ID of the assigned identity. */
+  readonly clientId?: string;
+}
+
+export function userAssignedIdentitySerializer(
+  item: UserAssignedIdentity,
+): any {
+  return item;
+}
+
+export function userAssignedIdentityDeserializer(
+  item: any,
+): UserAssignedIdentity {
+  return {
+    principalId: item["principalId"],
+    clientId: item["clientId"],
+  };
+}
 
 /** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
 export interface TrackedResource extends Resource {
@@ -3009,133 +620,107 @@ export function trackedResourceDeserializer(item: any): TrackedResource {
   };
 }
 
-/** An update to a private cloud resource */
-export interface PrivateCloudUpdate {
-  /** Resource tags. */
+/** Vault model update. */
+export interface VaultModelUpdate {
+  /** Gets or sets the resource tags. */
   tags?: Record<string, string>;
-  /** The SKU (Stock Keeping Unit) assigned to this resource. */
-  sku?: Sku;
-  /** The managed service identities assigned to this resource. */
-  identity?: SystemAssignedServiceIdentity;
-  /** The updatable properties of a private cloud resource */
-  properties?: PrivateCloudUpdateProperties;
+  /** Vault properties. */
+  properties?: VaultModelProperties;
+  /** Vault identity. */
+  identity?: VaultIdentityModel;
+  /** Gets or sets the Id of the resource. */
+  readonly id?: string;
+  /** Gets or sets the name of the resource. */
+  readonly name?: string;
+  /** Gets or sets the type of the resource. */
+  readonly type?: string;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  readonly systemData?: SystemData;
 }
 
-export function privateCloudUpdateSerializer(item: PrivateCloudUpdate): any {
+export function vaultModelUpdateSerializer(item: VaultModelUpdate): any {
   return {
     tags: item["tags"],
-    sku: !item["sku"] ? item["sku"] : skuSerializer(item["sku"]),
+    properties: !item["properties"]
+      ? item["properties"]
+      : vaultModelPropertiesSerializer(item["properties"]),
     identity: !item["identity"]
       ? item["identity"]
-      : systemAssignedServiceIdentitySerializer(item["identity"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : privateCloudUpdatePropertiesSerializer(item["properties"]),
+      : vaultIdentityModelSerializer(item["identity"]),
   };
 }
 
-/** The properties of a private cloud resource that may be updated */
-export interface PrivateCloudUpdateProperties {
-  /** The default cluster used for management */
-  managementCluster?: ManagementCluster;
-  /** Connectivity to internet is enabled or disabled */
-  internet?: InternetEnum;
-  /** vCenter Single Sign On Identity Sources */
-  identitySources?: IdentitySource[];
-  /** Properties describing how the cloud is distributed across availability zones */
-  availability?: AvailabilityProperties;
-  /** Customer managed key encryption, can be enabled or disabled */
-  encryption?: Encryption;
-  /**
-   * Array of additional networks noncontiguous with networkBlock. Networks must be
-   * unique and non-overlapping across VNet in your subscription, on-premise, and
-   * this privateCloud networkBlock attribute. Make sure the CIDR format conforms to
-   * (A.B.C.D/X).
-   */
-  extendedNetworkBlocks?: string[];
-  /** The type of DNS zone to use. */
-  dnsZoneType?: DnsZoneType;
+/** Vault model. */
+export interface VaultIdentityModel {
+  /** Gets or sets the identityType which can be either SystemAssigned or None. */
+  type: VaultIdentityType;
+  /** Gets or sets the object ID of the service principal object for the managed identity that is used to grant role-based access to an Azure resource. */
+  readonly principalId?: string;
+  /** Gets or sets a Globally Unique Identifier (GUID) that represents the Azure AD tenant where the resource is now a member. */
+  readonly tenantId?: string;
 }
 
-export function privateCloudUpdatePropertiesSerializer(
-  item: PrivateCloudUpdateProperties,
-): any {
-  return {
-    managementCluster: !item["managementCluster"]
-      ? item["managementCluster"]
-      : managementClusterSerializer(item["managementCluster"]),
-    internet: item["internet"],
-    identitySources: !item["identitySources"]
-      ? item["identitySources"]
-      : identitySourceArraySerializer(item["identitySources"]),
-    availability: !item["availability"]
-      ? item["availability"]
-      : availabilityPropertiesSerializer(item["availability"]),
-    encryption: !item["encryption"]
-      ? item["encryption"]
-      : encryptionSerializer(item["encryption"]),
-    extendedNetworkBlocks: !item["extendedNetworkBlocks"]
-      ? item["extendedNetworkBlocks"]
-      : item["extendedNetworkBlocks"].map((p: any) => {
-          return p;
-        }),
-    dnsZoneType: item["dnsZoneType"],
-  };
+export function vaultIdentityModelSerializer(item: VaultIdentityModel): any {
+  return { type: item["type"] };
 }
 
-/** Administrative credentials for accessing vCenter and NSX-T */
-export interface AdminCredentials {
-  /** NSX-T Manager username */
-  readonly nsxtUsername?: string;
-  /** NSX-T Manager password */
-  readonly nsxtPassword?: string;
-  /** vCenter admin username */
-  readonly vcenterUsername?: string;
-  /** vCenter admin password */
-  readonly vcenterPassword?: string;
+/** Gets or sets the identityType which can be either SystemAssigned or None. */
+export enum KnownVaultIdentityType {
+  /** No identity. */
+  None = "None",
+  /** System assigned identity. */
+  SystemAssigned = "SystemAssigned",
+  /** User assigned identity. */
+  UserAssigned = "UserAssigned",
 }
 
-export function adminCredentialsDeserializer(item: any): AdminCredentials {
-  return {
-    nsxtUsername: item["nsxtUsername"],
-    nsxtPassword: item["nsxtPassword"],
-    vcenterUsername: item["vcenterUsername"],
-    vcenterPassword: item["vcenterPassword"],
-  };
-}
+/**
+ * Gets or sets the identityType which can be either SystemAssigned or None. \
+ * {@link KnownVaultIdentityType} can be used interchangeably with VaultIdentityType,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **None**: No identity. \
+ * **SystemAssigned**: System assigned identity. \
+ * **UserAssigned**: User assigned identity.
+ */
+export type VaultIdentityType = string;
 
-/** The response of a ProvisionedNetwork list operation. */
-export interface _ProvisionedNetworkListResult {
-  /** The ProvisionedNetwork items on this page */
-  value: ProvisionedNetwork[];
+/** The response of a VaultModel list operation. */
+export interface _VaultModelListResult {
+  /** The VaultModel items on this page */
+  value: VaultModel[];
   /** The link to the next page of items */
   nextLink?: string;
 }
 
-export function _provisionedNetworkListResultDeserializer(
+export function _vaultModelListResultDeserializer(
   item: any,
-): _ProvisionedNetworkListResult {
+): _VaultModelListResult {
   return {
-    value: provisionedNetworkArrayDeserializer(item["value"]),
+    value: vaultModelArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
 }
 
-export function provisionedNetworkArrayDeserializer(
-  result: Array<ProvisionedNetwork>,
-): any[] {
+export function vaultModelArraySerializer(result: Array<VaultModel>): any[] {
   return result.map((item) => {
-    return provisionedNetworkDeserializer(item);
+    return vaultModelSerializer(item);
   });
 }
 
-/** A provisioned network resource */
-export interface ProvisionedNetwork extends ProxyResource {
-  /** The resource-specific properties for this resource. */
-  properties?: ProvisionedNetworkProperties;
+export function vaultModelArrayDeserializer(result: Array<VaultModel>): any[] {
+  return result.map((item) => {
+    return vaultModelDeserializer(item);
+  });
 }
 
-export function provisionedNetworkDeserializer(item: any): ProvisionedNetwork {
+/** Event model. */
+export interface EventModel extends ProxyResource {
+  /** The resource-specific properties for this resource. */
+  properties?: EventModelProperties;
+}
+
+export function eventModelDeserializer(item: any): EventModel {
   return {
     id: item["id"],
     name: item["name"],
@@ -3145,2936 +730,4904 @@ export function provisionedNetworkDeserializer(item: any): ProvisionedNetwork {
       : systemDataDeserializer(item["systemData"]),
     properties: !item["properties"]
       ? item["properties"]
-      : provisionedNetworkPropertiesDeserializer(item["properties"]),
+      : eventModelPropertiesDeserializer(item["properties"]),
   };
 }
 
-/** The properties of a provisioned network. */
-export interface ProvisionedNetworkProperties {
-  /** The provisioning state of the resource. */
-  readonly provisioningState?: ProvisionedNetworkProvisioningState;
-  /** The address prefixes of the provisioned network in CIDR notation. */
-  readonly addressPrefix?: string;
-  /** The type of network provisioned. */
-  readonly networkType?: ProvisionedNetworkTypes;
-}
-
-export function provisionedNetworkPropertiesDeserializer(
-  item: any,
-): ProvisionedNetworkProperties {
-  return {
-    provisioningState: item["provisioningState"],
-    addressPrefix: item["addressPrefix"],
-    networkType: item["networkType"],
-  };
-}
-
-/** provisioned network provisioning state */
-export enum KnownProvisionedNetworkProvisioningState {
-  /** Resource has been created. */
-  Succeeded = "Succeeded",
-  /** Resource creation failed. */
-  Failed = "Failed",
-  /** Resource creation was canceled. */
-  Canceled = "Canceled",
-}
-
-/**
- * provisioned network provisioning state \
- * {@link KnownProvisionedNetworkProvisioningState} can be used interchangeably with ProvisionedNetworkProvisioningState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Succeeded**: Resource has been created. \
- * **Failed**: Resource creation failed. \
- * **Canceled**: Resource creation was canceled.
- */
-export type ProvisionedNetworkProvisioningState = string;
-
-/** The type of network provisioned. */
-export enum KnownProvisionedNetworkTypes {
-  /** network for ESX management */
-  EsxManagement = "esxManagement",
-  /** network for ESX replication */
-  EsxReplication = "esxReplication",
-  /** network for HCX management */
-  HcxManagement = "hcxManagement",
-  /** network for HCX uplink */
-  HcxUplink = "hcxUplink",
-  /** network for vCenter management */
-  VcenterManagement = "vcenterManagement",
-  /** network for vmotion */
-  Vmotion = "vmotion",
-  /** network for vsan */
-  Vsan = "vsan",
-}
-
-/**
- * The type of network provisioned. \
- * {@link KnownProvisionedNetworkTypes} can be used interchangeably with ProvisionedNetworkTypes,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **esxManagement**: network for ESX management \
- * **esxReplication**: network for ESX replication \
- * **hcxManagement**: network for HCX management \
- * **hcxUplink**: network for HCX uplink \
- * **vcenterManagement**: network for vCenter management \
- * **vmotion**: network for vmotion \
- * **vsan**: network for vsan
- */
-export type ProvisionedNetworkTypes = string;
-
-/** The response of a PureStoragePolicy list operation. */
-export interface _PureStoragePolicyListResult {
-  /** The PureStoragePolicy items on this page */
-  value: PureStoragePolicy[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _pureStoragePolicyListResultDeserializer(
-  item: any,
-): _PureStoragePolicyListResult {
-  return {
-    value: pureStoragePolicyArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function pureStoragePolicyArraySerializer(
-  result: Array<PureStoragePolicy>,
-): any[] {
-  return result.map((item) => {
-    return pureStoragePolicySerializer(item);
-  });
-}
-
-export function pureStoragePolicyArrayDeserializer(
-  result: Array<PureStoragePolicy>,
-): any[] {
-  return result.map((item) => {
-    return pureStoragePolicyDeserializer(item);
-  });
-}
-
-/** An instance describing a Pure Storage Policy Based Management policy */
-export interface PureStoragePolicy extends ProxyResource {
-  /** The resource-specific properties for this resource. */
-  properties?: PureStoragePolicyProperties;
-}
-
-export function pureStoragePolicySerializer(item: PureStoragePolicy): any {
-  return {
-    properties: !item["properties"]
-      ? item["properties"]
-      : pureStoragePolicyPropertiesSerializer(item["properties"]),
-  };
-}
-
-export function pureStoragePolicyDeserializer(item: any): PureStoragePolicy {
-  return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : pureStoragePolicyPropertiesDeserializer(item["properties"]),
-  };
-}
-
-/** Properties of a Pure Storage Policy Based Management policy */
-export interface PureStoragePolicyProperties {
-  /** Definition of a Pure Storage Policy Based Management policy */
-  storagePolicyDefinition: string;
-  /** Azure resource ID of the Pure Storage Pool associated with the storage policy */
-  storagePoolId: string;
-  /** The state of the Pure Storage Policy Based Management policy provisioning */
-  readonly provisioningState?: PureStoragePolicyProvisioningState;
-}
-
-export function pureStoragePolicyPropertiesSerializer(
-  item: PureStoragePolicyProperties,
-): any {
-  return {
-    storagePolicyDefinition: item["storagePolicyDefinition"],
-    storagePoolId: item["storagePoolId"],
-  };
-}
-
-export function pureStoragePolicyPropertiesDeserializer(
-  item: any,
-): PureStoragePolicyProperties {
-  return {
-    storagePolicyDefinition: item["storagePolicyDefinition"],
-    storagePoolId: item["storagePoolId"],
-    provisioningState: item["provisioningState"],
-  };
-}
-
-/** Pure Storage Policy Based Management policy provisioning state */
-export enum KnownPureStoragePolicyProvisioningState {
-  /** Resource has been created. */
-  Succeeded = "Succeeded",
-  /** Resource creation failed. */
-  Failed = "Failed",
-  /** Resource creation was canceled. */
-  Canceled = "Canceled",
-  /** is deleting */
-  Deleting = "Deleting",
-  /** is updating */
-  Updating = "Updating",
-}
-
-/**
- * Pure Storage Policy Based Management policy provisioning state \
- * {@link KnownPureStoragePolicyProvisioningState} can be used interchangeably with PureStoragePolicyProvisioningState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Succeeded**: Resource has been created. \
- * **Failed**: Resource creation failed. \
- * **Canceled**: Resource creation was canceled. \
- * **Deleting**: is deleting \
- * **Updating**: is updating
- */
-export type PureStoragePolicyProvisioningState = string;
-
-/** The response of a ScriptCmdlet list operation. */
-export interface _ScriptCmdletsList {
-  /** The ScriptCmdlet items on this page */
-  value: ScriptCmdlet[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _scriptCmdletsListDeserializer(item: any): _ScriptCmdletsList {
-  return {
-    value: scriptCmdletArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function scriptCmdletArrayDeserializer(
-  result: Array<ScriptCmdlet>,
-): any[] {
-  return result.map((item) => {
-    return scriptCmdletDeserializer(item);
-  });
-}
-
-/** A cmdlet available for script execution */
-export interface ScriptCmdlet extends ProxyResource {
-  /** The resource-specific properties for this resource. */
-  properties?: ScriptCmdletProperties;
-}
-
-export function scriptCmdletDeserializer(item: any): ScriptCmdlet {
-  return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : scriptCmdletPropertiesDeserializer(item["properties"]),
-  };
-}
-
-/** Properties of a pre-canned script */
-export interface ScriptCmdletProperties {
-  /** The provisioning state of the resource. */
-  readonly provisioningState?: ScriptCmdletProvisioningState;
-  /** Description of the scripts functionality */
+/** Event model properties. */
+export interface EventModelProperties {
+  /** Gets or sets the resource type. */
+  readonly resourceType?: string;
+  /** Gets or sets the resource name. */
+  readonly resourceName?: string;
+  /** Gets or sets the event type. */
+  readonly eventType?: string;
+  /** Gets or sets the event name. */
+  readonly eventName?: string;
+  /** Gets or sets the time at which the event occurred at source. */
+  readonly timeOfOccurrence?: Date;
+  /** Gets or sets the event severity. */
+  readonly severity?: string;
+  /** Gets or sets the event description. */
   readonly description?: string;
-  /** Recommended time limit for execution */
-  readonly timeout?: string;
-  /** Specifies whether a script cmdlet is intended to be invoked only through automation or visible to customers */
-  readonly audience?: ScriptCmdletAudience;
-  /** Parameters the script will accept */
-  readonly parameters?: ScriptParameter[];
+  /** Gets or sets the event correlation Id. */
+  readonly correlationId?: string;
+  /** Gets or sets the errors associated with this event. */
+  readonly healthErrors?: HealthErrorModel[];
+  /** Event model custom properties. */
+  customProperties: EventModelCustomPropertiesUnion;
+  /** Gets or sets the provisioning state of the event. */
+  readonly provisioningState?: ProvisioningState;
 }
 
-export function scriptCmdletPropertiesDeserializer(
+export function eventModelPropertiesDeserializer(
   item: any,
-): ScriptCmdletProperties {
-  return {
-    provisioningState: item["provisioningState"],
-    description: item["description"],
-    timeout: item["timeout"],
-    audience: item["audience"],
-    parameters: !item["parameters"]
-      ? item["parameters"]
-      : scriptParameterArrayDeserializer(item["parameters"]),
-  };
-}
-
-/** A script cmdlet provisioning state */
-export enum KnownScriptCmdletProvisioningState {
-  /** Resource has been created. */
-  Succeeded = "Succeeded",
-  /** Resource creation failed. */
-  Failed = "Failed",
-  /** Resource creation was canceled. */
-  Canceled = "Canceled",
-}
-
-/**
- * A script cmdlet provisioning state \
- * {@link KnownScriptCmdletProvisioningState} can be used interchangeably with ScriptCmdletProvisioningState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Succeeded**: Resource has been created. \
- * **Failed**: Resource creation failed. \
- * **Canceled**: Resource creation was canceled.
- */
-export type ScriptCmdletProvisioningState = string;
-
-/** Specifies whether a script cmdlet is intended to be invoked only through automation or visible to customers */
-export enum KnownScriptCmdletAudience {
-  /** is automation */
-  Automation = "Automation",
-  /** is any */
-  Any = "Any",
-}
-
-/**
- * Specifies whether a script cmdlet is intended to be invoked only through automation or visible to customers \
- * {@link KnownScriptCmdletAudience} can be used interchangeably with ScriptCmdletAudience,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Automation**: is automation \
- * **Any**: is any
- */
-export type ScriptCmdletAudience = string;
-
-export function scriptParameterArrayDeserializer(
-  result: Array<ScriptParameter>,
-): any[] {
-  return result.map((item) => {
-    return scriptParameterDeserializer(item);
-  });
-}
-
-/** An parameter that the script will accept */
-export interface ScriptParameter {
-  /**
-   * The type of parameter the script is expecting. psCredential is a
-   * PSCredentialObject
-   */
-  readonly type?: ScriptParameterTypes;
-  /** The parameter name that the script will expect a parameter value for */
-  name?: string;
-  /** User friendly description of the parameter */
-  readonly description?: string;
-  /**
-   * Should this parameter be visible to arm and passed in the parameters argument
-   * when executing
-   */
-  readonly visibility?: VisibilityParameterEnum;
-  /** Is this parameter required or optional */
-  readonly optional?: OptionalParamEnum;
-}
-
-export function scriptParameterDeserializer(item: any): ScriptParameter {
-  return {
-    type: item["type"],
-    name: item["name"],
-    description: item["description"],
-    visibility: item["visibility"],
-    optional: item["optional"],
-  };
-}
-
-/** Script Parameter types */
-export enum KnownScriptParameterTypes {
-  /** is string */
-  String = "String",
-  /** is secure string */
-  SecureString = "SecureString",
-  /** is credential */
-  Credential = "Credential",
-  /** is int */
-  Int = "Int",
-  /** is bool */
-  Bool = "Bool",
-  /** is float */
-  Float = "Float",
-}
-
-/**
- * Script Parameter types \
- * {@link KnownScriptParameterTypes} can be used interchangeably with ScriptParameterTypes,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **String**: is string \
- * **SecureString**: is secure string \
- * **Credential**: is credential \
- * **Int**: is int \
- * **Bool**: is bool \
- * **Float**: is float
- */
-export type ScriptParameterTypes = string;
-
-/** Visibility Parameter */
-export enum KnownVisibilityParameterEnum {
-  /** is visible */
-  Visible = "Visible",
-  /** is hidden */
-  Hidden = "Hidden",
-}
-
-/**
- * Visibility Parameter \
- * {@link KnownVisibilityParameterEnum} can be used interchangeably with VisibilityParameterEnum,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Visible**: is visible \
- * **Hidden**: is hidden
- */
-export type VisibilityParameterEnum = string;
-
-/** Optional Param */
-export enum KnownOptionalParamEnum {
-  /** is optional */
-  Optional = "Optional",
-  /** is required */
-  Required = "Required",
-}
-
-/**
- * Optional Param \
- * {@link KnownOptionalParamEnum} can be used interchangeably with OptionalParamEnum,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Optional**: is optional \
- * **Required**: is required
- */
-export type OptionalParamEnum = string;
-
-/** The response of a ScriptExecution list operation. */
-export interface _ScriptExecutionsList {
-  /** The ScriptExecution items on this page */
-  value: ScriptExecution[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _scriptExecutionsListDeserializer(
-  item: any,
-): _ScriptExecutionsList {
-  return {
-    value: scriptExecutionArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function scriptExecutionArraySerializer(
-  result: Array<ScriptExecution>,
-): any[] {
-  return result.map((item) => {
-    return scriptExecutionSerializer(item);
-  });
-}
-
-export function scriptExecutionArrayDeserializer(
-  result: Array<ScriptExecution>,
-): any[] {
-  return result.map((item) => {
-    return scriptExecutionDeserializer(item);
-  });
-}
-
-/** An instance of a script executed by a user - custom or AVS */
-export interface ScriptExecution extends ProxyResource {
-  /** The resource-specific properties for this resource. */
-  properties?: ScriptExecutionProperties;
-}
-
-export function scriptExecutionSerializer(item: ScriptExecution): any {
-  return {
-    properties: !item["properties"]
-      ? item["properties"]
-      : scriptExecutionPropertiesSerializer(item["properties"]),
-  };
-}
-
-export function scriptExecutionDeserializer(item: any): ScriptExecution {
-  return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : scriptExecutionPropertiesDeserializer(item["properties"]),
-  };
-}
-
-/** Properties of a user-invoked script */
-export interface ScriptExecutionProperties {
-  /** A reference to the script cmdlet resource if user is running a AVS script */
-  scriptCmdletId?: string;
-  /** Parameters the script will accept */
-  parameters?: ScriptExecutionParameterUnion[];
-  /**
-   * Parameters that will be hidden/not visible to ARM, such as passwords and
-   * credentials
-   */
-  hiddenParameters?: ScriptExecutionParameterUnion[];
-  /**
-   * Error message if the script was able to run, but if the script itself had
-   * errors or powershell threw an exception
-   */
-  failureReason?: string;
-  /** Time limit for execution */
-  timeout: string;
-  /** Time to live for the resource. If not provided, will be available for 60 days */
-  retention?: string;
-  /** Time the script execution was submitted */
-  readonly submittedAt?: Date;
-  /** Time the script execution was started */
-  readonly startedAt?: Date;
-  /** Time the script execution was finished */
-  readonly finishedAt?: Date;
-  /** The state of the script execution resource */
-  readonly provisioningState?: ScriptExecutionProvisioningState;
-  /** Standard output stream from the powershell execution */
-  output?: string[];
-  /** User-defined dictionary. */
-  namedOutputs?: Record<string, Record<string, any>>;
-  /** Standard information out stream from the powershell execution */
-  readonly information?: string[];
-  /** Standard warning out stream from the powershell execution */
-  readonly warnings?: string[];
-  /** Standard error output stream from the powershell execution */
-  readonly errors?: string[];
-}
-
-export function scriptExecutionPropertiesSerializer(
-  item: ScriptExecutionProperties,
-): any {
-  return {
-    scriptCmdletId: item["scriptCmdletId"],
-    parameters: !item["parameters"]
-      ? item["parameters"]
-      : scriptExecutionParameterUnionArraySerializer(item["parameters"]),
-    hiddenParameters: !item["hiddenParameters"]
-      ? item["hiddenParameters"]
-      : scriptExecutionParameterUnionArraySerializer(item["hiddenParameters"]),
-    failureReason: item["failureReason"],
-    timeout: item["timeout"],
-    retention: item["retention"],
-    output: !item["output"]
-      ? item["output"]
-      : item["output"].map((p: any) => {
-          return p;
-        }),
-    namedOutputs: !item["namedOutputs"]
-      ? item["namedOutputs"]
-      : _scriptExecutionPropertiesNamedOutputRecordSerializer(
-          item["namedOutputs"],
-        ),
-  };
-}
-
-export function scriptExecutionPropertiesDeserializer(
-  item: any,
-): ScriptExecutionProperties {
-  return {
-    scriptCmdletId: item["scriptCmdletId"],
-    parameters: !item["parameters"]
-      ? item["parameters"]
-      : scriptExecutionParameterUnionArrayDeserializer(item["parameters"]),
-    hiddenParameters: !item["hiddenParameters"]
-      ? item["hiddenParameters"]
-      : scriptExecutionParameterUnionArrayDeserializer(
-          item["hiddenParameters"],
-        ),
-    failureReason: item["failureReason"],
-    timeout: item["timeout"],
-    retention: item["retention"],
-    submittedAt: !item["submittedAt"]
-      ? item["submittedAt"]
-      : new Date(item["submittedAt"]),
-    startedAt: !item["startedAt"]
-      ? item["startedAt"]
-      : new Date(item["startedAt"]),
-    finishedAt: !item["finishedAt"]
-      ? item["finishedAt"]
-      : new Date(item["finishedAt"]),
-    provisioningState: item["provisioningState"],
-    output: !item["output"]
-      ? item["output"]
-      : item["output"].map((p: any) => {
-          return p;
-        }),
-    namedOutputs: !item["namedOutputs"]
-      ? item["namedOutputs"]
-      : _scriptExecutionPropertiesNamedOutputRecordDeserializer(
-          item["namedOutputs"],
-        ),
-    information: !item["information"]
-      ? item["information"]
-      : item["information"].map((p: any) => {
-          return p;
-        }),
-    warnings: !item["warnings"]
-      ? item["warnings"]
-      : item["warnings"].map((p: any) => {
-          return p;
-        }),
-    errors: !item["errors"]
-      ? item["errors"]
-      : item["errors"].map((p: any) => {
-          return p;
-        }),
-  };
-}
-
-export function scriptExecutionParameterUnionArraySerializer(
-  result: Array<ScriptExecutionParameterUnion>,
-): any[] {
-  return result.map((item) => {
-    return scriptExecutionParameterUnionSerializer(item);
-  });
-}
-
-export function scriptExecutionParameterUnionArrayDeserializer(
-  result: Array<ScriptExecutionParameterUnion>,
-): any[] {
-  return result.map((item) => {
-    return scriptExecutionParameterUnionDeserializer(item);
-  });
-}
-
-/** The arguments passed in to the execution */
-export interface ScriptExecutionParameter {
-  /** script execution parameter type */
-  /** The discriminator possible values: SecureValue, Value, Credential */
-  type: ScriptExecutionParameterType;
-  /** The parameter name */
-  name: string;
-}
-
-export function scriptExecutionParameterSerializer(
-  item: ScriptExecutionParameter,
-): any {
-  return { type: item["type"], name: item["name"] };
-}
-
-export function scriptExecutionParameterDeserializer(
-  item: any,
-): ScriptExecutionParameter {
-  return {
-    type: item["type"],
-    name: item["name"],
-  };
-}
-
-/** Alias for ScriptExecutionParameterUnion */
-export type ScriptExecutionParameterUnion =
-  | ScriptSecureStringExecutionParameter
-  | ScriptStringExecutionParameter
-  | PSCredentialExecutionParameter
-  | ScriptExecutionParameter;
-
-export function scriptExecutionParameterUnionSerializer(
-  item: ScriptExecutionParameterUnion,
-): any {
-  switch (item.type) {
-    case "SecureValue":
-      return scriptSecureStringExecutionParameterSerializer(
-        item as ScriptSecureStringExecutionParameter,
-      );
-
-    case "Value":
-      return scriptStringExecutionParameterSerializer(
-        item as ScriptStringExecutionParameter,
-      );
-
-    case "Credential":
-      return psCredentialExecutionParameterSerializer(
-        item as PSCredentialExecutionParameter,
-      );
-
-    default:
-      return scriptExecutionParameterSerializer(item);
-  }
-}
-
-export function scriptExecutionParameterUnionDeserializer(
-  item: any,
-): ScriptExecutionParameterUnion {
-  switch (item.type) {
-    case "SecureValue":
-      return scriptSecureStringExecutionParameterDeserializer(
-        item as ScriptSecureStringExecutionParameter,
-      );
-
-    case "Value":
-      return scriptStringExecutionParameterDeserializer(
-        item as ScriptStringExecutionParameter,
-      );
-
-    case "Credential":
-      return psCredentialExecutionParameterDeserializer(
-        item as PSCredentialExecutionParameter,
-      );
-
-    default:
-      return scriptExecutionParameterDeserializer(item);
-  }
-}
-
-/** script execution parameter type */
-export enum KnownScriptExecutionParameterType {
-  Value = "Value",
-  SecureValue = "SecureValue",
-  Credential = "Credential",
-}
-
-/**
- * script execution parameter type \
- * {@link KnownScriptExecutionParameterType} can be used interchangeably with ScriptExecutionParameterType,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Value** \
- * **SecureValue** \
- * **Credential**
- */
-export type ScriptExecutionParameterType = string;
-
-/** a plain text value execution parameter */
-export interface ScriptSecureStringExecutionParameter
-  extends ScriptExecutionParameter {
-  /** A secure value for the passed parameter, not to be stored in logs */
-  secureValue?: string;
-  /** The type of execution parameter */
-  type: "SecureValue";
-}
-
-export function scriptSecureStringExecutionParameterSerializer(
-  item: ScriptSecureStringExecutionParameter,
-): any {
-  return {
-    type: item["type"],
-    name: item["name"],
-    secureValue: item["secureValue"],
-  };
-}
-
-export function scriptSecureStringExecutionParameterDeserializer(
-  item: any,
-): ScriptSecureStringExecutionParameter {
-  return {
-    type: item["type"],
-    name: item["name"],
-    secureValue: item["secureValue"],
-  };
-}
-
-/** a plain text value execution parameter */
-export interface ScriptStringExecutionParameter
-  extends ScriptExecutionParameter {
-  /** The value for the passed parameter */
-  value?: string;
-  /** The type of execution parameter */
-  type: "Value";
-}
-
-export function scriptStringExecutionParameterSerializer(
-  item: ScriptStringExecutionParameter,
-): any {
-  return { type: item["type"], name: item["name"], value: item["value"] };
-}
-
-export function scriptStringExecutionParameterDeserializer(
-  item: any,
-): ScriptStringExecutionParameter {
-  return {
-    type: item["type"],
-    name: item["name"],
-    value: item["value"],
-  };
-}
-
-/** a powershell credential object */
-export interface PSCredentialExecutionParameter
-  extends ScriptExecutionParameter {
-  /** username for login */
-  username?: string;
-  /** password for login */
-  password?: string;
-  /** The type of execution parameter */
-  type: "Credential";
-}
-
-export function psCredentialExecutionParameterSerializer(
-  item: PSCredentialExecutionParameter,
-): any {
-  return {
-    type: item["type"],
-    name: item["name"],
-    username: item["username"],
-    password: item["password"],
-  };
-}
-
-export function psCredentialExecutionParameterDeserializer(
-  item: any,
-): PSCredentialExecutionParameter {
-  return {
-    type: item["type"],
-    name: item["name"],
-    username: item["username"],
-    password: item["password"],
-  };
-}
-
-/** Script Execution provisioning state */
-export enum KnownScriptExecutionProvisioningState {
-  /** Resource has been created. */
-  Succeeded = "Succeeded",
-  /** Resource creation failed. */
-  Failed = "Failed",
-  /** Resource creation was canceled. */
-  Canceled = "Canceled",
-  /** is pending */
-  Pending = "Pending",
-  /** is running */
-  Running = "Running",
-  /** is cancelling */
-  Cancelling = "Cancelling",
-  /** is cancelled */
-  Cancelled = "Cancelled",
-  /** is deleting */
-  Deleting = "Deleting",
-}
-
-/**
- * Script Execution provisioning state \
- * {@link KnownScriptExecutionProvisioningState} can be used interchangeably with ScriptExecutionProvisioningState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Succeeded**: Resource has been created. \
- * **Failed**: Resource creation failed. \
- * **Canceled**: Resource creation was canceled. \
- * **Pending**: is pending \
- * **Running**: is running \
- * **Cancelling**: is cancelling \
- * **Cancelled**: is cancelled \
- * **Deleting**: is deleting
- */
-export type ScriptExecutionProvisioningState = string;
-
-export function _scriptExecutionPropertiesNamedOutputRecordSerializer(
-  item: Record<string, _ScriptExecutionPropertiesNamedOutput>,
-): Record<string, any> {
-  const result: Record<string, any> = {};
-  Object.keys(item).map((key) => {
-    result[key] = !item[key]
-      ? item[key]
-      : _scriptExecutionPropertiesNamedOutputSerializer(item[key]);
-  });
-  return result;
-}
-
-export function _scriptExecutionPropertiesNamedOutputRecordDeserializer(
-  item: Record<string, any>,
-): Record<string, _ScriptExecutionPropertiesNamedOutput> {
-  const result: Record<string, any> = {};
-  Object.keys(item).map((key) => {
-    result[key] = !item[key]
-      ? item[key]
-      : _scriptExecutionPropertiesNamedOutputDeserializer(item[key]);
-  });
-  return result;
-}
-
-/** model interface _ScriptExecutionPropertiesNamedOutput */
-export interface _ScriptExecutionPropertiesNamedOutput {}
-
-export function _scriptExecutionPropertiesNamedOutputSerializer(
-  item: _ScriptExecutionPropertiesNamedOutput,
-): any {
-  return item;
-}
-
-export function _scriptExecutionPropertiesNamedOutputDeserializer(
-  item: any,
-): _ScriptExecutionPropertiesNamedOutput {
-  return item;
-}
-
-/** The response of a ScriptPackage list operation. */
-export interface _ScriptPackagesList {
-  /** The ScriptPackage items on this page */
-  value: ScriptPackage[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _scriptPackagesListDeserializer(
-  item: any,
-): _ScriptPackagesList {
-  return {
-    value: scriptPackageArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function scriptPackageArrayDeserializer(
-  result: Array<ScriptPackage>,
-): any[] {
-  return result.map((item) => {
-    return scriptPackageDeserializer(item);
-  });
-}
-
-/** Script Package resources available for execution */
-export interface ScriptPackage extends ProxyResource {
-  /** The resource-specific properties for this resource. */
-  properties?: ScriptPackageProperties;
-}
-
-export function scriptPackageDeserializer(item: any): ScriptPackage {
-  return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : scriptPackagePropertiesDeserializer(item["properties"]),
-  };
-}
-
-/** Properties of a Script Package subresource */
-export interface ScriptPackageProperties {
-  /** The provisioning state of the resource. */
-  readonly provisioningState?: ScriptPackageProvisioningState;
-  /** User friendly description of the package */
-  readonly description?: string;
-  /** Module version */
-  readonly version?: string;
-  /** Company that created and supports the package */
-  readonly company?: string;
-  /** Link to support by the package vendor */
-  readonly uri?: string;
-}
-
-export function scriptPackagePropertiesDeserializer(
-  item: any,
-): ScriptPackageProperties {
-  return {
-    provisioningState: item["provisioningState"],
-    description: item["description"],
-    version: item["version"],
-    company: item["company"],
-    uri: item["uri"],
-  };
-}
-
-/** Script Package provisioning state */
-export enum KnownScriptPackageProvisioningState {
-  /** Resource has been created. */
-  Succeeded = "Succeeded",
-  /** Resource creation failed. */
-  Failed = "Failed",
-  /** Resource creation was canceled. */
-  Canceled = "Canceled",
-}
-
-/**
- * Script Package provisioning state \
- * {@link KnownScriptPackageProvisioningState} can be used interchangeably with ScriptPackageProvisioningState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Succeeded**: Resource has been created. \
- * **Failed**: Resource creation failed. \
- * **Canceled**: Resource creation was canceled.
- */
-export type ScriptPackageProvisioningState = string;
-
-/** Paged collection of ResourceSku items */
-export interface _PagedResourceSku {
-  /** The ResourceSku items on this page */
-  value: ResourceSku[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _pagedResourceSkuDeserializer(item: any): _PagedResourceSku {
-  return {
-    value: resourceSkuArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function resourceSkuArrayDeserializer(
-  result: Array<ResourceSku>,
-): any[] {
-  return result.map((item) => {
-    return resourceSkuDeserializer(item);
-  });
-}
-
-/** A SKU for a resource. */
-export interface ResourceSku {
-  /** The type of resource the SKU applies to. */
-  resourceType: ResourceSkuResourceType;
-  /** The name of the SKU. */
-  name: string;
-  /** The tier of virtual machines in a scale set */
-  tier?: string;
-  /** The size of the SKU. */
-  size?: string;
-  /** The family of the SKU. */
-  family?: string;
-  /** The set of locations that the SKU is available. */
-  locations: string[];
-  /** A list of locations and availability zones in those locations where the SKU is available */
-  locationInfo: ResourceSkuLocationInfo[];
-  /** Name value pairs to describe the capability. */
-  capabilities?: ResourceSkuCapabilities[];
-  /** The restrictions of the SKU. */
-  restrictions: ResourceSkuRestrictions[];
-}
-
-export function resourceSkuDeserializer(item: any): ResourceSku {
+): EventModelProperties {
   return {
     resourceType: item["resourceType"],
-    name: item["name"],
-    tier: item["tier"],
-    size: item["size"],
-    family: item["family"],
-    locations: item["locations"].map((p: any) => {
-      return p;
-    }),
-    locationInfo: resourceSkuLocationInfoArrayDeserializer(
-      item["locationInfo"],
+    resourceName: item["resourceName"],
+    eventType: item["eventType"],
+    eventName: item["eventName"],
+    timeOfOccurrence: !item["timeOfOccurrence"]
+      ? item["timeOfOccurrence"]
+      : new Date(item["timeOfOccurrence"]),
+    severity: item["severity"],
+    description: item["description"],
+    correlationId: item["correlationId"],
+    healthErrors: !item["healthErrors"]
+      ? item["healthErrors"]
+      : healthErrorModelArrayDeserializer(item["healthErrors"]),
+    customProperties: eventModelCustomPropertiesUnionDeserializer(
+      item["customProperties"],
     ),
-    capabilities: !item["capabilities"]
-      ? item["capabilities"]
-      : resourceSkuCapabilitiesArrayDeserializer(item["capabilities"]),
-    restrictions: resourceSkuRestrictionsArrayDeserializer(
-      item["restrictions"],
-    ),
+    provisioningState: item["provisioningState"],
   };
 }
 
-/** Describes the type of resource the SKU applies to. */
-export enum KnownResourceSkuResourceType {
-  /** The SKU is for a private cloud. */
-  PrivateClouds = "privateClouds",
-  /** The SKU is for a private cloud cluster. */
-  PrivateCloudsClusters = "privateClouds/clusters",
-}
-
-/**
- * Describes the type of resource the SKU applies to. \
- * {@link KnownResourceSkuResourceType} can be used interchangeably with ResourceSkuResourceType,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **privateClouds**: The SKU is for a private cloud. \
- * **privateClouds\/clusters**: The SKU is for a private cloud cluster.
- */
-export type ResourceSkuResourceType = string;
-
-export function resourceSkuLocationInfoArrayDeserializer(
-  result: Array<ResourceSkuLocationInfo>,
+export function healthErrorModelArrayDeserializer(
+  result: Array<HealthErrorModel>,
 ): any[] {
   return result.map((item) => {
-    return resourceSkuLocationInfoDeserializer(item);
+    return healthErrorModelDeserializer(item);
   });
 }
 
-/** Describes an available Compute SKU Location Information. */
-export interface ResourceSkuLocationInfo {
-  /** Location of the SKU */
-  location: string;
-  /** List of availability zones where the SKU is supported. */
-  zones: string[];
-  /** Gets details of capabilities available to a SKU in specific zones. */
-  zoneDetails: ResourceSkuZoneDetails[];
+/** Health error model. */
+export interface HealthErrorModel {
+  /** Gets or sets the type of affected resource type. */
+  affectedResourceType?: string;
+  /** Gets or sets the list of affected resource correlation Ids. This can be used to uniquely identify the count of items affected by a specific category and severity as well as count of item affected by an specific issue. */
+  affectedResourceCorrelationIds?: string[];
+  /** Gets or sets a list of child health errors associated with this error. */
+  childErrors?: InnerHealthErrorModel[];
+  /** Gets or sets the error code. */
+  readonly code?: string;
+  /** Gets or sets the health category. */
+  readonly healthCategory?: string;
+  /** Gets or sets the error category. */
+  readonly category?: string;
+  /** Gets or sets the error severity. */
+  readonly severity?: string;
+  /** Gets or sets the error source. */
+  readonly source?: string;
+  /** Gets or sets the error creation time. */
+  readonly creationTime?: Date;
+  /** Gets or sets a value indicating whether the error is customer resolvable. */
+  readonly isCustomerResolvable?: boolean;
+  /** Gets or sets the error summary. */
+  readonly summary?: string;
+  /** Gets or sets the error message. */
+  readonly message?: string;
+  /** Gets or sets possible causes of the error. */
+  readonly causes?: string;
+  /** Gets or sets recommended action to resolve the error. */
+  readonly recommendation?: string;
 }
 
-export function resourceSkuLocationInfoDeserializer(
-  item: any,
-): ResourceSkuLocationInfo {
+export function healthErrorModelDeserializer(item: any): HealthErrorModel {
   return {
+    affectedResourceType: item["affectedResourceType"],
+    affectedResourceCorrelationIds: !item["affectedResourceCorrelationIds"]
+      ? item["affectedResourceCorrelationIds"]
+      : item["affectedResourceCorrelationIds"].map((p: any) => {
+          return p;
+        }),
+    childErrors: !item["childErrors"]
+      ? item["childErrors"]
+      : innerHealthErrorModelArrayDeserializer(item["childErrors"]),
+    code: item["code"],
+    healthCategory: item["healthCategory"],
+    category: item["category"],
+    severity: item["severity"],
+    source: item["source"],
+    creationTime: !item["creationTime"]
+      ? item["creationTime"]
+      : new Date(item["creationTime"]),
+    isCustomerResolvable: item["isCustomerResolvable"],
+    summary: item["summary"],
+    message: item["message"],
+    causes: item["causes"],
+    recommendation: item["recommendation"],
+  };
+}
+
+export function innerHealthErrorModelArrayDeserializer(
+  result: Array<InnerHealthErrorModel>,
+): any[] {
+  return result.map((item) => {
+    return innerHealthErrorModelDeserializer(item);
+  });
+}
+
+/** Inner health error model. */
+export interface InnerHealthErrorModel {
+  /** Gets or sets the error code. */
+  readonly code?: string;
+  /** Gets or sets the health category. */
+  readonly healthCategory?: string;
+  /** Gets or sets the error category. */
+  readonly category?: string;
+  /** Gets or sets the error severity. */
+  readonly severity?: string;
+  /** Gets or sets the error source. */
+  readonly source?: string;
+  /** Gets or sets the error creation time. */
+  readonly creationTime?: Date;
+  /** Gets or sets a value indicating whether the error is customer resolvable. */
+  readonly isCustomerResolvable?: boolean;
+  /** Gets or sets the error summary. */
+  readonly summary?: string;
+  /** Gets or sets the error message. */
+  readonly message?: string;
+  /** Gets or sets possible causes of the error. */
+  readonly causes?: string;
+  /** Gets or sets recommended action to resolve the error. */
+  readonly recommendation?: string;
+}
+
+export function innerHealthErrorModelDeserializer(
+  item: any,
+): InnerHealthErrorModel {
+  return {
+    code: item["code"],
+    healthCategory: item["healthCategory"],
+    category: item["category"],
+    severity: item["severity"],
+    source: item["source"],
+    creationTime: !item["creationTime"]
+      ? item["creationTime"]
+      : new Date(item["creationTime"]),
+    isCustomerResolvable: item["isCustomerResolvable"],
+    summary: item["summary"],
+    message: item["message"],
+    causes: item["causes"],
+    recommendation: item["recommendation"],
+  };
+}
+
+/** Event model custom properties. */
+export interface EventModelCustomProperties {
+  /** Discriminator property for EventModelCustomProperties. */
+  /** The discriminator possible values: HyperVToAzStackHCI, VMwareToAzStackHCI */
+  instanceType: string;
+}
+
+export function eventModelCustomPropertiesDeserializer(
+  item: any,
+): EventModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+  };
+}
+
+/** Alias for EventModelCustomPropertiesUnion */
+export type EventModelCustomPropertiesUnion =
+  | HyperVToAzStackHCIEventModelCustomProperties
+  | VMwareToAzStackHCIEventModelCustomProperties
+  | EventModelCustomProperties;
+
+export function eventModelCustomPropertiesUnionDeserializer(
+  item: any,
+): EventModelCustomPropertiesUnion {
+  switch (item.instanceType) {
+    case "HyperVToAzStackHCI":
+      return hyperVToAzStackHCIEventModelCustomPropertiesDeserializer(
+        item as HyperVToAzStackHCIEventModelCustomProperties,
+      );
+
+    case "VMwareToAzStackHCI":
+      return vMwareToAzStackHCIEventModelCustomPropertiesDeserializer(
+        item as VMwareToAzStackHCIEventModelCustomProperties,
+      );
+
+    default:
+      return eventModelCustomPropertiesDeserializer(item);
+  }
+}
+
+/** HyperV to  AzStackHCI event model custom properties. This class provides provider specific details for events of type DataContract.HealthEvents.HealthEventType.ProtectedItemHealth and DataContract.HealthEvents.HealthEventType.AgentHealth. */
+export interface HyperVToAzStackHCIEventModelCustomProperties
+  extends EventModelCustomProperties {
+  /** Gets or sets the friendly name of the source which has raised this health event. */
+  readonly eventSourceFriendlyName?: string;
+  /** Gets or sets the protected item friendly name. */
+  readonly protectedItemFriendlyName?: string;
+  /** Gets or sets the source appliance name. */
+  readonly sourceApplianceName?: string;
+  /** Gets or sets the source target name. */
+  readonly targetApplianceName?: string;
+  /** Gets or sets the server type. */
+  readonly serverType?: string;
+  /** Gets or sets the instance type. */
+  instanceType: "HyperVToAzStackHCI";
+}
+
+export function hyperVToAzStackHCIEventModelCustomPropertiesDeserializer(
+  item: any,
+): HyperVToAzStackHCIEventModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+    eventSourceFriendlyName: item["eventSourceFriendlyName"],
+    protectedItemFriendlyName: item["protectedItemFriendlyName"],
+    sourceApplianceName: item["sourceApplianceName"],
+    targetApplianceName: item["targetApplianceName"],
+    serverType: item["serverType"],
+  };
+}
+
+/** VMware to  AzStackHCI event model custom properties. This class provides provider specific details for events of type DataContract.HealthEvents.HealthEventType.ProtectedItemHealth and DataContract.HealthEvents.HealthEventType.AgentHealth. */
+export interface VMwareToAzStackHCIEventModelCustomProperties
+  extends EventModelCustomProperties {
+  /** Gets or sets the friendly name of the source which has raised this health event. */
+  readonly eventSourceFriendlyName?: string;
+  /** Gets or sets the protected item friendly name. */
+  readonly protectedItemFriendlyName?: string;
+  /** Gets or sets the source appliance name. */
+  readonly sourceApplianceName?: string;
+  /** Gets or sets the source target name. */
+  readonly targetApplianceName?: string;
+  /** Gets or sets the server type. */
+  readonly serverType?: string;
+  /** Gets or sets the instance type. */
+  instanceType: "VMwareToAzStackHCI";
+}
+
+export function vMwareToAzStackHCIEventModelCustomPropertiesDeserializer(
+  item: any,
+): VMwareToAzStackHCIEventModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+    eventSourceFriendlyName: item["eventSourceFriendlyName"],
+    protectedItemFriendlyName: item["protectedItemFriendlyName"],
+    sourceApplianceName: item["sourceApplianceName"],
+    targetApplianceName: item["targetApplianceName"],
+    serverType: item["serverType"],
+  };
+}
+
+/** The response of a EventModel list operation. */
+export interface _EventModelListResult {
+  /** The EventModel items on this page */
+  value: EventModel[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _eventModelListResultDeserializer(
+  item: any,
+): _EventModelListResult {
+  return {
+    value: eventModelArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function eventModelArrayDeserializer(result: Array<EventModel>): any[] {
+  return result.map((item) => {
+    return eventModelDeserializer(item);
+  });
+}
+
+/** Fabric model. */
+export interface FabricModel extends TrackedResource {
+  /** The resource-specific properties for this resource. */
+  properties?: FabricModelProperties;
+}
+
+export function fabricModelSerializer(item: FabricModel): any {
+  return {
+    tags: item["tags"],
     location: item["location"],
-    zones: item["zones"].map((p: any) => {
-      return p;
-    }),
-    zoneDetails: resourceSkuZoneDetailsArrayDeserializer(item["zoneDetails"]),
+    properties: !item["properties"]
+      ? item["properties"]
+      : fabricModelPropertiesSerializer(item["properties"]),
   };
 }
 
-export function resourceSkuZoneDetailsArrayDeserializer(
-  result: Array<ResourceSkuZoneDetails>,
-): any[] {
-  return result.map((item) => {
-    return resourceSkuZoneDetailsDeserializer(item);
-  });
-}
-
-/** Describes The zonal capabilities of a SKU. */
-export interface ResourceSkuZoneDetails {
-  /** Gets the set of zones that the SKU is available in with the specified capabilities. */
-  name: string[];
-  /** A list of capabilities that are available for the SKU in the specified list of zones. */
-  capabilities: ResourceSkuCapabilities[];
-}
-
-export function resourceSkuZoneDetailsDeserializer(
-  item: any,
-): ResourceSkuZoneDetails {
+export function fabricModelDeserializer(item: any): FabricModel {
   return {
-    name: item["name"].map((p: any) => {
-      return p;
-    }),
-    capabilities: resourceSkuCapabilitiesArrayDeserializer(
-      item["capabilities"],
+    tags: item["tags"],
+    location: item["location"],
+    id: item["id"],
+    name: item["name"],
+    type: item["type"],
+    systemData: !item["systemData"]
+      ? item["systemData"]
+      : systemDataDeserializer(item["systemData"]),
+    properties: !item["properties"]
+      ? item["properties"]
+      : fabricModelPropertiesDeserializer(item["properties"]),
+  };
+}
+
+/** Fabric model properties. */
+export interface FabricModelProperties {
+  /** Gets or sets the provisioning state of the fabric. */
+  readonly provisioningState?: ProvisioningState;
+  /** Gets or sets the service endpoint. */
+  readonly serviceEndpoint?: string;
+  /** Gets or sets the service resource Id. */
+  readonly serviceResourceId?: string;
+  /** Gets or sets the fabric health. */
+  readonly health?: HealthStatus;
+  /** Gets or sets the list of health errors. */
+  readonly healthErrors?: HealthErrorModel[];
+  /** Fabric model custom properties. */
+  customProperties: FabricModelCustomPropertiesUnion;
+}
+
+export function fabricModelPropertiesSerializer(
+  item: FabricModelProperties,
+): any {
+  return {
+    customProperties: fabricModelCustomPropertiesUnionSerializer(
+      item["customProperties"],
     ),
   };
 }
 
-export function resourceSkuCapabilitiesArrayDeserializer(
-  result: Array<ResourceSkuCapabilities>,
-): any[] {
-  return result.map((item) => {
-    return resourceSkuCapabilitiesDeserializer(item);
-  });
-}
-
-/** Describes The SKU capabilities object. */
-export interface ResourceSkuCapabilities {
-  /** The name of the SKU capability. */
-  name: string;
-  /** The value of the SKU capability. */
-  value: string;
-}
-
-export function resourceSkuCapabilitiesDeserializer(
+export function fabricModelPropertiesDeserializer(
   item: any,
-): ResourceSkuCapabilities {
+): FabricModelProperties {
   return {
-    name: item["name"],
-    value: item["value"],
-  };
-}
-
-export function resourceSkuRestrictionsArrayDeserializer(
-  result: Array<ResourceSkuRestrictions>,
-): any[] {
-  return result.map((item) => {
-    return resourceSkuRestrictionsDeserializer(item);
-  });
-}
-
-/** The restrictions of the SKU. */
-export interface ResourceSkuRestrictions {
-  /** the type of restrictions. */
-  type?: ResourceSkuRestrictionsType;
-  /** The value of restrictions. If the restriction type is set to location. This would be different locations where the SKU is restricted. */
-  values: string[];
-  /** The information about the restriction where the SKU cannot be used. */
-  restrictionInfo: ResourceSkuRestrictionInfo;
-  /** the reason for restriction. */
-  reasonCode?: ResourceSkuRestrictionsReasonCode;
-}
-
-export function resourceSkuRestrictionsDeserializer(
-  item: any,
-): ResourceSkuRestrictions {
-  return {
-    type: item["type"],
-    values: item["values"].map((p: any) => {
-      return p;
-    }),
-    restrictionInfo: resourceSkuRestrictionInfoDeserializer(
-      item["restrictionInfo"],
+    provisioningState: item["provisioningState"],
+    serviceEndpoint: item["serviceEndpoint"],
+    serviceResourceId: item["serviceResourceId"],
+    health: item["health"],
+    healthErrors: !item["healthErrors"]
+      ? item["healthErrors"]
+      : healthErrorModelArrayDeserializer(item["healthErrors"]),
+    customProperties: fabricModelCustomPropertiesUnionDeserializer(
+      item["customProperties"],
     ),
-    reasonCode: item["reasonCode"],
   };
 }
 
-/** Describes the kind of SKU restrictions that can exist */
-export enum KnownResourceSkuRestrictionsType {
-  /** SKU restricted by location. */
-  Location = "Location",
-  /** SKU restricted by availability zone. */
-  Zone = "Zone",
-}
-
-/**
- * Describes the kind of SKU restrictions that can exist \
- * {@link KnownResourceSkuRestrictionsType} can be used interchangeably with ResourceSkuRestrictionsType,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Location**: SKU restricted by location. \
- * **Zone**: SKU restricted by availability zone.
- */
-export type ResourceSkuRestrictionsType = string;
-
-/** Describes an available Compute SKU Restriction Information. */
-export interface ResourceSkuRestrictionInfo {
-  /** Locations where the SKU is restricted */
-  locations?: string[];
-  /** List of availability zones where the SKU is restricted. */
-  zones?: string[];
-}
-
-export function resourceSkuRestrictionInfoDeserializer(
-  item: any,
-): ResourceSkuRestrictionInfo {
-  return {
-    locations: !item["locations"]
-      ? item["locations"]
-      : item["locations"].map((p: any) => {
-          return p;
-        }),
-    zones: !item["zones"]
-      ? item["zones"]
-      : item["zones"].map((p: any) => {
-          return p;
-        }),
-  };
-}
-
-/** Describes the reason for SKU restriction. */
-export enum KnownResourceSkuRestrictionsReasonCode {
-  /** The restriction is due to exceeding a quota limitation. */
-  QuotaId = "QuotaId",
-  /** The restriction is not available for this subscription. */
-  NotAvailableForSubscription = "NotAvailableForSubscription",
-}
-
-/**
- * Describes the reason for SKU restriction. \
- * {@link KnownResourceSkuRestrictionsReasonCode} can be used interchangeably with ResourceSkuRestrictionsReasonCode,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **QuotaId**: The restriction is due to exceeding a quota limitation. \
- * **NotAvailableForSubscription**: The restriction is not available for this subscription.
- */
-export type ResourceSkuRestrictionsReasonCode = string;
-
-/** The response of a VirtualMachine list operation. */
-export interface _VirtualMachinesList {
-  /** The VirtualMachine items on this page */
-  value: VirtualMachine[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _virtualMachinesListDeserializer(
-  item: any,
-): _VirtualMachinesList {
-  return {
-    value: virtualMachineArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function virtualMachineArrayDeserializer(
-  result: Array<VirtualMachine>,
-): any[] {
-  return result.map((item) => {
-    return virtualMachineDeserializer(item);
-  });
-}
-
-/** Virtual Machine */
-export interface VirtualMachine extends ProxyResource {
-  /** The resource-specific properties for this resource. */
-  properties?: VirtualMachineProperties;
-}
-
-export function virtualMachineDeserializer(item: any): VirtualMachine {
-  return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : virtualMachinePropertiesDeserializer(item["properties"]),
-  };
-}
-
-/** Virtual Machine Properties */
-export interface VirtualMachineProperties {
-  /** The provisioning state of the resource. */
-  readonly provisioningState?: VirtualMachineProvisioningState;
-  /** Display name of the VM. */
-  readonly displayName?: string;
-  /** vCenter managed object reference ID of the virtual machine */
-  readonly moRefId?: string;
-  /** Path to virtual machine's folder starting from datacenter virtual machine folder */
-  readonly folderPath?: string;
-  /** Whether VM DRS-driven movement is restricted (enabled) or not (disabled) */
-  readonly restrictMovement?: VirtualMachineRestrictMovementState;
-}
-
-export function virtualMachinePropertiesDeserializer(
-  item: any,
-): VirtualMachineProperties {
-  return {
-    provisioningState: item["provisioningState"],
-    displayName: item["displayName"],
-    moRefId: item["moRefId"],
-    folderPath: item["folderPath"],
-    restrictMovement: item["restrictMovement"],
-  };
-}
-
-/** Virtual Machine provisioning state */
-export enum KnownVirtualMachineProvisioningState {
-  /** Resource has been created. */
-  Succeeded = "Succeeded",
-  /** Resource creation failed. */
-  Failed = "Failed",
-  /** Resource creation was canceled. */
-  Canceled = "Canceled",
-}
-
-/**
- * Virtual Machine provisioning state \
- * {@link KnownVirtualMachineProvisioningState} can be used interchangeably with VirtualMachineProvisioningState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Succeeded**: Resource has been created. \
- * **Failed**: Resource creation failed. \
- * **Canceled**: Resource creation was canceled.
- */
-export type VirtualMachineProvisioningState = string;
-
-/** Virtual Machine Restrict Movement state */
-export enum KnownVirtualMachineRestrictMovementState {
-  /** is enabled */
-  Enabled = "Enabled",
-  /** is disabled */
-  Disabled = "Disabled",
-}
-
-/**
- * Virtual Machine Restrict Movement state \
- * {@link KnownVirtualMachineRestrictMovementState} can be used interchangeably with VirtualMachineRestrictMovementState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Enabled**: is enabled \
- * **Disabled**: is disabled
- */
-export type VirtualMachineRestrictMovementState = string;
-
-/** Set VM DRS-driven movement to restricted (enabled) or not (disabled) */
-export interface VirtualMachineRestrictMovement {
-  /** Whether VM DRS-driven movement is restricted (enabled) or not (disabled) */
-  restrictMovement?: VirtualMachineRestrictMovementState;
-}
-
-export function virtualMachineRestrictMovementSerializer(
-  item: VirtualMachineRestrictMovement,
-): any {
-  return { restrictMovement: item["restrictMovement"] };
-}
-
-/** The response of a WorkloadNetworkDhcp list operation. */
-export interface _WorkloadNetworkDhcpList {
-  /** The WorkloadNetworkDhcp items on this page */
-  value: WorkloadNetworkDhcp[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _workloadNetworkDhcpListDeserializer(
-  item: any,
-): _WorkloadNetworkDhcpList {
-  return {
-    value: workloadNetworkDhcpArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function workloadNetworkDhcpArraySerializer(
-  result: Array<WorkloadNetworkDhcp>,
-): any[] {
-  return result.map((item) => {
-    return workloadNetworkDhcpSerializer(item);
-  });
-}
-
-export function workloadNetworkDhcpArrayDeserializer(
-  result: Array<WorkloadNetworkDhcp>,
-): any[] {
-  return result.map((item) => {
-    return workloadNetworkDhcpDeserializer(item);
-  });
-}
-
-/** NSX DHCP */
-export interface WorkloadNetworkDhcp extends ProxyResource {
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkDhcpEntityUnion;
-}
-
-export function workloadNetworkDhcpSerializer(item: WorkloadNetworkDhcp): any {
-  return {
-    properties: !item["properties"]
-      ? item["properties"]
-      : workloadNetworkDhcpEntityUnionSerializer(item["properties"]),
-  };
-}
-
-export function workloadNetworkDhcpDeserializer(
-  item: any,
-): WorkloadNetworkDhcp {
-  return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : workloadNetworkDhcpEntityUnionDeserializer(item["properties"]),
-  };
-}
-
-/**
- * Base class for WorkloadNetworkDhcpServer and WorkloadNetworkDhcpRelay to
- * inherit from
- */
-export interface WorkloadNetworkDhcpEntity {
-  /** Type of DHCP: SERVER or RELAY. */
-  /** The discriminator possible values: SERVER, RELAY */
-  dhcpType: DhcpTypeEnum;
-  /** Display name of the DHCP entity. */
-  displayName?: string;
-  /** NSX Segments consuming DHCP. */
-  readonly segments?: string[];
-  /** The provisioning state */
-  readonly provisioningState?: WorkloadNetworkDhcpProvisioningState;
-  /** NSX revision number. */
-  revision?: number;
-}
-
-export function workloadNetworkDhcpEntitySerializer(
-  item: WorkloadNetworkDhcpEntity,
-): any {
-  return {
-    dhcpType: item["dhcpType"],
-    displayName: item["displayName"],
-    revision: item["revision"],
-  };
-}
-
-export function workloadNetworkDhcpEntityDeserializer(
-  item: any,
-): WorkloadNetworkDhcpEntity {
-  return {
-    dhcpType: item["dhcpType"],
-    displayName: item["displayName"],
-    segments: !item["segments"]
-      ? item["segments"]
-      : item["segments"].map((p: any) => {
-          return p;
-        }),
-    provisioningState: item["provisioningState"],
-    revision: item["revision"],
-  };
-}
-
-/** Alias for WorkloadNetworkDhcpEntityUnion */
-export type WorkloadNetworkDhcpEntityUnion =
-  | WorkloadNetworkDhcpServer
-  | WorkloadNetworkDhcpRelay
-  | WorkloadNetworkDhcpEntity;
-
-export function workloadNetworkDhcpEntityUnionSerializer(
-  item: WorkloadNetworkDhcpEntityUnion,
-): any {
-  switch (item.dhcpType) {
-    case "SERVER":
-      return workloadNetworkDhcpServerSerializer(
-        item as WorkloadNetworkDhcpServer,
-      );
-
-    case "RELAY":
-      return workloadNetworkDhcpRelaySerializer(
-        item as WorkloadNetworkDhcpRelay,
-      );
-
-    default:
-      return workloadNetworkDhcpEntitySerializer(item);
-  }
-}
-
-export function workloadNetworkDhcpEntityUnionDeserializer(
-  item: any,
-): WorkloadNetworkDhcpEntityUnion {
-  switch (item.dhcpType) {
-    case "SERVER":
-      return workloadNetworkDhcpServerDeserializer(
-        item as WorkloadNetworkDhcpServer,
-      );
-
-    case "RELAY":
-      return workloadNetworkDhcpRelayDeserializer(
-        item as WorkloadNetworkDhcpRelay,
-      );
-
-    default:
-      return workloadNetworkDhcpEntityDeserializer(item);
-  }
-}
-
-/** Type of DHCP: SERVER or RELAY. */
-export enum KnownDhcpTypeEnum {
-  Server = "SERVER",
-  Relay = "RELAY",
-}
-
-/**
- * Type of DHCP: SERVER or RELAY. \
- * {@link KnownDhcpTypeEnum} can be used interchangeably with DhcpTypeEnum,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **SERVER** \
- * **RELAY**
- */
-export type DhcpTypeEnum = string;
-
-/** Workload Network DHCP provisioning state */
-export enum KnownWorkloadNetworkDhcpProvisioningState {
-  /** Resource has been created. */
-  Succeeded = "Succeeded",
-  /** Resource creation failed. */
-  Failed = "Failed",
-  /** Resource creation was canceled. */
-  Canceled = "Canceled",
-  /** is building */
-  Building = "Building",
-  /** is deleting */
-  Deleting = "Deleting",
-  /** is updating */
-  Updating = "Updating",
-}
-
-/**
- * Workload Network DHCP provisioning state \
- * {@link KnownWorkloadNetworkDhcpProvisioningState} can be used interchangeably with WorkloadNetworkDhcpProvisioningState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Succeeded**: Resource has been created. \
- * **Failed**: Resource creation failed. \
- * **Canceled**: Resource creation was canceled. \
- * **Building**: is building \
- * **Deleting**: is deleting \
- * **Updating**: is updating
- */
-export type WorkloadNetworkDhcpProvisioningState = string;
-
-/** NSX DHCP Server */
-export interface WorkloadNetworkDhcpServer extends WorkloadNetworkDhcpEntity {
-  /** DHCP Server Address. */
-  serverAddress?: string;
-  /** DHCP Server Lease Time. */
-  leaseTime?: number;
-  /** Type of DHCP: SERVER or RELAY. */
-  dhcpType: "SERVER";
-}
-
-export function workloadNetworkDhcpServerSerializer(
-  item: WorkloadNetworkDhcpServer,
-): any {
-  return {
-    dhcpType: item["dhcpType"],
-    displayName: item["displayName"],
-    revision: item["revision"],
-    serverAddress: item["serverAddress"],
-    leaseTime: item["leaseTime"],
-  };
-}
-
-export function workloadNetworkDhcpServerDeserializer(
-  item: any,
-): WorkloadNetworkDhcpServer {
-  return {
-    dhcpType: item["dhcpType"],
-    displayName: item["displayName"],
-    segments: !item["segments"]
-      ? item["segments"]
-      : item["segments"].map((p: any) => {
-          return p;
-        }),
-    provisioningState: item["provisioningState"],
-    revision: item["revision"],
-    serverAddress: item["serverAddress"],
-    leaseTime: item["leaseTime"],
-  };
-}
-
-/** NSX DHCP Relay */
-export interface WorkloadNetworkDhcpRelay extends WorkloadNetworkDhcpEntity {
-  /** DHCP Relay Addresses. Max 3. */
-  serverAddresses?: string[];
-  /** Type of DHCP: SERVER or RELAY. */
-  dhcpType: "RELAY";
-}
-
-export function workloadNetworkDhcpRelaySerializer(
-  item: WorkloadNetworkDhcpRelay,
-): any {
-  return {
-    dhcpType: item["dhcpType"],
-    displayName: item["displayName"],
-    revision: item["revision"],
-    serverAddresses: !item["serverAddresses"]
-      ? item["serverAddresses"]
-      : item["serverAddresses"].map((p: any) => {
-          return p;
-        }),
-  };
-}
-
-export function workloadNetworkDhcpRelayDeserializer(
-  item: any,
-): WorkloadNetworkDhcpRelay {
-  return {
-    dhcpType: item["dhcpType"],
-    displayName: item["displayName"],
-    segments: !item["segments"]
-      ? item["segments"]
-      : item["segments"].map((p: any) => {
-          return p;
-        }),
-    provisioningState: item["provisioningState"],
-    revision: item["revision"],
-    serverAddresses: !item["serverAddresses"]
-      ? item["serverAddresses"]
-      : item["serverAddresses"].map((p: any) => {
-          return p;
-        }),
-  };
-}
-
-/** The response of a WorkloadNetworkDnsService list operation. */
-export interface _WorkloadNetworkDnsServicesList {
-  /** The WorkloadNetworkDnsService items on this page */
-  value: WorkloadNetworkDnsService[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _workloadNetworkDnsServicesListDeserializer(
-  item: any,
-): _WorkloadNetworkDnsServicesList {
-  return {
-    value: workloadNetworkDnsServiceArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function workloadNetworkDnsServiceArraySerializer(
-  result: Array<WorkloadNetworkDnsService>,
-): any[] {
-  return result.map((item) => {
-    return workloadNetworkDnsServiceSerializer(item);
-  });
-}
-
-export function workloadNetworkDnsServiceArrayDeserializer(
-  result: Array<WorkloadNetworkDnsService>,
-): any[] {
-  return result.map((item) => {
-    return workloadNetworkDnsServiceDeserializer(item);
-  });
-}
-
-/** NSX DNS Service */
-export interface WorkloadNetworkDnsService extends ProxyResource {
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkDnsServiceProperties;
-}
-
-export function workloadNetworkDnsServiceSerializer(
-  item: WorkloadNetworkDnsService,
-): any {
-  return {
-    properties: !item["properties"]
-      ? item["properties"]
-      : workloadNetworkDnsServicePropertiesSerializer(item["properties"]),
-  };
-}
-
-export function workloadNetworkDnsServiceDeserializer(
-  item: any,
-): WorkloadNetworkDnsService {
-  return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : workloadNetworkDnsServicePropertiesDeserializer(item["properties"]),
-  };
-}
-
-/** NSX DNS Service Properties */
-export interface WorkloadNetworkDnsServiceProperties {
-  /** Display name of the DNS Service. */
-  displayName?: string;
-  /** DNS service IP of the DNS Service. */
-  dnsServiceIp?: string;
-  /** Default DNS zone of the DNS Service. */
-  defaultDnsZone?: string;
-  /** FQDN zones of the DNS Service. */
-  fqdnZones?: string[];
-  /** DNS Service log level. */
-  logLevel?: DnsServiceLogLevelEnum;
-  /** DNS Service status. */
-  readonly status?: DnsServiceStatusEnum;
-  /** The provisioning state */
-  readonly provisioningState?: WorkloadNetworkDnsServiceProvisioningState;
-  /** NSX revision number. */
-  revision?: number;
-}
-
-export function workloadNetworkDnsServicePropertiesSerializer(
-  item: WorkloadNetworkDnsServiceProperties,
-): any {
-  return {
-    displayName: item["displayName"],
-    dnsServiceIp: item["dnsServiceIp"],
-    defaultDnsZone: item["defaultDnsZone"],
-    fqdnZones: !item["fqdnZones"]
-      ? item["fqdnZones"]
-      : item["fqdnZones"].map((p: any) => {
-          return p;
-        }),
-    logLevel: item["logLevel"],
-    revision: item["revision"],
-  };
-}
-
-export function workloadNetworkDnsServicePropertiesDeserializer(
-  item: any,
-): WorkloadNetworkDnsServiceProperties {
-  return {
-    displayName: item["displayName"],
-    dnsServiceIp: item["dnsServiceIp"],
-    defaultDnsZone: item["defaultDnsZone"],
-    fqdnZones: !item["fqdnZones"]
-      ? item["fqdnZones"]
-      : item["fqdnZones"].map((p: any) => {
-          return p;
-        }),
-    logLevel: item["logLevel"],
-    status: item["status"],
-    provisioningState: item["provisioningState"],
-    revision: item["revision"],
-  };
-}
-
-/** DNS service log level */
-export enum KnownDnsServiceLogLevelEnum {
-  /** is debug */
-  Debug = "DEBUG",
-  /** is info */
-  Info = "INFO",
-  /** is warning */
-  Warning = "WARNING",
-  /** is error */
-  Error = "ERROR",
-  /** is fatal */
-  Fatal = "FATAL",
-}
-
-/**
- * DNS service log level \
- * {@link KnownDnsServiceLogLevelEnum} can be used interchangeably with DnsServiceLogLevelEnum,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **DEBUG**: is debug \
- * **INFO**: is info \
- * **WARNING**: is warning \
- * **ERROR**: is error \
- * **FATAL**: is fatal
- */
-export type DnsServiceLogLevelEnum = string;
-
-/** DNS service status */
-export enum KnownDnsServiceStatusEnum {
-  /** is success */
-  Success = "SUCCESS",
-  /** is failure */
-  Failure = "FAILURE",
-}
-
-/**
- * DNS service status \
- * {@link KnownDnsServiceStatusEnum} can be used interchangeably with DnsServiceStatusEnum,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **SUCCESS**: is success \
- * **FAILURE**: is failure
- */
-export type DnsServiceStatusEnum = string;
-
-/** Workload Network DNS Service provisioning state */
-export enum KnownWorkloadNetworkDnsServiceProvisioningState {
-  /** Resource has been created. */
-  Succeeded = "Succeeded",
-  /** Resource creation failed. */
-  Failed = "Failed",
-  /** Resource creation was canceled. */
-  Canceled = "Canceled",
-  /** is building */
-  Building = "Building",
-  /** is deleting */
-  Deleting = "Deleting",
-  /** is updating */
-  Updating = "Updating",
-}
-
-/**
- * Workload Network DNS Service provisioning state \
- * {@link KnownWorkloadNetworkDnsServiceProvisioningState} can be used interchangeably with WorkloadNetworkDnsServiceProvisioningState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Succeeded**: Resource has been created. \
- * **Failed**: Resource creation failed. \
- * **Canceled**: Resource creation was canceled. \
- * **Building**: is building \
- * **Deleting**: is deleting \
- * **Updating**: is updating
- */
-export type WorkloadNetworkDnsServiceProvisioningState = string;
-
-/** The response of a WorkloadNetworkDnsZone list operation. */
-export interface _WorkloadNetworkDnsZonesList {
-  /** The WorkloadNetworkDnsZone items on this page */
-  value: WorkloadNetworkDnsZone[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _workloadNetworkDnsZonesListDeserializer(
-  item: any,
-): _WorkloadNetworkDnsZonesList {
-  return {
-    value: workloadNetworkDnsZoneArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function workloadNetworkDnsZoneArraySerializer(
-  result: Array<WorkloadNetworkDnsZone>,
-): any[] {
-  return result.map((item) => {
-    return workloadNetworkDnsZoneSerializer(item);
-  });
-}
-
-export function workloadNetworkDnsZoneArrayDeserializer(
-  result: Array<WorkloadNetworkDnsZone>,
-): any[] {
-  return result.map((item) => {
-    return workloadNetworkDnsZoneDeserializer(item);
-  });
-}
-
-/** NSX DNS Zone */
-export interface WorkloadNetworkDnsZone extends ProxyResource {
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkDnsZoneProperties;
-}
-
-export function workloadNetworkDnsZoneSerializer(
-  item: WorkloadNetworkDnsZone,
-): any {
-  return {
-    properties: !item["properties"]
-      ? item["properties"]
-      : workloadNetworkDnsZonePropertiesSerializer(item["properties"]),
-  };
-}
-
-export function workloadNetworkDnsZoneDeserializer(
-  item: any,
-): WorkloadNetworkDnsZone {
-  return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : workloadNetworkDnsZonePropertiesDeserializer(item["properties"]),
-  };
-}
-
-/** NSX DNS Zone Properties */
-export interface WorkloadNetworkDnsZoneProperties {
-  /** Display name of the DNS Zone. */
-  displayName?: string;
-  /** Domain names of the DNS Zone. */
-  domain?: string[];
-  /** DNS Server IP array of the DNS Zone. */
-  dnsServerIps?: string[];
-  /** Source IP of the DNS Zone. */
-  sourceIp?: string;
-  /** Number of DNS Services using the DNS zone. */
-  dnsServices?: number;
-  /** The provisioning state */
-  readonly provisioningState?: WorkloadNetworkDnsZoneProvisioningState;
-  /** NSX revision number. */
-  revision?: number;
-}
-
-export function workloadNetworkDnsZonePropertiesSerializer(
-  item: WorkloadNetworkDnsZoneProperties,
-): any {
-  return {
-    displayName: item["displayName"],
-    domain: !item["domain"]
-      ? item["domain"]
-      : item["domain"].map((p: any) => {
-          return p;
-        }),
-    dnsServerIps: !item["dnsServerIps"]
-      ? item["dnsServerIps"]
-      : item["dnsServerIps"].map((p: any) => {
-          return p;
-        }),
-    sourceIp: item["sourceIp"],
-    dnsServices: item["dnsServices"],
-    revision: item["revision"],
-  };
-}
-
-export function workloadNetworkDnsZonePropertiesDeserializer(
-  item: any,
-): WorkloadNetworkDnsZoneProperties {
-  return {
-    displayName: item["displayName"],
-    domain: !item["domain"]
-      ? item["domain"]
-      : item["domain"].map((p: any) => {
-          return p;
-        }),
-    dnsServerIps: !item["dnsServerIps"]
-      ? item["dnsServerIps"]
-      : item["dnsServerIps"].map((p: any) => {
-          return p;
-        }),
-    sourceIp: item["sourceIp"],
-    dnsServices: item["dnsServices"],
-    provisioningState: item["provisioningState"],
-    revision: item["revision"],
-  };
-}
-
-/** Workload Network DNS Zone provisioning state */
-export enum KnownWorkloadNetworkDnsZoneProvisioningState {
-  /** Resource has been created. */
-  Succeeded = "Succeeded",
-  /** Resource creation failed. */
-  Failed = "Failed",
-  /** Resource creation was canceled. */
-  Canceled = "Canceled",
-  /** is building */
-  Building = "Building",
-  /** is deleting */
-  Deleting = "Deleting",
-  /** is updating */
-  Updating = "Updating",
-}
-
-/**
- * Workload Network DNS Zone provisioning state \
- * {@link KnownWorkloadNetworkDnsZoneProvisioningState} can be used interchangeably with WorkloadNetworkDnsZoneProvisioningState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Succeeded**: Resource has been created. \
- * **Failed**: Resource creation failed. \
- * **Canceled**: Resource creation was canceled. \
- * **Building**: is building \
- * **Deleting**: is deleting \
- * **Updating**: is updating
- */
-export type WorkloadNetworkDnsZoneProvisioningState = string;
-
-/** The response of a WorkloadNetworkGateway list operation. */
-export interface _WorkloadNetworkGatewayList {
-  /** The WorkloadNetworkGateway items on this page */
-  value: WorkloadNetworkGateway[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _workloadNetworkGatewayListDeserializer(
-  item: any,
-): _WorkloadNetworkGatewayList {
-  return {
-    value: workloadNetworkGatewayArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function workloadNetworkGatewayArrayDeserializer(
-  result: Array<WorkloadNetworkGateway>,
-): any[] {
-  return result.map((item) => {
-    return workloadNetworkGatewayDeserializer(item);
-  });
-}
-
-/** NSX Gateway. */
-export interface WorkloadNetworkGateway extends ProxyResource {
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkGatewayProperties;
-}
-
-export function workloadNetworkGatewayDeserializer(
-  item: any,
-): WorkloadNetworkGateway {
-  return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : workloadNetworkGatewayPropertiesDeserializer(item["properties"]),
-  };
-}
-
-/** Properties of a NSX Gateway. */
-export interface WorkloadNetworkGatewayProperties {
-  /** The provisioning state of the resource. */
-  readonly provisioningState?: WorkloadNetworkProvisioningState;
-  /** Display name of the DHCP entity. */
-  displayName?: string;
-  /** NSX Gateway Path. */
-  readonly path?: string;
-}
-
-export function workloadNetworkGatewayPropertiesDeserializer(
-  item: any,
-): WorkloadNetworkGatewayProperties {
-  return {
-    provisioningState: item["provisioningState"],
-    displayName: item["displayName"],
-    path: item["path"],
-  };
-}
-
-/** base Workload Network provisioning state */
-export enum KnownWorkloadNetworkProvisioningState {
-  /** Resource has been created. */
-  Succeeded = "Succeeded",
-  /** Resource creation failed. */
-  Failed = "Failed",
-  /** Resource creation was canceled. */
-  Canceled = "Canceled",
-  /** is building */
-  Building = "Building",
-  /** is deleting */
-  Deleting = "Deleting",
-  /** is updating */
-  Updating = "Updating",
-}
-
-/**
- * base Workload Network provisioning state \
- * {@link KnownWorkloadNetworkProvisioningState} can be used interchangeably with WorkloadNetworkProvisioningState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Succeeded**: Resource has been created. \
- * **Failed**: Resource creation failed. \
- * **Canceled**: Resource creation was canceled. \
- * **Building**: is building \
- * **Deleting**: is deleting \
- * **Updating**: is updating
- */
-export type WorkloadNetworkProvisioningState = string;
-
-/** The response of a WorkloadNetworkPortMirroring list operation. */
-export interface _WorkloadNetworkPortMirroringList {
-  /** The WorkloadNetworkPortMirroring items on this page */
-  value: WorkloadNetworkPortMirroring[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _workloadNetworkPortMirroringListDeserializer(
-  item: any,
-): _WorkloadNetworkPortMirroringList {
-  return {
-    value: workloadNetworkPortMirroringArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function workloadNetworkPortMirroringArraySerializer(
-  result: Array<WorkloadNetworkPortMirroring>,
-): any[] {
-  return result.map((item) => {
-    return workloadNetworkPortMirroringSerializer(item);
-  });
-}
-
-export function workloadNetworkPortMirroringArrayDeserializer(
-  result: Array<WorkloadNetworkPortMirroring>,
-): any[] {
-  return result.map((item) => {
-    return workloadNetworkPortMirroringDeserializer(item);
-  });
-}
-
-/** NSX Port Mirroring */
-export interface WorkloadNetworkPortMirroring extends ProxyResource {
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkPortMirroringProperties;
-}
-
-export function workloadNetworkPortMirroringSerializer(
-  item: WorkloadNetworkPortMirroring,
-): any {
-  return {
-    properties: !item["properties"]
-      ? item["properties"]
-      : workloadNetworkPortMirroringPropertiesSerializer(item["properties"]),
-  };
-}
-
-export function workloadNetworkPortMirroringDeserializer(
-  item: any,
-): WorkloadNetworkPortMirroring {
-  return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : workloadNetworkPortMirroringPropertiesDeserializer(item["properties"]),
-  };
-}
-
-/** NSX Port Mirroring Properties */
-export interface WorkloadNetworkPortMirroringProperties {
-  /** Display name of the port mirroring profile. */
-  displayName?: string;
-  /** Direction of port mirroring profile. */
-  direction?: PortMirroringDirectionEnum;
-  /** Source VM Group. */
-  source?: string;
-  /** Destination VM Group. */
-  destination?: string;
-  /** Port Mirroring Status. */
-  readonly status?: PortMirroringStatusEnum;
-  /** The provisioning state */
-  readonly provisioningState?: WorkloadNetworkPortMirroringProvisioningState;
-  /** NSX revision number. */
-  revision?: number;
-}
-
-export function workloadNetworkPortMirroringPropertiesSerializer(
-  item: WorkloadNetworkPortMirroringProperties,
-): any {
-  return {
-    displayName: item["displayName"],
-    direction: item["direction"],
-    source: item["source"],
-    destination: item["destination"],
-    revision: item["revision"],
-  };
-}
-
-export function workloadNetworkPortMirroringPropertiesDeserializer(
-  item: any,
-): WorkloadNetworkPortMirroringProperties {
-  return {
-    displayName: item["displayName"],
-    direction: item["direction"],
-    source: item["source"],
-    destination: item["destination"],
-    status: item["status"],
-    provisioningState: item["provisioningState"],
-    revision: item["revision"],
-  };
-}
-
-/** Port Mirroring Direction */
-export enum KnownPortMirroringDirectionEnum {
-  /** is ingress */
-  Ingress = "INGRESS",
-  /** is egress */
-  Egress = "EGRESS",
-  /** is bidirectional */
-  Bidirectional = "BIDIRECTIONAL",
-}
-
-/**
- * Port Mirroring Direction \
- * {@link KnownPortMirroringDirectionEnum} can be used interchangeably with PortMirroringDirectionEnum,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **INGRESS**: is ingress \
- * **EGRESS**: is egress \
- * **BIDIRECTIONAL**: is bidirectional
- */
-export type PortMirroringDirectionEnum = string;
-
-/** Port Mirroring status */
-export enum KnownPortMirroringStatusEnum {
-  /** is success */
-  Success = "SUCCESS",
-  /** is failure */
-  Failure = "FAILURE",
-}
-
-/**
- * Port Mirroring status \
- * {@link KnownPortMirroringStatusEnum} can be used interchangeably with PortMirroringStatusEnum,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **SUCCESS**: is success \
- * **FAILURE**: is failure
- */
-export type PortMirroringStatusEnum = string;
-
-/** Workload Network Port Mirroring provisioning state */
-export enum KnownWorkloadNetworkPortMirroringProvisioningState {
-  /** Resource has been created. */
-  Succeeded = "Succeeded",
-  /** Resource creation failed. */
-  Failed = "Failed",
-  /** Resource creation was canceled. */
-  Canceled = "Canceled",
-  /** is building */
-  Building = "Building",
-  /** is deleting */
-  Deleting = "Deleting",
-  /** is updating */
-  Updating = "Updating",
-}
-
-/**
- * Workload Network Port Mirroring provisioning state \
- * {@link KnownWorkloadNetworkPortMirroringProvisioningState} can be used interchangeably with WorkloadNetworkPortMirroringProvisioningState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Succeeded**: Resource has been created. \
- * **Failed**: Resource creation failed. \
- * **Canceled**: Resource creation was canceled. \
- * **Building**: is building \
- * **Deleting**: is deleting \
- * **Updating**: is updating
- */
-export type WorkloadNetworkPortMirroringProvisioningState = string;
-
-/** The response of a WorkloadNetworkPublicIP list operation. */
-export interface _WorkloadNetworkPublicIPsList {
-  /** The WorkloadNetworkPublicIP items on this page */
-  value: WorkloadNetworkPublicIP[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _workloadNetworkPublicIPsListDeserializer(
-  item: any,
-): _WorkloadNetworkPublicIPsList {
-  return {
-    value: workloadNetworkPublicIPArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function workloadNetworkPublicIPArraySerializer(
-  result: Array<WorkloadNetworkPublicIP>,
-): any[] {
-  return result.map((item) => {
-    return workloadNetworkPublicIPSerializer(item);
-  });
-}
-
-export function workloadNetworkPublicIPArrayDeserializer(
-  result: Array<WorkloadNetworkPublicIP>,
-): any[] {
-  return result.map((item) => {
-    return workloadNetworkPublicIPDeserializer(item);
-  });
-}
-
-/** NSX Public IP Block */
-export interface WorkloadNetworkPublicIP extends ProxyResource {
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkPublicIPProperties;
-}
-
-export function workloadNetworkPublicIPSerializer(
-  item: WorkloadNetworkPublicIP,
-): any {
-  return {
-    properties: !item["properties"]
-      ? item["properties"]
-      : workloadNetworkPublicIPPropertiesSerializer(item["properties"]),
-  };
-}
-
-export function workloadNetworkPublicIPDeserializer(
-  item: any,
-): WorkloadNetworkPublicIP {
-  return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : workloadNetworkPublicIPPropertiesDeserializer(item["properties"]),
-  };
-}
-
-/** NSX Public IP Block Properties */
-export interface WorkloadNetworkPublicIPProperties {
-  /** Display name of the Public IP Block. */
-  displayName?: string;
-  /** Number of Public IPs requested. */
-  numberOfPublicIPs?: number;
-  /** CIDR Block of the Public IP Block. */
-  readonly publicIPBlock?: string;
-  /** The provisioning state */
-  readonly provisioningState?: WorkloadNetworkPublicIPProvisioningState;
-}
-
-export function workloadNetworkPublicIPPropertiesSerializer(
-  item: WorkloadNetworkPublicIPProperties,
-): any {
-  return {
-    displayName: item["displayName"],
-    numberOfPublicIPs: item["numberOfPublicIPs"],
-  };
-}
-
-export function workloadNetworkPublicIPPropertiesDeserializer(
-  item: any,
-): WorkloadNetworkPublicIPProperties {
-  return {
-    displayName: item["displayName"],
-    numberOfPublicIPs: item["numberOfPublicIPs"],
-    publicIPBlock: item["publicIPBlock"],
-    provisioningState: item["provisioningState"],
-  };
-}
-
-/** Workload Network Public IP provisioning state */
-export enum KnownWorkloadNetworkPublicIPProvisioningState {
-  /** Resource has been created. */
-  Succeeded = "Succeeded",
-  /** Resource creation failed. */
-  Failed = "Failed",
-  /** Resource creation was canceled. */
-  Canceled = "Canceled",
-  /** is building */
-  Building = "Building",
-  /** is deleting */
-  Deleting = "Deleting",
-  /** is updating */
-  Updating = "Updating",
-}
-
-/**
- * Workload Network Public IP provisioning state \
- * {@link KnownWorkloadNetworkPublicIPProvisioningState} can be used interchangeably with WorkloadNetworkPublicIPProvisioningState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Succeeded**: Resource has been created. \
- * **Failed**: Resource creation failed. \
- * **Canceled**: Resource creation was canceled. \
- * **Building**: is building \
- * **Deleting**: is deleting \
- * **Updating**: is updating
- */
-export type WorkloadNetworkPublicIPProvisioningState = string;
-
-/** The response of a WorkloadNetworkSegment list operation. */
-export interface _WorkloadNetworkSegmentsList {
-  /** The WorkloadNetworkSegment items on this page */
-  value: WorkloadNetworkSegment[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _workloadNetworkSegmentsListDeserializer(
-  item: any,
-): _WorkloadNetworkSegmentsList {
-  return {
-    value: workloadNetworkSegmentArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function workloadNetworkSegmentArraySerializer(
-  result: Array<WorkloadNetworkSegment>,
-): any[] {
-  return result.map((item) => {
-    return workloadNetworkSegmentSerializer(item);
-  });
-}
-
-export function workloadNetworkSegmentArrayDeserializer(
-  result: Array<WorkloadNetworkSegment>,
-): any[] {
-  return result.map((item) => {
-    return workloadNetworkSegmentDeserializer(item);
-  });
-}
-
-/** NSX Segment */
-export interface WorkloadNetworkSegment extends ProxyResource {
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkSegmentProperties;
-}
-
-export function workloadNetworkSegmentSerializer(
-  item: WorkloadNetworkSegment,
-): any {
-  return {
-    properties: !item["properties"]
-      ? item["properties"]
-      : workloadNetworkSegmentPropertiesSerializer(item["properties"]),
-  };
-}
-
-export function workloadNetworkSegmentDeserializer(
-  item: any,
-): WorkloadNetworkSegment {
-  return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : workloadNetworkSegmentPropertiesDeserializer(item["properties"]),
-  };
-}
-
-/** NSX Segment Properties */
-export interface WorkloadNetworkSegmentProperties {
-  /** Display name of the segment. */
-  displayName?: string;
-  /** Gateway which to connect segment to. */
-  connectedGateway?: string;
-  /** Subnet which to connect segment to. */
-  subnet?: WorkloadNetworkSegmentSubnet;
-  /** Port Vif which segment is associated with. */
-  readonly portVif?: WorkloadNetworkSegmentPortVif[];
-  /** Segment status. */
-  readonly status?: SegmentStatusEnum;
-  /** The provisioning state */
-  readonly provisioningState?: WorkloadNetworkSegmentProvisioningState;
-  /** NSX revision number. */
-  revision?: number;
-}
-
-export function workloadNetworkSegmentPropertiesSerializer(
-  item: WorkloadNetworkSegmentProperties,
-): any {
-  return {
-    displayName: item["displayName"],
-    connectedGateway: item["connectedGateway"],
-    subnet: !item["subnet"]
-      ? item["subnet"]
-      : workloadNetworkSegmentSubnetSerializer(item["subnet"]),
-    revision: item["revision"],
-  };
-}
-
-export function workloadNetworkSegmentPropertiesDeserializer(
-  item: any,
-): WorkloadNetworkSegmentProperties {
-  return {
-    displayName: item["displayName"],
-    connectedGateway: item["connectedGateway"],
-    subnet: !item["subnet"]
-      ? item["subnet"]
-      : workloadNetworkSegmentSubnetDeserializer(item["subnet"]),
-    portVif: !item["portVif"]
-      ? item["portVif"]
-      : workloadNetworkSegmentPortVifArrayDeserializer(item["portVif"]),
-    status: item["status"],
-    provisioningState: item["provisioningState"],
-    revision: item["revision"],
-  };
-}
-
-/** Subnet configuration for segment */
-export interface WorkloadNetworkSegmentSubnet {
-  /** DHCP Range assigned for subnet. */
-  dhcpRanges?: string[];
-  /** Gateway address. */
-  gatewayAddress?: string;
-}
-
-export function workloadNetworkSegmentSubnetSerializer(
-  item: WorkloadNetworkSegmentSubnet,
-): any {
-  return {
-    dhcpRanges: !item["dhcpRanges"]
-      ? item["dhcpRanges"]
-      : item["dhcpRanges"].map((p: any) => {
-          return p;
-        }),
-    gatewayAddress: item["gatewayAddress"],
-  };
-}
-
-export function workloadNetworkSegmentSubnetDeserializer(
-  item: any,
-): WorkloadNetworkSegmentSubnet {
-  return {
-    dhcpRanges: !item["dhcpRanges"]
-      ? item["dhcpRanges"]
-      : item["dhcpRanges"].map((p: any) => {
-          return p;
-        }),
-    gatewayAddress: item["gatewayAddress"],
-  };
-}
-
-export function workloadNetworkSegmentPortVifArrayDeserializer(
-  result: Array<WorkloadNetworkSegmentPortVif>,
-): any[] {
-  return result.map((item) => {
-    return workloadNetworkSegmentPortVifDeserializer(item);
-  });
-}
-
-/** Ports and any VIF attached to segment. */
-export interface WorkloadNetworkSegmentPortVif {
-  /** Name of port or VIF attached to segment. */
-  portName?: string;
-}
-
-export function workloadNetworkSegmentPortVifDeserializer(
-  item: any,
-): WorkloadNetworkSegmentPortVif {
-  return {
-    portName: item["portName"],
-  };
-}
-
-/** Segment status */
-export enum KnownSegmentStatusEnum {
-  /** is success */
-  Success = "SUCCESS",
-  /** is failure */
-  Failure = "FAILURE",
-}
-
-/**
- * Segment status \
- * {@link KnownSegmentStatusEnum} can be used interchangeably with SegmentStatusEnum,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **SUCCESS**: is success \
- * **FAILURE**: is failure
- */
-export type SegmentStatusEnum = string;
-
-/** Workload Network Segment provisioning state */
-export enum KnownWorkloadNetworkSegmentProvisioningState {
-  /** Resource has been created. */
-  Succeeded = "Succeeded",
-  /** Resource creation failed. */
-  Failed = "Failed",
-  /** Resource creation was canceled. */
-  Canceled = "Canceled",
-  /** is building */
-  Building = "Building",
-  /** is deleting */
-  Deleting = "Deleting",
-  /** is updating */
-  Updating = "Updating",
-}
-
-/**
- * Workload Network Segment provisioning state \
- * {@link KnownWorkloadNetworkSegmentProvisioningState} can be used interchangeably with WorkloadNetworkSegmentProvisioningState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Succeeded**: Resource has been created. \
- * **Failed**: Resource creation failed. \
- * **Canceled**: Resource creation was canceled. \
- * **Building**: is building \
- * **Deleting**: is deleting \
- * **Updating**: is updating
- */
-export type WorkloadNetworkSegmentProvisioningState = string;
-
-/** The response of a WorkloadNetworkVirtualMachine list operation. */
-export interface _WorkloadNetworkVirtualMachinesList {
-  /** The WorkloadNetworkVirtualMachine items on this page */
-  value: WorkloadNetworkVirtualMachine[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _workloadNetworkVirtualMachinesListDeserializer(
-  item: any,
-): _WorkloadNetworkVirtualMachinesList {
-  return {
-    value: workloadNetworkVirtualMachineArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function workloadNetworkVirtualMachineArrayDeserializer(
-  result: Array<WorkloadNetworkVirtualMachine>,
-): any[] {
-  return result.map((item) => {
-    return workloadNetworkVirtualMachineDeserializer(item);
-  });
-}
-
-/** NSX Virtual Machine */
-export interface WorkloadNetworkVirtualMachine extends ProxyResource {
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkVirtualMachineProperties;
-}
-
-export function workloadNetworkVirtualMachineDeserializer(
-  item: any,
-): WorkloadNetworkVirtualMachine {
-  return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : workloadNetworkVirtualMachinePropertiesDeserializer(item["properties"]),
-  };
-}
-
-/** NSX Virtual Machine Properties */
-export interface WorkloadNetworkVirtualMachineProperties {
-  /** The provisioning state of the resource. */
-  readonly provisioningState?: WorkloadNetworkProvisioningState;
-  /** Display name of the VM. */
-  displayName?: string;
-  /** Virtual machine type. */
-  readonly vmType?: VMTypeEnum;
-}
-
-export function workloadNetworkVirtualMachinePropertiesDeserializer(
-  item: any,
-): WorkloadNetworkVirtualMachineProperties {
-  return {
-    provisioningState: item["provisioningState"],
-    displayName: item["displayName"],
-    vmType: item["vmType"],
-  };
-}
-
-/** VM type */
-export enum KnownVMTypeEnum {
-  /** is regular */
-  Regular = "REGULAR",
-  /** is edge */
-  Edge = "EDGE",
-  /** is service */
-  Service = "SERVICE",
-}
-
-/**
- * VM type \
- * {@link KnownVMTypeEnum} can be used interchangeably with VMTypeEnum,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **REGULAR**: is regular \
- * **EDGE**: is edge \
- * **SERVICE**: is service
- */
-export type VMTypeEnum = string;
-
-/** The response of a WorkloadNetworkVMGroup list operation. */
-export interface _WorkloadNetworkVMGroupsList {
-  /** The WorkloadNetworkVMGroup items on this page */
-  value: WorkloadNetworkVMGroup[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _workloadNetworkVMGroupsListDeserializer(
-  item: any,
-): _WorkloadNetworkVMGroupsList {
-  return {
-    value: workloadNetworkVMGroupArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function workloadNetworkVMGroupArraySerializer(
-  result: Array<WorkloadNetworkVMGroup>,
-): any[] {
-  return result.map((item) => {
-    return workloadNetworkVMGroupSerializer(item);
-  });
-}
-
-export function workloadNetworkVMGroupArrayDeserializer(
-  result: Array<WorkloadNetworkVMGroup>,
-): any[] {
-  return result.map((item) => {
-    return workloadNetworkVMGroupDeserializer(item);
-  });
-}
-
-/** NSX VM Group */
-export interface WorkloadNetworkVMGroup extends ProxyResource {
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkVMGroupProperties;
-}
-
-export function workloadNetworkVMGroupSerializer(
-  item: WorkloadNetworkVMGroup,
-): any {
-  return {
-    properties: !item["properties"]
-      ? item["properties"]
-      : workloadNetworkVMGroupPropertiesSerializer(item["properties"]),
-  };
-}
-
-export function workloadNetworkVMGroupDeserializer(
-  item: any,
-): WorkloadNetworkVMGroup {
-  return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : workloadNetworkVMGroupPropertiesDeserializer(item["properties"]),
-  };
-}
-
-/** NSX VM Group Properties */
-export interface WorkloadNetworkVMGroupProperties {
-  /** Display name of the VM group. */
-  displayName?: string;
-  /** Virtual machine members of this group. */
-  members?: string[];
-  /** VM Group status. */
-  readonly status?: VMGroupStatusEnum;
-  /** The provisioning state */
-  readonly provisioningState?: WorkloadNetworkVMGroupProvisioningState;
-  /** NSX revision number. */
-  revision?: number;
-}
-
-export function workloadNetworkVMGroupPropertiesSerializer(
-  item: WorkloadNetworkVMGroupProperties,
-): any {
-  return {
-    displayName: item["displayName"],
-    members: !item["members"]
-      ? item["members"]
-      : item["members"].map((p: any) => {
-          return p;
-        }),
-    revision: item["revision"],
-  };
-}
-
-export function workloadNetworkVMGroupPropertiesDeserializer(
-  item: any,
-): WorkloadNetworkVMGroupProperties {
-  return {
-    displayName: item["displayName"],
-    members: !item["members"]
-      ? item["members"]
-      : item["members"].map((p: any) => {
-          return p;
-        }),
-    status: item["status"],
-    provisioningState: item["provisioningState"],
-    revision: item["revision"],
-  };
-}
-
-/** VM group status */
-export enum KnownVMGroupStatusEnum {
-  /** is success */
-  Success = "SUCCESS",
-  /** is failure */
-  Failure = "FAILURE",
-}
-
-/**
- * VM group status \
- * {@link KnownVMGroupStatusEnum} can be used interchangeably with VMGroupStatusEnum,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **SUCCESS**: is success \
- * **FAILURE**: is failure
- */
-export type VMGroupStatusEnum = string;
-
-/** Workload Network VM Group provisioning state */
-export enum KnownWorkloadNetworkVMGroupProvisioningState {
-  /** Resource has been created. */
-  Succeeded = "Succeeded",
-  /** Resource creation failed. */
-  Failed = "Failed",
-  /** Resource creation was canceled. */
-  Canceled = "Canceled",
-  /** is building */
-  Building = "Building",
-  /** is deleting */
-  Deleting = "Deleting",
-  /** is updating */
-  Updating = "Updating",
-}
-
-/**
- * Workload Network VM Group provisioning state \
- * {@link KnownWorkloadNetworkVMGroupProvisioningState} can be used interchangeably with WorkloadNetworkVMGroupProvisioningState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Succeeded**: Resource has been created. \
- * **Failed**: Resource creation failed. \
- * **Canceled**: Resource creation was canceled. \
- * **Building**: is building \
- * **Deleting**: is deleting \
- * **Updating**: is updating
- */
-export type WorkloadNetworkVMGroupProvisioningState = string;
-
-/** Workload Network */
-export interface WorkloadNetwork extends ProxyResource {
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkProperties;
-}
-
-export function workloadNetworkDeserializer(item: any): WorkloadNetwork {
-  return {
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : workloadNetworkPropertiesDeserializer(item["properties"]),
-  };
-}
-
-/** The properties of a workload network */
-export interface WorkloadNetworkProperties {
-  /** The provisioning state of the resource. */
-  readonly provisioningState?: WorkloadNetworkProvisioningState;
-}
-
-export function workloadNetworkPropertiesDeserializer(
-  item: any,
-): WorkloadNetworkProperties {
-  return {
-    provisioningState: item["provisioningState"],
-  };
-}
-
-/** The response of a WorkloadNetwork list operation. */
-export interface _WorkloadNetworkList {
-  /** The WorkloadNetwork items on this page */
-  value: WorkloadNetwork[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-export function _workloadNetworkListDeserializer(
-  item: any,
-): _WorkloadNetworkList {
-  return {
-    value: workloadNetworkArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function workloadNetworkArrayDeserializer(
-  result: Array<WorkloadNetwork>,
-): any[] {
-  return result.map((item) => {
-    return workloadNetworkDeserializer(item);
-  });
-}
-
-/** Script Output Stream type */
-export enum KnownScriptOutputStreamType {
-  /** is information */
-  Information = "Information",
-  /** is warning */
+/** Gets or sets the fabric health. */
+export enum KnownHealthStatus {
+  /** Healthy Status. */
+  Normal = "Normal",
+  /** Warning Status. */
   Warning = "Warning",
-  /** is output */
-  Output = "Output",
-  /** is error */
-  Error = "Error",
+  /** Critical Status. */
+  Critical = "Critical",
 }
 
 /**
- * Script Output Stream type \
- * {@link KnownScriptOutputStreamType} can be used interchangeably with ScriptOutputStreamType,
+ * Gets or sets the fabric health. \
+ * {@link KnownHealthStatus} can be used interchangeably with HealthStatus,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
- * **Information**: is information \
- * **Warning**: is warning \
- * **Output**: is output \
- * **Error**: is error
+ * **Normal**: Healthy Status. \
+ * **Warning**: Warning Status. \
+ * **Critical**: Critical Status.
  */
-export type ScriptOutputStreamType = string;
+export type HealthStatus = string;
 
-/** Azure VMware Solution API versions. */
+/** Fabric model custom properties. */
+export interface FabricModelCustomProperties {
+  /** Discriminator property for FabricModelCustomProperties. */
+  /** The discriminator possible values: AzStackHCI, HyperVMigrate, VMwareMigrate */
+  instanceType: string;
+}
+
+export function fabricModelCustomPropertiesSerializer(
+  item: FabricModelCustomProperties,
+): any {
+  return { instanceType: item["instanceType"] };
+}
+
+export function fabricModelCustomPropertiesDeserializer(
+  item: any,
+): FabricModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+  };
+}
+
+/** Alias for FabricModelCustomPropertiesUnion */
+export type FabricModelCustomPropertiesUnion =
+  | AzStackHCIFabricModelCustomProperties
+  | HyperVMigrateFabricModelCustomProperties
+  | VMwareMigrateFabricModelCustomProperties
+  | FabricModelCustomProperties;
+
+export function fabricModelCustomPropertiesUnionSerializer(
+  item: FabricModelCustomPropertiesUnion,
+): any {
+  switch (item.instanceType) {
+    case "AzStackHCI":
+      return azStackHCIFabricModelCustomPropertiesSerializer(
+        item as AzStackHCIFabricModelCustomProperties,
+      );
+
+    case "HyperVMigrate":
+      return hyperVMigrateFabricModelCustomPropertiesSerializer(
+        item as HyperVMigrateFabricModelCustomProperties,
+      );
+
+    case "VMwareMigrate":
+      return vMwareMigrateFabricModelCustomPropertiesSerializer(
+        item as VMwareMigrateFabricModelCustomProperties,
+      );
+
+    default:
+      return fabricModelCustomPropertiesSerializer(item);
+  }
+}
+
+export function fabricModelCustomPropertiesUnionDeserializer(
+  item: any,
+): FabricModelCustomPropertiesUnion {
+  switch (item.instanceType) {
+    case "AzStackHCI":
+      return azStackHCIFabricModelCustomPropertiesDeserializer(
+        item as AzStackHCIFabricModelCustomProperties,
+      );
+
+    case "HyperVMigrate":
+      return hyperVMigrateFabricModelCustomPropertiesDeserializer(
+        item as HyperVMigrateFabricModelCustomProperties,
+      );
+
+    case "VMwareMigrate":
+      return vMwareMigrateFabricModelCustomPropertiesDeserializer(
+        item as VMwareMigrateFabricModelCustomProperties,
+      );
+
+    default:
+      return fabricModelCustomPropertiesDeserializer(item);
+  }
+}
+
+/** AzStackHCI fabric model custom properties. */
+export interface AzStackHCIFabricModelCustomProperties
+  extends FabricModelCustomProperties {
+  /** Gets or sets the ARM Id of the AzStackHCI site. */
+  azStackHciSiteId: string;
+  /** Gets or sets the Appliance name. */
+  readonly applianceName?: string[];
+  /** AzStackHCI cluster properties. */
+  cluster: AzStackHCIClusterProperties;
+  /** Gets or sets the fabric resource Id. */
+  readonly fabricResourceId?: string;
+  /** Gets or sets the fabric container Id. */
+  readonly fabricContainerId?: string;
+  /** Gets or sets the Migration solution ARM Id. */
+  migrationSolutionId: string;
+  /** Gets or sets the migration hub Uri. */
+  readonly migrationHubUri?: string;
+  /** Gets or sets the instance type. */
+  instanceType: "AzStackHCI";
+}
+
+export function azStackHCIFabricModelCustomPropertiesSerializer(
+  item: AzStackHCIFabricModelCustomProperties,
+): any {
+  return {
+    instanceType: item["instanceType"],
+    azStackHciSiteId: item["azStackHciSiteId"],
+    cluster: azStackHCIClusterPropertiesSerializer(item["cluster"]),
+    migrationSolutionId: item["migrationSolutionId"],
+  };
+}
+
+export function azStackHCIFabricModelCustomPropertiesDeserializer(
+  item: any,
+): AzStackHCIFabricModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+    azStackHciSiteId: item["azStackHciSiteId"],
+    applianceName: !item["applianceName"]
+      ? item["applianceName"]
+      : item["applianceName"].map((p: any) => {
+          return p;
+        }),
+    cluster: azStackHCIClusterPropertiesDeserializer(item["cluster"]),
+    fabricResourceId: item["fabricResourceId"],
+    fabricContainerId: item["fabricContainerId"],
+    migrationSolutionId: item["migrationSolutionId"],
+    migrationHubUri: item["migrationHubUri"],
+  };
+}
+
+/** AzStackHCI cluster properties. */
+export interface AzStackHCIClusterProperties {
+  /** Gets or sets the AzStackHCICluster FQDN name. */
+  clusterName: string;
+  /** Gets or sets the AzStackHCICluster resource name. */
+  resourceName: string;
+  /** Gets or sets the Storage account name. */
+  storageAccountName: string;
+  /** Gets or sets the list of AzStackHCICluster Storage Container. */
+  storageContainers: StorageContainerProperties[];
+}
+
+export function azStackHCIClusterPropertiesSerializer(
+  item: AzStackHCIClusterProperties,
+): any {
+  return {
+    clusterName: item["clusterName"],
+    resourceName: item["resourceName"],
+    storageAccountName: item["storageAccountName"],
+    storageContainers: storageContainerPropertiesArraySerializer(
+      item["storageContainers"],
+    ),
+  };
+}
+
+export function azStackHCIClusterPropertiesDeserializer(
+  item: any,
+): AzStackHCIClusterProperties {
+  return {
+    clusterName: item["clusterName"],
+    resourceName: item["resourceName"],
+    storageAccountName: item["storageAccountName"],
+    storageContainers: storageContainerPropertiesArrayDeserializer(
+      item["storageContainers"],
+    ),
+  };
+}
+
+export function storageContainerPropertiesArraySerializer(
+  result: Array<StorageContainerProperties>,
+): any[] {
+  return result.map((item) => {
+    return storageContainerPropertiesSerializer(item);
+  });
+}
+
+export function storageContainerPropertiesArrayDeserializer(
+  result: Array<StorageContainerProperties>,
+): any[] {
+  return result.map((item) => {
+    return storageContainerPropertiesDeserializer(item);
+  });
+}
+
+/** Storage container properties. */
+export interface StorageContainerProperties {
+  /** Gets or sets the Name. */
+  name: string;
+  /** Gets or sets the ClusterSharedVolumePath. */
+  clusterSharedVolumePath: string;
+}
+
+export function storageContainerPropertiesSerializer(
+  item: StorageContainerProperties,
+): any {
+  return {
+    name: item["name"],
+    clusterSharedVolumePath: item["clusterSharedVolumePath"],
+  };
+}
+
+export function storageContainerPropertiesDeserializer(
+  item: any,
+): StorageContainerProperties {
+  return {
+    name: item["name"],
+    clusterSharedVolumePath: item["clusterSharedVolumePath"],
+  };
+}
+
+/** HyperV migrate fabric model custom properties. */
+export interface HyperVMigrateFabricModelCustomProperties
+  extends FabricModelCustomProperties {
+  /** Gets or sets the ARM Id of the HyperV site. */
+  hyperVSiteId: string;
+  /** Gets or sets the fabric resource Id. */
+  readonly fabricResourceId?: string;
+  /** Gets or sets the fabric container Id. */
+  readonly fabricContainerId?: string;
+  /** Gets or sets the migration solution ARM Id. */
+  migrationSolutionId: string;
+  /** Gets or sets the migration hub Uri. */
+  readonly migrationHubUri?: string;
+  /** Gets or sets the instance type. */
+  instanceType: "HyperVMigrate";
+}
+
+export function hyperVMigrateFabricModelCustomPropertiesSerializer(
+  item: HyperVMigrateFabricModelCustomProperties,
+): any {
+  return {
+    instanceType: item["instanceType"],
+    hyperVSiteId: item["hyperVSiteId"],
+    migrationSolutionId: item["migrationSolutionId"],
+  };
+}
+
+export function hyperVMigrateFabricModelCustomPropertiesDeserializer(
+  item: any,
+): HyperVMigrateFabricModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+    hyperVSiteId: item["hyperVSiteId"],
+    fabricResourceId: item["fabricResourceId"],
+    fabricContainerId: item["fabricContainerId"],
+    migrationSolutionId: item["migrationSolutionId"],
+    migrationHubUri: item["migrationHubUri"],
+  };
+}
+
+/** VMware migrate fabric model custom properties. */
+export interface VMwareMigrateFabricModelCustomProperties
+  extends FabricModelCustomProperties {
+  /** Gets or sets the ARM Id of the VMware site. */
+  vmwareSiteId: string;
+  /** Gets or sets the ARM Id of the migration solution. */
+  migrationSolutionId: string;
+  /** Gets or sets the instance type. */
+  instanceType: "VMwareMigrate";
+}
+
+export function vMwareMigrateFabricModelCustomPropertiesSerializer(
+  item: VMwareMigrateFabricModelCustomProperties,
+): any {
+  return {
+    instanceType: item["instanceType"],
+    vmwareSiteId: item["vmwareSiteId"],
+    migrationSolutionId: item["migrationSolutionId"],
+  };
+}
+
+export function vMwareMigrateFabricModelCustomPropertiesDeserializer(
+  item: any,
+): VMwareMigrateFabricModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+    vmwareSiteId: item["vmwareSiteId"],
+    migrationSolutionId: item["migrationSolutionId"],
+  };
+}
+
+/** Fabric model update. */
+export interface FabricModelUpdate {
+  /** Gets or sets the resource tags. */
+  tags?: Record<string, string>;
+  /** Fabric model properties. */
+  properties?: FabricModelProperties;
+  /** Gets or sets the Id of the resource. */
+  readonly id?: string;
+  /** Gets or sets the name of the resource. */
+  readonly name?: string;
+  /** Gets or sets the type of the resource. */
+  readonly type?: string;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  readonly systemData?: SystemData;
+}
+
+export function fabricModelUpdateSerializer(item: FabricModelUpdate): any {
+  return {
+    tags: item["tags"],
+    properties: !item["properties"]
+      ? item["properties"]
+      : fabricModelPropertiesSerializer(item["properties"]),
+  };
+}
+
+/** The response of a FabricModel list operation. */
+export interface _FabricModelListResult {
+  /** The FabricModel items on this page */
+  value: FabricModel[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _fabricModelListResultDeserializer(
+  item: any,
+): _FabricModelListResult {
+  return {
+    value: fabricModelArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function fabricModelArraySerializer(result: Array<FabricModel>): any[] {
+  return result.map((item) => {
+    return fabricModelSerializer(item);
+  });
+}
+
+export function fabricModelArrayDeserializer(
+  result: Array<FabricModel>,
+): any[] {
+  return result.map((item) => {
+    return fabricModelDeserializer(item);
+  });
+}
+
+/** Fabric agent model. */
+export interface FabricAgentModel extends ProxyResource {
+  /** The resource-specific properties for this resource. */
+  properties?: FabricAgentModelProperties;
+}
+
+export function fabricAgentModelSerializer(item: FabricAgentModel): any {
+  return {
+    properties: !item["properties"]
+      ? item["properties"]
+      : fabricAgentModelPropertiesSerializer(item["properties"]),
+  };
+}
+
+export function fabricAgentModelDeserializer(item: any): FabricAgentModel {
+  return {
+    id: item["id"],
+    name: item["name"],
+    type: item["type"],
+    systemData: !item["systemData"]
+      ? item["systemData"]
+      : systemDataDeserializer(item["systemData"]),
+    properties: !item["properties"]
+      ? item["properties"]
+      : fabricAgentModelPropertiesDeserializer(item["properties"]),
+  };
+}
+
+/** Fabric agent model properties. */
+export interface FabricAgentModelProperties {
+  /** Gets or sets the fabric agent correlation Id. */
+  readonly correlationId?: string;
+  /** Gets or sets the machine Id where fabric agent is running. */
+  machineId: string;
+  /** Gets or sets the machine name where fabric agent is running. */
+  machineName: string;
+  /** Identity model. */
+  authenticationIdentity: IdentityModel;
+  /** Identity model. */
+  resourceAccessIdentity: IdentityModel;
+  /** Gets or sets a value indicating whether the fabric agent is responsive. */
+  readonly isResponsive?: boolean;
+  /** Gets or sets the time when last heartbeat was sent by the fabric agent. */
+  readonly lastHeartbeat?: Date;
+  /** Gets or sets the fabric agent version. */
+  readonly versionNumber?: string;
+  /** Gets or sets the provisioning state of the fabric agent. */
+  readonly provisioningState?: ProvisioningState;
+  /** Gets or sets the list of health errors. */
+  readonly healthErrors?: HealthErrorModel[];
+  /** Fabric agent model custom properties. */
+  customProperties: FabricAgentModelCustomPropertiesUnion;
+}
+
+export function fabricAgentModelPropertiesSerializer(
+  item: FabricAgentModelProperties,
+): any {
+  return {
+    machineId: item["machineId"],
+    machineName: item["machineName"],
+    authenticationIdentity: identityModelSerializer(
+      item["authenticationIdentity"],
+    ),
+    resourceAccessIdentity: identityModelSerializer(
+      item["resourceAccessIdentity"],
+    ),
+    customProperties: fabricAgentModelCustomPropertiesUnionSerializer(
+      item["customProperties"],
+    ),
+  };
+}
+
+export function fabricAgentModelPropertiesDeserializer(
+  item: any,
+): FabricAgentModelProperties {
+  return {
+    correlationId: item["correlationId"],
+    machineId: item["machineId"],
+    machineName: item["machineName"],
+    authenticationIdentity: identityModelDeserializer(
+      item["authenticationIdentity"],
+    ),
+    resourceAccessIdentity: identityModelDeserializer(
+      item["resourceAccessIdentity"],
+    ),
+    isResponsive: item["isResponsive"],
+    lastHeartbeat: !item["lastHeartbeat"]
+      ? item["lastHeartbeat"]
+      : new Date(item["lastHeartbeat"]),
+    versionNumber: item["versionNumber"],
+    provisioningState: item["provisioningState"],
+    healthErrors: !item["healthErrors"]
+      ? item["healthErrors"]
+      : healthErrorModelArrayDeserializer(item["healthErrors"]),
+    customProperties: fabricAgentModelCustomPropertiesUnionDeserializer(
+      item["customProperties"],
+    ),
+  };
+}
+
+/** Identity model. */
+export interface IdentityModel {
+  /** Gets or sets the tenant Id of the SPN with which fabric agent communicates to service. */
+  tenantId: string;
+  /** Gets or sets the client/application Id of the SPN with which fabric agent communicates to service. */
+  applicationId: string;
+  /** Gets or sets the object Id of the SPN with which fabric agent communicates to service. */
+  objectId: string;
+  /** Gets or sets the audience of the SPN with which fabric agent communicates to service. */
+  audience: string;
+  /** Gets or sets the authority of the SPN with which fabric agent communicates to service. */
+  aadAuthority: string;
+}
+
+export function identityModelSerializer(item: IdentityModel): any {
+  return {
+    tenantId: item["tenantId"],
+    applicationId: item["applicationId"],
+    objectId: item["objectId"],
+    audience: item["audience"],
+    aadAuthority: item["aadAuthority"],
+  };
+}
+
+export function identityModelDeserializer(item: any): IdentityModel {
+  return {
+    tenantId: item["tenantId"],
+    applicationId: item["applicationId"],
+    objectId: item["objectId"],
+    audience: item["audience"],
+    aadAuthority: item["aadAuthority"],
+  };
+}
+
+/** Fabric agent model custom properties. */
+export interface FabricAgentModelCustomProperties {
+  /** Discriminator property for FabricAgentModelCustomProperties. */
+  /** The discriminator possible values: VMware */
+  instanceType: string;
+}
+
+export function fabricAgentModelCustomPropertiesSerializer(
+  item: FabricAgentModelCustomProperties,
+): any {
+  return { instanceType: item["instanceType"] };
+}
+
+export function fabricAgentModelCustomPropertiesDeserializer(
+  item: any,
+): FabricAgentModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+  };
+}
+
+/** Alias for FabricAgentModelCustomPropertiesUnion */
+export type FabricAgentModelCustomPropertiesUnion =
+  | VMwareFabricAgentModelCustomProperties
+  | FabricAgentModelCustomProperties;
+
+export function fabricAgentModelCustomPropertiesUnionSerializer(
+  item: FabricAgentModelCustomPropertiesUnion,
+): any {
+  switch (item.instanceType) {
+    case "VMware":
+      return vMwareFabricAgentModelCustomPropertiesSerializer(
+        item as VMwareFabricAgentModelCustomProperties,
+      );
+
+    default:
+      return fabricAgentModelCustomPropertiesSerializer(item);
+  }
+}
+
+export function fabricAgentModelCustomPropertiesUnionDeserializer(
+  item: any,
+): FabricAgentModelCustomPropertiesUnion {
+  switch (item.instanceType) {
+    case "VMware":
+      return vMwareFabricAgentModelCustomPropertiesDeserializer(
+        item as VMwareFabricAgentModelCustomProperties,
+      );
+
+    default:
+      return fabricAgentModelCustomPropertiesDeserializer(item);
+  }
+}
+
+/** VMware fabric agent model custom properties. */
+export interface VMwareFabricAgentModelCustomProperties
+  extends FabricAgentModelCustomProperties {
+  /** Gets or sets the BIOS Id of the fabric agent machine. */
+  biosId: string;
+  /** Identity model. */
+  marsAuthenticationIdentity: IdentityModel;
+  /** Gets or sets the instance type. */
+  instanceType: "VMware";
+}
+
+export function vMwareFabricAgentModelCustomPropertiesSerializer(
+  item: VMwareFabricAgentModelCustomProperties,
+): any {
+  return {
+    instanceType: item["instanceType"],
+    biosId: item["biosId"],
+    marsAuthenticationIdentity: identityModelSerializer(
+      item["marsAuthenticationIdentity"],
+    ),
+  };
+}
+
+export function vMwareFabricAgentModelCustomPropertiesDeserializer(
+  item: any,
+): VMwareFabricAgentModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+    biosId: item["biosId"],
+    marsAuthenticationIdentity: identityModelDeserializer(
+      item["marsAuthenticationIdentity"],
+    ),
+  };
+}
+
+/** The response of a FabricAgentModel list operation. */
+export interface _FabricAgentModelListResult {
+  /** The FabricAgentModel items on this page */
+  value: FabricAgentModel[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _fabricAgentModelListResultDeserializer(
+  item: any,
+): _FabricAgentModelListResult {
+  return {
+    value: fabricAgentModelArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function fabricAgentModelArraySerializer(
+  result: Array<FabricAgentModel>,
+): any[] {
+  return result.map((item) => {
+    return fabricAgentModelSerializer(item);
+  });
+}
+
+export function fabricAgentModelArrayDeserializer(
+  result: Array<FabricAgentModel>,
+): any[] {
+  return result.map((item) => {
+    return fabricAgentModelDeserializer(item);
+  });
+}
+
+/** Job model. */
+export interface JobModel extends ProxyResource {
+  /** The resource-specific properties for this resource. */
+  properties?: JobModelProperties;
+}
+
+export function jobModelDeserializer(item: any): JobModel {
+  return {
+    id: item["id"],
+    name: item["name"],
+    type: item["type"],
+    systemData: !item["systemData"]
+      ? item["systemData"]
+      : systemDataDeserializer(item["systemData"]),
+    properties: !item["properties"]
+      ? item["properties"]
+      : jobModelPropertiesDeserializer(item["properties"]),
+  };
+}
+
+/** Job model properties. */
+export interface JobModelProperties {
+  /** Gets or sets the friendly display name. */
+  readonly displayName?: string;
+  /** Gets or sets the job state. */
+  readonly state?: JobState;
+  /** Gets or sets the start time. */
+  readonly startTime?: Date;
+  /** Gets or sets the end time. */
+  readonly endTime?: Date;
+  /** Gets or sets the affected object Id. */
+  readonly objectId?: string;
+  /** Gets or sets the affected object name. */
+  readonly objectName?: string;
+  /** Gets or sets the affected object internal Id. */
+  readonly objectInternalId?: string;
+  /** Gets or sets the affected object internal name. */
+  readonly objectInternalName?: string;
+  /** Gets or sets the object type. */
+  readonly objectType?: JobObjectType;
+  /** Gets or sets the replication provider. */
+  readonly replicationProviderId?: string;
+  /** Gets or sets the source fabric provider. */
+  readonly sourceFabricProviderId?: string;
+  /** Gets or sets the target fabric provider. */
+  readonly targetFabricProviderId?: string;
+  /** Gets or sets the list of allowed actions on the job. */
+  readonly allowedActions?: string[];
+  /** Gets or sets the job activity id. */
+  readonly activityId?: string;
+  /** Gets or sets the list of tasks. */
+  readonly tasks?: TaskModel[];
+  /** Gets or sets the list of errors. */
+  readonly errors?: ErrorModel[];
+  /** Job model custom properties. */
+  customProperties: JobModelCustomPropertiesUnion;
+  /** Gets or sets the provisioning state of the job. */
+  readonly provisioningState?: ProvisioningState;
+}
+
+export function jobModelPropertiesDeserializer(item: any): JobModelProperties {
+  return {
+    displayName: item["displayName"],
+    state: item["state"],
+    startTime: !item["startTime"]
+      ? item["startTime"]
+      : new Date(item["startTime"]),
+    endTime: !item["endTime"] ? item["endTime"] : new Date(item["endTime"]),
+    objectId: item["objectId"],
+    objectName: item["objectName"],
+    objectInternalId: item["objectInternalId"],
+    objectInternalName: item["objectInternalName"],
+    objectType: item["objectType"],
+    replicationProviderId: item["replicationProviderId"],
+    sourceFabricProviderId: item["sourceFabricProviderId"],
+    targetFabricProviderId: item["targetFabricProviderId"],
+    allowedActions: !item["allowedActions"]
+      ? item["allowedActions"]
+      : item["allowedActions"].map((p: any) => {
+          return p;
+        }),
+    activityId: item["activityId"],
+    tasks: !item["tasks"]
+      ? item["tasks"]
+      : taskModelArrayDeserializer(item["tasks"]),
+    errors: !item["errors"]
+      ? item["errors"]
+      : errorModelArrayDeserializer(item["errors"]),
+    customProperties: jobModelCustomPropertiesUnionDeserializer(
+      item["customProperties"],
+    ),
+    provisioningState: item["provisioningState"],
+  };
+}
+
+/** Gets or sets the job state. */
+export enum KnownJobState {
+  /** Job has not been started. */
+  Pending = "Pending",
+  /** Job is in progress. */
+  Started = "Started",
+  /** Job cancellation is in progress. */
+  Cancelling = "Cancelling",
+  /** Job has completed successfully. */
+  Succeeded = "Succeeded",
+  /** Job failed. */
+  Failed = "Failed",
+  /** Job has been cancelled. */
+  Cancelled = "Cancelled",
+  /** Job has completed with information. */
+  CompletedWithInformation = "CompletedWithInformation",
+  /** Job has completed with warnings. */
+  CompletedWithWarnings = "CompletedWithWarnings",
+  /** Job has completed with errors. */
+  CompletedWithErrors = "CompletedWithErrors",
+}
+
+/**
+ * Gets or sets the job state. \
+ * {@link KnownJobState} can be used interchangeably with JobState,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Pending**: Job has not been started. \
+ * **Started**: Job is in progress. \
+ * **Cancelling**: Job cancellation is in progress. \
+ * **Succeeded**: Job has completed successfully. \
+ * **Failed**: Job failed. \
+ * **Cancelled**: Job has been cancelled. \
+ * **CompletedWithInformation**: Job has completed with information. \
+ * **CompletedWithWarnings**: Job has completed with warnings. \
+ * **CompletedWithErrors**: Job has completed with errors.
+ */
+export type JobState = string;
+
+/** Gets or sets the object type. */
+export enum KnownJobObjectType {
+  /** AVS disk pool. */
+  AvsDiskPool = "AvsDiskPool",
+  /** Fabric agent level workflow. */
+  FabricAgent = "FabricAgent",
+  /** Fabric level job. */
+  Fabric = "Fabric",
+  /** Policy level job. */
+  Policy = "Policy",
+  /** Protected item level job. */
+  ProtectedItem = "ProtectedItem",
+  /** Recovery plan level job. */
+  RecoveryPlan = "RecoveryPlan",
+  /** Replication extension level job. */
+  ReplicationExtension = "ReplicationExtension",
+  /** Vault level job. */
+  Vault = "Vault",
+}
+
+/**
+ * Gets or sets the object type. \
+ * {@link KnownJobObjectType} can be used interchangeably with JobObjectType,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **AvsDiskPool**: AVS disk pool. \
+ * **FabricAgent**: Fabric agent level workflow. \
+ * **Fabric**: Fabric level job. \
+ * **Policy**: Policy level job. \
+ * **ProtectedItem**: Protected item level job. \
+ * **RecoveryPlan**: Recovery plan level job. \
+ * **ReplicationExtension**: Replication extension level job. \
+ * **Vault**: Vault level job.
+ */
+export type JobObjectType = string;
+
+export function taskModelArrayDeserializer(result: Array<TaskModel>): any[] {
+  return result.map((item) => {
+    return taskModelDeserializer(item);
+  });
+}
+
+/** Task model. */
+export interface TaskModel {
+  /** Gets or sets the task name. */
+  readonly taskName?: string;
+  /** Gets or sets the task state. */
+  readonly state?: TaskState;
+  /** Gets or sets the start time. */
+  readonly startTime?: Date;
+  /** Gets or sets the end time. */
+  readonly endTime?: Date;
+  /** Task model custom properties. */
+  customProperties?: TaskModelCustomProperties;
+  /** Gets or sets the list of children job models. */
+  childrenJobs?: JobModel[];
+}
+
+export function taskModelDeserializer(item: any): TaskModel {
+  return {
+    taskName: item["taskName"],
+    state: item["state"],
+    startTime: !item["startTime"]
+      ? item["startTime"]
+      : new Date(item["startTime"]),
+    endTime: !item["endTime"] ? item["endTime"] : new Date(item["endTime"]),
+    customProperties: !item["customProperties"]
+      ? item["customProperties"]
+      : taskModelCustomPropertiesDeserializer(item["customProperties"]),
+    childrenJobs: !item["childrenJobs"]
+      ? item["childrenJobs"]
+      : jobModelArrayDeserializer(item["childrenJobs"]),
+  };
+}
+
+/** Gets or sets the task state. */
+export enum KnownTaskState {
+  /** Task has not been started. */
+  Pending = "Pending",
+  /** Task is in progress. */
+  Started = "Started",
+  /** Task has completed successfully. */
+  Succeeded = "Succeeded",
+  /** Task failed. */
+  Failed = "Failed",
+  /** Task has been cancelled. */
+  Cancelled = "Cancelled",
+  /** Task has been skipped. */
+  Skipped = "Skipped",
+}
+
+/**
+ * Gets or sets the task state. \
+ * {@link KnownTaskState} can be used interchangeably with TaskState,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Pending**: Task has not been started. \
+ * **Started**: Task is in progress. \
+ * **Succeeded**: Task has completed successfully. \
+ * **Failed**: Task failed. \
+ * **Cancelled**: Task has been cancelled. \
+ * **Skipped**: Task has been skipped.
+ */
+export type TaskState = string;
+
+/** Task model custom properties. */
+export interface TaskModelCustomProperties {
+  /** Gets or sets the instance type. */
+  instanceType: string;
+}
+
+export function taskModelCustomPropertiesDeserializer(
+  item: any,
+): TaskModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+  };
+}
+
+export function jobModelArrayDeserializer(result: Array<JobModel>): any[] {
+  return result.map((item) => {
+    return jobModelDeserializer(item);
+  });
+}
+
+export function errorModelArrayDeserializer(result: Array<ErrorModel>): any[] {
+  return result.map((item) => {
+    return errorModelDeserializer(item);
+  });
+}
+
+/** Error model. */
+export interface ErrorModel {
+  /** Gets or sets the error code. */
+  readonly code?: string;
+  /** Gets or sets the error type. */
+  readonly type?: string;
+  /** Gets or sets the error severity. */
+  readonly severity?: string;
+  /** Gets or sets the creation time of error. */
+  readonly creationTime?: Date;
+  /** Gets or sets the error message. */
+  readonly message?: string;
+  /** Gets or sets the possible causes of error. */
+  readonly causes?: string;
+  /** Gets or sets the recommended action to resolve error. */
+  readonly recommendation?: string;
+}
+
+export function errorModelDeserializer(item: any): ErrorModel {
+  return {
+    code: item["code"],
+    type: item["type"],
+    severity: item["severity"],
+    creationTime: !item["creationTime"]
+      ? item["creationTime"]
+      : new Date(item["creationTime"]),
+    message: item["message"],
+    causes: item["causes"],
+    recommendation: item["recommendation"],
+  };
+}
+
+/** Job model custom properties. */
+export interface JobModelCustomProperties {
+  /** Discriminator property for JobModelCustomProperties. */
+  /** The discriminator possible values: FailoverJobDetails, TestFailoverCleanupJobDetails, TestFailoverJobDetails */
+  instanceType: string;
+  /** Gets or sets any custom properties of the affected object. */
+  readonly affectedObjectDetails?: {
+    description?: string;
+    type?: "object";
+  };
+}
+
+export function jobModelCustomPropertiesDeserializer(
+  item: any,
+): JobModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+    affectedObjectDetails: !item["affectedObjectDetails"]
+      ? item["affectedObjectDetails"]
+      : _jobModelCustomPropertiesAffectedObjectDetailsDeserializer(
+          item["affectedObjectDetails"],
+        ),
+  };
+}
+
+/** Alias for JobModelCustomPropertiesUnion */
+export type JobModelCustomPropertiesUnion =
+  | FailoverJobModelCustomProperties
+  | TestFailoverCleanupJobModelCustomProperties
+  | TestFailoverJobModelCustomProperties
+  | JobModelCustomProperties;
+
+export function jobModelCustomPropertiesUnionDeserializer(
+  item: any,
+): JobModelCustomPropertiesUnion {
+  switch (item.instanceType) {
+    case "FailoverJobDetails":
+      return failoverJobModelCustomPropertiesDeserializer(
+        item as FailoverJobModelCustomProperties,
+      );
+
+    case "TestFailoverCleanupJobDetails":
+      return testFailoverCleanupJobModelCustomPropertiesDeserializer(
+        item as TestFailoverCleanupJobModelCustomProperties,
+      );
+
+    case "TestFailoverJobDetails":
+      return testFailoverJobModelCustomPropertiesDeserializer(
+        item as TestFailoverJobModelCustomProperties,
+      );
+
+    default:
+      return jobModelCustomPropertiesDeserializer(item);
+  }
+}
+
+/** model interface _JobModelCustomPropertiesAffectedObjectDetails */
+export interface _JobModelCustomPropertiesAffectedObjectDetails {
+  description?: string;
+  type?: "object";
+}
+
+export function _jobModelCustomPropertiesAffectedObjectDetailsDeserializer(
+  item: any,
+): _JobModelCustomPropertiesAffectedObjectDetails {
+  return {
+    description: item["description"],
+    type: item["type"],
+  };
+}
+
+/** Failover job model custom properties. */
+export interface FailoverJobModelCustomProperties
+  extends JobModelCustomProperties {
+  /** Gets or sets the failed over protected item details. */
+  readonly protectedItemDetails?: FailoverProtectedItemProperties[];
+  /** Gets or sets the instance type. */
+  instanceType: "FailoverJobDetails";
+}
+
+export function failoverJobModelCustomPropertiesDeserializer(
+  item: any,
+): FailoverJobModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+    affectedObjectDetails: !item["affectedObjectDetails"]
+      ? item["affectedObjectDetails"]
+      : _jobModelCustomPropertiesAffectedObjectDetailsDeserializer(
+          item["affectedObjectDetails"],
+        ),
+    protectedItemDetails: !item["protectedItemDetails"]
+      ? item["protectedItemDetails"]
+      : failoverProtectedItemPropertiesArrayDeserializer(
+          item["protectedItemDetails"],
+        ),
+  };
+}
+
+export function failoverProtectedItemPropertiesArrayDeserializer(
+  result: Array<FailoverProtectedItemProperties>,
+): any[] {
+  return result.map((item) => {
+    return failoverProtectedItemPropertiesDeserializer(item);
+  });
+}
+
+/** Failover properties of the protected item. */
+export interface FailoverProtectedItemProperties {
+  /** Gets or sets the protected item name. */
+  readonly protectedItemName?: string;
+  /** Gets or sets the VM name. */
+  readonly vmName?: string;
+  /** Gets or sets the test VM name. */
+  readonly testVmName?: string;
+  /** Gets or sets the recovery point Id. */
+  readonly recoveryPointId?: string;
+  /** Gets or sets the recovery point time. */
+  readonly recoveryPointTime?: Date;
+  /** Gets or sets the network name. */
+  readonly networkName?: string;
+  /** Gets or sets the network subnet. */
+  readonly subnet?: string;
+}
+
+export function failoverProtectedItemPropertiesDeserializer(
+  item: any,
+): FailoverProtectedItemProperties {
+  return {
+    protectedItemName: item["protectedItemName"],
+    vmName: item["vmName"],
+    testVmName: item["testVmName"],
+    recoveryPointId: item["recoveryPointId"],
+    recoveryPointTime: !item["recoveryPointTime"]
+      ? item["recoveryPointTime"]
+      : new Date(item["recoveryPointTime"]),
+    networkName: item["networkName"],
+    subnet: item["subnet"],
+  };
+}
+
+/** Test failover cleanup job model custom properties. */
+export interface TestFailoverCleanupJobModelCustomProperties
+  extends JobModelCustomProperties {
+  /** Gets or sets the test failover cleanup comments. */
+  readonly comments?: string;
+  /** Gets or sets the instance type. */
+  instanceType: "TestFailoverCleanupJobDetails";
+}
+
+export function testFailoverCleanupJobModelCustomPropertiesDeserializer(
+  item: any,
+): TestFailoverCleanupJobModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+    affectedObjectDetails: !item["affectedObjectDetails"]
+      ? item["affectedObjectDetails"]
+      : _jobModelCustomPropertiesAffectedObjectDetailsDeserializer(
+          item["affectedObjectDetails"],
+        ),
+    comments: item["comments"],
+  };
+}
+
+/** Test failover job model custom properties. */
+export interface TestFailoverJobModelCustomProperties
+  extends JobModelCustomProperties {
+  /** Gets or sets the test VM details. */
+  readonly protectedItemDetails?: FailoverProtectedItemProperties[];
+  /** Gets or sets the instance type. */
+  instanceType: "TestFailoverJobDetails";
+}
+
+export function testFailoverJobModelCustomPropertiesDeserializer(
+  item: any,
+): TestFailoverJobModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+    affectedObjectDetails: !item["affectedObjectDetails"]
+      ? item["affectedObjectDetails"]
+      : _jobModelCustomPropertiesAffectedObjectDetailsDeserializer(
+          item["affectedObjectDetails"],
+        ),
+    protectedItemDetails: !item["protectedItemDetails"]
+      ? item["protectedItemDetails"]
+      : failoverProtectedItemPropertiesArrayDeserializer(
+          item["protectedItemDetails"],
+        ),
+  };
+}
+
+/** The response of a JobModel list operation. */
+export interface _JobModelListResult {
+  /** The JobModel items on this page */
+  value: JobModel[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _jobModelListResultDeserializer(
+  item: any,
+): _JobModelListResult {
+  return {
+    value: jobModelArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+/** Policy model. */
+export interface PolicyModel extends ProxyResource {
+  /** The resource-specific properties for this resource. */
+  properties?: PolicyModelProperties;
+}
+
+export function policyModelSerializer(item: PolicyModel): any {
+  return {
+    properties: !item["properties"]
+      ? item["properties"]
+      : policyModelPropertiesSerializer(item["properties"]),
+  };
+}
+
+export function policyModelDeserializer(item: any): PolicyModel {
+  return {
+    id: item["id"],
+    name: item["name"],
+    type: item["type"],
+    systemData: !item["systemData"]
+      ? item["systemData"]
+      : systemDataDeserializer(item["systemData"]),
+    properties: !item["properties"]
+      ? item["properties"]
+      : policyModelPropertiesDeserializer(item["properties"]),
+  };
+}
+
+/** Policy model properties. */
+export interface PolicyModelProperties {
+  /** Gets or sets the provisioning state of the policy. */
+  readonly provisioningState?: ProvisioningState;
+  /** Policy model custom properties. */
+  customProperties: PolicyModelCustomPropertiesUnion;
+}
+
+export function policyModelPropertiesSerializer(
+  item: PolicyModelProperties,
+): any {
+  return {
+    customProperties: policyModelCustomPropertiesUnionSerializer(
+      item["customProperties"],
+    ),
+  };
+}
+
+export function policyModelPropertiesDeserializer(
+  item: any,
+): PolicyModelProperties {
+  return {
+    provisioningState: item["provisioningState"],
+    customProperties: policyModelCustomPropertiesUnionDeserializer(
+      item["customProperties"],
+    ),
+  };
+}
+
+/** Policy model custom properties. */
+export interface PolicyModelCustomProperties {
+  /** Discriminator property for PolicyModelCustomProperties. */
+  /** The discriminator possible values: HyperVToAzStackHCI, VMwareToAzStackHCI */
+  instanceType: string;
+}
+
+export function policyModelCustomPropertiesSerializer(
+  item: PolicyModelCustomProperties,
+): any {
+  return { instanceType: item["instanceType"] };
+}
+
+export function policyModelCustomPropertiesDeserializer(
+  item: any,
+): PolicyModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+  };
+}
+
+/** Alias for PolicyModelCustomPropertiesUnion */
+export type PolicyModelCustomPropertiesUnion =
+  | HyperVToAzStackHCIPolicyModelCustomProperties
+  | VMwareToAzStackHCIPolicyModelCustomProperties
+  | PolicyModelCustomProperties;
+
+export function policyModelCustomPropertiesUnionSerializer(
+  item: PolicyModelCustomPropertiesUnion,
+): any {
+  switch (item.instanceType) {
+    case "HyperVToAzStackHCI":
+      return hyperVToAzStackHCIPolicyModelCustomPropertiesSerializer(
+        item as HyperVToAzStackHCIPolicyModelCustomProperties,
+      );
+
+    case "VMwareToAzStackHCI":
+      return vMwareToAzStackHCIPolicyModelCustomPropertiesSerializer(
+        item as VMwareToAzStackHCIPolicyModelCustomProperties,
+      );
+
+    default:
+      return policyModelCustomPropertiesSerializer(item);
+  }
+}
+
+export function policyModelCustomPropertiesUnionDeserializer(
+  item: any,
+): PolicyModelCustomPropertiesUnion {
+  switch (item.instanceType) {
+    case "HyperVToAzStackHCI":
+      return hyperVToAzStackHCIPolicyModelCustomPropertiesDeserializer(
+        item as HyperVToAzStackHCIPolicyModelCustomProperties,
+      );
+
+    case "VMwareToAzStackHCI":
+      return vMwareToAzStackHCIPolicyModelCustomPropertiesDeserializer(
+        item as VMwareToAzStackHCIPolicyModelCustomProperties,
+      );
+
+    default:
+      return policyModelCustomPropertiesDeserializer(item);
+  }
+}
+
+/** HyperV To AzStackHCI Policy model custom properties. */
+export interface HyperVToAzStackHCIPolicyModelCustomProperties
+  extends PolicyModelCustomProperties {
+  /** Gets or sets the duration in minutes until which the recovery points need to be stored. */
+  recoveryPointHistoryInMinutes: number;
+  /** Gets or sets the crash consistent snapshot frequency (in minutes). */
+  crashConsistentFrequencyInMinutes: number;
+  /** Gets or sets the app consistent snapshot frequency (in minutes). */
+  appConsistentFrequencyInMinutes: number;
+  /** Gets or sets the instance type. */
+  instanceType: "HyperVToAzStackHCI";
+}
+
+export function hyperVToAzStackHCIPolicyModelCustomPropertiesSerializer(
+  item: HyperVToAzStackHCIPolicyModelCustomProperties,
+): any {
+  return {
+    instanceType: item["instanceType"],
+    recoveryPointHistoryInMinutes: item["recoveryPointHistoryInMinutes"],
+    crashConsistentFrequencyInMinutes:
+      item["crashConsistentFrequencyInMinutes"],
+    appConsistentFrequencyInMinutes: item["appConsistentFrequencyInMinutes"],
+  };
+}
+
+export function hyperVToAzStackHCIPolicyModelCustomPropertiesDeserializer(
+  item: any,
+): HyperVToAzStackHCIPolicyModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+    recoveryPointHistoryInMinutes: item["recoveryPointHistoryInMinutes"],
+    crashConsistentFrequencyInMinutes:
+      item["crashConsistentFrequencyInMinutes"],
+    appConsistentFrequencyInMinutes: item["appConsistentFrequencyInMinutes"],
+  };
+}
+
+/** VMware To AzStackHCI Policy model custom properties. */
+export interface VMwareToAzStackHCIPolicyModelCustomProperties
+  extends PolicyModelCustomProperties {
+  /** Gets or sets the duration in minutes until which the recovery points need to be stored. */
+  recoveryPointHistoryInMinutes: number;
+  /** Gets or sets the crash consistent snapshot frequency (in minutes). */
+  crashConsistentFrequencyInMinutes: number;
+  /** Gets or sets the app consistent snapshot frequency (in minutes). */
+  appConsistentFrequencyInMinutes: number;
+  /** Gets or sets the instance type. */
+  instanceType: "VMwareToAzStackHCI";
+}
+
+export function vMwareToAzStackHCIPolicyModelCustomPropertiesSerializer(
+  item: VMwareToAzStackHCIPolicyModelCustomProperties,
+): any {
+  return {
+    instanceType: item["instanceType"],
+    recoveryPointHistoryInMinutes: item["recoveryPointHistoryInMinutes"],
+    crashConsistentFrequencyInMinutes:
+      item["crashConsistentFrequencyInMinutes"],
+    appConsistentFrequencyInMinutes: item["appConsistentFrequencyInMinutes"],
+  };
+}
+
+export function vMwareToAzStackHCIPolicyModelCustomPropertiesDeserializer(
+  item: any,
+): VMwareToAzStackHCIPolicyModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+    recoveryPointHistoryInMinutes: item["recoveryPointHistoryInMinutes"],
+    crashConsistentFrequencyInMinutes:
+      item["crashConsistentFrequencyInMinutes"],
+    appConsistentFrequencyInMinutes: item["appConsistentFrequencyInMinutes"],
+  };
+}
+
+/** The response of a PolicyModel list operation. */
+export interface _PolicyModelListResult {
+  /** The PolicyModel items on this page */
+  value: PolicyModel[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _policyModelListResultDeserializer(
+  item: any,
+): _PolicyModelListResult {
+  return {
+    value: policyModelArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function policyModelArraySerializer(result: Array<PolicyModel>): any[] {
+  return result.map((item) => {
+    return policyModelSerializer(item);
+  });
+}
+
+export function policyModelArrayDeserializer(
+  result: Array<PolicyModel>,
+): any[] {
+  return result.map((item) => {
+    return policyModelDeserializer(item);
+  });
+}
+
+/** Represents private endpoint connection. */
+export interface PrivateEndpointConnection extends ProxyResource {
+  /** The resource-specific properties for this resource. */
+  properties?: PrivateEndpointConnectionResponseProperties;
+}
+
+export function privateEndpointConnectionSerializer(
+  item: PrivateEndpointConnection,
+): any {
+  return {
+    properties: !item["properties"]
+      ? item["properties"]
+      : privateEndpointConnectionResponsePropertiesSerializer(
+          item["properties"],
+        ),
+  };
+}
+
+export function privateEndpointConnectionDeserializer(
+  item: any,
+): PrivateEndpointConnection {
+  return {
+    id: item["id"],
+    name: item["name"],
+    type: item["type"],
+    systemData: !item["systemData"]
+      ? item["systemData"]
+      : systemDataDeserializer(item["systemData"]),
+    properties: !item["properties"]
+      ? item["properties"]
+      : privateEndpointConnectionResponsePropertiesDeserializer(
+          item["properties"],
+        ),
+  };
+}
+
+/** Represents Private endpoint connection response properties. */
+export interface PrivateEndpointConnectionResponseProperties {
+  /** Gets or sets provisioning state of the private endpoint connection. */
+  readonly provisioningState?: ProvisioningState;
+  /** Represent private Endpoint network resource that is linked to the Private Endpoint connection. */
+  privateEndpoint?: PrivateEndpoint;
+  /** Represents Private link service connection state. */
+  privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
+}
+
+export function privateEndpointConnectionResponsePropertiesSerializer(
+  item: PrivateEndpointConnectionResponseProperties,
+): any {
+  return {
+    privateEndpoint: !item["privateEndpoint"]
+      ? item["privateEndpoint"]
+      : privateEndpointSerializer(item["privateEndpoint"]),
+    privateLinkServiceConnectionState: !item[
+      "privateLinkServiceConnectionState"
+    ]
+      ? item["privateLinkServiceConnectionState"]
+      : privateLinkServiceConnectionStateSerializer(
+          item["privateLinkServiceConnectionState"],
+        ),
+  };
+}
+
+export function privateEndpointConnectionResponsePropertiesDeserializer(
+  item: any,
+): PrivateEndpointConnectionResponseProperties {
+  return {
+    provisioningState: item["provisioningState"],
+    privateEndpoint: !item["privateEndpoint"]
+      ? item["privateEndpoint"]
+      : privateEndpointDeserializer(item["privateEndpoint"]),
+    privateLinkServiceConnectionState: !item[
+      "privateLinkServiceConnectionState"
+    ]
+      ? item["privateLinkServiceConnectionState"]
+      : privateLinkServiceConnectionStateDeserializer(
+          item["privateLinkServiceConnectionState"],
+        ),
+  };
+}
+
+/** Represent private Endpoint network resource that is linked to the Private Endpoint connection. */
+export interface PrivateEndpoint {
+  /** Gets or sets the id. */
+  id?: string;
+}
+
+export function privateEndpointSerializer(item: PrivateEndpoint): any {
+  return { id: item["id"] };
+}
+
+export function privateEndpointDeserializer(item: any): PrivateEndpoint {
+  return {
+    id: item["id"],
+  };
+}
+
+/** Represents Private link service connection state. */
+export interface PrivateLinkServiceConnectionState {
+  /** Gets or sets the status. */
+  status?: PrivateEndpointConnectionStatus;
+  /** Gets or sets description. */
+  description?: string;
+  /** Gets or sets actions required. */
+  actionsRequired?: string;
+}
+
+export function privateLinkServiceConnectionStateSerializer(
+  item: PrivateLinkServiceConnectionState,
+): any {
+  return {
+    status: item["status"],
+    description: item["description"],
+    actionsRequired: item["actionsRequired"],
+  };
+}
+
+export function privateLinkServiceConnectionStateDeserializer(
+  item: any,
+): PrivateLinkServiceConnectionState {
+  return {
+    status: item["status"],
+    description: item["description"],
+    actionsRequired: item["actionsRequired"],
+  };
+}
+
+/** Gets or sets the status. */
+export enum KnownPrivateEndpointConnectionStatus {
+  /** Approved Status. */
+  Approved = "Approved",
+  /** Disconnected Status. */
+  Disconnected = "Disconnected",
+  /** Pending Status. */
+  Pending = "Pending",
+  /** Rejected Status. */
+  Rejected = "Rejected",
+}
+
+/**
+ * Gets or sets the status. \
+ * {@link KnownPrivateEndpointConnectionStatus} can be used interchangeably with PrivateEndpointConnectionStatus,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Approved**: Approved Status. \
+ * **Disconnected**: Disconnected Status. \
+ * **Pending**: Pending Status. \
+ * **Rejected**: Rejected Status.
+ */
+export type PrivateEndpointConnectionStatus = string;
+
+/** The response of a PrivateEndpointConnection list operation. */
+export interface _PrivateEndpointConnectionListResult {
+  /** The PrivateEndpointConnection items on this page */
+  value: PrivateEndpointConnection[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _privateEndpointConnectionListResultDeserializer(
+  item: any,
+): _PrivateEndpointConnectionListResult {
+  return {
+    value: privateEndpointConnectionArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function privateEndpointConnectionArraySerializer(
+  result: Array<PrivateEndpointConnection>,
+): any[] {
+  return result.map((item) => {
+    return privateEndpointConnectionSerializer(item);
+  });
+}
+
+export function privateEndpointConnectionArrayDeserializer(
+  result: Array<PrivateEndpointConnection>,
+): any[] {
+  return result.map((item) => {
+    return privateEndpointConnectionDeserializer(item);
+  });
+}
+
+/** Represents private endpoint connection proxy request. */
+export interface PrivateEndpointConnectionProxy extends ProxyResource {
+  /** The resource-specific properties for this resource. */
+  properties?: PrivateEndpointConnectionProxyProperties;
+  /** Gets or sets ETag. */
+  etag?: string;
+}
+
+export function privateEndpointConnectionProxySerializer(
+  item: PrivateEndpointConnectionProxy,
+): any {
+  return {
+    properties: !item["properties"]
+      ? item["properties"]
+      : privateEndpointConnectionProxyPropertiesSerializer(item["properties"]),
+    etag: item["etag"],
+  };
+}
+
+export function privateEndpointConnectionProxyDeserializer(
+  item: any,
+): PrivateEndpointConnectionProxy {
+  return {
+    id: item["id"],
+    name: item["name"],
+    type: item["type"],
+    systemData: !item["systemData"]
+      ? item["systemData"]
+      : systemDataDeserializer(item["systemData"]),
+    properties: !item["properties"]
+      ? item["properties"]
+      : privateEndpointConnectionProxyPropertiesDeserializer(
+          item["properties"],
+        ),
+    etag: item["etag"],
+  };
+}
+
+/** Represents private endpoint connection proxy request. */
+export interface PrivateEndpointConnectionProxyProperties {
+  /** Gets or sets the provisioning state of the private endpoint connection proxy. */
+  readonly provisioningState?: ProvisioningState;
+  /** Represent remote private endpoint information for the private endpoint connection proxy. */
+  remotePrivateEndpoint?: RemotePrivateEndpoint;
+}
+
+export function privateEndpointConnectionProxyPropertiesSerializer(
+  item: PrivateEndpointConnectionProxyProperties,
+): any {
+  return {
+    remotePrivateEndpoint: !item["remotePrivateEndpoint"]
+      ? item["remotePrivateEndpoint"]
+      : remotePrivateEndpointSerializer(item["remotePrivateEndpoint"]),
+  };
+}
+
+export function privateEndpointConnectionProxyPropertiesDeserializer(
+  item: any,
+): PrivateEndpointConnectionProxyProperties {
+  return {
+    provisioningState: item["provisioningState"],
+    remotePrivateEndpoint: !item["remotePrivateEndpoint"]
+      ? item["remotePrivateEndpoint"]
+      : remotePrivateEndpointDeserializer(item["remotePrivateEndpoint"]),
+  };
+}
+
+/** Represent remote private endpoint information for the private endpoint connection proxy. */
+export interface RemotePrivateEndpoint {
+  /** Gets or sets private link service proxy id. */
+  id: string;
+  /** Gets or sets the list of Private Link Service Connections and gets populated for Auto approval flow. */
+  privateLinkServiceConnections?: PrivateLinkServiceConnection[];
+  /** Gets or sets the list of Manual Private Link Service Connections and gets populated for Manual approval flow. */
+  manualPrivateLinkServiceConnections?: PrivateLinkServiceConnection[];
+  /** Gets or sets the list of private link service proxies. */
+  privateLinkServiceProxies?: PrivateLinkServiceProxy[];
+  /** Gets or sets the list of Connection Details. This is the connection details for private endpoint. */
+  connectionDetails?: ConnectionDetails[];
+}
+
+export function remotePrivateEndpointSerializer(
+  item: RemotePrivateEndpoint,
+): any {
+  return {
+    id: item["id"],
+    privateLinkServiceConnections: !item["privateLinkServiceConnections"]
+      ? item["privateLinkServiceConnections"]
+      : privateLinkServiceConnectionArraySerializer(
+          item["privateLinkServiceConnections"],
+        ),
+    manualPrivateLinkServiceConnections: !item[
+      "manualPrivateLinkServiceConnections"
+    ]
+      ? item["manualPrivateLinkServiceConnections"]
+      : privateLinkServiceConnectionArraySerializer(
+          item["manualPrivateLinkServiceConnections"],
+        ),
+    privateLinkServiceProxies: !item["privateLinkServiceProxies"]
+      ? item["privateLinkServiceProxies"]
+      : privateLinkServiceProxyArraySerializer(
+          item["privateLinkServiceProxies"],
+        ),
+    connectionDetails: !item["connectionDetails"]
+      ? item["connectionDetails"]
+      : connectionDetailsArraySerializer(item["connectionDetails"]),
+  };
+}
+
+export function remotePrivateEndpointDeserializer(
+  item: any,
+): RemotePrivateEndpoint {
+  return {
+    id: item["id"],
+    privateLinkServiceConnections: !item["privateLinkServiceConnections"]
+      ? item["privateLinkServiceConnections"]
+      : privateLinkServiceConnectionArrayDeserializer(
+          item["privateLinkServiceConnections"],
+        ),
+    manualPrivateLinkServiceConnections: !item[
+      "manualPrivateLinkServiceConnections"
+    ]
+      ? item["manualPrivateLinkServiceConnections"]
+      : privateLinkServiceConnectionArrayDeserializer(
+          item["manualPrivateLinkServiceConnections"],
+        ),
+    privateLinkServiceProxies: !item["privateLinkServiceProxies"]
+      ? item["privateLinkServiceProxies"]
+      : privateLinkServiceProxyArrayDeserializer(
+          item["privateLinkServiceProxies"],
+        ),
+    connectionDetails: !item["connectionDetails"]
+      ? item["connectionDetails"]
+      : connectionDetailsArrayDeserializer(item["connectionDetails"]),
+  };
+}
+
+export function privateLinkServiceConnectionArraySerializer(
+  result: Array<PrivateLinkServiceConnection>,
+): any[] {
+  return result.map((item) => {
+    return privateLinkServiceConnectionSerializer(item);
+  });
+}
+
+export function privateLinkServiceConnectionArrayDeserializer(
+  result: Array<PrivateLinkServiceConnection>,
+): any[] {
+  return result.map((item) => {
+    return privateLinkServiceConnectionDeserializer(item);
+  });
+}
+
+/** Represents of an NRP private link service connection. */
+export interface PrivateLinkServiceConnection {
+  /** Gets or sets private link service connection name. */
+  name?: string;
+  /** Gets or sets group ids. */
+  groupIds?: string[];
+  /** Gets or sets the request message for the private link service connection. */
+  requestMessage?: string;
+}
+
+export function privateLinkServiceConnectionSerializer(
+  item: PrivateLinkServiceConnection,
+): any {
+  return {
+    name: item["name"],
+    groupIds: !item["groupIds"]
+      ? item["groupIds"]
+      : item["groupIds"].map((p: any) => {
+          return p;
+        }),
+    requestMessage: item["requestMessage"],
+  };
+}
+
+export function privateLinkServiceConnectionDeserializer(
+  item: any,
+): PrivateLinkServiceConnection {
+  return {
+    name: item["name"],
+    groupIds: !item["groupIds"]
+      ? item["groupIds"]
+      : item["groupIds"].map((p: any) => {
+          return p;
+        }),
+    requestMessage: item["requestMessage"],
+  };
+}
+
+export function privateLinkServiceProxyArraySerializer(
+  result: Array<PrivateLinkServiceProxy>,
+): any[] {
+  return result.map((item) => {
+    return privateLinkServiceProxySerializer(item);
+  });
+}
+
+export function privateLinkServiceProxyArrayDeserializer(
+  result: Array<PrivateLinkServiceProxy>,
+): any[] {
+  return result.map((item) => {
+    return privateLinkServiceProxyDeserializer(item);
+  });
+}
+
+/** Represents NRP private link service proxy. */
+export interface PrivateLinkServiceProxy {
+  /** Gets or sets private link service proxy id. */
+  id?: string;
+  /** Represents Private link service connection state. */
+  remotePrivateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
+  /** Represent remote private endpoint connection. */
+  remotePrivateEndpointConnection?: RemotePrivateEndpointConnection;
+  /** Gets or sets group connectivity information. */
+  groupConnectivityInformation?: GroupConnectivityInformation[];
+}
+
+export function privateLinkServiceProxySerializer(
+  item: PrivateLinkServiceProxy,
+): any {
+  return {
+    id: item["id"],
+    remotePrivateLinkServiceConnectionState: !item[
+      "remotePrivateLinkServiceConnectionState"
+    ]
+      ? item["remotePrivateLinkServiceConnectionState"]
+      : privateLinkServiceConnectionStateSerializer(
+          item["remotePrivateLinkServiceConnectionState"],
+        ),
+    remotePrivateEndpointConnection: !item["remotePrivateEndpointConnection"]
+      ? item["remotePrivateEndpointConnection"]
+      : remotePrivateEndpointConnectionSerializer(
+          item["remotePrivateEndpointConnection"],
+        ),
+    groupConnectivityInformation: !item["groupConnectivityInformation"]
+      ? item["groupConnectivityInformation"]
+      : groupConnectivityInformationArraySerializer(
+          item["groupConnectivityInformation"],
+        ),
+  };
+}
+
+export function privateLinkServiceProxyDeserializer(
+  item: any,
+): PrivateLinkServiceProxy {
+  return {
+    id: item["id"],
+    remotePrivateLinkServiceConnectionState: !item[
+      "remotePrivateLinkServiceConnectionState"
+    ]
+      ? item["remotePrivateLinkServiceConnectionState"]
+      : privateLinkServiceConnectionStateDeserializer(
+          item["remotePrivateLinkServiceConnectionState"],
+        ),
+    remotePrivateEndpointConnection: !item["remotePrivateEndpointConnection"]
+      ? item["remotePrivateEndpointConnection"]
+      : remotePrivateEndpointConnectionDeserializer(
+          item["remotePrivateEndpointConnection"],
+        ),
+    groupConnectivityInformation: !item["groupConnectivityInformation"]
+      ? item["groupConnectivityInformation"]
+      : groupConnectivityInformationArrayDeserializer(
+          item["groupConnectivityInformation"],
+        ),
+  };
+}
+
+/** Represent remote private endpoint connection. */
+export interface RemotePrivateEndpointConnection {
+  /** Gets or sets the remote private endpoint connection id. */
+  id?: string;
+}
+
+export function remotePrivateEndpointConnectionSerializer(
+  item: RemotePrivateEndpointConnection,
+): any {
+  return { id: item["id"] };
+}
+
+export function remotePrivateEndpointConnectionDeserializer(
+  item: any,
+): RemotePrivateEndpointConnection {
+  return {
+    id: item["id"],
+  };
+}
+
+export function groupConnectivityInformationArraySerializer(
+  result: Array<GroupConnectivityInformation>,
+): any[] {
+  return result.map((item) => {
+    return groupConnectivityInformationSerializer(item);
+  });
+}
+
+export function groupConnectivityInformationArrayDeserializer(
+  result: Array<GroupConnectivityInformation>,
+): any[] {
+  return result.map((item) => {
+    return groupConnectivityInformationDeserializer(item);
+  });
+}
+
+/** Represents of a connection's group information. */
+export interface GroupConnectivityInformation {
+  /** Gets or sets group id. */
+  groupId?: string;
+  /** Gets or sets member name. */
+  memberName?: string;
+  /** Gets or sets customer visible FQDNs. */
+  customerVisibleFqdns?: string[];
+  /** Gets or sets Internal Fqdn. */
+  internalFqdn?: string;
+  /** Gets or sets the redirect map id. */
+  redirectMapId?: string;
+  /** Gets or sets the private link service arm region. */
+  privateLinkServiceArmRegion?: string;
+}
+
+export function groupConnectivityInformationSerializer(
+  item: GroupConnectivityInformation,
+): any {
+  return {
+    groupId: item["groupId"],
+    memberName: item["memberName"],
+    customerVisibleFqdns: !item["customerVisibleFqdns"]
+      ? item["customerVisibleFqdns"]
+      : item["customerVisibleFqdns"].map((p: any) => {
+          return p;
+        }),
+    internalFqdn: item["internalFqdn"],
+    redirectMapId: item["redirectMapId"],
+    privateLinkServiceArmRegion: item["privateLinkServiceArmRegion"],
+  };
+}
+
+export function groupConnectivityInformationDeserializer(
+  item: any,
+): GroupConnectivityInformation {
+  return {
+    groupId: item["groupId"],
+    memberName: item["memberName"],
+    customerVisibleFqdns: !item["customerVisibleFqdns"]
+      ? item["customerVisibleFqdns"]
+      : item["customerVisibleFqdns"].map((p: any) => {
+          return p;
+        }),
+    internalFqdn: item["internalFqdn"],
+    redirectMapId: item["redirectMapId"],
+    privateLinkServiceArmRegion: item["privateLinkServiceArmRegion"],
+  };
+}
+
+export function connectionDetailsArraySerializer(
+  result: Array<ConnectionDetails>,
+): any[] {
+  return result.map((item) => {
+    return connectionDetailsSerializer(item);
+  });
+}
+
+export function connectionDetailsArrayDeserializer(
+  result: Array<ConnectionDetails>,
+): any[] {
+  return result.map((item) => {
+    return connectionDetailsDeserializer(item);
+  });
+}
+
+/** Private endpoint connection details at member level. */
+export interface ConnectionDetails {
+  /** Gets or sets id. */
+  id?: string;
+  /** Gets or sets private IP address. */
+  privateIpAddress?: string;
+  /** Gets or sets link identifier. */
+  linkIdentifier?: string;
+  /** Gets or sets group id. */
+  groupId?: string;
+  /** Gets or sets member name. */
+  memberName?: string;
+}
+
+export function connectionDetailsSerializer(item: ConnectionDetails): any {
+  return {
+    id: item["id"],
+    privateIpAddress: item["privateIpAddress"],
+    linkIdentifier: item["linkIdentifier"],
+    groupId: item["groupId"],
+    memberName: item["memberName"],
+  };
+}
+
+export function connectionDetailsDeserializer(item: any): ConnectionDetails {
+  return {
+    id: item["id"],
+    privateIpAddress: item["privateIpAddress"],
+    linkIdentifier: item["linkIdentifier"],
+    groupId: item["groupId"],
+    memberName: item["memberName"],
+  };
+}
+
+/** The response of a PrivateEndpointConnectionProxy list operation. */
+export interface _PrivateEndpointConnectionProxyListResult {
+  /** The PrivateEndpointConnectionProxy items on this page */
+  value: PrivateEndpointConnectionProxy[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _privateEndpointConnectionProxyListResultDeserializer(
+  item: any,
+): _PrivateEndpointConnectionProxyListResult {
+  return {
+    value: privateEndpointConnectionProxyArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function privateEndpointConnectionProxyArraySerializer(
+  result: Array<PrivateEndpointConnectionProxy>,
+): any[] {
+  return result.map((item) => {
+    return privateEndpointConnectionProxySerializer(item);
+  });
+}
+
+export function privateEndpointConnectionProxyArrayDeserializer(
+  result: Array<PrivateEndpointConnectionProxy>,
+): any[] {
+  return result.map((item) => {
+    return privateEndpointConnectionProxyDeserializer(item);
+  });
+}
+
+/** Represents private link resource. */
+export interface PrivateLinkResource extends ProxyResource {
+  /** The resource-specific properties for this resource. */
+  properties?: PrivateLinkResourceProperties;
+}
+
+export function privateLinkResourceDeserializer(
+  item: any,
+): PrivateLinkResource {
+  return {
+    id: item["id"],
+    name: item["name"],
+    type: item["type"],
+    systemData: !item["systemData"]
+      ? item["systemData"]
+      : systemDataDeserializer(item["systemData"]),
+    properties: !item["properties"]
+      ? item["properties"]
+      : privateLinkResourcePropertiesDeserializer(item["properties"]),
+  };
+}
+
+/** Represents private link resource properties. */
+export interface PrivateLinkResourceProperties {
+  /** Gets or sets the group id. */
+  groupId?: string;
+  /** Gets or sets the required member. This translates to how many Private IPs should be created for each privately linkable resource. */
+  requiredMembers?: string[];
+  /** Gets or sets the private DNS zone names. */
+  requiredZoneNames?: string[];
+  /** Gets or sets the provisioning state of the private link resource. */
+  readonly provisioningState?: ProvisioningState;
+}
+
+export function privateLinkResourcePropertiesDeserializer(
+  item: any,
+): PrivateLinkResourceProperties {
+  return {
+    groupId: item["groupId"],
+    requiredMembers: !item["requiredMembers"]
+      ? item["requiredMembers"]
+      : item["requiredMembers"].map((p: any) => {
+          return p;
+        }),
+    requiredZoneNames: !item["requiredZoneNames"]
+      ? item["requiredZoneNames"]
+      : item["requiredZoneNames"].map((p: any) => {
+          return p;
+        }),
+    provisioningState: item["provisioningState"],
+  };
+}
+
+/** The response of a PrivateLinkResource list operation. */
+export interface _PrivateLinkResourceListResult {
+  /** The PrivateLinkResource items on this page */
+  value: PrivateLinkResource[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _privateLinkResourceListResultDeserializer(
+  item: any,
+): _PrivateLinkResourceListResult {
+  return {
+    value: privateLinkResourceArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function privateLinkResourceArrayDeserializer(
+  result: Array<PrivateLinkResource>,
+): any[] {
+  return result.map((item) => {
+    return privateLinkResourceDeserializer(item);
+  });
+}
+
+/** Protected item model. */
+export interface ProtectedItemModel extends ProxyResource {
+  /** The resource-specific properties for this resource. */
+  properties?: ProtectedItemModelProperties;
+}
+
+export function protectedItemModelSerializer(item: ProtectedItemModel): any {
+  return {
+    properties: !item["properties"]
+      ? item["properties"]
+      : protectedItemModelPropertiesSerializer(item["properties"]),
+  };
+}
+
+export function protectedItemModelDeserializer(item: any): ProtectedItemModel {
+  return {
+    id: item["id"],
+    name: item["name"],
+    type: item["type"],
+    systemData: !item["systemData"]
+      ? item["systemData"]
+      : systemDataDeserializer(item["systemData"]),
+    properties: !item["properties"]
+      ? item["properties"]
+      : protectedItemModelPropertiesDeserializer(item["properties"]),
+  };
+}
+
+/** Protected item model properties. */
+export interface ProtectedItemModelProperties {
+  /** Gets or sets the policy name. */
+  policyName: string;
+  /** Gets or sets the replication extension name. */
+  replicationExtensionName: string;
+  /** Gets or sets the protected item correlation Id. */
+  readonly correlationId?: string;
+  /** Gets or sets the provisioning state of the fabric agent. */
+  readonly provisioningState?: ProvisioningState;
+  /** Gets or sets the protection state. */
+  readonly protectionState?: ProtectionState;
+  /** Gets or sets the protection state description. */
+  readonly protectionStateDescription?: string;
+  /** Gets or sets the test failover state. */
+  readonly testFailoverState?: TestFailoverState;
+  /** Gets or sets the Test failover state description. */
+  readonly testFailoverStateDescription?: string;
+  /** Gets or sets the resynchronization state. */
+  readonly resynchronizationState?: ResynchronizationState;
+  /** Gets or sets the fabric object Id. */
+  readonly fabricObjectId?: string;
+  /** Gets or sets the fabric object name. */
+  readonly fabricObjectName?: string;
+  /** Gets or sets the source fabric provider Id. */
+  readonly sourceFabricProviderId?: string;
+  /** Gets or sets the target fabric provider Id. */
+  readonly targetFabricProviderId?: string;
+  /** Gets or sets the fabric Id. */
+  readonly fabricId?: string;
+  /** Gets or sets the target fabric Id. */
+  readonly targetFabricId?: string;
+  /** Gets or sets the fabric agent Id. */
+  readonly fabricAgentId?: string;
+  /** Gets or sets the target fabric agent Id. */
+  readonly targetFabricAgentId?: string;
+  /** Gets or sets a value indicating whether resynchronization is required or not. */
+  readonly resyncRequired?: boolean;
+  /** Gets or sets the Last successful planned failover time. */
+  readonly lastSuccessfulPlannedFailoverTime?: Date;
+  /** Gets or sets the Last successful unplanned failover time. */
+  readonly lastSuccessfulUnplannedFailoverTime?: Date;
+  /** Gets or sets the Last successful test failover time. */
+  readonly lastSuccessfulTestFailoverTime?: Date;
+  /** Gets or sets the current scenario. */
+  readonly currentJob?: ProtectedItemJobProperties;
+  /** Gets or sets the allowed scenarios on the protected item. */
+  readonly allowedJobs?: string[];
+  /** Gets or sets the last failed enabled protection job. */
+  readonly lastFailedEnableProtectionJob?: ProtectedItemJobProperties;
+  /** Gets or sets the last failed planned failover job. */
+  readonly lastFailedPlannedFailoverJob?: ProtectedItemJobProperties;
+  /** Gets or sets the last test failover job. */
+  readonly lastTestFailoverJob?: ProtectedItemJobProperties;
+  /** Gets or sets protected item replication health. */
+  readonly replicationHealth?: HealthStatus;
+  /** Gets or sets the list of health errors. */
+  readonly healthErrors?: HealthErrorModel[];
+  /** Protected item model custom properties. */
+  customProperties: ProtectedItemModelCustomPropertiesUnion;
+}
+
+export function protectedItemModelPropertiesSerializer(
+  item: ProtectedItemModelProperties,
+): any {
+  return {
+    policyName: item["policyName"],
+    replicationExtensionName: item["replicationExtensionName"],
+    customProperties: protectedItemModelCustomPropertiesUnionSerializer(
+      item["customProperties"],
+    ),
+  };
+}
+
+export function protectedItemModelPropertiesDeserializer(
+  item: any,
+): ProtectedItemModelProperties {
+  return {
+    policyName: item["policyName"],
+    replicationExtensionName: item["replicationExtensionName"],
+    correlationId: item["correlationId"],
+    provisioningState: item["provisioningState"],
+    protectionState: item["protectionState"],
+    protectionStateDescription: item["protectionStateDescription"],
+    testFailoverState: item["testFailoverState"],
+    testFailoverStateDescription: item["testFailoverStateDescription"],
+    resynchronizationState: item["resynchronizationState"],
+    fabricObjectId: item["fabricObjectId"],
+    fabricObjectName: item["fabricObjectName"],
+    sourceFabricProviderId: item["sourceFabricProviderId"],
+    targetFabricProviderId: item["targetFabricProviderId"],
+    fabricId: item["fabricId"],
+    targetFabricId: item["targetFabricId"],
+    fabricAgentId: item["fabricAgentId"],
+    targetFabricAgentId: item["targetFabricAgentId"],
+    resyncRequired: item["resyncRequired"],
+    lastSuccessfulPlannedFailoverTime: !item[
+      "lastSuccessfulPlannedFailoverTime"
+    ]
+      ? item["lastSuccessfulPlannedFailoverTime"]
+      : new Date(item["lastSuccessfulPlannedFailoverTime"]),
+    lastSuccessfulUnplannedFailoverTime: !item[
+      "lastSuccessfulUnplannedFailoverTime"
+    ]
+      ? item["lastSuccessfulUnplannedFailoverTime"]
+      : new Date(item["lastSuccessfulUnplannedFailoverTime"]),
+    lastSuccessfulTestFailoverTime: !item["lastSuccessfulTestFailoverTime"]
+      ? item["lastSuccessfulTestFailoverTime"]
+      : new Date(item["lastSuccessfulTestFailoverTime"]),
+    currentJob: !item["currentJob"]
+      ? item["currentJob"]
+      : protectedItemJobPropertiesDeserializer(item["currentJob"]),
+    allowedJobs: !item["allowedJobs"]
+      ? item["allowedJobs"]
+      : item["allowedJobs"].map((p: any) => {
+          return p;
+        }),
+    lastFailedEnableProtectionJob: !item["lastFailedEnableProtectionJob"]
+      ? item["lastFailedEnableProtectionJob"]
+      : protectedItemJobPropertiesDeserializer(
+          item["lastFailedEnableProtectionJob"],
+        ),
+    lastFailedPlannedFailoverJob: !item["lastFailedPlannedFailoverJob"]
+      ? item["lastFailedPlannedFailoverJob"]
+      : protectedItemJobPropertiesDeserializer(
+          item["lastFailedPlannedFailoverJob"],
+        ),
+    lastTestFailoverJob: !item["lastTestFailoverJob"]
+      ? item["lastTestFailoverJob"]
+      : protectedItemJobPropertiesDeserializer(item["lastTestFailoverJob"]),
+    replicationHealth: item["replicationHealth"],
+    healthErrors: !item["healthErrors"]
+      ? item["healthErrors"]
+      : healthErrorModelArrayDeserializer(item["healthErrors"]),
+    customProperties: protectedItemModelCustomPropertiesUnionDeserializer(
+      item["customProperties"],
+    ),
+  };
+}
+
+/** Gets or sets the protection state. */
+export enum KnownProtectionState {
+  /** Begin marker for unprotected states. */
+  UnprotectedStatesBegin = "UnprotectedStatesBegin",
+  /** Enable protection is in progress. */
+  EnablingProtection = "EnablingProtection",
+  /** Enable protection failed. */
+  EnablingFailed = "EnablingFailed",
+  /** Disabling protection is in progress. */
+  DisablingProtection = "DisablingProtection",
+  /** Disabling protection succeeded. This is a transient state before the protected item is deleted. */
+  MarkedForDeletion = "MarkedForDeletion",
+  /** Disable protection failed. */
+  DisablingFailed = "DisablingFailed",
+  /** End marker for unprotected states. */
+  UnprotectedStatesEnd = "UnprotectedStatesEnd",
+  /** Begin marker for initial replication states. */
+  InitialReplicationStatesBegin = "InitialReplicationStatesBegin",
+  /** Initial replication is in progress. */
+  InitialReplicationInProgress = "InitialReplicationInProgress",
+  /** Initial replication has completed on the primary side. */
+  InitialReplicationCompletedOnPrimary = "InitialReplicationCompletedOnPrimary",
+  /** Initial replication has completed on the recovery side. */
+  InitialReplicationCompletedOnRecovery = "InitialReplicationCompletedOnRecovery",
+  /** Initial replication failed and would need to be started again. */
+  InitialReplicationFailed = "InitialReplicationFailed",
+  /** End marker for initial replication states. */
+  InitialReplicationStatesEnd = "InitialReplicationStatesEnd",
+  /** Begin marker for protected steady-state states. */
+  ProtectedStatesBegin = "ProtectedStatesBegin",
+  /** Protected item is protected and replication is on-going. Any issues with replication will be surfaced separately via the health property and will not affect the state. */
+  Protected = "Protected",
+  /** End marker for protected steady-state states. */
+  ProtectedStatesEnd = "ProtectedStatesEnd",
+  /** Begin marker for planned failover transition states. */
+  PlannedFailoverTransitionStatesBegin = "PlannedFailoverTransitionStatesBegin",
+  /** Planned failover has been initiated. */
+  PlannedFailoverInitiated = "PlannedFailoverInitiated",
+  /** Planned failover preparing protected entities is in progress. */
+  PlannedFailoverCompleting = "PlannedFailoverCompleting",
+  /** Planned failover has been completed successfully. */
+  PlannedFailoverCompleted = "PlannedFailoverCompleted",
+  /** Planned failover initiation failed. */
+  PlannedFailoverFailed = "PlannedFailoverFailed",
+  /** Planned failover preparing protected entities failed. */
+  PlannedFailoverCompletionFailed = "PlannedFailoverCompletionFailed",
+  /** End marker for planned failover transition states. */
+  PlannedFailoverTransitionStatesEnd = "PlannedFailoverTransitionStatesEnd",
+  /** Begin marker for unplanned failover transition states. */
+  UnplannedFailoverTransitionStatesBegin = "UnplannedFailoverTransitionStatesBegin",
+  /** Unplanned failover has been initiated. */
+  UnplannedFailoverInitiated = "UnplannedFailoverInitiated",
+  /** Unplanned failover preparing protected entities is in progress. */
+  UnplannedFailoverCompleting = "UnplannedFailoverCompleting",
+  /** Unplanned failover preparing protected entities is in progress. */
+  UnplannedFailoverCompleted = "UnplannedFailoverCompleted",
+  /** Unplanned failover initiation failed. */
+  UnplannedFailoverFailed = "UnplannedFailoverFailed",
+  /** Unplanned failover preparing protected entities failed. */
+  UnplannedFailoverCompletionFailed = "UnplannedFailoverCompletionFailed",
+  /** End marker for unplanned failover transition states. */
+  UnplannedFailoverTransitionStatesEnd = "UnplannedFailoverTransitionStatesEnd",
+  /** Begin marker for commit failover states. */
+  CommitFailoverStatesBegin = "CommitFailoverStatesBegin",
+  /** Commit failover is in progress on the primary side. */
+  CommitFailoverInProgressOnPrimary = "CommitFailoverInProgressOnPrimary",
+  /** Commit failover is in progress on the recovery side. */
+  CommitFailoverInProgressOnRecovery = "CommitFailoverInProgressOnRecovery",
+  /** Commit failover has been completed successfully. */
+  CommitFailoverCompleted = "CommitFailoverCompleted",
+  /** Commit failover failed on the primary side. */
+  CommitFailoverFailedOnPrimary = "CommitFailoverFailedOnPrimary",
+  /** Commit failover failed on the recovery side. */
+  CommitFailoverFailedOnRecovery = "CommitFailoverFailedOnRecovery",
+  /** End marker for commit failover states. */
+  CommitFailoverStatesEnd = "CommitFailoverStatesEnd",
+  /** Begin marker for cancel failover states. */
+  CancelFailoverStatesBegin = "CancelFailoverStatesBegin",
+  /** Cancel failover is in progress on the primary side. */
+  CancelFailoverInProgressOnPrimary = "CancelFailoverInProgressOnPrimary",
+  /** Cancel failover is in progress on the recovery side. */
+  CancelFailoverInProgressOnRecovery = "CancelFailoverInProgressOnRecovery",
+  /** Cancel failover failed on the primary side. */
+  CancelFailoverFailedOnPrimary = "CancelFailoverFailedOnPrimary",
+  /** Cancel failover failed on the recovery side. */
+  CancelFailoverFailedOnRecovery = "CancelFailoverFailedOnRecovery",
+  /** End marker for cancel failover states. */
+  CancelFailoverStatesEnd = "CancelFailoverStatesEnd",
+  /** Begin marker for change recovery point states. */
+  ChangeRecoveryPointStatesBegin = "ChangeRecoveryPointStatesBegin",
+  /** Change recovery point has been initiated.. */
+  ChangeRecoveryPointInitiated = "ChangeRecoveryPointInitiated",
+  /** Change recovery point has been completed successfully. */
+  ChangeRecoveryPointCompleted = "ChangeRecoveryPointCompleted",
+  /** Change recovery point has failed. */
+  ChangeRecoveryPointFailed = "ChangeRecoveryPointFailed",
+  /** End marker for change recovery point states. */
+  ChangeRecoveryPointStatesEnd = "ChangeRecoveryPointStatesEnd",
+  /** Begin marker for reprotect states. */
+  ReprotectStatesBegin = "ReprotectStatesBegin",
+  /** Reprotect has been initiated. */
+  ReprotectInitiated = "ReprotectInitiated",
+  /** Reprotect has failed. */
+  ReprotectFailed = "ReprotectFailed",
+  /** End marker for reprotect states. */
+  ReprotectStatesEnd = "ReprotectStatesEnd",
+}
+
+/**
+ * Gets or sets the protection state. \
+ * {@link KnownProtectionState} can be used interchangeably with ProtectionState,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **UnprotectedStatesBegin**: Begin marker for unprotected states. \
+ * **EnablingProtection**: Enable protection is in progress. \
+ * **EnablingFailed**: Enable protection failed. \
+ * **DisablingProtection**: Disabling protection is in progress. \
+ * **MarkedForDeletion**: Disabling protection succeeded. This is a transient state before the protected item is deleted. \
+ * **DisablingFailed**: Disable protection failed. \
+ * **UnprotectedStatesEnd**: End marker for unprotected states. \
+ * **InitialReplicationStatesBegin**: Begin marker for initial replication states. \
+ * **InitialReplicationInProgress**: Initial replication is in progress. \
+ * **InitialReplicationCompletedOnPrimary**: Initial replication has completed on the primary side. \
+ * **InitialReplicationCompletedOnRecovery**: Initial replication has completed on the recovery side. \
+ * **InitialReplicationFailed**: Initial replication failed and would need to be started again. \
+ * **InitialReplicationStatesEnd**: End marker for initial replication states. \
+ * **ProtectedStatesBegin**: Begin marker for protected steady-state states. \
+ * **Protected**: Protected item is protected and replication is on-going. Any issues with replication will be surfaced separately via the health property and will not affect the state. \
+ * **ProtectedStatesEnd**: End marker for protected steady-state states. \
+ * **PlannedFailoverTransitionStatesBegin**: Begin marker for planned failover transition states. \
+ * **PlannedFailoverInitiated**: Planned failover has been initiated. \
+ * **PlannedFailoverCompleting**: Planned failover preparing protected entities is in progress. \
+ * **PlannedFailoverCompleted**: Planned failover has been completed successfully. \
+ * **PlannedFailoverFailed**: Planned failover initiation failed. \
+ * **PlannedFailoverCompletionFailed**: Planned failover preparing protected entities failed. \
+ * **PlannedFailoverTransitionStatesEnd**: End marker for planned failover transition states. \
+ * **UnplannedFailoverTransitionStatesBegin**: Begin marker for unplanned failover transition states. \
+ * **UnplannedFailoverInitiated**: Unplanned failover has been initiated. \
+ * **UnplannedFailoverCompleting**: Unplanned failover preparing protected entities is in progress. \
+ * **UnplannedFailoverCompleted**: Unplanned failover preparing protected entities is in progress. \
+ * **UnplannedFailoverFailed**: Unplanned failover initiation failed. \
+ * **UnplannedFailoverCompletionFailed**: Unplanned failover preparing protected entities failed. \
+ * **UnplannedFailoverTransitionStatesEnd**: End marker for unplanned failover transition states. \
+ * **CommitFailoverStatesBegin**: Begin marker for commit failover states. \
+ * **CommitFailoverInProgressOnPrimary**: Commit failover is in progress on the primary side. \
+ * **CommitFailoverInProgressOnRecovery**: Commit failover is in progress on the recovery side. \
+ * **CommitFailoverCompleted**: Commit failover has been completed successfully. \
+ * **CommitFailoverFailedOnPrimary**: Commit failover failed on the primary side. \
+ * **CommitFailoverFailedOnRecovery**: Commit failover failed on the recovery side. \
+ * **CommitFailoverStatesEnd**: End marker for commit failover states. \
+ * **CancelFailoverStatesBegin**: Begin marker for cancel failover states. \
+ * **CancelFailoverInProgressOnPrimary**: Cancel failover is in progress on the primary side. \
+ * **CancelFailoverInProgressOnRecovery**: Cancel failover is in progress on the recovery side. \
+ * **CancelFailoverFailedOnPrimary**: Cancel failover failed on the primary side. \
+ * **CancelFailoverFailedOnRecovery**: Cancel failover failed on the recovery side. \
+ * **CancelFailoverStatesEnd**: End marker for cancel failover states. \
+ * **ChangeRecoveryPointStatesBegin**: Begin marker for change recovery point states. \
+ * **ChangeRecoveryPointInitiated**: Change recovery point has been initiated.. \
+ * **ChangeRecoveryPointCompleted**: Change recovery point has been completed successfully. \
+ * **ChangeRecoveryPointFailed**: Change recovery point has failed. \
+ * **ChangeRecoveryPointStatesEnd**: End marker for change recovery point states. \
+ * **ReprotectStatesBegin**: Begin marker for reprotect states. \
+ * **ReprotectInitiated**: Reprotect has been initiated. \
+ * **ReprotectFailed**: Reprotect has failed. \
+ * **ReprotectStatesEnd**: End marker for reprotect states.
+ */
+export type ProtectionState = string;
+
+/** Gets or sets the test failover state. */
+export enum KnownTestFailoverState {
+  /** Test failover is not active. */
+  None = "None",
+  /** Test failover has been initiated. */
+  TestFailoverInitiated = "TestFailoverInitiated",
+  /** Preparing test protected entities is in progress. */
+  TestFailoverCompleting = "TestFailoverCompleting",
+  /** Test failover has been completed successfully. */
+  TestFailoverCompleted = "TestFailoverCompleted",
+  /** Test failover initiation failed.. */
+  TestFailoverFailed = "TestFailoverFailed",
+  /** Preparing test protected entities failed. */
+  TestFailoverCompletionFailed = "TestFailoverCompletionFailed",
+  /** Test failover cleanup has been initiated. */
+  TestFailoverCleanupInitiated = "TestFailoverCleanupInitiated",
+  /** Cleaning up test protected entities is in progress. */
+  TestFailoverCleanupCompleting = "TestFailoverCleanupCompleting",
+  /** Test failover cleanup has completed/failed. This is a transient state before the state is moved back to None. */
+  MarkedForDeletion = "MarkedForDeletion",
+}
+
+/**
+ * Gets or sets the test failover state. \
+ * {@link KnownTestFailoverState} can be used interchangeably with TestFailoverState,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **None**: Test failover is not active. \
+ * **TestFailoverInitiated**: Test failover has been initiated. \
+ * **TestFailoverCompleting**: Preparing test protected entities is in progress. \
+ * **TestFailoverCompleted**: Test failover has been completed successfully. \
+ * **TestFailoverFailed**: Test failover initiation failed.. \
+ * **TestFailoverCompletionFailed**: Preparing test protected entities failed. \
+ * **TestFailoverCleanupInitiated**: Test failover cleanup has been initiated. \
+ * **TestFailoverCleanupCompleting**: Cleaning up test protected entities is in progress. \
+ * **MarkedForDeletion**: Test failover cleanup has completed\/failed. This is a transient state before the state is moved back to None.
+ */
+export type TestFailoverState = string;
+
+/** Gets or sets the resynchronization state. */
+export enum KnownResynchronizationState {
+  /** Resynchronization is not active. */
+  None = "None",
+  /** Resynchronization has been initiated. */
+  ResynchronizationInitiated = "ResynchronizationInitiated",
+  /** Resynchronization has been completed successfully. */
+  ResynchronizationCompleted = "ResynchronizationCompleted",
+  /** Resynchronization has failed and would need to be started again. */
+  ResynchronizationFailed = "ResynchronizationFailed",
+}
+
+/**
+ * Gets or sets the resynchronization state. \
+ * {@link KnownResynchronizationState} can be used interchangeably with ResynchronizationState,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **None**: Resynchronization is not active. \
+ * **ResynchronizationInitiated**: Resynchronization has been initiated. \
+ * **ResynchronizationCompleted**: Resynchronization has been completed successfully. \
+ * **ResynchronizationFailed**: Resynchronization has failed and would need to be started again.
+ */
+export type ResynchronizationState = string;
+
+/** Protected item job properties. */
+export interface ProtectedItemJobProperties {
+  /** Gets or sets protection scenario name. */
+  readonly scenarioName?: string;
+  /** Gets or sets job Id. */
+  readonly id?: string;
+  /** Gets or sets job name. */
+  readonly name?: string;
+  /** Gets or sets the job friendly display name. */
+  readonly displayName?: string;
+  /** Gets or sets job state. */
+  readonly state?: string;
+  /** Gets or sets start time of the job. */
+  readonly startTime?: Date;
+  /** Gets or sets end time of the job. */
+  readonly endTime?: Date;
+}
+
+export function protectedItemJobPropertiesDeserializer(
+  item: any,
+): ProtectedItemJobProperties {
+  return {
+    scenarioName: item["scenarioName"],
+    id: item["id"],
+    name: item["name"],
+    displayName: item["displayName"],
+    state: item["state"],
+    startTime: !item["startTime"]
+      ? item["startTime"]
+      : new Date(item["startTime"]),
+    endTime: !item["endTime"] ? item["endTime"] : new Date(item["endTime"]),
+  };
+}
+
+/** Protected item model custom properties. */
+export interface ProtectedItemModelCustomProperties {
+  /** Discriminator property for ProtectedItemModelCustomProperties. */
+  /** The discriminator possible values: HyperVToAzStackHCI, VMwareToAzStackHCI */
+  instanceType: string;
+}
+
+export function protectedItemModelCustomPropertiesSerializer(
+  item: ProtectedItemModelCustomProperties,
+): any {
+  return { instanceType: item["instanceType"] };
+}
+
+export function protectedItemModelCustomPropertiesDeserializer(
+  item: any,
+): ProtectedItemModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+  };
+}
+
+/** Alias for ProtectedItemModelCustomPropertiesUnion */
+export type ProtectedItemModelCustomPropertiesUnion =
+  | HyperVToAzStackHCIProtectedItemModelCustomProperties
+  | VMwareToAzStackHCIProtectedItemModelCustomProperties
+  | ProtectedItemModelCustomProperties;
+
+export function protectedItemModelCustomPropertiesUnionSerializer(
+  item: ProtectedItemModelCustomPropertiesUnion,
+): any {
+  switch (item.instanceType) {
+    case "HyperVToAzStackHCI":
+      return hyperVToAzStackHCIProtectedItemModelCustomPropertiesSerializer(
+        item as HyperVToAzStackHCIProtectedItemModelCustomProperties,
+      );
+
+    case "VMwareToAzStackHCI":
+      return vMwareToAzStackHCIProtectedItemModelCustomPropertiesSerializer(
+        item as VMwareToAzStackHCIProtectedItemModelCustomProperties,
+      );
+
+    default:
+      return protectedItemModelCustomPropertiesSerializer(item);
+  }
+}
+
+export function protectedItemModelCustomPropertiesUnionDeserializer(
+  item: any,
+): ProtectedItemModelCustomPropertiesUnion {
+  switch (item.instanceType) {
+    case "HyperVToAzStackHCI":
+      return hyperVToAzStackHCIProtectedItemModelCustomPropertiesDeserializer(
+        item as HyperVToAzStackHCIProtectedItemModelCustomProperties,
+      );
+
+    case "VMwareToAzStackHCI":
+      return vMwareToAzStackHCIProtectedItemModelCustomPropertiesDeserializer(
+        item as VMwareToAzStackHCIProtectedItemModelCustomProperties,
+      );
+
+    default:
+      return protectedItemModelCustomPropertiesDeserializer(item);
+  }
+}
+
+/** HyperV to AzStackHCI Protected item model custom properties. */
+export interface HyperVToAzStackHCIProtectedItemModelCustomProperties
+  extends ProtectedItemModelCustomProperties {
+  /** Gets or sets the location of the protected item. */
+  readonly activeLocation?: ProtectedItemActiveLocation;
+  /** Gets or sets the Target HCI Cluster ARM Id. */
+  targetHciClusterId: string;
+  /** Gets or sets the Target Arc Cluster Custom Location ARM Id. */
+  targetArcClusterCustomLocationId: string;
+  /** Gets or sets the Target AzStackHCI cluster name. */
+  readonly targetAzStackHciClusterName?: string;
+  /** Gets or sets the ARM Id of the discovered machine. */
+  fabricDiscoveryMachineId: string;
+  /** Gets or sets the list of disks to replicate. */
+  disksToInclude: HyperVToAzStackHCIDiskInput[];
+  /** Gets or sets the list of VM NIC to replicate. */
+  nicsToInclude: HyperVToAzStackHCINicInput[];
+  /** Gets or sets the source VM display name. */
+  readonly sourceVmName?: string;
+  /** Gets or sets the source VM CPU cores. */
+  readonly sourceCpuCores?: number;
+  /** Gets or sets the source VM ram memory size in megabytes. */
+  readonly sourceMemoryInMegaBytes?: number;
+  /** Gets or sets the target VM display name. */
+  targetVmName?: string;
+  /** Gets or sets the target resource group ARM Id. */
+  targetResourceGroupId: string;
+  /** Gets or sets the target storage container ARM Id. */
+  storageContainerId: string;
+  /** Gets or sets the hypervisor generation of the virtual machine. */
+  hyperVGeneration: string;
+  /** Gets or sets the target network Id within AzStackHCI Cluster. */
+  targetNetworkId?: string;
+  /** Gets or sets the target test network Id within AzStackHCI Cluster. */
+  testNetworkId?: string;
+  /** Gets or sets the target CPU cores. */
+  targetCpuCores?: number;
+  /** Gets or sets a value indicating whether memory is dynamical. */
+  isDynamicRam?: boolean;
+  /** Protected item dynamic memory config. */
+  dynamicMemoryConfig?: ProtectedItemDynamicMemoryConfig;
+  /** Gets or sets the target memory in mega-bytes. */
+  targetMemoryInMegaBytes?: number;
+  /** Gets or sets the Run As account Id. */
+  runAsAccountId: string;
+  /** Gets or sets the source fabric agent name. */
+  sourceFabricAgentName: string;
+  /** Gets or sets the target fabric agent name. */
+  targetFabricAgentName: string;
+  /** Gets or sets the source appliance name. */
+  readonly sourceApplianceName?: string;
+  /** Gets or sets the target appliance name. */
+  readonly targetApplianceName?: string;
+  /** Gets or sets the type of the OS. */
+  readonly osType?: string;
+  /** Gets or sets the name of the OS. */
+  readonly osName?: string;
+  /** Gets or sets the firmware type. */
+  readonly firmwareType?: string;
+  /** Gets or sets the target location. */
+  readonly targetLocation?: string;
+  /** Gets or sets the location of Azure Arc HCI custom location resource. */
+  customLocationRegion: string;
+  /** Gets or sets the recovery point Id to which the VM was failed over. */
+  readonly failoverRecoveryPointId?: string;
+  /** Gets or sets the last recovery point received time. */
+  readonly lastRecoveryPointReceived?: Date;
+  /** Gets or sets the last recovery point Id. */
+  readonly lastRecoveryPointId?: string;
+  /** Gets or sets the initial replication progress percentage. This is calculated based on total bytes processed for all disks in the source VM. */
+  readonly initialReplicationProgressPercentage?: number;
+  /** Gets or sets the resync progress percentage. This is calculated based on total bytes processed for all disks in the source VM. */
+  readonly resyncProgressPercentage?: number;
+  /** Gets or sets the list of protected disks. */
+  readonly protectedDisks?: HyperVToAzStackHCIProtectedDiskProperties[];
+  /** Gets or sets the VM NIC details. */
+  readonly protectedNics?: HyperVToAzStackHCIProtectedNicProperties[];
+  /** Gets or sets the BIOS Id of the target AzStackHCI VM. */
+  readonly targetVmBiosId?: string;
+  /** Gets or sets the latest timestamp that replication status is updated. */
+  readonly lastReplicationUpdateTime?: Date;
+  /** Gets or sets the instance type. */
+  instanceType: "HyperVToAzStackHCI";
+}
+
+export function hyperVToAzStackHCIProtectedItemModelCustomPropertiesSerializer(
+  item: HyperVToAzStackHCIProtectedItemModelCustomProperties,
+): any {
+  return {
+    instanceType: item["instanceType"],
+    targetHciClusterId: item["targetHciClusterId"],
+    targetArcClusterCustomLocationId: item["targetArcClusterCustomLocationId"],
+    fabricDiscoveryMachineId: item["fabricDiscoveryMachineId"],
+    disksToInclude: hyperVToAzStackHCIDiskInputArraySerializer(
+      item["disksToInclude"],
+    ),
+    nicsToInclude: hyperVToAzStackHCINicInputArraySerializer(
+      item["nicsToInclude"],
+    ),
+    targetVmName: item["targetVmName"],
+    targetResourceGroupId: item["targetResourceGroupId"],
+    storageContainerId: item["storageContainerId"],
+    hyperVGeneration: item["hyperVGeneration"],
+    targetNetworkId: item["targetNetworkId"],
+    testNetworkId: item["testNetworkId"],
+    targetCpuCores: item["targetCpuCores"],
+    isDynamicRam: item["isDynamicRam"],
+    dynamicMemoryConfig: !item["dynamicMemoryConfig"]
+      ? item["dynamicMemoryConfig"]
+      : protectedItemDynamicMemoryConfigSerializer(item["dynamicMemoryConfig"]),
+    targetMemoryInMegaBytes: item["targetMemoryInMegaBytes"],
+    runAsAccountId: item["runAsAccountId"],
+    sourceFabricAgentName: item["sourceFabricAgentName"],
+    targetFabricAgentName: item["targetFabricAgentName"],
+    customLocationRegion: item["customLocationRegion"],
+  };
+}
+
+export function hyperVToAzStackHCIProtectedItemModelCustomPropertiesDeserializer(
+  item: any,
+): HyperVToAzStackHCIProtectedItemModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+    activeLocation: item["activeLocation"],
+    targetHciClusterId: item["targetHciClusterId"],
+    targetArcClusterCustomLocationId: item["targetArcClusterCustomLocationId"],
+    targetAzStackHciClusterName: item["targetAzStackHciClusterName"],
+    fabricDiscoveryMachineId: item["fabricDiscoveryMachineId"],
+    disksToInclude: hyperVToAzStackHCIDiskInputArrayDeserializer(
+      item["disksToInclude"],
+    ),
+    nicsToInclude: hyperVToAzStackHCINicInputArrayDeserializer(
+      item["nicsToInclude"],
+    ),
+    sourceVmName: item["sourceVmName"],
+    sourceCpuCores: item["sourceCpuCores"],
+    sourceMemoryInMegaBytes: item["sourceMemoryInMegaBytes"],
+    targetVmName: item["targetVmName"],
+    targetResourceGroupId: item["targetResourceGroupId"],
+    storageContainerId: item["storageContainerId"],
+    hyperVGeneration: item["hyperVGeneration"],
+    targetNetworkId: item["targetNetworkId"],
+    testNetworkId: item["testNetworkId"],
+    targetCpuCores: item["targetCpuCores"],
+    isDynamicRam: item["isDynamicRam"],
+    dynamicMemoryConfig: !item["dynamicMemoryConfig"]
+      ? item["dynamicMemoryConfig"]
+      : protectedItemDynamicMemoryConfigDeserializer(
+          item["dynamicMemoryConfig"],
+        ),
+    targetMemoryInMegaBytes: item["targetMemoryInMegaBytes"],
+    runAsAccountId: item["runAsAccountId"],
+    sourceFabricAgentName: item["sourceFabricAgentName"],
+    targetFabricAgentName: item["targetFabricAgentName"],
+    sourceApplianceName: item["sourceApplianceName"],
+    targetApplianceName: item["targetApplianceName"],
+    osType: item["osType"],
+    osName: item["osName"],
+    firmwareType: item["firmwareType"],
+    targetLocation: item["targetLocation"],
+    customLocationRegion: item["customLocationRegion"],
+    failoverRecoveryPointId: item["failoverRecoveryPointId"],
+    lastRecoveryPointReceived: !item["lastRecoveryPointReceived"]
+      ? item["lastRecoveryPointReceived"]
+      : new Date(item["lastRecoveryPointReceived"]),
+    lastRecoveryPointId: item["lastRecoveryPointId"],
+    initialReplicationProgressPercentage:
+      item["initialReplicationProgressPercentage"],
+    resyncProgressPercentage: item["resyncProgressPercentage"],
+    protectedDisks: !item["protectedDisks"]
+      ? item["protectedDisks"]
+      : hyperVToAzStackHCIProtectedDiskPropertiesArrayDeserializer(
+          item["protectedDisks"],
+        ),
+    protectedNics: !item["protectedNics"]
+      ? item["protectedNics"]
+      : hyperVToAzStackHCIProtectedNicPropertiesArrayDeserializer(
+          item["protectedNics"],
+        ),
+    targetVmBiosId: item["targetVmBiosId"],
+    lastReplicationUpdateTime: !item["lastReplicationUpdateTime"]
+      ? item["lastReplicationUpdateTime"]
+      : new Date(item["lastReplicationUpdateTime"]),
+  };
+}
+
+/** Gets or sets the location of the protected item. */
+export enum KnownProtectedItemActiveLocation {
+  /** Protected item is active on Primary. */
+  Primary = "Primary",
+  /** Protected item is active on Recovery. */
+  Recovery = "Recovery",
+}
+
+/**
+ * Gets or sets the location of the protected item. \
+ * {@link KnownProtectedItemActiveLocation} can be used interchangeably with ProtectedItemActiveLocation,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Primary**: Protected item is active on Primary. \
+ * **Recovery**: Protected item is active on Recovery.
+ */
+export type ProtectedItemActiveLocation = string;
+
+export function hyperVToAzStackHCIDiskInputArraySerializer(
+  result: Array<HyperVToAzStackHCIDiskInput>,
+): any[] {
+  return result.map((item) => {
+    return hyperVToAzStackHCIDiskInputSerializer(item);
+  });
+}
+
+export function hyperVToAzStackHCIDiskInputArrayDeserializer(
+  result: Array<HyperVToAzStackHCIDiskInput>,
+): any[] {
+  return result.map((item) => {
+    return hyperVToAzStackHCIDiskInputDeserializer(item);
+  });
+}
+
+/** HyperVToAzStack disk input. */
+export interface HyperVToAzStackHCIDiskInput {
+  /** Gets or sets the disk Id. */
+  diskId: string;
+  /** Gets or sets the target storage account ARM Id. */
+  storageContainerId?: string;
+  /** Gets or sets a value indicating whether dynamic sizing is enabled on the virtual hard disk. */
+  isDynamic?: boolean;
+  /** Gets or sets the disk size in GB. */
+  diskSizeGB: number;
+  /** Gets or sets the type of the virtual hard disk, vhd or vhdx. */
+  diskFileFormat: string;
+  /** Gets or sets a value indicating whether disk is os disk. */
+  isOsDisk: boolean;
+  /** Gets or sets a value of disk block size. */
+  diskBlockSize?: number;
+  /** Gets or sets a value of disk logical sector size. */
+  diskLogicalSectorSize?: number;
+  /** Gets or sets a value of disk physical sector size. */
+  diskPhysicalSectorSize?: number;
+  /** Gets or sets a value of disk identifier. */
+  diskIdentifier?: string;
+  /** Disk controller. */
+  diskController?: DiskControllerInputs;
+}
+
+export function hyperVToAzStackHCIDiskInputSerializer(
+  item: HyperVToAzStackHCIDiskInput,
+): any {
+  return {
+    diskId: item["diskId"],
+    storageContainerId: item["storageContainerId"],
+    isDynamic: item["isDynamic"],
+    diskSizeGB: item["diskSizeGB"],
+    diskFileFormat: item["diskFileFormat"],
+    isOsDisk: item["isOsDisk"],
+    diskBlockSize: item["diskBlockSize"],
+    diskLogicalSectorSize: item["diskLogicalSectorSize"],
+    diskPhysicalSectorSize: item["diskPhysicalSectorSize"],
+    diskIdentifier: item["diskIdentifier"],
+    diskController: !item["diskController"]
+      ? item["diskController"]
+      : diskControllerInputsSerializer(item["diskController"]),
+  };
+}
+
+export function hyperVToAzStackHCIDiskInputDeserializer(
+  item: any,
+): HyperVToAzStackHCIDiskInput {
+  return {
+    diskId: item["diskId"],
+    storageContainerId: item["storageContainerId"],
+    isDynamic: item["isDynamic"],
+    diskSizeGB: item["diskSizeGB"],
+    diskFileFormat: item["diskFileFormat"],
+    isOsDisk: item["isOsDisk"],
+    diskBlockSize: item["diskBlockSize"],
+    diskLogicalSectorSize: item["diskLogicalSectorSize"],
+    diskPhysicalSectorSize: item["diskPhysicalSectorSize"],
+    diskIdentifier: item["diskIdentifier"],
+    diskController: !item["diskController"]
+      ? item["diskController"]
+      : diskControllerInputsDeserializer(item["diskController"]),
+  };
+}
+
+/** Disk controller. */
+export interface DiskControllerInputs {
+  /** Gets or sets the controller name (IDE,SCSI). */
+  controllerName: string;
+  /** Gets or sets the controller ID. */
+  controllerId: number;
+  /** Gets or sets the controller Location. */
+  controllerLocation: number;
+}
+
+export function diskControllerInputsSerializer(
+  item: DiskControllerInputs,
+): any {
+  return {
+    controllerName: item["controllerName"],
+    controllerId: item["controllerId"],
+    controllerLocation: item["controllerLocation"],
+  };
+}
+
+export function diskControllerInputsDeserializer(
+  item: any,
+): DiskControllerInputs {
+  return {
+    controllerName: item["controllerName"],
+    controllerId: item["controllerId"],
+    controllerLocation: item["controllerLocation"],
+  };
+}
+
+export function hyperVToAzStackHCINicInputArraySerializer(
+  result: Array<HyperVToAzStackHCINicInput>,
+): any[] {
+  return result.map((item) => {
+    return hyperVToAzStackHCINicInputSerializer(item);
+  });
+}
+
+export function hyperVToAzStackHCINicInputArrayDeserializer(
+  result: Array<HyperVToAzStackHCINicInput>,
+): any[] {
+  return result.map((item) => {
+    return hyperVToAzStackHCINicInputDeserializer(item);
+  });
+}
+
+/** HyperVToAzStackHCI NIC properties. */
+export interface HyperVToAzStackHCINicInput {
+  /** Gets or sets the NIC Id. */
+  nicId: string;
+  /** Gets or sets the network name. */
+  readonly networkName?: string;
+  /** Gets or sets the target network Id within AzStackHCI Cluster. */
+  targetNetworkId?: string;
+  /** Gets or sets the target test network Id within AzStackHCI Cluster. */
+  testNetworkId?: string;
+  /** Gets or sets the selection type of the NIC. */
+  selectionTypeForFailover: VMNicSelection;
+  /** Gets or sets a value indicating whether static ip migration is enabled. */
+  isStaticIpMigrationEnabled?: boolean;
+  /** Gets or sets a value indicating whether mac address migration is enabled. */
+  isMacMigrationEnabled?: boolean;
+}
+
+export function hyperVToAzStackHCINicInputSerializer(
+  item: HyperVToAzStackHCINicInput,
+): any {
+  return {
+    nicId: item["nicId"],
+    targetNetworkId: item["targetNetworkId"],
+    testNetworkId: item["testNetworkId"],
+    selectionTypeForFailover: item["selectionTypeForFailover"],
+    isStaticIpMigrationEnabled: item["isStaticIpMigrationEnabled"],
+    isMacMigrationEnabled: item["isMacMigrationEnabled"],
+  };
+}
+
+export function hyperVToAzStackHCINicInputDeserializer(
+  item: any,
+): HyperVToAzStackHCINicInput {
+  return {
+    nicId: item["nicId"],
+    networkName: item["networkName"],
+    targetNetworkId: item["targetNetworkId"],
+    testNetworkId: item["testNetworkId"],
+    selectionTypeForFailover: item["selectionTypeForFailover"],
+    isStaticIpMigrationEnabled: item["isStaticIpMigrationEnabled"],
+    isMacMigrationEnabled: item["isMacMigrationEnabled"],
+  };
+}
+
+/** Gets or sets the selection type of the NIC. */
+export enum KnownVMNicSelection {
+  /** Not Selected. */
+  NotSelected = "NotSelected",
+  /** Selected by user. */
+  SelectedByUser = "SelectedByUser",
+  /** Default selection by ASR. */
+  SelectedByDefault = "SelectedByDefault",
+  /** NIC configuration overridden by user. Differs from SelectedByUser in the sense that the legacy SelectedByUser is used both for explicit modification by user and implicit approval of user if the settings are used for TFO/FO. SelectedByUserOverride implies user overriding at least one of the configurations. */
+  SelectedByUserOverride = "SelectedByUserOverride",
+}
+
+/**
+ * Gets or sets the selection type of the NIC. \
+ * {@link KnownVMNicSelection} can be used interchangeably with VMNicSelection,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **NotSelected**: Not Selected. \
+ * **SelectedByUser**: Selected by user. \
+ * **SelectedByDefault**: Default selection by ASR. \
+ * **SelectedByUserOverride**: NIC configuration overridden by user. Differs from SelectedByUser in the sense that the legacy SelectedByUser is used both for explicit modification by user and implicit approval of user if the settings are used for TFO\/FO. SelectedByUserOverride implies user overriding at least one of the configurations.
+ */
+export type VMNicSelection = string;
+
+/** Protected item dynamic memory config. */
+export interface ProtectedItemDynamicMemoryConfig {
+  /** Gets or sets maximum memory in MB. */
+  maximumMemoryInMegaBytes: number;
+  /** Gets or sets minimum memory in MB. */
+  minimumMemoryInMegaBytes: number;
+  /** Gets or sets target memory buffer in %. */
+  targetMemoryBufferPercentage: number;
+}
+
+export function protectedItemDynamicMemoryConfigSerializer(
+  item: ProtectedItemDynamicMemoryConfig,
+): any {
+  return {
+    maximumMemoryInMegaBytes: item["maximumMemoryInMegaBytes"],
+    minimumMemoryInMegaBytes: item["minimumMemoryInMegaBytes"],
+    targetMemoryBufferPercentage: item["targetMemoryBufferPercentage"],
+  };
+}
+
+export function protectedItemDynamicMemoryConfigDeserializer(
+  item: any,
+): ProtectedItemDynamicMemoryConfig {
+  return {
+    maximumMemoryInMegaBytes: item["maximumMemoryInMegaBytes"],
+    minimumMemoryInMegaBytes: item["minimumMemoryInMegaBytes"],
+    targetMemoryBufferPercentage: item["targetMemoryBufferPercentage"],
+  };
+}
+
+export function hyperVToAzStackHCIProtectedDiskPropertiesArrayDeserializer(
+  result: Array<HyperVToAzStackHCIProtectedDiskProperties>,
+): any[] {
+  return result.map((item) => {
+    return hyperVToAzStackHCIProtectedDiskPropertiesDeserializer(item);
+  });
+}
+
+/** HyperVToAzStackHCI protected disk properties. */
+export interface HyperVToAzStackHCIProtectedDiskProperties {
+  /** Gets or sets the ARM Id of the storage container. */
+  readonly storageContainerId?: string;
+  /** Gets or sets the local path of the storage container. */
+  readonly storageContainerLocalPath?: string;
+  /** Gets or sets the source disk Id. */
+  readonly sourceDiskId?: string;
+  /** Gets or sets the source disk Name. */
+  readonly sourceDiskName?: string;
+  /** Gets or sets the seed disk name. */
+  readonly seedDiskName?: string;
+  /** Gets or sets the test failover clone disk. */
+  readonly testMigrateDiskName?: string;
+  /** Gets or sets the failover clone disk. */
+  readonly migrateDiskName?: string;
+  /** Gets or sets a value indicating whether the disk is the OS disk. */
+  readonly isOsDisk?: boolean;
+  /** Gets or sets the disk capacity in bytes. */
+  readonly capacityInBytes?: number;
+  /** Gets or sets a value indicating whether dynamic sizing is enabled on the virtual hard disk. */
+  readonly isDynamic?: boolean;
+  /** Gets or sets the disk type. */
+  readonly diskType?: string;
+  /** Gets or sets a value of disk block size. */
+  readonly diskBlockSize?: number;
+  /** Gets or sets a value of disk logical sector size. */
+  readonly diskLogicalSectorSize?: number;
+  /** Gets or sets a value of disk physical sector size. */
+  readonly diskPhysicalSectorSize?: number;
+}
+
+export function hyperVToAzStackHCIProtectedDiskPropertiesDeserializer(
+  item: any,
+): HyperVToAzStackHCIProtectedDiskProperties {
+  return {
+    storageContainerId: item["storageContainerId"],
+    storageContainerLocalPath: item["storageContainerLocalPath"],
+    sourceDiskId: item["sourceDiskId"],
+    sourceDiskName: item["sourceDiskName"],
+    seedDiskName: item["seedDiskName"],
+    testMigrateDiskName: item["testMigrateDiskName"],
+    migrateDiskName: item["migrateDiskName"],
+    isOsDisk: item["isOsDisk"],
+    capacityInBytes: item["capacityInBytes"],
+    isDynamic: item["isDynamic"],
+    diskType: item["diskType"],
+    diskBlockSize: item["diskBlockSize"],
+    diskLogicalSectorSize: item["diskLogicalSectorSize"],
+    diskPhysicalSectorSize: item["diskPhysicalSectorSize"],
+  };
+}
+
+export function hyperVToAzStackHCIProtectedNicPropertiesArrayDeserializer(
+  result: Array<HyperVToAzStackHCIProtectedNicProperties>,
+): any[] {
+  return result.map((item) => {
+    return hyperVToAzStackHCIProtectedNicPropertiesDeserializer(item);
+  });
+}
+
+/** HyperVToAzStackHCI NIC properties. */
+export interface HyperVToAzStackHCIProtectedNicProperties {
+  /** Gets or sets the NIC Id. */
+  readonly nicId?: string;
+  /** Gets or sets the NIC mac address. */
+  readonly macAddress?: string;
+  /** Gets or sets the network name. */
+  readonly networkName?: string;
+  /** Gets or sets the target network Id within AzStackHCI Cluster. */
+  readonly targetNetworkId?: string;
+  /** Gets or sets the target test network Id within AzStackHCI Cluster. */
+  readonly testNetworkId?: string;
+  /** Gets or sets the selection type of the NIC. */
+  readonly selectionTypeForFailover?: VMNicSelection;
+}
+
+export function hyperVToAzStackHCIProtectedNicPropertiesDeserializer(
+  item: any,
+): HyperVToAzStackHCIProtectedNicProperties {
+  return {
+    nicId: item["nicId"],
+    macAddress: item["macAddress"],
+    networkName: item["networkName"],
+    targetNetworkId: item["targetNetworkId"],
+    testNetworkId: item["testNetworkId"],
+    selectionTypeForFailover: item["selectionTypeForFailover"],
+  };
+}
+
+/** VMware to AzStackHCI Protected item model custom properties. */
+export interface VMwareToAzStackHCIProtectedItemModelCustomProperties
+  extends ProtectedItemModelCustomProperties {
+  /** Gets or sets the location of the protected item. */
+  readonly activeLocation?: ProtectedItemActiveLocation;
+  /** Gets or sets the Target HCI Cluster ARM Id. */
+  targetHciClusterId: string;
+  /** Gets or sets the Target Arc Cluster Custom Location ARM Id. */
+  targetArcClusterCustomLocationId: string;
+  /** Gets or sets the Target AzStackHCI cluster name. */
+  readonly targetAzStackHciClusterName?: string;
+  /** Gets or sets the target storage container ARM Id. */
+  storageContainerId: string;
+  /** Gets or sets the target resource group ARM Id. */
+  targetResourceGroupId: string;
+  /** Gets or sets the target location. */
+  readonly targetLocation?: string;
+  /** Gets or sets the location of Azure Arc HCI custom location resource. */
+  customLocationRegion: string;
+  /** Gets or sets the list of disks to replicate. */
+  disksToInclude: VMwareToAzStackHCIDiskInput[];
+  /** Gets or sets the list of VM NIC to replicate. */
+  nicsToInclude: VMwareToAzStackHCINicInput[];
+  /** Gets or sets the list of protected disks. */
+  readonly protectedDisks?: VMwareToAzStackHCIProtectedDiskProperties[];
+  /** Gets or sets the VM NIC details. */
+  readonly protectedNics?: VMwareToAzStackHCIProtectedNicProperties[];
+  /** Gets or sets the BIOS Id of the target AzStackHCI VM. */
+  readonly targetVmBiosId?: string;
+  /** Gets or sets the target VM display name. */
+  targetVmName?: string;
+  /** Gets or sets the hypervisor generation of the virtual machine possible values are 1,2. */
+  hyperVGeneration: string;
+  /** Gets or sets the target network Id within AzStackHCI Cluster. */
+  targetNetworkId?: string;
+  /** Gets or sets the target test network Id within AzStackHCI Cluster. */
+  testNetworkId?: string;
+  /** Gets or sets the target CPU cores. */
+  targetCpuCores?: number;
+  /** Gets or sets a value indicating whether memory is dynamical. */
+  isDynamicRam?: boolean;
+  /** Protected item dynamic memory config. */
+  dynamicMemoryConfig?: ProtectedItemDynamicMemoryConfig;
+  /** Gets or sets the target memory in mega-bytes. */
+  targetMemoryInMegaBytes?: number;
+  /** Gets or sets the type of the OS. */
+  readonly osType?: string;
+  /** Gets or sets the name of the OS. */
+  readonly osName?: string;
+  /** Gets or sets the firmware type. */
+  readonly firmwareType?: string;
+  /** Gets or sets the ARM Id of the discovered machine. */
+  fabricDiscoveryMachineId: string;
+  /** Gets or sets the source VM display name. */
+  readonly sourceVmName?: string;
+  /** Gets or sets the source VM CPU cores. */
+  readonly sourceCpuCores?: number;
+  /** Gets or sets the source VM ram memory size in megabytes. */
+  readonly sourceMemoryInMegaBytes?: number;
+  /** Gets or sets the run as account Id. */
+  runAsAccountId: string;
+  /** Gets or sets the source fabric agent name. */
+  sourceFabricAgentName: string;
+  /** Gets or sets the target fabric agent name. */
+  targetFabricAgentName: string;
+  /** Gets or sets the source appliance name. */
+  readonly sourceApplianceName?: string;
+  /** Gets or sets the target appliance name. */
+  readonly targetApplianceName?: string;
+  /** Gets or sets the recovery point Id to which the VM was failed over. */
+  readonly failoverRecoveryPointId?: string;
+  /** Gets or sets the last recovery point received time. */
+  readonly lastRecoveryPointReceived?: Date;
+  /** Gets or sets the last recovery point Id. */
+  readonly lastRecoveryPointId?: string;
+  /** Gets or sets the initial replication progress percentage. This is calculated based on total bytes processed for all disks in the source VM. */
+  readonly initialReplicationProgressPercentage?: number;
+  /** Gets or sets the migration progress percentage. */
+  readonly migrationProgressPercentage?: number;
+  /** Gets or sets the resume progress percentage. */
+  readonly resumeProgressPercentage?: number;
+  /** Gets or sets the resync progress percentage. This is calculated based on total bytes processed for all disks in the source VM. */
+  readonly resyncProgressPercentage?: number;
+  /** Gets or sets the resync retry count. */
+  readonly resyncRetryCount?: number;
+  /** Gets or sets a value indicating whether resync is required. */
+  readonly resyncRequired?: boolean;
+  /** Gets or sets the resync state. */
+  readonly resyncState?: VMwareToAzureMigrateResyncState;
+  /** Gets or sets a value indicating whether auto resync is to be done. */
+  performAutoResync?: boolean;
+  /** Gets or sets the resume retry count. */
+  readonly resumeRetryCount?: number;
+  /** Gets or sets the latest timestamp that replication status is updated. */
+  readonly lastReplicationUpdateTime?: Date;
+  /** Gets or sets the instance type. */
+  instanceType: "VMwareToAzStackHCI";
+}
+
+export function vMwareToAzStackHCIProtectedItemModelCustomPropertiesSerializer(
+  item: VMwareToAzStackHCIProtectedItemModelCustomProperties,
+): any {
+  return {
+    instanceType: item["instanceType"],
+    targetHciClusterId: item["targetHciClusterId"],
+    targetArcClusterCustomLocationId: item["targetArcClusterCustomLocationId"],
+    storageContainerId: item["storageContainerId"],
+    targetResourceGroupId: item["targetResourceGroupId"],
+    customLocationRegion: item["customLocationRegion"],
+    disksToInclude: vMwareToAzStackHCIDiskInputArraySerializer(
+      item["disksToInclude"],
+    ),
+    nicsToInclude: vMwareToAzStackHCINicInputArraySerializer(
+      item["nicsToInclude"],
+    ),
+    targetVmName: item["targetVmName"],
+    hyperVGeneration: item["hyperVGeneration"],
+    targetNetworkId: item["targetNetworkId"],
+    testNetworkId: item["testNetworkId"],
+    targetCpuCores: item["targetCpuCores"],
+    isDynamicRam: item["isDynamicRam"],
+    dynamicMemoryConfig: !item["dynamicMemoryConfig"]
+      ? item["dynamicMemoryConfig"]
+      : protectedItemDynamicMemoryConfigSerializer(item["dynamicMemoryConfig"]),
+    targetMemoryInMegaBytes: item["targetMemoryInMegaBytes"],
+    fabricDiscoveryMachineId: item["fabricDiscoveryMachineId"],
+    runAsAccountId: item["runAsAccountId"],
+    sourceFabricAgentName: item["sourceFabricAgentName"],
+    targetFabricAgentName: item["targetFabricAgentName"],
+    performAutoResync: item["performAutoResync"],
+  };
+}
+
+export function vMwareToAzStackHCIProtectedItemModelCustomPropertiesDeserializer(
+  item: any,
+): VMwareToAzStackHCIProtectedItemModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+    activeLocation: item["activeLocation"],
+    targetHciClusterId: item["targetHciClusterId"],
+    targetArcClusterCustomLocationId: item["targetArcClusterCustomLocationId"],
+    targetAzStackHciClusterName: item["targetAzStackHciClusterName"],
+    storageContainerId: item["storageContainerId"],
+    targetResourceGroupId: item["targetResourceGroupId"],
+    targetLocation: item["targetLocation"],
+    customLocationRegion: item["customLocationRegion"],
+    disksToInclude: vMwareToAzStackHCIDiskInputArrayDeserializer(
+      item["disksToInclude"],
+    ),
+    nicsToInclude: vMwareToAzStackHCINicInputArrayDeserializer(
+      item["nicsToInclude"],
+    ),
+    protectedDisks: !item["protectedDisks"]
+      ? item["protectedDisks"]
+      : vMwareToAzStackHCIProtectedDiskPropertiesArrayDeserializer(
+          item["protectedDisks"],
+        ),
+    protectedNics: !item["protectedNics"]
+      ? item["protectedNics"]
+      : vMwareToAzStackHCIProtectedNicPropertiesArrayDeserializer(
+          item["protectedNics"],
+        ),
+    targetVmBiosId: item["targetVmBiosId"],
+    targetVmName: item["targetVmName"],
+    hyperVGeneration: item["hyperVGeneration"],
+    targetNetworkId: item["targetNetworkId"],
+    testNetworkId: item["testNetworkId"],
+    targetCpuCores: item["targetCpuCores"],
+    isDynamicRam: item["isDynamicRam"],
+    dynamicMemoryConfig: !item["dynamicMemoryConfig"]
+      ? item["dynamicMemoryConfig"]
+      : protectedItemDynamicMemoryConfigDeserializer(
+          item["dynamicMemoryConfig"],
+        ),
+    targetMemoryInMegaBytes: item["targetMemoryInMegaBytes"],
+    osType: item["osType"],
+    osName: item["osName"],
+    firmwareType: item["firmwareType"],
+    fabricDiscoveryMachineId: item["fabricDiscoveryMachineId"],
+    sourceVmName: item["sourceVmName"],
+    sourceCpuCores: item["sourceCpuCores"],
+    sourceMemoryInMegaBytes: item["sourceMemoryInMegaBytes"],
+    runAsAccountId: item["runAsAccountId"],
+    sourceFabricAgentName: item["sourceFabricAgentName"],
+    targetFabricAgentName: item["targetFabricAgentName"],
+    sourceApplianceName: item["sourceApplianceName"],
+    targetApplianceName: item["targetApplianceName"],
+    failoverRecoveryPointId: item["failoverRecoveryPointId"],
+    lastRecoveryPointReceived: !item["lastRecoveryPointReceived"]
+      ? item["lastRecoveryPointReceived"]
+      : new Date(item["lastRecoveryPointReceived"]),
+    lastRecoveryPointId: item["lastRecoveryPointId"],
+    initialReplicationProgressPercentage:
+      item["initialReplicationProgressPercentage"],
+    migrationProgressPercentage: item["migrationProgressPercentage"],
+    resumeProgressPercentage: item["resumeProgressPercentage"],
+    resyncProgressPercentage: item["resyncProgressPercentage"],
+    resyncRetryCount: item["resyncRetryCount"],
+    resyncRequired: item["resyncRequired"],
+    resyncState: item["resyncState"],
+    performAutoResync: item["performAutoResync"],
+    resumeRetryCount: item["resumeRetryCount"],
+    lastReplicationUpdateTime: !item["lastReplicationUpdateTime"]
+      ? item["lastReplicationUpdateTime"]
+      : new Date(item["lastReplicationUpdateTime"]),
+  };
+}
+
+export function vMwareToAzStackHCIDiskInputArraySerializer(
+  result: Array<VMwareToAzStackHCIDiskInput>,
+): any[] {
+  return result.map((item) => {
+    return vMwareToAzStackHCIDiskInputSerializer(item);
+  });
+}
+
+export function vMwareToAzStackHCIDiskInputArrayDeserializer(
+  result: Array<VMwareToAzStackHCIDiskInput>,
+): any[] {
+  return result.map((item) => {
+    return vMwareToAzStackHCIDiskInputDeserializer(item);
+  });
+}
+
+/** VMwareToAzStack disk input. */
+export interface VMwareToAzStackHCIDiskInput {
+  /** Gets or sets the disk Id. */
+  diskId: string;
+  /** Gets or sets the target storage account ARM Id. */
+  storageContainerId?: string;
+  /** Gets or sets a value indicating whether dynamic sizing is enabled on the virtual hard disk. */
+  isDynamic?: boolean;
+  /** Gets or sets the disk size in GB. */
+  diskSizeGB: number;
+  /** Gets or sets the type of the virtual hard disk, vhd or vhdx. */
+  diskFileFormat: string;
+  /** Gets or sets a value indicating whether disk is os disk. */
+  isOsDisk: boolean;
+  /** Gets or sets a value of disk block size. */
+  diskBlockSize?: number;
+  /** Gets or sets a value of disk logical sector size. */
+  diskLogicalSectorSize?: number;
+  /** Gets or sets a value of disk physical sector size. */
+  diskPhysicalSectorSize?: number;
+  /** Gets or sets a value of disk identifier. */
+  diskIdentifier?: string;
+  /** Disk controller. */
+  diskController?: DiskControllerInputs;
+}
+
+export function vMwareToAzStackHCIDiskInputSerializer(
+  item: VMwareToAzStackHCIDiskInput,
+): any {
+  return {
+    diskId: item["diskId"],
+    storageContainerId: item["storageContainerId"],
+    isDynamic: item["isDynamic"],
+    diskSizeGB: item["diskSizeGB"],
+    diskFileFormat: item["diskFileFormat"],
+    isOsDisk: item["isOsDisk"],
+    diskBlockSize: item["diskBlockSize"],
+    diskLogicalSectorSize: item["diskLogicalSectorSize"],
+    diskPhysicalSectorSize: item["diskPhysicalSectorSize"],
+    diskIdentifier: item["diskIdentifier"],
+    diskController: !item["diskController"]
+      ? item["diskController"]
+      : diskControllerInputsSerializer(item["diskController"]),
+  };
+}
+
+export function vMwareToAzStackHCIDiskInputDeserializer(
+  item: any,
+): VMwareToAzStackHCIDiskInput {
+  return {
+    diskId: item["diskId"],
+    storageContainerId: item["storageContainerId"],
+    isDynamic: item["isDynamic"],
+    diskSizeGB: item["diskSizeGB"],
+    diskFileFormat: item["diskFileFormat"],
+    isOsDisk: item["isOsDisk"],
+    diskBlockSize: item["diskBlockSize"],
+    diskLogicalSectorSize: item["diskLogicalSectorSize"],
+    diskPhysicalSectorSize: item["diskPhysicalSectorSize"],
+    diskIdentifier: item["diskIdentifier"],
+    diskController: !item["diskController"]
+      ? item["diskController"]
+      : diskControllerInputsDeserializer(item["diskController"]),
+  };
+}
+
+export function vMwareToAzStackHCINicInputArraySerializer(
+  result: Array<VMwareToAzStackHCINicInput>,
+): any[] {
+  return result.map((item) => {
+    return vMwareToAzStackHCINicInputSerializer(item);
+  });
+}
+
+export function vMwareToAzStackHCINicInputArrayDeserializer(
+  result: Array<VMwareToAzStackHCINicInput>,
+): any[] {
+  return result.map((item) => {
+    return vMwareToAzStackHCINicInputDeserializer(item);
+  });
+}
+
+/** VMwareToAzStackHCI NIC properties. */
+export interface VMwareToAzStackHCINicInput {
+  /** Gets or sets the NIC Id. */
+  nicId: string;
+  /** Gets or sets the NIC label. */
+  label: string;
+  /** Gets or sets the network name. */
+  readonly networkName?: string;
+  /** Gets or sets the target network Id within AzStackHCI Cluster. */
+  targetNetworkId?: string;
+  /** Gets or sets the target test network Id within AzStackHCI Cluster. */
+  testNetworkId?: string;
+  /** Gets or sets the selection type of the NIC. */
+  selectionTypeForFailover: VMNicSelection;
+  /** Gets or sets a value indicating whether static ip migration is enabled. */
+  isStaticIpMigrationEnabled?: boolean;
+  /** Gets or sets a value indicating whether mac address migration is enabled. */
+  isMacMigrationEnabled?: boolean;
+}
+
+export function vMwareToAzStackHCINicInputSerializer(
+  item: VMwareToAzStackHCINicInput,
+): any {
+  return {
+    nicId: item["nicId"],
+    label: item["label"],
+    targetNetworkId: item["targetNetworkId"],
+    testNetworkId: item["testNetworkId"],
+    selectionTypeForFailover: item["selectionTypeForFailover"],
+    isStaticIpMigrationEnabled: item["isStaticIpMigrationEnabled"],
+    isMacMigrationEnabled: item["isMacMigrationEnabled"],
+  };
+}
+
+export function vMwareToAzStackHCINicInputDeserializer(
+  item: any,
+): VMwareToAzStackHCINicInput {
+  return {
+    nicId: item["nicId"],
+    label: item["label"],
+    networkName: item["networkName"],
+    targetNetworkId: item["targetNetworkId"],
+    testNetworkId: item["testNetworkId"],
+    selectionTypeForFailover: item["selectionTypeForFailover"],
+    isStaticIpMigrationEnabled: item["isStaticIpMigrationEnabled"],
+    isMacMigrationEnabled: item["isMacMigrationEnabled"],
+  };
+}
+
+export function vMwareToAzStackHCIProtectedDiskPropertiesArrayDeserializer(
+  result: Array<VMwareToAzStackHCIProtectedDiskProperties>,
+): any[] {
+  return result.map((item) => {
+    return vMwareToAzStackHCIProtectedDiskPropertiesDeserializer(item);
+  });
+}
+
+/** VMwareToAzStackHCI protected disk properties. */
+export interface VMwareToAzStackHCIProtectedDiskProperties {
+  /** Gets or sets the ARM Id of the storage container. */
+  readonly storageContainerId?: string;
+  /** Gets or sets the local path of the storage container. */
+  readonly storageContainerLocalPath?: string;
+  /** Gets or sets the source disk Id. */
+  readonly sourceDiskId?: string;
+  /** Gets or sets the source disk Name. */
+  readonly sourceDiskName?: string;
+  /** Gets or sets the seed disk name. */
+  readonly seedDiskName?: string;
+  /** Gets or sets the test failover clone disk. */
+  readonly testMigrateDiskName?: string;
+  /** Gets or sets the failover clone disk. */
+  readonly migrateDiskName?: string;
+  /** Gets or sets a value indicating whether the disk is the OS disk. */
+  readonly isOsDisk?: boolean;
+  /** Gets or sets the disk capacity in bytes. */
+  readonly capacityInBytes?: number;
+  /** Gets or sets a value indicating whether dynamic sizing is enabled on the virtual hard disk. */
+  readonly isDynamic?: boolean;
+  /** Gets or sets the disk type. */
+  readonly diskType?: string;
+  /** Gets or sets a value of disk block size. */
+  readonly diskBlockSize?: number;
+  /** Gets or sets a value of disk logical sector size. */
+  readonly diskLogicalSectorSize?: number;
+  /** Gets or sets a value of disk physical sector size. */
+  readonly diskPhysicalSectorSize?: number;
+}
+
+export function vMwareToAzStackHCIProtectedDiskPropertiesDeserializer(
+  item: any,
+): VMwareToAzStackHCIProtectedDiskProperties {
+  return {
+    storageContainerId: item["storageContainerId"],
+    storageContainerLocalPath: item["storageContainerLocalPath"],
+    sourceDiskId: item["sourceDiskId"],
+    sourceDiskName: item["sourceDiskName"],
+    seedDiskName: item["seedDiskName"],
+    testMigrateDiskName: item["testMigrateDiskName"],
+    migrateDiskName: item["migrateDiskName"],
+    isOsDisk: item["isOsDisk"],
+    capacityInBytes: item["capacityInBytes"],
+    isDynamic: item["isDynamic"],
+    diskType: item["diskType"],
+    diskBlockSize: item["diskBlockSize"],
+    diskLogicalSectorSize: item["diskLogicalSectorSize"],
+    diskPhysicalSectorSize: item["diskPhysicalSectorSize"],
+  };
+}
+
+export function vMwareToAzStackHCIProtectedNicPropertiesArrayDeserializer(
+  result: Array<VMwareToAzStackHCIProtectedNicProperties>,
+): any[] {
+  return result.map((item) => {
+    return vMwareToAzStackHCIProtectedNicPropertiesDeserializer(item);
+  });
+}
+
+/** VMwareToAzStackHCI NIC properties. */
+export interface VMwareToAzStackHCIProtectedNicProperties {
+  /** Gets or sets the NIC Id. */
+  readonly nicId?: string;
+  /** Gets or sets the NIC mac address. */
+  readonly macAddress?: string;
+  /** Gets or sets the NIC label. */
+  readonly label?: string;
+  /** Gets or sets a value indicating whether this is the primary NIC. */
+  isPrimaryNic?: boolean;
+  /** Gets or sets the network name. */
+  readonly networkName?: string;
+  /** Gets or sets the target network Id within AzStackHCI Cluster. */
+  readonly targetNetworkId?: string;
+  /** Gets or sets the target test network Id within AzStackHCI Cluster. */
+  readonly testNetworkId?: string;
+  /** Gets or sets the selection type of the NIC. */
+  readonly selectionTypeForFailover?: VMNicSelection;
+}
+
+export function vMwareToAzStackHCIProtectedNicPropertiesDeserializer(
+  item: any,
+): VMwareToAzStackHCIProtectedNicProperties {
+  return {
+    nicId: item["nicId"],
+    macAddress: item["macAddress"],
+    label: item["label"],
+    isPrimaryNic: item["isPrimaryNic"],
+    networkName: item["networkName"],
+    targetNetworkId: item["targetNetworkId"],
+    testNetworkId: item["testNetworkId"],
+    selectionTypeForFailover: item["selectionTypeForFailover"],
+  };
+}
+
+/** Gets or sets the resync state. */
+export enum KnownVMwareToAzureMigrateResyncState {
+  /** None state. */
+  None = "None",
+  /** Prepared for resynchronization state. */
+  PreparedForResynchronization = "PreparedForResynchronization",
+  /** Started resynchronization state. */
+  StartedResynchronization = "StartedResynchronization",
+}
+
+/**
+ * Gets or sets the resync state. \
+ * {@link KnownVMwareToAzureMigrateResyncState} can be used interchangeably with VMwareToAzureMigrateResyncState,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **None**: None state. \
+ * **PreparedForResynchronization**: Prepared for resynchronization state. \
+ * **StartedResynchronization**: Started resynchronization state.
+ */
+export type VMwareToAzureMigrateResyncState = string;
+
+/** Protected item model update. */
+export interface ProtectedItemModelUpdate {
+  /** Protected item model properties. */
+  properties?: ProtectedItemModelPropertiesUpdate;
+  /** Gets or sets the Id of the resource. */
+  readonly id?: string;
+  /** Gets or sets the name of the resource. */
+  readonly name?: string;
+  /** Gets or sets the type of the resource. */
+  readonly type?: string;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  readonly systemData?: SystemData;
+}
+
+export function protectedItemModelUpdateSerializer(
+  item: ProtectedItemModelUpdate,
+): any {
+  return {
+    properties: !item["properties"]
+      ? item["properties"]
+      : protectedItemModelPropertiesUpdateSerializer(item["properties"]),
+  };
+}
+
+/** Protected item model properties update. */
+export interface ProtectedItemModelPropertiesUpdate {
+  /** Protected item model custom properties update. */
+  customProperties?: ProtectedItemModelCustomPropertiesUpdateUnion;
+}
+
+export function protectedItemModelPropertiesUpdateSerializer(
+  item: ProtectedItemModelPropertiesUpdate,
+): any {
+  return {
+    customProperties: !item["customProperties"]
+      ? item["customProperties"]
+      : protectedItemModelCustomPropertiesUpdateUnionSerializer(
+          item["customProperties"],
+        ),
+  };
+}
+
+/** Protected item model custom properties. */
+export interface ProtectedItemModelCustomPropertiesUpdate {
+  /** Discriminator property for ProtectedItemModelCustomPropertiesUpdate. */
+  /** The discriminator possible values: HyperVToAzStackHCI, VMwareToAzStackHCI */
+  instanceType: string;
+}
+
+export function protectedItemModelCustomPropertiesUpdateSerializer(
+  item: ProtectedItemModelCustomPropertiesUpdate,
+): any {
+  return { instanceType: item["instanceType"] };
+}
+
+/** Alias for ProtectedItemModelCustomPropertiesUpdateUnion */
+export type ProtectedItemModelCustomPropertiesUpdateUnion =
+  | HyperVToAzStackHCIProtectedItemModelCustomPropertiesUpdate
+  | VMwareToAzStackHCIProtectedItemModelCustomPropertiesUpdate
+  | ProtectedItemModelCustomPropertiesUpdate;
+
+export function protectedItemModelCustomPropertiesUpdateUnionSerializer(
+  item: ProtectedItemModelCustomPropertiesUpdateUnion,
+): any {
+  switch (item.instanceType) {
+    case "HyperVToAzStackHCI":
+      return hyperVToAzStackHCIProtectedItemModelCustomPropertiesUpdateSerializer(
+        item as HyperVToAzStackHCIProtectedItemModelCustomPropertiesUpdate,
+      );
+
+    case "VMwareToAzStackHCI":
+      return vMwareToAzStackHCIProtectedItemModelCustomPropertiesUpdateSerializer(
+        item as VMwareToAzStackHCIProtectedItemModelCustomPropertiesUpdate,
+      );
+
+    default:
+      return protectedItemModelCustomPropertiesUpdateSerializer(item);
+  }
+}
+
+/** HyperV to AzStackHCI Protected item model custom properties. */
+export interface HyperVToAzStackHCIProtectedItemModelCustomPropertiesUpdate
+  extends ProtectedItemModelCustomPropertiesUpdate {
+  /** Gets or sets the list of VM NIC to replicate. */
+  nicsToInclude?: HyperVToAzStackHCINicInput[];
+  /** Gets or sets the target CPU cores. */
+  targetCpuCores?: number;
+  /** Gets or sets a value indicating whether memory is dynamical. */
+  isDynamicRam?: boolean;
+  /** Protected item dynamic memory config. */
+  dynamicMemoryConfig?: ProtectedItemDynamicMemoryConfig;
+  /** Gets or sets the target memory in mega-bytes. */
+  targetMemoryInMegaBytes?: number;
+  /** Gets or sets the instance type. */
+  instanceType: "HyperVToAzStackHCI";
+  /** Gets or sets the type of the OS. */
+  osType?: string;
+}
+
+export function hyperVToAzStackHCIProtectedItemModelCustomPropertiesUpdateSerializer(
+  item: HyperVToAzStackHCIProtectedItemModelCustomPropertiesUpdate,
+): any {
+  return {
+    instanceType: item["instanceType"],
+    nicsToInclude: !item["nicsToInclude"]
+      ? item["nicsToInclude"]
+      : hyperVToAzStackHCINicInputArraySerializer(item["nicsToInclude"]),
+    targetCpuCores: item["targetCpuCores"],
+    isDynamicRam: item["isDynamicRam"],
+    dynamicMemoryConfig: !item["dynamicMemoryConfig"]
+      ? item["dynamicMemoryConfig"]
+      : protectedItemDynamicMemoryConfigSerializer(item["dynamicMemoryConfig"]),
+    targetMemoryInMegaBytes: item["targetMemoryInMegaBytes"],
+    osType: item["osType"],
+  };
+}
+
+/** VMware to AzStackHCI Protected item model custom properties. */
+export interface VMwareToAzStackHCIProtectedItemModelCustomPropertiesUpdate
+  extends ProtectedItemModelCustomPropertiesUpdate {
+  /** Gets or sets the list of VM NIC to replicate. */
+  nicsToInclude?: VMwareToAzStackHCINicInput[];
+  /** Gets or sets the target CPU cores. */
+  targetCpuCores?: number;
+  /** Gets or sets a value indicating whether memory is dynamical. */
+  isDynamicRam?: boolean;
+  /** Protected item dynamic memory config. */
+  dynamicMemoryConfig?: ProtectedItemDynamicMemoryConfig;
+  /** Gets or sets the target memory in mega-bytes. */
+  targetMemoryInMegaBytes?: number;
+  /** Gets or sets the instance type. */
+  instanceType: "VMwareToAzStackHCI";
+  /** Gets or sets the type of the OS. */
+  osType?: string;
+}
+
+export function vMwareToAzStackHCIProtectedItemModelCustomPropertiesUpdateSerializer(
+  item: VMwareToAzStackHCIProtectedItemModelCustomPropertiesUpdate,
+): any {
+  return {
+    instanceType: item["instanceType"],
+    nicsToInclude: !item["nicsToInclude"]
+      ? item["nicsToInclude"]
+      : vMwareToAzStackHCINicInputArraySerializer(item["nicsToInclude"]),
+    targetCpuCores: item["targetCpuCores"],
+    isDynamicRam: item["isDynamicRam"],
+    dynamicMemoryConfig: !item["dynamicMemoryConfig"]
+      ? item["dynamicMemoryConfig"]
+      : protectedItemDynamicMemoryConfigSerializer(item["dynamicMemoryConfig"]),
+    targetMemoryInMegaBytes: item["targetMemoryInMegaBytes"],
+    osType: item["osType"],
+  };
+}
+
+/** The response of a ProtectedItemModel list operation. */
+export interface _ProtectedItemModelListResult {
+  /** The ProtectedItemModel items on this page */
+  value: ProtectedItemModel[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _protectedItemModelListResultDeserializer(
+  item: any,
+): _ProtectedItemModelListResult {
+  return {
+    value: protectedItemModelArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function protectedItemModelArraySerializer(
+  result: Array<ProtectedItemModel>,
+): any[] {
+  return result.map((item) => {
+    return protectedItemModelSerializer(item);
+  });
+}
+
+export function protectedItemModelArrayDeserializer(
+  result: Array<ProtectedItemModel>,
+): any[] {
+  return result.map((item) => {
+    return protectedItemModelDeserializer(item);
+  });
+}
+
+/** Planned failover model. */
+export interface PlannedFailoverModel {
+  /** Planned failover model properties. */
+  properties: PlannedFailoverModelProperties;
+}
+
+export function plannedFailoverModelSerializer(
+  item: PlannedFailoverModel,
+): any {
+  return {
+    properties: plannedFailoverModelPropertiesSerializer(item["properties"]),
+  };
+}
+
+export function plannedFailoverModelDeserializer(
+  item: any,
+): PlannedFailoverModel {
+  return {
+    properties: plannedFailoverModelPropertiesDeserializer(item["properties"]),
+  };
+}
+
+/** Planned failover model properties. */
+export interface PlannedFailoverModelProperties {
+  /** Planned failover model custom properties. */
+  customProperties: PlannedFailoverModelCustomPropertiesUnion;
+}
+
+export function plannedFailoverModelPropertiesSerializer(
+  item: PlannedFailoverModelProperties,
+): any {
+  return {
+    customProperties: plannedFailoverModelCustomPropertiesUnionSerializer(
+      item["customProperties"],
+    ),
+  };
+}
+
+export function plannedFailoverModelPropertiesDeserializer(
+  item: any,
+): PlannedFailoverModelProperties {
+  return {
+    customProperties: plannedFailoverModelCustomPropertiesUnionDeserializer(
+      item["customProperties"],
+    ),
+  };
+}
+
+/** Planned failover model custom properties. */
+export interface PlannedFailoverModelCustomProperties {
+  /** Discriminator property for PlannedFailoverModelCustomProperties. */
+  /** The discriminator possible values: HyperVToAzStackHCI, VMwareToAzStackHCI */
+  instanceType: string;
+}
+
+export function plannedFailoverModelCustomPropertiesSerializer(
+  item: PlannedFailoverModelCustomProperties,
+): any {
+  return { instanceType: item["instanceType"] };
+}
+
+export function plannedFailoverModelCustomPropertiesDeserializer(
+  item: any,
+): PlannedFailoverModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+  };
+}
+
+/** Alias for PlannedFailoverModelCustomPropertiesUnion */
+export type PlannedFailoverModelCustomPropertiesUnion =
+  | HyperVToAzStackHCIPlannedFailoverModelCustomProperties
+  | VMwareToAzStackHCIPlannedFailoverModelCustomProperties
+  | PlannedFailoverModelCustomProperties;
+
+export function plannedFailoverModelCustomPropertiesUnionSerializer(
+  item: PlannedFailoverModelCustomPropertiesUnion,
+): any {
+  switch (item.instanceType) {
+    case "HyperVToAzStackHCI":
+      return hyperVToAzStackHCIPlannedFailoverModelCustomPropertiesSerializer(
+        item as HyperVToAzStackHCIPlannedFailoverModelCustomProperties,
+      );
+
+    case "VMwareToAzStackHCI":
+      return vMwareToAzStackHCIPlannedFailoverModelCustomPropertiesSerializer(
+        item as VMwareToAzStackHCIPlannedFailoverModelCustomProperties,
+      );
+
+    default:
+      return plannedFailoverModelCustomPropertiesSerializer(item);
+  }
+}
+
+export function plannedFailoverModelCustomPropertiesUnionDeserializer(
+  item: any,
+): PlannedFailoverModelCustomPropertiesUnion {
+  switch (item.instanceType) {
+    case "HyperVToAzStackHCI":
+      return hyperVToAzStackHCIPlannedFailoverModelCustomPropertiesDeserializer(
+        item as HyperVToAzStackHCIPlannedFailoverModelCustomProperties,
+      );
+
+    case "VMwareToAzStackHCI":
+      return vMwareToAzStackHCIPlannedFailoverModelCustomPropertiesDeserializer(
+        item as VMwareToAzStackHCIPlannedFailoverModelCustomProperties,
+      );
+
+    default:
+      return plannedFailoverModelCustomPropertiesDeserializer(item);
+  }
+}
+
+/** HyperV to AzStackHCI planned failover model custom properties. */
+export interface HyperVToAzStackHCIPlannedFailoverModelCustomProperties
+  extends PlannedFailoverModelCustomProperties {
+  /** Gets or sets a value indicating whether VM needs to be shut down. */
+  shutdownSourceVM: boolean;
+  /** Gets or sets the instance type. */
+  instanceType: "HyperVToAzStackHCI";
+}
+
+export function hyperVToAzStackHCIPlannedFailoverModelCustomPropertiesSerializer(
+  item: HyperVToAzStackHCIPlannedFailoverModelCustomProperties,
+): any {
+  return {
+    instanceType: item["instanceType"],
+    shutdownSourceVM: item["shutdownSourceVM"],
+  };
+}
+
+export function hyperVToAzStackHCIPlannedFailoverModelCustomPropertiesDeserializer(
+  item: any,
+): HyperVToAzStackHCIPlannedFailoverModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+    shutdownSourceVM: item["shutdownSourceVM"],
+  };
+}
+
+/** VMware to AzStackHCI planned failover model custom properties. */
+export interface VMwareToAzStackHCIPlannedFailoverModelCustomProperties
+  extends PlannedFailoverModelCustomProperties {
+  /** Gets or sets a value indicating whether VM needs to be shut down. */
+  shutdownSourceVM: boolean;
+  /** Gets or sets the instance type. */
+  instanceType: "VMwareToAzStackHCI";
+}
+
+export function vMwareToAzStackHCIPlannedFailoverModelCustomPropertiesSerializer(
+  item: VMwareToAzStackHCIPlannedFailoverModelCustomProperties,
+): any {
+  return {
+    instanceType: item["instanceType"],
+    shutdownSourceVM: item["shutdownSourceVM"],
+  };
+}
+
+export function vMwareToAzStackHCIPlannedFailoverModelCustomPropertiesDeserializer(
+  item: any,
+): VMwareToAzStackHCIPlannedFailoverModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+    shutdownSourceVM: item["shutdownSourceVM"],
+  };
+}
+
+/** Recovery point model. */
+export interface RecoveryPointModel extends ProxyResource {
+  /** The resource-specific properties for this resource. */
+  properties?: RecoveryPointModelProperties;
+}
+
+export function recoveryPointModelDeserializer(item: any): RecoveryPointModel {
+  return {
+    id: item["id"],
+    name: item["name"],
+    type: item["type"],
+    systemData: !item["systemData"]
+      ? item["systemData"]
+      : systemDataDeserializer(item["systemData"]),
+    properties: !item["properties"]
+      ? item["properties"]
+      : recoveryPointModelPropertiesDeserializer(item["properties"]),
+  };
+}
+
+/** Recovery point model properties. */
+export interface RecoveryPointModelProperties {
+  /** Gets or sets the recovery point time. */
+  recoveryPointTime: Date;
+  /** Gets or sets the recovery point type. */
+  recoveryPointType: RecoveryPointType;
+  /** Recovery point model custom properties. */
+  customProperties: RecoveryPointModelCustomPropertiesUnion;
+  /** Gets or sets the provisioning state of the recovery point item. */
+  readonly provisioningState?: ProvisioningState;
+}
+
+export function recoveryPointModelPropertiesDeserializer(
+  item: any,
+): RecoveryPointModelProperties {
+  return {
+    recoveryPointTime: new Date(item["recoveryPointTime"]),
+    recoveryPointType: item["recoveryPointType"],
+    customProperties: recoveryPointModelCustomPropertiesUnionDeserializer(
+      item["customProperties"],
+    ),
+    provisioningState: item["provisioningState"],
+  };
+}
+
+/** Gets or sets the recovery point type. */
+export enum KnownRecoveryPointType {
+  /** Application consistent recovery point. */
+  ApplicationConsistent = "ApplicationConsistent",
+  /** Crash consistent recovery point. */
+  CrashConsistent = "CrashConsistent",
+}
+
+/**
+ * Gets or sets the recovery point type. \
+ * {@link KnownRecoveryPointType} can be used interchangeably with RecoveryPointType,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **ApplicationConsistent**: Application consistent recovery point. \
+ * **CrashConsistent**: Crash consistent recovery point.
+ */
+export type RecoveryPointType = string;
+
+/** Recovery point model custom properties. */
+export interface RecoveryPointModelCustomProperties {
+  /** Discriminator property for RecoveryPointModelCustomProperties. */
+  /** The discriminator possible values: HyperVToAzStackHCI, VMwareToAzStackHCIRecoveryPointModelCustomProperties */
+  instanceType: string;
+}
+
+export function recoveryPointModelCustomPropertiesDeserializer(
+  item: any,
+): RecoveryPointModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+  };
+}
+
+/** Alias for RecoveryPointModelCustomPropertiesUnion */
+export type RecoveryPointModelCustomPropertiesUnion =
+  | HyperVToAzStackHCIRecoveryPointModelCustomProperties
+  | VMwareToAzStackHCIRecoveryPointModelCustomProperties
+  | RecoveryPointModelCustomProperties;
+
+export function recoveryPointModelCustomPropertiesUnionDeserializer(
+  item: any,
+): RecoveryPointModelCustomPropertiesUnion {
+  switch (item.instanceType) {
+    case "HyperVToAzStackHCI":
+      return hyperVToAzStackHCIRecoveryPointModelCustomPropertiesDeserializer(
+        item as HyperVToAzStackHCIRecoveryPointModelCustomProperties,
+      );
+
+    case "VMwareToAzStackHCIRecoveryPointModelCustomProperties":
+      return vMwareToAzStackHCIRecoveryPointModelCustomPropertiesDeserializer(
+        item as VMwareToAzStackHCIRecoveryPointModelCustomProperties,
+      );
+
+    default:
+      return recoveryPointModelCustomPropertiesDeserializer(item);
+  }
+}
+
+/** HyperV to AzStackHCI recovery point model custom properties. */
+export interface HyperVToAzStackHCIRecoveryPointModelCustomProperties
+  extends RecoveryPointModelCustomProperties {
+  /** Gets or sets the list of the disk Ids. */
+  readonly diskIds?: string[];
+  /** Gets or sets the instance type. */
+  instanceType: "HyperVToAzStackHCI";
+}
+
+export function hyperVToAzStackHCIRecoveryPointModelCustomPropertiesDeserializer(
+  item: any,
+): HyperVToAzStackHCIRecoveryPointModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+    diskIds: !item["diskIds"]
+      ? item["diskIds"]
+      : item["diskIds"].map((p: any) => {
+          return p;
+        }),
+  };
+}
+
+/** VMware to AzStackHCI recovery point model custom properties. */
+export interface VMwareToAzStackHCIRecoveryPointModelCustomProperties
+  extends RecoveryPointModelCustomProperties {
+  /** Gets or sets the list of the disk Ids. */
+  readonly diskIds?: string[];
+  /** Gets or sets the instance type. */
+  instanceType: "VMwareToAzStackHCIRecoveryPointModelCustomProperties";
+}
+
+export function vMwareToAzStackHCIRecoveryPointModelCustomPropertiesDeserializer(
+  item: any,
+): VMwareToAzStackHCIRecoveryPointModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+    diskIds: !item["diskIds"]
+      ? item["diskIds"]
+      : item["diskIds"].map((p: any) => {
+          return p;
+        }),
+  };
+}
+
+/** The response of a RecoveryPointModel list operation. */
+export interface _RecoveryPointModelListResult {
+  /** The RecoveryPointModel items on this page */
+  value: RecoveryPointModel[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _recoveryPointModelListResultDeserializer(
+  item: any,
+): _RecoveryPointModelListResult {
+  return {
+    value: recoveryPointModelArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function recoveryPointModelArrayDeserializer(
+  result: Array<RecoveryPointModel>,
+): any[] {
+  return result.map((item) => {
+    return recoveryPointModelDeserializer(item);
+  });
+}
+
+/** Replication extension model. */
+export interface ReplicationExtensionModel extends ProxyResource {
+  /** The resource-specific properties for this resource. */
+  properties?: ReplicationExtensionModelProperties;
+}
+
+export function replicationExtensionModelSerializer(
+  item: ReplicationExtensionModel,
+): any {
+  return {
+    properties: !item["properties"]
+      ? item["properties"]
+      : replicationExtensionModelPropertiesSerializer(item["properties"]),
+  };
+}
+
+export function replicationExtensionModelDeserializer(
+  item: any,
+): ReplicationExtensionModel {
+  return {
+    id: item["id"],
+    name: item["name"],
+    type: item["type"],
+    systemData: !item["systemData"]
+      ? item["systemData"]
+      : systemDataDeserializer(item["systemData"]),
+    properties: !item["properties"]
+      ? item["properties"]
+      : replicationExtensionModelPropertiesDeserializer(item["properties"]),
+  };
+}
+
+/** Replication extension model properties. */
+export interface ReplicationExtensionModelProperties {
+  /** Gets or sets the provisioning state of the replication extension. */
+  readonly provisioningState?: ProvisioningState;
+  /** Replication extension model custom properties. */
+  customProperties: ReplicationExtensionModelCustomPropertiesUnion;
+}
+
+export function replicationExtensionModelPropertiesSerializer(
+  item: ReplicationExtensionModelProperties,
+): any {
+  return {
+    customProperties: replicationExtensionModelCustomPropertiesUnionSerializer(
+      item["customProperties"],
+    ),
+  };
+}
+
+export function replicationExtensionModelPropertiesDeserializer(
+  item: any,
+): ReplicationExtensionModelProperties {
+  return {
+    provisioningState: item["provisioningState"],
+    customProperties:
+      replicationExtensionModelCustomPropertiesUnionDeserializer(
+        item["customProperties"],
+      ),
+  };
+}
+
+/** Replication extension model custom properties. */
+export interface ReplicationExtensionModelCustomProperties {
+  /** Discriminator property for ReplicationExtensionModelCustomProperties. */
+  /** The discriminator possible values: HyperVToAzStackHCI, VMwareToAzStackHCI */
+  instanceType: string;
+}
+
+export function replicationExtensionModelCustomPropertiesSerializer(
+  item: ReplicationExtensionModelCustomProperties,
+): any {
+  return { instanceType: item["instanceType"] };
+}
+
+export function replicationExtensionModelCustomPropertiesDeserializer(
+  item: any,
+): ReplicationExtensionModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+  };
+}
+
+/** Alias for ReplicationExtensionModelCustomPropertiesUnion */
+export type ReplicationExtensionModelCustomPropertiesUnion =
+  | HyperVToAzStackHCIReplicationExtensionModelCustomProperties
+  | VMwareToAzStackHCIReplicationExtensionModelCustomProperties
+  | ReplicationExtensionModelCustomProperties;
+
+export function replicationExtensionModelCustomPropertiesUnionSerializer(
+  item: ReplicationExtensionModelCustomPropertiesUnion,
+): any {
+  switch (item.instanceType) {
+    case "HyperVToAzStackHCI":
+      return hyperVToAzStackHCIReplicationExtensionModelCustomPropertiesSerializer(
+        item as HyperVToAzStackHCIReplicationExtensionModelCustomProperties,
+      );
+
+    case "VMwareToAzStackHCI":
+      return vMwareToAzStackHCIReplicationExtensionModelCustomPropertiesSerializer(
+        item as VMwareToAzStackHCIReplicationExtensionModelCustomProperties,
+      );
+
+    default:
+      return replicationExtensionModelCustomPropertiesSerializer(item);
+  }
+}
+
+export function replicationExtensionModelCustomPropertiesUnionDeserializer(
+  item: any,
+): ReplicationExtensionModelCustomPropertiesUnion {
+  switch (item.instanceType) {
+    case "HyperVToAzStackHCI":
+      return hyperVToAzStackHCIReplicationExtensionModelCustomPropertiesDeserializer(
+        item as HyperVToAzStackHCIReplicationExtensionModelCustomProperties,
+      );
+
+    case "VMwareToAzStackHCI":
+      return vMwareToAzStackHCIReplicationExtensionModelCustomPropertiesDeserializer(
+        item as VMwareToAzStackHCIReplicationExtensionModelCustomProperties,
+      );
+
+    default:
+      return replicationExtensionModelCustomPropertiesDeserializer(item);
+  }
+}
+
+/** HyperV to AzStackHCI Replication extension model custom properties. */
+export interface HyperVToAzStackHCIReplicationExtensionModelCustomProperties
+  extends ReplicationExtensionModelCustomProperties {
+  /** Gets or sets the ARM Id of the source HyperV fabric. */
+  hyperVFabricArmId: string;
+  /** Gets or sets the ARM Id of the HyperV site. */
+  readonly hyperVSiteId?: string;
+  /** Gets or sets the ARM Id of the target AzStackHCI fabric. */
+  azStackHciFabricArmId: string;
+  /** Gets or sets the ARM Id of the AzStackHCI site. */
+  readonly azStackHciSiteId?: string;
+  /** Gets or sets the storage account Id. */
+  storageAccountId?: string;
+  /** Gets or sets the Sas Secret of storage account. */
+  storageAccountSasSecretName?: string;
+  /** Gets or sets the Uri of ASR. */
+  readonly asrServiceUri?: string;
+  /** Gets or sets the Uri of Rcm. */
+  readonly rcmServiceUri?: string;
+  /** Gets or sets the Uri of Gateway. */
+  readonly gatewayServiceUri?: string;
+  /** Gets or sets the gateway service Id of source. */
+  readonly sourceGatewayServiceId?: string;
+  /** Gets or sets the gateway service Id of target. */
+  readonly targetGatewayServiceId?: string;
+  /** Gets or sets the source storage container name. */
+  readonly sourceStorageContainerName?: string;
+  /** Gets or sets the target storage container name. */
+  readonly targetStorageContainerName?: string;
+  /** Gets or sets the resource location. */
+  readonly resourceLocation?: string;
+  /** Gets or sets the subscription. */
+  readonly subscriptionId?: string;
+  /** Gets or sets the resource group. */
+  readonly resourceGroup?: string;
+  /** Gets or sets the instance type. */
+  instanceType: "HyperVToAzStackHCI";
+}
+
+export function hyperVToAzStackHCIReplicationExtensionModelCustomPropertiesSerializer(
+  item: HyperVToAzStackHCIReplicationExtensionModelCustomProperties,
+): any {
+  return {
+    instanceType: item["instanceType"],
+    hyperVFabricArmId: item["hyperVFabricArmId"],
+    azStackHciFabricArmId: item["azStackHciFabricArmId"],
+    storageAccountId: item["storageAccountId"],
+    storageAccountSasSecretName: item["storageAccountSasSecretName"],
+  };
+}
+
+export function hyperVToAzStackHCIReplicationExtensionModelCustomPropertiesDeserializer(
+  item: any,
+): HyperVToAzStackHCIReplicationExtensionModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+    hyperVFabricArmId: item["hyperVFabricArmId"],
+    hyperVSiteId: item["hyperVSiteId"],
+    azStackHciFabricArmId: item["azStackHciFabricArmId"],
+    azStackHciSiteId: item["azStackHciSiteId"],
+    storageAccountId: item["storageAccountId"],
+    storageAccountSasSecretName: item["storageAccountSasSecretName"],
+    asrServiceUri: item["asrServiceUri"],
+    rcmServiceUri: item["rcmServiceUri"],
+    gatewayServiceUri: item["gatewayServiceUri"],
+    sourceGatewayServiceId: item["sourceGatewayServiceId"],
+    targetGatewayServiceId: item["targetGatewayServiceId"],
+    sourceStorageContainerName: item["sourceStorageContainerName"],
+    targetStorageContainerName: item["targetStorageContainerName"],
+    resourceLocation: item["resourceLocation"],
+    subscriptionId: item["subscriptionId"],
+    resourceGroup: item["resourceGroup"],
+  };
+}
+
+/** VMware to AzStackHCI Replication extension model custom properties. */
+export interface VMwareToAzStackHCIReplicationExtensionModelCustomProperties
+  extends ReplicationExtensionModelCustomProperties {
+  /** Gets or sets the ARM Id of the source VMware fabric. */
+  vmwareFabricArmId: string;
+  /** Gets or sets the ARM Id of the VMware site. */
+  readonly vmwareSiteId?: string;
+  /** Gets or sets the ARM Id of the target AzStackHCI fabric. */
+  azStackHciFabricArmId: string;
+  /** Gets or sets the ARM Id of the AzStackHCI site. */
+  readonly azStackHciSiteId?: string;
+  /** Gets or sets the storage account Id. */
+  storageAccountId?: string;
+  /** Gets or sets the Sas Secret of storage account. */
+  storageAccountSasSecretName?: string;
+  /** Gets or sets the Uri of ASR. */
+  readonly asrServiceUri?: string;
+  /** Gets or sets the Uri of Rcm. */
+  readonly rcmServiceUri?: string;
+  /** Gets or sets the Uri of Gateway. */
+  readonly gatewayServiceUri?: string;
+  /** Gets or sets the gateway service Id of source. */
+  readonly sourceGatewayServiceId?: string;
+  /** Gets or sets the gateway service Id of target. */
+  readonly targetGatewayServiceId?: string;
+  /** Gets or sets the source storage container name. */
+  readonly sourceStorageContainerName?: string;
+  /** Gets or sets the target storage container name. */
+  readonly targetStorageContainerName?: string;
+  /** Gets or sets the resource location. */
+  readonly resourceLocation?: string;
+  /** Gets or sets the subscription. */
+  readonly subscriptionId?: string;
+  /** Gets or sets the resource group. */
+  readonly resourceGroup?: string;
+  /** Gets or sets the instance type. */
+  instanceType: "VMwareToAzStackHCI";
+}
+
+export function vMwareToAzStackHCIReplicationExtensionModelCustomPropertiesSerializer(
+  item: VMwareToAzStackHCIReplicationExtensionModelCustomProperties,
+): any {
+  return {
+    instanceType: item["instanceType"],
+    vmwareFabricArmId: item["vmwareFabricArmId"],
+    azStackHciFabricArmId: item["azStackHciFabricArmId"],
+    storageAccountId: item["storageAccountId"],
+    storageAccountSasSecretName: item["storageAccountSasSecretName"],
+  };
+}
+
+export function vMwareToAzStackHCIReplicationExtensionModelCustomPropertiesDeserializer(
+  item: any,
+): VMwareToAzStackHCIReplicationExtensionModelCustomProperties {
+  return {
+    instanceType: item["instanceType"],
+    vmwareFabricArmId: item["vmwareFabricArmId"],
+    vmwareSiteId: item["vmwareSiteId"],
+    azStackHciFabricArmId: item["azStackHciFabricArmId"],
+    azStackHciSiteId: item["azStackHciSiteId"],
+    storageAccountId: item["storageAccountId"],
+    storageAccountSasSecretName: item["storageAccountSasSecretName"],
+    asrServiceUri: item["asrServiceUri"],
+    rcmServiceUri: item["rcmServiceUri"],
+    gatewayServiceUri: item["gatewayServiceUri"],
+    sourceGatewayServiceId: item["sourceGatewayServiceId"],
+    targetGatewayServiceId: item["targetGatewayServiceId"],
+    sourceStorageContainerName: item["sourceStorageContainerName"],
+    targetStorageContainerName: item["targetStorageContainerName"],
+    resourceLocation: item["resourceLocation"],
+    subscriptionId: item["subscriptionId"],
+    resourceGroup: item["resourceGroup"],
+  };
+}
+
+/** The response of a ReplicationExtensionModel list operation. */
+export interface _ReplicationExtensionModelListResult {
+  /** The ReplicationExtensionModel items on this page */
+  value: ReplicationExtensionModel[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+export function _replicationExtensionModelListResultDeserializer(
+  item: any,
+): _ReplicationExtensionModelListResult {
+  return {
+    value: replicationExtensionModelArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function replicationExtensionModelArraySerializer(
+  result: Array<ReplicationExtensionModel>,
+): any[] {
+  return result.map((item) => {
+    return replicationExtensionModelSerializer(item);
+  });
+}
+
+export function replicationExtensionModelArrayDeserializer(
+  result: Array<ReplicationExtensionModel>,
+): any[] {
+  return result.map((item) => {
+    return replicationExtensionModelDeserializer(item);
+  });
+}
+
+/** Check name availability model. */
+export interface CheckNameAvailabilityModel {
+  /** Gets or sets the resource name. */
+  name?: string;
+  /** Gets or sets the resource type. */
+  type?: string;
+}
+
+export function checkNameAvailabilityModelSerializer(
+  item: CheckNameAvailabilityModel,
+): any {
+  return { name: item["name"], type: item["type"] };
+}
+
+/** Check name availability response model. */
+export interface CheckNameAvailabilityResponseModel {
+  /** Gets or sets a value indicating whether resource name is available or not. */
+  nameAvailable?: boolean;
+  /** Gets or sets the reason for resource name unavailability. */
+  reason?: string;
+  /** Gets or sets the message for resource name unavailability. */
+  message?: string;
+}
+
+export function checkNameAvailabilityResponseModelDeserializer(
+  item: any,
+): CheckNameAvailabilityResponseModel {
+  return {
+    nameAvailable: item["nameAvailable"],
+    reason: item["reason"],
+    message: item["message"],
+  };
+}
+
+/** Deployment preflight model. */
+export interface DeploymentPreflightModel {
+  /** Gets or sets the list of resources. */
+  resources?: DeploymentPreflightResource[];
+}
+
+export function deploymentPreflightModelSerializer(
+  item: DeploymentPreflightModel,
+): any {
+  return {
+    resources: !item["resources"]
+      ? item["resources"]
+      : deploymentPreflightResourceArraySerializer(item["resources"]),
+  };
+}
+
+export function deploymentPreflightModelDeserializer(
+  item: any,
+): DeploymentPreflightModel {
+  return {
+    resources: !item["resources"]
+      ? item["resources"]
+      : deploymentPreflightResourceArrayDeserializer(item["resources"]),
+  };
+}
+
+export function deploymentPreflightResourceArraySerializer(
+  result: Array<DeploymentPreflightResource>,
+): any[] {
+  return result.map((item) => {
+    return deploymentPreflightResourceSerializer(item);
+  });
+}
+
+export function deploymentPreflightResourceArrayDeserializer(
+  result: Array<DeploymentPreflightResource>,
+): any[] {
+  return result.map((item) => {
+    return deploymentPreflightResourceDeserializer(item);
+  });
+}
+
+/** Deployment preflight resource. */
+export interface DeploymentPreflightResource {
+  /** Gets or sets the resource name. */
+  name?: string;
+  /** Gets or sets the resource type. */
+  type?: string;
+  /** Gets or sets the location of the resource. */
+  location?: string;
+  /** Gets or sets the Api version. */
+  apiVersion?: string;
+  /** Gets or sets the properties of the resource. */
+  properties?: any;
+}
+
+export function deploymentPreflightResourceSerializer(
+  item: DeploymentPreflightResource,
+): any {
+  return {
+    name: item["name"],
+    type: item["type"],
+    location: item["location"],
+    apiVersion: item["apiVersion"],
+    properties: item["properties"],
+  };
+}
+
+export function deploymentPreflightResourceDeserializer(
+  item: any,
+): DeploymentPreflightResource {
+  return {
+    name: item["name"],
+    type: item["type"],
+    location: item["location"],
+    apiVersion: item["apiVersion"],
+    properties: item["properties"],
+  };
+}
+
+/** Defines the operation status. */
+export interface OperationStatus {
+  /** Gets or sets the Id. */
+  id?: string;
+  /** Gets or sets the operation name. */
+  name?: string;
+  /** Gets or sets the status of the operation. ARM expects the terminal status to be one of Succeeded/ Failed/ Canceled. All other values imply that the operation is still running. */
+  status?: string;
+  /** Gets or sets the start time. */
+  startTime?: string;
+  /** Gets or sets the end time. */
+  endTime?: string;
+}
+
+export function operationStatusDeserializer(item: any): OperationStatus {
+  return {
+    id: item["id"],
+    name: item["name"],
+    status: item["status"],
+    startTime: item["startTime"],
+    endTime: item["endTime"],
+  };
+}
+
+/** The available API versions. */
 export enum KnownVersions {
-  /** Azure VMware Solution API version 2023-09-01. */
-  V20230901 = "2023-09-01",
-  /** Azure VMware Solution API version 2024-09-01. */
+  /** The 2024-09-01 API version. */
   V20240901 = "2024-09-01",
 }
