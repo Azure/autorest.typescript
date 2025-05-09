@@ -151,7 +151,7 @@ export function buildClassicalClient(
       );
       clientFile.addImportDeclaration({
         moduleSpecifier: `./${subfolder}/${normalizeName(childClient.name, NameType.File)}.js`,
-        namedImports: [`${getClassicalClientName(childClient)}`]
+        namedImports: [`${getClassicalClientName(childClient)}`, `${getClassicalClientName(childClient)}OptionalParams`]
       });
     }
   }
@@ -287,7 +287,7 @@ function addChildClient(
     requiredOnly: true
   });
   const diffParams = clientParams.filter((p) => {
-    return !parentParams.some((pp) => pp.name === p.name);
+    return !parentParams.some((pp) => pp.name === p.name && pp.name !== "options");
   });
   const name = getClassicalClientName(client);
   const getChildClientFunction = clientClass.addMethod({

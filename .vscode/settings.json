@@ -17,5 +17,8 @@
   },
   "[javascript]": {
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  },
+  "[typespec]": {
+    "editor.defaultFormatter": "typespec.typespec-vscode"
   }
 }

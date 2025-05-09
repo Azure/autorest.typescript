@@ -34,7 +34,7 @@ export class StorageClient {
     // (undocumented)
     download(options?: DownloadOptionalParams): Promise<void>;
     // (undocumented)
-    getBlobClient(blobName: string): BlobClient;
+    getBlobClient(blobName: string, options?: BlobClientOptionalParams): BlobClient;
     readonly pipeline: Pipeline;
 }
 

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { BlobClient } from "./blob/blobClient.js";
+import { BlobClient, BlobClientOptionalParams } from "./blob/blobClient.js";
 import {
   createStorage,
   StorageContext,
@@ -43,11 +43,15 @@ export class StorageClient {
     return download(this._client, options);
   }
 
-  getBlobClient(blobName: string): BlobClient {
+  getBlobClient(
+    blobName: string,
+    options: BlobClientOptionalParams = {},
+  ): BlobClient {
     return new BlobClient(
       this._endpointParam,
       this._client.accountName,
       blobName,
+      options,
     );
   }
 }
