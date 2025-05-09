@@ -1,0 +1,14 @@
+
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    is-modular-library: true
+    generate-metadata: true
+    generate-test: true
+    azure-sdk-for-js: false
+    flavor: azure
+    emitter-output-dir: "{project-root}/generated/typespec-ts"
+    package-details:
+      name: "@azure-rest/azure-search-documents-rest"
+      description: "Azure.Search Service"

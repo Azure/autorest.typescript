@@ -314,26 +314,9 @@ function addSerializationFunctions(
     type,
     skipDiscriminatedUnion
   );
-  let typeName = undefined;
-  switch (type.kind) {
-    case "array":
-      typeName = "array";
-      break;
-    case "dict":
-      typeName = "record";
-      break;
-    default:
-      break;
-  }
 
-  const serializerRefkey =
-    type.kind === "array" || type.kind === "dict"
-      ? refkey(type.valueType, typeName, "serializer")
-      : refkey(type, "serializer");
-  const deserailizerRefKey =
-    type.kind === "array" || type.kind === "dict"
-      ? refkey(type.valueType, typeName, "deserializer")
-      : refkey(type, "deserializer");
+  const serializerRefkey = refkey(type, "serializer");
+  const deserailizerRefKey = refkey(type, "deserializer");
   if (
     serializationFunction &&
     typeof serializationFunction !== "string" &&
