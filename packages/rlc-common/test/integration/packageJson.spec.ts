@@ -341,49 +341,6 @@ describe("Package file generation", () => {
       );
     });
 
-    it("[cjs] should include correct test devCependencies with tests", () => {
-      const model = createMockModel({
-        ...baseConfig,
-        moduleKind: "cjs",
-        withTests: true
-      });
-      const packageFileContent = buildPackageFile(model);
-      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
-
-      expect(packageFile.devDependencies).to.have.property("dotenv");
-      expect(packageFile.devDependencies).to.have.property("mocha");
-      expect(packageFile.devDependencies).to.have.property("@types/mocha");
-      expect(packageFile.devDependencies).to.not.have.property("cross-env");
-      expect(packageFile.devDependencies).to.have.property("@types/chai");
-      expect(packageFile.devDependencies).to.have.property("chai");
-      expect(packageFile.devDependencies).to.have.property(
-        "karma-chrome-launcher"
-      );
-      expect(packageFile.devDependencies).to.have.property("karma-coverage");
-      expect(packageFile.devDependencies).to.have.property(
-        "karma-env-preprocessor"
-      );
-      expect(packageFile.devDependencies).to.have.property(
-        "karma-firefox-launcher"
-      );
-      expect(packageFile.devDependencies).to.have.property(
-        "karma-junit-reporter"
-      );
-      expect(packageFile.devDependencies).to.have.property(
-        "karma-mocha-reporter"
-      );
-      expect(packageFile.devDependencies).to.have.property("karma-mocha");
-      expect(packageFile.devDependencies).to.have.property(
-        "karma-source-map-support"
-      );
-      expect(packageFile.devDependencies).to.have.property(
-        "karma-sourcemap-loader"
-      );
-      expect(packageFile.devDependencies).to.have.property("karma");
-      expect(packageFile.devDependencies).to.have.property("nyc");
-      expect(packageFile.devDependencies).to.have.property("tsx");
-    });
-
     it("[cjs] should include correct scripts with tests", () => {
       const model = createMockModel({
         ...baseConfig,

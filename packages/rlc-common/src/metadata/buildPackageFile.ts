@@ -37,7 +37,9 @@ export function buildPackageFile(
     exports,
     azureArm: model.options?.azureArm,
     isModularLibrary: model.options?.isModularLibrary ?? false,
-    azureSdkForJs: model.options?.azureSdkForJs
+    azureSdkForJs: model.options?.azureSdkForJs,
+    //TODO should remove this after finish the release tool test
+    shouldUsePnpmDep: model.options?.shouldUsePnpmDep
   };
 
   let packageInfo: Record<string, any> = buildFlavorlessPackage(config);

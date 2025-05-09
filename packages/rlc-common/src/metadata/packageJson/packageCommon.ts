@@ -14,6 +14,8 @@ export interface PackageCommonInfoConfig {
   azureArm?: boolean;
   isModularLibrary?: boolean;
   azureSdkForJs?: boolean;
+  //TODO should remove this after finish the release tool test
+  shouldUsePnpmDep?: boolean;
 }
 
 /**
