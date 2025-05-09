@@ -209,7 +209,7 @@ export function facetResultDeserializer(item: any): FacetResult {
     count: item["count"],
     facets: !item["@search.facets"]
       ? item["@search.facets"]
-      : __PLACEHOLDER_o32_srecord_sdeserializer__(item["@search.facets"]),
+      : __PLACEHOLDER_o38_sdeserializer__(item["@search.facets"]),
     sum: item["sum"],
   };
 }

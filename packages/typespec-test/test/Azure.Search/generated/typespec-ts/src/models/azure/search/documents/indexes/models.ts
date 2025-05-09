@@ -2079,7 +2079,7 @@ export function inputFieldMappingEntrySerializer(
     sourceContext: item["sourceContext"],
     inputs: !item["inputs"]
       ? item["inputs"]
-      : inputFieldMappingEntryArraySerializer(item["inputs"]),
+      : __PLACEHOLDER_o189_sserializer__(item["inputs"]),
   };
 }
 
@@ -2092,7 +2092,7 @@ export function inputFieldMappingEntryDeserializer(
     sourceContext: item["sourceContext"],
     inputs: !item["inputs"]
       ? item["inputs"]
-      : inputFieldMappingEntryArrayDeserializer(item["inputs"]),
+      : __PLACEHOLDER_o189_sdeserializer__(item["inputs"]),
   };
 }
 
@@ -5288,7 +5288,7 @@ export function searchFieldSerializer(item: SearchField): any {
         }),
     fields: !item["fields"]
       ? item["fields"]
-      : searchFieldArraySerializer(item["fields"]),
+      : __PLACEHOLDER_o267_sserializer__(item["fields"]),
   };
 }
 
@@ -5317,7 +5317,7 @@ export function searchFieldDeserializer(item: any): SearchField {
         }),
     fields: !item["fields"]
       ? item["fields"]
-      : searchFieldArrayDeserializer(item["fields"]),
+      : __PLACEHOLDER_o267_sdeserializer__(item["fields"]),
   };
 }
 

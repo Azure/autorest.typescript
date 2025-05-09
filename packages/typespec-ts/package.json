@@ -114,7 +114,7 @@
   },
   "peerDependencies": {
     "@azure-tools/typespec-azure-core": "0.56.0",
-    "@azure-tools/typespec-client-generator-core": "0.56.0",
+    "@azure-tools/typespec-client-generator-core": "0.56.1",
     "@typespec/compiler": "1.0.0",
     "@typespec/http": "1.0.0",
     "@typespec/rest": "0.70.0",
