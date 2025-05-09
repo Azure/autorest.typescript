@@ -17,9 +17,10 @@ export function transformOptions(model: CodeModel): RLCOptions {
     dependencyInfo,
     productDocLink,
     azureArm,
-    flavor
+    flavor,
+    isTestPackage
   } = getAutorestOptions();
-  const options: RLCOptions = { moduleKind: "cjs" };
+  const options: RLCOptions = { moduleKind: isTestPackage ? "cjs" : "esm" };
   options.includeShortcuts = rlcShortcut;
   options.multiClient = multiClient;
   options.batch = batch;

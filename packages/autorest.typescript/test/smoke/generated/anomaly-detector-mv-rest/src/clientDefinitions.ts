@@ -9,7 +9,7 @@ import type {
   GetMultivariateModelParameters,
   DetectMultivariateBatchAnomalyParameters,
   DetectMultivariateLastAnomalyParameters,
-} from "./parameters";
+} from "./parameters.js";
 import type {
   GetMultivariateBatchDetectionResult200Response,
   GetMultivariateBatchDetectionResultDefaultResponse,
@@ -25,7 +25,7 @@ import type {
   DetectMultivariateBatchAnomalyDefaultResponse,
   DetectMultivariateLastAnomaly200Response,
   DetectMultivariateLastAnomalyDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetMultivariateBatchDetectionResult {

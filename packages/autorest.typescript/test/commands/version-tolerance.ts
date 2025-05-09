@@ -91,7 +91,8 @@ async function generate(name: string, swaggerInfo: SwaggerInfo) {
       name: `@msinternal/${name}`,
       nameWithoutScope: name,
       version: "1.0.0-beta.1"
-    }
+    },
+    isTestPackage: true
   });
 }
 

@@ -8,7 +8,7 @@ import type {
   ModelInfo,
   DetectionRequest,
   LastDetectionRequest,
-} from "./models";
+} from "./models.js";
 
 export interface DetectEntireSeriesBodyParam {
   /** Time series points and period if needed. Advanced model parameters can also be set in the request. */

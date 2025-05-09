@@ -92,7 +92,7 @@ import type {
   TriggerRunCancelTriggerInstanceParameters,
   TriggerRunQueryTriggerRunsByWorkspaceParameters,
   WorkspaceGetParameters,
-} from "./parameters";
+} from "./parameters.js";
 import type {
   KqlScriptsGetAll200Response,
   KqlScriptsGetAllDefaultResponse,
@@ -335,7 +335,7 @@ import type {
   TriggerRunQueryTriggerRunsByWorkspaceDefaultResponse,
   WorkspaceGet200Response,
   WorkspaceGetDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 /** Contains operations for KqlScripts operations */

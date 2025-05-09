@@ -98,7 +98,7 @@ import type {
   WeatherCreateDataIngestionJobParameters,
   WeatherGetDataDeleteJobDetailsParameters,
   WeatherCreateDataDeleteJobParameters,
-} from "./parameters";
+} from "./parameters.js";
 import type {
   ApplicationDataListByFarmerId200Response,
   ApplicationDataListByFarmerIdDefaultResponse,
@@ -305,7 +305,7 @@ import type {
   WeatherGetDataDeleteJobDetailsDefaultResponse,
   WeatherCreateDataDeleteJob202Response,
   WeatherCreateDataDeleteJobDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 import type { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface ApplicationDataListByFarmerId {
