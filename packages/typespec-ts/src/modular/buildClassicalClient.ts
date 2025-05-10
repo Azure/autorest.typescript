@@ -26,6 +26,7 @@ import {
 import { resolveReference } from "../framework/reference.js";
 import { useDependencies } from "../framework/hooks/useDependencies.js";
 import {
+  InitializedByFlags,
   SdkClientType,
   SdkServiceMethod,
   SdkServiceOperation
@@ -36,10 +37,11 @@ import { refkey } from "../framework/refkey.js";
 
 export function buildClassicalClient(
   dpgContext: SdkContext,
-  client: SdkClientType<SdkServiceOperation>,
+  clientMap: [string[], SdkClientType<SdkServiceOperation>],
   emitterOptions: ModularEmitterOptions
 ) {
   const project = useContext("outputProject");
+  const [_hierarchy, client] = clientMap;
   const dependencies = useDependencies();
   const modularClientName = getClientName(client);
   const classicalClientName = `${getClassicalClientName(client)}`;
@@ -51,10 +53,7 @@ export function buildClassicalClient(
     requiredOnly: true
   });
   const srcPath = emitterOptions.modularOptions.sourceRoot;
-  const { subfolder, rlcClientName } = getModularClientOptions(
-    dpgContext,
-    client
-  );
+  const { subfolder, rlcClientName } = getModularClientOptions(clientMap);
 
   const clientFile = project.createSourceFile(
     `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""}${normalizeName(
@@ -99,6 +98,25 @@ export function buildClassicalClient(
     docs: ["The pipeline used by this client to make requests"]
   });
 
+  const hasChildClient =
+    client.children &&
+    client.children.some((childClient) => {
+      return (
+        childClient.clientInitialization.initializedBy &
+        InitializedByFlags.Parent
+      );
+    });
+  if (hasChildClient) {
+    clientClass.addProperty({
+      name: "_endpointParam",
+      type: "string",
+      scope: Scope.Private,
+      docs: [
+        "The endpoint parameter used by this client to make requests. This is the base URL for the client."
+      ]
+    });
+  }
+
   // TODO: We may need to generate constructor overloads at some point. Here we'd do that.
   const constructor = clientClass.addConstructor({
     docs: getDocsFromDescription(client.doc),
@@ -124,7 +142,32 @@ export function buildClassicalClient(
   ]);
   constructor.addStatements(`this.pipeline = this._client.pipeline;`);
 
-  buildClientOperationGroups(client, dpgContext, clientClass);
+  if (hasChildClient && client.children) {
+    constructor.addStatements(`this._endpointParam = endpointParam;`);
+    for (const childClient of client.children) {
+      const subfolder = normalizeName(
+        childClient.name.replace("Client", ""),
+        NameType.File
+      );
+      clientFile.addImportDeclaration({
+        moduleSpecifier: `./${subfolder}/${normalizeName(childClient.name, NameType.File)}.js`,
+        namedImports: [`${getClassicalClientName(childClient)}`, `${getClassicalClientName(childClient)}OptionalParams`]
+      });
+    }
+  }
+  buildClientOperationGroups(clientMap, dpgContext, clientClass);
+  if (client.children) {
+    client.children
+      .filter((childClient) => {
+        return (
+          childClient.clientInitialization.initializedBy &
+          InitializedByFlags.Parent
+        );
+      })
+      .forEach((childClient) => {
+        addChildClient(dpgContext, clientClass, client, childClient);
+      });
+  }
   importAllApis(clientFile, srcPath, subfolder ?? "");
   clientFile.fixUnusedIdentifiers();
   return clientFile;
@@ -176,12 +219,13 @@ function generateMethod(
   return result;
 }
 function buildClientOperationGroups(
-  client: SdkClientType<SdkServiceOperation>,
+  clientMap: [string[], SdkClientType<SdkServiceOperation>],
   dpgContext: SdkContext,
   clientClass: ClassDeclaration
 ) {
   let clientType = "Client";
-  const { subfolder } = getModularClientOptions(dpgContext, client);
+  const [_hierarchy, client] = clientMap;
+  const { subfolder } = getModularClientOptions(clientMap);
   if (subfolder && subfolder !== "") {
     clientType = `Client.${clientClass.getName()}`;
   }
@@ -228,4 +272,40 @@ function buildClientOperationGroups(
       }
     }
   }
+}
+
+function addChildClient(
+  context: SdkContext,
+  clientClass: ClassDeclaration,
+  parentClient: SdkClientType<SdkServiceOperation>,
+  client: SdkClientType<SdkServiceOperation>
+) {
+  const parentParams = getClientParametersDeclaration(parentClient, context, {
+    requiredOnly: true
+  });
+  const clientParams = getClientParametersDeclaration(client, context, {
+    requiredOnly: true
+  });
+  const diffParams = clientParams.filter((p) => {
+    return !parentParams.some((pp) => pp.name === p.name && pp.name !== "options");
+  });
+  const name = getClassicalClientName(client);
+  const getChildClientFunction = clientClass.addMethod({
+    docs: getDocsFromDescription(client.doc),
+    name: `get${name}`,
+    returnType: `${getClassicalClientName(client)}`,
+    parameters: diffParams
+  });
+  getChildClientFunction.addStatements(
+    `return new ${getClassicalClientName(client)}(
+      this._endpointParam,
+      ${parentParams
+        .filter(
+          (p) => !p.name.includes("endpoint") && !p.name.includes("options")
+        )
+        .map((p) => `this._client.${p.name}`)
+        .join(",")},
+      ${diffParams.map((p) => `${p.name}`).join(",")}
+    )`
+  );
 }

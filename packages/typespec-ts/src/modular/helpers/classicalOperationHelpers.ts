@@ -22,14 +22,14 @@ import { addDeclaration } from "../../framework/declaration.js";
 
 export function getClassicalOperation(
   dpgContext: SdkContext,
-  client: SdkClientType<SdkServiceOperation>,
+  clientMap: [string[], SdkClientType<SdkServiceOperation>],
   classicFile: SourceFile,
   operationGroup: [string[], ServiceOperation[]],
   layer: number = operationGroup[0].length - 1
 ) {
   const prefixes = operationGroup[0];
   const operations = operationGroup[1];
-  const { rlcClientName } = getModularClientOptions(dpgContext, client);
+  const { rlcClientName } = getModularClientOptions(clientMap);
   const hasClientContextImport = classicFile
     .getImportDeclarations()
     .filter((i) => {

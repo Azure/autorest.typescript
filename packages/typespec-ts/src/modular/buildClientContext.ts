@@ -38,11 +38,11 @@ import { refkey } from "../framework/refkey.js";
  * This function gets the path of the file containing the modular client context
  */
 export function getClientContextPath(
-  context: SdkContext,
-  client: SdkClientType<SdkServiceOperation>,
+  clientMap: [string[], SdkClientType<SdkServiceOperation>],
   emitterOptions: ModularEmitterOptions
 ): string {
-  const { subfolder } = getModularClientOptions(context, client);
+  const [_, client] = clientMap;
+  const { subfolder } = getModularClientOptions(clientMap);
   const name = getClientName(client);
   const srcPath = emitterOptions.modularOptions.sourceRoot;
   const contentPath = `${srcPath}/${
@@ -56,20 +56,21 @@ export function getClientContextPath(
  */
 export function buildClientContext(
   dpgContext: SdkContext,
-  client: SdkClientType<SdkServiceOperation>,
+  clientMap: [string[], SdkClientType<SdkServiceOperation>],
   emitterOptions: ModularEmitterOptions
 ): SourceFile {
   const project = useContext("outputProject");
   const dependencies = useDependencies();
+  const [hierarchy, client] = clientMap;
   const name = getClientName(client);
-  const { rlcClientName } = getModularClientOptions(dpgContext, client);
+  const { rlcClientName } = getModularClientOptions(clientMap);
   const requiredParams = getClientParametersDeclaration(client, dpgContext, {
     onClientOnly: false,
     requiredOnly: true,
     apiVersionAsRequired: true
   });
   const clientContextFile = project.createSourceFile(
-    getClientContextPath(dpgContext, client, emitterOptions)
+    getClientContextPath(clientMap, emitterOptions)
   );
 
   clientContextFile.addInterface({
@@ -125,10 +126,7 @@ export function buildClientContext(
   // (for now) now logger for unbranded pkgs
   if (isAzurePackage(emitterOptions)) {
     clientContextFile.addImportDeclaration({
-      moduleSpecifier:
-        dpgContext.sdkPackage.clients.length > 1
-          ? "../../logger.js"
-          : "../logger.js",
+      moduleSpecifier: "../".repeat(hierarchy.length + 1) + "logger.js",
       namedImports: ["logger"]
     });
   }

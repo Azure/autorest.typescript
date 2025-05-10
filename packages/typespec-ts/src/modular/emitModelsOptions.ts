@@ -17,12 +17,13 @@ import { useContext } from "../contextManager.js";
 
 export function buildApiOptions(
   context: SdkContext,
-  client: SdkClientType<SdkServiceOperation>,
+  clientMap: [string[], SdkClientType<SdkServiceOperation>],
   emitterOptions: ModularEmitterOptions
 ) {
   const project = useContext("outputProject");
+  const [_, client] = clientMap;
   const modelOptionsFiles = [];
-  const { subfolder } = getModularClientOptions(context, client);
+  const { subfolder } = getModularClientOptions(clientMap);
   const methodMap = getMethodHierarchiesMap(context, client);
   for (const [prefixKey, operations] of methodMap) {
     const prefixes = prefixKey.split("/");

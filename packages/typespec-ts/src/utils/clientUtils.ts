@@ -6,8 +6,8 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { getNamespaceFullName } from "@typespec/compiler";
 import { SdkContext } from "./interfaces.js";
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { ModularClientOptions } from "../modular/interfaces.js";
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 
 export function getRLCClients(dpgContext: SdkContext): SdkClient[] {
   const services = listAllServiceNamespaces(dpgContext);
@@ -32,17 +32,40 @@ export function isRLCMultiEndpoint(dpgContext: SdkContext): boolean {
 }
 
 export function getModularClientOptions(
-  context: SdkContext,
-  client: SdkClientType<SdkServiceOperation>
+  clientMap: [string[], SdkClientType<SdkServiceOperation>]
 ) {
+  const [hierarchy, client] = clientMap;
   const clientOptions: ModularClientOptions = {
     rlcClientName: `${client.name.replace("Client", "")}Context`
   };
-  if (context.sdkPackage.clients.length > 1) {
-    clientOptions.subfolder = normalizeName(
-      client.name.replace("Client", ""),
-      NameType.File
-    );
-  }
+  clientOptions.subfolder = hierarchy.join("/");
   return clientOptions;
+}
+
+export function getClientHierarchyMap(
+  context: SdkContext
+): Map<string[], SdkClientType<SdkServiceOperation>> {
+  const clientMap = new Map<string[], SdkClientType<SdkServiceOperation>>();
+  const clients = context.sdkPackage.clients.map((client) => {
+    return [
+      context.sdkPackage.clients.length > 1
+        ? [normalizeName(client.name.replace("Client", ""), NameType.File)]
+        : [],
+      client
+    ];
+  }) as [string[], SdkClientType<SdkServiceOperation>][];
+  while (clients.length > 0) {
+    const [hierarchy, client] = clients.shift()!;
+    clientMap.set(hierarchy, client);
+    if (client.children && client.children.length > 0) {
+      client.children.forEach((child) => {
+        const childHierarchy = [
+          ...hierarchy,
+          normalizeName(child.name.replace("Client", ""), NameType.File)
+        ];
+        clients.push([childHierarchy, child]);
+      });
+    }
+  }
+  return clientMap;
 }
