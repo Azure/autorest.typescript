@@ -199,8 +199,6 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
     "lint:fix":
       "eslint package.json api-extractor.json src test --fix --fix-type [problem,suggestion]",
     lint: "eslint package.json api-extractor.json src test",
-    minify:
-      "dev-tool run vendored uglifyjs -c -m --comments --source-map \"content='./dist/index.js.map'\" -o ./dist/index.min.js ./dist/index.js",
     ...esmScripts,
     ...cjsScripts,
     "update-snippets": "dev-tool run update-snippets"
@@ -213,13 +211,12 @@ function getEsmScripts({ moduleKind }: AzureMonorepoInfoConfig) {
   }
 
   return {
-    "build:test":
-      "npm run clean && dev-tool run build-package && dev-tool run build-test",
+    "build:test": "echo skipped",
     build:
       "npm run clean && dev-tool run build-package && dev-tool run extract-api",
     "test:node":
       "npm run clean && dev-tool run build-package && npm run unit-test:node && npm run integration-test:node",
-    test: "npm run clean && dev-tool run build-package && npm run unit-test:node && dev-tool run bundle && npm run unit-test:browser && npm run integration-test",
+    test: "npm run clean && dev-tool run build-package && npm run unit-test:node && npm run unit-test:browser && npm run integration-test",
     "unit-test:browser":
       "npm run build:test && dev-tool run test:vitest --browser",
     "unit-test:node": "dev-tool run test:vitest"
@@ -232,13 +229,11 @@ function getCjsScripts({ moduleKind }: AzureMonorepoInfoConfig) {
   }
 
   return {
-    build:
-      "npm run clean && tsc -p . && dev-tool run bundle && dev-tool run extract-api",
+    build: "npm run clean && tsc -p . && dev-tool run extract-api",
     "build:node":
       "tsc -p . && dev-tool run vendored cross-env ONLY_NODE=true rollup -c 2>&1",
-    "build:test": "tsc -p . && dev-tool run bundle",
-    "build:debug":
-      "tsc -p . && dev-tool run bundle && dev-tool run extract-api",
+    "build:test": "tsc -p .",
+    "build:debug": "tsc -p . && dev-tool run extract-api",
     "integration-test:browser": "dev-tool run test:browser",
     "integration-test:node":
       "dev-tool run test:node-js-input -- --timeout 5000000 'dist-esm/test/**/*.spec.js'",
