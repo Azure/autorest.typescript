@@ -12,12 +12,9 @@
       "./package.json": "./package.json",
       ".": "./src/index.ts",
       "./api": "./src/api/index.ts",
-      "./users": "./src/users/index.ts",
-      "./users/api": "./src/users/api/index.ts",
-      "./todoItems": "./src/todoItems/index.ts",
-      "./todoItems/api": "./src/todoItems/api/index.ts",
-      "./todoItems/attachments": "./src/todoItems/attachments/index.ts",
-      "./todoItems/attachments/api": "./src/todoItems/attachments/api/index.ts",
+      "./api/todoItems/attachments": "./src/api/todoItems/attachments/index.ts",
+      "./api/todoItems": "./src/api/todoItems/index.ts",
+      "./api/users": "./src/api/users/index.ts",
       "./models": "./src/models/index.ts",
       "./models/todoItems": "./src/models/todoItems/index.ts",
       "./models/users": "./src/models/users/index.ts"
@@ -92,112 +89,58 @@
         "default": "./dist/commonjs/api/index.js"
       }
     },
-    "./users": {
+    "./api/todoItems/attachments": {
       "browser": {
-        "types": "./dist/browser/users/index.d.ts",
-        "default": "./dist/browser/users/index.js"
+        "types": "./dist/browser/api/todoItems/attachments/index.d.ts",
+        "default": "./dist/browser/api/todoItems/attachments/index.js"
       },
       "react-native": {
-        "types": "./dist/react-native/users/index.d.ts",
-        "default": "./dist/react-native/users/index.js"
+        "types": "./dist/react-native/api/todoItems/attachments/index.d.ts",
+        "default": "./dist/react-native/api/todoItems/attachments/index.js"
       },
       "import": {
-        "types": "./dist/esm/users/index.d.ts",
-        "default": "./dist/esm/users/index.js"
+        "types": "./dist/esm/api/todoItems/attachments/index.d.ts",
+        "default": "./dist/esm/api/todoItems/attachments/index.js"
       },
       "require": {
-        "types": "./dist/commonjs/users/index.d.ts",
-        "default": "./dist/commonjs/users/index.js"
+        "types": "./dist/commonjs/api/todoItems/attachments/index.d.ts",
+        "default": "./dist/commonjs/api/todoItems/attachments/index.js"
       }
     },
-    "./users/api": {
+    "./api/todoItems": {
       "browser": {
-        "types": "./dist/browser/users/api/index.d.ts",
-        "default": "./dist/browser/users/api/index.js"
+        "types": "./dist/browser/api/todoItems/index.d.ts",
+        "default": "./dist/browser/api/todoItems/index.js"
       },
       "react-native": {
-        "types": "./dist/react-native/users/api/index.d.ts",
-        "default": "./dist/react-native/users/api/index.js"
+        "types": "./dist/react-native/api/todoItems/index.d.ts",
+        "default": "./dist/react-native/api/todoItems/index.js"
       },
       "import": {
-        "types": "./dist/esm/users/api/index.d.ts",
-        "default": "./dist/esm/users/api/index.js"
+        "types": "./dist/esm/api/todoItems/index.d.ts",
+        "default": "./dist/esm/api/todoItems/index.js"
       },
       "require": {
-        "types": "./dist/commonjs/users/api/index.d.ts",
-        "default": "./dist/commonjs/users/api/index.js"
+        "types": "./dist/commonjs/api/todoItems/index.d.ts",
+        "default": "./dist/commonjs/api/todoItems/index.js"
       }
     },
-    "./todoItems": {
+    "./api/users": {
       "browser": {
-        "types": "./dist/browser/todoItems/index.d.ts",
-        "default": "./dist/browser/todoItems/index.js"
+        "types": "./dist/browser/api/users/index.d.ts",
+        "default": "./dist/browser/api/users/index.js"
       },
       "react-native": {
-        "types": "./dist/react-native/todoItems/index.d.ts",
-        "default": "./dist/react-native/todoItems/index.js"
+        "types": "./dist/react-native/api/users/index.d.ts",
+        "default": "./dist/react-native/api/users/index.js"
       },
       "import": {
-        "types": "./dist/esm/todoItems/index.d.ts",
-        "default": "./dist/esm/todoItems/index.js"
+        "types": "./dist/esm/api/users/index.d.ts",
+        "default": "./dist/esm/api/users/index.js"
       },
       "require": {
-        "types": "./dist/commonjs/todoItems/index.d.ts",
-        "default": "./dist/commonjs/todoItems/index.js"
-      }
-    },
-    "./todoItems/api": {
-      "browser": {
-        "types": "./dist/browser/todoItems/api/index.d.ts",
-        "default": "./dist/browser/todoItems/api/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/todoItems/api/index.d.ts",
-        "default": "./dist/react-native/todoItems/api/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/todoItems/api/index.d.ts",
-        "default": "./dist/esm/todoItems/api/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/todoItems/api/index.d.ts",
-        "default": "./dist/commonjs/todoItems/api/index.js"
-      }
-    },
-    "./todoItems/attachments": {
-      "browser": {
-        "types": "./dist/browser/todoItems/attachments/index.d.ts",
-        "default": "./dist/browser/todoItems/attachments/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/todoItems/attachments/index.d.ts",
-        "default": "./dist/react-native/todoItems/attachments/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/todoItems/attachments/index.d.ts",
-        "default": "./dist/esm/todoItems/attachments/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/todoItems/attachments/index.d.ts",
-        "default": "./dist/commonjs/todoItems/attachments/index.js"
-      }
-    },
-    "./todoItems/attachments/api": {
-      "browser": {
-        "types": "./dist/browser/todoItems/attachments/api/index.d.ts",
-        "default": "./dist/browser/todoItems/attachments/api/index.js"
-      },
-      "react-native": {
-        "types": "./dist/react-native/todoItems/attachments/api/index.d.ts",
-        "default": "./dist/react-native/todoItems/attachments/api/index.js"
-      },
-      "import": {
-        "types": "./dist/esm/todoItems/attachments/api/index.d.ts",
-        "default": "./dist/esm/todoItems/attachments/api/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/todoItems/attachments/api/index.d.ts",
-        "default": "./dist/commonjs/todoItems/attachments/api/index.js"
+        "types": "./dist/commonjs/api/users/index.d.ts",
+        "default": "./dist/commonjs/api/users/index.js"
       }
     },
     "./models": {

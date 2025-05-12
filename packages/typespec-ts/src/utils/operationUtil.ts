@@ -21,6 +21,7 @@ import {
 import {
   getHttpOperationWithCache,
   getWireName,
+  InitializedByFlags,
   listOperationGroups,
   listOperationsInOperationGroup,
   SdkBodyParameter,
@@ -564,8 +565,18 @@ export function getMethodHierarchiesMap(
   const methodQueue: [
     string[],
     SdkMethod<SdkHttpOperation> | SdkClientType<SdkServiceOperation>
-  ][] = client.methods.map((m) => {
-    return [[], m];
+  ][] =
+    client.children
+      ?.filter((p) => {
+        return !(
+          p.clientInitialization.initializedBy & InitializedByFlags.Individually
+        );
+      })
+      .map((m) => {
+        return [[], m];
+      }) ?? [];
+  client.methods.forEach((m) => {
+    methodQueue.push([[], m]);
   });
   const operationHierarchiesMap: Map<string, ServiceOperation[]> = new Map<
     string,
@@ -588,8 +599,16 @@ export function getMethodHierarchiesMap(
       operationOrGroup.methods.forEach((m) =>
         methodQueue.push([[...prefixes, operationOrGroup.name], m])
       );
-      if (operationOrGroup.children) {
-        operationOrGroup.children.forEach((child) =>
+      const nonIndependentChildren = operationOrGroup.children?.filter(
+        (child) => {
+          return !(
+            child.clientInitialization.initializedBy &
+            InitializedByFlags.Individually
+          );
+        }
+      );
+      if (nonIndependentChildren && nonIndependentChildren.length > 0) {
+        nonIndependentChildren.forEach((child) =>
           methodQueue.push([[...prefixes, operationOrGroup.name], child])
         );
       }

@@ -1,6 +1,6 @@
 // Licensed under the MIT License.
 
-import { TodoItemsContext as Client } from "./index.js";
+import { TodoContext as Client } from "../index.js";
 import {
   standard4XXResponseDeserializer,
   standard5XXResponseDeserializer,
@@ -20,12 +20,12 @@ import {
   todoItemPatchSerializer,
 } from "../../models/todoItems/models.js";
 import {
-  DeleteOptionalParams,
-  UpdateOptionalParams,
-  GetOptionalParams,
-  CreateFormOptionalParams,
-  CreateJsonOptionalParams,
-  ListOptionalParams,
+  TodoItemsDeleteOptionalParams,
+  TodoItemsUpdateOptionalParams,
+  TodoItemsGetOptionalParams,
+  TodoItemsCreateFormOptionalParams,
+  TodoItemsCreateJsonOptionalParams,
+  TodoItemsListOptionalParams,
 } from "./options.js";
 import {
   PagedAsyncIterableIterator,
@@ -42,7 +42,7 @@ import {
 export function _$deleteSend(
   context: Client,
   id: number,
-  options: DeleteOptionalParams = { requestOptions: {} },
+  options: TodoItemsDeleteOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/items/{id}",
@@ -92,7 +92,7 @@ export async function _$deleteDeserialize(
 export async function $delete(
   context: Client,
   id: number,
-  options: DeleteOptionalParams = { requestOptions: {} },
+  options: TodoItemsDeleteOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _$deleteSend(context, id, options);
   return _$deleteDeserialize(result);
@@ -102,7 +102,7 @@ export function _updateSend(
   context: Client,
   id: number,
   patch: TodoItemPatch,
-  options: UpdateOptionalParams = { requestOptions: {} },
+  options: TodoItemsUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/items/{id}",
@@ -141,7 +141,7 @@ export async function update(
   context: Client,
   id: number,
   patch: TodoItemPatch,
-  options: UpdateOptionalParams = { requestOptions: {} },
+  options: TodoItemsUpdateOptionalParams = { requestOptions: {} },
 ): Promise<TodoItem> {
   const result = await _updateSend(context, id, patch, options);
   return _updateDeserialize(result);
@@ -150,7 +150,7 @@ export async function update(
 export function _getSend(
   context: Client,
   id: number,
-  options: GetOptionalParams = { requestOptions: {} },
+  options: TodoItemsGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/items/{id}",
@@ -191,7 +191,7 @@ export async function _getDeserialize(
 export async function get(
   context: Client,
   id: number,
-  options: GetOptionalParams = { requestOptions: {} },
+  options: TodoItemsGetOptionalParams = { requestOptions: {} },
 ): Promise<TodoItem> {
   const result = await _getSend(context, id, options);
   return _getDeserialize(result);
@@ -200,7 +200,7 @@ export async function get(
 export function _createFormSend(
   context: Client,
   body: ToDoItemMultipartRequest,
-  options: CreateFormOptionalParams = { requestOptions: {} },
+  options: TodoItemsCreateFormOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/items")
@@ -238,7 +238,7 @@ export async function _createFormDeserialize(
 export async function createForm(
   context: Client,
   body: ToDoItemMultipartRequest,
-  options: CreateFormOptionalParams = { requestOptions: {} },
+  options: TodoItemsCreateFormOptionalParams = { requestOptions: {} },
 ): Promise<TodoItem> {
   const result = await _createFormSend(context, body, options);
   return _createFormDeserialize(result);
@@ -247,7 +247,7 @@ export async function createForm(
 export function _createJsonSend(
   context: Client,
   item: TodoItem,
-  options: CreateJsonOptionalParams = { requestOptions: {} },
+  options: TodoItemsCreateJsonOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/items")
@@ -290,7 +290,7 @@ export async function _createJsonDeserialize(
 export async function createJson(
   context: Client,
   item: TodoItem,
-  options: CreateJsonOptionalParams = { requestOptions: {} },
+  options: TodoItemsCreateJsonOptionalParams = { requestOptions: {} },
 ): Promise<TodoItem> {
   const result = await _createJsonSend(context, item, options);
   return _createJsonDeserialize(result);
@@ -298,7 +298,7 @@ export async function createJson(
 
 export function _listSend(
   context: Client,
-  options: ListOptionalParams = { requestOptions: {} },
+  options: TodoItemsListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/items{?limit,offset}",
@@ -341,7 +341,7 @@ export async function _listDeserialize(
 
 export function list(
   context: Client,
-  options: ListOptionalParams = { requestOptions: {} },
+  options: TodoItemsListOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<TodoItem> {
   return buildPagedAsyncIterator(
     context,

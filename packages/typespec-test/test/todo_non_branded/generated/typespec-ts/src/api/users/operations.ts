@@ -1,6 +1,6 @@
 // Licensed under the MIT License.
 
-import { UsersContext as Client } from "./index.js";
+import { TodoContext as Client } from "../index.js";
 import {
   User,
   userSerializer,
@@ -13,7 +13,7 @@ import {
   userExistsResponseDeserializer,
   invalidUserResponseDeserializer,
 } from "../../models/users/models.js";
-import { CreateOptionalParams } from "./options.js";
+import { UsersCreateOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -24,7 +24,7 @@ import {
 export function _createSend(
   context: Client,
   user: User,
-  options: CreateOptionalParams = { requestOptions: {} },
+  options: UsersCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/users")
@@ -64,7 +64,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   user: User,
-  options: CreateOptionalParams = { requestOptions: {} },
+  options: UsersCreateOptionalParams = { requestOptions: {} },
 ): Promise<UserCreatedResponse> {
   const result = await _createSend(context, user, options);
   return _createDeserialize(result);

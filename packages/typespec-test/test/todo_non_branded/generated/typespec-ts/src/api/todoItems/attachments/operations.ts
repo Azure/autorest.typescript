@@ -1,6 +1,6 @@
 // Licensed under the MIT License.
 
-import { AttachmentsContext as Client } from "./index.js";
+import { TodoContext as Client } from "../../index.js";
 import {
   standard4XXResponseDeserializer,
   standard5XXResponseDeserializer,
@@ -15,9 +15,9 @@ import {
   _pageTodoAttachmentDeserializer,
 } from "../../../models/todoItems/models.js";
 import {
-  CreateFileAttachmentOptionalParams,
-  CreateJsonAttachmentOptionalParams,
-  ListOptionalParams,
+  TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
+  TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
+  TodoItemsAttachmentsListOptionalParams,
 } from "./options.js";
 import {
   PagedAsyncIterableIterator,
@@ -35,7 +35,9 @@ export function _createFileAttachmentSend(
   context: Client,
   itemId: number,
   body: FileAttachmentMultipartRequest,
-  options: CreateFileAttachmentOptionalParams = { requestOptions: {} },
+  options: TodoItemsAttachmentsCreateFileAttachmentOptionalParams = {
+    requestOptions: {},
+  },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/items/{itemId}/attachments",
@@ -83,7 +85,9 @@ export async function createFileAttachment(
   context: Client,
   itemId: number,
   body: FileAttachmentMultipartRequest,
-  options: CreateFileAttachmentOptionalParams = { requestOptions: {} },
+  options: TodoItemsAttachmentsCreateFileAttachmentOptionalParams = {
+    requestOptions: {},
+  },
 ): Promise<void> {
   const result = await _createFileAttachmentSend(
     context,
@@ -98,7 +102,9 @@ export function _createJsonAttachmentSend(
   context: Client,
   itemId: number,
   contents: TodoAttachment,
-  options: CreateJsonAttachmentOptionalParams = { requestOptions: {} },
+  options: TodoItemsAttachmentsCreateJsonAttachmentOptionalParams = {
+    requestOptions: {},
+  },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/items/{itemId}/attachments",
@@ -146,7 +152,9 @@ export async function createJsonAttachment(
   context: Client,
   itemId: number,
   contents: TodoAttachment,
-  options: CreateJsonAttachmentOptionalParams = { requestOptions: {} },
+  options: TodoItemsAttachmentsCreateJsonAttachmentOptionalParams = {
+    requestOptions: {},
+  },
 ): Promise<void> {
   const result = await _createJsonAttachmentSend(
     context,
@@ -160,7 +168,7 @@ export async function createJsonAttachment(
 export function _listSend(
   context: Client,
   itemId: number,
-  options: ListOptionalParams = { requestOptions: {} },
+  options: TodoItemsAttachmentsListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/items/{itemId}/attachments",
@@ -205,7 +213,7 @@ export async function _listDeserialize(
 export function list(
   context: Client,
   itemId: number,
-  options: ListOptionalParams = { requestOptions: {} },
+  options: TodoItemsAttachmentsListOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<TodoAttachment> {
   return buildPagedAsyncIterator(
     context,

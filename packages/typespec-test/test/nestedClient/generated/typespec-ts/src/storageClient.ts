@@ -17,8 +17,12 @@ export class StorageClient {
   private _client: StorageContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
-  /** The endpoint parameter used by this client to make requests. This is the base URL for the client. */
-  private _endpointParam: string;
+  /** The parent client parameters that are used in the constructors. */
+  private _parentClientParams: {
+    endpointParam: string;
+    accountName: string;
+    options: StorageClientOptionalParams;
+  };
 
   constructor(
     endpointParam: string,
@@ -34,7 +38,7 @@ export class StorageClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this._endpointParam = endpointParam;
+    this._parentClientParams = { endpointParam, accountName, options };
   }
 
   download(
@@ -48,10 +52,10 @@ export class StorageClient {
     options: BlobClientOptionalParams = {},
   ): BlobClient {
     return new BlobClient(
-      this._endpointParam,
-      this._client.accountName,
+      this._parentClientParams.endpointParam,
+      this._parentClientParams.accountName,
       blobName,
-      options,
+      { ...this._parentClientParams.options, ...options },
     );
   }
 }

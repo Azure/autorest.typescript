@@ -4,24 +4,24 @@ import { TodoAttachment } from "../../models/models.js";
 import { OperationOptions } from "@typespec/ts-http-runtime";
 
 /** Optional parameters. */
-export interface DeleteOptionalParams extends OperationOptions {}
+export interface TodoItemsDeleteOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface UpdateOptionalParams extends OperationOptions {}
+export interface TodoItemsUpdateOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface GetOptionalParams extends OperationOptions {}
+export interface TodoItemsGetOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface CreateFormOptionalParams extends OperationOptions {}
+export interface TodoItemsCreateFormOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface CreateJsonOptionalParams extends OperationOptions {
+export interface TodoItemsCreateJsonOptionalParams extends OperationOptions {
   attachments?: TodoAttachment[];
 }
 
 /** Optional parameters. */
-export interface ListOptionalParams extends OperationOptions {
+export interface TodoItemsListOptionalParams extends OperationOptions {
   /** The limit to the number of items */
   limit?: number;
   /** The offset to start paginating at */

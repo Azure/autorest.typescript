@@ -1,4 +1,5 @@
 import {
+  InitializedByFlags,
   SdkClient,
   SdkClientType,
   SdkServiceOperation,
@@ -46,7 +47,13 @@ export function getClientHierarchyMap(
   context: SdkContext
 ): Map<string[], SdkClientType<SdkServiceOperation>> {
   const clientMap = new Map<string[], SdkClientType<SdkServiceOperation>>();
-  const clients = context.sdkPackage.clients.map((client) => {
+  const individualClients = context.sdkPackage.clients.filter((client) => {
+    return (
+      client.clientInitialization.initializedBy &
+      InitializedByFlags.Individually
+    );
+  });
+  const clients = individualClients.map((client) => {
     return [
       context.sdkPackage.clients.length > 1
         ? [normalizeName(client.name.replace("Client", ""), NameType.File)]
@@ -57,8 +64,14 @@ export function getClientHierarchyMap(
   while (clients.length > 0) {
     const [hierarchy, client] = clients.shift()!;
     clientMap.set(hierarchy, client);
-    if (client.children && client.children.length > 0) {
-      client.children.forEach((child) => {
+    const childIndividualClients = client.children?.filter((client) => {
+      return (
+        client.clientInitialization.initializedBy &
+        InitializedByFlags.Individually
+      );
+    });
+    if (childIndividualClients && childIndividualClients.length > 0) {
+      childIndividualClients.forEach((child) => {
         const childHierarchy = [
           ...hierarchy,
           normalizeName(child.name.replace("Client", ""), NameType.File)
