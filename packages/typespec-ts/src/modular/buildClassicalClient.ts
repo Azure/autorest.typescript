@@ -108,12 +108,12 @@ export function buildClassicalClient(
     });
   if (hasChildClient) {
     clientClass.addProperty({
-      name: "_endpointParam",
-      type: "string",
+      name: "_parentClientParams",
+      type: `{${classicalParams.map((p) => {
+        return `${p.name}: ${p.type}`;
+      })}}`,
       scope: Scope.Private,
-      docs: [
-        "The endpoint parameter used by this client to make requests. This is the base URL for the client."
-      ]
+      docs: ["The parent client parameters that are used in the constructors."]
     });
   }
 
@@ -143,7 +143,9 @@ export function buildClassicalClient(
   constructor.addStatements(`this.pipeline = this._client.pipeline;`);
 
   if (hasChildClient && client.children) {
-    constructor.addStatements(`this._endpointParam = endpointParam;`);
+    constructor.addStatements(
+      `this._parentClientParams = {${classicalParams.map((p) => p.name).join(",")}};`
+    );
     for (const childClient of client.children) {
       const subfolder = normalizeName(
         childClient.name.replace("Client", ""),
@@ -151,7 +153,10 @@ export function buildClassicalClient(
       );
       clientFile.addImportDeclaration({
         moduleSpecifier: `./${subfolder}/${normalizeName(childClient.name, NameType.File)}.js`,
-        namedImports: [`${getClassicalClientName(childClient)}`, `${getClassicalClientName(childClient)}OptionalParams`]
+        namedImports: [
+          `${getClassicalClientName(childClient)}`,
+          `${getClassicalClientName(childClient)}OptionalParams`
+        ]
       });
     }
   }
@@ -287,7 +292,9 @@ function addChildClient(
     requiredOnly: true
   });
   const diffParams = clientParams.filter((p) => {
-    return !parentParams.some((pp) => pp.name === p.name && pp.name !== "options");
+    return !parentParams.some(
+      (pp) => pp.name === p.name && pp.name !== "options"
+    );
   });
   const name = getClassicalClientName(client);
   const getChildClientFunction = clientClass.addMethod({
@@ -298,14 +305,17 @@ function addChildClient(
   });
   getChildClientFunction.addStatements(
     `return new ${getClassicalClientName(client)}(
-      this._endpointParam,
       ${parentParams
-        .filter(
-          (p) => !p.name.includes("endpoint") && !p.name.includes("options")
-        )
-        .map((p) => `this._client.${p.name}`)
+        .filter((p) => !p.name.includes("options"))
+        .map((p) => `this._parentClientParams.${p.name}`)
         .join(",")},
-      ${diffParams.map((p) => `${p.name}`).join(",")}
+      ${diffParams
+        .filter((p) => p.name !== "options")
+        .map((p) => `${p.name}`)
+        .join(
+          ","
+        )}${diffParams.filter((p) => p.name !== "options").length > 0 ? "," : ""}
+      { ...this._parentClientParams.options, ...options }
     )`
   );
 }
