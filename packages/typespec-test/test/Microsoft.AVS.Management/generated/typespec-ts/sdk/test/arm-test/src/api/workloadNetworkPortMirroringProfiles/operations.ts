@@ -1,0 +1,409 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+import { AzureVMwareSolutionAPIContext as Client } from "../index.js";
+import {
+  errorResponseDeserializer,
+  _WorkloadNetworkPortMirroringList,
+  _workloadNetworkPortMirroringListDeserializer,
+  WorkloadNetworkPortMirroring,
+  workloadNetworkPortMirroringSerializer,
+  workloadNetworkPortMirroringDeserializer,
+} from "../../models/models.js";
+import {
+  WorkloadNetworkPortMirroringProfilesDeleteOptionalParams,
+  WorkloadNetworkPortMirroringProfilesUpdateOptionalParams,
+  WorkloadNetworkPortMirroringProfilesCreateOptionalParams,
+  WorkloadNetworkPortMirroringProfilesGetOptionalParams,
+  WorkloadNetworkPortMirroringProfilesListOptionalParams,
+} from "./options.js";
+import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../../static-helpers/pagingHelpers.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+import { PollerLike, OperationState } from "@azure/core-lro";
+
+export function _$deleteSend(
+  context: Client,
+  resourceGroupName: string,
+  portMirroringId: string,
+  privateCloudName: string,
+  options: WorkloadNetworkPortMirroringProfilesDeleteOptionalParams = {
+    requestOptions: {},
+  },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles/{portMirroringId}{?api%2Dversion}",
+    {
+      subscriptionId: context.subscriptionId,
+      resourceGroupName: resourceGroupName,
+      portMirroringId: portMirroringId,
+      privateCloudName: privateCloudName,
+      "api%2Dversion": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .delete({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
+}
+
+export async function _$deleteDeserialize(
+  result: PathUncheckedResponse,
+): Promise<void> {
+  const expectedStatuses = ["200", "202", "204"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
+  }
+
+  return;
+}
+
+/** Delete a WorkloadNetworkPortMirroring */
+/**
+ *  @fixme delete is a reserved word that cannot be used as an operation name.
+ *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+ *         to the operation to override the generated name.
+ */
+export function $delete(
+  context: Client,
+  resourceGroupName: string,
+  portMirroringId: string,
+  privateCloudName: string,
+  options: WorkloadNetworkPortMirroringProfilesDeleteOptionalParams = {
+    requestOptions: {},
+  },
+): PollerLike<OperationState<void>, void> {
+  return getLongRunningPoller(
+    context,
+    _$deleteDeserialize,
+    ["200", "202", "204"],
+    {
+      updateIntervalInMs: options?.updateIntervalInMs,
+      abortSignal: options?.abortSignal,
+      getInitialResponse: () =>
+        _$deleteSend(
+          context,
+          resourceGroupName,
+          portMirroringId,
+          privateCloudName,
+          options,
+        ),
+      resourceLocationConfig: "location",
+    },
+  ) as PollerLike<OperationState<void>, void>;
+}
+
+export function _updateSend(
+  context: Client,
+  resourceGroupName: string,
+  privateCloudName: string,
+  portMirroringId: string,
+  workloadNetworkPortMirroring: WorkloadNetworkPortMirroring,
+  options: WorkloadNetworkPortMirroringProfilesUpdateOptionalParams = {
+    requestOptions: {},
+  },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles/{portMirroringId}{?api%2Dversion}",
+    {
+      subscriptionId: context.subscriptionId,
+      resourceGroupName: resourceGroupName,
+      privateCloudName: privateCloudName,
+      portMirroringId: portMirroringId,
+      "api%2Dversion": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .patch({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      body: workloadNetworkPortMirroringSerializer(
+        workloadNetworkPortMirroring,
+      ),
+    });
+}
+
+export async function _updateDeserialize(
+  result: PathUncheckedResponse,
+): Promise<WorkloadNetworkPortMirroring> {
+  const expectedStatuses = ["200", "202"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
+  }
+
+  return workloadNetworkPortMirroringDeserializer(result.body);
+}
+
+/** Update a WorkloadNetworkPortMirroring */
+export function update(
+  context: Client,
+  resourceGroupName: string,
+  privateCloudName: string,
+  portMirroringId: string,
+  workloadNetworkPortMirroring: WorkloadNetworkPortMirroring,
+  options: WorkloadNetworkPortMirroringProfilesUpdateOptionalParams = {
+    requestOptions: {},
+  },
+): PollerLike<
+  OperationState<WorkloadNetworkPortMirroring>,
+  WorkloadNetworkPortMirroring
+> {
+  return getLongRunningPoller(context, _updateDeserialize, ["200", "202"], {
+    updateIntervalInMs: options?.updateIntervalInMs,
+    abortSignal: options?.abortSignal,
+    getInitialResponse: () =>
+      _updateSend(
+        context,
+        resourceGroupName,
+        privateCloudName,
+        portMirroringId,
+        workloadNetworkPortMirroring,
+        options,
+      ),
+    resourceLocationConfig: "location",
+  }) as PollerLike<
+    OperationState<WorkloadNetworkPortMirroring>,
+    WorkloadNetworkPortMirroring
+  >;
+}
+
+export function _createSend(
+  context: Client,
+  resourceGroupName: string,
+  privateCloudName: string,
+  portMirroringId: string,
+  workloadNetworkPortMirroring: WorkloadNetworkPortMirroring,
+  options: WorkloadNetworkPortMirroringProfilesCreateOptionalParams = {
+    requestOptions: {},
+  },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles/{portMirroringId}{?api%2Dversion}",
+    {
+      subscriptionId: context.subscriptionId,
+      resourceGroupName: resourceGroupName,
+      privateCloudName: privateCloudName,
+      portMirroringId: portMirroringId,
+      "api%2Dversion": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .put({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      body: workloadNetworkPortMirroringSerializer(
+        workloadNetworkPortMirroring,
+      ),
+    });
+}
+
+export async function _createDeserialize(
+  result: PathUncheckedResponse,
+): Promise<WorkloadNetworkPortMirroring> {
+  const expectedStatuses = ["200", "201"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
+  }
+
+  return workloadNetworkPortMirroringDeserializer(result.body);
+}
+
+/** Create a WorkloadNetworkPortMirroring */
+export function create(
+  context: Client,
+  resourceGroupName: string,
+  privateCloudName: string,
+  portMirroringId: string,
+  workloadNetworkPortMirroring: WorkloadNetworkPortMirroring,
+  options: WorkloadNetworkPortMirroringProfilesCreateOptionalParams = {
+    requestOptions: {},
+  },
+): PollerLike<
+  OperationState<WorkloadNetworkPortMirroring>,
+  WorkloadNetworkPortMirroring
+> {
+  return getLongRunningPoller(context, _createDeserialize, ["200", "201"], {
+    updateIntervalInMs: options?.updateIntervalInMs,
+    abortSignal: options?.abortSignal,
+    getInitialResponse: () =>
+      _createSend(
+        context,
+        resourceGroupName,
+        privateCloudName,
+        portMirroringId,
+        workloadNetworkPortMirroring,
+        options,
+      ),
+    resourceLocationConfig: "azure-async-operation",
+  }) as PollerLike<
+    OperationState<WorkloadNetworkPortMirroring>,
+    WorkloadNetworkPortMirroring
+  >;
+}
+
+export function _getSend(
+  context: Client,
+  resourceGroupName: string,
+  privateCloudName: string,
+  portMirroringId: string,
+  options: WorkloadNetworkPortMirroringProfilesGetOptionalParams = {
+    requestOptions: {},
+  },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles/{portMirroringId}{?api%2Dversion}",
+    {
+      subscriptionId: context.subscriptionId,
+      resourceGroupName: resourceGroupName,
+      privateCloudName: privateCloudName,
+      portMirroringId: portMirroringId,
+      "api%2Dversion": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
+}
+
+export async function _getDeserialize(
+  result: PathUncheckedResponse,
+): Promise<WorkloadNetworkPortMirroring> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
+  }
+
+  return workloadNetworkPortMirroringDeserializer(result.body);
+}
+
+/** Get a WorkloadNetworkPortMirroring */
+export async function get(
+  context: Client,
+  resourceGroupName: string,
+  privateCloudName: string,
+  portMirroringId: string,
+  options: WorkloadNetworkPortMirroringProfilesGetOptionalParams = {
+    requestOptions: {},
+  },
+): Promise<WorkloadNetworkPortMirroring> {
+  const result = await _getSend(
+    context,
+    resourceGroupName,
+    privateCloudName,
+    portMirroringId,
+    options,
+  );
+  return _getDeserialize(result);
+}
+
+export function _listSend(
+  context: Client,
+  resourceGroupName: string,
+  privateCloudName: string,
+  options: WorkloadNetworkPortMirroringProfilesListOptionalParams = {
+    requestOptions: {},
+  },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles{?api%2Dversion}",
+    {
+      subscriptionId: context.subscriptionId,
+      resourceGroupName: resourceGroupName,
+      privateCloudName: privateCloudName,
+      "api%2Dversion": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
+}
+
+export async function _listDeserialize(
+  result: PathUncheckedResponse,
+): Promise<_WorkloadNetworkPortMirroringList> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
+  }
+
+  return _workloadNetworkPortMirroringListDeserializer(result.body);
+}
+
+/** List WorkloadNetworkPortMirroring resources by WorkloadNetwork */
+export function list(
+  context: Client,
+  resourceGroupName: string,
+  privateCloudName: string,
+  options: WorkloadNetworkPortMirroringProfilesListOptionalParams = {
+    requestOptions: {},
+  },
+): PagedAsyncIterableIterator<WorkloadNetworkPortMirroring> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listSend(context, resourceGroupName, privateCloudName, options),
+    _listDeserialize,
+    ["200"],
+    { itemName: "value", nextLinkName: "nextLink" },
+  );
+}
