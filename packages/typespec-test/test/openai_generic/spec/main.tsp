@@ -15,8 +15,7 @@ using TypeSpec.Http;
 
 /** The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details. */
 @service(#{
-  title: "OpenAI API",
-  version: "2.0.0",
+  title: "OpenAI API"
 })
 @server("https://api.openai.com/v1", "OpenAI Endpoint")
 @useAuth(BearerAuth)

@@ -36,198 +36,16 @@ export function transformRLCOptions(
   );
   if (
     !isAzurePackage({ options }) &&
-    emitterOptions["is-modular-library"] !== false &&
-    emitterOptions.isModularLibrary !== false
+    emitterOptions["is-modular-library"] !== false
   ) {
     options.isModularLibrary = true;
   }
-  if (
-    dpgContext.arm &&
-    emitterOptions["is-modular-library"] !== false &&
-    emitterOptions.isModularLibrary !== false
-  ) {
+  if (dpgContext.arm && emitterOptions["is-modular-library"] !== false) {
     options.isModularLibrary = true;
   }
   const batch = getRLCClients(dpgContext);
   options.batch = batch;
   return options;
-}
-function reportAllCamelOptionDiagnostics(
-  program: Program,
-  emitterOptions: EmitterOptions
-) {
-  if (emitterOptions.includeShortcuts !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "include-shortcuts",
-      camelCaseOption: "includeShortcuts"
-    });
-  }
-  if (emitterOptions.packageDetails !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "package-details",
-      camelCaseOption: "packageDetails"
-    });
-  }
-  if (emitterOptions.moduleKind !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "module-kind",
-      camelCaseOption: "moduleKind"
-    });
-  }
-  if (emitterOptions.azureSdkForJs !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "azure-sdk-for-js",
-      camelCaseOption: "azureSdkForJs"
-    });
-  }
-  if (emitterOptions.generateMetadata !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "generate-metadata",
-      camelCaseOption: "generateMetadata"
-    });
-  }
-  if (emitterOptions.generateTest !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "generate-test",
-      camelCaseOption: "generateTest"
-    });
-  }
-  if (emitterOptions.generateSample !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "generate-sample",
-      camelCaseOption: "generateSample"
-    });
-  }
-  if (emitterOptions.addCredentials !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "add-credentials",
-      camelCaseOption: "addCredentials"
-    });
-  }
-  if (emitterOptions.credentialScopes !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "credential-scopes",
-      camelCaseOption: "credentialScopes"
-    });
-  }
-  if (emitterOptions.credentialKeyHeaderName !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "credential-key-header-name",
-      camelCaseOption: "credentialKeyHeaderName"
-    });
-  }
-  if (emitterOptions.customHttpAuthHeaderName !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "custom-http-auth-header-name",
-      camelCaseOption: "customHttpAuthHeaderName"
-    });
-  }
-  if (emitterOptions.customHttpAuthSharedKeyPrefix !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "custom-http-auth-shared-key-prefix",
-      camelCaseOption: "customHttpAuthSharedKeyPrefix"
-    });
-  }
-  if (emitterOptions.enableOperationGroup !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "enable-operation-group",
-      camelCaseOption: "enableOperationGroup"
-    });
-  }
-  if (emitterOptions.enableModelNamespace !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "enable-model-namespace",
-      camelCaseOption: "enableModelNamespace"
-    });
-  }
-  if (emitterOptions.hierarchyClient !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "hierarchy-client",
-      camelCaseOption: "hierarchyClient"
-    });
-  }
-  if (emitterOptions.clearOutputFolder !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "clear-output-folder",
-      camelCaseOption: "clearOutputFolder"
-    });
-  }
-  if (emitterOptions.multiClient !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "multi-client",
-      camelCaseOption: "multiClient"
-    });
-  }
-  if (emitterOptions.isTypeSpecTest !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "is-typespec-test",
-      camelCaseOption: "isTypeSpecTest"
-    });
-  }
-  if (emitterOptions.dependencyInfo !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "dependency-info",
-      camelCaseOption: "dependencyInfo"
-    });
-  }
-  if (emitterOptions.productDocLink !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "product-doc-link",
-      camelCaseOption: "productDocLink"
-    });
-  }
-  if (emitterOptions.isModularLibrary !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "is-modular-library",
-      camelCaseOption: "isModularLibrary"
-    });
-  }
-  if (emitterOptions.compatibilityMode !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "compatibility-mode",
-      camelCaseOption: "compatibilityMode"
-    });
-  }
-  if (emitterOptions.experimentalExtensibleEnums !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "experimental-extensible-enums",
-      camelCaseOption: "experimentalExtensibleEnums"
-    });
-  }
-  if (emitterOptions.ignorePropertyNameNormalize !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "ignore-property-name-normalize",
-      camelCaseOption: "ignorePropertyNameNormalize"
-    });
-  }
-  if (emitterOptions.compatibilityQueryMultiFormat !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "compatibility-query-multi-format",
-      camelCaseOption: "compatibilityQueryMultiFormat"
-    });
-  }
-  if (emitterOptions.typespecTitleMap !== undefined) {
-    reportCamelOptionDiagnostic(program, {
-      kebabCaseOption: "typespec-title-map",
-      camelCaseOption: "typespecTitleMap"
-    });
-  }
-}
-export function reportCamelOptionDiagnostic(
-  program: Program,
-  caseOption: {
-    kebabCaseOption: string;
-    camelCaseOption: string;
-  }
-) {
-  reportDiagnostic(program, {
-    code: "use-kebab-case-option",
-    format: {
-      kebabCaseOption: caseOption.kebabCaseOption,
-      camelCaseOption: caseOption.camelCaseOption
-    },
-    target: NoTarget
-  });
 }
 function extractRLCOptions(
   dpgContext: SdkContext,
@@ -235,7 +53,6 @@ function extractRLCOptions(
   generationRootDir: string
 ): RLCOptions {
   const program = dpgContext.program;
-  reportAllCamelOptionDiagnostics(program, emitterOptions);
   const includeShortcuts = getIncludeShortcuts(emitterOptions);
   const packageDetails = getPackageDetails(program, emitterOptions);
   const flavor = getFlavor(emitterOptions, packageDetails);
@@ -257,36 +74,25 @@ function extractRLCOptions(
   );
   const hierarchyClient = getHierarchyClient(emitterOptions);
   const clearOutputFolder = getClearOutputFolder(emitterOptions);
-  const multiClient =
-    emitterOptions["multi-client"] ?? emitterOptions.multiClient;
-  const isTypeSpecTest =
-    emitterOptions["is-typespec-test"] ?? emitterOptions.isTypeSpecTest;
+  const multiClient = emitterOptions["multi-client"];
+  const isTypeSpecTest = emitterOptions["is-typespec-test"];
   const title = emitterOptions.title;
-  const dependencyInfo =
-    emitterOptions["dependency-info"] ?? emitterOptions.dependencyInfo;
-  const productDocLink =
-    emitterOptions["product-doc-link"] ?? emitterOptions.productDocLink;
-  const isModularLibrary =
-    emitterOptions["is-modular-library"] ?? emitterOptions.isModularLibrary;
-  const compatibilityMode =
-    emitterOptions["compatibility-mode"] ?? emitterOptions.compatibilityMode;
+  const dependencyInfo = emitterOptions["dependency-info"];
+  const productDocLink = emitterOptions["product-doc-link"];
+  const isModularLibrary = emitterOptions["is-modular-library"];
+  const compatibilityMode = emitterOptions["compatibility-mode"];
   const experimentalExtensibleEnums =
-    emitterOptions["experimental-extensible-enums"] ??
-    emitterOptions.experimentalExtensibleEnums;
+    emitterOptions["experimental-extensible-enums"];
   const ignorePropertyNameNormalize =
-    emitterOptions["ignore-property-name-normalize"] ??
-    emitterOptions.ignorePropertyNameNormalize;
+    emitterOptions["ignore-property-name-normalize"];
   const ignoreEnumMemberNameNormalize =
-    emitterOptions["ignore-enum-member-name-normalize"] ??
-    emitterOptions.ignoreEnumMemberNameNormalize;
+    emitterOptions["ignore-enum-member-name-normalize"];
   const compatibilityQueryMultiFormat =
-    emitterOptions["compatibility-query-multi-format"] ??
-    emitterOptions.compatibilityQueryMultiFormat;
-  const typespecTitleMap =
-    emitterOptions["typespec-title-map"] ?? emitterOptions.typespecTitleMap;
+    emitterOptions["compatibility-query-multi-format"];
+  const typespecTitleMap = emitterOptions["typespec-title-map"];
   //TODO should remove this after finish the release tool test
   const shouldUsePnpmDep =
-    emitterOptions["should-use-pnpm-dep"] ?? emitterOptions.shouldUsePnpmDep;
+    emitterOptions["should-use-pnpm-dep"];
 
   return {
     ...credentialInfo,
@@ -400,12 +206,6 @@ function getEnableOperationGroup(
   ) {
     return emitterOptions["enable-operation-group"];
   }
-  if (
-    emitterOptions.enableOperationGroup === true ||
-    emitterOptions.enableOperationGroup === false
-  ) {
-    return emitterOptions.enableOperationGroup;
-  }
   // Only detect if existing name conflicts if customers don't set hierarchyClient to true
   return detectIfNameConflicts(dpgContext);
 }
@@ -420,12 +220,6 @@ function getEnableModelNamespace(
   ) {
     return emitterOptions["enable-model-namespace"];
   }
-  if (
-    emitterOptions.enableModelNamespace === true ||
-    emitterOptions.enableModelNamespace === false
-  ) {
-    return emitterOptions.enableModelNamespace;
-  }
   // Detect if existing name conflicts if customers didn't set the option explicitly
   return detectModelConflicts(dpgContext);
 }
@@ -437,24 +231,12 @@ function getHierarchyClient(emitterOptions: EmitterOptions) {
   ) {
     return emitterOptions["hierarchy-client"];
   }
-  if (
-    emitterOptions.hierarchyClient === true ||
-    emitterOptions.hierarchyClient === false
-  ) {
-    return emitterOptions.hierarchyClient;
-  }
   // enable hierarchy client by default if customers didn't set the option explicitly
   return true;
 }
 
 function getClearOutputFolder(emitterOptions: EmitterOptions) {
-  if (
-    emitterOptions["clear-output-folder"] === true ||
-    emitterOptions.clearOutputFolder === true
-  ) {
-    return true;
-  }
-  return false;
+  return emitterOptions["clear-output-folder"] ? true : false;
 }
 
 function detectIfNameConflicts(dpgContext: SdkContext) {
@@ -495,14 +277,11 @@ function detectIfNameConflicts(dpgContext: SdkContext) {
 }
 
 function getIncludeShortcuts(emitterOptions: EmitterOptions) {
-  return (
-    Boolean(emitterOptions["include-shortcuts"]) ||
-    Boolean(emitterOptions.includeShortcuts)
-  );
+  return Boolean(emitterOptions["include-shortcuts"]);
 }
 
 function getModuleKind(emitterOptions: EmitterOptions) {
-  return emitterOptions["module-kind"] ?? emitterOptions.moduleKind ?? "esm";
+  return emitterOptions["module-kind"] ?? "esm";
 }
 
 function getFlavor(
@@ -562,42 +341,12 @@ function buildPackageDetails(
   }
   return packageDetails ?? defaultDetail;
 }
-function _buildPackageDetails(
-  program: Program,
-  emitterOptions: EmitterOptions
-): PackageDetails {
-  const defaultDetail = {
-    name: "@msinternal/unamedpackage",
-    nameWithoutScope: "unamedpackage",
-    version: "1.0.0-beta.1"
-  };
-  const packageDetails: PackageDetails = {
-    ...emitterOptions.packageDetails,
-    name:
-      emitterOptions.packageDetails?.name ??
-      normalizeName(
-        emitterOptions?.title ?? getDefaultService(program)?.title ?? "",
-        NameType.Class
-      ),
-    version: emitterOptions.packageDetails?.version ?? "1.0.0-beta.1"
-  };
-  if (emitterOptions.packageDetails?.name) {
-    const nameParts = emitterOptions.packageDetails?.name.split("/");
-    if (nameParts.length === 2) {
-      packageDetails.nameWithoutScope = nameParts[1];
-      packageDetails.scopeName = nameParts[0]?.replace("@", "");
-    }
-  }
-  return packageDetails ?? defaultDetail;
-}
+
 function getPackageDetails(
   program: Program,
   emitterOptions: EmitterOptions
 ): PackageDetails {
-  if (emitterOptions["package-details"] !== undefined) {
-    return buildPackageDetails(program, emitterOptions);
-  }
-  return _buildPackageDetails(program, emitterOptions);
+  return buildPackageDetails(program, emitterOptions);
 }
 
 function getServiceInfo(program: Program): ServiceInfo {
@@ -614,28 +363,20 @@ function getAzureSdkForJs(
 ) {
   return flavor !== "azure"
     ? false
-    : (emitterOptions["azure-sdk-for-js"] === undefined ||
-          emitterOptions["azure-sdk-for-js"] === null) &&
-        (emitterOptions.azureSdkForJs === undefined ||
-          emitterOptions.azureSdkForJs === null)
+    : emitterOptions["azure-sdk-for-js"] === undefined ||
+      emitterOptions["azure-sdk-for-js"] === null
       ? true
-      : Boolean(emitterOptions["azure-sdk-for-js"]) ||
-        Boolean(emitterOptions.azureSdkForJs);
+      : Boolean(emitterOptions["azure-sdk-for-js"]);
 }
 
 function getGenerateMetadata(emitterOptions: EmitterOptions) {
   if (
-    (emitterOptions["generate-metadata"] === undefined ||
-      emitterOptions["generate-metadata"] === null) &&
-    (emitterOptions.generateMetadata === undefined ||
-      emitterOptions.generateMetadata === null)
+    emitterOptions["generate-metadata"] === undefined ||
+    emitterOptions["generate-metadata"] === null
   ) {
     return undefined;
   }
-  return (
-    Boolean(emitterOptions["generate-metadata"]) ||
-    Boolean(emitterOptions.generateMetadata)
-  );
+  return Boolean(emitterOptions["generate-metadata"]);
 }
 
 /**
@@ -651,7 +392,7 @@ function getGenerateTest(
   if (!getAzureSdkForJs(emitterOptions, flavor)) {
     return false;
   }
-  return emitterOptions["generate-test"] ?? emitterOptions.generateTest;
+  return emitterOptions["generate-test"];
 }
 
 /**
@@ -663,21 +404,16 @@ function getGenerateSample(
   dpgContext: SdkContext,
   emitterOptions: EmitterOptions
 ) {
-  if (dpgContext.arm && emitterOptions.generateSample === undefined) {
+  if (dpgContext.arm && emitterOptions["generate-sample"] === undefined) {
     return true;
   }
   if (
-    (emitterOptions["generate-sample"] === undefined ||
-      emitterOptions["generate-sample"] === null) &&
-    (emitterOptions.generateSample === undefined ||
-      emitterOptions.generateSample === null)
+    emitterOptions["generate-sample"] === undefined ||
+    emitterOptions["generate-sample"] === null
   ) {
     return undefined;
   }
-  return (
-    Boolean(emitterOptions["generate-sample"]) ||
-    Boolean(emitterOptions.generateSample)
-  );
+  return Boolean(emitterOptions["generate-sample"]);
 }
 
 export function getCredentialInfo(
@@ -686,32 +422,27 @@ export function getCredentialInfo(
 ) {
   const securityInfo = processAuth(program);
   const addCredentials =
-    emitterOptions["add-credentials"] === false ||
-    emitterOptions.addCredentials === false
+    emitterOptions["add-credentials"] === false
       ? false
       : securityInfo
         ? securityInfo.addCredentials
-        : (emitterOptions["add-credentials"] ?? emitterOptions.addCredentials);
+        : emitterOptions["add-credentials"];
   const credentialScopes =
     securityInfo && securityInfo.credentialScopes
       ? securityInfo.credentialScopes
-      : (emitterOptions["credential-scopes"] ??
-        emitterOptions.credentialScopes);
+      : emitterOptions["credential-scopes"];
   const credentialKeyHeaderName =
     securityInfo && securityInfo.credentialKeyHeaderName
       ? securityInfo.credentialKeyHeaderName
-      : (emitterOptions["credential-key-header-name"] ??
-        emitterOptions.credentialKeyHeaderName);
+      : emitterOptions["credential-key-header-name"];
   const customHttpAuthHeaderName =
     securityInfo && securityInfo.customHttpAuthHeaderName
       ? securityInfo.customHttpAuthHeaderName
-      : (emitterOptions["custom-http-auth-header-name"] ??
-        emitterOptions.customHttpAuthHeaderName);
+      : emitterOptions["custom-http-auth-header-name"];
   const customHttpAuthSharedKeyPrefix =
     securityInfo && securityInfo.customHttpAuthSharedKeyPrefix
       ? securityInfo.customHttpAuthSharedKeyPrefix
-      : (emitterOptions["custom-http-auth-shared-key-prefix"] ??
-        emitterOptions.customHttpAuthSharedKeyPrefix);
+      : emitterOptions["custom-http-auth-shared-key-prefix"];
   return {
     addCredentials,
     credentialScopes,
