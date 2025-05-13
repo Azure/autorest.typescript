@@ -30,7 +30,7 @@ export {
   Insight,
   KnownImportanceLevel,
   ImportanceLevel,
-  ErrorModel,
+  Error$,
   ExtensionResource,
   Resource,
   SystemData,
@@ -134,7 +134,7 @@ export { SolutionResourceSelfHelpsGetOptionalParams } from "./api/solutionResour
 export {
   TroubleshooterResourcesRestartOptionalParams,
   TroubleshooterResourcesEndOptionalParams,
-  TroubleshooterResourcesTroubleshooterResourcesContinueOptionalParams,
+  TroubleshooterResourcesContinueOptionalParams,
   TroubleshooterResourcesCreateOptionalParams,
   TroubleshooterResourcesGetOptionalParams,
 } from "./api/troubleshooterResources/index.js";

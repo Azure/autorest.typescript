@@ -15,7 +15,7 @@ import {
 import {
   TroubleshooterResourcesRestartOptionalParams,
   TroubleshooterResourcesEndOptionalParams,
-  TroubleshooterResourcesTroubleshooterResourcesContinueOptionalParams,
+  TroubleshooterResourcesContinueOptionalParams,
   TroubleshooterResourcesCreateOptionalParams,
   TroubleshooterResourcesGetOptionalParams,
 } from "./options.js";
@@ -140,14 +140,14 @@ export async function end(
   return _endDeserialize(result);
 }
 
-export function _troubleshooterResourcesContinueSend(
+export function _$continueSend(
   context: Client,
   scope: string,
   troubleshooterName: string,
   body: {
     continueRequestBody?: ContinueRequestBody;
   },
-  options: TroubleshooterResourcesTroubleshooterResourcesContinueOptionalParams = {
+  options: TroubleshooterResourcesContinueOptionalParams = {
     requestOptions: {},
   },
 ): StreamableMethod {
@@ -177,7 +177,7 @@ export function _troubleshooterResourcesContinueSend(
     });
 }
 
-export async function _troubleshooterResourcesContinueDeserialize(
+export async function _$continueDeserialize(
   result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["204"];
@@ -191,25 +191,30 @@ export async function _troubleshooterResourcesContinueDeserialize(
 }
 
 /** Uses ‘stepId’ and ‘responses’ as the trigger to continue the troubleshooting steps for the respective troubleshooter resource name. <br/>Continue API is used to provide inputs that are required for the specific troubleshooter to progress into the next step in the process. This API is used after the Troubleshooter has been created using the Create API. */
-export async function troubleshooterResourcesContinue(
+/**
+ *  @fixme continue is a reserved word that cannot be used as a method name.
+ *         Please add @methodName("methodName") or @methodName("<JS-Specific-Name>", "javascript")
+ *         to the method to override the generated name.
+ */
+export async function $continue(
   context: Client,
   scope: string,
   troubleshooterName: string,
   body: {
     continueRequestBody?: ContinueRequestBody;
   },
-  options: TroubleshooterResourcesTroubleshooterResourcesContinueOptionalParams = {
+  options: TroubleshooterResourcesContinueOptionalParams = {
     requestOptions: {},
   },
 ): Promise<void> {
-  const result = await _troubleshooterResourcesContinueSend(
+  const result = await _$continueSend(
     context,
     scope,
     troubleshooterName,
     body,
     options,
   );
-  return _troubleshooterResourcesContinueDeserialize(result);
+  return _$continueDeserialize(result);
 }
 
 export function _createSend(

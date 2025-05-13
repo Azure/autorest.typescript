@@ -12,7 +12,7 @@ export interface TroubleshooterResourcesEndOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface TroubleshooterResourcesTroubleshooterResourcesContinueOptionalParams
+export interface TroubleshooterResourcesContinueOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */

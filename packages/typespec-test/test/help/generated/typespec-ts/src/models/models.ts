@@ -346,7 +346,7 @@ export interface Diagnostic {
   /** The problems (if any) detected by this insight. */
   insights?: Insight[];
   /** Error definition. */
-  error?: ErrorModel;
+  error?: Error$;
 }
 
 export function diagnosticDeserializer(item: any): Diagnostic {
@@ -436,7 +436,7 @@ export enum KnownImportanceLevel {
 export type ImportanceLevel = string;
 
 /** Error definition. */
-export interface ErrorModel {
+export interface Error$ {
   /** Service specific error code which serves as the substatus for the HTTP error code. */
   readonly code?: string;
   /** Service specific error type which serves as additional context for the error herein. */
@@ -444,10 +444,10 @@ export interface ErrorModel {
   /** Description of the error. */
   readonly message?: string;
   /** An array of additional nested error response info objects, as described by this contract. */
-  details?: ErrorModel[];
+  details?: Error$[];
 }
 
-export function errorDeserializer(item: any): ErrorModel {
+export function errorDeserializer(item: any): Error$ {
   return {
     code: item["code"],
     type: item["type"],
@@ -458,7 +458,7 @@ export function errorDeserializer(item: any): ErrorModel {
   };
 }
 
-export function errorArrayDeserializer(result: Array<ErrorModel>): any[] {
+export function errorArrayDeserializer(result: Array<Error$>): any[] {
   return result.map((item) => {
     return errorDeserializer(item);
   });

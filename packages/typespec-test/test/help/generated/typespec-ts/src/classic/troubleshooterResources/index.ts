@@ -10,14 +10,14 @@ import {
 import {
   TroubleshooterResourcesRestartOptionalParams,
   TroubleshooterResourcesEndOptionalParams,
-  TroubleshooterResourcesTroubleshooterResourcesContinueOptionalParams,
+  TroubleshooterResourcesContinueOptionalParams,
   TroubleshooterResourcesCreateOptionalParams,
   TroubleshooterResourcesGetOptionalParams,
 } from "../../api/troubleshooterResources/options.js";
 import {
   restart,
   end,
-  troubleshooterResourcesContinue,
+  $continue,
   create,
   get,
 } from "../../api/troubleshooterResources/operations.js";
@@ -37,13 +37,18 @@ export interface TroubleshooterResourcesOperations {
     options?: TroubleshooterResourcesEndOptionalParams,
   ) => Promise<void>;
   /** Uses ‘stepId’ and ‘responses’ as the trigger to continue the troubleshooting steps for the respective troubleshooter resource name. <br/>Continue API is used to provide inputs that are required for the specific troubleshooter to progress into the next step in the process. This API is used after the Troubleshooter has been created using the Create API. */
-  troubleshooterResourcesContinue: (
+  /**
+   *  @fixme continue is a reserved word that cannot be used as a method name.
+   *         Please add @methodName("methodName") or @methodName("<JS-Specific-Name>", "javascript")
+   *         to the method to override the generated name.
+   */
+  continue: (
     scope: string,
     troubleshooterName: string,
     body: {
       continueRequestBody?: ContinueRequestBody;
     },
-    options?: TroubleshooterResourcesTroubleshooterResourcesContinueOptionalParams,
+    options?: TroubleshooterResourcesContinueOptionalParams,
   ) => Promise<void>;
   /** Creates the specific troubleshooter action under a resource or subscription using the ‘solutionId’ and  ‘properties.parameters’ as the trigger. <br/> Azure Troubleshooters help with hard to classify issues, reducing the gap between customer observed problems and solutions by guiding the user effortlessly through the troubleshooting process. Each Troubleshooter flow represents a problem area within Azure and has a complex tree-like structure that addresses many root causes. These flows are prepared with the help of Subject Matter experts and customer support engineers by carefully considering previous support requests raised by customers. Troubleshooters terminate at a well curated solution based off of resource backend signals and customer manual selections. */
   create: (
@@ -72,21 +77,14 @@ function _getTroubleshooterResources(context: HelpContext) {
       troubleshooterName: string,
       options?: TroubleshooterResourcesEndOptionalParams,
     ) => end(context, scope, troubleshooterName, options),
-    troubleshooterResourcesContinue: (
+    continue: (
       scope: string,
       troubleshooterName: string,
       body: {
         continueRequestBody?: ContinueRequestBody;
       },
-      options?: TroubleshooterResourcesTroubleshooterResourcesContinueOptionalParams,
-    ) =>
-      troubleshooterResourcesContinue(
-        context,
-        scope,
-        troubleshooterName,
-        body,
-        options,
-      ),
+      options?: TroubleshooterResourcesContinueOptionalParams,
+    ) => $continue(context, scope, troubleshooterName, body, options),
     create: (
       scope: string,
       troubleshooterName: string,
