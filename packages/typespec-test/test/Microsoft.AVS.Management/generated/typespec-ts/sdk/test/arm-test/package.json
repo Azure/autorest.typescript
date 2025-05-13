@@ -1,7 +1,7 @@
 {
-  "name": "@azure/arm-test",
+  "name": "@azure/arm-avs",
   "version": "1.0.0-beta.1",
-  "description": "A generated SDK for DataReplicationClient.",
+  "description": "A generated SDK for AVSClient.",
   "engines": {
     "node": ">=18.0.0"
   },
@@ -12,23 +12,35 @@
       "./package.json": "./package.json",
       ".": "./src/index.ts",
       "./api": "./src/api/index.ts",
-      "./api/locationBasedOperationResults": "src/api/locationBasedOperationResults/index.ts",
-      "./api/operationResults": "src/api/operationResults/index.ts",
-      "./api/deploymentPreflight": "src/api/deploymentPreflight/index.ts",
-      "./api/checkNameAvailability": "src/api/checkNameAvailability/index.ts",
-      "./api/replicationExtension": "src/api/replicationExtension/index.ts",
-      "./api/recoveryPoint": "src/api/recoveryPoint/index.ts",
-      "./api/protectedItem": "src/api/protectedItem/index.ts",
-      "./api/privateLinkResources": "src/api/privateLinkResources/index.ts",
-      "./api/privateEndpointConnectionProxies": "src/api/privateEndpointConnectionProxies/index.ts",
-      "./api/privateEndpointConnections": "src/api/privateEndpointConnections/index.ts",
-      "./api/policy": "src/api/policy/index.ts",
-      "./api/job": "src/api/job/index.ts",
-      "./api/fabricAgent": "src/api/fabricAgent/index.ts",
-      "./api/fabric": "src/api/fabric/index.ts",
-      "./api/event": "src/api/event/index.ts",
-      "./api/vault": "src/api/vault/index.ts",
-      "./api/emailConfiguration": "src/api/emailConfiguration/index.ts",
+      "./api/workloadNetworks": "src/api/workloadNetworks/index.ts",
+      "./api/workloadNetworkVmGroups": "src/api/workloadNetworkVmGroups/index.ts",
+      "./api/workloadNetworkVirtualMachines": "src/api/workloadNetworkVirtualMachines/index.ts",
+      "./api/workloadNetworkSegments": "src/api/workloadNetworkSegments/index.ts",
+      "./api/workloadNetworkPublicIps": "src/api/workloadNetworkPublicIps/index.ts",
+      "./api/workloadNetworkPortMirroringProfiles": "src/api/workloadNetworkPortMirroringProfiles/index.ts",
+      "./api/workloadNetworkGateways": "src/api/workloadNetworkGateways/index.ts",
+      "./api/workloadNetworkDnsZones": "src/api/workloadNetworkDnsZones/index.ts",
+      "./api/workloadNetworkDnsServices": "src/api/workloadNetworkDnsServices/index.ts",
+      "./api/workloadNetworkDhcpConfigurations": "src/api/workloadNetworkDhcpConfigurations/index.ts",
+      "./api/virtualMachines": "src/api/virtualMachines/index.ts",
+      "./api/skus": "src/api/skus/index.ts",
+      "./api/scriptPackages": "src/api/scriptPackages/index.ts",
+      "./api/scriptExecutions": "src/api/scriptExecutions/index.ts",
+      "./api/scriptCmdlets": "src/api/scriptCmdlets/index.ts",
+      "./api/pureStoragePolicies": "src/api/pureStoragePolicies/index.ts",
+      "./api/provisionedNetworks": "src/api/provisionedNetworks/index.ts",
+      "./api/privateClouds": "src/api/privateClouds/index.ts",
+      "./api/placementPolicies": "src/api/placementPolicies/index.ts",
+      "./api/locations": "src/api/locations/index.ts",
+      "./api/iscsiPaths": "src/api/iscsiPaths/index.ts",
+      "./api/hosts": "src/api/hosts/index.ts",
+      "./api/hcxEnterpriseSites": "src/api/hcxEnterpriseSites/index.ts",
+      "./api/globalReachConnections": "src/api/globalReachConnections/index.ts",
+      "./api/datastores": "src/api/datastores/index.ts",
+      "./api/clusters": "src/api/clusters/index.ts",
+      "./api/cloudLinks": "src/api/cloudLinks/index.ts",
+      "./api/authorizations": "src/api/authorizations/index.ts",
+      "./api/addons": "src/api/addons/index.ts",
       "./api/operations": "src/api/operations/index.ts",
       "./models": "./src/models/index.ts"
     },
@@ -59,7 +71,7 @@
   "//metadata": {
     "constantPaths": [
       {
-        "path": "src/api/dataReplicationContext.ts",
+        "path": "src/api/azureVMwareSolutionAPIContext.ts",
         "prefix": "userAgentInfo"
       }
     ]
@@ -114,9 +126,9 @@
     "update-snippets": "dev-tool run update-snippets"
   },
   "//sampleConfiguration": {
-    "productName": "@azure/arm-test",
+    "productName": "@azure/arm-avs",
     "productSlugs": ["azure"],
     "disableDocsMs": true,
-    "apiRefLink": "https://learn.microsoft.com/javascript/api/@azure/arm-test?view=azure-node-preview"
+    "apiRefLink": "https://learn.microsoft.com/javascript/api/@azure/arm-avs?view=azure-node-preview"
   }
 }

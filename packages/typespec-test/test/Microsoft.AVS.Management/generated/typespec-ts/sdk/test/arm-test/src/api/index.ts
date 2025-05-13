@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 export {
-  createDataReplication,
-  DataReplicationContext,
-  DataReplicationClientOptionalParams,
-} from "./dataReplicationContext.js";
+  createAzureVMwareSolutionAPI,
+  AzureVMwareSolutionAPIContext,
+  AzureVMwareSolutionAPIOptionalParams,
+} from "./azureVMwareSolutionAPIContext.js";

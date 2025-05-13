@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { DataReplicationClient } from "../src/index.js";
+import { AzureVMwareSolutionAPI } from "../src/index.js";
 import {
   DefaultAzureCredential,
   InteractiveBrowserCredential,
@@ -12,7 +12,7 @@ import { describe, it } from "vitest";
 describe("snippets", () => {
   it("ReadmeSampleCreateClient_Node", async () => {
     const subscriptionId = "00000000-0000-0000-0000-000000000000";
-    const client = new DataReplicationClient(
+    const client = new AzureVMwareSolutionAPI(
       new DefaultAzureCredential(),
       subscriptionId,
     );
@@ -24,7 +24,7 @@ describe("snippets", () => {
       tenantId: "<YOUR_TENANT_ID>",
       clientId: "<YOUR_CLIENT_ID>",
     });
-    const client = new DataReplicationClient(credential, subscriptionId);
+    const client = new AzureVMwareSolutionAPI(credential, subscriptionId);
   });
 
   it("SetLogLevel", async () => {
