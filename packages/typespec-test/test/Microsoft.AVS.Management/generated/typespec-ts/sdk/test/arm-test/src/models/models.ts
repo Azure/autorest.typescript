@@ -223,14 +223,14 @@ export function addonArrayDeserializer(result: Array<Addon>): any[] {
 /** An addon resource */
 export interface Addon extends ProxyResource {
   /** The resource-specific properties for this resource. */
-  properties?: AddonProperties;
+  properties?: AddonPropertiesUnion;
 }
 
 export function addonSerializer(item: Addon): any {
   return {
     properties: !item["properties"]
       ? item["properties"]
-      : addonPropertiesSerializer(item["properties"]),
+      : addonPropertiesUnionSerializer(item["properties"]),
   };
 }
 
@@ -244,13 +244,14 @@ export function addonDeserializer(item: any): Addon {
       : systemDataDeserializer(item["systemData"]),
     properties: !item["properties"]
       ? item["properties"]
-      : addonPropertiesDeserializer(item["properties"]),
+      : addonPropertiesUnionDeserializer(item["properties"]),
   };
 }
 
 /** The properties of an addon */
 export interface AddonProperties {
   /** Addon type */
+  /** The discriminator possible values: SRM, VR, HCX, Arc */
   addonType: AddonType;
   /** The state of the addon provisioning */
   readonly provisioningState?: AddonProvisioningState;
@@ -265,6 +266,56 @@ export function addonPropertiesDeserializer(item: any): AddonProperties {
     addonType: item["addonType"],
     provisioningState: item["provisioningState"],
   };
+}
+
+/** Alias for AddonPropertiesUnion */
+export type AddonPropertiesUnion =
+  | AddonSrmProperties
+  | AddonVrProperties
+  | AddonHcxProperties
+  | AddonArcProperties
+  | AddonProperties;
+
+export function addonPropertiesUnionSerializer(
+  item: AddonPropertiesUnion,
+): any {
+  switch (item.addonType) {
+    case "SRM":
+      return addonSrmPropertiesSerializer(item as AddonSrmProperties);
+
+    case "VR":
+      return addonVrPropertiesSerializer(item as AddonVrProperties);
+
+    case "HCX":
+      return addonHcxPropertiesSerializer(item as AddonHcxProperties);
+
+    case "Arc":
+      return addonArcPropertiesSerializer(item as AddonArcProperties);
+
+    default:
+      return addonPropertiesSerializer(item);
+  }
+}
+
+export function addonPropertiesUnionDeserializer(
+  item: any,
+): AddonPropertiesUnion {
+  switch (item.addonType) {
+    case "SRM":
+      return addonSrmPropertiesDeserializer(item as AddonSrmProperties);
+
+    case "VR":
+      return addonVrPropertiesDeserializer(item as AddonVrProperties);
+
+    case "HCX":
+      return addonHcxPropertiesDeserializer(item as AddonHcxProperties);
+
+    case "Arc":
+      return addonArcPropertiesDeserializer(item as AddonArcProperties);
+
+    default:
+      return addonPropertiesDeserializer(item);
+  }
 }
 
 /** Addon type */
@@ -319,6 +370,97 @@ export enum KnownAddonProvisioningState {
  * **Updating**: is updating
  */
 export type AddonProvisioningState = string;
+
+/** The properties of a Site Recovery Manager (SRM) addon */
+export interface AddonSrmProperties extends AddonProperties {
+  /** The Site Recovery Manager (SRM) license */
+  licenseKey?: string;
+  /** The type of private cloud addon */
+  addonType: "SRM";
+}
+
+export function addonSrmPropertiesSerializer(item: AddonSrmProperties): any {
+  return { addonType: item["addonType"], licenseKey: item["licenseKey"] };
+}
+
+export function addonSrmPropertiesDeserializer(item: any): AddonSrmProperties {
+  return {
+    addonType: item["addonType"],
+    provisioningState: item["provisioningState"],
+    licenseKey: item["licenseKey"],
+  };
+}
+
+/** The properties of a vSphere Replication (VR) addon */
+export interface AddonVrProperties extends AddonProperties {
+  /** The vSphere Replication Server (VRS) count */
+  vrsCount: number;
+  /** The type of private cloud addon */
+  addonType: "VR";
+}
+
+export function addonVrPropertiesSerializer(item: AddonVrProperties): any {
+  return { addonType: item["addonType"], vrsCount: item["vrsCount"] };
+}
+
+export function addonVrPropertiesDeserializer(item: any): AddonVrProperties {
+  return {
+    addonType: item["addonType"],
+    provisioningState: item["provisioningState"],
+    vrsCount: item["vrsCount"],
+  };
+}
+
+/** The properties of an HCX addon */
+export interface AddonHcxProperties extends AddonProperties {
+  /** The HCX offer, example VMware MaaS Cloud Provider (Enterprise) */
+  offer: string;
+  /** The type of private cloud addon */
+  addonType: "HCX";
+  /** HCX management network. */
+  managementNetwork?: string;
+  /** HCX uplink network */
+  uplinkNetwork?: string;
+}
+
+export function addonHcxPropertiesSerializer(item: AddonHcxProperties): any {
+  return {
+    addonType: item["addonType"],
+    offer: item["offer"],
+    managementNetwork: item["managementNetwork"],
+    uplinkNetwork: item["uplinkNetwork"],
+  };
+}
+
+export function addonHcxPropertiesDeserializer(item: any): AddonHcxProperties {
+  return {
+    addonType: item["addonType"],
+    provisioningState: item["provisioningState"],
+    offer: item["offer"],
+    managementNetwork: item["managementNetwork"],
+    uplinkNetwork: item["uplinkNetwork"],
+  };
+}
+
+/** The properties of an Arc addon */
+export interface AddonArcProperties extends AddonProperties {
+  /** The VMware vCenter resource ID */
+  vCenter?: string;
+  /** The type of private cloud addon */
+  addonType: "Arc";
+}
+
+export function addonArcPropertiesSerializer(item: AddonArcProperties): any {
+  return { addonType: item["addonType"], vCenter: item["vCenter"] };
+}
+
+export function addonArcPropertiesDeserializer(item: any): AddonArcProperties {
+  return {
+    addonType: item["addonType"],
+    provisioningState: item["provisioningState"],
+    vCenter: item["vCenter"],
+  };
+}
 
 /** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
 export interface ProxyResource extends Resource {}
