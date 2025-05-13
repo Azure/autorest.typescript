@@ -926,3 +926,67 @@ export function test(
   );
 }
 ```
+
+# body fallback client name
+
+## TypeSpec
+
+```tsp
+@service
+namespace TestClient {
+  op bodyTest(@body @clientName("test") prop: string): void;
+}
+```
+
+## Operations
+
+```ts operations
+
+```
+
+# should recursive array type
+
+## TypeSpec
+
+```tsp
+@service
+namespace TestClient {
+  model Test {
+    prop?: Test[];
+  }
+  model TestArray {
+    prop: Test[];
+  }
+  op get(): TestArray;
+}
+```
+
+## Operations
+
+```ts operations
+
+```
+
+# should recursive dictionary type
+
+## TypeSpec
+
+```tsp
+@service
+namespace TestClient {
+
+}
+model Test {
+  prop?: string;
+}
+model TestDictionary {
+  prop: Record<Test>;
+}
+op get(): TestDictionary;
+```
+
+## Operations
+
+```ts operations
+
+```
