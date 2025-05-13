@@ -27,7 +27,7 @@ import { buildOperationFiles } from "../../src/modular/buildOperations.js";
 import { transformModularEmitterOptions } from "../../src/modular/buildModularOptions.js";
 import { expectDiagnosticEmpty } from "@typespec/compiler/testing";
 import { getCredentialInfo } from "../../src/transform/transfromRLCOptions.js";
-import { getRLCClients } from "../../src/utils/clientUtils.js";
+import { getClientHierarchyMap, getRLCClients } from "../../src/utils/clientUtils.js";
 import { transformHelperFunctionDetails } from "../../src/transform/transformHelperFunctionDetails.js";
 import { transformPaths } from "../../src/transform/transformPaths.js";
 import { transformSchemas } from "../../src/transform/transformSchemas.js";
@@ -414,9 +414,10 @@ export async function emitModularModelsFromTypeSpec(
   ) {
     if (needOptions) {
       emitTypes(dpgContext, { sourceRoot: "" });
+      const clientMap = getClientHierarchyMap(dpgContext);
       modelFile = buildApiOptions(
         dpgContext,
-        dpgContext.sdkPackage.clients[0],
+        Array.from(clientMap)[0]!,
         modularEmitterOptions
       );
       binder.resolveAllReferences("/");
@@ -471,14 +472,15 @@ export async function emitModularOperationsFromTypeSpec(
     dpgContext.sdkPackage.clients[0]
   ) {
     emitTypes(dpgContext, { sourceRoot: "" });
+    const clientMap = Array.from(getClientHierarchyMap(dpgContext));
     const res = buildOperationFiles(
       dpgContext,
-      dpgContext.sdkPackage.clients[0],
+      clientMap[0]!,
       modularEmitterOptions
     );
     buildApiOptions(
       dpgContext,
-      dpgContext.sdkPackage.clients[0],
+      clientMap[0]!,
       modularEmitterOptions
     );
     if (
@@ -521,9 +523,10 @@ export async function emitModularClientContextFromTypeSpec(
   ) {
     emitTypes(dpgContext, { sourceRoot: "" });
     renameClientName(dpgContext.sdkPackage.clients[0], modularEmitterOptions);
+    const clientMap = Array.from(getClientHierarchyMap(dpgContext));
     const res = buildClientContext(
       dpgContext,
-      dpgContext.sdkPackage.clients[0],
+      clientMap[0]!,
       modularEmitterOptions
     );
     binder.resolveAllReferences("/");
@@ -557,19 +560,20 @@ export async function emitModularClientFromTypeSpec(
     dpgContext.sdkPackage.clients[0]
   ) {
     renameClientName(dpgContext.sdkPackage.clients[0], modularEmitterOptions);
+    const clientMap = Array.from(getClientHierarchyMap(dpgContext));
     buildApiOptions(
       dpgContext,
-      dpgContext.sdkPackage.clients[0],
+      clientMap[0]!,
       modularEmitterOptions
     );
     buildOperationFiles(
       dpgContext,
-      dpgContext.sdkPackage.clients[0],
+      clientMap[0]!,
       modularEmitterOptions
     );
     const res = buildClassicalClient(
       dpgContext,
-      dpgContext.sdkPackage.clients[0],
+      clientMap[0]!,
       modularEmitterOptions
     );
     binder.resolveAllReferences("/");
