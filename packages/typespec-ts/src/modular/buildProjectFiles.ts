@@ -17,16 +17,23 @@ function buildExportsForMultiClient(
   packageInfo: any
 ) {
   const clientMap = getClientHierarchyMap(context);
+  let hasTopLevelClient = false;
   for (const [hierarchy, client] of clientMap) {
+    const methodMap = getMethodHierarchiesMap(context, client);
+    if (hierarchy.length === 0) {
+      hasTopLevelClient = true;
+    }
     const { subfolder } = getModularClientOptions([hierarchy, client]);
-    if (subfolder !== "") {
+    if (subfolder !== "" && methodMap.size > 0) {
       packageInfo.exports[`./${subfolder}`] = `./src/${subfolder}/index.ts`;
 
       packageInfo.exports[`./${subfolder}/api`] =
         `./src/${subfolder}/api/index.ts`;
     }
   }
-
+  if (!hasTopLevelClient) {
+    delete packageInfo.exports["./api"];
+  }
   if (emitterOptions.options.hierarchyClient) {
     for (const flattenedClient of clientMap) {
       const { subfolder } = getModularClientOptions(flattenedClient);
