@@ -1,3 +1,7 @@
+## 0.40.0 (2025-05-07)
+
+- [Feature] Upgrade GA TypeSpec dependencies. Please refer to [#3186](https://github.com/Azure/autorest.typescript/pull/3186).
+
 ## 0.39.0 (2025-04-28)
 
 - [Feature] Support optional path parameter for Modular. Please refer to [#3152](https://github.com/Azure/autorest.typescript/pull/3152)
