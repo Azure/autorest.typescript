@@ -964,7 +964,7 @@ export function testDeserializer(item: any): Test {
   return {
     prop: !item["prop"]
       ? item["prop"]
-      : __PLACEHOLDER_o19_sdeserializer__(item["prop"])
+      : __PLACEHOLDER_o581_sdeserializer__(item["prop"])
   };
 }
 ```
