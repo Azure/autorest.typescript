@@ -10,7 +10,7 @@ import {
   AzureMetricsDocument,
   MetricsCreateOptionalParams,
   MetricsCreateResponse,
-} from "../models";
+} from "../models/index.js";
 
 /** Interface representing a Metrics. */
 export interface Metrics {

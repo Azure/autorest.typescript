@@ -58,7 +58,6 @@ import {
   SdkModelPropertyType,
   SdkModelType,
   SdkPagingServiceMethod,
-  SdkPathParameter,
   SdkServiceParameter,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
@@ -99,7 +98,7 @@ export function getSendPrivateFunction(
   const statements: string[] = [];
   let pathStr = `"${operationPath}"`;
   const urlTemplateParams = [
-    ...getPathParameters(dpgContext, operation),
+    ...getPathParameters(operation),
     ...getQueryParameters(dpgContext, operation)
   ];
   if (urlTemplateParams.length > 0) {
@@ -1006,7 +1005,6 @@ function getDefaultValue(param: SdkServiceParameter) {
  * Extracts the path parameters
  */
 function getPathParameters(
-  dpgContext: SdkContext,
   operation: ServiceOperation,
   optionalParamName: string = "options"
 ) {
@@ -1017,16 +1015,6 @@ function getPathParameters(
   const pathParams: string[] = [];
   for (const param of operation.operation.parameters) {
     if (param.kind === "path") {
-      // Path parameters cannot be optional
-      if (param.optional) {
-        reportDiagnostic(dpgContext.program, {
-          code: "optional-path-param",
-          target: NoTarget,
-          format: {
-            paramName: (param as SdkPathParameter).name
-          }
-        });
-      }
       pathParams.push(
         `"${param.serializedName}": ${getPathParamExpr(param, getDefaultValue(param) as string, optionalParamName)}`
       );

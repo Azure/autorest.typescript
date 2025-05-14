@@ -1146,7 +1146,7 @@ const generateSwaggers = async (
       generateTest,
       rlcShortcut,
       coreHttpCompatMode,
-      generateSample
+      generateSample,
     } = testSwaggers[name];
 
     let swaggerPath = swaggerOrConfig;
@@ -1195,7 +1195,7 @@ const generateSwaggers = async (
         isTestPackage,
         generateTest,
         coreHttpCompatMode,
-        generateSample
+        generateSample,
       },
       isDebugging
     );

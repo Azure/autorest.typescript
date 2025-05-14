@@ -19,7 +19,7 @@ import {
   L3NetworksDeleteOptionalParams,
   L3NetworksUpdateOptionalParams,
   L3NetworksUpdateResponse,
-} from "../models";
+} from "../models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a L3Networks. */

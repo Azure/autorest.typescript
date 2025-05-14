@@ -37,9 +37,8 @@ export async function runAutorest(
     lenientModelDeduplication,
     flavor,
   } = options;
-  let autorestCommand = `autorest${
-    /^win/.test(process.platform) ? ".cmd" : ""
-  }`;
+  let autorestCommand = `autorest${/^win/.test(process.platform) ? ".cmd" : ""
+    }`;
   let commandArguments: string[] = [`--typescript`];
   let outputPrefix = "";
 
@@ -143,7 +142,7 @@ export async function runAutorest(
     commandArguments.push(`--generate-sample=${generateSample}`);
   }
 
-  if(flavor === undefined) {
+  if (flavor === undefined) {
     commandArguments.push(`--flavor=azure`);
   } else {
     commandArguments.push(`--flavor=${flavor}`);

@@ -21,7 +21,7 @@ export function generateParameters(
   clientDetails: ClientDetails,
   project: Project
 ): void {
-  const { useCoreV2, srcPath, moduleKind } = getAutorestOptions();
+  const { useCoreV2, srcPath, isTestPackage } = getAutorestOptions();
   if (!shouldImportParameters(clientDetails)) {
     logger.verbose(
       "There are no parameters to generate, skipping parameters file generation"
@@ -47,7 +47,7 @@ export function generateParameters(
   if (importedMappers.length) {
     parametersFile.addImportDeclaration({
       namedImports: importedMappers,
-      moduleSpecifier: getImportModuleName("../models/mappers", moduleKind)
+      moduleSpecifier: getImportModuleName("../models/mappers", isTestPackage)
     });
   }
 

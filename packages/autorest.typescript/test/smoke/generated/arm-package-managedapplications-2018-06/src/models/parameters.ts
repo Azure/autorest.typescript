@@ -14,7 +14,7 @@ import {
 import {
   Application as ApplicationMapper,
   ApplicationDefinition as ApplicationDefinitionMapper,
-} from "../models/mappers";
+} from "../models/mappers.js";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",

@@ -7,12 +7,12 @@
  */
 
 import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
-import { setContinuationToken } from "../pagingHelper";
-import { OAuth2PermissionGrantOperations } from "../operationsInterfaces";
+import { setContinuationToken } from "../pagingHelper.js";
+import { OAuth2PermissionGrantOperations } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { GraphRbacManagementClient } from "../graphRbacManagementClient";
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import { GraphRbacManagementClient } from "../graphRbacManagementClient.js";
 import {
   OAuth2PermissionGrant,
   OAuth2PermissionGrantListNextOptionalParams,
@@ -22,7 +22,7 @@ import {
   OAuth2PermissionGrantCreateOptionalParams,
   OAuth2PermissionGrantCreateResponse,
   OAuth2PermissionGrantDeleteOptionalParams,
-} from "../models";
+} from "../models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing OAuth2PermissionGrantOperations operations. */

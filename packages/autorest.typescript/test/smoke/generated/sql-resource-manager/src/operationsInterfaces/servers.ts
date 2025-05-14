@@ -26,7 +26,7 @@ import {
   CheckNameAvailabilityRequest,
   ServersCheckNameAvailabilityOptionalParams,
   ServersCheckNameAvailabilityResponse,
-} from "../models";
+} from "../models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** Interface representing a Servers. */

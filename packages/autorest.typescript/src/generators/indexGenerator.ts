@@ -22,21 +22,21 @@ export function generateIndexFile(
 }
 
 function generateHLCIndex(clientDetails: ClientDetails, file: SourceFile) {
-  const { disablePagingAsyncIterators, moduleKind } = getAutorestOptions();
+  const { disablePagingAsyncIterators, isTestPackage } = getAutorestOptions();
   if (clientDetails.options.hasPaging && !disablePagingAsyncIterators) {
     file.addStatements([`/// <reference lib="esnext.asynciterable" />`]);
     file.addExportDeclaration({
-      moduleSpecifier: getImportModuleName("./pagingHelper", moduleKind),
+      moduleSpecifier: getImportModuleName("./pagingHelper", isTestPackage),
       namedExports: ["getContinuationToken"]
     });
   }
 
   file.addExportDeclarations([
     {
-      moduleSpecifier: getImportModuleName({ cjsName: "./models", esModulesName: "./models/index.js" }, moduleKind),
+      moduleSpecifier: getImportModuleName({ cjsName: "./models", esModulesName: "./models/index.js" }, isTestPackage),
     },
     {
-      moduleSpecifier: getImportModuleName(`./${clientDetails.sourceFileName}`, moduleKind),
+      moduleSpecifier: getImportModuleName(`./${clientDetails.sourceFileName}`, isTestPackage),
       namedExports: [clientDetails.className]
     }
   ]);
@@ -48,7 +48,7 @@ function generateHLCIndex(clientDetails: ClientDetails, file: SourceFile) {
   if (operationGroups.length) {
     file.addExportDeclarations([
       {
-        moduleSpecifier: getImportModuleName({ cjsName: "./operationsInterfaces", esModulesName: "./operationsInterfaces/index.js" }, moduleKind),
+        moduleSpecifier: getImportModuleName({ cjsName: "./operationsInterfaces", esModulesName: "./operationsInterfaces/index.js" }, isTestPackage),
       }
     ]);
   }

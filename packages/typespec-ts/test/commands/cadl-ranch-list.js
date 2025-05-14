@@ -803,10 +803,18 @@ export const azureModularTsps = [
   {
     outputPath: "client/enableModelNamespace",
     inputPath: "client/namespace"
+  },
+  {
+    outputPath: "parameters/path",
+    inputPath: "parameters/path"
   }
 ];
 
 export const modularTsps = [
+  {
+    outputPath: "type/property/additional-properties",
+    inputPath: "type/property/additional-properties"
+  },
   {
     outputPath: "versioning/removed/v2preview",
     inputPath: "versioning/removed"

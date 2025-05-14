@@ -44,7 +44,6 @@ export interface AutorestOptions {
   lenientModelDeduplication?: boolean;
   useLegacyLro?: boolean;
   flavor?: PackageFlavor;
-  moduleKind?: "cjs" | "esm";
 }
 
 let host: AutorestExtensionHost;
