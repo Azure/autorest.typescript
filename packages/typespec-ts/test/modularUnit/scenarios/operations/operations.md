@@ -951,7 +951,7 @@ export interface TestArray {
 
 export function testArrayDeserializer(item: any): TestArray {
   return {
-    prop: __PLACEHOLDER_o19_sdeserializer__(item["prop"])
+    prop: __PLACEHOLDER_o581_sdeserializer__(item["prop"])
   };
 }
 
