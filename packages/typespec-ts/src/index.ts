@@ -140,10 +140,10 @@ export async function $onEmit(context: EmitContext) {
   console.timeEnd("onEmit: load static helpers");
   const extraDependencies = isAzurePackage({ options: rlcOptions })
     ? {
-        ...AzurePollingDependencies,
-        ...AzureCoreDependencies,
-        ...AzureIdentityDependencies
-      }
+      ...AzurePollingDependencies,
+      ...AzureCoreDependencies,
+      ...AzureIdentityDependencies
+    }
     : { ...DefaultCoreDependencies };
   console.time("onEmit: provide binder");
   const binder = provideBinder(outputProject, {
@@ -219,8 +219,8 @@ export async function $onEmit(context: EmitContext) {
   async function clearSrcFolder() {
     await fsextra.emptyDir(
       dpgContext.generationPathDetail?.modularSourcesDir ??
-        dpgContext.generationPathDetail?.rlcSourcesDir ??
-        ""
+      dpgContext.generationPathDetail?.rlcSourcesDir ??
+      ""
     );
   }
 
@@ -379,7 +379,7 @@ export async function $onEmit(context: EmitContext) {
   function buildMetaDataJson() {
     return {
       path: "metadata.json",
-      content: `{"api-version" : "${apiVersion}","emitter-version": "0.38.6"}`
+      content: `{"apiVersion" : "${apiVersion}","emitterVersion": "0.38.6"}`
     };
   }
   async function generateMetadataAndTest(context: SdkContext) {
@@ -427,6 +427,7 @@ export async function $onEmit(context: EmitContext) {
       }
       if (isAzureFlavor) {
         commonBuilders.push(buildEsLintConfig);
+        commonBuilders.push(buildMetaDataJson);
       }
       let modularPackageInfo = {};
       if (option.isModularLibrary) {
@@ -452,7 +453,6 @@ export async function $onEmit(context: EmitContext) {
       commonBuilders.push(buildTsConfig);
       if (option.azureSdkForJs) {
         commonBuilders.push(buildTsSrcConfig);
-        commonBuilders.push(buildMetaDataJson);
         if (option.generateSample) {
           commonBuilders.push(buildTsSampleConfig);
         }
@@ -524,7 +524,7 @@ export async function createContextWithDefaultOptions(
 ): Promise<SdkContext> {
   const flattenUnionAsEnum =
     context.options["experimental-extensible-enums"] === undefined &&
-    context.options["experimentalExtensibleEnums"] === undefined
+      context.options["experimentalExtensibleEnums"] === undefined
       ? isArm(context)
       : (context.options["experimental-extensible-enums"] ??
         context.options["experimentalExtensibleEnums"]);

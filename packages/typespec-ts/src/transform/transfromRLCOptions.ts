@@ -56,7 +56,6 @@ function extractRLCOptions(
   const includeShortcuts = getIncludeShortcuts(emitterOptions);
   const packageDetails = getPackageDetails(program, emitterOptions);
   const flavor = getFlavor(emitterOptions, packageDetails);
-  emitterOptions.flavor = flavor;
   const moduleKind = getModuleKind(emitterOptions);
   const serviceInfo = getServiceInfo(program);
   const azureSdkForJs = getAzureSdkForJs(emitterOptions, flavor);
@@ -360,7 +359,7 @@ function getAzureSdkForJs(
   return flavor !== "azure"
     ? false
     : emitterOptions["azure-sdk-for-js"] === undefined ||
-        emitterOptions["azure-sdk-for-js"] === null
+      emitterOptions["azure-sdk-for-js"] === null
       ? true
       : Boolean(emitterOptions["azure-sdk-for-js"]);
 }
