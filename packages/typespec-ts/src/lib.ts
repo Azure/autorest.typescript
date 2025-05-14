@@ -162,7 +162,8 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       },
       required: [],
       nullable: true
-    }
+    },
+    "should-use-pnpm-dep": { type: "boolean", nullable: true }
   },
   required: []
 };
