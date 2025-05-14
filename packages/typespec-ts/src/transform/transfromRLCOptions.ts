@@ -90,6 +90,8 @@ function extractRLCOptions(
   const compatibilityQueryMultiFormat =
     emitterOptions["compatibility-query-multi-format"];
   const typespecTitleMap = emitterOptions["typespec-title-map"];
+  //TODO should remove this after finish the release tool test
+  const shouldUsePnpmDep = emitterOptions["should-use-pnpm-dep"];
 
   return {
     ...credentialInfo,
@@ -120,7 +122,9 @@ function extractRLCOptions(
     ignorePropertyNameNormalize,
     compatibilityQueryMultiFormat,
     typespecTitleMap,
-    ignoreEnumMemberNameNormalize
+    ignoreEnumMemberNameNormalize,
+    //TODO should remove this after finish the release tool test
+    shouldUsePnpmDep
   };
 }
 
