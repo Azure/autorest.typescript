@@ -91,8 +91,7 @@ function extractRLCOptions(
     emitterOptions["compatibility-query-multi-format"];
   const typespecTitleMap = emitterOptions["typespec-title-map"];
   //TODO should remove this after finish the release tool test
-  const shouldUsePnpmDep =
-    emitterOptions["should-use-pnpm-dep"];
+  const shouldUsePnpmDep = emitterOptions["should-use-pnpm-dep"];
 
   return {
     ...credentialInfo,
@@ -364,7 +363,7 @@ function getAzureSdkForJs(
   return flavor !== "azure"
     ? false
     : emitterOptions["azure-sdk-for-js"] === undefined ||
-      emitterOptions["azure-sdk-for-js"] === null
+        emitterOptions["azure-sdk-for-js"] === null
       ? true
       : Boolean(emitterOptions["azure-sdk-for-js"]);
 }
