@@ -927,44 +927,92 @@ export function test(
 }
 ```
 
-# body fallback client name
-
-## TypeSpec
-
-```tsp
-@service
-namespace TestClient {
-  op bodyTest(@body @clientName("test") prop: string): void;
-}
-```
-
-## Operations
-
-```ts operations
-
-```
-
 # should recursive array type
 
 ## TypeSpec
 
 ```tsp
-@service
-namespace TestClient {
-  model Test {
-    prop?: Test[];
-  }
-  model TestArray {
-    prop: Test[];
-  }
-  op get(): TestArray;
+model Test {
+  prop?: Test[];
+}
+model TestArray {
+  prop: Test[];
+}
+op get(): TestArray;
+```
+
+## Models
+
+```ts models
+/** model interface TestArray */
+export interface TestArray {
+  prop: Test[];
+}
+
+export function testArrayDeserializer(item: any): TestArray {
+  return {
+    prop: __PLACEHOLDER_o19_sdeserializer__(item["prop"])
+  };
+}
+
+/** model interface Test */
+export interface Test {
+  prop?: Test[];
+}
+
+export function testDeserializer(item: any): Test {
+  return {
+    prop: !item["prop"]
+      ? item["prop"]
+      : __PLACEHOLDER_o19_sdeserializer__(item["prop"])
+  };
 }
 ```
 
 ## Operations
 
 ```ts operations
+import { TestingContext as Client } from "./index.js";
+import { TestArray, testArrayDeserializer } from "../models/models.js";
+import { GetOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters
+} from "@azure-rest/core-client";
 
+export function _getSend(
+  context: Client,
+  options: GetOptionalParams = { requestOptions: {} }
+): StreamableMethod {
+  return context.path("/").get({
+    ...operationOptionsToRequestParameters(options),
+    headers: {
+      accept: "application/json",
+      ...options.requestOptions?.headers
+    }
+  });
+}
+
+export async function _getDeserialize(
+  result: PathUncheckedResponse
+): Promise<TestArray> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return testArrayDeserializer(result.body);
+}
+
+export async function get(
+  context: Client,
+  options: GetOptionalParams = { requestOptions: {} }
+): Promise<TestArray> {
+  const result = await _getSend(context, options);
+  return _getDeserialize(result);
+}
 ```
 
 # should recursive dictionary type
@@ -972,21 +1020,97 @@ namespace TestClient {
 ## TypeSpec
 
 ```tsp
-@service
-namespace TestClient {
-
-}
 model Test {
-  prop?: string;
+  prop?: Record<Test>;
 }
 model TestDictionary {
   prop: Record<Test>;
 }
 op get(): TestDictionary;
+
+```
+
+## models
+
+```ts models
+/** model interface TestDictionary */
+export interface TestDictionary {
+  prop: Record<string, Test>;
+}
+
+export function testDictionaryDeserializer(item: any): TestDictionary {
+  return {
+    prop: testRecordDeserializer(item["prop"])
+  };
+}
+
+export function testRecordDeserializer(
+  item: Record<string, any>
+): Record<string, Test> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = !item[key] ? item[key] : testDeserializer(item[key]);
+  });
+  return result;
+}
+
+/** model interface Test */
+export interface Test {
+  prop?: Record<string, Test>;
+}
+
+export function testDeserializer(item: any): Test {
+  return {
+    prop: !item["prop"] ? item["prop"] : testRecordDeserializer(item["prop"])
+  };
+}
 ```
 
 ## Operations
 
 ```ts operations
+import { TestingContext as Client } from "./index.js";
+import {
+  TestDictionary,
+  testDictionaryDeserializer
+} from "../models/models.js";
+import { GetOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters
+} from "@azure-rest/core-client";
 
+export function _getSend(
+  context: Client,
+  options: GetOptionalParams = { requestOptions: {} }
+): StreamableMethod {
+  return context.path("/").get({
+    ...operationOptionsToRequestParameters(options),
+    headers: {
+      accept: "application/json",
+      ...options.requestOptions?.headers
+    }
+  });
+}
+
+export async function _getDeserialize(
+  result: PathUncheckedResponse
+): Promise<TestDictionary> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return testDictionaryDeserializer(result.body);
+}
+
+export async function get(
+  context: Client,
+  options: GetOptionalParams = { requestOptions: {} }
+): Promise<TestDictionary> {
+  const result = await _getSend(context, options);
+  return _getDeserialize(result);
+}
 ```
