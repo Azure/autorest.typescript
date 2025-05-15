@@ -417,10 +417,10 @@ export async function emitModularModelsFromTypeSpec(
   ) {
     if (needOptions) {
       emitTypes(dpgContext, { sourceRoot: "" });
-      const clientMap = getClientHierarchyMap(dpgContext);
+      const clientMap = Array.from(getClientHierarchyMap(dpgContext));
       modelFile = buildApiOptions(
         dpgContext,
-        Array.from(clientMap)[0]!,
+        clientMap[0]!,
         modularEmitterOptions
       );
       binder.resolveAllReferences("/");

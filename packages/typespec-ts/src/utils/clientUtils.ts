@@ -45,8 +45,8 @@ export function getModularClientOptions(
 
 export function getClientHierarchyMap(
   context: SdkContext
-): Map<string[], SdkClientType<SdkServiceOperation>> {
-  const clientMap = new Map<string[], SdkClientType<SdkServiceOperation>>();
+): [string[], SdkClientType<SdkServiceOperation>][] {
+  const clientMap: [string[], SdkClientType<SdkServiceOperation>][] = [];
   const individualClients = context.sdkPackage.clients.filter((client) => {
     return (
       client.clientInitialization.initializedBy &
@@ -61,9 +61,9 @@ export function getClientHierarchyMap(
       client
     ];
   }) as [string[], SdkClientType<SdkServiceOperation>][];
-  while (clients.length > 0) {
-    const [hierarchy, client] = clients.shift()!;
-    clientMap.set(hierarchy, client);
+  for (let i = 0; i < clients.length; i++) {
+    const [hierarchy, client] = clients[i]!;
+    clientMap.push([hierarchy, client]);
     const childIndividualClients = client.children?.filter((client) => {
       return (
         client.clientInitialization.initializedBy &
