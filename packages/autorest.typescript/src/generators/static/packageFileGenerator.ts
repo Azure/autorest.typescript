@@ -100,7 +100,7 @@ function regularAutorestPackage(
       ...(tracingInfo && {
         "@azure/core-tracing": shouldUsePnpmDep && azureSdkForJs ? "workspace:*" : "^1.2.0"
       }),
-      tslib: shouldUsePnpmDep && azureSdkForJs ? "workspace:*" : "^2.8.1"
+      tslib: shouldUsePnpmDep && azureSdkForJs ? "catalog:" : "^2.8.1"
     },
     keywords: ["node", "azure", "typescript", "browser", "isomorphic", "cloud"],
     license: "MIT",
