@@ -1,4 +1,4 @@
-# Azure FaceAdministration REST client library for JavaScript
+# Azure Face REST client library for JavaScript
 
 Face API REST Client
 
@@ -21,13 +21,13 @@ Key links:
 
 ### Install the `@azure-rest/ai-face-rest` package
 
-Install the Azure FaceAdministration REST client REST client library for JavaScript with `npm`:
+Install the Azure Face REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @azure-rest/ai-face-rest
 ```
 
-### Create and authenticate a `FaceAdministrationClient`
+### Create and authenticate a `FaceClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the

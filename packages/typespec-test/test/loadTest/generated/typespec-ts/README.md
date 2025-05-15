@@ -1,4 +1,4 @@
-# Azure LoadTestRun REST client library for JavaScript
+# AzureLoadTesting REST client library for JavaScript
 
 These APIs allow end users to create, view and run load tests using Azure Load
 Test Service.
@@ -22,13 +22,13 @@ Key links:
 
 ### Install the `@azure-rest/load-testing` package
 
-Install the Azure LoadTestRun REST client REST client library for JavaScript with `npm`:
+Install the AzureLoadTesting REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @azure-rest/load-testing
 ```
 
-### Create and authenticate a `LoadTestRunClient`
+### Create and authenticate a `AzureLoadTestingClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the
