@@ -44,6 +44,8 @@ export interface AutorestOptions {
   lenientModelDeduplication?: boolean;
   useLegacyLro?: boolean;
   flavor?: PackageFlavor;
+  //TODO should remove this after finish the release tool test
+  shouldUsePnpmDep?: boolean;
 }
 
 let host: AutorestExtensionHost;
