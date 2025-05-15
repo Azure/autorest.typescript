@@ -424,7 +424,7 @@ function buildDictTypeDeserializer(
 
   const deserializerFunctionName = `${normalizeModelName(context, type, NameType.Operation, false, true)}Deserializer`;
   if (nameOnly) {
-    return resolveReference(refkey(type.valueType, "record", "deserializer"));
+    return resolveReference(refkey(type, "deserializer"));
   }
   const deserializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -482,7 +482,7 @@ function buildArrayTypeDeserializer(
   }
   const deserializerFunctionName = `${normalizeModelName(context, type, NameType.Operation, false, true)}Deserializer`;
   if (nameOnly) {
-    return resolveReference(refkey(type.valueType, "array", "deserializer"));
+    return resolveReference(refkey(type, "deserializer"));
   }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
