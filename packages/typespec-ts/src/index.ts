@@ -404,8 +404,10 @@ export async function $onEmit(context: EmitContext) {
     }
 
     //TODO Need consider multi-client cases
-    for (const subClient of dpgContext.sdkPackage.clients) {
-      rlcClient.libraryName = subClient.name;
+    if (option.isModularLibrary) {
+      for (const subClient of dpgContext.sdkPackage.clients) {
+        rlcClient.libraryName = subClient.name;
+      }
     }
 
     if (shouldGenerateMetadata) {
