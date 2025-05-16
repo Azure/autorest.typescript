@@ -1,6 +1,6 @@
-# StorageClient client library for JavaScript
+# Storage client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for StorageClient client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Storage client.
 
 
 
@@ -20,7 +20,7 @@ See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUP
 
 ### Install the `@msinternal/nestedclient` package
 
-Install the StorageClient client library for JavaScript with `npm`:
+Install the Storage client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/nestedclient
@@ -33,7 +33,7 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ## Key concepts
 
-### StorageClientClient
+### StorageClient
 
-`StorageClientClient` is the primary interface for developers using the StorageClient client library. Explore the methods on this client object to understand the different features of the StorageClient service that you can access.
+`StorageClient` is the primary interface for developers using the Storage client library. Explore the methods on this client object to understand the different features of the Storage service that you can access.
 
