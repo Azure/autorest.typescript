@@ -274,10 +274,10 @@ export declare class RoutesClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: RoutesClientOptionalParams);
+    fixed(options?: FixedOptionalParams): Promise<void>;
     readonly inInterface: InInterfaceOperations;
     readonly queryParameters: QueryParametersOperations;
     readonly pathParameters: PathParametersOperations;
-    fixed(options?: FixedOptionalParams): Promise<void>;
 }
 
 export declare interface RoutesClientOptionalParams extends ClientOptions {

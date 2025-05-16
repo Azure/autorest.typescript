@@ -6,9 +6,9 @@ export declare class AddedClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(endpointParam: string, version: Versions, options?: AddedClientOptionalParams);
-    v2InInterface(body: ModelV2, options?: V2InInterfaceOptionalParams): Promise<ModelV2>;
     v2(body: ModelV2, options?: V2OptionalParams): Promise<ModelV2>;
     v1(body: ModelV1, headerV2: string, options?: V1OptionalParams): Promise<ModelV1>;
+    v2InInterface(body: ModelV2, options?: V2InInterfaceOptionalParams): Promise<ModelV2>;
 }
 
 export declare interface AddedClientOptionalParams extends ClientOptions {
