@@ -13,7 +13,7 @@ import type {
   ModelOutput,
   ModelListOutput,
   LastDetectionResultOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 /** This operation generates a model with an entire series, each point is detected with the same model. With this method, points before and after a certain point are used to determine whether it is an anomaly. The entire detection can give user an overall status of the time series. */
 export interface DetectEntireSeries200Response extends HttpResponse {

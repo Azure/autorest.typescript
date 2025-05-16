@@ -9,7 +9,7 @@ import type {
   ModelOutput,
   ModelListOutput,
   LastDetectionResultOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 /** For asynchronous inference, get multivariate anomaly detection result based on resultId returned by the BatchDetectAnomaly api. */
 export interface GetMultivariateBatchDetectionResult200Response

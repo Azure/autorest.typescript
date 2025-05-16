@@ -53,7 +53,7 @@ import type {
   TriggerSubscriptionOperationStatusOutput,
   TriggerRunsQueryResponseOutput,
   WorkspaceOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 /** Get all KQL scripts */
 export interface KqlScriptsGetAll200Response extends HttpResponse {

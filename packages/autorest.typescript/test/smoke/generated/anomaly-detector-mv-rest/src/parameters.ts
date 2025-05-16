@@ -6,7 +6,7 @@ import type {
   ModelInfo,
   DetectionRequest,
   LastDetectionRequest,
-} from "./models";
+} from "./models.js";
 
 export type GetMultivariateBatchDetectionResultParameters = RequestParameters;
 

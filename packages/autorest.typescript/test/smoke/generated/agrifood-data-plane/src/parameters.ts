@@ -23,7 +23,7 @@ import type {
   TillageData,
   WeatherDataIngestionJob,
   WeatherDataDeleteJob,
-} from "./models";
+} from "./models.js";
 
 export interface ApplicationDataListByFarmerIdQueryParamProperties {
   /** Minimum average amount of material applied during the application (inclusive). */

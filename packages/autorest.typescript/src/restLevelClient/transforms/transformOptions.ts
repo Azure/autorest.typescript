@@ -17,9 +17,11 @@ export function transformOptions(model: CodeModel): RLCOptions {
     dependencyInfo,
     productDocLink,
     azureArm,
-    flavor
+    flavor,
+    isTestPackage
   } = getAutorestOptions();
-  const options: RLCOptions = { moduleKind: "cjs" };
+  // TODO modulekind is a workaround for codegen test environment, should remove this when the esm test framework supported
+  const options: RLCOptions = { moduleKind: isTestPackage ? "cjs" : "esm" };
   options.includeShortcuts = rlcShortcut;
   options.multiClient = multiClient;
   options.batch = batch;

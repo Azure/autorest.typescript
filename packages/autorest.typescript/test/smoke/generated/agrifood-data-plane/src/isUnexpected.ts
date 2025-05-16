@@ -206,7 +206,7 @@ import type {
   WeatherGetDataDeleteJobDetailsDefaultResponse,
   WeatherCreateDataDeleteJob202Response,
   WeatherCreateDataDeleteJobDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "GET /farmers/{farmerId}/application-data": ["200"],

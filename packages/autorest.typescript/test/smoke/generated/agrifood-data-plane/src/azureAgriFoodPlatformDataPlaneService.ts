@@ -3,9 +3,9 @@
 
 import type { ClientOptions } from "@azure-rest/core-client";
 import { getClient } from "@azure-rest/core-client";
-import { logger } from "./logger";
+import { logger } from "./logger.js";
 import type { KeyCredential } from "@azure/core-auth";
-import type { AzureAgriFoodPlatformDataPlaneServiceClient } from "./clientDefinitions";
+import type { AzureAgriFoodPlatformDataPlaneServiceClient } from "./clientDefinitions.js";
 
 /** The optional parameters for the client */
 export interface AzureAgriFoodPlatformDataPlaneServiceClientOptions
