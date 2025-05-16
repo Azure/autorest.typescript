@@ -366,7 +366,7 @@ function getAzureSdkForJs(
   return flavor !== "azure"
     ? false
     : emitterOptions["azure-sdk-for-js"] === undefined ||
-      emitterOptions["azure-sdk-for-js"] === null
+        emitterOptions["azure-sdk-for-js"] === null
       ? true
       : Boolean(emitterOptions["azure-sdk-for-js"]);
 }
