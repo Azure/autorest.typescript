@@ -140,10 +140,10 @@ export async function $onEmit(context: EmitContext) {
   console.timeEnd("onEmit: load static helpers");
   const extraDependencies = isAzurePackage({ options: rlcOptions })
     ? {
-        ...AzurePollingDependencies,
-        ...AzureCoreDependencies,
-        ...AzureIdentityDependencies
-      }
+      ...AzurePollingDependencies,
+      ...AzureCoreDependencies,
+      ...AzureIdentityDependencies
+    }
     : { ...DefaultCoreDependencies };
   console.time("onEmit: provide binder");
   const binder = provideBinder(outputProject, {
@@ -173,6 +173,10 @@ export async function $onEmit(context: EmitContext) {
   }
 
   // 5. Generate metadata and test files
+  let apiVersion: string | undefined;
+  for (const version of dpgContext.__clientToApiVersionClientDefaultValue.values()) {
+    apiVersion = version;
+  }
   await generateMetadataAndTest(dpgContext);
 
   async function enrichDpgContext() {
@@ -215,8 +219,8 @@ export async function $onEmit(context: EmitContext) {
   async function clearSrcFolder() {
     await fsextra.emptyDir(
       dpgContext.generationPathDetail?.modularSourcesDir ??
-        dpgContext.generationPathDetail?.rlcSourcesDir ??
-        ""
+      dpgContext.generationPathDetail?.rlcSourcesDir ??
+      ""
     );
   }
 
@@ -372,7 +376,12 @@ export async function $onEmit(context: EmitContext) {
     console.timeEnd("onEmit: generate files");
     console.timeEnd("onEmit: generate modular sources");
   }
-
+  function buildMetaDataJson() {
+    return {
+      path: "metadata.json",
+      content: `{"apiVersion" : "${apiVersion}","emitterVersion": "0.38.6"}`
+    };
+  }
   async function generateMetadataAndTest(context: SdkContext) {
     const project = useContext("outputProject");
     if (rlcCodeModels.length === 0 || !rlcCodeModels[0]) {
@@ -426,6 +435,7 @@ export async function $onEmit(context: EmitContext) {
       }
       if (isAzureFlavor) {
         commonBuilders.push(buildEsLintConfig);
+        commonBuilders.push(buildMetaDataJson);
       }
       let modularPackageInfo = {};
       if (option.isModularLibrary) {
@@ -522,7 +532,7 @@ export async function createContextWithDefaultOptions(
 ): Promise<SdkContext> {
   const flattenUnionAsEnum =
     context.options["experimental-extensible-enums"] === undefined &&
-    context.options["experimentalExtensibleEnums"] === undefined
+      context.options["experimentalExtensibleEnums"] === undefined
       ? isArm(context)
       : (context.options["experimental-extensible-enums"] ??
         context.options["experimentalExtensibleEnums"]);
