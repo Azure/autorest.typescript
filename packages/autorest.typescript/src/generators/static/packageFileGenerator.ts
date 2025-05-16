@@ -164,14 +164,10 @@ function regularAutorestPackage(
     },
     autoPublish: true,
     browser: "./dist/browser/index.js",
-    "react-native": "./dist/react-native/index.js"
-  };
-  if (azureOutputDirectory) {
-    packageInfo.homepage = `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}`;
-  }
-  if (azureSdkForJs) {
-    packageInfo["tshy"] = {
-      project: "./tsconfig.src.json",
+    "react-native": "./dist/react-native/index.js",
+    tshy: {
+      // only JS sdk repo has tsconfig.src.json
+      project: azureSdkForJs ? "./tsconfig.src.json" : undefined,
       exports: {
         "./package.json": "./package.json",
         ".": "./src/index.ts",
@@ -179,7 +175,12 @@ function regularAutorestPackage(
       dialects: ["esm", "commonjs"],
       esmDialects: ["browser", "react-native"],
       selfLink: false,
-    };
+    }
+  };
+  if (azureOutputDirectory) {
+    packageInfo.homepage = `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}`;
+  }
+  if (azureSdkForJs) {
     packageInfo.devDependencies["@azure/dev-tool"] = shouldUsePnpmDep && azureSdkForJs ? "workspace:*" : "^1.0.0";
     delete packageInfo.devDependencies["@microsoft/api-extractor"];
     delete packageInfo.devDependencies["rimraf"];
