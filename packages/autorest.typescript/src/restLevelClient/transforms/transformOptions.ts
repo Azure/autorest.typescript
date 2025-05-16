@@ -17,7 +17,8 @@ export function transformOptions(model: CodeModel): RLCOptions {
     dependencyInfo,
     productDocLink,
     azureArm,
-    flavor
+    flavor,
+    shouldUsePnpmDep
   } = getAutorestOptions();
   const options: RLCOptions = { moduleKind: "cjs" };
   options.includeShortcuts = rlcShortcut;
@@ -45,5 +46,6 @@ export function transformOptions(model: CodeModel): RLCOptions {
   options.sourceFrom = "Swagger";
   // Always enable operation group prefix for swagger
   options.enableOperationGroup = true;
+  options.shouldUsePnpmDep = shouldUsePnpmDep;
   return options;
 }
