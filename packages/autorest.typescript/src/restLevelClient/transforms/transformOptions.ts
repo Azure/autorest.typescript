@@ -20,6 +20,7 @@ export function transformOptions(model: CodeModel): RLCOptions {
     flavor,
     isTestPackage
   } = getAutorestOptions();
+  // TODO modulekind is a workaround for codegen test environment, should remove this when the esm test framework supported
   const options: RLCOptions = { moduleKind: isTestPackage ? "cjs" : "esm" };
   options.includeShortcuts = rlcShortcut;
   options.multiClient = multiClient;
