@@ -366,7 +366,7 @@ function getAzureSdkForJs(
   return flavor !== "azure"
     ? false
     : emitterOptions["azure-sdk-for-js"] === undefined ||
-        emitterOptions["azure-sdk-for-js"] === null
+      emitterOptions["azure-sdk-for-js"] === null
       ? true
       : Boolean(emitterOptions["azure-sdk-for-js"]);
 }
@@ -467,6 +467,10 @@ function getAzureOutputDirectory(emitterOutputDir: string): string | undefined {
 }
 
 export function getSubscriptionId(dpgContext: SdkContext) {
+  //TODO Need consider multi-client cases, skip multi-client cases check for now
+  if (dpgContext.rlcOptions?.multiClient) {
+    return;
+  }
   for (const client of dpgContext.sdkPackage.clients) {
     if (
       getClientParameters(client, dpgContext)
