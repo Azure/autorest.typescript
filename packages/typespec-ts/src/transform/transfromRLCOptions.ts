@@ -23,6 +23,7 @@ import { detectModelConflicts } from "../utils/namespaceUtils.js";
 import { getOperationName } from "../utils/operationUtil.js";
 import { getSupportedHttpAuth } from "../utils/credentialUtils.js";
 import _ from "lodash";
+import { getClientParameters } from "../modular/helpers/clientHelpers.js";
 
 export function transformRLCOptions(
   emitterOptions: EmitterOptions,
@@ -90,6 +91,9 @@ function extractRLCOptions(
   const compatibilityQueryMultiFormat =
     emitterOptions["compatibility-query-multi-format"];
   const typespecTitleMap = emitterOptions["typespec-title-map"];
+  const hasSubscriptionId = getSubscriptionId(dpgContext);
+  //TODO should remove this after finish the release tool test
+  const shouldUsePnpmDep = emitterOptions["should-use-pnpm-dep"];
 
   return {
     ...credentialInfo,
@@ -120,7 +124,10 @@ function extractRLCOptions(
     ignorePropertyNameNormalize,
     compatibilityQueryMultiFormat,
     typespecTitleMap,
-    ignoreEnumMemberNameNormalize
+    ignoreEnumMemberNameNormalize,
+    hasSubscriptionId,
+    //TODO should remove this after finish the release tool test
+    shouldUsePnpmDep
   };
 }
 
@@ -457,4 +464,21 @@ function getAzureOutputDirectory(emitterOutputDir: string): string | undefined {
   return sdkReletivePath?.substring(0, 3) === "sdk"
     ? sdkReletivePath
     : undefined;
+}
+
+export function getSubscriptionId(dpgContext: SdkContext) {
+  //TODO Need consider multi-client cases, skip multi-client cases check for now
+  if (dpgContext.rlcOptions?.multiClient) {
+    return;
+  }
+  for (const client of dpgContext.sdkPackage.clients) {
+    if (
+      getClientParameters(client, dpgContext)
+        .map((item) => item.name)
+        .includes("subscriptionId")
+    ) {
+      return true;
+    }
+  }
+  return false;
 }

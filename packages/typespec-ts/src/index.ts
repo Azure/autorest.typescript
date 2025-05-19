@@ -418,6 +418,14 @@ export async function $onEmit(context: EmitContext) {
         option.generateTest = true;
       }
     }
+
+    //TODO Need consider multi-client cases
+    if (option.isModularLibrary) {
+      for (const subClient of dpgContext.sdkPackage.clients) {
+        rlcClient.libraryName = subClient.name;
+      }
+    }
+
     if (shouldGenerateMetadata) {
       const commonBuilders = [
         buildRollupConfig,

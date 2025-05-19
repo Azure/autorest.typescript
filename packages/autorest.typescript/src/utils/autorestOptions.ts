@@ -45,6 +45,8 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const azureSdkForJs = await getAzureSdkForJs(host);
   const dependencyInfo = await getDependencyInfo(host);
   const flavor = await getFlavor(host);
+  //TODO should remove this after finish the release tool test
+  const shouldUsePnpmDep = await shouldUsePnpm(host)
 
   return {
     azureArm,
@@ -80,6 +82,8 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     dependencyInfo,
     useLegacyLro,
     flavor,
+    //TODO should remove this after finish the release tool test
+    shouldUsePnpmDep
   };
 }
 
@@ -398,4 +402,10 @@ async function getDependencyInfo(
   throw new Error(
     "Invalid dependency-info. Make sure that link and description are defined"
   );
+}
+//TODO should remove this after finish the release tool test
+async function shouldUsePnpm(host: AutorestExtensionHost): Promise<boolean> {
+  const shouldUsePnpmDep = (await host.getValue("should-use-pnpm-dep")) === true;
+
+  return shouldUsePnpmDep;
 }
