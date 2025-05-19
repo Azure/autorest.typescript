@@ -108,7 +108,7 @@ describe("#normalizeName", () => {
       expect(normalizeName("continue", NameType.Method, true)).to.equal(
         "$continue"
       );
-      expect(normalizeName("break", NameType.Method, false)).to.equal(
+      expect(normalizeName("break", NameType.Method, true)).to.equal(
         "$break"
       );
     });
