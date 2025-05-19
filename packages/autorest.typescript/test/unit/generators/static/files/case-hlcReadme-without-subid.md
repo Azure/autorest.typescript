@@ -64,7 +64,7 @@ import { KustoManagementClient } from "@azure/arm-kusto";
 
 const credential = new InteractiveBrowserCredential({
   tenantId: "<YOUR_TENANT_ID>",
-  clientId: "<YOUR_CLIENT_ID>"
+  clientId: "<YOUR_CLIENT_ID>",
  });
 const client = new KustoManagementClient(credential);
 ```

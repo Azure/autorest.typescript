@@ -22,7 +22,7 @@ import type {
   BatchDetectAnomalyDefaultResponse,
   LastDetectAnomaly200Response,
   LastDetectAnomalyDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "POST /timeseries/entire/detect": ["200"],
