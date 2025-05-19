@@ -22,7 +22,7 @@ export {
   Insight,
   KnownImportanceLevel,
   ImportanceLevel,
-  Error$,
+  ErrorModel,
   ExtensionResource,
   Resource,
   SystemData,

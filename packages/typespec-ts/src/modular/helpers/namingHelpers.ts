@@ -26,27 +26,11 @@ export interface GuardedName {
   fixme?: string[];
 }
 
-export function getOperationNameUsedAsMethodName(methodName: string): GuardedName {
-  if (isReservedName(methodName, NameType.Method)) {
-    return {
-      name: `$${methodName}`,
-      fixme: [
-        `${methodName} is a reserved word that cannot be used as a method name. 
-        Please add @methodName("methodName") or @methodName("<JS-Specific-Name>", "javascript") 
-        to the method to override the generated name.`
-      ]
-    };
-  }
-
-  return {
-    name: normalizeName(methodName, NameType.Method, true)
-  };
-}
-
 export function getOperationName(operation: ServiceOperation): GuardedName {
-  if (isReservedName(operation.name, NameType.Operation)) {
+  const norm = normalizeName(operation.name, NameType.Method, true);
+  if (isReservedName(operation.name, NameType.Method)) {
     return {
-      name: `$${operation.name}`,
+      name: norm,
       fixme: [
         `${operation.name} is a reserved word that cannot be used as an operation name. 
         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript") 
@@ -54,7 +38,9 @@ export function getOperationName(operation: ServiceOperation): GuardedName {
       ]
     };
   }
-  return getOperationNameUsedAsMethodName(normalizeName(operation.name, NameType.Operation, true));
+  return {
+    name: norm
+  };
 }
 
 export function isReservedName(name: string, nameType: NameType): boolean {

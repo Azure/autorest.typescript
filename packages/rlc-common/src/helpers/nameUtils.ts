@@ -112,31 +112,31 @@ export function guardReservedNames(
   nameType: NameType,
   customReservedNames: ReservedName[] = []
 ): string {
-  const suffix = getSuffix(nameType);
+  const [prefix, suffix] = getAffix(nameType);
   return [...ReservedModelNames, ...customReservedNames]
     .filter((r) => r.reservedFor.includes(nameType))
     .find((r) => r.name === name.toLowerCase())
-    ? `${name}${suffix}`
+    ? `${prefix}${name}${suffix}`
     : name;
 }
 
-function getSuffix(nameType?: NameType) {
+function getAffix(nameType?: NameType): [string, string] {
   switch (nameType) {
     case NameType.File:
     case NameType.Operation:
-      return "";
+      return ["", ""];
     case NameType.Property:
-      return "Property";
+      return ["", "Property"];
     case NameType.OperationGroup:
-      return "Operations";
+      return ["", "Operations"];
     case NameType.Parameter:
-      return "Param";
+      return ["", "Param"];
+    case NameType.Method:
+      return ["$", ""];
     case NameType.Class:
     case NameType.Interface:
-    case NameType.Method:
-      return "$";
     default:
-      return "Model";
+      return ["", "Model"];
   }
 }
 

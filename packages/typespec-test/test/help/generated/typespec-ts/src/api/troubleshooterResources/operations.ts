@@ -192,9 +192,9 @@ export async function _$continueDeserialize(
 
 /** Uses ‘stepId’ and ‘responses’ as the trigger to continue the troubleshooting steps for the respective troubleshooter resource name. <br/>Continue API is used to provide inputs that are required for the specific troubleshooter to progress into the next step in the process. This API is used after the Troubleshooter has been created using the Create API. */
 /**
- *  @fixme continue is a reserved word that cannot be used as a method name.
- *         Please add @methodName("methodName") or @methodName("<JS-Specific-Name>", "javascript")
- *         to the method to override the generated name.
+ *  @fixme continue is a reserved word that cannot be used as an operation name.
+ *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+ *         to the operation to override the generated name.
  */
 export async function $continue(
   context: Client,
