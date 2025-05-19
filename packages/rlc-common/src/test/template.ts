@@ -218,8 +218,12 @@ describe("snippets", () => {
 {{#if isModularLibrary}}
   it("ReadmeSampleCreateClient_Node", async () => {
     {{#if azureArm}}
+    {{#if hasSubscriptionId}}
     const subscriptionId = "00000000-0000-0000-0000-000000000000";
     const client = new {{ clientClassName }}(new DefaultAzureCredential(), subscriptionId);
+    {{else}}
+    const client = new {{ clientClassName }}(new DefaultAzureCredential());
+    {{/if}}
     {{else}}
     const client = new {{ clientClassName }}("<endpoint>", new DefaultAzureCredential());
     {{/if}}
@@ -227,12 +231,16 @@ describe("snippets", () => {
 
   it("ReadmeSampleCreateClient_Browser", async () => {
     {{#if azureArm}}
-    const subscriptionId = "00000000-0000-0000-0000-000000000000";
     const credential = new InteractiveBrowserCredential({
       tenantId: "<YOUR_TENANT_ID>",
       clientId: "<YOUR_CLIENT_ID>",
     });
+    {{#if hasSubscriptionId}}
+    const subscriptionId = "00000000-0000-0000-0000-000000000000";
     const client = new {{ clientClassName }}(credential, subscriptionId);
+    {{else}}
+    const client = new {{ clientClassName }}(credential);
+    {{/if}}
     {{else}}
     const credential = new InteractiveBrowserCredential({
       tenantId: "<YOUR_TENANT_ID>",

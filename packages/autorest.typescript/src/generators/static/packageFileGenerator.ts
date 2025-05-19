@@ -50,6 +50,7 @@ function regularAutorestPackage(
   clientDetails: ClientDetails,
   packageDetails: PackageDetails
 ) {
+  //TODO should remove all the shouldUsePnpmDep codes after finish the release tool test
   const {
     srcPath,
     useCoreV2,
@@ -61,7 +62,8 @@ function regularAutorestPackage(
     generateSample,
     coreHttpCompatMode,
     azureSdkForJs,
-    isTestPackage
+    isTestPackage,
+    shouldUsePnpmDep
   } = getAutorestOptions();
   const { model } = getSession();
   const { addCredentials } = getSecurityInfoFromModel(model.security);
@@ -87,18 +89,18 @@ function regularAutorestPackage(
       node: ">=18.0.0"
     },
     dependencies: {
-      ...(hasLro && { "@azure/core-lro": "^2.5.4" }),
-      ...(hasLro && { "@azure/abort-controller": "^2.1.2" }),
-      ...(hasAsyncIterators && { "@azure/core-paging": "^1.6.2" }),
-      ...(useCoreV2 && { "@azure/core-client": "^1.9.2" }),
-      ...(useCoreV2 && addCredentials && { "@azure/core-auth": "^1.9.0" }),
+      ...(hasLro && { "@azure/core-lro": shouldUsePnpmDep && azureSdkForJs ? "catalog:corelrov2" : "^2.5.4" }),
+      ...(hasLro && { "@azure/abort-controller": shouldUsePnpmDep && azureSdkForJs ? "workspace:*" : "^2.1.2" }),
+      ...(hasAsyncIterators && { "@azure/core-paging": shouldUsePnpmDep && azureSdkForJs ? "workspace:*" : "^1.6.2" }),
+      ...(useCoreV2 && { "@azure/core-client": shouldUsePnpmDep && azureSdkForJs ? "workspace:*" : "^1.9.2" }),
+      ...(useCoreV2 && addCredentials && { "@azure/core-auth": shouldUsePnpmDep && azureSdkForJs ? "workspace:*" : "^1.9.0" }),
       ...(useCoreV2 && {
-        "@azure/core-rest-pipeline": "^1.19.0"
+        "@azure/core-rest-pipeline": shouldUsePnpmDep && azureSdkForJs ? "workspace:*" : "^1.19.0"
       }),
       ...(tracingInfo && {
-        "@azure/core-tracing": "^1.2.0"
+        "@azure/core-tracing": shouldUsePnpmDep && azureSdkForJs ? "workspace:*" : "^1.2.0"
       }),
-      tslib: "^2.8.1"
+      tslib: shouldUsePnpmDep && azureSdkForJs ? "catalog:" : "^2.8.1"
     },
     keywords: ["node", "azure", "typescript", "browser", "isomorphic", "cloud"],
     license: "MIT",
@@ -109,9 +111,9 @@ function regularAutorestPackage(
     devDependencies: {
       "@microsoft/api-extractor": "^7.40.3",
       mkdirp: "^3.0.1",
-      typescript: "~5.8.2",
+      typescript: shouldUsePnpmDep && azureSdkForJs ? "catalog:" : "~5.8.2",
       rimraf: "^5.0.0",
-      dotenv: "^16.0.0"
+      dotenv: shouldUsePnpmDep && azureSdkForJs ? "catalog:testing" : "^16.0.0"
     },
     repository: "github:Azure/azure-sdk-for-js",
     bugs: {
@@ -178,7 +180,7 @@ function regularAutorestPackage(
       esmDialects: ["browser", "react-native"],
       selfLink: false,
     };
-    packageInfo.devDependencies["@azure/dev-tool"] = "^1.0.0";
+    packageInfo.devDependencies["@azure/dev-tool"] = shouldUsePnpmDep && azureSdkForJs ? "workspace:*" : "^1.0.0";
     delete packageInfo.devDependencies["@microsoft/api-extractor"];
     delete packageInfo.devDependencies["rimraf"];
     delete packageInfo.devDependencies["mkdirp"];
@@ -187,7 +189,7 @@ function regularAutorestPackage(
     packageInfo.scripts["clean"] = "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log";
     packageInfo.scripts["extract-api"] = "dev-tool run extract-api";
     packageInfo.scripts["update-snippets"] = "dev-tool run update-snippets";
-    packageInfo.scripts["minify"] = `dev-tool run vendored uglifyjs -c -m --comments --source-map "content='./dist/index.js.map'" -o ./dist/index.min.js ./dist/index.js`;
+    delete packageInfo.scripts["minify"];
     packageInfo.scripts["check-format"] = "dev-tool run vendored prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.{ts,cts,mts}\" \"test/**/*.{ts,cts,mts}\" \"*.{js,cjs,mjs,json}\" ";
     packageInfo.scripts["format"] = "dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.{ts,cts,mts}\" \"test/**/*.{ts,cts,mts}\" \"*.{js,cjs,mjs,json}\" ";
   } else {
@@ -202,19 +204,19 @@ function regularAutorestPackage(
   }
 
   if (generateTest) {
-    packageInfo.devDependencies["@azure/identity"] = "^4.6.0";
-    packageInfo.devDependencies["@azure/logger"] = "^1.1.4";
+    packageInfo.devDependencies["@azure/identity"] = shouldUsePnpmDep && azureSdkForJs ? "catalog:internal" : "^4.6.0";
+    packageInfo.devDependencies["@azure/logger"] = shouldUsePnpmDep && azureSdkForJs ? "workspace:*" : "^1.1.4";
     // TODO need unify the version when 4.1.0 released
-    packageInfo.devDependencies["@azure-tools/test-recorder"] = azureSdkForJs ? "^4.1.0" : "^4.0.0";
-    packageInfo.devDependencies["@azure-tools/test-credential"] = "^2.0.0";
+    packageInfo.devDependencies["@azure-tools/test-recorder"] = azureSdkForJs ? shouldUsePnpmDep ? "workspace:*" : "^4.1.0" : "^4.0.0";
+    packageInfo.devDependencies["@azure-tools/test-credential"] = shouldUsePnpmDep && azureSdkForJs ? "workspace:*" : "^2.0.0";
     if (azureSdkForJs) {
-      packageInfo.devDependencies["@azure-tools/test-utils-vitest"] = "^1.0.0";
+      packageInfo.devDependencies["@azure-tools/test-utils-vitest"] = shouldUsePnpmDep && azureSdkForJs ? "workspace:*" : "^1.0.0";
     }
-    packageInfo.devDependencies["@types/node"] = "^18.0.0";
-    packageInfo.devDependencies["@vitest/browser"] = "^3.0.9";
-    packageInfo.devDependencies["@vitest/coverage-istanbul"] = "^3.0.9";
-    packageInfo.devDependencies["playwright"] = "^1.50.1";
-    packageInfo.devDependencies["vitest"] = "^3.0.9";
+    packageInfo.devDependencies["@types/node"] = shouldUsePnpmDep && azureSdkForJs ? "catalog:" : "^18.0.0";
+    packageInfo.devDependencies["@vitest/browser"] = shouldUsePnpmDep && azureSdkForJs ? "catalog:testing" : "^3.0.9";
+    packageInfo.devDependencies["@vitest/coverage-istanbul"] = shouldUsePnpmDep && azureSdkForJs ? "catalog:testing" : "^3.0.9";
+    packageInfo.devDependencies["playwright"] = shouldUsePnpmDep && azureSdkForJs ? "catalog:testing" : "^1.50.1";
+    packageInfo.devDependencies["vitest"] = shouldUsePnpmDep && azureSdkForJs ? "catalog:testing" : "^3.0.9";
 
     packageInfo.scripts["test"] = "npm run integration-test";
     packageInfo.scripts["unit-test"] =
