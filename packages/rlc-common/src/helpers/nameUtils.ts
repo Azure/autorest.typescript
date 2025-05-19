@@ -56,7 +56,10 @@ export const ReservedModelNames: ReservedName[] = [
   { name: "finally", reservedFor: [NameType.Parameter, NameType.Method] },
   { name: "for", reservedFor: [NameType.Parameter, NameType.Method] },
   { name: "from", reservedFor: [NameType.Parameter] },
-  { name: "function", reservedFor: [NameType.Parameter, ...Newable, NameType.Method] },
+  {
+    name: "function",
+    reservedFor: [NameType.Parameter, ...Newable, NameType.Method]
+  },
   { name: "get", reservedFor: [NameType.Parameter] },
   { name: "if", reservedFor: [NameType.Parameter] },
   { name: "implements", reservedFor: [NameType.Parameter] },
