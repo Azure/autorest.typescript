@@ -45,12 +45,18 @@ export const ReservedModelNames: ReservedName[] = [
   { name: "debugger", reservedFor: [NameType.Parameter, NameType.Method] },
   { name: "declare", reservedFor: [NameType.Parameter] },
   { name: "default", reservedFor: [NameType.Parameter, NameType.Method] },
-  { name: "delete", reservedFor: [NameType.Parameter, NameType.Operation] },
+  {
+    name: "delete",
+    reservedFor: [NameType.Parameter, NameType.Operation, NameType.Method]
+  },
   { name: "do", reservedFor: [NameType.Parameter, NameType.Method] },
   { name: "else", reservedFor: [NameType.Parameter] },
   { name: "enum", reservedFor: [NameType.Parameter] },
   { name: "error", reservedFor: [NameType.Parameter, ...Newable] },
-  { name: "export", reservedFor: [NameType.Parameter, NameType.Operation] },
+  {
+    name: "export",
+    reservedFor: [NameType.Parameter, NameType.Operation, NameType.Method]
+  },
   { name: "extends", reservedFor: [NameType.Parameter] },
   { name: "false", reservedFor: [NameType.Parameter] },
   { name: "finally", reservedFor: [NameType.Parameter, NameType.Method] },
@@ -76,7 +82,10 @@ export const ReservedModelNames: ReservedName[] = [
   { name: "package", reservedFor: [NameType.Parameter] },
   { name: "private", reservedFor: [NameType.Parameter] },
   { name: "protected", reservedFor: [NameType.Parameter] },
-  { name: "public", reservedFor: [NameType.Parameter, NameType.Operation] },
+  {
+    name: "public",
+    reservedFor: [NameType.Parameter, NameType.Operation, NameType.Method]
+  },
   { name: "requestoptions", reservedFor: [NameType.Parameter] },
   { name: "require", reservedFor: [NameType.Parameter] },
   { name: "return", reservedFor: [NameType.Parameter] },
