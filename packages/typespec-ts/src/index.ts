@@ -140,10 +140,10 @@ export async function $onEmit(context: EmitContext) {
   console.timeEnd("onEmit: load static helpers");
   const extraDependencies = isAzurePackage({ options: rlcOptions })
     ? {
-      ...AzurePollingDependencies,
-      ...AzureCoreDependencies,
-      ...AzureIdentityDependencies
-    }
+        ...AzurePollingDependencies,
+        ...AzureCoreDependencies,
+        ...AzureIdentityDependencies
+      }
     : { ...DefaultCoreDependencies };
   console.time("onEmit: provide binder");
   const binder = provideBinder(outputProject, {
@@ -177,6 +177,13 @@ export async function $onEmit(context: EmitContext) {
   for (const version of dpgContext.__clientToApiVersionClientDefaultValue.values()) {
     apiVersion = version;
   }
+  function getTypespecTsVersion(context: EmitContext): string | undefined {
+    const emitterMetadata = context.program.emitters.find(
+      (emitter) => emitter.metadata.name === "@azure-tools/typespec-ts"
+    );
+    return emitterMetadata?.metadata.version;
+  }
+  const emitterVersion = getTypespecTsVersion(context);
   await generateMetadataAndTest(dpgContext);
 
   async function enrichDpgContext() {
@@ -219,8 +226,8 @@ export async function $onEmit(context: EmitContext) {
   async function clearSrcFolder() {
     await fsextra.emptyDir(
       dpgContext.generationPathDetail?.modularSourcesDir ??
-      dpgContext.generationPathDetail?.rlcSourcesDir ??
-      ""
+        dpgContext.generationPathDetail?.rlcSourcesDir ??
+        ""
     );
   }
 
@@ -379,7 +386,7 @@ export async function $onEmit(context: EmitContext) {
   function buildMetaDataJson() {
     return {
       path: "metadata.json",
-      content: `{"apiVersion" : "${apiVersion}","emitterVersion": "0.38.6"}`
+      content: `{"apiVersion" : "${apiVersion}","emitterVersion": "${emitterVersion}"}`
     };
   }
   async function generateMetadataAndTest(context: SdkContext) {
@@ -524,7 +531,7 @@ export async function createContextWithDefaultOptions(
 ): Promise<SdkContext> {
   const flattenUnionAsEnum =
     context.options["experimental-extensible-enums"] === undefined &&
-      context.options["experimentalExtensibleEnums"] === undefined
+    context.options["experimentalExtensibleEnums"] === undefined
       ? isArm(context)
       : (context.options["experimental-extensible-enums"] ??
         context.options["experimentalExtensibleEnums"]);
