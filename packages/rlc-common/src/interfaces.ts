@@ -253,6 +253,9 @@ export interface RLCOptions {
   ignoreEnumMemberNameNormalize?: boolean;
   compatibilityQueryMultiFormat?: boolean;
   typespecTitleMap?: Record<string, string>;
+  hasSubscriptionId?: boolean;
+  //TODO should remove this after finish the release tool test
+  shouldUsePnpmDep?: boolean;
 }
 
 export interface ServiceInfo {
