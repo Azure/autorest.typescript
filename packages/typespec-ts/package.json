@@ -110,7 +110,11 @@
     "@microsoft/api-extractor": "^7.47.5",
     "tsx": "^4.16.5",
     "@types/js-yaml": "^4.0.9",
-    "js-yaml": "^4.1.0"
+    "js-yaml": "^4.1.0",
+    "@typespec/events": "^0.70.0",
+    "@typespec/sse": "^0.70.0",
+    "@typespec/streams": "^0.70.0",
+    "@typespec/xml": "^0.70.0"
   },
   "peerDependencies": {
     "@azure-tools/typespec-azure-core": "0.56.0",
@@ -119,7 +123,11 @@
     "@typespec/http": "1.0.0",
     "@typespec/rest": "0.70.0",
     "@typespec/versioning": "0.70.0",
-    "@typespec/xml": "0.70.0"
+    "@typespec/xml": "0.70.0",
+    "@typespec/openapi": "1.0.0",
+    "@typespec/events": "^0.70.0",
+    "@typespec/sse": "^0.70.0",
+    "@typespec/streams": "^0.70.0"
   },
   "dependencies": {
     "@azure-tools/rlc-common": "workspace:^0.39.0",
