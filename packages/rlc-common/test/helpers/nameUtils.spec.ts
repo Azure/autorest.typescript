@@ -111,6 +111,24 @@ describe("#normalizeName", () => {
       expect(normalizeName("break", NameType.Method, true)).to.equal(
         "$break"
       );
+      expect(normalizeName("case", NameType.Method, true)).to.equal(
+        "$case"
+      );
+      expect(normalizeName("break", NameType.Method, true)).to.equal(
+        "$break"
+      );
+      expect(normalizeName("class", NameType.Method, true)).to.equal(
+        "$class"
+      );
+      expect(normalizeName("default", NameType.Method, true)).to.equal(
+        "$default"
+      );
+      expect(normalizeName("do", NameType.Method, true)).to.equal(
+        "$do"
+      );
+      expect(normalizeName("function", NameType.Method, true)).to.equal(
+        "$function"
+      );
     });
   });
 
