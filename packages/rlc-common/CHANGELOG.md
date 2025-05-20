@@ -1,3 +1,15 @@
+## 0.40.0 (2025-05-20)
+
+- [Feature] Remove camel case style option. Please refer to [#3167](https://github.com/Azure/autorest.typescript/pull/3167)
+- [Feature] Update dependency generation to adopt pnpm workspace catalog versions. Please refer to [#3172](https://github.com/Azure/autorest.typescript/pull/3172)
+- [Feature] Support generation config for new option. Please refer to [#3197](https://github.com/Azure/autorest.typescript/pull/3197)
+- [Feature] Update package version. Please refer to [#3199](https://github.com/Azure/autorest.typescript/pull/3199)
+- [Feature] Migration for rlc from swagger. Please refer to [#3182](https://github.com/Azure/autorest.typescript/pull/3182)
+- [Bugfix] Update tcgc to v0.56.1 and fix nightly ci. Please refer to [#3190](https://github.com/Azure/autorest.typescript/pull/3190)
+- [Bugfix] Fix readme generation issue when setting @@clientname. Please refer to [#3198](https://github.com/Azure/autorest.typescript/pull/3198)
+- [Bugfix] Fix subscriptionId issues in readme.md and emitter samples. Please refer to [#3161](https://github.com/Azure/autorest.typescript/pull/3161)
+- [Bugfix] Fix missing tshy configs.md and emitter samples. Please refer to [#3193](https://github.com/Azure/autorest.typescript/pull/3193)
+
 ## 0.39.0 (2025-04-28)
 
 - [Feature] Support optional path parameter for Modular. Please refer to [#3152](https://github.com/Azure/autorest.typescript/pull/3152)
