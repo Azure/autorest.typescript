@@ -26,11 +26,11 @@ import {
   SAPWidgetsListWidgetsPagesOptionalParams,
   SAPWidgetsSAPListWidgetsOptionalParams,
 } from "./options.js";
-import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../static-helpers/pagingHelpers.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import { buildCsvCollection } from "../../static-helpers/serialization/build-csv-collection.js";
 import {
@@ -483,7 +483,7 @@ export function _sapListWidgetsSend(
         ? { "optional-header": options?.optionalHeader }
         : {}),
       ...(options?.nullableOptionalHeader !== undefined &&
-      options?.nullableOptionalHeader !== null
+        options?.nullableOptionalHeader !== null
         ? { "nullable-optional-header": options?.nullableOptionalHeader }
         : {}),
       "bytes-header": uint8ArrayToString(bytesHeader, "base64"),
@@ -496,18 +496,18 @@ export function _sapListWidgetsSend(
       "utc-date-header": utcDateHeader.toUTCString(),
       ...(options?.optionalDateHeader !== undefined
         ? {
-            "optional-date-header": !options?.optionalDateHeader
-              ? options?.optionalDateHeader
-              : options?.optionalDateHeader.toUTCString(),
-          }
+          "optional-date-header": !options?.optionalDateHeader
+            ? options?.optionalDateHeader
+            : options?.optionalDateHeader.toUTCString(),
+        }
         : {}),
       ...(options?.nullableDateHeader !== undefined &&
-      options?.nullableDateHeader !== null
+        options?.nullableDateHeader !== null
         ? {
-            "nullable-date-header": !options?.nullableDateHeader
-              ? options?.nullableDateHeader
-              : options?.nullableDateHeader.toUTCString(),
-          }
+          "nullable-date-header": !options?.nullableDateHeader
+            ? options?.nullableDateHeader
+            : options?.nullableDateHeader.toUTCString(),
+        }
         : {}),
       accept: "application/json",
       ...options.requestOptions?.headers,
