@@ -2,15 +2,14 @@
 // Licensed under the MIT License.
 
 import { Recorder } from "@azure-tools/test-recorder";
-import { assert } from "chai";
-import { createRecorder } from "./utils/recordedClient";
-import { Context } from "mocha";
+import { createRecorder } from "./utils/recordedClient.js";
+import { assert, beforeEach, afterEach, it, describe } from "vitest";
 
 describe("My test", () => {
   let recorder: Recorder;
 
-  beforeEach(async function (this: Context) {
-    recorder = await createRecorder(this);
+  beforeEach(async function (ctx) {
+    recorder = await createRecorder(ctx);
   });
 
   afterEach(async function () {

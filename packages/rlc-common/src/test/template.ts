@@ -173,6 +173,7 @@ export async function createRecorder(context: Context): Promise<Recorder> {
 
 export const sampleTestContent = `
 {{#if isEsm}}
+import { Recorder } from "@azure-tools/test-recorder";
 import { createRecorder } from "./utils/recordedClient.js";
 import { assert, beforeEach, afterEach, it, describe } from "vitest";
 {{/if}}
@@ -185,14 +186,18 @@ import { Context } from "mocha";
 {{/if}}
 
 describe("My test", () => {
-  {{#if isEsm}}//{{/if}} let recorder: Recorder;
+  let recorder: Recorder;
 
-  beforeEach(async function({{#if isCjs}}this: Context{{/if}}) {
-    {{#if isEsm}}//{{/if}} recorder = await createRecorder(this);
+  beforeEach(async function({{#if isCjs}}this: Context{{else}}ctx{{/if}}) {
+    {{#if isEsm}}
+    recorder = await createRecorder(ctx);
+    {{else}}
+    recorder = await createRecorder(this);
+    {{/if}}
   });
 
   afterEach(async function() {
-    {{#if isEsm}}//{{/if}} await recorder.stop();
+    await recorder.stop();
   });
 
   it("sample test", async function() {
@@ -213,8 +218,12 @@ describe("snippets", () => {
 {{#if isModularLibrary}}
   it("ReadmeSampleCreateClient_Node", async () => {
     {{#if azureArm}}
+    {{#if hasSubscriptionId}}
     const subscriptionId = "00000000-0000-0000-0000-000000000000";
     const client = new {{ clientClassName }}(new DefaultAzureCredential(), subscriptionId);
+    {{else}}
+    const client = new {{ clientClassName }}(new DefaultAzureCredential());
+    {{/if}}
     {{else}}
     const client = new {{ clientClassName }}("<endpoint>", new DefaultAzureCredential());
     {{/if}}
@@ -222,12 +231,16 @@ describe("snippets", () => {
 
   it("ReadmeSampleCreateClient_Browser", async () => {
     {{#if azureArm}}
-    const subscriptionId = "00000000-0000-0000-0000-000000000000";
     const credential = new InteractiveBrowserCredential({
       tenantId: "<YOUR_TENANT_ID>",
       clientId: "<YOUR_CLIENT_ID>",
     });
+    {{#if hasSubscriptionId}}
+    const subscriptionId = "00000000-0000-0000-0000-000000000000";
     const client = new {{ clientClassName }}(credential, subscriptionId);
+    {{else}}
+    const client = new {{ clientClassName }}(credential);
+    {{/if}}
     {{else}}
     const credential = new InteractiveBrowserCredential({
       tenantId: "<YOUR_TENANT_ID>",
