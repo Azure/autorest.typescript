@@ -108,7 +108,7 @@ export function buildClassicalClient(
     });
   if (hasChildClient) {
     clientClass.addProperty({
-      name: "_parentClientParams",
+      name: "_clientParams",
       type: `{${classicalParams.map((p) => {
         return `${p.name}: ${p.type}`;
       })}}`,
@@ -144,7 +144,7 @@ export function buildClassicalClient(
 
   if (hasChildClient && client.children) {
     constructor.addStatements(
-      `this._parentClientParams = {${classicalParams.map((p) => p.name).join(",")}};`
+      `this._clientParams = {${classicalParams.map((p) => p.name).join(",")}};`
     );
     for (const childClient of client.children) {
       const subfolder = normalizeName(
@@ -306,16 +306,16 @@ function addChildClient(
   getChildClientFunction.addStatements(
     `return new ${getClassicalClientName(client)}(
       ${parentParams
-        .filter((p) => !p.name.includes("options"))
-        .map((p) => `this._parentClientParams.${p.name}`)
-        .join(",")},
+      .filter((p) => !p.name.includes("options"))
+      .map((p) => `this._clientParams.${p.name}`)
+      .join(",")},
       ${diffParams
-        .filter((p) => p.name !== "options")
-        .map((p) => `${p.name}`)
-        .join(
-          ","
-        )}${diffParams.filter((p) => p.name !== "options").length > 0 ? "," : ""}
-      { ...this._parentClientParams.options, ...options }
+      .filter((p) => p.name !== "options")
+      .map((p) => `${p.name}`)
+      .join(
+        ","
+      )}${diffParams.filter((p) => p.name !== "options").length > 0 ? "," : ""}
+      { ...this._clientParams.options, ...options }
     )`
   );
 }
