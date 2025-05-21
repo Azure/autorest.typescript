@@ -415,14 +415,6 @@ export async function $onEmit(context: EmitContext) {
         rlcClient.libraryName = subClient.name;
       }
     }
-    if (isAzureFlavor) {
-      await emitContentByBuilder(
-        program,
-        () => buildMetadataJson(),
-        rlcClient,
-        dpgContext.generationPathDetail?.metadataDir
-      );
-    }
 
     if (shouldGenerateMetadata) {
       const commonBuilders = [
@@ -504,6 +496,14 @@ export async function $onEmit(context: EmitContext) {
       await emitContentByBuilder(
         program,
         (model) => updatePackageFile(model, existingPackageFilePath),
+        rlcClient,
+        dpgContext.generationPathDetail?.metadataDir
+      );
+    }
+    if (isAzureFlavor) {
+      await emitContentByBuilder(
+        program,
+        buildMetadataJson,
         rlcClient,
         dpgContext.generationPathDetail?.metadataDir
       );
