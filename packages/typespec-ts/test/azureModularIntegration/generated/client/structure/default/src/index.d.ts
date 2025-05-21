@@ -59,12 +59,12 @@ export declare class ServiceClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(endpointParam: string, clientParam: ClientType, options?: ServiceClientOptionalParams);
+    two(options?: TwoOptionalParams): Promise<void>;
+    one(options?: OneOptionalParams): Promise<void>;
     readonly bar: BarOperations;
     readonly foo: FooOperations;
     readonly qux: QuxOperations;
     readonly baz: BazOperations;
-    two(options?: TwoOptionalParams): Promise<void>;
-    one(options?: OneOptionalParams): Promise<void>;
 }
 
 export declare interface ServiceClientOptionalParams extends ClientOptions {
