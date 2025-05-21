@@ -8,7 +8,7 @@ import {
   AzurePollingDependencies,
   DefaultCoreDependencies
 } from "./modular/external-dependencies.js";
-import { EmitContext, Program } from "@typespec/compiler";
+import { EmitContext, NoTarget, Program } from "@typespec/compiler";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import {
   MultipartHelpers,
@@ -91,6 +91,7 @@ import { provideSdkTypes } from "./framework/hooks/sdkTypes.js";
 import { transformRLCModel } from "./transform/transform.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
 import { emitSamples } from "./modular/emitSamples.js";
+import { reportDiagnostic } from "./lib.js";
 
 export * from "./lib.js";
 
@@ -157,6 +158,9 @@ export async function $onEmit(context: EmitContext) {
 
   const rlcCodeModels: RLCModel[] = [];
   let modularEmitterOptions: ModularEmitterOptions;
+  const emitterName = "@azure-tools/typespec-ts";
+  const emitterVersion = getTypespecTsVersion(context);
+  const apiVersion: string | undefined = getApiVersion(dpgContext);
   // 1. Clear sources folder
   await clearSrcFolder();
   // 2. Generate RLC code model
@@ -173,17 +177,33 @@ export async function $onEmit(context: EmitContext) {
   }
 
   // 5. Generate metadata and test files
-  let apiVersion: string | undefined;
-  for (const version of dpgContext.__clientToApiVersionClientDefaultValue.values()) {
-    apiVersion = version;
-  }
   function getTypespecTsVersion(context: EmitContext): string | undefined {
     const emitterMetadata = context.program.emitters.find(
-      (emitter) => emitter.metadata.name === "@azure-tools/typespec-ts"
+      (emitter) => emitter.metadata.name === emitterName
     );
     return emitterMetadata?.metadata.version;
   }
-  const emitterVersion = getTypespecTsVersion(context);
+
+  function getApiVersion(dpgContext: SdkContext): string | undefined {
+    const apiVersion = dpgContext.sdkPackage.metadata.apiVersion;
+    if (apiVersion === "all") {
+      // Report a diagnostic error when apiVersion is "all"
+
+      reportDiagnostic(dpgContext.program, {
+        code: "multiple-api-versions",
+        format: {
+          message: "multiple-api-version is not supported well."
+        },
+        target: NoTarget
+      });
+      for (const client of dpgContext.sdkPackage.clients) {
+        const clientApiVersion = client.apiVersions[0];
+        return clientApiVersion;
+      }
+    }
+    return apiVersion;
+  }
+
   await generateMetadataAndTest(dpgContext);
 
   async function enrichDpgContext() {
@@ -442,7 +462,9 @@ export async function $onEmit(context: EmitContext) {
       }
       if (isAzureFlavor) {
         commonBuilders.push(buildEsLintConfig);
-        commonBuilders.push(buildMetaDataJson);
+        if (apiVersion !== undefined && emitterVersion !== undefined) {
+          commonBuilders.push(buildMetaDataJson);
+        }
       }
       let modularPackageInfo = {};
       if (option.isModularLibrary) {

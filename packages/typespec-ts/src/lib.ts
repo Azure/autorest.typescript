@@ -356,6 +356,12 @@ const libDef = {
       messages: {
         default: paramMessage`The property name ${"propertyName"} has conflicts with others and please use @clientName to rename it.`
       }
+    },
+    "multiple-api-versions": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`multiple-api-version is not supported well.`
+      }
     }
   },
   emitter: {
