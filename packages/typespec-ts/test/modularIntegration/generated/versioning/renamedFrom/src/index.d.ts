@@ -22,8 +22,8 @@ export declare class RenamedFromClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(endpointParam: string, version: Versions, options?: RenamedFromClientOptionalParams);
-    newOpInNewInterface(body: NewModel, options?: NewOpInNewInterfaceOptionalParams): Promise<NewModel>;
     newOp(body: NewModel, newQuery: string, options?: NewOpOptionalParams): Promise<NewModel>;
+    newOpInNewInterface(body: NewModel, options?: NewOpInNewInterfaceOptionalParams): Promise<NewModel>;
 }
 
 export declare interface RenamedFromClientOptionalParams extends ClientOptions {
