@@ -1,1 +1,4 @@
-{ "apiVersion": "3.0", "emitterVersion": "0.40.0" }
+{
+  "apiVersion": "3.0",
+  "emitterVersion": "0.40.0"
+}

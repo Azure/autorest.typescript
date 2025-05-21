@@ -1,1 +1,4 @@
-{ "apiVersion": "2022-11-01", "emitterVersion": "0.40.0" }
+{
+  "apiVersion": "2022-11-01",
+  "emitterVersion": "0.40.0"
+}

@@ -415,6 +415,9 @@ export async function $onEmit(context: EmitContext) {
         rlcClient.libraryName = subClient.name;
       }
     }
+    if (isAzureFlavor) {
+      await emitContentByBuilder(program, () => buildMetadataJson(), rlcClient);
+    }
 
     if (shouldGenerateMetadata) {
       const commonBuilders = [
@@ -432,7 +435,6 @@ export async function $onEmit(context: EmitContext) {
       }
       if (isAzureFlavor) {
         commonBuilders.push(buildEsLintConfig);
-        commonBuilders.push(buildMetadataJson);
       }
       let modularPackageInfo = {};
       if (option.isModularLibrary) {
