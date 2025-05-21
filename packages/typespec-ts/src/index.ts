@@ -416,7 +416,12 @@ export async function $onEmit(context: EmitContext) {
       }
     }
     if (isAzureFlavor) {
-      await emitContentByBuilder(program, () => buildMetadataJson(), rlcClient);
+      await emitContentByBuilder(
+        program,
+        () => buildMetadataJson(),
+        rlcClient,
+        dpgContext.generationPathDetail?.metadataDir
+      );
     }
 
     if (shouldGenerateMetadata) {
