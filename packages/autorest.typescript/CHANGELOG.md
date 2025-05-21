@@ -5,10 +5,14 @@
 - [Feature] Support generation config for new option. Please refer to [#3197](https://github.com/Azure/autorest.typescript/pull/3197)
 - [Feature] Update package version. Please refer to [#3199](https://github.com/Azure/autorest.typescript/pull/3199)
 - [Feature] Migration for rlc from swagger. Please refer to [#3182](https://github.com/Azure/autorest.typescript/pull/3182)
+- [Feature] Hierarchy nested client support. Please refer to [#3163](https://github.com/Azure/autorest.typescript/pull/3163)
+- [Feature] Support option for rlc swagger and fix missing dependencies. Please refer to [#3200](https://github.com/Azure/autorest.typescript/pull/3200)
+- [Feature] Generate metadata.json for Azure services. Please refer to [#3169](https://github.com/Azure/autorest.typescript/pull/3169)
 - [Bugfix] Update tcgc to v0.56.1 and fix nightly ci. Please refer to [#3190](https://github.com/Azure/autorest.typescript/pull/3190)
 - [Bugfix] Fix readme generation issue when setting @@clientname. Please refer to [#3198](https://github.com/Azure/autorest.typescript/pull/3198)
 - [Bugfix] Fix subscriptionId issues in readme.md and emitter samples. Please refer to [#3161](https://github.com/Azure/autorest.typescript/pull/3161)
 - [Bugfix] Fix missing tshy configs.md and emitter samples. Please refer to [#3193](https://github.com/Azure/autorest.typescript/pull/3193)
+- [Bugfix] Fix the reserved word issue in Modular for API layer. Please refer to [#3191](https://github.com/Azure/autorest.typescript/pull/3191)
 
 ## 6.0.39 (2025-04-28)
 

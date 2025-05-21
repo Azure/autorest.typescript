@@ -196,7 +196,7 @@ importers:
       '@azure-tools/typespec-azure-resource-manager': ^0.56.1
       '@azure-tools/typespec-azure-rulesets': ^0.56.0
       '@azure-tools/typespec-client-generator-core': ^0.56.2
-      '@azure-tools/typespec-ts': workspace:^0.41.0
+      '@azure-tools/typespec-ts': workspace:^0.40.1
       '@types/mocha': ^5.2.7
       '@types/node': ^18.0.0
       '@typespec/compiler': ^1.0.0
@@ -234,7 +234,7 @@ importers:
     specifiers:
       '@azure-rest/core-client': ^2.3.1
       '@azure-tools/azure-http-specs': ^0.1.0-alpha.17-dev.0
-      '@azure-tools/rlc-common': workspace:^0.40.0
+      '@azure-tools/rlc-common': workspace:^0.40.1
       '@azure-tools/typespec-autorest': ^0.56.0
       '@azure-tools/typespec-azure-core': ^0.56.0
       '@azure-tools/typespec-azure-resource-manager': ^0.56.1
