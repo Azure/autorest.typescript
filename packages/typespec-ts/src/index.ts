@@ -84,7 +84,7 @@ import { emitTypes } from "./modular/emitModels.js";
 import { existsSync } from "fs";
 import { getModuleExports } from "./modular/buildProjectFiles.js";
 import { getClientHierarchyMap, getRLCClients } from "./utils/clientUtils.js";
-import { join } from "path";
+import path, { join } from "path";
 import { loadStaticHelpers } from "./framework/load-static-helpers.js";
 import { provideBinder } from "./framework/hooks/binder.js";
 import { provideSdkTypes } from "./framework/hooks/sdkTypes.js";
@@ -364,13 +364,20 @@ export async function $onEmit(context: EmitContext) {
   function buildMetadataJson() {
     const apiVersion = dpgContext.sdkPackage.metadata.apiVersion;
     const emitterVersion = getTypespecTsVersion(context);
-    if (apiVersion !== undefined && emitterVersion !== undefined) {
-      return {
-        path: "metadata.json",
-        content: `{"apiVersion" : "${apiVersion}","emitterVersion": "${emitterVersion}"}`
-      };
+    if (apiVersion === undefined && emitterVersion === undefined) {
+      return;
     }
-    return;
+    const content: any = {};
+    if (apiVersion !== undefined) {
+      content["apiVersion"] = apiVersion;
+    }
+    if (emitterVersion !== undefined) {
+      content["emitterVersion"] = emitterVersion;
+    }
+    return {
+      path: "metadata.json",
+      content: JSON.stringify(content, null, 2)
+    };
   }
   async function generateMetadataAndTest(context: SdkContext) {
     const project = useContext("outputProject");
