@@ -84,7 +84,7 @@ import { emitTypes } from "./modular/emitModels.js";
 import { existsSync } from "fs";
 import { getModuleExports } from "./modular/buildProjectFiles.js";
 import { getClientHierarchyMap, getRLCClients } from "./utils/clientUtils.js";
-import path, { join } from "path";
+import { join } from "path";
 import { loadStaticHelpers } from "./framework/load-static-helpers.js";
 import { provideBinder } from "./framework/hooks/binder.js";
 import { provideSdkTypes } from "./framework/hooks/sdkTypes.js";
