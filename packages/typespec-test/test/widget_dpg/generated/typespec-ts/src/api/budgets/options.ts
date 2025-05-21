@@ -4,6 +4,9 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
+export interface BudgetsContinueOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
 export interface BudgetsGetBudgetsOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */

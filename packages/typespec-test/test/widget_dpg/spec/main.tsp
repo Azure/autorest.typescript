@@ -179,4 +179,8 @@ interface Budgets {
     @get getBudgets(
         @query name: string
     ): Widget[] | WidgetError;
+
+    @route("/widgets/continue")
+    // test the reserved word "continue" operation
+    op continue(): void;
 }

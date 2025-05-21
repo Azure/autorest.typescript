@@ -103,6 +103,35 @@ describe("#normalizeName", () => {
     });
   });
 
+  describe("for method", () => {
+    it("should return the name with prefix $ for the method name is a reserved name", () => {
+      expect(normalizeName("continue", NameType.Method, true)).to.equal(
+        "$continue"
+      );
+      expect(normalizeName("break", NameType.Method, true)).to.equal(
+        "$break"
+      );
+      expect(normalizeName("case", NameType.Method, true)).to.equal(
+        "$case"
+      );
+      expect(normalizeName("break", NameType.Method, true)).to.equal(
+        "$break"
+      );
+      expect(normalizeName("class", NameType.Method, true)).to.equal(
+        "$class"
+      );
+      expect(normalizeName("default", NameType.Method, true)).to.equal(
+        "$default"
+      );
+      expect(normalizeName("do", NameType.Method, true)).to.equal(
+        "$do"
+      );
+      expect(normalizeName("function", NameType.Method, true)).to.equal(
+        "$function"
+      );
+    });
+  });
+
   describe("for operation", () => {
     it("should return the name with the suffix 'Operation' if the name is a reserved name", () => {
       expect(normalizeName("export", NameType.Operation,)).to.equal(
