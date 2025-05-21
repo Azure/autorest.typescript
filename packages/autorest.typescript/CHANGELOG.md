@@ -1,4 +1,4 @@
-## 0.40.0 (2025-05-20)
+## 6.0.40 (2025-05-20)
 
 - [Feature] Remove camel case style option. Please refer to [#3167](https://github.com/Azure/autorest.typescript/pull/3167)
 - [Feature] Update dependency generation to adopt pnpm workspace catalog versions. Please refer to [#3172](https://github.com/Azure/autorest.typescript/pull/3172)
