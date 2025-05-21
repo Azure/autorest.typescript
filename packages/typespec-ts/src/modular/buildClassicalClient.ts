@@ -306,15 +306,15 @@ function addChildClient(
   getChildClientFunction.addStatements(
     `return new ${getClassicalClientName(client)}(
       ${parentParams
-      .filter((p) => !p.name.includes("options"))
-      .map((p) => `this._clientParams.${p.name}`)
-      .join(",")},
+        .filter((p) => !p.name.includes("options"))
+        .map((p) => `this._clientParams.${p.name}`)
+        .join(",")},
       ${diffParams
-      .filter((p) => p.name !== "options")
-      .map((p) => `${p.name}`)
-      .join(
-        ","
-      )}${diffParams.filter((p) => p.name !== "options").length > 0 ? "," : ""}
+        .filter((p) => p.name !== "options")
+        .map((p) => `${p.name}`)
+        .join(
+          ","
+        )}${diffParams.filter((p) => p.name !== "options").length > 0 ? "," : ""}
       { ...this._clientParams.options, ...options }
     )`
   );
