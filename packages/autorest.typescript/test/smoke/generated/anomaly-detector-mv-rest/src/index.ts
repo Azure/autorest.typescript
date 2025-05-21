@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import AnomalyDetectorMV from "./anomalyDetectorMV";
+import AnomalyDetectorMV from "./anomalyDetectorMV.js";
 
-export * from "./anomalyDetectorMV";
-export * from "./parameters";
-export * from "./responses";
-export * from "./clientDefinitions";
-export * from "./isUnexpected";
-export * from "./models";
-export * from "./outputModels";
-export * from "./paginateHelper";
+export * from "./anomalyDetectorMV.js";
+export * from "./parameters.js";
+export * from "./responses.js";
+export * from "./clientDefinitions.js";
+export * from "./isUnexpected.js";
+export * from "./models.js";
+export * from "./outputModels.js";
+export * from "./paginateHelper.js";
 
 export default AnomalyDetectorMV;
