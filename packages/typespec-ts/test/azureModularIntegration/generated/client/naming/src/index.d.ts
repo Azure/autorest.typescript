@@ -49,8 +49,6 @@ export declare class NamingClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: NamingClientOptionalParams);
-    readonly unionEnum: UnionEnumOperations;
-    readonly clientModel: ClientModelOperations;
     response(options?: ResponseOptionalParams): Promise<void>;
     request(clientName: string, options?: RequestOptionalParams): Promise<void>;
     compatibleWithEncodedName(body: ClientNameAndJsonEncodedNameModel, options?: CompatibleWithEncodedNameOptionalParams): Promise<void>;
@@ -58,6 +56,8 @@ export declare class NamingClient {
     client(body: ClientNameModel, options?: ClientOptionalParams): Promise<void>;
     parameter(clientName: string, options?: ParameterOptionalParams): Promise<void>;
     clientName(options?: ClientNameOptionalParams): Promise<void>;
+    readonly unionEnum: UnionEnumOperations;
+    readonly clientModel: ClientModelOperations;
 }
 
 export declare interface NamingClientOptionalParams extends ClientOptions {
