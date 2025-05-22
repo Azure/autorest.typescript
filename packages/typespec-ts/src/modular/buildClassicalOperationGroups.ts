@@ -14,12 +14,13 @@ import { useContext } from "../contextManager.js";
 
 export function buildClassicOperationFiles(
   dpgContext: SdkContext,
-  client: SdkClientType<SdkServiceOperation>,
+  clientMap: [string[], SdkClientType<SdkServiceOperation>],
   emitterOptions: ModularEmitterOptions
 ) {
   // const sdkPackage = dpgContext.sdkPackage;
   const project = useContext("outputProject");
-  const { subfolder } = getModularClientOptions(dpgContext, client);
+  const [_hierarchy, client] = clientMap;
+  const { subfolder } = getModularClientOptions(clientMap);
   const classicOperationFiles: Map<string, SourceFile> = new Map<
     string,
     SourceFile
@@ -48,7 +49,7 @@ export function buildClassicOperationFiles(
             subfolder && subfolder !== "" ? subfolder + "/" : ""
           }classic/${classicOperationFileName}.ts`
         );
-      getClassicalOperation(dpgContext, client, classicFile, [
+      getClassicalOperation(dpgContext, clientMap, classicFile, [
         prefixes,
         operations
       ]);
@@ -80,7 +81,7 @@ export function buildClassicOperationFiles(
           );
         getClassicalOperation(
           dpgContext,
-          client,
+          clientMap,
           classicFile,
           [prefixes, operations],
           layer

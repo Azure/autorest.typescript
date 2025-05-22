@@ -242,7 +242,7 @@ import type {
   TriggerRunQueryTriggerRunsByWorkspaceDefaultResponse,
   WorkspaceGet200Response,
   WorkspaceGetDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "GET /kqlScripts": ["200"],

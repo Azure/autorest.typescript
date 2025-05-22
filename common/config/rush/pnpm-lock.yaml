@@ -210,11 +210,11 @@ importers:
       ts-node: ^8.5.2
       typescript: ~5.8.2
     dependencies:
-      '@azure-tools/typespec-autorest': 0.56.0_y6s73eec36d2qvdguvr7tuf3em
+      '@azure-tools/typespec-autorest': 0.56.0_cv5ogyg7xweuk3bu636so54zd4
       '@azure-tools/typespec-azure-core': 0.56.0_smelvapepqcohs44qn5lg5mrjy
       '@azure-tools/typespec-azure-resource-manager': 0.56.0_kdgwyvcr5r26j3ofemkot3t4y4
-      '@azure-tools/typespec-azure-rulesets': 0.56.0_l5f7cvl7bk2b2mrelhgqa5k4qa
-      '@azure-tools/typespec-client-generator-core': 0.56.1_dpek6u2uzheagioi57adosrs4u
+      '@azure-tools/typespec-azure-rulesets': 0.56.0_5ul3bbzvajtg6cinwkelu5v5gm
+      '@azure-tools/typespec-client-generator-core': 0.56.2_dpek6u2uzheagioi57adosrs4u
       '@azure-tools/typespec-ts': link:../typespec-ts
       '@typespec/compiler': 1.0.0_@types+node@18.18.0
       '@typespec/http': 1.0.0_6nn6a265eqvpod4byc573d4y7i
@@ -296,10 +296,10 @@ importers:
     devDependencies:
       '@azure-rest/core-client': 2.3.1
       '@azure-tools/azure-http-specs': 0.1.0-alpha.17-dev.0_td6fiiakyz374d4iidt42mj2ze
-      '@azure-tools/typespec-autorest': 0.56.0_y6s73eec36d2qvdguvr7tuf3em
+      '@azure-tools/typespec-autorest': 0.56.0_cv5ogyg7xweuk3bu636so54zd4
       '@azure-tools/typespec-azure-core': 0.56.0_smelvapepqcohs44qn5lg5mrjy
       '@azure-tools/typespec-azure-resource-manager': 0.56.0_kdgwyvcr5r26j3ofemkot3t4y4
-      '@azure-tools/typespec-client-generator-core': 0.56.1_dpek6u2uzheagioi57adosrs4u
+      '@azure-tools/typespec-client-generator-core': 0.56.2_dpek6u2uzheagioi57adosrs4u
       '@azure/abort-controller': 2.1.2
       '@azure/core-auth': 1.6.0
       '@azure/core-lro': 3.1.0
@@ -498,7 +498,7 @@ packages:
       - supports-color
     dev: true
 
-  /@azure-tools/typespec-autorest/0.56.0_y6s73eec36d2qvdguvr7tuf3em:
+  /@azure-tools/typespec-autorest/0.56.0_cv5ogyg7xweuk3bu636so54zd4:
     resolution: {integrity: sha512-v10o6AGgCplrfqy3TImQXi8uxUfzU3bRkay7u7FWFOYGn7QqRAcva3H0FBZX9OcxReq3PY0bWomOqm5b3N9MIA==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
@@ -513,7 +513,7 @@ packages:
     dependencies:
       '@azure-tools/typespec-azure-core': 0.56.0_smelvapepqcohs44qn5lg5mrjy
       '@azure-tools/typespec-azure-resource-manager': 0.56.0_kdgwyvcr5r26j3ofemkot3t4y4
-      '@azure-tools/typespec-client-generator-core': 0.56.1_dpek6u2uzheagioi57adosrs4u
+      '@azure-tools/typespec-client-generator-core': 0.56.2_dpek6u2uzheagioi57adosrs4u
       '@typespec/compiler': 1.0.0_@types+node@18.18.0
       '@typespec/http': 1.0.0_6nn6a265eqvpod4byc573d4y7i
       '@typespec/openapi': 1.0.0_mlh5mwyihjn5l3sivvdljtc3yq
@@ -552,7 +552,7 @@ packages:
       change-case: 5.4.4
       pluralize: 8.0.0
 
-  /@azure-tools/typespec-azure-rulesets/0.56.0_l5f7cvl7bk2b2mrelhgqa5k4qa:
+  /@azure-tools/typespec-azure-rulesets/0.56.0_5ul3bbzvajtg6cinwkelu5v5gm:
     resolution: {integrity: sha512-V073uLUTGBYhn5MyOS2RHUadYuYGYrFDlhuvqoAUNDG/v8CSWEyXx4CHo8dq+Y/0DauLc9YfNzwXrDgtlW9HrA==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
@@ -563,18 +563,18 @@ packages:
     dependencies:
       '@azure-tools/typespec-azure-core': 0.56.0_smelvapepqcohs44qn5lg5mrjy
       '@azure-tools/typespec-azure-resource-manager': 0.56.0_kdgwyvcr5r26j3ofemkot3t4y4
-      '@azure-tools/typespec-client-generator-core': 0.56.1_dpek6u2uzheagioi57adosrs4u
+      '@azure-tools/typespec-client-generator-core': 0.56.2_dpek6u2uzheagioi57adosrs4u
       '@typespec/compiler': 1.0.0_@types+node@18.18.0
     dev: false
 
-  /@azure-tools/typespec-client-generator-core/0.56.1_dpek6u2uzheagioi57adosrs4u:
-    resolution: {integrity: sha512-sZ05davnP1JMuwPjd20VKDElgN+lP90I71Z5m1Xx9czuy0t3nyHpU5RO0V8PeGKSpCEXeQY4gjb3t2RvXXVNjQ==}
+  /@azure-tools/typespec-client-generator-core/0.56.2_dpek6u2uzheagioi57adosrs4u:
+    resolution: {integrity: sha512-KplQWeC/iyUTaPfBAdKynCRon8BH15yc34NBXWsjllRz+X+ZwxCQeU3vxzHQnrUPTXtNKhjXpu/les1fdd/rDQ==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       '@azure-tools/typespec-azure-core': ^0.56.0
       '@typespec/compiler': ^1.0.0
       '@typespec/events': ^0.70.0
-      '@typespec/http': ^1.0.0
+      '@typespec/http': ^1.0.1
       '@typespec/openapi': ^1.0.0
       '@typespec/rest': ^0.70.0
       '@typespec/sse': ^0.70.0

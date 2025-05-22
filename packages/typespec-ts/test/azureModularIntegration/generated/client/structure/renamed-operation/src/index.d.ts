@@ -29,10 +29,10 @@ export declare class RenamedOperationClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(endpointParam: string, clientParam: ClientType, options?: RenamedOperationClientOptionalParams);
-    readonly group: GroupOperations;
     renamedFive(options?: RenamedFiveOptionalParams): Promise<void>;
     renamedThree(options?: RenamedThreeOptionalParams): Promise<void>;
     renamedOne(options?: RenamedOneOptionalParams): Promise<void>;
+    readonly group: GroupOperations;
 }
 
 export declare interface RenamedOperationClientOptionalParams extends ClientOptions {

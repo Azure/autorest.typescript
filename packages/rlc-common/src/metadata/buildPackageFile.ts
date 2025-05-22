@@ -111,8 +111,15 @@ export function updatePackageFile(
   if (hasLro) {
     packageInfo.dependencies = {
       ...packageInfo.dependencies,
-      "@azure/core-lro": "^3.1.0",
-      "@azure/abort-controller": "^2.1.2"
+      // TODO remove model.options?.shouldUsePnpmDep after pnpm migration
+      "@azure/core-lro":
+        model.options?.shouldUsePnpmDep && model.options.azureSdkForJs
+          ? "workspace:*"
+          : "^3.1.0",
+      "@azure/abort-controller":
+        model.options?.shouldUsePnpmDep && model.options.azureSdkForJs
+          ? "workspace:*"
+          : "^2.1.2"
     };
   }
 

@@ -42,7 +42,7 @@ import type {
   WeatherDataListResponseOutput,
   WeatherDataIngestionJobOutput,
   WeatherDataDeleteJobOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 /** Returns a paginated list of application data resources under a particular farm. */
 export interface ApplicationDataListByFarmerId200Response extends HttpResponse {
