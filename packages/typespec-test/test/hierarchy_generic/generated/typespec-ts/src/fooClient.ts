@@ -30,15 +30,15 @@ export class FooClient {
     this.b = _getBOperations(this._client);
   }
 
-  /** The operation groups for d */
-  public readonly d: DOperations;
-  /** The operation groups for b */
-  public readonly b: BOperations;
-
   op1(
     body: A,
     options: Op1OptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return op1(this._client, body, options);
   }
+
+  /** The operation groups for d */
+  public readonly d: DOperations;
+  /** The operation groups for b */
+  public readonly b: BOperations;
 }

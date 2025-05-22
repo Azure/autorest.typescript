@@ -16,13 +16,14 @@ import { useContext } from "../contextManager.js";
 
 export function buildRootIndex(
   context: SdkContext,
-  client: SdkClientType<SdkServiceOperation>,
+  clientMap: [string[], SdkClientType<SdkServiceOperation>],
   emitterOptions: ModularEmitterOptions,
   rootIndexFile: SourceFile
 ) {
   const project = useContext("outputProject");
+  const [_, client] = clientMap;
   const srcPath = emitterOptions.modularOptions.sourceRoot;
-  const { subfolder } = getModularClientOptions(context, client);
+  const { subfolder } = getModularClientOptions(clientMap);
   const clientName = `${getClassicalClientName(client)}`;
   const clientFile = project.getSourceFile(
     `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""}${normalizeName(
@@ -117,6 +118,7 @@ function exportFileContentsType(
   if (
     context.sdkPackage.models.some((x) =>
       x.properties.some(
+        // eslint-disable-next-line
         (y) => y.kind === "property" && y.multipartOptions?.isFilePart
       )
     )
@@ -323,12 +325,12 @@ function exportModules(
 }
 
 export function buildSubClientIndexFile(
-  context: SdkContext,
-  client: SdkClientType<SdkServiceOperation>,
+  clientMap: [string[], SdkClientType<SdkServiceOperation>],
   emitterOptions: ModularEmitterOptions
 ) {
   const project = useContext("outputProject");
-  const { subfolder } = getModularClientOptions(context, client);
+  const [_, client] = clientMap;
+  const { subfolder } = getModularClientOptions(clientMap);
   const srcPath = emitterOptions.modularOptions.sourceRoot;
   const subClientIndexFile = project.createSourceFile(
     `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""}index.ts`,

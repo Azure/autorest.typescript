@@ -15,7 +15,10 @@ import {
   getRequestModelMapping,
   getSerializationExpression
 } from "../helpers/operationHelpers.js";
-import { normalizeModelName } from "../emitModels.js";
+import {
+  getAdditionalPropertiesName,
+  normalizeModelName
+} from "../emitModels.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
 import {
@@ -23,10 +26,14 @@ import {
   isSupportedSerializeType,
   ModelSerializeOptions
 } from "./serializeUtils.js";
-import { MultipartHelpers } from "../static-helpers-metadata.js";
+import {
+  MultipartHelpers,
+  SerializationHelpers
+} from "../static-helpers-metadata.js";
 import { resolveReference } from "../../framework/reference.js";
 import { isOrExtendsHttpFile } from "@typespec/http";
 import { refkey } from "../../framework/refkey.js";
+import { getAdditionalPropertiesType } from "../helpers/typeHelpers.js";
 
 export function buildModelSerializer(
   context: SdkContext,
@@ -86,22 +93,6 @@ export function buildModelSerializer(
     default:
       return undefined;
   }
-}
-
-function hasAdditionalProperties(type: SdkType | undefined) {
-  if (!type || !("additionalProperties" in type)) {
-    return false;
-  }
-
-  if (type.additionalProperties) {
-    return true;
-  }
-
-  if (type.baseModel) {
-    return hasAdditionalProperties(type.baseModel);
-  }
-
-  return false;
 }
 
 function buildPolymorphicSerializer(
@@ -367,19 +358,22 @@ function buildModelTypeSerializer(
       const expr = getSerializationExpression(context, property, "item");
 
       let partDefinition: string;
+      // eslint-disable-next-line
       if (property.isMultipartFileInput) {
         const createFilePartDescriptorDefinition = resolveReference(
           MultipartHelpers.createFilePartDescriptor
         );
-
+        // eslint-disable-next-line
         const itemPath = property.multipartOptions?.isMulti
           ? "x"
           : getPropertyFullName(context, property, "item");
+        /* eslint-disable */
         partDefinition = `${createFilePartDescriptorDefinition}("${property.serializedName}", ${itemPath}, )`;
 
         // If the TypeSpec doesn't specify a default content type, TCGC will infer a default of "*/*".
         // In this case, we actually want the content type to be left unset so that Core will take care of
         // setting the content type correctly.
+        // eslint-disable
         const contentType =
           property.multipartOptions?.defaultContentTypes?.[0] === "*/*"
             ? undefined
@@ -395,7 +389,7 @@ function buildModelTypeSerializer(
       } else {
         partDefinition = `{ name: "${property.serializedName}", body: (${expr}) }`;
       }
-
+      /* eslint-disable */
       if (property.optional) {
         parts.push(
           `...(${getPropertyFullName(context, property, "item")} === undefined ? [] : [${partDefinition}])`
@@ -409,10 +403,10 @@ function buildModelTypeSerializer(
 
     serializerFunction.statements = [`return [${parts.join(",")}]`];
   } else {
-    // This is only handling the compatibility mode, will need to update when we handle additionalProperties property.
-    const additionalPropertiesSpread = hasAdditionalProperties(type)
-      ? "...item"
-      : "";
+    const additionalPropertiesSpread = getAdditionalPropertiesStatement(
+      context,
+      type
+    );
 
     const propertiesStr = getRequestModelMapping(context, type, "item");
 
@@ -436,6 +430,30 @@ function buildModelTypeSerializer(
     serializerFunction.statements = output;
   }
   return serializerFunction;
+}
+
+function getAdditionalPropertiesStatement(
+  context: SdkContext,
+  type: SdkModelType
+): string | undefined {
+  const additionalPropertyType = getAdditionalPropertiesType(type);
+  if (!additionalPropertyType) {
+    return undefined;
+  }
+  const deserializerFunction = buildModelSerializer(
+    context,
+    additionalPropertyType,
+    false,
+    true
+  );
+  const params = [`item.${getAdditionalPropertiesName(type)}`];
+  if (typeof deserializerFunction === "string") {
+    params.push("undefined");
+    params.push(deserializerFunction);
+  }
+  return context.rlcOptions?.compatibilityMode === true
+    ? "...item"
+    : `...${resolveReference(SerializationHelpers.serializeRecord)}(${params.join(",")})`;
 }
 
 function buildDictTypeSerializer(

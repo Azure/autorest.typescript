@@ -17,6 +17,13 @@ All resource groups and resources exist within subscriptions. These operation en
 See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md) for more details.
 
 
+### Install the `@msinternal/arm-package-subscriptions-2019-06` package
+
+Install the Subscription client library for JavaScript with `npm`:
+
+```bash
+npm install @msinternal/arm-package-subscriptions-2019-06
+```
 
 
 ### JavaScript Bundle

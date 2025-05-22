@@ -296,7 +296,7 @@ describe("Package file generation", () => {
 
       expect(packageFile.scripts).to.have.property(
         "build:test",
-        "npm run clean && dev-tool run build-package && dev-tool run build-test"
+        "echo skipped"
       );
       expect(packageFile.scripts).to.have.property(
         "build",
@@ -308,7 +308,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "test",
-        "npm run clean && dev-tool run build-package && npm run unit-test:node && dev-tool run bundle && npm run unit-test:browser && npm run integration-test"
+        "npm run clean && dev-tool run build-package && npm run unit-test:node && npm run unit-test:browser && npm run integration-test"
       );
       expect(packageFile.scripts).to.have.property(
         "unit-test:browser",
@@ -341,49 +341,6 @@ describe("Package file generation", () => {
       );
     });
 
-    it("[cjs] should include correct test devCependencies with tests", () => {
-      const model = createMockModel({
-        ...baseConfig,
-        moduleKind: "cjs",
-        withTests: true
-      });
-      const packageFileContent = buildPackageFile(model);
-      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
-
-      expect(packageFile.devDependencies).to.have.property("dotenv");
-      expect(packageFile.devDependencies).to.have.property("mocha");
-      expect(packageFile.devDependencies).to.have.property("@types/mocha");
-      expect(packageFile.devDependencies).to.not.have.property("cross-env");
-      expect(packageFile.devDependencies).to.have.property("@types/chai");
-      expect(packageFile.devDependencies).to.have.property("chai");
-      expect(packageFile.devDependencies).to.have.property(
-        "karma-chrome-launcher"
-      );
-      expect(packageFile.devDependencies).to.have.property("karma-coverage");
-      expect(packageFile.devDependencies).to.have.property(
-        "karma-env-preprocessor"
-      );
-      expect(packageFile.devDependencies).to.have.property(
-        "karma-firefox-launcher"
-      );
-      expect(packageFile.devDependencies).to.have.property(
-        "karma-junit-reporter"
-      );
-      expect(packageFile.devDependencies).to.have.property(
-        "karma-mocha-reporter"
-      );
-      expect(packageFile.devDependencies).to.have.property("karma-mocha");
-      expect(packageFile.devDependencies).to.have.property(
-        "karma-source-map-support"
-      );
-      expect(packageFile.devDependencies).to.have.property(
-        "karma-sourcemap-loader"
-      );
-      expect(packageFile.devDependencies).to.have.property("karma");
-      expect(packageFile.devDependencies).to.have.property("nyc");
-      expect(packageFile.devDependencies).to.have.property("tsx");
-    });
-
     it("[cjs] should include correct scripts with tests", () => {
       const model = createMockModel({
         ...baseConfig,
@@ -395,7 +352,7 @@ describe("Package file generation", () => {
 
       expect(packageFile.scripts).to.have.property(
         "build",
-        "npm run clean && tsc -p . && dev-tool run bundle && dev-tool run extract-api"
+        "npm run clean && tsc -p . && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "build:node",
@@ -403,11 +360,11 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "build:test",
-        "tsc -p . && dev-tool run bundle"
+        "tsc -p ."
       );
       expect(packageFile.scripts).to.have.property(
         "build:debug",
-        "tsc -p . && dev-tool run bundle && dev-tool run extract-api"
+        "tsc -p . && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "integration-test:browser",

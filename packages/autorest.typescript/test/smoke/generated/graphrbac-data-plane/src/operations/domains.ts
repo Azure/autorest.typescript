@@ -7,18 +7,18 @@
  */
 
 import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
-import { Domains } from "../operationsInterfaces";
+import { Domains } from "../operationsInterfaces/index.js";
 import * as coreClient from "@azure/core-client";
-import * as Mappers from "../models/mappers";
-import * as Parameters from "../models/parameters";
-import { GraphRbacManagementClient } from "../graphRbacManagementClient";
+import * as Mappers from "../models/mappers.js";
+import * as Parameters from "../models/parameters.js";
+import { GraphRbacManagementClient } from "../graphRbacManagementClient.js";
 import {
   Domain,
   DomainsListOptionalParams,
   DomainsListResponse,
   DomainsGetOptionalParams,
   DomainsGetResponse,
-} from "../models";
+} from "../models/index.js";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Domains operations. */

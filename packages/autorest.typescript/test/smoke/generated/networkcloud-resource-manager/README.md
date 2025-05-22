@@ -17,6 +17,13 @@ The Network Cloud APIs provide management of the on-premises clusters and their 
 See our [support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md) for more details.
 
 
+### Install the `@msinternal/networkcloud-resource-manager` package
+
+Install the NetworkCloud client library for JavaScript with `npm`:
+
+```bash
+npm install @msinternal/networkcloud-resource-manager
+```
 
 
 ### JavaScript Bundle

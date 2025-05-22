@@ -58,7 +58,6 @@ import {
   SdkModelPropertyType,
   SdkModelType,
   SdkPagingServiceMethod,
-  SdkPathParameter,
   SdkServiceParameter,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
@@ -99,7 +98,7 @@ export function getSendPrivateFunction(
   const statements: string[] = [];
   let pathStr = `"${operationPath}"`;
   const urlTemplateParams = [
-    ...getPathParameters(dpgContext, operation),
+    ...getPathParameters(operation),
     ...getQueryParameters(dpgContext, operation)
   ];
   if (urlTemplateParams.length > 0) {
@@ -190,9 +189,18 @@ export function getDeserializePrivateFunction(
     : restResponse
       ? restResponse.type
       : response.type;
-  const lroSubPath = isLroOnly
-    ? operation?.lroMetadata?.finalResponse?.resultPath
+  const lroSubSegments = isLroOnly
+    ? operation?.lroMetadata?.finalResponse?.resultSegments
     : undefined;
+
+  let lroSubPath;
+  if (lroSubSegments && lroSubSegments.length > 0) {
+    lroSubPath = lroSubSegments
+      .map((property) => {
+        return property.name;
+      })
+      .join(".");
+  }
 
   const deserializePrefix = "result.body";
 
@@ -608,8 +616,18 @@ function getPagingOnlyOperationFunction(
   const statements: string[] = [];
   const options = [];
   // TODO: follow up on https://github.com/Azure/typespec-azure/issues/2103
-  const nextLinkName = operation.nextLinkPath;
-  const itemName = operation.response.resultPath;
+  const nextLinkSegments = operation.pagingMetadata.nextLinkSegments;
+  const nextLinkName = nextLinkSegments
+    ?.map((property) => {
+      return property.name;
+    })
+    .join(".");
+  const itemSegments = operation.response.resultSegments;
+  const itemName = itemSegments
+    ?.map((property) => {
+      return property.name;
+    })
+    .join(".");
   if (itemName) {
     options.push(`itemName: "${itemName}"`);
   }
@@ -786,7 +804,8 @@ function buildBodyParameter(
     !bodyParameter.optional,
     isBinaryPayload(context, bodyParameter.__raw!, bodyParameter.contentTypes)
       ? "binary"
-      : getEncodeForType(bodyParameter.type)
+      : getEncodeForType(bodyParameter.type),
+    true
   );
   return `\nbody: ${serializedBody.startsWith(nullOrUndefinedPrefix) ? "" : nullOrUndefinedPrefix}${serializedBody},`;
 }
@@ -848,7 +867,8 @@ function getCollectionFormat(
       param.type,
       param.name,
       true,
-      getEncodeForType(param.type)
+      getEncodeForType(param.type),
+      true
     )}${additionalParam})`;
   }
   return `"${serializedName}": ${optionalParamName}?.${
@@ -858,7 +878,8 @@ function getCollectionFormat(
     param.type,
     `${optionalParamName}?.${param.name}`,
     false,
-    getEncodeForType(param.type)
+    getEncodeForType(param.type),
+    true
   )}${additionalParam}): undefined`;
 }
 
@@ -909,7 +930,8 @@ function getRequired(context: SdkContext, param: SdkModelPropertyType) {
     param.type,
     clientValue,
     true,
-    getEncodeForType(param.type)
+    getEncodeForType(param.type),
+    true
   )}`;
 }
 
@@ -949,7 +971,8 @@ function getOptional(
     param.type,
     paramName,
     false,
-    getEncodeForType(param.type)
+    getEncodeForType(param.type),
+    true
   )}`;
 }
 
@@ -982,7 +1005,6 @@ function getDefaultValue(param: SdkServiceParameter) {
  * Extracts the path parameters
  */
 function getPathParameters(
-  dpgContext: SdkContext,
   operation: ServiceOperation,
   optionalParamName: string = "options"
 ) {
@@ -993,18 +1015,8 @@ function getPathParameters(
   const pathParams: string[] = [];
   for (const param of operation.operation.parameters) {
     if (param.kind === "path") {
-      // Path parameters cannot be optional
-      if (param.optional) {
-        reportDiagnostic(dpgContext.program, {
-          code: "optional-path-param",
-          target: NoTarget,
-          format: {
-            paramName: (param as SdkPathParameter).name
-          }
-        });
-      }
       pathParams.push(
-        `${param.serializedName}: ${getPathParamExpr(param, getDefaultValue(param) as string, optionalParamName)}`
+        `"${param.serializedName}": ${getPathParamExpr(param, getDefaultValue(param) as string, optionalParamName)}`
       );
     }
   }
@@ -1124,7 +1136,8 @@ export function getSerializationExpression(
       property.type,
       propertyFullName,
       !property.optional,
-      getEncodeForType(property.type)
+      getEncodeForType(property.type),
+      propertyPath === "" ? true : false
     );
   }
 }
@@ -1177,8 +1190,10 @@ export function getRequestModelMapping(
 function getPropertySerializedName(property: SdkModelPropertyType) {
   return property.kind !== "credential" &&
     property.kind !== "method" &&
-    property.kind !== "endpoint"
-    ? property.serializedName
+    property.kind !== "endpoint" &&
+    property.kind !== "responseheader"
+    ? // eslint-disable-next-line
+      property.serializedName
     : property.name;
 }
 
@@ -1247,7 +1262,8 @@ export function serializeRequestValue(
   type: SdkType,
   clientValue: string,
   required: boolean,
-  format?: string
+  format?: string,
+  isTopLevel: boolean = false
 ): string {
   const getSdkType = useSdkTypes();
   const dependencies = useDependencies();
@@ -1328,6 +1344,11 @@ export function serializeRequestValue(
       }
     case "model": // this is to build serialization logic for spread model types
       return `{${getRequestModelMapping(context, type, "").join(",")}}`;
+    case "constant":
+      if (isTopLevel) {
+        return `${nullOrUndefinedPrefix}${getConstantValue(type)}`;
+      }
+      return clientValue;
     case "nullable":
       return serializeRequestValue(
         context,
@@ -1468,14 +1489,16 @@ export function getAllProperties(
       propertiesMap.set(prop.name, prop);
     });
   });
-  type.kind === "model" &&
+  if (type.kind === "model" && type.properties) {
     type.properties
-      ?.filter((p) => {
+      .filter((p) => {
         return p.kind === "property";
       })
       .forEach((p) => {
         propertiesMap.set(p.name, p);
       });
+  }
+
   return [...propertiesMap.values()];
 }
 

@@ -45,8 +45,8 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const azureSdkForJs = await getAzureSdkForJs(host);
   const dependencyInfo = await getDependencyInfo(host);
   const flavor = await getFlavor(host);
-
-  const moduleKind = await getModuleKind(host);
+  //TODO should remove this after finish the release tool test
+  const shouldUsePnpmDep = await shouldUsePnpm(host)
 
   return {
     azureArm,
@@ -82,7 +82,8 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     dependencyInfo,
     useLegacyLro,
     flavor,
-    moduleKind
+    //TODO should remove this after finish the release tool test
+    shouldUsePnpmDep
   };
 }
 
@@ -402,7 +403,9 @@ async function getDependencyInfo(
     "Invalid dependency-info. Make sure that link and description are defined"
   );
 }
+//TODO should remove this after finish the release tool test
+async function shouldUsePnpm(host: AutorestExtensionHost): Promise<boolean> {
+  const shouldUsePnpmDep = (await host.getValue("should-use-pnpm-dep")) === true;
 
-async function getModuleKind(host: AutorestExtensionHost): Promise<AutorestOptions["moduleKind"]> {
-  return (await host.getValue("module-kind")) || "cjs";
+  return shouldUsePnpmDep;
 }

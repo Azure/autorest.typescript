@@ -40,11 +40,12 @@ export declare class PageClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: PageClientOptionalParams);
-    listSecondItem(options?: ListSecondItemOptionalParams): PagedAsyncIterableIterator<SecondItem>;
-    listFirstItem(options?: ListFirstItemOptionalParams): PagedAsyncIterableIterator<FirstItem>;
+    withParameterizedNextLink(select: string, options?: WithParameterizedNextLinkOptionalParams): PagedAsyncIterableIterator<User>;
     listWithCustomPageModel(options?: ListWithCustomPageModelOptionalParams): PagedAsyncIterableIterator<User>;
     listWithParameters(bodyInput: ListItemInputBody, options?: ListWithParametersOptionalParams): PagedAsyncIterableIterator<User>;
     listWithPage(options?: ListWithPageOptionalParams): PagedAsyncIterableIterator<User>;
+    listSecondItem(options?: ListSecondItemOptionalParams): PagedAsyncIterableIterator<SecondItem>;
+    listFirstItem(options?: ListFirstItemOptionalParams): PagedAsyncIterableIterator<FirstItem>;
 }
 
 export declare interface PageClientOptionalParams extends ClientOptions {
@@ -76,6 +77,10 @@ export declare interface UserOrder {
     readonly id: number;
     userId: number;
     detail: string;
+}
+
+export declare interface WithParameterizedNextLinkOptionalParams extends OperationOptions {
+    includePending?: boolean;
 }
 
 export { }

@@ -124,9 +124,11 @@ export function getImportModuleName(name: ModuleName, codeModel: RLCModel) {
 
 export function getClientName(model: RLCModel) {
   const clientName = model.libraryName;
-  const clientInterfaceName = clientName.endsWith("Client")
-    ? `${clientName}`
-    : `${clientName}Client`;
+  const clientInterfaceName = model.options?.isModularLibrary
+    ? model.libraryName
+    : clientName.endsWith("Client")
+      ? `${clientName}`
+      : `${clientName}Client`;
 
   return clientInterfaceName;
 }
