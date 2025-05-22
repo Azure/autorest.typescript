@@ -65,8 +65,10 @@ import { OnlineExperimentationClient } from "@azure/arm-onlineexperimentation";
 
 const credential = new InteractiveBrowserCredential({
   tenantId: "<YOUR_TENANT_ID>",
-  clientId: "<YOUR_CLIENT_ID>"
+  clientId: "<YOUR_CLIENT_ID>",
  });
+
+const subscriptionId = "00000000-0000-0000-0000-000000000000";
 const client = new OnlineExperimentationClient(credential, subscriptionId);
 ```
 
