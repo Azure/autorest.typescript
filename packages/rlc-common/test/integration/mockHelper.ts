@@ -20,6 +20,7 @@ export type TestModelConfig = {
   hasPaging?: boolean;
   isModularLibrary?: boolean;
   azureSdkForJs?: boolean;
+  azureArm?: boolean;
 };
 
 export function createMockModel(config: TestModelConfig = {}): RLCModel {
@@ -50,6 +51,7 @@ export function createMockModel(config: TestModelConfig = {}): RLCModel {
       moduleKind: config.moduleKind,
       sourceFrom: config.source ?? "TypeSpec",
       isModularLibrary: config.isModularLibrary ?? false,
+      azureArm: config.azureArm ?? false
     },
     helperDetails: {
       hasPaging: config.hasPaging ?? false,
