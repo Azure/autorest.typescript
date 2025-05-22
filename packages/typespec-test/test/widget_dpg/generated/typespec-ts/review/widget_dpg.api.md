@@ -20,6 +20,10 @@ export interface AnalyzeResult {
 }
 
 // @public
+export interface BudgetsContinueOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface BudgetsCreateOrReplaceOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
@@ -30,6 +34,7 @@ export interface BudgetsGetBudgetsOptionalParams extends OperationOptions {
 
 // @public
 export interface BudgetsOperations {
+    continue: (options?: BudgetsContinueOptionalParams) => Promise<void>;
     createOrReplace: (name: string, resource: SAPUser, options?: BudgetsCreateOrReplaceOptionalParams) => PollerLike<OperationState<SAPUser>, SAPUser>;
     // (undocumented)
     getBudgets: (name: string, options?: BudgetsGetBudgetsOptionalParams) => Promise<Widget[]>;
