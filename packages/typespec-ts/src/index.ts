@@ -361,18 +361,23 @@ export async function $onEmit(context: EmitContext) {
     console.timeEnd("onEmit: generate files");
     console.timeEnd("onEmit: generate modular sources");
   }
+  interface Metadata {
+    apiVersion?: string;
+    emitterVersion?: string;
+  }
+
   function buildMetadataJson() {
     const apiVersion = dpgContext.sdkPackage.metadata.apiVersion;
     const emitterVersion = getTypespecTsVersion(context);
     if (apiVersion === undefined && emitterVersion === undefined) {
       return;
     }
-    const content: any = {};
+    const content: Metadata = {};
     if (apiVersion !== undefined) {
-      content["apiVersion"] = apiVersion;
+      content.apiVersion = apiVersion;
     }
     if (emitterVersion !== undefined) {
-      content["emitterVersion"] = emitterVersion;
+      content.emitterVersion = emitterVersion;
     }
     return {
       path: "metadata.json",
