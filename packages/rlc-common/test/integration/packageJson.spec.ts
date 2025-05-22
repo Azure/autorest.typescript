@@ -430,6 +430,25 @@ describe("Package file generation", () => {
       expect(packageFile).to.have.property("//metadata");
       expect(packageFile["//metadata"]["constantPaths"][0]).to.have.property("path", "src/test.ts", "rlc");
     });
+
+    it("should skip lint scripts with arm packages for modular", () => {
+      const model = createMockModel({
+        ...baseConfig,
+        azureArm: true,
+        isModularLibrary: true
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile.scripts).to.have.property(
+        "lint:fix",
+        "echo skipped"
+      );
+      expect(packageFile.scripts).to.have.property(
+        "lint",
+        "echo skipped"
+      );
+    });
   });
 
   describe("Azure flavor for standalone library", () => {
