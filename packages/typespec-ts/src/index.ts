@@ -173,6 +173,13 @@ export async function $onEmit(context: EmitContext) {
   }
 
   // 5. Generate metadata and test files
+  function getTypespecTsVersion(context: EmitContext): string | undefined {
+    const emitterMetadata = context.program.emitters.find(
+      (emitter) => emitter.metadata.name === "@azure-tools/typespec-ts"
+    );
+    return emitterMetadata?.metadata.version;
+  }
+
   await generateMetadataAndTest(dpgContext);
 
   async function enrichDpgContext() {
@@ -354,7 +361,29 @@ export async function $onEmit(context: EmitContext) {
     console.timeEnd("onEmit: generate files");
     console.timeEnd("onEmit: generate modular sources");
   }
+  interface Metadata {
+    apiVersion?: string;
+    emitterVersion?: string;
+  }
 
+  function buildMetadataJson() {
+    const apiVersion = dpgContext.sdkPackage.metadata.apiVersion;
+    const emitterVersion = getTypespecTsVersion(context);
+    if (apiVersion === undefined && emitterVersion === undefined) {
+      return;
+    }
+    const content: Metadata = {};
+    if (apiVersion !== undefined) {
+      content.apiVersion = apiVersion;
+    }
+    if (emitterVersion !== undefined) {
+      content.emitterVersion = emitterVersion;
+    }
+    return {
+      path: "metadata.json",
+      content: JSON.stringify(content, null, 2)
+    };
+  }
   async function generateMetadataAndTest(context: SdkContext) {
     const project = useContext("outputProject");
     if (rlcCodeModels.length === 0 || !rlcCodeModels[0]) {
@@ -472,6 +501,14 @@ export async function $onEmit(context: EmitContext) {
       await emitContentByBuilder(
         program,
         (model) => updatePackageFile(model, existingPackageFilePath),
+        rlcClient,
+        dpgContext.generationPathDetail?.metadataDir
+      );
+    }
+    if (isAzureFlavor) {
+      await emitContentByBuilder(
+        program,
+        buildMetadataJson,
         rlcClient,
         dpgContext.generationPathDetail?.metadataDir
       );
