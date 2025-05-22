@@ -1,3 +1,7 @@
+## 6.0.41 (2025-05-22)
+
+- [Bugfix] Fix wrong eslint dependency
+
 ## 6.0.40 (2025-05-20)
 
 - [Feature] Remove camel-case style option. Please refer to [#3167](https://github.com/Azure/autorest.typescript/pull/3167)

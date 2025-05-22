@@ -55,18 +55,18 @@ export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
 
   const testDeps = withTests
     ? {
-        "@vitest/browser": !shouldUsePnpmDep ? "^3.0.9" : "catalog:testing",
-        "@vitest/coverage-istanbul": !shouldUsePnpmDep
-          ? "^3.0.9"
-          : "catalog:testing",
-        dotenv: !shouldUsePnpmDep ? "^16.0.0" : "catalog:testing",
-        playwright: !shouldUsePnpmDep ? "^1.50.1" : "catalog:testing",
-        typescript: !shouldUsePnpmDep ? "~5.8.2" : "catalog:",
-        vitest: !shouldUsePnpmDep ? "^3.0.9" : "catalog:testing"
-      }
+      "@vitest/browser": !shouldUsePnpmDep ? "^3.0.9" : "catalog:testing",
+      "@vitest/coverage-istanbul": !shouldUsePnpmDep
+        ? "^3.0.9"
+        : "catalog:testing",
+      dotenv: !shouldUsePnpmDep ? "^16.0.0" : "catalog:testing",
+      playwright: !shouldUsePnpmDep ? "^1.50.1" : "catalog:testing",
+      typescript: !shouldUsePnpmDep ? "~5.8.2" : "catalog:",
+      vitest: !shouldUsePnpmDep ? "^3.0.9" : "catalog:testing"
+    }
     : {
-        typescript: !shouldUsePnpmDep ? "~5.8.2" : "catalog:"
-      };
+      typescript: !shouldUsePnpmDep ? "~5.8.2" : "catalog:"
+    };
 
   return {
     dependencies: runtimeDeps,
@@ -86,7 +86,7 @@ export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
         : "workspace:*",
       "@azure/identity": !shouldUsePnpmDep ? "^4.6.0" : "catalog:internal",
       "@types/node": !shouldUsePnpmDep ? "^18.0.0" : "catalog:",
-      "@eslint": !shouldUsePnpmDep ? "^9.9.0" : "catalog:",
+      "eslint": !shouldUsePnpmDep ? "^9.9.0" : "catalog:",
       ...(config.specSource === "Swagger" && {
         autorest: !shouldUsePnpmDep ? "latest" : "catalog:"
       }),
@@ -166,9 +166,8 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
     "build:samples": config.withSamples
       ? "tsc -p tsconfig.samples.json && dev-tool samples publish -f"
       : "echo skipped",
-    "check-format": `dev-tool run vendored prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
-      config.withSamples ? '"samples-dev/*.ts"' : ""
-    }`,
+    "check-format": `dev-tool run vendored prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${config.withSamples ? '"samples-dev/*.ts"' : ""
+      }`,
     clean:
       "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
     "execute:samples": config.withSamples
@@ -176,9 +175,8 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
       : "echo skipped",
     "extract-api":
       "dev-tool run vendored rimraf review && dev-tool run extract-api",
-    format: `dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
-      config.withSamples ? '"samples-dev/*.ts"' : ""
-    }`,
+    format: `dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${config.withSamples ? '"samples-dev/*.ts"' : ""
+      }`,
     "integration-test:browser": "echo skipped",
     "integration-test:node": "echo skipped",
     "generate:client": "echo skipped",
