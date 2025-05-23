@@ -5,7 +5,7 @@
   "description": "A generated SDK for UserAgentCoreV1Client.",
   "version": "1.0.0-preview1",
   "engines": { "node": ">=18.0.0" },
-  "dependencies": { "tslib": "^2.8.1" },
+  "dependencies": { "tslib": "catalog:" },
   "keywords": ["node", "azure", "typescript", "browser", "isomorphic", "cloud"],
   "license": "MIT",
   "main": "./dist/commonjs/index.js",
@@ -13,9 +13,9 @@
   "types": "./dist/commonjs/index.d.ts",
   "type": "module",
   "devDependencies": {
-    "typescript": "~5.8.2",
-    "dotenv": "^16.0.0",
-    "@azure/dev-tool": "^1.0.0"
+    "typescript": "catalog:",
+    "dotenv": "catalog:testing",
+    "@azure/dev-tool": "workspace:*"
   },
   "repository": "github:Azure/azure-sdk-for-js",
   "bugs": { "url": "https://github.com/Azure/azure-sdk-for-js/issues" },
