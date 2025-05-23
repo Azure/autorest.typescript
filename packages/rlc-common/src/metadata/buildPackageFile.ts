@@ -37,9 +37,7 @@ export function buildPackageFile(
     exports,
     azureArm: model.options?.azureArm,
     isModularLibrary: model.options?.isModularLibrary ?? false,
-    azureSdkForJs: model.options?.azureSdkForJs,
-    //TODO should remove this after finish the release tool test
-    shouldUsePnpmDep: model.options?.shouldUsePnpmDep
+    azureSdkForJs: model.options?.azureSdkForJs
   };
 
   let packageInfo: Record<string, any> = buildFlavorlessPackage(config);
@@ -111,15 +109,12 @@ export function updatePackageFile(
   if (hasLro) {
     packageInfo.dependencies = {
       ...packageInfo.dependencies,
-      // TODO remove model.options?.shouldUsePnpmDep after pnpm migration
-      "@azure/core-lro":
-        model.options?.shouldUsePnpmDep && model.options.azureSdkForJs
-          ? "workspace:*"
-          : "^3.1.0",
-      "@azure/abort-controller":
-        model.options?.shouldUsePnpmDep && model.options.azureSdkForJs
-          ? "workspace:*"
-          : "^2.1.2"
+      "@azure/core-lro": model.options?.azureSdkForJs
+        ? "workspace:*"
+        : "^3.1.0",
+      "@azure/abort-controller": model.options?.azureSdkForJs
+        ? "workspace:*"
+        : "^2.1.2"
     };
   }
 

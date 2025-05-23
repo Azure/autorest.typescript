@@ -92,8 +92,6 @@ function extractRLCOptions(
     emitterOptions["compatibility-query-multi-format"];
   const typespecTitleMap = emitterOptions["typespec-title-map"];
   const hasSubscriptionId = getSubscriptionId(dpgContext);
-  //TODO should remove this after finish the release tool test
-  const shouldUsePnpmDep = emitterOptions["should-use-pnpm-dep"];
 
   return {
     ...credentialInfo,
@@ -125,9 +123,7 @@ function extractRLCOptions(
     compatibilityQueryMultiFormat,
     typespecTitleMap,
     ignoreEnumMemberNameNormalize,
-    hasSubscriptionId,
-    //TODO should remove this after finish the release tool test
-    shouldUsePnpmDep
+    hasSubscriptionId
   };
 }
 

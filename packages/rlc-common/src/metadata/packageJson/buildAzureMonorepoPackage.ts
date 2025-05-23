@@ -34,61 +34,50 @@ export function buildAzureMonorepoPackage(config: AzureMonorepoInfoConfig) {
  * Builds the dependencies for an Azure package that will be hosted in the azure-sdk-for-js mono repo.
  */
 export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
-  //TODO should remove all the shouldUsePnpmDep codes after finish the release tool test
-  const { hasLro, dependencies, withTests, shouldUsePnpmDep } = config;
+  const { hasLro, dependencies, withTests } = config;
 
   const runtimeDeps = {
     ...dependencies,
-    "@azure-rest/core-client": !shouldUsePnpmDep ? "^2.1.0" : "workspace:*",
+    "@azure-rest/core-client": "workspace:*",
     ...(hasLro && {
-      "@azure/abort-controller": !shouldUsePnpmDep ? "^2.1.2" : "workspace:*"
+      "@azure/abort-controller": "workspace:*"
     }),
-    "@azure/core-auth": !shouldUsePnpmDep ? "^1.9.0" : "workspace:*",
+    "@azure/core-auth": "workspace:*",
     ...(hasLro && {
-      "@azure/core-lro": !shouldUsePnpmDep ? "^3.0.0" : "workspace:*"
+      "@azure/core-lro": "workspace:*"
     }),
-    "@azure/core-rest-pipeline": !shouldUsePnpmDep ? "^1.18.2" : "workspace:*",
-    "@azure/core-util": !shouldUsePnpmDep ? "^1.11.0" : "workspace:*",
-    "@azure/logger": !shouldUsePnpmDep ? "^1.1.4" : "workspace:*",
-    tslib: !shouldUsePnpmDep ? "^2.8.1" : "catalog:"
+    "@azure/core-rest-pipeline": "workspace:*",
+    "@azure/core-util": "workspace:*",
+    "@azure/logger": "workspace:*",
+    tslib: "catalog:"
   };
 
   const testDeps = withTests
     ? {
-        "@vitest/browser": !shouldUsePnpmDep ? "^3.0.9" : "catalog:testing",
-        "@vitest/coverage-istanbul": !shouldUsePnpmDep
-          ? "^3.0.9"
-          : "catalog:testing",
-        dotenv: !shouldUsePnpmDep ? "^16.0.0" : "catalog:testing",
-        playwright: !shouldUsePnpmDep ? "^1.50.1" : "catalog:testing",
-        typescript: !shouldUsePnpmDep ? "~5.8.2" : "catalog:",
-        vitest: !shouldUsePnpmDep ? "^3.0.9" : "catalog:testing"
+        "@vitest/browser": "catalog:testing",
+        "@vitest/coverage-istanbul": "catalog:testing",
+        dotenv: "catalog:testing",
+        playwright: "catalog:testing",
+        typescript: "catalog:",
+        vitest: "catalog:testing"
       }
     : {
-        typescript: !shouldUsePnpmDep ? "~5.8.2" : "catalog:"
+        typescript: "catalog:"
       };
 
   return {
     dependencies: runtimeDeps,
     devDependencies: {
-      "@azure-tools/test-credential": !shouldUsePnpmDep
-        ? "^2.0.0"
-        : "workspace:*",
-      "@azure-tools/test-recorder": !shouldUsePnpmDep
-        ? "^4.1.0"
-        : "workspace:*",
-      "@azure-tools/test-utils-vitest": !shouldUsePnpmDep
-        ? "^1.0.0"
-        : "workspace:*",
-      "@azure/dev-tool": !shouldUsePnpmDep ? "^1.0.0" : "workspace:*",
-      "@azure/eslint-plugin-azure-sdk": !shouldUsePnpmDep
-        ? "^3.0.0"
-        : "workspace:*",
-      "@azure/identity": !shouldUsePnpmDep ? "^4.6.0" : "catalog:internal",
-      "@types/node": !shouldUsePnpmDep ? "^18.0.0" : "catalog:",
-      eslint: !shouldUsePnpmDep ? "^9.9.0" : "catalog:",
+      "@azure-tools/test-credential": "workspace:*",
+      "@azure-tools/test-recorder": "workspace:*",
+      "@azure-tools/test-utils-vitest": "workspace:*",
+      "@azure/dev-tool": "workspace:*",
+      "@azure/eslint-plugin-azure-sdk": "workspace:*",
+      "@azure/identity": "catalog:internal",
+      "@types/node": "catalog:",
+      eslint: "catalog:",
       ...(config.specSource === "Swagger" && {
-        autorest: !shouldUsePnpmDep ? "latest" : "catalog:"
+        autorest: "catalog:"
       }),
       ...testDeps
     }
