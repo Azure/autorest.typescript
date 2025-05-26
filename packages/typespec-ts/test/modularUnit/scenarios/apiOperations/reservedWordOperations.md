@@ -19,24 +19,26 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _$continueSend(
   context: Client,
-  options: ContinueOptionalParams = { requestOptions: {} }
+  options: ContinueOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/").get({
-    ...operationOptionsToRequestParameters(options),
-    headers: {
-      accept: "application/json",
-      ...options.requestOptions?.headers
-    }
-  });
+  return context
+    .path("/")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _$continueDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<Test> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -53,7 +55,7 @@ export async function _$continueDeserialize(
  */
 export async function $continue(
   context: Client,
-  options: ContinueOptionalParams = { requestOptions: {} }
+  options: ContinueOptionalParams = { requestOptions: {} },
 ): Promise<Test> {
   const result = await _$continueSend(context, options);
   return _$continueDeserialize(result);
