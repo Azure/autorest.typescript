@@ -86,7 +86,7 @@ export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
         : "workspace:*",
       "@azure/identity": !shouldUsePnpmDep ? "^4.6.0" : "catalog:internal",
       "@types/node": !shouldUsePnpmDep ? "^18.0.0" : "catalog:",
-      "@eslint": !shouldUsePnpmDep ? "^9.9.0" : "catalog:",
+      eslint: !shouldUsePnpmDep ? "^9.9.0" : "catalog:",
       ...(config.specSource === "Swagger" && {
         autorest: !shouldUsePnpmDep ? "latest" : "catalog:"
       }),
@@ -160,6 +160,7 @@ function addSwaggerMetadata(
 function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
   const esmScripts = getEsmScripts(config);
   const cjsScripts = getCjsScripts(config);
+  const skipLinting = config.azureArm && config.isModularLibrary;
   return {
     ...getCommonPackageScripts(config),
     "build:samples": config.withSamples
@@ -183,9 +184,12 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
     "generate:client": "echo skipped",
     "test:browser":
       "npm run clean && npm run build:test && npm run unit-test:browser && npm run integration-test:browser",
-    "lint:fix":
-      "eslint package.json api-extractor.json src test --fix --fix-type [problem,suggestion]",
-    lint: "eslint package.json api-extractor.json src test",
+    "lint:fix": skipLinting
+      ? "echo skipped"
+      : "eslint package.json api-extractor.json src test --fix --fix-type [problem,suggestion]",
+    lint: skipLinting
+      ? "echo skipped"
+      : "eslint package.json api-extractor.json src test",
     ...esmScripts,
     ...cjsScripts,
     "update-snippets": "dev-tool run update-snippets"
