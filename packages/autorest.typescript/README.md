@@ -35,6 +35,32 @@ In addition to the [list of Autorest flags](https://github.com/Azure/autorest/bl
 | `--tracing-info`                | Controls specification of meta info attached to requests for tracing purposes                                                                                                                                                                                                                                                        |
 | `--disable-async-iterators`     | Does not generate async iterators needed for paging operations                                                                                                                                                                                                                                                                       |
 | `--allow-insecure-connection`   | Allow generated clients to make requests to HTTP endpoints                                                                                                                                                                                                                                                                           |                                                                                                                                                                                   
+## Multi-Cloud Support
+
+Starting from version 4.7.0, the generator adds support for connecting to different Azure cloud environments. When you instantiate a client, you can specify which cloud environment to use via the `azureCloud` parameter in the client options.
+
+```typescript
+import { NetworkCloud, AzureCloud } from "@azure/arm-networkcloud";
+import { DefaultAzureCredential } from "@azure/identity";
+
+// Create a client for the Azure China Cloud environment
+const client = new NetworkCloud(
+  new DefaultAzureCredential(),
+  "your-subscription-id",
+  { 
+    azureCloud: AzureCloud.AzureChinaCloud 
+  }
+);
+```
+
+The following cloud environments are supported:
+- `AzurePublicCloud`: Azure Public Cloud (default)
+- `AzureChinaCloud`: Azure China Cloud
+- `AzureUSGovernment`: Azure US Government Cloud
+- `AzureGermanCloud`: Azure German Cloud
+
+If you don't specify a cloud environment, the client will connect to the Azure Public Cloud by default.
+
 ## Contributing
 
 This project welcomes contributions and suggestions. Most contributions require you to agree to a
