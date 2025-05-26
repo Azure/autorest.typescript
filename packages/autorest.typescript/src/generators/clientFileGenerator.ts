@@ -34,6 +34,7 @@ import { PackageDetails } from "../models/packageDetails";
 import { getSecurityInfoFromModel } from "../utils/schemaHelpers";
 import { createLroImports } from "../utils/lroHelpers";
 import { getImportModuleName } from "../utils/nameConstructors";
+import { AzureCloud, getArmEndpoint } from "../utils/azureCloud";
 
 type OperationDeclarationDetails = { name: string; typeName: string };
 
@@ -83,6 +84,9 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
       overwrite: true
     }
   );
+
+  // Export AzureCloud enum for client use
+  clientFile.addStatements(`export { AzureCloud } from "${getImportModuleName({ cjsName: "../utils/azureCloud", esModulesName: "../utils/azureCloud.js" }, isTestPackage)}";`);
 
   !useCoreV2 && writePackageInfo(clientFile, packageDetails);
 
@@ -789,13 +793,11 @@ function isAddScopes(
 }
 
 function getEndpointStatement({ endpoint }: EndpointDetails) {
-  return `this.baseUri = options.endpoint ?? ${endpoint ? `"${endpoint}"` : `""`
-    };`;
+  return `this.baseUri = options.endpoint ?? ${endpoint ? `"${endpoint}"` : ""} ?? getArmEndpoint(options.azureCloud);`;
 }
 
 function getEndpoint({ endpoint }: EndpointDetails) {
-  return `options.endpoint ?? options.baseUri ?? ${endpoint ? `"${endpoint}"` : `""`
-    }`;
+  return `options.endpoint ?? options.baseUri ?? ${endpoint ? `"${endpoint}"` : ""} ?? getArmEndpoint(options.azureCloud)`;
 }
 
 function getRequiredParamAssignments(requiredParameters: ParameterDetails[]) {
