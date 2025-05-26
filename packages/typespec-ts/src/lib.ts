@@ -68,6 +68,8 @@ export interface EmitterOptions {
   "typespec-title-map"?: Record<string, string>;
   "ignore-enum-member-name-normalize"?: boolean;
   "default-value-object"?: boolean;
+  //TODO should remove this after finish the release tool test
+  "should-use-pnpm-dep"?: boolean;
 }
 
 export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
@@ -160,7 +162,8 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       },
       required: [],
       nullable: true
-    }
+    },
+    "should-use-pnpm-dep": { type: "boolean", nullable: true }
   },
   required: []
 };

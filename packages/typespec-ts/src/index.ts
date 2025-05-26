@@ -83,7 +83,7 @@ import { emitLoggerFile } from "./modular/emitLoggerFile.js";
 import { emitTypes } from "./modular/emitModels.js";
 import { existsSync } from "fs";
 import { getModuleExports } from "./modular/buildProjectFiles.js";
-import { getRLCClients } from "./utils/clientUtils.js";
+import { getClientHierarchyMap, getRLCClients } from "./utils/clientUtils.js";
 import { join } from "path";
 import { loadStaticHelpers } from "./framework/load-static-helpers.js";
 import { provideBinder } from "./framework/hooks/binder.js";
@@ -173,6 +173,13 @@ export async function $onEmit(context: EmitContext) {
   }
 
   // 5. Generate metadata and test files
+  function getTypespecTsVersion(context: EmitContext): string | undefined {
+    const emitterMetadata = context.program.emitters.find(
+      (emitter) => emitter.metadata.name === "@azure-tools/typespec-ts"
+    );
+    return emitterMetadata?.metadata.version;
+  }
+
   await generateMetadataAndTest(dpgContext);
 
   async function enrichDpgContext() {
@@ -283,58 +290,37 @@ export async function $onEmit(context: EmitContext) {
     console.time("onEmit: emit models");
     emitTypes(dpgContext, { sourceRoot: modularSourcesRoot });
     console.timeEnd("onEmit: emit models");
-    buildSubpathIndexFile(
-      dpgContext,
-      modularEmitterOptions,
-      "models",
-      undefined,
-      { recursive: true }
-    );
+    buildSubpathIndexFile(modularEmitterOptions, "models", undefined, {
+      recursive: true
+    });
     console.time("onEmit: emit source files");
-    for (const subClient of dpgContext.sdkPackage.clients) {
-      await renameClientName(subClient, modularEmitterOptions);
+    const clientMap = getClientHierarchyMap(dpgContext);
+    for (const subClient of clientMap) {
+      await renameClientName(subClient[1], modularEmitterOptions);
       buildApiOptions(dpgContext, subClient, modularEmitterOptions);
       buildOperationFiles(dpgContext, subClient, modularEmitterOptions);
       buildClientContext(dpgContext, subClient, modularEmitterOptions);
       buildRestorePoller(dpgContext, subClient, modularEmitterOptions);
       if (dpgContext.rlcOptions?.hierarchyClient) {
-        buildSubpathIndexFile(
-          dpgContext,
-          modularEmitterOptions,
-          "api",
-          subClient,
-          {
-            exportIndex: false,
-            recursive: true
-          }
-        );
+        buildSubpathIndexFile(modularEmitterOptions, "api", subClient, {
+          exportIndex: false,
+          recursive: true
+        });
       } else {
-        buildSubpathIndexFile(
-          dpgContext,
-          modularEmitterOptions,
-          "api",
-          subClient,
-          {
-            recursive: true,
-            exportIndex: true
-          }
-        );
+        buildSubpathIndexFile(modularEmitterOptions, "api", subClient, {
+          recursive: true,
+          exportIndex: true
+        });
       }
 
       buildClassicalClient(dpgContext, subClient, modularEmitterOptions);
       buildClassicOperationFiles(dpgContext, subClient, modularEmitterOptions);
-      buildSubpathIndexFile(
-        dpgContext,
-        modularEmitterOptions,
-        "classic",
-        subClient,
-        {
-          exportIndex: true,
-          interfaceOnly: true
-        }
-      );
+      buildSubpathIndexFile(modularEmitterOptions, "classic", subClient, {
+        exportIndex: true,
+        interfaceOnly: true
+      });
       if (isMultiClients) {
-        buildSubClientIndexFile(dpgContext, subClient, modularEmitterOptions);
+        buildSubClientIndexFile(subClient, modularEmitterOptions);
       }
       buildRootIndex(
         dpgContext,
@@ -358,6 +344,9 @@ export async function $onEmit(context: EmitContext) {
 
     console.time("onEmit: resolve references");
     binder.resolveAllReferences(modularSourcesRoot);
+    if (program.compilerOptions.noEmit || program.hasError()) {
+      return;
+    }
     console.timeEnd("onEmit: resolve references");
 
     console.time("onEmit: generate files");
@@ -372,7 +361,29 @@ export async function $onEmit(context: EmitContext) {
     console.timeEnd("onEmit: generate files");
     console.timeEnd("onEmit: generate modular sources");
   }
+  interface Metadata {
+    apiVersion?: string;
+    emitterVersion?: string;
+  }
 
+  function buildMetadataJson() {
+    const apiVersion = dpgContext.sdkPackage.metadata.apiVersion;
+    const emitterVersion = getTypespecTsVersion(context);
+    if (apiVersion === undefined && emitterVersion === undefined) {
+      return;
+    }
+    const content: Metadata = {};
+    if (apiVersion !== undefined) {
+      content.apiVersion = apiVersion;
+    }
+    if (emitterVersion !== undefined) {
+      content.emitterVersion = emitterVersion;
+    }
+    return {
+      path: "metadata.json",
+      content: JSON.stringify(content, null, 2)
+    };
+  }
   async function generateMetadataAndTest(context: SdkContext) {
     const project = useContext("outputProject");
     if (rlcCodeModels.length === 0 || !rlcCodeModels[0]) {
@@ -402,6 +413,14 @@ export async function $onEmit(context: EmitContext) {
         option.generateTest = true;
       }
     }
+
+    //TODO Need consider multi-client cases
+    if (option.isModularLibrary) {
+      for (const subClient of dpgContext.sdkPackage.clients) {
+        rlcClient.libraryName = subClient.name;
+      }
+    }
+
     if (shouldGenerateMetadata) {
       const commonBuilders = [
         buildRollupConfig,
@@ -486,6 +505,14 @@ export async function $onEmit(context: EmitContext) {
         dpgContext.generationPathDetail?.metadataDir
       );
     }
+    if (isAzureFlavor) {
+      await emitContentByBuilder(
+        program,
+        buildMetadataJson,
+        rlcClient,
+        dpgContext.generationPathDetail?.metadataDir
+      );
+    }
 
     // Generate test relevant files
     if (option.generateTest && isAzureFlavor) {
@@ -502,8 +529,9 @@ export async function $onEmit(context: EmitContext) {
     context: SdkContext,
     options: ModularEmitterOptions
   ) {
-    return context.sdkPackage.clients
-      .map((subClient) => getClientContextPath(context, subClient, options))
+    const clientMap = getClientHierarchyMap(context);
+    return Array.from(clientMap)
+      .map((subClient) => getClientContextPath(subClient, options))
       .map((path) => path.substring(path.indexOf("src")));
   }
   console.timeEnd("onEmit");
