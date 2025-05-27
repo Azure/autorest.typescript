@@ -39,6 +39,7 @@ export function getArmEndpoint(cloudSetting: string = AzureCloud.AzurePublicClou
     case AzureCloud.AzureUSGovernment:
       return "https://management.usgovcloudapi.net";
     case AzureCloud.AzureGermanCloud:
+      // @deprecated Azure German Cloud is deprecated and should not be used for new applications
       return "https://management.microsoftazure.de";
     case AzureCloud.AzurePublicCloud:
     default:
