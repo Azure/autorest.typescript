@@ -19,7 +19,7 @@ export function generateTsBrowserConfig(project: Project) {
     if (!generateMetadata) {
         return;
     }
-    project.createSourceFile("tsconfig.browser.config.json", JSON.stringify(highLevelTsBrowserConfig), {
+    project.createSourceFile("tsconfig.browser.config.json", JSON.stringify(highLevelTsBrowserConfig, null, 2), {
         overwrite: true
     });
 }
