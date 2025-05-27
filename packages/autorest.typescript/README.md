@@ -57,7 +57,7 @@ The following cloud environments are supported:
 - `AzurePublicCloud`: Azure Public Cloud (default)
 - `AzureChinaCloud`: Azure China Cloud
 - `AzureUSGovernment`: Azure US Government Cloud
-- `AzureGermanCloud`: Azure German Cloud
+- `AzureGermanCloud`: Azure German Cloud (deprecated)
 
 If you don't specify a cloud environment, the client will connect to the Azure Public Cloud by default.
 

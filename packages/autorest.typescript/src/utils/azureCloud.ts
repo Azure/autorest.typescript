@@ -22,6 +22,7 @@ export enum AzureCloud {
   
   /**
    * Azure German Cloud
+   * @deprecated Azure German Cloud is deprecated and should not be used for new applications
    */
   AzureGermanCloud = "AZURE_GERMAN_CLOUD"
 }
