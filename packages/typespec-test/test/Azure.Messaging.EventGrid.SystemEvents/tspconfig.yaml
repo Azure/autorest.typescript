@@ -1,0 +1,12 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    experimental-extensible-enums: true
+    package-dir: "eventgrid-systemevents"
+    package-details:
+      name: "@azure/eventgrid-systemevents"
+    flavor: azure
+    is-modular-library: true
+    azure-sdk-for-js: false
+    emitter-output-dir: "{project-root}/generated/typespec-ts"
