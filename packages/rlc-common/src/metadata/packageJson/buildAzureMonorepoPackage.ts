@@ -190,6 +190,7 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
     lint: skipLinting
       ? "echo skipped"
       : "eslint package.json api-extractor.json src test",
+    pack: `${config.shouldUsePnpmDep ? "pnpm" : "npm"} pack 2>&1`,
     ...esmScripts,
     ...cjsScripts,
     "update-snippets": "dev-tool run update-snippets"
