@@ -131,7 +131,7 @@ function regularAutorestPackage(
         "npm run clean && tshy && npm run extract-api",
       minify: `uglifyjs -c -m --comments --source-map "content='./dist/index.js.map'" -o ./dist/index.min.js ./dist/index.js`,
       prepack: "npm run build",
-      pack: "npm pack 2>&1",
+      pack: `${shouldUsePnpmDep && azureSdkForJs ? "pnpm" : "npm"} pack 2>&1`,
       "extract-api": "rimraf review && mkdirp ./review && api-extractor run --local",
       lint: "echo skipped",
       clean:
