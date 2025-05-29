@@ -1,8 +1,0 @@
-emit: ["@azure-tools/typespec-ts"]
-options:
-  "@azure-tools/typespec-ts":
-    flavor: azure
-    experimental-extensible-enums: true
-    emitter-output-dir: "{project-root}/generated/typespec-ts/sdk/test/arm-test"
-    package-details:
-      name: "@azure/arm-onlineexperimentation"
