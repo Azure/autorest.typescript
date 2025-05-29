@@ -1,4 +1,4 @@
-# Should generate samples for different types
+# only: Should generate samples for different types
 
 Sample generation should handle different types in body.
 
@@ -11,6 +11,7 @@ model Foo {
 }
 
 model Widget {
+  unknownValue: unknown
   strValue: string;
   numValue: int32;
   enumValue: "red" | "blue";
@@ -31,6 +32,7 @@ model Widget {
   offsetDateTimeProp: offsetDateTime;
   durationProp: duration;
   withEscapeChars: string;
+  unknownRecord: Record<unknown>
 }
 
 @doc("show example demo")
@@ -45,6 +47,7 @@ op read(@bodyRoot body: Widget): { @body body: {}};
   "operationId": "read",
   "parameters": {
     "body": {
+      "unknownValue": "unknown-Value",
       "strValue": "00000000-0000-0000-0000-00000000000",
       "numValue": 0.12,
       "enumValue": "red",
@@ -66,7 +69,8 @@ op read(@bodyRoot body: Widget): { @body body: {}};
       "utcDateTimeProp": "2022-08-26T18:38:00Z",
       "offsetDateTimeProp": "2022-08-26T18:38:00Z",
       "durationProp": "P123DT22H14M12.011S",
-      "withEscapeChars": "\"Tag 10\".Value"
+      "withEscapeChars": "\"Tag 10\".Value",
+      "unknownRecord": { "a": "foo" }
     }
   },
   "responses": {
@@ -110,7 +114,7 @@ async function read(): Promise<void> {
     offsetDateTimeProp: "2022-08-26T18:38:00Z",
     durationProp: "P123DT22H14M12.011S",
     withEscapeChars: '"Tag 10".Value',
-    additionalProp: "additional prop",
+    additionalProp: "additional prop"
   });
   console.log(result);
 }
