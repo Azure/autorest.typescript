@@ -1,0 +1,14 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    generate-metadata: true
+    src-folder: "src/generated"
+    experimental-extensible-enums: true
+    is-modular-library: true
+    azure-sdk-for-js: false
+    package-details:
+      name: "@azure/keyvault-keys"
+      description: "Azure Key Vault keys"
+    flavor: azure
+    emitter-output-dir: "{project-root}/generated/typespec-ts"
