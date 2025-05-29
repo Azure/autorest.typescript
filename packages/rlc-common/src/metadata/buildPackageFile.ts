@@ -114,11 +114,11 @@ export function updatePackageFile(
       // TODO remove model.options?.shouldUsePnpmDep after pnpm migration
       "@azure/core-lro":
         model.options?.shouldUsePnpmDep && model.options.azureSdkForJs
-          ? "workspace:*"
+          ? "workspace:^"
           : "^3.1.0",
       "@azure/abort-controller":
         model.options?.shouldUsePnpmDep && model.options.azureSdkForJs
-          ? "workspace:*"
+          ? "workspace:^"
           : "^2.1.2"
     };
   }
