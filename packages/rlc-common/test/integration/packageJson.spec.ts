@@ -449,6 +449,21 @@ describe("Package file generation", () => {
         "echo skipped"
       );
     });
+    it("[esm] should include correct scripts with pack", () => {
+      const model = createMockModel({
+        ...baseConfig,
+        moduleKind: "esm",
+        withTests: true,
+        shouldUsePnpmDep: true
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile.scripts).to.have.property(
+        "pack",
+        "pnpm pack 2>&1"
+      );
+    });
 
     it("should include browser and react-native in package.json", () => {
       const model = createMockModel({
