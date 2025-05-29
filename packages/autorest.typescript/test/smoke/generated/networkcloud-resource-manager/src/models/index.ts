@@ -6268,4 +6268,6 @@ export interface NetworkCloudOptionalParams
   apiVersion?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
+  /** Azure Cloud setting */
+  azureCloud?: string;
 }

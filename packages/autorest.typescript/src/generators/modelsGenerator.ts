@@ -725,12 +725,25 @@ function writeOptionalParameters(
       );
     }
   } else {
+    const properties = [
+      ...optionalGroupDeclarations,
+      ...optionalParams.map<PropertySignatureStructure>(buildParamDetails)
+    ];
+
+    // Add azureCloud property for Client-level optional parameters that extend ServiceClientOptions
+    if (baseClass && baseClass.includes("ServiceClientOptions")) {
+      properties.push({
+        name: "azureCloud",
+        hasQuestionToken: true,
+        type: "string",
+        docs: ["Azure Cloud setting to override management endpoint."],
+        kind: StructureKind.PropertySignature
+      });
+    }
+
     interfaces.push(
       modelsIndexFile.addInterface(
-        buildOptionsInterface(`${typeName}OptionalParams`, [
-          ...optionalGroupDeclarations,
-          ...optionalParams.map<PropertySignatureStructure>(buildParamDetails)
-        ])
+        buildOptionsInterface(`${typeName}OptionalParams`, properties)
       )
     );
   }
