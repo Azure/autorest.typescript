@@ -99,7 +99,12 @@ function getEsmEntrypointInformation(config: PackageCommonInfoConfig) {
     return;
   }
 
-  return { tshy: getTshyConfig(config), type: "module" };
+  return {
+    tshy: getTshyConfig(config),
+    type: "module",
+    browser: "./dist/browser/index.js",
+    "react-native": "./dist/react-native/index.js"
+  };
 }
 
 export function getTshyConfig(config: PackageCommonInfoConfig) {
