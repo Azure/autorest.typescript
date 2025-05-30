@@ -22,6 +22,9 @@ export type TestModelConfig = {
   azureSdkForJs?: boolean;
   shouldUsePnpmDep?: boolean;
   azureArm?: boolean;
+  hasSubscriptionId?: boolean;
+  addCredentials?: boolean;
+  scopeName?: string;
 };
 
 export function createMockModel(config: TestModelConfig = {}): RLCModel {
@@ -43,7 +46,7 @@ export function createMockModel(config: TestModelConfig = {}): RLCModel {
         version: config.version ?? "1.0.0",
         description: config.description ?? "A test package",
         nameWithoutScope: "test",
-        scopeName: "msinternal"
+        scopeName: config.scopeName ?? "msinternal"
       },
       azureSdkForJs: config.isMonorepo ?? false,
       flavor: config.flavor,
@@ -53,6 +56,8 @@ export function createMockModel(config: TestModelConfig = {}): RLCModel {
       sourceFrom: config.source ?? "TypeSpec",
       isModularLibrary: config.isModularLibrary ?? false,
       azureArm: config.azureArm ?? false,
+      hasSubscriptionId: config.hasSubscriptionId ?? false,
+      addCredentials: config.addCredentials ?? false,
       shouldUsePnpmDep: config.shouldUsePnpmDep ?? false
     },
     helperDetails: {
