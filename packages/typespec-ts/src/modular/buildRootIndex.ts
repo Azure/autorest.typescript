@@ -75,6 +75,26 @@ export function buildRootIndex(
   exportFileContentsType(context, rootIndexFile);
 }
 
+export function exportModelsIfAbsent(
+  emitterOptions: ModularEmitterOptions,
+  rootIndexFile: SourceFile
+) {
+  // export models index file if not exists
+  const project = useContext("outputProject");
+  const srcPath = emitterOptions.modularOptions.sourceRoot;
+  const modelsExportsIndex = rootIndexFile
+    .getExportDeclarations()
+    ?.find((i) => {
+      return i.getModuleSpecifierValue()?.startsWith(`./models/`);
+    });
+  if (!modelsExportsIndex) {
+    exportModules(rootIndexFile, project, srcPath, "", "models", {
+      isTopLevel: true,
+      recursive: true
+    });
+  }
+}
+
 /**
  * This is a temporary solution for adding paging exports. Eventually we will have the binder generate the exports automatically.
  */
@@ -171,8 +191,7 @@ function exportRestoreHelpers(
   isTopLevel: boolean = false
 ) {
   const helperFile = project.getSourceFile(
-    `${srcPath}/${
-      subfolder && subfolder !== "" ? subfolder + "/" : ""
+    `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""
     }restorePollerHelpers.ts`
   );
   if (!helperFile) {
@@ -187,9 +206,8 @@ function exportRestoreHelpers(
       return helper;
     }
   );
-  const moduleSpecifier = `./${
-    isTopLevel && subfolder && subfolder !== "" ? subfolder + "/" : ""
-  }restorePollerHelpers.js`;
+  const moduleSpecifier = `./${isTopLevel && subfolder && subfolder !== "" ? subfolder + "/" : ""
+    }restorePollerHelpers.js`;
   indexFile.addExportDeclaration({
     moduleSpecifier,
     namedExports
@@ -205,9 +223,8 @@ function exportClassicalClient(
   const clientName = client.name;
   indexFile.addExportDeclaration({
     namedExports: [clientName],
-    moduleSpecifier: `./${
-      subfolder && subfolder !== "" && !isSubClient ? subfolder + "/" : ""
-    }${normalizeName(clientName, NameType.File)}.js`
+    moduleSpecifier: `./${subfolder && subfolder !== "" && !isSubClient ? subfolder + "/" : ""
+      }${normalizeName(clientName, NameType.File)}.js`
   });
 }
 
@@ -338,9 +355,8 @@ export function buildSubClientIndexFile(
     { overwrite: true }
   );
   const clientName = `${getClassicalClientName(client)}`;
-  const clientFilePath = `${srcPath}/${
-    subfolder && subfolder !== "" ? subfolder + "/" : ""
-  }${normalizeName(clientName, NameType.File)}.ts`;
+  const clientFilePath = `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""
+    }${normalizeName(clientName, NameType.File)}.ts`;
   const clientFile = project.getSourceFile(clientFilePath);
 
   if (!clientFile) {
