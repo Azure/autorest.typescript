@@ -464,6 +464,24 @@ describe("Package file generation", () => {
         "pnpm pack 2>&1"
       );
     });
+
+    it("should include browser and react-native in package.json", () => {
+      const model = createMockModel({
+        ...baseConfig,
+        azureArm: true,
+        isModularLibrary: true
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile).to.have.property(
+        "browser", "./dist/browser/index.js",
+      );
+      expect(packageFile).to.have.property(
+        "react-native", "./dist/react-native/index.js"
+      );
+
+    });
   });
 
   describe("Azure flavor for standalone library", () => {
