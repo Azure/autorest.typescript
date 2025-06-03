@@ -442,6 +442,7 @@ export class NetworkAnalyticsApi {
 // @public
 export interface NetworkAnalyticsApiOptionalParams extends ClientOptions {
     apiVersion?: string;
+    cloudSetting?: string;
 }
 
 // @public

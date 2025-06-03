@@ -100,25 +100,34 @@ export function buildClientContext(
       })
   });
 
+  const propertiesInOptions = getClientParameters(client, dpgContext, {
+    optionalOnly: true
+  })
+    .filter((p) => p.name !== "endpoint")
+    .map((p) => {
+      return {
+        name: getClientParameterName(p),
+        type:
+          p.name.toLowerCase() === "apiversion"
+            ? "string"
+            : getTypeExpression(dpgContext, p.type),
+        hasQuestionToken: true,
+        docs: getDocsWithKnownVersion(dpgContext, p)
+      };
+    });
+  if (dpgContext.arm) {
+    propertiesInOptions.push({
+      name: "cloudSetting",
+      type: "string",
+      hasQuestionToken: true,
+      docs: ["Azure Cloud setting to override management endpoint."]
+    });
+  }
   clientContextFile.addInterface({
     name: `${getClassicalClientName(client)}OptionalParams`,
     isExported: true,
     extends: [resolveReference(dependencies.ClientOptions)],
-    properties: getClientParameters(client, dpgContext, {
-      optionalOnly: true
-    })
-      .filter((p) => p.name !== "endpoint")
-      .map((p) => {
-        return {
-          name: getClientParameterName(p),
-          type:
-            p.name.toLowerCase() === "apiversion"
-              ? "string"
-              : getTypeExpression(dpgContext, p.type),
-          hasQuestionToken: true,
-          docs: getDocsWithKnownVersion(dpgContext, p)
-        };
-      }),
+    properties: propertiesInOptions,
     docs: ["Optional parameters for the client."]
   });
 
@@ -153,6 +162,43 @@ export function buildClientContext(
     emitterOptions,
     endpointParam
   );
+
+  if (dpgContext.arm) {
+    clientContextFile.addFunction({
+      docs: ["Get the ARM endpoint for the client."],
+      name: `getArmEndpoint`,
+      returnType: `string | undefined`,
+      parameters: [
+        {
+          name: "cloudSetting",
+          type: "string",
+          hasQuestionToken: true
+        }
+      ],
+      isExported: false,
+      statements: [
+        `
+  if (cloudSetting === undefined) {
+    return undefined;
+  }
+  if (cloudSetting === "AZURE_CHINA_CLOUD") {
+    return "https://management.chinacloudapi.cn/";
+  }
+  else if (cloudSetting === "AZURE_US_GOVERNMENT")
+    return "https://management.usgovcloudapi.net/"
+  else if (cloudSetting === "AZURE_GERMAN_CLOUD") {
+    return "https://management.microsoftazure.de/";
+  }
+  else if (cloudSetting === "AZURE_PUBLIC_CLOUD") {
+    return "https://management.azure.com/";
+  }
+  else {
+    throw new Error("Unknown cloud setting: " + cloudSetting);
+  }
+        `
+      ]
+    });
+  }
 
   factoryFunction.addStatements(
     `const clientContext = ${resolveReference(

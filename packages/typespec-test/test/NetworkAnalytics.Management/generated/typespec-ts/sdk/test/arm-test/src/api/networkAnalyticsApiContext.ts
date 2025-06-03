@@ -19,6 +19,8 @@ export interface NetworkAnalyticsApiOptionalParams extends ClientOptions {
   /** The API version to use for this operation. */
   /** Known values of {@link KnownVersions} that the service accepts. */
   apiVersion?: string;
+  /** Azure Cloud setting to override management endpoint. */
+  cloudSetting?: string;
 }
 
 export function createNetworkAnalyticsApi(
@@ -27,7 +29,10 @@ export function createNetworkAnalyticsApi(
   options: NetworkAnalyticsApiOptionalParams = {},
 ): NetworkAnalyticsApiContext {
   const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? "https://management.azure.com";
+    options.endpoint ??
+    options.baseUrl ??
+    getArmEndpoint(options.cloudSetting) ??
+    "https://management.azure.com";
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentInfo = `azsdk-js-arm-networkanalytics/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions
@@ -64,4 +69,22 @@ export function createNetworkAnalyticsApi(
     apiVersion,
     subscriptionId,
   } as NetworkAnalyticsApiContext;
+}
+
+/** Get the ARM endpoint for the client. */
+function getArmEndpoint(cloudSetting?: string): string | undefined {
+  if (cloudSetting === undefined) {
+    return undefined;
+  }
+  if (cloudSetting === "AZURE_CHINA_CLOUD") {
+    return "https://management.chinacloudapi.cn/";
+  } else if (cloudSetting === "AZURE_US_GOVERNMENT")
+    return "https://management.usgovcloudapi.net/";
+  else if (cloudSetting === "AZURE_GERMAN_CLOUD") {
+    return "https://management.microsoftazure.de/";
+  } else if (cloudSetting === "AZURE_PUBLIC_CLOUD") {
+    return "https://management.azure.com/";
+  } else {
+    throw new Error("Unknown cloud setting: " + cloudSetting);
+  }
 }
