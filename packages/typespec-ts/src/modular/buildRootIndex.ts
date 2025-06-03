@@ -16,10 +16,15 @@ import { useContext } from "../contextManager.js";
 
 export function buildRootIndex(
   context: SdkContext,
-  clientMap: [string[], SdkClientType<SdkServiceOperation>],
   emitterOptions: ModularEmitterOptions,
-  rootIndexFile: SourceFile
+  rootIndexFile: SourceFile,
+  clientMap?: [string[], SdkClientType<SdkServiceOperation>]
 ) {
+  if (!clientMap) {
+    // we still need to export the models if no client is provided
+    exportModelsIfAbsent(emitterOptions, rootIndexFile);
+    return;
+  }
   const project = useContext("outputProject");
   const [_, client] = clientMap;
   const srcPath = emitterOptions.modularOptions.sourceRoot;
@@ -50,17 +55,7 @@ export function buildRootIndex(
     subfolder,
     true
   );
-  const modelsExportsIndex = rootIndexFile
-    .getExportDeclarations()
-    ?.find((i) => {
-      return i.getModuleSpecifierValue()?.startsWith(`./models/`);
-    });
-  if (!modelsExportsIndex) {
-    exportModules(rootIndexFile, project, srcPath, clientName, "models", {
-      isTopLevel: true,
-      recursive: true
-    });
-  }
+  exportModelsIfAbsent(emitterOptions, rootIndexFile, clientName);
   exportModules(rootIndexFile, project, srcPath, clientName, "api", {
     subfolder,
     interfaceOnly: true,
@@ -75,9 +70,10 @@ export function buildRootIndex(
   exportFileContentsType(context, rootIndexFile);
 }
 
-export function exportModelsIfAbsent(
+function exportModelsIfAbsent(
   emitterOptions: ModularEmitterOptions,
-  rootIndexFile: SourceFile
+  rootIndexFile: SourceFile,
+  clientName: string = ""
 ) {
   // export models index file if not exists
   const project = useContext("outputProject");
@@ -88,7 +84,7 @@ export function exportModelsIfAbsent(
       return i.getModuleSpecifierValue()?.startsWith(`./models/`);
     });
   if (!modelsExportsIndex) {
-    exportModules(rootIndexFile, project, srcPath, "", "models", {
+    exportModules(rootIndexFile, project, srcPath, clientName, "models", {
       isTopLevel: true,
       recursive: true
     });

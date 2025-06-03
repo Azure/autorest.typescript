@@ -39,10 +39,7 @@ import { transformToResponseTypes } from "../../src/transform/transformResponses
 import { useBinder } from "../../src/framework/hooks/binder.js";
 import { emitSamples } from "../../src/modular/emitSamples.js";
 import { renameClientName } from "../../src/index.js";
-import {
-  buildRootIndex,
-  exportModelsIfAbsent
-} from "../../src/modular/buildRootIndex.js";
+import { buildRootIndex } from "../../src/modular/buildRootIndex.js";
 import { useContext } from "../../src/contextManager.js";
 import { buildSubpathIndexFile } from "../../src/modular/buildSubpathIndex.js";
 
@@ -475,16 +472,22 @@ export async function emitRootIndexFromTypeSpec(
   dpgContext.rlcOptions!.compatibilityMode = options["compatibility-mode"];
   dpgContext.rlcOptions!.experimentalExtensibleEnums =
     options["experimental-extensible-enums"];
-  const modularEmitterOptions = transformModularEmitterOptions(dpgContext, "", {
-    casing: "camel"
-  });
-  const rootPath = "/root/to/path";
-  const rootIndexFile = project.createSourceFile(`${rootPath}/index.ts`, "", {
-    overwrite: true
-  });
-
-  modularEmitterOptions.modularOptions.sourceRoot = rootPath;
-  emitTypes(dpgContext, { sourceRoot: rootPath });
+  // need to specify the root path for this case
+  const modularEmitterOptions = transformModularEmitterOptions(
+    dpgContext,
+    "/any/path",
+    {
+      casing: "camel"
+    }
+  );
+  const rootIndexFile = project.createSourceFile(
+    `${modularEmitterOptions.modularOptions.sourceRoot}/index.ts`,
+    "",
+    {
+      overwrite: true
+    }
+  );
+  emitTypes(dpgContext, modularEmitterOptions.modularOptions);
   buildSubpathIndexFile(modularEmitterOptions, "models", undefined, {
     recursive: true
   });
@@ -496,9 +499,9 @@ export async function emitRootIndexFromTypeSpec(
     const clientMap = Array.from(getClientHierarchyMap(dpgContext));
     buildRootIndex(
       dpgContext,
-      clientMap[0]!,
       modularEmitterOptions,
-      rootIndexFile
+      rootIndexFile,
+      clientMap[0]!
     );
 
     if (
@@ -509,7 +512,9 @@ export async function emitRootIndexFromTypeSpec(
     }
     binder.resolveAllReferences("/");
   }
-  exportModelsIfAbsent(modularEmitterOptions, rootIndexFile);
+  if (dpgContext.sdkPackage.clients.length === 0) {
+    buildRootIndex(dpgContext, modularEmitterOptions, rootIndexFile);
+  }
   if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
     throw dpgContext.program.diagnostics;
   }

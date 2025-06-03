@@ -54,7 +54,6 @@ import {
   buildTsTestConfig
 } from "@azure-tools/rlc-common";
 import {
-  exportModelsIfAbsent,
   buildRootIndex,
   buildSubClientIndexFile
 } from "./modular/buildRootIndex.js";
@@ -296,6 +295,10 @@ export async function $onEmit(context: EmitContext) {
     });
     console.time("onEmit: emit source files");
     const clientMap = getClientHierarchyMap(dpgContext);
+    if (clientMap.length === 0) {
+      // If no clients, we still need to build the root index file
+      buildRootIndex(dpgContext, modularEmitterOptions, rootIndexFile);
+    }
     for (const subClient of clientMap) {
       await renameClientName(subClient[1], modularEmitterOptions);
       buildApiOptions(dpgContext, subClient, modularEmitterOptions);
@@ -325,12 +328,11 @@ export async function $onEmit(context: EmitContext) {
       }
       buildRootIndex(
         dpgContext,
-        subClient,
         modularEmitterOptions,
-        rootIndexFile
+        rootIndexFile,
+        subClient
       );
     }
-    exportModelsIfAbsent(modularEmitterOptions, rootIndexFile);
     console.timeEnd("onEmit: emit source files");
     // Enable modular sample generation when explicitly set to true or MPG
     if (emitterOptions["generate-sample"] === true) {
