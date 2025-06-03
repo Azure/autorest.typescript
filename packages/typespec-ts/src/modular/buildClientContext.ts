@@ -45,9 +45,8 @@ export function getClientContextPath(
   const { subfolder } = getModularClientOptions(clientMap);
   const name = getClientName(client);
   const srcPath = emitterOptions.modularOptions.sourceRoot;
-  const contentPath = `${srcPath}/${
-    subfolder && subfolder !== "" ? subfolder + "/" : ""
-  }api/${normalizeName(name, NameType.File)}Context.ts`;
+  const contentPath = `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""
+    }api/${normalizeName(name, NameType.File)}Context.ts`;
   return contentPath;
 }
 
@@ -120,7 +119,7 @@ export function buildClientContext(
       name: "cloudSetting",
       type: "string",
       hasQuestionToken: true,
-      docs: ["Azure Cloud setting to override management endpoint."]
+      docs: ["Azure Cloud setting to override management endpoint.", "Known values of {@link KnownAzureCloud}"]
     });
   }
   clientContextFile.addInterface({
@@ -196,6 +195,29 @@ export function buildClientContext(
     throw new Error("Unknown cloud setting: " + cloudSetting);
   }
         `
+      ]
+    });
+
+    clientContextFile.addEnum({
+      name: "KnownAzureCloud",
+      isExported: true,
+      members: [
+        {
+          name: "AZURE_CHINA_CLOUD",
+          value: "AZURE_CHINA_CLOUD"
+        },
+        {
+          name: "AZURE_US_GOVERNMENT",
+          value: "AZURE_US_GOVERNMENT"
+        },
+        {
+          name: "AZURE_GERMAN_CLOUD",
+          value: "AZURE_GERMAN_CLOUD"
+        },
+        {
+          name: "AZURE_PUBLIC_CLOUD",
+          value: "AZURE_PUBLIC_CLOUD"
+        }
       ]
     });
   }

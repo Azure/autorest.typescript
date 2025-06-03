@@ -20,6 +20,7 @@ export interface NetworkAnalyticsApiOptionalParams extends ClientOptions {
   /** Known values of {@link KnownVersions} that the service accepts. */
   apiVersion?: string;
   /** Azure Cloud setting to override management endpoint. */
+  /** Known values of {@link KnownAzureCloud} */
   cloudSetting?: string;
 }
 
@@ -87,4 +88,11 @@ function getArmEndpoint(cloudSetting?: string): string | undefined {
   } else {
     throw new Error("Unknown cloud setting: " + cloudSetting);
   }
+}
+
+export enum KnownAzureCloud {
+  AZURE_CHINA_CLOUD = "AZURE_CHINA_CLOUD",
+  AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT",
+  AZURE_GERMAN_CLOUD = "AZURE_GERMAN_CLOUD",
+  AZURE_PUBLIC_CLOUD = "AZURE_PUBLIC_CLOUD",
 }
