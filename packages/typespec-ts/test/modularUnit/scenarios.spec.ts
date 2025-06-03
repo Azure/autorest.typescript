@@ -6,6 +6,7 @@ import {
   emitModularClientFromTypeSpec,
   emitModularModelsFromTypeSpec,
   emitModularOperationsFromTypeSpec,
+  emitRootIndexFromTypeSpec,
   emitSamplesFromTypeSpec
 } from "../util/emitUtil.js";
 import { assertEqualContent, ExampleJson } from "../util/testUtil.js";
@@ -99,6 +100,20 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
       ? (namedUnknownArgs["configs"] as Record<string, string>)
       : {};
     const result = await emitModularModelsFromTypeSpec(tsp, configs);
+
+    if (result === undefined) {
+      return "// (file was not generated)";
+    }
+
+    return result.getFullText();
+  },
+
+  // Snapshot of the top-level index file
+  "(ts|typescript) root index": async (tsp, {}, namedUnknownArgs) => {
+    const configs = namedUnknownArgs
+      ? (namedUnknownArgs["configs"] as Record<string, string>)
+      : {};
+    const result = await emitRootIndexFromTypeSpec(tsp, configs);
 
     if (result === undefined) {
       return "// (file was not generated)";
