@@ -22,7 +22,7 @@ export function buildRootIndex(
 ) {
   if (!clientMap) {
     // we still need to export the models if no client is provided
-    exportModelsIfAbsent(emitterOptions, rootIndexFile);
+    exportModels(emitterOptions, rootIndexFile);
     return;
   }
   const project = useContext("outputProject");
@@ -55,7 +55,7 @@ export function buildRootIndex(
     subfolder,
     true
   );
-  exportModelsIfAbsent(emitterOptions, rootIndexFile, clientName);
+  exportModels(emitterOptions, rootIndexFile, clientName);
   exportModules(rootIndexFile, project, srcPath, clientName, "api", {
     subfolder,
     interfaceOnly: true,
@@ -70,7 +70,7 @@ export function buildRootIndex(
   exportFileContentsType(context, rootIndexFile);
 }
 
-function exportModelsIfAbsent(
+function exportModels(
   emitterOptions: ModularEmitterOptions,
   rootIndexFile: SourceFile,
   clientName: string = ""
