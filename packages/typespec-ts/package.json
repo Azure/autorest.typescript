@@ -66,7 +66,7 @@
     "@azure-rest/core-client": "^2.3.1",
     "@typespec/http-specs": "0.1.0-alpha.22",
     "@typespec/spector": "0.1.0-alpha.14",
-    "@typespec/spec-api": "0.1.0-alpha.7-dev.0",
+    "@typespec/spec-api": "0.1.0-alpha.6",
     "@azure-tools/azure-http-specs": "^0.1.0-alpha.18",
     "@azure-tools/typespec-autorest": "^0.56.0",
     "@azure-tools/typespec-azure-core": "^0.56.0",

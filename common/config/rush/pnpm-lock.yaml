@@ -260,7 +260,7 @@ importers:
       '@typespec/http-specs': 0.1.0-alpha.22
       '@typespec/openapi': ^1.0.0
       '@typespec/rest': ^0.70.0
-      '@typespec/spec-api': 0.1.0-alpha.7-dev.0
+      '@typespec/spec-api': 0.1.0-alpha.6
       '@typespec/spector': 0.1.0-alpha.14
       '@typespec/ts-http-runtime': ^0.1.0
       '@typespec/versioning': ^0.70.0
@@ -322,7 +322,7 @@ importers:
       '@typespec/http-specs': 0.1.0-alpha.22_73hgngfneoykepglhpj76sepdi
       '@typespec/openapi': 1.0.0_b4vb4y7tp75ktxgbg3d3m76tni
       '@typespec/rest': 0.70.0_b4vb4y7tp75ktxgbg3d3m76tni
-      '@typespec/spec-api': 0.1.0-alpha.7-dev.0
+      '@typespec/spec-api': 0.1.0-alpha.6
       '@typespec/spector': 0.1.0-alpha.14_l57zs4bid4vy5sv2wdmboc2ira
       '@typespec/ts-http-runtime': 0.1.0
       '@typespec/versioning': 0.70.0_@typespec+compiler@1.0.0
@@ -463,7 +463,7 @@ packages:
       '@typespec/compiler': 1.0.0_@types+node@18.18.0
       '@typespec/http': 1.0.1_6nn6a265eqvpod4byc573d4y7i
       '@typespec/rest': 0.70.0_b4vb4y7tp75ktxgbg3d3m76tni
-      '@typespec/spec-api': 0.1.0-alpha.7-dev.0
+      '@typespec/spec-api': 0.1.0-alpha.6
       '@typespec/spector': 0.1.0-alpha.14_l57zs4bid4vy5sv2wdmboc2ira
       '@typespec/versioning': 0.70.0_@typespec+compiler@1.0.0
       '@typespec/xml': 0.70.0_@typespec+compiler@1.0.0
@@ -2735,7 +2735,7 @@ packages:
       '@typespec/compiler': 1.0.0_@types+node@18.18.0
       '@typespec/http': 1.0.1_6nn6a265eqvpod4byc573d4y7i
       '@typespec/rest': 0.70.0_b4vb4y7tp75ktxgbg3d3m76tni
-      '@typespec/spec-api': 0.1.0-alpha.7-dev.0
+      '@typespec/spec-api': 0.1.0-alpha.6
       '@typespec/spector': 0.1.0-alpha.14_l57zs4bid4vy5sv2wdmboc2ira
       '@typespec/versioning': 0.70.0_@typespec+compiler@1.0.0
       '@typespec/xml': 0.70.0_@typespec+compiler@1.0.0
@@ -2821,8 +2821,8 @@ packages:
       '@typespec/compiler': 1.0.0_@types+node@18.18.0
       '@typespec/http': 1.0.1_6nn6a265eqvpod4byc573d4y7i
 
-  /@typespec/spec-api/0.1.0-alpha.7-dev.0:
-    resolution: {integrity: sha512-LcEkN7rbly1BF+W+ho169+gMjz6L7pLsjuHOI6nYUJdf+wHXIU2TDZlLEh5inlQqGFWmBzWu479r0dD4OnZh5Q==}
+  /@typespec/spec-api/0.1.0-alpha.6:
+    resolution: {integrity: sha512-wHEFLrmj0lCwUSacE3pqMsPJxQbBdNuNqvjYrEGbl0+8Zck8tkCVzqITOcbYow7iemiqDnLKIS9Kp+L5Snyy+A==}
     engines: {node: '>=20.0.0'}
     dependencies:
       deep-equal: 2.2.2
@@ -2853,7 +2853,7 @@ packages:
       '@typespec/compiler': 1.0.0_@types+node@18.18.0
       '@typespec/http': 1.0.1_6nn6a265eqvpod4byc573d4y7i
       '@typespec/rest': 0.70.0_b4vb4y7tp75ktxgbg3d3m76tni
-      '@typespec/spec-api': 0.1.0-alpha.7-dev.0
+      '@typespec/spec-api': 0.1.0-alpha.6
       '@typespec/spec-coverage-sdk': 0.1.0-alpha.5-dev.0
       '@typespec/versioning': 0.70.0_@typespec+compiler@1.0.0
       ajv: 8.17.1
