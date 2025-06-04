@@ -5,11 +5,12 @@ import { Pipeline } from '@typespec/ts-http-runtime';
 export declare class ReturnTypeChangedFromClient {
     private _client;
     readonly pipeline: Pipeline;
-    constructor(endpointParam: string, version: Versions, options?: ReturnTypeChangedFromClientOptionalParams);
+    constructor(endpointParam: string, options?: ReturnTypeChangedFromClientOptionalParams);
     test(body: string, options?: TestOptionalParams): Promise<string>;
 }
 
 export declare interface ReturnTypeChangedFromClientOptionalParams extends ClientOptions {
+    version?: Versions;
 }
 
 export declare interface TestOptionalParams extends OperationOptions {
