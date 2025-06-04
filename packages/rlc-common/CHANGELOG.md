@@ -4,7 +4,7 @@
   - Update dependency generation to adopt pnpm workspace catalog versions. Please refer to [#3172](https://github.com/Azure/autorest.typescript/pull/3172)
   - Switch from "npm pack" to "pnpm pack". Please refer to [#3223](https://github.com/Azure/autorest.typescript/pull/3223)
   - Use "workspace:^". Please refer to [#3224](https://github.com/Azure/autorest.typescript/pull/3224)
-- [Feature] Export models to root index file for model-only case. Please refer to [#3222](https://github.com/Azure/autorest.typescript/pull/3222)
+- [Bugfix] Export models to root index file for model-only case. Please refer to [#3222](https://github.com/Azure/autorest.typescript/pull/3222)
 - [Bugfix] Fix snippets generation issue. Please refer to [#3227](https://github.com/Azure/autorest.typescript/pull/3227)
 - [Bugfix] Fix missing configs in package.json for Modular and RLC. Please refer to [#3215](https://github.com/Azure/autorest.typescript/pull/3215)
 - [Bugfix] Fix reference issue in recursive cases. Please refer to [#3175](https://github.com/Azure/autorest.typescript/pull/3175)
