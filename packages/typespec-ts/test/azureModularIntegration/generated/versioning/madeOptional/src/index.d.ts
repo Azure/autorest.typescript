@@ -5,11 +5,12 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 export declare class MadeOptionalClient {
     private _client;
     readonly pipeline: Pipeline;
-    constructor(endpointParam: string, version: Versions, options?: MadeOptionalClientOptionalParams);
+    constructor(endpointParam: string, options?: MadeOptionalClientOptionalParams);
     test(body: TestModel, options?: TestOptionalParams): Promise<TestModel>;
 }
 
 export declare interface MadeOptionalClientOptionalParams extends ClientOptions {
+    version?: Versions;
 }
 
 export declare interface TestModel {

@@ -5,7 +5,7 @@ describe("VersioningReturnTypeChangedFrom Rest Client", () => {
   let client: ReturnTypeChangedFromClient;
 
   beforeEach(() => {
-    client = new ReturnTypeChangedFromClient("http://localhost:3002", "v2", {
+    client = new ReturnTypeChangedFromClient("http://localhost:3002", {
       allowInsecureConnection: true
     });
   });

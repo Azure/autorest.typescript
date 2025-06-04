@@ -72,7 +72,7 @@ export declare type CreatedByTypeOutput = string;
 
 export declare interface ErrorAdditionalInfoOutput {
     readonly type?: string;
-    readonly info?: Record<string, any>;
+    readonly info?: any;
 }
 
 export declare interface ErrorDetailOutput {
