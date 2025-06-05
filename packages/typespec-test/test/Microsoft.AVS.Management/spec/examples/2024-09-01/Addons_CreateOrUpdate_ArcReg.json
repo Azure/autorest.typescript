@@ -7,7 +7,7 @@
     "resourceGroupName": "group1",
     "privateCloudName": "cloud1",
     "addonName": "arc",
-    "addon": {
+    "resource": {
       "properties": {
         "addonType": "Arc",
         "vCenter": "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg_test/providers/Microsoft.ConnectedVMwarevSphere/VCenters/test-vcenter"

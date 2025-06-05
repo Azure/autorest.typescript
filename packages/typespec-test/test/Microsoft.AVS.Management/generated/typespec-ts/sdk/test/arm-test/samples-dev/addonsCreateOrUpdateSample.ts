@@ -14,7 +14,13 @@ async function addonsCreateOrUpdateArcReg(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-000000000000";
   const client = new AzureVMwareSolutionAPI(credential, subscriptionId);
-  const result = await client.addons.createOrUpdate("group1", "cloud1", "arc");
+  const result = await client.addons.createOrUpdate("group1", "cloud1", "arc", {
+    properties: {
+      addonType: "Arc",
+      vCenter:
+        "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg_test/providers/Microsoft.ConnectedVMwarevSphere/VCenters/test-vcenter",
+    },
+  });
   console.log(result);
 }
 

@@ -18,6 +18,7 @@ async function authorizationsCreateOrUpdate(): Promise<void> {
     "group1",
     "cloud1",
     "authorization1",
+    {},
   );
   console.log(result);
 }
