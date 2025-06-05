@@ -430,6 +430,58 @@ describe("Package file generation", () => {
       expect(packageFile).to.have.property("//metadata");
       expect(packageFile["//metadata"]["constantPaths"][0]).to.have.property("path", "src/test.ts", "rlc");
     });
+
+    it("should skip lint scripts with arm packages for modular", () => {
+      const model = createMockModel({
+        ...baseConfig,
+        azureArm: true,
+        isModularLibrary: true
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile.scripts).to.have.property(
+        "lint:fix",
+        "echo skipped"
+      );
+      expect(packageFile.scripts).to.have.property(
+        "lint",
+        "echo skipped"
+      );
+    });
+    it("[esm] should include correct scripts with pack", () => {
+      const model = createMockModel({
+        ...baseConfig,
+        moduleKind: "esm",
+        withTests: true,
+        shouldUsePnpmDep: true
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile.scripts).to.have.property(
+        "pack",
+        "pnpm pack 2>&1"
+      );
+    });
+
+    it("should include browser and react-native in package.json", () => {
+      const model = createMockModel({
+        ...baseConfig,
+        azureArm: true,
+        isModularLibrary: true
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile).to.have.property(
+        "browser", "./dist/browser/index.js",
+      );
+      expect(packageFile).to.have.property(
+        "react-native", "./dist/react-native/index.js"
+      );
+
+    });
   });
 
   describe("Azure flavor for standalone library", () => {

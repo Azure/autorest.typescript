@@ -26,7 +26,8 @@ export function buildSnippets(
         clientClassName: clientName ? clientName : getClientName(model),
         azureArm: model.options?.azureArm,
         azureSdkForJs: azureSdkForJsInfo,
-        isModularLibrary: model.options.isModularLibrary
+        isModularLibrary: model.options.isModularLibrary,
+        hasSubscriptionId: model.options.hasSubscriptionId
       })
     };
   }
