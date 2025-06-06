@@ -79,6 +79,7 @@ To upgrade dependencies for the TypeSpec TypeScript generator, we need to focus 
 
 - First look at the `package.json` files in these directories to identify the dependencies including devDependencies, peerDependencies, and dependencies.
 - TypeSpec dependencies means any dependencies starting with `@typespec/` or `@azure-tools/` as these are relevant to TypeSpec and Azure tools.
+- Do not update dependency for @typespec/ts-http-runtime.
 - For spector relevant dependencies, the latest version is tagged with `next` on npm including `@typespec/http-specs`, `@typespec/spector`, `@azure-tools/azure-http-specs`, and `@typespec/spec-api`.
 - For other dependencies, check the latest versions on npm and update them accordingly.
 - After updating the versions, run `rush update` to ensure all dependencies are correctly installed and the lock files are updated.
