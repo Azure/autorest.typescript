@@ -155,8 +155,12 @@ Using Node.js and Node-like environments, you can use the \`DefaultAzureCredenti
 import { {{ clientClassName }} } from "{{ clientPackageName }}";
 import { DefaultAzureCredential } from "@azure/identity";
 
+{{#if hasSubscriptionId}}
 const subscriptionId = "00000000-0000-0000-0000-000000000000";
 const client = new {{ clientClassName }}(new DefaultAzureCredential(), subscriptionId);
+{{else}}
+const client = new {{ clientClassName }}(new DefaultAzureCredential());
+{{/if}}
 \`\`\`
 
 For browser environments, use the \`InteractiveBrowserCredential\` from the \`@azure/identity\` package to authenticate.
@@ -167,9 +171,15 @@ import { {{ clientClassName }} } from "{{ clientPackageName }}";
 
 const credential = new InteractiveBrowserCredential({
   tenantId: "<YOUR_TENANT_ID>",
-  clientId: "<YOUR_CLIENT_ID>"
+  clientId: "<YOUR_CLIENT_ID>",
  });
+
+{{#if hasSubscriptionId}}
+const subscriptionId = "00000000-0000-0000-0000-000000000000";
 const client = new {{ clientClassName }}(credential, subscriptionId);
+{{else}}
+const client = new {{ clientClassName }}(credential);
+{{/if}}
 \`\`\`
 {{else}}
 Using Node.js and Node-like environments, you can use the \`DefaultAzureCredential\` class to authenticate the client.
@@ -327,6 +337,8 @@ interface Metadata {
   azureSdkForJs?: boolean;
   /** Indicates if the package need generate test files */
   generateTest?: boolean;
+  /** Indicates if the package need SubscriptionId as the client parameter */
+  hasSubscriptionId?: boolean;
 }
 
 export function buildReadmeFile(model: RLCModel) {
@@ -415,7 +427,8 @@ function createMetadata(model: RLCModel): Metadata | undefined {
     addCredentials: model.options.addCredentials,
     contributingGuideURL: repoURL && `${repoURL}/blob/main/CONTRIBUTING.md`,
     azureSdkForJs: model.options.azureSdkForJs,
-    generateTest: model.options.generateTest
+    generateTest: model.options.generateTest,
+    hasSubscriptionId: model.options.hasSubscriptionId
   };
 }
 

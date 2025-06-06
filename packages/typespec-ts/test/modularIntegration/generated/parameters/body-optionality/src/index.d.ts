@@ -10,9 +10,9 @@ export declare class BodyOptionalityClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: BodyOptionalityClientOptionalParams);
-    readonly optionalExplicit: OptionalExplicitOperations;
     requiredImplicit(name: string, options?: RequiredImplicitOptionalParams): Promise<void>;
     requiredExplicit(body: BodyModel, options?: RequiredExplicitOptionalParams): Promise<void>;
+    readonly optionalExplicit: OptionalExplicitOperations;
 }
 
 export declare interface BodyOptionalityClientOptionalParams extends ClientOptions {

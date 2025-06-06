@@ -1,7 +1,7 @@
 {
   "name": "@azure/arm-networkanalytics",
   "version": "1.0.0-beta.1",
-  "description": "A generated SDK for NetworkAnalyticsClient.",
+  "description": "A generated SDK for NetworkAnalyticsApi.",
   "engines": {
     "node": ">=18.0.0"
   },
@@ -29,6 +29,8 @@
     "selfLink": false
   },
   "type": "module",
+  "browser": "./dist/browser/index.js",
+  "react-native": "./dist/react-native/index.js",
   "keywords": [
     "node",
     "azure",

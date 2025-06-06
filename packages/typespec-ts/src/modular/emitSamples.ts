@@ -36,6 +36,7 @@ import {
   getMethodHierarchiesMap,
   ServiceOperation
 } from "../utils/operationUtil.js";
+import { getSubscriptionId } from "../transform/transfromRLCOptions.js";
 
 /**
  * Interfaces for samples generations
@@ -299,8 +300,8 @@ function prepareExampleParameters(
       onClient: Boolean(param.onClient)
     });
   }
-  // always add subscriptionId for ARM clients
-  if (dpgContext.arm) {
+  // add subscriptionId for ARM clients if ARM clients need it
+  if (dpgContext.arm && getSubscriptionId(dpgContext)) {
     result.push({
       name: "subscriptionId",
       value: subscriptionIdValue,

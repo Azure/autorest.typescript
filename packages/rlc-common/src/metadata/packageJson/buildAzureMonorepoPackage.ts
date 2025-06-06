@@ -3,9 +3,7 @@
 
 import {
   AzurePackageInfoConfig,
-  getAzureCommonPackageInfo,
-  getAzurePackageDependencies,
-  getAzurePackageDevDependencies
+  getAzureCommonPackageInfo
 } from "./azurePackageCommon.js";
 import {
   getCommonPackageScripts,
@@ -36,20 +34,63 @@ export function buildAzureMonorepoPackage(config: AzureMonorepoInfoConfig) {
  * Builds the dependencies for an Azure package that will be hosted in the azure-sdk-for-js mono repo.
  */
 export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
-  const esmDevDependencies = getEsmDevDependencies(config);
-  const cjsDevDependencies = getCjsDevDependencies(config);
-  const azurePackageDevDependencies = getAzurePackageDevDependencies(config);
-  delete azurePackageDevDependencies["tshy"];
+  //TODO should remove all the shouldUsePnpmDep codes after finish the release tool test
+  const { hasLro, dependencies, withTests, shouldUsePnpmDep } = config;
+
+  const runtimeDeps = {
+    ...dependencies,
+    "@azure-rest/core-client": !shouldUsePnpmDep ? "^2.1.0" : "workspace:^",
+    ...(hasLro && {
+      "@azure/abort-controller": !shouldUsePnpmDep ? "^2.1.2" : "workspace:^"
+    }),
+    "@azure/core-auth": !shouldUsePnpmDep ? "^1.9.0" : "workspace:^",
+    ...(hasLro && {
+      "@azure/core-lro": !shouldUsePnpmDep ? "^3.0.0" : "workspace:^"
+    }),
+    "@azure/core-rest-pipeline": !shouldUsePnpmDep ? "^1.18.2" : "workspace:^",
+    "@azure/core-util": !shouldUsePnpmDep ? "^1.11.0" : "workspace:^",
+    "@azure/logger": !shouldUsePnpmDep ? "^1.1.4" : "workspace:^",
+    tslib: !shouldUsePnpmDep ? "^2.8.1" : "catalog:"
+  };
+
+  const testDeps = withTests
+    ? {
+        "@vitest/browser": !shouldUsePnpmDep ? "^3.0.9" : "catalog:testing",
+        "@vitest/coverage-istanbul": !shouldUsePnpmDep
+          ? "^3.0.9"
+          : "catalog:testing",
+        dotenv: !shouldUsePnpmDep ? "^16.0.0" : "catalog:testing",
+        playwright: !shouldUsePnpmDep ? "^1.50.1" : "catalog:testing",
+        typescript: !shouldUsePnpmDep ? "~5.8.2" : "catalog:",
+        vitest: !shouldUsePnpmDep ? "^3.0.9" : "catalog:testing"
+      }
+    : {
+        typescript: !shouldUsePnpmDep ? "~5.8.2" : "catalog:"
+      };
+
   return {
-    dependencies: {
-      ...getAzurePackageDependencies(config)
-    },
+    dependencies: runtimeDeps,
     devDependencies: {
-      ...azurePackageDevDependencies,
-      "@azure/dev-tool": "^1.0.0",
-      "@azure/eslint-plugin-azure-sdk": "^3.0.0",
-      ...esmDevDependencies,
-      ...cjsDevDependencies
+      "@azure-tools/test-credential": !shouldUsePnpmDep
+        ? "^2.0.0"
+        : "workspace:^",
+      "@azure-tools/test-recorder": !shouldUsePnpmDep
+        ? "^4.1.0"
+        : "workspace:^",
+      "@azure-tools/test-utils-vitest": !shouldUsePnpmDep
+        ? "^1.0.0"
+        : "workspace:^",
+      "@azure/dev-tool": !shouldUsePnpmDep ? "^1.0.0" : "workspace:^",
+      "@azure/eslint-plugin-azure-sdk": !shouldUsePnpmDep
+        ? "^3.0.0"
+        : "workspace:^",
+      "@azure/identity": !shouldUsePnpmDep ? "^4.6.0" : "catalog:internal",
+      "@types/node": !shouldUsePnpmDep ? "^18.0.0" : "catalog:",
+      eslint: !shouldUsePnpmDep ? "^9.9.0" : "catalog:",
+      ...(config.specSource === "Swagger" && {
+        autorest: !shouldUsePnpmDep ? "latest" : "catalog:"
+      }),
+      ...testDeps
     }
   };
 }
@@ -102,60 +143,6 @@ function getSampleMetadata({
   };
 }
 
-function getEsmDevDependencies({
-  moduleKind,
-  withTests
-}: AzureMonorepoInfoConfig) {
-  if (moduleKind !== "esm") {
-    return {};
-  }
-
-  if (withTests) {
-    return {
-      "@vitest/browser": "^3.0.3",
-      "@vitest/coverage-istanbul": "^3.0.3",
-      playwright: "^1.41.2",
-      vitest: "^3.0.3"
-    };
-  } else return {};
-}
-
-function getCjsDevDependencies({
-  moduleKind,
-  withTests
-}: AzureMonorepoInfoConfig) {
-  if (moduleKind !== "cjs") {
-    return {};
-  }
-
-  let testDevDependencies: Record<string, string> = {};
-  if (withTests) {
-    testDevDependencies = {
-      dotenv: "^16.0.0",
-      mocha: "^11.0.2",
-      "@types/mocha": "^10.0.0",
-      "@types/chai": "^4.2.8",
-      chai: "^4.2.0",
-      "karma-chrome-launcher": "^3.0.0",
-      "karma-coverage": "^2.0.0",
-      "karma-env-preprocessor": "^0.1.1",
-      "karma-firefox-launcher": "^2.1.3",
-      "karma-junit-reporter": "^2.0.1",
-      "karma-mocha-reporter": "^2.2.5",
-      "karma-mocha": "^2.0.1",
-      "karma-source-map-support": "~1.4.0",
-      "karma-sourcemap-loader": "^0.3.8",
-      karma: "^6.2.0",
-      nyc: "^15.1.0",
-      tsx: "^4.7.1"
-    };
-  }
-
-  return {
-    ...testDevDependencies
-  };
-}
-
 function addSwaggerMetadata(
   metadata: Record<string, any>,
   specSource: "Swagger" | "TypeSpec"
@@ -173,6 +160,7 @@ function addSwaggerMetadata(
 function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
   const esmScripts = getEsmScripts(config);
   const cjsScripts = getCjsScripts(config);
+  const skipLinting = config.azureArm && config.isModularLibrary;
   return {
     ...getCommonPackageScripts(config),
     "build:samples": config.withSamples
@@ -196,9 +184,13 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
     "generate:client": "echo skipped",
     "test:browser":
       "npm run clean && npm run build:test && npm run unit-test:browser && npm run integration-test:browser",
-    "lint:fix":
-      "eslint package.json api-extractor.json src test --fix --fix-type [problem,suggestion]",
-    lint: "eslint package.json api-extractor.json src test",
+    "lint:fix": skipLinting
+      ? "echo skipped"
+      : "eslint package.json api-extractor.json src test --fix --fix-type [problem,suggestion]",
+    lint: skipLinting
+      ? "echo skipped"
+      : "eslint package.json api-extractor.json src test",
+    pack: `${config.shouldUsePnpmDep ? "pnpm" : "npm"} pack 2>&1`,
     ...esmScripts,
     ...cjsScripts,
     "update-snippets": "dev-tool run update-snippets"

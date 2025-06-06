@@ -14,6 +14,8 @@ export interface PackageCommonInfoConfig {
   azureArm?: boolean;
   isModularLibrary?: boolean;
   azureSdkForJs?: boolean;
+  //TODO should remove this after finish the release tool test
+  shouldUsePnpmDep?: boolean;
 }
 
 /**
@@ -97,7 +99,12 @@ function getEsmEntrypointInformation(config: PackageCommonInfoConfig) {
     return;
   }
 
-  return { tshy: getTshyConfig(config), type: "module" };
+  return {
+    tshy: getTshyConfig(config),
+    type: "module",
+    browser: "./dist/browser/index.js",
+    "react-native": "./dist/react-native/index.js"
+  };
 }
 
 export function getTshyConfig(config: PackageCommonInfoConfig) {

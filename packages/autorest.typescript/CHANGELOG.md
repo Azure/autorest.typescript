@@ -1,3 +1,35 @@
+## 6.0.42 (2025-06-04)
+
+- [Feature] Migrate to pnpm
+  - Update dependency generation to adopt pnpm workspace catalog versions. Please refer to [#3172](https://github.com/Azure/autorest.typescript/pull/3172)
+  - Switch from "npm pack" to "pnpm pack". Please refer to [#3223](https://github.com/Azure/autorest.typescript/pull/3223)
+  - Use "workspace:^". Please refer to [#3224](https://github.com/Azure/autorest.typescript/pull/3224)
+- [Bugfix] Export models to root index file for model-only case. Please refer to [#3222](https://github.com/Azure/autorest.typescript/pull/3222)
+- [Bugfix] Fix snippets generation issue. Please refer to [#3227](https://github.com/Azure/autorest.typescript/pull/3227)
+- [Bugfix] Fix missing configs in package.json for Modular and RLC. Please refer to [#3215](https://github.com/Azure/autorest.typescript/pull/3215)
+- [Bugfix] Fix reference issue in recursive cases. Please refer to [#3175](https://github.com/Azure/autorest.typescript/pull/3175)
+
+## 6.0.41 (2025-05-22)
+
+- [Bugfix] Fix wrong eslint dependency
+
+## 6.0.40 (2025-05-20)
+
+- [Feature] Remove camel-case style option. Please refer to [#3167](https://github.com/Azure/autorest.typescript/pull/3167)
+- [Feature] Migrate to pnpm
+  - Update dependency generation to adopt pnpm workspace catalog versions. Please refer to [#3172](https://github.com/Azure/autorest.typescript/pull/3172)
+  - Support option for rlc swagger and fix missing dependencies. Please refer to [#3200](https://github.com/Azure/autorest.typescript/pull/3200)
+  - Support generation config for new option. Please refer to [#3197](https://github.com/Azure/autorest.typescript/pull/3197)
+- [Feature] ESM migration for RLC from swagger. Please refer to [#3182](https://github.com/Azure/autorest.typescript/pull/3182)
+- [Feature] Hierarchy nested client support in Modular. Please refer to [#3163](https://github.com/Azure/autorest.typescript/pull/3163)
+- [Feature] Generate metadata.json for Azure services for RLC and Modular. Please refer to [#3169](https://github.com/Azure/autorest.typescript/pull/3169)
+- [Feature] Skip lint check for mgmt Modular packages. Please refer to [#3205](https://github.com/Azure/autorest.typescript/pull/3205)
+- [Bugfix] Update tcgc to v0.56.1 and fix nightly ci. Please refer to [#3190](https://github.com/Azure/autorest.typescript/pull/3190)
+- [Bugfix] Fix readme generation issue when setting @@clientname. Please refer to [#3198](https://github.com/Azure/autorest.typescript/pull/3198)
+- [Bugfix] Fix subscriptionId issues in readme.md and emitter samples. Please refer to [#3161](https://github.com/Azure/autorest.typescript/pull/3161)
+- [Bugfix] Fix missing tshy configs.md and emitter samples. Please refer to [#3193](https://github.com/Azure/autorest.typescript/pull/3193)
+- [Bugfix] Fix the reserved word issue in Modular for API layer. Please refer to [#3191](https://github.com/Azure/autorest.typescript/pull/3191)
+
 ## 6.0.39 (2025-04-28)
 
 - [Feature] Support optional path parameter for Modular. Please refer to [#3152](https://github.com/Azure/autorest.typescript/pull/3152)

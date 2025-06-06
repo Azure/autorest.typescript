@@ -312,7 +312,7 @@ op read(@body bars?: Bar[]): OkResponse;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { barSerializer } from "../models/models.js";
+import { barArraySerializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -325,15 +325,15 @@ export function _readSend(
   context: Client,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/").post({
-    ...operationOptionsToRequestParameters(options),
-    contentType: "application/json",
-    body: !options["bars"]
-      ? options["bars"]
-      : options["bars"].map((p: any) => {
-          return barSerializer(p);
-        }),
-  });
+  return context
+    .path("/")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      body: !options["bars"]
+        ? options["bars"]
+        : barArraySerializer(options["bars"]),
+    });
 }
 
 export async function _readDeserialize(
@@ -372,7 +372,7 @@ op read(@body bars: Bar[]): OkResponse;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { Bar, barSerializer } from "../models/models.js";
+import { Bar, barArraySerializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -386,13 +386,13 @@ export function _readSend(
   bars: Bar[],
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/").post({
-    ...operationOptionsToRequestParameters(options),
-    contentType: "application/json",
-    body: bars.map((p: any) => {
-      return barSerializer(p);
-    }),
-  });
+  return context
+    .path("/")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      body: barArraySerializer(bars),
+    });
 }
 
 export async function _readDeserialize(
@@ -498,7 +498,11 @@ op read(@body bars?: Bar[]): Bar[] | null;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { Bar, barSerializer, barArrayDeserializer } from "../models/models.js";
+import {
+  Bar,
+  barArraySerializer,
+  barArrayDeserializer,
+} from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -511,16 +515,19 @@ export function _readSend(
   context: Client,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/").post({
-    ...operationOptionsToRequestParameters(options),
-    contentType: "application/json",
-    headers: { accept: "application/json", ...options.requestOptions?.headers },
-    body: !options["bars"]
-      ? options["bars"]
-      : options["bars"].map((p: any) => {
-          return barSerializer(p);
-        }),
-  });
+  return context
+    .path("/")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      body: !options["bars"]
+        ? options["bars"]
+        : barArraySerializer(options["bars"]),
+    });
 }
 
 export async function _readDeserialize(
@@ -937,5 +944,204 @@ export function test(
     ["200"],
     { itemName: "lists", nextLinkName: "nextLink" },
   );
+}
+```
+
+# should recursive array type
+
+## TypeSpec
+
+```tsp
+model Test {
+  prop?: Test[];
+}
+model TestArrayModel {
+  prop: Test[];
+}
+op get(): TestArrayModel;
+```
+
+## Models
+
+```ts models
+/** model interface TestArrayModel */
+export interface TestArrayModel {
+  prop: Test[];
+}
+
+export function testArrayModelDeserializer(item: any): TestArrayModel {
+  return {
+    prop: testArrayDeserializer(item["prop"]),
+  };
+}
+
+export function testArrayDeserializer(result: Array<Test>): any[] {
+  return result.map((item) => {
+    return testDeserializer(item);
+  });
+}
+
+/** model interface Test */
+export interface Test {
+  prop?: Test[];
+}
+
+export function testDeserializer(item: any): Test {
+  return {
+    prop: !item["prop"] ? item["prop"] : testArrayDeserializer(item["prop"]),
+  };
+}
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import {
+  TestArrayModel,
+  testArrayModelDeserializer,
+} from "../models/models.js";
+import { GetOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _getSend(
+  context: Client,
+  options: GetOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
+}
+
+export async function _getDeserialize(
+  result: PathUncheckedResponse,
+): Promise<TestArrayModel> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return testArrayModelDeserializer(result.body);
+}
+
+export async function get(
+  context: Client,
+  options: GetOptionalParams = { requestOptions: {} },
+): Promise<TestArrayModel> {
+  const result = await _getSend(context, options);
+  return _getDeserialize(result);
+}
+```
+
+# should recursive dictionary type
+
+## TypeSpec
+
+```tsp
+model Test {
+  prop?: Record<Test>;
+}
+model TestDictionary {
+  prop: Record<Test>;
+}
+op get(): TestDictionary;
+
+```
+
+## models
+
+```ts models
+/** model interface TestDictionary */
+export interface TestDictionary {
+  prop: Record<string, Test>;
+}
+
+export function testDictionaryDeserializer(item: any): TestDictionary {
+  return {
+    prop: testRecordDeserializer(item["prop"]),
+  };
+}
+
+export function testRecordDeserializer(
+  item: Record<string, any>,
+): Record<string, Test> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = !item[key] ? item[key] : testDeserializer(item[key]);
+  });
+  return result;
+}
+
+/** model interface Test */
+export interface Test {
+  prop?: Record<string, Test>;
+}
+
+export function testDeserializer(item: any): Test {
+  return {
+    prop: !item["prop"] ? item["prop"] : testRecordDeserializer(item["prop"]),
+  };
+}
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import {
+  TestDictionary,
+  testDictionaryDeserializer,
+} from "../models/models.js";
+import { GetOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _getSend(
+  context: Client,
+  options: GetOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
+}
+
+export async function _getDeserialize(
+  result: PathUncheckedResponse,
+): Promise<TestDictionary> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return testDictionaryDeserializer(result.body);
+}
+
+export async function get(
+  context: Client,
+  options: GetOptionalParams = { requestOptions: {} },
+): Promise<TestDictionary> {
+  const result = await _getSend(context, options);
+  return _getDeserialize(result);
 }
 ```

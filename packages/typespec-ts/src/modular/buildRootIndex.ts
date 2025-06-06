@@ -16,13 +16,19 @@ import { useContext } from "../contextManager.js";
 
 export function buildRootIndex(
   context: SdkContext,
-  client: SdkClientType<SdkServiceOperation>,
   emitterOptions: ModularEmitterOptions,
-  rootIndexFile: SourceFile
+  rootIndexFile: SourceFile,
+  clientMap?: [string[], SdkClientType<SdkServiceOperation>]
 ) {
+  if (!clientMap) {
+    // we still need to export the models if no client is provided
+    exportModels(emitterOptions, rootIndexFile);
+    return;
+  }
   const project = useContext("outputProject");
+  const [_, client] = clientMap;
   const srcPath = emitterOptions.modularOptions.sourceRoot;
-  const { subfolder } = getModularClientOptions(context, client);
+  const { subfolder } = getModularClientOptions(clientMap);
   const clientName = `${getClassicalClientName(client)}`;
   const clientFile = project.getSourceFile(
     `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""}${normalizeName(
@@ -49,17 +55,7 @@ export function buildRootIndex(
     subfolder,
     true
   );
-  const modelsExportsIndex = rootIndexFile
-    .getExportDeclarations()
-    ?.find((i) => {
-      return i.getModuleSpecifierValue()?.startsWith(`./models/`);
-    });
-  if (!modelsExportsIndex) {
-    exportModules(rootIndexFile, project, srcPath, clientName, "models", {
-      isTopLevel: true,
-      recursive: true
-    });
-  }
+  exportModels(emitterOptions, rootIndexFile, clientName);
   exportModules(rootIndexFile, project, srcPath, clientName, "api", {
     subfolder,
     interfaceOnly: true,
@@ -72,6 +68,27 @@ export function buildRootIndex(
 
   exportPagingTypes(context, rootIndexFile);
   exportFileContentsType(context, rootIndexFile);
+}
+
+function exportModels(
+  emitterOptions: ModularEmitterOptions,
+  rootIndexFile: SourceFile,
+  clientName: string = ""
+) {
+  // export models index file if not exists
+  const project = useContext("outputProject");
+  const srcPath = emitterOptions.modularOptions.sourceRoot;
+  const modelsExportsIndex = rootIndexFile
+    .getExportDeclarations()
+    ?.find((i) => {
+      return i.getModuleSpecifierValue()?.startsWith(`./models/`);
+    });
+  if (!modelsExportsIndex) {
+    exportModules(rootIndexFile, project, srcPath, clientName, "models", {
+      isTopLevel: true,
+      recursive: true
+    });
+  }
 }
 
 /**
@@ -324,12 +341,12 @@ function exportModules(
 }
 
 export function buildSubClientIndexFile(
-  context: SdkContext,
-  client: SdkClientType<SdkServiceOperation>,
+  clientMap: [string[], SdkClientType<SdkServiceOperation>],
   emitterOptions: ModularEmitterOptions
 ) {
   const project = useContext("outputProject");
-  const { subfolder } = getModularClientOptions(context, client);
+  const [_, client] = clientMap;
+  const { subfolder } = getModularClientOptions(clientMap);
   const srcPath = emitterOptions.modularOptions.sourceRoot;
   const subClientIndexFile = project.createSourceFile(
     `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""}index.ts`,
