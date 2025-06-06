@@ -79,11 +79,14 @@ To upgrade dependencies for the TypeSpec TypeScript generator, we need to focus 
 
 - First look at the `package.json` files in these directories to identify the dependencies including devDependencies, peerDependencies, and dependencies.
 - TypeSpec dependencies means any dependencies starting with `@typespec/` or `@azure-tools/` as these are relevant to TypeSpec and Azure tools.
-- For spector relevant dependencies, the latest version is tagged with `next` on npm including `@typespec/http-specs`, `@typespec/spector`, `@azure-tools/azure-http-specs`, and `@typespec/spec-api`.
-- For other dependencies, check the latest versions on npm and update them accordingly.
+- Do not update dependency for @typespec/ts-http-runtime.
+- For spector relevant dependencies, the latest version which is tagged with `next` on npm including `@typespec/http-specs`, `@typespec/spector`, `@azure-tools/azure-http-specs`, and `@typespec/spec-api`.
+- For other dependencies, check the latest versions which is tagged with `latest` on npm and update them accordingly.
 - After updating the versions, run `rush update` to ensure all dependencies are correctly installed and the lock files are updated.
 - Do run `rush build` to build the entire monorepo to check if any building issues introduced by upgrading.
 - Do run `rush format` to format the codebase.
 - Do run commands under `packages/typespec-ts/` to work on the TypeSpec TypeScript generator.
 - Do run `rushx test` to run the TypeSpec generator tests to regen integration and run unit-test and if any issue try to fix it.
 - Do run `rushx lint` to run the linter.
+- Do run commands under `packages/typespec-test/` to work on the TypeSpec test framework.
+- Do run `rushx test` to run the TypeSpec test framework tests to regen smoke testing for typespec and if any issue try to fix it.
