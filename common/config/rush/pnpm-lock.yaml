@@ -233,7 +233,7 @@ importers:
   ../../packages/typespec-ts:
     specifiers:
       '@azure-rest/core-client': ^2.3.1
-      '@azure-tools/azure-http-specs': ^0.1.0-alpha.19-dev.1
+      '@azure-tools/azure-http-specs': 0.1.0-alpha.19-dev.1
       '@azure-tools/rlc-common': workspace:^0.41.0
       '@azure-tools/typespec-autorest': ^0.56.0
       '@azure-tools/typespec-azure-core': ^0.56.0
@@ -296,7 +296,7 @@ importers:
       tslib: 2.6.2
     devDependencies:
       '@azure-rest/core-client': 2.3.1
-      '@azure-tools/azure-http-specs': 0.1.0-alpha.9-dev.2_5aujfjgu3pk26bugdczbslcbpa
+      '@azure-tools/azure-http-specs': 0.1.0-alpha.19-dev.1_5aujfjgu3pk26bugdczbslcbpa
       '@azure-tools/typespec-autorest': 0.56.0_s3nlleus6kcqtrkqtormyi5mji
       '@azure-tools/typespec-azure-core': 0.56.0_6kpobswleljkiwijzf623r5xqa
       '@azure-tools/typespec-azure-resource-manager': 0.56.2_7f3c2mnvz6rq6axhvcaydf5zri
@@ -448,16 +448,16 @@ packages:
       proper-lockfile: 2.0.1
     dev: false
 
-  /@azure-tools/azure-http-specs/0.1.0-alpha.9-dev.2_5aujfjgu3pk26bugdczbslcbpa:
-    resolution: {integrity: sha512-f03h68+hj+WMrWv0a6NimEivXifMgNnUSJsGL3wmOvI0XYZljLBAvrMUHwx3AiY4mrs9FSy94W5GQKGBj7EjXg==}
+  /@azure-tools/azure-http-specs/0.1.0-alpha.19-dev.1_5aujfjgu3pk26bugdczbslcbpa:
+    resolution: {integrity: sha512-5Z+znroBPoIItb8K5SIB/+qrOCRIB7OQvpwcaje2jE4Hie1dHvi+cqRtGDEBRQGGcPMiNbh6uR0PbBIzycwCqg==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
-      '@azure-tools/typespec-azure-core': ^0.52.0 || >=0.53.0-dev <0.53.0
-      '@typespec/compiler': ^0.66.0 || >=0.67.0-dev <0.67.0
-      '@typespec/http': ^0.66.0 || >=0.67.0-dev <0.67.0
-      '@typespec/rest': ^0.66.0 || >=0.67.0-dev <0.67.0
-      '@typespec/versioning': ^0.66.0 || >=0.67.0-dev <0.67.0
-      '@typespec/xml': ^0.66.0 || >=0.67.0-dev <0.67.0
+      '@azure-tools/typespec-azure-core': ^0.56.0 || >=0.57.0-dev <0.57.0
+      '@typespec/compiler': ^1.0.0
+      '@typespec/http': ^1.0.1
+      '@typespec/rest': ^0.70.0 || >=0.71.0-dev <0.71.0
+      '@typespec/versioning': ^0.70.0 || >=0.71.0-dev <0.71.0
+      '@typespec/xml': ^0.70.0 || >=0.71.0-dev <0.71.0
     dependencies:
       '@azure-tools/typespec-azure-core': 0.56.0_6kpobswleljkiwijzf623r5xqa
       '@typespec/compiler': 1.0.0_@types+node@18.18.0
