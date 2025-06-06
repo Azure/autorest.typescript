@@ -28,3 +28,4 @@ dist
 .tshy-build
 vitest.config.ts.timestamp*
 .tshy
+**/test/**/metadata.json
