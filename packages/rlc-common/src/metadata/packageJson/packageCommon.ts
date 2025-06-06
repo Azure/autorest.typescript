@@ -126,6 +126,8 @@ export function getTshyConfig(config: PackageCommonInfoConfig) {
 }
 
 export function getCommonPackageScripts({
+  azureSdkForJs,
+  moduleKind,
   withTests
 }: PackageCommonInfoConfig) {
   const testScripts = {
@@ -147,6 +149,6 @@ export function getCommonPackageScripts({
     lint: "eslint package.json api-extractor.json src",
     "lint:fix":
       "eslint package.json api-extractor.json src --fix --fix-type [problem,suggestion]",
-    ...(withTests && testScripts)
+    ...(withTests && !azureSdkForJs && testScripts)
   };
 }
