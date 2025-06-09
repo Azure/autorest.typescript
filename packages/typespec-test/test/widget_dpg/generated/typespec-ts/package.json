@@ -27,6 +27,8 @@
     "selfLink": false
   },
   "type": "module",
+  "browser": "./dist/browser/index.js",
+  "react-native": "./dist/react-native/index.js",
   "keywords": [
     "node",
     "azure",
