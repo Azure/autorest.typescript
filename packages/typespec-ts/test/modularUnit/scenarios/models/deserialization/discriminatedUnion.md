@@ -90,7 +90,7 @@ export function maasModelConfigDeserializer(item: any): MaasModelConfig {
 }
 ```
 
-# only: Should generate discriminated model
+# Should generate discriminated model
 
 Verify that the serializers are correctly referenced within the switch statement of the base serializers.
 

@@ -519,7 +519,7 @@ function isOasString(type: Type): boolean {
   if (type.kind === "String") {
     // A string literal
     return true;
-  } else if (type.kind === "Model" && type.name === "string") {
+  } else if (type.kind === "Scalar" && type.name === "string") {
     // string type
     return true;
   } else if (type.kind === "Union") {
@@ -592,7 +592,7 @@ function validateDiscriminator(
     if (
       !isOasString(prop.type) &&
       prop.type.kind !== "EnumMember" &&
-      prop.type.kind !== "Enum"
+      prop.type.kind !== "Enum" 
     ) {
       reportDiagnostic(program, {
         code: "discriminator",
