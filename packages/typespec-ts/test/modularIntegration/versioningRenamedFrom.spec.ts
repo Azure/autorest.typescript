@@ -5,7 +5,8 @@ describe("VersioningRenamedFrom Rest Client", () => {
   let client: RenamedFromClient;
 
   beforeEach(() => {
-    client = new RenamedFromClient("http://localhost:3002", "v2", {
+    client = new RenamedFromClient("http://localhost:3002", {
+      version: "v2",
       allowInsecureConnection: true
     });
   });
