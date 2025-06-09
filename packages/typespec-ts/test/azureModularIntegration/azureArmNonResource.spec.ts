@@ -2,7 +2,7 @@ import { assert } from "chai";
 import {
     NonResourceClient
 } from "./generated/azure/resource-manager/non-resource/src/index.js";
-describe.only("Azure Arm Resources Rest Client", () => {
+describe("Azure Arm Non Resource Client", () => {
     let client: NonResourceClient;
     const SUBSCRIPTION_ID_EXPECTED = "00000000-0000-0000-0000-000000000000";
     const LOCATION_EXPECTED = "eastus";
