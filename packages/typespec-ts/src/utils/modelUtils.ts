@@ -592,7 +592,7 @@ function validateDiscriminator(
     if (
       !isOasString(prop.type) &&
       prop.type.kind !== "EnumMember" &&
-      prop.type.kind !== "Enum" 
+      prop.type.kind !== "Enum"
     ) {
       reportDiagnostic(program, {
         code: "discriminator",
