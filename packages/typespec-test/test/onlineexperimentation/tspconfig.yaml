@@ -9,4 +9,4 @@ options:
     flavor: "azure"
     experimental-extensible-enums: true
     package-details:
-      name: "@azure/arm-onlineexperimentation"
+      name: "@azure/arm-neonpostgres"

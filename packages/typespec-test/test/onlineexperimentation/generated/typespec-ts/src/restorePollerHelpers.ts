@@ -1,12 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { OnlineExperimentationClient } from "./onlineExperimentationClient.js";
+import { PostgresClient } from "./postgresClient.js";
+import { _createOrUpdateDeserialize } from "./api/branches/operations.js";
+import { _createOrUpdateDeserialize as _createOrUpdateDeserializeProjects } from "./api/projects/operations.js";
 import {
   _$deleteDeserialize,
   _updateDeserialize,
-  _createOrUpdateDeserialize,
-} from "./api/onlineExperimentWorkspaces/operations.js";
+  _createOrUpdateDeserialize as _createOrUpdateDeserializeOrganizations,
+} from "./api/organizations/operations.js";
 import { getLongRunningPoller } from "./static-helpers/pollingHelpers.js";
 import {
   OperationOptions,
@@ -40,7 +42,7 @@ export interface RestorePollerOptions<
  * needs to be constructed after the original one is not in scope.
  */
 export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
-  client: OnlineExperimentationClient,
+  client: PostgresClient,
   serializedState: string,
   sourceOperation: (
     ...args: any[]
@@ -85,16 +87,26 @@ interface DeserializationHelper {
 }
 
 const deserializeMap: Record<string, DeserializationHelper> = {
-  "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OnlineExperimentation/workspaces/{workspaceName}":
+  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Neon.Postgres/organizations/{organizationName}/projects/{projectName}/branches/{branchName}":
+    {
+      deserializer: _createOrUpdateDeserialize,
+      expectedStatuses: ["200", "201"],
+    },
+  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Neon.Postgres/organizations/{organizationName}/projects/{projectName}":
+    {
+      deserializer: _createOrUpdateDeserializeProjects,
+      expectedStatuses: ["200", "201"],
+    },
+  "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Neon.Postgres/organizations/{organizationName}":
     {
       deserializer: _$deleteDeserialize,
       expectedStatuses: ["202", "204", "200"],
     },
-  "PATCH /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OnlineExperimentation/workspaces/{workspaceName}":
+  "PATCH /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Neon.Postgres/organizations/{organizationName}":
     { deserializer: _updateDeserialize, expectedStatuses: ["200", "202"] },
-  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OnlineExperimentation/workspaces/{workspaceName}":
+  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Neon.Postgres/organizations/{organizationName}":
     {
-      deserializer: _createOrUpdateDeserialize,
+      deserializer: _createOrUpdateDeserializeOrganizations,
       expectedStatuses: ["200", "201"],
     },
 };

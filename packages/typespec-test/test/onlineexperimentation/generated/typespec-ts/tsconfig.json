@@ -19,7 +19,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "paths": {
-      "@azure/arm-onlineexperimentation": ["./src/index"]
+      "@azure/arm-neonpostgres": ["./src/index"]
     }
   },
   "include": ["src/**/*.ts", "samples-dev/**/*.ts"]

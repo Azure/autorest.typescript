@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 export {
-  createOnlineExperimentation,
-  OnlineExperimentationContext,
-  OnlineExperimentationClientOptionalParams,
-} from "./onlineExperimentationContext.js";
+  createPostgres,
+  PostgresContext,
+  PostgresClientOptionalParams,
+} from "./postgresContext.js";

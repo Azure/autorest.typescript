@@ -7,7 +7,7 @@ import {
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
 
-export { OnlineExperimentationClient } from "./onlineExperimentationClient.js";
+export { PostgresClient } from "./postgresClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   Operation,
@@ -19,40 +19,83 @@ export {
   ErrorResponse,
   ErrorDetail,
   ErrorAdditionalInfo,
-  OnlineExperimentWorkspace,
-  OnlineExperimentWorkspaceProperties,
+  OrganizationResource,
+  OrganizationProperties,
+  MarketplaceDetails,
+  KnownMarketplaceSubscriptionStatus,
+  MarketplaceSubscriptionStatus,
+  OfferDetails,
+  UserDetails,
+  CompanyDetails,
   KnownResourceProvisioningState,
   ResourceProvisioningState,
-  ResourceEncryptionConfiguration,
-  CustomerManagedKeyEncryption,
-  KeyEncryptionKeyIdentity,
-  KnownKeyEncryptionKeyIdentityType,
-  KeyEncryptionKeyIdentityType,
-  ManagedServiceIdentity,
-  KnownManagedServiceIdentityType,
-  ManagedServiceIdentityType,
-  UserAssignedIdentity,
-  Sku,
-  SkuTier,
+  PartnerOrganizationProperties,
+  SingleSignOnProperties,
+  KnownSingleSignOnStates,
+  SingleSignOnStates,
+  ProjectProperties,
+  Attributes,
+  DefaultEndpointSettings,
+  BranchProperties,
+  NeonRoleProperties,
+  NeonDatabaseProperties,
+  EndpointProperties,
+  KnownEndpointType,
+  EndpointType,
   TrackedResource,
   Resource,
   SystemData,
   KnownCreatedByType,
   CreatedByType,
+  PgVersion,
+  PgVersionsResult,
+  Project,
+  ProxyResource,
+  ConnectionUriProperties,
+  Branch,
+  Compute,
+  ComputeProperties,
+  NeonDatabase,
+  NeonRole,
+  Endpoint,
   KnownVersions,
 } from "./models/index.js";
-export { OnlineExperimentationClientOptionalParams } from "./api/index.js";
+export { PostgresClientOptionalParams } from "./api/index.js";
 export {
-  OnlineExperimentWorkspacesListBySubscriptionOptionalParams,
-  OnlineExperimentWorkspacesListByResourceGroupOptionalParams,
-  OnlineExperimentWorkspacesDeleteOptionalParams,
-  OnlineExperimentWorkspacesUpdateOptionalParams,
-  OnlineExperimentWorkspacesCreateOrUpdateOptionalParams,
-  OnlineExperimentWorkspacesGetOptionalParams,
-} from "./api/onlineExperimentWorkspaces/index.js";
+  BranchesListOptionalParams,
+  BranchesDeleteOptionalParams,
+  BranchesCreateOrUpdateOptionalParams,
+  BranchesGetOptionalParams,
+} from "./api/branches/index.js";
+export { ComputesListOptionalParams } from "./api/computes/index.js";
+export { EndpointsListOptionalParams } from "./api/endpoints/index.js";
+export { NeonDatabasesListOptionalParams } from "./api/neonDatabases/index.js";
+export { NeonRolesListOptionalParams } from "./api/neonRoles/index.js";
 export { OperationsListOptionalParams } from "./api/operations/index.js";
 export {
-  OnlineExperimentWorkspacesOperations,
+  OrganizationsGetPostgresVersionsOptionalParams,
+  OrganizationsListBySubscriptionOptionalParams,
+  OrganizationsListByResourceGroupOptionalParams,
+  OrganizationsDeleteOptionalParams,
+  OrganizationsUpdateOptionalParams,
+  OrganizationsCreateOrUpdateOptionalParams,
+  OrganizationsGetOptionalParams,
+} from "./api/organizations/index.js";
+export {
+  ProjectsGetConnectionUriOptionalParams,
+  ProjectsListOptionalParams,
+  ProjectsDeleteOptionalParams,
+  ProjectsCreateOrUpdateOptionalParams,
+  ProjectsGetOptionalParams,
+} from "./api/projects/index.js";
+export {
+  BranchesOperations,
+  ComputesOperations,
+  EndpointsOperations,
+  NeonDatabasesOperations,
+  NeonRolesOperations,
   OperationsOperations,
+  OrganizationsOperations,
+  ProjectsOperations,
 } from "./classic/index.js";
 export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };

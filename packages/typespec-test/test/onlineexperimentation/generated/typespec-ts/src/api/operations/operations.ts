@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { OnlineExperimentationContext as Client } from "../index.js";
+import { PostgresContext as Client } from "../index.js";
 import {
   _OperationListResult,
   _operationListResultDeserializer,
@@ -26,7 +26,7 @@ export function _listSend(
   options: OperationsListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/providers/Microsoft.OnlineExperimentation/operations{?api%2Dversion}",
+    "/providers/Neon.Postgres/operations{?api%2Dversion}",
     {
       "api%2Dversion": context.apiVersion,
     },
