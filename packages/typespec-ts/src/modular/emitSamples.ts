@@ -105,8 +105,9 @@ function emitMethodSamples(
     return;
   }
   const project = useContext("outputProject");
-  const operationPrefix = `${options.classicalMethodPrefix ?? ""} ${method.oriName ?? method.name
-    }`;
+  const operationPrefix = `${options.classicalMethodPrefix ?? ""} ${
+    method.oriName ?? method.name
+  }`;
   const sampleFolder = join(
     dpgContext.generationPathDetail?.rootDir ?? "",
     "samples-dev",
@@ -237,8 +238,8 @@ function buildParameterValueMap(example: SdkHttpOperationExample) {
   const parameterMap: Record<string, SdkHttpParameterExampleValue> = {};
   example.parameters.forEach(
     (param) =>
-    (parameterMap[param.parameter.serializedName ?? param.parameter.name] =
-      param)
+      (parameterMap[param.parameter.serializedName ?? param.parameter.name] =
+        param)
   );
   return parameterMap;
 }
