@@ -16,7 +16,9 @@ This repository focuses on the TypeSpec TypeScript generator, which generates Ty
 
 - `packages/rlc-common/` - Common utilities for REST Level Client generation
 
-  - Core RLC patterns and utilities
+  - Core utilities to generate RLC clients
+  - This library is consumed by @azure-tools/typespec-ts  and by @autorest/typescript to generate RLC
+     - Note:  @autorest/typescript is in maintenance mode and should not me used as reference nor edited unless explicitly asked requested.
   - Shared code for TypeSpec RLC implementation
   - Location for RLC changes and improvements
 
