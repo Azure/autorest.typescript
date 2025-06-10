@@ -8,7 +8,7 @@ This repository focuses on the TypeSpec TypeScript generator, which generates Ty
 
 - `packages/typespec-ts/` - TypeSpec TypeScript generator
 
-  - Generates TypeScript clients from TypeSpec definitions
+  - Generates TypeScript http clients from TypeSpec definitions. It can generate two kinds of clients, depending on the emitter configuration:
   - Supports both RLC and Modular SDK generation
   - RLC provides low-level REST client operations
   - Modular SDK offers modern, enhanced developer experience
