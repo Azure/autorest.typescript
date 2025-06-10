@@ -62,7 +62,7 @@ When upgrading TypeSpec dependencies only work on `packages/typespec-ts/` and `p
 
 - Identify dependencies within the @typespec or @azure-tools npm-scopes under "dependencies", "devDependencies" and "peerDependencies" in package.json
 - You should use "next" tag for dependencies on `@typespec/http-specs`, `@typespec/spector`, `@azure-tools/azure-http-specs`, and `@typespec/spec-api`
-- You should use "latest" for the other TypeSpec dependencies
+- You should use "latest" for the other dependencies
 - Run "rush update" after editing the dependencies in package.json
 - TypeSpec dependencies means any dependencies starting with `@typespec/` or `@azure-tools/` as these are relevant to TypeSpec and Azure tools.
 - Do not update dependency for @typespec/ts-http-runtime.
