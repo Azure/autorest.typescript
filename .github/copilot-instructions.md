@@ -34,10 +34,12 @@ This repository focuses on the TypeSpec TypeScript emitter, which generates Type
   - Some shared utilities among RLC and Modular SDK
   - RLC files generation and utilities
 
-- `packages/typespec-test/` - Smoke test for TypeSpec code generation
+- `packages/typespec-test/` - Smoke test for TypeSpec TypeScript emitter
 
-  - Provide sample TypeSpec definitions and run commands to generate relevant codes
-  - Report errors if there is any build or compile issues in the generated codes
+  - Under `packages/typespec-test/test/` directory, it contains various test scenarios for validating the TypeSpec TypeScript emitter
+  - For each test scenario, the `spec` folder contains the TypeSpec definitions and the `generated` folder contains the generated TypeScript client libraries
+  - Each test scenario is designed to ensure the generated client libraries are correct, buildable, and function as expected
+  - The test scenarios cover both RLC and Modular SDK generation
 
 - `packages/autorest.typescript/` - AutoRest TypeScript generator
   > **Note:** @autorest/typescript is in maintenance mode and should not be used as reference nor edited unless explicitly requested.
@@ -69,25 +71,25 @@ When upgrading TypeSpec dependencies only work on `packages/typespec-ts/` and `p
 - After updating the versions, run `rush update` to ensure all dependencies are correctly installed and the lock files are updated.
 - Do run `rush build` to build the entire monorepo to check if any building issues introduced by upgrading.
 - Do run `rush format` to format the codebase.
-- Do run commands under `packages/typespec-ts/` to work on the TypeSpec TypeScript generator.
+- Do run commands under `packages/typespec-ts/` to work on the TypeSpec TypeScript emitter.
 - Do run `rushx test` to run the testing and follow the instructions below to fix any test failures.
 - Do run `rushx lint` to run the linter.
 - Do run commands under `packages/typespec-test/` to work on the TypeSpec test framework.
 - Do run `rushx test` to run the TypeSpec test framework tests to regen smoke testing for typespec and if any issue try to fix it.
 
-## How to run and fix test failures in TypeSpec TypeScript generator
+## How to run and fix test failures in TypeSpec TypeScript emitter
 
 Run `rush update` and `rush build` before running tests.
 
-The tests in the TypeSpec TypeScript generator can be categorized into:
+The tests in the TypeSpec TypeScript emitter can be categorized into:
 
 1. **Unit Tests** - These tests validate the functionality of individual components in isolation. They are typically fast and cover specific logic or behavior.
 2. **Integration Tests** - These tests validate the interaction between multiple components or systems.
-3. **Smoke Tests** - These tests provide a high-level validation of the overall functionality of the TypeSpec TypeScript generator.
+3. **Smoke Tests** - These tests provide a high-level validation of the overall functionality of the TypeSpec TypeScript emitter.
 
 ### How to run and fix Unit Tests
 
-We have two types of unit tests in the TypeSpec TypeScript generator:
+We have two types of unit tests in the TypeSpec TypeScript emitter:
 
 - **RLC Unit Tests** - Located in `packages/typespec-ts/test/unit`. These tests validate the functionality of the REST Level Client (RLC) components.
 - **Modular Unit Tests** - Located in `packages/typespec-ts/test/modularUnit`. These tests validate the functionality of the Modular SDK components.
@@ -105,7 +107,7 @@ To fix these tests, follow these steps:
 
 ### How to run and fix Integration Tests
 
-Please ensure you have ran `rushx copy:typespec` before running integration tests to ensure the TypeSpec definitions are copied to the correct location. We have four types of integration tests in the TypeSpec TypeScript generator:
+Please ensure you have ran `rushx copy:typespec` before running integration tests to ensure the TypeSpec definitions are copied to the correct location. We have four types of integration tests in the TypeSpec TypeScript emitter:
 
 - **RLC Integration Tests** - Tag is `rlc` and located in `packages/typespec-ts/test/integration`. These tests validate the functionality of the REST Level Client (RLC) components.
 - **Modular Integration Tests** - Tag is `modular` and located in `packages/typespec-ts/test/modularIntegration`. These tests validate the functionality of the Modular SDK components.
