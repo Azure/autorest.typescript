@@ -73,7 +73,7 @@ The generator supports two distinct SDK styles:
    - Strong type safety and IntelliSense support
    - Improved error handling and diagnostics
 
-## Upgrade TypeSpec relevant dependencies for TypeSpec TypeScript generator
+## How to Upgrade TypeSpec dependencies for @azure-tools/typespec-ts (packagest/typespec-ts)
 
 When upgrading TypeSpec dependencies only work on `packages/typespec-ts/` and `packages/typespec-test/` . `packages/rlc-common` and `packages/autorest.typescript` should not be edited.
 
