@@ -1,4 +1,4 @@
-# only: Should generate samples for different types
+# Should generate samples for different types
 
 Sample generation should handle different types in body.
 
@@ -11,7 +11,7 @@ model Foo {
 }
 
 model Widget {
-  unknownValue: unknown
+  unknownValue: unknown;
   strValue: string;
   numValue: int32;
   enumValue: "red" | "blue";
@@ -47,7 +47,7 @@ op read(@bodyRoot body: Widget): { @body body: {}};
   "operationId": "read",
   "parameters": {
     "body": {
-      "unknownValue": "unknown-Value",
+      "unknownValue": { "foo": "bar" },
       "strValue": "00000000-0000-0000-0000-00000000000",
       "numValue": 0.12,
       "enumValue": "red",
@@ -96,13 +96,14 @@ import { TestingClient } from "@azure/internal-test";
 async function read(): Promise<void> {
   const client = new TestingClient();
   const result = await client.read({
+    unknownValue: { foo: "bar" },
     strValue: "00000000-0000-0000-0000-00000000000",
     numValue: 0.12,
     enumValue: "red",
     modelValue: { bar: "bar value", barDate: new Date("2022-08-09") },
     dateValue: new Date("2022-08-09"),
     arrValue: ["x", "y"],
-    unionValue: test,
+    unionValue: "test",
     nullValue: null,
     jsClientName: "prop renamed",
     stringLiteral: "foo",
@@ -114,7 +115,8 @@ async function read(): Promise<void> {
     offsetDateTimeProp: "2022-08-26T18:38:00Z",
     durationProp: "P123DT22H14M12.011S",
     withEscapeChars: '"Tag 10".Value',
-    additionalProp: "additional prop"
+    unknownRecord: { a: "foo" },
+    additionalProp: "additional prop",
   });
   console.log(result);
 }
