@@ -11,7 +11,12 @@ model Foo {
 }
 
 model Widget {
-  unknownValue: unknown;
+  unknownValueWithObject: unknown;
+  unknownValueWithArray: unknown;
+  unknownValueWithStr: unknown;
+  unknownValueWithNum: unknown;
+  unknownValueWithNull: unknown;
+  unknownValueWithBoolean: unknown;
   strValue: string;
   numValue: int32;
   enumValue: "red" | "blue";
@@ -47,7 +52,12 @@ op read(@bodyRoot body: Widget): { @body body: {}};
   "operationId": "read",
   "parameters": {
     "body": {
-      "unknownValue": { "foo": "bar" },
+      "unknownValueWithObject": { "foo": "bar" },
+      "unknownValueWithArray": ["x", "y"],
+      "unknownValueWithStr": "string",
+      "unknownValueWithNum": 7,
+      "unknownValueWithNull": null,
+      "unknownValueWithBoolean": false,
       "strValue": "00000000-0000-0000-0000-00000000000",
       "numValue": 0.12,
       "enumValue": "red",
@@ -96,7 +106,12 @@ import { TestingClient } from "@azure/internal-test";
 async function read(): Promise<void> {
   const client = new TestingClient();
   const result = await client.read({
-    unknownValue: { foo: "bar" },
+    unknownValueWithObject: { foo: "bar" },
+    unknownValueWithArray: ["x", "y"],
+    unknownValueWithStr: "string",
+    unknownValueWithNum: 7,
+    unknownValueWithNull: null,
+    unknownValueWithBoolean: false,
     strValue: "00000000-0000-0000-0000-00000000000",
     numValue: 0.12,
     enumValue: "red",
@@ -116,7 +131,7 @@ async function read(): Promise<void> {
     durationProp: "P123DT22H14M12.011S",
     withEscapeChars: '"Tag 10".Value',
     unknownRecord: { a: "foo" },
-    additionalProp: "additional prop",
+    additionalProp: "additional prop"
   });
   console.log(result);
 }
