@@ -17,6 +17,7 @@ model Widget {
   unknownValueWithNum: unknown;
   unknownValueWithNull: unknown;
   unknownValueWithBoolean: unknown;
+  unknownValueWithObjectNested: unknown;
   strValue: string;
   numValue: int32;
   enumValue: "red" | "blue";
@@ -58,6 +59,10 @@ op read(@bodyRoot body: Widget): { @body body: {}};
       "unknownValueWithNum": 7,
       "unknownValueWithNull": null,
       "unknownValueWithBoolean": false,
+      "unknownValueWithObjectNested": {
+        "foo": "bar",
+        "bar": [{ "foo": "fooStr" }, "barStr", 7]
+      },
       "strValue": "00000000-0000-0000-0000-00000000000",
       "numValue": 0.12,
       "enumValue": "red",
@@ -112,6 +117,10 @@ async function read(): Promise<void> {
     unknownValueWithNum: 7,
     unknownValueWithNull: null,
     unknownValueWithBoolean: false,
+    unknownValueWithObjectNested: {
+      foo: "bar",
+      bar: [{ foo: "fooStr" }, "barStr", 7]
+    },
     strValue: "00000000-0000-0000-0000-00000000000",
     numValue: 0.12,
     enumValue: "red",
