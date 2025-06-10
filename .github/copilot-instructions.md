@@ -1,63 +1,8 @@
 # GitHub Copilot Instructions for autorest.typescript
 
-This repository focuses on the TypeSpec TypeScript generator, which generates TypeScript client libraries from [TypeSpec](https://typespec.io/) specifications. TypeSpec is the recommended approach for describing cloud service APIs and generating client libraries.
+This repository focuses on the TypeSpec TypeScript emitter, which generates TypeScript client libraries from [TypeSpec](https://typespec.io/) specifications.
 
-> **Note:** While this repository also contains the AutoRest TypeScript generator for OpenAPI/Swagger specifications, we recommend using TypeSpec for new projects. The AutoRest generator is in maintenance mode and will be deprecated in the future.
-
-## Project Structure
-
-- `packages/typespec-ts/` - TypeSpec TypeScript generator
-
-  - Generates TypeScript http clients from TypeSpec definitions. It can generate two kinds of clients, depending on the emitter configuration:
-  - Supports both RLC and Modular SDK generation
-  - RLC provides low-level REST client operations
-  - Modular SDK offers modern, enhanced developer experience
-  - Uses TypeSpec compiler for processing
-
-- `packages/rlc-common/` - Common utilities for REST Level Client generation
-
-  - Core utilities to generate RLC clients
-  - This library is consumed by @azure-tools/typespec-ts  and by @autorest/typescript to generate RLC
-     - Note:  @autorest/typescript is in maintenance mode and should not me used as reference nor edited unless explicitly asked requested.
-  - Shared code for TypeSpec RLC implementation
-  - Location for RLC changes and improvements
-
-- `packages/typespec-test/` - Test utilities and fixtures for TypeSpec code generation
-
-  - Test framework for TypeSpec generator
-  - Sample TypeSpec definitions
-  - Validation utilities
-  - Test fixtures and helpers
-
-- `packages/autorest.typescript/` - AutoRest TypeScript generator
-  > **Note:** @autorest/typescript is in maintenance mode and should not be used as reference nor edited unless explicitly requested.
-
-## AutoRest TypeScript Generator
-
-The AutoRest TypeScript generator (`autorest.typescript`)  is in maintenance mode and should not be used as reference nor edited unless explicitly requested. For more information [AutoRest documentation](https://github.com/Azure/autorest).
-
-1. **REST Level Client (RLC)** - Low-level mapping to REST operations
-2. **High Level Client (HLC)** - Higher-level abstraction layer
-
-For detailed documentation on the AutoRest generator, please refer to the [AutoRest documentation](https://github.com/Azure/autorest).
-
-## TypeSpec Test Framework
-
-The TypeSpec test framework (`typespec-test`)provides utilities and test fixtures for validating TypeSpec code generation. Here are the key aspects to consider:
-
-## TypeSpec TypeScript Generator
-
-The TypeSpec TypeScript generator (`typespec-ts`) generates TypeScript client libraries from [TypeSpec](https://typespec.io/) specifications. TypeSpec is a language specifically designed for API development that:
-
-- Provides a more intuitive way to describe APIs
-- Supports rich type systems and inheritance
-- Enables better code organization through namespaces and imports
-- Allows custom decorators for metadata and behavior
-- Generates consistent API artifacts (clients, documentation, etc.)
-
-The generator supports two distinct SDK styles:
-
-### SDK Generation Styles
+## Key Concepts
 
 1. **REST Level Client (RLC)**
 
@@ -74,6 +19,40 @@ The generator supports two distinct SDK styles:
    - Structured around service capabilities
    - Strong type safety and IntelliSense support
    - Improved error handling and diagnostics
+
+## Project Structure
+
+- `packages/typespec-ts/` - TypeSpec TypeScript emitter
+
+  - Generates TypeScript http clients from TypeSpec definitions and this is a plugin to the TypeSpec compiler which is called by the compiler with the compiled program as output:
+    - Supports both RLC and Modular SDK generation
+    - RLC provides low-level REST client operations
+    - Modular SDK offers modern, enhanced developer experience
+
+- `packages/rlc-common/` - Common utilities for REST Level Client generation
+
+  - Some shared utilities among RLC and Modular SDK
+  - RLC files generation and utilities
+
+- `packages/typespec-test/` - Smoke test for TypeSpec code generation
+
+  - Provide sample TypeSpec definitions and run commands to generate relevant codes
+  - Report errors if there is any build or compile issues in the generated codes
+
+- `packages/autorest.typescript/` - AutoRest TypeScript generator
+  > **Note:** @autorest/typescript is in maintenance mode and should not be used as reference nor edited unless explicitly requested.
+
+## AutoRest TypeScript Generator
+
+The AutoRest TypeScript generator (`autorest.typescript`) is in maintenance mode and should not be used as reference nor edited unless explicitly requested. For more information [AutoRest documentation](https://github.com/Azure/autorest).
+
+## TypeSpec Test Project
+
+The TypeSpec test project (`typespec-test`) which is smoke test for TypeSpec emitter provides utilities and test fixtures for validating there is no build or compile issues for generated codes.
+
+## TypeSpec TypeScript Emitter
+
+The TypeSpec TypeScript emitter (`typespec-ts`) generates TypeScript client libraries from [TypeSpec](https://typespec.io/) specifications. The emitter supports two distinct SDK styles: RLC and Modular SDK.
 
 ## How to Upgrade TypeSpec dependencies for @azure-tools/typespec-ts (packagest/typespec-ts)
 
@@ -98,7 +77,7 @@ When upgrading TypeSpec dependencies only work on `packages/typespec-ts/` and `p
 
 ## How to run and fix test failures in TypeSpec TypeScript generator
 
-Run `rush update` and `rush build` before running tests. 
+Run `rush update` and `rush build` before running tests.
 
 The tests in the TypeSpec TypeScript generator can be categorized into:
 
