@@ -25,7 +25,7 @@ We have two main SDK styles in this repository. One is the [REST Level Client (R
 - `packages/typespec-ts/` - TypeSpec TypeScript emitter
 
   - Generates TypeScript http clients from TypeSpec definitions and this is a plugin to the TypeSpec compiler which is called by the compiler with the compiled program as output:
-    - Supports both RLC and Modular SDK generation
+    - Both RLC and Modular SDK generation
     - RLC provides low-level REST client operations
     - Modular SDK offers modern, enhanced developer experience
 
