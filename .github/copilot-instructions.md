@@ -77,7 +77,10 @@ The generator supports two distinct SDK styles:
 
 When upgrading TypeSpec dependencies only work on `packages/typespec-ts/` and `packages/typespec-test/` . `packages/rlc-common` and `packages/autorest.typescript` should not be edited.
 
-- First look at the `package.json` files in these directories to identify the dependencies including devDependencies, peerDependencies, and dependencies.
+- Identify dependencies within the @typespec or @azure-tools npm-scopes under "dependencies", "devDependencies" and "peerDependencies" in package.json
+- You should use "next" tag for dependencies on `@typespec/http-specs`, `@typespec/spector`, `@azure-tools/azure-http-specs`, and `@typespec/spec-api`
+- You should use "latest" for the other TypeSpec dependencies
+- Run "rush update" after editing the dependencies in package.json
 - TypeSpec dependencies means any dependencies starting with `@typespec/` or `@azure-tools/` as these are relevant to TypeSpec and Azure tools.
 - Do not update dependency for @typespec/ts-http-runtime.
 - For spector relevant dependencies, the latest version which is tagged with `next` on npm including `@typespec/http-specs`, `@typespec/spector`, `@azure-tools/azure-http-specs`, and `@typespec/spec-api`.
