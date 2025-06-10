@@ -71,11 +71,9 @@ When upgrading TypeSpec dependencies only work on `packages/typespec-ts/` and `p
 - After updating the versions, run `rush update` to ensure all dependencies are correctly installed and the lock files are updated.
 - Do run `rush build` to build the entire monorepo to check if any building issues introduced by upgrading.
 - Do run `rush format` to format the codebase.
-- Do run commands under `packages/typespec-ts/` to work on the TypeSpec TypeScript emitter.
-- Do run `rushx test` to run the testing and follow the instructions below to fix any test failures.
-- Do run `rushx lint` to run the linter.
-- Do run commands under `packages/typespec-test/` to work on the TypeSpec test framework.
-- Do run `rushx test` to run the TypeSpec test framework tests to regen smoke testing for typespec and if any issue try to fix it.
+- Do run `npm run test` under `packages/typespec-ts/` to validate our Unit Test and Integration Test and follow the below instructions to fix any test failures.
+- Do run `npm run lint` under `packages/typespec-ts/` to run the linter.
+- Do run `npm run test` under `packages/typespec-test/` to validate our test scenarios for typespec and if any issue try to fix it.
 
 ## How to run and fix test failures in TypeSpec TypeScript emitter
 
@@ -94,20 +92,20 @@ We have two types of unit tests in the TypeSpec TypeScript emitter:
 - **RLC Unit Tests** - Located in `packages/typespec-ts/test/unit`. These tests validate the functionality of the REST Level Client (RLC) components.
 - **Modular Unit Tests** - Located in `packages/typespec-ts/test/modularUnit`. These tests validate the functionality of the Modular SDK components.
 
-To fix these tests, follow these steps:
+The following commands should be ran under `packages/typespec-ts/`. To fix these tests, follow these steps:
 
 - Do read existing RLC Unit tests in `packages/typespec-ts/test/unit` and Modular Unit tests in `packages/typespec-ts/test/modularUnit` to understand the expected behavior.
-- Do run `rushx unit-test` to run both and `rushx test:rlc` to run the RLC unit tests and `rushx test:modular` to run the Modular unit tests.
+- Do run `npm run unit-test` to run both and `npm run test:rlc` to run the RLC unit tests and `npm run test:modular` to run the Modular unit tests.
 - Do identify the failing tests and read the error messages to understand the root cause.
-- For Modular failures, if the generated code is not as expected, you could try to regenerate the code by running `export SCENARIOS_UPDATE=true && rushx rushx test:modular` to refresh the generated code.
+- For Modular failures, if the generated code is not as expected, you could try to regenerate the code by running `export SCENARIOS_UPDATE=true && npm run test:modular` to refresh the generated code.
 - For RLC failures, if the generated code is not as expected, you need to update the relevant typescript codes and usually it is the second parameter in `assertEqualContent` function in the test files.
 - If the test failures are due to that generated code has compile issues or can't format correctly, then this usually means this is an emitter issue and may be fixed under `packages/typespec-ts/src/modular` for Modular or `packages/typespec-ts/src/rlc/transform/` for RLC.
-- After fixing the issues, run `rushx format` to format the codebase.
-- Run `rushx unit-test` again to ensure all unit tests pass.
+- After fixing the issues, run `npm run format` to format the codebase.
+- Run `npm run unit-test` again to ensure all unit tests pass.
 
 ### How to run and fix Integration Tests
 
-Please ensure you have ran `rushx copy:typespec` before running integration tests to ensure the TypeSpec definitions are copied to the correct location. We have four types of integration tests in the TypeSpec TypeScript emitter:
+Please ensure you have ran `npm run copy:typespec` before running integration tests to ensure the TypeSpec definitions are copied to the correct location. We have four types of integration tests in the TypeSpec TypeScript emitter:
 
 - **RLC Integration Tests** - Tag is `rlc` and located in `packages/typespec-ts/test/integration`. These tests validate the functionality of the REST Level Client (RLC) components.
 - **Modular Integration Tests** - Tag is `modular` and located in `packages/typespec-ts/test/modularIntegration`. These tests validate the functionality of the Modular SDK components.
@@ -116,11 +114,11 @@ Please ensure you have ran `rushx copy:typespec` before running integration test
 
 Generally integration tests involve mock servers to validate the end-to-end functionality of the generated clients
 
-- First we need to run `rushx generate-tsp-only:tag` to regenerate the integration test scenarios e.g `rushx generate-tsp-only:rlc` for RLC integration tests or `rushx generate-tsp-only:azure-modular` for Modular for Azure integration tests.
+- First we need to run `npm run generate-tsp-only:tag` to regenerate the integration test scenarios e.g `npm run generate-tsp-only:rlc` for RLC integration tests or `npm run generate-tsp-only:azure-modular` for Modular for Azure integration tests.
 - Relevant generated codes are located in `packages/typespec-test/test/**folder**/generated/` e.g `packages/typespec-test/test/rlc/generated/` for RLC integration tests or `packages/typespec-test/test/modular/generated/` for Modular integration tests.
-- Then open a terminal in the `packages/typespec-ts/` directory and run `rushx start-test-server:tag` to start the test server for the specific integration test tag, e.g. `rushx start-test-server:rlc` for RLC integration tests or `rushx start-test-server:azure-modular` for Modular for Azure integration tests.
+- Then open a terminal in the `packages/typespec-ts/` directory and run `npm run start-test-server:tag` to start the test server for the specific integration test tag, e.g. `npm run start-test-server:rlc` for RLC integration tests or `npm run start-test-server:azure-modular` for Modular for Azure integration tests.
 - If you meet issues during starting the test server, you could try to stop the test server first by running `npm run stop-test-server -- -p 3000` for RLC integration tests or `npm run stop-test-server -- -p 3002` for Modular integration tests, and then start the test server again.
-- After the test server is started, you can run the integration tests in another terminal by running `integration-test:alone:tag` command, e.g. `rushx integration-test:alone:rlc` for RLC integration tests or `rushx integration-test:alone:azure-modular` for Modular for Azure integration tests.
+- After the test server is started, you can run the integration tests in another terminal by running `integration-test:alone:tag` command, e.g. `npm run integration-test:alone:rlc` for RLC integration tests or `npm run integration-test:alone:azure-modular` for Modular for Azure integration tests.
 - Do read existing RLC Integration tests in `packages/typespec-ts/test/integration` and Modular Integration tests in `packages/typespec-ts/test/modularIntegration` to understand the expected behavior.
 - The code under `generated` directories is generated from TypeSpec definitions and should not be modified directly.
 - If we have compile issues during running integration tests, it usually means the relevant integration test cases are not matched with the generated code, you need to update the test files under `packages/typespec-ts/test/**folder**/**.spec.ts` e.g. `packages/typespec-ts/test/integration/arrayItemTypes.spec.ts` for RLC integration tests with different item types for array elements.
