@@ -39,17 +39,17 @@ export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
 
   const runtimeDeps = {
     ...dependencies,
-    "@azure-rest/core-client": !shouldUsePnpmDep ? "^2.1.0" : "workspace:*",
+    "@azure-rest/core-client": !shouldUsePnpmDep ? "^2.1.0" : "workspace:^",
     ...(hasLro && {
-      "@azure/abort-controller": !shouldUsePnpmDep ? "^2.1.2" : "workspace:*"
+      "@azure/abort-controller": !shouldUsePnpmDep ? "^2.1.2" : "workspace:^"
     }),
-    "@azure/core-auth": !shouldUsePnpmDep ? "^1.9.0" : "workspace:*",
+    "@azure/core-auth": !shouldUsePnpmDep ? "^1.9.0" : "workspace:^",
     ...(hasLro && {
-      "@azure/core-lro": !shouldUsePnpmDep ? "^3.0.0" : "workspace:*"
+      "@azure/core-lro": !shouldUsePnpmDep ? "^3.0.0" : "workspace:^"
     }),
-    "@azure/core-rest-pipeline": !shouldUsePnpmDep ? "^1.18.2" : "workspace:*",
-    "@azure/core-util": !shouldUsePnpmDep ? "^1.11.0" : "workspace:*",
-    "@azure/logger": !shouldUsePnpmDep ? "^1.1.4" : "workspace:*",
+    "@azure/core-rest-pipeline": !shouldUsePnpmDep ? "^1.18.2" : "workspace:^",
+    "@azure/core-util": !shouldUsePnpmDep ? "^1.11.0" : "workspace:^",
+    "@azure/logger": !shouldUsePnpmDep ? "^1.1.4" : "workspace:^",
     tslib: !shouldUsePnpmDep ? "^2.8.1" : "catalog:"
   };
 
@@ -73,17 +73,17 @@ export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
     devDependencies: {
       "@azure-tools/test-credential": !shouldUsePnpmDep
         ? "^2.0.0"
-        : "workspace:*",
+        : "workspace:^",
       "@azure-tools/test-recorder": !shouldUsePnpmDep
         ? "^4.1.0"
-        : "workspace:*",
+        : "workspace:^",
       "@azure-tools/test-utils-vitest": !shouldUsePnpmDep
         ? "^1.0.0"
-        : "workspace:*",
-      "@azure/dev-tool": !shouldUsePnpmDep ? "^1.0.0" : "workspace:*",
+        : "workspace:^",
+      "@azure/dev-tool": !shouldUsePnpmDep ? "^1.0.0" : "workspace:^",
       "@azure/eslint-plugin-azure-sdk": !shouldUsePnpmDep
         ? "^3.0.0"
-        : "workspace:*",
+        : "workspace:^",
       "@azure/identity": !shouldUsePnpmDep ? "^4.6.0" : "catalog:internal",
       "@types/node": !shouldUsePnpmDep ? "^18.0.0" : "catalog:",
       eslint: !shouldUsePnpmDep ? "^9.9.0" : "catalog:",
@@ -190,6 +190,7 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
     lint: skipLinting
       ? "echo skipped"
       : "eslint package.json api-extractor.json src test",
+    pack: `${config.shouldUsePnpmDep ? "pnpm" : "npm"} pack 2>&1`,
     ...esmScripts,
     ...cjsScripts,
     "update-snippets": "dev-tool run update-snippets"
