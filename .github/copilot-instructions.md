@@ -96,7 +96,9 @@ When upgrading TypeSpec dependencies only work on `packages/typespec-ts/` and `p
 
 ## How to run and fix test failures in TypeSpec TypeScript generator
 
-Please ensure you have ran `rush update` and `rush build` before running tests. Before you start working on fixing test failures in the TypeSpec TypeScript generator, you need to understand which kinds of test failures you are dealing with. The tests in the TypeSpec TypeScript generator can be broadly categorized into:
+Run `rush update` and `rush build` before running tests. 
+
+The tests in the TypeSpec TypeScript generator can be categorized into:
 
 1. **Unit Tests** - These tests validate the functionality of individual components in isolation. They are typically fast and cover specific logic or behavior.
 2. **Integration Tests** - These tests validate the interaction between multiple components or systems.
