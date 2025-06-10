@@ -75,7 +75,7 @@ The generator supports two distinct SDK styles:
 
 ## Upgrade TypeSpec relevant dependencies for TypeSpec TypeScript generator
 
-To upgrade dependencies for the TypeSpec TypeScript generator, we need to focus on the `packages/typespec-ts/` and `packages/typespec-test/` packages only, not `packages/rlc-common` or `packages/autorest.typescript`.
+When upgrading TypeSpec dependencies only work on `packages/typespec-ts/` and `packages/typespec-test/` . `packages/rlc-common` and `packages/autorest.typescript` should not be edited.
 
 - First look at the `package.json` files in these directories to identify the dependencies including devDependencies, peerDependencies, and dependencies.
 - TypeSpec dependencies means any dependencies starting with `@typespec/` or `@azure-tools/` as these are relevant to TypeSpec and Azure tools.
