@@ -32,7 +32,7 @@ This repository focuses on the TypeSpec TypeScript generator, which generates Ty
 
 ## AutoRest TypeScript Generator
 
-The AutoRest TypeScript generator (`autorest.typescript`) transforms OpenAPI/Swagger specifications into TypeScript client libraries. It supports two client styles:
+The AutoRest TypeScript generator (`autorest.typescript`)  is in maintenance mode and should not be used as reference nor edited unless explicitly requested. For more information [AutoRest documentation](https://github.com/Azure/autorest).
 
 1. **REST Level Client (RLC)** - Low-level mapping to REST operations
 2. **High Level Client (HLC)** - Higher-level abstraction layer
