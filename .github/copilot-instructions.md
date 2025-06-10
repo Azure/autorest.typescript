@@ -28,7 +28,7 @@ This repository focuses on the TypeSpec TypeScript generator, which generates Ty
   - Test fixtures and helpers
 
 - `packages/autorest.typescript/` - AutoRest TypeScript generator
-  > **Note:** In maintenance mode, will be deprecated
+  > **Note:** @autorest/typescript is in maintenance mode and should not be used as reference nor edited unless explicitly requested.
 
 ## AutoRest TypeScript Generator
 
