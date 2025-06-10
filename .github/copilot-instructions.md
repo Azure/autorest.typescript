@@ -4,21 +4,21 @@ This repository focuses on the TypeSpec TypeScript emitter, which generates Type
 
 ## Key Concepts
 
-1. **REST Level Client (RLC)**
+We have two main SDK styles in this repository. One is the [REST Level Client (RLC) SDK](https://devblogs.microsoft.com/azure-sdk/azure-rest-libraries-for-javascript/), and the other is the [Modular SDK](https://devblogs.microsoft.com/azure-sdk/azure-sdk-modularized-libraries-for-javascript/).
+
+1. **REST Level Client (RLC) SDK**
 
    - Low-level, direct mapping to REST API operations
    - One-to-one correspondence with API endpoints
    - Follows REST Level Client patterns
    - Minimal abstraction over HTTP operations
-   - Ideal for custom client implementations
 
 2. **Modular SDK**
 
-   - Next generation of High Level Client (HLC)
-   - Modern, enhanced developer experience
-   - Structured around service capabilities
+   - Higher-level abstraction over REST API operations
+   - Modularized design for better organization
+   - Provides a more user-friendly API surface
    - Strong type safety and IntelliSense support
-   - Improved error handling and diagnostics
 
 ## Project Structure
 
@@ -32,7 +32,7 @@ This repository focuses on the TypeSpec TypeScript emitter, which generates Type
 - `packages/rlc-common/` - Common utilities for REST Level Client generation
 
   - Some shared utilities among RLC and Modular SDK
-  - RLC files generation and utilities
+  - Files generation changes and utilities specific to RLC go here
 
 - `packages/typespec-test/` - Smoke test for TypeSpec TypeScript emitter
 
@@ -54,7 +54,7 @@ The TypeSpec test project (`typespec-test`) which is smoke test for TypeSpec emi
 
 ## TypeSpec TypeScript Emitter
 
-The TypeSpec TypeScript emitter (`typespec-ts`) generates TypeScript client libraries from [TypeSpec](https://typespec.io/) specifications. The emitter supports two distinct SDK styles: RLC and Modular SDK.
+The TypeSpec TypeScript emitter (`typespec-ts`) generates TypeScript client libraries from [TypeSpec](https://typespec.io/) specifications. The emitter supports two distinct SDK styles: RLC libraries and Modular libraries.
 
 ## How to Upgrade TypeSpec dependencies for @azure-tools/typespec-ts (packagest/typespec-ts)
 
