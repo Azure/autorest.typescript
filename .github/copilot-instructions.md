@@ -97,7 +97,7 @@ The following commands should be ran under `packages/typespec-ts/`. To fix these
 - Do read existing RLC Unit tests in `packages/typespec-ts/test/unit` and Modular Unit tests in `packages/typespec-ts/test/modularUnit` to understand the expected behavior.
 - Do run `npm run unit-test` to run both and `npm run test:rlc` to run the RLC unit tests and `npm run test:modular` to run the Modular unit tests.
 - Do identify the failing tests and read the error messages to understand the root cause.
-- For Modular failures, if the generated code is not as expected, you could try to regenerate the code by running `export SCENARIOS_UPDATE=true && npm run npm run test:modular` to refresh the generated code.
+- For Modular failures, if the generated code is not as expected, you could try to regenerate the code by running `export SCENARIOS_UPDATE=true && npm run test:modular` to refresh the generated code.
 - For RLC failures, if the generated code is not as expected, you need to update the relevant typescript codes and usually it is the second parameter in `assertEqualContent` function in the test files.
 - If the test failures are due to that generated code has compile issues or can't format correctly, then this usually means this is an emitter issue and may be fixed under `packages/typespec-ts/src/modular` for Modular or `packages/typespec-ts/src/rlc/transform/` for RLC.
 - After fixing the issues, run `npm run format` to format the codebase.
