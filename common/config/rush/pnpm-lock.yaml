@@ -262,7 +262,7 @@ importers:
       '@typespec/rest': ^0.71.0
       '@typespec/spec-api': 0.1.0-alpha.6
       '@typespec/spector': 0.1.0-alpha.15
-      '@typespec/ts-http-runtime': ^0.2.3
+      '@typespec/ts-http-runtime': ^0.1.0
       '@typespec/versioning': ^0.71.0
       '@typespec/xml': ^0.71.0
       '@vitest/coverage-istanbul': ~1.6.0
@@ -324,7 +324,7 @@ importers:
       '@typespec/rest': 0.71.0_wo5hy2j4mtochsypsdsaymgwzu
       '@typespec/spec-api': 0.1.0-alpha.6
       '@typespec/spector': 0.1.0-alpha.15_bem7zz7qfeiswvpffb5guuo26q
-      '@typespec/ts-http-runtime': 0.2.3
+      '@typespec/ts-http-runtime': 0.1.0
       '@typespec/versioning': 0.71.0_@typespec+compiler@1.1.0
       '@vitest/coverage-istanbul': 1.6.0_vitest@1.6.0
       '@vitest/coverage-v8': 1.6.0_vitest@1.6.0
@@ -2894,8 +2894,8 @@ packages:
     dependencies:
       '@typespec/compiler': 1.1.0_@types+node@18.18.0
 
-  /@typespec/ts-http-runtime/0.2.3:
-    resolution: {integrity: sha512-oRhjSzcVjX8ExyaF8hC0zzTqxlVuRlgMHL/Bh4w3xB9+wjbm0FpXylVU/lBrn+kgphwYTrOk3tp+AVShGmlYCg==}
+  /@typespec/ts-http-runtime/0.1.0:
+    resolution: {integrity: sha512-0NspintCRrSIIZBUtVfWjJ5TpOjpP0mNsJXZOqzuxdY/q2yCr0amyUCEw+WLhRykP39XMNMG0f1F9LbC2+c+Rw==}
     engines: {node: '>=18.0.0'}
     dependencies:
       http-proxy-agent: 7.0.2

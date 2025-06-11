@@ -90,7 +90,7 @@
     "@typespec/http": "^1.1.0",
     "@typespec/openapi": "^1.1.0",
     "@typespec/rest": "^0.71.0",
-    "@typespec/ts-http-runtime": "^0.2.3",
+    "@typespec/ts-http-runtime": "^0.1.0",
     "@typespec/versioning": "^0.71.0",
     "chai": "^4.3.6",
     "chalk": "^4.0.0",
