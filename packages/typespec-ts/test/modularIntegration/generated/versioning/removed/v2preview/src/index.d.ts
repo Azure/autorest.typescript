@@ -29,7 +29,7 @@ export declare interface ModelV3OptionalParams extends OperationOptions {
 export declare class RemovedClient {
     private _client;
     readonly pipeline: Pipeline;
-    constructor(endpointParam: string, version: Versions, options?: RemovedClientOptionalParams);
+    constructor(endpointParam: string, options?: RemovedClientOptionalParams);
     modelV3(body: ModelV3, options?: ModelV3OptionalParams): Promise<ModelV3>;
     v2(body: ModelV2, param: string, options?: V2OptionalParams): Promise<ModelV2>;
     v1(body: ModelV1, options?: V1OptionalParams): Promise<ModelV1>;
@@ -37,6 +37,7 @@ export declare class RemovedClient {
 }
 
 export declare interface RemovedClientOptionalParams extends ClientOptions {
+    version?: Versions;
 }
 
 export declare type UnionV1 = string | number;
