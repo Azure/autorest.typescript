@@ -12,9 +12,10 @@ export declare type AzureCorePageClient = Client & {
 };
 
 export declare interface AzureCorePageClientOptions extends ClientOptions {
+    apiVersion?: string;
 }
 
-declare function createClient(options?: AzureCorePageClientOptions): AzureCorePageClient;
+declare function createClient({ apiVersion, ...options }?: AzureCorePageClientOptions): AzureCorePageClient;
 export default createClient;
 
 export declare interface FirstItemOutput {
@@ -57,15 +58,7 @@ export declare interface ListFirstItemDefaultResponse extends HttpResponse {
     headers: RawHttpHeaders & ListFirstItemDefaultHeaders;
 }
 
-export declare type ListFirstItemParameters = ListFirstItemQueryParam & RequestParameters;
-
-export declare interface ListFirstItemQueryParam {
-    queryParameters: ListFirstItemQueryParamProperties;
-}
-
-export declare interface ListFirstItemQueryParamProperties {
-    "api-version": string;
-}
+export declare type ListFirstItemParameters = RequestParameters;
 
 export declare interface ListItemInputBody {
     inputName: string;
@@ -92,15 +85,7 @@ export declare interface ListSecondItemDefaultResponse extends HttpResponse {
     headers: RawHttpHeaders & ListSecondItemDefaultHeaders;
 }
 
-export declare type ListSecondItemParameters = ListSecondItemQueryParam & RequestParameters;
-
-export declare interface ListSecondItemQueryParam {
-    queryParameters: ListSecondItemQueryParamProperties;
-}
-
-export declare interface ListSecondItemQueryParamProperties {
-    "api-version": string;
-}
+export declare type ListSecondItemParameters = RequestParameters;
 
 export declare interface ListWithCustomPageModel {
     get(options?: ListWithCustomPageModelParameters): StreamableMethod<ListWithCustomPageModel200Response | ListWithCustomPageModelDefaultResponse>;
@@ -121,15 +106,7 @@ export declare interface ListWithCustomPageModelDefaultResponse extends HttpResp
     headers: RawHttpHeaders & ListWithCustomPageModelDefaultHeaders;
 }
 
-export declare type ListWithCustomPageModelParameters = ListWithCustomPageModelQueryParam & RequestParameters;
-
-export declare interface ListWithCustomPageModelQueryParam {
-    queryParameters: ListWithCustomPageModelQueryParamProperties;
-}
-
-export declare interface ListWithCustomPageModelQueryParamProperties {
-    "api-version": string;
-}
+export declare type ListWithCustomPageModelParameters = RequestParameters;
 
 export declare interface ListWithPage {
     get(options?: ListWithPageParameters): StreamableMethod<ListWithPage200Response | ListWithPageDefaultResponse>;
@@ -150,18 +127,10 @@ export declare interface ListWithPageDefaultResponse extends HttpResponse {
     headers: RawHttpHeaders & ListWithPageDefaultHeaders;
 }
 
-export declare type ListWithPageParameters = ListWithPageQueryParam & RequestParameters;
-
-export declare interface ListWithPageQueryParam {
-    queryParameters: ListWithPageQueryParamProperties;
-}
-
-export declare interface ListWithPageQueryParamProperties {
-    "api-version": string;
-}
+export declare type ListWithPageParameters = RequestParameters;
 
 export declare interface ListWithParameters {
-    post(options: ListWithParametersParameters): StreamableMethod<ListWithParameters200Response | ListWithParametersDefaultResponse>;
+    get(options: ListWithParametersParameters): StreamableMethod<ListWithParameters200Response | ListWithParametersDefaultResponse>;
 }
 
 export declare interface ListWithParameters200Response extends HttpResponse {
@@ -186,11 +155,10 @@ export declare interface ListWithParametersDefaultResponse extends HttpResponse 
 export declare type ListWithParametersParameters = ListWithParametersQueryParam & ListWithParametersBodyParam & RequestParameters;
 
 export declare interface ListWithParametersQueryParam {
-    queryParameters: ListWithParametersQueryParamProperties;
+    queryParameters?: ListWithParametersQueryParamProperties;
 }
 
 export declare interface ListWithParametersQueryParamProperties {
-    "api-version": string;
     another?: ListItemInputExtensibleEnum;
 }
 
@@ -229,26 +197,16 @@ export declare type PaginateReturn<TResult> = TResult extends {
     body: {
         items?: infer TPage;
     };
-} | {
-    body: {
-        values?: infer TPage;
-    };
 } ? GetArrayType<TPage> : Array<unknown>;
 
 export declare interface PagingOptions<TResponse> {
     customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
 }
 
-export declare interface ParameterizedNextLinkPagingResultOutput {
-    values: Array<UserOutput>;
-    nextLink: string;
-}
-
 export declare interface Routes {
     (path: "/azure/core/page/page"): ListWithPage;
     (path: "/azure/core/page/parameters"): ListWithParameters;
     (path: "/azure/core/page/custom-page"): ListWithCustomPageModel;
-    (path: "/azure/core/page/with-parameterized-next-link"): WithParameterizedNextLink;
     (path: "/azure/core/page/first-item"): ListFirstItem;
     (path: "/azure/core/page/second-item"): ListSecondItem;
 }
@@ -273,26 +231,6 @@ export declare interface UserOutput {
     name: string;
     orders?: Array<UserOrderOutput>;
     readonly etag: string;
-}
-
-export declare interface WithParameterizedNextLink {
-    get(options: WithParameterizedNextLinkParameters): StreamableMethod<WithParameterizedNextLink200Response>;
-}
-
-export declare interface WithParameterizedNextLink200Response extends HttpResponse {
-    status: "200";
-    body: ParameterizedNextLinkPagingResultOutput;
-}
-
-export declare type WithParameterizedNextLinkParameters = WithParameterizedNextLinkQueryParam & RequestParameters;
-
-export declare interface WithParameterizedNextLinkQueryParam {
-    queryParameters: WithParameterizedNextLinkQueryParamProperties;
-}
-
-export declare interface WithParameterizedNextLinkQueryParamProperties {
-    includePending?: boolean;
-    select: string;
 }
 
 export { }
