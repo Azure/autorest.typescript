@@ -233,7 +233,7 @@ importers:
   ../../packages/typespec-ts:
     specifiers:
       '@azure-rest/core-client': ^2.3.1
-      '@azure-tools/azure-http-specs': ^0.1.0-alpha.18
+      '@azure-tools/azure-http-specs': 0.1.0-alpha.18
       '@azure-tools/rlc-common': workspace:^0.41.0
       '@azure-tools/typespec-autorest': ^0.56.0
       '@azure-tools/typespec-azure-core': ^0.56.0
@@ -296,7 +296,7 @@ importers:
       tslib: 2.6.2
     devDependencies:
       '@azure-rest/core-client': 2.3.1
-      '@azure-tools/azure-http-specs': 0.1.0-alpha.17-dev.0_5aujfjgu3pk26bugdczbslcbpa
+      '@azure-tools/azure-http-specs': 0.1.0-alpha.18_5aujfjgu3pk26bugdczbslcbpa
       '@azure-tools/typespec-autorest': 0.56.0_e43vqamgl25ript65zpie3thnm
       '@azure-tools/typespec-azure-core': 0.56.0_6kpobswleljkiwijzf623r5xqa
       '@azure-tools/typespec-azure-resource-manager': 0.56.2_7f3c2mnvz6rq6axhvcaydf5zri
@@ -448,16 +448,16 @@ packages:
       proper-lockfile: 2.0.1
     dev: false
 
-  /@azure-tools/azure-http-specs/0.1.0-alpha.17-dev.0_5aujfjgu3pk26bugdczbslcbpa:
-    resolution: {integrity: sha512-V/XnvC5oB8s41j6wyuzsZVukPav09XiD4Rps8XyuRNL4m6atG1uJsEYvA4IUc0ECqhTek7sJ/2HYKGh5cAQbAw==}
+  /@azure-tools/azure-http-specs/0.1.0-alpha.18_5aujfjgu3pk26bugdczbslcbpa:
+    resolution: {integrity: sha512-amluzNkT1T43XbO6MV8/fJutDP7QnFh8fILnE4Ky6PzbMgZLw1aN2nKpF6tJCSY0jQbMo3kNUP/BCe/Tebd+OA==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
-      '@azure-tools/typespec-azure-core': ^0.55.0 || >=0.56.0-dev <0.56.0
-      '@typespec/compiler': ^1.0.0-rc.1
-      '@typespec/http': ^1.0.0-rc.1
-      '@typespec/rest': ^0.69.0 || >=0.70.0-dev <0.70.0
-      '@typespec/versioning': ^0.69.0 || >=0.70.0-dev <0.70.0
-      '@typespec/xml': ^0.69.0 || >=0.70.0-dev <0.70.0
+      '@azure-tools/typespec-azure-core': ^0.56.0
+      '@typespec/compiler': ^1.0.0
+      '@typespec/http': ^1.0.1
+      '@typespec/rest': ^0.70.0
+      '@typespec/versioning': ^0.70.0
+      '@typespec/xml': ^0.70.0
     dependencies:
       '@azure-tools/typespec-azure-core': 0.56.0_6kpobswleljkiwijzf623r5xqa
       '@typespec/compiler': 1.0.0_@types+node@18.18.0
