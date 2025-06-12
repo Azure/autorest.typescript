@@ -237,9 +237,7 @@ function emitMethodSamples(
 function buildParameterValueMap(example: SdkHttpOperationExample) {
   const parameterMap: Record<string, SdkHttpParameterExampleValue> = {};
   example.parameters.forEach(
-    (param) =>
-      (parameterMap[param.parameter.serializedName ?? param.parameter.name] =
-        param)
+    (param) => (parameterMap[param.parameter.serializedName] = param)
   );
   return parameterMap;
 }
@@ -312,7 +310,7 @@ function prepareExampleParameters(
   }
   // required/optional body parameters
   const bodyParam = method.operation.bodyParam;
-  const bodyName = bodyParam?.name;
+  const bodyName = bodyParam?.serializedName;
   const bodyExample = parameterMap[bodyName ?? ""];
   if (bodyName && bodyExample && bodyExample.value) {
     if (

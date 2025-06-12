@@ -90,15 +90,15 @@ function regularAutorestPackage(
     },
     dependencies: {
       ...(hasLro && { "@azure/core-lro": shouldUsePnpmDep && azureSdkForJs ? "catalog:corelrov2" : "^2.5.4" }),
-      ...(hasLro && { "@azure/abort-controller": shouldUsePnpmDep && azureSdkForJs ? "workspace:*" : "^2.1.2" }),
-      ...(hasAsyncIterators && { "@azure/core-paging": shouldUsePnpmDep && azureSdkForJs ? "workspace:*" : "^1.6.2" }),
-      ...(useCoreV2 && { "@azure/core-client": shouldUsePnpmDep && azureSdkForJs ? "workspace:*" : "^1.9.2" }),
-      ...(useCoreV2 && addCredentials && { "@azure/core-auth": shouldUsePnpmDep && azureSdkForJs ? "workspace:*" : "^1.9.0" }),
+      ...(hasLro && { "@azure/abort-controller": shouldUsePnpmDep && azureSdkForJs ? "workspace:^" : "^2.1.2" }),
+      ...(hasAsyncIterators && { "@azure/core-paging": shouldUsePnpmDep && azureSdkForJs ? "workspace:^" : "^1.6.2" }),
+      ...(useCoreV2 && { "@azure/core-client": shouldUsePnpmDep && azureSdkForJs ? "workspace:^" : "^1.9.2" }),
+      ...(useCoreV2 && addCredentials && { "@azure/core-auth": shouldUsePnpmDep && azureSdkForJs ? "workspace:^" : "^1.9.0" }),
       ...(useCoreV2 && {
-        "@azure/core-rest-pipeline": shouldUsePnpmDep && azureSdkForJs ? "workspace:*" : "^1.19.0"
+        "@azure/core-rest-pipeline": shouldUsePnpmDep && azureSdkForJs ? "workspace:^" : "^1.19.0"
       }),
       ...(tracingInfo && {
-        "@azure/core-tracing": shouldUsePnpmDep && azureSdkForJs ? "workspace:*" : "^1.2.0"
+        "@azure/core-tracing": shouldUsePnpmDep && azureSdkForJs ? "workspace:^" : "^1.2.0"
       }),
       tslib: shouldUsePnpmDep && azureSdkForJs ? "catalog:" : "^2.8.1"
     },
@@ -131,7 +131,7 @@ function regularAutorestPackage(
         "npm run clean && tshy && npm run extract-api",
       minify: `uglifyjs -c -m --comments --source-map "content='./dist/index.js.map'" -o ./dist/index.min.js ./dist/index.js`,
       prepack: "npm run build",
-      pack: "npm pack 2>&1",
+      pack: `${shouldUsePnpmDep && azureSdkForJs ? "pnpm" : "npm"} pack 2>&1`,
       "extract-api": "rimraf review && mkdirp ./review && api-extractor run --local",
       lint: "echo skipped",
       clean:
@@ -181,7 +181,7 @@ function regularAutorestPackage(
     packageInfo.homepage = `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}`;
   }
   if (azureSdkForJs) {
-    packageInfo.devDependencies["@azure/dev-tool"] = shouldUsePnpmDep && azureSdkForJs ? "workspace:*" : "^1.0.0";
+    packageInfo.devDependencies["@azure/dev-tool"] = shouldUsePnpmDep && azureSdkForJs ? "workspace:^" : "^1.0.0";
     delete packageInfo.devDependencies["@microsoft/api-extractor"];
     delete packageInfo.devDependencies["rimraf"];
     delete packageInfo.devDependencies["mkdirp"];
@@ -206,12 +206,12 @@ function regularAutorestPackage(
 
   if (generateTest) {
     packageInfo.devDependencies["@azure/identity"] = shouldUsePnpmDep && azureSdkForJs ? "catalog:internal" : "^4.6.0";
-    packageInfo.devDependencies["@azure/logger"] = shouldUsePnpmDep && azureSdkForJs ? "workspace:*" : "^1.1.4";
+    packageInfo.devDependencies["@azure/logger"] = shouldUsePnpmDep && azureSdkForJs ? "workspace:^" : "^1.1.4";
     // TODO need unify the version when 4.1.0 released
-    packageInfo.devDependencies["@azure-tools/test-recorder"] = azureSdkForJs ? shouldUsePnpmDep ? "workspace:*" : "^4.1.0" : "^4.0.0";
-    packageInfo.devDependencies["@azure-tools/test-credential"] = shouldUsePnpmDep && azureSdkForJs ? "workspace:*" : "^2.0.0";
+    packageInfo.devDependencies["@azure-tools/test-recorder"] = azureSdkForJs ? shouldUsePnpmDep ? "workspace:^" : "^4.1.0" : "^4.0.0";
+    packageInfo.devDependencies["@azure-tools/test-credential"] = shouldUsePnpmDep && azureSdkForJs ? "workspace:^" : "^2.0.0";
     if (azureSdkForJs) {
-      packageInfo.devDependencies["@azure-tools/test-utils-vitest"] = shouldUsePnpmDep && azureSdkForJs ? "workspace:*" : "^1.0.0";
+      packageInfo.devDependencies["@azure-tools/test-utils-vitest"] = shouldUsePnpmDep && azureSdkForJs ? "workspace:^" : "^1.0.0";
     }
     packageInfo.devDependencies["@types/node"] = shouldUsePnpmDep && azureSdkForJs ? "catalog:" : "^18.0.0";
     packageInfo.devDependencies["@vitest/browser"] = shouldUsePnpmDep && azureSdkForJs ? "catalog:testing" : "^3.0.9";
