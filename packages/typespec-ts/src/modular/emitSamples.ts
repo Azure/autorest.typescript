@@ -237,9 +237,7 @@ function emitMethodSamples(
 function buildParameterValueMap(example: SdkHttpOperationExample) {
   const parameterMap: Record<string, SdkHttpParameterExampleValue> = {};
   example.parameters.forEach(
-    (param) =>
-      (parameterMap[param.parameter.serializedName ?? param.parameter.name] =
-        param)
+    (param) => (parameterMap[param.parameter.serializedName] = param)
   );
   return parameterMap;
 }
@@ -312,7 +310,7 @@ function prepareExampleParameters(
   }
   // required/optional body parameters
   const bodyParam = method.operation.bodyParam;
-  const bodyName = bodyParam?.name;
+  const bodyName = bodyParam?.serializedName;
   const bodyExample = parameterMap[bodyName ?? ""];
   if (bodyName && bodyExample && bodyExample.value) {
     if (
@@ -428,7 +426,7 @@ function getParameterValue(value: SdkExampleValue): string {
     case "null":
     case "unknown":
     case "union":
-      retValue = `${value.value}`;
+      retValue = `${JSON.stringify(value.value)}`;
       break;
     case "dict":
     case "model": {
@@ -455,9 +453,7 @@ function getParameterValue(value: SdkExampleValue): string {
       break;
     }
     case "array": {
-      const valuesArr = value.value.map((element) =>
-        getParameterValue(element)
-      );
+      const valuesArr = value.value.map(getParameterValue);
       retValue = `[${valuesArr.join(", ")}]`;
       break;
     }
