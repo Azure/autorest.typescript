@@ -46,9 +46,13 @@ See [Configuring output directory for more info](https://typespec.io/docs/handbo
 
 **Type:** `boolean`
 
+To allow the codegen generating shortcut methods in client definition. This is an experimental feature so we disable it by default. If you want to try it just turn it on.
+
 ### `multi-client`
 
 **Type:** `boolean`
+
+Whether to generate multiple clients in one package.
 
 ### `batch`
 
@@ -58,17 +62,35 @@ See [Configuring output directory for more info](https://typespec.io/docs/handbo
 
 **Type:** `object`
 
+This is to indicate the package infomation such as package name, package description etc.
+
 ### `add-credentials`
 
 **Type:** `boolean`
+
+      We support two types of authentication: Azure Key Credential(AzureKey) and Token credential(AADToken), any other will need to be handled manually.
+
+      There are two ways to set up our credential details
+
+      - To use `@useAuth` decorator in TypeSpec
+      - To config in yaml file
+
+      Please notice defining in TypeSpec is recommanded and also has higher priority than second one.
+
+      To enable credential in `tspconfig.yaml` and we need to provide more details to let codegen know types.
+
 
 ### `credential-scopes`
 
 **Type:** `array`
 
+If we enable the option `add-credentials` and specify `credential-scopes` the details we would enable the AADToken authentication.
+
 ### `credential-key-header-name`
 
 **Type:** `string`
+
+If we enable the option `add-credentials` and specify `credential-key-header-name` the details we would enable the AzureKey authentication.
 
 ### `custom-http-auth-header-name`
 
@@ -82,17 +104,31 @@ See [Configuring output directory for more info](https://typespec.io/docs/handbo
 
 **Type:** `boolean`
 
+      Whether to generate metadata files which includes package.json, README.md and tsconfig.json etc. Defaults to `undefined`. If there's not a package.json ender package-dir, defaults to `true`. but if you'd like to disable this feature you could set it as `false`.
+
+
 ### `generate-test`
 
 **Type:** `boolean`
+
+      Whether to generate test files, for basic testing of your generated sdks. Defaults to `undefined`.
+      other cases:
+      - If azure-sdk-for-js is `false`. Defaults to `false`.
+      - If azure-sdk-for-js is `true` but there's a test folder under package-dir. Defaults to `false`.
+      - If azure-sdk-for-js is `true` but there's not a test folder under package-dir. Defaults to `true`.
+
 
 ### `generate-sample`
 
 **Type:** `boolean`
 
+Whether to generate sample files, for basic samples of your generated sdks. Defaults to `undefined`. Management packages' default to `true`.
+
 ### `azure-sdk-for-js`
 
 **Type:** `boolean`
+
+This is used to indicate your project is generated in [azure-sdk-for-js](https://github.com/Azure/azure-sdk-for-js) repo or not. If your package is located in that repo we'll leverage `dev-tool` to accelerate our building and testing, however if not we'll remove the dependency for that tool. Defaults to `undefined`. Services with Flavor equal to 'Azure' default to 'true'.
 
 ### `azure-output-directory`
 
@@ -105,6 +141,10 @@ See [Configuring output directory for more info](https://typespec.io/docs/handbo
 ### `title`
 
 **Type:** `string`
+
+      Only for RLC generation
+      Generally the codegen will leverage the title defined in `@client` and `@service` decorator in TypeSpec to name our RLC client. But if you'd like to override it you could config the `title` info.
+
 
 ### `dependency-info`
 
@@ -122,6 +162,8 @@ See [Configuring output directory for more info](https://typespec.io/docs/handbo
 
 **Type:** `boolean`
 
+Whether the package is an arm package.
+
 ### `source-from`
 
 **Type:** `string`
@@ -129,6 +171,8 @@ See [Configuring output directory for more info](https://typespec.io/docs/handbo
 ### `is-modular-library`
 
 **Type:** `boolean`
+
+Whether to generate a Modular library. Defaults to `false`. Arm packages default to `true`.
 
 ### `enable-operation-group`
 
@@ -146,9 +190,13 @@ See [Configuring output directory for more info](https://typespec.io/docs/handbo
 
 **Type:** `boolean`
 
+A section of flavor
+
 ### `flavor`
 
 **Type:** `string`
+
+The flavor of the SDK.
 
 ### `module-kind`
 
@@ -158,13 +206,19 @@ See [Configuring output directory for more info](https://typespec.io/docs/handbo
 
 **Type:** `boolean`
 
+Whether to affect the generation of the additional property feature for the Modular client. Defaults to `false`.
+
 ### `experimental-extensible-enums`
 
 **Type:** `boolean`
 
+Whether to transform union type enums to extensible enums
+
 ### `clear-output-folder`
 
 **Type:** `boolean`
+
+Whether to empty the whole output folder. By default we only empty the sources folder which means any metadata files will not be removed if it is at project root. This would be useful in pipeline.
 
 ### `ignore-property-name-normalize`
 
@@ -178,6 +232,8 @@ See [Configuring output directory for more info](https://typespec.io/docs/handbo
 
 **Type:** `boolean`
 
+Whether to generate the backward-compatible code for query parameter serialization for array types in RLC. Defaults to `false`
+
 ### `default-value-object`
 
 **Type:** `boolean`
@@ -186,6 +242,18 @@ See [Configuring output directory for more info](https://typespec.io/docs/handbo
 
 **Type:** `object`
 
+Only for Modular generation
+Generally the codegen will leverage the title defined in `@client` and `@service` decorator in TypeSpec to name our modular client. But if you'd like to override it you could config the `typespec-title-map` info. The key is the client name from typespec, and the value is the client name we'd like to rename. This also support config multiple clients
+
+      ```yaml
+      typespec-title-map:
+        AnomalyDetectorClient: AnomalyDetectorRest
+        AnomalyDetectorClient2: AnomalyDetectorRest2
+      ```
+
+
 ### `should-use-pnpm-dep`
 
 **Type:** `boolean`
+
+Whether to generate codes with the pnpm dependencies. Defaults to `false`

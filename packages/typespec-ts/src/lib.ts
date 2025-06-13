@@ -76,14 +76,15 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
   type: "object",
   additionalProperties: true,
   properties: {
-    "include-shortcuts": { type: "boolean", nullable: true },
-    "multi-client": { type: "boolean", nullable: true },
+    "include-shortcuts": { type: "boolean", nullable: true, description: "To allow the codegen generating shortcut methods in client definition. This is an experimental feature so we disable it by default. If you want to try it just turn it on." },
+    "multi-client": { type: "boolean", nullable: true, description: "Whether to generate multiple clients in one package." },
     batch: {
       type: "array",
       nullable: true,
       items: {
         type: "string"
-      }
+      },
+      description: ""
     },
     "package-details": {
       type: "object",
@@ -96,24 +97,64 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
         version: { type: "string", nullable: true }
       },
       required: ["name"],
-      nullable: true
+      nullable: true,
+      description: "This is to indicate the package infomation such as package name, package description etc."
     },
-    "add-credentials": { type: "boolean", nullable: true },
+    "add-credentials": {
+      type: "boolean",
+      nullable: true,
+      description: `
+      We support two types of authentication: Azure Key Credential(AzureKey) and Token credential(AADToken), any other will need to be handled manually.
+
+      There are two ways to set up our credential details
+
+      - To use \`@useAuth\` decorator in TypeSpec
+      - To config in yaml file
+
+      Please notice defining in TypeSpec is recommanded and also has higher priority than second one.
+
+      To enable credential in \`tspconfig.yaml\` and we need to provide more details to let codegen know types.
+      `
+    },
     "credential-scopes": {
       type: "array",
       nullable: true,
-      items: { type: "string" }
+      items: { type: "string" },
+      description: "If we enable the option `add-credentials` and specify `credential-scopes` the details we would enable the AADToken authentication."
     },
-    "credential-key-header-name": { type: "string", nullable: true },
-    "custom-http-auth-header-name": { type: "string", nullable: true },
-    "custom-http-auth-shared-key-prefix": { type: "string", nullable: true },
-    "generate-metadata": { type: "boolean", nullable: true },
-    "generate-test": { type: "boolean", nullable: true },
-    "generate-sample": { type: "boolean", nullable: true },
-    "azure-sdk-for-js": { type: "boolean", nullable: true },
-    "azure-output-directory": { type: "string", nullable: true },
-    "is-typespec-test": { type: "boolean", nullable: true },
-    title: { type: "string", nullable: true },
+    "credential-key-header-name": { type: "string", nullable: true, description: "If we enable the option `add-credentials` and specify `credential-key-header-name` the details we would enable the AzureKey authentication." },
+    "custom-http-auth-header-name": { type: "string", nullable: true, description: "" },
+    "custom-http-auth-shared-key-prefix": { type: "string", nullable: true, description: "" },
+    "generate-metadata": {
+      type: "boolean",
+      nullable: true,
+      description: `
+      Whether to generate metadata files which includes package.json, README.md and tsconfig.json etc. Defaults to \`undefined\`. If there's not a package.json ender package-dir, defaults to \`true\`. but if you'd like to disable this feature you could set it as \`false\`.
+      `
+    },
+    "generate-test": {
+      type: "boolean",
+      nullable: true,
+      description: `
+      Whether to generate test files, for basic testing of your generated sdks. Defaults to \`undefined\`.
+      other cases:
+      - If azure-sdk-for-js is \`false\`. Defaults to \`false\`.
+      - If azure-sdk-for-js is \`true\` but there's a test folder under package-dir. Defaults to \`false\`.
+      - If azure-sdk-for-js is \`true\` but there's not a test folder under package-dir. Defaults to \`true\`.
+      `
+    },
+    "generate-sample": { type: "boolean", nullable: true, description: "Whether to generate sample files, for basic samples of your generated sdks. Defaults to `undefined`. Management packages' default to `true`." },
+    "azure-sdk-for-js": { type: "boolean", nullable: true, description: "This is used to indicate your project is generated in [azure-sdk-for-js](https://github.com/Azure/azure-sdk-for-js) repo or not. If your package is located in that repo we'll leverage `dev-tool` to accelerate our building and testing, however if not we'll remove the dependency for that tool. Defaults to `undefined`. Services with Flavor equal to 'Azure' default to 'true'. " },
+    "azure-output-directory": { type: "string", nullable: true, description: "" },
+    "is-typespec-test": { type: "boolean", nullable: true, description: "" },
+    title: {
+      type: "string",
+      nullable: true,
+      description: `
+      Only for RLC generation
+      Generally the codegen will leverage the title defined in \`@client\` and \`@service\` decorator in TypeSpec to name our RLC client. But if you'd like to override it you could config the \`title\` info.
+      `
+    },
     "dependency-info": {
       type: "object",
       additionalProperties: true,
@@ -122,9 +163,10 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
         description: { type: "string", nullable: false }
       },
       required: [],
-      nullable: true
+      nullable: true,
+      description: ""
     },
-    "product-doc-link": { type: "string", nullable: true },
+    "product-doc-link": { type: "string", nullable: true, description: "" },
     "service-info": {
       type: "object",
       additionalProperties: true,
@@ -132,38 +174,48 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
         title: { type: "string", nullable: true },
         description: { type: "string", nullable: true }
       },
-      nullable: true
+      nullable: true,
+      description: ""
     },
-    "azure-arm": { type: "boolean", nullable: true },
-    "source-from": { type: "string", nullable: true },
-    "is-modular-library": { type: "boolean", nullable: true, default: false },
-    "enable-operation-group": { type: "boolean", nullable: true },
-    "enable-model-namespace": { type: "boolean", nullable: true },
-    "hierarchy-client": { type: "boolean", nullable: true },
-    branded: { type: "boolean", nullable: true },
-    flavor: { type: "string", nullable: true },
+    "azure-arm": { type: "boolean", nullable: true, description: "Whether the package is an arm package." },
+    "source-from": { type: "string", nullable: true, description: "" },
+    "is-modular-library": { type: "boolean", nullable: true, default: false, description: "Whether to generate a Modular library. Defaults to `false`. Arm packages default to `true`." },
+    "enable-operation-group": { type: "boolean", nullable: true, description: "" },
+    "enable-model-namespace": { type: "boolean", nullable: true, description: "" },
+    "hierarchy-client": { type: "boolean", nullable: true, description: "" },
+    branded: { type: "boolean", nullable: true, description: "A section of flavor" },
+    flavor: { type: "string", nullable: true, description: "The flavor of the SDK.", },
     "module-kind": {
       type: "string",
       nullable: true,
       enum: ["esm", "cjs"],
       default: "esm"
     },
-    "compatibility-mode": { type: "boolean", nullable: true },
-    "experimental-extensible-enums": { type: "boolean", nullable: true },
-    "clear-output-folder": { type: "boolean", nullable: true },
-    "ignore-property-name-normalize": { type: "boolean", nullable: true },
-    "ignore-enum-member-name-normalize": { type: "boolean", nullable: true },
-    "compatibility-query-multi-format": { type: "boolean", nullable: true },
-    "default-value-object": { type: "boolean", nullable: true },
+    "compatibility-mode": { type: "boolean", nullable: true, description: "Whether to affect the generation of the additional property feature for the Modular client. Defaults to `false`." },
+    "experimental-extensible-enums": { type: "boolean", nullable: true, description: "Whether to transform union type enums to extensible enums" },
+    "clear-output-folder": { type: "boolean", nullable: true, description: "Whether to empty the whole output folder. By default we only empty the sources folder which means any metadata files will not be removed if it is at project root. This would be useful in pipeline." },
+    "ignore-property-name-normalize": { type: "boolean", nullable: true, description: "" },
+    "ignore-enum-member-name-normalize": { type: "boolean", nullable: true, description: "" },
+    "compatibility-query-multi-format": { type: "boolean", nullable: true, description: "Whether to generate the backward-compatible code for query parameter serialization for array types in RLC. Defaults to `false`" },
+    "default-value-object": { type: "boolean", nullable: true, description: "" },
     "typespec-title-map": {
       type: "object",
       additionalProperties: {
         type: "string"
       },
       required: [],
-      nullable: true
+      nullable: true,
+      description: `Only for Modular generation
+      Generally the codegen will leverage the title defined in \`@client\` and \`@service\` decorator in TypeSpec to name our modular client. But if you'd like to override it you could config the \`typespec-title-map\` info. The key is the client name from typespec, and the value is the client name we'd like to rename. This also support config multiple clients
+
+      \`\`\`yaml
+      typespec-title-map: 
+        AnomalyDetectorClient: AnomalyDetectorRest
+        AnomalyDetectorClient2: AnomalyDetectorRest2
+      \`\`\`
+      `
     },
-    "should-use-pnpm-dep": { type: "boolean", nullable: true }
+    "should-use-pnpm-dep": { type: "boolean", nullable: true, description: "Whether to generate codes with the pnpm dependencies. Defaults to `false`" }
   },
   required: []
 };
