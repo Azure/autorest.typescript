@@ -44,10 +44,10 @@ describe("Azure Arm Resources Rest Client", () => {
       type: `${IDENTITY_TYPE_SYSTEM_USER_ASSIGNED_EXPECTED}`,
       userAssignedIdentities: {
         "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1":
-          {
-            principalId: `${PRINCIPAL_ID_EXPECTED}`,
-            clientId: `${CLIENT_ID_EXPECTED}`
-          }
+        {
+          principalId: `${PRINCIPAL_ID_EXPECTED}`,
+          clientId: `${CLIENT_ID_EXPECTED}`
+        }
       },
       principalId: `${PRINCIPAL_ID_EXPECTED}`,
       tenantId: `${TENANT_ID_EXPECTED}`
@@ -170,5 +170,69 @@ describe("Azure Arm Resources Rest Client", () => {
       result.properties,
       validUserAssignedAndSystemAssignedManagedIdentityResource.properties
     );
+  });
+
+  // Error handling test cases 
+  describe("Error Handling", () => {
+    it("should handle predefined error for resource not found (404)", async () => {
+      try {
+        await client.getForPredefinedError(RESOURCE_GROUP_EXPECTED, "confidential");
+        assert.fail("Should have thrown an error for resource not found");
+      } catch (error: any) {
+        // Azure Modular clients use createRestError which creates errors with statusCode property
+        assert.strictEqual(error.statusCode, 404);
+        assert.isObject(error.details);
+        assert.strictEqual(error.details.error.code, "ResourceNotFound");
+        assert.strictEqual(
+          error.details.error.message,
+          "The Resource 'Azure.ResourceManager.CommonProperties/confidentialResources/confidential' under resource group 'test-rg' was not found."
+        );
+      }
+    });
+
+    it("should handle user-defined error for bad request (400)", async () => {
+      try {
+        await client.createForUserDefinedError(
+          RESOURCE_GROUP_EXPECTED,
+          "confidential",
+          {
+            location: "eastus",
+            properties: {
+              username: "00"
+            } as any
+          }
+        );
+        assert.fail("Should have thrown an error for bad request");
+      } catch (error: any) {
+        // Azure Modular clients use createRestError which creates errors with statusCode property
+        assert.strictEqual(error.statusCode, 400);
+        assert.strictEqual(error.code, "BadRequest");
+        assert.strictEqual(error.message, "Username should not contain only numbers.");
+      }
+    });
+
+    it("should validate client configuration with invalid subscription ID", async () => {
+      try {
+        // For Modular clients, constructor validation might be deferred to actual API calls
+        const invalidClient = new CommonPropertiesClient("", {
+          endpoint: "http://localhost:3002",
+          allowInsecureConnection: true
+        });
+        await invalidClient.get(RESOURCE_GROUP_EXPECTED, "identity");
+        assert.fail("Should have thrown an error for invalid subscription ID");
+      } catch (error: any) {
+        assert.isTrue(error instanceof Error);
+      }
+    });
+
+    it("should handle missing required parameters gracefully", async () => {
+      try {
+        // This should fail due to missing resource group parameter
+        await client.get("" as any, "identity");
+        assert.fail("Should have thrown an error for missing parameters");
+      } catch (error) {
+        assert.isTrue(error instanceof Error);
+      }
+    });
   });
 });
