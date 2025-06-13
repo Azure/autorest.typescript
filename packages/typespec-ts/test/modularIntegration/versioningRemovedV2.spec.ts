@@ -6,7 +6,6 @@ describe("VersioningRemoved Rest Client", () => {
 
   beforeEach(() => {
     client = new RemovedClient("http://localhost:3002", {
-      version: "v2",
       allowInsecureConnection: true
     });
   });

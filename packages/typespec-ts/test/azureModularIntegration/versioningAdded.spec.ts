@@ -6,7 +6,6 @@ describe("VersioningAdded Rest Client", () => {
 
   beforeEach(() => {
     client = new AddedClient("http://localhost:3002", {
-      version: "v2",
       allowInsecureConnection: true
     });
   });
