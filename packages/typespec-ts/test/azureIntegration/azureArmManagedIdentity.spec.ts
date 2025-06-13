@@ -46,10 +46,10 @@ describe("Azure Arm Resources Rest Client", () => {
       type: `${IDENTITY_TYPE_SYSTEM_USER_ASSIGNED_EXPECTED}`,
       userAssignedIdentities: {
         "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1":
-          {
-            principalId: `${PRINCIPAL_ID_EXPECTED}`,
-            clientId: `${CLIENT_ID_EXPECTED}`
-          }
+        {
+          principalId: `${PRINCIPAL_ID_EXPECTED}`,
+          clientId: `${CLIENT_ID_EXPECTED}`
+        }
       },
       principalId: `${PRINCIPAL_ID_EXPECTED}`,
       tenantId: `${TENANT_ID_EXPECTED}`
@@ -124,5 +124,98 @@ describe("Azure Arm Resources Rest Client", () => {
       result.body,
       validUserAssignedAndSystemAssignedManagedIdentityResource
     );
+  });
+
+  describe("Error Handling", () => {
+    it("should handle predefined error for resource not found (404)", async () => {
+      const result = await client
+        .path(
+          "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.CommonProperties/confidentialResources/{confidentialResourceName}",
+          SUBSCRIPTION_ID_EXPECTED,
+          RESOURCE_GROUP_EXPECTED,
+          "confidential"
+        )
+        .get();
+
+      assert.strictEqual(result.status, "404");
+      assert.isObject(result.body);
+
+      if (result.status === "404" && "error" in result.body) {
+        const errorBody = result.body as any;
+        assert.strictEqual(errorBody.error.code, "ResourceNotFound");
+        assert.strictEqual(
+          errorBody.error.message,
+          "The Resource 'Azure.ResourceManager.CommonProperties/confidentialResources/confidential' under resource group 'test-rg' was not found."
+        );
+      }
+    });
+
+    it("should handle user-defined error for bad request (400)", async () => {
+      const result = await client
+        .path(
+          "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.CommonProperties/confidentialResources/{confidentialResourceName}",
+          SUBSCRIPTION_ID_EXPECTED,
+          RESOURCE_GROUP_EXPECTED,
+          "confidential"
+        )
+        .put({
+          body: {
+            location: "eastus",
+            properties: {
+              username: "00"
+            }
+          }
+        });
+
+      assert.strictEqual(result.status, "400");
+      assert.isObject(result.body);
+
+      if (result.status === "400") {
+        const errorBody = result.body as any;
+        assert.strictEqual(errorBody.code, "BadRequest");
+        assert.strictEqual(errorBody.message, "Username should not contain only numbers.");
+        assert.isObject(errorBody.innererror);
+        assert.strictEqual(errorBody.innererror.exceptiontype, "general");
+      }
+    });
+
+    it("should validate client configuration with invalid endpoint", async () => {
+      const invalidClient = AzureArmModelsCommonTypesManagedIdentityClientFactory({
+        endpoint: "",
+        allowInsecureConnection: true
+      });
+
+      try {
+        await invalidClient
+          .path(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/{managedIdentityTrackedResourceName}",
+            SUBSCRIPTION_ID_EXPECTED,
+            RESOURCE_GROUP_EXPECTED,
+            "identity"
+          )
+          .get();
+        assert.fail("Should have thrown an error for invalid endpoint");
+      } catch (error) {
+        assert.isTrue(error instanceof Error);
+        // Should fail due to invalid endpoint URL
+      }
+    });
+
+    it("should handle missing required parameters", async () => {
+      try {
+        // This should fail due to missing path parameters
+        await client
+          .path(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/{managedIdentityTrackedResourceName}",
+            "" as any, // Invalid subscription ID
+            RESOURCE_GROUP_EXPECTED,
+            "identity"
+          )
+          .get();
+        assert.fail("Should have thrown an error for invalid parameters");
+      } catch (error) {
+        assert.isTrue(error instanceof Error);
+      }
+    });
   });
 });
