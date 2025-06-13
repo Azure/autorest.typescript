@@ -11,6 +11,13 @@ model Foo {
 }
 
 model Widget {
+  unknownValueWithObject: unknown;
+  unknownValueWithArray: unknown;
+  unknownValueWithStr: unknown;
+  unknownValueWithNum: unknown;
+  unknownValueWithNull: unknown;
+  unknownValueWithBoolean: unknown;
+  unknownValueWithObjectNested: unknown;
   strValue: string;
   numValue: int32;
   enumValue: "red" | "blue";
@@ -31,6 +38,7 @@ model Widget {
   offsetDateTimeProp: offsetDateTime;
   durationProp: duration;
   withEscapeChars: string;
+  unknownRecord: Record<unknown>
 }
 
 @doc("show example demo")
@@ -45,6 +53,16 @@ op read(@bodyRoot body: Widget): { @body body: {}};
   "operationId": "read",
   "parameters": {
     "body": {
+      "unknownValueWithObject": { "foo": "bar" },
+      "unknownValueWithArray": ["x", "y"],
+      "unknownValueWithStr": "string",
+      "unknownValueWithNum": 7,
+      "unknownValueWithNull": null,
+      "unknownValueWithBoolean": false,
+      "unknownValueWithObjectNested": {
+        "foo": "bar",
+        "bar": [{ "foo": "fooStr" }, "barStr", 7]
+      },
       "strValue": "00000000-0000-0000-0000-00000000000",
       "numValue": 0.12,
       "enumValue": "red",
@@ -66,7 +84,8 @@ op read(@bodyRoot body: Widget): { @body body: {}};
       "utcDateTimeProp": "2022-08-26T18:38:00Z",
       "offsetDateTimeProp": "2022-08-26T18:38:00Z",
       "durationProp": "P123DT22H14M12.011S",
-      "withEscapeChars": "\"Tag 10\".Value"
+      "withEscapeChars": "\"Tag 10\".Value",
+      "unknownRecord": { "a": "foo" }
     }
   },
   "responses": {
@@ -92,13 +111,23 @@ import { TestingClient } from "@azure/internal-test";
 async function read(): Promise<void> {
   const client = new TestingClient();
   const result = await client.read({
+    unknownValueWithObject: { foo: "bar" },
+    unknownValueWithArray: ["x", "y"],
+    unknownValueWithStr: "string",
+    unknownValueWithNum: 7,
+    unknownValueWithNull: null,
+    unknownValueWithBoolean: false,
+    unknownValueWithObjectNested: {
+      foo: "bar",
+      bar: [{ foo: "fooStr" }, "barStr", 7]
+    },
     strValue: "00000000-0000-0000-0000-00000000000",
     numValue: 0.12,
     enumValue: "red",
     modelValue: { bar: "bar value", barDate: new Date("2022-08-09") },
     dateValue: new Date("2022-08-09"),
     arrValue: ["x", "y"],
-    unionValue: test,
+    unionValue: "test",
     nullValue: null,
     jsClientName: "prop renamed",
     stringLiteral: "foo",
@@ -110,7 +139,8 @@ async function read(): Promise<void> {
     offsetDateTimeProp: "2022-08-26T18:38:00Z",
     durationProp: "P123DT22H14M12.011S",
     withEscapeChars: '"Tag 10".Value',
-    additionalProp: "additional prop",
+    unknownRecord: { a: "foo" },
+    additionalProp: "additional prop"
   });
   console.log(result);
 }

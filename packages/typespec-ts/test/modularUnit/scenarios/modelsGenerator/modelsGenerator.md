@@ -1,4 +1,4 @@
-# should not generate models if there is no operations
+# should not generate models without any `@usage` added for model-only case
 
 ## TypeSpec
 
@@ -12,6 +12,50 @@ model Test {
 
 ```ts models
 // (file was not generated)
+```
+
+Shouldn't be included in root index file
+
+```ts root index
+```
+
+# should generate models with `@usage` added for model-only case
+
+## TypeSpec
+
+```tsp
+@usage(Usage.output)
+model Test {
+  prop: string;
+}
+
+```
+
+The config would be like:
+
+```yaml
+needTCGC: true
+```
+
+## Models
+
+```ts models
+/** model interface Test */
+export interface Test {
+  prop: string;
+}
+
+export function testDeserializer(item: any): Test {
+  return {
+    prop: item["prop"],
+  };
+}
+```
+
+Should be included in root index file
+
+```ts root index
+export { Test } from "./models/index.js";
 ```
 
 # should handle type_literals:boolean -> boolean_literals
