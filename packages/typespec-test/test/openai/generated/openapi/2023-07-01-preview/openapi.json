@@ -305,8 +305,7 @@
           "description": "An array of details about specific errors that led to this reported error.",
           "items": {
             "$ref": "#/definitions/Azure.Core.Foundations.Error"
-          },
-          "x-ms-identifiers": []
+          }
         },
         "innererror": {
           "$ref": "#/definitions/Azure.Core.Foundations.InnerError",
@@ -476,8 +475,7 @@
           "description": "The collection of completions choices associated with this completions response.\nGenerally, `n` choices are generated per provided prompt with a default value of 1.\nToken limits and other settings may limit the number of choices generated.",
           "items": {
             "$ref": "#/definitions/ChatChoice"
-          },
-          "x-ms-identifiers": []
+          }
         },
         "prompt_annotations": {
           "type": "array",
@@ -485,8 +483,7 @@
           "items": {
             "$ref": "#/definitions/PromptFilterResult"
           },
-          "x-ms-client-name": "promptFilterResults",
-          "x-ms-identifiers": []
+          "x-ms-client-name": "promptFilterResults"
         },
         "usage": {
           "$ref": "#/definitions/CompletionsUsage",
@@ -509,16 +506,14 @@
           "description": "The collection of context messages associated with this chat completions request.\nTypical usage begins with a chat message for the System role that provides instructions for\nthe behavior of the assistant, followed by alternating messages between the User and\nAssistant roles.",
           "items": {
             "$ref": "#/definitions/ChatMessage"
-          },
-          "x-ms-identifiers": []
+          }
         },
         "functions": {
           "type": "array",
           "description": "A list of functions the model may generate JSON inputs for.",
           "items": {
             "$ref": "#/definitions/FunctionDefinition"
-          },
-          "x-ms-identifiers": []
+          }
         },
         "function_call": {
           "description": "Controls how the model responds to function calls. \"none\" means the model does not call a function,\nand responds to the end-user. \"auto\" means the model can pick between an end-user or calling a function.\n Specifying a particular function via `{\"name\": \"my_function\"}` forces the model to call that function.\n \"none\" is the default when no functions are present. \"auto\" is the default if functions are present.",
@@ -711,16 +706,14 @@
           "items": {
             "$ref": "#/definitions/PromptFilterResult"
           },
-          "x-ms-client-name": "promptFilterResults",
-          "x-ms-identifiers": []
+          "x-ms-client-name": "promptFilterResults"
         },
         "choices": {
           "type": "array",
           "description": "The collection of completions choices associated with this completions response.\nGenerally, `n` choices are generated per provided prompt with a default value of 1.\nToken limits and other settings may limit the number of choices generated.",
           "items": {
             "$ref": "#/definitions/Choice"
-          },
-          "x-ms-identifiers": []
+          }
         },
         "usage": {
           "$ref": "#/definitions/CompletionsUsage",
@@ -802,8 +795,7 @@
               "x-nullable": true
             }
           },
-          "x-ms-client-name": "topLogprobs",
-          "x-ms-identifiers": []
+          "x-ms-client-name": "topLogprobs"
         },
         "text_offset": {
           "type": "array",
@@ -1067,8 +1059,7 @@
           "description": "Embedding values for the prompts submitted in the request.",
           "items": {
             "$ref": "#/definitions/EmbeddingItem"
-          },
-          "x-ms-identifiers": []
+          }
         },
         "usage": {
           "$ref": "#/definitions/EmbeddingsUsage",
