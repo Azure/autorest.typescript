@@ -311,6 +311,10 @@ export const azureRlcTsps = [
   {
     outputPath: "azure/encode/duration",
     inputPath: "azure/encode/duration"
+  },
+  {
+    outputPath: "azure/resource-manager/non-resource",
+    inputPath: "azure/resource-manager/non-resource"
   }
 ];
 
@@ -815,6 +819,10 @@ export const azureModularTsps = [
   {
     outputPath: "azure/encode/duration",
     inputPath: "azure/encode/duration"
+  },
+  {
+    outputPath: "azure/resource-manager/non-resource",
+    inputPath: "azure/resource-manager/non-resource"
   }
 ];
 
