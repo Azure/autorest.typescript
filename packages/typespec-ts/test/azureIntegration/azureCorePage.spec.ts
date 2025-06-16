@@ -114,4 +114,62 @@ describe("Azure Core Page Rest Client", () => {
     assert.strictEqual(result[0]?.name, "Madge");
     assert.strictEqual(result[0]?.etag, "11bdc430-65e8-45ad-81d9-8ffa60d55b59");
   });
+
+  it.skip("should list core page withParameterizedNextLink", async () => {
+    // This scenario tests the Azure.Core.Legacy.parameterizedNextLink decorator
+    // which ensures original request parameters are maintained in next link URLs.
+
+    // Expected query parameters on initial request: includePending=true, select=name
+    const initialResponse = await client
+      .path("/azure/core/page/with-parameterized-next-link")
+      .get({
+        queryParameters: {
+          includePending: true,
+          select: "name"
+        }
+      });
+
+    if (initialResponse.status !== "200") {
+      const error = `Unexpected status code ${initialResponse.status}`;
+      assert.fail(error);
+    }
+
+    const result: UserOutput[] = [];
+
+    // Collect items from first page
+    if (initialResponse.body.values) {
+      result.push(...initialResponse.body.values);
+    }
+    // but select=name is preserved automatically in the nextLink
+    if (initialResponse.body.nextLink) {
+      // Verify that select=name is preserved in nextLink automatically
+      const nextUrl = new URL(initialResponse.body.nextLink);
+      assert.strictEqual(
+        nextUrl.searchParams.get("select"),
+        "name",
+        "select parameter should be preserved in nextLink"
+      );
+
+      // Manually re-inject the includePending parameter as required by the specification
+      nextUrl.searchParams.set("includePending", "true");
+
+      const secondPageResponse = await client
+        .pathUnchecked(nextUrl.pathname + nextUrl.search)
+        .get();
+
+      if (
+        secondPageResponse.status === "200" &&
+        secondPageResponse.body.values
+      ) {
+        result.push(...secondPageResponse.body.values);
+      }
+    }
+
+    // Verify expected concatenation of paged items
+    assert.strictEqual(result.length, 2);
+    assert.strictEqual(result[0]?.id, 1);
+    assert.strictEqual(result[0]?.name, "User1");
+    assert.strictEqual(result[1]?.id, 2);
+    assert.strictEqual(result[1]?.name, "User2");
+  });
 });
