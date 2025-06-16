@@ -2638,7 +2638,7 @@ export function baseSerializer(item: Base): any {
 }
 ```
 
-# only: should handle model with capitalized first letters
+# only: should handle model property name with capitalized first letter
 
 ## TypeSpec
 
