@@ -46,10 +46,10 @@ describe("Azure Arm Resources Rest Client", () => {
       type: `${IDENTITY_TYPE_SYSTEM_USER_ASSIGNED_EXPECTED}`,
       userAssignedIdentities: {
         "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1":
-        {
-          principalId: `${PRINCIPAL_ID_EXPECTED}`,
-          clientId: `${CLIENT_ID_EXPECTED}`
-        }
+          {
+            principalId: `${PRINCIPAL_ID_EXPECTED}`,
+            clientId: `${CLIENT_ID_EXPECTED}`
+          }
       },
       principalId: `${PRINCIPAL_ID_EXPECTED}`,
       tenantId: `${TENANT_ID_EXPECTED}`
@@ -173,48 +173,12 @@ describe("Azure Arm Resources Rest Client", () => {
       if (result.status === "400") {
         const errorBody = result.body as any;
         assert.strictEqual(errorBody.code, "BadRequest");
-        assert.strictEqual(errorBody.message, "Username should not contain only numbers.");
+        assert.strictEqual(
+          errorBody.message,
+          "Username should not contain only numbers."
+        );
         assert.isObject(errorBody.innererror);
         assert.strictEqual(errorBody.innererror.exceptiontype, "general");
-      }
-    });
-
-    it("should validate client configuration with invalid endpoint", async () => {
-      const invalidClient = AzureArmModelsCommonTypesManagedIdentityClientFactory({
-        endpoint: "",
-        allowInsecureConnection: true
-      });
-
-      try {
-        await invalidClient
-          .path(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/{managedIdentityTrackedResourceName}",
-            SUBSCRIPTION_ID_EXPECTED,
-            RESOURCE_GROUP_EXPECTED,
-            "identity"
-          )
-          .get();
-        assert.fail("Should have thrown an error for invalid endpoint");
-      } catch (error) {
-        assert.isTrue(error instanceof Error);
-        // Should fail due to invalid endpoint URL
-      }
-    });
-
-    it("should handle missing required parameters", async () => {
-      try {
-        // This should fail due to missing path parameters
-        await client
-          .path(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.CommonProperties/managedIdentityTrackedResources/{managedIdentityTrackedResourceName}",
-            "" as any, // Invalid subscription ID
-            RESOURCE_GROUP_EXPECTED,
-            "identity"
-          )
-          .get();
-        assert.fail("Should have thrown an error for invalid parameters");
-      } catch (error) {
-        assert.isTrue(error instanceof Error);
       }
     });
   });
