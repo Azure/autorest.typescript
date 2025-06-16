@@ -85,7 +85,7 @@ export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
         ? "^3.0.0"
         : "workspace:^",
       "@azure/identity": !shouldUsePnpmDep ? "^4.6.0" : "catalog:internal",
-      "@types/node": !shouldUsePnpmDep ? "^18.0.0" : "catalog:",
+      "@types/node": !shouldUsePnpmDep ? "^20.0.0" : "catalog:",
       eslint: !shouldUsePnpmDep ? "^9.9.0" : "catalog:",
       ...(config.specSource === "Swagger" && {
         autorest: !shouldUsePnpmDep ? "latest" : "catalog:"
