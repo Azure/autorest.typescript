@@ -23,8 +23,7 @@ export function getRLCClients(dpgContext: SdkContext): SdkClient[] {
       arm: Boolean(dpgContext.arm),
       crossLanguageDefinitionId: `${getNamespaceFullName(
         service
-      )}.${clientName}`,
-      subOperationGroups: []
+      )}.${clientName}`
     };
   });
 }
