@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "description": "This package contains Microsoft Azure LoadTestingClient client library.",
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   },
   "sideEffects": false,
   "autoPublish": false,

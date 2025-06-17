@@ -3,7 +3,7 @@
   "version": "1.0.0-preview1",
   "description": "A generated SDK for UrlRestClient.",
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   },
   "sideEffects": false,
   "autoPublish": false,
