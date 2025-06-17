@@ -5,7 +5,7 @@ import { Project } from "ts-morph";
 import { RLCModel } from "../interfaces.js";
 
 export function buildApiExtractorConfig(model: RLCModel) {
-  const { packageDetails, isModularLibrary, generateTest } =
+  const { packageDetails, isModularLibrary, generateTest, azureSdkForJs } =
     model.options || {};
   const project = new Project();
 
@@ -17,7 +17,9 @@ export function buildApiExtractorConfig(model: RLCModel) {
     }/index.d.ts`;
   }
 
-  const config = {
+  const config = azureSdkForJs ? {
+    "extends": "../../../api-extractor-base.json"
+  } : {
     $schema:
       "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
     mainEntryPointFilePath,
