@@ -817,12 +817,12 @@ export const azureModularTsps = [
     inputPath: "parameters/path"
   },
   {
-    outputPath: "azure/resource-manager/non-resource",
-    inputPath: "azure/resource-manager/non-resource"
-  },
-  {
     outputPath: "azure/client-generator-core/client-initialization",
     inputPath: "azure/client-generator-core/client-initialization"
+  },
+  {
+    outputPath: "azure/resource-manager/non-resource",
+    inputPath: "azure/resource-manager/non-resource"
   }
 ];
 
