@@ -2,27 +2,27 @@ trigger: none
 pr: none
 
 parameters:
-- name: UseTypeSpecNext
-  displayName: Use TypeSpec "next" version
-  type: boolean
-  default: true
+  - name: UseTypeSpecNext
+    displayName: Use TypeSpec "next" version
+    type: boolean
+    default: true
 
 resources:
   repositories:
-  - repository: sdk-repository
-    type: github
-    endpoint: Azure
-    name: Azure/azure-sdk-for-js
-    ref: refs/heads/main
-  - repository: azure-sdk-tools
-    type: github
-    endpoint: Azure
-    name: Azure/azure-sdk-tools
-    ref: refs/heads/main
+    - repository: sdk-repository
+      type: github
+      endpoint: Azure
+      name: Azure/azure-sdk-for-js
+      ref: refs/heads/main
+    - repository: azure-sdk-tools
+      type: github
+      endpoint: Azure
+      name: Azure/azure-sdk-tools
+      ref: refs/heads/main
 
 pool:
   name: azsdk-pool
-  demands: ImageOverride -equals windows-2022
+  vmImage: ubuntu-24.04
 
 extends:
   template: eng/pipelines/templates/stages/archetype-autorest-preview.yml@azure-sdk-tools
@@ -33,12 +33,12 @@ extends:
     UseTypeSpecNext: ${{ parameters.UseTypeSpecNext }}
     EmitterPackageJsonPath: packages/typespec-ts/package.json
     Packages:
-    - name: generator
-      file: autorest-typescript-*.tgz
-      type: npm
-    - name: emitter
-      file: azure-tools-typespec-ts-*.tgz
-      type: npm
-    - name: common
-      file: azure-tools-rlc-common-*.tgz
-      type: npm
+      - name: generator
+        file: autorest-typescript-*.tgz
+        type: npm
+      - name: emitter
+        file: azure-tools-typespec-ts-*.tgz
+        type: npm
+      - name: common
+        file: azure-tools-rlc-common-*.tgz
+        type: npm
