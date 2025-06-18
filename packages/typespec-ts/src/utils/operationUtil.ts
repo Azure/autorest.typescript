@@ -22,8 +22,6 @@ import {
   getHttpOperationWithCache,
   getWireName,
   InitializedByFlags,
-  listOperationGroups,
-  listOperationsInOperationGroup,
   SdkBodyParameter,
   SdkClient,
   SdkClientType,
@@ -47,6 +45,7 @@ import { isByteOrByteUnion } from "./modelUtils.js";
 import { getOperationNamespaceInterfaceName } from "./namespaceUtils.js";
 import { resolveReference } from "../framework/reference.js";
 import { SerializationHelpers } from "../modular/static-helpers-metadata.js";
+import { listOperationsUnderRLCClient } from "./clientUtils.js";
 
 // Sorts the responses by status code
 export function sortedOperationResponses(responses: HttpOperationResponse[]) {
@@ -291,9 +290,9 @@ export function extractOperationLroDetail(
     const metadata = getLroMetadata(dpgContext.program, operation.operation);
     precedence =
       metadata?.finalStep &&
-      metadata.finalStep.kind === "pollingSuccessProperty" &&
-      metadata?.finalStep.target &&
-      metadata?.finalStep?.target?.name === "result"
+        metadata.finalStep.kind === "pollingSuccessProperty" &&
+        metadata?.finalStep.target &&
+        metadata?.finalStep?.target?.name === "result"
         ? OPERATION_LRO_HIGH_PRIORITY
         : OPERATION_LRO_LOW_PRIORITY;
   }
@@ -313,32 +312,14 @@ export function hasPollingOperations(
   dpgContext: SdkContext
 ) {
   const program = dpgContext.program;
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const route = getHttpOperationWithCache(dpgContext, clientOp);
+  for (const op of listOperationsUnderRLCClient(client)) {
+    const route = getHttpOperationWithCache(dpgContext, op);
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
     }
     if (isLongRunningOperation(program, route)) {
       return true;
-    }
-  }
-  const operationGroups = listOperationGroups(dpgContext, client, true);
-  for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(
-      dpgContext,
-      operationGroup
-    );
-    for (const op of operations) {
-      const route = getHttpOperationWithCache(dpgContext, op);
-      // ignore overload base operation
-      if (route.overloads && route.overloads?.length > 0) {
-        continue;
-      }
-      if (isLongRunningOperation(program, route)) {
-        return true;
-      }
     }
   }
   return false;
@@ -356,32 +337,14 @@ export function isPagingOperation(program: Program, operation: HttpOperation) {
 
 export function hasPagingOperations(client: SdkClient, dpgContext: SdkContext) {
   const program = dpgContext.program;
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const route = getHttpOperationWithCache(dpgContext, clientOp);
+  for (const op of listOperationsUnderRLCClient(client)) {
+    const route = getHttpOperationWithCache(dpgContext, op);
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
     }
     if (isPagingOperation(program, route)) {
       return true;
-    }
-  }
-  const operationGroups = listOperationGroups(dpgContext, client, true);
-  for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(
-      dpgContext,
-      operationGroup
-    );
-    for (const op of operations) {
-      const route = getHttpOperationWithCache(dpgContext, op);
-      // ignore overload base operation
-      if (route.overloads && route.overloads?.length > 0) {
-        continue;
-      }
-      if (isPagingOperation(program, route)) {
-        return true;
-      }
     }
   }
   return false;
@@ -589,8 +552,8 @@ export function getMethodHierarchiesMap(
     }
     const prefixes =
       context.rlcOptions?.hierarchyClient === false &&
-      context.rlcOptions?.enableOperationGroup &&
-      method[0].length > 0
+        context.rlcOptions?.enableOperationGroup &&
+        method[0].length > 0
         ? [method[0][method[0].length - 1] as string]
         : method[0];
     const operationOrGroup = method[1];
@@ -615,7 +578,7 @@ export function getMethodHierarchiesMap(
     } else {
       const prefixKey =
         context.rlcOptions?.hierarchyClient ||
-        context.rlcOptions?.enableOperationGroup
+          context.rlcOptions?.enableOperationGroup
           ? prefixes.join("/")
           : "";
       const groupName = prefixes

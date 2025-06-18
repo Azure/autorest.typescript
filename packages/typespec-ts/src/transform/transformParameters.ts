@@ -26,8 +26,6 @@ import {
   SdkClient,
   getHttpOperationWithCache,
   isApiVersion,
-  listOperationGroups,
-  listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
 import { NoTarget, Type, isVoidType } from "@typespec/compiler";
 import {
@@ -48,6 +46,7 @@ import {
 import { SdkContext } from "../utils/interfaces.js";
 import { getParameterSerializationInfo } from "../utils/parameterUtils.js";
 import { reportDiagnostic } from "../lib.js";
+import { listOperationsUnderRLCClient } from "../utils/clientUtils.js";
 
 interface ParameterTransformationOptions {
   apiVersionInfo?: ApiVersionInfo;
@@ -64,29 +63,13 @@ export function transformToParameterTypes(
 ): OperationParameter[] {
   const rlcParameters: OperationParameter[] = [];
   const outputImportedSet = new Set<string>();
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const route = getHttpOperationWithCache(dpgContext, clientOp);
+  for (const op of listOperationsUnderRLCClient(client)) {
+    const route = getHttpOperationWithCache(dpgContext, op);
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
     }
     transformToParameterTypesForRoute(route);
-  }
-  const operationGroups = listOperationGroups(dpgContext, client, true);
-  for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(
-      dpgContext,
-      operationGroup
-    );
-    for (const op of operations) {
-      const route = getHttpOperationWithCache(dpgContext, op);
-      // ignore overload base operation
-      if (route.overloads && route.overloads?.length > 0) {
-        continue;
-      }
-      transformToParameterTypesForRoute(route);
-    }
   }
 
   if (outputImportedSet.size > 0) {
@@ -171,11 +154,10 @@ function getParameterMetadata(
         ", "
       )} collection string, we provide ${serializeInfo.descriptions.join(
         ", "
-      )} from serializeHelper.ts to help${
-        serializeInfo.hasMultiCollection
-          ? ", you will probably need to set skipUrlEncoding as true when sending the request"
-          : ""
-      }.`;
+      )} from serializeHelper.ts to help${serializeInfo.hasMultiCollection
+        ? ", you will probably need to set skipUrlEncoding as true when sending the request"
+        : ""
+        }.`;
     }
     if (format === "tsv") {
       description += `${description ? "\n" : ""}This parameter could be formatted as tsv collection string.`;
@@ -379,10 +361,10 @@ function getBodyDescriptions(
 ) {
   const description = parameters.body?.property
     ? getFormattedPropertyDoc(
-        dpgContext.program,
-        parameters.body.property,
-        bodySchema
-      )
+      dpgContext.program,
+      parameters.body.property,
+      bodySchema
+    )
     : "";
   return description ? [description] : [];
 }

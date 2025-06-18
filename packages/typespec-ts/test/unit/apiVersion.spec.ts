@@ -142,52 +142,45 @@ const buildDefaultReturn = (
   import type { testClient } from "./clientDefinitions.js";
   
   /** The optional parameters for the client */
-  export interface testClientOptions extends ClientOptions ${
-    hasApiVersionInClient && (!apiVersionRequired || hasDefault)
+  export interface testClientOptions extends ClientOptions ${hasApiVersionInClient && (!apiVersionRequired || hasDefault)
       ? `{
     /** The api version option of the client */
     apiVersion?: string;
   }`
       : "{}"
-  }
+    }
 
   /**
    * Initialize a new instance of \`testClient\`
-   * @param endpointParam - The endpoint to use.${
-     hasApiVersionInClient && apiVersionRequired && !hasDefault
-       ? "\n  * @param apiVersion - The parameter apiVersion"
-       : ""
-   }
-   * @param ${
-     (!hasDefault && apiVersionRequired) || hasApiVersionInClient
-       ? "options - the parameter for all optional parameters"
-       : `{
-   *     ${
-     hasDefault && hasApiVersionInClient
-       ? `apiVersion = "2022-05-15-preview"`
-       : hasApiVersionInClient
-         ? "apiVersion"
-         : ""
-   }, ...options} - the parameter for all optional parameters`
-   }
+   * @param endpointParam - The endpoint to use.${hasApiVersionInClient && apiVersionRequired && !hasDefault
+      ? "\n  * @param apiVersion - The parameter apiVersion"
+      : ""
+    }
+   * @param ${(!hasDefault && apiVersionRequired) || hasApiVersionInClient
+      ? "options - the parameter for all optional parameters"
+      : `{
+   *     ${hasDefault && hasApiVersionInClient
+        ? `apiVersion = "2022-05-15-preview"`
+        : hasApiVersionInClient
+          ? "apiVersion"
+          : ""
+      }, ...options} - the parameter for all optional parameters`
+    }
    */
   export default function createClient(
-    endpointParam: string,${
-      hasApiVersionInClient && apiVersionRequired && !hasDefault
-        ? "apiVersion: string,"
-        : ""
+    endpointParam: string,${hasApiVersionInClient && apiVersionRequired && !hasDefault
+      ? "apiVersion: string,"
+      : ""
     }
-    ${
-      (!hasDefault && apiVersionRequired) || !hasApiVersionInClient
-        ? "options"
-        : `{
-         ${
-           hasDefault && hasApiVersionInClient
-             ? `apiVersion = "2022-05-15-preview"`
-             : hasApiVersionInClient
-               ? "apiVersion"
-               : ""
-         }, ...options}`
+    ${(!hasDefault && apiVersionRequired) || !hasApiVersionInClient
+      ? "options"
+      : `{
+         ${hasDefault && hasApiVersionInClient
+        ? `apiVersion = "2022-05-15-preview"`
+        : hasApiVersionInClient
+          ? "apiVersion"
+          : ""
+      }, ...options}`
     }: testClientOptions = {}
   ): testClient {
     const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/language\`;
@@ -208,9 +201,8 @@ const buildDefaultReturn = (
     const client = getClient(endpointUrl, options) as testClient;
 
     client.pipeline.removePolicy({ name: "ApiVersionPolicy" });${apiVersionWarning}
-    ${
-      hasQueryDefinition
-        ? `client.pipeline.addPolicy({
+    ${hasQueryDefinition
+      ? `client.pipeline.addPolicy({
       name: "ClientApiVersionPolicy",
       sendRequest: (req, next) => {
         // Use the apiVersion defined in request url directly
@@ -225,7 +217,7 @@ const buildDefaultReturn = (
         return next(req);
       },
     });`
-        : ``
+      : ``
     }
     
 

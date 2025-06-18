@@ -7,8 +7,6 @@ import { Model, Type } from "@typespec/compiler";
 import {
   SdkClient,
   getHttpOperationWithCache,
-  listOperationGroups,
-  listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
 import {
   getBodyType,
@@ -22,6 +20,7 @@ import {
 import { SchemaContext } from "@azure-tools/rlc-common";
 import { SdkContext } from "../utils/interfaces.js";
 import { useContext } from "../contextManager.js";
+import { listOperationsUnderRLCClient } from "../utils/clientUtils.js";
 
 export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
   const program = dpgContext.program;
@@ -34,29 +33,13 @@ export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
   const usageMap = new Map<Type, SchemaContext[]>();
   const requestBodySet = new Set<Type>();
   const contentTypeMap = new Map<Type, KnownMediaType[]>();
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const route = getHttpOperationWithCache(dpgContext, clientOp);
+  for (const op of listOperationsUnderRLCClient(client)) {
+    const route = getHttpOperationWithCache(dpgContext, op);
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
     }
     transformSchemaForRoute(route);
-  }
-  const operationGroups = listOperationGroups(dpgContext, client, true);
-  for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(
-      dpgContext,
-      operationGroup
-    );
-    for (const op of operations) {
-      const route = getHttpOperationWithCache(dpgContext, op);
-      // ignore overload base operation
-      if (route.overloads && route.overloads?.length > 0) {
-        continue;
-      }
-      transformSchemaForRoute(route);
-    }
   }
   function transformSchemaForRoute(route: HttpOperation) {
     if (route.parameters) {
