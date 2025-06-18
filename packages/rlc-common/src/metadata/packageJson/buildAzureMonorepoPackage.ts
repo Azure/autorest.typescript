@@ -186,10 +186,8 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
       "npm run clean && npm run build:test && npm run unit-test:browser && npm run integration-test:browser",
     "lint:fix": skipLinting
       ? "echo skipped"
-      : "eslint package.json api-extractor.json src test --fix --fix-type [problem,suggestion]",
-    lint: skipLinting
-      ? "echo skipped"
-      : "eslint package.json api-extractor.json src test",
+      : "eslint package.json src test --fix --fix-type [problem,suggestion]",
+    lint: skipLinting ? "echo skipped" : "eslint package.json src test",
     pack: `${config.shouldUsePnpmDep ? "pnpm" : "npm"} pack 2>&1`,
     ...esmScripts,
     ...cjsScripts,
