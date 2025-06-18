@@ -1,9 +1,4 @@
 import { PageClient, User } from "./generated/azure/core/page/src/index.js";
-import { createPage } from "./generated/azure/core/page/src/api/index.js";
-import {
-  _withParameterizedNextLinkSend,
-  _withParameterizedNextLinkDeserialize
-} from "./generated/azure/core/page/src/api/operations.js";
 import { assert } from "chai";
 
 describe("Page Client", () => {
@@ -78,58 +73,10 @@ describe("Page Client", () => {
   });
 
   it.skip("should list core page withParameterizedNextLink", async () => {
-    // This scenario tests the Azure.Core.Legacy.parameterizedNextLink decorator
-
-    const context = createPage({
-      endpoint: "http://localhost:3002",
-      allowInsecureConnection: true
-    });
-
-    // Expected query parameters on initial request: includePending=true, select=name
-    const firstPageCall = _withParameterizedNextLinkSend(context, "name", {
-      includePending: true
-    });
-    const firstPageResponse = await firstPageCall;
-    const firstPageResult =
-      await _withParameterizedNextLinkDeserialize(firstPageResponse);
-
-    const items: User[] = [];
-
-    // Collect items from first page
-    if (firstPageResult.values) {
-      items.push(...firstPageResult.values);
-    }
-
-    // but select=name is preserved automatically in the nextLink
-    if (firstPageResult.nextLink) {
-      // Verify that select=name is preserved in nextLink automatically
-      const nextUrl = new URL(firstPageResult.nextLink);
-      assert.strictEqual(
-        nextUrl.searchParams.get("select"),
-        "name",
-        "select parameter should be preserved in nextLink"
-      );
-
-      // Manually re-inject the includePending parameter as required by the specification
-      nextUrl.searchParams.set("includePending", "true");
-
-      const secondPageResponse = await context
-        .pathUnchecked(nextUrl.pathname + nextUrl.search)
-        .get();
-
-      if (
-        secondPageResponse.status === "200" &&
-        secondPageResponse.body.values
-      ) {
-        items.push(...secondPageResponse.body.values);
-      }
-    }
-
-    // Verify expected concatenation of paged items
-    assert.strictEqual(items.length, 2);
-    assert.strictEqual(items[0]?.id, 1);
-    assert.strictEqual(items[0]?.name, "User1");
-    assert.strictEqual(items[1]?.id, 2);
-    assert.strictEqual(items[1]?.name, "User2");
+    // To Do: This test is failing because the mock API does not support the next link parameterization.
+    const result = await client
+      .withParameterizedNextLink("name", { includePending: true })
+      .next();
+    assert.strictEqual(result.value.name, "User1");
   });
 });
