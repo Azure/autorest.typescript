@@ -19,9 +19,7 @@
     "dist-esm/src/",
     "types/header-rest.d.ts",
     "README.md",
-    "LICENSE",
-    "review/*",
-    "CHANGELOG.md"
+    "LICENSE"
   ],
   "dependencies": {
     "@azure-rest/core-client": "^1.4.0",

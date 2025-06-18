@@ -27,7 +27,7 @@
   },
   "repository": "github:Azure/azure-sdk-for-js",
   "bugs": { "url": "https://github.com/Azure/azure-sdk-for-js/issues" },
-  "files": ["dist/", "README.md", "LICENSE", "review/*", "CHANGELOG.md"],
+  "files": ["dist/", "README.md", "LICENSE"],
   "scripts": {
     "build": "npm run clean && dev-tool run build-package && dev-tool run extract-api",
     "prepack": "npm run build",

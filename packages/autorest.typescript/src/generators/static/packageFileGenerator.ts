@@ -123,8 +123,6 @@ function regularAutorestPackage(
       "dist/",
       "README.md",
       "LICENSE",
-      "review/*",
-      "CHANGELOG.md",
     ],
     scripts: {
       build:

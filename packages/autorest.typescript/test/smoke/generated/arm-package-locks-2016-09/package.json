@@ -49,9 +49,7 @@
   "files": [
     "dist/",
     "README.md",
-    "LICENSE",
-    "review/*",
-    "CHANGELOG.md"
+    "LICENSE"
   ],
   "scripts": {
     "build": "npm run clean && tshy && npm run extract-api",

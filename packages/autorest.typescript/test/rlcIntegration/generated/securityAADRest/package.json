@@ -19,9 +19,7 @@
     "dist-esm/",
     "types/security-aad-rest.d.ts",
     "README.md",
-    "LICENSE",
-    "review/*",
-    "CHANGELOG.md"
+    "LICENSE"
   ],
   "sdk-type": "mgmt",
   "repository": "github:Azure/azure-sdk-for-js",
