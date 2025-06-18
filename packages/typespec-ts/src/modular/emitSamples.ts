@@ -426,7 +426,7 @@ function getParameterValue(value: SdkExampleValue): string {
     case "null":
     case "unknown":
     case "union":
-      retValue = `${value.value}`;
+      retValue = `${JSON.stringify(value.value)}`;
       break;
     case "dict":
     case "model": {
@@ -453,9 +453,7 @@ function getParameterValue(value: SdkExampleValue): string {
       break;
     }
     case "array": {
-      const valuesArr = value.value.map((element) =>
-        getParameterValue(element)
-      );
+      const valuesArr = value.value.map(getParameterValue);
       retValue = `[${valuesArr.join(", ")}]`;
       break;
     }

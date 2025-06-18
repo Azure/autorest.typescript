@@ -61,8 +61,8 @@ The TypeSpec TypeScript emitter (`typespec-ts`) generates TypeScript client libr
 When upgrading TypeSpec dependencies only work on `packages/typespec-ts/` and `packages/typespec-test/` . `packages/rlc-common` and `packages/autorest.typescript` should not be edited.
 
 - Identify dependencies within the @typespec or @azure-tools npm-scopes under "dependencies", "devDependencies" and "peerDependencies" in package.json
-- You should use "next" tag for dependencies on `@typespec/http-specs`, `@typespec/spector`, `@azure-tools/azure-http-specs`, and `@typespec/spec-api`
-- You should use "latest" for the other dependencies
+- You should resolve the version in "next" tag for dependencies on `@typespec/http-specs`, `@typespec/spector`, `@azure-tools/azure-http-specs`, and `@typespec/spec-api`
+- You should resolve the version in "latest" tag for the other dependencies
 - Run "rush update" after editing the dependencies in package.json
 - TypeSpec dependencies means any dependencies starting with `@typespec/` or `@azure-tools/` as these are relevant to TypeSpec and Azure tools.
 - Do not update dependency for @typespec/ts-http-runtime.
@@ -71,9 +71,21 @@ When upgrading TypeSpec dependencies only work on `packages/typespec-ts/` and `p
 - After updating the versions, run `rush update` to ensure all dependencies are correctly installed and the lock files are updated.
 - Do run `rush build` to build the entire monorepo to check if any building issues introduced by upgrading.
 - Do run `rush format` to format the codebase.
-- Do run `npm run test` under `packages/typespec-ts/` to validate our Unit Test and Integration Test and follow the below instructions to fix any test failures.
+- Do run `npm run unit-test` under `packages/typespec-ts/` to validate our Unit Test and follow the below instructions to fix any test failures.
+- Do run `npm run copy:typespec` to copy the files which integration test may use.
+- Do run `npm run integration-test-ci:azure-modular` under `packages/typespec-ts/` to validate our Azure Modular Integration Test and follow the below instructions to fix any test failures. Please do not skip this test. This would take around 30 min.
+- Do run `npm run integration-test-ci:modular` under `packages/typespec-ts/` to validate our Modular Integration Test and follow the below instructions to fix any test failures. Please do not skip this test. This would take around 30 min.
+- Do run `npm run integration-test-ci:rlc` under `packages/typespec-ts/` to validate our RLC Integration Test and follow the below instructions to fix any test failures. Please do not skip this test. This would take around 30 min.
+- Do run `npm run integration-test-ci:azure-rlc` under `packages/typespec-ts/` to validate our Azure RLC Integration Test and follow the below instructions to fix any test failures. Please do not skip this test. This would take around 30 min.
+- Do wait all 4 integration tests to be done under `packages/typespec-ts/` even the integration would take around 1 hour or skip 4 integration testings under `packages/typespec-ts/`
 - Do run `npm run lint` under `packages/typespec-ts/` to run the linter.
-- Do run `npm run test` under `packages/typespec-test/` to validate our test scenarios for typespec and if any issue try to fix it.
+- Do run `npm run smoke-test` under `packages/typespec-test/` to validate our test scenarios for typespec and if any issue try to fix it.
+- RLC integration testing finish is NOT enough and please pay patient to wait the Modular and Azure Modular integration completed.
+- Do not write a summery if all 4 integration testings or smoke testing are still in progress and don't write final progress update if integration testing are still in progress and please monitor the job to be done not just running successfully
+- Do wait around 1 hour that all tasks are completed not just start running
+- Follow my instructions exactly and please don't skip modular or azure integrations and wait all 4 integrations
+- Don't return or terminal AI during monitoring, please monitor the 4 integration status every 30 seconds until they finish
+- Fix any issues that arise during the process, and ensure all tests pass before considering the upgrade complete
 
 ## How to run and fix test failures in TypeSpec TypeScript emitter
 
