@@ -115,7 +115,7 @@ describe("Azure Core Page Rest Client", () => {
     assert.strictEqual(result[0]?.etag, "11bdc430-65e8-45ad-81d9-8ffa60d55b59");
   });
 
-  it.skip("should list core page withParameterizedNextLink", async () => {
+  it("should list core page withParameterizedNextLink", async () => {
     // Expected query parameters on initial request: includePending=true, select=name
     // To Do: Implement the pagination logic to handle the next link with parameters
     const result = await client

@@ -72,7 +72,7 @@ describe("Page Client", () => {
     assert.strictEqual(items[0]?.etag, validUser.etag);
   });
 
-  it.skip("should list core page withParameterizedNextLink", async () => {
+  it("should list core page withParameterizedNextLink", async () => {
     // To Do: This test is failing because the mock API does not support the next link parameterization.
     const result = await client
       .withParameterizedNextLink("name", { includePending: true })
