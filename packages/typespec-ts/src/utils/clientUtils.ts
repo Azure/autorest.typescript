@@ -55,7 +55,8 @@ export function listOperationsUnderRLCClient(client: SdkClient): Operation[] {
           d.definition?.name === "@client" &&
           getNamespaceFullName(d.definition?.namespace) ===
             "Azure.ClientGenerator.Core"
-      )
+      ) &&
+      current !== client.service
     ) {
       continue;
     }
