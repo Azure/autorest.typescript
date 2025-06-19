@@ -48,6 +48,17 @@ export function listOperationsUnderRLCClient(client: SdkClient): Operation[] {
   const queue: (Namespace | Interface)[] = [client.service];
   while (queue.length > 0) {
     const current = queue.shift()!;
+    if (
+      current.decorators.some(
+        (d) =>
+          (d.definition?.name === "@client" ||
+            d.definition?.name === "@operationGroup") &&
+          getNamespaceFullName(d.definition?.namespace) ===
+            "Azure.ClientGenerator.Core"
+      )
+    ) {
+      continue;
+    }
     operations.push(
       ...[...current.operations.values()].filter(
         (op) => isTemplateDeclarationOrInstance(op) === false

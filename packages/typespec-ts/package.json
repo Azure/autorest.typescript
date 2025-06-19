@@ -117,6 +117,7 @@
     "@azure-tools/typespec-client-generator-core": "^0.57.1",
     "@typespec/compiler": "^1.1.0",
     "@typespec/http": "^1.1.0",
+    "@typespec/http-client": "^0.7.0",
     "@typespec/rest": "^0.71.0",
     "@typespec/versioning": "^0.71.0",
     "@typespec/xml": "^0.71.0"
