@@ -311,6 +311,10 @@ export const azureRlcTsps = [
   {
     outputPath: "azure/resource-manager/non-resource",
     inputPath: "azure/resource-manager/non-resource"
+  },
+  {
+    outputPath: "azure/resource-manager/large-header",
+    inputPath: "azure/resource-manager/large-header"
   }
 ];
 
@@ -815,6 +819,10 @@ export const azureModularTsps = [
   {
     outputPath: "azure/resource-manager/non-resource",
     inputPath: "azure/resource-manager/non-resource"
+  },
+  {
+    outputPath: "azure/resource-manager/large-header",
+    inputPath: "azure/resource-manager/large-header"
   }
 ];
 
