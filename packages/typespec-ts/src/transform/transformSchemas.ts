@@ -6,7 +6,7 @@ import { KnownMediaType, extractMediaTypes } from "../utils/mediaTypes.js";
 import { Model, Type } from "@typespec/compiler";
 import {
   SdkClient,
-  getHttpOperationWithCache,
+  getHttpOperationWithCache
 } from "@azure-tools/typespec-client-generator-core";
 import {
   getBodyType,

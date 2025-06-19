@@ -290,9 +290,9 @@ export function extractOperationLroDetail(
     const metadata = getLroMetadata(dpgContext.program, operation.operation);
     precedence =
       metadata?.finalStep &&
-        metadata.finalStep.kind === "pollingSuccessProperty" &&
-        metadata?.finalStep.target &&
-        metadata?.finalStep?.target?.name === "result"
+      metadata.finalStep.kind === "pollingSuccessProperty" &&
+      metadata?.finalStep.target &&
+      metadata?.finalStep?.target?.name === "result"
         ? OPERATION_LRO_HIGH_PRIORITY
         : OPERATION_LRO_LOW_PRIORITY;
   }
@@ -552,8 +552,8 @@ export function getMethodHierarchiesMap(
     }
     const prefixes =
       context.rlcOptions?.hierarchyClient === false &&
-        context.rlcOptions?.enableOperationGroup &&
-        method[0].length > 0
+      context.rlcOptions?.enableOperationGroup &&
+      method[0].length > 0
         ? [method[0][method[0].length - 1] as string]
         : method[0];
     const operationOrGroup = method[1];
@@ -578,7 +578,7 @@ export function getMethodHierarchiesMap(
     } else {
       const prefixKey =
         context.rlcOptions?.hierarchyClient ||
-          context.rlcOptions?.enableOperationGroup
+        context.rlcOptions?.enableOperationGroup
           ? prefixes.join("/")
           : "";
       const groupName = prefixes

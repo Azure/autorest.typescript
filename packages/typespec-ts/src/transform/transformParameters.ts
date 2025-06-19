@@ -25,7 +25,7 @@ import {
 import {
   SdkClient,
   getHttpOperationWithCache,
-  isApiVersion,
+  isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
 import { NoTarget, Type, isVoidType } from "@typespec/compiler";
 import {
@@ -154,10 +154,11 @@ function getParameterMetadata(
         ", "
       )} collection string, we provide ${serializeInfo.descriptions.join(
         ", "
-      )} from serializeHelper.ts to help${serializeInfo.hasMultiCollection
-        ? ", you will probably need to set skipUrlEncoding as true when sending the request"
-        : ""
-        }.`;
+      )} from serializeHelper.ts to help${
+        serializeInfo.hasMultiCollection
+          ? ", you will probably need to set skipUrlEncoding as true when sending the request"
+          : ""
+      }.`;
     }
     if (format === "tsv") {
       description += `${description ? "\n" : ""}This parameter could be formatted as tsv collection string.`;
@@ -361,10 +362,10 @@ function getBodyDescriptions(
 ) {
   const description = parameters.body?.property
     ? getFormattedPropertyDoc(
-      dpgContext.program,
-      parameters.body.property,
-      bodySchema
-    )
+        dpgContext.program,
+        parameters.body.property,
+        bodySchema
+      )
     : "";
   return description ? [description] : [];
 }

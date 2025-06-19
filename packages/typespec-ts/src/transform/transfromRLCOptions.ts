@@ -8,13 +8,14 @@ import {
   ServiceInfo,
   isAzurePackage
 } from "@azure-tools/rlc-common";
-import {
-  getHttpOperationWithCache,
-} from "@azure-tools/typespec-client-generator-core";
+import { getHttpOperationWithCache } from "@azure-tools/typespec-client-generator-core";
 import { getDoc, NoTarget, Program } from "@typespec/compiler";
 import { getAuthentication } from "@typespec/http";
 import { EmitterOptions, reportDiagnostic } from "../lib.js";
-import { getRLCClients, listOperationsUnderRLCClient } from "../utils/clientUtils.js";
+import {
+  getRLCClients,
+  listOperationsUnderRLCClient
+} from "../utils/clientUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { getDefaultService } from "../utils/modelUtils.js";
 import { detectModelConflicts } from "../utils/namespaceUtils.js";
@@ -347,7 +348,7 @@ function getAzureSdkForJs(
   return flavor !== "azure"
     ? false
     : emitterOptions["azure-sdk-for-js"] === undefined ||
-      emitterOptions["azure-sdk-for-js"] === null
+        emitterOptions["azure-sdk-for-js"] === null
       ? true
       : Boolean(emitterOptions["azure-sdk-for-js"]);
 }

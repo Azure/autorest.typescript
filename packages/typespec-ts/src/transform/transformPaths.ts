@@ -14,7 +14,7 @@ import {
 import {
   SdkClient,
   getHttpOperationWithCache,
-  isApiVersion,
+  isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
 import {
   extractOperationLroDetail,
@@ -123,11 +123,11 @@ function transformOperation(
           };
           const schema = p.param.sourceProperty
             ? getSchemaForType(
-              dpgContext,
-              p.param.sourceProperty?.type,
+                dpgContext,
+                p.param.sourceProperty?.type,
 
-              options
-            )
+                options
+              )
             : getSchemaForType(dpgContext, p.param.type, options);
           const importedNames = getImportedModelName(schema, schemaUsage) ?? [];
           importedNames.forEach(importSet.add, importSet);
