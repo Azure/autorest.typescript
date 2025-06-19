@@ -307,6 +307,10 @@ export const azureRlcTsps = [
   {
     outputPath: "client/namespace",
     inputPath: "client/namespace"
+  },
+  {
+    outputPath: "azure/resource-manager/non-resource",
+    inputPath: "azure/resource-manager/non-resource"
   }
 ];
 
@@ -807,6 +811,10 @@ export const azureModularTsps = [
   {
     outputPath: "parameters/path",
     inputPath: "parameters/path"
+  },
+  {
+    outputPath: "azure/resource-manager/non-resource",
+    inputPath: "azure/resource-manager/non-resource"
   }
 ];
 
