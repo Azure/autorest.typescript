@@ -2637,4 +2637,3 @@ export function baseSerializer(item: Base): any {
   return { foo: item["foo"] };
 }
 ```
-
