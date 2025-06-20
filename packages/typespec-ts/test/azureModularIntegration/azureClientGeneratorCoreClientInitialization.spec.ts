@@ -22,12 +22,17 @@ describe.only("Azure ClientGeneratorCore Client Initialization", () => {
     });
 
     it("should send header parameter in withQuery operation", async () => {
-      const result = await client.withQuery("test-id");
+      const result = await client.withQuery("test-id", {
+        requestOptions: { headers: { name: "test-name-value" } }
+      });
       assert.isUndefined(result);
     });
 
     it("should send header parameter in withBody operation", async () => {
-      const result = await client.withBody({ name: "test-name" });
+      const result = await client.withBody(
+        { name: "test-name" },
+        { requestOptions: { headers: { name: "test-name-value" } } }
+      );
       assert.isUndefined(result);
     });
   });
@@ -43,13 +48,18 @@ describe.only("Azure ClientGeneratorCore Client Initialization", () => {
       );
     });
 
-    it("should send multiple parameters in withQuery operation", async () => {
-      const result = await client.withQuery("test-id");
+    it.only("should send multiple parameters in withQuery operation", async () => {
+      const result = await client.withQuery("test-id", {
+        requestOptions: { headers: { name: "test-name-value" } }
+      });
       assert.isUndefined(result);
     });
 
     it("should send multiple parameters in withBody operation", async () => {
-      const result = await client.withBody({ name: "test-name" });
+      const result = await client.withBody(
+        { name: "test-name" },
+        { requestOptions: { headers: { name: "test-name-value" } } }
+      );
       assert.isUndefined(result);
     });
   });
@@ -62,12 +72,18 @@ describe.only("Azure ClientGeneratorCore Client Initialization", () => {
     });
 
     it("should send mixed parameters in withQuery operation", async () => {
-      const result = await client.withQuery("us-west", "test-id");
+      const result = await client.withQuery("us-west", "test-id", {
+        requestOptions: { headers: { name: "test-name-value" } }
+      });
       assert.isUndefined(result);
     });
 
     it("should send mixed parameters in withBody operation", async () => {
-      const result = await client.withBody("us-west", { name: "test-name" });
+      const result = await client.withBody(
+        "us-west",
+        { name: "test-name" },
+        { requestOptions: { headers: { name: "test-name-value" } } }
+      );
       assert.isUndefined(result);
     });
   });
