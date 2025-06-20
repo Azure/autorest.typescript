@@ -46,9 +46,7 @@
     "dist/",
     "!dist/**/*.d.*ts.map",
     "README.md",
-    "LICENSE",
-    "review/*",
-    "CHANGELOG.md"
+    "LICENSE"
   ],
   "dependencies": {
     "@azure/core-util": "^1.9.2",
