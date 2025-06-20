@@ -308,7 +308,11 @@ function addChildClient(
       ${parentParams
         .filter((p) => !p.name.includes("options"))
         .map((p) => `this._clientParams.${p.name}`)
-        .join(",")},
+        .join(",")}${
+        parentParams.filter((p) => !p.name.includes("options")).length > 0
+          ? ","
+          : ""
+      }
       ${diffParams
         .filter((p) => p.name !== "options")
         .map((p) => `${p.name}`)
