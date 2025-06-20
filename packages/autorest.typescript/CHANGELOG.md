@@ -1,7 +1,7 @@
 ## 6.0.43 (2025-06-20)
 
 - [Bugfix] Fix the issues in tcgc upgrade to v0.57.1. Please refer to [#3302](https://github.com/Azure/autorest.typescript/pull/3302)
-- [Others] Update CODEOWNERS. Please refer to [#3298](https://github.com/Azure/autorest.typescript/pull/3298)
+- [Bugfix] Update CODEOWNERS. Please refer to [#3298](https://github.com/Azure/autorest.typescript/pull/3298)
 - [Feature] Extend api-extractor.json from base for azure-sdk-for-js repository. Please refer to [#3296](https://github.com/Azure/autorest.typescript/pull/3296)
 - [Feature] Update generated package engines field to target Node 20. Please refer to [#3295](https://github.com/Azure/autorest.typescript/pull/3295)
 - [Feature] Upgrade TypeSpec and Azure Tools dependencies to latest versions. Please refer to [#3283](https://github.com/Azure/autorest.typescript/pull/3283)
