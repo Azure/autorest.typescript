@@ -49,7 +49,6 @@ export function listOperationsUnderRLCClient(client: SdkClient): Operation[] {
   while (queue.length > 0) {
     const current = queue.shift()!;
     if (
-      // TODO: should we include "@operationGroup" also
       current.decorators.some(
         (d) =>
           d.definition?.name === "@client" &&
