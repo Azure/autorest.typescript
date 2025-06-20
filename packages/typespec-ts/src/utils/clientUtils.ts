@@ -20,11 +20,11 @@ import { NameType, normalizeName } from "@azure-tools/rlc-common";
 
 export function getRLCClients(dpgContext: SdkContext): SdkClient[] {
   const services = new Set<Namespace>();
-  listClients(dpgContext).map((c) => services.add(c.service));
+  listClients(dpgContext).forEach((c) => services.add(c.service));
   const rawServiceNamespaces = listAllServiceNamespaces(dpgContext);
   if (services.size === 0 && rawServiceNamespaces.length > 0) {
     // If no clients are found, fall back to raw service namespaces
-    [...rawServiceNamespaces.values()].map((ns) => services.add(ns));
+    [...rawServiceNamespaces.values()].forEach((ns) => services.add(ns));
   }
 
   return [...services.values()].map((service) => {
