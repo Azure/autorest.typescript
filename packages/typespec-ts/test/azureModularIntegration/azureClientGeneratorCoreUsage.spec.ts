@@ -29,4 +29,12 @@ describe("Azure ClientGeneratorCore Usage Client", () => {
     });
     assert.strictEqual(result.result.name, "Madge");
   });
+
+  it("should put orphan model in operation", async () => {
+    const result = await client.orphanModelSerializable({
+      name: "name",
+      desc: "desc"
+    });
+    assert.isUndefined(result);
+  });
 });

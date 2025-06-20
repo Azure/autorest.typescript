@@ -37,4 +37,11 @@ describe("Usage Client", () => {
     assert.strictEqual(result.status, "200");
     assert.strictEqual(result.body.result.name, "Madge");
   });
+
+  it("should put orphan model in operation", async () => {
+    const result = await client
+      .path("/azure/client-generator-core/usage/orphanModelSerializable")
+      .put({ body: { name: "name", desc: "desc" } });
+    assert.strictEqual(result.status, "204");
+  });
 });
