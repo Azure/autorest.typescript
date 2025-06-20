@@ -4,7 +4,7 @@
   "author": "Microsoft Corporation",
   "description": "A generated SDK for HealthCareApisClient.",
   "version": "1.0.0-preview1",
-  "engines": { "node": ">=18.0.0" },
+  "engines": { "node": ">=20.0.0" },
   "dependencies": {
     "@azure/core-lro": "^2.5.4",
     "@azure/abort-controller": "^2.1.2",
