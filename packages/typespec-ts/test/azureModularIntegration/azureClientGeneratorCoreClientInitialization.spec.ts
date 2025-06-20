@@ -1,266 +1,151 @@
-// // Copyright (c) Microsoft Corporation.
-// // Licensed under the MIT License.
+import { assert } from "chai";
+import {
+  HeaderParamClient,
+  MultipleParamsClient,
+  MixedParamsClient,
+  PathParamClient,
+  ParamAliasClient,
+  ParentClient
+} from "./generated/azure/client-generator-core/client-initialization/src/index.js";
 
-// import { assert } from "chai";
-// import {
-//     HeaderParamClient,
-//     MultipleParamsClient,
-//     MixedParamsClient,
-//     PathParamClient,
-//     ParamAliasClient,
-//     ParentClient,
-//     ChildClient,
-//     Input,
-//     BlobProperties
-// } from "./generated/azure/client-generator-core/client-initialization/src/index.js";
-// describe.only("HeaderParam Scenario", () => {
-//     let client: HeaderParamClient;
+describe.only("Azure ClientGeneratorCore Client Initialization", () => {
+  const endpointOptions = {
+    endpoint: "http://localhost:3002",
+    allowInsecureConnection: true
+  };
 
-//     beforeEach(() => {
-//         client = new HeaderParamClient("test-name-value", {
-//             endpoint: "http://localhost:3002",
-//             allowInsecureConnection: true,
-//             retryOptions: {
-//                 maxRetries: 0
-//             }
-//         });
-//     });
+  describe("HeaderParam Client", () => {
+    let client: HeaderParamClient;
 
-//     it("should elevate header parameter to client level - withQuery", async () => {
-//         // The name parameter should be moved to client initialization
-//         // so we don't need to pass it in the operation call
-//         const result = await client.withQuery("test-id");
-//         assert.isUndefined(result);
-//     });
+    beforeEach(() => {
+      client = new HeaderParamClient("test-name-value", endpointOptions);
+    });
 
-//     it("should elevate header parameter to client level - withBody", async () => {
-//         const input: Input = { name: "test-name" };
+    it("should send header parameter in withQuery operation", async () => {
+      const result = await client.withQuery("test-id");
+      assert.isUndefined(result);
+    });
 
-//         // The name parameter should be moved to client initialization
-//         // so we don't need to pass it in the operation call
-//         const result = await client.withBody(input);
-//         assert.isUndefined(result);
-//     });
-// });
+    it("should send header parameter in withBody operation", async () => {
+      const result = await client.withBody({ name: "test-name" });
+      assert.isUndefined(result);
+    });
+  });
 
-// describe("MultipleParams Scenario", () => {
-//     let client: MultipleParamsClient;
+  describe("MultipleParams Client", () => {
+    let client: MultipleParamsClient;
 
-//     beforeEach(() => {
-//         client = new MultipleParamsClient("test-name-value", "us-west", {
-//             endpoint: "http://localhost:3002",
-//             allowInsecureConnection: true,
-//             retryOptions: {
-//                 maxRetries: 0
-//             }
-//         });
-//     });
+    beforeEach(() => {
+      client = new MultipleParamsClient(
+        "test-name-value",
+        "us-west",
+        endpointOptions
+      );
+    });
 
-//     it("should elevate header and query parameters to client level - withQuery", async () => {
-//         // Both name and region parameters should be moved to client initialization
-//         // so we don't need to pass them in the operation call
-//         const result = await client.withQuery("test-id");
-//         assert.isUndefined(result);
-//     });
+    it("should send multiple parameters in withQuery operation", async () => {
+      const result = await client.withQuery("test-id");
+      assert.isUndefined(result);
+    });
 
-//     it("should elevate header and query parameters to client level - withBody", async () => {
-//         const input: Input = { name: "test-name" };
+    it("should send multiple parameters in withBody operation", async () => {
+      const result = await client.withBody({ name: "test-name" });
+      assert.isUndefined(result);
+    });
+  });
 
-//         // Both name and region parameters should be moved to client initialization
-//         // so we don't need to pass them in the operation call
-//         const result = await client.withBody(input);
-//         assert.isUndefined(result);
-//     });
-// });
-// describe("MixedParams Scenario", () => {
-//     let client: MixedParamsClient;
+  describe("MixedParams Client", () => {
+    let client: MixedParamsClient;
 
-//     beforeEach(() => {
-//         client = new MixedParamsClient("test-name-value", {
-//             endpoint: "http://localhost:3002",
-//             allowInsecureConnection: true,
-//             retryOptions: {
-//                 maxRetries: 0
-//             }
-//         });
-//     });
-//     it("should elevate header parameter to client level with query parameter remaining - withQuery", async () => {
-//         // The name parameter should be moved to client initialization
-//         // but region stays as operation parameter
-//         const result = await client.withQuery("us-west", "test-id");
-//         assert.isUndefined(result);
-//     });
+    beforeEach(() => {
+      client = new MixedParamsClient("test-name-value", endpointOptions);
+    });
 
-//     it("should elevate header parameter to client level with query parameter remaining - withBody", async () => {
-//         const input: Input = { name: "test-name" };
+    it("should send mixed parameters in withQuery operation", async () => {
+      const result = await client.withQuery("us-west", "test-id");
+      assert.isUndefined(result);
+    });
 
-//         // The name parameter should be moved to client initialization
-//         // but region stays as operation parameter
-//         const result = await client.withBody("us-west", input);
-//         assert.isUndefined(result);
-//     });
-// });
-// describe("PathParam Scenario", () => {
-//     let client: PathParamClient;
+    it("should send mixed parameters in withBody operation", async () => {
+      const result = await client.withBody("us-west", { name: "test-name" });
+      assert.isUndefined(result);
+    });
+  });
 
-//     beforeEach(() => {
-//         client = new PathParamClient("sample-blob", {
-//             endpoint: "http://localhost:3002",
-//             allowInsecureConnection: true,
-//             retryOptions: {
-//                 maxRetries: 0
-//             }
-//         });
-//     });
+  describe("PathParam Client", () => {
+    let client: PathParamClient;
 
-//     it("should elevate path parameter to client level - withQuery", async () => {
-//         // The blobName parameter should be moved to client initialization
-//         // so we don't need to pass it in the operation call
-//         const result = await client.withQuery({ format: "text" });
-//         assert.isUndefined(result);
-//     });
+    beforeEach(() => {
+      client = new PathParamClient("sample-blob", endpointOptions);
+    });
 
-//     it("should elevate path parameter to client level - getStandalone", async () => {
-//         // The blobName parameter should be moved to client initialization
-//         // so we don't need to pass it in the operation call
-//         const result: BlobProperties = await client.getStandalone();
+    it("should send path parameter in withQuery operation", async () => {
+      const result = await client.withQuery({ format: "text" });
+      assert.isUndefined(result);
+    });
 
-//         assert.strictEqual(result.name, "sample-blob");
-//         assert.strictEqual(result.size, 42);
-//         assert.strictEqual(result.contentType, "text/plain");
-//         assert.deepStrictEqual(result.createdOn, new Date("2025-04-01T12:00:00Z"));
-//     });
+    it("should get standalone with path parameter", async () => {
+      const result = await client.getStandalone();
+      assert.strictEqual(result.name, "sample-blob");
+      assert.strictEqual(result.size, 42);
+      assert.strictEqual(result.contentType, "text/plain");
+      assert.strictEqual(
+        result.createdOn.toISOString(),
+        "2025-04-01T12:00:00.000Z"
+      );
+    });
 
-//     it("should elevate path parameter to client level - deleteStandalone", async () => {
-//         // The blobName parameter should be moved to client initialization
-//         // so we don't need to pass it in the operation call
-//         const result = await client.deleteStandalone();
-//         assert.isUndefined(result);
-//     });
-// });
-// describe("ParamAlias Scenario", () => {
-//     let client: ParamAliasClient;
+    it("should delete standalone with path parameter", async () => {
+      const result = await client.deleteStandalone();
+      assert.isUndefined(result);
+    });
+  });
 
-//     beforeEach(() => {
-//         client = new ParamAliasClient("sample-blob", {
-//             endpoint: "http://localhost:3002",
-//             allowInsecureConnection: true,
-//             retryOptions: {
-//                 maxRetries: 0
-//             }
-//         });
-//     });
+  describe("ParamAlias Client", () => {
+    let client: ParamAliasClient;
 
-//     it("should support parameter alias for blobName - withAliasedName", async () => {
-//         // The blobName parameter should be elevated to client level
-//         // using the alias "blob" in client configuration
-//         const result = await client.withAliasedName();
-//         assert.isUndefined(result);
-//     });
+    beforeEach(() => {
+      client = new ParamAliasClient("sample-blob", endpointOptions);
+    });
 
-//     it("should support parameter alias for blobName - withOriginalName", async () => {
-//         // The blobName parameter should be elevated to client level
-//         // using the original name in client configuration
-//         const result = await client.withOriginalName();
-//         assert.isUndefined(result);
-//     });
-// });
-// describe("ParentClient/ChildClient Scenario", () => {
-//     let parentClient: ParentClient;
+    it("should call withOriginalName operation", async () => {
+      const result = await client.withOriginalName();
+      assert.isUndefined(result);
+    });
 
-//     beforeEach(() => {
-//         parentClient = new ParentClient({
-//             endpoint: "http://localhost:3002",
-//             allowInsecureConnection: true,
-//             retryOptions: {
-//                 maxRetries: 0
-//             }
-//         });
-//     });
+    it("should call withAliasedName operation", async () => {
+      const result = await client.withAliasedName();
+      assert.isUndefined(result);
+    });
+  });
 
-//     it("should support child client initialization via parent client - withQuery", async () => {
-//         // Get child client via parent client with blobName parameter
-//         const childClient = parentClient.getChildClient("sample-blob");
+  describe("Parent-Child Client", () => {
+    let parentClient: ParentClient;
 
-//         // The blobName parameter should be moved to child client initialization
-//         // so we don't need to pass it in the operation call
-//         const result = await childClient.withQuery({ format: "text" });
-//         assert.isUndefined(result);
-//     });
+    beforeEach(() => {
+      parentClient = new ParentClient(endpointOptions);
+    });
 
-//     it("should support child client initialization via parent client - getStandalone", async () => {
-//         // Get child client via parent client with blobName parameter
-//         const childClient = parentClient.getChildClient("sample-blob");
+    it("should create child client and perform operations", async () => {
+      const childClient = parentClient.getChildClient("sample-blob");
 
-//         // The blobName parameter should be moved to child client initialization
-//         // so we don't need to pass it in the operation call
-//         const result: BlobProperties = await childClient.getStandalone();
+      // Test withQuery operation
+      const queryResult = await childClient.withQuery({ format: "text" });
+      assert.isUndefined(queryResult);
 
-//         assert.strictEqual(result.name, "sample-blob");
-//         assert.strictEqual(result.size, 42);
-//         assert.strictEqual(result.contentType, "text/plain");
-//         assert.deepStrictEqual(result.createdOn, new Date("2025-04-01T12:00:00Z"));
-//     });
+      // Test getStandalone operation
+      const getResult = await childClient.getStandalone();
+      assert.strictEqual(getResult.name, "sample-blob");
+      assert.strictEqual(getResult.size, 42);
+      assert.strictEqual(getResult.contentType, "text/plain");
+      assert.strictEqual(
+        getResult.createdOn.toISOString(),
+        "2025-04-01T12:00:00.000Z"
+      );
 
-//     it("should support child client initialization via parent client - deleteStandalone", async () => {
-//         // Get child client via parent client with blobName parameter
-//         const childClient = parentClient.getChildClient("sample-blob");
-
-//         // The blobName parameter should be moved to child client initialization
-//         // so we don't need to pass it in the operation call
-//         const result = await childClient.deleteStandalone();
-//         assert.isUndefined(result);
-//     });
-
-//     it("should support direct child client initialization - withQuery", async () => {
-//         // Direct child client initialization
-//         const childClient = new ChildClient("sample-blob", {
-//             endpoint: "http://localhost:3002",
-//             allowInsecureConnection: true,
-//             retryOptions: {
-//                 maxRetries: 0
-//             }
-//         });
-
-//         // The blobName parameter should be moved to child client initialization
-//         // so we don't need to pass it in the operation call
-//         const result = await childClient.withQuery({ format: "text" });
-//         assert.isUndefined(result);
-//     });
-
-//     it("should support direct child client initialization - getStandalone", async () => {
-//         // Direct child client initialization
-//         const childClient = new ChildClient("sample-blob", {
-//             endpoint: "http://localhost:3002",
-//             allowInsecureConnection: true,
-//             retryOptions: {
-//                 maxRetries: 0
-//             }
-//         });
-
-//         // The blobName parameter should be moved to child client initialization
-//         // so we don't need to pass it in the operation call
-//         const result: BlobProperties = await childClient.getStandalone();
-
-//         assert.strictEqual(result.name, "sample-blob");
-//         assert.strictEqual(result.size, 42);
-//         assert.strictEqual(result.contentType, "text/plain");
-//         assert.deepStrictEqual(result.createdOn, new Date("2025-04-01T12:00:00Z"));
-//     });
-
-//     it("should support direct child client initialization - deleteStandalone", async () => {
-//         // Direct child client initialization
-//         const childClient = new ChildClient("sample-blob", {
-//             endpoint: "http://localhost:3002",
-//             allowInsecureConnection: true,
-//             retryOptions: {
-//                 maxRetries: 0
-//             }
-//         });
-
-//         // The blobName parameter should be moved to child client initialization
-//         // so we don't need to pass it in the operation call
-//         const result = await childClient.deleteStandalone();
-//         assert.isUndefined(result);
-//     });
-// });
+      // Test deleteStandalone operation
+      const deleteResult = await childClient.deleteStandalone();
+      assert.isUndefined(deleteResult);
+    });
+  });
+});
