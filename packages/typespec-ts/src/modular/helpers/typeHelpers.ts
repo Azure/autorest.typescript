@@ -1,3 +1,4 @@
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import {
   SdkBodyParameter,
   SdkModelPropertyType,
@@ -89,7 +90,10 @@ export function buildPropertyNameMapper(model: SdkType) {
       continue;
     }
     // eslint-disable-next-line
-    mapper.set(prop.serializedName, prop.name);
+    mapper.set(
+      prop.serializedName,
+      normalizeName(prop.name, NameType.Property)
+    );
   }
   return mapper;
 }
