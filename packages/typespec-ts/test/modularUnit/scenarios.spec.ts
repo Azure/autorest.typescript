@@ -125,10 +125,15 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
   // Snapshot of the options
   "(ts|typescript) models:withOptions interface {name}": async (
     tsp,
-    { name }
+    { name },
+    namedUnknownArgs
   ) => {
+    const configs = namedUnknownArgs
+      ? (namedUnknownArgs["configs"] as Record<string, string>)
+      : {};
     const result = await emitModularModelsFromTypeSpec(tsp, {
-      needOptions: true
+      needOptions: true,
+      ...configs
     });
 
     if (result === undefined) {
@@ -139,9 +144,13 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
   },
 
   // Snapshot of the entire models file
-  "(ts|typescript) models:withOptions": async (tsp) => {
+  "(ts|typescript) models:withOptions": async (tsp, {}, namedUnknownArgs) => {
+    const configs = namedUnknownArgs
+      ? (namedUnknownArgs["configs"] as Record<string, string>)
+      : {};
     const result = await emitModularModelsFromTypeSpec(tsp, {
-      needOptions: true
+      needOptions: true,
+      ...configs
     });
 
     if (result === undefined) {
