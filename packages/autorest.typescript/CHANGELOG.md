@@ -1,3 +1,15 @@
+## 6.0.43 (2025-06-20)
+
+- [Bugfix] Fix the issues in tcgc upgrade to v0.57.1. Please refer to [#3302](https://github.com/Azure/autorest.typescript/pull/3302)
+- [Others] Update CODEOWNERS. Please refer to [#3298](https://github.com/Azure/autorest.typescript/pull/3298)
+- [Feature] Extend api-extractor.json from base for azure-sdk-for-js repository. Please refer to [#3296](https://github.com/Azure/autorest.typescript/pull/3296)
+- [Feature] Update generated package engines field to target Node 20. Please refer to [#3295](https://github.com/Azure/autorest.typescript/pull/3295)
+- [Feature] Upgrade TypeSpec and Azure Tools dependencies to latest versions. Please refer to [#3283](https://github.com/Azure/autorest.typescript/pull/3283)
+- [Bugfix] Export models to root index file for model-only case. Please refer to [#3222](https://github.com/Azure/autorest.typescript/pull/3222)
+- [Bugfix] Fix @azure-tools/azure-http-specs version. Please refer to [#3263](https://github.com/Azure/autorest.typescript/pull/3263)
+- [Bugfix] Optimize skip logic for modular unit test cases. Please refer to [#3245](https://github.com/Azure/autorest.typescript/pull/3245)
+- [Feature] Add the first version of copilot instructions. Please refer to [#3238](https://github.com/Azure/autorest.typescript/pull/3238)
+
 ## 6.0.42 (2025-06-04)
 
 - [Feature] Migrate to pnpm
