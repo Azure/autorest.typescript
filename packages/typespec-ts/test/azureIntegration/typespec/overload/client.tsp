@@ -4,7 +4,6 @@ import "@typespec/http";
 import "@typespec/versioning";
 import "./main.tsp";
 import "./routes.tsp";
-import "./test.tsp";
 
 using Azure.ClientGenerator.Core;
 using TypeSpec.Rest;
