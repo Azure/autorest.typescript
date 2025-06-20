@@ -1,5 +1,6 @@
 ## 6.0.43 (2025-06-20)
 
+- [Bugfix] Fix property normalization inconsistancy among sample and client generation. Please refer to [#3285](https://github.com/Azure/autorest.typescript/pull/3285)
 - [Bugfix] Fix the issues in tcgc upgrade to v0.57.1. Please refer to [#3302](https://github.com/Azure/autorest.typescript/pull/3302)
 - [Bugfix] Update CODEOWNERS. Please refer to [#3298](https://github.com/Azure/autorest.typescript/pull/3298)
 - [Feature] Extend api-extractor.json from base for azure-sdk-for-js repository. Please refer to [#3296](https://github.com/Azure/autorest.typescript/pull/3296)
