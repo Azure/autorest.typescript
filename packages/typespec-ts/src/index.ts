@@ -404,7 +404,9 @@ export async function $onEmit(context: EmitContext) {
     const hasPackageFile = await existsSync(existingPackageFilePath);
     const shouldGenerateMetadata =
       option.generateMetadata === true ||
-      (option.generateMetadata === undefined && !hasPackageFile);
+      ((option.generateMetadata === undefined ||
+        option.generateMetadata === false) &&
+        !hasPackageFile);
     const existingTestFolderPath = join(
       dpgContext.generationPathDetail?.metadataDir ?? "",
       "test"
