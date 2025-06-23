@@ -23,7 +23,11 @@ import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getTypeExpression } from "./type-expressions/get-type-expression.js";
 import { resolveReference } from "../framework/reference.js";
 import { useDependencies } from "../framework/hooks/useDependencies.js";
-import { buildEnumTypes, getApiVersionEnum } from "./emitModels.js";
+import {
+  buildEnumTypes,
+  buildKnownAzureCloudsEnum,
+  getApiVersionEnum
+} from "./emitModels.js";
 import {
   SdkClientType,
   SdkHttpParameter,
@@ -117,13 +121,13 @@ export function buildClientContext(
       };
     });
   if (isArm(dpgContext.emitContext)) {
+    const azureCloudsEnum = buildKnownAzureCloudsEnum();
     propertiesInOptions.push({
       name: "cloudSetting",
       type: "string",
       hasQuestionToken: true,
       docs: [
-        "Azure Cloud setting to override management endpoint.",
-        "Known values of {@link KnownAzureCloud}"
+        `Azure cloud setting, known values of {@link ${azureCloudsEnum.name}}`
       ]
     });
   }

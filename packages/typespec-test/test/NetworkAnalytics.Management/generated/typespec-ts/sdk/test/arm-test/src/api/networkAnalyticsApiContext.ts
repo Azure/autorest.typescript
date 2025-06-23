@@ -19,8 +19,7 @@ export interface NetworkAnalyticsApiOptionalParams extends ClientOptions {
   /** The API version to use for this operation. */
   /** Known values of {@link KnownVersions} that the service accepts. */
   apiVersion?: string;
-  /** Azure Cloud setting to override management endpoint. */
-  /** Known values of {@link KnownAzureCloud} */
+  /** Azure cloud setting, known values of {@link KnownAzureClouds} */
   cloudSetting?: string;
 }
 

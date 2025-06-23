@@ -1449,8 +1449,12 @@ export enum KnownVersions {
   V20231115 = "2023-11-15",
 }
 
-export enum KnownAzureCloud {
-  AZURE_CHINA_CLOUD = "AZURE_CHINA_CLOUD",
-  AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT",
+/** An enum to describe Azure Cloud. */
+export enum KnownAzureClouds {
+  /** Azure public cloud, which is the default cloud for Azure SDKs. */
   AZURE_PUBLIC_CLOUD = "AZURE_PUBLIC_CLOUD",
+  /** Azure China cloud */
+  AZURE_CHINA_CLOUD = "AZURE_CHINA_CLOUD",
+  /** Azure US government cloud */
+  AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT",
 }

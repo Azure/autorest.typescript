@@ -343,13 +343,10 @@ export enum KnownActionType {
     Internal = "Internal"
 }
 
-// @public (undocumented)
-export enum KnownAzureCloud {
-    // (undocumented)
+// @public
+export enum KnownAzureClouds {
     AZURE_CHINA_CLOUD = "AZURE_CHINA_CLOUD",
-    // (undocumented)
     AZURE_PUBLIC_CLOUD = "AZURE_PUBLIC_CLOUD",
-    // (undocumented)
     AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT"
 }
 

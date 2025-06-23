@@ -67,7 +67,7 @@ export {
   RoleAssignmentDetail,
   ListRoleAssignments,
   KnownVersions,
-  KnownAzureCloud,
+  KnownAzureClouds,
 } from "./models/index.js";
 export { NetworkAnalyticsApiOptionalParams } from "./api/index.js";
 export {
