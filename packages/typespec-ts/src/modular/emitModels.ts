@@ -67,7 +67,6 @@ import { resolveReference } from "../framework/reference.js";
 import { MultipartHelpers } from "./static-helpers-metadata.js";
 import { getAllAncestors } from "./helpers/operationHelpers.js";
 import { getAllProperties } from "./helpers/operationHelpers.js";
-import { isArm } from "../index.js";
 
 type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
   extends?: string[];
@@ -126,7 +125,7 @@ export function emitTypes(
   }
 
   // Only build known Azure clouds enum if we have modular client for management plane
-  if (hasModularClients && isArm(context.emitContext)) {
+  if (hasModularClients && context.arm) {
     const azureCloudsEnum = buildKnownAzureCloudsEnum();
     // Add cloud setting enum for ARM
     addDeclaration(

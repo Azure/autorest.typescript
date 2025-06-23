@@ -37,7 +37,6 @@ import {
 import { getModularClientOptions } from "../utils/clientUtils.js";
 import { useContext } from "../contextManager.js";
 import { refkey } from "../framework/refkey.js";
-import { isArm } from "../index.js";
 
 /**
  * This function gets the path of the file containing the modular client context
@@ -120,7 +119,7 @@ export function buildClientContext(
         docs: getDocsWithKnownVersion(dpgContext, p)
       };
     });
-  if (isArm(dpgContext.emitContext)) {
+  if (dpgContext.arm) {
     const azureCloudsEnum = buildKnownAzureCloudsEnum();
     propertiesInOptions.push({
       name: "cloudSetting",
@@ -171,7 +170,7 @@ export function buildClientContext(
     endpointParam
   );
 
-  if (isArm(dpgContext.emitContext)) {
+  if (dpgContext.arm) {
     const azureCloudsEnum = buildKnownAzureCloudsEnum();
     clientContextFile.addFunction({
       docs: ["Get the ARM endpoint for the client."],

@@ -579,7 +579,7 @@ export async function createContextWithDefaultOptions(
 }
 
 // TODO: should be removed once tcgc issue is resolved https://github.com/Azure/typespec-azure/issues/1794
-export function isArm(context: EmitContext<Record<string, any>>) {
+function isArm(context: EmitContext<Record<string, any>>) {
   const packageName =
     (context?.options["package-details"] ??
       context?.options["packageDetails"] ??
