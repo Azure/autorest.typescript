@@ -76,12 +76,13 @@ function getArmEndpoint(cloudSetting?: string): string | undefined {
   if (cloudSetting === undefined) {
     return undefined;
   }
-  if (cloudSetting === "AZURE_CHINA_CLOUD") {
-    return "https://management.chinacloudapi.cn/";
-  } else if (cloudSetting === "AZURE_US_GOVERNMENT") {
-    return "https://management.usgovcloudapi.net/";
-  } else if (cloudSetting === "AZURE_PUBLIC_CLOUD") {
-    return "https://management.azure.com/";
+  const cloudEndpoints: Record<string, string> = {
+    AZURE_CHINA_CLOUD: "https://management.chinacloudapi.cn/",
+    AZURE_US_GOVERNMENT: "https://management.usgovcloudapi.net/",
+    AZURE_PUBLIC_CLOUD: "https://management.azure.com/",
+  };
+  if (cloudSetting in cloudEndpoints) {
+    return cloudEndpoints[cloudSetting];
   } else {
     throw new Error(
       `Unknown cloud setting: ${cloudSetting}. Please refer the enum KnownAzureClouds for possible values.`,
