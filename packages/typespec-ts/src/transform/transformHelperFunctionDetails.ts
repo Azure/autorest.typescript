@@ -1,8 +1,6 @@
 import { HelperFunctionDetails, PackageFlavor } from "@azure-tools/rlc-common";
 import {
   getHttpOperationWithCache,
-  listOperationGroups,
-  listOperationsInOperationGroup,
   SdkClient
 } from "@azure-tools/typespec-client-generator-core";
 import { Model, Program, Type } from "@typespec/compiler";
@@ -17,6 +15,7 @@ import {
   parseNextLinkName
 } from "../utils/operationUtil.js";
 import { getCollectionFormat } from "../utils/modelUtils.js";
+import { listOperationsUnderRLCClient } from "../utils/clientUtils.js";
 
 export function transformHelperFunctionDetails(
   client: SdkClient,
@@ -48,9 +47,8 @@ export function transformHelperFunctionDetails(
   }
   // TODO: Remove this when @pageable is finally removed.
   const nextLinks = new Set<string>();
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const route = getHttpOperationWithCache(dpgContext, clientOp);
+  for (const op of listOperationsUnderRLCClient(client)) {
+    const route = getHttpOperationWithCache(dpgContext, op);
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
@@ -59,27 +57,6 @@ export function transformHelperFunctionDetails(
       const nextLinkName = getPageable(program, route.operation) || "nextLink";
       if (nextLinkName) {
         nextLinks.add(nextLinkName);
-      }
-    }
-  }
-  const operationGroups = listOperationGroups(dpgContext, client, true);
-  for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(
-      dpgContext,
-      operationGroup
-    );
-    for (const op of operations) {
-      const route = getHttpOperationWithCache(dpgContext, op);
-      // ignore overload base operation
-      if (route.overloads && route.overloads?.length > 0) {
-        continue;
-      }
-      if (getPageable(program, route.operation)) {
-        const nextLinkName =
-          getPageable(program, route.operation) || "nextLink";
-        if (nextLinkName) {
-          nextLinks.add(nextLinkName);
-        }
       }
     }
   }
@@ -118,29 +95,13 @@ function extractPageDetailFromCore(client: SdkClient, dpgContext: SdkContext) {
   // Add default values
   nextLinks.add("nextLink");
   itemNames.add("value");
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const route = getHttpOperationWithCache(dpgContext, clientOp);
+  for (const op of listOperationsUnderRLCClient(client)) {
+    const route = getHttpOperationWithCache(dpgContext, op);
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
     }
     extractPageDetailFromCoreForRoute(route);
-  }
-  const operationGroups = listOperationGroups(dpgContext, client, true);
-  for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(
-      dpgContext,
-      operationGroup
-    );
-    for (const op of operations) {
-      const route = getHttpOperationWithCache(dpgContext, op);
-      // ignore overload base operation
-      if (route.overloads && route.overloads?.length > 0) {
-        continue;
-      }
-      extractPageDetailFromCoreForRoute(route);
-    }
   }
 
   function extractPageDetailFromCoreForRoute(route: HttpOperation) {
@@ -179,9 +140,8 @@ function extractSpecialSerializeInfo(
 ) {
   let hasMultiCollection = false;
   let hasCsvCollection = false;
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const route = getHttpOperationWithCache(dpgContext, clientOp);
+  for (const op of listOperationsUnderRLCClient(client)) {
+    const route = getHttpOperationWithCache(dpgContext, op);
     route.parameters.parameters.forEach((parameter) => {
       const format = getCollectionFormat(dpgContext, parameter as any);
       const serializeInfo = getSpecialSerializeInfo(
@@ -192,31 +152,10 @@ function extractSpecialSerializeInfo(
       hasMultiCollection = hasMultiCollection
         ? hasMultiCollection
         : serializeInfo.hasMultiCollection;
+      hasCsvCollection = hasCsvCollection
+        ? hasCsvCollection
+        : serializeInfo.hasCsvCollection;
     });
-  }
-  const operationGroups = listOperationGroups(dpgContext, client, true);
-  for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(
-      dpgContext,
-      operationGroup
-    );
-    for (const op of operations) {
-      const route = getHttpOperationWithCache(dpgContext, op);
-      route.parameters.parameters.forEach((parameter) => {
-        const format = getCollectionFormat(dpgContext, parameter as any);
-        const serializeInfo = getSpecialSerializeInfo(
-          dpgContext,
-          parameter.type,
-          format!
-        );
-        hasMultiCollection = hasMultiCollection
-          ? hasMultiCollection
-          : serializeInfo.hasMultiCollection;
-        hasCsvCollection = hasCsvCollection
-          ? hasCsvCollection
-          : serializeInfo.hasCsvCollection;
-      });
-    }
   }
   return {
     hasMultiCollection,
