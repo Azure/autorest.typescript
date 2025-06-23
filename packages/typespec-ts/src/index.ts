@@ -287,15 +287,19 @@ export async function $onEmit(context: EmitContext) {
     );
 
     const isMultiClients = dpgContext.sdkPackage.clients.length > 1;
+    const clientMap = getClientHierarchyMap(dpgContext);
+    const hasModularClients = clientMap.length > 0;
     console.time("onEmit: emit models");
-    emitTypes(dpgContext, { sourceRoot: modularSourcesRoot });
+    emitTypes(dpgContext, {
+      sourceRoot: modularSourcesRoot,
+      hasModularClients
+    });
     console.timeEnd("onEmit: emit models");
     buildSubpathIndexFile(modularEmitterOptions, "models", undefined, {
       recursive: true
     });
     console.time("onEmit: emit source files");
-    const clientMap = getClientHierarchyMap(dpgContext);
-    if (clientMap.length === 0) {
+    if (hasModularClients) {
       // If no clients, we still need to build the root index file
       buildRootIndex(dpgContext, modularEmitterOptions, rootIndexFile);
     }

@@ -97,11 +97,12 @@ function isGenerableType(
 }
 export function emitTypes(
   context: SdkContext,
-  { sourceRoot }: { sourceRoot: string }
+  {
+    sourceRoot,
+    hasModularClients
+  }: { sourceRoot: string; hasModularClients: boolean }
 ) {
   const outputProject = useContext("outputProject");
-
-  let sourceFile;
 
   for (const type of emitQueue) {
     if (!isGenerableType(type)) {
@@ -113,15 +114,21 @@ export function emitTypes(
 
     const namespaces = getModelNamespaces(context, type);
     const filepath = getModelsPath(sourceRoot, namespaces);
-    sourceFile = outputProject.getSourceFile(filepath);
+    let sourceFile = outputProject.getSourceFile(filepath);
     if (!sourceFile) {
       sourceFile = outputProject.createSourceFile(filepath);
     }
     emitType(context, type, sourceFile);
   }
 
-  if (sourceFile && isArm(context.emitContext)) {
+  // Only build known Azure clouds enum if we have modular client for management plane
+  if (hasModularClients && isArm(context.emitContext)) {
     const azureCloudsEnum = buildKnownAzureCloudsEnum();
+    const filepath = getModelsPath(sourceRoot);
+    let sourceFile = outputProject.getSourceFile(getModelsPath(sourceRoot));
+    if (!sourceFile) {
+      sourceFile = outputProject.createSourceFile(filepath);
+    }
     // Add cloud setting enum for ARM
     addDeclaration(sourceFile, azureCloudsEnum, refkey(azureCloudsEnum.name));
   }
