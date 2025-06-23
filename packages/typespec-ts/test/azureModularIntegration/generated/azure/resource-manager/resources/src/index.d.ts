@@ -14,7 +14,7 @@ export declare type CreatedByType = string;
 
 export declare interface ErrorAdditionalInfo {
     readonly type?: string;
-    readonly info?: Record<string, any>;
+    readonly info?: any;
 }
 
 export declare interface ErrorDetail {

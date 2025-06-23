@@ -237,11 +237,23 @@ function emitMethodSamples(
 function buildParameterValueMap(example: SdkHttpOperationExample) {
   const parameterMap: Record<string, SdkHttpParameterExampleValue> = {};
   example.parameters.forEach(
-    (param) =>
-      (parameterMap[param.parameter.serializedName ?? param.parameter.name] =
-        param)
+    (param) => (parameterMap[param.parameter.serializedName] = param)
   );
   return parameterMap;
+}
+
+function prepareExampleValue(
+  name: string,
+  value: SdkExampleValue | string,
+  isOptional?: boolean,
+  onClient?: boolean
+): ExampleValue {
+  return {
+    name: normalizeName(name, NameType.Parameter),
+    value: typeof value === "string" ? value : getParameterValue(value),
+    isOptional: Boolean(isOptional),
+    onClient: Boolean(onClient)
+  };
 }
 
 function prepareExampleParameters(
@@ -294,25 +306,24 @@ function prepareExampleParameters(
       subscriptionIdValue = getParameterValue(exampleValue.value);
       continue;
     }
-    result.push({
-      name: exampleValue.parameter.name,
-      value: getParameterValue(exampleValue.value),
-      isOptional: Boolean(param.optional),
-      onClient: Boolean(param.onClient)
-    });
+    result.push(
+      prepareExampleValue(
+        exampleValue.parameter.name,
+        exampleValue.value,
+        param.optional,
+        param.onClient
+      )
+    );
   }
   // add subscriptionId for ARM clients if ARM clients need it
   if (dpgContext.arm && getSubscriptionId(dpgContext)) {
-    result.push({
-      name: "subscriptionId",
-      value: subscriptionIdValue,
-      isOptional: false,
-      onClient: true
-    });
+    result.push(
+      prepareExampleValue("subscriptionId", subscriptionIdValue, false, true)
+    );
   }
   // required/optional body parameters
   const bodyParam = method.operation.bodyParam;
-  const bodyName = bodyParam?.name;
+  const bodyName = bodyParam?.serializedName;
   const bodyExample = parameterMap[bodyName ?? ""];
   if (bodyName && bodyExample && bodyExample.value) {
     if (
@@ -325,20 +336,24 @@ function prepareExampleParameters(
         if (!propExample) {
           continue;
         }
-        result.push({
-          name: prop.name,
-          value: getParameterValue(propExample),
-          isOptional: Boolean(prop.optional),
-          onClient: Boolean(prop.onClient)
-        });
+        result.push(
+          prepareExampleValue(
+            prop.name,
+            propExample,
+            prop.optional,
+            prop.onClient
+          )
+        );
       }
     } else {
-      result.push({
-        name: bodyName,
-        value: getParameterValue(bodyExample.value),
-        isOptional: Boolean(method.operation.bodyParam?.optional),
-        onClient: Boolean(method.operation.bodyParam?.onClient)
-      });
+      result.push(
+        prepareExampleValue(
+          bodyName,
+          bodyExample.value,
+          bodyParam.optional,
+          bodyParam.onClient
+        )
+      );
     }
   }
   // optional parameters
@@ -351,12 +366,14 @@ function prepareExampleParameters(
     )
     .map((param) => parameterMap[param.serializedName]!)
     .forEach((param) => {
-      result.push({
-        name: param.parameter.name,
-        value: getParameterValue(param.value),
-        isOptional: true,
-        onClient: Boolean(param.parameter.onClient)
-      });
+      result.push(
+        prepareExampleValue(
+          param.parameter.name,
+          param.value,
+          true,
+          param.parameter.onClient
+        )
+      );
     });
 
   return result;
@@ -428,7 +445,7 @@ function getParameterValue(value: SdkExampleValue): string {
     case "null":
     case "unknown":
     case "union":
-      retValue = `${value.value}`;
+      retValue = `${JSON.stringify(value.value)}`;
       break;
     case "dict":
     case "model": {
@@ -455,9 +472,7 @@ function getParameterValue(value: SdkExampleValue): string {
       break;
     }
     case "array": {
-      const valuesArr = value.value.map((element) =>
-        getParameterValue(element)
-      );
+      const valuesArr = value.value.map(getParameterValue);
       retValue = `[${valuesArr.join(", ")}]`;
       break;
     }

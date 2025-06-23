@@ -1,3 +1,27 @@
+## 0.41.1 (2025-06-20)
+
+- [Bugfix] Fix property normalization inconsistancy among sample and client generation. Please refer to [#3285](https://github.com/Azure/autorest.typescript/pull/3285)
+- [Bugfix] Fix the issues in tcgc upgrade to v0.57.1. Please refer to [#3302](https://github.com/Azure/autorest.typescript/pull/3302)
+- [Bugfix] Update CODEOWNERS. Please refer to [#3298](https://github.com/Azure/autorest.typescript/pull/3298)
+- [Feature] Extend api-extractor.json from base for azure-sdk-for-js repository. Please refer to [#3296](https://github.com/Azure/autorest.typescript/pull/3296)
+- [Feature] Update generated package engines field to target Node 20. Please refer to [#3295](https://github.com/Azure/autorest.typescript/pull/3295)
+- [Feature] Upgrade TypeSpec and Azure Tools dependencies to latest versions. Please refer to [#3283](https://github.com/Azure/autorest.typescript/pull/3283)
+- [Bugfix] Export models to root index file for model-only case. Please refer to [#3222](https://github.com/Azure/autorest.typescript/pull/3222)
+- [Bugfix] Fix @azure-tools/azure-http-specs version. Please refer to [#3263](https://github.com/Azure/autorest.typescript/pull/3263)
+- [Bugfix] Optimize skip logic for modular unit test cases. Please refer to [#3245](https://github.com/Azure/autorest.typescript/pull/3245)
+- [Feature] Add the first version of copilot instructions. Please refer to [#3238](https://github.com/Azure/autorest.typescript/pull/3238)
+
+## 0.41.0 (2025-06-04)
+
+- [Feature] Migrate to pnpm
+  - Update dependency generation to adopt pnpm workspace catalog versions. Please refer to [#3172](https://github.com/Azure/autorest.typescript/pull/3172)
+  - Switch from "npm pack" to "pnpm pack". Please refer to [#3223](https://github.com/Azure/autorest.typescript/pull/3223)
+  - Use "workspace:^". Please refer to [#3224](https://github.com/Azure/autorest.typescript/pull/3224)
+- [Bugfix] Export models to root index file for model-only case. Please refer to [#3222](https://github.com/Azure/autorest.typescript/pull/3222)
+- [Bugfix] Fix snippets generation issue. Please refer to [#3227](https://github.com/Azure/autorest.typescript/pull/3227)
+- [Bugfix] Fix missing configs in package.json for Modular and RLC. Please refer to [#3215](https://github.com/Azure/autorest.typescript/pull/3215)
+- [Bugfix] Fix reference issue in recursive cases. Please refer to [#3175](https://github.com/Azure/autorest.typescript/pull/3175)
+
 ## 0.40.2 (2025-05-22)
 
 - [Bugfix] Fix wrong eslint dependency
@@ -18,7 +42,6 @@
 - [Bugfix] Fix subscriptionId issues in readme.md and emitter samples. Please refer to [#3161](https://github.com/Azure/autorest.typescript/pull/3161)
 - [Bugfix] Fix missing tshy configs.md and emitter samples. Please refer to [#3193](https://github.com/Azure/autorest.typescript/pull/3193)
 - [Bugfix] Fix the reserved word issue in Modular for API layer. Please refer to [#3191](https://github.com/Azure/autorest.typescript/pull/3191)
-
 
 ## 0.40.0 (2025-05-07)
 

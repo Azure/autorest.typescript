@@ -85,7 +85,7 @@ export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
         ? "^3.0.0"
         : "workspace:^",
       "@azure/identity": !shouldUsePnpmDep ? "^4.6.0" : "catalog:internal",
-      "@types/node": !shouldUsePnpmDep ? "^18.0.0" : "catalog:",
+      "@types/node": !shouldUsePnpmDep ? "^20.0.0" : "catalog:",
       eslint: !shouldUsePnpmDep ? "^9.9.0" : "catalog:",
       ...(config.specSource === "Swagger" && {
         autorest: !shouldUsePnpmDep ? "latest" : "catalog:"
@@ -186,10 +186,8 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
       "npm run clean && npm run build:test && npm run unit-test:browser && npm run integration-test:browser",
     "lint:fix": skipLinting
       ? "echo skipped"
-      : "eslint package.json api-extractor.json src test --fix --fix-type [problem,suggestion]",
-    lint: skipLinting
-      ? "echo skipped"
-      : "eslint package.json api-extractor.json src test",
+      : "eslint package.json src test --fix --fix-type [problem,suggestion]",
+    lint: skipLinting ? "echo skipped" : "eslint package.json src test",
     pack: `${config.shouldUsePnpmDep ? "pnpm" : "npm"} pack 2>&1`,
     ...esmScripts,
     ...cjsScripts,

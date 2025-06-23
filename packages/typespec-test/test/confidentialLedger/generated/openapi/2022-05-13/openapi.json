@@ -69,8 +69,7 @@
               "type": "array",
               "items": {
                 "$ref": "#/definitions/Collection"
-              },
-              "x-ms-identifiers": []
+              }
             }
           },
           "default": {
@@ -562,8 +561,7 @@
           "description": "An array of details about specific errors that led to this reported error.",
           "items": {
             "$ref": "#/definitions/Azure.Core.Foundations.Error"
-          },
-          "x-ms-identifiers": []
+          }
         },
         "innererror": {
           "$ref": "#/definitions/Azure.Core.Foundations.InnerError",
@@ -749,8 +747,7 @@
           "description": "Array of ledger entries.",
           "items": {
             "$ref": "#/definitions/LedgerEntry"
-          },
-          "x-ms-identifiers": []
+          }
         },
         "state": {
           "$ref": "#/definitions/LedgerQueryState",
