@@ -83,6 +83,8 @@ function getArmEndpoint(cloudSetting?: string): string | undefined {
   } else if (cloudSetting === "AZURE_PUBLIC_CLOUD") {
     return "https://management.azure.com/";
   } else {
-    throw new Error("Unknown cloud setting: " + cloudSetting);
+    throw new Error(
+      `Unknown cloud setting: ${cloudSetting}. Please refer the enum KnownAzureClouds for possible values.`,
+    );
   }
 }

@@ -50,9 +50,8 @@ export function getClientContextPath(
   const { subfolder } = getModularClientOptions(clientMap);
   const name = getClientName(client);
   const srcPath = emitterOptions.modularOptions.sourceRoot;
-  const contentPath = `${srcPath}/${
-    subfolder && subfolder !== "" ? subfolder + "/" : ""
-  }api/${normalizeName(name, NameType.File)}Context.ts`;
+  const contentPath = `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""
+    }api/${normalizeName(name, NameType.File)}Context.ts`;
   return contentPath;
 }
 
@@ -172,6 +171,7 @@ export function buildClientContext(
   );
 
   if (isArm(dpgContext.emitContext)) {
+    const azureCloudsEnum = buildKnownAzureCloudsEnum();
     clientContextFile.addFunction({
       docs: ["Get the ARM endpoint for the client."],
       name: `getArmEndpoint`,
@@ -199,7 +199,7 @@ export function buildClientContext(
     return "https://management.azure.com/";
   }
   else {
-    throw new Error("Unknown cloud setting: " + cloudSetting);
+    throw new Error(\`Unknown cloud setting: \${cloudSetting}. Please refer the enum ${azureCloudsEnum.name} for possible values.\`);
   }
         `
       ]
