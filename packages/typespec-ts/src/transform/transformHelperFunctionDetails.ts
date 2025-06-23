@@ -3,7 +3,7 @@ import {
   getHttpOperationWithCache,
   SdkClient
 } from "@azure-tools/typespec-client-generator-core";
-import { Model, Program, Type } from "@typespec/compiler";
+import { Model } from "@typespec/compiler";
 import { HttpOperation } from "@typespec/http";
 import { SdkContext } from "../utils/interfaces.js";
 import {
@@ -22,7 +22,6 @@ export function transformHelperFunctionDetails(
   dpgContext: SdkContext,
   flavor?: PackageFlavor
 ): HelperFunctionDetails {
-  const program = dpgContext.program;
   const serializeInfo = extractSpecialSerializeInfo(client, dpgContext);
   // Disable paging and long running for non-Azure clients.
   if (flavor !== "azure") {
@@ -33,56 +32,15 @@ export function transformHelperFunctionDetails(
     };
   }
 
-  // Extract paged metadata from Azure.Core.Page
   const annotationDetails = {
     hasLongRunning: hasPollingOperations(client, dpgContext)
   };
   const details = extractPageDetailFromCore(client, dpgContext);
-  if (details) {
-    return {
-      ...details,
-      ...annotationDetails,
-      ...serializeInfo
-    };
-  }
-  // TODO: Remove this when @pageable is finally removed.
-  const nextLinks = new Set<string>();
-  for (const op of listOperationsUnderRLCClient(client)) {
-    const route = getHttpOperationWithCache(dpgContext, op);
-    // ignore overload base operation
-    if (route.overloads && route.overloads?.length > 0) {
-      continue;
-    }
-    if (getPageable(program, route.operation)) {
-      const nextLinkName = getPageable(program, route.operation) || "nextLink";
-      if (nextLinkName) {
-        nextLinks.add(nextLinkName);
-      }
-    }
-  }
-  if (nextLinks.size === 0) {
-    return {
-      ...annotationDetails,
-      ...serializeInfo
-    };
-  }
   return {
+    ...details,
     ...annotationDetails,
-    hasPaging: true,
-    pageDetails: {
-      itemNames: ["value"],
-      nextLinkNames: [...nextLinks],
-      isComplexPaging: nextLinks.size > 1
-    },
     ...serializeInfo
   };
-}
-const pageableOperationsKey = Symbol("pageable");
-export function getPageable(
-  program: Program,
-  entity: Type
-): string | undefined {
-  return program.stateMap(pageableOperationsKey).get(entity);
 }
 
 function extractPageDetailFromCore(client: SdkClient, dpgContext: SdkContext) {
