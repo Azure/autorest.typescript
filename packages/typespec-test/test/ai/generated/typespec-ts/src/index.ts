@@ -8,7 +8,6 @@ import {
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
 
-export { AIProjectClient } from "./aiProjectClient.js";
 export {
   GetWorkspaceResponse,
   WorkspaceProperties,
@@ -245,6 +244,7 @@ export {
   RunAdditionalFieldList,
   VectorStoreFileStatusFilter,
 } from "./models/agents/index.js";
+export { AIProjectClient } from "./aiProjectClient.js";
 export { AIProjectClientOptionalParams } from "./api/index.js";
 export {
   AgentsListVectorStoreFileBatchFilesOptionalParams,

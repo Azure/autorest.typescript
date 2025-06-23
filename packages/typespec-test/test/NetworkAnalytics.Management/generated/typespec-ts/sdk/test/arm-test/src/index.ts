@@ -7,8 +7,6 @@ import {
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
 
-export { NetworkAnalyticsApi } from "./networkAnalyticsApi.js";
-export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   Operation,
   OperationDisplay,
@@ -69,6 +67,8 @@ export {
   KnownVersions,
   KnownAzureClouds,
 } from "./models/index.js";
+export { NetworkAnalyticsApi } from "./networkAnalyticsApi.js";
+export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export { NetworkAnalyticsApiOptionalParams } from "./api/index.js";
 export {
   DataProductsListBySubscriptionOptionalParams,

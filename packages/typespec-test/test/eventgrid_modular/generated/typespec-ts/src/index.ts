@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export { EventGridClient } from "./eventGridClient.js";
 export {
   CloudEvent,
   PublishResult,
@@ -16,6 +15,7 @@ export {
   ReleaseDelay,
   KnownServiceApiVersions,
 } from "./models/index.js";
+export { EventGridClient } from "./eventGridClient.js";
 export {
   EventGridClientOptionalParams,
   RenewCloudEventLocksOptionalParams,
