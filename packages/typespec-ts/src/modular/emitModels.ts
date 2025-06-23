@@ -104,6 +104,17 @@ export function emitTypes(
 ) {
   const outputProject = useContext("outputProject");
 
+  function getSourceModelFile(
+    namespaces: string[] = [] // empty namespaces means the root models file
+  ): SourceFile {
+    const filepath = getModelsPath(sourceRoot, namespaces);
+    let sourceFile = outputProject.getSourceFile(filepath);
+    if (!sourceFile) {
+      sourceFile = outputProject.createSourceFile(filepath);
+    }
+    return sourceFile;
+  }
+
   for (const type of emitQueue) {
     if (!isGenerableType(type)) {
       continue;
@@ -113,24 +124,18 @@ export function emitTypes(
     }
 
     const namespaces = getModelNamespaces(context, type);
-    const filepath = getModelsPath(sourceRoot, namespaces);
-    let sourceFile = outputProject.getSourceFile(filepath);
-    if (!sourceFile) {
-      sourceFile = outputProject.createSourceFile(filepath);
-    }
-    emitType(context, type, sourceFile);
+    emitType(context, type, getSourceModelFile(namespaces));
   }
 
   // Only build known Azure clouds enum if we have modular client for management plane
   if (hasModularClients && isArm(context.emitContext)) {
     const azureCloudsEnum = buildKnownAzureCloudsEnum();
-    const filepath = getModelsPath(sourceRoot);
-    let sourceFile = outputProject.getSourceFile(getModelsPath(sourceRoot));
-    if (!sourceFile) {
-      sourceFile = outputProject.createSourceFile(filepath);
-    }
     // Add cloud setting enum for ARM
-    addDeclaration(sourceFile, azureCloudsEnum, refkey(azureCloudsEnum.name));
+    addDeclaration(
+      getSourceModelFile(),
+      azureCloudsEnum,
+      refkey(azureCloudsEnum.name)
+    );
   }
 
   const modelFiles = outputProject.getSourceFiles(
