@@ -43,7 +43,7 @@
   },
   "repository": "github:Azure/azure-sdk-for-js",
   "bugs": { "url": "https://github.com/Azure/azure-sdk-for-js/issues" },
-  "files": ["dist/", "README.md", "LICENSE", "review/*", "CHANGELOG.md"],
+  "files": ["dist/", "README.md", "LICENSE"],
   "scripts": {
     "build": "npm run clean && tshy && npm run extract-api",
     "minify": "uglifyjs -c -m --comments --source-map \"content='./dist/index.js.map'\" -o ./dist/index.min.js ./dist/index.js",
