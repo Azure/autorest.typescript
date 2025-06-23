@@ -97,11 +97,9 @@ function isGenerableType(
 }
 export function emitTypes(
   context: SdkContext,
-  {
-    sourceRoot,
-    hasModularClients
-  }: { sourceRoot: string; hasModularClients: boolean }
+  options: { sourceRoot: string; hasModularClients?: boolean }
 ) {
+  const { sourceRoot, hasModularClients = true } = options;
   const outputProject = useContext("outputProject");
 
   function getSourceModelFile(

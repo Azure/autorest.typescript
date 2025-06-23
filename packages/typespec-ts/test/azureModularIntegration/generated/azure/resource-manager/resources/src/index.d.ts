@@ -65,6 +65,12 @@ export declare interface ExtensionsResourcesOperations {
 export declare interface ExtensionsResourcesUpdateOptionalParams extends OperationOptions {
 }
 
+export declare enum KnownAzureClouds {
+    AZURE_PUBLIC_CLOUD = "AZURE_PUBLIC_CLOUD",
+    AZURE_CHINA_CLOUD = "AZURE_CHINA_CLOUD",
+    AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT"
+}
+
 export declare enum KnownCreatedByType {
     User = "User",
     Application = "Application",
@@ -193,6 +199,7 @@ export declare class ResourcesClient {
 
 export declare interface ResourcesClientOptionalParams extends ClientOptions {
     apiVersion?: string;
+    cloudSetting?: string;
 }
 
 export declare function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: ResourcesClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
