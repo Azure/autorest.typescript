@@ -33,6 +33,7 @@ import {
 import { getModularClientOptions } from "../utils/clientUtils.js";
 import { useContext } from "../contextManager.js";
 import { refkey } from "../framework/refkey.js";
+import { isArm } from "../index.js";
 
 /**
  * This function gets the path of the file containing the modular client context
@@ -45,8 +46,9 @@ export function getClientContextPath(
   const { subfolder } = getModularClientOptions(clientMap);
   const name = getClientName(client);
   const srcPath = emitterOptions.modularOptions.sourceRoot;
-  const contentPath = `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""
-    }api/${normalizeName(name, NameType.File)}Context.ts`;
+  const contentPath = `${srcPath}/${
+    subfolder && subfolder !== "" ? subfolder + "/" : ""
+  }api/${normalizeName(name, NameType.File)}Context.ts`;
   return contentPath;
 }
 
@@ -114,12 +116,15 @@ export function buildClientContext(
         docs: getDocsWithKnownVersion(dpgContext, p)
       };
     });
-  if (dpgContext.arm) {
+  if (isArm(dpgContext.emitContext)) {
     propertiesInOptions.push({
       name: "cloudSetting",
       type: "string",
       hasQuestionToken: true,
-      docs: ["Azure Cloud setting to override management endpoint.", "Known values of {@link KnownAzureCloud}"]
+      docs: [
+        "Azure Cloud setting to override management endpoint.",
+        "Known values of {@link KnownAzureCloud}"
+      ]
     });
   }
   clientContextFile.addInterface({
@@ -162,7 +167,7 @@ export function buildClientContext(
     endpointParam
   );
 
-  if (dpgContext.arm) {
+  if (isArm(dpgContext.emitContext)) {
     clientContextFile.addFunction({
       docs: ["Get the ARM endpoint for the client."],
       name: `getArmEndpoint`,
@@ -183,11 +188,9 @@ export function buildClientContext(
   if (cloudSetting === "AZURE_CHINA_CLOUD") {
     return "https://management.chinacloudapi.cn/";
   }
-  else if (cloudSetting === "AZURE_US_GOVERNMENT")
-    return "https://management.usgovcloudapi.net/"
-  else if (cloudSetting === "AZURE_GERMAN_CLOUD") {
-    return "https://management.microsoftazure.de/";
-  }
+  else if (cloudSetting === "AZURE_US_GOVERNMENT") {
+      return "https://management.usgovcloudapi.net/";
+  }  
   else if (cloudSetting === "AZURE_PUBLIC_CLOUD") {
     return "https://management.azure.com/";
   }
@@ -195,29 +198,6 @@ export function buildClientContext(
     throw new Error("Unknown cloud setting: " + cloudSetting);
   }
         `
-      ]
-    });
-
-    clientContextFile.addEnum({
-      name: "KnownAzureCloud",
-      isExported: true,
-      members: [
-        {
-          name: "AZURE_CHINA_CLOUD",
-          value: "AZURE_CHINA_CLOUD"
-        },
-        {
-          name: "AZURE_US_GOVERNMENT",
-          value: "AZURE_US_GOVERNMENT"
-        },
-        {
-          name: "AZURE_GERMAN_CLOUD",
-          value: "AZURE_GERMAN_CLOUD"
-        },
-        {
-          name: "AZURE_PUBLIC_CLOUD",
-          value: "AZURE_PUBLIC_CLOUD"
-        }
       ]
     });
   }

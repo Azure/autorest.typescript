@@ -67,6 +67,7 @@ import { resolveReference } from "../framework/reference.js";
 import { MultipartHelpers } from "./static-helpers-metadata.js";
 import { getAllAncestors } from "./helpers/operationHelpers.js";
 import { getAllProperties } from "./helpers/operationHelpers.js";
+import { isArm } from "../index.js";
 
 type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
   extends?: string[];
@@ -117,6 +118,34 @@ export function emitTypes(
       sourceFile = outputProject.createSourceFile(filepath);
     }
     emitType(context, type, sourceFile);
+  }
+
+  if (sourceFile && isArm(context.emitContext)) {
+    const cloudEnum: EnumDeclarationStructure = {
+      name: "KnownAzureCloud",
+      isExported: true,
+      kind: StructureKind.Enum,
+      members: [
+        {
+          name: "AZURE_CHINA_CLOUD",
+          value: "AZURE_CHINA_CLOUD"
+        },
+        {
+          name: "AZURE_US_GOVERNMENT",
+          value: "AZURE_US_GOVERNMENT"
+        },
+        {
+          name: "AZURE_PUBLIC_CLOUD",
+          value: "AZURE_PUBLIC_CLOUD"
+        }
+      ]
+    };
+    // Add cloud setting enum for ARM
+    addDeclaration(
+      sourceFile,
+      cloudEnum,
+      refkey(cloudEnum.name, "knownValues")
+    );
   }
 
   const modelFiles = outputProject.getSourceFiles(

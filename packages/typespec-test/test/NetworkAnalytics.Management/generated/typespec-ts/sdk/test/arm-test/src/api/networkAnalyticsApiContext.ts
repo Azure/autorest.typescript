@@ -79,20 +79,11 @@ function getArmEndpoint(cloudSetting?: string): string | undefined {
   }
   if (cloudSetting === "AZURE_CHINA_CLOUD") {
     return "https://management.chinacloudapi.cn/";
-  } else if (cloudSetting === "AZURE_US_GOVERNMENT")
+  } else if (cloudSetting === "AZURE_US_GOVERNMENT") {
     return "https://management.usgovcloudapi.net/";
-  else if (cloudSetting === "AZURE_GERMAN_CLOUD") {
-    return "https://management.microsoftazure.de/";
   } else if (cloudSetting === "AZURE_PUBLIC_CLOUD") {
     return "https://management.azure.com/";
   } else {
     throw new Error("Unknown cloud setting: " + cloudSetting);
   }
-}
-
-export enum KnownAzureCloud {
-  AZURE_CHINA_CLOUD = "AZURE_CHINA_CLOUD",
-  AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT",
-  AZURE_GERMAN_CLOUD = "AZURE_GERMAN_CLOUD",
-  AZURE_PUBLIC_CLOUD = "AZURE_PUBLIC_CLOUD",
 }

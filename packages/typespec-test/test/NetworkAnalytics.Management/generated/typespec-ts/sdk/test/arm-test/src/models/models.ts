@@ -1448,3 +1448,9 @@ export enum KnownVersions {
   /** The 2023-11-15 stable version. */
   V20231115 = "2023-11-15",
 }
+
+export enum KnownAzureCloud {
+  AZURE_CHINA_CLOUD = "AZURE_CHINA_CLOUD",
+  AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT",
+  AZURE_PUBLIC_CLOUD = "AZURE_PUBLIC_CLOUD",
+}

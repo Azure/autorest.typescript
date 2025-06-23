@@ -5,5 +5,4 @@ export {
   createNetworkAnalyticsApi,
   NetworkAnalyticsApiContext,
   NetworkAnalyticsApiOptionalParams,
-  KnownAzureCloud,
 } from "./networkAnalyticsApiContext.js";

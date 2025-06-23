@@ -59,4 +59,5 @@ export {
   RoleAssignmentDetail,
   ListRoleAssignments,
   KnownVersions,
+  KnownAzureCloud,
 } from "./models.js";
