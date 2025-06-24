@@ -31,7 +31,7 @@ export function transformHelperFunctionDetails(
   const annotationDetails = {
     hasLongRunning: hasPollingOperations(client, dpgContext)
   };
-  const details = extractPageDetailFromCore(client, dpgContext);
+  const details = extractClientPageDetails(client, dpgContext);
   return {
     ...details,
     ...annotationDetails,
@@ -39,7 +39,7 @@ export function transformHelperFunctionDetails(
   };
 }
 
-function extractPageDetailFromCore(client: SdkClient, dpgContext: SdkContext) {
+function extractClientPageDetails(client: SdkClient, dpgContext: SdkContext) {
   const program = dpgContext.program;
   if (!hasPagingOperations(client, dpgContext)) {
     return;
@@ -54,8 +54,8 @@ function extractPageDetailFromCore(client: SdkClient, dpgContext: SdkContext) {
     }
     const pagedDetail = extractPageDetails(program, route);
     if (pagedDetail) {
-      pagedDetail.itemNames.forEach(itemNames.add);
-      pagedDetail.nextLinkNames.forEach(nextLinks.add);
+      pagedDetail.itemNames.forEach((name) => itemNames.add(name));
+      pagedDetail.nextLinkNames.forEach((name) => nextLinks.add(name));
     }
   }
   // If there are more than one options for nextLink and item names we need to generate a

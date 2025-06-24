@@ -282,7 +282,7 @@ const libDef = {
     "no-paging-items-defined": {
       severity: "warning",
       messages: {
-        default: paramMessage`Please specify @pageItems property for the paging operation - ${"operationName"}.`
+        default: paramMessage`Operation '${"operationName"}' is marked with @list but does not have @pageItems defined.`
       }
     },
     "unsupported-paging-cases": {

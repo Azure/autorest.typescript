@@ -12,6 +12,55 @@ describe("Page helper", () => {
     assert.isTrue((pageInfo?.content as string).includes(`customizedItems`));
     assert.isTrue((pageInfo?.content as string).includes(`@odata.nextLink`));
   });
+
+  it("should handle @list operation with @pageItems", async () => {
+    const content = `
+      @list
+      op listWidgets() : { @pageItems items: string[]; };
+      `;
+    const pageInfo = await emitPageHelperFromTypeSpec(content, {
+      needAzureCore: true
+    });
+    assert.ok(pageInfo);
+    assert.isTrue((pageInfo?.content as string).includes(`items`));
+    assert.isTrue((pageInfo?.content as string).includes(`nextLink`));
+  });
+
+  it("should report errors if no @pageItems defined", async () => {
+    try {
+      const content = `
+      @list
+      op listWidgets() : { items: string[]; };
+      `;
+      await emitPageHelperFromTypeSpec(content, {
+        needAzureCore: true
+      });
+    } catch (e) {
+      assert.isTrue(
+        (e as Error).message.includes(
+          "Paged operation 'listWidgets' return type must have a property annotated with @pageItems."
+        )
+      );
+    }
+  });
+
+  it("should report warning for nested @pageItems", async () => {
+    try {
+      const content = `
+      @list
+      op listWidgets() : { pagination: { @pageItems items: string[]; }; };
+      `;
+      await emitPageHelperFromTypeSpec(content, {
+        needAzureCore: true
+      });
+    } catch (e) {
+      assert.isTrue(
+        (e as Error).message.includes(
+          "warning @azure-tools/typespec-ts/unsupported-paging-cases: Any complex paging cases are not supported yet e.g nested next links - listWidgets."
+        )
+      );
+    }
+  });
 });
 
 async function generatePagingHelper(code: string) {
