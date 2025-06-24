@@ -4,16 +4,19 @@ trigger:
 parameters:
   - name: LinuxPool
     type: string
-    default: azsdk-pool-mms-ubuntu-2004-general
+    default: azsdk-pool
+  - name: WindowsPool
+    type: string
+    default: azsdk-pool
   - name: IncludeRelease
     type: boolean
     default: true
   - name: OSVmImage
     type: string
-    default: ubuntu-20.04
+    default: ubuntu-24.04
   - name: Windows_Latest
     type: string
-    default: "Windows-latest"
+    default: "windows-2022"
 
 variables:
   AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/packages/autorest.typescript/coverage/"
@@ -28,7 +31,7 @@ stages:
       - job: Build
         pool:
           name: ${{ parameters.LinuxPool }}
-          vmImage: ${{ parameters.OSVmImage }}
+          demands: ImageOverride -equals ${{ parameters.OSVmImage }}
         steps:
           - template: build.yml
           - script: |
@@ -120,11 +123,11 @@ stages:
           matrix:
             Linux_Node20:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-20.04"
+              OSVmImage: ${{ parameters.OSVmImage }}
               NodeTestVersion: "20.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
-          vmImage: $[coalesce(variables['OSVmImage'], '')]
+          demands: ImageOverride -equals $[coalesce(variables['OSVmImage'], '')]
         steps:
           - template: build.yml
           - script: npm run generate-swaggers
@@ -142,11 +145,11 @@ stages:
           matrix:
             Linux_Node20:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-20.04"
+              OSVmImage: ${{ parameters.OSVmImage }}
               NodeTestVersion: "20.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
-          vmImage: $[coalesce(variables['OSVmImage'], '')]
+          demands: ImageOverride -equals $[coalesce(variables['OSVmImage'], '')]
         steps:
           - template: build.yml
           - script: npm run rlc-generate-swaggers
@@ -173,11 +176,14 @@ stages:
               NodeTestVersion: "20.x"
             Linux_Node20:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-20.04"
+              OSVmImage: ${{ parameters.OSVmImage }}
               NodeTestVersion: "20.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
-          vmImage: $[coalesce(variables['OSVmImage'], '')]
+          ${{ if contains(variables['OSVmImage'], 'macOS') }}:
+            vmImage: $[coalesce(variables['OSVmImage'], '')]
+          ${{ else }}:
+            demands: ImageOverride -equals $[coalesce(variables['OSVmImage'], '')]
         steps:
           - template: build.yml
           - task: NodeTool@0
@@ -226,11 +232,11 @@ stages:
           matrix:
             Linux_Node20:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-20.04"
+              OSVmImage: ${{ parameters.OSVmImage }}
               NodeTestVersion: "20.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
-          vmImage: $[coalesce(variables['OSVmImage'], '')]
+          demands: ImageOverride -equals $[coalesce(variables['OSVmImage'], '')]
         steps:
           - template: build.yml
           - script: node $(Build.SourcesDirectory)/common/scripts/install-run-rushx.js smoke-test
@@ -247,12 +253,12 @@ stages:
         strategy:
           matrix:
             Windows_Latest:
-              Pool:
+              Pool: ${{ parameters.WindowsPool }}
               OSVmImage: ${{ parameters.Windows_Latest }}
               NodeTestVersion: "20.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
-          vmImage: $[coalesce(variables['OSVmImage'], '')]
+          demands: ImageOverride -equals $[coalesce(variables['OSVmImage'], '')]
         steps:
           - template: build.yml
           - script: node $(Build.SourcesDirectory)/common/scripts/install-run-rushx.js smoke-test:contoso && node $(Build.SourcesDirectory)/common/scripts/install-run-rushx.js smoke-test:todo
@@ -271,11 +277,14 @@ stages:
               NodeTestVersion: "20.x"
             Linux_Node20:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-20.04"
+              OSVmImage: ${{ parameters.OSVmImage }}
               NodeTestVersion: "20.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
-          vmImage: $[coalesce(variables['OSVmImage'], '')]
+          ${{ if contains(variables['OSVmImage'], 'macOS') }}:
+            vmImage: $[coalesce(variables['OSVmImage'], '')]
+          ${{ else }}:
+            demands: ImageOverride -equals $[coalesce(variables['OSVmImage'], '')]
         steps:
           - template: build.yml
           - script: npm run check-format
@@ -341,11 +350,14 @@ stages:
               NodeTestVersion: "20.x"
             Linux_Node20:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-20.04"
+              OSVmImage: ${{ parameters.OSVmImage }}
               NodeTestVersion: "20.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
-          vmImage: $[coalesce(variables['OSVmImage'], '')]
+          ${{ if contains(variables['OSVmImage'], 'macOS') }}:
+            vmImage: $[coalesce(variables['OSVmImage'], '')]
+          ${{ else }}:
+            demands: ImageOverride -equals $[coalesce(variables['OSVmImage'], '')]
         steps:
           - template: build.yml
           - script: npm run test:azure
