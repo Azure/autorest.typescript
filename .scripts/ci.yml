@@ -127,7 +127,7 @@ stages:
               NodeTestVersion: "20.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
-          demands: ImageOverride -equals $[coalesce(variables['OSVmImage'], '')]
+          demands: ImageOverride -equals $(OSVmImage)
         steps:
           - template: build.yml
           - script: npm run generate-swaggers
