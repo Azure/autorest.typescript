@@ -256,12 +256,15 @@ importers:
       '@typescript-eslint/eslint-plugin': ^8.28.0
       '@typescript-eslint/parser': ^8.28.0
       '@typespec/compiler': ^1.1.0
+      '@typespec/events': ^0.71.0
       '@typespec/http': ^1.1.0
       '@typespec/http-specs': 0.1.0-alpha.24-dev.0
       '@typespec/openapi': ^1.1.0
       '@typespec/rest': ^0.71.0
       '@typespec/spec-api': 0.1.0-alpha.7-dev.0
       '@typespec/spector': 0.1.0-alpha.16-dev.0
+      '@typespec/sse': ^0.71.0
+      '@typespec/streams': ^0.71.0
       '@typespec/ts-http-runtime': ^0.1.0
       '@typespec/versioning': ^0.71.0
       '@typespec/xml': ^0.71.0
@@ -288,7 +291,6 @@ importers:
       vitest: ~1.6.0
     dependencies:
       '@azure-tools/rlc-common': link:../rlc-common
-      '@typespec/xml': 0.71.0_@typespec+compiler@1.1.0
       fs-extra: 11.1.1
       lodash: 4.17.21
       prettier: 3.3.3
@@ -318,14 +320,18 @@ importers:
       '@typescript-eslint/eslint-plugin': 8.29.1_riayye3vh5qrrjmyfknhspw5ue
       '@typescript-eslint/parser': 8.29.1_rpfclszkijpquoieshhobbfaz4
       '@typespec/compiler': 1.1.0_@types+node@18.18.0
+      '@typespec/events': 0.71.0_@typespec+compiler@1.1.0
       '@typespec/http': 1.1.0_c52ifazb5ntzpmcykfahljgl5e
       '@typespec/http-specs': 0.1.0-alpha.24-dev.0_6qzfzag3bbwc5s7hzbabv5xkbe
       '@typespec/openapi': 1.1.0_wo5hy2j4mtochsypsdsaymgwzu
       '@typespec/rest': 0.71.0_wo5hy2j4mtochsypsdsaymgwzu
       '@typespec/spec-api': 0.1.0-alpha.7-dev.0
       '@typespec/spector': 0.1.0-alpha.16-dev.0_bem7zz7qfeiswvpffb5guuo26q
+      '@typespec/sse': 0.71.0_2yjcchb2lhk4m2kkw4z5utz56e
+      '@typespec/streams': 0.71.0_@typespec+compiler@1.1.0
       '@typespec/ts-http-runtime': 0.1.0
       '@typespec/versioning': 0.71.0_@typespec+compiler@1.1.0
+      '@typespec/xml': 0.71.0_@typespec+compiler@1.1.0
       '@vitest/coverage-istanbul': 1.6.0_vitest@1.6.0
       '@vitest/coverage-v8': 1.6.0_vitest@1.6.0
       chai: 4.3.8
