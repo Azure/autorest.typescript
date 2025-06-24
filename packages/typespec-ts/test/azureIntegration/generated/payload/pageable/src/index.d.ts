@@ -38,6 +38,10 @@ export declare function paginate<TResponse extends PathUncheckedResponse>(client
 
 export declare type PaginateReturn<TResult> = TResult extends {
     body: {
+        value?: infer TPage;
+    };
+} | {
+    body: {
         pets?: infer TPage;
     };
 } ? GetArrayType<TPage> : Array<unknown>;
