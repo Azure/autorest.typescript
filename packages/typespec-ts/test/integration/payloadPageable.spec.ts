@@ -13,7 +13,7 @@ describe("Pageable Client", () => {
   });
 
   // TODO: RLC paging for unbranded client is not supported yet.
-  it.skip("should get pagable Server Driven Pagination link", async () => {
+  it.skip("should get pageable Server Driven Pagination link", async () => {
     const result = await client
       .path("/payload/pageable/server-driven-pagination/link")
       .get();
