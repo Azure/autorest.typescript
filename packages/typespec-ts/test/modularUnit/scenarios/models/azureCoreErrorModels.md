@@ -3,18 +3,18 @@
 ## TypeSpec
 
 ```tsp
-model CustomErrorDetail {
+model ErrorDetail {
   code: string;
   message: string;
   details?: string;
 }
 
-model CustomErrorResponse {
-  error: CustomErrorDetail;
+model ErrorResponse {
+  error: ErrorDetail;
   coreError?: Azure.Core.Foundations.ErrorResponse;
 }
 
-op getError(): CustomErrorResponse;
+op getError(): ErrorResponse;
 ```
 
 ```yaml
@@ -24,29 +24,27 @@ needAzureCore: true
 ## Models
 
 ```ts models
-/** model interface CustomErrorResponse */
-export interface CustomErrorResponse {
-  error: CustomErrorDetail;
+/** model interface ErrorResponse */
+export interface ErrorResponse {
+  error: ErrorDetail;
   coreError?: __PLACEHOLDER_o18__;
 }
 
-export function customErrorResponseDeserializer(
-  item: any
-): CustomErrorResponse {
+export function errorResponseDeserializer(item: any): ErrorResponse {
   return {
-    error: customErrorDetailDeserializer(item["error"]),
+    error: errorDetailDeserializer(item["error"]),
     coreError: !item["coreError"] ? item["coreError"] : item["coreError"]
   };
 }
 
-/** model interface CustomErrorDetail */
-export interface CustomErrorDetail {
+/** model interface ErrorDetail */
+export interface ErrorDetail {
   code: string;
   message: string;
   details?: string;
 }
 
-export function customErrorDetailDeserializer(item: any): CustomErrorDetail {
+export function errorDetailDeserializer(item: any): ErrorDetail {
   return {
     code: item["code"],
     message: item["message"],
@@ -59,10 +57,7 @@ export function customErrorDetailDeserializer(item: any): CustomErrorDetail {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  CustomErrorResponse,
-  customErrorResponseDeserializer
-} from "../models/models.js";
+import { ErrorResponse, errorResponseDeserializer } from "../models/models.js";
 import { GetErrorOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -86,19 +81,19 @@ export function _getErrorSend(
 
 export async function _getErrorDeserialize(
   result: PathUncheckedResponse
-): Promise<CustomErrorResponse> {
+): Promise<ErrorResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return customErrorResponseDeserializer(result.body);
+  return errorResponseDeserializer(result.body);
 }
 
 export async function getError(
   context: Client,
   options: GetErrorOptionalParams = { requestOptions: {} }
-): Promise<CustomErrorResponse> {
+): Promise<ErrorResponse> {
   const result = await _getErrorSend(context, options);
   return _getErrorDeserialize(result);
 }
