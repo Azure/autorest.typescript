@@ -8,7 +8,7 @@ import {
   ParentClient
 } from "./generated/azure/client-generator-core/client-initialization/src/index.js";
 
-describe.only("Azure ClientGeneratorCore Client Initialization", () => {
+describe("Azure ClientGeneratorCore Client Initialization", () => {
   const endpointOptions = {
     endpoint: "http://localhost:3002",
     allowInsecureConnection: true
@@ -22,17 +22,12 @@ describe.only("Azure ClientGeneratorCore Client Initialization", () => {
     });
 
     it("should send header parameter in withQuery operation", async () => {
-      const result = await client.withQuery("test-id", {
-        requestOptions: { headers: { name: "test-name-value" } }
-      });
+      const result = await client.withQuery("test-id");
       assert.isUndefined(result);
     });
 
     it("should send header parameter in withBody operation", async () => {
-      const result = await client.withBody(
-        { name: "test-name" },
-        { requestOptions: { headers: { name: "test-name-value" } } }
-      );
+      const result = await client.withBody({ name: "test-name" });
       assert.isUndefined(result);
     });
   });
@@ -48,18 +43,13 @@ describe.only("Azure ClientGeneratorCore Client Initialization", () => {
       );
     });
 
-    it.only("should send multiple parameters in withQuery operation", async () => {
-      const result = await client.withQuery("test-id", {
-        requestOptions: { headers: { name: "test-name-value" } }
-      });
+    it("should send multiple parameters in withQuery operation", async () => {
+      const result = await client.withQuery("test-id");
       assert.isUndefined(result);
     });
 
     it("should send multiple parameters in withBody operation", async () => {
-      const result = await client.withBody(
-        { name: "test-name" },
-        { requestOptions: { headers: { name: "test-name-value" } } }
-      );
+      const result = await client.withBody({ name: "test-name" });
       assert.isUndefined(result);
     });
   });
@@ -72,18 +62,12 @@ describe.only("Azure ClientGeneratorCore Client Initialization", () => {
     });
 
     it("should send mixed parameters in withQuery operation", async () => {
-      const result = await client.withQuery("us-west", "test-id", {
-        requestOptions: { headers: { name: "test-name-value" } }
-      });
+      const result = await client.withQuery("us-west", "test-id");
       assert.isUndefined(result);
     });
 
     it("should send mixed parameters in withBody operation", async () => {
-      const result = await client.withBody(
-        "us-west",
-        { name: "test-name" },
-        { requestOptions: { headers: { name: "test-name-value" } } }
-      );
+      const result = await client.withBody("us-west", { name: "test-name" });
       assert.isUndefined(result);
     });
   });
