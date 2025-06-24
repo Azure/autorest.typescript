@@ -33,7 +33,7 @@ export function transformHelperFunctionDetails(
   };
   const details = extractClientPageDetails(client, dpgContext);
   return {
-    ...details,
+    ...(details ?? {}),
     ...annotationDetails,
     ...serializeInfo
   };
