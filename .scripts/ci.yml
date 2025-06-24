@@ -176,17 +176,16 @@ stages:
             macOS_Node20:
               Pool: ${{ parameters.MacPool }}
               OSVmImage: "macOS-latest"
-              Demands: ""
               NodeTestVersion: "20.x"
             Linux_Node20:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: ""
-              Demands: ImageOverride -equals ${{ parameters.OSVmImage }}""
+              OSVmImage: ${{ parameters.OSVmImage }}
               NodeTestVersion: "20.x"
         pool:
-          name: $(Pool)
-          vmImage: $(OSVmImage)
-          demands: $(Demands)
+          name: $[coalesce(variables['Pool'], '')]
+          vmImage: $[coalesce(variables['OSVmImage'], '')]
+          # Should set "demands:" to select image from azsdk-pool, but this would require creating separate
+          # matrixes for the two pools.  Instead, we can use the default image from azsdk-pool for linux.
         steps:
           - template: build.yml
           - task: NodeTool@0
@@ -277,17 +276,16 @@ stages:
             macOS_Node20:
               Pool: ${{ parameters.MacPool }}
               OSVmImage: "macOS-latest"
-              Demands: ""
               NodeTestVersion: "20.x"
             Linux_Node20:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: ""
-              Demands: ImageOverride -equals ${{ parameters.OSVmImage }}
+              OSVmImage: ${{ parameters.OSVmImage }}
               NodeTestVersion: "20.x"
         pool:
-          name: $(Pool)
-          vmImage: $(OSVmImage)
-          demands: $(Demands)
+          name: $[coalesce(variables['Pool'], '')]
+          vmImage: $[coalesce(variables['OSVmImage'], '')]
+          # Should set "demands:" to select image from azsdk-pool, but this would require creating separate
+          # matrixes for the two pools.  Instead, we can use the default image from azsdk-pool for linux.
         steps:
           - template: build.yml
           - script: npm run check-format
@@ -350,17 +348,16 @@ stages:
             macOS_Node20:
               Pool: ${{ parameters.MacPool }}
               OSVmImage: "macOS-latest"
-              Demands: ""
               NodeTestVersion: "20.x"
             Linux_Node20:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: ""
-              Demands: ImageOverride -equals ${{ parameters.OSVmImage }}
+              OSVmImage: ${{ parameters.OSVmImage }}
               NodeTestVersion: "20.x"
         pool:
-          name: $(Pool)
-          vmImage: $(OSVmImage)
-          demands: $(Demands)
+          name: $[coalesce(variables['Pool'], '')]
+          vmImage: $[coalesce(variables['OSVmImage'], '')]
+          # Should set "demands:" to select image from azsdk-pool, but this would require creating separate
+          # matrixes for the two pools.  Instead, we can use the default image from azsdk-pool for linux.
         steps:
           - template: build.yml
           - script: npm run test:azure
