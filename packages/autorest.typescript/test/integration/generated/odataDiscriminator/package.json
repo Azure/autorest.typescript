@@ -4,7 +4,7 @@
   "author": "Microsoft Corporation",
   "description": "A generated SDK for ODataDiscriminatorClient.",
   "version": "1.0.0-preview1",
-  "engines": { "node": ">=18.0.0" },
+  "engines": { "node": ">=20.0.0" },
   "dependencies": {
     "@azure/core-client": "^1.9.2",
     "@azure/core-rest-pipeline": "^1.19.0",
@@ -23,7 +23,7 @@
   },
   "repository": "github:Azure/azure-sdk-for-js",
   "bugs": { "url": "https://github.com/Azure/azure-sdk-for-js/issues" },
-  "files": ["dist/", "README.md", "LICENSE", "review/*", "CHANGELOG.md"],
+  "files": ["dist/", "README.md", "LICENSE"],
   "scripts": {
     "build": "npm run clean && dev-tool run build-package && dev-tool run extract-api",
     "prepack": "npm run build",
