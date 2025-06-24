@@ -10,6 +10,8 @@ import {
 export { MigrateClient } from "./migrateClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
+  errorDetailArrayDeserializer_1,
+  errorDetailDeserializer_1,
   Operation,
   OperationDisplay,
   KnownOrigin,

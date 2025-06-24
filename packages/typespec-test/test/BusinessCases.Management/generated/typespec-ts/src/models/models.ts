@@ -3619,7 +3619,7 @@ export function avsNodeSummaryDeserializer(item: any): AvsNodeSummary {
     estimatedCostWithVcfByol: item["estimatedCostWithVcfByol"],
     errors: !item["errors"]
       ? item["errors"]
-      : __PLACEHOLDER_o164_sdeserializer__(item["errors"]),
+      : errorDetailArrayDeserializer_1(item["errors"]),
   };
 }
 
@@ -3783,12 +3783,27 @@ export enum KnownNetworkSkuType {
  */
 export type NetworkSkuType = string;
 
+export function errorDetailArrayDeserializer_1(
+  result: Array<ErrorDetail>,
+): any[] {
+  return result.map((item) => {
+    return errorDetailDeserializer_1(item);
+  });
+}
+
 /** Error Details */
 export interface ErrorDetail_1 {
   /** Error Code */
   readonly code: string;
   /** Description of the error occurred */
   readonly message: string;
+}
+
+export function errorDetailDeserializer_1(item: any): ErrorDetail {
+  return {
+    code: item["code"],
+    message: item["message"],
+  };
 }
 
 /** The response of a AvsSummary list operation. */

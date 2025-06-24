@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 
 export {
+  errorDetailArrayDeserializer_1,
+  errorDetailDeserializer_1,
   Operation,
   OperationDisplay,
   KnownOrigin,
