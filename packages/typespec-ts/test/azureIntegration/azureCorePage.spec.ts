@@ -114,4 +114,24 @@ describe("Azure Core Page Rest Client", () => {
     assert.strictEqual(result[0]?.name, "Madge");
     assert.strictEqual(result[0]?.etag, "11bdc430-65e8-45ad-81d9-8ffa60d55b59");
   });
+
+  it("should list core page withParameterizedNextLink", async () => {
+    // Expected query parameters on initial request: includePending=true, select=name
+    // TODO: We can only get the first page data because the parameter re-injection is not implemented yet.
+    const result = await client
+      .path("/azure/core/page/with-parameterized-next-link")
+      .get({
+        queryParameters: {
+          includePending: true,
+          select: "name"
+        }
+      });
+    assert.strictEqual(result.status, "200");
+    assert.strictEqual(result.body.values.length, 1);
+    assert.strictEqual(result.body.values[0]?.name, "User1");
+    assert.strictEqual(
+      result.body.nextLink,
+      "http://localhost:3000/azure/core/page/with-parameterized-next-link/second-page?select=name"
+    );
+  });
 });

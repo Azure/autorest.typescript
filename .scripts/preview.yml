@@ -21,8 +21,8 @@ resources:
     ref: refs/heads/main
 
 pool:
-  name: azsdk-pool-mms-win-2022-general
-  vmImage: windows-2022
+  name: azsdk-pool
+  demands: ImageOverride -equals windows-2022
 
 extends:
   template: eng/pipelines/templates/stages/archetype-autorest-preview.yml@azure-sdk-tools
