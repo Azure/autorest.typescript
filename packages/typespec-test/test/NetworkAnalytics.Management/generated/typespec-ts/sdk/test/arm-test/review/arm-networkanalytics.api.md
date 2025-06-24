@@ -344,6 +344,13 @@ export enum KnownActionType {
 }
 
 // @public
+export enum KnownAzureClouds {
+    AZURE_CHINA_CLOUD = "AZURE_CHINA_CLOUD",
+    AZURE_PUBLIC_CLOUD = "AZURE_PUBLIC_CLOUD",
+    AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT"
+}
+
+// @public
 export enum KnownControlState {
     Disabled = "Disabled",
     Enabled = "Enabled"
@@ -442,6 +449,7 @@ export class NetworkAnalyticsApi {
 // @public
 export interface NetworkAnalyticsApiOptionalParams extends ClientOptions {
     apiVersion?: string;
+    cloudSetting?: string;
 }
 
 // @public

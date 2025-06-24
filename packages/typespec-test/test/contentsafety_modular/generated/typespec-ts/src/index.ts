@@ -7,7 +7,6 @@ import {
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
 
-export { ContentSafetyClient } from "./contentSafetyClient.js";
 export {
   AnalyzeTextOptions,
   TextCategory,
@@ -35,6 +34,7 @@ export {
   RemoveTextBlocklistItemsOptions,
   KnownVersions,
 } from "./models/index.js";
+export { ContentSafetyClient } from "./contentSafetyClient.js";
 export {
   ContentSafetyClientOptionalParams,
   ListTextBlocklistItemsOptionalParams,

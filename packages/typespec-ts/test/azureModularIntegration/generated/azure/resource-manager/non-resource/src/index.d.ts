@@ -19,6 +19,12 @@ export declare interface ErrorResponse {
     error?: ErrorDetail;
 }
 
+export declare enum KnownAzureClouds {
+    AZURE_PUBLIC_CLOUD = "AZURE_PUBLIC_CLOUD",
+    AZURE_CHINA_CLOUD = "AZURE_CHINA_CLOUD",
+    AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT"
+}
+
 export declare enum KnownVersions {
     V20231201Preview = "2023-12-01-preview"
 }
@@ -38,6 +44,7 @@ export declare class NonResourceClient {
 
 export declare interface NonResourceClientOptionalParams extends ClientOptions {
     apiVersion?: string;
+    cloudSetting?: string;
 }
 
 export declare interface NonResourceOperationsCreateOptionalParams extends OperationOptions {

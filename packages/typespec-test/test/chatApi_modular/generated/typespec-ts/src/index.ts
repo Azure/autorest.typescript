@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-export { ChatProtocolClient } from "./chatProtocolClient.js";
 export {
   StreamingChatCompletionOptionsRecord,
   ChatMessage,
@@ -15,6 +14,7 @@ export {
   ChatChoiceRecord,
   KnownAPIVersion,
 } from "./models/index.js";
+export { ChatProtocolClient } from "./chatProtocolClient.js";
 export {
   ChatProtocolClientOptionalParams,
   CreateOptionalParams,

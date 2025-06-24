@@ -115,4 +115,14 @@ export enum KnownVersions {
   /** 2021-10-01-preview version */
   V20211001Preview = "2021-10-01-preview",
 }
+
+/** An enum to describe Azure Cloud. */
+export enum KnownAzureClouds {
+  /** Azure public cloud, which is the default cloud for Azure SDKs. */
+  AZURE_PUBLIC_CLOUD = "AZURE_PUBLIC_CLOUD",
+  /** Azure China cloud */
+  AZURE_CHINA_CLOUD = "AZURE_CHINA_CLOUD",
+  /** Azure US government cloud */
+  AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT",
+}
 ```

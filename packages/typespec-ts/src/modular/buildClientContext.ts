@@ -23,7 +23,11 @@ import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getTypeExpression } from "./type-expressions/get-type-expression.js";
 import { resolveReference } from "../framework/reference.js";
 import { useDependencies } from "../framework/hooks/useDependencies.js";
-import { buildEnumTypes, getApiVersionEnum } from "./emitModels.js";
+import {
+  buildEnumTypes,
+  buildKnownAzureCloudsEnum,
+  getApiVersionEnum
+} from "./emitModels.js";
 import {
   SdkClientType,
   SdkHttpParameter,
@@ -100,25 +104,37 @@ export function buildClientContext(
       })
   });
 
+  const propertiesInOptions = getClientParameters(client, dpgContext, {
+    optionalOnly: true
+  })
+    .filter((p) => p.name !== "endpoint")
+    .map((p) => {
+      return {
+        name: getClientParameterName(p),
+        type:
+          p.name.toLowerCase() === "apiversion"
+            ? "string"
+            : getTypeExpression(dpgContext, p.type),
+        hasQuestionToken: true,
+        docs: getDocsWithKnownVersion(dpgContext, p)
+      };
+    });
+  if (dpgContext.arm) {
+    const azureCloudsEnum = buildKnownAzureCloudsEnum();
+    propertiesInOptions.push({
+      name: "cloudSetting",
+      type: "string",
+      hasQuestionToken: true,
+      docs: [
+        `Azure cloud setting, known values of {@link ${azureCloudsEnum.name}}`
+      ]
+    });
+  }
   clientContextFile.addInterface({
     name: `${getClassicalClientName(client)}OptionalParams`,
     isExported: true,
     extends: [resolveReference(dependencies.ClientOptions)],
-    properties: getClientParameters(client, dpgContext, {
-      optionalOnly: true
-    })
-      .filter((p) => p.name !== "endpoint")
-      .map((p) => {
-        return {
-          name: getClientParameterName(p),
-          type:
-            p.name.toLowerCase() === "apiversion"
-              ? "string"
-              : getTypeExpression(dpgContext, p.type),
-          hasQuestionToken: true,
-          docs: getDocsWithKnownVersion(dpgContext, p)
-        };
-      }),
+    properties: propertiesInOptions,
     docs: ["Optional parameters for the client."]
   });
 
@@ -153,6 +169,40 @@ export function buildClientContext(
     emitterOptions,
     endpointParam
   );
+
+  if (dpgContext.arm) {
+    const azureCloudsEnum = buildKnownAzureCloudsEnum();
+    clientContextFile.addFunction({
+      docs: ["Get the ARM endpoint for the client."],
+      name: `getArmEndpoint`,
+      returnType: `string | undefined`,
+      parameters: [
+        {
+          name: "cloudSetting",
+          type: "string",
+          hasQuestionToken: true
+        }
+      ],
+      isExported: false,
+      statements: [
+        `
+  if (cloudSetting === undefined) {
+    return undefined;
+  }
+  const cloudEndpoints: Record<string, string> = {
+    "AZURE_CHINA_CLOUD": "https://management.chinacloudapi.cn/",
+    "AZURE_US_GOVERNMENT": "https://management.usgovcloudapi.net/",
+    "AZURE_PUBLIC_CLOUD": "https://management.azure.com/"
+  };
+  if (cloudSetting in cloudEndpoints) {
+    return cloudEndpoints[cloudSetting];
+  } else {
+    throw new Error(\`Unknown cloud setting: \${cloudSetting}. Please refer the enum ${azureCloudsEnum.name} for possible values.\`);
+  }
+        `
+      ]
+    });
+  }
 
   factoryFunction.addStatements(
     `const clientContext = ${resolveReference(

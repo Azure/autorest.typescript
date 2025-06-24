@@ -19,6 +19,8 @@ export interface NetworkAnalyticsApiOptionalParams extends ClientOptions {
   /** The API version to use for this operation. */
   /** Known values of {@link KnownVersions} that the service accepts. */
   apiVersion?: string;
+  /** Azure cloud setting, known values of {@link KnownAzureClouds} */
+  cloudSetting?: string;
 }
 
 export function createNetworkAnalyticsApi(
@@ -27,7 +29,10 @@ export function createNetworkAnalyticsApi(
   options: NetworkAnalyticsApiOptionalParams = {},
 ): NetworkAnalyticsApiContext {
   const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? "https://management.azure.com";
+    options.endpoint ??
+    options.baseUrl ??
+    getArmEndpoint(options.cloudSetting) ??
+    "https://management.azure.com";
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentInfo = `azsdk-js-arm-networkanalytics/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions
@@ -64,4 +69,23 @@ export function createNetworkAnalyticsApi(
     apiVersion,
     subscriptionId,
   } as NetworkAnalyticsApiContext;
+}
+
+/** Get the ARM endpoint for the client. */
+function getArmEndpoint(cloudSetting?: string): string | undefined {
+  if (cloudSetting === undefined) {
+    return undefined;
+  }
+  const cloudEndpoints: Record<string, string> = {
+    AZURE_CHINA_CLOUD: "https://management.chinacloudapi.cn/",
+    AZURE_US_GOVERNMENT: "https://management.usgovcloudapi.net/",
+    AZURE_PUBLIC_CLOUD: "https://management.azure.com/",
+  };
+  if (cloudSetting in cloudEndpoints) {
+    return cloudEndpoints[cloudSetting];
+  } else {
+    throw new Error(
+      `Unknown cloud setting: ${cloudSetting}. Please refer the enum KnownAzureClouds for possible values.`,
+    );
+  }
 }

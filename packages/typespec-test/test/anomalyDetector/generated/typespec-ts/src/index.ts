@@ -7,7 +7,6 @@ import {
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
 
-export { AnomalyDetectorClient } from "./anomalyDetectorClient.js";
 export { APIVersion } from "./models/index.js";
 export {
   MultivariateMultivariateDetectionResult,
@@ -46,6 +45,7 @@ export {
   UnivariateUnivariateChangePointDetectionOptions,
   UnivariateUnivariateChangePointDetectionResult,
 } from "./models/univariate/index.js";
+export { AnomalyDetectorClient } from "./anomalyDetectorClient.js";
 export { AnomalyDetectorClientOptionalParams } from "./api/index.js";
 export {
   MultivariateDetectMultivariateLastAnomalyOptionalParams,
