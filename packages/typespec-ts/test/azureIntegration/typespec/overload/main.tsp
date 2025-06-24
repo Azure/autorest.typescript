@@ -1,6 +1,7 @@
 import "@typespec/rest";
 import "@typespec/http";
 import "./routes.tsp";
+import "./test.tsp";
 
 using TypeSpec.Rest;
 using TypeSpec.Http;

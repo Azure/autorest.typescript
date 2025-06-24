@@ -71,4 +71,12 @@ describe("Page Client", () => {
     assert.strictEqual(items[0]?.id, validUser.id);
     assert.strictEqual(items[0]?.etag, validUser.etag);
   });
+
+  it("should list core page withParameterizedNextLink", async () => {
+    // TODO: We can only get the first page data because the parameter re-injection is not implemented yet.
+    const result = await client
+      .withParameterizedNextLink("name", { includePending: true })
+      .next();
+    assert.strictEqual(result.value.name, "User1");
+  });
 });
