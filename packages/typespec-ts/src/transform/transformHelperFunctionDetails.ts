@@ -3,16 +3,12 @@ import {
   getHttpOperationWithCache,
   SdkClient
 } from "@azure-tools/typespec-client-generator-core";
-import { Model } from "@typespec/compiler";
-import { HttpOperation } from "@typespec/http";
 import { SdkContext } from "../utils/interfaces.js";
 import {
-  extractPagedMetadataNested,
+  extractPageDetails,
   getSpecialSerializeInfo,
   hasPagingOperations,
-  hasPollingOperations,
-  parseItemName,
-  parseNextLinkName
+  hasPollingOperations
 } from "../utils/operationUtil.js";
 import { getCollectionFormat } from "../utils/modelUtils.js";
 import { listOperationsUnderRLCClient } from "../utils/clientUtils.js";
@@ -50,44 +46,26 @@ function extractPageDetailFromCore(client: SdkClient, dpgContext: SdkContext) {
   }
   const nextLinks = new Set<string>();
   const itemNames = new Set<string>();
-  // Add default values
-  nextLinks.add("nextLink");
-  itemNames.add("value");
   for (const op of listOperationsUnderRLCClient(client)) {
     const route = getHttpOperationWithCache(dpgContext, op);
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
     }
-    extractPageDetailFromCoreForRoute(route);
-  }
-
-  function extractPageDetailFromCoreForRoute(route: HttpOperation) {
-    for (const response of route.responses) {
-      const paged = extractPagedMetadataNested(program, response.type as Model);
-      if (paged) {
-        const nextLinkName = parseNextLinkName(paged);
-        if (nextLinkName) {
-          nextLinks.add(nextLinkName);
-        }
-        const itemName = parseItemName(paged);
-        if (itemName) {
-          itemNames.add(itemName);
-        }
-        // Once we find paged metadata, we don't need to processs any further.
-        continue;
-      }
+    const pagedDetail = extractPageDetails(program, route);
+    if (pagedDetail) {
+      pagedDetail.itemNames.forEach(itemNames.add);
+      pagedDetail.nextLinkNames.forEach(nextLinks.add);
     }
   }
   // If there are more than one options for nextLink and item names we need to generate a
   // more complex pagination helper.
-  const isComplexPaging = nextLinks.size > 1 || itemNames.size > 1;
   return {
     hasPaging: true,
     pageDetails: {
       itemNames: [...itemNames],
       nextLinkNames: [...nextLinks],
-      isComplexPaging
+      isComplexPaging: nextLinks.size > 1 || itemNames.size > 1
     }
   };
 }
