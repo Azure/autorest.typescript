@@ -4,18 +4,13 @@
 
 ```tsp
 model CustomErrorDetail {
-  /** Custom error code */
   code: string;
-  /** Custom error message */
   message: string;
-  /** Custom additional details */
   details?: string;
 }
 
 model CustomErrorResponse {
-  /** The error information */
   error: CustomErrorDetail;
-  /** Reference to Azure Core error response */
   coreError?: Azure.Core.Foundations.ErrorResponse;
 }
 
@@ -31,9 +26,7 @@ needAzureCore: true
 ```ts models
 /** model interface CustomErrorResponse */
 export interface CustomErrorResponse {
-  /** The error information */
   error: CustomErrorDetail;
-  /** Reference to Azure Core error response */
   coreError?: __PLACEHOLDER_o18__;
 }
 
@@ -48,11 +41,8 @@ export function customErrorResponseDeserializer(
 
 /** model interface CustomErrorDetail */
 export interface CustomErrorDetail {
-  /** Custom error code */
   code: string;
-  /** Custom error message */
   message: string;
-  /** Custom additional details */
   details?: string;
 }
 
