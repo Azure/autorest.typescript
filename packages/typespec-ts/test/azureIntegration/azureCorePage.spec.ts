@@ -117,7 +117,7 @@ describe("Azure Core Page Rest Client", () => {
 
   it("should list core page withParameterizedNextLink", async () => {
     // Expected query parameters on initial request: includePending=true, select=name
-    // To Do: Implement the pagination logic to handle the next link with parameters
+    // TODO: We can only get the first page data because the parameter re-injection is not implemented yet.
     const result = await client
       .path("/azure/core/page/with-parameterized-next-link")
       .get({
