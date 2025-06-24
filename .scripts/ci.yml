@@ -149,7 +149,7 @@ stages:
               NodeTestVersion: "20.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
-          demands: ImageOverride -equals $[coalesce(variables['OSVmImage'], '')]
+          demands: ImageOverride -equals $(OSVmImage)
         steps:
           - template: build.yml
           - script: npm run rlc-generate-swaggers
@@ -181,9 +181,9 @@ stages:
         pool:
           name: $[coalesce(variables['Pool'], '')]
           ${{ if contains(variables['OSVmImage'], 'macOS') }}:
-            vmImage: $[coalesce(variables['OSVmImage'], '')]
+            vmImage: $(OSVmImage)
           ${{ else }}:
-            demands: ImageOverride -equals $[coalesce(variables['OSVmImage'], '')]
+            demands: ImageOverride -equals $(OSVmImage)
         steps:
           - template: build.yml
           - task: NodeTool@0
@@ -236,7 +236,7 @@ stages:
               NodeTestVersion: "20.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
-          demands: ImageOverride -equals $[coalesce(variables['OSVmImage'], '')]
+          demands: ImageOverride -equals $(OSVmImage)
         steps:
           - template: build.yml
           - script: node $(Build.SourcesDirectory)/common/scripts/install-run-rushx.js smoke-test
@@ -258,7 +258,7 @@ stages:
               NodeTestVersion: "20.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
-          demands: ImageOverride -equals $[coalesce(variables['OSVmImage'], '')]
+          demands: ImageOverride -equals $(OSVmImage)
         steps:
           - template: build.yml
           - script: node $(Build.SourcesDirectory)/common/scripts/install-run-rushx.js smoke-test:contoso && node $(Build.SourcesDirectory)/common/scripts/install-run-rushx.js smoke-test:todo
@@ -282,9 +282,9 @@ stages:
         pool:
           name: $[coalesce(variables['Pool'], '')]
           ${{ if contains(variables['OSVmImage'], 'macOS') }}:
-            vmImage: $[coalesce(variables['OSVmImage'], '')]
+            vmImage: $(OSVmImage)
           ${{ else }}:
-            demands: ImageOverride -equals $[coalesce(variables['OSVmImage'], '')]
+            demands: ImageOverride -equals $(OSVmImage)
         steps:
           - template: build.yml
           - script: npm run check-format
@@ -355,9 +355,9 @@ stages:
         pool:
           name: $[coalesce(variables['Pool'], '')]
           ${{ if contains(variables['OSVmImage'], 'macOS') }}:
-            vmImage: $[coalesce(variables['OSVmImage'], '')]
+            vmImage: $(OSVmImage)
           ${{ else }}:
-            demands: ImageOverride -equals $[coalesce(variables['OSVmImage'], '')]
+            demands: ImageOverride -equals $(OSVmImage)
         steps:
           - template: build.yml
           - script: npm run test:azure
