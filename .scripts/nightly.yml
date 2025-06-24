@@ -9,8 +9,8 @@ schedules:
 pr: none
 
 pool:
-  name: azsdk-pool-mms-ubuntu-2004-general
-  vmImage: ubuntu-20.04
+  name: azsdk-pool
+  demands: ImageOverride -equals ubuntu-24.04
 
 stages:
   - stage: NightlyCI
