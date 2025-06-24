@@ -678,11 +678,7 @@ function getHeaderAndBodyParameters(
     return "";
   }
   const operationParameters = operation.operation.parameters.filter(
-    (p) =>
-      !(
-        (p.onClient && p.isApiVersionParam && p.kind === "query") ||
-        isContentType(p)
-      )
+    (p) => !isContentType(p)
   );
 
   const contentTypeParameter =
@@ -1039,7 +1035,7 @@ function getQueryParameters(
     return [];
   }
   const operationParameters = operation.operation.parameters.filter(
-    (p) => (!p.onClient || p.isApiVersionParam) && !isContentType(p)
+    (p) => !isContentType(p)
   );
   const parametersImplementation: Record<
     "query",
