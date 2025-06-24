@@ -323,6 +323,10 @@ export const azureRlcTsps = [
   {
     outputPath: "azure/client-generator-core/api-version/query",
     inputPath: "azure/client-generator-core/api-version/query"
+  },
+  {
+    outputPath: "azure/client-generator-core/client-initialization",
+    inputPath: "azure/client-generator-core/client-initialization"
   }
 ];
 
@@ -823,6 +827,10 @@ export const azureModularTsps = [
   {
     outputPath: "parameters/path",
     inputPath: "parameters/path"
+  },
+  {
+    outputPath: "azure/client-generator-core/client-initialization",
+    inputPath: "azure/client-generator-core/client-initialization"
   },
   {
     outputPath: "azure/resource-manager/non-resource",
