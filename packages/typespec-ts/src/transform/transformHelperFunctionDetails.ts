@@ -44,8 +44,8 @@ function extractClientPageDetails(client: SdkClient, dpgContext: SdkContext) {
   if (!hasPagingOperations(client, dpgContext)) {
     return;
   }
-  const nextLinks = new Set<string>();
-  const itemNames = new Set<string>();
+  const nextLinks = new Set<string>(["nextLink"]);
+  const itemNames = new Set<string>(["value"]);
   for (const op of listOperationsUnderRLCClient(client)) {
     const route = getHttpOperationWithCache(dpgContext, op);
     // ignore overload base operation
