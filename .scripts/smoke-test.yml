@@ -9,12 +9,12 @@ jobs:
     strategy:
       matrix:
         Linux_Node20:
-          Pool: azsdk-pool-mms-ubuntu-2004-general
-          OSVmImage: "ubuntu-20.04"
+          Pool: azsdk-pool
+          OSVmImage: "ubuntu-24.04"
           NodeTestVersion: "20.x"
     pool:
       name: $[coalesce(variables['Pool'], '')]
-      vmImage: $[coalesce(variables['OSVmImage'], '')]
+      demands: ImageOverride -equals $(OSVmImage)
     steps:
       - template: build.yml
       - script: npm run clone:specs

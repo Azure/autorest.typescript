@@ -678,7 +678,7 @@ function getHeaderAndBodyParameters(
     return "";
   }
   const operationParameters = operation.operation.parameters.filter(
-    (p) => (!p.onClient || p.isApiVersionParam) && !isContentType(p)
+    (p) => !isContentType(p)
   );
 
   const contentTypeParameter =
@@ -1016,7 +1016,7 @@ function getPathParameters(
   for (const param of operation.operation.parameters) {
     if (param.kind === "path") {
       pathParams.push(
-        `"${param.serializedName}": ${getPathParamExpr(param, getDefaultValue(param) as string, optionalParamName)}`
+        `"${param.serializedName}": ${getPathParamExpr(param.correspondingMethodParams[0]!, getDefaultValue(param) as string, optionalParamName)}`
       );
     }
   }
@@ -1035,7 +1035,7 @@ function getQueryParameters(
     return [];
   }
   const operationParameters = operation.operation.parameters.filter(
-    (p) => (!p.onClient || p.isApiVersionParam) && !isContentType(p)
+    (p) => !isContentType(p)
   );
   const parametersImplementation: Record<
     "query",
@@ -1075,7 +1075,7 @@ function escapeUriTemplateParamName(name: string) {
 }
 
 function getPathParamExpr(
-  param: SdkServiceParameter,
+  param: SdkModelPropertyType,
   defaultValue?: string,
   optionalParamName: string = "options"
 ) {
