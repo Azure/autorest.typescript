@@ -27,7 +27,7 @@ needAzureCore: true
 /** model interface ErrorResponse */
 export interface ErrorResponse {
   error: ErrorDetail;
-  coreError?: __PLACEHOLDER_o18__;
+  coreError?: __PLACEHOLDER_o274__;
 }
 
 export function errorResponseDeserializer(item: any): ErrorResponse {
