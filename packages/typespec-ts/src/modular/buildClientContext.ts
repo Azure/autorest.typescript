@@ -45,9 +45,8 @@ export function getClientContextPath(
   const { subfolder } = getModularClientOptions(clientMap);
   const name = getClientName(client);
   const srcPath = emitterOptions.modularOptions.sourceRoot;
-  const contentPath = `${srcPath}/${
-    subfolder && subfolder !== "" ? subfolder + "/" : ""
-  }api/${normalizeName(name, NameType.File)}Context.ts`;
+  const contentPath = `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""
+    }api/${normalizeName(name, NameType.File)}Context.ts`;
   return contentPath;
 }
 
@@ -195,8 +194,9 @@ export function buildClientContext(
           : [];
     const apiVersionInEndpoint =
       templateArguments && templateArguments.find((p) => p.isApiVersionParam);
+    const parameterName = getClientParameterName(apiVersionParam);
     if (!apiVersionInEndpoint && apiVersionParam.clientDefaultValue) {
-      apiVersionPolicyStatement += `const apiVersion = options.apiVersion ?? "${apiVersionParam.clientDefaultValue}";`;
+      apiVersionPolicyStatement += `const ${parameterName} = options.${parameterName} ?? "${apiVersionParam.clientDefaultValue}";`;
     }
 
     if (apiVersionParam.kind === "method") {
@@ -210,7 +210,7 @@ export function buildClientContext(
           if (!url.searchParams.get("api-version")) {
             req.url = \`\${req.url}\${
               Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
-            }api-version=\${${getClientParameterName(apiVersionParam)}}\`;
+            }api-version=\${${parameterName}}\`;
           }
     
           return next(req);
