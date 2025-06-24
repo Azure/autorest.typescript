@@ -73,7 +73,7 @@ describe("Page Client", () => {
   });
 
   it("should list core page withParameterizedNextLink", async () => {
-    // To Do: This test is failing because the mock API does not support the next link parameterization.
+    // TODO: We can only get the first page data because the parameter re-injection is not implemented yet.
     const result = await client
       .withParameterizedNextLink("name", { includePending: true })
       .next();
