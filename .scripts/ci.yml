@@ -176,17 +176,17 @@ stages:
             macOS_Node20:
               Pool: ${{ parameters.MacPool }}
               OSVmImage: "macOS-latest"
+              Demands: ""
               NodeTestVersion: "20.x"
             Linux_Node20:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: ${{ parameters.OSVmImage }}
+              OSVmImage: ""
+              Demands: ImageOverride -equals ${{ parameters.OSVmImage }}""
               NodeTestVersion: "20.x"
         pool:
           name: $(Pool)
-          ${{ if contains(variables['OSVmImage'], 'macOS') }}:
-            vmImage: $(OSVmImage)
-          ${{ else }}:
-            demands: ImageOverride -equals $(OSVmImage)
+          vmImage: $(OSVmImage)
+          demands: $(Demands)
         steps:
           - template: build.yml
           - task: NodeTool@0
@@ -277,17 +277,17 @@ stages:
             macOS_Node20:
               Pool: ${{ parameters.MacPool }}
               OSVmImage: "macOS-latest"
+              Demands: ""
               NodeTestVersion: "20.x"
             Linux_Node20:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: ${{ parameters.OSVmImage }}
+              OSVmImage: ""
+              Demands: ImageOverride -equals ${{ parameters.OSVmImage }}
               NodeTestVersion: "20.x"
         pool:
           name: $(Pool)
-          ${{ if contains(variables['OSVmImage'], 'macOS') }}:
-            vmImage: $(OSVmImage)
-          ${{ else }}:
-            demands: ImageOverride -equals $(OSVmImage)
+          vmImage: $(OSVmImage)
+          demands: $(Demands)
         steps:
           - template: build.yml
           - script: npm run check-format
@@ -350,17 +350,17 @@ stages:
             macOS_Node20:
               Pool: ${{ parameters.MacPool }}
               OSVmImage: "macOS-latest"
+              Demands: ""
               NodeTestVersion: "20.x"
             Linux_Node20:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: ${{ parameters.OSVmImage }}
+              OSVmImage: ""
+              Demands: ImageOverride -equals ${{ parameters.OSVmImage }}
               NodeTestVersion: "20.x"
         pool:
           name: $(Pool)
-          ${{ if contains(variables['OSVmImage'], 'macOS') }}:
-            vmImage: $(OSVmImage)
-          ${{ else }}:
-            demands: ImageOverride -equals $(OSVmImage)
+          vmImage: $(OSVmImage)
+          demands: $(Demands)
         steps:
           - template: build.yml
           - script: npm run test:azure
