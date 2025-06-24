@@ -14,7 +14,7 @@ describe("Pageable Client", () => {
     });
   });
 
-  it("should get pagable Server Driven Pagination link", async () => {
+  it("should get pageable Server Driven Pagination link", async () => {
     const initialResponse = await client
       .path("/payload/pageable/server-driven-pagination/link")
       .get();
