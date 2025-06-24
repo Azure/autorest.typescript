@@ -8,6 +8,9 @@ parameters:
   - name: WindowsPool
     type: string
     default: azsdk-pool
+  - name: MacPool
+    type: string
+    default: Azure Pipelines
   - name: IncludeRelease
     type: boolean
     default: true
@@ -171,7 +174,7 @@ stages:
         strategy:
           matrix:
             macOS_Node20:
-              Pool:
+              Pool: ${{ parameters.MacPool }}
               OSVmImage: "macOS-latest"
               NodeTestVersion: "20.x"
             Linux_Node20:
@@ -179,7 +182,7 @@ stages:
               OSVmImage: ${{ parameters.OSVmImage }}
               NodeTestVersion: "20.x"
         pool:
-          name: $[coalesce(variables['Pool'], '')]
+          name: $(Pool)
           ${{ if contains(variables['OSVmImage'], 'macOS') }}:
             vmImage: $(OSVmImage)
           ${{ else }}:
@@ -272,7 +275,7 @@ stages:
         strategy:
           matrix:
             macOS_Node20:
-              Pool:
+              Pool: ${{ parameters.MacPool }}
               OSVmImage: "macOS-latest"
               NodeTestVersion: "20.x"
             Linux_Node20:
@@ -280,7 +283,7 @@ stages:
               OSVmImage: ${{ parameters.OSVmImage }}
               NodeTestVersion: "20.x"
         pool:
-          name: $[coalesce(variables['Pool'], '')]
+          name: $(Pool)
           ${{ if contains(variables['OSVmImage'], 'macOS') }}:
             vmImage: $(OSVmImage)
           ${{ else }}:
@@ -345,7 +348,7 @@ stages:
         strategy:
           matrix:
             macOS_Node20:
-              Pool:
+              Pool: ${{ parameters.MacPool }}
               OSVmImage: "macOS-latest"
               NodeTestVersion: "20.x"
             Linux_Node20:
@@ -353,7 +356,7 @@ stages:
               OSVmImage: ${{ parameters.OSVmImage }}
               NodeTestVersion: "20.x"
         pool:
-          name: $[coalesce(variables['Pool'], '')]
+          name: $(Pool)
           ${{ if contains(variables['OSVmImage'], 'macOS') }}:
             vmImage: $(OSVmImage)
           ${{ else }}:
