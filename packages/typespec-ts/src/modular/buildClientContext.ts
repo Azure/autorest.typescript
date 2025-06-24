@@ -45,8 +45,9 @@ export function getClientContextPath(
   const { subfolder } = getModularClientOptions(clientMap);
   const name = getClientName(client);
   const srcPath = emitterOptions.modularOptions.sourceRoot;
-  const contentPath = `${srcPath}/${subfolder && subfolder !== "" ? subfolder + "/" : ""
-    }api/${normalizeName(name, NameType.File)}Context.ts`;
+  const contentPath = `${srcPath}/${
+    subfolder && subfolder !== "" ? subfolder + "/" : ""
+  }api/${normalizeName(name, NameType.File)}Context.ts`;
   return contentPath;
 }
 
