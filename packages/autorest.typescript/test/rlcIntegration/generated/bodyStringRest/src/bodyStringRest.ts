@@ -16,8 +16,7 @@ export interface BodyStringRestClientOptions extends ClientOptions {}
 export default function createClient(
   options: BodyStringRestClientOptions = {},
 ): BodyStringRestClient {
-  const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
+  const endpointUrl = options.endpoint ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-body-string-rest/1.0.0-preview1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
