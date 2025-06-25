@@ -25,9 +25,7 @@ export default function createClient(
   { apiVersion = "v1.1", ...options }: AnomalyDetectorMVClientOptions = {},
 ): AnomalyDetectorMVClient {
   const endpointUrl =
-    options.endpoint ??
-    options.baseUrl ??
-    `${endpoint}/anomalydetector/${apiVersion}`;
+    options.endpoint ?? `${endpoint}/anomalydetector/${apiVersion}`;
   const userAgentInfo = `azsdk-js-anomaly-detector-mv-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

@@ -26,10 +26,7 @@ export default function createClient(
   credentials: TokenCredential | KeyCredential,
   { apiVersion = "v1.2", ...options }: FaceClientOptions = {},
 ): FaceClient {
-  const endpointUrl =
-    options.endpoint ??
-    options.baseUrl ??
-    `${endpointParam}/face/${apiVersion}`;
+  const endpointUrl = options.endpoint ?? `${endpointParam}/face/${apiVersion}`;
   const userAgentInfo = `azsdk-js-ai-face-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
