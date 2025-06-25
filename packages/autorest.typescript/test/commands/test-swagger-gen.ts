@@ -1264,7 +1264,7 @@ const buildAutorest = () => {
   }
   const childProcess = spawn("npm run build", {
     stdio: [process.stdin, process.stdout, process.stderr],
-    shell: process.platform === "win32"
+    shell: true
   });
 
   return onExit(childProcess);
@@ -1273,7 +1273,7 @@ const buildAutorest = () => {
 const logAutorestInfo = async () => {
   const childProcess = spawn("autorest", ["--info"], {
     stdio: [process.stdin, process.stdout, process.stderr],
-    shell: process.platform === "win32"
+    shell: true
   });
   await onExit(childProcess);
 };
