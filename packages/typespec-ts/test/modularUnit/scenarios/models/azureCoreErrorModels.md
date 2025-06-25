@@ -56,7 +56,7 @@ model AvsSummary is ProxyResource<AvsSummaryProperties> {
 
 @armResourceOperations
 interface BusinessCaseAvsSummaryOperations {
-  get is ArmResourceRead<AvsSummary>;
+  createOrUpdate is ArmResourceCreateOrReplaceSync<AvsSummary>;
 }
 ```
 
@@ -223,6 +223,14 @@ export interface AvsSummary extends ProxyResource {
   properties?: AvsSummaryProperties;
 }
 
+export function avsSummarySerializer(item: AvsSummary): any {
+  return {
+    properties: !item["properties"]
+      ? item["properties"]
+      : avsSummaryPropertiesSerializer(item["properties"]),
+  };
+}
+
 export function avsSummaryDeserializer(item: any): AvsSummary {
   return {
     id: item["id"],
@@ -242,6 +250,12 @@ export interface AvsSummaryProperties {
   error: ErrorDetail_1;
 }
 
+export function avsSummaryPropertiesSerializer(
+  item: AvsSummaryProperties,
+): any {
+  return { error: errorDetailSerializer(item["error"]) };
+}
+
 export function avsSummaryPropertiesDeserializer(
   item: any,
 ): AvsSummaryProperties {
@@ -257,7 +271,15 @@ export interface ErrorDetail_1 {
   details?: string;
 }
 
-export function errorDetailDeserializer_1(item: any): ErrorDetail {
+export function errorDetailSerializer(item: ErrorDetail_1): any {
+  return {
+    code: item["code"],
+    message: item["message"],
+    details: item["details"],
+  };
+}
+
+export function errorDetailDeserializer_1(item: any): ErrorDetail_1 {
   return {
     code: item["code"],
     message: item["message"],
@@ -267,6 +289,10 @@ export function errorDetailDeserializer_1(item: any): ErrorDetail {
 
 /** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
 export interface ProxyResource extends Resource {}
+
+export function proxyResourceSerializer(item: ProxyResource): any {
+  return item;
+}
 
 export function proxyResourceDeserializer(item: any): ProxyResource {
   return {
@@ -289,6 +315,10 @@ export interface Resource {
   readonly type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   readonly systemData?: SystemData;
+}
+
+export function resourceSerializer(item: Resource): any {
+  return item;
 }
 
 export function resourceDeserializer(item: any): Resource {
@@ -353,9 +383,10 @@ import {
   Operation,
   errorResponseDeserializer,
   AvsSummary,
+  avsSummarySerializer,
   avsSummaryDeserializer,
 } from "../models/models.js";
-import { GetOptionalParams, ListOptionalParams } from "./options.js";
+import { CreateOrUpdateOptionalParams, ListOptionalParams } from "./options.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
@@ -368,11 +399,12 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
-export function _getSend(
+export function _createOrUpdateSend(
   context: Client,
   resourceGroupName: string,
   avsSummaryName: string,
-  options: GetOptionalParams = { requestOptions: {} },
+  resource: AvsSummary,
+  options: CreateOrUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Contoso/avsSummaries/{avsSummaryName}{?api%2Dversion}",
@@ -388,19 +420,21 @@ export function _getSend(
   );
   return context
     .path(path)
-    .get({
+    .put({
       ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
       headers: {
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
+      body: avsSummarySerializer(resource),
     });
 }
 
-export async function _getDeserialize(
+export async function _createOrUpdateDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AvsSummary> {
-  const expectedStatuses = ["200"];
+  const expectedStatuses = ["200", "201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = errorResponseDeserializer(result.body);
@@ -410,20 +444,22 @@ export async function _getDeserialize(
   return avsSummaryDeserializer(result.body);
 }
 
-/** Get a AvsSummary */
-export async function get(
+/** Create a AvsSummary */
+export async function createOrUpdate(
   context: Client,
   resourceGroupName: string,
   avsSummaryName: string,
-  options: GetOptionalParams = { requestOptions: {} },
+  resource: AvsSummary,
+  options: CreateOrUpdateOptionalParams = { requestOptions: {} },
 ): Promise<AvsSummary> {
-  const result = await _getSend(
+  const result = await _createOrUpdateSend(
     context,
     resourceGroupName,
     avsSummaryName,
+    resource,
     options,
   );
-  return _getDeserialize(result);
+  return _createOrUpdateDeserialize(result);
 }
 
 export function _listSend(

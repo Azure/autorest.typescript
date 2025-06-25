@@ -127,7 +127,7 @@ function buildPolymorphicSerializer(
     parameters: [
       {
         name: "item",
-        type: normalizeModelName(context, type)
+        type: resolveReference(refkey(type))
       }
     ],
     returnType: "any",
@@ -253,7 +253,7 @@ function buildDiscriminatedUnionSerializer(
     parameters: [
       {
         name: "item",
-        type: normalizeModelName(context, type)
+        type: resolveReference(refkey(type))
       }
     ],
     returnType: "any",
@@ -294,7 +294,7 @@ function buildUnionSerializer(
     parameters: [
       {
         name: "item",
-        type: normalizeModelName(context, type)
+        type: resolveReference(refkey(type))
       }
     ],
     returnType: "any",
@@ -330,12 +330,7 @@ function buildModelTypeSerializer(
     parameters: [
       {
         name: "item",
-        type: normalizeModelName(
-          context,
-          type,
-          NameType.Interface,
-          options.skipDiscriminatedUnionSuffix
-        )
+        type: resolveReference(refkey(type))
       }
     ],
     returnType: "any",
@@ -497,7 +492,7 @@ function buildDictTypeSerializer(
     parameters: [
       {
         name: "item",
-        type: `Record<string, ${normalizeModelName(context, type.valueType as any) ?? "any"}>`
+        type: `Record<string, ${resolveReference(type.valueType) ?? "any"}>`
       }
     ],
     returnType: "Record<string, any>",
