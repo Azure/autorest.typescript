@@ -27,8 +27,7 @@ export function createClient(
     ...options
   }: PurviewMetadataPoliciesClientOptions = {},
 ): PurviewMetadataPoliciesClient {
-  const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? `${endpoint}/policyStore`;
+  const endpointUrl = options.endpoint ?? `${endpoint}/policyStore`;
   const userAgentInfo = `azsdk-js-purview-administration-rest/1.0.0-beta.2`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
