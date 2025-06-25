@@ -161,7 +161,6 @@ export function buildOperationOptions(
         return {
           docs: getDocsFromDescription(p.doc),
           hasQuestionToken: true,
-
           type: getTypeExpression(context, p.type),
           name: normalizeName(p.name, NameType.Parameter)
         };

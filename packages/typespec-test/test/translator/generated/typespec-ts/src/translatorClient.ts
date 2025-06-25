@@ -22,7 +22,7 @@ export default function createClient(
   endpointParam: string,
   { apiVersion = "3.0", ...options }: TranslatorClientOptions = {},
 ): TranslatorClient {
-  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
+  const endpointUrl = options.endpoint ?? `${endpointParam}`;
   const userAgentInfo = `azsdk-js-cognitiveservices-translator-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

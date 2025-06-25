@@ -12,8 +12,6 @@ import {
 } from "@azure-tools/rlc-common";
 import {
   getHttpOperationWithCache,
-  listOperationGroups,
-  listOperationsInOperationGroup,
   SdkClient
 } from "@azure-tools/typespec-client-generator-core";
 import { getDoc, isVoidType } from "@typespec/compiler";
@@ -33,6 +31,7 @@ import {
   isBinaryPayload,
   sortedOperationResponses
 } from "../utils/operationUtil.js";
+import { listOperationsUnderRLCClient } from "../utils/clientUtils.js";
 
 export function transformToResponseTypes(
   client: SdkClient,
@@ -41,29 +40,13 @@ export function transformToResponseTypes(
 ): OperationResponse[] {
   const rlcResponses: OperationResponse[] = [];
   const inputImportedSet = new Set<string>();
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const route = getHttpOperationWithCache(dpgContext, clientOp);
+  for (const op of listOperationsUnderRLCClient(client)) {
+    const route = getHttpOperationWithCache(dpgContext, op);
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
     }
     transformToResponseTypesForRoute(route);
-  }
-  const operationGroups = listOperationGroups(dpgContext, client, true);
-  for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(
-      dpgContext,
-      operationGroup
-    );
-    for (const op of operations) {
-      const route = getHttpOperationWithCache(dpgContext, op);
-      // ignore overload base operation
-      if (route.overloads && route.overloads?.length > 0) {
-        continue;
-      }
-      transformToResponseTypesForRoute(route);
-    }
   }
   if (inputImportedSet.size > 0) {
     importDetails.response.importsSet = inputImportedSet;

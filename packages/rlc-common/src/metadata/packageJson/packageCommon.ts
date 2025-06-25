@@ -29,7 +29,7 @@ export function getPackageCommonInfo(config: PackageCommonInfoConfig) {
     version,
     description,
     engines: {
-      node: ">=18.0.0"
+      node: ">=20.0.0"
     },
     sideEffects: false,
     autoPublish: false,
@@ -45,7 +45,7 @@ export function getCommonPackageDevDependencies(
   config: PackageCommonInfoConfig
 ) {
   return {
-    "@types/node": "^18.0.0",
+    "@types/node": "^20.0.0",
     eslint: "^9.9.0",
     typescript: "~5.8.2",
     ...getEsmDevDependencies(config)

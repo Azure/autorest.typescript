@@ -3,7 +3,7 @@
   "version": "1.0.0-beta.1",
   "description": "A generated SDK for NetworkAnalyticsApi.",
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   },
   "sideEffects": false,
   "autoPublish": false,
@@ -45,9 +45,7 @@
     "dist/",
     "!dist/**/*.d.*ts.map",
     "README.md",
-    "LICENSE",
-    "review/*",
-    "CHANGELOG.md"
+    "LICENSE"
   ],
   "dependencies": {
     "@azure/core-util": "^1.9.2",
@@ -61,7 +59,7 @@
   },
   "devDependencies": {
     "dotenv": "^16.0.0",
-    "@types/node": "^18.0.0",
+    "@types/node": "^20.0.0",
     "eslint": "^9.9.0",
     "typescript": "~5.8.2",
     "tshy": "^2.0.0",
