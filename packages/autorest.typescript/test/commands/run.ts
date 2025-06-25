@@ -168,7 +168,7 @@ export async function runAutorest(
     console.log(`=== Start ${title} ===`);
     const childProcess = spawn(autorestCommand, commandArguments, {
       stdio: [process.stdin, process.stdout, process.stderr],
-      shell: process.platform === "win32"
+      shell: true
     });
 
     console.log(`${autorestCommand} ${commandArguments.join(" ")}`);

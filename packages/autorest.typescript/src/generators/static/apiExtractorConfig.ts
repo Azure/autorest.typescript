@@ -5,13 +5,15 @@ import { Project } from "ts-morph";
 import { getAutorestOptions } from "../../autorestSession";
 
 export function generateApiExtractorConfig(project: Project) {
-  const { generateMetadata, packageDetails } = getAutorestOptions();
+  const { generateMetadata, packageDetails, azureSdkForJs } = getAutorestOptions();
 
   if (!generateMetadata) {
     return;
   }
 
-  const config = {
+  const config = azureSdkForJs? {
+    "extends": "../../../api-extractor-base.json"
+  } : {
     $schema:
       "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
     mainEntryPointFilePath: `dist/esm/index.d.ts`,

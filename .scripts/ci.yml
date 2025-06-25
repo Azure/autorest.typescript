@@ -4,16 +4,22 @@ trigger:
 parameters:
   - name: LinuxPool
     type: string
-    default: azsdk-pool-mms-ubuntu-2004-general
+    default: azsdk-pool
+  - name: WindowsPool
+    type: string
+    default: azsdk-pool
+  - name: MacPool
+    type: string
+    default: Azure Pipelines
   - name: IncludeRelease
     type: boolean
     default: true
   - name: OSVmImage
     type: string
-    default: ubuntu-20.04
+    default: ubuntu-24.04
   - name: Windows_Latest
     type: string
-    default: "Windows-latest"
+    default: "windows-2022"
 
 variables:
   AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/packages/autorest.typescript/coverage/"
@@ -28,7 +34,7 @@ stages:
       - job: Build
         pool:
           name: ${{ parameters.LinuxPool }}
-          vmImage: ${{ parameters.OSVmImage }}
+          demands: ImageOverride -equals ${{ parameters.OSVmImage }}
         steps:
           - template: build.yml
           - script: |
@@ -118,13 +124,13 @@ stages:
           - template: globals.yml
         strategy:
           matrix:
-            Linux_Node18:
+            Linux_Node20:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-20.04"
-              NodeTestVersion: "18.x"
+              OSVmImage: ${{ parameters.OSVmImage }}
+              NodeTestVersion: "20.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
-          vmImage: $[coalesce(variables['OSVmImage'], '')]
+          demands: ImageOverride -equals $(OSVmImage)
         steps:
           - template: build.yml
           - script: npm run generate-swaggers
@@ -140,13 +146,13 @@ stages:
           - template: globals.yml
         strategy:
           matrix:
-            Linux_Node18:
+            Linux_Node20:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-20.04"
-              NodeTestVersion: "18.x"
+              OSVmImage: ${{ parameters.OSVmImage }}
+              NodeTestVersion: "20.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
-          vmImage: $[coalesce(variables['OSVmImage'], '')]
+          demands: ImageOverride -equals $(OSVmImage)
         steps:
           - template: build.yml
           - script: npm run rlc-generate-swaggers
@@ -167,17 +173,19 @@ stages:
           - template: globals.yml
         strategy:
           matrix:
-            macOS_Node18:
-              Pool:
+            macOS_Node20:
+              Pool: ${{ parameters.MacPool }}
               OSVmImage: "macOS-latest"
-              NodeTestVersion: "18.x"
-            Linux_Node18:
+              NodeTestVersion: "20.x"
+            Linux_Node20:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-20.04"
-              NodeTestVersion: "18.x"
+              OSVmImage: ${{ parameters.OSVmImage }}
+              NodeTestVersion: "20.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
+          # Should set "demands:" to select image from azsdk-pool, but this would require creating separate
+          # matrixes for the two pools.  Instead, we can use the default image from azsdk-pool for linux.
         steps:
           - template: build.yml
           - task: NodeTool@0
@@ -226,11 +234,11 @@ stages:
           matrix:
             Linux_Node20:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-20.04"
+              OSVmImage: ${{ parameters.OSVmImage }}
               NodeTestVersion: "20.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
-          vmImage: $[coalesce(variables['OSVmImage'], '')]
+          demands: ImageOverride -equals $(OSVmImage)
         steps:
           - template: build.yml
           - script: node $(Build.SourcesDirectory)/common/scripts/install-run-rushx.js smoke-test
@@ -247,12 +255,12 @@ stages:
         strategy:
           matrix:
             Windows_Latest:
-              Pool:
+              Pool: ${{ parameters.WindowsPool }}
               OSVmImage: ${{ parameters.Windows_Latest }}
               NodeTestVersion: "20.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
-          vmImage: $[coalesce(variables['OSVmImage'], '')]
+          demands: ImageOverride -equals $(OSVmImage)
         steps:
           - template: build.yml
           - script: node $(Build.SourcesDirectory)/common/scripts/install-run-rushx.js smoke-test:contoso && node $(Build.SourcesDirectory)/common/scripts/install-run-rushx.js smoke-test:todo
@@ -266,16 +274,18 @@ stages:
         strategy:
           matrix:
             macOS_Node20:
-              Pool:
+              Pool: ${{ parameters.MacPool }}
               OSVmImage: "macOS-latest"
               NodeTestVersion: "20.x"
             Linux_Node20:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-20.04"
+              OSVmImage: ${{ parameters.OSVmImage }}
               NodeTestVersion: "20.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
+          # Should set "demands:" to select image from azsdk-pool, but this would require creating separate
+          # matrixes for the two pools.  Instead, we can use the default image from azsdk-pool for linux.
         steps:
           - template: build.yml
           - script: npm run check-format
@@ -336,16 +346,18 @@ stages:
         strategy:
           matrix:
             macOS_Node20:
-              Pool:
+              Pool: ${{ parameters.MacPool }}
               OSVmImage: "macOS-latest"
               NodeTestVersion: "20.x"
             Linux_Node20:
               Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-20.04"
+              OSVmImage: ${{ parameters.OSVmImage }}
               NodeTestVersion: "20.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
+          # Should set "demands:" to select image from azsdk-pool, but this would require creating separate
+          # matrixes for the two pools.  Instead, we can use the default image from azsdk-pool for linux.
         steps:
           - template: build.yml
           - script: npm run test:azure
