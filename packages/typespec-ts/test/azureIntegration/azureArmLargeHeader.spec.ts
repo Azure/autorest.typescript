@@ -5,7 +5,7 @@ import AzureArmLargeHeaderClientFactory, {
   isUnexpected
 } from "./generated/azure/resource-manager/large-header/src/index.js";
 
-describe.only("Azure ARM Large Header Rest Client", () => {
+describe("Azure ARM Large Header Rest Client", () => {
   let client: AzureArmLargeHeaderClient;
 
   beforeEach(() => {
@@ -27,7 +27,7 @@ describe.only("Azure ARM Large Header Rest Client", () => {
         RESOURCE_GROUP_EXPECTED,
         LARGE_HEADER_NAME
       )
-      .post({});
+      .post({ queryParameters: { "api-version": "2023-12-01-preview" } });
 
     // Verify initial response
     assert.strictEqual(initialResponse.status, "202");
