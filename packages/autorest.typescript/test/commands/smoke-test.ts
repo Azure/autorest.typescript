@@ -99,13 +99,15 @@ const buildGenerated = async (projectPath?: string) => {
   const npmCommand = `npm${/^win/.test(process.platform) ? ".cmd" : ""}`;
   const npmInstall = spawn(npmCommand, ["install"], {
     stdio: [process.stdin, process.stdout, process.stderr],
-    cwd: projectPath
+    cwd: projectPath,
+    shell: true
   });
   await onExit(npmInstall);
 
   const npmBuild = spawn(npmCommand, ["run", "build"], {
     stdio: [process.stdin, process.stdout, process.stderr],
-    cwd: projectPath
+    cwd: projectPath,
+    shell: true
   });
 
   await onExit(npmBuild);
@@ -170,7 +172,8 @@ const removeTransform = async (path: string): Promise<unknown> => {
   path = path.replace("./.tmp/specs/", "");
   const childProdcess = spawn("git", ["checkout", path], {
     cwd: SPECS_PATH,
-    stdio: [process.stdin, process.stdout, process.stderr]
+    stdio: [process.stdin, process.stdout, process.stderr],
+    shell: true
   });
   return await onExit(childProdcess);
 };
@@ -262,7 +265,8 @@ const checkoutBranch = async (branch?: string) => {
     ["checkout", branch || DEFAULT_SPEC_BRANCH],
     {
       cwd: SPECS_PATH,
-      stdio: [process.stdin, process.stdout, process.stderr]
+      stdio: [process.stdin, process.stdout, process.stderr],
+      shell: true
     }
   );
   return await onExit(childProdcess);

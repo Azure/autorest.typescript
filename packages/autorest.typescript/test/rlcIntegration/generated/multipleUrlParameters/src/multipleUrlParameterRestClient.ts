@@ -25,7 +25,6 @@ export default function createClient(
 ): MultipleUrlParameterRestClient {
   const endpointUrl =
     options.endpoint ??
-    options.baseUrl ??
     `${endpoint}/catalog/api/atlas/${serviceVersion}/{accountName}`;
   const userAgentInfo = `azsdk-js-multiple-url-parameter-rest/1.0.0-preview1`;
   const userAgentPrefix =

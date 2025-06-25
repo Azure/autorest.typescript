@@ -24,7 +24,7 @@ export default function createClient(
     ...options
   }: WidgetManagerClientOptions = {},
 ): WidgetManagerClient {
-  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
+  const endpointUrl = options.endpoint ?? `${endpointParam}`;
   const userAgentInfo = `azsdk-js-contosowidgetmanager-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

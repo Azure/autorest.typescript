@@ -26,8 +26,7 @@ export function createContentSafety(
   credential: KeyCredential | TokenCredential,
   options: ContentSafetyClientOptionalParams = {},
 ): ContentSafetyContext {
-  const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? `${endpointParam}/contentsafety`;
+  const endpointUrl = options.endpoint ?? `${endpointParam}/contentsafety`;
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentInfo = `azsdk-js-ai-content-safety/1.0.0`;
   const userAgentPrefix = prefixFromOptions
