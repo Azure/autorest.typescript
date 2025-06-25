@@ -16,8 +16,7 @@ export function createOpenAI(
   credential: KeyCredential,
   options: OpenAIClientOptionalParams = {},
 ): OpenAIContext {
-  const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? "https://api.openai.com/v1";
+  const endpointUrl = options.endpoint ?? "https://api.openai.com/v1";
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentInfo = `azsdk-js-openai-generic/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions
