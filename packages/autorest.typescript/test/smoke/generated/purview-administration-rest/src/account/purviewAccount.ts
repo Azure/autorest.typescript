@@ -27,7 +27,7 @@ export function createClient(
     ...options
   }: PurviewAccountClientOptions = {},
 ): PurviewAccountClient {
-  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpoint}`;
+  const endpointUrl = options.endpoint ?? `${endpoint}`;
   const userAgentInfo = `azsdk-js-purview-administration-rest/1.0.0-beta.2`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
