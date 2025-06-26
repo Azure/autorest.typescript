@@ -309,6 +309,10 @@ export const azureRlcTsps = [
     inputPath: "client/namespace"
   },
   {
+    outputPath: "azure/encode/duration",
+    inputPath: "azure/encode/duration"
+  },
+  {
     outputPath: "azure/resource-manager/non-resource",
     inputPath: "azure/resource-manager/non-resource"
   },
@@ -819,6 +823,10 @@ export const azureModularTsps = [
   {
     outputPath: "parameters/path",
     inputPath: "parameters/path"
+  },
+  {
+    outputPath: "azure/encode/duration",
+    inputPath: "azure/encode/duration"
   },
   {
     outputPath: "azure/client-generator-core/client-initialization",
