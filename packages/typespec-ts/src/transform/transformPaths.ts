@@ -14,9 +14,7 @@ import {
 import {
   SdkClient,
   getHttpOperationWithCache,
-  isApiVersion,
-  listOperationGroups,
-  listOperationsInOperationGroup
+  isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
 import {
   extractOperationLroDetail,
@@ -37,6 +35,7 @@ import {
 import { SdkContext } from "../utils/interfaces.js";
 import { getDoc } from "@typespec/compiler";
 import { getParameterSerializationInfo } from "../utils/parameterUtils.js";
+import { listOperationsUnderRLCClient } from "../utils/clientUtils.js";
 
 export function transformPaths(
   client: SdkClient,
@@ -45,29 +44,13 @@ export function transformPaths(
 ): Paths {
   const pathParamsImportedSet = new Set<string>();
   const paths: Paths = {};
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const route = getHttpOperationWithCache(dpgContext, clientOp);
+  for (const op of listOperationsUnderRLCClient(client)) {
+    const route = getHttpOperationWithCache(dpgContext, op);
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
     }
     transformOperation(dpgContext, route, paths, pathParamsImportedSet);
-  }
-  const operationGroups = listOperationGroups(dpgContext, client, true);
-  for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(
-      dpgContext,
-      operationGroup
-    );
-    for (const op of operations) {
-      const route = getHttpOperationWithCache(dpgContext, op);
-      // ignore overload base operation
-      if (route.overloads && route.overloads?.length > 0) {
-        continue;
-      }
-      transformOperation(dpgContext, route, paths, pathParamsImportedSet);
-    }
   }
 
   if (pathParamsImportedSet.size > 0) {

@@ -34,6 +34,34 @@ describe("Package file generation", () => {
       expect(packageFile).to.have.property("type", "module");
     });
 
+    it("should specify Node.js 20 as minimum engine version", () => {
+      const model = createMockModel({
+        libraryName: "@msinternal/test",
+        moduleKind: "esm",
+        version: "1.0.0",
+        description: "Test description"
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile).to.have.property("engines");
+      expect(packageFile.engines).to.have.property("node", ">=20.0.0");
+    });
+
+    it("should specify @types/node version 20 in devDependencies", () => {
+      const model = createMockModel({
+        libraryName: "@msinternal/test",
+        moduleKind: "esm",
+        version: "1.0.0",
+        description: "Test description"
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile).to.have.property("devDependencies");
+      expect(packageFile.devDependencies).to.have.property("@types/node", "^20.0.0");
+    });
+
     it("[cjs] should create a package file", () => {
       const libraryName = "@msinternal/test";
       const nameWithoutScope = "test";

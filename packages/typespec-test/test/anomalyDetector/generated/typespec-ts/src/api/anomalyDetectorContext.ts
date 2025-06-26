@@ -60,9 +60,7 @@ export function createAnomalyDetector(
 ): AnomalyDetectorContext {
   const apiVersion = options.apiVersion ?? "v1.1";
   const endpointUrl =
-    options.endpoint ??
-    options.baseUrl ??
-    `${endpointParam}/anomalydetector/${apiVersion}`;
+    options.endpoint ?? `${endpointParam}/anomalydetector/${apiVersion}`;
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentInfo = `azsdk-js-ai-anomaly-detector/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions

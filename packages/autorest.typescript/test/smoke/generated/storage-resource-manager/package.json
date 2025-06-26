@@ -5,7 +5,7 @@
   "description": "A generated SDK for StorageManagementClient.",
   "version": "1.0.0-beta.1",
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   },
   "dependencies": {
     "@azure/core-lro": "^2.5.4",
@@ -47,7 +47,7 @@
     "@azure/logger": "^1.1.4",
     "@azure-tools/test-recorder": "^4.0.0",
     "@azure-tools/test-credential": "^2.0.0",
-    "@types/node": "^18.0.0",
+    "@types/node": "^20.0.0",
     "@vitest/browser": "^3.0.9",
     "@vitest/coverage-istanbul": "^3.0.9",
     "playwright": "^1.50.1",
@@ -61,9 +61,7 @@
   "files": [
     "dist/",
     "README.md",
-    "LICENSE",
-    "review/*",
-    "CHANGELOG.md"
+    "LICENSE"
   ],
   "scripts": {
     "build": "npm run clean && tshy && npm run extract-api",
