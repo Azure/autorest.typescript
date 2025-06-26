@@ -195,9 +195,8 @@ export function buildClientContext(
           : [];
     const apiVersionInEndpoint =
       templateArguments && templateArguments.find((p) => p.isApiVersionParam);
-    const parameterName = getClientParameterName(apiVersionParam);
     if (!apiVersionInEndpoint && apiVersionParam.clientDefaultValue) {
-      apiVersionPolicyStatement += `const ${parameterName} = options.${parameterName} ?? "${apiVersionParam.clientDefaultValue}";`;
+      apiVersionPolicyStatement += `const apiVersion = options.apiVersion ?? "${apiVersionParam.clientDefaultValue}";`;
     }
 
     if (apiVersionParam.kind === "method") {
@@ -211,7 +210,7 @@ export function buildClientContext(
           if (!url.searchParams.get("api-version")) {
             req.url = \`\${req.url}\${
               Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
-            }api-version=\${${parameterName}}\`;
+            }api-version=\${${getClientParameterName(apiVersionParam)}}\`;
           }
     
           return next(req);
