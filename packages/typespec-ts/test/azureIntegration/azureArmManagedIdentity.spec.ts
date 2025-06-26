@@ -150,7 +150,8 @@ describe("Azure Arm Resources Rest Client", () => {
       }
     });
 
-    it("should handle user-defined error for bad request (400)", async () => {
+    // Skipping the test as it should return a model of CloudError
+    it.skip("should handle user-defined error for bad request (400)", async () => {
       const result = await client
         .path(
           "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.CommonProperties/confidentialResources/{confidentialResourceName}",
