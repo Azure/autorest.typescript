@@ -3,16 +3,12 @@ import {
   getHttpOperationWithCache,
   SdkClient
 } from "@azure-tools/typespec-client-generator-core";
-import { Model, Program, Type } from "@typespec/compiler";
-import { HttpOperation } from "@typespec/http";
 import { SdkContext } from "../utils/interfaces.js";
 import {
-  extractPagedMetadataNested,
+  extractPageDetails,
   getSpecialSerializeInfo,
   hasPagingOperations,
-  hasPollingOperations,
-  parseItemName,
-  parseNextLinkName
+  hasPollingOperations
 } from "../utils/operationUtil.js";
 import { getCollectionFormat } from "../utils/modelUtils.js";
 import { listOperationsUnderRLCClient } from "../utils/clientUtils.js";
@@ -22,7 +18,6 @@ export function transformHelperFunctionDetails(
   dpgContext: SdkContext,
   flavor?: PackageFlavor
 ): HelperFunctionDetails {
-  const program = dpgContext.program;
   const serializeInfo = extractSpecialSerializeInfo(client, dpgContext);
   // Disable paging and long running for non-Azure clients.
   if (flavor !== "azure") {
@@ -33,103 +28,44 @@ export function transformHelperFunctionDetails(
     };
   }
 
-  // Extract paged metadata from Azure.Core.Page
   const annotationDetails = {
     hasLongRunning: hasPollingOperations(client, dpgContext)
   };
-  const details = extractPageDetailFromCore(client, dpgContext);
-  if (details) {
-    return {
-      ...details,
-      ...annotationDetails,
-      ...serializeInfo
-    };
-  }
-  // TODO: Remove this when @pageable is finally removed.
-  const nextLinks = new Set<string>();
-  for (const op of listOperationsUnderRLCClient(client)) {
-    const route = getHttpOperationWithCache(dpgContext, op);
-    // ignore overload base operation
-    if (route.overloads && route.overloads?.length > 0) {
-      continue;
-    }
-    if (getPageable(program, route.operation)) {
-      const nextLinkName = getPageable(program, route.operation) || "nextLink";
-      if (nextLinkName) {
-        nextLinks.add(nextLinkName);
-      }
-    }
-  }
-  if (nextLinks.size === 0) {
-    return {
-      ...annotationDetails,
-      ...serializeInfo
-    };
-  }
+  const details = extractClientPageDetails(client, dpgContext);
   return {
+    ...(details ?? {}),
     ...annotationDetails,
-    hasPaging: true,
-    pageDetails: {
-      itemNames: ["value"],
-      nextLinkNames: [...nextLinks],
-      isComplexPaging: nextLinks.size > 1
-    },
     ...serializeInfo
   };
 }
-const pageableOperationsKey = Symbol("pageable");
-export function getPageable(
-  program: Program,
-  entity: Type
-): string | undefined {
-  return program.stateMap(pageableOperationsKey).get(entity);
-}
 
-function extractPageDetailFromCore(client: SdkClient, dpgContext: SdkContext) {
+function extractClientPageDetails(client: SdkClient, dpgContext: SdkContext) {
   const program = dpgContext.program;
   if (!hasPagingOperations(client, dpgContext)) {
     return;
   }
-  const nextLinks = new Set<string>();
-  const itemNames = new Set<string>();
-  // Add default values
-  nextLinks.add("nextLink");
-  itemNames.add("value");
+  const nextLinks = new Set<string>(["nextLink"]);
+  const itemNames = new Set<string>(["value"]);
   for (const op of listOperationsUnderRLCClient(client)) {
     const route = getHttpOperationWithCache(dpgContext, op);
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
     }
-    extractPageDetailFromCoreForRoute(route);
-  }
-
-  function extractPageDetailFromCoreForRoute(route: HttpOperation) {
-    for (const response of route.responses) {
-      const paged = extractPagedMetadataNested(program, response.type as Model);
-      if (paged) {
-        const nextLinkName = parseNextLinkName(paged);
-        if (nextLinkName) {
-          nextLinks.add(nextLinkName);
-        }
-        const itemName = parseItemName(paged);
-        if (itemName) {
-          itemNames.add(itemName);
-        }
-        // Once we find paged metadata, we don't need to processs any further.
-        continue;
-      }
+    const pagedDetail = extractPageDetails(program, route);
+    if (pagedDetail) {
+      pagedDetail.itemNames.forEach((name) => itemNames.add(name));
+      pagedDetail.nextLinkNames.forEach((name) => nextLinks.add(name));
     }
   }
   // If there are more than one options for nextLink and item names we need to generate a
   // more complex pagination helper.
-  const isComplexPaging = nextLinks.size > 1 || itemNames.size > 1;
   return {
     hasPaging: true,
     pageDetails: {
       itemNames: [...itemNames],
       nextLinkNames: [...nextLinks],
-      isComplexPaging
+      isComplexPaging: nextLinks.size > 1 || itemNames.size > 1
     }
   };
 }

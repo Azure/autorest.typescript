@@ -282,7 +282,13 @@ const libDef = {
     "no-paging-items-defined": {
       severity: "warning",
       messages: {
-        default: paramMessage`Please specify @items property for the paging operation - ${"operationName"}.`
+        default: paramMessage`Operation '${"operationName"}' is marked with @list but does not have @pageItems defined.`
+      }
+    },
+    "unsupported-paging-cases": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Any complex paging cases are not supported yet e.g nested next links - ${"operationName"}.`
       }
     },
     "decimal-to-number": {
