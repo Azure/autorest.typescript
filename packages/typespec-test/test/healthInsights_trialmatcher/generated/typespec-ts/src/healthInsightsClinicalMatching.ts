@@ -28,8 +28,7 @@ export default function createClient(
     ...options
   }: HealthInsightsClinicalMatchingClientOptions = {},
 ): HealthInsightsClinicalMatchingClient {
-  const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? `${endpointParam}/healthinsights`;
+  const endpointUrl = options.endpoint ?? `${endpointParam}/healthinsights`;
   const userAgentInfo = `azsdk-js-health-insights-clinicalmatching-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

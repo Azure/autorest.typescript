@@ -27,8 +27,7 @@ export default function createClient(
     ...options
   }: AuthoringClientOptions = {},
 ): AuthoringClient {
-  const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? `${endpointParam}/language`;
+  const endpointUrl = options.endpoint ?? `${endpointParam}/language`;
   const userAgentInfo = `azsdk-js-customWrapper-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
