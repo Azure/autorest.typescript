@@ -329,6 +329,10 @@ export const azureRlcTsps = [
     inputPath: "azure/client-generator-core/api-version/query"
   },
   {
+    outputPath: "azure/resource-manager/large-header",
+    inputPath: "azure/resource-manager/large-header"
+  },
+  {
     outputPath: "azure/client-generator-core/client-initialization",
     inputPath: "azure/client-generator-core/client-initialization"
   },
@@ -859,6 +863,10 @@ export const azureModularTsps = [
   {
     outputPath: "azure/client-generator-core/api-version/query",
     inputPath: "azure/client-generator-core/api-version/query"
+  },
+  {
+    outputPath: "azure/resource-manager/large-header",
+    inputPath: "azure/resource-manager/large-header"
   },
   {
     outputPath: "azure/client-generator-core/deserialize-empty-string-as-null",
