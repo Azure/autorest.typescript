@@ -85,7 +85,7 @@ export function getModularClientOptions(
 ) {
   const [hierarchy, client] = clientMap;
   const clientOptions: ModularClientOptions = {
-    rlcClientName: `${client.name.replace("Client", "")}Context`
+    rlcClientName: `${client.name.replace(/Client$/, "")}Context`
   };
   clientOptions.subfolder = hierarchy.join("/");
   return clientOptions;
