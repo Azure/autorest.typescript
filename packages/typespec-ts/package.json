@@ -71,7 +71,7 @@
     "@azure-tools/typespec-autorest": "^0.57.0",
     "@azure-tools/typespec-azure-core": "^0.57.0",
     "@azure-tools/typespec-azure-resource-manager": "^0.57.0",
-    "@azure-tools/typespec-client-generator-core": "^0.57.2",
+    "@azure-tools/typespec-client-generator-core": "^0.57.1",
     "@azure/abort-controller": "^2.1.2",
     "@azure/core-auth": "^1.6.0",
     "@azure/core-lro": "^3.1.0",

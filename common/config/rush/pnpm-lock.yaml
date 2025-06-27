@@ -195,7 +195,7 @@ importers:
       '@azure-tools/typespec-azure-core': ^0.57.0
       '@azure-tools/typespec-azure-resource-manager': ^0.57.0
       '@azure-tools/typespec-azure-rulesets': ^0.57.0
-      '@azure-tools/typespec-client-generator-core': ^0.57.2
+      '@azure-tools/typespec-client-generator-core': ^0.57.0
       '@azure-tools/typespec-ts': workspace:^0.41.1
       '@types/mocha': ^5.2.7
       '@types/node': ^18.0.0
@@ -238,7 +238,7 @@ importers:
       '@azure-tools/typespec-autorest': ^0.57.0
       '@azure-tools/typespec-azure-core': ^0.57.0
       '@azure-tools/typespec-azure-resource-manager': ^0.57.0
-      '@azure-tools/typespec-client-generator-core': ^0.57.2
+      '@azure-tools/typespec-client-generator-core': ^0.57.1
       '@azure/abort-controller': ^2.1.2
       '@azure/core-auth': ^1.6.0
       '@azure/core-lro': ^3.1.0
@@ -297,7 +297,7 @@ importers:
     devDependencies:
       '@azure-rest/core-client': 2.3.1
       '@azure-tools/azure-http-specs': 0.1.0-alpha.21_5b265ht3shygzq2hax4cpjokne
-      '@azure-tools/typespec-autorest': 0.57.0_ksqvqromrygjmujcuna4jqszxm
+      '@azure-tools/typespec-autorest': 0.57.0_5o5oqhwnpguwhlfsthrh2fhyae
       '@azure-tools/typespec-azure-core': 0.57.0_s3gyinve63zf4ncvgs3nw74llm
       '@azure-tools/typespec-azure-resource-manager': 0.57.0_mbrvsqr23awqkaitoyy5wske5m
       '@azure-tools/typespec-client-generator-core': 0.57.2_pillrqslu7t2kqp4xbactja574
