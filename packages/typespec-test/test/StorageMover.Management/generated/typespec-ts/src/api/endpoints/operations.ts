@@ -198,7 +198,7 @@ export function _updateSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      body: endpointBaseUpdateParametersSerializer(endpoint),
+      body: endpointBaseUpdateParametersSerializer(endpointParam),
     });
 }
 
@@ -265,7 +265,7 @@ export function _createOrUpdateSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      body: endpointSerializer(endpoint),
+      body: endpointSerializer(endpointParam),
     });
 }
 

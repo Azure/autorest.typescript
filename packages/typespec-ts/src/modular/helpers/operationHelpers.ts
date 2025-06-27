@@ -62,6 +62,7 @@ import {
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
 import { isMetadata } from "@typespec/http";
+import { getClientParameterName } from "./clientHelpers.js";
 
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
@@ -782,7 +783,7 @@ function buildBodyParameter(
     true
   );
 
-  const bodyParamName = normalizeName(bodyParameter.name, NameType.Parameter);
+  const bodyParamName = getClientParameterName(bodyParameter);
   const bodyNameExpression = bodyParameter.optional
     ? `${optionalParamName}["${bodyParamName}"]`
     : bodyParamName;
