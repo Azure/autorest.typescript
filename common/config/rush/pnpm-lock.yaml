@@ -233,7 +233,7 @@ importers:
   ../../packages/typespec-ts:
     specifiers:
       '@azure-rest/core-client': ^2.3.1
-      '@azure-tools/azure-http-specs': 0.1.0-alpha.21-dev.2
+      '@azure-tools/azure-http-specs': 0.1.0-alpha.21
       '@azure-tools/rlc-common': workspace:^0.41.1
       '@azure-tools/typespec-autorest': ^0.57.0
       '@azure-tools/typespec-azure-core': ^0.57.0
@@ -296,8 +296,8 @@ importers:
       tslib: 2.6.2
     devDependencies:
       '@azure-rest/core-client': 2.3.1
-      '@azure-tools/azure-http-specs': 0.1.0-alpha.21-dev.2_5b265ht3shygzq2hax4cpjokne
-      '@azure-tools/typespec-autorest': 0.57.0_5o5oqhwnpguwhlfsthrh2fhyae
+      '@azure-tools/azure-http-specs': 0.1.0-alpha.21_5b265ht3shygzq2hax4cpjokne
+      '@azure-tools/typespec-autorest': 0.57.0_ksqvqromrygjmujcuna4jqszxm
       '@azure-tools/typespec-azure-core': 0.57.0_s3gyinve63zf4ncvgs3nw74llm
       '@azure-tools/typespec-azure-resource-manager': 0.57.0_mbrvsqr23awqkaitoyy5wske5m
       '@azure-tools/typespec-client-generator-core': 0.57.2_pillrqslu7t2kqp4xbactja574
@@ -448,16 +448,16 @@ packages:
       proper-lockfile: 2.0.1
     dev: false
 
-  /@azure-tools/azure-http-specs/0.1.0-alpha.21-dev.2_5b265ht3shygzq2hax4cpjokne:
-    resolution: {integrity: sha512-tgL1ainbt2dFRdqEEe040LFkRyvoRTc31WHL2ArEtnwdvjJmsQbS5Qt6qLT+zbe7ezN19VTOpbK4an65bbz4gA==}
+  /@azure-tools/azure-http-specs/0.1.0-alpha.21_5b265ht3shygzq2hax4cpjokne:
+    resolution: {integrity: sha512-dJvYUSSbnQ2xu+TzfORMbVfMhUcSYsDIuh5bAd24PuXtufH1kjXCGdWOfeKA8g+sNlSxYB+nsFQLb9EVDeuN/Q==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
-      '@azure-tools/typespec-azure-core': ^0.57.0 || >=0.58.0-dev <0.58.0
+      '@azure-tools/typespec-azure-core': ^0.57.0
       '@typespec/compiler': ^1.1.0
       '@typespec/http': ^1.1.0
-      '@typespec/rest': ^0.71.0 || >=0.72.0-dev <0.72.0
-      '@typespec/versioning': ^0.71.0 || >=0.72.0-dev <0.72.0
-      '@typespec/xml': ^0.71.0 || >=0.72.0-dev <0.72.0
+      '@typespec/rest': ^0.71.0
+      '@typespec/versioning': ^0.71.0
+      '@typespec/xml': ^0.71.0
     dependencies:
       '@azure-tools/typespec-azure-core': 0.57.0_s3gyinve63zf4ncvgs3nw74llm
       '@typespec/compiler': 1.1.0_@types+node@18.18.0

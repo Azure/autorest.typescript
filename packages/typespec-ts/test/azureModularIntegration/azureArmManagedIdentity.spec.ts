@@ -171,4 +171,51 @@ describe("Azure Arm Resources Rest Client", () => {
       validUserAssignedAndSystemAssignedManagedIdentityResource.properties
     );
   });
+
+  // Error handling test cases
+  describe("Error Handling", () => {
+    it("should handle predefined error for resource not found (404)", async () => {
+      try {
+        await client.getForPredefinedError(
+          RESOURCE_GROUP_EXPECTED,
+          "confidential"
+        );
+        assert.fail("Should have thrown an error for resource not found");
+      } catch (error: any) {
+        // Azure Modular clients use createRestError which creates errors with statusCode property
+        assert.strictEqual(error.statusCode, 404);
+        assert.isObject(error.details);
+        assert.strictEqual(error.details.error.code, "ResourceNotFound");
+        assert.strictEqual(
+          error.details.error.message,
+          "The Resource 'Azure.ResourceManager.CommonProperties/confidentialResources/confidential' under resource group 'test-rg' was not found."
+        );
+      }
+    });
+
+    // skipping the test as it should return a model of CloudError
+    it.skip("should handle user-defined error for bad request (400)", async () => {
+      try {
+        await client.createForUserDefinedError(
+          RESOURCE_GROUP_EXPECTED,
+          "confidential",
+          {
+            location: "eastus",
+            properties: {
+              username: "00"
+            } as any
+          }
+        );
+        assert.fail("Should have thrown an error for bad request");
+      } catch (error: any) {
+        // Azure Modular clients use createRestError which creates errors with statusCode property
+        assert.strictEqual(error.statusCode, 400);
+        assert.strictEqual(error.code, "BadRequest");
+        assert.strictEqual(
+          error.message,
+          "Username should not contain only numbers."
+        );
+      }
+    });
+  });
 });

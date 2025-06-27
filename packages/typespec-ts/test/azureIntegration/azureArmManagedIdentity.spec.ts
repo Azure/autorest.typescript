@@ -125,4 +125,62 @@ describe("Azure Arm Resources Rest Client", () => {
       validUserAssignedAndSystemAssignedManagedIdentityResource
     );
   });
+
+  describe("Error Handling", () => {
+    it("should handle predefined error for resource not found (404)", async () => {
+      const result = await client
+        .path(
+          "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.CommonProperties/confidentialResources/{confidentialResourceName}",
+          SUBSCRIPTION_ID_EXPECTED,
+          RESOURCE_GROUP_EXPECTED,
+          "confidential"
+        )
+        .get();
+
+      assert.strictEqual(result.status, "404");
+      assert.isObject(result.body);
+
+      if (result.status === "404" && "error" in result.body) {
+        const errorBody = result.body as any;
+        assert.strictEqual(errorBody.error.code, "ResourceNotFound");
+        assert.strictEqual(
+          errorBody.error.message,
+          "The Resource 'Azure.ResourceManager.CommonProperties/confidentialResources/confidential' under resource group 'test-rg' was not found."
+        );
+      }
+    });
+
+    // Skipping the test as it should return a model of CloudError
+    it.skip("should handle user-defined error for bad request (400)", async () => {
+      const result = await client
+        .path(
+          "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.CommonProperties/confidentialResources/{confidentialResourceName}",
+          SUBSCRIPTION_ID_EXPECTED,
+          RESOURCE_GROUP_EXPECTED,
+          "confidential"
+        )
+        .put({
+          body: {
+            location: "eastus",
+            properties: {
+              username: "00"
+            }
+          }
+        });
+
+      assert.strictEqual(result.status, "400");
+      assert.isObject(result.body);
+
+      if (result.status === "400") {
+        const errorBody = result.body as any;
+        assert.strictEqual(errorBody.code, "BadRequest");
+        assert.strictEqual(
+          errorBody.message,
+          "Username should not contain only numbers."
+        );
+        assert.isObject(errorBody.innererror);
+        assert.strictEqual(errorBody.innererror.exceptiontype, "general");
+      }
+    });
+  });
 });
