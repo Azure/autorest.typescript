@@ -67,7 +67,7 @@
     "@typespec/http-specs": "0.1.0-alpha.24-dev.0",
     "@typespec/spector": "0.1.0-alpha.16-dev.0",
     "@typespec/spec-api": "0.1.0-alpha.7-dev.0",
-    "@azure-tools/azure-http-specs": "0.1.0-alpha.20-dev.0",
+    "@azure-tools/azure-http-specs": "0.1.0-alpha.21",
     "@azure-tools/typespec-autorest": "^0.57.0",
     "@azure-tools/typespec-azure-core": "^0.57.0",
     "@azure-tools/typespec-azure-resource-manager": "^0.57.0",
