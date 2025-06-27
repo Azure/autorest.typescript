@@ -199,7 +199,7 @@ export async function $onEmit(context: EmitContext) {
     options.generateTest =
       options.generateTest === true ||
       (options.generateTest === undefined &&
-        !hasTestFolder &&
+        (!hasTestFolder || (options.azureSdkForJs && options.azureArm)) &&
         isAzurePackage({ options: options }));
     dpgContext.rlcOptions = options;
   }
