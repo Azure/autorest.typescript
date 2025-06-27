@@ -327,6 +327,10 @@ export const azureRlcTsps = [
   {
     outputPath: "azure/client-generator-core/deserialize-empty-string-as-null",
     inputPath: "azure/client-generator-core/deserialize-empty-string-as-null"
+  },
+  {
+    outputPath: "azure/core/operation-templates",
+    inputPath: "azure/core/operation-templates"
   }
 ];
 
@@ -847,6 +851,10 @@ export const azureModularTsps = [
   {
     outputPath: "azure/client-generator-core/deserialize-empty-string-as-null",
     inputPath: "azure/client-generator-core/deserialize-empty-string-as-null"
+  },
+  {
+    outputPath: "azure/core/operation-templates",
+    inputPath: "azure/core/operation-templates"
   }
 ];
 
