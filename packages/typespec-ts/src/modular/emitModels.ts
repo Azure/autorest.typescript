@@ -320,8 +320,7 @@ function addSerializationFunctions(
   if (
     serializationFunction &&
     typeof serializationFunction !== "string" &&
-    serializationFunction.name &&
-    !sourceFile.getFunction(serializationFunction.name)
+    serializationFunction.name
   ) {
     addDeclaration(sourceFile, serializationFunction, serializerRefkey);
   }
@@ -333,8 +332,7 @@ function addSerializationFunctions(
   if (
     deserializationFunction &&
     typeof deserializationFunction !== "string" &&
-    deserializationFunction.name &&
-    !sourceFile.getFunction(deserializationFunction.name)
+    deserializationFunction.name
   ) {
     addDeclaration(sourceFile, deserializationFunction, deserailizerRefKey);
   }

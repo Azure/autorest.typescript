@@ -122,7 +122,7 @@ function buildPolymorphicDeserializer(
         type: "any"
       }
     ],
-    returnType: normalizeModelName(context, type),
+    returnType: resolveReference(refkey(type)),
     statements: []
   };
   if (!type.discriminatorProperty) {
@@ -249,7 +249,7 @@ function buildDiscriminatedUnionDeserializer(
         type: "any"
       }
     ],
-    returnType: normalizeModelName(context, type),
+    returnType: resolveReference(refkey(type)),
     statements: output.join("\n")
   };
   return deserializerFunction;
@@ -290,7 +290,7 @@ function buildUnionDeserializer(
         type: "any"
       }
     ],
-    returnType: normalizeModelName(context, type),
+    returnType: resolveReference(refkey(type)),
     statements: ["return item;"]
   };
   return deserializerFunction;
@@ -326,12 +326,7 @@ function buildModelTypeDeserializer(
         type: "any"
       }
     ],
-    returnType: normalizeModelName(
-      context,
-      type,
-      NameType.Interface,
-      options.skipDiscriminatedUnionSuffix
-    ),
+    returnType: resolveReference(refkey(type)),
     statements: ["return item;"]
   };
   const nullabilityPrefix = "";
@@ -436,7 +431,7 @@ function buildDictTypeDeserializer(
         type: "Record<string, any>"
       }
     ],
-    returnType: `Record<string, ${normalizeModelName(context, type.valueType as any) ?? "any"}>`,
+    returnType: `Record<string, ${resolveReference(refkey(type.valueType)) ?? "any"}>`,
     statements: [
       `
   const result: Record<string, any> = {};
