@@ -15,7 +15,6 @@ describe("Azure ARM Operation Templates", () => {
     );
   });
 
-  const SUBSCRIPTION_ID_EXPECTED = "00000000-0000-0000-0000-000000000000";
   const RESOURCE_GROUP_EXPECTED = "test-rg";
   const validOperation = {
     name: "Microsoft.Compute/virtualMachines/write",
