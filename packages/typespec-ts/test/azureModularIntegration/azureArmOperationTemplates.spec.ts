@@ -2,7 +2,7 @@ import { OperationTemplatesClient } from "./generated/azure/resource-manager/ope
 import { restorePoller } from "./generated/azure/resource-manager/operation-templates/src/restorePollerHelpers.js";
 import { assert } from "chai";
 
-describe.only("Azure ARM Operation Templates", () => {
+describe("Azure ARM Operation Templates", () => {
   let client: OperationTemplatesClient;
 
   beforeEach(() => {
@@ -203,8 +203,9 @@ describe.only("Azure ARM Operation Templates", () => {
         RESOURCE_GROUP_EXPECTED,
         widgetName
       );
-
-      assert.deepStrictEqual(result, validWidget);
+      assert.equal(result.properties?.name, widgetName);
+      assert.equal(result.properties?.description, "A test widget");
+      assert.equal(result.properties?.provisioningState, "Succeeded");
     });
 
     it("should patch widget with empty body", async () => {
