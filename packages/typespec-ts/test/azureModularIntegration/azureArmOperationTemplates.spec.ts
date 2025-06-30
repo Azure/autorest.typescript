@@ -37,25 +37,6 @@ describe("Azure ARM Operation Templates", () => {
       "Hostname 'checkName' already exists. Please select a different name."
   };
 
-  const validWidget = {
-    id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.OperationTemplates/widgets/widget1`,
-    name: "widget1",
-    type: "Azure.ResourceManager.OperationTemplates/widgets",
-    location: "eastus",
-    properties: {
-      name: "widget1",
-      description: "A test widget",
-      provisioningState: "Succeeded"
-    },
-    systemData: {
-      createdBy: "AzureSDK",
-      createdByType: "User",
-      createdAt: new Date("2024-10-04T00:56:07.442Z"),
-      lastModifiedBy: "AzureSDK",
-      lastModifiedAt: new Date("2024-10-04T00:56:07.442Z"),
-      lastModifiedByType: "User"
-    }
-  };
   describe("Operations", () => {
     it("should list available operations", async () => {
       const result = await client.operations.list();
