@@ -58,11 +58,13 @@ Whether to generate multiple clients in one package.
 
 **Type:** `array`
 
+Deprecated option for RLC legacy generation.
+
 ### `package-details`
 
 **Type:** `object`
 
-This is to indicate the package infomation such as package name, package description etc.
+This is to indicate the package information such as package name, package description etc.
 
 ### `add-credentials`
 
@@ -96,9 +98,13 @@ If we enable the option `add-credentials` and specify `credential-key-header-nam
 
 **Type:** `string`
 
+This option is used for special Key Auth, when the key has a shared prefix and this header is to set the header name
+
 ### `custom-http-auth-shared-key-prefix`
 
 **Type:** `string`
+
+This option is used for special Key Auth, when the key a shared prefix and this header is to pass the rest of the header key.
 
 ### `generate-metadata`
 
@@ -134,9 +140,13 @@ This is used to indicate your project is generated in [azure-sdk-for-js](https:/
 
 **Type:** `string`
 
+Deprecated option for RLC legacy generation
+
 ### `is-typespec-test`
 
 **Type:** `boolean`
+
+Internal option for test
 
 ### `title`
 
@@ -150,13 +160,19 @@ This is used to indicate your project is generated in [azure-sdk-for-js](https:/
 
 **Type:** `object`
 
+Deprecated option for RLC legacy generation.
+
 ### `product-doc-link`
 
 **Type:** `string`
 
+Deprecated option for RLC legacy generation.
+
 ### `service-info`
 
 **Type:** `object`
+
+Deprecated option for RLC legacy generation.
 
 ### `azure-arm`
 
@@ -168,6 +184,8 @@ Whether the package is an arm package.
 
 **Type:** `string`
 
+Internal option, the value is default for TypeSpec generation
+
 ### `is-modular-library`
 
 **Type:** `boolean`
@@ -178,13 +196,19 @@ Whether to generate a Modular library. Defaults to `false`. Arm packages default
 
 **Type:** `boolean`
 
+An option to add treat interface as operation group. This is not recommended unless specifically told so
+
 ### `enable-model-namespace`
 
 **Type:** `boolean`
 
+An option to add model namespace as prefix if there's any model name conflicts within different namespaces. This is not recommended unless specifically told so
+
 ### `hierarchy-client`
 
 **Type:** `boolean`
+
+An option to organize the client as hierarchy way as defined by `@clientInitialization`. This is true by default.
 
 ### `branded`
 
@@ -224,9 +248,13 @@ Whether to empty the whole output folder. By default we only empty the sources f
 
 **Type:** `boolean`
 
+The emitter will use camel case to normalize the property name, to ignore this normalization, you can set this option to true
+
 ### `ignore-enum-member-name-normalize`
 
 **Type:** `boolean`
+
+The emitter has a normalization logic for enum member key, to ignore this normalization, you can set this option to true
 
 ### `compatibility-query-multi-format`
 
@@ -237,6 +265,8 @@ Whether to generate the backward-compatible code for query parameter serializati
 ### `default-value-object`
 
 **Type:** `boolean`
+
+Deprecated option for RLC legacy generation.
 
 ### `typespec-title-map`
 

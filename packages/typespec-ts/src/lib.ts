@@ -76,15 +76,24 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
   type: "object",
   additionalProperties: true,
   properties: {
-    "include-shortcuts": { type: "boolean", nullable: true, description: "To allow the codegen generating shortcut methods in client definition. This is an experimental feature so we disable it by default. If you want to try it just turn it on." },
-    "multi-client": { type: "boolean", nullable: true, description: "Whether to generate multiple clients in one package." },
+    "include-shortcuts": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "To allow the codegen generating shortcut methods in client definition. This is an experimental feature so we disable it by default. If you want to try it just turn it on."
+    },
+    "multi-client": {
+      type: "boolean",
+      nullable: true,
+      description: "Whether to generate multiple clients in one package."
+    },
     batch: {
       type: "array",
       nullable: true,
       items: {
         type: "string"
       },
-      description: ""
+      description: "Deprecated option for RLC legacy generation."
     },
     "package-details": {
       type: "object",
@@ -98,7 +107,8 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       },
       required: ["name"],
       nullable: true,
-      description: "This is to indicate the package infomation such as package name, package description etc."
+      description:
+        "This is to indicate the package information such as package name, package description etc."
     },
     "add-credentials": {
       type: "boolean",
@@ -120,11 +130,27 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       type: "array",
       nullable: true,
       items: { type: "string" },
-      description: "If we enable the option `add-credentials` and specify `credential-scopes` the details we would enable the AADToken authentication."
+      description:
+        "If we enable the option `add-credentials` and specify `credential-scopes` the details we would enable the AADToken authentication."
     },
-    "credential-key-header-name": { type: "string", nullable: true, description: "If we enable the option `add-credentials` and specify `credential-key-header-name` the details we would enable the AzureKey authentication." },
-    "custom-http-auth-header-name": { type: "string", nullable: true, description: "" },
-    "custom-http-auth-shared-key-prefix": { type: "string", nullable: true, description: "" },
+    "credential-key-header-name": {
+      type: "string",
+      nullable: true,
+      description:
+        "If we enable the option `add-credentials` and specify `credential-key-header-name` the details we would enable the AzureKey authentication."
+    },
+    "custom-http-auth-header-name": {
+      type: "string",
+      nullable: true,
+      description:
+        "This option is used for special Key Auth, when the key has a shared prefix and this header is to set the header name"
+    },
+    "custom-http-auth-shared-key-prefix": {
+      type: "string",
+      nullable: true,
+      description:
+        "This option is used for special Key Auth, when the key a shared prefix and this header is to pass the rest of the header key."
+    },
     "generate-metadata": {
       type: "boolean",
       nullable: true,
@@ -143,10 +169,28 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       - If azure-sdk-for-js is \`true\` but there's not a test folder under package-dir. Defaults to \`true\`.
       `
     },
-    "generate-sample": { type: "boolean", nullable: true, description: "Whether to generate sample files, for basic samples of your generated sdks. Defaults to `undefined`. Management packages' default to `true`." },
-    "azure-sdk-for-js": { type: "boolean", nullable: true, description: "This is used to indicate your project is generated in [azure-sdk-for-js](https://github.com/Azure/azure-sdk-for-js) repo or not. If your package is located in that repo we'll leverage `dev-tool` to accelerate our building and testing, however if not we'll remove the dependency for that tool. Defaults to `undefined`. Services with Flavor equal to 'Azure' default to 'true'. " },
-    "azure-output-directory": { type: "string", nullable: true, description: "" },
-    "is-typespec-test": { type: "boolean", nullable: true, description: "" },
+    "generate-sample": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "Whether to generate sample files, for basic samples of your generated sdks. Defaults to `undefined`. Management packages' default to `true`."
+    },
+    "azure-sdk-for-js": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "This is used to indicate your project is generated in [azure-sdk-for-js](https://github.com/Azure/azure-sdk-for-js) repo or not. If your package is located in that repo we'll leverage `dev-tool` to accelerate our building and testing, however if not we'll remove the dependency for that tool. Defaults to `undefined`. Services with Flavor equal to 'Azure' default to 'true'. "
+    },
+    "azure-output-directory": {
+      type: "string",
+      nullable: true,
+      description: "Deprecated option for RLC legacy generation"
+    },
+    "is-typespec-test": {
+      type: "boolean",
+      nullable: true,
+      description: "Internal option for test"
+    },
     title: {
       type: "string",
       nullable: true,
@@ -164,9 +208,13 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       },
       required: [],
       nullable: true,
-      description: ""
+      description: "Deprecated option for RLC legacy generation."
     },
-    "product-doc-link": { type: "string", nullable: true, description: "" },
+    "product-doc-link": {
+      type: "string",
+      nullable: true,
+      description: "Deprecated option for RLC legacy generation."
+    },
     "service-info": {
       type: "object",
       additionalProperties: true,
@@ -175,29 +223,100 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
         description: { type: "string", nullable: true }
       },
       nullable: true,
-      description: ""
+      description: "Deprecated option for RLC legacy generation."
     },
-    "azure-arm": { type: "boolean", nullable: true, description: "Whether the package is an arm package." },
-    "source-from": { type: "string", nullable: true, description: "" },
-    "is-modular-library": { type: "boolean", nullable: true, default: false, description: "Whether to generate a Modular library. Defaults to `false`. Arm packages default to `true`." },
-    "enable-operation-group": { type: "boolean", nullable: true, description: "" },
-    "enable-model-namespace": { type: "boolean", nullable: true, description: "" },
-    "hierarchy-client": { type: "boolean", nullable: true, description: "" },
-    branded: { type: "boolean", nullable: true, description: "A section of flavor" },
-    flavor: { type: "string", nullable: true, description: "The flavor of the SDK.", },
+    "azure-arm": {
+      type: "boolean",
+      nullable: true,
+      description: "Whether the package is an arm package."
+    },
+    "source-from": {
+      type: "string",
+      nullable: true,
+      description:
+        "Internal option, the value is default for TypeSpec generation"
+    },
+    "is-modular-library": {
+      type: "boolean",
+      nullable: true,
+      default: false,
+      description:
+        "Whether to generate a Modular library. Defaults to `false`. Arm packages default to `true`."
+    },
+    "enable-operation-group": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "An option to add treat interface as operation group. This is not recommended unless specifically told so"
+    },
+    "enable-model-namespace": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "An option to add model namespace as prefix if there's any model name conflicts within different namespaces. This is not recommended unless specifically told so"
+    },
+    "hierarchy-client": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "An option to organize the client as hierarchy way as defined by `@clientInitialization`. This is true by default."
+    },
+    branded: {
+      type: "boolean",
+      nullable: true,
+      description: "A section of flavor"
+    },
+    flavor: {
+      type: "string",
+      nullable: true,
+      description: "The flavor of the SDK."
+    },
     "module-kind": {
       type: "string",
       nullable: true,
       enum: ["esm", "cjs"],
       default: "esm"
     },
-    "compatibility-mode": { type: "boolean", nullable: true, description: "Whether to affect the generation of the additional property feature for the Modular client. Defaults to `false`." },
-    "experimental-extensible-enums": { type: "boolean", nullable: true, description: "Whether to transform union type enums to extensible enums" },
-    "clear-output-folder": { type: "boolean", nullable: true, description: "Whether to empty the whole output folder. By default we only empty the sources folder which means any metadata files will not be removed if it is at project root. This would be useful in pipeline." },
-    "ignore-property-name-normalize": { type: "boolean", nullable: true, description: "" },
-    "ignore-enum-member-name-normalize": { type: "boolean", nullable: true, description: "" },
-    "compatibility-query-multi-format": { type: "boolean", nullable: true, description: "Whether to generate the backward-compatible code for query parameter serialization for array types in RLC. Defaults to `false`" },
-    "default-value-object": { type: "boolean", nullable: true, description: "" },
+    "compatibility-mode": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "Whether to affect the generation of the additional property feature for the Modular client. Defaults to `false`."
+    },
+    "experimental-extensible-enums": {
+      type: "boolean",
+      nullable: true,
+      description: "Whether to transform union type enums to extensible enums"
+    },
+    "clear-output-folder": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "Whether to empty the whole output folder. By default we only empty the sources folder which means any metadata files will not be removed if it is at project root. This would be useful in pipeline."
+    },
+    "ignore-property-name-normalize": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "The emitter will use camel case to normalize the property name, to ignore this normalization, you can set this option to true "
+    },
+    "ignore-enum-member-name-normalize": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "The emitter has a normalization logic for enum member key, to ignore this normalization, you can set this option to true"
+    },
+    "compatibility-query-multi-format": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "Whether to generate the backward-compatible code for query parameter serialization for array types in RLC. Defaults to `false`"
+    },
+    "default-value-object": {
+      type: "boolean",
+      nullable: true,
+      description: "Deprecated option for RLC legacy generation."
+    },
     "typespec-title-map": {
       type: "object",
       additionalProperties: {
@@ -215,7 +334,12 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       \`\`\`
       `
     },
-    "should-use-pnpm-dep": { type: "boolean", nullable: true, description: "Whether to generate codes with the pnpm dependencies. Defaults to `false`" }
+    "should-use-pnpm-dep": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "Whether to generate codes with the pnpm dependencies. Defaults to `false`"
+    }
   },
   required: []
 };
