@@ -190,7 +190,7 @@ const buildDefaultReturn = (
          }, ...options}`
     }: testClientOptions = {}
   ): testClient {
-    const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/language\`;
+    const endpointUrl = options.endpoint ?? \`\${endpointParam}/language\`;
     const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -255,7 +255,7 @@ const buildPathReturn_WithDefault = () => {
     endpointParam: string,
     { apiVersion = "2022-05-15-preview", ...options}: testClientOptions = {}
   ): testClient {
-    const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/anomalydetector/\${apiVersion}\`;
+    const endpointUrl = options.endpoint ?? \`\${endpointParam}/anomalydetector/\${apiVersion}\`;
     const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -298,7 +298,7 @@ const buildPathReturn_WithoutDefault = () => {
     apiVersion: Versions,
     options: testClientOptions = {}
   ): testClient {
-    const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/anomalydetector/\${apiVersion}\`;
+    const endpointUrl = options.endpoint ?? \`\${endpointParam}/anomalydetector/\${apiVersion}\`;
     const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix

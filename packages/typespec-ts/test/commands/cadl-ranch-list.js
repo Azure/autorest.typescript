@@ -309,12 +309,24 @@ export const azureRlcTsps = [
     inputPath: "client/namespace"
   },
   {
+    outputPath: "azure/encode/duration",
+    inputPath: "azure/encode/duration"
+  },
+  {
     outputPath: "azure/resource-manager/non-resource",
     inputPath: "azure/resource-manager/non-resource"
   },
   {
+    outputPath: "azure/resource-manager/large-header",
+    inputPath: "azure/resource-manager/large-header"
+  },
+  {
     outputPath: "azure/client-generator-core/client-initialization",
     inputPath: "azure/client-generator-core/client-initialization"
+  },
+  {
+    outputPath: "azure/client-generator-core/deserialize-empty-string-as-null",
+    inputPath: "azure/client-generator-core/deserialize-empty-string-as-null"
   }
 ];
 
@@ -817,12 +829,24 @@ export const azureModularTsps = [
     inputPath: "parameters/path"
   },
   {
+    outputPath: "azure/encode/duration",
+    inputPath: "azure/encode/duration"
+  },
+  {
     outputPath: "azure/client-generator-core/client-initialization",
     inputPath: "azure/client-generator-core/client-initialization"
   },
   {
     outputPath: "azure/resource-manager/non-resource",
     inputPath: "azure/resource-manager/non-resource"
+  },
+  {
+    outputPath: "azure/resource-manager/large-header",
+    inputPath: "azure/resource-manager/large-header"
+  },
+  {
+    outputPath: "azure/client-generator-core/deserialize-empty-string-as-null",
+    inputPath: "azure/client-generator-core/deserialize-empty-string-as-null"
   }
 ];
 

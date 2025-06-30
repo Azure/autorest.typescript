@@ -28,7 +28,7 @@ export default function createClient(
     ...options
   }: AzureAgriFoodPlatformDataPlaneServiceClientOptions = {},
 ): AzureAgriFoodPlatformDataPlaneServiceClient {
-  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpoint}`;
+  const endpointUrl = options.endpoint ?? `${endpoint}`;
   const userAgentInfo = `azsdk-js-agrifood-data-plane-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
