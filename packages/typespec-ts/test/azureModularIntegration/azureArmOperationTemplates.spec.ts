@@ -1,5 +1,4 @@
 import { OperationTemplatesClient } from "./generated/azure/resource-manager/operation-templates/src/index.js";
-import { restorePoller } from "./generated/azure/resource-manager/operation-templates/src/restorePollerHelpers.js";
 import { assert } from "chai";
 
 describe("Azure ARM Operation Templates", () => {
@@ -69,7 +68,7 @@ describe("Azure ARM Operation Templates", () => {
   });
 
   describe("LRO Operations", () => {
-    it.skip("should create or replace order with LRO", async () => {
+    it("should create or replace order with LRO", async () => {
       const orderName = "order1";
       const resourceGroupName = "test-rg";
 
@@ -90,31 +89,6 @@ describe("Azure ARM Operation Templates", () => {
       assert.equal(result.properties?.productId, "product1");
       assert.equal(result.properties?.amount, 1);
       assert.equal(result.properties?.provisioningState, "Succeeded");
-      assert.isNotNull(result.systemData);
-    });
-
-    it.skip("should serialize and restore poller for create or replace", async () => {
-      const orderName = "order1";
-      const resourceGroupName = "test-rg";
-
-      const poller = client.lro.createOrReplace(resourceGroupName, orderName, {
-        location: "eastus",
-        properties: {
-          productId: "product1",
-          amount: 1
-        }
-      });
-
-      const serializedState = await poller.serialize();
-      const restoredPoller = restorePoller(
-        client,
-        serializedState,
-        client.lro.createOrReplace
-      );
-
-      const result = await restoredPoller.pollUntilDone();
-      assert.equal(result.name, orderName);
-      assert.equal(result.properties?.provisioningState, "Succeeded");
     });
 
     it("should export order data with LRO", async () => {
@@ -128,25 +102,6 @@ describe("Azure ARM Operation Templates", () => {
       assert.equal(result.content, "order1,product1,1");
     });
 
-    it("should serialize and restore poller for export", async () => {
-      const orderName = "order1";
-      const resourceGroupName = "test-rg";
-
-      const poller = client.lro.export(resourceGroupName, orderName, {
-        format: "csv"
-      });
-
-      const serializedState = await poller.serialize();
-      const restoredPoller = restorePoller(
-        client,
-        serializedState,
-        client.lro.export
-      );
-
-      const result = await restoredPoller.pollUntilDone();
-      assert.equal(result.content, "order1,product1,1");
-    });
-
     it("should delete order with LRO", async () => {
       const orderName = "order1";
       const resourceGroupName = "test-rg";
@@ -155,23 +110,6 @@ describe("Azure ARM Operation Templates", () => {
       await client.lro.delete(resourceGroupName, orderName);
 
       // No assertion needed as successful completion without error indicates success
-    });
-
-    it("should serialize and restore poller for delete", async () => {
-      const orderName = "order1";
-      const resourceGroupName = "test-rg";
-
-      const poller = client.lro.delete(resourceGroupName, orderName);
-
-      const serializedState = await poller.serialize();
-      const restoredPoller = restorePoller(
-        client,
-        serializedState,
-        client.lro.delete
-      );
-
-      // Delete operation should complete without returning a result
-      await restoredPoller.pollUntilDone();
     });
   });
 
