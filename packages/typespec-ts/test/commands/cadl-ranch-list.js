@@ -331,6 +331,10 @@ export const azureRlcTsps = [
   {
     outputPath: "azure/resource-manager/operation-templates",
     inputPath: "azure/resource-manager/operation-templates"
+  },
+  {
+    outputPath: "azure/client-generator-core/client-location",
+    inputPath: "azure/client-generator-core/client-location"
   }
 ];
 
@@ -855,6 +859,10 @@ export const azureModularTsps = [
   {
     outputPath: "azure/resource-manager/operation-templates",
     inputPath: "azure/resource-manager/operation-templates"
+  },
+  {
+    outputPath: "azure/client-generator-core/client-location",
+    inputPath: "azure/client-generator-core/client-location"
   }
 ];
 
