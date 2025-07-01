@@ -782,7 +782,11 @@ function buildBodyParameter(
     true
   );
 
-  const bodyParamName = normalizeName(bodyParameter.name, NameType.Parameter);
+  const bodyParamName = normalizeName(
+    bodyParameter.name,
+    NameType.Parameter,
+    true
+  );
   const bodyNameExpression = bodyParameter.optional
     ? `${optionalParamName}["${bodyParamName}"]`
     : bodyParamName;
