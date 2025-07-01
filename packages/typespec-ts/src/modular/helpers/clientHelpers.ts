@@ -170,13 +170,8 @@ export function buildGetClientEndpointParam(
   dpgContext: SdkContext,
   client: SdkClientType<SdkServiceOperation>
 ): string {
-  let coreEndpointParam = "";
-  if (dpgContext.rlcOptions?.flavor === "azure") {
-    coreEndpointParam = `options.endpoint ?? options.baseUrl`;
-  } else {
-    // unbranded does not have the deprecated baseUrl parameter
-    coreEndpointParam = `options.endpoint`;
-  }
+  const coreEndpointParam = `options.endpoint`;
+
   // Special case: endpoint URL not defined
   const endpointParam = getClientParameters(client, dpgContext, {
     onClientOnly: true,

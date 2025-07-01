@@ -27,7 +27,7 @@ export default function createClient(
     ...options
   }: SynapseArtifactsClientOptions = {},
 ): SynapseArtifactsClient {
-  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpoint}`;
+  const endpointUrl = options.endpoint ?? `${endpoint}`;
   const userAgentInfo = `azsdk-js-synapse-artifacts-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
