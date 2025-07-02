@@ -192,8 +192,8 @@ describe("Azure Arm Resources Rest Client", () => {
         );
       }
     });
-
-    it("should handle user-defined error for bad request (400)", async () => {
+    // skipping this test as https://github.com/Azure/autorest.typescript/issues/2965
+    it.skip("should handle user-defined error for bad request (400)", async () => {
       try {
         await client.createForUserDefinedError(
           RESOURCE_GROUP_EXPECTED,
