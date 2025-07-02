@@ -193,8 +193,7 @@ describe("Azure Arm Resources Rest Client", () => {
       }
     });
 
-    // skipping the test as it should return a model of CloudError
-    it.skip("should handle user-defined error for bad request (400)", async () => {
+    it("should handle user-defined error for bad request (400)", async () => {
       try {
         await client.createForUserDefinedError(
           RESOURCE_GROUP_EXPECTED,
@@ -202,8 +201,9 @@ describe("Azure Arm Resources Rest Client", () => {
           {
             location: "eastus",
             properties: {
-              username: "00"
-            } as any
+              username: "00",
+              provisioningState: ""
+            }
           }
         );
         assert.fail("Should have thrown an error for bad request");
