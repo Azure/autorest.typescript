@@ -28,7 +28,6 @@ export default function createClient(
       userAgentPrefix,
     },
   };
-  const userAgentOptions = { ...options.userAgentOptions };
   
-  return getClient(endpointUrl, userAgentOptions) as StatusCodeRangeClient;
+  return getClient(endpointUrl, options) as StatusCodeRangeClient;
 }
