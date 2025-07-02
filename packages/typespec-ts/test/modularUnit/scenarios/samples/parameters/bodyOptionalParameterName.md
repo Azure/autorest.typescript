@@ -99,20 +99,20 @@ withRawContent: true
 
 Raw json files.
 
-```json
+```json for CloudHsmClusters_backup
 {
-  "operationId": "CloudHsmClusters_Backup",
+  "title": "CloudHsmClusters_backup",
+  "operationId": "CloudHsmClusters_backup",
   "parameters": {
     "api-version": "2025-03-31",
     "body": {
-      "azureStorageBlobContainerUri": "https://myaccount.blob.core.windows.net/sascontainer/sasContainer",
-      "token": "se=2018-02-01T00%3A00Z&spr=https&sv=2017-04-17&sr=b&sig=REDACTED"
+      "azureStorageBlobContainerUri": "sss",
+      "token": "aaa"
     },
     "cloudHsmClusterName": "chsm1",
     "resourceGroupName": "rgcloudhsm",
     "subscriptionId": "00000000-0000-0000-0000-000000000000"
   },
-  "title": "CloudHsmClusters_Backup",
   "responses": {}
 }
 ```
