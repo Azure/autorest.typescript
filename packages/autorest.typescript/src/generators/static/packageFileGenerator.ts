@@ -136,9 +136,6 @@ function regularAutorestPackage(
       lint: "echo skipped",
       clean:
         "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
-      "build:node": "echo skipped",
-      "build:browser": "echo skipped",
-      "build:test": "echo skipped",
       "build:samples": "echo skipped.",
       "check-format": "echo skipped",
       "execute:samples": "echo skipped",
@@ -146,12 +143,6 @@ function regularAutorestPackage(
       test: "echo skipped",
       "test:node": "echo skipped",
       "test:browser": "echo skipped",
-      "unit-test": "echo skipped",
-      "unit-test:node": "echo skipped",
-      "unit-test:browser": "echo skipped",
-      "integration-test": "echo skipped",
-      "integration-test:node": "echo skipped",
-      "integration-test:browser": "echo skipped"
     },
     sideEffects: false,
     "//metadata": {
@@ -193,11 +184,6 @@ function regularAutorestPackage(
     delete packageInfo.scripts["minify"];
     packageInfo.scripts["check-format"] = "dev-tool run vendored prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.{ts,cts,mts}\" \"test/**/*.{ts,cts,mts}\" \"*.{js,cjs,mjs,json}\" ";
     packageInfo.scripts["format"] = "dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.{ts,cts,mts}\" \"test/**/*.{ts,cts,mts}\" \"*.{js,cjs,mjs,json}\" ";
-    delete packageInfo.scripts["build:browser"];
-    delete packageInfo.scripts["build:node"];
-    delete packageInfo.scripts["build:test"];
-    delete packageInfo.scripts["integration-test:browser"];
-    delete packageInfo.scripts["integration-test:node"];
   } else {
     packageInfo.devDependencies["@rollup/plugin-commonjs"] = "^24.0.0";
     packageInfo.devDependencies["@rollup/plugin-json"] = "^6.0.0";
@@ -231,12 +217,7 @@ function regularAutorestPackage(
       "npm run integration-test:node && npm run integration-test:browser";
 
     if (azureSdkForJs) {
-      delete packageInfo.scripts["unit-test:node"];
-      delete packageInfo.scripts["unit-test:browser"];
-      delete packageInfo.scripts["integration-test:node"];
       packageInfo.scripts["test"] = "npm run test:node && npm run test:browser";
-      delete packageInfo.scripts["unit-test"];
-      delete packageInfo.scripts["integration-test"];
       packageInfo.scripts["test:node"] = "dev-tool run test:vitest";
       packageInfo.scripts["test:node:esm"] = "dev-tool run test:vitest --esm";
     } else {
