@@ -1,3 +1,19 @@
+## 0.42.0 (2025-07-03)
+
+- [Feature] Upgrade azure specs and update case. Please refer to [#3346](https://github.com/Azure/autorest.typescript/pull/3346)
+- [Bugfix] Fix lro operation status. Please refer to [#3337](https://github.com/Azure/autorest.typescript/pull/3337)
+- [Feature] Update generate test. Please refer to [#3333](https://github.com/Azure/autorest.typescript/pull/3333)
+- [Bugfix] Resolve the issue of a missing import file in the modular code classic client. Please refer to [#3330](https://github.com/Azure/autorest.typescript/pull/3330)
+- [Feature] Improve generate-metadata. Please refer to [#3317](https://github.com/Azure/autorest.typescript/pull/3317)
+- [Bugfix] Fix body parameter name normalization of reserved words. Please refer to [#3334](https://github.com/Azure/autorest.typescript/pull/3334)
+- [Feature] Remove deprecated baseUrl. Please refer to [#3324](https://github.com/Azure/autorest.typescript/pull/3324)
+- [Bugfix] Fix parent client no additional params and fix header/path/query client level params. Please refer to [#3292](https://github.com/Azure/autorest.typescript/pull/3292)
+- [Feature] [EngSys] Update agent pool to "azsdk-pool". Please refer to [#3321](https://github.com/Azure/autorest.typescript/pull/3321)
+- [Bugfix] Ensure no compile issue for query parameter re-injection in Paging. Please refer to [#3289](https://github.com/Azure/autorest.typescript/pull/3289)
+- [Bugfix] fix union type discriminator. Please refer to [#3216](https://github.com/Azure/autorest.typescript/pull/3216)
+- [Feature] Update node version to 20 for ci. Please refer to [#3316](https://github.com/Azure/autorest.typescript/pull/3316)
+- [Feature] Remove `review/` and `changelogmd` in package.json's files config. Please refer to [#3310](https://github.com/Azure/autorest.typescript/pull/3310)
+
 ## 0.41.1 (2025-06-20)
 
 - [Bugfix] Fix property normalization inconsistancy among sample and client generation. Please refer to [#3285](https://github.com/Azure/autorest.typescript/pull/3285)
