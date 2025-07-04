@@ -38,10 +38,6 @@
     "test": "echo skipped",
     "test:node": "echo skipped",
     "test:browser": "echo skipped",
-    "unit-test": "echo skipped",
-    "unit-test:node": "echo skipped",
-    "unit-test:browser": "echo skipped",
-    "integration-test": "echo skipped",
     "update-snippets": "dev-tool run update-snippets"
   },
   "sideEffects": false,
