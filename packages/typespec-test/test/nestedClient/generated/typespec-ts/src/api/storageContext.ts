@@ -16,8 +16,7 @@ export function createStorage(
   accountName: string,
   options: StorageClientOptionalParams = {},
 ): StorageContext {
-  const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? String(endpointParam);
+  const endpointUrl = options.endpoint ?? String(endpointParam);
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentInfo = `azsdk-js-nestedclient/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions

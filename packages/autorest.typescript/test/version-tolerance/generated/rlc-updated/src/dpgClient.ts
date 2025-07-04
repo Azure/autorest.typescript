@@ -16,8 +16,7 @@ export interface DPGClientOptions extends ClientOptions {}
 export default function createClient(
   options: DPGClientOptions = {},
 ): DPGClient {
-  const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
+  const endpointUrl = options.endpoint ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-rlcClient-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
