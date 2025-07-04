@@ -80,12 +80,12 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       type: "boolean",
       nullable: true,
       description:
-        "To allow the codegen generating shortcut methods in client definition. This is an experimental feature so we disable it by default. If you want to try it just turn it on."
+        "Deprecated option for RLC legacy generation."
     },
     "multi-client": {
       type: "boolean",
       nullable: true,
-      description: "Whether to generate multiple clients in one package."
+      description: "Deprecated option for RLC legacy generation."
     },
     batch: {
       type: "array",
@@ -194,10 +194,7 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
     title: {
       type: "string",
       nullable: true,
-      description: `
-      Only for RLC generation
-      Generally the codegen will leverage the title defined in \`@client\` and \`@service\` decorator in TypeSpec to name our RLC client. But if you'd like to override it you could config the \`title\` info.
-      `
+      description: "Deprecated option for RLC legacy generation."
     },
     "dependency-info": {
       type: "object",
@@ -275,7 +272,8 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       type: "string",
       nullable: true,
       enum: ["esm", "cjs"],
-      default: "esm"
+      default: "esm",
+      description: "Internal option for test."
     },
     "compatibility-mode": {
       type: "boolean",
@@ -337,8 +335,7 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
     "should-use-pnpm-dep": {
       type: "boolean",
       nullable: true,
-      description:
-        "Whether to generate codes with the pnpm dependencies. Defaults to `false`"
+      description: "Internal option for test."
     }
   },
   required: []
