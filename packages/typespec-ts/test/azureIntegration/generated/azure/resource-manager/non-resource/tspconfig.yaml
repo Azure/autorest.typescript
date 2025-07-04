@@ -1,0 +1,13 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    emitter-output-dir: "{project-root}"
+    azure-sdk-for-js: false
+    add-credentials: false
+    is-modular-library: false
+    title: AzureArmNonResourceClient
+    package-details:
+      name: "@azure/arm-nonresource"
+      description: "Azure Arm Mon Resource Test Service"
+      version: "1.0.0"

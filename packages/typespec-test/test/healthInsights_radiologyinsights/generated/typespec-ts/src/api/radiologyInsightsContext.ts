@@ -24,8 +24,7 @@ export function createRadiologyInsights(
   credential: KeyCredential,
   options: RadiologyInsightsClientOptionalParams = {},
 ): RadiologyInsightsContext {
-  const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? `${endpointParam}/health-insights`;
+  const endpointUrl = options.endpoint ?? `${endpointParam}/health-insights`;
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentInfo = `azsdk-js-health-insights-radiologyinsights/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions

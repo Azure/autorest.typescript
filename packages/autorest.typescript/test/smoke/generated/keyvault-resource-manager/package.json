@@ -4,7 +4,9 @@
   "author": "Microsoft Corporation",
   "description": "A generated SDK for KeyVaultManagementClient.",
   "version": "1.0.0-beta.1",
-  "engines": { "node": ">=18.0.0" },
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "dependencies": {
     "@azure/core-lro": "^2.5.4",
     "@azure/abort-controller": "^2.1.2",
@@ -14,7 +16,14 @@
     "@azure/core-rest-pipeline": "^1.19.0",
     "tslib": "^2.8.1"
   },
-  "keywords": ["node", "azure", "typescript", "browser", "isomorphic", "cloud"],
+  "keywords": [
+    "node",
+    "azure",
+    "typescript",
+    "browser",
+    "isomorphic",
+    "cloud"
+  ],
   "license": "MIT",
   "main": "./dist/commonjs/index.js",
   "module": "./dist/esm/index.js",
@@ -38,7 +47,7 @@
     "@azure/logger": "^1.1.4",
     "@azure-tools/test-recorder": "^4.0.0",
     "@azure-tools/test-credential": "^2.0.0",
-    "@types/node": "^18.0.0",
+    "@types/node": "^20.0.0",
     "@vitest/browser": "^3.0.9",
     "@vitest/coverage-istanbul": "^3.0.9",
     "playwright": "^1.50.1",
@@ -46,8 +55,14 @@
     "cross-env": "^7.0.2"
   },
   "repository": "github:Azure/azure-sdk-for-js",
-  "bugs": { "url": "https://github.com/Azure/azure-sdk-for-js/issues" },
-  "files": ["dist/", "README.md", "LICENSE", "review/*", "CHANGELOG.md"],
+  "bugs": {
+    "url": "https://github.com/Azure/azure-sdk-for-js/issues"
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "npm run clean && tshy && npm run extract-api",
     "minify": "uglifyjs -c -m --comments --source-map \"content='./dist/index.js.map'\" -o ./dist/index.min.js ./dist/index.js",
@@ -56,6 +71,9 @@
     "extract-api": "rimraf review && mkdirp ./review && api-extractor run --local",
     "lint": "echo skipped",
     "clean": "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
+    "build:node": "echo skipped",
+    "build:browser": "echo skipped",
+    "build:test": "echo skipped",
     "build:samples": "echo skipped.",
     "check-format": "echo skipped",
     "execute:samples": "echo skipped",
@@ -64,29 +82,66 @@
     "test:node": "echo skipped",
     "test:browser": "echo skipped",
     "unit-test": "npm run unit-test:node && npm run unit-test:browser",
-    "integration-test": "npm run integration-test:node && npm run integration-test:browser",
     "unit-test:node": "cross-env TEST_MODE=playback npm run integration-test:node",
-    "integration-test:node": "cross-env TS_NODE_COMPILER_OPTIONS=\"{\\\"module\\\":\\\"commonjs\\\"}\" mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts"
+    "unit-test:browser": "echo skipped",
+    "integration-test": "npm run integration-test:node && npm run integration-test:browser",
+    "integration-test:node": "cross-env TS_NODE_COMPILER_OPTIONS=\"{\\\"module\\\":\\\"commonjs\\\"}\" mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts",
+    "integration-test:browser": "echo skipped"
   },
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/keyVaultManagementClient.ts", "prefix": "packageDetails" }
+      {
+        "path": "src/keyVaultManagementClient.ts",
+        "prefix": "packageDetails"
+      }
     ]
   },
   "autoPublish": true,
   "browser": "./dist/browser/index.js",
   "react-native": "./dist/react-native/index.js",
   "tshy": {
-    "exports": { "./package.json": "./package.json", ".": "./src/index.ts" },
-    "dialects": ["esm", "commonjs"],
-    "esmDialects": ["browser", "react-native"],
+    "exports": {
+      "./package.json": "./package.json",
+      ".": "./src/index.ts"
+    },
+    "dialects": [
+      "esm",
+      "commonjs"
+    ],
+    "esmDialects": [
+      "browser",
+      "react-native"
+    ],
     "selfLink": false
   },
   "//sampleConfiguration": {
     "productName": "",
-    "productSlugs": ["azure"],
+    "productSlugs": [
+      "azure"
+    ],
     "disableDocsMs": true,
     "apiRefLink": "https://learn.microsoft.com/javascript/api/@msinternal/keyvault-resource-manager?view=azure-node-preview"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "browser": {
+        "types": "./dist/browser/index.d.ts",
+        "default": "./dist/browser/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/index.d.ts",
+        "default": "./dist/react-native/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/index.d.ts",
+        "default": "./dist/commonjs/index.js"
+      }
+    }
   }
 }

@@ -678,7 +678,7 @@ function getHeaderAndBodyParameters(
     return "";
   }
   const operationParameters = operation.operation.parameters.filter(
-    (p) => (!p.onClient || p.isApiVersionParam) && !isContentType(p)
+    (p) => !isContentType(p)
   );
 
   const contentTypeParameter =
@@ -782,7 +782,11 @@ function buildBodyParameter(
     true
   );
 
-  const bodyParamName = normalizeName(bodyParameter.name, NameType.Parameter);
+  const bodyParamName = normalizeName(
+    bodyParameter.name,
+    NameType.Parameter,
+    true
+  );
   const bodyNameExpression = bodyParameter.optional
     ? `${optionalParamName}["${bodyParamName}"]`
     : bodyParamName;
@@ -1016,7 +1020,7 @@ function getPathParameters(
   for (const param of operation.operation.parameters) {
     if (param.kind === "path") {
       pathParams.push(
-        `"${param.serializedName}": ${getPathParamExpr(param, getDefaultValue(param) as string, optionalParamName)}`
+        `"${param.serializedName}": ${getPathParamExpr(param.correspondingMethodParams[0]!, getDefaultValue(param) as string, optionalParamName)}`
       );
     }
   }
@@ -1035,7 +1039,7 @@ function getQueryParameters(
     return [];
   }
   const operationParameters = operation.operation.parameters.filter(
-    (p) => (!p.onClient || p.isApiVersionParam) && !isContentType(p)
+    (p) => !isContentType(p)
   );
   const parametersImplementation: Record<
     "query",
@@ -1075,7 +1079,7 @@ function escapeUriTemplateParamName(name: string) {
 }
 
 function getPathParamExpr(
-  param: SdkServiceParameter,
+  param: SdkModelPropertyType,
   defaultValue?: string,
   optionalParamName: string = "options"
 ) {
@@ -1546,14 +1550,10 @@ export function getPropertyFullName(
  * @param operation The operation
  */
 export function getExpectedStatuses(operation: ServiceOperation): string {
-  const statusCodes = operation.operation.responses.map((x) => x.statusCodes);
+  let statusCodes = operation.operation.responses.map((x) => x.statusCodes);
   // LROs may call the same path but with GET to get the operation status.
-  if (
-    isLroOnlyOperation(operation) &&
-    operation.operation.verb !== "get" &&
-    !statusCodes.includes(200)
-  ) {
-    statusCodes.push(200);
+  if (isLroOnlyOperation(operation) && operation.operation.verb !== "get") {
+    statusCodes = Array.from(new Set([...statusCodes, 200, 202]));
   }
 
   return `[${statusCodes.map((x) => `"${x}"`).join(", ")}]`;

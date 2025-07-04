@@ -19,21 +19,21 @@
       {
         "name": "host",
         "in": "path",
-        "required": false,
+        "required": true,
         "type": "string",
         "default": "one"
       },
       {
         "name": "subdomain",
         "in": "path",
-        "required": false,
+        "required": true,
         "type": "string",
         "default": "two"
       },
       {
         "name": "sufix",
         "in": "path",
-        "required": false,
+        "required": true,
         "type": "string",
         "default": "three"
       }
@@ -82,8 +82,7 @@
               "type": "array",
               "items": {
                 "$ref": "#/definitions/Collection"
-              },
-              "x-ms-identifiers": []
+              }
             }
           },
           "default": {
@@ -124,8 +123,7 @@
           "description": "An array of details about specific errors that led to this reported error.",
           "items": {
             "$ref": "#/definitions/Azure.Core.Foundations.Error"
-          },
-          "x-ms-identifiers": []
+          }
         },
         "innererror": {
           "$ref": "#/definitions/Azure.Core.Foundations.InnerError",
