@@ -84,11 +84,11 @@ interface DeserializationHelper {
 const deserializeMap: Record<string, DeserializationHelper> = {
   "PUT /budgets/widgets/createOrReplace/users/{name}": {
     deserializer: _createOrReplaceDeserialize,
-    expectedStatuses: ["201", "200"],
+    expectedStatuses: ["201", "200", "202"],
   },
   "PUT /widgets/widgets/createOrReplace/users/{name}": {
     deserializer: _createOrReplaceDeserializeSapWidgets,
-    expectedStatuses: ["201", "200"],
+    expectedStatuses: ["201", "200", "202"],
   },
 };
 

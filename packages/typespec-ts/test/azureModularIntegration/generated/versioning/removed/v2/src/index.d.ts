@@ -23,12 +23,13 @@ export declare interface ModelV3OptionalParams extends OperationOptions {
 export declare class RemovedClient {
     private _client;
     readonly pipeline: Pipeline;
-    constructor(endpointParam: string, version: Versions, options?: RemovedClientOptionalParams);
+    constructor(endpointParam: string, options?: RemovedClientOptionalParams);
     modelV3(body: ModelV3, options?: ModelV3OptionalParams): Promise<ModelV3>;
     v2(body: ModelV2, options?: V2OptionalParams): Promise<ModelV2>;
 }
 
 export declare interface RemovedClientOptionalParams extends ClientOptions {
+    version?: Versions;
 }
 
 export declare type UnionV2 = string | number;

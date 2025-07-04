@@ -125,10 +125,15 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
   // Snapshot of the options
   "(ts|typescript) models:withOptions interface {name}": async (
     tsp,
-    { name }
+    { name },
+    namedUnknownArgs
   ) => {
+    const configs = namedUnknownArgs
+      ? (namedUnknownArgs["configs"] as Record<string, string>)
+      : {};
     const result = await emitModularModelsFromTypeSpec(tsp, {
-      needOptions: true
+      needOptions: true,
+      ...configs
     });
 
     if (result === undefined) {
@@ -139,9 +144,13 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
   },
 
   // Snapshot of the entire models file
-  "(ts|typescript) models:withOptions": async (tsp) => {
+  "(ts|typescript) models:withOptions": async (tsp, {}, namedUnknownArgs) => {
+    const configs = namedUnknownArgs
+      ? (namedUnknownArgs["configs"] as Record<string, string>)
+      : {};
     const result = await emitModularModelsFromTypeSpec(tsp, {
-      needOptions: true
+      needOptions: true,
+      ...configs
     });
 
     if (result === undefined) {
@@ -226,6 +235,10 @@ function describeScenarioFile(scenarioFile: string): void {
   describe(path.basename(scenarioFile), function () {
     const scenarios = readScenarios(readFileSync(scenarioFile, "utf-8"));
     for (const scenario of scenarios) {
+      if (scenario.skip) {
+        describe.skip(scenario.heading, function () {});
+        continue;
+      }
       (scenario.only ? describe.only : describe)(scenario.heading, function () {
         const codeBlocks = scenario.parts.filter((x) => x.kind === "code");
         const tspBlocks = codeBlocks.filter(
@@ -294,7 +307,7 @@ function describeScenarioFile(scenarioFile: string): void {
                 : allExamples;
             const result = await testCase.fn!(examples);
 
-            if (SCENARIOS_UPDATE) {
+            if (SCENARIOS_UPDATE && !scenario.skip) {
               // Update the content; this makes the tests pass
               // This update also updates the `scenarios` object
               testCase.block.content = await format(
@@ -322,6 +335,7 @@ type ScenarioFile = Scenario[];
 interface Scenario {
   only: boolean;
   heading: string;
+  skip: boolean;
   parts: ScenarioPart[];
 }
 
@@ -348,10 +362,7 @@ function readScenarios(fileContent: string): ScenarioFile {
     const [rawHeading, ...lines] = part.split("\n");
     const isOnly = rawHeading!.startsWith("only: ");
     const isSkip = rawHeading!.startsWith("skip: ");
-    if (isSkip) {
-      console.log("Skipping scenario: ", rawHeading);
-      continue;
-    }
+
     const heading = isOnly
       ? rawHeading!.substring("only: ".length)
       : rawHeading!;
@@ -380,6 +391,7 @@ function readScenarios(fileContent: string): ScenarioFile {
 
     scenarios.push({
       only: Boolean(isOnly),
+      skip: Boolean(isSkip),
       heading,
       parts
     });

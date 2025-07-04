@@ -86,7 +86,7 @@ function regularAutorestPackage(
       `A generated SDK for ${clientDetails.name}.`,
     version: packageDetails.version,
     engines: {
-      node: ">=18.0.0"
+      node: ">=20.0.0"
     },
     dependencies: {
       ...(hasLro && { "@azure/core-lro": shouldUsePnpmDep && azureSdkForJs ? "catalog:corelrov2" : "^2.5.4" }),
@@ -123,8 +123,6 @@ function regularAutorestPackage(
       "dist/",
       "README.md",
       "LICENSE",
-      "review/*",
-      "CHANGELOG.md",
     ],
     scripts: {
       build:
@@ -213,7 +211,7 @@ function regularAutorestPackage(
     if (azureSdkForJs) {
       packageInfo.devDependencies["@azure-tools/test-utils-vitest"] = shouldUsePnpmDep && azureSdkForJs ? "workspace:^" : "^1.0.0";
     }
-    packageInfo.devDependencies["@types/node"] = shouldUsePnpmDep && azureSdkForJs ? "catalog:" : "^18.0.0";
+    packageInfo.devDependencies["@types/node"] = shouldUsePnpmDep && azureSdkForJs ? "catalog:" : "^20.0.0";
     packageInfo.devDependencies["@vitest/browser"] = shouldUsePnpmDep && azureSdkForJs ? "catalog:testing" : "^3.0.9";
     packageInfo.devDependencies["@vitest/coverage-istanbul"] = shouldUsePnpmDep && azureSdkForJs ? "catalog:testing" : "^3.0.9";
     packageInfo.devDependencies["playwright"] = shouldUsePnpmDep && azureSdkForJs ? "catalog:testing" : "^1.50.1";
