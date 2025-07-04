@@ -4,14 +4,16 @@
 import { ConfluentContext as Client } from "../index.js";
 import {
   resourceProviderDefaultErrorResponseDeserializer,
-  ListAccessRequestModel,
-  listAccessRequestModelSerializer,
+  APIKeyRecord,
+  apiKeyRecordDeserializer,
   OrganizationResource,
   organizationResourceSerializer,
   organizationResourceDeserializer,
   organizationResourceUpdateSerializer,
   _OrganizationResourceListResult,
   _organizationResourceListResultDeserializer,
+  ListAccessRequestModel,
+  listAccessRequestModelSerializer,
   ListRegionsSuccessResponse,
   listRegionsSuccessResponseDeserializer,
   SCEnvironmentRecord,
@@ -26,8 +28,11 @@ import {
   scClusterRecordDeserializer,
   _ListClustersSuccessResponse,
   _listClustersSuccessResponseDeserializer,
+  CreateAPIKeyModel,
+  createAPIKeyModelSerializer,
 } from "../../models/models.js";
 import {
+  OrganizationCreateApiKeyOptionalParams,
   OrganizationListClustersOptionalParams,
   OrganizationGetClusterByIdOptionalParams,
   OrganizationGetSchemaRegistryClusterByIdOptionalParams,
@@ -41,6 +46,8 @@ import {
   OrganizationUpdateOptionalParams,
   OrganizationCreateOptionalParams,
   OrganizationGetOptionalParams,
+  OrganizationDeleteClusterAPIKeyOptionalParams,
+  OrganizationGetClusterAPIKeyOptionalParams,
 } from "./options.js";
 import {
   PagedAsyncIterableIterator,
@@ -55,6 +62,79 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { PollerLike, OperationState } from "@azure/core-lro";
+
+export function _createApiKeySend(
+  context: Client,
+  resourceGroupName: string,
+  organizationName: string,
+  environmentId: string,
+  clusterId: string,
+  body: CreateAPIKeyModel,
+  options: OrganizationCreateApiKeyOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/environments/{environmentId}/clusters/{clusterId}/createAPIKey{?api%2Dversion}",
+    {
+      subscriptionId: context.subscriptionId,
+      resourceGroupName: resourceGroupName,
+      organizationName: organizationName,
+      environmentId: environmentId,
+      clusterId: clusterId,
+      "api%2Dversion": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      body: createAPIKeyModelSerializer(body),
+    });
+}
+
+export async function _createApiKeyDeserialize(
+  result: PathUncheckedResponse,
+): Promise<APIKeyRecord> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = resourceProviderDefaultErrorResponseDeserializer(
+      result.body,
+    );
+    throw error;
+  }
+
+  return apiKeyRecordDeserializer(result.body);
+}
+
+/** Creates API key for a schema registry Cluster ID or Kafka Cluster ID under a environment */
+export async function createApiKey(
+  context: Client,
+  resourceGroupName: string,
+  organizationName: string,
+  environmentId: string,
+  clusterId: string,
+  body: CreateAPIKeyModel,
+  options: OrganizationCreateApiKeyOptionalParams = { requestOptions: {} },
+): Promise<APIKeyRecord> {
+  const result = await _createApiKeySend(
+    context,
+    resourceGroupName,
+    organizationName,
+    environmentId,
+    clusterId,
+    body,
+    options,
+  );
+  return _createApiKeyDeserialize(result);
+}
 
 export function _listClustersSend(
   context: Client,
@@ -925,4 +1005,136 @@ export async function get(
     options,
   );
   return _getDeserialize(result);
+}
+
+export function _deleteClusterAPIKeySend(
+  context: Client,
+  resourceGroupName: string,
+  organizationName: string,
+  apiKeyId: string,
+  options: OrganizationDeleteClusterAPIKeyOptionalParams = {
+    requestOptions: {},
+  },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/apiKeys/{apiKeyId}{?api%2Dversion}",
+    {
+      subscriptionId: context.subscriptionId,
+      resourceGroupName: resourceGroupName,
+      organizationName: organizationName,
+      apiKeyId: apiKeyId,
+      "api%2Dversion": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .delete({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
+}
+
+export async function _deleteClusterAPIKeyDeserialize(
+  result: PathUncheckedResponse,
+): Promise<void> {
+  const expectedStatuses = ["200", "204"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = resourceProviderDefaultErrorResponseDeserializer(
+      result.body,
+    );
+    throw error;
+  }
+
+  return;
+}
+
+/** Deletes API key of a kafka or schema registry cluster */
+export async function deleteClusterAPIKey(
+  context: Client,
+  resourceGroupName: string,
+  organizationName: string,
+  apiKeyId: string,
+  options: OrganizationDeleteClusterAPIKeyOptionalParams = {
+    requestOptions: {},
+  },
+): Promise<void> {
+  const result = await _deleteClusterAPIKeySend(
+    context,
+    resourceGroupName,
+    organizationName,
+    apiKeyId,
+    options,
+  );
+  return _deleteClusterAPIKeyDeserialize(result);
+}
+
+export function _getClusterAPIKeySend(
+  context: Client,
+  resourceGroupName: string,
+  organizationName: string,
+  apiKeyId: string,
+  options: OrganizationGetClusterAPIKeyOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/apiKeys/{apiKeyId}{?api%2Dversion}",
+    {
+      subscriptionId: context.subscriptionId,
+      resourceGroupName: resourceGroupName,
+      organizationName: organizationName,
+      apiKeyId: apiKeyId,
+      "api%2Dversion": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
+}
+
+export async function _getClusterAPIKeyDeserialize(
+  result: PathUncheckedResponse,
+): Promise<APIKeyRecord> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = resourceProviderDefaultErrorResponseDeserializer(
+      result.body,
+    );
+    throw error;
+  }
+
+  return apiKeyRecordDeserializer(result.body);
+}
+
+/** Get API key details of a kafka or schema registry cluster */
+export async function getClusterAPIKey(
+  context: Client,
+  resourceGroupName: string,
+  organizationName: string,
+  apiKeyId: string,
+  options: OrganizationGetClusterAPIKeyOptionalParams = { requestOptions: {} },
+): Promise<APIKeyRecord> {
+  const result = await _getClusterAPIKeySend(
+    context,
+    resourceGroupName,
+    organizationName,
+    apiKeyId,
+    options,
+  );
+  return _getClusterAPIKeyDeserialize(result);
 }

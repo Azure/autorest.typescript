@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 export {
+  createApiKey,
   listClusters,
   getClusterById,
   getSchemaRegistryClusterById,
@@ -15,8 +16,11 @@ export {
   update,
   create,
   get,
+  deleteClusterAPIKey,
+  getClusterAPIKey,
 } from "./operations.js";
 export {
+  OrganizationCreateApiKeyOptionalParams,
   OrganizationListClustersOptionalParams,
   OrganizationGetClusterByIdOptionalParams,
   OrganizationGetSchemaRegistryClusterByIdOptionalParams,
@@ -30,4 +34,6 @@ export {
   OrganizationUpdateOptionalParams,
   OrganizationCreateOptionalParams,
   OrganizationGetOptionalParams,
+  OrganizationDeleteClusterAPIKeyOptionalParams,
+  OrganizationGetClusterAPIKeyOptionalParams,
 } from "./options.js";

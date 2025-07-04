@@ -8,6 +8,18 @@ using Microsoft.Confluent;
 @@clientLocation(Operations.list, "OrganizationOperations");
 
 // OrganizationResourceAPIKeyActions interface
+@@clientLocation(OrganizationResourceAPIKeyActions.getClusterAPIKey,
+  "Organization"
+);
+@@clientName(OrganizationResourceAPIKeyActions.getClusterAPIKey,
+  "GetClusterAPIKey"
+);
+@@clientLocation(OrganizationResourceAPIKeyActions.deleteClusterAPIKey,
+  "Organization"
+);
+@@clientName(OrganizationResourceAPIKeyActions.deleteClusterAPIKey,
+  "DeleteClusterAPIKey"
+);
 
 // OrganizationResourceRoleBindingIdActions interface
 @@clientLocation(OrganizationResourceRoleBindingIdActions.deleteRoleBinding,
@@ -57,6 +69,8 @@ using Microsoft.Confluent;
 @@clientLocation(SCClusterRecords.createOrUpdate, "Cluster");
 @@clientLocation(SCClusterRecords.delete, "Cluster");
 @@clientLocation(SCClusterRecords.listClusters, "Organization");
+@@clientLocation(SCClusterRecords.createAPIKey, "Organization");
+@@clientName(SCClusterRecords.createAPIKey, "CreateApiKey");
 
 // SCEnvironmentRecords interface
 @@clientLocation(SCEnvironmentRecords.getEnvironmentById, "Organization");

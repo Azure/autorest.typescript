@@ -31,25 +31,17 @@ import {
   _getEnvironmentOperations,
 } from "./classic/environment/index.js";
 import {
-  OrganizationOperations,
-  _getOrganizationOperations,
-} from "./classic/organization/index.js";
-import {
   AccessOperations,
   _getAccessOperations,
 } from "./classic/access/index.js";
 import {
+  OrganizationOperations,
+  _getOrganizationOperations,
+} from "./classic/organization/index.js";
+import {
   OrganizationOperationsOperations,
   _getOrganizationOperationsOperations,
 } from "./classic/organizationOperations/index.js";
-import {
-  SCClusterRecordsOperations,
-  _getSCClusterRecordsOperations,
-} from "./classic/scClusterRecords/index.js";
-import {
-  OrganizationResourceAPIKeyActionsOperations,
-  _getOrganizationResourceAPIKeyActionsOperations,
-} from "./classic/organizationResourceAPIKeyActions/index.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { TokenCredential } from "@azure/core-auth";
 
@@ -82,14 +74,11 @@ export class ConfluentClient {
     this.connector = _getConnectorOperations(this._client);
     this.cluster = _getClusterOperations(this._client);
     this.environment = _getEnvironmentOperations(this._client);
-    this.organization = _getOrganizationOperations(this._client);
     this.access = _getAccessOperations(this._client);
+    this.organization = _getOrganizationOperations(this._client);
     this.organizationOperations = _getOrganizationOperationsOperations(
       this._client,
     );
-    this.scClusterRecords = _getSCClusterRecordsOperations(this._client);
-    this.organizationResourceAPIKeyActions =
-      _getOrganizationResourceAPIKeyActionsOperations(this._client);
   }
 
   /** The operation groups for validations */
@@ -104,14 +93,10 @@ export class ConfluentClient {
   public readonly cluster: ClusterOperations;
   /** The operation groups for environment */
   public readonly environment: EnvironmentOperations;
-  /** The operation groups for organization */
-  public readonly organization: OrganizationOperations;
   /** The operation groups for access */
   public readonly access: AccessOperations;
+  /** The operation groups for organization */
+  public readonly organization: OrganizationOperations;
   /** The operation groups for organizationOperations */
   public readonly organizationOperations: OrganizationOperationsOperations;
-  /** The operation groups for scClusterRecords */
-  public readonly scClusterRecords: SCClusterRecordsOperations;
-  /** The operation groups for organizationResourceAPIKeyActions */
-  public readonly organizationResourceAPIKeyActions: OrganizationResourceAPIKeyActionsOperations;
 }

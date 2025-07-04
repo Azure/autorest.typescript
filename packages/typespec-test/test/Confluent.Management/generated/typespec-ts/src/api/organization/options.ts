@@ -8,6 +8,10 @@ import {
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
+export interface OrganizationCreateApiKeyOptionalParams
+  extends OperationOptions {}
+
+/** Optional parameters. */
 export interface OrganizationListClustersOptionalParams
   extends OperationOptions {
   /** Pagination size */
@@ -80,3 +84,11 @@ export interface OrganizationCreateOptionalParams extends OperationOptions {
 
 /** Optional parameters. */
 export interface OrganizationGetOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface OrganizationDeleteClusterAPIKeyOptionalParams
+  extends OperationOptions {}
+
+/** Optional parameters. */
+export interface OrganizationGetClusterAPIKeyOptionalParams
+  extends OperationOptions {}

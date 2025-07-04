@@ -3,14 +3,17 @@
 
 import { ConfluentContext } from "../../api/confluentContext.js";
 import {
-  ListAccessRequestModel,
+  APIKeyRecord,
   OrganizationResource,
+  ListAccessRequestModel,
   ListRegionsSuccessResponse,
   SCEnvironmentRecord,
   SchemaRegistryClusterRecord,
   SCClusterRecord,
+  CreateAPIKeyModel,
 } from "../../models/models.js";
 import {
+  OrganizationCreateApiKeyOptionalParams,
   OrganizationListClustersOptionalParams,
   OrganizationGetClusterByIdOptionalParams,
   OrganizationGetSchemaRegistryClusterByIdOptionalParams,
@@ -24,8 +27,11 @@ import {
   OrganizationUpdateOptionalParams,
   OrganizationCreateOptionalParams,
   OrganizationGetOptionalParams,
+  OrganizationDeleteClusterAPIKeyOptionalParams,
+  OrganizationGetClusterAPIKeyOptionalParams,
 } from "../../api/organization/options.js";
 import {
+  createApiKey,
   listClusters,
   getClusterById,
   getSchemaRegistryClusterById,
@@ -39,12 +45,23 @@ import {
   update,
   create,
   get,
+  deleteClusterAPIKey,
+  getClusterAPIKey,
 } from "../../api/organization/operations.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
 /** Interface representing a Organization operations. */
 export interface OrganizationOperations {
+  /** Creates API key for a schema registry Cluster ID or Kafka Cluster ID under a environment */
+  createApiKey: (
+    resourceGroupName: string,
+    organizationName: string,
+    environmentId: string,
+    clusterId: string,
+    body: CreateAPIKeyModel,
+    options?: OrganizationCreateApiKeyOptionalParams,
+  ) => Promise<APIKeyRecord>;
   /** Lists of all the clusters in a environment */
   listClusters: (
     resourceGroupName: string,
@@ -133,10 +150,41 @@ export interface OrganizationOperations {
     organizationName: string,
     options?: OrganizationGetOptionalParams,
   ) => Promise<OrganizationResource>;
+  /** Deletes API key of a kafka or schema registry cluster */
+  deleteClusterAPIKey: (
+    resourceGroupName: string,
+    organizationName: string,
+    apiKeyId: string,
+    options?: OrganizationDeleteClusterAPIKeyOptionalParams,
+  ) => Promise<void>;
+  /** Get API key details of a kafka or schema registry cluster */
+  getClusterAPIKey: (
+    resourceGroupName: string,
+    organizationName: string,
+    apiKeyId: string,
+    options?: OrganizationGetClusterAPIKeyOptionalParams,
+  ) => Promise<APIKeyRecord>;
 }
 
 function _getOrganization(context: ConfluentContext) {
   return {
+    createApiKey: (
+      resourceGroupName: string,
+      organizationName: string,
+      environmentId: string,
+      clusterId: string,
+      body: CreateAPIKeyModel,
+      options?: OrganizationCreateApiKeyOptionalParams,
+    ) =>
+      createApiKey(
+        context,
+        resourceGroupName,
+        organizationName,
+        environmentId,
+        clusterId,
+        body,
+        options,
+      ),
     listClusters: (
       resourceGroupName: string,
       organizationName: string,
@@ -246,6 +294,32 @@ function _getOrganization(context: ConfluentContext) {
       organizationName: string,
       options?: OrganizationGetOptionalParams,
     ) => get(context, resourceGroupName, organizationName, options),
+    deleteClusterAPIKey: (
+      resourceGroupName: string,
+      organizationName: string,
+      apiKeyId: string,
+      options?: OrganizationDeleteClusterAPIKeyOptionalParams,
+    ) =>
+      deleteClusterAPIKey(
+        context,
+        resourceGroupName,
+        organizationName,
+        apiKeyId,
+        options,
+      ),
+    getClusterAPIKey: (
+      resourceGroupName: string,
+      organizationName: string,
+      apiKeyId: string,
+      options?: OrganizationGetClusterAPIKeyOptionalParams,
+    ) =>
+      getClusterAPIKey(
+        context,
+        resourceGroupName,
+        organizationName,
+        apiKeyId,
+        options,
+      ),
   };
 }
 

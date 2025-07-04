@@ -1,6 +1,119 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+/** Result of GET request to list Confluent operations. */
+export interface _OperationListResult {
+  /** List of Confluent operations supported by the Microsoft.Confluent provider. */
+  value: OperationResult[];
+  /** URL to get the next set of operation list results if there are any. */
+  nextLink?: string;
+}
+
+export function _operationListResultDeserializer(
+  item: any,
+): _OperationListResult {
+  return {
+    value: operationResultArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
+}
+
+export function operationResultArrayDeserializer(
+  result: Array<OperationResult>,
+): any[] {
+  return result.map((item) => {
+    return operationResultDeserializer(item);
+  });
+}
+
+/** An Confluent REST API operation. */
+export interface OperationResult {
+  /** Operation name: {provider}/{resource}/{operation} */
+  name?: string;
+  /** The object that represents the operation. */
+  display?: OperationDisplay;
+  /** Indicates whether the operation is a data action */
+  isDataAction?: boolean;
+}
+
+export function operationResultDeserializer(item: any): OperationResult {
+  return {
+    name: item["name"],
+    display: !item["display"]
+      ? item["display"]
+      : operationDisplayDeserializer(item["display"]),
+    isDataAction: item["isDataAction"],
+  };
+}
+
+/** The object that represents the operation. */
+export interface OperationDisplay {
+  /** Service provider: Microsoft.Confluent */
+  provider?: string;
+  /** Type on which the operation is performed, e.g., 'clusters'. */
+  resource?: string;
+  /** Operation type, e.g., read, write, delete, etc. */
+  operation?: string;
+  /** Description of the operation, e.g., 'Write confluent'. */
+  description?: string;
+}
+
+export function operationDisplayDeserializer(item: any): OperationDisplay {
+  return {
+    provider: item["provider"],
+    resource: item["resource"],
+    operation: item["operation"],
+    description: item["description"],
+  };
+}
+
+/** Default error response for resource provider */
+export interface ResourceProviderDefaultErrorResponse {
+  /** Response body of Error */
+  readonly error?: ErrorResponseBody;
+}
+
+export function resourceProviderDefaultErrorResponseDeserializer(
+  item: any,
+): ResourceProviderDefaultErrorResponse {
+  return {
+    error: !item["error"]
+      ? item["error"]
+      : errorResponseBodyDeserializer(item["error"]),
+  };
+}
+
+/** Response body of Error */
+export interface ErrorResponseBody {
+  /** Error code */
+  readonly code?: string;
+  /** Error message */
+  readonly message?: string;
+  /** Error target */
+  readonly target?: string;
+  /** Error detail */
+  readonly details?: ErrorResponseBody[];
+}
+
+export function errorResponseBodyDeserializer(item: any): ErrorResponseBody {
+  return {
+    code: item["code"],
+    message: item["message"],
+    target: item["target"],
+    details: !item["details"]
+      ? item["details"]
+      : errorResponseBodyArrayDeserializer(item["details"]),
+  };
+}
+
+export function errorResponseBodyArrayDeserializer(
+  result: Array<ErrorResponseBody>,
+): any[] {
+  return result.map((item) => {
+    return errorResponseBodyDeserializer(item);
+  });
+}
+
 /** Details API key */
 export interface APIKeyRecord {
   /** Type of api key */
@@ -146,801 +259,6 @@ export function apiKeyOwnerEntityDeserializer(item: any): APIKeyOwnerEntity {
     related: item["related"],
     resourceName: item["resourceName"],
     kind: item["kind"],
-  };
-}
-
-/** Default error response for resource provider */
-export interface ResourceProviderDefaultErrorResponse {
-  /** Response body of Error */
-  readonly error?: ErrorResponseBody;
-}
-
-export function resourceProviderDefaultErrorResponseDeserializer(
-  item: any,
-): ResourceProviderDefaultErrorResponse {
-  return {
-    error: !item["error"]
-      ? item["error"]
-      : errorResponseBodyDeserializer(item["error"]),
-  };
-}
-
-/** Response body of Error */
-export interface ErrorResponseBody {
-  /** Error code */
-  readonly code?: string;
-  /** Error message */
-  readonly message?: string;
-  /** Error target */
-  readonly target?: string;
-  /** Error detail */
-  readonly details?: ErrorResponseBody[];
-}
-
-export function errorResponseBodyDeserializer(item: any): ErrorResponseBody {
-  return {
-    code: item["code"],
-    message: item["message"],
-    target: item["target"],
-    details: !item["details"]
-      ? item["details"]
-      : errorResponseBodyArrayDeserializer(item["details"]),
-  };
-}
-
-export function errorResponseBodyArrayDeserializer(
-  result: Array<ErrorResponseBody>,
-): any[] {
-  return result.map((item) => {
-    return errorResponseBodyDeserializer(item);
-  });
-}
-
-/** Create API Key model */
-export interface CreateAPIKeyModel {
-  /** Name of the API Key */
-  name?: string;
-  /** Description of the API Key */
-  description?: string;
-}
-
-export function createAPIKeyModelSerializer(item: CreateAPIKeyModel): any {
-  return { name: item["name"], description: item["description"] };
-}
-
-/** Result of GET request to list Confluent operations. */
-export interface _OperationListResult {
-  /** List of Confluent operations supported by the Microsoft.Confluent provider. */
-  value: OperationResult[];
-  /** URL to get the next set of operation list results if there are any. */
-  nextLink?: string;
-}
-
-export function _operationListResultDeserializer(
-  item: any,
-): _OperationListResult {
-  return {
-    value: operationResultArrayDeserializer(item["value"]),
-    nextLink: item["nextLink"],
-  };
-}
-
-export function operationResultArrayDeserializer(
-  result: Array<OperationResult>,
-): any[] {
-  return result.map((item) => {
-    return operationResultDeserializer(item);
-  });
-}
-
-/** An Confluent REST API operation. */
-export interface OperationResult {
-  /** Operation name: {provider}/{resource}/{operation} */
-  name?: string;
-  /** The object that represents the operation. */
-  display?: OperationDisplay;
-  /** Indicates whether the operation is a data action */
-  isDataAction?: boolean;
-}
-
-export function operationResultDeserializer(item: any): OperationResult {
-  return {
-    name: item["name"],
-    display: !item["display"]
-      ? item["display"]
-      : operationDisplayDeserializer(item["display"]),
-    isDataAction: item["isDataAction"],
-  };
-}
-
-/** The object that represents the operation. */
-export interface OperationDisplay {
-  /** Service provider: Microsoft.Confluent */
-  provider?: string;
-  /** Type on which the operation is performed, e.g., 'clusters'. */
-  resource?: string;
-  /** Operation type, e.g., read, write, delete, etc. */
-  operation?: string;
-  /** Description of the operation, e.g., 'Write confluent'. */
-  description?: string;
-}
-
-export function operationDisplayDeserializer(item: any): OperationDisplay {
-  return {
-    provider: item["provider"],
-    resource: item["resource"],
-    operation: item["operation"],
-    description: item["description"],
-  };
-}
-
-/** List Access Request Model */
-export interface ListAccessRequestModel {
-  /** Search filters for the request */
-  searchFilters?: Record<string, string>;
-}
-
-export function listAccessRequestModelSerializer(
-  item: ListAccessRequestModel,
-): any {
-  return { searchFilters: item["searchFilters"] };
-}
-
-/** List users success response */
-export interface AccessListUsersSuccessResponse {
-  /** Type of response */
-  kind?: string;
-  /** Metadata of the list */
-  metadata?: ConfluentListMetadata;
-  /** Data of the users list */
-  data?: UserRecord[];
-}
-
-export function accessListUsersSuccessResponseDeserializer(
-  item: any,
-): AccessListUsersSuccessResponse {
-  return {
-    kind: item["kind"],
-    metadata: !item["metadata"]
-      ? item["metadata"]
-      : confluentListMetadataDeserializer(item["metadata"]),
-    data: !item["data"]
-      ? item["data"]
-      : userRecordArrayDeserializer(item["data"]),
-  };
-}
-
-/** Metadata of the list */
-export interface ConfluentListMetadata {
-  /** First page of the list */
-  first?: string;
-  /** Last page of the list */
-  last?: string;
-  /** Previous page of the list */
-  prev?: string;
-  /** Next page of the list */
-  next?: string;
-  /** Total size of the list */
-  totalSize?: number;
-}
-
-export function confluentListMetadataDeserializer(
-  item: any,
-): ConfluentListMetadata {
-  return {
-    first: item["first"],
-    last: item["last"],
-    prev: item["prev"],
-    next: item["next"],
-    totalSize: item["total_size"],
-  };
-}
-
-export function userRecordArrayDeserializer(result: Array<UserRecord>): any[] {
-  return result.map((item) => {
-    return userRecordDeserializer(item);
-  });
-}
-
-/** Record of the user */
-export interface UserRecord {
-  /** Type of account */
-  kind?: string;
-  /** Id of the user */
-  id?: string;
-  /** Metadata of the record */
-  metadata?: MetadataEntity;
-  /** Email of the user */
-  email?: string;
-  /** Name of the user */
-  fullName?: string;
-  /** Auth type of the user */
-  authType?: string;
-}
-
-export function userRecordDeserializer(item: any): UserRecord {
-  return {
-    kind: item["kind"],
-    id: item["id"],
-    metadata: !item["metadata"]
-      ? item["metadata"]
-      : metadataEntityDeserializer(item["metadata"]),
-    email: item["email"],
-    fullName: item["full_name"],
-    authType: item["auth_type"],
-  };
-}
-
-/** Metadata of the data record */
-export interface MetadataEntity {
-  /** Self lookup url */
-  self?: string;
-  /** Resource name of the record */
-  resourceName?: string;
-  /** Created Date Time */
-  createdAt?: string;
-  /** Updated Date time */
-  updatedAt?: string;
-  /** Deleted Date time */
-  deletedAt?: string;
-}
-
-export function metadataEntityDeserializer(item: any): MetadataEntity {
-  return {
-    self: item["self"],
-    resourceName: item["resource_name"],
-    createdAt: item["created_at"],
-    updatedAt: item["updated_at"],
-    deletedAt: item["deleted_at"],
-  };
-}
-
-/** List service accounts success response */
-export interface AccessListServiceAccountsSuccessResponse {
-  /** Type of response */
-  kind?: string;
-  /** Metadata of the list */
-  metadata?: ConfluentListMetadata;
-  /** Data of the service accounts list */
-  data?: ServiceAccountRecord[];
-}
-
-export function accessListServiceAccountsSuccessResponseDeserializer(
-  item: any,
-): AccessListServiceAccountsSuccessResponse {
-  return {
-    kind: item["kind"],
-    metadata: !item["metadata"]
-      ? item["metadata"]
-      : confluentListMetadataDeserializer(item["metadata"]),
-    data: !item["data"]
-      ? item["data"]
-      : serviceAccountRecordArrayDeserializer(item["data"]),
-  };
-}
-
-export function serviceAccountRecordArrayDeserializer(
-  result: Array<ServiceAccountRecord>,
-): any[] {
-  return result.map((item) => {
-    return serviceAccountRecordDeserializer(item);
-  });
-}
-
-/** Record of the service account */
-export interface ServiceAccountRecord {
-  /** Type of account */
-  kind?: string;
-  /** Id of the service account */
-  id?: string;
-  /** Metadata of the record */
-  metadata?: MetadataEntity;
-  /** Name of the service account */
-  displayName?: string;
-  /** Description of the service account */
-  description?: string;
-}
-
-export function serviceAccountRecordDeserializer(
-  item: any,
-): ServiceAccountRecord {
-  return {
-    kind: item["kind"],
-    id: item["id"],
-    metadata: !item["metadata"]
-      ? item["metadata"]
-      : metadataEntityDeserializer(item["metadata"]),
-    displayName: item["display_name"],
-    description: item["description"],
-  };
-}
-
-/** List invitations success response */
-export interface AccessListInvitationsSuccessResponse {
-  /** Type of response */
-  kind?: string;
-  /** Metadata of the list */
-  metadata?: ConfluentListMetadata;
-  /** Data of the invitations list */
-  data?: InvitationRecord[];
-}
-
-export function accessListInvitationsSuccessResponseDeserializer(
-  item: any,
-): AccessListInvitationsSuccessResponse {
-  return {
-    kind: item["kind"],
-    metadata: !item["metadata"]
-      ? item["metadata"]
-      : confluentListMetadataDeserializer(item["metadata"]),
-    data: !item["data"]
-      ? item["data"]
-      : invitationRecordArrayDeserializer(item["data"]),
-  };
-}
-
-export function invitationRecordArrayDeserializer(
-  result: Array<InvitationRecord>,
-): any[] {
-  return result.map((item) => {
-    return invitationRecordDeserializer(item);
-  });
-}
-
-/** Record of the invitation */
-export interface InvitationRecord {
-  /** Type of account */
-  kind?: string;
-  /** Id of the invitation */
-  id?: string;
-  /** Metadata of the record */
-  metadata?: MetadataEntity;
-  /** Email of the user */
-  email?: string;
-  /** Auth type of the user */
-  authType?: string;
-  /** Status of the invitation */
-  status?: string;
-  /** Accepted date time of the invitation */
-  acceptedAt?: string;
-  /** Expiration date time of the invitation */
-  expiresAt?: string;
-}
-
-export function invitationRecordDeserializer(item: any): InvitationRecord {
-  return {
-    kind: item["kind"],
-    id: item["id"],
-    metadata: !item["metadata"]
-      ? item["metadata"]
-      : metadataEntityDeserializer(item["metadata"]),
-    email: item["email"],
-    authType: item["auth_type"],
-    status: item["status"],
-    acceptedAt: item["accepted_at"],
-    expiresAt: item["expires_at"],
-  };
-}
-
-/** Invite User Account model */
-export interface AccessInviteUserAccountModel {
-  /** Id of the organization */
-  organizationId?: string;
-  /** Email of the logged in user */
-  email?: string;
-  /** Upn of the logged in user */
-  upn?: string;
-  /** Details of the user who is being invited */
-  invitedUserDetails?: AccessInvitedUserDetails;
-}
-
-export function accessInviteUserAccountModelSerializer(
-  item: AccessInviteUserAccountModel,
-): any {
-  return {
-    organizationId: item["organizationId"],
-    email: item["email"],
-    upn: item["upn"],
-    invitedUserDetails: !item["invitedUserDetails"]
-      ? item["invitedUserDetails"]
-      : accessInvitedUserDetailsSerializer(item["invitedUserDetails"]),
-  };
-}
-
-/** Details of the user being invited */
-export interface AccessInvitedUserDetails {
-  /** UPN/Email of the user who is being invited */
-  invitedEmail?: string;
-  /** Auth type of the user */
-  authType?: string;
-}
-
-export function accessInvitedUserDetailsSerializer(
-  item: AccessInvitedUserDetails,
-): any {
-  return { invitedEmail: item["invitedEmail"], auth_type: item["authType"] };
-}
-
-/** Details of the environments returned on successful response */
-export interface AccessListEnvironmentsSuccessResponse {
-  /** Type of response */
-  kind?: string;
-  /** Metadata of the  environment list */
-  metadata?: ConfluentListMetadata;
-  /** Environment list data */
-  data?: EnvironmentRecord[];
-}
-
-export function accessListEnvironmentsSuccessResponseDeserializer(
-  item: any,
-): AccessListEnvironmentsSuccessResponse {
-  return {
-    kind: item["kind"],
-    metadata: !item["metadata"]
-      ? item["metadata"]
-      : confluentListMetadataDeserializer(item["metadata"]),
-    data: !item["data"]
-      ? item["data"]
-      : environmentRecordArrayDeserializer(item["data"]),
-  };
-}
-
-export function environmentRecordArrayDeserializer(
-  result: Array<EnvironmentRecord>,
-): any[] {
-  return result.map((item) => {
-    return environmentRecordDeserializer(item);
-  });
-}
-
-/** Details about environment name, metadata and environment id of an environment */
-export interface EnvironmentRecord {
-  /** Type of environment */
-  kind?: string;
-  /** Id of the environment */
-  id?: string;
-  /** Metadata of the record */
-  metadata?: MetadataEntity;
-  /** Display name of the user */
-  displayName?: string;
-}
-
-export function environmentRecordDeserializer(item: any): EnvironmentRecord {
-  return {
-    kind: item["kind"],
-    id: item["id"],
-    metadata: !item["metadata"]
-      ? item["metadata"]
-      : metadataEntityDeserializer(item["metadata"]),
-    displayName: item["display_name"],
-  };
-}
-
-/** Details of the clusters returned on successful response */
-export interface AccessListClusterSuccessResponse {
-  /** Type of response */
-  kind?: string;
-  /** Metadata of the list */
-  metadata?: ConfluentListMetadata;
-  /** List of clusters */
-  data?: ClusterRecord[];
-}
-
-export function accessListClusterSuccessResponseDeserializer(
-  item: any,
-): AccessListClusterSuccessResponse {
-  return {
-    kind: item["kind"],
-    metadata: !item["metadata"]
-      ? item["metadata"]
-      : confluentListMetadataDeserializer(item["metadata"]),
-    data: !item["data"]
-      ? item["data"]
-      : clusterRecordArrayDeserializer(item["data"]),
-  };
-}
-
-export function clusterRecordArrayDeserializer(
-  result: Array<ClusterRecord>,
-): any[] {
-  return result.map((item) => {
-    return clusterRecordDeserializer(item);
-  });
-}
-
-/** Details of cluster record */
-export interface ClusterRecord {
-  /** Type of cluster */
-  kind?: string;
-  /** Id of the cluster */
-  id?: string;
-  /** Metadata of the record */
-  metadata?: MetadataEntity;
-  /** Display name of the cluster */
-  displayName?: string;
-  /** Specification of the cluster */
-  spec?: ClusterSpecEntity;
-  /** Specification of the cluster */
-  status?: ClusterStatusEntity;
-}
-
-export function clusterRecordDeserializer(item: any): ClusterRecord {
-  return {
-    kind: item["kind"],
-    id: item["id"],
-    metadata: !item["metadata"]
-      ? item["metadata"]
-      : metadataEntityDeserializer(item["metadata"]),
-    displayName: item["display_name"],
-    spec: !item["spec"]
-      ? item["spec"]
-      : clusterSpecEntityDeserializer(item["spec"]),
-    status: !item["status"]
-      ? item["status"]
-      : clusterStatusEntityDeserializer(item["status"]),
-  };
-}
-
-/** Spec of the cluster record */
-export interface ClusterSpecEntity {
-  /** The name of the cluster */
-  displayName?: string;
-  /** The availability zone configuration of the cluster */
-  availability?: string;
-  /** The cloud service provider */
-  cloud?: string;
-  /** type of zone availability */
-  zone?: string;
-  /** The cloud service provider region */
-  region?: string;
-  /** The bootstrap endpoint used by Kafka clients to connect to the cluster */
-  kafkaBootstrapEndpoint?: string;
-  /** The cluster HTTP request URL. */
-  httpEndpoint?: string;
-  /** The Kafka API cluster endpoint */
-  apiEndpoint?: string;
-  /** Specification of the cluster */
-  config?: ClusterConfigEntity;
-  /** Specification of the cluster */
-  environment?: ClusterEnvironmentEntity;
-  /** Specification of the cluster */
-  network?: ClusterNetworkEntity;
-  /** Specification of the cluster */
-  byok?: ClusterByokEntity;
-}
-
-export function clusterSpecEntityDeserializer(item: any): ClusterSpecEntity {
-  return {
-    displayName: item["display_name"],
-    availability: item["availability"],
-    cloud: item["cloud"],
-    zone: item["zone"],
-    region: item["region"],
-    kafkaBootstrapEndpoint: item["kafka_bootstrap_endpoint"],
-    httpEndpoint: item["http_endpoint"],
-    apiEndpoint: item["api_endpoint"],
-    config: !item["config"]
-      ? item["config"]
-      : clusterConfigEntityDeserializer(item["config"]),
-    environment: !item["environment"]
-      ? item["environment"]
-      : clusterEnvironmentEntityDeserializer(item["environment"]),
-    network: !item["network"]
-      ? item["network"]
-      : clusterNetworkEntityDeserializer(item["network"]),
-    byok: !item["byok"]
-      ? item["byok"]
-      : clusterByokEntityDeserializer(item["byok"]),
-  };
-}
-
-/** The configuration of the Kafka cluster */
-export interface ClusterConfigEntity {
-  /** The lifecycle phase of the cluster */
-  kind?: string;
-}
-
-export function clusterConfigEntitySerializer(item: ClusterConfigEntity): any {
-  return { kind: item["kind"] };
-}
-
-export function clusterConfigEntityDeserializer(
-  item: any,
-): ClusterConfigEntity {
-  return {
-    kind: item["kind"],
-  };
-}
-
-/** The environment to which cluster belongs */
-export interface ClusterEnvironmentEntity {
-  /** ID of the referred resource */
-  id?: string;
-  /** Environment of the referred resource */
-  environment?: string;
-  /** API URL for accessing or modifying the referred object */
-  related?: string;
-  /** CRN reference to the referred resource */
-  resourceName?: string;
-}
-
-export function clusterEnvironmentEntityDeserializer(
-  item: any,
-): ClusterEnvironmentEntity {
-  return {
-    id: item["id"],
-    environment: item["environment"],
-    related: item["related"],
-    resourceName: item["resource_name"],
-  };
-}
-
-/** The network associated with this object */
-export interface ClusterNetworkEntity {
-  /** ID of the referred resource */
-  id?: string;
-  /** Environment of the referred resource */
-  environment?: string;
-  /** API URL for accessing or modifying the referred object */
-  related?: string;
-  /** CRN reference to the referred resource */
-  resourceName?: string;
-}
-
-export function clusterNetworkEntityDeserializer(
-  item: any,
-): ClusterNetworkEntity {
-  return {
-    id: item["id"],
-    environment: item["environment"],
-    related: item["related"],
-    resourceName: item["resource_name"],
-  };
-}
-
-/** The network associated with this object */
-export interface ClusterByokEntity {
-  /** ID of the referred resource */
-  id?: string;
-  /** API URL for accessing or modifying the referred object */
-  related?: string;
-  /** CRN reference to the referred resource */
-  resourceName?: string;
-}
-
-export function clusterByokEntityDeserializer(item: any): ClusterByokEntity {
-  return {
-    id: item["id"],
-    related: item["related"],
-    resourceName: item["resource_name"],
-  };
-}
-
-/** Status of the cluster record */
-export interface ClusterStatusEntity {
-  /** The lifecycle phase of the cluster */
-  phase?: string;
-  /** The number of Confluent Kafka Units */
-  cku?: number;
-}
-
-export function clusterStatusEntitySerializer(item: ClusterStatusEntity): any {
-  return { phase: item["phase"], cku: item["cku"] };
-}
-
-export function clusterStatusEntityDeserializer(
-  item: any,
-): ClusterStatusEntity {
-  return {
-    phase: item["phase"],
-    cku: item["cku"],
-  };
-}
-
-/** Details of the role bindings returned on successful response */
-export interface AccessListRoleBindingsSuccessResponse {
-  /** Type of response */
-  kind?: string;
-  /** Metadata of the list */
-  metadata?: ConfluentListMetadata;
-  /** List of role binding */
-  data?: RoleBindingRecord[];
-}
-
-export function accessListRoleBindingsSuccessResponseDeserializer(
-  item: any,
-): AccessListRoleBindingsSuccessResponse {
-  return {
-    kind: item["kind"],
-    metadata: !item["metadata"]
-      ? item["metadata"]
-      : confluentListMetadataDeserializer(item["metadata"]),
-    data: !item["data"]
-      ? item["data"]
-      : roleBindingRecordArrayDeserializer(item["data"]),
-  };
-}
-
-export function roleBindingRecordArrayDeserializer(
-  result: Array<RoleBindingRecord>,
-): any[] {
-  return result.map((item) => {
-    return roleBindingRecordDeserializer(item);
-  });
-}
-
-/** Details on principal, role name and crn pattern of a role binding */
-export interface RoleBindingRecord {
-  /** The type of the resource. */
-  kind?: string;
-  /** Id of the role binding */
-  id?: string;
-  /** Metadata of the record */
-  metadata?: MetadataEntity;
-  /** The principal User or Group to bind the role to */
-  principal?: string;
-  /** The name of the role to bind to the principal */
-  roleName?: string;
-  /** A CRN that specifies the scope and resource patterns necessary for the role to bind */
-  crnPattern?: string;
-}
-
-export function roleBindingRecordDeserializer(item: any): RoleBindingRecord {
-  return {
-    kind: item["kind"],
-    id: item["id"],
-    metadata: !item["metadata"]
-      ? item["metadata"]
-      : metadataEntityDeserializer(item["metadata"]),
-    principal: item["principal"],
-    roleName: item["role_name"],
-    crnPattern: item["crn_pattern"],
-  };
-}
-
-/** Create role binding request model */
-export interface AccessCreateRoleBindingRequestModel {
-  /** The principal User or Group to bind the role to */
-  principal?: string;
-  /** The name of the role to bind to the principal */
-  roleName?: string;
-  /** A CRN that specifies the scope and resource patterns necessary for the role to bind */
-  crnPattern?: string;
-}
-
-export function accessCreateRoleBindingRequestModelSerializer(
-  item: AccessCreateRoleBindingRequestModel,
-): any {
-  return {
-    principal: item["principal"],
-    role_name: item["roleName"],
-    crn_pattern: item["crnPattern"],
-  };
-}
-
-/** Details of the role binding names returned on successful response */
-export interface AccessRoleBindingNameListSuccessResponse {
-  /** Type of response */
-  kind?: string;
-  /** Metadata of the list */
-  metadata?: ConfluentListMetadata;
-  /** List of role binding names */
-  data?: string[];
-}
-
-export function accessRoleBindingNameListSuccessResponseDeserializer(
-  item: any,
-): AccessRoleBindingNameListSuccessResponse {
-  return {
-    kind: item["kind"],
-    metadata: !item["metadata"]
-      ? item["metadata"]
-      : confluentListMetadataDeserializer(item["metadata"]),
-    data: !item["data"]
-      ? item["data"]
-      : item["data"].map((p: any) => {
-          return p;
-        }),
   };
 }
 
@@ -1405,6 +723,18 @@ export function organizationResourceArrayDeserializer(
   return result.map((item) => {
     return organizationResourceDeserializer(item);
   });
+}
+
+/** List Access Request Model */
+export interface ListAccessRequestModel {
+  /** Search filters for the request */
+  searchFilters?: Record<string, string>;
+}
+
+export function listAccessRequestModelSerializer(
+  item: ListAccessRequestModel,
+): any {
+  return { searchFilters: item["searchFilters"] };
 }
 
 /** Result of POST request to list regions supported by confluent */
@@ -1947,6 +1277,24 @@ export function scClusterSpecEntityDeserializer(
   };
 }
 
+/** The configuration of the Kafka cluster */
+export interface ClusterConfigEntity {
+  /** The lifecycle phase of the cluster */
+  kind?: string;
+}
+
+export function clusterConfigEntitySerializer(item: ClusterConfigEntity): any {
+  return { kind: item["kind"] };
+}
+
+export function clusterConfigEntityDeserializer(
+  item: any,
+): ClusterConfigEntity {
+  return {
+    kind: item["kind"],
+  };
+}
+
 /** The environment or the network to which cluster belongs */
 export interface SCClusterNetworkEnvironmentEntity {
   /** ID of the referred resource */
@@ -2009,6 +1357,27 @@ export function scClusterByokEntityDeserializer(
   };
 }
 
+/** Status of the cluster record */
+export interface ClusterStatusEntity {
+  /** The lifecycle phase of the cluster */
+  phase?: string;
+  /** The number of Confluent Kafka Units */
+  cku?: number;
+}
+
+export function clusterStatusEntitySerializer(item: ClusterStatusEntity): any {
+  return { phase: item["phase"], cku: item["cku"] };
+}
+
+export function clusterStatusEntityDeserializer(
+  item: any,
+): ClusterStatusEntity {
+  return {
+    phase: item["phase"],
+    cku: item["cku"],
+  };
+}
+
 /** Result of GET request to list clusters in the environment of a confluent organization */
 export interface _ListClustersSuccessResponse {
   /** The SCClusterRecord items on this page */
@@ -2040,6 +1409,637 @@ export function scClusterRecordArrayDeserializer(
   return result.map((item) => {
     return scClusterRecordDeserializer(item);
   });
+}
+
+/** Create API Key model */
+export interface CreateAPIKeyModel {
+  /** Name of the API Key */
+  name?: string;
+  /** Description of the API Key */
+  description?: string;
+}
+
+export function createAPIKeyModelSerializer(item: CreateAPIKeyModel): any {
+  return { name: item["name"], description: item["description"] };
+}
+
+/** List users success response */
+export interface AccessListUsersSuccessResponse {
+  /** Type of response */
+  kind?: string;
+  /** Metadata of the list */
+  metadata?: ConfluentListMetadata;
+  /** Data of the users list */
+  data?: UserRecord[];
+}
+
+export function accessListUsersSuccessResponseDeserializer(
+  item: any,
+): AccessListUsersSuccessResponse {
+  return {
+    kind: item["kind"],
+    metadata: !item["metadata"]
+      ? item["metadata"]
+      : confluentListMetadataDeserializer(item["metadata"]),
+    data: !item["data"]
+      ? item["data"]
+      : userRecordArrayDeserializer(item["data"]),
+  };
+}
+
+/** Metadata of the list */
+export interface ConfluentListMetadata {
+  /** First page of the list */
+  first?: string;
+  /** Last page of the list */
+  last?: string;
+  /** Previous page of the list */
+  prev?: string;
+  /** Next page of the list */
+  next?: string;
+  /** Total size of the list */
+  totalSize?: number;
+}
+
+export function confluentListMetadataDeserializer(
+  item: any,
+): ConfluentListMetadata {
+  return {
+    first: item["first"],
+    last: item["last"],
+    prev: item["prev"],
+    next: item["next"],
+    totalSize: item["total_size"],
+  };
+}
+
+export function userRecordArrayDeserializer(result: Array<UserRecord>): any[] {
+  return result.map((item) => {
+    return userRecordDeserializer(item);
+  });
+}
+
+/** Record of the user */
+export interface UserRecord {
+  /** Type of account */
+  kind?: string;
+  /** Id of the user */
+  id?: string;
+  /** Metadata of the record */
+  metadata?: MetadataEntity;
+  /** Email of the user */
+  email?: string;
+  /** Name of the user */
+  fullName?: string;
+  /** Auth type of the user */
+  authType?: string;
+}
+
+export function userRecordDeserializer(item: any): UserRecord {
+  return {
+    kind: item["kind"],
+    id: item["id"],
+    metadata: !item["metadata"]
+      ? item["metadata"]
+      : metadataEntityDeserializer(item["metadata"]),
+    email: item["email"],
+    fullName: item["full_name"],
+    authType: item["auth_type"],
+  };
+}
+
+/** Metadata of the data record */
+export interface MetadataEntity {
+  /** Self lookup url */
+  self?: string;
+  /** Resource name of the record */
+  resourceName?: string;
+  /** Created Date Time */
+  createdAt?: string;
+  /** Updated Date time */
+  updatedAt?: string;
+  /** Deleted Date time */
+  deletedAt?: string;
+}
+
+export function metadataEntityDeserializer(item: any): MetadataEntity {
+  return {
+    self: item["self"],
+    resourceName: item["resource_name"],
+    createdAt: item["created_at"],
+    updatedAt: item["updated_at"],
+    deletedAt: item["deleted_at"],
+  };
+}
+
+/** List service accounts success response */
+export interface AccessListServiceAccountsSuccessResponse {
+  /** Type of response */
+  kind?: string;
+  /** Metadata of the list */
+  metadata?: ConfluentListMetadata;
+  /** Data of the service accounts list */
+  data?: ServiceAccountRecord[];
+}
+
+export function accessListServiceAccountsSuccessResponseDeserializer(
+  item: any,
+): AccessListServiceAccountsSuccessResponse {
+  return {
+    kind: item["kind"],
+    metadata: !item["metadata"]
+      ? item["metadata"]
+      : confluentListMetadataDeserializer(item["metadata"]),
+    data: !item["data"]
+      ? item["data"]
+      : serviceAccountRecordArrayDeserializer(item["data"]),
+  };
+}
+
+export function serviceAccountRecordArrayDeserializer(
+  result: Array<ServiceAccountRecord>,
+): any[] {
+  return result.map((item) => {
+    return serviceAccountRecordDeserializer(item);
+  });
+}
+
+/** Record of the service account */
+export interface ServiceAccountRecord {
+  /** Type of account */
+  kind?: string;
+  /** Id of the service account */
+  id?: string;
+  /** Metadata of the record */
+  metadata?: MetadataEntity;
+  /** Name of the service account */
+  displayName?: string;
+  /** Description of the service account */
+  description?: string;
+}
+
+export function serviceAccountRecordDeserializer(
+  item: any,
+): ServiceAccountRecord {
+  return {
+    kind: item["kind"],
+    id: item["id"],
+    metadata: !item["metadata"]
+      ? item["metadata"]
+      : metadataEntityDeserializer(item["metadata"]),
+    displayName: item["display_name"],
+    description: item["description"],
+  };
+}
+
+/** List invitations success response */
+export interface AccessListInvitationsSuccessResponse {
+  /** Type of response */
+  kind?: string;
+  /** Metadata of the list */
+  metadata?: ConfluentListMetadata;
+  /** Data of the invitations list */
+  data?: InvitationRecord[];
+}
+
+export function accessListInvitationsSuccessResponseDeserializer(
+  item: any,
+): AccessListInvitationsSuccessResponse {
+  return {
+    kind: item["kind"],
+    metadata: !item["metadata"]
+      ? item["metadata"]
+      : confluentListMetadataDeserializer(item["metadata"]),
+    data: !item["data"]
+      ? item["data"]
+      : invitationRecordArrayDeserializer(item["data"]),
+  };
+}
+
+export function invitationRecordArrayDeserializer(
+  result: Array<InvitationRecord>,
+): any[] {
+  return result.map((item) => {
+    return invitationRecordDeserializer(item);
+  });
+}
+
+/** Record of the invitation */
+export interface InvitationRecord {
+  /** Type of account */
+  kind?: string;
+  /** Id of the invitation */
+  id?: string;
+  /** Metadata of the record */
+  metadata?: MetadataEntity;
+  /** Email of the user */
+  email?: string;
+  /** Auth type of the user */
+  authType?: string;
+  /** Status of the invitation */
+  status?: string;
+  /** Accepted date time of the invitation */
+  acceptedAt?: string;
+  /** Expiration date time of the invitation */
+  expiresAt?: string;
+}
+
+export function invitationRecordDeserializer(item: any): InvitationRecord {
+  return {
+    kind: item["kind"],
+    id: item["id"],
+    metadata: !item["metadata"]
+      ? item["metadata"]
+      : metadataEntityDeserializer(item["metadata"]),
+    email: item["email"],
+    authType: item["auth_type"],
+    status: item["status"],
+    acceptedAt: item["accepted_at"],
+    expiresAt: item["expires_at"],
+  };
+}
+
+/** Invite User Account model */
+export interface AccessInviteUserAccountModel {
+  /** Id of the organization */
+  organizationId?: string;
+  /** Email of the logged in user */
+  email?: string;
+  /** Upn of the logged in user */
+  upn?: string;
+  /** Details of the user who is being invited */
+  invitedUserDetails?: AccessInvitedUserDetails;
+}
+
+export function accessInviteUserAccountModelSerializer(
+  item: AccessInviteUserAccountModel,
+): any {
+  return {
+    organizationId: item["organizationId"],
+    email: item["email"],
+    upn: item["upn"],
+    invitedUserDetails: !item["invitedUserDetails"]
+      ? item["invitedUserDetails"]
+      : accessInvitedUserDetailsSerializer(item["invitedUserDetails"]),
+  };
+}
+
+/** Details of the user being invited */
+export interface AccessInvitedUserDetails {
+  /** UPN/Email of the user who is being invited */
+  invitedEmail?: string;
+  /** Auth type of the user */
+  authType?: string;
+}
+
+export function accessInvitedUserDetailsSerializer(
+  item: AccessInvitedUserDetails,
+): any {
+  return { invitedEmail: item["invitedEmail"], auth_type: item["authType"] };
+}
+
+/** Details of the environments returned on successful response */
+export interface AccessListEnvironmentsSuccessResponse {
+  /** Type of response */
+  kind?: string;
+  /** Metadata of the  environment list */
+  metadata?: ConfluentListMetadata;
+  /** Environment list data */
+  data?: EnvironmentRecord[];
+}
+
+export function accessListEnvironmentsSuccessResponseDeserializer(
+  item: any,
+): AccessListEnvironmentsSuccessResponse {
+  return {
+    kind: item["kind"],
+    metadata: !item["metadata"]
+      ? item["metadata"]
+      : confluentListMetadataDeserializer(item["metadata"]),
+    data: !item["data"]
+      ? item["data"]
+      : environmentRecordArrayDeserializer(item["data"]),
+  };
+}
+
+export function environmentRecordArrayDeserializer(
+  result: Array<EnvironmentRecord>,
+): any[] {
+  return result.map((item) => {
+    return environmentRecordDeserializer(item);
+  });
+}
+
+/** Details about environment name, metadata and environment id of an environment */
+export interface EnvironmentRecord {
+  /** Type of environment */
+  kind?: string;
+  /** Id of the environment */
+  id?: string;
+  /** Metadata of the record */
+  metadata?: MetadataEntity;
+  /** Display name of the user */
+  displayName?: string;
+}
+
+export function environmentRecordDeserializer(item: any): EnvironmentRecord {
+  return {
+    kind: item["kind"],
+    id: item["id"],
+    metadata: !item["metadata"]
+      ? item["metadata"]
+      : metadataEntityDeserializer(item["metadata"]),
+    displayName: item["display_name"],
+  };
+}
+
+/** Details of the clusters returned on successful response */
+export interface AccessListClusterSuccessResponse {
+  /** Type of response */
+  kind?: string;
+  /** Metadata of the list */
+  metadata?: ConfluentListMetadata;
+  /** List of clusters */
+  data?: ClusterRecord[];
+}
+
+export function accessListClusterSuccessResponseDeserializer(
+  item: any,
+): AccessListClusterSuccessResponse {
+  return {
+    kind: item["kind"],
+    metadata: !item["metadata"]
+      ? item["metadata"]
+      : confluentListMetadataDeserializer(item["metadata"]),
+    data: !item["data"]
+      ? item["data"]
+      : clusterRecordArrayDeserializer(item["data"]),
+  };
+}
+
+export function clusterRecordArrayDeserializer(
+  result: Array<ClusterRecord>,
+): any[] {
+  return result.map((item) => {
+    return clusterRecordDeserializer(item);
+  });
+}
+
+/** Details of cluster record */
+export interface ClusterRecord {
+  /** Type of cluster */
+  kind?: string;
+  /** Id of the cluster */
+  id?: string;
+  /** Metadata of the record */
+  metadata?: MetadataEntity;
+  /** Display name of the cluster */
+  displayName?: string;
+  /** Specification of the cluster */
+  spec?: ClusterSpecEntity;
+  /** Specification of the cluster */
+  status?: ClusterStatusEntity;
+}
+
+export function clusterRecordDeserializer(item: any): ClusterRecord {
+  return {
+    kind: item["kind"],
+    id: item["id"],
+    metadata: !item["metadata"]
+      ? item["metadata"]
+      : metadataEntityDeserializer(item["metadata"]),
+    displayName: item["display_name"],
+    spec: !item["spec"]
+      ? item["spec"]
+      : clusterSpecEntityDeserializer(item["spec"]),
+    status: !item["status"]
+      ? item["status"]
+      : clusterStatusEntityDeserializer(item["status"]),
+  };
+}
+
+/** Spec of the cluster record */
+export interface ClusterSpecEntity {
+  /** The name of the cluster */
+  displayName?: string;
+  /** The availability zone configuration of the cluster */
+  availability?: string;
+  /** The cloud service provider */
+  cloud?: string;
+  /** type of zone availability */
+  zone?: string;
+  /** The cloud service provider region */
+  region?: string;
+  /** The bootstrap endpoint used by Kafka clients to connect to the cluster */
+  kafkaBootstrapEndpoint?: string;
+  /** The cluster HTTP request URL. */
+  httpEndpoint?: string;
+  /** The Kafka API cluster endpoint */
+  apiEndpoint?: string;
+  /** Specification of the cluster */
+  config?: ClusterConfigEntity;
+  /** Specification of the cluster */
+  environment?: ClusterEnvironmentEntity;
+  /** Specification of the cluster */
+  network?: ClusterNetworkEntity;
+  /** Specification of the cluster */
+  byok?: ClusterByokEntity;
+}
+
+export function clusterSpecEntityDeserializer(item: any): ClusterSpecEntity {
+  return {
+    displayName: item["display_name"],
+    availability: item["availability"],
+    cloud: item["cloud"],
+    zone: item["zone"],
+    region: item["region"],
+    kafkaBootstrapEndpoint: item["kafka_bootstrap_endpoint"],
+    httpEndpoint: item["http_endpoint"],
+    apiEndpoint: item["api_endpoint"],
+    config: !item["config"]
+      ? item["config"]
+      : clusterConfigEntityDeserializer(item["config"]),
+    environment: !item["environment"]
+      ? item["environment"]
+      : clusterEnvironmentEntityDeserializer(item["environment"]),
+    network: !item["network"]
+      ? item["network"]
+      : clusterNetworkEntityDeserializer(item["network"]),
+    byok: !item["byok"]
+      ? item["byok"]
+      : clusterByokEntityDeserializer(item["byok"]),
+  };
+}
+
+/** The environment to which cluster belongs */
+export interface ClusterEnvironmentEntity {
+  /** ID of the referred resource */
+  id?: string;
+  /** Environment of the referred resource */
+  environment?: string;
+  /** API URL for accessing or modifying the referred object */
+  related?: string;
+  /** CRN reference to the referred resource */
+  resourceName?: string;
+}
+
+export function clusterEnvironmentEntityDeserializer(
+  item: any,
+): ClusterEnvironmentEntity {
+  return {
+    id: item["id"],
+    environment: item["environment"],
+    related: item["related"],
+    resourceName: item["resource_name"],
+  };
+}
+
+/** The network associated with this object */
+export interface ClusterNetworkEntity {
+  /** ID of the referred resource */
+  id?: string;
+  /** Environment of the referred resource */
+  environment?: string;
+  /** API URL for accessing or modifying the referred object */
+  related?: string;
+  /** CRN reference to the referred resource */
+  resourceName?: string;
+}
+
+export function clusterNetworkEntityDeserializer(
+  item: any,
+): ClusterNetworkEntity {
+  return {
+    id: item["id"],
+    environment: item["environment"],
+    related: item["related"],
+    resourceName: item["resource_name"],
+  };
+}
+
+/** The network associated with this object */
+export interface ClusterByokEntity {
+  /** ID of the referred resource */
+  id?: string;
+  /** API URL for accessing or modifying the referred object */
+  related?: string;
+  /** CRN reference to the referred resource */
+  resourceName?: string;
+}
+
+export function clusterByokEntityDeserializer(item: any): ClusterByokEntity {
+  return {
+    id: item["id"],
+    related: item["related"],
+    resourceName: item["resource_name"],
+  };
+}
+
+/** Details of the role bindings returned on successful response */
+export interface AccessListRoleBindingsSuccessResponse {
+  /** Type of response */
+  kind?: string;
+  /** Metadata of the list */
+  metadata?: ConfluentListMetadata;
+  /** List of role binding */
+  data?: RoleBindingRecord[];
+}
+
+export function accessListRoleBindingsSuccessResponseDeserializer(
+  item: any,
+): AccessListRoleBindingsSuccessResponse {
+  return {
+    kind: item["kind"],
+    metadata: !item["metadata"]
+      ? item["metadata"]
+      : confluentListMetadataDeserializer(item["metadata"]),
+    data: !item["data"]
+      ? item["data"]
+      : roleBindingRecordArrayDeserializer(item["data"]),
+  };
+}
+
+export function roleBindingRecordArrayDeserializer(
+  result: Array<RoleBindingRecord>,
+): any[] {
+  return result.map((item) => {
+    return roleBindingRecordDeserializer(item);
+  });
+}
+
+/** Details on principal, role name and crn pattern of a role binding */
+export interface RoleBindingRecord {
+  /** The type of the resource. */
+  kind?: string;
+  /** Id of the role binding */
+  id?: string;
+  /** Metadata of the record */
+  metadata?: MetadataEntity;
+  /** The principal User or Group to bind the role to */
+  principal?: string;
+  /** The name of the role to bind to the principal */
+  roleName?: string;
+  /** A CRN that specifies the scope and resource patterns necessary for the role to bind */
+  crnPattern?: string;
+}
+
+export function roleBindingRecordDeserializer(item: any): RoleBindingRecord {
+  return {
+    kind: item["kind"],
+    id: item["id"],
+    metadata: !item["metadata"]
+      ? item["metadata"]
+      : metadataEntityDeserializer(item["metadata"]),
+    principal: item["principal"],
+    roleName: item["role_name"],
+    crnPattern: item["crn_pattern"],
+  };
+}
+
+/** Create role binding request model */
+export interface AccessCreateRoleBindingRequestModel {
+  /** The principal User or Group to bind the role to */
+  principal?: string;
+  /** The name of the role to bind to the principal */
+  roleName?: string;
+  /** A CRN that specifies the scope and resource patterns necessary for the role to bind */
+  crnPattern?: string;
+}
+
+export function accessCreateRoleBindingRequestModelSerializer(
+  item: AccessCreateRoleBindingRequestModel,
+): any {
+  return {
+    principal: item["principal"],
+    role_name: item["roleName"],
+    crn_pattern: item["crnPattern"],
+  };
+}
+
+/** Details of the role binding names returned on successful response */
+export interface AccessRoleBindingNameListSuccessResponse {
+  /** Type of response */
+  kind?: string;
+  /** Metadata of the list */
+  metadata?: ConfluentListMetadata;
+  /** List of role binding names */
+  data?: string[];
+}
+
+export function accessRoleBindingNameListSuccessResponseDeserializer(
+  item: any,
+): AccessRoleBindingNameListSuccessResponse {
+  return {
+    kind: item["kind"],
+    metadata: !item["metadata"]
+      ? item["metadata"]
+      : confluentListMetadataDeserializer(item["metadata"]),
+    data: !item["data"]
+      ? item["data"]
+      : item["data"].map((p: any) => {
+          return p;
+        }),
+  };
 }
 
 /** Common error response for all Azure Resource Manager APIs to return error details for failed operations. */

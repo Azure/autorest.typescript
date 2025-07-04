@@ -8,7 +8,5 @@ export { EnvironmentOperations } from "./environment/index.js";
 export { MarketplaceAgreementsOperations } from "./marketplaceAgreements/index.js";
 export { OrganizationOperations } from "./organization/index.js";
 export { OrganizationOperationsOperations } from "./organizationOperations/index.js";
-export { OrganizationResourceAPIKeyActionsOperations } from "./organizationResourceAPIKeyActions/index.js";
-export { SCClusterRecordsOperations } from "./scClusterRecords/index.js";
 export { TopicsOperations } from "./topics/index.js";
 export { ValidationsOperations } from "./validations/index.js";
