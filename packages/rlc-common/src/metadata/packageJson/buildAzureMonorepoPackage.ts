@@ -39,17 +39,17 @@ export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
 
   const runtimeDeps = {
     ...dependencies,
-    "@azure-rest/core-client": !shouldUsePnpmDep ? "^2.1.0" : "workspace:^",
+    "@azure-rest/core-client": !shouldUsePnpmDep ? "^2.3.1" : "workspace:^",
     ...(hasLro && {
       "@azure/abort-controller": !shouldUsePnpmDep ? "^2.1.2" : "workspace:^"
     }),
     "@azure/core-auth": !shouldUsePnpmDep ? "^1.9.0" : "workspace:^",
     ...(hasLro && {
-      "@azure/core-lro": !shouldUsePnpmDep ? "^3.0.0" : "workspace:^"
+      "@azure/core-lro": !shouldUsePnpmDep ? "^3.1.0" : "workspace:^"
     }),
-    "@azure/core-rest-pipeline": !shouldUsePnpmDep ? "^1.18.2" : "workspace:^",
-    "@azure/core-util": !shouldUsePnpmDep ? "^1.11.0" : "workspace:^",
-    "@azure/logger": !shouldUsePnpmDep ? "^1.1.4" : "workspace:^",
+    "@azure/core-rest-pipeline": !shouldUsePnpmDep ? "^1.20.0" : "workspace:^",
+    "@azure/core-util": !shouldUsePnpmDep ? "^1.12.0" : "workspace:^",
+    "@azure/logger": !shouldUsePnpmDep ? "^1.2.0" : "workspace:^",
     tslib: !shouldUsePnpmDep ? "^2.8.1" : "catalog:"
   };
 
@@ -60,7 +60,7 @@ export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
           ? "^3.0.9"
           : "catalog:testing",
         dotenv: !shouldUsePnpmDep ? "^16.0.0" : "catalog:testing",
-        playwright: !shouldUsePnpmDep ? "^1.50.1" : "catalog:testing",
+        playwright: !shouldUsePnpmDep ? "^1.52.0" : "catalog:testing",
         typescript: !shouldUsePnpmDep ? "~5.8.2" : "catalog:",
         vitest: !shouldUsePnpmDep ? "^3.0.9" : "catalog:testing"
       }
@@ -84,7 +84,7 @@ export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
       "@azure/eslint-plugin-azure-sdk": !shouldUsePnpmDep
         ? "^3.0.0"
         : "workspace:^",
-      "@azure/identity": !shouldUsePnpmDep ? "^4.6.0" : "catalog:internal",
+      "@azure/identity": !shouldUsePnpmDep ? "^4.9.0" : "catalog:internal",
       "@types/node": !shouldUsePnpmDep ? "^20.0.0" : "catalog:",
       eslint: !shouldUsePnpmDep ? "^9.9.0" : "catalog:",
       ...(config.specSource === "Swagger" && {
