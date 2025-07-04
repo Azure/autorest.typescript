@@ -88,7 +88,7 @@ export const ReservedModelNames: ReservedName[] = [
   },
   { name: "requestoptions", reservedFor: [NameType.Parameter] },
   { name: "require", reservedFor: [NameType.Parameter, NameType.Method] },
-  { name: "return", reservedFor: [NameType.Parameter] },
+  { name: "return", reservedFor: [NameType.Parameter, NameType.Method] },
   { name: "set", reservedFor: [NameType.Parameter, ...Newable] },
   { name: "static", reservedFor: [NameType.Parameter, NameType.Method] },
   { name: "string", reservedFor: [NameType.Parameter, ...Newable] },
