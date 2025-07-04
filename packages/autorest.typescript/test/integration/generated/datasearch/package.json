@@ -52,9 +52,6 @@
     "extract-api": "rimraf review && mkdirp ./review && api-extractor run --local",
     "lint": "echo skipped",
     "clean": "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
-    "build:node": "echo skipped",
-    "build:browser": "echo skipped",
-    "build:test": "echo skipped",
     "build:samples": "echo skipped.",
     "check-format": "echo skipped",
     "execute:samples": "echo skipped",
@@ -63,11 +60,9 @@
     "test:node": "echo skipped",
     "test:browser": "echo skipped",
     "unit-test": "npm run unit-test:node && npm run unit-test:browser",
-    "unit-test:node": "cross-env TEST_MODE=playback npm run integration-test:node",
-    "unit-test:browser": "echo skipped",
     "integration-test": "npm run integration-test:node && npm run integration-test:browser",
-    "integration-test:node": "cross-env TS_NODE_COMPILER_OPTIONS=\"{\\\"module\\\":\\\"commonjs\\\"}\" mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts",
-    "integration-test:browser": "echo skipped"
+    "unit-test:node": "cross-env TEST_MODE=playback npm run integration-test:node",
+    "integration-test:node": "cross-env TS_NODE_COMPILER_OPTIONS=\"{\\\"module\\\":\\\"commonjs\\\"}\" mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts"
   },
   "sideEffects": false,
   "//metadata": {
