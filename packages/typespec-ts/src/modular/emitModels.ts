@@ -230,8 +230,10 @@ function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
     addDeclaration(sourceFile, unionType, type);
     addSerializationFunctions(context, type, sourceFile);
   } else if (type.kind === "dict") {
+    addDeclaration(sourceFile, normalizeModelName(context, type), type);
     addSerializationFunctions(context, type, sourceFile);
   } else if (type.kind === "array") {
+    addDeclaration(sourceFile, normalizeModelName(context, type), type);
     addSerializationFunctions(context, type, sourceFile);
   } else if (type.kind === "nullable") {
     const nullableType = buildNullableType(context, type);
@@ -320,8 +322,7 @@ function addSerializationFunctions(
   if (
     serializationFunction &&
     typeof serializationFunction !== "string" &&
-    serializationFunction.name &&
-    !sourceFile.getFunction(serializationFunction.name)
+    serializationFunction.name
   ) {
     addDeclaration(sourceFile, serializationFunction, serializerRefkey);
   }
@@ -333,8 +334,7 @@ function addSerializationFunctions(
   if (
     deserializationFunction &&
     typeof deserializationFunction !== "string" &&
-    deserializationFunction.name &&
-    !sourceFile.getFunction(deserializationFunction.name)
+    deserializationFunction.name
   ) {
     addDeclaration(sourceFile, deserializationFunction, deserailizerRefKey);
   }
