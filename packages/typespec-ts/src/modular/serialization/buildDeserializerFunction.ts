@@ -122,7 +122,7 @@ function buildPolymorphicDeserializer(
         type: "any"
       }
     ],
-    returnType: resolveReference(refkey(type)),
+    returnType: resolveReference(refkey(type, "polymorphicType")),
     statements: []
   };
   if (!type.discriminatorProperty) {
@@ -249,7 +249,7 @@ function buildDiscriminatedUnionDeserializer(
         type: "any"
       }
     ],
-    returnType: resolveReference(refkey(type)),
+    returnType: resolveReference(refkey(type, "polymorphicType")),
     statements: output.join("\n")
   };
   return deserializerFunction;

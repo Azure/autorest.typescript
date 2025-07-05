@@ -230,8 +230,10 @@ function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
     addDeclaration(sourceFile, unionType, type);
     addSerializationFunctions(context, type, sourceFile);
   } else if (type.kind === "dict") {
+    addDeclaration(sourceFile, normalizeModelName(context, type), type);
     addSerializationFunctions(context, type, sourceFile);
   } else if (type.kind === "array") {
+    addDeclaration(sourceFile, normalizeModelName(context, type), type);
     addSerializationFunctions(context, type, sourceFile);
   } else if (type.kind === "nullable") {
     const nullableType = buildNullableType(context, type);

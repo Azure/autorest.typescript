@@ -127,7 +127,7 @@ function buildPolymorphicSerializer(
     parameters: [
       {
         name: "item",
-        type: resolveReference(refkey(type))
+        type: resolveReference(refkey(type, "polymorphicType"))
       }
     ],
     returnType: "any",
@@ -253,7 +253,7 @@ function buildDiscriminatedUnionSerializer(
     parameters: [
       {
         name: "item",
-        type: resolveReference(refkey(type))
+        type: resolveReference(refkey(type, "polymorphicType"))
       }
     ],
     returnType: "any",
