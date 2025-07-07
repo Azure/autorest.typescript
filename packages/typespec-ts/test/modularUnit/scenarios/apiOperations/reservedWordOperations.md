@@ -122,7 +122,7 @@ export async function $return(
 }
 ```
 
-# should generate reserved words operation with prefix $ global
+# should generate reserved words operation global
 
 ## TypeSpec
 
