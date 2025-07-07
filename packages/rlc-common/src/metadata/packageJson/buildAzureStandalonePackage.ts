@@ -87,7 +87,7 @@ function getAzureStandaloneScripts(
     test: "npm run test:node && npm run test:browser"
   };
   return {
-    ...getCommonPackageScripts(config),
+    ...getCommonPackageScripts(),
     clean:
       "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
     ...(config.withTests && testScripts),

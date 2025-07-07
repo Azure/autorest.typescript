@@ -125,7 +125,7 @@ export function getTshyConfig(config: PackageCommonInfoConfig) {
   return tshyConfig;
 }
 
-export function getCommonPackageScripts({}: PackageCommonInfoConfig) {
+export function getCommonPackageScripts() {
   return {
     clean:
       "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
