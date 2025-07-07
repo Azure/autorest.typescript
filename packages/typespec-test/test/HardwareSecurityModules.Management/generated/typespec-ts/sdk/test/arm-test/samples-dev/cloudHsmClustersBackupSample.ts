@@ -18,7 +18,7 @@ async function cloudHsmClusterCreateBackupMaximumSetGen(): Promise<void> {
     subscriptionId,
   );
   const result = await client.cloudHsmClusters.backup("rgcloudhsm", "chsm1", {
-    body: {
+    backupRequestProperties: {
       azureStorageBlobContainerUri:
         "https://myaccount.blob.core.windows.net/sascontainer/sasContainer",
       token: "se=2018-02-01T00%3A00Z&spr=https&sv=2017-04-17&sr=b&sig=REDACTED",

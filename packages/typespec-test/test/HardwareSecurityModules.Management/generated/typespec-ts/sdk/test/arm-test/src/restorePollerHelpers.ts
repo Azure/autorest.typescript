@@ -107,7 +107,7 @@ const deserializeMap: Record<string, DeserializationHelper> = {
   "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/dedicatedHSMs/{name}":
     {
       deserializer: _createOrUpdateDeserialize,
-      expectedStatuses: ["200", "201"],
+      expectedStatuses: ["200", "201", "202"],
     },
   "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/privateEndpointConnections/{peConnectionName}":
     {
@@ -149,7 +149,7 @@ const deserializeMap: Record<string, DeserializationHelper> = {
   "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}":
     {
       deserializer: _createOrUpdateDeserializeCloudHsmClusters,
-      expectedStatuses: ["200", "201"],
+      expectedStatuses: ["200", "201", "202"],
     },
 };
 

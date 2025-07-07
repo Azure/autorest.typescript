@@ -1,4 +1,4 @@
-# only: Should generate optional body in option parameter
+# Should generate optional body in option parameter
 
 Should generate optional body in option parameter.
 
@@ -31,7 +31,7 @@ namespace Microsoft.HardwareSecurityModules;
 enum Versions {
   @useDependency(Azure.ResourceManager.Versions.v1_0_Preview_1)
   @useDependency(Azure.Core.Versions.v1_0_Preview_1)
-  v2025_03_31: "2025-03-31",
+  v2021_10_01_preview: "2021-10-01-preview",
 }
 
 model CloudHsmClusterProperties {
@@ -227,4 +227,32 @@ export function backup(
 Generate optional body in option parameter:
 
 ```ts samples
+/** This file path is /samples-dev/backupSample.ts */
+import { HardwareSecurityModulesClient } from "@azure/internal-test";
+import { DefaultAzureCredential } from "@azure/identity";
+
+/**
+ * This sample demonstrates how to a long-running resource action.
+ *
+ * @summary a long-running resource action.
+ * x-ms-original-file: 2021-10-01-preview/json_for_CloudHsmClusters_backup.json
+ */
+async function cloudHsmClustersBackup(): Promise<void> {
+  const credential = new DefaultAzureCredential();
+  const subscriptionId = "00000000-0000-0000-0000-000000000000";
+  const client = new HardwareSecurityModulesClient(credential, subscriptionId);
+  const result = await client.backup("rgcloudhsm", "chsm1", {
+    backupRequestProperties: {
+      azureStorageBlobContainerUri: "sss",
+      token: "aaa",
+    },
+  });
+  console.log(result);
+}
+
+async function main(): Promise<void> {
+  await cloudHsmClustersBackup();
+}
+
+main().catch(console.error);
 ```
