@@ -782,7 +782,11 @@ function buildBodyParameter(
     true
   );
 
-  const bodyParamName = normalizeName(bodyParameter.name, NameType.Parameter);
+  const bodyParamName = normalizeName(
+    bodyParameter.name,
+    NameType.Parameter,
+    true
+  );
   const bodyNameExpression = bodyParameter.optional
     ? `${optionalParamName}["${bodyParamName}"]`
     : bodyParamName;
@@ -1546,14 +1550,10 @@ export function getPropertyFullName(
  * @param operation The operation
  */
 export function getExpectedStatuses(operation: ServiceOperation): string {
-  const statusCodes = operation.operation.responses.map((x) => x.statusCodes);
+  let statusCodes = operation.operation.responses.map((x) => x.statusCodes);
   // LROs may call the same path but with GET to get the operation status.
-  if (
-    isLroOnlyOperation(operation) &&
-    operation.operation.verb !== "get" &&
-    !statusCodes.includes(200)
-  ) {
-    statusCodes.push(200);
+  if (isLroOnlyOperation(operation) && operation.operation.verb !== "get") {
+    statusCodes = Array.from(new Set([...statusCodes, 200, 202]));
   }
 
   return `[${statusCodes.map((x) => `"${x}"`).join(", ")}]`;

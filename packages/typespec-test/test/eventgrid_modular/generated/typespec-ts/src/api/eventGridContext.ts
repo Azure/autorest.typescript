@@ -30,8 +30,7 @@ export function createEventGrid(
   credential: KeyCredential | TokenCredential,
   options: EventGridClientOptionalParams = {},
 ): EventGridContext {
-  const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? String(endpointParam);
+  const endpointUrl = options.endpoint ?? String(endpointParam);
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentInfo = `azsdk-js-eventgrid/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions

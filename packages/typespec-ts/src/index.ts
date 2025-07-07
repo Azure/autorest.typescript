@@ -199,7 +199,7 @@ export async function $onEmit(context: EmitContext) {
     options.generateTest =
       options.generateTest === true ||
       (options.generateTest === undefined &&
-        !hasTestFolder &&
+        (!hasTestFolder || (options.azureSdkForJs && options.azureArm)) &&
         isAzurePackage({ options: options }));
     dpgContext.rlcOptions = options;
   }
@@ -403,8 +403,7 @@ export async function $onEmit(context: EmitContext) {
     );
     const hasPackageFile = await existsSync(existingPackageFilePath);
     const shouldGenerateMetadata =
-      option.generateMetadata === true ||
-      (option.generateMetadata === undefined && !hasPackageFile);
+      option.generateMetadata === true || !hasPackageFile;
     const existingTestFolderPath = join(
       dpgContext.generationPathDetail?.metadataDir ?? "",
       "test"
@@ -519,7 +518,7 @@ export async function $onEmit(context: EmitContext) {
     }
 
     // Generate test relevant files
-    if (option.generateTest && isAzureFlavor) {
+    if (option.generateTest && isAzureFlavor && !hasTestFolder) {
       await emitContentByBuilder(
         program,
         [buildRecordedClientFile, buildSampleTest],

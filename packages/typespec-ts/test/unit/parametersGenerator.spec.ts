@@ -78,7 +78,7 @@ describe("Parameters.ts", () => {
            * @param options - the parameter for all optional parameters
            */
           export default function createClient(endpointParam: string, apiVersion: string, options: testClientOptions = {}): testClient {
-          const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}\`;
+          const endpointUrl = options.endpoint ?? \`\${endpointParam}\`;
           const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
           const userAgentPrefix =
               options.userAgentOptions && options.userAgentOptions.userAgentPrefix
