@@ -68,7 +68,7 @@ export declare interface SimplePollerLike<TState extends OperationState<TResult>
 }
 
 export declare interface Two6K {
-    post(options: Two6KParameters): StreamableMethod<Two6K200Response | Two6K202Response | Two6KDefaultResponse>;
+    post(options?: Two6KParameters): StreamableMethod<Two6K200Response | Two6K202Response | Two6KDefaultResponse>;
 }
 
 export declare interface Two6K200Response extends HttpResponse {
