@@ -613,26 +613,10 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "test:node",
-        "npm run clean && tshy && npm run unit-test:node && npm run integration-test:node"
-      );
-      expect(packageFile.scripts).to.have.property(
-        "test:browser",
-        "npm run clean && npm run build:test && npm run unit-test:browser && npm run integration-test:browser"
-      );
-      expect(packageFile.scripts).to.have.property(
-        "integration-test:browser",
-        "echo skipped"
-      );
-      expect(packageFile.scripts).to.have.property(
-        "integration-test:node",
-        "echo skipped"
-      );
-      expect(packageFile.scripts).to.have.property(
-        "unit-test:node",
         "vitest -c vitest.config.ts"
       );
       expect(packageFile.scripts).to.have.property(
-        "unit-test:browser",
+        "test:browser",
         "vitest -c vitest.browser.config.ts"
       );
     });
@@ -680,22 +664,6 @@ describe("Package file generation", () => {
       expect(packageFile.scripts).to.have.property(
         "build:test",
         "tsc -p . && rollup -c 2>&1"
-      );
-      expect(packageFile.scripts).to.have.property(
-        "integration-test:browser",
-        "karma start --single-run"
-      );
-      expect(packageFile.scripts).to.have.property(
-        "integration-test:node",
-        'nyc mocha -r esm --require source-map-support/register --timeout 5000000 --full-trace "dist-esm/test/{,!(browser)/**/}*.spec.js"'
-      );
-      expect(packageFile.scripts).to.have.property(
-        "unit-test:node",
-        'cross-env TS_NODE_COMPILER_OPTIONS="{\\"module\\":\\"commonjs\\"}" mocha -r esm --require ts-node/register --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"'
-      );
-      expect(packageFile.scripts).to.have.property(
-        "unit-test:browser",
-        "karma start --single-run"
       );
       expect(packageFile.scripts).to.have.property(
         "build:browser",

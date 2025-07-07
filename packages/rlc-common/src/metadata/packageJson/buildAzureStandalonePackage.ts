@@ -102,7 +102,7 @@ function getCjsScripts(config: AzurePackageInfoConfig): Record<string, any> {
   }
 
   const testScripts = {
-    "build:test": "npm run test:node && npm run test:browser",
+    "build:test": "tsc -p . && rollup -c 2>&1",
     "build:browser": "tsc -p . && cross-env ONLY_BROWSER=true rollup -c 2>&1",
     "build:node": "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1"
   };
