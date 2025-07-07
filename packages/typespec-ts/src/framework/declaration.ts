@@ -32,38 +32,46 @@ export function addDeclaration(
   sourceFile: SourceFile,
   declaration: ClassDeclarationStructure,
   refkey: unknown
-): ClassDeclaration;
+): void;
 
 export function addDeclaration(
   sourceFile: SourceFile,
   declaration: EnumDeclarationStructure,
   refkey: unknown
-): EnumDeclaration;
+): void;
 
 export function addDeclaration(
   sourceFile: SourceFile,
   declaration: FunctionDeclarationStructure,
   refkey: unknown
-): FunctionDeclaration;
+): void;
 
 export function addDeclaration(
   sourceFile: SourceFile,
   declaration: InterfaceDeclarationStructure,
   refkey: unknown
-): InterfaceDeclaration;
+): void;
 
 export function addDeclaration(
   sourceFile: SourceFile,
   declaration: TypeAliasDeclarationStructure,
   refkey: unknown
-): TypeAliasDeclaration;
+): void;
 export function addDeclaration(
   sourceFile: SourceFile,
-  declaration: DeclarationStructures,
+  declaration: string,
   refkey: unknown
-): Declarations {
+): void;
+export function addDeclaration(
+  sourceFile: SourceFile,
+  input: DeclarationStructures | string,
+  refkey: unknown
+): void {
   const binder = useBinder();
-
+  const declaration: DeclarationStructures =
+    typeof input === "string"
+      ? ({ name: input, kind: StructureKind.TypeAlias } as any)
+      : input;
   if (!declaration.name) {
     throw new Error(
       `Declaration must have a name ${JSON.stringify(declaration)}`
@@ -82,15 +90,22 @@ export function addDeclaration(
 
   switch (trackedDeclaration.kind) {
     case StructureKind.Class:
-      return sourceFile.addClass(trackedDeclaration);
+      sourceFile.addClass(trackedDeclaration);
+      break;
     case StructureKind.Enum:
-      return sourceFile.addEnum(trackedDeclaration);
+      sourceFile.addEnum(trackedDeclaration);
+      break;
     case StructureKind.Function:
-      return sourceFile.addFunction(trackedDeclaration);
+      sourceFile.addFunction(trackedDeclaration);
+      break;
     case StructureKind.Interface:
-      return sourceFile.addInterface(trackedDeclaration);
+      sourceFile.addInterface(trackedDeclaration);
+      break;
     case StructureKind.TypeAlias:
-      return sourceFile.addTypeAlias(trackedDeclaration);
+      if (trackedDeclaration.type) {
+        sourceFile.addTypeAlias(trackedDeclaration);
+      }
+      break;
     default:
       throw new Error(
         `Unsupported declaration kind ${(trackedDeclaration as any).kind}`
