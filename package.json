@@ -1,0 +1,32 @@
+{
+  "name": "@azure/typescript-generators-mono-repo",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "build:test": "turbo run build:test",
+    "clean": "turbo run clean",
+    "check-format": "turbo run check-format",
+    "format": "turbo run format",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
+    "preinstall": "npx only-allow pnpm",
+    "purge": "rimraf --glob \"packages/**/node_modules/\"",
+    "test": "turbo run test"
+  },
+  "devDependencies": {
+    "eslint": "^8.9.0",
+    "prettier": "^3.5.3",
+    "prettier-plugin-packagejson": "^2.5.15",
+    "rimraf": "^5.0.10",
+    "turbo": "^2.5.4"
+  },
+  "packageManager": "pnpm@10.12.1",
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=10.12.1"
+  },
+  "pnpm": {
+    "overrides": {}
+  }
+}
