@@ -82,11 +82,9 @@ function getAzureStandaloneScripts(
   config: AzurePackageInfoConfig
 ): Record<string, any> {
   const testScripts = {
-    "test:browser":
-      "karma start --single-run",
-    "test:node":
-      `nyc mocha -r esm --require source-map-support/register --timeout 5000000 --full-trace "dist-esm/test/{,!(browser)/**/}*.spec.js"`,
-    test: "npm run test:node && npm run test:browser",
+    "test:browser": "karma start --single-run",
+    "test:node": `nyc mocha -r esm --require source-map-support/register --timeout 5000000 --full-trace "dist-esm/test/{,!(browser)/**/}*.spec.js"`,
+    test: "npm run test:node && npm run test:browser"
   };
   return {
     ...getCommonPackageScripts(config),
@@ -125,10 +123,8 @@ function getEsmScripts(config: AzurePackageInfoConfig): Record<string, any> {
 
   const testScripts = {
     test: "npm run clean && tshy && npm run unit-test:node && npm run unit-test:browser && npm run integration-test",
-    "test:node":
-      "vitest -c vitest.config.ts",
-    "test:browser":
-      "vitest -c vitest.browser.config.ts",
+    "test:node": "vitest -c vitest.config.ts",
+    "test:browser": "vitest -c vitest.browser.config.ts"
   };
 
   return {

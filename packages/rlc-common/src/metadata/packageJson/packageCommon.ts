@@ -125,7 +125,7 @@ export function getTshyConfig(config: PackageCommonInfoConfig) {
   return tshyConfig;
 }
 
-export function getCommonPackageScripts({ }: PackageCommonInfoConfig) {
+export function getCommonPackageScripts({}: PackageCommonInfoConfig) {
   return {
     clean:
       "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
@@ -134,6 +134,6 @@ export function getCommonPackageScripts({ }: PackageCommonInfoConfig) {
     pack: "npm pack 2>&1",
     lint: "eslint package.json api-extractor.json src",
     "lint:fix":
-      "eslint package.json api-extractor.json src --fix --fix-type [problem,suggestion]",
+      "eslint package.json api-extractor.json src --fix --fix-type [problem,suggestion]"
   };
 }
