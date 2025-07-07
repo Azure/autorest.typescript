@@ -150,8 +150,7 @@ describe("Azure Arm Resources Rest Client", () => {
       }
     });
 
-    // Skipping the test as it should return a model of CloudError
-    it.skip("should handle user-defined error for bad request (400)", async () => {
+    it("should handle user-defined error for bad request (400)", async () => {
       const result = await client
         .path(
           "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.CommonProperties/confidentialResources/{confidentialResourceName}",
@@ -169,17 +168,18 @@ describe("Azure Arm Resources Rest Client", () => {
         });
 
       assert.strictEqual(result.status, "400");
-      assert.isObject(result.body);
 
       if (result.status === "400") {
-        const errorBody = result.body as any;
-        assert.strictEqual(errorBody.code, "BadRequest");
+        assert.strictEqual(result.body.error?.code, "BadRequest");
         assert.strictEqual(
-          errorBody.message,
+          result.body.error?.message,
           "Username should not contain only numbers."
         );
-        assert.isObject(errorBody.innererror);
-        assert.strictEqual(errorBody.innererror.exceptiontype, "general");
+        assert.isObject(result.body.error?.innererror);
+        assert.strictEqual(
+          result.body.error?.innererror?.exceptiontype,
+          "general"
+        );
       }
     });
   });

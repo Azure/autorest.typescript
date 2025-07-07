@@ -19,8 +19,7 @@ describe("Azure ARM Large Header Rest Client", () => {
   const RESOURCE_GROUP_EXPECTED = "test-rg";
   const LARGE_HEADER_NAME = "header1";
 
-  // skipping the test as it requires a optional parameter to be set
-  it.skip("should handle large headers in LRO operations", async () => {
+  it("should handle large headers in LRO operations", async () => {
     // Test LRO POST operation with large headers (> 6KB each, > 12KB total)
     const initialResponse = await client
       .path(
@@ -29,7 +28,7 @@ describe("Azure ARM Large Header Rest Client", () => {
         RESOURCE_GROUP_EXPECTED,
         LARGE_HEADER_NAME
       )
-      .post({});
+      .post();
 
     // Verify initial response
     assert.strictEqual(initialResponse.status, "202");
