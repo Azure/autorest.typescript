@@ -296,7 +296,7 @@ importers:
         specifier: ^0.57.0
         version: 0.57.1(@azure-tools/typespec-azure-core@0.57.0(@typespec/compiler@1.1.0(@types/node@18.19.115))(@typespec/http@1.1.0(@typespec/compiler@1.1.0(@types/node@18.19.115))(@typespec/streams@0.71.0(@typespec/compiler@1.1.0(@types/node@18.19.115))))(@typespec/rest@0.71.0(@typespec/compiler@1.1.0(@types/node@18.19.115))(@typespec/http@1.1.0(@typespec/compiler@1.1.0(@types/node@18.19.115))(@typespec/streams@0.71.0(@typespec/compiler@1.1.0(@types/node@18.19.115))))))(@azure-tools/typespec-azure-resource-manager@0.57.2(ce6975a3301b3d4a63409ac832158770))(@azure-tools/typespec-client-generator-core@0.57.3(fb3f29209e0b76bb00e21ca45ec4ace5))(@typespec/compiler@1.1.0(@types/node@18.19.115))
       '@azure-tools/typespec-client-generator-core':
-        specifier: ^0.57.0
+        specifier: ^0.57.1
         version: 0.57.3(fb3f29209e0b76bb00e21ca45ec4ace5)
       '@azure-tools/typespec-ts':
         specifier: workspace:^0.41.1

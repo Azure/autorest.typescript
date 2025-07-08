@@ -43,7 +43,7 @@ function getFlavorlessPackageInfo(
 
 function getFlavorlessScripts(config: PackageCommonInfoConfig) {
   return {
-    ...getCommonPackageScripts(config),
+    ...getCommonPackageScripts(),
     ...getCjsScripts(config),
     ...getEsmScripts(config)
   };
