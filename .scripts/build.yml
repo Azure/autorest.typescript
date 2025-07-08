@@ -4,9 +4,9 @@ steps:
       versionSpec: "20.x"
     displayName: "Use Node 20"
   - script: |
-      npm install -g @microsoft/rush
-    displayName: "Install Rush"
+      npm install -g pnpm
+    displayName: "Install Pnpm"
   - script: |
-      node common/scripts/install-run-rush.js update
-      node common/scripts/install-run-rush.js build
+      pnpm install
+      pnpm build
     displayName: "Build"
