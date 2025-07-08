@@ -134,9 +134,6 @@ function regularAutorestPackage(
       lint: "echo skipped",
       clean:
         "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
-      "build:node": "echo skipped",
-      "build:browser": "echo skipped",
-      "build:test": "echo skipped",
       "build:samples": "echo skipped.",
       "check-format": "echo skipped",
       "execute:samples": "echo skipped",
@@ -144,12 +141,6 @@ function regularAutorestPackage(
       test: "echo skipped",
       "test:node": "echo skipped",
       "test:browser": "echo skipped",
-      "unit-test": "echo skipped",
-      "unit-test:node": "echo skipped",
-      "unit-test:browser": "echo skipped",
-      "integration-test": "echo skipped",
-      "integration-test:node": "echo skipped",
-      "integration-test:browser": "echo skipped"
     },
     sideEffects: false,
     "//metadata": {
@@ -224,10 +215,9 @@ function regularAutorestPackage(
       "npm run integration-test:node && npm run integration-test:browser";
 
     if (azureSdkForJs) {
-      packageInfo.scripts["unit-test:node"] =
-        "dev-tool run test:vitest";
-      packageInfo.scripts["integration-test:node"] =
-        "dev-tool run test:vitest --esm";
+      packageInfo.scripts["test"] = "npm run test:node && npm run test:browser";
+      packageInfo.scripts["test:node"] = "dev-tool run test:vitest";
+      packageInfo.scripts["test:node:esm"] = "dev-tool run test:vitest --esm";
     } else {
       packageInfo.devDependencies["cross-env"] = "^7.0.2";
       packageInfo.scripts["unit-test:node"] =
