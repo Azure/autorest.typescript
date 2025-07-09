@@ -82,15 +82,12 @@ function getAzureStandaloneScripts(
   config: AzurePackageInfoConfig
 ): Record<string, any> {
   const testScripts = {
-    "test:browser":
-      "npm run clean && npm run build:test && npm run unit-test:browser",
-    "test:node":
-      "npm run clean && npm run build:test && npm run unit-test:node",
-    test: "npm run clean && npm run build:test && npm run unit-test",
-    "unit-test": "npm run unit-test:node && npm run unit-test:browser"
+    "test:browser": "karma start --single-run",
+    "test:node": `nyc mocha -r esm --require source-map-support/register --timeout 5000000 --full-trace "dist-esm/test/{,!(browser)/**/}*.spec.js"`,
+    test: "npm run test:node && npm run test:browser"
   };
   return {
-    ...getCommonPackageScripts(config),
+    ...getCommonPackageScripts(),
     clean:
       "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
     ...(config.withTests && testScripts),
@@ -106,12 +103,6 @@ function getCjsScripts(config: AzurePackageInfoConfig): Record<string, any> {
 
   const testScripts = {
     "build:test": "tsc -p . && rollup -c 2>&1",
-    "integration-test:browser": "karma start --single-run",
-    "integration-test:node":
-      'nyc mocha -r esm --require source-map-support/register --timeout 5000000 --full-trace "dist-esm/test/{,!(browser)/**/}*.spec.js"',
-    "unit-test:node":
-      'cross-env TS_NODE_COMPILER_OPTIONS="{\\"module\\":\\"commonjs\\"}" mocha -r esm --require ts-node/register --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"',
-    "unit-test:browser": "karma start --single-run",
     "build:browser": "tsc -p . && cross-env ONLY_BROWSER=true rollup -c 2>&1",
     "build:node": "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1"
   };
@@ -132,14 +123,8 @@ function getEsmScripts(config: AzurePackageInfoConfig): Record<string, any> {
 
   const testScripts = {
     test: "npm run clean && tshy && npm run unit-test:node && npm run unit-test:browser && npm run integration-test",
-    "test:node":
-      "npm run clean && tshy && npm run unit-test:node && npm run integration-test:node",
-    "test:browser":
-      "npm run clean && npm run build:test && npm run unit-test:browser && npm run integration-test:browser",
-    "integration-test:browser": "echo skipped",
-    "integration-test:node": "echo skipped",
-    "unit-test:node": "vitest -c vitest.config.ts",
-    "unit-test:browser": "vitest -c vitest.browser.config.ts"
+    "test:node": "vitest -c vitest.config.ts",
+    "test:browser": "vitest -c vitest.browser.config.ts"
   };
 
   return {

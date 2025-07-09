@@ -162,7 +162,7 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
   const cjsScripts = getCjsScripts(config);
   const skipLinting = config.azureArm && config.isModularLibrary;
   return {
-    ...getCommonPackageScripts(config),
+    ...getCommonPackageScripts(),
     "build:samples": config.withSamples
       ? "tsc -p tsconfig.samples.json && dev-tool samples publish -f"
       : "echo skipped",
@@ -179,11 +179,9 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
     format: `dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
       config.withSamples ? '"samples-dev/*.ts"' : ""
     }`,
-    "integration-test:browser": "echo skipped",
-    "integration-test:node": "echo skipped",
     "generate:client": "echo skipped",
     "test:browser":
-      "npm run clean && npm run build:test && npm run unit-test:browser && npm run integration-test:browser",
+      "dev-tool run build-test && dev-tool run test:vitest --browser",
     "lint:fix": skipLinting
       ? "echo skipped"
       : "eslint package.json src test --fix --fix-type [problem,suggestion]",
@@ -201,15 +199,11 @@ function getEsmScripts({ moduleKind }: AzureMonorepoInfoConfig) {
   }
 
   return {
-    "build:test": "echo skipped",
     build:
       "npm run clean && dev-tool run build-package && dev-tool run extract-api",
-    "test:node":
-      "npm run clean && dev-tool run build-package && npm run unit-test:node && npm run integration-test:node",
-    test: "npm run clean && dev-tool run build-package && npm run unit-test:node && npm run unit-test:browser && npm run integration-test",
-    "unit-test:browser":
-      "npm run build:test && dev-tool run test:vitest --browser",
-    "unit-test:node": "dev-tool run test:vitest"
+    "test:node": "dev-tool run test:vitest",
+    "test:node:esm": "dev-tool run test:vitest --esm",
+    test: "npm run test:node && npm run test:browser"
   };
 }
 
