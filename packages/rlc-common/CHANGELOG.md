@@ -1,6 +1,6 @@
 ## 0.42.0 (2025-07-09)
 
-- [Bugfix] Fix serilaization name and name inconsistancy for body parameter. Please refer to [#3340](https://github.com/Azure/autorest.typescript/pull/3340)
+- [Bugfix] Fix sample serialization name and name inconsistency for body parameter. Please refer to [#3340](https://github.com/Azure/autorest.typescript/pull/3340)
 - [Feature] Upgrade package to latest version. Please refer to [#3365](https://github.com/Azure/autorest.typescript/pull/3365)
 - [Feature] Improve test scripts. Please refer to [#3239](https://github.com/Azure/autorest.typescript/pull/3239)
 - [Feature] Upgrade dependency versions for hlc and modular. Please refer to [#3339](https://github.com/Azure/autorest.typescript/pull/3339)
