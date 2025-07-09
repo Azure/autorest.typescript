@@ -8,5 +8,7 @@ steps:
     displayName: "Install Pnpm"
   - script: |
       pnpm install
+    displayName: "Install package dependencies"
+  - script: |
       pnpm build
     displayName: "Build"
