@@ -1,4 +1,4 @@
-# Should generate optional body in option parameter
+# Should generate optional body `body` in option parameter
 
 Should generate optional body in option parameter.
 
@@ -257,7 +257,107 @@ async function main(): Promise<void> {
 main().catch(console.error);
 ```
 
-# only: Should generate sample with a customized name for `path` decorator
+# Should generate optional body `header` in option parameter
+
+Should generate optional body in option parameter.
+
+## TypeSpec
+
+This is tsp definition.
+
+```tsp
+@doc("This is a simple model.")
+model BodyParameter {
+  name: string;
+}
+@doc("This is a model with all http request decorator.")
+model CompositeRequest {
+  
+  @path
+  name: string;
+
+  @header
+  requiredHeader: string; // required-header
+
+  @header
+  @clientName("testHeader", "javascript")
+  optionalHeader?: string;
+
+  @query
+  requiredQuery: string;
+
+  @query
+  optionalQuery?: string;
+
+  @body
+  widget?: BodyParameter;
+}
+
+@doc("show example demo")
+op read(...CompositeRequest): { @body body: {}};
+```
+
+## Example
+
+Raw json files.
+
+```json
+{
+  "title": "read",
+  "operationId": "read",
+  "parameters": {
+    "name": "required path param",
+    "required-header": "required header",
+    "optional-header": "optional header",
+    "optionalQuery": "renamed optional query",
+    "requiredQuery": "required query",
+    "body": {
+      "name": "body name"
+    }
+  },
+  "responses": {
+    "200": {}
+  }
+}
+```
+
+## Samples
+
+Generate optional body in option parameter:
+
+```ts samples
+/** This file path is /samples-dev/readSample.ts */
+import { TestingClient } from "@azure/internal-test";
+
+/**
+ * This sample demonstrates how to show example demo
+ *
+ * @summary show example demo
+ * x-ms-original-file: 2021-10-01-preview/json.json
+ */
+async function read(): Promise<void> {
+  const client = new TestingClient();
+  const result = await client.read(
+    "required path param",
+    "required header",
+    "required query",
+    {
+      widget: { name: "body name" },
+      testHeader: "optional header",
+      optionalQuery: "renamed optional query",
+    },
+  );
+  console.log(result);
+}
+
+async function main(): Promise<void> {
+  await read();
+}
+
+main().catch(console.error);
+```
+
+# Should generate sample with a customized name for `path` decorator
 
 Should generate optional body in option parameter.
 
