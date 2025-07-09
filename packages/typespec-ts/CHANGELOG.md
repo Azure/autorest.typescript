@@ -1,5 +1,11 @@
-## 0.42.0 (2025-07-03)
+## 0.42.0 (2025-07-09)
 
+- [Bugfix] Fix serilaization name and name inconsistancy for body parameter. Please refer to [#3340](https://github.com/Azure/autorest.typescript/pull/3340)
+- [Feature] Upgrade package to latest version. Please refer to [#3365](https://github.com/Azure/autorest.typescript/pull/3365)
+- [Feature] Improve test scripts. Please refer to [#3239](https://github.com/Azure/autorest.typescript/pull/3239)
+- [Feature] Upgrade dependency versions for hlc and modular. Please refer to [#3339](https://github.com/Azure/autorest.typescript/pull/3339)
+- [Bugfix] Fix reserved word in operations. Please refer to [#3356](https://github.com/Azure/autorest.typescript/pull/3356)
+- [Bugfix] Improve handling of user-defined models that conflict with Azure Core type names. Please refer to [#3319](https://github.com/Azure/autorest.typescript/pull/3319)
 - [Feature] Upgrade azure specs and update case. Please refer to [#3346](https://github.com/Azure/autorest.typescript/pull/3346)
 - [Bugfix] Fix lro operation status. Please refer to [#3337](https://github.com/Azure/autorest.typescript/pull/3337)
 - [Feature] Update generate test. Please refer to [#3333](https://github.com/Azure/autorest.typescript/pull/3333)
