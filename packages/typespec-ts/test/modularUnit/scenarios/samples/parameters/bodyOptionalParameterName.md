@@ -1,4 +1,4 @@
-# Should generate optional body `body`  in option parameter
+# Should generate optional body in option parameter
 
 Should generate optional body in option parameter.
 
@@ -257,7 +257,7 @@ async function main(): Promise<void> {
 main().catch(console.error);
 ```
 
-# only: Should generate optional body `path` in option parameter
+# only: Should generate sample with a customized name for `path` decorator
 
 Should generate optional body in option parameter.
 
@@ -266,113 +266,49 @@ Should generate optional body in option parameter.
 This is tsp definition.
 
 ```tsp
+@doc("This is a simple model.")
+model BodyParameter {
+  name: string;
+}
+@doc("This is a model with all http request decorator.")
+model CompositeRequest {
+  @path
+  @clientName("testName", "javascript")
+  name: string;
 
-import "@typespec/http";
-import "@typespec/rest";
-import "@typespec/versioning";
-import "@azure-tools/typespec-azure-core";
-import "@azure-tools/typespec-azure-resource-manager";
-import "@azure-tools/typespec-client-generator-core";
+  @query
+  requiredQuery: string;
 
-using TypeSpec.Http;
-using TypeSpec.Rest;
-using TypeSpec.Versioning;
-using Azure.Core;
-using Azure.ResourceManager;
-using Azure.ClientGenerator.Core;
+  @query
+  optionalQuery?: string;
 
-@armProviderNamespace
-@service(#{ title: "HardwareSecurityModules" })
-@versioned(Versions)
-@armCommonTypesVersion(Azure.ResourceManager.CommonTypes.Versions.v6)
-namespace Microsoft.HardwareSecurityModules;
-
-enum Versions {
-  @useDependency(Azure.ResourceManager.Versions.v1_0_Preview_1)
-  @useDependency(Azure.Core.Versions.v1_0_Preview_1)
-  v2021_10_01_preview: "2021-10-01-preview",
+  @body
+  widget?: BodyParameter;
 }
 
-model CloudHsmClusterProperties {
-  statusMessage?: string;
-}
-
-model CloudHsmCluster
-  is Azure.ResourceManager.TrackedResource<CloudHsmClusterProperties> {
-  ...ResourceNameParameter<
-    Resource = CloudHsmCluster,
-    KeyName = "cloudHsmClusterName",
-    SegmentName = "cloudHsmClusters",
-    NamePattern = "^[a-zA-Z0-9-]{3,23}$"
-  >;
-
-  identity?: Azure.ResourceManager.CommonTypes.ManagedServiceIdentity;
-}
-
-model BackupRequestProperties extends BackupRestoreRequestBaseProperties {}
-
-model BackupRestoreRequestBaseProperties {
-
-  azureStorageBlobContainerUri: url;
-
-  @secret
-  token?: string;
-}
-
-model BackupResult {
-  properties?: BackupResultProperties;
-}
-
-model BackupResultProperties {
-
-  azureStorageBlobContainerUri?: url;
-
-  backupId?: string;
-}
-
-@armResourceOperations
-interface CloudHsmClusters {
-  backup is ArmResourceActionAsync<
-    CloudHsmCluster,
-    BackupRequestProperties,
-    ArmResponse<BackupResult> & Azure.Core.RequestIdResponseHeader,
-    LroHeaders = ArmAsyncOperationHeader<FinalResult = BackupResult> &
-      ArmLroLocationHeader &
-      Azure.Core.Foundations.RetryAfterHeader &
-      Azure.Core.RequestIdResponseHeader,
-    OptionalRequestBody = true
-  >;
-}
-@@clientName(CloudHsmClusters.backup::parameters.path,
-  "backupRequestProperties"
-);
-```
-
-The config would be like:
-
-```yaml
-withRawContent: true
+@doc("show example demo")
+op read(...CompositeRequest): { @body body: {}};
 ```
 
 ## Example
 
 Raw json files.
 
-```json for CloudHsmClusters_backup
+```json
 {
-  "title": "CloudHsmClusters_backup",
-  "operationId": "CloudHsmClusters_backup",
+  "title": "read",
+  "operationId": "read",
   "parameters": {
-    "api-version": "2025-03-31",
-    "path": {
-      "azureStorageBlobContainerUri": "sss",
-      "token": "aaa"
-    },
-    "cloudHsmClusterName": "chsm1",
-    "resourceGroupName": "rgcloudhsm",
-    "subscriptionId": "00000000-0000-0000-0000-000000000000"
+    "name": "required path param",
+    "optionalQuery": "renamed optional query",
+    "requiredQuery": "required query",
+    "body": {
+      "name": "body name"
+    }
   },
-  "responses": {}
+  "responses": {
+    "200": {}
+  }
 }
 ```
 
@@ -381,5 +317,27 @@ Raw json files.
 Generate optional body in option parameter:
 
 ```ts samples
+/** This file path is /samples-dev/readSample.ts */
+import { TestingClient } from "@azure/internal-test";
 
+/**
+ * This sample demonstrates how to show example demo
+ *
+ * @summary show example demo
+ * x-ms-original-file: 2021-10-01-preview/json.json
+ */
+async function read(): Promise<void> {
+  const client = new TestingClient();
+  const result = await client.read("required path param", "required query", {
+    widget: { name: "body name" },
+    optionalQuery: "renamed optional query",
+  });
+  console.log(result);
+}
+
+async function main(): Promise<void> {
+  await read();
+}
+
+main().catch(console.error);
 ```
