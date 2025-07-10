@@ -46,13 +46,13 @@ See [Configuring output directory for more info](https://typespec.io/docs/handbo
 
 **Type:** `boolean`
 
-To allow the codegen generating shortcut methods in client definition. This is an experimental feature so we disable it by default. If you want to try it just turn it on.
+Deprecated option for RLC legacy generation.
 
 ### `multi-client`
 
 **Type:** `boolean`
 
-Whether to generate multiple clients in one package.
+Deprecated option for RLC legacy generation.
 
 ### `batch`
 
@@ -152,9 +152,7 @@ Internal option for test
 
 **Type:** `string`
 
-      Only for RLC generation
-      Generally the codegen will leverage the title defined in `@client` and `@service` decorator in TypeSpec to name our RLC client. But if you'd like to override it you could config the `title` info.
-
+Deprecated option for RLC legacy generation.
 
 ### `dependency-info`
 
@@ -226,6 +224,8 @@ The flavor of the SDK.
 
 **Type:** `"esm" | "cjs"`
 
+Internal option for test.
+
 ### `compatibility-mode`
 
 **Type:** `boolean`
@@ -286,4 +286,4 @@ Generally the codegen will leverage the title defined in `@client` and `@service
 
 **Type:** `boolean`
 
-Whether to generate codes with the pnpm dependencies. Defaults to `false`
+Internal option for test.
