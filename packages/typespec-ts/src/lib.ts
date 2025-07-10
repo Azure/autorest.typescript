@@ -79,8 +79,7 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
     "include-shortcuts": {
       type: "boolean",
       nullable: true,
-      description:
-        "Deprecated option for RLC legacy generation."
+      description: "Deprecated option for RLC legacy generation."
     },
     "multi-client": {
       type: "boolean",
