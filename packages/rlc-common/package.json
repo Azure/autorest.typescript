@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/rlc-common",
-  "version": "0.41.1",
+  "version": "0.42.0",
   "description": "",
   "type": "module",
   "main": "dist/index.js",
@@ -34,9 +34,7 @@
     "handlebars": "^4.7.7"
   },
   "devDependencies": {
-    "@types/node": "^18.0.0",
     "prettier": "^3.1.0",
-    "typescript": "~5.8.2",
     "@types/lodash": "^4.14.182",
     "fs-extra": "^10.0.0",
     "@types/fs-extra": "^8.1.0",

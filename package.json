@@ -15,11 +15,13 @@
     "test": "turbo run test"
   },
   "devDependencies": {
+    "@types/node": "^18.0.0",
     "eslint": "^8.9.0",
     "prettier": "^3.5.3",
     "prettier-plugin-packagejson": "^2.5.15",
     "rimraf": "^5.0.10",
-    "turbo": "^2.5.4"
+    "turbo": "^2.5.4",
+    "typescript": "~5.8.2"
   },
   "packageManager": "pnpm@10.12.1",
   "engines": {
