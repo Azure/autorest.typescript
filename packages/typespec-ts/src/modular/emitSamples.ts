@@ -323,9 +323,9 @@ function prepareExampleParameters(
   }
   // required/optional body parameters
   const bodyParam = method.operation.bodyParam;
-  const bodyName = bodyParam?.serializedName;
-  const bodyExample = parameterMap[bodyName ?? ""];
-  if (bodyName && bodyExample && bodyExample.value) {
+  const bodySerializeName = bodyParam?.serializedName;
+  const bodyExample = parameterMap[bodySerializeName ?? ""];
+  if (bodySerializeName && bodyExample && bodyExample.value) {
     if (
       isSpreadBodyParameter(bodyParam) &&
       bodyParam.type.kind === "model" &&
@@ -348,7 +348,7 @@ function prepareExampleParameters(
     } else {
       result.push(
         prepareExampleValue(
-          bodyName,
+          bodyParam.name,
           bodyExample.value,
           bodyParam.optional,
           bodyParam.onClient
