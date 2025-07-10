@@ -74,7 +74,7 @@ describe("LROStandardClient Classical Client", () => {
         await poller.submitted();
         assert.fail("Should throw an AbortError");
       } catch (err: any) {
-        assert.strictEqual(err.message, "The operation was aborted.");
+        assert.strictEqual(err.name, "AbortError");
       }
     });
 
@@ -95,7 +95,7 @@ describe("LROStandardClient Classical Client", () => {
         await poller.poll();
         assert.fail("Should throw an AbortError");
       } catch (err: any) {
-        assert.strictEqual(err.message, "The operation was aborted.");
+        assert.strictEqual(err.name, "AbortError");
       }
     });
 
@@ -109,7 +109,7 @@ describe("LROStandardClient Classical Client", () => {
         await poller.pollUntilDone({ abortSignal: abortController.signal });
         assert.fail("Should throw an AbortError");
       } catch (err: any) {
-        assert.strictEqual(err.message, "The operation was aborted.");
+        assert.strictEqual(err.name, "AbortError");
       }
     });
 
@@ -131,7 +131,7 @@ describe("LROStandardClient Classical Client", () => {
         await poller.pollUntilDone({ abortSignal: pollAbort.signal });
         assert.fail("Should throw an AbortError");
       } catch (err: any) {
-        assert.strictEqual(err.message, "The operation was aborted.");
+        assert.strictEqual(err.name, "AbortError");
       }
     });
 
