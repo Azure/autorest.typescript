@@ -7,6 +7,7 @@ options:
   "@azure-tools/typespec-ts":
     emitter-output-dir: "{project-root}/generated/typespec-ts"
     azure-sdk-for-js: false
+    is-modular-library: false
     package-details:
       name: "@azure-rest/contosowidgetmanager-rest"
       description: "Contoso WidgetManager Service"
