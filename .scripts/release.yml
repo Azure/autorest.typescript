@@ -52,7 +52,7 @@ stages:
             condition: ne(variables['SetDevVersion'], 'true')
             pool:
               name: ${{ parameters.LinuxPool }}
-              demands: ImageOverride -equals {{ parameters.OSVmImage }}
+              demands: ImageOverride -equals ${{ parameters.OSVmImage }}
             strategy:
               runOnce:
                 deploy:
@@ -78,7 +78,7 @@ stages:
 
             pool:
               name: ${{ parameters.LinuxPool }}
-              demands: ImageOverride -equals {{ parameters.OSVmImage }}
+              demands: ImageOverride -equals ${{ parameters.OSVmImage }}
 
             variables:
               MAIN_VERSION: $[ stageDependencies.BuildStage.Build.outputs['PackTypeSpecTSArtifacts.MAIN_VERSION'] ]
@@ -106,7 +106,7 @@ stages:
             condition: ne(variables['SetDevVersion'], 'true')
             pool:
               name: ${{ parameters.LinuxPool }}
-              demands: ImageOverride -equals {{ parameters.OSVmImage }}
+              demands: ImageOverride -equals ${{ parameters.OSVmImage }}
             strategy:
               runOnce:
                 deploy:
@@ -133,7 +133,7 @@ stages:
 
             pool:
               name: ${{ parameters.LinuxPool }}
-              demands: ImageOverride -equals {{ parameters.OSVmImage }}
+              demands: ImageOverride -equals ${{ parameters.OSVmImage }}
 
             variables:
               MAIN_VERSION: $[ stageDependencies.BuildStage.Build.outputs['PackRLCCommonArtifacts.MAIN_VERSION'] ]
@@ -161,7 +161,7 @@ stages:
             condition: ne(variables['SetDevVersion'], 'true')
             pool:
               name: ${{ parameters.LinuxPool }}
-              demands: ImageOverride -equals {{ parameters.OSVmImage }}
+              demands: ImageOverride -equals ${{ parameters.OSVmImage }}
             strategy:
               runOnce:
                 deploy:
@@ -189,7 +189,7 @@ stages:
         displayName: Publish @autorest/typescript dev version to GitHub
         pool:
           name: ${{ parameters.LinuxPool }}
-          demands: ImageOverride -equals {{ parameters.OSVmImage }}
+          demands: ImageOverride -equals ${{ parameters.OSVmImage }}
         strategy:
           runOnce:
             deploy:
@@ -217,7 +217,7 @@ stages:
         displayName: Publish @azure-tools/rlc-common and @azure-tools/typespec-ts dev version to GitHub
         pool:
           name: ${{ parameters.LinuxPool }}
-          demands: ImageOverride -equals {{ parameters.OSVmImage }}
+          demands: ImageOverride -equals ${{ parameters.OSVmImage }}
         strategy:
           runOnce:
             deploy:
@@ -243,7 +243,7 @@ stages:
         displayName: Publish @autorest/typescript dev version to NPM
         pool:
           name: ${{ parameters.LinuxPool }}
-          demands: ImageOverride -equals {{ parameters.OSVmImage }}
+          demands: ImageOverride -equals ${{ parameters.OSVmImage }}
         strategy:
           runOnce:
             deploy:
@@ -266,7 +266,7 @@ stages:
         displayName: Publish @azure-tools/typespec-ts dev version to NPM
         pool:
           name: ${{ parameters.LinuxPool }}
-          demands: ImageOverride -equals {{ parameters.OSVmImage }}
+          demands: ImageOverride -equals ${{ parameters.OSVmImage }}
         strategy:
           runOnce:
             deploy:
@@ -289,7 +289,7 @@ stages:
         displayName: Publish @azure-tools/rlc-common dev version to NPM
         pool:
           name: ${{ parameters.LinuxPool }}
-          demands: ImageOverride -equals {{ parameters.OSVmImage }}
+          demands: ImageOverride -equals ${{ parameters.OSVmImage }}
         strategy:
           runOnce:
             deploy:
