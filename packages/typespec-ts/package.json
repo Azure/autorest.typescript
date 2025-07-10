@@ -68,6 +68,7 @@
     "@typespec/http-specs": "0.1.0-alpha.24-dev.2",
     "@typespec/spector": "0.1.0-alpha.16-dev.2",
     "@typespec/spec-api": "0.1.0-alpha.7-dev.1",
+    "@typespec/tspd": "0.70.0",
     "@azure-tools/azure-http-specs": "0.1.0-alpha.22",
     "@azure-tools/typespec-autorest": "^0.57.1",
     "@azure-tools/typespec-azure-core": "^0.57.0",
