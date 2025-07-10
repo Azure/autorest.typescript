@@ -190,7 +190,7 @@ describe("MultiPartClient Rest Client", () => {
               name: "profileImage",
               body: profileImage,
               filename: "image.jpg",
-              contentType: "image/jpeg",
+              contentType: "image/jpeg"
             },
             {
               name: "pictures",
