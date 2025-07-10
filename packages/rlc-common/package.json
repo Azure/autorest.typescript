@@ -36,11 +36,9 @@
   "devDependencies": {
     "@types/node": "^18.0.0",
     "prettier": "^3.1.0",
-    "typescript": "~5.8.2",
     "@types/lodash": "^4.14.182",
     "fs-extra": "^10.0.0",
     "@types/fs-extra": "^8.1.0",
-    "ts-node": "^10.7.0",
     "mocha": "^10.2.0",
     "chai": "^4.3.7",
     "@types/chai": "^4.3.4",

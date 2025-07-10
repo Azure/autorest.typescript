@@ -19,7 +19,9 @@
     "prettier": "^3.5.3",
     "prettier-plugin-packagejson": "^2.5.15",
     "rimraf": "^5.0.10",
-    "turbo": "^2.5.4"
+    "ts-node": "^10.9.2",
+    "turbo": "^2.5.4",
+    "typescript": "~5.8.2"
   },
   "packageManager": "pnpm@10.12.1",
   "engines": {
