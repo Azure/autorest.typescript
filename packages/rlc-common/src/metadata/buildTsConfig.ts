@@ -97,6 +97,9 @@ export function buildTsConfig(model: RLCModel) {
       restLevelTsConfig.references.push({
         path: "./tsconfig.test.json"
       });
+      restLevelTsConfig.references.push({
+        path: "./tsconfig.snippets.json"
+      });
     }
   }
 
@@ -133,5 +136,18 @@ export function buildTsTestConfig() {
   return {
     path: "tsconfig.test.json",
     content: tsTestConfigInAzureSdkForJs
+  };
+}
+
+export function buildTsSnippetsConfig() {
+  return {
+    path: "tsconfig.snippets.json",
+    content: JSON.stringify(
+      {
+        extends: ["../../../tsconfig.snippets.base.json"]
+      },
+      null,
+      2
+    )
   };
 }

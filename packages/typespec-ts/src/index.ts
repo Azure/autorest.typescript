@@ -41,6 +41,7 @@ import {
   buildSerializeHelper,
   buildTopLevelIndex,
   buildTsConfig,
+  buildTsSnippetsConfig,
   buildTsTestBrowserConfig,
   buildVitestConfig,
   getClientName,
@@ -140,10 +141,10 @@ export async function $onEmit(context: EmitContext) {
   console.timeEnd("onEmit: load static helpers");
   const extraDependencies = isAzurePackage({ options: rlcOptions })
     ? {
-        ...AzurePollingDependencies,
-        ...AzureCoreDependencies,
-        ...AzureIdentityDependencies
-      }
+      ...AzurePollingDependencies,
+      ...AzureCoreDependencies,
+      ...AzureIdentityDependencies
+    }
     : { ...DefaultCoreDependencies };
   console.time("onEmit: provide binder");
   const binder = provideBinder(outputProject, {
@@ -222,8 +223,8 @@ export async function $onEmit(context: EmitContext) {
   async function clearSrcFolder() {
     await fsextra.emptyDir(
       dpgContext.generationPathDetail?.modularSourcesDir ??
-        dpgContext.generationPathDetail?.rlcSourcesDir ??
-        ""
+      dpgContext.generationPathDetail?.rlcSourcesDir ??
+      ""
     );
   }
 
@@ -480,6 +481,7 @@ export async function $onEmit(context: EmitContext) {
             buildSnippets(model, subClient.name, option.azureSdkForJs)
           );
         }
+        commonBuilders.push(buildTsSnippetsConfig);
       }
 
       // build metadata relevant files
@@ -545,7 +547,7 @@ export async function createContextWithDefaultOptions(
 ): Promise<SdkContext> {
   const flattenUnionAsEnum =
     context.options["experimental-extensible-enums"] === undefined &&
-    context.options["experimentalExtensibleEnums"] === undefined
+      context.options["experimentalExtensibleEnums"] === undefined
       ? isArm(context)
       : (context.options["experimental-extensible-enums"] ??
         context.options["experimentalExtensibleEnums"]);
