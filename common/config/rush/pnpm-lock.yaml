@@ -257,7 +257,6 @@ importers:
       '@typescript-eslint/parser': ^8.28.0
       '@typespec/compiler': ^1.1.0
       '@typespec/http': ^1.1.0
-      '@typespec/http-client': ^0.7.0
       '@typespec/http-specs': 0.1.0-alpha.24-dev.2
       '@typespec/openapi': ^1.1.0
       '@typespec/rest': ^0.71.0
@@ -289,7 +288,6 @@ importers:
       vitest: ~1.6.0
     dependencies:
       '@azure-tools/rlc-common': link:../rlc-common
-      '@typespec/http-client': 0.7.0_dyjdverbt5nlo6bvztavebwjdu
       '@typespec/xml': 0.71.0_@typespec+compiler@1.1.0
       fs-extra: 11.1.1
       lodash: 4.17.21
@@ -351,24 +349,6 @@ packages:
     resolution: {integrity: sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==}
     engines: {node: '>=0.10.0'}
     dev: true
-
-  /@alloy-js/core/0.17.0:
-    resolution: {integrity: sha512-ydVGcbdKfvazkbUDrmeoQAzCQDzSudJDtk/nzubnQjGJmLlq62RLKR5eKj1l9sope4L7UX98DLclJxiwiF5WAA==}
-    dependencies:
-      '@vue/reactivity': 3.5.17
-      cli-table3: 0.6.5
-      pathe: 2.0.3
-      picocolors: 1.1.1
-      prettier: 3.5.3
-    dev: false
-
-  /@alloy-js/typescript/0.17.0:
-    resolution: {integrity: sha512-7gmxjda6romnR+DYb5NYUfRNM2jOJnXweIG9tVzzT5ivEaizFdKQwY3tdbITupzMKoWIkhHpycGYpwXBHGy9Kw==}
-    dependencies:
-      '@alloy-js/core': 0.17.0
-      change-case: 5.4.4
-      pathe: 2.0.3
-    dev: false
 
   /@ampproject/remapping/2.3.0:
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
@@ -1137,6 +1117,7 @@ packages:
   /@colors/colors/1.5.0:
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
     engines: {node: '>=0.1.90'}
+    dev: true
 
   /@colors/colors/1.6.0:
     resolution: {integrity: sha512-Ir+AOibqzrIsL6ajt3Rz3LskB7OiMVHqltZmspbW/TJuTVuyOMirVqAkjfY6JISiLHgyNqicAC8AyHHGzNd/dA==}
@@ -2735,22 +2716,6 @@ packages:
     transitivePeerDependencies:
       - '@types/node'
 
-  /@typespec/emitter-framework/0.8.0_tl5fdxtsmo24gmsgosyawvjblm:
-    resolution: {integrity: sha512-u8c8BgvOXbXlekf0BHB3JqqD9ss1ITmOgxE4bUeet/GploVuCcYKBQK09OLMv/eJNPsBZXj03G63KpZEe6pOOQ==}
-    peerDependencies:
-      '@alloy-js/core': ^0.17.0
-      '@alloy-js/typescript': ^0.17.0
-      '@typespec/compiler': ^1.1.0
-      '@typespec/http': ^1.1.0
-      '@typespec/rest': ^0.71.0
-    dependencies:
-      '@alloy-js/core': 0.17.0
-      '@alloy-js/typescript': 0.17.0
-      '@typespec/compiler': 1.1.0_@types+node@18.18.0
-      '@typespec/http': 1.1.0_c52ifazb5ntzpmcykfahljgl5e
-      '@typespec/rest': 0.71.0_wo5hy2j4mtochsypsdsaymgwzu
-    dev: false
-
   /@typespec/events/0.71.0_@typespec+compiler@1.1.0:
     resolution: {integrity: sha512-dJeyqBGqTTSlFDVWpdqeMjDpEyRmenH3yDABK3T/30MrO94sdXigxmeBnPCcOaaqst6pV3anFuKwfAqEN3GnbA==}
     engines: {node: '>=20.0.0'}
@@ -2758,22 +2723,6 @@ packages:
       '@typespec/compiler': ^1.1.0
     dependencies:
       '@typespec/compiler': 1.1.0_@types+node@18.18.0
-
-  /@typespec/http-client/0.7.0_dyjdverbt5nlo6bvztavebwjdu:
-    resolution: {integrity: sha512-5KNNCODa1LQdUR7+r6g9iVP6VfFfdTztDMqm9Kr0hSbX6TE5G08Y/u2Z0h/b/f32bcI4o0+Mfx6i6FyP13MNKQ==}
-    peerDependencies:
-      '@alloy-js/core': ^0.17.0
-      '@alloy-js/typescript': ^0.17.0
-      '@typespec/compiler': ^1.1.0
-      '@typespec/emitter-framework': ^0.8.0
-      '@typespec/http': ^1.1.0
-    dependencies:
-      '@alloy-js/core': 0.17.0
-      '@alloy-js/typescript': 0.17.0
-      '@typespec/compiler': 1.1.0_@types+node@18.18.0
-      '@typespec/emitter-framework': 0.8.0_tl5fdxtsmo24gmsgosyawvjblm
-      '@typespec/http': 1.1.0_c52ifazb5ntzpmcykfahljgl5e
-    dev: false
 
   /@typespec/http-specs/0.1.0-alpha.24-dev.2_6qzfzag3bbwc5s7hzbabv5xkbe:
     resolution: {integrity: sha512-uUV7lTkdNT+TnYmygGih680e55FkIWiFLBMuGhLX+0gGTVN/rfnrsuekdDYmrDWUePF4FEazLTT9sv/QuL0nvQ==}
@@ -3061,16 +3010,6 @@ packages:
       loupe: 2.3.7
       pretty-format: 29.7.0
     dev: true
-
-  /@vue/reactivity/3.5.17:
-    resolution: {integrity: sha512-l/rmw2STIscWi7SNJp708FK4Kofs97zc/5aEPQh4bOsReD/8ICuBcEmS7KGwDj5ODQLYWVN2lNibKJL1z5b+Lw==}
-    dependencies:
-      '@vue/shared': 3.5.17
-    dev: false
-
-  /@vue/shared/3.5.17:
-    resolution: {integrity: sha512-CabR+UN630VnsJO/jHWYBC1YVXyMq94KKp6iF5MQgZJs5I8cmjw6oVMO1oDbtBkENSHSSn/UadWlW/OAgdmKrg==}
-    dev: false
 
   /@webassemblyjs/ast/1.11.6:
     resolution: {integrity: sha512-IN1xI7PwOvLPgjcf180gC1bqn3q/QaOCwYUahIOhbYUu8KA/3tw2RT/T0Gidi1l7Hhj5D/INhJxiICObqpMu4Q==}
@@ -3893,15 +3832,6 @@ packages:
       mitt: 3.0.1
       urlpattern-polyfill: 10.0.0
     dev: true
-
-  /cli-table3/0.6.5:
-    resolution: {integrity: sha512-+W/5efTR7y5HRD7gACw9yQjqMVvEMLBHmboM/kPWam+H+Hmyrgjh6YncVKK122YZkXrLudzTuAukUw9FnMf7IQ==}
-    engines: {node: 10.* || >= 12.*}
-    dependencies:
-      string-width: 4.2.3
-    optionalDependencies:
-      '@colors/colors': 1.5.0
-    dev: false
 
   /cli-width/4.1.0:
     resolution: {integrity: sha512-ouuZd4/dm2Sw5Gmqy6bGyNNNe1qt9RpmxveLSO7KcgsTnU7RXfsw+/bukWGo1abgBiMAic068rclZsO4IWmmxQ==}
@@ -7204,10 +7134,6 @@ packages:
   /pathe/1.1.2:
     resolution: {integrity: sha512-whLdWMYL2TwI08hn8/ZqAbrVemu0LNaNNJZX73O6qaIdCTfXutsLhMkjdENX0qhsQ9uIimo4/aQOmXkoon2nDQ==}
     dev: true
-
-  /pathe/2.0.3:
-    resolution: {integrity: sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w==}
-    dev: false
 
   /pathval/1.1.1:
     resolution: {integrity: sha512-Dp6zGqpTdETdR63lehJYPeIOqpiNBNtc7BpWSLrOje7UaIsE5aY92r/AunQA7rsXvet3lrJ3JnZX29UPTKXyKQ==}
