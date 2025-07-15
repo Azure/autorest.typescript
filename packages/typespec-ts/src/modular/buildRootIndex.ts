@@ -102,7 +102,6 @@ function exportAzureCloudTypes(context: SdkContext, rootIndexFile: SourceFile) {
       resolveReference(CloudSettingHelpers.AzureClouds)
     ]);
   }
-  return;
 }
 
 /**
