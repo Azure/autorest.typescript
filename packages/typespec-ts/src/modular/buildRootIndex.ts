@@ -152,19 +152,6 @@ function exportFileContentsType(
   }
 }
 
-function addExportsToRootIndexFile(
-  rootIndexFile: SourceFile,
-  namedExports: string[]
-) {
-  const existingExports = getExistingExports(rootIndexFile);
-  const newNamedExports = getNewNamedExports(namedExports, existingExports);
-  if (newNamedExports.length > 0) {
-    rootIndexFile.addExportDeclaration({
-      namedExports: newNamedExports
-    });
-  }
-}
-
 function getExistingExports(rootIndexFile: SourceFile): Set<string> {
   return new Set(
     rootIndexFile
@@ -182,6 +169,19 @@ function getNewNamedExports(
   return namedExports.filter(
     (namedExport) => !existingExports.has(namedExport)
   );
+}
+
+function addExportsToRootIndexFile(
+  rootIndexFile: SourceFile,
+  namedExports: string[]
+) {
+  const existingExports = getExistingExports(rootIndexFile);
+  const newNamedExports = getNewNamedExports(namedExports, existingExports);
+  if (newNamedExports.length > 0) {
+    rootIndexFile.addExportDeclaration({
+      namedExports: newNamedExports
+    });
+  }
 }
 
 function exportRestoreHelpers(
