@@ -2,6 +2,7 @@
 
 import { FileContents } from "./static-helpers/multipartHelpers.js";
 
+export { OpenAIClient } from "./openAIClient.js";
 export {
   CreateCompletionRequest,
   Prompt,
@@ -51,7 +52,6 @@ export {
   ListFineTuningJobEventsResponse,
   FineTuningJobEvent,
 } from "./models/index.js";
-export { OpenAIClient } from "./openAIClient.js";
 export { OpenAIClientOptionalParams } from "./api/index.js";
 export { CompletionsCreateOptionalParams } from "./api/completions/index.js";
 export { EditsCreateOptionalParams } from "./api/edits/index.js";

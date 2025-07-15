@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+export { RadiologyInsightsClient } from "./radiologyInsightsClient.js";
+export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   PatientRecord,
   PatientInfo,
@@ -74,8 +76,6 @@ export {
   DomainResourceUnion,
   Narrative,
 } from "./models/fhir/r4/index.js";
-export { RadiologyInsightsClient } from "./radiologyInsightsClient.js";
-export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   InferRadiologyInsightsOptionalParams,
   RadiologyInsightsClientOptionalParams,

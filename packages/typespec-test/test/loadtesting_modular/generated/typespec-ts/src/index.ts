@@ -7,6 +7,7 @@ import {
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
 
+export { LoadTestAdministrationClient } from "./loadTestAdministration/loadTestAdministrationClient.js";
 export {
   Test,
   PassFailCriteria,
@@ -91,7 +92,6 @@ export {
   RecommendationCategory,
   KnownAPIVersions,
 } from "./models/index.js";
-export { LoadTestAdministrationClient } from "./loadTestAdministration/loadTestAdministrationClient.js";
 export {
   LoadTestAdministrationClientOptionalParams,
   DeleteTestOptionalParams,

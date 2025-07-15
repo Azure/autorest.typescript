@@ -7,6 +7,7 @@ import {
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
 
+export { BatchClient } from "./batchClient.js";
 export {
   BatchApplication,
   BatchError,
@@ -201,7 +202,6 @@ export {
   StatusLevelTypes,
   KnownVersions,
 } from "./models/index.js";
-export { BatchClient } from "./batchClient.js";
 export {
   BatchClientOptionalParams,
   ListNodeFilesOptionalParams,

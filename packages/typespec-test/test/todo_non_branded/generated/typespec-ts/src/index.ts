@@ -7,6 +7,7 @@ import {
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
 
+export { TodoClient } from "./todoClient.js";
 export {
   User,
   ApiError,
@@ -29,7 +30,6 @@ export {
   UserExistsResponse,
   InvalidUserResponse,
 } from "./models/users/index.js";
-export { TodoClient } from "./todoClient.js";
 export { TodoClientOptionalParams } from "./api/index.js";
 export {
   TodoItemsDeleteOptionalParams,

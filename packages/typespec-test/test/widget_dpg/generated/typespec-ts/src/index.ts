@@ -7,6 +7,8 @@ import {
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
 
+export { SAPWidgetServiceClient } from "./sapWidgetServiceClient.js";
+export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   Widget,
   WidgetError,
@@ -15,8 +17,6 @@ export {
   NonReferencedModel,
   KnownVersions,
 } from "./models/index.js";
-export { SAPWidgetServiceClient } from "./sapWidgetServiceClient.js";
-export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export { SAPWidgetServiceClientOptionalParams } from "./api/index.js";
 export {
   BudgetsContinueOptionalParams,

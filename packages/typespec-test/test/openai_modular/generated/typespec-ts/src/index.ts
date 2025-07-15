@@ -3,6 +3,7 @@
 
 import { FileContents } from "./static-helpers/multipartHelpers.js";
 
+export { OpenAIClient } from "./openAIClient.js";
 export {
   AudioTranscriptionOptions,
   AudioTranscriptionFormat,
@@ -146,7 +147,6 @@ export {
   EmbeddingsUsage,
   KnownServiceApiVersions,
 } from "./models/index.js";
-export { OpenAIClient } from "./openAIClient.js";
 export {
   OpenAIClientOptionalParams,
   GetEmbeddingsOptionalParams,
