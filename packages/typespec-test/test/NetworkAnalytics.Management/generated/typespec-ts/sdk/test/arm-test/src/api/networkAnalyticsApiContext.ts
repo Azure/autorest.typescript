@@ -3,6 +3,10 @@
 
 import { logger } from "../logger.js";
 import { KnownVersions } from "../models/models.js";
+import {
+  AzureClouds,
+  getArmEndpoint,
+} from "../static-helpers/cloudSettingHelpers.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 
@@ -19,8 +23,8 @@ export interface NetworkAnalyticsApiOptionalParams extends ClientOptions {
   /** The API version to use for this operation. */
   /** Known values of {@link KnownVersions} that the service accepts. */
   apiVersion?: string;
-  /** Azure cloud setting, known values of {@link KnownAzureClouds} */
-  cloudSetting?: string;
+  /** Azure cloud setting */
+  cloudSetting?: AzureClouds;
 }
 
 export function createNetworkAnalyticsApi(
@@ -69,23 +73,4 @@ export function createNetworkAnalyticsApi(
     apiVersion,
     subscriptionId,
   } as NetworkAnalyticsApiContext;
-}
-
-/** Get the ARM endpoint for the client. */
-function getArmEndpoint(cloudSetting?: string): string | undefined {
-  if (cloudSetting === undefined) {
-    return undefined;
-  }
-  const cloudEndpoints: Record<string, string> = {
-    AZURE_CHINA_CLOUD: "https://management.chinacloudapi.cn/",
-    AZURE_US_GOVERNMENT: "https://management.usgovcloudapi.net/",
-    AZURE_PUBLIC_CLOUD: "https://management.azure.com/",
-  };
-  if (cloudSetting in cloudEndpoints) {
-    return cloudEndpoints[cloudSetting];
-  } else {
-    throw new Error(
-      `Unknown cloud setting: ${cloudSetting}. Please refer the enum KnownAzureClouds for possible values.`,
-    );
-  }
 }

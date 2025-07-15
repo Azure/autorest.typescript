@@ -3,7 +3,11 @@ import { Project, SourceFile } from "ts-morph";
 import { getClassicalClientName } from "./helpers/namingHelpers.js";
 import { ModularEmitterOptions } from "./interfaces.js";
 import { resolveReference } from "../framework/reference.js";
-import { MultipartHelpers, PagingHelpers } from "./static-helpers-metadata.js";
+import {
+  CloudSettingHelpers,
+  MultipartHelpers,
+  PagingHelpers
+} from "./static-helpers-metadata.js";
 import {
   SdkClientType,
   SdkContext,
@@ -68,6 +72,7 @@ export function buildRootIndex(
 
   exportPagingTypes(context, rootIndexFile);
   exportFileContentsType(context, rootIndexFile);
+  exportAzureCloudTypes(context, rootIndexFile);
 }
 
 function exportModels(
@@ -91,6 +96,15 @@ function exportModels(
   }
 }
 
+function exportAzureCloudTypes(context: SdkContext, rootIndexFile: SourceFile) {
+  if (context.arm) {
+    addExportsToRootIndexFile(rootIndexFile, [
+      resolveReference(CloudSettingHelpers.AzureClouds)
+    ]);
+  }
+  return;
+}
+
 /**
  * This is a temporary solution for adding paging exports. Eventually we will have the binder generate the exports automatically.
  */
@@ -99,18 +113,11 @@ function exportPagingTypes(context: SdkContext, rootIndexFile: SourceFile) {
     return;
   }
 
-  const existingExports = getExistingExports(rootIndexFile);
-  const namedExports = [
+  addExportsToRootIndexFile(rootIndexFile, [
     resolveReference(PagingHelpers.PageSettings),
     resolveReference(PagingHelpers.ContinuablePage),
     resolveReference(PagingHelpers.PagedAsyncIterableIterator)
-  ];
-
-  const newNamedExports = getNewNamedExports(namedExports, existingExports);
-
-  if (newNamedExports.length > 0) {
-    addExportsToRootIndexFile(rootIndexFile, newNamedExports);
-  }
+  ]);
 }
 
 function hasPaging(context: SdkContext): boolean {
@@ -139,14 +146,22 @@ function exportFileContentsType(
       )
     )
   ) {
-    const existingExports = getExistingExports(rootIndexFile);
-    const namedExports = [resolveReference(MultipartHelpers.FileContents)];
+    addExportsToRootIndexFile(rootIndexFile, [
+      resolveReference(MultipartHelpers.FileContents)
+    ]);
+  }
+}
 
-    const newNamedExports = getNewNamedExports(namedExports, existingExports);
-
-    if (newNamedExports.length > 0) {
-      addExportsToRootIndexFile(rootIndexFile, newNamedExports);
-    }
+function addExportsToRootIndexFile(
+  rootIndexFile: SourceFile,
+  namedExports: string[]
+) {
+  const existingExports = getExistingExports(rootIndexFile);
+  const newNamedExports = getNewNamedExports(namedExports, existingExports);
+  if (newNamedExports.length > 0) {
+    rootIndexFile.addExportDeclaration({
+      namedExports: newNamedExports
+    });
   }
 }
 
@@ -167,15 +182,6 @@ function getNewNamedExports(
   return namedExports.filter(
     (namedExport) => !existingExports.has(namedExport)
   );
-}
-
-function addExportsToRootIndexFile(
-  rootIndexFile: SourceFile,
-  newNamedExports: string[]
-) {
-  rootIndexFile.addExportDeclaration({
-    namedExports: newNamedExports
-  });
 }
 
 function exportRestoreHelpers(

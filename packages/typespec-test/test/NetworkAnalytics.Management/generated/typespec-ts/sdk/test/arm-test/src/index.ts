@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { AzureClouds } from "./static-helpers/cloudSettingHelpers.js";
 import {
   PageSettings,
   ContinuablePage,
@@ -65,7 +66,6 @@ export {
   RoleAssignmentDetail,
   ListRoleAssignments,
   KnownVersions,
-  KnownAzureClouds,
 } from "./models/index.js";
 export { NetworkAnalyticsApi } from "./networkAnalyticsApi.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
@@ -105,3 +105,4 @@ export {
   OperationsOperations,
 } from "./classic/index.js";
 export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
+export { AzureClouds };

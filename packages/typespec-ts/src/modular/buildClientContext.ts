@@ -23,11 +23,7 @@ import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getTypeExpression } from "./type-expressions/get-type-expression.js";
 import { resolveReference } from "../framework/reference.js";
 import { useDependencies } from "../framework/hooks/useDependencies.js";
-import {
-  buildEnumTypes,
-  buildKnownAzureCloudsEnum,
-  getApiVersionEnum
-} from "./emitModels.js";
+import { buildEnumTypes, getApiVersionEnum } from "./emitModels.js";
 import {
   SdkClientType,
   SdkHttpParameter,
@@ -37,6 +33,9 @@ import {
 import { getModularClientOptions } from "../utils/clientUtils.js";
 import { useContext } from "../contextManager.js";
 import { refkey } from "../framework/refkey.js";
+import { reportDiagnostic } from "../lib.js";
+import { NoTarget } from "@typespec/compiler";
+import { CloudSettingHelpers } from "./static-helpers-metadata.js";
 
 /**
  * This function gets the path of the file containing the modular client context
@@ -120,15 +119,24 @@ export function buildClientContext(
       };
     });
   if (dpgContext.arm) {
-    const azureCloudsEnum = buildKnownAzureCloudsEnum();
     propertiesInOptions.push({
       name: "cloudSetting",
-      type: "string",
+      type: `${resolveReference(CloudSettingHelpers.AzureClouds)}`,
       hasQuestionToken: true,
-      docs: [
-        `Azure cloud setting, known values of {@link ${azureCloudsEnum.name}}`
-      ]
+      docs: [`Azure cloud setting`]
     });
+  }
+  // check if we have duplication options
+  const existingOptionNames = new Set<string>();
+  for (const property of propertiesInOptions) {
+    if (existingOptionNames.has(property.name)) {
+      reportDiagnostic(dpgContext.program, {
+        code: "parameter-name-conflict",
+        format: { parameterName: property.name },
+        target: NoTarget
+      });
+    }
+    existingOptionNames.add(property.name);
   }
   clientContextFile.addInterface({
     name: `${getClassicalClientName(client)}OptionalParams`,
@@ -169,40 +177,6 @@ export function buildClientContext(
     emitterOptions,
     endpointParam
   );
-
-  if (dpgContext.arm) {
-    const azureCloudsEnum = buildKnownAzureCloudsEnum();
-    clientContextFile.addFunction({
-      docs: ["Get the ARM endpoint for the client."],
-      name: `getArmEndpoint`,
-      returnType: `string | undefined`,
-      parameters: [
-        {
-          name: "cloudSetting",
-          type: "string",
-          hasQuestionToken: true
-        }
-      ],
-      isExported: false,
-      statements: [
-        `
-  if (cloudSetting === undefined) {
-    return undefined;
-  }
-  const cloudEndpoints: Record<string, string> = {
-    "AZURE_CHINA_CLOUD": "https://management.chinacloudapi.cn/",
-    "AZURE_US_GOVERNMENT": "https://management.usgovcloudapi.net/",
-    "AZURE_PUBLIC_CLOUD": "https://management.azure.com/"
-  };
-  if (cloudSetting in cloudEndpoints) {
-    return cloudEndpoints[cloudSetting];
-  } else {
-    throw new Error(\`Unknown cloud setting: \${cloudSetting}. Please refer the enum ${azureCloudsEnum.name} for possible values.\`);
-  }
-        `
-      ]
-    });
-  }
 
   factoryFunction.addStatements(
     `const clientContext = ${resolveReference(

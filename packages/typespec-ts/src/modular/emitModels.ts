@@ -98,7 +98,7 @@ export function emitTypes(
   context: SdkContext,
   options: { sourceRoot: string; hasModularClients?: boolean }
 ) {
-  const { sourceRoot, hasModularClients = true } = options;
+  const { sourceRoot } = options;
   const outputProject = useContext("outputProject");
 
   function getSourceModelFile(
@@ -122,17 +122,6 @@ export function emitTypes(
 
     const namespaces = getModelNamespaces(context, type);
     emitType(context, type, getSourceModelFile(namespaces));
-  }
-
-  // Only build known Azure clouds enum if we have modular client for management plane
-  if (hasModularClients && context.arm) {
-    const azureCloudsEnum = buildKnownAzureCloudsEnum();
-    // Add cloud setting enum for ARM
-    addDeclaration(
-      getSourceModelFile(),
-      azureCloudsEnum,
-      refkey(azureCloudsEnum.name)
-    );
   }
 
   const modelFiles = outputProject.getSourceFiles(
@@ -420,33 +409,6 @@ export function buildEnumTypes(
     : [`Known values of {@link ${type.name}} that the service accepts.`];
 
   return [enumAsUnion, enumDeclaration];
-}
-
-export function buildKnownAzureCloudsEnum() {
-  const knownAzureCloudsEnum: EnumDeclarationStructure = {
-    kind: StructureKind.Enum,
-    name: "KnownAzureClouds",
-    isExported: true,
-    docs: ["An enum to describe Azure Cloud."],
-    members: [
-      {
-        name: "AZURE_PUBLIC_CLOUD",
-        value: "AZURE_PUBLIC_CLOUD",
-        docs: ["Azure public cloud, which is the default cloud for Azure SDKs."]
-      },
-      {
-        name: "AZURE_CHINA_CLOUD",
-        value: "AZURE_CHINA_CLOUD",
-        docs: ["Azure China cloud"]
-      },
-      {
-        name: "AZURE_US_GOVERNMENT",
-        value: "AZURE_US_GOVERNMENT",
-        docs: ["Azure US government cloud"]
-      }
-    ]
-  };
-  return knownAzureCloudsEnum;
 }
 
 function getExtensibleEnumDescription(model: SdkEnumType): string | undefined {

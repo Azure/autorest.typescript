@@ -96,3 +96,16 @@ export const MultipartHelpers = {
     location: "multipartHelpers.ts"
   }
 } as const;
+
+export const CloudSettingHelpers = {
+  AzureClouds: {
+    kind: "enum",
+    name: "AzureClouds",
+    location: "cloudSettingHelpers.ts"
+  },
+  getArmEndpoint: {
+    kind: "function",
+    name: "getArmEndpoint",
+    location: "cloudSettingHelpers.ts"
+  }
+} as const;
