@@ -23,7 +23,7 @@ export interface NetworkAnalyticsApiOptionalParams extends ClientOptions {
   /** The API version to use for this operation. */
   /** Known values of {@link KnownVersions} that the service accepts. */
   apiVersion?: string;
-  /** Azure cloud setting */
+  /** Specifies the Azure cloud environment for the client. */
   cloudSetting?: AzureClouds;
 }
 

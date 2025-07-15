@@ -123,7 +123,7 @@ export function buildClientContext(
       name: "cloudSetting",
       type: `${resolveReference(CloudSettingHelpers.AzureClouds)}`,
       hasQuestionToken: true,
-      docs: [`Azure cloud setting`]
+      docs: [`Specifies the Azure cloud environment for the client.`]
     });
   }
   // check if we have duplication options
