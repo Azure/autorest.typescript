@@ -24,8 +24,7 @@ export function createSAPWidgetService(
   credential: KeyCredential,
   options: SAPWidgetServiceClientOptionalParams = {},
 ): SAPWidgetServiceContext {
-  const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? String(endpointParam);
+  const endpointUrl = options.endpoint ?? String(endpointParam);
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentInfo = `azsdk-js-widget_dpg/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions
