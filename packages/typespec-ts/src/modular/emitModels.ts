@@ -96,21 +96,11 @@ function isGenerableType(
 }
 export function emitTypes(
   context: SdkContext,
-  options: { sourceRoot: string; hasModularClients?: boolean }
+  { sourceRoot }: { sourceRoot: string }
 ) {
-  const { sourceRoot } = options;
   const outputProject = useContext("outputProject");
 
-  function getSourceModelFile(
-    namespaces: string[] = [] // empty namespaces means the root models file
-  ): SourceFile {
-    const filepath = getModelsPath(sourceRoot, namespaces);
-    let sourceFile = outputProject.getSourceFile(filepath);
-    if (!sourceFile) {
-      sourceFile = outputProject.createSourceFile(filepath);
-    }
-    return sourceFile;
-  }
+  let sourceFile;
 
   for (const type of emitQueue) {
     if (!isGenerableType(type)) {
@@ -121,7 +111,12 @@ export function emitTypes(
     }
 
     const namespaces = getModelNamespaces(context, type);
-    emitType(context, type, getSourceModelFile(namespaces));
+    const filepath = getModelsPath(sourceRoot, namespaces);
+    sourceFile = outputProject.getSourceFile(filepath);
+    if (!sourceFile) {
+      sourceFile = outputProject.createSourceFile(filepath);
+    }
+    emitType(context, type, sourceFile);
   }
 
   const modelFiles = outputProject.getSourceFiles(

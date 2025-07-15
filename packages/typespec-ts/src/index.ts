@@ -289,6 +289,7 @@ export async function $onEmit(context: EmitContext) {
     );
 
     const isMultiClients = dpgContext.sdkPackage.clients.length > 1;
+    console.time("onEmit: emit models");
     emitTypes(dpgContext, { sourceRoot: modularSourcesRoot });
     console.timeEnd("onEmit: emit models");
     buildSubpathIndexFile(modularEmitterOptions, "models", undefined, {
