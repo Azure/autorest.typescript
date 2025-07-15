@@ -33,7 +33,7 @@ export declare class CommonPropertiesClient {
 
 export declare interface CommonPropertiesClientOptionalParams extends ClientOptions {
     apiVersion?: string;
-    cloudSetting?: string;
+    cloudSetting?: AzureClouds;
 }
 
 export declare interface ConfidentialResource extends TrackedResource {
@@ -81,7 +81,7 @@ export declare interface InnerError {
     errordetail?: string;
 }
 
-export declare enum KnownAzureClouds {
+export declare enum AzureClouds {
     AZURE_PUBLIC_CLOUD = "AZURE_PUBLIC_CLOUD",
     AZURE_CHINA_CLOUD = "AZURE_CHINA_CLOUD",
     AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT"
