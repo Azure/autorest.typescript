@@ -16,6 +16,12 @@ export declare interface ApiErrorBase {
     message?: string;
 }
 
+export declare enum AzureClouds {
+    AZURE_PUBLIC_CLOUD = "AZURE_PUBLIC_CLOUD",
+    AZURE_CHINA_CLOUD = "AZURE_CHINA_CLOUD",
+    AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT"
+}
+
 export declare interface CloudError {
     error?: ApiError;
 }
@@ -79,12 +85,6 @@ export declare interface GetOptionalParams extends OperationOptions {
 export declare interface InnerError {
     exceptiontype?: string;
     errordetail?: string;
-}
-
-export declare enum AzureClouds {
-    AZURE_PUBLIC_CLOUD = "AZURE_PUBLIC_CLOUD",
-    AZURE_CHINA_CLOUD = "AZURE_CHINA_CLOUD",
-    AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT"
 }
 
 export declare enum KnownCreatedByType {

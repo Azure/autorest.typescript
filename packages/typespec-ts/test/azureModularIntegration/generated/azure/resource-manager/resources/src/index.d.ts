@@ -6,6 +6,12 @@ import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { PollerLike } from '@azure/core-lro';
 
+export declare enum AzureClouds {
+    AZURE_PUBLIC_CLOUD = "AZURE_PUBLIC_CLOUD",
+    AZURE_CHINA_CLOUD = "AZURE_CHINA_CLOUD",
+    AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT"
+}
+
 export declare type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
@@ -63,12 +69,6 @@ export declare interface ExtensionsResourcesOperations {
 }
 
 export declare interface ExtensionsResourcesUpdateOptionalParams extends OperationOptions {
-}
-
-export declare enum AzureClouds {
-    AZURE_PUBLIC_CLOUD = "AZURE_PUBLIC_CLOUD",
-    AZURE_CHINA_CLOUD = "AZURE_CHINA_CLOUD",
-    AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT"
 }
 
 export declare enum KnownCreatedByType {

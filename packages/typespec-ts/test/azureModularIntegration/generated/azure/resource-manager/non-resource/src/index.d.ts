@@ -2,6 +2,12 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
+export declare enum AzureClouds {
+    AZURE_PUBLIC_CLOUD = "AZURE_PUBLIC_CLOUD",
+    AZURE_CHINA_CLOUD = "AZURE_CHINA_CLOUD",
+    AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT"
+}
+
 export declare interface ErrorAdditionalInfo {
     readonly type?: string;
     readonly info?: any;
@@ -17,12 +23,6 @@ export declare interface ErrorDetail {
 
 export declare interface ErrorResponse {
     error?: ErrorDetail;
-}
-
-export declare enum AzureClouds {
-    AZURE_PUBLIC_CLOUD = "AZURE_PUBLIC_CLOUD",
-    AZURE_CHINA_CLOUD = "AZURE_CHINA_CLOUD",
-    AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT"
 }
 
 export declare enum KnownVersions {

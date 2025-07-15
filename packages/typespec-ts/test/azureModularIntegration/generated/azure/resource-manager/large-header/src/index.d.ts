@@ -6,6 +6,12 @@ import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { PollerLike } from '@azure/core-lro';
 
+export declare enum AzureClouds {
+    AZURE_PUBLIC_CLOUD = "AZURE_PUBLIC_CLOUD",
+    AZURE_CHINA_CLOUD = "AZURE_CHINA_CLOUD",
+    AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT"
+}
+
 export declare interface CancelResult {
     succeeded: boolean;
 }
@@ -40,6 +46,7 @@ export declare class LargeHeaderClient {
 
 export declare interface LargeHeaderClientOptionalParams extends ClientOptions {
     apiVersion?: string;
+    cloudSetting?: AzureClouds;
 }
 
 export declare interface LargeHeadersOperations {
