@@ -34,7 +34,6 @@ export function createNetworkAnalyticsApi(
 ): NetworkAnalyticsApiContext {
   const endpointUrl =
     options.endpoint ??
-    options.baseUrl ??
     getArmEndpoint(options.cloudSetting) ??
     "https://management.azure.com";
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;

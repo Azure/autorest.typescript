@@ -174,10 +174,10 @@ export function buildGetClientEndpointParam(
 ): string {
   let coreEndpointParam = "";
   if (dpgContext.rlcOptions?.flavor === "azure") {
-    const cloudSetting = dpgContext.arm
+    const cloudSettingSuffix = dpgContext.arm
       ? ` ?? ${resolveReference(CloudSettingHelpers.getArmEndpoint)}(options.cloudSetting)`
       : "";
-    coreEndpointParam = `options.endpoint ?? options.baseUrl ${cloudSetting}`;
+    coreEndpointParam = `options.endpoint${cloudSettingSuffix}`;
   } else {
     // unbranded does not have the deprecated baseUrl parameter
     coreEndpointParam = `options.endpoint`;
