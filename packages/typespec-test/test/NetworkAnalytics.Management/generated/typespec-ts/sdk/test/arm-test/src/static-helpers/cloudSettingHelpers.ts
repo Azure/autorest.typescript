@@ -14,7 +14,7 @@ export function getArmEndpoint(cloudSetting?: AzureClouds): string | undefined {
   if (cloudSetting === undefined) {
     return undefined;
   }
-  const cloudEndpoints: Record<string, string> = {
+  const cloudEndpoints: Record<keyof typeof AzureClouds, string> = {
     AZURE_CHINA_CLOUD: "https://management.chinacloudapi.cn/",
     AZURE_US_GOVERNMENT: "https://management.usgovcloudapi.net/",
     AZURE_PUBLIC_CLOUD: "https://management.azure.com/",
