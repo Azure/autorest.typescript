@@ -23,7 +23,7 @@ export function getArmEndpoint(cloudSetting?: AzureClouds): string | undefined {
     return cloudEndpoints[cloudSetting];
   } else {
     throw new Error(
-      `Unknown cloud setting: \${cloudSetting}. Please refer to the enum AzureClouds for possible values.`,
+      `Unknown cloud setting: ${cloudSetting}. Please refer to the enum AzureClouds for possible values.`,
     );
   }
 }
