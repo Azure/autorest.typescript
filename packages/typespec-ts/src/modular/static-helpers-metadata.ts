@@ -103,6 +103,11 @@ export const CloudSettingHelpers = {
     name: "AzureClouds",
     location: "cloudSettingHelpers.ts"
   },
+  AzureSupportedClouds: {
+    kind: "typeAlias",
+    name: "AzureSupportedClouds",
+    location: "cloudSettingHelpers.ts"
+  },
   getArmEndpoint: {
     kind: "function",
     name: "getArmEndpoint",

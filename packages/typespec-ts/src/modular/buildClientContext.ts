@@ -121,7 +121,7 @@ export function buildClientContext(
   if (dpgContext.arm) {
     propertiesInOptions.push({
       name: "cloudSetting",
-      type: `${resolveReference(CloudSettingHelpers.AzureClouds)}`,
+      type: `${resolveReference(CloudSettingHelpers.AzureSupportedClouds)}`,
       hasQuestionToken: true,
       docs: [`Specifies the Azure cloud environment for the client.`]
     });

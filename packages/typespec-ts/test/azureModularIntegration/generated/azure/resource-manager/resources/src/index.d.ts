@@ -12,6 +12,8 @@ export declare enum AzureClouds {
     AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT"
 }
 
+export declare type AzureSupportedClouds = `${AzureClouds}`;
+
 export declare type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
@@ -199,7 +201,7 @@ export declare class ResourcesClient {
 
 export declare interface ResourcesClientOptionalParams extends ClientOptions {
     apiVersion?: string;
-    cloudSetting?: AzureClouds;
+    cloudSetting?: AzureSupportedClouds;
 }
 
 export declare function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: ResourcesClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;

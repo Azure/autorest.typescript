@@ -10,7 +10,13 @@ export enum AzureClouds {
   /** Azure US government cloud */
   AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT",
 }
-export function getArmEndpoint(cloudSetting?: AzureClouds): string | undefined {
+
+/** The supported values for cloud setting as a string literal type */
+export type AzureSupportedClouds = `${AzureClouds}`;
+
+export function getArmEndpoint(
+  cloudSetting?: AzureSupportedClouds,
+): string | undefined {
   if (cloudSetting === undefined) {
     return undefined;
   }

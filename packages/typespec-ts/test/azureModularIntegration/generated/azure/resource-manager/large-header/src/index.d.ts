@@ -12,6 +12,8 @@ export declare enum AzureClouds {
     AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT"
 }
 
+export declare type AzureSupportedClouds = `${AzureClouds}`;
+
 export declare interface CancelResult {
     succeeded: boolean;
 }
@@ -46,7 +48,7 @@ export declare class LargeHeaderClient {
 
 export declare interface LargeHeaderClientOptionalParams extends ClientOptions {
     apiVersion?: string;
-    cloudSetting?: AzureClouds;
+    cloudSetting?: AzureSupportedClouds;
 }
 
 export declare interface LargeHeadersOperations {

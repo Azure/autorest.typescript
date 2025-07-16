@@ -99,7 +99,8 @@ function exportModels(
 function exportAzureCloudTypes(context: SdkContext, rootIndexFile: SourceFile) {
   if (context.arm) {
     addExportsToRootIndexFile(rootIndexFile, [
-      resolveReference(CloudSettingHelpers.AzureClouds)
+      resolveReference(CloudSettingHelpers.AzureClouds),
+      resolveReference(CloudSettingHelpers.AzureSupportedClouds)
     ]);
   }
 }

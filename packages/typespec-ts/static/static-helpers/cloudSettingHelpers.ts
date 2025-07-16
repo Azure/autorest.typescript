@@ -7,11 +7,17 @@ export enum AzureClouds {
   /** Azure US government cloud */
   AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT"
 }
-export function getArmEndpoint(cloudSetting?: AzureClouds): string | undefined {
+
+/** The supported values for cloud setting as a string literal type */
+export type AzureSupportedClouds = `${AzureClouds}`;
+
+export function getArmEndpoint(
+  cloudSetting?: AzureSupportedClouds
+): string | undefined {
   if (cloudSetting === undefined) {
     return undefined;
   }
-  const cloudEndpoints: Record<string, string> = {
+  const cloudEndpoints: Record<keyof typeof AzureClouds, string> = {
     AZURE_CHINA_CLOUD: "https://management.chinacloudapi.cn/",
     AZURE_US_GOVERNMENT: "https://management.usgovcloudapi.net/",
     AZURE_PUBLIC_CLOUD: "https://management.azure.com/"
@@ -20,7 +26,7 @@ export function getArmEndpoint(cloudSetting?: AzureClouds): string | undefined {
     return cloudEndpoints[cloudSetting];
   } else {
     throw new Error(
-      `Unknown cloud setting: \${cloudSetting}. Please refer to the enum AzureClouds for possible values.`
+      `Unknown cloud setting: ${cloudSetting}. Please refer to the enum AzureClouds for possible values.`
     );
   }
 }

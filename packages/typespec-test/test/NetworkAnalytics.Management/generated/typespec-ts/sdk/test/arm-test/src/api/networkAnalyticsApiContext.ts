@@ -4,7 +4,7 @@
 import { logger } from "../logger.js";
 import { KnownVersions } from "../models/models.js";
 import {
-  AzureClouds,
+  AzureSupportedClouds,
   getArmEndpoint,
 } from "../static-helpers/cloudSettingHelpers.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
@@ -24,7 +24,7 @@ export interface NetworkAnalyticsApiOptionalParams extends ClientOptions {
   /** Known values of {@link KnownVersions} that the service accepts. */
   apiVersion?: string;
   /** Specifies the Azure cloud environment for the client. */
-  cloudSetting?: AzureClouds;
+  cloudSetting?: AzureSupportedClouds;
 }
 
 export function createNetworkAnalyticsApi(

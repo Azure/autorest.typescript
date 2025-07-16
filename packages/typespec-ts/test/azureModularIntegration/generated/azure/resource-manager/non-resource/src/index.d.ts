@@ -8,6 +8,8 @@ export declare enum AzureClouds {
     AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT"
 }
 
+export declare type AzureSupportedClouds = `${AzureClouds}`;
+
 export declare interface ErrorAdditionalInfo {
     readonly type?: string;
     readonly info?: any;
@@ -44,7 +46,7 @@ export declare class NonResourceClient {
 
 export declare interface NonResourceClientOptionalParams extends ClientOptions {
     apiVersion?: string;
-    cloudSetting?: AzureClouds;
+    cloudSetting?: AzureSupportedClouds;
 }
 
 export declare interface NonResourceOperationsCreateOptionalParams extends OperationOptions {

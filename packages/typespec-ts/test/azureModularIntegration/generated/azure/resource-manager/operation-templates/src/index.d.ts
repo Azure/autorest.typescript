@@ -23,6 +23,8 @@ export declare enum AzureClouds {
     AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT"
 }
 
+export declare type AzureSupportedClouds = `${AzureClouds}`;
+
 export declare interface ChangeAllowanceRequest {
     totalAllowed?: number;
     reason?: string;
@@ -166,7 +168,7 @@ export declare class OperationTemplatesClient {
 
 export declare interface OperationTemplatesClientOptionalParams extends ClientOptions {
     apiVersion?: string;
-    cloudSetting?: AzureClouds;
+    cloudSetting?: AzureSupportedClouds;
 }
 
 export declare interface OptionalBodyGetOptionalParams extends OperationOptions {

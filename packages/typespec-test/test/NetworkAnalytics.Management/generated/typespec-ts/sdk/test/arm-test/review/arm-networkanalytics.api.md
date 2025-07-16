@@ -36,6 +36,9 @@ export enum AzureClouds {
 }
 
 // @public
+export type AzureSupportedClouds = `${AzureClouds}`;
+
+// @public
 export interface ConsumptionEndpointsProperties {
     readonly fileAccessResourceId?: string;
     readonly fileAccessUrl?: string;
@@ -449,7 +452,7 @@ export class NetworkAnalyticsApi {
 // @public
 export interface NetworkAnalyticsApiOptionalParams extends ClientOptions {
     apiVersion?: string;
-    cloudSetting?: AzureClouds;
+    cloudSetting?: AzureSupportedClouds;
 }
 
 // @public
