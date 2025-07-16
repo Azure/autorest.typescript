@@ -335,6 +335,10 @@ export const azureRlcTsps = [
   {
     outputPath: "azure/client-generator-core/client-location",
     inputPath: "azure/client-generator-core/client-location"
+  },
+  {
+    outputPath: "response/status-code-range",
+    inputPath: "response/status-code-range"
   }
 ];
 
@@ -534,6 +538,10 @@ export const rlcTsps = [
   {
     outputPath: "payload/pageable",
     inputPath: "payload/pageable"
+  },
+  {
+    outputPath: "response/status-code-range",
+    inputPath: "response/status-code-range"
   }
 ];
 
@@ -863,6 +871,10 @@ export const azureModularTsps = [
   {
     outputPath: "azure/client-generator-core/client-location",
     inputPath: "azure/client-generator-core/client-location"
+  },
+  {
+    outputPath: "response/status-code-range",
+    inputPath: "response/status-code-range"
   }
 ];
 
@@ -1063,5 +1075,9 @@ export const modularTsps = [
   {
     outputPath: "payload/pageable",
     inputPath: "payload/pageable"
+  },
+  {
+    outputPath: "response/status-code-range",
+    inputPath: "response/status-code-range"
   }
 ];
