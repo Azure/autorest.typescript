@@ -2,14 +2,14 @@
 // Licensed under the MIT License.
 
 import {
+  AzureClouds,
+  AzureSupportedClouds,
+} from "./static-helpers/cloudSettingHelpers.js";
+import {
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,
 } from "./static-helpers/pagingHelpers.js";
-import {
-  AzureClouds,
-  AzureSupportedClouds,
-} from "./static-helpers/cloudSettingHelpers.js";
 
 export { NetworkAnalyticsApi } from "./networkAnalyticsApi.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
