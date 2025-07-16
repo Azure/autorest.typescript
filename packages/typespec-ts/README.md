@@ -273,7 +273,7 @@ Deprecated option for RLC legacy generation.
 **Type:** `object`
 
 Only for Modular generation
-Generally the codegen will leverage the title defined in `@client` and `@service` decorator in TypeSpec to name our modular client. But if you'd like to override it you could config the `typespec-title-map` info. The key is the client name from typespec, and the value is the client name we'd like to rename. This also support config multiple clients
+By default, code generation uses the titles specified in the `@client` and `@service` decorators in TypeSpec to name modular clients. If you need to override these names, you can configure the `typespec-title-map`. The map's keys represent the original client names from TypeSpec, and the values are the desired client names. This configuration supports renaming multiple clients.
 
       ```yaml
       typespec-title-map:
