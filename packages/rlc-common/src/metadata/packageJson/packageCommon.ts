@@ -125,19 +125,7 @@ export function getTshyConfig(config: PackageCommonInfoConfig) {
   return tshyConfig;
 }
 
-export function getCommonPackageScripts({
-  withTests
-}: PackageCommonInfoConfig) {
-  const testScripts = {
-    "unit-test": "npm run unit-test:node && npm run unit-test:browser",
-    "unit-test:browser": "echo skipped",
-    "unit-test:node": "echo skipped",
-    "integration-test":
-      "npm run integration-test:node && npm run integration-test:browser",
-    "integration-test:browser": "echo skipped",
-    "integration-test:node": "echo skipped"
-  };
-
+export function getCommonPackageScripts() {
   return {
     clean:
       "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
@@ -146,7 +134,6 @@ export function getCommonPackageScripts({
     pack: "npm pack 2>&1",
     lint: "eslint package.json api-extractor.json src",
     "lint:fix":
-      "eslint package.json api-extractor.json src --fix --fix-type [problem,suggestion]",
-    ...(withTests && testScripts)
+      "eslint package.json api-extractor.json src --fix --fix-type [problem,suggestion]"
   };
 }

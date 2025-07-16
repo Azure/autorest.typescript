@@ -29,6 +29,16 @@ export interface AccountSasToken {
 export type ActionType = string;
 
 // @public
+export enum AzureClouds {
+    AZURE_CHINA_CLOUD = "AZURE_CHINA_CLOUD",
+    AZURE_PUBLIC_CLOUD = "AZURE_PUBLIC_CLOUD",
+    AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT"
+}
+
+// @public
+export type AzureSupportedClouds = `${AzureClouds}`;
+
+// @public
 export interface ConsumptionEndpointsProperties {
     readonly fileAccessResourceId?: string;
     readonly fileAccessUrl?: string;
@@ -442,6 +452,7 @@ export class NetworkAnalyticsApi {
 // @public
 export interface NetworkAnalyticsApiOptionalParams extends ClientOptions {
     apiVersion?: string;
+    cloudSetting?: AzureSupportedClouds;
 }
 
 // @public
