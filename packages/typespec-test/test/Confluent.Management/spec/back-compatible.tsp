@@ -20,7 +20,6 @@ using Microsoft.Confluent;
 @@clientName(OrganizationResourceAPIKeyActions.deleteClusterAPIKey,
   "DeleteClusterAPIKey"
 );
-
 // OrganizationResourceRoleBindingIdActions interface
 @@clientLocation(OrganizationResourceRoleBindingIdActions.deleteRoleBinding,
   "Access"
