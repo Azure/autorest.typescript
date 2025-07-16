@@ -2,6 +2,14 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
+export declare enum AzureClouds {
+    AZURE_PUBLIC_CLOUD = "AZURE_PUBLIC_CLOUD",
+    AZURE_CHINA_CLOUD = "AZURE_CHINA_CLOUD",
+    AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT"
+}
+
+export declare type AzureSupportedClouds = `${AzureClouds}`;
+
 export declare interface ErrorAdditionalInfo {
     readonly type?: string;
     readonly info?: any;
@@ -38,6 +46,7 @@ export declare class NonResourceClient {
 
 export declare interface NonResourceClientOptionalParams extends ClientOptions {
     apiVersion?: string;
+    cloudSetting?: AzureSupportedClouds;
 }
 
 export declare interface NonResourceOperationsCreateOptionalParams extends OperationOptions {
