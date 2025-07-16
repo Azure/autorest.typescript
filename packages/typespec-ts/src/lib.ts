@@ -249,7 +249,7 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       type: "boolean",
       nullable: true,
       description:
-        "An option to add model namespace as prefix if there's any model name conflicts within different namespaces. This is not recommended unless specifically told so"
+        "Provides an option to add the model namespace to model names in case of conflicts across different namespaces. This approach is generally discouraged unless explicitly required."
     },
     "hierarchy-client": {
       type: "boolean",
