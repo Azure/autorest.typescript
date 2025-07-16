@@ -242,7 +242,7 @@ Whether to transform union type enums to extensible enums
 
 **Type:** `boolean`
 
-Whether to empty the whole output folder. By default we only empty the sources folder which means any metadata files will not be removed if it is at project root. This would be useful in pipeline.
+Determine whether to clear the entire output folder. By default, only the 'sources' folder is cleared, so metadata files at the project root remain untouched. This option can be useful in pipeline scenarios.
 
 ### `ignore-property-name-normalize`
 
