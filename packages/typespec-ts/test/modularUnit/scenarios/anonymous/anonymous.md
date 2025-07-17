@@ -42,8 +42,8 @@ export function barSerializer(item: Bar): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Bar, barSerializer } from "../models/models.js";
-import { ReadOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -179,8 +179,8 @@ export interface ReadOptionalParams extends OperationOptions {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { barSerializer } from "../models/models.js";
-import { ReadOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

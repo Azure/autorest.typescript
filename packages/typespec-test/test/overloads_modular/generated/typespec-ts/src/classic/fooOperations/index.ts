@@ -3,13 +3,13 @@
 
 import { WidgetManagerContext } from "../../api/widgetManagerContext.js";
 import {
-  FooOperationsGetAvatarAsJpegOptionalParams,
-  FooOperationsGetAvatarAsPngOptionalParams,
-} from "../../api/fooOperations/options.js";
-import {
   getAvatarAsJpeg,
   getAvatarAsPng,
 } from "../../api/fooOperations/operations.js";
+import {
+  FooOperationsGetAvatarAsJpegOptionalParams,
+  FooOperationsGetAvatarAsPngOptionalParams,
+} from "../../api/fooOperations/options.js";
 
 /** Interface representing a FooOperations operations. */
 export interface FooOperationsOperations {
