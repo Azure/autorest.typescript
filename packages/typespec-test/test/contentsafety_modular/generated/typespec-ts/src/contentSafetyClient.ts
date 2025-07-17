@@ -7,20 +7,19 @@ import {
   ContentSafetyClientOptionalParams,
 } from "./api/index.js";
 import {
-  AnalyzeTextOptions,
-  AnalyzeTextResult,
-  ShieldPromptOptions,
-  ShieldPromptResult,
-  DetectTextProtectedMaterialOptions,
-  DetectTextProtectedMaterialResult,
-  AnalyzeImageOptions,
-  AnalyzeImageResult,
-  TextBlocklist,
-  AddOrUpdateTextBlocklistItemsOptions,
-  TextBlocklistItem,
-  AddOrUpdateTextBlocklistItemsResult,
-  RemoveTextBlocklistItemsOptions,
-} from "./models/models.js";
+  listTextBlocklistItems,
+  getTextBlocklistItem,
+  removeBlocklistItems,
+  addOrUpdateBlocklistItems,
+  listTextBlocklists,
+  deleteTextBlocklist,
+  createOrUpdateTextBlocklist,
+  getTextBlocklist,
+  analyzeImage,
+  detectTextProtectedMaterial,
+  shieldPrompt,
+  analyzeText,
+} from "./api/operations.js";
 import {
   ListTextBlocklistItemsOptionalParams,
   GetTextBlocklistItemOptionalParams,
@@ -36,22 +35,23 @@ import {
   AnalyzeTextOptionalParams,
 } from "./api/options.js";
 import {
-  listTextBlocklistItems,
-  getTextBlocklistItem,
-  removeBlocklistItems,
-  addOrUpdateBlocklistItems,
-  listTextBlocklists,
-  deleteTextBlocklist,
-  createOrUpdateTextBlocklist,
-  getTextBlocklist,
-  analyzeImage,
-  detectTextProtectedMaterial,
-  shieldPrompt,
-  analyzeText,
-} from "./api/operations.js";
+  AnalyzeTextOptions,
+  AnalyzeTextResult,
+  ShieldPromptOptions,
+  ShieldPromptResult,
+  DetectTextProtectedMaterialOptions,
+  DetectTextProtectedMaterialResult,
+  AnalyzeImageOptions,
+  AnalyzeImageResult,
+  TextBlocklist,
+  AddOrUpdateTextBlocklistItemsOptions,
+  TextBlocklistItem,
+  AddOrUpdateTextBlocklistItemsResult,
+  RemoveTextBlocklistItemsOptions,
+} from "./models/models.js";
 import { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";
-import { Pipeline } from "@azure/core-rest-pipeline";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
+import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { ContentSafetyClientOptionalParams } from "./api/contentSafetyContext.js";
 

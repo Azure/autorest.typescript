@@ -11,12 +11,12 @@ import {
   DeleteModelResponse,
   deleteModelResponseDeserializer,
 } from "../../models/models.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   ModelsDeleteOptionalParams,
   ModelsRetrieveOptionalParams,
   ModelsListOptionalParams,
 } from "./options.js";
-import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

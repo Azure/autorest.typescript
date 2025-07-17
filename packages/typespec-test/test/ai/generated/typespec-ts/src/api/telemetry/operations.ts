@@ -6,8 +6,8 @@ import {
   GetAppInsightsResponse,
   getAppInsightsResponseDeserializer,
 } from "../../models/models.js";
-import { TelemetryGetAppInsightsOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
+import { TelemetryGetAppInsightsOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

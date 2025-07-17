@@ -36,6 +36,11 @@ import {
   _pagedTextBlocklistItemDeserializer,
 } from "../models/models.js";
 import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../static-helpers/pagingHelpers.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import {
   ListTextBlocklistItemsOptionalParams,
   GetTextBlocklistItemOptionalParams,
   RemoveBlocklistItemsOptionalParams,
@@ -49,11 +54,6 @@ import {
   ShieldPromptOptionalParams,
   AnalyzeTextOptionalParams,
 } from "./options.js";
-import {
-  PagedAsyncIterableIterator,
-  buildPagedAsyncIterator,
-} from "../static-helpers/pagingHelpers.js";
-import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
