@@ -312,8 +312,8 @@ export interface ReadOptionalParams extends OperationOptions {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { barSerializer } from "../models/models.js";
-import { ReadOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -457,8 +457,8 @@ export function fooSerializer(item: Foo): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Foo, fooSerializer } from "../models/models.js";
-import { ReadOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -539,8 +539,8 @@ export function _readRequestSerializer(item: _ReadRequest): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { _readRequestSerializer } from "../models/models.js";
-import { ReadOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -635,8 +635,8 @@ export function barSerializer(item: Bar): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { _readRequestSerializer, Bar } from "../models/models.js";
-import { ReadOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

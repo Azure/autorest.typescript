@@ -41,8 +41,8 @@ ignoreWeirdLine: false
 ## classicClient
 
 ```ts classicClient
-import { FooOptionalParams } from "./api/options.js";
 import { foo } from "./api/operations.js";
+import { FooOptionalParams } from "./api/options.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { TestServiceClientOptionalParams } from "./api/testServiceContext.js";
