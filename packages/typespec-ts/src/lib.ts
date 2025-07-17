@@ -356,6 +356,12 @@ const libDef = {
       messages: {
         default: paramMessage`The property name ${"propertyName"} has conflicts with others and please use @clientName to rename it.`
       }
+    },
+    "parameter-name-conflict": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`The parameter name ${"parameterName"} has conflicts with others and please use @clientName to rename it.`
+      }
     }
   },
   emitter: {

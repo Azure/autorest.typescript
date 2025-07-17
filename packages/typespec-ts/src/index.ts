@@ -11,6 +11,7 @@ import {
 import { EmitContext, Program } from "@typespec/compiler";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import {
+  CloudSettingHelpers,
   MultipartHelpers,
   PagingHelpers,
   PollingHelpers,
@@ -131,7 +132,8 @@ export async function $onEmit(context: EmitContext) {
       ...PagingHelpers,
       ...PollingHelpers,
       ...UrlTemplateHelpers,
-      ...MultipartHelpers
+      ...MultipartHelpers,
+      ...CloudSettingHelpers
     },
     {
       sourcesDir: dpgContext.generationPathDetail?.modularSourcesDir,
