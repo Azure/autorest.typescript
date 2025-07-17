@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 import { FooContext } from "../../../api/fooContext.js";
-import { BA } from "../../../models/b/models.js";
-import { BCOp1OptionalParams } from "../../../api/b/c/options.js";
 import { op1 } from "../../../api/b/c/operations.js";
+import { BCOp1OptionalParams } from "../../../api/b/c/options.js";
+import { BA } from "../../../models/b/models.js";
 
 /** Interface representing a BC operations. */
 export interface BCOperations {

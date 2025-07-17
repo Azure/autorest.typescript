@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 
 import { StorageContext as Client } from "./index.js";
-import { DownloadOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { DownloadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
