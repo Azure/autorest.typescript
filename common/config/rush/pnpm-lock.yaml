@@ -2678,8 +2678,8 @@ packages:
       '@typespec/compiler': 1.3.0-dev.1_@types+node@18.18.0
     dev: false
 
-  /@typespec/compiler/1.1.0_@types+node@18.18.0:
-    resolution: {integrity: sha512-dtwosIqd2UUEEIVBR+oDiUtN4n1lP8/9GxQVno+wbkijQgKDj4Hg0Vaq6HG4BduF7RptDdtzkdGQCS9CgOIdRA==}
+  /@typespec/compiler/1.2.1_@types+node@18.18.0:
+    resolution: {integrity: sha512-lUdHCRBPtianNN6QKt0G9qyyuSu7azbqKcYNimNLYQwrEIDcgSfQAUnoja9s+gtzCQQRzfbUZ8WLBC2b9cC81Q==}
     engines: {node: '>=20.0.0'}
     hasBin: true
     dependencies:
@@ -2698,8 +2698,8 @@ packages:
       temporal-polyfill: 0.3.0
       vscode-languageserver: 9.0.1
       vscode-languageserver-textdocument: 1.0.12
-      yaml: 2.7.0
-      yargs: 17.7.2
+      yaml: 2.8.0
+      yargs: 18.0.0
     transitivePeerDependencies:
       - '@types/node'
     dev: true
@@ -2765,8 +2765,8 @@ packages:
     resolution: {integrity: sha512-1doVGmkv3N8l57fVuci4jGMZ61EZBlDzuNZO2b9o0+mexCOs/P96CIpFkaNVvTQgjpyFsW1DlXiUKAvUC9zQfg==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
-      '@typespec/compiler': ^1.1.0
-      '@typespec/streams': ^0.71.0
+      '@typespec/compiler': ^1.2.1
+      '@typespec/streams': ^0.72.1
     peerDependenciesMeta:
       '@typespec/streams':
         optional: true
@@ -2840,7 +2840,7 @@ packages:
       yaml: 2.8.0
     dev: false
 
-  /@typespec/rest/0.71.0_wo5hy2j4mtochsypsdsaymgwzu:
+  /@typespec/rest/0.71.0_xnwldowg5q2d4dfu6jmcmttlgu:
     resolution: {integrity: sha512-5qX+nWO5Jx4P1iTTT2REgdCtHsTMjlv/gL90u8cO1ih3yHDtf18a41UL6jSYaVUIvIj6rlmrgopActf0FhhUcw==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
@@ -2895,7 +2895,7 @@ packages:
       '@typespec/rest': 0.71.0_wo5hy2j4mtochsypsdsaymgwzu
       '@typespec/spec-api': 0.1.0-alpha.8-dev.0
       '@typespec/spec-coverage-sdk': 0.1.0-alpha.5-dev.0
-      '@typespec/versioning': 0.71.0_@typespec+compiler@1.1.0
+      '@typespec/versioning': 0.71.0_@typespec+compiler@1.2.1
       ajv: 8.17.1
       body-parser: 2.2.0
       deep-equal: 2.2.2
@@ -2948,7 +2948,7 @@ packages:
       - supports-color
     dev: true
 
-  /@typespec/versioning/0.71.0_@typespec+compiler@1.1.0:
+  /@typespec/versioning/0.71.0_@typespec+compiler@1.2.1:
     resolution: {integrity: sha512-8qknFLOpZTVzQ+SveXg9G7WJV8P80yxLlj0nOc3ZLBKiPgM6FF7vGWHRNtnh7s3gSXvWyxopaJ9fZSLZSJmbww==}
     engines: {node: '>=20.0.0'}
     peerDependencies:

@@ -180,6 +180,7 @@
       "properties": {
         "type": {
           "type": "string",
+          "description": "implicit flow",
           "enum": [
             "implicit"
           ]
