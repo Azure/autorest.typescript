@@ -1,3 +1,7 @@
+## 6.0.45 (2025-07-18)
+
+- [Feature] Generate tsconfig.snippets.json. Please refer to [#3373](https://github.com/Azure/autorest.typescript/pull/3373)
+
 ## 6.0.44 (2025-07-09)
 
 - [Bugfix] Fix sample serialization name and name inconsistency for body parameter. Please refer to [#3340](https://github.com/Azure/autorest.typescript/pull/3340)
