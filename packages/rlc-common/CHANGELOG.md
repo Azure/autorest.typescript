@@ -1,3 +1,7 @@
+## 0.43.0 (2025-01-18)
+
+- [Feature] Bump package version. Please refer to [#3385](https://github.com/Azure/autorest.typescript/issues/3385)
+
 ## 0.42.0 (2025-07-09)
 
 - [Bugfix] Fix sample serialization name and name inconsistency for body parameter. Please refer to [#3340](https://github.com/Azure/autorest.typescript/pull/3340)
