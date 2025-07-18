@@ -155,8 +155,8 @@ function regularAutorestPackage(
     browser: "./dist/browser/index.js",
     "react-native": "./dist/react-native/index.js",
     tshy: {
-      // only JS sdk repo has tsconfig.src.json
-      project: azureSdkForJs ? "./tsconfig.src.json" : undefined,
+      // only JS sdk repo has tsconfig.src.build.json
+      project: azureSdkForJs ? "../../../tsconfig.src.build.json" : undefined,
       exports: {
         "./package.json": "./package.json",
         ".": "./src/index.ts",
