@@ -11,19 +11,19 @@ import {
   _getDataProductsOperations,
 } from "./classic/dataProducts/index.js";
 import {
-  DataTypesOperations,
-  _getDataTypesOperations,
-} from "./classic/dataTypes/index.js";
-import {
   DataProductsCatalogsOperations,
   _getDataProductsCatalogsOperations,
 } from "./classic/dataProductsCatalogs/index.js";
 import {
+  DataTypesOperations,
+  _getDataTypesOperations,
+} from "./classic/dataTypes/index.js";
+import {
   OperationsOperations,
   _getOperationsOperations,
 } from "./classic/operations/index.js";
-import { Pipeline } from "@azure/core-rest-pipeline";
 import { TokenCredential } from "@azure/core-auth";
+import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { NetworkAnalyticsApiOptionalParams } from "./api/networkAnalyticsApiContext.js";
 

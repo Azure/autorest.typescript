@@ -6,10 +6,26 @@ import {
   OpenAIContext,
   OpenAIClientOptionalParams,
 } from "./api/index.js";
+import { AudioOperations, _getAudioOperations } from "./classic/audio/index.js";
+import { ChatOperations, _getChatOperations } from "./classic/chat/index.js";
 import {
-  ModerationsOperations,
-  _getModerationsOperations,
-} from "./classic/moderations/index.js";
+  CompletionsOperations,
+  _getCompletionsOperations,
+} from "./classic/completions/index.js";
+import { EditsOperations, _getEditsOperations } from "./classic/edits/index.js";
+import {
+  EmbeddingsOperations,
+  _getEmbeddingsOperations,
+} from "./classic/embeddings/index.js";
+import { FilesOperations, _getFilesOperations } from "./classic/files/index.js";
+import {
+  FineTunesOperations,
+  _getFineTunesOperations,
+} from "./classic/fineTunes/index.js";
+import {
+  FineTuningOperations,
+  _getFineTuningOperations,
+} from "./classic/fineTuning/index.js";
 import {
   ImagesOperations,
   _getImagesOperations,
@@ -19,27 +35,11 @@ import {
   _getModelsOperations,
 } from "./classic/models/index.js";
 import {
-  FineTunesOperations,
-  _getFineTunesOperations,
-} from "./classic/fineTunes/index.js";
-import { FilesOperations, _getFilesOperations } from "./classic/files/index.js";
-import {
-  EmbeddingsOperations,
-  _getEmbeddingsOperations,
-} from "./classic/embeddings/index.js";
-import { EditsOperations, _getEditsOperations } from "./classic/edits/index.js";
-import {
-  CompletionsOperations,
-  _getCompletionsOperations,
-} from "./classic/completions/index.js";
-import {
-  FineTuningOperations,
-  _getFineTuningOperations,
-} from "./classic/fineTuning/index.js";
-import { ChatOperations, _getChatOperations } from "./classic/chat/index.js";
-import { AudioOperations, _getAudioOperations } from "./classic/audio/index.js";
-import { Pipeline } from "@azure/core-rest-pipeline";
+  ModerationsOperations,
+  _getModerationsOperations,
+} from "./classic/moderations/index.js";
 import { KeyCredential } from "@azure/core-auth";
+import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { OpenAIClientOptionalParams } from "./api/openAIContext.js";
 

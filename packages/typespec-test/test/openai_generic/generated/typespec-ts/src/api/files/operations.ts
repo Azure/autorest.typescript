@@ -13,6 +13,7 @@ import {
   DeleteFileResponse,
   deleteFileResponseDeserializer,
 } from "../../models/models.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   FilesDownloadOptionalParams,
   FilesDeleteOptionalParams,
@@ -20,7 +21,6 @@ import {
   FilesCreateOptionalParams,
   FilesListOptionalParams,
 } from "./options.js";
-import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

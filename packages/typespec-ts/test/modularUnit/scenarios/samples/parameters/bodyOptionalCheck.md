@@ -79,8 +79,8 @@ import {
   bodyParameterSerializer,
   _readResponseDeserializer,
 } from "../models/models.js";
-import { ReadOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

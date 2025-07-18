@@ -6,8 +6,8 @@ import {
   BlobContext,
   BlobClientOptionalParams,
 } from "./api/index.js";
-import { DownloadOptionalParams } from "./api/options.js";
 import { download } from "./api/operations.js";
+import { DownloadOptionalParams } from "./api/options.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { BlobClientOptionalParams } from "./api/blobContext.js";
