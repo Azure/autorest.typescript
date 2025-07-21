@@ -20,7 +20,7 @@ export interface EmitterOptions {
   batch?: any[];
   "package-details"?: PackageDetails;
   "add-credentials"?: boolean;
-  /** Three possiblie values:
+  /** Three possible values:
    * - undefined, no credentialScopes and relevant settings would be generated
    * - [], which means we would generate TokenCredential but no credentialScopes and relevant settings
    * - ["..."], which means we would generate credentialScopes and relevant settings with the given values
@@ -120,7 +120,7 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       - To use \`@useAuth\` decorator in TypeSpec
       - To config in yaml file
 
-      Please notice defining in TypeSpec is recommanded and also has higher priority than second one.
+      Please notice defining in TypeSpec is recommended and also has higher priority than second one.
 
       To enable credential in \`tspconfig.yaml\` and we need to provide more details to let codegen know types.
       `
@@ -148,13 +148,13 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       type: "string",
       nullable: true,
       description:
-        "This option is used for special Key Auth, when the key a shared prefix and this header is to pass the rest of the header key."
+        "This option is used for special Key Auth, when the key has a shared prefix and this header is to pass the rest of the header key."
     },
     "generate-metadata": {
       type: "boolean",
       nullable: true,
       description: `
-      Whether to generate metadata files which includes package.json, README.md and tsconfig.json etc. Defaults to \`undefined\`. If there's not a package.json ender package-dir, defaults to \`true\`. but if you'd like to disable this feature you could set it as \`false\`.
+      Whether to generate metadata files which includes package.json, README.md and tsconfig.json etc. Defaults to \`undefined\`. If there's not a package.json under package-dir, defaults to \`true\`. but if you'd like to disable this feature you could set it as \`false\`.
       `
     },
     "generate-test": {
@@ -243,7 +243,7 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       type: "boolean",
       nullable: true,
       description:
-        "An option to add treat interface as operation group. This is not recommended unless specifically told so"
+        "An option to treat interface as operation group. This is not recommended unless specifically told so"
     },
     "enable-model-namespace": {
       type: "boolean",
@@ -255,7 +255,7 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       type: "boolean",
       nullable: true,
       description:
-        "An option to organize the client as hierarchy way as defined by `@clientInitialization`. This is true by default."
+        "An option to organize the client in a hierarchical way as defined by `@clientInitialization`. This is true by default."
     },
     branded: {
       type: "boolean",
