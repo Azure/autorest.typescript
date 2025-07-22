@@ -14,8 +14,8 @@ import {
   SAPWidgetsOperations,
   _getSAPWidgetsOperations,
 } from "./classic/sapWidgets/index.js";
-import { Pipeline } from "@azure/core-rest-pipeline";
 import { KeyCredential } from "@azure/core-auth";
+import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { SAPWidgetServiceClientOptionalParams } from "./api/sapWidgetServiceContext.js";
 

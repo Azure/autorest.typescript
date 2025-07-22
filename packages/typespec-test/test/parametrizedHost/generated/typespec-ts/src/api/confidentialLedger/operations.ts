@@ -6,8 +6,8 @@ import {
   Collection,
   collectionArrayDeserializer,
 } from "../../models/models.js";
-import { ConfidentialLedgerListCollectionsOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
+import { ConfidentialLedgerListCollectionsOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
