@@ -77,7 +77,7 @@ This is to indicate the package information such as package name, package descri
       - To use `@useAuth` decorator in TypeSpec
       - To config in yaml file
 
-      Please notice defining in TypeSpec is recommanded and also has higher priority than second one.
+      Please notice defining in TypeSpec is recommended and also has higher priority than second one.
 
       To enable credential in `tspconfig.yaml` and we need to provide more details to let codegen know types.
 
@@ -104,13 +104,13 @@ This option is used for special Key Auth, when the key has a shared prefix and t
 
 **Type:** `string`
 
-This option is used for special Key Auth, when the key a shared prefix and this header is to pass the rest of the header key.
+This option is used for special Key Auth, when the key has a shared prefix and this header is to pass the rest of the header key.
 
 ### `generate-metadata`
 
 **Type:** `boolean`
 
-      Whether to generate metadata files which includes package.json, README.md and tsconfig.json etc. Defaults to `undefined`. If there's not a package.json ender package-dir, defaults to `true`. but if you'd like to disable this feature you could set it as `false`.
+      Whether to generate metadata files which includes package.json, README.md and tsconfig.json etc. Defaults to `undefined`. If there's not a package.json under package-dir, defaults to `true`. but if you'd like to disable this feature you could set it as `false`.
 
 
 ### `generate-test`
@@ -194,7 +194,7 @@ Whether to generate a Modular library. Defaults to `false`. Arm packages default
 
 **Type:** `boolean`
 
-An option to add treat interface as operation group. This is not recommended unless specifically told so
+An option to treat interface as operation group. This is not recommended unless specifically told so
 
 ### `enable-model-namespace`
 
@@ -206,7 +206,7 @@ Provides an option to add the model namespace to model names in case of conflict
 
 **Type:** `boolean`
 
-An option to organize the client as hierarchy way as defined by `@clientInitialization`. This is true by default.
+An option to organize the client in a hierarchical way as defined by `@clientInitialization`. This is true by default.
 
 ### `branded`
 
