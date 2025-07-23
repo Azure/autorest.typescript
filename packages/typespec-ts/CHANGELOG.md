@@ -1,5 +1,6 @@
-## 0.42.1 (2025-07-18)
+## 0.42.1 (2025-07-23)
 
+- [Feature] Add tspd for regen docs. Please refer to [#3236](https://github.com/Azure/autorest.typescript/pull/3236)
 - [Feature] Generate tsconfig.snippets.json. Please refer to [#3373](https://github.com/Azure/autorest.typescript/pull/3373)
 - [Bugfix] Fix the import ordering in-consistent issues. Please refer to [#3383](https://github.com/Azure/autorest.typescript/pull/3383)
 - [Feature] Upgrade TypeSpec and TCGC versions to latest releases. Please refer to [#3381](https://github.com/Azure/autorest.typescript/pull/3381)
