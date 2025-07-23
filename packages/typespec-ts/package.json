@@ -58,7 +58,8 @@
     "stop-test-server": "npx tsp-spector server stop",
     "unit-test": "npm-run-all --parallel unit-test:rlc unit-test:modular",
     "unit-test:rlc": "cross-env TS_NODE_PROJECT=tsconfig.json mocha -r ts-node/register --experimental-specifier-resolution=node --experimental-modules=true  --timeout 36000 './test/unit/**/*.spec.ts'",
-    "unit-test:modular": "cross-env TS_NODE_PROJECT=tsconfig.test.json mocha -r ts-node/register --experimental-specifier-resolution=node --experimental-modules=true  --no-timeout './test/modularUnit/**/*.spec.ts' --reporter-options maxDiffSize=20000"
+    "unit-test:modular": "cross-env TS_NODE_PROJECT=tsconfig.test.json mocha -r ts-node/register --experimental-specifier-resolution=node --experimental-modules=true  --no-timeout './test/modularUnit/**/*.spec.ts' --reporter-options maxDiffSize=20000",
+    "regen-docs": "npm run build && tspd doc . --enable-experimental --output-dir ./website/src/content/docs/docs/emitters/clients/typespec-ts/reference --skip-js"
   },
   "author": "Jose Heredia <joheredi@microsoft.com>",
   "license": "MIT",
@@ -67,6 +68,7 @@
     "@typespec/http-specs": "0.1.0-alpha.25-dev.0",
     "@typespec/spector": "0.1.0-alpha.16-dev.2",
     "@typespec/spec-api": "0.1.0-alpha.8-dev.0",
+    "@typespec/tspd": "0.70.0",
     "@azure-tools/azure-http-specs": "0.1.0-alpha.24-dev.0",
     "@azure-tools/typespec-autorest": "^0.58.0",
     "@azure-tools/typespec-azure-core": "^0.58.0",
