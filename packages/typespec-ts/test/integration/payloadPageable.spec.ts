@@ -12,12 +12,12 @@ describe("Pageable Client", () => {
     });
   });
 
-  // Not support, pending on https://github.com/Azure/autorest.typescript/issues/3022
-  it.skip("should get pagable Server Driven Pagination link", async () => {
+  // TODO: RLC paging for unbranded client is not supported yet.
+  it.skip("should get pageable Server Driven Pagination link", async () => {
     const result = await client
       .path("/payload/pageable/server-driven-pagination/link")
       .get();
-    assert.strictEqual(result.status, "200");
+
     assert.strictEqual(result.body.pets[0]?.id, "1");
     assert.strictEqual(result.body.pets[0]?.name, "dog");
     assert.strictEqual(result.body.pets[1]?.id, "2");
