@@ -18,7 +18,7 @@ import { generateApiExtractorConfig } from "./generators/static/apiExtractorConf
 import { generateLicenseFile } from "./generators/static/licenseFileGenerator";
 import { generateReadmeFile } from "./generators/static/readmeFileGenerator";
 import { generateSampleTestFile } from "./generators/test/sampleTestGenerator";
-import { generateTsConfig, generateTsSampleConfig, generateTsSrcConfig, generateTsTestConfig } from "./generators/static/tsConfigFileGenerator";
+import { generateTsConfig, generateTsSampleConfig, generateTsSrcConfig, generateTsTestConfig, generateTsSnippetsConfig } from "./generators/static/tsConfigFileGenerator";
 import { generateRollupConfig } from "./generators/static/rollupConfigFileGenerator";
 import { generateOperations } from "./generators/operationGenerator";
 import { generateOperationsInterfaces } from "./generators/operationInterfaceGenerator";
@@ -100,6 +100,7 @@ export async function generateTypeScriptLibrary(
       generateTsSampleConfig(project);
     }
     if (generateTest) {
+      generateTsSnippetsConfig(project);
       generateTsTestConfig(project);
       generateTsBrowserConfig(project);
     }

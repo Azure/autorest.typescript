@@ -6,15 +6,15 @@ import {
   RadiologyInsightsContext,
   RadiologyInsightsClientOptionalParams,
 } from "./api/index.js";
+import { inferRadiologyInsights } from "./api/operations.js";
+import { InferRadiologyInsightsOptionalParams } from "./api/options.js";
 import {
   PatientRecord,
   RadiologyInsightsInferenceResult,
 } from "./models/models.js";
-import { InferRadiologyInsightsOptionalParams } from "./api/options.js";
-import { inferRadiologyInsights } from "./api/operations.js";
-import { Pipeline } from "@azure/core-rest-pipeline";
 import { KeyCredential } from "@azure/core-auth";
 import { PollerLike, OperationState } from "@azure/core-lro";
+import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { RadiologyInsightsClientOptionalParams } from "./api/radiologyInsightsContext.js";
 

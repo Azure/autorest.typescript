@@ -19,6 +19,7 @@ import {
   renewCloudEventLocksResultDeserializer,
   cloudEventArraySerializer,
 } from "../models/models.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   RenewCloudEventLocksOptionalParams,
   RejectCloudEventsOptionalParams,
@@ -28,7 +29,6 @@ import {
   PublishCloudEventsOptionalParams,
   PublishCloudEventOptionalParams,
 } from "./options.js";
-import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

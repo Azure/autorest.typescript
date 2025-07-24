@@ -46,6 +46,10 @@ const highLevelTsTestConfig: Record<string, any> = {
   extends: ["./tsconfig.src.json", "../../../tsconfig.test.base.json"]
 }
 
+const highLevelTsSnippetsConfig: Record<string, any> = {
+  extends: ["../../../tsconfig.snippets.base.json"]
+}
+
 export function generateTsConfig(project: Project) {
   const {
     generateMetadata,
@@ -70,6 +74,9 @@ export function generateTsConfig(project: Project) {
     if (generateTest) {
       highLevelTsConfigInAzureSdkForJs.references.push({
         path: "./tsconfig.test.json"
+      });
+      highLevelTsConfigInAzureSdkForJs.references.push({
+        path: "./tsconfig.snippets.json"
       });
     }
   }
@@ -114,3 +121,10 @@ export function generateTsTestConfig(project: Project) {
     overwrite: true
   });
 }
+
+export function generateTsSnippetsConfig(project: Project) {
+  project.createSourceFile("tsconfig.snippets.json", JSON.stringify(highLevelTsSnippetsConfig, null, 2), {
+    overwrite: true
+  });
+}
+

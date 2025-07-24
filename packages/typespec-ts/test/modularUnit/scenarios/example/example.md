@@ -81,8 +81,8 @@ You can extract the entire operations file using `ts operations`:
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Example, exampleDeserializer } from "../models/models.js";
-import { ReadOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
