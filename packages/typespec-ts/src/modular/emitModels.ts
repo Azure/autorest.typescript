@@ -15,14 +15,13 @@ import {
 } from "@azure-tools/rlc-common";
 import {
   SdkArrayType,
-  SdkBodyModelPropertyType,
+  SdkModelPropertyType,
   SdkClientType,
   SdkDictionaryType,
   SdkEnumType,
   SdkEnumValueType,
   SdkHttpOperation,
   SdkMethod,
-  SdkModelPropertyType,
   SdkModelType,
   SdkNullableType,
   SdkServiceMethod,
@@ -712,7 +711,7 @@ function buildModelProperty(
     name: normalizedPropName,
     type: typeExpression,
     hasQuestionToken: property.optional,
-    isReadonly: isReadOnly(property as SdkBodyModelPropertyType)
+    isReadonly: isReadOnly(property as SdkModelPropertyType)
   };
 
   if (property.doc) {
