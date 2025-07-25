@@ -58,7 +58,6 @@ import {
   SdkModelPropertyType,
   SdkModelType,
   SdkPagingServiceMethod,
-  SdkServiceParameter,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
 import { isMetadata } from "@typespec/http";
@@ -337,7 +336,7 @@ function getExceptionThrowStatement(
     statements.push("throw error;");
   } else {
     if (defaultDeserializer) {
-      statements.push(`const error = ${createRestErrorReference}(result);
+      statements.push(`const error = ${createRestErrorReference}(result)
       error.details = ${defaultDeserializer}(result.body);`);
       statements.push("throw error;");
     } else {
@@ -686,7 +685,7 @@ function getHeaderAndBodyParameters(
 
   const parametersImplementation: Record<
     "header" | "body",
-    { paramMap: string; param: SdkServiceParameter }[]
+    { paramMap: string; param: SdkHttpParameter }[]
   > = {
     header: [],
     body: []
@@ -744,7 +743,7 @@ function getHeaderAndBodyParameters(
 function buildHeaderParameter(
   program: Program,
   paramMap: string,
-  param: SdkServiceParameter,
+  param: SdkHttpParameter,
   optionalParamName: string = "options"
 ): string {
   const paramName = param.name;
@@ -829,7 +828,7 @@ function getEncodingFormat(type: { format?: string }) {
  */
 export function getParameterMap(
   context: SdkContext,
-  param: SdkServiceParameter,
+  param: SdkHttpParameter,
   optionalParamName: string = "options"
 ): string {
   if (isConstant(param.type)) {
@@ -840,13 +839,14 @@ export function getParameterMap(
     return getCollectionFormat(context, param, optionalParamName);
   }
 
-  // if the parameter or property is optional, we don't need to handle the default value
-  if (isOptional(param)) {
+  // if the parameter is optional
+  if (param.optional) {
     return getOptional(context, param, optionalParamName);
   }
 
-  if (isRequired(param)) {
-    return getRequired(context, param);
+  // if the parameter is required
+  if (!param.optional) {
+    return getRequiredForHttpParam(context, param);
   }
 
   throw new Error(`Parameter ${param.name} is not supported`);
@@ -854,7 +854,7 @@ export function getParameterMap(
 
 function getCollectionFormat(
   context: SdkContext,
-  param: SdkServiceParameter,
+  param: SdkHttpParameter,
   optionalParamName: string = "options"
 ) {
   const serializedName = getPropertySerializedName(param);
@@ -887,7 +887,7 @@ function getCollectionFormat(
   )}${additionalParam}): undefined`;
 }
 
-function isContentType(param: SdkServiceParameter): boolean {
+function isContentType(param: SdkHttpParameter): boolean {
   return (
     param.kind === "header" &&
     param.serializedName.toLowerCase() === "content-type"
@@ -895,7 +895,7 @@ function isContentType(param: SdkServiceParameter): boolean {
 }
 
 function getContentTypeValue(
-  param: SdkServiceParameter,
+  param: SdkHttpParameter,
   optionalParamName: string = "options"
 ) {
   const defaultValue = param.clientDefaultValue;
@@ -914,21 +914,9 @@ function getContentTypeValue(
   }
 }
 
-function isRequired(param: SdkModelPropertyType) {
-  return !param.optional;
-}
-
-function getRequired(context: SdkContext, param: SdkModelPropertyType) {
+function getRequiredForHttpParam(context: SdkContext, param: SdkHttpParameter) {
   const serializedName = getPropertySerializedName(param);
   const clientValue = `${param.onClient ? "context." : ""}${param.name}`;
-  if (param.type.kind === "model") {
-    const propertiesStr = getRequestModelMapping(
-      context,
-      { ...param.type, optional: param.optional },
-      clientValue
-    );
-    return `"${serializedName}": { ${propertiesStr.join(",")} }`;
-  }
   return `"${serializedName}": ${serializeRequestValue(
     context,
     param.type,
@@ -948,10 +936,6 @@ function getConstantValue(param: SdkConstantType) {
 
 function isConstant(param: SdkType): param is SdkConstantType {
   return param.kind === "constant";
-}
-
-function isOptional(param: SdkModelPropertyType) {
-  return Boolean(param.optional);
 }
 
 function getOptional(
@@ -1001,7 +985,7 @@ function getOptionalForType(
 /**
  * Builds the assignment for when a property or parameter has a default value
  */
-function getDefaultValue(param: SdkServiceParameter) {
+function getDefaultValue(param: SdkHttpParameter) {
   return param.clientDefaultValue;
 }
 
@@ -1019,9 +1003,18 @@ function getPathParameters(
   const pathParams: string[] = [];
   for (const param of operation.operation.parameters) {
     if (param.kind === "path") {
-      pathParams.push(
-        `"${param.serializedName}": ${getPathParamExpr(param.correspondingMethodParams[0]!, getDefaultValue(param) as string, optionalParamName)}`
-      );
+      const correspondingParam = param.correspondingMethodParams[0]!;
+      if (correspondingParam.kind === "property") {
+        pathParams.push(
+          `"${param.serializedName}": ${getPathParamExpr(correspondingParam, getDefaultValue(param) as string, optionalParamName)}`
+        );
+      } else {
+        // For method parameters, handle them differently
+        const paramValue = correspondingParam.onClient
+          ? `context.${correspondingParam.name}`
+          : `${optionalParamName}?.${correspondingParam.name}`;
+        pathParams.push(`"${param.serializedName}": ${paramValue}`);
+      }
     }
   }
 
@@ -1043,7 +1036,7 @@ function getQueryParameters(
   );
   const parametersImplementation: Record<
     "query",
-    { paramMap: string; param: SdkServiceParameter }[]
+    { paramMap: string; param: SdkHttpParameter }[]
   > = {
     query: []
   };
@@ -1191,14 +1184,19 @@ export function getRequestModelMapping(
   ).map(([name, value]) => `"${name}": ${value}`);
 }
 
-function getPropertySerializedName(property: SdkModelPropertyType) {
-  return property.kind !== "credential" &&
-    property.kind !== "method" &&
-    property.kind !== "endpoint" &&
-    property.kind !== "responseheader"
-    ? // eslint-disable-next-line
-      property.serializedName
-    : property.name;
+function getPropertySerializedName(
+  property: SdkModelPropertyType | SdkHttpParameter
+) {
+  if (property.kind === "property") {
+    // For model properties, use the new serialization options
+    return (
+      property.serializationOptions?.xml?.name ||
+      property.serializationOptions?.json?.name ||
+      property.name
+    );
+  }
+  // For HTTP parameters, they all have serializedName
+  return (property as any).serializedName || property.name;
 }
 
 /**
@@ -1517,7 +1515,7 @@ export function getAllAncestors(type: SdkType): SdkType[] {
 
 export function getPropertySerializationPrefix(
   context: SdkContext,
-  property: SdkServiceParameter | SdkModelPropertyType,
+  property: SdkHttpParameter | SdkModelPropertyType,
   propertyPath?: string
 ) {
   const propertyFullName = getPropertyFullName(context, property, propertyPath);
@@ -1530,12 +1528,24 @@ export function getPropertySerializationPrefix(
 
 export function getPropertyFullName(
   context: SdkContext,
-  property: SdkServiceParameter | SdkModelPropertyType,
+  property: SdkHttpParameter | SdkModelPropertyType,
   propertyPath?: string
 ) {
-  const normalizedPropertyName = normalizeModelPropertyName(context, property)
-    .replace(/^"/g, "")
-    .replace(/"$/g, "");
+  let normalizedPropertyName: string;
+
+  if (property.kind === "property") {
+    // For model properties, use the existing function
+    normalizedPropertyName = normalizeModelPropertyName(context, property)
+      .replace(/^"/g, "")
+      .replace(/"$/g, "");
+  } else {
+    // For HTTP parameters, normalize the name directly
+    const normalizedPropName = normalizeName(property.name, NameType.Property);
+    normalizedPropertyName = context.rlcOptions?.ignorePropertyNameNormalize
+      ? property.name
+      : normalizedPropName;
+  }
+
   let fullName = normalizedPropertyName;
   if (propertyPath === "" && property.optional) {
     fullName = `options?.${normalizedPropertyName}`;
