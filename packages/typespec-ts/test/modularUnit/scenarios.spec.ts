@@ -205,10 +205,13 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
     const examples = namedUnknownArgs["examples"] as ExampleJson[];
     const result = await emitTestsFromTypeSpec(tsp, examples, configs);
     
+    // Normalize fileName to handle both "backupTest" and "backupTest.spec.ts" patterns
+    const normalizedFileName = fileName?.replace(/\.spec\.ts$/, '') || "";
+    
     // Find the specific file by name
-    const targetFile = result.find(x => x.getFilePath().includes(fileName || ""));
+    const targetFile = result.find(x => x.getFilePath().includes(normalizedFileName));
     if (!targetFile) {
-      throw new Error(`File with name containing '${fileName}' not found in generated tests`);
+      throw new Error(`File with name containing '${normalizedFileName}' not found in generated tests`);
     }
     
     return `/** This file path is ${targetFile.getFilePath()} */\n\n${targetFile.getFullText()}`;

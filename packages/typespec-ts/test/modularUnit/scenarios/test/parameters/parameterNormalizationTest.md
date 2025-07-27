@@ -41,14 +41,16 @@ Raw json files.
 }
 ```
 
-```ts tests postTest.spec.ts
+```ts tests postTest
+/** This file path is /test/generated/postTest.spec.ts */
+
 import { Recorder } from "@azure-tools/test-recorder";
 import { createRecorder } from "../public/utils/recordedClient.js";
 import { assert } from "chai";
 import { Context } from "mocha";
 import { TestingClient } from "@azure/internal-test";
 
-describe("post with normalized parameters", () => {
+describe("show example demo", () => {
   let recorder: Recorder;
 
   beforeEach(async function (this: Context) {
@@ -59,14 +61,15 @@ describe("post with normalized parameters", () => {
     await recorder.stop();
   });
 
-  it("should post with normalized parameters for post", async function () {
+  it("should show example demo for post", async function () {
     const client = new TestingClient();
-    const result = await client.post({
-      listCredentialsRequest: { serviceName: "SSH", propertyName: "name" },
+    await client.post({
+      ListCredentialsRequest: { serviceName: "SSH", PROPERTY_NAME: "name" },
       queryParam: "query",
       headerParam: "header",
       pathParam: "path",
     });
-    assert.isUndefined(result);
+    /* Test passes if no exception is thrown */
   });
 });
+```

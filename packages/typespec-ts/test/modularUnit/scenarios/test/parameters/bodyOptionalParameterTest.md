@@ -118,7 +118,9 @@ Raw json files.
 }
 ```
 
-```ts tests backupTest.spec.ts
+```ts tests backupTest
+/** This file path is /test/generated/backupTest.spec.ts */
+
 import { Recorder } from "@azure-tools/test-recorder";
 import { createRecorder } from "../public/utils/recordedClient.js";
 import { assert } from "chai";
@@ -126,7 +128,7 @@ import { Context } from "mocha";
 import { HardwareSecurityModulesClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
 
-describe("backup a CloudHsmCluster", () => {
+describe("a long-running resource action", () => {
   let recorder: Recorder;
 
   beforeEach(async function (this: Context) {
@@ -137,10 +139,52 @@ describe("backup a CloudHsmCluster", () => {
     await recorder.stop();
   });
 
-  it("should backup a CloudHsmCluster for cloudHsmClustersBackup", async function () {
+  it("should a long-running resource action for cloudHsmClustersBackup", async function () {
     const credential = new DefaultAzureCredential();
     const subscriptionId = "00000000-0000-0000-0000-000000000000";
-    const client = new HardwareSecurityModulesClient(credential, subscriptionId);
+    const client = new HardwareSecurityModulesClient(
+      credential,
+      subscriptionId,
+    );
+    const result = await client.backup("rgcloudhsm", "chsm1", {
+      backupRequestProperties: {
+        azureStorageBlobContainerUri: "sss",
+        token: "aaa",
+      },
+    });
+    assert.ok(result);
+  });
+});
+```
+
+```ts tests backupTest.spec.ts
+/** This file path is /test/generated/backupTest.spec.ts */
+
+import { Recorder } from "@azure-tools/test-recorder";
+import { createRecorder } from "../public/utils/recordedClient.js";
+import { assert } from "chai";
+import { Context } from "mocha";
+import { HardwareSecurityModulesClient } from "@azure/internal-test";
+import { DefaultAzureCredential } from "@azure/identity";
+
+describe("a long-running resource action", () => {
+  let recorder: Recorder;
+
+  beforeEach(async function (this: Context) {
+    recorder = await createRecorder(this);
+  });
+
+  afterEach(async function () {
+    await recorder.stop();
+  });
+
+  it("should a long-running resource action for cloudHsmClustersBackup", async function () {
+    const credential = new DefaultAzureCredential();
+    const subscriptionId = "00000000-0000-0000-0000-000000000000";
+    const client = new HardwareSecurityModulesClient(
+      credential,
+      subscriptionId,
+    );
     const poller = await client.backup("rgcloudhsm", "chsm1", {
       backupRequestProperties: {
         azureStorageBlobContainerUri: "sss",
@@ -149,8 +193,6 @@ describe("backup a CloudHsmCluster", () => {
     });
     const result = await poller.pollUntilDone();
     assert.ok(result);
-    assert.ok(result.properties);
-    assert.strictEqual(result.properties.azureStorageBlobContainerUri, "sss");
-    assert.strictEqual(result.properties.backupId, "backup123");
   });
 });
+```

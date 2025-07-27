@@ -56,14 +56,16 @@ Raw json files.
 }
 ```
 
-```ts tests readTest.spec.ts
+```ts tests readTest
+/** This file path is /test/generated/readTest.spec.ts */
+
 import { Recorder } from "@azure-tools/test-recorder";
 import { createRecorder } from "../public/utils/recordedClient.js";
 import { assert } from "chai";
 import { Context } from "mocha";
 import { TestingClient } from "@azure/internal-test";
 
-describe("read with optional body parameter", () => {
+describe("show example demo", () => {
   let recorder: Recorder;
 
   beforeEach(async function (this: Context) {
@@ -74,7 +76,7 @@ describe("read with optional body parameter", () => {
     await recorder.stop();
   });
 
-  it("should read with optional body parameter for read", async function () {
+  it("should show example demo for read", async function () {
     const client = new TestingClient();
     const result = await client.read("required path param", "required query", {
       widget: { name: "body name" },
@@ -83,3 +85,4 @@ describe("read with optional body parameter", () => {
     assert.ok(result);
   });
 });
+```

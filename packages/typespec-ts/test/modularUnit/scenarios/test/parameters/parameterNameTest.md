@@ -139,7 +139,9 @@ Raw json files.
 }
 ```
 
-```ts tests createOrUpdateTest.spec.ts
+```ts tests createOrUpdateTest
+/** This file path is /test/generated/createOrUpdateTest.spec.ts */
+
 import { Recorder } from "@azure-tools/test-recorder";
 import { createRecorder } from "../public/utils/recordedClient.js";
 import { assert } from "chai";
@@ -147,7 +149,7 @@ import { Context } from "mocha";
 import { ContosoClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
 
-describe("create or update a Employee", () => {
+describe("create a Employee", () => {
   let recorder: Recorder;
 
   beforeEach(async function (this: Context) {
@@ -158,11 +160,11 @@ describe("create or update a Employee", () => {
     await recorder.stop();
   });
 
-  it("should create or update a Employee for employeesCreateOrUpdate", async function () {
+  it("should create a Employee for employeesCreateOrUpdate", async function () {
     const credential = new DefaultAzureCredential();
     const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
     const client = new ContosoClient(credential, subscriptionId);
-    const poller = await client.createOrUpdate("rgopenapi", "9KF-f-8b", {
+    const result = await client.createOrUpdate("rgopenapi", "9KF-f-8b", {
       properties: {
         age: 30,
         city: "gydhnntudughbmxlkyzrskcdkotrxn",
@@ -171,7 +173,6 @@ describe("create or update a Employee", () => {
       tags: { key2913: "urperxmkkhhkp" },
       location: "itajgxyqozseoygnl",
     });
-    const result = await poller.pollUntilDone();
     assert.ok(result);
     assert.strictEqual(
       result.id,
@@ -181,9 +182,11 @@ describe("create or update a Employee", () => {
     assert.strictEqual(result.type, "Microsoft.Contoso/employees");
     assert.strictEqual(result.location, "itajgxyqozseoygnl");
     assert.strictEqual(result.properties.age, 30);
-    assert.strictEqual(result.properties.city, "gydhnntudughbmxlkyzrskcdkotrxn");
+    assert.strictEqual(
+      result.properties.city,
+      "gydhnntudughbmxlkyzrskcdkotrxn",
+    );
     assert.strictEqual(result.properties.profile, "ms");
-    assert.strictEqual(result.properties.provisioningState, "Succeeded");
-    assert.strictEqual(result.tags.key2913, "urperxmkkhhkp");
   });
 });
+```

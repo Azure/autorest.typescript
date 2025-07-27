@@ -105,8 +105,7 @@ describe("delete a Employee", () => {
     const credential = new DefaultAzureCredential();
     const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
     const client = new ContosoClient(credential, subscriptionId);
-    const poller = await client.delete("rgopenapi", "testEmployee");
-    const result = await poller.pollUntilDone();
+    const result = await client.delete("rgopenapi", "testEmployee");
     assert.ok(result);
   });
 });

@@ -146,12 +146,11 @@ describe("create a Employee", () => {
     const credential = new DefaultAzureCredential();
     const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
     const client = new ContosoClient(credential, subscriptionId);
-    const poller = await client.createOrUpdate("rgopenapi", "testEmployee", {
+    const result = await client.createOrUpdate("rgopenapi", "testEmployee", {
       location: "eastus",
       properties: { age: 25, city: "Seattle", profile: "developer" },
       tags: { environment: "test" },
     });
-    const result = await poller.pollUntilDone();
     assert.ok(result);
     assert.strictEqual(
       result.id,

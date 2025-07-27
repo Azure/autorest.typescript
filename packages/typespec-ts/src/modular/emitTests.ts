@@ -385,8 +385,7 @@ function emitMethodTests(
             const pagingAssertions = generatePagingResponseAssertions(example, dpgContext, "resArray");
             testFunctionBody.push(...pagingAssertions);
         } else if (isLRO) {
-            testFunctionBody.push(`const poller = await ${methodCall};`);
-            testFunctionBody.push(`const result = await poller.pollUntilDone();`);
+            testFunctionBody.push(`const result = await ${methodCall};`);
             testFunctionBody.push(`assert.ok(result);`);
             // Add response assertions for LRO results
             const responseAssertions = generateResponseAssertions(example, dpgContext, "result");
@@ -700,11 +699,11 @@ function generatePagingResponseAssertions(
     if (responseBody.kind === "model" || responseBody.kind === "dict") {
         const responseValue = responseBody.value as Record<string, SdkExampleValue>;
         const valueArray = responseValue?.["value"];
-        
+
         if (valueArray && valueArray.kind === "array" && valueArray.value) {
             // Assert on the length of the collected results
             assertions.push(`assert.strictEqual(${resultVariableName}.length, ${valueArray.value.length});`);
-            
+
             // Assert on the first item if available
             if (valueArray.value.length > 0) {
                 const firstItem = valueArray.value[0];

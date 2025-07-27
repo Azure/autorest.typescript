@@ -102,7 +102,7 @@ Raw json files.
 }
 ```
 
-```ts tests readTest.spec.ts
+```ts tests readTest
 import { Recorder } from "@azure-tools/test-recorder";
 import { createRecorder } from "../public/utils/recordedClient.js";
 import { assert } from "chai";
