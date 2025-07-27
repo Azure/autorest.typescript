@@ -80,31 +80,7 @@ Raw json files.
 }
 ```
 
-```ts tests
-/** This file path is /test/public/utils/recordedClient.ts */
-
-import { Context } from "mocha";
-import { Recorder, RecorderStartOptions } from "@azure-tools/test-recorder";
-
-const replaceableVariables: Record<string, string> = {
-  SUBSCRIPTION_ID: "azure_subscription_id",
-};
-
-const recorderEnvSetup: RecorderStartOptions = {
-  envSetupForPlayback: replaceableVariables,
-};
-
-/**
- * creates the recorder and reads the environment variables from the `.env` file.
- * Should be called first in the test suite to make sure environment variables are
- * read before they are being used.
- */
-export async function createRecorder(context: Context): Promise<Recorder> {
-  const recorder = new Recorder(context.currentTest);
-  await recorder.start(recorderEnvSetup);
-  return recorder;
-}
-
+```ts tests deleteTest
 /** This file path is /test/generated/deleteTest.spec.ts */
 
 import { Recorder } from "@azure-tools/test-recorder";
@@ -130,7 +106,7 @@ describe("delete a Employee", () => {
     const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
     const client = new ContosoClient(credential, subscriptionId);
     await client.delete("rgopenapi", "testEmployee");
-    // Test passes if no exception is thrown
+    /* Test passes if no exception is thrown */
   });
 });
 ```

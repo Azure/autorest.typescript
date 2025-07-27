@@ -39,10 +39,10 @@ function getDescriptiveTestName(method: ServiceOperation, exampleName: string): 
     // Use the same description logic as samples
     const description = method.doc ?? `execute ${method.oriName ?? method.name}`;
     let descriptiveName = description.charAt(0).toLowerCase() + description.slice(1);
-    
+
     // Remove any trailing dots
     descriptiveName = descriptiveName.replace(/\.$/, '');
-    
+
     // Include the example name to ensure uniqueness for multiple test cases
     const functionName = normalizeName(exampleName, NameType.Method);
     return `${descriptiveName} for ${functionName}`;
@@ -291,7 +291,7 @@ function emitMethodTests(
     // Create test describe block
     const methodDescription = method.doc ?? `test ${method.oriName ?? method.name}`;
     let normalizedDescription = methodDescription.charAt(0).toLowerCase() + methodDescription.slice(1);
-    
+
     // Remove any trailing dots from describe block
     normalizedDescription = normalizedDescription.replace(/\.$/, '');
 
@@ -386,7 +386,7 @@ function emitMethodTests(
         } else if (method.response.type === undefined) {
             // skip response handling for void methods
             testFunctionBody.push(`await ${methodCall};`);
-            testFunctionBody.push(`// Test passes if no exception is thrown`);
+            testFunctionBody.push(`\/* Test passes if no exception is thrown *\/`);
         } else {
             testFunctionBody.push(`const result = await ${methodCall};`);
             testFunctionBody.push(`assert.ok(result);`);
@@ -663,38 +663,38 @@ function generateResponseAssertions(
     resultVariableName: string
 ): string[] {
     const assertions: string[] = [];
-    
+
     // Get the responses
     const responses = example.responses;
     if (!responses || Object.keys(responses).length === 0) {
         return assertions;
     }
-    
+
     // TypeSpec SDK uses numeric indices for responses, get the first response
     const responseKeys = Object.keys(responses);
     if (responseKeys.length === 0) {
         return assertions;
     }
-    
+
     const firstResponseKey = responseKeys[0];
     if (!firstResponseKey) {
         return assertions;
     }
-    
+
     const firstResponse = (responses as any)[firstResponseKey];
     const responseBody = firstResponse?.bodyValue;
-    
+
     if (!responseBody) {
         return assertions;
     }
-    
+
     // Generate assertions based on response body structure
     const responseAssertions = generateAssertionsForValue(
         responseBody,
         resultVariableName,
         dpgContext
     );
-    
+
     assertions.push(...responseAssertions);
     return assertions;
 }
@@ -710,32 +710,32 @@ function generateAssertionsForValue(
     currentDepth: number = 0
 ): string[] {
     const assertions: string[] = [];
-    
+
     // Prevent infinite recursion for deeply nested objects
     if (currentDepth >= maxDepth) {
         return assertions;
     }
-    
+
     switch (value.kind) {
         case "string":
             if (value.value && value.value.trim() !== "") {
                 assertions.push(`assert.strictEqual(${path}, "${value.value}");`);
             }
             break;
-            
+
         case "number":
             assertions.push(`assert.strictEqual(${path}, ${value.value});`);
             break;
-            
+
         case "boolean":
             assertions.push(`assert.strictEqual(${path}, ${value.value});`);
             break;
-            
+
         case "array":
             if (value.value && value.value.length > 0) {
                 assertions.push(`assert.ok(Array.isArray(${path}));`);
                 assertions.push(`assert.strictEqual(${path}.length, ${value.value.length});`);
-                
+
                 // Assert on first few items to avoid overly verbose tests
                 const itemsToCheck = Math.min(value.value.length, 2);
                 for (let i = 0; i < itemsToCheck; i++) {
@@ -753,15 +753,15 @@ function generateAssertionsForValue(
                 }
             }
             break;
-            
+
         case "model":
         case "dict":
             if (value.value && typeof value.value === 'object') {
                 const entries = Object.entries(value.value);
-                
+
                 // Assert on key properties to avoid overly verbose tests
                 const propertiesToCheck = entries.slice(0, 5); // Limit to first 5 properties
-                
+
                 for (const [key, val] of propertiesToCheck) {
                     if (val && typeof val === 'object' && 'kind' in val) {
                         const propPath = `${path}.${key}`;
@@ -777,11 +777,11 @@ function generateAssertionsForValue(
                 }
             }
             break;
-            
+
         case "null":
             assertions.push(`assert.strictEqual(${path}, null);`);
             break;
-            
+
         case "union":
             // For unions, generate assertions for the actual value
             if (value.value) {
@@ -796,6 +796,6 @@ function generateAssertionsForValue(
             }
             break;
     }
-    
+
     return assertions;
 }
