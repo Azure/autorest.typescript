@@ -38,6 +38,7 @@ import { transformToParameterTypes } from "../../src/transform/transformParamete
 import { transformToResponseTypes } from "../../src/transform/transformResponses.js";
 import { useBinder } from "../../src/framework/hooks/binder.js";
 import { emitSamples } from "../../src/modular/emitSamples.js";
+import { emitTests } from "../../src/modular/emitTests.js";
 import { renameClientName } from "../../src/index.js";
 import { buildRootIndex } from "../../src/modular/buildRootIndex.js";
 import { useContext } from "../../src/contextManager.js";
@@ -677,6 +678,33 @@ export async function emitSamplesFromTypeSpec(
     await renameClientName(subClient, modularEmitterOptions);
   }
   const files = await emitSamples(dpgContext);
+  useBinder().resolveAllReferences("/");
+  return files;
+}
+
+export async function emitTestsFromTypeSpec(
+  tspContent: string,
+  examples: ExampleJson[],
+  configs: Record<string, any> = {}
+) {
+  const context = await compileTypeSpecFor(tspContent, examples);
+  configs["typespecTitleMap"] = configs["typespec-title-map"];
+  configs["hierarchyClient"] = configs["hierarchy-client"];
+  configs["enableOperationGroup"] = configs["enable-operation-group"];
+  const dpgContext = await createDpgContextTestHelper(context.program, false, {
+    "examples-directory": `./examples`,
+    packageDetails: {
+      name: "@azure/internal-test"
+    },
+    ...configs
+  });
+  const modularEmitterOptions = transformModularEmitterOptions(dpgContext, "", {
+    casing: "camel"
+  });
+  for (const subClient of dpgContext.sdkPackage.clients) {
+    await renameClientName(subClient, modularEmitterOptions);
+  }
+  const files = await emitTests(dpgContext);
   useBinder().resolveAllReferences("/");
   return files;
 }

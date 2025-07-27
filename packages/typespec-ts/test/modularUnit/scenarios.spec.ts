@@ -7,7 +7,8 @@ import {
   emitModularModelsFromTypeSpec,
   emitModularOperationsFromTypeSpec,
   emitRootIndexFromTypeSpec,
-  emitSamplesFromTypeSpec
+  emitSamplesFromTypeSpec,
+  emitTestsFromTypeSpec
 } from "../util/emitUtil.js";
 import { assertEqualContent, ExampleJson } from "../util/testUtil.js";
 import { format } from "prettier";
@@ -192,6 +193,22 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
           `/** This file path is ${x.getFilePath()} */\n ${x.getFullText()}`
       )
       .join("\n");
+    return text;
+  },
+
+  "(ts|typescript) tests": async (tsp, {}, namedUnknownArgs) => {
+    if (!namedUnknownArgs || !namedUnknownArgs["examples"]) {
+      throw new Error(`Expected 'examples' to be passed in as an argument`);
+    }
+    const configs = namedUnknownArgs["configs"] as Record<string, string>;
+    const examples = namedUnknownArgs["examples"] as ExampleJson[];
+    const result = await emitTestsFromTypeSpec(tsp, examples, configs);
+    const text = result
+      .map(
+        (x) =>
+          `/** This file path is ${x.getFilePath()} */\n\n${x.getFullText()}`
+      )
+      .join("\n\n");
     return text;
   },
 
