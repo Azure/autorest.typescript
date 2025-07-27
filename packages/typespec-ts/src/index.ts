@@ -93,6 +93,7 @@ import { provideSdkTypes } from "./framework/hooks/sdkTypes.js";
 import { transformRLCModel } from "./transform/transform.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
 import { emitSamples } from "./modular/emitSamples.js";
+import { emitTests } from "./modular/emitTests.js";
 
 export * from "./lib.js";
 
@@ -347,6 +348,13 @@ export async function $onEmit(context: EmitContext) {
       if (samples.length > 0) {
         dpgContext.rlcOptions!.generateSample = true;
       }
+    }
+
+    // Enable modular test generation when explicitly set to true
+    if (emitterOptions["generate-test"] === true) {
+      console.time("onEmit: emit tests");
+      emitTests(dpgContext);
+      console.timeEnd("onEmit: emit tests");
     }
 
     console.time("onEmit: resolve references");
