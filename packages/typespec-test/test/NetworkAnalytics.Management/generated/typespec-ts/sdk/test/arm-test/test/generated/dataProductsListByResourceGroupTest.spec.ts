@@ -29,5 +29,7 @@ describe("list data products by resource group", () => {
       resArray.push(item);
     }
     assert.ok(resArray);
+    assert.ok(Array.isArray(resArray[0].value));
+    assert.strictEqual(resArray[0].value.length, 1);
   });
 });

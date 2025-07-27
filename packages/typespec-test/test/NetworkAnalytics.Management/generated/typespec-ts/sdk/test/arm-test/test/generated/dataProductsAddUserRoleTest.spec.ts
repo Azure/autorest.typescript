@@ -35,5 +35,15 @@ describe("assign role to the data product", () => {
       },
     );
     assert.ok(result);
+    assert.strictEqual(result.roleId, "00000000-0000-0000-0000-00000000000");
+    assert.strictEqual(
+      result.principalId,
+      "00000000-0000-0000-0000-00000000000",
+    );
+    assert.strictEqual(result.userName, "UserName");
+    assert.ok(Array.isArray(result.dataTypeScope));
+    assert.strictEqual(result.dataTypeScope.length, 1);
+    assert.strictEqual(result.dataTypeScope[0], "scope");
+    assert.strictEqual(result.principalType, "User");
   });
 });

@@ -44,5 +44,28 @@ describe("update data product resource", () => {
       },
     );
     assert.ok(result);
+    assert.strictEqual(
+      result.properties.resourceGuid,
+      "00000000-0000-0000-0000-000000000000",
+    );
+    assert.strictEqual(result.properties.provisioningState, "Succeeded");
+    assert.strictEqual(result.properties.publisher, "Microsoft");
+    assert.strictEqual(result.properties.product, "MCC");
+    assert.strictEqual(result.properties.majorVersion, "1.0.0");
+    assert.strictEqual(
+      result.identity.principalId,
+      "00000000-0000-0000-0000-000000000000",
+    );
+    assert.strictEqual(
+      result.identity.tenantId,
+      "00000000-0000-0000-0000-000000000000",
+    );
+    assert.strictEqual(result.identity.type, "IdentityType");
+    assert.strictEqual(
+      result.id,
+      "/subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/aoiresourceGroupName/providers/Microsoft.NetworkAnalytics/DataProducts/dataproduct01",
+    );
+    assert.strictEqual(result.name, "dataproduct01");
+    assert.strictEqual(result.type, "Microsoft.NetworkAnalytics/DataProducts");
   });
 });

@@ -380,6 +380,9 @@ function emitMethodTests(
                 `for await (const item of ${methodCall}) { resArray.push(item); }`
             );
             testFunctionBody.push(`assert.ok(resArray);`);
+            // Add response assertions for paging results
+            const pagingAssertions = generateResponseAssertions(example, dpgContext, "resArray[0]");
+            testFunctionBody.push(...pagingAssertions);
         } else if (method.response.type === undefined) {
             // skip response handling for void methods
             testFunctionBody.push(`await ${methodCall};`);
@@ -387,6 +390,9 @@ function emitMethodTests(
         } else {
             testFunctionBody.push(`const result = await ${methodCall};`);
             testFunctionBody.push(`assert.ok(result);`);
+            // Add response assertions for non-paging results
+            const responseAssertions = generateResponseAssertions(example, dpgContext, "result");
+            testFunctionBody.push(...responseAssertions);
         }
 
         // Create a test function
@@ -646,4 +652,150 @@ function serializeExampleValue(value: SdkExampleValue, dpgContext: SdkContext): 
         default:
             throw new Error(`Unknown example value kind: ${(value as any).kind}`);
     }
+}
+
+/**
+ * Generate response assertions based on the example responses
+ */
+function generateResponseAssertions(
+    example: SdkHttpOperationExample,
+    dpgContext: SdkContext,
+    resultVariableName: string
+): string[] {
+    const assertions: string[] = [];
+    
+    // Get the responses
+    const responses = example.responses;
+    if (!responses || Object.keys(responses).length === 0) {
+        return assertions;
+    }
+    
+    // TypeSpec SDK uses numeric indices for responses, get the first response
+    const responseKeys = Object.keys(responses);
+    if (responseKeys.length === 0) {
+        return assertions;
+    }
+    
+    const firstResponseKey = responseKeys[0];
+    if (!firstResponseKey) {
+        return assertions;
+    }
+    
+    const firstResponse = (responses as any)[firstResponseKey];
+    const responseBody = firstResponse?.bodyValue;
+    
+    if (!responseBody) {
+        return assertions;
+    }
+    
+    // Generate assertions based on response body structure
+    const responseAssertions = generateAssertionsForValue(
+        responseBody,
+        resultVariableName,
+        dpgContext
+    );
+    
+    assertions.push(...responseAssertions);
+    return assertions;
+}
+
+/**
+ * Generate assertions for a specific value (recursive for nested objects)
+ */
+function generateAssertionsForValue(
+    value: SdkExampleValue,
+    path: string,
+    dpgContext: SdkContext,
+    maxDepth: number = 3,
+    currentDepth: number = 0
+): string[] {
+    const assertions: string[] = [];
+    
+    // Prevent infinite recursion for deeply nested objects
+    if (currentDepth >= maxDepth) {
+        return assertions;
+    }
+    
+    switch (value.kind) {
+        case "string":
+            if (value.value && value.value.trim() !== "") {
+                assertions.push(`assert.strictEqual(${path}, "${value.value}");`);
+            }
+            break;
+            
+        case "number":
+            assertions.push(`assert.strictEqual(${path}, ${value.value});`);
+            break;
+            
+        case "boolean":
+            assertions.push(`assert.strictEqual(${path}, ${value.value});`);
+            break;
+            
+        case "array":
+            if (value.value && value.value.length > 0) {
+                assertions.push(`assert.ok(Array.isArray(${path}));`);
+                assertions.push(`assert.strictEqual(${path}.length, ${value.value.length});`);
+                
+                // Assert on first few items to avoid overly verbose tests
+                const itemsToCheck = Math.min(value.value.length, 2);
+                for (let i = 0; i < itemsToCheck; i++) {
+                    const item = value.value[i];
+                    if (item) {
+                        const itemAssertions = generateAssertionsForValue(
+                            item,
+                            `${path}[${i}]`,
+                            dpgContext,
+                            maxDepth,
+                            currentDepth + 1
+                        );
+                        assertions.push(...itemAssertions);
+                    }
+                }
+            }
+            break;
+            
+        case "model":
+        case "dict":
+            if (value.value && typeof value.value === 'object') {
+                const entries = Object.entries(value.value);
+                
+                // Assert on key properties to avoid overly verbose tests
+                const propertiesToCheck = entries.slice(0, 5); // Limit to first 5 properties
+                
+                for (const [key, val] of propertiesToCheck) {
+                    if (val && typeof val === 'object' && 'kind' in val) {
+                        const propPath = `${path}.${key}`;
+                        const propAssertions = generateAssertionsForValue(
+                            val as SdkExampleValue,
+                            propPath,
+                            dpgContext,
+                            maxDepth,
+                            currentDepth + 1
+                        );
+                        assertions.push(...propAssertions);
+                    }
+                }
+            }
+            break;
+            
+        case "null":
+            assertions.push(`assert.strictEqual(${path}, null);`);
+            break;
+            
+        case "union":
+            // For unions, generate assertions for the actual value
+            if (value.value) {
+                const unionAssertions = generateAssertionsForValue(
+                    value.value as SdkExampleValue,
+                    path,
+                    dpgContext,
+                    maxDepth,
+                    currentDepth
+                );
+                assertions.push(...unionAssertions);
+            }
+            break;
+    }
+    
+    return assertions;
 }

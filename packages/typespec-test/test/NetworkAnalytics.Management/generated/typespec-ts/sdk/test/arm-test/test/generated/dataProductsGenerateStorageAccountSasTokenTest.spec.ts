@@ -32,5 +32,6 @@ describe("generate sas token for storage account", () => {
       },
     );
     assert.ok(result);
+    assert.strictEqual(result.storageAccountSasToken, "storageAccountSasToken");
   });
 });
