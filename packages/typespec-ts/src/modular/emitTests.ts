@@ -369,6 +369,7 @@ function emitMethodTests(
             ? `${options.classicalMethodPrefix}.`
             : "";
         const isPaging = method.kind === "paging";
+        const isLRO = method.kind === "lro" || method.kind === "lropaging";
         const methodCall = `client.${prefix}${normalizeName(method.oriName ?? method.name, NameType.Property)}(${methodParams.join(
             ", "
         )})`;
@@ -381,8 +382,15 @@ function emitMethodTests(
             );
             testFunctionBody.push(`assert.ok(resArray);`);
             // Add response assertions for paging results
-            const pagingAssertions = generateResponseAssertions(example, dpgContext, "resArray[0]");
+            const pagingAssertions = generatePagingResponseAssertions(example, dpgContext, "resArray");
             testFunctionBody.push(...pagingAssertions);
+        } else if (isLRO) {
+            testFunctionBody.push(`const poller = await ${methodCall};`);
+            testFunctionBody.push(`const result = await poller.pollUntilDone();`);
+            testFunctionBody.push(`assert.ok(result);`);
+            // Add response assertions for LRO results
+            const responseAssertions = generateResponseAssertions(example, dpgContext, "result");
+            testFunctionBody.push(...responseAssertions);
         } else if (method.response.type === undefined) {
             // skip response handling for void methods
             testFunctionBody.push(`await ${methodCall};`);
@@ -652,6 +660,69 @@ function serializeExampleValue(value: SdkExampleValue, dpgContext: SdkContext): 
         default:
             throw new Error(`Unknown example value kind: ${(value as any).kind}`);
     }
+}
+
+/**
+ * Generate response assertions specifically for paging operations
+ */
+function generatePagingResponseAssertions(
+    example: SdkHttpOperationExample,
+    dpgContext: SdkContext,
+    resultVariableName: string
+): string[] {
+    const assertions: string[] = [];
+
+    // Get the responses
+    const responses = example.responses;
+    if (!responses || Object.keys(responses).length === 0) {
+        return assertions;
+    }
+
+    // TypeSpec SDK uses numeric indices for responses, get the first response
+    const responseKeys = Object.keys(responses);
+    if (responseKeys.length === 0) {
+        return assertions;
+    }
+
+    const firstResponseKey = responseKeys[0];
+    if (!firstResponseKey) {
+        return assertions;
+    }
+
+    const firstResponse = (responses as any)[firstResponseKey];
+    const responseBody = firstResponse?.bodyValue;
+
+    if (!responseBody) {
+        return assertions;
+    }
+
+    // For paging operations, the response body should have a 'value' array
+    if (responseBody.kind === "model" || responseBody.kind === "dict") {
+        const responseValue = responseBody.value as Record<string, SdkExampleValue>;
+        const valueArray = responseValue?.["value"];
+        
+        if (valueArray && valueArray.kind === "array" && valueArray.value) {
+            // Assert on the length of the collected results
+            assertions.push(`assert.strictEqual(${resultVariableName}.length, ${valueArray.value.length});`);
+            
+            // Assert on the first item if available
+            if (valueArray.value.length > 0) {
+                const firstItem = valueArray.value[0];
+                if (firstItem) {
+                    const itemAssertions = generateAssertionsForValue(
+                        firstItem,
+                        `${resultVariableName}[0]`,
+                        dpgContext,
+                        2, // Limit depth for paging items
+                        0
+                    );
+                    assertions.push(...itemAssertions);
+                }
+            }
+        }
+    }
+
+    return assertions;
 }
 
 /**

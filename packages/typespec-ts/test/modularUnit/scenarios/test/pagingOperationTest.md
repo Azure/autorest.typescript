@@ -135,8 +135,14 @@ describe("list Employee resources by resource group", () => {
       resArray.push(item);
     }
     assert.ok(resArray);
-    assert.ok(Array.isArray(resArray[0].value));
-    assert.strictEqual(resArray[0].value.length, 2);
+    assert.strictEqual(resArray.length, 2);
+    assert.strictEqual(
+      resArray[0].id,
+      "/subscriptions/11809CA1-E126-4017-945E-AA795CD5C5A9/resourceGroups/rgopenapi/providers/Microsoft.Contoso/employees/emp1",
+    );
+    assert.strictEqual(resArray[0].name, "emp1");
+    assert.strictEqual(resArray[0].type, "Microsoft.Contoso/employees");
+    assert.strictEqual(resArray[0].location, "eastus");
   });
 });
 ```
