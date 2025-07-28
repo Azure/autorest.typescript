@@ -1506,7 +1506,9 @@ export interface FeatureStatus {
     readonly version?: string;
 }
 
-// @public
+// Warning: (ae-internal-missing-underscore) The name "getContinuationToken" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal
 export function getContinuationToken(page: unknown): string | undefined;
 
 // @public
