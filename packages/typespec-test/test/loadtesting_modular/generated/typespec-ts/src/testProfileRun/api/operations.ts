@@ -88,24 +88,24 @@ export function _listTestProfileRunsSend(
     {
       "api%2Dversion": context.apiVersion,
       maxpagesize: options?.maxpagesize,
-      minStartDateTime: !options?.minStartDateTime
-        ? options?.minStartDateTime
-        : options?.minStartDateTime.toISOString(),
-      maxStartDateTime: !options?.maxStartDateTime
-        ? options?.maxStartDateTime
-        : options?.maxStartDateTime.toISOString(),
-      minEndDateTime: !options?.minEndDateTime
-        ? options?.minEndDateTime
-        : options?.minEndDateTime.toISOString(),
-      maxEndDateTime: !options?.maxEndDateTime
-        ? options?.maxEndDateTime
-        : options?.maxEndDateTime.toISOString(),
-      createdDateStartTime: !options?.createdDateStartTime
-        ? options?.createdDateStartTime
-        : options?.createdDateStartTime.toISOString(),
-      createdDateEndTime: !options?.createdDateEndTime
-        ? options?.createdDateEndTime
-        : options?.createdDateEndTime.toISOString(),
+      minStartDateTime: options?.minStartDateTime
+        ? options?.minStartDateTime.toISOString()
+        : options?.minStartDateTime,
+      maxStartDateTime: options?.maxStartDateTime
+        ? options?.maxStartDateTime.toISOString()
+        : options?.maxStartDateTime,
+      minEndDateTime: options?.minEndDateTime
+        ? options?.minEndDateTime.toISOString()
+        : options?.minEndDateTime,
+      maxEndDateTime: options?.maxEndDateTime
+        ? options?.maxEndDateTime.toISOString()
+        : options?.maxEndDateTime,
+      createdDateStartTime: options?.createdDateStartTime
+        ? options?.createdDateStartTime.toISOString()
+        : options?.createdDateStartTime,
+      createdDateEndTime: options?.createdDateEndTime
+        ? options?.createdDateEndTime.toISOString()
+        : options?.createdDateEndTime,
       testProfileRunIds: options?.testProfileRunIds,
       testProfileIds: options?.testProfileIds,
       statuses: options?.statuses,

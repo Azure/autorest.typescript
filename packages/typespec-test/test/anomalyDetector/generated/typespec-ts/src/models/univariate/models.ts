@@ -82,9 +82,9 @@ export function univariateTimeSeriesPointSerializer(
   item: UnivariateTimeSeriesPoint,
 ): any {
   return {
-    timestamp: !item["timestamp"]
-      ? item["timestamp"]
-      : item["timestamp"].toISOString(),
+    timestamp: item["timestamp"]
+      ? item["timestamp"].toISOString()
+      : item["timestamp"],
     value: item["value"],
   };
 }

@@ -314,19 +314,19 @@ export function _createVectorStoreFileBatchSend(
     contentType: "application/json",
     headers: { accept: "application/json", ...options.requestOptions?.headers },
     body: {
-      file_ids: !options?.fileIds
-        ? options?.fileIds
-        : options?.fileIds.map((p: any) => {
+      file_ids: options?.fileIds
+        ? options?.fileIds.map((p: any) => {
             return p;
-          }),
-      data_sources: !options?.dataSources
-        ? options?.dataSources
-        : vectorStoreDataSourceArraySerializer(options?.dataSources),
-      chunking_strategy: !options?.chunkingStrategy
-        ? options?.chunkingStrategy
-        : vectorStoreChunkingStrategyRequestUnionSerializer(
+          })
+        : options?.fileIds,
+      data_sources: options?.dataSources
+        ? vectorStoreDataSourceArraySerializer(options?.dataSources)
+        : options?.dataSources,
+      chunking_strategy: options?.chunkingStrategy
+        ? vectorStoreChunkingStrategyRequestUnionSerializer(
             options?.chunkingStrategy,
-          ),
+          )
+        : options?.chunkingStrategy,
     },
   });
 }
@@ -497,14 +497,14 @@ export function _createVectorStoreFileSend(
       },
       body: {
         file_id: options?.fileId,
-        data_sources: !options?.dataSources
-          ? options?.dataSources
-          : vectorStoreDataSourceArraySerializer(options?.dataSources),
-        chunking_strategy: !options?.chunkingStrategy
-          ? options?.chunkingStrategy
-          : vectorStoreChunkingStrategyRequestUnionSerializer(
+        data_sources: options?.dataSources
+          ? vectorStoreDataSourceArraySerializer(options?.dataSources)
+          : options?.dataSources,
+        chunking_strategy: options?.chunkingStrategy
+          ? vectorStoreChunkingStrategyRequestUnionSerializer(
               options?.chunkingStrategy,
-            ),
+            )
+          : options?.chunkingStrategy,
       },
     });
 }
@@ -663,9 +663,9 @@ export function _modifyVectorStoreSend(
       },
       body: {
         name: options?.name,
-        expires_after: !options?.expiresAfter
-          ? options?.expiresAfter
-          : vectorStoreExpirationPolicySerializer(options?.expiresAfter),
+        expires_after: options?.expiresAfter
+          ? vectorStoreExpirationPolicySerializer(options?.expiresAfter)
+          : options?.expiresAfter,
         metadata: options?.metadata,
       },
     });
@@ -757,23 +757,23 @@ export function _createVectorStoreSend(
     contentType: "application/json",
     headers: { accept: "application/json", ...options.requestOptions?.headers },
     body: {
-      file_ids: !options?.fileIds
-        ? options?.fileIds
-        : options?.fileIds.map((p: any) => {
+      file_ids: options?.fileIds
+        ? options?.fileIds.map((p: any) => {
             return p;
-          }),
+          })
+        : options?.fileIds,
       name: options?.name,
-      configuration: !options?.storeConfiguration
-        ? options?.storeConfiguration
-        : vectorStoreConfigurationSerializer(options?.storeConfiguration),
-      expires_after: !options?.expiresAfter
-        ? options?.expiresAfter
-        : vectorStoreExpirationPolicySerializer(options?.expiresAfter),
-      chunking_strategy: !options?.chunkingStrategy
-        ? options?.chunkingStrategy
-        : vectorStoreChunkingStrategyRequestUnionSerializer(
+      configuration: options?.storeConfiguration
+        ? vectorStoreConfigurationSerializer(options?.storeConfiguration)
+        : options?.storeConfiguration,
+      expires_after: options?.expiresAfter
+        ? vectorStoreExpirationPolicySerializer(options?.expiresAfter)
+        : options?.expiresAfter,
+      chunking_strategy: options?.chunkingStrategy
+        ? vectorStoreChunkingStrategyRequestUnionSerializer(
             options?.chunkingStrategy,
-          ),
+          )
+        : options?.chunkingStrategy,
       metadata: options?.metadata,
     },
   });
@@ -1101,11 +1101,11 @@ export function _listRunStepsSend(
       threadId: threadId,
       runId: runId,
       "api%2Dversion": context.apiVersion,
-      "include%5B%5D": !options?.include
-        ? options?.include
-        : options?.include.map((p: any) => {
+      "include%5B%5D": options?.include
+        ? options?.include.map((p: any) => {
             return p;
-          }),
+          })
+        : options?.include,
       limit: options?.limit,
       order: options?.order,
       after: options?.after,
@@ -1162,11 +1162,11 @@ export function _getRunStepSend(
       runId: runId,
       stepId: stepId,
       "api%2Dversion": context.apiVersion,
-      "include%5B%5D": !options?.include
-        ? options?.include
-        : options?.include.map((p: any) => {
+      "include%5B%5D": options?.include
+        ? options?.include.map((p: any) => {
             return p;
-          }),
+          })
+        : options?.include,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1237,31 +1237,31 @@ export function _createThreadAndRunSend(
       },
       body: {
         assistant_id: assistantId,
-        thread: !options?.thread
-          ? options?.thread
-          : agentThreadCreationOptionsSerializer(options?.thread),
+        thread: options?.thread
+          ? agentThreadCreationOptionsSerializer(options?.thread)
+          : options?.thread,
         model: options?.model,
         instructions: options?.instructions,
-        tools: !options?.tools
-          ? options?.tools
-          : toolDefinitionUnionArraySerializer(options?.tools),
-        tool_resources: !options?.toolResources
-          ? options?.toolResources
-          : updateToolResourcesOptionsSerializer(options?.toolResources),
+        tools: options?.tools
+          ? toolDefinitionUnionArraySerializer(options?.tools)
+          : options?.tools,
+        tool_resources: options?.toolResources
+          ? updateToolResourcesOptionsSerializer(options?.toolResources)
+          : options?.toolResources,
         stream: options?.stream,
         temperature: options?.temperature,
         top_p: options?.topP,
         max_prompt_tokens: options?.maxPromptTokens,
         max_completion_tokens: options?.maxCompletionTokens,
-        truncation_strategy: !options?.truncationStrategy
-          ? options?.truncationStrategy
-          : truncationObjectSerializer(options?.truncationStrategy),
-        tool_choice: !options?.toolChoice
-          ? options?.toolChoice
-          : agentsApiToolChoiceOptionSerializer(options?.toolChoice),
-        response_format: !options?.responseFormat
-          ? options?.responseFormat
-          : agentsApiResponseFormatOptionSerializer(options?.responseFormat),
+        truncation_strategy: options?.truncationStrategy
+          ? truncationObjectSerializer(options?.truncationStrategy)
+          : options?.truncationStrategy,
+        tool_choice: options?.toolChoice
+          ? agentsApiToolChoiceOptionSerializer(options?.toolChoice)
+          : options?.toolChoice,
+        response_format: options?.responseFormat
+          ? agentsApiResponseFormatOptionSerializer(options?.responseFormat)
+          : options?.responseFormat,
         parallel_tool_calls: options?.parallelToolCalls,
         metadata: options?.metadata,
       },
@@ -1566,11 +1566,11 @@ export function _createRunSend(
     {
       threadId: threadId,
       "api%2Dversion": context.apiVersion,
-      "include%5B%5D": !options?.include
-        ? options?.include
-        : options?.include.map((p: any) => {
+      "include%5B%5D": options?.include
+        ? options?.include.map((p: any) => {
             return p;
-          }),
+          })
+        : options?.include,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1590,26 +1590,26 @@ export function _createRunSend(
         model: options?.model,
         instructions: options?.instructions,
         additional_instructions: options?.additionalInstructions,
-        additional_messages: !options?.additionalMessages
-          ? options?.additionalMessages
-          : threadMessageOptionsArraySerializer(options?.additionalMessages),
-        tools: !options?.tools
-          ? options?.tools
-          : toolDefinitionUnionArraySerializer(options?.tools),
+        additional_messages: options?.additionalMessages
+          ? threadMessageOptionsArraySerializer(options?.additionalMessages)
+          : options?.additionalMessages,
+        tools: options?.tools
+          ? toolDefinitionUnionArraySerializer(options?.tools)
+          : options?.tools,
         stream: options?.stream,
         temperature: options?.temperature,
         top_p: options?.topP,
         max_prompt_tokens: options?.maxPromptTokens,
         max_completion_tokens: options?.maxCompletionTokens,
-        truncation_strategy: !options?.truncationStrategy
-          ? options?.truncationStrategy
-          : truncationObjectSerializer(options?.truncationStrategy),
-        tool_choice: !options?.toolChoice
-          ? options?.toolChoice
-          : agentsApiToolChoiceOptionSerializer(options?.toolChoice),
-        response_format: !options?.responseFormat
-          ? options?.responseFormat
-          : agentsApiResponseFormatOptionSerializer(options?.responseFormat),
+        truncation_strategy: options?.truncationStrategy
+          ? truncationObjectSerializer(options?.truncationStrategy)
+          : options?.truncationStrategy,
+        tool_choice: options?.toolChoice
+          ? agentsApiToolChoiceOptionSerializer(options?.toolChoice)
+          : options?.toolChoice,
+        response_format: options?.responseFormat
+          ? agentsApiResponseFormatOptionSerializer(options?.responseFormat)
+          : options?.responseFormat,
         parallel_tool_calls: options?.parallelToolCalls,
         metadata: options?.metadata,
       },
@@ -1826,9 +1826,9 @@ export function _createMessageSend(
       body: {
         role: role,
         content: content,
-        attachments: !options?.attachments
-          ? options?.attachments
-          : messageAttachmentArraySerializer(options?.attachments),
+        attachments: options?.attachments
+          ? messageAttachmentArraySerializer(options?.attachments)
+          : options?.attachments,
         metadata: options?.metadata,
       },
     });
@@ -1935,9 +1935,9 @@ export function _updateThreadSend(
         ...options.requestOptions?.headers,
       },
       body: {
-        tool_resources: !options?.toolResources
-          ? options?.toolResources
-          : toolResourcesSerializer(options?.toolResources),
+        tool_resources: options?.toolResources
+          ? toolResourcesSerializer(options?.toolResources)
+          : options?.toolResources,
         metadata: options?.metadata,
       },
     });
@@ -2034,12 +2034,12 @@ export function _createThreadSend(
         ...options.requestOptions?.headers,
       },
       body: {
-        messages: !options?.messages
-          ? options?.messages
-          : threadMessageOptionsArraySerializer(options?.messages),
-        tool_resources: !options?.toolResources
-          ? options?.toolResources
-          : toolResourcesSerializer(options?.toolResources),
+        messages: options?.messages
+          ? threadMessageOptionsArraySerializer(options?.messages)
+          : options?.messages,
+        tool_resources: options?.toolResources
+          ? toolResourcesSerializer(options?.toolResources)
+          : options?.toolResources,
         metadata: options?.metadata,
       },
     });
@@ -2141,17 +2141,17 @@ export function _updateAgentSend(
         name: options?.name,
         description: options?.description,
         instructions: options?.instructions,
-        tools: !options?.tools
-          ? options?.tools
-          : toolDefinitionUnionArraySerializer(options?.tools),
-        tool_resources: !options?.toolResources
-          ? options?.toolResources
-          : toolResourcesSerializer(options?.toolResources),
+        tools: options?.tools
+          ? toolDefinitionUnionArraySerializer(options?.tools)
+          : options?.tools,
+        tool_resources: options?.toolResources
+          ? toolResourcesSerializer(options?.toolResources)
+          : options?.toolResources,
         temperature: options?.temperature,
         top_p: options?.topP,
-        response_format: !options?.responseFormat
-          ? options?.responseFormat
-          : agentsApiResponseFormatOptionSerializer(options?.responseFormat),
+        response_format: options?.responseFormat
+          ? agentsApiResponseFormatOptionSerializer(options?.responseFormat)
+          : options?.responseFormat,
         metadata: options?.metadata,
       },
     });
@@ -2301,17 +2301,17 @@ export function _createAgentSend(
         name: options?.name,
         description: options?.description,
         instructions: options?.instructions,
-        tools: !options?.tools
-          ? options?.tools
-          : toolDefinitionUnionArraySerializer(options?.tools),
-        tool_resources: !options?.toolResources
-          ? options?.toolResources
-          : toolResourcesSerializer(options?.toolResources),
+        tools: options?.tools
+          ? toolDefinitionUnionArraySerializer(options?.tools)
+          : options?.tools,
+        tool_resources: options?.toolResources
+          ? toolResourcesSerializer(options?.toolResources)
+          : options?.toolResources,
         temperature: options?.temperature,
         top_p: options?.topP,
-        response_format: !options?.responseFormat
-          ? options?.responseFormat
-          : agentsApiResponseFormatOptionSerializer(options?.responseFormat),
+        response_format: options?.responseFormat
+          ? agentsApiResponseFormatOptionSerializer(options?.responseFormat)
+          : options?.responseFormat,
         metadata: options?.metadata,
       },
     });

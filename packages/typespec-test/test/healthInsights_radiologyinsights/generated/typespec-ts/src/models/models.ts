@@ -32,13 +32,13 @@ export interface PatientRecord {
 export function patientRecordSerializer(item: PatientRecord): any {
   return {
     id: item["id"],
-    info: !item["info"] ? item["info"] : patientInfoSerializer(item["info"]),
-    encounters: !item["encounters"]
-      ? item["encounters"]
-      : encounterArraySerializer(item["encounters"]),
-    patientDocuments: !item["patientDocuments"]
-      ? item["patientDocuments"]
-      : patientDocumentArraySerializer(item["patientDocuments"]),
+    info: item["info"] ? patientInfoSerializer(item["info"]) : item["info"],
+    encounters: item["encounters"]
+      ? encounterArraySerializer(item["encounters"])
+      : item["encounters"],
+    patientDocuments: item["patientDocuments"]
+      ? patientDocumentArraySerializer(item["patientDocuments"])
+      : item["patientDocuments"],
   };
 }
 
@@ -56,9 +56,9 @@ export function patientInfoSerializer(item: PatientInfo): any {
   return {
     sex: item["sex"],
     birthDate: item["birthDate"],
-    clinicalInfo: !item["clinicalInfo"]
-      ? item["clinicalInfo"]
-      : resourceArraySerializer(item["clinicalInfo"]),
+    clinicalInfo: item["clinicalInfo"]
+      ? resourceArraySerializer(item["clinicalInfo"])
+      : item["clinicalInfo"],
   };
 }
 
@@ -87,9 +87,9 @@ export interface Encounter {
 export function encounterSerializer(item: Encounter): any {
   return {
     id: item["id"],
-    period: !item["period"]
-      ? item["period"]
-      : timePeriodSerializer(item["period"]),
+    period: item["period"]
+      ? timePeriodSerializer(item["period"])
+      : item["period"],
     class: item["class"],
   };
 }
@@ -104,8 +104,8 @@ export interface TimePeriod {
 
 export function timePeriodSerializer(item: TimePeriod): any {
   return {
-    start: !item["start"] ? item["start"] : item["start"].toISOString(),
-    end: !item["end"] ? item["end"] : item["end"].toISOString(),
+    start: item["start"] ? item["start"].toISOString() : item["start"],
+    end: item["end"] ? item["end"].toISOString() : item["end"],
   };
 }
 
@@ -154,18 +154,16 @@ export function patientDocumentSerializer(item: PatientDocument): any {
     clinicalType: item["clinicalType"],
     id: item["id"],
     language: item["language"],
-    createdDateTime: !item["createdDateTime"]
-      ? item["createdDateTime"]
-      : item["createdDateTime"].toISOString(),
-    authors: !item["authors"]
-      ? item["authors"]
-      : documentAuthorArraySerializer(item["authors"]),
+    createdDateTime: item["createdDateTime"]
+      ? item["createdDateTime"].toISOString()
+      : item["createdDateTime"],
+    authors: item["authors"]
+      ? documentAuthorArraySerializer(item["authors"])
+      : item["authors"],
     specialtyType: item["specialtyType"],
-    administrativeMetadata: !item["administrativeMetadata"]
-      ? item["administrativeMetadata"]
-      : documentAdministrativeMetadataSerializer(
-          item["administrativeMetadata"],
-        ),
+    administrativeMetadata: item["administrativeMetadata"]
+      ? documentAdministrativeMetadataSerializer(item["administrativeMetadata"])
+      : item["administrativeMetadata"],
     content: documentContentSerializer(item["content"]),
   };
 }
@@ -222,9 +220,9 @@ export function documentAdministrativeMetadataSerializer(
   item: DocumentAdministrativeMetadata,
 ): any {
   return {
-    orderedProcedures: !item["orderedProcedures"]
-      ? item["orderedProcedures"]
-      : orderedProcedureArraySerializer(item["orderedProcedures"]),
+    orderedProcedures: item["orderedProcedures"]
+      ? orderedProcedureArraySerializer(item["orderedProcedures"])
+      : item["orderedProcedures"],
     encounterId: item["encounterId"],
   };
 }
@@ -255,12 +253,10 @@ export interface OrderedProcedure extends Extendible {
 
 export function orderedProcedureSerializer(item: OrderedProcedure): any {
   return {
-    extension: !item["extension"]
-      ? item["extension"]
-      : extensionArraySerializer(item["extension"]),
-    code: !item["code"]
-      ? item["code"]
-      : codeableConceptSerializer(item["code"]),
+    extension: item["extension"]
+      ? extensionArraySerializer(item["extension"])
+      : item["extension"],
+    code: item["code"] ? codeableConceptSerializer(item["code"]) : item["code"],
     description: item["description"],
   };
 }
@@ -324,14 +320,14 @@ export function radiologyInsightsModelConfigurationSerializer(
   return {
     verbose: item["verbose"],
     includeEvidence: item["includeEvidence"],
-    inferenceTypes: !item["inferenceTypes"]
-      ? item["inferenceTypes"]
-      : item["inferenceTypes"].map((p: any) => {
+    inferenceTypes: item["inferenceTypes"]
+      ? item["inferenceTypes"].map((p: any) => {
           return p;
-        }),
-    inferenceOptions: !item["inferenceOptions"]
-      ? item["inferenceOptions"]
-      : radiologyInsightsInferenceOptionsSerializer(item["inferenceOptions"]),
+        })
+      : item["inferenceTypes"],
+    inferenceOptions: item["inferenceOptions"]
+      ? radiologyInsightsInferenceOptionsSerializer(item["inferenceOptions"])
+      : item["inferenceOptions"],
     locale: item["locale"],
   };
 }
@@ -361,12 +357,12 @@ export function radiologyInsightsInferenceOptionsSerializer(
   item: RadiologyInsightsInferenceOptions,
 ): any {
   return {
-    followupRecommendation: !item["followupRecommendation"]
-      ? item["followupRecommendation"]
-      : followupRecommendationOptionsSerializer(item["followupRecommendation"]),
-    finding: !item["finding"]
-      ? item["finding"]
-      : findingOptionsSerializer(item["finding"]),
+    followupRecommendation: item["followupRecommendation"]
+      ? followupRecommendationOptionsSerializer(item["followupRecommendation"])
+      : item["followupRecommendation"],
+    finding: item["finding"]
+      ? findingOptionsSerializer(item["finding"])
+      : item["finding"],
   };
 }
 

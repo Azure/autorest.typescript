@@ -350,7 +350,16 @@ function buildModelTypeSerializer(
       if (property.kind !== "property") {
         continue;
       }
-      const expr = getSerializationExpression(context, property, "item");
+      // For multipart serialization, we need special handling for complex object types
+      let expr: string;
+      if (property.type.kind === "model" && !property.serializationOptions?.multipart?.isFilePart) {
+        // For model types in multipart context, generate inline serialization with correct property path
+        const propertyFullName = getPropertyFullName(context, property, "item");
+        const propertiesStr = getRequestModelMapping(context, property.type, propertyFullName);
+        expr = `{${propertiesStr.join(",")}}`;
+      } else {
+        expr = getSerializationExpression(context, property, "item");
+      }
 
       let partDefinition: string;
       // eslint-disable-next-line

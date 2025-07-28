@@ -193,7 +193,6 @@ export function dataProductsCatalogDeserializer(
 ): DataProductsCatalog {
   return {
     id: item["id"],
-    name: item["name"],
     type: item["type"],
     systemData: !item["systemData"]
       ? item["systemData"]
@@ -462,16 +461,15 @@ export interface DataType extends ProxyResource {
 
 export function dataTypeSerializer(item: DataType): any {
   return {
-    properties: !item["properties"]
-      ? item["properties"]
-      : dataTypePropertiesSerializer(item["properties"]),
+    properties: item["properties"]
+      ? dataTypePropertiesSerializer(item["properties"])
+      : item["properties"],
   };
 }
 
 export function dataTypeDeserializer(item: any): DataType {
   return {
     id: item["id"],
-    name: item["name"],
     type: item["type"],
     systemData: !item["systemData"]
       ? item["systemData"]
@@ -547,9 +545,9 @@ export interface DataTypeUpdate {
 
 export function dataTypeUpdateSerializer(item: DataTypeUpdate): any {
   return {
-    properties: !item["properties"]
-      ? item["properties"]
-      : dataTypeUpdatePropertiesSerializer(item["properties"]),
+    properties: item["properties"]
+      ? dataTypeUpdatePropertiesSerializer(item["properties"])
+      : item["properties"],
   };
 }
 
@@ -654,12 +652,12 @@ export function dataProductSerializer(item: DataProduct): any {
   return {
     tags: item["tags"],
     location: item["location"],
-    properties: !item["properties"]
-      ? item["properties"]
-      : dataProductPropertiesSerializer(item["properties"]),
-    identity: !item["identity"]
-      ? item["identity"]
-      : managedServiceIdentityV4Serializer(item["identity"]),
+    properties: item["properties"]
+      ? dataProductPropertiesSerializer(item["properties"])
+      : item["properties"],
+    identity: item["identity"]
+      ? managedServiceIdentityV4Serializer(item["identity"])
+      : item["identity"],
   };
 }
 
@@ -668,7 +666,6 @@ export function dataProductDeserializer(item: any): DataProduct {
     tags: item["tags"],
     location: item["location"],
     id: item["id"],
-    name: item["name"],
     type: item["type"],
     systemData: !item["systemData"]
       ? item["systemData"]
@@ -733,11 +730,11 @@ export function dataProductPropertiesSerializer(
     publisher: item["publisher"],
     product: item["product"],
     majorVersion: item["majorVersion"],
-    owners: !item["owners"]
-      ? item["owners"]
-      : item["owners"].map((p: any) => {
+    owners: item["owners"]
+      ? item["owners"].map((p: any) => {
           return p;
-        }),
+        })
+      : item["owners"],
     redundancy: item["redundancy"],
     purviewAccount: item["purviewAccount"],
     purviewCollection: item["purviewCollection"],
@@ -745,19 +742,17 @@ export function dataProductPropertiesSerializer(
     publicNetworkAccess: item["publicNetworkAccess"],
     customerManagedKeyEncryptionEnabled:
       item["customerManagedKeyEncryptionEnabled"],
-    customerEncryptionKey: !item["customerEncryptionKey"]
-      ? item["customerEncryptionKey"]
-      : encryptionKeyDetailsSerializer(item["customerEncryptionKey"]),
-    networkacls: !item["networkacls"]
-      ? item["networkacls"]
-      : dataProductNetworkAclsSerializer(item["networkacls"]),
-    managedResourceGroupConfiguration: !item[
-      "managedResourceGroupConfiguration"
-    ]
-      ? item["managedResourceGroupConfiguration"]
-      : managedResourceGroupConfigurationSerializer(
+    customerEncryptionKey: item["customerEncryptionKey"]
+      ? encryptionKeyDetailsSerializer(item["customerEncryptionKey"])
+      : item["customerEncryptionKey"],
+    networkacls: item["networkacls"]
+      ? dataProductNetworkAclsSerializer(item["networkacls"])
+      : item["networkacls"],
+    managedResourceGroupConfiguration: item["managedResourceGroupConfiguration"]
+      ? managedResourceGroupConfigurationSerializer(
           item["managedResourceGroupConfiguration"],
-        ),
+        )
+      : item["managedResourceGroupConfiguration"],
     currentMinorVersion: item["currentMinorVersion"],
   };
 }
@@ -1058,9 +1053,9 @@ export function managedServiceIdentityV4Serializer(
 ): any {
   return {
     type: item["type"],
-    userAssignedIdentities: !item["userAssignedIdentities"]
-      ? item["userAssignedIdentities"]
-      : userAssignedIdentityRecordSerializer(item["userAssignedIdentities"]),
+    userAssignedIdentities: item["userAssignedIdentities"]
+      ? userAssignedIdentityRecordSerializer(item["userAssignedIdentities"])
+      : item["userAssignedIdentities"],
   };
 }
 
@@ -1185,13 +1180,13 @@ export interface DataProductUpdate {
 
 export function dataProductUpdateSerializer(item: DataProductUpdate): any {
   return {
-    identity: !item["identity"]
-      ? item["identity"]
-      : managedServiceIdentityV4Serializer(item["identity"]),
+    identity: item["identity"]
+      ? managedServiceIdentityV4Serializer(item["identity"])
+      : item["identity"],
     tags: item["tags"],
-    properties: !item["properties"]
-      ? item["properties"]
-      : dataProductUpdatePropertiesSerializer(item["properties"]),
+    properties: item["properties"]
+      ? dataProductUpdatePropertiesSerializer(item["properties"])
+      : item["properties"],
   };
 }
 
@@ -1213,11 +1208,11 @@ export function dataProductUpdatePropertiesSerializer(
   item: DataProductUpdateProperties,
 ): any {
   return {
-    owners: !item["owners"]
-      ? item["owners"]
-      : item["owners"].map((p: any) => {
+    owners: item["owners"]
+      ? item["owners"].map((p: any) => {
           return p;
-        }),
+        })
+      : item["owners"],
     purviewAccount: item["purviewAccount"],
     purviewCollection: item["purviewCollection"],
     privateLinksEnabled: item["privateLinksEnabled"],

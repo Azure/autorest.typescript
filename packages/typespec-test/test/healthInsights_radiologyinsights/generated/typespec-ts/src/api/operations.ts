@@ -45,9 +45,9 @@ export function _inferRadiologyInsightsSend(
           : {}),
         ...(options?.repeatabilityFirstSent !== undefined
           ? {
-              "Repeatability-First-Sent": !options?.repeatabilityFirstSent
-                ? options?.repeatabilityFirstSent
-                : options?.repeatabilityFirstSent.toUTCString(),
+              "Repeatability-First-Sent": options?.repeatabilityFirstSent
+                ? options?.repeatabilityFirstSent.toUTCString()
+                : options?.repeatabilityFirstSent,
             }
           : {}),
         accept: "application/json",
@@ -55,11 +55,11 @@ export function _inferRadiologyInsightsSend(
       },
       body: {
         patients: patientRecordArraySerializer(patients),
-        configuration: !options?.configuration
-          ? options?.configuration
-          : radiologyInsightsModelConfigurationSerializer(
+        configuration: options?.configuration
+          ? radiologyInsightsModelConfigurationSerializer(
               options?.configuration,
-            ),
+            )
+          : options?.configuration,
       },
     });
 }

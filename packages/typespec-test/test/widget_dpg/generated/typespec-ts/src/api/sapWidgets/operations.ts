@@ -496,17 +496,17 @@ export function _sapListWidgetsSend(
       "utc-date-header": utcDateHeader.toUTCString(),
       ...(options?.optionalDateHeader !== undefined
         ? {
-            "optional-date-header": !options?.optionalDateHeader
-              ? options?.optionalDateHeader
-              : options?.optionalDateHeader.toUTCString(),
+            "optional-date-header": options?.optionalDateHeader
+              ? options?.optionalDateHeader.toUTCString()
+              : options?.optionalDateHeader,
           }
         : {}),
       ...(options?.nullableDateHeader !== undefined &&
       options?.nullableDateHeader !== null
         ? {
-            "nullable-date-header": !options?.nullableDateHeader
-              ? options?.nullableDateHeader
-              : options?.nullableDateHeader.toUTCString(),
+            "nullable-date-header": options?.nullableDateHeader
+              ? options?.nullableDateHeader.toUTCString()
+              : options?.nullableDateHeader,
           }
         : {}),
       accept: "application/json",

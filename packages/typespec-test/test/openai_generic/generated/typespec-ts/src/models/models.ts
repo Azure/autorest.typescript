@@ -6,6 +6,16 @@ import {
   createFilePartDescriptor,
 } from "../static-helpers/multipartHelpers.js";
 import { serializeRecord } from "../static-helpers/serialization/serialize-record.js";
+import {
+  HttpPart2,
+  httpPart2Serializer,
+  HttpPart3,
+  httpPart3Serializer,
+  HttpPart4,
+  httpPart4Serializer,
+  HttpPart5,
+  httpPart5Serializer,
+} from "./typeSpec/http/models.js";
 import { stringToUint8Array } from "@azure/core-util";
 
 /** model interface CreateCompletionRequest */
@@ -131,15 +141,13 @@ export function createCompletionRequestSerializer(
 ): any {
   return {
     model: item["model"],
-    prompt: !item["prompt"]
-      ? item["prompt"]
-      : _promptSerializer(item["prompt"]),
+    prompt: item["prompt"] ? _promptSerializer(item["prompt"]) : item["prompt"],
     suffix: item["suffix"],
     temperature: item["temperature"],
     top_p: item["top_p"],
     n: item["n"],
     max_tokens: item["max_tokens"],
-    stop: !item["stop"] ? item["stop"] : _stopSerializer(item["stop"]),
+    stop: item["stop"] ? _stopSerializer(item["stop"]) : item["stop"],
     presence_penalty: item["presence_penalty"],
     frequency_penalty: item["frequency_penalty"],
     logit_bias: item["logit_bias"],
@@ -762,11 +770,11 @@ export function createFineTuneRequestSerializer(
     compute_classification_metrics: item["compute_classification_metrics"],
     classification_n_classes: item["classification_n_classes"],
     classification_positive_class: item["classification_positive_class"],
-    classification_betas: !item["classification_betas"]
-      ? item["classification_betas"]
-      : item["classification_betas"].map((p: any) => {
+    classification_betas: item["classification_betas"]
+      ? item["classification_betas"].map((p: any) => {
           return p;
-        }),
+        })
+      : item["classification_betas"],
     suffix: item["suffix"],
   };
 }
@@ -996,21 +1004,23 @@ export interface CreateImageRequest {
   /** A text description of the desired image(s). The maximum length is 1000 characters. */
   prompt: string;
   /** The number of images to generate. Must be between 1 and 10. */
-  n?: number | null;
+  n?: HttpPart2;
   /** The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. */
-  size?: ("256x256" | "512x512" | "1024x1024") | null;
+  size?: HttpPart3;
   /** The format in which the generated images are returned. Must be one of `url` or `b64_json`. */
-  response_format?: ("url" | "b64_json") | null;
-  user?: string;
+  response_format?: HttpPart4;
+  user?: HttpPart5;
 }
 
 export function createImageRequestSerializer(item: CreateImageRequest): any {
   return {
     prompt: item["prompt"],
-    n: item["n"],
-    size: item["size"],
-    response_format: item["response_format"],
-    user: item["user"],
+    n: item["n"] ? httpPart2Serializer(item["n"]) : item["n"],
+    size: item["size"] ? httpPart3Serializer(item["size"]) : item["size"],
+    response_format: item["response_format"]
+      ? httpPart4Serializer(item["response_format"])
+      : item["response_format"],
+    user: item["user"] ? httpPart5Serializer(item["user"]) : item["user"],
   };
 }
 
@@ -1635,19 +1645,19 @@ export function createChatCompletionRequestSerializer(
   return {
     model: item["model"],
     messages: chatCompletionRequestMessageArraySerializer(item["messages"]),
-    functions: !item["functions"]
-      ? item["functions"]
-      : chatCompletionFunctionsArraySerializer(item["functions"]),
-    function_call: !item["function_call"]
-      ? item["function_call"]
-      : _createChatCompletionRequestFunctionCallSerializer(
+    functions: item["functions"]
+      ? chatCompletionFunctionsArraySerializer(item["functions"])
+      : item["functions"],
+    function_call: item["function_call"]
+      ? _createChatCompletionRequestFunctionCallSerializer(
           item["function_call"],
-        ),
+        )
+      : item["function_call"],
     temperature: item["temperature"],
     top_p: item["top_p"],
     n: item["n"],
     max_tokens: item["max_tokens"],
-    stop: !item["stop"] ? item["stop"] : _stopSerializer(item["stop"]),
+    stop: item["stop"] ? _stopSerializer(item["stop"]) : item["stop"],
     presence_penalty: item["presence_penalty"],
     frequency_penalty: item["frequency_penalty"],
     logit_bias: item["logit_bias"],
@@ -1693,11 +1703,11 @@ export function chatCompletionRequestMessageSerializer(
     role: item["role"],
     content: item["content"],
     name: item["name"],
-    function_call: !item["function_call"]
-      ? item["function_call"]
-      : _chatCompletionRequestMessageFunctionCallSerializer(
+    function_call: item["function_call"]
+      ? _chatCompletionRequestMessageFunctionCallSerializer(
           item["function_call"],
-        ),
+        )
+      : item["function_call"],
   };
 }
 
@@ -1962,11 +1972,11 @@ export function createFineTuningJobRequestSerializer(
     training_file: item["training_file"],
     validation_file: item["validation_file"],
     model: item["model"],
-    hyperparameters: !item["hyperparameters"]
-      ? item["hyperparameters"]
-      : _createFineTuningJobRequestHyperparametersSerializer(
+    hyperparameters: item["hyperparameters"]
+      ? _createFineTuningJobRequestHyperparametersSerializer(
           item["hyperparameters"],
-        ),
+        )
+      : item["hyperparameters"],
     suffix: item["suffix"],
   };
 }
@@ -1984,11 +1994,11 @@ export function _createFineTuningJobRequestHyperparametersSerializer(
   item: _CreateFineTuningJobRequestHyperparameters,
 ): any {
   return {
-    n_epochs: !item["n_epochs"]
-      ? item["n_epochs"]
-      : _createFineTuningJobRequestHyperparametersNEpochsSerializer(
+    n_epochs: item["n_epochs"]
+      ? _createFineTuningJobRequestHyperparametersNEpochsSerializer(
           item["n_epochs"],
-        ),
+        )
+      : item["n_epochs"],
   };
 }
 

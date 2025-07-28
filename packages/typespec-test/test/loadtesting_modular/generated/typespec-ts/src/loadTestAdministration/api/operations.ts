@@ -217,12 +217,12 @@ export function _listTestsSend(
       "api%2Dversion": context.apiVersion,
       orderby: options?.orderby,
       search: options?.search,
-      lastModifiedStartTime: !options?.lastModifiedStartTime
-        ? options?.lastModifiedStartTime
-        : options?.lastModifiedStartTime.toISOString(),
-      lastModifiedEndTime: !options?.lastModifiedEndTime
-        ? options?.lastModifiedEndTime
-        : options?.lastModifiedEndTime.toISOString(),
+      lastModifiedStartTime: options?.lastModifiedStartTime
+        ? options?.lastModifiedStartTime.toISOString()
+        : options?.lastModifiedStartTime,
+      lastModifiedEndTime: options?.lastModifiedEndTime
+        ? options?.lastModifiedEndTime.toISOString()
+        : options?.lastModifiedEndTime,
       maxpagesize: options?.maxpagesize,
     },
     {

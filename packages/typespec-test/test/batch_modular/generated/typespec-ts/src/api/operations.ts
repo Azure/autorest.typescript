@@ -224,9 +224,9 @@ export function _listNodeFilesSend(
       headers: {
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.clientRequestId !== undefined
@@ -303,23 +303,23 @@ export function _getNodeFilePropertiesSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -392,23 +392,23 @@ export function _getNodeFileSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         ...(options?.ocpRange !== undefined
@@ -485,9 +485,9 @@ export function _deleteNodeFileSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
@@ -540,11 +540,11 @@ export function _listNodeExtensionsSend(
       nodeId: nodeId,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      "%24select": !options?.select
-        ? options?.select
-        : options?.select.map((p: any) => {
+      "%24select": options?.select
+        ? options?.select.map((p: any) => {
             return p;
-          }),
+          })
+        : options?.select,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -558,9 +558,9 @@ export function _listNodeExtensionsSend(
       headers: {
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.clientRequestId !== undefined
@@ -619,11 +619,11 @@ export function _getNodeExtensionSend(
       extensionName: extensionName,
       "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
-      "%24select": !options?.select
-        ? options?.select
-        : options?.select.map((p: any) => {
+      "%24select": options?.select
+        ? options?.select.map((p: any) => {
             return p;
-          }),
+          })
+        : options?.select,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -642,9 +642,9 @@ export function _getNodeExtensionSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
@@ -697,11 +697,11 @@ export function _listNodesSend(
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
       "%24filter": options?.filter,
-      "%24select": !options?.select
-        ? options?.select
-        : options?.select.map((p: any) => {
+      "%24select": options?.select
+        ? options?.select.map((p: any) => {
             return p;
-          }),
+          })
+        : options?.select,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -714,9 +714,9 @@ export function _listNodesSend(
       headers: {
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.clientRequestId !== undefined
@@ -792,9 +792,9 @@ export function _uploadNodeLogsSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
@@ -871,9 +871,9 @@ export function _getNodeRemoteDesktopFileSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/octet-stream",
@@ -947,9 +947,9 @@ export function _getNodeRemoteLoginSettingsSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
@@ -1024,9 +1024,9 @@ export function _enableNodeSchedulingSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
@@ -1099,17 +1099,17 @@ export function _disableNodeSchedulingSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      body: !options["body"]
-        ? options["body"]
-        : nodeDisableSchedulingOptionsSerializer(options["body"]),
+      body: options["body"]
+        ? nodeDisableSchedulingOptionsSerializer(options["body"])
+        : options["body"],
     });
 }
 
@@ -1177,17 +1177,17 @@ export function _reimageNodeSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      body: !options["body"]
-        ? options["body"]
-        : nodeReimageOptionsSerializer(options["body"]),
+      body: options["body"]
+        ? nodeReimageOptionsSerializer(options["body"])
+        : options["body"],
     });
 }
 
@@ -1251,17 +1251,17 @@ export function _rebootNodeSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      body: !options["body"]
-        ? options["body"]
-        : nodeRebootOptionsSerializer(options["body"]),
+      body: options["body"]
+        ? nodeRebootOptionsSerializer(options["body"])
+        : options["body"],
     });
 }
 
@@ -1302,11 +1302,11 @@ export function _getNodeSend(
       nodeId: nodeId,
       "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
-      "%24select": !options?.select
-        ? options?.select
-        : options?.select.map((p: any) => {
+      "%24select": options?.select
+        ? options?.select.map((p: any) => {
             return p;
-          }),
+          })
+        : options?.select,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -1325,9 +1325,9 @@ export function _getNodeSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
@@ -1395,9 +1395,9 @@ export function _replaceNodeUserSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
@@ -1478,9 +1478,9 @@ export function _deleteNodeUserSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
@@ -1556,9 +1556,9 @@ export function _createNodeUserSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
@@ -1630,9 +1630,9 @@ export function _listTaskFilesSend(
       headers: {
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.clientRequestId !== undefined
@@ -1709,23 +1709,23 @@ export function _getTaskFilePropertiesSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -1798,23 +1798,23 @@ export function _getTaskFileSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         ...(options?.ocpRange !== undefined
@@ -1891,9 +1891,9 @@ export function _deleteTaskFileSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
@@ -1964,9 +1964,9 @@ export function _reactivateTaskSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -1977,16 +1977,16 @@ export function _reactivateTaskSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -2058,9 +2058,9 @@ export function _terminateTaskSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -2071,16 +2071,16 @@ export function _terminateTaskSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -2130,11 +2130,11 @@ export function _listSubTasksSend(
       taskId: taskId,
       "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
-      "%24select": !options?.select
-        ? options?.select
-        : options?.select.map((p: any) => {
+      "%24select": options?.select
+        ? options?.select.map((p: any) => {
             return p;
-          }),
+          })
+        : options?.select,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -2153,9 +2153,9 @@ export function _listSubTasksSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
@@ -2221,9 +2221,9 @@ export function _replaceTaskSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -2234,16 +2234,16 @@ export function _replaceTaskSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -2291,16 +2291,16 @@ export function _getTaskSend(
       taskId: taskId,
       "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
-      "%24select": !options?.select
-        ? options?.select
-        : options?.select.map((p: any) => {
+      "%24select": options?.select
+        ? options?.select.map((p: any) => {
             return p;
-          }),
-      "%24expand": !options?.expand
-        ? options?.expand
-        : options?.expand.map((p: any) => {
+          })
+        : options?.select,
+      "%24expand": options?.expand
+        ? options?.expand.map((p: any) => {
             return p;
-          }),
+          })
+        : options?.expand,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -2319,9 +2319,9 @@ export function _getTaskSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -2332,16 +2332,16 @@ export function _getTaskSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -2409,9 +2409,9 @@ export function _deleteTaskSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -2422,16 +2422,16 @@ export function _deleteTaskSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -2501,9 +2501,9 @@ export function _createTaskCollectionSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
@@ -2570,16 +2570,16 @@ export function _listTasksSend(
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
       "%24filter": options?.filter,
-      "%24select": !options?.select
-        ? options?.select
-        : options?.select.map((p: any) => {
+      "%24select": options?.select
+        ? options?.select.map((p: any) => {
             return p;
-          }),
-      "%24expand": !options?.expand
-        ? options?.expand
-        : options?.expand.map((p: any) => {
+          })
+        : options?.select,
+      "%24expand": options?.expand
+        ? options?.expand.map((p: any) => {
             return p;
-          }),
+          })
+        : options?.expand,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -2592,9 +2592,9 @@ export function _listTasksSend(
       headers: {
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.clientRequestId !== undefined
@@ -2672,9 +2672,9 @@ export function _createTaskSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
@@ -2723,16 +2723,16 @@ export function _listJobSchedulesSend(
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
       "%24filter": options?.filter,
-      "%24select": !options?.select
-        ? options?.select
-        : options?.select.map((p: any) => {
+      "%24select": options?.select
+        ? options?.select.map((p: any) => {
             return p;
-          }),
-      "%24expand": !options?.expand
-        ? options?.expand
-        : options?.expand.map((p: any) => {
+          })
+        : options?.select,
+      "%24expand": options?.expand
+        ? options?.expand.map((p: any) => {
             return p;
-          }),
+          })
+        : options?.expand,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -2745,9 +2745,9 @@ export function _listJobSchedulesSend(
       headers: {
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.clientRequestId !== undefined
@@ -2818,9 +2818,9 @@ export function _createJobScheduleSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
@@ -2882,9 +2882,9 @@ export function _terminateJobScheduleSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -2895,16 +2895,16 @@ export function _terminateJobScheduleSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -2969,9 +2969,9 @@ export function _enableJobScheduleSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -2982,16 +2982,16 @@ export function _enableJobScheduleSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -3052,9 +3052,9 @@ export function _disableJobScheduleSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -3065,16 +3065,16 @@ export function _disableJobScheduleSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -3137,9 +3137,9 @@ export function _replaceJobScheduleSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -3150,16 +3150,16 @@ export function _replaceJobScheduleSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -3235,9 +3235,9 @@ export function _updateJobScheduleSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -3248,16 +3248,16 @@ export function _updateJobScheduleSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -3313,16 +3313,16 @@ export function _getJobScheduleSend(
       jobScheduleId: jobScheduleId,
       "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
-      "%24select": !options?.select
-        ? options?.select
-        : options?.select.map((p: any) => {
+      "%24select": options?.select
+        ? options?.select.map((p: any) => {
             return p;
-          }),
-      "%24expand": !options?.expand
-        ? options?.expand
-        : options?.expand.map((p: any) => {
+          })
+        : options?.select,
+      "%24expand": options?.expand
+        ? options?.expand.map((p: any) => {
             return p;
-          }),
+          })
+        : options?.expand,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -3341,9 +3341,9 @@ export function _getJobScheduleSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -3354,16 +3354,16 @@ export function _getJobScheduleSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -3424,9 +3424,9 @@ export function _deleteJobScheduleSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -3437,16 +3437,16 @@ export function _deleteJobScheduleSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -3513,9 +3513,9 @@ export function _jobScheduleExistsSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -3526,16 +3526,16 @@ export function _jobScheduleExistsSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -3580,11 +3580,11 @@ export function _getCertificateSend(
       thumbprint: thumbprint,
       "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
-      "%24select": !options?.select
-        ? options?.select
-        : options?.select.map((p: any) => {
+      "%24select": options?.select
+        ? options?.select.map((p: any) => {
             return p;
-          }),
+          })
+        : options?.select,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -3603,9 +3603,9 @@ export function _getCertificateSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
@@ -3674,9 +3674,9 @@ export function _deleteCertificateSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
@@ -3755,9 +3755,9 @@ export function _cancelCertificateDeletionSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
@@ -3814,11 +3814,11 @@ export function _listCertificatesSend(
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
       "%24filter": options?.filter,
-      "%24select": !options?.select
-        ? options?.select
-        : options?.select.map((p: any) => {
+      "%24select": options?.select
+        ? options?.select.map((p: any) => {
             return p;
-          }),
+          })
+        : options?.select,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -3831,9 +3831,9 @@ export function _listCertificatesSend(
       headers: {
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.clientRequestId !== undefined
@@ -3904,9 +3904,9 @@ export function _createCertificateSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
@@ -3968,9 +3968,9 @@ export function _getJobTaskCountsSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
@@ -4021,11 +4021,11 @@ export function _listJobPreparationAndReleaseTaskStatusSend(
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
       "%24filter": options?.filter,
-      "%24select": !options?.select
-        ? options?.select
-        : options?.select.map((p: any) => {
+      "%24select": options?.select
+        ? options?.select.map((p: any) => {
             return p;
-          }),
+          })
+        : options?.select,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -4039,9 +4039,9 @@ export function _listJobPreparationAndReleaseTaskStatusSend(
       headers: {
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.clientRequestId !== undefined
@@ -4108,16 +4108,16 @@ export function _listJobsFromScheduleSend(
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
       "%24filter": options?.filter,
-      "%24select": !options?.select
-        ? options?.select
-        : options?.select.map((p: any) => {
+      "%24select": options?.select
+        ? options?.select.map((p: any) => {
             return p;
-          }),
-      "%24expand": !options?.expand
-        ? options?.expand
-        : options?.expand.map((p: any) => {
+          })
+        : options?.select,
+      "%24expand": options?.expand
+        ? options?.expand.map((p: any) => {
             return p;
-          }),
+          })
+        : options?.expand,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -4130,9 +4130,9 @@ export function _listJobsFromScheduleSend(
       headers: {
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.clientRequestId !== undefined
@@ -4186,16 +4186,16 @@ export function _listJobsSend(
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
       "%24filter": options?.filter,
-      "%24select": !options?.select
-        ? options?.select
-        : options?.select.map((p: any) => {
+      "%24select": options?.select
+        ? options?.select.map((p: any) => {
             return p;
-          }),
-      "%24expand": !options?.expand
-        ? options?.expand
-        : options?.expand.map((p: any) => {
+          })
+        : options?.select,
+      "%24expand": options?.expand
+        ? options?.expand.map((p: any) => {
             return p;
-          }),
+          })
+        : options?.expand,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -4208,9 +4208,9 @@ export function _listJobsSend(
       headers: {
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.clientRequestId !== undefined
@@ -4281,9 +4281,9 @@ export function _createJobSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
@@ -4356,9 +4356,9 @@ export function _terminateJobSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -4369,24 +4369,24 @@ export function _terminateJobSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      body: !options["body"]
-        ? options["body"]
-        : batchJobTerminateOptionsSerializer(options["body"]),
+      body: options["body"]
+        ? batchJobTerminateOptionsSerializer(options["body"])
+        : options["body"],
     });
 }
 
@@ -4449,9 +4449,9 @@ export function _enableJobSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -4462,16 +4462,16 @@ export function _enableJobSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -4541,9 +4541,9 @@ export function _disableJobSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -4554,16 +4554,16 @@ export function _disableJobSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -4637,9 +4637,9 @@ export function _replaceJobSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -4650,16 +4650,16 @@ export function _replaceJobSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -4728,9 +4728,9 @@ export function _updateJobSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -4741,16 +4741,16 @@ export function _updateJobSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -4799,16 +4799,16 @@ export function _getJobSend(
       jobId: jobId,
       "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
-      "%24select": !options?.select
-        ? options?.select
-        : options?.select.map((p: any) => {
+      "%24select": options?.select
+        ? options?.select.map((p: any) => {
             return p;
-          }),
-      "%24expand": !options?.expand
-        ? options?.expand
-        : options?.expand.map((p: any) => {
+          })
+        : options?.select,
+      "%24expand": options?.expand
+        ? options?.expand.map((p: any) => {
             return p;
-          }),
+          })
+        : options?.expand,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -4827,9 +4827,9 @@ export function _getJobSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -4840,16 +4840,16 @@ export function _getJobSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -4910,9 +4910,9 @@ export function _deleteJobSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -4923,16 +4923,16 @@ export function _deleteJobSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -4996,9 +4996,9 @@ export function _listPoolNodeCountsSend(
       headers: {
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.clientRequestId !== undefined
@@ -5067,9 +5067,9 @@ export function _listSupportedImagesSend(
       headers: {
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.clientRequestId !== undefined
@@ -5142,9 +5142,9 @@ export function _removeNodesSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -5155,16 +5155,16 @@ export function _removeNodesSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -5233,9 +5233,9 @@ export function _replacePoolPropertiesSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
@@ -5307,9 +5307,9 @@ export function _stopPoolResizeSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -5320,16 +5320,16 @@ export function _stopPoolResizeSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -5400,9 +5400,9 @@ export function _resizePoolSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -5413,16 +5413,16 @@ export function _resizePoolSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -5495,9 +5495,9 @@ export function _evaluatePoolAutoScaleSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
@@ -5571,9 +5571,9 @@ export function _enablePoolAutoScaleSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -5584,16 +5584,16 @@ export function _enablePoolAutoScaleSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -5663,9 +5663,9 @@ export function _disablePoolAutoScaleSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
@@ -5728,9 +5728,9 @@ export function _updatePoolSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -5741,16 +5741,16 @@ export function _updatePoolSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -5799,16 +5799,16 @@ export function _getPoolSend(
       poolId: poolId,
       "api%2Dversion": context.apiVersion,
       timeOut: options?.timeOutInSeconds,
-      "%24select": !options?.select
-        ? options?.select
-        : options?.select.map((p: any) => {
+      "%24select": options?.select
+        ? options?.select.map((p: any) => {
             return p;
-          }),
-      "%24expand": !options?.expand
-        ? options?.expand
-        : options?.expand.map((p: any) => {
+          })
+        : options?.select,
+      "%24expand": options?.expand
+        ? options?.expand.map((p: any) => {
             return p;
-          }),
+          })
+        : options?.expand,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -5827,9 +5827,9 @@ export function _getPoolSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -5840,16 +5840,16 @@ export function _getPoolSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -5910,9 +5910,9 @@ export function _poolExistsSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -5923,16 +5923,16 @@ export function _poolExistsSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -5993,9 +5993,9 @@ export function _deletePoolSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.ifMatch !== undefined
@@ -6006,16 +6006,16 @@ export function _deletePoolSend(
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
-              "if-modified-since": !options?.ifModifiedSince
-                ? options?.ifModifiedSince
-                : options?.ifModifiedSince.toUTCString(),
+              "if-modified-since": options?.ifModifiedSince
+                ? options?.ifModifiedSince.toUTCString()
+                : options?.ifModifiedSince,
             }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
           ? {
-              "if-unmodified-since": !options?.ifUnmodifiedSince
-                ? options?.ifUnmodifiedSince
-                : options?.ifUnmodifiedSince.toUTCString(),
+              "if-unmodified-since": options?.ifUnmodifiedSince
+                ? options?.ifUnmodifiedSince.toUTCString()
+                : options?.ifUnmodifiedSince,
             }
           : {}),
         accept: "application/json",
@@ -6071,16 +6071,16 @@ export function _listPoolsSend(
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
       "%24filter": options?.filter,
-      "%24select": !options?.select
-        ? options?.select
-        : options?.select.map((p: any) => {
+      "%24select": options?.select
+        ? options?.select.map((p: any) => {
             return p;
-          }),
-      "%24expand": !options?.expand
-        ? options?.expand
-        : options?.expand.map((p: any) => {
+          })
+        : options?.select,
+      "%24expand": options?.expand
+        ? options?.expand.map((p: any) => {
             return p;
-          }),
+          })
+        : options?.expand,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -6093,9 +6093,9 @@ export function _listPoolsSend(
       headers: {
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.clientRequestId !== undefined
@@ -6166,9 +6166,9 @@ export function _createPoolSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
@@ -6215,12 +6215,12 @@ export function _listPoolUsageMetricsSend(
       "api%2Dversion": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      starttime: !options?.starttime
-        ? options?.starttime
-        : options?.starttime.toISOString(),
-      endtime: !options?.endtime
-        ? options?.endtime
-        : options?.endtime.toISOString(),
+      starttime: options?.starttime
+        ? options?.starttime.toISOString()
+        : options?.starttime,
+      endtime: options?.endtime
+        ? options?.endtime.toISOString()
+        : options?.endtime,
       "%24filter": options?.filter,
     },
     {
@@ -6234,9 +6234,9 @@ export function _listPoolUsageMetricsSend(
       headers: {
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.clientRequestId !== undefined
@@ -6314,9 +6314,9 @@ export function _getApplicationSend(
           : {}),
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         accept: "application/json",
@@ -6376,9 +6376,9 @@ export function _listApplicationsSend(
       headers: {
         ...(options?.ocpDate !== undefined
           ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
+              "ocp-date": options?.ocpDate
+                ? options?.ocpDate.toUTCString()
+                : options?.ocpDate,
             }
           : {}),
         ...(options?.clientRequestId !== undefined

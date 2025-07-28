@@ -58,7 +58,7 @@ export function audioTranscriptionOptionsSerializer(
       : [{ name: "filename", body: item["filename"] }]),
     ...(item["responseFormat"] === undefined
       ? []
-      : [{ name: "response_format", body: item["responseFormat"] }]),
+      : [{ name: "responseFormat", body: item["responseFormat"] }]),
     ...(item["language"] === undefined
       ? []
       : [{ name: "language", body: item["language"] }]),
@@ -71,12 +71,12 @@ export function audioTranscriptionOptionsSerializer(
     ...(item["timestampGranularities"] === undefined
       ? []
       : [
-          ...(!item["timestampGranularities"]
-            ? item["timestampGranularities"]
-            : item["timestampGranularities"].map((p: any) => {
+          ...(item["timestampGranularities"]
+            ? item["timestampGranularities"].map((p: any) => {
                 return p;
               })
-          ).map((x: unknown) => ({ name: "timestamp_granularities", body: x })),
+            : item["timestampGranularities"]
+          ).map((x: unknown) => ({ name: "timestampGranularities", body: x })),
         ]),
     ...(item["model"] === undefined
       ? []
@@ -258,7 +258,7 @@ export function audioTranslationOptionsSerializer(
       : [{ name: "filename", body: item["filename"] }]),
     ...(item["responseFormat"] === undefined
       ? []
-      : [{ name: "response_format", body: item["responseFormat"] }]),
+      : [{ name: "responseFormat", body: item["responseFormat"] }]),
     ...(item["prompt"] === undefined
       ? []
       : [{ name: "prompt", body: item["prompt"] }]),
@@ -477,11 +477,11 @@ export function completionsOptionsSerializer(item: CompletionsOptions): any {
     logprobs: item["logprobs"],
     suffix: item["suffix"],
     echo: item["echo"],
-    stop: !item["stop"]
-      ? item["stop"]
-      : item["stop"].map((p: any) => {
+    stop: item["stop"]
+      ? item["stop"].map((p: any) => {
           return p;
-        }),
+        })
+      : item["stop"],
     presence_penalty: item["presencePenalty"],
     frequency_penalty: item["frequencyPenalty"],
     best_of: item["bestOf"],
@@ -1035,47 +1035,45 @@ export function chatCompletionsOptionsSerializer(
 ): any {
   return {
     messages: chatRequestMessageUnionArraySerializer(item["messages"]),
-    functions: !item["functions"]
-      ? item["functions"]
-      : functionDefinitionArraySerializer(item["functions"]),
-    function_call: !item["functionCall"]
-      ? item["functionCall"]
-      : _chatCompletionsOptionsFunctionCallSerializer(item["functionCall"]),
+    functions: item["functions"]
+      ? functionDefinitionArraySerializer(item["functions"])
+      : item["functions"],
+    function_call: item["functionCall"]
+      ? _chatCompletionsOptionsFunctionCallSerializer(item["functionCall"])
+      : item["functionCall"],
     max_tokens: item["maxTokens"],
     temperature: item["temperature"],
     top_p: item["topP"],
     logit_bias: item["logitBias"],
     user: item["user"],
     n: item["n"],
-    stop: !item["stop"]
-      ? item["stop"]
-      : item["stop"].map((p: any) => {
+    stop: item["stop"]
+      ? item["stop"].map((p: any) => {
           return p;
-        }),
+        })
+      : item["stop"],
     presence_penalty: item["presencePenalty"],
     frequency_penalty: item["frequencyPenalty"],
     stream: item["stream"],
     model: item["model"],
-    data_sources: !item["dataSources"]
-      ? item["dataSources"]
-      : azureChatExtensionConfigurationUnionArraySerializer(
-          item["dataSources"],
-        ),
-    enhancements: !item["enhancements"]
-      ? item["enhancements"]
-      : azureChatEnhancementConfigurationSerializer(item["enhancements"]),
+    data_sources: item["dataSources"]
+      ? azureChatExtensionConfigurationUnionArraySerializer(item["dataSources"])
+      : item["dataSources"],
+    enhancements: item["enhancements"]
+      ? azureChatEnhancementConfigurationSerializer(item["enhancements"])
+      : item["enhancements"],
     seed: item["seed"],
     logprobs: item["logprobs"],
     top_logprobs: item["topLogprobs"],
-    response_format: !item["responseFormat"]
-      ? item["responseFormat"]
-      : chatCompletionsResponseFormatUnionSerializer(item["responseFormat"]),
-    tools: !item["tools"]
-      ? item["tools"]
-      : chatCompletionsToolDefinitionUnionArraySerializer(item["tools"]),
-    tool_choice: !item["toolChoice"]
-      ? item["toolChoice"]
-      : _chatCompletionsOptionsToolChoiceSerializer(item["toolChoice"]),
+    response_format: item["responseFormat"]
+      ? chatCompletionsResponseFormatUnionSerializer(item["responseFormat"])
+      : item["responseFormat"],
+    tools: item["tools"]
+      ? chatCompletionsToolDefinitionUnionArraySerializer(item["tools"])
+      : item["tools"],
+    tool_choice: item["toolChoice"]
+      ? _chatCompletionsOptionsToolChoiceSerializer(item["toolChoice"])
+      : item["toolChoice"],
   };
 }
 
@@ -1312,12 +1310,12 @@ export function chatRequestAssistantMessageSerializer(
     role: item["role"],
     content: item["content"],
     name: item["name"],
-    tool_calls: !item["toolCalls"]
-      ? item["toolCalls"]
-      : chatCompletionsToolCallUnionArraySerializer(item["toolCalls"]),
-    function_call: !item["functionCall"]
-      ? item["functionCall"]
-      : functionCallSerializer(item["functionCall"]),
+    tool_calls: item["toolCalls"]
+      ? chatCompletionsToolCallUnionArraySerializer(item["toolCalls"])
+      : item["toolCalls"],
+    function_call: item["functionCall"]
+      ? functionCallSerializer(item["functionCall"])
+      : item["functionCall"],
   };
 }
 
@@ -1707,33 +1705,33 @@ export function azureSearchChatExtensionParametersSerializer(
   item: AzureSearchChatExtensionParameters,
 ): any {
   return {
-    authentication: !item["authentication"]
-      ? item["authentication"]
-      : onYourDataAuthenticationOptionsUnionSerializer(item["authentication"]),
+    authentication: item["authentication"]
+      ? onYourDataAuthenticationOptionsUnionSerializer(item["authentication"])
+      : item["authentication"],
     top_n_documents: item["topNDocuments"],
     in_scope: item["inScope"],
     strictness: item["strictness"],
     role_information: item["roleInformation"],
     max_search_queries: item["maxSearchQueries"],
     allow_partial_result: item["allowPartialResult"],
-    include_contexts: !item["includeContexts"]
-      ? item["includeContexts"]
-      : item["includeContexts"].map((p: any) => {
+    include_contexts: item["includeContexts"]
+      ? item["includeContexts"].map((p: any) => {
           return p;
-        }),
+        })
+      : item["includeContexts"],
     endpoint: item["endpoint"],
     index_name: item["indexName"],
-    fields_mapping: !item["fieldsMapping"]
-      ? item["fieldsMapping"]
-      : azureSearchIndexFieldMappingOptionsSerializer(item["fieldsMapping"]),
+    fields_mapping: item["fieldsMapping"]
+      ? azureSearchIndexFieldMappingOptionsSerializer(item["fieldsMapping"])
+      : item["fieldsMapping"],
     query_type: item["queryType"],
     semantic_configuration: item["semanticConfiguration"],
     filter: item["filter"],
-    embedding_dependency: !item["embeddingDependency"]
-      ? item["embeddingDependency"]
-      : onYourDataVectorizationSourceUnionSerializer(
+    embedding_dependency: item["embeddingDependency"]
+      ? onYourDataVectorizationSourceUnionSerializer(
           item["embeddingDependency"],
-        ),
+        )
+      : item["embeddingDependency"],
   };
 }
 
@@ -1954,22 +1952,22 @@ export function azureSearchIndexFieldMappingOptionsSerializer(
     title_field: item["titleField"],
     url_field: item["urlField"],
     filepath_field: item["filepathField"],
-    content_fields: !item["contentFields"]
-      ? item["contentFields"]
-      : item["contentFields"].map((p: any) => {
+    content_fields: item["contentFields"]
+      ? item["contentFields"].map((p: any) => {
           return p;
-        }),
+        })
+      : item["contentFields"],
     content_fields_separator: item["contentFieldsSeparator"],
-    vector_fields: !item["vectorFields"]
-      ? item["vectorFields"]
-      : item["vectorFields"].map((p: any) => {
+    vector_fields: item["vectorFields"]
+      ? item["vectorFields"].map((p: any) => {
           return p;
-        }),
-    image_vector_fields: !item["imageVectorFields"]
-      ? item["imageVectorFields"]
-      : item["imageVectorFields"].map((p: any) => {
+        })
+      : item["vectorFields"],
+    image_vector_fields: item["imageVectorFields"]
+      ? item["imageVectorFields"].map((p: any) => {
           return p;
-        }),
+        })
+      : item["imageVectorFields"],
   };
 }
 
@@ -2245,20 +2243,20 @@ export function azureMachineLearningIndexChatExtensionParametersSerializer(
   item: AzureMachineLearningIndexChatExtensionParameters,
 ): any {
   return {
-    authentication: !item["authentication"]
-      ? item["authentication"]
-      : onYourDataAuthenticationOptionsUnionSerializer(item["authentication"]),
+    authentication: item["authentication"]
+      ? onYourDataAuthenticationOptionsUnionSerializer(item["authentication"])
+      : item["authentication"],
     top_n_documents: item["topNDocuments"],
     in_scope: item["inScope"],
     strictness: item["strictness"],
     role_information: item["roleInformation"],
     max_search_queries: item["maxSearchQueries"],
     allow_partial_result: item["allowPartialResult"],
-    include_contexts: !item["includeContexts"]
-      ? item["includeContexts"]
-      : item["includeContexts"].map((p: any) => {
+    include_contexts: item["includeContexts"]
+      ? item["includeContexts"].map((p: any) => {
           return p;
-        }),
+        })
+      : item["includeContexts"],
     project_resource_id: item["projectResourceId"],
     name: item["name"],
     version: item["version"],
@@ -2341,20 +2339,20 @@ export function azureCosmosDBChatExtensionParametersSerializer(
   item: AzureCosmosDBChatExtensionParameters,
 ): any {
   return {
-    authentication: !item["authentication"]
-      ? item["authentication"]
-      : onYourDataAuthenticationOptionsUnionSerializer(item["authentication"]),
+    authentication: item["authentication"]
+      ? onYourDataAuthenticationOptionsUnionSerializer(item["authentication"])
+      : item["authentication"],
     top_n_documents: item["topNDocuments"],
     in_scope: item["inScope"],
     strictness: item["strictness"],
     role_information: item["roleInformation"],
     max_search_queries: item["maxSearchQueries"],
     allow_partial_result: item["allowPartialResult"],
-    include_contexts: !item["includeContexts"]
-      ? item["includeContexts"]
-      : item["includeContexts"].map((p: any) => {
+    include_contexts: item["includeContexts"]
+      ? item["includeContexts"].map((p: any) => {
           return p;
-        }),
+        })
+      : item["includeContexts"],
     database_name: item["databaseName"],
     container_name: item["containerName"],
     index_name: item["indexName"],
@@ -2472,31 +2470,31 @@ export function elasticsearchChatExtensionParametersSerializer(
   item: ElasticsearchChatExtensionParameters,
 ): any {
   return {
-    authentication: !item["authentication"]
-      ? item["authentication"]
-      : onYourDataAuthenticationOptionsUnionSerializer(item["authentication"]),
+    authentication: item["authentication"]
+      ? onYourDataAuthenticationOptionsUnionSerializer(item["authentication"])
+      : item["authentication"],
     top_n_documents: item["topNDocuments"],
     in_scope: item["inScope"],
     strictness: item["strictness"],
     role_information: item["roleInformation"],
     max_search_queries: item["maxSearchQueries"],
     allow_partial_result: item["allowPartialResult"],
-    include_contexts: !item["includeContexts"]
-      ? item["includeContexts"]
-      : item["includeContexts"].map((p: any) => {
+    include_contexts: item["includeContexts"]
+      ? item["includeContexts"].map((p: any) => {
           return p;
-        }),
+        })
+      : item["includeContexts"],
     endpoint: item["endpoint"],
     index_name: item["indexName"],
-    fields_mapping: !item["fieldsMapping"]
-      ? item["fieldsMapping"]
-      : elasticsearchIndexFieldMappingOptionsSerializer(item["fieldsMapping"]),
+    fields_mapping: item["fieldsMapping"]
+      ? elasticsearchIndexFieldMappingOptionsSerializer(item["fieldsMapping"])
+      : item["fieldsMapping"],
     query_type: item["queryType"],
-    embedding_dependency: !item["embeddingDependency"]
-      ? item["embeddingDependency"]
-      : onYourDataVectorizationSourceUnionSerializer(
+    embedding_dependency: item["embeddingDependency"]
+      ? onYourDataVectorizationSourceUnionSerializer(
           item["embeddingDependency"],
-        ),
+        )
+      : item["embeddingDependency"],
   };
 }
 
@@ -2523,17 +2521,17 @@ export function elasticsearchIndexFieldMappingOptionsSerializer(
     title_field: item["titleField"],
     url_field: item["urlField"],
     filepath_field: item["filepathField"],
-    content_fields: !item["contentFields"]
-      ? item["contentFields"]
-      : item["contentFields"].map((p: any) => {
+    content_fields: item["contentFields"]
+      ? item["contentFields"].map((p: any) => {
           return p;
-        }),
+        })
+      : item["contentFields"],
     content_fields_separator: item["contentFieldsSeparator"],
-    vector_fields: !item["vectorFields"]
-      ? item["vectorFields"]
-      : item["vectorFields"].map((p: any) => {
+    vector_fields: item["vectorFields"]
+      ? item["vectorFields"].map((p: any) => {
           return p;
-        }),
+        })
+      : item["vectorFields"],
   };
 }
 
@@ -2608,20 +2606,20 @@ export function pineconeChatExtensionParametersSerializer(
   item: PineconeChatExtensionParameters,
 ): any {
   return {
-    authentication: !item["authentication"]
-      ? item["authentication"]
-      : onYourDataAuthenticationOptionsUnionSerializer(item["authentication"]),
+    authentication: item["authentication"]
+      ? onYourDataAuthenticationOptionsUnionSerializer(item["authentication"])
+      : item["authentication"],
     top_n_documents: item["topNDocuments"],
     in_scope: item["inScope"],
     strictness: item["strictness"],
     role_information: item["roleInformation"],
     max_search_queries: item["maxSearchQueries"],
     allow_partial_result: item["allowPartialResult"],
-    include_contexts: !item["includeContexts"]
-      ? item["includeContexts"]
-      : item["includeContexts"].map((p: any) => {
+    include_contexts: item["includeContexts"]
+      ? item["includeContexts"].map((p: any) => {
           return p;
-        }),
+        })
+      : item["includeContexts"],
     environment: item["environment"],
     index_name: item["indexName"],
     fields_mapping: pineconeFieldMappingOptionsSerializer(
@@ -2673,12 +2671,12 @@ export function azureChatEnhancementConfigurationSerializer(
   item: AzureChatEnhancementConfiguration,
 ): any {
   return {
-    grounding: !item["grounding"]
-      ? item["grounding"]
-      : azureChatGroundingEnhancementConfigurationSerializer(item["grounding"]),
-    ocr: !item["ocr"]
-      ? item["ocr"]
-      : azureChatOCREnhancementConfigurationSerializer(item["ocr"]),
+    grounding: item["grounding"]
+      ? azureChatGroundingEnhancementConfigurationSerializer(item["grounding"])
+      : item["grounding"],
+    ocr: item["ocr"]
+      ? azureChatOCREnhancementConfigurationSerializer(item["ocr"])
+      : item["ocr"],
   };
 }
 

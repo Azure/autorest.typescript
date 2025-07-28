@@ -113,9 +113,9 @@ export function todoItemSerializer(item: TodoItem): any {
     assignedTo: item["assignedTo"],
     description: item["description"],
     status: item["status"],
-    labels: !item["labels"]
-      ? item["labels"]
-      : todoLabelsSerializer(item["labels"]),
+    labels: item["labels"]
+      ? todoLabelsSerializer(item["labels"])
+      : item["labels"],
     _dummy: item["dummy"],
   };
 }
@@ -235,7 +235,14 @@ export function todoAttachmentArrayDeserializer(
 
 /** model interface ToDoItemMultipartRequest */
 export interface ToDoItemMultipartRequest {
-  item: TodoItem;
+  item: {
+    title: string;
+    assignedTo?: number;
+    description?: string;
+    status: "NotStarted" | "InProgress" | "Completed";
+    labels?: TodoLabels;
+    dummy?: string;
+  };
   attachments?: Array<
     | FileContents
     | { contents: FileContents; contentType?: string; filename?: string }
@@ -246,7 +253,19 @@ export function toDoItemMultipartRequestSerializer(
   item: ToDoItemMultipartRequest,
 ): any {
   return [
-    { name: "item", body: todoItemSerializer(item["item"]) },
+    {
+      name: "item",
+      body: {
+        title: item["item"]["title"],
+        assignedTo: item["item"]["assignedTo"],
+        description: item["item"]["description"],
+        status: item["item"]["status"],
+        labels: item["item"]["labels"]
+          ? todoLabelsSerializer(item["item"]["labels"])
+          : item["item"]["labels"],
+        _dummy: item["item"]["dummy"],
+      },
+    },
     ...(item["attachments"] === undefined
       ? []
       : [

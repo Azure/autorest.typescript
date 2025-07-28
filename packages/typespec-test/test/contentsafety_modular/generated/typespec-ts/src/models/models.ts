@@ -20,16 +20,16 @@ export interface AnalyzeTextOptions {
 export function analyzeTextOptionsSerializer(item: AnalyzeTextOptions): any {
   return {
     text: item["text"],
-    categories: !item["categories"]
-      ? item["categories"]
-      : item["categories"].map((p: any) => {
+    categories: item["categories"]
+      ? item["categories"].map((p: any) => {
           return p;
-        }),
-    blocklistNames: !item["blocklistNames"]
-      ? item["blocklistNames"]
-      : item["blocklistNames"].map((p: any) => {
+        })
+      : item["categories"],
+    blocklistNames: item["blocklistNames"]
+      ? item["blocklistNames"].map((p: any) => {
           return p;
-        }),
+        })
+      : item["blocklistNames"],
     haltOnBlocklistHit: item["haltOnBlocklistHit"],
     outputType: item["outputType"],
   };
@@ -123,11 +123,11 @@ export interface ShieldPromptOptions {
 export function shieldPromptOptionsSerializer(item: ShieldPromptOptions): any {
   return {
     userPrompt: item["userPrompt"],
-    documents: !item["documents"]
-      ? item["documents"]
-      : item["documents"].map((p: any) => {
+    documents: item["documents"]
+      ? item["documents"].map((p: any) => {
           return p;
-        }),
+        })
+      : item["documents"],
   };
 }
 
@@ -245,11 +245,11 @@ export interface AnalyzeImageOptions {
 export function analyzeImageOptionsSerializer(item: AnalyzeImageOptions): any {
   return {
     image: imageDataSerializer(item["image"]),
-    categories: !item["categories"]
-      ? item["categories"]
-      : item["categories"].map((p: any) => {
+    categories: item["categories"]
+      ? item["categories"].map((p: any) => {
           return p;
-        }),
+        })
+      : item["categories"],
     outputType: item["outputType"],
   };
 }
@@ -264,9 +264,9 @@ export interface ImageData {
 
 export function imageDataSerializer(item: ImageData): any {
   return {
-    content: !item["content"]
-      ? item["content"]
-      : uint8ArrayToString(item["content"], "base64"),
+    content: item["content"]
+      ? uint8ArrayToString(item["content"], "base64")
+      : item["content"],
     blobUrl: item["blobUrl"],
   };
 }

@@ -33,11 +33,11 @@ export function cloudEventSerializer(item: CloudEvent): any {
     id: item["id"],
     source: item["source"],
     data: item["data"],
-    data_base64: !item["dataBase64"]
-      ? item["dataBase64"]
-      : uint8ArrayToString(item["dataBase64"], "base64"),
+    data_base64: item["dataBase64"]
+      ? uint8ArrayToString(item["dataBase64"], "base64")
+      : item["dataBase64"],
     type: item["type"],
-    time: !item["time"] ? item["time"] : item["time"].toISOString(),
+    time: item["time"] ? item["time"].toISOString() : item["time"],
     specversion: item["specversion"],
     dataschema: item["dataschema"],
     datacontenttype: item["datacontenttype"],

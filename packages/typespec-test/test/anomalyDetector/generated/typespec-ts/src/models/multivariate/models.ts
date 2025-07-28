@@ -361,9 +361,9 @@ export function multivariateModelInfoSerializer(
     endTime: item["endTime"].toISOString(),
     displayName: item["displayName"],
     slidingWindow: item["slidingWindow"],
-    alignPolicy: !item["alignPolicy"]
-      ? item["alignPolicy"]
-      : multivariateAlignPolicySerializer(item["alignPolicy"]),
+    alignPolicy: item["alignPolicy"]
+      ? multivariateAlignPolicySerializer(item["alignPolicy"])
+      : item["alignPolicy"],
   };
 }
 

@@ -260,9 +260,9 @@ export function _createJsonSend(
       },
       body: {
         item: todoItemSerializer(item),
-        attachments: !options?.attachments
-          ? options?.attachments
-          : todoAttachmentArraySerializer(options?.attachments),
+        attachments: options?.attachments
+          ? todoAttachmentArraySerializer(options?.attachments)
+          : options?.attachments,
       },
     });
 }

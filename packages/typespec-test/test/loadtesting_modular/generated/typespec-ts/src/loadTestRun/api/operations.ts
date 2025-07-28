@@ -113,12 +113,12 @@ export function _listTestRunsSend(
       orderby: options?.orderby,
       search: options?.search,
       testId: options?.testId,
-      executionFrom: !options?.executionFrom
-        ? options?.executionFrom
-        : options?.executionFrom.toISOString(),
-      executionTo: !options?.executionTo
-        ? options?.executionTo
-        : options?.executionTo.toISOString(),
+      executionFrom: options?.executionFrom
+        ? options?.executionFrom.toISOString()
+        : options?.executionFrom,
+      executionTo: options?.executionTo
+        ? options?.executionTo.toISOString()
+        : options?.executionTo,
       status: options?.status,
       maxpagesize: options?.maxpagesize,
     },
@@ -194,9 +194,9 @@ export function _listMetricsSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      body: !options["body"]
-        ? options["body"]
-        : metricRequestPayloadSerializer(options["body"]),
+      body: options["body"]
+        ? metricRequestPayloadSerializer(options["body"])
+        : options["body"],
     });
 }
 

@@ -661,9 +661,9 @@ export function recurrenceTriggerSerializer(item: RecurrenceTrigger): any {
   return {
     frequency: item["frequency"],
     interval: item["interval"],
-    schedule: !item["schedule"]
-      ? item["schedule"]
-      : recurrenceScheduleSerializer(item["schedule"]),
+    schedule: item["schedule"]
+      ? recurrenceScheduleSerializer(item["schedule"])
+      : item["schedule"],
   };
 }
 
@@ -701,16 +701,16 @@ export function recurrenceScheduleSerializer(item: RecurrenceSchedule): any {
     minutes: item["minutes"].map((p: any) => {
       return p;
     }),
-    weekDays: !item["weekDays"]
-      ? item["weekDays"]
-      : item["weekDays"].map((p: any) => {
+    weekDays: item["weekDays"]
+      ? item["weekDays"].map((p: any) => {
           return p;
-        }),
-    monthDays: !item["monthDays"]
-      ? item["monthDays"]
-      : item["monthDays"].map((p: any) => {
+        })
+      : item["weekDays"],
+    monthDays: item["monthDays"]
+      ? item["monthDays"].map((p: any) => {
           return p;
-        }),
+        })
+      : item["monthDays"],
   };
 }
 

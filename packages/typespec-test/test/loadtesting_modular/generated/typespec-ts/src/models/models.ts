@@ -53,22 +53,22 @@ export interface Test {
 
 export function testSerializer(item: Test): any {
   return {
-    passFailCriteria: !item["passFailCriteria"]
-      ? item["passFailCriteria"]
-      : passFailCriteriaSerializer(item["passFailCriteria"]),
-    autoStopCriteria: !item["autoStopCriteria"]
-      ? item["autoStopCriteria"]
-      : autoStopCriteriaSerializer(item["autoStopCriteria"]),
-    secrets: !item["secrets"]
-      ? item["secrets"]
-      : secretRecordSerializer(item["secrets"]),
-    certificate: !item["certificate"]
-      ? item["certificate"]
-      : certificateMetadataSerializer(item["certificate"]),
+    passFailCriteria: item["passFailCriteria"]
+      ? passFailCriteriaSerializer(item["passFailCriteria"])
+      : item["passFailCriteria"],
+    autoStopCriteria: item["autoStopCriteria"]
+      ? autoStopCriteriaSerializer(item["autoStopCriteria"])
+      : item["autoStopCriteria"],
+    secrets: item["secrets"]
+      ? secretRecordSerializer(item["secrets"])
+      : item["secrets"],
+    certificate: item["certificate"]
+      ? certificateMetadataSerializer(item["certificate"])
+      : item["certificate"],
     environmentVariables: item["environmentVariables"],
-    loadTestConfiguration: !item["loadTestConfiguration"]
-      ? item["loadTestConfiguration"]
-      : loadTestConfigurationSerializer(item["loadTestConfiguration"]),
+    loadTestConfiguration: item["loadTestConfiguration"]
+      ? loadTestConfigurationSerializer(item["loadTestConfiguration"])
+      : item["loadTestConfiguration"],
     baselineTestRunId: item["baselineTestRunId"],
     description: item["description"],
     displayName: item["displayName"],
@@ -129,9 +129,9 @@ export interface PassFailCriteria {
 
 export function passFailCriteriaSerializer(item: PassFailCriteria): any {
   return {
-    passFailMetrics: !item["passFailMetrics"]
-      ? item["passFailMetrics"]
-      : passFailMetricRecordSerializer(item["passFailMetrics"]),
+    passFailMetrics: item["passFailMetrics"]
+      ? passFailMetricRecordSerializer(item["passFailMetrics"])
+      : item["passFailMetrics"],
   };
 }
 
@@ -491,12 +491,12 @@ export function loadTestConfigurationSerializer(
     engineInstances: item["engineInstances"],
     splitAllCSVs: item["splitAllCSVs"],
     quickStartTest: item["quickStartTest"],
-    optionalLoadTestConfig: !item["optionalLoadTestConfig"]
-      ? item["optionalLoadTestConfig"]
-      : optionalLoadTestConfigSerializer(item["optionalLoadTestConfig"]),
-    regionalLoadTestConfig: !item["regionalLoadTestConfig"]
-      ? item["regionalLoadTestConfig"]
-      : regionalConfigurationArraySerializer(item["regionalLoadTestConfig"]),
+    optionalLoadTestConfig: item["optionalLoadTestConfig"]
+      ? optionalLoadTestConfigSerializer(item["optionalLoadTestConfig"])
+      : item["optionalLoadTestConfig"],
+    regionalLoadTestConfig: item["regionalLoadTestConfig"]
+      ? regionalConfigurationArraySerializer(item["regionalLoadTestConfig"])
+      : item["regionalLoadTestConfig"],
   };
 }
 
@@ -1091,22 +1091,22 @@ export interface TestRun {
 
 export function testRunSerializer(item: TestRun): any {
   return {
-    passFailCriteria: !item["passFailCriteria"]
-      ? item["passFailCriteria"]
-      : passFailCriteriaSerializer(item["passFailCriteria"]),
-    autoStopCriteria: !item["autoStopCriteria"]
-      ? item["autoStopCriteria"]
-      : autoStopCriteriaSerializer(item["autoStopCriteria"]),
-    secrets: !item["secrets"]
-      ? item["secrets"]
-      : secretRecordSerializer(item["secrets"]),
-    certificate: !item["certificate"]
-      ? item["certificate"]
-      : certificateMetadataSerializer(item["certificate"]),
+    passFailCriteria: item["passFailCriteria"]
+      ? passFailCriteriaSerializer(item["passFailCriteria"])
+      : item["passFailCriteria"],
+    autoStopCriteria: item["autoStopCriteria"]
+      ? autoStopCriteriaSerializer(item["autoStopCriteria"])
+      : item["autoStopCriteria"],
+    secrets: item["secrets"]
+      ? secretRecordSerializer(item["secrets"])
+      : item["secrets"],
+    certificate: item["certificate"]
+      ? certificateMetadataSerializer(item["certificate"])
+      : item["certificate"],
     environmentVariables: item["environmentVariables"],
-    loadTestConfiguration: !item["loadTestConfiguration"]
-      ? item["loadTestConfiguration"]
-      : loadTestConfigurationSerializer(item["loadTestConfiguration"]),
+    loadTestConfiguration: item["loadTestConfiguration"]
+      ? loadTestConfigurationSerializer(item["loadTestConfiguration"])
+      : item["loadTestConfiguration"],
     displayName: item["displayName"],
     testId: item["testId"],
     description: item["description"],
@@ -1593,9 +1593,9 @@ export function testRunServerMetricConfigSerializer(
   item: TestRunServerMetricConfig,
 ): any {
   return {
-    metrics: !item["metrics"]
-      ? item["metrics"]
-      : resourceMetricRecordSerializer(item["metrics"]),
+    metrics: item["metrics"]
+      ? resourceMetricRecordSerializer(item["metrics"])
+      : item["metrics"],
   };
 }
 
@@ -1918,9 +1918,9 @@ export function metricRequestPayloadSerializer(
   item: MetricRequestPayload,
 ): any {
   return {
-    filters: !item["filters"]
-      ? item["filters"]
-      : dimensionFilterArraySerializer(item["filters"]),
+    filters: item["filters"]
+      ? dimensionFilterArraySerializer(item["filters"])
+      : item["filters"],
   };
 }
 
@@ -1943,11 +1943,11 @@ export interface DimensionFilter {
 export function dimensionFilterSerializer(item: DimensionFilter): any {
   return {
     name: item["name"],
-    values: !item["values"]
-      ? item["values"]
-      : item["values"].map((p: any) => {
+    values: item["values"]
+      ? item["values"].map((p: any) => {
           return p;
-        }),
+        })
+      : item["values"],
   };
 }
 
@@ -2098,11 +2098,11 @@ export function testProfileSerializer(item: TestProfile): any {
     description: item["description"],
     testId: item["testId"],
     targetResourceId: item["targetResourceId"],
-    targetResourceConfigurations: !item["targetResourceConfigurations"]
-      ? item["targetResourceConfigurations"]
-      : targetResourceConfigurationsUnionSerializer(
+    targetResourceConfigurations: item["targetResourceConfigurations"]
+      ? targetResourceConfigurationsUnionSerializer(
           item["targetResourceConfigurations"],
-        ),
+        )
+      : item["targetResourceConfigurations"],
   };
 }
 
@@ -2215,11 +2215,11 @@ export function functionFlexConsumptionTargetResourceConfigurationsSerializer(
 ): any {
   return {
     kind: item["kind"],
-    configurations: !item["configurations"]
-      ? item["configurations"]
-      : functionFlexConsumptionResourceConfigurationRecordSerializer(
+    configurations: item["configurations"]
+      ? functionFlexConsumptionResourceConfigurationRecordSerializer(
           item["configurations"],
-        ),
+        )
+      : item["configurations"],
   };
 }
 

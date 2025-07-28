@@ -52,6 +52,12 @@ export {
   ListFineTuningJobEventsResponse,
   FineTuningJobEvent,
 } from "./models/index.js";
+export {
+  HttpPart2,
+  HttpPart3,
+  HttpPart4,
+  HttpPart5,
+} from "./models/typeSpec/http/index.js";
 export { OpenAIClientOptionalParams } from "./api/index.js";
 export { CompletionsCreateOptionalParams } from "./api/completions/index.js";
 export { EditsCreateOptionalParams } from "./api/edits/index.js";

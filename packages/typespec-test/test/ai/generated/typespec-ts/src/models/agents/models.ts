@@ -167,9 +167,9 @@ export function fileSearchToolDefinitionSerializer(
 ): any {
   return {
     type: item["type"],
-    file_search: !item["fileSearch"]
-      ? item["fileSearch"]
-      : fileSearchToolDefinitionDetailsSerializer(item["fileSearch"]),
+    file_search: item["fileSearch"]
+      ? fileSearchToolDefinitionDetailsSerializer(item["fileSearch"])
+      : item["fileSearch"],
   };
 }
 
@@ -201,9 +201,9 @@ export function fileSearchToolDefinitionDetailsSerializer(
 ): any {
   return {
     max_num_results: item["maxNumResults"],
-    ranking_options: !item["rankingOptions"]
-      ? item["rankingOptions"]
-      : fileSearchRankingOptionsSerializer(item["rankingOptions"]),
+    ranking_options: item["rankingOptions"]
+      ? fileSearchRankingOptionsSerializer(item["rankingOptions"])
+      : item["rankingOptions"],
   };
 }
 
@@ -330,9 +330,9 @@ export interface ToolConnectionList {
 
 export function toolConnectionListSerializer(item: ToolConnectionList): any {
   return {
-    connections: !item["connectionList"]
-      ? item["connectionList"]
-      : toolConnectionArraySerializer(item["connectionList"]),
+    connections: item["connectionList"]
+      ? toolConnectionArraySerializer(item["connectionList"])
+      : item["connectionList"],
   };
 }
 
@@ -836,15 +836,15 @@ export interface ToolResources {
 
 export function toolResourcesSerializer(item: ToolResources): any {
   return {
-    code_interpreter: !item["codeInterpreter"]
-      ? item["codeInterpreter"]
-      : codeInterpreterToolResourceSerializer(item["codeInterpreter"]),
-    file_search: !item["fileSearch"]
-      ? item["fileSearch"]
-      : fileSearchToolResourceSerializer(item["fileSearch"]),
-    azure_ai_search: !item["azureAISearch"]
-      ? item["azureAISearch"]
-      : azureAISearchResourceSerializer(item["azureAISearch"]),
+    code_interpreter: item["codeInterpreter"]
+      ? codeInterpreterToolResourceSerializer(item["codeInterpreter"])
+      : item["codeInterpreter"],
+    file_search: item["fileSearch"]
+      ? fileSearchToolResourceSerializer(item["fileSearch"])
+      : item["fileSearch"],
+    azure_ai_search: item["azureAISearch"]
+      ? azureAISearchResourceSerializer(item["azureAISearch"])
+      : item["azureAISearch"],
   };
 }
 
@@ -877,14 +877,14 @@ export function codeInterpreterToolResourceSerializer(
   item: CodeInterpreterToolResource,
 ): any {
   return {
-    file_ids: !item["fileIds"]
-      ? item["fileIds"]
-      : item["fileIds"].map((p: any) => {
+    file_ids: item["fileIds"]
+      ? item["fileIds"].map((p: any) => {
           return p;
-        }),
-    data_sources: !item["dataSources"]
-      ? item["dataSources"]
-      : vectorStoreDataSourceArraySerializer(item["dataSources"]),
+        })
+      : item["fileIds"],
+    data_sources: item["dataSources"]
+      ? vectorStoreDataSourceArraySerializer(item["dataSources"])
+      : item["dataSources"],
   };
 }
 
@@ -970,14 +970,14 @@ export function fileSearchToolResourceSerializer(
   item: FileSearchToolResource,
 ): any {
   return {
-    vector_store_ids: !item["vectorStoreIds"]
-      ? item["vectorStoreIds"]
-      : item["vectorStoreIds"].map((p: any) => {
+    vector_store_ids: item["vectorStoreIds"]
+      ? item["vectorStoreIds"].map((p: any) => {
           return p;
-        }),
-    vector_stores: !item["vectorStores"]
-      ? item["vectorStores"]
-      : vectorStoreConfigurationsArraySerializer(item["vectorStores"]),
+        })
+      : item["vectorStoreIds"],
+    vector_stores: item["vectorStores"]
+      ? vectorStoreConfigurationsArraySerializer(item["vectorStores"])
+      : item["vectorStores"],
   };
 }
 
@@ -1080,9 +1080,9 @@ export function azureAISearchResourceSerializer(
   item: AzureAISearchResource,
 ): any {
   return {
-    indexes: !item["indexList"]
-      ? item["indexList"]
-      : indexResourceArraySerializer(item["indexList"]),
+    indexes: item["indexList"]
+      ? indexResourceArraySerializer(item["indexList"])
+      : item["indexList"],
   };
 }
 
@@ -1397,9 +1397,9 @@ export function threadMessageOptionsSerializer(
   return {
     role: item["role"],
     content: item["content"],
-    attachments: !item["attachments"]
-      ? item["attachments"]
-      : messageAttachmentArraySerializer(item["attachments"]),
+    attachments: item["attachments"]
+      ? messageAttachmentArraySerializer(item["attachments"])
+      : item["attachments"],
     metadata: item["metadata"],
   };
 }
@@ -1436,9 +1436,9 @@ export interface MessageAttachment {
 export function messageAttachmentSerializer(item: MessageAttachment): any {
   return {
     file_id: item["fileId"],
-    data_source: !item["dataSource"]
-      ? item["dataSource"]
-      : vectorStoreDataSourceSerializer(item["dataSource"]),
+    data_source: item["dataSource"]
+      ? vectorStoreDataSourceSerializer(item["dataSource"])
+      : item["dataSource"],
     tools: messageAttachmentToolDefinitionArraySerializer(item["tools"]),
   };
 }
@@ -1947,9 +1947,9 @@ export function agentsNamedToolChoiceSerializer(
 ): any {
   return {
     type: item["type"],
-    function: !item["function"]
-      ? item["function"]
-      : functionNameSerializer(item["function"]),
+    function: item["function"]
+      ? functionNameSerializer(item["function"])
+      : item["function"],
   };
 }
 
@@ -2353,17 +2353,17 @@ export function updateToolResourcesOptionsSerializer(
   item: UpdateToolResourcesOptions,
 ): any {
   return {
-    code_interpreter: !item["codeInterpreter"]
-      ? item["codeInterpreter"]
-      : updateCodeInterpreterToolResourceOptionsSerializer(
+    code_interpreter: item["codeInterpreter"]
+      ? updateCodeInterpreterToolResourceOptionsSerializer(
           item["codeInterpreter"],
-        ),
-    file_search: !item["fileSearch"]
-      ? item["fileSearch"]
-      : updateFileSearchToolResourceOptionsSerializer(item["fileSearch"]),
-    azure_ai_search: !item["azureAISearch"]
-      ? item["azureAISearch"]
-      : azureAISearchResourceSerializer(item["azureAISearch"]),
+        )
+      : item["codeInterpreter"],
+    file_search: item["fileSearch"]
+      ? updateFileSearchToolResourceOptionsSerializer(item["fileSearch"])
+      : item["fileSearch"],
+    azure_ai_search: item["azureAISearch"]
+      ? azureAISearchResourceSerializer(item["azureAISearch"])
+      : item["azureAISearch"],
   };
 }
 
@@ -2395,11 +2395,11 @@ export function updateCodeInterpreterToolResourceOptionsSerializer(
   item: UpdateCodeInterpreterToolResourceOptions,
 ): any {
   return {
-    file_ids: !item["fileIds"]
-      ? item["fileIds"]
-      : item["fileIds"].map((p: any) => {
+    file_ids: item["fileIds"]
+      ? item["fileIds"].map((p: any) => {
           return p;
-        }),
+        })
+      : item["fileIds"],
   };
 }
 
@@ -2425,11 +2425,11 @@ export function updateFileSearchToolResourceOptionsSerializer(
   item: UpdateFileSearchToolResourceOptions,
 ): any {
   return {
-    vector_store_ids: !item["vectorStoreIds"]
-      ? item["vectorStoreIds"]
-      : item["vectorStoreIds"].map((p: any) => {
+    vector_store_ids: item["vectorStoreIds"]
+      ? item["vectorStoreIds"].map((p: any) => {
           return p;
-        }),
+        })
+      : item["vectorStoreIds"],
   };
 }
 
@@ -2513,12 +2513,12 @@ export function agentThreadCreationOptionsSerializer(
   item: AgentThreadCreationOptions,
 ): any {
   return {
-    messages: !item["messages"]
-      ? item["messages"]
-      : threadMessageOptionsArraySerializer(item["messages"]),
-    tool_resources: !item["toolResources"]
-      ? item["toolResources"]
-      : toolResourcesSerializer(item["toolResources"]),
+    messages: item["messages"]
+      ? threadMessageOptionsArraySerializer(item["messages"])
+      : item["messages"],
+    tool_resources: item["toolResources"]
+      ? toolResourcesSerializer(item["toolResources"])
+      : item["toolResources"],
     metadata: item["metadata"],
   };
 }

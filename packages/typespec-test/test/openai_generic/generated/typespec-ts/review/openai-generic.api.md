@@ -283,12 +283,12 @@ export interface CreateImageEditRequest {
 
 // @public
 export interface CreateImageRequest {
-    n?: number | null;
+    n?: HttpPart2;
     prompt: string;
-    response_format?: ("url" | "b64_json") | null;
-    size?: ("256x256" | "512x512" | "1024x1024") | null;
+    response_format?: HttpPart4;
+    size?: HttpPart3;
     // (undocumented)
-    user?: string;
+    user?: HttpPart5;
 }
 
 // @public
@@ -637,6 +637,22 @@ export interface FineTuningJobsRetrieveOptionalParams extends OperationOptions {
 export interface FineTuningOperations {
     // (undocumented)
     jobs: FineTuningJobsOperations;
+}
+
+// @public
+export interface HttpPart2 {
+}
+
+// @public
+export interface HttpPart3 {
+}
+
+// @public
+export interface HttpPart4 {
+}
+
+// @public
+export interface HttpPart5 {
 }
 
 // @public
