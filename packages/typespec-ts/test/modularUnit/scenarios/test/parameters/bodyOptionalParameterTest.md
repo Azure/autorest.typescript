@@ -2,11 +2,9 @@
 
 Test generation should create tests for operations with optional body parameters, verifying the parameter is correctly handled when present or absent.
 
-This test references the TypeSpec and examples from samples/parameters/bodyOptionalParameterName.md to validate that test generation handles optional body parameters correctly.
-
 ## TypeSpec
 
-This is tsp definition from samples/parameters/bodyOptionalParameterName.md.
+This is tsp definition.
 
 ```tsp
 import "@typespec/http";
@@ -144,13 +142,13 @@ describe("a long-running resource action", () => {
     const subscriptionId = "00000000-0000-0000-0000-000000000000";
     const client = new HardwareSecurityModulesClient(
       credential,
-      subscriptionId,
+      subscriptionId
     );
     const result = await client.backup("rgcloudhsm", "chsm1", {
       backupRequestProperties: {
         azureStorageBlobContainerUri: "sss",
-        token: "aaa",
-      },
+        token: "aaa"
+      }
     });
     assert.ok(result);
   });
@@ -183,13 +181,13 @@ describe("a long-running resource action", () => {
     const subscriptionId = "00000000-0000-0000-0000-000000000000";
     const client = new HardwareSecurityModulesClient(
       credential,
-      subscriptionId,
+      subscriptionId
     );
     const poller = await client.backup("rgcloudhsm", "chsm1", {
       backupRequestProperties: {
         azureStorageBlobContainerUri: "sss",
-        token: "aaa",
-      },
+        token: "aaa"
+      }
     });
     const result = await poller.pollUntilDone();
     assert.ok(result);

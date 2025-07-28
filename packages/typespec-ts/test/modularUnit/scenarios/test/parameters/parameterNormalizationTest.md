@@ -2,11 +2,9 @@
 
 Test generation should create tests for operations with parameters that require normalization, including uppercase parameter names that get normalized to camelCase.
 
-This test references the TypeSpec and examples from samples/parameters/parameterNormalization.md to validate that test generation handles parameter name normalization correctly.
-
 ## TypeSpec
 
-This is tsp definition from samples/parameters/parameterNormalization.md.
+This is tsp definition.
 
 ```tsp
 model ListCredentialsRequest{
@@ -67,7 +65,7 @@ describe("show example demo", () => {
       ListCredentialsRequest: { serviceName: "SSH", PROPERTY_NAME: "name" },
       queryParam: "query",
       headerParam: "header",
-      pathParam: "path",
+      pathParam: "path"
     });
     /* Test passes if no exception is thrown */
   });

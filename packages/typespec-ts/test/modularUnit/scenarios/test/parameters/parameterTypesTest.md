@@ -2,11 +2,9 @@
 
 Test generation should create tests for operations with different parameter types, ensuring proper handling of various data types including unknown, literal types, dates, and complex objects.
 
-This test references the TypeSpec and examples from samples/parameters/parameterTypesCheck.md to validate that test generation handles different parameter types correctly.
-
 ## TypeSpec
 
-This is tsp definition from samples/parameters/parameterTypesCheck.md.
+This is tsp definition.
 
 ```tsp
 model Foo {
@@ -103,13 +101,14 @@ Raw json files.
 ```
 
 ```ts tests readTest
+/** This file path is /test/generated/readTest.spec.ts */
 import { Recorder } from "@azure-tools/test-recorder";
 import { createRecorder } from "../public/utils/recordedClient.js";
 import { assert } from "chai";
 import { Context } from "mocha";
 import { TestingClient } from "@azure/internal-test";
 
-describe("read with different parameter types", () => {
+describe("show example demo", () => {
   let recorder: Recorder;
 
   beforeEach(async function (this: Context) {
@@ -120,7 +119,7 @@ describe("read with different parameter types", () => {
     await recorder.stop();
   });
 
-  it("should read with different parameter types for read", async function () {
+  it("should show example demo for read", async function () {
     const client = new TestingClient();
     const result = await client.read({
       unknownValueWithObject: { foo: "bar" },
@@ -131,7 +130,7 @@ describe("read with different parameter types", () => {
       unknownValueWithBoolean: false,
       unknownValueWithObjectNested: {
         foo: "bar",
-        bar: [{ foo: "fooStr" }, "barStr", 7],
+        bar: [{ foo: "fooStr" }, "barStr", 7]
       },
       strValue: "00000000-0000-0000-0000-00000000000",
       numValue: 0.12,
@@ -152,8 +151,9 @@ describe("read with different parameter types", () => {
       durationProp: "P123DT22H14M12.011S",
       withEscapeChars: '"Tag 10".Value',
       unknownRecord: { a: "foo" },
-      additionalProp: "additional prop",
+      additionalProp: "additional prop"
     });
     assert.ok(result);
   });
 });
+```

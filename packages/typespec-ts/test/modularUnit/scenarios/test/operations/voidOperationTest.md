@@ -65,7 +65,7 @@ Raw json files.
 
 ```json for Employees_Delete
 {
-  "title": "Employees_Delete", 
+  "title": "Employees_Delete",
   "operationId": "Employees_Delete",
   "parameters": {
     "api-version": "2021-10-01-preview",
@@ -105,8 +105,8 @@ describe("delete a Employee", () => {
     const credential = new DefaultAzureCredential();
     const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
     const client = new ContosoClient(credential, subscriptionId);
-    const result = await client.delete("rgopenapi", "testEmployee");
-    assert.ok(result);
+    await client.delete("rgopenapi", "testEmployee");
+    /* Test passes if no exception is thrown */
   });
 });
 ```

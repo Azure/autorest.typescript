@@ -2,11 +2,9 @@
 
 Test generation should create tests for operations with optional body parameters that can be omitted, ensuring proper handling when the body parameter is optional.
 
-This test references the TypeSpec and examples from samples/parameters/bodyOptionalCheck.md to validate that test generation handles optional body parameters correctly.
-
 ## TypeSpec
 
-This is tsp definition from samples/parameters/bodyOptionalCheck.md.
+This is tsp definition.
 
 ```tsp
 @doc("This is a simple model.")
@@ -80,7 +78,7 @@ describe("show example demo", () => {
     const client = new TestingClient();
     const result = await client.read("required path param", "required query", {
       widget: { name: "body name" },
-      optionalQuery: "renamed optional query",
+      optionalQuery: "renamed optional query"
     });
     assert.ok(result);
   });

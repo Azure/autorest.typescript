@@ -2,11 +2,9 @@
 
 Test generation should create tests for operations using parameter spread, ensuring proper handling of the parameter order and spread syntax.
 
-This test references the TypeSpec and examples from samples/parameters/paramaterSpreadCheck.md to validate that test generation handles parameter spread correctly.
-
 ## TypeSpec
 
-This is tsp definition from samples/parameters/paramaterSpreadCheck.md.
+This is tsp definition.
 
 ```tsp
 @doc("This is a simple model.")
@@ -94,8 +92,8 @@ describe("show example demo", () => {
       { name: "body name" },
       {
         optionalHeader: "optional header",
-        renamedOptional: "renamed optional query",
-      },
+        renamedOptional: "renamed optional query"
+      }
     );
     assert.ok(result);
   });

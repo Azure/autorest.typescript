@@ -2,11 +2,9 @@
 
 Test generation should create tests for different parameter names, including client-side parameter name customization.
 
-This test references the TypeSpec and examples from samples/parameters/parameterName.md to validate that test generation handles parameter name variations correctly.
-
 ## TypeSpec
 
-This is tsp definition from samples/parameters/parameterName.md.
+This is tsp definition.
 
 ```tsp
 import "@azure-tools/typespec-client-generator-core";
@@ -168,15 +166,15 @@ describe("create a Employee", () => {
       properties: {
         age: 30,
         city: "gydhnntudughbmxlkyzrskcdkotrxn",
-        profile: "ms",
+        profile: "ms"
       },
       tags: { key2913: "urperxmkkhhkp" },
-      location: "itajgxyqozseoygnl",
+      location: "itajgxyqozseoygnl"
     });
     assert.ok(result);
     assert.strictEqual(
       result.id,
-      "/subscriptions/11809CA1-E126-4017-945E-AA795CD5C5A9/resourceGroups/rgopenapi/providers/Microsoft.Contoso/employees/9KF-f-8b",
+      "/subscriptions/11809CA1-E126-4017-945E-AA795CD5C5A9/resourceGroups/rgopenapi/providers/Microsoft.Contoso/employees/9KF-f-8b"
     );
     assert.strictEqual(result.name, "9KF-f-8b");
     assert.strictEqual(result.type, "Microsoft.Contoso/employees");
@@ -184,7 +182,7 @@ describe("create a Employee", () => {
     assert.strictEqual(result.properties.age, 30);
     assert.strictEqual(
       result.properties.city,
-      "gydhnntudughbmxlkyzrskcdkotrxn",
+      "gydhnntudughbmxlkyzrskcdkotrxn"
     );
     assert.strictEqual(result.properties.profile, "ms");
   });

@@ -19,6 +19,7 @@ import { join } from "path";
 import { existsSync, rmSync } from "fs";
 import { AzureIdentityDependencies } from "../modular/external-dependencies.js";
 import {
+    buildPropertyNameMapper,
     isSpreadBodyParameter
 } from "./helpers/typeHelpers.js";
 import { getClassicalClientName } from "./helpers/namingHelpers.js";
@@ -375,7 +376,11 @@ function emitMethodTests(
         )})`;
 
         // Add method call based on type
-        if (isPaging) {
+        if (method.response.type === undefined) {
+            // skip response handling for void methods
+            testFunctionBody.push(`await ${methodCall};`);
+            testFunctionBody.push(`\/* Test passes if no exception is thrown *\/`);
+        } else if (isPaging) {
             testFunctionBody.push(`const resArray = new Array();`);
             testFunctionBody.push(
                 `for await (const item of ${methodCall}) { resArray.push(item); }`
@@ -390,10 +395,6 @@ function emitMethodTests(
             // Add response assertions for LRO results
             const responseAssertions = generateResponseAssertions(example, dpgContext, "result");
             testFunctionBody.push(...responseAssertions);
-        } else if (method.response.type === undefined) {
-            // skip response handling for void methods
-            testFunctionBody.push(`await ${methodCall};`);
-            testFunctionBody.push(`\/* Test passes if no exception is thrown *\/`);
         } else {
             testFunctionBody.push(`const result = await ${methodCall};`);
             testFunctionBody.push(`assert.ok(result);`);
@@ -502,7 +503,7 @@ function prepareTestParameters(
         result.push(
             prepareTestValue(
                 dpgContext,
-                param.name,
+                exampleValue.parameter.name,
                 serializeExampleValue(exampleValue.value, dpgContext),
                 param.optional,
                 param.onClient
@@ -635,7 +636,24 @@ function prepareTestValue(
 function serializeExampleValue(value: SdkExampleValue, dpgContext: SdkContext): string {
     switch (value.kind) {
         case "string":
-            return `"${value.value}"`;
+            {
+                switch (value.type.kind) {
+                    case "utcDateTime":
+                        return `new Date("${value.value}")`;
+
+                    default:
+                        return `"${value.value
+                            ?.toString()
+                            .replace(/\\/g, "\\\\")
+                            .replace(/"/g, '\\"')
+                            .replace(/\n/g, "\\n")
+                            .replace(/\r/g, "\\r")
+                            .replace(/\t/g, "\\t")
+                            .replace(/\f/g, "\\f")
+                            .replace(/>/g, ">")
+                            .replace(/</g, "<")}"`;
+                }
+            }
         case "number":
             return value.value.toString();
         case "boolean":
@@ -644,18 +662,40 @@ function serializeExampleValue(value: SdkExampleValue, dpgContext: SdkContext): 
             return "null";
         case "array":
             return `[${value.value.map((v: SdkExampleValue) => serializeExampleValue(v, dpgContext)).join(", ")}]`;
+        case "unknown":
+            return `${JSON.stringify(value.value)}`;
         case "dict":
-            const dictProps = Object.entries(value.value)
-                .map(([key, val]) => `"${key}": ${serializeExampleValue(val as SdkExampleValue, dpgContext)}`)
-                .join(", ");
-            return `{${dictProps}}`;
+            {
+                const dictProps = Object.entries(value.value)
+                    .map(([key, val]) => `"${key}": ${serializeExampleValue(val as SdkExampleValue, dpgContext)}`)
+                    .join(", ");
+                return `{${dictProps}}`;
+            }
         case "model":
-            const props = Object.entries(value.value)
-                .map(([key, val]) => `${key}: ${serializeExampleValue(val, dpgContext)}`)
-                .join(", ");
-            return `{${props}}`;
+            {
+                const mapper = buildPropertyNameMapper(value.type);
+                const values = [];
+                const additionalPropertiesValue =
+                    value.kind === "model" ? (value.additionalPropertiesValue ?? {}) : {};
+                for (const propName in {
+                    ...value.value,
+                    ...additionalPropertiesValue
+                }) {
+                    const propValue =
+                        value.value[propName] ?? additionalPropertiesValue[propName];
+                    if (propValue === undefined || propValue === null) {
+                        continue;
+                    }
+                    const propRetValue =
+                        `"${mapper.get(propName) ?? propName}": ` +
+                        serializeExampleValue(propValue, dpgContext);
+                    values.push(propRetValue);
+                }
+
+                return `{${values.join(", ")}}`;
+            }
         case "union":
-            return serializeExampleValue(value.value as SdkExampleValue, dpgContext);
+            return `${JSON.stringify(value.value)}`; // For unions, serialize the actual value
         default:
             throw new Error(`Unknown example value kind: ${(value as any).kind}`);
     }

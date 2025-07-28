@@ -2,11 +2,9 @@
 
 Test generation should create tests for operations with required body parameters, ensuring the parameter is properly handled in the test.
 
-This test references the TypeSpec and examples from samples/parameters/bodyRequiredCheck.md to validate that test generation handles required body parameters correctly.
-
 ## TypeSpec
 
-This is tsp definition from samples/parameters/bodyRequiredCheck.md.
+This is tsp definition.
 
 ```tsp
 @doc("This is a simple model.")
@@ -84,7 +82,7 @@ describe("show example demo", () => {
       "required path param",
       "required query",
       { name: "body name" },
-      { optionalQuery: "renamed optional query" },
+      { optionalQuery: "renamed optional query" }
     );
     assert.ok(result);
   });
