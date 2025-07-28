@@ -693,12 +693,12 @@ model Error {
     message: string;
 }
 
-@pagedResult
 model Bar {
-    @items
+    @pageItems
     lists: string[];
 }
 @post
+@list
 op test(): Error | Bar;
 ```
 
@@ -778,11 +778,12 @@ model Error {
     message: string;
 }
 
-@pagedResult
 model Bar {
+    @pageItems
     lists: string[];
 }
 @post
+@list
 op test(): Error | Bar;
 ```
 
@@ -797,7 +798,7 @@ mustEmptyDiagnostic: false
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { errorDeserializer, Bar, barDeserializer } from "../models/models.js";
+import { errorDeserializer, _Bar, _barDeserializer } from "../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
@@ -827,7 +828,7 @@ export function _testSend(
 
 export async function _testDeserialize(
   result: PathUncheckedResponse,
-): Promise<Bar> {
+): Promise<_Bar> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -835,19 +836,19 @@ export async function _testDeserialize(
     throw error;
   }
 
-  return barDeserializer(result.body);
+  return _barDeserializer(result.body);
 }
 
 export function test(
   context: Client,
   options: TestOptionalParams = { requestOptions: {} },
-): PagedAsyncIterableIterator<void> {
+): PagedAsyncIterableIterator<string> {
   return buildPagedAsyncIterator(
     context,
     () => _testSend(context, options),
     _testDeserialize,
     ["200"],
-    {},
+    { itemName: "lists" },
   );
 }
 ```
@@ -863,9 +864,8 @@ model Error {
     message: string;
 }
 
-@pagedResult
 model Bar {
-    @items
+    @pageItems
     lists: string[];
     @TypeSpec.nextLink
     nextLink: string;
@@ -876,6 +876,7 @@ model Child extends Bar {
 }
 
 @post
+@list
 op test(): Error | Child;
 ```
 

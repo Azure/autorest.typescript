@@ -26,7 +26,16 @@ export interface RequestBody {
 }
 
 export function requestBodySerializer(item: RequestBody): any {
-  return [{ name: "person", body: personSerializer(item["person"]) }];
+  return [
+    {
+      name: "person",
+      body: {
+        firstName: item["person"]["firstName"],
+        lastName: item["person"]["lastName"],
+        dateOfBirth: (item["person"]["dateOfBirth"].getTime() / 1000) | 0,
+      },
+    },
+  ];
 }
 
 /** model interface Person */

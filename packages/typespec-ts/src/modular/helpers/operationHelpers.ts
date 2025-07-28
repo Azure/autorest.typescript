@@ -639,13 +639,15 @@ function getPagingOnlyOperationFunction(
   // TODO: follow up on https://github.com/Azure/typespec-azure/issues/2103
   const nextLinkSegments = operation.pagingMetadata.nextLinkSegments;
   const nextLinkName = nextLinkSegments
-    ?.map((property) => {
+    ?.filter((property: any) => property && property.name)
+    ?.map((property: any) => {
       return property.name;
     })
     .join(".");
   const itemSegments = operation.response.resultSegments;
   const itemName = itemSegments
-    ?.map((property) => {
+    ?.filter((property: any) => property && property.name)
+    ?.map((property: any) => {
       return property.name;
     })
     .join(".");
