@@ -48,7 +48,7 @@ importers:
         specifier: ^2.9.1
         version: 2.10.1
       '@azure-tools/rlc-common':
-        specifier: workspace:^0.42.0
+        specifier: workspace:^0.42.1
         version: link:../rlc-common
       '@azure/core-auth':
         specifier: ^1.6.0
@@ -296,7 +296,7 @@ importers:
         specifier: ^0.58.0
         version: 0.58.0(0a76936dac8145a5bb443df1a616cade)
       '@azure-tools/typespec-ts':
-        specifier: workspace:^0.42.0
+        specifier: workspace:^0.42.1
         version: link:../typespec-ts
       '@typespec/compiler':
         specifier: ^1.2.1
@@ -333,7 +333,7 @@ importers:
   packages/typespec-ts:
     dependencies:
       '@azure-tools/rlc-common':
-        specifier: workspace:^0.42.0
+        specifier: workspace:^0.42.1
         version: link:../rlc-common
       '@typespec/xml':
         specifier: ^0.72.1
