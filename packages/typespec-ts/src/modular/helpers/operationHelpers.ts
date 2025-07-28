@@ -96,14 +96,31 @@ export function getSendPrivateFunction(
   );
   const statements: string[] = [];
   let pathStr = `"${operationPath}"`;
-  const urlTemplateParams = [
-    ...getPathParameters(operation),
-    ...getQueryParameters(dpgContext, operation)
-  ];
+  const pathParams = getPathParameters(operation);
+  const queryParams = getQueryParameters(dpgContext, operation);
+  const allParams = [...pathParams, ...queryParams];
+
+  // Remove duplicates and empty params
+  const seen = new Set();
+  const urlTemplateParams = allParams.filter((param) => {
+    if (!param || param.trim() === "") return false;
+
+    // Extract parameter name from the param string (e.g., "subscriptionId": ... or subscriptionId: ... -> subscriptionId)
+    const match = param.match(/^"?([^":\s]+)"?\s*:/);
+    if (match) {
+      const paramName = match[1];
+      if (seen.has(paramName)) {
+        return false; // Skip duplicates
+      }
+      seen.add(paramName);
+    }
+    return true;
+  });
+
   if (urlTemplateParams.length > 0) {
     statements.push(`const path = ${resolveReference(UrlTemplateHelpers.parseTemplate)}("${operation.operation.uriTemplate}", {
-        ${urlTemplateParams.join(",\n")}
-        },{
+        ${urlTemplateParams.join(",\n        ")}
+        }, {
       allowReserved: ${optionalParamName}?.requestOptions?.skipUrlEncoding
     });`);
     pathStr = "path";
@@ -114,13 +131,16 @@ export function getSendPrivateFunction(
     );
   }
 
-  statements.push(
-    `return context.path(${pathStr}).${operationMethod}({...${resolveReference(dependencies.operationOptionsToRequestParameters)}(${optionalParamName}), ${getHeaderAndBodyParameters(
-      dpgContext,
-      operation,
-      optionalParamName
-    )}});`
+  const headerAndBodyParams = getHeaderAndBodyParameters(
+    dpgContext,
+    operation,
+    optionalParamName
   );
+  const returnStatement = headerAndBodyParams
+    ? `return context.path(${pathStr}).${operationMethod}({...${resolveReference(dependencies.operationOptionsToRequestParameters)}(${optionalParamName}), ${headerAndBodyParams}});`
+    : `return context.path(${pathStr}).${operationMethod}({...${resolveReference(dependencies.operationOptionsToRequestParameters)}(${optionalParamName})});`;
+
+  statements.push(returnStatement);
 
   return {
     ...functionStatement,
@@ -222,9 +242,11 @@ export function getDeserializePrivateFunction(
       true
     );
     if (deserializeFunctionName) {
-      statements.push(`return ${deserializeFunctionName}(${deserializedRoot})`);
+      statements.push(
+        `return ${deserializeFunctionName}(${deserializedRoot});`
+      );
     } else if (isAzureCoreErrorType(context.program, deserializedType.__raw)) {
-      statements.push(`return ${deserializedRoot}`);
+      statements.push(`return ${deserializedRoot};`);
     } else {
       statements.push(
         `return ${deserializeResponseValue(
@@ -234,7 +256,7 @@ export function getDeserializePrivateFunction(
           isBinaryPayload(context, response.type!.__raw!, contentTypes!)
             ? "binary"
             : getEncodeForType(deserializedType)
-        )}`
+        )};`
       );
     }
   } else if (returnType.type === "void") {
@@ -336,7 +358,7 @@ function getExceptionThrowStatement(
     statements.push("throw error;");
   } else {
     if (defaultDeserializer) {
-      statements.push(`const error = ${createRestErrorReference}(result)
+      statements.push(`const error = ${createRestErrorReference}(result);
       error.details = ${defaultDeserializer}(result.body);`);
       statements.push("throw error;");
     } else {
@@ -633,14 +655,15 @@ function getPagingOnlyOperationFunction(
   if (nextLinkName) {
     options.push(`nextLinkName: "${nextLinkName}"`);
   }
+  const paramList = parameters.map((p) => p.name).join(", ");
   statements.push(
     `return ${buildPagedAsyncIteratorReference}(
-      context, 
-      () => _${name}Send(${parameters.map((p) => p.name).join(", ")}), 
+      context,
+      () => _${name}Send(${paramList}),
       _${name}Deserialize,
       ${getExpectedStatuses(operation)},
-      ${options.length > 0 ? `{${options.join(", ")}}` : ``}
-      );`
+      ${options.length > 0 ? `{${options.join(", ")}}` : `{}`}
+    );`
   );
 
   return {
@@ -708,14 +731,14 @@ function getHeaderAndBodyParameters(
     }
   }
 
-  let paramStr = "";
+  const parts: string[] = [];
 
   if (contentTypeParameter) {
-    paramStr = `${getContentTypeValue(contentTypeParameter, optionalParamName)},`;
+    parts.push(getContentTypeValue(contentTypeParameter, optionalParamName));
   }
 
   if (parametersImplementation.header.length) {
-    paramStr = `${paramStr}\nheaders: {${parametersImplementation.header
+    const headersContent = parametersImplementation.header
       .map((i) =>
         buildHeaderParameter(
           dpgContext.program,
@@ -724,19 +747,36 @@ function getHeaderAndBodyParameters(
           optionalParamName
         )
       )
-      .join(",\n")}, ...${optionalParamName}.requestOptions?.headers },`;
+      .join(",\n");
+    parts.push(
+      `headers: {${headersContent}, ...${optionalParamName}.requestOptions?.headers}`
+    );
   }
+
   if (
     operation.operation.bodyParam === undefined &&
     parametersImplementation.body.length
   ) {
-    paramStr = `${paramStr}\nbody: {${parametersImplementation.body
-      .map((i) => i.paramMap)
-      .join(",\n")}}`;
+    parts.push(
+      `body: {${parametersImplementation.body
+        .map((i) => i.paramMap)
+        .join(",\n")}}`
+    );
   } else if (operation.operation.bodyParam !== undefined) {
-    paramStr = `${paramStr}${buildBodyParameter(dpgContext, operation.operation.bodyParam)}`;
+    const bodyParam = buildBodyParameter(
+      dpgContext,
+      operation.operation.bodyParam,
+      optionalParamName
+    );
+    if (bodyParam) {
+      // Remove leading \n and trailing comma from body parameter
+      const cleanBodyParam = bodyParam.replace(/^\n/, "").replace(/,$/, "");
+      parts.push(cleanBodyParam);
+    }
   }
-  return paramStr;
+
+  const result = parts.filter((p) => p && p.trim()).join(", ");
+  return result;
 }
 
 // Specially handle the type for headers because we only allow string/number/boolean values
@@ -796,9 +836,13 @@ function buildBodyParameter(
   );
   // if a model being used in both spread and non spread operation, we should only leverage the deserializer in non spread operation
   if (serializerFunctionName && !isSpreadBodyParameter(bodyParameter)) {
-    return `\nbody: ${nullOrUndefinedPrefix}${serializerFunctionName}(${bodyNameExpression}),`;
+    if (nullOrUndefinedPrefix) {
+      return `\nbody: ${nullOrUndefinedPrefix}${serializerFunctionName}(${bodyNameExpression}) : ${bodyNameExpression},`;
+    } else {
+      return `\nbody: ${serializerFunctionName}(${bodyNameExpression}),`;
+    }
   } else if (isAzureCoreErrorType(context.program, bodyParameter.type.__raw)) {
-    return `\nbody: ${nullOrUndefinedPrefix}${bodyNameExpression},`;
+    return `\nbody: ${nullOrUndefinedPrefix ? `${nullOrUndefinedPrefix}${bodyNameExpression} : ${bodyNameExpression}` : bodyNameExpression},`;
   }
   const serializedBody = serializeRequestValue(
     context,
@@ -810,7 +854,7 @@ function buildBodyParameter(
       : getEncodeForType(bodyParameter.type),
     true
   );
-  return `\nbody: ${serializedBody.startsWith(nullOrUndefinedPrefix) ? "" : nullOrUndefinedPrefix}${serializedBody},`;
+  return `\nbody: ${serializedBody},`;
 }
 
 function getEncodingFormat(type: { format?: string }) {
@@ -832,7 +876,10 @@ export function getParameterMap(
   optionalParamName: string = "options"
 ): string {
   if (isConstant(param.type)) {
-    return `"${param.name}": ${getConstantValue(param.type)}`;
+    const propName = isValidIdentifier(param.name)
+      ? param.name
+      : `"${param.name}"`;
+    return `${propName}: ${getConstantValue(param.type)}`;
   }
 
   if (hasCollectionFormatInfo(param.kind, (param as any).collectionFormat)) {
@@ -858,6 +905,9 @@ function getCollectionFormat(
   optionalParamName: string = "options"
 ) {
   const serializedName = getPropertySerializedName(param);
+  const propName = isValidIdentifier(serializedName)
+    ? serializedName
+    : `"${serializedName}"`;
   const format = (param as any).collectionFormat;
   const collectionInfo = getCollectionFormatHelper(param.kind, format ?? "");
   if (!collectionInfo) {
@@ -866,7 +916,7 @@ function getCollectionFormat(
   const isMulti = format.toLowerCase() === "multi";
   const additionalParam = isMulti ? `, "${serializedName}"` : "";
   if (!param.optional) {
-    return `"${serializedName}": ${collectionInfo}(${serializeRequestValue(
+    return `${propName}: ${collectionInfo}(${serializeRequestValue(
       context,
       param.type,
       param.name,
@@ -875,7 +925,7 @@ function getCollectionFormat(
       true
     )}${additionalParam})`;
   }
-  return `"${serializedName}": ${optionalParamName}?.${
+  return `${propName}: ${optionalParamName}?.${
     param.name
   } !== undefined ? ${collectionInfo}(${serializeRequestValue(
     context,
@@ -917,7 +967,10 @@ function getContentTypeValue(
 function getRequiredForHttpParam(context: SdkContext, param: SdkHttpParameter) {
   const serializedName = getPropertySerializedName(param);
   const clientValue = `${param.onClient ? "context." : ""}${param.name}`;
-  return `"${serializedName}": ${serializeRequestValue(
+  const propName = isValidIdentifier(serializedName)
+    ? serializedName
+    : `"${serializedName}"`;
+  return `${propName}: ${serializeRequestValue(
     context,
     param.type,
     clientValue,
@@ -925,6 +978,10 @@ function getRequiredForHttpParam(context: SdkContext, param: SdkHttpParameter) {
     getEncodeForType(param.type),
     true
   )}`;
+}
+
+function isValidIdentifier(name: string): boolean {
+  return /^[a-zA-Z_$][a-zA-Z0-9_$]*$/.test(name);
 }
 
 function getConstantValue(param: SdkConstantType) {
@@ -944,6 +1001,9 @@ function getOptional(
   optionalParamName: string
 ) {
   const serializedName = getPropertySerializedName(param);
+  const propName = isValidIdentifier(serializedName)
+    ? serializedName
+    : `"${serializedName}"`;
   const paramName = `${param.onClient ? "context." : `${optionalParamName}?.`}${param.name}`;
   if (param.type.kind === "model") {
     const propertiesStr = getRequestModelMapping(
@@ -952,9 +1012,9 @@ function getOptional(
       paramName + "?."
     );
     const serializeContent = `{${propertiesStr.join(",")}}`;
-    return `"${serializedName}": ${serializeContent}`;
+    return `${propName}: ${serializeContent}`;
   }
-  return `"${serializedName}": ${serializeRequestValue(
+  return `${propName}: ${serializeRequestValue(
     context,
     param.type,
     paramName,
@@ -1001,18 +1061,26 @@ function getPathParameters(
   }
 
   const pathParams: string[] = [];
+  const seenParams = new Set<string>();
+
   for (const param of operation.operation.parameters) {
-    if (param.kind === "path") {
+    if (param.kind === "path" && !seenParams.has(param.serializedName)) {
+      seenParams.add(param.serializedName);
       const correspondingParam = param.correspondingMethodParams[0]!;
       if (correspondingParam.kind === "property") {
-        pathParams.push(
-          `"${param.serializedName}": ${getPathParamExpr(correspondingParam, getDefaultValue(param) as string, optionalParamName)}`
+        const expr = getPathParamExpr(
+          correspondingParam,
+          getDefaultValue(param) as string,
+          optionalParamName
         );
+        pathParams.push(`"${param.serializedName}": ${expr}`);
       } else {
         // For method parameters, handle them differently
         const paramValue = correspondingParam.onClient
           ? `context.${correspondingParam.name}`
-          : `${optionalParamName}?.${correspondingParam.name}`;
+          : param.optional
+            ? `${optionalParamName}?.["${correspondingParam.name}"]`
+            : correspondingParam.name;
         pathParams.push(`"${param.serializedName}": ${paramValue}`);
       }
     }
@@ -1081,9 +1149,7 @@ function getPathParamExpr(
   }
   const paramName = param.onClient
     ? `context.${param.name}`
-    : param.optional
-      ? `${optionalParamName}["${param.name}"]`
-      : param.name;
+    : `${optionalParamName}?.["${param.name}"]`;
   return defaultValue
     ? typeof defaultValue === "string"
       ? `${paramName} ?? "${defaultValue}"`
@@ -1124,9 +1190,15 @@ export function getSerializationExpression(
     true
   );
   if (serializeFunctionName) {
-    return `${nullOrUndefinedPrefix}${serializeFunctionName}(${propertyFullName})`;
+    if (nullOrUndefinedPrefix) {
+      return `${nullOrUndefinedPrefix}${serializeFunctionName}(${propertyFullName}) : ${propertyFullName}`;
+    }
+    return `${serializeFunctionName}(${propertyFullName})`;
   } else if (isAzureCoreErrorType(context.program, property.type.__raw)) {
-    return `${nullOrUndefinedPrefix}${propertyFullName}`;
+    if (nullOrUndefinedPrefix) {
+      return `${nullOrUndefinedPrefix}${propertyFullName} : ${propertyFullName}`;
+    }
+    return `${propertyFullName}`;
   } else {
     return serializeRequestValue(
       context,
@@ -1269,45 +1341,59 @@ export function serializeRequestValue(
 ): string {
   const getSdkType = useSdkTypes();
   const dependencies = useDependencies();
-  const nullOrUndefinedPrefix =
-    isTypeNullable(type) || getOptionalForType(type) || !required
-      ? `!${clientValue}? ${clientValue}: `
-      : "";
+  const hasNullCheck =
+    isTypeNullable(type) || getOptionalForType(type) || !required;
+
+  const wrapWithNullCheck = (expression: string): string => {
+    if (hasNullCheck) {
+      return `${clientValue} ? ${expression} : ${clientValue}`;
+    }
+    return expression;
+  };
+
+  const getArrayElementExpression = (
+    context: SdkContext,
+    valueType: SdkType | undefined
+  ): string => {
+    if (!valueType) return "p";
+
+    const elementNullOrUndefinedPrefix =
+      isTypeNullable(valueType) || getOptionalForType(valueType)
+        ? "!p ? p : "
+        : "";
+    const serializeFunctionName = buildModelSerializer(
+      context,
+      getNullableValidType(valueType),
+      false,
+      true
+    );
+    if (serializeFunctionName) {
+      return `${elementNullOrUndefinedPrefix}${serializeFunctionName}(p)`;
+    } else if (isAzureCoreErrorType(context.program, valueType.__raw)) {
+      return `${elementNullOrUndefinedPrefix}p`;
+    } else {
+      return `${elementNullOrUndefinedPrefix}${serializeRequestValue(context, valueType, "p", true, getEncodeForType(valueType))}`;
+    }
+  };
+
   switch (type.kind) {
     case "utcDateTime":
       switch (type.encode ?? format) {
         case "rfc7231":
-          return `${nullOrUndefinedPrefix}${clientValue}.toUTCString()`;
+          return wrapWithNullCheck(`${clientValue}.toUTCString()`);
         case "unixTimestamp":
-          return `${nullOrUndefinedPrefix}((${clientValue}.getTime() / 1000) | 0)`;
+          return wrapWithNullCheck(`((${clientValue}.getTime() / 1000) | 0)`);
         case "rfc3339":
         default:
-          return `${nullOrUndefinedPrefix}${clientValue}.toISOString()`;
+          return wrapWithNullCheck(`${clientValue}.toISOString()`);
       }
     case "array": {
-      const prefix = nullOrUndefinedPrefix + clientValue;
-      if (type.valueType) {
-        const elementNullOrUndefinedPrefix =
-          isTypeNullable(type.valueType) || getOptionalForType(type.valueType)
-            ? "!p ? p : "
-            : "";
-        const serializeFunctionName = buildModelSerializer(
-          context,
-          getNullableValidType(type.valueType),
-          false,
-          true
-        );
-        if (serializeFunctionName) {
-          return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${serializeFunctionName}(p)})`;
-        } else if (
-          isAzureCoreErrorType(context.program, type.valueType.__raw)
-        ) {
-          return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}p})`;
-        } else {
-          return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${serializeRequestValue(context, type.valueType, "p", true, getEncodeForType(type.valueType))}})`;
-        }
+      if (hasNullCheck) {
+        const arrayExpression = `${clientValue}.map((p: any) => { return ${getArrayElementExpression(context, type.valueType)}})`;
+        return `${clientValue} ? ${arrayExpression} : ${clientValue}`;
+      } else {
+        return `${clientValue}.map((p: any) => { return ${getArrayElementExpression(context, type.valueType)}})`;
       }
-      return clientValue;
     }
     case "bytes":
       // TODO https://github.com/Azure/typespec-azure/issues/1999
@@ -1315,16 +1401,12 @@ export function serializeRequestValue(
         const uint8ArrayToStringReference = resolveReference(
           dependencies.uint8ArrayToString
         );
-        return required
-          ? `${getNullableCheck(
-              clientValue,
-              type
-            )} ${uint8ArrayToStringReference}(${clientValue}, "${
-              getEncodingFormat({ format }) ?? "base64"
-            }")`
-          : `${nullOrUndefinedPrefix} ${uint8ArrayToStringReference}(${clientValue}, "${
-              getEncodingFormat({ format }) ?? "base64"
-            }")`;
+        const bytesExpression = `${uint8ArrayToStringReference}(${clientValue}, "${getEncodingFormat({ format }) ?? "base64"}")`;
+        if (required) {
+          return `${getNullableCheck(clientValue, type)} ${bytesExpression}`;
+        } else {
+          return wrapWithNullCheck(bytesExpression);
+        }
       }
       return clientValue;
     case "union":
@@ -1348,7 +1430,7 @@ export function serializeRequestValue(
       return `{${getRequestModelMapping(context, type, "").join(",")}}`;
     case "constant":
       if (isTopLevel) {
-        return `${nullOrUndefinedPrefix}${getConstantValue(type)}`;
+        return wrapWithNullCheck(getConstantValue(type));
       }
       return clientValue;
     case "nullable":
@@ -1520,7 +1602,7 @@ export function getPropertySerializationPrefix(
 ) {
   const propertyFullName = getPropertyFullName(context, property, propertyPath);
   if (property.optional || isTypeNullable(property.type)) {
-    return `!${propertyFullName}? ${propertyFullName}:`;
+    return `${propertyFullName} ? `;
   }
 
   return "";

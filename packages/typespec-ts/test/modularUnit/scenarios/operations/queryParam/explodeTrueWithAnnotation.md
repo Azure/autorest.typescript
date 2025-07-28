@@ -91,11 +91,11 @@ export function _optionalSend(
   const path = expandUrlTemplate(
     "/annotation/optional{?select*,bar,api%2Dversion}",
     {
-      select: !options?.select
-        ? options?.select
-        : options?.select.map((p: any) => {
+      select: options?.select
+        ? options?.select.map((p: any) => {
             return p;
-          }),
+          })
+        : options?.select,
       bar: foo,
       "api%2Dversion": apiVersion,
     },

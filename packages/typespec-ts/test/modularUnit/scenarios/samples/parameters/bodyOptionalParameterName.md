@@ -146,7 +146,7 @@ import {
   backupRequestPropertiesSerializer,
   BackupResult,
   backupResultDeserializer,
-  errorResponseDeserializer,
+  errorResponseDeserializer
 } from "../models/models.js";
 import { getLongRunningPoller } from "../static-helpers/pollingHelpers.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
@@ -155,7 +155,7 @@ import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
@@ -163,7 +163,7 @@ export function _backupSend(
   context: Client,
   resourceGroupName: string,
   cloudHsmClusterName: string,
-  options: BackupOptionalParams = { requestOptions: {} },
+  options: BackupOptionalParams = { requestOptions: {} }
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/backup{?api%2Dversion}",
@@ -171,29 +171,27 @@ export function _backupSend(
       subscriptionId: context.subscriptionId,
       resourceGroupName: resourceGroupName,
       cloudHsmClusterName: cloudHsmClusterName,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": context.apiVersion
     },
     {
-      allowReserved: options?.requestOptions?.skipUrlEncoding,
-    },
+      allowReserved: options?.requestOptions?.skipUrlEncoding
+    }
   );
-  return context
-    .path(path)
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
-      body: !options["backupRequestProperties"]
-        ? options["backupRequestProperties"]
-        : backupRequestPropertiesSerializer(options["backupRequestProperties"]),
-    });
+  return context.path(path).post({
+    ...operationOptionsToRequestParameters(options),
+    contentType: "application/json",
+    headers: {
+      accept: "application/json",
+      ...options.requestOptions?.headers
+    },
+    body: options["backupRequestProperties"]
+      ? backupRequestPropertiesSerializer(options["backupRequestProperties"])
+      : options["backupRequestProperties"]
+  });
 }
 
 export async function _backupDeserialize(
-  result: PathUncheckedResponse,
+  result: PathUncheckedResponse
 ): Promise<BackupResult> {
   const expectedStatuses = ["202", "200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -210,14 +208,14 @@ export function backup(
   context: Client,
   resourceGroupName: string,
   cloudHsmClusterName: string,
-  options: BackupOptionalParams = { requestOptions: {} },
+  options: BackupOptionalParams = { requestOptions: {} }
 ): PollerLike<OperationState<BackupResult>, BackupResult> {
   return getLongRunningPoller(context, _backupDeserialize, ["202", "200"], {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () =>
       _backupSend(context, resourceGroupName, cloudHsmClusterName, options),
-    resourceLocationConfig: "azure-async-operation",
+    resourceLocationConfig: "azure-async-operation"
   }) as PollerLike<OperationState<BackupResult>, BackupResult>;
 }
 ```
@@ -244,8 +242,8 @@ async function cloudHsmClustersBackup(): Promise<void> {
   const result = await client.backup("rgcloudhsm", "chsm1", {
     backupRequestProperties: {
       azureStorageBlobContainerUri: "sss",
-      token: "aaa",
-    },
+      token: "aaa"
+    }
   });
   console.log(result);
 }
@@ -272,7 +270,7 @@ model BodyParameter {
 }
 @doc("This is a model with all http request decorator.")
 model CompositeRequest {
-  
+
   @path
   name: string;
 
@@ -344,8 +342,8 @@ async function read(): Promise<void> {
     {
       widget: { name: "body name" },
       testHeader: "optional header",
-      optionalQuery: "renamed optional query",
-    },
+      optionalQuery: "renamed optional query"
+    }
   );
   console.log(result);
 }
@@ -430,7 +428,7 @@ async function read(): Promise<void> {
   const client = new TestingClient();
   const result = await client.read("required path param", "required query", {
     widget: { name: "body name" },
-    optionalQuery: "renamed optional query",
+    optionalQuery: "renamed optional query"
   });
   console.log(result);
 }

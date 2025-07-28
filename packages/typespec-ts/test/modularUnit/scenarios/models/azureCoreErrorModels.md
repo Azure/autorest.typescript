@@ -225,16 +225,15 @@ export interface AvsSummary extends ProxyResource {
 
 export function avsSummarySerializer(item: AvsSummary): any {
   return {
-    properties: !item["properties"]
-      ? item["properties"]
-      : avsSummaryPropertiesSerializer(item["properties"]),
+    properties: item["properties"]
+      ? avsSummaryPropertiesSerializer(item["properties"])
+      : item["properties"],
   };
 }
 
 export function avsSummaryDeserializer(item: any): AvsSummary {
   return {
     id: item["id"],
-    name: item["name"],
     type: item["type"],
     systemData: !item["systemData"]
       ? item["systemData"]

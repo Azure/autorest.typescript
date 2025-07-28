@@ -215,9 +215,9 @@ export function _readSend(
       body: {
         prop1: prop1,
         prop2: prop2,
-        prop3: !options?.prop3 ? options?.prop3 : options?.prop3.toISOString(),
+        prop3: options?.prop3 ? options?.prop3.toISOString() : options?.prop3,
         prop4: prop4,
-        prop5: !options?.prop5 ? options?.prop5 : barSerializer(options?.prop5),
+        prop5: options?.prop5 ? barSerializer(options?.prop5) : options?.prop5,
       },
     });
 }
@@ -349,8 +349,8 @@ export function _readSend(
       contentType: "application/json",
       body: {
         prop2: prop2,
-        prop3: !options?.prop3 ? options?.prop3 : options?.prop3.toISOString(),
-        prop5: !options?.prop5 ? options?.prop5 : barSerializer(options?.prop5),
+        prop3: options?.prop3 ? options?.prop3.toISOString() : options?.prop3,
+        prop5: options?.prop5 ? barSerializer(options?.prop5) : options?.prop5,
       },
     });
 }

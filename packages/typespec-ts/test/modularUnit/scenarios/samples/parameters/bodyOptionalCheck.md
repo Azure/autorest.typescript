@@ -114,9 +114,9 @@ export function _readSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      body: !options["widget"]
-        ? options["widget"]
-        : bodyParameterSerializer(options["widget"]),
+      body: options["widget"]
+        ? bodyParameterSerializer(options["widget"])
+        : options["widget"],
     });
 }
 

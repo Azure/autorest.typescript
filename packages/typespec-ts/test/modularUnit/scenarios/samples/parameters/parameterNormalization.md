@@ -64,7 +64,7 @@ export function _postSend(
   const path = expandUrlTemplate(
     "{/PATH_PARAM}{?QUERY_PARAM}",
     {
-      PATH_PARAM: options["pathParam"],
+      PATH_PARAM: options?.["pathParam"],
       QUERY_PARAM: options?.queryParam,
     },
     {
@@ -82,9 +82,9 @@ export function _postSend(
           : {}),
         ...options.requestOptions?.headers,
       },
-      body: !options["listCredentialsRequest"]
-        ? options["listCredentialsRequest"]
-        : listCredentialsRequestSerializer(options["listCredentialsRequest"]),
+      body: options["listCredentialsRequest"]
+        ? listCredentialsRequestSerializer(options["listCredentialsRequest"])
+        : options["listCredentialsRequest"],
     });
 }
 

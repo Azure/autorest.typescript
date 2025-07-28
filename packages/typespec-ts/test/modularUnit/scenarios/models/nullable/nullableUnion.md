@@ -28,9 +28,9 @@ export function _postRequestSerializer(item: _PostRequest): any {
   return {
     code: item["code"],
     message: item["message"],
-    propA: !item["propA"]
-      ? item["propA"]
-      : _postRequestSerializer(item["propA"]),
+    propA: item["propA"]
+      ? _postRequestSerializer(item["propA"])
+      : item["propA"],
   };
 }
 
@@ -83,7 +83,7 @@ export function _postSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      body: !body ? body : _postRequestSerializer(body),
+      body: body ? _postRequestSerializer(body) : body,
     });
 }
 

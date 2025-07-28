@@ -30,7 +30,7 @@ export function _readSend(
   const path = expandUrlTemplate(
     "{/param}",
     {
-      param: options["param"],
+      param: options?.["param"],
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

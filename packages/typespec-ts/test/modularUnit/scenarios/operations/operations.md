@@ -177,17 +177,17 @@ export function _readSend(
       "utc-date-header": utcDateHeader.toUTCString(),
       ...(options?.optionalDateHeader !== undefined
         ? {
-            "optional-date-header": !options?.optionalDateHeader
-              ? options?.optionalDateHeader
-              : options?.optionalDateHeader.toUTCString(),
+            "optional-date-header": options?.optionalDateHeader
+              ? options?.optionalDateHeader.toUTCString()
+              : options?.optionalDateHeader,
           }
         : {}),
       ...(options?.nullableDateHeader !== undefined &&
       options?.nullableDateHeader !== null
         ? {
-            "nullable-date-header": !options?.nullableDateHeader
-              ? options?.nullableDateHeader
-              : options?.nullableDateHeader.toUTCString(),
+            "nullable-date-header": options?.nullableDateHeader
+              ? options?.nullableDateHeader.toUTCString()
+              : options?.nullableDateHeader,
           }
         : {}),
       ...options.requestOptions?.headers,
@@ -330,9 +330,9 @@ export function _readSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      body: !options["bars"]
-        ? options["bars"]
-        : barArraySerializer(options["bars"]),
+      body: options["bars"]
+        ? barArraySerializer(options["bars"])
+        : options["bars"],
     });
 }
 
@@ -524,9 +524,9 @@ export function _readSend(
         accept: "application/json",
         ...options.requestOptions?.headers,
       },
-      body: !options["bars"]
-        ? options["bars"]
-        : barArraySerializer(options["bars"]),
+      body: options["bars"]
+        ? barArraySerializer(options["bars"])
+        : options["bars"],
     });
 }
 
@@ -847,6 +847,7 @@ export function test(
     () => _testSend(context, options),
     _testDeserialize,
     ["200"],
+    {},
   );
 }
 ```

@@ -47,8 +47,8 @@ export function _readSend(
   const path = expandUrlTemplate(
     "/{strDefault}/{numberDefault}",
     {
-      strDefault: "foobar",
-      numberDefault: 1,
+      strDefault: strDefault,
+      numberDefault: numberDefault,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

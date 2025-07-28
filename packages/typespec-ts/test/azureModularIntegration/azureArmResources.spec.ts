@@ -39,7 +39,6 @@ describe("Azure Arm Resources Rest Client", () => {
 
   const validNestedResource = {
     id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top/nestedProxyResources/nested`,
-    name: "nested",
     type: "Azure.ResourceManager.Resources/topLevelTrackedResources/top/nestedProxyResources",
     properties: {
       provisioningState: "Succeeded",
@@ -76,7 +75,6 @@ describe("Azure Arm Resources Rest Client", () => {
 
   const validLocationResource = {
     id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/providers/Azure.ResourceManager.Resources/locations/${LOCATION_EXPECTED}/locationResources/resource`,
-    name: "resource",
     type: "Azure.ResourceManager.Resources/locationResources",
     properties: {
       description: "valid",
@@ -93,7 +91,6 @@ describe("Azure Arm Resources Rest Client", () => {
   };
   const validResourceGroupExtensionsResource: ExtensionsResource = {
     id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Resources/extensionsResources/extension`,
-    name: "extension",
     type: "Azure.ResourceManager.Resources/extensionsResources",
     properties: {
       description: "valid",
@@ -111,7 +108,6 @@ describe("Azure Arm Resources Rest Client", () => {
 
   const validSubscriptionExtensionsResource: ExtensionsResource = {
     id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/providers/Azure.ResourceManager.Resources/extensionsResources/extension`,
-    name: "extension",
     type: "Azure.ResourceManager.Resources/extensionsResources",
     properties: {
       description: "valid",
@@ -129,7 +125,6 @@ describe("Azure Arm Resources Rest Client", () => {
 
   const validTenantExtensionsResource: ExtensionsResource = {
     id: `/providers/Azure.ResourceManager.Resources/extensionsResources/extension`,
-    name: "extension",
     type: "Azure.ResourceManager.Resources/extensionsResources",
     properties: {
       description: "valid",
@@ -147,7 +142,6 @@ describe("Azure Arm Resources Rest Client", () => {
 
   const validResourceExtensionsResource: ExtensionsResource = {
     id: `/subscriptions/${SUBSCRIPTION_ID_EXPECTED}/resourceGroups/${RESOURCE_GROUP_EXPECTED}/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top/providers/Azure.ResourceManager.Resources/extensionsResources/extension`,
-    name: "extension",
     type: "Azure.ResourceManager.Resources/extensionsResources",
     properties: {
       description: "valid",
@@ -167,7 +161,6 @@ describe("Azure Arm Resources Rest Client", () => {
   it("should get singleton tracked resources by resourceGroup", async () => {
     const result = await client.singleton.getByResourceGroup("test-rg");
     assert.strictEqual(result.id, validSingletonResource.id);
-    assert.strictEqual(result.name, validSingletonResource.name);
     assert.strictEqual(result.type, validSingletonResource.type);
   });
 
@@ -180,7 +173,6 @@ describe("Azure Arm Resources Rest Client", () => {
     });
 
     assert.strictEqual(result.id, validSingletonResource.id);
-    assert.strictEqual(result.name, validSingletonResource.name);
     assert.strictEqual(result.type, validSingletonResource.type);
     assert.strictEqual(result.location, "eastus");
     assert.strictEqual(result.properties?.description, "valid2");
@@ -194,7 +186,6 @@ describe("Azure Arm Resources Rest Client", () => {
       }
     });
     assert.strictEqual(result.id, validSingletonResource.id);
-    assert.strictEqual(result.name, validSingletonResource.name);
     assert.strictEqual(result.type, validSingletonResource.type);
   });
 
@@ -205,7 +196,6 @@ describe("Azure Arm Resources Rest Client", () => {
       items.push(user);
     }
     assert.strictEqual(items[0]?.id, validSingletonResource.id);
-    assert.strictEqual(items[0]?.name, validSingletonResource.name);
     assert.strictEqual(items[0]?.type, validSingletonResource.type);
   });
 
@@ -221,7 +211,6 @@ describe("Azure Arm Resources Rest Client", () => {
   it("should get top level tracked resources", async () => {
     const result = await client.topLevel.get("test-rg", "top");
     assert.strictEqual(result.id, validTopLevelResource.id);
-    assert.strictEqual(result.name, validTopLevelResource.name);
     assert.strictEqual(result.type, validTopLevelResource.type);
   });
 
@@ -233,7 +222,6 @@ describe("Azure Arm Resources Rest Client", () => {
       }
     });
     assert.strictEqual(result.id, validTopLevelResource.id);
-    assert.strictEqual(result.name, validTopLevelResource.name);
     assert.strictEqual(result.type, validTopLevelResource.type);
     assert.strictEqual(result.location, validTopLevelResource.location);
     assert.strictEqual(
@@ -250,7 +238,6 @@ describe("Azure Arm Resources Rest Client", () => {
       }
     });
     assert.strictEqual(result.id, validTopLevelResource.id);
-    assert.strictEqual(result.name, validTopLevelResource.name);
     assert.strictEqual(result.type, validTopLevelResource.type);
     assert.strictEqual(result.location, validTopLevelResource.location);
     assert.strictEqual(result.properties?.description, "valid2");
@@ -269,7 +256,6 @@ describe("Azure Arm Resources Rest Client", () => {
     }
     assert.strictEqual(items.length, 1);
     assert.strictEqual(items[0]?.id, validTopLevelResource.id);
-    assert.strictEqual(items[0]?.name, validTopLevelResource.name);
     assert.strictEqual(items[0]?.type, validTopLevelResource.type);
   });
 
@@ -281,7 +267,6 @@ describe("Azure Arm Resources Rest Client", () => {
     }
     assert.strictEqual(items.length, 1);
     assert.strictEqual(items[0]?.id, validTopLevelResource.id);
-    assert.strictEqual(items[0]?.name, validTopLevelResource.name);
     assert.strictEqual(items[0]?.type, validTopLevelResource.type);
   });
 
