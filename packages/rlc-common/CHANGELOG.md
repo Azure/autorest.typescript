@@ -1,3 +1,12 @@
+## 0.42.1 (2025-07-23)
+
+- [Feature] Add tspd for regen docs. Please refer to [#3236](https://github.com/Azure/autorest.typescript/pull/3236)
+- [Feature] Generate tsconfig.snippets.json. Please refer to [#3373](https://github.com/Azure/autorest.typescript/pull/3373)
+- [Bugfix] Fix the import ordering in-consistent issues. Please refer to [#3383](https://github.com/Azure/autorest.typescript/pull/3383)
+- [Feature] Upgrade TypeSpec and TCGC versions to latest releases. Please refer to [#3381](https://github.com/Azure/autorest.typescript/pull/3381)
+- [Feature] Add the cloudSetting option for ARM Modular SDK. Please refer to [#3233](https://github.com/Azure/autorest.typescript/pull/3233)
+- [Bugfix] [release.yml] Fix typo in demands. Please refer to [#3370](https://github.com/Azure/autorest.typescript/pull/3370)
+
 ## 0.42.0 (2025-07-09)
 
 - [Bugfix] Fix sample serialization name and name inconsistency for body parameter. Please refer to [#3340](https://github.com/Azure/autorest.typescript/pull/3340)

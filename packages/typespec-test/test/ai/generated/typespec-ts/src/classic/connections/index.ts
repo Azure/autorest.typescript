@@ -3,10 +3,11 @@
 
 import { AIProjectContext } from "../../api/aiProjectContext.js";
 import {
-  GetWorkspaceResponse,
-  ListConnectionsResponse,
-  GetConnectionResponse,
-} from "../../models/models.js";
+  getConnectionWithSecrets,
+  getConnection,
+  listConnections,
+  getWorkspace,
+} from "../../api/connections/operations.js";
 import {
   ConnectionsGetConnectionWithSecretsOptionalParams,
   ConnectionsGetConnectionOptionalParams,
@@ -14,11 +15,10 @@ import {
   ConnectionsGetWorkspaceOptionalParams,
 } from "../../api/connections/options.js";
 import {
-  getConnectionWithSecrets,
-  getConnection,
-  listConnections,
-  getWorkspace,
-} from "../../api/connections/operations.js";
+  GetWorkspaceResponse,
+  ListConnectionsResponse,
+  GetConnectionResponse,
+} from "../../models/models.js";
 
 /** Interface representing a Connections operations. */
 export interface ConnectionsOperations {

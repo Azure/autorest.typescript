@@ -57,10 +57,48 @@ export declare interface PetOutput {
 
 export declare interface Routes {
     (path: "/payload/pageable/server-driven-pagination/link"): ServerDrivenPaginationLink;
+    (path: "/payload/pageable/server-driven-pagination/nested-link"): ServerDrivenPaginationNestedLink;
     (path: "/payload/pageable/server-driven-pagination/continuationtoken/request-query-response-body"): ServerDrivenPaginationContinuationTokenRequestQueryResponseBody;
     (path: "/payload/pageable/server-driven-pagination/continuationtoken/request-header-response-body"): ServerDrivenPaginationContinuationTokenRequestHeaderResponseBody;
     (path: "/payload/pageable/server-driven-pagination/continuationtoken/request-query-response-header"): ServerDrivenPaginationContinuationTokenRequestQueryResponseHeader;
     (path: "/payload/pageable/server-driven-pagination/continuationtoken/request-header-response-header"): ServerDrivenPaginationContinuationTokenRequestHeaderResponseHeader;
+    (path: "/payload/pageable/server-driven-pagination/continuationtoken/request-query-nested-response-body"): ServerDrivenPaginationContinuationTokenRequestQueryNestedResponseBody;
+    (path: "/payload/pageable/server-driven-pagination/continuationtoken/request-header-nested-response-body"): ServerDrivenPaginationContinuationTokenRequestHeaderNestedResponseBody;
+}
+
+export declare interface ServerDrivenPaginationContinuationTokenRequestHeaderNestedResponseBody {
+    get(options?: ServerDrivenPaginationContinuationTokenRequestHeaderNestedResponseBodyParameters): StreamableMethod<ServerDrivenPaginationContinuationTokenRequestHeaderNestedResponseBody200Response>;
+}
+
+export declare interface ServerDrivenPaginationContinuationTokenRequestHeaderNestedResponseBody200Response extends HttpResponse {
+    status: "200";
+    body: {
+        nestedItems: {
+            pets: Array<PetOutput>;
+        };
+        nestedNext?: {
+            nextToken?: string;
+        };
+    };
+}
+
+export declare interface ServerDrivenPaginationContinuationTokenRequestHeaderNestedResponseBodyHeaderParam {
+    headers?: RawHttpHeadersInput & ServerDrivenPaginationContinuationTokenRequestHeaderNestedResponseBodyHeaders;
+}
+
+export declare interface ServerDrivenPaginationContinuationTokenRequestHeaderNestedResponseBodyHeaders {
+    token?: string;
+    foo?: string;
+}
+
+export declare type ServerDrivenPaginationContinuationTokenRequestHeaderNestedResponseBodyParameters = ServerDrivenPaginationContinuationTokenRequestHeaderNestedResponseBodyQueryParam & ServerDrivenPaginationContinuationTokenRequestHeaderNestedResponseBodyHeaderParam & RequestParameters;
+
+export declare interface ServerDrivenPaginationContinuationTokenRequestHeaderNestedResponseBodyQueryParam {
+    queryParameters?: ServerDrivenPaginationContinuationTokenRequestHeaderNestedResponseBodyQueryParamProperties;
+}
+
+export declare interface ServerDrivenPaginationContinuationTokenRequestHeaderNestedResponseBodyQueryParamProperties {
+    bar?: string;
 }
 
 export declare interface ServerDrivenPaginationContinuationTokenRequestHeaderResponseBody {
@@ -126,6 +164,41 @@ export declare interface ServerDrivenPaginationContinuationTokenRequestHeaderRes
 }
 
 export declare interface ServerDrivenPaginationContinuationTokenRequestHeaderResponseHeaderQueryParamProperties {
+    bar?: string;
+}
+
+export declare interface ServerDrivenPaginationContinuationTokenRequestQueryNestedResponseBody {
+    get(options?: ServerDrivenPaginationContinuationTokenRequestQueryNestedResponseBodyParameters): StreamableMethod<ServerDrivenPaginationContinuationTokenRequestQueryNestedResponseBody200Response>;
+}
+
+export declare interface ServerDrivenPaginationContinuationTokenRequestQueryNestedResponseBody200Response extends HttpResponse {
+    status: "200";
+    body: {
+        nestedItems: {
+            pets: Array<PetOutput>;
+        };
+        nestedNext?: {
+            nextToken?: string;
+        };
+    };
+}
+
+export declare interface ServerDrivenPaginationContinuationTokenRequestQueryNestedResponseBodyHeaderParam {
+    headers?: RawHttpHeadersInput & ServerDrivenPaginationContinuationTokenRequestQueryNestedResponseBodyHeaders;
+}
+
+export declare interface ServerDrivenPaginationContinuationTokenRequestQueryNestedResponseBodyHeaders {
+    foo?: string;
+}
+
+export declare type ServerDrivenPaginationContinuationTokenRequestQueryNestedResponseBodyParameters = ServerDrivenPaginationContinuationTokenRequestQueryNestedResponseBodyQueryParam & ServerDrivenPaginationContinuationTokenRequestQueryNestedResponseBodyHeaderParam & RequestParameters;
+
+export declare interface ServerDrivenPaginationContinuationTokenRequestQueryNestedResponseBodyQueryParam {
+    queryParameters?: ServerDrivenPaginationContinuationTokenRequestQueryNestedResponseBodyQueryParamProperties;
+}
+
+export declare interface ServerDrivenPaginationContinuationTokenRequestQueryNestedResponseBodyQueryParamProperties {
+    token?: string;
     bar?: string;
 }
 
@@ -208,5 +281,23 @@ export declare interface ServerDrivenPaginationLink200Response extends HttpRespo
 }
 
 export declare type ServerDrivenPaginationLinkParameters = RequestParameters;
+
+export declare interface ServerDrivenPaginationNestedLink {
+    get(options?: ServerDrivenPaginationNestedLinkParameters): StreamableMethod<ServerDrivenPaginationNestedLink200Response>;
+}
+
+export declare interface ServerDrivenPaginationNestedLink200Response extends HttpResponse {
+    status: "200";
+    body: {
+        nestedItems: {
+            pets: Array<PetOutput>;
+        };
+        nestedNext: {
+            next?: string;
+        };
+    };
+}
+
+export declare type ServerDrivenPaginationNestedLinkParameters = RequestParameters;
 
 export { }

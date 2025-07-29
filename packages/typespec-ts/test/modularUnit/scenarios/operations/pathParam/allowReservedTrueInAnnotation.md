@@ -17,8 +17,8 @@ Should enable `allowReserved:true` for path parameter:
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { AnnotationOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { AnnotationOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

@@ -10,8 +10,8 @@ import {
   ConfidentialLedgerOperations,
   _getConfidentialLedgerOperations,
 } from "./classic/confidentialLedger/index.js";
-import { Pipeline } from "@azure/core-rest-pipeline";
 import { TokenCredential } from "@azure/core-auth";
+import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { ParametrizedHostClientOptionalParams } from "./api/parametrizedHostContext.js";
 
