@@ -83,9 +83,7 @@ export function _arraySend(
   const path = expandUrlTemplate(
     "/array?fixed=true{&param*}",
     {
-      param: param.map((p: any) => {
-        return p;
-      }),
+      param: param,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

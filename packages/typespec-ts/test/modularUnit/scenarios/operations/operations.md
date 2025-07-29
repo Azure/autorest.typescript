@@ -167,14 +167,14 @@ export function _readSend(
       options?.nullableOptionalHeader !== null
         ? { "nullable-optional-header": options?.nullableOptionalHeader }
         : {}),
-      "bytes-header": uint8ArrayToString(bytesHeader, "base64"),
-      value: uint8ArrayToString(value, "base64"),
+      "bytes-header": bytesHeader,
+      value: value,
       "csv-array-header": buildCsvCollection(
         csvArrayHeader.map((p: any) => {
           return uint8ArrayToString(p, "base64url");
         }),
       ),
-      "utc-date-header": utcDateHeader.toUTCString(),
+      "utc-date-header": utcDateHeader,
       ...(options?.optionalDateHeader !== undefined
         ? {
             "optional-date-header": !options?.optionalDateHeader

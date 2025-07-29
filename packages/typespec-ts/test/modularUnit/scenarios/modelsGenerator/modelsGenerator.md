@@ -491,7 +491,7 @@ export function _readSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { prop: prop.toUTCString(), ...options.requestOptions?.headers },
+      headers: { prop: prop, ...options.requestOptions?.headers },
     });
 }
 

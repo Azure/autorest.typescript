@@ -28,6 +28,8 @@ import {
   SdkClientType,
   SdkHttpParameter,
   SdkMethodParameter,
+  SdkEndpointParameter,
+  SdkCredentialParameter,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 import { getModularClientOptions } from "../utils/clientUtils.js";
@@ -209,16 +211,17 @@ export function buildClientContext(
     onClientOnly: false,
     requiredOnly: true,
     skipEndpointTemplate: true
-  }).find((x) => x.kind === "endpoint");
+  }).find((x: any) => x.kind === "endpoint");
   if (apiVersionParam) {
     const templateArguments =
-      endpointParameter && endpointParameter.type.kind === "endpoint"
-        ? endpointParameter.type.templateArguments
-        : endpointParameter && endpointParameter.type.kind === "union"
-          ? endpointParameter.type.variantTypes[0]?.templateArguments
+      endpointParameter && (endpointParameter as any).type?.kind === "endpoint"
+        ? (endpointParameter as any).type.templateArguments
+        : endpointParameter && (endpointParameter as any).type?.kind === "union"
+          ? (endpointParameter as any).type.variantTypes[0]?.templateArguments
           : [];
     const apiVersionInEndpoint =
-      templateArguments && templateArguments.find((p: any) => p.isApiVersionParam);
+      templateArguments &&
+      templateArguments.find((p: any) => p.isApiVersionParam);
     if (!apiVersionInEndpoint && apiVersionParam.clientDefaultValue) {
       apiVersionPolicyStatement += `const apiVersion = options.apiVersion ?? "${apiVersionParam.clientDefaultValue}";`;
     }
@@ -283,7 +286,11 @@ export function buildClientContext(
 
 function getDocsWithKnownVersion(
   dpgContext: SdkContext,
-  param: SdkMethodParameter | SdkHttpParameter
+  param:
+    | SdkMethodParameter
+    | SdkHttpParameter
+    | SdkEndpointParameter
+    | SdkCredentialParameter
 ) {
   const docs = getDocsFromDescription(param.doc);
   if (param.name.toLowerCase() !== "apiversion") {

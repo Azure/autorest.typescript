@@ -49,9 +49,7 @@ export function _requiredSend(
   const path = expandUrlTemplate(
     "/annotation/required{?select*}",
     {
-      select: select.map((p: any) => {
-        return p;
-      }),
+      select: select,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,

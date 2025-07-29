@@ -8,6 +8,8 @@ import {
   SdkClientType,
   SdkHttpParameter,
   SdkMethodParameter,
+  SdkEndpointParameter,
+  SdkCredentialParameter,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 
@@ -44,7 +46,12 @@ export function getClientParameters(
     apiVersionAsRequired: true
   }
 ) {
-  const clientParams: (SdkMethodParameter | SdkHttpParameter)[] = [];
+  const clientParams: (
+    | SdkMethodParameter
+    | SdkHttpParameter
+    | SdkEndpointParameter
+    | SdkCredentialParameter
+  )[] = [];
   for (const property of client.clientInitialization.parameters) {
     if (
       property.type.kind === "union" &&
@@ -62,25 +69,57 @@ export function getClientParameters(
     }
   }
 
-  const hasDefaultValue = (p: SdkMethodParameter | SdkHttpParameter) =>
+  const hasDefaultValue = (
+    p:
+      | SdkMethodParameter
+      | SdkHttpParameter
+      | SdkEndpointParameter
+      | SdkCredentialParameter
+  ) =>
     p.clientDefaultValue || p.__raw?.defaultValue || p.type.kind === "constant";
-  const isRequired = (p: SdkMethodParameter | SdkHttpParameter) =>
+  const isRequired = (
+    p:
+      | SdkMethodParameter
+      | SdkHttpParameter
+      | SdkEndpointParameter
+      | SdkCredentialParameter
+  ) =>
     !p.optional &&
     ((!hasDefaultValue(p) &&
       !(
-        p.type.kind === "endpoint" &&
-        p.type.templateArguments[0] &&
-        hasDefaultValue(p.type.templateArguments[0])
+        (p as any).type?.kind === "endpoint" &&
+        (p as any).type?.templateArguments?.[0] &&
+        hasDefaultValue((p as any).type.templateArguments[0])
       )) ||
-      (options.apiVersionAsRequired && p.isApiVersionParam));
-  const isOptional = (p: SdkMethodParameter | SdkHttpParameter) =>
-    p.optional || hasDefaultValue(p);
-  const skipCredentials = (p: SdkMethodParameter | SdkHttpParameter) =>
-    p.kind !== "credential";
-  const skipMethodParam = (p: SdkMethodParameter | SdkHttpParameter) =>
-    p.kind !== "method";
-  const armSpecific = (p: SdkMethodParameter | SdkHttpParameter) =>
-    !(p.kind === "endpoint" && dpgContext.arm);
+      (options.apiVersionAsRequired && (p as any).isApiVersionParam));
+  const isOptional = (
+    p:
+      | SdkMethodParameter
+      | SdkHttpParameter
+      | SdkEndpointParameter
+      | SdkCredentialParameter
+  ) => p.optional || hasDefaultValue(p);
+  const skipCredentials = (
+    p:
+      | SdkMethodParameter
+      | SdkHttpParameter
+      | SdkEndpointParameter
+      | SdkCredentialParameter
+  ) => !("kind" in p && p.kind === "credential");
+  const skipMethodParam = (
+    p:
+      | SdkMethodParameter
+      | SdkHttpParameter
+      | SdkEndpointParameter
+      | SdkCredentialParameter
+  ) => !("kind" in p && p.kind === "method");
+  const armSpecific = (
+    p:
+      | SdkMethodParameter
+      | SdkHttpParameter
+      | SdkEndpointParameter
+      | SdkCredentialParameter
+  ) => !("kind" in p && p.kind === "endpoint" && dpgContext.arm);
   const filters = [
     options.requiredOnly ? isRequired : undefined,
     dpgContext.rlcOptions?.addCredentials === false
@@ -134,7 +173,11 @@ export function getClientParametersDeclaration(
 
 function getClientParameterTypeExpression(
   context: SdkContext,
-  parameter: SdkMethodParameter | SdkHttpParameter
+  parameter:
+    | SdkMethodParameter
+    | SdkHttpParameter
+    | SdkEndpointParameter
+    | SdkCredentialParameter
 ) {
   // Special handle to work around the fact that TCGC creates a union type for endpoint. The reason they do this
   // is to provide a way for users to either pass the value to fill in the template of the whole endpoint. Basically they are
@@ -152,7 +195,11 @@ function getClientParameterTypeExpression(
 }
 
 export function getClientParameterName(
-  parameter: SdkMethodParameter | SdkHttpParameter
+  parameter:
+    | SdkMethodParameter
+    | SdkHttpParameter
+    | SdkEndpointParameter
+    | SdkCredentialParameter
 ) {
   // We have been calling this endpointParam, so special handling this here to make sure there are no unexpected side effects
   if (
@@ -288,8 +335,9 @@ export function buildGetClientCredentialParam(
       emitterOptions.options.credentialKeyHeaderName)
   ) {
     return (
-      client.clientInitialization.parameters.find((x) => isCredentialType(x))
-        ?.name ?? "undefined"
+      client.clientInitialization.parameters.find((x) =>
+        isCredentialType(x.type)
+      )?.name ?? "undefined"
     );
   } else {
     return "undefined";
