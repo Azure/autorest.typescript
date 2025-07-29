@@ -372,6 +372,9 @@ export function extractPageDetails(
         },
         target: NoTarget
       });
+      // these paging information will be ignored
+      // and the operation will be treated as a non-paging operation.
+      return undefined;
     }
     const nextLinkNames =
       nextLinkPath?.map((prop) => prop.name).join(".") ?? "nextLink";

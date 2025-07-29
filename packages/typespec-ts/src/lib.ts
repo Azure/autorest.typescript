@@ -460,7 +460,7 @@ const libDef = {
     "unsupported-paging-cases": {
       severity: "warning",
       messages: {
-        default: paramMessage`Any complex paging cases are not supported yet e.g nested next links - ${"operationName"}.`
+        default: paramMessage`Nested paging items in ${"operationName"} are not supported and will be ignored.`
       }
     },
     "decimal-to-number": {
