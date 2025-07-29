@@ -61,6 +61,46 @@ describe("Page helper", () => {
       );
     }
   });
+
+  it("should handle @list operation with customized @nextLink and @pageItems", async () => {
+    const content = `
+      @list
+      op listWidgets() : { @pageItems widgets: string[]; @nextLink next: string; };
+      `;
+    const pageInfo = await emitPageHelperFromTypeSpec(content, {
+      needAzureCore: true
+    });
+    assert.ok(pageInfo);
+    assert.isTrue((pageInfo?.content as string).includes(`widgets`));
+    assert.isTrue((pageInfo?.content as string).includes(`next`));
+  });
+
+  it("should handle @list operation with normal @nextLink and @pageItems", async () => {
+    const content = `
+      @list
+      op listWidgets() : { @pageItems pageItems: string[]; @nextLink nextLink: string; };
+      `;
+    const pageInfo = await emitPageHelperFromTypeSpec(content, {
+      needAzureCore: true
+    });
+    assert.ok(pageInfo);
+    assert.isTrue((pageInfo?.content as string).includes(`pageItems`));
+    assert.isTrue((pageInfo?.content as string).includes(`nextLink`));
+  });
+
+  // please confirm if the null is valid type for nextLink
+  it.skip("should handle @list operation with customized null @pageItems", async () => {
+    const content = `
+      @list
+      op listWidgets() : { @pageItems widgets: string[]; @nextLink next: null; };
+      `;
+    const pageInfo = await emitPageHelperFromTypeSpec(content, {
+      needAzureCore: true
+    });
+    assert.ok(pageInfo);
+    assert.isTrue((pageInfo?.content as string).includes(`widgets`));
+    assert.isTrue((pageInfo?.content as string).includes(`next`));
+  });
 });
 
 async function generatePagingHelper(code: string) {
