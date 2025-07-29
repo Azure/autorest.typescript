@@ -457,7 +457,7 @@ const libDef = {
         default: paramMessage`Operation '${"operationName"}' is marked with @list but does not have @pageItems defined.`
       }
     },
-    "unsupported-paging-cases": {
+    "un-supported-paging-cases": {
       severity: "warning",
       messages: {
         default: paramMessage`Nested paging items in ${"operationName"} are not supported and will be ignored.`

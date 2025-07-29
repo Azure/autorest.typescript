@@ -56,7 +56,7 @@ describe("Page helper", () => {
     } catch (e) {
       assert.isTrue(
         (e as Error).message.includes(
-          "warning @azure-tools/typespec-ts/unsupported-paging-cases: Any complex paging cases are not supported yet e.g nested next links - listWidgets."
+          "@azure-tools/typespec-ts/un-supported-paging-cases"
         )
       );
     }

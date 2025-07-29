@@ -366,7 +366,7 @@ export function extractPageDetails(
     ) {
       // Any cases with nested nextLink or itemName are not supported
       reportDiagnostic(program, {
-        code: "unsupported-paging-cases",
+        code: "un-supported-paging-cases",
         format: {
           operationName: operation.operation.name
         },
