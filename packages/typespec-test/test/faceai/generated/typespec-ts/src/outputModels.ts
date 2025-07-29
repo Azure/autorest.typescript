@@ -329,6 +329,12 @@ export interface FaceListFaceOutput {
   userData?: string;
 }
 
+/** Response model for listing face lists. */
+export interface FaceListPageOutput {
+  /** Array of face list items. */
+  value: Array<FaceListItemOutput>;
+}
+
 /** Face list item for list face list. */
 export interface FaceListItemOutput {
   /** User defined name, maximum length is 128. */
@@ -367,6 +373,12 @@ export interface LargeFaceListOutput {
   readonly largeFaceListId: string;
 }
 
+/** Generic response model for listing resources. */
+export interface ResourceListPageLargeFaceListOutput {
+  /** Array of resource items. */
+  value: Array<LargeFaceListOutput>;
+}
+
 /** Training result of a container */
 export interface TrainingResultOutput {
   /**
@@ -393,6 +405,12 @@ export interface LargeFaceListFaceOutput {
   userData?: string;
 }
 
+/** Generic response model for listing resources. */
+export interface ResourceListPageLargeFaceListFaceOutput {
+  /** Array of resource items. */
+  value: Array<LargeFaceListFaceOutput>;
+}
+
 /** The container of the uploaded person data, including face recognition feature, and up to 10,000 persons. To handle larger scale face identification problem, please consider using Large Person Group. */
 export interface PersonGroupOutput {
   /** User defined name, maximum length is 128. */
@@ -407,6 +425,12 @@ export interface PersonGroupOutput {
   recognitionModel?: RecognitionModelOutput;
   /** ID of the container. */
   readonly personGroupId: string;
+}
+
+/** Generic response model for listing resources. */
+export interface ResourceListPagePersonGroupOutput {
+  /** Array of resource items. */
+  value: Array<PersonGroupOutput>;
 }
 
 /** Response of create person. */
@@ -425,6 +449,12 @@ export interface PersonGroupPersonOutput {
   userData?: string;
   /** Face ids of registered faces in the person. */
   persistedFaceIds?: string[];
+}
+
+/** Generic response model for listing resources. */
+export interface ResourceListPagePersonGroupPersonOutput {
+  /** Array of resource items. */
+  value: Array<PersonGroupPersonOutput>;
 }
 
 /** Face resource for person group person. */
@@ -451,6 +481,12 @@ export interface LargePersonGroupOutput {
   readonly largePersonGroupId: string;
 }
 
+/** Generic response model for listing resources. */
+export interface ResourceListPageLargePersonGroupOutput {
+  /** Array of resource items. */
+  value: Array<LargePersonGroupOutput>;
+}
+
 /** The person in a specified large person group. To add face to this person, please call "Add Large Person Group Person Face". */
 export interface LargePersonGroupPersonOutput {
   /** ID of the person. */
@@ -461,6 +497,12 @@ export interface LargePersonGroupPersonOutput {
   userData?: string;
   /** Face ids of registered faces in the person. */
   persistedFaceIds?: string[];
+}
+
+/** Generic response model for listing resources. */
+export interface ResourceListPageLargePersonGroupPersonOutput {
+  /** Array of resource items. */
+  value: Array<LargePersonGroupPersonOutput>;
 }
 
 /** Face resource for large person group person. */

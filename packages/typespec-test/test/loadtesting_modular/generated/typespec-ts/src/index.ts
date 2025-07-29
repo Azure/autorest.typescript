@@ -73,6 +73,7 @@ export {
   MetricNamespace,
   MetricRequestPayload,
   DimensionFilter,
+  Metrics,
   TimeSeriesElement,
   MetricValue,
   DimensionValue,

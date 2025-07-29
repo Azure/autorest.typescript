@@ -14,7 +14,6 @@ import type { ErrorResponse } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
 import type { KeyCredential } from '@azure/core-auth';
 import type { OperationState } from '@azure/core-lro';
-import type { PathUncheckedResponse } from '@azure-rest/core-client';
 import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
 import type { StreamableMethod } from '@azure-rest/core-client';
@@ -331,9 +330,6 @@ export interface Get200Response extends HttpResponse {
     status: "200";
 }
 
-// @public
-export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
-
 // @public (undocumented)
 export interface GetDefaultHeaders {
     "x-ms-error-code"?: string;
@@ -436,12 +432,6 @@ export function getLongRunningPoller<TResult extends DeleteDeploymentLogicalResp
 
 // @public (undocumented)
 export function getLongRunningPoller<TResult extends SwapDeploymentsLogicalResponse | SwapDeploymentsDefaultResponse>(client: Client, initialResponse: SwapDeployments202Response | SwapDeploymentsDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
-
-// @public
-export type GetPage<TPage> = (pageLink: string) => Promise<{
-    page: TPage;
-    nextPageLink?: string;
-}>;
 
 // @public (undocumented)
 export type GetParameters = RequestParameters;
@@ -737,13 +727,6 @@ export interface OperationStatusErrorOutput {
 }
 
 // @public
-export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
-    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
-    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
-    next(): Promise<IteratorResult<TElement>>;
-}
-
-// @public
 export interface PagedDeploymentOutput {
     nextLink?: string;
     value: Array<DeploymentOutput>;
@@ -753,26 +736,6 @@ export interface PagedDeploymentOutput {
 export interface PagedProjectOutput {
     nextLink?: string;
     value: Array<ProjectOutput>;
-}
-
-// @public
-export interface PageSettings {
-    continuationToken?: string;
-}
-
-// @public
-export function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
-
-// @public
-export type PaginateReturn<TResult> = TResult extends {
-    body: {
-        value?: infer TPage;
-    };
-} ? GetArrayType<TPage> : Array<unknown>;
-
-// @public
-export interface PagingOptions<TResponse> {
-    customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
 }
 
 // @public

@@ -43,3 +43,24 @@ model LargeFaceList is BaseCollection {
 @parentResource(LargeFaceList)
 @doc("Face resource for large face list.")
 model LargeFaceListFace is BaseFace;
+
+@doc("Response model for listing face lists.")
+model FaceListPage {
+  @doc("Array of face list items.")
+  @pageItems
+  value: FaceListItem[];
+}
+
+@doc("Response model for listing large face lists.")
+model LargeFaceListPage {
+  @doc("Array of large face list items.")
+  @pageItems
+  value: LargeFaceList[];
+}
+
+@doc("Response model for listing large face list faces.")
+model LargeFaceListFacePage {
+  @doc("Array of large face list faces.")
+  @pageItems
+  value: LargeFaceListFace[];
+}

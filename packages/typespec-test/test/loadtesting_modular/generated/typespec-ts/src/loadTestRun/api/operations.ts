@@ -21,9 +21,8 @@ import {
   MetricNamespaceCollection,
   metricNamespaceCollectionDeserializer,
   metricRequestPayloadSerializer,
-  _Metrics,
-  _metricsDeserializer,
-  TimeSeriesElement,
+  Metrics,
+  metricsDeserializer,
   _PagedTestRun,
   _pagedTestRunDeserializer,
 } from "../../models/models.js";
@@ -202,39 +201,33 @@ export function _listMetricsSend(
 
 export async function _listMetricsDeserialize(
   result: PathUncheckedResponse,
-): Promise<_Metrics> {
+): Promise<Metrics> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return _metricsDeserializer(result.body);
+  return metricsDeserializer(result.body);
 }
 
 /** List the metric values for a load test run. */
-export function listMetrics(
+export async function listMetrics(
   context: Client,
   testRunId: string,
   metricname: string,
   metricNamespace: string,
   timespan: string,
   options: ListMetricsOptionalParams = { requestOptions: {} },
-): PagedAsyncIterableIterator<TimeSeriesElement> {
-  return buildPagedAsyncIterator(
+): Promise<Metrics> {
+  const result = await _listMetricsSend(
     context,
-    () =>
-      _listMetricsSend(
-        context,
-        testRunId,
-        metricname,
-        metricNamespace,
-        timespan,
-        options,
-      ),
-    _listMetricsDeserialize,
-    ["200"],
-    { itemName: "value", nextLinkName: "nextLink" },
+    testRunId,
+    metricname,
+    metricNamespace,
+    timespan,
+    options,
   );
+  return _listMetricsDeserialize(result);
 }
 
 export function _listMetricNamespacesSend(

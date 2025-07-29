@@ -10,6 +10,13 @@ using TypeSpec.Rest;
 
 namespace Face;
 
+@doc("Generic response model for listing resources.")
+model ResourceListPage<T> {
+  @doc("Array of resource items.")
+  @pageItems
+  value: T[];
+}
+
 @pattern("^[a-z0-9-_]+$")
 @maxLength(64)
 @minLength(1)

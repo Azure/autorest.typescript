@@ -1952,14 +1952,14 @@ export function dimensionFilterSerializer(item: DimensionFilter): any {
 }
 
 /** The response to a metrics query. */
-export interface _Metrics {
+export interface Metrics {
   /** The TimeSeriesElement items on this page */
   value: TimeSeriesElement[];
   /** The link to the next page of items */
   nextLink?: string;
 }
 
-export function _metricsDeserializer(item: any): _Metrics {
+export function metricsDeserializer(item: any): Metrics {
   return {
     value: timeSeriesElementArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],

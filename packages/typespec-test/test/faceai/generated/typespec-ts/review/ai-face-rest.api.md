@@ -1562,6 +1562,11 @@ export interface FaceListOutput {
 }
 
 // @public
+export interface FaceListPageOutput {
+    value: Array<FaceListItemOutput>;
+}
+
+// @public
 export interface FaceRectangleOutput {
     height: number;
     left: number;
@@ -1754,7 +1759,7 @@ export interface GetFaceLists {
 // @public
 export interface GetFaceLists200Response extends HttpResponse {
     // (undocumented)
-    body: Array<FaceListItemOutput>;
+    body: FaceListPageOutput;
     // (undocumented)
     status: "200";
 }
@@ -1840,7 +1845,7 @@ export type GetLargeFaceListFaceParameters = RequestParameters;
 // @public
 export interface GetLargeFaceListFaces200Response extends HttpResponse {
     // (undocumented)
-    body: Array<LargeFaceListFaceOutput>;
+    body: ResourceListPageLargeFaceListFaceOutput;
     // (undocumented)
     status: "200";
 }
@@ -1897,7 +1902,7 @@ export interface GetLargeFaceLists {
 // @public
 export interface GetLargeFaceLists200Response extends HttpResponse {
     // (undocumented)
-    body: Array<LargeFaceListOutput>;
+    body: ResourceListPageLargeFaceListOutput;
     // (undocumented)
     status: "200";
 }
@@ -2045,7 +2050,7 @@ export type GetLargePersonGroupPersonParameters = RequestParameters;
 // @public
 export interface GetLargePersonGroupPersons200Response extends HttpResponse {
     // (undocumented)
-    body: Array<LargePersonGroupPersonOutput>;
+    body: ResourceListPageLargePersonGroupPersonOutput;
     // (undocumented)
     status: "200";
 }
@@ -2099,7 +2104,7 @@ export interface GetLargePersonGroups {
 // @public
 export interface GetLargePersonGroups200Response extends HttpResponse {
     // (undocumented)
-    body: Array<LargePersonGroupOutput>;
+    body: ResourceListPageLargePersonGroupOutput;
     // (undocumented)
     status: "200";
 }
@@ -2308,7 +2313,7 @@ export type GetPersonGroupPersonParameters = RequestParameters;
 // @public
 export interface GetPersonGroupPersons200Response extends HttpResponse {
     // (undocumented)
-    body: Array<PersonGroupPersonOutput>;
+    body: ResourceListPagePersonGroupPersonOutput;
     // (undocumented)
     status: "200";
 }
@@ -2362,7 +2367,7 @@ export interface GetPersonGroups {
 // @public
 export interface GetPersonGroups200Response extends HttpResponse {
     // (undocumented)
-    body: Array<PersonGroupOutput>;
+    body: ResourceListPagePersonGroupOutput;
     // (undocumented)
     status: "200";
 }
@@ -3147,6 +3152,36 @@ export type RecognitionModel = string;
 
 // @public
 export type RecognitionModelOutput = string;
+
+// @public
+export interface ResourceListPageLargeFaceListFaceOutput {
+    value: Array<LargeFaceListFaceOutput>;
+}
+
+// @public
+export interface ResourceListPageLargeFaceListOutput {
+    value: Array<LargeFaceListOutput>;
+}
+
+// @public
+export interface ResourceListPageLargePersonGroupOutput {
+    value: Array<LargePersonGroupOutput>;
+}
+
+// @public
+export interface ResourceListPageLargePersonGroupPersonOutput {
+    value: Array<LargePersonGroupPersonOutput>;
+}
+
+// @public
+export interface ResourceListPagePersonGroupOutput {
+    value: Array<PersonGroupOutput>;
+}
+
+// @public
+export interface ResourceListPagePersonGroupPersonOutput {
+    value: Array<PersonGroupPersonOutput>;
+}
 
 // @public (undocumented)
 export interface Routes {

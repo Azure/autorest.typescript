@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import createAuthoringClient from "@msinternal/authoring";
 import { AzureKeyCredential } from "@azure/core-auth";
-import createAuthoringClient, { paginate } from "@msinternal/authoring";
 import "dotenv/config";
 
 /**
@@ -15,17 +15,12 @@ async function listDeploymentsSample(): Promise<void> {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAuthoringClient(endpointParam, credential);
   const projectName = "{Your projectName}";
-  const initialResponse = await client
+  const result = await client
     .path(
       "/authoring/analyze-text/projects/{projectName}/deployments",
       projectName,
     )
     .get();
-  const pageData = paginate(client, initialResponse);
-  const result = [];
-  for await (const item of pageData) {
-    result.push(item);
-  }
   console.log(result);
 }
 

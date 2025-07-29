@@ -11,17 +11,23 @@ import type {
   VerificationResultOutput,
   GroupingResultOutput,
   FaceListOutput,
-  FaceListItemOutput,
+  FaceListPageOutput,
   AddFaceResultOutput,
   LargeFaceListOutput,
+  ResourceListPageLargeFaceListOutput,
   TrainingResultOutput,
   LargeFaceListFaceOutput,
+  ResourceListPageLargeFaceListFaceOutput,
   PersonGroupOutput,
+  ResourceListPagePersonGroupOutput,
   CreatePersonResultOutput,
   PersonGroupPersonOutput,
+  ResourceListPagePersonGroupPersonOutput,
   PersonGroupPersonFaceOutput,
   LargePersonGroupOutput,
+  ResourceListPageLargePersonGroupOutput,
   LargePersonGroupPersonOutput,
+  ResourceListPageLargePersonGroupPersonOutput,
   LargePersonGroupPersonFaceOutput,
   LivenessSessionOutput,
   LivenessWithVerifySessionOutput,
@@ -356,7 +362,7 @@ export interface UpdateFaceListDefaultResponse extends HttpResponse {
 /** A successful call returns an array of Face Lists. */
 export interface GetFaceLists200Response extends HttpResponse {
   status: "200";
-  body: Array<FaceListItemOutput>;
+  body: FaceListPageOutput;
 }
 
 export interface GetFaceListsDefaultHeaders {
@@ -488,7 +494,7 @@ export interface UpdateLargeFaceListDefaultResponse extends HttpResponse {
 /** A successful call returns an array of Large Face Lists and their information (largeFaceListId, name and userData). */
 export interface GetLargeFaceLists200Response extends HttpResponse {
   status: "200";
-  body: Array<LargeFaceListOutput>;
+  body: ResourceListPageLargeFaceListOutput;
 }
 
 export interface GetLargeFaceListsDefaultHeaders {
@@ -634,7 +640,7 @@ export interface UpdateLargeFaceListFaceDefaultResponse extends HttpResponse {
 /** A successful call returns an array of persisted faces and their information (persistedFaceId and userData). */
 export interface GetLargeFaceListFaces200Response extends HttpResponse {
   status: "200";
-  body: Array<LargeFaceListFaceOutput>;
+  body: ResourceListPageLargeFaceListFaceOutput;
 }
 
 export interface GetLargeFaceListFacesDefaultHeaders {
@@ -716,7 +722,7 @@ export interface UpdatePersonGroupDefaultResponse extends HttpResponse {
 /** A successful call returns an array of Person Groups and their information (personGroupId, name and userData). */
 export interface GetPersonGroups200Response extends HttpResponse {
   status: "200";
-  body: Array<PersonGroupOutput>;
+  body: ResourceListPagePersonGroupOutput;
 }
 
 export interface GetPersonGroupsDefaultHeaders {
@@ -843,7 +849,7 @@ export interface UpdatePersonGroupPersonDefaultResponse extends HttpResponse {
 /** A successful call returns an array of person information that belong to the Person Group. */
 export interface GetPersonGroupPersons200Response extends HttpResponse {
   status: "200";
-  body: Array<PersonGroupPersonOutput>;
+  body: ResourceListPagePersonGroupPersonOutput;
 }
 
 export interface GetPersonGroupPersonsDefaultHeaders {
@@ -1012,7 +1018,7 @@ export interface UpdateLargePersonGroupDefaultResponse extends HttpResponse {
 /** A successful call returns an array of Large Person Groups and their information (largePersonGroupId, name and userData). */
 export interface GetLargePersonGroups200Response extends HttpResponse {
   status: "200";
-  body: Array<LargePersonGroupOutput>;
+  body: ResourceListPageLargePersonGroupOutput;
 }
 
 export interface GetLargePersonGroupsDefaultHeaders {
@@ -1143,7 +1149,7 @@ export interface UpdateLargePersonGroupPersonDefaultResponse
 /** A successful call returns an array of person information that belong to the Large Person Group. */
 export interface GetLargePersonGroupPersons200Response extends HttpResponse {
   status: "200";
-  body: Array<LargePersonGroupPersonOutput>;
+  body: ResourceListPageLargePersonGroupPersonOutput;
 }
 
 export interface GetLargePersonGroupPersonsDefaultHeaders {
