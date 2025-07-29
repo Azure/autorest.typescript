@@ -51,7 +51,7 @@ export function simpleModelSerializer(item: SimpleModel): any {
 export type _SimpleModelAdditionalProperty = number | string;
 
 export function _simpleModelAdditionalPropertySerializer(
-  item: _SimpleModelAdditionalProperty
+  item: _SimpleModelAdditionalProperty,
 ): any {
   return item;
 }
@@ -107,7 +107,7 @@ export function simpleModelSerializer(item: SimpleModel): any {
   return {
     additionalProperties: item["additionalProperties"],
     propA: item["propA"],
-    propB: item["propB"]
+    propB: item["propB"],
   };
 }
 ```
@@ -164,7 +164,7 @@ export function simpleModelSerializer(item: SimpleModel): any {
   return {
     ...serializeRecord(item.additionalProperties),
     propA: item["propA"],
-    propB: item["propB"]
+    propB: item["propB"],
   };
 }
 
@@ -180,9 +180,9 @@ export function complexModelSerializer(item: ComplexModel): any {
     ...serializeRecord(
       item.additionalProperties,
       undefined,
-      simpleModelSerializer
+      simpleModelSerializer,
     ),
-    propA: simpleModelSerializer(item["propA"])
+    propA: simpleModelSerializer(item["propA"]),
   };
 }
 ```
@@ -300,10 +300,10 @@ export function simpleModelSerializer(item: SimpleModel): any {
     ...serializeRecord(
       item.additionalProperties,
       undefined,
-      _simpleModelAdditionalPropertySerializer
+      _simpleModelAdditionalPropertySerializer,
     ),
     propA: item["propA"],
-    propB: item["propB"]
+    propB: item["propB"],
   };
 }
 
@@ -311,7 +311,7 @@ export function simpleModelSerializer(item: SimpleModel): any {
 export type _SimpleModelAdditionalProperty = string | number | boolean;
 
 export function _simpleModelAdditionalPropertySerializer(
-  item: _SimpleModelAdditionalProperty
+  item: _SimpleModelAdditionalProperty,
 ): any {
   return item;
 }
@@ -378,7 +378,7 @@ export function simpleModelSerializer(item: SimpleModel): any {
     ...serializeRecord(item.additionalPropertiesBag),
     additionalProperties: item["additionalProperties"],
     propA: item["propA"],
-    propB: item["propB"]
+    propB: item["propB"],
   };
 }
 
@@ -395,7 +395,7 @@ export function fooModelSerializer(item: FooModel): any {
     ...serializeRecord(item.additionalPropertiesBag),
     additionalProperties: item["additionalProperties"],
     propA: item["propA"],
-    propB: item["propB"]
+    propB: item["propB"],
   };
 }
 

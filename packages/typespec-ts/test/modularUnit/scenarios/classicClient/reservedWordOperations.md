@@ -9,8 +9,8 @@ op continue(): void;
 ## classicClient
 
 ```ts classicClient
-import { ContinueOptionalParams } from "./api/options.js";
 import { $continue } from "./api/operations.js";
+import { ContinueOptionalParams } from "./api/options.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { TestingClientOptionalParams } from "./api/testingContext.js";

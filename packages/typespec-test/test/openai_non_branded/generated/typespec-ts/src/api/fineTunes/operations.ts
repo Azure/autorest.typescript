@@ -12,6 +12,7 @@ import {
   ListFineTuneEventsResponse,
   listFineTuneEventsResponseDeserializer,
 } from "../../models/models.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   FineTunesCancelOptionalParams,
   FineTunesListEventsOptionalParams,
@@ -19,7 +20,6 @@ import {
   FineTunesListOptionalParams,
   FineTunesCreateOptionalParams,
 } from "./options.js";
-import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

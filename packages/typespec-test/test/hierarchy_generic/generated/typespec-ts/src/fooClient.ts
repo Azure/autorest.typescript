@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 
 import { createFoo, FooContext, FooClientOptionalParams } from "./api/index.js";
-import { A } from "./models/models.js";
-import { Op1OptionalParams } from "./api/options.js";
 import { op1 } from "./api/operations.js";
-import { DOperations, _getDOperations } from "./classic/d/index.js";
+import { Op1OptionalParams } from "./api/options.js";
 import { BOperations, _getBOperations } from "./classic/b/index.js";
+import { DOperations, _getDOperations } from "./classic/d/index.js";
+import { A } from "./models/models.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { FooClientOptionalParams } from "./api/fooContext.js";
