@@ -33,10 +33,6 @@ export function _getAvatarAsJpegSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "image/jpeg",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
       body: image,
     });
 }
@@ -81,10 +77,6 @@ export function _getAvatarAsPngSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "image/png",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
       body: image,
     });
 }
