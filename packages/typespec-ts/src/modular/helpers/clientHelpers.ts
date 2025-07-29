@@ -11,11 +11,17 @@ import {
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import {
+  NameType,
+  normalizeName,
+  PackageFlavor
+} from "@azure-tools/rlc-common";
 import { SdkContext } from "../../utils/interfaces.js";
 import { getClassicalClientName } from "./namingHelpers.js";
 import { getTypeExpression } from "../type-expressions/get-type-expression.js";
 import { isCredentialType } from "./typeHelpers.js";
+import { CloudSettingHelpers } from "../static-helpers-metadata.js";
+import { resolveReference } from "../../framework/reference.js";
 
 interface ClientParameterOptions {
   onClientOnly?: boolean;
@@ -166,93 +172,165 @@ export function buildGetClientEndpointParam(
   dpgContext: SdkContext,
   client: SdkClientType<SdkServiceOperation>
 ): string {
-  const endpointParameter = getClientParameters(client, dpgContext, {
-    onClientOnly: false,
-    requiredOnly: true,
-    skipEndpointTemplate: true
-  }).find((x) => x.kind === "endpoint");
-
-  // Handle API version parameter
-  const apiVersionParam = getClientParameters(client, dpgContext).find(
-    (x) => x.isApiVersionParam
-  );
-
-  if (endpointParameter && endpointParameter.clientDefaultValue) {
-    // Use the default endpoint template from the parameter
-    const defaultEndpoint = endpointParameter.clientDefaultValue as string;
-
-    if (apiVersionParam && apiVersionParam.clientDefaultValue) {
-      const apiVersionParamName = getClientParameterName(apiVersionParam);
-      context.addStatements(
-        `const ${apiVersionParamName} = options.${apiVersionParamName} ?? "${apiVersionParam.clientDefaultValue}";`
-      );
-      context.addStatements(
-        `const endpointUrl = options.endpoint ?? \`${defaultEndpoint}/\${${apiVersionParamName}}\`;`
-      );
+  let coreEndpointParam = "";
+  if (dpgContext.rlcOptions?.flavor === "azure") {
+    const cloudSettingSuffix = dpgContext.arm
+      ? ` ?? ${resolveReference(CloudSettingHelpers.getArmEndpoint)}(options.cloudSetting)`
+      : "";
+    coreEndpointParam = `options.endpoint${cloudSettingSuffix}`;
+  } else {
+    // unbranded does not have the deprecated baseUrl parameter
+    coreEndpointParam = `options.endpoint`;
+  }
+  // Special case: endpoint URL not defined
+  const endpointParam = getClientParameters(client, dpgContext, {
+    onClientOnly: true,
+    skipEndpointTemplate: true,
+    skipArmSpecific: true
+  }).find((x) => x.kind === "endpoint" || x.kind === "path");
+  if (endpointParam) {
+    if (
+      endpointParam.type.kind === "union" &&
+      endpointParam.type.variantTypes[0]?.kind === "endpoint"
+    ) {
+      const params = endpointParam.type.variantTypes[0].templateArguments;
+      let parameterizedEndpointUrl =
+        endpointParam.type.variantTypes[0].serverUrl;
+      for (const templateParam of params) {
+        const paramName = getClientParameterName(templateParam);
+        if (templateParam.clientDefaultValue) {
+          const defaultValue =
+            typeof templateParam.clientDefaultValue === "string"
+              ? `"${templateParam.clientDefaultValue}"`
+              : templateParam.clientDefaultValue;
+          context.addStatements(
+            `const ${paramName} = options.${paramName} ?? ${defaultValue};`
+          );
+        } else if (templateParam.optional) {
+          context.addStatements(`const ${paramName} = options.${paramName};`);
+        }
+        parameterizedEndpointUrl = parameterizedEndpointUrl.replace(
+          `{${templateParam.name}}`,
+          `\${${getClientParameterName(templateParam)}}`
+        );
+      }
+      const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? \`${parameterizedEndpointUrl}\`;`;
+      context.addStatements(endpointUrl);
       return "endpointUrl";
-    } else {
-      context.addStatements(
-        `const endpointUrl = options.endpoint ?? "${defaultEndpoint}";`
-      );
+    } else if (endpointParam.type.kind === "endpoint") {
+      const clientDefaultValue =
+        endpointParam.type.templateArguments[0]?.clientDefaultValue;
+      const defaultValueStr =
+        clientDefaultValue && typeof clientDefaultValue === "string"
+          ? `"${clientDefaultValue}"`
+          : clientDefaultValue
+            ? clientDefaultValue
+            : `String(${getClientParameterName(endpointParam)})`;
+      const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? ${defaultValueStr};`;
+      context.addStatements(endpointUrl);
       return "endpointUrl";
     }
+    const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? String(${getClientParameterName(endpointParam)});`;
+    context.addStatements(endpointUrl);
+    return "endpointUrl";
   }
 
-  // Fallback to a default endpoint
-  if (apiVersionParam && apiVersionParam.clientDefaultValue) {
-    const apiVersionParamName = getClientParameterName(apiVersionParam);
-    context.addStatements(
-      `const ${apiVersionParamName} = options.${apiVersionParamName} ?? "${apiVersionParam.clientDefaultValue}";`
-    );
-    context.addStatements(
-      `const endpointUrl = options.endpoint ?? \`https://management.azure.com/\${${apiVersionParamName}}\`;`
-    );
-    return "endpointUrl";
-  } else {
-    context.addStatements(
-      `const endpointUrl = options.endpoint ?? "https://management.azure.com";`
-    );
-    return "endpointUrl";
+  return "endpointUrl";
+}
+
+/**
+ * Builds the options to be passed to getClient
+ *
+ * @param context - context in which the options are being passed; statements will be added to this context
+ *                  to help build the options shape
+ * @returns - an expression representing the options to be passed in to getClient
+ */
+export function buildGetClientOptionsParam(
+  context: StatementedNode,
+  emitterOptions: ModularEmitterOptions,
+  endpointParam: string
+): string {
+  const userAgentOptions = buildUserAgentOptions(
+    context,
+    emitterOptions,
+    "azsdk-js-api"
+  );
+  const loggingOptions = buildLoggingOptions(emitterOptions.options.flavor);
+  const credentials = buildCredentials(emitterOptions, endpointParam);
+
+  let expr = "const { apiVersion: _, ...updatedOptions } = {";
+
+  expr += "...options,";
+
+  if (userAgentOptions) {
+    expr += `userAgentOptions: ${userAgentOptions},`;
   }
+  if (loggingOptions) {
+    expr += `loggingOptions: ${loggingOptions},`;
+  }
+  if (credentials) {
+    expr += `credentials: ${credentials},`;
+  }
+
+  expr += `};`;
+
+  context.addStatements(expr);
+  return "updatedOptions";
 }
 
 export function buildGetClientCredentialParam(
   client: SdkClientType<SdkServiceOperation>,
-  _emitterOptions: ModularEmitterOptions
+  emitterOptions: ModularEmitterOptions
 ): string {
-  const credentialParam = getClientParameters(client, {} as SdkContext).find(
-    (p) => isCredentialType(p.type)
-  );
-
-  if (credentialParam) {
-    return "credential";
+  if (
+    emitterOptions.options.addCredentials &&
+    (emitterOptions.options.credentialScopes ||
+      emitterOptions.options.credentialKeyHeaderName)
+  ) {
+    return (
+      client.clientInitialization.parameters.find((x) => isCredentialType(x))
+        ?.name ?? "undefined"
+    );
+  } else {
+    return "undefined";
   }
-
-  return "undefined";
 }
 
-export function buildGetClientOptionsParam(
-  context: StatementedNode,
+function buildCredentials(
   emitterOptions: ModularEmitterOptions,
-  _endpointParam: string
-): string {
-  // Build user agent information
-  context.addStatements(
-    `const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;`
-  );
-  context.addStatements(
-    `const userAgentInfo = \`azsdk-js-${emitterOptions.options.packageDetails?.name ?? "client"}/1.0.0\`;`
-  );
-  context.addStatements(
-    `const userAgentPrefix = prefixFromOptions ? \`\${prefixFromOptions} azsdk-js-api \${userAgentInfo}\` : \`azsdk-js-api \${userAgentInfo}\`;`
-  );
+  endpointParam: string
+): string | undefined {
+  if (!emitterOptions.options.addCredentials) {
+    return undefined;
+  }
 
-  // Extract apiVersion from options to avoid passing it to the underlying client
-  context.addStatements(
-    `const { apiVersion: _, ...updatedOptions } = { ...options, userAgentOptions: { userAgentPrefix }, loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info } };`
-  );
+  const { credentialScopes, credentialKeyHeaderName } = emitterOptions.options;
 
-  return "updatedOptions";
+  const scopesString = credentialScopes
+    ? credentialScopes.map((cs) => `"${cs}"`).join(", ") ||
+      `\`\${${endpointParam}}/.default\``
+    : "";
+  const scopes = scopesString
+    ? `scopes: options.credentials?.scopes ?? [${scopesString}],`
+    : "";
+
+  const apiKeyHeaderName = credentialKeyHeaderName
+    ? `apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "${credentialKeyHeaderName}",`
+    : "";
+
+  if (!scopes && !apiKeyHeaderName) {
+    return undefined;
+  }
+
+  return `{ ${scopes}${apiKeyHeaderName} }`;
+}
+
+function buildLoggingOptions(flavor?: PackageFlavor): string | undefined {
+  if (flavor !== "azure") {
+    return undefined;
+  }
+
+  return `{ logger: options.loggingOptions?.logger ?? logger.info }`;
 }
 
 export function buildUserAgentOptions(
