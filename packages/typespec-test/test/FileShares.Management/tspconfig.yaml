@@ -1,0 +1,9 @@
+emit: ["@azure-tools/typespec-ts"]
+options:
+  "@azure-tools/typespec-ts":
+    package-dir: "arm-fileshares"
+    is-modular-library: true
+    flavor: "azure"
+    experimental-extensible-enums: true
+    package-details:
+      name: "@azure/arm-fileshares"
