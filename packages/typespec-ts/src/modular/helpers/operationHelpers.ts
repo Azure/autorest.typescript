@@ -58,7 +58,7 @@ import {
   SdkModelPropertyType,
   SdkModelType,
   SdkPagingServiceMethod,
-  SdkServiceParameter,
+  SdkHttpParameter,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
 import { isMetadata } from "@typespec/http";
@@ -686,7 +686,7 @@ function getHeaderAndBodyParameters(
 
   const parametersImplementation: Record<
     "header" | "body",
-    { paramMap: string; param: SdkServiceParameter }[]
+    { paramMap: string; param: SdkHttpParameter }[]
   > = {
     header: [],
     body: []
@@ -744,7 +744,7 @@ function getHeaderAndBodyParameters(
 function buildHeaderParameter(
   program: Program,
   paramMap: string,
-  param: SdkServiceParameter,
+  param: SdkHttpParameter,
   optionalParamName: string = "options"
 ): string {
   const paramName = param.name;
@@ -829,7 +829,7 @@ function getEncodingFormat(type: { format?: string }) {
  */
 export function getParameterMap(
   context: SdkContext,
-  param: SdkServiceParameter,
+  param: SdkHttpParameter,
   optionalParamName: string = "options"
 ): string {
   if (isConstant(param.type)) {
@@ -854,7 +854,7 @@ export function getParameterMap(
 
 function getCollectionFormat(
   context: SdkContext,
-  param: SdkServiceParameter,
+  param: SdkHttpParameter,
   optionalParamName: string = "options"
 ) {
   const serializedName = getPropertySerializedName(param);
@@ -887,7 +887,7 @@ function getCollectionFormat(
   )}${additionalParam}): undefined`;
 }
 
-function isContentType(param: SdkServiceParameter): boolean {
+function isContentType(param: SdkHttpParameter): boolean {
   return (
     param.kind === "header" &&
     param.serializedName.toLowerCase() === "content-type"
@@ -895,7 +895,7 @@ function isContentType(param: SdkServiceParameter): boolean {
 }
 
 function getContentTypeValue(
-  param: SdkServiceParameter,
+  param: SdkHttpParameter,
   optionalParamName: string = "options"
 ) {
   const defaultValue = param.clientDefaultValue;
@@ -1001,7 +1001,7 @@ function getOptionalForType(
 /**
  * Builds the assignment for when a property or parameter has a default value
  */
-function getDefaultValue(param: SdkServiceParameter) {
+function getDefaultValue(param: SdkHttpParameter) {
   return param.clientDefaultValue;
 }
 
@@ -1043,7 +1043,7 @@ function getQueryParameters(
   );
   const parametersImplementation: Record<
     "query",
-    { paramMap: string; param: SdkServiceParameter }[]
+    { paramMap: string; param: SdkHttpParameter }[]
   > = {
     query: []
   };
@@ -1517,7 +1517,7 @@ export function getAllAncestors(type: SdkType): SdkType[] {
 
 export function getPropertySerializationPrefix(
   context: SdkContext,
-  property: SdkServiceParameter | SdkModelPropertyType,
+  property: SdkHttpParameter | SdkModelPropertyType,
   propertyPath?: string
 ) {
   const propertyFullName = getPropertyFullName(context, property, propertyPath);
@@ -1530,7 +1530,7 @@ export function getPropertySerializationPrefix(
 
 export function getPropertyFullName(
   context: SdkContext,
-  property: SdkServiceParameter | SdkModelPropertyType,
+  property: SdkHttpParameter | SdkModelPropertyType,
   propertyPath?: string
 ) {
   const normalizedPropertyName = normalizeModelPropertyName(context, property)

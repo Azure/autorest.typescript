@@ -27,7 +27,7 @@ import { buildEnumTypes, getApiVersionEnum } from "./emitModels.js";
 import {
   SdkClientType,
   SdkHttpParameter,
-  SdkParameter,
+  SdkMethodParameter,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 import { getModularClientOptions } from "../utils/clientUtils.js";
@@ -218,7 +218,7 @@ export function buildClientContext(
           ? endpointParameter.type.variantTypes[0]?.templateArguments
           : [];
     const apiVersionInEndpoint =
-      templateArguments && templateArguments.find((p) => p.isApiVersionParam);
+      templateArguments && templateArguments.find((p: any) => p.isApiVersionParam);
     if (!apiVersionInEndpoint && apiVersionParam.clientDefaultValue) {
       apiVersionPolicyStatement += `const apiVersion = options.apiVersion ?? "${apiVersionParam.clientDefaultValue}";`;
     }
@@ -283,7 +283,7 @@ export function buildClientContext(
 
 function getDocsWithKnownVersion(
   dpgContext: SdkContext,
-  param: SdkParameter | SdkHttpParameter
+  param: SdkMethodParameter | SdkHttpParameter
 ) {
   const docs = getDocsFromDescription(param.doc);
   if (param.name.toLowerCase() !== "apiversion") {

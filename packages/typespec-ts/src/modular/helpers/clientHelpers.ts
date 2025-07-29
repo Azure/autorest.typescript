@@ -7,7 +7,7 @@ import {
 import {
   SdkClientType,
   SdkHttpParameter,
-  SdkParameter,
+  SdkMethodParameter,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 
@@ -44,7 +44,7 @@ export function getClientParameters(
     apiVersionAsRequired: true
   }
 ) {
-  const clientParams: (SdkParameter | SdkHttpParameter)[] = [];
+  const clientParams: (SdkMethodParameter | SdkHttpParameter)[] = [];
   for (const property of client.clientInitialization.parameters) {
     if (
       property.type.kind === "union" &&
@@ -62,9 +62,9 @@ export function getClientParameters(
     }
   }
 
-  const hasDefaultValue = (p: SdkParameter | SdkHttpParameter) =>
+  const hasDefaultValue = (p: SdkMethodParameter | SdkHttpParameter) =>
     p.clientDefaultValue || p.__raw?.defaultValue || p.type.kind === "constant";
-  const isRequired = (p: SdkParameter | SdkHttpParameter) =>
+  const isRequired = (p: SdkMethodParameter | SdkHttpParameter) =>
     !p.optional &&
     ((!hasDefaultValue(p) &&
       !(
@@ -73,13 +73,13 @@ export function getClientParameters(
         hasDefaultValue(p.type.templateArguments[0])
       )) ||
       (options.apiVersionAsRequired && p.isApiVersionParam));
-  const isOptional = (p: SdkParameter | SdkHttpParameter) =>
+  const isOptional = (p: SdkMethodParameter | SdkHttpParameter) =>
     p.optional || hasDefaultValue(p);
-  const skipCredentials = (p: SdkParameter | SdkHttpParameter) =>
+  const skipCredentials = (p: SdkMethodParameter | SdkHttpParameter) =>
     p.kind !== "credential";
-  const skipMethodParam = (p: SdkParameter | SdkHttpParameter) =>
+  const skipMethodParam = (p: SdkMethodParameter | SdkHttpParameter) =>
     p.kind !== "method";
-  const armSpecific = (p: SdkParameter | SdkHttpParameter) =>
+  const armSpecific = (p: SdkMethodParameter | SdkHttpParameter) =>
     !(p.kind === "endpoint" && dpgContext.arm);
   const filters = [
     options.requiredOnly ? isRequired : undefined,
@@ -134,7 +134,7 @@ export function getClientParametersDeclaration(
 
 function getClientParameterTypeExpression(
   context: SdkContext,
-  parameter: SdkParameter | SdkHttpParameter
+  parameter: SdkMethodParameter | SdkHttpParameter
 ) {
   // Special handle to work around the fact that TCGC creates a union type for endpoint. The reason they do this
   // is to provide a way for users to either pass the value to fill in the template of the whole endpoint. Basically they are
@@ -142,7 +142,7 @@ function getClientParameterTypeExpression(
   // Our emitter allows this through the options.endpoint.
   if (parameter.type.kind === "union") {
     const endpointVariant = parameter.type.variantTypes.find(
-      (p) => p.kind === "endpoint"
+      (p: any) => p.kind === "endpoint"
     );
     if (endpointVariant) {
       return getTypeExpression(context, endpointVariant);
@@ -152,12 +152,12 @@ function getClientParameterTypeExpression(
 }
 
 export function getClientParameterName(
-  parameter: SdkParameter | SdkHttpParameter
+  parameter: SdkMethodParameter | SdkHttpParameter
 ) {
   // We have been calling this endpointParam, so special handling this here to make sure there are no unexpected side effects
   if (
     (parameter.type.kind === "union" &&
-      parameter.type.variantTypes.some((v) => v.kind === "endpoint")) ||
+      parameter.type.variantTypes.some((v: any) => v.kind === "endpoint")) ||
     ((parameter.kind === "endpoint" || parameter.kind === "path") &&
       parameter.name.toLowerCase() === "endpoint")
   ) {
