@@ -2,7 +2,6 @@ import type { Client } from '@azure-rest/core-client';
 import type { ClientOptions } from '@azure-rest/core-client';
 import type { ErrorResponse } from '@azure-rest/core-client';
 import type { HttpResponse } from '@azure-rest/core-client';
-import type { PathUncheckedResponse } from '@azure-rest/core-client';
 import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
 import type { StreamableMethod } from '@azure-rest/core-client';
@@ -160,8 +159,6 @@ export declare interface Get200Response extends HttpResponse {
     body: UserOutput;
 }
 
-export declare type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
-
 export declare interface GetDefaultHeaders {
     "x-ms-error-code"?: string;
 }
@@ -171,11 +168,6 @@ export declare interface GetDefaultResponse extends HttpResponse {
     body: ErrorResponse;
     headers: RawHttpHeaders & GetDefaultHeaders;
 }
-
-export declare type GetPage<TPage> = (pageLink: string) => Promise<{
-    page: TPage;
-    nextPageLink?: string;
-}>;
 
 export declare type GetParameters = RequestParameters;
 
@@ -246,31 +238,9 @@ export declare interface ListSelectQueryParam {
     style: "form";
 }
 
-export declare interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
-    next(): Promise<IteratorResult<TElement>>;
-    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
-    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
-}
-
 export declare interface PagedUserOutput {
     value: Array<UserOutput>;
     nextLink?: string;
-}
-
-export declare interface PageSettings {
-    continuationToken?: string;
-}
-
-export declare function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
-
-export declare type PaginateReturn<TResult> = TResult extends {
-    body: {
-        value?: infer TPage;
-    };
-} ? GetArrayType<TPage> : Array<unknown>;
-
-export declare interface PagingOptions<TResponse> {
-    customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
 }
 
 export declare interface Routes {

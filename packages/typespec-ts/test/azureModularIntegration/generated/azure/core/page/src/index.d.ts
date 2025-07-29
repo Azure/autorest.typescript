@@ -42,10 +42,10 @@ export declare class PageClient {
     constructor(options?: PageClientOptionalParams);
     withParameterizedNextLink(select: string, options?: WithParameterizedNextLinkOptionalParams): PagedAsyncIterableIterator<User>;
     listWithCustomPageModel(options?: ListWithCustomPageModelOptionalParams): PagedAsyncIterableIterator<User>;
-    listWithParameters(bodyInput: ListItemInputBody, options?: ListWithParametersOptionalParams): PagedAsyncIterableIterator<User>;
-    listWithPage(options?: ListWithPageOptionalParams): PagedAsyncIterableIterator<User>;
-    listSecondItem(options?: ListSecondItemOptionalParams): PagedAsyncIterableIterator<SecondItem>;
-    listFirstItem(options?: ListFirstItemOptionalParams): PagedAsyncIterableIterator<FirstItem>;
+    listWithParameters(bodyInput: ListItemInputBody, options?: ListWithParametersOptionalParams): Promise<PagedUser>;
+    listWithPage(options?: ListWithPageOptionalParams): Promise<PagedUser>;
+    listSecondItem(options?: ListSecondItemOptionalParams): Promise<PagedSecondItem>;
+    listFirstItem(options?: ListFirstItemOptionalParams): Promise<PagedFirstItem>;
 }
 
 export declare interface PageClientOptionalParams extends ClientOptions {
@@ -56,6 +56,21 @@ export declare interface PagedAsyncIterableIterator<TElement, TPage = TElement[]
     next(): Promise<IteratorResult<TElement>>;
     [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
     byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
+}
+
+export declare interface PagedFirstItem {
+    value: FirstItem[];
+    nextLink?: string;
+}
+
+export declare interface PagedSecondItem {
+    value: SecondItem[];
+    nextLink?: string;
+}
+
+export declare interface PagedUser {
+    value: User[];
+    nextLink?: string;
 }
 
 export declare interface PageSettings {
