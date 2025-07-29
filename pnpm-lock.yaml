@@ -46,7 +46,7 @@ importers:
         version: 1.4.0
       '@azure-tools/codegen':
         specifier: ^2.9.1
-        version: 2.10.1
+        version: 2.9.2
       '@azure-tools/rlc-common':
         specifier: workspace:^0.42.1
         version: link:../rlc-common
