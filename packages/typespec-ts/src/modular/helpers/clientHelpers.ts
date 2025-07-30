@@ -84,7 +84,7 @@ export function getClientParameters(
       | SdkEndpointParameter
       | SdkCredentialParameter
   ): p is SdkMethodParameter | SdkHttpParameter => {
-    return 'isApiVersionParam' in p && p.isApiVersionParam === true;
+    return "isApiVersionParam" in p && p.isApiVersionParam === true;
   };
 
   const hasEndpointType = (
@@ -93,18 +93,29 @@ export function getClientParameters(
       | SdkHttpParameter
       | SdkEndpointParameter
       | SdkCredentialParameter
-  ): p is SdkMethodParameter & { type: { kind: "endpoint"; templateArguments: any[] } } |
-         SdkHttpParameter & { type: { kind: "endpoint"; templateArguments: any[] } } |
-         SdkEndpointParameter & { type: { kind: "endpoint"; templateArguments: any[] } } |
-         SdkCredentialParameter & { type: { kind: "endpoint"; templateArguments: any[] } } => {
-    return 'type' in p && 
-           p.type && 
-           typeof p.type === 'object' && 
-           'kind' in p.type && 
-           p.type.kind === "endpoint" &&
-           'templateArguments' in p.type &&
-           Array.isArray(p.type.templateArguments) &&
-           p.type.templateArguments.length > 0;
+  ): p is
+    | (SdkMethodParameter & {
+        type: { kind: "endpoint"; templateArguments: any[] };
+      })
+    | (SdkHttpParameter & {
+        type: { kind: "endpoint"; templateArguments: any[] };
+      })
+    | (SdkEndpointParameter & {
+        type: { kind: "endpoint"; templateArguments: any[] };
+      })
+    | (SdkCredentialParameter & {
+        type: { kind: "endpoint"; templateArguments: any[] };
+      }) => {
+    return (
+      "type" in p &&
+      p.type &&
+      typeof p.type === "object" &&
+      "kind" in p.type &&
+      p.type.kind === "endpoint" &&
+      "templateArguments" in p.type &&
+      Array.isArray(p.type.templateArguments) &&
+      p.type.templateArguments.length > 0
+    );
   };
 
   const isRequired = (
@@ -116,10 +127,7 @@ export function getClientParameters(
   ) =>
     !p.optional &&
     ((!hasDefaultValue(p) &&
-      !(
-        hasEndpointType(p) &&
-        hasDefaultValue(p.type.templateArguments[0])
-      )) ||
+      !(hasEndpointType(p) && hasDefaultValue(p.type.templateArguments[0]))) ||
       (options.apiVersionAsRequired && hasApiVersionParam(p)));
   const isOptional = (
     p:

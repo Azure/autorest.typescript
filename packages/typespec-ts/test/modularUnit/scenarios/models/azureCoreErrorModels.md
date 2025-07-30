@@ -1,4 +1,4 @@
-# only: Custom ErrorDetail model co-exist with Azure Core ErrorResponse
+# Custom ErrorDetail model co-exist with Azure Core ErrorResponse
 
 ## TypeSpec
 
