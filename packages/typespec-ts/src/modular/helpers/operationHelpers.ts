@@ -1165,7 +1165,9 @@ export function getRequestModelMapping(
 }
 
 function getPropertySerializedName(property: SdkModelPropertyType) {
-  return property.kind === "property" ? property.serializedName : property.name;
+  return property.kind === "property"
+    ? property.serializationOptions.json?.name || property.name
+    : property.name;
 }
 
 /**
