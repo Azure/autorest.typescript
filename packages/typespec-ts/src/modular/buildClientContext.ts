@@ -211,17 +211,16 @@ export function buildClientContext(
     onClientOnly: false,
     requiredOnly: true,
     skipEndpointTemplate: true
-  }).find((x: any) => x.kind === "endpoint");
+  }).find((x): x is SdkEndpointParameter => x.kind === "endpoint");
   if (apiVersionParam) {
     const templateArguments =
-      endpointParameter && (endpointParameter as any).type?.kind === "endpoint"
-        ? (endpointParameter as any).type.templateArguments
-        : endpointParameter && (endpointParameter as any).type?.kind === "union"
-          ? (endpointParameter as any).type.variantTypes[0]?.templateArguments
+      endpointParameter && endpointParameter.type?.kind === "endpoint"
+        ? endpointParameter.type.templateArguments
+        : endpointParameter && endpointParameter.type?.kind === "union"
+          ? endpointParameter.type.variantTypes[0]?.templateArguments
           : [];
     const apiVersionInEndpoint =
-      templateArguments &&
-      templateArguments.find((p: any) => p.isApiVersionParam);
+      templateArguments && templateArguments.find((p) => p.isApiVersionParam);
     if (!apiVersionInEndpoint && apiVersionParam.clientDefaultValue) {
       apiVersionPolicyStatement += `const apiVersion = options.apiVersion ?? "${apiVersionParam.clientDefaultValue}";`;
     }
@@ -286,11 +285,7 @@ export function buildClientContext(
 
 function getDocsWithKnownVersion(
   dpgContext: SdkContext,
-  param:
-    | SdkMethodParameter
-    | SdkHttpParameter
-    | SdkEndpointParameter
-    | SdkCredentialParameter
+  param: SdkMethodParameter | SdkHttpParameter
 ) {
   const docs = getDocsFromDescription(param.doc);
   if (param.name.toLowerCase() !== "apiversion") {
