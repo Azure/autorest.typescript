@@ -1161,3 +1161,316 @@ export class TestingClient {
   }
 }
 ```
+
+# only: Should generate LRO for ARM operation
+
+Sample generation should arm template and operations successfully.
+
+## TypeSpec
+
+This is tsp definition.
+
+```tsp
+import "@typespec/http";
+import "@typespec/rest";
+import "@typespec/versioning";
+import "@azure-tools/typespec-azure-core";
+import "@azure-tools/typespec-azure-resource-manager";
+
+using TypeSpec.Http;
+using TypeSpec.Rest;
+using TypeSpec.Versioning;
+using Azure.Core;
+using Azure.ResourceManager;
+using Azure.ResourceManager.Foundations;
+using OpenAPI;
+
+/** Microsoft.Contoso Resource Provider management API. */
+@armProviderNamespace
+@service(#{
+  title: "Microsoft.Contoso management service",
+})
+@versioned(Microsoft.Contoso.Versions)
+namespace Microsoft.Contoso;
+
+/** The available API versions. */
+enum Versions {
+  /** 2021-10-01-preview version */
+  @useDependency(Azure.ResourceManager.Versions.v1_0_Preview_1)
+  @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+  @armCommonTypesVersion(Azure.ResourceManager.CommonTypes.Versions.v5)
+  v2021_10_01_preview: "2021-10-01-preview",
+}
+
+interface Operations extends Azure.ResourceManager.Operations {}
+
+@doc("FileShareSnapshot resource")
+@parentResource(FileShare)
+model FileShareSnapshot
+  is Azure.ResourceManager.ProxyResource<FileShareSnapshotProperties> {
+  ...ResourceNameParameter<
+    Resource = FileShareSnapshot,
+    KeyName = "name",
+    NamePattern = "^([a-z]|[0-9])([a-z]|[0-9]|(-(?!-))){1,61}([a-z]|[0-9])$",
+    SegmentName = "fileShareSnapshots"
+  >;
+}
+model FileShareProperties {
+  @visibility(Lifecycle.Create, Lifecycle.Read)
+  @doc("The name of the file share as seen by the end user when mounting the share, such as in a URI or UNC format in their operating system.")
+  mountName?: string;
+
+  @visibility(Lifecycle.Read)
+  @doc("The host name of the file share.")
+  hostName?: string;
+
+  @visibility(Lifecycle.Create, Lifecycle.Read, Lifecycle.Update)
+  @doc("The provisioned storage size of the share in GiB (1 GiB is 1024^3 bytes or 1073741824 bytes). A component of the file share's bill is the provisioned storage, regardless of the amount of used storage.")
+  provisionedStorageGiB?: int32;
+
+  @visibility(Lifecycle.Read)
+  @doc("A date/time value that specifies when the provisioned storage for the file share is permitted to be reduced.")
+  provisionedStorageNextAllowedDowngrade?: utcDateTime;
+
+  #suppress "@azure-tools/typespec-azure-core/casing-style" "customized style suitable for storage admins"
+  @visibility(Lifecycle.Create, Lifecycle.Read, Lifecycle.Update)
+  @doc("The provisioned IO / sec of the share.")
+  provisionedIOPerSec?: int32;
+
+  #suppress "@azure-tools/typespec-azure-core/casing-style" "customized style suitable for storage admins"
+  @visibility(Lifecycle.Read)
+  @doc("A date/time value that specifies when the provisioned IOPS for the file share is permitted to be reduced.")
+  provisionedIOPerSecNextAllowedDowngrade?: utcDateTime;
+
+  #suppress "@azure-tools/typespec-azure-core/casing-style" "customized style suitable for storage admins"
+  @visibility(Lifecycle.Create, Lifecycle.Read, Lifecycle.Update)
+  @doc("The provisioned throughput / sec of the share.")
+  provisionedThroughputMiBPerSec?: int32;
+
+  @visibility(Lifecycle.Read)
+  @doc("A date/time value that specifies when the provisioned throughput for the file share is permitted to be reduced.")
+  provisionedThroughputNextAllowedDowngrade?: utcDateTime;
+
+  #suppress "@azure-tools/typespec-azure-core/casing-style" "customized style suitable for storage admins"
+  @visibility(Lifecycle.Read)
+  @minValue(3000)
+  @doc("Burst IOPS are extra buffer IOPS enabling you to consume more than your provisioned IOPS for a short period of time, depending on the burst credits available for your share.")
+  includedBurstIOPerSec?: int32;
+
+  #suppress "@azure-tools/typespec-azure-core/casing-style" "customized style suitable for storage admins"
+  @visibility(Lifecycle.Read)
+  @minValue(0)
+  @doc("Max burst IOPS credits shows the maximum number of burst credits the share can have at the current IOPS provisioning level.")
+  maxBurstIOPerSecCredits?: int64;
+
+}
+
+@doc("File share resource")
+model FileShare is Azure.ResourceManager.TrackedResource<FileShareProperties> {
+  @doc("The resource name of the file share, as seen by the administrator through Azure Resource Manager.")
+  @pattern("^([a-z]|[0-9])([a-z]|[0-9]|(-(?!-))){1,61}([a-z]|[0-9])$")
+  @key("resourceName")
+  @path
+  @segment("fileShares")
+  name: string;
+}
+
+
+model FileShareSnapshotProperties {
+  // The FileShareSnapshot time of the file share FileShareSnapshot.
+  @visibility(Lifecycle.Read)
+  @doc("The FileShareSnapshot time in UTC in string representation")
+  snapshotTime?: string;
+
+  // User-defined value. Resource users and/or automated systems (like Azure Backup) managing snapshots will specify the value based on semantics of their own.
+  // Examples:
+  // - Users in Company A might use aliases.
+  // - Users in company B might use email addresses.
+  // - Automated systems like MAB might use resource identifier of Azure Backup Vault.
+  @visibility(Lifecycle.Read)
+  @doc("The initiator of the FileShareSnapshot. This is a user-defined value.")
+  initiatorId?: string;
+
+  @doc("The metadata")
+  metadata?: Record<string>;
+}
+
+@armResourceOperations
+interface FileShareSnapshots {
+ updateFileShareSnapshot is ArmCustomPatchAsync<
+    FileShareSnapshot,
+    ResourceUpdateModel<FileShareSnapshot, FileShareSnapshotProperties>,
+    BaseParameters<FileShareSnapshot>,
+    Response = ArmAcceptedLroResponse<LroHeaders = ArmAsyncOperationHeader &
+      ArmLroLocationHeader<FinalResult = FileShareSnapshot> &
+      Azure.Core.Foundations.RetryAfterHeader>
+  >;
+}
+```
+
+The config would be like:
+
+```yaml
+withRawContent: true
+```
+
+## Operations
+
+```ts operations
+import { ContosoContext as Client } from "./index.js";
+import {
+  _OperationListResult,
+  _operationListResultDeserializer,
+  Operation,
+  errorResponseDeserializer,
+  FileShareSnapshotUpdate,
+  fileShareSnapshotUpdateSerializer,
+  FileShareSnapshot,
+  fileShareSnapshotDeserializer,
+} from "../models/models.js";
+import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../static-helpers/pagingHelpers.js";
+import { getLongRunningPoller } from "../static-helpers/pollingHelpers.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import {
+  UpdateFileShareSnapshotOptionalParams,
+  ListOptionalParams,
+} from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+import { PollerLike, OperationState } from "@azure/core-lro";
+
+export function _updateFileShareSnapshotSend(
+  context: Client,
+  resourceGroupName: string,
+  resourceName: string,
+  name: string,
+  properties: FileShareSnapshotUpdate,
+  options: UpdateFileShareSnapshotOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Contoso/fileShares/{resourceName}/fileShareSnapshots/{name}{?api%2Dversion}",
+    {
+      subscriptionId: context.subscriptionId,
+      resourceGroupName: resourceGroupName,
+      resourceName: resourceName,
+      name: name,
+      "api%2Dversion": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .patch({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      body: fileShareSnapshotUpdateSerializer(properties),
+    });
+}
+
+export async function _updateFileShareSnapshotDeserialize(
+  result: PathUncheckedResponse,
+): Promise<FileShareSnapshot> {
+  const expectedStatuses = ["202", "200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
+  }
+
+  return fileShareSnapshotDeserializer(result.body);
+}
+
+/** Update a FileShareSnapshot */
+export function updateFileShareSnapshot(
+  context: Client,
+  resourceGroupName: string,
+  resourceName: string,
+  name: string,
+  properties: FileShareSnapshotUpdate,
+  options: UpdateFileShareSnapshotOptionalParams = { requestOptions: {} },
+): PollerLike<OperationState<FileShareSnapshot>, FileShareSnapshot> {
+  return getLongRunningPoller(
+    context,
+    _updateFileShareSnapshotDeserialize,
+    ["202", "200"],
+    {
+      updateIntervalInMs: options?.updateIntervalInMs,
+      abortSignal: options?.abortSignal,
+      getInitialResponse: () =>
+        _updateFileShareSnapshotSend(
+          context,
+          resourceGroupName,
+          resourceName,
+          name,
+          properties,
+          options,
+        ),
+      resourceLocationConfig: "location",
+    },
+  ) as PollerLike<OperationState<FileShareSnapshot>, FileShareSnapshot>;
+}
+
+export function _listSend(
+  context: Client,
+  options: ListOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/providers/Microsoft.Contoso/operations{?api%2Dversion}",
+    {
+      "api%2Dversion": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
+}
+
+export async function _listDeserialize(
+  result: PathUncheckedResponse,
+): Promise<_OperationListResult> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
+  }
+
+  return _operationListResultDeserializer(result.body);
+}
+
+/** List the operations for the provider */
+export function list(
+  context: Client,
+  options: ListOptionalParams = { requestOptions: {} },
+): PagedAsyncIterableIterator<Operation> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listSend(context, options),
+    _listDeserialize,
+    ["200"],
+    { itemName: "value", nextLinkName: "nextLink" },
+  );
+}
+```
