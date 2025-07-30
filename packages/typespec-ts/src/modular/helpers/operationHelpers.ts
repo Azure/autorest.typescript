@@ -156,7 +156,6 @@ export function getDeserializePrivateFunction(
   if (isLroOnly) {
     returnType = buildLroReturnType(context, operation);
   } else if (response.type && restResponse) {
-    console.log(operation.response, isLroOnly, operation.kind);
     returnType = {
       name: (restResponse as any).name ?? "",
       type: getTypeExpression(context, restResponse.type!)

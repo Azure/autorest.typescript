@@ -1162,7 +1162,7 @@ export class TestingClient {
 }
 ```
 
-# only: Should generate LRO for ARM operation
+# Should generate LRO for ARM operation
 
 Sample generation should arm template and operations successfully.
 
