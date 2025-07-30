@@ -24,6 +24,7 @@ options:
     generate-test: true
     generate-sample: true
     azure-sdk-for-js: false
+    is-modular-library: false
     enable-operation-group: true
     package-details:
       name: "@azure-rest/load-testing"
