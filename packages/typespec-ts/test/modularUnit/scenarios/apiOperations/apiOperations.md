@@ -121,7 +121,7 @@ export async function uploadFileViaBody(
 }
 ```
 
-# should handle contentTypes has multiple form data in parameters
+# only: should handle contentTypes has multiple form data in parameters
 
 ## TypeSpec
 
@@ -431,7 +431,7 @@ export async function downloadFile(
 }
 ```
 
-# should handle contentTypes has multiple form data in response
+# only: should handle contentTypes has multiple form data in response
 
 ## TypeSpec
 
