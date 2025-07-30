@@ -285,7 +285,11 @@ export function buildClientContext(
 
 function getDocsWithKnownVersion(
   dpgContext: SdkContext,
-  param: SdkMethodParameter | SdkHttpParameter
+  param:
+    | SdkMethodParameter
+    | SdkHttpParameter
+    | SdkEndpointParameter
+    | SdkCredentialParameter
 ) {
   const docs = getDocsFromDescription(param.doc);
   if (param.name.toLowerCase() !== "apiversion") {
