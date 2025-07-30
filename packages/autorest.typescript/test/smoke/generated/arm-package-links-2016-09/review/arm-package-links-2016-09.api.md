@@ -8,9 +8,7 @@ import * as coreAuth from '@azure/core-auth';
 import * as coreClient from '@azure/core-client';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 
-// Warning: (ae-internal-missing-underscore) The name "getContinuationToken" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
+// @public
 export function getContinuationToken(page: unknown): string | undefined;
 
 // @public (undocumented)

@@ -107,9 +107,7 @@ export interface FeaturesUnregisterOptionalParams extends coreClient.OperationOp
 // @public
 export type FeaturesUnregisterResponse = FeatureResult;
 
-// Warning: (ae-internal-missing-underscore) The name "getContinuationToken" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
+// @public
 export function getContinuationToken(page: unknown): string | undefined;
 
 // @public
