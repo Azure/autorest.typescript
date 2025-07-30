@@ -234,6 +234,7 @@ export function avsSummarySerializer(item: AvsSummary): any {
 export function avsSummaryDeserializer(item: any): AvsSummary {
   return {
     id: item["id"],
+    name: item["name"],
     type: item["type"],
     systemData: !item["systemData"]
       ? item["systemData"]

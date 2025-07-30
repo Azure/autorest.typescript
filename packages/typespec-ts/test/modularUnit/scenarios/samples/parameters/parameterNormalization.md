@@ -82,8 +82,8 @@ export function _postSend(
           : {}),
         ...options.requestOptions?.headers,
       },
-      body: !options["ListCredentialsRequest"]
-        ? options["ListCredentialsRequest"]
+      body: !options["listCredentialsRequest"]
+        ? options["listCredentialsRequest"]
         : listCredentialsRequestSerializer(options["listCredentialsRequest"]),
     });
 }

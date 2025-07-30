@@ -450,39 +450,23 @@ op downloadFile(): {
 ## Models
 
 ```ts models
+import { stringToUint8Array } from "@azure/core-util";
+
 /** model interface _DownloadFileResponse */
 export interface _DownloadFileResponse {
-  name: HttpPart;
-  file: HttpPart1[];
+  name: string;
+  file: Uint8Array[];
 }
 
 export function _downloadFileResponseDeserializer(
   item: any,
 ): _DownloadFileResponse {
   return {
-    name: httpPartDeserializer(item["name"]),
-    file: httpPart1ArrayDeserializer(item["file"]),
+    name: item["name"],
+    file: item["file"].map((p: any) => {
+      return typeof p === "string" ? stringToUint8Array(p, "base64") : p;
+    }),
   };
-}
-
-/** model interface HttpPart */
-export interface HttpPart {}
-
-export function httpPartDeserializer(item: any): HttpPart {
-  return item;
-}
-
-export function httpPart1ArrayDeserializer(result: Array<HttpPart1>): any[] {
-  return result.map((item) => {
-    return httpPart1Deserializer(item);
-  });
-}
-
-/** model interface HttpPart1 */
-export interface HttpPart1 {}
-
-export function httpPart1Deserializer(item: any): HttpPart1 {
-  return item;
 }
 ```
 
@@ -490,11 +474,7 @@ export function httpPart1Deserializer(item: any): HttpPart1 {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  _downloadFileResponseDeserializer,
-  HttpPart,
-  HttpPart1,
-} from "../models/models.js";
+import { _downloadFileResponseDeserializer } from "../models/models.js";
 import { DownloadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -521,8 +501,8 @@ export function _downloadFileSend(
 export async function _downloadFileDeserialize(
   result: PathUncheckedResponse,
 ): Promise<{
-  name: HttpPart;
-  file: HttpPart1[];
+  name: string;
+  file: Uint8Array[];
 }> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -536,8 +516,8 @@ export async function downloadFile(
   context: Client,
   options: DownloadFileOptionalParams = { requestOptions: {} },
 ): Promise<{
-  name: HttpPart;
-  file: HttpPart1[];
+  name: string;
+  file: Uint8Array[];
 }> {
   const result = await _downloadFileSend(context, options);
   return _downloadFileDeserialize(result);
@@ -565,39 +545,23 @@ op downloadFile(): {
 ## Models
 
 ```ts models
+import { stringToUint8Array } from "@azure/core-util";
+
 /** model interface _DownloadFileResponse */
 export interface _DownloadFileResponse {
-  name: HttpPart;
-  file: HttpPart1[];
+  name: string;
+  file: Uint8Array[];
 }
 
 export function _downloadFileResponseDeserializer(
   item: any,
 ): _DownloadFileResponse {
   return {
-    name: httpPartDeserializer(item["name"]),
-    file: httpPart1ArrayDeserializer(item["file"]),
+    name: item["name"],
+    file: item["file"].map((p: any) => {
+      return typeof p === "string" ? stringToUint8Array(p, "base64") : p;
+    }),
   };
-}
-
-/** model interface HttpPart */
-export interface HttpPart {}
-
-export function httpPartDeserializer(item: any): HttpPart {
-  return item;
-}
-
-export function httpPart1ArrayDeserializer(result: Array<HttpPart1>): any[] {
-  return result.map((item) => {
-    return httpPart1Deserializer(item);
-  });
-}
-
-/** model interface HttpPart1 */
-export interface HttpPart1 {}
-
-export function httpPart1Deserializer(item: any): HttpPart1 {
-  return item;
 }
 ```
 
@@ -605,11 +569,7 @@ export function httpPart1Deserializer(item: any): HttpPart1 {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  _downloadFileResponseDeserializer,
-  HttpPart,
-  HttpPart1,
-} from "../models/models.js";
+import { _downloadFileResponseDeserializer } from "../models/models.js";
 import { DownloadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -636,8 +596,8 @@ export function _downloadFileSend(
 export async function _downloadFileDeserialize(
   result: PathUncheckedResponse,
 ): Promise<{
-  name: HttpPart;
-  file: HttpPart1[];
+  name: string;
+  file: Uint8Array[];
 }> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -651,8 +611,8 @@ export async function downloadFile(
   context: Client,
   options: DownloadFileOptionalParams = { requestOptions: {} },
 ): Promise<{
-  name: HttpPart;
-  file: HttpPart1[];
+  name: string;
+  file: Uint8Array[];
 }> {
   const result = await _downloadFileSend(context, options);
   return _downloadFileDeserialize(result);
