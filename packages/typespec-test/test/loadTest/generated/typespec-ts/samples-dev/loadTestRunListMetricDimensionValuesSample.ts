@@ -1,8 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import createAzureLoadTestingClient from "@azure-rest/load-testing";
 import { DefaultAzureCredential } from "@azure/identity";
+import createAzureLoadTestingClient, {
+  paginate,
+} from "@azure-rest/load-testing";
 import "dotenv/config";
 
 /**
@@ -16,7 +18,7 @@ async function loadTestRunListMetricDimensionValuesSample(): Promise<void> {
   const client = createAzureLoadTestingClient(endpointParam, credential);
   const testRunId = "{Your testRunId}";
   const name = "{Your name}";
-  const result = await client
+  const initialResponse = await client
     .path(
       "/test-runs/{testRunId}/metric-dimensions/{name}/values",
       testRunId,
@@ -30,6 +32,11 @@ async function loadTestRunListMetricDimensionValuesSample(): Promise<void> {
         timespan: "{Your timespan}",
       },
     });
+  const pageData = paginate(client, initialResponse);
+  const result = [];
+  for await (const item of pageData) {
+    result.push(item);
+  }
   console.log(result);
 }
 

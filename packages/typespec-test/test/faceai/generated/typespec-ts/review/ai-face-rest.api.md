@@ -12,6 +12,7 @@ import type { CreateHttpPollerOptions } from '@azure/core-lro';
 import type { HttpResponse } from '@azure-rest/core-client';
 import type { KeyCredential } from '@azure/core-auth';
 import type { OperationState } from '@azure/core-lro';
+import type { PathUncheckedResponse } from '@azure-rest/core-client';
 import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
 import type { StreamableMethod } from '@azure-rest/core-client';
@@ -1715,6 +1716,9 @@ export interface FindSimilarResultOutput {
 }
 
 // @public
+export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
+
+// @public
 export interface GetFaceList200Response extends HttpResponse {
     // (undocumented)
     body: FaceListOutput;
@@ -2231,6 +2235,12 @@ export function getLongRunningPoller<TResult extends TrainPersonGroupLogicalResp
 
 // @public (undocumented)
 export function getLongRunningPoller<TResult extends TrainLargePersonGroupLogicalResponse | TrainLargePersonGroupDefaultResponse>(client: Client, initialResponse: TrainLargePersonGroup202Response | TrainLargePersonGroupDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+
+// @public
+export type GetPage<TPage> = (pageLink: string) => Promise<{
+    page: TPage;
+    nextPageLink?: string;
+}>;
 
 // @public
 export interface GetPersonGroup200Response extends HttpResponse {
@@ -3121,6 +3131,33 @@ export type OperationStateOutput = string;
 
 // @public
 export type OperationStatusOutput = string;
+
+// @public
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
+    next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public
+export interface PageSettings {
+    continuationToken?: string;
+}
+
+// @public
+export function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
+
+// @public
+export type PaginateReturn<TResult> = TResult extends {
+    body: {
+        value?: infer TPage;
+    };
+} ? GetArrayType<TPage> : Array<unknown>;
+
+// @public
+export interface PagingOptions<TResponse> {
+    customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
+}
 
 // @public
 export interface PersonGroupOutput {
