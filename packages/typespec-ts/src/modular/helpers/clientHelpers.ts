@@ -77,6 +77,36 @@ export function getClientParameters(
       | SdkCredentialParameter
   ) =>
     p.clientDefaultValue || p.__raw?.defaultValue || p.type.kind === "constant";
+  const hasApiVersionParam = (
+    p:
+      | SdkMethodParameter
+      | SdkHttpParameter
+      | SdkEndpointParameter
+      | SdkCredentialParameter
+  ): p is SdkMethodParameter | SdkHttpParameter => {
+    return 'isApiVersionParam' in p && p.isApiVersionParam === true;
+  };
+
+  const hasEndpointType = (
+    p:
+      | SdkMethodParameter
+      | SdkHttpParameter
+      | SdkEndpointParameter
+      | SdkCredentialParameter
+  ): p is SdkMethodParameter & { type: { kind: "endpoint"; templateArguments: any[] } } |
+         SdkHttpParameter & { type: { kind: "endpoint"; templateArguments: any[] } } |
+         SdkEndpointParameter & { type: { kind: "endpoint"; templateArguments: any[] } } |
+         SdkCredentialParameter & { type: { kind: "endpoint"; templateArguments: any[] } } => {
+    return 'type' in p && 
+           p.type && 
+           typeof p.type === 'object' && 
+           'kind' in p.type && 
+           p.type.kind === "endpoint" &&
+           'templateArguments' in p.type &&
+           Array.isArray(p.type.templateArguments) &&
+           p.type.templateArguments.length > 0;
+  };
+
   const isRequired = (
     p:
       | SdkMethodParameter
@@ -87,11 +117,10 @@ export function getClientParameters(
     !p.optional &&
     ((!hasDefaultValue(p) &&
       !(
-        (p as any).type?.kind === "endpoint" &&
-        (p as any).type?.templateArguments?.[0] &&
-        hasDefaultValue((p as any).type.templateArguments[0])
+        hasEndpointType(p) &&
+        hasDefaultValue(p.type.templateArguments[0])
       )) ||
-      (options.apiVersionAsRequired && (p as any).isApiVersionParam));
+      (options.apiVersionAsRequired && hasApiVersionParam(p)));
   const isOptional = (
     p:
       | SdkMethodParameter
