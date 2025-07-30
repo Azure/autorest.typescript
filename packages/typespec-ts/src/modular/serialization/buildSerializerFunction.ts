@@ -381,9 +381,9 @@ function buildModelTypeSerializer(
           partDefinition = `${createFilePartDescriptorDefinition}("${multipart.name}", item["${multipart.name}"]${contentType ? `, "${contentType}"` : ""})`;
         }
       } else if (multipart?.isMulti) {
-        partDefinition = `...((${expr}).map((x: unknown) => ({ name: "${multipart.name}", body: x })))`;
+        partDefinition = `...((${expr}).map((x: unknown) => ({ name: "${multipart?.name}", body: x })))`;
       } else {
-        partDefinition = `{ name: "${property.serializationOptions.json?.name}", body: (${expr}) }`;
+        partDefinition = `{ name: "${multipart?.name}", body: (${expr}) }`;
       }
       /* eslint-disable */
       if (property.optional) {
