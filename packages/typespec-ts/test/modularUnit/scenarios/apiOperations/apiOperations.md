@@ -121,7 +121,7 @@ export async function uploadFileViaBody(
 }
 ```
 
-# should handle contentTypes has multiple form data in request
+# should handle contentTypes has multiple form data in parameters
 
 ## TypeSpec
 
