@@ -1,7 +1,9 @@
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import {
   SdkBodyParameter,
-  SdkModelPropertyType,
+  SdkCredentialParameter,
+  SdkEndpointParameter,
+  SdkMethodParameter,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
 
@@ -71,7 +73,7 @@ export function isDateTimeTypeKind(kind: string): boolean {
 }
 
 export function isCredentialType(
-  type: SdkType | SdkModelPropertyType
+  type: SdkEndpointParameter | SdkCredentialParameter | SdkMethodParameter
 ): boolean {
   return type.kind === "credential";
 }

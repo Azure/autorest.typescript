@@ -6,10 +6,10 @@ import {
 } from "ts-morph";
 import {
   SdkClientType,
+  SdkCredentialParameter,
+  SdkEndpointParameter,
   SdkHttpParameter,
   SdkMethodParameter,
-  SdkEndpointParameter,
-  SdkCredentialParameter,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 
@@ -34,6 +34,12 @@ interface ClientParameterOptions {
   apiVersionAsRequired?: boolean;
 }
 
+type SdkParameter =
+  | SdkMethodParameter
+  | SdkEndpointParameter
+  | SdkCredentialParameter
+  | SdkHttpParameter;
+
 export function getClientParameters(
   client: SdkClientType<SdkServiceOperation>,
   dpgContext: SdkContext,
@@ -46,12 +52,7 @@ export function getClientParameters(
     apiVersionAsRequired: true
   }
 ) {
-  const clientParams: (
-    | SdkMethodParameter
-    | SdkHttpParameter
-    | SdkEndpointParameter
-    | SdkCredentialParameter
-  )[] = [];
+  const clientParams: SdkParameter[] = [];
   for (const property of client.clientInitialization.parameters) {
     if (
       property.type.kind === "union" &&
@@ -69,94 +70,22 @@ export function getClientParameters(
     }
   }
 
-  const hasDefaultValue = (
-    p:
-      | SdkMethodParameter
-      | SdkHttpParameter
-      | SdkEndpointParameter
-      | SdkCredentialParameter
-  ) =>
+  const hasDefaultValue = (p: SdkParameter) =>
     p.clientDefaultValue || p.__raw?.defaultValue || p.type.kind === "constant";
-  const hasApiVersionParam = (
-    p:
-      | SdkMethodParameter
-      | SdkHttpParameter
-      | SdkEndpointParameter
-      | SdkCredentialParameter
-  ): p is SdkMethodParameter | SdkHttpParameter => {
-    return "isApiVersionParam" in p && p.isApiVersionParam === true;
-  };
-
-  const hasEndpointType = (
-    p:
-      | SdkMethodParameter
-      | SdkHttpParameter
-      | SdkEndpointParameter
-      | SdkCredentialParameter
-  ): p is
-    | (SdkMethodParameter & {
-        type: { kind: "endpoint"; templateArguments: any[] };
-      })
-    | (SdkHttpParameter & {
-        type: { kind: "endpoint"; templateArguments: any[] };
-      })
-    | (SdkEndpointParameter & {
-        type: { kind: "endpoint"; templateArguments: any[] };
-      })
-    | (SdkCredentialParameter & {
-        type: { kind: "endpoint"; templateArguments: any[] };
-      }) => {
-    return (
-      "type" in p &&
-      p.type &&
-      typeof p.type === "object" &&
-      "kind" in p.type &&
-      p.type.kind === "endpoint" &&
-      "templateArguments" in p.type &&
-      Array.isArray(p.type.templateArguments) &&
-      p.type.templateArguments.length > 0
-    );
-  };
-
-  const isRequired = (
-    p:
-      | SdkMethodParameter
-      | SdkHttpParameter
-      | SdkEndpointParameter
-      | SdkCredentialParameter
-  ) =>
+  const isRequired = (p: SdkParameter) =>
     !p.optional &&
     ((!hasDefaultValue(p) &&
-      !(hasEndpointType(p) && hasDefaultValue(p.type.templateArguments[0]))) ||
-      (options.apiVersionAsRequired && hasApiVersionParam(p)));
-  const isOptional = (
-    p:
-      | SdkMethodParameter
-      | SdkHttpParameter
-      | SdkEndpointParameter
-      | SdkCredentialParameter
-  ) => p.optional || hasDefaultValue(p);
-  const skipCredentials = (
-    p:
-      | SdkMethodParameter
-      | SdkHttpParameter
-      | SdkEndpointParameter
-      | SdkCredentialParameter
-  ) => !("kind" in p && p.kind === "credential");
-  const skipMethodParam = (
-    p:
-      | SdkMethodParameter
-      | SdkHttpParameter
-      | SdkEndpointParameter
-      | SdkCredentialParameter
-  ) => !("kind" in p && p.kind === "method");
-  const armSpecific = (
-    p:
-      | SdkMethodParameter
-      | SdkHttpParameter
-      | SdkEndpointParameter
-      | SdkCredentialParameter
-  ) => !("kind" in p && p.kind === "endpoint" && dpgContext.arm);
+      !(
+        p.type.kind === "endpoint" &&
+        p.type.templateArguments[0] &&
+        hasDefaultValue(p.type.templateArguments[0])
+      )) ||
+      (options.apiVersionAsRequired && p.isApiVersionParam));
+  const isOptional = (p: SdkParameter) => p.optional || hasDefaultValue(p);
+  const skipCredentials = (p: SdkParameter) => p.kind !== "credential";
+  const skipMethodParam = (p: SdkParameter) => p.kind !== "method";
+  const armSpecific = (p: SdkParameter) =>
+    !(p.kind === "endpoint" && dpgContext.arm);
   const filters = [
     options.requiredOnly ? isRequired : undefined,
     dpgContext.rlcOptions?.addCredentials === false
@@ -210,11 +139,7 @@ export function getClientParametersDeclaration(
 
 function getClientParameterTypeExpression(
   context: SdkContext,
-  parameter:
-    | SdkMethodParameter
-    | SdkHttpParameter
-    | SdkEndpointParameter
-    | SdkCredentialParameter
+  parameter: SdkParameter
 ) {
   // Special handle to work around the fact that TCGC creates a union type for endpoint. The reason they do this
   // is to provide a way for users to either pass the value to fill in the template of the whole endpoint. Basically they are
@@ -222,7 +147,7 @@ function getClientParameterTypeExpression(
   // Our emitter allows this through the options.endpoint.
   if (parameter.type.kind === "union") {
     const endpointVariant = parameter.type.variantTypes.find(
-      (p: any) => p.kind === "endpoint"
+      (p) => p.kind === "endpoint"
     );
     if (endpointVariant) {
       return getTypeExpression(context, endpointVariant);
@@ -231,17 +156,11 @@ function getClientParameterTypeExpression(
   return getTypeExpression(context, parameter.type);
 }
 
-export function getClientParameterName(
-  parameter:
-    | SdkMethodParameter
-    | SdkHttpParameter
-    | SdkEndpointParameter
-    | SdkCredentialParameter
-) {
+export function getClientParameterName(parameter: SdkParameter) {
   // We have been calling this endpointParam, so special handling this here to make sure there are no unexpected side effects
   if (
     (parameter.type.kind === "union" &&
-      parameter.type.variantTypes.some((v: any) => v.kind === "endpoint")) ||
+      parameter.type.variantTypes.some((v) => v.kind === "endpoint")) ||
     ((parameter.kind === "endpoint" || parameter.kind === "path") &&
       parameter.name.toLowerCase() === "endpoint")
   ) {
@@ -372,9 +291,8 @@ export function buildGetClientCredentialParam(
       emitterOptions.options.credentialKeyHeaderName)
   ) {
     return (
-      client.clientInitialization.parameters.find((x) =>
-        isCredentialType(x.type)
-      )?.name ?? "undefined"
+      client.clientInitialization.parameters.find((x) => isCredentialType(x))
+        ?.name ?? "undefined"
     );
   } else {
     return "undefined";
