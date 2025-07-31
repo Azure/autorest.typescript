@@ -125,9 +125,9 @@ describe("Multipart Client", () => {
       });
     });
 
-    // TODO this isn't generating correctly
+    // TODO fix the serialization
     it.skip("non-string (float value)", async () => {
-      // @ts-expect-error - Model does not currently generate properly
+      // the generation is correct now, but the serialization is not 
       await client.formData.httpParts.nonString.float({ temperature: 0.5 });
     });
 
