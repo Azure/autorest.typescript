@@ -524,7 +524,7 @@ export async function downloadFile(
 }
 ```
 
-# should handle contentTypes has multiple form data array in response
+# skip: should handle contentTypes has multiple form data array in response and pending tcgc https://github.com/Azure/typespec-azure/issues/3091
 
 ## TypeSpec
 
