@@ -1,6 +1,7 @@
 import {
   SdkHttpParameter,
   SdkModelPropertyType,
+  SdkModelType,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
 import { getCredentialExpression } from "./get-credential-expression.js";
@@ -10,6 +11,15 @@ import { getUnionExpression } from "./get-union-expression.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { SdkContext } from "../../utils/interfaces.js";
 import { getNullableExpression } from "./get-nullable-expression.js";
+
+/**
+ * Detects if a model represents an HttpPart wrapper that should be unwrapped for response contexts
+ */
+function isHttpPartModel(model: SdkModelType): boolean {
+  // HttpPart models typically have names like "HttpPart", "HttpPart1", etc.
+  // and are empty models (no properties) generated for multipart response bodies
+  return model.name.match(/^HttpPart\d*$/) !== null && model.properties.length === 0;
+}
 
 export interface EmitTypeOptions {
   emitInline?: boolean;
@@ -32,6 +42,14 @@ export function getTypeExpression(
 ): string {
   switch (type.kind) {
     case "array": {
+      // Special handling for arrays of HttpPart models
+      if (type.valueType.kind === "model" && isHttpPartModel(type.valueType)) {
+        if (type.valueType.name === "HttpPart") {
+          return "string[]";
+        } else if (type.valueType.name.match(/^HttpPart\d+$/)) {
+          return "Uint8Array[]";
+        }
+      }
       const valueType = getTypeExpression(context, type.valueType, options);
       return `(${valueType})[]`;
     }

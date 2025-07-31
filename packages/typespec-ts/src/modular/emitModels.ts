@@ -67,6 +67,15 @@ import { MultipartHelpers } from "./static-helpers-metadata.js";
 import { getAllAncestors } from "./helpers/operationHelpers.js";
 import { getAllProperties } from "./helpers/operationHelpers.js";
 
+/**
+ * Detects if a model represents an HttpPart wrapper that should be unwrapped for response contexts
+ */
+function isHttpPartModel(model: SdkModelType): boolean {
+  // HttpPart models typically have names like "HttpPart", "HttpPart1", etc.
+  // and are empty models (no properties) generated for multipart response bodies
+  return model.name.match(/^HttpPart\d*$/) !== null && model.properties.length === 0;
+}
+
 type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
   extends?: string[];
   kind: StructureKind.Interface;
@@ -159,6 +168,12 @@ function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
       // throw new Error(`Generation of anonymous types`);
       return;
     }
+    
+    // Skip HttpPart models - they should be unwrapped to their inner types
+    if (isHttpPartModel(type)) {
+      return;
+    }
+    
     const modelInterface = buildModelInterface(context, type);
     if (type.discriminatorProperty) {
       modelInterface.properties

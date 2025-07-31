@@ -63,6 +63,15 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { isMetadata, isPathParam, isQueryParam } from "@typespec/http";
 
+/**
+ * Detects if a model represents an HttpPart wrapper that should be unwrapped for response contexts
+ */
+function isHttpPartModel(model: SdkModelType): boolean {
+  // HttpPart models typically have names like "HttpPart", "HttpPart1", etc.
+  // and are empty models (no properties) generated for multipart response bodies
+  return model.name.match(/^HttpPart\d*$/) !== null && model.properties.length === 0;
+}
+
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
   client: SdkClientType<SdkHttpOperation>,
@@ -1231,6 +1240,49 @@ export function getResponseMapping(
       property.optional || isTypeNullable(property.type)
         ? `!${restValue}? ${restValue}: `
         : "";
+    
+    // Handle HttpPart properties specially
+    if (property.type.kind === "model" && isHttpPartModel(property.type)) {
+      const propertyName = normalizeModelPropertyName(context, property);
+      if (property.type.name === "HttpPart") {
+        // HttpPart<string> -> string
+        props.push(`${propertyName}: ${restValue}`);
+      } else if (property.type.name.match(/^HttpPart\d+$/)) {
+        // HttpPart<bytes> -> Uint8Array with base64 conversion
+        const dependencies = useDependencies();
+        const stringToUint8ArrayReference = resolveReference(
+          dependencies.stringToUint8Array
+        );
+        props.push(
+          `${propertyName}: typeof ${restValue} === "string" ? ${stringToUint8ArrayReference}(${restValue}, "base64") : ${restValue}`
+        );
+      }
+      continue;
+    }
+    
+    // Handle arrays of HttpPart models
+    if (property.type.kind === "array" && 
+        property.type.valueType.kind === "model" && 
+        isHttpPartModel(property.type.valueType)) {
+      const propertyName = normalizeModelPropertyName(context, property);
+      if (property.type.valueType.name === "HttpPart") {
+        // HttpPart<string>[] -> string[]
+        props.push(`${propertyName}: ${restValue}`);
+      } else if (property.type.valueType.name.match(/^HttpPart\d+$/)) {
+        // HttpPart<bytes>[] -> Uint8Array[] with base64 conversion
+        const dependencies = useDependencies();
+        const stringToUint8ArrayReference = resolveReference(
+          dependencies.stringToUint8Array
+        );
+        props.push(
+          `${propertyName}: ${restValue}.map((p: any) => {
+      return typeof p === "string" ? ${stringToUint8ArrayReference}(p, "base64") : p;
+    })`
+        );
+      }
+      continue;
+    }
+    
     const deserializeFunctionName = buildModelDeserializer(
       context,
       getNullableValidType(property.type),
