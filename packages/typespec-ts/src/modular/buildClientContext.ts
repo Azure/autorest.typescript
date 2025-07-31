@@ -26,10 +26,10 @@ import { useDependencies } from "../framework/hooks/useDependencies.js";
 import { buildEnumTypes, getApiVersionEnum } from "./emitModels.js";
 import {
   SdkClientType,
+  SdkCredentialParameter,
+  SdkEndpointParameter,
   SdkHttpParameter,
   SdkMethodParameter,
-  SdkEndpointParameter,
-  SdkCredentialParameter,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 import { getModularClientOptions } from "../utils/clientUtils.js";
@@ -211,12 +211,12 @@ export function buildClientContext(
     onClientOnly: false,
     requiredOnly: true,
     skipEndpointTemplate: true
-  }).find((x): x is SdkEndpointParameter => x.kind === "endpoint");
+  }).find((x) => x.kind === "endpoint");
   if (apiVersionParam) {
     const templateArguments =
-      endpointParameter && endpointParameter.type?.kind === "endpoint"
+      endpointParameter && endpointParameter.type.kind === "endpoint"
         ? endpointParameter.type.templateArguments
-        : endpointParameter && endpointParameter.type?.kind === "union"
+        : endpointParameter && endpointParameter.type.kind === "union"
           ? endpointParameter.type.variantTypes[0]?.templateArguments
           : [];
     const apiVersionInEndpoint =
@@ -287,9 +287,9 @@ function getDocsWithKnownVersion(
   dpgContext: SdkContext,
   param:
     | SdkMethodParameter
-    | SdkHttpParameter
     | SdkEndpointParameter
     | SdkCredentialParameter
+    | SdkHttpParameter
 ) {
   const docs = getDocsFromDescription(param.doc);
   if (param.name.toLowerCase() !== "apiversion") {
