@@ -121,7 +121,7 @@ export async function uploadFileViaBody(
 }
 ```
 
-# skip: should handle contentTypes has multiple form data array in response and pending tcgc https://github.com/Azure/typespec-azure/issues/3091
+# should handle contentTypes has multiple form data in request
 
 ## TypeSpec
 
@@ -214,7 +214,7 @@ export async function uploadFile(
 }
 ```
 
-# should handle contentTypes has multiple form data array in parameters
+# should handle contentTypes has multiple form data with part array in parameters
 
 ## TypeSpec
 
@@ -431,7 +431,7 @@ export async function downloadFile(
 }
 ```
 
-# skip: should handle contentTypes has multiple form data in response and pending tcgc https://github.com/Azure/typespec-azure/issues/3091
+# skip: should handle contentTypes has multiple form data with part array in response and pending tcgc https://github.com/Azure/typespec-azure/issues/3091
 
 ## TypeSpec
 
@@ -524,7 +524,7 @@ export async function downloadFile(
 }
 ```
 
-# skip: should handle contentTypes has multiple form data array in response and pending tcgc https://github.com/Azure/typespec-azure/issues/3091
+# skip: should handle contentTypes has multiple form data with array part in response and pending tcgc https://github.com/Azure/typespec-azure/issues/3091
 
 ## TypeSpec
 
@@ -536,8 +536,8 @@ scalar BinaryBytes extends bytes;
 op downloadFile(): {
   @header contentType: "multipart/form-data";
   @multipartBody body: {
-    name: HttpPart<string>;
-    file: HttpPart<BinaryBytes>[];
+    name: HttpPart<string[]>;
+    file: HttpPart<BinaryBytes>;
   };
 };
 ```
