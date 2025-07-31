@@ -345,7 +345,7 @@ function buildModelTypeSerializer(
     // TODO: cleaner abstraction, quite a bit of duplication with the non-MFD stuff here
     const parts: string[] = [];
 
-    const properties = getAllProperties(type, getAllAncestors(type));
+    const properties = getAllProperties(context, type, getAllAncestors(type));
     for (const property of properties) {
       if (property.kind !== "property") {
         continue;
@@ -442,7 +442,7 @@ function getAdditionalPropertiesStatement(
     false,
     true
   );
-  const params = [`item.${getAdditionalPropertiesName(type)}`];
+  const params = [`item.${getAdditionalPropertiesName(context, type)}`];
   if (typeof deserializerFunction === "string") {
     params.push("undefined");
     params.push(deserializerFunction);

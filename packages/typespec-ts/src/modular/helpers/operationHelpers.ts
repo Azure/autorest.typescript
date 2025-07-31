@@ -46,6 +46,7 @@ import {
 } from "../type-expressions/get-type-expression.js";
 import { SdkContext } from "../../utils/interfaces.js";
 import {
+  isHttpMetadata,
   isReadOnly,
   SdkBodyParameter,
   SdkClientType,
@@ -61,7 +62,7 @@ import {
   SdkPagingServiceMethod,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
-import { isMetadata, isPathParam, isQueryParam } from "@typespec/http";
+import { isMetadata } from "@typespec/http";
 
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
@@ -1154,7 +1155,7 @@ export function getRequestModelProperties(
   const props: [string, string][] = [];
   const allParents = getAllAncestors(modelPropertyType);
   const properties: SdkModelPropertyType[] =
-    getAllProperties(modelPropertyType, allParents) ?? [];
+    getAllProperties(context, modelPropertyType, allParents) ?? [];
   if (properties.length <= 0) {
     return [];
   }
@@ -1208,17 +1209,10 @@ export function getResponseMapping(
 ) {
   const allParents = type.kind === "model" ? getAllAncestors(type) : [];
   const properties =
-    type.kind === "model" ? getAllProperties(type, allParents) : [];
+    type.kind === "model" ? getAllProperties(context, type, allParents) : [];
   const props: string[] = [];
   for (const property of properties) {
-    // Path and query parameters in models should be taken as normal payload in response
-    if (
-      isMetadata(context.program, property.__raw!) &&
-      !(
-        isPathParam(context.program, property.__raw!) ||
-        isQueryParam(context.program, property.__raw!)
-      )
-    ) {
+    if (isMetadata(context.program, property.__raw!)) {
       continue;
     }
     const dot = propertyPath.endsWith("?") ? "." : "";
@@ -1484,6 +1478,7 @@ export function isPagingOnlyOperation(
 }
 
 export function getAllProperties(
+  context: SdkContext,
   type: SdkType,
   parents?: SdkType[]
 ): SdkModelPropertyType[] {
@@ -1492,14 +1487,14 @@ export function getAllProperties(
     return [];
   }
   parents?.forEach((p) => {
-    getAllProperties(p).forEach((prop) => {
+    getAllProperties(context, p).forEach((prop) => {
       propertiesMap.set(prop.name, prop);
     });
   });
   if (type.kind === "model" && type.properties) {
     type.properties
       .filter((p) => {
-        return p.kind === "property";
+        return p.kind === "property" && !isHttpMetadata(context, p);
       })
       .forEach((p) => {
         propertiesMap.set(p.name, p);
