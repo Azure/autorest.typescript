@@ -419,7 +419,7 @@ export async function downloadFile(
 }
 ```
 
-# skip: should handle contentTypes has multiple form data in response
+# should handle contentTypes has multiple form data in response
 
 ## TypeSpec
 
@@ -438,23 +438,39 @@ op downloadFile(): {
 ## Models
 
 ```ts models
-import { stringToUint8Array } from "@azure/core-util";
-
 /** model interface _DownloadFileResponse */
 export interface _DownloadFileResponse {
-  name: string;
-  file: Uint8Array[];
+  name: HttpPart;
+  file: HttpPart1[];
 }
 
 export function _downloadFileResponseDeserializer(
-  item: any
+  item: any,
 ): _DownloadFileResponse {
   return {
-    name: item["name"],
-    file: item["file"].map((p: any) => {
-      return typeof p === "string" ? stringToUint8Array(p, "base64") : p;
-    })
+    name: httpPartDeserializer(item["name"]),
+    file: httpPart1ArrayDeserializer(item["file"]),
   };
+}
+
+/** model interface HttpPart */
+export interface HttpPart {}
+
+export function httpPartDeserializer(item: any): HttpPart {
+  return item;
+}
+
+export function httpPart1ArrayDeserializer(result: Array<HttpPart1>): any[] {
+  return result.map((item) => {
+    return httpPart1Deserializer(item);
+  });
+}
+
+/** model interface HttpPart1 */
+export interface HttpPart1 {}
+
+export function httpPart1Deserializer(item: any): HttpPart1 {
+  return item;
 }
 ```
 
@@ -462,33 +478,39 @@ export function _downloadFileResponseDeserializer(
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { _downloadFileResponseDeserializer } from "../models/models.js";
+import {
+  _downloadFileResponseDeserializer,
+  HttpPart,
+  HttpPart1,
+} from "../models/models.js";
 import { DownloadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _downloadFileSend(
   context: Client,
-  options: DownloadFileOptionalParams = { requestOptions: {} }
+  options: DownloadFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/downloadFile").post({
-    ...operationOptionsToRequestParameters(options),
-    headers: {
-      accept: "multipart/form-data",
-      ...options.requestOptions?.headers
-    }
-  });
+  return context
+    .path("/downloadFile")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "multipart/form-data",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _downloadFileDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<{
-  name: string;
-  file: Uint8Array[];
+  name: HttpPart;
+  file: HttpPart1[];
 }> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -500,17 +522,17 @@ export async function _downloadFileDeserialize(
 
 export async function downloadFile(
   context: Client,
-  options: DownloadFileOptionalParams = { requestOptions: {} }
+  options: DownloadFileOptionalParams = { requestOptions: {} },
 ): Promise<{
-  name: string;
-  file: Uint8Array[];
+  name: HttpPart;
+  file: HttpPart1[];
 }> {
   const result = await _downloadFileSend(context, options);
   return _downloadFileDeserialize(result);
 }
 ```
 
-# skip: should handle contentTypes has multiple form data array in response
+# should handle contentTypes has multiple form data array in response
 
 ## TypeSpec
 
@@ -531,23 +553,39 @@ op downloadFile(): {
 ## Models
 
 ```ts models
-import { stringToUint8Array } from "@azure/core-util";
-
 /** model interface _DownloadFileResponse */
 export interface _DownloadFileResponse {
-  name: string;
-  file: Uint8Array[];
+  name: HttpPart;
+  file: HttpPart1[];
 }
 
 export function _downloadFileResponseDeserializer(
-  item: any
+  item: any,
 ): _DownloadFileResponse {
   return {
-    name: item["name"],
-    file: item["file"].map((p: any) => {
-      return typeof p === "string" ? stringToUint8Array(p, "base64") : p;
-    })
+    name: httpPartDeserializer(item["name"]),
+    file: httpPart1ArrayDeserializer(item["file"]),
   };
+}
+
+/** model interface HttpPart */
+export interface HttpPart {}
+
+export function httpPartDeserializer(item: any): HttpPart {
+  return item;
+}
+
+export function httpPart1ArrayDeserializer(result: Array<HttpPart1>): any[] {
+  return result.map((item) => {
+    return httpPart1Deserializer(item);
+  });
+}
+
+/** model interface HttpPart1 */
+export interface HttpPart1 {}
+
+export function httpPart1Deserializer(item: any): HttpPart1 {
+  return item;
 }
 ```
 
@@ -555,33 +593,39 @@ export function _downloadFileResponseDeserializer(
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { _downloadFileResponseDeserializer } from "../models/models.js";
+import {
+  _downloadFileResponseDeserializer,
+  HttpPart,
+  HttpPart1,
+} from "../models/models.js";
 import { DownloadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _downloadFileSend(
   context: Client,
-  options: DownloadFileOptionalParams = { requestOptions: {} }
+  options: DownloadFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context.path("/downloadFile").post({
-    ...operationOptionsToRequestParameters(options),
-    headers: {
-      accept: "multipart/form-data",
-      ...options.requestOptions?.headers
-    }
-  });
+  return context
+    .path("/downloadFile")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "multipart/form-data",
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _downloadFileDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<{
-  name: string;
-  file: Uint8Array[];
+  name: HttpPart;
+  file: HttpPart1[];
 }> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -593,10 +637,10 @@ export async function _downloadFileDeserialize(
 
 export async function downloadFile(
   context: Client,
-  options: DownloadFileOptionalParams = { requestOptions: {} }
+  options: DownloadFileOptionalParams = { requestOptions: {} },
 ): Promise<{
-  name: string;
-  file: Uint8Array[];
+  name: HttpPart;
+  file: HttpPart1[];
 }> {
   const result = await _downloadFileSend(context, options);
   return _downloadFileDeserialize(result);

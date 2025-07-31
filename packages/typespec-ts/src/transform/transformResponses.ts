@@ -23,6 +23,7 @@ import {
   getSchemaForType,
   getTypeName
 } from "../utils/modelUtils.js";
+import { extractMediaTypes } from "../utils/mediaTypes.js";
 import {
   getOperationGroupName,
   getOperationLroOverload,
@@ -181,7 +182,8 @@ function transformBody(
       continue;
     }
     const bodySchema = getSchemaForType(dpgContext, body!.type, {
-      usage: [SchemaContext.Output]
+      usage: [SchemaContext.Output],
+      mediaTypes: extractMediaTypes(body.contentTypes)
     }) as Schema;
     fromCore = bodySchema.fromCore ?? false;
     const bodyType = getTypeName(bodySchema);
