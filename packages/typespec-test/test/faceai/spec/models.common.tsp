@@ -315,6 +315,14 @@ model FaceError {
 
 model FaceErrorResponse is Azure.Core.Foundations.ErrorResponseBase<FaceError>;
 
+// Paging response models for TypeSpec 1.x compatibility
+@doc("Generic paged response model")
+model PagedResponse<T> {
+  @doc("Array of items in the paged response")
+  @pageItems
+  value: T[];
+}
+
 alias BodyParameter<
   T,
   TName extends valueof string = "body",

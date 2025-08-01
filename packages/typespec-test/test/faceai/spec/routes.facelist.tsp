@@ -75,7 +75,7 @@ interface FaceListOperations {
   getFaceLists is Foundations.ResourceList<
     FaceList,
     ReturnRecognitionModelOptions,
-    Body<FaceListItem[]>,
+    PagedResponse<FaceListItem>,
     ServiceTraits,
     FaceErrorResponse
   >;
