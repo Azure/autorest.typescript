@@ -201,9 +201,9 @@ importers:
       '@types/node': ^18.0.0
       '@typespec/compiler': 1.3.0-dev.10
       '@typespec/http': 1.3.0-dev.4
-      '@typespec/json-schema': ^1.2.1
+      '@typespec/json-schema': 1.3.0-dev.2
       '@typespec/openapi': 1.3.0-dev.2
-      '@typespec/openapi3': ^1.2.1
+      '@typespec/openapi3': 1.3.0-dev.2
       '@typespec/rest': 0.73.0-dev.2
       '@typespec/versioning': 0.73.0-dev.3
       prettier: ^3.1.0
@@ -218,9 +218,9 @@ importers:
       '@azure-tools/typespec-ts': link:../typespec-ts
       '@typespec/compiler': 1.3.0-dev.10_@types+node@18.18.0
       '@typespec/http': 1.3.0-dev.4_ot5bkgssns5dvdz72i5dx6hvue
-      '@typespec/json-schema': 1.2.1_52cww6x6afhlqgz46zvhm6lzie
+      '@typespec/json-schema': 1.3.0-dev.2_52cww6x6afhlqgz46zvhm6lzie
       '@typespec/openapi': 1.3.0-dev.2_6pnim5xj2dzdqncn34klo7m5ay
-      '@typespec/openapi3': 1.2.1_n3p6ld5fkgujugwnwmqzx4g2rq
+      '@typespec/openapi3': 1.3.0-dev.2_tuthkzlx2iaeo2hjn4gh5ztk2a
       '@typespec/rest': 0.73.0-dev.2_6pnim5xj2dzdqncn34klo7m5ay
       '@typespec/versioning': 0.73.0-dev.3_52cww6x6afhlqgz46zvhm6lzie
       prettier: 3.1.1
@@ -233,7 +233,7 @@ importers:
   ../../packages/typespec-ts:
     specifiers:
       '@azure-rest/core-client': ^2.3.1
-      '@azure-tools/azure-http-specs': 0.1.0-alpha.24-dev.4
+      '@azure-tools/azure-http-specs': 0.1.0-alpha.25-dev.2
       '@azure-tools/rlc-common': workspace:^0.42.1
       '@azure-tools/typespec-autorest': 0.59.0-dev.2
       '@azure-tools/typespec-azure-core': 0.59.0-dev.8
@@ -297,7 +297,7 @@ importers:
       tslib: 2.6.2
     devDependencies:
       '@azure-rest/core-client': 2.3.1
-      '@azure-tools/azure-http-specs': 0.1.0-alpha.24-dev.4_zjfixtdfpfwv4moarwyrxh23em
+      '@azure-tools/azure-http-specs': 0.1.0-alpha.25-dev.2_zjfixtdfpfwv4moarwyrxh23em
       '@azure-tools/typespec-autorest': 0.59.0-dev.2_2o5bwhp7x4xi5mhjbrvm7jff6u
       '@azure-tools/typespec-azure-core': 0.59.0-dev.8_tydtplxr5fzzycic3nnnra4vgi
       '@azure-tools/typespec-azure-resource-manager': 0.59.0-dev.7_353lg3rnfvbds24jfhyezqelii
@@ -473,8 +473,8 @@ packages:
       proper-lockfile: 2.0.1
     dev: false
 
-  /@azure-tools/azure-http-specs/0.1.0-alpha.24-dev.4_zjfixtdfpfwv4moarwyrxh23em:
-    resolution: {integrity: sha512-5w0v6FBSUs8TnthE/qbbcubQf7ga1P+CYqZUHKhV84wmk2XFMN3a3vwg2YpEDtSqxbUpiUkN8cqnrY63doMzPg==}
+  /@azure-tools/azure-http-specs/0.1.0-alpha.25-dev.2_zjfixtdfpfwv4moarwyrxh23em:
+    resolution: {integrity: sha512-rDI1mf0i+LFcLF3L6YrGuU/EWvS/cII6wE8zTRfJMYHvvBPR2EjD4Uz7RoH04CiGJw1DV7w0OfIOWFTFH6rc/A==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       '@azure-tools/typespec-azure-core': ^0.58.0 || >=0.59.0-dev <0.59.0
@@ -2954,8 +2954,8 @@ packages:
       '@typespec/compiler': 1.3.0-dev.10_@types+node@18.18.0
       '@typespec/streams': 0.72.1_52cww6x6afhlqgz46zvhm6lzie
 
-  /@typespec/json-schema/1.2.1_52cww6x6afhlqgz46zvhm6lzie:
-    resolution: {integrity: sha512-hZvJ3nilM8uld0GJKPZUAHShjcJLfi/c+PWM9Y+7QRTgyJeFfaEA0h56N8KO7I9GTenfWSeOJGZ5Dw66V+HWfg==}
+  /@typespec/json-schema/1.3.0-dev.2_52cww6x6afhlqgz46zvhm6lzie:
+    resolution: {integrity: sha512-CY6L6517NUeOMfRsZiig6dJXRUuOKAqfxB9spkI0oA+mTH1Z1V6kQ28ZqbzXR3ozVp4M31gJrS5u0kP6pxdElg==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       '@typespec/compiler': ^1.2.1
@@ -2975,8 +2975,8 @@ packages:
       '@typespec/compiler': 1.3.0-dev.10_@types+node@18.18.0
       '@typespec/http': 1.3.0-dev.4_ot5bkgssns5dvdz72i5dx6hvue
 
-  /@typespec/openapi3/1.2.1_n3p6ld5fkgujugwnwmqzx4g2rq:
-    resolution: {integrity: sha512-PG4+yDTm1YI1rrxFAS3B8WZc6S66pl2WPK+9pP/5b0He9NkFmA53BIodgXpV2QuhvChCbEjr/CDa94ufv8+cKw==}
+  /@typespec/openapi3/1.3.0-dev.2_tuthkzlx2iaeo2hjn4gh5ztk2a:
+    resolution: {integrity: sha512-1YilvYO6tNaFWZc7I/iNny+odgVQcG5hhaHoBZP7WlQ/LzfIucwCwuyxvITWAswnWQn3WO0Nwoq8zfjyXJPVeg==}
     engines: {node: '>=20.0.0'}
     hasBin: true
     peerDependencies:
@@ -2984,7 +2984,7 @@ packages:
       '@typespec/http': ^1.2.1
       '@typespec/json-schema': ^1.2.1
       '@typespec/openapi': ^1.2.1
-      '@typespec/versioning': ^0.72.1
+      '@typespec/versioning': ^0.72.1 || >=0.73.0-dev <0.73.0
       '@typespec/xml': '*'
     peerDependenciesMeta:
       '@typespec/json-schema':
@@ -2998,7 +2998,7 @@ packages:
       '@typespec/asset-emitter': 0.72.1_52cww6x6afhlqgz46zvhm6lzie
       '@typespec/compiler': 1.3.0-dev.10_@types+node@18.18.0
       '@typespec/http': 1.3.0-dev.4_ot5bkgssns5dvdz72i5dx6hvue
-      '@typespec/json-schema': 1.2.1_52cww6x6afhlqgz46zvhm6lzie
+      '@typespec/json-schema': 1.3.0-dev.2_52cww6x6afhlqgz46zvhm6lzie
       '@typespec/openapi': 1.3.0-dev.2_6pnim5xj2dzdqncn34klo7m5ay
       '@typespec/versioning': 0.73.0-dev.3_52cww6x6afhlqgz46zvhm6lzie
       '@typespec/xml': 0.73.0-dev.2_52cww6x6afhlqgz46zvhm6lzie
