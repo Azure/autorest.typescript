@@ -5,7 +5,6 @@ import type { ClientOptions } from '@azure-rest/core-client';
 import type { CreateHttpPollerOptions } from '@azure/core-lro';
 import type { HttpResponse } from '@azure-rest/core-client';
 import type { OperationState } from '@azure/core-lro';
-import type { PathUncheckedResponse } from '@azure-rest/core-client';
 import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
 import type { StreamableMethod } from '@azure-rest/core-client';
@@ -275,8 +274,6 @@ export declare interface Get200Response extends HttpResponse {
     body: WidgetOutput;
 }
 
-export declare type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
-
 export declare interface GetDefaultResponse extends HttpResponse {
     status: string;
     body: ErrorResponseOutput;
@@ -287,11 +284,6 @@ export declare function getLongRunningPoller<TResult extends CreateOrReplaceLogi
 export declare function getLongRunningPoller<TResult extends DeleteLogicalResponse | DeleteDefaultResponse>(client: Client, initialResponse: Delete202Response | Delete204Response | DeleteDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 export declare function getLongRunningPoller<TResult extends ExportLogicalResponse | ExportDefaultResponse>(client: Client, initialResponse: Export200Response | Export202Response | ExportDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
-
-export declare type GetPage<TPage> = (pageLink: string) => Promise<{
-    page: TPage;
-    nextPageLink?: string;
-}>;
 
 export declare type GetParameters = RequestParameters;
 
@@ -447,28 +439,6 @@ export declare interface OrderPropertiesOutput {
 }
 
 export declare type OriginOutput = string;
-
-export declare interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
-    next(): Promise<IteratorResult<TElement>>;
-    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
-    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
-}
-
-export declare interface PageSettings {
-    continuationToken?: string;
-}
-
-export declare function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
-
-export declare type PaginateReturn<TResult> = TResult extends {
-    body: {
-        value?: infer TPage;
-    };
-} ? GetArrayType<TPage> : Array<unknown>;
-
-export declare interface PagingOptions<TResponse> {
-    customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
-}
 
 export declare interface Patch200Response extends HttpResponse {
     status: "200";
