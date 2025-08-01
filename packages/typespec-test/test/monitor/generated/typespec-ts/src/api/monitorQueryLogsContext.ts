@@ -21,11 +21,11 @@ export function createMonitorQueryLogs(
   credential: TokenCredential,
   options: MonitorQueryLogsClientOptionalParams = {},
 ): MonitorQueryLogsContext {
+  const endpointParam = options.endpointParam ?? "https://api.loganalytics.io";
   const apiVersion = options.apiVersion ?? "v1";
-  const endpointUrl =
-    options.endpoint ?? `https://management.azure.com/${apiVersion}`;
+  const endpointUrl = options.endpoint ?? `${endpointParam}/${apiVersion}`;
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
-  const userAgentInfo = `azsdk-js-@azure/monitor-query-logs/1.0.0`;
+  const userAgentInfo = `azsdk-js-monitor-query-logs/1.0.0`;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api ${userAgentInfo}`
     : `azsdk-js-api ${userAgentInfo}`;
@@ -33,6 +33,11 @@ export function createMonitorQueryLogs(
     ...options,
     userAgentOptions: { userAgentPrefix },
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
+    credentials: {
+      scopes: options.credentials?.scopes ?? [
+        "https://api.loganalytics.io/.default",
+      ],
+    },
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
