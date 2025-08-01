@@ -58,10 +58,6 @@ export function _registerSchemaSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       contentType: contentType,
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
       body: uint8ArrayToString(content, "base64"),
     });
 }
@@ -125,10 +121,6 @@ export function _getSchemaIdByContentSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: contentType,
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
       body: uint8ArrayToString(schemaContent, "base64"),
     });
 }

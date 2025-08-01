@@ -4,19 +4,16 @@
 import { OpenAIContext as Client } from "../index.js";
 import {
   errorResponseDeserializer,
-  CreateImageRequest,
-  createImageRequestSerializer,
-  ImagesResponse,
-  imagesResponseDeserializer,
   CreateImageEditRequest,
   createImageEditRequestSerializer,
+  ImagesResponse,
+  imagesResponseDeserializer,
   CreateImageVariationRequest,
   createImageVariationRequestSerializer,
 } from "../../models/models.js";
 import {
   ImagesCreateVariationOptionalParams,
   ImagesCreateEditOptionalParams,
-  ImagesCreateOptionalParams,
 } from "./options.js";
 import {
   StreamableMethod,
@@ -103,44 +100,4 @@ export async function createEdit(
 ): Promise<ImagesResponse> {
   const result = await _createEditSend(context, image, options);
   return _createEditDeserialize(result);
-}
-
-export function _createSend(
-  context: Client,
-  image: CreateImageRequest,
-  options: ImagesCreateOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/images/generations")
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
-      body: createImageRequestSerializer(image),
-    });
-}
-
-export async function _createDeserialize(
-  result: PathUncheckedResponse,
-): Promise<ImagesResponse> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    const error = createRestError(result);
-    error.details = errorResponseDeserializer(result.body);
-    throw error;
-  }
-
-  return imagesResponseDeserializer(result.body);
-}
-
-export async function create(
-  context: Client,
-  image: CreateImageRequest,
-  options: ImagesCreateOptionalParams = { requestOptions: {} },
-): Promise<ImagesResponse> {
-  const result = await _createSend(context, image, options);
-  return _createDeserialize(result);
 }

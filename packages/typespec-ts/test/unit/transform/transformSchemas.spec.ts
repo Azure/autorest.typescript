@@ -328,7 +328,6 @@ describe("#transformSchemas", () => {
         const schemaOutput = await emitSchemasFromTypeSpec(
           `
           #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
-          @fixed
           @doc("Translation Language Values")
           enum TranslationLanguageValues {
             @doc("English descriptions")

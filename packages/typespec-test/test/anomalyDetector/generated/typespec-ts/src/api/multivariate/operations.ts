@@ -247,13 +247,7 @@ export function _deleteMultivariateModelSend(
   );
   return context
     .path(path)
-    .delete({
-      ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
-    });
+    .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _deleteMultivariateModelDeserialize(

@@ -15,14 +15,13 @@ import {
 } from "@azure-tools/rlc-common";
 import {
   SdkArrayType,
-  SdkBodyModelPropertyType,
+  SdkModelPropertyType,
   SdkClientType,
   SdkDictionaryType,
   SdkEnumType,
   SdkEnumValueType,
   SdkHttpOperation,
   SdkMethod,
-  SdkModelPropertyType,
   SdkModelType,
   SdkNullableType,
   SdkServiceMethod,
@@ -504,7 +503,7 @@ function addExtendedDictInfo(
     : undefined;
   if (context.rlcOptions?.compatibilityMode) {
     const ancestors = getAllAncestors(model);
-    const properties = getAllProperties(model, ancestors);
+    const properties = getAllProperties(context, model, ancestors);
     let anyType = true;
     if (!additionalPropertiesType) {
       // case 1: if additionalProperties is not defined, we should use any type
@@ -530,7 +529,7 @@ function addExtendedDictInfo(
     const additionalPropertiesType = model.additionalProperties
       ? getTypeExpression(context, model.additionalProperties)
       : undefined;
-    const name = getAdditionalPropertiesName(model);
+    const name = getAdditionalPropertiesName(context, model);
     if (name !== "additionalProperties") {
       // report diagnostic for additionalProperties
       reportDiagnostic(context.program, {
@@ -554,9 +553,12 @@ function addExtendedDictInfo(
   }
 }
 
-export function getAdditionalPropertiesName(model: SdkModelType): string {
+export function getAdditionalPropertiesName(
+  context: SdkContext,
+  model: SdkModelType
+): string {
   const ancestors = getAllAncestors(model);
-  const properties = getAllProperties(model, ancestors);
+  const properties = getAllProperties(context, model, ancestors);
   const nameConflict = properties.find(
     (p) => p.name === "additionalProperties"
   );
@@ -712,7 +714,7 @@ function buildModelProperty(
     name: normalizedPropName,
     type: typeExpression,
     hasQuestionToken: property.optional,
-    isReadonly: isReadOnly(property as SdkBodyModelPropertyType)
+    isReadonly: isReadOnly(property as SdkModelPropertyType)
   };
 
   if (property.doc) {

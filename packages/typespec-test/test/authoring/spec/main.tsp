@@ -82,7 +82,6 @@ model Project {
 }
 
 @doc("Represents the project kind.")
-@fixed
 enum ProjectKind {
   @doc("For building a classification model to classify text using your own data. Each file will have only one label. For example, file 1 is classified as A and file 2 is classified as B.")
   CustomSingleLabelClassification,
@@ -135,10 +134,10 @@ model Job {
 }
 
 @doc("Represents the job status.")
-@fixed
 enum JobStatus {
   // These values are all camel-cased in the original spec
   notStarted,
+
   running,
   succeeded,
   failed,
@@ -309,7 +308,8 @@ interface Deployments {
   swapDeployments is ResourceCollectionAction<
     Deployment,
     SwapDeploymentsParams,
-    Azure.Core.Foundations.AcceptedResponse & Foundations.LongRunningStatusLocation
+    Azure.Core.Foundations.AcceptedResponse &
+      Foundations.LongRunningStatusLocation
   >;
 }
 
@@ -327,7 +327,10 @@ interface Global {
   @get
   @route("languages")
   @doc("Gets the supported languages.")
-  getSupportedLanguages is Foundations.Operation<StandardListQueryParameters, SupportedLanguages>;
+  getSupportedLanguages is Foundations.Operation<
+    StandardListQueryParameters,
+    SupportedLanguages
+  >;
 
   #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "This is an existing service that cannot be changed."
   @get

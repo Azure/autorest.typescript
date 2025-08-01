@@ -1,8 +1,6 @@
 import { assert } from "chai";
 import PageableClientFactory, {
-  PageableClient,
-  UserOutput,
-  paginate
+  PageableClient
 } from "./generated/azure/payload/pageable/src/index.js";
 
 describe("Azure Pageable Client", () => {
@@ -10,10 +8,7 @@ describe("Azure Pageable Client", () => {
 
   beforeEach(() => {
     client = PageableClientFactory({
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      allowInsecureConnection: true
     });
   });
 
@@ -56,22 +51,14 @@ describe("Azure Pageable Client", () => {
   });
 
   it("should get pagable list", async () => {
-    const initialResponse = await client
+    const result = await client
       .path("/azure/payload/pageable")
       .get({ queryParameters: { maxpagesize: 3 } });
 
-    const iter = paginate(client, initialResponse);
-
-    let result: UserOutput[] = [];
-    for await (const item of iter) {
-      result.push(item);
-    }
-
-    assert.deepEqual(result, [
+    assert.deepEqual(result.body.value, [
       { name: "user5" },
       { name: "user6" },
-      { name: "user7" },
-      { name: "user8" }
+      { name: "user7" }
     ]);
   });
 });

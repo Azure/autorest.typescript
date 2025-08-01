@@ -229,7 +229,6 @@ describe("Integration test for mocking sample", () => {
       it("enum", async () => {
         const schemaMap = await emitSchemasFromTypeSpec(
           `
-        @fixed
         enum FixedEnum {
           English,
           Chinese,

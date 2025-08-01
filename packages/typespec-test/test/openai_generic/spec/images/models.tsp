@@ -18,13 +18,6 @@ alias SharedImageProperties = {
   user?: HttpPart<User>;
 };
 
-model CreateImageRequest {
-  /** A text description of the desired image(s). The maximum length is 1000 characters. */
-  prompt: string;
-
-  ...SharedImageProperties;
-}
-
 model ImagesResponse {
   @encode("unixTimestamp", int32)
   created: utcDateTime;

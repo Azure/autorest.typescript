@@ -100,6 +100,7 @@ model ListFaceResult {
   personId: uuid;
 
   @doc("Array of persisted face ids.")
+  @pageItems
   persistedFaceIds: uuid[];
 }
 

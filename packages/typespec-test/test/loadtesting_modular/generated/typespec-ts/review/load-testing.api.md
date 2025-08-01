@@ -462,7 +462,7 @@ export class LoadTestRunClient {
     listMetricDefinitions(testRunId: string, metricNamespace: string, options?: ListMetricDefinitionsOptionalParams): Promise<MetricDefinitionCollection>;
     listMetricDimensionValues(testRunId: string, name: string, metricname: string, metricNamespace: string, timespan: string, options?: ListMetricDimensionValuesOptionalParams): Promise<DimensionValueList>;
     listMetricNamespaces(testRunId: string, options?: ListMetricNamespacesOptionalParams): Promise<MetricNamespaceCollection>;
-    listMetrics(testRunId: string, metricname: string, metricNamespace: string, timespan: string, options?: ListMetricsOptionalParams): PagedAsyncIterableIterator<TimeSeriesElement>;
+    listMetrics(testRunId: string, metricname: string, metricNamespace: string, timespan: string, options?: ListMetricsOptionalParams): Promise<Metrics>;
     listTestRuns(options?: ListTestRunsOptionalParams): PagedAsyncIterableIterator<TestRun>;
     readonly pipeline: Pipeline;
     stopTestRun(testRunId: string, options?: StopTestRunOptionalParams): Promise<TestRun>;
@@ -525,6 +525,12 @@ export interface MetricNamespaceCollection {
 // @public
 export interface MetricRequestPayload {
     filters?: DimensionFilter[];
+}
+
+// @public
+export interface Metrics {
+    nextLink?: string;
+    value: TimeSeriesElement[];
 }
 
 // @public

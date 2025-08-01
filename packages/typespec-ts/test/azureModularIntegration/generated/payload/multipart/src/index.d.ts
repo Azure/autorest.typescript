@@ -110,10 +110,7 @@ export declare interface FormDataHttpPartsNonStringFloatOptionalParams extends O
 
 export declare interface FormDataHttpPartsNonStringOperations {
     float: (body: {
-        temperature: {
-            body: number;
-            contentType: "text/plain";
-        };
+        temperature: number;
     }, options?: FormDataHttpPartsNonStringFloatOptionalParams) => Promise<void>;
 }
 

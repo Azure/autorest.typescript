@@ -1,10 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import createAzureLoadTestingClient from "@azure-rest/load-testing";
 import { DefaultAzureCredential } from "@azure/identity";
-import createAzureLoadTestingClient, {
-  paginate,
-} from "@azure-rest/load-testing";
 import "dotenv/config";
 
 /**
@@ -16,7 +14,7 @@ async function loadTestAdministrationListTestsSample(): Promise<void> {
   const endpointParam = "{Your endpointParam}";
   const credential = new DefaultAzureCredential();
   const client = createAzureLoadTestingClient(endpointParam, credential);
-  const initialResponse = await client
+  const result = await client
     .path("/tests")
     .get({
       queryParameters: {
@@ -27,11 +25,6 @@ async function loadTestAdministrationListTestsSample(): Promise<void> {
         maxpagesize: 123,
       },
     });
-  const pageData = paginate(client, initialResponse);
-  const result = [];
-  for await (const item of pageData) {
-    result.push(item);
-  }
   console.log(result);
 }
 

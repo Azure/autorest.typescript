@@ -82,7 +82,7 @@ op FaceResourceListOperation<
 > is Foundations.ResourceList<
   TResource,
   ListRequestOptions & TQuery,
-  Body<TResourceItem[]>,
+  PagedResponse<TResourceItem>,
   ServiceTraits,
   FaceErrorResponse
 >;

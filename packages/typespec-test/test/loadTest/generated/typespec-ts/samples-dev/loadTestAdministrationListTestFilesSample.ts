@@ -1,10 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import createAzureLoadTestingClient from "@azure-rest/load-testing";
 import { DefaultAzureCredential } from "@azure/identity";
-import createAzureLoadTestingClient, {
-  paginate,
-} from "@azure-rest/load-testing";
 import "dotenv/config";
 
 /**
@@ -17,14 +15,7 @@ async function loadTestAdministrationListTestFilesSample(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = createAzureLoadTestingClient(endpointParam, credential);
   const testId = "{Your testId}";
-  const initialResponse = await client
-    .path("/tests/{testId}/files", testId)
-    .get();
-  const pageData = paginate(client, initialResponse);
-  const result = [];
-  for await (const item of pageData) {
-    result.push(item);
-  }
+  const result = await client.path("/tests/{testId}/files", testId).get();
   console.log(result);
 }
 
