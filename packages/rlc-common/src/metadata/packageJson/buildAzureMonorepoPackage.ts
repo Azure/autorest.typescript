@@ -54,16 +54,16 @@ export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
 
   const testDeps = withTests
     ? {
-      "@vitest/browser": "catalog:testing",
-      "@vitest/coverage-istanbul": "catalog:testing",
-      dotenv: "catalog:testing",
-      playwright: "catalog:testing",
-      typescript: "catalog:",
-      vitest: "catalog:testing"
-    }
+        "@vitest/browser": "catalog:testing",
+        "@vitest/coverage-istanbul": "catalog:testing",
+        dotenv: "catalog:testing",
+        playwright: "catalog:testing",
+        typescript: "catalog:",
+        vitest: "catalog:testing"
+      }
     : {
-      typescript: "catalog:"
-    };
+        typescript: "catalog:"
+      };
 
   return {
     dependencies: runtimeDeps,
@@ -155,8 +155,9 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
     "build:samples": config.withSamples
       ? "tsc -p tsconfig.samples.json && dev-tool samples publish -f"
       : "echo skipped",
-    "check-format": `dev-tool run vendored prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${config.withSamples ? '"samples-dev/*.ts"' : ""
-      }`,
+    "check-format": `dev-tool run vendored prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
+      config.withSamples ? '"samples-dev/*.ts"' : ""
+    }`,
     clean:
       "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
     "execute:samples": config.withSamples
@@ -164,8 +165,9 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
       : "echo skipped",
     "extract-api":
       "dev-tool run vendored rimraf review && dev-tool run extract-api",
-    format: `dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${config.withSamples ? '"samples-dev/*.ts"' : ""
-      }`,
+    format: `dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
+      config.withSamples ? '"samples-dev/*.ts"' : ""
+    }`,
     "generate:client": "echo skipped",
     "test:browser":
       "dev-tool run build-test && dev-tool run test:vitest --browser",
