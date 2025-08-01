@@ -1216,53 +1216,9 @@ model FileShareSnapshot
   >;
 }
 model FileShareProperties {
-  @visibility(Lifecycle.Create, Lifecycle.Read)
-  @doc("The name of the file share as seen by the end user when mounting the share, such as in a URI or UNC format in their operating system.")
   mountName?: string;
 
-  @visibility(Lifecycle.Read)
-  @doc("The host name of the file share.")
   hostName?: string;
-
-  @visibility(Lifecycle.Create, Lifecycle.Read, Lifecycle.Update)
-  @doc("The provisioned storage size of the share in GiB (1 GiB is 1024^3 bytes or 1073741824 bytes). A component of the file share's bill is the provisioned storage, regardless of the amount of used storage.")
-  provisionedStorageGiB?: int32;
-
-  @visibility(Lifecycle.Read)
-  @doc("A date/time value that specifies when the provisioned storage for the file share is permitted to be reduced.")
-  provisionedStorageNextAllowedDowngrade?: utcDateTime;
-
-  #suppress "@azure-tools/typespec-azure-core/casing-style" "customized style suitable for storage admins"
-  @visibility(Lifecycle.Create, Lifecycle.Read, Lifecycle.Update)
-  @doc("The provisioned IO / sec of the share.")
-  provisionedIOPerSec?: int32;
-
-  #suppress "@azure-tools/typespec-azure-core/casing-style" "customized style suitable for storage admins"
-  @visibility(Lifecycle.Read)
-  @doc("A date/time value that specifies when the provisioned IOPS for the file share is permitted to be reduced.")
-  provisionedIOPerSecNextAllowedDowngrade?: utcDateTime;
-
-  #suppress "@azure-tools/typespec-azure-core/casing-style" "customized style suitable for storage admins"
-  @visibility(Lifecycle.Create, Lifecycle.Read, Lifecycle.Update)
-  @doc("The provisioned throughput / sec of the share.")
-  provisionedThroughputMiBPerSec?: int32;
-
-  @visibility(Lifecycle.Read)
-  @doc("A date/time value that specifies when the provisioned throughput for the file share is permitted to be reduced.")
-  provisionedThroughputNextAllowedDowngrade?: utcDateTime;
-
-  #suppress "@azure-tools/typespec-azure-core/casing-style" "customized style suitable for storage admins"
-  @visibility(Lifecycle.Read)
-  @minValue(3000)
-  @doc("Burst IOPS are extra buffer IOPS enabling you to consume more than your provisioned IOPS for a short period of time, depending on the burst credits available for your share.")
-  includedBurstIOPerSec?: int32;
-
-  #suppress "@azure-tools/typespec-azure-core/casing-style" "customized style suitable for storage admins"
-  @visibility(Lifecycle.Read)
-  @minValue(0)
-  @doc("Max burst IOPS credits shows the maximum number of burst credits the share can have at the current IOPS provisioning level.")
-  maxBurstIOPerSecCredits?: int64;
-
 }
 
 @doc("File share resource")
@@ -1277,22 +1233,7 @@ model FileShare is Azure.ResourceManager.TrackedResource<FileShareProperties> {
 
 
 model FileShareSnapshotProperties {
-  // The FileShareSnapshot time of the file share FileShareSnapshot.
-  @visibility(Lifecycle.Read)
-  @doc("The FileShareSnapshot time in UTC in string representation")
-  snapshotTime?: string;
-
-  // User-defined value. Resource users and/or automated systems (like Azure Backup) managing snapshots will specify the value based on semantics of their own.
-  // Examples:
-  // - Users in Company A might use aliases.
-  // - Users in company B might use email addresses.
-  // - Automated systems like MAB might use resource identifier of Azure Backup Vault.
-  @visibility(Lifecycle.Read)
-  @doc("The initiator of the FileShareSnapshot. This is a user-defined value.")
   initiatorId?: string;
-
-  @doc("The metadata")
-  metadata?: Record<string>;
 }
 
 @armResourceOperations
