@@ -139,7 +139,6 @@ describe("Client Factory generation", () => {
       #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
       #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
       @doc("The version to use")
-      @fixed
       enum Version {
         V1,
         V2
