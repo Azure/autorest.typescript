@@ -153,7 +153,7 @@ export function getDeserializePrivateFunction(
   const response = operation.response;
   const restResponse = operation.operation.responses[0];
   let returnType;
-  if (isLroOnly && operation.operation.verb.toLowerCase() !== "patch") {
+  if (isLroOnly) {
     returnType = buildLroReturnType(context, operation);
   } else if (response.type && restResponse) {
     returnType = {
