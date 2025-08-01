@@ -1,4 +1,5 @@
 import {
+  SdkHttpParameter,
   SdkModelPropertyType,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
@@ -16,7 +17,7 @@ export interface EmitTypeOptions {
 
 export function normalizeModelPropertyName(
   context: SdkContext,
-  property: SdkModelPropertyType
+  property: SdkModelPropertyType | SdkHttpParameter
 ): string {
   const normalizedPropName = normalizeName(property.name, NameType.Property);
   return context.rlcOptions?.ignorePropertyNameNormalize

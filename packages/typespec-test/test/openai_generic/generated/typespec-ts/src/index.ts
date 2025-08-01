@@ -29,10 +29,9 @@ export {
   ListModelsResponse,
   Model,
   DeleteModelResponse,
-  CreateImageRequest,
+  CreateImageEditRequest,
   ImagesResponse,
   Image,
-  CreateImageEditRequest,
   CreateImageVariationRequest,
   CreateModerationRequest,
   CreateModerationResponse,
@@ -74,7 +73,6 @@ export {
 export {
   ImagesCreateVariationOptionalParams,
   ImagesCreateEditOptionalParams,
-  ImagesCreateOptionalParams,
 } from "./api/images/index.js";
 export {
   ModelsDeleteOptionalParams,

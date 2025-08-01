@@ -11,13 +11,6 @@ namespace OpenAI;
 
 @route("/images")
 interface Images {
-  @route("generations")
-  @post
-  @operationId("createImage")
-  @tag("OpenAI")
-  @summary("Creates an image given a prompt")
-  create(@body image: CreateImageRequest): ImagesResponse | ErrorResponse;
-
   @route("edits")
   @post
   @operationId("createImageEdit")
