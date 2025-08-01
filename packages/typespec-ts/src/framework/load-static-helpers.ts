@@ -2,6 +2,7 @@ import { readdir, stat, readFile } from "fs/promises";
 import * as path from "path";
 import {
   ClassDeclaration,
+  EnumDeclaration,
   FunctionDeclaration,
   InterfaceDeclaration,
   Project,
@@ -15,7 +16,7 @@ import { ModularEmitterOptions } from "../modular/interfaces.js";
 export const SourceFileSymbol = Symbol("SourceFile");
 export interface StaticHelperMetadata {
   name: string;
-  kind: "function" | "interface" | "typeAlias" | "class";
+  kind: "function" | "interface" | "typeAlias" | "class" | "enum";
   location: string;
   [SourceFileSymbol]?: SourceFile;
 }
@@ -137,6 +138,7 @@ function getDeclarationByMetadata(
   | FunctionDeclaration
   | TypeAliasDeclaration
   | InterfaceDeclaration
+  | EnumDeclaration
   | undefined {
   switch (declaration.kind) {
     case "class":
@@ -147,6 +149,8 @@ function getDeclarationByMetadata(
       return file.getInterface(declaration.name);
     case "typeAlias":
       return file.getTypeAlias(declaration.name);
+    case "enum":
+      return file.getEnum(declaration.name);
     default:
       throw new Error(
         `invalid helper kind ${declaration.kind}\nAll helpers provided to loadStaticHelpers are of kind: function, interface, typeAlias, class`

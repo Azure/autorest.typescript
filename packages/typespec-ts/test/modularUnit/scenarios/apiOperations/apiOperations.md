@@ -703,8 +703,8 @@ op test(...ApiVersionParameter): string;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { TestOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { TestOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -770,8 +770,7 @@ export function createTesting(
   endpointParam: string,
   options: TestingClientOptionalParams = {},
 ): TestingContext {
-  const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? String(endpointParam);
+  const endpointUrl = options.endpoint ?? String(endpointParam);
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`
@@ -795,8 +794,8 @@ export function createTesting(
 ## classicClient
 
 ```ts classicClient
-import { TestOptionalParams } from "./api/options.js";
 import { test } from "./api/operations.js";
+import { TestOptionalParams } from "./api/options.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { TestingClientOptionalParams } from "./api/testingContext.js";
@@ -855,8 +854,8 @@ withRawContent: false
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { TestOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { TestOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -922,8 +921,7 @@ export function createTesting(
   endpointParam: string,
   options: TestingClientOptionalParams = {},
 ): TestingContext {
-  const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? String(endpointParam);
+  const endpointUrl = options.endpoint ?? String(endpointParam);
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`
@@ -947,8 +945,8 @@ export function createTesting(
 ## classicClient
 
 ```ts classicClient
-import { TestOptionalParams } from "./api/options.js";
 import { test } from "./api/operations.js";
+import { TestOptionalParams } from "./api/options.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { TestingClientOptionalParams } from "./api/testingContext.js";
@@ -1001,8 +999,8 @@ op test1(): string;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { Test1OptionalParams, TestOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { Test1OptionalParams, TestOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -1099,8 +1097,7 @@ export function createTesting(
   endpointParam: string,
   options: TestingClientOptionalParams = {},
 ): TestingContext {
-  const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? String(endpointParam);
+  const endpointUrl = options.endpoint ?? String(endpointParam);
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`
@@ -1124,8 +1121,8 @@ export function createTesting(
 ## classicClient
 
 ```ts classicClient
-import { Test1OptionalParams, TestOptionalParams } from "./api/options.js";
 import { test1, test } from "./api/operations.js";
+import { Test1OptionalParams, TestOptionalParams } from "./api/options.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { TestingClientOptionalParams } from "./api/testingContext.js";
@@ -1162,5 +1159,259 @@ export class TestingClient {
   ): Promise<string> {
     return test(this._client, apiVersion, options);
   }
+}
+```
+
+# Should generate LRO for ARM operation
+
+Sample generation should arm template and operations successfully.
+
+## TypeSpec
+
+This is tsp definition.
+
+```tsp
+import "@typespec/http";
+import "@typespec/rest";
+import "@typespec/versioning";
+import "@azure-tools/typespec-azure-core";
+import "@azure-tools/typespec-azure-resource-manager";
+
+using TypeSpec.Http;
+using TypeSpec.Rest;
+using TypeSpec.Versioning;
+using Azure.Core;
+using Azure.ResourceManager;
+using Azure.ResourceManager.Foundations;
+using OpenAPI;
+
+/** Microsoft.Contoso Resource Provider management API. */
+@armProviderNamespace
+@service(#{
+  title: "Microsoft.Contoso management service",
+})
+@versioned(Microsoft.Contoso.Versions)
+namespace Microsoft.Contoso;
+
+/** The available API versions. */
+enum Versions {
+  /** 2021-10-01-preview version */
+  @useDependency(Azure.ResourceManager.Versions.v1_0_Preview_1)
+  @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+  @armCommonTypesVersion(Azure.ResourceManager.CommonTypes.Versions.v5)
+  v2021_10_01_preview: "2021-10-01-preview",
+}
+
+interface Operations extends Azure.ResourceManager.Operations {}
+
+@doc("FileShareSnapshot resource")
+@parentResource(FileShare)
+model FileShareSnapshot
+  is Azure.ResourceManager.ProxyResource<FileShareSnapshotProperties> {
+  ...ResourceNameParameter<
+    Resource = FileShareSnapshot,
+    KeyName = "name",
+    NamePattern = "^([a-z]|[0-9])([a-z]|[0-9]|(-(?!-))){1,61}([a-z]|[0-9])$",
+    SegmentName = "fileShareSnapshots"
+  >;
+}
+model FileShareProperties {
+  mountName?: string;
+
+  hostName?: string;
+}
+
+@doc("File share resource")
+model FileShare is Azure.ResourceManager.TrackedResource<FileShareProperties> {
+  @doc("The resource name of the file share, as seen by the administrator through Azure Resource Manager.")
+  @pattern("^([a-z]|[0-9])([a-z]|[0-9]|(-(?!-))){1,61}([a-z]|[0-9])$")
+  @key("resourceName")
+  @path
+  @segment("fileShares")
+  name: string;
+}
+
+
+model FileShareSnapshotProperties {
+  initiatorId?: string;
+}
+
+@armResourceOperations
+interface FileShareSnapshots {
+ updateFileShareSnapshot is ArmCustomPatchAsync<
+    FileShareSnapshot,
+    ResourceUpdateModel<FileShareSnapshot, FileShareSnapshotProperties>,
+    BaseParameters<FileShareSnapshot>,
+    Response = ArmAcceptedLroResponse<LroHeaders = ArmAsyncOperationHeader &
+      ArmLroLocationHeader<FinalResult = FileShareSnapshot> &
+      Azure.Core.Foundations.RetryAfterHeader>
+  >;
+}
+```
+
+The config would be like:
+
+```yaml
+withRawContent: true
+```
+
+## Operations
+
+```ts operations
+import { ContosoContext as Client } from "./index.js";
+import {
+  _OperationListResult,
+  _operationListResultDeserializer,
+  Operation,
+  errorResponseDeserializer,
+  FileShareSnapshotUpdate,
+  fileShareSnapshotUpdateSerializer,
+  FileShareSnapshot,
+  fileShareSnapshotDeserializer,
+} from "../models/models.js";
+import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../static-helpers/pagingHelpers.js";
+import { getLongRunningPoller } from "../static-helpers/pollingHelpers.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import {
+  UpdateFileShareSnapshotOptionalParams,
+  ListOptionalParams,
+} from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+import { PollerLike, OperationState } from "@azure/core-lro";
+
+export function _updateFileShareSnapshotSend(
+  context: Client,
+  resourceGroupName: string,
+  resourceName: string,
+  name: string,
+  properties: FileShareSnapshotUpdate,
+  options: UpdateFileShareSnapshotOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Contoso/fileShares/{resourceName}/fileShareSnapshots/{name}{?api%2Dversion}",
+    {
+      subscriptionId: context.subscriptionId,
+      resourceGroupName: resourceGroupName,
+      resourceName: resourceName,
+      name: name,
+      "api%2Dversion": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .patch({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+      body: fileShareSnapshotUpdateSerializer(properties),
+    });
+}
+
+export async function _updateFileShareSnapshotDeserialize(
+  result: PathUncheckedResponse,
+): Promise<FileShareSnapshot> {
+  const expectedStatuses = ["202", "200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
+  }
+
+  return fileShareSnapshotDeserializer(result.body);
+}
+
+/** Update a FileShareSnapshot */
+export function updateFileShareSnapshot(
+  context: Client,
+  resourceGroupName: string,
+  resourceName: string,
+  name: string,
+  properties: FileShareSnapshotUpdate,
+  options: UpdateFileShareSnapshotOptionalParams = { requestOptions: {} },
+): PollerLike<OperationState<FileShareSnapshot>, FileShareSnapshot> {
+  return getLongRunningPoller(
+    context,
+    _updateFileShareSnapshotDeserialize,
+    ["202", "200"],
+    {
+      updateIntervalInMs: options?.updateIntervalInMs,
+      abortSignal: options?.abortSignal,
+      getInitialResponse: () =>
+        _updateFileShareSnapshotSend(
+          context,
+          resourceGroupName,
+          resourceName,
+          name,
+          properties,
+          options,
+        ),
+      resourceLocationConfig: "location",
+    },
+  ) as PollerLike<OperationState<FileShareSnapshot>, FileShareSnapshot>;
+}
+
+export function _listSend(
+  context: Client,
+  options: ListOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/providers/Microsoft.Contoso/operations{?api%2Dversion}",
+    {
+      "api%2Dversion": context.apiVersion,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
+}
+
+export async function _listDeserialize(
+  result: PathUncheckedResponse,
+): Promise<_OperationListResult> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
+  }
+
+  return _operationListResultDeserializer(result.body);
+}
+
+/** List the operations for the provider */
+export function list(
+  context: Client,
+  options: ListOptionalParams = { requestOptions: {} },
+): PagedAsyncIterableIterator<Operation> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listSend(context, options),
+    _listDeserialize,
+    ["200"],
+    { itemName: "value", nextLinkName: "nextLink" },
+  );
 }
 ```

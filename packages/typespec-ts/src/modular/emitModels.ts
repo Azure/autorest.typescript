@@ -230,8 +230,10 @@ function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
     addDeclaration(sourceFile, unionType, type);
     addSerializationFunctions(context, type, sourceFile);
   } else if (type.kind === "dict") {
+    addDeclaration(sourceFile, normalizeModelName(context, type), type);
     addSerializationFunctions(context, type, sourceFile);
   } else if (type.kind === "array") {
+    addDeclaration(sourceFile, normalizeModelName(context, type), type);
     addSerializationFunctions(context, type, sourceFile);
   } else if (type.kind === "nullable") {
     const nullableType = buildNullableType(context, type);
@@ -314,31 +316,13 @@ function addSerializationFunctions(
     type,
     skipDiscriminatedUnion
   );
-  let typeName = undefined;
-  switch (type.kind) {
-    case "array":
-      typeName = "array";
-      break;
-    case "dict":
-      typeName = "record";
-      break;
-    default:
-      break;
-  }
 
-  const serializerRefkey =
-    type.kind === "array" || type.kind === "dict"
-      ? refkey(type.valueType, typeName, "serializer")
-      : refkey(type, "serializer");
-  const deserailizerRefKey =
-    type.kind === "array" || type.kind === "dict"
-      ? refkey(type.valueType, typeName, "deserializer")
-      : refkey(type, "deserializer");
+  const serializerRefkey = refkey(type, "serializer");
+  const deserailizerRefKey = refkey(type, "deserializer");
   if (
     serializationFunction &&
     typeof serializationFunction !== "string" &&
-    serializationFunction.name &&
-    !sourceFile.getFunction(serializationFunction.name)
+    serializationFunction.name
   ) {
     addDeclaration(sourceFile, serializationFunction, serializerRefkey);
   }
@@ -350,8 +334,7 @@ function addSerializationFunctions(
   if (
     deserializationFunction &&
     typeof deserializationFunction !== "string" &&
-    deserializationFunction.name &&
-    !sourceFile.getFunction(deserializationFunction.name)
+    deserializationFunction.name
   ) {
     addDeclaration(sourceFile, deserializationFunction, deserailizerRefKey);
   }

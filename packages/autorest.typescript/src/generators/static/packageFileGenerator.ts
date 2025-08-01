@@ -84,7 +84,7 @@ function regularAutorestPackage(
       `A generated SDK for ${clientDetails.name}.`,
     version: packageDetails.version,
     engines: {
-      node: ">=18.0.0"
+      node: ">=20.0.0"
     },
     dependencies: {
       ...(hasLro && { "@azure/core-lro": azureSdkForJs ? "catalog:corelrov2" : "^2.5.4" }),
@@ -121,22 +121,17 @@ function regularAutorestPackage(
       "dist/",
       "README.md",
       "LICENSE",
-      "review/*",
-      "CHANGELOG.md",
     ],
     scripts: {
       build:
         "npm run clean && tshy && npm run extract-api",
       minify: `uglifyjs -c -m --comments --source-map "content='./dist/index.js.map'" -o ./dist/index.min.js ./dist/index.js`,
       prepack: "npm run build",
-      pack: "npm pack 2>&1",
+      pack: `${azureSdkForJs ? "pnpm" : "npm"} pack 2>&1`,
       "extract-api": "rimraf review && mkdirp ./review && api-extractor run --local",
       lint: "echo skipped",
       clean:
         "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
-      "build:node": "echo skipped",
-      "build:browser": "echo skipped",
-      "build:test": "echo skipped",
       "build:samples": "echo skipped.",
       "check-format": "echo skipped",
       "execute:samples": "echo skipped",
@@ -144,12 +139,6 @@ function regularAutorestPackage(
       test: "echo skipped",
       "test:node": "echo skipped",
       "test:browser": "echo skipped",
-      "unit-test": "echo skipped",
-      "unit-test:node": "echo skipped",
-      "unit-test:browser": "echo skipped",
-      "integration-test": "echo skipped",
-      "integration-test:node": "echo skipped",
-      "integration-test:browser": "echo skipped"
     },
     sideEffects: false,
     "//metadata": {
@@ -224,10 +213,9 @@ function regularAutorestPackage(
       "npm run integration-test:node && npm run integration-test:browser";
 
     if (azureSdkForJs) {
-      packageInfo.scripts["unit-test:node"] =
-        "dev-tool run test:vitest";
-      packageInfo.scripts["integration-test:node"] =
-        "dev-tool run test:vitest --esm";
+      packageInfo.scripts["test"] = "npm run test:node && npm run test:browser";
+      packageInfo.scripts["test:node"] = "dev-tool run test:vitest";
+      packageInfo.scripts["test:node:esm"] = "dev-tool run test:vitest --esm";
     } else {
       packageInfo.devDependencies["cross-env"] = "^7.0.2";
       packageInfo.scripts["unit-test:node"] =

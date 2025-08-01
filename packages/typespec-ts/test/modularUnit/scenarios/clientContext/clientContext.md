@@ -77,9 +77,7 @@ export function createService(
 ): ServiceContext {
   const clientParam = options.clientParam ?? "default";
   const endpointUrl =
-    options.endpoint ??
-    options.baseUrl ??
-    `${endpointParam}/client/structure/${clientParam}`;
+    options.endpoint ?? `${endpointParam}/client/structure/${clientParam}`;
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`
@@ -179,9 +177,7 @@ export function createService(
   const endpointParam = options.endpointParam ?? "http://localhost:3000";
   const clientParam = options.clientParam ?? "default";
   const endpointUrl =
-    options.endpoint ??
-    options.baseUrl ??
-    `${endpointParam}/client/structure/${clientParam}`;
+    options.endpoint ?? `${endpointParam}/client/structure/${clientParam}`;
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`
@@ -283,9 +279,7 @@ export function createTestService(
 ): TestServiceContext {
   const clientParam = options.clientParam ?? "default";
   const endpointUrl =
-    options.endpoint ??
-    options.baseUrl ??
-    `${endpointParam}/client/structure/${clientParam}`;
+    options.endpoint ?? `${endpointParam}/client/structure/${clientParam}`;
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`

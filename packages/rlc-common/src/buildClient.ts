@@ -361,17 +361,9 @@ export function getClientFactoryBody(
         `\${${urlParameter.name}}`
       );
     });
-    if (model.options.flavor !== "azure") {
-      endpointUrl = `options.endpoint ?? \`${parsedEndpoint}\``;
-    } else {
-      endpointUrl = `options.endpoint ?? options.baseUrl ?? \`${parsedEndpoint}\``;
-    }
+    endpointUrl = `options.endpoint ?? \`${parsedEndpoint}\``;
   } else {
-    if (model.options.flavor !== "azure") {
-      endpointUrl = `options.endpoint ??"${endpoint}"`;
-    } else {
-      endpointUrl = `options.endpoint ?? options.baseUrl ?? "${endpoint}"`;
-    }
+    endpointUrl = `options.endpoint ?? "${endpoint}"`;
   }
 
   if (!model.options.isModularLibrary && !clientPackageName.endsWith("-rest")) {

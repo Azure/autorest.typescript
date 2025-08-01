@@ -1,3 +1,58 @@
+## 0.42.1 (2025-07-23)
+
+- [Feature] Add tspd for regen docs. Please refer to [#3236](https://github.com/Azure/autorest.typescript/pull/3236)
+- [Feature] Generate tsconfig.snippets.json. Please refer to [#3373](https://github.com/Azure/autorest.typescript/pull/3373)
+- [Bugfix] Fix the import ordering in-consistent issues. Please refer to [#3383](https://github.com/Azure/autorest.typescript/pull/3383)
+- [Feature] Upgrade TypeSpec and TCGC versions to latest releases. Please refer to [#3381](https://github.com/Azure/autorest.typescript/pull/3381)
+- [Feature] Add the cloudSetting option for ARM Modular SDK. Please refer to [#3233](https://github.com/Azure/autorest.typescript/pull/3233)
+- [Bugfix] [release.yml] Fix typo in demands. Please refer to [#3370](https://github.com/Azure/autorest.typescript/pull/3370)
+
+## 0.42.0 (2025-07-09)
+
+- [Bugfix] Fix sample serialization name and name inconsistency for body parameter. Please refer to [#3340](https://github.com/Azure/autorest.typescript/pull/3340)
+- [Feature] Upgrade package to latest version. Please refer to [#3365](https://github.com/Azure/autorest.typescript/pull/3365)
+- [Feature] Improve test scripts. Please refer to [#3239](https://github.com/Azure/autorest.typescript/pull/3239)
+- [Feature] Upgrade dependency versions for hlc and modular. Please refer to [#3339](https://github.com/Azure/autorest.typescript/pull/3339)
+- [Bugfix] Fix reserved word in operations. Please refer to [#3356](https://github.com/Azure/autorest.typescript/pull/3356)
+- [Bugfix] Improve handling of user-defined models that conflict with Azure Core type names. Please refer to [#3319](https://github.com/Azure/autorest.typescript/pull/3319)
+- [Feature] Upgrade azure specs and update case. Please refer to [#3346](https://github.com/Azure/autorest.typescript/pull/3346)
+- [Bugfix] Fix lro operation status. Please refer to [#3337](https://github.com/Azure/autorest.typescript/pull/3337)
+- [Feature] Update generate test. Please refer to [#3333](https://github.com/Azure/autorest.typescript/pull/3333)
+- [Bugfix] Resolve the issue of a missing import file in the modular code classic client. Please refer to [#3330](https://github.com/Azure/autorest.typescript/pull/3330)
+- [Feature] Improve generate-metadata. Please refer to [#3317](https://github.com/Azure/autorest.typescript/pull/3317)
+- [Bugfix] Fix body parameter name normalization of reserved words. Please refer to [#3334](https://github.com/Azure/autorest.typescript/pull/3334)
+- [Feature] Remove deprecated baseUrl. Please refer to [#3324](https://github.com/Azure/autorest.typescript/pull/3324)
+- [Bugfix] Fix parent client no additional params and fix header/path/query client level params. Please refer to [#3292](https://github.com/Azure/autorest.typescript/pull/3292)
+- [Feature] [EngSys] Update agent pool to "azsdk-pool". Please refer to [#3321](https://github.com/Azure/autorest.typescript/pull/3321)
+- [Bugfix] Ensure no compile issue for query parameter re-injection in Paging. Please refer to [#3289](https://github.com/Azure/autorest.typescript/pull/3289)
+- [Bugfix] fix union type discriminator. Please refer to [#3216](https://github.com/Azure/autorest.typescript/pull/3216)
+- [Feature] Update node version to 20 for ci. Please refer to [#3316](https://github.com/Azure/autorest.typescript/pull/3316)
+- [Feature] Remove `review/` and `changelogmd` in package.json's files config. Please refer to [#3310](https://github.com/Azure/autorest.typescript/pull/3310)
+
+## 0.41.1 (2025-06-20)
+
+- [Bugfix] Fix property normalization inconsistancy among sample and client generation. Please refer to [#3285](https://github.com/Azure/autorest.typescript/pull/3285)
+- [Bugfix] Fix the issues in tcgc upgrade to v0.57.1. Please refer to [#3302](https://github.com/Azure/autorest.typescript/pull/3302)
+- [Bugfix] Update CODEOWNERS. Please refer to [#3298](https://github.com/Azure/autorest.typescript/pull/3298)
+- [Feature] Extend api-extractor.json from base for azure-sdk-for-js repository. Please refer to [#3296](https://github.com/Azure/autorest.typescript/pull/3296)
+- [Feature] Update generated package engines field to target Node 20. Please refer to [#3295](https://github.com/Azure/autorest.typescript/pull/3295)
+- [Feature] Upgrade TypeSpec and Azure Tools dependencies to latest versions. Please refer to [#3283](https://github.com/Azure/autorest.typescript/pull/3283)
+- [Bugfix] Export models to root index file for model-only case. Please refer to [#3222](https://github.com/Azure/autorest.typescript/pull/3222)
+- [Bugfix] Fix @azure-tools/azure-http-specs version. Please refer to [#3263](https://github.com/Azure/autorest.typescript/pull/3263)
+- [Bugfix] Optimize skip logic for modular unit test cases. Please refer to [#3245](https://github.com/Azure/autorest.typescript/pull/3245)
+- [Feature] Add the first version of copilot instructions. Please refer to [#3238](https://github.com/Azure/autorest.typescript/pull/3238)
+
+## 0.41.0 (2025-06-04)
+
+- [Feature] Migrate to pnpm
+  - Update dependency generation to adopt pnpm workspace catalog versions. Please refer to [#3172](https://github.com/Azure/autorest.typescript/pull/3172)
+  - Switch from "npm pack" to "pnpm pack". Please refer to [#3223](https://github.com/Azure/autorest.typescript/pull/3223)
+  - Use "workspace:^". Please refer to [#3224](https://github.com/Azure/autorest.typescript/pull/3224)
+- [Bugfix] Export models to root index file for model-only case. Please refer to [#3222](https://github.com/Azure/autorest.typescript/pull/3222)
+- [Bugfix] Fix snippets generation issue. Please refer to [#3227](https://github.com/Azure/autorest.typescript/pull/3227)
+- [Bugfix] Fix missing configs in package.json for Modular and RLC. Please refer to [#3215](https://github.com/Azure/autorest.typescript/pull/3215)
+- [Bugfix] Fix reference issue in recursive cases. Please refer to [#3175](https://github.com/Azure/autorest.typescript/pull/3175)
+
 ## 0.40.2 (2025-05-22)
 
 - [Bugfix] Fix wrong eslint dependency

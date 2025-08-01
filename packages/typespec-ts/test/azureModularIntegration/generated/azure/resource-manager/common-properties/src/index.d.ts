@@ -16,6 +16,14 @@ export declare interface ApiErrorBase {
     message?: string;
 }
 
+export declare enum AzureClouds {
+    AZURE_PUBLIC_CLOUD = "AZURE_PUBLIC_CLOUD",
+    AZURE_CHINA_CLOUD = "AZURE_CHINA_CLOUD",
+    AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT"
+}
+
+export declare type AzureSupportedClouds = `${AzureClouds}`;
+
 export declare interface CloudError {
     error?: ApiError;
 }
@@ -33,6 +41,7 @@ export declare class CommonPropertiesClient {
 
 export declare interface CommonPropertiesClientOptionalParams extends ClientOptions {
     apiVersion?: string;
+    cloudSetting?: AzureSupportedClouds;
 }
 
 export declare interface ConfidentialResource extends TrackedResource {
@@ -54,7 +63,7 @@ export declare interface CreateWithSystemAssignedOptionalParams extends Operatio
 
 export declare interface ErrorAdditionalInfo {
     readonly type?: string;
-    readonly info?: Record<string, any>;
+    readonly info?: any;
 }
 
 export declare interface ErrorDetail {

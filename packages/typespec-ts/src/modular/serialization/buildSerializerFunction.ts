@@ -127,7 +127,7 @@ function buildPolymorphicSerializer(
     parameters: [
       {
         name: "item",
-        type: normalizeModelName(context, type)
+        type: resolveReference(refkey(type, "polymorphicType"))
       }
     ],
     returnType: "any",
@@ -253,7 +253,7 @@ function buildDiscriminatedUnionSerializer(
     parameters: [
       {
         name: "item",
-        type: normalizeModelName(context, type)
+        type: resolveReference(refkey(type, "polymorphicType"))
       }
     ],
     returnType: "any",
@@ -294,7 +294,7 @@ function buildUnionSerializer(
     parameters: [
       {
         name: "item",
-        type: normalizeModelName(context, type)
+        type: resolveReference(refkey(type))
       }
     ],
     returnType: "any",
@@ -330,12 +330,7 @@ function buildModelTypeSerializer(
     parameters: [
       {
         name: "item",
-        type: normalizeModelName(
-          context,
-          type,
-          NameType.Interface,
-          options.skipDiscriminatedUnionSuffix
-        )
+        type: resolveReference(refkey(type))
       }
     ],
     returnType: "any",
@@ -488,7 +483,7 @@ function buildDictTypeSerializer(
   }
   const serializerFunctionName = `${normalizeModelName(context, type, NameType.Operation, false, true)}Serializer`;
   if (nameOnly) {
-    return resolveReference(refkey(type.valueType, "record", "serializer"));
+    return resolveReference(refkey(type, "serializer"));
   }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -497,7 +492,7 @@ function buildDictTypeSerializer(
     parameters: [
       {
         name: "item",
-        type: `Record<string, ${normalizeModelName(context, type.valueType as any) ?? "any"}>`
+        type: `Record<string, ${resolveReference(type.valueType) ?? "any"}>`
       }
     ],
     returnType: "Record<string, any>",
@@ -546,7 +541,7 @@ function buildArrayTypeSerializer(
   }
   const serializerFunctionName = `${normalizeModelName(context, type, NameType.Operation, false, true)}Serializer`;
   if (nameOnly) {
-    return resolveReference(refkey(type.valueType, "array", "serializer"));
+    return resolveReference(refkey(type, "serializer"));
   }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,

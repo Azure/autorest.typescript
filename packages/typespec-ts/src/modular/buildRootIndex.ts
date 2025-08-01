@@ -3,7 +3,11 @@ import { Project, SourceFile } from "ts-morph";
 import { getClassicalClientName } from "./helpers/namingHelpers.js";
 import { ModularEmitterOptions } from "./interfaces.js";
 import { resolveReference } from "../framework/reference.js";
-import { MultipartHelpers, PagingHelpers } from "./static-helpers-metadata.js";
+import {
+  CloudSettingHelpers,
+  MultipartHelpers,
+  PagingHelpers
+} from "./static-helpers-metadata.js";
 import {
   SdkClientType,
   SdkContext,
@@ -16,10 +20,15 @@ import { useContext } from "../contextManager.js";
 
 export function buildRootIndex(
   context: SdkContext,
-  clientMap: [string[], SdkClientType<SdkServiceOperation>],
   emitterOptions: ModularEmitterOptions,
-  rootIndexFile: SourceFile
+  rootIndexFile: SourceFile,
+  clientMap?: [string[], SdkClientType<SdkServiceOperation>]
 ) {
+  if (!clientMap) {
+    // we still need to export the models if no client is provided
+    exportModels(emitterOptions, rootIndexFile);
+    return;
+  }
   const project = useContext("outputProject");
   const [_, client] = clientMap;
   const srcPath = emitterOptions.modularOptions.sourceRoot;
@@ -50,17 +59,7 @@ export function buildRootIndex(
     subfolder,
     true
   );
-  const modelsExportsIndex = rootIndexFile
-    .getExportDeclarations()
-    ?.find((i) => {
-      return i.getModuleSpecifierValue()?.startsWith(`./models/`);
-    });
-  if (!modelsExportsIndex) {
-    exportModules(rootIndexFile, project, srcPath, clientName, "models", {
-      isTopLevel: true,
-      recursive: true
-    });
-  }
+  exportModels(emitterOptions, rootIndexFile, clientName);
   exportModules(rootIndexFile, project, srcPath, clientName, "api", {
     subfolder,
     interfaceOnly: true,
@@ -73,6 +72,37 @@ export function buildRootIndex(
 
   exportPagingTypes(context, rootIndexFile);
   exportFileContentsType(context, rootIndexFile);
+  exportAzureCloudTypes(context, rootIndexFile);
+}
+
+function exportModels(
+  emitterOptions: ModularEmitterOptions,
+  rootIndexFile: SourceFile,
+  clientName: string = ""
+) {
+  // export models index file if not exists
+  const project = useContext("outputProject");
+  const srcPath = emitterOptions.modularOptions.sourceRoot;
+  const modelsExportsIndex = rootIndexFile
+    .getExportDeclarations()
+    ?.find((i) => {
+      return i.getModuleSpecifierValue()?.startsWith(`./models/`);
+    });
+  if (!modelsExportsIndex) {
+    exportModules(rootIndexFile, project, srcPath, clientName, "models", {
+      isTopLevel: true,
+      recursive: true
+    });
+  }
+}
+
+function exportAzureCloudTypes(context: SdkContext, rootIndexFile: SourceFile) {
+  if (context.arm) {
+    addExportsToRootIndexFile(rootIndexFile, [
+      resolveReference(CloudSettingHelpers.AzureClouds),
+      resolveReference(CloudSettingHelpers.AzureSupportedClouds)
+    ]);
+  }
 }
 
 /**
@@ -83,18 +113,11 @@ function exportPagingTypes(context: SdkContext, rootIndexFile: SourceFile) {
     return;
   }
 
-  const existingExports = getExistingExports(rootIndexFile);
-  const namedExports = [
+  addExportsToRootIndexFile(rootIndexFile, [
     resolveReference(PagingHelpers.PageSettings),
     resolveReference(PagingHelpers.ContinuablePage),
     resolveReference(PagingHelpers.PagedAsyncIterableIterator)
-  ];
-
-  const newNamedExports = getNewNamedExports(namedExports, existingExports);
-
-  if (newNamedExports.length > 0) {
-    addExportsToRootIndexFile(rootIndexFile, newNamedExports);
-  }
+  ]);
 }
 
 function hasPaging(context: SdkContext): boolean {
@@ -123,14 +146,9 @@ function exportFileContentsType(
       )
     )
   ) {
-    const existingExports = getExistingExports(rootIndexFile);
-    const namedExports = [resolveReference(MultipartHelpers.FileContents)];
-
-    const newNamedExports = getNewNamedExports(namedExports, existingExports);
-
-    if (newNamedExports.length > 0) {
-      addExportsToRootIndexFile(rootIndexFile, newNamedExports);
-    }
+    addExportsToRootIndexFile(rootIndexFile, [
+      resolveReference(MultipartHelpers.FileContents)
+    ]);
   }
 }
 
@@ -155,11 +173,15 @@ function getNewNamedExports(
 
 function addExportsToRootIndexFile(
   rootIndexFile: SourceFile,
-  newNamedExports: string[]
+  namedExports: string[]
 ) {
-  rootIndexFile.addExportDeclaration({
-    namedExports: newNamedExports
-  });
+  const existingExports = getExistingExports(rootIndexFile);
+  const newNamedExports = getNewNamedExports(namedExports, existingExports);
+  if (newNamedExports.length > 0) {
+    rootIndexFile.addExportDeclaration({
+      namedExports: newNamedExports
+    });
+  }
 }
 
 function exportRestoreHelpers(

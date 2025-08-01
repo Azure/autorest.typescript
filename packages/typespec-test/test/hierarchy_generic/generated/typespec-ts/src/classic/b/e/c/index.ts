@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 import { FooContext } from "../../../../api/fooContext.js";
-import { BEA } from "../../../../models/b/e/models.js";
-import { BECOp1OptionalParams } from "../../../../api/b/e/c/options.js";
 import { op1 } from "../../../../api/b/e/c/operations.js";
+import { BECOp1OptionalParams } from "../../../../api/b/e/c/options.js";
+import { BEA } from "../../../../models/b/e/models.js";
 
 /** Interface representing a BEC operations. */
 export interface BECOperations {

@@ -8,15 +8,14 @@ import {
   ServiceInfo,
   isAzurePackage
 } from "@azure-tools/rlc-common";
-import {
-  getHttpOperationWithCache,
-  listOperationGroups,
-  listOperationsInOperationGroup
-} from "@azure-tools/typespec-client-generator-core";
+import { getHttpOperationWithCache } from "@azure-tools/typespec-client-generator-core";
 import { getDoc, NoTarget, Program } from "@typespec/compiler";
 import { getAuthentication } from "@typespec/http";
 import { EmitterOptions, reportDiagnostic } from "../lib.js";
-import { getRLCClients } from "../utils/clientUtils.js";
+import {
+  getRLCClients,
+  listOperationsUnderRLCClient
+} from "../utils/clientUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { getDefaultService } from "../utils/modelUtils.js";
 import { detectModelConflicts } from "../utils/namespaceUtils.js";
@@ -242,30 +241,13 @@ function detectIfNameConflicts(dpgContext: SdkContext) {
   for (const client of clients) {
     // only consider it's conflict when there are conflicts in the same client
     const nameSet = new Set<string>();
-    const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-    for (const clientOp of clientOperations) {
-      const route = getHttpOperationWithCache(dpgContext, clientOp);
+    for (const op of listOperationsUnderRLCClient(client)) {
+      const route = getHttpOperationWithCache(dpgContext, op);
       const name = getOperationName(dpgContext, route.operation);
       if (nameSet.has(name)) {
         return true;
       } else {
         nameSet.add(name);
-      }
-    }
-    const operationGroups = listOperationGroups(dpgContext, client, true);
-    for (const operationGroup of operationGroups) {
-      const operations = listOperationsInOperationGroup(
-        dpgContext,
-        operationGroup
-      );
-      for (const op of operations) {
-        const route = getHttpOperationWithCache(dpgContext, op);
-        const name = getOperationName(dpgContext, route.operation);
-        if (nameSet.has(name)) {
-          return true;
-        } else {
-          nameSet.add(name);
-        }
       }
     }
   }

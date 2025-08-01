@@ -35,7 +35,6 @@ export function createAIProject(
 ): AIProjectContext {
   const endpointUrl =
     options.endpoint ??
-    options.baseUrl ??
     `${endpointParam}/agents/v1.0/subscriptions/${subscriptionId}/resourceGroups/${resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/${projectName}`;
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentInfo = `azsdk-js-ai-client/1.0.0-beta.1`;

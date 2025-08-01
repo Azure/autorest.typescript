@@ -11,6 +11,7 @@ import {
 import { EmitContext, Program } from "@typespec/compiler";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import {
+  CloudSettingHelpers,
   MultipartHelpers,
   PagingHelpers,
   PollingHelpers,
@@ -41,6 +42,7 @@ import {
   buildSerializeHelper,
   buildTopLevelIndex,
   buildTsConfig,
+  buildTsSnippetsConfig,
   buildTsTestBrowserConfig,
   buildVitestConfig,
   getClientName,
@@ -130,7 +132,8 @@ export async function $onEmit(context: EmitContext) {
       ...PagingHelpers,
       ...PollingHelpers,
       ...UrlTemplateHelpers,
-      ...MultipartHelpers
+      ...MultipartHelpers,
+      ...CloudSettingHelpers
     },
     {
       sourcesDir: dpgContext.generationPathDetail?.modularSourcesDir,
@@ -199,7 +202,7 @@ export async function $onEmit(context: EmitContext) {
     options.generateTest =
       options.generateTest === true ||
       (options.generateTest === undefined &&
-        !hasTestFolder &&
+        (!hasTestFolder || (options.azureSdkForJs && options.azureArm)) &&
         isAzurePackage({ options: options }));
     dpgContext.rlcOptions = options;
   }
@@ -295,6 +298,10 @@ export async function $onEmit(context: EmitContext) {
     });
     console.time("onEmit: emit source files");
     const clientMap = getClientHierarchyMap(dpgContext);
+    if (clientMap.length === 0) {
+      // If no clients, we still need to build the root index file
+      buildRootIndex(dpgContext, modularEmitterOptions, rootIndexFile);
+    }
     for (const subClient of clientMap) {
       await renameClientName(subClient[1], modularEmitterOptions);
       buildApiOptions(dpgContext, subClient, modularEmitterOptions);
@@ -324,9 +331,9 @@ export async function $onEmit(context: EmitContext) {
       }
       buildRootIndex(
         dpgContext,
-        subClient,
         modularEmitterOptions,
-        rootIndexFile
+        rootIndexFile,
+        subClient
       );
     }
     console.timeEnd("onEmit: emit source files");
@@ -399,8 +406,7 @@ export async function $onEmit(context: EmitContext) {
     );
     const hasPackageFile = await existsSync(existingPackageFilePath);
     const shouldGenerateMetadata =
-      option.generateMetadata === true ||
-      (option.generateMetadata === undefined && !hasPackageFile);
+      option.generateMetadata === true || !hasPackageFile;
     const existingTestFolderPath = join(
       dpgContext.generationPathDetail?.metadataDir ?? "",
       "test"
@@ -477,6 +483,7 @@ export async function $onEmit(context: EmitContext) {
             buildSnippets(model, subClient.name, option.azureSdkForJs)
           );
         }
+        commonBuilders.push(buildTsSnippetsConfig);
       }
 
       // build metadata relevant files
@@ -515,7 +522,7 @@ export async function $onEmit(context: EmitContext) {
     }
 
     // Generate test relevant files
-    if (option.generateTest && isAzureFlavor) {
+    if (option.generateTest && isAzureFlavor && !hasTestFolder) {
       await emitContentByBuilder(
         program,
         [buildRecordedClientFile, buildSampleTest],

@@ -1,184 +1,289 @@
-# Introduction
+# @azure-tools/typespec-ts
 
-This library is the TypeSpec typescript emitter for Rest Level Client. It take [TypeSpec](https://github.com/microsoft/typespec) as input, transform it into RLCModel, then call rlc-common library to generate the RLC code.
+An experimental TypeSpec emitter for TypeScript RLC
 
-On a high level, the entire Rest Level Client generation process would be:
+## Install
 
-TypeSpec Input -> TypeSpec Compiler -> TypeSpec Program -> Transform RLCModel -> TypeSpec RLC Common library to Generate Code
-
-Within the Transform RLCModel, it has the following stages:
-
-TypeSpec Program + User Options -> Transform RLCModel Paths -> Transform RLCModel Options -> Transform RLCModel Schemas -> Transform RLCModel Response and Parameter Types -> TypeSpec RLCCommon libraries to generate the code.
-
-# How to use
-
-## Prerequisite
-
-Install [Node.js](https://nodejs.org/en/download/) 16 or above. (Verify by `node --version`)
-
-Install [TypeSpec](https://github.com/microsoft/typespec) latest.
-
-## Initialize TypeSpec Project
-
-Follow [TypeSpec Getting Started](https://github.com/microsoft/typespec#getting-started) to initialize your TypeSpec project.
-
-Make sure `npx tsp compile .` runs correctly.
-
-## Add typespec-ts
-
-Make sure the version of [typespec-ts release](https://www.npmjs.com/package/@azure-tools/typespec-ts) depends on the same version of "@typespec/compiler" as in your TypeSpec project.
-
-Modify `package.json`, add one line under `dependencies`:
-
-```diff
-    "dependencies": {
-      "@typespec/compiler": "latest",
-      "@typespec/rest": "latest",
-      "@azure-tools/typespec-azure-core": "latest",
-+      "@azure-tools/typespec-ts": "latest"
-    },
+```bash
+npm install @azure-tools/typespec-ts
 ```
 
-Run `npm install` again to install `@azure-tools/typespec-ts`.
+## Usage
 
-Modify (or create) `tspconfig.yaml`, add one line under `emit`:
+1. Via the command line
 
-```diff
-emit:
-+  - "@azure-tools/typespec-ts"
+```bash
+tsp compile . --emit=@azure-tools/typespec-ts
 ```
 
-## Modify tspconfig.yaml
-
-One can further configure the SDK generated, using the emitter options on `@azure-tools/typespec-ts`.
+2. Via the config
 
 ```yaml
+emit:
+  - "@azure-tools/typespec-ts"
+```
+
+The config can be extended with options as follows:
+
+```yaml
+emit:
+  - "@azure-tools/typespec-ts"
 options:
   "@azure-tools/typespec-ts":
-    package-details:
-      name: "@azure-rest/confidential-ledger"
-      description: "Confidential Ledger Service"
+    option: value
 ```
 
-## Generate Typescript
+## Emitter options
 
-Same `npx tsp compile .` or `npx tsp compile . --output-path=<target-folder>`.
+### `emitter-output-dir`
 
-If `output-path` option is not provided, generated code will be under `tsp-output` folder.
+**Type:** `absolutePath`
 
-## Emitter Options
+Defines the emitter output directory. Defaults to `{output-dir}/@azure-tools/typespec-ts`
+See [Configuring output directory for more info](https://typespec.io/docs/handbook/configuration/configuration/#configuring-output-directory)
 
-### packageDetails
+### `include-shortcuts`
 
-Provide the metadata for `package.json`, `README.md` and user-agent information. And it's highly recommanded to set up this detail for your package.
+**Type:** `boolean`
 
-| Property    | Description                                                                                      |
-| ----------- | ------------------------------------------------------------------------------------------------ |
-| name        | the name of package.json file, usually start with `@azure-rest` if this is data-plane RLC client |
-| description | description used in package.json file                                                            |
-| version     | detailed version for your released package, the default vaule is `1.0.0-beta.1`                  |
+Deprecated option for RLC legacy generation.
 
-### title (only for RLC generation)
+### `multi-client`
 
-Generally the codegen will leverage the title defined in `@client` and `@service` decorator in TypeSpec to name our RLC client. But if you'd like to override it you could config the `title` info.
+**Type:** `boolean`
 
-```yaml
-title: AnomalyDetectorRest
-```
+Deprecated option for RLC legacy generation.
 
-### typespecTitleMap (only for Modular generation)
+### `batch`
 
-Generally the codegen will leverage the title defined in `@client` and `@service` decorator in TypeSpec to name our modular client. But if you'd like to override it you could config the `typespec-title-map` info. The key is the client name from typespec, and the value is the client name we'd like to rename. This also support config multiple clients
+**Type:** `array`
 
-```yaml
-typespec-title-map: 
-  AnomalyDetectorClient: AnomalyDetectorRest
-  AnomalyDetectorClient2: AnomalyDetectorRest2
-```
+Deprecated option for RLC legacy generation.
 
-### generateMetadata
+### `package-details`
 
-To indicate if the codegen needs to generate metadata files which includes `package.json`, `README.md` and `tsconfig.json` etc.
+**Type:** `object`
 
-By default we'll enable the option but if you'd like to disable this feature you could set it as `false`.
+This is to indicate the package information such as package name, package description etc.
 
-```yaml
-generate-metadata: false
-```
+### `add-credentials`
 
-### generateTest
+**Type:** `boolean`
 
-To allow the codegen generating test sample files and updating testing configuration. And the default value is `true` and you could also turn it off as `false`.
+      We support two types of authentication: Azure Key Credential(AzureKey) and Token credential(AADToken), any other will need to be handled manually.
 
-### "includeShortcuts"
+      There are two ways to set up our credential details
 
-To allow the codegen generating shortcut methods in client definition. This is an experimental feature so we disable it by default. If you want to try it just turn it on.
+      - To use `@useAuth` decorator in TypeSpec
+      - To config in yaml file
 
-```yaml
-"include-shortcuts": true
-```
+      Please notice defining in TypeSpec is recommended and also has higher priority than second one.
 
-### azureSdkForJs
+      To enable credential in `tspconfig.yaml` and we need to provide more details to let codegen know types.
 
-This is used to indicate your project is generated in [azure-sdk-for-js](https://github.com/Azure/azure-sdk-for-js) repo or not. If your package is located in that repo we'll leverage `dev-tool` to accelerate our building and testing, however if not we'll remove the dependency for that tool.
 
-Usually the released JS sdk will be put into azure-sdk-for-js so we enable this option by default.
+### `credential-scopes`
 
-### addCredentials
-
-We support two types of authentication: Azure Key Credential(AzureKey) and Token credential(AADToken), any other will need to be handled manually.
-
-There are two ways to set up our credential details
-
-- To use `@useAuth` decorator in TypeSpec
-- To config in yaml file
-
-Please notice defining in TypeSpec is recommanded and also has higher priority than second one.
-
-To enable credential in `tspconfig.yaml` and we need to provide more details to let codegen know types.
-
-### credentialScopes
+**Type:** `array`
 
 If we enable the option `add-credentials` and specify `credential-scopes` the details we would enable the AADToken authentication.
 
-```yaml
-add-credentials: true
-credential-scopes: https://yourendpoint.azure.com/.default
-```
+### `credential-key-header-name`
 
-### credentialKeyHeaderName
+**Type:** `string`
 
 If we enable the option `add-credentials` and specify `credential-key-header-name` the details we would enable the AzureKey authentication.
 
-```yaml
-add-credentials: true
-credential-key-header-name: Your-Subscription-Key
-```
+### `custom-http-auth-header-name`
 
-### clearOutputFolder
+**Type:** `string`
 
-If we enable this option `clear-output-folder` we would empty the whole output folder. By default we only empty the sources folder which means any metadata files will not be removed if it is at project root. This would be useful in pipeline.
+This option is used for special Key Auth, when the key has a shared prefix and this header is to set the header name
 
-```yaml
-clear-output-folder: true
-```
+### `custom-http-auth-shared-key-prefix`
 
-### compatibilityMode
+**Type:** `string`
 
-By default, this option will be disabled. If this option is enabled, it will affect the generation of the additional property feature for the Modular client.
+This option is used for special Key Auth, when the key has a shared prefix and this header is to pass the rest of the header key.
 
-```yaml
-compatibility-mode: true
-```
+### `generate-metadata`
 
-### compatibilityQueryMultiFormat
+**Type:** `boolean`
 
-By default, this option will be disabled. If this option is enabled, we should generate the backward-compatible code for query parameter serialization for array types in RLC.
+      Whether to generate metadata files which includes package.json, README.md and tsconfig.json etc. Defaults to `undefined`. If there's not a package.json under package-dir, defaults to `true`. but if you'd like to disable this feature you could set it as `false`.
 
-```yaml
-compatibility-query-multi-format: true
-```
 
-# Contributing
+### `generate-test`
 
-If you want to contribute on this project read the [contrubuting document](./CONTRIBUTING.md) for more details.
+**Type:** `boolean`
+
+      Whether to generate test files, for basic testing of your generated sdks. Defaults to `undefined`.
+      other cases:
+      - If azure-sdk-for-js is `false`. Defaults to `false`.
+      - If azure-sdk-for-js is `true` but there's a test folder under package-dir. Defaults to `false`.
+      - If azure-sdk-for-js is `true` but there's not a test folder under package-dir. Defaults to `true`.
+
+
+### `generate-sample`
+
+**Type:** `boolean`
+
+Whether to generate sample files, for basic samples of your generated sdks. Defaults to `undefined`. Management packages' default to `true`.
+
+### `azure-sdk-for-js`
+
+**Type:** `boolean`
+
+This is used to indicate your project is generated in [azure-sdk-for-js](https://github.com/Azure/azure-sdk-for-js) repo or not. If your package is located in that repo we'll leverage `dev-tool` to accelerate our building and testing, however if not we'll remove the dependency for that tool. Defaults to `undefined`. Services with Flavor equal to 'Azure' default to 'true'.
+
+### `azure-output-directory`
+
+**Type:** `string`
+
+Deprecated option for RLC legacy generation
+
+### `is-typespec-test`
+
+**Type:** `boolean`
+
+Internal option for test
+
+### `title`
+
+**Type:** `string`
+
+Deprecated option for RLC legacy generation.
+
+### `dependency-info`
+
+**Type:** `object`
+
+Deprecated option for RLC legacy generation.
+
+### `product-doc-link`
+
+**Type:** `string`
+
+Deprecated option for RLC legacy generation.
+
+### `service-info`
+
+**Type:** `object`
+
+Deprecated option for RLC legacy generation.
+
+### `azure-arm`
+
+**Type:** `boolean`
+
+Whether the package is an arm package.
+
+### `source-from`
+
+**Type:** `string`
+
+Internal option, the value is default for TypeSpec generation
+
+### `is-modular-library`
+
+**Type:** `boolean`
+
+Whether to generate a Modular library. Defaults to `false`. Arm packages default to `true`.
+
+### `enable-operation-group`
+
+**Type:** `boolean`
+
+An option to treat interface as operation group. This is not recommended unless specifically told so
+
+### `enable-model-namespace`
+
+**Type:** `boolean`
+
+Provides an option to add the model namespace to model names in case of conflicts across different namespaces. This approach is generally discouraged unless explicitly required.
+
+### `hierarchy-client`
+
+**Type:** `boolean`
+
+An option to organize the client in a hierarchical way as defined by `@clientInitialization`. This is true by default.
+
+### `branded`
+
+**Type:** `boolean`
+
+A section of flavor
+
+### `flavor`
+
+**Type:** `string`
+
+The flavor of the SDK.
+
+### `module-kind`
+
+**Type:** `"esm" | "cjs"`
+
+Internal option for test.
+
+### `compatibility-mode`
+
+**Type:** `boolean`
+
+Whether to affect the generation of the additional property feature for the Modular client. Defaults to `false`.
+
+### `experimental-extensible-enums`
+
+**Type:** `boolean`
+
+Whether to transform union type enums to extensible enums
+
+### `clear-output-folder`
+
+**Type:** `boolean`
+
+Determine whether to clear the entire output folder. By default, only the 'sources' folder is cleared, so metadata files at the project root remain untouched. This option can be useful in pipeline scenarios.
+
+### `ignore-property-name-normalize`
+
+**Type:** `boolean`
+
+The emitter will use camel case to normalize the property name, to ignore this normalization, you can set this option to true
+
+### `ignore-enum-member-name-normalize`
+
+**Type:** `boolean`
+
+The emitter has a normalization logic for enum member key, to ignore this normalization, you can set this option to true
+
+### `compatibility-query-multi-format`
+
+**Type:** `boolean`
+
+Whether to generate the backward-compatible code for query parameter serialization for array types in RLC. Defaults to `false`
+
+### `default-value-object`
+
+**Type:** `boolean`
+
+Deprecated option for RLC legacy generation.
+
+### `typespec-title-map`
+
+**Type:** `object`
+
+Only for Modular generation
+By default, code generation uses the titles specified in the `@client` and `@service` decorators in TypeSpec to name modular clients. If you need to override these names, you can configure the `typespec-title-map`. The map's keys represent the original client names from TypeSpec, and the values are the desired client names. This configuration supports renaming multiple clients.
+
+      ```yaml
+      typespec-title-map:
+        AnomalyDetectorClient: AnomalyDetectorRest
+        AnomalyDetectorClient2: AnomalyDetectorRest2
+      ```
+
+
+### `should-use-pnpm-dep`
+
+**Type:** `boolean`
+
+Internal option for test.

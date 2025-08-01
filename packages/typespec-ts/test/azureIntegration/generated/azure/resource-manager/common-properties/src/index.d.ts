@@ -105,7 +105,7 @@ export declare type CreateWithSystemAssignedParameters = CreateWithSystemAssigne
 
 export declare interface ErrorAdditionalInfoOutput {
     readonly type?: string;
-    readonly info?: Record<string, any>;
+    readonly info?: any;
 }
 
 export declare interface ErrorDetailOutput {

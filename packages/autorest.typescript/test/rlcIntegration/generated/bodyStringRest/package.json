@@ -3,7 +3,7 @@
   "version": "1.0.0-preview1",
   "description": "A generated SDK for BodyStringRest.",
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   },
   "sideEffects": false,
   "autoPublish": false,
@@ -19,9 +19,7 @@
     "dist-esm/src/",
     "types/body-string-rest.d.ts",
     "README.md",
-    "LICENSE",
-    "review/*",
-    "CHANGELOG.md"
+    "LICENSE"
   ],
   "dependencies": {
     "@azure-rest/core-client": "^1.4.0",
@@ -32,7 +30,7 @@
   },
   "devDependencies": {
     "dotenv": "^16.0.0",
-    "@types/node": "^18.0.0",
+    "@types/node": "^20.0.0",
     "eslint": "^9.9.0",
     "typescript": "~5.8.2",
     "@azure/identity": "^4.2.1",
@@ -73,15 +71,9 @@
     "pack": "npm pack 2>&1",
     "lint": "eslint package.json api-extractor.json src",
     "lint:fix": "eslint package.json api-extractor.json src --fix --fix-type [problem,suggestion]",
-    "unit-test": "npm run unit-test:node && npm run unit-test:browser",
-    "unit-test:browser": "karma start --single-run",
-    "unit-test:node": "cross-env TS_NODE_COMPILER_OPTIONS=\"{\\\"module\\\":\\\"commonjs\\\"}\" mocha -r esm --require ts-node/register --timeout 1200000 --full-trace \"test/{,!(browser)/**/}*.spec.ts\"",
-    "integration-test": "npm run integration-test:node && npm run integration-test:browser",
-    "integration-test:browser": "karma start --single-run",
-    "integration-test:node": "nyc mocha -r esm --require source-map-support/register --timeout 5000000 --full-trace \"dist-esm/test/{,!(browser)/**/}*.spec.js\"",
-    "test:browser": "npm run clean && npm run build:test && npm run unit-test:browser",
-    "test:node": "npm run clean && npm run build:test && npm run unit-test:node",
-    "test": "npm run clean && npm run build:test && npm run unit-test",
+    "test:browser": "karma start --single-run",
+    "test:node": "nyc mocha -r esm --require source-map-support/register --timeout 5000000 --full-trace \"dist-esm/test/{,!(browser)/**/}*.spec.js\"",
+    "test": "npm run test:node && npm run test:browser",
     "build": "npm run clean && tsc && rollup -c 2>&1 && npm run minify && mkdirp ./review && npm run extract-api",
     "build:test": "tsc -p . && rollup -c 2>&1",
     "build:browser": "tsc -p . && cross-env ONLY_BROWSER=true rollup -c 2>&1",

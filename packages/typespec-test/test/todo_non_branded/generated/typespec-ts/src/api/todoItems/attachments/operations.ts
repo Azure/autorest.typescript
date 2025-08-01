@@ -15,15 +15,15 @@ import {
   _pageTodoAttachmentDeserializer,
 } from "../../../models/todoItems/models.js";
 import {
-  TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
-  TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
-  TodoItemsAttachmentsListOptionalParams,
-} from "./options.js";
-import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../../static-helpers/pagingHelpers.js";
 import { expandUrlTemplate } from "../../../static-helpers/urlTemplate.js";
+import {
+  TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
+  TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
+  TodoItemsAttachmentsListOptionalParams,
+} from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
