@@ -8,7 +8,7 @@ export function serializeRecord(
 ) {
   excludes = excludes ?? [];
   const res: any = {};
-  for (let key of Object.keys(item)) {
+  for (const key of Object.keys(item)) {
     if (excludes.includes(key) || item[key] === undefined) {
       continue;
     }
