@@ -300,9 +300,9 @@ export function extractOperationLroDetail(
     const metadata = getLroMetadata(dpgContext.program, operation.operation);
     precedence =
       metadata?.finalStep &&
-        metadata.finalStep.kind === "pollingSuccessProperty" &&
-        metadata?.finalStep.target &&
-        metadata?.finalStep?.target?.name === "result"
+      metadata.finalStep.kind === "pollingSuccessProperty" &&
+      metadata?.finalStep.target &&
+      metadata?.finalStep?.target?.name === "result"
         ? OPERATION_LRO_HIGH_PRIORITY
         : OPERATION_LRO_LOW_PRIORITY;
   }
@@ -360,8 +360,14 @@ export function extractPageDetails(
       });
     }
 
-    const nextLinkPath = mapFirstSegmentForResultSegments(metadata?.output.nextLink?.path, operation.responses);
-    const itemNamePath = mapFirstSegmentForResultSegments(metadata?.output.pageItems?.path, operation.responses);
+    const nextLinkPath = mapFirstSegmentForResultSegments(
+      metadata?.output.nextLink?.path,
+      operation.responses
+    );
+    const itemNamePath = mapFirstSegmentForResultSegments(
+      metadata?.output.pageItems?.path,
+      operation.responses
+    );
     if (
       (nextLinkPath && nextLinkPath?.length > 1) ||
       (itemNamePath && itemNamePath?.length > 1)
@@ -409,13 +415,15 @@ export function isPagingOperation(program: Program, operation: HttpOperation) {
 
 function mapFirstSegmentForResultSegments(
   resultSegments: ModelProperty[] | undefined,
-  responses: HttpOperationResponse[],
+  responses: HttpOperationResponse[]
 ): ModelProperty[] | undefined {
-  const pagingBodyType = responses.find((r) => r.statusCodes === 200)?.responses[0]?.body;
+  const pagingBodyType = responses.find((r) => r.statusCodes === 200)
+    ?.responses[0]?.body;
   if (!pagingBodyType || pagingBodyType.bodyKind !== "single") return undefined;
   const bodyType = pagingBodyType.property?.type;
 
-  if (resultSegments === undefined || pagingBodyType === undefined) return undefined;
+  if (resultSegments === undefined || pagingBodyType === undefined)
+    return undefined;
   // TCGC use Http response type as the return type
   // For implicit body response, we need to locate the first segment in the response type
   // Several cases:
@@ -428,8 +436,10 @@ function mapFirstSegmentForResultSegments(
       const segment = resultSegments[i];
       for (const property of bodyType.properties ?? []) {
         if (
-          property && segment &&
-          findRootSourceProperty(property[1]) === findRootSourceProperty(segment)
+          property &&
+          segment &&
+          findRootSourceProperty(property[1]) ===
+            findRootSourceProperty(segment)
         ) {
           return [property[1], ...resultSegments.slice(i + 1)];
         }
@@ -663,8 +673,8 @@ export function getMethodHierarchiesMap(
     }
     const prefixes =
       context.rlcOptions?.hierarchyClient === false &&
-        context.rlcOptions?.enableOperationGroup &&
-        method[0].length > 0
+      context.rlcOptions?.enableOperationGroup &&
+      method[0].length > 0
         ? [method[0][method[0].length - 1] as string]
         : method[0];
     const operationOrGroup = method[1];
@@ -689,7 +699,7 @@ export function getMethodHierarchiesMap(
     } else {
       const prefixKey =
         context.rlcOptions?.hierarchyClient ||
-          context.rlcOptions?.enableOperationGroup
+        context.rlcOptions?.enableOperationGroup
           ? prefixes.join("/")
           : "";
       const groupName = prefixes
