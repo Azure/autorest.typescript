@@ -422,8 +422,7 @@ function mapFirstSegmentForResultSegments(
   if (!pagingBodyType || pagingBodyType.bodyKind !== "single") return undefined;
   const bodyType = pagingBodyType.property?.type;
 
-  if (resultSegments === undefined || bodyType === undefined)
-    return undefined;
+  if (resultSegments === undefined || bodyType === undefined) return undefined;
   // TCGC use Http response type as the return type
   // For implicit body response, we need to locate the first segment in the response type
   // Several cases:
