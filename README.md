@@ -1,4 +1,4 @@
-# Azure TypeScript SDK and RLC Code Generator Libraries1
+# Azure TypeScript SDK and RLC Code Generator Libraries
 
 This repository is the code generator libraries for Azure TypeScript SDK and Azure TypeScript Rest Level Client libraries.
 
