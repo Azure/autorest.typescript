@@ -12,6 +12,7 @@ import type { CreateHttpPollerOptions } from '@azure/core-lro';
 import type { HttpResponse } from '@azure-rest/core-client';
 import type { KeyCredential } from '@azure/core-auth';
 import type { OperationState } from '@azure/core-lro';
+import type { PathUncheckedResponse } from '@azure-rest/core-client';
 import type { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import type { RequestParameters } from '@azure-rest/core-client';
 import type { StreamableMethod } from '@azure-rest/core-client';
@@ -1710,6 +1711,9 @@ export interface FindSimilarResultOutput {
 }
 
 // @public
+export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
+
+// @public
 export interface GetFaceList200Response extends HttpResponse {
     // (undocumented)
     body: FaceListOutput;
@@ -1754,7 +1758,7 @@ export interface GetFaceLists {
 // @public
 export interface GetFaceLists200Response extends HttpResponse {
     // (undocumented)
-    body: Array<FaceListItemOutput>;
+    body: PagedFaceListItemOutput;
     // (undocumented)
     status: "200";
 }
@@ -1840,7 +1844,7 @@ export type GetLargeFaceListFaceParameters = RequestParameters;
 // @public
 export interface GetLargeFaceListFaces200Response extends HttpResponse {
     // (undocumented)
-    body: Array<LargeFaceListFaceOutput>;
+    body: PagedLargeFaceListFaceOutput;
     // (undocumented)
     status: "200";
 }
@@ -1897,7 +1901,7 @@ export interface GetLargeFaceLists {
 // @public
 export interface GetLargeFaceLists200Response extends HttpResponse {
     // (undocumented)
-    body: Array<LargeFaceListOutput>;
+    body: PagedLargeFaceListOutput;
     // (undocumented)
     status: "200";
 }
@@ -2045,7 +2049,7 @@ export type GetLargePersonGroupPersonParameters = RequestParameters;
 // @public
 export interface GetLargePersonGroupPersons200Response extends HttpResponse {
     // (undocumented)
-    body: Array<LargePersonGroupPersonOutput>;
+    body: PagedLargePersonGroupPersonOutput;
     // (undocumented)
     status: "200";
 }
@@ -2099,7 +2103,7 @@ export interface GetLargePersonGroups {
 // @public
 export interface GetLargePersonGroups200Response extends HttpResponse {
     // (undocumented)
-    body: Array<LargePersonGroupOutput>;
+    body: PagedLargePersonGroupOutput;
     // (undocumented)
     status: "200";
 }
@@ -2228,6 +2232,12 @@ export function getLongRunningPoller<TResult extends TrainPersonGroupLogicalResp
 export function getLongRunningPoller<TResult extends TrainLargePersonGroupLogicalResponse | TrainLargePersonGroupDefaultResponse>(client: Client, initialResponse: TrainLargePersonGroup202Response | TrainLargePersonGroupDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public
+export type GetPage<TPage> = (pageLink: string) => Promise<{
+    page: TPage;
+    nextPageLink?: string;
+}>;
+
+// @public
 export interface GetPersonGroup200Response extends HttpResponse {
     // (undocumented)
     body: PersonGroupOutput;
@@ -2308,7 +2318,7 @@ export type GetPersonGroupPersonParameters = RequestParameters;
 // @public
 export interface GetPersonGroupPersons200Response extends HttpResponse {
     // (undocumented)
-    body: Array<PersonGroupPersonOutput>;
+    body: PagedPersonGroupPersonOutput;
     // (undocumented)
     status: "200";
 }
@@ -2362,7 +2372,7 @@ export interface GetPersonGroups {
 // @public
 export interface GetPersonGroups200Response extends HttpResponse {
     // (undocumented)
-    body: Array<PersonGroupOutput>;
+    body: PagedPersonGroupOutput;
     // (undocumented)
     status: "200";
 }
@@ -3116,6 +3126,75 @@ export type OperationStateOutput = string;
 
 // @public
 export type OperationStatusOutput = string;
+
+// @public
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage>;
+    next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public
+export interface PagedFaceListItemOutput {
+    nextLink?: string;
+    value: Array<FaceListItemOutput>;
+}
+
+// @public
+export interface PagedLargeFaceListFaceOutput {
+    nextLink?: string;
+    value: Array<LargeFaceListFaceOutput>;
+}
+
+// @public
+export interface PagedLargeFaceListOutput {
+    nextLink?: string;
+    value: Array<LargeFaceListOutput>;
+}
+
+// @public
+export interface PagedLargePersonGroupOutput {
+    nextLink?: string;
+    value: Array<LargePersonGroupOutput>;
+}
+
+// @public
+export interface PagedLargePersonGroupPersonOutput {
+    nextLink?: string;
+    value: Array<LargePersonGroupPersonOutput>;
+}
+
+// @public
+export interface PagedPersonGroupOutput {
+    nextLink?: string;
+    value: Array<PersonGroupOutput>;
+}
+
+// @public
+export interface PagedPersonGroupPersonOutput {
+    nextLink?: string;
+    value: Array<PersonGroupPersonOutput>;
+}
+
+// @public
+export interface PageSettings {
+    continuationToken?: string;
+}
+
+// @public
+export function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
+
+// @public
+export type PaginateReturn<TResult> = TResult extends {
+    body: {
+        value?: infer TPage;
+    };
+} ? GetArrayType<TPage> : Array<unknown>;
+
+// @public
+export interface PagingOptions<TResponse> {
+    customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
+}
 
 // @public
 export interface PersonGroupOutput {
