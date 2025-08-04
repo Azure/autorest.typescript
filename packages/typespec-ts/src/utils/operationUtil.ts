@@ -35,6 +35,7 @@ import {
 import {
   isList,
   Model,
+  ModelProperty,
   NoTarget,
   Operation,
   Program,
@@ -299,9 +300,9 @@ export function extractOperationLroDetail(
     const metadata = getLroMetadata(dpgContext.program, operation.operation);
     precedence =
       metadata?.finalStep &&
-      metadata.finalStep.kind === "pollingSuccessProperty" &&
-      metadata?.finalStep.target &&
-      metadata?.finalStep?.target?.name === "result"
+        metadata.finalStep.kind === "pollingSuccessProperty" &&
+        metadata?.finalStep.target &&
+        metadata?.finalStep?.target?.name === "result"
         ? OPERATION_LRO_HIGH_PRIORITY
         : OPERATION_LRO_LOW_PRIORITY;
   }
@@ -358,8 +359,9 @@ export function extractPageDetails(
         target: NoTarget
       });
     }
-    const nextLinkPath = metadata?.output.nextLink?.path;
-    const itemNamePath = metadata?.output.pageItems?.path;
+
+    const nextLinkPath = mapFirstSegmentForResultSegments(metadata?.output.nextLink?.path, operation.responses);
+    const itemNamePath = mapFirstSegmentForResultSegments(metadata?.output.pageItems?.path, operation.responses);
     if (
       (nextLinkPath && nextLinkPath?.length > 1) ||
       (itemNamePath && itemNamePath?.length > 1)
@@ -403,6 +405,45 @@ export function extractPageDetails(
 
 export function isPagingOperation(program: Program, operation: HttpOperation) {
   return extractPageDetails(program, operation) !== undefined;
+}
+
+function mapFirstSegmentForResultSegments(
+  resultSegments: ModelProperty[] | undefined,
+  responses: HttpOperationResponse[],
+): ModelProperty[] | undefined {
+  const pagingBodyType = responses.find((r) => r.statusCodes === 200)?.responses[0]?.body;
+  if (!pagingBodyType || pagingBodyType.bodyKind !== "single") return undefined;
+  const bodyType = pagingBodyType.property?.type;
+
+  if (resultSegments === undefined || pagingBodyType === undefined) return undefined;
+  // TCGC use Http response type as the return type
+  // For implicit body response, we need to locate the first segment in the response type
+  // Several cases:
+  // 1. `op test(): {items, nextLink}`
+  // 2. `op test(): {items, nextLink} & {a, b, c}`
+  // 3. `op test(): {@bodyRoot body: {items, nextLink}}`
+
+  if (resultSegments.length > 0 && bodyType && bodyType.kind === "Model") {
+    for (let i = 0; i < resultSegments.length; i++) {
+      const segment = resultSegments[i];
+      for (const property of bodyType.properties ?? []) {
+        if (
+          property && segment &&
+          findRootSourceProperty(property[1]) === findRootSourceProperty(segment)
+        ) {
+          return [property[1], ...resultSegments.slice(i + 1)];
+        }
+      }
+    }
+  }
+  return resultSegments;
+}
+
+function findRootSourceProperty(property: ModelProperty): ModelProperty {
+  while (property.sourceProperty) {
+    property = property.sourceProperty;
+  }
+  return property;
 }
 
 export function hasPagingOperations(client: SdkClient, dpgContext: SdkContext) {
@@ -622,8 +663,8 @@ export function getMethodHierarchiesMap(
     }
     const prefixes =
       context.rlcOptions?.hierarchyClient === false &&
-      context.rlcOptions?.enableOperationGroup &&
-      method[0].length > 0
+        context.rlcOptions?.enableOperationGroup &&
+        method[0].length > 0
         ? [method[0][method[0].length - 1] as string]
         : method[0];
     const operationOrGroup = method[1];
@@ -648,7 +689,7 @@ export function getMethodHierarchiesMap(
     } else {
       const prefixKey =
         context.rlcOptions?.hierarchyClient ||
-        context.rlcOptions?.enableOperationGroup
+          context.rlcOptions?.enableOperationGroup
           ? prefixes.join("/")
           : "";
       const groupName = prefixes
