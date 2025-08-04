@@ -6,6 +6,7 @@ describe("Page helper", () => {
     const pageInfo = await generatePagingHelper(
       `
       #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "for test"
+      @list
       op listWidgets is Azure.Core.Foundations.Operation<{}, CustomPageModel<Widget>>;`
     );
     assert.ok(pageInfo);
@@ -106,9 +107,8 @@ describe("Page helper", () => {
 async function generatePagingHelper(code: string) {
   const content = `
   @friendlyName("{name}ListResults", T)
-  @global.Azure.Core.pagedResult
   model CustomPageModel<T> {
-    @global.Azure.Core.items
+    @pageItems
     @doc("List of items.")
     customizedItems: T[];
   
