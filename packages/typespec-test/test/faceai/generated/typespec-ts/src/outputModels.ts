@@ -329,6 +329,14 @@ export interface FaceListFaceOutput {
   userData?: string;
 }
 
+/** Paged collection of FaceListItem items */
+export interface PagedFaceListItemOutput {
+  /** The FaceListItem items on this page */
+  value: Array<FaceListItemOutput>;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
 /** Face list item for list face list. */
 export interface FaceListItemOutput {
   /** User defined name, maximum length is 128. */
@@ -367,6 +375,14 @@ export interface LargeFaceListOutput {
   readonly largeFaceListId: string;
 }
 
+/** Paged collection of LargeFaceList items */
+export interface PagedLargeFaceListOutput {
+  /** The LargeFaceList items on this page */
+  value: Array<LargeFaceListOutput>;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
 /** Training result of a container */
 export interface TrainingResultOutput {
   /**
@@ -393,6 +409,14 @@ export interface LargeFaceListFaceOutput {
   userData?: string;
 }
 
+/** Paged collection of LargeFaceListFace items */
+export interface PagedLargeFaceListFaceOutput {
+  /** The LargeFaceListFace items on this page */
+  value: Array<LargeFaceListFaceOutput>;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
 /** The container of the uploaded person data, including face recognition feature, and up to 10,000 persons. To handle larger scale face identification problem, please consider using Large Person Group. */
 export interface PersonGroupOutput {
   /** User defined name, maximum length is 128. */
@@ -407,6 +431,14 @@ export interface PersonGroupOutput {
   recognitionModel?: RecognitionModelOutput;
   /** ID of the container. */
   readonly personGroupId: string;
+}
+
+/** Paged collection of PersonGroup items */
+export interface PagedPersonGroupOutput {
+  /** The PersonGroup items on this page */
+  value: Array<PersonGroupOutput>;
+  /** The link to the next page of items */
+  nextLink?: string;
 }
 
 /** Response of create person. */
@@ -425,6 +457,14 @@ export interface PersonGroupPersonOutput {
   userData?: string;
   /** Face ids of registered faces in the person. */
   persistedFaceIds?: string[];
+}
+
+/** Paged collection of PersonGroupPerson items */
+export interface PagedPersonGroupPersonOutput {
+  /** The PersonGroupPerson items on this page */
+  value: Array<PersonGroupPersonOutput>;
+  /** The link to the next page of items */
+  nextLink?: string;
 }
 
 /** Face resource for person group person. */
@@ -451,6 +491,14 @@ export interface LargePersonGroupOutput {
   readonly largePersonGroupId: string;
 }
 
+/** Paged collection of LargePersonGroup items */
+export interface PagedLargePersonGroupOutput {
+  /** The LargePersonGroup items on this page */
+  value: Array<LargePersonGroupOutput>;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
 /** The person in a specified large person group. To add face to this person, please call "Add Large Person Group Person Face". */
 export interface LargePersonGroupPersonOutput {
   /** ID of the person. */
@@ -461,6 +509,14 @@ export interface LargePersonGroupPersonOutput {
   userData?: string;
   /** Face ids of registered faces in the person. */
   persistedFaceIds?: string[];
+}
+
+/** Paged collection of LargePersonGroupPerson items */
+export interface PagedLargePersonGroupPersonOutput {
+  /** The LargePersonGroupPerson items on this page */
+  value: Array<LargePersonGroupPersonOutput>;
+  /** The link to the next page of items */
+  nextLink?: string;
 }
 
 /** Face resource for large person group person. */
