@@ -322,7 +322,6 @@ export function _getNodeFilePropertiesSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
     });
@@ -490,7 +489,6 @@ export function _deleteNodeFileSend(
                 : options?.ocpDate.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
     });
@@ -1029,7 +1027,6 @@ export function _enableNodeSchedulingSend(
                 : options?.ocpDate.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
     });
@@ -1104,7 +1101,6 @@ export function _disableNodeSchedulingSend(
                 : options?.ocpDate.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
       body: !options["body"]
@@ -1182,7 +1178,6 @@ export function _reimageNodeSend(
                 : options?.ocpDate.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
       body: !options["body"]
@@ -1256,7 +1251,6 @@ export function _rebootNodeSend(
                 : options?.ocpDate.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
       body: !options["body"]
@@ -1400,7 +1394,6 @@ export function _replaceNodeUserSend(
                 : options?.ocpDate.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
       body: batchNodeUserUpdateOptionsSerializer(body),
@@ -1483,7 +1476,6 @@ export function _deleteNodeUserSend(
                 : options?.ocpDate.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
     });
@@ -1561,7 +1553,6 @@ export function _createNodeUserSend(
                 : options?.ocpDate.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
       body: batchNodeUserCreateOptionsSerializer(body),
@@ -1728,7 +1719,6 @@ export function _getTaskFilePropertiesSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
     });
@@ -1896,7 +1886,6 @@ export function _deleteTaskFileSend(
                 : options?.ocpDate.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
     });
@@ -1989,7 +1978,6 @@ export function _reactivateTaskSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
     });
@@ -2083,7 +2071,6 @@ export function _terminateTaskSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
     });
@@ -2246,7 +2233,6 @@ export function _replaceTaskSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
       body: batchTaskSerializer(body),
@@ -2434,7 +2420,6 @@ export function _deleteTaskSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
     });
@@ -2677,7 +2662,6 @@ export function _createTaskSend(
                 : options?.ocpDate.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
       body: batchTaskCreateOptionsSerializer(body),
@@ -2823,7 +2807,6 @@ export function _createJobScheduleSend(
                 : options?.ocpDate.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
       body: batchJobScheduleCreateOptionsSerializer(body),
@@ -2907,7 +2890,6 @@ export function _terminateJobScheduleSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
     });
@@ -2994,7 +2976,6 @@ export function _enableJobScheduleSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
     });
@@ -3077,7 +3058,6 @@ export function _disableJobScheduleSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
     });
@@ -3162,7 +3142,6 @@ export function _replaceJobScheduleSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
       body: batchJobScheduleSerializer(body),
@@ -3260,7 +3239,6 @@ export function _updateJobScheduleSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
       body: batchJobScheduleUpdateOptionsSerializer(body),
@@ -3449,7 +3427,6 @@ export function _deleteJobScheduleSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
     });
@@ -3538,7 +3515,6 @@ export function _jobScheduleExistsSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
     });
@@ -3679,7 +3655,6 @@ export function _deleteCertificateSend(
                 : options?.ocpDate.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
     });
@@ -3760,7 +3735,6 @@ export function _cancelCertificateDeletionSend(
                 : options?.ocpDate.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
     });
@@ -3909,7 +3883,6 @@ export function _createCertificateSend(
                 : options?.ocpDate.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
       body: batchCertificateSerializer(body),
@@ -4286,7 +4259,6 @@ export function _createJobSend(
                 : options?.ocpDate.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
       body: batchJobCreateOptionsSerializer(body),
@@ -4381,7 +4353,6 @@ export function _terminateJobSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
       body: !options["body"]
@@ -4474,7 +4445,6 @@ export function _enableJobSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
     });
@@ -4566,7 +4536,6 @@ export function _disableJobSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
       body: batchJobDisableOptionsSerializer(body),
@@ -4662,7 +4631,6 @@ export function _replaceJobSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
       body: batchJobSerializer(body),
@@ -4753,7 +4721,6 @@ export function _updateJobSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
       body: batchJobUpdateOptionsSerializer(body),
@@ -4935,7 +4902,6 @@ export function _deleteJobSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
     });
@@ -5167,7 +5133,6 @@ export function _removeNodesSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
       body: nodeRemoveOptionsSerializer(body),
@@ -5238,7 +5203,6 @@ export function _replacePoolPropertiesSend(
                 : options?.ocpDate.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
       body: batchPoolReplaceOptionsSerializer(body),
@@ -5332,7 +5296,6 @@ export function _stopPoolResizeSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
     });
@@ -5425,7 +5388,6 @@ export function _resizePoolSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
       body: batchPoolResizeOptionsSerializer(body),
@@ -5596,7 +5558,6 @@ export function _enablePoolAutoScaleSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
       body: batchPoolEnableAutoScaleOptionsSerializer(body),
@@ -5668,7 +5629,6 @@ export function _disablePoolAutoScaleSend(
                 : options?.ocpDate.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
     });
@@ -5753,7 +5713,6 @@ export function _updatePoolSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
       body: batchPoolUpdateOptionsSerializer(body),
@@ -5935,7 +5894,6 @@ export function _poolExistsSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
     });
@@ -6018,7 +5976,6 @@ export function _deletePoolSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
     });
@@ -6171,7 +6128,6 @@ export function _createPoolSend(
                 : options?.ocpDate.toUTCString(),
             }
           : {}),
-        accept: "application/json",
         ...options.requestOptions?.headers,
       },
       body: batchPoolCreateOptionsSerializer(body),
