@@ -420,7 +420,7 @@ function mapFirstSegmentForResultSegments(
   const pagingBodyType = responses.find((r) => r.statusCodes === 200)
     ?.responses[0]?.body;
   if (!pagingBodyType || pagingBodyType.bodyKind !== "single") return undefined;
-  const bodyType = pagingBodyType.property?.type;
+  const bodyType = pagingBodyType.type;
 
   if (resultSegments === undefined || bodyType === undefined) return undefined;
   // TCGC use Http response type as the return type

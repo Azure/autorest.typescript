@@ -76,6 +76,19 @@ describe("Page helper", () => {
     assert.isTrue((pageInfo?.content as string).includes(`next`));
   });
 
+  it("should handle @list operation with customized @nextLink and @pageItems with @body", async () => {
+    const content = `
+      @list
+      op listWidgets() : { @body body: { @pageItems widgets: string[]; @nextLink next: string; } };
+      `;
+    const pageInfo = await emitPageHelperFromTypeSpec(content, {
+      needAzureCore: true
+    });
+    assert.ok(pageInfo);
+    assert.isTrue((pageInfo?.content as string).includes(`widgets`));
+    assert.isTrue((pageInfo?.content as string).includes(`next`));
+  });
+
   it("should handle @list operation with normal @nextLink and @pageItems", async () => {
     const content = `
       @list
