@@ -282,16 +282,6 @@ export interface CreateImageEditRequest {
 }
 
 // @public
-export interface CreateImageRequest {
-    n?: number | null;
-    prompt: string;
-    response_format?: ("url" | "b64_json") | null;
-    size?: ("256x256" | "512x512" | "1024x1024") | null;
-    // (undocumented)
-    user?: string;
-}
-
-// @public
 export interface CreateImageVariationRequest {
     image: FileContents | {
         contents: FileContents;
@@ -650,17 +640,11 @@ export interface ImagesCreateEditOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface ImagesCreateOptionalParams extends OperationOptions {
-}
-
-// @public
 export interface ImagesCreateVariationOptionalParams extends OperationOptions {
 }
 
 // @public
 export interface ImagesOperations {
-    // (undocumented)
-    create: (image: CreateImageRequest, options?: ImagesCreateOptionalParams) => Promise<ImagesResponse>;
     // (undocumented)
     createEdit: (image: CreateImageEditRequest, options?: ImagesCreateEditOptionalParams) => Promise<ImagesResponse>;
     // (undocumented)
