@@ -32,7 +32,15 @@ import {
   SdkServiceMethod,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
-import { Model, Operation, Program, Type } from "@typespec/compiler";
+import {
+  isList,
+  Model,
+  ModelProperty,
+  NoTarget,
+  Operation,
+  Program,
+  Type
+} from "@typespec/compiler";
 import {
   HttpOperation,
   HttpOperationParameter,
@@ -46,6 +54,8 @@ import { getOperationNamespaceInterfaceName } from "./namespaceUtils.js";
 import { resolveReference } from "../framework/reference.js";
 import { SerializationHelpers } from "../modular/static-helpers-metadata.js";
 import { listOperationsUnderRLCClient } from "./clientUtils.js";
+import { $ } from "@typespec/compiler/typekit";
+import { reportDiagnostic } from "../lib.js";
 
 // Sorts the responses by status code
 export function sortedOperationResponses(responses: HttpOperationResponse[]) {
@@ -325,14 +335,124 @@ export function hasPollingOperations(
   return false;
 }
 
-export function isPagingOperation(program: Program, operation: HttpOperation) {
-  for (const response of operation.responses) {
-    const paged = extractPagedMetadataNested(program, response.type as Model);
-    if (paged) {
-      return true;
+export interface PageDetails {
+  nextLinkNames: string[];
+  itemNames: string[];
+}
+
+export function extractPageDetails(
+  program: Program,
+  operation: HttpOperation
+): PageDetails | undefined {
+  if (isList(program, operation.operation)) {
+    // If the operation is a list, we don't need to extract paging details.
+    const metadata = $(program).operation.getPagingMetadata(
+      operation.operation
+    );
+    if (metadata === undefined) {
+      // would fallback to default paging metadata
+      reportDiagnostic(program, {
+        code: "no-paging-items-defined",
+        format: {
+          operationName: operation.operation.name
+        },
+        target: NoTarget
+      });
+    }
+
+    const nextLinkPath = mapFirstSegmentForResultSegments(
+      metadata?.output.nextLink?.path,
+      operation.responses
+    );
+    const itemNamePath = mapFirstSegmentForResultSegments(
+      metadata?.output.pageItems?.path,
+      operation.responses
+    );
+    if (
+      (nextLinkPath && nextLinkPath?.length > 1) ||
+      (itemNamePath && itemNamePath?.length > 1)
+    ) {
+      // Any cases with nested nextLink or itemName are not supported
+      reportDiagnostic(program, {
+        code: "un-supported-paging-cases",
+        format: {
+          operationName: operation.operation.name
+        },
+        target: NoTarget
+      });
+      // these paging information will be ignored
+      // and the operation will be treated as a non-paging operation.
+      return undefined;
+    }
+    const nextLinkNames =
+      nextLinkPath?.map((prop) => prop.name).join(".") ?? "nextLink";
+    const itemNames =
+      itemNamePath?.map((prop) => prop.name).join(".") ?? "value";
+    return {
+      nextLinkNames: [nextLinkNames],
+      itemNames: [itemNames]
+    };
+  } else {
+    // TODO: remember to remove this once Azure Paging is removed.
+    for (const response of operation.responses) {
+      const paged = extractPagedMetadataNested(program, response.type as Model);
+      if (paged) {
+        const nextLinkName = parseNextLinkName(paged) ?? "nextLink";
+        const itemName = parseItemName(paged) ?? "value";
+        return {
+          nextLinkNames: [nextLinkName],
+          itemNames: [itemName]
+        };
+      }
     }
   }
-  return false;
+  return undefined;
+}
+
+export function isPagingOperation(program: Program, operation: HttpOperation) {
+  return extractPageDetails(program, operation) !== undefined;
+}
+
+function mapFirstSegmentForResultSegments(
+  resultSegments: ModelProperty[] | undefined,
+  responses: HttpOperationResponse[]
+): ModelProperty[] | undefined {
+  const pagingBodyType = responses.find((r) => r.statusCodes === 200)
+    ?.responses[0]?.body;
+  if (!pagingBodyType || pagingBodyType.bodyKind !== "single") return undefined;
+  const bodyType = pagingBodyType.type;
+
+  if (resultSegments === undefined || bodyType === undefined) return undefined;
+  // TCGC use Http response type as the return type
+  // For implicit body response, we need to locate the first segment in the response type
+  // Several cases:
+  // 1. `op test(): {items, nextLink}`
+  // 2. `op test(): {items, nextLink} & {a, b, c}`
+  // 3. `op test(): {@bodyRoot body: {items, nextLink}}`
+
+  if (resultSegments.length > 0 && bodyType && bodyType.kind === "Model") {
+    for (let i = 0; i < resultSegments.length; i++) {
+      const segment = resultSegments[i];
+      for (const property of bodyType.properties ?? []) {
+        if (
+          property &&
+          segment &&
+          findRootSourceProperty(property[1]) ===
+            findRootSourceProperty(segment)
+        ) {
+          return [property[1], ...resultSegments.slice(i + 1)];
+        }
+      }
+    }
+  }
+  return resultSegments;
+}
+
+function findRootSourceProperty(property: ModelProperty): ModelProperty {
+  while (property.sourceProperty) {
+    property = property.sourceProperty;
+  }
+  return property;
 }
 
 export function hasPagingOperations(client: SdkClient, dpgContext: SdkContext) {

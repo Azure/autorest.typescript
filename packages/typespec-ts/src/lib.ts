@@ -20,7 +20,7 @@ export interface EmitterOptions {
   batch?: any[];
   "package-details"?: PackageDetails;
   "add-credentials"?: boolean;
-  /** Three possiblie values:
+  /** Three possible values:
    * - undefined, no credentialScopes and relevant settings would be generated
    * - [], which means we would generate TokenCredential but no credentialScopes and relevant settings
    * - ["..."], which means we would generate credentialScopes and relevant settings with the given values
@@ -76,14 +76,23 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
   type: "object",
   additionalProperties: true,
   properties: {
-    "include-shortcuts": { type: "boolean", nullable: true },
-    "multi-client": { type: "boolean", nullable: true },
+    "include-shortcuts": {
+      type: "boolean",
+      nullable: true,
+      description: "Deprecated option for RLC legacy generation."
+    },
+    "multi-client": {
+      type: "boolean",
+      nullable: true,
+      description: "Deprecated option for RLC legacy generation."
+    },
     batch: {
       type: "array",
       nullable: true,
       items: {
         type: "string"
-      }
+      },
+      description: "Deprecated option for RLC legacy generation."
     },
     "package-details": {
       type: "object",
@@ -96,24 +105,96 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
         version: { type: "string", nullable: true }
       },
       required: ["name"],
-      nullable: true
+      nullable: true,
+      description:
+        "This is to indicate the package information such as package name, package description etc."
     },
-    "add-credentials": { type: "boolean", nullable: true },
+    "add-credentials": {
+      type: "boolean",
+      nullable: true,
+      description: `
+      We support two types of authentication: Azure Key Credential(AzureKey) and Token credential(AADToken), any other will need to be handled manually.
+
+      There are two ways to set up our credential details
+
+      - To use \`@useAuth\` decorator in TypeSpec
+      - To config in yaml file
+
+      Please notice defining in TypeSpec is recommended and also has higher priority than second one.
+
+      To enable credential in \`tspconfig.yaml\` and we need to provide more details to let codegen know types.
+      `
+    },
     "credential-scopes": {
       type: "array",
       nullable: true,
-      items: { type: "string" }
+      items: { type: "string" },
+      description:
+        "If we enable the option `add-credentials` and specify `credential-scopes` the details we would enable the AADToken authentication."
     },
-    "credential-key-header-name": { type: "string", nullable: true },
-    "custom-http-auth-header-name": { type: "string", nullable: true },
-    "custom-http-auth-shared-key-prefix": { type: "string", nullable: true },
-    "generate-metadata": { type: "boolean", nullable: true },
-    "generate-test": { type: "boolean", nullable: true },
-    "generate-sample": { type: "boolean", nullable: true },
-    "azure-sdk-for-js": { type: "boolean", nullable: true },
-    "azure-output-directory": { type: "string", nullable: true },
-    "is-typespec-test": { type: "boolean", nullable: true },
-    title: { type: "string", nullable: true },
+    "credential-key-header-name": {
+      type: "string",
+      nullable: true,
+      description:
+        "If we enable the option `add-credentials` and specify `credential-key-header-name` the details we would enable the AzureKey authentication."
+    },
+    "custom-http-auth-header-name": {
+      type: "string",
+      nullable: true,
+      description:
+        "This option is used for special Key Auth, when the key has a shared prefix and this header is to set the header name"
+    },
+    "custom-http-auth-shared-key-prefix": {
+      type: "string",
+      nullable: true,
+      description:
+        "This option is used for special Key Auth, when the key has a shared prefix and this header is to pass the rest of the header key."
+    },
+    "generate-metadata": {
+      type: "boolean",
+      nullable: true,
+      description: `
+      Whether to generate metadata files which includes package.json, README.md and tsconfig.json etc. Defaults to \`undefined\`. If there's not a package.json under package-dir, defaults to \`true\`. but if you'd like to disable this feature you could set it as \`false\`.
+      `
+    },
+    "generate-test": {
+      type: "boolean",
+      nullable: true,
+      description: `
+      Whether to generate test files, for basic testing of your generated sdks. Defaults to \`undefined\`.
+      other cases:
+      - If azure-sdk-for-js is \`false\`. Defaults to \`false\`.
+      - If azure-sdk-for-js is \`true\` but there's a test folder under package-dir. Defaults to \`false\`.
+      - If azure-sdk-for-js is \`true\` but there's not a test folder under package-dir. Defaults to \`true\`.
+      `
+    },
+    "generate-sample": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "Whether to generate sample files, for basic samples of your generated sdks. Defaults to `undefined`. Management packages' default to `true`."
+    },
+    "azure-sdk-for-js": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "This is used to indicate your project is generated in [azure-sdk-for-js](https://github.com/Azure/azure-sdk-for-js) repo or not. If your package is located in that repo we'll leverage `dev-tool` to accelerate our building and testing, however if not we'll remove the dependency for that tool. Defaults to `undefined`. Services with Flavor equal to 'Azure' default to 'true'. "
+    },
+    "azure-output-directory": {
+      type: "string",
+      nullable: true,
+      description: "Deprecated option for RLC legacy generation"
+    },
+    "is-typespec-test": {
+      type: "boolean",
+      nullable: true,
+      description: "Internal option for test"
+    },
+    title: {
+      type: "string",
+      nullable: true,
+      description: "Deprecated option for RLC legacy generation."
+    },
     "dependency-info": {
       type: "object",
       additionalProperties: true,
@@ -122,9 +203,14 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
         description: { type: "string", nullable: false }
       },
       required: [],
-      nullable: true
+      nullable: true,
+      description: "Deprecated option for RLC legacy generation."
     },
-    "product-doc-link": { type: "string", nullable: true },
+    "product-doc-link": {
+      type: "string",
+      nullable: true,
+      description: "Deprecated option for RLC legacy generation."
+    },
     "service-info": {
       type: "object",
       additionalProperties: true,
@@ -132,38 +218,124 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
         title: { type: "string", nullable: true },
         description: { type: "string", nullable: true }
       },
-      nullable: true
+      nullable: true,
+      description: "Deprecated option for RLC legacy generation."
     },
-    "azure-arm": { type: "boolean", nullable: true },
-    "source-from": { type: "string", nullable: true },
-    "is-modular-library": { type: "boolean", nullable: true, default: false },
-    "enable-operation-group": { type: "boolean", nullable: true },
-    "enable-model-namespace": { type: "boolean", nullable: true },
-    "hierarchy-client": { type: "boolean", nullable: true },
-    branded: { type: "boolean", nullable: true },
-    flavor: { type: "string", nullable: true },
+    "azure-arm": {
+      type: "boolean",
+      nullable: true,
+      description: "Whether the package is an arm package."
+    },
+    "source-from": {
+      type: "string",
+      nullable: true,
+      description:
+        "Internal option, the value is default for TypeSpec generation"
+    },
+    "is-modular-library": {
+      type: "boolean",
+      nullable: true,
+      default: false,
+      description:
+        "Whether to generate a Modular library. Defaults to `false`. Arm packages default to `true`."
+    },
+    "enable-operation-group": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "An option to treat interface as operation group. This is not recommended unless specifically told so"
+    },
+    "enable-model-namespace": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "Provides an option to add the model namespace to model names in case of conflicts across different namespaces. This approach is generally discouraged unless explicitly required."
+    },
+    "hierarchy-client": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "An option to organize the client in a hierarchical way as defined by `@clientInitialization`. This is true by default."
+    },
+    branded: {
+      type: "boolean",
+      nullable: true,
+      description: "A section of flavor"
+    },
+    flavor: {
+      type: "string",
+      nullable: true,
+      description: "The flavor of the SDK."
+    },
     "module-kind": {
       type: "string",
       nullable: true,
       enum: ["esm", "cjs"],
-      default: "esm"
+      default: "esm",
+      description: "Internal option for test."
     },
-    "compatibility-mode": { type: "boolean", nullable: true },
-    "experimental-extensible-enums": { type: "boolean", nullable: true },
-    "clear-output-folder": { type: "boolean", nullable: true },
-    "ignore-property-name-normalize": { type: "boolean", nullable: true },
-    "ignore-enum-member-name-normalize": { type: "boolean", nullable: true },
-    "compatibility-query-multi-format": { type: "boolean", nullable: true },
-    "default-value-object": { type: "boolean", nullable: true },
+    "compatibility-mode": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "Whether to affect the generation of the additional property feature for the Modular client. Defaults to `false`."
+    },
+    "experimental-extensible-enums": {
+      type: "boolean",
+      nullable: true,
+      description: "Whether to transform union type enums to extensible enums"
+    },
+    "clear-output-folder": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "Determine whether to clear the entire output folder. By default, only the 'sources' folder is cleared, so metadata files at the project root remain untouched. This option can be useful in pipeline scenarios."
+    },
+    "ignore-property-name-normalize": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "The emitter will use camel case to normalize the property name, to ignore this normalization, you can set this option to true "
+    },
+    "ignore-enum-member-name-normalize": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "The emitter has a normalization logic for enum member key, to ignore this normalization, you can set this option to true"
+    },
+    "compatibility-query-multi-format": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "Whether to generate the backward-compatible code for query parameter serialization for array types in RLC. Defaults to `false`"
+    },
+    "default-value-object": {
+      type: "boolean",
+      nullable: true,
+      description: "Deprecated option for RLC legacy generation."
+    },
     "typespec-title-map": {
       type: "object",
       additionalProperties: {
         type: "string"
       },
       required: [],
-      nullable: true
+      nullable: true,
+      description: `Only for Modular generation
+      By default, code generation uses the titles specified in the \`@client\` and \`@service\` decorators in TypeSpec to name modular clients. If you need to override these names, you can configure the \`typespec-title-map\`. The map's keys represent the original client names from TypeSpec, and the values are the desired client names. This configuration supports renaming multiple clients.
+
+      \`\`\`yaml
+      typespec-title-map: 
+        AnomalyDetectorClient: AnomalyDetectorRest
+        AnomalyDetectorClient2: AnomalyDetectorRest2
+      \`\`\`
+      `
     },
-    "should-use-pnpm-dep": { type: "boolean", nullable: true }
+    "should-use-pnpm-dep": {
+      type: "boolean",
+      nullable: true,
+      description: "Internal option for test."
+    }
   },
   required: []
 };
@@ -282,7 +454,13 @@ const libDef = {
     "no-paging-items-defined": {
       severity: "warning",
       messages: {
-        default: paramMessage`Please specify @items property for the paging operation - ${"operationName"}.`
+        default: paramMessage`Operation '${"operationName"}' is marked with @list but does not have @pageItems defined.`
+      }
+    },
+    "un-supported-paging-cases": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Nested paging items in ${"operationName"} are not supported and will be ignored.`
       }
     },
     "decimal-to-number": {

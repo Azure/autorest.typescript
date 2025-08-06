@@ -42,6 +42,7 @@ import {
   buildSerializeHelper,
   buildTopLevelIndex,
   buildTsConfig,
+  buildTsSnippetsConfig,
   buildTsTestBrowserConfig,
   buildVitestConfig,
   getClientName,
@@ -482,6 +483,7 @@ export async function $onEmit(context: EmitContext) {
             buildSnippets(model, subClient.name, option.azureSdkForJs)
           );
         }
+        commonBuilders.push(buildTsSnippetsConfig);
       }
 
       // build metadata relevant files
