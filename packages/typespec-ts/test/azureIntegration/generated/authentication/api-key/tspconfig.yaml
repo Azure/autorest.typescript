@@ -6,6 +6,7 @@ options:
     flavor: azure
     azure-sdk-for-js: false
     is-typespec-test: true
+    is-modular-library: false
     title: AuthApiKeyClient
     package-details:
       name: "@msinternal/auth-apikey"
