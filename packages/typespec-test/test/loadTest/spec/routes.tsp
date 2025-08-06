@@ -16,11 +16,12 @@ interface LoadTestAdministration {
   @patch
   CreateOrUpdateTest is Azure.Core.Foundations.Operation<
     {
-      @header contentType: "application/merge-patch+json",
+      @header contentType: "application/merge-patch+json";
+
       @doc("""
-Unique name for the load test, must contain only lower-case alphabetic,
-numeric, underscore or hyphen characters.
-""")
+        Unique name for the load test, must contain only lower-case alphabetic,
+        numeric, underscore or hyphen characters.
+        """)
       @path
       testId: string;
 
@@ -34,13 +35,13 @@ numeric, underscore or hyphen characters.
   @summary("Delete a test by its name.")
   @doc("Delete a test by its name.")
   @route("/tests/{testId}")
-  @delete 
+  @delete
   DeleteTest is Azure.Core.Foundations.Operation<
     {
       @doc("""
-Unique name for the load test, must contain only lower-case alphabetic,
-numeric, underscore or hyphen characters.
-""")
+        Unique name for the load test, must contain only lower-case alphabetic,
+        numeric, underscore or hyphen characters.
+        """)
       @path
       testId: string;
     },
@@ -54,9 +55,9 @@ numeric, underscore or hyphen characters.
   GetTest is Azure.Core.Foundations.Operation<
     {
       @doc("""
-Unique name for the load test, must contain only lower-case alphabetic,
-numeric, underscore or hyphen characters.
-""")
+        Unique name for the load test, must contain only lower-case alphabetic,
+        numeric, underscore or hyphen characters.
+        """)
       @path
       testId: string;
     },
@@ -64,43 +65,44 @@ numeric, underscore or hyphen characters.
   >;
 
   @summary("""
-Get all load tests by the fully qualified resource Id e.g
-subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName}.
-""")
+    Get all load tests by the fully qualified resource Id e.g
+    subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName}.
+    """)
   @doc("""
-Get all load tests by the fully qualified resource Id e.g
-subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName}.
-""")
+    Get all load tests by the fully qualified resource Id e.g
+    subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName}.
+    """)
   @route("/tests")
   @get
+  @list
   ListTests is Azure.Core.Foundations.Operation<
     {
       @doc("""
-Sort on the supported fields in (field asc/desc) format. eg:
-lastModifiedDateTime asc. Supported fields - lastModifiedDateTime
-""")
+        Sort on the supported fields in (field asc/desc) format. eg:
+        lastModifiedDateTime asc. Supported fields - lastModifiedDateTime
+        """)
       @query
       orderby?: string;
 
       @doc("""
-Prefix based, case sensitive search on searchable fields - displayName,
-createdBy. For example, to search for a test, with display name is Login Test,
-the search parameter can be Login.
-""")
+        Prefix based, case sensitive search on searchable fields - displayName,
+        createdBy. For example, to search for a test, with display name is Login Test,
+        the search parameter can be Login.
+        """)
       @query
       search?: string;
 
       @doc("""
-Start DateTime(ISO 8601 literal format) of the last updated time range to
-filter tests.
-""")
+        Start DateTime(ISO 8601 literal format) of the last updated time range to
+        filter tests.
+        """)
       @query
       lastModifiedStartTime?: offsetDateTime;
 
       @doc("""
-End DateTime(ISO 8601 literal format) of the last updated time range to filter
-tests.
-""")
+        End DateTime(ISO 8601 literal format) of the last updated time range to filter
+        tests.
+        """)
       @query
       lastModifiedEndTime?: offsetDateTime;
 
@@ -112,24 +114,25 @@ tests.
   >;
 
   @summary("""
-Upload input file for a given test name. File size can't be more than 50 MB.
-Existing file with same name for the given test will be overwritten. File
-should be provided in the request body as application/octet-stream.
-""")
+    Upload input file for a given test name. File size can't be more than 50 MB.
+    Existing file with same name for the given test will be overwritten. File
+    should be provided in the request body as application/octet-stream.
+    """)
   @doc("""
-Upload input file for a given test name. File size can't be more than 50 MB.
-Existing file with same name for the given test will be overwritten. File
-should be provided in the request body as application/octet-stream.
-""")
+    Upload input file for a given test name. File size can't be more than 50 MB.
+    Existing file with same name for the given test will be overwritten. File
+    should be provided in the request body as application/octet-stream.
+    """)
   @route("/tests/{testId}/files/{fileName}")
   @put
   UploadTestFile is Azure.Core.Foundations.Operation<
     {
-      @header contentType: "application/octet-stream",
+      @header contentType: "application/octet-stream";
+
       @doc("""
-Unique name for the load test, must contain only lower-case alphabetic,
-numeric, underscore or hyphen characters.
-""")
+        Unique name for the load test, must contain only lower-case alphabetic,
+        numeric, underscore or hyphen characters.
+        """)
       @path
       testId: string;
 
@@ -155,9 +158,9 @@ numeric, underscore or hyphen characters.
   GetTestFile is Azure.Core.Foundations.Operation<
     {
       @doc("""
-Unique name for the load test, must contain only lower-case alphabetic,
-numeric, underscore or hyphen characters.
-""")
+        Unique name for the load test, must contain only lower-case alphabetic,
+        numeric, underscore or hyphen characters.
+        """)
       @path
       testId: string;
 
@@ -175,9 +178,9 @@ numeric, underscore or hyphen characters.
   DeleteTestFile is Azure.Core.Foundations.Operation<
     {
       @doc("""
-Unique name for the load test, must contain only lower-case alphabetic,
-numeric, underscore or hyphen characters.
-""")
+        Unique name for the load test, must contain only lower-case alphabetic,
+        numeric, underscore or hyphen characters.
+        """)
       @path
       testId: string;
 
@@ -192,12 +195,13 @@ numeric, underscore or hyphen characters.
   @doc("Get all test files.")
   @route("/tests/{testId}/files")
   @get
+  @list
   ListTestFiles is Azure.Core.Foundations.Operation<
     {
       @doc("""
-Unique name for the load test, must contain only lower-case alphabetic,
-numeric, underscore or hyphen characters.
-""")
+        Unique name for the load test, must contain only lower-case alphabetic,
+        numeric, underscore or hyphen characters.
+        """)
       @path
       testId: string;
     },
@@ -210,11 +214,12 @@ numeric, underscore or hyphen characters.
   @patch
   CreateOrUpdateAppComponents is Azure.Core.Foundations.Operation<
     {
-      @header contentType: "application/merge-patch+json",
+      @header contentType: "application/merge-patch+json";
+
       @doc("""
-Unique name for the load test, must contain only lower-case alphabetic,
-numeric, underscore or hyphen characters.
-""")
+        Unique name for the load test, must contain only lower-case alphabetic,
+        numeric, underscore or hyphen characters.
+        """)
       @path
       testId: string;
 
@@ -232,9 +237,9 @@ numeric, underscore or hyphen characters.
   GetAppComponents is Azure.Core.Foundations.Operation<
     {
       @doc("""
-Unique name for the load test, must contain only lower-case alphabetic,
-numeric, underscore or hyphen characters.
-""")
+        Unique name for the load test, must contain only lower-case alphabetic,
+        numeric, underscore or hyphen characters.
+        """)
       @path
       testId: string;
     },
@@ -247,11 +252,12 @@ numeric, underscore or hyphen characters.
   @patch
   CreateOrUpdateServerMetricsConfig is Azure.Core.Foundations.Operation<
     {
-      @header contentType: "application/merge-patch+json",
+      @header contentType: "application/merge-patch+json";
+
       @doc("""
-Unique name for the load test, must contain only lower-case alphabetic,
-numeric, underscore or hyphen characters.
-""")
+        Unique name for the load test, must contain only lower-case alphabetic,
+        numeric, underscore or hyphen characters.
+        """)
       @path
       testId: string;
 
@@ -269,9 +275,9 @@ numeric, underscore or hyphen characters.
   GetServerMetricsConfig is Azure.Core.Foundations.Operation<
     {
       @doc("""
-Unique name for the load test, must contain only lower-case alphabetic,
-numeric, underscore or hyphen characters.
-""")
+        Unique name for the load test, must contain only lower-case alphabetic,
+        numeric, underscore or hyphen characters.
+        """)
       @path
       testId: string;
     },
@@ -287,9 +293,9 @@ interface LoadTestRun {
   DeleteTestRun is Azure.Core.Foundations.Operation<
     {
       @doc("""
-Unique name for the load test run, must contain only lower-case alphabetic,
-numeric, underscore or hyphen characters.
-""")
+        Unique name for the load test run, must contain only lower-case alphabetic,
+        numeric, underscore or hyphen characters.
+        """)
       @path
       testRunId: string;
     },
@@ -300,21 +306,18 @@ numeric, underscore or hyphen characters.
   @doc("Create and start a new test run with the given name.")
   // @pollingOperation(LoadTestRun.GetTestRun)
   CreateOrUpdateTestRun is LongRunningResourceCreateOrUpdate<
-  TestRun,
-  QueryParametersTrait<
-      {
-        @doc("""
-      Existing test run identifier that should be rerun, if this is provided, the
-      test will run with the JMX file, configuration and app components from the
-      existing test run. You can override the configuration values for new test run
-      in the request body.
-      """)
-        @query
-        oldTestRunId?: string;
-      }
-    >
+    TestRun,
+    QueryParametersTrait<{
+      @doc("""
+        Existing test run identifier that should be rerun, if this is provided, the
+        test will run with the JMX file, configuration and app components from the
+        existing test run. You can override the configuration values for new test run
+        in the request body.
+        """)
+      @query
+      oldTestRunId?: string;
+    }>
   >;
-
 
   @summary("Get test run details by name.")
   @doc("Get test run details by name.")
@@ -323,9 +326,9 @@ numeric, underscore or hyphen characters.
   GetTestRun is Azure.Core.Foundations.Operation<
     {
       @doc("""
-Unique name for the load test run, must contain only lower-case alphabetic,
-numeric, underscore or hyphen characters.
-""")
+        Unique name for the load test run, must contain only lower-case alphabetic,
+        numeric, underscore or hyphen characters.
+        """)
       @path
       testRunId: string;
     },
@@ -339,9 +342,9 @@ numeric, underscore or hyphen characters.
   GetTestRunFile is Azure.Core.Foundations.Operation<
     {
       @doc("""
-Unique name for the load test run, must contain only lower-case alphabetic,
-numeric, underscore or hyphen characters.
-""")
+        Unique name for the load test run, must contain only lower-case alphabetic,
+        numeric, underscore or hyphen characters.
+        """)
       @path
       testRunId: string;
 
@@ -356,20 +359,21 @@ numeric, underscore or hyphen characters.
   @doc("Get all test runs with given filters")
   @route("/test-runs")
   @get
+  @list
   ListTestRuns is Azure.Core.Foundations.Operation<
     {
       @doc("""
-Sort on the supported fields in (field asc/desc) format. eg: executedDateTime
-asc. Supported fields - executedDateTime
-""")
+        Sort on the supported fields in (field asc/desc) format. eg: executedDateTime
+        asc. Supported fields - executedDateTime
+        """)
       @query
       orderby?: string;
 
       @doc("""
-Prefix based, case sensitive search on searchable fields - description,
-executedUser. For example, to search for a test run, with description 500 VUs,
-the search parameter can be 500.
-""")
+        Prefix based, case sensitive search on searchable fields - description,
+        executedUser. For example, to search for a test run, with description 500 VUs,
+        the search parameter can be 500.
+        """)
       @query
       search?: string;
 
@@ -403,9 +407,9 @@ the search parameter can be 500.
   StopTestRun is Azure.Core.Foundations.Operation<
     {
       @doc("""
-Unique name for the load test run, must contain only lower-case alphabetic,
-numeric, underscore or hyphen characters.
-""")
+        Unique name for the load test run, must contain only lower-case alphabetic,
+        numeric, underscore or hyphen characters.
+        """)
       @path
       testRunId: string;
     },
@@ -419,9 +423,9 @@ numeric, underscore or hyphen characters.
   ListMetricNamespaces is Azure.Core.Foundations.Operation<
     {
       @doc("""
-Unique name for the load test run, must contain only lower-case alphabetic,
-numeric, underscore or hyphen characters.
-""")
+        Unique name for the load test run, must contain only lower-case alphabetic,
+        numeric, underscore or hyphen characters.
+        """)
       @path
       testRunId: string;
     },
@@ -435,9 +439,9 @@ numeric, underscore or hyphen characters.
   ListMetricDefinitions is Azure.Core.Foundations.Operation<
     {
       @doc("""
-Unique name for the load test run, must contain only lower-case alphabetic,
-numeric, underscore or hyphen characters.
-""")
+        Unique name for the load test run, must contain only lower-case alphabetic,
+        numeric, underscore or hyphen characters.
+        """)
       @path
       testRunId: string;
 
@@ -452,12 +456,13 @@ numeric, underscore or hyphen characters.
   @doc("List the metric values for a load test run.")
   @route("/test-runs/{testRunId}/metrics")
   @post
+  @list
   ListMetrics is Azure.Core.Foundations.Operation<
     {
       @doc("""
-Unique name for the load test run, must contain only lower-case alphabetic,
-numeric, underscore or hyphen characters.
-""")
+        Unique name for the load test run, must contain only lower-case alphabetic,
+        numeric, underscore or hyphen characters.
+        """)
       @path
       testRunId: string;
 
@@ -478,9 +483,9 @@ numeric, underscore or hyphen characters.
       metricNamespace?: string;
 
       @doc("""
-The timespan of the query. It is a string with the following format
-'startDateTime_ISO/endDateTime_ISO'.
-""")
+        The timespan of the query. It is a string with the following format
+        'startDateTime_ISO/endDateTime_ISO'.
+        """)
       @query
       timespan?: string;
 
@@ -494,7 +499,8 @@ The timespan of the query. It is a string with the following format
   @summary("List the dimension values for the given metric dimension name.")
   @doc("List the dimension values for the given metric dimension name.")
   ListMetricDimensionValues is Azure.Core.ResourceList<
-    DimensionValueList, QueryParametersTrait<MetricDimensions>
+    DimensionValueList,
+    QueryParametersTrait<MetricDimensions>
   >;
 
   @summary("Associate an app component (collection of azure resources) to a test run")
@@ -503,11 +509,12 @@ The timespan of the query. It is a string with the following format
   @patch
   CreateOrUpdateAppComponents is Azure.Core.Foundations.Operation<
     {
-      @header contentType: "application/merge-patch+json",
+      @header contentType: "application/merge-patch+json";
+
       @doc("""
-Unique name for the load test run, must contain only lower-case alphabetic,
-numeric, underscore or hyphen characters.
-""")
+        Unique name for the load test run, must contain only lower-case alphabetic,
+        numeric, underscore or hyphen characters.
+        """)
       @path
       testRunId: string;
 
@@ -519,21 +526,21 @@ numeric, underscore or hyphen characters.
   >;
 
   @summary("""
-Get associated app component (collection of azure resources) for the given test
-run.
-""")
+    Get associated app component (collection of azure resources) for the given test
+    run.
+    """)
   @doc("""
-Get associated app component (collection of azure resources) for the given test
-run.
-""")
+    Get associated app component (collection of azure resources) for the given test
+    run.
+    """)
   @route("/test-runs/{testRunId}/app-components")
   @get
   GetAppComponents is Azure.Core.Foundations.Operation<
     {
       @doc("""
-Unique name for the load test run, must contain only lower-case alphabetic,
-numeric, underscore or hyphen characters.
-""")
+        Unique name for the load test run, must contain only lower-case alphabetic,
+        numeric, underscore or hyphen characters.
+        """)
       @path
       testRunId: string;
     },
@@ -546,11 +553,12 @@ numeric, underscore or hyphen characters.
   @patch
   CreateOrUpdateServerMetricsConfig is Azure.Core.Foundations.Operation<
     {
-      @header contentType: "application/merge-patch+json",
+      @header contentType: "application/merge-patch+json";
+
       @doc("""
-Unique name for the load test run, must contain only lower-case alphabetic,
-numeric, underscore or hyphen characters.
-""")
+        Unique name for the load test run, must contain only lower-case alphabetic,
+        numeric, underscore or hyphen characters.
+        """)
       @path
       testRunId: string;
 
@@ -569,12 +577,12 @@ numeric, underscore or hyphen characters.
   GetServerMetricsConfig is Azure.Core.Foundations.Operation<
     {
       @doc("""
-Unique name for the load test run, must contain only lower-case alphabetic,
-numeric, underscore or hyphen characters.
-""")
+        Unique name for the load test run, must contain only lower-case alphabetic,
+        numeric, underscore or hyphen characters.
+        """)
       @path
       testRunId: string;
     },
     TestRunServerMetricConfig
   >;
-};
+}

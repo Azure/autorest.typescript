@@ -1,34 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  CodeInterpreterToolDefinition,
-  FileSearchToolDefinition,
-  ThreadStreamEvent,
-  RunStreamEvent,
-  RunStepStreamEvent,
-  MessageStreamEvent,
-  ErrorEvent,
-  DoneEvent,
-} from "./agents/models.js";
-
-/** Alias for _MessageAttachmentTool */
-export type _MessageAttachmentTool =
-  | CodeInterpreterToolDefinition
-  | FileSearchToolDefinition;
-
-export function _messageAttachmentToolSerializer(
-  item: _MessageAttachmentTool,
-): any {
-  return item;
-}
-
-export function _messageAttachmentToolDeserializer(
-  item: any,
-): _MessageAttachmentTool {
-  return item;
-}
-
 /** Response from the Workspace - Get operation */
 export interface GetWorkspaceResponse {
   /** A unique identifier for the resource */
@@ -795,15 +767,6 @@ export function evaluationScheduleArrayDeserializer(
     return evaluationScheduleDeserializer(item);
   });
 }
-
-/** Alias for _ */
-export type _ =
-  | ThreadStreamEvent
-  | RunStreamEvent
-  | RunStepStreamEvent
-  | MessageStreamEvent
-  | ErrorEvent
-  | DoneEvent;
 
 /** Azure AI API versions */
 export enum KnownVersions {
