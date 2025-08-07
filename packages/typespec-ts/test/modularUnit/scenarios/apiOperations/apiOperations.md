@@ -419,7 +419,7 @@ export async function downloadFile(
 }
 ```
 
-# skip: should handle contentTypes has multiple form data with part array in response and pending tcgc https://github.com/Azure/typespec-azure/issues/3091
+# should handle contentTypes has multiple form data with part array in response
 
 ## TypeSpec
 
@@ -510,7 +510,7 @@ export async function downloadFile(
 }
 ```
 
-# skip: should handle contentTypes has multiple form data with array part in response and pending tcgc https://github.com/Azure/typespec-azure/issues/3091
+# should handle contentTypes has multiple form data with array part in response
 
 ## TypeSpec
 
