@@ -1,4 +1,4 @@
-# only: generate constant type model
+# only: Test generate model
 
 ## TypeSpec
 
