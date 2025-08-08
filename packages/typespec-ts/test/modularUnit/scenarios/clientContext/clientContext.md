@@ -174,7 +174,7 @@ export interface ServiceClientOptionalParams extends ClientOptions {
 export function createService(
   options: ServiceClientOptionalParams = {},
 ): ServiceContext {
-  const endpointParam = options.endpointParam ?? "http://localhost:3000";
+  const endpointParam = "http://localhost:3000";
   const clientParam = options.clientParam ?? "default";
   const endpointUrl =
     options.endpoint ?? `${endpointParam}/client/structure/${clientParam}`;

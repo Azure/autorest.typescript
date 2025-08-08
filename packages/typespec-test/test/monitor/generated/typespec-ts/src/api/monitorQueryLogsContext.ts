@@ -21,7 +21,7 @@ export function createMonitorQueryLogs(
   credential: TokenCredential,
   options: MonitorQueryLogsClientOptionalParams = {},
 ): MonitorQueryLogsContext {
-  const endpointParam = options.endpointParam ?? "https://api.loganalytics.io";
+  const endpointParam = "https://api.loganalytics.io";
   const apiVersion = options.apiVersion ?? "v1";
   const endpointUrl = options.endpoint ?? `${endpointParam}/${apiVersion}`;
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
