@@ -233,12 +233,12 @@ importers:
   ../../packages/typespec-ts:
     specifiers:
       '@azure-rest/core-client': ^2.3.1
-      '@azure-tools/azure-http-specs': 0.1.0-alpha.25-dev.2
+      '@azure-tools/azure-http-specs': 0.1.0-alpha.26-dev.1
       '@azure-tools/rlc-common': workspace:^0.42.1
       '@azure-tools/typespec-autorest': ^0.59.0-dev.2
-      '@azure-tools/typespec-azure-core': ^0.59.0-dev.8
+      '@azure-tools/typespec-azure-core': ^0.60.0-dev.0
       '@azure-tools/typespec-azure-resource-manager': ^0.59.0-dev.7
-      '@azure-tools/typespec-client-generator-core': ^0.59.0-dev.10
+      '@azure-tools/typespec-client-generator-core': ^0.60.0-dev.0
       '@azure/abort-controller': ^2.1.2
       '@azure/core-auth': ^1.6.0
       '@azure/core-lro': ^3.1.0
@@ -255,16 +255,16 @@ importers:
       '@types/node': ^18.0.0
       '@typescript-eslint/eslint-plugin': ^8.28.0
       '@typescript-eslint/parser': ^8.28.0
-      '@typespec/compiler': ^1.3.0-dev.10
-      '@typespec/http': ^1.3.0-dev.4
-      '@typespec/http-specs': 0.1.0-alpha.25-dev.1
+      '@typespec/compiler': ^1.3.0
+      '@typespec/http': ^1.3.0
+      '@typespec/http-specs': 0.1.0-alpha.26-dev.0
       '@typespec/openapi': ^1.3.0-dev.2
-      '@typespec/rest': ^0.73.0-dev.2
-      '@typespec/spec-api': 0.1.0-alpha.8-dev.1
-      '@typespec/spector': 0.1.0-alpha.17-dev.1
+      '@typespec/rest': ^0.73.0
+      '@typespec/spec-api': 0.1.0-alpha.9-dev.0
+      '@typespec/spector': 0.1.0-alpha.18-dev.0
       '@typespec/ts-http-runtime': ^0.1.0
       '@typespec/tspd': 0.72.1
-      '@typespec/versioning': ^0.73.0-dev.3
+      '@typespec/versioning': ^0.73.0
       '@typespec/xml': ^0.73.0-dev.2
       '@vitest/coverage-istanbul': ~1.6.0
       '@vitest/coverage-v8': ~1.6.0
@@ -289,7 +289,7 @@ importers:
       vitest: ~1.6.0
     dependencies:
       '@azure-tools/rlc-common': link:../rlc-common
-      '@typespec/xml': 0.73.0-dev.2_bl4263k53kgzhhxqpidfkgyiyu
+      '@typespec/xml': 0.73.0-dev.2_@typespec+compiler@1.3.0
       fs-extra: 11.1.1
       lodash: 4.17.21
       prettier: 3.3.3
@@ -297,11 +297,11 @@ importers:
       tslib: 2.6.2
     devDependencies:
       '@azure-rest/core-client': 2.3.1
-      '@azure-tools/azure-http-specs': 0.1.0-alpha.25-dev.2_g3bhsmo6egpvaokndq5czi7woi
-      '@azure-tools/typespec-autorest': 0.59.0-dev.2_aortplmrq4ztgga3n6wxeann3u
-      '@azure-tools/typespec-azure-core': 0.59.0-dev.8_jnsortdvjd2jmnkrt4ngcjugha
-      '@azure-tools/typespec-azure-resource-manager': 0.59.0-dev.7_in44itofgzaqfdi6py6n2ver6u
-      '@azure-tools/typespec-client-generator-core': 0.59.0-dev.10_glt6c6ofd327ixc37scjza76ca
+      '@azure-tools/azure-http-specs': 0.1.0-alpha.26-dev.1_r2gtzuiwiolbo67z6rv7fgqdbu
+      '@azure-tools/typespec-autorest': 0.59.0-dev.2_sb6z3igiyuju5zzs74ai76cnyq
+      '@azure-tools/typespec-azure-core': 0.60.0-dev.0_wbkhwusqfbhwj6vtccrpbvygxy
+      '@azure-tools/typespec-azure-resource-manager': 0.59.0-dev.7_dslzzpfe4zpjxgdriyxm3spope
+      '@azure-tools/typespec-client-generator-core': 0.60.0-dev.0_4boqtybtvpnwkdefeuuaqxxap4
       '@azure/abort-controller': 2.1.2
       '@azure/core-auth': 1.6.0
       '@azure/core-lro': 3.1.0
@@ -318,16 +318,16 @@ importers:
       '@types/node': 18.18.0
       '@typescript-eslint/eslint-plugin': 8.29.1_riayye3vh5qrrjmyfknhspw5ue
       '@typescript-eslint/parser': 8.29.1_rpfclszkijpquoieshhobbfaz4
-      '@typespec/compiler': 1.3.0-dev.11_@types+node@18.18.0
-      '@typespec/http': 1.3.0-dev.4_mutdxbvwkx4d3xrahbuohxfbmy
-      '@typespec/http-specs': 0.1.0-alpha.25-dev.1_4xdl4kmtnqjl4hcmyxicix2zhm
-      '@typespec/openapi': 1.3.0-dev.2_oayjcujlgv3xqri4ivdfbzng5e
-      '@typespec/rest': 0.73.0-dev.2_oayjcujlgv3xqri4ivdfbzng5e
-      '@typespec/spec-api': 0.1.0-alpha.8-dev.1
-      '@typespec/spector': 0.1.0-alpha.17-dev.1_wpxuyqhhdtidiffy7l7f4mcptq
+      '@typespec/compiler': 1.3.0_@types+node@18.18.0
+      '@typespec/http': 1.3.0_2rlkgsklgxys7wsqhei52pdciq
+      '@typespec/http-specs': 0.1.0-alpha.26-dev.0_jutmrnvlzdsc2h24i3sak3tpee
+      '@typespec/openapi': 1.3.0-dev.2_j75uajsb6u7bhlfp5ugmoregpi
+      '@typespec/rest': 0.73.0_j75uajsb6u7bhlfp5ugmoregpi
+      '@typespec/spec-api': 0.1.0-alpha.9-dev.0
+      '@typespec/spector': 0.1.0-alpha.18-dev.0_yom3dji4y26epramn64wnkctze
       '@typespec/ts-http-runtime': 0.1.0
       '@typespec/tspd': 0.72.1_fdq2o2ihilbuf6apz2rnzqg2vm
-      '@typespec/versioning': 0.73.0-dev.3_bl4263k53kgzhhxqpidfkgyiyu
+      '@typespec/versioning': 0.73.0_@typespec+compiler@1.3.0
       '@vitest/coverage-istanbul': 1.6.0_vitest@1.6.0
       '@vitest/coverage-v8': 1.6.0_vitest@1.6.0
       chai: 4.3.8
@@ -473,25 +473,25 @@ packages:
       proper-lockfile: 2.0.1
     dev: false
 
-  /@azure-tools/azure-http-specs/0.1.0-alpha.25-dev.2_g3bhsmo6egpvaokndq5czi7woi:
-    resolution: {integrity: sha512-rDI1mf0i+LFcLF3L6YrGuU/EWvS/cII6wE8zTRfJMYHvvBPR2EjD4Uz7RoH04CiGJw1DV7w0OfIOWFTFH6rc/A==}
+  /@azure-tools/azure-http-specs/0.1.0-alpha.26-dev.1_r2gtzuiwiolbo67z6rv7fgqdbu:
+    resolution: {integrity: sha512-7BqP5nF1yC8TScfCnEHlG/ZbRve0j6LFvhVhr0NrzRfKjXs21yOjEruV2qYIY9opVsSZyHOY/znFx+KNHoPp8w==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
-      '@azure-tools/typespec-azure-core': ^0.58.0 || >=0.59.0-dev <0.59.0
-      '@typespec/compiler': ^1.2.1
-      '@typespec/http': ^1.2.1
-      '@typespec/rest': ^0.72.1 || >=0.73.0-dev <0.73.0
-      '@typespec/versioning': ^0.72.1 || >=0.73.0-dev <0.73.0
-      '@typespec/xml': ^0.72.1 || >=0.73.0-dev <0.73.0
+      '@azure-tools/typespec-azure-core': ^0.59.0 || >=0.60.0-dev <0.60.0
+      '@typespec/compiler': ^1.3.0
+      '@typespec/http': ^1.3.0
+      '@typespec/rest': ^0.73.0 || >=0.74.0-dev <0.74.0
+      '@typespec/versioning': ^0.73.0 || >=0.74.0-dev <0.74.0
+      '@typespec/xml': ^0.73.0 || >=0.74.0-dev <0.74.0
     dependencies:
-      '@azure-tools/typespec-azure-core': 0.59.0-dev.8_jnsortdvjd2jmnkrt4ngcjugha
-      '@typespec/compiler': 1.3.0-dev.11_@types+node@18.18.0
-      '@typespec/http': 1.3.0-dev.4_mutdxbvwkx4d3xrahbuohxfbmy
-      '@typespec/rest': 0.73.0-dev.2_oayjcujlgv3xqri4ivdfbzng5e
-      '@typespec/spec-api': 0.1.0-alpha.8-dev.1
-      '@typespec/spector': 0.1.0-alpha.17-dev.1_wpxuyqhhdtidiffy7l7f4mcptq
-      '@typespec/versioning': 0.73.0-dev.3_bl4263k53kgzhhxqpidfkgyiyu
-      '@typespec/xml': 0.73.0-dev.2_bl4263k53kgzhhxqpidfkgyiyu
+      '@azure-tools/typespec-azure-core': 0.60.0-dev.0_wbkhwusqfbhwj6vtccrpbvygxy
+      '@typespec/compiler': 1.3.0_@types+node@18.18.0
+      '@typespec/http': 1.3.0_2rlkgsklgxys7wsqhei52pdciq
+      '@typespec/rest': 0.73.0_j75uajsb6u7bhlfp5ugmoregpi
+      '@typespec/spec-api': 0.1.0-alpha.9-dev.0
+      '@typespec/spector': 0.1.0-alpha.18-dev.0_yom3dji4y26epramn64wnkctze
+      '@typespec/versioning': 0.73.0_@typespec+compiler@1.3.0
+      '@typespec/xml': 0.73.0-dev.2_@typespec+compiler@1.3.0
     transitivePeerDependencies:
       - '@types/node'
       - '@typespec/streams'
@@ -545,6 +545,30 @@ packages:
       '@typespec/openapi': 1.3.0-dev.2_oayjcujlgv3xqri4ivdfbzng5e
       '@typespec/rest': 0.73.0-dev.2_oayjcujlgv3xqri4ivdfbzng5e
       '@typespec/versioning': 0.73.0-dev.3_bl4263k53kgzhhxqpidfkgyiyu
+    dev: false
+
+  /@azure-tools/typespec-autorest/0.59.0-dev.2_sb6z3igiyuju5zzs74ai76cnyq:
+    resolution: {integrity: sha512-8kaKwMuNoWW9TXmPnopULK4SGnMb0LSHchtXwiBmFdXFbRf9Q3W+FRoj2xXZJgSkLTkOAxa46mlR83hkX6wSNQ==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      '@azure-tools/typespec-azure-core': ^0.58.0 || >=0.59.0-dev <0.59.0
+      '@azure-tools/typespec-azure-resource-manager': ^0.58.1 || >=0.59.0-dev <0.59.0
+      '@azure-tools/typespec-client-generator-core': ^0.58.0 || >=0.59.0-dev <0.59.0
+      '@typespec/compiler': ^1.2.1
+      '@typespec/http': ^1.2.1
+      '@typespec/openapi': ^1.2.1
+      '@typespec/rest': ^0.72.1 || >=0.73.0-dev <0.73.0
+      '@typespec/versioning': ^0.72.1 || >=0.73.0-dev <0.73.0
+    dependencies:
+      '@azure-tools/typespec-azure-core': 0.60.0-dev.0_wbkhwusqfbhwj6vtccrpbvygxy
+      '@azure-tools/typespec-azure-resource-manager': 0.59.0-dev.7_dslzzpfe4zpjxgdriyxm3spope
+      '@azure-tools/typespec-client-generator-core': 0.60.0-dev.0_4boqtybtvpnwkdefeuuaqxxap4
+      '@typespec/compiler': 1.3.0_@types+node@18.18.0
+      '@typespec/http': 1.3.0_2rlkgsklgxys7wsqhei52pdciq
+      '@typespec/openapi': 1.3.0-dev.2_j75uajsb6u7bhlfp5ugmoregpi
+      '@typespec/rest': 0.73.0_j75uajsb6u7bhlfp5ugmoregpi
+      '@typespec/versioning': 0.73.0_@typespec+compiler@1.3.0
+    dev: true
 
   /@azure-tools/typespec-azure-core/0.59.0-dev.8_jnsortdvjd2jmnkrt4ngcjugha:
     resolution: {integrity: sha512-cz45XVHueDu9/V20v6PJNQy1j9qoudUVJQlLF/4zaMKWV4piEs6Op40rXMP6ZkAiW94HqNlKQk3zZ0aSS4VgYg==}
@@ -557,6 +581,41 @@ packages:
       '@typespec/compiler': 1.3.0-dev.11_@types+node@18.18.0
       '@typespec/http': 1.3.0-dev.4_mutdxbvwkx4d3xrahbuohxfbmy
       '@typespec/rest': 0.73.0-dev.2_oayjcujlgv3xqri4ivdfbzng5e
+    dev: false
+
+  /@azure-tools/typespec-azure-core/0.60.0-dev.0_wbkhwusqfbhwj6vtccrpbvygxy:
+    resolution: {integrity: sha512-ycSZMP9bJbxIoET/BU0C7LaKCYEbEGUSo20gMdVozBWEN3uCVOWxPT9XW11AU6h/wSk/YDlpxPgvEHSztzz7Vg==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      '@typespec/compiler': ^1.3.0
+      '@typespec/http': ^1.3.0
+      '@typespec/rest': ^0.73.0 || >=0.74.0-dev <0.74.0
+    dependencies:
+      '@typespec/compiler': 1.3.0_@types+node@18.18.0
+      '@typespec/http': 1.3.0_2rlkgsklgxys7wsqhei52pdciq
+      '@typespec/rest': 0.73.0_j75uajsb6u7bhlfp5ugmoregpi
+    dev: true
+
+  /@azure-tools/typespec-azure-resource-manager/0.59.0-dev.7_dslzzpfe4zpjxgdriyxm3spope:
+    resolution: {integrity: sha512-XAvPK7ss1E7VvRNKEh+AaRjJJr8J3G5lOxrqD2vbuJRmhQxoymkOwkuMojQEjJ7DOiTf9nGmtbhFN/R3u0alZQ==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      '@azure-tools/typespec-azure-core': ^0.58.0 || >=0.59.0-dev <0.59.0
+      '@typespec/compiler': ^1.2.1
+      '@typespec/http': ^1.2.1
+      '@typespec/openapi': ^1.2.1
+      '@typespec/rest': ^0.72.1 || >=0.73.0-dev <0.73.0
+      '@typespec/versioning': ^0.72.1 || >=0.73.0-dev <0.73.0
+    dependencies:
+      '@azure-tools/typespec-azure-core': 0.60.0-dev.0_wbkhwusqfbhwj6vtccrpbvygxy
+      '@typespec/compiler': 1.3.0_@types+node@18.18.0
+      '@typespec/http': 1.3.0_2rlkgsklgxys7wsqhei52pdciq
+      '@typespec/openapi': 1.3.0-dev.2_j75uajsb6u7bhlfp5ugmoregpi
+      '@typespec/rest': 0.73.0_j75uajsb6u7bhlfp5ugmoregpi
+      '@typespec/versioning': 0.73.0_@typespec+compiler@1.3.0
+      change-case: 5.4.4
+      pluralize: 8.0.0
+    dev: true
 
   /@azure-tools/typespec-azure-resource-manager/0.59.0-dev.7_in44itofgzaqfdi6py6n2ver6u:
     resolution: {integrity: sha512-XAvPK7ss1E7VvRNKEh+AaRjJJr8J3G5lOxrqD2vbuJRmhQxoymkOwkuMojQEjJ7DOiTf9nGmtbhFN/R3u0alZQ==}
@@ -577,6 +636,7 @@ packages:
       '@typespec/versioning': 0.73.0-dev.3_bl4263k53kgzhhxqpidfkgyiyu
       change-case: 5.4.4
       pluralize: 8.0.0
+    dev: false
 
   /@azure-tools/typespec-azure-rulesets/0.59.0-dev.1_hdmvltwcbrhsmra6ib4fqengay:
     resolution: {integrity: sha512-eF24I56aGFZQw7ckYbpz7HTlPAILlzwz0ObdntwrdyO1oGfBDzhFC/Wg7EdH7o/eDQgQW7/R109+a2ObWKGhew==}
@@ -621,6 +681,37 @@ packages:
       change-case: 5.4.4
       pluralize: 8.0.0
       yaml: 2.8.0
+    dev: false
+
+  /@azure-tools/typespec-client-generator-core/0.60.0-dev.0_4boqtybtvpnwkdefeuuaqxxap4:
+    resolution: {integrity: sha512-WA5i6JlYFzooFZNBDKGIW1k0usb1TKp3v5682cC0DdJqNfLCBDQBnYpV5ohmoLDXTOEBlqItA6MBQYJFSICHfg==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      '@azure-tools/typespec-azure-core': ^0.59.0 || >=0.60.0-dev <0.60.0
+      '@typespec/compiler': ^1.3.0
+      '@typespec/events': ^0.73.0 || >=0.74.0-dev <0.74.0
+      '@typespec/http': ^1.3.0
+      '@typespec/openapi': ^1.3.0
+      '@typespec/rest': ^0.73.0 || >=0.74.0-dev <0.74.0
+      '@typespec/sse': ^0.73.0 || >=0.74.0-dev <0.74.0
+      '@typespec/streams': ^0.73.0 || >=0.74.0-dev <0.74.0
+      '@typespec/versioning': ^0.73.0 || >=0.74.0-dev <0.74.0
+      '@typespec/xml': ^0.73.0 || >=0.74.0-dev <0.74.0
+    dependencies:
+      '@azure-tools/typespec-azure-core': 0.60.0-dev.0_wbkhwusqfbhwj6vtccrpbvygxy
+      '@typespec/compiler': 1.3.0_@types+node@18.18.0
+      '@typespec/events': 0.73.0_@typespec+compiler@1.3.0
+      '@typespec/http': 1.3.0_2rlkgsklgxys7wsqhei52pdciq
+      '@typespec/openapi': 1.3.0-dev.2_j75uajsb6u7bhlfp5ugmoregpi
+      '@typespec/rest': 0.73.0_j75uajsb6u7bhlfp5ugmoregpi
+      '@typespec/sse': 0.73.0_znobsebr5mchrrouk63zaxxxkq
+      '@typespec/streams': 0.73.0_@typespec+compiler@1.3.0
+      '@typespec/versioning': 0.73.0_@typespec+compiler@1.3.0
+      '@typespec/xml': 0.73.0-dev.2_@typespec+compiler@1.3.0
+      change-case: 5.4.4
+      pluralize: 8.0.0
+      yaml: 2.8.0
+    dev: true
 
   /@azure/abort-controller/1.1.0:
     resolution: {integrity: sha512-TrRLIoSQVzfAJX9H1JeFjzAoDGcoK1IYX1UImfceTZpsyYfWr09Ss1aHW1y5TrrR3iq6RZLBwJ3E24uwPhwahw==}
@@ -2844,8 +2935,8 @@ packages:
       '@typespec/compiler': 1.3.0-dev.11_@types+node@18.18.0
     dev: false
 
-  /@typespec/compiler/1.2.1_@types+node@18.18.0:
-    resolution: {integrity: sha512-lUdHCRBPtianNN6QKt0G9qyyuSu7azbqKcYNimNLYQwrEIDcgSfQAUnoja9s+gtzCQQRzfbUZ8WLBC2b9cC81Q==}
+  /@typespec/compiler/1.3.0-dev.11_@types+node@18.18.0:
+    resolution: {integrity: sha512-0+jh5u/JKyiHClZfAgNuagIdN/0cR9B/3quKvBOdlDlOtO6V8phx7/pwzqjb4ZsQfG90Zovrj8HvBPzN6x/POQ==}
     engines: {node: '>=20.0.0'}
     hasBin: true
     dependencies:
@@ -2858,7 +2949,7 @@ packages:
       is-unicode-supported: 2.1.0
       mustache: 4.2.0
       picocolors: 1.1.1
-      prettier: 3.5.3
+      prettier: 3.6.2
       semver: 7.7.1
       tar: 7.4.3
       temporal-polyfill: 0.3.0
@@ -2868,10 +2959,10 @@ packages:
       yargs: 18.0.0
     transitivePeerDependencies:
       - '@types/node'
-    dev: true
+    dev: false
 
-  /@typespec/compiler/1.3.0-dev.11_@types+node@18.18.0:
-    resolution: {integrity: sha512-0+jh5u/JKyiHClZfAgNuagIdN/0cR9B/3quKvBOdlDlOtO6V8phx7/pwzqjb4ZsQfG90Zovrj8HvBPzN6x/POQ==}
+  /@typespec/compiler/1.3.0_@types+node@18.18.0:
+    resolution: {integrity: sha512-OqpoNP3C2y8riA6C5RofPMvmj9jNiGyyhde0tM2ZE7IBOv7BBaTDqw4CJD22YnC8JEilRfPmvdVCViNrPHEjrA==}
     engines: {node: '>=20.0.0'}
     hasBin: true
     dependencies:
@@ -2902,43 +2993,39 @@ packages:
       '@typespec/compiler': ^1.2.1
     dependencies:
       '@typespec/compiler': 1.3.0-dev.11_@types+node@18.18.0
+    dev: false
 
-  /@typespec/http-specs/0.1.0-alpha.25-dev.1_4xdl4kmtnqjl4hcmyxicix2zhm:
-    resolution: {integrity: sha512-PZwGcbDhCUBq5e/Gd0I1Hz73YHu/hwNnXEejnJ/q/MpHWyqjp/F9KV9FQAZxwE9PnJnSbHbEYrB4fXhFQtxbEw==}
+  /@typespec/events/0.73.0_@typespec+compiler@1.3.0:
+    resolution: {integrity: sha512-etlhp86amDaElD/UX27u9I4O58zREov73HkkV3xbdTWpv2RqOKyD3mkyGAWsW3hKaGVIxwHOvKcOZ2j+b07Gpw==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      '@typespec/compiler': ^1.3.0
+    dependencies:
+      '@typespec/compiler': 1.3.0_@types+node@18.18.0
+    dev: true
+
+  /@typespec/http-specs/0.1.0-alpha.26-dev.0_jutmrnvlzdsc2h24i3sak3tpee:
+    resolution: {integrity: sha512-tJ5V3/vKEgR8UacGO+tdbTf7jzJsaW37pTY/CbSj+zaLlhLTZyLwtlTAovOAg5C4MIIc+HjwvzyUGN0Tl502og==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@typespec/compiler': ^1.2.1
-      '@typespec/http': ^1.2.1
-      '@typespec/rest': ^0.72.1 || >=0.73.0-dev <0.73.0
-      '@typespec/versioning': ^0.72.1 || >=0.73.0-dev <0.73.0
-      '@typespec/xml': ^0.72.1 || >=0.73.0-dev <0.73.0
+      '@typespec/compiler': ^1.3.0
+      '@typespec/http': ^1.3.0
+      '@typespec/rest': ^0.73.0 || >=0.74.0-dev <0.74.0
+      '@typespec/versioning': ^0.73.0 || >=0.74.0-dev <0.74.0
+      '@typespec/xml': ^0.73.0 || >=0.74.0-dev <0.74.0
     dependencies:
-      '@typespec/compiler': 1.3.0-dev.11_@types+node@18.18.0
-      '@typespec/http': 1.3.0-dev.4_mutdxbvwkx4d3xrahbuohxfbmy
-      '@typespec/rest': 0.73.0-dev.2_oayjcujlgv3xqri4ivdfbzng5e
-      '@typespec/spec-api': 0.1.0-alpha.8-dev.1
-      '@typespec/spector': 0.1.0-alpha.17-dev.1_wpxuyqhhdtidiffy7l7f4mcptq
-      '@typespec/versioning': 0.73.0-dev.3_bl4263k53kgzhhxqpidfkgyiyu
-      '@typespec/xml': 0.73.0-dev.2_bl4263k53kgzhhxqpidfkgyiyu
+      '@typespec/compiler': 1.3.0_@types+node@18.18.0
+      '@typespec/http': 1.3.0_2rlkgsklgxys7wsqhei52pdciq
+      '@typespec/rest': 0.73.0_j75uajsb6u7bhlfp5ugmoregpi
+      '@typespec/spec-api': 0.1.0-alpha.9-dev.0
+      '@typespec/spector': 0.1.0-alpha.18-dev.0_yom3dji4y26epramn64wnkctze
+      '@typespec/versioning': 0.73.0_@typespec+compiler@1.3.0
+      '@typespec/xml': 0.73.0-dev.2_@typespec+compiler@1.3.0
       deep-equal: 2.2.2
     transitivePeerDependencies:
       - '@types/node'
       - '@typespec/streams'
       - supports-color
-    dev: true
-
-  /@typespec/http/1.2.1_himjuuw7iiyieosksmbpsccuwm:
-    resolution: {integrity: sha512-HEPHgVFO2oQL6uZCtpqnRYVZizfSu9BO6vAgdRl1FYJWD2G0f/A4/hK6LEgpyZP44k39M1xMSqVrll2KZ5zpnw==}
-    engines: {node: '>=20.0.0'}
-    peerDependencies:
-      '@typespec/compiler': ^1.2.1
-      '@typespec/streams': ^0.72.1
-    peerDependenciesMeta:
-      '@typespec/streams':
-        optional: true
-    dependencies:
-      '@typespec/compiler': 1.2.1_@types+node@18.18.0
-      '@typespec/streams': 0.72.1_bl4263k53kgzhhxqpidfkgyiyu
     dev: true
 
   /@typespec/http/1.3.0-dev.4_mutdxbvwkx4d3xrahbuohxfbmy:
@@ -2953,6 +3040,21 @@ packages:
     dependencies:
       '@typespec/compiler': 1.3.0-dev.11_@types+node@18.18.0
       '@typespec/streams': 0.72.1_bl4263k53kgzhhxqpidfkgyiyu
+    dev: false
+
+  /@typespec/http/1.3.0_2rlkgsklgxys7wsqhei52pdciq:
+    resolution: {integrity: sha512-4W3KsmBHZGgECVbvyh7S7KQG06948XyVVzae+UbVDDxoUj/x4Ry0AXw3q4HmzB2BVhxw6JBrwBuVa5mxjVMzdw==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      '@typespec/compiler': ^1.3.0
+      '@typespec/streams': ^0.73.0
+    peerDependenciesMeta:
+      '@typespec/streams':
+        optional: true
+    dependencies:
+      '@typespec/compiler': 1.3.0_@types+node@18.18.0
+      '@typespec/streams': 0.73.0_@typespec+compiler@1.3.0
+    dev: true
 
   /@typespec/json-schema/1.3.0-dev.2_bl4263k53kgzhhxqpidfkgyiyu:
     resolution: {integrity: sha512-CY6L6517NUeOMfRsZiig6dJXRUuOKAqfxB9spkI0oA+mTH1Z1V6kQ28ZqbzXR3ozVp4M31gJrS5u0kP6pxdElg==}
@@ -2965,6 +3067,17 @@ packages:
       yaml: 2.8.0
     dev: false
 
+  /@typespec/openapi/1.3.0-dev.2_j75uajsb6u7bhlfp5ugmoregpi:
+    resolution: {integrity: sha512-UNXKXAEXcQsPnfY1U6qXg7nied5aXfELhqRpfO5yqL3xusFQE4CPbxBBVxl+ag+TyHWExY70+xSHjCdes0Qn0Q==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      '@typespec/compiler': ^1.2.1
+      '@typespec/http': ^1.2.1
+    dependencies:
+      '@typespec/compiler': 1.3.0_@types+node@18.18.0
+      '@typespec/http': 1.3.0_2rlkgsklgxys7wsqhei52pdciq
+    dev: true
+
   /@typespec/openapi/1.3.0-dev.2_oayjcujlgv3xqri4ivdfbzng5e:
     resolution: {integrity: sha512-UNXKXAEXcQsPnfY1U6qXg7nied5aXfELhqRpfO5yqL3xusFQE4CPbxBBVxl+ag+TyHWExY70+xSHjCdes0Qn0Q==}
     engines: {node: '>=20.0.0'}
@@ -2974,6 +3087,7 @@ packages:
     dependencies:
       '@typespec/compiler': 1.3.0-dev.11_@types+node@18.18.0
       '@typespec/http': 1.3.0-dev.4_mutdxbvwkx4d3xrahbuohxfbmy
+    dev: false
 
   /@typespec/openapi3/1.3.0-dev.2_gao347xous65nxxoe27fhm7aje:
     resolution: {integrity: sha512-1YilvYO6tNaFWZc7I/iNny+odgVQcG5hhaHoBZP7WlQ/LzfIucwCwuyxvITWAswnWQn3WO0Nwoq8zfjyXJPVeg==}
@@ -3015,20 +3129,21 @@ packages:
     dependencies:
       '@typespec/compiler': 1.3.0-dev.11_@types+node@18.18.0
       '@typespec/http': 1.3.0-dev.4_mutdxbvwkx4d3xrahbuohxfbmy
+    dev: false
 
-  /@typespec/rest/0.73.0-dev.2_xnwldowg5q2d4dfu6jmcmttlgu:
-    resolution: {integrity: sha512-6IhF01hFaM/eoqhT8EBDcYX3mkj4BfTojDlAI60TrT+kgde+XsZHbM9cukEG7ZtJCW/FhLHLd8WkP+g5USY7Fg==}
+  /@typespec/rest/0.73.0_j75uajsb6u7bhlfp5ugmoregpi:
+    resolution: {integrity: sha512-28hgFGvreBg34Xuguw+E++pQC/kbRxy1Bpx/9nU7x87Ly6ykns3lpx74gjY9ByE8VYKVbXtC7lzdnp19DRSjIQ==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
-      '@typespec/compiler': ^1.2.1
-      '@typespec/http': ^1.2.1
+      '@typespec/compiler': ^1.3.0
+      '@typespec/http': ^1.3.0
     dependencies:
-      '@typespec/compiler': 1.2.1_@types+node@18.18.0
-      '@typespec/http': 1.2.1_himjuuw7iiyieosksmbpsccuwm
+      '@typespec/compiler': 1.3.0_@types+node@18.18.0
+      '@typespec/http': 1.3.0_2rlkgsklgxys7wsqhei52pdciq
     dev: true
 
-  /@typespec/spec-api/0.1.0-alpha.8-dev.1:
-    resolution: {integrity: sha512-DRIhj0bDuLgEj3ekbWO+3Q03xZTaqhhVv3qkI4KJ1TZzFeFXW1TMPUc2fJ97QZ++20KHdrQ8vKJMYPNDLITCJw==}
+  /@typespec/spec-api/0.1.0-alpha.9-dev.0:
+    resolution: {integrity: sha512-gZErMTDppRbHhfJ/cP1e6yGwEymLAYUPJOubwUQXygPB+vYrOKCGL3nqWbGWR/K11cQgcKOoUdLGBKah2+kGWw==}
     engines: {node: '>=20.0.0'}
     dependencies:
       deep-equal: 2.2.2
@@ -3049,19 +3164,19 @@ packages:
       - supports-color
     dev: true
 
-  /@typespec/spector/0.1.0-alpha.17-dev.1_wpxuyqhhdtidiffy7l7f4mcptq:
-    resolution: {integrity: sha512-hhn+n75/ztGpgngmohQUWB6a31wMx27ZgikHPCqQN9mfPa6bEVv9UzavR8yRc6lp1jyrdo9ckuPgBpYhlGC4zw==}
+  /@typespec/spector/0.1.0-alpha.18-dev.0_yom3dji4y26epramn64wnkctze:
+    resolution: {integrity: sha512-ZnCWx00JCQ6C+hQnrJNH0tE7CAhDtIUBsWJ3fPzqkIZV1zLobBmrAMym7MChzxpAW4yA7Xecnp38CvQFWvsoJw==}
     engines: {node: '>=16.0.0'}
     hasBin: true
     dependencies:
       '@azure/identity': 4.10.2
       '@types/js-yaml': 4.0.9
-      '@typespec/compiler': 1.2.1_@types+node@18.18.0
-      '@typespec/http': 1.2.1_himjuuw7iiyieosksmbpsccuwm
-      '@typespec/rest': 0.73.0-dev.2_xnwldowg5q2d4dfu6jmcmttlgu
-      '@typespec/spec-api': 0.1.0-alpha.8-dev.1
+      '@typespec/compiler': 1.3.0_@types+node@18.18.0
+      '@typespec/http': 1.3.0_2rlkgsklgxys7wsqhei52pdciq
+      '@typespec/rest': 0.73.0_j75uajsb6u7bhlfp5ugmoregpi
+      '@typespec/spec-api': 0.1.0-alpha.9-dev.0
       '@typespec/spec-coverage-sdk': 0.1.0-alpha.5-dev.0
-      '@typespec/versioning': 0.73.0-dev.3_@typespec+compiler@1.2.1
+      '@typespec/versioning': 0.73.0_@typespec+compiler@1.3.0
       ajv: 8.17.1
       body-parser: 2.2.0
       deep-equal: 2.2.2
@@ -3094,6 +3209,22 @@ packages:
       '@typespec/events': 0.72.1_bl4263k53kgzhhxqpidfkgyiyu
       '@typespec/http': 1.3.0-dev.4_mutdxbvwkx4d3xrahbuohxfbmy
       '@typespec/streams': 0.72.1_bl4263k53kgzhhxqpidfkgyiyu
+    dev: false
+
+  /@typespec/sse/0.73.0_znobsebr5mchrrouk63zaxxxkq:
+    resolution: {integrity: sha512-WTnRJ1b1M3RPzlHxhnK9sh6+AGKPKWpuA0TSAqzyxb/uRHFYLNeoDKPOnlQ749SJ8lJz71Oh0nUsP3vB0EzO6Q==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      '@typespec/compiler': ^1.3.0
+      '@typespec/events': ^0.73.0
+      '@typespec/http': ^1.3.0
+      '@typespec/streams': ^0.73.0
+    dependencies:
+      '@typespec/compiler': 1.3.0_@types+node@18.18.0
+      '@typespec/events': 0.73.0_@typespec+compiler@1.3.0
+      '@typespec/http': 1.3.0_2rlkgsklgxys7wsqhei52pdciq
+      '@typespec/streams': 0.73.0_@typespec+compiler@1.3.0
+    dev: true
 
   /@typespec/streams/0.72.1_bl4263k53kgzhhxqpidfkgyiyu:
     resolution: {integrity: sha512-TJdFxpW9lgazOluDdT9N8Ojnb7T/hXMZOL094D2idBf33aeqJvSHZtWgY4po8hTsQLk8Y4m4WJJ70nT9DUEOdg==}
@@ -3102,6 +3233,16 @@ packages:
       '@typespec/compiler': ^1.2.1
     dependencies:
       '@typespec/compiler': 1.3.0-dev.11_@types+node@18.18.0
+    dev: false
+
+  /@typespec/streams/0.73.0_@typespec+compiler@1.3.0:
+    resolution: {integrity: sha512-pL4xffHXEIhBQKPlB9L4AKuM0bn44WsGKjnz91wa6wBtP/CbsPrGQicof0Z7GPGdddtDi4G8PWGmJtVFw53V9g==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      '@typespec/compiler': ^1.3.0
+    dependencies:
+      '@typespec/compiler': 1.3.0_@types+node@18.18.0
+    dev: true
 
   /@typespec/ts-http-runtime/0.1.0:
     resolution: {integrity: sha512-0NspintCRrSIIZBUtVfWjJ5TpOjpP0mNsJXZOqzuxdY/q2yCr0amyUCEw+WLhRykP39XMNMG0f1F9LbC2+c+Rw==}
@@ -3126,7 +3267,7 @@ packages:
       '@microsoft/api-extractor-model': 7.30.7_@types+node@18.18.0
       '@microsoft/tsdoc': 0.15.1
       '@microsoft/tsdoc-config': 0.17.1
-      '@typespec/compiler': 1.2.1_@types+node@18.18.0
+      '@typespec/compiler': 1.3.0_@types+node@18.18.0
       picocolors: 1.1.1
       prettier: 3.5.3
       typedoc: 0.28.7_typescript@5.8.2
@@ -3138,15 +3279,6 @@ packages:
       - typescript
     dev: true
 
-  /@typespec/versioning/0.73.0-dev.3_@typespec+compiler@1.2.1:
-    resolution: {integrity: sha512-5RU+MnW21tS9WjQBZw1TrIcjBK7X4PnR6EyVJZ/9EwgCkL0aYpLavAfS8vpH2zXvFiUwbDf63p/70CZl4NALBg==}
-    engines: {node: '>=20.0.0'}
-    peerDependencies:
-      '@typespec/compiler': ^1.2.1
-    dependencies:
-      '@typespec/compiler': 1.2.1_@types+node@18.18.0
-    dev: true
-
   /@typespec/versioning/0.73.0-dev.3_bl4263k53kgzhhxqpidfkgyiyu:
     resolution: {integrity: sha512-5RU+MnW21tS9WjQBZw1TrIcjBK7X4PnR6EyVJZ/9EwgCkL0aYpLavAfS8vpH2zXvFiUwbDf63p/70CZl4NALBg==}
     engines: {node: '>=20.0.0'}
@@ -3154,6 +3286,24 @@ packages:
       '@typespec/compiler': ^1.2.1
     dependencies:
       '@typespec/compiler': 1.3.0-dev.11_@types+node@18.18.0
+    dev: false
+
+  /@typespec/versioning/0.73.0_@typespec+compiler@1.3.0:
+    resolution: {integrity: sha512-cfFvzTsvsu4VpdwZcRULr3p/fawKZnjiJClQxlLcYW0dLs/5k5jh7l0YyPkYvgkOcncUrIB6hIu82tQhKrMDKQ==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      '@typespec/compiler': ^1.3.0
+    dependencies:
+      '@typespec/compiler': 1.3.0_@types+node@18.18.0
+    dev: true
+
+  /@typespec/xml/0.73.0-dev.2_@typespec+compiler@1.3.0:
+    resolution: {integrity: sha512-sdNsnyAVzcQbbuld1Sl5EF3M3Ky1wwNo/nT9xgK+u15FX7xu9MFb87Ons6zbPFgltvTnWteFpZSqWxAN+hnwag==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      '@typespec/compiler': ^1.2.1
+    dependencies:
+      '@typespec/compiler': 1.3.0_@types+node@18.18.0
 
   /@typespec/xml/0.73.0-dev.2_bl4263k53kgzhhxqpidfkgyiyu:
     resolution: {integrity: sha512-sdNsnyAVzcQbbuld1Sl5EF3M3Ky1wwNo/nT9xgK+u15FX7xu9MFb87Ons6zbPFgltvTnWteFpZSqWxAN+hnwag==}
@@ -3162,6 +3312,7 @@ packages:
       '@typespec/compiler': ^1.2.1
     dependencies:
       '@typespec/compiler': 1.3.0-dev.11_@types+node@18.18.0
+    dev: false
 
   /@ungap/promise-all-settled/1.1.2:
     resolution: {integrity: sha512-sL/cEvJWAnClXw0wHk85/2L0G6Sj8UB0Ctc1TEMbKSsmpRosqhwj9gWgFRZSrBr2f9tiXISwNhCPmlfqUqyb9Q==}
