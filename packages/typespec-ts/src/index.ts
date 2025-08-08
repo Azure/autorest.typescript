@@ -548,11 +548,9 @@ export async function createContextWithDefaultOptions(
   context: EmitContext<Record<string, any>>
 ): Promise<SdkContext> {
   const flattenUnionAsEnum =
-    context.options["experimental-extensible-enums"] === undefined &&
-    context.options["experimentalExtensibleEnums"] === undefined
+    context.options["experimental-extensible-enums"] === undefined
       ? isArm(context)
-      : (context.options["experimental-extensible-enums"] ??
-        context.options["experimentalExtensibleEnums"]);
+      : context.options["experimental-extensible-enums"];
   const tcgcSettings = {
     "generate-protocol-methods": true,
     "generate-convenience-methods": true,
@@ -579,10 +577,7 @@ export async function createContextWithDefaultOptions(
 
 // TODO: should be removed once tcgc issue is resolved https://github.com/Azure/typespec-azure/issues/1794
 function isArm(context: EmitContext<Record<string, any>>) {
-  const packageName =
-    (context?.options["package-details"] ??
-      context?.options["packageDetails"] ??
-      {})["name"] ?? "";
+  const packageName = (context?.options["package-details"] ?? {})["name"] ?? "";
   return packageName?.startsWith("@azure/arm-");
 }
 
