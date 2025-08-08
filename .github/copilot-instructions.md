@@ -27,6 +27,8 @@ This repository focuses on the TypeSpec TypeScript emitter, which generates Type
   - All integration tests: `npm run integration-test-ci` -- takes ~1+ hour. NEVER CANCEL. Set timeout to 90+ minutes.
 
 - **Validation steps before committing:**
+  - `rush update` -- Ensure dependencies are correctly installed (takes ~8 seconds)
+  - `rush build` -- Build all packages and verify no build issues (takes ~12 seconds)
   - `rush format` -- Format code
   - `npm run lint` in `packages/typespec-ts/` -- Lint TypeSpec emitter (takes ~6 seconds)
   - `npm run check-format` in `packages/typespec-ts/` -- Check code formatting (takes ~5 seconds)
