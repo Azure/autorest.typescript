@@ -1,6 +1,35 @@
 # GitHub Copilot Instructions for autorest.typescript
 
+Always reference these instructions first and fallback to search or bash commands only when you encounter unexpected information that does not match the info here.
+
 This repository focuses on the TypeSpec TypeScript emitter, which generates TypeScript client libraries from [TypeSpec](https://typespec.io/) specifications.
+
+## Working Effectively
+
+- **Bootstrap, build, and test the repository:**
+  - `npm install -g @microsoft/rush` -- Install Rush globally (takes ~2 minutes)
+  - `PUPPETEER_SKIP_DOWNLOAD=true rush update` -- Install dependencies, takes ~8 seconds. NEVER CANCEL. Set timeout to 15+ minutes.
+  - `rush build` -- Build all packages, takes ~12 seconds. NEVER CANCEL. Set timeout to 20+ minutes.
+  - `rush format` -- Format all code, takes ~6 seconds. NEVER CANCEL. Set timeout to 10+ minutes.
+
+- **Run tests:**
+  - Unit tests: `npm run unit-test` in `packages/typespec-ts/` -- takes ~2.5 minutes. NEVER CANCEL. Set timeout to 10+ minutes.
+  - Autorest unit tests: `npm run unit-test` in `packages/autorest.typescript/` -- takes ~5 seconds. NEVER CANCEL. Set timeout to 5+ minutes.
+  - RLC common unit tests: `npm run test` in `packages/rlc-common/` -- takes ~4 seconds. NEVER CANCEL. Set timeout to 5+ minutes.
+  - Smoke test: `npm run smoke-test` in `packages/typespec-test/` -- takes ~10 minutes. NEVER CANCEL. Set timeout to 20+ minutes.
+
+- **Run integration tests (from `packages/typespec-ts/`):**
+  - ALWAYS run `npm run copy:typespec` first before integration tests (takes <1 second)
+  - RLC Integration: `npm run integration-test-ci:rlc` -- takes ~30+ minutes. NEVER CANCEL. Set timeout to 60+ minutes.
+  - Azure RLC Integration: `npm run integration-test-ci:azure-rlc` -- takes ~30+ minutes. NEVER CANCEL. Set timeout to 60+ minutes.
+  - Modular Integration: `npm run integration-test-ci:modular` -- takes ~30+ minutes. NEVER CANCEL. Set timeout to 60+ minutes.
+  - Azure Modular Integration: `npm run integration-test-ci:azure-modular` -- takes ~30+ minutes. NEVER CANCEL. Set timeout to 60+ minutes.
+  - All integration tests: `npm run integration-test-ci` -- takes ~1+ hour. NEVER CANCEL. Set timeout to 90+ minutes.
+
+- **Validation steps before committing:**
+  - `rush format` -- Format code
+  - `npm run lint` in `packages/typespec-ts/` -- Lint TypeSpec emitter (takes ~6 seconds)
+  - `npm run check-format` in `packages/typespec-ts/` -- Check code formatting (takes ~5 seconds)
 
 ## Key Concepts
 
@@ -43,6 +72,18 @@ We have two main SDK styles in this repository. One is the [REST Level Client (R
 
 - `packages/autorest.typescript/` - AutoRest TypeScript generator
   > **Note:** @autorest/typescript is in maintenance mode and should not be used as reference nor edited unless explicitly requested.
+
+## Validation
+
+- ALWAYS manually validate any new code by running the complete test suite including unit tests, integration tests, and smoke tests.
+- ALWAYS run through at least one complete end-to-end scenario after making changes.
+- Test generated client functionality by examining the generated code in `packages/typespec-test/test/*/generated/`
+- Always run `npm run format` and linting commands before committing or the CI will fail.
+
+## Common Network Limitations
+
+- Puppeteer download may fail due to network restrictions -- use `PUPPETEER_SKIP_DOWNLOAD=true` environment variable
+- Chrome download for browser testing may fail -- use environment variable to skip if not testing browser functionality
 
 ## AutoRest TypeScript Generator
 
