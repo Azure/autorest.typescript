@@ -184,7 +184,7 @@ When preparing a release, we need to bump package versions and update changelogs
    - Run `rush build` to build all packages and verify no build issues (takes ~12 seconds)
    - Run `rush format` to format the codebase (takes ~6 seconds)
    - Run unit tests: `npm run unit-test` in `packages/typespec-ts/` (takes ~2.5 minutes)
-   - Run smoke tests: `npm run smoke-test` in `packages/typespec-test/` (takes ~10 minutes)
+   - Optionally run smoke tests: `npm run smoke-test` in `packages/typespec-test/` (takes ~10 minutes)
    - Optionally run integration tests to ensure end-to-end functionality works
 
 8. **Final Validation**
