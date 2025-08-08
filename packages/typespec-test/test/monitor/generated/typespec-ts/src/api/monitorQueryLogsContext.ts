@@ -13,6 +13,8 @@ export interface MonitorQueryLogsContext extends Client {
 
 /** Optional parameters for the client. */
 export interface MonitorQueryLogsClientOptionalParams extends ClientOptions {
+  /** The Log Analytics service endpoint. */
+  endpointParam?: string;
   /** The service API version. */
   apiVersion?: string;
 }
@@ -21,7 +23,7 @@ export function createMonitorQueryLogs(
   credential: TokenCredential,
   options: MonitorQueryLogsClientOptionalParams = {},
 ): MonitorQueryLogsContext {
-  const endpointParam = "https://api.loganalytics.io";
+  const endpointParam = options.endpointParam ?? "https://api.loganalytics.io";
   const apiVersion = options.apiVersion ?? "v1";
   const endpointUrl = options.endpoint ?? `${endpointParam}/${apiVersion}`;
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;

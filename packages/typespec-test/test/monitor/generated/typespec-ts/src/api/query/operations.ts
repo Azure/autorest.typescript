@@ -1,23 +1,25 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { MonitorQueryLogsContext as Client } from "./index.js";
+import { MonitorQueryLogsContext as Client } from "../index.js";
 import {
-  QueryBody,
-  queryBodySerializer,
   QueryResults,
   queryResultsDeserializer,
   errorResponseDeserializer,
+  QueryBody,
+  queryBodySerializer,
   BatchRequest,
   batchRequestSerializer,
   BatchResponse,
   batchResponseDeserializer,
-} from "../models/models.js";
-import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+} from "../../models/models.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
-  BatchOptionalParams,
-  ExecuteWithResourceIdOptionalParams,
-  ExecuteOptionalParams,
+  QueryBatchOptionalParams,
+  QueryExecuteWithResourceIdOptionalParams,
+  QueryGetWithResourceIdOptionalParams,
+  QueryExecuteOptionalParams,
+  QueryGetOptionalParams,
 } from "./options.js";
 import {
   StreamableMethod,
@@ -29,7 +31,7 @@ import {
 export function _batchSend(
   context: Client,
   body: BatchRequest,
-  options: BatchOptionalParams = { requestOptions: {} },
+  options: QueryBatchOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
     .path("/$batch")
@@ -65,7 +67,7 @@ export async function _batchDeserialize(
 export async function batch(
   context: Client,
   body: BatchRequest,
-  options: BatchOptionalParams = { requestOptions: {} },
+  options: QueryBatchOptionalParams = { requestOptions: {} },
 ): Promise<BatchResponse> {
   const result = await _batchSend(context, body, options);
   return _batchDeserialize(result);
@@ -75,7 +77,7 @@ export function _executeWithResourceIdSend(
   context: Client,
   resourceId: string,
   body: QueryBody,
-  options: ExecuteWithResourceIdOptionalParams = { requestOptions: {} },
+  options: QueryExecuteWithResourceIdOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/{+resourceId}/query",
@@ -122,7 +124,7 @@ export async function executeWithResourceId(
   context: Client,
   resourceId: string,
   body: QueryBody,
-  options: ExecuteWithResourceIdOptionalParams = { requestOptions: {} },
+  options: QueryExecuteWithResourceIdOptionalParams = { requestOptions: {} },
 ): Promise<QueryResults> {
   const result = await _executeWithResourceIdSend(
     context,
@@ -133,11 +135,72 @@ export async function executeWithResourceId(
   return _executeWithResourceIdDeserialize(result);
 }
 
+export function _getWithResourceIdSend(
+  context: Client,
+  resourceId: string,
+  query: string,
+  options: QueryGetWithResourceIdOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/{+resourceId}/query{?query,timespan}",
+    {
+      resourceId: resourceId,
+      query: query,
+      timespan: options?.timespan,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
+}
+
+export async function _getWithResourceIdDeserialize(
+  result: PathUncheckedResponse,
+): Promise<QueryResults> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
+  }
+
+  return queryResultsDeserializer(result.body);
+}
+
+/**
+ * Executes an Analytics query for data in the context of a resource.
+ * [Here](https://learn.microsoft.com/azure/azure-monitor/logs/api/azure-resource-queries)
+ * is an example for using POST with an Analytics query.
+ */
+export async function getWithResourceId(
+  context: Client,
+  resourceId: string,
+  query: string,
+  options: QueryGetWithResourceIdOptionalParams = { requestOptions: {} },
+): Promise<QueryResults> {
+  const result = await _getWithResourceIdSend(
+    context,
+    resourceId,
+    query,
+    options,
+  );
+  return _getWithResourceIdDeserialize(result);
+}
+
 export function _executeSend(
   context: Client,
   workspaceId: string,
   body: QueryBody,
-  options: ExecuteOptionalParams = { requestOptions: {} },
+  options: QueryExecuteOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/workspaces/{workspaceId}/query",
@@ -184,8 +247,60 @@ export async function execute(
   context: Client,
   workspaceId: string,
   body: QueryBody,
-  options: ExecuteOptionalParams = { requestOptions: {} },
+  options: QueryExecuteOptionalParams = { requestOptions: {} },
 ): Promise<QueryResults> {
   const result = await _executeSend(context, workspaceId, body, options);
   return _executeDeserialize(result);
+}
+
+export function _getSend(
+  context: Client,
+  workspaceId: string,
+  query: string,
+  options: QueryGetOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/workspaces/{workspaceId}/query{?query,timespan}",
+    {
+      workspaceId: workspaceId,
+      query: query,
+      timespan: options?.timespan,
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context
+    .path(path)
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
+}
+
+export async function _getDeserialize(
+  result: PathUncheckedResponse,
+): Promise<QueryResults> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    const error = createRestError(result);
+    error.details = errorResponseDeserializer(result.body);
+    throw error;
+  }
+
+  return queryResultsDeserializer(result.body);
+}
+
+/** Executes an Analytics query for data. */
+export async function get(
+  context: Client,
+  workspaceId: string,
+  query: string,
+  options: QueryGetOptionalParams = { requestOptions: {} },
+): Promise<QueryResults> {
+  const result = await _getSend(context, workspaceId, query, options);
+  return _getDeserialize(result);
 }

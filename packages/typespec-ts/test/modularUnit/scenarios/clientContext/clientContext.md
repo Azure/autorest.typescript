@@ -167,6 +167,8 @@ export interface ServiceContext extends Client {}
 
 /** Optional parameters for the client. */
 export interface ServiceClientOptionalParams extends ClientOptions {
+  /** Need to be set as 'http://localhost:3000' in client. */
+  endpointParam?: string;
   /** Need to be set as 'default', 'multi-client', 'renamed-operation', 'two-operation-group' in client. */
   clientParam?: ClientType;
 }
@@ -174,7 +176,7 @@ export interface ServiceClientOptionalParams extends ClientOptions {
 export function createService(
   options: ServiceClientOptionalParams = {},
 ): ServiceContext {
-  const endpointParam = "http://localhost:3000";
+  const endpointParam = options.endpointParam ?? "http://localhost:3000";
   const clientParam = options.clientParam ?? "default";
   const endpointUrl =
     options.endpoint ?? `${endpointParam}/client/structure/${clientParam}`;

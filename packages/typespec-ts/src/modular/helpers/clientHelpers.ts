@@ -206,15 +206,10 @@ export function buildGetClientEndpointParam(
             typeof templateParam.clientDefaultValue === "string"
               ? `"${templateParam.clientDefaultValue}"`
               : templateParam.clientDefaultValue;
-          // For endpoint parameter with default values, use the default directly
-          // For other parameters with default values, read from options with fallback to default
-          if (templateParam.name.toLowerCase() === "endpoint") {
-            context.addStatements(`const ${paramName} = ${defaultValue};`);
-          } else {
-            context.addStatements(
-              `const ${paramName} = options.${paramName} ?? ${defaultValue};`
-            );
-          }
+          // For all parameters with default values, read from options with fallback to default
+          context.addStatements(
+            `const ${paramName} = options.${paramName} ?? ${defaultValue};`
+          );
         } else if (templateParam.optional) {
           // For optional parameters without defaults, check if they exist in options
           context.addStatements(`const ${paramName} = options.${paramName};`);
