@@ -1,8 +1,9 @@
 ## 6.0.46 (2025-08-08)
 
 - [Bugfix] Remove the previously missed `experimentalExtensibleEnums`. Please refer to [#3417](https://github.com/Azure/autorest.typescript/pull/3417)
-- [Feature] Update dependencies to dev and fix nightly ci. Please refer to [#3411](https://github.com/Azure/autorest.typescript/pull/3411)
-- [Feature] Upgrade TCGC version to latest dev. Please refer to [#3407](https://github.com/Azure/autorest.typescript/pull/3407)
+- [Feature] Upgrade dependencies
+  - Update dependencies to dev and fix nightly ci. Please refer to [#3411](https://github.com/Azure/autorest.typescript/pull/3411)
+  - Upgrade TCGC version to latest dev. Please refer to [#3407](https://github.com/Azure/autorest.typescript/pull/3407)
 - [Bugfix] Patch LRO generation would fail with void 202 response. Please refer to [#3401](https://github.com/Azure/autorest.typescript/pull/3401)
 - [Feature] Adopt some comments AI provided during review for Modular. Please refer to [#3398](https://github.com/Azure/autorest.typescript/pull/3398)
 - [Feature] Support `@list` paging in RLC. Please refer to [#3318](https://github.com/Azure/autorest.typescript/pull/3318)
