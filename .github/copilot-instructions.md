@@ -1,6 +1,37 @@
 # GitHub Copilot Instructions for autorest.typescript
 
+Always reference these instructions first and fallback to search or bash commands only when you encounter unexpected information that does not match the info here.
+
 This repository focuses on the TypeSpec TypeScript emitter, which generates TypeScript client libraries from [TypeSpec](https://typespec.io/) specifications.
+
+## Working Effectively
+
+- **Bootstrap, build, and test the repository:**
+  - `npm install -g @microsoft/rush` -- Install Rush globally (takes ~2 minutes)
+  - `PUPPETEER_SKIP_DOWNLOAD=true rush update` -- Install dependencies, takes ~8 seconds. NEVER CANCEL. Set timeout to 15+ minutes.
+  - `rush build` -- Build all packages, takes ~12 seconds. NEVER CANCEL. Set timeout to 20+ minutes.
+  - `rush format` -- Format all code, takes ~6 seconds. NEVER CANCEL. Set timeout to 10+ minutes.
+
+- **Run tests:**
+  - Unit tests: `npm run unit-test` in `packages/typespec-ts/` -- takes ~2.5 minutes. NEVER CANCEL. Set timeout to 10+ minutes.
+  - Autorest unit tests: `npm run unit-test` in `packages/autorest.typescript/` -- takes ~5 seconds. NEVER CANCEL. Set timeout to 5+ minutes.
+  - RLC common unit tests: `npm run test` in `packages/rlc-common/` -- takes ~4 seconds. NEVER CANCEL. Set timeout to 5+ minutes.
+  - Smoke test: `npm run smoke-test` in `packages/typespec-test/` -- takes ~10 minutes. NEVER CANCEL. Set timeout to 20+ minutes.
+
+- **Run integration tests (from `packages/typespec-ts/`):**
+  - ALWAYS run `npm run copy:typespec` first before integration tests (takes <1 second)
+  - RLC Integration: `npm run integration-test-ci:rlc` -- takes ~30+ minutes. NEVER CANCEL. Set timeout to 60+ minutes.
+  - Azure RLC Integration: `npm run integration-test-ci:azure-rlc` -- takes ~30+ minutes. NEVER CANCEL. Set timeout to 60+ minutes.
+  - Modular Integration: `npm run integration-test-ci:modular` -- takes ~30+ minutes. NEVER CANCEL. Set timeout to 60+ minutes.
+  - Azure Modular Integration: `npm run integration-test-ci:azure-modular` -- takes ~30+ minutes. NEVER CANCEL. Set timeout to 60+ minutes.
+  - All integration tests: `npm run integration-test-ci` -- takes ~1+ hour. NEVER CANCEL. Set timeout to 90+ minutes.
+
+- **Validation steps before committing:**
+  - `rush update` -- Ensure dependencies are correctly installed (takes ~8 seconds)
+  - `rush build` -- Build all packages and verify no build issues (takes ~12 seconds)
+  - `rush format` -- Format code
+  - `npm run lint` in `packages/typespec-ts/` -- Lint TypeSpec emitter (takes ~6 seconds)
+  - `npm run check-format` in `packages/typespec-ts/` -- Check code formatting (takes ~5 seconds)
 
 ## Key Concepts
 
@@ -44,6 +75,17 @@ We have two main SDK styles in this repository. One is the [REST Level Client (R
 - `packages/autorest.typescript/` - AutoRest TypeScript generator
   > **Note:** @autorest/typescript is in maintenance mode and should not be used as reference nor edited unless explicitly requested.
 
+## Validation
+
+- ALWAYS manually validate any new code by running the complete test suite including unit tests, integration tests, and smoke tests.
+- Test generated client functionality by examining the generated code in `packages/typespec-test/test/*/generated/`
+- Always run `npm run format` and linting commands before committing.
+
+## Common Network Limitations
+
+- Puppeteer download may fail due to network restrictions -- use `PUPPETEER_SKIP_DOWNLOAD=true` environment variable
+- Chrome download for browser testing may fail -- use environment variable to skip if not testing browser functionality
+
 ## AutoRest TypeScript Generator
 
 The AutoRest TypeScript generator (`autorest.typescript`) is in maintenance mode and should not be used as reference nor edited unless explicitly requested. For more information [AutoRest documentation](https://github.com/Azure/autorest).
@@ -86,6 +128,79 @@ When upgrading TypeSpec dependencies only work on `packages/typespec-ts/` and `p
 - Follow my instructions exactly and please don't skip modular or azure integrations and wait all 4 integrations
 - Don't return or terminal AI during monitoring, please monitor the 4 integration status every 30 seconds until they finish
 - Fix any issues that arise during the process, and ensure all tests pass before considering the upgrade complete
+
+## How to Bump Package Versions and Update Changelogs
+
+When preparing a release, we need to bump package versions and update changelogs for three packages. Here are the step-by-step instructions:
+
+### Package Version Bumping Rules
+
+- **@autorest/typescript** - Always bump a PATCH version (e.g., 6.0.45 → 6.0.46)
+- **@azure-tools/rlc-common** and **@azure-tools/typespec-ts** - Follow monthly release pattern:
+  - If this is the first release for this month, bump a MINOR version (e.g., 0.42.1 → 0.43.0)
+  - If this is not the first release this month, bump a PATCH version (e.g., 0.42.1 → 0.42.2)
+
+### Step-by-Step Release Process
+
+1. **Determine Version Increments**
+   - Check the current versions in `packages/*/package.json`
+   - For @autorest/typescript: Always increment patch version
+   - For @azure-tools packages: Check changelog dates to determine if this is first release this month
+
+2. **Update Package Versions**
+   - Update `version` field in `packages/autorest.typescript/package.json`
+   - Update `version` field in `packages/rlc-common/package.json`
+   - Update `version` field in `packages/typespec-ts/package.json`
+
+3. **Collect Merged PRs for Changelog**
+   - Find the last release date from existing changelogs
+   - Collect all merged PRs from last release date to now
+   - Categorize changes as [Feature], [Bugfix], or other appropriate categories
+   - Use format: `- [Category] Description. Please refer to [#PRNUM](https://github.com/Azure/autorest.typescript/pull/PRNUM)`
+
+4. **Update Changelog Files**
+   - Add new version section at the top of each changelog file
+   - Use format: `## VERSION (YYYY-MM-DD)`
+   - Add collected PR entries under each version section
+   - Update `packages/autorest.typescript/CHANGELOG.md`
+   - Update `packages/rlc-common/CHANGELOG.md`
+   - Update `packages/typespec-ts/CHANGELOG.md`
+
+5. **Example Changelog Format**
+   ```md
+   ## 0.42.2 (2025-08-08)
+
+   - [Feature] Add tspd for regen docs. Please refer to [#3236](https://github.com/Azure/autorest.typescript/pull/3236)
+   - [Feature] Generate tsconfig.snippets.json. Please refer to [#3373](https://github.com/Azure/autorest.typescript/pull/3373)
+   - [Bugfix] Fix the import ordering in-consistent issues. Please refer to [#3383](https://github.com/Azure/autorest.typescript/pull/3383)
+   ```
+
+6. **Update Package Dependencies**
+   - Review and update `package.json` dependencies if needed
+   - Ensure version compatibility between packages
+   - Update any internal package references if version changes affect dependencies
+
+7. **Validation Steps**
+   - Run `rush update` to ensure all dependencies are correctly installed (takes ~8 seconds)
+   - Run `rush build` to build all packages and verify no build issues (takes ~12 seconds)
+   - Run `rush format` to format the codebase (takes ~6 seconds)
+   - Run unit tests: `npm run unit-test` in `packages/typespec-ts/` (takes ~2.5 minutes)
+   - Optionally run smoke tests: `npm run smoke-test` in `packages/typespec-test/` (takes ~10 minutes)
+   - Optionally run integration tests to ensure end-to-end functionality works
+
+8. **Final Validation**
+   - Verify all package.json files have correct versions
+   - Verify all changelog files have proper format and entries
+   - Ensure no build or test failures introduced by version changes
+   - Confirm all dependencies are properly updated and compatible
+
+### Common Pitfalls to Avoid
+
+- Don't forget to update all three packages simultaneously
+- Ensure changelog dates match the actual release date
+- Verify PR links are correct and accessible
+- Check that version increments follow the established rules
+- Always validate changes with rush build before committing
 
 ## How to run and fix test failures in TypeSpec TypeScript emitter
 
