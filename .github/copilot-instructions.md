@@ -76,7 +76,6 @@ We have two main SDK styles in this repository. One is the [REST Level Client (R
 ## Validation
 
 - ALWAYS manually validate any new code by running the complete test suite including unit tests, integration tests, and smoke tests.
-- ALWAYS run through at least one complete end-to-end scenario after making changes.
 - Test generated client functionality by examining the generated code in `packages/typespec-test/test/*/generated/`
 - Always run `npm run format` and linting commands before committing or the CI will fail.
 
