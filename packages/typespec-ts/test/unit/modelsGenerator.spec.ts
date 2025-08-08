@@ -380,7 +380,6 @@ describe("Input/output model type", () => {
         it("should handle enum -> string_literals", async () => {
           const tspTypeDefinition = `
           #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
-          @fixed
           @doc("Translation Language Values")
           enum TranslationLanguageValues {
             @doc("English descriptions")
@@ -412,7 +411,6 @@ describe("Input/output model type", () => {
         it("with enum value is xx.xx", async () => {
           const tspTypeDefinition = `
           #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
-          @fixed
           @doc("Translation Language Values")
           enum TranslationLanguageValues {
             @doc("English descriptions")
@@ -444,7 +442,6 @@ describe("Input/output model type", () => {
         it("should handle enum member", async () => {
           const tspTypeDefinition = `
           #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
-          @fixed
           @doc("Translation Language Values")
           enum TranslationLanguageValues {
             @doc("English descriptions")
@@ -778,7 +775,6 @@ describe("Input/output model type", () => {
       const tspDefinition = `
       #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
       #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
-      @fixed
       enum DiskEncryptionTarget {
         OsDisk: "osdisk",
         TemporaryDisk: "temporarydisk",
@@ -4101,7 +4097,6 @@ describe("Input/output model type", () => {
       using TypeSpec.Rest;
       using Azure.Core;
       
-      @fixed
       enum SchemaContentTypeValues {
         avro: "application/json; serialization=Avro",
         json: "application/json; serialization=json",
@@ -4172,7 +4167,6 @@ describe("Input/output model type", () => {
       using TypeSpec.Rest;
       using Azure.Core;
       
-      @fixed
       enum EnumTest  {
         one: 1,
         two: 2,

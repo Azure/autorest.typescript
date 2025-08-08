@@ -58,7 +58,7 @@ export function audioTranscriptionOptionsSerializer(
       : [{ name: "filename", body: item["filename"] }]),
     ...(item["responseFormat"] === undefined
       ? []
-      : [{ name: "response_format", body: item["responseFormat"] }]),
+      : [{ name: "responseFormat", body: item["responseFormat"] }]),
     ...(item["language"] === undefined
       ? []
       : [{ name: "language", body: item["language"] }]),
@@ -76,7 +76,7 @@ export function audioTranscriptionOptionsSerializer(
             : item["timestampGranularities"].map((p: any) => {
                 return p;
               })
-          ).map((x: unknown) => ({ name: "timestamp_granularities", body: x })),
+          ).map((x: unknown) => ({ name: "timestampGranularities", body: x })),
         ]),
     ...(item["model"] === undefined
       ? []
@@ -258,7 +258,7 @@ export function audioTranslationOptionsSerializer(
       : [{ name: "filename", body: item["filename"] }]),
     ...(item["responseFormat"] === undefined
       ? []
-      : [{ name: "response_format", body: item["responseFormat"] }]),
+      : [{ name: "responseFormat", body: item["responseFormat"] }]),
     ...(item["prompt"] === undefined
       ? []
       : [{ name: "prompt", body: item["prompt"] }]),
