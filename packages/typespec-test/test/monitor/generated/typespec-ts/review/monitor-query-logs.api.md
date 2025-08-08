@@ -10,12 +10,16 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
+export interface BatchOptionalParams extends OperationOptions {
+}
+
+// @public
 export interface BatchQueryRequest {
     body: QueryBody;
     headers?: Record<string, string>;
     id: string;
-    method: string;
-    path: string;
+    method: "POST";
+    path: "/query";
     workspace: string;
 }
 
@@ -79,229 +83,22 @@ export interface ErrorResponse {
 }
 
 // @public
-export interface MetadataApplication {
-    id: string;
-    name: string;
-    region: string;
-    related?: MetadataApplicationRelated;
-    resourceId: string;
+export interface ExecuteOptionalParams extends OperationOptions {
+    prefer?: string;
 }
 
 // @public
-export interface MetadataApplicationRelated {
-    functions?: string[];
-    tables?: string[];
-}
-
-// @public
-export interface MetadataCategory {
-    description?: string;
-    displayName: string;
-    id: string;
-    related?: MetadataCategoryRelated;
-}
-
-// @public
-export interface MetadataCategoryRelated {
-    functions?: string[];
-    queries?: string[];
-    resourceTypes?: string[];
-    solutions?: string[];
-    tables?: string[];
-}
-
-// @public
-export interface MetadataFunction {
-    body: string;
-    description?: string;
-    displayName?: string;
-    id: string;
-    name: string;
-    parameters?: string;
-    properties?: Record<string, any>;
-    related?: MetadataFunctionRelated;
-    tags?: Record<string, string>;
-}
-
-// @public
-export interface MetadataFunctionRelated {
-    categories?: string[];
-    resourceTypes?: string[];
-    solutions?: string[];
-    tables?: string[];
-    workspaces?: string[];
-}
-
-// @public
-export interface MetadataGetOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface MetadataOperations {
-    get: (workspaceId: string, options?: MetadataGetOptionalParams) => Promise<MetadataResults>;
-    post: (workspaceId: string, options?: MetadataPostOptionalParams) => Promise<MetadataResults>;
-}
-
-// @public
-export interface MetadataPermissions {
-    applications?: MetadataPermissionsApplicationsItem[];
-    resources?: MetadataPermissionsResourcesItem[];
-    workspaces: MetadataPermissionsWorkspacesItem[];
-}
-
-// @public
-export interface MetadataPermissionsApplicationsItem {
-    resourceId: string;
-}
-
-// @public
-export interface MetadataPermissionsResourcesItem {
-    denyTables?: string[];
-    resourceId: string;
-}
-
-// @public
-export interface MetadataPermissionsWorkspacesItem {
-    denyTables?: string[];
-    resourceId: string;
-}
-
-// @public
-export interface MetadataPostOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface MetadataQuery {
-    body: string;
-    description?: string;
-    displayName?: string;
-    id: string;
-    labels?: string[];
-    properties?: Record<string, any>;
-    related?: MetadataQueryRelated;
-    tags?: Record<string, string>;
-}
-
-// @public
-export interface MetadataQueryRelated {
-    categories?: string[];
-    resourceTypes?: string[];
-    solutions?: string[];
-    tables?: string[];
-}
-
-// @public
-export interface MetadataResourceType {
-    description?: string;
-    displayName?: string;
-    id: string;
-    labels?: string[];
-    properties?: Record<string, any>;
-    related?: MetadataResourceTypeRelated;
-    tags?: Record<string, string>;
-    type: string;
-}
-
-// @public
-export interface MetadataResourceTypeRelated {
-    categories?: string[];
-    functions?: string[];
-    queries?: string[];
-    resources?: string[];
-    tables?: string[];
-    workspaces?: string[];
-}
-
-// @public
-export interface MetadataResults {
-    applications?: MetadataApplication[];
-    categories?: MetadataCategory[];
-    functions?: MetadataFunction[];
-    permissions?: MetadataPermissions[];
-    queries?: MetadataQuery[];
-    resources?: string[];
-    resourceTypes?: MetadataResourceType[];
-    solutions?: MetadataSolution[];
-    tables?: MetadataTable[];
-    workspaces?: MetadataWorkspace[];
-}
-
-// @public
-export interface MetadataSolution {
-    description?: string;
-    displayName?: string;
-    id: string;
-    name: string;
-    properties?: Record<string, any>;
-    related: MetadataSolutionRelated;
-    tags?: Record<string, string>;
-}
-
-// @public
-export interface MetadataSolutionRelated {
-    categories?: string[];
-    functions?: string[];
-    queries?: string[];
-    tables: string[];
-    workspaces?: string[];
-}
-
-// @public
-export interface MetadataTable {
-    columns?: MetadataTableColumnsItem[];
-    description?: string;
-    id: string;
-    labels?: string[];
-    name: string;
-    properties?: Record<string, any>;
-    related?: MetadataTableRelated;
-    tags?: Record<string, string>;
-    timespanColumn?: string;
-}
-
-// @public
-export interface MetadataTableColumnsItem {
-    description?: string;
-    isPreferredFacet?: boolean;
-    name: string;
-    source?: Record<string, any>;
-    type: ColumnDataType;
-}
-
-// @public
-export interface MetadataTableRelated {
-    categories?: string[];
-    functions?: string[];
-    queries?: string[];
-    resourceTypes?: string[];
-    solutions?: string[];
-    workspaces?: string[];
-}
-
-// @public
-export interface MetadataWorkspace {
-    id: string;
-    name: string;
-    region: string;
-    related?: MetadataWorkspaceRelated;
-    resourceId: string;
-}
-
-// @public
-export interface MetadataWorkspaceRelated {
-    functions?: string[];
-    resources?: string[];
-    resourceTypes?: string[];
-    solutions?: string[];
-    tables?: string[];
+export interface ExecuteWithResourceIdOptionalParams extends OperationOptions {
+    prefer?: string;
 }
 
 // @public (undocumented)
 export class MonitorQueryLogsClient {
     constructor(credential: TokenCredential, options?: MonitorQueryLogsClientOptionalParams);
-    readonly metadata: MetadataOperations;
+    batch(body: BatchRequest, options?: BatchOptionalParams): Promise<BatchResponse>;
+    execute(workspaceId: string, body: QueryBody, options?: ExecuteOptionalParams): Promise<QueryResults>;
+    executeWithResourceId(resourceId: string, body: QueryBody, options?: ExecuteWithResourceIdOptionalParams): Promise<QueryResults>;
     readonly pipeline: Pipeline;
-    readonly query: QueryOperations;
 }
 
 // @public
@@ -311,43 +108,10 @@ export interface MonitorQueryLogsClientOptionalParams extends ClientOptions {
 }
 
 // @public
-export interface QueryBatchOptionalParams extends OperationOptions {
-}
-
-// @public
 export interface QueryBody {
     query: string;
     timespan?: string;
     workspaces?: string[];
-}
-
-// @public
-export interface QueryExecuteOptionalParams extends OperationOptions {
-    prefer?: string;
-}
-
-// @public
-export interface QueryExecuteWithResourceIdOptionalParams extends OperationOptions {
-    prefer?: string;
-}
-
-// @public
-export interface QueryGetOptionalParams extends OperationOptions {
-    timespan?: string;
-}
-
-// @public
-export interface QueryGetWithResourceIdOptionalParams extends OperationOptions {
-    timespan?: string;
-}
-
-// @public
-export interface QueryOperations {
-    batch: (body: BatchRequest, options?: QueryBatchOptionalParams) => Promise<BatchResponse>;
-    execute: (workspaceId: string, body: QueryBody, options?: QueryExecuteOptionalParams) => Promise<QueryResults>;
-    executeWithResourceId: (resourceId: string, body: QueryBody, options?: QueryExecuteWithResourceIdOptionalParams) => Promise<QueryResults>;
-    get: (workspaceId: string, query: string, options?: QueryGetOptionalParams) => Promise<QueryResults>;
-    getWithResourceId: (resourceId: string, query: string, options?: QueryGetWithResourceIdOptionalParams) => Promise<QueryResults>;
 }
 
 // @public

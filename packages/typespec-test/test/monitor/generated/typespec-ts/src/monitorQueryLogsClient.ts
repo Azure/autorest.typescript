@@ -6,11 +6,18 @@ import {
   MonitorQueryLogsContext,
   MonitorQueryLogsClientOptionalParams,
 } from "./api/index.js";
+import { batch, executeWithResourceId, execute } from "./api/operations.js";
 import {
-  MetadataOperations,
-  _getMetadataOperations,
-} from "./classic/metadata/index.js";
-import { QueryOperations, _getQueryOperations } from "./classic/query/index.js";
+  BatchOptionalParams,
+  ExecuteWithResourceIdOptionalParams,
+  ExecuteOptionalParams,
+} from "./api/options.js";
+import {
+  QueryBody,
+  QueryResults,
+  BatchRequest,
+  BatchResponse,
+} from "./models/models.js";
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
@@ -34,12 +41,43 @@ export class MonitorQueryLogsClient {
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this.metadata = _getMetadataOperations(this._client);
-    this.query = _getQueryOperations(this._client);
   }
 
-  /** The operation groups for metadata */
-  public readonly metadata: MetadataOperations;
-  /** The operation groups for query */
-  public readonly query: QueryOperations;
+  /**
+   * Executes a batch of Analytics queries for data.
+   * [Here](https://learn.microsoft.com/azure/azure-monitor/logs/api/batch-queries)
+   * is an example for using POST with an Analytics query.
+   */
+  batch(
+    body: BatchRequest,
+    options: BatchOptionalParams = { requestOptions: {} },
+  ): Promise<BatchResponse> {
+    return batch(this._client, body, options);
+  }
+
+  /**
+   * Executes an Analytics query for data in the context of a resource.
+   * [Here](https://learn.microsoft.com/azure/azure-monitor/logs/api/azure-resource-queries)
+   * is an example for using POST with an Analytics query.
+   */
+  executeWithResourceId(
+    resourceId: string,
+    body: QueryBody,
+    options: ExecuteWithResourceIdOptionalParams = { requestOptions: {} },
+  ): Promise<QueryResults> {
+    return executeWithResourceId(this._client, resourceId, body, options);
+  }
+
+  /**
+   * Executes an Analytics query for data.
+   * [Here](https://learn.microsoft.com/azure/azure-monitor/logs/api/request-format)
+   * is an example for using POST with an Analytics query.
+   */
+  execute(
+    workspaceId: string,
+    body: QueryBody,
+    options: ExecuteOptionalParams = { requestOptions: {} },
+  ): Promise<QueryResults> {
+    return execute(this._client, workspaceId, body, options);
+  }
 }

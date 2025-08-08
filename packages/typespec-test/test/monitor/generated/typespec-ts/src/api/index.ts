@@ -6,3 +6,9 @@ export {
   MonitorQueryLogsContext,
   MonitorQueryLogsClientOptionalParams,
 } from "./monitorQueryLogsContext.js";
+export { batch, executeWithResourceId, execute } from "./operations.js";
+export {
+  BatchOptionalParams,
+  ExecuteWithResourceIdOptionalParams,
+  ExecuteOptionalParams,
+} from "./options.js";
