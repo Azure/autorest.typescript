@@ -79,7 +79,7 @@ We have two main SDK styles in this repository. One is the [REST Level Client (R
 
 - ALWAYS manually validate any new code by running the complete test suite including unit tests, integration tests, and smoke tests.
 - Test generated client functionality by examining the generated code in `packages/typespec-test/test/*/generated/`
-- Always run `npm run format` and linting commands before committing or the CI will fail.
+- Always run `npm run format` and linting commands before committing.
 
 ## Common Network Limitations
 
