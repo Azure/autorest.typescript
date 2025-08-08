@@ -366,7 +366,7 @@ function getAdditionalPropertiesStatement(
     return undefined;
   }
   const allParents = getAllAncestors(type);
-  const properties = getAllProperties(type, allParents);
+  const properties = getAllProperties(context, type, allParents);
   const excludeProperties = properties
     .filter((p) => !!p.name)
     .map((p) => `"${p.name}"`);
@@ -383,7 +383,7 @@ function getAdditionalPropertiesStatement(
   }
   return context.rlcOptions?.compatibilityMode === true
     ? "...item,"
-    : `${getAdditionalPropertiesName(type)}: ${resolveReference(SerializationHelpers.serializeRecord)}(${params.join(",")}),`;
+    : `${getAdditionalPropertiesName(context, type)}: ${resolveReference(SerializationHelpers.serializeRecord)}(${params.join(",")}),`;
 }
 
 function buildDictTypeDeserializer(

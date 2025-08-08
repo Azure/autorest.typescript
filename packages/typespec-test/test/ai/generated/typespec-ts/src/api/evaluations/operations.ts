@@ -53,13 +53,7 @@ export function _disableScheduleSend(
   );
   return context
     .path(path)
-    .patch({
-      ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
-    });
+    .patch({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _disableScheduleDeserialize(

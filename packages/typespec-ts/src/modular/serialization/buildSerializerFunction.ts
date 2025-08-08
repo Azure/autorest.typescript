@@ -345,7 +345,7 @@ function buildModelTypeSerializer(
     // TODO: cleaner abstraction, quite a bit of duplication with the non-MFD stuff here
     const parts: string[] = [];
 
-    const properties = getAllProperties(type, getAllAncestors(type));
+    const properties = getAllProperties(context, type, getAllAncestors(type));
     for (const property of properties) {
       if (property.kind !== "property") {
         continue;
@@ -354,35 +354,36 @@ function buildModelTypeSerializer(
 
       let partDefinition: string;
       // eslint-disable-next-line
-      if (property.isMultipartFileInput) {
+      const multipart = property.serializationOptions.multipart;
+      if (multipart?.isFilePart) {
         const createFilePartDescriptorDefinition = resolveReference(
           MultipartHelpers.createFilePartDescriptor
         );
         // eslint-disable-next-line
-        const itemPath = property.multipartOptions?.isMulti
+        const itemPath = multipart.isMulti
           ? "x"
           : getPropertyFullName(context, property, "item");
         /* eslint-disable */
-        partDefinition = `${createFilePartDescriptorDefinition}("${property.serializedName}", ${itemPath}, )`;
+        partDefinition = `${createFilePartDescriptorDefinition}("${multipart.name}", ${itemPath}, )`;
 
         // If the TypeSpec doesn't specify a default content type, TCGC will infer a default of "*/*".
         // In this case, we actually want the content type to be left unset so that Core will take care of
         // setting the content type correctly.
         // eslint-disable
         const contentType =
-          property.multipartOptions?.defaultContentTypes?.[0] === "*/*"
+          multipart.defaultContentTypes?.[0] === "*/*"
             ? undefined
-            : property.multipartOptions?.defaultContentTypes?.[0];
+            : multipart.defaultContentTypes?.[0];
 
-        if (property.multipartOptions?.isMulti) {
-          partDefinition = `...(item["${property.serializedName}"].map((x: unknown) => ${createFilePartDescriptorDefinition}("${property.serializedName}", x${contentType ? `,"${contentType}"` : ""})))`;
+        if (multipart.isMulti) {
+          partDefinition = `...(item["${multipart.name}"].map((x: unknown) => ${createFilePartDescriptorDefinition}("${multipart.name}", x${contentType ? `,"${contentType}"` : ""})))`;
         } else {
-          partDefinition = `${createFilePartDescriptorDefinition}("${property.serializedName}", item["${property.serializedName}"]${contentType ? `, "${contentType}"` : ""})`;
+          partDefinition = `${createFilePartDescriptorDefinition}("${multipart.name}", item["${multipart.name}"]${contentType ? `, "${contentType}"` : ""})`;
         }
-      } else if (property.multipartOptions?.isMulti) {
-        partDefinition = `...((${expr}).map((x: unknown) => ({ name: "${property.serializedName}", body: x })))`;
+      } else if (multipart?.isMulti) {
+        partDefinition = `...((${expr}).map((x: unknown) => ({ name: "${multipart?.name}", body: x })))`;
       } else {
-        partDefinition = `{ name: "${property.serializedName}", body: (${expr}) }`;
+        partDefinition = `{ name: "${multipart?.name}", body: (${expr}) }`;
       }
       /* eslint-disable */
       if (property.optional) {
@@ -441,7 +442,7 @@ function getAdditionalPropertiesStatement(
     false,
     true
   );
-  const params = [`item.${getAdditionalPropertiesName(type)}`];
+  const params = [`item.${getAdditionalPropertiesName(context, type)}`];
   if (typeof deserializerFunction === "string") {
     params.push("undefined");
     params.push(deserializerFunction);
