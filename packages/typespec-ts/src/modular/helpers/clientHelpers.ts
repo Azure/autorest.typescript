@@ -206,10 +206,12 @@ export function buildGetClientEndpointParam(
             typeof templateParam.clientDefaultValue === "string"
               ? `"${templateParam.clientDefaultValue}"`
               : templateParam.clientDefaultValue;
+          // For all parameters with default values, read from options with fallback to default
           context.addStatements(
             `const ${paramName} = options.${paramName} ?? ${defaultValue};`
           );
         } else if (templateParam.optional) {
+          // For optional parameters without defaults, check if they exist in options
           context.addStatements(`const ${paramName} = options.${paramName};`);
         }
         parameterizedEndpointUrl = parameterizedEndpointUrl.replace(
@@ -223,14 +225,21 @@ export function buildGetClientEndpointParam(
     } else if (endpointParam.type.kind === "endpoint") {
       const clientDefaultValue =
         endpointParam.type.templateArguments[0]?.clientDefaultValue;
-      const defaultValueStr =
-        clientDefaultValue && typeof clientDefaultValue === "string"
-          ? `"${clientDefaultValue}"`
-          : clientDefaultValue
-            ? clientDefaultValue
-            : `String(${getClientParameterName(endpointParam)})`;
-      const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? ${defaultValueStr};`;
-      context.addStatements(endpointUrl);
+
+      if (clientDefaultValue) {
+        // If there's a default value, use it directly
+        const defaultValueStr =
+          typeof clientDefaultValue === "string"
+            ? `"${clientDefaultValue}"`
+            : clientDefaultValue;
+        const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? ${defaultValueStr};`;
+        context.addStatements(endpointUrl);
+      } else {
+        // If no default value, this should be a required parameter passed to the function
+        // So we should be accessing it as a function parameter, not from options
+        const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? String(${getClientParameterName(endpointParam)});`;
+        context.addStatements(endpointUrl);
+      }
       return "endpointUrl";
     }
     const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? String(${getClientParameterName(endpointParam)});`;

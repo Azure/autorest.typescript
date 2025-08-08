@@ -108,7 +108,7 @@ export function buildClientContext(
   const propertiesInOptions = getClientParameters(client, dpgContext, {
     optionalOnly: true
   })
-    .filter((p) => p.name !== "endpoint")
+    // Include all parameters in options interface, including endpoint parameters with default values
     .map((p) => {
       return {
         name: getClientParameterName(p),
