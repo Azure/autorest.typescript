@@ -128,6 +128,79 @@ When upgrading TypeSpec dependencies only work on `packages/typespec-ts/` and `p
 - Don't return or terminal AI during monitoring, please monitor the 4 integration status every 30 seconds until they finish
 - Fix any issues that arise during the process, and ensure all tests pass before considering the upgrade complete
 
+## How to Bump Package Versions and Update Changelogs
+
+When preparing a release, we need to bump package versions and update changelogs for three packages. Here are the step-by-step instructions:
+
+### Package Version Bumping Rules
+
+- **@autorest/typescript** - Always bump a PATCH version (e.g., 6.0.45 → 6.0.46)
+- **@azure-tools/rlc-common** and **@azure-tools/typespec-ts** - Follow monthly release pattern:
+  - If this is the first release for this month, bump a MINOR version (e.g., 0.42.1 → 0.43.0)
+  - If this is not the first release this month, bump a PATCH version (e.g., 0.42.1 → 0.42.2)
+
+### Step-by-Step Release Process
+
+1. **Determine Version Increments**
+   - Check the current versions in `packages/*/package.json`
+   - For @autorest/typescript: Always increment patch version
+   - For @azure-tools packages: Check changelog dates to determine if this is first release this month
+
+2. **Update Package Versions**
+   - Update `version` field in `packages/autorest.typescript/package.json`
+   - Update `version` field in `packages/rlc-common/package.json`
+   - Update `version` field in `packages/typespec-ts/package.json`
+
+3. **Collect Merged PRs for Changelog**
+   - Find the last release date from existing changelogs
+   - Collect all merged PRs from last release date to now
+   - Categorize changes as [Feature], [Bugfix], or other appropriate categories
+   - Use format: `- [Category] Description. Please refer to [#PRNUM](https://github.com/Azure/autorest.typescript/pull/PRNUM)`
+
+4. **Update Changelog Files**
+   - Add new version section at the top of each changelog file
+   - Use format: `## VERSION (YYYY-MM-DD)`
+   - Add collected PR entries under each version section
+   - Update `packages/autorest.typescript/CHANGELOG.md`
+   - Update `packages/rlc-common/CHANGELOG.md`
+   - Update `packages/typespec-ts/CHANGELOG.md`
+
+5. **Example Changelog Format**
+   ```md
+   ## 0.42.2 (2025-08-08)
+
+   - [Feature] Add tspd for regen docs. Please refer to [#3236](https://github.com/Azure/autorest.typescript/pull/3236)
+   - [Feature] Generate tsconfig.snippets.json. Please refer to [#3373](https://github.com/Azure/autorest.typescript/pull/3373)
+   - [Bugfix] Fix the import ordering in-consistent issues. Please refer to [#3383](https://github.com/Azure/autorest.typescript/pull/3383)
+   ```
+
+6. **Update Package Dependencies**
+   - Review and update `package.json` dependencies if needed
+   - Ensure version compatibility between packages
+   - Update any internal package references if version changes affect dependencies
+
+7. **Validation Steps**
+   - Run `rush update` to ensure all dependencies are correctly installed (takes ~8 seconds)
+   - Run `rush build` to build all packages and verify no build issues (takes ~12 seconds)
+   - Run `rush format` to format the codebase (takes ~6 seconds)
+   - Run unit tests: `npm run unit-test` in `packages/typespec-ts/` (takes ~2.5 minutes)
+   - Run smoke tests: `npm run smoke-test` in `packages/typespec-test/` (takes ~10 minutes)
+   - Optionally run integration tests to ensure end-to-end functionality works
+
+8. **Final Validation**
+   - Verify all package.json files have correct versions
+   - Verify all changelog files have proper format and entries
+   - Ensure no build or test failures introduced by version changes
+   - Confirm all dependencies are properly updated and compatible
+
+### Common Pitfalls to Avoid
+
+- Don't forget to update all three packages simultaneously
+- Ensure changelog dates match the actual release date
+- Verify PR links are correct and accessible
+- Check that version increments follow the established rules
+- Always validate changes with rush build before committing
+
 ## How to run and fix test failures in TypeSpec TypeScript emitter
 
 Run `rush update` and `rush build` before running tests.
