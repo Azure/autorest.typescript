@@ -235,7 +235,14 @@ export function todoAttachmentArrayDeserializer(
 
 /** model interface ToDoItemMultipartRequest */
 export interface ToDoItemMultipartRequest {
-  item: TodoItem;
+  item: {
+    title: string;
+    assignedTo?: number;
+    description?: string;
+    status: "NotStarted" | "InProgress" | "Completed";
+    labels?: TodoLabels;
+    dummy?: string;
+  };
   attachments?: Array<
     | FileContents
     | { contents: FileContents; contentType?: string; filename?: string }
@@ -246,7 +253,7 @@ export function toDoItemMultipartRequestSerializer(
   item: ToDoItemMultipartRequest,
 ): any {
   return [
-    { name: "item", body: todoItemSerializer(item["item"]) },
+    { name: "item", body: _createFormRequestItemSerializer(item["item"]) },
     ...(item["attachments"] === undefined
       ? []
       : [
@@ -255,6 +262,35 @@ export function toDoItemMultipartRequestSerializer(
           ),
         ]),
   ];
+}
+
+/** model interface _CreateFormRequestItem */
+export interface _CreateFormRequestItem {
+  /** The item's title */
+  title: string;
+  /** User that the todo is assigned to */
+  assignedTo?: number;
+  /** A longer description of the todo item in markdown format */
+  description?: string;
+  /** The status of the todo item */
+  status: "NotStarted" | "InProgress" | "Completed";
+  labels?: TodoLabels;
+  dummy?: string;
+}
+
+export function _createFormRequestItemSerializer(
+  item: _CreateFormRequestItem,
+): any {
+  return {
+    title: item["title"],
+    assignedTo: item["assignedTo"],
+    description: item["description"],
+    status: item["status"],
+    labels: !item["labels"]
+      ? item["labels"]
+      : todoLabelsSerializer(item["labels"]),
+    _dummy: item["dummy"],
+  };
 }
 
 /** model interface FileAttachmentMultipartRequest */
