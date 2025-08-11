@@ -114,7 +114,14 @@ export interface ToDoItemMultipartRequest {
         filename?: string;
     }>;
     // (undocumented)
-    item: TodoItem;
+    item: {
+        title: string;
+        assignedTo?: number;
+        description?: string;
+        status: "NotStarted" | "InProgress" | "Completed";
+        labels?: TodoLabels;
+        dummy?: string;
+    };
 }
 
 // @public
