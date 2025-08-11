@@ -223,12 +223,12 @@ export function buildGetClientEndpointParam(
     } else if (endpointParam.type.kind === "endpoint") {
       const clientDefaultValue =
         endpointParam.type.templateArguments[0]?.clientDefaultValue;
-      const defaultValueStr = clientDefaultValue
-        ? typeof clientDefaultValue === "string"
+      const defaultValueStr =
+        clientDefaultValue && typeof clientDefaultValue === "string"
           ? `"${clientDefaultValue}"`
           : clientDefaultValue
-        : `String(${getClientParameterName(endpointParam)})`;
-
+            ? clientDefaultValue
+            : `String(${getClientParameterName(endpointParam)})`;
       const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? ${defaultValueStr};`;
       context.addStatements(endpointUrl);
       return "endpointUrl";
