@@ -10,8 +10,8 @@ using Azure.ClientGenerator.Core;
 namespace myTest{
 union AgentStreamEvent {
   string,
-  ThreadStreamEvent | RunStreamEvent,
-  
+  ThreadStreamEvent,
+  RunStreamEvent,
 }
 
 union ThreadStreamEvent {
@@ -45,14 +45,12 @@ withRawContent: true
 
 ```ts models
 /** Alias for AgentStreamEvent */
-export type AgentStreamEvent = string | (ThreadStreamEvent | RunStreamEvent);
+export type AgentStreamEvent = string | ThreadStreamEvent | RunStreamEvent;
 
 export function agentStreamEventDeserializer(item: any): AgentStreamEvent {
   return item;
 }
 
-/** Alias for _ */
-export type _ = ThreadStreamEvent | RunStreamEvent;
 /** Type of ThreadStreamEvent */
 export type ThreadStreamEvent = "thread.created";
 /** Type of RunStreamEvent */

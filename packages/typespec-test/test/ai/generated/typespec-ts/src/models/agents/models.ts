@@ -1486,23 +1486,6 @@ export function messageAttachmentToolDefinitionDeserializer(
   return item;
 }
 
-/** Alias for _MessageAttachmentTool */
-export type _MessageAttachmentTool =
-  | CodeInterpreterToolDefinition
-  | FileSearchToolDefinition;
-
-export function _messageAttachmentToolSerializer(
-  item: _MessageAttachmentTool,
-): any {
-  return item;
-}
-
-export function _messageAttachmentToolDeserializer(
-  item: any,
-): _MessageAttachmentTool {
-  return item;
-}
-
 export function threadMessageOptionsArraySerializer(
   result: Array<ThreadMessageOptions>,
 ): any[] {
@@ -4530,27 +4513,17 @@ export function runStepDeltaCodeInterpreterImageOutputObjectDeserializer(
 /** Alias for AgentStreamEvent */
 export type AgentStreamEvent =
   | string
-  | (
-      | ThreadStreamEvent
-      | RunStreamEvent
-      | RunStepStreamEvent
-      | MessageStreamEvent
-      | ErrorEvent
-      | DoneEvent
-    );
-
-export function agentStreamEventDeserializer(item: any): AgentStreamEvent {
-  return item;
-}
-
-/** Alias for _ */
-export type _ =
   | ThreadStreamEvent
   | RunStreamEvent
   | RunStepStreamEvent
   | MessageStreamEvent
   | ErrorEvent
   | DoneEvent;
+
+export function agentStreamEventDeserializer(item: any): AgentStreamEvent {
+  return item;
+}
+
 /** Thread operation related streaming events */
 export type ThreadStreamEvent = "thread.created";
 /** Run operation related streaming events */
