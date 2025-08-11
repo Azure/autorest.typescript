@@ -223,15 +223,13 @@ export function buildGetClientEndpointParam(
     } else if (endpointParam.type.kind === "endpoint") {
       const clientDefaultValue =
         endpointParam.type.templateArguments[0]?.clientDefaultValue;
-
-      // Generate endpoint URL with appropriate fallback value
-      const fallbackValue = clientDefaultValue
+      const defaultValueStr = clientDefaultValue
         ? typeof clientDefaultValue === "string"
           ? `"${clientDefaultValue}"`
           : clientDefaultValue
         : `String(${getClientParameterName(endpointParam)})`;
 
-      const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? ${fallbackValue};`;
+      const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? ${defaultValueStr};`;
       context.addStatements(endpointUrl);
       return "endpointUrl";
     }
