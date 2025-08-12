@@ -405,7 +405,10 @@ export function buildEnumTypes(
   return [enumAsUnion, enumDeclaration];
 }
 
-function getExtensibleEnumDescription(context: SdkContext, model: SdkEnumType): string | undefined {
+function getExtensibleEnumDescription(
+  context: SdkContext,
+  model: SdkEnumType
+): string | undefined {
   if (model.isFixed && model.name && model.values) {
     return;
   }
