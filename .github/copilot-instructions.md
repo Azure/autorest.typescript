@@ -16,7 +16,7 @@ This repository focuses on the TypeSpec TypeScript emitter, which generates Type
   - Unit tests: `npm run unit-test` in `packages/typespec-ts/` -- takes ~2.5 minutes. NEVER CANCEL. Set timeout to 10+ minutes.
   - Autorest unit tests: `npm run unit-test` in `packages/autorest.typescript/` -- takes ~5 seconds. NEVER CANCEL. Set timeout to 5+ minutes.
   - RLC common unit tests: `npm run test` in `packages/rlc-common/` -- takes ~4 seconds. NEVER CANCEL. Set timeout to 5+ minutes.
-  - Smoke test: `npm run smoke-test` in `packages/typespec-test/` -- takes ~10 minutes. NEVER CANCEL. Set timeout to 20+ minutes.
+  - Smoke test: `npm run smoke-test` in `packages/typespec-test/` -- takes ~10 minutes. NEVER CANCEL. Set timeout to 20+ minutes. **Wait until you see "All specs succeeded!" message.**
 
 - **Run integration tests (from `packages/typespec-ts/`):**
   - ALWAYS run `npm run copy:typespec` first before integration tests (takes <1 second)
@@ -121,7 +121,7 @@ When upgrading TypeSpec dependencies only work on `packages/typespec-ts/` and `p
 - Do run `npm run integration-test-ci:azure-rlc` under `packages/typespec-ts/` to validate our Azure RLC Integration Test and follow the below instructions to fix any test failures. Please do not skip this test. This would take around 30 min.
 - Do wait all 4 integration tests to be done under `packages/typespec-ts/` even the integration would take around 1 hour or skip 4 integration testings under `packages/typespec-ts/`
 - Do run `npm run lint` under `packages/typespec-ts/` to run the linter.
-- Do run `npm run smoke-test` under `packages/typespec-test/` to validate our test scenarios for typespec and if any issue try to fix it.
+- Do run `npm run smoke-test` under `packages/typespec-test/` to validate our test scenarios for typespec and if any issue try to fix it. **Wait until you see "All specs succeeded!" message before proceeding.**
 - RLC integration testing finish is NOT enough and please pay patient to wait the Modular and Azure Modular integration completed.
 - Do not write a summery if all 4 integration testings or smoke testing are still in progress and don't write final progress update if integration testing are still in progress and please monitor the job to be done not just running successfully
 - Do wait around 1 hour that all tasks are completed not just start running
@@ -185,7 +185,7 @@ When preparing a release, we need to bump package versions and update changelogs
    - Run `rush build` to build all packages and verify no build issues (takes ~12 seconds)
    - Run `rush format` to format the codebase (takes ~6 seconds)
    - Run unit tests: `npm run unit-test` in `packages/typespec-ts/` (takes ~2.5 minutes)
-   - Optionally run smoke tests: `npm run smoke-test` in `packages/typespec-test/` (takes ~10 minutes)
+   - Optionally run smoke tests: `npm run smoke-test` in `packages/typespec-test/` (takes ~10 minutes). **Wait for "All specs succeeded!" message.**
    - Optionally run integration tests to ensure end-to-end functionality works
 
 8. **Final Validation**

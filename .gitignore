@@ -29,5 +29,3 @@ dist
 vitest.config.ts.timestamp*
 .tshy
 **/test/**/metadata.json
-# Ignore generated API review files from smoke tests
-**/test/**/review/*.api.md
