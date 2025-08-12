@@ -28,7 +28,11 @@ async function generateTypeSpecs(tag = "rlc", isDebugging, pathFilter) {
   }
 
   if (pathFilter) {
-    list = list.filter((tsp) => tsp.outputPath === pathFilter);
+    list = list.filter((tsp) => 
+      tsp.outputPath === pathFilter || 
+      tsp.outputPath.includes(pathFilter) || 
+      tsp.inputPath.includes(pathFilter)
+    );
   }
 
   const maxConcurrentWorkers = 4;
