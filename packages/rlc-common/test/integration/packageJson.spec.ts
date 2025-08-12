@@ -275,7 +275,7 @@ describe("Package file generation", () => {
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
 
       const expectedTshy = {
-        project: "./tsconfig.src.json",
+        project: "./tsconfig.src.build.json",
         exports: { "./package.json": "./package.json", ".": "./src/index.ts" },
         dialects: ["esm", "commonjs"],
         esmDialects: ["browser", "react-native"],
