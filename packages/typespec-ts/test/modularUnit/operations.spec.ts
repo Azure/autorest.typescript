@@ -47,4 +47,45 @@ describe("operations", () => {
       }
     });
   });
+  
+  describe("binary payload with application/cose", () => {
+    it("should handle binary response with application/cose content type without crashing", async () => {
+      const tspContent = `
+        @doc("Signed statement")
+        model SignedStatement {
+          @doc("The MIME content type a Cose body is application/cose")
+          @header("Content-Type")
+          contentType: "application/cose";
+
+          @doc("CoseSign1 signature envelope")
+          @bodyRoot
+          body: bytes;
+        }
+
+        @doc("Response with COSE binary content")
+        model CoseResponse {
+          @doc("Status code")
+          @statusCode
+          statusCode: 201;
+
+          @doc("The MIME content type a Cose body is application/cose")
+          @header("Content-Type")
+          contentType: "application/cose";
+
+          @doc("Receipt body in COSE format")
+          @bodyRoot
+          body: bytes;
+        }
+
+        @post
+        op createEntry(...SignedStatement): CoseResponse;
+      `;
+
+      // This should not throw an error - previously would crash with "Cannot read properties of undefined (reading 'kind')"
+      const result = await emitModularOperationsFromTypeSpec(tspContent);
+      assert.ok(result);
+      // Verify that operations were generated successfully
+      assert.ok(result!.length > 0);
+    });
+  });
 });
