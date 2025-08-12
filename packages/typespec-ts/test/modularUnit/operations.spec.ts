@@ -88,4 +88,60 @@ describe("operations", () => {
       assert.ok(result!.length > 0);
     });
   });
+
+  describe("binary COSE response handling", () => {
+    it("should generate correct operations for binary COSE responses", async () => {
+      const tspContent = `
+        @doc("Signed statement with binary COSE content")
+        model SignedStatement {
+          @doc("The MIME content type for COSE is application/cose")
+          @header("Content-Type")
+          contentType: "application/cose";
+
+          @doc("Binary COSE payload")
+          @bodyRoot
+          body: bytes;
+        }
+
+        @doc("Response with binary COSE content")
+        model CoseResponse {
+          @doc("Status code")
+          @statusCode
+          statusCode: 201;
+
+          @doc("The MIME content type for COSE is application/cose")
+          @header("Content-Type")
+          contentType: "application/cose";
+
+          @doc("Binary COSE response payload")
+          @bodyRoot
+          body: bytes;
+        }
+
+        @post
+        @route("/submit")
+        op submitCoseData(...SignedStatement): CoseResponse;
+
+        @get
+        @route("/cose")
+        op getCoseData(): CoseResponse;
+      `;
+
+      const result = await emitModularOperationsFromTypeSpec(tspContent);
+      assert.ok(result);
+      assert.ok(result!.length > 0);
+      
+      // Check that binary response operations are generated correctly
+      const operationsFile = result!.find(file => file.getFilePath().endsWith("operations.ts"));
+      assert.ok(operationsFile, "operations.ts should be generated");
+      
+      const operationsContent = operationsFile!.getFullText();
+      
+      // Verify binary response handling
+      assert.ok(operationsContent.includes("Promise<Uint8Array>"), "Should return Uint8Array for binary responses");
+      assert.ok(operationsContent.includes('"accept": "application/cose"'), "Should set correct accept header");
+      assert.ok(operationsContent.includes('contentType: "application/cose"'), "Should set correct content type");
+      assert.ok(operationsContent.includes("return result.body"), "Should return binary body directly");
+    });
+  });
 });

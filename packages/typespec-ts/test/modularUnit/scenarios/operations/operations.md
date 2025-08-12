@@ -1172,3 +1172,133 @@ export async function createOrUpdateEndpoint(
   return _createOrUpdateEndpointDeserialize(result);
 }
 ```
+
+# Binary COSE response handling
+
+Binary responses with application/cose content type should be properly handled without crashing.
+
+## TypeSpec
+
+```tsp
+@doc("Signed statement with binary COSE content")
+model SignedStatement {
+  @doc("The MIME content type for COSE is application/cose")
+  @header("Content-Type")
+  contentType: "application/cose";
+
+  @doc("Binary COSE payload")
+  @bodyRoot
+  body: bytes;
+}
+
+@doc("Response with binary COSE content")
+model CoseResponse {
+  @doc("Status code")
+  @statusCode
+  statusCode: 201;
+
+  @doc("The MIME content type for COSE is application/cose")
+  @header("Content-Type")
+  contentType: "application/cose";
+
+  @doc("Binary COSE response payload")
+  @bodyRoot
+  body: bytes;
+}
+
+@post
+@route("/submit")
+op submitCoseData(...SignedStatement): CoseResponse;
+
+@get
+@route("/cose")
+op getCoseData(): CoseResponse;
+```
+
+## Operations
+
+```ts operations
+import { BinaryCoseTestContext as Client } from "./index.js";
+import {
+  GetCoseDataOptionalParams,
+  SubmitCoseDataOptionalParams,
+} from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@typespec/ts-http-runtime";
+
+export function _getCoseDataSend(
+  context: Client,
+  options: GetCoseDataOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/cose")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/cose",
+        ...options.requestOptions?.headers,
+      },
+    });
+}
+
+export async function _getCoseDataDeserialize(
+  result: PathUncheckedResponse,
+): Promise<Uint8Array> {
+  const expectedStatuses = ["201"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return result.body;
+}
+
+export async function getCoseData(
+  context: Client,
+  options: GetCoseDataOptionalParams = { requestOptions: {} },
+): Promise<Uint8Array> {
+  const result = await _getCoseDataSend(context, options);
+  return _getCoseDataDeserialize(result);
+}
+
+export function _submitCoseDataSend(
+  context: Client,
+  body: Uint8Array,
+  options: SubmitCoseDataOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/submit")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      contentType: "application/cose",
+      headers: {
+        accept: "application/cose",
+        ...options.requestOptions?.headers,
+      },
+      body: body,
+    });
+}
+
+export async function _submitCoseDataDeserialize(
+  result: PathUncheckedResponse,
+): Promise<Uint8Array> {
+  const expectedStatuses = ["201"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return result.body;
+}
+
+export async function submitCoseData(
+  context: Client,
+  body: Uint8Array,
+  options: SubmitCoseDataOptionalParams = { requestOptions: {} },
+): Promise<Uint8Array> {
+  const result = await _submitCoseDataSend(context, body, options);
+  return _submitCoseDataDeserialize(result);
+}
+```
