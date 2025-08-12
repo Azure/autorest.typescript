@@ -47,7 +47,7 @@ describe("operations", () => {
       }
     });
   });
-  
+
   describe("binary payload with application/cose", () => {
     it("should handle binary response with application/cose content type without crashing", async () => {
       const tspContent = `
