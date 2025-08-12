@@ -131,7 +131,7 @@ export type DocumentIngressUnion =
 export function documentIngressUnionSerializer(
   item: DocumentIngressUnion,
 ): any {
-  switch (item.DocumentType) {
+  switch (item.documentType) {
     case "Request":
       return requestSerializer(item as Request);
 
