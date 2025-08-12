@@ -396,7 +396,7 @@ export function buildEnumTypes(
   const docs = type.doc ? type.doc : "Type of " + enumAsUnion.name;
   enumAsUnion.docs =
     isExtensibleEnum(context, type) && type.doc
-      ? [getExtensibleEnumDescription(type) ?? docs]
+      ? [getExtensibleEnumDescription(context, type) ?? docs]
       : [docs];
   enumDeclaration.docs = type.doc
     ? [type.doc]
@@ -405,7 +405,7 @@ export function buildEnumTypes(
   return [enumAsUnion, enumDeclaration];
 }
 
-function getExtensibleEnumDescription(model: SdkEnumType): string | undefined {
+function getExtensibleEnumDescription(context: SdkContext, model: SdkEnumType): string | undefined {
   if (model.isFixed && model.name && model.values) {
     return;
   }
@@ -415,7 +415,7 @@ function getExtensibleEnumDescription(model: SdkEnumType): string | undefined {
     // Escape the character / to make sure we don't incorrectly announce a comment blocks /** */
     .replace(/^\//g, "\\/")
     .replace(/([^\\])(\/)/g, "$1\\/");
-  const enumLink = `{@link Known${model.name}} can be used interchangeably with ${model.name},\n this enum contains the known values that the service supports.`;
+  const enumLink = `{@link Known${normalizeModelName(context, model)}} can be used interchangeably with ${model.name},\n this enum contains the known values that the service supports.`;
 
   return [
     `${model.doc} \\`,
