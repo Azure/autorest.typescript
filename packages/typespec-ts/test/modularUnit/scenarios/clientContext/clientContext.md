@@ -98,7 +98,7 @@ export function createService(
 }
 ```
 
-# only: handle with default values in server
+# handle with default values in server
 
 ## TypeSpec
 
