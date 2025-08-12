@@ -228,14 +228,22 @@ export function getDeserializePrivateFunction(
     } else if (isAzureCoreErrorType(context.program, deserializedType.__raw)) {
       statements.push(`return ${deserializedRoot}`);
     } else {
+      // Determine if the response contains binary payload
+      // Use __raw if it exists and is a Type, otherwise fall back to the type itself
+      const rawType = (response.type as any)?.__raw;
+      const responseType = rawType && typeof rawType === 'object' && 'kind' in rawType 
+        ? rawType 
+        : response.type;
+      const isBinary = responseType && contentTypes 
+        ? isBinaryPayload(context, responseType as any, contentTypes)
+        : false;
+        
       statements.push(
         `return ${deserializeResponseValue(
           context,
           deserializedType,
           deserializedRoot,
-          isBinaryPayload(context, response.type!.__raw!, contentTypes!)
-            ? "binary"
-            : getEncodeForType(deserializedType)
+          isBinary ? "binary" : getEncodeForType(deserializedType)
         )}`
       );
     }

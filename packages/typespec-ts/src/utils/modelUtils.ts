@@ -99,19 +99,23 @@ export function getBinaryType(usage: SchemaContext[]) {
 }
 
 export function isByteOrByteUnion(dpgContext: SdkContext, type: Type) {
+  if (!type) {
+    return false;
+  }
   const schema = getSchemaForType(dpgContext, type);
   return isBytesType(schema) || isBytesUnion(schema);
 }
 
 function isBytesType(schema: any) {
   return (
+    schema &&
     schema.type === "string" &&
     (schema.format === "bytes" || schema.format === "binary")
   );
 }
 
 function isBytesUnion(schema: any) {
-  if (!Array.isArray(schema.enum)) {
+  if (!schema || !Array.isArray(schema.enum)) {
     return false;
   }
   for (const ele of schema.enum) {
@@ -289,7 +293,7 @@ export function getEffectiveModelFromType(
    * If type is an anonymous model, tries to find a named model that has the same
    * set of properties when non-schema properties are excluded.
    */
-  if (type.kind === "Model" && type.name === "") {
+  if (type && type.kind === "Model" && type.name === "") {
     const effective = getEffectiveModelType(context.program, type, (property) =>
       isSchemaProperty(context.program, property)
     );
