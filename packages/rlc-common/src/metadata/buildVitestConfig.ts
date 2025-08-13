@@ -4,33 +4,14 @@
 import { RLCModel } from "../interfaces.js";
 
 const nodeConfig = `
-import { defineConfig, mergeConfig } from "vitest/config";
 import viteConfig from "../../../vitest.shared.config.ts";
 
-export default mergeConfig(
-  viteConfig,
-  defineConfig({
-    test: {
-      hookTimeout: 1200000,
-      testTimeout: 1200000,
-    },
-  }),
-);`;
+export default viteConfig;`;
 
 const browserConfig = `
-import { defineConfig, mergeConfig } from "vitest/config";
 import viteConfig from "../../../vitest.browser.shared.config.ts";
 
-export default mergeConfig(
-  viteConfig,
-  defineConfig({
-    test: {
-      include: ["dist-test/browser/test/**/*.spec.js"],
-      testTimeout: 1200000,
-      hookTimeout: 1200000,
-    },
-  }),
-);`;
+export default viteConfig;`;
 
 const esmConfig = `
 import { mergeConfig } from "vitest/config";
