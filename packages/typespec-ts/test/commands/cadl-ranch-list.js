@@ -268,10 +268,11 @@ export const azureRlcTsps = [
     outputPath: "versioning/typeChangedFrom",
     inputPath: "versioning/typeChangedFrom"
   },
-  {
-    outputPath: "azure/resource-manager/resources",
-    inputPath: "azure/resource-manager/resources"
-  },
+  // skip due to issue https://github.com/Azure/autorest.typescript/issues/3446
+  // {
+  //   outputPath: "azure/resource-manager/resources",
+  //   inputPath: "azure/resource-manager/resources"
+  // },
   {
     outputPath: "azure/core/model",
     inputPath: "azure/core/model"
@@ -329,10 +330,11 @@ export const azureRlcTsps = [
     outputPath: "azure/client-generator-core/deserialize-empty-string-as-null",
     inputPath: "azure/client-generator-core/deserialize-empty-string-as-null"
   },
-  {
-    outputPath: "azure/resource-manager/operation-templates",
-    inputPath: "azure/resource-manager/operation-templates"
-  },
+  // skip due to issue https://github.com/Azure/autorest.typescript/issues/3446
+  // {
+  //   outputPath: "azure/resource-manager/operation-templates",
+  //   inputPath: "azure/resource-manager/operation-templates"
+  // },
   {
     outputPath: "azure/client-generator-core/client-location",
     inputPath: "azure/client-generator-core/client-location"
