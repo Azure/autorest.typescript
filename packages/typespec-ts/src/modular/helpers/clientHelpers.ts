@@ -141,6 +141,12 @@ function getClientParameterTypeExpression(
   context: SdkContext,
   parameter: SdkParameter
 ) {
+  // Special handling for apiVersion parameters to use string type
+  const paramName = getClientParameterName(parameter);
+  if (paramName.toLowerCase() === "apiversion" || parameter.name.toLowerCase() === "apiversion" || parameter.name === "api-version") {
+    return "string";
+  }
+  
   // Special handle to work around the fact that TCGC creates a union type for endpoint. The reason they do this
   // is to provide a way for users to either pass the value to fill in the template of the whole endpoint. Basically they are
   // inserting a variant with {endpoint}.
