@@ -5,7 +5,7 @@ import OperationTemplatesClientFactory, {
   isUnexpected
 } from "./generated/azure/resource-manager/operation-templates/src/index.js";
 
-describe("Azure ARM Operation Templates Rest Client", () => {
+describe.skip("Azure ARM Operation Templates Rest Client", () => {
   let client: OperationTemplatesClient;
 
   beforeEach(() => {

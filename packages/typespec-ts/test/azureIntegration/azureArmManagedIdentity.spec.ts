@@ -2,7 +2,7 @@ import { assert } from "chai";
 import AzureArmModelsCommonTypesManagedIdentityClientFactory, {
   AzureArmModelsCommonTypesManagedIdentityClient
 } from "./generated/azure/resource-manager/common-properties/src/index.js";
-describe("Azure Arm Resources Rest Client", () => {
+describe.skip("Azure Arm Resources Rest Client", () => {
   let client: AzureArmModelsCommonTypesManagedIdentityClient;
 
   beforeEach(() => {

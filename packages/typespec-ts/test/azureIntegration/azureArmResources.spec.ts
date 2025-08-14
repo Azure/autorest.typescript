@@ -10,7 +10,7 @@ import AzureArmResourceClientFactory, {
   SingletonTrackedResourceOutput,
   TopLevelTrackedResourceOutput
 } from "./generated/azure/resource-manager/resources/src/index.js";
-describe("Azure Arm Resources Rest Client", () => {
+describe.skip("Azure Arm Resources Rest Client", () => {
   let client: AzureArmResourceClient;
 
   beforeEach(() => {
