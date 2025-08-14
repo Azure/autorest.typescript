@@ -7,14 +7,11 @@ This scenario tests that when a client has an API version parameter that should 
 ```tsp
 import "@typespec/http";
 import "@typespec/rest";
-import "@typespec/versioning";
 import "@azure-tools/typespec-azure-core";
 
 using TypeSpec.Http;
 using TypeSpec.Rest;
-using TypeSpec.Versioning;
 using Azure.Core;
-using Azure.Core.Traits;
 
 @server(
   "{endpoint}",
@@ -27,18 +24,11 @@ using Azure.Core.Traits;
 @service(#{
   title: "DataMap"
 })
-@versioned(DataMap.Versions)
 namespace Azure.Analytics.Purview.DataMap;
-
-enum Versions {
-  /** Version 2023-09-01 */
-  @useDependency(Azure.Core.Versions.v1_0_Preview_2)
-  `2023-09-01`,
-}
 
 model ApiVersionParameter {
   @query
-  "api-version": Versions;
+  "api-version": string;
 }
 
 @route("/atlas/v2/types/typedefs")
@@ -60,13 +50,12 @@ import { logger } from "../logger.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 
 export interface DataMapContext extends Client {
+  /** The API version to use for this operation. */
   apiVersion: string;
 }
 
 /** Optional parameters for the client. */
-export interface DataMapClientOptionalParams extends ClientOptions {
-  apiVersion?: string;
-}
+export interface DataMapClientOptionalParams extends ClientOptions {}
 
 export function createDataMap(
   endpointParam: string,
@@ -86,7 +75,7 @@ export function createDataMap(
   const clientContext = getClient(endpointUrl, undefined, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   clientContext.pipeline.addPolicy({
-    name: "ClientApiVersionPolicy",
+    name: 'ClientApiVersionPolicy',
     sendRequest: (req, next) => {
       // Use the apiVersion defined in request url directly
       // Append one if there is no apiVersion and we have one at client options

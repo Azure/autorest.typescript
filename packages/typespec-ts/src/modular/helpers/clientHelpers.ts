@@ -80,7 +80,7 @@ export function getClientParameters(
         p.type.templateArguments[0] &&
         hasDefaultValue(p.type.templateArguments[0])
       )) ||
-      (options.apiVersionAsRequired && p.isApiVersionParam));
+      (options.apiVersionAsRequired && p.isApiVersionParam && !hasDefaultValue(p)));
   const isOptional = (p: SdkParameter) => p.optional || hasDefaultValue(p);
   const skipCredentials = (p: SdkParameter) => p.kind !== "credential";
   const skipMethodParam = (p: SdkParameter) => p.kind !== "method";
