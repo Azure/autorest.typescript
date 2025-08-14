@@ -22,7 +22,7 @@ withVersionedApiVersion: true
 
 ## Code
 
-```ts
+```ts clientContext
 export interface AzureTypeScriptTestingContext extends Client {
   apiVersion: string;
 }
