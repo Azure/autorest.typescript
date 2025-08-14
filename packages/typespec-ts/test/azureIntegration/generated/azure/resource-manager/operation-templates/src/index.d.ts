@@ -753,9 +753,19 @@ export declare interface TrackedResource extends Resource {
     location: string;
 }
 
+export declare interface TrackedResource extends Resource {
+    tags?: Record<string, string>;
+    location?: string;
+}
+
 export declare interface TrackedResourceOutput extends ResourceOutput {
     tags?: Record<string, string>;
     location: string;
+}
+
+export declare interface TrackedResourceOutput extends ResourceOutput {
+    tags?: Record<string, string>;
+    location?: string;
 }
 
 export declare interface Widget extends TrackedResource {
