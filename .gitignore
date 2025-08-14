@@ -29,4 +29,3 @@ dist
 vitest.config.ts.timestamp*
 .tshy
 **/test/**/metadata.json
-**/test/**/generated/typespec-ts/review/*.api.md

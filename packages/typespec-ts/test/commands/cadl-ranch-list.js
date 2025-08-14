@@ -276,10 +276,11 @@ export const azureRlcTsps = [
     outputPath: "azure/core/model",
     inputPath: "azure/core/model"
   },
-  {
-    outputPath: "azure/resource-manager/common-properties",
-    inputPath: "azure/resource-manager/common-properties"
-  },
+  // skip due to issue https://github.com/Azure/autorest.typescript/issues/3446
+  // {
+  //   outputPath: "azure/resource-manager/common-properties",
+  //   inputPath: "azure/resource-manager/common-properties"
+  // },
   {
     outputPath: "azure/core/page",
     inputPath: "azure/core/page"
