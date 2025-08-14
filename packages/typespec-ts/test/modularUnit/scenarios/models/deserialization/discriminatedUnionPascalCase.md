@@ -50,16 +50,23 @@ export interface DocumentIngressUnion {
   documentType: DocumentType;
 }
 
-export function documentIngressUnionDeserializer(item: any): DocumentIngressUnion {
+export function documentIngressUnionDeserializer(
+  item: any,
+): DocumentIngressUnion {
   return {
-    documentType: item["documentType"],
+    documentType: item["DocumentType"],
   };
 }
 
 /** Alias for DocumentIngressUnionUnion */
-export type DocumentIngressUnionUnion = Request | Response | DocumentIngressUnion;
+export type DocumentIngressUnionUnion =
+  | Request
+  | Response
+  | DocumentIngressUnion;
 
-export function documentIngressUnionUnionDeserializer(item: any): DocumentIngressUnionUnion {
+export function documentIngressUnionUnionDeserializer(
+  item: any,
+): DocumentIngressUnionUnion {
   switch (item.documentType) {
     case "Request":
       return requestDeserializer(item as Request);
@@ -83,7 +90,7 @@ export interface Request extends DocumentIngressUnion {
 
 export function requestDeserializer(item: any): Request {
   return {
-    documentType: item["documentType"],
+    documentType: item["DocumentType"],
     requestId: item["requestId"],
   };
 }
@@ -96,7 +103,7 @@ export interface Response extends DocumentIngressUnion {
 
 export function responseDeserializer(item: any): Response {
   return {
-    documentType: item["documentType"],
+    documentType: item["DocumentType"],
     responseId: item["responseId"],
   };
 }
