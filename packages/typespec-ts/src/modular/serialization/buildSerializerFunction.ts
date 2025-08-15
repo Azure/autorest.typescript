@@ -239,7 +239,7 @@ function buildDiscriminatedUnionSerializer(
     `);
   }
   output.push(`
-    switch (item.${type.discriminatorProperty ? normalizeName(type.discriminatorProperty.name, NameType.Property) : 'unknown'}) {
+    switch (item.${type.discriminatorProperty ? normalizeName(type.discriminatorProperty.name, NameType.Property) : "unknown"}) {
      ${cases.join("\n")}
       default:
         return ${baseSerializerName}(item);
