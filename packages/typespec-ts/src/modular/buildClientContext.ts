@@ -236,26 +236,7 @@ export function buildClientContext(
     }
 
     if (apiVersionParam.kind === "method") {
-      const apiVersionVariableName = apiVersionIsRequired 
-        ? getClientParameterName(apiVersionParam) 
-        : (!apiVersionInEndpoint && apiVersionParam.clientDefaultValue ? "apiVersionValue" : getClientParameterName(apiVersionParam));
-        
-      apiVersionPolicyStatement += `
-      clientContext.pipeline.addPolicy({
-        name: 'ClientApiVersionPolicy',
-        sendRequest: (req, next) => {
-          // Use the apiVersion defined in request url directly
-          // Append one if there is no apiVersion and we have one at client options
-          const url = new URL(req.url);
-          if (!url.searchParams.get("api-version")) {
-            req.url = \`\${req.url}\${
-              Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
-            }api-version=\${${apiVersionVariableName}}\`;
-          }
-    
-          return next(req);
-        },
-      });`;
+      // Skip API version policy for now
     }
   } else if (isAzurePackage(emitterOptions)) {
     apiVersionPolicyStatement += `
