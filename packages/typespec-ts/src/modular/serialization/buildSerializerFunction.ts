@@ -238,8 +238,14 @@ function buildDiscriminatedUnionSerializer(
         return ${subtypeSerializerName}(item as ${subTypeName});
     `);
   }
+
+  const discriminatorPropertyName = normalizeName(
+    type.discriminatorProperty?.name ?? "",
+    NameType.Property
+  );
+
   output.push(`
-    switch (item.${type.discriminatorProperty?.name}) {
+    switch (item.${discriminatorPropertyName}) {
      ${cases.join("\n")}
       default:
         return ${baseSerializerName}(item);
