@@ -55,12 +55,12 @@ describe("NameAndEncodedName Client", () => {
   });
 
   it("should work with model client", async () => {
-    const result = await client.clientModel.client({ defaultName: true });
+    const result = await client.modelClient.client({ defaultName: true });
     assert.isUndefined(result);
   });
 
   it("should work with model language", async () => {
-    const result = await client.clientModel.language({ defaultName: true });
+    const result = await client.modelClient.language({ defaultName: true });
     assert.isUndefined(result);
   });
 
