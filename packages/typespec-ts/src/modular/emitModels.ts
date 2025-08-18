@@ -15,14 +15,13 @@ import {
 } from "@azure-tools/rlc-common";
 import {
   SdkArrayType,
-  SdkBodyModelPropertyType,
+  SdkModelPropertyType,
   SdkClientType,
   SdkDictionaryType,
   SdkEnumType,
   SdkEnumValueType,
   SdkHttpOperation,
   SdkMethod,
-  SdkModelPropertyType,
   SdkModelType,
   SdkNullableType,
   SdkServiceMethod,
@@ -397,7 +396,7 @@ export function buildEnumTypes(
   const docs = type.doc ? type.doc : "Type of " + enumAsUnion.name;
   enumAsUnion.docs =
     isExtensibleEnum(context, type) && type.doc
-      ? [getExtensibleEnumDescription(type) ?? docs]
+      ? [getExtensibleEnumDescription(context, type) ?? docs]
       : [docs];
   enumDeclaration.docs = type.doc
     ? [type.doc]
@@ -406,7 +405,10 @@ export function buildEnumTypes(
   return [enumAsUnion, enumDeclaration];
 }
 
-function getExtensibleEnumDescription(model: SdkEnumType): string | undefined {
+function getExtensibleEnumDescription(
+  context: SdkContext,
+  model: SdkEnumType
+): string | undefined {
   if (model.isFixed && model.name && model.values) {
     return;
   }
@@ -416,7 +418,7 @@ function getExtensibleEnumDescription(model: SdkEnumType): string | undefined {
     // Escape the character / to make sure we don't incorrectly announce a comment blocks /** */
     .replace(/^\//g, "\\/")
     .replace(/([^\\])(\/)/g, "$1\\/");
-  const enumLink = `{@link Known${model.name}} can be used interchangeably with ${model.name},\n this enum contains the known values that the service supports.`;
+  const enumLink = `{@link Known${normalizeModelName(context, model)}} can be used interchangeably with ${normalizeModelName(context, model)},\n this enum contains the known values that the service supports.`;
 
   return [
     `${model.doc} \\`,
@@ -504,7 +506,7 @@ function addExtendedDictInfo(
     : undefined;
   if (context.rlcOptions?.compatibilityMode) {
     const ancestors = getAllAncestors(model);
-    const properties = getAllProperties(model, ancestors);
+    const properties = getAllProperties(context, model, ancestors);
     let anyType = true;
     if (!additionalPropertiesType) {
       // case 1: if additionalProperties is not defined, we should use any type
@@ -530,7 +532,7 @@ function addExtendedDictInfo(
     const additionalPropertiesType = model.additionalProperties
       ? getTypeExpression(context, model.additionalProperties)
       : undefined;
-    const name = getAdditionalPropertiesName(model);
+    const name = getAdditionalPropertiesName(context, model);
     if (name !== "additionalProperties") {
       // report diagnostic for additionalProperties
       reportDiagnostic(context.program, {
@@ -554,9 +556,12 @@ function addExtendedDictInfo(
   }
 }
 
-export function getAdditionalPropertiesName(model: SdkModelType): string {
+export function getAdditionalPropertiesName(
+  context: SdkContext,
+  model: SdkModelType
+): string {
   const ancestors = getAllAncestors(model);
-  const properties = getAllProperties(model, ancestors);
+  const properties = getAllProperties(context, model, ancestors);
   const nameConflict = properties.find(
     (p) => p.name === "additionalProperties"
   );
@@ -712,7 +717,7 @@ function buildModelProperty(
     name: normalizedPropName,
     type: typeExpression,
     hasQuestionToken: property.optional,
-    isReadonly: isReadOnly(property as SdkBodyModelPropertyType)
+    isReadonly: isReadOnly(property as SdkModelPropertyType)
   };
 
   if (property.doc) {

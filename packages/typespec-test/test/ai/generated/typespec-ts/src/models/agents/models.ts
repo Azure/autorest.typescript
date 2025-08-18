@@ -4513,14 +4513,12 @@ export function runStepDeltaCodeInterpreterImageOutputObjectDeserializer(
 /** Alias for AgentStreamEvent */
 export type AgentStreamEvent =
   | string
-  | (
-      | ThreadStreamEvent
-      | RunStreamEvent
-      | RunStepStreamEvent
-      | MessageStreamEvent
-      | ErrorEvent
-      | DoneEvent
-    );
+  | ThreadStreamEvent
+  | RunStreamEvent
+  | RunStepStreamEvent
+  | MessageStreamEvent
+  | ErrorEvent
+  | DoneEvent;
 
 export function agentStreamEventDeserializer(item: any): AgentStreamEvent {
   return item;

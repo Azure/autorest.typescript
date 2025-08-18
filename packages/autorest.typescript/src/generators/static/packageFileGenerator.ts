@@ -155,8 +155,8 @@ function regularAutorestPackage(
     browser: "./dist/browser/index.js",
     "react-native": "./dist/react-native/index.js",
     tshy: {
-      // only JS sdk repo has tsconfig.src.json
-      project: azureSdkForJs ? "./tsconfig.src.json" : undefined,
+      // only JS sdk repo has tsconfig.src.build.json
+      project: azureSdkForJs ? "../../../tsconfig.src.build.json" : undefined,
       exports: {
         "./package.json": "./package.json",
         ".": "./src/index.ts",
@@ -207,15 +207,9 @@ function regularAutorestPackage(
     packageInfo.devDependencies["@vitest/coverage-istanbul"] = shouldUsePnpmDep && azureSdkForJs ? "catalog:testing" : "^3.0.9";
     packageInfo.devDependencies["playwright"] = shouldUsePnpmDep && azureSdkForJs ? "catalog:testing" : "^1.52.0";
     packageInfo.devDependencies["vitest"] = shouldUsePnpmDep && azureSdkForJs ? "catalog:testing" : "^3.0.9";
-
-    packageInfo.scripts["test"] = "npm run integration-test";
-    packageInfo.scripts["unit-test"] =
-      "npm run unit-test:node && npm run unit-test:browser";
-    packageInfo.scripts["integration-test"] =
-      "npm run integration-test:node && npm run integration-test:browser";
+    packageInfo.scripts["test"] = "npm run test:node && npm run test:browser";
 
     if (azureSdkForJs) {
-      packageInfo.scripts["test"] = "npm run test:node && npm run test:browser";
       packageInfo.scripts["test:node"] = "dev-tool run test:vitest";
       packageInfo.scripts["test:node:esm"] = "dev-tool run test:vitest --esm";
     } else {
