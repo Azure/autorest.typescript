@@ -67,7 +67,7 @@ describe("show example demo", () => {
       listCredentialsRequest: { serviceName: "SSH", propertyName: "name" },
       queryParam: "query",
       headerParam: "header",
-      pathParam: "path"
+      pathParam: "path",
     });
     /* Test passes if no exception is thrown */
   });
