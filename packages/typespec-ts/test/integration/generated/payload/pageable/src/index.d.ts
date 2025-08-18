@@ -9,6 +9,19 @@ import type { StreamableMethod } from '@typespec/ts-http-runtime';
 declare function createClient(options?: PageableClientOptions): PageableClient;
 export default createClient;
 
+export declare interface ListWithoutContinuation {
+    get(options?: ListWithoutContinuationParameters): StreamableMethod<ListWithoutContinuation200Response>;
+}
+
+export declare interface ListWithoutContinuation200Response extends HttpResponse {
+    status: "200";
+    body: {
+        pets: Array<PetOutput>;
+    };
+}
+
+export declare type ListWithoutContinuationParameters = RequestParameters;
+
 export declare type PageableClient = Client & {
     path: Routes;
 };
@@ -22,7 +35,9 @@ export declare interface PetOutput {
 }
 
 export declare interface Routes {
+    (path: "/payload/pageable/simple"): ListWithoutContinuation;
     (path: "/payload/pageable/server-driven-pagination/link"): ServerDrivenPaginationLink;
+    (path: "/payload/pageable/server-driven-pagination/link-string"): ServerDrivenPaginationLinkString;
     (path: "/payload/pageable/server-driven-pagination/nested-link"): ServerDrivenPaginationNestedLink;
     (path: "/payload/pageable/server-driven-pagination/continuationtoken/request-query-response-body"): ServerDrivenPaginationContinuationTokenRequestQueryResponseBody;
     (path: "/payload/pageable/server-driven-pagination/continuationtoken/request-header-response-body"): ServerDrivenPaginationContinuationTokenRequestHeaderResponseBody;
@@ -247,6 +262,20 @@ export declare interface ServerDrivenPaginationLink200Response extends HttpRespo
 }
 
 export declare type ServerDrivenPaginationLinkParameters = RequestParameters;
+
+export declare interface ServerDrivenPaginationLinkString {
+    get(options?: ServerDrivenPaginationLinkStringParameters): StreamableMethod<ServerDrivenPaginationLinkString200Response>;
+}
+
+export declare interface ServerDrivenPaginationLinkString200Response extends HttpResponse {
+    status: "200";
+    body: {
+        pets: Array<PetOutput>;
+        next?: string;
+    };
+}
+
+export declare type ServerDrivenPaginationLinkStringParameters = RequestParameters;
 
 export declare interface ServerDrivenPaginationNestedLink {
     get(options?: ServerDrivenPaginationNestedLinkParameters): StreamableMethod<ServerDrivenPaginationNestedLink200Response>;
