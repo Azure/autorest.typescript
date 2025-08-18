@@ -500,7 +500,7 @@ function prepareTestValue(
     onClient?: boolean
 ): TestCaseValue {
     return {
-        name,
+        name: normalizeName(name, NameType.Parameter),
         value: typeof value === "string" ? value : serializeExampleValue(value, dpgContext),
         isOptional: isOptional ?? true,
         onClient: onClient ?? false

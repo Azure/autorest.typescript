@@ -64,10 +64,10 @@ describe("show example demo", () => {
 
   it("should show example demo for post", async function () {
     await client.post({
-      ListCredentialsRequest: { serviceName: "SSH", propertyName: "name" },
+      listCredentialsRequest: { serviceName: "SSH", propertyName: "name" },
       queryParam: "query",
       headerParam: "header",
-      pathParam: "path",
+      pathParam: "path"
     });
     /* Test passes if no exception is thrown */
   });
