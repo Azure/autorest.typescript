@@ -124,18 +124,25 @@ Raw json files.
 ```ts tests createOrUpdateTest
 /** This file path is /test/generated/createOrUpdateTest.spec.ts */
 
-import { Recorder } from "@azure-tools/test-recorder";
+import { Recorder, env } from "@azure-tools/test-recorder";
 import { createRecorder } from "../public/utils/recordedClient.js";
-import { assert } from "chai";
-import { Context } from "mocha";
-import { ContosoClient } from "@azure/internal-test";
-import { DefaultAzureCredential } from "@azure/identity";
+import { createTestCredential } from "@azure-tools/test-credential";
+import { assert, beforeEach, afterEach, it, describe } from "vitest";
+import { ContosoClient } from "../../src/index.js";
 
 describe("create a Employee", () => {
   let recorder: Recorder;
+  let client: ContosoClient;
+  let subscriptionId: string;
 
-  beforeEach(async function (this: Context) {
-    recorder = await createRecorder(this);
+  beforeEach(async function (ctx) {
+    recorder = await createRecorder(ctx);
+    subscriptionId = env.SUBSCRIPTION_ID || "";
+    client = new ContosoClient(
+      createTestCredential(),
+      subscriptionId,
+      recorder.configureClientOptions({}),
+    );
   });
 
   afterEach(async function () {
@@ -143,9 +150,6 @@ describe("create a Employee", () => {
   });
 
   it("should create a Employee for employeesCreateOrUpdate", async function () {
-    const credential = new DefaultAzureCredential();
-    const subscriptionId = "11809CA1-E126-4017-945E-AA795CD5C5A9";
-    const client = new ContosoClient(credential, subscriptionId);
     const result = await client.createOrUpdate("rgopenapi", "testEmployee", {
       location: "eastus",
       properties: { age: 25, city: "Seattle", profile: "developer" },

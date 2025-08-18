@@ -1,7 +1,6 @@
 import {
     SourceFile
 } from "ts-morph";
-import { resolveReference } from "../framework/reference.js";
 import { SdkContext } from "../utils/interfaces.js";
 import {
     SdkClientType,
@@ -17,7 +16,6 @@ import {
 import { useContext } from "../contextManager.js";
 import { join } from "path";
 import { existsSync, rmSync } from "fs";
-import { AzureIdentityDependencies } from "../modular/external-dependencies.js";
 import {
     buildPropertyNameMapper,
     isSpreadBodyParameter
@@ -103,9 +101,6 @@ export function emitTests(dpgContext: SdkContext): SourceFile[] {
     // Clean up the test/generated folder before generating new tests
     cleanupTestFolder(dpgContext, clients);
 
-    // Generate test utilities (recordedClient, etc.)
-    generateTestUtilities(dpgContext, generatedFiles);
-
     for (const client of dpgContext.sdkPackage.clients) {
         emitClientTests(dpgContext, client, {
             topLevelClient: client,
@@ -117,81 +112,6 @@ export function emitTests(dpgContext: SdkContext): SourceFile[] {
         });
     }
     return generatedFiles;
-}
-
-/**
- * Generate test utilities like recordedClient.ts
- */
-function generateTestUtilities(dpgContext: SdkContext, generatedFiles: SourceFile[]) {
-    const project = useContext("outputProject");
-    const isEsm = dpgContext.rlcOptions?.moduleKind === "esm";
-
-    // Generate test/public/utils/recordedClient.ts
-    const utilsFolder = join(
-        dpgContext.generationPathDetail?.rootDir ?? "",
-        "test",
-        "public",
-        "utils"
-    );
-
-    const recordedClientFile = project.createSourceFile(
-        join(utilsFolder, "recordedClient.ts"),
-        "",
-        { overwrite: true }
-    );
-
-    // Generate the recorded client content based on module type
-    const recordedClientContent = isEsm ? `
-import {
-  Recorder,
-  RecorderStartOptions,
-  VitestTestContext,
-} from "@azure-tools/test-recorder";
-
-const replaceableVariables: Record<string, string> = {
-  SUBSCRIPTION_ID: "azure_subscription_id"
-};
-
-const recorderEnvSetup: RecorderStartOptions = {
-  envSetupForPlayback: replaceableVariables,
-};
-
-/**
- * creates the recorder and reads the environment variables from the \`.env\` file.
- * Should be called first in the test suite to make sure environment variables are
- * read before they are being used.
- */
-export async function createRecorder(context: VitestTestContext): Promise<Recorder> {
-  const recorder = new Recorder(context);
-  await recorder.start(recorderEnvSetup);
-  return recorder;
-}
-` : `
-import { Context } from "mocha";
-import { Recorder, RecorderStartOptions } from "@azure-tools/test-recorder";
-
-const replaceableVariables: Record<string, string> = {
-  SUBSCRIPTION_ID: "azure_subscription_id"
-};
-
-const recorderEnvSetup: RecorderStartOptions = {
-  envSetupForPlayback: replaceableVariables,
-};
-
-/**
- * creates the recorder and reads the environment variables from the \`.env\` file.
- * Should be called first in the test suite to make sure environment variables are
- * read before they are being used.
- */
-export async function createRecorder(context: Context): Promise<Recorder> {
-  const recorder = new Recorder(context.currentTest);
-  await recorder.start(recorderEnvSetup);
-  return recorder;
-}
-`;
-
-    recordedClientFile.addStatements(recordedClientContent);
-    generatedFiles.push(recordedClientFile);
 }
 
 function emitClientTests(
@@ -242,11 +162,12 @@ function emitMethodTests(
             overwrite: true
         }
     );
+    const clientName = getClassicalClientName(options.topLevelClient);
 
     // Add imports for testing framework
     sourceFile.addImportDeclaration({
         moduleSpecifier: "@azure-tools/test-recorder",
-        namedImports: ["Recorder"]
+        namedImports: ["Recorder", "env"]
     });
 
     sourceFile.addImportDeclaration({
@@ -254,40 +175,23 @@ function emitMethodTests(
         namedImports: ["createRecorder"]
     });
 
-    // Check module kind and add appropriate test framework imports
-    const isEsm = dpgContext.rlcOptions?.moduleKind === "esm";
-    if (isEsm) {
-        sourceFile.addImportDeclaration({
-            moduleSpecifier: "vitest",
-            namedImports: ["assert", "beforeEach", "afterEach", "it", "describe"]
-        });
-    } else {
-        sourceFile.addImportDeclaration({
-            moduleSpecifier: "chai",
-            namedImports: ["assert"]
-        });
-        sourceFile.addImportDeclaration({
-            moduleSpecifier: "mocha",
-            namedImports: ["Context"]
-        });
-    }
+    sourceFile.addImportDeclaration({
+        moduleSpecifier: "@azure-tools/test-credential",
+        namedImports: ["createTestCredential"]
+    });
+
+    sourceFile.addImportDeclaration({
+        moduleSpecifier: "vitest",
+        namedImports: ["assert", "beforeEach", "afterEach", "it", "describe"]
+    });
 
     // Import the client
-    if (dpgContext.rlcOptions?.packageDetails?.name) {
-        sourceFile.addImportDeclaration({
-            moduleSpecifier: dpgContext.rlcOptions?.packageDetails?.name,
-            namedImports: [getClassicalClientName(options.topLevelClient)]
-        });
-    }
+    sourceFile.addImportDeclaration({
+        moduleSpecifier: "../../src/index.js",
+        namedImports: [clientName]
+    });
 
-    // Import Azure Identity if needed
-    if (hasTokenCredential(options.topLevelClient.clientInitialization)) {
-        resolveReference(AzureIdentityDependencies.DefaultAzureCredential);
-        sourceFile.addImportDeclaration({
-            moduleSpecifier: "@azure/identity",
-            namedImports: ["DefaultAzureCredential"]
-        });
-    } const testFunctions = [];
+    const testFunctions = [];
 
     // Create test describe block
     const methodDescription = method.doc ?? `test ${method.oriName ?? method.name}`;
@@ -309,50 +213,6 @@ function emitMethodTests(
             method,
             parameterMap,
             options.topLevelClient
-        );
-
-        // Prepare client-level parameters
-        const clientParamValues = parameters.filter((p) => p.onClient);
-        const uniqueClientParams: Array<{ name: string, value: string, isOptional: boolean }> = [];
-
-        // Collect unique parameters, preferring DefaultAzureCredential for credential parameters
-        clientParamValues.forEach((param) => {
-            const existingIndex = uniqueClientParams.findIndex(p => p.name === param.name);
-            if (existingIndex >= 0) {
-                // For credential parameters, prefer DefaultAzureCredential over string values
-                if (param.name === "credential") {
-                    if (param.value.includes("DefaultAzureCredential")) {
-                        uniqueClientParams[existingIndex] = param;
-                    }
-                    // Otherwise keep the existing one
-                } else {
-                    // For other parameters, replace with the new one
-                    uniqueClientParams[existingIndex] = param;
-                }
-            } else {
-                uniqueClientParams.push(param);
-            }
-        });
-
-        const clientParams: string[] = uniqueClientParams
-            .filter((p) => !p.isOptional)
-            .map((param) => {
-                testFunctionBody.push(`const ${param.name} = ${param.value};`);
-                return param.name;
-            });
-        const optionalClientParams = uniqueClientParams
-            .filter((p) => p.isOptional)
-            .map((param) => `${param.name}: ${param.value}`);
-        if (optionalClientParams.length > 0) {
-            testFunctionBody.push(
-                `const clientOptions = {${optionalClientParams.join(", ")}};`
-            );
-            clientParams.push("clientOptions");
-        }
-        testFunctionBody.push(
-            `const client = new ${getClassicalClientName(
-                options.topLevelClient
-            )}(${clientParams.join(", ")});`
         );
 
         // Prepare operation-level parameters
@@ -416,9 +276,13 @@ function emitMethodTests(
     const describeBlock = `
 describe("${normalizedDescription}", () => {
   let recorder: Recorder;
+  let client: ${clientName};
+  let subscriptionId: string;
 
-  beforeEach(async function(${isEsm ? "ctx" : "this: Context"}) {
-    ${isEsm ? "recorder = await createRecorder(ctx);" : "recorder = await createRecorder(this);"}
+  beforeEach(async function(ctx) {
+    recorder = await createRecorder(ctx);
+    subscriptionId = env.SUBSCRIPTION_ID || "";
+    client = new ${clientName}(createTestCredential(), subscriptionId, recorder.configureClientOptions({}));
   });
 
   afterEach(async function() {

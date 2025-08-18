@@ -144,10 +144,10 @@ export async function $onEmit(context: EmitContext) {
   console.timeEnd("onEmit: load static helpers");
   const extraDependencies = isAzurePackage({ options: rlcOptions })
     ? {
-        ...AzurePollingDependencies,
-        ...AzureCoreDependencies,
-        ...AzureIdentityDependencies
-      }
+      ...AzurePollingDependencies,
+      ...AzureCoreDependencies,
+      ...AzureIdentityDependencies
+    }
     : { ...DefaultCoreDependencies };
   console.time("onEmit: provide binder");
   const binder = provideBinder(outputProject, {
@@ -226,8 +226,8 @@ export async function $onEmit(context: EmitContext) {
   async function clearSrcFolder() {
     await fsextra.emptyDir(
       dpgContext.generationPathDetail?.modularSourcesDir ??
-        dpgContext.generationPathDetail?.rlcSourcesDir ??
-        ""
+      dpgContext.generationPathDetail?.rlcSourcesDir ??
+      ""
     );
   }
 
@@ -351,7 +351,7 @@ export async function $onEmit(context: EmitContext) {
     }
 
     // Enable modular test generation when explicitly set to true
-    if (emitterOptions["generate-test"] === true) {
+    if (emitterOptions["experimental-generate-test-files"] === true) {
       console.time("onEmit: emit tests");
       emitTests(dpgContext);
       console.timeEnd("onEmit: emit tests");

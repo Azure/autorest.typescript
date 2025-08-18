@@ -42,17 +42,25 @@ Raw json files.
 ```ts tests postTest
 /** This file path is /test/generated/postTest.spec.ts */
 
-import { Recorder } from "@azure-tools/test-recorder";
+import { Recorder, env } from "@azure-tools/test-recorder";
 import { createRecorder } from "../public/utils/recordedClient.js";
-import { assert } from "chai";
-import { Context } from "mocha";
-import { TestingClient } from "@azure/internal-test";
+import { createTestCredential } from "@azure-tools/test-credential";
+import { assert, beforeEach, afterEach, it, describe } from "vitest";
+import { TestingClient } from "../../src/index.js";
 
 describe("show example demo", () => {
   let recorder: Recorder;
+  let client: TestingClient;
+  let subscriptionId: string;
 
-  beforeEach(async function (this: Context) {
-    recorder = await createRecorder(this);
+  beforeEach(async function (ctx) {
+    recorder = await createRecorder(ctx);
+    subscriptionId = env.SUBSCRIPTION_ID || "";
+    client = new TestingClient(
+      createTestCredential(),
+      subscriptionId,
+      recorder.configureClientOptions({}),
+    );
   });
 
   afterEach(async function () {
@@ -60,12 +68,11 @@ describe("show example demo", () => {
   });
 
   it("should show example demo for post", async function () {
-    const client = new TestingClient();
     await client.post({
-      ListCredentialsRequest: { serviceName: "SSH", PROPERTY_NAME: "name" },
+      ListCredentialsRequest: { serviceName: "SSH", propertyName: "name" },
       queryParam: "query",
       headerParam: "header",
-      pathParam: "path"
+      pathParam: "path",
     });
     /* Test passes if no exception is thrown */
   });

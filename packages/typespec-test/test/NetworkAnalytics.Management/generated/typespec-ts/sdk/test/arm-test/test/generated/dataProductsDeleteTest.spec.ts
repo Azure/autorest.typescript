@@ -1,17 +1,25 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Recorder } from "@azure-tools/test-recorder";
+import { Recorder, env } from "@azure-tools/test-recorder";
 import { createRecorder } from "../public/utils/recordedClient.js";
+import { createTestCredential } from "@azure-tools/test-credential";
 import { assert, beforeEach, afterEach, it, describe } from "vitest";
-import { NetworkAnalyticsApi } from "@azure/arm-networkanalytics";
-import { DefaultAzureCredential } from "@azure/identity";
+import { NetworkAnalyticsApi } from "../../src/index.js";
 
 describe("delete data product resource", () => {
   let recorder: Recorder;
+  let client: NetworkAnalyticsApi;
+  let subscriptionId: string;
 
   beforeEach(async function (ctx) {
     recorder = await createRecorder(ctx);
+    subscriptionId = env.SUBSCRIPTION_ID || "";
+    client = new NetworkAnalyticsApi(
+      createTestCredential(),
+      subscriptionId,
+      recorder.configureClientOptions({}),
+    );
   });
 
   afterEach(async function () {
@@ -19,10 +27,7 @@ describe("delete data product resource", () => {
   });
 
   it("should delete data product resource for dataProductsDeleteMaximumSetGen", async function () {
-    const credential = new DefaultAzureCredential();
-    const subscriptionId = "00000000-0000-0000-0000-00000000000";
-    const client = new NetworkAnalyticsApi(credential, subscriptionId);
     await client.dataProducts.delete("aoiresourceGroupName", "dataproduct01");
-    // Test passes if no exception is thrown
+    /* Test passes if no exception is thrown */
   });
 });

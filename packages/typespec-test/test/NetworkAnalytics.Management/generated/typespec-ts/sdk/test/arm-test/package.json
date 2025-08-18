@@ -21,7 +21,7 @@
     "dialects": ["esm", "commonjs"],
     "esmDialects": ["browser", "react-native"],
     "selfLink": false,
-    "project": "./tsconfig.src.json"
+    "project": "../../../tsconfig.src.build.json"
   },
   "type": "module",
   "browser": "./dist/browser/index.js",

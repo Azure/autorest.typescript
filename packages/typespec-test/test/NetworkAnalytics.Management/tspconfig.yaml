@@ -9,6 +9,7 @@ options:
     generate-test: true
     azure-sdk-for-js: true
     experimental-extensible-enums: true
+    experimental-generate-test-files: true
     emitter-output-dir: "{project-root}/generated/typespec-ts/sdk/test/arm-test"
     package-details:
       name: "@azure/arm-networkanalytics"

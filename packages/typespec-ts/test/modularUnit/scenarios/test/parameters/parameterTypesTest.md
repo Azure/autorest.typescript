@@ -102,17 +102,26 @@ Raw json files.
 
 ```ts tests readTest
 /** This file path is /test/generated/readTest.spec.ts */
-import { Recorder } from "@azure-tools/test-recorder";
+
+import { Recorder, env } from "@azure-tools/test-recorder";
 import { createRecorder } from "../public/utils/recordedClient.js";
-import { assert } from "chai";
-import { Context } from "mocha";
-import { TestingClient } from "@azure/internal-test";
+import { createTestCredential } from "@azure-tools/test-credential";
+import { assert, beforeEach, afterEach, it, describe } from "vitest";
+import { TestingClient } from "../../src/index.js";
 
 describe("show example demo", () => {
   let recorder: Recorder;
+  let client: TestingClient;
+  let subscriptionId: string;
 
-  beforeEach(async function (this: Context) {
-    recorder = await createRecorder(this);
+  beforeEach(async function (ctx) {
+    recorder = await createRecorder(ctx);
+    subscriptionId = env.SUBSCRIPTION_ID || "";
+    client = new TestingClient(
+      createTestCredential(),
+      subscriptionId,
+      recorder.configureClientOptions({}),
+    );
   });
 
   afterEach(async function () {
@@ -120,7 +129,6 @@ describe("show example demo", () => {
   });
 
   it("should show example demo for read", async function () {
-    const client = new TestingClient();
     const result = await client.read({
       unknownValueWithObject: { foo: "bar" },
       unknownValueWithArray: ["x", "y"],
@@ -130,7 +138,7 @@ describe("show example demo", () => {
       unknownValueWithBoolean: false,
       unknownValueWithObjectNested: {
         foo: "bar",
-        bar: [{ foo: "fooStr" }, "barStr", 7]
+        bar: [{ foo: "fooStr" }, "barStr", 7],
       },
       strValue: "00000000-0000-0000-0000-00000000000",
       numValue: 0.12,
@@ -151,7 +159,7 @@ describe("show example demo", () => {
       durationProp: "P123DT22H14M12.011S",
       withEscapeChars: '"Tag 10".Value',
       unknownRecord: { a: "foo" },
-      additionalProp: "additional prop"
+      additionalProp: "additional prop",
     });
     assert.ok(result);
   });

@@ -119,18 +119,25 @@ Raw json files.
 ```ts tests backupTest
 /** This file path is /test/generated/backupTest.spec.ts */
 
-import { Recorder } from "@azure-tools/test-recorder";
+import { Recorder, env } from "@azure-tools/test-recorder";
 import { createRecorder } from "../public/utils/recordedClient.js";
-import { assert } from "chai";
-import { Context } from "mocha";
-import { HardwareSecurityModulesClient } from "@azure/internal-test";
-import { DefaultAzureCredential } from "@azure/identity";
+import { createTestCredential } from "@azure-tools/test-credential";
+import { assert, beforeEach, afterEach, it, describe } from "vitest";
+import { HardwareSecurityModulesClient } from "../../src/index.js";
 
 describe("a long-running resource action", () => {
   let recorder: Recorder;
+  let client: HardwareSecurityModulesClient;
+  let subscriptionId: string;
 
-  beforeEach(async function (this: Context) {
-    recorder = await createRecorder(this);
+  beforeEach(async function (ctx) {
+    recorder = await createRecorder(ctx);
+    subscriptionId = env.SUBSCRIPTION_ID || "";
+    client = new HardwareSecurityModulesClient(
+      createTestCredential(),
+      subscriptionId,
+      recorder.configureClientOptions({}),
+    );
   });
 
   afterEach(async function () {
@@ -138,17 +145,11 @@ describe("a long-running resource action", () => {
   });
 
   it("should a long-running resource action for cloudHsmClustersBackup", async function () {
-    const credential = new DefaultAzureCredential();
-    const subscriptionId = "00000000-0000-0000-0000-000000000000";
-    const client = new HardwareSecurityModulesClient(
-      credential,
-      subscriptionId
-    );
     const result = await client.backup("rgcloudhsm", "chsm1", {
       backupRequestProperties: {
         azureStorageBlobContainerUri: "sss",
-        token: "aaa"
-      }
+        token: "aaa",
+      },
     });
     assert.ok(result);
   });

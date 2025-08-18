@@ -1,17 +1,25 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Recorder } from "@azure-tools/test-recorder";
+import { Recorder, env } from "@azure-tools/test-recorder";
 import { createRecorder } from "../public/utils/recordedClient.js";
+import { createTestCredential } from "@azure-tools/test-credential";
 import { assert, beforeEach, afterEach, it, describe } from "vitest";
-import { NetworkAnalyticsApi } from "@azure/arm-networkanalytics";
-import { DefaultAzureCredential } from "@azure/identity";
+import { NetworkAnalyticsApi } from "../../src/index.js";
 
 describe("list data products by resource group", () => {
   let recorder: Recorder;
+  let client: NetworkAnalyticsApi;
+  let subscriptionId: string;
 
   beforeEach(async function (ctx) {
     recorder = await createRecorder(ctx);
+    subscriptionId = env.SUBSCRIPTION_ID || "";
+    client = new NetworkAnalyticsApi(
+      createTestCredential(),
+      subscriptionId,
+      recorder.configureClientOptions({}),
+    );
   });
 
   afterEach(async function () {
@@ -19,9 +27,6 @@ describe("list data products by resource group", () => {
   });
 
   it("should list data products by resource group for dataProductsListByResourceGroupMaximumSetGenGeneratedByMinimumSetRuleMinimumSetGen", async function () {
-    const credential = new DefaultAzureCredential();
-    const subscriptionId = "00000000-0000-0000-0000-00000000000";
-    const client = new NetworkAnalyticsApi(credential, subscriptionId);
     const resArray = new Array();
     for await (const item of client.dataProducts.listByResourceGroup(
       "aoiresourceGroupName",
@@ -29,7 +34,11 @@ describe("list data products by resource group", () => {
       resArray.push(item);
     }
     assert.ok(resArray);
-    assert.ok(Array.isArray(resArray[0].value));
-    assert.strictEqual(resArray[0].value.length, 1);
+    assert.strictEqual(resArray.length, 1);
+    assert.strictEqual(
+      resArray[0].id,
+      "/subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/aoiresourceGroupName/providers/Microsoft.NetworkAnalytics/DataProducts/dataproduct01",
+    );
+    assert.strictEqual(resArray[0].location, "eastus");
   });
 });

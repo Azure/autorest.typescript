@@ -70,6 +70,7 @@ export interface EmitterOptions {
   "default-value-object"?: boolean;
   //TODO should remove this after finish the release tool test
   "should-use-pnpm-dep"?: boolean;
+  "experimental-generate-test-files"?: boolean;
 }
 
 export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
@@ -335,6 +336,11 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       type: "boolean",
       nullable: true,
       description: "Internal option for test."
+    },
+    "experimental-generate-test-files": {
+      type: "boolean",
+      nullable: true,
+      description: "Whether to generate test files for the client."
     }
   },
   required: []
