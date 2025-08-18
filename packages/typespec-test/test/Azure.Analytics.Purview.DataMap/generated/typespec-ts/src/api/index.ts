@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 export {
-  createDataMap,
-  DataMapContext,
-  DataMapClientOptionalParams,
-} from "./dataMapContext.js";
+  createPurviewDataMap,
+  PurviewDataMapContext,
+  PurviewDataMapClientOptionalParams,
+} from "./purviewDataMapContext.js";

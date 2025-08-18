@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { DataMapContext as Client } from "../index.js";
+import { PurviewDataMapContext as Client } from "../index.js";
 import {
   atlasErrorResponseDeserializer,
   AtlasLineageInfo,

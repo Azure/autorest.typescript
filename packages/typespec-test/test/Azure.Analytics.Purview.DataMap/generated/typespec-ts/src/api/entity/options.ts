@@ -67,7 +67,7 @@ export interface EntityImportBusinessMetadataOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface EntityGetBusinessMetadataTemplateOptionalParams
+export interface EntityGetSampleBusinessMetadataTemplateOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
@@ -96,7 +96,7 @@ export interface EntityRemoveBusinessMetadataOptionalParams
 export interface EntityGetHeaderOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface EntityBatchGetByUniqueAttributesOptionalParams
+export interface EntityListByUniqueAttributesOptionalParams
   extends OperationOptions {
   /** Whether to return minimal information for referred entities. */
   minExtInfo?: boolean;
@@ -111,11 +111,11 @@ export interface EntityBatchGetByUniqueAttributesOptionalParams
 }
 
 /** Optional parameters. */
-export interface EntityBatchSetClassificationsOptionalParams
+export interface EntityBulkSetClassificationsOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface EntityUpdateClassificationsUniqueByAttributeOptionalParams
+export interface EntityUpdateClassificationsByUniqueAttributeOptionalParams
   extends OperationOptions {
   /**
    * The qualified name of the entity. (This is only an example. qualifiedName can
@@ -155,7 +155,7 @@ export interface EntityDeleteByUniqueAttributeOptionalParams
 }
 
 /** Optional parameters. */
-export interface EntityUpdateByUniqueAttributeOptionalParams
+export interface EntityPartialUpdateByUniqueAttributesOptionalParams
   extends OperationOptions {
   /**
    * The qualified name of the entity. (This is only an example. qualifiedName can
@@ -165,7 +165,7 @@ export interface EntityUpdateByUniqueAttributeOptionalParams
 }
 
 /** Optional parameters. */
-export interface EntityGetByUniqueAttributeOptionalParams
+export interface EntityGetByUniqueAttributesOptionalParams
   extends OperationOptions {
   /** Whether to return minimal information for referred entities. */
   minExtInfo?: boolean;
@@ -202,7 +202,7 @@ export interface EntityGetClassificationOptionalParams
 export interface EntityDeleteOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface EntityUpdateAttributeByIdOptionalParams
+export interface EntityPartialUpdateAttributeByGuidOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
@@ -218,10 +218,10 @@ export interface EntityAddClassificationOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface EntityBatchDeleteOptionalParams extends OperationOptions {}
+export interface EntityBulkDeleteOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface EntityBatchCreateOrUpdateOptionalParams
+export interface EntityBulkCreateOrUpdateOptionalParams
   extends OperationOptions {
   /**
    * The collection where entities will be moved to. Only specify a value if you
@@ -236,7 +236,7 @@ export interface EntityBatchCreateOrUpdateOptionalParams
 }
 
 /** Optional parameters. */
-export interface EntityGetByIdsOptionalParams extends OperationOptions {
+export interface EntityListByGuidsOptionalParams extends OperationOptions {
   /** Whether to return minimal information for referred entities. */
   minExtInfo?: boolean;
   /** Whether to ignore relationship attributes. */

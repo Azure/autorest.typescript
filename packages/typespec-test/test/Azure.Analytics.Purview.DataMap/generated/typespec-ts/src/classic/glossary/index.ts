@@ -1,29 +1,29 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { DataMapContext } from "../../api/dataMapContext.js";
+import { PurviewDataMapContext } from "../../api/purviewDataMapContext.js";
 import {
-  getTermHeaders,
-  getTerms,
+  listTermHeaders,
+  listTerms,
   partialUpdate,
   getDetailed,
-  getCategoriesHeaders,
-  getCategories,
+  listCategoriesHeaders,
+  listCategories,
   $delete,
   update,
   get,
-  getRelatedTerms,
+  listRelatedTerms,
   deleteTermAssignmentFromEntities,
   assignTermToEntities,
-  getEntitiesAssignedWithTerm,
+  listEntitiesAssignedWithTerm,
   createTerms,
   partialUpdateTerm,
   deleteTerm,
   updateTerm,
   getTerm,
   createTerm,
-  getCategoryTerms,
-  getRelatedCategories,
+  listCategoryTerms,
+  listRelatedCategories,
   partialUpdateCategory,
   deleteCategory,
   updateCategory,
@@ -31,30 +31,30 @@ import {
   createCategory,
   createCategories,
   create,
-  batchGet,
+  list,
 } from "../../api/glossary/operations.js";
 import {
-  GlossaryGetTermHeadersOptionalParams,
-  GlossaryGetTermsOptionalParams,
+  GlossaryListTermHeadersOptionalParams,
+  GlossaryListTermsOptionalParams,
   GlossaryPartialUpdateOptionalParams,
   GlossaryGetDetailedOptionalParams,
-  GlossaryGetCategoriesHeadersOptionalParams,
-  GlossaryGetCategoriesOptionalParams,
+  GlossaryListCategoriesHeadersOptionalParams,
+  GlossaryListCategoriesOptionalParams,
   GlossaryDeleteOptionalParams,
   GlossaryUpdateOptionalParams,
   GlossaryGetOptionalParams,
-  GlossaryGetRelatedTermsOptionalParams,
+  GlossaryListRelatedTermsOptionalParams,
   GlossaryDeleteTermAssignmentFromEntitiesOptionalParams,
   GlossaryAssignTermToEntitiesOptionalParams,
-  GlossaryGetEntitiesAssignedWithTermOptionalParams,
+  GlossaryListEntitiesAssignedWithTermOptionalParams,
   GlossaryCreateTermsOptionalParams,
   GlossaryPartialUpdateTermOptionalParams,
   GlossaryDeleteTermOptionalParams,
   GlossaryUpdateTermOptionalParams,
   GlossaryGetTermOptionalParams,
   GlossaryCreateTermOptionalParams,
-  GlossaryGetCategoryTermsOptionalParams,
-  GlossaryGetRelatedCategoriesOptionalParams,
+  GlossaryListCategoryTermsOptionalParams,
+  GlossaryListRelatedCategoriesOptionalParams,
   GlossaryPartialUpdateCategoryOptionalParams,
   GlossaryDeleteCategoryOptionalParams,
   GlossaryUpdateCategoryOptionalParams,
@@ -62,7 +62,7 @@ import {
   GlossaryCreateCategoryOptionalParams,
   GlossaryCreateCategoriesOptionalParams,
   GlossaryCreateOptionalParams,
-  GlossaryBatchGetOptionalParams,
+  GlossaryListOptionalParams,
 } from "../../api/glossary/options.js";
 import {
   AtlasGlossary,
@@ -80,17 +80,17 @@ export interface GlossaryOperations {
    * Get term headers belonging to a specific glossary. Recommend using limit/offset
    * to get pagination result.
    */
-  getTermHeaders: (
+  listTermHeaders: (
     glossaryId: string,
-    options?: GlossaryGetTermHeadersOptionalParams,
+    options?: GlossaryListTermHeadersOptionalParams,
   ) => Promise<AtlasRelatedTermHeader[]>;
   /**
    * Get terms belonging to a specific glossary. Recommend using limit/offset to get
    * pagination result.
    */
-  getTerms: (
+  listTerms: (
     glossaryId: string,
-    options?: GlossaryGetTermsOptionalParams,
+    options?: GlossaryListTermsOptionalParams,
   ) => Promise<AtlasGlossaryTerm[]>;
   /**
    * Update the glossary partially. Some properties such as qualifiedName are not
@@ -125,17 +125,17 @@ export interface GlossaryOperations {
    * Get the category headers belonging to a specific glossary. Recommend using
    * limit/offset to get pagination result.
    */
-  getCategoriesHeaders: (
+  listCategoriesHeaders: (
     glossaryId: string,
-    options?: GlossaryGetCategoriesHeadersOptionalParams,
+    options?: GlossaryListCategoriesHeadersOptionalParams,
   ) => Promise<AtlasRelatedCategoryHeader[]>;
   /**
    * Get the categories belonging to a specific glossary. Recommend using
    * limit/offset to get pagination result.
    */
-  getCategories: (
+  listCategories: (
     glossaryId: string,
-    options?: GlossaryGetCategoriesOptionalParams,
+    options?: GlossaryListCategoriesOptionalParams,
   ) => Promise<AtlasGlossaryCategory[]>;
   /**
    * Delete a glossary. Will delete underlying terms/categories together. Recommend
@@ -165,9 +165,9 @@ export interface GlossaryOperations {
    * Get all related terms for a specific term by its GUID. Limit, offset, and sort
    * parameters are currently not being enabled and won't work even they are passed.
    */
-  getRelatedTerms: (
+  listRelatedTerms: (
     termId: string,
-    options?: GlossaryGetRelatedTermsOptionalParams,
+    options?: GlossaryListRelatedTermsOptionalParams,
   ) => Promise<Record<string, AtlasRelatedTermHeader[]>>;
   /** Delete the term assignment for the given list of related objects. */
   deleteTermAssignmentFromEntities: (
@@ -192,9 +192,9 @@ export interface GlossaryOperations {
    * List all related objects assigned with the specified term. Recommend using
    * limit/offset to get pagination result.
    */
-  getEntitiesAssignedWithTerm: (
+  listEntitiesAssignedWithTerm: (
     termId: string,
-    options?: GlossaryGetEntitiesAssignedWithTermOptionalParams,
+    options?: GlossaryListEntitiesAssignedWithTermOptionalParams,
   ) => Promise<AtlasRelatedObjectId[]>;
   /** Create glossary terms in bulk. */
   createTerms: (
@@ -232,17 +232,17 @@ export interface GlossaryOperations {
     options?: GlossaryCreateTermOptionalParams,
   ) => Promise<AtlasGlossaryTerm>;
   /** Get all terms associated with the specific category. */
-  getCategoryTerms: (
+  listCategoryTerms: (
     categoryId: string,
-    options?: GlossaryGetCategoryTermsOptionalParams,
+    options?: GlossaryListCategoryTermsOptionalParams,
   ) => Promise<AtlasRelatedTermHeader[]>;
   /**
    * Get all related categories (parent and children). Limit, offset, and sort
    * parameters are currently not being enabled and won't work even they are passed.
    */
-  getRelatedCategories: (
+  listRelatedCategories: (
     categoryId: string,
-    options?: GlossaryGetRelatedCategoriesOptionalParams,
+    options?: GlossaryListRelatedCategoriesOptionalParams,
   ) => Promise<Record<string, AtlasRelatedCategoryHeader[]>>;
   /**
    * Update the glossary category partially. So far we only supports partial
@@ -290,19 +290,19 @@ export interface GlossaryOperations {
    * separately using 'GET /datamap/api/atlas/v2/glossary/{glossaryId}/terms'
    * and 'GET '/datamap/api/atlas/v2/glossary/{glossaryId}/categories'.
    */
-  batchGet: (
-    options?: GlossaryBatchGetOptionalParams,
-  ) => Promise<AtlasGlossary[]>;
+  list: (options?: GlossaryListOptionalParams) => Promise<AtlasGlossary[]>;
 }
 
-function _getGlossary(context: DataMapContext) {
+function _getGlossary(context: PurviewDataMapContext) {
   return {
-    getTermHeaders: (
+    listTermHeaders: (
       glossaryId: string,
-      options?: GlossaryGetTermHeadersOptionalParams,
-    ) => getTermHeaders(context, glossaryId, options),
-    getTerms: (glossaryId: string, options?: GlossaryGetTermsOptionalParams) =>
-      getTerms(context, glossaryId, options),
+      options?: GlossaryListTermHeadersOptionalParams,
+    ) => listTermHeaders(context, glossaryId, options),
+    listTerms: (
+      glossaryId: string,
+      options?: GlossaryListTermsOptionalParams,
+    ) => listTerms(context, glossaryId, options),
     partialUpdate: (
       glossaryId: string,
       body: Record<string, string>,
@@ -312,14 +312,14 @@ function _getGlossary(context: DataMapContext) {
       glossaryId: string,
       options?: GlossaryGetDetailedOptionalParams,
     ) => getDetailed(context, glossaryId, options),
-    getCategoriesHeaders: (
+    listCategoriesHeaders: (
       glossaryId: string,
-      options?: GlossaryGetCategoriesHeadersOptionalParams,
-    ) => getCategoriesHeaders(context, glossaryId, options),
-    getCategories: (
+      options?: GlossaryListCategoriesHeadersOptionalParams,
+    ) => listCategoriesHeaders(context, glossaryId, options),
+    listCategories: (
       glossaryId: string,
-      options?: GlossaryGetCategoriesOptionalParams,
-    ) => getCategories(context, glossaryId, options),
+      options?: GlossaryListCategoriesOptionalParams,
+    ) => listCategories(context, glossaryId, options),
     delete: (glossaryId: string, options?: GlossaryDeleteOptionalParams) =>
       $delete(context, glossaryId, options),
     update: (
@@ -329,10 +329,10 @@ function _getGlossary(context: DataMapContext) {
     ) => update(context, glossaryId, body, options),
     get: (glossaryId: string, options?: GlossaryGetOptionalParams) =>
       get(context, glossaryId, options),
-    getRelatedTerms: (
+    listRelatedTerms: (
       termId: string,
-      options?: GlossaryGetRelatedTermsOptionalParams,
-    ) => getRelatedTerms(context, termId, options),
+      options?: GlossaryListRelatedTermsOptionalParams,
+    ) => listRelatedTerms(context, termId, options),
     deleteTermAssignmentFromEntities: (
       termId: string,
       body: AtlasRelatedObjectId[],
@@ -343,10 +343,10 @@ function _getGlossary(context: DataMapContext) {
       body: AtlasRelatedObjectId[],
       options?: GlossaryAssignTermToEntitiesOptionalParams,
     ) => assignTermToEntities(context, termId, body, options),
-    getEntitiesAssignedWithTerm: (
+    listEntitiesAssignedWithTerm: (
       termId: string,
-      options?: GlossaryGetEntitiesAssignedWithTermOptionalParams,
-    ) => getEntitiesAssignedWithTerm(context, termId, options),
+      options?: GlossaryListEntitiesAssignedWithTermOptionalParams,
+    ) => listEntitiesAssignedWithTerm(context, termId, options),
     createTerms: (
       body: AtlasGlossaryTerm[],
       options?: GlossaryCreateTermsOptionalParams,
@@ -369,14 +369,14 @@ function _getGlossary(context: DataMapContext) {
       body: AtlasGlossaryTerm,
       options?: GlossaryCreateTermOptionalParams,
     ) => createTerm(context, body, options),
-    getCategoryTerms: (
+    listCategoryTerms: (
       categoryId: string,
-      options?: GlossaryGetCategoryTermsOptionalParams,
-    ) => getCategoryTerms(context, categoryId, options),
-    getRelatedCategories: (
+      options?: GlossaryListCategoryTermsOptionalParams,
+    ) => listCategoryTerms(context, categoryId, options),
+    listRelatedCategories: (
       categoryId: string,
-      options?: GlossaryGetRelatedCategoriesOptionalParams,
-    ) => getRelatedCategories(context, categoryId, options),
+      options?: GlossaryListRelatedCategoriesOptionalParams,
+    ) => listRelatedCategories(context, categoryId, options),
     partialUpdateCategory: (
       categoryId: string,
       body: Record<string, string>,
@@ -405,13 +405,12 @@ function _getGlossary(context: DataMapContext) {
     ) => createCategories(context, body, options),
     create: (body: AtlasGlossary, options?: GlossaryCreateOptionalParams) =>
       create(context, body, options),
-    batchGet: (options?: GlossaryBatchGetOptionalParams) =>
-      batchGet(context, options),
+    list: (options?: GlossaryListOptionalParams) => list(context, options),
   };
 }
 
 export function _getGlossaryOperations(
-  context: DataMapContext,
+  context: PurviewDataMapContext,
 ): GlossaryOperations {
   return {
     ..._getGlossary(context),

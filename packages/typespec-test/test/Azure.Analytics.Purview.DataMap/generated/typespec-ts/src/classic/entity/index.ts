@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { DataMapContext } from "../../api/dataMapContext.js";
+import { PurviewDataMapContext } from "../../api/purviewDataMapContext.js";
 import {
   moveEntitiesToCollection,
   addLabelsByUniqueAttribute,
@@ -11,32 +11,32 @@ import {
   setLabels,
   removeLabels,
   importBusinessMetadata,
-  getBusinessMetadataTemplate,
+  getSampleBusinessMetadataTemplate,
   addOrUpdateBusinessMetadataAttributes,
   removeBusinessMetadataAttributes,
   addOrUpdateBusinessMetadata,
   removeBusinessMetadata,
   getHeader,
-  batchGetByUniqueAttributes,
-  batchSetClassifications,
-  updateClassificationsUniqueByAttribute,
+  listByUniqueAttributes,
+  bulkSetClassifications,
+  updateClassificationsByUniqueAttribute,
   addClassificationsByUniqueAttribute,
   removeClassificationByUniqueAttribute,
   deleteByUniqueAttribute,
-  updateByUniqueAttribute,
-  getByUniqueAttribute,
+  partialUpdateByUniqueAttributes,
+  getByUniqueAttributes,
   updateClassifications,
   addClassifications,
   getClassifications,
   removeClassification,
   getClassification,
   $delete,
-  updateAttributeById,
+  partialUpdateAttributeByGuid,
   get,
   addClassification,
-  batchDelete,
-  batchCreateOrUpdate,
-  getByIds,
+  bulkDelete,
+  bulkCreateOrUpdate,
+  listByGuids,
   createOrUpdate,
 } from "../../api/entity/operations.js";
 import {
@@ -48,32 +48,32 @@ import {
   EntitySetLabelsOptionalParams,
   EntityRemoveLabelsOptionalParams,
   EntityImportBusinessMetadataOptionalParams,
-  EntityGetBusinessMetadataTemplateOptionalParams,
+  EntityGetSampleBusinessMetadataTemplateOptionalParams,
   EntityAddOrUpdateBusinessMetadataAttributesOptionalParams,
   EntityRemoveBusinessMetadataAttributesOptionalParams,
   EntityAddOrUpdateBusinessMetadataOptionalParams,
   EntityRemoveBusinessMetadataOptionalParams,
   EntityGetHeaderOptionalParams,
-  EntityBatchGetByUniqueAttributesOptionalParams,
-  EntityBatchSetClassificationsOptionalParams,
-  EntityUpdateClassificationsUniqueByAttributeOptionalParams,
+  EntityListByUniqueAttributesOptionalParams,
+  EntityBulkSetClassificationsOptionalParams,
+  EntityUpdateClassificationsByUniqueAttributeOptionalParams,
   EntityAddClassificationsByUniqueAttributeOptionalParams,
   EntityRemoveClassificationByUniqueAttributeOptionalParams,
   EntityDeleteByUniqueAttributeOptionalParams,
-  EntityUpdateByUniqueAttributeOptionalParams,
-  EntityGetByUniqueAttributeOptionalParams,
+  EntityPartialUpdateByUniqueAttributesOptionalParams,
+  EntityGetByUniqueAttributesOptionalParams,
   EntityUpdateClassificationsOptionalParams,
   EntityAddClassificationsOptionalParams,
   EntityGetClassificationsOptionalParams,
   EntityRemoveClassificationOptionalParams,
   EntityGetClassificationOptionalParams,
   EntityDeleteOptionalParams,
-  EntityUpdateAttributeByIdOptionalParams,
+  EntityPartialUpdateAttributeByGuidOptionalParams,
   EntityGetOptionalParams,
   EntityAddClassificationOptionalParams,
-  EntityBatchDeleteOptionalParams,
-  EntityBatchCreateOrUpdateOptionalParams,
-  EntityGetByIdsOptionalParams,
+  EntityBulkDeleteOptionalParams,
+  EntityBulkCreateOrUpdateOptionalParams,
+  EntityListByGuidsOptionalParams,
   EntityCreateOrUpdateOptionalParams,
 } from "../../api/entity/options.js";
 import {
@@ -180,8 +180,8 @@ export interface EntityOperations {
     options?: EntityImportBusinessMetadataOptionalParams,
   ) => Promise<BulkImportResult>;
   /** Get the sample Template for uploading/creating bulk BusinessMetaData */
-  getBusinessMetadataTemplate: (
-    options?: EntityGetBusinessMetadataTemplateOptionalParams,
+  getSampleBusinessMetadataTemplate: (
+    options?: EntityGetSampleBusinessMetadataTemplateOptionalParams,
   ) => Promise<Uint8Array>;
   /** Add or update business metadata attributes. */
   addOrUpdateBusinessMetadataAttributes: (
@@ -234,20 +234,20 @@ export interface EntityOperations {
    * Note:
    * at least one unique attribute must be provided.
    */
-  batchGetByUniqueAttributes: (
+  listByUniqueAttributes: (
     typeName: string,
-    options?: EntityBatchGetByUniqueAttributesOptionalParams,
+    options?: EntityListByUniqueAttributesOptionalParams,
   ) => Promise<AtlasEntitiesWithExtInfo>;
   /** Set classifications on entities in bulk. */
-  batchSetClassifications: (
+  bulkSetClassifications: (
     body: AtlasEntityHeaders,
-    options?: EntityBatchSetClassificationsOptionalParams,
+    options?: EntityBulkSetClassificationsOptionalParams,
   ) => Promise<string[]>;
   /** Update classification on an entity identified by its type and unique attributes. */
-  updateClassificationsUniqueByAttribute: (
+  updateClassificationsByUniqueAttribute: (
     typeName: string,
     body: AtlasClassification[],
-    options?: EntityUpdateClassificationsUniqueByAttributeOptionalParams,
+    options?: EntityUpdateClassificationsByUniqueAttributeOptionalParams,
   ) => Promise<void>;
   /** Add classification to the entity identified by its type and unique attributes. */
   addClassificationsByUniqueAttribute: (
@@ -300,10 +300,10 @@ export interface EntityOperations {
    * PUT
    * /v2/entity/uniqueAttribute/type/aType?attr:aTypeAttribute=someValue.
    */
-  updateByUniqueAttribute: (
+  partialUpdateByUniqueAttributes: (
     typeName: string,
     body: AtlasEntityWithExtInfo,
-    options?: EntityUpdateByUniqueAttributeOptionalParams,
+    options?: EntityPartialUpdateByUniqueAttributesOptionalParams,
   ) => Promise<EntityMutationResult>;
   /**
    * Get complete definition of an entity given its type and unique attribute.
@@ -321,9 +321,9 @@ export interface EntityOperations {
    * GET
    * /v2/entity/uniqueAttribute/type/aType?attr:aTypeAttribute=someValue.
    */
-  getByUniqueAttribute: (
+  getByUniqueAttributes: (
     typeName: string,
-    options?: EntityGetByUniqueAttributeOptionalParams,
+    options?: EntityGetByUniqueAttributesOptionalParams,
   ) => Promise<AtlasEntityWithExtInfo>;
   /** Update classifications to an existing entity represented by a guid. */
   updateClassifications: (
@@ -371,11 +371,11 @@ export interface EntityOperations {
    * It does not support updating complex types like arrays, and maps.
    * Null updates are not possible.
    */
-  updateAttributeById: (
+  partialUpdateAttributeByGuid: (
     guid: string,
     name: string,
     body: any,
-    options?: EntityUpdateAttributeByIdOptionalParams,
+    options?: EntityPartialUpdateAttributeByGuidOptionalParams,
   ) => Promise<EntityMutationResult>;
   /** Get complete definition of an entity given its GUID. */
   get: (
@@ -391,9 +391,9 @@ export interface EntityOperations {
    * Delete a list of entities in bulk identified by their GUIDs or unique
    * attributes.
    */
-  batchDelete: (
+  bulkDelete: (
     guid: string[],
-    options?: EntityBatchDeleteOptionalParams,
+    options?: EntityBulkDeleteOptionalParams,
   ) => Promise<EntityMutationResult>;
   /**
    * Create or update entities in bulk.
@@ -405,14 +405,14 @@ export interface EntityOperations {
    * For each contact type, the maximum number of contacts
    * is 20.
    */
-  batchCreateOrUpdate: (
+  bulkCreateOrUpdate: (
     body: AtlasEntitiesWithExtInfo,
-    options?: EntityBatchCreateOrUpdateOptionalParams,
+    options?: EntityBulkCreateOrUpdateOptionalParams,
   ) => Promise<EntityMutationResult>;
   /** List entities in bulk identified by its GUIDs. */
-  getByIds: (
+  listByGuids: (
     guid: string[],
-    options?: EntityGetByIdsOptionalParams,
+    options?: EntityListByGuidsOptionalParams,
   ) => Promise<AtlasEntitiesWithExtInfo>;
   /**
    * Create or update an entity.
@@ -429,7 +429,7 @@ export interface EntityOperations {
   ) => Promise<EntityMutationResult>;
 }
 
-function _getEntity(context: DataMapContext) {
+function _getEntity(context: PurviewDataMapContext) {
   return {
     moveEntitiesToCollection: (
       collectionId: string,
@@ -458,9 +458,9 @@ function _getEntity(context: DataMapContext) {
       body: BusinessMetadataOptions,
       options?: EntityImportBusinessMetadataOptionalParams,
     ) => importBusinessMetadata(context, body, options),
-    getBusinessMetadataTemplate: (
-      options?: EntityGetBusinessMetadataTemplateOptionalParams,
-    ) => getBusinessMetadataTemplate(context, options),
+    getSampleBusinessMetadataTemplate: (
+      options?: EntityGetSampleBusinessMetadataTemplateOptionalParams,
+    ) => getSampleBusinessMetadataTemplate(context, options),
     addOrUpdateBusinessMetadataAttributes: (
       businessMetadataName: string,
       guid: string,
@@ -499,20 +499,20 @@ function _getEntity(context: DataMapContext) {
     ) => removeBusinessMetadata(context, guid, body, options),
     getHeader: (guid: string, options?: EntityGetHeaderOptionalParams) =>
       getHeader(context, guid, options),
-    batchGetByUniqueAttributes: (
+    listByUniqueAttributes: (
       typeName: string,
-      options?: EntityBatchGetByUniqueAttributesOptionalParams,
-    ) => batchGetByUniqueAttributes(context, typeName, options),
-    batchSetClassifications: (
+      options?: EntityListByUniqueAttributesOptionalParams,
+    ) => listByUniqueAttributes(context, typeName, options),
+    bulkSetClassifications: (
       body: AtlasEntityHeaders,
-      options?: EntityBatchSetClassificationsOptionalParams,
-    ) => batchSetClassifications(context, body, options),
-    updateClassificationsUniqueByAttribute: (
+      options?: EntityBulkSetClassificationsOptionalParams,
+    ) => bulkSetClassifications(context, body, options),
+    updateClassificationsByUniqueAttribute: (
       typeName: string,
       body: AtlasClassification[],
-      options?: EntityUpdateClassificationsUniqueByAttributeOptionalParams,
+      options?: EntityUpdateClassificationsByUniqueAttributeOptionalParams,
     ) =>
-      updateClassificationsUniqueByAttribute(context, typeName, body, options),
+      updateClassificationsByUniqueAttribute(context, typeName, body, options),
     addClassificationsByUniqueAttribute: (
       typeName: string,
       body: AtlasClassification[],
@@ -533,15 +533,15 @@ function _getEntity(context: DataMapContext) {
       typeName: string,
       options?: EntityDeleteByUniqueAttributeOptionalParams,
     ) => deleteByUniqueAttribute(context, typeName, options),
-    updateByUniqueAttribute: (
+    partialUpdateByUniqueAttributes: (
       typeName: string,
       body: AtlasEntityWithExtInfo,
-      options?: EntityUpdateByUniqueAttributeOptionalParams,
-    ) => updateByUniqueAttribute(context, typeName, body, options),
-    getByUniqueAttribute: (
+      options?: EntityPartialUpdateByUniqueAttributesOptionalParams,
+    ) => partialUpdateByUniqueAttributes(context, typeName, body, options),
+    getByUniqueAttributes: (
       typeName: string,
-      options?: EntityGetByUniqueAttributeOptionalParams,
-    ) => getByUniqueAttribute(context, typeName, options),
+      options?: EntityGetByUniqueAttributesOptionalParams,
+    ) => getByUniqueAttributes(context, typeName, options),
     updateClassifications: (
       guid: string,
       body: AtlasClassification[],
@@ -568,26 +568,26 @@ function _getEntity(context: DataMapContext) {
     ) => getClassification(context, guid, classificationName, options),
     delete: (guid: string, options?: EntityDeleteOptionalParams) =>
       $delete(context, guid, options),
-    updateAttributeById: (
+    partialUpdateAttributeByGuid: (
       guid: string,
       name: string,
       body: any,
-      options?: EntityUpdateAttributeByIdOptionalParams,
-    ) => updateAttributeById(context, guid, name, body, options),
+      options?: EntityPartialUpdateAttributeByGuidOptionalParams,
+    ) => partialUpdateAttributeByGuid(context, guid, name, body, options),
     get: (guid: string, options?: EntityGetOptionalParams) =>
       get(context, guid, options),
     addClassification: (
       body: ClassificationAssociateOptions,
       options?: EntityAddClassificationOptionalParams,
     ) => addClassification(context, body, options),
-    batchDelete: (guid: string[], options?: EntityBatchDeleteOptionalParams) =>
-      batchDelete(context, guid, options),
-    batchCreateOrUpdate: (
+    bulkDelete: (guid: string[], options?: EntityBulkDeleteOptionalParams) =>
+      bulkDelete(context, guid, options),
+    bulkCreateOrUpdate: (
       body: AtlasEntitiesWithExtInfo,
-      options?: EntityBatchCreateOrUpdateOptionalParams,
-    ) => batchCreateOrUpdate(context, body, options),
-    getByIds: (guid: string[], options?: EntityGetByIdsOptionalParams) =>
-      getByIds(context, guid, options),
+      options?: EntityBulkCreateOrUpdateOptionalParams,
+    ) => bulkCreateOrUpdate(context, body, options),
+    listByGuids: (guid: string[], options?: EntityListByGuidsOptionalParams) =>
+      listByGuids(context, guid, options),
     createOrUpdate: (
       body: AtlasEntityWithExtInfo,
       options?: EntityCreateOrUpdateOptionalParams,
@@ -596,7 +596,7 @@ function _getEntity(context: DataMapContext) {
 }
 
 export function _getEntityOperations(
-  context: DataMapContext,
+  context: PurviewDataMapContext,
 ): EntityOperations {
   return {
     ..._getEntity(context),

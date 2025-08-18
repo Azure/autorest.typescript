@@ -12,7 +12,7 @@
       "./package.json": "./package.json",
       ".": "./src/index.ts",
       "./api": "./src/api/index.ts",
-      "./api/typeDefinition": "src/api/typeDefinition/index.ts",
+      "./api/type": "src/api/type/index.ts",
       "./api/relationship": "src/api/relationship/index.ts",
       "./api/lineage": "src/api/lineage/index.ts",
       "./api/discovery": "src/api/discovery/index.ts",

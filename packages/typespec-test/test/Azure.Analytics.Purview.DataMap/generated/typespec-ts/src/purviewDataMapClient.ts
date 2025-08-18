@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 import {
-  createDataMap,
-  DataMapContext,
-  DataMapClientOptionalParams,
+  createPurviewDataMap,
+  PurviewDataMapContext,
+  PurviewDataMapClientOptionalParams,
 } from "./api/index.js";
 import {
   DiscoveryOperations,
@@ -26,35 +26,38 @@ import {
   RelationshipOperations,
   _getRelationshipOperations,
 } from "./classic/relationship/index.js";
-import {
-  TypeDefinitionOperations,
-  _getTypeDefinitionOperations,
-} from "./classic/typeDefinition/index.js";
+import { TypeOperations, _getTypeOperations } from "./classic/type/index.js";
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
-export { DataMapClientOptionalParams } from "./api/dataMapContext.js";
+export { PurviewDataMapClientOptionalParams } from "./api/purviewDataMapContext.js";
 
-export class DataMapClient {
-  private _client: DataMapContext;
+export class PurviewDataMapClient {
+  private _client: PurviewDataMapContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
+  /**
+   * Purview Data Map Service is a fully managed cloud service whose users can
+   * discover the data sources they need and understand the data sources they find.
+   * At the same time, Data Map helps organizations get more value from their
+   * existing investments. This spec defines REST API of Purview Data Map Service.
+   */
   constructor(
     endpointParam: string,
     credential: TokenCredential,
-    options: DataMapClientOptionalParams = {},
+    options: PurviewDataMapClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : `azsdk-js-client`;
-    this._client = createDataMap(endpointParam, credential, {
+    this._client = createPurviewDataMap(endpointParam, credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },
     });
     this.pipeline = this._client.pipeline;
-    this.typeDefinition = _getTypeDefinitionOperations(this._client);
+    this.type = _getTypeOperations(this._client);
     this.relationship = _getRelationshipOperations(this._client);
     this.lineage = _getLineageOperations(this._client);
     this.discovery = _getDiscoveryOperations(this._client);
@@ -62,8 +65,8 @@ export class DataMapClient {
     this.entity = _getEntityOperations(this._client);
   }
 
-  /** The operation groups for typeDefinition */
-  public readonly typeDefinition: TypeDefinitionOperations;
+  /** The operation groups for type */
+  public readonly type: TypeOperations;
   /** The operation groups for relationship */
   public readonly relationship: RelationshipOperations;
   /** The operation groups for lineage */

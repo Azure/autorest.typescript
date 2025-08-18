@@ -5,16 +5,15 @@ import { TypeCategory } from "../../models/models.js";
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface TypeDefinitionGetTermTemplateByNameOptionalParams
+export interface TypeGetTermTemplateDefByNameOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface TypeDefinitionGetTermTemplateByIdOptionalParams
+export interface TypeGetTermTemplateDefByGuidOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface TypeDefinitionGetHeadersOptionalParams
-  extends OperationOptions {
+export interface TypeListHeadersOptionalParams extends OperationOptions {
   /**
    * Whether include termtemplatedef when return all typedefs.
    * This is always true
@@ -26,19 +25,16 @@ export interface TypeDefinitionGetHeadersOptionalParams
 }
 
 /** Optional parameters. */
-export interface TypeDefinitionBatchDeleteOptionalParams
-  extends OperationOptions {}
+export interface TypeBulkDeleteOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface TypeDefinitionBatchUpdateOptionalParams
-  extends OperationOptions {}
+export interface TypeBulkUpdateOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface TypeDefinitionBatchCreateOptionalParams
-  extends OperationOptions {}
+export interface TypeBulkCreateOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface TypeDefinitionGetOptionalParams extends OperationOptions {
+export interface TypeListOptionalParams extends OperationOptions {
   /**
    * Whether include termtemplatedef when return all typedefs.
    * This is always true
@@ -50,59 +46,56 @@ export interface TypeDefinitionGetOptionalParams extends OperationOptions {
 }
 
 /** Optional parameters. */
-export interface TypeDefinitionDeleteOptionalParams extends OperationOptions {}
+export interface TypeDeleteOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface TypeDefinitionGetByNameOptionalParams
+export interface TypeGetByNameOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface TypeGetByGuidOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface TypeGetStructDefByNameOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface TypeDefinitionGetByIdOptionalParams extends OperationOptions {}
-
-/** Optional parameters. */
-export interface TypeDefinitionGetStructByNameOptionalParams
+export interface TypeGetStructDefByGuidOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface TypeDefinitionGetStructByIdOptionalParams
+export interface TypeGetRelationshipDefByNameOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface TypeDefinitionGetRelationshipByNameOptionalParams
+export interface TypeGetRelationshipDefByGuidOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface TypeDefinitionGetRelationshipByIdOptionalParams
+export interface TypeGetEnumDefByNameOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface TypeGetEnumDefByGuidOptionalParams extends OperationOptions {}
+
+/** Optional parameters. */
+export interface TypeGetEntityDefByNameOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface TypeDefinitionGetEnumByNameOptionalParams
+export interface TypeGetEntityDefByGuidOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface TypeDefinitionGetEnumByIdOptionalParams
+export interface TypeGetClassificationDefByNameOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface TypeDefinitionGetEntityByNameOptionalParams
+export interface TypeGetClassificationDefByGuidOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface TypeDefinitionGetEntityByIdOptionalParams
+export interface TypeGetBusinessMetadataDefByNameOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface TypeDefinitionGetClassificationByNameOptionalParams
-  extends OperationOptions {}
-
-/** Optional parameters. */
-export interface TypeDefinitionGetClassificationByIdOptionalParams
-  extends OperationOptions {}
-
-/** Optional parameters. */
-export interface TypeDefinitionGetBusinessMetadataByNameOptionalParams
-  extends OperationOptions {}
-
-/** Optional parameters. */
-export interface TypeDefinitionGetBusinessMetadataByIdOptionalParams
+export interface TypeGetBusinessMetadataDefByGuidOptionalParams
   extends OperationOptions {}
