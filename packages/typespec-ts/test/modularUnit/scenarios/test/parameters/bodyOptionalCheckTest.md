@@ -66,16 +66,11 @@ import { TestingClient } from "../../src/index.js";
 describe("show example demo", () => {
   let recorder: Recorder;
   let client: TestingClient;
-  let subscriptionId: string;
 
   beforeEach(async function (ctx) {
     recorder = await createRecorder(ctx);
-    subscriptionId = env.SUBSCRIPTION_ID || "";
-    client = new TestingClient(
-      createTestCredential(),
-      subscriptionId,
-      recorder.configureClientOptions({}),
-    );
+    const clientOptions = recorder.configureClientOptions({});
+    client = new TestingClient(clientOptions);
   });
 
   afterEach(async function () {

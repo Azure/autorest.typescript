@@ -128,15 +128,16 @@ import { HardwareSecurityModulesClient } from "../../src/index.js";
 describe("a long-running resource action", () => {
   let recorder: Recorder;
   let client: HardwareSecurityModulesClient;
-  let subscriptionId: string;
 
   beforeEach(async function (ctx) {
     recorder = await createRecorder(ctx);
-    subscriptionId = env.SUBSCRIPTION_ID || "";
+    const credential = createTestCredential();
+    const subscriptionId = env.SUBSCRIPTION_ID || "<SUBSCRIPTION_ID>";
+    const clientOptions = recorder.configureClientOptions({});
     client = new HardwareSecurityModulesClient(
-      createTestCredential(),
+      credential,
       subscriptionId,
-      recorder.configureClientOptions({}),
+      clientOptions,
     );
   });
 

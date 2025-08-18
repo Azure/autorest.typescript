@@ -192,6 +192,8 @@ function emitMethodTests(
     });
 
     const testFunctions = [];
+    let clientParamNames: string[] = [];
+    let clientParameterDefs: string[] = [];
 
     // Create test describe block
     const methodDescription = method.doc ?? `test ${method.oriName ?? method.name}`;
@@ -214,6 +216,15 @@ function emitMethodTests(
             parameterMap,
             options.topLevelClient
         );
+        // Prepare client-level parameters
+        const requiredClientParams = parameters.filter((p) => p.onClient && !p.isOptional);
+        clientParameterDefs = requiredClientParams.map((p) => `const ${p.name} = ${p.value};`);
+        clientParamNames = requiredClientParams.map((p) => p.name);
+        // add client options to parameters
+        // const clientOptions = recorder.configureClientOptions({});
+        clientParamNames.push("clientOptions");
+        clientParameterDefs.push(`const clientOptions = recorder.configureClientOptions({});`);
+
 
         // Prepare operation-level parameters
         const methodParamValues = parameters.filter((p) => !p.onClient);
@@ -277,12 +288,11 @@ function emitMethodTests(
 describe("${normalizedDescription}", () => {
   let recorder: Recorder;
   let client: ${clientName};
-  let subscriptionId: string;
 
   beforeEach(async function(ctx) {
     recorder = await createRecorder(ctx);
-    subscriptionId = env.SUBSCRIPTION_ID || "";
-    client = new ${clientName}(createTestCredential(), subscriptionId, recorder.configureClientOptions({}));
+    ${clientParameterDefs.join("\n")}
+    client = new ${clientName}(${clientParamNames.join(", ")});
   });
 
   afterEach(async function() {
@@ -326,8 +336,6 @@ function prepareTestParameters(
         result.push(credentialTestValue);
     }
 
-    let subscriptionIdValue = '"{Your subscriptionId}"';
-
     // Process required parameters (following samples pattern)
     for (const param of method.operation.parameters) {
         if (
@@ -360,7 +368,6 @@ function prepareTestParameters(
             dpgContext.arm &&
             exampleValue
         ) {
-            subscriptionIdValue = serializeExampleValue(exampleValue.value, dpgContext);
             continue;
         }
 
@@ -378,7 +385,7 @@ function prepareTestParameters(
     // Add subscriptionId for ARM clients if ARM clients need it
     if (dpgContext.arm && getSubscriptionId(dpgContext)) {
         result.push(
-            prepareTestValue(dpgContext, "subscriptionId", subscriptionIdValue, false, true)
+            prepareTestValue(dpgContext, "subscriptionId", `env.SUBSCRIPTION_ID || "<SUBSCRIPTION_ID>"`, false, true)
         );
     }
 
@@ -459,23 +466,26 @@ function getCredentialTestValue(
 
     if (keyCredential || tokenCredential) {
         if (dpgContext.arm || hasTokenCredential(initialization)) {
-            // Support DefaultAzureCredential for ARM/Azure packages
+            // Support createTestCredential for ARM/Azure packages
             return {
                 ...defaultSetting,
-                value: "new DefaultAzureCredential()"
+                value: "createTestCredential()"
             };
         } else if (keyCredential) {
             // Support ApiKeyCredential for non-Azure packages
             return {
                 ...defaultSetting,
-                value: `{ key: "INPUT_YOUR_KEY_HERE" }`
+                value: `{ key: "INPUT_YOUR_KEY_HERE" } `
             };
         } else if (tokenCredential) {
             // Support TokenCredential for non-Azure packages
             return {
                 ...defaultSetting,
-                value: `{ getToken: async () => {
-          return { token: "INPUT_YOUR_TOKEN_HERE", expiresOnTimestamp: Date.now() }; } }`
+                value: `{
+        getToken: async () => {
+            return { token: "INPUT_YOUR_TOKEN_HERE", expiresOnTimestamp: Date.now() };
+        }
+    } `
             };
         }
     }

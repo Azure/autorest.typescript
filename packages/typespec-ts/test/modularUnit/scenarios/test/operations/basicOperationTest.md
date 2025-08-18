@@ -111,16 +111,13 @@ import { ContosoClient } from "../../src/index.js";
 describe("get a Employee", () => {
   let recorder: Recorder;
   let client: ContosoClient;
-  let subscriptionId: string;
 
   beforeEach(async function (ctx) {
     recorder = await createRecorder(ctx);
-    subscriptionId = env.SUBSCRIPTION_ID || "";
-    client = new ContosoClient(
-      createTestCredential(),
-      subscriptionId,
-      recorder.configureClientOptions({}),
-    );
+    const credential = createTestCredential();
+    const subscriptionId = env.SUBSCRIPTION_ID || "<SUBSCRIPTION_ID>";
+    const clientOptions = recorder.configureClientOptions({});
+    client = new ContosoClient(credential, subscriptionId, clientOptions);
   });
 
   afterEach(async function () {

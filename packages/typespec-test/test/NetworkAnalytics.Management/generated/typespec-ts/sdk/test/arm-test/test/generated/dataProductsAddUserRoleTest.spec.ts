@@ -10,16 +10,13 @@ import { NetworkAnalyticsApi } from "../../src/index.js";
 describe("assign role to the data product", () => {
   let recorder: Recorder;
   let client: NetworkAnalyticsApi;
-  let subscriptionId: string;
 
   beforeEach(async function (ctx) {
     recorder = await createRecorder(ctx);
-    subscriptionId = env.SUBSCRIPTION_ID || "";
-    client = new NetworkAnalyticsApi(
-      createTestCredential(),
-      subscriptionId,
-      recorder.configureClientOptions({}),
-    );
+    const credential = createTestCredential();
+    const subscriptionId = env.SUBSCRIPTION_ID || "<SUBSCRIPTION_ID>";
+    const clientOptions = recorder.configureClientOptions({});
+    client = new NetworkAnalyticsApi(credential, subscriptionId, clientOptions);
   });
 
   afterEach(async function () {
