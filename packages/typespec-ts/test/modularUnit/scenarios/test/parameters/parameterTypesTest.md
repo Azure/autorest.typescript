@@ -154,7 +154,9 @@ describe("show example demo", () => {
       durationProp: "P123DT22H14M12.011S",
       withEscapeChars: '"Tag 10".Value',
       unknownRecord: { a: "foo" },
-      additionalProp: "additional prop",
+      additionalProperties: {
+        additionalProp: "additional prop",
+      },
     });
     assert.ok(result);
   });

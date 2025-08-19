@@ -514,7 +514,11 @@ function serializeExampleValue(value: SdkExampleValue, dpgContext: SdkContext): 
                 switch (value.type.kind) {
                     case "utcDateTime":
                         return `new Date("${value.value}")`;
-
+                    case "bytes": {
+                        const encode = value.type.encode ?? "base64";
+                        // TODO: add check for un-supported encode
+                        return `Buffer.from("${value.value}",  "${encode}")`;
+                    }
                     default:
                         return `"${value.value
                             ?.toString()
@@ -553,10 +557,9 @@ function serializeExampleValue(value: SdkExampleValue, dpgContext: SdkContext): 
                     value.kind === "model" ? (value.additionalPropertiesValue ?? {}) : {};
                 for (const propName in {
                     ...value.value,
-                    ...additionalPropertiesValue
                 }) {
                     const propValue =
-                        value.value[propName] ?? additionalPropertiesValue[propName];
+                        value.value[propName];
                     if (propValue === undefined || propValue === null) {
                         continue;
                     }
@@ -564,6 +567,26 @@ function serializeExampleValue(value: SdkExampleValue, dpgContext: SdkContext): 
                         `"${mapper.get(propName) ?? propName}": ` +
                         serializeExampleValue(propValue, dpgContext);
                     values.push(propRetValue);
+                }
+                const additionalBags = [];
+                for (const propName in {
+                    ...additionalPropertiesValue
+                }) {
+                    const propValue =
+                        additionalPropertiesValue[propName];
+                    if (propValue === undefined || propValue === null) {
+                        continue;
+                    }
+                    const propRetValue =
+                        `"${mapper.get(propName) ?? propName}": ` +
+                        serializeExampleValue(propValue, dpgContext);
+                    additionalBags.push(propRetValue);
+                }
+                if (additionalBags.length > 0) {
+                    const name = mapper.get("additionalProperties") ? "additionalPropertiesBag" : "additionalProperties";
+                    values.push(`"${name}": {
+                        ${additionalBags.join(", ")}
+                    }`);
                 }
 
                 return `{${values.join(", ")}}`;

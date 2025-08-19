@@ -167,7 +167,7 @@ describe("create a Employee", () => {
       properties: {
         age: 30,
         city: "gydhnntudughbmxlkyzrskcdkotrxn",
-        profile: "ms",
+        profile: Buffer.from("ms", "base64url"),
       },
       tags: { key2913: "urperxmkkhhkp" },
       location: "itajgxyqozseoygnl",
