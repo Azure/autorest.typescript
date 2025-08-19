@@ -174,8 +174,7 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
     "execute:samples": config.withSamples
       ? "dev-tool samples run samples-dev"
       : "echo skipped",
-    "extract-api":
-      "rimraf review && dev-tool run extract-api",
+    "extract-api": "rimraf review && dev-tool run extract-api",
     format: `prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
       config.withSamples ? '"samples-dev/*.ts"' : ""
     }`,
@@ -214,8 +213,7 @@ function getCjsScripts({ moduleKind }: AzureMonorepoInfoConfig) {
 
   return {
     build: "npm run clean && tsc -p . && dev-tool run extract-api",
-    "build:node":
-      "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1",
+    "build:node": "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1",
     "build:test": "tsc -p .",
     "build:debug": "tsc -p . && dev-tool run extract-api",
     "integration-test:browser": "dev-tool run test:browser",
