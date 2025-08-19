@@ -47,5 +47,10 @@ describe("assign role to the data product", () => {
     assert.strictEqual(result.dataTypeScope.length, 1);
     assert.strictEqual(result.dataTypeScope[0], "scope");
     assert.strictEqual(result.principalType, "User");
+    assert.strictEqual(result.role, "Reader");
+    assert.strictEqual(
+      result.roleAssignmentId,
+      "00000000-0000-0000-0000-00000000000",
+    );
   });
 });

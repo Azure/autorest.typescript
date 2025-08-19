@@ -163,6 +163,7 @@ describe("create a Employee", () => {
     assert.strictEqual(result.properties.age, 25);
     assert.strictEqual(result.properties.city, "Seattle");
     assert.strictEqual(result.properties.profile, "developer");
+    assert.strictEqual(result.tags.environment, "test");
   });
 });
 ```

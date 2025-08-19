@@ -40,7 +40,10 @@ model Widget {
   offsetDateTimeProp: offsetDateTime;
   durationProp: duration;
   withEscapeChars: string;
-  unknownRecord: Record<unknown>
+  unknownRecord: Record<unknown>;
+  certificate?: bytes;
+  @encode("base64url")
+  profile?: bytes;
 }
 
 @doc("show example demo")
@@ -89,7 +92,9 @@ Raw json files.
       "offsetDateTimeProp": "2022-08-26T18:38:00Z",
       "durationProp": "P123DT22H14M12.011S",
       "withEscapeChars": "\"Tag 10\".Value",
-      "unknownRecord": { "a": "foo" }
+      "unknownRecord": { "a": "foo" },
+      "certificate": "TUlJRE5EQ0NBaHlnQXdJQkFnSVFDYUxFKzVTSlNVeWdncDM0V",
+      "profile": "TUlJRE5EQ0NBaHlnQXdJQkFnSVFDYUxFKzVTSlNVeWdncDM0V"
     }
   },
   "responses": {
@@ -154,6 +159,14 @@ describe("show example demo", () => {
       durationProp: "P123DT22H14M12.011S",
       withEscapeChars: '"Tag 10".Value',
       unknownRecord: { a: "foo" },
+      certificate: Buffer.from(
+        "TUlJRE5EQ0NBaHlnQXdJQkFnSVFDYUxFKzVTSlNVeWdncDM0V",
+        "base64",
+      ),
+      profile: Buffer.from(
+        "TUlJRE5EQ0NBaHlnQXdJQkFnSVFDYUxFKzVTSlNVeWdncDM0V",
+        "base64url",
+      ),
       additionalProperties: {
         additionalProp: "additional prop",
       },

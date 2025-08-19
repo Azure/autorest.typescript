@@ -185,7 +185,8 @@ describe("create a Employee", () => {
       result.properties.city,
       "gydhnntudughbmxlkyzrskcdkotrxn",
     );
-    assert.strictEqual(result.properties.profile, "ms");
+    assert.equal(result.properties.profile, Buffer.from("ms", "base64url"));
+    assert.strictEqual(result.tags.key2913, "urperxmkkhhkp");
   });
 });
 ```

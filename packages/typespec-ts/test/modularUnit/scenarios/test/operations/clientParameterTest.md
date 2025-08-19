@@ -262,6 +262,7 @@ describe("get a Employee", () => {
     assert.strictEqual(result.properties.age, 30);
     assert.strictEqual(result.properties.city, "Seattle");
     assert.strictEqual(result.properties.profile, "developer");
+    assert.strictEqual(result.tags.environment, "test");
   });
 });
 ```

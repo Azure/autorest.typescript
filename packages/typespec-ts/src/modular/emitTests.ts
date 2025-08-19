@@ -767,20 +767,47 @@ function generateAssertionsForValue(
   }
 
   switch (value.kind) {
-    case "string":
-      if (value.value && value.value.trim() !== "") {
-        assertions.push(`assert.strictEqual(${path}, "${value.value}");`);
+    case "string": {
+      switch (value.type.kind) {
+        case "utcDateTime":
+          assertions.push(
+            `assert.strictEqual(${path}, new Date("${value.value}"));`
+          );
+          break;
+        case "bytes": {
+          const encode = value.type.encode ?? "base64";
+          // TODO: add check for un-supported encode
+          assertions.push(
+            `assert.equal(${path}, Buffer.from("${value.value}",  "${encode}"));`
+          );
+          break;
+        }
+        default: {
+          const retValue = `"${value.value
+            ?.toString()
+            .replace(/\\/g, "\\\\")
+            .replace(/"/g, '\\"')
+            .replace(/\n/g, "\\n")
+            .replace(/\r/g, "\\r")
+            .replace(/\t/g, "\\t")
+            .replace(/\f/g, "\\f")
+            .replace(/>/g, ">")
+            .replace(/</g, "<")}"`;
+          assertions.push(`assert.strictEqual(${path}, ${retValue});`);
+          break;
+        }
       }
       break;
-
-    case "number":
-      assertions.push(`assert.strictEqual(${path}, ${value.value});`);
-      break;
-
+    }
     case "boolean":
-      assertions.push(`assert.strictEqual(${path}, ${value.value});`);
+    case "number":
+      assertions.push(
+        `assert.strictEqual(${path}, ${JSON.stringify(value.value)});`
+      );
       break;
-
+    case "unknown":
+      assertions.push(`assert.equal(${path}, ${JSON.stringify(value.value)});`);
+      break;
     case "array":
       if (value.value && value.value.length > 0) {
         assertions.push(`assert.ok(Array.isArray(${path}));`);
@@ -812,7 +839,8 @@ function generateAssertionsForValue(
         const entries = Object.entries(value.value);
 
         // Assert on key properties to avoid overly verbose tests
-        const propertiesToCheck = entries.slice(0, 5); // Limit to first 5 properties
+        // const propertiesToCheck = entries.slice(0, 5); // Limit to first 5 properties
+        const propertiesToCheck = entries;
 
         for (const [key, val] of propertiesToCheck) {
           if (val && typeof val === "object" && "kind" in val) {
