@@ -105,8 +105,9 @@ function emitMethodSamples(
     return;
   }
   const project = useContext("outputProject");
-  const operationPrefix = `${options.classicalMethodPrefix ?? ""} ${method.oriName ?? method.name
-    }`;
+  const operationPrefix = `${options.classicalMethodPrefix ?? ""} ${
+    method.oriName ?? method.name
+  }`;
   const sampleFolder = join(
     dpgContext.generationPathDetail?.rootDir ?? "",
     "samples-dev",
@@ -459,10 +460,9 @@ function getParameterValue(value: SdkExampleValue): string {
       const additionalPropertiesValue =
         value.kind === "model" ? (value.additionalPropertiesValue ?? {}) : {};
       for (const propName in {
-        ...value.value,
+        ...value.value
       }) {
-        const propValue =
-          value.value[propName];
+        const propValue = value.value[propName];
         if (propValue === undefined || propValue === null) {
           continue;
         }
@@ -475,8 +475,7 @@ function getParameterValue(value: SdkExampleValue): string {
       for (const propName in {
         ...additionalPropertiesValue
       }) {
-        const propValue =
-          additionalPropertiesValue[propName];
+        const propValue = additionalPropertiesValue[propName];
         if (propValue === undefined || propValue === null) {
           continue;
         }
@@ -486,7 +485,9 @@ function getParameterValue(value: SdkExampleValue): string {
         additionalBags.push(propRetValue);
       }
       if (additionalBags.length > 0) {
-        const name = mapper.get("additionalProperties") ? "additionalPropertiesBag" : "additionalProperties";
+        const name = mapper.get("additionalProperties")
+          ? "additionalPropertiesBag"
+          : "additionalProperties";
         values.push(`"${name}": {
           ${additionalBags.join(", ")}
           }`);
