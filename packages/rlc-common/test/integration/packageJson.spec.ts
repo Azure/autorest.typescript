@@ -336,11 +336,11 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "clean",
-        "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log"
+        "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log"
       );
       expect(packageFile.scripts).to.have.property(
         "extract-api",
-        "dev-tool run vendored rimraf review && dev-tool run extract-api"
+        "rimraf review && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "test:browser",
@@ -353,7 +353,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "format",
-        'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" '
+        'prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" '
       );
     });
 
@@ -372,7 +372,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "build:node",
-        "tsc -p . && dev-tool run vendored cross-env ONLY_NODE=true rollup -c 2>&1"
+        "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1"
       );
       expect(packageFile.scripts).to.have.property(
         "build:test",
@@ -384,15 +384,15 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "clean",
-        "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log"
+        "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log"
       );
       expect(packageFile.scripts).to.have.property(
         "extract-api",
-        "dev-tool run vendored rimraf review && dev-tool run extract-api"
+        "rimraf review && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "format",
-        'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" '
+        'prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" '
       );
     });
 
