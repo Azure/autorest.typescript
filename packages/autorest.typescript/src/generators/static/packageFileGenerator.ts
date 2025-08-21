@@ -175,12 +175,12 @@ function regularAutorestPackage(
     delete packageInfo.devDependencies["mkdirp"];
     packageInfo.scripts["build"] =
       "npm run clean && dev-tool run build-package && dev-tool run extract-api";
-    packageInfo.scripts["clean"] = "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log";
+    packageInfo.scripts["clean"] = "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log";
     packageInfo.scripts["extract-api"] = "dev-tool run extract-api";
     packageInfo.scripts["update-snippets"] = "dev-tool run update-snippets";
     delete packageInfo.scripts["minify"];
-    packageInfo.scripts["check-format"] = "dev-tool run vendored prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.{ts,cts,mts}\" \"test/**/*.{ts,cts,mts}\" \"*.{js,cjs,mjs,json}\" ";
-    packageInfo.scripts["format"] = "dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.{ts,cts,mts}\" \"test/**/*.{ts,cts,mts}\" \"*.{js,cjs,mjs,json}\" ";
+    packageInfo.scripts["check-format"] = "prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.{ts,cts,mts}\" \"test/**/*.{ts,cts,mts}\" \"*.{js,cjs,mjs,json}\" ";
+    packageInfo.scripts["format"] = "prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.{ts,cts,mts}\" \"test/**/*.{ts,cts,mts}\" \"*.{js,cjs,mjs,json}\" ";
   } else {
     packageInfo.devDependencies["@rollup/plugin-commonjs"] = "^24.0.0";
     packageInfo.devDependencies["@rollup/plugin-json"] = "^6.0.0";
