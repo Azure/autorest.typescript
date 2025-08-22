@@ -108,7 +108,7 @@ export function buildClientContext(
   const propertiesInOptions = getClientParameters(client, dpgContext, {
     optionalOnly: true
   })
-    .filter((p) => p.name !== "endpoint")
+    .filter((p) => getClientParameterName(p) !== "endpoint")
     .map((p) => {
       return {
         name: getClientParameterName(p),

@@ -6,10 +6,14 @@ export declare type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
+export declare interface ListWithoutContinuationOptionalParams extends OperationOptions {
+}
+
 export declare class PageableClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: PageableClientOptionalParams);
+    listWithoutContinuation(options?: ListWithoutContinuationOptionalParams): PagedAsyncIterableIterator<Pet>;
     readonly serverDrivenPagination: ServerDrivenPaginationOperations;
 }
 
@@ -79,11 +83,15 @@ export declare interface ServerDrivenPaginationContinuationTokenRequestQueryResp
 export declare interface ServerDrivenPaginationLinkOptionalParams extends OperationOptions {
 }
 
+export declare interface ServerDrivenPaginationLinkStringOptionalParams extends OperationOptions {
+}
+
 export declare interface ServerDrivenPaginationNestedLinkOptionalParams extends OperationOptions {
 }
 
 export declare interface ServerDrivenPaginationOperations {
     nestedLink: (options?: ServerDrivenPaginationNestedLinkOptionalParams) => PagedAsyncIterableIterator<Pet>;
+    linkString: (options?: ServerDrivenPaginationLinkStringOptionalParams) => PagedAsyncIterableIterator<Pet>;
     link: (options?: ServerDrivenPaginationLinkOptionalParams) => PagedAsyncIterableIterator<Pet>;
     continuationToken: ServerDrivenPaginationContinuationTokenOperations;
 }

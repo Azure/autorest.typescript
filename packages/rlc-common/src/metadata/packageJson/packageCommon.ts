@@ -118,7 +118,7 @@ export function getTshyConfig(config: PackageCommonInfoConfig) {
     selfLink: false
   };
   if (config.azureSdkForJs) {
-    tshyConfig["project"] = "./tsconfig.src.json";
+    tshyConfig["project"] = "../../../tsconfig.src.build.json";
   }
   return tshyConfig;
 }
