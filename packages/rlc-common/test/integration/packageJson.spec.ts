@@ -444,8 +444,7 @@ describe("Package file generation", () => {
       const model = createMockModel({
         ...baseConfig,
         moduleKind: "esm",
-        withTests: true,
-        shouldUsePnpmDep: true
+        withTests: true
       });
       const packageFileContent = buildPackageFile(model);
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
