@@ -14,8 +14,6 @@ import {
 export { KeyVaultManagementClient } from "./keyVaultManagementClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
-  resourceDeserializer_1,
-  systemDataDeserializer_1,
   Operation,
   OperationDisplay,
   OperationProperties,

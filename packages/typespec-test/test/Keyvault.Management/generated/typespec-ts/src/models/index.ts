@@ -2,8 +2,6 @@
 // Licensed under the MIT License.
 
 export {
-  resourceDeserializer_1,
-  systemDataDeserializer_1,
   Operation,
   OperationDisplay,
   OperationProperties,
