@@ -10,14 +10,7 @@
   "main": "dist/src/index.js",
   "module": "./dist-esm/src/index.js",
   "types": "./types/src/dpg-customization-rest.d.ts",
-  "keywords": [
-    "node",
-    "azure",
-    "cloud",
-    "typescript",
-    "browser",
-    "isomorphic"
-  ],
+  "keywords": ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
   "author": "Microsoft Corporation",
   "license": "MIT",
   "files": [
@@ -71,7 +64,7 @@
   "scripts": {
     "clean": "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
     "extract-api": "rimraf review && dev-tool run extract-api",
-    "pack": "npm pack 2>&1",
+    "pack": "pnpm pack 2>&1",
     "lint": "eslint package.json src test",
     "lint:fix": "eslint package.json src test --fix --fix-type [problem,suggestion]",
     "build:samples": "tsc -p tsconfig.samples.json && dev-tool samples publish -f",
@@ -92,9 +85,7 @@
   },
   "//sampleConfiguration": {
     "productName": "@msinternal/dpg-customization-rest",
-    "productSlugs": [
-      "azure"
-    ],
+    "productSlugs": ["azure"],
     "disableDocsMs": true,
     "apiRefLink": "https://learn.microsoft.com/javascript/api/@msinternal/dpg-customization-rest"
   }

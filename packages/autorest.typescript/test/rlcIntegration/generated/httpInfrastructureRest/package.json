@@ -10,14 +10,7 @@
   "main": "dist/index.js",
   "module": "./dist-esm/index.js",
   "types": "./types/http-infrastructure-rest.d.ts",
-  "keywords": [
-    "node",
-    "azure",
-    "cloud",
-    "typescript",
-    "browser",
-    "isomorphic"
-  ],
+  "keywords": ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
   "author": "Microsoft Corporation",
   "license": "MIT",
   "files": [
@@ -69,7 +62,7 @@
   "scripts": {
     "clean": "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
     "extract-api": "rimraf review && dev-tool run extract-api",
-    "pack": "npm pack 2>&1",
+    "pack": "pnpm pack 2>&1",
     "lint": "eslint package.json src test",
     "lint:fix": "eslint package.json src test --fix --fix-type [problem,suggestion]",
     "build:samples": "echo skipped",

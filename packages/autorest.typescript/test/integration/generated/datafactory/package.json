@@ -4,9 +4,7 @@
   "author": "Microsoft Corporation",
   "description": "A generated SDK for DataFactoryClient.",
   "version": "1.0.0-preview1",
-  "engines": {
-    "node": ">=20.0.0"
-  },
+  "engines": { "node": ">=20.0.0" },
   "dependencies": {
     "@azure/core-lro": "catalog:corelrov2",
     "@azure/abort-controller": "workspace:*",
@@ -15,14 +13,7 @@
     "@azure/core-rest-pipeline": "workspace:*",
     "tslib": "catalog:"
   },
-  "keywords": [
-    "node",
-    "azure",
-    "typescript",
-    "browser",
-    "isomorphic",
-    "cloud"
-  ],
+  "keywords": ["node", "azure", "typescript", "browser", "isomorphic", "cloud"],
   "license": "MIT",
   "main": "./dist/commonjs/index.js",
   "module": "./dist/esm/index.js",
@@ -34,17 +25,11 @@
     "@azure/dev-tool": "workspace:*"
   },
   "repository": "github:Azure/azure-sdk-for-js",
-  "bugs": {
-    "url": "https://github.com/Azure/azure-sdk-for-js/issues"
-  },
-  "files": [
-    "dist/",
-    "README.md",
-    "LICENSE"
-  ],
+  "bugs": { "url": "https://github.com/Azure/azure-sdk-for-js/issues" },
+  "files": ["dist/", "README.md", "LICENSE"],
   "scripts": {
     "build": "npm run clean && dev-tool run build-package && dev-tool run extract-api",
-    "pack": "npm pack 2>&1",
+    "pack": "pnpm pack 2>&1",
     "extract-api": "dev-tool run extract-api",
     "lint": "echo skipped",
     "clean": "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
@@ -60,10 +45,7 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      {
-        "path": "src/dataFactoryClient.ts",
-        "prefix": "packageDetails"
-      }
+      { "path": "src/dataFactoryClient.ts", "prefix": "packageDetails" }
     ]
   },
   "autoPublish": true,
