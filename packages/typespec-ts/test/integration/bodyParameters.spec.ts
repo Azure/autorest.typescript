@@ -44,7 +44,8 @@ describe("BodyOptionalityClient Rest Client", () => {
       .post({
         body: {
           name: "foo"
-        }
+        },
+        contentType: "application/json"
       });
     assert.strictEqual(result.status, "204");
   });
