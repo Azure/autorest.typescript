@@ -6,6 +6,7 @@ options:
     generate-metadata: true
     generate-test: true
     azure-sdk-for-js: false
+    is-modular-library: false
     compatibility-query-multi-format: true
     package-details:
       name: "@azure-rest/cognitiveservices-translator"
