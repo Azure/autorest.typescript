@@ -451,7 +451,7 @@ describe("Package file generation", () => {
 
       expect(packageFile.scripts).to.have.property(
         "pack",
-        "pnpm pack 2>&1"
+        "npm pack 2>&1"
       );
     });
 
