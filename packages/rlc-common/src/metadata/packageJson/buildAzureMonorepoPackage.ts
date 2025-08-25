@@ -82,7 +82,7 @@ export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
         : "workspace:^",
       "@azure/dev-tool": !shouldUsePnpmDep ? "^1.0.0" : "workspace:^",
       "@azure/eslint-plugin-azure-sdk": !shouldUsePnpmDep
-        ? "^3.0.0"
+        ? "^2.0.0"
         : "workspace:^",
       "@azure/identity": !shouldUsePnpmDep ? "^4.9.0" : "catalog:internal",
       "@types/node": !shouldUsePnpmDep ? "^20.0.0" : "catalog:",

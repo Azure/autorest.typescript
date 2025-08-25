@@ -1,14 +1,20 @@
-import azsdkEslint from "@azure/eslint-plugin-azure-sdk";
+import globals from "globals";
+import pluginJs from "@eslint/js";
+import tseslint from "typescript-eslint";
 
-export default azsdkEslint.config([
+export default [
+  {
+    files: ["**/*.{js,mjs,cjs,ts}"],
+    languageOptions: { globals: globals.node }
+  },
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
   {
     rules: {
-      "@azure/azure-sdk/ts-modules-only-named": "warn",
-      "@azure/azure-sdk/ts-package-json-types": "warn",
-      "@azure/azure-sdk/ts-package-json-engine-is-present": "warn",
-      "@azure/azure-sdk/ts-package-json-files-required": "off",
-      "@azure/azure-sdk/ts-package-json-main-is-cjs": "off",
-      "tsdoc/syntax": "warn"
+      "@typescript-eslint/no-unused-vars": "warn",
+      "@typescript-eslint/no-explicit-any": "off",
+      "no-console": "warn",
+      "prefer-const": "error"
     }
   }
-]);
+];
