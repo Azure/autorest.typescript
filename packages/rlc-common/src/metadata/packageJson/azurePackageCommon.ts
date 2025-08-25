@@ -153,6 +153,10 @@ export function getAzurePackageDevDependencies(config: AzurePackageInfoConfig) {
   return {
     dotenv: "^16.0.0",
     ...getCommonPackageDevDependencies(config),
+    // TypeScript ESLint dependencies for standalone packages
+    "globals": "^15.0.0",
+    "@eslint/js": "^9.0.0", 
+    "typescript-eslint": "^8.0.0",
     ...(config.withTests && testDevDependencies),
     ...(config.specSource === "Swagger" && { autorest: "latest" }),
     ...esmDevDependencies,
