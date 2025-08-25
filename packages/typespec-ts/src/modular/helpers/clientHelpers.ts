@@ -80,7 +80,7 @@ export function getClientParameters(
         p.type.templateArguments[0] &&
         hasDefaultValue(p.type.templateArguments[0])
       )) ||
-      (options.apiVersionAsRequired && p.isApiVersionParam));
+      (options.apiVersionAsRequired && p.isApiVersionParam && !hasDefaultValue(p)));
   const isOptional = (p: SdkParameter) => p.optional || hasDefaultValue(p);
   const skipCredentials = (p: SdkParameter) => p.kind !== "credential";
   const skipMethodParam = (p: SdkParameter) => p.kind !== "method";
@@ -141,6 +141,12 @@ function getClientParameterTypeExpression(
   context: SdkContext,
   parameter: SdkParameter
 ) {
+  // Special handling for apiVersion parameters to use string type
+  const paramName = getClientParameterName(parameter);
+  if (paramName.toLowerCase() === "apiversion" || parameter.name.toLowerCase() === "apiversion" || parameter.name === "api-version") {
+    return "string";
+  }
+  
   // Special handle to work around the fact that TCGC creates a union type for endpoint. The reason they do this
   // is to provide a way for users to either pass the value to fill in the template of the whole endpoint. Basically they are
   // inserting a variant with {endpoint}.
