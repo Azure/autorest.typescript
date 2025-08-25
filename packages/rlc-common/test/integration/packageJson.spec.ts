@@ -444,15 +444,14 @@ describe("Package file generation", () => {
       const model = createMockModel({
         ...baseConfig,
         moduleKind: "esm",
-        withTests: true,
-        shouldUsePnpmDep: true
+        withTests: true
       });
       const packageFileContent = buildPackageFile(model);
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
 
       expect(packageFile.scripts).to.have.property(
         "pack",
-        "pnpm pack 2>&1"
+        "npm pack 2>&1"
       );
     });
 
