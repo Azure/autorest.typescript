@@ -64,7 +64,7 @@
   "scripts": {
     "clean": "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
     "extract-api": "rimraf review && dev-tool run extract-api",
-    "pack": "pnpm pack 2>&1",
+    "pack": "npm pack 2>&1",
     "lint": "eslint package.json src test",
     "lint:fix": "eslint package.json src test --fix --fix-type [problem,suggestion]",
     "build:samples": "tsc -p tsconfig.samples.json && dev-tool samples publish -f",
