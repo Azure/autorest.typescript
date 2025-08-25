@@ -346,7 +346,7 @@ describe("Package file generation", () => {
         "test:browser",
         "dev-tool run build-test && dev-tool run test:vitest --browser"
       );
-      expect(packageFile.scripts).to.have.property("pack", "npm pack 2>&1");
+      expect(packageFile.scripts).to.have.property("pack", "pnpm pack 2>&1");
       expect(packageFile.scripts).to.have.property(
         "test",
         "npm run test:node && npm run test:browser"
