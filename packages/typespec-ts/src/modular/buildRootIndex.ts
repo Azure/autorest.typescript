@@ -310,8 +310,7 @@ function exportModules(
           if (
             moduleName === "models" &&
             ex.getKindName() === "FunctionDeclaration" &&
-            (exDeclaration[0].endsWith("Serializer") ||
-              exDeclaration[0].endsWith("Deserializer"))
+            /.*(Serializer|Deserializer)(_\d+)?$/.test(exDeclaration[0])
           ) {
             return false;
           }
