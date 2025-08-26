@@ -289,7 +289,7 @@ function prepareExampleParameters(
     if (clientParam.type.kind === "endpoint") {
       // For endpoint type, extract template arguments (the actual endpoint parameters)
       for (const templateArg of clientParam.type.templateArguments) {
-        const exampleValue = parameterMap[templateArg.serializedName ?? ""];
+        const exampleValue = parameterMap[templateArg.name ?? ""];
         if (exampleValue && exampleValue.value) {
           result.push(
             prepareExampleValue(
@@ -303,7 +303,7 @@ function prepareExampleParameters(
       }
     } else {
       // Handle other client-level parameters
-      const exampleValue = parameterMap[clientParam.serializedName ?? ""];
+      const exampleValue = parameterMap[clientParam.name ?? ""];
       if (exampleValue && exampleValue.value) {
         result.push(
           prepareExampleValue(
