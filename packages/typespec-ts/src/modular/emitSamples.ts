@@ -3,50 +3,37 @@ import {
   FunctionDeclarationStructure,
   SourceFile
 } from "ts-morph";
-import { resolveReference } from "../framework/reference.js";
 import { SdkContext } from "../utils/interfaces.js";
 import {
   SdkClientType,
-  SdkHttpOperationExample,
   SdkHttpParameterExampleValue,
-  SdkServiceOperation,
-  SdkExampleValue,
-  SdkClientInitializationType
+  SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
-import {
-  isAzurePackage,
-  NameType,
-  normalizeName
-} from "@azure-tools/rlc-common";
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { useContext } from "../contextManager.js";
 import { join } from "path";
-import { AzureIdentityDependencies } from "../modular/external-dependencies.js";
 import { reportDiagnostic } from "../index.js";
 import { NoTarget } from "@typespec/compiler";
-import {
-  buildPropertyNameMapper,
-  isSpreadBodyParameter
-} from "./helpers/typeHelpers.js";
+import { isSpreadBodyParameter } from "./helpers/typeHelpers.js";
 import { getClassicalClientName } from "./helpers/namingHelpers.js";
-import {
-  hasKeyCredential,
-  hasTokenCredential
-} from "../utils/credentialUtils.js";
 import {
   getMethodHierarchiesMap,
   ServiceOperation
 } from "../utils/operationUtil.js";
 import { getSubscriptionId } from "../transform/transfromRLCOptions.js";
+import {
+  buildParameterValueMap,
+  prepareCommonValue,
+  getCredentialSampleValue,
+  serializeExampleValue,
+  escapeSpecialCharToSpace,
+  CommonValue
+} from "./helpers/sampleTestHelpers.js";
 
 /**
  * Interfaces for samples generations
  */
-interface ExampleValue {
-  name: string;
-  value: string;
-  isOptional: boolean;
-  onClient: boolean;
-}
+type ExampleValue = CommonValue;
 
 interface EmitSampleOptions {
   topLevelClient: SdkClientType<SdkServiceOperation>;
@@ -234,28 +221,6 @@ function emitMethodSamples(
   return sourceFile;
 }
 
-function buildParameterValueMap(example: SdkHttpOperationExample) {
-  const parameterMap: Record<string, SdkHttpParameterExampleValue> = {};
-  example.parameters.forEach(
-    (param) => (parameterMap[param.parameter.serializedName] = param)
-  );
-  return parameterMap;
-}
-
-function prepareExampleValue(
-  name: string,
-  value: SdkExampleValue | string,
-  isOptional?: boolean,
-  onClient?: boolean
-): ExampleValue {
-  return {
-    name: normalizeName(name, NameType.Parameter),
-    value: typeof value === "string" ? value : getParameterValue(value),
-    isOptional: Boolean(isOptional),
-    onClient: Boolean(onClient)
-  };
-}
-
 function prepareExampleParameters(
   dpgContext: SdkContext,
   method: ServiceOperation,
@@ -265,7 +230,7 @@ function prepareExampleParameters(
   // TODO: blocked by TCGC issue: https://github.com/Azure/typespec-azure/issues/1419
   // refine this to support generic client-level parameters once resolved
   const result: ExampleValue[] = [];
-  const credentialExampleValue = getCredentialExampleValue(
+  const credentialExampleValue = getCredentialSampleValue(
     dpgContext,
     topLevelClient.clientInitialization
   );
@@ -303,11 +268,11 @@ function prepareExampleParameters(
       dpgContext.arm &&
       exampleValue
     ) {
-      subscriptionIdValue = getParameterValue(exampleValue.value);
+      subscriptionIdValue = serializeExampleValue(exampleValue.value);
       continue;
     }
     result.push(
-      prepareExampleValue(
+      prepareCommonValue(
         exampleValue.parameter.name,
         exampleValue.value,
         param.optional,
@@ -318,7 +283,7 @@ function prepareExampleParameters(
   // add subscriptionId for ARM clients if ARM clients need it
   if (dpgContext.arm && getSubscriptionId(dpgContext)) {
     result.push(
-      prepareExampleValue("subscriptionId", subscriptionIdValue, false, true)
+      prepareCommonValue("subscriptionId", subscriptionIdValue, false, true)
     );
   }
   // required/optional body parameters
@@ -337,7 +302,7 @@ function prepareExampleParameters(
           continue;
         }
         result.push(
-          prepareExampleValue(
+          prepareCommonValue(
             prop.name,
             propExample,
             prop.optional,
@@ -347,7 +312,7 @@ function prepareExampleParameters(
       }
     } else {
       result.push(
-        prepareExampleValue(
+        prepareCommonValue(
           bodyParam.name,
           bodyExample.value,
           bodyParam.optional,
@@ -367,7 +332,7 @@ function prepareExampleParameters(
     .map((param) => parameterMap[param.serializedName]!)
     .forEach((param) => {
       result.push(
-        prepareExampleValue(
+        prepareCommonValue(
           param.parameter.name,
           param.value,
           true,
@@ -377,139 +342,4 @@ function prepareExampleParameters(
     });
 
   return result;
-}
-
-function getCredentialExampleValue(
-  dpgContext: SdkContext,
-  initialization: SdkClientInitializationType
-): ExampleValue | undefined {
-  const keyCredential = hasKeyCredential(initialization),
-    tokenCredential = hasTokenCredential(initialization);
-  const defaultSetting = {
-    isOptional: false,
-    onClient: true,
-    name: "credential"
-  };
-  if (keyCredential || tokenCredential) {
-    if (isAzurePackage({ options: dpgContext.rlcOptions })) {
-      // Support DefaultAzureCredential for Azure packages
-      return {
-        ...defaultSetting,
-        value: `new ${resolveReference(
-          AzureIdentityDependencies.DefaultAzureCredential
-        )}()`
-      };
-    } else if (keyCredential) {
-      // Support ApiKeyCredential for non-Azure packages
-      return {
-        ...defaultSetting,
-        value: `{ key: "INPUT_YOUR_KEY_HERE" }`
-      };
-    } else if (tokenCredential) {
-      // Support TokenCredential for non-Azure packages
-      return {
-        ...defaultSetting,
-        value: `{ getToken: async () => {
-          return { token: "INPUT_YOUR_TOKEN_HERE", expiresOnTimestamp: now() }; } }`
-      };
-    }
-  }
-  return undefined;
-}
-
-function getParameterValue(value: SdkExampleValue): string {
-  let retValue = `{} as any`;
-  switch (value.kind) {
-    case "string": {
-      switch (value.type.kind) {
-        case "utcDateTime":
-          retValue = `new Date("${value.value}")`;
-          break;
-        case "bytes": {
-          const encode = value.type.encode ?? "base64";
-          // TODO: add check for un-supported encode
-          retValue = `Buffer.from("${value.value}",  "${encode}")`;
-          break;
-        }
-        default:
-          retValue = `"${value.value
-            ?.toString()
-            .replace(/\\/g, "\\\\")
-            .replace(/"/g, '\\"')
-            .replace(/\n/g, "\\n")
-            .replace(/\r/g, "\\r")
-            .replace(/\t/g, "\\t")
-            .replace(/\f/g, "\\f")
-            .replace(/>/g, ">")
-            .replace(/</g, "<")}"`;
-          break;
-      }
-      break;
-    }
-    case "boolean":
-    case "number":
-    case "null":
-    case "unknown":
-    case "union":
-      retValue = `${JSON.stringify(value.value)}`;
-      break;
-    case "dict":
-    case "model": {
-      const mapper = buildPropertyNameMapper(value.type);
-      const values = [];
-      const additionalPropertiesValue =
-        value.kind === "model" ? (value.additionalPropertiesValue ?? {}) : {};
-      for (const propName in {
-        ...value.value
-      }) {
-        const propValue = value.value[propName];
-        if (propValue === undefined || propValue === null) {
-          continue;
-        }
-        const propRetValue =
-          `"${mapper.get(propName) ?? propName}": ` +
-          getParameterValue(propValue);
-        values.push(propRetValue);
-      }
-      const additionalBags = [];
-      for (const propName in {
-        ...additionalPropertiesValue
-      }) {
-        const propValue = additionalPropertiesValue[propName];
-        if (propValue === undefined || propValue === null) {
-          continue;
-        }
-        const propRetValue =
-          `"${mapper.get(propName) ?? propName}": ` +
-          getParameterValue(propValue);
-        additionalBags.push(propRetValue);
-      }
-      if (additionalBags.length > 0) {
-        const name = mapper.get("additionalProperties")
-          ? "additionalPropertiesBag"
-          : "additionalProperties";
-        values.push(`"${name}": {
-          ${additionalBags.join(", ")}
-          }`);
-      }
-
-      retValue = `{${values.join(", ")}}`;
-      break;
-    }
-    case "array": {
-      const valuesArr = value.value.map(getParameterValue);
-      retValue = `[${valuesArr.join(", ")}]`;
-      break;
-    }
-    default:
-      break;
-  }
-  return retValue;
-}
-
-function escapeSpecialCharToSpace(str: string) {
-  if (!str) {
-    return str;
-  }
-  return str.replace(/_|,|\.|\(|\)|'s |\[|\]/g, " ").replace(/\//g, " Or ");
 }

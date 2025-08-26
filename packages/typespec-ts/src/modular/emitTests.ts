@@ -11,20 +11,20 @@ import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { useContext } from "../contextManager.js";
 import { join } from "path";
 import { existsSync, rmSync } from "fs";
-import {
-  buildPropertyNameMapper,
-  isSpreadBodyParameter
-} from "./helpers/typeHelpers.js";
+import { isSpreadBodyParameter } from "./helpers/typeHelpers.js";
 import { getClassicalClientName } from "./helpers/namingHelpers.js";
-import {
-  hasTokenCredential,
-  hasKeyCredential
-} from "../utils/credentialUtils.js";
 import {
   getMethodHierarchiesMap,
   ServiceOperation
 } from "../utils/operationUtil.js";
 import { getSubscriptionId } from "../transform/transfromRLCOptions.js";
+import {
+  buildParameterValueMap,
+  prepareCommonValue,
+  getCredentialTestValue,
+  getDescriptiveName,
+  CommonValue
+} from "./helpers/sampleTestHelpers.js";
 
 /**
  * Generate descriptive test names based on operation names (same as samples)
@@ -33,28 +33,13 @@ function getDescriptiveTestName(
   method: ServiceOperation,
   exampleName: string
 ): string {
-  // Use the same description logic as samples
-  const description = method.doc ?? `execute ${method.oriName ?? method.name}`;
-  let descriptiveName =
-    description.charAt(0).toLowerCase() + description.slice(1);
-
-  // Remove any trailing dots
-  descriptiveName = descriptiveName.replace(/\.$/, "");
-
-  // Include the example name to ensure uniqueness for multiple test cases
-  const functionName = normalizeName(exampleName, NameType.Method);
-  return `${descriptiveName} for ${functionName}`;
+  return getDescriptiveName(method, exampleName, "test");
 }
 
 /**
  * Interfaces for test generations
  */
-interface TestCaseValue {
-  name: string;
-  value: string;
-  isOptional: boolean;
-  onClient: boolean;
-}
+type TestCaseValue = CommonValue;
 
 interface EmitTestOptions {
   topLevelClient: SdkClientType<SdkServiceOperation>;
@@ -340,14 +325,6 @@ ${testFunctions
   return sourceFile;
 }
 
-function buildParameterValueMap(example: SdkHttpOperationExample) {
-  const result: Record<string, SdkHttpParameterExampleValue> = {};
-  for (const param of example.parameters) {
-    result[param.parameter.serializedName] = param;
-  }
-  return result;
-}
-
 function prepareTestParameters(
   dpgContext: SdkContext,
   method: ServiceOperation,
@@ -380,8 +357,7 @@ function prepareTestParameters(
       // Generate default values for required parameters without examples
       if (!param.optional) {
         result.push(
-          prepareTestValue(
-            dpgContext,
+          prepareCommonValue(
             param.name,
             `"{Your ${param.name}}"`,
             false,
@@ -401,10 +377,9 @@ function prepareTestParameters(
     }
 
     result.push(
-      prepareTestValue(
-        dpgContext,
+      prepareCommonValue(
         exampleValue.parameter.name,
-        serializeExampleValue(exampleValue.value, dpgContext),
+        exampleValue.value,
         param.optional,
         param.onClient
       )
@@ -414,8 +389,7 @@ function prepareTestParameters(
   // Add subscriptionId for ARM clients if ARM clients need it
   if (dpgContext.arm && getSubscriptionId(dpgContext)) {
     result.push(
-      prepareTestValue(
-        dpgContext,
+      prepareCommonValue(
         "subscriptionId",
         `env.SUBSCRIPTION_ID || "<SUBSCRIPTION_ID>"`,
         false,
@@ -438,22 +412,15 @@ function prepareTestParameters(
         const propValue = bodyExample.value.value[prop.name];
         if (propValue) {
           result.push(
-            prepareTestValue(
-              dpgContext,
-              prop.name,
-              serializeExampleValue(propValue, dpgContext),
-              prop.optional,
-              false
-            )
+            prepareCommonValue(prop.name, propValue, prop.optional, false)
           );
         }
       }
     } else {
       result.push(
-        prepareTestValue(
-          dpgContext,
+        prepareCommonValue(
           bodyParam.name,
-          serializeExampleValue(bodyExample.value, dpgContext),
+          bodyExample.value,
           bodyParam.optional,
           bodyParam.onClient
         )
@@ -473,10 +440,9 @@ function prepareTestParameters(
       const exampleValue = parameterMap[param.serializedName];
       if (exampleValue && exampleValue.value) {
         result.push(
-          prepareTestValue(
-            dpgContext,
+          prepareCommonValue(
             param.name,
-            serializeExampleValue(exampleValue.value, dpgContext),
+            exampleValue.value,
             true,
             param.onClient
           )
@@ -485,158 +451,6 @@ function prepareTestParameters(
     });
 
   return result;
-}
-
-function getCredentialTestValue(
-  dpgContext: SdkContext,
-  initialization: any
-): TestCaseValue | undefined {
-  const keyCredential = hasKeyCredential(initialization),
-    tokenCredential = hasTokenCredential(initialization);
-  const defaultSetting = {
-    isOptional: false,
-    onClient: true,
-    name: "credential"
-  };
-
-  if (keyCredential || tokenCredential) {
-    if (dpgContext.arm || hasTokenCredential(initialization)) {
-      // Support createTestCredential for ARM/Azure packages
-      return {
-        ...defaultSetting,
-        value: "createTestCredential()"
-      };
-    } else if (keyCredential) {
-      // Support ApiKeyCredential for non-Azure packages
-      return {
-        ...defaultSetting,
-        value: `{ key: "INPUT_YOUR_KEY_HERE" } `
-      };
-    } else if (tokenCredential) {
-      // Support TokenCredential for non-Azure packages
-      return {
-        ...defaultSetting,
-        value: `{
-        getToken: async () => {
-            return { token: "INPUT_YOUR_TOKEN_HERE", expiresOnTimestamp: Date.now() };
-        }
-    } `
-      };
-    }
-  }
-  return undefined;
-}
-
-function prepareTestValue(
-  dpgContext: SdkContext,
-  name: string,
-  value: SdkExampleValue | string,
-  isOptional?: boolean,
-  onClient?: boolean
-): TestCaseValue {
-  return {
-    name: normalizeName(name, NameType.Parameter),
-    value:
-      typeof value === "string"
-        ? value
-        : serializeExampleValue(value, dpgContext),
-    isOptional: isOptional ?? true,
-    onClient: onClient ?? false
-  };
-}
-
-function serializeExampleValue(
-  value: SdkExampleValue,
-  dpgContext: SdkContext
-): string {
-  switch (value.kind) {
-    case "string": {
-      switch (value.type.kind) {
-        case "utcDateTime":
-          return `new Date("${value.value}")`;
-        case "bytes": {
-          const encode = value.type.encode ?? "base64";
-          // TODO: add check for un-supported encode
-          return `Buffer.from("${value.value}",  "${encode}")`;
-        }
-        default:
-          return `"${value.value
-            ?.toString()
-            .replace(/\\/g, "\\\\")
-            .replace(/"/g, '\\"')
-            .replace(/\n/g, "\\n")
-            .replace(/\r/g, "\\r")
-            .replace(/\t/g, "\\t")
-            .replace(/\f/g, "\\f")
-            .replace(/>/g, ">")
-            .replace(/</g, "<")}"`;
-      }
-    }
-    case "number":
-      return value.value.toString();
-    case "boolean":
-      return value.value.toString();
-    case "null":
-      return "null";
-    case "array":
-      return `[${value.value.map((v: SdkExampleValue) => serializeExampleValue(v, dpgContext)).join(", ")}]`;
-    case "unknown":
-      return `${JSON.stringify(value.value)}`;
-    case "dict": {
-      const dictProps = Object.entries(value.value)
-        .map(
-          ([key, val]) =>
-            `"${key}": ${serializeExampleValue(val as SdkExampleValue, dpgContext)}`
-        )
-        .join(", ");
-      return `{${dictProps}}`;
-    }
-    case "model": {
-      const mapper = buildPropertyNameMapper(value.type);
-      const values = [];
-      const additionalPropertiesValue =
-        value.kind === "model" ? (value.additionalPropertiesValue ?? {}) : {};
-      for (const propName in {
-        ...value.value
-      }) {
-        const propValue = value.value[propName];
-        if (propValue === undefined || propValue === null) {
-          continue;
-        }
-        const propRetValue =
-          `"${mapper.get(propName) ?? propName}": ` +
-          serializeExampleValue(propValue, dpgContext);
-        values.push(propRetValue);
-      }
-      const additionalBags = [];
-      for (const propName in {
-        ...additionalPropertiesValue
-      }) {
-        const propValue = additionalPropertiesValue[propName];
-        if (propValue === undefined || propValue === null) {
-          continue;
-        }
-        const propRetValue =
-          `"${mapper.get(propName) ?? propName}": ` +
-          serializeExampleValue(propValue, dpgContext);
-        additionalBags.push(propRetValue);
-      }
-      if (additionalBags.length > 0) {
-        const name = mapper.get("additionalProperties")
-          ? "additionalPropertiesBag"
-          : "additionalProperties";
-        values.push(`"${name}": {
-                        ${additionalBags.join(", ")}
-                    }`);
-      }
-
-      return `{${values.join(", ")}}`;
-    }
-    case "union":
-      return `${JSON.stringify(value.value)}`; // For unions, serialize the actual value
-    default:
-      throw new Error(`Unknown example value kind: ${(value as any).kind}`);
-  }
 }
 
 /**
