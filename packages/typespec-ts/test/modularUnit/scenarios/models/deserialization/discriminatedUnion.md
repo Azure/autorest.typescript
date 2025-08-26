@@ -310,7 +310,7 @@ model Exception extends DocumentIngress {
 
 @route("/documents")
 interface DocumentService {
-  op processDocument(@body body: DocumentIngress): void;
+  op processDocument(@body body: DocumentIngress): DocumentIngress;
 }
 ```
 
@@ -348,6 +348,22 @@ export function documentIngressSerializer(item: DocumentIngress): any {
   };
 }
 
+export function documentIngressDeserializer(item: any): DocumentIngress {
+  return {
+    documentType: item["DocumentType"],
+    documentStreamIds: !item["DocumentStreamIds"]
+      ? item["DocumentStreamIds"]
+      : item["DocumentStreamIds"].map((p: any) => {
+          return p;
+        }),
+    properties: !item["Properties"]
+      ? item["Properties"]
+      : item["Properties"].map((p: any) => {
+          return p;
+        }),
+  };
+}
+
 /** Alias for DocumentIngressUnion */
 export type DocumentIngressUnion = Request | Exception | DocumentIngress;
 
@@ -363,6 +379,21 @@ export function documentIngressUnionSerializer(
 
     default:
       return documentIngressSerializer(item);
+  }
+}
+
+export function documentIngressUnionDeserializer(
+  item: any,
+): DocumentIngressUnion {
+  switch (item.documentType) {
+    case "Request":
+      return requestDeserializer(item as Request);
+
+    case "Exception":
+      return exceptionDeserializer(item as Exception);
+
+    default:
+      return documentIngressDeserializer(item);
   }
 }
 
@@ -400,6 +431,24 @@ export function requestSerializer(item: Request): any {
   };
 }
 
+export function requestDeserializer(item: any): Request {
+  return {
+    documentType: item["DocumentType"],
+    documentStreamIds: !item["DocumentStreamIds"]
+      ? item["DocumentStreamIds"]
+      : item["DocumentStreamIds"].map((p: any) => {
+          return p;
+        }),
+    properties: !item["Properties"]
+      ? item["Properties"]
+      : item["Properties"].map((p: any) => {
+          return p;
+        }),
+    name: item["Name"],
+    url: item["Url"],
+  };
+}
+
 /** model interface Exception */
 export interface Exception extends DocumentIngress {
   documentType: "Exception";
@@ -422,6 +471,24 @@ export function exceptionSerializer(item: Exception): any {
         }),
     ExceptionType: item["exceptionType"],
     ExceptionMessage: item["exceptionMessage"],
+  };
+}
+
+export function exceptionDeserializer(item: any): Exception {
+  return {
+    documentType: item["DocumentType"],
+    documentStreamIds: !item["DocumentStreamIds"]
+      ? item["DocumentStreamIds"]
+      : item["DocumentStreamIds"].map((p: any) => {
+          return p;
+        }),
+    properties: !item["Properties"]
+      ? item["Properties"]
+      : item["Properties"].map((p: any) => {
+          return p;
+        }),
+    exceptionType: item["ExceptionType"],
+    exceptionMessage: item["ExceptionMessage"],
   };
 }
 ```
