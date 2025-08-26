@@ -72,6 +72,8 @@ export function buildSubpathIndexFile(
     const indexFile = project.createSourceFile(`${folder}/index.ts`);
     for (const file of apiFiles) {
       const filePath = file.getFilePath();
+      const serializerOrDeserializerRegex =
+        /.*(Serializer|Deserializer)(_\d+)?$/;
       if (!options.exportIndex && filePath.endsWith("index.ts")) {
         continue;
       }
@@ -100,8 +102,7 @@ export function buildSubpathIndexFile(
             if (
               subpath === "models" &&
               ex.getKindName() === "FunctionDeclaration" &&
-              (exDeclaration[0].endsWith("Serializer") ||
-                exDeclaration[0].endsWith("Deserializer"))
+              serializerOrDeserializerRegex.test(exDeclaration[0])
             ) {
               return false;
             }
