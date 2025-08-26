@@ -37,6 +37,7 @@ import {
   ServiceOperation
 } from "../utils/operationUtil.js";
 import { getSubscriptionId } from "../transform/transfromRLCOptions.js";
+import { getClientParameters } from "./helpers/clientHelpers.js";
 
 /**
  * Interfaces for samples generations
@@ -271,6 +272,49 @@ function prepareExampleParameters(
   );
   if (credentialExampleValue) {
     result.push(credentialExampleValue);
+  }
+
+  // Handle client-level endpoint parameters
+  const clientParameters = getClientParameters(topLevelClient, dpgContext, {
+    requiredOnly: true,
+    skipEndpointTemplate: true
+  });
+  
+  for (const clientParam of clientParameters) {
+    if (clientParam.kind === "method" || clientParam.kind === "credential") {
+      continue; // Skip non-endpoint parameters
+    }
+    
+    // Check if this is an endpoint parameter
+    if (clientParam.type.kind === "endpoint") {
+      // For endpoint type, extract template arguments (the actual endpoint parameters)
+      for (const templateArg of clientParam.type.templateArguments) {
+        const exampleValue = parameterMap[templateArg.serializedName ?? ""];
+        if (exampleValue && exampleValue.value) {
+          result.push(
+            prepareExampleValue(
+              templateArg.name,
+              exampleValue.value,
+              templateArg.optional,
+              true // onClient = true for endpoint parameters
+            )
+          );
+        }
+      }
+    } else {
+      // Handle other client-level parameters
+      const exampleValue = parameterMap[clientParam.serializedName ?? ""];
+      if (exampleValue && exampleValue.value) {
+        result.push(
+          prepareExampleValue(
+            clientParam.name,
+            exampleValue.value,
+            clientParam.optional,
+            true // onClient = true
+          )
+        );
+      }
+    }
   }
 
   let subscriptionIdValue = `"00000000-0000-0000-0000-00000000000"`;
