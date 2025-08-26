@@ -279,12 +279,12 @@ function prepareExampleParameters(
     requiredOnly: true,
     skipEndpointTemplate: true
   });
-  
+
   for (const clientParam of clientParameters) {
     if (clientParam.kind === "method" || clientParam.kind === "credential") {
       continue; // Skip non-endpoint parameters
     }
-    
+
     // Check if this is an endpoint parameter
     if (clientParam.type.kind === "endpoint") {
       // For endpoint type, extract template arguments (the actual endpoint parameters)
