@@ -2,7 +2,9 @@ import {
   SdkHttpOperationExample,
   SdkHttpParameterExampleValue,
   SdkExampleValue,
-  SdkClientInitializationType
+  SdkClientInitializationType,
+  SdkClientType,
+  SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 import {
   isAzurePackage,
@@ -16,7 +18,18 @@ import {
   hasKeyCredential,
   hasTokenCredential
 } from "../../utils/credentialUtils.js";
-import { buildPropertyNameMapper } from "./typeHelpers.js";
+import { buildPropertyNameMapper, isSpreadBodyParameter } from "./typeHelpers.js";
+import { getClassicalClientName } from "./namingHelpers.js";
+import {
+  getMethodHierarchiesMap,
+  ServiceOperation
+} from "../../utils/operationUtil.js";
+import { getSubscriptionId } from "../../transform/transfromRLCOptions.js";
+import { reportDiagnostic } from "../../index.js";
+import { NoTarget } from "@typespec/compiler";
+import { SourceFile } from "ts-morph";
+import { useContext } from "../../contextManager.js";
+import { join } from "path";
 
 /**
  * Common interfaces for both samples and tests
@@ -26,6 +39,13 @@ export interface CommonValue {
   value: string;
   isOptional: boolean;
   onClient: boolean;
+}
+
+export interface EmitOptions {
+  topLevelClient: SdkClientType<SdkServiceOperation>;
+  generatedFiles: SourceFile[];
+  classicalMethodPrefix?: string;
+  subFolder?: string;
 }
 
 /**
@@ -257,15 +277,466 @@ export function getDescriptiveName(
   let descriptiveName =
     description.charAt(0).toLowerCase() + description.slice(1);
 
-  // Remove any trailing dots
-  descriptiveName = descriptiveName.replace(/\.$/, "");
-
+  // Only remove trailing dots for test names to avoid redundancy
   if (type === "test") {
+    descriptiveName = descriptiveName.replace(/\.$/, "");
     // Include the example name to ensure uniqueness for multiple test cases
     const functionName = normalizeName(exampleName, NameType.Method);
     return `${descriptiveName} for ${functionName}`;
   } else {
-    // For samples, just return the normalized description
+    // For samples, preserve the original formatting including periods
     return descriptiveName;
   }
+}
+
+/**
+ * Common logic for preparing parameters for both samples and tests
+ */
+export function prepareCommonParameters(
+  dpgContext: SdkContext,
+  method: ServiceOperation,
+  parameterMap: Record<string, SdkHttpParameterExampleValue>,
+  topLevelClient: SdkClientType<SdkServiceOperation>,
+  isForTest: boolean = false
+): CommonValue[] {
+  const result: CommonValue[] = [];
+  
+  // Handle credentials
+  const credentialValue = isForTest 
+    ? getCredentialTestValue(dpgContext, topLevelClient.clientInitialization)
+    : getCredentialSampleValue(dpgContext, topLevelClient.clientInitialization);
+  if (credentialValue) {
+    result.push(credentialValue);
+  }
+
+  let subscriptionIdValue = isForTest 
+    ? `env.SUBSCRIPTION_ID || "<SUBSCRIPTION_ID>"`
+    : `"00000000-0000-0000-0000-00000000000"`;
+
+  // Process required parameters
+  for (const param of method.operation.parameters) {
+    if (
+      param.optional === true ||
+      param.type.kind === "constant" ||
+      param.clientDefaultValue
+    ) {
+      continue;
+    }
+
+    const exampleValue = parameterMap[param.serializedName];
+    if (!exampleValue || !exampleValue.value) {
+      if (isForTest && !param.optional) {
+        // Generate default values for required parameters without examples in tests
+        result.push(
+          prepareCommonValue(
+            param.name,
+            `"{Your ${param.name}}"`,
+            false,
+            param.onClient
+          )
+        );
+      } else if (!isForTest) {
+        // Report diagnostic if required parameter is missing in samples
+        reportDiagnostic(dpgContext.program, {
+          code: "required-sample-parameter",
+          format: {
+            exampleName: method.oriName ?? method.name,
+            paramName: param.name
+          },
+          target: NoTarget
+        });
+      }
+      continue;
+    }
+
+    if (
+      param.name.toLowerCase() === "subscriptionid" &&
+      dpgContext.arm &&
+      exampleValue
+    ) {
+      // For tests, always use env variable; for samples, use example value
+      subscriptionIdValue = isForTest 
+        ? `env.SUBSCRIPTION_ID || "<SUBSCRIPTION_ID>"`
+        : serializeExampleValue(exampleValue.value);
+      continue;
+    }
+
+    result.push(
+      prepareCommonValue(
+        exampleValue.parameter.name,
+        exampleValue.value,
+        param.optional,
+        param.onClient
+      )
+    );
+  }
+
+  // Add subscriptionId for ARM clients if needed
+  if (dpgContext.arm && getSubscriptionId(dpgContext)) {
+    result.push(
+      prepareCommonValue("subscriptionId", subscriptionIdValue, false, true)
+    );
+  }
+
+  // Handle body parameters
+  const bodyParam = method.operation.bodyParam;
+  const bodySerializeName = bodyParam?.serializedName;
+  const bodyExample = parameterMap[bodySerializeName ?? ""];
+  if (bodySerializeName && bodyExample && bodyExample.value) {
+    if (
+      isSpreadBodyParameter(bodyParam) &&
+      bodyParam.type.kind === "model" &&
+      bodyExample.value.kind === "model"
+    ) {
+      for (const prop of bodyParam.type.properties) {
+        const propExample = bodyExample.value.value[prop.name];
+        if (!propExample) {
+          continue;
+        }
+        result.push(
+          prepareCommonValue(
+            prop.name,
+            propExample,
+            prop.optional,
+            prop.onClient
+          )
+        );
+      }
+    } else {
+      result.push(
+        prepareCommonValue(
+          bodyParam.name,
+          bodyExample.value,
+          bodyParam.optional,
+          bodyParam.onClient
+        )
+      );
+    }
+  }
+
+  // Handle optional parameters that have examples
+  method.operation.parameters
+    .filter(
+      (param) =>
+        param.optional === true &&
+        parameterMap[param.serializedName] &&
+        !param.clientDefaultValue
+    )
+    .forEach((param) => {
+      const exampleValue = parameterMap[param.serializedName];
+      if (exampleValue && exampleValue.value) {
+        result.push(
+          prepareCommonValue(
+            param.name,
+            exampleValue.value,
+            true,
+            param.onClient
+          )
+        );
+      }
+    });
+
+  return result;
+}
+
+/**
+ * Common client and method iteration logic
+ */
+export function iterateClientsAndMethods(
+  dpgContext: SdkContext,
+  callback: (
+    dpgContext: SdkContext,
+    method: ServiceOperation,
+    options: EmitOptions
+  ) => SourceFile | undefined
+): SourceFile[] {
+  const generatedFiles: SourceFile[] = [];
+  const clients = dpgContext.sdkPackage.clients;
+
+  for (const client of clients) {
+    const methodMap = getMethodHierarchiesMap(dpgContext, client);
+    for (const [prefixKey, operations] of methodMap) {
+      const prefix = prefixKey
+        .split("/")
+        .map((name) => {
+          return normalizeName(name, NameType.Property);
+        })
+        .join(".");
+      for (const op of operations) {
+        callback(dpgContext, op, {
+          topLevelClient: client,
+          generatedFiles,
+          classicalMethodPrefix: prefix,
+          subFolder:
+            clients.length > 1
+              ? normalizeName(getClassicalClientName(client), NameType.File)
+              : undefined
+        });
+      }
+    }
+  }
+  return generatedFiles;
+}
+
+/**
+ * Generate common method call logic
+ */
+export function generateMethodCall(
+  method: ServiceOperation,
+  parameters: CommonValue[],
+  options: EmitOptions
+): { methodCall: string; clientParams: string[]; clientParamDefs: string[] } {
+  // Prepare client-level parameters
+  const clientParamValues = parameters.filter((p) => p.onClient);
+  const clientParams: string[] = clientParamValues
+    .filter((p) => !p.isOptional)
+    .map((param) => param.name);
+  const clientParamDefs: string[] = clientParamValues
+    .filter((p) => !p.isOptional)
+    .map((param) => `const ${param.name} = ${param.value};`);
+
+  // Prepare operation-level parameters
+  const methodParamValues = parameters.filter((p) => !p.onClient);
+  const methodParams = methodParamValues
+    .filter((p) => !p.isOptional)
+    .map((p) => `${p.value}`);
+  const optionalParams = methodParamValues
+    .filter((p) => p.isOptional)
+    .map((param) => `${param.name}: ${param.value}`);
+  if (optionalParams.length > 0) {
+    methodParams.push(`{${optionalParams.join(", ")}}`);
+  }
+
+  const prefix = options.classicalMethodPrefix
+    ? `${options.classicalMethodPrefix}.`
+    : "";
+  const methodCall = `client.${prefix}${normalizeName(method.oriName ?? method.name, NameType.Property)}(${methodParams.join(", ")})`;
+
+  return { methodCall, clientParams, clientParamDefs };
+}
+
+/**
+ * Common source file creation logic
+ */
+export function createSourceFile(
+  dpgContext: SdkContext,
+  method: ServiceOperation,
+  options: EmitOptions,
+  type: "sample" | "test",
+  fileName: string
+): SourceFile {
+  const project = useContext("outputProject");
+  const operationPrefix = `${options.classicalMethodPrefix ?? ""} ${
+    method.oriName ?? method.name
+  }`;
+  const baseFolder = type === "sample" ? "samples-dev" : join("test", "generated");
+  const folder = join(
+    dpgContext.generationPathDetail?.rootDir ?? "",
+    baseFolder,
+    options.subFolder ?? ""
+  );
+  const fileExtension = type === "sample" ? ".ts" : ".spec.ts";
+  const normalizedFileName = normalizeName(fileName || `${operationPrefix} ${type}`, NameType.File);
+  
+  return project.createSourceFile(
+    join(folder, `${normalizedFileName}${fileExtension}`),
+    "",
+    { overwrite: true }
+  );
+}
+
+/**
+ * Generate assertions for a specific value (recursive for nested objects)
+ */
+export function generateAssertionsForValue(
+  value: SdkExampleValue,
+  path: string,
+  maxDepth: number = 3,
+  currentDepth: number = 0
+): string[] {
+  const assertions: string[] = [];
+
+  // Prevent infinite recursion for deeply nested objects
+  if (currentDepth >= maxDepth) {
+    return assertions;
+  }
+
+  switch (value.kind) {
+    case "string": {
+      switch (value.type.kind) {
+        case "utcDateTime":
+          assertions.push(
+            `assert.strictEqual(${path}, new Date("${value.value}"));`
+          );
+          break;
+        case "bytes": {
+          const encode = value.type.encode ?? "base64";
+          assertions.push(
+            `assert.equal(${path}, Buffer.from("${value.value}",  "${encode}"));`
+          );
+          break;
+        }
+        default: {
+          const retValue = `"${value.value
+            ?.toString()
+            .replace(/\\/g, "\\\\")
+            .replace(/"/g, '\\"')
+            .replace(/\n/g, "\\n")
+            .replace(/\r/g, "\\r")
+            .replace(/\t/g, "\\t")
+            .replace(/\f/g, "\\f")
+            .replace(/>/g, ">")
+            .replace(/</g, "<")}"`;
+          assertions.push(`assert.strictEqual(${path}, ${retValue});`);
+          break;
+        }
+      }
+      break;
+    }
+    case "boolean":
+    case "number":
+      assertions.push(
+        `assert.strictEqual(${path}, ${JSON.stringify(value.value)});`
+      );
+      break;
+    case "unknown":
+      assertions.push(`assert.equal(${path}, ${JSON.stringify(value.value)});`);
+      break;
+    case "array":
+      if (value.value && value.value.length > 0) {
+        assertions.push(`assert.ok(Array.isArray(${path}));`);
+        assertions.push(
+          `assert.strictEqual(${path}.length, ${value.value.length});`
+        );
+
+        // Assert on first few items to avoid overly verbose tests
+        const itemsToCheck = Math.min(value.value.length, 2);
+        for (let i = 0; i < itemsToCheck; i++) {
+          const item = value.value[i];
+          if (item) {
+            const itemAssertions = generateAssertionsForValue(
+              item,
+              `${path}[${i}]`,
+              maxDepth,
+              currentDepth + 1
+            );
+            assertions.push(...itemAssertions);
+          }
+        }
+      }
+      break;
+
+    case "model":
+    case "dict":
+      if (value.value && typeof value.value === "object") {
+        const entries = Object.entries(value.value);
+        const propertiesToCheck = entries;
+
+        for (const [key, val] of propertiesToCheck) {
+          if (val && typeof val === "object" && "kind" in val) {
+            const propPath = `${path}.${key}`;
+            const propAssertions = generateAssertionsForValue(
+              val as SdkExampleValue,
+              propPath,
+              maxDepth,
+              currentDepth + 1
+            );
+            assertions.push(...propAssertions);
+          }
+        }
+      }
+      break;
+
+    case "null":
+      assertions.push(`assert.strictEqual(${path}, null);`);
+      break;
+
+    case "union":
+      // For unions, generate assertions for the actual value
+      if (value.value) {
+        const unionAssertions = generateAssertionsForValue(
+          value.value as SdkExampleValue,
+          path,
+          maxDepth,
+          currentDepth
+        );
+        assertions.push(...unionAssertions);
+      }
+      break;
+  }
+
+  return assertions;
+}
+
+/**
+ * Generate response assertions based on the example responses
+ */
+export function generateResponseAssertions(
+  example: SdkHttpOperationExample,
+  resultVariableName: string,
+  isPaging: boolean = false
+): string[] {
+  const assertions: string[] = [];
+
+  // Get the responses
+  const responses = example.responses;
+  if (!responses || Object.keys(responses).length === 0) {
+    return assertions;
+  }
+
+  // TypeSpec SDK uses numeric indices for responses, get the first response
+  const responseKeys = Object.keys(responses);
+  if (responseKeys.length === 0) {
+    return assertions;
+  }
+
+  const firstResponseKey = responseKeys[0];
+  if (!firstResponseKey) {
+    return assertions;
+  }
+
+  const firstResponse = (responses as any)[firstResponseKey];
+  const responseBody = firstResponse?.bodyValue;
+
+  if (!responseBody) {
+    return assertions;
+  }
+
+  if (isPaging) {
+    // For paging operations, the response body should have a 'value' array
+    if (responseBody.kind === "model" || responseBody.kind === "dict") {
+      const responseValue = responseBody.value as Record<string, SdkExampleValue>;
+      const valueArray = responseValue?.["value"];
+
+      if (valueArray && valueArray.kind === "array" && valueArray.value) {
+        // Assert on the length of the collected results
+        assertions.push(
+          `assert.strictEqual(${resultVariableName}.length, ${valueArray.value.length});`
+        );
+
+        // Assert on the first item if available
+        if (valueArray.value.length > 0) {
+          const firstItem = valueArray.value[0];
+          if (firstItem) {
+            const itemAssertions = generateAssertionsForValue(
+              firstItem,
+              `${resultVariableName}[0]`,
+              2, // Limit depth for paging items
+              0
+            );
+            assertions.push(...itemAssertions);
+          }
+        }
+      }
+    }
+  } else {
+    // Generate assertions based on response body structure
+    const responseAssertions = generateAssertionsForValue(
+      responseBody,
+      resultVariableName
+    );
+    assertions.push(...responseAssertions);
+  }
+
+  return assertions;
 }
