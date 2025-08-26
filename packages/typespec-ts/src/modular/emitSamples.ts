@@ -6,9 +6,7 @@ import {
 import { SdkContext } from "../utils/interfaces.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { getClassicalClientName } from "./helpers/namingHelpers.js";
-import {
-  ServiceOperation
-} from "../utils/operationUtil.js";
+import { ServiceOperation } from "../utils/operationUtil.js";
 import {
   buildParameterValueMap,
   prepareCommonParameters,
@@ -41,11 +39,17 @@ function emitMethodSamples(
     method.oriName ?? method.name
   }`;
   const fileName = normalizeName(`${operationPrefix} Sample`, NameType.File);
-  const sourceFile = createSourceFile(dpgContext, method, options, "sample", fileName);
+  const sourceFile = createSourceFile(
+    dpgContext,
+    method,
+    options,
+    "sample",
+    fileName
+  );
 
   const exampleFunctions = [];
   const clientName = getClassicalClientName(options.topLevelClient);
-  
+
   // TODO: remove hard-coded for package
   if (dpgContext.rlcOptions?.packageDetails?.name) {
     sourceFile.addImportDeclaration({
@@ -77,13 +81,13 @@ function emitMethodSamples(
     );
 
     // Add client parameter definitions
-    clientParamDefs.forEach(def => exampleFunctionBody.push(def));
+    clientParamDefs.forEach((def) => exampleFunctionBody.push(def));
 
     // Handle optional client parameters
     const optionalClientParams = parameters
-      .filter(p => p.onClient && p.isOptional)
-      .map(param => `${param.name}: ${param.value}`);
-    
+      .filter((p) => p.onClient && p.isOptional)
+      .map((param) => `${param.name}: ${param.value}`);
+
     if (optionalClientParams.length > 0) {
       exampleFunctionBody.push(
         `const clientOptions = {${optionalClientParams.join(", ")}};`
@@ -135,7 +139,7 @@ function emitMethodSamples(
   }
 
   main().catch(console.error);`);
-  
+
   options.generatedFiles.push(sourceFile);
   return sourceFile;
 }

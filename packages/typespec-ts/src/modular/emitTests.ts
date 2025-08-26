@@ -8,9 +8,7 @@ import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { join } from "path";
 import { existsSync, rmSync } from "fs";
 import { getClassicalClientName } from "./helpers/namingHelpers.js";
-import {
-  ServiceOperation
-} from "../utils/operationUtil.js";
+import { ServiceOperation } from "../utils/operationUtil.js";
 import {
   buildParameterValueMap,
   prepareCommonParameters,
@@ -81,7 +79,13 @@ function emitMethodTests(
     method.oriName ?? method.name
   }`;
   const fileName = normalizeName(`${operationPrefix} Test`, NameType.File);
-  const sourceFile = createSourceFile(dpgContext, method, options, "test", fileName);
+  const sourceFile = createSourceFile(
+    dpgContext,
+    method,
+    options,
+    "test",
+    fileName
+  );
   const clientName = getClassicalClientName(options.topLevelClient);
 
   // Add imports for testing framework
@@ -181,19 +185,13 @@ function emitMethodTests(
       testFunctionBody.push(`const result = await ${methodCall};`);
       testFunctionBody.push(`assert.ok(result);`);
       // Add response assertions for LRO results
-      const responseAssertions = generateResponseAssertions(
-        example,
-        "result"
-      );
+      const responseAssertions = generateResponseAssertions(example, "result");
       testFunctionBody.push(...responseAssertions);
     } else {
       testFunctionBody.push(`const result = await ${methodCall};`);
       testFunctionBody.push(`assert.ok(result);`);
       // Add response assertions for non-paging results
-      const responseAssertions = generateResponseAssertions(
-        example,
-        "result"
-      );
+      const responseAssertions = generateResponseAssertions(example, "result");
       testFunctionBody.push(...responseAssertions);
     }
 

@@ -18,7 +18,10 @@ import {
   hasKeyCredential,
   hasTokenCredential
 } from "../../utils/credentialUtils.js";
-import { buildPropertyNameMapper, isSpreadBodyParameter } from "./typeHelpers.js";
+import {
+  buildPropertyNameMapper,
+  isSpreadBodyParameter
+} from "./typeHelpers.js";
 import { getClassicalClientName } from "./namingHelpers.js";
 import {
   getMethodHierarchiesMap,
@@ -300,16 +303,16 @@ export function prepareCommonParameters(
   isForTest: boolean = false
 ): CommonValue[] {
   const result: CommonValue[] = [];
-  
+
   // Handle credentials
-  const credentialValue = isForTest 
+  const credentialValue = isForTest
     ? getCredentialTestValue(dpgContext, topLevelClient.clientInitialization)
     : getCredentialSampleValue(dpgContext, topLevelClient.clientInitialization);
   if (credentialValue) {
     result.push(credentialValue);
   }
 
-  let subscriptionIdValue = isForTest 
+  let subscriptionIdValue = isForTest
     ? `env.SUBSCRIPTION_ID || "<SUBSCRIPTION_ID>"`
     : `"00000000-0000-0000-0000-00000000000"`;
 
@@ -355,7 +358,7 @@ export function prepareCommonParameters(
       exampleValue
     ) {
       // For tests, always use env variable; for samples, use example value
-      subscriptionIdValue = isForTest 
+      subscriptionIdValue = isForTest
         ? `env.SUBSCRIPTION_ID || "<SUBSCRIPTION_ID>"`
         : serializeExampleValue(exampleValue.value);
       continue;
@@ -529,15 +532,19 @@ export function createSourceFile(
   const operationPrefix = `${options.classicalMethodPrefix ?? ""} ${
     method.oriName ?? method.name
   }`;
-  const baseFolder = type === "sample" ? "samples-dev" : join("test", "generated");
+  const baseFolder =
+    type === "sample" ? "samples-dev" : join("test", "generated");
   const folder = join(
     dpgContext.generationPathDetail?.rootDir ?? "",
     baseFolder,
     options.subFolder ?? ""
   );
   const fileExtension = type === "sample" ? ".ts" : ".spec.ts";
-  const normalizedFileName = normalizeName(fileName || `${operationPrefix} ${type}`, NameType.File);
-  
+  const normalizedFileName = normalizeName(
+    fileName || `${operationPrefix} ${type}`,
+    NameType.File
+  );
+
   return project.createSourceFile(
     join(folder, `${normalizedFileName}${fileExtension}`),
     "",
@@ -705,7 +712,10 @@ export function generateResponseAssertions(
   if (isPaging) {
     // For paging operations, the response body should have a 'value' array
     if (responseBody.kind === "model" || responseBody.kind === "dict") {
-      const responseValue = responseBody.value as Record<string, SdkExampleValue>;
+      const responseValue = responseBody.value as Record<
+        string,
+        SdkExampleValue
+      >;
       const valueArray = responseValue?.["value"];
 
       if (valueArray && valueArray.kind === "array" && valueArray.value) {
