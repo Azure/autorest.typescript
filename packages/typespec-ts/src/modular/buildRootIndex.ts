@@ -294,7 +294,7 @@ function exportModules(
     }
 
     const exported = [...indexFile.getExportedDeclarations().keys()];
-
+    const serializerOrDeserializerRegex = /.*(Serializer|Deserializer)(_\d+)?$/;
     const namedExports = [...modelsFile.getExportedDeclarations().entries()]
       .filter((exDeclaration) => {
         if (exDeclaration[0].startsWith("_")) {
@@ -310,7 +310,7 @@ function exportModules(
           if (
             moduleName === "models" &&
             ex.getKindName() === "FunctionDeclaration" &&
-            /.*(Serializer|Deserializer)(_\d+)?$/.test(exDeclaration[0])
+            serializerOrDeserializerRegex.test(exDeclaration[0])
           ) {
             return false;
           }
