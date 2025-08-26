@@ -129,7 +129,7 @@ export function getCommonPackageScripts() {
       "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
     "extract-api":
       "rimraf review && mkdirp ./review && api-extractor run --local",
-    pack: "npm pack 2>&1",
+    pack: "pnpm pack 2>&1",
     lint: "eslint package.json api-extractor.json src",
     "lint:fix":
       "eslint package.json api-extractor.json src --fix --fix-type [problem,suggestion]"

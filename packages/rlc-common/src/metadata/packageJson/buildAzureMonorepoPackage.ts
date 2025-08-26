@@ -174,7 +174,7 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
       ? "echo skipped"
       : "eslint package.json src test --fix --fix-type [problem,suggestion]",
     lint: skipLinting ? "echo skipped" : "eslint package.json src test",
-    pack: `npm pack 2>&1`,
+    pack: `pnpm pack 2>&1`,
     ...esmScripts,
     ...cjsScripts,
     "update-snippets": "dev-tool run update-snippets"
