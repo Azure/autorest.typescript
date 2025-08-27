@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { PurviewDataMapContext } from "../../api/purviewDataMapContext.js";
+import { DataMapContext } from "../../api/dataMapContext.js";
 import {
   $delete,
   get,
@@ -48,7 +48,7 @@ export interface RelationshipOperations {
   ) => Promise<AtlasRelationship>;
 }
 
-function _getRelationship(context: PurviewDataMapContext) {
+function _getRelationship(context: DataMapContext) {
   return {
     delete: (guid: string, options?: RelationshipDeleteOptionalParams) =>
       $delete(context, guid, options),
@@ -66,7 +66,7 @@ function _getRelationship(context: PurviewDataMapContext) {
 }
 
 export function _getRelationshipOperations(
-  context: PurviewDataMapContext,
+  context: DataMapContext,
 ): RelationshipOperations {
   return {
     ..._getRelationship(context),

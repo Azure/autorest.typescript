@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { PurviewDataMapContext as Client } from "../index.js";
+import { DataMapContext as Client } from "../index.js";
 import {
   atlasErrorResponseDeserializer,
   AtlasBusinessMetadataDef,
@@ -28,28 +28,28 @@ import {
 } from "../../models/models.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
-  TypeGetTermTemplateDefByNameOptionalParams,
-  TypeGetTermTemplateDefByGuidOptionalParams,
-  TypeListHeadersOptionalParams,
-  TypeBulkDeleteOptionalParams,
-  TypeBulkUpdateOptionalParams,
-  TypeBulkCreateOptionalParams,
-  TypeListOptionalParams,
-  TypeDeleteOptionalParams,
-  TypeGetByNameOptionalParams,
-  TypeGetByGuidOptionalParams,
-  TypeGetStructDefByNameOptionalParams,
-  TypeGetStructDefByGuidOptionalParams,
-  TypeGetRelationshipDefByNameOptionalParams,
-  TypeGetRelationshipDefByGuidOptionalParams,
-  TypeGetEnumDefByNameOptionalParams,
-  TypeGetEnumDefByGuidOptionalParams,
-  TypeGetEntityDefByNameOptionalParams,
-  TypeGetEntityDefByGuidOptionalParams,
-  TypeGetClassificationDefByNameOptionalParams,
-  TypeGetClassificationDefByGuidOptionalParams,
-  TypeGetBusinessMetadataDefByNameOptionalParams,
-  TypeGetBusinessMetadataDefByGuidOptionalParams,
+  TypeDefinitionGetTermTemplateByNameOptionalParams,
+  TypeDefinitionGetTermTemplateByIdOptionalParams,
+  TypeDefinitionGetHeadersOptionalParams,
+  TypeDefinitionBatchDeleteOptionalParams,
+  TypeDefinitionBatchUpdateOptionalParams,
+  TypeDefinitionBatchCreateOptionalParams,
+  TypeDefinitionGetOptionalParams,
+  TypeDefinitionDeleteOptionalParams,
+  TypeDefinitionGetByNameOptionalParams,
+  TypeDefinitionGetByIdOptionalParams,
+  TypeDefinitionGetStructByNameOptionalParams,
+  TypeDefinitionGetStructByIdOptionalParams,
+  TypeDefinitionGetRelationshipByNameOptionalParams,
+  TypeDefinitionGetRelationshipByIdOptionalParams,
+  TypeDefinitionGetEnumByNameOptionalParams,
+  TypeDefinitionGetEnumByIdOptionalParams,
+  TypeDefinitionGetEntityByNameOptionalParams,
+  TypeDefinitionGetEntityByIdOptionalParams,
+  TypeDefinitionGetClassificationByNameOptionalParams,
+  TypeDefinitionGetClassificationByIdOptionalParams,
+  TypeDefinitionGetBusinessMetadataByNameOptionalParams,
+  TypeDefinitionGetBusinessMetadataByIdOptionalParams,
 } from "./options.js";
 import {
   StreamableMethod,
@@ -58,10 +58,12 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
-export function _getTermTemplateDefByNameSend(
+export function _getTermTemplateByNameSend(
   context: Client,
   name: string,
-  options: TypeGetTermTemplateDefByNameOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetTermTemplateByNameOptionalParams = {
+    requestOptions: {},
+  },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/types/termtemplatedef/name/{name}{?api%2Dversion}",
@@ -84,7 +86,7 @@ export function _getTermTemplateDefByNameSend(
     });
 }
 
-export async function _getTermTemplateDefByNameDeserialize(
+export async function _getTermTemplateByNameDeserialize(
   result: PathUncheckedResponse,
 ): Promise<TermTemplateDef> {
   const expectedStatuses = ["200"];
@@ -98,19 +100,23 @@ export async function _getTermTemplateDefByNameDeserialize(
 }
 
 /** Get the term template definition by its name (unique). */
-export async function getTermTemplateDefByName(
+export async function getTermTemplateByName(
   context: Client,
   name: string,
-  options: TypeGetTermTemplateDefByNameOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetTermTemplateByNameOptionalParams = {
+    requestOptions: {},
+  },
 ): Promise<TermTemplateDef> {
-  const result = await _getTermTemplateDefByNameSend(context, name, options);
-  return _getTermTemplateDefByNameDeserialize(result);
+  const result = await _getTermTemplateByNameSend(context, name, options);
+  return _getTermTemplateByNameDeserialize(result);
 }
 
-export function _getTermTemplateDefByGuidSend(
+export function _getTermTemplateByIdSend(
   context: Client,
   guid: string,
-  options: TypeGetTermTemplateDefByGuidOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetTermTemplateByIdOptionalParams = {
+    requestOptions: {},
+  },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/types/termtemplatedef/guid/{guid}{?api%2Dversion}",
@@ -133,7 +139,7 @@ export function _getTermTemplateDefByGuidSend(
     });
 }
 
-export async function _getTermTemplateDefByGuidDeserialize(
+export async function _getTermTemplateByIdDeserialize(
   result: PathUncheckedResponse,
 ): Promise<TermTemplateDef> {
   const expectedStatuses = ["200"];
@@ -147,18 +153,20 @@ export async function _getTermTemplateDefByGuidDeserialize(
 }
 
 /** Get the term template definition for the given GUID. */
-export async function getTermTemplateDefByGuid(
+export async function getTermTemplateById(
   context: Client,
   guid: string,
-  options: TypeGetTermTemplateDefByGuidOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetTermTemplateByIdOptionalParams = {
+    requestOptions: {},
+  },
 ): Promise<TermTemplateDef> {
-  const result = await _getTermTemplateDefByGuidSend(context, guid, options);
-  return _getTermTemplateDefByGuidDeserialize(result);
+  const result = await _getTermTemplateByIdSend(context, guid, options);
+  return _getTermTemplateByIdDeserialize(result);
 }
 
-export function _listHeadersSend(
+export function _getHeadersSend(
   context: Client,
-  options: TypeListHeadersOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetHeadersOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/types/typedefs/headers{?api%2Dversion,includeTermTemplate,type}",
@@ -182,7 +190,7 @@ export function _listHeadersSend(
     });
 }
 
-export async function _listHeadersDeserialize(
+export async function _getHeadersDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AtlasTypeDefHeader[]> {
   const expectedStatuses = ["200"];
@@ -196,18 +204,18 @@ export async function _listHeadersDeserialize(
 }
 
 /** List all type definitions returned as a list of minimal information header. */
-export async function listHeaders(
+export async function getHeaders(
   context: Client,
-  options: TypeListHeadersOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetHeadersOptionalParams = { requestOptions: {} },
 ): Promise<AtlasTypeDefHeader[]> {
-  const result = await _listHeadersSend(context, options);
-  return _listHeadersDeserialize(result);
+  const result = await _getHeadersSend(context, options);
+  return _getHeadersDeserialize(result);
 }
 
-export function _bulkDeleteSend(
+export function _batchDeleteSend(
   context: Client,
   body: AtlasTypesDef,
-  options: TypeBulkDeleteOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionBatchDeleteOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
@@ -219,7 +227,7 @@ export function _bulkDeleteSend(
     });
 }
 
-export async function _bulkDeleteDeserialize(
+export async function _batchDeleteDeserialize(
   result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["204"];
@@ -233,19 +241,19 @@ export async function _bulkDeleteDeserialize(
 }
 
 /** Delete API for all types in bulk. */
-export async function bulkDelete(
+export async function batchDelete(
   context: Client,
   body: AtlasTypesDef,
-  options: TypeBulkDeleteOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionBatchDeleteOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _bulkDeleteSend(context, body, options);
-  return _bulkDeleteDeserialize(result);
+  const result = await _batchDeleteSend(context, body, options);
+  return _batchDeleteDeserialize(result);
 }
 
-export function _bulkUpdateSend(
+export function _batchUpdateSend(
   context: Client,
   body: AtlasTypesDef,
-  options: TypeBulkUpdateOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionBatchUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
@@ -261,7 +269,7 @@ export function _bulkUpdateSend(
     });
 }
 
-export async function _bulkUpdateDeserialize(
+export async function _batchUpdateDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AtlasTypesDef> {
   const expectedStatuses = ["200"];
@@ -278,19 +286,19 @@ export async function _bulkUpdateDeserialize(
  * Update all types in bulk, changes detected in the type definitions would be
  * persisted.
  */
-export async function bulkUpdate(
+export async function batchUpdate(
   context: Client,
   body: AtlasTypesDef,
-  options: TypeBulkUpdateOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionBatchUpdateOptionalParams = { requestOptions: {} },
 ): Promise<AtlasTypesDef> {
-  const result = await _bulkUpdateSend(context, body, options);
-  return _bulkUpdateDeserialize(result);
+  const result = await _batchUpdateSend(context, body, options);
+  return _batchUpdateDeserialize(result);
 }
 
-export function _bulkCreateSend(
+export function _batchCreateSend(
   context: Client,
   body: AtlasTypesDef,
-  options: TypeBulkCreateOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionBatchCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
@@ -306,7 +314,7 @@ export function _bulkCreateSend(
     });
 }
 
-export async function _bulkCreateDeserialize(
+export async function _batchCreateDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AtlasTypesDef> {
   const expectedStatuses = ["200"];
@@ -320,18 +328,18 @@ export async function _bulkCreateDeserialize(
 }
 
 /** Create all atlas type definitions in bulk. Please avoid recreating existing types. */
-export async function bulkCreate(
+export async function batchCreate(
   context: Client,
   body: AtlasTypesDef,
-  options: TypeBulkCreateOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionBatchCreateOptionalParams = { requestOptions: {} },
 ): Promise<AtlasTypesDef> {
-  const result = await _bulkCreateSend(context, body, options);
-  return _bulkCreateDeserialize(result);
+  const result = await _batchCreateSend(context, body, options);
+  return _batchCreateDeserialize(result);
 }
 
-export function _listSend(
+export function _getSend(
   context: Client,
-  options: TypeListOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/types/typedefs{?api%2Dversion,includeTermTemplate,type}",
@@ -355,7 +363,7 @@ export function _listSend(
     });
 }
 
-export async function _listDeserialize(
+export async function _getDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AtlasTypesDef> {
   const expectedStatuses = ["200"];
@@ -369,18 +377,18 @@ export async function _listDeserialize(
 }
 
 /** List all type definitions in bulk. */
-export async function list(
+export async function get(
   context: Client,
-  options: TypeListOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetOptionalParams = { requestOptions: {} },
 ): Promise<AtlasTypesDef> {
-  const result = await _listSend(context, options);
-  return _listDeserialize(result);
+  const result = await _getSend(context, options);
+  return _getDeserialize(result);
 }
 
 export function _$deleteSend(
   context: Client,
   name: string,
-  options: TypeDeleteOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionDeleteOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/types/typedef/name/{name}",
@@ -419,7 +427,7 @@ export async function _$deleteDeserialize(
 export async function $delete(
   context: Client,
   name: string,
-  options: TypeDeleteOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionDeleteOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _$deleteSend(context, name, options);
   return _$deleteDeserialize(result);
@@ -428,7 +436,7 @@ export async function $delete(
 export function _getByNameSend(
   context: Client,
   name: string,
-  options: TypeGetByNameOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetByNameOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/types/typedef/name/{name}",
@@ -468,16 +476,16 @@ export async function _getByNameDeserialize(
 export async function getByName(
   context: Client,
   name: string,
-  options: TypeGetByNameOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetByNameOptionalParams = { requestOptions: {} },
 ): Promise<AtlasTypeDef> {
   const result = await _getByNameSend(context, name, options);
   return _getByNameDeserialize(result);
 }
 
-export function _getByGuidSend(
+export function _getByIdSend(
   context: Client,
   guid: string,
-  options: TypeGetByGuidOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetByIdOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/types/typedef/guid/{guid}",
@@ -500,7 +508,7 @@ export function _getByGuidSend(
     });
 }
 
-export async function _getByGuidDeserialize(
+export async function _getByIdDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AtlasTypeDef> {
   const expectedStatuses = ["200"];
@@ -514,19 +522,19 @@ export async function _getByGuidDeserialize(
 }
 
 /** Get the type definition for the given GUID. */
-export async function getByGuid(
+export async function getById(
   context: Client,
   guid: string,
-  options: TypeGetByGuidOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetByIdOptionalParams = { requestOptions: {} },
 ): Promise<AtlasTypeDef> {
-  const result = await _getByGuidSend(context, guid, options);
-  return _getByGuidDeserialize(result);
+  const result = await _getByIdSend(context, guid, options);
+  return _getByIdDeserialize(result);
 }
 
-export function _getStructDefByNameSend(
+export function _getStructByNameSend(
   context: Client,
   name: string,
-  options: TypeGetStructDefByNameOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetStructByNameOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/types/structdef/name/{name}",
@@ -549,7 +557,7 @@ export function _getStructDefByNameSend(
     });
 }
 
-export async function _getStructDefByNameDeserialize(
+export async function _getStructByNameDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AtlasStructDef> {
   const expectedStatuses = ["200"];
@@ -563,19 +571,19 @@ export async function _getStructDefByNameDeserialize(
 }
 
 /** Get the struct definition by its name (unique). */
-export async function getStructDefByName(
+export async function getStructByName(
   context: Client,
   name: string,
-  options: TypeGetStructDefByNameOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetStructByNameOptionalParams = { requestOptions: {} },
 ): Promise<AtlasStructDef> {
-  const result = await _getStructDefByNameSend(context, name, options);
-  return _getStructDefByNameDeserialize(result);
+  const result = await _getStructByNameSend(context, name, options);
+  return _getStructByNameDeserialize(result);
 }
 
-export function _getStructDefByGuidSend(
+export function _getStructByIdSend(
   context: Client,
   guid: string,
-  options: TypeGetStructDefByGuidOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetStructByIdOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/types/structdef/guid/{guid}",
@@ -598,7 +606,7 @@ export function _getStructDefByGuidSend(
     });
 }
 
-export async function _getStructDefByGuidDeserialize(
+export async function _getStructByIdDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AtlasStructDef> {
   const expectedStatuses = ["200"];
@@ -612,19 +620,21 @@ export async function _getStructDefByGuidDeserialize(
 }
 
 /** Get the struct definition for the given GUID. */
-export async function getStructDefByGuid(
+export async function getStructById(
   context: Client,
   guid: string,
-  options: TypeGetStructDefByGuidOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetStructByIdOptionalParams = { requestOptions: {} },
 ): Promise<AtlasStructDef> {
-  const result = await _getStructDefByGuidSend(context, guid, options);
-  return _getStructDefByGuidDeserialize(result);
+  const result = await _getStructByIdSend(context, guid, options);
+  return _getStructByIdDeserialize(result);
 }
 
-export function _getRelationshipDefByNameSend(
+export function _getRelationshipByNameSend(
   context: Client,
   name: string,
-  options: TypeGetRelationshipDefByNameOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetRelationshipByNameOptionalParams = {
+    requestOptions: {},
+  },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/types/relationshipdef/name/{name}",
@@ -647,7 +657,7 @@ export function _getRelationshipDefByNameSend(
     });
 }
 
-export async function _getRelationshipDefByNameDeserialize(
+export async function _getRelationshipByNameDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AtlasRelationshipDef> {
   const expectedStatuses = ["200"];
@@ -661,19 +671,23 @@ export async function _getRelationshipDefByNameDeserialize(
 }
 
 /** Get the relationship definition by its name (unique). */
-export async function getRelationshipDefByName(
+export async function getRelationshipByName(
   context: Client,
   name: string,
-  options: TypeGetRelationshipDefByNameOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetRelationshipByNameOptionalParams = {
+    requestOptions: {},
+  },
 ): Promise<AtlasRelationshipDef> {
-  const result = await _getRelationshipDefByNameSend(context, name, options);
-  return _getRelationshipDefByNameDeserialize(result);
+  const result = await _getRelationshipByNameSend(context, name, options);
+  return _getRelationshipByNameDeserialize(result);
 }
 
-export function _getRelationshipDefByGuidSend(
+export function _getRelationshipByIdSend(
   context: Client,
   guid: string,
-  options: TypeGetRelationshipDefByGuidOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetRelationshipByIdOptionalParams = {
+    requestOptions: {},
+  },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/types/relationshipdef/guid/{guid}",
@@ -696,7 +710,7 @@ export function _getRelationshipDefByGuidSend(
     });
 }
 
-export async function _getRelationshipDefByGuidDeserialize(
+export async function _getRelationshipByIdDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AtlasRelationshipDef> {
   const expectedStatuses = ["200"];
@@ -710,19 +724,21 @@ export async function _getRelationshipDefByGuidDeserialize(
 }
 
 /** Get the relationship definition for the given GUID. */
-export async function getRelationshipDefByGuid(
+export async function getRelationshipById(
   context: Client,
   guid: string,
-  options: TypeGetRelationshipDefByGuidOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetRelationshipByIdOptionalParams = {
+    requestOptions: {},
+  },
 ): Promise<AtlasRelationshipDef> {
-  const result = await _getRelationshipDefByGuidSend(context, guid, options);
-  return _getRelationshipDefByGuidDeserialize(result);
+  const result = await _getRelationshipByIdSend(context, guid, options);
+  return _getRelationshipByIdDeserialize(result);
 }
 
-export function _getEnumDefByNameSend(
+export function _getEnumByNameSend(
   context: Client,
   name: string,
-  options: TypeGetEnumDefByNameOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetEnumByNameOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/types/enumdef/name/{name}",
@@ -745,7 +761,7 @@ export function _getEnumDefByNameSend(
     });
 }
 
-export async function _getEnumDefByNameDeserialize(
+export async function _getEnumByNameDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AtlasEnumDef> {
   const expectedStatuses = ["200"];
@@ -759,19 +775,19 @@ export async function _getEnumDefByNameDeserialize(
 }
 
 /** Get the enum definition by its name (unique). */
-export async function getEnumDefByName(
+export async function getEnumByName(
   context: Client,
   name: string,
-  options: TypeGetEnumDefByNameOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetEnumByNameOptionalParams = { requestOptions: {} },
 ): Promise<AtlasEnumDef> {
-  const result = await _getEnumDefByNameSend(context, name, options);
-  return _getEnumDefByNameDeserialize(result);
+  const result = await _getEnumByNameSend(context, name, options);
+  return _getEnumByNameDeserialize(result);
 }
 
-export function _getEnumDefByGuidSend(
+export function _getEnumByIdSend(
   context: Client,
   guid: string,
-  options: TypeGetEnumDefByGuidOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetEnumByIdOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/types/enumdef/guid/{guid}",
@@ -794,7 +810,7 @@ export function _getEnumDefByGuidSend(
     });
 }
 
-export async function _getEnumDefByGuidDeserialize(
+export async function _getEnumByIdDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AtlasEnumDef> {
   const expectedStatuses = ["200"];
@@ -808,19 +824,19 @@ export async function _getEnumDefByGuidDeserialize(
 }
 
 /** Get the enum definition for the given GUID. */
-export async function getEnumDefByGuid(
+export async function getEnumById(
   context: Client,
   guid: string,
-  options: TypeGetEnumDefByGuidOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetEnumByIdOptionalParams = { requestOptions: {} },
 ): Promise<AtlasEnumDef> {
-  const result = await _getEnumDefByGuidSend(context, guid, options);
-  return _getEnumDefByGuidDeserialize(result);
+  const result = await _getEnumByIdSend(context, guid, options);
+  return _getEnumByIdDeserialize(result);
 }
 
-export function _getEntityDefByNameSend(
+export function _getEntityByNameSend(
   context: Client,
   name: string,
-  options: TypeGetEntityDefByNameOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetEntityByNameOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/types/entitydef/name/{name}",
@@ -843,7 +859,7 @@ export function _getEntityDefByNameSend(
     });
 }
 
-export async function _getEntityDefByNameDeserialize(
+export async function _getEntityByNameDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AtlasEntityDef> {
   const expectedStatuses = ["200"];
@@ -857,19 +873,19 @@ export async function _getEntityDefByNameDeserialize(
 }
 
 /** Get the entity definition by its name (unique). */
-export async function getEntityDefByName(
+export async function getEntityByName(
   context: Client,
   name: string,
-  options: TypeGetEntityDefByNameOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetEntityByNameOptionalParams = { requestOptions: {} },
 ): Promise<AtlasEntityDef> {
-  const result = await _getEntityDefByNameSend(context, name, options);
-  return _getEntityDefByNameDeserialize(result);
+  const result = await _getEntityByNameSend(context, name, options);
+  return _getEntityByNameDeserialize(result);
 }
 
-export function _getEntityDefByGuidSend(
+export function _getEntityByIdSend(
   context: Client,
   guid: string,
-  options: TypeGetEntityDefByGuidOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetEntityByIdOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/types/entitydef/guid/{guid}",
@@ -892,7 +908,7 @@ export function _getEntityDefByGuidSend(
     });
 }
 
-export async function _getEntityDefByGuidDeserialize(
+export async function _getEntityByIdDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AtlasEntityDef> {
   const expectedStatuses = ["200"];
@@ -906,19 +922,19 @@ export async function _getEntityDefByGuidDeserialize(
 }
 
 /** Get the Entity definition for the given GUID. */
-export async function getEntityDefByGuid(
+export async function getEntityById(
   context: Client,
   guid: string,
-  options: TypeGetEntityDefByGuidOptionalParams = { requestOptions: {} },
+  options: TypeDefinitionGetEntityByIdOptionalParams = { requestOptions: {} },
 ): Promise<AtlasEntityDef> {
-  const result = await _getEntityDefByGuidSend(context, guid, options);
-  return _getEntityDefByGuidDeserialize(result);
+  const result = await _getEntityByIdSend(context, guid, options);
+  return _getEntityByIdDeserialize(result);
 }
 
-export function _getClassificationDefByNameSend(
+export function _getClassificationByNameSend(
   context: Client,
   name: string,
-  options: TypeGetClassificationDefByNameOptionalParams = {
+  options: TypeDefinitionGetClassificationByNameOptionalParams = {
     requestOptions: {},
   },
 ): StreamableMethod {
@@ -943,7 +959,7 @@ export function _getClassificationDefByNameSend(
     });
 }
 
-export async function _getClassificationDefByNameDeserialize(
+export async function _getClassificationByNameDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AtlasClassificationDef> {
   const expectedStatuses = ["200"];
@@ -957,21 +973,21 @@ export async function _getClassificationDefByNameDeserialize(
 }
 
 /** Get the classification definition by its name (unique). */
-export async function getClassificationDefByName(
+export async function getClassificationByName(
   context: Client,
   name: string,
-  options: TypeGetClassificationDefByNameOptionalParams = {
+  options: TypeDefinitionGetClassificationByNameOptionalParams = {
     requestOptions: {},
   },
 ): Promise<AtlasClassificationDef> {
-  const result = await _getClassificationDefByNameSend(context, name, options);
-  return _getClassificationDefByNameDeserialize(result);
+  const result = await _getClassificationByNameSend(context, name, options);
+  return _getClassificationByNameDeserialize(result);
 }
 
-export function _getClassificationDefByGuidSend(
+export function _getClassificationByIdSend(
   context: Client,
   guid: string,
-  options: TypeGetClassificationDefByGuidOptionalParams = {
+  options: TypeDefinitionGetClassificationByIdOptionalParams = {
     requestOptions: {},
   },
 ): StreamableMethod {
@@ -996,7 +1012,7 @@ export function _getClassificationDefByGuidSend(
     });
 }
 
-export async function _getClassificationDefByGuidDeserialize(
+export async function _getClassificationByIdDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AtlasClassificationDef> {
   const expectedStatuses = ["200"];
@@ -1010,21 +1026,21 @@ export async function _getClassificationDefByGuidDeserialize(
 }
 
 /** Get the classification definition for the given GUID. */
-export async function getClassificationDefByGuid(
+export async function getClassificationById(
   context: Client,
   guid: string,
-  options: TypeGetClassificationDefByGuidOptionalParams = {
+  options: TypeDefinitionGetClassificationByIdOptionalParams = {
     requestOptions: {},
   },
 ): Promise<AtlasClassificationDef> {
-  const result = await _getClassificationDefByGuidSend(context, guid, options);
-  return _getClassificationDefByGuidDeserialize(result);
+  const result = await _getClassificationByIdSend(context, guid, options);
+  return _getClassificationByIdDeserialize(result);
 }
 
-export function _getBusinessMetadataDefByNameSend(
+export function _getBusinessMetadataByNameSend(
   context: Client,
   name: string,
-  options: TypeGetBusinessMetadataDefByNameOptionalParams = {
+  options: TypeDefinitionGetBusinessMetadataByNameOptionalParams = {
     requestOptions: {},
   },
 ): StreamableMethod {
@@ -1049,7 +1065,7 @@ export function _getBusinessMetadataDefByNameSend(
     });
 }
 
-export async function _getBusinessMetadataDefByNameDeserialize(
+export async function _getBusinessMetadataByNameDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AtlasBusinessMetadataDef> {
   const expectedStatuses = ["200"];
@@ -1063,25 +1079,21 @@ export async function _getBusinessMetadataDefByNameDeserialize(
 }
 
 /** Get the businessMetadata definition by it's name (unique). */
-export async function getBusinessMetadataDefByName(
+export async function getBusinessMetadataByName(
   context: Client,
   name: string,
-  options: TypeGetBusinessMetadataDefByNameOptionalParams = {
+  options: TypeDefinitionGetBusinessMetadataByNameOptionalParams = {
     requestOptions: {},
   },
 ): Promise<AtlasBusinessMetadataDef> {
-  const result = await _getBusinessMetadataDefByNameSend(
-    context,
-    name,
-    options,
-  );
-  return _getBusinessMetadataDefByNameDeserialize(result);
+  const result = await _getBusinessMetadataByNameSend(context, name, options);
+  return _getBusinessMetadataByNameDeserialize(result);
 }
 
-export function _getBusinessMetadataDefByGuidSend(
+export function _getBusinessMetadataByIdSend(
   context: Client,
   guid: string,
-  options: TypeGetBusinessMetadataDefByGuidOptionalParams = {
+  options: TypeDefinitionGetBusinessMetadataByIdOptionalParams = {
     requestOptions: {},
   },
 ): StreamableMethod {
@@ -1106,7 +1118,7 @@ export function _getBusinessMetadataDefByGuidSend(
     });
 }
 
-export async function _getBusinessMetadataDefByGuidDeserialize(
+export async function _getBusinessMetadataByIdDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AtlasBusinessMetadataDef> {
   const expectedStatuses = ["200"];
@@ -1120,17 +1132,13 @@ export async function _getBusinessMetadataDefByGuidDeserialize(
 }
 
 /** Get the businessMetadata definition for the given guid. */
-export async function getBusinessMetadataDefByGuid(
+export async function getBusinessMetadataById(
   context: Client,
   guid: string,
-  options: TypeGetBusinessMetadataDefByGuidOptionalParams = {
+  options: TypeDefinitionGetBusinessMetadataByIdOptionalParams = {
     requestOptions: {},
   },
 ): Promise<AtlasBusinessMetadataDef> {
-  const result = await _getBusinessMetadataDefByGuidSend(
-    context,
-    guid,
-    options,
-  );
-  return _getBusinessMetadataDefByGuidDeserialize(result);
+  const result = await _getBusinessMetadataByIdSend(context, guid, options);
+  return _getBusinessMetadataByIdDeserialize(result);
 }

@@ -4,8 +4,7 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface GlossaryListTermHeadersOptionalParams
-  extends OperationOptions {
+export interface GlossaryGetTermHeadersOptionalParams extends OperationOptions {
   /** The page size - by default there is no paging. */
   limit?: number;
   /** The offset for pagination purpose. */
@@ -15,7 +14,7 @@ export interface GlossaryListTermHeadersOptionalParams
 }
 
 /** Optional parameters. */
-export interface GlossaryListTermsOptionalParams extends OperationOptions {
+export interface GlossaryGetTermsOptionalParams extends OperationOptions {
   /** The page size - by default there is no paging. */
   limit?: number;
   /** The offset for pagination purpose. */
@@ -34,7 +33,7 @@ export interface GlossaryPartialUpdateOptionalParams extends OperationOptions {
 export interface GlossaryGetDetailedOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface GlossaryListCategoriesHeadersOptionalParams
+export interface GlossaryGetCategoriesHeadersOptionalParams
   extends OperationOptions {
   /** The page size - by default there is no paging. */
   limit?: number;
@@ -45,7 +44,7 @@ export interface GlossaryListCategoriesHeadersOptionalParams
 }
 
 /** Optional parameters. */
-export interface GlossaryListCategoriesOptionalParams extends OperationOptions {
+export interface GlossaryGetCategoriesOptionalParams extends OperationOptions {
   /** The page size - by default there is no paging. */
   limit?: number;
   /** The offset for pagination purpose. */
@@ -67,7 +66,7 @@ export interface GlossaryUpdateOptionalParams extends OperationOptions {
 export interface GlossaryGetOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface GlossaryListRelatedTermsOptionalParams
+export interface GlossaryGetRelatedTermsOptionalParams
   extends OperationOptions {
   /** The page size - by default there is no paging. */
   limit?: number;
@@ -86,7 +85,7 @@ export interface GlossaryAssignTermToEntitiesOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface GlossaryListEntitiesAssignedWithTermOptionalParams
+export interface GlossaryGetEntitiesAssignedWithTermOptionalParams
   extends OperationOptions {
   /** The page size - by default there is no paging. */
   limit?: number;
@@ -128,7 +127,7 @@ export interface GlossaryCreateTermOptionalParams extends OperationOptions {
 }
 
 /** Optional parameters. */
-export interface GlossaryListCategoryTermsOptionalParams
+export interface GlossaryGetCategoryTermsOptionalParams
   extends OperationOptions {
   /** The page size - by default there is no paging. */
   limit?: number;
@@ -139,7 +138,7 @@ export interface GlossaryListCategoryTermsOptionalParams
 }
 
 /** Optional parameters. */
-export interface GlossaryListRelatedCategoriesOptionalParams
+export interface GlossaryGetRelatedCategoriesOptionalParams
   extends OperationOptions {
   /** The page size - by default there is no paging. */
   limit?: number;
@@ -176,7 +175,7 @@ export interface GlossaryCreateCategoriesOptionalParams
 export interface GlossaryCreateOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface GlossaryListOptionalParams extends OperationOptions {
+export interface GlossaryBatchGetOptionalParams extends OperationOptions {
   /** The page size - by default there is no paging. */
   limit?: number;
   /** The offset for pagination purpose. */

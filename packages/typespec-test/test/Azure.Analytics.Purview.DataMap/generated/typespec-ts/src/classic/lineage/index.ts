@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { PurviewDataMapContext } from "../../api/purviewDataMapContext.js";
+import { DataMapContext } from "../../api/dataMapContext.js";
 import {
   getByUniqueAttribute,
   getNextPage,
@@ -53,7 +53,7 @@ export interface LineageOperations {
   ) => Promise<AtlasLineageInfo>;
 }
 
-function _getLineage(context: PurviewDataMapContext) {
+function _getLineage(context: DataMapContext) {
   return {
     getByUniqueAttribute: (
       typeName: string,
@@ -74,7 +74,7 @@ function _getLineage(context: PurviewDataMapContext) {
 }
 
 export function _getLineageOperations(
-  context: PurviewDataMapContext,
+  context: DataMapContext,
 ): LineageOperations {
   return {
     ..._getLineage(context),

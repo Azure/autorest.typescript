@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { PurviewDataMapContext as Client } from "../index.js";
+import { DataMapContext as Client } from "../index.js";
 import {
   AtlasEntityWithExtInfo,
   atlasEntityWithExtInfoSerializer,
@@ -40,32 +40,32 @@ import {
   EntitySetLabelsOptionalParams,
   EntityRemoveLabelsOptionalParams,
   EntityImportBusinessMetadataOptionalParams,
-  EntityGetSampleBusinessMetadataTemplateOptionalParams,
+  EntityGetBusinessMetadataTemplateOptionalParams,
   EntityAddOrUpdateBusinessMetadataAttributesOptionalParams,
   EntityRemoveBusinessMetadataAttributesOptionalParams,
   EntityAddOrUpdateBusinessMetadataOptionalParams,
   EntityRemoveBusinessMetadataOptionalParams,
   EntityGetHeaderOptionalParams,
-  EntityListByUniqueAttributesOptionalParams,
-  EntityBulkSetClassificationsOptionalParams,
-  EntityUpdateClassificationsByUniqueAttributeOptionalParams,
+  EntityBatchGetByUniqueAttributesOptionalParams,
+  EntityBatchSetClassificationsOptionalParams,
+  EntityUpdateClassificationsUniqueByAttributeOptionalParams,
   EntityAddClassificationsByUniqueAttributeOptionalParams,
   EntityRemoveClassificationByUniqueAttributeOptionalParams,
   EntityDeleteByUniqueAttributeOptionalParams,
-  EntityPartialUpdateByUniqueAttributesOptionalParams,
-  EntityGetByUniqueAttributesOptionalParams,
+  EntityUpdateByUniqueAttributeOptionalParams,
+  EntityGetByUniqueAttributeOptionalParams,
   EntityUpdateClassificationsOptionalParams,
   EntityAddClassificationsOptionalParams,
   EntityGetClassificationsOptionalParams,
   EntityRemoveClassificationOptionalParams,
   EntityGetClassificationOptionalParams,
   EntityDeleteOptionalParams,
-  EntityPartialUpdateAttributeByGuidOptionalParams,
+  EntityUpdateAttributeByIdOptionalParams,
   EntityGetOptionalParams,
   EntityAddClassificationOptionalParams,
-  EntityBulkDeleteOptionalParams,
-  EntityBulkCreateOrUpdateOptionalParams,
-  EntityListByGuidsOptionalParams,
+  EntityBatchDeleteOptionalParams,
+  EntityBatchCreateOrUpdateOptionalParams,
+  EntityGetByIdsOptionalParams,
   EntityCreateOrUpdateOptionalParams,
 } from "./options.js";
 import {
@@ -546,9 +546,9 @@ export async function importBusinessMetadata(
   return _importBusinessMetadataDeserialize(result);
 }
 
-export function _getSampleBusinessMetadataTemplateSend(
+export function _getBusinessMetadataTemplateSend(
   context: Client,
-  options: EntityGetSampleBusinessMetadataTemplateOptionalParams = {
+  options: EntityGetBusinessMetadataTemplateOptionalParams = {
     requestOptions: {},
   },
 ): StreamableMethod {
@@ -564,7 +564,7 @@ export function _getSampleBusinessMetadataTemplateSend(
     });
 }
 
-export async function _getSampleBusinessMetadataTemplateDeserialize(
+export async function _getBusinessMetadataTemplateDeserialize(
   result: PathUncheckedResponse,
 ): Promise<Uint8Array> {
   const expectedStatuses = ["200"];
@@ -578,14 +578,14 @@ export async function _getSampleBusinessMetadataTemplateDeserialize(
 }
 
 /** Get the sample Template for uploading/creating bulk BusinessMetaData */
-export async function getSampleBusinessMetadataTemplate(
+export async function getBusinessMetadataTemplate(
   context: Client,
-  options: EntityGetSampleBusinessMetadataTemplateOptionalParams = {
+  options: EntityGetBusinessMetadataTemplateOptionalParams = {
     requestOptions: {},
   },
 ): Promise<Uint8Array> {
-  const result = await _getSampleBusinessMetadataTemplateSend(context, options);
-  return _getSampleBusinessMetadataTemplateDeserialize(result);
+  const result = await _getBusinessMetadataTemplateSend(context, options);
+  return _getBusinessMetadataTemplateDeserialize(result);
 }
 
 export function _addOrUpdateBusinessMetadataAttributesSend(
@@ -874,10 +874,12 @@ export async function getHeader(
   return _getHeaderDeserialize(result);
 }
 
-export function _listByUniqueAttributesSend(
+export function _batchGetByUniqueAttributesSend(
   context: Client,
   typeName: string,
-  options: EntityListByUniqueAttributesOptionalParams = { requestOptions: {} },
+  options: EntityBatchGetByUniqueAttributesOptionalParams = {
+    requestOptions: {},
+  },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/entity/bulk/uniqueAttribute/type/{typeName}{?minExtInfo,ignoreRelationships,attr_N%3AqualifiedName}",
@@ -903,7 +905,7 @@ export function _listByUniqueAttributesSend(
     });
 }
 
-export async function _listByUniqueAttributesDeserialize(
+export async function _batchGetByUniqueAttributesDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AtlasEntitiesWithExtInfo> {
   const expectedStatuses = ["200"];
@@ -936,19 +938,25 @@ export async function _listByUniqueAttributesDeserialize(
  * Note:
  * at least one unique attribute must be provided.
  */
-export async function listByUniqueAttributes(
+export async function batchGetByUniqueAttributes(
   context: Client,
   typeName: string,
-  options: EntityListByUniqueAttributesOptionalParams = { requestOptions: {} },
+  options: EntityBatchGetByUniqueAttributesOptionalParams = {
+    requestOptions: {},
+  },
 ): Promise<AtlasEntitiesWithExtInfo> {
-  const result = await _listByUniqueAttributesSend(context, typeName, options);
-  return _listByUniqueAttributesDeserialize(result);
+  const result = await _batchGetByUniqueAttributesSend(
+    context,
+    typeName,
+    options,
+  );
+  return _batchGetByUniqueAttributesDeserialize(result);
 }
 
-export function _bulkSetClassificationsSend(
+export function _batchSetClassificationsSend(
   context: Client,
   body: AtlasEntityHeaders,
-  options: EntityBulkSetClassificationsOptionalParams = { requestOptions: {} },
+  options: EntityBatchSetClassificationsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
@@ -964,7 +972,7 @@ export function _bulkSetClassificationsSend(
     });
 }
 
-export async function _bulkSetClassificationsDeserialize(
+export async function _batchSetClassificationsDeserialize(
   result: PathUncheckedResponse,
 ): Promise<string[]> {
   const expectedStatuses = ["200"];
@@ -980,20 +988,20 @@ export async function _bulkSetClassificationsDeserialize(
 }
 
 /** Set classifications on entities in bulk. */
-export async function bulkSetClassifications(
+export async function batchSetClassifications(
   context: Client,
   body: AtlasEntityHeaders,
-  options: EntityBulkSetClassificationsOptionalParams = { requestOptions: {} },
+  options: EntityBatchSetClassificationsOptionalParams = { requestOptions: {} },
 ): Promise<string[]> {
-  const result = await _bulkSetClassificationsSend(context, body, options);
-  return _bulkSetClassificationsDeserialize(result);
+  const result = await _batchSetClassificationsSend(context, body, options);
+  return _batchSetClassificationsDeserialize(result);
 }
 
-export function _updateClassificationsByUniqueAttributeSend(
+export function _updateClassificationsUniqueByAttributeSend(
   context: Client,
   typeName: string,
   body: AtlasClassification[],
-  options: EntityUpdateClassificationsByUniqueAttributeOptionalParams = {
+  options: EntityUpdateClassificationsUniqueByAttributeOptionalParams = {
     requestOptions: {},
   },
 ): StreamableMethod {
@@ -1017,7 +1025,7 @@ export function _updateClassificationsByUniqueAttributeSend(
     });
 }
 
-export async function _updateClassificationsByUniqueAttributeDeserialize(
+export async function _updateClassificationsUniqueByAttributeDeserialize(
   result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["204"];
@@ -1031,21 +1039,21 @@ export async function _updateClassificationsByUniqueAttributeDeserialize(
 }
 
 /** Update classification on an entity identified by its type and unique attributes. */
-export async function updateClassificationsByUniqueAttribute(
+export async function updateClassificationsUniqueByAttribute(
   context: Client,
   typeName: string,
   body: AtlasClassification[],
-  options: EntityUpdateClassificationsByUniqueAttributeOptionalParams = {
+  options: EntityUpdateClassificationsUniqueByAttributeOptionalParams = {
     requestOptions: {},
   },
 ): Promise<void> {
-  const result = await _updateClassificationsByUniqueAttributeSend(
+  const result = await _updateClassificationsUniqueByAttributeSend(
     context,
     typeName,
     body,
     options,
   );
-  return _updateClassificationsByUniqueAttributeDeserialize(result);
+  return _updateClassificationsUniqueByAttributeDeserialize(result);
 }
 
 export function _addClassificationsByUniqueAttributeSend(
@@ -1229,13 +1237,11 @@ export async function deleteByUniqueAttribute(
   return _deleteByUniqueAttributeDeserialize(result);
 }
 
-export function _partialUpdateByUniqueAttributesSend(
+export function _updateByUniqueAttributeSend(
   context: Client,
   typeName: string,
   body: AtlasEntityWithExtInfo,
-  options: EntityPartialUpdateByUniqueAttributesOptionalParams = {
-    requestOptions: {},
-  },
+  options: EntityUpdateByUniqueAttributeOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/entity/uniqueAttribute/type/{typeName}{?attr%3AqualifiedName}",
@@ -1261,7 +1267,7 @@ export function _partialUpdateByUniqueAttributesSend(
     });
 }
 
-export async function _partialUpdateByUniqueAttributesDeserialize(
+export async function _updateByUniqueAttributeDeserialize(
   result: PathUncheckedResponse,
 ): Promise<EntityMutationResult> {
   const expectedStatuses = ["200"];
@@ -1292,27 +1298,25 @@ export async function _partialUpdateByUniqueAttributesDeserialize(
  * PUT
  * /v2/entity/uniqueAttribute/type/aType?attr:aTypeAttribute=someValue.
  */
-export async function partialUpdateByUniqueAttributes(
+export async function updateByUniqueAttribute(
   context: Client,
   typeName: string,
   body: AtlasEntityWithExtInfo,
-  options: EntityPartialUpdateByUniqueAttributesOptionalParams = {
-    requestOptions: {},
-  },
+  options: EntityUpdateByUniqueAttributeOptionalParams = { requestOptions: {} },
 ): Promise<EntityMutationResult> {
-  const result = await _partialUpdateByUniqueAttributesSend(
+  const result = await _updateByUniqueAttributeSend(
     context,
     typeName,
     body,
     options,
   );
-  return _partialUpdateByUniqueAttributesDeserialize(result);
+  return _updateByUniqueAttributeDeserialize(result);
 }
 
-export function _getByUniqueAttributesSend(
+export function _getByUniqueAttributeSend(
   context: Client,
   typeName: string,
-  options: EntityGetByUniqueAttributesOptionalParams = { requestOptions: {} },
+  options: EntityGetByUniqueAttributeOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/entity/uniqueAttribute/type/{typeName}{?minExtInfo,ignoreRelationships,attr%3AqualifiedName}",
@@ -1338,7 +1342,7 @@ export function _getByUniqueAttributesSend(
     });
 }
 
-export async function _getByUniqueAttributesDeserialize(
+export async function _getByUniqueAttributeDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AtlasEntityWithExtInfo> {
   const expectedStatuses = ["200"];
@@ -1367,13 +1371,13 @@ export async function _getByUniqueAttributesDeserialize(
  * GET
  * /v2/entity/uniqueAttribute/type/aType?attr:aTypeAttribute=someValue.
  */
-export async function getByUniqueAttributes(
+export async function getByUniqueAttribute(
   context: Client,
   typeName: string,
-  options: EntityGetByUniqueAttributesOptionalParams = { requestOptions: {} },
+  options: EntityGetByUniqueAttributeOptionalParams = { requestOptions: {} },
 ): Promise<AtlasEntityWithExtInfo> {
-  const result = await _getByUniqueAttributesSend(context, typeName, options);
-  return _getByUniqueAttributesDeserialize(result);
+  const result = await _getByUniqueAttributeSend(context, typeName, options);
+  return _getByUniqueAttributeDeserialize(result);
 }
 
 export function _updateClassificationsSend(
@@ -1685,14 +1689,12 @@ export async function $delete(
   return _$deleteDeserialize(result);
 }
 
-export function _partialUpdateAttributeByGuidSend(
+export function _updateAttributeByIdSend(
   context: Client,
   guid: string,
   name: string,
   body: any,
-  options: EntityPartialUpdateAttributeByGuidOptionalParams = {
-    requestOptions: {},
-  },
+  options: EntityUpdateAttributeByIdOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/entity/guid/{guid}{?name}",
@@ -1718,7 +1720,7 @@ export function _partialUpdateAttributeByGuidSend(
     });
 }
 
-export async function _partialUpdateAttributeByGuidDeserialize(
+export async function _updateAttributeByIdDeserialize(
   result: PathUncheckedResponse,
 ): Promise<EntityMutationResult> {
   const expectedStatuses = ["200"];
@@ -1738,23 +1740,21 @@ export async function _partialUpdateAttributeByGuidDeserialize(
  * It does not support updating complex types like arrays, and maps.
  * Null updates are not possible.
  */
-export async function partialUpdateAttributeByGuid(
+export async function updateAttributeById(
   context: Client,
   guid: string,
   name: string,
   body: any,
-  options: EntityPartialUpdateAttributeByGuidOptionalParams = {
-    requestOptions: {},
-  },
+  options: EntityUpdateAttributeByIdOptionalParams = { requestOptions: {} },
 ): Promise<EntityMutationResult> {
-  const result = await _partialUpdateAttributeByGuidSend(
+  const result = await _updateAttributeByIdSend(
     context,
     guid,
     name,
     body,
     options,
   );
-  return _partialUpdateAttributeByGuidDeserialize(result);
+  return _updateAttributeByIdDeserialize(result);
 }
 
 export function _getSend(
@@ -1846,10 +1846,10 @@ export async function addClassification(
   return _addClassificationDeserialize(result);
 }
 
-export function _bulkDeleteSend(
+export function _batchDeleteSend(
   context: Client,
   guid: string[],
-  options: EntityBulkDeleteOptionalParams = { requestOptions: {} },
+  options: EntityBatchDeleteOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/entity/bulk{?guid*}",
@@ -1874,7 +1874,7 @@ export function _bulkDeleteSend(
     });
 }
 
-export async function _bulkDeleteDeserialize(
+export async function _batchDeleteDeserialize(
   result: PathUncheckedResponse,
 ): Promise<EntityMutationResult> {
   const expectedStatuses = ["200"];
@@ -1891,19 +1891,19 @@ export async function _bulkDeleteDeserialize(
  * Delete a list of entities in bulk identified by their GUIDs or unique
  * attributes.
  */
-export async function bulkDelete(
+export async function batchDelete(
   context: Client,
   guid: string[],
-  options: EntityBulkDeleteOptionalParams = { requestOptions: {} },
+  options: EntityBatchDeleteOptionalParams = { requestOptions: {} },
 ): Promise<EntityMutationResult> {
-  const result = await _bulkDeleteSend(context, guid, options);
-  return _bulkDeleteDeserialize(result);
+  const result = await _batchDeleteSend(context, guid, options);
+  return _batchDeleteDeserialize(result);
 }
 
-export function _bulkCreateOrUpdateSend(
+export function _batchCreateOrUpdateSend(
   context: Client,
   body: AtlasEntitiesWithExtInfo,
-  options: EntityBulkCreateOrUpdateOptionalParams = { requestOptions: {} },
+  options: EntityBatchCreateOrUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/entity/bulk{?api%2Dversion,collectionId,businessAttributeUpdateBehavior}",
@@ -1929,7 +1929,7 @@ export function _bulkCreateOrUpdateSend(
     });
 }
 
-export async function _bulkCreateOrUpdateDeserialize(
+export async function _batchCreateOrUpdateDeserialize(
   result: PathUncheckedResponse,
 ): Promise<EntityMutationResult> {
   const expectedStatuses = ["200"];
@@ -1952,19 +1952,19 @@ export async function _bulkCreateOrUpdateDeserialize(
  * For each contact type, the maximum number of contacts
  * is 20.
  */
-export async function bulkCreateOrUpdate(
+export async function batchCreateOrUpdate(
   context: Client,
   body: AtlasEntitiesWithExtInfo,
-  options: EntityBulkCreateOrUpdateOptionalParams = { requestOptions: {} },
+  options: EntityBatchCreateOrUpdateOptionalParams = { requestOptions: {} },
 ): Promise<EntityMutationResult> {
-  const result = await _bulkCreateOrUpdateSend(context, body, options);
-  return _bulkCreateOrUpdateDeserialize(result);
+  const result = await _batchCreateOrUpdateSend(context, body, options);
+  return _batchCreateOrUpdateDeserialize(result);
 }
 
-export function _listByGuidsSend(
+export function _getByIdsSend(
   context: Client,
   guid: string[],
-  options: EntityListByGuidsOptionalParams = { requestOptions: {} },
+  options: EntityGetByIdsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/entity/bulk{?api%2Dversion,guid*,minExtInfo,ignoreRelationships}",
@@ -1991,7 +1991,7 @@ export function _listByGuidsSend(
     });
 }
 
-export async function _listByGuidsDeserialize(
+export async function _getByIdsDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AtlasEntitiesWithExtInfo> {
   const expectedStatuses = ["200"];
@@ -2005,13 +2005,13 @@ export async function _listByGuidsDeserialize(
 }
 
 /** List entities in bulk identified by its GUIDs. */
-export async function listByGuids(
+export async function getByIds(
   context: Client,
   guid: string[],
-  options: EntityListByGuidsOptionalParams = { requestOptions: {} },
+  options: EntityGetByIdsOptionalParams = { requestOptions: {} },
 ): Promise<AtlasEntitiesWithExtInfo> {
-  const result = await _listByGuidsSend(context, guid, options);
-  return _listByGuidsDeserialize(result);
+  const result = await _getByIdsSend(context, guid, options);
+  return _getByIdsDeserialize(result);
 }
 
 export function _createOrUpdateSend(

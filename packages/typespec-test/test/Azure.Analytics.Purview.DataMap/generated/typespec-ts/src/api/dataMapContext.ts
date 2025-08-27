@@ -6,32 +6,20 @@ import { KnownApiVersions } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 
-/**
- * Purview Data Map Service is a fully managed cloud service whose users can
- * discover the data sources they need and understand the data sources they find.
- * At the same time, Data Map helps organizations get more value from their
- * existing investments. This spec defines REST API of Purview Data Map Service.
- */
-export interface PurviewDataMapContext extends Client {}
+export interface DataMapContext extends Client {}
 
 /** Optional parameters for the client. */
-export interface PurviewDataMapClientOptionalParams extends ClientOptions {
+export interface DataMapClientOptionalParams extends ClientOptions {
   /** The API version to use for this operation. */
   /** Known values of {@link KnownApiVersions} that the service accepts. */
   apiVersion?: string;
 }
 
-/**
- * Purview Data Map Service is a fully managed cloud service whose users can
- * discover the data sources they need and understand the data sources they find.
- * At the same time, Data Map helps organizations get more value from their
- * existing investments. This spec defines REST API of Purview Data Map Service.
- */
-export function createPurviewDataMap(
+export function createDataMap(
   endpointParam: string,
   credential: TokenCredential,
-  options: PurviewDataMapClientOptionalParams = {},
-): PurviewDataMapContext {
+  options: DataMapClientOptionalParams = {},
+): DataMapContext {
   const endpointUrl = options.endpoint ?? `${endpointParam}/datamap/api`;
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentInfo = `azsdk-js-purview-datamap/1.0.0-beta.1`;

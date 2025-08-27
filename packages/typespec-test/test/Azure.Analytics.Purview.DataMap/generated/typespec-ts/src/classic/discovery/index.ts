@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { PurviewDataMapContext } from "../../api/purviewDataMapContext.js";
+import { DataMapContext } from "../../api/dataMapContext.js";
 import {
   autoComplete,
   suggest,
@@ -40,7 +40,7 @@ export interface DiscoveryOperations {
   ) => Promise<QueryResult>;
 }
 
-function _getDiscovery(context: PurviewDataMapContext) {
+function _getDiscovery(context: DataMapContext) {
   return {
     autoComplete: (
       body: AutoCompleteOptions,
@@ -54,7 +54,7 @@ function _getDiscovery(context: PurviewDataMapContext) {
 }
 
 export function _getDiscoveryOperations(
-  context: PurviewDataMapContext,
+  context: DataMapContext,
 ): DiscoveryOperations {
   return {
     ..._getDiscovery(context),

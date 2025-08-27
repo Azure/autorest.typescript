@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { PurviewDataMapContext as Client } from "../index.js";
+import { DataMapContext as Client } from "../index.js";
 import {
   atlasErrorResponseDeserializer,
   AtlasGlossary,
@@ -32,27 +32,27 @@ import {
 } from "../../models/models.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
-  GlossaryListTermHeadersOptionalParams,
-  GlossaryListTermsOptionalParams,
+  GlossaryGetTermHeadersOptionalParams,
+  GlossaryGetTermsOptionalParams,
   GlossaryPartialUpdateOptionalParams,
   GlossaryGetDetailedOptionalParams,
-  GlossaryListCategoriesHeadersOptionalParams,
-  GlossaryListCategoriesOptionalParams,
+  GlossaryGetCategoriesHeadersOptionalParams,
+  GlossaryGetCategoriesOptionalParams,
   GlossaryDeleteOptionalParams,
   GlossaryUpdateOptionalParams,
   GlossaryGetOptionalParams,
-  GlossaryListRelatedTermsOptionalParams,
+  GlossaryGetRelatedTermsOptionalParams,
   GlossaryDeleteTermAssignmentFromEntitiesOptionalParams,
   GlossaryAssignTermToEntitiesOptionalParams,
-  GlossaryListEntitiesAssignedWithTermOptionalParams,
+  GlossaryGetEntitiesAssignedWithTermOptionalParams,
   GlossaryCreateTermsOptionalParams,
   GlossaryPartialUpdateTermOptionalParams,
   GlossaryDeleteTermOptionalParams,
   GlossaryUpdateTermOptionalParams,
   GlossaryGetTermOptionalParams,
   GlossaryCreateTermOptionalParams,
-  GlossaryListCategoryTermsOptionalParams,
-  GlossaryListRelatedCategoriesOptionalParams,
+  GlossaryGetCategoryTermsOptionalParams,
+  GlossaryGetRelatedCategoriesOptionalParams,
   GlossaryPartialUpdateCategoryOptionalParams,
   GlossaryDeleteCategoryOptionalParams,
   GlossaryUpdateCategoryOptionalParams,
@@ -60,7 +60,7 @@ import {
   GlossaryCreateCategoryOptionalParams,
   GlossaryCreateCategoriesOptionalParams,
   GlossaryCreateOptionalParams,
-  GlossaryListOptionalParams,
+  GlossaryBatchGetOptionalParams,
 } from "./options.js";
 import {
   StreamableMethod,
@@ -69,10 +69,10 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
-export function _listTermHeadersSend(
+export function _getTermHeadersSend(
   context: Client,
   glossaryId: string,
-  options: GlossaryListTermHeadersOptionalParams = { requestOptions: {} },
+  options: GlossaryGetTermHeadersOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/glossary/{glossaryId}/terms/headers{?limit,offset,sort}",
@@ -98,7 +98,7 @@ export function _listTermHeadersSend(
     });
 }
 
-export async function _listTermHeadersDeserialize(
+export async function _getTermHeadersDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AtlasRelatedTermHeader[]> {
   const expectedStatuses = ["200"];
@@ -115,19 +115,19 @@ export async function _listTermHeadersDeserialize(
  * Get term headers belonging to a specific glossary. Recommend using limit/offset
  * to get pagination result.
  */
-export async function listTermHeaders(
+export async function getTermHeaders(
   context: Client,
   glossaryId: string,
-  options: GlossaryListTermHeadersOptionalParams = { requestOptions: {} },
+  options: GlossaryGetTermHeadersOptionalParams = { requestOptions: {} },
 ): Promise<AtlasRelatedTermHeader[]> {
-  const result = await _listTermHeadersSend(context, glossaryId, options);
-  return _listTermHeadersDeserialize(result);
+  const result = await _getTermHeadersSend(context, glossaryId, options);
+  return _getTermHeadersDeserialize(result);
 }
 
-export function _listTermsSend(
+export function _getTermsSend(
   context: Client,
   glossaryId: string,
-  options: GlossaryListTermsOptionalParams = { requestOptions: {} },
+  options: GlossaryGetTermsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/glossary/{glossaryId}/terms{?api%2Dversion,limit,offset,sort}",
@@ -153,7 +153,7 @@ export function _listTermsSend(
     });
 }
 
-export async function _listTermsDeserialize(
+export async function _getTermsDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AtlasGlossaryTerm[]> {
   const expectedStatuses = ["200"];
@@ -170,13 +170,13 @@ export async function _listTermsDeserialize(
  * Get terms belonging to a specific glossary. Recommend using limit/offset to get
  * pagination result.
  */
-export async function listTerms(
+export async function getTerms(
   context: Client,
   glossaryId: string,
-  options: GlossaryListTermsOptionalParams = { requestOptions: {} },
+  options: GlossaryGetTermsOptionalParams = { requestOptions: {} },
 ): Promise<AtlasGlossaryTerm[]> {
-  const result = await _listTermsSend(context, glossaryId, options);
-  return _listTermsDeserialize(result);
+  const result = await _getTermsSend(context, glossaryId, options);
+  return _getTermsDeserialize(result);
 }
 
 export function _partialUpdateSend(
@@ -300,10 +300,10 @@ export async function getDetailed(
   return _getDetailedDeserialize(result);
 }
 
-export function _listCategoriesHeadersSend(
+export function _getCategoriesHeadersSend(
   context: Client,
   glossaryId: string,
-  options: GlossaryListCategoriesHeadersOptionalParams = { requestOptions: {} },
+  options: GlossaryGetCategoriesHeadersOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/glossary/{glossaryId}/categories/headers{?limit,offset,sort}",
@@ -329,7 +329,7 @@ export function _listCategoriesHeadersSend(
     });
 }
 
-export async function _listCategoriesHeadersDeserialize(
+export async function _getCategoriesHeadersDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AtlasRelatedCategoryHeader[]> {
   const expectedStatuses = ["200"];
@@ -346,19 +346,19 @@ export async function _listCategoriesHeadersDeserialize(
  * Get the category headers belonging to a specific glossary. Recommend using
  * limit/offset to get pagination result.
  */
-export async function listCategoriesHeaders(
+export async function getCategoriesHeaders(
   context: Client,
   glossaryId: string,
-  options: GlossaryListCategoriesHeadersOptionalParams = { requestOptions: {} },
+  options: GlossaryGetCategoriesHeadersOptionalParams = { requestOptions: {} },
 ): Promise<AtlasRelatedCategoryHeader[]> {
-  const result = await _listCategoriesHeadersSend(context, glossaryId, options);
-  return _listCategoriesHeadersDeserialize(result);
+  const result = await _getCategoriesHeadersSend(context, glossaryId, options);
+  return _getCategoriesHeadersDeserialize(result);
 }
 
-export function _listCategoriesSend(
+export function _getCategoriesSend(
   context: Client,
   glossaryId: string,
-  options: GlossaryListCategoriesOptionalParams = { requestOptions: {} },
+  options: GlossaryGetCategoriesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/glossary/{glossaryId}/categories{?limit,offset,sort}",
@@ -384,7 +384,7 @@ export function _listCategoriesSend(
     });
 }
 
-export async function _listCategoriesDeserialize(
+export async function _getCategoriesDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AtlasGlossaryCategory[]> {
   const expectedStatuses = ["200"];
@@ -401,13 +401,13 @@ export async function _listCategoriesDeserialize(
  * Get the categories belonging to a specific glossary. Recommend using
  * limit/offset to get pagination result.
  */
-export async function listCategories(
+export async function getCategories(
   context: Client,
   glossaryId: string,
-  options: GlossaryListCategoriesOptionalParams = { requestOptions: {} },
+  options: GlossaryGetCategoriesOptionalParams = { requestOptions: {} },
 ): Promise<AtlasGlossaryCategory[]> {
-  const result = await _listCategoriesSend(context, glossaryId, options);
-  return _listCategoriesDeserialize(result);
+  const result = await _getCategoriesSend(context, glossaryId, options);
+  return _getCategoriesDeserialize(result);
 }
 
 export function _$deleteSend(
@@ -564,10 +564,10 @@ export async function get(
   return _getDeserialize(result);
 }
 
-export function _listRelatedTermsSend(
+export function _getRelatedTermsSend(
   context: Client,
   termId: string,
-  options: GlossaryListRelatedTermsOptionalParams = { requestOptions: {} },
+  options: GlossaryGetRelatedTermsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/glossary/terms/{termId}/related{?api%2Dversion,limit,offset,sort}",
@@ -593,7 +593,7 @@ export function _listRelatedTermsSend(
     });
 }
 
-export async function _listRelatedTermsDeserialize(
+export async function _getRelatedTermsDeserialize(
   result: PathUncheckedResponse,
 ): Promise<Record<string, AtlasRelatedTermHeader[]>> {
   const expectedStatuses = ["200"];
@@ -610,13 +610,13 @@ export async function _listRelatedTermsDeserialize(
  * Get all related terms for a specific term by its GUID. Limit, offset, and sort
  * parameters are currently not being enabled and won't work even they are passed.
  */
-export async function listRelatedTerms(
+export async function getRelatedTerms(
   context: Client,
   termId: string,
-  options: GlossaryListRelatedTermsOptionalParams = { requestOptions: {} },
+  options: GlossaryGetRelatedTermsOptionalParams = { requestOptions: {} },
 ): Promise<Record<string, AtlasRelatedTermHeader[]>> {
-  const result = await _listRelatedTermsSend(context, termId, options);
-  return _listRelatedTermsDeserialize(result);
+  const result = await _getRelatedTermsSend(context, termId, options);
+  return _getRelatedTermsDeserialize(result);
 }
 
 export function _deleteTermAssignmentFromEntitiesSend(
@@ -738,10 +738,10 @@ export async function assignTermToEntities(
   return _assignTermToEntitiesDeserialize(result);
 }
 
-export function _listEntitiesAssignedWithTermSend(
+export function _getEntitiesAssignedWithTermSend(
   context: Client,
   termId: string,
-  options: GlossaryListEntitiesAssignedWithTermOptionalParams = {
+  options: GlossaryGetEntitiesAssignedWithTermOptionalParams = {
     requestOptions: {},
   },
 ): StreamableMethod {
@@ -769,7 +769,7 @@ export function _listEntitiesAssignedWithTermSend(
     });
 }
 
-export async function _listEntitiesAssignedWithTermDeserialize(
+export async function _getEntitiesAssignedWithTermDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AtlasRelatedObjectId[]> {
   const expectedStatuses = ["200"];
@@ -786,19 +786,19 @@ export async function _listEntitiesAssignedWithTermDeserialize(
  * List all related objects assigned with the specified term. Recommend using
  * limit/offset to get pagination result.
  */
-export async function listEntitiesAssignedWithTerm(
+export async function getEntitiesAssignedWithTerm(
   context: Client,
   termId: string,
-  options: GlossaryListEntitiesAssignedWithTermOptionalParams = {
+  options: GlossaryGetEntitiesAssignedWithTermOptionalParams = {
     requestOptions: {},
   },
 ): Promise<AtlasRelatedObjectId[]> {
-  const result = await _listEntitiesAssignedWithTermSend(
+  const result = await _getEntitiesAssignedWithTermSend(
     context,
     termId,
     options,
   );
-  return _listEntitiesAssignedWithTermDeserialize(result);
+  return _getEntitiesAssignedWithTermDeserialize(result);
 }
 
 export function _createTermsSend(
@@ -1106,10 +1106,10 @@ export async function createTerm(
   return _createTermDeserialize(result);
 }
 
-export function _listCategoryTermsSend(
+export function _getCategoryTermsSend(
   context: Client,
   categoryId: string,
-  options: GlossaryListCategoryTermsOptionalParams = { requestOptions: {} },
+  options: GlossaryGetCategoryTermsOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/glossary/category/{categoryId}/terms{?limit,offset,sort}",
@@ -1135,7 +1135,7 @@ export function _listCategoryTermsSend(
     });
 }
 
-export async function _listCategoryTermsDeserialize(
+export async function _getCategoryTermsDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AtlasRelatedTermHeader[]> {
   const expectedStatuses = ["200"];
@@ -1149,19 +1149,19 @@ export async function _listCategoryTermsDeserialize(
 }
 
 /** Get all terms associated with the specific category. */
-export async function listCategoryTerms(
+export async function getCategoryTerms(
   context: Client,
   categoryId: string,
-  options: GlossaryListCategoryTermsOptionalParams = { requestOptions: {} },
+  options: GlossaryGetCategoryTermsOptionalParams = { requestOptions: {} },
 ): Promise<AtlasRelatedTermHeader[]> {
-  const result = await _listCategoryTermsSend(context, categoryId, options);
-  return _listCategoryTermsDeserialize(result);
+  const result = await _getCategoryTermsSend(context, categoryId, options);
+  return _getCategoryTermsDeserialize(result);
 }
 
-export function _listRelatedCategoriesSend(
+export function _getRelatedCategoriesSend(
   context: Client,
   categoryId: string,
-  options: GlossaryListRelatedCategoriesOptionalParams = { requestOptions: {} },
+  options: GlossaryGetRelatedCategoriesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/glossary/category/{categoryId}/related{?limit,offset,sort}",
@@ -1187,7 +1187,7 @@ export function _listRelatedCategoriesSend(
     });
 }
 
-export async function _listRelatedCategoriesDeserialize(
+export async function _getRelatedCategoriesDeserialize(
   result: PathUncheckedResponse,
 ): Promise<Record<string, AtlasRelatedCategoryHeader[]>> {
   const expectedStatuses = ["200"];
@@ -1204,13 +1204,13 @@ export async function _listRelatedCategoriesDeserialize(
  * Get all related categories (parent and children). Limit, offset, and sort
  * parameters are currently not being enabled and won't work even they are passed.
  */
-export async function listRelatedCategories(
+export async function getRelatedCategories(
   context: Client,
   categoryId: string,
-  options: GlossaryListRelatedCategoriesOptionalParams = { requestOptions: {} },
+  options: GlossaryGetRelatedCategoriesOptionalParams = { requestOptions: {} },
 ): Promise<Record<string, AtlasRelatedCategoryHeader[]>> {
-  const result = await _listRelatedCategoriesSend(context, categoryId, options);
-  return _listRelatedCategoriesDeserialize(result);
+  const result = await _getRelatedCategoriesSend(context, categoryId, options);
+  return _getRelatedCategoriesDeserialize(result);
 }
 
 export function _partialUpdateCategorySend(
@@ -1545,9 +1545,9 @@ export async function create(
   return _createDeserialize(result);
 }
 
-export function _listSend(
+export function _batchGetSend(
   context: Client,
-  options: GlossaryListOptionalParams = { requestOptions: {} },
+  options: GlossaryBatchGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/atlas/v2/glossary{?api%2Dversion,limit,offset,sort,ignoreTermsAndCategories}",
@@ -1573,7 +1573,7 @@ export function _listSend(
     });
 }
 
-export async function _listDeserialize(
+export async function _batchGetDeserialize(
   result: PathUncheckedResponse,
 ): Promise<AtlasGlossary[]> {
   const expectedStatuses = ["200"];
@@ -1592,10 +1592,10 @@ export async function _listDeserialize(
  * separately using 'GET /datamap/api/atlas/v2/glossary/{glossaryId}/terms'
  * and 'GET '/datamap/api/atlas/v2/glossary/{glossaryId}/categories'.
  */
-export async function list(
+export async function batchGet(
   context: Client,
-  options: GlossaryListOptionalParams = { requestOptions: {} },
+  options: GlossaryBatchGetOptionalParams = { requestOptions: {} },
 ): Promise<AtlasGlossary[]> {
-  const result = await _listSend(context, options);
-  return _listDeserialize(result);
+  const result = await _batchGetSend(context, options);
+  return _batchGetDeserialize(result);
 }
