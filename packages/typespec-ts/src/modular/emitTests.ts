@@ -167,7 +167,7 @@ function emitMethodTests(
     if (method.response.type === undefined) {
       // skip response handling for void methods
       testFunctionBody.push(`await ${methodCall};`);
-      testFunctionBody.push(`\/* Test passes if no exception is thrown *\/`);
+      testFunctionBody.push(`/* Test passes if no exception is thrown */`);
     } else if (isPaging) {
       testFunctionBody.push(`const resArray = new Array();`);
       testFunctionBody.push(
