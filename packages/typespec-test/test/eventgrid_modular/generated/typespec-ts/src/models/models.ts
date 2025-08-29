@@ -45,6 +45,7 @@ export function cloudEventSerializer(item: CloudEvent): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function cloudEventDeserializer(item: any): CloudEvent {
   return {
     id: item["id"],
@@ -63,26 +64,28 @@ export function cloudEventDeserializer(item: any): CloudEvent {
     subject: item["subject"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The result of the Publish operation. */
 export interface PublishResult {}
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function publishResultDeserializer(item: any): PublishResult {
   return item;
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Details of the Receive operation response. */
 export interface ReceiveResult {
   /** Array of receive responses, one per cloud event. */
   value: ReceiveDetails[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function receiveResultDeserializer(item: any): ReceiveResult {
   return {
     value: receiveDetailsArrayDeserializer(item["value"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function receiveDetailsArrayDeserializer(
   result: Array<ReceiveDetails>,
 ): any[] {
@@ -99,13 +102,14 @@ export interface ReceiveDetails {
   event: CloudEvent;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function receiveDetailsDeserializer(item: any): ReceiveDetails {
   return {
     brokerProperties: brokerPropertiesDeserializer(item["brokerProperties"]),
     event: cloudEventDeserializer(item["event"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Properties of the Event Broker operation. */
 export interface BrokerProperties {
   /** The token of the lock on the event. */
@@ -114,13 +118,14 @@ export interface BrokerProperties {
   deliveryCount: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function brokerPropertiesDeserializer(item: any): BrokerProperties {
   return {
     lockToken: item["lockToken"],
     deliveryCount: item["deliveryCount"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The result of the Acknowledge operation. */
 export interface AcknowledgeResult {
   /** Array of FailedLockToken for failed cloud events. Each FailedLockToken includes the lock token along with the related error information (namely, the error code and description). */
@@ -129,6 +134,7 @@ export interface AcknowledgeResult {
   succeededLockTokens: string[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function acknowledgeResultDeserializer(item: any): AcknowledgeResult {
   return {
     failedLockTokens: failedLockTokenArrayDeserializer(
@@ -139,7 +145,7 @@ export function acknowledgeResultDeserializer(item: any): AcknowledgeResult {
     }),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function failedLockTokenArrayDeserializer(
   result: Array<FailedLockToken>,
 ): any[] {
@@ -156,13 +162,14 @@ export interface FailedLockToken {
   error: ErrorModel;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function failedLockTokenDeserializer(item: any): FailedLockToken {
   return {
     lockToken: item["lockToken"],
     error: item["error"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The result of the Release operation. */
 export interface ReleaseResult {
   /** Array of FailedLockToken for failed cloud events. Each FailedLockToken includes the lock token along with the related error information (namely, the error code and description). */
@@ -171,6 +178,7 @@ export interface ReleaseResult {
   succeededLockTokens: string[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function releaseResultDeserializer(item: any): ReleaseResult {
   return {
     failedLockTokens: failedLockTokenArrayDeserializer(
@@ -181,7 +189,7 @@ export function releaseResultDeserializer(item: any): ReleaseResult {
     }),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The result of the Reject operation. */
 export interface RejectResult {
   /** Array of FailedLockToken for failed cloud events. Each FailedLockToken includes the lock token along with the related error information (namely, the error code and description). */
@@ -190,6 +198,7 @@ export interface RejectResult {
   succeededLockTokens: string[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function rejectResultDeserializer(item: any): RejectResult {
   return {
     failedLockTokens: failedLockTokenArrayDeserializer(
@@ -200,7 +209,7 @@ export function rejectResultDeserializer(item: any): RejectResult {
     }),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The result of the RenewLock operation. */
 export interface RenewCloudEventLocksResult {
   /** Array of FailedLockToken for failed cloud events. Each FailedLockToken includes the lock token along with the related error information (namely, the error code and description). */
@@ -209,6 +218,7 @@ export interface RenewCloudEventLocksResult {
   succeededLockTokens: string[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function renewCloudEventLocksResultDeserializer(
   item: any,
 ): RenewCloudEventLocksResult {
@@ -221,7 +231,7 @@ export function renewCloudEventLocksResultDeserializer(
     }),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Supported delays for release operation. */
 export type ReleaseDelay = "0" | "10" | "60" | "600" | "3600";
 

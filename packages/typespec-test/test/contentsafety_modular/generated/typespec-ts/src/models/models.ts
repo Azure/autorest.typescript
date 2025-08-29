@@ -50,6 +50,7 @@ export interface AnalyzeTextResult {
   categoriesAnalysis: TextCategoriesAnalysis[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function analyzeTextResultDeserializer(item: any): AnalyzeTextResult {
   return {
     blocklistsMatch: !item["blocklistsMatch"]
@@ -60,7 +61,7 @@ export function analyzeTextResultDeserializer(item: any): AnalyzeTextResult {
     ),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function textBlocklistMatchArrayDeserializer(
   result: Array<TextBlocklistMatch>,
 ): any[] {
@@ -79,6 +80,7 @@ export interface TextBlocklistMatch {
   blocklistItemText: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function textBlocklistMatchDeserializer(item: any): TextBlocklistMatch {
   return {
     blocklistName: item["blocklistName"],
@@ -86,7 +88,7 @@ export function textBlocklistMatchDeserializer(item: any): TextBlocklistMatch {
     blocklistItemText: item["blocklistItemText"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function textCategoriesAnalysisArrayDeserializer(
   result: Array<TextCategoriesAnalysis>,
 ): any[] {
@@ -103,6 +105,7 @@ export interface TextCategoriesAnalysis {
   severity?: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function textCategoriesAnalysisDeserializer(
   item: any,
 ): TextCategoriesAnalysis {
@@ -111,7 +114,7 @@ export function textCategoriesAnalysisDeserializer(
     severity: item["severity"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The request of analyzing potential direct or indirect injection attacks. */
 export interface ShieldPromptOptions {
   /** The user prompt to be analyzed, which may contain direct injection attacks. */
@@ -139,6 +142,7 @@ export interface ShieldPromptResult {
   documentsAnalysis?: DocumentInjectionAnalysisResult[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function shieldPromptResultDeserializer(item: any): ShieldPromptResult {
   return {
     userPromptAnalysis: !item["userPromptAnalysis"]
@@ -153,13 +157,14 @@ export function shieldPromptResultDeserializer(item: any): ShieldPromptResult {
         ),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The individual analysis result of potential injection attacks in the given user prompt. */
 export interface UserPromptInjectionAnalysisResult {
   /** Whether a potential injection attack is detected or not. */
   attackDetected: boolean;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function userPromptInjectionAnalysisResultDeserializer(
   item: any,
 ): UserPromptInjectionAnalysisResult {
@@ -167,7 +172,7 @@ export function userPromptInjectionAnalysisResultDeserializer(
     attackDetected: item["attackDetected"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function documentInjectionAnalysisResultArrayDeserializer(
   result: Array<DocumentInjectionAnalysisResult>,
 ): any[] {
@@ -182,6 +187,7 @@ export interface DocumentInjectionAnalysisResult {
   attackDetected: boolean;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function documentInjectionAnalysisResultDeserializer(
   item: any,
 ): DocumentInjectionAnalysisResult {
@@ -189,7 +195,7 @@ export function documentInjectionAnalysisResultDeserializer(
     attackDetected: item["attackDetected"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The request of detecting potential protected material present in the given text. */
 export interface DetectTextProtectedMaterialOptions {
   /** The text to be analyzed, which may contain protected material. The characters will be counted in Unicode code points. */
@@ -208,6 +214,7 @@ export interface DetectTextProtectedMaterialResult {
   protectedMaterialAnalysis: TextProtectedMaterialAnalysisResult;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function detectTextProtectedMaterialResultDeserializer(
   item: any,
 ): DetectTextProtectedMaterialResult {
@@ -217,13 +224,14 @@ export function detectTextProtectedMaterialResultDeserializer(
     ),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The individual detection result of potential protected material. */
 export interface TextProtectedMaterialAnalysisResult {
   /** Whether potential protected material is detected or not. */
   detected: boolean;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function textProtectedMaterialAnalysisResultDeserializer(
   item: any,
 ): TextProtectedMaterialAnalysisResult {
@@ -231,7 +239,7 @@ export function textProtectedMaterialAnalysisResultDeserializer(
     detected: item["detected"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The image analysis request. */
 export interface AnalyzeImageOptions {
   /** The image to be analyzed. */
@@ -282,6 +290,7 @@ export interface AnalyzeImageResult {
   categoriesAnalysis: ImageCategoriesAnalysis[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function analyzeImageResultDeserializer(item: any): AnalyzeImageResult {
   return {
     categoriesAnalysis: imageCategoriesAnalysisArrayDeserializer(
@@ -289,7 +298,7 @@ export function analyzeImageResultDeserializer(item: any): AnalyzeImageResult {
     ),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function imageCategoriesAnalysisArrayDeserializer(
   result: Array<ImageCategoriesAnalysis>,
 ): any[] {
@@ -306,6 +315,7 @@ export interface ImageCategoriesAnalysis {
   severity?: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function imageCategoriesAnalysisDeserializer(
   item: any,
 ): ImageCategoriesAnalysis {
@@ -314,7 +324,7 @@ export function imageCategoriesAnalysisDeserializer(
     severity: item["severity"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Text Blocklist. */
 export interface TextBlocklist {
   /** Text blocklist name. */
@@ -330,13 +340,15 @@ export function textBlocklistSerializer(item: TextBlocklist): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function textBlocklistDeserializer(item: any): TextBlocklist {
   return {
     blocklistName: item["blocklistName"],
     description: item["description"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/naming-convention */
 /** Paged collection of TextBlocklist items */
 export interface _PagedTextBlocklist {
   /** The TextBlocklist items on this page */
@@ -344,7 +356,8 @@ export interface _PagedTextBlocklist {
   /** The link to the next page of items */
   nextLink?: string;
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _pagedTextBlocklistDeserializer(
   item: any,
 ): _PagedTextBlocklist {
@@ -353,7 +366,7 @@ export function _pagedTextBlocklistDeserializer(
     nextLink: item["nextLink"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function textBlocklistArraySerializer(
   result: Array<TextBlocklist>,
 ): any[] {
@@ -420,6 +433,7 @@ export function textBlocklistItemSerializer(item: TextBlocklistItem): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function textBlocklistItemDeserializer(item: any): TextBlocklistItem {
   return {
     blocklistItemId: item["blocklistItemId"],
@@ -428,13 +442,14 @@ export function textBlocklistItemDeserializer(item: any): TextBlocklistItem {
     isRegex: item["isRegex"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The response of adding blocklistItems to the text blocklist. */
 export interface AddOrUpdateTextBlocklistItemsResult {
   /** Array of blocklistItems have been added. */
   blocklistItems: TextBlocklistItem[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function addOrUpdateTextBlocklistItemsResultDeserializer(
   item: any,
 ): AddOrUpdateTextBlocklistItemsResult {
@@ -442,7 +457,7 @@ export function addOrUpdateTextBlocklistItemsResultDeserializer(
     blocklistItems: textBlocklistItemArrayDeserializer(item["blocklistItems"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The request to remove blocklistItems from a text blocklist. */
 export interface RemoveTextBlocklistItemsOptions {
   /** Array of blocklistItemIds to remove. */
@@ -459,6 +474,7 @@ export function removeTextBlocklistItemsOptionsSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/naming-convention */
 /** Paged collection of TextBlocklistItem items */
 export interface _PagedTextBlocklistItem {
   /** The TextBlocklistItem items on this page */
@@ -466,7 +482,8 @@ export interface _PagedTextBlocklistItem {
   /** The link to the next page of items */
   nextLink?: string;
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _pagedTextBlocklistItemDeserializer(
   item: any,
 ): _PagedTextBlocklistItem {
@@ -475,7 +492,7 @@ export function _pagedTextBlocklistItemDeserializer(
     nextLink: item["nextLink"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Known values of {@link Versions} that the service accepts. */
 export enum KnownVersions {
   V20231001 = "2023-10-01",

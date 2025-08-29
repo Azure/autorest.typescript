@@ -19,6 +19,7 @@ export interface UserCreatedResponse {
   token: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function userCreatedResponseDeserializer(
   item: any,
 ): UserCreatedResponse {
@@ -30,24 +31,26 @@ export function userCreatedResponseDeserializer(
     token: item["token"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The user already exists */
 export interface UserExistsResponse extends ApiError {
   code: "user-exists";
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function userExistsResponseDeserializer(item: any): UserExistsResponse {
   return {
     code: item["code"],
     message: item["message"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The user is invalid (e.g. forgot to enter email address) */
 export interface InvalidUserResponse extends ApiError {
   code: "invalid-user";
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function invalidUserResponseDeserializer(
   item: any,
 ): InvalidUserResponse {
@@ -56,3 +59,4 @@ export function invalidUserResponseDeserializer(
     message: item["message"],
   };
 }
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */

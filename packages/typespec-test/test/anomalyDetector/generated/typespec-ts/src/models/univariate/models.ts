@@ -165,6 +165,7 @@ export interface UnivariateUnivariateEntireDetectionResult {
   severity?: number[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function univariateUnivariateEntireDetectionResultDeserializer(
   item: any,
 ): UnivariateUnivariateEntireDetectionResult {
@@ -195,7 +196,7 @@ export function univariateUnivariateEntireDetectionResultDeserializer(
         }),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Error information that the API returned. */
 export interface UnivariateAnomalyDetectorError {
   /** Error code. */
@@ -204,6 +205,7 @@ export interface UnivariateAnomalyDetectorError {
   message: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function univariateAnomalyDetectorErrorDeserializer(
   item: any,
 ): UnivariateAnomalyDetectorError {
@@ -212,7 +214,7 @@ export function univariateAnomalyDetectorErrorDeserializer(
     message: item["message"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Type of UnivariateAnomalyDetectorErrorCodes */
 export type UnivariateAnomalyDetectorErrorCodes =
   | "InvalidCustomInterval"
@@ -273,6 +275,7 @@ export interface UnivariateUnivariateLastDetectionResult {
   severity?: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function univariateUnivariateLastDetectionResultDeserializer(
   item: any,
 ): UnivariateUnivariateLastDetectionResult {
@@ -288,7 +291,7 @@ export function univariateUnivariateLastDetectionResultDeserializer(
     severity: item["severity"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Request of change point detection. */
 export interface UnivariateUnivariateChangePointDetectionOptions {
   /**
@@ -352,6 +355,7 @@ export interface UnivariateUnivariateChangePointDetectionResult {
   confidenceScores?: number[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function univariateUnivariateChangePointDetectionResultDeserializer(
   item: any,
 ): UnivariateUnivariateChangePointDetectionResult {
@@ -369,3 +373,4 @@ export function univariateUnivariateChangePointDetectionResultDeserializer(
         }),
   };
 }
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */

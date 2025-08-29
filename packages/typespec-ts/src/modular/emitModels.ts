@@ -335,6 +335,16 @@ function addSerializationFunctions(
     typeof deserializationFunction !== "string" &&
     deserializationFunction.name
   ) {
+    const hasAnyParameter = deserializationFunction.parameters?.some(
+      (param) => param.type === "any"
+    );
+
+    if (hasAnyParameter) {
+      deserializationFunction.leadingTrivia =
+        "/* eslint-disable @typescript-eslint/explicit-module-boundary-types */\n";
+      deserializationFunction.trailingTrivia =
+        "\n/* eslint-enable @typescript-eslint/explicit-module-boundary-types */\n";
+    }
     addDeclaration(sourceFile, deserializationFunction, deserailizerRefKey);
   }
 }
@@ -492,6 +502,13 @@ function buildModelInterface(
   interfaceStructure.docs = [
     type.doc ?? "model interface " + interfaceStructure.name
   ];
+
+  if (interfaceStructure.name.startsWith("_")) {
+    interfaceStructure.leadingTrivia =
+      "/* eslint-disable @typescript-eslint/naming-convention */\n";
+    interfaceStructure.trailingTrivia =
+      "\n/* eslint-enable @typescript-eslint/naming-convention */\n";
+  }
 
   return interfaceStructure;
 }

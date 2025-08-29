@@ -113,6 +113,7 @@ export interface AudioTranscription {
   words?: AudioTranscriptionWord[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function audioTranscriptionDeserializer(item: any): AudioTranscription {
   return {
     text: item["text"],
@@ -127,7 +128,7 @@ export function audioTranscriptionDeserializer(item: any): AudioTranscription {
       : audioTranscriptionWordArrayDeserializer(item["words"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Defines the possible descriptors for available audio operation responses. */
 export type AudioTaskLabel = "transcribe" | "translate";
 
@@ -173,6 +174,7 @@ export interface AudioTranscriptionSegment {
   seek: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function audioTranscriptionSegmentDeserializer(
   item: any,
 ): AudioTranscriptionSegment {
@@ -191,7 +193,7 @@ export function audioTranscriptionSegmentDeserializer(
     seek: item["seek"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function audioTranscriptionWordArrayDeserializer(
   result: Array<AudioTranscriptionWord>,
 ): any[] {
@@ -210,6 +212,7 @@ export interface AudioTranscriptionWord {
   end: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function audioTranscriptionWordDeserializer(
   item: any,
 ): AudioTranscriptionWord {
@@ -219,7 +222,7 @@ export function audioTranscriptionWordDeserializer(
     end: item["end"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The configuration information for an audio translation request. */
 export interface AudioTranslationOptions {
   /**
@@ -296,6 +299,7 @@ export interface AudioTranslation {
   segments?: AudioTranslationSegment[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function audioTranslationDeserializer(item: any): AudioTranslation {
   return {
     text: item["text"],
@@ -307,7 +311,7 @@ export function audioTranslationDeserializer(item: any): AudioTranslation {
       : audioTranslationSegmentArrayDeserializer(item["segments"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function audioTranslationSegmentArrayDeserializer(
   result: Array<AudioTranslationSegment>,
 ): any[] {
@@ -350,6 +354,7 @@ export interface AudioTranslationSegment {
   seek: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function audioTranslationSegmentDeserializer(
   item: any,
 ): AudioTranslationSegment {
@@ -368,7 +373,7 @@ export function audioTranslationSegmentDeserializer(
     seek: item["seek"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /**
  * The configuration information for a completions request.
  * Completions support a wide variety of tasks and generate text that continues from or "completes"
@@ -518,6 +523,7 @@ export interface Completions {
   usage: CompletionsUsage;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function completionsDeserializer(item: any): Completions {
   return {
     id: item["id"],
@@ -531,7 +537,7 @@ export function completionsDeserializer(item: any): Completions {
     usage: completionsUsageDeserializer(item["usage"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function contentFilterResultsForPromptArrayDeserializer(
   result: Array<ContentFilterResultsForPrompt>,
 ): any[] {
@@ -548,6 +554,7 @@ export interface ContentFilterResultsForPrompt {
   contentFilterResults: ContentFilterResultDetailsForPrompt;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function contentFilterResultsForPromptDeserializer(
   item: any,
 ): ContentFilterResultsForPrompt {
@@ -558,7 +565,7 @@ export function contentFilterResultsForPromptDeserializer(
     ),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Information about content filtering evaluated against input data to Azure OpenAI. */
 export interface ContentFilterResultDetailsForPrompt {
   /**
@@ -601,6 +608,7 @@ export interface ContentFilterResultDetailsForPrompt {
   indirectAttack?: ContentFilterDetectionResult;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function contentFilterResultDetailsForPromptDeserializer(
   item: any,
 ): ContentFilterResultDetailsForPrompt {
@@ -632,7 +640,7 @@ export function contentFilterResultDetailsForPromptDeserializer(
       : contentFilterDetectionResultDeserializer(item["indirect_attack"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Information about filtered content severity level and if it has been filtered or not. */
 export interface ContentFilterResult {
   /** A value indicating whether or not the content has been filtered. */
@@ -641,6 +649,7 @@ export interface ContentFilterResult {
   severity: ContentFilterSeverity;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function contentFilterResultDeserializer(
   item: any,
 ): ContentFilterResult {
@@ -649,7 +658,7 @@ export function contentFilterResultDeserializer(
     severity: item["severity"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Ratings for the intensity and risk level of harmful content. */
 export type ContentFilterSeverity = "safe" | "low" | "medium" | "high";
 
@@ -661,6 +670,7 @@ export interface ContentFilterDetectionResult {
   detected: boolean;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function contentFilterDetectionResultDeserializer(
   item: any,
 ): ContentFilterDetectionResult {
@@ -669,7 +679,7 @@ export function contentFilterDetectionResultDeserializer(
     detected: item["detected"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Represents a structured collection of result details for content filtering. */
 export interface ContentFilterDetailedResults {
   /** A value indicating whether or not the content has been filtered. */
@@ -678,6 +688,7 @@ export interface ContentFilterDetailedResults {
   details: ContentFilterBlocklistIdResult[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function contentFilterDetailedResultsDeserializer(
   item: any,
 ): ContentFilterDetailedResults {
@@ -686,7 +697,7 @@ export function contentFilterDetailedResultsDeserializer(
     details: contentFilterBlocklistIdResultArrayDeserializer(item["details"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function contentFilterBlocklistIdResultArrayDeserializer(
   result: Array<ContentFilterBlocklistIdResult>,
 ): any[] {
@@ -703,6 +714,7 @@ export interface ContentFilterBlocklistIdResult {
   id: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function contentFilterBlocklistIdResultDeserializer(
   item: any,
 ): ContentFilterBlocklistIdResult {
@@ -711,7 +723,7 @@ export function contentFilterBlocklistIdResultDeserializer(
     id: item["id"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function choiceArrayDeserializer(result: Array<Choice>): any[] {
   return result.map((item) => {
     return choiceDeserializer(item);
@@ -740,6 +752,7 @@ export interface Choice {
   finishReason: CompletionsFinishReason | null;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function choiceDeserializer(item: any): Choice {
   return {
     text: item["text"],
@@ -755,7 +768,7 @@ export function choiceDeserializer(item: any): Choice {
     finishReason: item["finish_reason"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Information about content filtering evaluated against generated model output. */
 export interface ContentFilterResultsForChoice {
   /**
@@ -798,6 +811,7 @@ export interface ContentFilterResultsForChoice {
   protectedMaterialCode?: ContentFilterCitedDetectionResult;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function contentFilterResultsForChoiceDeserializer(
   item: any,
 ): ContentFilterResultsForChoice {
@@ -833,7 +847,7 @@ export function contentFilterResultsForChoiceDeserializer(
         ),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Represents the outcome of a detection operation against protected resources as performed by content filtering. */
 export interface ContentFilterCitedDetectionResult {
   /** A value indicating whether or not the content has been filtered. */
@@ -846,6 +860,7 @@ export interface ContentFilterCitedDetectionResult {
   license: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function contentFilterCitedDetectionResultDeserializer(
   item: any,
 ): ContentFilterCitedDetectionResult {
@@ -856,7 +871,7 @@ export function contentFilterCitedDetectionResultDeserializer(
     license: item["license"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Representation of a log probabilities model for a completions generation. */
 export interface CompletionsLogProbabilityModel {
   /** The textual forms of tokens evaluated in this probability model. */
@@ -869,6 +884,7 @@ export interface CompletionsLogProbabilityModel {
   textOffset: number[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function completionsLogProbabilityModelDeserializer(
   item: any,
 ): CompletionsLogProbabilityModel {
@@ -887,7 +903,7 @@ export function completionsLogProbabilityModelDeserializer(
     }),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Representation of the manner in which a completions response concluded. */
 export type CompletionsFinishReason =
   | "stop"
@@ -910,6 +926,7 @@ export interface CompletionsUsage {
   totalTokens: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function completionsUsageDeserializer(item: any): CompletionsUsage {
   return {
     completionTokens: item["completion_tokens"],
@@ -917,7 +934,7 @@ export function completionsUsageDeserializer(item: any): CompletionsUsage {
     totalTokens: item["total_tokens"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /**
  * The configuration information for a chat completions request.
  * Completions support a wide variety of tasks and generate text that continues from or "completes"
@@ -1355,6 +1372,7 @@ export function chatCompletionsToolCallSerializer(
   return { type: item["type"], id: item["id"] };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function chatCompletionsToolCallDeserializer(
   item: any,
 ): ChatCompletionsToolCall {
@@ -1363,7 +1381,7 @@ export function chatCompletionsToolCallDeserializer(
     id: item["id"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Alias for ChatCompletionsToolCallUnion */
 export type ChatCompletionsToolCallUnion =
   | ChatCompletionsFunctionToolCall
@@ -1383,6 +1401,7 @@ export function chatCompletionsToolCallUnionSerializer(
   }
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function chatCompletionsToolCallUnionDeserializer(
   item: any,
 ): ChatCompletionsToolCallUnion {
@@ -1396,7 +1415,7 @@ export function chatCompletionsToolCallUnionDeserializer(
       return chatCompletionsToolCallDeserializer(item);
   }
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /**
  * A tool call to a function tool, issued by the model in evaluation of a configured function tool, that represents
  * a function invocation needed for a subsequent chat completions request to resolve.
@@ -1419,6 +1438,7 @@ export function chatCompletionsFunctionToolCallSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function chatCompletionsFunctionToolCallDeserializer(
   item: any,
 ): ChatCompletionsFunctionToolCall {
@@ -1428,7 +1448,7 @@ export function chatCompletionsFunctionToolCallDeserializer(
     function: functionCallDeserializer(item["function"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The name and arguments of a function that should be called, as generated by the model. */
 export interface FunctionCall {
   /** The name of the function to call. */
@@ -1446,13 +1466,14 @@ export function functionCallSerializer(item: FunctionCall): any {
   return { name: item["name"], arguments: item["arguments"] };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function functionCallDeserializer(item: any): FunctionCall {
   return {
     name: item["name"],
     arguments: item["arguments"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** A request chat message representing requested output from a configured tool. */
 export interface ChatRequestToolMessage extends ChatRequestMessage {
   /** The chat role associated with this message, which is always 'tool' for tool messages. */
@@ -2945,6 +2966,7 @@ export interface ChatCompletions {
   usage: CompletionsUsage;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function chatCompletionsDeserializer(item: any): ChatCompletions {
   return {
     id: item["id"],
@@ -2960,7 +2982,7 @@ export function chatCompletionsDeserializer(item: any): ChatCompletions {
     usage: completionsUsageDeserializer(item["usage"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function chatChoiceArrayDeserializer(result: Array<ChatChoice>): any[] {
   return result.map((item) => {
     return chatChoiceDeserializer(item);
@@ -3002,6 +3024,7 @@ export interface ChatChoice {
   enhancements?: AzureChatEnhancements;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function chatChoiceDeserializer(item: any): ChatChoice {
   return {
     message: !item["message"]
@@ -3028,7 +3051,7 @@ export function chatChoiceDeserializer(item: any): ChatChoice {
       : azureChatEnhancementsDeserializer(item["enhancements"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** A representation of a chat message as received in a response. */
 export interface ChatResponseMessage {
   /** The chat role associated with the message. */
@@ -3052,6 +3075,7 @@ export interface ChatResponseMessage {
   context?: AzureChatExtensionsMessageContext;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function chatResponseMessageDeserializer(
   item: any,
 ): ChatResponseMessage {
@@ -3069,7 +3093,7 @@ export function chatResponseMessageDeserializer(
       : azureChatExtensionsMessageContextDeserializer(item["context"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /**
  *   A representation of the additional context information available when Azure OpenAI chat extensions are involved
  *   in the generation of a corresponding chat completions response. This context information is only populated when
@@ -3089,6 +3113,7 @@ export interface AzureChatExtensionsMessageContext {
   allRetrievedDocuments?: AzureChatExtensionRetrievedDocument[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function azureChatExtensionsMessageContextDeserializer(
   item: any,
 ): AzureChatExtensionsMessageContext {
@@ -3106,7 +3131,7 @@ export function azureChatExtensionsMessageContextDeserializer(
         ),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function azureChatExtensionDataSourceResponseCitationArrayDeserializer(
   result: Array<AzureChatExtensionDataSourceResponseCitation>,
 ): any[] {
@@ -3133,6 +3158,7 @@ export interface AzureChatExtensionDataSourceResponseCitation {
   chunkId?: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function azureChatExtensionDataSourceResponseCitationDeserializer(
   item: any,
 ): AzureChatExtensionDataSourceResponseCitation {
@@ -3144,7 +3170,7 @@ export function azureChatExtensionDataSourceResponseCitationDeserializer(
     chunkId: item["chunk_id"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function azureChatExtensionRetrievedDocumentArrayDeserializer(
   result: Array<AzureChatExtensionRetrievedDocument>,
 ): any[] {
@@ -3180,6 +3206,7 @@ export interface AzureChatExtensionRetrievedDocument {
   filterReason?: AzureChatExtensionRetrieveDocumentFilterReason;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function azureChatExtensionRetrievedDocumentDeserializer(
   item: any,
 ): AzureChatExtensionRetrievedDocument {
@@ -3198,7 +3225,7 @@ export function azureChatExtensionRetrievedDocumentDeserializer(
     filterReason: item["filter_reason"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The reason for filtering the retrieved document. */
 export type AzureChatExtensionRetrieveDocumentFilterReason = "score" | "rerank";
 
@@ -3208,6 +3235,7 @@ export interface ChatChoiceLogProbabilityInfo {
   content: ChatTokenLogProbabilityResult[] | null;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function chatChoiceLogProbabilityInfoDeserializer(
   item: any,
 ): ChatChoiceLogProbabilityInfo {
@@ -3217,7 +3245,7 @@ export function chatChoiceLogProbabilityInfoDeserializer(
       : chatTokenLogProbabilityResultArrayDeserializer(item["content"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function chatTokenLogProbabilityResultArrayDeserializer(
   result: Array<ChatTokenLogProbabilityResult>,
 ): any[] {
@@ -3238,6 +3266,7 @@ export interface ChatTokenLogProbabilityResult {
   topLogprobs: ChatTokenLogProbabilityInfo[] | null;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function chatTokenLogProbabilityResultDeserializer(
   item: any,
 ): ChatTokenLogProbabilityResult {
@@ -3254,7 +3283,7 @@ export function chatTokenLogProbabilityResultDeserializer(
       : chatTokenLogProbabilityInfoArrayDeserializer(item["top_logprobs"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function chatTokenLogProbabilityInfoArrayDeserializer(
   result: Array<ChatTokenLogProbabilityInfo>,
 ): any[] {
@@ -3273,6 +3302,7 @@ export interface ChatTokenLogProbabilityInfo {
   bytes: number[] | null;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function chatTokenLogProbabilityInfoDeserializer(
   item: any,
 ): ChatTokenLogProbabilityInfo {
@@ -3286,7 +3316,7 @@ export function chatTokenLogProbabilityInfoDeserializer(
         }),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** An abstract representation of structured information about why a chat completions response terminated. */
 export interface ChatFinishDetails {
   /** The object type. */
@@ -3294,18 +3324,20 @@ export interface ChatFinishDetails {
   type: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function chatFinishDetailsDeserializer(item: any): ChatFinishDetails {
   return {
     type: item["type"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Alias for ChatFinishDetailsUnion */
 export type ChatFinishDetailsUnion =
   | StopFinishDetails
   | MaxTokensFinishDetails
   | ChatFinishDetails;
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function chatFinishDetailsUnionDeserializer(
   item: any,
 ): ChatFinishDetailsUnion {
@@ -3320,7 +3352,7 @@ export function chatFinishDetailsUnionDeserializer(
       return chatFinishDetailsDeserializer(item);
   }
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** A structured representation of a stop reason that signifies natural termination by the model. */
 export interface StopFinishDetails extends ChatFinishDetails {
   /** The object type, which is always 'stop' for this object. */
@@ -3329,13 +3361,14 @@ export interface StopFinishDetails extends ChatFinishDetails {
   stop: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function stopFinishDetailsDeserializer(item: any): StopFinishDetails {
   return {
     type: item["type"],
     stop: item["stop"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /**
  * A structured representation of a stop reason that signifies a token limit was reached before the model could naturally
  * complete.
@@ -3345,6 +3378,7 @@ export interface MaxTokensFinishDetails extends ChatFinishDetails {
   type: "max_tokens";
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function maxTokensFinishDetailsDeserializer(
   item: any,
 ): MaxTokensFinishDetails {
@@ -3352,7 +3386,7 @@ export function maxTokensFinishDetailsDeserializer(
     type: item["type"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /**
  * Represents the output results of Azure enhancements to chat completions, as configured via the matching input provided
  * in the request.
@@ -3362,6 +3396,7 @@ export interface AzureChatEnhancements {
   grounding?: AzureGroundingEnhancement;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function azureChatEnhancementsDeserializer(
   item: any,
 ): AzureChatEnhancements {
@@ -3371,13 +3406,14 @@ export function azureChatEnhancementsDeserializer(
       : azureGroundingEnhancementDeserializer(item["grounding"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The grounding enhancement that returns the bounding box of the objects detected in the image. */
 export interface AzureGroundingEnhancement {
   /** The lines of text detected by the grounding enhancement. */
   lines: AzureGroundingEnhancementLine[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function azureGroundingEnhancementDeserializer(
   item: any,
 ): AzureGroundingEnhancement {
@@ -3385,7 +3421,7 @@ export function azureGroundingEnhancementDeserializer(
     lines: azureGroundingEnhancementLineArrayDeserializer(item["lines"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function azureGroundingEnhancementLineArrayDeserializer(
   result: Array<AzureGroundingEnhancementLine>,
 ): any[] {
@@ -3402,6 +3438,7 @@ export interface AzureGroundingEnhancementLine {
   spans: AzureGroundingEnhancementLineSpan[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function azureGroundingEnhancementLineDeserializer(
   item: any,
 ): AzureGroundingEnhancementLine {
@@ -3410,7 +3447,7 @@ export function azureGroundingEnhancementLineDeserializer(
     spans: azureGroundingEnhancementLineSpanArrayDeserializer(item["spans"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function azureGroundingEnhancementLineSpanArrayDeserializer(
   result: Array<AzureGroundingEnhancementLineSpan>,
 ): any[] {
@@ -3434,6 +3471,7 @@ export interface AzureGroundingEnhancementLineSpan {
   polygon: AzureGroundingEnhancementCoordinatePoint[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function azureGroundingEnhancementLineSpanDeserializer(
   item: any,
 ): AzureGroundingEnhancementLineSpan {
@@ -3446,7 +3484,7 @@ export function azureGroundingEnhancementLineSpanDeserializer(
     ),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function azureGroundingEnhancementCoordinatePointArrayDeserializer(
   result: Array<AzureGroundingEnhancementCoordinatePoint>,
 ): any[] {
@@ -3463,6 +3501,7 @@ export interface AzureGroundingEnhancementCoordinatePoint {
   y: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function azureGroundingEnhancementCoordinatePointDeserializer(
   item: any,
 ): AzureGroundingEnhancementCoordinatePoint {
@@ -3471,7 +3510,7 @@ export function azureGroundingEnhancementCoordinatePointDeserializer(
     y: item["y"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Represents the request data used to generate images. */
 export interface ImageGenerationOptions {
   /**
@@ -3524,6 +3563,7 @@ export function imageGenerationOptionsSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function imageGenerationOptionsDeserializer(
   item: any,
 ): ImageGenerationOptions {
@@ -3538,7 +3578,7 @@ export function imageGenerationOptionsDeserializer(
     user: item["user"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The desired size of generated images. */
 export type ImageSize =
   | "256x256"
@@ -3570,13 +3610,14 @@ export interface ImageGenerations {
   data: ImageGenerationData[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function imageGenerationsDeserializer(item: any): ImageGenerations {
   return {
     created: new Date(item["created"] * 1000),
     data: imageGenerationDataArrayDeserializer(item["data"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function imageGenerationDataArrayDeserializer(
   result: Array<ImageGenerationData>,
 ): any[] {
@@ -3612,6 +3653,7 @@ export interface ImageGenerationData {
   promptFilterResults?: ImageGenerationPromptFilterResults;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function imageGenerationDataDeserializer(
   item: any,
 ): ImageGenerationData {
@@ -3631,7 +3673,7 @@ export function imageGenerationDataDeserializer(
         ),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Describes the content filtering result for the image generation request. */
 export interface ImageGenerationContentFilterResults {
   /**
@@ -3661,6 +3703,7 @@ export interface ImageGenerationContentFilterResults {
   selfHarm?: ContentFilterResult;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function imageGenerationContentFilterResultsDeserializer(
   item: any,
 ): ImageGenerationContentFilterResults {
@@ -3679,7 +3722,7 @@ export function imageGenerationContentFilterResultsDeserializer(
       : contentFilterResultDeserializer(item["self_harm"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Describes the content filtering results for the prompt of a image generation request. */
 export interface ImageGenerationPromptFilterResults {
   /**
@@ -3715,6 +3758,7 @@ export interface ImageGenerationPromptFilterResults {
   customBlocklists?: ContentFilterDetailedResults;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function imageGenerationPromptFilterResultsDeserializer(
   item: any,
 ): ImageGenerationPromptFilterResults {
@@ -3742,7 +3786,7 @@ export function imageGenerationPromptFilterResultsDeserializer(
       : contentFilterDetailedResultsDeserializer(item["custom_blocklists"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** A representation of the request options that control the behavior of a text-to-speech operation. */
 export interface SpeechGenerationOptions {
   /** The text to generate audio for. The maximum length is 4096 characters. */
@@ -3847,13 +3891,14 @@ export interface Embeddings {
   usage: EmbeddingsUsage;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function embeddingsDeserializer(item: any): Embeddings {
   return {
     data: embeddingItemArrayDeserializer(item["data"]),
     usage: embeddingsUsageDeserializer(item["usage"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function embeddingItemArrayDeserializer(
   result: Array<EmbeddingItem>,
 ): any[] {
@@ -3873,6 +3918,7 @@ export interface EmbeddingItem {
   index: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function embeddingItemDeserializer(item: any): EmbeddingItem {
   return {
     embedding: item["embedding"].map((p: any) => {
@@ -3881,7 +3927,7 @@ export function embeddingItemDeserializer(item: any): EmbeddingItem {
     index: item["index"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Measurement of the amount of tokens used in this request and response. */
 export interface EmbeddingsUsage {
   /** Number of tokens sent in the original request. */
@@ -3890,13 +3936,14 @@ export interface EmbeddingsUsage {
   totalTokens: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function embeddingsUsageDeserializer(item: any): EmbeddingsUsage {
   return {
     promptTokens: item["prompt_tokens"],
     totalTokens: item["total_tokens"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Known values of {@link ServiceApiVersions} that the service accepts. */
 export enum KnownServiceApiVersions {
   V20221201 = "2022-12-01",

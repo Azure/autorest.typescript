@@ -11,6 +11,7 @@ export interface GetWorkspaceResponse {
   properties: WorkspaceProperties;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function getWorkspaceResponseDeserializer(
   item: any,
 ): GetWorkspaceResponse {
@@ -20,13 +21,14 @@ export function getWorkspaceResponseDeserializer(
     properties: workspacePropertiesDeserializer(item["properties"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** workspace properties */
 export interface WorkspaceProperties {
   /** Authentication type of the connection target */
   applicationInsights: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function workspacePropertiesDeserializer(
   item: any,
 ): WorkspaceProperties {
@@ -34,13 +36,14 @@ export function workspacePropertiesDeserializer(
     applicationInsights: item["applicationInsights"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Response from the list operation */
 export interface ListConnectionsResponse {
   /** A list of connection list secrets */
   value: GetConnectionResponse[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function listConnectionsResponseDeserializer(
   item: any,
 ): ListConnectionsResponse {
@@ -48,7 +51,7 @@ export function listConnectionsResponseDeserializer(
     value: getConnectionResponseArrayDeserializer(item["value"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function getConnectionResponseArrayDeserializer(
   result: Array<GetConnectionResponse>,
 ): any[] {
@@ -67,6 +70,7 @@ export interface GetConnectionResponse {
   properties: InternalConnectionPropertiesUnion;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function getConnectionResponseDeserializer(
   item: any,
 ): GetConnectionResponse {
@@ -78,7 +82,7 @@ export function getConnectionResponseDeserializer(
     ),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Connection properties */
 export interface InternalConnectionProperties {
   /** Authentication type of the connection target */
@@ -90,6 +94,7 @@ export interface InternalConnectionProperties {
   target: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function internalConnectionPropertiesDeserializer(
   item: any,
 ): InternalConnectionProperties {
@@ -99,7 +104,7 @@ export function internalConnectionPropertiesDeserializer(
     target: item["target"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Alias for InternalConnectionPropertiesUnion */
 export type InternalConnectionPropertiesUnion =
   | InternalConnectionPropertiesApiKeyAuth
@@ -107,6 +112,7 @@ export type InternalConnectionPropertiesUnion =
   | InternalConnectionPropertiesSASAuth
   | InternalConnectionProperties;
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function internalConnectionPropertiesUnionDeserializer(
   item: any,
 ): InternalConnectionPropertiesUnion {
@@ -130,7 +136,7 @@ export function internalConnectionPropertiesUnionDeserializer(
       return internalConnectionPropertiesDeserializer(item);
   }
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Authentication type used by Azure AI service to connect to another service */
 export type AuthenticationType = "ApiKey" | "AAD" | "SAS";
 /** The Type (or category) of the connection */
@@ -150,6 +156,7 @@ export interface InternalConnectionPropertiesApiKeyAuth
   credentials: CredentialsApiKeyAuth;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function internalConnectionPropertiesApiKeyAuthDeserializer(
   item: any,
 ): InternalConnectionPropertiesApiKeyAuth {
@@ -160,13 +167,14 @@ export function internalConnectionPropertiesApiKeyAuthDeserializer(
     credentials: credentialsApiKeyAuthDeserializer(item["credentials"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The credentials needed for API key authentication */
 export interface CredentialsApiKeyAuth {
   /** The API key */
   key: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function credentialsApiKeyAuthDeserializer(
   item: any,
 ): CredentialsApiKeyAuth {
@@ -174,7 +182,7 @@ export function credentialsApiKeyAuthDeserializer(
     key: item["key"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Connection properties for connections with AAD authentication (aka `Entra ID passthrough`) */
 export interface InternalConnectionPropertiesAADAuth
   extends InternalConnectionProperties {
@@ -182,6 +190,7 @@ export interface InternalConnectionPropertiesAADAuth
   authType: "AAD";
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function internalConnectionPropertiesAADAuthDeserializer(
   item: any,
 ): InternalConnectionPropertiesAADAuth {
@@ -191,7 +200,7 @@ export function internalConnectionPropertiesAADAuthDeserializer(
     target: item["target"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Connection properties for connections with SAS authentication */
 export interface InternalConnectionPropertiesSASAuth
   extends InternalConnectionProperties {
@@ -201,6 +210,7 @@ export interface InternalConnectionPropertiesSASAuth
   credentials: CredentialsSASAuth;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function internalConnectionPropertiesSASAuthDeserializer(
   item: any,
 ): InternalConnectionPropertiesSASAuth {
@@ -211,19 +221,20 @@ export function internalConnectionPropertiesSASAuthDeserializer(
     credentials: credentialsSASAuthDeserializer(item["credentials"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The credentials needed for Shared Access Signatures (SAS) authentication */
 export interface CredentialsSASAuth {
   /** The Shared Access Signatures (SAS) token */
   sas: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function credentialsSASAuthDeserializer(item: any): CredentialsSASAuth {
   return {
     sas: item["SAS"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Response from getting properties of the Application Insights resource */
 export interface GetAppInsightsResponse {
   /** A unique identifier for the resource */
@@ -234,6 +245,7 @@ export interface GetAppInsightsResponse {
   properties: AppInsightsProperties;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function getAppInsightsResponseDeserializer(
   item: any,
 ): GetAppInsightsResponse {
@@ -243,13 +255,14 @@ export function getAppInsightsResponseDeserializer(
     properties: appInsightsPropertiesDeserializer(item["properties"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The properties of the Application Insights resource */
 export interface AppInsightsProperties {
   /** Authentication type of the connection target */
   connectionString: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function appInsightsPropertiesDeserializer(
   item: any,
 ): AppInsightsProperties {
@@ -257,7 +270,7 @@ export function appInsightsPropertiesDeserializer(
     connectionString: item["ConnectionString"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Evaluation Definition */
 export interface Evaluation {
   /** Identifier of the evaluation. */
@@ -291,6 +304,7 @@ export function evaluationSerializer(item: Evaluation): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function evaluationDeserializer(item: any): Evaluation {
   return {
     id: item["id"],
@@ -306,7 +320,7 @@ export function evaluationDeserializer(item: any): Evaluation {
     evaluators: evaluatorConfigurationRecordDeserializer(item["evaluators"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Abstract data class for input data configuration. */
 export interface InputData {
   /** Type of the data. */
@@ -318,12 +332,13 @@ export function inputDataSerializer(item: InputData): any {
   return { type: item["type"] };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function inputDataDeserializer(item: any): InputData {
   return {
     type: item["type"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Alias for InputDataUnion */
 export type InputDataUnion =
   | ApplicationInsightsConfiguration
@@ -345,6 +360,7 @@ export function inputDataUnionSerializer(item: InputDataUnion): any {
   }
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function inputDataUnionDeserializer(item: any): InputDataUnion {
   switch (item.type) {
     case "app_insights":
@@ -359,7 +375,7 @@ export function inputDataUnionDeserializer(item: any): InputDataUnion {
       return inputDataDeserializer(item);
   }
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Data Source for Application Insights. */
 export interface ApplicationInsightsConfiguration extends InputData {
   readonly type: "app_insights";
@@ -384,6 +400,7 @@ export function applicationInsightsConfigurationSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function applicationInsightsConfigurationDeserializer(
   item: any,
 ): ApplicationInsightsConfiguration {
@@ -395,7 +412,7 @@ export function applicationInsightsConfigurationDeserializer(
     connectionString: item["connectionString"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Dataset as source for evaluation. */
 export interface Dataset extends InputData {
   readonly type: "dataset";
@@ -407,13 +424,14 @@ export function datasetSerializer(item: Dataset): any {
   return { id: item["id"] };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function datasetDeserializer(item: any): Dataset {
   return {
     type: item["type"],
     id: item["id"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
   /** The timestamp the resource was created at. */
@@ -426,6 +444,7 @@ export interface SystemData {
   readonly lastModifiedAt?: Date;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function systemDataDeserializer(item: any): SystemData {
   return {
     createdAt: !item["createdAt"]
@@ -438,7 +457,7 @@ export function systemDataDeserializer(item: any): SystemData {
       : new Date(item["lastModifiedAt"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function evaluatorConfigurationRecordSerializer(
   item: Record<string, EvaluatorConfiguration>,
 ): Record<string, any> {
@@ -483,6 +502,7 @@ export function evaluatorConfigurationSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function evaluatorConfigurationDeserializer(
   item: any,
 ): EvaluatorConfiguration {
@@ -492,7 +512,8 @@ export function evaluatorConfigurationDeserializer(
     dataMapping: item["dataMapping"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/naming-convention */
 /** Paged collection of Evaluation items */
 export interface _PagedEvaluation {
   /** The Evaluation items on this page */
@@ -500,14 +521,15 @@ export interface _PagedEvaluation {
   /** The link to the next page of items */
   nextLink?: string;
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _pagedEvaluationDeserializer(item: any): _PagedEvaluation {
   return {
     value: evaluationArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function evaluationArraySerializer(result: Array<Evaluation>): any[] {
   return result.map((item) => {
     return evaluationSerializer(item);
@@ -555,6 +577,7 @@ export function evaluationScheduleSerializer(item: EvaluationSchedule): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function evaluationScheduleDeserializer(item: any): EvaluationSchedule {
   return {
     name: item["name"],
@@ -571,7 +594,7 @@ export function evaluationScheduleDeserializer(item: any): EvaluationSchedule {
     trigger: triggerUnionDeserializer(item["trigger"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Abstract data class for input data configuration. */
 export interface Trigger {
   /** Type of the trigger. */
@@ -583,12 +606,13 @@ export function triggerSerializer(item: Trigger): any {
   return { type: item["type"] };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function triggerDeserializer(item: any): Trigger {
   return {
     type: item["type"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Alias for TriggerUnion */
 export type TriggerUnion = RecurrenceTrigger | CronTrigger | Trigger;
 
@@ -605,6 +629,7 @@ export function triggerUnionSerializer(item: TriggerUnion): any {
   }
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function triggerUnionDeserializer(item: any): TriggerUnion {
   switch (item.type) {
     case "Recurrence":
@@ -617,7 +642,7 @@ export function triggerUnionDeserializer(item: any): TriggerUnion {
       return triggerDeserializer(item);
   }
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Recurrence Trigger Definition */
 export interface RecurrenceTrigger extends Trigger {
   readonly type: "Recurrence";
@@ -639,6 +664,7 @@ export function recurrenceTriggerSerializer(item: RecurrenceTrigger): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function recurrenceTriggerDeserializer(item: any): RecurrenceTrigger {
   return {
     type: item["type"],
@@ -649,7 +675,7 @@ export function recurrenceTriggerDeserializer(item: any): RecurrenceTrigger {
       : recurrenceScheduleDeserializer(item["schedule"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Frequency of the schedule - day, week, month, hour, minute */
 export type Frequency = "Month" | "Week" | "Day" | "Hour" | "Minute";
 
@@ -686,6 +712,7 @@ export function recurrenceScheduleSerializer(item: RecurrenceSchedule): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function recurrenceScheduleDeserializer(item: any): RecurrenceSchedule {
   return {
     hours: item["hours"].map((p: any) => {
@@ -706,7 +733,7 @@ export function recurrenceScheduleDeserializer(item: any): RecurrenceSchedule {
         }),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** WeekDay of the schedule - Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday */
 export type WeekDays =
   | "Monday"
@@ -728,13 +755,15 @@ export function cronTriggerSerializer(item: CronTrigger): any {
   return { expression: item["expression"] };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function cronTriggerDeserializer(item: any): CronTrigger {
   return {
     type: item["type"],
     expression: item["expression"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/naming-convention */
 /** Paged collection of EvaluationSchedule items */
 export interface _PagedEvaluationSchedule {
   /** The EvaluationSchedule items on this page */
@@ -742,7 +771,8 @@ export interface _PagedEvaluationSchedule {
   /** The link to the next page of items */
   nextLink?: string;
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _pagedEvaluationScheduleDeserializer(
   item: any,
 ): _PagedEvaluationSchedule {
@@ -751,7 +781,7 @@ export function _pagedEvaluationScheduleDeserializer(
     nextLink: item["nextLink"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function evaluationScheduleArraySerializer(
   result: Array<EvaluationSchedule>,
 ): any[] {

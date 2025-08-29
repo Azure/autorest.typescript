@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+/* eslint-disable @typescript-eslint/naming-convention */
 import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 
 /** The result of listing the applications available in an Account. */
@@ -10,7 +11,8 @@ export interface _ApplicationListResult {
   /** The URL to get the next set of results. */
   odataNextLink?: string;
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _applicationListResultDeserializer(
   item: any,
 ): _ApplicationListResult {
@@ -21,7 +23,7 @@ export function _applicationListResultDeserializer(
     odataNextLink: item["odata.nextLink"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function batchApplicationArrayDeserializer(
   result: Array<BatchApplication>,
 ): any[] {
@@ -40,6 +42,7 @@ export interface BatchApplication {
   versions: string[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function batchApplicationDeserializer(item: any): BatchApplication {
   return {
     id: item["id"],
@@ -49,7 +52,7 @@ export function batchApplicationDeserializer(item: any): BatchApplication {
     }),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** An error response received from the Azure Batch service. */
 export interface BatchError {
   /** An identifier for the error. Codes are invariant and are intended to be consumed programmatically. */
@@ -60,6 +63,7 @@ export interface BatchError {
   values?: BatchErrorDetail[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function batchErrorDeserializer(item: any): BatchError {
   return {
     code: item["code"],
@@ -71,7 +75,7 @@ export function batchErrorDeserializer(item: any): BatchError {
       : batchErrorDetailArrayDeserializer(item["values"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** An error message received in an Azure Batch error response. */
 export interface ErrorMessage {
   /** The language code of the error message. */
@@ -80,13 +84,14 @@ export interface ErrorMessage {
   value?: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function errorMessageDeserializer(item: any): ErrorMessage {
   return {
     lang: item["lang"],
     value: item["value"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function batchErrorDetailArrayDeserializer(
   result: Array<BatchErrorDetail>,
 ): any[] {
@@ -103,13 +108,15 @@ export interface BatchErrorDetail {
   value?: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function batchErrorDetailDeserializer(item: any): BatchErrorDetail {
   return {
     key: item["key"],
     value: item["value"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/naming-convention */
 /** The result of a listing the usage metrics for an Account. */
 export interface _PoolListUsageMetricsResult {
   /** The Pool usage metrics data. */
@@ -117,7 +124,8 @@ export interface _PoolListUsageMetricsResult {
   /** The URL to get the next set of results. */
   odataNextLink?: string;
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _poolListUsageMetricsResultDeserializer(
   item: any,
 ): _PoolListUsageMetricsResult {
@@ -128,7 +136,7 @@ export function _poolListUsageMetricsResultDeserializer(
     odataNextLink: item["odata.nextLink"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function poolUsageMetricsArrayDeserializer(
   result: Array<PoolUsageMetrics>,
 ): any[] {
@@ -151,6 +159,7 @@ export interface PoolUsageMetrics {
   totalCoreHours: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function poolUsageMetricsDeserializer(item: any): PoolUsageMetrics {
   return {
     poolId: item["poolId"],
@@ -160,7 +169,7 @@ export function poolUsageMetricsDeserializer(item: any): PoolUsageMetrics {
     totalCoreHours: item["totalCoreHours"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Options for creating an Azure Batch Pool. */
 export interface BatchPoolCreateOptions {
   /** A string that uniquely identifies the Pool within the Account. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters. The ID is case-preserving and case-insensitive (that is, you may not have two Pool IDs within an Account that differ only by case). */
@@ -303,6 +312,7 @@ export function cloudServiceConfigurationSerializer(
   return { osFamily: item["osFamily"], osVersion: item["osVersion"] };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function cloudServiceConfigurationDeserializer(
   item: any,
 ): CloudServiceConfiguration {
@@ -311,7 +321,7 @@ export function cloudServiceConfigurationDeserializer(
     osVersion: item["osVersion"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /**
  * The configuration for Compute Nodes in a Pool based on the Azure Virtual
  * Machines infrastructure.
@@ -382,6 +392,7 @@ export function virtualMachineConfigurationSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function virtualMachineConfigurationDeserializer(
   item: any,
 ): VirtualMachineConfiguration {
@@ -416,7 +427,7 @@ export function virtualMachineConfigurationDeserializer(
       : osDiskDeserializer(item["osDisk"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /**
  * A reference to an Azure Virtual Machines Marketplace Image or a Shared Image
  * Gallery Image. To get the list of all Azure Marketplace Image references
@@ -447,6 +458,7 @@ export function imageReferenceSerializer(item: ImageReference): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function imageReferenceDeserializer(item: any): ImageReference {
   return {
     publisher: item["publisher"],
@@ -457,7 +469,7 @@ export function imageReferenceDeserializer(item: any): ImageReference {
     exactVersion: item["exactVersion"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Windows operating system settings to apply to the virtual machine. */
 export interface WindowsConfiguration {
   /** Whether automatic updates are enabled on the virtual machine. If omitted, the default value is true. */
@@ -470,6 +482,7 @@ export function windowsConfigurationSerializer(
   return { enableAutomaticUpdates: item["enableAutomaticUpdates"] };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function windowsConfigurationDeserializer(
   item: any,
 ): WindowsConfiguration {
@@ -477,7 +490,7 @@ export function windowsConfigurationDeserializer(
     enableAutomaticUpdates: item["enableAutomaticUpdates"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function dataDiskArraySerializer(result: Array<DataDisk>): any[] {
   return result.map((item) => {
     return dataDiskSerializer(item);
@@ -515,6 +528,7 @@ export function dataDiskSerializer(item: DataDisk): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function dataDiskDeserializer(item: any): DataDisk {
   return {
     lun: item["lun"],
@@ -523,7 +537,7 @@ export function dataDiskDeserializer(item: any): DataDisk {
     storageAccountType: item["storageAccountType"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** CachingType enums */
 export type CachingType = "none" | "readonly" | "readwrite";
 /** StorageAccountType enums */
@@ -555,6 +569,7 @@ export function containerConfigurationSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function containerConfigurationDeserializer(
   item: any,
 ): ContainerConfiguration {
@@ -570,7 +585,7 @@ export function containerConfigurationDeserializer(
       : containerRegistryArrayDeserializer(item["containerRegistries"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** ContainerType enums */
 export type ContainerType = "dockerCompatible" | "criCompatible";
 
@@ -613,6 +628,7 @@ export function containerRegistrySerializer(item: ContainerRegistry): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function containerRegistryDeserializer(item: any): ContainerRegistry {
   return {
     username: item["username"],
@@ -623,7 +639,7 @@ export function containerRegistryDeserializer(item: any): ContainerRegistry {
       : batchNodeIdentityReferenceDeserializer(item["identityReference"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /**
  * The reference to a user assigned identity associated with the Batch pool which
  * a compute node will use.
@@ -639,6 +655,7 @@ export function batchNodeIdentityReferenceSerializer(
   return { resourceId: item["resourceId"] };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function batchNodeIdentityReferenceDeserializer(
   item: any,
 ): BatchNodeIdentityReference {
@@ -646,7 +663,7 @@ export function batchNodeIdentityReferenceDeserializer(
     resourceId: item["resourceId"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /**
  * The disk encryption configuration applied on compute nodes in the pool. Disk
  * encryption configuration is not supported on Linux pool created with Shared
@@ -669,6 +686,7 @@ export function diskEncryptionConfigurationSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function diskEncryptionConfigurationDeserializer(
   item: any,
 ): DiskEncryptionConfiguration {
@@ -680,7 +698,7 @@ export function diskEncryptionConfigurationDeserializer(
         }),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** DiskEncryptionTarget enums */
 export type DiskEncryptionTarget = "osdisk" | "temporarydisk";
 
@@ -700,6 +718,7 @@ export function nodePlacementConfigurationSerializer(
   return { policy: item["policy"] };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function nodePlacementConfigurationDeserializer(
   item: any,
 ): NodePlacementConfiguration {
@@ -707,7 +726,7 @@ export function nodePlacementConfigurationDeserializer(
     policy: item["policy"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** NodePlacementPolicyType enums */
 export type NodePlacementPolicyType = "regional" | "zonal";
 
@@ -765,6 +784,7 @@ export function vmExtensionSerializer(item: VMExtension): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function vmExtensionDeserializer(item: any): VMExtension {
   return {
     name: item["name"],
@@ -782,7 +802,7 @@ export function vmExtensionDeserializer(item: any): VMExtension {
         }),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Settings for the operating system disk of the compute node (VM). */
 export interface OSDisk {
   /** Specifies the ephemeral Disk Settings for the operating system disk used by the compute node (VM). */
@@ -797,6 +817,7 @@ export function osDiskSerializer(item: OSDisk): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function osDiskDeserializer(item: any): OSDisk {
   return {
     ephemeralOSDiskSettings: !item["ephemeralOSDiskSettings"]
@@ -804,7 +825,7 @@ export function osDiskDeserializer(item: any): OSDisk {
       : diffDiskSettingsDeserializer(item["ephemeralOSDiskSettings"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /**
  * Specifies the ephemeral Disk Settings for the operating system disk used by the
  * compute node (VM).
@@ -818,12 +839,13 @@ export function diffDiskSettingsSerializer(item: DiffDiskSettings): any {
   return { placement: item["placement"] };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function diffDiskSettingsDeserializer(item: any): DiffDiskSettings {
   return {
     placement: item["placement"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** AccessDiffDiskPlacementScope enums */
 export type DiffDiskPlacement = "cachedisk";
 
@@ -859,6 +881,7 @@ export function networkConfigurationSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function networkConfigurationDeserializer(
   item: any,
 ): NetworkConfiguration {
@@ -876,7 +899,7 @@ export function networkConfigurationDeserializer(
     enableAcceleratedNetworking: item["enableAcceleratedNetworking"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** DynamicVNetAssignmentScope enums */
 export type DynamicVNetAssignmentScope = "none" | "job";
 
@@ -894,6 +917,7 @@ export function poolEndpointConfigurationSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function poolEndpointConfigurationDeserializer(
   item: any,
 ): PoolEndpointConfiguration {
@@ -901,7 +925,7 @@ export function poolEndpointConfigurationDeserializer(
     inboundNatPools: inboundNATPoolArrayDeserializer(item["inboundNATPools"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function inboundNATPoolArraySerializer(
   result: Array<InboundNATPool>,
 ): any[] {
@@ -952,6 +976,7 @@ export function inboundNATPoolSerializer(item: InboundNATPool): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function inboundNATPoolDeserializer(item: any): InboundNATPool {
   return {
     name: item["name"],
@@ -966,7 +991,7 @@ export function inboundNATPoolDeserializer(item: any): InboundNATPool {
         ),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** InboundEndpointProtocol enums */
 export type InboundEndpointProtocol = "tcp" | "udp";
 
@@ -1013,6 +1038,7 @@ export function networkSecurityGroupRuleSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function networkSecurityGroupRuleDeserializer(
   item: any,
 ): NetworkSecurityGroupRule {
@@ -1027,7 +1053,7 @@ export function networkSecurityGroupRuleDeserializer(
         }),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** NetworkSecurityGroupRuleAccess enums */
 export type NetworkSecurityGroupRuleAccess = "allow" | "deny";
 
@@ -1052,6 +1078,7 @@ export function publicIpAddressConfigurationSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function publicIpAddressConfigurationDeserializer(
   item: any,
 ): PublicIpAddressConfiguration {
@@ -1064,7 +1091,7 @@ export function publicIpAddressConfigurationDeserializer(
         }),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** IPAddressProvisioningType enums */
 export type IpAddressProvisioningType =
   | "batchmanaged"
@@ -1123,6 +1150,7 @@ export function startTaskSerializer(item: StartTask): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function startTaskDeserializer(item: any): StartTask {
   return {
     commandLine: item["commandLine"],
@@ -1142,7 +1170,7 @@ export function startTaskDeserializer(item: any): StartTask {
     waitForSuccess: item["waitForSuccess"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The container settings for a Task. */
 export interface TaskContainerSettings {
   /** Additional options to the container create command. These additional options are supplied as arguments to the "docker create" command, in addition to those controlled by the Batch Service. */
@@ -1168,6 +1196,7 @@ export function taskContainerSettingsSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function taskContainerSettingsDeserializer(
   item: any,
 ): TaskContainerSettings {
@@ -1180,7 +1209,7 @@ export function taskContainerSettingsDeserializer(
     workingDirectory: item["workingDirectory"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** ContainerWorkingDirectory enums */
 export type ContainerWorkingDirectory =
   | "taskWorkingDirectory"
@@ -1234,6 +1263,7 @@ export function resourceFileSerializer(item: ResourceFile): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function resourceFileDeserializer(item: any): ResourceFile {
   return {
     autoStorageContainerName: item["autoStorageContainerName"],
@@ -1247,7 +1277,7 @@ export function resourceFileDeserializer(item: any): ResourceFile {
       : batchNodeIdentityReferenceDeserializer(item["identityReference"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function environmentSettingArraySerializer(
   result: Array<EnvironmentSetting>,
 ): any[] {
@@ -1276,13 +1306,14 @@ export function environmentSettingSerializer(item: EnvironmentSetting): any {
   return { name: item["name"], value: item["value"] };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function environmentSettingDeserializer(item: any): EnvironmentSetting {
   return {
     name: item["name"],
     value: item["value"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The definition of the user identity under which the Task is run. Specify either the userName or autoUser property, but not both. */
 export interface UserIdentity {
   /** The name of the user identity under which the Task is run. The userName and autoUser properties are mutually exclusive; you must specify one but not both. */
@@ -1300,6 +1331,7 @@ export function userIdentitySerializer(item: UserIdentity): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function userIdentityDeserializer(item: any): UserIdentity {
   return {
     username: item["username"],
@@ -1308,7 +1340,7 @@ export function userIdentityDeserializer(item: any): UserIdentity {
       : autoUserSpecificationDeserializer(item["autoUser"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Specifies the options for the auto user that runs an Azure Batch Task. */
 export interface AutoUserSpecification {
   /** The scope for the auto user. The default value is pool. If the pool is running Windows a value of Task should be specified if stricter isolation between tasks is required. For example, if the task mutates the registry in a way which could impact other tasks, or if certificates have been specified on the pool which should not be accessible by normal tasks but should be accessible by StartTasks. */
@@ -1323,6 +1355,7 @@ export function autoUserSpecificationSerializer(
   return { scope: item["scope"], elevationLevel: item["elevationLevel"] };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function autoUserSpecificationDeserializer(
   item: any,
 ): AutoUserSpecification {
@@ -1331,7 +1364,7 @@ export function autoUserSpecificationDeserializer(
     elevationLevel: item["elevationLevel"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** AutoUserScope enums */
 export type AutoUserScope = "task" | "pool";
 /** ElevationLevel enums */
@@ -1383,6 +1416,7 @@ export function certificateReferenceSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function certificateReferenceDeserializer(
   item: any,
 ): CertificateReference {
@@ -1398,7 +1432,7 @@ export function certificateReferenceDeserializer(
         }),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** CertificateStoreLocation enums */
 export type CertificateStoreLocation = "currentuser" | "localmachine";
 /** CertificateVisibility enums */
@@ -1434,6 +1468,7 @@ export function applicationPackageReferenceSerializer(
   return { applicationId: item["applicationId"], version: item["version"] };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function applicationPackageReferenceDeserializer(
   item: any,
 ): ApplicationPackageReference {
@@ -1442,7 +1477,7 @@ export function applicationPackageReferenceDeserializer(
     version: item["version"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Specifies how Tasks should be distributed across Compute Nodes. */
 export interface TaskSchedulingPolicy {
   /** How Tasks are distributed across Compute Nodes in a Pool. If not specified, the default is spread. */
@@ -1455,6 +1490,7 @@ export function taskSchedulingPolicySerializer(
   return { nodeFillType: item["nodeFillType"] };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function taskSchedulingPolicyDeserializer(
   item: any,
 ): TaskSchedulingPolicy {
@@ -1462,7 +1498,7 @@ export function taskSchedulingPolicyDeserializer(
     nodeFillType: item["nodeFillType"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** BatchNodeFillType enums */
 export type BatchNodeFillType = "spread" | "pack";
 
@@ -1511,6 +1547,7 @@ export function userAccountSerializer(item: UserAccount): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function userAccountDeserializer(item: any): UserAccount {
   return {
     name: item["name"],
@@ -1524,7 +1561,7 @@ export function userAccountDeserializer(item: any): UserAccount {
       : windowsUserConfigurationDeserializer(item["windowsUserConfiguration"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Properties used to create a user Account on a Linux Compute Node. */
 export interface LinuxUserConfiguration {
   /** The user ID of the user Account. The uid and gid properties must be specified together or not at all. If not specified the underlying operating system picks the uid. */
@@ -1545,6 +1582,7 @@ export function linuxUserConfigurationSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function linuxUserConfigurationDeserializer(
   item: any,
 ): LinuxUserConfiguration {
@@ -1554,7 +1592,7 @@ export function linuxUserConfigurationDeserializer(
     sshPrivateKey: item["sshPrivateKey"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Properties used to create a user Account on a Windows Compute Node. */
 export interface WindowsUserConfiguration {
   /** The login mode for the user. The default value for VirtualMachineConfiguration Pools is 'batch' and for CloudServiceConfiguration Pools is 'interactive'. */
@@ -1567,6 +1605,7 @@ export function windowsUserConfigurationSerializer(
   return { loginMode: item["loginMode"] };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function windowsUserConfigurationDeserializer(
   item: any,
 ): WindowsUserConfiguration {
@@ -1574,7 +1613,7 @@ export function windowsUserConfigurationDeserializer(
     loginMode: item["loginMode"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** LoginMode enums */
 export type LoginMode = "batch" | "interactive";
 
@@ -1609,13 +1648,14 @@ export function metadataItemSerializer(item: MetadataItem): any {
   return { name: item["name"], value: item["value"] };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function metadataItemDeserializer(item: any): MetadataItem {
   return {
     name: item["name"],
     value: item["value"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function mountConfigurationArraySerializer(
   result: Array<MountConfiguration>,
 ): any[] {
@@ -1665,6 +1705,7 @@ export function mountConfigurationSerializer(item: MountConfiguration): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function mountConfigurationDeserializer(item: any): MountConfiguration {
   return {
     azureBlobFileSystemConfiguration: !item["azureBlobFileSystemConfiguration"]
@@ -1685,7 +1726,7 @@ export function mountConfigurationDeserializer(item: any): MountConfiguration {
         ),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Information used to connect to an Azure Storage Container using Blobfuse. */
 export interface AzureBlobFileSystemConfiguration {
   /** The Azure Storage Account name. */
@@ -1720,6 +1761,7 @@ export function azureBlobFileSystemConfigurationSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function azureBlobFileSystemConfigurationDeserializer(
   item: any,
 ): AzureBlobFileSystemConfiguration {
@@ -1735,7 +1777,7 @@ export function azureBlobFileSystemConfigurationDeserializer(
       : batchNodeIdentityReferenceDeserializer(item["identityReference"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Information used to connect to an NFS file system. */
 export interface NfsMountConfiguration {
   /** The URI of the file system to mount. */
@@ -1756,6 +1798,7 @@ export function nfsMountConfigurationSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function nfsMountConfigurationDeserializer(
   item: any,
 ): NfsMountConfiguration {
@@ -1765,7 +1808,7 @@ export function nfsMountConfigurationDeserializer(
     mountOptions: item["mountOptions"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Information used to connect to a CIFS file system. */
 export interface CifsMountConfiguration {
   /** The user to use for authentication against the CIFS file system. */
@@ -1792,6 +1835,7 @@ export function cifsMountConfigurationSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function cifsMountConfigurationDeserializer(
   item: any,
 ): CifsMountConfiguration {
@@ -1803,7 +1847,7 @@ export function cifsMountConfigurationDeserializer(
     password: item["password"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Information used to connect to an Azure Fileshare. */
 export interface AzureFileShareConfiguration {
   /** The Azure Storage account name. */
@@ -1830,6 +1874,7 @@ export function azureFileShareConfigurationSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function azureFileShareConfigurationDeserializer(
   item: any,
 ): AzureFileShareConfiguration {
@@ -1841,10 +1886,11 @@ export function azureFileShareConfigurationDeserializer(
     mountOptions: item["mountOptions"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** NodeCommunicationMode enums */
 export type NodeCommunicationMode = "default" | "classic" | "simplified";
 
+/* eslint-disable @typescript-eslint/naming-convention */
 /** The result of listing the Pools in an Account. */
 export interface _BatchPoolListResult {
   /** The list of Pools. */
@@ -1852,7 +1898,8 @@ export interface _BatchPoolListResult {
   /** The URL to get the next set of results. */
   odataNextLink?: string;
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _batchPoolListResultDeserializer(
   item: any,
 ): _BatchPoolListResult {
@@ -1863,7 +1910,7 @@ export function _batchPoolListResultDeserializer(
     odataNextLink: item["odata.nextLink"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function batchPoolArrayDeserializer(result: Array<BatchPool>): any[] {
   return result.map((item) => {
     return batchPoolDeserializer(item);
@@ -1955,6 +2002,7 @@ export interface BatchPool {
   readonly currentNodeCommunicationMode?: NodeCommunicationMode;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function batchPoolDeserializer(item: any): BatchPool {
   return {
     id: item["id"],
@@ -2043,7 +2091,7 @@ export function batchPoolDeserializer(item: any): BatchPool {
     currentNodeCommunicationMode: item["currentNodeCommunicationMode"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** PoolState enums */
 export type PoolState = "active" | "deleting";
 /** AllocationState enums */
@@ -2067,6 +2115,7 @@ export interface ResizeError {
   values?: NameValuePair[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function resizeErrorDeserializer(item: any): ResizeError {
   return {
     code: item["code"],
@@ -2076,7 +2125,7 @@ export function resizeErrorDeserializer(item: any): ResizeError {
       : nameValuePairArrayDeserializer(item["values"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function nameValuePairArrayDeserializer(
   result: Array<NameValuePair>,
 ): any[] {
@@ -2093,13 +2142,14 @@ export interface NameValuePair {
   value?: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function nameValuePairDeserializer(item: any): NameValuePair {
   return {
     name: item["name"],
     value: item["value"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The results and errors from an execution of a Pool autoscale formula. */
 export interface AutoScaleRun {
   /** The time at which the autoscale formula was last evaluated. */
@@ -2110,6 +2160,7 @@ export interface AutoScaleRun {
   error?: AutoScaleRunError;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function autoScaleRunDeserializer(item: any): AutoScaleRun {
   return {
     timestamp: new Date(item["timestamp"]),
@@ -2119,7 +2170,7 @@ export function autoScaleRunDeserializer(item: any): AutoScaleRun {
       : autoScaleRunErrorDeserializer(item["error"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** An error that occurred when executing or evaluating a Pool autoscale formula. */
 export interface AutoScaleRunError {
   /** An identifier for the autoscale error. Codes are invariant and are intended to be consumed programmatically. */
@@ -2130,6 +2181,7 @@ export interface AutoScaleRunError {
   values?: NameValuePair[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function autoScaleRunErrorDeserializer(item: any): AutoScaleRunError {
   return {
     code: item["code"],
@@ -2139,7 +2191,7 @@ export function autoScaleRunErrorDeserializer(item: any): AutoScaleRunError {
       : nameValuePairArrayDeserializer(item["values"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Contains utilization and resource usage statistics for the lifetime of a Pool. */
 export interface PoolStatistics {
   /** The URL for the statistics. */
@@ -2154,6 +2206,7 @@ export interface PoolStatistics {
   resourceStats?: ResourceStatistics;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function poolStatisticsDeserializer(item: any): PoolStatistics {
   return {
     url: item["url"],
@@ -2167,7 +2220,7 @@ export function poolStatisticsDeserializer(item: any): PoolStatistics {
       : resourceStatisticsDeserializer(item["resourceStats"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Statistics related to Pool usage information. */
 export interface UsageStatistics {
   /** The start time of the time range covered by the statistics. */
@@ -2178,6 +2231,7 @@ export interface UsageStatistics {
   dedicatedCoreTime: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function usageStatisticsDeserializer(item: any): UsageStatistics {
   return {
     startTime: new Date(item["startTime"]),
@@ -2185,7 +2239,7 @@ export function usageStatisticsDeserializer(item: any): UsageStatistics {
     dedicatedCoreTime: item["dedicatedCoreTime"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Statistics related to resource consumption by Compute Nodes in a Pool. */
 export interface ResourceStatistics {
   /** The start time of the time range covered by the statistics. */
@@ -2216,6 +2270,7 @@ export interface ResourceStatistics {
   networkWriteGiB: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function resourceStatisticsDeserializer(item: any): ResourceStatistics {
   return {
     startTime: new Date(item["startTime"]),
@@ -2233,7 +2288,7 @@ export function resourceStatisticsDeserializer(item: any): ResourceStatistics {
     networkWriteGiB: item["networkWriteGiB"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The identity of the Batch pool, if configured. */
 export interface BatchPoolIdentity {
   /** The identity of the Batch pool, if configured. The list of user identities associated with the Batch pool. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
@@ -2242,6 +2297,7 @@ export interface BatchPoolIdentity {
   userAssignedIdentities?: UserAssignedIdentity[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function batchPoolIdentityDeserializer(item: any): BatchPoolIdentity {
   return {
     type: item["type"],
@@ -2250,7 +2306,7 @@ export function batchPoolIdentityDeserializer(item: any): BatchPoolIdentity {
       : userAssignedIdentityArrayDeserializer(item["userAssignedIdentities"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** PoolIdentityType enums */
 export type PoolIdentityType = "UserAssigned" | "None";
 
@@ -2272,6 +2328,7 @@ export interface UserAssignedIdentity {
   readonly principalId?: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function userAssignedIdentityDeserializer(
   item: any,
 ): UserAssignedIdentity {
@@ -2281,7 +2338,7 @@ export function userAssignedIdentityDeserializer(
     principalId: item["principalId"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Options for updating an Azure Batch Pool. */
 export interface BatchPoolUpdateOptions {
   /** A Task to run on each Compute Node as it joins the Pool. The Task runs when the Compute Node is added to the Pool or when the Compute Node is restarted. If this element is present, it overwrites any existing StartTask. If omitted, any existing StartTask is left unchanged. */
@@ -2443,6 +2500,7 @@ export function nodeRemoveOptionsSerializer(item: NodeRemoveOptions): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/naming-convention */
 /** The result of listing the supported Virtual Machine Images. */
 export interface _AccountListSupportedImagesResult {
   /** The list of supported Virtual Machine Images. */
@@ -2450,7 +2508,8 @@ export interface _AccountListSupportedImagesResult {
   /** The URL to get the next set of results. */
   odataNextLink?: string;
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _accountListSupportedImagesResultDeserializer(
   item: any,
 ): _AccountListSupportedImagesResult {
@@ -2461,7 +2520,7 @@ export function _accountListSupportedImagesResultDeserializer(
     odataNextLink: item["odata.nextLink"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function imageInformationArrayDeserializer(
   result: Array<ImageInformation>,
 ): any[] {
@@ -2489,6 +2548,7 @@ export interface ImageInformation {
   verificationType: VerificationType;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function imageInformationDeserializer(item: any): ImageInformation {
   return {
     nodeAgentSkuId: item["nodeAgentSKUId"],
@@ -2505,12 +2565,13 @@ export function imageInformationDeserializer(item: any): ImageInformation {
     verificationType: item["verificationType"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** OSType enums */
 export type OSType = "linux" | "windows";
 /** VerificationType enums */
 export type VerificationType = "verified" | "unverified";
 
+/* eslint-disable @typescript-eslint/naming-convention */
 /** The result of listing the Compute Node counts in the Account. */
 export interface _PoolNodeCountsListResult {
   /** A list of Compute Node counts by Pool. */
@@ -2518,7 +2579,8 @@ export interface _PoolNodeCountsListResult {
   /** The URL to get the next set of results. */
   odataNextLink?: string;
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _poolNodeCountsListResultDeserializer(
   item: any,
 ): _PoolNodeCountsListResult {
@@ -2529,7 +2591,7 @@ export function _poolNodeCountsListResultDeserializer(
     odataNextLink: item["odata.nextLink"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function poolNodeCountsArrayDeserializer(
   result: Array<PoolNodeCounts>,
 ): any[] {
@@ -2548,6 +2610,7 @@ export interface PoolNodeCounts {
   lowPriority?: NodeCounts;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function poolNodeCountsDeserializer(item: any): PoolNodeCounts {
   return {
     poolId: item["poolId"],
@@ -2559,7 +2622,7 @@ export function poolNodeCountsDeserializer(item: any): PoolNodeCounts {
       : nodeCountsDeserializer(item["lowPriority"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The number of Compute Nodes in each Compute Node state. */
 export interface NodeCounts {
   /** The number of Compute Nodes in the creating state. */
@@ -2592,6 +2655,7 @@ export interface NodeCounts {
   total: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function nodeCountsDeserializer(item: any): NodeCounts {
   return {
     creating: item["creating"],
@@ -2610,7 +2674,7 @@ export function nodeCountsDeserializer(item: any): NodeCounts {
     total: item["total"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** An Azure Batch Job. */
 export interface BatchJob {
   /** A string that uniquely identifies the Job within the Account. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within an Account that differ only by case). */
@@ -2683,6 +2747,7 @@ export function batchJobSerializer(item: BatchJob): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function batchJobDeserializer(item: any): BatchJob {
   return {
     id: item["id"],
@@ -2739,7 +2804,7 @@ export function batchJobDeserializer(item: any): BatchJob {
       : jobStatisticsDeserializer(item["stats"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** JobState enums */
 export type JobState =
   | "active"
@@ -2765,13 +2830,14 @@ export function jobConstraintsSerializer(item: JobConstraints): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function jobConstraintsDeserializer(item: any): JobConstraints {
   return {
     maxWallClockTime: item["maxWallClockTime"],
     maxTaskRetryCount: item["maxTaskRetryCount"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /**
  * Specifies details of a Job Manager Task.
  * The Job Manager Task is automatically started when the Job is created. The
@@ -2879,6 +2945,7 @@ export function jobManagerTaskSerializer(item: JobManagerTask): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function jobManagerTaskDeserializer(item: any): JobManagerTask {
   return {
     id: item["id"],
@@ -2918,7 +2985,7 @@ export function jobManagerTaskDeserializer(item: any): JobManagerTask {
     allowLowPriorityNode: item["allowLowPriorityNode"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function outputFileArraySerializer(result: Array<OutputFile>): any[] {
   return result.map((item) => {
     return outputFileSerializer(item);
@@ -2949,6 +3016,7 @@ export function outputFileSerializer(item: OutputFile): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function outputFileDeserializer(item: any): OutputFile {
   return {
     filePattern: item["filePattern"],
@@ -2956,7 +3024,7 @@ export function outputFileDeserializer(item: any): OutputFile {
     uploadOptions: outputFileUploadOptionsDeserializer(item["uploadOptions"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The destination to which a file should be uploaded. */
 export interface OutputFileDestination {
   /** A location in Azure blob storage to which files are uploaded. */
@@ -2973,6 +3041,7 @@ export function outputFileDestinationSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function outputFileDestinationDeserializer(
   item: any,
 ): OutputFileDestination {
@@ -2982,7 +3051,7 @@ export function outputFileDestinationDeserializer(
       : outputFileBlobContainerDestinationDeserializer(item["container"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Specifies a file upload destination within an Azure blob storage container. */
 export interface OutputFileBlobContainerDestination {
   /** The destination blob or virtual directory within the Azure Storage container. If filePattern refers to a specific file (i.e. contains no wildcards), then path is the name of the blob to which to upload that file. If filePattern contains one or more wildcards (and therefore may match multiple files), then path is the name of the blob virtual directory (which is prepended to each blob name) to which to upload the file(s). If omitted, file(s) are uploaded to the root of the container with a blob name matching their file name. */
@@ -3010,6 +3079,7 @@ export function outputFileBlobContainerDestinationSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function outputFileBlobContainerDestinationDeserializer(
   item: any,
 ): OutputFileBlobContainerDestination {
@@ -3024,7 +3094,7 @@ export function outputFileBlobContainerDestinationDeserializer(
       : httpHeaderArrayDeserializer(item["uploadHeaders"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function httpHeaderArraySerializer(result: Array<HttpHeader>): any[] {
   return result.map((item) => {
     return httpHeaderSerializer(item);
@@ -3049,13 +3119,14 @@ export function httpHeaderSerializer(item: HttpHeader): any {
   return { name: item["name"], value: item["value"] };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function httpHeaderDeserializer(item: any): HttpHeader {
   return {
     name: item["name"],
     value: item["value"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /**
  * Options for an output file upload operation, including under what conditions
  * to perform the upload.
@@ -3071,6 +3142,7 @@ export function outputFileUploadOptionsSerializer(
   return { uploadCondition: item["uploadCondition"] };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function outputFileUploadOptionsDeserializer(
   item: any,
 ): OutputFileUploadOptions {
@@ -3078,7 +3150,7 @@ export function outputFileUploadOptionsDeserializer(
     uploadCondition: item["uploadCondition"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** OutputFileUploadCondition enums */
 export type OutputFileUploadCondition =
   | "tasksuccess"
@@ -3103,6 +3175,7 @@ export function taskConstraintsSerializer(item: TaskConstraints): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function taskConstraintsDeserializer(item: any): TaskConstraints {
   return {
     maxWallClockTime: item["maxWallClockTime"],
@@ -3110,7 +3183,7 @@ export function taskConstraintsDeserializer(item: any): TaskConstraints {
     maxTaskRetryCount: item["maxTaskRetryCount"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /**
  * The settings for an authentication token that the Task can use to perform Batch
  * service operations.
@@ -3132,6 +3205,7 @@ export function authenticationTokenSettingsSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function authenticationTokenSettingsDeserializer(
   item: any,
 ): AuthenticationTokenSettings {
@@ -3143,7 +3217,7 @@ export function authenticationTokenSettingsDeserializer(
         }),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** AccessScope enums */
 export type AccessScope = "job";
 
@@ -3220,6 +3294,7 @@ export function jobPreparationTaskSerializer(item: JobPreparationTask): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function jobPreparationTaskDeserializer(item: any): JobPreparationTask {
   return {
     id: item["id"],
@@ -3243,7 +3318,7 @@ export function jobPreparationTaskDeserializer(item: any): JobPreparationTask {
     rerunOnNodeRebootAfterSuccess: item["rerunOnNodeRebootAfterSuccess"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /**
  * A Job Release Task to run on Job completion on any Compute Node where the Job has run.
  * The Job Release Task runs when the Job ends, because of one of the following:
@@ -3302,6 +3377,7 @@ export function jobReleaseTaskSerializer(item: JobReleaseTask): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function jobReleaseTaskDeserializer(item: any): JobReleaseTask {
   return {
     id: item["id"],
@@ -3322,7 +3398,7 @@ export function jobReleaseTaskDeserializer(item: any): JobReleaseTask {
       : userIdentityDeserializer(item["userIdentity"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Specifies how a Job should be assigned to a Pool. */
 export interface PoolInformation {
   /** The ID of an existing Pool. All the Tasks of the Job will run on the specified Pool. You must ensure that the Pool referenced by this property exists. If the Pool does not exist at the time the Batch service tries to schedule a Job, no Tasks for the Job will run until you create a Pool with that id. Note that the Batch service will not reject the Job request; it will simply not run Tasks until the Pool exists. You must specify either the Pool ID or the auto Pool specification, but not both. */
@@ -3340,6 +3416,7 @@ export function poolInformationSerializer(item: PoolInformation): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function poolInformationDeserializer(item: any): PoolInformation {
   return {
     poolId: item["poolId"],
@@ -3348,7 +3425,7 @@ export function poolInformationDeserializer(item: any): PoolInformation {
       : autoPoolSpecificationDeserializer(item["autoPoolSpecification"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /**
  * Specifies characteristics for a temporary 'auto pool'. The Batch service will
  * create this auto Pool when the Job is submitted.
@@ -3377,6 +3454,7 @@ export function autoPoolSpecificationSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function autoPoolSpecificationDeserializer(
   item: any,
 ): AutoPoolSpecification {
@@ -3389,7 +3467,7 @@ export function autoPoolSpecificationDeserializer(
       : poolSpecificationDeserializer(item["pool"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** PoolLifetimeOption enums */
 export type PoolLifetimeOption = "jobschedule" | "job";
 
@@ -3500,6 +3578,7 @@ export function poolSpecificationSerializer(item: PoolSpecification): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function poolSpecificationDeserializer(item: any): PoolSpecification {
   return {
     displayName: item["displayName"],
@@ -3556,7 +3635,7 @@ export function poolSpecificationDeserializer(item: any): PoolSpecification {
     targetNodeCommunicationMode: item["targetNodeCommunicationMode"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The action the Batch service should take when all Tasks in the Job are in the completed state. */
 export type OnAllTasksComplete = "noaction" | "terminatejob";
 /** OnTaskFailure enums */
@@ -3574,6 +3653,7 @@ export function jobNetworkConfigurationSerializer(
   return { subnetId: item["subnetId"] };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function jobNetworkConfigurationDeserializer(
   item: any,
 ): JobNetworkConfiguration {
@@ -3581,7 +3661,7 @@ export function jobNetworkConfigurationDeserializer(
     subnetId: item["subnetId"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Contains information about the execution of a Job in the Azure Batch service. */
 export interface JobExecutionInformation {
   /** The start time of the Job. This is the time at which the Job was created. */
@@ -3596,6 +3676,7 @@ export interface JobExecutionInformation {
   terminateReason?: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function jobExecutionInformationDeserializer(
   item: any,
 ): JobExecutionInformation {
@@ -3609,7 +3690,7 @@ export function jobExecutionInformationDeserializer(
     terminateReason: item["terminateReason"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** An error encountered by the Batch service when scheduling a Job. */
 export interface JobSchedulingError {
   /** The category of the Job scheduling error. */
@@ -3622,6 +3703,7 @@ export interface JobSchedulingError {
   details?: NameValuePair[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function jobSchedulingErrorDeserializer(item: any): JobSchedulingError {
   return {
     category: item["category"],
@@ -3632,7 +3714,7 @@ export function jobSchedulingErrorDeserializer(item: any): JobSchedulingError {
       : nameValuePairArrayDeserializer(item["details"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** ErrorCategory enums */
 export type ErrorCategory = "usererror" | "servererror";
 
@@ -3668,6 +3750,7 @@ export interface JobStatistics {
   waitTime: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function jobStatisticsDeserializer(item: any): JobStatistics {
   return {
     url: item["url"],
@@ -3686,7 +3769,7 @@ export function jobStatisticsDeserializer(item: any): JobStatistics {
     waitTime: item["waitTime"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Options for updating an Azure Batch Job. */
 export interface BatchJobUpdateOptions {
   /** The priority of the Job. Priority values can range from -1000 to 1000, with -1000 being the lowest priority and 1000 being the highest priority. If omitted, the priority of the Job is left unchanged. */
@@ -3825,6 +3908,7 @@ export function batchJobCreateOptionsSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/naming-convention */
 /** The result of listing the Jobs in an Account. */
 export interface _BatchJobListResult {
   /** The list of Jobs. */
@@ -3832,7 +3916,8 @@ export interface _BatchJobListResult {
   /** The URL to get the next set of results. */
   odataNextLink?: string;
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _batchJobListResultDeserializer(
   item: any,
 ): _BatchJobListResult {
@@ -3843,7 +3928,7 @@ export function _batchJobListResultDeserializer(
     odataNextLink: item["odata.nextLink"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function batchJobArraySerializer(result: Array<BatchJob>): any[] {
   return result.map((item) => {
     return batchJobSerializer(item);
@@ -3856,6 +3941,7 @@ export function batchJobArrayDeserializer(result: Array<BatchJob>): any[] {
   });
 }
 
+/* eslint-disable @typescript-eslint/naming-convention */
 /**
  * The result of listing the status of the Job Preparation and Job Release Tasks
  * for a Job.
@@ -3866,7 +3952,8 @@ export interface _BatchJobListPreparationAndReleaseTaskStatusResult {
   /** The URL to get the next set of results. */
   odataNextLink?: string;
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _batchJobListPreparationAndReleaseTaskStatusResultDeserializer(
   item: any,
 ): _BatchJobListPreparationAndReleaseTaskStatusResult {
@@ -3879,7 +3966,7 @@ export function _batchJobListPreparationAndReleaseTaskStatusResultDeserializer(
     odataNextLink: item["odata.nextLink"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function jobPreparationAndReleaseTaskExecutionInformationArrayDeserializer(
   result: Array<JobPreparationAndReleaseTaskExecutionInformation>,
 ): any[] {
@@ -3902,6 +3989,7 @@ export interface JobPreparationAndReleaseTaskExecutionInformation {
   jobReleaseTaskExecutionInfo?: JobReleaseTaskExecutionInformation;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function jobPreparationAndReleaseTaskExecutionInformationDeserializer(
   item: any,
 ): JobPreparationAndReleaseTaskExecutionInformation {
@@ -3921,7 +4009,7 @@ export function jobPreparationAndReleaseTaskExecutionInformationDeserializer(
         ),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /**
  * Contains information about the execution of a Job Preparation Task on a Compute
  * Node.
@@ -3951,6 +4039,7 @@ export interface JobPreparationTaskExecutionInformation {
   result?: TaskExecutionResult;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function jobPreparationTaskExecutionInformationDeserializer(
   item: any,
 ): JobPreparationTaskExecutionInformation {
@@ -3974,7 +4063,7 @@ export function jobPreparationTaskExecutionInformationDeserializer(
     result: item["result"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** JobPreparationTaskState enums */
 export type JobPreparationTaskState = "running" | "completed";
 
@@ -3988,6 +4077,7 @@ export interface TaskContainerExecutionInformation {
   error?: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function taskContainerExecutionInformationDeserializer(
   item: any,
 ): TaskContainerExecutionInformation {
@@ -3997,7 +4087,7 @@ export function taskContainerExecutionInformationDeserializer(
     error: item["error"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Information about a Task failure. */
 export interface TaskFailureInformation {
   /** The category of the Task error. */
@@ -4010,6 +4100,7 @@ export interface TaskFailureInformation {
   details?: NameValuePair[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function taskFailureInformationDeserializer(
   item: any,
 ): TaskFailureInformation {
@@ -4022,7 +4113,7 @@ export function taskFailureInformationDeserializer(
       : nameValuePairArrayDeserializer(item["details"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** TaskExecutionResult enums */
 export type TaskExecutionResult = "success" | "failure";
 
@@ -4051,6 +4142,7 @@ export interface JobReleaseTaskExecutionInformation {
   result?: TaskExecutionResult;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function jobReleaseTaskExecutionInformationDeserializer(
   item: any,
 ): JobReleaseTaskExecutionInformation {
@@ -4070,7 +4162,7 @@ export function jobReleaseTaskExecutionInformationDeserializer(
     result: item["result"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** JobReleaseTaskState enums */
 export type JobReleaseTaskState = "running" | "completed";
 
@@ -4082,13 +4174,14 @@ export interface TaskCountsResult {
   taskSlotCounts: TaskSlotCounts;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function taskCountsResultDeserializer(item: any): TaskCountsResult {
   return {
     taskCounts: taskCountsDeserializer(item["taskCounts"]),
     taskSlotCounts: taskSlotCountsDeserializer(item["taskSlotCounts"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The Task counts for a Job. */
 export interface TaskCounts {
   /** The number of Tasks in the active state. */
@@ -4103,6 +4196,7 @@ export interface TaskCounts {
   failed: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function taskCountsDeserializer(item: any): TaskCounts {
   return {
     active: item["active"],
@@ -4112,7 +4206,7 @@ export function taskCountsDeserializer(item: any): TaskCounts {
     failed: item["failed"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The TaskSlot counts for a Job. */
 export interface TaskSlotCounts {
   /** The number of TaskSlots for active Tasks. */
@@ -4127,6 +4221,7 @@ export interface TaskSlotCounts {
   failed: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function taskSlotCountsDeserializer(item: any): TaskSlotCounts {
   return {
     active: item["active"],
@@ -4136,7 +4231,7 @@ export function taskSlotCountsDeserializer(item: any): TaskSlotCounts {
     failed: item["failed"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /**
  * A Certificate that can be installed on Compute Nodes and can be used to
  * authenticate operations on the machine.
@@ -4178,6 +4273,7 @@ export function batchCertificateSerializer(item: BatchCertificate): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function batchCertificateDeserializer(item: any): BatchCertificate {
   return {
     thumbprint: item["thumbprint"],
@@ -4207,7 +4303,7 @@ export function batchCertificateDeserializer(item: any): BatchCertificate {
     password: item["password"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** CertificateState enums */
 export type CertificateState = "active" | "deleting" | "deletefailed";
 
@@ -4221,6 +4317,7 @@ export interface DeleteCertificateError {
   values?: NameValuePair[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function deleteCertificateErrorDeserializer(
   item: any,
 ): DeleteCertificateError {
@@ -4232,10 +4329,11 @@ export function deleteCertificateErrorDeserializer(
       : nameValuePairArrayDeserializer(item["values"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** CertificateFormat enums */
 export type CertificateFormat = "pfx" | "cer";
 
+/* eslint-disable @typescript-eslint/naming-convention */
 /** The result of listing the Certificates in the Account. */
 export interface _CertificateListResult {
   /** The list of Certificates. */
@@ -4243,7 +4341,8 @@ export interface _CertificateListResult {
   /** The URL to get the next set of results. */
   odataNextLink?: string;
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _certificateListResultDeserializer(
   item: any,
 ): _CertificateListResult {
@@ -4254,7 +4353,7 @@ export function _certificateListResultDeserializer(
     odataNextLink: item["odata.nextLink"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function batchCertificateArraySerializer(
   result: Array<BatchCertificate>,
 ): any[] {
@@ -4318,6 +4417,7 @@ export function batchJobScheduleSerializer(item: BatchJobSchedule): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function batchJobScheduleDeserializer(item: any): BatchJobSchedule {
   return {
     id: item["id"],
@@ -4351,7 +4451,7 @@ export function batchJobScheduleDeserializer(item: any): BatchJobSchedule {
       : jobScheduleStatisticsDeserializer(item["stats"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** JobScheduleState enums */
 export type JobScheduleState =
   | "active"
@@ -4388,6 +4488,7 @@ export function scheduleSerializer(item: Schedule): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function scheduleDeserializer(item: any): Schedule {
   return {
     doNotRunUntil: !item["doNotRunUntil"]
@@ -4400,7 +4501,7 @@ export function scheduleDeserializer(item: any): Schedule {
     recurrenceInterval: item["recurrenceInterval"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Specifies details of the Jobs to be created on a schedule. */
 export interface JobSpecification {
   /** The priority of Jobs created under this schedule. Priority values can range from -1000 to 1000, with -1000 being the lowest priority and 1000 being the highest priority. The default value is 0. This priority is used as the default for all Jobs under the Job Schedule. You can update a Job's priority after it has been created using by using the update Job API. */
@@ -4469,6 +4570,7 @@ export function jobSpecificationSerializer(item: JobSpecification): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function jobSpecificationDeserializer(item: any): JobSpecification {
   return {
     priority: item["priority"],
@@ -4502,7 +4604,7 @@ export function jobSpecificationDeserializer(item: any): JobSpecification {
       : metadataItemArrayDeserializer(item["metadata"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /**
  * Contains information about Jobs that have been and will be run under a Job
  * Schedule.
@@ -4516,6 +4618,7 @@ export interface JobScheduleExecutionInformation {
   endTime?: Date;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function jobScheduleExecutionInformationDeserializer(
   item: any,
 ): JobScheduleExecutionInformation {
@@ -4529,7 +4632,7 @@ export function jobScheduleExecutionInformationDeserializer(
     endTime: !item["endTime"] ? item["endTime"] : new Date(item["endTime"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Information about the most recent Job to run under the Job Schedule. */
 export interface RecentJob {
   /** The ID of the Job. */
@@ -4538,13 +4641,14 @@ export interface RecentJob {
   url?: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function recentJobDeserializer(item: any): RecentJob {
   return {
     id: item["id"],
     url: item["url"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Resource usage statistics for a Job Schedule. */
 export interface JobScheduleStatistics {
   /** The URL of the statistics. */
@@ -4577,6 +4681,7 @@ export interface JobScheduleStatistics {
   waitTime: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function jobScheduleStatisticsDeserializer(
   item: any,
 ): JobScheduleStatistics {
@@ -4597,7 +4702,7 @@ export function jobScheduleStatisticsDeserializer(
     waitTime: item["waitTime"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Options for updating an Azure Batch Job Schedule. */
 export interface BatchJobScheduleUpdateOptions {
   /** The schedule according to which Jobs will be created. All times are fixed respective to UTC and are not impacted by daylight saving time. If you do not specify this element, the existing schedule is left unchanged. */
@@ -4652,6 +4757,7 @@ export function batchJobScheduleCreateOptionsSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/naming-convention */
 /** The result of listing the Job Schedules in an Account. */
 export interface _BatchJobScheduleListResult {
   /** The list of Job Schedules. */
@@ -4659,7 +4765,8 @@ export interface _BatchJobScheduleListResult {
   /** The URL to get the next set of results. */
   odataNextLink?: string;
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _batchJobScheduleListResultDeserializer(
   item: any,
 ): _BatchJobScheduleListResult {
@@ -4670,7 +4777,7 @@ export function _batchJobScheduleListResultDeserializer(
     odataNextLink: item["odata.nextLink"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function batchJobScheduleArraySerializer(
   result: Array<BatchJobSchedule>,
 ): any[] {
@@ -4808,6 +4915,7 @@ export function exitConditionsSerializer(item: ExitConditions): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function exitConditionsDeserializer(item: any): ExitConditions {
   return {
     exitCodes: !item["exitCodes"]
@@ -4827,7 +4935,7 @@ export function exitConditionsDeserializer(item: any): ExitConditions {
       : exitOptionsDeserializer(item["default"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function exitCodeMappingArraySerializer(
   result: Array<ExitCodeMapping>,
 ): any[] {
@@ -4862,13 +4970,14 @@ export function exitCodeMappingSerializer(item: ExitCodeMapping): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function exitCodeMappingDeserializer(item: any): ExitCodeMapping {
   return {
     code: item["code"],
     exitOptions: exitOptionsDeserializer(item["exitOptions"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Specifies how the Batch service responds to a particular exit condition. */
 export interface ExitOptions {
   /** An action to take on the Job containing the Task, if the Task completes with the given exit condition and the Job's onTaskFailed property is 'performExitOptionsJobAction'. The default is none for exit code 0 and terminate for all other exit conditions. If the Job's onTaskFailed property is noaction, then specifying this property returns an error and the add Task request fails with an invalid property value error; if you are calling the REST API directly, the HTTP status code is 400 (Bad Request). */
@@ -4884,13 +4993,14 @@ export function exitOptionsSerializer(item: ExitOptions): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function exitOptionsDeserializer(item: any): ExitOptions {
   return {
     jobAction: item["jobAction"],
     dependencyAction: item["dependencyAction"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** JobAction enums */
 export type JobAction = "none" | "disable" | "terminate";
 /** DependencyAction enums */
@@ -4935,6 +5045,7 @@ export function exitCodeRangeMappingSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function exitCodeRangeMappingDeserializer(
   item: any,
 ): ExitCodeRangeMapping {
@@ -4944,7 +5055,7 @@ export function exitCodeRangeMappingDeserializer(
     exitOptions: exitOptionsDeserializer(item["exitOptions"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /**
  * A locality hint that can be used by the Batch service to select a Compute Node
  * on which to start a Task.
@@ -4958,6 +5069,7 @@ export function affinityInformationSerializer(item: AffinityInformation): any {
   return { affinityId: item["affinityId"] };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function affinityInformationDeserializer(
   item: any,
 ): AffinityInformation {
@@ -4965,7 +5077,7 @@ export function affinityInformationDeserializer(
     affinityId: item["affinityId"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /**
  * Multi-instance Tasks are commonly used to support MPI Tasks. In the MPI case,
  * if any of the subtasks fail (for example due to exiting with a non-zero exit
@@ -4993,6 +5105,7 @@ export function multiInstanceSettingsSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function multiInstanceSettingsDeserializer(
   item: any,
 ): MultiInstanceSettings {
@@ -5004,7 +5117,7 @@ export function multiInstanceSettingsDeserializer(
       : resourceFileArrayDeserializer(item["commonResourceFiles"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /**
  * Specifies any dependencies of a Task. Any Task that is explicitly specified or
  * within a dependency range must complete before the dependant Task will be
@@ -5030,6 +5143,7 @@ export function taskDependenciesSerializer(item: TaskDependencies): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function taskDependenciesDeserializer(item: any): TaskDependencies {
   return {
     taskIds: !item["taskIds"]
@@ -5042,7 +5156,7 @@ export function taskDependenciesDeserializer(item: any): TaskDependencies {
       : taskIdRangeArrayDeserializer(item["taskIdRanges"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function taskIdRangeArraySerializer(result: Array<TaskIdRange>): any[] {
   return result.map((item) => {
     return taskIdRangeSerializer(item);
@@ -5072,13 +5186,15 @@ export function taskIdRangeSerializer(item: TaskIdRange): any {
   return { start: item["start"], end: item["end"] };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function taskIdRangeDeserializer(item: any): TaskIdRange {
   return {
     start: item["start"],
     end: item["end"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/naming-convention */
 /** The result of listing the Tasks in a Job. */
 export interface _BatchTaskListResult {
   /** The list of Tasks. */
@@ -5086,7 +5202,8 @@ export interface _BatchTaskListResult {
   /** The URL to get the next set of results. */
   odataNextLink?: string;
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _batchTaskListResultDeserializer(
   item: any,
 ): _BatchTaskListResult {
@@ -5097,7 +5214,7 @@ export function _batchTaskListResultDeserializer(
     odataNextLink: item["odata.nextLink"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function batchTaskArraySerializer(result: Array<BatchTask>): any[] {
   return result.map((item) => {
     return batchTaskSerializer(item);
@@ -5186,6 +5303,7 @@ export function batchTaskSerializer(item: BatchTask): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function batchTaskDeserializer(item: any): BatchTask {
   return {
     id: item["id"],
@@ -5259,7 +5377,7 @@ export function batchTaskDeserializer(item: any): BatchTask {
         ),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** TaskState enums */
 export type TaskState = "active" | "preparing" | "running" | "completed";
 
@@ -5287,6 +5405,7 @@ export interface TaskExecutionInformation {
   result?: TaskExecutionResult;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function taskExecutionInformationDeserializer(
   item: any,
 ): TaskExecutionInformation {
@@ -5313,7 +5432,7 @@ export function taskExecutionInformationDeserializer(
     result: item["result"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Information about the Compute Node on which a Task ran. */
 export interface BatchNodeInformation {
   /** An identifier for the Node on which the Task ran, which can be passed when adding a Task to request that the Task be scheduled on this Compute Node. */
@@ -5330,6 +5449,7 @@ export interface BatchNodeInformation {
   taskRootDirectoryUrl?: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function batchNodeInformationDeserializer(
   item: any,
 ): BatchNodeInformation {
@@ -5342,7 +5462,7 @@ export function batchNodeInformationDeserializer(
     taskRootDirectoryUrl: item["taskRootDirectoryUrl"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Resource usage statistics for a Task. */
 export interface TaskStatistics {
   /** The URL of the statistics. */
@@ -5369,6 +5489,7 @@ export interface TaskStatistics {
   waitTime: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function taskStatisticsDeserializer(item: any): TaskStatistics {
   return {
     url: item["url"],
@@ -5384,7 +5505,7 @@ export function taskStatisticsDeserializer(item: any): TaskStatistics {
     waitTime: item["waitTime"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** A collection of Azure Batch Tasks to add. */
 export interface BatchTaskCollection {
   /** The collection of Tasks to add. The maximum count of Tasks is 100. The total serialized size of this collection must be less than 1MB. If it is greater than 1MB (for example if each Task has 100's of resource files or environment variables), the request will fail with code 'RequestBodyTooLarge' and should be retried again with fewer Tasks. */
@@ -5409,6 +5530,7 @@ export interface TaskAddCollectionResult {
   value?: TaskAddResult[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function taskAddCollectionResultDeserializer(
   item: any,
 ): TaskAddCollectionResult {
@@ -5418,7 +5540,7 @@ export function taskAddCollectionResultDeserializer(
       : taskAddResultArrayDeserializer(item["value"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function taskAddResultArrayDeserializer(
   result: Array<TaskAddResult>,
 ): any[] {
@@ -5443,6 +5565,7 @@ export interface TaskAddResult {
   error?: BatchError;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function taskAddResultDeserializer(item: any): TaskAddResult {
   return {
     status: item["status"],
@@ -5457,7 +5580,7 @@ export function taskAddResultDeserializer(item: any): TaskAddResult {
       : batchErrorDeserializer(item["error"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** TaskAddStatus enums */
 export type TaskAddStatus = "Success" | "clienterror" | "servererror";
 
@@ -5467,6 +5590,7 @@ export interface BatchTaskListSubtasksResult {
   value?: SubtaskInformation[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function batchTaskListSubtasksResultDeserializer(
   item: any,
 ): BatchTaskListSubtasksResult {
@@ -5476,7 +5600,7 @@ export function batchTaskListSubtasksResultDeserializer(
       : subtaskInformationArrayDeserializer(item["value"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function subtaskInformationArrayDeserializer(
   result: Array<SubtaskInformation>,
 ): any[] {
@@ -5513,6 +5637,7 @@ export interface SubtaskInformation {
   result?: TaskExecutionResult;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function subtaskInformationDeserializer(item: any): SubtaskInformation {
   return {
     id: item["id"],
@@ -5541,10 +5666,11 @@ export function subtaskInformationDeserializer(item: any): SubtaskInformation {
     result: item["result"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** SubtaskState enums */
 export type SubtaskState = "preparing" | "running" | "completed";
 
+/* eslint-disable @typescript-eslint/naming-convention */
 /**
  * The result of listing the files on a Compute Node, or the files associated with
  * a Task on a Compute Node.
@@ -5555,7 +5681,8 @@ export interface _NodeFileListResult {
   /** The URL to get the next set of results. */
   odataNextLink?: string;
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _nodeFileListResultDeserializer(
   item: any,
 ): _NodeFileListResult {
@@ -5566,7 +5693,7 @@ export function _nodeFileListResultDeserializer(
     odataNextLink: item["odata.nextLink"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function nodeFileArrayDeserializer(result: Array<NodeFile>): any[] {
   return result.map((item) => {
     return nodeFileDeserializer(item);
@@ -5585,6 +5712,7 @@ export interface NodeFile {
   properties?: FileProperties;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function nodeFileDeserializer(item: any): NodeFile {
   return {
     name: item["name"],
@@ -5595,7 +5723,7 @@ export function nodeFileDeserializer(item: any): NodeFile {
       : filePropertiesDeserializer(item["properties"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The properties of a file on a Compute Node. */
 export interface FileProperties {
   /** The file creation time. The creation time is not returned for files on Linux Compute Nodes. */
@@ -5610,6 +5738,7 @@ export interface FileProperties {
   fileMode?: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function filePropertiesDeserializer(item: any): FileProperties {
   return {
     creationTime: !item["creationTime"]
@@ -5621,7 +5750,7 @@ export function filePropertiesDeserializer(item: any): FileProperties {
     fileMode: item["fileMode"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Options for creating a user account for RDP or SSH access on an Azure Batch Compute Node. */
 export interface BatchNodeUserCreateOptions {
   /** The user name of the Account. */
@@ -5727,6 +5856,7 @@ export interface BatchNode {
   virtualMachineInfo?: VirtualMachineInfo;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function batchNodeDeserializer(item: any): BatchNode {
   return {
     id: item["id"],
@@ -5778,7 +5908,7 @@ export function batchNodeDeserializer(item: any): BatchNode {
       : virtualMachineInfoDeserializer(item["virtualMachineInfo"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** BatchNodeState enums */
 export type BatchNodeState =
   | "idle"
@@ -5821,6 +5951,7 @@ export interface TaskInformation {
   executionInfo?: TaskExecutionInformation;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function taskInformationDeserializer(item: any): TaskInformation {
   return {
     taskUrl: item["taskUrl"],
@@ -5833,7 +5964,7 @@ export function taskInformationDeserializer(item: any): TaskInformation {
       : taskExecutionInformationDeserializer(item["executionInfo"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Information about a StartTask running on a Compute Node. */
 export interface StartTaskInformation {
   /** The state of the StartTask on the Compute Node. */
@@ -5856,6 +5987,7 @@ export interface StartTaskInformation {
   result?: TaskExecutionResult;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function startTaskInformationDeserializer(
   item: any,
 ): StartTaskInformation {
@@ -5877,7 +6009,7 @@ export function startTaskInformationDeserializer(
     result: item["result"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** StartTaskState enums */
 export type StartTaskState = "running" | "completed";
 
@@ -5899,6 +6031,7 @@ export interface BatchNodeError {
   errorDetails?: NameValuePair[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function batchNodeErrorDeserializer(item: any): BatchNodeError {
   return {
     code: item["code"],
@@ -5908,13 +6041,14 @@ export function batchNodeErrorDeserializer(item: any): BatchNodeError {
       : nameValuePairArrayDeserializer(item["errorDetails"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The endpoint configuration for the Compute Node. */
 export interface BatchNodeEndpointConfiguration {
   /** The list of inbound endpoints that are accessible on the Compute Node. */
   inboundEndpoints: InboundEndpoint[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function batchNodeEndpointConfigurationDeserializer(
   item: any,
 ): BatchNodeEndpointConfiguration {
@@ -5924,7 +6058,7 @@ export function batchNodeEndpointConfigurationDeserializer(
     ),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function inboundEndpointArrayDeserializer(
   result: Array<InboundEndpoint>,
 ): any[] {
@@ -5949,6 +6083,7 @@ export interface InboundEndpoint {
   backendPort: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function inboundEndpointDeserializer(item: any): InboundEndpoint {
   return {
     name: item["name"],
@@ -5959,7 +6094,7 @@ export function inboundEndpointDeserializer(item: any): InboundEndpoint {
     backendPort: item["backendPort"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /**
  * The Batch Compute Node agent is a program that runs on each Compute Node in the
  * Pool and provides Batch capability on the Compute Node.
@@ -5971,6 +6106,7 @@ export interface NodeAgentInformation {
   lastUpdateTime: Date;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function nodeAgentInformationDeserializer(
   item: any,
 ): NodeAgentInformation {
@@ -5979,13 +6115,14 @@ export function nodeAgentInformationDeserializer(
     lastUpdateTime: new Date(item["lastUpdateTime"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Info about the current state of the virtual machine. */
 export interface VirtualMachineInfo {
   /** The reference to the Azure Virtual Machine's Marketplace Image. */
   imageReference?: ImageReference;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function virtualMachineInfoDeserializer(item: any): VirtualMachineInfo {
   return {
     imageReference: !item["imageReference"]
@@ -5993,7 +6130,7 @@ export function virtualMachineInfoDeserializer(item: any): VirtualMachineInfo {
       : imageReferenceDeserializer(item["imageReference"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Options for rebooting an Azure Batch Compute Node. */
 export interface NodeRebootOptions {
   /** When to reboot the Compute Node and what to do with currently running Tasks. The default value is requeue. */
@@ -6054,6 +6191,7 @@ export interface BatchNodeRemoteLoginSettingsResult {
   remoteLoginPort: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function batchNodeRemoteLoginSettingsResultDeserializer(
   item: any,
 ): BatchNodeRemoteLoginSettingsResult {
@@ -6062,7 +6200,7 @@ export function batchNodeRemoteLoginSettingsResultDeserializer(
     remoteLoginPort: item["remoteLoginPort"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The Azure Batch service log files upload options for a Compute Node. */
 export interface UploadBatchServiceLogsOptions {
   /** The URL of the container within Azure Blob Storage to which to upload the Batch Service log file(s). If a user assigned managed identity is not being used, the URL must include a Shared Access Signature (SAS) granting write permissions to the container. The SAS duration must allow enough time for the upload to finish. The start time for SAS is optional and recommended to not be specified. */
@@ -6096,6 +6234,7 @@ export interface UploadBatchServiceLogsResult {
   numberOfFilesUploaded: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function uploadBatchServiceLogsResultDeserializer(
   item: any,
 ): UploadBatchServiceLogsResult {
@@ -6104,7 +6243,8 @@ export function uploadBatchServiceLogsResultDeserializer(
     numberOfFilesUploaded: item["numberOfFilesUploaded"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/naming-convention */
 /** The result of listing the Compute Nodes in a Pool. */
 export interface _BatchNodeListResult {
   /** The list of Compute Nodes. */
@@ -6112,7 +6252,8 @@ export interface _BatchNodeListResult {
   /** The URL to get the next set of results. */
   odataNextLink?: string;
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _batchNodeListResultDeserializer(
   item: any,
 ): _BatchNodeListResult {
@@ -6123,7 +6264,7 @@ export function _batchNodeListResultDeserializer(
     odataNextLink: item["odata.nextLink"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function batchNodeArrayDeserializer(result: Array<BatchNode>): any[] {
   return result.map((item) => {
     return batchNodeDeserializer(item);
@@ -6140,6 +6281,7 @@ export interface NodeVMExtension {
   instanceView?: VMExtensionInstanceView;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function nodeVMExtensionDeserializer(item: any): NodeVMExtension {
   return {
     provisioningState: item["provisioningState"],
@@ -6151,7 +6293,7 @@ export function nodeVMExtensionDeserializer(item: any): NodeVMExtension {
       : vmExtensionInstanceViewDeserializer(item["instanceView"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The vm extension instance view. */
 export interface VMExtensionInstanceView {
   /** The name of the vm extension instance view. */
@@ -6162,6 +6304,7 @@ export interface VMExtensionInstanceView {
   subStatuses?: InstanceViewStatus[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function vmExtensionInstanceViewDeserializer(
   item: any,
 ): VMExtensionInstanceView {
@@ -6175,7 +6318,7 @@ export function vmExtensionInstanceViewDeserializer(
       : instanceViewStatusArrayDeserializer(item["subStatuses"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function instanceViewStatusArrayDeserializer(
   result: Array<InstanceViewStatus>,
 ): any[] {
@@ -6198,6 +6341,7 @@ export interface InstanceViewStatus {
   time?: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function instanceViewStatusDeserializer(item: any): InstanceViewStatus {
   return {
     code: item["code"],
@@ -6207,10 +6351,11 @@ export function instanceViewStatusDeserializer(item: any): InstanceViewStatus {
     time: item["time"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Level code. */
 export type StatusLevelTypes = "Error" | "Info" | "Warning";
 
+/* eslint-disable @typescript-eslint/naming-convention */
 /** The result of listing the Compute Node extensions in a Node. */
 export interface _NodeVMExtensionList {
   /** The list of Compute Node extensions. */
@@ -6218,7 +6363,8 @@ export interface _NodeVMExtensionList {
   /** The URL to get the next set of results. */
   odataNextLink?: string;
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _nodeVMExtensionListDeserializer(
   item: any,
 ): _NodeVMExtensionList {
@@ -6229,7 +6375,7 @@ export function _nodeVMExtensionListDeserializer(
     odataNextLink: item["odata.nextLink"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function nodeVMExtensionArrayDeserializer(
   result: Array<NodeVMExtension>,
 ): any[] {
