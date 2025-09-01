@@ -114,6 +114,7 @@ export interface SimpleModel {
   propEncoded: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function simpleModelDeserializer(item: any): SimpleModel {
   return {
     propString: item["propString"],
@@ -210,34 +211,37 @@ export function simpleModelDeserializer(item: any): SimpleModel {
     propEncoded: item["prop_encoded"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Alias for _SimpleModelPropSimpleUnion */
 export type _SimpleModelPropSimpleUnion = string | boolean | number;
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _simpleModelPropSimpleUnionDeserializer(
   item: any,
 ): _SimpleModelPropSimpleUnion {
   return item;
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Alias for _SimpleModelPropSimpleUnionOptional */
 export type _SimpleModelPropSimpleUnionOptional = string | boolean | number;
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _simpleModelPropSimpleUnionOptionalDeserializer(
   item: any,
 ): _SimpleModelPropSimpleUnionOptional {
   return item;
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Alias for _SimpleModelPropMixedTypeLiteral */
 export type _SimpleModelPropMixedTypeLiteral = "A" | false | 1;
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _simpleModelPropMixedTypeLiteralDeserializer(
   item: any,
 ): _SimpleModelPropMixedTypeLiteral {
   return item;
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function _simpleModelPropSimpleUnionArrayArrayDeserializer(
   result: Array<_SimpleModelPropSimpleUnionArray>,
 ): any[] {
@@ -249,12 +253,13 @@ export function _simpleModelPropSimpleUnionArrayArrayDeserializer(
 /** Alias for _SimpleModelPropSimpleUnionArray */
 export type _SimpleModelPropSimpleUnionArray = string | boolean | number;
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _simpleModelPropSimpleUnionArrayDeserializer(
   item: any,
 ): _SimpleModelPropSimpleUnionArray {
   return item;
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function _simpleModelPropSimpleUnionArrayOptionalArrayDeserializer(
   result: Array<_SimpleModelPropSimpleUnionArrayOptional>,
 ): any[] {
@@ -269,12 +274,13 @@ export type _SimpleModelPropSimpleUnionArrayOptional =
   | boolean
   | number;
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _simpleModelPropSimpleUnionArrayOptionalDeserializer(
   item: any,
 ): _SimpleModelPropSimpleUnionArrayOptional {
   return item;
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function _simpleModelPropRecordOfSimpleUnionRecordDeserializer(
   item: Record<string, any>,
 ): Record<string, _SimpleModelPropRecordOfSimpleUnion> {
@@ -290,12 +296,13 @@ export function _simpleModelPropRecordOfSimpleUnionRecordDeserializer(
 /** Alias for _SimpleModelPropRecordOfSimpleUnion */
 export type _SimpleModelPropRecordOfSimpleUnion = string | boolean | number;
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _simpleModelPropRecordOfSimpleUnionDeserializer(
   item: any,
 ): _SimpleModelPropRecordOfSimpleUnion {
   return item;
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function _simpleModelPropRecordOfUnionArrayArrayRecordDeserializer(
   item: Record<string, any>,
 ): Record<string, Array<_SimpleModelPropRecordOfUnionArray>> {
@@ -319,12 +326,13 @@ export function _simpleModelPropRecordOfUnionArrayArrayDeserializer(
 /** Alias for _SimpleModelPropRecordOfUnionArray */
 export type _SimpleModelPropRecordOfUnionArray = string | boolean | number;
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _simpleModelPropRecordOfUnionArrayDeserializer(
   item: any,
 ): _SimpleModelPropRecordOfUnionArray {
   return item;
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function _simpleModelPropRecordOfUnionArrayOptionalArrayRecordDeserializer(
   item: Record<string, any>,
 ): Record<string, Array<_SimpleModelPropRecordOfUnionArrayOptional>> {
@@ -351,12 +359,13 @@ export type _SimpleModelPropRecordOfUnionArrayOptional =
   | boolean
   | number;
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _simpleModelPropRecordOfUnionArrayOptionalDeserializer(
   item: any,
 ): _SimpleModelPropRecordOfUnionArrayOptional {
   return item;
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function _simpleModelPropArrayOfRecordOfUnionRecordArrayDeserializer(
   result: Array<Record<string, _SimpleModelPropArrayOfRecordOfUnion>>,
 ): any[] {
@@ -380,12 +389,13 @@ export function _simpleModelPropArrayOfRecordOfUnionRecordDeserializer(
 /** Alias for _SimpleModelPropArrayOfRecordOfUnion */
 export type _SimpleModelPropArrayOfRecordOfUnion = string | boolean | number;
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _simpleModelPropArrayOfRecordOfUnionDeserializer(
   item: any,
 ): _SimpleModelPropArrayOfRecordOfUnion {
   return item;
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function _simpleModelPropArrayOfRecordOfUnionOptionalRecordArrayDeserializer(
   result: Array<Record<string, _SimpleModelPropArrayOfRecordOfUnionOptional>>,
 ): any[] {
@@ -412,9 +422,11 @@ export type _SimpleModelPropArrayOfRecordOfUnionOptional =
   | boolean
   | number;
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _simpleModelPropArrayOfRecordOfUnionOptionalDeserializer(
   item: any,
 ): _SimpleModelPropArrayOfRecordOfUnionOptional {
   return item;
 }
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 ```

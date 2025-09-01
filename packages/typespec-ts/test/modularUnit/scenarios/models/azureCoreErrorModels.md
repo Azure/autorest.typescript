@@ -67,6 +67,7 @@ withRawContent: true
 ## Models
 
 ```ts models
+/* eslint-disable @typescript-eslint/naming-convention */
 /** A list of REST API operations supported by an Azure Resource Provider. It contains an URL link to get the next set of results. */
 export interface _OperationListResult {
   /** The Operation items on this page */
@@ -74,7 +75,8 @@ export interface _OperationListResult {
   /** The link to the next page of items */
   nextLink?: string;
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _operationListResultDeserializer(
   item: any,
 ): _OperationListResult {
@@ -83,7 +85,7 @@ export function _operationListResultDeserializer(
     nextLink: item["nextLink"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function operationArrayDeserializer(result: Array<Operation>): any[] {
   return result.map((item) => {
     return operationDeserializer(item);
@@ -104,6 +106,7 @@ export interface Operation {
   readonly actionType?: ActionType;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function operationDeserializer(item: any): Operation {
   return {
     name: item["name"],
@@ -115,7 +118,7 @@ export function operationDeserializer(item: any): Operation {
     actionType: item["actionType"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Localized display information for and operation. */
 export interface OperationDisplay {
   /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
@@ -128,6 +131,7 @@ export interface OperationDisplay {
   readonly description?: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function operationDisplayDeserializer(item: any): OperationDisplay {
   return {
     provider: item["provider"],
@@ -136,7 +140,7 @@ export function operationDisplayDeserializer(item: any): OperationDisplay {
     description: item["description"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type Origin = "user" | "system" | "user,system";
 /** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
@@ -148,6 +152,7 @@ export interface ErrorResponse {
   error?: ErrorDetail;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function errorResponseDeserializer(item: any): ErrorResponse {
   return {
     error: !item["error"]
@@ -155,7 +160,7 @@ export function errorResponseDeserializer(item: any): ErrorResponse {
       : errorDetailDeserializer(item["error"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The error detail. */
 export interface ErrorDetail {
   /** The error code. */
@@ -170,6 +175,7 @@ export interface ErrorDetail {
   readonly additionalInfo?: ErrorAdditionalInfo[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function errorDetailDeserializer(item: any): ErrorDetail {
   return {
     code: item["code"],
@@ -183,7 +189,7 @@ export function errorDetailDeserializer(item: any): ErrorDetail {
       : errorAdditionalInfoArrayDeserializer(item["additionalInfo"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function errorDetailArrayDeserializer(
   result: Array<ErrorDetail>,
 ): any[] {
@@ -208,6 +214,7 @@ export interface ErrorAdditionalInfo {
   readonly info?: any;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function errorAdditionalInfoDeserializer(
   item: any,
 ): ErrorAdditionalInfo {
@@ -216,7 +223,7 @@ export function errorAdditionalInfoDeserializer(
     info: item["info"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Concrete proxy resource types can be created by aliasing this type using a specific property type. */
 export interface AvsSummary extends ProxyResource {
   /** The resource-specific properties for this resource. */
@@ -231,6 +238,7 @@ export function avsSummarySerializer(item: AvsSummary): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function avsSummaryDeserializer(item: any): AvsSummary {
   return {
     id: item["id"],
@@ -244,7 +252,7 @@ export function avsSummaryDeserializer(item: any): AvsSummary {
       : avsSummaryPropertiesDeserializer(item["properties"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** model interface AvsSummaryProperties */
 export interface AvsSummaryProperties {
   error: ErrorDetail_1;
@@ -256,6 +264,7 @@ export function avsSummaryPropertiesSerializer(
   return { error: errorDetailSerializer(item["error"]) };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function avsSummaryPropertiesDeserializer(
   item: any,
 ): AvsSummaryProperties {
@@ -263,7 +272,7 @@ export function avsSummaryPropertiesDeserializer(
     error: errorDetailDeserializer_1(item["error"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** model interface ErrorDetail */
 export interface ErrorDetail_1 {
   code: string;
@@ -279,6 +288,7 @@ export function errorDetailSerializer(item: ErrorDetail_1): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function errorDetailDeserializer_1(item: any): ErrorDetail_1 {
   return {
     code: item["code"],
@@ -286,7 +296,7 @@ export function errorDetailDeserializer_1(item: any): ErrorDetail_1 {
     details: item["details"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
 export interface ProxyResource extends Resource {}
 
@@ -294,6 +304,7 @@ export function proxyResourceSerializer(item: ProxyResource): any {
   return item;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function proxyResourceDeserializer(item: any): ProxyResource {
   return {
     id: item["id"],
@@ -304,7 +315,7 @@ export function proxyResourceDeserializer(item: any): ProxyResource {
       : systemDataDeserializer(item["systemData"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Common fields that are returned in the response for all Azure Resource Manager resources */
 export interface Resource {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -321,6 +332,7 @@ export function resourceSerializer(item: Resource): any {
   return item;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function resourceDeserializer(item: any): Resource {
   return {
     id: item["id"],
@@ -331,7 +343,7 @@ export function resourceDeserializer(item: any): Resource {
       : systemDataDeserializer(item["systemData"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
   /** The identity that created the resource. */
@@ -348,6 +360,7 @@ export interface SystemData {
   lastModifiedAt?: Date;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function systemDataDeserializer(item: any): SystemData {
   return {
     createdBy: item["createdBy"],
@@ -362,7 +375,7 @@ export function systemDataDeserializer(item: any): SystemData {
       : new Date(item["lastModifiedAt"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** The kind of entity that created the resource. */
 export type CreatedByType = "User" | "Application" | "ManagedIdentity" | "Key";
 

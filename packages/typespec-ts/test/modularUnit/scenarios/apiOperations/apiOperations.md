@@ -234,6 +234,7 @@ op uploadFiles(
 ## Models
 
 ```ts models
+/* eslint-disable @typescript-eslint/naming-convention */
 import {
   FileContents,
   createFilePartDescriptor,
@@ -246,7 +247,7 @@ export interface _UploadFilesRequest {
     | { contents: FileContents; contentType?: string; filename?: string }
   >;
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
 export function _uploadFilesRequestSerializer(item: _UploadFilesRequest): any {
   return [
     ...item["files"].map((x: unknown) =>
@@ -450,6 +451,7 @@ op downloadFile(): {
 ## Models
 
 ```ts models
+/* eslint-disable @typescript-eslint/naming-convention */
 import { FileContents } from "../static-helpers/multipartHelpers.js";
 import { stringToUint8Array } from "@azure/core-util";
 
@@ -461,7 +463,8 @@ export interface _DownloadFileResponse {
     | { contents: FileContents; contentType?: string; filename?: string }
   >;
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _downloadFileResponseDeserializer(
   item: any,
 ): _DownloadFileResponse {
@@ -472,6 +475,7 @@ export function _downloadFileResponseDeserializer(
     }),
   };
 }
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 ```
 
 ## Operations
@@ -549,6 +553,7 @@ op downloadFile(): {
 ## Models
 
 ```ts models
+/* eslint-disable @typescript-eslint/naming-convention */
 import { FileContents } from "../static-helpers/multipartHelpers.js";
 import { stringToUint8Array } from "@azure/core-util";
 
@@ -559,7 +564,8 @@ export interface _DownloadFileResponse {
     | FileContents
     | { contents: FileContents; contentType?: string; filename?: string };
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _downloadFileResponseDeserializer(
   item: any,
 ): _DownloadFileResponse {
@@ -573,6 +579,7 @@ export function _downloadFileResponseDeserializer(
         : item["file"],
   };
 }
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 ```
 
 ## Operations

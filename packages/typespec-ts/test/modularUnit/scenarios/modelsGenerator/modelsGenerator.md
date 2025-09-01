@@ -45,11 +45,13 @@ export interface Test {
   prop: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function testDeserializer(item: any): Test {
   return {
     prop: item["prop"],
   };
 }
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 ```
 
 Should be included in root index file
@@ -108,11 +110,13 @@ export function inputOutputModelSerializer(item: InputOutputModel): any {
   return { prop: item["prop"] };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function inputOutputModelDeserializer(item: any): InputOutputModel {
   return {
     prop: item["prop"],
   };
 }
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 ```
 
 # should handle type_literals:number -> number_literals
@@ -166,11 +170,13 @@ export function inputOutputModelSerializer(item: InputOutputModel): any {
   return { prop: item["prop"] };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function inputOutputModelDeserializer(item: any): InputOutputModel {
   return {
     prop: item["prop"],
   };
 }
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 ```
 
 # should handle type_literals:string -> string_literals
@@ -223,11 +229,13 @@ export function inputOutputModelSerializer(item: InputOutputModel): any {
   return { prop: item["prop"] };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function inputOutputModelDeserializer(item: any): InputOutputModel {
   return {
     prop: item["prop"],
   };
 }
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 ```
 
 # should handle enum member
@@ -287,12 +295,13 @@ export function inputOutputModelSerializer(item: InputOutputModel): any {
   return { prop: item["prop"] };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function inputOutputModelDeserializer(item: any): InputOutputModel {
   return {
     prop: item["prop"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Translation Language Values */
 export type TranslationLanguageValues = "English" | "Chinese";
 ```
@@ -1296,6 +1305,7 @@ export interface Cat extends Pet {
   meow: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function catDeserializer(item: any): Cat {
   return {
     name: item["name"],
@@ -1304,26 +1314,28 @@ export function catDeserializer(item: any): Cat {
     meow: item["meow"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Pet */
 export interface Pet {
   name: string;
   weight?: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function petDeserializer(item: any): Pet {
   return {
     name: item["name"],
     weight: item["weight"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Dog */
 export interface Dog extends Pet {
   kind: "dog";
   bark: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function dogDeserializer(item: any): Dog {
   return {
     name: item["name"],
@@ -1332,13 +1344,15 @@ export function dogDeserializer(item: any): Dog {
     bark: item["bark"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Alias for _ReadResponse */
 export type _ReadResponse = Cat | Dog;
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _readResponseDeserializer(item: any): _ReadResponse {
   return item;
 }
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 ```
 
 # should handle inheritance model in operations
@@ -1370,6 +1384,7 @@ export interface Cat extends Pet {
   meow: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function catDeserializer(item: any): Cat {
   return {
     name: item["name"],
@@ -1378,19 +1393,21 @@ export function catDeserializer(item: any): Cat {
     meow: item["meow"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Pet */
 export interface Pet {
   name: string;
   weight?: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function petDeserializer(item: any): Pet {
   return {
     name: item["name"],
     weight: item["weight"],
   };
 }
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 ```
 
 ## Operations
@@ -1468,6 +1485,7 @@ export interface Cat extends Pet {
   meow: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function catDeserializer(item: any): Cat {
   return {
     weight: item["weight"],
@@ -1476,29 +1494,32 @@ export function catDeserializer(item: any): Cat {
     meow: item["meow"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Pet */
 export interface Pet extends Animal {
   weight?: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function petDeserializer(item: any): Pet {
   return {
     name: item["name"],
     weight: item["weight"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Animal */
 export interface Animal {
   name: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function animalDeserializer(item: any): Animal {
   return {
     name: item["name"],
   };
 }
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 ```
 
 ## Operations
@@ -1589,6 +1610,7 @@ export function psDogSerializer(item: PSDog): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function psDogDeserializer(item: any): PSDog {
   return {
     kind: item["kind"],
@@ -1597,7 +1619,7 @@ export function psDogDeserializer(item: any): PSDog {
     bark: item["bark"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Pet */
 export interface Pet {
   kind: string;
@@ -1609,6 +1631,7 @@ export function petSerializer(item: Pet): any {
   return { kind: item["kind"], name: item["name"], weight: item["weight"] };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function petDeserializer(item: any): Pet {
   return {
     kind: item["kind"],
@@ -1616,7 +1639,7 @@ export function petDeserializer(item: any): Pet {
     weight: item["weight"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Alias for PetUnion */
 export type PetUnion = PSDog | Pet;
 
@@ -1630,6 +1653,7 @@ export function petUnionSerializer(item: PetUnion): any {
   }
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function petUnionDeserializer(item: any): PetUnion {
   switch (item.kind) {
     case "dog":
@@ -1639,6 +1663,7 @@ export function petUnionDeserializer(item: any): PetUnion {
       return petDeserializer(item);
   }
 }
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 ```
 
 ## Operations
@@ -1725,6 +1750,7 @@ export interface Pet {
   weight?: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function petDeserializer(item: any): Pet {
   return {
     kind: item["kind"],
@@ -1732,10 +1758,11 @@ export function petDeserializer(item: any): Pet {
     weight: item["weight"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Alias for PetUnion */
 export type PetUnion = Cat | Dog | Pet;
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function petUnionDeserializer(item: any): PetUnion {
   switch (item.kind) {
     case "cat":
@@ -1748,13 +1775,14 @@ export function petUnionDeserializer(item: any): PetUnion {
       return petDeserializer(item);
   }
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Cat */
 export interface Cat extends Pet {
   kind: "cat";
   meow: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function catDeserializer(item: any): Cat {
   return {
     kind: item["kind"],
@@ -1763,13 +1791,14 @@ export function catDeserializer(item: any): Cat {
     meow: item["meow"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Dog */
 export interface Dog extends Pet {
   kind: "dog";
   bark: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function dogDeserializer(item: any): Dog {
   return {
     kind: item["kind"],
@@ -1778,6 +1807,7 @@ export function dogDeserializer(item: any): Dog {
     bark: item["bark"],
   };
 }
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 ```
 
 ## Operations
@@ -1866,6 +1896,7 @@ export interface Pet {
   weight?: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function petDeserializer(item: any): Pet {
   return {
     kind: item["kind"],
@@ -1873,10 +1904,11 @@ export function petDeserializer(item: any): Pet {
     weight: item["weight"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Alias for PetUnion */
 export type PetUnion = Cat | DogUnion | Pet;
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function petUnionDeserializer(item: any): PetUnion {
   switch (item.kind) {
     case "cat":
@@ -1889,13 +1921,14 @@ export function petUnionDeserializer(item: any): PetUnion {
       return petDeserializer(item);
   }
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Cat */
 export interface Cat extends Pet {
   kind: "cat";
   meow: number;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function catDeserializer(item: any): Cat {
   return {
     kind: item["kind"],
@@ -1904,7 +1937,7 @@ export function catDeserializer(item: any): Cat {
     meow: item["meow"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Dog */
 export interface Dog extends Pet {
   kind: "dog";
@@ -1912,6 +1945,7 @@ export interface Dog extends Pet {
   bark: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function dogDeserializer(item: any): Dog {
   return {
     kind: item["kind"],
@@ -1921,10 +1955,11 @@ export function dogDeserializer(item: any): Dog {
     bark: item["bark"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Alias for DogUnion */
 export type DogUnion = Gold | Dog;
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function dogUnionDeserializer(item: any): DogUnion {
   switch (item.type) {
     case "gold":
@@ -1934,13 +1969,14 @@ export function dogUnionDeserializer(item: any): DogUnion {
       return dogDeserializer(item);
   }
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Gold */
 export interface Gold extends Dog {
   type: "gold";
   friends: PetUnion[];
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function goldDeserializer(item: any): Gold {
   return {
     kind: item["kind"],
@@ -1951,7 +1987,7 @@ export function goldDeserializer(item: any): Gold {
     friends: petUnionArrayDeserializer(item["friends"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function petUnionArrayDeserializer(result: Array<PetUnion>): any[] {
   return result.map((item) => {
     return petUnionDeserializer(item);
@@ -2033,6 +2069,7 @@ export interface Foo {
   bar: Bar;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function fooDeserializer(item: any): Foo {
   return {
     name: item["name"],
@@ -2040,17 +2077,19 @@ export function fooDeserializer(item: any): Foo {
     bar: barDeserializer(item["bar"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Bar */
 export interface Bar {
   foo: Foo;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function barDeserializer(item: any): Bar {
   return {
     foo: fooDeserializer(item["foo"]),
   };
 }
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 ```
 
 ## Operations
@@ -2555,6 +2594,7 @@ export function vegetablesSerializer(item: Vegetables): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function vegetablesDeserializer(item: any): Vegetables {
   return {
     additionalProperties: serializeRecord(
@@ -2566,7 +2606,7 @@ export function vegetablesDeserializer(item: any): Vegetables {
     beans: item["beans"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** Alias for _VegetablesAdditionalProperty */
 export type _VegetablesAdditionalProperty = number | string;
 
@@ -2576,11 +2616,13 @@ export function _vegetablesAdditionalPropertySerializer(
   return item;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _vegetablesAdditionalPropertyDeserializer(
   item: any,
 ): _VegetablesAdditionalProperty {
   return item;
 }
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 ```
 
 # should handle model extends with additional properties
@@ -2624,6 +2666,7 @@ export function aSerializer(item: A): any {
 ## Model interface Base
 
 ```ts models interface Base
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Base */
 export interface Base {
   foo: number;

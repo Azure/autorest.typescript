@@ -42,6 +42,7 @@ export function simpleModelSerializer(item: SimpleModel): any {
   return { prop: _simpleModelPropSerializer(item["prop"]) };
 }
 
+/* eslint-disable @typescript-eslint/naming-convention */
 /** model interface _SimpleModelProp */
 export interface _SimpleModelProp {
   propA: string;
@@ -50,7 +51,7 @@ export interface _SimpleModelProp {
     propBB: boolean;
   };
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
 export function _simpleModelPropSerializer(item: _SimpleModelProp): any {
   return {
     propA: item["propA"],
@@ -58,12 +59,13 @@ export function _simpleModelPropSerializer(item: _SimpleModelProp): any {
   };
 }
 
+/* eslint-disable @typescript-eslint/naming-convention */
 /** model interface _SimpleModelPropPropB */
 export interface _SimpleModelPropPropB {
   propAA: string;
   propBB: boolean;
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
 export function _simpleModelPropPropBSerializer(
   item: _SimpleModelPropPropB,
 ): any {

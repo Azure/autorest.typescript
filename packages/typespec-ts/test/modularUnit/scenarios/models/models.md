@@ -33,6 +33,7 @@ export function streamingChatCompletionOptionsSerializer(
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function streamingChatCompletionOptionsDeserializer(
   item: any,
 ): StreamingChatCompletionOptions {
@@ -42,6 +43,7 @@ export function streamingChatCompletionOptionsDeserializer(
     index: item["index"],
   };
 }
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 ```
 
 ## Operations

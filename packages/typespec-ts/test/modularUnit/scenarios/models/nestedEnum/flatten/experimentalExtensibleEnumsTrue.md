@@ -68,11 +68,12 @@ experimental-extensible-enums: true
 Model generated.
 
 ```ts models
+/* eslint-disable @typescript-eslint/naming-convention */
 /** model interface _FooRequestBody */
 export interface _FooRequestBody {
   status: ProvisioningState;
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
 export function _fooRequestBodySerializer(item: _FooRequestBody): any {
   return { status: item["status"] };
 }

@@ -526,9 +526,10 @@ op read(@path pathParam: string, @query queryParam: string, @body body: {}): OkR
 ## Models
 
 ```ts models
+/* eslint-disable @typescript-eslint/naming-convention */
 /** model interface _ReadRequest */
 export interface _ReadRequest {}
-
+/* eslint-enable @typescript-eslint/naming-convention */
 export function _readRequestSerializer(item: _ReadRequest): any {
   return item;
 }
@@ -866,12 +867,15 @@ op read(): { @body _: {}; };
 ## Models
 
 ```ts models
+/* eslint-disable @typescript-eslint/naming-convention */
 /** model interface _ReadResponse */
 export interface _ReadResponse {}
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _readResponseDeserializer(item: any): _ReadResponse {
   return item;
 }
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 ```
 
 ## Operations
@@ -938,9 +942,11 @@ op read(): {@body _: PublishResult};
 /** model interface PublishResult */
 export interface PublishResult {}
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function publishResultDeserializer(item: any): PublishResult {
   return item;
 }
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 ```
 
 ## Operations
@@ -1004,29 +1010,34 @@ op read(): { foo?: {bar: string | null}};
 ## Models
 
 ```ts models
+/* eslint-disable @typescript-eslint/naming-convention */
 /** model interface _ReadResponse */
 export interface _ReadResponse {
   foo?: {
     bar: string | null;
   };
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _readResponseDeserializer(item: any): _ReadResponse {
   return {
     foo: !item["foo"] ? item["foo"] : _readResponseFooDeserializer(item["foo"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/naming-convention */
 /** model interface _ReadResponseFoo */
 export interface _ReadResponseFoo {
   bar: string | null;
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _readResponseFooDeserializer(item: any): _ReadResponseFoo {
   return {
     bar: item["bar"],
   };
 }
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 ```
 
 ## Operations
@@ -1114,6 +1125,7 @@ export interface ReturnBody {
   emptyModelDict: Record<string, EmptyModel>;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function returnBodyDeserializer(item: any): ReturnBody {
   return {
     emptyAnomyous: _returnBodyEmptyAnomyousDeserializer(item["emptyAnomyous"]),
@@ -1128,16 +1140,18 @@ export function returnBodyDeserializer(item: any): ReturnBody {
     emptyModelDict: emptyModelRecordDeserializer(item["emptyModelDict"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/naming-convention */
 /** model interface _ReturnBodyEmptyAnomyous */
 export interface _ReturnBodyEmptyAnomyous {}
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _returnBodyEmptyAnomyousDeserializer(
   item: any,
 ): _ReturnBodyEmptyAnomyous {
   return item;
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function _returnBodyEmptyAnomyousArrayArrayDeserializer(
   result: Array<_ReturnBodyEmptyAnomyousArray>,
 ): any[] {
@@ -1146,15 +1160,17 @@ export function _returnBodyEmptyAnomyousArrayArrayDeserializer(
   });
 }
 
+/* eslint-disable @typescript-eslint/naming-convention */
 /** model interface _ReturnBodyEmptyAnomyousArray */
 export interface _ReturnBodyEmptyAnomyousArray {}
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _returnBodyEmptyAnomyousArrayDeserializer(
   item: any,
 ): _ReturnBodyEmptyAnomyousArray {
   return item;
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function _returnBodyEmptyAnomyousDictRecordDeserializer(
   item: Record<string, any>,
 ): Record<string, _ReturnBodyEmptyAnomyousDict> {
@@ -1167,22 +1183,25 @@ export function _returnBodyEmptyAnomyousDictRecordDeserializer(
   return result;
 }
 
+/* eslint-disable @typescript-eslint/naming-convention */
 /** model interface _ReturnBodyEmptyAnomyousDict */
 export interface _ReturnBodyEmptyAnomyousDict {}
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _returnBodyEmptyAnomyousDictDeserializer(
   item: any,
 ): _ReturnBodyEmptyAnomyousDict {
   return item;
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 /** model interface EmptyModel */
 export interface EmptyModel {}
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function emptyModelDeserializer(item: any): EmptyModel {
   return item;
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function emptyModelArrayDeserializer(result: Array<EmptyModel>): any[] {
   return result.map((item) => {
     return emptyModelDeserializer(item);
@@ -1294,12 +1313,14 @@ export interface Foz {
   };
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function fozDeserializer(item: any): Foz {
   return {
     baz: _fozBazDeserializer(item["baz"]),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/naming-convention */
 /** model interface _FozBaz */
 export interface _FozBaz {
   foo: number[];
@@ -1318,7 +1339,8 @@ export interface _FozBaz {
     }
   >;
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _fozBazDeserializer(item: any): _FozBaz {
   return {
     foo: item["foo"].map((p: any) => {
@@ -1339,7 +1361,7 @@ export function _fozBazDeserializer(item: any): _FozBaz {
     ),
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function simpleModelArrayDeserializer(
   result: Array<SimpleModel>,
 ): any[] {
@@ -1353,17 +1375,20 @@ export interface SimpleModel {
   test: string;
 }
 
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function simpleModelDeserializer(item: any): SimpleModel {
   return {
     test: item["test"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/naming-convention */
 /** model interface _FozBazNonemptyAnomyous */
 export interface _FozBazNonemptyAnomyous {
   a: string;
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _fozBazNonemptyAnomyousDeserializer(
   item: any,
 ): _FozBazNonemptyAnomyous {
@@ -1371,7 +1396,7 @@ export function _fozBazNonemptyAnomyousDeserializer(
     a: item["a"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function _fozBazNonemptyAnomyousArrayArrayDeserializer(
   result: Array<_FozBazNonemptyAnomyousArray>,
 ): any[] {
@@ -1380,11 +1405,13 @@ export function _fozBazNonemptyAnomyousArrayArrayDeserializer(
   });
 }
 
+/* eslint-disable @typescript-eslint/naming-convention */
 /** model interface _FozBazNonemptyAnomyousArray */
 export interface _FozBazNonemptyAnomyousArray {
   b?: Record<string, string>;
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _fozBazNonemptyAnomyousArrayDeserializer(
   item: any,
 ): _FozBazNonemptyAnomyousArray {
@@ -1392,7 +1419,7 @@ export function _fozBazNonemptyAnomyousArrayDeserializer(
     b: item["b"],
   };
 }
-
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 export function _fozBazNonemptyAnomyousDictRecordDeserializer(
   item: Record<string, any>,
 ): Record<string, _FozBazNonemptyAnomyousDict> {
@@ -1405,11 +1432,13 @@ export function _fozBazNonemptyAnomyousDictRecordDeserializer(
   return result;
 }
 
+/* eslint-disable @typescript-eslint/naming-convention */
 /** model interface _FozBazNonemptyAnomyousDict */
 export interface _FozBazNonemptyAnomyousDict {
   c: number[];
 }
-
+/* eslint-enable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _fozBazNonemptyAnomyousDictDeserializer(
   item: any,
 ): _FozBazNonemptyAnomyousDict {
@@ -1419,6 +1448,7 @@ export function _fozBazNonemptyAnomyousDictDeserializer(
     }),
   };
 }
+/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 ```
 
 ## Operations
