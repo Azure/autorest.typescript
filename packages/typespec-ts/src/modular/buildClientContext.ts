@@ -250,9 +250,7 @@ export function buildClientContext(
         }`;
   } else {
     apiVersionPolicyStatement += `
-        if (options.apiVersion) {
-          console.warn("This client does not support client api-version, please change it at the operation level");
-        }`;
+        // This client does not support client api-version, please change it at the operation level`;
   }
   factoryFunction.addStatements(apiVersionPolicyStatement);
 
