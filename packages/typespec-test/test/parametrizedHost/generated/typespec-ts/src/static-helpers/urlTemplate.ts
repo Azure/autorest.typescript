@@ -95,12 +95,10 @@ function getExpandedValue(option: ValueOptions): string {
       vals.push(`${getFirstOrSep(op, isFirst)}`);
       if (key) {
         vals.push(`${encodeURIComponent(key)}`);
-        if (named) {
-          if (val === "") {
-            vals.push(ifEmpty);
-          } else {
-            vals.push("=");
-          }
+        if (named && val === "") {
+          vals.push(ifEmpty);
+        } else {
+          vals.push("=");
         }
       }
       vals.push(encodeComponent(val, reserved, op));
