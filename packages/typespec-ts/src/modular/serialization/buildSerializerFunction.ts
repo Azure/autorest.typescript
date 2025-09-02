@@ -34,6 +34,8 @@ import { resolveReference } from "../../framework/reference.js";
 import { isOrExtendsHttpFile } from "@typespec/http";
 import { refkey } from "../../framework/refkey.js";
 import { getAdditionalPropertiesType } from "../helpers/typeHelpers.js";
+import { reportDiagnostic } from "../../lib.js";
+import { NoTarget } from "@typespec/compiler";
 
 export function buildModelSerializer(
   context: SdkContext,
@@ -110,7 +112,11 @@ function buildPolymorphicSerializer(
   nameOnly = false
 ): FunctionDeclarationStructure | undefined | string {
   if (!type.name) {
-    throw new Error(`NYI Serialization of anonymous types`);
+    reportDiagnostic(context.program, {
+      code: "anonymous-type-serialization",
+      target: type.__raw || NoTarget
+    });
+    return undefined; // Return undefined to skip this serialization
   }
   const serializeFunctionName = `${normalizeModelName(
     context,
@@ -154,8 +160,12 @@ function buildPolymorphicSerializer(
       return;
     }
     const union = subType?.discriminatedSubtypes ? "_Union" : "";
-    if (!subType || subType?.name) {
-      throw new Error(`NYI Serialization of anonymous types`);
+    if (!subType || !subType?.name) {
+      reportDiagnostic(context.program, {
+        code: "anonymous-type-serialization",
+        target: subType?.__raw || NoTarget
+      });
+      return; // Skip this subtype
     }
     const rawSubTypeName = `${subType.name}${union}`;
     const subTypeName = `${normalizeName(rawSubTypeName, NameType.Interface, true)}`;
@@ -197,7 +207,11 @@ function buildDiscriminatedUnionSerializer(
   nameOnly = false
 ): FunctionDeclarationStructure | undefined | string {
   if (!type.name) {
-    throw new Error(`NYI Serialization of anonymous types`);
+    reportDiagnostic(context.program, {
+      code: "anonymous-type-serialization",
+      target: type.__raw || NoTarget
+    });
+    return undefined; // Return undefined to skip this serialization
   }
   const cases: string[] = [];
   const output: string[] = [];
@@ -277,7 +291,11 @@ function buildUnionSerializer(
   nameOnly = false
 ): FunctionDeclarationStructure | string {
   if (!type.name) {
-    throw new Error(`NYI Serialization of anonymous types`);
+    reportDiagnostic(context.program, {
+      code: "anonymous-type-serialization",
+      target: type.__raw || NoTarget
+    });
+    return ""; // Return empty string to continue processing
   }
   const serializerFunctionName = `${normalizeModelName(
     context,
@@ -312,7 +330,11 @@ function buildModelTypeSerializer(
   }
 ): FunctionDeclarationStructure | string {
   if (!type.name) {
-    throw new Error(`NYI Deserialization of anonymous types`);
+    reportDiagnostic(context.program, {
+      code: "anonymous-type-deserialization",
+      target: type.__raw || NoTarget
+    });
+    return ""; // Return empty string to continue processing
   }
   const serializerFunctionName = `${normalizeModelName(
     context,
