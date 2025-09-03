@@ -287,9 +287,25 @@ function prepareExampleParameters(
               templateArg.doc &&
               templateArg.doc !== "Service host"
             ) {
-              // Use a default endpoint value for the sample
-              const defaultEndpointValue =
-                '"https://api.cognitive.microsofttranslator.com"';
+              // Extract default endpoint value from the documentation
+              let defaultEndpointValue = '"https://example.com"'; // fallback default
+
+              if (templateArg.doc) {
+                // Look for URLs in the documentation, typically after "for example" or "example:"
+                const urlMatches = templateArg.doc.match(
+                  /(?:for example|example:?)\s+(https?:\/\/[^\s,)]+)/i
+                );
+                if (urlMatches && urlMatches[1]) {
+                  // Clean up the URL - remove any template variables like {region}
+                  let extractedUrl = urlMatches[1];
+                  // Replace common template variables with example values
+                  extractedUrl = extractedUrl
+                    .replace(/\{region\}/g, "eastus")
+                    .replace(/\{[^}]+\}/g, "example");
+                  defaultEndpointValue = `"${extractedUrl}"`;
+                }
+              }
+
               result.push({
                 name: templateArg.name,
                 value: defaultEndpointValue,
