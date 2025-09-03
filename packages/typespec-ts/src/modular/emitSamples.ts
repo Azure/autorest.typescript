@@ -105,9 +105,8 @@ function emitMethodSamples(
     return;
   }
   const project = useContext("outputProject");
-  const operationPrefix = `${options.classicalMethodPrefix ?? ""} ${
-    method.oriName ?? method.name
-  }`;
+  const operationPrefix = `${options.classicalMethodPrefix ?? ""} ${method.oriName ?? method.name
+    }`;
   const sampleFolder = join(
     dpgContext.generationPathDetail?.rootDir ?? "",
     "samples-dev",
