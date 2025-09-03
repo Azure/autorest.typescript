@@ -10,7 +10,8 @@ import { TextTranslationClient } from "@azure-rest/ai-translation-text";
  * x-ms-original-file: 3.0/Translate_MaximumSet_Gen.json
  */
 async function translateText(): Promise<void> {
-  const client = new TextTranslationClient();
+  const Endpoint = "https://api.cognitive.microsofttranslator.com";
+  const client = new TextTranslationClient(Endpoint);
   const result = await client.translate(["cs"], [{ text: "This is a test." }], {
     clientTraceId: "ndbkaatzsnoetqkiehappoza",
     fromParam: "en",
@@ -35,7 +36,8 @@ async function translateText(): Promise<void> {
  * x-ms-original-file: 3.0/Translate_MinimumSet_Gen.json
  */
 async function translateTextWithMinimumProperties(): Promise<void> {
-  const client = new TextTranslationClient();
+  const Endpoint = "https://api.cognitive.microsofttranslator.com";
+  const client = new TextTranslationClient(Endpoint);
   const result = await client.translate(
     ["fmlxpuepn"],
     [{ text: "This is a test." }],

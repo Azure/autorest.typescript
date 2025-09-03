@@ -265,6 +265,44 @@ function prepareExampleParameters(
   // TODO: blocked by TCGC issue: https://github.com/Azure/typespec-azure/issues/1419
   // refine this to support generic client-level parameters once resolved
   const result: ExampleValue[] = [];
+
+  // Process client initialization parameters (including endpoint from @server)
+  if (topLevelClient.clientInitialization.parameters) {
+    for (const param of topLevelClient.clientInitialization.parameters) {
+      if (param.kind === "endpoint" && !param.optional) {
+        if (
+          param.type?.kind === "endpoint" &&
+          param.type.templateArguments?.length > 0
+        ) {
+          for (const templateArg of param.type.templateArguments) {
+            // Only add endpoint parameters that are:
+            // 1. Required (not optional)
+            // 2. Not constant values
+            // 3. Don't have client default values
+            // 4. Have custom documentation (indicating user-defined @server decorator)
+            if (
+              !templateArg.optional &&
+              templateArg.type.kind !== "constant" &&
+              !templateArg.clientDefaultValue &&
+              templateArg.doc &&
+              templateArg.doc !== "Service host"
+            ) {
+              // Use a default endpoint value for the sample
+              const defaultEndpointValue =
+                '"https://api.cognitive.microsofttranslator.com"';
+              result.push({
+                name: templateArg.name,
+                value: defaultEndpointValue,
+                isOptional: templateArg.optional,
+                onClient: true
+              });
+            }
+          }
+        }
+      }
+    }
+  }
+
   const credentialExampleValue = getCredentialExampleValue(
     dpgContext,
     topLevelClient.clientInitialization

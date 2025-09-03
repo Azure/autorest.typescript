@@ -10,7 +10,8 @@ import { TextTranslationClient } from "@azure-rest/ai-translation-text";
  * x-ms-original-file: 3.0/LookupDictionaryExamples_MaximumSet_Gen.json
  */
 async function lookupDictionaryExamples(): Promise<void> {
-  const client = new TextTranslationClient();
+  const Endpoint = "https://api.cognitive.microsofttranslator.com";
+  const client = new TextTranslationClient(Endpoint);
   const result = await client.lookupDictionaryExamples(
     "en",
     "es",
@@ -27,7 +28,8 @@ async function lookupDictionaryExamples(): Promise<void> {
  * x-ms-original-file: 3.0/LookupDictionaryExamples_MinimumSet_Gen.json
  */
 async function lookupDictionaryExamplesWithMinimumProperties(): Promise<void> {
-  const client = new TextTranslationClient();
+  const Endpoint = "https://api.cognitive.microsofttranslator.com";
+  const client = new TextTranslationClient(Endpoint);
   const result = await client.lookupDictionaryExamples("en", "es", [
     { text: "fly", translation: "volar" },
   ]);

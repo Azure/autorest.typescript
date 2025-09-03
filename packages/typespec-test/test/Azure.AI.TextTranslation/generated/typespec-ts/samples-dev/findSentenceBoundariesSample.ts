@@ -10,7 +10,8 @@ import { TextTranslationClient } from "@azure-rest/ai-translation-text";
  * x-ms-original-file: 3.0/FindSentenceBoundaries_MaximumSet_Gen.json
  */
 async function findSentenceBoundaries(): Promise<void> {
-  const client = new TextTranslationClient();
+  const Endpoint = "https://api.cognitive.microsofttranslator.com";
+  const client = new TextTranslationClient(Endpoint);
   const result = await client.findSentenceBoundaries(
     [{ text: "How are you? I am fine. What did you do today?" }],
     { clientTraceId: "svun", language: "en", script: "Latn" },
@@ -25,7 +26,8 @@ async function findSentenceBoundaries(): Promise<void> {
  * x-ms-original-file: 3.0/FindSentenceBoundaries_MinimumSet_Gen.json
  */
 async function findSentenceBoundariesWithMinimumProperties(): Promise<void> {
-  const client = new TextTranslationClient();
+  const Endpoint = "https://api.cognitive.microsofttranslator.com";
+  const client = new TextTranslationClient(Endpoint);
   const result = await client.findSentenceBoundaries([
     { text: "How are you? I am fine. What did you do today?" },
   ]);

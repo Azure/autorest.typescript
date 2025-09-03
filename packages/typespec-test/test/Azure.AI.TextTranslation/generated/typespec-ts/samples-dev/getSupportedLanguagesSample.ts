@@ -10,7 +10,8 @@ import { TextTranslationClient } from "@azure-rest/ai-translation-text";
  * x-ms-original-file: 3.0/GetSupportedLanguages_MaximumSet_Gen.json
  */
 async function getsTheSetOfLanguagesCurrentlySupportedByOtherOperationsOfTheTranslator(): Promise<void> {
-  const client = new TextTranslationClient();
+  const Endpoint = "https://api.cognitive.microsofttranslator.com";
+  const client = new TextTranslationClient(Endpoint);
   const result = await client.getSupportedLanguages({
     clientTraceId: "kayfnugjec",
     scope: "translation,transliteration,dictionary",
@@ -27,7 +28,8 @@ async function getsTheSetOfLanguagesCurrentlySupportedByOtherOperationsOfTheTran
  * x-ms-original-file: 3.0/GetSupportedLanguages_MinimumSet_Gen.json
  */
 async function getsTheSetOfLanguagesCurrentlySupportedByOtherOperationsOfTheTranslatorWithMinimumProperties(): Promise<void> {
-  const client = new TextTranslationClient();
+  const Endpoint = "https://api.cognitive.microsofttranslator.com";
+  const client = new TextTranslationClient(Endpoint);
   const result = await client.getSupportedLanguages();
   console.log(result);
 }
