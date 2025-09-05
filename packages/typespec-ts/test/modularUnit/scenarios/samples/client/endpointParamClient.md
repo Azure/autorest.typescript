@@ -1,89 +1,59 @@
-# skip: Should generate sample with required endpoint parameter
+# Should generate client constructor with required parameters in samples
 
-This test validates that sample generation includes required endpoint parameters in the client constructor.
+Sample generation should handle required parameters for client constructors correctly.
 
 ## TypeSpec
 
 ```tsp
-import "@typespec/http";
-import "@typespec/rest";
-import "@typespec/versioning";
-using TypeSpec.Http;
-using TypeSpec.Rest;
-using TypeSpec.Versioning;
-
 @service(#{
-  title: "Text Translation",
+  title: "Text Translation Service",
 })
-@server(
-  "{Endpoint}",
-  "Text translation is a cloud-based REST API feature of the Translator service that uses neural machine translation technology to enable quick and accurate source-to-target text translation in real time across all supported languages.",
-  {
+@server("{endpoint}", "Text Translation Service endpoint", {
     @doc("""
       Supported Text Translation endpoints (protocol and hostname, for example:
           https://api.cognitive.microsofttranslator.com).
       """)
-    Endpoint: url,
-  }
-)
-@versioned(APIVersion)
+  endpoint: url,
+})
 namespace TextTranslation;
-
-@doc("Text Translation supported versions")
-enum APIVersion {
-  @doc("Version 3.0")
-  v3_0: "3.0",
-}
-
-@doc("Find sentence boundaries")
-interface TextTranslationOperations {
-  findSentenceBoundaries(
-    @body body: InputTextItem[],
-    @query("api-version") apiVersion?: string,
-    @header("X-ClientTraceId") clientTraceId?: string,
-    @query language?: string,
-    @query script?: string,
-  ): BreakSentenceItem[];
-}
-
 model InputTextItem {
-  @doc("Input text")
+  @doc("The text to translate")
   text: string;
 }
-
 model BreakSentenceItem {
-  @doc("An array of integers representing the lengths of the sentences in the input text.")
+  @doc("The detected sentences")
   sentLen: int32[];
 }
+op findSentenceBoundaries(
+  @body body: InputTextItem[],
+  @header("X-ClientTraceId") clientTraceId?: string,
+  @query language?: string,
+  @query script?: string,
+): BreakSentenceItem[];
 ```
 
-## Examples
+## Example
 
-```json for findSentenceBoundaries
+```json
 {
-  "title": "Find Sentence Boundaries",
-  "operationId": "TextTranslationOperations_FindSentenceBoundaries",
+  "title": "findSentenceBoundaries",
+  "operationId": "findSentenceBoundaries",
   "parameters": {
-    "Endpoint": "https://api.cognitive.microsofttranslator.com",
-    "X-ClientTraceId": "svun",
-    "language": "en",
-    "script": "Latn",
-    "api-version": "3.0",
+    "endpoint": "https://api.cognitive.microsofttranslator.com",
     "body": [
       {
         "text": "How are you? I am fine. What did you do today?"
       }
-    ]
+    ],
+    "clientTraceId": "test-trace-id",
+    "language": "en",
+    "script": "Latn"
   },
   "responses": {
     "200": {
       "body": [
         {
-          "sentLen": [
-            13,
-            11,
-            22
-          ]
+          "sentLen": [12, 12, 25]
         }
       ]
     }
@@ -94,4 +64,28 @@ model BreakSentenceItem {
 ## Samples
 
 ```ts samples
+/** This file path is /samples-dev/findSentenceBoundariesSample.ts */
+import { TextTranslationClient } from "@azure/internal-test";
+
+/**
+ * This sample demonstrates how to execute findSentenceBoundaries
+ *
+ * @summary execute findSentenceBoundaries
+ * x-ms-original-file: 2021-10-01-preview/json.json
+ */
+async function findSentenceBoundaries(): Promise<void> {
+  const endpoint = "https://api.cognitive.microsofttranslator.com";
+  const client = new TextTranslationClient(endpoint);
+  const result = await client.findSentenceBoundaries(
+    [{ text: "How are you? I am fine. What did you do today?" }],
+    { language: "en", script: "Latn" },
+  );
+  console.log(result);
+}
+
+async function main(): Promise<void> {
+  await findSentenceBoundaries();
+}
+
+main().catch(console.error);
 ```

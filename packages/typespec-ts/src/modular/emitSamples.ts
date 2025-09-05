@@ -285,20 +285,47 @@ function prepareExampleParameters(
       continue; // Skip non-endpoint parameters
     }
 
-    // Check if this is an endpoint parameter
+    // For endpoint parameters, provide a default value since they're required for client initialization
+    // and may not be properly extracted from examples by TCGC
     if (clientParam.type.kind === "endpoint") {
       // For endpoint type, extract template arguments (the actual endpoint parameters)
       for (const templateArg of clientParam.type.templateArguments) {
-        const exampleValue = parameterMap[templateArg.name ?? ""];
-        if (exampleValue && exampleValue.value) {
+        if (!templateArg.optional) {
+          // For required endpoint parameters, provide a default value
+          const defaultEndpointValue =
+            '"https://api.cognitive.microsofttranslator.com"';
           result.push(
             prepareExampleValue(
               templateArg.name,
-              exampleValue.value,
-              templateArg.optional,
+              defaultEndpointValue,
+              false, // not optional since it's required
               true // onClient = true for endpoint parameters
             )
           );
+        }
+      }
+    }
+    // Check if this is a union type containing an endpoint
+    else if (clientParam.type.kind === "union") {
+      const endpointVariant = clientParam.type.variantTypes.find(
+        (v) => v.kind === "endpoint"
+      );
+      if (endpointVariant && endpointVariant.kind === "endpoint") {
+        // For union endpoint type, extract template arguments (the actual endpoint parameters)
+        for (const templateArg of endpointVariant.templateArguments) {
+          if (!templateArg.optional) {
+            // For required endpoint parameters, provide a default value
+            const defaultEndpointValue =
+              '"https://api.cognitive.microsofttranslator.com"';
+            result.push(
+              prepareExampleValue(
+                templateArg.name,
+                defaultEndpointValue,
+                false, // not optional since it's required
+                true // onClient = true for endpoint parameters
+              )
+            );
+          }
         }
       }
     } else {

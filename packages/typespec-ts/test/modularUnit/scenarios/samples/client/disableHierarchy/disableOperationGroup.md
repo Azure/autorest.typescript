@@ -66,7 +66,8 @@ import { TestingClient } from "@azure/internal-test";
  * x-ms-original-file: 2021-10-01-preview/json_for_bar.json
  */
 async function bar(): Promise<void> {
-  const client = new TestingClient();
+  const endpoint = "https://api.cognitive.microsofttranslator.com";
+  const client = new TestingClient(endpoint);
   const result = await client.bar({ prop1: "body name" });
   console.log(result);
 }
@@ -108,7 +109,8 @@ import { TestingClient } from "@azure/internal-test";
  * x-ms-original-file: 2021-10-01-preview/json_for_foo.json
  */
 async function foo(): Promise<void> {
-  const client = new TestingClient();
+  const endpoint = "https://api.cognitive.microsofttranslator.com";
+  const client = new TestingClient(endpoint);
   const result = await client.foo({ prop2: "body name" });
   console.log(result);
 }

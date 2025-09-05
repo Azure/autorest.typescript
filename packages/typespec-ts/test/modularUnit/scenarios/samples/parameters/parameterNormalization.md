@@ -137,7 +137,8 @@ import { TestingClient } from "@azure/internal-test";
  * x-ms-original-file: 2021-10-01-preview/json.json
  */
 async function post(): Promise<void> {
-  const client = new TestingClient();
+  const endpoint = "https://api.cognitive.microsofttranslator.com";
+  const client = new TestingClient(endpoint);
   await client.post({
     listCredentialsRequest: { serviceName: "SSH", propertyName: "name" },
     queryParam: "query",
