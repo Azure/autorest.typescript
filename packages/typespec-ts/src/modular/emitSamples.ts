@@ -148,7 +148,8 @@ function emitMethodSamples(
       dpgContext,
       method,
       parameterMap,
-      options.topLevelClient
+      options.topLevelClient,
+      example
     );
     // prepare client-level parameters
     const clientParamValues = parameters.filter((p) => p.onClient);
@@ -261,7 +262,8 @@ function prepareExampleParameters(
   dpgContext: SdkContext,
   method: ServiceOperation,
   parameterMap: Record<string, SdkHttpParameterExampleValue>,
-  topLevelClient: SdkClientType<SdkServiceOperation>
+  topLevelClient: SdkClientType<SdkServiceOperation>,
+  rawExample?: SdkHttpOperationExample
 ): ExampleValue[] {
   // TODO: blocked by TCGC issue: https://github.com/Azure/typespec-azure/issues/1419
   // refine this to support generic client-level parameters once resolved
@@ -285,23 +287,86 @@ function prepareExampleParameters(
       continue; // Skip non-endpoint parameters
     }
 
-    // For endpoint parameters, provide a default value since they're required for client initialization
-    // and may not be properly extracted from examples by TCGC
+    // For endpoint parameters, check example data first, then provide appropriate defaults
     if (clientParam.type.kind === "endpoint") {
       // For endpoint type, extract template arguments (the actual endpoint parameters)
       for (const templateArg of clientParam.type.templateArguments) {
         if (!templateArg.optional) {
-          // For required endpoint parameters, provide a default value
-          const defaultEndpointValue =
-            '"https://api.cognitive.microsofttranslator.com"';
-          result.push(
-            prepareExampleValue(
-              templateArg.name,
-              defaultEndpointValue,
-              false, // not optional since it's required
-              true // onClient = true for endpoint parameters
-            )
-          );
+          // First try to get value from example data using various possible keys
+          const possibleKeys = [
+            templateArg.name,
+            templateArg.serializedName,
+            "endpoint" // common endpoint parameter name
+          ].filter(Boolean); // Remove null/undefined values
+          
+          let exampleValue: SdkHttpParameterExampleValue | undefined;
+          for (const key of possibleKeys) {
+            exampleValue = parameterMap[key as string];
+            if (exampleValue?.value) break;
+          }
+          
+          // If not found in parameterMap, try to get from raw example data
+          let rawEndpointValue: any;
+          if (!exampleValue?.value && rawExample) {
+            // Access the raw JSON parameters directly
+            const rawParams = (rawExample as any).rawExample?.parameters;
+            if (rawParams && typeof rawParams === 'object') {
+              for (const key of possibleKeys) {
+                if (rawParams[key] !== undefined) {
+                  rawEndpointValue = rawParams[key];
+                  break;
+                }
+              }
+            }
+          }
+          
+          if (exampleValue && exampleValue.value) {
+            // Use value from example data - prepareExampleValue will handle the conversion
+            result.push(
+              prepareExampleValue(
+                templateArg.name,
+                exampleValue.value,
+                false, // not optional since it's required
+                true // onClient = true for endpoint parameters
+              )
+            );
+          } else if (rawEndpointValue !== undefined) {
+            // Use value from raw example data
+            const endpointValue = typeof rawEndpointValue === "string" 
+              ? `"${rawEndpointValue}"` 
+              : String(rawEndpointValue);
+            result.push(
+              prepareExampleValue(
+                templateArg.name,
+                endpointValue,
+                false, // not optional since it's required
+                true // onClient = true for endpoint parameters
+              )
+            );
+          } else if (templateArg.clientDefaultValue) {
+            // Use client default value if available
+            const endpointValue = typeof templateArg.clientDefaultValue === "string"
+              ? `"${templateArg.clientDefaultValue}"`
+              : String(templateArg.clientDefaultValue);
+            result.push(
+              prepareExampleValue(
+                templateArg.name,
+                endpointValue,
+                false, // not optional since it's required
+                true // onClient = true for endpoint parameters
+              )
+            );
+          } else {
+            // Fallback to a generic endpoint URL
+            result.push(
+              prepareExampleValue(
+                templateArg.name,
+                '"https://myservice.azure.com"',
+                false, // not optional since it's required
+                true // onClient = true for endpoint parameters
+              )
+            );
+          }
         }
       }
     }
@@ -314,17 +379,81 @@ function prepareExampleParameters(
         // For union endpoint type, extract template arguments (the actual endpoint parameters)
         for (const templateArg of endpointVariant.templateArguments) {
           if (!templateArg.optional) {
-            // For required endpoint parameters, provide a default value
-            const defaultEndpointValue =
-              '"https://api.cognitive.microsofttranslator.com"';
-            result.push(
-              prepareExampleValue(
-                templateArg.name,
-                defaultEndpointValue,
-                false, // not optional since it's required
-                true // onClient = true for endpoint parameters
-              )
-            );
+            // First try to get value from example data using various possible keys
+            const possibleKeys = [
+              templateArg.name,
+              templateArg.serializedName,
+              "endpoint" // common endpoint parameter name
+            ].filter(Boolean); // Remove null/undefined values
+            
+            let exampleValue: SdkHttpParameterExampleValue | undefined;
+            for (const key of possibleKeys) {
+              exampleValue = parameterMap[key as string];
+              if (exampleValue?.value) break;
+            }
+            
+            // If not found in parameterMap, try to get from raw example data
+            let rawEndpointValue: any;
+            if (!exampleValue?.value && rawExample) {
+              // Access the raw JSON parameters directly
+              const rawParams = (rawExample as any).rawExample?.parameters;
+              if (rawParams && typeof rawParams === 'object') {
+                for (const key of possibleKeys) {
+                  if (rawParams[key] !== undefined) {
+                    rawEndpointValue = rawParams[key];
+                    break;
+                  }
+                }
+              }
+            }
+            
+            if (exampleValue && exampleValue.value) {
+              // Use value from example data - prepareExampleValue will handle the conversion
+              result.push(
+                prepareExampleValue(
+                  templateArg.name,
+                  exampleValue.value,
+                  false, // not optional since it's required
+                  true // onClient = true for endpoint parameters
+                )
+              );
+            } else if (rawEndpointValue !== undefined) {
+              // Use value from raw example data
+              const endpointValue = typeof rawEndpointValue === "string" 
+                ? `"${rawEndpointValue}"` 
+                : String(rawEndpointValue);
+              result.push(
+                prepareExampleValue(
+                  templateArg.name,
+                  endpointValue,
+                  false, // not optional since it's required
+                  true // onClient = true for endpoint parameters
+                )
+              );
+            } else if (templateArg.clientDefaultValue) {
+              // Use client default value if available
+              const endpointValue = typeof templateArg.clientDefaultValue === "string"
+                ? `"${templateArg.clientDefaultValue}"`
+                : String(templateArg.clientDefaultValue);
+              result.push(
+                prepareExampleValue(
+                  templateArg.name,
+                  endpointValue,
+                  false, // not optional since it's required
+                  true // onClient = true for endpoint parameters
+                )
+              );
+            } else {
+              // Fallback to a generic endpoint URL
+              result.push(
+                prepareExampleValue(
+                  templateArg.name,
+                  '"https://myservice.azure.com"',
+                  false, // not optional since it's required
+                  true // onClient = true for endpoint parameters
+                )
+              );
+            }
           }
         }
       }
