@@ -70,8 +70,7 @@ import { DemoServiceClient } from "@azure/internal-test";
  */
 async function read(): Promise<void> {
   const credential = { key: "INPUT_YOUR_KEY_HERE" };
-  const endpoint = "https://api.cognitive.microsofttranslator.com";
-  const client = new DemoServiceClient(credential, endpoint);
+  const client = new DemoServiceClient(credential);
   const result = await client.read();
   console.log(result);
 }

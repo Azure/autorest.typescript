@@ -287,30 +287,93 @@ function prepareExampleParameters(
       continue; // Skip non-endpoint parameters
     }
 
-    // For endpoint parameters, check example data first, then provide appropriate defaults
+    // Check if this is an endpoint parameter - only handle if example data is available
     if (clientParam.type.kind === "endpoint") {
       // For endpoint type, extract template arguments (the actual endpoint parameters)
       for (const templateArg of clientParam.type.templateArguments) {
-        if (!templateArg.optional) {
+        // First try to get value from example data using various possible keys
+        const possibleKeys = [
+          templateArg.name,
+          templateArg.serializedName,
+          "endpoint" // common endpoint parameter name
+        ].filter(Boolean); // Remove null/undefined values
+
+        let exampleValue: SdkHttpParameterExampleValue | undefined;
+        for (const key of possibleKeys) {
+          exampleValue = parameterMap[key as string];
+          if (exampleValue?.value) break;
+        }
+
+        // If not found in parameterMap, try to get from raw example data
+        let rawEndpointValue: any;
+        if (!exampleValue?.value && rawExample) {
+          // Access the raw JSON parameters directly
+          const rawParams = (rawExample as any).rawExample?.parameters;
+          if (rawParams && typeof rawParams === "object") {
+            for (const key of possibleKeys) {
+              if (rawParams[key] !== undefined) {
+                rawEndpointValue = rawParams[key];
+                break;
+              }
+            }
+          }
+        }
+
+        if (exampleValue && exampleValue.value) {
+          // Use value from example data - prepareExampleValue will handle the conversion
+          result.push(
+            prepareExampleValue(
+              templateArg.name,
+              exampleValue.value,
+              templateArg.optional,
+              true // onClient = true for endpoint parameters
+            )
+          );
+        } else if (rawEndpointValue !== undefined) {
+          // Use value from raw example data
+          const endpointValue =
+            typeof rawEndpointValue === "string"
+              ? `"${rawEndpointValue}"`
+              : String(rawEndpointValue);
+          result.push(
+            prepareExampleValue(
+              templateArg.name,
+              endpointValue,
+              templateArg.optional,
+              true // onClient = true for endpoint parameters
+            )
+          );
+        }
+        // Don't add a fallback - only add endpoint parameter if we have data for it
+      }
+    }
+    // Check if this is a union type containing an endpoint - only handle if example data is available
+    else if (clientParam.type.kind === "union") {
+      const endpointVariant = clientParam.type.variantTypes.find(
+        (v) => v.kind === "endpoint"
+      );
+      if (endpointVariant && endpointVariant.kind === "endpoint") {
+        // For union endpoint type, extract template arguments (the actual endpoint parameters)
+        for (const templateArg of endpointVariant.templateArguments) {
           // First try to get value from example data using various possible keys
           const possibleKeys = [
             templateArg.name,
             templateArg.serializedName,
             "endpoint" // common endpoint parameter name
           ].filter(Boolean); // Remove null/undefined values
-          
+
           let exampleValue: SdkHttpParameterExampleValue | undefined;
           for (const key of possibleKeys) {
             exampleValue = parameterMap[key as string];
             if (exampleValue?.value) break;
           }
-          
+
           // If not found in parameterMap, try to get from raw example data
           let rawEndpointValue: any;
           if (!exampleValue?.value && rawExample) {
             // Access the raw JSON parameters directly
             const rawParams = (rawExample as any).rawExample?.parameters;
-            if (rawParams && typeof rawParams === 'object') {
+            if (rawParams && typeof rawParams === "object") {
               for (const key of possibleKeys) {
                 if (rawParams[key] !== undefined) {
                   rawEndpointValue = rawParams[key];
@@ -319,142 +382,33 @@ function prepareExampleParameters(
               }
             }
           }
-          
+
           if (exampleValue && exampleValue.value) {
             // Use value from example data - prepareExampleValue will handle the conversion
             result.push(
               prepareExampleValue(
                 templateArg.name,
                 exampleValue.value,
-                false, // not optional since it's required
+                templateArg.optional,
                 true // onClient = true for endpoint parameters
               )
             );
           } else if (rawEndpointValue !== undefined) {
             // Use value from raw example data
-            const endpointValue = typeof rawEndpointValue === "string" 
-              ? `"${rawEndpointValue}"` 
-              : String(rawEndpointValue);
-            result.push(
-              prepareExampleValue(
-                templateArg.name,
-                endpointValue,
-                false, // not optional since it's required
-                true // onClient = true for endpoint parameters
-              )
-            );
-          } else if (templateArg.clientDefaultValue) {
-            // Use client default value if available
-            const endpointValue = typeof templateArg.clientDefaultValue === "string"
-              ? `"${templateArg.clientDefaultValue}"`
-              : String(templateArg.clientDefaultValue);
-            result.push(
-              prepareExampleValue(
-                templateArg.name,
-                endpointValue,
-                false, // not optional since it's required
-                true // onClient = true for endpoint parameters
-              )
-            );
-          } else {
-            // Fallback to a generic endpoint URL
-            result.push(
-              prepareExampleValue(
-                templateArg.name,
-                '"https://myservice.azure.com"',
-                false, // not optional since it's required
-                true // onClient = true for endpoint parameters
-              )
-            );
-          }
-        }
-      }
-    }
-    // Check if this is a union type containing an endpoint
-    else if (clientParam.type.kind === "union") {
-      const endpointVariant = clientParam.type.variantTypes.find(
-        (v) => v.kind === "endpoint"
-      );
-      if (endpointVariant && endpointVariant.kind === "endpoint") {
-        // For union endpoint type, extract template arguments (the actual endpoint parameters)
-        for (const templateArg of endpointVariant.templateArguments) {
-          if (!templateArg.optional) {
-            // First try to get value from example data using various possible keys
-            const possibleKeys = [
-              templateArg.name,
-              templateArg.serializedName,
-              "endpoint" // common endpoint parameter name
-            ].filter(Boolean); // Remove null/undefined values
-            
-            let exampleValue: SdkHttpParameterExampleValue | undefined;
-            for (const key of possibleKeys) {
-              exampleValue = parameterMap[key as string];
-              if (exampleValue?.value) break;
-            }
-            
-            // If not found in parameterMap, try to get from raw example data
-            let rawEndpointValue: any;
-            if (!exampleValue?.value && rawExample) {
-              // Access the raw JSON parameters directly
-              const rawParams = (rawExample as any).rawExample?.parameters;
-              if (rawParams && typeof rawParams === 'object') {
-                for (const key of possibleKeys) {
-                  if (rawParams[key] !== undefined) {
-                    rawEndpointValue = rawParams[key];
-                    break;
-                  }
-                }
-              }
-            }
-            
-            if (exampleValue && exampleValue.value) {
-              // Use value from example data - prepareExampleValue will handle the conversion
-              result.push(
-                prepareExampleValue(
-                  templateArg.name,
-                  exampleValue.value,
-                  false, // not optional since it's required
-                  true // onClient = true for endpoint parameters
-                )
-              );
-            } else if (rawEndpointValue !== undefined) {
-              // Use value from raw example data
-              const endpointValue = typeof rawEndpointValue === "string" 
-                ? `"${rawEndpointValue}"` 
+            const endpointValue =
+              typeof rawEndpointValue === "string"
+                ? `"${rawEndpointValue}"`
                 : String(rawEndpointValue);
-              result.push(
-                prepareExampleValue(
-                  templateArg.name,
-                  endpointValue,
-                  false, // not optional since it's required
-                  true // onClient = true for endpoint parameters
-                )
-              );
-            } else if (templateArg.clientDefaultValue) {
-              // Use client default value if available
-              const endpointValue = typeof templateArg.clientDefaultValue === "string"
-                ? `"${templateArg.clientDefaultValue}"`
-                : String(templateArg.clientDefaultValue);
-              result.push(
-                prepareExampleValue(
-                  templateArg.name,
-                  endpointValue,
-                  false, // not optional since it's required
-                  true // onClient = true for endpoint parameters
-                )
-              );
-            } else {
-              // Fallback to a generic endpoint URL
-              result.push(
-                prepareExampleValue(
-                  templateArg.name,
-                  '"https://myservice.azure.com"',
-                  false, // not optional since it's required
-                  true // onClient = true for endpoint parameters
-                )
-              );
-            }
+            result.push(
+              prepareExampleValue(
+                templateArg.name,
+                endpointValue,
+                templateArg.optional,
+                true // onClient = true for endpoint parameters
+              )
+            );
           }
+          // Don't add a fallback - only add endpoint parameter if we have data for it
         }
       }
     } else {

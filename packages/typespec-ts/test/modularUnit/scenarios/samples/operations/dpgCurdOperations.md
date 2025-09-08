@@ -145,8 +145,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  */
 async function widgetsListWidgets(): Promise<void> {
   const credential = new DefaultAzureCredential();
-  const endpoint = "https://api.cognitive.microsofttranslator.com";
-  const client = new WidgetManagerClient(credential, endpoint);
+  const client = new WidgetManagerClient(credential);
   const resArray = new Array();
   for await (const item of client.widgets.listWidgets({
     top: 8,
@@ -177,8 +176,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  */
 async function deleteWidgetByWidgetNameUsingLongRunningOperation(): Promise<void> {
   const credential = new DefaultAzureCredential();
-  const endpoint = "https://api.cognitive.microsofttranslator.com";
-  const client = new WidgetManagerClient(credential, endpoint);
+  const client = new WidgetManagerClient(credential);
   const result = await client.widgets.deleteWidget("searchbox");
   console.log(result);
 }
@@ -201,8 +199,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  */
 async function widgetsCreateOrUpdateWidget(): Promise<void> {
   const credential = new DefaultAzureCredential();
-  const endpoint = "https://api.cognitive.microsofttranslator.com";
-  const client = new WidgetManagerClient(credential, endpoint);
+  const client = new WidgetManagerClient(credential);
   const result = await client.widgets.createOrUpdateWidget("name1", {
     manufacturerId: "manufacturer id1",
   });

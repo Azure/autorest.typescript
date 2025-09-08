@@ -85,8 +85,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  */
 async function subFoo(): Promise<void> {
   const credential = new DefaultAzureCredential();
-  const endpoint = "https://api.cognitive.microsofttranslator.com";
-  const client = new AClient(credential, endpoint);
+  const client = new AClient(credential);
   const result = await client.foo();
   console.log(result);
 }

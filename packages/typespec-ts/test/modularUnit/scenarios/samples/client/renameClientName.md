@@ -69,8 +69,7 @@ import { TestServiceClient } from "@azure/internal-test";
  * x-ms-original-file: 2021-10-01-preview/json_for_read.json
  */
 async function read(): Promise<void> {
-  const endpoint = "https://api.cognitive.microsofttranslator.com";
-  const client = new TestServiceClient(endpoint);
+  const client = new TestServiceClient();
   const result = await client.read();
   console.log(result);
 }
