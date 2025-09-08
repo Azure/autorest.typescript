@@ -1,0 +1,11 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    azure-sdk-for-js: false
+    generate-sample: true
+    is-modular-library: true
+    emitter-output-dir: "{project-root}/generated/typespec-ts"
+    examples-dir: "{project-root}/spec/examples"
+    package-details:
+      name: "@azure/programmableconnectivity"
