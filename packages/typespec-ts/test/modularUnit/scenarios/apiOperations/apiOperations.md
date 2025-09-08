@@ -26,7 +26,6 @@ import {
 
 export function _uploadFileViaBodySend(
   context: Client,
-  body: Uint8Array,
   options: UploadFileViaBodyOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -51,10 +50,9 @@ export async function _uploadFileViaBodyDeserialize(
 
 export async function uploadFileViaBody(
   context: Client,
-  body: Uint8Array,
   options: UploadFileViaBodyOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _uploadFileViaBodySend(context, body, options);
+  const result = await _uploadFileViaBodySend(context, options);
   return _uploadFileViaBodyDeserialize(result);
 }
 ```
@@ -88,7 +86,6 @@ import {
 
 export function _uploadFileViaBodySend(
   context: Client,
-  body: Uint8Array,
   options: UploadFileViaBodyOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -113,10 +110,9 @@ export async function _uploadFileViaBodyDeserialize(
 
 export async function uploadFileViaBody(
   context: Client,
-  body: Uint8Array,
   options: UploadFileViaBodyOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _uploadFileViaBodySend(context, body, options);
+  const result = await _uploadFileViaBodySend(context, options);
   return _uploadFileViaBodyDeserialize(result);
 }
 ```
@@ -175,10 +171,6 @@ import {
 
 export function _uploadFileSend(
   context: Client,
-  body: {
-    name: string;
-    file: Uint8Array;
-  },
   options: UploadFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -203,13 +195,9 @@ export async function _uploadFileDeserialize(
 
 export async function uploadFile(
   context: Client,
-  body: {
-    name: string;
-    file: Uint8Array;
-  },
   options: UploadFileOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _uploadFileSend(context, body, options);
+  const result = await _uploadFileSend(context, options);
   return _uploadFileDeserialize(result);
 }
 ```
@@ -271,9 +259,6 @@ import {
 
 export function _uploadFilesSend(
   context: Client,
-  body: {
-    files: Uint8Array[];
-  },
   options: UploadFilesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -298,12 +283,9 @@ export async function _uploadFilesDeserialize(
 
 export async function uploadFiles(
   context: Client,
-  body: {
-    files: Uint8Array[];
-  },
   options: UploadFilesOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _uploadFilesSend(context, body, options);
+  const result = await _uploadFilesSend(context, options);
   return _uploadFilesDeserialize(result);
 }
 ```
@@ -658,7 +640,6 @@ import {
 export function _uploadFileViaBodySend(
   context: Client,
   contentType: string,
-  body: Uint8Array,
   options: UploadFileViaBodyOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -684,15 +665,9 @@ export async function _uploadFileViaBodyDeserialize(
 export async function uploadFileViaBody(
   context: Client,
   contentType: string,
-  body: Uint8Array,
   options: UploadFileViaBodyOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _uploadFileViaBodySend(
-    context,
-    contentType,
-    body,
-    options,
-  );
+  const result = await _uploadFileViaBodySend(context, contentType, options);
   return _uploadFileViaBodyDeserialize(result);
 }
 ```
@@ -1274,7 +1249,6 @@ import {
   _operationListResultDeserializer,
   Operation,
   errorResponseDeserializer,
-  FileShareSnapshotUpdate,
   fileShareSnapshotUpdateSerializer,
   FileShareSnapshot,
   fileShareSnapshotDeserializer,
@@ -1302,7 +1276,6 @@ export function _updateFileShareSnapshotSend(
   resourceGroupName: string,
   resourceName: string,
   name: string,
-  properties: FileShareSnapshotUpdate,
   options: UpdateFileShareSnapshotOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -1346,7 +1319,6 @@ export function updateFileShareSnapshot(
   resourceGroupName: string,
   resourceName: string,
   name: string,
-  properties: FileShareSnapshotUpdate,
   options: UpdateFileShareSnapshotOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<FileShareSnapshot>, FileShareSnapshot> {
   return getLongRunningPoller(
@@ -1362,7 +1334,6 @@ export function updateFileShareSnapshot(
           resourceGroupName,
           resourceName,
           name,
-          properties,
           options,
         ),
       resourceLocationConfig: "location",

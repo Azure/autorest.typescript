@@ -41,7 +41,7 @@ export function barSerializer(item: Bar): any {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { Bar, barSerializer } from "../models/models.js";
+import { barSerializer } from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { ReadOptionalParams } from "./options.js";
 import {
@@ -55,11 +55,6 @@ export function _readSend(
   context: Client,
   pathParam: string,
   queryParam: string,
-  prop1: string,
-  prop2: number,
-  prop3: Date,
-  prop4: string,
-  prop5: Bar,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -102,24 +97,9 @@ export async function read(
   context: Client,
   pathParam: string,
   queryParam: string,
-  prop1: string,
-  prop2: number,
-  prop3: Date,
-  prop4: string,
-  prop5: Bar,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _readSend(
-    context,
-    pathParam,
-    queryParam,
-    prop1,
-    prop2,
-    prop3,
-    prop4,
-    prop5,
-    options,
-  );
+  const result = await _readSend(context, pathParam, queryParam, options);
   return _readDeserialize(result);
 }
 ```
@@ -192,9 +172,6 @@ export function _readSend(
   context: Client,
   pathParam: string,
   queryParam: string,
-  prop1: string,
-  prop2: number,
-  prop4: string,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -237,20 +214,9 @@ export async function read(
   context: Client,
   pathParam: string,
   queryParam: string,
-  prop1: string,
-  prop2: number,
-  prop4: string,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _readSend(
-    context,
-    pathParam,
-    queryParam,
-    prop1,
-    prop2,
-    prop4,
-    options,
-  );
+  const result = await _readSend(context, pathParam, queryParam, options);
   return _readDeserialize(result);
 }
 ```
@@ -325,7 +291,6 @@ export function _readSend(
   context: Client,
   pathParam: string,
   prop1: string,
-  prop2: number,
   prop4: string,
   queryParam: string,
   options: ReadOptionalParams = { requestOptions: {} },
@@ -370,7 +335,6 @@ export async function read(
   context: Client,
   pathParam: string,
   prop1: string,
-  prop2: number,
   prop4: string,
   queryParam: string,
   options: ReadOptionalParams = { requestOptions: {} },
@@ -379,7 +343,6 @@ export async function read(
     context,
     pathParam,
     prop1,
-    prop2,
     prop4,
     queryParam,
     options,
@@ -456,7 +419,7 @@ export function fooSerializer(item: Foo): any {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { Foo, fooSerializer } from "../models/models.js";
+import { fooSerializer } from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { ReadOptionalParams } from "./options.js";
 import {
@@ -470,7 +433,6 @@ export function _readSend(
   context: Client,
   pathParam: string,
   queryParam: string,
-  body: Foo,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -507,10 +469,9 @@ export async function read(
   context: Client,
   pathParam: string,
   queryParam: string,
-  body: Foo,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _readSend(context, pathParam, queryParam, body, options);
+  const result = await _readSend(context, pathParam, queryParam, options);
   return _readDeserialize(result);
 }
 ```
@@ -552,7 +513,6 @@ export function _readSend(
   context: Client,
   pathParam: string,
   queryParam: string,
-  body: Record<string, any>,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -589,10 +549,9 @@ export async function read(
   context: Client,
   pathParam: string,
   queryParam: string,
-  body: Record<string, any>,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _readSend(context, pathParam, queryParam, body, options);
+  const result = await _readSend(context, pathParam, queryParam, options);
   return _readDeserialize(result);
 }
 ```
@@ -634,7 +593,7 @@ export function barSerializer(item: Bar): any {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { _readRequestSerializer, Bar } from "../models/models.js";
+import { _readRequestSerializer } from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { ReadOptionalParams } from "./options.js";
 import {
@@ -648,10 +607,6 @@ export function _readSend(
   context: Client,
   pathParam: string,
   queryParam: string,
-  test: {
-    prop1: string;
-    prop2: Bar;
-  },
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -688,13 +643,9 @@ export async function read(
   context: Client,
   pathParam: string,
   queryParam: string,
-  test: {
-    prop1: string;
-    prop2: Bar;
-  },
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _readSend(context, pathParam, queryParam, test, options);
+  const result = await _readSend(context, pathParam, queryParam, options);
   return _readDeserialize(result);
 }
 ```
@@ -731,7 +682,7 @@ export function testSerializer(item: Test): any {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { Test, testSerializer } from "../models/models.js";
+import { testSerializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -742,7 +693,6 @@ import {
 
 export function _readSend(
   context: Client,
-  body: Test,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -767,10 +717,9 @@ export async function _readDeserialize(
 
 export async function read(
   context: Client,
-  body: Test,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _readSend(context, body, options);
+  const result = await _readSend(context, options);
   return _readDeserialize(result);
 }
 ```
@@ -811,7 +760,7 @@ export function testSerializer(item: Test): any {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { Test, testSerializer } from "../models/models.js";
+import { testSerializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -822,7 +771,6 @@ import {
 
 export function _readSend(
   context: Client,
-  body: Test,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -847,10 +795,9 @@ export async function _readDeserialize(
 
 export async function read(
   context: Client,
-  body: Test,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _readSend(context, body, options);
+  const result = await _readSend(context, options);
   return _readDeserialize(result);
 }
 ```

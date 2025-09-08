@@ -65,7 +65,6 @@ import {
 export function _readSend(
   context: Client,
   id: string,
-  body: StreamingChatCompletionOptions,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -104,10 +103,9 @@ export async function _readDeserialize(
 export async function read(
   context: Client,
   id: string,
-  body: StreamingChatCompletionOptions,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<StreamingChatCompletionOptions> {
-  const result = await _readSend(context, id, body, options);
+  const result = await _readSend(context, id, options);
   return _readDeserialize(result);
 }
 ```

@@ -71,7 +71,6 @@ import {
 
 export function _postSend(
   context: Client,
-  body: A,
   options: PostOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -104,10 +103,9 @@ export async function _postDeserialize(
 
 export async function post(
   context: Client,
-  body: A,
   options: PostOptionalParams = { requestOptions: {} },
 ): Promise<A> {
-  const result = await _postSend(context, body, options);
+  const result = await _postSend(context, options);
   return _postDeserialize(result);
 }
 ```

@@ -64,7 +64,6 @@ export function _updateKeySend(
   context: Client,
   keyName: string,
   keyVersion: string,
-  parameters: string,
   options: UpdateKeyOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -107,16 +106,9 @@ export async function updateKey(
   context: Client,
   keyName: string,
   keyVersion: string,
-  parameters: string,
   options: UpdateKeyOptionalParams = { requestOptions: {} },
 ): Promise<KeyBundle> {
-  const result = await _updateKeySend(
-    context,
-    keyName,
-    keyVersion,
-    parameters,
-    options,
-  );
+  const result = await _updateKeySend(context, keyName, keyVersion, options);
   return _updateKeyDeserialize(result);
 }
 ```

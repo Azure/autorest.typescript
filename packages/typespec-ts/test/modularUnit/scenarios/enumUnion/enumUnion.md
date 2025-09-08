@@ -62,7 +62,6 @@ import {
 export function _getSend(
   context: Client,
   contentType: SchemaContentTypeValues,
-  body: string,
   options: GetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -88,10 +87,9 @@ export async function _getDeserialize(
 export async function get(
   context: Client,
   contentType: SchemaContentTypeValues,
-  body: string,
   options: GetOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _getSend(context, contentType, body, options);
+  const result = await _getSend(context, contentType, options);
   return _getDeserialize(result);
 }
 ```
@@ -528,7 +526,6 @@ import {
 export function _getSend(
   context: Client,
   testHeader: "A" | "B",
-  body: string,
   options: GetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -558,10 +555,9 @@ export async function _getDeserialize(
 export async function get(
   context: Client,
   testHeader: "A" | "B",
-  body: string,
   options: GetOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _getSend(context, testHeader, body, options);
+  const result = await _getSend(context, testHeader, options);
   return _getDeserialize(result);
 }
 ```
@@ -619,7 +615,6 @@ import {
 export function _getSend(
   context: Client,
   testHeader: string,
-  body: string,
   options: GetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -649,10 +644,9 @@ export async function _getDeserialize(
 export async function get(
   context: Client,
   testHeader: string,
-  body: string,
   options: GetOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _getSend(context, testHeader, body, options);
+  const result = await _getSend(context, testHeader, options);
   return _getDeserialize(result);
 }
 ```

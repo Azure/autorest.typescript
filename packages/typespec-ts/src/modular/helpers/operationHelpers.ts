@@ -365,10 +365,12 @@ function getOperationSignatureParameters(
 ): OptionalKind<ParameterDeclarationStructure>[] {
   const operation = method[1];
   const optionsType = resolveReference(refkey(method[1], "operationOptions"));
-  const parameters: Map<
-    string,
-    OptionalKind<ParameterDeclarationStructure>
-  > = new Map();
+
+  // Collect parameters with their kind for sorting
+  const parametersWithKind: Array<{
+    param: OptionalKind<ParameterDeclarationStructure>;
+    kind: string;
+  }> = [];
 
   operation.parameters
     .filter(
@@ -388,27 +390,48 @@ function getOperationSignatureParameters(
           (p.name === "contentType" || p.name === "accept")
         ) // skip tcgc generated contentType and accept header parameter
     )
-    .map((p) => {
-      return {
-        name: p.name,
-        type: getTypeExpression(context, p.type)
-      };
-    })
     .forEach((p) => {
-      parameters.set(p.name, p);
+      const httpParam = operation.operation.parameters.find((param) => {
+        return (
+          param.correspondingMethodParams.length === 1 &&
+          param.correspondingMethodParams[0] === p
+        );
+      });
+      
+      if (httpParam) {
+        parametersWithKind.push({
+          param: {
+            name: p.name,
+            type: getTypeExpression(context, p.type)
+          },
+          kind: httpParam.kind
+        });
+      }
     });
+
+  // Sort parameters: header parameters come before body parameters
+  // Order: path, header, query, body
+  const parameterOrder = { path: 0, header: 1, query: 2, body: 3 };
+  parametersWithKind.sort((a, b) => {
+    const orderA = parameterOrder[a.kind as keyof typeof parameterOrder] ?? 99;
+    const orderB = parameterOrder[b.kind as keyof typeof parameterOrder] ?? 99;
+    return orderA - orderB;
+  });
+
+  // Extract just the parameters after sorting
+  const sortedParameters = parametersWithKind.map(item => item.param);
 
   // Add context as the first parameter
   const contextParam = { name: "context", type: clientType };
 
   // Add the options parameter
   const optionsParam = {
-    name: parameters.has("options") ? "optionalParams" : "options",
+    name: sortedParameters.some(p => p.name === "options") ? "optionalParams" : "options",
     type: optionsType,
     initializer: "{ requestOptions: {} }"
   };
 
-  const finalParameters = [contextParam, ...parameters.values(), optionsParam];
+  const finalParameters = [contextParam, ...sortedParameters, optionsParam];
 
   return finalParameters;
 }

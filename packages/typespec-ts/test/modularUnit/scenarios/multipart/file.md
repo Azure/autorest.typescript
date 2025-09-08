@@ -34,7 +34,7 @@ export function requestBodySerializer(item: RequestBody): any {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { RequestBody, requestBodySerializer } from "../models/models.js";
+import { requestBodySerializer } from "../models/models.js";
 import { DoThingOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -45,7 +45,6 @@ import {
 
 export function _doThingSend(
   context: Client,
-  bodyParam: RequestBody,
   options: DoThingOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   return context
@@ -70,10 +69,9 @@ export async function _doThingDeserialize(
 
 export async function doThing(
   context: Client,
-  bodyParam: RequestBody,
   options: DoThingOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _doThingSend(context, bodyParam, options);
+  const result = await _doThingSend(context, options);
   return _doThingDeserialize(result);
 }
 ```

@@ -27,7 +27,6 @@ export function _readSend(
   pathParam: string,
   keyName: string,
   keyVersion: string,
-  parameters: string,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -66,7 +65,6 @@ export async function read(
   pathParam: string,
   keyName: string,
   keyVersion: string,
-  parameters: string,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _readSend(
@@ -74,7 +72,6 @@ export async function read(
     pathParam,
     keyName,
     keyVersion,
-    parameters,
     options,
   );
   return _readDeserialize(result);

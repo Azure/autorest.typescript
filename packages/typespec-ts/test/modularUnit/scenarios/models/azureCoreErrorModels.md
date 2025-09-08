@@ -403,7 +403,6 @@ export function _createOrUpdateSend(
   context: Client,
   resourceGroupName: string,
   avsSummaryName: string,
-  resource: AvsSummary,
   options: CreateOrUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -449,14 +448,12 @@ export async function createOrUpdate(
   context: Client,
   resourceGroupName: string,
   avsSummaryName: string,
-  resource: AvsSummary,
   options: CreateOrUpdateOptionalParams = { requestOptions: {} },
 ): Promise<AvsSummary> {
   const result = await _createOrUpdateSend(
     context,
     resourceGroupName,
     avsSummaryName,
-    resource,
     options,
   );
   return _createOrUpdateDeserialize(result);
