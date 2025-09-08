@@ -397,7 +397,7 @@ function getOperationSignatureParameters(
           param.correspondingMethodParams[0] === p
         );
       });
-      
+
       if (httpParam) {
         parametersWithKind.push({
           param: {
@@ -419,14 +419,16 @@ function getOperationSignatureParameters(
   });
 
   // Extract just the parameters after sorting
-  const sortedParameters = parametersWithKind.map(item => item.param);
+  const sortedParameters = parametersWithKind.map((item) => item.param);
 
   // Add context as the first parameter
   const contextParam = { name: "context", type: clientType };
 
   // Add the options parameter
   const optionsParam = {
-    name: sortedParameters.some(p => p.name === "options") ? "optionalParams" : "options",
+    name: sortedParameters.some((p) => p.name === "options")
+      ? "optionalParams"
+      : "options",
     type: optionsType,
     initializer: "{ requestOptions: {} }"
   };
