@@ -44,8 +44,8 @@ export interface CommonValue {
   onClient: boolean;
 }
 
-export interface EmitOptions {
-  topLevelClient: SdkClientType<SdkServiceOperation>;
+export interface ClientEmitOptions {
+  client: SdkClientType<SdkServiceOperation>;
   generatedFiles: SourceFile[];
   classicalMethodPrefix?: string;
   subFolder?: string;
@@ -450,7 +450,7 @@ export function iterateClientsAndMethods(
   callback: (
     dpgContext: SdkContext,
     method: ServiceOperation,
-    options: EmitOptions
+    options: ClientEmitOptions
   ) => SourceFile | undefined
 ): SourceFile[] {
   const generatedFiles: SourceFile[] = [];
@@ -458,16 +458,16 @@ export function iterateClientsAndMethods(
 
   for (const client of clients) {
     const methodMap = getMethodHierarchiesMap(dpgContext, client);
-    for (const [prefixKey, operations] of methodMap) {
+    for (const [prefixKey, methods] of methodMap) {
       const prefix = prefixKey
         .split("/")
         .map((name) => {
           return normalizeName(name, NameType.Property);
         })
         .join(".");
-      for (const op of operations) {
-        callback(dpgContext, op, {
-          topLevelClient: client,
+      for (const method of methods) {
+        callback(dpgContext, method, {
+          client,
           generatedFiles,
           classicalMethodPrefix: prefix,
           subFolder:
@@ -487,7 +487,7 @@ export function iterateClientsAndMethods(
 export function generateMethodCall(
   method: ServiceOperation,
   parameters: CommonValue[],
-  options: EmitOptions
+  options: ClientEmitOptions
 ): { methodCall: string; clientParams: string[]; clientParamDefs: string[] } {
   // Prepare client-level parameters
   const clientParamValues = parameters.filter((p) => p.onClient);
@@ -524,7 +524,7 @@ export function generateMethodCall(
 export function createSourceFile(
   dpgContext: SdkContext,
   method: ServiceOperation,
-  options: EmitOptions,
+  options: ClientEmitOptions,
   type: "sample" | "test",
   fileName: string
 ): SourceFile {

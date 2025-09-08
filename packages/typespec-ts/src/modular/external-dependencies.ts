@@ -206,3 +206,46 @@ export const AzureIdentityDependencies = {
     name: "DefaultAzureCredential"
   }
 };
+
+export const TestDependencies = {
+  Recorder: {
+    kind: "externalDependency",
+    module: "@azure-tools/test-recorder",
+    name: "Recorder"
+  },
+  env: {
+    kind: "externalDependency",
+    module: "@azure-tools/test-recorder",
+    name: "env"
+  },
+  createTestCredential: {
+    kind: "externalDependency",
+    module: "@azure-tools/test-credential",
+    name: "createTestCredential"
+  },
+  assert: {
+    kind: "externalDependency",
+    module: "vitest",
+    name: "assert"
+  },
+  beforeEach: {
+    kind: "externalDependency",
+    module: "vitest",
+    name: "beforeEach"
+  },
+  afterEach: {
+    kind: "externalDependency",
+    module: "vitest",
+    name: "afterEach"
+  },
+  it: {
+    kind: "externalDependency",
+    module: "vitest",
+    name: "it"
+  },
+  describe: {
+    kind: "externalDependency",
+    module: "vitest",
+    name: "describe"
+  }
+} as const;

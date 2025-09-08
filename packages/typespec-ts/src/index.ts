@@ -6,7 +6,8 @@ import {
   AzureCoreDependencies,
   AzureIdentityDependencies,
   AzurePollingDependencies,
-  DefaultCoreDependencies
+  DefaultCoreDependencies,
+  TestDependencies
 } from "./modular/external-dependencies.js";
 import { EmitContext, Program } from "@typespec/compiler";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
@@ -146,9 +147,13 @@ export async function $onEmit(context: EmitContext) {
     ? {
         ...AzurePollingDependencies,
         ...AzureCoreDependencies,
-        ...AzureIdentityDependencies
+        ...AzureIdentityDependencies,
+        ...TestDependencies
       }
-    : { ...DefaultCoreDependencies };
+    : {
+        ...DefaultCoreDependencies,
+        ...TestDependencies
+      };
   console.time("onEmit: provide binder");
   const binder = provideBinder(outputProject, {
     staticHelpers,
@@ -353,7 +358,7 @@ export async function $onEmit(context: EmitContext) {
     // Enable modular test generation when explicitly set to true
     if (emitterOptions["experimental-generate-test-files"] === true) {
       console.time("onEmit: emit tests");
-      emitTests(dpgContext);
+      await emitTests(dpgContext);
       console.timeEnd("onEmit: emit tests");
     }
 

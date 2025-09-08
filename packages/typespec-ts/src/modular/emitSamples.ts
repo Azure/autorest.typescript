@@ -12,7 +12,7 @@ import {
   prepareCommonParameters,
   escapeSpecialCharToSpace,
   getDescriptiveName,
-  EmitOptions,
+  ClientEmitOptions,
   iterateClientsAndMethods,
   generateMethodCall,
   createSourceFile
@@ -28,7 +28,7 @@ export function emitSamples(dpgContext: SdkContext): SourceFile[] {
 function emitMethodSamples(
   dpgContext: SdkContext,
   method: ServiceOperation,
-  options: EmitOptions
+  options: ClientEmitOptions
 ): SourceFile | undefined {
   const examples = method.operation.examples ?? [];
   if (examples.length === 0) {
@@ -48,7 +48,7 @@ function emitMethodSamples(
   );
 
   const exampleFunctions = [];
-  const clientName = getClassicalClientName(options.topLevelClient);
+  const clientName = getClassicalClientName(options.client);
 
   // TODO: remove hard-coded for package
   if (dpgContext.rlcOptions?.packageDetails?.name) {
@@ -70,7 +70,7 @@ function emitMethodSamples(
       dpgContext,
       method,
       parameterMap,
-      options.topLevelClient,
+      options.client,
       false // isForTest = false for samples
     );
 
