@@ -57,11 +57,10 @@ Raw json files.
 ```ts tests readTest
 /** This file path is /test/generated/readTest.spec.ts */
 
-import { Recorder, env } from "@azure-tools/test-recorder";
 import { createRecorder } from "../public/utils/recordedClient.js";
-import { createTestCredential } from "@azure-tools/test-credential";
-import { assert, beforeEach, afterEach, it, describe } from "vitest";
 import { TestingClient } from "../../src/index.js";
+import { Recorder } from "@azure-tools/test-recorder";
+import { assert, beforeEach, afterEach, it, describe } from "vitest";
 
 describe("show example demo", () => {
   let recorder: Recorder;

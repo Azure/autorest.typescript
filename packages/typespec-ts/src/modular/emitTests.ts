@@ -15,7 +15,7 @@ import {
   createSourceFile,
   generateResponseAssertions
 } from "./helpers/sampleTestHelpers.js";
-import { TestDependencies } from "./external-dependencies.js";
+import { AzureTestDependencies } from "./external-dependencies.js";
 import { resolveReference } from "../framework/reference.js";
 
 /**
@@ -83,12 +83,12 @@ function emitMethodTests(
   const clientName = getClassicalClientName(options.client);
 
   // Use resolveReference for test dependencies to let the binder handle imports automatically
-  const recorderType = resolveReference(TestDependencies.Recorder);
-  const assertType = resolveReference(TestDependencies.assert);
-  const beforeEachType = resolveReference(TestDependencies.beforeEach);
-  const afterEachType = resolveReference(TestDependencies.afterEach);
-  const itType = resolveReference(TestDependencies.it);
-  const describeType = resolveReference(TestDependencies.describe);
+  const recorderType = resolveReference(AzureTestDependencies.Recorder);
+  const assertType = resolveReference(AzureTestDependencies.assert);
+  const beforeEachType = resolveReference(AzureTestDependencies.beforeEach);
+  const afterEachType = resolveReference(AzureTestDependencies.afterEach);
+  const itType = resolveReference(AzureTestDependencies.it);
+  const describeType = resolveReference(AzureTestDependencies.describe);
 
   sourceFile.addImportDeclaration({
     moduleSpecifier: "../public/utils/recordedClient.js",

@@ -86,11 +86,11 @@ enable-operation-group: false
 ```ts tests
 /** This file path is /test/generated/widgetsListWidgetsTest.spec.ts */
 
-import { Recorder, env } from "@azure-tools/test-recorder";
 import { createRecorder } from "../public/utils/recordedClient.js";
-import { createTestCredential } from "@azure-tools/test-credential";
-import { assert, beforeEach, afterEach, it, describe } from "vitest";
 import { WidgetManagerClient } from "../../src/index.js";
+import { createTestCredential } from "@azure-tools/test-credential";
+import { Recorder } from "@azure-tools/test-recorder";
+import { assert, beforeEach, afterEach, it, describe } from "vitest";
 
 describe("list Widget resources", () => {
   let recorder: Recorder;
@@ -227,11 +227,11 @@ Raw json files.
 ```ts tests
 /** This file path is /test/generated/getTest.spec.ts */
 
-import { Recorder, env } from "@azure-tools/test-recorder";
 import { createRecorder } from "../public/utils/recordedClient.js";
-import { createTestCredential } from "@azure-tools/test-credential";
-import { assert, beforeEach, afterEach, it, describe } from "vitest";
 import { ContosoClient } from "../../src/index.js";
+import { createTestCredential } from "@azure-tools/test-credential";
+import { Recorder, env } from "@azure-tools/test-recorder";
+import { assert, beforeEach, afterEach, it, describe } from "vitest";
 
 describe("get a Employee", () => {
   let recorder: Recorder;

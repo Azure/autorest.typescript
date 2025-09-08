@@ -7,7 +7,7 @@ import {
   AzureIdentityDependencies,
   AzurePollingDependencies,
   DefaultCoreDependencies,
-  TestDependencies
+  AzureTestDependencies
 } from "./modular/external-dependencies.js";
 import { EmitContext, Program } from "@typespec/compiler";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
@@ -148,12 +148,9 @@ export async function $onEmit(context: EmitContext) {
         ...AzurePollingDependencies,
         ...AzureCoreDependencies,
         ...AzureIdentityDependencies,
-        ...TestDependencies
+        ...AzureTestDependencies
       }
-    : {
-        ...DefaultCoreDependencies,
-        ...TestDependencies
-      };
+    : { ...DefaultCoreDependencies };
   console.time("onEmit: provide binder");
   const binder = provideBinder(outputProject, {
     staticHelpers,

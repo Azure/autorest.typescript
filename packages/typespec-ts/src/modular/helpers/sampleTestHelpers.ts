@@ -13,7 +13,10 @@ import {
 } from "@azure-tools/rlc-common";
 import { resolveReference } from "../../framework/reference.js";
 import { SdkContext } from "../../utils/interfaces.js";
-import { AzureIdentityDependencies } from "../external-dependencies.js";
+import {
+  AzureIdentityDependencies,
+  AzureTestDependencies
+} from "../external-dependencies.js";
 import {
   hasKeyCredential,
   hasTokenCredential
@@ -129,6 +132,9 @@ export function getCredentialTestValue(
   dpgContext: SdkContext,
   initialization: SdkClientInitializationType
 ): CommonValue | undefined {
+  const createTestCredentialType = resolveReference(
+    AzureTestDependencies.createTestCredential
+  );
   const keyCredential = hasKeyCredential(initialization),
     tokenCredential = hasTokenCredential(initialization);
   const defaultSetting = {
@@ -142,7 +148,7 @@ export function getCredentialTestValue(
       // Support createTestCredential for ARM/Azure packages
       return {
         ...defaultSetting,
-        value: "createTestCredential()"
+        value: `${createTestCredentialType}()`
       };
     } else if (keyCredential) {
       // Support ApiKeyCredential for non-Azure packages
@@ -302,6 +308,7 @@ export function prepareCommonParameters(
   topLevelClient: SdkClientType<SdkServiceOperation>,
   isForTest: boolean = false
 ): CommonValue[] {
+  const envType = resolveReference(AzureTestDependencies.env);
   const result: CommonValue[] = [];
 
   // Handle credentials
@@ -313,7 +320,7 @@ export function prepareCommonParameters(
   }
 
   let subscriptionIdValue = isForTest
-    ? `env.SUBSCRIPTION_ID || "<SUBSCRIPTION_ID>"`
+    ? `${envType}.SUBSCRIPTION_ID || "<SUBSCRIPTION_ID>"`
     : `"00000000-0000-0000-0000-00000000000"`;
 
   // Process required parameters
@@ -359,7 +366,7 @@ export function prepareCommonParameters(
     ) {
       // For tests, always use env variable; for samples, use example value
       subscriptionIdValue = isForTest
-        ? `env.SUBSCRIPTION_ID || "<SUBSCRIPTION_ID>"`
+        ? `${envType}.SUBSCRIPTION_ID || "<SUBSCRIPTION_ID>"`
         : serializeExampleValue(exampleValue.value);
       continue;
     }

@@ -218,11 +218,11 @@ main().catch(console.error);
 ```ts tests
 /** This file path is /test/generated/widgetsListWidgetsTest.spec.ts */
 
-import { Recorder, env } from "@azure-tools/test-recorder";
 import { createRecorder } from "../public/utils/recordedClient.js";
-import { createTestCredential } from "@azure-tools/test-credential";
-import { assert, beforeEach, afterEach, it, describe } from "vitest";
 import { WidgetManagerClient } from "../../src/index.js";
+import { createTestCredential } from "@azure-tools/test-credential";
+import { Recorder } from "@azure-tools/test-recorder";
+import { assert, beforeEach, afterEach, it, describe } from "vitest";
 
 describe("list Widget resources", () => {
   let recorder: Recorder;
@@ -254,11 +254,11 @@ describe("list Widget resources", () => {
 
 /** This file path is /test/generated/widgetsDeleteWidgetTest.spec.ts */
 
-import { Recorder, env } from "@azure-tools/test-recorder";
 import { createRecorder } from "../public/utils/recordedClient.js";
-import { createTestCredential } from "@azure-tools/test-credential";
-import { assert, beforeEach, afterEach, it, describe } from "vitest";
 import { WidgetManagerClient } from "../../src/index.js";
+import { createTestCredential } from "@azure-tools/test-credential";
+import { Recorder } from "@azure-tools/test-recorder";
+import { assert, beforeEach, afterEach, it, describe } from "vitest";
 
 describe("delete a Widget asynchronously", () => {
   let recorder: Recorder;
@@ -283,11 +283,11 @@ describe("delete a Widget asynchronously", () => {
 
 /** This file path is /test/generated/widgetsCreateOrUpdateWidgetTest.spec.ts */
 
-import { Recorder, env } from "@azure-tools/test-recorder";
 import { createRecorder } from "../public/utils/recordedClient.js";
-import { createTestCredential } from "@azure-tools/test-credential";
-import { assert, beforeEach, afterEach, it, describe } from "vitest";
 import { WidgetManagerClient } from "../../src/index.js";
+import { createTestCredential } from "@azure-tools/test-credential";
+import { Recorder } from "@azure-tools/test-recorder";
+import { assert, beforeEach, afterEach, it, describe } from "vitest";
 
 describe("creates or updates a Widget asynchronously", () => {
   let recorder: Recorder;

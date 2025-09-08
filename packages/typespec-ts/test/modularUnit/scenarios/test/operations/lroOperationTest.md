@@ -124,11 +124,11 @@ Raw json files.
 ```ts tests createOrUpdateTest
 /** This file path is /test/generated/createOrUpdateTest.spec.ts */
 
-import { Recorder, env } from "@azure-tools/test-recorder";
 import { createRecorder } from "../public/utils/recordedClient.js";
-import { createTestCredential } from "@azure-tools/test-credential";
-import { assert, beforeEach, afterEach, it, describe } from "vitest";
 import { ContosoClient } from "../../src/index.js";
+import { createTestCredential } from "@azure-tools/test-credential";
+import { Recorder, env } from "@azure-tools/test-recorder";
+import { assert, beforeEach, afterEach, it, describe } from "vitest";
 
 describe("create a Employee", () => {
   let recorder: Recorder;

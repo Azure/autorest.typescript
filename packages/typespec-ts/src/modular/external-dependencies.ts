@@ -207,7 +207,7 @@ export const AzureIdentityDependencies = {
   }
 };
 
-export const TestDependencies = {
+export const AzureTestDependencies = {
   Recorder: {
     kind: "externalDependency",
     module: "@azure-tools/test-recorder",
