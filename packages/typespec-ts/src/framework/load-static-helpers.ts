@@ -74,7 +74,7 @@ export async function loadStaticHelpers(
     defaultTestingHelpersPath,
     [],
     "",
-    "test/generated"
+    "test/generated/util"
   );
   await loadFiles(filesInTestings, options.rootDir ?? "");
   return assertAllHelpersLoadedPresent(helpersMap);

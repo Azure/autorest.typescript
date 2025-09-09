@@ -363,7 +363,10 @@ export async function $onEmit(context: EmitContext) {
     }
 
     console.time("onEmit: resolve references");
-    binder.resolveAllReferences(modularSourcesRoot);
+    binder.resolveAllReferences(
+      modularSourcesRoot,
+      dpgContext.generationPathDetail?.rootDir ?? ""
+    );
     if (program.compilerOptions.noEmit || program.hasError()) {
       return;
     }
