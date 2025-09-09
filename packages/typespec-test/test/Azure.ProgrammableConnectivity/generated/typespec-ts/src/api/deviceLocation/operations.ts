@@ -19,8 +19,8 @@ import {
 
 export function _verifySend(
   context: Client,
-  body: DeviceLocationVerificationContent,
   apcGatewayId: string,
+  body: DeviceLocationVerificationContent,
   options: DeviceLocationVerifyOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -63,10 +63,10 @@ export async function _verifyDeserialize(
 /** Verifies whether a device is within a specified location area, defined as an accuracy (radius) around a point, specified by longitude and latitude. */
 export async function verify(
   context: Client,
-  body: DeviceLocationVerificationContent,
   apcGatewayId: string,
+  body: DeviceLocationVerificationContent,
   options: DeviceLocationVerifyOptionalParams = { requestOptions: {} },
 ): Promise<DeviceLocationVerificationResult> {
-  const result = await _verifySend(context, body, apcGatewayId, options);
+  const result = await _verifySend(context, apcGatewayId, body, options);
   return _verifyDeserialize(result);
 }

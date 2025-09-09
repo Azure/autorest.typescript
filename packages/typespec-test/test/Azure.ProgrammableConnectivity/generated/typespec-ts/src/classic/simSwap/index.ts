@@ -18,14 +18,14 @@ import {
 export interface SimSwapOperations {
   /** Verifies if a SIM swap has been performed during a past period (defined in the request with 'maxAgeHours' attribute). Returns 'True' if a SIM swap has occured. */
   verify: (
-    body: SimSwapVerificationContent,
     apcGatewayId: string,
+    body: SimSwapVerificationContent,
     options?: SimSwapVerifyOptionalParams,
   ) => Promise<SimSwapVerificationResult>;
   /** Provides timestamp of latest SIM swap */
   retrieve: (
-    body: SimSwapRetrievalContent,
     apcGatewayId: string,
+    body: SimSwapRetrievalContent,
     options?: SimSwapRetrieveOptionalParams,
   ) => Promise<SimSwapRetrievalResult>;
 }
@@ -33,15 +33,15 @@ export interface SimSwapOperations {
 function _getSimSwap(context: ProgrammableConnectivityContext) {
   return {
     verify: (
+      apcGatewayId: string,
       body: SimSwapVerificationContent,
-      apcGatewayId: string,
       options?: SimSwapVerifyOptionalParams,
-    ) => verify(context, body, apcGatewayId, options),
+    ) => verify(context, apcGatewayId, body, options),
     retrieve: (
-      body: SimSwapRetrievalContent,
       apcGatewayId: string,
+      body: SimSwapRetrievalContent,
       options?: SimSwapRetrieveOptionalParams,
-    ) => retrieve(context, body, apcGatewayId, options),
+    ) => retrieve(context, apcGatewayId, body, options),
   };
 }
 

@@ -13,8 +13,8 @@ import {
 export interface DeviceLocationOperations {
   /** Verifies whether a device is within a specified location area, defined as an accuracy (radius) around a point, specified by longitude and latitude. */
   verify: (
-    body: DeviceLocationVerificationContent,
     apcGatewayId: string,
+    body: DeviceLocationVerificationContent,
     options?: DeviceLocationVerifyOptionalParams,
   ) => Promise<DeviceLocationVerificationResult>;
 }
@@ -22,10 +22,10 @@ export interface DeviceLocationOperations {
 function _getDeviceLocation(context: ProgrammableConnectivityContext) {
   return {
     verify: (
-      body: DeviceLocationVerificationContent,
       apcGatewayId: string,
+      body: DeviceLocationVerificationContent,
       options?: DeviceLocationVerifyOptionalParams,
-    ) => verify(context, body, apcGatewayId, options),
+    ) => verify(context, apcGatewayId, body, options),
   };
 }
 

@@ -24,8 +24,8 @@ import {
 
 export function _verifyWithCodeSend(
   context: Client,
-  body: NumberVerificationWithCodeContent,
   apcGatewayId: string,
+  body: NumberVerificationWithCodeContent,
   options: NumberVerificationVerifyWithCodeOptionalParams = {
     requestOptions: {},
   },
@@ -70,16 +70,16 @@ export async function _verifyWithCodeDeserialize(
 /** Verifies the phone number (MSISDN) associated with a device. */
 export async function verifyWithCode(
   context: Client,
-  body: NumberVerificationWithCodeContent,
   apcGatewayId: string,
+  body: NumberVerificationWithCodeContent,
   options: NumberVerificationVerifyWithCodeOptionalParams = {
     requestOptions: {},
   },
 ): Promise<NumberVerificationResult> {
   const result = await _verifyWithCodeSend(
     context,
-    body,
     apcGatewayId,
+    body,
     options,
   );
   return _verifyWithCodeDeserialize(result);
@@ -87,8 +87,8 @@ export async function verifyWithCode(
 
 export function _verifyWithoutCodeSend(
   context: Client,
-  body: NumberVerificationWithoutCodeContent,
   apcGatewayId: string,
+  body: NumberVerificationWithoutCodeContent,
   options: NumberVerificationVerifyWithoutCodeOptionalParams = {
     requestOptions: {},
   },
@@ -132,16 +132,16 @@ export async function _verifyWithoutCodeDeserialize(
 /** Verifies the phone number (MSISDN) associated with a device. As part of the frontend authorization flow, the device is redirected to the operator network to authenticate directly. */
 export async function verifyWithoutCode(
   context: Client,
-  body: NumberVerificationWithoutCodeContent,
   apcGatewayId: string,
+  body: NumberVerificationWithoutCodeContent,
   options: NumberVerificationVerifyWithoutCodeOptionalParams = {
     requestOptions: {},
   },
 ): Promise<void> {
   const result = await _verifyWithoutCodeSend(
     context,
-    body,
     apcGatewayId,
+    body,
     options,
   );
   return _verifyWithoutCodeDeserialize(result);

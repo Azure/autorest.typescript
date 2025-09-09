@@ -13,8 +13,8 @@ import {
 export interface DeviceNetworkOperations {
   /** Retrieves the network a given device is on. Returns network in a networkCode format that can be used for other APIs. */
   retrieve: (
-    body: NetworkIdentifier,
     apcGatewayId: string,
+    body: NetworkIdentifier,
     options?: DeviceNetworkRetrieveOptionalParams,
   ) => Promise<NetworkRetrievalResult>;
 }
@@ -22,10 +22,10 @@ export interface DeviceNetworkOperations {
 function _getDeviceNetwork(context: ProgrammableConnectivityContext) {
   return {
     retrieve: (
-      body: NetworkIdentifier,
       apcGatewayId: string,
+      body: NetworkIdentifier,
       options?: DeviceNetworkRetrieveOptionalParams,
-    ) => retrieve(context, body, apcGatewayId, options),
+    ) => retrieve(context, apcGatewayId, body, options),
   };
 }
 

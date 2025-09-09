@@ -19,8 +19,8 @@ import {
 
 export function _retrieveSend(
   context: Client,
-  body: NetworkIdentifier,
   apcGatewayId: string,
+  body: NetworkIdentifier,
   options: DeviceNetworkRetrieveOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -63,10 +63,10 @@ export async function _retrieveDeserialize(
 /** Retrieves the network a given device is on. Returns network in a networkCode format that can be used for other APIs. */
 export async function retrieve(
   context: Client,
-  body: NetworkIdentifier,
   apcGatewayId: string,
+  body: NetworkIdentifier,
   options: DeviceNetworkRetrieveOptionalParams = { requestOptions: {} },
 ): Promise<NetworkRetrievalResult> {
-  const result = await _retrieveSend(context, body, apcGatewayId, options);
+  const result = await _retrieveSend(context, apcGatewayId, body, options);
   return _retrieveDeserialize(result);
 }

@@ -26,8 +26,8 @@ import {
 
 export function _verifySend(
   context: Client,
-  body: SimSwapVerificationContent,
   apcGatewayId: string,
+  body: SimSwapVerificationContent,
   options: SimSwapVerifyOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -70,18 +70,18 @@ export async function _verifyDeserialize(
 /** Verifies if a SIM swap has been performed during a past period (defined in the request with 'maxAgeHours' attribute). Returns 'True' if a SIM swap has occured. */
 export async function verify(
   context: Client,
-  body: SimSwapVerificationContent,
   apcGatewayId: string,
+  body: SimSwapVerificationContent,
   options: SimSwapVerifyOptionalParams = { requestOptions: {} },
 ): Promise<SimSwapVerificationResult> {
-  const result = await _verifySend(context, body, apcGatewayId, options);
+  const result = await _verifySend(context, apcGatewayId, body, options);
   return _verifyDeserialize(result);
 }
 
 export function _retrieveSend(
   context: Client,
-  body: SimSwapRetrievalContent,
   apcGatewayId: string,
+  body: SimSwapRetrievalContent,
   options: SimSwapRetrieveOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -124,10 +124,10 @@ export async function _retrieveDeserialize(
 /** Provides timestamp of latest SIM swap */
 export async function retrieve(
   context: Client,
-  body: SimSwapRetrievalContent,
   apcGatewayId: string,
+  body: SimSwapRetrievalContent,
   options: SimSwapRetrieveOptionalParams = { requestOptions: {} },
 ): Promise<SimSwapRetrievalResult> {
-  const result = await _retrieveSend(context, body, apcGatewayId, options);
+  const result = await _retrieveSend(context, apcGatewayId, body, options);
   return _retrieveDeserialize(result);
 }

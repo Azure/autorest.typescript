@@ -20,14 +20,14 @@ import {
 export interface NumberVerificationOperations {
   /** Verifies the phone number (MSISDN) associated with a device. */
   verifyWithCode: (
-    body: NumberVerificationWithCodeContent,
     apcGatewayId: string,
+    body: NumberVerificationWithCodeContent,
     options?: NumberVerificationVerifyWithCodeOptionalParams,
   ) => Promise<NumberVerificationResult>;
   /** Verifies the phone number (MSISDN) associated with a device. As part of the frontend authorization flow, the device is redirected to the operator network to authenticate directly. */
   verifyWithoutCode: (
-    body: NumberVerificationWithoutCodeContent,
     apcGatewayId: string,
+    body: NumberVerificationWithoutCodeContent,
     options?: NumberVerificationVerifyWithoutCodeOptionalParams,
   ) => Promise<void>;
 }
@@ -35,15 +35,15 @@ export interface NumberVerificationOperations {
 function _getNumberVerification(context: ProgrammableConnectivityContext) {
   return {
     verifyWithCode: (
+      apcGatewayId: string,
       body: NumberVerificationWithCodeContent,
-      apcGatewayId: string,
       options?: NumberVerificationVerifyWithCodeOptionalParams,
-    ) => verifyWithCode(context, body, apcGatewayId, options),
+    ) => verifyWithCode(context, apcGatewayId, body, options),
     verifyWithoutCode: (
-      body: NumberVerificationWithoutCodeContent,
       apcGatewayId: string,
+      body: NumberVerificationWithoutCodeContent,
       options?: NumberVerificationVerifyWithoutCodeOptionalParams,
-    ) => verifyWithoutCode(context, body, apcGatewayId, options),
+    ) => verifyWithoutCode(context, apcGatewayId, body, options),
   };
 }
 
