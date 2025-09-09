@@ -26,7 +26,7 @@ describe("loadStaticHelpers", () => {
     const helperDeclarations = await loadStaticHelpers(project, helpers, {
       helpersAssetDirectory
     });
-    expect(project.getSourceFiles()).to.toHaveLength(1);
+    expect(project.getSourceFiles()).to.toHaveLength(2);
     const buildCsvCollectionDeclaration = helperDeclarations.get(
       refkey(helpers.buildCsvCollection)
     );
