@@ -83,8 +83,8 @@ Raw json files.
 ```ts tests deleteTest
 /** This file path is /test/generated/deleteTest.spec.ts */
 
-import { createRecorder } from "../public/utils/recordedClient.js";
 import { ContosoClient } from "../../src/index.js";
+import { createRecorder } from "./recordedClient.js";
 import { createTestCredential } from "@azure-tools/test-credential";
 import { Recorder, env } from "@azure-tools/test-recorder";
 import { beforeEach, afterEach, it, describe } from "vitest";

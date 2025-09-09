@@ -86,8 +86,8 @@ main().catch(console.error);
 ```ts tests
 /** This file path is /test/generated/readTest.spec.ts */
 
-import { createRecorder } from "../public/utils/recordedClient.js";
 import { TestServiceClient } from "../../src/index.js";
+import { createRecorder } from "./recordedClient.js";
 import { Recorder } from "@azure-tools/test-recorder";
 import { assert, beforeEach, afterEach, it, describe } from "vitest";
 

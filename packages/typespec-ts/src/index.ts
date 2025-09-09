@@ -13,6 +13,7 @@ import { EmitContext, Program } from "@typespec/compiler";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import {
   CloudSettingHelpers,
+  CreateRecorderHelpers,
   MultipartHelpers,
   PagingHelpers,
   PollingHelpers,
@@ -135,10 +136,12 @@ export async function $onEmit(context: EmitContext) {
       ...PollingHelpers,
       ...UrlTemplateHelpers,
       ...MultipartHelpers,
-      ...CloudSettingHelpers
+      ...CloudSettingHelpers,
+      ...CreateRecorderHelpers
     },
     {
       sourcesDir: dpgContext.generationPathDetail?.modularSourcesDir,
+      rootDir: dpgContext.generationPathDetail?.rootDir,
       options: rlcOptions
     }
   );

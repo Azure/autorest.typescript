@@ -16,7 +16,7 @@ import {
   iterateClientsAndMethods,
   generateMethodCall,
   createSourceFile
-} from "./helpers/sampleTestHelpers.js";
+} from "./helpers/exampleValueHelpers.js";
 
 /**
  * Helpers to emit samples

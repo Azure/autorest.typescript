@@ -22,6 +22,7 @@ import { loadStaticHelpers } from "../../src/framework/load-static-helpers.js";
 import path from "path";
 import { getDirname } from "../../src/utils/dirname.js";
 import {
+  CreateRecorderHelpers,
   MultipartHelpers,
   PagingHelpers,
   PollingHelpers,
@@ -270,7 +271,8 @@ export async function provideBinderWithAzureDependencies(project: Project) {
     ...PagingHelpers,
     ...PollingHelpers,
     ...UrlTemplateHelpers,
-    ...MultipartHelpers
+    ...MultipartHelpers,
+    ...CreateRecorderHelpers
   };
 
   const staticHelperMap = await loadStaticHelpers(project, staticHelpers, {

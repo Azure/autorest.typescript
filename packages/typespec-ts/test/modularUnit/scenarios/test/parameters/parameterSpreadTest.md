@@ -66,8 +66,8 @@ Raw json files.
 ```ts tests readTest
 /** This file path is /test/generated/readTest.spec.ts */
 
-import { createRecorder } from "../public/utils/recordedClient.js";
 import { TestingClient } from "../../src/index.js";
+import { createRecorder } from "./recordedClient.js";
 import { Recorder } from "@azure-tools/test-recorder";
 import { assert, beforeEach, afterEach, it, describe } from "vitest";
 

@@ -35,12 +35,19 @@ export function isStaticHelperMetadata(
 
 export type StaticHelpers = Record<string, StaticHelperMetadata>;
 
-const DEFAULT_STATIC_HELPERS_PATH = "static/static-helpers";
+const DEFAULT_SOURCES_STATIC_HELPERS_PATH = "static/static-helpers";
+const DEFAULT_SOURCES_TESTING_HELPERS_PATH = "static/test-helpers";
 
 export interface LoadStaticHelpersOptions
   extends Partial<ModularEmitterOptions> {
   helpersAssetDirectory?: string;
   sourcesDir?: string;
+  rootDir?: string;
+}
+
+interface FileMetadata {
+  source: string;
+  target: string;
 }
 
 export async function loadStaticHelpers(
@@ -48,63 +55,77 @@ export async function loadStaticHelpers(
   helpers: StaticHelpers,
   options: LoadStaticHelpersOptions = {}
 ): Promise<Map<string, StaticHelperMetadata>> {
-  const sourcesDir = options.sourcesDir ?? "";
   const helpersMap = new Map<string, StaticHelperMetadata>();
+  // Load static helpers used in sources code
   const defaultStaticHelpersPath = path.join(
     resolveProjectRoot(),
-    DEFAULT_STATIC_HELPERS_PATH
+    DEFAULT_SOURCES_STATIC_HELPERS_PATH
   );
-  const files = await traverseDirectory(
+  const filesInSources = await traverseDirectory(
     options.helpersAssetDirectory ?? defaultStaticHelpersPath
   );
+  await loadFiles(filesInSources, options.sourcesDir ?? "");
+  // Load static helpers used in testing code
+  const defaultTestingHelpersPath = path.join(
+    resolveProjectRoot(),
+    DEFAULT_SOURCES_TESTING_HELPERS_PATH
+  );
+  const filesInTestings = await traverseDirectory(
+    defaultTestingHelpersPath,
+    [],
+    "",
+    "test/generated"
+  );
+  await loadFiles(filesInTestings, options.rootDir ?? "");
+  return assertAllHelpersLoadedPresent(helpersMap);
 
-  for (const file of files) {
-    const targetPath = path.join(sourcesDir, file.target);
-    const contents = await readFile(file.source, "utf-8");
-    const addedFile = project.createSourceFile(targetPath, contents, {
-      overwrite: true
-    });
-    addedFile.getImportDeclarations().map((i) => {
-      if (!isAzurePackage({ options: options.options })) {
-        if (
-          i
-            .getModuleSpecifier()
-            .getFullText()
-            .includes("@azure/core-rest-pipeline")
-        ) {
-          i.setModuleSpecifier("@typespec/ts-http-runtime");
+  async function loadFiles(files: FileMetadata[], generateDir: string) {
+    for (const file of files) {
+      const targetPath = path.join(generateDir, file.target);
+      const contents = await readFile(file.source, "utf-8");
+      const addedFile = project.createSourceFile(targetPath, contents, {
+        overwrite: true
+      });
+      addedFile.getImportDeclarations().map((i) => {
+        if (!isAzurePackage({ options: options.options })) {
+          if (
+            i
+              .getModuleSpecifier()
+              .getFullText()
+              .includes("@azure/core-rest-pipeline")
+          ) {
+            i.setModuleSpecifier("@typespec/ts-http-runtime");
+          }
+          if (
+            i
+              .getModuleSpecifier()
+              .getFullText()
+              .includes("@azure-rest/core-client")
+          ) {
+            i.setModuleSpecifier("@typespec/ts-http-runtime");
+          }
         }
-        if (
-          i
-            .getModuleSpecifier()
-            .getFullText()
-            .includes("@azure-rest/core-client")
-        ) {
-          i.setModuleSpecifier("@typespec/ts-http-runtime");
+      });
+
+      for (const entry of Object.values(helpers)) {
+        if (!addedFile.getFilePath().endsWith(entry.location)) {
+          continue;
         }
-      }
-    });
 
-    for (const entry of Object.values(helpers)) {
-      if (!addedFile.getFilePath().endsWith(entry.location)) {
-        continue;
-      }
+        const declaration = getDeclarationByMetadata(addedFile, entry);
+        if (!declaration) {
+          throw new Error(
+            `Declaration ${
+              entry.name
+            } not found in file ${addedFile.getFilePath()}\n This is an Emitter bug, make sure that the map of static helpers passed to loadStaticHelpers matches what is in the file.`
+          );
+        }
 
-      const declaration = getDeclarationByMetadata(addedFile, entry);
-      if (!declaration) {
-        throw new Error(
-          `Declaration ${
-            entry.name
-          } not found in file ${addedFile.getFilePath()}\n This is an Emitter bug, make sure that the map of static helpers passed to loadStaticHelpers matches what is in the file.`
-        );
+        entry[SourceFileSymbol] = addedFile;
+        helpersMap.set(refkey(entry), entry);
       }
-
-      entry[SourceFileSymbol] = addedFile;
-      helpersMap.set(refkey(entry), entry);
     }
   }
-
-  return assertAllHelpersLoadedPresent(helpersMap);
 }
 
 function assertAllHelpersLoadedPresent(
@@ -158,11 +179,11 @@ function getDeclarationByMetadata(
   }
 }
 
-const _targetStaticHelpersBaseDir = "static-helpers";
 async function traverseDirectory(
   directory: string,
   result: { source: string; target: string }[] = [],
-  relativePath: string = ""
+  relativePath: string = "",
+  targetBaseDir: string = "static-helpers"
 ): Promise<{ source: string; target: string }[]> {
   try {
     const files = await readdir(directory);
@@ -176,18 +197,15 @@ async function traverseDirectory(
           await traverseDirectory(
             filePath,
             result,
-            path.join(relativePath, file)
+            path.join(relativePath, file),
+            targetBaseDir
           );
         } else if (
           fileStat.isFile() &&
           !file.endsWith(".d.ts") &&
           file.endsWith(".ts")
         ) {
-          const target = path.join(
-            _targetStaticHelpersBaseDir,
-            relativePath,
-            file
-          );
+          const target = path.join(targetBaseDir, relativePath, file);
           result.push({ source: filePath, target });
         }
       })

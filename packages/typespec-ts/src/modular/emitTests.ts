@@ -14,9 +14,10 @@ import {
   generateMethodCall,
   createSourceFile,
   generateResponseAssertions
-} from "./helpers/sampleTestHelpers.js";
+} from "./helpers/exampleValueHelpers.js";
 import { AzureTestDependencies } from "./external-dependencies.js";
 import { resolveReference } from "../framework/reference.js";
+import { CreateRecorderHelpers } from "./static-helpers-metadata.js";
 
 /**
  * Clean up the test/generated folder before generating new tests
@@ -89,11 +90,9 @@ function emitMethodTests(
   const afterEachType = resolveReference(AzureTestDependencies.afterEach);
   const itType = resolveReference(AzureTestDependencies.it);
   const describeType = resolveReference(AzureTestDependencies.describe);
-
-  sourceFile.addImportDeclaration({
-    moduleSpecifier: "../public/utils/recordedClient.js",
-    namedImports: ["createRecorder"]
-  });
+  const createRecorderHelper = resolveReference(
+    CreateRecorderHelpers.createRecorder
+  );
 
   // Import the client
   sourceFile.addImportDeclaration({
@@ -119,7 +118,6 @@ function emitMethodTests(
     const testFunctionBody: string[] = [];
     // Create a more descriptive test name based on the operation (same as samples)
     const testName = getDescriptiveName(method, example.name, "test");
-
     const parameterMap = buildParameterValueMap(example);
     const parameters = prepareCommonParameters(
       dpgContext,
@@ -197,7 +195,7 @@ ${describeType}("${normalizedDescription}", () => {
   let client: ${clientName};
 
   ${beforeEachType}(async function(ctx) {
-    recorder = await createRecorder(ctx);
+    recorder = await ${createRecorderHelper}(ctx);
     ${clientParameterDefs.join("\n")}
     client = new ${clientName}(${clientParamNames.join(", ")});
   });
