@@ -87,7 +87,7 @@ enable-operation-group: false
 /** This file path is /test/generated/widgetsListWidgetsTest.spec.ts */
 
 import { WidgetManagerClient } from "../../src/index.js";
-import { createRecorder } from "./recordedClient.js";
+import { createRecorder } from "./util/recordedClient.js";
 import { createTestCredential } from "@azure-tools/test-credential";
 import { Recorder } from "@azure-tools/test-recorder";
 import { assert, beforeEach, afterEach, it, describe } from "vitest";
@@ -228,7 +228,7 @@ Raw json files.
 /** This file path is /test/generated/getTest.spec.ts */
 
 import { ContosoClient } from "../../src/index.js";
-import { createRecorder } from "./recordedClient.js";
+import { createRecorder } from "./util/recordedClient.js";
 import { createTestCredential } from "@azure-tools/test-credential";
 import { Recorder, env } from "@azure-tools/test-recorder";
 import { assert, beforeEach, afterEach, it, describe } from "vitest";

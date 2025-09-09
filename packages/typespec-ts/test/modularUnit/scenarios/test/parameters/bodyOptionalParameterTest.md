@@ -120,7 +120,7 @@ Raw json files.
 /** This file path is /test/generated/backupTest.spec.ts */
 
 import { HardwareSecurityModulesClient } from "../../src/index.js";
-import { createRecorder } from "./recordedClient.js";
+import { createRecorder } from "./util/recordedClient.js";
 import { createTestCredential } from "@azure-tools/test-credential";
 import { Recorder, env } from "@azure-tools/test-recorder";
 import { assert, beforeEach, afterEach, it, describe } from "vitest";

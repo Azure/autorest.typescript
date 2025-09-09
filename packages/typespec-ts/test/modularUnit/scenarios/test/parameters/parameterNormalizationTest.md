@@ -43,7 +43,7 @@ Raw json files.
 /** This file path is /test/generated/postTest.spec.ts */
 
 import { TestingClient } from "../../src/index.js";
-import { createRecorder } from "./recordedClient.js";
+import { createRecorder } from "./util/recordedClient.js";
 import { Recorder } from "@azure-tools/test-recorder";
 import { beforeEach, afterEach, it, describe } from "vitest";
 
