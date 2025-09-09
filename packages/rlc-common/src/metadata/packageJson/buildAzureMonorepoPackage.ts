@@ -36,20 +36,21 @@ export function buildAzureMonorepoPackage(config: AzureMonorepoInfoConfig) {
 export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
   const { hasLro, dependencies, withTests } = config;
 
+  // revert this change after sdk repo update.
   const runtimeDeps = {
     ...dependencies,
-    "@azure-rest/core-client": "workspace:*",
+    "@azure-rest/core-client": "^2.3.1",
     ...(hasLro && {
-      "@azure/abort-controller": "workspace:*"
+      "@azure/abort-controller": "^2.1.2"
     }),
-    "@azure/core-auth": "workspace:*",
+    "@azure/core-auth": "^1.9.0",
     ...(hasLro && {
-      "@azure/core-lro": "workspace:*"
+      "@azure/core-lro": "^3.1.0"
     }),
-    "@azure/core-rest-pipeline": "workspace:*",
-    "@azure/core-util": "workspace:*",
-    "@azure/logger": "workspace:*",
-    tslib: "catalog:"
+    "@azure/core-rest-pipeline": "^1.20.0",
+    "@azure/core-util": "^1.12.0",
+    "@azure/logger": "^1.2.0",
+    tslib: "^2.8.1"
   };
 
   const testDeps = withTests

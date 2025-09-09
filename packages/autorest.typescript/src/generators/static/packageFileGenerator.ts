@@ -86,19 +86,20 @@ function regularAutorestPackage(
     engines: {
       node: ">=20.0.0"
     },
+    // revert this change after sdk repo update.
     dependencies: {
-      ...(hasLro && { "@azure/core-lro": azureSdkForJs ? "catalog:corelrov2" : "^2.5.4" }),
-      ...(hasLro && { "@azure/abort-controller": azureSdkForJs ? "workspace:*" : "^2.1.2" }),
-      ...(hasAsyncIterators && { "@azure/core-paging": azureSdkForJs ? "workspace:*" : "^1.6.2" }),
-      ...(useCoreV2 && { "@azure/core-client": azureSdkForJs ? "workspace:*" : "^1.9.2" }),
-      ...(useCoreV2 && addCredentials && { "@azure/core-auth": azureSdkForJs ? "workspace:*" : "^1.9.0" }),
+      ...(hasLro && { "@azure/core-lro": "^2.5.4" }),
+      ...(hasLro && { "@azure/abort-controller": "^2.1.2" }),
+      ...(hasAsyncIterators && { "@azure/core-paging": "^1.6.2" }),
+      ...(useCoreV2 && { "@azure/core-client": "^1.9.2" }),
+      ...(useCoreV2 && addCredentials && { "@azure/core-auth": "^1.9.0" }),
       ...(useCoreV2 && {
-        "@azure/core-rest-pipeline": azureSdkForJs ? "workspace:*" : "^1.19.0"
+        "@azure/core-rest-pipeline": "^1.19.0"
       }),
       ...(tracingInfo && {
-        "@azure/core-tracing": azureSdkForJs ? "workspace:*" : "^1.2.0"
+        "@azure/core-tracing": "^1.2.0"
       }),
-      tslib: azureSdkForJs ? "catalog:" : "^2.8.1"
+      tslib: "^2.8.1"
     },
     keywords: ["node", "azure", "typescript", "browser", "isomorphic", "cloud"],
     license: "MIT",
