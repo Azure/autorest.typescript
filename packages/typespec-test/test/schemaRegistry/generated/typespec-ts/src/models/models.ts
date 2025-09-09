@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-/* eslint-disable @typescript-eslint/naming-convention */
 /** Paged collection of SchemaGroup items */
 export interface _PagedSchemaGroup {
   /** The SchemaGroup items on this page */
@@ -9,15 +8,14 @@ export interface _PagedSchemaGroup {
   /** The link to the next page of items */
   nextLink?: string;
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _pagedSchemaGroupDeserializer(item: any): _PagedSchemaGroup {
   return {
     value: schemaGroupArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function schemaGroupArrayDeserializer(
   result: Array<SchemaGroup>,
 ): any[] {
@@ -32,14 +30,12 @@ export interface SchemaGroup {
   readonly groupName: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function schemaGroupDeserializer(item: any): SchemaGroup {
   return {
     groupName: item["groupName"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/naming-convention */
+
 /** Paged collection of Version items */
 export interface _PagedVersion {
   /** The Version items on this page */
@@ -47,15 +43,14 @@ export interface _PagedVersion {
   /** The link to the next page of items */
   nextLink?: string;
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _pagedVersionDeserializer(item: any): _PagedVersion {
   return {
     value: schemaVersionArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function schemaVersionArrayDeserializer(
   result: Array<SchemaVersion>,
 ): any[] {
@@ -70,13 +65,12 @@ export interface SchemaVersion {
   readonly schemaVersion: number;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function schemaVersionDeserializer(item: any): SchemaVersion {
   return {
     schemaVersion: item["schemaVersion"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Meta properties of a schema. */
 export interface SchemaProperties {
   /** References a specific schema in the registry namespace. */
@@ -101,7 +95,6 @@ export function schemaPropertiesSerializer(item: SchemaProperties): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function schemaPropertiesDeserializer(item: any): SchemaProperties {
   return {
     id: item["id"],
@@ -111,7 +104,7 @@ export function schemaPropertiesDeserializer(item: any): SchemaProperties {
     version: item["version"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Represents the format of the schema to be stored by the Schema Registry service. */
 export type SchemaFormat = "Avro" | "Json" | "Custom" | "Protobuf";
 
@@ -130,14 +123,13 @@ export function schemaSerializer(item: Schema): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function schemaDeserializer(item: any): Schema {
   return {
     definition: item["definition"],
     properties: schemaPropertiesDeserializer(item["properties"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Type of SchemaContentTypeValues */
 export type SchemaContentTypeValues =
   | "application/json; serialization=Avro"

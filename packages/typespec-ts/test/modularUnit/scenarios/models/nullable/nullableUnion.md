@@ -17,14 +17,13 @@ op post(@body body: A): { @body body: A };
 ## Models
 
 ```ts models
-/* eslint-disable @typescript-eslint/naming-convention */
 /** model interface _PostRequest */
 export interface _PostRequest {
   code?: string;
   message?: string;
   propA?: A;
 }
-/* eslint-enable @typescript-eslint/naming-convention */
+
 export function _postRequestSerializer(item: _PostRequest): any {
   return {
     code: item["code"],
@@ -35,7 +34,6 @@ export function _postRequestSerializer(item: _PostRequest): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _postRequestDeserializer(item: any): _PostRequest {
   return {
     code: item["code"],
@@ -45,7 +43,7 @@ export function _postRequestDeserializer(item: any): _PostRequest {
       : _postRequestDeserializer(item["propA"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Alias for A */
 export type A = {
   code?: string;

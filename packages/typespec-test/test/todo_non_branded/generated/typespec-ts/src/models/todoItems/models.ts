@@ -1,6 +1,5 @@
 // Licensed under the MIT License.
 
-/* eslint-disable @typescript-eslint/naming-convention */
 import {
   ApiError,
   todoItemArrayDeserializer,
@@ -22,8 +21,7 @@ export interface _TodoPage {
   /** A link to the next page, if it exists */
   nextLink?: string;
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _todoPageDeserializer(item: any): _TodoPage {
   return {
     items: todoItemArrayDeserializer(item["items"]),
@@ -33,24 +31,22 @@ export function _todoPageDeserializer(item: any): _TodoPage {
     nextLink: item["nextLink"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface InvalidTodoItem */
 export interface InvalidTodoItem extends ApiError {}
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function invalidTodoItemDeserializer(item: any): InvalidTodoItem {
   return {
     code: item["code"],
     message: item["message"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface NotFoundErrorResponse */
 export interface NotFoundErrorResponse {
   code: "not-found";
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function notFoundErrorResponseDeserializer(
   item: any,
 ): NotFoundErrorResponse {
@@ -58,7 +54,7 @@ export function notFoundErrorResponseDeserializer(
     code: item["code"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface TodoItemPatch */
 export interface TodoItemPatch {
   /** The item's title */
@@ -80,13 +76,11 @@ export function todoItemPatchSerializer(item: TodoItemPatch): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/naming-convention */
 /** model interface _PageTodoAttachment */
 export interface _PageTodoAttachment {
   items: TodoAttachment[];
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _pageTodoAttachmentDeserializer(
   item: any,
 ): _PageTodoAttachment {
@@ -94,4 +88,3 @@ export function _pageTodoAttachmentDeserializer(
     items: todoAttachmentArrayDeserializer(item["items"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */

@@ -885,13 +885,12 @@ export interface TestArrayModel {
   prop: Test[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function testArrayModelDeserializer(item: any): TestArrayModel {
   return {
     prop: testArrayDeserializer(item["prop"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function testArrayDeserializer(result: Array<Test>): any[] {
   return result.map((item) => {
     return testDeserializer(item);
@@ -903,13 +902,11 @@ export interface Test {
   prop?: Test[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function testDeserializer(item: any): Test {
   return {
     prop: !item["prop"] ? item["prop"] : testArrayDeserializer(item["prop"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 ```
 
 ## Operations
@@ -986,13 +983,12 @@ export interface TestDictionary {
   prop: Record<string, Test>;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function testDictionaryDeserializer(item: any): TestDictionary {
   return {
     prop: testRecordDeserializer(item["prop"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function testRecordDeserializer(
   item: Record<string, any>,
 ): Record<string, Test> {
@@ -1008,13 +1004,11 @@ export interface Test {
   prop?: Record<string, Test>;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function testDeserializer(item: any): Test {
   return {
     prop: !item["prop"] ? item["prop"] : testRecordDeserializer(item["prop"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 ```
 
 ## Operations
@@ -1098,14 +1092,12 @@ export function endpointSerializer(item: Endpoint): any {
   return { name: item["name"], description: item["description"] };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function endpointDeserializer(item: any): Endpoint {
   return {
     name: item["name"],
     description: item["description"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 ```
 
 ## Operations

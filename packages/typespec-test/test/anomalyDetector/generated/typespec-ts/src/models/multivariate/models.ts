@@ -11,7 +11,6 @@ export interface MultivariateMultivariateDetectionResult {
   results: MultivariateAnomalyState[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function multivariateMultivariateDetectionResultDeserializer(
   item: any,
 ): MultivariateMultivariateDetectionResult {
@@ -23,7 +22,7 @@ export function multivariateMultivariateDetectionResultDeserializer(
     results: multivariateAnomalyStateArrayDeserializer(item["results"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Multivariate anomaly detection status. */
 export interface MultivariateMultivariateBatchDetectionResultSummary {
   /** Status of detection results. */
@@ -39,7 +38,6 @@ export interface MultivariateMultivariateBatchDetectionResultSummary {
   setupInfo: MultivariateMultivariateBatchDetectionOptions;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function multivariateMultivariateBatchDetectionResultSummaryDeserializer(
   item: any,
 ): MultivariateMultivariateBatchDetectionResultSummary {
@@ -56,7 +54,7 @@ export function multivariateMultivariateBatchDetectionResultSummaryDeserializer(
     ),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Type of MultivariateMultivariateBatchDetectionStatus */
 export type MultivariateMultivariateBatchDetectionStatus =
   | "CREATED"
@@ -80,7 +78,6 @@ export interface MultivariateErrorResponse {
   message: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function multivariateErrorResponseDeserializer(
   item: any,
 ): MultivariateErrorResponse {
@@ -89,7 +86,7 @@ export function multivariateErrorResponseDeserializer(
     message: item["message"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function multivariateVariableStateArrayDeserializer(
   result: Array<MultivariateVariableState>,
 ): any[] {
@@ -112,7 +109,6 @@ export interface MultivariateVariableState {
   lastTimestamp?: Date;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function multivariateVariableStateDeserializer(
   item: any,
 ): MultivariateVariableState {
@@ -128,7 +124,7 @@ export function multivariateVariableStateDeserializer(
       : new Date(item["lastTimestamp"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * Detection request for batch inference. This is an asynchronous inference that
  * will need another API to get detection results.
@@ -168,7 +164,6 @@ export function multivariateMultivariateBatchDetectionOptionsSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function multivariateMultivariateBatchDetectionOptionsDeserializer(
   item: any,
 ): MultivariateMultivariateBatchDetectionOptions {
@@ -179,7 +174,7 @@ export function multivariateMultivariateBatchDetectionOptionsDeserializer(
     endTime: new Date(item["endTime"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function multivariateAnomalyStateArrayDeserializer(
   result: Array<MultivariateAnomalyState>,
 ): any[] {
@@ -198,7 +193,6 @@ export interface MultivariateAnomalyState {
   errors?: MultivariateErrorResponse[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function multivariateAnomalyStateDeserializer(
   item: any,
 ): MultivariateAnomalyState {
@@ -212,7 +206,7 @@ export function multivariateAnomalyStateDeserializer(
       : multivariateErrorResponseArrayDeserializer(item["errors"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Detailed information of the anomalous time stamp. */
 export interface MultivariateAnomalyValue {
   /** True if an anomaly is detected at the current time stamp. */
@@ -228,7 +222,6 @@ export interface MultivariateAnomalyValue {
   interpretation?: MultivariateAnomalyInterpretation[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function multivariateAnomalyValueDeserializer(
   item: any,
 ): MultivariateAnomalyValue {
@@ -243,7 +236,7 @@ export function multivariateAnomalyValueDeserializer(
         ),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function multivariateAnomalyInterpretationArrayDeserializer(
   result: Array<MultivariateAnomalyInterpretation>,
 ): any[] {
@@ -265,7 +258,6 @@ export interface MultivariateAnomalyInterpretation {
   correlationChanges?: MultivariateCorrelationChanges;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function multivariateAnomalyInterpretationDeserializer(
   item: any,
 ): MultivariateAnomalyInterpretation {
@@ -277,14 +269,13 @@ export function multivariateAnomalyInterpretationDeserializer(
       : multivariateCorrelationChangesDeserializer(item["correlationChanges"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Correlation changes among the anomalous variables. */
 export interface MultivariateCorrelationChanges {
   /** Correlated variables that have correlation changes under an anomaly. */
   changedVariables?: string[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function multivariateCorrelationChangesDeserializer(
   item: any,
 ): MultivariateCorrelationChanges {
@@ -296,7 +287,7 @@ export function multivariateCorrelationChangesDeserializer(
         }),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Error response. */
 export interface MultivariateResponseError {
   /** Error code. */
@@ -305,7 +296,6 @@ export interface MultivariateResponseError {
   message: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function multivariateResponseErrorDeserializer(
   item: any,
 ): MultivariateResponseError {
@@ -314,7 +304,7 @@ export function multivariateResponseErrorDeserializer(
     message: item["message"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * Training result of a model, including its status, errors, and diagnostics
  * information.
@@ -377,7 +367,6 @@ export function multivariateModelInfoSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function multivariateModelInfoDeserializer(
   item: any,
 ): MultivariateModelInfo {
@@ -400,7 +389,7 @@ export function multivariateModelInfoDeserializer(
       : multivariateDiagnosticsInfoDeserializer(item["diagnosticsInfo"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Data schema of the input data source. The default is OneTable. */
 export type MultivariateDataSchema = "OneTable" | "MultiTable";
 
@@ -427,7 +416,6 @@ export function multivariateAlignPolicySerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function multivariateAlignPolicyDeserializer(
   item: any,
 ): MultivariateAlignPolicy {
@@ -437,7 +425,7 @@ export function multivariateAlignPolicyDeserializer(
     paddingValue: item["paddingValue"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Type of MultivariateAlignMode */
 export type MultivariateAlignMode = "Inner" | "Outer";
 /** Field that indicates how missing values will be filled. */
@@ -462,7 +450,6 @@ export interface MultivariateDiagnosticsInfo {
   variableStates?: MultivariateVariableState[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function multivariateDiagnosticsInfoDeserializer(
   item: any,
 ): MultivariateDiagnosticsInfo {
@@ -475,7 +462,7 @@ export function multivariateDiagnosticsInfoDeserializer(
       : multivariateVariableStateArrayDeserializer(item["variableStates"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Model status. */
 export interface MultivariateModelState {
   /**
@@ -497,7 +484,6 @@ export interface MultivariateModelState {
   latenciesInSeconds?: number[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function multivariateModelStateDeserializer(
   item: any,
 ): MultivariateModelState {
@@ -524,7 +510,7 @@ export function multivariateModelStateDeserializer(
         }),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Response of getting a model. */
 export interface MultivariateAnomalyDetectionModel {
   /** Model identifier. */
@@ -540,7 +526,6 @@ export interface MultivariateAnomalyDetectionModel {
   modelInfo?: MultivariateModelInfo;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function multivariateAnomalyDetectionModelDeserializer(
   item: any,
 ): MultivariateAnomalyDetectionModel {
@@ -553,8 +538,7 @@ export function multivariateAnomalyDetectionModelDeserializer(
       : multivariateModelInfoDeserializer(item["modelInfo"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/naming-convention */
+
 /** Response of listing models. */
 export interface _MultivariateModelList {
   /** List of models. */
@@ -566,8 +550,7 @@ export interface _MultivariateModelList {
   /** Link to fetch more models. */
   nextLink?: string;
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _multivariateModelListDeserializer(
   item: any,
 ): _MultivariateModelList {
@@ -578,7 +561,7 @@ export function _multivariateModelListDeserializer(
     nextLink: item["nextLink"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function multivariateAnomalyDetectionModelArrayDeserializer(
   result: Array<MultivariateAnomalyDetectionModel>,
 ): any[] {
@@ -651,7 +634,6 @@ export interface MultivariateMultivariateLastDetectionResult {
   results?: MultivariateAnomalyState[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function multivariateMultivariateLastDetectionResultDeserializer(
   item: any,
 ): MultivariateMultivariateLastDetectionResult {
@@ -664,4 +646,3 @@ export function multivariateMultivariateLastDetectionResultDeserializer(
       : multivariateAnomalyStateArrayDeserializer(item["results"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */

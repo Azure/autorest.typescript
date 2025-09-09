@@ -39,17 +39,15 @@ export interface AWidgetData {
   kind: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function aWidgetDataDeserializer(item: any): AWidgetData {
   return {
     kind: item["kind"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Alias for AWidgetDataUnion */
 export type AWidgetDataUnion = AoaiModelConfig | MaasModelConfig | AWidgetData;
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function aWidgetDataUnionDeserializer(item: any): AWidgetDataUnion {
   switch (item.kind) {
     case "kind0":
@@ -62,21 +60,20 @@ export function aWidgetDataUnionDeserializer(item: any): AWidgetDataUnion {
       return aWidgetDataDeserializer(item);
   }
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface AoaiModelConfig */
 export interface AoaiModelConfig extends AWidgetData {
   kind: "kind0";
   fooProp: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function aoaiModelConfigDeserializer(item: any): AoaiModelConfig {
   return {
     kind: item["kind"],
     fooProp: item["fooProp"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface MaasModelConfig */
 export interface MaasModelConfig extends AWidgetData {
   kind: "kind1";
@@ -84,7 +81,6 @@ export interface MaasModelConfig extends AWidgetData {
   end?: Date;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function maasModelConfigDeserializer(item: any): MaasModelConfig {
   return {
     kind: item["kind"],
@@ -92,7 +88,6 @@ export function maasModelConfigDeserializer(item: any): MaasModelConfig {
     end: !item["end"] ? item["end"] : new Date(item["end"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 ```
 
 # Should generate discriminated model
@@ -175,7 +170,6 @@ export interface DiscountTypeProperties {
   discountPercentage?: number;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function discountTypePropertiesDeserializer(
   item: any,
 ): DiscountTypeProperties {
@@ -184,7 +178,7 @@ export function discountTypePropertiesDeserializer(
     discountPercentage: item["discountPercentage"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Alias for DiscountTypePropertiesUnion */
 export type DiscountTypePropertiesUnion =
   | DiscountTypeProductFamily
@@ -192,7 +186,6 @@ export type DiscountTypePropertiesUnion =
   | DiscountTypeProductSku
   | DiscountTypeProperties;
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function discountTypePropertiesUnionDeserializer(
   item: any,
 ): DiscountTypePropertiesUnion {
@@ -212,7 +205,7 @@ export function discountTypePropertiesUnionDeserializer(
       return discountTypePropertiesDeserializer(item);
   }
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Type of DiscountType */
 export type DiscountType =
   | "ProductFamily"
@@ -227,7 +220,6 @@ export interface DiscountTypeProductFamily extends DiscountTypeProperties {
   discountType: "ProductFamily";
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function discountTypeProductFamilyDeserializer(
   item: any,
 ): DiscountTypeProductFamily {
@@ -237,7 +229,7 @@ export function discountTypeProductFamilyDeserializer(
     productFamilyName: item["productFamilyName"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface DiscountTypeProduct */
 export interface DiscountTypeProduct extends DiscountTypeProperties {
   productFamilyName?: string;
@@ -245,7 +237,6 @@ export interface DiscountTypeProduct extends DiscountTypeProperties {
   discountType: "Product";
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function discountTypeProductDeserializer(
   item: any,
 ): DiscountTypeProduct {
@@ -256,7 +247,7 @@ export function discountTypeProductDeserializer(
     productId: item["productId"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface DiscountTypeProductSku */
 export interface DiscountTypeProductSku extends DiscountTypeProperties {
   productFamilyName?: string;
@@ -265,7 +256,6 @@ export interface DiscountTypeProductSku extends DiscountTypeProperties {
   discountType: "Sku";
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function discountTypeProductSkuDeserializer(
   item: any,
 ): DiscountTypeProductSku {
@@ -277,5 +267,4 @@ export function discountTypeProductSkuDeserializer(
     skuId: item["skuId"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 ```

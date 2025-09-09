@@ -17,13 +17,12 @@ export function toolDefinitionSerializer(item: ToolDefinition): any {
   return { type: item["type"] };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function toolDefinitionDeserializer(item: any): ToolDefinition {
   return {
     type: item["type"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Alias for ToolDefinitionUnion */
 export type ToolDefinitionUnion =
   | CodeInterpreterToolDefinition
@@ -85,7 +84,6 @@ export function toolDefinitionUnionSerializer(item: ToolDefinitionUnion): any {
   }
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function toolDefinitionUnionDeserializer(
   item: any,
 ): ToolDefinitionUnion {
@@ -135,7 +133,7 @@ export function toolDefinitionUnionDeserializer(
       return toolDefinitionDeserializer(item);
   }
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The input definition information for a code interpreter tool as used to configure an agent. */
 export interface CodeInterpreterToolDefinition extends ToolDefinition {
   /** The object type, which is always 'code_interpreter'. */
@@ -148,7 +146,6 @@ export function codeInterpreterToolDefinitionSerializer(
   return { type: item["type"] };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function codeInterpreterToolDefinitionDeserializer(
   item: any,
 ): CodeInterpreterToolDefinition {
@@ -156,7 +153,7 @@ export function codeInterpreterToolDefinitionDeserializer(
     type: item["type"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The input definition information for a file search tool as used to configure an agent. */
 export interface FileSearchToolDefinition extends ToolDefinition {
   /** The object type, which is always 'file_search'. */
@@ -176,7 +173,6 @@ export function fileSearchToolDefinitionSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function fileSearchToolDefinitionDeserializer(
   item: any,
 ): FileSearchToolDefinition {
@@ -187,7 +183,7 @@ export function fileSearchToolDefinitionDeserializer(
       : fileSearchToolDefinitionDetailsDeserializer(item["file_search"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Options overrides for the file search tool. */
 export interface FileSearchToolDefinitionDetails {
   /**
@@ -211,7 +207,6 @@ export function fileSearchToolDefinitionDetailsSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function fileSearchToolDefinitionDetailsDeserializer(
   item: any,
 ): FileSearchToolDefinitionDetails {
@@ -222,7 +217,7 @@ export function fileSearchToolDefinitionDetailsDeserializer(
       : fileSearchRankingOptionsDeserializer(item["ranking_options"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Ranking options for file search. */
 export interface FileSearchRankingOptions {
   /** File search ranker. */
@@ -237,7 +232,6 @@ export function fileSearchRankingOptionsSerializer(
   return { ranker: item["ranker"], score_threshold: item["scoreThreshold"] };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function fileSearchRankingOptionsDeserializer(
   item: any,
 ): FileSearchRankingOptions {
@@ -246,7 +240,7 @@ export function fileSearchRankingOptionsDeserializer(
     scoreThreshold: item["score_threshold"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The input definition information for a function tool as used to configure an agent. */
 export interface FunctionToolDefinition extends ToolDefinition {
   /** The object type, which is always 'function'. */
@@ -264,7 +258,6 @@ export function functionToolDefinitionSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function functionToolDefinitionDeserializer(
   item: any,
 ): FunctionToolDefinition {
@@ -273,7 +266,7 @@ export function functionToolDefinitionDeserializer(
     function: functionDefinitionDeserializer(item["function"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The input definition information for a function. */
 export interface FunctionDefinition {
   /** The name of the function to be called. */
@@ -292,7 +285,6 @@ export function functionDefinitionSerializer(item: FunctionDefinition): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function functionDefinitionDeserializer(item: any): FunctionDefinition {
   return {
     name: item["name"],
@@ -300,7 +292,7 @@ export function functionDefinitionDeserializer(item: any): FunctionDefinition {
     parameters: item["parameters"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The input definition information for a bing grounding search tool as used to configure an agent. */
 export interface BingGroundingToolDefinition extends ToolDefinition {
   /** The object type, which is always 'bing_grounding'. */
@@ -318,7 +310,6 @@ export function bingGroundingToolDefinitionSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function bingGroundingToolDefinitionDeserializer(
   item: any,
 ): BingGroundingToolDefinition {
@@ -327,7 +318,7 @@ export function bingGroundingToolDefinitionDeserializer(
     bingGrounding: toolConnectionListDeserializer(item["bing_grounding"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** A set of connection resources currently used by either the `bing_grounding`, `fabric_aiskill`, or `sharepoint_grounding` tools. */
 export interface ToolConnectionList {
   /**
@@ -345,7 +336,6 @@ export function toolConnectionListSerializer(item: ToolConnectionList): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function toolConnectionListDeserializer(item: any): ToolConnectionList {
   return {
     connectionList: !item["connections"]
@@ -353,7 +343,7 @@ export function toolConnectionListDeserializer(item: any): ToolConnectionList {
       : toolConnectionArrayDeserializer(item["connections"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function toolConnectionArraySerializer(
   result: Array<ToolConnection>,
 ): any[] {
@@ -380,13 +370,12 @@ export function toolConnectionSerializer(item: ToolConnection): any {
   return { connection_id: item["connectionId"] };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function toolConnectionDeserializer(item: any): ToolConnection {
   return {
     connectionId: item["connection_id"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The input definition information for a Microsoft Fabric tool as used to configure an agent. */
 export interface MicrosoftFabricToolDefinition extends ToolDefinition {
   /** The object type, which is always 'fabric_aiskill'. */
@@ -404,7 +393,6 @@ export function microsoftFabricToolDefinitionSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function microsoftFabricToolDefinitionDeserializer(
   item: any,
 ): MicrosoftFabricToolDefinition {
@@ -413,7 +401,7 @@ export function microsoftFabricToolDefinitionDeserializer(
     fabricAiskill: toolConnectionListDeserializer(item["fabric_aiskill"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The input definition information for a sharepoint tool as used to configure an agent. */
 export interface SharepointToolDefinition extends ToolDefinition {
   /** The object type, which is always 'sharepoint_grounding'. */
@@ -433,7 +421,6 @@ export function sharepointToolDefinitionSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function sharepointToolDefinitionDeserializer(
   item: any,
 ): SharepointToolDefinition {
@@ -444,7 +431,7 @@ export function sharepointToolDefinitionDeserializer(
     ),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The input definition information for an Azure AI search tool as used to configure an agent. */
 export interface AzureAISearchToolDefinition extends ToolDefinition {
   /** The object type, which is always 'azure_ai_search'. */
@@ -457,7 +444,6 @@ export function azureAISearchToolDefinitionSerializer(
   return { type: item["type"] };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function azureAISearchToolDefinitionDeserializer(
   item: any,
 ): AzureAISearchToolDefinition {
@@ -465,7 +451,7 @@ export function azureAISearchToolDefinitionDeserializer(
     type: item["type"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The input definition information for an OpenAPI tool as used to configure an agent. */
 export interface OpenApiToolDefinition extends ToolDefinition {
   /** The object type, which is always 'openapi'. */
@@ -483,7 +469,6 @@ export function openApiToolDefinitionSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function openApiToolDefinitionDeserializer(
   item: any,
 ): OpenApiToolDefinition {
@@ -492,7 +477,7 @@ export function openApiToolDefinitionDeserializer(
     openapi: openApiFunctionDefinitionDeserializer(item["openapi"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The input definition information for an openapi function. */
 export interface OpenApiFunctionDefinition {
   /** The name of the function to be called. */
@@ -516,7 +501,6 @@ export function openApiFunctionDefinitionSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function openApiFunctionDefinitionDeserializer(
   item: any,
 ): OpenApiFunctionDefinition {
@@ -527,7 +511,7 @@ export function openApiFunctionDefinitionDeserializer(
     auth: openApiAuthDetailsUnionDeserializer(item["auth"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** authentication details for OpenApiFunctionDefinition */
 export interface OpenApiAuthDetails {
   /** The type of authentication, must be anonymous/connection/managed_identity */
@@ -539,13 +523,12 @@ export function openApiAuthDetailsSerializer(item: OpenApiAuthDetails): any {
   return { type: item["type"] };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function openApiAuthDetailsDeserializer(item: any): OpenApiAuthDetails {
   return {
     type: item["type"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Alias for OpenApiAuthDetailsUnion */
 export type OpenApiAuthDetailsUnion =
   | OpenApiAnonymousAuthDetails
@@ -577,7 +560,6 @@ export function openApiAuthDetailsUnionSerializer(
   }
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function openApiAuthDetailsUnionDeserializer(
   item: any,
 ): OpenApiAuthDetailsUnion {
@@ -601,7 +583,7 @@ export function openApiAuthDetailsUnionDeserializer(
       return openApiAuthDetailsDeserializer(item);
   }
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  *   Authentication type for OpenApi endpoint. Allowed types are:
  *   - Anonymous (no authentication required)
@@ -622,7 +604,6 @@ export function openApiAnonymousAuthDetailsSerializer(
   return { type: item["type"] };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function openApiAnonymousAuthDetailsDeserializer(
   item: any,
 ): OpenApiAnonymousAuthDetails {
@@ -630,7 +611,7 @@ export function openApiAnonymousAuthDetailsDeserializer(
     type: item["type"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Security details for OpenApi connection authentication */
 export interface OpenApiConnectionAuthDetails extends OpenApiAuthDetails {
   /** The object type, which is always 'connection'. */
@@ -650,7 +631,6 @@ export function openApiConnectionAuthDetailsSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function openApiConnectionAuthDetailsDeserializer(
   item: any,
 ): OpenApiConnectionAuthDetails {
@@ -661,7 +641,7 @@ export function openApiConnectionAuthDetailsDeserializer(
     ),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Security scheme for OpenApi managed_identity authentication */
 export interface OpenApiConnectionSecurityScheme {
   /** Connection id for Connection auth type */
@@ -674,7 +654,6 @@ export function openApiConnectionSecuritySchemeSerializer(
   return { connection_id: item["connectionId"] };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function openApiConnectionSecuritySchemeDeserializer(
   item: any,
 ): OpenApiConnectionSecurityScheme {
@@ -682,7 +661,7 @@ export function openApiConnectionSecuritySchemeDeserializer(
     connectionId: item["connection_id"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Security details for OpenApi managed_identity authentication */
 export interface OpenApiManagedAuthDetails extends OpenApiAuthDetails {
   /** The object type, which is always 'managed_identity'. */
@@ -702,7 +681,6 @@ export function openApiManagedAuthDetailsSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function openApiManagedAuthDetailsDeserializer(
   item: any,
 ): OpenApiManagedAuthDetails {
@@ -713,7 +691,7 @@ export function openApiManagedAuthDetailsDeserializer(
     ),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Security scheme for OpenApi managed_identity authentication */
 export interface OpenApiManagedSecurityScheme {
   /** Authentication scope for managed_identity auth type */
@@ -726,7 +704,6 @@ export function openApiManagedSecuritySchemeSerializer(
   return { audience: item["audience"] };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function openApiManagedSecuritySchemeDeserializer(
   item: any,
 ): OpenApiManagedSecurityScheme {
@@ -734,7 +711,7 @@ export function openApiManagedSecuritySchemeDeserializer(
     audience: item["audience"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The input definition information for a azure function tool as used to configure an agent. */
 export interface AzureFunctionToolDefinition extends ToolDefinition {
   /** The object type, which is always 'azure_function'. */
@@ -752,7 +729,6 @@ export function azureFunctionToolDefinitionSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function azureFunctionToolDefinitionDeserializer(
   item: any,
 ): AzureFunctionToolDefinition {
@@ -761,7 +737,7 @@ export function azureFunctionToolDefinitionDeserializer(
     azureFunction: azureFunctionDefinitionDeserializer(item["azure_function"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The definition of Azure function. */
 export interface AzureFunctionDefinition {
   /** The definition of azure function and its parameters. */
@@ -782,7 +758,6 @@ export function azureFunctionDefinitionSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function azureFunctionDefinitionDeserializer(
   item: any,
 ): AzureFunctionDefinition {
@@ -792,7 +767,7 @@ export function azureFunctionDefinitionDeserializer(
     outputBinding: azureFunctionBindingDeserializer(item["output_binding"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The structure for keeping storage queue name and URI. */
 export interface AzureFunctionBinding {
   /** The type of binding, which is always 'storage_queue'. */
@@ -810,7 +785,6 @@ export function azureFunctionBindingSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function azureFunctionBindingDeserializer(
   item: any,
 ): AzureFunctionBinding {
@@ -819,7 +793,7 @@ export function azureFunctionBindingDeserializer(
     storageQueue: azureFunctionStorageQueueDeserializer(item["storage_queue"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The structure for keeping storage queue name and URI. */
 export interface AzureFunctionStorageQueue {
   /** URI to the Azure Storage Queue service allowing you to manipulate a queue. */
@@ -837,7 +811,6 @@ export function azureFunctionStorageQueueSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function azureFunctionStorageQueueDeserializer(
   item: any,
 ): AzureFunctionStorageQueue {
@@ -846,7 +819,7 @@ export function azureFunctionStorageQueueDeserializer(
     queueName: item["queue_name"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * A set of resources that are used by the agent's tools. The resources are specific to the type of
  * tool. For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search`
@@ -875,7 +848,6 @@ export function toolResourcesSerializer(item: ToolResources): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function toolResourcesDeserializer(item: any): ToolResources {
   return {
     codeInterpreter: !item["code_interpreter"]
@@ -889,7 +861,7 @@ export function toolResourcesDeserializer(item: any): ToolResources {
       : azureAISearchResourceDeserializer(item["azure_ai_search"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** A set of resources that are used by the `code_interpreter` tool. */
 export interface CodeInterpreterToolResource {
   /**
@@ -916,7 +888,6 @@ export function codeInterpreterToolResourceSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function codeInterpreterToolResourceDeserializer(
   item: any,
 ): CodeInterpreterToolResource {
@@ -931,7 +902,7 @@ export function codeInterpreterToolResourceDeserializer(
       : vectorStoreDataSourceArrayDeserializer(item["data_sources"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function vectorStoreDataSourceArraySerializer(
   result: Array<VectorStoreDataSource>,
 ): any[] {
@@ -965,7 +936,6 @@ export function vectorStoreDataSourceSerializer(
   return { uri: item["assetIdentifier"], type: item["assetType"] };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function vectorStoreDataSourceDeserializer(
   item: any,
 ): VectorStoreDataSource {
@@ -974,7 +944,7 @@ export function vectorStoreDataSourceDeserializer(
     assetType: item["type"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * Type of vector storage asset. Asset type may be a uri_asset, in this case it should contain asset URI ID,
  * in the case of id_asset it should contain the data ID.
@@ -1011,7 +981,6 @@ export function fileSearchToolResourceSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function fileSearchToolResourceDeserializer(
   item: any,
 ): FileSearchToolResource {
@@ -1026,7 +995,7 @@ export function fileSearchToolResourceDeserializer(
       : vectorStoreConfigurationsArrayDeserializer(item["vector_stores"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function vectorStoreConfigurationsArraySerializer(
   result: Array<VectorStoreConfigurations>,
 ): any[] {
@@ -1062,7 +1031,6 @@ export function vectorStoreConfigurationsSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function vectorStoreConfigurationsDeserializer(
   item: any,
 ): VectorStoreConfigurations {
@@ -1073,7 +1041,7 @@ export function vectorStoreConfigurationsDeserializer(
     ),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * Vector storage configuration is the list of data sources, used when multiple
  * files can be used for the enterprise file search.
@@ -1091,7 +1059,6 @@ export function vectorStoreConfigurationSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function vectorStoreConfigurationDeserializer(
   item: any,
 ): VectorStoreConfiguration {
@@ -1099,7 +1066,7 @@ export function vectorStoreConfigurationDeserializer(
     dataSources: vectorStoreDataSourceArrayDeserializer(item["data_sources"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** A set of index resources used by the `azure_ai_search` tool. */
 export interface AzureAISearchResource {
   /**
@@ -1119,7 +1086,6 @@ export function azureAISearchResourceSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function azureAISearchResourceDeserializer(
   item: any,
 ): AzureAISearchResource {
@@ -1129,7 +1095,7 @@ export function azureAISearchResourceDeserializer(
       : indexResourceArrayDeserializer(item["indexes"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function indexResourceArraySerializer(
   result: Array<IndexResource>,
 ): any[] {
@@ -1161,14 +1127,13 @@ export function indexResourceSerializer(item: IndexResource): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function indexResourceDeserializer(item: any): IndexResource {
   return {
     indexConnectionId: item["index_connection_id"],
     indexName: item["index_name"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * An object describing the expected output of the model. If `json_object` only `function` type `tools` are allowed to be passed to the Run.
  * If `text` the model can return text or any value needed.
@@ -1184,7 +1149,6 @@ export function agentsApiResponseFormatSerializer(
   return { type: item["type"] };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function agentsApiResponseFormatDeserializer(
   item: any,
 ): AgentsApiResponseFormat {
@@ -1192,7 +1156,7 @@ export function agentsApiResponseFormatDeserializer(
     type: item["type"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Possible API response formats. */
 export type ResponseFormat = "text" | "json_object";
 
@@ -1213,7 +1177,6 @@ export function responseFormatJsonSchemaTypeSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function responseFormatJsonSchemaTypeDeserializer(
   item: any,
 ): ResponseFormatJsonSchemaType {
@@ -1222,7 +1185,7 @@ export function responseFormatJsonSchemaTypeDeserializer(
     jsonSchema: responseFormatJsonSchemaDeserializer(item["json_schema"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** A description of what the response format is for, used by the model to determine how to respond in the format. */
 export interface ResponseFormatJsonSchema {
   /** A description of what the response format is for, used by the model to determine how to respond in the format. */
@@ -1243,7 +1206,6 @@ export function responseFormatJsonSchemaSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function responseFormatJsonSchemaDeserializer(
   item: any,
 ): ResponseFormatJsonSchema {
@@ -1253,7 +1215,7 @@ export function responseFormatJsonSchemaDeserializer(
     schema: item["schema"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function toolDefinitionUnionArraySerializer(
   result: Array<ToolDefinitionUnion>,
 ): any[] {
@@ -1283,13 +1245,12 @@ export function agentsApiResponseFormatOptionSerializer(
   return item;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function agentsApiResponseFormatOptionDeserializer(
   item: any,
 ): AgentsApiResponseFormatOption {
   return item;
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Represents the mode in which the model will handle the return format of a tool call. */
 export type AgentsApiResponseFormatMode = "auto" | "none";
 
@@ -1334,7 +1295,6 @@ export interface Agent {
   metadata: Record<string, string> | null;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function agentDeserializer(item: any): Agent {
   return {
     id: item["id"],
@@ -1356,7 +1316,7 @@ export function agentDeserializer(item: any): Agent {
     metadata: item["metadata"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The response data for a requested list of items. */
 export interface OpenAIPageableListOfAgent {
   /** The object type, which is always list. */
@@ -1371,7 +1331,6 @@ export interface OpenAIPageableListOfAgent {
   hasMore: boolean;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function openAIPageableListOfAgentDeserializer(
   item: any,
 ): OpenAIPageableListOfAgent {
@@ -1383,7 +1342,7 @@ export function openAIPageableListOfAgentDeserializer(
     hasMore: item["has_more"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function agentArrayDeserializer(result: Array<Agent>): any[] {
   return result.map((item) => {
     return agentDeserializer(item);
@@ -1400,7 +1359,6 @@ export interface AgentDeletionStatus {
   object: "assistant.deleted";
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function agentDeletionStatusDeserializer(
   item: any,
 ): AgentDeletionStatus {
@@ -1410,7 +1368,7 @@ export function agentDeletionStatusDeserializer(
     object: item["object"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** A single message within an agent thread, as provided during that thread's creation for its initial state. */
 export interface ThreadMessageOptions {
   /**
@@ -1485,7 +1443,6 @@ export function messageAttachmentSerializer(item: MessageAttachment): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageAttachmentDeserializer(item: any): MessageAttachment {
   return {
     fileId: item["file_id"],
@@ -1495,7 +1452,7 @@ export function messageAttachmentDeserializer(item: any): MessageAttachment {
     tools: messageAttachmentToolDefinitionArrayDeserializer(item["tools"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function messageAttachmentToolDefinitionArraySerializer(
   result: Array<MessageAttachmentToolDefinition>,
 ): any[] {
@@ -1523,13 +1480,12 @@ export function messageAttachmentToolDefinitionSerializer(
   return item;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageAttachmentToolDefinitionDeserializer(
   item: any,
 ): MessageAttachmentToolDefinition {
   return item;
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function threadMessageOptionsArraySerializer(
   result: Array<ThreadMessageOptions>,
 ): any[] {
@@ -1556,7 +1512,6 @@ export interface AgentThread {
   metadata: Record<string, string> | null;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function agentThreadDeserializer(item: any): AgentThread {
   return {
     id: item["id"],
@@ -1568,7 +1523,7 @@ export function agentThreadDeserializer(item: any): AgentThread {
     metadata: item["metadata"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The status of a thread deletion operation. */
 export interface ThreadDeletionStatus {
   /** The ID of the resource specified for deletion. */
@@ -1579,7 +1534,6 @@ export interface ThreadDeletionStatus {
   object: "thread.deleted";
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function threadDeletionStatusDeserializer(
   item: any,
 ): ThreadDeletionStatus {
@@ -1589,7 +1543,7 @@ export function threadDeletionStatusDeserializer(
     object: item["object"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** A single, existing message within an agent thread. */
 export interface ThreadMessage {
   /** The identifier, which can be referenced in API endpoints. */
@@ -1622,7 +1576,6 @@ export interface ThreadMessage {
   metadata: Record<string, string> | null;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function threadMessageDeserializer(item: any): ThreadMessage {
   return {
     id: item["id"],
@@ -1649,7 +1602,7 @@ export function threadMessageDeserializer(item: any): ThreadMessage {
     metadata: item["metadata"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The possible execution status values for a thread message. */
 export type MessageStatus = "in_progress" | "incomplete" | "completed";
 
@@ -1659,7 +1612,6 @@ export interface MessageIncompleteDetails {
   reason: MessageIncompleteDetailsReason;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageIncompleteDetailsDeserializer(
   item: any,
 ): MessageIncompleteDetails {
@@ -1667,7 +1619,7 @@ export function messageIncompleteDetailsDeserializer(
     reason: item["reason"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** A set of reasons describing why a message is marked as incomplete. */
 export type MessageIncompleteDetailsReason =
   | "content_filter"
@@ -1691,20 +1643,18 @@ export interface MessageContent {
   type: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageContentDeserializer(item: any): MessageContent {
   return {
     type: item["type"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Alias for MessageContentUnion */
 export type MessageContentUnion =
   | MessageTextContent
   | MessageImageFileContent
   | MessageContent;
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageContentUnionDeserializer(
   item: any,
 ): MessageContentUnion {
@@ -1721,7 +1671,7 @@ export function messageContentUnionDeserializer(
       return messageContentDeserializer(item);
   }
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** A representation of a textual item of thread message content. */
 export interface MessageTextContent extends MessageContent {
   /** The object type, which is always 'text'. */
@@ -1730,14 +1680,13 @@ export interface MessageTextContent extends MessageContent {
   text: MessageTextDetails;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageTextContentDeserializer(item: any): MessageTextContent {
   return {
     type: item["type"],
     text: messageTextDetailsDeserializer(item["text"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The text and associated annotations for a single item of agent thread message content. */
 export interface MessageTextDetails {
   /** The text data. */
@@ -1746,7 +1695,6 @@ export interface MessageTextDetails {
   annotations: MessageTextAnnotationUnion[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageTextDetailsDeserializer(item: any): MessageTextDetails {
   return {
     value: item["value"],
@@ -1755,7 +1703,7 @@ export function messageTextDetailsDeserializer(item: any): MessageTextDetails {
     ),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function messageTextAnnotationUnionArrayDeserializer(
   result: Array<MessageTextAnnotationUnion>,
 ): any[] {
@@ -1773,7 +1721,6 @@ export interface MessageTextAnnotation {
   text: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageTextAnnotationDeserializer(
   item: any,
 ): MessageTextAnnotation {
@@ -1782,14 +1729,13 @@ export function messageTextAnnotationDeserializer(
     text: item["text"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Alias for MessageTextAnnotationUnion */
 export type MessageTextAnnotationUnion =
   | MessageTextFileCitationAnnotation
   | MessageTextFilePathAnnotation
   | MessageTextAnnotation;
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageTextAnnotationUnionDeserializer(
   item: any,
 ): MessageTextAnnotationUnion {
@@ -1808,7 +1754,7 @@ export function messageTextAnnotationUnionDeserializer(
       return messageTextAnnotationDeserializer(item);
   }
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** A citation within the message that points to a specific quote from a specific File associated with the agent or the message. Generated when the agent uses the 'file_search' tool to search files. */
 export interface MessageTextFileCitationAnnotation
   extends MessageTextAnnotation {
@@ -1825,7 +1771,6 @@ export interface MessageTextFileCitationAnnotation
   endIndex?: number;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageTextFileCitationAnnotationDeserializer(
   item: any,
 ): MessageTextFileCitationAnnotation {
@@ -1839,7 +1784,7 @@ export function messageTextFileCitationAnnotationDeserializer(
     endIndex: item["end_index"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** A representation of a file-based text citation, as used in a file-based annotation of text thread message content. */
 export interface MessageTextFileCitationDetails {
   /** The ID of the file associated with this citation. */
@@ -1848,7 +1793,6 @@ export interface MessageTextFileCitationDetails {
   quote: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageTextFileCitationDetailsDeserializer(
   item: any,
 ): MessageTextFileCitationDetails {
@@ -1857,7 +1801,7 @@ export function messageTextFileCitationDetailsDeserializer(
     quote: item["quote"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** A citation within the message that points to a file located at a specific path. */
 export interface MessageTextFilePathAnnotation extends MessageTextAnnotation {
   /** The object type, which is always 'file_path'. */
@@ -1870,7 +1814,6 @@ export interface MessageTextFilePathAnnotation extends MessageTextAnnotation {
   endIndex?: number;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageTextFilePathAnnotationDeserializer(
   item: any,
 ): MessageTextFilePathAnnotation {
@@ -1882,14 +1825,13 @@ export function messageTextFilePathAnnotationDeserializer(
     endIndex: item["end_index"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** An encapsulation of an image file ID, as used by message image content. */
 export interface MessageTextFilePathDetails {
   /** The ID of the specific file that the citation is from. */
   fileId: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageTextFilePathDetailsDeserializer(
   item: any,
 ): MessageTextFilePathDetails {
@@ -1897,7 +1839,7 @@ export function messageTextFilePathDetailsDeserializer(
     fileId: item["file_id"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** A representation of image file content in a thread message. */
 export interface MessageImageFileContent extends MessageContent {
   /** The object type, which is always 'image_file'. */
@@ -1906,7 +1848,6 @@ export interface MessageImageFileContent extends MessageContent {
   imageFile: MessageImageFileDetails;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageImageFileContentDeserializer(
   item: any,
 ): MessageImageFileContent {
@@ -1915,14 +1856,13 @@ export function messageImageFileContentDeserializer(
     imageFile: messageImageFileDetailsDeserializer(item["image_file"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** An image reference, as represented in thread message content. */
 export interface MessageImageFileDetails {
   /** The ID for the file associated with this image. */
   fileId: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageImageFileDetailsDeserializer(
   item: any,
 ): MessageImageFileDetails {
@@ -1930,7 +1870,7 @@ export function messageImageFileDetailsDeserializer(
     fileId: item["file_id"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The response data for a requested list of items. */
 export interface OpenAIPageableListOfThreadMessage {
   /** The object type, which is always list. */
@@ -1945,7 +1885,6 @@ export interface OpenAIPageableListOfThreadMessage {
   hasMore: boolean;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function openAIPageableListOfThreadMessageDeserializer(
   item: any,
 ): OpenAIPageableListOfThreadMessage {
@@ -1957,7 +1896,7 @@ export function openAIPageableListOfThreadMessageDeserializer(
     hasMore: item["has_more"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function threadMessageArrayDeserializer(
   result: Array<ThreadMessage>,
 ): any[] {
@@ -1985,14 +1924,13 @@ export function truncationObjectSerializer(item: TruncationObject): any {
   return { type: item["type"], last_messages: item["lastMessages"] };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function truncationObjectDeserializer(item: any): TruncationObject {
   return {
     type: item["type"],
     lastMessages: item["last_messages"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Possible truncation strategies for the thread. */
 export type TruncationStrategy = "auto" | "last_messages";
 
@@ -2015,7 +1953,6 @@ export function agentsNamedToolChoiceSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function agentsNamedToolChoiceDeserializer(
   item: any,
 ): AgentsNamedToolChoice {
@@ -2026,7 +1963,7 @@ export function agentsNamedToolChoiceDeserializer(
       : functionNameDeserializer(item["function"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Available tool types for agents named tools. */
 export type AgentsNamedToolChoiceType =
   | "function"
@@ -2047,13 +1984,12 @@ export function functionNameSerializer(item: FunctionName): any {
   return { name: item["name"] };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function functionNameDeserializer(item: any): FunctionName {
   return {
     name: item["name"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Alias for AgentsApiToolChoiceOption */
 export type AgentsApiToolChoiceOption =
   | string
@@ -2066,13 +2002,12 @@ export function agentsApiToolChoiceOptionSerializer(
   return item;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function agentsApiToolChoiceOptionDeserializer(
   item: any,
 ): AgentsApiToolChoiceOption {
   return item;
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Specifies how the tool choice will be used */
 export type AgentsApiToolChoiceOptionMode = "none" | "auto";
 
@@ -2136,7 +2071,6 @@ export interface ThreadRun {
   parallelToolCalls: boolean;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function threadRunDeserializer(item: any): ThreadRun {
   return {
     id: item["id"],
@@ -2195,7 +2129,7 @@ export function threadRunDeserializer(item: any): ThreadRun {
     parallelToolCalls: item["parallel_tool_calls"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Possible values for the status of an agent thread run. */
 export type RunStatus =
   | "queued"
@@ -2214,17 +2148,15 @@ export interface RequiredAction {
   type: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function requiredActionDeserializer(item: any): RequiredAction {
   return {
     type: item["type"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Alias for RequiredActionUnion */
 export type RequiredActionUnion = SubmitToolOutputsAction | RequiredAction;
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function requiredActionUnionDeserializer(
   item: any,
 ): RequiredActionUnion {
@@ -2238,7 +2170,7 @@ export function requiredActionUnionDeserializer(
       return requiredActionDeserializer(item);
   }
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The details for required tool calls that must be submitted for an agent thread run to continue. */
 export interface SubmitToolOutputsAction extends RequiredAction {
   /** The object type, which is always 'submit_tool_outputs'. */
@@ -2247,7 +2179,6 @@ export interface SubmitToolOutputsAction extends RequiredAction {
   submitToolOutputs: SubmitToolOutputsDetails;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function submitToolOutputsActionDeserializer(
   item: any,
 ): SubmitToolOutputsAction {
@@ -2258,14 +2189,13 @@ export function submitToolOutputsActionDeserializer(
     ),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The details describing tools that should be called to submit tool outputs. */
 export interface SubmitToolOutputsDetails {
   /** The list of tool calls that must be resolved for the agent thread run to continue. */
   toolCalls: RequiredToolCallUnion[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function submitToolOutputsDetailsDeserializer(
   item: any,
 ): SubmitToolOutputsDetails {
@@ -2273,7 +2203,7 @@ export function submitToolOutputsDetailsDeserializer(
     toolCalls: requiredToolCallUnionArrayDeserializer(item["tool_calls"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function requiredToolCallUnionArrayDeserializer(
   result: Array<RequiredToolCallUnion>,
 ): any[] {
@@ -2291,18 +2221,16 @@ export interface RequiredToolCall {
   id: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function requiredToolCallDeserializer(item: any): RequiredToolCall {
   return {
     type: item["type"],
     id: item["id"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Alias for RequiredToolCallUnion */
 export type RequiredToolCallUnion = RequiredFunctionToolCall | RequiredToolCall;
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function requiredToolCallUnionDeserializer(
   item: any,
 ): RequiredToolCallUnion {
@@ -2316,7 +2244,7 @@ export function requiredToolCallUnionDeserializer(
       return requiredToolCallDeserializer(item);
   }
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** A representation of a requested call to a function tool, needed by the model to continue evaluation of a run. */
 export interface RequiredFunctionToolCall extends RequiredToolCall {
   /** The object type of the required tool call. Always 'function' for function tools. */
@@ -2325,7 +2253,6 @@ export interface RequiredFunctionToolCall extends RequiredToolCall {
   function: RequiredFunctionToolCallDetails;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function requiredFunctionToolCallDeserializer(
   item: any,
 ): RequiredFunctionToolCall {
@@ -2335,7 +2262,7 @@ export function requiredFunctionToolCallDeserializer(
     function: requiredFunctionToolCallDetailsDeserializer(item["function"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The detailed information for a function invocation, as provided by a required action invoking a function tool, that includes the name of and arguments to the function. */
 export interface RequiredFunctionToolCallDetails {
   /** The name of the function. */
@@ -2344,7 +2271,6 @@ export interface RequiredFunctionToolCallDetails {
   arguments: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function requiredFunctionToolCallDetailsDeserializer(
   item: any,
 ): RequiredFunctionToolCallDetails {
@@ -2353,7 +2279,7 @@ export function requiredFunctionToolCallDetailsDeserializer(
     arguments: item["arguments"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The details of an error as encountered by an agent thread run. */
 export interface RunError {
   /** The status for the error. */
@@ -2362,21 +2288,19 @@ export interface RunError {
   message: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runErrorDeserializer(item: any): RunError {
   return {
     code: item["code"],
     message: item["message"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Details on why the run is incomplete. Will be `null` if the run is not incomplete. */
 export interface IncompleteRunDetails {
   /** The reason why the run is incomplete. This indicates which specific token limit was reached during the run. */
   reason: IncompleteDetailsReason;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function incompleteRunDetailsDeserializer(
   item: any,
 ): IncompleteRunDetails {
@@ -2384,7 +2308,7 @@ export function incompleteRunDetailsDeserializer(
     reason: item["reason"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The reason why the run is incomplete. This will point to which specific token limit was reached over the course of the run. */
 export type IncompleteDetailsReason =
   | "max_completion_tokens"
@@ -2400,7 +2324,6 @@ export interface RunCompletionUsage {
   totalTokens: number;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runCompletionUsageDeserializer(item: any): RunCompletionUsage {
   return {
     completionTokens: item["completion_tokens"],
@@ -2408,7 +2331,7 @@ export function runCompletionUsageDeserializer(item: any): RunCompletionUsage {
     totalTokens: item["total_tokens"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * Request object. A set of resources that are used by the agent's tools. The resources are specific to the type of tool.
  * For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search` tool requires a list of
@@ -2444,7 +2367,6 @@ export function updateToolResourcesOptionsSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function updateToolResourcesOptionsDeserializer(
   item: any,
 ): UpdateToolResourcesOptions {
@@ -2462,7 +2384,7 @@ export function updateToolResourcesOptionsDeserializer(
       : azureAISearchResourceDeserializer(item["azure_ai_search"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Request object to update `code_interpreted` tool resources. */
 export interface UpdateCodeInterpreterToolResourceOptions {
   /** A list of file IDs to override the current list of the agent. */
@@ -2481,7 +2403,6 @@ export function updateCodeInterpreterToolResourceOptionsSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function updateCodeInterpreterToolResourceOptionsDeserializer(
   item: any,
 ): UpdateCodeInterpreterToolResourceOptions {
@@ -2493,7 +2414,7 @@ export function updateCodeInterpreterToolResourceOptionsDeserializer(
         }),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Request object to update `file_search` tool resources. */
 export interface UpdateFileSearchToolResourceOptions {
   /** A list of vector store IDs to override the current list of the agent. */
@@ -2512,7 +2433,6 @@ export function updateFileSearchToolResourceOptionsSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function updateFileSearchToolResourceOptionsDeserializer(
   item: any,
 ): UpdateFileSearchToolResourceOptions {
@@ -2524,7 +2444,7 @@ export function updateFileSearchToolResourceOptionsDeserializer(
         }),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The response data for a requested list of items. */
 export interface OpenAIPageableListOfThreadRun {
   /** The object type, which is always list. */
@@ -2539,7 +2459,6 @@ export interface OpenAIPageableListOfThreadRun {
   hasMore: boolean;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function openAIPageableListOfThreadRunDeserializer(
   item: any,
 ): OpenAIPageableListOfThreadRun {
@@ -2551,7 +2470,7 @@ export function openAIPageableListOfThreadRunDeserializer(
     hasMore: item["has_more"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function threadRunArrayDeserializer(result: Array<ThreadRun>): any[] {
   return result.map((item) => {
     return threadRunDeserializer(item);
@@ -2640,7 +2559,6 @@ export interface RunStep {
   metadata: Record<string, string> | null;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepDeserializer(item: any): RunStep {
   return {
     id: item["id"],
@@ -2673,7 +2591,7 @@ export function runStepDeserializer(item: any): RunStep {
     metadata: item["metadata"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The possible types of run steps. */
 export type RunStepType = "message_creation" | "tool_calls";
 /** Possible values for the status of a run step. */
@@ -2691,20 +2609,18 @@ export interface RunStepDetails {
   type: RunStepType;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepDetailsDeserializer(item: any): RunStepDetails {
   return {
     type: item["type"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Alias for RunStepDetailsUnion */
 export type RunStepDetailsUnion =
   | RunStepMessageCreationDetails
   | RunStepToolCallDetails
   | RunStepDetails;
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepDetailsUnionDeserializer(
   item: any,
 ): RunStepDetailsUnion {
@@ -2721,7 +2637,7 @@ export function runStepDetailsUnionDeserializer(
       return runStepDetailsDeserializer(item);
   }
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The detailed information associated with a message creation run step. */
 export interface RunStepMessageCreationDetails extends RunStepDetails {
   /** The object type, which is always 'message_creation'. */
@@ -2730,7 +2646,6 @@ export interface RunStepMessageCreationDetails extends RunStepDetails {
   messageCreation: RunStepMessageCreationReference;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepMessageCreationDetailsDeserializer(
   item: any,
 ): RunStepMessageCreationDetails {
@@ -2741,14 +2656,13 @@ export function runStepMessageCreationDetailsDeserializer(
     ),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The details of a message created as a part of a run step. */
 export interface RunStepMessageCreationReference {
   /** The ID of the message created by this run step. */
   messageId: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepMessageCreationReferenceDeserializer(
   item: any,
 ): RunStepMessageCreationReference {
@@ -2756,7 +2670,7 @@ export function runStepMessageCreationReferenceDeserializer(
     messageId: item["message_id"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The detailed information associated with a run step calling tools. */
 export interface RunStepToolCallDetails extends RunStepDetails {
   /** The object type, which is always 'tool_calls'. */
@@ -2765,7 +2679,6 @@ export interface RunStepToolCallDetails extends RunStepDetails {
   toolCalls: RunStepToolCallUnion[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepToolCallDetailsDeserializer(
   item: any,
 ): RunStepToolCallDetails {
@@ -2774,7 +2687,7 @@ export function runStepToolCallDetailsDeserializer(
     toolCalls: runStepToolCallUnionArrayDeserializer(item["tool_calls"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function runStepToolCallUnionArrayDeserializer(
   result: Array<RunStepToolCallUnion>,
 ): any[] {
@@ -2792,14 +2705,13 @@ export interface RunStepToolCall {
   id: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepToolCallDeserializer(item: any): RunStepToolCall {
   return {
     type: item["type"],
     id: item["id"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Alias for RunStepToolCallUnion */
 export type RunStepToolCallUnion =
   | RunStepCodeInterpreterToolCall
@@ -2811,7 +2723,6 @@ export type RunStepToolCallUnion =
   | RunStepFunctionToolCall
   | RunStepToolCall;
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepToolCallUnionDeserializer(
   item: any,
 ): RunStepToolCallUnion {
@@ -2855,7 +2766,7 @@ export function runStepToolCallUnionDeserializer(
       return runStepToolCallDeserializer(item);
   }
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * A record of a call to a code interpreter tool, issued by the model in evaluation of a defined tool, that
  * represents inputs and outputs consumed and emitted by the code interpreter.
@@ -2867,7 +2778,6 @@ export interface RunStepCodeInterpreterToolCall extends RunStepToolCall {
   codeInterpreter: RunStepCodeInterpreterToolCallDetails;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepCodeInterpreterToolCallDeserializer(
   item: any,
 ): RunStepCodeInterpreterToolCall {
@@ -2879,7 +2789,7 @@ export function runStepCodeInterpreterToolCallDeserializer(
     ),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The detailed information about a code interpreter invocation by the model. */
 export interface RunStepCodeInterpreterToolCallDetails {
   /** The input provided by the model to the code interpreter tool. */
@@ -2888,7 +2798,6 @@ export interface RunStepCodeInterpreterToolCallDetails {
   outputs: RunStepCodeInterpreterToolCallOutputUnion[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepCodeInterpreterToolCallDetailsDeserializer(
   item: any,
 ): RunStepCodeInterpreterToolCallDetails {
@@ -2899,7 +2808,7 @@ export function runStepCodeInterpreterToolCallDetailsDeserializer(
     ),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function runStepCodeInterpreterToolCallOutputUnionArrayDeserializer(
   result: Array<RunStepCodeInterpreterToolCallOutputUnion>,
 ): any[] {
@@ -2915,7 +2824,6 @@ export interface RunStepCodeInterpreterToolCallOutput {
   type: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepCodeInterpreterToolCallOutputDeserializer(
   item: any,
 ): RunStepCodeInterpreterToolCallOutput {
@@ -2923,14 +2831,13 @@ export function runStepCodeInterpreterToolCallOutputDeserializer(
     type: item["type"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Alias for RunStepCodeInterpreterToolCallOutputUnion */
 export type RunStepCodeInterpreterToolCallOutputUnion =
   | RunStepCodeInterpreterLogOutput
   | RunStepCodeInterpreterImageOutput
   | RunStepCodeInterpreterToolCallOutput;
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepCodeInterpreterToolCallOutputUnionDeserializer(
   item: any,
 ): RunStepCodeInterpreterToolCallOutputUnion {
@@ -2949,7 +2856,7 @@ export function runStepCodeInterpreterToolCallOutputUnionDeserializer(
       return runStepCodeInterpreterToolCallOutputDeserializer(item);
   }
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** A representation of a log output emitted by a code interpreter tool in response to a tool call by the model. */
 export interface RunStepCodeInterpreterLogOutput
   extends RunStepCodeInterpreterToolCallOutput {
@@ -2959,7 +2866,6 @@ export interface RunStepCodeInterpreterLogOutput
   logs: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepCodeInterpreterLogOutputDeserializer(
   item: any,
 ): RunStepCodeInterpreterLogOutput {
@@ -2968,7 +2874,7 @@ export function runStepCodeInterpreterLogOutputDeserializer(
     logs: item["logs"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** A representation of an image output emitted by a code interpreter tool in response to a tool call by the model. */
 export interface RunStepCodeInterpreterImageOutput
   extends RunStepCodeInterpreterToolCallOutput {
@@ -2978,7 +2884,6 @@ export interface RunStepCodeInterpreterImageOutput
   image: RunStepCodeInterpreterImageReference;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepCodeInterpreterImageOutputDeserializer(
   item: any,
 ): RunStepCodeInterpreterImageOutput {
@@ -2987,14 +2892,13 @@ export function runStepCodeInterpreterImageOutputDeserializer(
     image: runStepCodeInterpreterImageReferenceDeserializer(item["image"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** An image reference emitted by a code interpreter tool in response to a tool call by the model. */
 export interface RunStepCodeInterpreterImageReference {
   /** The ID of the file associated with this image. */
   fileId: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepCodeInterpreterImageReferenceDeserializer(
   item: any,
 ): RunStepCodeInterpreterImageReference {
@@ -3002,7 +2906,7 @@ export function runStepCodeInterpreterImageReferenceDeserializer(
     fileId: item["file_id"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * A record of a call to a file search tool, issued by the model in evaluation of a defined tool, that represents
  * executed file search.
@@ -3016,7 +2920,6 @@ export interface RunStepFileSearchToolCall extends RunStepToolCall {
   fileSearch: RunStepFileSearchToolCallResults;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepFileSearchToolCallDeserializer(
   item: any,
 ): RunStepFileSearchToolCall {
@@ -3028,7 +2931,7 @@ export function runStepFileSearchToolCallDeserializer(
     ),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The results of the file search. */
 export interface RunStepFileSearchToolCallResults {
   /** Ranking options for file search. */
@@ -3037,7 +2940,6 @@ export interface RunStepFileSearchToolCallResults {
   results: RunStepFileSearchToolCallResult[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepFileSearchToolCallResultsDeserializer(
   item: any,
 ): RunStepFileSearchToolCallResults {
@@ -3048,7 +2950,7 @@ export function runStepFileSearchToolCallResultsDeserializer(
     results: runStepFileSearchToolCallResultArrayDeserializer(item["results"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function runStepFileSearchToolCallResultArrayDeserializer(
   result: Array<RunStepFileSearchToolCallResult>,
 ): any[] {
@@ -3069,7 +2971,6 @@ export interface RunStepFileSearchToolCallResult {
   content?: FileSearchToolCallContent[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepFileSearchToolCallResultDeserializer(
   item: any,
 ): RunStepFileSearchToolCallResult {
@@ -3082,7 +2983,7 @@ export function runStepFileSearchToolCallResultDeserializer(
       : fileSearchToolCallContentArrayDeserializer(item["content"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function fileSearchToolCallContentArrayDeserializer(
   result: Array<FileSearchToolCallContent>,
 ): any[] {
@@ -3099,7 +3000,6 @@ export interface FileSearchToolCallContent {
   text: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function fileSearchToolCallContentDeserializer(
   item: any,
 ): FileSearchToolCallContent {
@@ -3108,7 +3008,7 @@ export function fileSearchToolCallContentDeserializer(
     text: item["text"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * A record of a call to a bing grounding tool, issued by the model in evaluation of a defined tool, that represents
  * executed search with bing grounding.
@@ -3120,7 +3020,6 @@ export interface RunStepBingGroundingToolCall extends RunStepToolCall {
   bingGrounding: Record<string, string>;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepBingGroundingToolCallDeserializer(
   item: any,
 ): RunStepBingGroundingToolCall {
@@ -3130,7 +3029,7 @@ export function runStepBingGroundingToolCallDeserializer(
     bingGrounding: item["bing_grounding"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * A record of a call to an Azure AI Search tool, issued by the model in evaluation of a defined tool, that represents
  * executed Azure AI search.
@@ -3142,7 +3041,6 @@ export interface RunStepAzureAISearchToolCall extends RunStepToolCall {
   azureAISearch: Record<string, string>;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepAzureAISearchToolCallDeserializer(
   item: any,
 ): RunStepAzureAISearchToolCall {
@@ -3152,7 +3050,7 @@ export function runStepAzureAISearchToolCallDeserializer(
     azureAISearch: item["azure_ai_search"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * A record of a call to a SharePoint tool, issued by the model in evaluation of a defined tool, that represents
  * executed SharePoint actions.
@@ -3164,7 +3062,6 @@ export interface RunStepSharepointToolCall extends RunStepToolCall {
   sharePoint: Record<string, string>;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepSharepointToolCallDeserializer(
   item: any,
 ): RunStepSharepointToolCall {
@@ -3174,7 +3071,7 @@ export function runStepSharepointToolCallDeserializer(
     sharePoint: item["sharepoint_grounding"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * A record of a call to a Microsoft Fabric tool, issued by the model in evaluation of a defined tool, that represents
  * executed Microsoft Fabric operations.
@@ -3186,7 +3083,6 @@ export interface RunStepMicrosoftFabricToolCall extends RunStepToolCall {
   microsoftFabric: Record<string, string>;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepMicrosoftFabricToolCallDeserializer(
   item: any,
 ): RunStepMicrosoftFabricToolCall {
@@ -3196,7 +3092,7 @@ export function runStepMicrosoftFabricToolCallDeserializer(
     microsoftFabric: item["fabric_aiskill"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * A record of a call to a function tool, issued by the model in evaluation of a defined tool, that represents the inputs
  * and output consumed and emitted by the specified function.
@@ -3208,7 +3104,6 @@ export interface RunStepFunctionToolCall extends RunStepToolCall {
   function: RunStepFunctionToolCallDetails;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepFunctionToolCallDeserializer(
   item: any,
 ): RunStepFunctionToolCall {
@@ -3218,7 +3113,7 @@ export function runStepFunctionToolCallDeserializer(
     function: runStepFunctionToolCallDetailsDeserializer(item["function"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The detailed information about the function called by the model. */
 export interface RunStepFunctionToolCallDetails {
   /** The name of the function. */
@@ -3229,7 +3124,6 @@ export interface RunStepFunctionToolCallDetails {
   output: string | null;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepFunctionToolCallDetailsDeserializer(
   item: any,
 ): RunStepFunctionToolCallDetails {
@@ -3239,7 +3133,7 @@ export function runStepFunctionToolCallDetailsDeserializer(
     output: item["output"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The error information associated with a failed run step. */
 export interface RunStepError {
   /** The error code for this error. */
@@ -3248,14 +3142,13 @@ export interface RunStepError {
   message: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepErrorDeserializer(item: any): RunStepError {
   return {
     code: item["code"],
     message: item["message"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Possible error code values attributable to a failed run step. */
 export type RunStepErrorCode = "server_error" | "rate_limit_exceeded";
 
@@ -3269,7 +3162,6 @@ export interface RunStepCompletionUsage {
   totalTokens: number;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepCompletionUsageDeserializer(
   item: any,
 ): RunStepCompletionUsage {
@@ -3279,7 +3171,7 @@ export function runStepCompletionUsageDeserializer(
     totalTokens: item["total_tokens"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The response data for a requested list of items. */
 export interface OpenAIPageableListOfRunStep {
   /** The object type, which is always list. */
@@ -3294,7 +3186,6 @@ export interface OpenAIPageableListOfRunStep {
   hasMore: boolean;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function openAIPageableListOfRunStepDeserializer(
   item: any,
 ): OpenAIPageableListOfRunStep {
@@ -3306,7 +3197,7 @@ export function openAIPageableListOfRunStepDeserializer(
     hasMore: item["has_more"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function runStepArrayDeserializer(result: Array<RunStep>): any[] {
   return result.map((item) => {
     return runStepDeserializer(item);
@@ -3321,14 +3212,13 @@ export interface FileListResponse {
   data: OpenAIFile[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function fileListResponseDeserializer(item: any): FileListResponse {
   return {
     object: item["object"],
     data: openAIFileArrayDeserializer(item["data"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function openAIFileArrayDeserializer(result: Array<OpenAIFile>): any[] {
   return result.map((item) => {
     return openAIFileDeserializer(item);
@@ -3355,7 +3245,6 @@ export interface OpenAIFile {
   statusDetails?: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function openAIFileDeserializer(item: any): OpenAIFile {
   return {
     object: item["object"],
@@ -3368,7 +3257,7 @@ export function openAIFileDeserializer(item: any): OpenAIFile {
     statusDetails: item["status_details"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The possible values denoting the intended usage of a file. */
 export type FilePurpose =
   | "fine-tune"
@@ -3388,7 +3277,6 @@ export type FileState =
   | "deleting"
   | "deleted";
 
-/* eslint-disable @typescript-eslint/naming-convention */
 /** model interface _UploadFileRequest */
 export interface _UploadFileRequest {
   /** The file data, in bytes. */
@@ -3400,7 +3288,7 @@ export interface _UploadFileRequest {
   /** The name of the file. */
   filename?: string;
 }
-/* eslint-enable @typescript-eslint/naming-convention */
+
 export function _uploadFileRequestSerializer(item: _UploadFileRequest): any {
   return [
     createFilePartDescriptor("file", item["file"], "application/octet-stream"),
@@ -3421,7 +3309,6 @@ export interface FileDeletionStatus {
   object: "file";
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function fileDeletionStatusDeserializer(item: any): FileDeletionStatus {
   return {
     id: item["id"],
@@ -3429,7 +3316,7 @@ export function fileDeletionStatusDeserializer(item: any): FileDeletionStatus {
     object: item["object"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The response data for a requested list of items. */
 export interface OpenAIPageableListOfVectorStore {
   /** The object type, which is always list. */
@@ -3444,7 +3331,6 @@ export interface OpenAIPageableListOfVectorStore {
   hasMore: boolean;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function openAIPageableListOfVectorStoreDeserializer(
   item: any,
 ): OpenAIPageableListOfVectorStore {
@@ -3456,7 +3342,7 @@ export function openAIPageableListOfVectorStoreDeserializer(
     hasMore: item["has_more"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function vectorStoreArrayDeserializer(
   result: Array<VectorStore>,
 ): any[] {
@@ -3491,7 +3377,6 @@ export interface VectorStore {
   metadata: Record<string, string> | null;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function vectorStoreDeserializer(item: any): VectorStore {
   return {
     id: item["id"],
@@ -3513,7 +3398,7 @@ export function vectorStoreDeserializer(item: any): VectorStore {
     metadata: item["metadata"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Counts of files processed or being processed by this vector store grouped by status. */
 export interface VectorStoreFileCount {
   /** The number of files that are currently being processed. */
@@ -3528,7 +3413,6 @@ export interface VectorStoreFileCount {
   total: number;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function vectorStoreFileCountDeserializer(
   item: any,
 ): VectorStoreFileCount {
@@ -3540,7 +3424,7 @@ export function vectorStoreFileCountDeserializer(
     total: item["total"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Vector store possible status */
 export type VectorStoreStatus = "expired" | "in_progress" | "completed";
 
@@ -3558,7 +3442,6 @@ export function vectorStoreExpirationPolicySerializer(
   return { anchor: item["anchor"], days: item["days"] };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function vectorStoreExpirationPolicyDeserializer(
   item: any,
 ): VectorStoreExpirationPolicy {
@@ -3567,7 +3450,7 @@ export function vectorStoreExpirationPolicyDeserializer(
     days: item["days"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Describes the relationship between the days and the expiration of this vector store */
 export type VectorStoreExpirationPolicyAnchor = "last_active_at";
 
@@ -3663,7 +3546,6 @@ export function vectorStoreStaticChunkingStrategyOptionsSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function vectorStoreStaticChunkingStrategyOptionsDeserializer(
   item: any,
 ): VectorStoreStaticChunkingStrategyOptions {
@@ -3672,7 +3554,7 @@ export function vectorStoreStaticChunkingStrategyOptionsDeserializer(
     chunkOverlapTokens: item["chunk_overlap_tokens"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Response object for deleting a vector store. */
 export interface VectorStoreDeletionStatus {
   /** The ID of the resource specified for deletion. */
@@ -3683,7 +3565,6 @@ export interface VectorStoreDeletionStatus {
   object: "vector_store.deleted";
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function vectorStoreDeletionStatusDeserializer(
   item: any,
 ): VectorStoreDeletionStatus {
@@ -3693,7 +3574,7 @@ export function vectorStoreDeletionStatusDeserializer(
     object: item["object"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The response data for a requested list of items. */
 export interface OpenAIPageableListOfVectorStoreFile {
   /** The object type, which is always list. */
@@ -3708,7 +3589,6 @@ export interface OpenAIPageableListOfVectorStoreFile {
   hasMore: boolean;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function openAIPageableListOfVectorStoreFileDeserializer(
   item: any,
 ): OpenAIPageableListOfVectorStoreFile {
@@ -3720,7 +3600,7 @@ export function openAIPageableListOfVectorStoreFileDeserializer(
     hasMore: item["has_more"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function vectorStoreFileArrayDeserializer(
   result: Array<VectorStoreFile>,
 ): any[] {
@@ -3752,7 +3632,6 @@ export interface VectorStoreFile {
   chunkingStrategy: VectorStoreChunkingStrategyResponseUnion;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function vectorStoreFileDeserializer(item: any): VectorStoreFile {
   return {
     id: item["id"],
@@ -3769,7 +3648,7 @@ export function vectorStoreFileDeserializer(item: any): VectorStoreFile {
     ),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Vector store file status */
 export type VectorStoreFileStatus =
   | "in_progress"
@@ -3785,7 +3664,6 @@ export interface VectorStoreFileError {
   message: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function vectorStoreFileErrorDeserializer(
   item: any,
 ): VectorStoreFileError {
@@ -3794,7 +3672,7 @@ export function vectorStoreFileErrorDeserializer(
     message: item["message"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Error code variants for vector store file processing */
 export type VectorStoreFileErrorCode =
   | "server_error"
@@ -3808,7 +3686,6 @@ export interface VectorStoreChunkingStrategyResponse {
   type: VectorStoreChunkingStrategyResponseType;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function vectorStoreChunkingStrategyResponseDeserializer(
   item: any,
 ): VectorStoreChunkingStrategyResponse {
@@ -3816,14 +3693,13 @@ export function vectorStoreChunkingStrategyResponseDeserializer(
     type: item["type"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Alias for VectorStoreChunkingStrategyResponseUnion */
 export type VectorStoreChunkingStrategyResponseUnion =
   | VectorStoreAutoChunkingStrategyResponse
   | VectorStoreStaticChunkingStrategyResponse
   | VectorStoreChunkingStrategyResponse;
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function vectorStoreChunkingStrategyResponseUnionDeserializer(
   item: any,
 ): VectorStoreChunkingStrategyResponseUnion {
@@ -3842,7 +3718,7 @@ export function vectorStoreChunkingStrategyResponseUnionDeserializer(
       return vectorStoreChunkingStrategyResponseDeserializer(item);
   }
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Type of chunking strategy */
 export type VectorStoreChunkingStrategyResponseType = "other" | "static";
 
@@ -3853,7 +3729,6 @@ export interface VectorStoreAutoChunkingStrategyResponse
   type: "other";
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function vectorStoreAutoChunkingStrategyResponseDeserializer(
   item: any,
 ): VectorStoreAutoChunkingStrategyResponse {
@@ -3861,7 +3736,7 @@ export function vectorStoreAutoChunkingStrategyResponseDeserializer(
     type: item["type"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** A statically configured chunking strategy. */
 export interface VectorStoreStaticChunkingStrategyResponse
   extends VectorStoreChunkingStrategyResponse {
@@ -3871,7 +3746,6 @@ export interface VectorStoreStaticChunkingStrategyResponse
   static: VectorStoreStaticChunkingStrategyOptions;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function vectorStoreStaticChunkingStrategyResponseDeserializer(
   item: any,
 ): VectorStoreStaticChunkingStrategyResponse {
@@ -3882,7 +3756,7 @@ export function vectorStoreStaticChunkingStrategyResponseDeserializer(
     ),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Response object for deleting a vector store file relationship. */
 export interface VectorStoreFileDeletionStatus {
   /** The ID of the resource specified for deletion. */
@@ -3893,7 +3767,6 @@ export interface VectorStoreFileDeletionStatus {
   object: "vector_store.file.deleted";
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function vectorStoreFileDeletionStatusDeserializer(
   item: any,
 ): VectorStoreFileDeletionStatus {
@@ -3903,7 +3776,7 @@ export function vectorStoreFileDeletionStatusDeserializer(
     object: item["object"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** A batch of files attached to a vector store. */
 export interface VectorStoreFileBatch {
   /** The identifier, which can be referenced in API endpoints. */
@@ -3920,7 +3793,6 @@ export interface VectorStoreFileBatch {
   fileCounts: VectorStoreFileCount;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function vectorStoreFileBatchDeserializer(
   item: any,
 ): VectorStoreFileBatch {
@@ -3933,7 +3805,7 @@ export function vectorStoreFileBatchDeserializer(
     fileCounts: vectorStoreFileCountDeserializer(item["file_counts"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The status of the vector store file batch. */
 export type VectorStoreFileBatchStatus =
   | "in_progress"
@@ -3951,7 +3823,6 @@ export interface MessageDeltaChunk {
   delta: MessageDelta;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageDeltaChunkDeserializer(item: any): MessageDeltaChunk {
   return {
     id: item["id"],
@@ -3959,7 +3830,7 @@ export function messageDeltaChunkDeserializer(item: any): MessageDeltaChunk {
     delta: messageDeltaDeserializer(item["delta"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Represents the typed 'delta' payload within a streaming message delta chunk. */
 export interface MessageDelta {
   /** The entity that produced the message. */
@@ -3968,14 +3839,13 @@ export interface MessageDelta {
   content: MessageDeltaContentUnion[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageDeltaDeserializer(item: any): MessageDelta {
   return {
     role: item["role"],
     content: messageDeltaContentUnionArrayDeserializer(item["content"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function messageDeltaContentUnionArrayDeserializer(
   result: Array<MessageDeltaContentUnion>,
 ): any[] {
@@ -3993,7 +3863,6 @@ export interface MessageDeltaContent {
   type: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageDeltaContentDeserializer(
   item: any,
 ): MessageDeltaContent {
@@ -4002,14 +3871,13 @@ export function messageDeltaContentDeserializer(
     type: item["type"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Alias for MessageDeltaContentUnion */
 export type MessageDeltaContentUnion =
   | MessageDeltaImageFileContent
   | MessageDeltaTextContent
   | MessageDeltaContent;
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageDeltaContentUnionDeserializer(
   item: any,
 ): MessageDeltaContentUnion {
@@ -4028,7 +3896,7 @@ export function messageDeltaContentUnionDeserializer(
       return messageDeltaContentDeserializer(item);
   }
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Represents a streamed image file content part within a streaming message delta chunk. */
 export interface MessageDeltaImageFileContent extends MessageDeltaContent {
   /** The type of content for this content part, which is always "image_file." */
@@ -4037,7 +3905,6 @@ export interface MessageDeltaImageFileContent extends MessageDeltaContent {
   imageFile?: MessageDeltaImageFileContentObject;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageDeltaImageFileContentDeserializer(
   item: any,
 ): MessageDeltaImageFileContent {
@@ -4049,14 +3916,13 @@ export function messageDeltaImageFileContentDeserializer(
       : messageDeltaImageFileContentObjectDeserializer(item["image_file"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Represents the 'image_file' payload within streaming image file content. */
 export interface MessageDeltaImageFileContentObject {
   /** The file ID of the image in the message content. */
   fileId?: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageDeltaImageFileContentObjectDeserializer(
   item: any,
 ): MessageDeltaImageFileContentObject {
@@ -4064,7 +3930,7 @@ export function messageDeltaImageFileContentObjectDeserializer(
     fileId: item["file_id"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Represents a streamed text content part within a streaming message delta chunk. */
 export interface MessageDeltaTextContent extends MessageDeltaContent {
   /** The type of content for this content part, which is always "text." */
@@ -4073,7 +3939,6 @@ export interface MessageDeltaTextContent extends MessageDeltaContent {
   text?: MessageDeltaTextContentObject;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageDeltaTextContentDeserializer(
   item: any,
 ): MessageDeltaTextContent {
@@ -4085,7 +3950,7 @@ export function messageDeltaTextContentDeserializer(
       : messageDeltaTextContentObjectDeserializer(item["text"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Represents the data of a streamed text content part within a streaming message delta chunk. */
 export interface MessageDeltaTextContentObject {
   /** The data that makes up the text. */
@@ -4094,7 +3959,6 @@ export interface MessageDeltaTextContentObject {
   annotations?: MessageDeltaTextAnnotationUnion[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageDeltaTextContentObjectDeserializer(
   item: any,
 ): MessageDeltaTextContentObject {
@@ -4105,7 +3969,7 @@ export function messageDeltaTextContentObjectDeserializer(
       : messageDeltaTextAnnotationUnionArrayDeserializer(item["annotations"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function messageDeltaTextAnnotationUnionArrayDeserializer(
   result: Array<MessageDeltaTextAnnotationUnion>,
 ): any[] {
@@ -4123,7 +3987,6 @@ export interface MessageDeltaTextAnnotation {
   type: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageDeltaTextAnnotationDeserializer(
   item: any,
 ): MessageDeltaTextAnnotation {
@@ -4132,14 +3995,13 @@ export function messageDeltaTextAnnotationDeserializer(
     type: item["type"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Alias for MessageDeltaTextAnnotationUnion */
 export type MessageDeltaTextAnnotationUnion =
   | MessageDeltaTextFileCitationAnnotation
   | MessageDeltaTextFilePathAnnotation
   | MessageDeltaTextAnnotation;
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageDeltaTextAnnotationUnionDeserializer(
   item: any,
 ): MessageDeltaTextAnnotationUnion {
@@ -4158,7 +4020,7 @@ export function messageDeltaTextAnnotationUnionDeserializer(
       return messageDeltaTextAnnotationDeserializer(item);
   }
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Represents a streamed file citation applied to a streaming text content part. */
 export interface MessageDeltaTextFileCitationAnnotation
   extends MessageDeltaTextAnnotation {
@@ -4174,7 +4036,6 @@ export interface MessageDeltaTextFileCitationAnnotation
   endIndex?: number;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageDeltaTextFileCitationAnnotationDeserializer(
   item: any,
 ): MessageDeltaTextFileCitationAnnotation {
@@ -4191,7 +4052,7 @@ export function messageDeltaTextFileCitationAnnotationDeserializer(
     endIndex: item["end_index"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Represents the data of a streamed file citation as applied to a streaming text content part. */
 export interface MessageDeltaTextFileCitationAnnotationObject {
   /** The ID of the specific file the citation is from. */
@@ -4200,7 +4061,6 @@ export interface MessageDeltaTextFileCitationAnnotationObject {
   quote?: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageDeltaTextFileCitationAnnotationObjectDeserializer(
   item: any,
 ): MessageDeltaTextFileCitationAnnotationObject {
@@ -4209,7 +4069,7 @@ export function messageDeltaTextFileCitationAnnotationObjectDeserializer(
     quote: item["quote"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Represents a streamed file path annotation applied to a streaming text content part. */
 export interface MessageDeltaTextFilePathAnnotation
   extends MessageDeltaTextAnnotation {
@@ -4225,7 +4085,6 @@ export interface MessageDeltaTextFilePathAnnotation
   text?: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageDeltaTextFilePathAnnotationDeserializer(
   item: any,
 ): MessageDeltaTextFilePathAnnotation {
@@ -4240,14 +4099,13 @@ export function messageDeltaTextFilePathAnnotationDeserializer(
     text: item["text"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Represents the data of a streamed file path annotation as applied to a streaming text content part. */
 export interface MessageDeltaTextFilePathAnnotationObject {
   /** The file ID for the annotation. */
   fileId?: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function messageDeltaTextFilePathAnnotationObjectDeserializer(
   item: any,
 ): MessageDeltaTextFilePathAnnotationObject {
@@ -4255,7 +4113,7 @@ export function messageDeltaTextFilePathAnnotationObjectDeserializer(
     fileId: item["file_id"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Represents a run step delta i.e. any changed fields on a run step during streaming. */
 export interface RunStepDeltaChunk {
   /** The identifier of the run step, which can be referenced in API endpoints. */
@@ -4266,7 +4124,6 @@ export interface RunStepDeltaChunk {
   delta: RunStepDelta;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepDeltaChunkDeserializer(item: any): RunStepDeltaChunk {
   return {
     id: item["id"],
@@ -4274,14 +4131,13 @@ export function runStepDeltaChunkDeserializer(item: any): RunStepDeltaChunk {
     delta: runStepDeltaDeserializer(item["delta"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Represents the delta payload in a streaming run step delta chunk. */
 export interface RunStepDelta {
   /** The details of the run step. */
   stepDetails?: RunStepDeltaDetailUnion;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepDeltaDeserializer(item: any): RunStepDelta {
   return {
     stepDetails: !item["step_details"]
@@ -4289,7 +4145,7 @@ export function runStepDeltaDeserializer(item: any): RunStepDelta {
       : runStepDeltaDetailUnionDeserializer(item["step_details"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Represents a single run step detail item in a streaming run step's delta payload. */
 export interface RunStepDeltaDetail {
   /** The object type for the run step detail object. */
@@ -4297,20 +4153,18 @@ export interface RunStepDeltaDetail {
   type: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepDeltaDetailDeserializer(item: any): RunStepDeltaDetail {
   return {
     type: item["type"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Alias for RunStepDeltaDetailUnion */
 export type RunStepDeltaDetailUnion =
   | RunStepDeltaMessageCreation
   | RunStepDeltaToolCallObject
   | RunStepDeltaDetail;
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepDeltaDetailUnionDeserializer(
   item: any,
 ): RunStepDeltaDetailUnion {
@@ -4329,7 +4183,7 @@ export function runStepDeltaDetailUnionDeserializer(
       return runStepDeltaDetailDeserializer(item);
   }
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Represents a message creation within a streaming run step delta. */
 export interface RunStepDeltaMessageCreation extends RunStepDeltaDetail {
   /** The object type, which is always "message_creation." */
@@ -4338,7 +4192,6 @@ export interface RunStepDeltaMessageCreation extends RunStepDeltaDetail {
   messageCreation?: RunStepDeltaMessageCreationObject;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepDeltaMessageCreationDeserializer(
   item: any,
 ): RunStepDeltaMessageCreation {
@@ -4349,14 +4202,13 @@ export function runStepDeltaMessageCreationDeserializer(
       : runStepDeltaMessageCreationObjectDeserializer(item["message_creation"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Represents the data within a streaming run step message creation response object. */
 export interface RunStepDeltaMessageCreationObject {
   /** The ID of the newly-created message. */
   messageId?: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepDeltaMessageCreationObjectDeserializer(
   item: any,
 ): RunStepDeltaMessageCreationObject {
@@ -4364,7 +4216,7 @@ export function runStepDeltaMessageCreationObjectDeserializer(
     messageId: item["message_id"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Represents an invocation of tool calls as part of a streaming run step. */
 export interface RunStepDeltaToolCallObject extends RunStepDeltaDetail {
   /** The object type, which is always "tool_calls." */
@@ -4373,7 +4225,6 @@ export interface RunStepDeltaToolCallObject extends RunStepDeltaDetail {
   toolCalls?: RunStepDeltaToolCallUnion[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepDeltaToolCallObjectDeserializer(
   item: any,
 ): RunStepDeltaToolCallObject {
@@ -4384,7 +4235,7 @@ export function runStepDeltaToolCallObjectDeserializer(
       : runStepDeltaToolCallUnionArrayDeserializer(item["tool_calls"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function runStepDeltaToolCallUnionArrayDeserializer(
   result: Array<RunStepDeltaToolCallUnion>,
 ): any[] {
@@ -4404,7 +4255,6 @@ export interface RunStepDeltaToolCall {
   type: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepDeltaToolCallDeserializer(
   item: any,
 ): RunStepDeltaToolCall {
@@ -4414,7 +4264,7 @@ export function runStepDeltaToolCallDeserializer(
     type: item["type"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Alias for RunStepDeltaToolCallUnion */
 export type RunStepDeltaToolCallUnion =
   | RunStepDeltaFunctionToolCall
@@ -4422,7 +4272,6 @@ export type RunStepDeltaToolCallUnion =
   | RunStepDeltaCodeInterpreterToolCall
   | RunStepDeltaToolCall;
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepDeltaToolCallUnionDeserializer(
   item: any,
 ): RunStepDeltaToolCallUnion {
@@ -4446,7 +4295,7 @@ export function runStepDeltaToolCallUnionDeserializer(
       return runStepDeltaToolCallDeserializer(item);
   }
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Represents a function tool call within a streaming run step's tool call details. */
 export interface RunStepDeltaFunctionToolCall extends RunStepDeltaToolCall {
   /** The object type, which is always "function." */
@@ -4455,7 +4304,6 @@ export interface RunStepDeltaFunctionToolCall extends RunStepDeltaToolCall {
   function?: RunStepDeltaFunction;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepDeltaFunctionToolCallDeserializer(
   item: any,
 ): RunStepDeltaFunctionToolCall {
@@ -4468,7 +4316,7 @@ export function runStepDeltaFunctionToolCallDeserializer(
       : runStepDeltaFunctionDeserializer(item["function"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Represents the function data in a streaming run step delta's function tool call. */
 export interface RunStepDeltaFunction {
   /** The name of the function. */
@@ -4479,7 +4327,6 @@ export interface RunStepDeltaFunction {
   output?: string | null;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepDeltaFunctionDeserializer(
   item: any,
 ): RunStepDeltaFunction {
@@ -4489,7 +4336,7 @@ export function runStepDeltaFunctionDeserializer(
     output: item["output"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Represents a file search tool call within a streaming run step's tool call details. */
 export interface RunStepDeltaFileSearchToolCall extends RunStepDeltaToolCall {
   /** The object type, which is always "file_search." */
@@ -4498,7 +4345,6 @@ export interface RunStepDeltaFileSearchToolCall extends RunStepDeltaToolCall {
   fileSearch?: Record<string, string>;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepDeltaFileSearchToolCallDeserializer(
   item: any,
 ): RunStepDeltaFileSearchToolCall {
@@ -4509,7 +4355,7 @@ export function runStepDeltaFileSearchToolCallDeserializer(
     fileSearch: item["file_search"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Represents a Code Interpreter tool call within a streaming run step's tool call details. */
 export interface RunStepDeltaCodeInterpreterToolCall
   extends RunStepDeltaToolCall {
@@ -4519,7 +4365,6 @@ export interface RunStepDeltaCodeInterpreterToolCall
   codeInterpreter?: RunStepDeltaCodeInterpreterDetailItemObject;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepDeltaCodeInterpreterToolCallDeserializer(
   item: any,
 ): RunStepDeltaCodeInterpreterToolCall {
@@ -4534,7 +4379,7 @@ export function runStepDeltaCodeInterpreterToolCallDeserializer(
         ),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Represents the Code Interpreter tool call data in a streaming run step's tool calls. */
 export interface RunStepDeltaCodeInterpreterDetailItemObject {
   /** The input into the Code Interpreter tool call. */
@@ -4547,7 +4392,6 @@ export interface RunStepDeltaCodeInterpreterDetailItemObject {
   outputs?: RunStepDeltaCodeInterpreterOutputUnion[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepDeltaCodeInterpreterDetailItemObjectDeserializer(
   item: any,
 ): RunStepDeltaCodeInterpreterDetailItemObject {
@@ -4560,7 +4404,7 @@ export function runStepDeltaCodeInterpreterDetailItemObjectDeserializer(
         ),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function runStepDeltaCodeInterpreterOutputUnionArrayDeserializer(
   result: Array<RunStepDeltaCodeInterpreterOutputUnion>,
 ): any[] {
@@ -4578,7 +4422,6 @@ export interface RunStepDeltaCodeInterpreterOutput {
   type: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepDeltaCodeInterpreterOutputDeserializer(
   item: any,
 ): RunStepDeltaCodeInterpreterOutput {
@@ -4587,14 +4430,13 @@ export function runStepDeltaCodeInterpreterOutputDeserializer(
     type: item["type"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Alias for RunStepDeltaCodeInterpreterOutputUnion */
 export type RunStepDeltaCodeInterpreterOutputUnion =
   | RunStepDeltaCodeInterpreterLogOutput
   | RunStepDeltaCodeInterpreterImageOutput
   | RunStepDeltaCodeInterpreterOutput;
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepDeltaCodeInterpreterOutputUnionDeserializer(
   item: any,
 ): RunStepDeltaCodeInterpreterOutputUnion {
@@ -4613,7 +4455,7 @@ export function runStepDeltaCodeInterpreterOutputUnionDeserializer(
       return runStepDeltaCodeInterpreterOutputDeserializer(item);
   }
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Represents a log output as produced by the Code Interpreter tool and as represented in a streaming run step's delta tool calls collection. */
 export interface RunStepDeltaCodeInterpreterLogOutput
   extends RunStepDeltaCodeInterpreterOutput {
@@ -4623,7 +4465,6 @@ export interface RunStepDeltaCodeInterpreterLogOutput
   logs?: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepDeltaCodeInterpreterLogOutputDeserializer(
   item: any,
 ): RunStepDeltaCodeInterpreterLogOutput {
@@ -4633,7 +4474,7 @@ export function runStepDeltaCodeInterpreterLogOutputDeserializer(
     logs: item["logs"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Represents an image output as produced the Code interpreter tool and as represented in a streaming run step's delta tool calls collection. */
 export interface RunStepDeltaCodeInterpreterImageOutput
   extends RunStepDeltaCodeInterpreterOutput {
@@ -4643,7 +4484,6 @@ export interface RunStepDeltaCodeInterpreterImageOutput
   image?: RunStepDeltaCodeInterpreterImageOutputObject;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepDeltaCodeInterpreterImageOutputDeserializer(
   item: any,
 ): RunStepDeltaCodeInterpreterImageOutput {
@@ -4655,14 +4495,13 @@ export function runStepDeltaCodeInterpreterImageOutputDeserializer(
       : runStepDeltaCodeInterpreterImageOutputObjectDeserializer(item["image"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Represents the data for a streaming run step's Code Interpreter tool call image output. */
 export interface RunStepDeltaCodeInterpreterImageOutputObject {
   /** The file ID for the image. */
   fileId?: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function runStepDeltaCodeInterpreterImageOutputObjectDeserializer(
   item: any,
 ): RunStepDeltaCodeInterpreterImageOutputObject {
@@ -4670,7 +4509,7 @@ export function runStepDeltaCodeInterpreterImageOutputObjectDeserializer(
     fileId: item["file_id"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Alias for AgentStreamEvent */
 export type AgentStreamEvent =
   | string
@@ -4681,11 +4520,10 @@ export type AgentStreamEvent =
   | ErrorEvent
   | DoneEvent;
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function agentStreamEventDeserializer(item: any): AgentStreamEvent {
   return item;
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Thread operation related streaming events */
 export type ThreadStreamEvent = "thread.created";
 /** Run operation related streaming events */

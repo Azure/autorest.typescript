@@ -80,7 +80,6 @@ export function testSerializer(item: Test): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function testDeserializer(item: any): Test {
   return {
     passFailCriteria: !item["passFailCriteria"]
@@ -121,7 +120,7 @@ export function testDeserializer(item: any): Test {
     lastModifiedBy: item["lastModifiedBy"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Pass fail criteria for a test. */
 export interface PassFailCriteria {
   /** Map of id and pass fail metrics { id  : pass fail metrics }. */
@@ -136,7 +135,6 @@ export function passFailCriteriaSerializer(item: PassFailCriteria): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function passFailCriteriaDeserializer(item: any): PassFailCriteria {
   return {
     passFailMetrics: !item["passFailMetrics"]
@@ -144,7 +142,7 @@ export function passFailCriteriaDeserializer(item: any): PassFailCriteria {
       : passFailMetricRecordDeserializer(item["passFailMetrics"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function passFailMetricRecordSerializer(
   item: Record<string, PassFailMetric>,
 ): Record<string, any> {
@@ -206,7 +204,6 @@ export function passFailMetricSerializer(item: PassFailMetric): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function passFailMetricDeserializer(item: any): PassFailMetric {
   return {
     clientMetric: item["clientMetric"],
@@ -219,7 +216,7 @@ export function passFailMetricDeserializer(item: any): PassFailMetric {
     result: item["result"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Metrics for pass/fail criteria. */
 export enum KnownPFMetrics {
   /** Pass fail criteria for response time metric in milliseconds. */
@@ -361,7 +358,6 @@ export function autoStopCriteriaSerializer(item: AutoStopCriteria): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function autoStopCriteriaDeserializer(item: any): AutoStopCriteria {
   return {
     autoStopDisabled: item["autoStopDisabled"],
@@ -369,7 +365,7 @@ export function autoStopCriteriaDeserializer(item: any): AutoStopCriteria {
     errorRateTimeWindowInSeconds: item["errorRateTimeWindowInSeconds"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function secretRecordSerializer(
   item: Record<string, Secret>,
 ): Record<string, any> {
@@ -402,14 +398,13 @@ export function secretSerializer(item: Secret): any {
   return { value: item["value"], type: item["type"] };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function secretDeserializer(item: any): Secret {
   return {
     value: item["value"],
     type: item["type"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Types of secrets supported. */
 export enum KnownSecretType {
   /** If the secret is stored in an Azure Key Vault. */
@@ -442,7 +437,6 @@ export function certificateMetadataSerializer(item: CertificateMetadata): any {
   return { value: item["value"], type: item["type"], name: item["name"] };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function certificateMetadataDeserializer(
   item: any,
 ): CertificateMetadata {
@@ -452,7 +446,7 @@ export function certificateMetadataDeserializer(
     name: item["name"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Types of certificates supported. */
 export enum KnownCertificateType {
   /** If the certificate is stored in an Azure Key Vault. */
@@ -506,7 +500,6 @@ export function loadTestConfigurationSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function loadTestConfigurationDeserializer(
   item: any,
 ): LoadTestConfiguration {
@@ -522,7 +515,7 @@ export function loadTestConfigurationDeserializer(
       : regionalConfigurationArrayDeserializer(item["regionalLoadTestConfig"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Configuration for quick load test */
 export interface OptionalLoadTestConfig {
   /** Test URL. Provide the complete HTTP URL. For example, https://contoso-app.azurewebsites.net/login */
@@ -552,7 +545,6 @@ export function optionalLoadTestConfigSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function optionalLoadTestConfigDeserializer(
   item: any,
 ): OptionalLoadTestConfig {
@@ -565,7 +557,7 @@ export function optionalLoadTestConfigDeserializer(
     duration: item["duration"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function regionalConfigurationArraySerializer(
   result: Array<RegionalConfiguration>,
 ): any[] {
@@ -600,7 +592,6 @@ export function regionalConfigurationSerializer(
   return { engineInstances: item["engineInstances"], region: item["region"] };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function regionalConfigurationDeserializer(
   item: any,
 ): RegionalConfiguration {
@@ -609,7 +600,7 @@ export function regionalConfigurationDeserializer(
     region: item["region"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The input artifacts for the test. */
 export interface TestInputArtifacts {
   /** File info */
@@ -626,7 +617,6 @@ export interface TestInputArtifacts {
   readonly additionalFileInfo?: TestFileInfo[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function testInputArtifactsDeserializer(item: any): TestInputArtifacts {
   return {
     configFileInfo: !item["configFileInfo"]
@@ -649,7 +639,7 @@ export function testInputArtifactsDeserializer(item: any): TestInputArtifacts {
       : testFileInfoArrayDeserializer(item["additionalFileInfo"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Test file info. */
 export interface TestFileInfo {
   /** Name of the file. */
@@ -666,7 +656,6 @@ export interface TestFileInfo {
   readonly validationFailureDetails?: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function testFileInfoDeserializer(item: any): TestFileInfo {
   return {
     fileName: item["fileName"],
@@ -679,7 +668,7 @@ export function testFileInfoDeserializer(item: any): TestFileInfo {
     validationFailureDetails: item["validationFailureDetails"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Types of file supported. */
 export enum KnownFileType {
   /** If the file is a JMX script. */
@@ -790,7 +779,6 @@ export function testAppComponentsSerializer(item: TestAppComponents): any {
   return { components: appComponentRecordSerializer(item["components"]) };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function testAppComponentsDeserializer(item: any): TestAppComponents {
   return {
     components: appComponentRecordDeserializer(item["components"]),
@@ -805,7 +793,7 @@ export function testAppComponentsDeserializer(item: any): TestAppComponents {
     lastModifiedBy: item["lastModifiedBy"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function appComponentRecordSerializer(
   item: Record<string, AppComponent>,
 ): Record<string, any> {
@@ -853,7 +841,6 @@ export function appComponentSerializer(item: AppComponent): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function appComponentDeserializer(item: any): AppComponent {
   return {
     resourceId: item["resourceId"],
@@ -865,7 +852,7 @@ export function appComponentDeserializer(item: any): AppComponent {
     kind: item["kind"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Test server metrics configuration */
 export interface TestServerMetricConfig {
   /** Test identifier */
@@ -892,7 +879,6 @@ export function testServerMetricConfigSerializer(
   return { metrics: resourceMetricRecordSerializer(item["metrics"]) };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function testServerMetricConfigDeserializer(
   item: any,
 ): TestServerMetricConfig {
@@ -909,7 +895,7 @@ export function testServerMetricConfigDeserializer(
     lastModifiedBy: item["lastModifiedBy"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function resourceMetricRecordSerializer(
   item: Record<string, ResourceMetric>,
 ): Record<string, any> {
@@ -968,7 +954,6 @@ export function resourceMetricSerializer(item: ResourceMetric): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function resourceMetricDeserializer(item: any): ResourceMetric {
   return {
     id: item["id"],
@@ -981,8 +966,7 @@ export function resourceMetricDeserializer(item: any): ResourceMetric {
     resourceType: item["resourceType"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/naming-convention */
+
 /** Paged collection of TestFileInfo items */
 export interface _PagedTestFileInfo {
   /** The TestFileInfo items on this page */
@@ -990,16 +974,14 @@ export interface _PagedTestFileInfo {
   /** The link to the next page of items */
   nextLink?: string;
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _pagedTestFileInfoDeserializer(item: any): _PagedTestFileInfo {
   return {
     value: testFileInfoArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/naming-convention */
+
 /** Paged collection of Test items */
 export interface _PagedTest {
   /** The Test items on this page */
@@ -1007,15 +989,14 @@ export interface _PagedTest {
   /** The link to the next page of items */
   nextLink?: string;
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _pagedTestDeserializer(item: any): _PagedTest {
   return {
     value: testArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function testArraySerializer(result: Array<Test>): any[] {
   return result.map((item) => {
     return testSerializer(item);
@@ -1134,7 +1115,6 @@ export function testRunSerializer(item: TestRun): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function testRunDeserializer(item: any): TestRun {
   return {
     testRunId: item["testRunId"],
@@ -1198,7 +1178,7 @@ export function testRunDeserializer(item: any): TestRun {
     lastModifiedBy: item["lastModifiedBy"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function errorDetailsArrayDeserializer(
   result: Array<ErrorDetails>,
 ): any[] {
@@ -1213,13 +1193,12 @@ export interface ErrorDetails {
   readonly message?: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function errorDetailsDeserializer(item: any): ErrorDetails {
   return {
     message: item["message"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function testRunStatisticsRecordDeserializer(
   item: Record<string, any>,
 ): Record<string, TestRunStatistics> {
@@ -1276,7 +1255,6 @@ export interface TestRunStatistics {
   readonly sentKBytesPerSec?: number;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function testRunStatisticsDeserializer(item: any): TestRunStatistics {
   return {
     transaction: item["transaction"],
@@ -1301,7 +1279,7 @@ export function testRunStatisticsDeserializer(item: any): TestRunStatistics {
     sentKBytesPerSec: item["sentKBytesPerSec"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Collection of test run artifacts */
 export interface TestRunArtifacts {
   /** The input artifacts for the test run. */
@@ -1310,7 +1288,6 @@ export interface TestRunArtifacts {
   outputArtifacts?: TestRunOutputArtifacts;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function testRunArtifactsDeserializer(item: any): TestRunArtifacts {
   return {
     inputArtifacts: !item["inputArtifacts"]
@@ -1321,7 +1298,7 @@ export function testRunArtifactsDeserializer(item: any): TestRunArtifacts {
       : testRunOutputArtifactsDeserializer(item["outputArtifacts"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The input artifacts for the test run. */
 export interface TestRunInputArtifacts {
   /** File info */
@@ -1338,7 +1315,6 @@ export interface TestRunInputArtifacts {
   readonly additionalFileInfo?: TestRunFileInfo[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function testRunInputArtifactsDeserializer(
   item: any,
 ): TestRunInputArtifacts {
@@ -1363,7 +1339,7 @@ export function testRunInputArtifactsDeserializer(
       : testRunFileInfoArrayDeserializer(item["additionalFileInfo"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Test run file info. */
 export interface TestRunFileInfo {
   /** Name of the file. */
@@ -1380,7 +1356,6 @@ export interface TestRunFileInfo {
   readonly validationFailureDetails?: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function testRunFileInfoDeserializer(item: any): TestRunFileInfo {
   return {
     fileName: item["fileName"],
@@ -1393,7 +1368,7 @@ export function testRunFileInfoDeserializer(item: any): TestRunFileInfo {
     validationFailureDetails: item["validationFailureDetails"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function testRunFileInfoArrayDeserializer(
   result: Array<TestRunFileInfo>,
 ): any[] {
@@ -1414,7 +1389,6 @@ export interface TestRunOutputArtifacts {
   reportFileInfo?: TestRunFileInfo;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function testRunOutputArtifactsDeserializer(
   item: any,
 ): TestRunOutputArtifacts {
@@ -1433,7 +1407,7 @@ export function testRunOutputArtifactsDeserializer(
       : testRunFileInfoDeserializer(item["reportFileInfo"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Artifacts container info. */
 export interface ArtifactsContainerInfo {
   /** This is a SAS URI to an Azure Storage Container that contains the test run artifacts. */
@@ -1442,7 +1416,6 @@ export interface ArtifactsContainerInfo {
   expireDateTime?: Date;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function artifactsContainerInfoDeserializer(
   item: any,
 ): ArtifactsContainerInfo {
@@ -1453,7 +1426,7 @@ export function artifactsContainerInfoDeserializer(
       : new Date(item["expireDateTime"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Test result based on pass/fail criteria. */
 export enum KnownPFTestResult {
   /** Pass/fail criteria has passed. */
@@ -1579,7 +1552,6 @@ export function testRunAppComponentsSerializer(
   return { components: appComponentRecordSerializer(item["components"]) };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function testRunAppComponentsDeserializer(
   item: any,
 ): TestRunAppComponents {
@@ -1596,7 +1568,7 @@ export function testRunAppComponentsDeserializer(
     lastModifiedBy: item["lastModifiedBy"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Test run server metrics configuration */
 export interface TestRunServerMetricConfig {
   /** Test run identifier */
@@ -1627,7 +1599,6 @@ export function testRunServerMetricConfigSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function testRunServerMetricConfigDeserializer(
   item: any,
 ): TestRunServerMetricConfig {
@@ -1646,7 +1617,7 @@ export function testRunServerMetricConfigDeserializer(
     lastModifiedBy: item["lastModifiedBy"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Metrics dimension values. */
 export interface DimensionValueList {
   /** The dimension name */
@@ -1657,7 +1628,6 @@ export interface DimensionValueList {
   nextLink?: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function dimensionValueListDeserializer(item: any): DimensionValueList {
   return {
     name: item["name"],
@@ -1669,14 +1639,13 @@ export function dimensionValueListDeserializer(item: any): DimensionValueList {
     nextLink: item["nextLink"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Represents collection of metric definitions. */
 export interface MetricDefinitionCollection {
   /** the values for the metric definitions. */
   value: MetricDefinition[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function metricDefinitionCollectionDeserializer(
   item: any,
 ): MetricDefinitionCollection {
@@ -1684,7 +1653,7 @@ export function metricDefinitionCollectionDeserializer(
     value: metricDefinitionArrayDeserializer(item["value"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function metricDefinitionArrayDeserializer(
   result: Array<MetricDefinition>,
 ): any[] {
@@ -1716,7 +1685,6 @@ export interface MetricDefinition {
   metricAvailabilities?: MetricAvailability[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function metricDefinitionDeserializer(item: any): MetricDefinition {
   return {
     dimensions: !item["dimensions"]
@@ -1737,7 +1705,7 @@ export function metricDefinitionDeserializer(item: any): MetricDefinition {
       : metricAvailabilityArrayDeserializer(item["metricAvailabilities"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function nameAndDescArrayDeserializer(
   result: Array<NameAndDesc>,
 ): any[] {
@@ -1754,14 +1722,13 @@ export interface NameAndDesc {
   name?: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function nameAndDescDeserializer(item: any): NameAndDesc {
   return {
     description: item["description"],
     name: item["name"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Aggregation type. */
 export enum KnownAggregationType {
   /** Average value. */
@@ -1866,13 +1833,12 @@ export interface MetricAvailability {
   timeGrain?: TimeGrain;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function metricAvailabilityDeserializer(item: any): MetricAvailability {
   return {
     timeGrain: item["timeGrain"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Time Grain */
 export enum KnownTimeGrain {
   /** 5 seconds, available only if test run duration is less than 10 minutes. */
@@ -1906,7 +1872,6 @@ export interface MetricNamespaceCollection {
   value: MetricNamespace[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function metricNamespaceCollectionDeserializer(
   item: any,
 ): MetricNamespaceCollection {
@@ -1914,7 +1879,7 @@ export function metricNamespaceCollectionDeserializer(
     value: metricNamespaceArrayDeserializer(item["value"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function metricNamespaceArrayDeserializer(
   result: Array<MetricNamespace>,
 ): any[] {
@@ -1931,14 +1896,13 @@ export interface MetricNamespace {
   name?: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function metricNamespaceDeserializer(item: any): MetricNamespace {
   return {
     description: item["description"],
     name: item["name"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Filters to fetch the set of metric. */
 export interface MetricRequestPayload {
   /**
@@ -1987,7 +1951,6 @@ export function dimensionFilterSerializer(item: DimensionFilter): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/naming-convention */
 /** The response to a metrics query. */
 export interface _Metrics {
   /** The TimeSeriesElement items on this page */
@@ -1995,15 +1958,14 @@ export interface _Metrics {
   /** The link to the next page of items */
   nextLink?: string;
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _metricsDeserializer(item: any): _Metrics {
   return {
     value: timeSeriesElementArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function timeSeriesElementArrayDeserializer(
   result: Array<TimeSeriesElement>,
 ): any[] {
@@ -2020,7 +1982,6 @@ export interface TimeSeriesElement {
   dimensionValues?: DimensionValue[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function timeSeriesElementDeserializer(item: any): TimeSeriesElement {
   return {
     data: !item["data"]
@@ -2031,7 +1992,7 @@ export function timeSeriesElementDeserializer(item: any): TimeSeriesElement {
       : dimensionValueArrayDeserializer(item["dimensionValues"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function metricValueArrayDeserializer(
   result: Array<MetricValue>,
 ): any[] {
@@ -2048,7 +2009,6 @@ export interface MetricValue {
   value?: number;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function metricValueDeserializer(item: any): MetricValue {
   return {
     timestamp: !item["timestamp"]
@@ -2057,7 +2017,7 @@ export function metricValueDeserializer(item: any): MetricValue {
     value: item["value"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function dimensionValueArrayDeserializer(
   result: Array<DimensionValue>,
 ): any[] {
@@ -2074,15 +2034,13 @@ export interface DimensionValue {
   value?: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function dimensionValueDeserializer(item: any): DimensionValue {
   return {
     name: item["name"],
     value: item["value"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/naming-convention */
+
 /** Paged collection of TestRun items */
 export interface _PagedTestRun {
   /** The TestRun items on this page */
@@ -2090,15 +2048,14 @@ export interface _PagedTestRun {
   /** The link to the next page of items */
   nextLink?: string;
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _pagedTestRunDeserializer(item: any): _PagedTestRun {
   return {
     value: testRunArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function testRunArraySerializer(result: Array<TestRun>): any[] {
   return result.map((item) => {
     return testRunSerializer(item);
@@ -2149,7 +2106,6 @@ export function testProfileSerializer(item: TestProfile): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function testProfileDeserializer(item: any): TestProfile {
   return {
     testProfileId: item["testProfileId"],
@@ -2172,7 +2128,7 @@ export function testProfileDeserializer(item: any): TestProfile {
     lastModifiedBy: item["lastModifiedBy"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Configurations of a target resource. This varies with the kind of resource. */
 export interface TargetResourceConfigurations {
   /** Kind of the resource for which the configurations apply. */
@@ -2186,7 +2142,6 @@ export function targetResourceConfigurationsSerializer(
   return { kind: item["kind"] };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function targetResourceConfigurationsDeserializer(
   item: any,
 ): TargetResourceConfigurations {
@@ -2194,7 +2149,7 @@ export function targetResourceConfigurationsDeserializer(
     kind: item["kind"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Alias for TargetResourceConfigurationsUnion */
 export type TargetResourceConfigurationsUnion =
   | FunctionFlexConsumptionTargetResourceConfigurations
@@ -2214,7 +2169,6 @@ export function targetResourceConfigurationsUnionSerializer(
   }
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function targetResourceConfigurationsUnionDeserializer(
   item: any,
 ): TargetResourceConfigurationsUnion {
@@ -2228,7 +2182,7 @@ export function targetResourceConfigurationsUnionDeserializer(
       return targetResourceConfigurationsDeserializer(item);
   }
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Kind of the resource on which test profile is created. */
 export enum KnownResourceKind {
   /** Resource is a Azure FunctionApp on Flex Consumption Plan. */
@@ -2269,7 +2223,6 @@ export function functionFlexConsumptionTargetResourceConfigurationsSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function functionFlexConsumptionTargetResourceConfigurationsDeserializer(
   item: any,
 ): FunctionFlexConsumptionTargetResourceConfigurations {
@@ -2282,7 +2235,7 @@ export function functionFlexConsumptionTargetResourceConfigurationsDeserializer(
         ),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function functionFlexConsumptionResourceConfigurationRecordSerializer(
   item: Record<string, FunctionFlexConsumptionResourceConfiguration>,
 ): Record<string, any> {
@@ -2324,7 +2277,6 @@ export function functionFlexConsumptionResourceConfigurationSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function functionFlexConsumptionResourceConfigurationDeserializer(
   item: any,
 ): FunctionFlexConsumptionResourceConfiguration {
@@ -2333,8 +2285,7 @@ export function functionFlexConsumptionResourceConfigurationDeserializer(
     httpConcurrency: item["httpConcurrency"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/naming-convention */
+
 /** Paged collection of TestProfile items */
 export interface _PagedTestProfile {
   /** The TestProfile items on this page */
@@ -2342,15 +2293,14 @@ export interface _PagedTestProfile {
   /** The link to the next page of items */
   nextLink?: string;
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _pagedTestProfileDeserializer(item: any): _PagedTestProfile {
   return {
     value: testProfileArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function testProfileArraySerializer(result: Array<TestProfile>): any[] {
   return result.map((item) => {
     return testProfileSerializer(item);
@@ -2414,7 +2364,6 @@ export function testProfileRunSerializer(item: TestProfileRun): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function testProfileRunDeserializer(item: any): TestProfileRun {
   return {
     testProfileRunId: item["testProfileRunId"],
@@ -2454,7 +2403,7 @@ export function testProfileRunDeserializer(item: any): TestProfileRun {
     lastModifiedBy: item["lastModifiedBy"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Test profile run status. */
 export enum KnownTestProfileRunStatus {
   /** Test profile run request is accepted. */
@@ -2508,7 +2457,6 @@ export interface TestRunDetail {
   properties: Record<string, string>;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function testRunDetailDeserializer(item: any): TestRunDetail {
   return {
     status: item["status"],
@@ -2516,7 +2464,7 @@ export function testRunDetailDeserializer(item: any): TestRunDetail {
     properties: item["properties"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function testProfileRunRecommendationArrayDeserializer(
   result: Array<TestProfileRunRecommendation>,
 ): any[] {
@@ -2533,7 +2481,6 @@ export interface TestProfileRunRecommendation {
   configurations?: string[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function testProfileRunRecommendationDeserializer(
   item: any,
 ): TestProfileRunRecommendation {
@@ -2546,7 +2493,7 @@ export function testProfileRunRecommendationDeserializer(
         }),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Category of Recommendation. */
 export enum KnownRecommendationCategory {
   /** The recommendation for this category optimizes the throughput/RPS (Requests per Second) of the app. */
@@ -2565,7 +2512,6 @@ export enum KnownRecommendationCategory {
  */
 export type RecommendationCategory = string;
 
-/* eslint-disable @typescript-eslint/naming-convention */
 /** Paged collection of TestProfileRun items */
 export interface _PagedTestProfileRun {
   /** The TestProfileRun items on this page */
@@ -2573,8 +2519,7 @@ export interface _PagedTestProfileRun {
   /** The link to the next page of items */
   nextLink?: string;
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _pagedTestProfileRunDeserializer(
   item: any,
 ): _PagedTestProfileRun {
@@ -2583,7 +2528,7 @@ export function _pagedTestProfileRunDeserializer(
     nextLink: item["nextLink"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function testProfileRunArraySerializer(
   result: Array<TestProfileRun>,
 ): any[] {

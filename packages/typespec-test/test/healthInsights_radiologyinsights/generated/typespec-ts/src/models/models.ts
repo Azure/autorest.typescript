@@ -265,7 +265,6 @@ export function orderedProcedureSerializer(item: OrderedProcedure): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function orderedProcedureDeserializer(item: any): OrderedProcedure {
   return {
     extension: !item["extension"]
@@ -277,7 +276,7 @@ export function orderedProcedureDeserializer(item: any): OrderedProcedure {
     description: item["description"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The content of the patient document. */
 export interface DocumentContent {
   /**
@@ -421,7 +420,6 @@ export interface RadiologyInsightsInferenceResult {
   modelVersion: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function radiologyInsightsInferenceResultDeserializer(
   item: any,
 ): RadiologyInsightsInferenceResult {
@@ -432,7 +430,7 @@ export function radiologyInsightsInferenceResultDeserializer(
     modelVersion: item["modelVersion"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function radiologyInsightsPatientResultArrayDeserializer(
   result: Array<RadiologyInsightsPatientResult>,
 ): any[] {
@@ -449,7 +447,6 @@ export interface RadiologyInsightsPatientResult {
   inferences: RadiologyInsightsInferenceUnion[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function radiologyInsightsPatientResultDeserializer(
   item: any,
 ): RadiologyInsightsPatientResult {
@@ -460,7 +457,7 @@ export function radiologyInsightsPatientResultDeserializer(
     ),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function radiologyInsightsInferenceUnionArrayDeserializer(
   result: Array<RadiologyInsightsInferenceUnion>,
 ): any[] {
@@ -488,7 +485,6 @@ export interface RadiologyInsightsInference extends Extendible {
   kind: RadiologyInsightsInferenceType;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function radiologyInsightsInferenceDeserializer(
   item: any,
 ): RadiologyInsightsInference {
@@ -499,7 +495,7 @@ export function radiologyInsightsInferenceDeserializer(
     kind: item["kind"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Alias for RadiologyInsightsInferenceUnion */
 export type RadiologyInsightsInferenceUnion =
   | AgeMismatchInference
@@ -514,7 +510,6 @@ export type RadiologyInsightsInferenceUnion =
   | FollowupCommunicationInference
   | RadiologyInsightsInference;
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function radiologyInsightsInferenceUnionDeserializer(
   item: any,
 ): RadiologyInsightsInferenceUnion {
@@ -567,7 +562,7 @@ export function radiologyInsightsInferenceUnionDeserializer(
       return radiologyInsightsInferenceDeserializer(item);
   }
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * Age mismatch returns when there is a conflict between an age that mentioned in the clinical note and the age of the patient.
  * The age of the patient is calculated by the date of birth that is set in the patient information along with the time of the service that is being documented.
@@ -578,7 +573,6 @@ export interface AgeMismatchInference extends RadiologyInsightsInference {
   kind: "ageMismatch";
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function ageMismatchInferenceDeserializer(
   item: any,
 ): AgeMismatchInference {
@@ -589,7 +583,7 @@ export function ageMismatchInferenceDeserializer(
       : extensionArrayDeserializer(item["extension"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Sex mismatch returns when there is a conflict between the patient references (female/male, he/she/his/her), documented clinical procedures, or documented body parts to the patient Sex that mentioned in the patient info. */
 export interface SexMismatchInference extends RadiologyInsightsInference {
   /** The type of the inference. */
@@ -598,7 +592,6 @@ export interface SexMismatchInference extends RadiologyInsightsInference {
   sexIndication: CodeableConcept;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function sexMismatchInferenceDeserializer(
   item: any,
 ): SexMismatchInference {
@@ -610,7 +603,7 @@ export function sexMismatchInferenceDeserializer(
     sexIndication: codeableConceptDeserializer(item["sexIndication"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * Laterality discrepancy, returns in 3 different cases:
  * OrderLateralityMismatch: there is a discrepancy between the text and the procedure/order related to the clinical document.
@@ -627,7 +620,6 @@ export interface LateralityDiscrepancyInference
   discrepancyType: LateralityDiscrepancyType;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function lateralityDiscrepancyInferenceDeserializer(
   item: any,
 ): LateralityDiscrepancyInference {
@@ -642,7 +634,7 @@ export function lateralityDiscrepancyInferenceDeserializer(
     discrepancyType: item["discrepancyType"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Laterality discrepancy type */
 export type LateralityDiscrepancyType =
   | "orderLateralityMismatch"
@@ -667,7 +659,6 @@ export interface CompleteOrderDiscrepancyInference
   missingBodyPartMeasurements?: CodeableConcept[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function completeOrderDiscrepancyInferenceDeserializer(
   item: any,
 ): CompleteOrderDiscrepancyInference {
@@ -685,7 +676,7 @@ export function completeOrderDiscrepancyInferenceDeserializer(
       : codeableConceptArrayDeserializer(item["missingBodyPartMeasurements"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * Limited Order mismatch
  * A limited order requires that not all the body parts listed in the order will be document.
@@ -704,7 +695,6 @@ export interface LimitedOrderDiscrepancyInference
   presentBodyPartMeasurements?: CodeableConcept[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function limitedOrderDiscrepancyInferenceDeserializer(
   item: any,
 ): LimitedOrderDiscrepancyInference {
@@ -722,7 +712,7 @@ export function limitedOrderDiscrepancyInferenceDeserializer(
       : codeableConceptArrayDeserializer(item["presentBodyPartMeasurements"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * Finding Inference
  * Clinical Finding can be an observation or condition that is mentioned in the clinical document.
@@ -734,7 +724,6 @@ export interface FindingInference extends RadiologyInsightsInference {
   finding: Observation;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function findingInferenceDeserializer(item: any): FindingInference {
   return {
     kind: item["kind"],
@@ -744,7 +733,7 @@ export function findingInferenceDeserializer(item: any): FindingInference {
     finding: observationDeserializer(item["finding"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Identifies and highlights potential Critical Findings found in a clinical document. */
 export interface CriticalResultInference extends RadiologyInsightsInference {
   /** The type of the inference. */
@@ -753,7 +742,6 @@ export interface CriticalResultInference extends RadiologyInsightsInference {
   result: CriticalResult;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function criticalResultInferenceDeserializer(
   item: any,
 ): CriticalResultInference {
@@ -765,7 +753,7 @@ export function criticalResultInferenceDeserializer(
     result: criticalResultDeserializer(item["result"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Critical Result */
 export interface CriticalResult {
   /** description of the critical result */
@@ -774,7 +762,6 @@ export interface CriticalResult {
   finding?: Observation;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function criticalResultDeserializer(item: any): CriticalResult {
   return {
     description: item["description"],
@@ -783,7 +770,7 @@ export function criticalResultDeserializer(item: any): CriticalResult {
       : observationDeserializer(item["finding"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Procedures found in the document text or associated with the document administrative metadata. */
 export interface RadiologyProcedureInference
   extends RadiologyInsightsInference {
@@ -797,7 +784,6 @@ export interface RadiologyProcedureInference
   orderedProcedure: OrderedProcedure;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function radiologyProcedureInferenceDeserializer(
   item: any,
 ): RadiologyProcedureInference {
@@ -815,7 +801,7 @@ export function radiologyProcedureInferenceDeserializer(
     orderedProcedure: orderedProcedureDeserializer(item["orderedProcedure"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function imagingProcedureArrayDeserializer(
   result: Array<ImagingProcedure>,
 ): any[] {
@@ -838,7 +824,6 @@ export interface ImagingProcedure {
   view?: RadiologyCodeWithTypes;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function imagingProcedureDeserializer(item: any): ImagingProcedure {
   return {
     modality: codeableConceptDeserializer(item["modality"]),
@@ -854,7 +839,7 @@ export function imagingProcedureDeserializer(item: any): ImagingProcedure {
       : radiologyCodeWithTypesDeserializer(item["view"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Code with types */
 export interface RadiologyCodeWithTypes {
   /** Code */
@@ -863,7 +848,6 @@ export interface RadiologyCodeWithTypes {
   types: CodeableConcept[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function radiologyCodeWithTypesDeserializer(
   item: any,
 ): RadiologyCodeWithTypes {
@@ -872,7 +856,7 @@ export function radiologyCodeWithTypesDeserializer(
     types: codeableConceptArrayDeserializer(item["types"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Recommendation Inference */
 export interface FollowupRecommendationInference
   extends RadiologyInsightsInference {
@@ -907,7 +891,6 @@ export interface FollowupRecommendationInference
   recommendedProcedure: ProcedureRecommendationUnion;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function followupRecommendationInferenceDeserializer(
   item: any,
 ): FollowupRecommendationInference {
@@ -932,7 +915,7 @@ export function followupRecommendationInferenceDeserializer(
     ),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function recommendationFindingArrayDeserializer(
   result: Array<RecommendationFinding>,
 ): any[] {
@@ -951,7 +934,6 @@ export interface RecommendationFinding extends Extendible {
   recommendationFindingStatus: RecommendationFindingStatusType;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function recommendationFindingDeserializer(
   item: any,
 ): RecommendationFinding {
@@ -968,7 +950,7 @@ export function recommendationFindingDeserializer(
     recommendationFindingStatus: item["recommendationFindingStatus"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Recommendation finding status */
 export type RecommendationFindingStatusType =
   | "present"
@@ -983,7 +965,6 @@ export interface ProcedureRecommendation {
   kind: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function procedureRecommendationDeserializer(
   item: any,
 ): ProcedureRecommendation {
@@ -991,14 +972,13 @@ export function procedureRecommendationDeserializer(
     kind: item["kind"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Alias for ProcedureRecommendationUnion */
 export type ProcedureRecommendationUnion =
   | GenericProcedureRecommendation
   | ImagingProcedureRecommendation
   | ProcedureRecommendation;
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function procedureRecommendationUnionDeserializer(
   item: any,
 ): ProcedureRecommendationUnion {
@@ -1017,7 +997,7 @@ export function procedureRecommendationUnionDeserializer(
       return procedureRecommendationDeserializer(item);
   }
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Generic procedure information. */
 export interface GenericProcedureRecommendation
   extends ProcedureRecommendation {
@@ -1029,7 +1009,6 @@ export interface GenericProcedureRecommendation
   description?: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function genericProcedureRecommendationDeserializer(
   item: any,
 ): GenericProcedureRecommendation {
@@ -1039,7 +1018,7 @@ export function genericProcedureRecommendationDeserializer(
     description: item["description"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Radiology procedure. */
 export interface ImagingProcedureRecommendation
   extends ProcedureRecommendation {
@@ -1051,7 +1030,6 @@ export interface ImagingProcedureRecommendation
   imagingProcedures: ImagingProcedure[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function imagingProcedureRecommendationDeserializer(
   item: any,
 ): ImagingProcedureRecommendation {
@@ -1065,7 +1043,7 @@ export function imagingProcedureRecommendationDeserializer(
     ),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Communication Inference */
 export interface FollowupCommunicationInference
   extends RadiologyInsightsInference {
@@ -1079,7 +1057,6 @@ export interface FollowupCommunicationInference
   wasAcknowledged: boolean;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function followupCommunicationInferenceDeserializer(
   item: any,
 ): FollowupCommunicationInference {
@@ -1101,7 +1078,7 @@ export function followupCommunicationInferenceDeserializer(
     wasAcknowledged: item["wasAcknowledged"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Medical Professional Type */
 export type MedicalProfessionalType =
   | "unknown"

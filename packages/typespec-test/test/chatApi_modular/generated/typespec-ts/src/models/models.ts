@@ -69,7 +69,6 @@ export function chatMessageSerializer(item: ChatMessage): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function chatMessageDeserializer(item: any): ChatMessage {
   return {
     content: item["content"],
@@ -77,7 +76,7 @@ export function chatMessageDeserializer(item: any): ChatMessage {
     sessionState: item["session_state"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** A representation of the intended purpose of a message. */
 export type ChatRole = "user" | "system" | "assistant";
 
@@ -87,7 +86,6 @@ export interface ChatCompletionChunkRecord {
   choices: ChoiceDeltaRecord[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function chatCompletionChunkRecordDeserializer(
   item: any,
 ): ChatCompletionChunkRecord {
@@ -95,7 +93,7 @@ export function chatCompletionChunkRecordDeserializer(
     choices: choiceDeltaRecordArrayDeserializer(item["choices"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function choiceDeltaRecordArrayDeserializer(
   result: Array<ChoiceDeltaRecord>,
 ): any[] {
@@ -126,7 +124,6 @@ export interface ChoiceDeltaRecord {
   finishReason?: FinishReason;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function choiceDeltaRecordDeserializer(item: any): ChoiceDeltaRecord {
   return {
     index: item["index"],
@@ -136,7 +133,7 @@ export function choiceDeltaRecordDeserializer(item: any): ChoiceDeltaRecord {
     finishReason: item["finish_reason"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The representation of a delta message received in a streaming completion. */
 export interface ChatMessageDelta {
   /** An incremental part of the text associated with the message. */
@@ -152,7 +149,6 @@ export interface ChatMessageDelta {
   sessionState?: any;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function chatMessageDeltaDeserializer(item: any): ChatMessageDelta {
   return {
     content: item["content"],
@@ -160,7 +156,7 @@ export function chatMessageDeltaDeserializer(item: any): ChatMessageDelta {
     sessionState: item["session_state"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Representation of the reason why a chat session has finished processing. */
 export type FinishReason = "stop" | "length";
 
@@ -201,7 +197,6 @@ export interface ChatCompletionRecord {
   choices: ChatChoiceRecord[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function chatCompletionRecordDeserializer(
   item: any,
 ): ChatCompletionRecord {
@@ -209,7 +204,7 @@ export function chatCompletionRecordDeserializer(
     choices: chatChoiceRecordArrayDeserializer(item["choices"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function chatChoiceRecordArrayDeserializer(
   result: Array<ChatChoiceRecord>,
 ): any[] {
@@ -240,7 +235,6 @@ export interface ChatChoiceRecord {
   finishReason: FinishReason;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function chatChoiceRecordDeserializer(item: any): ChatChoiceRecord {
   return {
     index: item["index"],
@@ -250,7 +244,7 @@ export function chatChoiceRecordDeserializer(item: any): ChatChoiceRecord {
     finishReason: item["finish_reason"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Known values of {@link APIVersion} that the service accepts. */
 export enum KnownAPIVersion {
   V20231001Preview = "2023-10-01-preview",

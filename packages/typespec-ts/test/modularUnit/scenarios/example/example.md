@@ -43,13 +43,11 @@ export interface Example {
   id: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function exampleDeserializer(item: any): Example {
   return {
     id: item["id"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 ```
 
 You can also extract a specific model interface using `ts models interface <model name>`:

@@ -45,7 +45,6 @@ export function resourceSerializer(item: Resource): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function resourceDeserializer(item: any): Resource {
   return {
     additionalProperties: serializeRecord(item, [
@@ -62,7 +61,7 @@ export function resourceDeserializer(item: any): Resource {
     language: item["language"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * Metadata about a resource
  * Based on [FHIR Meta](https://www.hl7.org/fhir/R4/resource.html#Meta)
@@ -99,7 +98,6 @@ export function metaSerializer(item: Meta): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function metaDeserializer(item: any): Meta {
   return {
     versionId: item["versionId"],
@@ -116,7 +114,7 @@ export function metaDeserializer(item: any): Meta {
     tag: !item["tag"] ? item["tag"] : codingArrayDeserializer(item["tag"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function codingArraySerializer(result: Array<Coding>): any[] {
   return result.map((item) => {
     return codingSerializer(item);
@@ -157,7 +155,6 @@ export function codingSerializer(item: Coding): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function codingDeserializer(item: any): Coding {
   return {
     id: item["id"],
@@ -170,7 +167,7 @@ export function codingDeserializer(item: any): Coding {
     display: item["display"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * Concept - reference to a terminology or just text
  * Based on [FHIR CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept)
@@ -195,7 +192,6 @@ export function codeableConceptSerializer(item: CodeableConcept): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function codeableConceptDeserializer(item: any): CodeableConcept {
   return {
     id: item["id"],
@@ -208,7 +204,7 @@ export function codeableConceptDeserializer(item: any): CodeableConcept {
     text: item["text"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * The base definition for all elements contained inside a resource.
  * Based on [FHIR Element](https://www.hl7.org/fhir/R4/element.html)
@@ -229,7 +225,6 @@ export function elementSerializer(item: Element): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function elementDeserializer(item: any): Element {
   return {
     id: item["id"],
@@ -238,7 +233,7 @@ export function elementDeserializer(item: any): Element {
       : extensionArrayDeserializer(item["extension"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function extensionArraySerializer(result: Array<Extension>): any[] {
   return result.map((item) => {
     return extensionSerializer(item);
@@ -320,7 +315,6 @@ export function extensionSerializer(item: Extension): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function extensionDeserializer(item: any): Extension {
   return {
     id: item["id"],
@@ -356,7 +350,7 @@ export function extensionDeserializer(item: any): Extension {
       : referenceDeserializer(item["valueReference"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * A measured or measurable amount
  * Based on [FHIR Quantity](https://www.hl7.org/fhir/R4/datatypes.html#Quantity)
@@ -388,7 +382,6 @@ export function quantitySerializer(item: Quantity): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function quantityDeserializer(item: any): Quantity {
   return {
     id: item["id"],
@@ -402,7 +395,7 @@ export function quantityDeserializer(item: any): Quantity {
     code: item["code"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * A set of ordered Quantities defined by a low and high limit
  * Based on [FHIR Range](https://www.hl7.org/fhir/R4/datatypes.html#Range)
@@ -425,7 +418,6 @@ export function rangeSerializer(item: Range): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function rangeDeserializer(item: any): Range {
   return {
     id: item["id"],
@@ -436,7 +428,7 @@ export function rangeDeserializer(item: any): Range {
     high: !item["high"] ? item["high"] : quantityDeserializer(item["high"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * A ratio of two Quantity values - a numerator and a denominator
  * Based on [FHIR Ratio](https://www.hl7.org/fhir/R4/datatypes.html#Ratio)
@@ -463,7 +455,6 @@ export function ratioSerializer(item: Ratio): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function ratioDeserializer(item: any): Ratio {
   return {
     id: item["id"],
@@ -478,7 +469,7 @@ export function ratioDeserializer(item: any): Ratio {
       : quantityDeserializer(item["denominator"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * A series of measurements taken by a device
  * Based on [FHIR SampledData](https://www.hl7.org/fhir/R4/datatypes.html#SampledData)
@@ -516,7 +507,6 @@ export function sampledDataSerializer(item: SampledData): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function sampledDataDeserializer(item: any): SampledData {
   return {
     id: item["id"],
@@ -532,7 +522,7 @@ export function sampledDataDeserializer(item: any): SampledData {
     data: item["data"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * A time period defined by a start and end date and optionally time
  * Based on [FHIR Period](https://www.hl7.org/fhir/R4/datatypes.html#Period)
@@ -555,7 +545,6 @@ export function periodSerializer(item: Period): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function periodDeserializer(item: any): Period {
   return {
     id: item["id"],
@@ -566,7 +555,7 @@ export function periodDeserializer(item: any): Period {
     end: item["end"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * A reference from one resource to another
  * Based on [FHIR Reference](https://www.hl7.org/fhir/R4/references.html)
@@ -597,7 +586,6 @@ export function referenceSerializer(item: Reference): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function referenceDeserializer(item: any): Reference {
   return {
     id: item["id"],
@@ -612,7 +600,7 @@ export function referenceDeserializer(item: any): Reference {
     display: item["display"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * An identifier intended for computation
  * Based on [FHIR Identifier](https://www.hl7.org/fhir/R4/identifier.html)
@@ -651,7 +639,6 @@ export function identifierSerializer(item: Identifier): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function identifierDeserializer(item: any): Identifier {
   return {
     id: item["id"],
@@ -672,7 +659,7 @@ export function identifierDeserializer(item: any): Identifier {
       : referenceDeserializer(item["assigner"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** FHIR extendible element */
 export interface Extendible {
   /** Additional Content defined by implementations */
@@ -687,7 +674,6 @@ export function extendibleSerializer(item: Extendible): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function extendibleDeserializer(item: any): Extendible {
   return {
     extension: !item["extension"]
@@ -695,7 +681,7 @@ export function extendibleDeserializer(item: any): Extendible {
       : extensionArrayDeserializer(item["extension"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function codeableConceptArraySerializer(
   result: Array<CodeableConcept>,
 ): any[] {
@@ -781,7 +767,6 @@ export interface Observation extends DomainResource {
   component?: ObservationComponent[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function observationDeserializer(item: any): Observation {
   return {
     additionalProperties: serializeRecord(item, [
@@ -912,7 +897,7 @@ export function observationDeserializer(item: any): Observation {
       : observationComponentArrayDeserializer(item["component"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function identifierArraySerializer(result: Array<Identifier>): any[] {
   return result.map((item) => {
     return identifierSerializer(item);
@@ -958,7 +943,6 @@ export interface Annotation extends Element {
   text: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function annotationDeserializer(item: any): Annotation {
   return {
     id: item["id"],
@@ -970,7 +954,7 @@ export function annotationDeserializer(item: any): Annotation {
     text: item["text"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function observationReferenceRangeArrayDeserializer(
   result: Array<ObservationReferenceRange>,
 ): any[] {
@@ -998,7 +982,6 @@ export interface ObservationReferenceRange {
   text?: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function observationReferenceRangeDeserializer(
   item: any,
 ): ObservationReferenceRange {
@@ -1015,7 +998,7 @@ export function observationReferenceRangeDeserializer(
     text: item["text"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function referenceArraySerializer(result: Array<Reference>): any[] {
   return result.map((item) => {
     return referenceSerializer(item);
@@ -1075,7 +1058,6 @@ export interface ObservationComponent extends Element {
   referenceRange?: ObservationReferenceRange[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function observationComponentDeserializer(
   item: any,
 ): ObservationComponent {
@@ -1122,7 +1104,7 @@ export function observationComponentDeserializer(
       : observationReferenceRangeArrayDeserializer(item["referenceRange"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * A resource with narrative, extensions, and contained resources
  * Based on [FHIR DomainResource](https://www.hl7.org/fhir/domainresource.html)
@@ -1141,7 +1123,6 @@ export interface DomainResource extends Resource {
   modifierExtension?: Extension[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function domainResourceDeserializer(item: any): DomainResource {
   return {
     additionalProperties: serializeRecord(item, [
@@ -1172,11 +1153,10 @@ export function domainResourceDeserializer(item: any): DomainResource {
       : extensionArrayDeserializer(item["modifierExtension"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Alias for DomainResourceUnion */
 export type DomainResourceUnion = Observation | DomainResource;
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function domainResourceUnionDeserializer(
   item: any,
 ): DomainResourceUnion {
@@ -1188,7 +1168,7 @@ export function domainResourceUnionDeserializer(
       return domainResourceDeserializer(item);
   }
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /**
  * Any resource that is a [DomainResource](https://www.hl7.org/fhir/domainresource.html) may include a human-readable narrative that contains a summary of the resource and may be used to represent the content of the resource to a human.
  * Based on [FHIR Narrative](https://www.hl7.org/fhir/R4/narrative.html#Narrative)
@@ -1200,7 +1180,6 @@ export interface Narrative extends Element {
   div: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function narrativeDeserializer(item: any): Narrative {
   return {
     id: item["id"],
@@ -1211,4 +1190,3 @@ export function narrativeDeserializer(item: any): Narrative {
     div: item["div"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */

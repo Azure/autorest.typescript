@@ -34,7 +34,6 @@ export interface SimpleModel extends Record<string, string> {
   propB: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function simpleModelDeserializer(item: any): SimpleModel {
   return {
     ...item,
@@ -42,7 +41,6 @@ export function simpleModelDeserializer(item: any): SimpleModel {
     propB: item["propB"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 ```
 
 # Should generate deserializer for additional properties for non-legacy code
@@ -112,7 +110,6 @@ export interface SimpleModel {
   additionalProperties?: Record<string, string>;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function simpleModelDeserializer(item: any): SimpleModel {
   return {
     additionalProperties: serializeRecord(item, ["propA", "propB"]),
@@ -120,20 +117,19 @@ export function simpleModelDeserializer(item: any): SimpleModel {
     propB: item["propB"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface EmptyModel */
 export interface EmptyModel {
   /** Additional properties */
   additionalProperties?: Record<string, string>;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function emptyModelDeserializer(item: any): EmptyModel {
   return {
     additionalProperties: serializeRecord(item, []),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface UnionModel */
 export interface UnionModel {
   propA: string;
@@ -142,7 +138,6 @@ export interface UnionModel {
   additionalProperties?: Record<string, string | number>;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function unionModelDeserializer(item: any): UnionModel {
   return {
     additionalProperties: serializeRecord(
@@ -154,17 +149,16 @@ export function unionModelDeserializer(item: any): UnionModel {
     propB: item["propB"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Alias for _UnionModelAdditionalProperty */
 export type _UnionModelAdditionalProperty = string | number;
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _unionModelAdditionalPropertyDeserializer(
   item: any,
 ): _UnionModelAdditionalProperty {
   return item;
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface NameConflictModel */
 export interface NameConflictModel {
   additionalProperties: Record<string, number>;
@@ -174,7 +168,6 @@ export interface NameConflictModel {
   additionalPropertiesBag?: Record<string, string>;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function nameConflictModelDeserializer(item: any): NameConflictModel {
   return {
     additionalPropertiesBag: serializeRecord(item, [
@@ -187,5 +180,4 @@ export function nameConflictModelDeserializer(item: any): NameConflictModel {
     propB: item["propB"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
 ```

@@ -11,7 +11,6 @@ export interface Widget {
   color: "red" | "blue";
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function widgetDeserializer(item: any): Widget {
   return {
     id: item["id"],
@@ -19,7 +18,7 @@ export function widgetDeserializer(item: any): Widget {
     color: item["color"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface WidgetError */
 export interface WidgetError {
   /** The HTTP error code. */
@@ -28,15 +27,13 @@ export interface WidgetError {
   message: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function widgetErrorDeserializer(item: any): WidgetError {
   return {
     code: item["code"],
     message: item["message"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/naming-convention */
+
 /** model interface _ListWidgetsPagesResults */
 export interface _ListWidgetsPagesResults {
   /** The current page of results. */
@@ -44,8 +41,7 @@ export interface _ListWidgetsPagesResults {
   /** The URL to get the next set of results. */
   odataNextLink?: string;
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _listWidgetsPagesResultsDeserializer(
   item: any,
 ): _ListWidgetsPagesResults {
@@ -54,7 +50,7 @@ export function _listWidgetsPagesResultsDeserializer(
     odataNextLink: item["odata.nextLink"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function widgetArrayDeserializer(result: Array<Widget>): any[] {
   return result.map((item) => {
     return widgetDeserializer(item);
@@ -75,7 +71,6 @@ export function sapUserSerializer(item: SAPUser): any {
   return { role: item["role"], id: item["id"] };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function sapUserDeserializer(item: any): SAPUser {
   return {
     name: item["name"],
@@ -83,19 +78,18 @@ export function sapUserDeserializer(item: any): SAPUser {
     id: item["id"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface AnalyzeResult */
 export interface AnalyzeResult {
   summary: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function analyzeResultDeserializer(item: any): AnalyzeResult {
   return {
     summary: item["summary"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface NonReferencedModel */
 export interface NonReferencedModel {
   /** The weight of the widget. This is an int32, but must be greater than zero. */
@@ -108,14 +102,13 @@ export function nonReferencedModelSerializer(item: NonReferencedModel): any {
   return { prop1: item["prop1"], prop2: item["prop2"] };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function nonReferencedModelDeserializer(item: any): NonReferencedModel {
   return {
     prop1: item["prop1"],
     prop2: item["prop2"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The Contoso Widget Manager service version. */
 export enum KnownVersions {
   /** Version 2022-08-31 */

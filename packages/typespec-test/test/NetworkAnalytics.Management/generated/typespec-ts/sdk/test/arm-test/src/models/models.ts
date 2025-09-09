@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-/* eslint-disable @typescript-eslint/naming-convention */
 /** A list of REST API operations supported by an Azure Resource Provider. It contains an URL link to get the next set of results. */
 export interface _OperationListResult {
   /** The Operation items on this page */
@@ -9,8 +8,7 @@ export interface _OperationListResult {
   /** The link to the next page of items */
   nextLink?: string;
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _operationListResultDeserializer(
   item: any,
 ): _OperationListResult {
@@ -19,7 +17,7 @@ export function _operationListResultDeserializer(
     nextLink: item["nextLink"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function operationArrayDeserializer(result: Array<Operation>): any[] {
   return result.map((item) => {
     return operationDeserializer(item);
@@ -40,7 +38,6 @@ export interface Operation {
   readonly actionType?: ActionType;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function operationDeserializer(item: any): Operation {
   return {
     name: item["name"],
@@ -52,7 +49,7 @@ export function operationDeserializer(item: any): Operation {
     actionType: item["actionType"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Localized display information for and operation. */
 export interface OperationDisplay {
   /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
@@ -65,7 +62,6 @@ export interface OperationDisplay {
   readonly description?: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function operationDisplayDeserializer(item: any): OperationDisplay {
   return {
     provider: item["provider"],
@@ -74,7 +70,7 @@ export function operationDisplayDeserializer(item: any): OperationDisplay {
     description: item["description"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export enum KnownOrigin {
   /** Indicates the operation is initiated by a user. */
@@ -117,7 +113,6 @@ export interface ErrorResponse {
   error?: ErrorDetail;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function errorResponseDeserializer(item: any): ErrorResponse {
   return {
     error: !item["error"]
@@ -125,7 +120,7 @@ export function errorResponseDeserializer(item: any): ErrorResponse {
       : errorDetailDeserializer(item["error"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The error detail. */
 export interface ErrorDetail {
   /** The error code. */
@@ -140,7 +135,6 @@ export interface ErrorDetail {
   readonly additionalInfo?: ErrorAdditionalInfo[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function errorDetailDeserializer(item: any): ErrorDetail {
   return {
     code: item["code"],
@@ -154,7 +148,7 @@ export function errorDetailDeserializer(item: any): ErrorDetail {
       : errorAdditionalInfoArrayDeserializer(item["additionalInfo"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function errorDetailArrayDeserializer(
   result: Array<ErrorDetail>,
 ): any[] {
@@ -179,7 +173,6 @@ export interface ErrorAdditionalInfo {
   readonly info?: any;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function errorAdditionalInfoDeserializer(
   item: any,
 ): ErrorAdditionalInfo {
@@ -188,14 +181,13 @@ export function errorAdditionalInfoDeserializer(
     info: item["info"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The data catalog resource. */
 export interface DataProductsCatalog extends ProxyResource {
   /** The resource-specific properties for this resource. */
   properties?: DataProductsCatalogProperties;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function dataProductsCatalogDeserializer(
   item: any,
 ): DataProductsCatalog {
@@ -211,7 +203,7 @@ export function dataProductsCatalogDeserializer(
       : dataProductsCatalogPropertiesDeserializer(item["properties"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Details for data catalog properties. */
 export interface DataProductsCatalogProperties {
   /** The data catalog provisioning state. */
@@ -220,7 +212,6 @@ export interface DataProductsCatalogProperties {
   publishers: PublisherInformation[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function dataProductsCatalogPropertiesDeserializer(
   item: any,
 ): DataProductsCatalogProperties {
@@ -229,7 +220,7 @@ export function dataProductsCatalogPropertiesDeserializer(
     publishers: publisherInformationArrayDeserializer(item["publishers"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The status of the current operation. */
 export enum KnownProvisioningState {
   /** Represents a succeeded operation. */
@@ -279,7 +270,6 @@ export interface PublisherInformation {
   dataProducts: DataProductInformation[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function publisherInformationDeserializer(
   item: any,
 ): PublisherInformation {
@@ -288,7 +278,7 @@ export function publisherInformationDeserializer(
     dataProducts: dataProductInformationArrayDeserializer(item["dataProducts"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function dataProductInformationArrayDeserializer(
   result: Array<DataProductInformation>,
 ): any[] {
@@ -307,7 +297,6 @@ export interface DataProductInformation {
   dataProductVersions: DataProductVersion[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function dataProductInformationDeserializer(
   item: any,
 ): DataProductInformation {
@@ -319,7 +308,7 @@ export function dataProductInformationDeserializer(
     ),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function dataProductVersionArrayDeserializer(
   result: Array<DataProductVersion>,
 ): any[] {
@@ -334,13 +323,12 @@ export interface DataProductVersion {
   version: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function dataProductVersionDeserializer(item: any): DataProductVersion {
   return {
     version: item["version"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The resource model definition for a Azure Resource Manager proxy resource. It will not have tags and a location */
 export interface ProxyResource extends Resource {}
 
@@ -348,7 +336,6 @@ export function proxyResourceSerializer(item: ProxyResource): any {
   return item;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function proxyResourceDeserializer(item: any): ProxyResource {
   return {
     id: item["id"],
@@ -359,7 +346,7 @@ export function proxyResourceDeserializer(item: any): ProxyResource {
       : systemDataDeserializer(item["systemData"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Common fields that are returned in the response for all Azure Resource Manager resources */
 export interface Resource {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -376,7 +363,6 @@ export function resourceSerializer(item: Resource): any {
   return item;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function resourceDeserializer(item: any): Resource {
   return {
     id: item["id"],
@@ -387,7 +373,7 @@ export function resourceDeserializer(item: any): Resource {
       : systemDataDeserializer(item["systemData"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
   /** The identity that created the resource. */
@@ -404,7 +390,6 @@ export interface SystemData {
   lastModifiedAt?: Date;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function systemDataDeserializer(item: any): SystemData {
   return {
     createdBy: item["createdBy"],
@@ -419,7 +404,7 @@ export function systemDataDeserializer(item: any): SystemData {
       : new Date(item["lastModifiedAt"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The kind of entity that created the resource. */
 export enum KnownCreatedByType {
   /** The entity was created by a user. */
@@ -444,7 +429,6 @@ export enum KnownCreatedByType {
  */
 export type CreatedByType = string;
 
-/* eslint-disable @typescript-eslint/naming-convention */
 /** The response of a DataProductsCatalog list operation. */
 export interface _DataProductsCatalogListResult {
   /** The DataProductsCatalog items on this page */
@@ -452,8 +436,7 @@ export interface _DataProductsCatalogListResult {
   /** The link to the next page of items */
   nextLink?: string;
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _dataProductsCatalogListResultDeserializer(
   item: any,
 ): _DataProductsCatalogListResult {
@@ -462,7 +445,7 @@ export function _dataProductsCatalogListResultDeserializer(
     nextLink: item["nextLink"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function dataProductsCatalogArrayDeserializer(
   result: Array<DataProductsCatalog>,
 ): any[] {
@@ -485,7 +468,6 @@ export function dataTypeSerializer(item: DataType): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function dataTypeDeserializer(item: any): DataType {
   return {
     id: item["id"],
@@ -499,7 +481,7 @@ export function dataTypeDeserializer(item: any): DataType {
       : dataTypePropertiesDeserializer(item["properties"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The data type properties */
 export interface DataTypeProperties {
   /** Latest provisioning state  of data product. */
@@ -527,7 +509,6 @@ export function dataTypePropertiesSerializer(item: DataTypeProperties): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function dataTypePropertiesDeserializer(item: any): DataTypeProperties {
   return {
     provisioningState: item["provisioningState"],
@@ -539,7 +520,7 @@ export function dataTypePropertiesDeserializer(item: any): DataTypeProperties {
     visualizationUrl: item["visualizationUrl"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The data type state */
 export enum KnownDataTypeState {
   /** Field to specify stopped state. */
@@ -595,10 +576,9 @@ export function dataTypeUpdatePropertiesSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/naming-convention */
 /** model interface _DeleteDataRequest */
 export interface _DeleteDataRequest {}
-/* eslint-enable @typescript-eslint/naming-convention */
+
 export function _deleteDataRequestSerializer(item: _DeleteDataRequest): any {
   return item;
 }
@@ -627,14 +607,12 @@ export interface ContainerSasToken {
   storageContainerSasToken: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function containerSasTokenDeserializer(item: any): ContainerSasToken {
   return {
     storageContainerSasToken: item["storageContainerSasToken"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/naming-convention */
+
 /** The response of a DataType list operation. */
 export interface _DataTypeListResult {
   /** The DataType items on this page */
@@ -642,8 +620,7 @@ export interface _DataTypeListResult {
   /** The link to the next page of items */
   nextLink?: string;
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _dataTypeListResultDeserializer(
   item: any,
 ): _DataTypeListResult {
@@ -652,7 +629,7 @@ export function _dataTypeListResultDeserializer(
     nextLink: item["nextLink"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function dataTypeArraySerializer(result: Array<DataType>): any[] {
   return result.map((item) => {
     return dataTypeSerializer(item);
@@ -686,7 +663,6 @@ export function dataProductSerializer(item: DataProduct): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function dataProductDeserializer(item: any): DataProduct {
   return {
     tags: item["tags"],
@@ -705,7 +681,7 @@ export function dataProductDeserializer(item: any): DataProduct {
       : managedServiceIdentityV4Deserializer(item["identity"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The data product properties. */
 export interface DataProductProperties {
   /** The resource GUID property of the data product resource. */
@@ -786,7 +762,6 @@ export function dataProductPropertiesSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function dataProductPropertiesDeserializer(
   item: any,
 ): DataProductProperties {
@@ -836,7 +811,7 @@ export function dataProductPropertiesDeserializer(
     keyVaultUrl: item["keyVaultUrl"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The data type state */
 export enum KnownControlState {
   /** Field to enable a setting. */
@@ -875,7 +850,6 @@ export function encryptionKeyDetailsSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function encryptionKeyDetailsDeserializer(
   item: any,
 ): EncryptionKeyDetails {
@@ -885,7 +859,7 @@ export function encryptionKeyDetailsDeserializer(
     keyVersion: item["keyVersion"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Data Product Network rule set */
 export interface DataProductNetworkAcls {
   /** Virtual Network Rule */
@@ -913,7 +887,6 @@ export function dataProductNetworkAclsSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function dataProductNetworkAclsDeserializer(
   item: any,
 ): DataProductNetworkAcls {
@@ -928,7 +901,7 @@ export function dataProductNetworkAclsDeserializer(
     defaultAction: item["defaultAction"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function virtualNetworkRuleArraySerializer(
   result: Array<VirtualNetworkRule>,
 ): any[] {
@@ -959,7 +932,6 @@ export function virtualNetworkRuleSerializer(item: VirtualNetworkRule): any {
   return { id: item["id"], action: item["action"], state: item["state"] };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function virtualNetworkRuleDeserializer(item: any): VirtualNetworkRule {
   return {
     id: item["id"],
@@ -967,7 +939,7 @@ export function virtualNetworkRuleDeserializer(item: any): VirtualNetworkRule {
     state: item["state"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function ipRulesArraySerializer(result: Array<IPRules>): any[] {
   return result.map((item) => {
     return ipRulesSerializer(item);
@@ -992,14 +964,13 @@ export function ipRulesSerializer(item: IPRules): any {
   return { value: item["value"], action: item["action"] };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function ipRulesDeserializer(item: any): IPRules {
   return {
     value: item["value"],
     action: item["action"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Specifies the default action of allow or deny when no other rules match. */
 export enum KnownDefaultAction {
   /** Represents allow action. */
@@ -1032,7 +1003,6 @@ export function managedResourceGroupConfigurationSerializer(
   return { name: item["name"], location: item["location"] };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function managedResourceGroupConfigurationDeserializer(
   item: any,
 ): ManagedResourceGroupConfiguration {
@@ -1041,7 +1011,7 @@ export function managedResourceGroupConfigurationDeserializer(
     location: item["location"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Details of Consumption Properties */
 export interface ConsumptionEndpointsProperties {
   /** Ingestion url to upload the data. */
@@ -1058,7 +1028,6 @@ export interface ConsumptionEndpointsProperties {
   readonly queryResourceId?: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function consumptionEndpointsPropertiesDeserializer(
   item: any,
 ): ConsumptionEndpointsProperties {
@@ -1071,7 +1040,7 @@ export function consumptionEndpointsPropertiesDeserializer(
     queryResourceId: item["queryResourceId"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Managed service identity (system assigned and/or user assigned identities) */
 export interface ManagedServiceIdentityV4 {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
@@ -1095,7 +1064,6 @@ export function managedServiceIdentityV4Serializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function managedServiceIdentityV4Deserializer(
   item: any,
 ): ManagedServiceIdentityV4 {
@@ -1108,7 +1076,7 @@ export function managedServiceIdentityV4Deserializer(
       : userAssignedIdentityRecordDeserializer(item["userAssignedIdentities"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
 export enum KnownManagedServiceIdentityType {
   /** No managed identity. */
@@ -1171,7 +1139,6 @@ export function userAssignedIdentitySerializer(
   return item;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function userAssignedIdentityDeserializer(
   item: any,
 ): UserAssignedIdentity {
@@ -1180,7 +1147,7 @@ export function userAssignedIdentityDeserializer(
     clientId: item["clientId"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
 export interface TrackedResource extends Resource {
   /** Resource tags. */
@@ -1193,7 +1160,6 @@ export function trackedResourceSerializer(item: TrackedResource): any {
   return { tags: item["tags"], location: item["location"] };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function trackedResourceDeserializer(item: any): TrackedResource {
   return {
     id: item["id"],
@@ -1206,7 +1172,7 @@ export function trackedResourceDeserializer(item: any): TrackedResource {
     location: item["location"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** The type used for update operations of the DataProduct. */
 export interface DataProductUpdate {
   /** The managed service identities assigned to this resource. */
@@ -1283,13 +1249,12 @@ export interface AccountSasToken {
   storageAccountSasToken: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function accountSasTokenDeserializer(item: any): AccountSasToken {
   return {
     storageAccountSasToken: item["storageAccountSasToken"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Details for KeyVault. */
 export interface KeyVaultInfo {
   /** key vault url. */
@@ -1387,7 +1352,6 @@ export function roleAssignmentDetailSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function roleAssignmentDetailDeserializer(
   item: any,
 ): RoleAssignmentDetail {
@@ -1403,11 +1367,10 @@ export function roleAssignmentDetailDeserializer(
     roleAssignmentId: item["roleAssignmentId"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/naming-convention */
+
 /** model interface _ListRolesAssignmentsRequest */
 export interface _ListRolesAssignmentsRequest {}
-/* eslint-enable @typescript-eslint/naming-convention */
+
 export function _listRolesAssignmentsRequestSerializer(
   item: _ListRolesAssignmentsRequest,
 ): any {
@@ -1422,7 +1385,6 @@ export interface ListRoleAssignments {
   roleAssignmentResponse: RoleAssignmentDetail[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function listRoleAssignmentsDeserializer(
   item: any,
 ): ListRoleAssignments {
@@ -1433,7 +1395,7 @@ export function listRoleAssignmentsDeserializer(
     ),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function roleAssignmentDetailArraySerializer(
   result: Array<RoleAssignmentDetail>,
 ): any[] {
@@ -1450,7 +1412,6 @@ export function roleAssignmentDetailArrayDeserializer(
   });
 }
 
-/* eslint-disable @typescript-eslint/naming-convention */
 /** The response of a DataProduct list operation. */
 export interface _DataProductListResult {
   /** The DataProduct items on this page */
@@ -1458,8 +1419,7 @@ export interface _DataProductListResult {
   /** The link to the next page of items */
   nextLink?: string;
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _dataProductListResultDeserializer(
   item: any,
 ): _DataProductListResult {
@@ -1468,7 +1428,7 @@ export function _dataProductListResultDeserializer(
     nextLink: item["nextLink"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function dataProductArraySerializer(result: Array<DataProduct>): any[] {
   return result.map((item) => {
     return dataProductSerializer(item);

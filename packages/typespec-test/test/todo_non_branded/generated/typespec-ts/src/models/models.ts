@@ -40,18 +40,16 @@ export interface ApiError {
   message: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function apiErrorDeserializer(item: any): ApiError {
   return {
     code: item["code"],
     message: item["message"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Something is wrong with you. */
 export interface Standard4XXResponse extends ApiError {}
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function standard4XXResponseDeserializer(
   item: any,
 ): Standard4XXResponse {
@@ -60,11 +58,10 @@ export function standard4XXResponseDeserializer(
     message: item["message"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Something is wrong with me. */
 export interface Standard5XXResponse extends ApiError {}
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function standard5XXResponseDeserializer(
   item: any,
 ): Standard5XXResponse {
@@ -73,7 +70,7 @@ export function standard5XXResponseDeserializer(
     message: item["message"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function todoItemArraySerializer(result: Array<TodoItem>): any[] {
   return result.map((item) => {
     return todoItemSerializer(item);
@@ -123,7 +120,6 @@ export function todoItemSerializer(item: TodoItem): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function todoItemDeserializer(item: any): TodoItem {
   return {
     id: item["id"],
@@ -143,7 +139,7 @@ export function todoItemDeserializer(item: any): TodoItem {
     dummy: item["_dummy"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Alias for TodoLabels */
 export type TodoLabels =
   | string
@@ -155,11 +151,10 @@ export function todoLabelsSerializer(item: TodoLabels): any {
   return item;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function todoLabelsDeserializer(item: any): TodoLabels {
   return item;
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface TodoLabelRecord */
 export interface TodoLabelRecord {
   name: string;
@@ -170,14 +165,13 @@ export function todoLabelRecordSerializer(item: TodoLabelRecord): any {
   return { name: item["name"], color: item["color"] };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function todoLabelRecordDeserializer(item: any): TodoLabelRecord {
   return {
     name: item["name"],
     color: item["color"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function todoLabelRecordArraySerializer(
   result: Array<TodoLabelRecord>,
 ): any[] {
@@ -212,7 +206,6 @@ export function todoAttachmentSerializer(item: TodoAttachment): any {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function todoAttachmentDeserializer(item: any): TodoAttachment {
   return {
     filename: item["filename"],
@@ -223,7 +216,7 @@ export function todoAttachmentDeserializer(item: any): TodoAttachment {
         : item["contents"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function todoAttachmentArraySerializer(
   result: Array<TodoAttachment>,
 ): any[] {
@@ -271,7 +264,6 @@ export function toDoItemMultipartRequestSerializer(
   ];
 }
 
-/* eslint-disable @typescript-eslint/naming-convention */
 /** model interface _CreateFormRequestItem */
 export interface _CreateFormRequestItem {
   /** The item's title */
@@ -285,7 +277,7 @@ export interface _CreateFormRequestItem {
   labels?: TodoLabels;
   dummy?: string;
 }
-/* eslint-enable @typescript-eslint/naming-convention */
+
 export function _createFormRequestItemSerializer(
   item: _CreateFormRequestItem,
 ): any {

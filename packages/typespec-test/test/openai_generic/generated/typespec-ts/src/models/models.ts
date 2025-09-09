@@ -197,7 +197,6 @@ export interface CreateCompletionResponse {
   usage?: CompletionUsage;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function createCompletionResponseDeserializer(
   item: any,
 ): CreateCompletionResponse {
@@ -212,7 +211,7 @@ export function createCompletionResponseDeserializer(
       : completionUsageDeserializer(item["usage"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function _createCompletionResponseChoiceArrayDeserializer(
   result: Array<_CreateCompletionResponseChoice>,
 ): any[] {
@@ -221,7 +220,6 @@ export function _createCompletionResponseChoiceArrayDeserializer(
   });
 }
 
-/* eslint-disable @typescript-eslint/naming-convention */
 /** model interface _CreateCompletionResponseChoice */
 export interface _CreateCompletionResponseChoice {
   index: number;
@@ -241,8 +239,7 @@ export interface _CreateCompletionResponseChoice {
    */
   finish_reason: "stop" | "length" | "content_filter";
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _createCompletionResponseChoiceDeserializer(
   item: any,
 ): _CreateCompletionResponseChoice {
@@ -255,8 +252,7 @@ export function _createCompletionResponseChoiceDeserializer(
     finish_reason: item["finish_reason"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/naming-convention */
+
 /** model interface _CreateCompletionResponseChoiceLogprobs1 */
 export interface _CreateCompletionResponseChoiceLogprobs1 {
   tokens: string[];
@@ -264,8 +260,7 @@ export interface _CreateCompletionResponseChoiceLogprobs1 {
   top_logprobs: Record<string, number>[];
   text_offset: number[];
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _createCompletionResponseChoiceLogprobs1Deserializer(
   item: any,
 ): _CreateCompletionResponseChoiceLogprobs1 {
@@ -284,7 +279,7 @@ export function _createCompletionResponseChoiceLogprobs1Deserializer(
     }),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Usage statistics for the completion request. */
 export interface CompletionUsage {
   /** Number of tokens in the prompt. */
@@ -295,7 +290,6 @@ export interface CompletionUsage {
   total_tokens: number;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function completionUsageDeserializer(item: any): CompletionUsage {
   return {
     prompt_tokens: item["prompt_tokens"],
@@ -303,19 +297,18 @@ export function completionUsageDeserializer(item: any): CompletionUsage {
     total_tokens: item["total_tokens"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface ErrorResponse */
 export interface ErrorResponse {
   error: ErrorModel;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function errorResponseDeserializer(item: any): ErrorResponse {
   return {
     error: errorDeserializer(item["error"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface ErrorModel */
 export interface ErrorModel {
   type: string;
@@ -324,7 +317,6 @@ export interface ErrorModel {
   code: string | null;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function errorDeserializer(item: any): ErrorModel {
   return {
     type: item["type"],
@@ -333,7 +325,7 @@ export function errorDeserializer(item: any): ErrorModel {
     code: item["code"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface CreateEditRequest */
 export interface CreateEditRequest {
   /**
@@ -390,7 +382,6 @@ export interface CreateEditResponse {
   usage: CompletionUsage;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function createEditResponseDeserializer(item: any): CreateEditResponse {
   return {
     object: item["object"],
@@ -399,7 +390,7 @@ export function createEditResponseDeserializer(item: any): CreateEditResponse {
     usage: completionUsageDeserializer(item["usage"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function _createEditResponseChoiceArrayDeserializer(
   result: Array<_CreateEditResponseChoice>,
 ): any[] {
@@ -408,7 +399,6 @@ export function _createEditResponseChoiceArrayDeserializer(
   });
 }
 
-/* eslint-disable @typescript-eslint/naming-convention */
 /** model interface _CreateEditResponseChoice */
 export interface _CreateEditResponseChoice {
   /** The edited result. */
@@ -422,8 +412,7 @@ export interface _CreateEditResponseChoice {
    */
   finish_reason: "stop" | "length";
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _createEditResponseChoiceDeserializer(
   item: any,
 ): _CreateEditResponseChoice {
@@ -433,7 +422,7 @@ export function _createEditResponseChoiceDeserializer(
     finish_reason: item["finish_reason"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface CreateEmbeddingRequest */
 export interface CreateEmbeddingRequest {
   /** ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. */
@@ -487,7 +476,6 @@ export interface CreateEmbeddingResponse {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function createEmbeddingResponseDeserializer(
   item: any,
 ): CreateEmbeddingResponse {
@@ -498,7 +486,7 @@ export function createEmbeddingResponseDeserializer(
     usage: _createEmbeddingResponseUsageDeserializer(item["usage"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function embeddingArrayDeserializer(result: Array<Embedding>): any[] {
   return result.map((item) => {
     return embeddingDeserializer(item);
@@ -518,7 +506,6 @@ export interface Embedding {
   embedding: number[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function embeddingDeserializer(item: any): Embedding {
   return {
     index: item["index"],
@@ -528,8 +515,7 @@ export function embeddingDeserializer(item: any): Embedding {
     }),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/naming-convention */
+
 /** model interface _CreateEmbeddingResponseUsage */
 export interface _CreateEmbeddingResponseUsage {
   /** The number of tokens used by the prompt. */
@@ -537,8 +523,7 @@ export interface _CreateEmbeddingResponseUsage {
   /** The total number of tokens used by the request. */
   total_tokens: number;
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _createEmbeddingResponseUsageDeserializer(
   item: any,
 ): _CreateEmbeddingResponseUsage {
@@ -547,21 +532,20 @@ export function _createEmbeddingResponseUsageDeserializer(
     total_tokens: item["total_tokens"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface ListFilesResponse */
 export interface ListFilesResponse {
   object: string;
   data: OpenAIFile[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function listFilesResponseDeserializer(item: any): ListFilesResponse {
   return {
     object: item["object"],
     data: openAIFileArrayDeserializer(item["data"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function openAIFileArrayDeserializer(result: Array<OpenAIFile>): any[] {
   return result.map((item) => {
     return openAIFileDeserializer(item);
@@ -600,7 +584,6 @@ export interface OpenAIFile {
   status_details?: string | null;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function openAIFileDeserializer(item: any): OpenAIFile {
   return {
     id: item["id"],
@@ -613,7 +596,7 @@ export function openAIFileDeserializer(item: any): OpenAIFile {
     status_details: item["status_details"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface CreateFileRequest */
 export interface CreateFileRequest {
   /**
@@ -646,7 +629,6 @@ export interface DeleteFileResponse {
   deleted: boolean;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function deleteFileResponseDeserializer(item: any): DeleteFileResponse {
   return {
     id: item["id"],
@@ -654,7 +636,7 @@ export function deleteFileResponseDeserializer(item: any): DeleteFileResponse {
     deleted: item["deleted"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface CreateFineTuneRequest */
 export interface CreateFineTuneRequest {
   /**
@@ -833,7 +815,6 @@ export interface FineTune {
   events?: FineTuneEvent[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function fineTuneDeserializer(item: any): FineTune {
   return {
     id: item["id"],
@@ -853,8 +834,7 @@ export function fineTuneDeserializer(item: any): FineTune {
       : fineTuneEventArrayDeserializer(item["events"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/naming-convention */
+
 /** model interface _FineTuneHyperparams */
 export interface _FineTuneHyperparams {
   /**
@@ -878,8 +858,7 @@ export interface _FineTuneHyperparams {
   /** The number of classes to use for computing classification metrics. */
   classification_n_classes?: number;
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _fineTuneHyperparamsDeserializer(
   item: any,
 ): _FineTuneHyperparams {
@@ -893,7 +872,7 @@ export function _fineTuneHyperparamsDeserializer(
     classification_n_classes: item["classification_n_classes"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function fineTuneEventArrayDeserializer(
   result: Array<FineTuneEvent>,
 ): any[] {
@@ -910,7 +889,6 @@ export interface FineTuneEvent {
   message: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function fineTuneEventDeserializer(item: any): FineTuneEvent {
   return {
     object: item["object"],
@@ -919,14 +897,13 @@ export function fineTuneEventDeserializer(item: any): FineTuneEvent {
     message: item["message"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface ListFineTunesResponse */
 export interface ListFineTunesResponse {
   object: string;
   data: FineTune[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function listFineTunesResponseDeserializer(
   item: any,
 ): ListFineTunesResponse {
@@ -935,7 +912,7 @@ export function listFineTunesResponseDeserializer(
     data: fineTuneArrayDeserializer(item["data"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function fineTuneArrayDeserializer(result: Array<FineTune>): any[] {
   return result.map((item) => {
     return fineTuneDeserializer(item);
@@ -948,7 +925,6 @@ export interface ListFineTuneEventsResponse {
   data: FineTuneEvent[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function listFineTuneEventsResponseDeserializer(
   item: any,
 ): ListFineTuneEventsResponse {
@@ -957,21 +933,20 @@ export function listFineTuneEventsResponseDeserializer(
     data: fineTuneEventArrayDeserializer(item["data"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface ListModelsResponse */
 export interface ListModelsResponse {
   object: string;
   data: Model[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function listModelsResponseDeserializer(item: any): ListModelsResponse {
   return {
     object: item["object"],
     data: modelArrayDeserializer(item["data"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function modelArrayDeserializer(result: Array<Model>): any[] {
   return result.map((item) => {
     return modelDeserializer(item);
@@ -990,7 +965,6 @@ export interface Model {
   owned_by: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function modelDeserializer(item: any): Model {
   return {
     id: item["id"],
@@ -999,7 +973,7 @@ export function modelDeserializer(item: any): Model {
     owned_by: item["owned_by"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface DeleteModelResponse */
 export interface DeleteModelResponse {
   id: string;
@@ -1007,7 +981,6 @@ export interface DeleteModelResponse {
   deleted: boolean;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function deleteModelResponseDeserializer(
   item: any,
 ): DeleteModelResponse {
@@ -1017,7 +990,7 @@ export function deleteModelResponseDeserializer(
     deleted: item["deleted"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface CreateImageEditRequest */
 export interface CreateImageEditRequest {
   /** A text description of the desired image(s). The maximum length is 1000 characters. */
@@ -1084,14 +1057,13 @@ export interface ImagesResponse {
   data: Image[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function imagesResponseDeserializer(item: any): ImagesResponse {
   return {
     created: new Date(item["created"] * 1000),
     data: imageArrayDeserializer(item["data"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function imageArrayDeserializer(result: Array<Image>): any[] {
   return result.map((item) => {
     return imageDeserializer(item);
@@ -1106,7 +1078,6 @@ export interface Image {
   b64_json?: Uint8Array;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function imageDeserializer(item: any): Image {
   return {
     url: item["url"],
@@ -1117,7 +1088,7 @@ export function imageDeserializer(item: any): Image {
         : item["b64_json"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface CreateImageVariationRequest */
 export interface CreateImageVariationRequest {
   /**
@@ -1228,7 +1199,6 @@ export interface CreateModerationResponse {
   }[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function createModerationResponseDeserializer(
   item: any,
 ): CreateModerationResponse {
@@ -1238,7 +1208,7 @@ export function createModerationResponseDeserializer(
     results: _createModerationResponseResultArrayDeserializer(item["results"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function _createModerationResponseResultArrayDeserializer(
   result: Array<_CreateModerationResponseResult>,
 ): any[] {
@@ -1247,7 +1217,6 @@ export function _createModerationResponseResultArrayDeserializer(
   });
 }
 
-/* eslint-disable @typescript-eslint/naming-convention */
 /** model interface _CreateModerationResponseResult */
 export interface _CreateModerationResponseResult {
   /** Whether the content violates [OpenAI's usage policies](/policies/usage-policies). */
@@ -1281,8 +1250,7 @@ export interface _CreateModerationResponseResult {
     "violence/graphic": number;
   };
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _createModerationResponseResultDeserializer(
   item: any,
 ): _CreateModerationResponseResult {
@@ -1296,8 +1264,7 @@ export function _createModerationResponseResultDeserializer(
     ),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/naming-convention */
+
 /** model interface _CreateModerationResponseResultCategories */
 export interface _CreateModerationResponseResultCategories {
   /**
@@ -1343,8 +1310,7 @@ export interface _CreateModerationResponseResultCategories {
   /** Content that depicts death, violence, or physical injury in graphic detail. */
   "violence/graphic": boolean;
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _createModerationResponseResultCategoriesDeserializer(
   item: any,
 ): _CreateModerationResponseResultCategories {
@@ -1362,8 +1328,7 @@ export function _createModerationResponseResultCategoriesDeserializer(
     "violence/graphic": item["violence/graphic"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/naming-convention */
+
 /** model interface _CreateModerationResponseResultCategoryScores */
 export interface _CreateModerationResponseResultCategoryScores {
   /** The score for the category 'hate'. */
@@ -1389,8 +1354,7 @@ export interface _CreateModerationResponseResultCategoryScores {
   /** The score for the category 'violence/graphic'. */
   "violence/graphic": number;
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _createModerationResponseResultCategoryScoresDeserializer(
   item: any,
 ): _CreateModerationResponseResultCategoryScores {
@@ -1408,7 +1372,7 @@ export function _createModerationResponseResultCategoryScoresDeserializer(
     "violence/graphic": item["violence/graphic"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface CreateTranscriptionRequest */
 export interface CreateTranscriptionRequest {
   /**
@@ -1471,7 +1435,6 @@ export interface CreateTranscriptionResponse {
   text: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function createTranscriptionResponseDeserializer(
   item: any,
 ): CreateTranscriptionResponse {
@@ -1479,7 +1442,7 @@ export function createTranscriptionResponseDeserializer(
     text: item["text"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface CreateTranslationRequest */
 export interface CreateTranslationRequest {
   /**
@@ -1533,7 +1496,6 @@ export interface CreateTranslationResponse {
   text: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function createTranslationResponseDeserializer(
   item: any,
 ): CreateTranslationResponse {
@@ -1541,7 +1503,7 @@ export function createTranslationResponseDeserializer(
     text: item["text"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface CreateChatCompletionRequest */
 export interface CreateChatCompletionRequest {
   /**
@@ -1716,7 +1678,6 @@ export function chatCompletionRequestMessageSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/naming-convention */
 /** model interface _ChatCompletionRequestMessageFunctionCall */
 export interface _ChatCompletionRequestMessageFunctionCall {
   /** The name of the function to call. */
@@ -1728,7 +1689,7 @@ export interface _ChatCompletionRequestMessageFunctionCall {
    */
   arguments: string;
 }
-/* eslint-enable @typescript-eslint/naming-convention */
+
 export function _chatCompletionRequestMessageFunctionCallSerializer(
   item: _ChatCompletionRequestMessageFunctionCall,
 ): any {
@@ -1830,7 +1791,6 @@ export interface CreateChatCompletionResponse {
   usage?: CompletionUsage;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function createChatCompletionResponseDeserializer(
   item: any,
 ): CreateChatCompletionResponse {
@@ -1847,7 +1807,7 @@ export function createChatCompletionResponseDeserializer(
       : completionUsageDeserializer(item["usage"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function _createChatCompletionResponseChoiceArrayDeserializer(
   result: Array<_CreateChatCompletionResponseChoice>,
 ): any[] {
@@ -1856,7 +1816,6 @@ export function _createChatCompletionResponseChoiceArrayDeserializer(
   });
 }
 
-/* eslint-disable @typescript-eslint/naming-convention */
 /** model interface _CreateChatCompletionResponseChoice */
 export interface _CreateChatCompletionResponseChoice {
   /** The index of the choice in the list of choices. */
@@ -1870,8 +1829,7 @@ export interface _CreateChatCompletionResponseChoice {
    */
   finish_reason: "stop" | "length" | "function_call" | "content_filter";
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _createChatCompletionResponseChoiceDeserializer(
   item: any,
 ): _CreateChatCompletionResponseChoice {
@@ -1881,7 +1839,7 @@ export function _createChatCompletionResponseChoiceDeserializer(
     finish_reason: item["finish_reason"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface ChatCompletionResponseMessage */
 export interface ChatCompletionResponseMessage {
   /** The role of the author of this message. */
@@ -1895,7 +1853,6 @@ export interface ChatCompletionResponseMessage {
   };
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function chatCompletionResponseMessageDeserializer(
   item: any,
 ): ChatCompletionResponseMessage {
@@ -1909,8 +1866,7 @@ export function chatCompletionResponseMessageDeserializer(
         ),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/naming-convention */
+
 /** model interface _ChatCompletionResponseMessageFunctionCall */
 export interface _ChatCompletionResponseMessageFunctionCall {
   /** The name of the function to call. */
@@ -1922,8 +1878,7 @@ export interface _ChatCompletionResponseMessageFunctionCall {
    */
   arguments: string;
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _chatCompletionResponseMessageFunctionCallDeserializer(
   item: any,
 ): _ChatCompletionResponseMessageFunctionCall {
@@ -1932,7 +1887,7 @@ export function _chatCompletionResponseMessageFunctionCallDeserializer(
     arguments: item["arguments"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface CreateFineTuningJobRequest */
 export interface CreateFineTuningJobRequest {
   /**
@@ -1993,7 +1948,6 @@ export function createFineTuningJobRequestSerializer(
   };
 }
 
-/* eslint-disable @typescript-eslint/naming-convention */
 /** model interface _CreateFineTuningJobRequestHyperparameters */
 export interface _CreateFineTuningJobRequestHyperparameters {
   /**
@@ -2002,7 +1956,7 @@ export interface _CreateFineTuningJobRequestHyperparameters {
    */
   n_epochs?: "auto" | number;
 }
-/* eslint-enable @typescript-eslint/naming-convention */
+
 export function _createFineTuningJobRequestHyperparametersSerializer(
   item: _CreateFineTuningJobRequestHyperparameters,
 ): any {
@@ -2095,7 +2049,6 @@ export interface FineTuningJob {
   } | null;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function fineTuningJobDeserializer(item: any): FineTuningJob {
   return {
     id: item["id"],
@@ -2122,8 +2075,7 @@ export function fineTuningJobDeserializer(item: any): FineTuningJob {
       : _fineTuningJobError1Deserializer(item["error"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/naming-convention */
+
 /** model interface _FineTuningJobHyperparameters */
 export interface _FineTuningJobHyperparameters {
   /**
@@ -2135,8 +2087,7 @@ export interface _FineTuningJobHyperparameters {
    */
   n_epochs?: "auto" | number;
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _fineTuningJobHyperparametersDeserializer(
   item: any,
 ): _FineTuningJobHyperparameters {
@@ -2146,18 +2097,16 @@ export function _fineTuningJobHyperparametersDeserializer(
       : _fineTuningJobHyperparametersNEpochsDeserializer(item["n_epochs"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** Alias for _FineTuningJobHyperparametersNEpochs */
 export type _FineTuningJobHyperparametersNEpochs = "auto" | number;
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function _fineTuningJobHyperparametersNEpochsDeserializer(
   item: any,
 ): _FineTuningJobHyperparametersNEpochs {
   return item;
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/naming-convention */
+
 /** model interface _FineTuningJobError1 */
 export interface _FineTuningJobError1 {
   /** A human-readable error message. */
@@ -2170,8 +2119,7 @@ export interface _FineTuningJobError1 {
    */
   param?: string | null;
 }
-/* eslint-enable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 export function _fineTuningJobError1Deserializer(
   item: any,
 ): _FineTuningJobError1 {
@@ -2181,7 +2129,7 @@ export function _fineTuningJobError1Deserializer(
     param: item["param"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 /** model interface ListPaginatedFineTuningJobsResponse */
 export interface ListPaginatedFineTuningJobsResponse {
   object: string;
@@ -2189,7 +2137,6 @@ export interface ListPaginatedFineTuningJobsResponse {
   has_more: boolean;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function listPaginatedFineTuningJobsResponseDeserializer(
   item: any,
 ): ListPaginatedFineTuningJobsResponse {
@@ -2199,7 +2146,7 @@ export function listPaginatedFineTuningJobsResponseDeserializer(
     has_more: item["has_more"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function fineTuningJobArrayDeserializer(
   result: Array<FineTuningJob>,
 ): any[] {
@@ -2214,7 +2161,6 @@ export interface ListFineTuningJobEventsResponse {
   data: FineTuningJobEvent[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function listFineTuningJobEventsResponseDeserializer(
   item: any,
 ): ListFineTuningJobEventsResponse {
@@ -2223,7 +2169,7 @@ export function listFineTuningJobEventsResponseDeserializer(
     data: fineTuningJobEventArrayDeserializer(item["data"]),
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
 export function fineTuningJobEventArrayDeserializer(
   result: Array<FineTuningJobEvent>,
 ): any[] {
@@ -2241,7 +2187,6 @@ export interface FineTuningJobEvent {
   message: string;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function fineTuningJobEventDeserializer(item: any): FineTuningJobEvent {
   return {
     id: item["id"],
@@ -2251,4 +2196,3 @@ export function fineTuningJobEventDeserializer(item: any): FineTuningJobEvent {
     message: item["message"],
   };
 }
-/* eslint-enable @typescript-eslint/explicit-module-boundary-types */
