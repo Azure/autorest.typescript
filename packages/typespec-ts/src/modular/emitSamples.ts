@@ -262,8 +262,6 @@ function prepareExampleParameters(
   parameterMap: Record<string, SdkHttpParameterExampleValue>,
   topLevelClient: SdkClientType<SdkServiceOperation>
 ): ExampleValue[] {
-  // TODO: blocked by TCGC issue: https://github.com/Azure/typespec-azure/issues/1419
-  // refine this to support generic client-level parameters once resolved
   const result: ExampleValue[] = [];
   const credentialExampleValue = getCredentialExampleValue(
     dpgContext,
@@ -271,6 +269,51 @@ function prepareExampleParameters(
   );
   if (credentialExampleValue) {
     result.push(credentialExampleValue);
+  }
+
+  // Track which parameters we've already processed to avoid duplicates
+  const processedParameterNames = new Set<string>();
+  
+  // Add credential parameter name to processed set
+  if (credentialExampleValue) {
+    processedParameterNames.add(credentialExampleValue.name);
+  }
+
+  // Add client-level parameters from client initialization
+  const clientParameters = topLevelClient.clientInitialization.parameters || [];
+  for (const clientParam of clientParameters) {
+    // Skip credential parameters as they are handled separately
+    if (clientParam.kind === "credential") {
+      continue;
+    }
+
+    // Skip if we've already processed this parameter
+    if (processedParameterNames.has(clientParam.name)) {
+      continue;
+    }
+
+    // Try to find the example value by parameter name or serialized name if available
+    let exampleValue: SdkHttpParameterExampleValue | undefined;
+    
+    // First try by serialized name if available, then by name
+    if ('serializedName' in clientParam && clientParam.serializedName) {
+      exampleValue = parameterMap[clientParam.serializedName];
+    }
+    if (!exampleValue) {
+      exampleValue = parameterMap[clientParam.name];
+    }
+
+    if (exampleValue && exampleValue.value) {
+      result.push(
+        prepareExampleValue(
+          clientParam.name,
+          exampleValue.value,
+          clientParam.optional,
+          true // client-level parameters are always onClient
+        )
+      );
+      processedParameterNames.add(clientParam.name);
+    }
   }
 
   let subscriptionIdValue = `"00000000-0000-0000-0000-00000000000"`;
@@ -306,6 +349,12 @@ function prepareExampleParameters(
       subscriptionIdValue = getParameterValue(exampleValue.value);
       continue;
     }
+
+    // Skip if this is a client-level parameter we've already processed
+    if (param.onClient && processedParameterNames.has(param.name)) {
+      continue;
+    }
+
     result.push(
       prepareExampleValue(
         exampleValue.parameter.name,
@@ -314,9 +363,10 @@ function prepareExampleParameters(
         param.onClient
       )
     );
+    processedParameterNames.add(param.name);
   }
   // add subscriptionId for ARM clients if ARM clients need it
-  if (dpgContext.arm && getSubscriptionId(dpgContext)) {
+  if (dpgContext.arm && getSubscriptionId(dpgContext) && !processedParameterNames.has("subscriptionId")) {
     result.push(
       prepareExampleValue("subscriptionId", subscriptionIdValue, false, true)
     );
