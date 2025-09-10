@@ -32,7 +32,7 @@ if (isNode) {
         "utf-8"
       );
       const containsLicenseHeader = content.includes(
-        "* Copyright (c) Microsoft Corporation."
+        "// Copyright (c) Microsoft Corporation."
       );
       expect(containsLicenseHeader).to.equal(true, "Expected License Header");
     });
