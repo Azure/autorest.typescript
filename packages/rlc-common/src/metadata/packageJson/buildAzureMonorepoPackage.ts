@@ -166,17 +166,16 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
     "build:samples": config.withSamples
       ? "tsc -p tsconfig.samples.json && dev-tool samples publish -f"
       : "echo skipped",
-    "check-format": `dev-tool run vendored prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
+    "check-format": `prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
       config.withSamples ? '"samples-dev/*.ts"' : ""
     }`,
     clean:
-      "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
+      "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
     "execute:samples": config.withSamples
       ? "dev-tool samples run samples-dev"
       : "echo skipped",
-    "extract-api":
-      "dev-tool run vendored rimraf review && dev-tool run extract-api",
-    format: `dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
+    "extract-api": "rimraf review && dev-tool run extract-api",
+    format: `prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
       config.withSamples ? '"samples-dev/*.ts"' : ""
     }`,
     "generate:client": "echo skipped",
@@ -214,8 +213,7 @@ function getCjsScripts({ moduleKind }: AzureMonorepoInfoConfig) {
 
   return {
     build: "npm run clean && tsc -p . && dev-tool run extract-api",
-    "build:node":
-      "tsc -p . && dev-tool run vendored cross-env ONLY_NODE=true rollup -c 2>&1",
+    "build:node": "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1",
     "build:test": "tsc -p .",
     "build:debug": "tsc -p . && dev-tool run extract-api",
     "integration-test:browser": "dev-tool run test:browser",
