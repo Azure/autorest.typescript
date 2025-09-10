@@ -540,6 +540,48 @@ const libDef = {
       messages: {
         default: paramMessage`The parameter name ${"parameterName"} has conflicts with others and please use @clientName to rename it.`
       }
+    },
+    "unsupported-parameter-type": {
+      severity: "error",
+      messages: {
+        default: paramMessage`Parameter '${"paramName"}' with kind '${"paramKind"}' is not supported.`
+      }
+    },
+    "unknown-sdk-method-kind": {
+      severity: "error",
+      messages: {
+        default: paramMessage`Unknown SDK method kind: '${"methodKind"}'.`
+      }
+    },
+    "client-file-not-found": {
+      severity: "error",
+      messages: {
+        default: paramMessage`Client file not found: '${"filePath"}'.`
+      }
+    },
+    "anonymous-type-serialization": {
+      severity: "error",
+      messages: {
+        default: "Serialization of anonymous types is not yet implemented."
+      }
+    },
+    "anonymous-type-deserialization": {
+      severity: "error",
+      messages: {
+        default: "Deserialization of anonymous types is not yet implemented."
+      }
+    },
+    "lro-polling-config-error": {
+      severity: "error",
+      messages: {
+        default: paramMessage`LRO polling configuration error: ${"message"}.`
+      }
+    },
+    "file-formatting-error": {
+      severity: "error",
+      messages: {
+        default: paramMessage`Failed to format file: ${"filePath"}. Error: ${"error"}.`
+      }
     }
   },
   emitter: {

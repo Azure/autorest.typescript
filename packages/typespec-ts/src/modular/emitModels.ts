@@ -52,8 +52,8 @@ import {
 } from "../utils/modelUtils.js";
 import { isExtensibleEnum } from "./type-expressions/get-enum-expression.js";
 import { isDiscriminatedUnion } from "./serialization/serializeUtils.js";
-import { reportDiagnostic } from "../lib.js";
 import { getNamespaceFullName, NoTarget } from "@typespec/compiler";
+import { reportDiagnostic } from "../lib.js";
 import {
   getTypeExpression,
   normalizeModelPropertyName
@@ -776,7 +776,14 @@ function visitClientMethod(
       visitOperation(context, method.operation);
       break;
     default:
-      throw new Error(`Unknown sdk method kind: ${(method as any).kind}`);
+      reportDiagnostic(context.program, {
+        code: "unknown-sdk-method-kind",
+        format: {
+          methodKind: (method as any).kind
+        },
+        target: NoTarget
+      });
+      return; // Skip processing this method but continue with others
   }
 }
 

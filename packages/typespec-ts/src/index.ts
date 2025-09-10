@@ -327,7 +327,7 @@ export async function $onEmit(context: EmitContext) {
         interfaceOnly: true
       });
       if (isMultiClients) {
-        buildSubClientIndexFile(subClient, modularEmitterOptions);
+        buildSubClientIndexFile(dpgContext, subClient, modularEmitterOptions);
       }
       buildRootIndex(
         dpgContext,
