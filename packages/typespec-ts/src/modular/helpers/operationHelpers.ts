@@ -365,10 +365,10 @@ function getOperationSignatureParameters(
 ): OptionalKind<ParameterDeclarationStructure>[] {
   const operation = method[1];
   const optionsType = resolveReference(refkey(method[1], "operationOptions"));
-  const parameters: Map<
-    string,
-    OptionalKind<ParameterDeclarationStructure>
-  > = new Map();
+
+  const pathParameters: OptionalKind<ParameterDeclarationStructure>[] = [];
+  const headerParameters: OptionalKind<ParameterDeclarationStructure>[] = [];
+  const bodyParameters: OptionalKind<ParameterDeclarationStructure>[] = [];
 
   operation.parameters
     .filter(
@@ -391,11 +391,34 @@ function getOperationSignatureParameters(
     .map((p) => {
       return {
         name: p.name,
-        type: getTypeExpression(context, p.type)
+        type: getTypeExpression(context, p.type),
+        httpParam: operation.operation.parameters.find((param) => {
+          return (
+            param.correspondingMethodParams.length === 1 &&
+            param.correspondingMethodParams[0] === p
+          );
+        })
       };
     })
     .forEach((p) => {
-      parameters.set(p.name, p);
+      // Sort parameters by their location: path -> header -> body
+      if (p.httpParam?.kind === "path") {
+        pathParameters.push({
+          name: p.name,
+          type: p.type
+        });
+      } else if (p.httpParam?.kind === "header") {
+        headerParameters.push({
+          name: p.name,
+          type: p.type
+        });
+      } else {
+        // body and other parameters
+        bodyParameters.push({
+          name: p.name,
+          type: p.type
+        });
+      }
     });
 
   // Add context as the first parameter
@@ -403,12 +426,19 @@ function getOperationSignatureParameters(
 
   // Add the options parameter
   const optionsParam = {
-    name: parameters.has("options") ? "optionalParams" : "options",
+    name: "options",
     type: optionsType,
     initializer: "{ requestOptions: {} }"
   };
 
-  const finalParameters = [contextParam, ...parameters.values(), optionsParam];
+  // Combine parameters in the correct order: context, path, header, body, options
+  const finalParameters = [
+    contextParam,
+    ...pathParameters,
+    ...headerParameters,
+    ...bodyParameters,
+    optionsParam
+  ];
 
   return finalParameters;
 }
