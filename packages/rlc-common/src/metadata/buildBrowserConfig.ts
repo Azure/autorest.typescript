@@ -3,6 +3,7 @@
 
 import { Project } from "ts-morph";
 import { RLCModel } from "../interfaces.js";
+import { getPackageName } from "./utils.js";
 
 export function buildTsTestBrowserConfig(model: RLCModel) {
   const isAzureSdkForJs = model.options?.azureSdkForJs ?? false;
@@ -16,9 +17,17 @@ export function buildTsTestBrowserConfig(model: RLCModel) {
 
   const filePath = "tsconfig.browser.config.json";
   const project = new Project();
+  const name = getPackageName(model);
 
-  const content = {
-    extends: ["./tsconfig.test.json", "../../../tsconfig.browser.base.json"]
+  const content: Record<string, any> = {
+    extends: "../../../tsconfig.browser.base.json",
+    compilerOptions: {
+      paths: {
+        [name]: ["./dist/browser/index.d.ts"],
+        [`${name}/*`]: ["./dist/browser/*"],
+        "$internal/*": ["./dist/browser/*"]
+      }
+    }
   };
 
   const configFile = project.createSourceFile(
