@@ -164,38 +164,33 @@ async function traverseDirectory(
   result: { source: string; target: string }[] = [],
   relativePath: string = ""
 ): Promise<{ source: string; target: string }[]> {
-  try {
-    const files = await readdir(directory);
+  const files = await readdir(directory);
 
-    await Promise.all(
-      files.map(async (file) => {
-        const filePath = path.join(directory, file);
-        const fileStat = await stat(filePath);
+  await Promise.all(
+    files.map(async (file) => {
+      const filePath = path.join(directory, file);
+      const fileStat = await stat(filePath);
 
-        if (fileStat.isDirectory()) {
-          await traverseDirectory(
-            filePath,
-            result,
-            path.join(relativePath, file)
-          );
-        } else if (
-          fileStat.isFile() &&
-          !file.endsWith(".d.ts") &&
-          file.endsWith(".ts")
-        ) {
-          const target = path.join(
-            _targetStaticHelpersBaseDir,
-            relativePath,
-            file
-          );
-          result.push({ source: filePath, target });
-        }
-      })
-    );
+      if (fileStat.isDirectory()) {
+        await traverseDirectory(
+          filePath,
+          result,
+          path.join(relativePath, file)
+        );
+      } else if (
+        fileStat.isFile() &&
+        !file.endsWith(".d.ts") &&
+        file.endsWith(".ts")
+      ) {
+        const target = path.join(
+          _targetStaticHelpersBaseDir,
+          relativePath,
+          file
+        );
+        result.push({ source: filePath, target });
+      }
+    })
+  );
 
-    return result;
-  } catch (error) {
-    console.error(`Error traversing directory ${directory}:`, error);
-    throw error;
-  }
+  return result;
 }
