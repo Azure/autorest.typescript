@@ -14,6 +14,13 @@ export declare interface ArchiveProduct204Response extends HttpResponse {
 
 export declare type ArchiveProductParameters = RequestParameters;
 
+export declare interface BlobOutput {
+    id: string;
+    name: string;
+    size: number;
+    path: string;
+}
+
 export declare type ClientLocationClient = Client & {
     path: Routes;
 };
@@ -39,6 +46,27 @@ export declare interface GetAdminInfo204Response extends HttpResponse {
 }
 
 export declare type GetAdminInfoParameters = RequestParameters;
+
+export declare interface GetBlob {
+    get(options: GetBlobParameters): StreamableMethod<GetBlob200Response>;
+}
+
+export declare interface GetBlob200Response extends HttpResponse {
+    status: "200";
+    body: BlobOutput;
+}
+
+export declare type GetBlobParameters = GetBlobQueryParam & RequestParameters;
+
+export declare interface GetBlobQueryParam {
+    queryParameters: GetBlobQueryParamProperties;
+}
+
+export declare interface GetBlobQueryParamProperties {
+    storageAccount: string;
+    container: string;
+    blob: string;
+}
 
 export declare interface GetHealthStatus {
     get(options?: GetHealthStatusParameters): StreamableMethod<GetHealthStatus204Response>;
@@ -88,6 +116,7 @@ export declare interface Routes {
     (path: "/azure/client-generator-core/client-location/products/archive"): ArchiveProduct;
     (path: "/azure/client-generator-core/client-location/resource"): GetResource;
     (path: "/azure/client-generator-core/client-location/health"): GetHealthStatus;
+    (path: "/azure/client-generator-core/client-location/blob"): GetBlob;
 }
 
 export { }
