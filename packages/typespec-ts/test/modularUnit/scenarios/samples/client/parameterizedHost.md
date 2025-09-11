@@ -115,3 +115,9 @@ async function main() {
 
 main().catch(console.error);
 ```
+
+## Generated tests
+
+```ts tests
+
+```
