@@ -68,6 +68,7 @@ export interface EmitterOptions {
   "typespec-title-map"?: Record<string, string>;
   "ignore-enum-member-name-normalize"?: boolean;
   "default-value-object"?: boolean;
+  "emit-cross-language-def"?: boolean;
 }
 
 export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
@@ -135,6 +136,11 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
     "azure-arm": { type: "boolean", nullable: true },
     "source-from": { type: "string", nullable: true },
     "is-modular-library": { type: "boolean", nullable: true, default: false },
+    "emit-cross-language-def": {
+      type: "boolean",
+      nullable: true,
+      default: false
+    },
     "enable-operation-group": { type: "boolean", nullable: true },
     "enable-model-namespace": { type: "boolean", nullable: true },
     "hierarchy-client": { type: "boolean", nullable: true },

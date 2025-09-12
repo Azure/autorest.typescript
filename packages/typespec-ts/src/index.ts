@@ -91,6 +91,7 @@ import { provideSdkTypes } from "./framework/hooks/sdkTypes.js";
 import { transformRLCModel } from "./transform/transform.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
 import { emitSamples } from "./modular/emitSamples.js";
+import { generateCrossLanguageDefinitionFile } from "./utils/crossLanguageDef.js";
 
 export * from "./lib.js";
 
@@ -167,6 +168,12 @@ export async function $onEmit(context: EmitContext) {
 
   // 4. Generate sources
   if (emitterOptions["is-modular-library"]) {
+    if (emitterOptions["emit-cross-language-def"]) {
+      await generateCrossLanguageDefinitionFile(
+        context.emitterOutputDir,
+        dpgContext
+      );
+    }
     await generateModularSources();
   } else {
     await generateRLCSources();
