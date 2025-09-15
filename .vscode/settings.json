@@ -10,15 +10,12 @@
     }
   },
   "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[powershell]": {
     "editor.defaultFormatter": "ms-vscode.powershell"
   },
   "[javascript]": {
-    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
-  },
-  "[typespec]": {
-    "editor.defaultFormatter": "typespec.typespec-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
