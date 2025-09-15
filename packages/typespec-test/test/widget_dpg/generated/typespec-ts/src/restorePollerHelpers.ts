@@ -77,6 +77,7 @@ export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
 }
 
 interface DeserializationHelper {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
   deserializer: Function;
   expectedStatuses: string[];
 }
@@ -84,11 +85,11 @@ interface DeserializationHelper {
 const deserializeMap: Record<string, DeserializationHelper> = {
   "PUT /budgets/widgets/createOrReplace/users/{name}": {
     deserializer: _createOrReplaceDeserialize,
-    expectedStatuses: ["201", "200"],
+    expectedStatuses: ["201", "200", "202"],
   },
   "PUT /widgets/widgets/createOrReplace/users/{name}": {
     deserializer: _createOrReplaceDeserializeSapWidgets,
-    expectedStatuses: ["201", "200"],
+    expectedStatuses: ["201", "200", "202"],
   },
 };
 

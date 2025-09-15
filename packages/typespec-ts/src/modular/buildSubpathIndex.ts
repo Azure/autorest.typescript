@@ -5,7 +5,6 @@ import {
 import { ModularEmitterOptions } from "./interfaces.js";
 
 import { join } from "path";
-import { SdkContext } from "../utils/interfaces.js";
 import { getModularClientOptions } from "../utils/clientUtils.js";
 import { useContext } from "../contextManager.js";
 
@@ -16,15 +15,14 @@ export interface buildSubpathIndexFileOptions {
 }
 
 export function buildSubpathIndexFile(
-  context: SdkContext,
   emitterOptions: ModularEmitterOptions,
   subpath: string,
-  client?: SdkClientType<SdkServiceOperation>,
+  clientMap?: [string[], SdkClientType<SdkServiceOperation>],
   options: buildSubpathIndexFileOptions = {}
 ) {
   const project = useContext("outputProject");
-  const subfolder = client
-    ? (getModularClientOptions(context, client).subfolder ?? "")
+  const subfolder = clientMap
+    ? (getModularClientOptions(clientMap).subfolder ?? "")
     : "";
   const srcPath = emitterOptions.modularOptions.sourceRoot;
   // Skip to export these files because they are used internally.
@@ -74,6 +72,8 @@ export function buildSubpathIndexFile(
     const indexFile = project.createSourceFile(`${folder}/index.ts`);
     for (const file of apiFiles) {
       const filePath = file.getFilePath();
+      const serializerOrDeserializerRegex =
+        /.*(Serializer|Deserializer)(_\d+)?$/;
       if (!options.exportIndex && filePath.endsWith("index.ts")) {
         continue;
       }
@@ -102,8 +102,7 @@ export function buildSubpathIndexFile(
             if (
               subpath === "models" &&
               ex.getKindName() === "FunctionDeclaration" &&
-              (exDeclaration[0].endsWith("Serializer") ||
-                exDeclaration[0].endsWith("Deserializer"))
+              serializerOrDeserializerRegex.test(exDeclaration[0])
             ) {
               return false;
             }

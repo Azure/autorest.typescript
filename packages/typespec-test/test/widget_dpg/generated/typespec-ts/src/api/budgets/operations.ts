@@ -10,12 +10,13 @@ import {
   sapUserSerializer,
   sapUserDeserializer,
 } from "../../models/models.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
+  BudgetsContinueOptionalParams,
   BudgetsGetBudgetsOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,
 } from "./options.js";
-import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
-import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -23,6 +24,40 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { PollerLike, OperationState } from "@azure/core-lro";
+
+export function _$continueSend(
+  context: Client,
+  options: BudgetsContinueOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
+  return context
+    .path("/budgets/widgets/continue")
+    .get({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _$continueDeserialize(
+  result: PathUncheckedResponse,
+): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return;
+}
+
+/**
+ *  @fixme continue is a reserved word that cannot be used as an operation name.
+ *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+ *         to the operation to override the generated name.
+ */
+export async function $continue(
+  context: Client,
+  options: BudgetsContinueOptionalParams = { requestOptions: {} },
+): Promise<void> {
+  const result = await _$continueSend(context, options);
+  return _$continueDeserialize(result);
+}
 
 export function _getBudgetsSend(
   context: Client,
@@ -104,7 +139,7 @@ export function _createOrReplaceSend(
 export async function _createOrReplaceDeserialize(
   result: PathUncheckedResponse,
 ): Promise<SAPUser> {
-  const expectedStatuses = ["201", "200"];
+  const expectedStatuses = ["201", "200", "202"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
@@ -122,7 +157,7 @@ export function createOrReplace(
   return getLongRunningPoller(
     context,
     _createOrReplaceDeserialize,
-    ["201", "200"],
+    ["201", "200", "202"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,

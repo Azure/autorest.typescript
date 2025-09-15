@@ -8,17 +8,6 @@ export declare interface ClientModel {
     defaultName: boolean;
 }
 
-export declare interface ClientModelClientOptionalParams extends OperationOptions {
-}
-
-export declare interface ClientModelLanguageOptionalParams extends OperationOptions {
-}
-
-export declare interface ClientModelOperations {
-    language: (body: TSModel, options?: ClientModelLanguageOptionalParams) => Promise<void>;
-    client: (body: ClientModel, options?: ClientModelClientOptionalParams) => Promise<void>;
-}
-
 export declare interface ClientNameAndJsonEncodedNameModel {
     clientName: boolean;
 }
@@ -45,12 +34,21 @@ export declare interface LanguageClientNameModel {
 export declare interface LanguageOptionalParams extends OperationOptions {
 }
 
+export declare interface ModelClientClientOptionalParams extends OperationOptions {
+}
+
+export declare interface ModelClientLanguageOptionalParams extends OperationOptions {
+}
+
+export declare interface ModelClientOperations {
+    language: (body: TSModel, options?: ModelClientLanguageOptionalParams) => Promise<void>;
+    client: (body: ClientModel, options?: ModelClientClientOptionalParams) => Promise<void>;
+}
+
 export declare class NamingClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: NamingClientOptionalParams);
-    readonly unionEnum: UnionEnumOperations;
-    readonly clientModel: ClientModelOperations;
     response(options?: ResponseOptionalParams): Promise<void>;
     request(clientName: string, options?: RequestOptionalParams): Promise<void>;
     compatibleWithEncodedName(body: ClientNameAndJsonEncodedNameModel, options?: CompatibleWithEncodedNameOptionalParams): Promise<void>;
@@ -58,6 +56,8 @@ export declare class NamingClient {
     client(body: ClientNameModel, options?: ClientOptionalParams): Promise<void>;
     parameter(clientName: string, options?: ParameterOptionalParams): Promise<void>;
     clientName(options?: ClientNameOptionalParams): Promise<void>;
+    readonly unionEnum: UnionEnumOperations;
+    readonly modelClient: ModelClientOperations;
 }
 
 export declare interface NamingClientOptionalParams extends ClientOptions {

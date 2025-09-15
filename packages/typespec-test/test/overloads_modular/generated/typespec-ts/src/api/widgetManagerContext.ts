@@ -24,8 +24,7 @@ export function createWidgetManager(
   credential: KeyCredential | TokenCredential,
   options: WidgetManagerClientOptionalParams = {},
 ): WidgetManagerContext {
-  const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? `${endpointParam}/widget`;
+  const endpointUrl = options.endpoint ?? `${endpointParam}/widget`;
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentInfo = `azsdk-js-overload_modular/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions

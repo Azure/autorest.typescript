@@ -36,6 +36,11 @@ import {
   _pagedTextBlocklistItemDeserializer,
 } from "../models/models.js";
 import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../static-helpers/pagingHelpers.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import {
   ListTextBlocklistItemsOptionalParams,
   GetTextBlocklistItemOptionalParams,
   RemoveBlocklistItemsOptionalParams,
@@ -49,11 +54,6 @@ import {
   ShieldPromptOptionalParams,
   AnalyzeTextOptionalParams,
 } from "./options.js";
-import {
-  PagedAsyncIterableIterator,
-  buildPagedAsyncIterator,
-} from "../static-helpers/pagingHelpers.js";
-import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -192,10 +192,6 @@ export function _removeBlocklistItemsSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
       body: removeTextBlocklistItemsOptionsSerializer(body),
     });
 }
@@ -349,13 +345,7 @@ export function _deleteTextBlocklistSend(
   );
   return context
     .path(path)
-    .delete({
-      ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
-    });
+    .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _deleteTextBlocklistDeserialize(

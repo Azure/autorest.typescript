@@ -20,6 +20,11 @@ import {
   todoItemPatchSerializer,
 } from "../../models/todoItems/models.js";
 import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../../static-helpers/pagingHelpers.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
+import {
   TodoItemsDeleteOptionalParams,
   TodoItemsUpdateOptionalParams,
   TodoItemsGetOptionalParams,
@@ -27,11 +32,6 @@ import {
   TodoItemsCreateJsonOptionalParams,
   TodoItemsListOptionalParams,
 } from "./options.js";
-import {
-  PagedAsyncIterableIterator,
-  buildPagedAsyncIterator,
-} from "../../static-helpers/pagingHelpers.js";
-import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -55,13 +55,7 @@ export function _$deleteSend(
   );
   return context
     .path(path)
-    .delete({
-      ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
-    });
+    .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _$deleteDeserialize(

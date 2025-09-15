@@ -1,6 +1,9 @@
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import {
   SdkBodyParameter,
-  SdkModelPropertyType,
+  SdkCredentialParameter,
+  SdkEndpointParameter,
+  SdkMethodParameter,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
 
@@ -70,7 +73,7 @@ export function isDateTimeTypeKind(kind: string): boolean {
 }
 
 export function isCredentialType(
-  type: SdkType | SdkModelPropertyType
+  type: SdkEndpointParameter | SdkCredentialParameter | SdkMethodParameter
 ): boolean {
   return type.kind === "credential";
 }
@@ -88,8 +91,10 @@ export function buildPropertyNameMapper(model: SdkType) {
     if (prop.kind !== "property") {
       continue;
     }
-    // eslint-disable-next-line
-    mapper.set(prop.serializedName, prop.name);
+    mapper.set(
+      prop.serializationOptions.json?.name || prop.name,
+      normalizeName(prop.name, NameType.Property)
+    );
   }
   return mapper;
 }

@@ -45,15 +45,13 @@ import { useContext } from "../contextManager.js";
  */
 export function buildOperationFiles(
   dpgContext: SdkContext,
-  client: SdkClientType<SdkServiceOperation>,
+  clientMap: [string[], SdkClientType<SdkServiceOperation>],
   emitterOptions: ModularEmitterOptions
 ) {
   const project = useContext("outputProject");
+  const [_, client] = clientMap;
   const operationFiles: Set<SourceFile> = new Set();
-  const { subfolder, rlcClientName } = getModularClientOptions(
-    dpgContext,
-    client
-  );
+  const { subfolder, rlcClientName } = getModularClientOptions(clientMap);
   const isMultiEndpoint = isRLCMultiEndpoint(dpgContext);
   const clientType = isMultiEndpoint ? `Client.${rlcClientName}` : "Client";
   const methodMap = getMethodHierarchiesMap(dpgContext, client);
@@ -163,7 +161,6 @@ export function buildOperationOptions(
         return {
           docs: getDocsFromDescription(p.doc),
           hasQuestionToken: true,
-
           type: getTypeExpression(context, p.type),
           name: normalizeName(p.name, NameType.Parameter)
         };

@@ -14,9 +14,7 @@ using OpenAPI;
 // ** Service description **
 //
 
-@service(#{
-  title: "Confidential Ledger Service",
-})
+@service(#{ title: "Confidential Ledger Service" })
 @useAuth(OAuth2Auth<[MyFlow]>)
 @server(
   "{ledgerUri}",
@@ -38,10 +36,13 @@ enum Versions {
 model MyFlow {
   @doc("type of auth flow")
   type: OAuth2FlowType.implicit;
+
   @doc("authorizationUrl of auth flow")
   authorizationUrl: "https://login.microsoftonline.com/common/v2.0/oauth2/authorize";
+
   @doc("tokenUrl of auth flow")
   tokenUrl: "https://login.microsoftonline.com/common/v2.0/oauth2/token";
+
   @doc("scopes of auth flow")
   scopes: ["https://confidential-ledger.azure.com/.default"];
 }
@@ -90,7 +91,6 @@ model LedgerEntry {
 
 // TODO: No way to set "x-ms-enum.name" right now
 @doc("Represents an assignable role.")
-@fixed
 enum LedgerUserRole {
   Administrator,
   Contributor,
@@ -117,7 +117,6 @@ model ReceiptContents {
 
 // TODO: No way to set "x-ms-enum.name" right now
 @doc("State of a ledger query.")
-@fixed
 enum LedgerQueryState {
   Loading,
   Ready,
@@ -137,7 +136,6 @@ model TransactionReceipt {
 
 // TODO: No way to set "x-ms-enum.name" right now
 @doc("Represents the state of the transaction.")
-@fixed
 enum TransactionState {
   Committed,
   Pending,
@@ -205,7 +203,11 @@ namespace ConfidentialLedger {
   #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "This is an existing service with a non-standard list operation."
   @summary("Gets ledger entries from a collection corresponding to a range.")
   @doc("A collection id may optionally be specified. Only entries in the specified (or default) collection will be returned.")
-  op listLedgerEntries is Azure.Core.Foundations.ResourceList<LedgerEntry, {}, PagedLedgerEntries>;
+  op listLedgerEntries is Azure.Core.Foundations.ResourceList<
+    LedgerEntry,
+    {},
+    PagedLedgerEntries
+  >;
 
   @route("transactions")
   @summary("Writes a ledger entry.")
@@ -232,14 +234,22 @@ namespace ConfidentialLedger {
   @doc("Runs a custom action on LedgerEntry")
   @summary("Gets a receipt certifying ledger contents at a particular transaction id.")
   @actionSeparator("/")
-  op getReceipt is Azure.Core.ResourceAction<LedgerEntry, {}, TransactionReceipt>;
+  op getReceipt is Azure.Core.ResourceAction<
+    LedgerEntry,
+    {},
+    TransactionReceipt
+  >;
 
   @get
   @action("status")
   @doc("Runs a custom action on LedgerEntry")
   @summary("Gets a receipt certifying ledger contents at a particular transaction id.")
   @actionSeparator("/")
-  op getTransactionStatus is Azure.Core.ResourceAction<LedgerEntry, {}, TransactionStatus>;
+  op getTransactionStatus is Azure.Core.ResourceAction<
+    LedgerEntry,
+    {},
+    TransactionStatus
+  >;
 
   // TODO: There isn't a way to customize the action name at the moment
   @get

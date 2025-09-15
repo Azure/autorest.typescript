@@ -8,21 +8,21 @@ import {
   ServiceInfo,
   isAzurePackage
 } from "@azure-tools/rlc-common";
-import {
-  getHttpOperationWithCache,
-  listOperationGroups,
-  listOperationsInOperationGroup
-} from "@azure-tools/typespec-client-generator-core";
+import { getHttpOperationWithCache } from "@azure-tools/typespec-client-generator-core";
 import { getDoc, NoTarget, Program } from "@typespec/compiler";
 import { getAuthentication } from "@typespec/http";
 import { EmitterOptions, reportDiagnostic } from "../lib.js";
-import { getRLCClients } from "../utils/clientUtils.js";
+import {
+  getRLCClients,
+  listOperationsUnderRLCClient
+} from "../utils/clientUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { getDefaultService } from "../utils/modelUtils.js";
 import { detectModelConflicts } from "../utils/namespaceUtils.js";
 import { getOperationName } from "../utils/operationUtil.js";
 import { getSupportedHttpAuth } from "../utils/credentialUtils.js";
 import _ from "lodash";
+import { getClientParameters } from "../modular/helpers/clientHelpers.js";
 
 export function transformRLCOptions(
   emitterOptions: EmitterOptions,
@@ -90,6 +90,9 @@ function extractRLCOptions(
   const compatibilityQueryMultiFormat =
     emitterOptions["compatibility-query-multi-format"];
   const typespecTitleMap = emitterOptions["typespec-title-map"];
+  const hasSubscriptionId = getSubscriptionId(dpgContext);
+  //TODO should remove this after finish the release tool test
+  const shouldUsePnpmDep = emitterOptions["should-use-pnpm-dep"];
 
   return {
     ...credentialInfo,
@@ -120,7 +123,10 @@ function extractRLCOptions(
     ignorePropertyNameNormalize,
     compatibilityQueryMultiFormat,
     typespecTitleMap,
-    ignoreEnumMemberNameNormalize
+    ignoreEnumMemberNameNormalize,
+    hasSubscriptionId,
+    //TODO should remove this after finish the release tool test
+    shouldUsePnpmDep
   };
 }
 
@@ -239,30 +245,13 @@ function detectIfNameConflicts(dpgContext: SdkContext) {
   for (const client of clients) {
     // only consider it's conflict when there are conflicts in the same client
     const nameSet = new Set<string>();
-    const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-    for (const clientOp of clientOperations) {
-      const route = getHttpOperationWithCache(dpgContext, clientOp);
+    for (const op of listOperationsUnderRLCClient(client)) {
+      const route = getHttpOperationWithCache(dpgContext, op);
       const name = getOperationName(dpgContext, route.operation);
       if (nameSet.has(name)) {
         return true;
       } else {
         nameSet.add(name);
-      }
-    }
-    const operationGroups = listOperationGroups(dpgContext, client, true);
-    for (const operationGroup of operationGroups) {
-      const operations = listOperationsInOperationGroup(
-        dpgContext,
-        operationGroup
-      );
-      for (const op of operations) {
-        const route = getHttpOperationWithCache(dpgContext, op);
-        const name = getOperationName(dpgContext, route.operation);
-        if (nameSet.has(name)) {
-          return true;
-        } else {
-          nameSet.add(name);
-        }
       }
     }
   }
@@ -457,4 +446,21 @@ function getAzureOutputDirectory(emitterOutputDir: string): string | undefined {
   return sdkReletivePath?.substring(0, 3) === "sdk"
     ? sdkReletivePath
     : undefined;
+}
+
+export function getSubscriptionId(dpgContext: SdkContext) {
+  //TODO Need consider multi-client cases, skip multi-client cases check for now
+  if (dpgContext.rlcOptions?.multiClient) {
+    return;
+  }
+  for (const client of dpgContext.sdkPackage.clients) {
+    if (
+      getClientParameters(client, dpgContext)
+        .map((item) => item.name)
+        .includes("subscriptionId")
+    ) {
+      return true;
+    }
+  }
+  return false;
 }

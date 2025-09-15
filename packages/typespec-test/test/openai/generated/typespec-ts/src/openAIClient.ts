@@ -25,8 +25,7 @@ export default function createClient(
   credentials: TokenCredential | KeyCredential,
   { apiVersion = "2023-08-01-preview", ...options }: OpenAIClientOptions = {},
 ): OpenAIClient {
-  const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? `${endpointParam}/openai`;
+  const endpointUrl = options.endpoint ?? `${endpointParam}/openai`;
   const userAgentInfo = `azsdk-js-openai-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

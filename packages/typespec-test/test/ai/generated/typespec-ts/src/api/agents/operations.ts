@@ -64,6 +64,7 @@ import {
   VectorStoreFileBatch,
   vectorStoreFileBatchDeserializer,
 } from "../../models/agents/models.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   AgentsListVectorStoreFileBatchFilesOptionalParams,
   AgentsCancelVectorStoreFileBatchOptionalParams,
@@ -106,7 +107,6 @@ import {
   AgentsListAgentsOptionalParams,
   AgentsCreateAgentOptionalParams,
 } from "./options.js";
-import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

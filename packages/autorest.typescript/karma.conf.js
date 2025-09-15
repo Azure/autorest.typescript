@@ -52,6 +52,7 @@ module.exports = function(config) {
         flags: [
           "--disable-web-security", // disable cors
           "--disk-cache-dir null", // disable browser caching (note: If in regular Chrome, go to Devtools -> Network -> Disable Cache)
+          "--no-sandbox", // prevent error "no usable sandbox" on ubuntu-24.04
         ]
       }
     },

@@ -32,69 +32,81 @@ export const ReservedModelNames: ReservedName[] = [
   { name: "as", reservedFor: [NameType.Parameter] },
   { name: "assert", reservedFor: [NameType.Parameter] },
   { name: "async", reservedFor: [NameType.Parameter] },
-  { name: "await", reservedFor: [NameType.Parameter] },
+  { name: "await", reservedFor: [NameType.Parameter, NameType.Method] },
   { name: "boolean", reservedFor: [NameType.Parameter, ...Newable] },
-  { name: "break", reservedFor: [NameType.Parameter] },
-  { name: "case", reservedFor: [NameType.Parameter] },
-  { name: "catch", reservedFor: [NameType.Parameter] },
-  { name: "class", reservedFor: [NameType.Parameter] },
-  { name: "const", reservedFor: [NameType.Parameter] },
+  { name: "break", reservedFor: [NameType.Parameter, NameType.Method] },
+  { name: "case", reservedFor: [NameType.Parameter, NameType.Method] },
+  { name: "catch", reservedFor: [NameType.Parameter, NameType.Method] },
+  { name: "class", reservedFor: [NameType.Parameter, NameType.Method] },
+  { name: "const", reservedFor: [NameType.Parameter, NameType.Method] },
   { name: "constructor", reservedFor: [NameType.Parameter] },
-  { name: "continue", reservedFor: [NameType.Parameter] },
+  { name: "continue", reservedFor: [NameType.Parameter, NameType.Method] },
   { name: "date", reservedFor: [NameType.Parameter, ...Newable] },
-  { name: "debugger", reservedFor: [NameType.Parameter] },
+  { name: "debugger", reservedFor: [NameType.Parameter, NameType.Method] },
   { name: "declare", reservedFor: [NameType.Parameter] },
-  { name: "default", reservedFor: [NameType.Parameter] },
-  { name: "delete", reservedFor: [NameType.Parameter, NameType.Operation] },
-  { name: "do", reservedFor: [NameType.Parameter] },
-  { name: "else", reservedFor: [NameType.Parameter] },
-  { name: "enum", reservedFor: [NameType.Parameter] },
+  { name: "default", reservedFor: [NameType.Parameter, NameType.Method] },
+  {
+    name: "delete",
+    reservedFor: [NameType.Parameter, NameType.Operation, NameType.Method]
+  },
+  { name: "do", reservedFor: [NameType.Parameter, NameType.Method] },
+  { name: "else", reservedFor: [NameType.Parameter, NameType.Method] },
+  { name: "enum", reservedFor: [NameType.Parameter, NameType.Method] },
   { name: "error", reservedFor: [NameType.Parameter, ...Newable] },
-  { name: "export", reservedFor: [NameType.Parameter, NameType.Operation] },
-  { name: "extends", reservedFor: [NameType.Parameter] },
-  { name: "false", reservedFor: [NameType.Parameter] },
-  { name: "finally", reservedFor: [NameType.Parameter] },
-  { name: "for", reservedFor: [NameType.Parameter] },
+  {
+    name: "export",
+    reservedFor: [NameType.Parameter, NameType.Operation, NameType.Method]
+  },
+  { name: "extends", reservedFor: [NameType.Parameter, NameType.Method] },
+  { name: "false", reservedFor: [NameType.Parameter, NameType.Method] },
+  { name: "finally", reservedFor: [NameType.Parameter, NameType.Method] },
+  { name: "for", reservedFor: [NameType.Parameter, NameType.Method] },
   { name: "from", reservedFor: [NameType.Parameter] },
-  { name: "function", reservedFor: [NameType.Parameter, ...Newable] },
+  {
+    name: "function",
+    reservedFor: [NameType.Parameter, ...Newable, NameType.Method]
+  },
   { name: "get", reservedFor: [NameType.Parameter] },
-  { name: "if", reservedFor: [NameType.Parameter] },
+  { name: "if", reservedFor: [NameType.Parameter, NameType.Method] },
   { name: "implements", reservedFor: [NameType.Parameter] },
-  { name: "import", reservedFor: [NameType.Parameter] },
-  { name: "in", reservedFor: [NameType.Parameter] },
-  { name: "instanceof", reservedFor: [NameType.Parameter] },
+  { name: "import", reservedFor: [NameType.Parameter, NameType.Method] },
+  { name: "in", reservedFor: [NameType.Parameter, NameType.Method] },
+  { name: "instanceof", reservedFor: [NameType.Parameter, NameType.Method] },
   { name: "interface", reservedFor: [NameType.Parameter] },
-  { name: "let", reservedFor: [NameType.Parameter] },
+  { name: "let", reservedFor: [NameType.Parameter, NameType.Method] },
   { name: "module", reservedFor: [NameType.Parameter] },
-  { name: "new", reservedFor: [NameType.Parameter] },
-  { name: "null", reservedFor: [NameType.Parameter] },
+  { name: "new", reservedFor: [NameType.Parameter, NameType.Method] },
+  { name: "null", reservedFor: [NameType.Parameter, NameType.Method] },
   { name: "number", reservedFor: [NameType.Parameter, ...Newable] },
   { name: "of", reservedFor: [NameType.Parameter] },
   { name: "package", reservedFor: [NameType.Parameter] },
   { name: "private", reservedFor: [NameType.Parameter] },
   { name: "protected", reservedFor: [NameType.Parameter] },
-  { name: "public", reservedFor: [NameType.Parameter, NameType.Operation] },
+  {
+    name: "public",
+    reservedFor: [NameType.Parameter, NameType.Operation, NameType.Method]
+  },
   { name: "requestoptions", reservedFor: [NameType.Parameter] },
-  { name: "require", reservedFor: [NameType.Parameter] },
-  { name: "return", reservedFor: [NameType.Parameter] },
+  { name: "require", reservedFor: [NameType.Parameter, NameType.Method] },
+  { name: "return", reservedFor: [NameType.Parameter, NameType.Method] },
   { name: "set", reservedFor: [NameType.Parameter, ...Newable] },
-  { name: "static", reservedFor: [NameType.Parameter] },
+  { name: "static", reservedFor: [NameType.Parameter, NameType.Method] },
   { name: "string", reservedFor: [NameType.Parameter, ...Newable] },
-  { name: "super", reservedFor: [NameType.Parameter] },
-  { name: "switch", reservedFor: [NameType.Parameter] },
+  { name: "super", reservedFor: [NameType.Parameter, NameType.Method] },
+  { name: "switch", reservedFor: [NameType.Parameter, NameType.Method] },
   { name: "symbol", reservedFor: [NameType.Parameter, ...Newable] },
-  { name: "this", reservedFor: [NameType.Parameter] },
-  { name: "throw", reservedFor: [NameType.Parameter] },
-  { name: "true", reservedFor: [NameType.Parameter] },
-  { name: "try", reservedFor: [NameType.Parameter] },
+  { name: "this", reservedFor: [NameType.Parameter, NameType.Method] },
+  { name: "throw", reservedFor: [NameType.Parameter, NameType.Method] },
+  { name: "true", reservedFor: [NameType.Parameter, NameType.Method] },
+  { name: "try", reservedFor: [NameType.Parameter, NameType.Method] },
   { name: "type", reservedFor: [NameType.Parameter] },
-  { name: "typeof", reservedFor: [NameType.Parameter] },
-  { name: "var", reservedFor: [NameType.Parameter] },
-  { name: "void", reservedFor: [NameType.Parameter] },
-  { name: "while", reservedFor: [NameType.Parameter] },
-  { name: "with", reservedFor: [NameType.Parameter] },
-  { name: "yield", reservedFor: [NameType.Parameter] },
-  { name: "arguments", reservedFor: [NameType.Parameter] },
+  { name: "typeof", reservedFor: [NameType.Parameter, NameType.Method] },
+  { name: "var", reservedFor: [NameType.Parameter, NameType.Method] },
+  { name: "void", reservedFor: [NameType.Parameter, NameType.Method] },
+  { name: "while", reservedFor: [NameType.Parameter, NameType.Method] },
+  { name: "with", reservedFor: [NameType.Parameter, NameType.Method] },
+  { name: "yield", reservedFor: [NameType.Parameter, NameType.Method] },
+  { name: "arguments", reservedFor: [NameType.Parameter, NameType.Method] },
   { name: "global", reservedFor: [...Newable] },
   // reserve client for codegen
   { name: "client", reservedFor: [NameType.Parameter] },
@@ -112,30 +124,31 @@ export function guardReservedNames(
   nameType: NameType,
   customReservedNames: ReservedName[] = []
 ): string {
-  const suffix = getSuffix(nameType);
+  const [prefix, suffix] = getAffix(nameType);
   return [...ReservedModelNames, ...customReservedNames]
     .filter((r) => r.reservedFor.includes(nameType))
     .find((r) => r.name === name.toLowerCase())
-    ? `${name}${suffix}`
+    ? `${prefix}${name}${suffix}`
     : name;
 }
 
-function getSuffix(nameType?: NameType) {
+function getAffix(nameType?: NameType): [string, string] {
   switch (nameType) {
     case NameType.File:
     case NameType.Operation:
-      return "";
+      return ["", ""];
     case NameType.Property:
-      return "Property";
+      return ["", "Property"];
     case NameType.OperationGroup:
-      return "Operations";
+      return ["", "Operations"];
     case NameType.Parameter:
-      return "Param";
+      return ["", "Param"];
+    case NameType.Method:
+      return ["$", ""];
     case NameType.Class:
     case NameType.Interface:
-    case NameType.Method:
     default:
-      return "Model";
+      return ["", "Model"];
   }
 }
 

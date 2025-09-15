@@ -20,12 +20,13 @@ import { useContext } from "../contextManager.js";
 
 export function buildRestorePoller(
   context: SdkContext,
-  client: SdkClientType<SdkServiceOperation>,
+  clientMap: [string[], SdkClientType<SdkServiceOperation>],
   emitterOptions: ModularEmitterOptions
 ) {
   const project = useContext("outputProject");
+  const [_, client] = clientMap;
   const dependencies = useDependencies();
-  const { subfolder } = getModularClientOptions(context, client);
+  const { subfolder } = getModularClientOptions(clientMap);
   const methodMap = getMethodHierarchiesMap(context, client);
   const hasLro = Array.from(methodMap.values()).some((operations) => {
     return operations.some(isLroOnlyOperation);
@@ -125,6 +126,7 @@ export function buildRestorePoller(
     }
     
     interface DeserializationHelper {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
       deserializer: Function;
       expectedStatuses: string[];
     }

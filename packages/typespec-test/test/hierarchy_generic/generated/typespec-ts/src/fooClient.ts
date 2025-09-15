@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 
 import { createFoo, FooContext, FooClientOptionalParams } from "./api/index.js";
-import { A } from "./models/models.js";
-import { Op1OptionalParams } from "./api/options.js";
 import { op1 } from "./api/operations.js";
-import { DOperations, _getDOperations } from "./classic/d/index.js";
+import { Op1OptionalParams } from "./api/options.js";
 import { BOperations, _getBOperations } from "./classic/b/index.js";
+import { DOperations, _getDOperations } from "./classic/d/index.js";
+import { A } from "./models/models.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { FooClientOptionalParams } from "./api/fooContext.js";
@@ -30,15 +30,15 @@ export class FooClient {
     this.b = _getBOperations(this._client);
   }
 
-  /** The operation groups for d */
-  public readonly d: DOperations;
-  /** The operation groups for b */
-  public readonly b: BOperations;
-
   op1(
     body: A,
     options: Op1OptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return op1(this._client, body, options);
   }
+
+  /** The operation groups for d */
+  public readonly d: DOperations;
+  /** The operation groups for b */
+  public readonly b: BOperations;
 }

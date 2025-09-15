@@ -34,6 +34,34 @@ describe("Package file generation", () => {
       expect(packageFile).to.have.property("type", "module");
     });
 
+    it("should specify Node.js 20 as minimum engine version", () => {
+      const model = createMockModel({
+        libraryName: "@msinternal/test",
+        moduleKind: "esm",
+        version: "1.0.0",
+        description: "Test description"
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile).to.have.property("engines");
+      expect(packageFile.engines).to.have.property("node", ">=20.0.0");
+    });
+
+    it("should specify @types/node version 20 in devDependencies", () => {
+      const model = createMockModel({
+        libraryName: "@msinternal/test",
+        moduleKind: "esm",
+        version: "1.0.0",
+        description: "Test description"
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile).to.have.property("devDependencies");
+      expect(packageFile.devDependencies).to.have.property("@types/node", "^20.0.0");
+    });
+
     it("[cjs] should create a package file", () => {
       const libraryName = "@msinternal/test";
       const nameWithoutScope = "test";
@@ -247,7 +275,7 @@ describe("Package file generation", () => {
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
 
       const expectedTshy = {
-        project: "./tsconfig.src.json",
+        project: "../../../tsconfig.src.build.json",
         exports: { "./package.json": "./package.json", ".": "./src/index.ts" },
         dialects: ["esm", "commonjs"],
         esmDialects: ["browser", "react-native"],
@@ -295,93 +323,38 @@ describe("Package file generation", () => {
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
 
       expect(packageFile.scripts).to.have.property(
-        "build:test",
-        "echo skipped"
-      );
-      expect(packageFile.scripts).to.have.property(
         "build",
         "npm run clean && dev-tool run build-package && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
+        "test:node:esm",
+        "dev-tool run test:vitest --esm"
+      );
+      expect(packageFile.scripts).to.have.property(
         "test:node",
-        "npm run clean && dev-tool run build-package && npm run unit-test:node && npm run integration-test:node"
-      );
-      expect(packageFile.scripts).to.have.property(
-        "test",
-        "npm run clean && dev-tool run build-package && npm run unit-test:node && npm run unit-test:browser && npm run integration-test"
-      );
-      expect(packageFile.scripts).to.have.property(
-        "unit-test:browser",
-        "npm run build:test && dev-tool run test:vitest --browser"
-      );
-      expect(packageFile.scripts).to.have.property(
-        "unit-test:node",
         "dev-tool run test:vitest"
       );
       expect(packageFile.scripts).to.have.property(
         "clean",
-        "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log"
+        "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log"
       );
       expect(packageFile.scripts).to.have.property(
         "extract-api",
-        "dev-tool run vendored rimraf review && dev-tool run extract-api"
+        "rimraf review && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
-        "integration-test",
-        "npm run integration-test:node && npm run integration-test:browser"
+        "test:browser",
+        "dev-tool run build-test && dev-tool run test:vitest --browser"
       );
       expect(packageFile.scripts).to.have.property("pack", "npm pack 2>&1");
       expect(packageFile.scripts).to.have.property(
-        "unit-test",
-        "npm run unit-test:node && npm run unit-test:browser"
+        "test",
+        "npm run test:node && npm run test:browser"
       );
       expect(packageFile.scripts).to.have.property(
         "format",
-        'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" '
+        'prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" '
       );
-    });
-
-    it("[cjs] should include correct test devCependencies with tests", () => {
-      const model = createMockModel({
-        ...baseConfig,
-        moduleKind: "cjs",
-        withTests: true
-      });
-      const packageFileContent = buildPackageFile(model);
-      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
-
-      expect(packageFile.devDependencies).to.have.property("dotenv");
-      expect(packageFile.devDependencies).to.have.property("mocha");
-      expect(packageFile.devDependencies).to.have.property("@types/mocha");
-      expect(packageFile.devDependencies).to.not.have.property("cross-env");
-      expect(packageFile.devDependencies).to.have.property("@types/chai");
-      expect(packageFile.devDependencies).to.have.property("chai");
-      expect(packageFile.devDependencies).to.have.property(
-        "karma-chrome-launcher"
-      );
-      expect(packageFile.devDependencies).to.have.property("karma-coverage");
-      expect(packageFile.devDependencies).to.have.property(
-        "karma-env-preprocessor"
-      );
-      expect(packageFile.devDependencies).to.have.property(
-        "karma-firefox-launcher"
-      );
-      expect(packageFile.devDependencies).to.have.property(
-        "karma-junit-reporter"
-      );
-      expect(packageFile.devDependencies).to.have.property(
-        "karma-mocha-reporter"
-      );
-      expect(packageFile.devDependencies).to.have.property("karma-mocha");
-      expect(packageFile.devDependencies).to.have.property(
-        "karma-source-map-support"
-      );
-      expect(packageFile.devDependencies).to.have.property(
-        "karma-sourcemap-loader"
-      );
-      expect(packageFile.devDependencies).to.have.property("karma");
-      expect(packageFile.devDependencies).to.have.property("nyc");
-      expect(packageFile.devDependencies).to.have.property("tsx");
     });
 
     it("[cjs] should include correct scripts with tests", () => {
@@ -399,7 +372,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "build:node",
-        "tsc -p . && dev-tool run vendored cross-env ONLY_NODE=true rollup -c 2>&1"
+        "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1"
       );
       expect(packageFile.scripts).to.have.property(
         "build:test",
@@ -410,41 +383,16 @@ describe("Package file generation", () => {
         "tsc -p . && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
-        "integration-test:browser",
-        "dev-tool run test:browser"
-      );
-      expect(packageFile.scripts).to.have.property(
-        "integration-test:node",
-        "dev-tool run test:node-js-input -- --timeout 5000000 'dist-esm/test/**/*.spec.js'"
-      );
-      expect(packageFile.scripts).to.have.property(
-        "unit-test:node",
-        "dev-tool run test:node-ts-input -- --timeout 1200000 --exclude 'test/**/browser/*.spec.ts' 'test/**/*.spec.ts'"
-      );
-      expect(packageFile.scripts).to.have.property(
-        "unit-test:browser",
-        "dev-tool run test:browser"
-      );
-      expect(packageFile.scripts).to.have.property(
         "clean",
-        "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log"
+        "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log"
       );
       expect(packageFile.scripts).to.have.property(
         "extract-api",
-        "dev-tool run vendored rimraf review && dev-tool run extract-api"
-      );
-      expect(packageFile.scripts).to.have.property(
-        "integration-test",
-        "npm run integration-test:node && npm run integration-test:browser"
-      );
-      expect(packageFile.scripts).to.have.property("pack", "npm pack 2>&1");
-      expect(packageFile.scripts).to.have.property(
-        "unit-test",
-        "npm run unit-test:node && npm run unit-test:browser"
+        "rimraf review && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "format",
-        'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" '
+        'prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" '
       );
     });
 
@@ -472,6 +420,58 @@ describe("Package file generation", () => {
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
       expect(packageFile).to.have.property("//metadata");
       expect(packageFile["//metadata"]["constantPaths"][0]).to.have.property("path", "src/test.ts", "rlc");
+    });
+
+    it("should skip lint scripts with arm packages for modular", () => {
+      const model = createMockModel({
+        ...baseConfig,
+        azureArm: true,
+        isModularLibrary: true
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile.scripts).to.have.property(
+        "lint:fix",
+        "echo skipped"
+      );
+      expect(packageFile.scripts).to.have.property(
+        "lint",
+        "echo skipped"
+      );
+    });
+    it("[esm] should include correct scripts with pack", () => {
+      const model = createMockModel({
+        ...baseConfig,
+        moduleKind: "esm",
+        withTests: true,
+        shouldUsePnpmDep: true
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile.scripts).to.have.property(
+        "pack",
+        "pnpm pack 2>&1"
+      );
+    });
+
+    it("should include browser and react-native in package.json", () => {
+      const model = createMockModel({
+        ...baseConfig,
+        azureArm: true,
+        isModularLibrary: true
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile).to.have.property(
+        "browser", "./dist/browser/index.js",
+      );
+      expect(packageFile).to.have.property(
+        "react-native", "./dist/react-native/index.js"
+      );
+
     });
   });
 
@@ -613,26 +613,10 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "test:node",
-        "npm run clean && tshy && npm run unit-test:node && npm run integration-test:node"
-      );
-      expect(packageFile.scripts).to.have.property(
-        "test:browser",
-        "npm run clean && npm run build:test && npm run unit-test:browser && npm run integration-test:browser"
-      );
-      expect(packageFile.scripts).to.have.property(
-        "integration-test:browser",
-        "echo skipped"
-      );
-      expect(packageFile.scripts).to.have.property(
-        "integration-test:node",
-        "echo skipped"
-      );
-      expect(packageFile.scripts).to.have.property(
-        "unit-test:node",
         "vitest -c vitest.config.ts"
       );
       expect(packageFile.scripts).to.have.property(
-        "unit-test:browser",
+        "test:browser",
         "vitest -c vitest.browser.config.ts"
       );
     });
@@ -680,22 +664,6 @@ describe("Package file generation", () => {
       expect(packageFile.scripts).to.have.property(
         "build:test",
         "tsc -p . && rollup -c 2>&1"
-      );
-      expect(packageFile.scripts).to.have.property(
-        "integration-test:browser",
-        "karma start --single-run"
-      );
-      expect(packageFile.scripts).to.have.property(
-        "integration-test:node",
-        'nyc mocha -r esm --require source-map-support/register --timeout 5000000 --full-trace "dist-esm/test/{,!(browser)/**/}*.spec.js"'
-      );
-      expect(packageFile.scripts).to.have.property(
-        "unit-test:node",
-        'cross-env TS_NODE_COMPILER_OPTIONS="{\\"module\\":\\"commonjs\\"}" mocha -r esm --require ts-node/register --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"'
-      );
-      expect(packageFile.scripts).to.have.property(
-        "unit-test:browser",
-        "karma start --single-run"
       );
       expect(packageFile.scripts).to.have.property(
         "build:browser",

@@ -19,6 +19,7 @@ export {
 } from "./models/index.js";
 export { SAPWidgetServiceClientOptionalParams } from "./api/index.js";
 export {
+  BudgetsContinueOptionalParams,
   BudgetsGetBudgetsOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,
 } from "./api/budgets/index.js";

@@ -77,9 +77,7 @@ export function createService(
 ): ServiceContext {
   const clientParam = options.clientParam ?? "default";
   const endpointUrl =
-    options.endpoint ??
-    options.baseUrl ??
-    `${endpointParam}/client/structure/${clientParam}`;
+    options.endpoint ?? `${endpointParam}/client/structure/${clientParam}`;
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`
@@ -169,6 +167,8 @@ export interface ServiceContext extends Client {}
 
 /** Optional parameters for the client. */
 export interface ServiceClientOptionalParams extends ClientOptions {
+  /** Need to be set as 'http://localhost:3000' in client. */
+  endpointParam?: string;
   /** Need to be set as 'default', 'multi-client', 'renamed-operation', 'two-operation-group' in client. */
   clientParam?: ClientType;
 }
@@ -179,9 +179,7 @@ export function createService(
   const endpointParam = options.endpointParam ?? "http://localhost:3000";
   const clientParam = options.clientParam ?? "default";
   const endpointUrl =
-    options.endpoint ??
-    options.baseUrl ??
-    `${endpointParam}/client/structure/${clientParam}`;
+    options.endpoint ?? `${endpointParam}/client/structure/${clientParam}`;
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`
@@ -283,9 +281,7 @@ export function createTestService(
 ): TestServiceContext {
   const clientParam = options.clientParam ?? "default";
   const endpointUrl =
-    options.endpoint ??
-    options.baseUrl ??
-    `${endpointParam}/client/structure/${clientParam}`;
+    options.endpoint ?? `${endpointParam}/client/structure/${clientParam}`;
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions
     ? `${prefixFromOptions} azsdk-js-api`

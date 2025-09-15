@@ -2,11 +2,12 @@
 
 import { OpenAIContext } from "../../api/openAIContext.js";
 import {
-  ListFilesResponse,
-  OpenAIFile,
-  CreateFileRequest,
-  DeleteFileResponse,
-} from "../../models/models.js";
+  download,
+  $delete,
+  retrieve,
+  create,
+  list,
+} from "../../api/files/operations.js";
 import {
   FilesDownloadOptionalParams,
   FilesDeleteOptionalParams,
@@ -15,12 +16,11 @@ import {
   FilesListOptionalParams,
 } from "../../api/files/options.js";
 import {
-  download,
-  $delete,
-  retrieve,
-  create,
-  list,
-} from "../../api/files/operations.js";
+  ListFilesResponse,
+  OpenAIFile,
+  CreateFileRequest,
+  DeleteFileResponse,
+} from "../../models/models.js";
 
 /** Interface representing a Files operations. */
 export interface FilesOperations {

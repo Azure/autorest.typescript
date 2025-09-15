@@ -675,7 +675,6 @@ using TypeSpec.Http;
 using TypeSpec.Rest;
 using Azure.Core;
 
-@fixed
 enum SchemaContentTypeValues {
     avro: "application/json; serialization=Avro",
     json: "application/json; serialization=json",
@@ -1075,7 +1074,6 @@ export interface Test {
 ## TypeSpec
 
 ```tsp
-@fixed
 enum Color {
     Color1: 1,
     Color2: 2

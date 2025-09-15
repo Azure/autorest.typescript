@@ -16,6 +16,13 @@ import {
   analyzeResultDeserializer,
 } from "../../models/models.js";
 import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../../static-helpers/pagingHelpers.js";
+import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
+import { buildCsvCollection } from "../../static-helpers/serialization/build-csv-collection.js";
+import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
+import {
   SAPWidgetsAnalyzeWidgetOptionalParams,
   SAPWidgetsDeleteWidgetOptionalParams,
   SAPWidgetsUpdateWidgetOptionalParams,
@@ -27,20 +34,13 @@ import {
   SAPWidgetsSAPListWidgetsOptionalParams,
 } from "./options.js";
 import {
-  PagedAsyncIterableIterator,
-  buildPagedAsyncIterator,
-} from "../../static-helpers/pagingHelpers.js";
-import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
-import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
-import { buildCsvCollection } from "../../static-helpers/serialization/build-csv-collection.js";
-import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString } from "@azure/core-util";
 import { PollerLike, OperationState } from "@azure/core-lro";
+import { uint8ArrayToString } from "@azure/core-util";
 
 export function _analyzeWidgetSend(
   context: Client,
@@ -108,13 +108,7 @@ export function _deleteWidgetSend(
   context.pipeline.removePolicy({ name: "ClientApiVersionPolicy" });
   return context
     .path(path)
-    .delete({
-      ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
-    });
+    .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _deleteWidgetDeserialize(
@@ -226,7 +220,7 @@ export function _createOrReplaceSend(
 export async function _createOrReplaceDeserialize(
   result: PathUncheckedResponse,
 ): Promise<SAPUser> {
-  const expectedStatuses = ["201", "200"];
+  const expectedStatuses = ["201", "200", "202"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
@@ -244,7 +238,7 @@ export function createOrReplace(
   return getLongRunningPoller(
     context,
     _createOrReplaceDeserialize,
-    ["201", "200"],
+    ["201", "200", "202"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,

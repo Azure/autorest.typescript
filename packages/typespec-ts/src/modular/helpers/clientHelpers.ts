@@ -6,8 +6,10 @@ import {
 } from "ts-morph";
 import {
   SdkClientType,
+  SdkCredentialParameter,
+  SdkEndpointParameter,
   SdkHttpParameter,
-  SdkParameter,
+  SdkMethodParameter,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 
@@ -20,6 +22,8 @@ import { SdkContext } from "../../utils/interfaces.js";
 import { getClassicalClientName } from "./namingHelpers.js";
 import { getTypeExpression } from "../type-expressions/get-type-expression.js";
 import { isCredentialType } from "./typeHelpers.js";
+import { CloudSettingHelpers } from "../static-helpers-metadata.js";
+import { resolveReference } from "../../framework/reference.js";
 
 interface ClientParameterOptions {
   onClientOnly?: boolean;
@@ -29,6 +33,12 @@ interface ClientParameterOptions {
   skipEndpointTemplate?: boolean;
   apiVersionAsRequired?: boolean;
 }
+
+type SdkParameter =
+  | SdkMethodParameter
+  | SdkEndpointParameter
+  | SdkCredentialParameter
+  | SdkHttpParameter;
 
 export function getClientParameters(
   client: SdkClientType<SdkServiceOperation>,
@@ -42,7 +52,7 @@ export function getClientParameters(
     apiVersionAsRequired: true
   }
 ) {
-  const clientParams: (SdkParameter | SdkHttpParameter)[] = [];
+  const clientParams: SdkParameter[] = [];
   for (const property of client.clientInitialization.parameters) {
     if (
       property.type.kind === "union" &&
@@ -60,9 +70,9 @@ export function getClientParameters(
     }
   }
 
-  const hasDefaultValue = (p: SdkParameter | SdkHttpParameter) =>
+  const hasDefaultValue = (p: SdkParameter) =>
     p.clientDefaultValue || p.__raw?.defaultValue || p.type.kind === "constant";
-  const isRequired = (p: SdkParameter | SdkHttpParameter) =>
+  const isRequired = (p: SdkParameter) =>
     !p.optional &&
     ((!hasDefaultValue(p) &&
       !(
@@ -71,13 +81,10 @@ export function getClientParameters(
         hasDefaultValue(p.type.templateArguments[0])
       )) ||
       (options.apiVersionAsRequired && p.isApiVersionParam));
-  const isOptional = (p: SdkParameter | SdkHttpParameter) =>
-    p.optional || hasDefaultValue(p);
-  const skipCredentials = (p: SdkParameter | SdkHttpParameter) =>
-    p.kind !== "credential";
-  const skipMethodParam = (p: SdkParameter | SdkHttpParameter) =>
-    p.kind !== "method";
-  const armSpecific = (p: SdkParameter | SdkHttpParameter) =>
+  const isOptional = (p: SdkParameter) => p.optional || hasDefaultValue(p);
+  const skipCredentials = (p: SdkParameter) => p.kind !== "credential";
+  const skipMethodParam = (p: SdkParameter) => p.kind !== "method";
+  const armSpecific = (p: SdkParameter) =>
     !(p.kind === "endpoint" && dpgContext.arm);
   const filters = [
     options.requiredOnly ? isRequired : undefined,
@@ -132,7 +139,7 @@ export function getClientParametersDeclaration(
 
 function getClientParameterTypeExpression(
   context: SdkContext,
-  parameter: SdkParameter | SdkHttpParameter
+  parameter: SdkParameter
 ) {
   // Special handle to work around the fact that TCGC creates a union type for endpoint. The reason they do this
   // is to provide a way for users to either pass the value to fill in the template of the whole endpoint. Basically they are
@@ -149,9 +156,7 @@ function getClientParameterTypeExpression(
   return getTypeExpression(context, parameter.type);
 }
 
-export function getClientParameterName(
-  parameter: SdkParameter | SdkHttpParameter
-) {
+export function getClientParameterName(parameter: SdkParameter) {
   // We have been calling this endpointParam, so special handling this here to make sure there are no unexpected side effects
   if (
     (parameter.type.kind === "union" &&
@@ -172,7 +177,10 @@ export function buildGetClientEndpointParam(
 ): string {
   let coreEndpointParam = "";
   if (dpgContext.rlcOptions?.flavor === "azure") {
-    coreEndpointParam = `options.endpoint ?? options.baseUrl`;
+    const cloudSettingSuffix = dpgContext.arm
+      ? ` ?? ${resolveReference(CloudSettingHelpers.getArmEndpoint)}(options.cloudSetting)`
+      : "";
+    coreEndpointParam = `options.endpoint${cloudSettingSuffix}`;
   } else {
     // unbranded does not have the deprecated baseUrl parameter
     coreEndpointParam = `options.endpoint`;

@@ -53,8 +53,8 @@ import {
   streamingChatCompletionOptionsSerializer,
   streamingChatCompletionOptionsDeserializer,
 } from "../models/models.js";
-import { ReadOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -176,5 +176,91 @@ export async function read(
 ): Promise<true> {
   const result = await _readSend(context, options);
   return _readDeserialize(result);
+}
+```
+
+// We need to skip this case due to tcgc issue: https://github.com/Azure/typespec-azure/issues/3088
+# skip: Should get the effective model name
+
+## TypeSpec
+
+```tsp
+model TodoItem {
+  /** The item's unique id */
+  @visibility(Lifecycle.Read) @key id: safeint;
+
+  /** The item's title */
+  @maxLength(255)
+  title: string;
+
+  /** User that created the todo */
+  @visibility(Lifecycle.Read) createdBy: string;
+
+  /** User that the todo is assigned to */
+  assignedTo?: string;
+
+  /** A longer description of the todo item in markdown format */
+  description?: string;
+
+  /** The status of the todo item */
+  status: "NotStarted" | "InProgress" | "Completed";
+
+  /** When the todo item was created. */
+  @visibility(Lifecycle.Read) createdAt: utcDateTime;
+
+  /** When the todo item was last updated */
+  @visibility(Lifecycle.Read) updatedAt: utcDateTime;
+
+  /** When the todo item was makred as completed */
+  @visibility(Lifecycle.Read) completedAt?: utcDateTime;
+
+  // Want the read form to be normalized to TodoLabelRecord[], but can't
+  // https://github.com/microsoft/typespec/issues/2926
+  labels?: string[];
+
+  // hack to get a different schema for create
+  // (fastify glue doesn't support readonly)
+  @visibility(Lifecycle.Create) dummy?: string;
+}
+
+op try(@header contentType: "multipart/form-data",
+    @multipartBody body: {
+  item: HttpPart<TodoItem>;
+}): void;
+```
+
+## Models
+
+```ts models
+/** model interface _TryRequest */
+export interface _TryRequest {
+  item: {
+    title: string;
+    assignedTo?: string;
+    description?: string;
+    status: "NotStarted" | "InProgress" | "Completed";
+    labels?: string[];
+    dummy?: string;
+  };
+}
+
+export function _tryRequestSerializer(item: _TryRequest): any {
+  return [
+    {
+      name: "item",
+      body: {
+        title: title,
+        assignedTo: options?.assignedTo,
+        description: options?.description,
+        status: status,
+        labels: !options?.labels
+          ? options?.labels
+          : options?.labels.map((p: any) => {
+              return p;
+            }),
+        dummy: options?.dummy,
+      },
+    },
+  ];
 }
 ```

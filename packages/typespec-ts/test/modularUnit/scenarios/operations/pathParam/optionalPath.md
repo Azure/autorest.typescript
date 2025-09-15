@@ -14,27 +14,27 @@ Should normal path parameter:
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import { ReadOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
   createRestError,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
 export function _readSend(
   context: Client,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "{/param}",
     {
-      param: options["param"]
+      param: options["param"],
     },
     {
-      allowReserved: options?.requestOptions?.skipUrlEncoding
-    }
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
   );
   return context
     .path(path)
@@ -42,7 +42,7 @@ export function _readSend(
 }
 
 export async function _readDeserialize(
-  result: PathUncheckedResponse
+  result: PathUncheckedResponse,
 ): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
@@ -54,7 +54,7 @@ export async function _readDeserialize(
 
 export async function read(
   context: Client,
-  options: ReadOptionalParams = { requestOptions: {} }
+  options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _readSend(context, options);
   return _readDeserialize(result);
