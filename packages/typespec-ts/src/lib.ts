@@ -68,7 +68,6 @@ export interface EmitterOptions {
   "typespec-title-map"?: Record<string, string>;
   "ignore-enum-member-name-normalize"?: boolean;
   "default-value-object"?: boolean;
-  "emit-cross-language-def"?: boolean;
   //TODO should remove this after finish the release tool test
   "should-use-pnpm-dep"?: boolean;
 }
@@ -336,11 +335,6 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       type: "boolean",
       nullable: true,
       description: "Internal option for test."
-    },
-    "emit-cross-language-def": {
-      type: "boolean",
-      nullable: true,
-      description: "Whether to generate cross-language definition map files."
     }
   },
   required: []

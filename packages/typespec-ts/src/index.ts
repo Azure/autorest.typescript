@@ -171,12 +171,6 @@ export async function $onEmit(context: EmitContext) {
 
   // 4. Generate sources
   if (emitterOptions["is-modular-library"]) {
-    if (emitterOptions["emit-cross-language-def"]) {
-      await generateCrossLanguageDefinitionFile(
-        context.emitterOutputDir,
-        dpgContext
-      );
-    }
     await generateModularSources();
   } else {
     await generateRLCSources();
@@ -381,9 +375,14 @@ export async function $onEmit(context: EmitContext) {
     console.timeEnd("onEmit: generate files");
     console.timeEnd("onEmit: generate modular sources");
   }
+
   interface Metadata {
     apiVersion?: string;
     emitterVersion?: string;
+    crossLanguageDefinitions?: {
+      CrossLanguagePackageId: string;
+      CrossLanguageDefinitionId: Record<string, string>;
+    };
   }
 
   function buildMetadataJson() {
@@ -399,11 +398,16 @@ export async function $onEmit(context: EmitContext) {
     if (emitterVersion !== undefined) {
       content.emitterVersion = emitterVersion;
     }
+    if (dpgContext.rlcOptions?.isModularLibrary) {
+      content.crossLanguageDefinitions =
+        generateCrossLanguageDefinitionFile(dpgContext);
+    }
     return {
       path: "metadata.json",
       content: JSON.stringify(content, null, 2)
     };
   }
+
   async function generateMetadataAndTest(context: SdkContext) {
     const project = useContext("outputProject");
     if (rlcCodeModels.length === 0 || !rlcCodeModels[0]) {

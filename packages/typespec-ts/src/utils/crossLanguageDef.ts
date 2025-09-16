@@ -2,15 +2,13 @@
 // Licensed under the MIT License.
 
 import { SdkContext } from "./interfaces.js";
-import { writeFile } from "fs/promises";
-import { join as pathJoin } from "path";
 import { transformModularEmitterOptions } from "../modular/buildModularOptions.js";
 import { getMethodHierarchiesMap } from "./operationUtil.js";
 
-export async function generateCrossLanguageDefinitionFile(
-  outputDir: string,
-  dpgContext: SdkContext
-) {
+export function generateCrossLanguageDefinitionFile(dpgContext: SdkContext): {
+  CrossLanguagePackageId: string;
+  CrossLanguageDefinitionId: Record<string, string>;
+} {
   const modularSourcesRoot =
     dpgContext.generationPathDetail?.modularSourcesDir ?? "src";
   const emitterOptions = transformModularEmitterOptions(
@@ -52,13 +50,8 @@ export async function generateCrossLanguageDefinitionFile(
     }
   }
 
-  const json = {
+  return {
     CrossLanguagePackageId: dpgContext.sdkPackage.crossLanguagePackageId,
     CrossLanguageDefinitionId
   };
-
-  await writeFile(
-    pathJoin(outputDir, "apiview-properties.json"),
-    JSON.stringify(json)
-  );
 }
