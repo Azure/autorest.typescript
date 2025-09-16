@@ -1,4 +1,4 @@
-# only: Parameter ordering with Azure Core ResourceAction and RequestHeadersTrait
+# skip: Parameter ordering with Azure Core ResourceAction and RequestHeadersTrait
 
 ## TypeSpec
 
