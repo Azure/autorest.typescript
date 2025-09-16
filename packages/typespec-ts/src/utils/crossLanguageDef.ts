@@ -4,6 +4,7 @@
 import { SdkContext } from "./interfaces.js";
 import { transformModularEmitterOptions } from "../modular/buildModularOptions.js";
 import { getMethodHierarchiesMap } from "./operationUtil.js";
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 
 export function generateCrossLanguageDefinitionFile(dpgContext: SdkContext): {
   CrossLanguagePackageId: string;
@@ -40,12 +41,31 @@ export function generateCrossLanguageDefinitionFile(dpgContext: SdkContext): {
       emitterOptions.options?.typespecTitleMap?.[subClient.name] ??
       subClient.name;
     const methodMap = getMethodHierarchiesMap(dpgContext, subClient);
-    for (const [_prefixKey, operations] of methodMap) {
-      for (const operation of operations) {
-        const { name } = operation;
-        const operationName = `${packageName}!${clientName}#${name}:member(1)`;
-        CrossLanguageDefinitionId[operationName] =
-          operation.crossLanguageDefinitionId;
+    for (const [prefixKey, operations] of methodMap) {
+      const prefixes = prefixKey.split("/");
+      if (prefixKey === "") {
+        for (const operation of operations) {
+          const { name } = operation;
+          const operationName = `${packageName}!${clientName}#${name}:member(1)`;
+          CrossLanguageDefinitionId[operationName] =
+            operation.crossLanguageDefinitionId;
+        }
+      } else {
+        // e,g., @azure/ai-client!ConnectionsOperations#getConnectionWithSecrets:member": "Azure.AI.Projects.Connections.getConnectionWithSecrets"
+        const rawGroupName = normalizeName(
+          prefixes[0] ?? "",
+          NameType.Interface
+        );
+        const propertyType = `${normalizeName(
+          rawGroupName,
+          NameType.OperationGroup
+        )}Operations`;
+        for (const operation of operations) {
+          const { name } = operation;
+          const operationName = `${packageName}!${propertyType}#${name}:member`;
+          CrossLanguageDefinitionId[operationName] =
+            operation.crossLanguageDefinitionId;
+        }
       }
     }
   }
