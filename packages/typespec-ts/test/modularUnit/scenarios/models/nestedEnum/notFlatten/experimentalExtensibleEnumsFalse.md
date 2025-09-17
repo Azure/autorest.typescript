@@ -77,7 +77,7 @@ export function _fooRequestBodySerializer(item: _FooRequestBody): any {
   return { status: provisioningStateSerializer(item["status"]) };
 }
 
-/** Alias for ProvisioningState */
+/** The resource provisioning state. */
 export type ProvisioningState =
   | ResourceProvisioningState
   | "Provisioning"
