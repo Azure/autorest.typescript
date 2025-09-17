@@ -1,4 +1,4 @@
-# only: Should not flatten extensible enum if disabling `experimental-extensible-enums`
+# Should not flatten extensible enum if disabling `experimental-extensible-enums`
 
 Sample generation should arm template and operations successfully.
 
@@ -77,7 +77,7 @@ export function _fooRequestBodySerializer(item: _FooRequestBody): any {
   return { status: provisioningStateSerializer(item["status"]) };
 }
 
-/** Alias for ProvisioningState */
+/** The resource provisioning state. */
 export type ProvisioningState =
   | ResourceProvisioningState
   | "Provisioning"
