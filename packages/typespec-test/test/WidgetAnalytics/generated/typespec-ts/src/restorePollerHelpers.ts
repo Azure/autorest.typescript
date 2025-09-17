@@ -79,6 +79,7 @@ export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
 }
 
 interface DeserializationHelper {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
   deserializer: Function;
   expectedStatuses: string[];
 }
