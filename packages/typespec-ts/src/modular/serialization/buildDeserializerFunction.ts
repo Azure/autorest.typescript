@@ -28,6 +28,8 @@ import { SerializationHelpers } from "../static-helpers-metadata.js";
 import { refkey } from "../../framework/refkey.js";
 import { resolveReference } from "../../framework/reference.js";
 import { getAdditionalPropertiesType } from "../helpers/typeHelpers.js";
+import { reportDiagnostic } from "../../lib.js";
+import { NoTarget } from "@typespec/compiler";
 
 export function buildModelDeserializer(
   context: SdkContext,
@@ -102,7 +104,11 @@ function buildPolymorphicDeserializer(
   nameOnly = false
 ): FunctionDeclarationStructure | undefined | string {
   if (!type.name) {
-    throw new Error(`NYI Serialization of anonymous types`);
+    reportDiagnostic(context.program, {
+      code: "anonymous-type-deserialization",
+      target: type.__raw || NoTarget
+    });
+    return undefined; // Return undefined to skip this deserialization
   }
   const deserializeFunctionName = `${normalizeModelName(
     context,
@@ -146,8 +152,12 @@ function buildPolymorphicDeserializer(
       return;
     }
     const union = subType?.discriminatedSubtypes ? "_Union" : "";
-    if (!subType || subType?.name) {
-      throw new Error(`NYI Serialization of anonymous types`);
+    if (!subType || !subType?.name) {
+      reportDiagnostic(context.program, {
+        code: "anonymous-type-deserialization",
+        target: subType?.__raw || NoTarget
+      });
+      return; // Skip this subtype
     }
 
     const rawSubTypeName = `${subType.name}${union}`;
@@ -190,7 +200,11 @@ function buildDiscriminatedUnionDeserializer(
   nameOnly = false
 ): FunctionDeclarationStructure | undefined | string {
   if (!type.name) {
-    throw new Error(`NYI Serialization of anonymous types`);
+    reportDiagnostic(context.program, {
+      code: "anonymous-type-deserialization",
+      target: type.__raw || NoTarget
+    });
+    return undefined; // Return undefined to skip this deserialization
   }
   const cases: string[] = [];
   const output: string[] = [];
@@ -270,7 +284,11 @@ function buildUnionDeserializer(
   nameOnly = false
 ): FunctionDeclarationStructure | string | undefined {
   if (!type.name) {
-    throw new Error(`NYI Serialization of anonymous types`);
+    reportDiagnostic(context.program, {
+      code: "anonymous-type-deserialization",
+      target: type.__raw || NoTarget
+    });
+    return ""; // Return empty string to continue processing
   }
   const deserializerFunctionName = `${normalizeModelName(
     context,
@@ -305,7 +323,11 @@ function buildModelTypeDeserializer(
   }
 ): FunctionDeclarationStructure | string | undefined {
   if (!type.name) {
-    throw new Error(`NYI Deserialization of anonymous types`);
+    reportDiagnostic(context.program, {
+      code: "anonymous-type-deserialization",
+      target: type.__raw || NoTarget
+    });
+    return ""; // Return empty string to continue processing
   }
   const deserializerFunctionName = `${normalizeModelName(
     context,
