@@ -1,3 +1,23 @@
+## 6.0.47 (2025-09-11)
+
+- [Bugfix] Improve sourcesRoot calculation for typespec-ts. Please refer to [#3484](https://github.com/Azure/autorest.typescript/pull/3484)
+- [Feature] Update License Headers. Please refer to [#3462](https://github.com/Azure/autorest.typescript/pull/3462)
+- [Bugfix] Fix discriminated property accessto use camelCase property names. Please refer to [#3447](https://github.com/Azure/autorest.typescript/pull/3447)
+- [Bugfix] Fix partial lint errors in codegen side. Please refer to [#3481](https://github.com/Azure/autorest.typescript/pull/3481)
+- [Feature] Improve TSDoc documentation for Azure Cloud helpers. Please refer to [#3474](https://github.com/Azure/autorest.typescript/pull/3474)
+- [Bugfix] Remove unwanted serializer/deserializer function exports from index.ts files. Please refer to [#3463](https://github.com/Azure/autorest.typescript/pull/3463)
+- [Feature] Upgrade dependencies
+  - Bump TypeSpec dependencies to latest stable versions. Please refer to [#3465](https://github.com/Azure/autorest.typescript/pull/3465)
+  - Bump TypeSpec version to latest stable with comprehensive integration testing. Please refer to [#3451](https://github.com/Azure/autorest.typescript/pull/3451)
+  - Bump TypeSpec version to latest stable and skip failure cases for RLC. Please refer to [#3445](https://github.com/Azure/autorest.typescript/pull/3445)
+- [Feature] Remove dev-tool run vendored commands. Please refer to [#3455](https://github.com/Azure/autorest.typescript/pull/3455)
+- [Feature] Simpler vitest configs. Please refer to [#3439](https://github.com/Azure/autorest.typescript/pull/3439)
+- [Feature] Delete prepack. Please refer to [#3449](https://github.com/Azure/autorest.typescript/pull/3449)
+- [Feature] Improve autorest packageJson scripts. Please refer to [#3393](https://github.com/Azure/autorest.typescript/pull/3393)
+- [Feature] Use tsconfig.src.build.json. Please refer to [#3392](https://github.com/Azure/autorest.typescript/pull/3392)
+- [Bugfix] Fix enum name normalization in TSDoc comments for extensible enums. Please refer to [#3430](https://github.com/Azure/autorest.typescript/pull/3430)
+- [Bugfix] Fix TypeSpec endpoint parameter generation when endpoint has default values. Please refer to [#3426](https://github.com/Azure/autorest.typescript/pull/3426)
+
 ## 6.0.46 (2025-08-08)
 
 - [Bugfix] Remove the previously missed `experimentalExtensibleEnums`. Please refer to [#3417](https://github.com/Azure/autorest.typescript/pull/3417)

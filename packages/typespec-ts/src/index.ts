@@ -210,9 +210,15 @@ export async function $onEmit(context: EmitContext) {
   async function calculateGenerationDir(): Promise<GenerationDirDetail> {
     const projectRoot = context.emitterOutputDir ?? "";
     const customizationFolder = join(projectRoot, "generated");
+    const srcGeneratedFolder = join(projectRoot, "src", "generated");
     // if customization folder exists, use it as sources root
-    const sourcesRoot = (await fsextra.pathExists(customizationFolder))
-      ? customizationFolder
+    const finalCustomizationFolder = (await fsextra.pathExists(
+      srcGeneratedFolder
+    ))
+      ? srcGeneratedFolder
+      : customizationFolder;
+    const sourcesRoot = (await fsextra.pathExists(finalCustomizationFolder))
+      ? finalCustomizationFolder
       : join(projectRoot, "src");
     return {
       rootDir: projectRoot,
