@@ -12,25 +12,43 @@
       "./package.json": "./package.json",
       ".": "./src/index.ts",
       "./api": "./src/api/index.ts",
-      "./api/type": "src/api/type/index.ts",
-      "./api/relationship": "src/api/relationship/index.ts",
-      "./api/lineage": "src/api/lineage/index.ts",
-      "./api/discovery": "src/api/discovery/index.ts",
-      "./api/glossary": "src/api/glossary/index.ts",
-      "./api/entity": "src/api/entity/index.ts",
+      "./api/type": "./src/api/type/index.ts",
+      "./api/relationship": "./src/api/relationship/index.ts",
+      "./api/lineage": "./src/api/lineage/index.ts",
+      "./api/discovery": "./src/api/discovery/index.ts",
+      "./api/glossary": "./src/api/glossary/index.ts",
+      "./api/entity": "./src/api/entity/index.ts",
       "./models": "./src/models/index.ts"
     },
-    "dialects": ["esm", "commonjs"],
-    "esmDialects": ["browser", "react-native"],
+    "dialects": [
+      "esm",
+      "commonjs"
+    ],
+    "esmDialects": [
+      "browser",
+      "react-native"
+    ],
     "selfLink": false
   },
   "type": "module",
   "browser": "./dist/browser/index.js",
   "react-native": "./dist/react-native/index.js",
-  "keywords": ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
+  "keywords": [
+    "node",
+    "azure",
+    "cloud",
+    "typescript",
+    "browser",
+    "isomorphic"
+  ],
   "author": "Microsoft Corporation",
   "license": "MIT",
-  "files": ["dist/", "!dist/**/*.d.*ts.map", "README.md", "LICENSE"],
+  "files": [
+    "dist/",
+    "!dist/**/*.d.*ts.map",
+    "README.md",
+    "LICENSE"
+  ],
   "dependencies": {
     "@azure/core-util": "^1.9.2",
     "@azure-rest/core-client": "^2.3.1",
@@ -56,5 +74,173 @@
     "lint": "eslint package.json api-extractor.json src",
     "lint:fix": "eslint package.json api-extractor.json src --fix --fix-type [problem,suggestion]",
     "build": "npm run clean && tshy && npm run extract-api"
-  }
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "browser": {
+        "types": "./dist/browser/index.d.ts",
+        "default": "./dist/browser/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/index.d.ts",
+        "default": "./dist/react-native/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/index.d.ts",
+        "default": "./dist/commonjs/index.js"
+      }
+    },
+    "./api": {
+      "browser": {
+        "types": "./dist/browser/api/index.d.ts",
+        "default": "./dist/browser/api/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/index.d.ts",
+        "default": "./dist/react-native/api/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/index.d.ts",
+        "default": "./dist/esm/api/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/index.d.ts",
+        "default": "./dist/commonjs/api/index.js"
+      }
+    },
+    "./api/type": {
+      "browser": {
+        "types": "./dist/browser/api/type/index.d.ts",
+        "default": "./dist/browser/api/type/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/type/index.d.ts",
+        "default": "./dist/react-native/api/type/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/type/index.d.ts",
+        "default": "./dist/esm/api/type/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/type/index.d.ts",
+        "default": "./dist/commonjs/api/type/index.js"
+      }
+    },
+    "./api/relationship": {
+      "browser": {
+        "types": "./dist/browser/api/relationship/index.d.ts",
+        "default": "./dist/browser/api/relationship/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/relationship/index.d.ts",
+        "default": "./dist/react-native/api/relationship/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/relationship/index.d.ts",
+        "default": "./dist/esm/api/relationship/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/relationship/index.d.ts",
+        "default": "./dist/commonjs/api/relationship/index.js"
+      }
+    },
+    "./api/lineage": {
+      "browser": {
+        "types": "./dist/browser/api/lineage/index.d.ts",
+        "default": "./dist/browser/api/lineage/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/lineage/index.d.ts",
+        "default": "./dist/react-native/api/lineage/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/lineage/index.d.ts",
+        "default": "./dist/esm/api/lineage/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/lineage/index.d.ts",
+        "default": "./dist/commonjs/api/lineage/index.js"
+      }
+    },
+    "./api/discovery": {
+      "browser": {
+        "types": "./dist/browser/api/discovery/index.d.ts",
+        "default": "./dist/browser/api/discovery/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/discovery/index.d.ts",
+        "default": "./dist/react-native/api/discovery/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/discovery/index.d.ts",
+        "default": "./dist/esm/api/discovery/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/discovery/index.d.ts",
+        "default": "./dist/commonjs/api/discovery/index.js"
+      }
+    },
+    "./api/glossary": {
+      "browser": {
+        "types": "./dist/browser/api/glossary/index.d.ts",
+        "default": "./dist/browser/api/glossary/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/glossary/index.d.ts",
+        "default": "./dist/react-native/api/glossary/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/glossary/index.d.ts",
+        "default": "./dist/esm/api/glossary/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/glossary/index.d.ts",
+        "default": "./dist/commonjs/api/glossary/index.js"
+      }
+    },
+    "./api/entity": {
+      "browser": {
+        "types": "./dist/browser/api/entity/index.d.ts",
+        "default": "./dist/browser/api/entity/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/entity/index.d.ts",
+        "default": "./dist/react-native/api/entity/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/entity/index.d.ts",
+        "default": "./dist/esm/api/entity/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/entity/index.d.ts",
+        "default": "./dist/commonjs/api/entity/index.js"
+      }
+    },
+    "./models": {
+      "browser": {
+        "types": "./dist/browser/models/index.d.ts",
+        "default": "./dist/browser/models/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/models/index.d.ts",
+        "default": "./dist/react-native/models/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/models/index.d.ts",
+        "default": "./dist/esm/models/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/models/index.d.ts",
+        "default": "./dist/commonjs/models/index.js"
+      }
+    }
+  },
+  "main": "./dist/commonjs/index.js",
+  "types": "./dist/commonjs/index.d.ts",
+  "module": "./dist/esm/index.js"
 }

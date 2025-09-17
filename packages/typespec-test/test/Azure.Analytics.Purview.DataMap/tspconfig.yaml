@@ -6,5 +6,5 @@ options:
     is-modular-library: true
     emitter-output-dir: "{project-root}/generated/typespec-ts"
     package-details:
-      name: "@azure-rest/purview-datamap"
+      name: "@azure/purview-datamap"
       description: "Purview DataMap Service"
