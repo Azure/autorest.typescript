@@ -11,12 +11,13 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 // @public
 export interface GetSecretOptionalParams extends OperationOptions {
     outContentType?: string;
+    secretVersion?: string;
 }
 
 // @public (undocumented)
 export class KeyVaultClient {
     constructor(endpointParam: string, apiVersion: string, options?: KeyVaultClientOptionalParams);
-    getSecret(secretName: string, secretVersion: string, options?: GetSecretOptionalParams): Promise<void>;
+    getSecret(secretName: string, options?: GetSecretOptionalParams): Promise<void>;
     readonly pipeline: Pipeline;
 }
 

@@ -36,9 +36,8 @@ export class KeyVaultClient {
   /** The most basic operation. */
   getSecret(
     secretName: string,
-    secretVersion: string,
     options: GetSecretOptionalParams = { requestOptions: {} },
   ): Promise<void> {
-    return getSecret(this._client, secretName, secretVersion, options);
+    return getSecret(this._client, secretName, options);
   }
 }

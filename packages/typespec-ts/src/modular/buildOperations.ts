@@ -130,7 +130,7 @@ export function buildOperationOptions(
         p.onClient === false &&
         !(
           p.isGeneratedName &&
-          (p.name === "contentType" || p.name !== "accept")
+          (p.name === "contentType" || p.name === "accept")
         )
     )
     .filter((p) => p.optional || p.clientDefaultValue);
@@ -144,46 +144,6 @@ export function buildOperationOptions(
     docs: ["Delay to wait until next poll, in milliseconds."]
   };
 
-  // Check for missing query parameters that are referenced in URL template but not in SDK parameters
-  const missingQueryParams: any[] = [];
-  if (operation.operation.parameters && operation.operation.uriTemplate) {
-    const uriTemplate = operation.operation.uriTemplate;
-    for (const httpParam of operation.operation.parameters) {
-      if (
-        httpParam.kind === "query" &&
-        httpParam.optional &&
-        !httpParam.onClient
-      ) {
-        // Check if this parameter is referenced in the URI template but missing from SDK parameters
-        const isInUriTemplate = uriTemplate.includes(httpParam.serializedName);
-        const normalizedHttpParamName = normalizeName(
-          httpParam.serializedName,
-          NameType.Parameter
-        );
-        const existsInSdk = optionalParameters.some(
-          (p) =>
-            normalizeName(p.name, NameType.Parameter) ===
-            normalizedHttpParamName
-        );
-
-        if (
-          isInUriTemplate &&
-          !existsInSdk &&
-          httpParam.serializedName !== "api-version"
-        ) {
-          missingQueryParams.push({
-            docs: getDocsFromDescription(
-              httpParam.doc || `The ${httpParam.serializedName} parameter.`
-            ),
-            hasQuestionToken: true,
-            type: getTypeExpression(context, httpParam.type),
-            name: normalizeName(httpParam.serializedName, NameType.Parameter)
-          });
-        }
-      }
-    }
-  }
-
   // handle optional body parameter
   // if (operation.operation.bodyParam?.optional === true) {
   //   options.push(operation.operation.bodyParam);
@@ -196,18 +156,16 @@ export function buildOperationOptions(
     name,
     isExported: true,
     extends: [operationOptionsReference],
-    properties: (isLroOnlyOperation(operation) ? [lroOptions] : [])
-      .concat(
-        options.map((p) => {
-          return {
-            docs: getDocsFromDescription(p.doc),
-            hasQuestionToken: true,
-            type: getTypeExpression(context, p.type),
-            name: normalizeName(p.name, NameType.Parameter)
-          };
-        })
-      )
-      .concat(missingQueryParams),
+    properties: (isLroOnlyOperation(operation) ? [lroOptions] : []).concat(
+      options.map((p) => {
+        return {
+          docs: getDocsFromDescription(p.doc),
+          hasQuestionToken: true,
+          type: getTypeExpression(context, p.type),
+          name: normalizeName(p.name, NameType.Parameter)
+        };
+      })
+    ),
     docs: [`Optional parameters.`]
   };
   addDeclaration(
