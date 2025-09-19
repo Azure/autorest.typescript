@@ -1,20 +1,39 @@
-# only: Optional query parameters should be included in options interface
+# Optional query parameters should be included in options interface
 
 This test reproduces the issue where optional query parameters like `outContentType` were being incorrectly filtered out from the generated options interface due to a bug in the parameter filtering logic.
+
+The config would be like:
+
+```yaml
+needAzureCore: true
+```
 
 ## TypeSpec
 
 ```tsp
-@route("/secret/{secret-name}")
-op getSecret(
-  @path("secret-name") secretName: string,
-  @query("api-version") apiVersion: string,
-  @query secretVersion?: string,
-  @query("outContentType") outContentType?: string
-): {
-  @statusCode statusCode: 200;
-  @body value: string;
-};
+alias KeyVaultOperation<
+  TParams extends Reflection.Model,
+  TResponse,
+  Traits extends Reflection.Model = {},
+> = Foundations.Operation<TParams, TResponse, Traits, {}>;
+
+#suppress "@azure-tools/typespec-azure-core/use-standard-operations" "Foundations.Operation is necessary for Key Vault"
+@summary("Get a specified secret from a given key vault.")
+@route("/secrets/{secret-name}/{secret-version}")
+@get
+op getSecret is KeyVaultOperation<
+    {
+        @path("secret-name")
+        secretName: string;
+
+        @path("secret-version")
+        secretVersion?: string;
+
+        @query("outContentType")
+        outContentType?: string;
+    },
+    {}
+>;
 ```
 
 ## Models with Options
@@ -49,15 +68,14 @@ import {
 export function _getSecretSend(
   context: Client,
   secretName: string,
-  apiVersion: string,
   options: GetSecretOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/secret/{secret-name}{?api%2Dversion,secretVersion,outContentType}",
+    "/secrets/{secret-name}/{secret-version}{?api%2Dversion,outContentType}",
     {
       "secret-name": secretName,
-      "api%2Dversion": apiVersion,
-      secretVersion: options?.secretVersion,
+      "secret-version": options["secretVersion"],
+      "api%2Dversion": context.apiVersion,
       outContentType: options?.outContentType,
     },
     {
@@ -66,33 +84,27 @@ export function _getSecretSend(
   );
   return context
     .path(path)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "text/plain",
-        ...options.requestOptions?.headers,
-      },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getSecretDeserialize(
   result: PathUncheckedResponse,
-): Promise<string> {
+): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return result.body;
+  return;
 }
 
+/** The most basic operation. */
 export async function getSecret(
   context: Client,
   secretName: string,
-  apiVersion: string,
   options: GetSecretOptionalParams = { requestOptions: {} },
-): Promise<string> {
-  const result = await _getSecretSend(context, secretName, apiVersion, options);
+): Promise<void> {
+  const result = await _getSecretSend(context, secretName, options);
   return _getSecretDeserialize(result);
 }
 ```

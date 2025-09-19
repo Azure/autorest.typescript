@@ -124,16 +124,43 @@ export function buildOperationOptions(
 ) {
   const dependencies = useDependencies();
   const operation = method[1];
-  const optionalParameters = operation.parameters
+
+  // Get all parameters, both method and HTTP parameters
+  const methodParameters = operation.parameters || [];
+  const httpParameters = operation.operation?.parameters || [];
+
+  // Convert HTTP parameters to method parameters if they should be in options
+  const additionalOptionalParams = httpParameters
+    .filter(
+      (p) =>
+        p.onClient === false &&
+        p.optional === true &&
+        !methodParameters.some((mp) => mp.name === p.name) &&
+        !(
+          p.isGeneratedName &&
+          (p.name === "contentType" || p.name !== "accept")
+        )
+    )
+    .map(
+      (p): SdkMethodParameter => ({
+        ...p,
+        kind: "method" as const,
+        optional: true
+      })
+    );
+
+  const optionalParameters = methodParameters
     .filter(
       (p) =>
         p.onClient === false &&
         !(
           p.isGeneratedName &&
-          (p.name === "contentType" || p.name === "accept")
+          (p.name === "contentType" || p.name !== "accept")
         )
     )
-    .filter((p) => p.optional || p.clientDefaultValue);
+    .filter((p) => p.optional || p.clientDefaultValue)
+    .concat(additionalOptionalParams);
+
   const options: SdkMethodParameter[] = [...optionalParameters];
 
   const name = getOperationOptionsName(method, true);

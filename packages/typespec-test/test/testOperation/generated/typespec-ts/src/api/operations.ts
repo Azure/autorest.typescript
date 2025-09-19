@@ -14,13 +14,14 @@ import {
 export function _getSecretSend(
   context: Client,
   secretName: string,
+  secretVersion: string,
   options: GetSecretOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/secrets/{secret-name}/{secret-version}{?api%2Dversion,outContentType}",
     {
       "secret-name": secretName,
-      "secret-version": options["secretVersion"],
+      "secret-version": secretVersion,
       "api%2Dversion": context.apiVersion,
       outContentType: options?.outContentType,
     },
@@ -48,8 +49,14 @@ export async function _getSecretDeserialize(
 export async function getSecret(
   context: Client,
   secretName: string,
+  secretVersion: string,
   options: GetSecretOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _getSecretSend(context, secretName, options);
+  const result = await _getSecretSend(
+    context,
+    secretName,
+    secretVersion,
+    options,
+  );
   return _getSecretDeserialize(result);
 }
