@@ -73,14 +73,15 @@ export function getClientParameters(
   const hasDefaultValue = (p: SdkParameter) =>
     p.clientDefaultValue || p.__raw?.defaultValue || p.type.kind === "constant";
   const isRequired = (p: SdkParameter) =>
-    !p.optional &&
-    ((!hasDefaultValue(p) &&
+    // Special case: when apiVersionAsRequired is true, apiVersion should always be considered required
+    (options.apiVersionAsRequired && p.isApiVersionParam) ||
+    (!p.optional &&
+      !hasDefaultValue(p) &&
       !(
         p.type.kind === "endpoint" &&
         p.type.templateArguments[0] &&
         hasDefaultValue(p.type.templateArguments[0])
-      )) ||
-      (options.apiVersionAsRequired && p.isApiVersionParam));
+      ));
   const isOptional = (p: SdkParameter) => p.optional || hasDefaultValue(p);
   const skipCredentials = (p: SdkParameter) => p.kind !== "credential";
   const skipMethodParam = (p: SdkParameter) => p.kind !== "method";
@@ -98,7 +99,6 @@ export function getClientParameters(
   const params = clientParams.filter((p) =>
     filters.every((filter) => !filter || filter(p))
   );
-
   return params;
 }
 
