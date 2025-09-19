@@ -10,7 +10,6 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 
 // @public
 export interface GetSecretOptionalParams extends OperationOptions {
-    outContentType?: string;
 }
 
 // @public (undocumented)
