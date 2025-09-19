@@ -265,6 +265,60 @@ function prepareExampleParameters(
   // TODO: blocked by TCGC issue: https://github.com/Azure/typespec-azure/issues/1419
   // refine this to support generic client-level parameters once resolved
   const result: ExampleValue[] = [];
+
+  // Process client initialization parameters (including endpoint from @server)
+  if (topLevelClient.clientInitialization.parameters) {
+    for (const param of topLevelClient.clientInitialization.parameters) {
+      if (param.kind === "endpoint" && !param.optional) {
+        if (
+          param.type?.kind === "endpoint" &&
+          param.type.templateArguments?.length > 0
+        ) {
+          for (const templateArg of param.type.templateArguments) {
+            // Only add endpoint parameters that are:
+            // 1. Required (not optional)
+            // 2. Not constant values
+            // 3. Don't have client default values
+            // 4. Have custom documentation (indicating user-defined @server decorator)
+            if (
+              !templateArg.optional &&
+              templateArg.type.kind !== "constant" &&
+              !templateArg.clientDefaultValue &&
+              templateArg.doc &&
+              templateArg.doc !== "Service host"
+            ) {
+              // Extract default endpoint value from the documentation
+              let defaultEndpointValue = '"https://example.com"'; // fallback default
+
+              if (templateArg.doc) {
+                // Look for URLs in the documentation, typically after "for example" or "example:"
+                const urlMatches = templateArg.doc.match(
+                  /(?:for example|example:?)\s+(https?:\/\/[^\s,)]+)/i
+                );
+                if (urlMatches && urlMatches[1]) {
+                  // Clean up the URL - remove any template variables like {region}
+                  let extractedUrl = urlMatches[1];
+                  // Replace common template variables with example values
+                  extractedUrl = extractedUrl
+                    .replace(/\{region\}/g, "eastus")
+                    .replace(/\{[^}]+\}/g, "example");
+                  defaultEndpointValue = `"${extractedUrl}"`;
+                }
+              }
+
+              result.push({
+                name: templateArg.name,
+                value: defaultEndpointValue,
+                isOptional: templateArg.optional,
+                onClient: true
+              });
+            }
+          }
+        }
+      }
+    }
+  }
+
   const credentialExampleValue = getCredentialExampleValue(
     dpgContext,
     topLevelClient.clientInitialization
