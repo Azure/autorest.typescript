@@ -227,7 +227,9 @@ export type ReleaseDelay = "0" | "10" | "60" | "600" | "3600";
 
 /** Known values of {@link ServiceApiVersions} that the service accepts. */
 export enum KnownServiceApiVersions {
+  /** 2023-11-01 */
   V20231101 = "2023-11-01",
+  /** 2024-06-01 */
   V20240601 = "2024-06-01",
 }
 

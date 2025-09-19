@@ -145,9 +145,7 @@ export interface ImageData {
 
 // @public
 export enum KnownVersions {
-    // (undocumented)
     V20231001 = "2023-10-01",
-    // (undocumented)
     V20240901 = "2024-09-01"
 }
 

@@ -458,6 +458,9 @@ function emitEnumMember(
 
   if (member.doc) {
     memberStructure.docs = [member.doc];
+  } else {
+    // Provide default documentation using the enum value when no explicit doc exists
+    memberStructure.docs = [String(member.value)];
   }
 
   return memberStructure;
