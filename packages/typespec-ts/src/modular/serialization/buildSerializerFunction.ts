@@ -182,7 +182,7 @@ function buildPolymorphicSerializer(
   });
 
   statements.push(`
-      switch (item.${type.discriminatorProperty.name}) {
+      switch (item.${normalizeName(type.discriminatorProperty.name, NameType.Property)}) {
        ${cases.join("\n")}
         default:
           return item;
@@ -253,7 +253,7 @@ function buildDiscriminatedUnionSerializer(
     `);
   }
   output.push(`
-    switch (item.${type.discriminatorProperty?.name}) {
+    switch (item.${type.discriminatorProperty ? normalizeName(type.discriminatorProperty.name, NameType.Property) : "unknown"}) {
      ${cases.join("\n")}
       default:
         return ${baseSerializerName}(item);
