@@ -36,6 +36,24 @@ import { NoTarget } from "@typespec/compiler";
 import { SourceFile } from "ts-morph";
 import { useContext } from "../../contextManager.js";
 import { join } from "path";
+import { getClientParameters } from "./clientHelpers.js";
+
+/**
+ * Get environment variable name for client parameters
+ */
+function getEnvVarName(paramName: string, isForTest: boolean): string {
+  if (isForTest) {
+    return paramName.toUpperCase();
+  }
+
+  // Use more meaningful environment variable names for samples
+  const lowerName = paramName.toLowerCase();
+  if (lowerName === "endpoint") return "ENDPOINT";
+  if (lowerName === "subscriptionid") return "SUBSCRIPTION_ID";
+  if (lowerName === "resourcegroupname") return "RESOURCE_GROUP";
+  if (lowerName === "workspacename") return "WORKSPACE_NAME";
+  return paramName.toUpperCase();
+}
 
 /**
  * Common interfaces for both samples and tests
@@ -310,6 +328,60 @@ export function prepareCommonParameters(
 ): CommonValue[] {
   const envType = resolveReference(AzureTestDependencies.env);
   const result: CommonValue[] = [];
+
+  // Handle client-level template parameters first (endpoint template arguments)
+  // Only process clients that have endpoint template parameters
+  const clientParams = getClientParameters(topLevelClient, dpgContext, {
+    requiredOnly: true,
+    onClientOnly: false
+  });
+
+  // Check if we have actual endpoint template parameters (not just default endpoints)
+  const hasTemplateParams = clientParams.some(
+    (param) =>
+      param.kind === "path" ||
+      (param.kind === "endpoint" &&
+        param.name !== "endpoint" &&
+        !param.optional)
+  );
+
+  if (hasTemplateParams) {
+    for (const clientParam of clientParams) {
+      // Skip credential parameters as they're handled separately
+      if (clientParam.kind === "credential") {
+        continue;
+      }
+
+      // Handle template parameters from endpoint
+      const exampleValue = parameterMap[clientParam.name];
+      if (exampleValue && exampleValue.value) {
+        result.push(
+          prepareCommonValue(
+            clientParam.name,
+            isForTest
+              ? `process.env["${clientParam.name.toUpperCase()}"] || "${serializeExampleValue(exampleValue.value)}"`
+              : serializeExampleValue(exampleValue.value),
+            clientParam.optional,
+            true // onClient = true for client parameters
+          )
+        );
+      } else if (!clientParam.optional && clientParam.kind !== "method") {
+        // Generate default values for required client parameters without examples
+        const envVarName = getEnvVarName(clientParam.name, isForTest);
+        const defaultValue = isForTest
+          ? `process.env["${envVarName}"] || "{Your ${clientParam.name}}"`
+          : `process.env.${envVarName} || ""`;
+        result.push(
+          prepareCommonValue(
+            clientParam.name,
+            defaultValue,
+            false,
+            true // onClient = true for client parameters
+          )
+        );
+      }
+    }
+  }
 
   // Handle credentials
   const credentialValue = isForTest

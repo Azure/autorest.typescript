@@ -49,6 +49,7 @@ function emitMethodSamples(
 
   const exampleFunctions = [];
   const clientName = getClassicalClientName(options.client);
+  let needsDotenv = false;
 
   // TODO: remove hard-coded for package
   if (dpgContext.rlcOptions?.packageDetails?.name) {
@@ -73,6 +74,11 @@ function emitMethodSamples(
       options.client,
       false // isForTest = false for samples
     );
+
+    const hasEnvVars = parameters.some((p) => p.value.includes("process.env"));
+    if (hasEnvVars) {
+      needsDotenv = true;
+    }
 
     const { methodCall, clientParams, clientParamDefs } = generateMethodCall(
       method,
@@ -129,6 +135,11 @@ function emitMethodSamples(
     };
     sourceFile.addFunction(functionDeclaration);
     exampleFunctions.push(exampleName);
+  }
+
+  if (needsDotenv) {
+    sourceFile.insertStatements(1, 'import * as dotenv from "dotenv";');
+    sourceFile.insertStatements(2, "dotenv.config();");
   }
 
   // Add statements referencing the tracked declarations

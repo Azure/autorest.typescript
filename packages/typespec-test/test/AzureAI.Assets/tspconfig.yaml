@@ -1,0 +1,11 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    azure-sdk-for-js: false
+    is-modular-library: true
+    generate-sample: true
+    examples-dir: "{project-root}/spec/examples"
+    emitter-output-dir: "{project-root}/generated/typespec-ts"
+    package-details:
+      name: "@azure/ai-resources-autogen"
