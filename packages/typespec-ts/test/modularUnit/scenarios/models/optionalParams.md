@@ -1,63 +1,61 @@
-# Optional query parameters should be included in options interface
+# Should handle optional parameter filtering when using @@override
 
-This test reproduces the issue where optional query parameters like `outContentType` were being incorrectly filtered out from the generated options interface due to a bug in the parameter filtering logic.
-
-The config would be like:
-
-```yaml
-needAzureCore: true
-```
+Tests that optional parameters are correctly removed from URI templates when using @@override directive.
 
 ## TypeSpec
 
 ```tsp
-alias KeyVaultOperation<
-  TParams extends Reflection.Model,
-  TResponse,
-  Traits extends Reflection.Model = {},
-> = Foundations.Operation<TParams, TResponse, Traits, {}>;
+import "@typespec/http";
+import "@azure-tools/typespec-client-generator-core";
+using TypeSpec.Http;
+using Azure.ClientGenerator.Core;
 
-#suppress "@azure-tools/typespec-azure-core/use-standard-operations" "Foundations.Operation is necessary for Key Vault"
-@summary("Get a specified secret from a given key vault.")
-@route("/secrets/{secret-name}/{secret-version}")
+@service(#{
+  title: "KeyVault Service"
+})
+namespace KeyVault;
+
+// Original operation with outContentType parameter
+@route("/secrets/{secretName}")
 @get
-op getSecret is KeyVaultOperation<
-    {
-        @path("secret-name")
-        secretName: string;
+op getSecretOriginal(
+  @path secretName: string,
+  @query @clientName("outContentType") outContentType?: string
+): void;
 
-        @path("secret-version")
-        secretVersion?: string;
+// Override operation without outContentType parameter
+op getSecret(
+  @path secretName: string,
+): void;
 
-        @query("outContentType")
-        outContentType?: string;
-    },
-    {}
->;
+@@override(KeyVault.getSecretOriginal, KeyVault.getSecret);
+```
+
+The config would be like:
+
+```yaml
+needTCGC: true
+needAzureCore: true
+withRawContent: true
 ```
 
 ## Models with Options
 
-The options file should correctly include both optional query parameters:
+The options interface should be correctly generated:
 
 ```ts models:withOptions
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface GetSecretOptionalParams extends OperationOptions {
-  secretVersion?: string;
-  outContentType?: string;
-}
+export interface GetSecretOriginalOptionalParams extends OperationOptions {}
 ```
 
 ## Operations
 
-The GetSecretOptionalParams interface should include both secretVersion and outContentType parameters in the options:
-
 ```ts operations
-import { TestingContext as Client } from "./index.js";
+import { KeyVaultContext as Client } from "./index.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
-import { GetSecretOptionalParams } from "./options.js";
+import { GetSecretOriginalOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -65,18 +63,15 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 
-export function _getSecretSend(
+export function _getSecretOriginalSend(
   context: Client,
   secretName: string,
-  options: GetSecretOptionalParams = { requestOptions: {} },
+  options: GetSecretOriginalOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/secrets/{secret-name}/{secret-version}{?api%2Dversion,outContentType}",
+    "/secrets/{secretName}",
     {
-      "secret-name": secretName,
-      "secret-version": options["secretVersion"],
-      "api%2Dversion": context.apiVersion,
-      outContentType: options?.outContentType,
+      secretName: secretName,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -87,10 +82,10 @@ export function _getSecretSend(
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _getSecretDeserialize(
+export async function _getSecretOriginalDeserialize(
   result: PathUncheckedResponse,
 ): Promise<void> {
-  const expectedStatuses = ["200"];
+  const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
@@ -98,13 +93,12 @@ export async function _getSecretDeserialize(
   return;
 }
 
-/** The most basic operation. */
-export async function getSecret(
+export async function getSecretOriginal(
   context: Client,
   secretName: string,
-  options: GetSecretOptionalParams = { requestOptions: {} },
+  options: GetSecretOriginalOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _getSecretSend(context, secretName, options);
-  return _getSecretDeserialize(result);
+  const result = await _getSecretOriginalSend(context, secretName, options);
+  return _getSecretOriginalDeserialize(result);
 }
 ```
