@@ -858,7 +858,7 @@ export function getParameterMap(
     },
     target: param.__raw || NoTarget
   });
-  
+
   // Return a fallback value to allow the emitter to continue
   return `"${param.name}": undefined`;
 }

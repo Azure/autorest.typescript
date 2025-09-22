@@ -47,10 +47,7 @@ export function buildRootIndex(
     reportDiagnostic(context.program, {
       code: "client-file-not-found",
       format: {
-        filePath: `${srcPath}/${normalizeName(
-          clientName,
-          NameType.File
-        )}.ts`
+        filePath: `${srcPath}/${normalizeName(clientName, NameType.File)}.ts`
       },
       target: NoTarget
     });
