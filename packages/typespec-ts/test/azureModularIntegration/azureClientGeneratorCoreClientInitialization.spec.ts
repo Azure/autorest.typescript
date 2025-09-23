@@ -1,12 +1,14 @@
 import { assert } from "chai";
 import {
-  HeaderParamClient,
-  MultipleParamsClient,
-  MixedParamsClient,
-  PathParamClient,
-  ParamAliasClient,
-  ParentClient
-} from "./generated/azure/client-generator-core/client-initialization/src/index.js";
+  IndividuallyParentHeaderParamClient,
+  IndividuallyParentMultipleParamsClient,
+  IndividuallyParentPathParamClient,
+  IndividuallyParentNestedWithHeaderClient,
+  IndividuallyParentNestedWithMixedClient,
+  IndividuallyParentNestedWithMultipleClient,
+  IndividuallyParentNestedWithPathClient,
+  IndividuallyParentNestedWithQueryClient
+} from "./generated/azure/client-generator-core/client-initialization/default/individuallyParent/src/index.js";
 
 describe("Azure ClientGeneratorCore Client Initialization", () => {
   const endpointOptions = {
@@ -14,138 +16,199 @@ describe("Azure ClientGeneratorCore Client Initialization", () => {
     allowInsecureConnection: true
   };
 
-  describe("HeaderParam Client", () => {
-    let client: HeaderParamClient;
+  describe("IndividuallyParent Client Tests", () => {
+    describe("IndividuallyParentHeaderParamClient", () => {
+      let client: IndividuallyParentHeaderParamClient;
 
-    beforeEach(() => {
-      client = new HeaderParamClient("test-name-value", endpointOptions);
+      beforeEach(() => {
+        client = new IndividuallyParentHeaderParamClient("test-name-value", endpointOptions);
+      });
+
+      it("should send header parameter in withQuery operation", async () => {
+        const result = await client.withQuery({ id: "test-id" });
+        assert.isUndefined(result);
+      });
+
+      it("should send header parameter in withBody operation", async () => {
+        const result = await client.withBody({ name: "test-name" });
+        assert.isUndefined(result);
+      });
     });
 
-    it("should send header parameter in withQuery operation", async () => {
-      const result = await client.withQuery("test-id");
-      assert.isUndefined(result);
+    describe("IndividuallyParentMultipleParamsClient", () => {
+      let client: IndividuallyParentMultipleParamsClient;
+
+      beforeEach(() => {
+        client = new IndividuallyParentMultipleParamsClient("test-name-value", "us-west", endpointOptions);
+      });
+
+      it("should send multiple parameters in withQuery operation", async () => {
+        const result = await client.withQuery({ id: "test-id" });
+        assert.isUndefined(result);
+      });
+
+      it("should send multiple parameters in withBody operation", async () => {
+        const result = await client.withBody({ name: "test-name" });
+        assert.isUndefined(result);
+      });
     });
 
-    it("should send header parameter in withBody operation", async () => {
-      const result = await client.withBody({ name: "test-name" });
-      assert.isUndefined(result);
-    });
-  });
+    describe("IndividuallyParentPathParamClient", () => {
+      let client: IndividuallyParentPathParamClient;
 
-  describe("MultipleParams Client", () => {
-    let client: MultipleParamsClient;
+      beforeEach(() => {
+        client = new IndividuallyParentPathParamClient("sample-blob", endpointOptions);
+      });
 
-    beforeEach(() => {
-      client = new MultipleParamsClient(
-        "test-name-value",
-        "us-west",
-        endpointOptions
-      );
-    });
+      it("should send path parameter in withQuery operation", async () => {
+        const result = await client.withQuery({ format: "text" });
+        assert.isUndefined(result);
+      });
 
-    it("should send multiple parameters in withQuery operation", async () => {
-      const result = await client.withQuery("test-id");
-      assert.isUndefined(result);
-    });
+      it("should get standalone with path parameter", async () => {
+        const result = await client.getStandalone();
+        assert.strictEqual(result.name, "sample-blob");
+        assert.strictEqual(result.size, 1024);
+        assert.strictEqual(result.contentType, "application/octet-stream");
+        assert.strictEqual(
+          result.createdOn.toISOString(),
+          "2023-01-01T00:00:00.000Z"
+        );
+      });
 
-    it("should send multiple parameters in withBody operation", async () => {
-      const result = await client.withBody({ name: "test-name" });
-      assert.isUndefined(result);
-    });
-  });
-
-  describe("MixedParams Client", () => {
-    let client: MixedParamsClient;
-
-    beforeEach(() => {
-      client = new MixedParamsClient("test-name-value", endpointOptions);
+      it("should delete standalone with path parameter", async () => {
+        const result = await client.deleteStandalone();
+        assert.isUndefined(result);
+      });
     });
 
-    it("should send mixed parameters in withQuery operation", async () => {
-      const result = await client.withQuery("us-west", "test-id");
-      assert.isUndefined(result);
-    });
+    describe("Specialized Nested Clients", () => {
+      describe("IndividuallyParentNestedWithHeaderClient", () => {
+        let client: IndividuallyParentNestedWithHeaderClient;
 
-    it("should send mixed parameters in withBody operation", async () => {
-      const result = await client.withBody("us-west", { name: "test-name" });
-      assert.isUndefined(result);
-    });
-  });
+        beforeEach(() => {
+          client = new IndividuallyParentNestedWithHeaderClient("test-name-value", endpointOptions);
+        });
 
-  describe("PathParam Client", () => {
-    let client: PathParamClient;
+        it("should send nested header parameter in withQuery operation", async () => {
+          const result = await client.withQuery({ format: "text" });
+          assert.isUndefined(result);
+        });
 
-    beforeEach(() => {
-      client = new PathParamClient("sample-blob", endpointOptions);
-    });
+        it("should get standalone with nested header parameter", async () => {
+          const result = await client.getStandalone();
+          assert.isUndefined(result);
+        });
 
-    it("should send path parameter in withQuery operation", async () => {
-      const result = await client.withQuery({ format: "text" });
-      assert.isUndefined(result);
-    });
+        it("should delete standalone with nested header parameter", async () => {
+          const result = await client.deleteStandalone();
+          assert.isUndefined(result);
+        });
+      });
 
-    it("should get standalone with path parameter", async () => {
-      const result = await client.getStandalone();
-      assert.strictEqual(result.name, "sample-blob");
-      assert.strictEqual(result.size, 42);
-      assert.strictEqual(result.contentType, "text/plain");
-      assert.strictEqual(
-        result.createdOn.toISOString(),
-        "2025-04-01T12:00:00.000Z"
-      );
-    });
+      describe("IndividuallyParentNestedWithMultipleClient", () => {
+        let client: IndividuallyParentNestedWithMultipleClient;
 
-    it("should delete standalone with path parameter", async () => {
-      const result = await client.deleteStandalone();
-      assert.isUndefined(result);
-    });
-  });
+        beforeEach(() => {
+          client = new IndividuallyParentNestedWithMultipleClient("test-name-value", "us-west", endpointOptions);
+        });
 
-  describe("ParamAlias Client", () => {
-    let client: ParamAliasClient;
+        it("should send nested multiple parameters in withQuery operation", async () => {
+          const result = await client.withQuery({ format: "text" });
+          assert.isUndefined(result);
+        });
 
-    beforeEach(() => {
-      client = new ParamAliasClient("sample-blob", endpointOptions);
-    });
+        it("should get standalone with nested multiple parameters", async () => {
+          const result = await client.getStandalone();
+          assert.isUndefined(result);
+        });
 
-    it("should call withOriginalName operation", async () => {
-      const result = await client.withOriginalName();
-      assert.isUndefined(result);
-    });
+        it("should delete standalone with nested multiple parameters", async () => {
+          const result = await client.deleteStandalone();
+          assert.isUndefined(result);
+        });
+      });
 
-    it("should call withAliasedName operation", async () => {
-      const result = await client.withAliasedName();
-      assert.isUndefined(result);
-    });
-  });
+      describe("IndividuallyParentNestedWithMixedClient", () => {
+        let client: IndividuallyParentNestedWithMixedClient;
 
-  describe("Parent-Child Client", () => {
-    let parentClient: ParentClient;
+        beforeEach(() => {
+          client = new IndividuallyParentNestedWithMixedClient("test-name-value", endpointOptions);
+        });
 
-    beforeEach(() => {
-      parentClient = new ParentClient(endpointOptions);
-    });
+        it("should send nested mixed parameters in withQuery operation", async () => {
+          const result = await client.withQuery("us-west", { format: "text" });
+          assert.isUndefined(result);
+        });
 
-    it("should create child client and perform operations", async () => {
-      const childClient = parentClient.getChildClient("sample-blob");
+        it("should get standalone with nested mixed parameters", async () => {
+          const result = await client.getStandalone("us-west");
+          assert.isUndefined(result);
+        });
 
-      // Test withQuery operation
-      const queryResult = await childClient.withQuery({ format: "text" });
-      assert.isUndefined(queryResult);
+        it("should delete standalone with nested mixed parameters", async () => {
+          const result = await client.deleteStandalone("us-west");
+          assert.isUndefined(result);
+        });
+      });
 
-      // Test getStandalone operation
-      const getResult = await childClient.getStandalone();
-      assert.strictEqual(getResult.name, "sample-blob");
-      assert.strictEqual(getResult.size, 42);
-      assert.strictEqual(getResult.contentType, "text/plain");
-      assert.strictEqual(
-        getResult.createdOn.toISOString(),
-        "2025-04-01T12:00:00.000Z"
-      );
+      describe("IndividuallyParentNestedWithPathClient", () => {
+        let client: IndividuallyParentNestedWithPathClient;
 
-      // Test deleteStandalone operation
-      const deleteResult = await childClient.deleteStandalone();
-      assert.isUndefined(deleteResult);
+        beforeEach(() => {
+          client = new IndividuallyParentNestedWithPathClient("test-resource", endpointOptions);
+        });
+
+        it("should send nested path parameter in withQuery operation", async () => {
+          const result = await client.withQuery({ format: "text" });
+          assert.isUndefined(result);
+        });
+
+        it("should get standalone with nested path parameter", async () => {
+          const result = await client.getStandalone();
+          assert.strictEqual(result.name, "test-resource");
+          assert.strictEqual(result.size, 1024);
+          assert.strictEqual(result.contentType, "application/octet-stream");
+          assert.strictEqual(
+            result.createdOn.toISOString(),
+            "2023-01-01T12:00:00.000Z"
+          );
+        });
+
+        it("should delete standalone with nested path parameter", async () => {
+          const result = await client.deleteStandalone();
+          assert.isUndefined(result);
+        });
+      });
+
+      describe("IndividuallyParentNestedWithQueryClient", () => {
+        let client: IndividuallyParentNestedWithQueryClient;
+
+        beforeEach(() => {
+          client = new IndividuallyParentNestedWithQueryClient("test-blob", endpointOptions);
+        });
+
+        it("should send nested query parameter in withQuery operation", async () => {
+          const result = await client.withQuery();
+          assert.isUndefined(result);
+        });
+
+        it("should get standalone with nested query parameter", async () => {
+          const result = await client.getStandalone();
+          assert.strictEqual(result.name, "test-blob");
+          assert.strictEqual(result.size, 1024);
+          assert.strictEqual(result.contentType, "application/octet-stream");
+          assert.strictEqual(
+            result.createdOn.toISOString(),
+            "2023-01-01T12:00:00.000Z"
+          );
+        });
+
+        it("should delete standalone with nested query parameter", async () => {
+          const result = await client.deleteStandalone();
+          assert.isUndefined(result);
+        });
+      });
     });
   });
 });
