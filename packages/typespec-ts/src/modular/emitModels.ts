@@ -650,20 +650,22 @@ function buildModelPolymorphicType(context: SdkContext, type: SdkModelType) {
   return typeDeclaration;
 }
 
-function getDiscriminatorValueForModel(model: SdkModelType): string | undefined {
+function getDiscriminatorValueForModel(
+  model: SdkModelType
+): string | undefined {
   if (!model.discriminatorProperty) {
     return undefined;
   }
-  
+
   // Find the discriminator property in the model's properties
   const discriminatorProp = model.properties.find(
-    p => p.name === model.discriminatorProperty!.name
+    (p) => p.name === model.discriminatorProperty!.name
   );
-  
+
   if (discriminatorProp && discriminatorProp.type.kind === "constant") {
     return discriminatorProp.type.value as string;
   }
-  
+
   return undefined;
 }
 
@@ -688,29 +690,32 @@ function buildModelProperty(
   }
 
   let typeExpression: string;
-  
+
   // Handle discriminator properties for hierarchical inheritance
-  if (parentModel && 
-      parentModel.discriminatorProperty && 
-      property.name === parentModel.discriminatorProperty.name) {
-    
+  if (
+    parentModel &&
+    parentModel.discriminatorProperty &&
+    property.name === parentModel.discriminatorProperty.name
+  ) {
     // Only apply union logic if this is an intermediate model:
     // 1. It has a baseModel (it extends something)
-    // 2. It has its own discriminated subtypes (other models extend it) 
+    // 2. It has its own discriminated subtypes (other models extend it)
     if (parentModel.baseModel && parentModel.discriminatedSubtypes) {
       const childDiscriminatorValues: string[] = [];
       const currentModelValue = getDiscriminatorValueForModel(parentModel);
       if (currentModelValue) {
         childDiscriminatorValues.push(`"${currentModelValue}"`);
       }
-      
+
       // Find all subtypes that extend from this model
-      for (const [discriminatorValue, subtype] of Object.entries(parentModel.discriminatedSubtypes)) {
+      for (const [discriminatorValue, subtype] of Object.entries(
+        parentModel.discriminatedSubtypes
+      )) {
         if (subtype.baseModel === parentModel) {
           childDiscriminatorValues.push(`"${discriminatorValue}"`);
         }
       }
-      
+
       if (childDiscriminatorValues.length > 1) {
         typeExpression = childDiscriminatorValues.join(" | ");
       } else {
