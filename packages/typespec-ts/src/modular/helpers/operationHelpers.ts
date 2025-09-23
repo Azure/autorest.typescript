@@ -103,8 +103,7 @@ export function getSendPrivateFunction(
     ...getQueryParameters(dpgContext, operation)
   ];
   if (urlTemplateParams.length > 0) {
-    const dynamicUriTemplate = buildDynamicUriTemplate(operation);
-    statements.push(`const path = ${resolveReference(UrlTemplateHelpers.parseTemplate)}("${dynamicUriTemplate}", {
+    statements.push(`const path = ${resolveReference(UrlTemplateHelpers.parseTemplate)}("${operation.operation.uriTemplate}", {
         ${urlTemplateParams.join(",\n")}
         },{
       allowReserved: ${optionalParamName}?.requestOptions?.skipUrlEncoding
@@ -1040,29 +1039,9 @@ function getQueryParameters(
   if (!operation.parameters) {
     return [];
   }
-
-  // Get method-level parameters (after @@override processing)
-  const methodParameters = operation.parameters;
-
-  // Filter operation.operation.parameters to only include those that correspond to method parameters
   const operationParameters = operation.operation.parameters.filter(
-    (httpParam) => {
-      // Skip content type
-      if (isContentType(httpParam)) {
-        return false;
-      }
-
-      // Check if this HTTP parameter has corresponding method parameters
-      const hasCorrespondingMethodParam =
-        httpParam.correspondingMethodParams.some((methodParam) =>
-          methodParameters.some((mp) => mp.name === methodParam.name)
-        );
-
-      // Include client parameters (like apiVersion) and parameters that have corresponding method params
-      return httpParam.onClient || hasCorrespondingMethodParam;
-    }
+    (p) => !isContentType(p)
   );
-
   const parametersImplementation: Record<
     "query",
     { paramMap: string; param: SdkHttpParameter }[]
@@ -1089,73 +1068,6 @@ function getQueryParameters(
   );
 
   return paramStr;
-}
-
-function buildDynamicUriTemplate(operation: ServiceOperation): string {
-  const originalTemplate = operation.operation.uriTemplate;
-
-  // Get method-level parameters (after @@override processing)
-  const methodParameters = operation.parameters || [];
-
-  // Filter operation.operation.parameters to only include those that correspond to method parameters
-  const relevantHttpParams = operation.operation.parameters.filter(
-    (httpParam) => {
-      // Include client parameters (like apiVersion) and parameters that have corresponding method params
-      if (httpParam.onClient) {
-        return true;
-      }
-
-      // Check if this HTTP parameter has corresponding method parameters
-      return httpParam.correspondingMethodParams.some((methodParam) =>
-        methodParameters.some((mp) => mp.name === methodParam.name)
-      );
-    }
-  );
-
-  // Get valid query parameter names
-  const validQueryParams = new Set(
-    relevantHttpParams
-      .filter((p) => p.kind === "query")
-      .map((p) => getUriTemplateQueryParamName(p.serializedName))
-  );
-
-  // Parse the original URI template to extract query parts
-  const queryStartIndex = originalTemplate.indexOf("{?");
-  if (queryStartIndex === -1) {
-    // No query parameters in the original template
-    return originalTemplate;
-  }
-
-  const basePath = originalTemplate.substring(0, queryStartIndex);
-  const queryPart = originalTemplate.substring(queryStartIndex);
-
-  // Extract query parameters from the template using regex
-  // Handle patterns like {?param1,param2} or {&param1*,param2}
-  const queryParamPattern = /\{[?&]([^}]+)\}/g;
-  let match;
-  const filteredQueryParts: string[] = [];
-
-  while ((match = queryParamPattern.exec(queryPart)) !== null) {
-    const operator = match[0][1]; // '?' or '&'
-    const params = match[1]?.split(",") || [];
-
-    const validParams = params.filter((param) => {
-      // Remove explode modifier (*) and check if the parameter is valid
-      const cleanParam = param.replace("*", "");
-      return validQueryParams.has(cleanParam);
-    });
-
-    if (validParams.length > 0) {
-      filteredQueryParts.push(`{${operator}${validParams.join(",")}}`);
-    }
-  }
-
-  // Reconstruct the URI template
-  if (filteredQueryParts.length > 0) {
-    return basePath + filteredQueryParts.join("");
-  } else {
-    return basePath;
-  }
 }
 
 function getUriTemplateQueryParamName(name: string) {
