@@ -9,12 +9,6 @@ export declare interface BlobProperties {
     createdOn: Date;
 }
 
-export declare interface DeleteStandaloneOptionalParams extends OperationOptions {
-}
-
-export declare interface GetStandaloneOptionalParams extends OperationOptions {
-}
-
 export declare class IndividuallyClient {
     private _client;
     readonly pipeline: Pipeline;
@@ -27,39 +21,6 @@ export declare class IndividuallyClient {
 }
 
 export declare interface IndividuallyClientOptionalParams extends ClientOptions {
-}
-
-export declare class IndividuallyHeaderParamClient {
-    private _client;
-    readonly pipeline: Pipeline;
-    constructor(name: string, options?: IndividuallyHeaderParamClientOptionalParams);
-    withBody(input: Input, options?: WithBodyOptionalParams): Promise<void>;
-    withQuery(options?: IndividuallyHeaderParamClientWithQueryOptionalParams): Promise<void>;
-}
-
-export declare interface IndividuallyHeaderParamClientOptionalParams extends ClientOptions {
-}
-
-export declare interface IndividuallyHeaderParamClientWithQueryOptionalParams extends OperationOptions {
-    id?: string;
-}
-
-export declare class IndividuallyMultipleParamsClient {
-    private _client;
-    readonly pipeline: Pipeline;
-    constructor(name: string, region: string, options?: IndividuallyMultipleParamsClientOptionalParams);
-    withBody(input: Input, options?: IndividuallyMultipleParamsClientWithBodyOptionalParams): Promise<void>;
-    withQuery(options?: IndividuallyMultipleParamsClientWithQueryOptionalParams): Promise<void>;
-}
-
-export declare interface IndividuallyMultipleParamsClientOptionalParams extends ClientOptions {
-}
-
-export declare interface IndividuallyMultipleParamsClientWithBodyOptionalParams extends OperationOptions {
-}
-
-export declare interface IndividuallyMultipleParamsClientWithQueryOptionalParams extends OperationOptions {
-    id?: string;
 }
 
 export declare interface IndividuallyNestedWithHeaderClientDeleteStandaloneOptionalParams extends OperationOptions {
@@ -139,29 +100,6 @@ export declare interface IndividuallyNestedWithQueryClientOperations {
 }
 
 export declare interface IndividuallyNestedWithQueryClientWithQueryOptionalParams extends OperationOptions {
-}
-
-export declare class IndividuallyPathParamClient {
-    private _client;
-    readonly pipeline: Pipeline;
-    constructor(blobName: string, options?: IndividuallyPathParamClientOptionalParams);
-    deleteStandalone(options?: DeleteStandaloneOptionalParams): Promise<void>;
-    getStandalone(options?: GetStandaloneOptionalParams): Promise<BlobProperties>;
-    withQuery(options?: WithQueryOptionalParams): Promise<void>;
-}
-
-export declare interface IndividuallyPathParamClientOptionalParams extends ClientOptions {
-}
-
-export declare interface Input {
-    name: string;
-}
-
-export declare interface WithBodyOptionalParams extends OperationOptions {
-}
-
-export declare interface WithQueryOptionalParams extends OperationOptions {
-    format?: string;
 }
 
 export { }

@@ -30,39 +30,6 @@ export declare class IndividuallyParentClient {
 export declare interface IndividuallyParentClientOptionalParams extends ClientOptions {
 }
 
-export declare class IndividuallyParentHeaderParamClient {
-    private _client;
-    readonly pipeline: Pipeline;
-    constructor(name: string, options?: IndividuallyParentHeaderParamClientOptionalParams);
-    withBody(input: Input, options?: WithBodyOptionalParams): Promise<void>;
-    withQuery(options?: IndividuallyParentHeaderParamClientWithQueryOptionalParams): Promise<void>;
-}
-
-export declare interface IndividuallyParentHeaderParamClientOptionalParams extends ClientOptions {
-}
-
-export declare interface IndividuallyParentHeaderParamClientWithQueryOptionalParams extends OperationOptions {
-    id?: string;
-}
-
-export declare class IndividuallyParentMultipleParamsClient {
-    private _client;
-    readonly pipeline: Pipeline;
-    constructor(name: string, region: string, options?: IndividuallyParentMultipleParamsClientOptionalParams);
-    withBody(input: Input, options?: IndividuallyParentMultipleParamsClientWithBodyOptionalParams): Promise<void>;
-    withQuery(options?: IndividuallyParentMultipleParamsClientWithQueryOptionalParams): Promise<void>;
-}
-
-export declare interface IndividuallyParentMultipleParamsClientOptionalParams extends ClientOptions {
-}
-
-export declare interface IndividuallyParentMultipleParamsClientWithBodyOptionalParams extends OperationOptions {
-}
-
-export declare interface IndividuallyParentMultipleParamsClientWithQueryOptionalParams extends OperationOptions {
-    id?: string;
-}
-
 export declare class IndividuallyParentNestedWithHeaderClient {
     private _client;
     readonly pipeline: Pipeline;
@@ -133,22 +100,12 @@ export declare class IndividuallyParentNestedWithPathClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(blobName: string, options?: IndividuallyParentNestedWithPathClientOptionalParams);
-    deleteStandalone(options?: IndividuallyParentNestedWithPathClientDeleteStandaloneOptionalParams): Promise<void>;
-    getStandalone(options?: IndividuallyParentNestedWithPathClientGetStandaloneOptionalParams): Promise<BlobProperties>;
-    withQuery(options?: IndividuallyParentNestedWithPathClientWithQueryOptionalParams): Promise<void>;
-}
-
-export declare interface IndividuallyParentNestedWithPathClientDeleteStandaloneOptionalParams extends OperationOptions {
-}
-
-export declare interface IndividuallyParentNestedWithPathClientGetStandaloneOptionalParams extends OperationOptions {
+    deleteStandalone(options?: DeleteStandaloneOptionalParams): Promise<void>;
+    getStandalone(options?: GetStandaloneOptionalParams): Promise<BlobProperties>;
+    withQuery(options?: WithQueryOptionalParams): Promise<void>;
 }
 
 export declare interface IndividuallyParentNestedWithPathClientOptionalParams extends ClientOptions {
-}
-
-export declare interface IndividuallyParentNestedWithPathClientWithQueryOptionalParams extends OperationOptions {
-    format?: string;
 }
 
 export declare class IndividuallyParentNestedWithQueryClient {
@@ -170,25 +127,6 @@ export declare interface IndividuallyParentNestedWithQueryClientOptionalParams e
 }
 
 export declare interface IndividuallyParentNestedWithQueryClientWithQueryOptionalParams extends OperationOptions {
-}
-
-export declare class IndividuallyParentPathParamClient {
-    private _client;
-    readonly pipeline: Pipeline;
-    constructor(blobName: string, options?: IndividuallyParentPathParamClientOptionalParams);
-    deleteStandalone(options?: DeleteStandaloneOptionalParams): Promise<void>;
-    getStandalone(options?: GetStandaloneOptionalParams): Promise<BlobProperties>;
-    withQuery(options?: WithQueryOptionalParams): Promise<void>;
-}
-
-export declare interface IndividuallyParentPathParamClientOptionalParams extends ClientOptions {
-}
-
-export declare interface Input {
-    name: string;
-}
-
-export declare interface WithBodyOptionalParams extends OperationOptions {
 }
 
 export declare interface WithQueryOptionalParams extends OperationOptions {

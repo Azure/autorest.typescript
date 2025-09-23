@@ -19,16 +19,6 @@ export declare interface BlobProperties {
     createdOn: Date;
 }
 
-export declare interface DeleteStandaloneOptionalParams extends OperationOptions {
-}
-
-export declare interface GetStandaloneOptionalParams extends OperationOptions {
-}
-
-export declare interface Input {
-    name: string;
-}
-
 export declare class ParentClient {
     private _client;
     readonly pipeline: Pipeline;
@@ -47,39 +37,6 @@ export declare class ParentClient {
 }
 
 export declare interface ParentClientOptionalParams extends ClientOptions {
-}
-
-export declare class ParentHeaderParamClient {
-    private _client;
-    readonly pipeline: Pipeline;
-    constructor(name: string, options?: ParentHeaderParamClientOptionalParams);
-    withBody(input: Input, options?: WithBodyOptionalParams): Promise<void>;
-    withQuery(options?: ParentHeaderParamClientWithQueryOptionalParams): Promise<void>;
-}
-
-export declare interface ParentHeaderParamClientOptionalParams extends ClientOptions {
-}
-
-export declare interface ParentHeaderParamClientWithQueryOptionalParams extends OperationOptions {
-    id?: string;
-}
-
-export declare class ParentMultipleParamsClient {
-    private _client;
-    readonly pipeline: Pipeline;
-    constructor(name: string, region: string, options?: ParentMultipleParamsClientOptionalParams);
-    withBody(input: Input, options?: ParentMultipleParamsClientWithBodyOptionalParams): Promise<void>;
-    withQuery(options?: ParentMultipleParamsClientWithQueryOptionalParams): Promise<void>;
-}
-
-export declare interface ParentMultipleParamsClientOptionalParams extends ClientOptions {
-}
-
-export declare interface ParentMultipleParamsClientWithBodyOptionalParams extends OperationOptions {
-}
-
-export declare interface ParentMultipleParamsClientWithQueryOptionalParams extends OperationOptions {
-    id?: string;
 }
 
 export declare interface ParentNestedWithHeaderClientDeleteStandaloneOptionalParams extends OperationOptions {
@@ -159,25 +116,6 @@ export declare interface ParentNestedWithQueryClientOperations {
 }
 
 export declare interface ParentNestedWithQueryClientWithQueryOptionalParams extends OperationOptions {
-}
-
-export declare class ParentPathParamClient {
-    private _client;
-    readonly pipeline: Pipeline;
-    constructor(blobName: string, options?: ParentPathParamClientOptionalParams);
-    deleteStandalone(options?: DeleteStandaloneOptionalParams): Promise<void>;
-    getStandalone(options?: GetStandaloneOptionalParams): Promise<BlobProperties>;
-    withQuery(options?: WithQueryOptionalParams): Promise<void>;
-}
-
-export declare interface ParentPathParamClientOptionalParams extends ClientOptions {
-}
-
-export declare interface WithBodyOptionalParams extends OperationOptions {
-}
-
-export declare interface WithQueryOptionalParams extends OperationOptions {
-    format?: string;
 }
 
 export { }
