@@ -98,12 +98,35 @@ export function getSendPrivateFunction(
   );
   const statements: string[] = [];
   let pathStr = `"${operationPath}"`;
-  const urlTemplateParams = [
-    ...getPathParameters(operation),
-    ...getQueryParameters(dpgContext, operation)
-  ];
+  const pathParams = getPathParameters(operation);
+  const queryParams = getQueryParameters(dpgContext, operation);
+  const urlTemplateParams = [...pathParams, ...queryParams];
+
   if (urlTemplateParams.length > 0) {
-    statements.push(`const path = ${resolveReference(UrlTemplateHelpers.parseTemplate)}("${operation.operation.uriTemplate}", {
+    // Check if we need to rebuild the URL template due to filtered query parameters
+    const originalQueryParams = operation.operation.parameters.filter(
+      (p) => p.kind === "query"
+    );
+    const hasFilteredQueryParams =
+      queryParams.length < originalQueryParams.length;
+
+    let uriTemplate = operation.operation.uriTemplate;
+    if (hasFilteredQueryParams) {
+      // Rebuild URI template based on remaining parameters
+      if (queryParams.length > 0) {
+        const queryParamNames = queryParams
+          .map((param) => {
+            const match = param.match(/"([^"]+)":/);
+            return match ? match[1] : "unknown";
+          })
+          .join(",");
+        uriTemplate = `${operationPath}{?${queryParamNames}}`;
+      } else {
+        uriTemplate = operationPath;
+      }
+    }
+
+    statements.push(`const path = ${resolveReference(UrlTemplateHelpers.parseTemplate)}("${uriTemplate}", {
         ${urlTemplateParams.join(",\n")}
         },{
       allowReserved: ${optionalParamName}?.requestOptions?.skipUrlEncoding
@@ -1051,15 +1074,21 @@ function getQueryParameters(
 
   for (const param of operationParameters) {
     if (param.kind === "query") {
-      parametersImplementation[param.kind].push({
-        paramMap: getParameterMap(dpgContext, {
-          ...param,
-          // TODO: remember to remove this hack once compiler gives us a name
-          // https://github.com/microsoft/typespec/issues/6743
-          serializedName: getUriTemplateQueryParamName(param.serializedName)
-        }),
-        param
-      });
+      // Check if this parameter still exists in the corresponding method params (after override)
+      if (
+        param.correspondingMethodParams &&
+        param.correspondingMethodParams.length > 0
+      ) {
+        parametersImplementation[param.kind].push({
+          paramMap: getParameterMap(dpgContext, {
+            ...param,
+            // TODO: remember to remove this hack once compiler gives us a name
+            // https://github.com/microsoft/typespec/issues/6743
+            serializedName: getUriTemplateQueryParamName(param.serializedName)
+          }),
+          param
+        });
+      }
     }
   }
 
