@@ -9,28 +9,6 @@ export declare interface BlobProperties {
     createdOn: Date;
 }
 
-export declare class ChildClient {
-    private _client;
-    readonly pipeline: Pipeline;
-    constructor(blobName: string, options?: ChildClientOptionalParams);
-    deleteStandalone(options?: ChildClientDeleteStandaloneOptionalParams): Promise<void>;
-    getStandalone(options?: ChildClientGetStandaloneOptionalParams): Promise<BlobProperties>;
-    withQuery(options?: ChildClientWithQueryOptionalParams): Promise<void>;
-}
-
-export declare interface ChildClientDeleteStandaloneOptionalParams extends OperationOptions {
-}
-
-export declare interface ChildClientGetStandaloneOptionalParams extends OperationOptions {
-}
-
-export declare interface ChildClientOptionalParams extends ClientOptions {
-}
-
-export declare interface ChildClientWithQueryOptionalParams extends OperationOptions {
-    format?: string;
-}
-
 export declare interface DeleteStandaloneOptionalParams extends OperationOptions {
 }
 
@@ -97,17 +75,6 @@ export declare class ParamAliasClient {
 }
 
 export declare interface ParamAliasClientOptionalParams extends ClientOptions {
-}
-
-export declare class ParentClient {
-    private _client;
-    readonly pipeline: Pipeline;
-    private _clientParams;
-    constructor(options?: ParentClientOptionalParams);
-    getChildClient(blobName: string, options?: ChildClientOptionalParams): ChildClient;
-}
-
-export declare interface ParentClientOptionalParams extends ClientOptions {
 }
 
 export declare class PathParamClient {
