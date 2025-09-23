@@ -523,22 +523,6 @@ enum Versions {
   `2024-08-01-preview`
 }
 
-@discriminator("kind")
-model AWidgetData {
-    kind: string;
-}
-
-model AOAIModelConfig extends AWidgetData {
-  kind: "kind0";
-  fooProp: string;
-}
-
-model MAASModelConfig extends AWidgetData {
-  kind: "kind1";
-  start: utcDateTime;
-  end?: utcDateTime;
-}
-
 alias PetContent = {
   @doc("Whether the pet is trained")
   trained: boolean;
@@ -572,7 +556,6 @@ model Dog extends Animal {
 
 @route("/serialize")
 interface D {
-  @get op bar(): AWidgetData;
   @put
   updatePetAsAnimal(@body animal: Animal): Animal;
 }
@@ -590,61 +573,6 @@ mustEmptyDiagnostic: false
 Generated Models.
 
 ```ts models
-/** model interface AWidgetData */
-export interface AWidgetData {
-  kind: string;
-}
-
-export function aWidgetDataDeserializer(item: any): AWidgetData {
-  return {
-    kind: item["kind"]
-  };
-}
-
-/** Alias for AWidgetDataUnion */
-export type AWidgetDataUnion = AoaiModelConfig | MaasModelConfig | AWidgetData;
-
-export function aWidgetDataUnionDeserializer(item: any): AWidgetDataUnion {
-  switch (item.kind) {
-    case "kind0":
-      return aoaiModelConfigDeserializer(item as AoaiModelConfig);
-
-    case "kind1":
-      return maasModelConfigDeserializer(item as MaasModelConfig);
-
-    default:
-      return aWidgetDataDeserializer(item);
-  }
-}
-
-/** model interface AoaiModelConfig */
-export interface AoaiModelConfig extends AWidgetData {
-  kind: "kind0";
-  fooProp: string;
-}
-
-export function aoaiModelConfigDeserializer(item: any): AoaiModelConfig {
-  return {
-    kind: item["kind"],
-    fooProp: item["fooProp"]
-  };
-}
-
-/** model interface MaasModelConfig */
-export interface MaasModelConfig extends AWidgetData {
-  kind: "kind1";
-  start: Date;
-  end?: Date;
-}
-
-export function maasModelConfigDeserializer(item: any): MaasModelConfig {
-  return {
-    kind: item["kind"],
-    start: new Date(item["start"]),
-    end: !item["end"] ? item["end"] : new Date(item["end"])
-  };
-}
-
 /** model interface Animal */
 export interface Animal {
   /** The kind of animal */
@@ -661,7 +589,7 @@ export function animalSerializer(item: Animal): any {
 export function animalDeserializer(item: any): Animal {
   return {
     kind: item["kind"],
-    name: item["name"]
+    name: item["name"],
   };
 }
 
@@ -709,7 +637,7 @@ export function petDeserializer(item: any): Pet {
   return {
     kind: item["kind"],
     name: item["name"],
-    trained: item["trained"]
+    trained: item["trained"],
   };
 }
 
@@ -748,7 +676,7 @@ export function dogSerializer(item: Dog): any {
     kind: item["kind"],
     trained: item["trained"],
     name: item["name"],
-    breed: item["breed"]
+    breed: item["breed"],
   };
 }
 
@@ -757,7 +685,7 @@ export function dogDeserializer(item: any): Dog {
     kind: item["kind"],
     trained: item["trained"],
     name: item["name"],
-    breed: item["breed"]
+    breed: item["breed"],
   };
 }
 
@@ -765,6 +693,6 @@ export function dogDeserializer(item: any): Dog {
 export enum KnownVersions {
   PreviewVersion = "2024-07-01-preview",
   _20240701 = "2024-07-01",
-  _20240801Preview = "2024-08-01-preview"
+  _20240801Preview = "2024-08-01-preview",
 }
 ```
