@@ -675,24 +675,36 @@ function buildModelProperty(
   // Handle discriminator properties for hierarchical inheritance
   // Only apply union logic if this is an intermediate model:
   // 1. It has a baseModel (it extends something)
-  // 2. It has its own discriminated subtypes (other models extend it)
-  if (
-    property.name === parentModel.discriminatorProperty?.name &&
+  // 2. It is the discriminator property of the parent model
+  // 3. Its discriminator property name is the same as the base model's discriminator property name
+  const modelIsDiscriminatedChild =
     parentModel.baseModel &&
-    parentModel.discriminatedSubtypes &&
-    parentModel.discriminatorValue
+    parentModel.discriminatorValue &&
+    property.name === parentModel.discriminatorProperty?.name &&
+    property.name === parentModel.baseModel.discriminatorProperty?.name;
+
+  // 4. All subtypes should share the same discriminator property name
+  const modelHasSubTypesWithDiscriminator = Object.values(
+    parentModel.discriminatedSubtypes ?? {}
+  ).filter(
+    (subtype) =>
+      subtype.properties.filter(
+        (p) => p.name === property.name && p.discriminator === true
+      ).length > 0
+  );
+  if (
+    modelIsDiscriminatedChild &&
+    modelHasSubTypesWithDiscriminator.length > 0
   ) {
     const allowedDiscriminatorValues: string[] = [];
     allowedDiscriminatorValues.push(`"${parentModel.discriminatorValue}"`);
 
     // Find all subtypes that extend from this model
-    for (const [discriminatorValue, subtype] of Object.entries(
-      parentModel.discriminatedSubtypes
-    )) {
-      if (subtype.baseModel === parentModel) {
-        allowedDiscriminatorValues.push(`"${discriminatorValue}"`);
+    modelHasSubTypesWithDiscriminator.forEach((child) => {
+      if (child.discriminatorValue) {
+        allowedDiscriminatorValues.push(`"${child.discriminatorValue}"`);
       }
-    }
+    });
 
     typeExpression = allowedDiscriminatorValues.join(" | ");
   }
