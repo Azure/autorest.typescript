@@ -1,4 +1,8 @@
-import { HierarchyBuildingClient } from "./generated/azure/client-generator-core/hierarchy-building/src/index.js";
+import {
+  HierarchyBuildingClient,
+  Pet,
+  Dog
+} from "./generated/azure/client-generator-core/hierarchy-building/src/index.js";
 import { assert } from "chai";
 
 describe("Azure ClientGeneratorCore Hierarchy Building", () => {
@@ -10,12 +14,12 @@ describe("Azure ClientGeneratorCore Hierarchy Building", () => {
       allowInsecureConnection: true
     });
   });
-  const samplePet = {
+  const samplePet: Pet = {
     kind: "pet",
     name: "Buddy",
     trained: true
   };
-  const sampleDog = {
+  const sampleDog: Dog = {
     kind: "dog",
     name: "Rex",
     trained: true,
