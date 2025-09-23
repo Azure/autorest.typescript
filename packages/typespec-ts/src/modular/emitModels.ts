@@ -650,29 +650,10 @@ function buildModelPolymorphicType(context: SdkContext, type: SdkModelType) {
   return typeDeclaration;
 }
 
-function getDiscriminatorValueForModel(
-  model: SdkModelType
-): string | undefined {
-  if (!model.discriminatorProperty) {
-    return undefined;
-  }
-
-  // Find the discriminator property in the model's properties
-  const discriminatorProp = model.properties.find(
-    (p) => p.name === model.discriminatorProperty!.name
-  );
-
-  if (discriminatorProp && discriminatorProp.type.kind === "constant") {
-    return discriminatorProp.type.value as string;
-  }
-
-  return undefined;
-}
-
 function buildModelProperty(
   context: SdkContext,
   property: SdkModelPropertyType,
-  parentModel?: SdkModelType
+  parentModel: SdkModelType
 ): PropertySignatureStructure {
   const normalizedPropName = normalizeModelPropertyName(context, property);
   if (
@@ -692,38 +673,28 @@ function buildModelProperty(
   let typeExpression: string;
 
   // Handle discriminator properties for hierarchical inheritance
+  // Only apply union logic if this is an intermediate model:
+  // 1. It has a baseModel (it extends something)
+  // 2. It has its own discriminated subtypes (other models extend it)
   if (
-    parentModel &&
-    parentModel.discriminatorProperty &&
-    property.name === parentModel.discriminatorProperty.name
+    property.name === parentModel.discriminatorProperty?.name &&
+    parentModel.baseModel &&
+    parentModel.discriminatedSubtypes &&
+    parentModel.discriminatorValue
   ) {
-    // Only apply union logic if this is an intermediate model:
-    // 1. It has a baseModel (it extends something)
-    // 2. It has its own discriminated subtypes (other models extend it)
-    if (parentModel.baseModel && parentModel.discriminatedSubtypes) {
-      const childDiscriminatorValues: string[] = [];
-      const currentModelValue = getDiscriminatorValueForModel(parentModel);
-      if (currentModelValue) {
-        childDiscriminatorValues.push(`"${currentModelValue}"`);
-      }
+    const allowedDiscriminatorValues: string[] = [];
+    allowedDiscriminatorValues.push(`"${parentModel.discriminatorValue}"`);
 
-      // Find all subtypes that extend from this model
-      for (const [discriminatorValue, subtype] of Object.entries(
-        parentModel.discriminatedSubtypes
-      )) {
-        if (subtype.baseModel === parentModel) {
-          childDiscriminatorValues.push(`"${discriminatorValue}"`);
-        }
+    // Find all subtypes that extend from this model
+    for (const [discriminatorValue, subtype] of Object.entries(
+      parentModel.discriminatedSubtypes
+    )) {
+      if (subtype.baseModel === parentModel) {
+        allowedDiscriminatorValues.push(`"${discriminatorValue}"`);
       }
-
-      if (childDiscriminatorValues.length > 1) {
-        typeExpression = childDiscriminatorValues.join(" | ");
-      } else {
-        typeExpression = getTypeExpression(context, property.type);
-      }
-    } else {
-      typeExpression = getTypeExpression(context, property.type);
     }
+
+    typeExpression = allowedDiscriminatorValues.join(" | ");
   }
   // eslint-disable-next-line
   else if (property.kind === "property" && property.isMultipartFileInput) {

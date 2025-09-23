@@ -494,7 +494,7 @@ export function exceptionDeserializer(item: any): Exception {
 }
 ```
 
-# only: Should generate serializers for TCGC `@hierarchyBuilding` with discriminator property
+# Should generate serializers for TCGC `@hierarchyBuilding` with discriminator property
 
 Verify that the serializers are correctly referenced within the switch statement of the base serializers.
 
@@ -589,7 +589,7 @@ export function animalSerializer(item: Animal): any {
 export function animalDeserializer(item: any): Animal {
   return {
     kind: item["kind"],
-    name: item["name"],
+    name: item["name"]
   };
 }
 
@@ -637,7 +637,7 @@ export function petDeserializer(item: any): Pet {
   return {
     kind: item["kind"],
     name: item["name"],
-    trained: item["trained"],
+    trained: item["trained"]
   };
 }
 
@@ -676,7 +676,7 @@ export function dogSerializer(item: Dog): any {
     kind: item["kind"],
     trained: item["trained"],
     name: item["name"],
-    breed: item["breed"],
+    breed: item["breed"]
   };
 }
 
@@ -685,7 +685,7 @@ export function dogDeserializer(item: any): Dog {
     kind: item["kind"],
     trained: item["trained"],
     name: item["name"],
-    breed: item["breed"],
+    breed: item["breed"]
   };
 }
 
@@ -693,6 +693,6 @@ export function dogDeserializer(item: any): Dog {
 export enum KnownVersions {
   PreviewVersion = "2024-07-01-preview",
   _20240701 = "2024-07-01",
-  _20240801Preview = "2024-08-01-preview",
+  _20240801Preview = "2024-08-01-preview"
 }
 ```
