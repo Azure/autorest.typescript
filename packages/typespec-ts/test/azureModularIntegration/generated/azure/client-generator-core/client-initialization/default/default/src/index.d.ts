@@ -9,6 +9,99 @@ export declare interface BlobProperties {
     createdOn: Date;
 }
 
+export declare class DefaultClient {
+    private _client;
+    readonly pipeline: Pipeline;
+    constructor(options?: DefaultClientOptionalParams);
+    readonly defaultNestedWithMixedClient: DefaultNestedWithMixedClientOperations;
+    readonly defaultNestedWithMultipleClient: DefaultNestedWithMultipleClientOperations;
+    readonly defaultNestedWithHeaderClient: DefaultNestedWithHeaderClientOperations;
+    readonly defaultNestedWithQueryClient: DefaultNestedWithQueryClientOperations;
+    readonly defaultNestedWithPathClient: DefaultNestedWithPathClientOperations;
+}
+
+export declare interface DefaultClientOptionalParams extends ClientOptions {
+}
+
+export declare interface DefaultNestedWithHeaderClientDeleteStandaloneOptionalParams extends OperationOptions {
+}
+
+export declare interface DefaultNestedWithHeaderClientGetStandaloneOptionalParams extends OperationOptions {
+}
+
+export declare interface DefaultNestedWithHeaderClientOperations {
+    deleteStandalone: (options?: DefaultNestedWithHeaderClientDeleteStandaloneOptionalParams) => Promise<void>;
+    getStandalone: (options?: DefaultNestedWithHeaderClientGetStandaloneOptionalParams) => Promise<void>;
+    withQuery: (options?: DefaultNestedWithHeaderClientWithQueryOptionalParams) => Promise<void>;
+}
+
+export declare interface DefaultNestedWithHeaderClientWithQueryOptionalParams extends OperationOptions {
+    format?: string;
+}
+
+export declare interface DefaultNestedWithMixedClientDeleteStandaloneOptionalParams extends OperationOptions {
+}
+
+export declare interface DefaultNestedWithMixedClientGetStandaloneOptionalParams extends OperationOptions {
+}
+
+export declare interface DefaultNestedWithMixedClientOperations {
+    deleteStandalone: (region: string, options?: DefaultNestedWithMixedClientDeleteStandaloneOptionalParams) => Promise<void>;
+    getStandalone: (region: string, options?: DefaultNestedWithMixedClientGetStandaloneOptionalParams) => Promise<void>;
+    withQuery: (region: string, options?: DefaultNestedWithMixedClientWithQueryOptionalParams) => Promise<void>;
+}
+
+export declare interface DefaultNestedWithMixedClientWithQueryOptionalParams extends OperationOptions {
+    format?: string;
+}
+
+export declare interface DefaultNestedWithMultipleClientDeleteStandaloneOptionalParams extends OperationOptions {
+}
+
+export declare interface DefaultNestedWithMultipleClientGetStandaloneOptionalParams extends OperationOptions {
+}
+
+export declare interface DefaultNestedWithMultipleClientOperations {
+    deleteStandalone: (options?: DefaultNestedWithMultipleClientDeleteStandaloneOptionalParams) => Promise<void>;
+    getStandalone: (options?: DefaultNestedWithMultipleClientGetStandaloneOptionalParams) => Promise<void>;
+    withQuery: (options?: DefaultNestedWithMultipleClientWithQueryOptionalParams) => Promise<void>;
+}
+
+export declare interface DefaultNestedWithMultipleClientWithQueryOptionalParams extends OperationOptions {
+    format?: string;
+}
+
+export declare interface DefaultNestedWithPathClientDeleteStandaloneOptionalParams extends OperationOptions {
+}
+
+export declare interface DefaultNestedWithPathClientGetStandaloneOptionalParams extends OperationOptions {
+}
+
+export declare interface DefaultNestedWithPathClientOperations {
+    deleteStandalone: (options?: DefaultNestedWithPathClientDeleteStandaloneOptionalParams) => Promise<void>;
+    getStandalone: (options?: DefaultNestedWithPathClientGetStandaloneOptionalParams) => Promise<BlobProperties>;
+    withQuery: (options?: DefaultNestedWithPathClientWithQueryOptionalParams) => Promise<void>;
+}
+
+export declare interface DefaultNestedWithPathClientWithQueryOptionalParams extends OperationOptions {
+    format?: string;
+}
+
+export declare interface DefaultNestedWithQueryClientDeleteStandaloneOptionalParams extends OperationOptions {
+}
+
+export declare interface DefaultNestedWithQueryClientGetStandaloneOptionalParams extends OperationOptions {
+}
+
+export declare interface DefaultNestedWithQueryClientOperations {
+    deleteStandalone: (options?: DefaultNestedWithQueryClientDeleteStandaloneOptionalParams) => Promise<void>;
+    getStandalone: (options?: DefaultNestedWithQueryClientGetStandaloneOptionalParams) => Promise<BlobProperties>;
+    withQuery: (options?: DefaultNestedWithQueryClientWithQueryOptionalParams) => Promise<void>;
+}
+
+export declare interface DefaultNestedWithQueryClientWithQueryOptionalParams extends OperationOptions {
+}
+
 export declare interface DeleteStandaloneOptionalParams extends OperationOptions {
 }
 
