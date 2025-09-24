@@ -81,7 +81,8 @@ export function getOperationApiVersion(
     params.map((p) => {
       const type = getSchemaForType(dpgContext, p.param.type, {
         usage: [SchemaContext.Exception, SchemaContext.Input],
-        needRef: false
+        needRef: false,
+        relevantProperty: p.param
       });
       required.add(!p.param.optional);
       if (p.type === "query" || p.type === "path") {

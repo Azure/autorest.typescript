@@ -136,7 +136,8 @@ function getParameterMetadata(
   const schemaContext = [SchemaContext.Exception, SchemaContext.Input];
   const schema = getSchemaForType(dpgContext, parameter.param.type, {
     usage: schemaContext,
-    needRef: false
+    needRef: false,
+    relevantProperty: parameter.param
   }) as Schema;
   const name = getParameterName(parameter.name);
   let description =

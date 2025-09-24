@@ -404,11 +404,11 @@ describe("Parameters.ts", () => {
         import type { RequestParameters } from "@azure-rest/core-client";
 
         export interface GetModelHeaders {
-          x: number;
-          y: number;
+          x: string;
+          y: string;
           value: string;
           input: string;
-          z: string;
+          z: number;
         }
 
         export interface GetModelHeaderParam {

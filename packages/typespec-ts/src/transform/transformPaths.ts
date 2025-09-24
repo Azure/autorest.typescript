@@ -118,7 +118,8 @@ function transformOperation(
           const schemaUsage = [SchemaContext.Input, SchemaContext.Exception];
           const options = {
             usage: schemaUsage,
-            needRef: false
+            needRef: false,
+            relevantProperty: p.param
           };
           const schema = p.param.sourceProperty
             ? getSchemaForType(
