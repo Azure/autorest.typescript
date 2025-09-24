@@ -41,7 +41,7 @@ export declare interface WithPathApiVersion200Response extends HttpResponse {
 export declare type WithPathApiVersionParameters = RequestParameters;
 
 export declare interface WithQueryApiVersion {
-    head(options?: WithQueryApiVersionParameters): StreamableMethod<WithQueryApiVersion200Response>;
+    head(options: WithQueryApiVersionParameters): StreamableMethod<WithQueryApiVersion200Response>;
 }
 
 export declare interface WithQueryApiVersion200Response extends HttpResponse {
