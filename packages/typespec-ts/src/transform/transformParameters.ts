@@ -136,8 +136,7 @@ function getParameterMetadata(
   const schemaContext = [SchemaContext.Exception, SchemaContext.Input];
   const schema = getSchemaForType(dpgContext, parameter.param.type, {
     usage: schemaContext,
-    needRef: false,
-    relevantProperty: parameter.param
+    needRef: false
   }) as Schema;
   const name = getParameterName(parameter.name);
   let description =
@@ -225,7 +224,7 @@ function transformQueryParameters(
     (p) =>
       p.type === "query" &&
       !(
-        isApiVersion(dpgContext, p) &&
+        isApiVersion(dpgContext, p.param) &&
         options.apiVersionInfo?.definedPosition === "query"
       )
   );

@@ -75,13 +75,13 @@ export function getOperationApiVersion(
     }
     const params = route.parameters.parameters.filter(
       (p) =>
-        (p.type === "query" || p.type === "path") && isApiVersion(dpgContext, p)
+        (p.type === "query" || p.type === "path") &&
+        isApiVersion(dpgContext, p.param)
     );
     params.map((p) => {
       const type = getSchemaForType(dpgContext, p.param.type, {
         usage: [SchemaContext.Exception, SchemaContext.Input],
-        needRef: false,
-        relevantProperty: p.param
+        needRef: false
       });
       required.add(!p.param.optional);
       if (p.type === "query" || p.type === "path") {

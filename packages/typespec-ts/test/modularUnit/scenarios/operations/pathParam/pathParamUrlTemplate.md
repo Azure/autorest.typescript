@@ -62,6 +62,7 @@ import {
 
 export function _updateKeySend(
   context: Client,
+  apiVersion: string,
   keyName: string,
   keyVersion: string,
   parameters: string,
@@ -72,7 +73,7 @@ export function _updateKeySend(
     {
       "key-name": keyName,
       "key-version": keyVersion,
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -105,6 +106,7 @@ export async function _updateKeyDeserialize(
 /** The most basic operation. */
 export async function updateKey(
   context: Client,
+  apiVersion: string,
   keyName: string,
   keyVersion: string,
   parameters: string,
@@ -113,6 +115,7 @@ export async function updateKey(
   const result = await _updateKeySend(
     context,
     keyName,
+    apiVersion,
     keyVersion,
     parameters,
     options,
