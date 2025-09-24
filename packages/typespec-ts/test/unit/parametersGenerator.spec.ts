@@ -53,7 +53,15 @@ describe("Parameters.ts", () => {
           `
             import type { RequestParameters } from "@azure-rest/core-client";
             
-            export type TestParameters = RequestParameters;
+            export interface TestQueryParamProperties {
+              "api-version": string;
+            }
+            
+            export interface TestQueryParam {
+              queryParameters: TestQueryParamProperties;
+            }
+            
+            export type TestParameters = TestQueryParam & RequestParameters;
             `
         );
         const models = await emitClientFactoryFromTypeSpec(tspContent, {

@@ -225,7 +225,7 @@ function transformQueryParameters(
     (p) =>
       p.type === "query" &&
       !(
-        isApiVersion(dpgContext, p.param) &&
+        p.param && isApiVersion(dpgContext, p.param) &&
         options.apiVersionInfo?.definedPosition === "query"
       )
   );
