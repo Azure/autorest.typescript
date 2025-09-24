@@ -114,8 +114,8 @@ export async function updateKey(
 ): Promise<KeyBundle> {
   const result = await _updateKeySend(
     context,
-    keyName,
     apiVersion,
+    keyName,
     keyVersion,
     parameters,
     options,

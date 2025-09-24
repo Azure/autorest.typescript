@@ -53,7 +53,15 @@ describe("Parameters.ts", () => {
           `
             import type { RequestParameters } from "@azure-rest/core-client";
             
-            export type TestParameters = RequestParameters;
+            export interface TestQueryParamProperties {
+              "api-version": string;
+            }
+
+            export interface TestQueryParam {
+              queryParameters: TestQueryParamProperties;
+            }
+
+            export type TestParameters = TestQueryParam & RequestParameters;
             `
         );
         const models = await emitClientFactoryFromTypeSpec(tspContent, {
@@ -74,10 +82,9 @@ describe("Parameters.ts", () => {
           /**
            * Initialize a new instance of \`testClient\`
            * @param endpointParam - The parameter endpointParam
-           * @param apiVersion - The parameter apiVersion
            * @param options - the parameter for all optional parameters
            */
-          export default function createClient(endpointParam: string, apiVersion: string, options: testClientOptions = {}): testClient {
+          export default function createClient(endpointParam: string, options: testClientOptions = {}): testClient {
           const endpointUrl = options.endpoint ?? \`\${endpointParam}\`;
           const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
           const userAgentPrefix =
@@ -98,24 +105,9 @@ describe("Parameters.ts", () => {
           client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
           if (options.apiVersion) {
             logger.warning(
-              "This client does not support to set api-version in options, please change it at positional argument",
+              "This client does not support client api-version, please change it at the operation level",
             );
           }
-          client.pipeline.addPolicy({
-            name: 'ClientApiVersionPolicy',
-            sendRequest: (req, next) => {
-              // Use the apiVersion defined in request url directly
-              // Append one if there is no apiVersion and we have one at client options
-              const url = new URL(req.url);
-              if (!url.searchParams.get("api-version") && apiVersion) {
-                req.url = \`\${req.url}\${
-                  Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
-                }api-version=\${apiVersion}\`;
-              }
-
-              return next(req);
-            },
-          });
 
           return client;
       }
@@ -412,15 +404,15 @@ describe("Parameters.ts", () => {
         import type { RequestParameters } from "@azure-rest/core-client";
 
         export interface GetModelHeaders {
-            "x": string;
-            "y": string;
-            "value": string;
-            "input": string;
-            "z": number;
+          x: number;
+          y: number;
+          value: string;
+          input: string;
+          z: string;
         }
 
         export interface GetModelHeaderParam {
-            headers: RawHttpHeadersInput & GetModelHeaders;
+          headers: RawHttpHeadersInput & GetModelHeaders;
         }
 
         export type GetModelParameters = GetModelHeaderParam & RequestParameters;

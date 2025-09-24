@@ -1903,7 +1903,7 @@ describe("Input/output model type", () => {
         assert.ok(schemaOutput);
         await assertEqualContent(
           schemaOutput?.content!,
-          buildParameterDef("number")
+          buildParameterDef("string")
         );
       });
 

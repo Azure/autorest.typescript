@@ -17,6 +17,7 @@ import {
 
 export function _listCollectionsSend(
   context: Client,
+  apiVersion: string,
   options: ConfidentialLedgerListCollectionsOptionalParams = {
     requestOptions: {},
   },
@@ -24,7 +25,7 @@ export function _listCollectionsSend(
   const path = expandUrlTemplate(
     "/app/collections{?api%2Dversion}",
     {
-      "api%2Dversion": context.apiVersion,
+      "api%2Dversion": apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -55,10 +56,11 @@ export async function _listCollectionsDeserialize(
 /** Collection ids are user-created collections of ledger entries */
 export async function listCollections(
   context: Client,
+  apiVersion: string,
   options: ConfidentialLedgerListCollectionsOptionalParams = {
     requestOptions: {},
   },
 ): Promise<Collection[]> {
-  const result = await _listCollectionsSend(context, options);
+  const result = await _listCollectionsSend(context, apiVersion, options);
   return _listCollectionsDeserialize(result);
 }
