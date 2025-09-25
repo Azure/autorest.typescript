@@ -124,7 +124,8 @@ function emitMethodTests(
       method,
       parameterMap,
       options.client,
-      true // isForTest = true for tests
+      true, // isForTest = true for tests
+      false // includeClientParams = false for tests by default
     );
 
     // Prepare client-level parameters

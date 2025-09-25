@@ -17,6 +17,18 @@ import {
   generateMethodCall,
   createSourceFile
 } from "./helpers/exampleValueHelpers.js";
+import { getDefaultService } from "../utils/modelUtils.js";
+import { getServers } from "@typespec/http";
+
+/**
+ * Check if service has @server decorator with template parameters
+ */
+function checkHasServerTemplateParams(dpgContext: SdkContext): boolean {
+  const program = dpgContext.program;
+  const serviceNs = getDefaultService(program)?.type;
+  const servers = serviceNs ? getServers(program, serviceNs) : undefined;
+  return !!(servers?.[0]?.url && servers[0].url.includes("{"));
+}
 
 /**
  * Helpers to emit samples
@@ -49,7 +61,6 @@ function emitMethodSamples(
 
   const exampleFunctions = [];
   const clientName = getClassicalClientName(options.client);
-  let needsDotenv = false;
 
   // TODO: remove hard-coded for package
   if (dpgContext.rlcOptions?.packageDetails?.name) {
@@ -57,6 +68,16 @@ function emitMethodSamples(
       moduleSpecifier: dpgContext.rlcOptions?.packageDetails?.name,
       namedImports: [clientName]
     });
+  }
+
+  // Check if we need dotenv import based on server template parameters
+  const hasServerTemplateParams = checkHasServerTemplateParams(dpgContext);
+  if (hasServerTemplateParams) {
+    sourceFile.addImportDeclaration({
+      moduleSpecifier: "dotenv",
+      namespaceImport: "dotenv"
+    });
+    sourceFile.addStatements("dotenv.config();");
   }
 
   for (const example of examples) {
@@ -72,13 +93,9 @@ function emitMethodSamples(
       method,
       parameterMap,
       options.client,
-      false // isForTest = false for samples
+      false, // isForTest = false for samples
+      hasServerTemplateParams // includeClientParams
     );
-
-    const hasEnvVars = parameters.some((p) => p.value.includes("process.env"));
-    if (hasEnvVars) {
-      needsDotenv = true;
-    }
 
     const { methodCall, clientParams, clientParamDefs } = generateMethodCall(
       method,
@@ -135,11 +152,6 @@ function emitMethodSamples(
     };
     sourceFile.addFunction(functionDeclaration);
     exampleFunctions.push(exampleName);
-  }
-
-  if (needsDotenv) {
-    sourceFile.insertStatements(1, 'import * as dotenv from "dotenv";');
-    sourceFile.insertStatements(2, "dotenv.config();");
   }
 
   // Add statements referencing the tracked declarations

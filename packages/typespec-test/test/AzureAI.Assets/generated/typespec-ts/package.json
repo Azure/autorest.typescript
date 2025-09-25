@@ -46,22 +46,22 @@
     "LICENSE"
   ],
   "dependencies": {
+    "@azure/core-util": "^1.9.2",
     "@azure-rest/core-client": "^2.3.1",
     "@azure/core-auth": "^1.6.0",
     "@azure/core-rest-pipeline": "^1.5.0",
-    "@azure/core-util": "^1.9.2",
     "@azure/logger": "^1.0.0",
     "tslib": "^2.6.2"
   },
   "devDependencies": {
-    "@microsoft/api-extractor": "^7.40.3",
-    "@types/node": "^20.19.17",
     "dotenv": "^16.0.0",
+    "@types/node": "^20.0.0",
     "eslint": "^9.9.0",
-    "mkdirp": "^3.0.1",
-    "rimraf": "^5.0.5",
+    "typescript": "~5.8.2",
     "tshy": "^2.0.0",
-    "typescript": "~5.8.2"
+    "@microsoft/api-extractor": "^7.40.3",
+    "rimraf": "^5.0.5",
+    "mkdirp": "^3.0.1"
   },
   "scripts": {
     "clean": "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
