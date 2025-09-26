@@ -86,7 +86,7 @@ export async function rlcEmitterFor(
     title: "Azure TypeScript Testing"
   })
 
-  ${needAzureCore ? "@useDependency(Azure.Core.Versions.v1_0_Preview_2)" : ""} 
+  ${needAzureCore && !withVersionedApiVersion ? "@useDependency(Azure.Core.Versions.v1_0_Preview_2)" : ""}
   namespace Azure.TypeScript.Testing;
   `;
   const content = withRawContent

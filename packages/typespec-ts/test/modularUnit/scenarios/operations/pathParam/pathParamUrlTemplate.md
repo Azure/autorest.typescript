@@ -44,6 +44,7 @@ The config would be like:
 
 ```yaml
 needAzureCore: true
+withVersionedApiVersion: true
 ```
 
 ## Operations
@@ -62,7 +63,6 @@ import {
 
 export function _updateKeySend(
   context: Client,
-  apiVersion: string,
   keyName: string,
   keyVersion: string,
   parameters: string,
@@ -73,7 +73,7 @@ export function _updateKeySend(
     {
       "key-name": keyName,
       "key-version": keyVersion,
-      "api%2Dversion": apiVersion,
+      "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -106,7 +106,6 @@ export async function _updateKeyDeserialize(
 /** The most basic operation. */
 export async function updateKey(
   context: Client,
-  apiVersion: string,
   keyName: string,
   keyVersion: string,
   parameters: string,
@@ -114,7 +113,6 @@ export async function updateKey(
 ): Promise<KeyBundle> {
   const result = await _updateKeySend(
     context,
-    apiVersion,
     keyName,
     keyVersion,
     parameters,
