@@ -114,3 +114,11 @@ export const CloudSettingHelpers = {
     location: "cloudSettingHelpers.ts"
   }
 } as const;
+
+export const CreateRecorderHelpers = {
+  createRecorder: {
+    kind: "function",
+    name: "createRecorder",
+    location: "recordedClient.ts"
+  }
+} as const;
