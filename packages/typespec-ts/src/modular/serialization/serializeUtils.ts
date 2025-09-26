@@ -6,6 +6,12 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { getDirectSubtypes } from "../helpers/typeHelpers.js";
 
+/**
+ * Get all discriminated values for a given model type and given discriminator property.
+ * @param type The model type to get discriminated values from.
+ * @param discriminatorProperty The discriminator property to use for filtering.
+ * @returns An array of all discriminated values.
+ */
 export function getAllDiscriminatedValues(
   type: SdkModelType,
   discriminatorProperty?: SdkModelPropertyType
@@ -17,9 +23,11 @@ export function getAllDiscriminatedValues(
   const children = [type];
   while (children.length > 0) {
     const model = children.shift()!;
+    // skip if no discriminator value
     if (!model.discriminatorValue) {
       continue;
     }
+    // Check if this model is a subtype of the given discriminator property
     if (
       !!discriminatorProperty &&
       model.baseModel?.discriminatorProperty?.name ===
@@ -27,6 +35,7 @@ export function getAllDiscriminatedValues(
     ) {
       values.push(model.discriminatorValue);
       if (model.discriminatorProperty?.name === discriminatorProperty.name) {
+        // Traverse subtypes also if they have the same discriminator property
         children.push(...getDirectSubtypes(model));
       }
     }
