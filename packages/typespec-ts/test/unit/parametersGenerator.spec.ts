@@ -41,12 +41,15 @@ describe("Parameters.ts", () => {
       it("should not generate apiVersion if there's a client level apiVersion but without default value", async () => {
         const tspContent = `
         model ApiVersionParameter {
+          @apiVersion
           @query
           "api-version": string;
         }
         op test(...ApiVersionParameter): string;
         `;
-        const parameters = await emitParameterFromTypeSpec(tspContent);
+        const parameters = await emitParameterFromTypeSpec(tspContent, {
+          needTCGC: true
+        });
         assert.ok(parameters);
         await assertEqualContent(
           parameters?.content!,
@@ -57,7 +60,8 @@ describe("Parameters.ts", () => {
             `
         );
         const models = await emitClientFactoryFromTypeSpec(tspContent, {
-          needNamespaces: true
+          needNamespaces: true,
+          needTCGC: true
         });
         assert.ok(models);
         await assertEqualContent(

@@ -36,7 +36,6 @@ using OpenAPI;
 namespace Azure.Test.ParametrizedHost;
 
 enum Versions {
-  @useDependency(Azure.Core.Versions.v1_0_Preview_1)
   v1,
 }
 //
