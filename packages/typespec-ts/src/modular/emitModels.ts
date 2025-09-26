@@ -681,7 +681,7 @@ function buildModelProperty(
 
   // We need refine the discriminator property if
   // 1. it is discriminated union
-  // 2. it has other discriminator values expect itself
+  // 2. it has other discriminator values except itself
   if (isDiscriminatedUnion(model) && allDiscriminatorValues.length > 1) {
     typeExpression = allDiscriminatorValues
       .map((value) => `"${value}"`)
