@@ -10,7 +10,6 @@ import { Collection } from "../../models/models.js";
 export interface ConfidentialLedgerOperations {
   /** Collection ids are user-created collections of ledger entries */
   listCollections: (
-    apiVersion: string,
     options?: ConfidentialLedgerListCollectionsOptionalParams,
   ) => Promise<Collection[]>;
 }
@@ -18,9 +17,8 @@ export interface ConfidentialLedgerOperations {
 function _getConfidentialLedger(context: ParametrizedHostContext) {
   return {
     listCollections: (
-      apiVersion: string,
       options?: ConfidentialLedgerListCollectionsOptionalParams,
-    ) => listCollections(context, apiVersion, options),
+    ) => listCollections(context, options),
   };
 }
 

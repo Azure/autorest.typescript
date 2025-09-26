@@ -21,7 +21,13 @@ export interface ConfidentialLedgerListCollectionsOptionalParams extends Operati
 
 // @public
 export interface ConfidentialLedgerOperations {
-    listCollections: (apiVersion: string, options?: ConfidentialLedgerListCollectionsOptionalParams) => Promise<Collection[]>;
+    listCollections: (options?: ConfidentialLedgerListCollectionsOptionalParams) => Promise<Collection[]>;
+}
+
+// @public
+export enum KnownVersions {
+    // (undocumented)
+    V1 = "v1"
 }
 
 // @public (undocumented)
@@ -33,6 +39,7 @@ export class ParametrizedHostClient {
 
 // @public
 export interface ParametrizedHostClientOptionalParams extends ClientOptions {
+    apiVersion?: string;
     // (undocumented)
     host?: string;
     // (undocumented)

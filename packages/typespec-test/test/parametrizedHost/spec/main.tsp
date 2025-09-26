@@ -16,23 +16,29 @@ using OpenAPI;
 
 // TODO: remove version in server temporary https://github.com/Azure/typespec-azure/issues/1608
 
-@service(#{title: "ParametrizedHost"})
+@service(#{ title: "ParametrizedHost" })
 @useAuth(OAuth2Auth<[MyFlow]>)
-@useDependency(Azure.Core.Versions.v1_0_Preview_1)
+@versioned(Versions)
 @server(
   "{host}.{subdomain}.{sufix}.com",
   "Confidential Ledger Service",
   {
     @path
     host?: string = "one",
+
     @path
     subdomain?: string = "two",
+
     @path
-    sufix?: string = "three"
+    sufix?: string = "three",
   }
 )
 namespace Azure.Test.ParametrizedHost;
 
+enum Versions {
+  @useDependency(Azure.Core.Versions.v1_0_Preview_1)
+  v1,
+}
 //
 // ** Parameter descriptions **
 //
