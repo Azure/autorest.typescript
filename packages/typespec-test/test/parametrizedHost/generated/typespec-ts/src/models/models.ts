@@ -14,6 +14,7 @@ export function collectionDeserializer(item: any): Collection {
 
 /** Known values of {@link Versions} that the service accepts. */
 export enum KnownVersions {
+  /** v1 */
   V1 = "v1",
 }
 
