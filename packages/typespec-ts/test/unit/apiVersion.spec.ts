@@ -343,7 +343,7 @@ describe("api-version", () => {
         const def = buildQueryDefinition({
           "@versioned": false
         });
-        const expectedRes = buildDefaultReturn(false, false, false);
+        const expectedRes = buildDefaultReturn(false, true, true);
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
         await assertEqualContent(models!.content, expectedRes);
