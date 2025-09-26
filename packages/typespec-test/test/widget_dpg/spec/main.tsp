@@ -127,6 +127,7 @@ interface SAPWidgets {
 
     @get
     @route("/widgets/pages")
+    @list
     listWidgetsPages(
         @query page: int32,
         @query pageSize: int32,
@@ -134,6 +135,7 @@ interface SAPWidgets {
 
     @post
     @route("/widgets/pages")
+    @list
     queryWidgetsPages(
         @query page: int32,
         @query pageSize: int32,
