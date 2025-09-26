@@ -1,4 +1,4 @@
-# Should generate serializers for discriminated model
+# Should generate serializers for discriminator property
 
 Verify that the serializers are correctly referenced within the switch statement of the base serializers.
 
@@ -41,7 +41,7 @@ export interface AWidgetData {
 
 export function aWidgetDataDeserializer(item: any): AWidgetData {
   return {
-    kind: item["kind"],
+    kind: item["kind"]
   };
 }
 
@@ -70,7 +70,7 @@ export interface AoaiModelConfig extends AWidgetData {
 export function aoaiModelConfigDeserializer(item: any): AoaiModelConfig {
   return {
     kind: item["kind"],
-    fooProp: item["fooProp"],
+    fooProp: item["fooProp"]
   };
 }
 
@@ -85,12 +85,12 @@ export function maasModelConfigDeserializer(item: any): MaasModelConfig {
   return {
     kind: item["kind"],
     start: new Date(item["start"]),
-    end: !item["end"] ? item["end"] : new Date(item["end"]),
+    end: !item["end"] ? item["end"] : new Date(item["end"])
   };
 }
 ```
 
-# Should generate discriminated model
+# Should generate discriminator property with union type
 
 Verify that the serializers are correctly referenced within the switch statement of the base serializers.
 
@@ -161,6 +161,7 @@ interface D {
 ```
 
 ## Provide generated models and its serializer
+
 Generated Models.
 
 ```ts models
@@ -171,11 +172,11 @@ export interface DiscountTypeProperties {
 }
 
 export function discountTypePropertiesDeserializer(
-  item: any,
+  item: any
 ): DiscountTypeProperties {
   return {
     discountType: item["discountType"],
-    discountPercentage: item["discountPercentage"],
+    discountPercentage: item["discountPercentage"]
   };
 }
 
@@ -187,12 +188,12 @@ export type DiscountTypePropertiesUnion =
   | DiscountTypeProperties;
 
 export function discountTypePropertiesUnionDeserializer(
-  item: any,
+  item: any
 ): DiscountTypePropertiesUnion {
   switch (item.discountType) {
     case "ProductFamily":
       return discountTypeProductFamilyDeserializer(
-        item as DiscountTypeProductFamily,
+        item as DiscountTypeProductFamily
       );
 
     case "Product":
@@ -221,12 +222,12 @@ export interface DiscountTypeProductFamily extends DiscountTypeProperties {
 }
 
 export function discountTypeProductFamilyDeserializer(
-  item: any,
+  item: any
 ): DiscountTypeProductFamily {
   return {
     discountType: item["discountType"],
     discountPercentage: item["discountPercentage"],
-    productFamilyName: item["productFamilyName"],
+    productFamilyName: item["productFamilyName"]
   };
 }
 
@@ -238,13 +239,13 @@ export interface DiscountTypeProduct extends DiscountTypeProperties {
 }
 
 export function discountTypeProductDeserializer(
-  item: any,
+  item: any
 ): DiscountTypeProduct {
   return {
     discountType: item["discountType"],
     discountPercentage: item["discountPercentage"],
     productFamilyName: item["productFamilyName"],
-    productId: item["productId"],
+    productId: item["productId"]
   };
 }
 
@@ -257,14 +258,14 @@ export interface DiscountTypeProductSku extends DiscountTypeProperties {
 }
 
 export function discountTypeProductSkuDeserializer(
-  item: any,
+  item: any
 ): DiscountTypeProductSku {
   return {
     discountType: item["discountType"],
     discountPercentage: item["discountPercentage"],
     productFamilyName: item["productFamilyName"],
     productId: item["productId"],
-    skuId: item["skuId"],
+    skuId: item["skuId"]
   };
 }
 ```
@@ -344,7 +345,7 @@ export function documentIngressSerializer(item: DocumentIngress): any {
       ? item["properties"]
       : item["properties"].map((p: any) => {
           return p;
-        }),
+        })
   };
 }
 
@@ -360,7 +361,7 @@ export function documentIngressDeserializer(item: any): DocumentIngress {
       ? item["Properties"]
       : item["Properties"].map((p: any) => {
           return p;
-        }),
+        })
   };
 }
 
@@ -368,7 +369,7 @@ export function documentIngressDeserializer(item: any): DocumentIngress {
 export type DocumentIngressUnion = Request | Exception | DocumentIngress;
 
 export function documentIngressUnionSerializer(
-  item: DocumentIngressUnion,
+  item: DocumentIngressUnion
 ): any {
   switch (item.documentType) {
     case "Request":
@@ -383,7 +384,7 @@ export function documentIngressUnionSerializer(
 }
 
 export function documentIngressUnionDeserializer(
-  item: any,
+  item: any
 ): DocumentIngressUnion {
   switch (item.documentType) {
     case "Request":
@@ -427,7 +428,7 @@ export function requestSerializer(item: Request): any {
           return p;
         }),
     Name: item["name"],
-    Url: item["url"],
+    Url: item["url"]
   };
 }
 
@@ -445,7 +446,7 @@ export function requestDeserializer(item: any): Request {
           return p;
         }),
     name: item["Name"],
-    url: item["Url"],
+    url: item["Url"]
   };
 }
 
@@ -470,7 +471,7 @@ export function exceptionSerializer(item: Exception): any {
           return p;
         }),
     ExceptionType: item["exceptionType"],
-    ExceptionMessage: item["exceptionMessage"],
+    ExceptionMessage: item["exceptionMessage"]
   };
 }
 
@@ -488,7 +489,209 @@ export function exceptionDeserializer(item: any): Exception {
           return p;
         }),
     exceptionType: item["ExceptionType"],
-    exceptionMessage: item["ExceptionMessage"],
+    exceptionMessage: item["ExceptionMessage"]
   };
+}
+```
+
+# Should generate serializers for TCGC `@hierarchyBuilding` with discriminator property
+
+Verify that the serializers are correctly referenced within the switch statement of the base serializers.
+
+## TypeSpec
+
+This is tsp definition.
+
+```tsp
+import "@typespec/http";
+import "@typespec/versioning";
+import "@azure-tools/typespec-client-generator-core";
+
+using TypeSpec.Http;
+using TypeSpec.Versioning;
+using Azure.ClientGenerator.Core;
+
+@service(#{
+  title: "Microsoft.Contoso management service",
+})
+@versioned(Microsoft.Contoso.Versions)
+namespace Microsoft.Contoso;
+
+enum Versions {
+  PreviewVersion: "2024-07-01-preview",
+  `2024-07-01`,
+  `2024-08-01-preview`
+}
+
+alias PetContent = {
+  @doc("Whether the pet is trained")
+  trained: boolean;
+};
+
+@discriminator("kind")
+model Animal {
+  @doc("The kind of animal")
+  kind: string;
+
+  @doc("Name of the animal")
+  name: string;
+}
+
+model Pet extends Animal {
+  kind: "pet";
+  ...PetContent;
+}
+
+alias DogContent = {
+  @doc("The breed of the dog")
+  breed: string;
+};
+
+@global.Azure.ClientGenerator.Core.Legacy.hierarchyBuilding(Pet)
+model Dog extends Animal {
+  kind: "dog";
+  ...PetContent;
+  ...DogContent;
+}
+
+@route("/serialize")
+interface D {
+  @put
+  updatePetAsAnimal(@body animal: Animal): Animal;
+}
+```
+
+This is the tspconfig.yaml.
+
+```yaml
+withRawContent: true
+mustEmptyDiagnostic: false
+```
+
+## Provide generated models and its serializer
+
+Generated Models.
+
+```ts models
+/** model interface Animal */
+export interface Animal {
+  /** The kind of animal */
+  /** The discriminator possible values: pet, dog */
+  kind: string;
+  /** Name of the animal */
+  name: string;
+}
+
+export function animalSerializer(item: Animal): any {
+  return { kind: item["kind"], name: item["name"] };
+}
+
+export function animalDeserializer(item: any): Animal {
+  return {
+    kind: item["kind"],
+    name: item["name"],
+  };
+}
+
+/** Alias for AnimalUnion */
+export type AnimalUnion = PetUnion | Animal;
+
+export function animalUnionSerializer(item: AnimalUnion): any {
+  switch (item.kind) {
+    case "pet":
+    case "dog":
+      return petUnionSerializer(item as PetUnion);
+
+    default:
+      return animalSerializer(item);
+  }
+}
+
+export function animalUnionDeserializer(item: any): AnimalUnion {
+  switch (item.kind) {
+    case "pet":
+    case "dog":
+      return petUnionDeserializer(item as PetUnion);
+
+    default:
+      return animalDeserializer(item);
+  }
+}
+
+/** model interface Pet */
+export interface Pet extends Animal {
+  kind: "pet" | "dog";
+  /** Whether the pet is trained */
+  trained: boolean;
+}
+
+export function petSerializer(item: Pet): any {
+  return { kind: item["kind"], name: item["name"], trained: item["trained"] };
+}
+
+export function petDeserializer(item: any): Pet {
+  return {
+    kind: item["kind"],
+    name: item["name"],
+    trained: item["trained"],
+  };
+}
+
+/** Alias for PetUnion */
+export type PetUnion = Dog | Pet;
+
+export function petUnionSerializer(item: PetUnion): any {
+  switch (item.kind) {
+    case "dog":
+      return dogSerializer(item as Dog);
+
+    default:
+      return petSerializer(item);
+  }
+}
+
+export function petUnionDeserializer(item: any): PetUnion {
+  switch (item.kind) {
+    case "dog":
+      return dogDeserializer(item as Dog);
+
+    default:
+      return petDeserializer(item);
+  }
+}
+
+/** model interface Dog */
+export interface Dog extends Pet {
+  kind: "dog";
+  /** The breed of the dog */
+  breed: string;
+}
+
+export function dogSerializer(item: Dog): any {
+  return {
+    kind: item["kind"],
+    trained: item["trained"],
+    name: item["name"],
+    breed: item["breed"],
+  };
+}
+
+export function dogDeserializer(item: any): Dog {
+  return {
+    kind: item["kind"],
+    trained: item["trained"],
+    name: item["name"],
+    breed: item["breed"],
+  };
+}
+
+/** Known values of {@link Versions} that the service accepts. */
+export enum KnownVersions {
+  /** 2024-07-01-preview */
+  PreviewVersion = "2024-07-01-preview",
+  /** 2024-07-01 */
+  _20240701 = "2024-07-01",
+  /** 2024-08-01-preview */
+  _20240801Preview = "2024-08-01-preview",
 }
 ```
