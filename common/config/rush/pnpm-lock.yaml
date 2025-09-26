@@ -233,7 +233,7 @@ importers:
   ../../packages/typespec-ts:
     specifiers:
       '@azure-rest/core-client': ^2.3.1
-      '@azure-tools/azure-http-specs': 0.1.0-alpha.29-dev.0
+      '@azure-tools/azure-http-specs': 0.1.0-alpha.30-dev.5
       '@azure-tools/rlc-common': workspace:^0.44.1
       '@azure-tools/typespec-autorest': 0.61.0-dev.1
       '@azure-tools/typespec-azure-core': 0.61.0-dev.6
@@ -297,7 +297,7 @@ importers:
       tslib: 2.6.2
     devDependencies:
       '@azure-rest/core-client': 2.3.1
-      '@azure-tools/azure-http-specs': 0.1.0-alpha.29-dev.0_sh4poktgnwanwissxew37wadie
+      '@azure-tools/azure-http-specs': 0.1.0-alpha.30-dev.5_sh4poktgnwanwissxew37wadie
       '@azure-tools/typespec-autorest': 0.61.0-dev.1_3n5d56uubma5dachvyqr5siiky
       '@azure-tools/typespec-azure-core': 0.61.0-dev.6_xnlbvll4pdgflrbdd5gpkbq2wm
       '@azure-tools/typespec-azure-resource-manager': 0.60.1_h2nf4w2vqzs27pizplhd5nr5um
@@ -473,8 +473,8 @@ packages:
       proper-lockfile: 2.0.1
     dev: false
 
-  /@azure-tools/azure-http-specs/0.1.0-alpha.29-dev.0_sh4poktgnwanwissxew37wadie:
-    resolution: {integrity: sha512-CVVJXDPjn0R/rlOVmOaGuN8adGqBpmGJCNyy3iYeBRt+G2A+H2K3t/T2aSvCrXlTn9IQvAokDyXM/qkelfSbcg==}
+  /@azure-tools/azure-http-specs/0.1.0-alpha.30-dev.5_sh4poktgnwanwissxew37wadie:
+    resolution: {integrity: sha512-5lwqZRLux8BU9FK+BSZOTerWUKVB3SRhkVQIDkzh1DjmS7MPBCNXEtbvEZmM0EtLzJWiS5YjnRwj6UNiqw+wzw==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       '@azure-tools/typespec-azure-core': ^0.60.0 || >=0.61.0-dev <0.61.0
