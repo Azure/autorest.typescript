@@ -1,8 +1,35 @@
 import { getAllAncestors } from "../helpers/operationHelpers.js";
 import {
+  SdkModelPropertyType,
   SdkModelType,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
+import { getDirectSubtypes } from "../helpers/typeHelpers.js";
+
+export function getAllDiscriminatedValues(
+  type: SdkModelType,
+  discriminatorProperty?: SdkModelPropertyType
+) {
+  if (!type.discriminatorValue) {
+    return [];
+  }
+  const values: string[] = [];
+  const children = [type];
+  while (children.length > 0) {
+    const child = children.shift()!;
+    if (child.discriminatorValue) {
+      values.push(child.discriminatorValue);
+      if (
+        !!discriminatorProperty &&
+        child.discriminatorProperty?.name === discriminatorProperty.name
+      ) {
+        children.push(...getDirectSubtypes(child));
+      }
+    }
+  }
+
+  return values;
+}
 
 export function isSupportedSerializeType(type: SdkType): boolean {
   return (

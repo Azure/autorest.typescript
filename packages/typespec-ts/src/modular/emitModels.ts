@@ -66,6 +66,7 @@ import { resolveReference } from "../framework/reference.js";
 import { MultipartHelpers } from "./static-helpers-metadata.js";
 import { getAllAncestors } from "./helpers/operationHelpers.js";
 import { getAllProperties } from "./helpers/operationHelpers.js";
+import { getDirectSubtypes } from "./helpers/typeHelpers.js";
 
 type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
   extends?: string[];
@@ -624,17 +625,16 @@ export function normalizeModelName(
 }
 
 function buildModelPolymorphicType(context: SdkContext, type: SdkModelType) {
-  if (!type.discriminatedSubtypes) {
+  // Only include direct subtypes in this union
+  const directSubtypes = getDirectSubtypes(type);
+  if (directSubtypes.length === 0) {
     return undefined;
   }
-
-  const discriminatedSubtypes = Object.values(type.discriminatedSubtypes);
-
   const typeDeclaration: TypeAliasDeclarationStructure = {
     kind: StructureKind.TypeAlias,
     name: `${normalizeName(type.name, NameType.Interface)}Union`,
     isExported: true,
-    type: discriminatedSubtypes
+    type: directSubtypes
       .filter((p) => {
         return (
           p.usage !== undefined &&
