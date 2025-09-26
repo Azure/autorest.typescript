@@ -112,6 +112,7 @@ describe("Parameters.ts", () => {
                   Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
                 }api-version=\${apiVersion}\`;
               }
+                
               return next(req);
             },
           });
