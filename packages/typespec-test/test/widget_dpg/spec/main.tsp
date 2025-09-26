@@ -76,10 +76,9 @@ model WidgetError {
     message: string;
 }
 
-@pagedResult
 model ListWidgetsPagesResults {
     @doc("The current page of results.")
-    @items
+    @pageItems
     results: Widget[];
 
     @doc("The URL to get the next set of results.")

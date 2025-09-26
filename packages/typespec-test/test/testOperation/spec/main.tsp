@@ -3,8 +3,10 @@ import "@typespec/http";
 import "@typespec/versioning";
 import "@azure-tools/typespec-azure-core";
 import "./routes.tsp";
+import "@typespec/versioning";
 
 using TypeSpec.Http;
+using TypeSpec.Versioning;
 
 @service(#{ title: "KeyVaultClient" })
 @server(
@@ -14,4 +16,9 @@ using TypeSpec.Http;
         vaultBaseUrl: url,
     }
 )
+@versioned(Versions)
 namespace KeyVault;
+
+enum Versions {
+    v1,
+}

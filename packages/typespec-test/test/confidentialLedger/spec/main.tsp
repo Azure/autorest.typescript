@@ -150,10 +150,9 @@ model TransactionStatus {
 }
 
 @doc("Paginated ledger entries returned in response to a query.")
-@pagedResult
 model PagedLedgerEntries {
   @doc("Array of ledger entries.")
-  @items
+  @pageItems
   entries: LedgerEntry[];
 
   @doc("State of the ledger query.")

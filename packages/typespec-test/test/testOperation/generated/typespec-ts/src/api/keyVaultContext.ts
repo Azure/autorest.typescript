@@ -2,19 +2,24 @@
 // Licensed under the MIT License.
 
 import { logger } from "../logger.js";
+import { KnownVersions } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 
 export interface KeyVaultContext extends Client {
   /** The API version to use for this operation. */
+  /** Known values of {@link KnownVersions} that the service accepts. */
   apiVersion: string;
 }
 
 /** Optional parameters for the client. */
-export interface KeyVaultClientOptionalParams extends ClientOptions {}
+export interface KeyVaultClientOptionalParams extends ClientOptions {
+  /** The API version to use for this operation. */
+  /** Known values of {@link KnownVersions} that the service accepts. */
+  apiVersion?: string;
+}
 
 export function createKeyVault(
   endpointParam: string,
-  apiVersion: string,
   options: KeyVaultClientOptionalParams = {},
 ): KeyVaultContext {
   const endpointUrl = options.endpoint ?? String(endpointParam);
@@ -30,6 +35,7 @@ export function createKeyVault(
   };
   const clientContext = getClient(endpointUrl, undefined, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+  const apiVersion = options.apiVersion ?? "v1";
   clientContext.pipeline.addPolicy({
     name: "ClientApiVersionPolicy",
     sendRequest: (req, next) => {
