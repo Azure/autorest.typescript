@@ -18,7 +18,7 @@ export function _getSecretSend(
   options: GetSecretOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/secrets/{secret-name}/{secret-version}{?api%2Dversion}",
+    "/secrets/{secret-name}/{secret-version}{?api%2Dversion,outContentType}",
     {
       "secret-name": secretName,
       "secret-version": secretVersion,

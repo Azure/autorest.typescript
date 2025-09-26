@@ -98,35 +98,12 @@ export function getSendPrivateFunction(
   );
   const statements: string[] = [];
   let pathStr = `"${operationPath}"`;
-  const pathParams = getPathParameters(operation);
-  const queryParams = getQueryParameters(dpgContext, operation);
-  const urlTemplateParams = [...pathParams, ...queryParams];
-
+  const urlTemplateParams = [
+    ...getPathParameters(operation),
+    ...getQueryParameters(dpgContext, operation)
+  ];
   if (urlTemplateParams.length > 0) {
-    // Check if we need to rebuild the URL template due to filtered query parameters
-    const originalQueryParams = operation.operation.parameters.filter(
-      (p) => p.kind === "query"
-    );
-    const hasFilteredQueryParams =
-      queryParams.length < originalQueryParams.length;
-
-    let uriTemplate = operation.operation.uriTemplate;
-    if (hasFilteredQueryParams) {
-      // Rebuild URI template based on remaining parameters
-      if (queryParams.length > 0) {
-        const queryParamNames = queryParams
-          .map((param) => {
-            const match = param.match(/"([^"]+)":/);
-            return match ? match[1] : "unknown";
-          })
-          .join(",");
-        uriTemplate = `${operationPath}{?${queryParamNames}}`;
-      } else {
-        uriTemplate = operationPath;
-      }
-    }
-
-    statements.push(`const path = ${resolveReference(UrlTemplateHelpers.parseTemplate)}("${uriTemplate}", {
+    statements.push(`const path = ${resolveReference(UrlTemplateHelpers.parseTemplate)}("${operation.operation.uriTemplate}", {
         ${urlTemplateParams.join(",\n")}
         },{
       allowReserved: ${optionalParamName}?.requestOptions?.skipUrlEncoding

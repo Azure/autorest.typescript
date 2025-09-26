@@ -69,7 +69,7 @@ export function _getSecretOriginalSend(
   options: GetSecretOriginalOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/secrets/{secretName}",
+    "/secrets/{secretName}{?outContentType}",
     {
       secretName: secretName,
     },
