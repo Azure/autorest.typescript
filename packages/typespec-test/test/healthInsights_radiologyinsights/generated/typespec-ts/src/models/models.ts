@@ -1091,5 +1091,6 @@ export type RepeatabilityResult = "accepted" | "rejected";
 
 /** Known values of {@link ApiVersion} that the service accepts. */
 export enum KnownApiVersion {
+  /** 2023-09-01-preview */
   V20230901Preview = "2023-09-01-preview",
 }
