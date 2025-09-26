@@ -18,7 +18,7 @@ export declare interface AnimalOperationsUpdateDogAsAnimalOptionalParams extends
 export declare interface AnimalOperationsUpdatePetAsAnimalOptionalParams extends OperationOptions {
 }
 
-export declare type AnimalUnion = PetUnion | Dog | Animal;
+export declare type AnimalUnion = PetUnion | Animal;
 
 export declare interface Dog extends Pet {
     kind: "dog";
