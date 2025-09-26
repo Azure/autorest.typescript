@@ -26,7 +26,6 @@ export interface ConfidentialLedgerOperations {
 
 // @public
 export enum KnownVersions {
-    // (undocumented)
     V1 = "v1"
 }
 
