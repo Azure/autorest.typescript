@@ -28,7 +28,6 @@ namespace Azure.Security.ConfidentialLedger;
 
 enum Versions {
   /** Version 2022-08-31 */
-  @useDependency(Azure.Core.Versions.v1_0_Preview_1)
   `2022-05-13`,
 }
 
