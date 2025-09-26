@@ -16,14 +16,18 @@ export function getAllDiscriminatedValues(
   const values: string[] = [];
   const children = [type];
   while (children.length > 0) {
-    const child = children.shift()!;
-    if (child.discriminatorValue) {
-      values.push(child.discriminatorValue);
-      if (
-        !!discriminatorProperty &&
-        child.discriminatorProperty?.name === discriminatorProperty.name
-      ) {
-        children.push(...getDirectSubtypes(child));
+    const model = children.shift()!;
+    if (!model.discriminatorValue) {
+      continue;
+    }
+    if (
+      !!discriminatorProperty &&
+      model.baseModel?.discriminatorProperty?.name ===
+        discriminatorProperty?.name
+    ) {
+      values.push(model.discriminatorValue);
+      if (model.discriminatorProperty?.name === discriminatorProperty.name) {
+        children.push(...getDirectSubtypes(model));
       }
     }
   }

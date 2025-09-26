@@ -51,7 +51,10 @@ import {
   isAzureCoreLroType
 } from "../utils/modelUtils.js";
 import { isExtensibleEnum } from "./type-expressions/get-enum-expression.js";
-import { isDiscriminatedUnion } from "./serialization/serializeUtils.js";
+import {
+  getAllDiscriminatedValues,
+  isDiscriminatedUnion
+} from "./serialization/serializeUtils.js";
 import { reportDiagnostic } from "../lib.js";
 import { getNamespaceFullName, NoTarget } from "@typespec/compiler";
 import {
@@ -656,7 +659,7 @@ function buildModelPolymorphicType(context: SdkContext, type: SdkModelType) {
 function buildModelProperty(
   context: SdkContext,
   property: SdkModelPropertyType,
-  parentModel: SdkModelType
+  model: SdkModelType
 ): PropertySignatureStructure {
   const normalizedPropName = normalizeModelPropertyName(context, property);
   if (
@@ -674,42 +677,15 @@ function buildModelProperty(
   }
 
   let typeExpression: string;
+  const allDiscriminatorValues = getAllDiscriminatedValues(model, property);
 
-  // Handle discriminator properties for hierarchical inheritance
-  // Only apply union logic if this is an intermediate model:
-  // 1. It has a baseModel (it extends something)
-  // 2. It is the discriminator property of the parent model
-  // 3. Its discriminator property name is the same as the base model's discriminator property name
-  const modelIsDiscriminatedChild =
-    parentModel.baseModel &&
-    parentModel.discriminatorValue &&
-    property.name === parentModel.discriminatorProperty?.name &&
-    property.name === parentModel.baseModel.discriminatorProperty?.name;
-
-  // 4. All subtypes should share the same discriminator property name
-  const modelHasSubTypesWithDiscriminator = Object.values(
-    parentModel.discriminatedSubtypes ?? {}
-  ).filter(
-    (subtype) =>
-      subtype.properties.filter(
-        (p) => p.name === property.name && p.discriminator === true
-      ).length > 0
-  );
-  if (
-    modelIsDiscriminatedChild &&
-    modelHasSubTypesWithDiscriminator.length > 0
-  ) {
-    const allowedDiscriminatorValues: string[] = [];
-    allowedDiscriminatorValues.push(`"${parentModel.discriminatorValue}"`);
-
-    // Find all subtypes that extend from this model
-    modelHasSubTypesWithDiscriminator.forEach((child) => {
-      if (child.discriminatorValue) {
-        allowedDiscriminatorValues.push(`"${child.discriminatorValue}"`);
-      }
-    });
-
-    typeExpression = allowedDiscriminatorValues.join(" | ");
+  // We need refine the discriminator property if
+  // 1. it is discriminated union
+  // 2. it has other discriminator values expect itself
+  if (isDiscriminatedUnion(model) && allDiscriminatorValues.length > 1) {
+    typeExpression = allDiscriminatorValues
+      .map((value) => `"${value}"`)
+      .join(" | ");
   }
   // eslint-disable-next-line
   else if (property.kind === "property" && property.isMultipartFileInput) {
