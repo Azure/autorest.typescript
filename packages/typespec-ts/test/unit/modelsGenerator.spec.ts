@@ -3288,7 +3288,6 @@ describe("Input/output model type", () => {
         title: "Defender EASM",
       })
       @doc("Contoso Resource Provider management API.")
-      @useDependency(Versions.v1_0_Preview_1)
       namespace Microsoft.ContosoProviderHub;
       alias ServiceTraits = NoRepeatableRequests &
         NoConditionalRequests &
@@ -3475,7 +3474,6 @@ describe("Input/output model type", () => {
         title: "Defender EASM",
       })
       @doc("Contoso Resource Provider management API.")
-      @useDependency(Versions.v1_0_Preview_1)
       namespace Microsoft.ContosoProviderHub;
       alias ServiceTraits = NoRepeatableRequests &
         NoConditionalRequests &

@@ -33,7 +33,7 @@ namespace Client.Structure.Service;
 
 enum Versions {
   /** Version 2022-08-31 */
-  @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+  
   `2022-08-30`,
 }
 
@@ -133,7 +133,7 @@ namespace Client.Structure.Service;
 
 enum Versions {
   /** Version 2022-08-31 */
-  @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+  
   `2022-08-30`,
 }
 
@@ -235,7 +235,7 @@ namespace Client.Structure.Service;
 
 enum Versions {
   /** Version 2022-08-31 */
-  @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+  
   `2022-08-30`,
 }
 

@@ -14,13 +14,19 @@ export interface GetSecretOptionalParams extends OperationOptions {
 
 // @public (undocumented)
 export class KeyVaultClient {
-    constructor(endpointParam: string, apiVersion: string, options?: KeyVaultClientOptionalParams);
+    constructor(endpointParam: string, options?: KeyVaultClientOptionalParams);
     getSecret(secretName: string, secretVersion: string, options?: GetSecretOptionalParams): Promise<void>;
     readonly pipeline: Pipeline;
 }
 
 // @public
 export interface KeyVaultClientOptionalParams extends ClientOptions {
+    apiVersion?: string;
+}
+
+// @public
+export enum KnownVersions {
+    V1 = "v1"
 }
 
 // (No @packageDocumentation comment for this package)

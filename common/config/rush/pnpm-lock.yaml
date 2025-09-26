@@ -191,11 +191,11 @@ importers:
 
   ../../packages/typespec-test:
     specifiers:
-      '@azure-tools/typespec-autorest': ^0.60.0
-      '@azure-tools/typespec-azure-core': ^0.60.0
+      '@azure-tools/typespec-autorest': 0.61.0-dev.1
+      '@azure-tools/typespec-azure-core': 0.61.0-dev.6
       '@azure-tools/typespec-azure-resource-manager': ^0.60.0
       '@azure-tools/typespec-azure-rulesets': ^0.60.0
-      '@azure-tools/typespec-client-generator-core': ^0.60.3
+      '@azure-tools/typespec-client-generator-core': 0.61.0-dev.10
       '@azure-tools/typespec-ts': workspace:^0.44.1
       '@types/mocha': ^5.2.7
       '@types/node': ^18.0.0
@@ -210,11 +210,11 @@ importers:
       ts-node: ^8.5.2
       typescript: ~5.8.2
     dependencies:
-      '@azure-tools/typespec-autorest': 0.60.0_xqmjq3r4sdugtrr3tc2a72fcim
-      '@azure-tools/typespec-azure-core': 0.60.0_xnlbvll4pdgflrbdd5gpkbq2wm
-      '@azure-tools/typespec-azure-resource-manager': 0.60.0_rhcufiaujzgxbyt5daepvpdlre
-      '@azure-tools/typespec-azure-rulesets': 0.60.0_ky3pplsng2g7jj77aqt6xchq7i
-      '@azure-tools/typespec-client-generator-core': 0.60.3_fyu44kry4xka4yg27pb37wv3aa
+      '@azure-tools/typespec-autorest': 0.61.0-dev.1_5is3dkfbtbskoeqhsxliongsiq
+      '@azure-tools/typespec-azure-core': 0.61.0-dev.6_xnlbvll4pdgflrbdd5gpkbq2wm
+      '@azure-tools/typespec-azure-resource-manager': 0.60.0_h2nf4w2vqzs27pizplhd5nr5um
+      '@azure-tools/typespec-azure-rulesets': 0.60.0_aj4gfb5c2lpfe3ghthvybcyp7e
+      '@azure-tools/typespec-client-generator-core': 0.61.0-dev.10_gqkyofwxdcwsxddfzntgpgwi7u
       '@azure-tools/typespec-ts': link:../typespec-ts
       '@typespec/compiler': 1.4.0_@types+node@18.18.0
       '@typespec/http': 1.4.0_cnatfmc62ufmiakunjh7hovriy
@@ -233,12 +233,12 @@ importers:
   ../../packages/typespec-ts:
     specifiers:
       '@azure-rest/core-client': ^2.3.1
-      '@azure-tools/azure-http-specs': 0.1.0-alpha.29-dev.0
+      '@azure-tools/azure-http-specs': 0.1.0-alpha.30-dev.5
       '@azure-tools/rlc-common': workspace:^0.44.1
-      '@azure-tools/typespec-autorest': ^0.60.0
-      '@azure-tools/typespec-azure-core': ^0.60.0
-      '@azure-tools/typespec-azure-resource-manager': ^0.60.0
-      '@azure-tools/typespec-client-generator-core': ^0.60.3
+      '@azure-tools/typespec-autorest': 0.61.0-dev.1
+      '@azure-tools/typespec-azure-core': 0.61.0-dev.6
+      '@azure-tools/typespec-azure-resource-manager': ^0.60.1
+      '@azure-tools/typespec-client-generator-core': 0.61.0-dev.10
       '@azure/abort-controller': ^2.1.2
       '@azure/core-auth': ^1.6.0
       '@azure/core-lro': ^3.1.0
@@ -297,11 +297,11 @@ importers:
       tslib: 2.6.2
     devDependencies:
       '@azure-rest/core-client': 2.3.1
-      '@azure-tools/azure-http-specs': 0.1.0-alpha.29-dev.0_vrf6fwnwaxwti2vjq4lodv434y
-      '@azure-tools/typespec-autorest': 0.60.0_xqmjq3r4sdugtrr3tc2a72fcim
-      '@azure-tools/typespec-azure-core': 0.60.0_xnlbvll4pdgflrbdd5gpkbq2wm
-      '@azure-tools/typespec-azure-resource-manager': 0.60.0_rhcufiaujzgxbyt5daepvpdlre
-      '@azure-tools/typespec-client-generator-core': 0.60.3_fyu44kry4xka4yg27pb37wv3aa
+      '@azure-tools/azure-http-specs': 0.1.0-alpha.30-dev.5_sh4poktgnwanwissxew37wadie
+      '@azure-tools/typespec-autorest': 0.61.0-dev.1_3n5d56uubma5dachvyqr5siiky
+      '@azure-tools/typespec-azure-core': 0.61.0-dev.6_xnlbvll4pdgflrbdd5gpkbq2wm
+      '@azure-tools/typespec-azure-resource-manager': 0.60.1_h2nf4w2vqzs27pizplhd5nr5um
+      '@azure-tools/typespec-client-generator-core': 0.61.0-dev.10_gqkyofwxdcwsxddfzntgpgwi7u
       '@azure/abort-controller': 2.1.2
       '@azure/core-auth': 1.6.0
       '@azure/core-lro': 3.1.0
@@ -473,8 +473,8 @@ packages:
       proper-lockfile: 2.0.1
     dev: false
 
-  /@azure-tools/azure-http-specs/0.1.0-alpha.29-dev.0_vrf6fwnwaxwti2vjq4lodv434y:
-    resolution: {integrity: sha512-CVVJXDPjn0R/rlOVmOaGuN8adGqBpmGJCNyy3iYeBRt+G2A+H2K3t/T2aSvCrXlTn9IQvAokDyXM/qkelfSbcg==}
+  /@azure-tools/azure-http-specs/0.1.0-alpha.30-dev.5_sh4poktgnwanwissxew37wadie:
+    resolution: {integrity: sha512-5lwqZRLux8BU9FK+BSZOTerWUKVB3SRhkVQIDkzh1DjmS7MPBCNXEtbvEZmM0EtLzJWiS5YjnRwj6UNiqw+wzw==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       '@azure-tools/typespec-azure-core': ^0.60.0 || >=0.61.0-dev <0.61.0
@@ -484,7 +484,7 @@ packages:
       '@typespec/versioning': ^0.74.0 || >=0.75.0-dev <0.75.0
       '@typespec/xml': ^0.74.0 || >=0.75.0-dev <0.75.0
     dependencies:
-      '@azure-tools/typespec-azure-core': 0.60.0_xnlbvll4pdgflrbdd5gpkbq2wm
+      '@azure-tools/typespec-azure-core': 0.61.0-dev.6_xnlbvll4pdgflrbdd5gpkbq2wm
       '@typespec/compiler': 1.4.0_@types+node@18.18.0
       '@typespec/http': 1.4.0_cnatfmc62ufmiakunjh7hovriy
       '@typespec/rest': 0.74.0_cvkw2japefw5hl7hzucpinme6i
@@ -524,41 +524,65 @@ packages:
       - supports-color
     dev: true
 
-  /@azure-tools/typespec-autorest/0.60.0_xqmjq3r4sdugtrr3tc2a72fcim:
-    resolution: {integrity: sha512-aIRr1e4g3irkjLTpxqzJ8BFnNFYwj4nlcG6cKGPuhNtiHhJgHjUhLVUNIW1A9O4jx+3RSErL9AkAl1ep+ZbiuA==}
+  /@azure-tools/typespec-autorest/0.61.0-dev.1_3n5d56uubma5dachvyqr5siiky:
+    resolution: {integrity: sha512-INmrQc9reKDb9Tr2b4jKbBfeE1DkX340dZIOEJQWsC7xmYWo9tn1Z3RNtBVfSLmTbbZmNeQYopjxOUIzlfCwBg==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
-      '@azure-tools/typespec-azure-core': ^0.60.0
-      '@azure-tools/typespec-azure-resource-manager': ^0.60.0
-      '@azure-tools/typespec-client-generator-core': ^0.60.0
+      '@azure-tools/typespec-azure-core': ^0.60.0 || >=0.61.0-dev <0.61.0
+      '@azure-tools/typespec-azure-resource-manager': ^0.60.0 || >=0.61.0-dev <0.61.0
+      '@azure-tools/typespec-client-generator-core': ^0.60.1 || >=0.61.0-dev <0.61.0
       '@typespec/compiler': ^1.4.0
       '@typespec/http': ^1.4.0
       '@typespec/openapi': ^1.4.0
-      '@typespec/rest': ^0.74.0
-      '@typespec/versioning': ^0.74.0
+      '@typespec/rest': ^0.74.0 || >=0.75.0-dev <0.75.0
+      '@typespec/versioning': ^0.74.0 || >=0.75.0-dev <0.75.0
     dependencies:
-      '@azure-tools/typespec-azure-core': 0.60.0_xnlbvll4pdgflrbdd5gpkbq2wm
-      '@azure-tools/typespec-azure-resource-manager': 0.60.0_rhcufiaujzgxbyt5daepvpdlre
-      '@azure-tools/typespec-client-generator-core': 0.60.3_fyu44kry4xka4yg27pb37wv3aa
+      '@azure-tools/typespec-azure-core': 0.61.0-dev.6_xnlbvll4pdgflrbdd5gpkbq2wm
+      '@azure-tools/typespec-azure-resource-manager': 0.60.1_h2nf4w2vqzs27pizplhd5nr5um
+      '@azure-tools/typespec-client-generator-core': 0.61.0-dev.10_gqkyofwxdcwsxddfzntgpgwi7u
       '@typespec/compiler': 1.4.0_@types+node@18.18.0
       '@typespec/http': 1.4.0_cnatfmc62ufmiakunjh7hovriy
       '@typespec/openapi': 1.4.0_cvkw2japefw5hl7hzucpinme6i
       '@typespec/rest': 0.74.0_cvkw2japefw5hl7hzucpinme6i
       '@typespec/versioning': 0.74.0_@typespec+compiler@1.4.0
+    dev: true
 
-  /@azure-tools/typespec-azure-core/0.60.0_xnlbvll4pdgflrbdd5gpkbq2wm:
-    resolution: {integrity: sha512-Pmm7blxnEZZ7lhMJWWsiIqMrFthaCK6uu7f+ONN7dq0Mjc/O9w8+43tAIXwnGz1OKAWmiToh3EDbaxeWyt/FhQ==}
+  /@azure-tools/typespec-autorest/0.61.0-dev.1_5is3dkfbtbskoeqhsxliongsiq:
+    resolution: {integrity: sha512-INmrQc9reKDb9Tr2b4jKbBfeE1DkX340dZIOEJQWsC7xmYWo9tn1Z3RNtBVfSLmTbbZmNeQYopjxOUIzlfCwBg==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      '@azure-tools/typespec-azure-core': ^0.60.0 || >=0.61.0-dev <0.61.0
+      '@azure-tools/typespec-azure-resource-manager': ^0.60.0 || >=0.61.0-dev <0.61.0
+      '@azure-tools/typespec-client-generator-core': ^0.60.1 || >=0.61.0-dev <0.61.0
+      '@typespec/compiler': ^1.4.0
+      '@typespec/http': ^1.4.0
+      '@typespec/openapi': ^1.4.0
+      '@typespec/rest': ^0.74.0 || >=0.75.0-dev <0.75.0
+      '@typespec/versioning': ^0.74.0 || >=0.75.0-dev <0.75.0
+    dependencies:
+      '@azure-tools/typespec-azure-core': 0.61.0-dev.6_xnlbvll4pdgflrbdd5gpkbq2wm
+      '@azure-tools/typespec-azure-resource-manager': 0.60.0_h2nf4w2vqzs27pizplhd5nr5um
+      '@azure-tools/typespec-client-generator-core': 0.61.0-dev.10_gqkyofwxdcwsxddfzntgpgwi7u
+      '@typespec/compiler': 1.4.0_@types+node@18.18.0
+      '@typespec/http': 1.4.0_cnatfmc62ufmiakunjh7hovriy
+      '@typespec/openapi': 1.4.0_cvkw2japefw5hl7hzucpinme6i
+      '@typespec/rest': 0.74.0_cvkw2japefw5hl7hzucpinme6i
+      '@typespec/versioning': 0.74.0_@typespec+compiler@1.4.0
+    dev: false
+
+  /@azure-tools/typespec-azure-core/0.61.0-dev.6_xnlbvll4pdgflrbdd5gpkbq2wm:
+    resolution: {integrity: sha512-CO0EqTkprFi7x/7Pe2/SdYZRNq7yvZMYdbalbImJvrb/RaEgCV2tnunW35JX5TJMft6w7cihEi2p4uaQvxIUDA==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       '@typespec/compiler': ^1.4.0
       '@typespec/http': ^1.4.0
-      '@typespec/rest': ^0.74.0
+      '@typespec/rest': ^0.74.0 || >=0.75.0-dev <0.75.0
     dependencies:
       '@typespec/compiler': 1.4.0_@types+node@18.18.0
       '@typespec/http': 1.4.0_cnatfmc62ufmiakunjh7hovriy
       '@typespec/rest': 0.74.0_cvkw2japefw5hl7hzucpinme6i
 
-  /@azure-tools/typespec-azure-resource-manager/0.60.0_rhcufiaujzgxbyt5daepvpdlre:
+  /@azure-tools/typespec-azure-resource-manager/0.60.0_h2nf4w2vqzs27pizplhd5nr5um:
     resolution: {integrity: sha512-u0gqgSO5lIcpZN11MBAmRnR7kM1eoBLO8cKB86bXrxLt2vAkYpuL4hWp0A+QJjQy/YI5rrijeBF0visqBJnR4A==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
@@ -569,7 +593,7 @@ packages:
       '@typespec/rest': ^0.74.0
       '@typespec/versioning': ^0.74.0
     dependencies:
-      '@azure-tools/typespec-azure-core': 0.60.0_xnlbvll4pdgflrbdd5gpkbq2wm
+      '@azure-tools/typespec-azure-core': 0.61.0-dev.6_xnlbvll4pdgflrbdd5gpkbq2wm
       '@typespec/compiler': 1.4.0_@types+node@18.18.0
       '@typespec/http': 1.4.0_cnatfmc62ufmiakunjh7hovriy
       '@typespec/openapi': 1.4.0_cvkw2japefw5hl7hzucpinme6i
@@ -577,8 +601,30 @@ packages:
       '@typespec/versioning': 0.74.0_@typespec+compiler@1.4.0
       change-case: 5.4.4
       pluralize: 8.0.0
+    dev: false
 
-  /@azure-tools/typespec-azure-rulesets/0.60.0_ky3pplsng2g7jj77aqt6xchq7i:
+  /@azure-tools/typespec-azure-resource-manager/0.60.1_h2nf4w2vqzs27pizplhd5nr5um:
+    resolution: {integrity: sha512-MEmI7NXNRddHYFzzXNH0Y1Izr2tCbJdAgh3LfufM2k8oRiIsXxxQ+n2UDReCAxDQeExFT8pqDq32A9AhL9pNJw==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      '@azure-tools/typespec-azure-core': ^0.60.0
+      '@typespec/compiler': ^1.4.0
+      '@typespec/http': ^1.4.0
+      '@typespec/openapi': ^1.4.0
+      '@typespec/rest': ^0.74.0
+      '@typespec/versioning': ^0.74.0
+    dependencies:
+      '@azure-tools/typespec-azure-core': 0.61.0-dev.6_xnlbvll4pdgflrbdd5gpkbq2wm
+      '@typespec/compiler': 1.4.0_@types+node@18.18.0
+      '@typespec/http': 1.4.0_cnatfmc62ufmiakunjh7hovriy
+      '@typespec/openapi': 1.4.0_cvkw2japefw5hl7hzucpinme6i
+      '@typespec/rest': 0.74.0_cvkw2japefw5hl7hzucpinme6i
+      '@typespec/versioning': 0.74.0_@typespec+compiler@1.4.0
+      change-case: 5.4.4
+      pluralize: 8.0.0
+    dev: true
+
+  /@azure-tools/typespec-azure-rulesets/0.60.0_aj4gfb5c2lpfe3ghthvybcyp7e:
     resolution: {integrity: sha512-4sx9StBWkmnBfLJ9b23RSwCs0TkTElaU9+6a/cS6JS0F7UggP/KLQd6LG59D0u9ByXM2x9pvYPO8l/K7UOXoPg==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
@@ -587,28 +633,28 @@ packages:
       '@azure-tools/typespec-client-generator-core': ^0.60.0
       '@typespec/compiler': ^1.4.0
     dependencies:
-      '@azure-tools/typespec-azure-core': 0.60.0_xnlbvll4pdgflrbdd5gpkbq2wm
-      '@azure-tools/typespec-azure-resource-manager': 0.60.0_rhcufiaujzgxbyt5daepvpdlre
-      '@azure-tools/typespec-client-generator-core': 0.60.3_fyu44kry4xka4yg27pb37wv3aa
+      '@azure-tools/typespec-azure-core': 0.61.0-dev.6_xnlbvll4pdgflrbdd5gpkbq2wm
+      '@azure-tools/typespec-azure-resource-manager': 0.60.0_h2nf4w2vqzs27pizplhd5nr5um
+      '@azure-tools/typespec-client-generator-core': 0.61.0-dev.10_gqkyofwxdcwsxddfzntgpgwi7u
       '@typespec/compiler': 1.4.0_@types+node@18.18.0
     dev: false
 
-  /@azure-tools/typespec-client-generator-core/0.60.3_fyu44kry4xka4yg27pb37wv3aa:
-    resolution: {integrity: sha512-gcaLRoAJnvqg2tNyEYk+vOMhyP0PJpoZZERuDPB9VLiAAdxl3eTz22vAa3wKvnGFpLDxuvo4+ootEYguRCiwdg==}
+  /@azure-tools/typespec-client-generator-core/0.61.0-dev.10_gqkyofwxdcwsxddfzntgpgwi7u:
+    resolution: {integrity: sha512-8OTeAqUxmod9Es7pz3fUkjk/UPtSfnbJV4Toh8XY0uC2Hl+o7CkuO2POm7MRm6Q2BL+IxGI3GHahq1vL9PCj7g==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
-      '@azure-tools/typespec-azure-core': ^0.60.0
+      '@azure-tools/typespec-azure-core': ^0.60.0 || >=0.61.0-dev <0.61.0
       '@typespec/compiler': ^1.4.0
-      '@typespec/events': ^0.74.0
+      '@typespec/events': ^0.74.0 || >=0.75.0-dev <0.75.0
       '@typespec/http': ^1.4.0
       '@typespec/openapi': ^1.4.0
-      '@typespec/rest': ^0.74.0
-      '@typespec/sse': ^0.74.0
-      '@typespec/streams': ^0.74.0
-      '@typespec/versioning': ^0.74.0
-      '@typespec/xml': ^0.74.0
+      '@typespec/rest': ^0.74.0 || >=0.75.0-dev <0.75.0
+      '@typespec/sse': ^0.74.0 || >=0.75.0-dev <0.75.0
+      '@typespec/streams': ^0.74.0 || >=0.75.0-dev <0.75.0
+      '@typespec/versioning': ^0.74.0 || >=0.75.0-dev <0.75.0
+      '@typespec/xml': ^0.74.0 || >=0.75.0-dev <0.75.0
     dependencies:
-      '@azure-tools/typespec-azure-core': 0.60.0_xnlbvll4pdgflrbdd5gpkbq2wm
+      '@azure-tools/typespec-azure-core': 0.61.0-dev.6_xnlbvll4pdgflrbdd5gpkbq2wm
       '@typespec/compiler': 1.4.0_@types+node@18.18.0
       '@typespec/events': 0.74.0_@typespec+compiler@1.4.0
       '@typespec/http': 1.4.0_cnatfmc62ufmiakunjh7hovriy
