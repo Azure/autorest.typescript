@@ -88,7 +88,6 @@ export async function rlcEmitterFor(
     title: "Azure TypeScript Testing"
   })
 
-  ${needAzureCore ? "@useDependency(Azure.Core.Versions.v1_0_Preview_2)" : ""} 
   namespace Azure.TypeScript.Testing;
   `;
   const content = withRawContent
@@ -180,7 +179,7 @@ function serviceStatement() {
 
   namespace Azure.TypeScript.Testing;
   enum Versions {
-    @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+    
     v2021_10_01_preview: "2021-10-01-preview",
   }
   

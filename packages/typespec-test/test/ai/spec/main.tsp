@@ -36,9 +36,7 @@ namespace Azure.AI {
     }
   ]>
 )
-@service(#{
-  title: "Azure AI",
-})
+@service(#{ title: "Azure AI" })
 @server(
   "{endpoint}/agents/v1.0/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{projectName}",  // This URL is for the Agents API.
   "Azure AI",
@@ -61,7 +59,6 @@ namespace Azure.AI.Projects {
   @doc("Azure AI API versions")
   enum Versions {
     @doc("Azure AI API version 2024-07-01-preview.")
-    @useDependency(Azure.Core.Versions.v1_0_Preview_2)
     `2024-07-01-preview`,
   }
 }
