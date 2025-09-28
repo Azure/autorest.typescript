@@ -91,10 +91,10 @@ function regularAutorestPackage(
       ...(hasLro && { "@azure/core-lro": "^2.5.4" }),
       ...(hasLro && { "@azure/abort-controller": "^2.1.2" }),
       ...(hasAsyncIterators && { "@azure/core-paging": "^1.6.2" }),
-      ...(useCoreV2 && { "@azure/core-client": "^1.9.2" }),
+      ...(useCoreV2 && { "@azure/core-client": "^1.9.3" }),
       ...(useCoreV2 && addCredentials && { "@azure/core-auth": "^1.9.0" }),
       ...(useCoreV2 && {
-        "@azure/core-rest-pipeline": "^1.19.0"
+        "@azure/core-rest-pipeline": "^1.19.1"
       }),
       ...(tracingInfo && {
         "@azure/core-tracing": "^1.2.0"
@@ -192,7 +192,7 @@ function regularAutorestPackage(
   }
 
   if (generateTest) {
-    packageInfo.devDependencies["@azure/identity"] = azureSdkForJs ? "catalog:internal" : "^4.6.0";
+    packageInfo.devDependencies["@azure/identity"] = azureSdkForJs ? "catalog:internal" : "^4.9.0";
     packageInfo.devDependencies["@azure/logger"] = azureSdkForJs ? "workspace:*" : "^1.1.4";
     // TODO need unify the version when 4.1.0 released
     packageInfo.devDependencies["@azure-tools/test-recorder"] = azureSdkForJs ? "workspace:*" : "^4.0.0";
