@@ -6,12 +6,14 @@ import {
   AzureCoreDependencies,
   AzureIdentityDependencies,
   AzurePollingDependencies,
-  DefaultCoreDependencies
+  DefaultCoreDependencies,
+  AzureTestDependencies
 } from "./modular/external-dependencies.js";
 import { EmitContext, Program } from "@typespec/compiler";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import {
   CloudSettingHelpers,
+  CreateRecorderHelpers,
   MultipartHelpers,
   PagingHelpers,
   PollingHelpers,
@@ -93,6 +95,7 @@ import { provideSdkTypes } from "./framework/hooks/sdkTypes.js";
 import { transformRLCModel } from "./transform/transform.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
 import { emitSamples } from "./modular/emitSamples.js";
+import { emitTests } from "./modular/emitTests.js";
 import { generateCrossLanguageDefinitionFile } from "./utils/crossLanguageDef.js";
 
 export * from "./lib.js";
@@ -134,10 +137,12 @@ export async function $onEmit(context: EmitContext) {
       ...PollingHelpers,
       ...UrlTemplateHelpers,
       ...MultipartHelpers,
-      ...CloudSettingHelpers
+      ...CloudSettingHelpers,
+      ...CreateRecorderHelpers
     },
     {
       sourcesDir: dpgContext.generationPathDetail?.modularSourcesDir,
+      rootDir: dpgContext.generationPathDetail?.rootDir,
       options: rlcOptions
     }
   );
@@ -146,7 +151,8 @@ export async function $onEmit(context: EmitContext) {
     ? {
         ...AzurePollingDependencies,
         ...AzureCoreDependencies,
-        ...AzureIdentityDependencies
+        ...AzureIdentityDependencies,
+        ...AzureTestDependencies
       }
     : { ...DefaultCoreDependencies };
   console.time("onEmit: provide binder");
@@ -356,8 +362,18 @@ export async function $onEmit(context: EmitContext) {
       }
     }
 
+    // Enable modular test generation when explicitly set to true
+    if (emitterOptions["experimental-generate-test-files"] === true) {
+      console.time("onEmit: emit tests");
+      await emitTests(dpgContext);
+      console.timeEnd("onEmit: emit tests");
+    }
+
     console.time("onEmit: resolve references");
-    binder.resolveAllReferences(modularSourcesRoot);
+    binder.resolveAllReferences(
+      modularSourcesRoot,
+      dpgContext.generationPathDetail?.rootDir ?? ""
+    );
     if (program.compilerOptions.noEmit || program.hasError()) {
       return;
     }
