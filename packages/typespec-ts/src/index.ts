@@ -93,6 +93,7 @@ import { provideSdkTypes } from "./framework/hooks/sdkTypes.js";
 import { transformRLCModel } from "./transform/transform.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
 import { emitSamples } from "./modular/emitSamples.js";
+import { generateCrossLanguageDefinitionFile } from "./utils/crossLanguageDef.js";
 
 export * from "./lib.js";
 
@@ -210,9 +211,15 @@ export async function $onEmit(context: EmitContext) {
   async function calculateGenerationDir(): Promise<GenerationDirDetail> {
     const projectRoot = context.emitterOutputDir ?? "";
     const customizationFolder = join(projectRoot, "generated");
+    const srcGeneratedFolder = join(projectRoot, "src", "generated");
     // if customization folder exists, use it as sources root
-    const sourcesRoot = (await fsextra.pathExists(customizationFolder))
-      ? customizationFolder
+    const finalCustomizationFolder = (await fsextra.pathExists(
+      srcGeneratedFolder
+    ))
+      ? srcGeneratedFolder
+      : customizationFolder;
+    const sourcesRoot = (await fsextra.pathExists(finalCustomizationFolder))
+      ? finalCustomizationFolder
       : join(projectRoot, "src");
     return {
       rootDir: projectRoot,
@@ -368,9 +375,14 @@ export async function $onEmit(context: EmitContext) {
     console.timeEnd("onEmit: generate files");
     console.timeEnd("onEmit: generate modular sources");
   }
+
   interface Metadata {
     apiVersion?: string;
     emitterVersion?: string;
+    crossLanguageDefinitions?: {
+      CrossLanguagePackageId: string;
+      CrossLanguageDefinitionId: Record<string, string>;
+    };
   }
 
   function buildMetadataJson() {
@@ -386,11 +398,16 @@ export async function $onEmit(context: EmitContext) {
     if (emitterVersion !== undefined) {
       content.emitterVersion = emitterVersion;
     }
+    if (dpgContext.rlcOptions?.isModularLibrary) {
+      content.crossLanguageDefinitions =
+        generateCrossLanguageDefinitionFile(dpgContext);
+    }
     return {
       path: "metadata.json",
       content: JSON.stringify(content, null, 2)
     };
   }
+
   async function generateMetadataAndTest(context: SdkContext) {
     const project = useContext("outputProject");
     if (rlcCodeModels.length === 0 || !rlcCodeModels[0]) {

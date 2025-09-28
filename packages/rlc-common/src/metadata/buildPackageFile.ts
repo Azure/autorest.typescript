@@ -15,6 +15,7 @@ import { buildAzureMonorepoPackage } from "./packageJson/buildAzureMonorepoPacka
 import { buildAzureStandalonePackage } from "./packageJson/buildAzureStandalonePackage.js";
 import { buildFlavorlessPackage } from "./packageJson/buildFlavorlessPackage.js";
 import { getRelativePartFromSrcPath } from "../helpers/pathUtils.js";
+import { getPackageName } from "./utils.js";
 
 interface PackageFileOptions {
   exports?: Record<string, any>;
@@ -134,10 +135,6 @@ function getDescription(model: RLCModel): string {
     return `A generated SDK for ${model.libraryName}.`;
   }
   return description;
-}
-
-function getPackageName(model: RLCModel): string {
-  return model.options?.packageDetails?.name ?? model.libraryName;
 }
 
 function getClientFilePath(model: RLCModel) {
