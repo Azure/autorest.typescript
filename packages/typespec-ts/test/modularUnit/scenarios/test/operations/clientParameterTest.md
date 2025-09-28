@@ -26,7 +26,6 @@ namespace Azure.Contoso.WidgetManager;
 @doc("Versions info.")
 enum Versions {
   @doc("The 2021-10-01-preview version.")
-  @useDependency(Azure.Core.Versions.v1_0_Preview_1)
   v2021_10_01_preview: "2021-10-01-preview",
 }
 
@@ -155,8 +154,6 @@ namespace Microsoft.Contoso;
 /** The available API versions. */
 enum Versions {
   /** 2021-10-01-preview version */
-  @useDependency(Azure.ResourceManager.Versions.v1_0_Preview_1)
-  @useDependency(Azure.Core.Versions.v1_0_Preview_2)
   @armCommonTypesVersion(Azure.ResourceManager.CommonTypes.Versions.v5)
   v2021_10_01_preview: "2021-10-01-preview",
 }
