@@ -44,6 +44,7 @@ The config would be like:
 
 ```yaml
 needAzureCore: true
+withVersionedApiVersion: true
 ```
 
 ## Operations

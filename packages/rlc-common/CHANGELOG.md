@@ -1,3 +1,11 @@
+## 0.44.1 (2025-09-26)
+
+- [Feature] Multi-level inheritance support. Please refer to [#3514](https://github.com/Azure/autorest.typescript/pull/3514)
+- [Bugfix] Fix the missing parameters in operation options. Please refer to [#3502](https://github.com/Azure/autorest.typescript/pull/3502)
+- [Feature] Add default documentation for enum members without explicit docs. Please refer to [#3505](https://github.com/Azure/autorest.typescript/pull/3505)
+- [Feature] Add initial version of cross language api id support for modular generator. Please refer to [#3497](https://github.com/Azure/autorest.typescript/pull/3497)
+- [Feature] Update tsconfig.browser.config.json. Please refer to [#3461](https://github.com/Azure/autorest.typescript/pull/3461)
+
 ## 0.44.0 (2025-09-11)
 
 - [Bugfix] Improve sourcesRoot calculation for typespec-ts. Please refer to [#3484](https://github.com/Azure/autorest.typescript/pull/3484)

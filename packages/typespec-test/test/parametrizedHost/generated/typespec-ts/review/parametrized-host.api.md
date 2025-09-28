@@ -24,15 +24,21 @@ export interface ConfidentialLedgerOperations {
     listCollections: (options?: ConfidentialLedgerListCollectionsOptionalParams) => Promise<Collection[]>;
 }
 
+// @public
+export enum KnownVersions {
+    V1 = "v1"
+}
+
 // @public (undocumented)
 export class ParametrizedHostClient {
-    constructor(credential: TokenCredential, apiVersion: string, options?: ParametrizedHostClientOptionalParams);
+    constructor(credential: TokenCredential, options?: ParametrizedHostClientOptionalParams);
     readonly confidentialLedger: ConfidentialLedgerOperations;
     readonly pipeline: Pipeline;
 }
 
 // @public
 export interface ParametrizedHostClientOptionalParams extends ClientOptions {
+    apiVersion?: string;
     // (undocumented)
     host?: string;
     // (undocumented)

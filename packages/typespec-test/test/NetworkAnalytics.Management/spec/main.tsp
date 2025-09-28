@@ -13,9 +13,7 @@ using Autorest;
 using OpenAPI;
 
 @armProviderNamespace
-@service(#{
-  title: "Microsoft.NetworkAnalytics",
-})
+@service(#{ title: "Microsoft.NetworkAnalytics" })
 @versioned(Microsoft.NetworkAnalytics.Versions)
 namespace Microsoft.NetworkAnalytics;
 
@@ -24,8 +22,6 @@ interface Operations extends Azure.ResourceManager.Operations {}
 @doc("The available API versions for the Microsoft.NetworkAnalytics RP.")
 enum Versions {
   @doc("The 2023-11-15 stable version.")
-  @useDependency(Azure.ResourceManager.Versions.v1_0_Preview_1)
-  @useDependency(Azure.Core.Versions.v1_0_Preview_2)
   v2023_11_15: "2023-11-15",
 }
 
