@@ -79,10 +79,7 @@ import {
   getWireName,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
-import {
-  getPagedResult,
-  getUnionAsEnum
-} from "@azure-tools/typespec-azure-core";
+import { getUnionAsEnum } from "@azure-tools/typespec-azure-core";
 
 import { getModelNamespaceName } from "./namespaceUtils.js";
 import { reportDiagnostic } from "../lib.js";
@@ -924,7 +921,7 @@ function getModelName(dpgContext: SdkContext, model: Model) {
   // 4. check if this is a model with template arguments
   let name = model.name;
   if (model.templateMapper?.args) {
-    const isPage = getPagedResult(program, model);
+    // const isPage = getPagedResult(program, model);
     const templateTypeNames = model.templateMapper.args
       .map((arg) => (arg.entityKind === "Indeterminate" ? arg.type : arg))
       .map((arg: any) => {
@@ -944,10 +941,7 @@ function getModelName(dpgContext: SdkContext, model: Model) {
       })
       .filter((arg) => arg !== "")
       .join(" ");
-    name = normalizeName(
-      isPage ? `${templateTypeNames} List` : `${name} ${templateTypeNames}`,
-      NameType.Interface
-    );
+    name = normalizeName(`${name} ${templateTypeNames}`, NameType.Interface);
   }
   let fullNamespacePrefix = getModelNamespaceName(dpgContext, model.namespace!)
     .map((nsName) => {
