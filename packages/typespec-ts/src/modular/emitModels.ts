@@ -787,7 +787,14 @@ function visitClientMethod(
       visitOperation(context, method.operation);
       break;
     default:
-      throw new Error(`Unknown sdk method kind: ${(method as any).kind}`);
+      reportDiagnostic(context.program, {
+        code: "unknown-sdk-method-kind",
+        format: {
+          methodKind: (method as any).kind
+        },
+        target: NoTarget
+      });
+      return; // Skip processing this method but continue with others
   }
 }
 
