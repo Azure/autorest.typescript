@@ -16,7 +16,10 @@ import {
   WidgetsGetWidgetOperationStatusOptionalParams,
   WidgetsGetWidgetOptionalParams,
 } from "../../api/widgets/options.js";
-import { WidgetSuite } from "../../models/models.js";
+import {
+  WidgetSuite,
+  ResourceOperationStatusWidgetSuiteWidgetSuiteError,
+} from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
@@ -42,7 +45,7 @@ export interface WidgetsOperations {
     widgetName: string,
     operationId: string,
     options?: WidgetsGetWidgetOperationStatusOptionalParams,
-  ) => Promise<__PLACEHOLDER_o37__>;
+  ) => Promise<ResourceOperationStatusWidgetSuiteWidgetSuiteError>;
   /** Fetch a Widget by name. */
   getWidget: (
     widgetName: string,

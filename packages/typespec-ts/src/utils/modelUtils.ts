@@ -1708,14 +1708,6 @@ export function trimUsage(model: any) {
   return ordered;
 }
 
-export function buildCoreTypeInfo(program: Program, t?: Type) {
-  return isAzureCoreErrorType(program, t)
-    ? "ErrorType"
-    : isAzureCoreLroType(t)
-      ? "LroType"
-      : undefined;
-}
-
 export function isAzureCoreErrorType(program: Program, t?: Type): boolean {
   if (!t || t.kind !== "Model") {
     return false;
@@ -1732,17 +1724,17 @@ export function isAzureCoreErrorType(program: Program, t?: Type): boolean {
 }
 
 // Check if the type in the Azure.Core.Foundations has an LRO type in core
-export function isAzureCoreLroType(t?: Type): boolean {
+export function isAzureCoreLroType(t?: Type, tcgcName?: string): boolean {
   if (
     !(
       ((t?.kind === "Enum" || t?.kind === "Union") &&
-        ["operationstate"].includes((t.name ?? "").toLowerCase())) ||
+        ["operationstate"].includes((tcgcName ?? t?.name ?? "").toLowerCase()) ||
       (t?.kind === "Model" &&
         ["resourceoperationstatus", "operationstatus"].includes(
-          t.name.toLowerCase()
+          (tcgcName ?? t?.name).toLowerCase()
         ))
     )
-  ) {
+  )) {
     return false;
   }
   return (

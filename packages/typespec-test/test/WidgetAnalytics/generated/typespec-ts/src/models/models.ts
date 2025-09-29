@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { ErrorModel } from "@azure-rest/core-client";
+
 /** A widget. */
 export interface WidgetSuite {
   /** The widget name. */
@@ -48,6 +50,39 @@ export function fakedSharedModelDeserializer(item: any): FakedSharedModel {
     createdAt: new Date(item["createdAt"]),
   };
 }
+
+/** Provides status details for long running operations. */
+export interface ResourceOperationStatusWidgetSuiteWidgetSuiteError {
+  /** The unique ID of the operation. */
+  id: string;
+  /** The status of the operation */
+  status: OperationState;
+  /** Error object that describes the error when status is "Failed". */
+  error?: ErrorModel;
+  /** The result of the operation. */
+  result?: WidgetSuite;
+}
+
+export function resourceOperationStatusWidgetSuiteWidgetSuiteErrorDeserializer(
+  item: any,
+): ResourceOperationStatusWidgetSuiteWidgetSuiteError {
+  return {
+    id: item["id"],
+    status: item["status"],
+    error: !item["error"] ? item["error"] : item["error"],
+    result: !item["result"]
+      ? item["result"]
+      : widgetSuiteDeserializer(item["result"]),
+  };
+}
+
+/** Enum describing allowed operation states. */
+export type OperationState =
+  | "NotStarted"
+  | "Running"
+  | "Succeeded"
+  | "Failed"
+  | "Canceled";
 
 /** Paged collection of WidgetSuite items */
 export interface _PagedWidgetSuite {

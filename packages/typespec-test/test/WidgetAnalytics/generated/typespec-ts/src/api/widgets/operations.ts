@@ -6,6 +6,8 @@ import {
   WidgetSuite,
   widgetSuiteSerializer,
   widgetSuiteDeserializer,
+  ResourceOperationStatusWidgetSuiteWidgetSuiteError,
+  resourceOperationStatusWidgetSuiteWidgetSuiteErrorDeserializer,
   _PagedWidgetSuite,
   _pagedWidgetSuiteDeserializer,
 } from "../../models/models.js";
@@ -242,13 +244,15 @@ export function _getWidgetOperationStatusSend(
 
 export async function _getWidgetOperationStatusDeserialize(
   result: PathUncheckedResponse,
-): Promise<__PLACEHOLDER_o37__> {
+): Promise<ResourceOperationStatusWidgetSuiteWidgetSuiteError> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return __PLACEHOLDER_o37_sdeserializer__(result.body);
+  return resourceOperationStatusWidgetSuiteWidgetSuiteErrorDeserializer(
+    result.body,
+  );
 }
 
 /** Gets status of a Widget operation. */
@@ -259,7 +263,7 @@ export async function getWidgetOperationStatus(
   options: WidgetsGetWidgetOperationStatusOptionalParams = {
     requestOptions: {},
   },
-): Promise<__PLACEHOLDER_o37__> {
+): Promise<ResourceOperationStatusWidgetSuiteWidgetSuiteError> {
   const result = await _getWidgetOperationStatusSend(
     context,
     widgetName,

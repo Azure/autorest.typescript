@@ -47,8 +47,7 @@ import { refkey } from "../framework/refkey.js";
 import { useContext } from "../contextManager.js";
 import { isMetadata, isOrExtendsHttpFile } from "@typespec/http";
 import {
-  isAzureCoreErrorType,
-  isAzureCoreLroType
+  isAzureCoreErrorType
 } from "../utils/modelUtils.js";
 import { isExtensibleEnum } from "./type-expressions/get-enum-expression.js";
 import {
@@ -109,9 +108,9 @@ export function emitTypes(
     if (!isGenerableType(type)) {
       continue;
     }
-    if (isAzureCoreLroType(type.__raw)) {
-      continue;
-    }
+    // if (isAzureCoreLroType(type.__raw)) {
+    //   continue;
+    // }
 
     const namespaces = getModelNamespaces(context, type);
     const filepath = getModelsPath(sourceRoot, namespaces);

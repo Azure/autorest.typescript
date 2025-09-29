@@ -12,6 +12,8 @@ export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   WidgetSuite,
   FakedSharedModel,
+  ResourceOperationStatusWidgetSuiteWidgetSuiteError,
+  OperationState,
   KnownVersions,
 } from "./models/index.js";
 export { WidgetAnalyticsClientOptionalParams } from "./api/index.js";
