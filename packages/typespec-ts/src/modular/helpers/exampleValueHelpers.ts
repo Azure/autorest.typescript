@@ -489,6 +489,56 @@ export function iterateClientsAndMethods(
 }
 
 /**
+ * Determines if an operation is a ResourceAction based on operation metadata.
+ * ResourceAction operations are typically POST operations with body parameters
+ * and URI templates containing action names (indicated by ':' in the path).
+ */
+function isResourceAction(
+  operation: SdkServiceOperation,
+  bodyParam?: any
+): boolean {
+  return !!(
+    bodyParam &&
+    operation.verb === "post" &&
+    operation.uriTemplate?.includes(":")
+  );
+}
+
+/**
+ * Builds the parameter order for method signature generation.
+ * ResourceAction operations place body parameters first, while standard operations
+ * follow the operation.parameters order with body parameters appended if not included.
+ */
+function buildParameterOrder(
+  operation: SdkServiceOperation,
+  bodyParam?: any
+): string[] {
+  const paramOrder: string[] = [];
+
+  if (isResourceAction(operation, bodyParam)) {
+    // ResourceAction: body parameter comes first
+    paramOrder.push(bodyParam.name);
+    operation.parameters.forEach((param) => {
+      if (param.name !== bodyParam.name) {
+        paramOrder.push(param.name);
+      }
+    });
+  } else {
+    // Standard operations: follow operation.parameters order
+    operation.parameters.forEach((param) => {
+      paramOrder.push(param.name);
+    });
+
+    // Add body parameter if not already included
+    if (bodyParam && !paramOrder.includes(bodyParam.name)) {
+      paramOrder.push(bodyParam.name);
+    }
+  }
+
+  return paramOrder;
+}
+
+/**
  * Generate common method call logic
  */
 export function generateMethodCall(
@@ -496,8 +546,11 @@ export function generateMethodCall(
   parameters: CommonValue[],
   options: ClientEmitOptions
 ): { methodCall: string; clientParams: string[]; clientParamDefs: string[] } {
-  // Prepare client-level parameters
+  // Separate client and method parameters
   const clientParamValues = parameters.filter((p) => p.onClient);
+  const methodParamValues = parameters.filter((p) => !p.onClient);
+
+  // Prepare client-level parameters
   const clientParams: string[] = clientParamValues
     .filter((p) => !p.isOptional)
     .map((param) => param.name);
@@ -505,18 +558,35 @@ export function generateMethodCall(
     .filter((p) => !p.isOptional)
     .map((param) => `const ${param.name} = ${param.value};`);
 
-  // Prepare operation-level parameters
-  const methodParamValues = parameters.filter((p) => !p.onClient);
-  const methodParams = methodParamValues
+  // Build parameter order based on operation type
+  const bodyParam = method.operation.bodyParam;
+  const operationParamOrder = buildParameterOrder(method.operation, bodyParam);
+  const paramOrderMap = new Map(
+    operationParamOrder.map((name, index) => [name, index])
+  );
+
+  // Sort required parameters according to the determined order
+  const sortedRequiredParams = methodParamValues
     .filter((p) => !p.isOptional)
-    .map((p) => `${p.value}`);
+    .sort((a, b) => {
+      const aIndex = paramOrderMap.get(a.name) ?? Number.MAX_SAFE_INTEGER;
+      const bIndex = paramOrderMap.get(b.name) ?? Number.MAX_SAFE_INTEGER;
+      return aIndex - bIndex;
+    })
+    .map((p) => p.value);
+
+  // Prepare optional parameters
   const optionalParams = methodParamValues
     .filter((p) => p.isOptional)
     .map((param) => `${param.name}: ${param.value}`);
+
+  // Combine required and optional parameters
+  const methodParams = [...sortedRequiredParams];
   if (optionalParams.length > 0) {
     methodParams.push(`{${optionalParams.join(", ")}}`);
   }
 
+  // Generate method call
   const prefix = options.classicalMethodPrefix
     ? `${options.classicalMethodPrefix}.`
     : "";

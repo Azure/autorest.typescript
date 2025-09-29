@@ -1,4 +1,4 @@
-# skip: Parameter ordering with Azure Core ResourceAction and RequestHeadersTrait
+# Parameter ordering with Azure Core ResourceAction and RequestHeadersTrait
 
 ## TypeSpec
 
@@ -59,6 +59,8 @@ The config would be like:
 
 ```yaml
 needAzureCore: true
+withVersionedApiVersion: true
+
 ```
 
 ## Operations
@@ -144,10 +146,10 @@ Raw json files.
   "title": "verify",
   "operationId": "DeviceLocation_Verify",
   "parameters": {
-    "apc-gateway-id": "zdgrzzaxlodrvewbksn",
     "body": {
       "message": "test message"
-    }
+    },
+    "apc-gateway-id": "zdgrzzaxlodrvewbksn"
   },
   "responses": {
     "200": {
