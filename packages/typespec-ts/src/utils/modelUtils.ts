@@ -1728,13 +1728,15 @@ export function isAzureCoreLroType(t?: Type, tcgcName?: string): boolean {
   if (
     !(
       ((t?.kind === "Enum" || t?.kind === "Union") &&
-        ["operationstate"].includes((tcgcName ?? t?.name ?? "").toLowerCase()) ||
+        ["operationstate"].includes(
+          (tcgcName ?? t?.name ?? "").toLowerCase()
+        )) ||
       (t?.kind === "Model" &&
         ["resourceoperationstatus", "operationstatus"].includes(
-          (tcgcName ?? t?.name).toLowerCase()
+          (tcgcName ?? t?.name)?.toLowerCase()
         ))
     )
-  )) {
+  ) {
     return false;
   }
   return (
