@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "ParametrizedHost",
-    "version": "0000-00-00",
+    "version": "v1",
     "x-typespec-generated": [
       {
         "emitter": "@azure-tools/typespec-autorest"

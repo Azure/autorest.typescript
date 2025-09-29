@@ -478,6 +478,8 @@ export function _pagedTextBlocklistItemDeserializer(
 
 /** Known values of {@link Versions} that the service accepts. */
 export enum KnownVersions {
+  /** 2023-10-01 */
   V20231001 = "2023-10-01",
+  /** 2024-09-01 */
   V20240901 = "2024-09-01",
 }

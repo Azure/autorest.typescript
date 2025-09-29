@@ -167,7 +167,7 @@ function hasRequiredOptions(
 
   const containsRequiredNonBodyParam = routeParameters.parameters
     .filter((parameter) => ["query", "header"].includes(parameter.type))
-    .filter((parameter) => !isApiVersion(dpgContext, parameter))
+    .filter((parameter) => !isApiVersion(dpgContext, parameter.param))
     .filter((parameter) => !!parameter.param)
     .some((parameter) => parameter.param.optional === false);
   return isRequiredBodyParam || containsRequiredNonBodyParam;

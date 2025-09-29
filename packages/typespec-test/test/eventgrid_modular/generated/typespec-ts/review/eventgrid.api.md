@@ -67,9 +67,7 @@ export interface FailedLockToken {
 
 // @public
 export enum KnownServiceApiVersions {
-    // (undocumented)
     V20231101 = "2023-11-01",
-    // (undocumented)
     V20240601 = "2024-06-01"
 }
 
