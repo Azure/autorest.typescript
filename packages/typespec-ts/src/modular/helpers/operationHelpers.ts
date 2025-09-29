@@ -1061,15 +1061,21 @@ function getQueryParameters(
 
   for (const param of operationParameters) {
     if (param.kind === "query") {
-      parametersImplementation[param.kind].push({
-        paramMap: getParameterMap(dpgContext, {
-          ...param,
-          // TODO: remember to remove this hack once compiler gives us a name
-          // https://github.com/microsoft/typespec/issues/6743
-          serializedName: getUriTemplateQueryParamName(param.serializedName)
-        }),
-        param
-      });
+      // Check if this parameter still exists in the corresponding method params (after override)
+      if (
+        param.correspondingMethodParams &&
+        param.correspondingMethodParams.length > 0
+      ) {
+        parametersImplementation[param.kind].push({
+          paramMap: getParameterMap(dpgContext, {
+            ...param,
+            // TODO: remember to remove this hack once compiler gives us a name
+            // https://github.com/microsoft/typespec/issues/6743
+            serializedName: getUriTemplateQueryParamName(param.serializedName)
+          }),
+          param
+        });
+      }
     }
   }
 

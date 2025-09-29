@@ -1,4 +1,3 @@
-
 import { assert } from "chai";
 import { getParameterMap } from "../../src/modular/helpers/operationHelpers.js";
 import { SdkContext } from "../../src/utils/interfaces.js";
@@ -13,7 +12,7 @@ describe("operationHelpers", () => {
         diagnostics: [],
         reportDiagnostic: () => {} // Mock reportDiagnostic function
       };
-      
+
       mockContext = {
         program: mockProgram
       } as unknown as SdkContext;
@@ -28,7 +27,7 @@ describe("operationHelpers", () => {
           capturedDiagnostic = diagnostic;
         }
       };
-      
+
       mockContext = {
         program: mockProgram
       } as unknown as SdkContext;
@@ -49,8 +48,8 @@ describe("operationHelpers", () => {
 
       // Make both isOptional and isRequired return false using the same technique
       let optionalCallCount = 0;
-      Object.defineProperty(unsupportedParam, 'optional', {
-        get: function() {
+      Object.defineProperty(unsupportedParam, "optional", {
+        get: function () {
           optionalCallCount++;
           return optionalCallCount === 1 ? false : true;
         },
@@ -63,14 +62,31 @@ describe("operationHelpers", () => {
       console.log(capturedDiagnostic.code);
       console.log(capturedDiagnostic.message);
       // Verify the diagnostic was captured and has the correct format
-      assert.isNotNull(capturedDiagnostic, "Expected diagnostic to be reported");
-      assert.isTrue(capturedDiagnostic.code.endsWith("unsupported-parameter-type"), 
-        "Expected diagnostic code to end with 'unsupported-parameter-type'");
-      
+      assert.isNotNull(
+        capturedDiagnostic,
+        "Expected diagnostic to be reported"
+      );
+      assert.isTrue(
+        capturedDiagnostic.code.endsWith("unsupported-parameter-type"),
+        "Expected diagnostic code to end with 'unsupported-parameter-type'"
+      );
+
       // Verify the message contains the parameter name and kind (format has been applied to message)
-      assert.include(capturedDiagnostic.message, "testParam", "Expected message to contain parameter name");
-      assert.include(capturedDiagnostic.message, "header", "Expected message to contain parameter kind");
-      assert.include(capturedDiagnostic.message, "is not supported", "Expected message to contain error description");
+      assert.include(
+        capturedDiagnostic.message,
+        "testParam",
+        "Expected message to contain parameter name"
+      );
+      assert.include(
+        capturedDiagnostic.message,
+        "header",
+        "Expected message to contain parameter kind"
+      );
+      assert.include(
+        capturedDiagnostic.message,
+        "is not supported",
+        "Expected message to contain error description"
+      );
 
       // Verify the fallback value
       assert.equal(result, `"testParam": undefined`);

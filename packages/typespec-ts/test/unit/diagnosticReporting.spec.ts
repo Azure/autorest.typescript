@@ -20,7 +20,7 @@ describe("Diagnostic Reporting Tests", () => {
 
   beforeEach(() => {
     capturedDiagnostics = [];
-    
+
     // Create a mock context with diagnostic capturing
     const mockProgram = {
       diagnostics: [],
@@ -34,7 +34,7 @@ describe("Diagnostic Reporting Tests", () => {
         getMutatedType: () => undefined
       }
     };
-    
+
     mockContext = {
       program: mockProgram,
       rlcOptions: {
@@ -49,17 +49,17 @@ describe("Diagnostic Reporting Tests", () => {
   describe("buildModelDeserializer diagnostics", () => {
     it("should handle anonymous model types in buildModelTypeDeserializer", () => {
       capturedDiagnostics = []; // Clear before each test
-      
+
       const mockModelType = {
         kind: "model",
         name: undefined,
         usage: UsageFlags.Output,
-        __raw: NoTarget,
+        __raw: NoTarget
         // No discriminatorProperty to trigger buildModelTypeDeserializer path
       } as any;
 
       const result = buildModelDeserializer(mockContext, mockModelType);
-      
+
       assert.equal(result, undefined);
       // Check that it returns undefined due to anonymous type
       // The early return happens before buildModelTypeDeserializer is called
@@ -67,7 +67,7 @@ describe("Diagnostic Reporting Tests", () => {
 
     it("should handle anonymous union types in buildUnionDeserializer", () => {
       capturedDiagnostics = []; // Clear before each test
-      
+
       const mockUnionType = {
         kind: "union",
         name: undefined,
@@ -77,7 +77,7 @@ describe("Diagnostic Reporting Tests", () => {
       } as any;
 
       const result = buildModelDeserializer(mockContext, mockUnionType);
-      
+
       assert.equal(result, undefined);
       // Check that it returns undefined due to anonymous type
       // The early return happens before buildUnionDeserializer is called
@@ -85,7 +85,7 @@ describe("Diagnostic Reporting Tests", () => {
 
     it("should handle anonymous discriminated union types in buildDiscriminatedUnionDeserializer", () => {
       capturedDiagnostics = []; // Clear before each test
-      
+
       const mockDiscriminatedUnionType = {
         kind: "model",
         name: undefined,
@@ -93,7 +93,7 @@ describe("Diagnostic Reporting Tests", () => {
         __raw: NoTarget,
         discriminatorProperty: { name: "type" },
         discriminatedSubtypes: {
-          "test": {
+          test: {
             kind: "model",
             name: "TestType",
             usage: UsageFlags.Output,
@@ -102,8 +102,12 @@ describe("Diagnostic Reporting Tests", () => {
         }
       } as any;
 
-      const result = buildModelDeserializer(mockContext, mockDiscriminatedUnionType, false);
-      
+      const result = buildModelDeserializer(
+        mockContext,
+        mockDiscriminatedUnionType,
+        false
+      );
+
       assert.equal(result, undefined);
       // Check that it returns undefined due to anonymous type
       // The early return happens before buildDiscriminatedUnionDeserializer is called
@@ -111,18 +115,18 @@ describe("Diagnostic Reporting Tests", () => {
 
     it("should handle anonymous polymorphic types in buildPolymorphicDeserializer", () => {
       capturedDiagnostics = []; // Clear before each test
-      
+
       const mockPolymorphicType = {
         kind: "model",
         name: undefined,
         usage: UsageFlags.Output,
         __raw: NoTarget,
-        discriminatorProperty: { name: "kind" },
+        discriminatorProperty: { name: "kind" }
         // No discriminatedSubtypes to make it polymorphic instead of discriminated union
       } as any;
 
       const result = buildModelDeserializer(mockContext, mockPolymorphicType);
-      
+
       assert.equal(result, undefined);
       // Check that it returns undefined due to anonymous type
       // The early return happens before buildPolymorphicDeserializer is called
@@ -130,7 +134,7 @@ describe("Diagnostic Reporting Tests", () => {
 
     it("should handle anonymous subtype in buildPolymorphicDeserializer", () => {
       capturedDiagnostics = []; // Clear before each test
-      
+
       const mockPolymorphicType = {
         kind: "model",
         name: "ParentType",
@@ -138,7 +142,7 @@ describe("Diagnostic Reporting Tests", () => {
         __raw: NoTarget,
         discriminatorProperty: { name: "kind" },
         discriminatedSubtypes: {
-          "subtype1": {
+          subtype1: {
             kind: "model",
             name: undefined, // Anonymous subtype
             usage: UsageFlags.Output,
@@ -150,13 +154,16 @@ describe("Diagnostic Reporting Tests", () => {
 
       try {
         const result = buildModelDeserializer(mockContext, mockPolymorphicType);
-        
+
         // Should still attempt to build but might fail due to context issues
         console.log("Test result:", result);
         console.log("Captured diagnostics:", capturedDiagnostics);
       } catch (error) {
         // Expected to fail due to mock context limitations
-        console.log("Expected error in mock environment:", (error as Error).message);
+        console.log(
+          "Expected error in mock environment:",
+          (error as Error).message
+        );
       }
     });
   });
@@ -164,7 +171,7 @@ describe("Diagnostic Reporting Tests", () => {
   describe("buildModelSerializer diagnostics", () => {
     it("should handle anonymous model types in buildModelTypeSerializer", () => {
       capturedDiagnostics = []; // Clear before each test
-      
+
       const mockModelType = {
         kind: "model",
         name: undefined,
@@ -173,7 +180,7 @@ describe("Diagnostic Reporting Tests", () => {
       } as any;
 
       const result = buildModelSerializer(mockContext, mockModelType);
-      
+
       assert.equal(result, undefined);
       // Check that it returns undefined due to anonymous type
       // The early return happens before buildModelTypeSerializer is called
@@ -181,7 +188,7 @@ describe("Diagnostic Reporting Tests", () => {
 
     it("should handle anonymous union types in buildUnionSerializer", () => {
       capturedDiagnostics = []; // Clear before each test
-      
+
       const mockUnionType = {
         kind: "union",
         name: undefined,
@@ -191,7 +198,7 @@ describe("Diagnostic Reporting Tests", () => {
       } as any;
 
       const result = buildModelSerializer(mockContext, mockUnionType);
-      
+
       assert.equal(result, undefined);
       // Check that it returns undefined due to anonymous type
       // The early return happens before buildUnionSerializer is called
@@ -199,7 +206,7 @@ describe("Diagnostic Reporting Tests", () => {
 
     it("should handle anonymous discriminated union types in buildDiscriminatedUnionSerializer", () => {
       capturedDiagnostics = []; // Clear before each test
-      
+
       const mockDiscriminatedUnionType = {
         kind: "model",
         name: undefined,
@@ -207,7 +214,7 @@ describe("Diagnostic Reporting Tests", () => {
         __raw: NoTarget,
         discriminatorProperty: { name: "type" },
         discriminatedSubtypes: {
-          "test": {
+          test: {
             kind: "model",
             name: "TestType",
             usage: UsageFlags.Input,
@@ -216,8 +223,12 @@ describe("Diagnostic Reporting Tests", () => {
         }
       } as any;
 
-      const result = buildModelSerializer(mockContext, mockDiscriminatedUnionType, false);
-      
+      const result = buildModelSerializer(
+        mockContext,
+        mockDiscriminatedUnionType,
+        false
+      );
+
       assert.equal(result, undefined);
       // Check that it returns undefined due to anonymous type
       // The early return happens before buildDiscriminatedUnionSerializer is called
@@ -225,18 +236,18 @@ describe("Diagnostic Reporting Tests", () => {
 
     it("should handle anonymous polymorphic types in buildPolymorphicSerializer", () => {
       capturedDiagnostics = []; // Clear before each test
-      
+
       const mockPolymorphicType = {
         kind: "model",
         name: undefined,
         usage: UsageFlags.Input,
         __raw: NoTarget,
-        discriminatorProperty: { name: "kind" },
+        discriminatorProperty: { name: "kind" }
         // No discriminatedSubtypes to make it polymorphic instead of discriminated union
       } as any;
 
       const result = buildModelSerializer(mockContext, mockPolymorphicType);
-      
+
       assert.equal(result, undefined);
       // Check that it returns undefined due to anonymous type
       // The early return happens before buildPolymorphicSerializer is called
@@ -244,7 +255,7 @@ describe("Diagnostic Reporting Tests", () => {
 
     it("should handle anonymous subtype in buildPolymorphicSerializer", () => {
       capturedDiagnostics = []; // Clear before each test
-      
+
       const mockPolymorphicType = {
         kind: "model",
         name: "ParentType",
@@ -252,7 +263,7 @@ describe("Diagnostic Reporting Tests", () => {
         __raw: NoTarget,
         discriminatorProperty: { name: "kind" },
         discriminatedSubtypes: {
-          "subtype1": {
+          subtype1: {
             kind: "model",
             name: undefined, // Anonymous subtype
             usage: UsageFlags.Input,
@@ -264,13 +275,16 @@ describe("Diagnostic Reporting Tests", () => {
 
       try {
         const result = buildModelSerializer(mockContext, mockPolymorphicType);
-        
+
         // Should still attempt to build but might fail due to context issues
         console.log("Test result:", result);
         console.log("Captured diagnostics:", capturedDiagnostics);
       } catch (error) {
         // Expected to fail due to mock context limitations
-        console.log("Expected error in mock environment:", (error as Error).message);
+        console.log(
+          "Expected error in mock environment:",
+          (error as Error).message
+        );
       }
     });
   });
@@ -284,7 +298,7 @@ describe("Diagnostic Reporting Tests", () => {
           capturedDiagnostic = diagnostic;
         }
       };
-      
+
       const localMockContext = {
         program: mockProgram
       } as unknown as SdkContext;
@@ -301,8 +315,8 @@ describe("Diagnostic Reporting Tests", () => {
       } as any;
 
       let optionalCallCount = 0;
-      Object.defineProperty(unsupportedParam, 'optional', {
-        get: function() {
+      Object.defineProperty(unsupportedParam, "optional", {
+        get: function () {
           optionalCallCount++;
           return optionalCallCount === 1 ? false : true;
         },
@@ -313,7 +327,7 @@ describe("Diagnostic Reporting Tests", () => {
 
       console.log(capturedDiagnostic.code);
       console.log(capturedDiagnostic.message);
-      
+
       assert.include(capturedDiagnostic.code, "unsupported-parameter-type");
       assert.include(capturedDiagnostic.message, "testParam");
       assert.equal(result, `"testParam": undefined`);
@@ -325,9 +339,15 @@ describe("Diagnostic Reporting Tests", () => {
       const mockProject = new Project({ useInMemoryFileSystem: true });
       provideContext("outputProject", mockProject);
 
-      const mockClient = { kind: "client", name: "TestClient", operations: [] } as any;
+      const mockClient = {
+        kind: "client",
+        name: "TestClient",
+        operations: []
+      } as any;
       const mockClientMap: [string[], any] = [["TestClient"], mockClient];
-      const mockEmitterOptions = { modularOptions: { sourceRoot: "src" } } as any;
+      const mockEmitterOptions = {
+        modularOptions: { sourceRoot: "src" }
+      } as any;
 
       buildSubClientIndexFile(mockContext, mockClientMap, mockEmitterOptions);
 
@@ -345,12 +365,32 @@ describe("Diagnostic Reporting Tests", () => {
       const mockMethod = {
         kind: "unsupported-method-kind",
         name: "testMethod",
-        operation: { kind: "http", path: "/test", verb: "get", parameters: [], responses: [], exceptions: [] }
+        operation: {
+          kind: "http",
+          path: "/test",
+          verb: "get",
+          parameters: [],
+          responses: [],
+          exceptions: []
+        }
       } as any;
 
-      const mockClient = { kind: "client", name: "TestClient", methods: [mockMethod], operations: [mockMethod] } as any;
-      const mockSdkPackage = { models: [], unions: [], enums: [], clients: [mockClient] };
-      const localMockContext = { ...mockContext, sdkPackage: mockSdkPackage } as any;
+      const mockClient = {
+        kind: "client",
+        name: "TestClient",
+        methods: [mockMethod],
+        operations: [mockMethod]
+      } as any;
+      const mockSdkPackage = {
+        models: [],
+        unions: [],
+        enums: [],
+        clients: [mockClient]
+      };
+      const localMockContext = {
+        ...mockContext,
+        sdkPackage: mockSdkPackage
+      } as any;
 
       visitPackageTypes(localMockContext);
 
@@ -369,13 +409,19 @@ describe("Diagnostic Reporting Tests", () => {
         compilerOptions: { noEmit: false },
         hasError: () => false,
         host: { mkdirp: async () => {}, writeFile: async () => {} },
-        reportDiagnostic: (diagnostic: any) => capturedDiagnostics.push(diagnostic)
+        reportDiagnostic: (diagnostic: any) =>
+          capturedDiagnostics.push(diagnostic)
       } as any;
 
-      const mockFile = { path: "test.ts", content: "export const test = { invalid: syntax error }" };
+      const mockFile = {
+        path: "test.ts",
+        content: "export const test = { invalid: syntax error }"
+      };
       await emitContentByBuilder(mockProgram, () => mockFile, {} as any);
 
-      const diagnostic = capturedDiagnostics.find(d => d.code.endsWith("file-formatting-error"));
+      const diagnostic = capturedDiagnostics.find((d) =>
+        d.code.endsWith("file-formatting-error")
+      );
       console.log(diagnostic?.code);
       console.log(diagnostic?.message);
 
@@ -388,7 +434,7 @@ describe("Diagnostic Reporting Tests", () => {
   describe("Advanced Deserializer Diagnostics Tests", () => {
     it("should test buildModelTypeDeserializer with valid model containing anonymous property", () => {
       capturedDiagnostics = []; // Clear before each test
-      
+
       // Create a valid model that will pass initial checks but may have internal issues
       const mockModelType = {
         kind: "model",
@@ -413,7 +459,10 @@ describe("Diagnostic Reporting Tests", () => {
         const result = buildModelDeserializer(mockContext, mockModelType);
         console.log("Advanced test - Result:", typeof result);
       } catch (error) {
-        console.log("Advanced test - Expected context error:", (error as Error).message);
+        console.log(
+          "Advanced test - Expected context error:",
+          (error as Error).message
+        );
       }
     });
 
@@ -426,7 +475,7 @@ describe("Diagnostic Reporting Tests", () => {
   describe("Advanced Serializer Diagnostics Tests", () => {
     it("should test buildModelTypeSerializer with valid model containing anonymous property", () => {
       capturedDiagnostics = []; // Clear before each test
-      
+
       // Create a valid model that will pass initial checks but may have internal issues
       const mockModelType = {
         kind: "model",
@@ -451,7 +500,10 @@ describe("Diagnostic Reporting Tests", () => {
         const result = buildModelSerializer(mockContext, mockModelType);
         console.log("Advanced serializer test - Result:", typeof result);
       } catch (error) {
-        console.log("Advanced serializer test - Expected context error:", (error as Error).message);
+        console.log(
+          "Advanced serializer test - Expected context error:",
+          (error as Error).message
+        );
       }
     });
 
@@ -460,7 +512,4 @@ describe("Diagnostic Reporting Tests", () => {
       console.log("Advanced serializer tests completed");
     });
   });
-
-
 });
-

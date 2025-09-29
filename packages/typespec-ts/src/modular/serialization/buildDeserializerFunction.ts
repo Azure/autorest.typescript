@@ -20,6 +20,7 @@ import {
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
 import {
+  getAllDiscriminatedValues,
   isDiscriminatedUnion,
   isSupportedSerializeType,
   ModelSerializeOptions
@@ -27,7 +28,10 @@ import {
 import { SerializationHelpers } from "../static-helpers-metadata.js";
 import { refkey } from "../../framework/refkey.js";
 import { resolveReference } from "../../framework/reference.js";
-import { getAdditionalPropertiesType } from "../helpers/typeHelpers.js";
+import {
+  getAdditionalPropertiesType,
+  getDirectSubtypes
+} from "../helpers/typeHelpers.js";
 import { reportDiagnostic } from "../../lib.js";
 import { NoTarget } from "@typespec/compiler";
 
@@ -222,8 +226,8 @@ function buildDiscriminatedUnionDeserializer(
     NameType.Operation,
     true
   )}Deserializer`;
-  for (const key in type.discriminatedSubtypes) {
-    const subType = type.discriminatedSubtypes[key]!;
+  const directSubtypes = getDirectSubtypes(type);
+  for (const subType of directSubtypes) {
     if (
       !subType.usage ||
       (subType.usage !== undefined &&
@@ -231,7 +235,11 @@ function buildDiscriminatedUnionDeserializer(
     ) {
       continue;
     }
-    const discriminatedValue = subType.discriminatorValue!;
+    // get all discriminated values that is linked by this discriminator property
+    const discriminatedValues = getAllDiscriminatedValues(
+      subType,
+      type.discriminatorProperty
+    );
     const union = subType.discriminatedSubtypes ? "Union" : "";
     const subTypeName = `${normalizeName(subType.name, NameType.Interface, true)}${union}`;
     const subtypeDeserializerName = normalizeName(
@@ -240,8 +248,9 @@ function buildDiscriminatedUnionDeserializer(
       true
     );
 
+    const caseLabels = discriminatedValues.map((value) => `case "${value}":`);
     cases.push(`
-      case "${discriminatedValue}":
+      ${caseLabels.join("\n")}
         return ${subtypeDeserializerName}(item as ${subTypeName});
     `);
   }
