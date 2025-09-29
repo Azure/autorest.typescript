@@ -106,9 +106,6 @@ export function emitTypes(
     if (!isGenerableType(type)) {
       continue;
     }
-    // if (isAzureCoreLroType(type.__raw)) {
-    //   continue;
-    // }
 
     const namespaces = getModelNamespaces(context, type);
     const filepath = getModelsPath(sourceRoot, namespaces);

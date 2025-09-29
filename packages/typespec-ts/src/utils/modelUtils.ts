@@ -1723,28 +1723,6 @@ export function isAzureCoreErrorType(program: Program, t?: Type): boolean {
   return isAzureCoreFoundationsNamespace(effective);
 }
 
-// Check if the type in the Azure.Core.Foundations has an LRO type in core
-export function isAzureCoreLroType(t?: Type, tcgcName?: string): boolean {
-  if (
-    !(
-      ((t?.kind === "Enum" || t?.kind === "Union") &&
-        ["operationstate"].includes(
-          (tcgcName ?? t?.name ?? "").toLowerCase()
-        )) ||
-      (t?.kind === "Model" &&
-        ["resourceoperationstatus", "operationstatus"].includes(
-          (tcgcName ?? t?.name)?.toLowerCase()
-        ))
-    )
-  ) {
-    return false;
-  }
-  return (
-    isAzureCoreFoundationsNamespace(t) ||
-    isAzureCoreFoundationsNamespace(t, true)
-  );
-}
-
 function isAzureCoreFoundationsNamespace(
   t?: Type,
   skipFoundation: boolean = false
