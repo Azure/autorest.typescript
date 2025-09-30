@@ -139,7 +139,7 @@ async function employeesCreateOrUpdate(): Promise<void> {
     properties: {
       age: 30,
       city: "gydhnntudughbmxlkyzrskcdkotrxn",
-      profile: "ms",
+      profile: Buffer.from("ms", "base64url"),
     },
     tags: { key2913: "urperxmkkhhkp" },
     location: "itajgxyqozseoygnl",
@@ -204,7 +204,7 @@ async function employeesCreateOrUpdate(): Promise<void> {
     properties: {
       age: 30,
       city: "gydhnntudughbmxlkyzrskcdkotrxn",
-      profile: "ms",
+      profile: Buffer.from("ms", "base64url"),
     },
     tags: { key2913: "urperxmkkhhkp" },
     location: "itajgxyqozseoygnl",
