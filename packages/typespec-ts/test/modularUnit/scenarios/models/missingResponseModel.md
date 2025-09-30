@@ -9,6 +9,7 @@ import "@azure-tools/typespec-azure-core";
 import "@typespec/versioning";
 import "@azure-tools/typespec-client-generator-core";
 
+
 using TypeSpec.Http;
 using TypeSpec.Rest;
 using Azure.Core;
@@ -16,168 +17,163 @@ using TypeSpec.Versioning;
 using Azure.ClientGenerator.Core;
 
 @useAuth(
-  OAuth2Auth<[
-    {
-      @doc("implicit flow")
-      type: OAuth2FlowType.implicit,
-      @doc("the authorization URL")
-      authorizationUrl: "https://login.microsoftonline.com/common/oauth2/authorize",
-      @doc("list of scopes for the credential")
-      scopes: ["https://example.com/.default"],
-    }
-  ]>
+  ApiKeyAuth<ApiKeyLocation.header, "Ocp-Apim-Subscription-Key">
 )
-@versioned(TestService.Versions)
-@service(#{ title: "Test Service" })
+@versioned(APIVersion)
+@service(#{ title: "Anomaly Detector" })
 @server(
-  "{endpoint}",
-  "",
+  "{Endpoint}/anomalydetector/{ApiVersion}",
+  "Test service to reproduce missing response model issue.",
   {
-    @doc("The endpoint hosting the requested resource.")
-    endpoint: string,
+    @doc("Supported endpoint.")
+    Endpoint: string,
+    
+    @doc("Api Version")
+    @path
+    ApiVersion: APIVersion,
   }
 )
 @doc("Test service to reproduce missing response model issue.")
-namespace TestService;
+namespace AnomalyDetector;
 
-@doc("The Test service version.")
-enum Versions {
-  @doc("Version 2023-03-01-preview")
-  v2023_03_01_preview: "2023-03-01-preview",
+enum APIVersion {
+  v1_1: "v1.1",
 }
 
-@doc("Request options.")
-model DetectionOptions {
-  @doc("Data points for detection.")
-  series: TimeSeriesPoint[];
-  
-  @doc("Detection granularity.")
-  granularity?: string;
-}
+@post
+@doc("Operation template for univariate anomaly detection service action.")
+op UnivariateServiceAction<TParams, TResponse>(
+  ...TParams,
+): TResponse | AnomalyDetectorError;
 
-@doc("Time series data point.")
-model TimeSeriesPoint {
-  @doc("Timestamp.")
-  timestamp?: utcDateTime;
-  
-  @doc("Value.")
-  value: float32;
-}
-
-@doc("Detection result with severity issue.")
-model DetectionResult {
-  @doc("Period value.")
+#suppress "@azure-tools/typespec-azure-core/use-standard-operations" "Azure core RpcOperation does not support custom error response"
+@route("timeseries/entire/detect")
+@summary("Detect anomalies for the entire series in batch.")
+op detectUnivariateEntireSeries is UnivariateServiceAction<
+  // TParams
+  {
+    @bodyRoot
+    options: UnivariateDetectionOptions;
+  },
+  // TResponse
+  UnivariateEntireDetectionResult
+>;
+model UnivariateEntireDetectionResult {
   period: int32;
-  
-  @doc("Expected values.")
+
   expectedValues: float32[];
-  
-  @doc("Is anomaly flags.")
+  upperMargins: float32[];
+  lowerMargins: float32[];
   isAnomaly: boolean[];
-  
-  @doc("Severity scores - optional array that causes generation issue.")
+  isNegativeAnomaly: boolean[];
+  isPositiveAnomaly: boolean[];
   severity?: float32[];
 }
 
-@doc("Error information.")
+model UnivariateDetectionOptions {
+  
+  granularity?: string;
+  
+  customInterval?: int32;
+  
+  period?: int32;
+  
+  maxAnomalyRatio?: float32;
+  
+  sensitivity?: int32;
+}
+
+@doc("Error information that the API returned.")
 @error
-model ServiceError {
+model AnomalyDetectorError {
+  @header("x-ms-error-code")
+  @doc("Error code.")
+  msErrorCode: string;
+  
   @doc("Error code.")
   code: string;
   
-  @doc("Error message.")
   message: string;
 }
-
-interface Operations {
-  @doc("Perform detection operation")
-  @route("/detect")
-  @post
-  detect(@bodyRoot options: DetectionOptions): DetectionResult | ServiceError;
-}
+@@convenientAPI(AnomalyDetector.detectUnivariateEntireSeries, false);
 ```
 
 ```yaml
 withRawContent: true
+mustEmptyDiagnostic: false
 ```
 
 ## Models
 
 ```ts models
-/** Request options. */
-export interface DetectionOptions {
-  /** Data points for detection. */
-  series: TimeSeriesPoint[];
-  /** Detection granularity. */
-  granularity?: string;
+/** Type of APIVersion */
+export type APIVersion = "v1.1";
+```
+
+## Operations
+
+```ts operations
+import { AnomalyDetectorContext as Client } from "./index.js";
+import { DetectUnivariateEntireSeriesOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _detectUnivariateEntireSeriesSend(
+  context: Client,
+  options: __PLACEHOLDER_o24__,
+  optionalParams: DetectUnivariateEntireSeriesOptionalParams = {
+    requestOptions: {},
+  },
+): StreamableMethod {
+  return context
+    .path("/timeseries/entire/detect")
+    .post({
+      ...operationOptionsToRequestParameters(optionalParams),
+      contentType: "application/json",
+      headers: {
+        accept: "application/json",
+        ...optionalParams.requestOptions?.headers,
+      },
+      body: {
+        granularity: options?.granularity,
+        customInterval: options?.customInterval,
+        period: options?.period,
+        maxAnomalyRatio: options?.maxAnomalyRatio,
+        sensitivity: options?.sensitivity,
+      },
+    });
 }
 
-export function detectionOptionsSerializer(item: DetectionOptions): any {
+export async function _detectUnivariateEntireSeriesDeserialize(
+  result: PathUncheckedResponse,
+): Promise<__PLACEHOLDER_o25__> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
   return {
-    series: timeSeriesPointArraySerializer(item["series"]),
-    granularity: item["granularity"],
-  };
-}
-
-export function timeSeriesPointArraySerializer(
-  result: Array<TimeSeriesPoint>,
-): any[] {
-  return result.map((item) => {
-    return timeSeriesPointSerializer(item);
-  });
-}
-
-/** Time series data point. */
-export interface TimeSeriesPoint {
-  /** Timestamp. */
-  timestamp?: Date;
-  /** Value. */
-  value: number;
-}
-
-export function timeSeriesPointSerializer(item: TimeSeriesPoint): any {
-  return {
-    timestamp: !item["timestamp"]
-      ? item["timestamp"]
-      : item["timestamp"].toISOString(),
-    value: item["value"],
-  };
-}
-
-/** Error information. */
-export interface ServiceError {
-  /** Error code. */
-  code: string;
-  /** Error message. */
-  message: string;
-}
-
-export function serviceErrorDeserializer(item: any): ServiceError {
-  return {
-    code: item["code"],
-    message: item["message"],
-  };
-}
-
-/** Detection result with severity issue. */
-export interface DetectionResult {
-  /** Period value. */
-  period: number;
-  /** Expected values. */
-  expectedValues: number[];
-  /** Is anomaly flags. */
-  isAnomaly: boolean[];
-  /** Severity scores - optional array that causes generation issue. */
-  severity?: number[];
-}
-
-export function detectionResultDeserializer(item: any): DetectionResult {
-  return {
-    period: item["period"],
+    period: ["period"],
     expectedValues: ["expectedValues"].map((p: any) => {
       return p;
     }),
+    upperMargins: ["upperMargins"].map((p: any) => {
+      return p;
+    }),
+    lowerMargins: ["lowerMargins"].map((p: any) => {
+      return p;
+    }),
     isAnomaly: ["isAnomaly"].map((p: any) => {
+      return p;
+    }),
+    isNegativeAnomaly: ["isNegativeAnomaly"].map((p: any) => {
+      return p;
+    }),
+    isPositiveAnomaly: ["isPositiveAnomaly"].map((p: any) => {
       return p;
     }),
     severity: !["severity"]
@@ -187,71 +183,20 @@ export function detectionResultDeserializer(item: any): DetectionResult {
         }),
   };
 }
-```
 
-## Operations
-
-```ts operations
-import { TestServiceContext as Client } from "./index.js";
-import {
-  DetectionOptions,
-  detectionOptionsSerializer,
-  DetectionResult,
-  detectionResultDeserializer,
-  serviceErrorDeserializer,
-} from "../models/models.js";
-import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
-import { DetectOptionalParams } from "./options.js";
-import {
-  StreamableMethod,
-  PathUncheckedResponse,
-  createRestError,
-  operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
-
-export function _detectSend(
+/** Operation template for univariate anomaly detection service action. */
+export async function detectUnivariateEntireSeries(
   context: Client,
-  options: DetectionOptions,
-  optionalParams: DetectOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  const path = expandUrlTemplate(
-    "/detect{?api%2Dversion}",
-    { "api%2Dversion": context.apiVersion },
-    { allowReserved: optionalParams?.requestOptions?.skipUrlEncoding },
+  options: __PLACEHOLDER_o24__,
+  optionalParams: DetectUnivariateEntireSeriesOptionalParams = {
+    requestOptions: {},
+  },
+): Promise<__PLACEHOLDER_o25__> {
+  const result = await _detectUnivariateEntireSeriesSend(
+    context,
+    options,
+    optionalParams,
   );
-  return context
-    .path(path)
-    .post({
-      ...operationOptionsToRequestParameters(optionalParams),
-      headers: {
-        accept: "application/json",
-        "content-type": "application/json",
-        ...optionalParams.requestOptions?.headers,
-      },
-      body: detectionOptionsSerializer(options),
-    });
-}
-
-export async function _detectDeserialize(
-  result: PathUncheckedResponse,
-): Promise<DetectionResult> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    const error = createRestError(result);
-    error.details = serviceErrorDeserializer(result.body);
-    throw error;
-  }
-
-  return detectionResultDeserializer(result.body);
-}
-
-/** Perform detection operation */
-export async function detect(
-  context: Client,
-  options: DetectionOptions,
-  optionalParams: DetectOptionalParams = { requestOptions: {} },
-): Promise<DetectionResult> {
-  const result = await _detectSend(context, options, optionalParams);
-  return _detectDeserialize(result);
+  return _detectUnivariateEntireSeriesDeserialize(result);
 }
 ```
