@@ -863,6 +863,10 @@ export const azureModularTsps = [
   {
     outputPath: "azure/client-generator-core/hierarchy-building",
     inputPath: "azure/client-generator-core/hierarchy-building"
+  },
+  {
+    outputPath: "azure/versioning/previewVersion",
+    inputPath: "azure/versioning/previewVersion"
   }
   // skip due to issue https://github.com/Azure/autorest.typescript/issues/3494
   // {
