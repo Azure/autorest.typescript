@@ -169,10 +169,13 @@ function regularAutorestPackage(
     packageInfo.homepage = `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}`;
   }
   if (azureSdkForJs) {
-    packageInfo.devDependencies["@azure/dev-tool"] = shouldUsePnpmDep && azureSdkForJs ? "workspace:^" : "^1.0.0";
+    packageInfo.devDependencies["@azure/dev-tool"] = shouldUsePnpmDep ? "workspace:^" : "^1.0.0";
+    packageInfo.devDependencies["cross-env"] = shouldUsePnpmDep ? "catalog:" : "^7.0.3";
+    packageInfo.devDependencies["eslint"] = shouldUsePnpmDep ? "catalog:" : "^9.33.0";
+    packageInfo.devDependencies["prettier"] = shouldUsePnpmDep ? "catalog:" : "^3.6.2";
+    packageInfo.devDependencies["rimraf"] = shouldUsePnpmDep ? "catalog:" : "^5.0.0";
+
     delete packageInfo.devDependencies["@microsoft/api-extractor"];
-    delete packageInfo.devDependencies["rimraf"];
-    delete packageInfo.devDependencies["mkdirp"];
     packageInfo.scripts["build"] =
       "npm run clean && dev-tool run build-package && dev-tool run extract-api";
     packageInfo.scripts["clean"] = "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log";
