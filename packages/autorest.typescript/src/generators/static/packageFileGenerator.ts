@@ -128,7 +128,6 @@ function regularAutorestPackage(
       build:
         "npm run clean && tshy && npm run extract-api",
       minify: `uglifyjs -c -m --comments --source-map "content='./dist/index.js.map'" -o ./dist/index.min.js ./dist/index.js`,
-      prepack: "npm run build",
       pack: `${shouldUsePnpmDep && azureSdkForJs ? "pnpm" : "npm"} pack 2>&1`,
       "extract-api": "rimraf review && mkdirp ./review && api-extractor run --local",
       lint: "echo skipped",
@@ -155,8 +154,8 @@ function regularAutorestPackage(
     browser: "./dist/browser/index.js",
     "react-native": "./dist/react-native/index.js",
     tshy: {
-      // only JS sdk repo has tsconfig.src.json
-      project: azureSdkForJs ? "./tsconfig.src.json" : undefined,
+      // only JS sdk repo has tsconfig.src.build.json
+      project: azureSdkForJs ? "../../../tsconfig.src.build.json" : undefined,
       exports: {
         "./package.json": "./package.json",
         ".": "./src/index.ts",
@@ -176,12 +175,12 @@ function regularAutorestPackage(
     delete packageInfo.devDependencies["mkdirp"];
     packageInfo.scripts["build"] =
       "npm run clean && dev-tool run build-package && dev-tool run extract-api";
-    packageInfo.scripts["clean"] = "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log";
+    packageInfo.scripts["clean"] = "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log";
     packageInfo.scripts["extract-api"] = "dev-tool run extract-api";
     packageInfo.scripts["update-snippets"] = "dev-tool run update-snippets";
     delete packageInfo.scripts["minify"];
-    packageInfo.scripts["check-format"] = "dev-tool run vendored prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.{ts,cts,mts}\" \"test/**/*.{ts,cts,mts}\" \"*.{js,cjs,mjs,json}\" ";
-    packageInfo.scripts["format"] = "dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.{ts,cts,mts}\" \"test/**/*.{ts,cts,mts}\" \"*.{js,cjs,mjs,json}\" ";
+    packageInfo.scripts["check-format"] = "prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.{ts,cts,mts}\" \"test/**/*.{ts,cts,mts}\" \"*.{js,cjs,mjs,json}\" ";
+    packageInfo.scripts["format"] = "prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.{ts,cts,mts}\" \"test/**/*.{ts,cts,mts}\" \"*.{js,cjs,mjs,json}\" ";
   } else {
     packageInfo.devDependencies["@rollup/plugin-commonjs"] = "^24.0.0";
     packageInfo.devDependencies["@rollup/plugin-json"] = "^6.0.0";
@@ -207,15 +206,9 @@ function regularAutorestPackage(
     packageInfo.devDependencies["@vitest/coverage-istanbul"] = shouldUsePnpmDep && azureSdkForJs ? "catalog:testing" : "^3.0.9";
     packageInfo.devDependencies["playwright"] = shouldUsePnpmDep && azureSdkForJs ? "catalog:testing" : "^1.52.0";
     packageInfo.devDependencies["vitest"] = shouldUsePnpmDep && azureSdkForJs ? "catalog:testing" : "^3.0.9";
-
-    packageInfo.scripts["test"] = "npm run integration-test";
-    packageInfo.scripts["unit-test"] =
-      "npm run unit-test:node && npm run unit-test:browser";
-    packageInfo.scripts["integration-test"] =
-      "npm run integration-test:node && npm run integration-test:browser";
+    packageInfo.scripts["test"] = "npm run test:node && npm run test:browser";
 
     if (azureSdkForJs) {
-      packageInfo.scripts["test"] = "npm run test:node && npm run test:browser";
       packageInfo.scripts["test:node"] = "dev-tool run test:vitest";
       packageInfo.scripts["test:node:esm"] = "dev-tool run test:vitest --esm";
     } else {

@@ -2,11 +2,13 @@
 // Licensed under the MIT License.
 
 import { logger } from "../logger.js";
+import { KnownVersions } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 import { TokenCredential } from "@azure/core-auth";
 
 export interface ParametrizedHostContext extends Client {
   /** The API version to use for this operation. */
+  /** Known values of {@link KnownVersions} that the service accepts. */
   apiVersion: string;
 }
 
@@ -15,11 +17,13 @@ export interface ParametrizedHostClientOptionalParams extends ClientOptions {
   host?: string;
   subdomain?: string;
   sufix?: string;
+  /** The API version to use for this operation. */
+  /** Known values of {@link KnownVersions} that the service accepts. */
+  apiVersion?: string;
 }
 
 export function createParametrizedHost(
   credential: TokenCredential,
-  apiVersion: string,
   options: ParametrizedHostClientOptionalParams = {},
 ): ParametrizedHostContext {
   const host = options.host ?? "one";
@@ -43,6 +47,7 @@ export function createParametrizedHost(
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
   clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+  const apiVersion = options.apiVersion ?? "v1";
   clientContext.pipeline.addPolicy({
     name: "ClientApiVersionPolicy",
     sendRequest: (req, next) => {

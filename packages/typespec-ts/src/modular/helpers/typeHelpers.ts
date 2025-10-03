@@ -1,9 +1,22 @@
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import {
   SdkBodyParameter,
-  SdkModelPropertyType,
+  SdkCredentialParameter,
+  SdkEndpointParameter,
+  SdkMethodParameter,
+  SdkModelType,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
+
+export function getDirectSubtypes(type: SdkModelType) {
+  if (!type.discriminatedSubtypes) {
+    return [];
+  }
+  // Filter out subtypes that extend from other discriminated subtypes (hierarchical inheritance)
+  return Object.values(type.discriminatedSubtypes).filter(
+    (subtype) => subtype.baseModel === type
+  );
+}
 
 export function getAdditionalPropertiesType(
   type: SdkType | undefined
@@ -71,7 +84,7 @@ export function isDateTimeTypeKind(kind: string): boolean {
 }
 
 export function isCredentialType(
-  type: SdkType | SdkModelPropertyType
+  type: SdkEndpointParameter | SdkCredentialParameter | SdkMethodParameter
 ): boolean {
   return type.kind === "credential";
 }

@@ -13,11 +13,7 @@ import {
   ResponseMetadata,
   ResponseTypes
 } from "@azure-tools/rlc-common";
-import {
-  getLroMetadata,
-  getPagedResult,
-  PagedResultMetadata
-} from "@azure-tools/typespec-azure-core";
+import { getLroMetadata } from "@azure-tools/typespec-azure-core";
 import {
   getHttpOperationWithCache,
   getWireName,
@@ -34,7 +30,7 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import {
   isList,
-  Model,
+  ModelProperty,
   NoTarget,
   Operation,
   Program,
@@ -358,8 +354,15 @@ export function extractPageDetails(
         target: NoTarget
       });
     }
-    const nextLinkPath = metadata?.output.nextLink?.path;
-    const itemNamePath = metadata?.output.pageItems?.path;
+
+    const nextLinkPath = mapFirstSegmentForResultSegments(
+      metadata?.output.nextLink?.path,
+      operation.responses
+    );
+    const itemNamePath = mapFirstSegmentForResultSegments(
+      metadata?.output.pageItems?.path,
+      operation.responses
+    );
     if (
       (nextLinkPath && nextLinkPath?.length > 1) ||
       (itemNamePath && itemNamePath?.length > 1)
@@ -384,25 +387,54 @@ export function extractPageDetails(
       nextLinkNames: [nextLinkNames],
       itemNames: [itemNames]
     };
-  } else {
-    // TODO: remember to remove this once Azure Paging is removed.
-    for (const response of operation.responses) {
-      const paged = extractPagedMetadataNested(program, response.type as Model);
-      if (paged) {
-        const nextLinkName = parseNextLinkName(paged) ?? "nextLink";
-        const itemName = parseItemName(paged) ?? "value";
-        return {
-          nextLinkNames: [nextLinkName],
-          itemNames: [itemName]
-        };
-      }
-    }
   }
   return undefined;
 }
 
 export function isPagingOperation(program: Program, operation: HttpOperation) {
   return extractPageDetails(program, operation) !== undefined;
+}
+
+function mapFirstSegmentForResultSegments(
+  resultSegments: ModelProperty[] | undefined,
+  responses: HttpOperationResponse[]
+): ModelProperty[] | undefined {
+  const pagingBodyType = responses.find((r) => r.statusCodes === 200)
+    ?.responses[0]?.body;
+  if (!pagingBodyType || pagingBodyType.bodyKind !== "single") return undefined;
+  const bodyType = pagingBodyType.type;
+
+  if (resultSegments === undefined || bodyType === undefined) return undefined;
+  // TCGC use Http response type as the return type
+  // For implicit body response, we need to locate the first segment in the response type
+  // Several cases:
+  // 1. `op test(): {items, nextLink}`
+  // 2. `op test(): {items, nextLink} & {a, b, c}`
+  // 3. `op test(): {@bodyRoot body: {items, nextLink}}`
+
+  if (resultSegments.length > 0 && bodyType && bodyType.kind === "Model") {
+    for (let i = 0; i < resultSegments.length; i++) {
+      const segment = resultSegments[i];
+      for (const property of bodyType.properties ?? []) {
+        if (
+          property &&
+          segment &&
+          findRootSourceProperty(property[1]) ===
+            findRootSourceProperty(segment)
+        ) {
+          return [property[1], ...resultSegments.slice(i + 1)];
+        }
+      }
+    }
+  }
+  return resultSegments;
+}
+
+function findRootSourceProperty(property: ModelProperty): ModelProperty {
+  while (property.sourceProperty) {
+    property = property.sourceProperty;
+  }
+  return property;
 }
 
 export function hasPagingOperations(client: SdkClient, dpgContext: SdkContext) {
@@ -418,36 +450,6 @@ export function hasPagingOperations(client: SdkClient, dpgContext: SdkContext) {
     }
   }
   return false;
-}
-
-export function extractPagedMetadataNested(
-  program: Program,
-  type: Model
-): PagedResultMetadata | undefined {
-  // This only works for `is Page<T>` not `extends Page<T>`.
-  let paged = getPagedResult(program, type);
-  if (paged) {
-    return paged;
-  }
-  if (type.baseModel) {
-    paged = getPagedResult(program, type.baseModel);
-  }
-  if (paged) {
-    return paged;
-  }
-  const templateArguments = type.templateMapper?.args;
-  if (templateArguments) {
-    for (const argument of templateArguments) {
-      const modelArgument = argument as Model;
-      if (modelArgument) {
-        paged = extractPagedMetadataNested(program, modelArgument);
-        if (paged) {
-          return paged;
-        }
-      }
-    }
-  }
-  return paged;
 }
 
 export function hasCollectionFormatInfo(
@@ -574,17 +576,6 @@ export function isIgnoredHeaderParam(param: HttpOperationParameter) {
         param.name.toLowerCase()
       ))
   );
-}
-
-export function parseNextLinkName(
-  paged: PagedResultMetadata
-): string | undefined {
-  return paged.nextLinkProperty?.name;
-}
-
-export function parseItemName(paged: PagedResultMetadata): string | undefined {
-  // TODO: support the nested item names
-  return (paged.itemsSegments ?? [])[0];
 }
 
 export type ServiceOperation = SdkServiceMethod<SdkHttpOperation> & {

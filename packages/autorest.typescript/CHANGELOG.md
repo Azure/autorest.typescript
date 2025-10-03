@@ -1,3 +1,42 @@
+## 6.0.48 (2025-09-26)
+
+- [Feature] Multi-level inheritance support. Please refer to [#3514](https://github.com/Azure/autorest.typescript/pull/3514)
+- [Bugfix] Fix the missing parameters in operation options. Please refer to [#3502](https://github.com/Azure/autorest.typescript/pull/3502)
+- [Feature] Add default documentation for enum members without explicit docs. Please refer to [#3505](https://github.com/Azure/autorest.typescript/pull/3505)
+- [Feature] Add initial version of cross language api id support for modular generator. Please refer to [#3497](https://github.com/Azure/autorest.typescript/pull/3497)
+- [Feature] Update tsconfig.browser.config.json. Please refer to [#3461](https://github.com/Azure/autorest.typescript/pull/3461)
+
+## 6.0.47 (2025-09-11)
+
+- [Bugfix] Improve sourcesRoot calculation for typespec-ts. Please refer to [#3484](https://github.com/Azure/autorest.typescript/pull/3484)
+- [Feature] Update License Headers. Please refer to [#3462](https://github.com/Azure/autorest.typescript/pull/3462)
+- [Bugfix] Fix discriminated property accessto use camelCase property names. Please refer to [#3447](https://github.com/Azure/autorest.typescript/pull/3447)
+- [Bugfix] Fix partial lint errors in codegen side. Please refer to [#3481](https://github.com/Azure/autorest.typescript/pull/3481)
+- [Feature] Improve TSDoc documentation for Azure Cloud helpers. Please refer to [#3474](https://github.com/Azure/autorest.typescript/pull/3474)
+- [Bugfix] Remove unwanted serializer/deserializer function exports from index.ts files. Please refer to [#3463](https://github.com/Azure/autorest.typescript/pull/3463)
+- [Feature] Upgrade dependencies
+  - Bump TypeSpec dependencies to latest stable versions. Please refer to [#3465](https://github.com/Azure/autorest.typescript/pull/3465)
+  - Bump TypeSpec version to latest stable with comprehensive integration testing. Please refer to [#3451](https://github.com/Azure/autorest.typescript/pull/3451)
+  - Bump TypeSpec version to latest stable and skip failure cases for RLC. Please refer to [#3445](https://github.com/Azure/autorest.typescript/pull/3445)
+- [Feature] Remove dev-tool run vendored commands. Please refer to [#3455](https://github.com/Azure/autorest.typescript/pull/3455)
+- [Feature] Simpler vitest configs. Please refer to [#3439](https://github.com/Azure/autorest.typescript/pull/3439)
+- [Feature] Delete prepack. Please refer to [#3449](https://github.com/Azure/autorest.typescript/pull/3449)
+- [Feature] Improve autorest packageJson scripts. Please refer to [#3393](https://github.com/Azure/autorest.typescript/pull/3393)
+- [Feature] Use tsconfig.src.build.json. Please refer to [#3392](https://github.com/Azure/autorest.typescript/pull/3392)
+- [Bugfix] Fix enum name normalization in TSDoc comments for extensible enums. Please refer to [#3430](https://github.com/Azure/autorest.typescript/pull/3430)
+- [Bugfix] Fix TypeSpec endpoint parameter generation when endpoint has default values. Please refer to [#3426](https://github.com/Azure/autorest.typescript/pull/3426)
+
+## 6.0.46 (2025-08-08)
+
+- [Bugfix] Remove the previously missed `experimentalExtensibleEnums`. Please refer to [#3417](https://github.com/Azure/autorest.typescript/pull/3417)
+- [Feature] Upgrade dependencies
+  - Update dependencies to dev and fix nightly ci. Please refer to [#3411](https://github.com/Azure/autorest.typescript/pull/3411)
+  - Upgrade TCGC version to latest dev. Please refer to [#3407](https://github.com/Azure/autorest.typescript/pull/3407)
+  - Upgrade TypeSpec and TCGC dependencies to latest stable versions. Please refer to [#3419](https://github.com/Azure/autorest.typescript/pull/3419)
+- [Bugfix] Patch LRO generation would fail with void 202 response. Please refer to [#3401](https://github.com/Azure/autorest.typescript/pull/3401)
+- [Feature] Adopt some comments AI provided during review for Modular. Please refer to [#3398](https://github.com/Azure/autorest.typescript/pull/3398)
+- [Feature] Support `@list` paging in RLC. Please refer to [#3318](https://github.com/Azure/autorest.typescript/pull/3318)
+
 ## 6.0.45 (2025-07-23)
 
 - [Feature] Add tspd for regen docs. Please refer to [#3236](https://github.com/Azure/autorest.typescript/pull/3236)

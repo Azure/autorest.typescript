@@ -693,12 +693,12 @@ model Error {
     message: string;
 }
 
-@pagedResult
 model Bar {
-    @items
+    @pageItems
     lists: string[];
 }
 @post
+@list
 op test(): Error | Bar;
 ```
 
@@ -767,90 +767,6 @@ export function test(
 }
 ```
 
-# should generate paging if no @items defined
-
-## TypeSpec
-
-```tsp
-@error
-model Error {
-    code: int32;
-    message: string;
-}
-
-@pagedResult
-model Bar {
-    lists: string[];
-}
-@post
-op test(): Error | Bar;
-```
-
-The config would be like:
-
-```yaml
-needAzureCore: true
-mustEmptyDiagnostic: false
-```
-
-## Operations
-
-```ts operations
-import { TestingContext as Client } from "./index.js";
-import { errorDeserializer, Bar, barDeserializer } from "../models/models.js";
-import {
-  PagedAsyncIterableIterator,
-  buildPagedAsyncIterator,
-} from "../static-helpers/pagingHelpers.js";
-import { TestOptionalParams } from "./options.js";
-import {
-  StreamableMethod,
-  PathUncheckedResponse,
-  createRestError,
-  operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
-
-export function _testSend(
-  context: Client,
-  options: TestOptionalParams = { requestOptions: {} },
-): StreamableMethod {
-  return context
-    .path("/")
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
-    });
-}
-
-export async function _testDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Bar> {
-  const expectedStatuses = ["200"];
-  if (!expectedStatuses.includes(result.status)) {
-    const error = createRestError(result);
-    error.details = errorDeserializer(result.body);
-    throw error;
-  }
-
-  return barDeserializer(result.body);
-}
-
-export function test(
-  context: Client,
-  options: TestOptionalParams = { requestOptions: {} },
-): PagedAsyncIterableIterator<void> {
-  return buildPagedAsyncIterator(
-    context,
-    () => _testSend(context, options),
-    _testDeserialize,
-    ["200"],
-  );
-}
-```
-
 # should generate paging if have extend model
 
 ## TypeSpec
@@ -862,9 +778,8 @@ model Error {
     message: string;
 }
 
-@pagedResult
 model Bar {
-    @items
+    @pageItems
     lists: string[];
     @TypeSpec.nextLink
     nextLink: string;
@@ -875,6 +790,7 @@ model Child extends Bar {
 }
 
 @post
+@list
 op test(): Error | Child;
 ```
 

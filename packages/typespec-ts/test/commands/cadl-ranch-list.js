@@ -861,9 +861,14 @@ export const azureModularTsps = [
     inputPath: "azure/resource-manager/operation-templates"
   },
   {
-    outputPath: "azure/client-generator-core/client-location",
-    inputPath: "azure/client-generator-core/client-location"
+    outputPath: "azure/client-generator-core/hierarchy-building",
+    inputPath: "azure/client-generator-core/hierarchy-building"
   }
+  // skip due to issue https://github.com/Azure/autorest.typescript/issues/3494
+  // {
+  //   outputPath: "azure/client-generator-core/client-location",
+  //   inputPath: "azure/client-generator-core/client-location"
+  // }
 ];
 
 export const modularTsps = [

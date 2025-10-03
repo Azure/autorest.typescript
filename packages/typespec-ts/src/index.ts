@@ -93,6 +93,7 @@ import { provideSdkTypes } from "./framework/hooks/sdkTypes.js";
 import { transformRLCModel } from "./transform/transform.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
 import { emitSamples } from "./modular/emitSamples.js";
+import { generateCrossLanguageDefinitionFile } from "./utils/crossLanguageDef.js";
 
 export * from "./lib.js";
 
@@ -210,9 +211,15 @@ export async function $onEmit(context: EmitContext) {
   async function calculateGenerationDir(): Promise<GenerationDirDetail> {
     const projectRoot = context.emitterOutputDir ?? "";
     const customizationFolder = join(projectRoot, "generated");
+    const srcGeneratedFolder = join(projectRoot, "src", "generated");
     // if customization folder exists, use it as sources root
-    const sourcesRoot = (await fsextra.pathExists(customizationFolder))
-      ? customizationFolder
+    const finalCustomizationFolder = (await fsextra.pathExists(
+      srcGeneratedFolder
+    ))
+      ? srcGeneratedFolder
+      : customizationFolder;
+    const sourcesRoot = (await fsextra.pathExists(finalCustomizationFolder))
+      ? finalCustomizationFolder
       : join(projectRoot, "src");
     return {
       rootDir: projectRoot,
@@ -327,7 +334,7 @@ export async function $onEmit(context: EmitContext) {
         interfaceOnly: true
       });
       if (isMultiClients) {
-        buildSubClientIndexFile(subClient, modularEmitterOptions);
+        buildSubClientIndexFile(dpgContext, subClient, modularEmitterOptions);
       }
       buildRootIndex(
         dpgContext,
@@ -368,9 +375,14 @@ export async function $onEmit(context: EmitContext) {
     console.timeEnd("onEmit: generate files");
     console.timeEnd("onEmit: generate modular sources");
   }
+
   interface Metadata {
     apiVersion?: string;
     emitterVersion?: string;
+    crossLanguageDefinitions?: {
+      CrossLanguagePackageId: string;
+      CrossLanguageDefinitionId: Record<string, string>;
+    };
   }
 
   function buildMetadataJson() {
@@ -386,11 +398,16 @@ export async function $onEmit(context: EmitContext) {
     if (emitterVersion !== undefined) {
       content.emitterVersion = emitterVersion;
     }
+    if (dpgContext.rlcOptions?.isModularLibrary) {
+      content.crossLanguageDefinitions =
+        generateCrossLanguageDefinitionFile(dpgContext);
+    }
     return {
       path: "metadata.json",
       content: JSON.stringify(content, null, 2)
     };
   }
+
   async function generateMetadataAndTest(context: SdkContext) {
     const project = useContext("outputProject");
     if (rlcCodeModels.length === 0 || !rlcCodeModels[0]) {
@@ -548,11 +565,9 @@ export async function createContextWithDefaultOptions(
   context: EmitContext<Record<string, any>>
 ): Promise<SdkContext> {
   const flattenUnionAsEnum =
-    context.options["experimental-extensible-enums"] === undefined &&
-    context.options["experimentalExtensibleEnums"] === undefined
+    context.options["experimental-extensible-enums"] === undefined
       ? isArm(context)
-      : (context.options["experimental-extensible-enums"] ??
-        context.options["experimentalExtensibleEnums"]);
+      : context.options["experimental-extensible-enums"];
   const tcgcSettings = {
     "generate-protocol-methods": true,
     "generate-convenience-methods": true,
@@ -579,10 +594,7 @@ export async function createContextWithDefaultOptions(
 
 // TODO: should be removed once tcgc issue is resolved https://github.com/Azure/typespec-azure/issues/1794
 function isArm(context: EmitContext<Record<string, any>>) {
-  const packageName =
-    (context?.options["package-details"] ??
-      context?.options["packageDetails"] ??
-      {})["name"] ?? "";
+  const packageName = (context?.options["package-details"] ?? {})["name"] ?? "";
   return packageName?.startsWith("@azure/arm-");
 }
 
