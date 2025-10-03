@@ -74,7 +74,7 @@ export const PatternAnalyzer: coreClient.CompositeMapper = {
         },
       },
       pattern: {
-        defaultValue: "W+",
+        defaultValue: "\W+",
         serializedName: "pattern",
         type: {
           name: "String",
