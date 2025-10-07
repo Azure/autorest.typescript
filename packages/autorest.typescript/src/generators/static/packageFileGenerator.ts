@@ -174,6 +174,7 @@ function regularAutorestPackage(
     packageInfo.devDependencies["eslint"] = shouldUsePnpmDep ? "catalog:" : "^9.33.0";
     packageInfo.devDependencies["prettier"] = shouldUsePnpmDep ? "catalog:" : "^3.6.2";
     packageInfo.devDependencies["rimraf"] = shouldUsePnpmDep ? "catalog:" : "^5.0.0";
+    packageInfo.devDependencies["tshy"] = shouldUsePnpmDep ? "catalog:" : "^3.0.0";
 
     delete packageInfo.devDependencies["@microsoft/api-extractor"];
     packageInfo.scripts["build"] =
