@@ -75,7 +75,7 @@ export function _fooRequestBodySerializer(item: _FooRequestBody): any {
   return { status: provisioningStateSerializer(item["status"]) };
 }
 
-/** The resource provisioning state. */
+/** Alias for ProvisioningState */
 export type ProvisioningState =
   | ResourceProvisioningState
   | "Provisioning"
@@ -94,6 +94,6 @@ export type ResourceProvisioningState = "Succeeded" | "Failed" | "Canceled";
 /** The available API versions. */
 export enum KnownVersions {
   /** 2021-10-01-preview version */
-  V20211001Preview = "2021-10-01-preview",
+  V20211001Preview = "2021-10-01-preview"
 }
 ```
