@@ -346,7 +346,7 @@ describe("Package file generation", () => {
         "test:browser",
         "dev-tool run build-test && dev-tool run test:vitest --browser"
       );
-      expect(packageFile.scripts).to.have.property("pack", "npm pack 2>&1");
+      expect(packageFile.scripts).to.have.property("pack", "pnpm pack 2>&1");
       expect(packageFile.scripts).to.have.property(
         "test",
         "npm run test:node && npm run test:browser"
@@ -444,8 +444,7 @@ describe("Package file generation", () => {
       const model = createMockModel({
         ...baseConfig,
         moduleKind: "esm",
-        withTests: true,
-        shouldUsePnpmDep: true
+        withTests: true
       });
       const packageFileContent = buildPackageFile(model);
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
