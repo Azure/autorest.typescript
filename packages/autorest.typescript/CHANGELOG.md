@@ -1,3 +1,14 @@
+## 6.0.49 (2025-10-11)
+
+- [Feature] Bump TypeSpec version to latest stable. Please refer to [#3526](https://github.com/Azure/autorest.typescript/pull/3526)
+- [Feature] Add dev tool dependencies back to individual packages. Please refer to [#3523](https://github.com/Azure/autorest.typescript/pull/3523)
+- [Bugfix] Fix LRO operation status model not generation issue. Please refer to [#3434](https://github.com/Azure/autorest.typescript/pull/3434)
+- [Feature] Update the dependency to pnpm style when `azureSdkForJs` is true. Please refer to [#3210](https://github.com/Azure/autorest.typescript/pull/3210)
+- [Bugfix] Fix the bytes and additional properties issues in sample generation. Please refer to [#3527](https://github.com/Azure/autorest.typescript/pull/3527)
+- [Bugfix] Convert emitter throw statements to diagnostic reports to prevent crashes. Please refer to [#3482](https://github.com/Azure/autorest.typescript/pull/3482)
+- [Feature] Upgrade tcgc and fix nightly ci error. Please refer to [#3510](https://github.com/Azure/autorest.typescript/pull/3510)
+- [Feature] Bump emitter version and upgarde tcgc to latest stable version. Please refer to [#3515](https://github.com/Azure/autorest.typescript/pull/3515)
+
 ## 6.0.48 (2025-09-26)
 
 - [Feature] Multi-level inheritance support. Please refer to [#3514](https://github.com/Azure/autorest.typescript/pull/3514)
