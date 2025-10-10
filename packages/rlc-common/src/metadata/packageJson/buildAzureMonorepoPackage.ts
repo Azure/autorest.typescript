@@ -34,61 +34,51 @@ export function buildAzureMonorepoPackage(config: AzureMonorepoInfoConfig) {
  * Builds the dependencies for an Azure package that will be hosted in the azure-sdk-for-js mono repo.
  */
 export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
-  //TODO should remove all the shouldUsePnpmDep codes after finish the release tool test
-  const { hasLro, dependencies, withTests, shouldUsePnpmDep } = config;
+  const { hasLro, dependencies, withTests } = config;
 
+  // revert this change after sdk repo update.
   const runtimeDeps = {
     ...dependencies,
-    "@azure-rest/core-client": !shouldUsePnpmDep ? "^2.3.1" : "workspace:^",
+    "@azure-rest/core-client": "^2.3.1",
     ...(hasLro && {
-      "@azure/abort-controller": !shouldUsePnpmDep ? "^2.1.2" : "workspace:^"
+      "@azure/abort-controller": "^2.1.2"
     }),
-    "@azure/core-auth": !shouldUsePnpmDep ? "^1.9.0" : "workspace:^",
+    "@azure/core-auth": "^1.9.0",
     ...(hasLro && {
-      "@azure/core-lro": !shouldUsePnpmDep ? "^3.1.0" : "workspace:^"
+      "@azure/core-lro": "^3.1.0"
     }),
-    "@azure/core-rest-pipeline": !shouldUsePnpmDep ? "^1.20.0" : "workspace:^",
-    "@azure/core-util": !shouldUsePnpmDep ? "^1.12.0" : "workspace:^",
-    "@azure/logger": !shouldUsePnpmDep ? "^1.2.0" : "workspace:^",
-    tslib: !shouldUsePnpmDep ? "^2.8.1" : "catalog:"
+    "@azure/core-rest-pipeline": "^1.20.0",
+    "@azure/core-util": "^1.12.0",
+    "@azure/logger": "^1.2.0",
+    tslib: "^2.8.1"
   };
 
   const testDeps = withTests
     ? {
-        "@vitest/browser": !shouldUsePnpmDep ? "^3.0.9" : "catalog:testing",
-        "@vitest/coverage-istanbul": !shouldUsePnpmDep
-          ? "^3.0.9"
-          : "catalog:testing",
-        dotenv: !shouldUsePnpmDep ? "^16.0.0" : "catalog:testing",
-        playwright: !shouldUsePnpmDep ? "^1.52.0" : "catalog:testing",
-        typescript: !shouldUsePnpmDep ? "~5.8.2" : "catalog:",
-        vitest: !shouldUsePnpmDep ? "^3.0.9" : "catalog:testing"
+        "@vitest/browser": "catalog:testing",
+        "@vitest/coverage-istanbul": "catalog:testing",
+        dotenv: "catalog:testing",
+        playwright: "catalog:testing",
+        typescript: "catalog:",
+        vitest: "catalog:testing"
       }
     : {
-        typescript: !shouldUsePnpmDep ? "~5.8.2" : "catalog:"
+        typescript: "catalog:"
       };
 
   return {
     dependencies: runtimeDeps,
     devDependencies: {
-      "@azure-tools/test-credential": !shouldUsePnpmDep
-        ? "^2.0.0"
-        : "workspace:^",
-      "@azure-tools/test-recorder": !shouldUsePnpmDep
-        ? "^4.1.0"
-        : "workspace:^",
-      "@azure-tools/test-utils-vitest": !shouldUsePnpmDep
-        ? "^1.0.0"
-        : "workspace:^",
-      "@azure/dev-tool": !shouldUsePnpmDep ? "^1.0.0" : "workspace:^",
-      "@azure/eslint-plugin-azure-sdk": !shouldUsePnpmDep
-        ? "^3.0.0"
-        : "workspace:^",
-      "@azure/identity": !shouldUsePnpmDep ? "^4.9.0" : "catalog:internal",
-      "@types/node": !shouldUsePnpmDep ? "^20.0.0" : "catalog:",
-      eslint: !shouldUsePnpmDep ? "^9.9.0" : "catalog:",
+      "@azure-tools/test-credential": "workspace:*",
+      "@azure-tools/test-recorder": "workspace:*",
+      "@azure-tools/test-utils-vitest": "workspace:*",
+      "@azure/dev-tool": "workspace:*",
+      "@azure/eslint-plugin-azure-sdk": "workspace:*",
+      "@azure/identity": "catalog:internal",
+      "@types/node": "catalog:",
+      eslint: "catalog:",
       ...(config.specSource === "Swagger" && {
-        autorest: !shouldUsePnpmDep ? "latest" : "catalog:"
+        autorest: "catalog:"
       }),
       ...testDeps
     }
@@ -185,7 +175,7 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
       ? "echo skipped"
       : "eslint package.json src test --fix --fix-type [problem,suggestion]",
     lint: skipLinting ? "echo skipped" : "eslint package.json src test",
-    pack: `${config.shouldUsePnpmDep ? "pnpm" : "npm"} pack 2>&1`,
+    pack: `pnpm pack 2>&1`,
     ...esmScripts,
     ...cjsScripts,
     "update-snippets": "dev-tool run update-snippets"
