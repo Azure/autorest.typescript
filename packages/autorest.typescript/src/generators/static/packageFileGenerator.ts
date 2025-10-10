@@ -174,6 +174,7 @@ function regularAutorestPackage(
     packageInfo.devDependencies["prettier"] = "catalog:";
     packageInfo.devDependencies["rimraf"] = "catalog:";
     packageInfo.devDependencies["tshy"] = "catalog:";
+    packageInfo.devDependencies["mkdirp"] = "catalog:";
 
     delete packageInfo.devDependencies["@microsoft/api-extractor"];
     packageInfo.scripts["build"] =
