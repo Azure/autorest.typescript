@@ -165,7 +165,7 @@ async function employeesCreateOrUpdateMaxage(): Promise<void> {
     properties: {
       age: 110,
       city: "gydhnntudughbmxlkyzrskcdkotrxn",
-      profile: "ms",
+      profile: Buffer.from("ms", "base64url"),
     },
     tags: { key2913: "urperxmkkhhkp" },
     location: "itajgxyqozseoygnl",
@@ -187,7 +187,7 @@ async function employeesCreateOrUpdateMinage(): Promise<void> {
     properties: {
       age: 1,
       city: "gydhnntudughbmxlkyzrskcdkotrxn",
-      profile: "ms",
+      profile: Buffer.from("ms", "base64url"),
     },
     tags: { key2913: "urperxmkkhhkp" },
     location: "itajgxyqozseoygnl",
