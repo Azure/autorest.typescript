@@ -850,7 +850,17 @@ export function getParameterMap(
     return getRequired(context, param);
   }
 
-  throw new Error(`Parameter ${param.name} is not supported`);
+  reportDiagnostic(context.program, {
+    code: "unsupported-parameter-type",
+    format: {
+      paramName: param.name,
+      paramKind: param.kind
+    },
+    target: param.__raw || NoTarget
+  });
+
+  // Return a fallback value to allow the emitter to continue
+  return `"${param.name}": undefined`;
 }
 
 function getCollectionFormat(
