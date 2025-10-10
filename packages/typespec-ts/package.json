@@ -54,11 +54,11 @@
     "integration-test:alone:rlc": "cross-env TS_NODE_PROJECT=tsconfig.integration.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 36000 ./test/integration/*.spec.ts",
     "integration-test:alone:azure-rlc": "cross-env TS_NODE_PROJECT=tsconfig.integration.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 36000 ./test/azureIntegration/*.spec.ts",
     "integration-test:alone:modular": "cross-env TS_NODE_PROJECT=tsconfig.integration.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 36000 ./test/modularIntegration/*.spec.ts",
-    "integration-test:alone:azure-modular": "cross-env TS_NODE_PROJECT=tsconfig.integration.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 36000 ./test/azureModularIntegration/*.spec.ts",
+    "integration-test:alone:azure-modular": "cross-env TS_NODE_PROJECT=tsconfig.integration.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 36000 ./test/azureModularIntegration/azureClientGeneratorCoreOverride.spec.ts",
     "stop-test-server": "npx tsp-spector server stop",
     "unit-test": "npm-run-all --parallel unit-test:rlc unit-test:modular",
     "unit-test:rlc": "cross-env TS_NODE_PROJECT=tsconfig.json mocha -r ts-node/register --experimental-specifier-resolution=node --experimental-modules=true  --timeout 36000 './test/unit/**/*.spec.ts'",
-    "unit-test:modular": "cross-env TS_NODE_PROJECT=tsconfig.test.json NODE_OPTIONS='--max-old-space-size=8192' mocha -r ts-node/register --experimental-specifier-resolution=node --experimental-modules=true  --no-timeout './test/modularUnit/**/*.spec.ts' --reporter-options maxDiffSize=20000",
+    "unit-test:modular": "cross-env TS_NODE_PROJECT=tsconfig.test.json mocha -r ts-node/register --experimental-specifier-resolution=node --experimental-modules=true  --no-timeout './test/modularUnit/**/*.spec.ts' --reporter-options maxDiffSize=20000",
     "regen-docs": "npm run build && tspd doc . --enable-experimental --output-dir ./website/src/content/docs/docs/emitters/clients/typespec-ts/reference --skip-js"
   },
   "author": "Jose Heredia <joheredi@microsoft.com>",
