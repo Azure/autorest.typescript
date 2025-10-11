@@ -17,19 +17,6 @@ export declare type GetPage<TPage> = (pageLink: string) => Promise<{
     nextPageLink?: string;
 }>;
 
-export declare interface ListWithoutContinuation {
-    get(options?: ListWithoutContinuationParameters): StreamableMethod<ListWithoutContinuation200Response>;
-}
-
-export declare interface ListWithoutContinuation200Response extends HttpResponse {
-    status: "200";
-    body: {
-        pets: Array<PetOutput>;
-    };
-}
-
-export declare type ListWithoutContinuationParameters = RequestParameters;
-
 export declare type PageableClient = Client & {
     path: Routes;
 };
@@ -45,6 +32,40 @@ export declare interface PagedAsyncIterableIterator<TElement, TPage = TElement[]
 
 export declare interface PageSettings {
     continuationToken?: string;
+}
+
+export declare interface PageSizeListWithoutContinuation {
+    get(options?: PageSizeListWithoutContinuationParameters): StreamableMethod<PageSizeListWithoutContinuation200Response>;
+}
+
+export declare interface PageSizeListWithoutContinuation200Response extends HttpResponse {
+    status: "200";
+    body: {
+        pets: Array<PetOutput>;
+    };
+}
+
+export declare type PageSizeListWithoutContinuationParameters = RequestParameters;
+
+export declare interface PageSizeListWithPageSize {
+    get(options?: PageSizeListWithPageSizeParameters): StreamableMethod<PageSizeListWithPageSize200Response>;
+}
+
+export declare interface PageSizeListWithPageSize200Response extends HttpResponse {
+    status: "200";
+    body: {
+        pets: Array<PetOutput>;
+    };
+}
+
+export declare type PageSizeListWithPageSizeParameters = PageSizeListWithPageSizeQueryParam & RequestParameters;
+
+export declare interface PageSizeListWithPageSizeQueryParam {
+    queryParameters?: PageSizeListWithPageSizeQueryParamProperties;
+}
+
+export declare interface PageSizeListWithPageSizeQueryParamProperties {
+    pageSize?: number;
 }
 
 export declare function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
@@ -69,10 +90,11 @@ export declare interface PetOutput {
 }
 
 export declare interface Routes {
-    (path: "/payload/pageable/simple"): ListWithoutContinuation;
     (path: "/payload/pageable/server-driven-pagination/link"): ServerDrivenPaginationLink;
     (path: "/payload/pageable/server-driven-pagination/link-string"): ServerDrivenPaginationLinkString;
     (path: "/payload/pageable/server-driven-pagination/nested-link"): ServerDrivenPaginationNestedLink;
+    (path: "/payload/pageable/pagesize/without-continuation"): PageSizeListWithoutContinuation;
+    (path: "/payload/pageable/pagesize/list"): PageSizeListWithPageSize;
     (path: "/payload/pageable/server-driven-pagination/continuationtoken/request-query-response-body"): ServerDrivenPaginationContinuationTokenRequestQueryResponseBody;
     (path: "/payload/pageable/server-driven-pagination/continuationtoken/request-header-response-body"): ServerDrivenPaginationContinuationTokenRequestHeaderResponseBody;
     (path: "/payload/pageable/server-driven-pagination/continuationtoken/request-query-response-header"): ServerDrivenPaginationContinuationTokenRequestQueryResponseHeader;
