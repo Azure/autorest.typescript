@@ -1,6 +1,6 @@
 ## 0.45.1 (2025-10-11)
 
-- [Bugfix] Fix wrong peerDependencies.
+- [Bugfix] Upgrade the @azure-tools/typespec-azure-core to v0.61.0. Please refer to [#3532](https://github.com/Azure/autorest.typescript/pull/3532)
 
 ## 0.45.0 (2025-10-11)
 
