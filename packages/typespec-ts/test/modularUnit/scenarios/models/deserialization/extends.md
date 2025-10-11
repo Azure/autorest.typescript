@@ -41,7 +41,7 @@ export interface AWidgetData {
 
 export function aWidgetDataDeserializer(item: any): AWidgetData {
   return {
-    kind: item["kind"]
+    kind: item["kind"],
   };
 }
 
@@ -70,7 +70,7 @@ export interface AoaiModelConfig extends AWidgetData {
 export function aoaiModelConfigDeserializer(item: any): AoaiModelConfig {
   return {
     kind: item["kind"],
-    fooProp: item["fooProp"]
+    fooProp: item["fooProp"],
   };
 }
 
@@ -85,7 +85,7 @@ export function maasModelConfigDeserializer(item: any): MaasModelConfig {
   return {
     kind: item["kind"],
     start: new Date(item["start"]),
-    end: !item["end"] ? item["end"] : new Date(item["end"])
+    end: !item["end"] ? item["end"] : new Date(item["end"]),
   };
 }
 ```
@@ -172,11 +172,11 @@ export interface DiscountTypeProperties {
 }
 
 export function discountTypePropertiesDeserializer(
-  item: any
+  item: any,
 ): DiscountTypeProperties {
   return {
     discountType: item["discountType"],
-    discountPercentage: item["discountPercentage"]
+    discountPercentage: item["discountPercentage"],
   };
 }
 
@@ -188,12 +188,12 @@ export type DiscountTypePropertiesUnion =
   | DiscountTypeProperties;
 
 export function discountTypePropertiesUnionDeserializer(
-  item: any
+  item: any,
 ): DiscountTypePropertiesUnion {
   switch (item.discountType) {
     case "ProductFamily":
       return discountTypeProductFamilyDeserializer(
-        item as DiscountTypeProductFamily
+        item as DiscountTypeProductFamily,
       );
 
     case "Product":
@@ -222,12 +222,12 @@ export interface DiscountTypeProductFamily extends DiscountTypeProperties {
 }
 
 export function discountTypeProductFamilyDeserializer(
-  item: any
+  item: any,
 ): DiscountTypeProductFamily {
   return {
     discountType: item["discountType"],
     discountPercentage: item["discountPercentage"],
-    productFamilyName: item["productFamilyName"]
+    productFamilyName: item["productFamilyName"],
   };
 }
 
@@ -239,13 +239,13 @@ export interface DiscountTypeProduct extends DiscountTypeProperties {
 }
 
 export function discountTypeProductDeserializer(
-  item: any
+  item: any,
 ): DiscountTypeProduct {
   return {
     discountType: item["discountType"],
     discountPercentage: item["discountPercentage"],
     productFamilyName: item["productFamilyName"],
-    productId: item["productId"]
+    productId: item["productId"],
   };
 }
 
@@ -258,14 +258,14 @@ export interface DiscountTypeProductSku extends DiscountTypeProperties {
 }
 
 export function discountTypeProductSkuDeserializer(
-  item: any
+  item: any,
 ): DiscountTypeProductSku {
   return {
     discountType: item["discountType"],
     discountPercentage: item["discountPercentage"],
     productFamilyName: item["productFamilyName"],
     productId: item["productId"],
-    skuId: item["skuId"]
+    skuId: item["skuId"],
   };
 }
 ```
@@ -345,7 +345,7 @@ export function documentIngressSerializer(item: DocumentIngress): any {
       ? item["properties"]
       : item["properties"].map((p: any) => {
           return p;
-        })
+        }),
   };
 }
 
@@ -361,7 +361,7 @@ export function documentIngressDeserializer(item: any): DocumentIngress {
       ? item["Properties"]
       : item["Properties"].map((p: any) => {
           return p;
-        })
+        }),
   };
 }
 
@@ -369,7 +369,7 @@ export function documentIngressDeserializer(item: any): DocumentIngress {
 export type DocumentIngressUnion = Request | Exception | DocumentIngress;
 
 export function documentIngressUnionSerializer(
-  item: DocumentIngressUnion
+  item: DocumentIngressUnion,
 ): any {
   switch (item.documentType) {
     case "Request":
@@ -384,7 +384,7 @@ export function documentIngressUnionSerializer(
 }
 
 export function documentIngressUnionDeserializer(
-  item: any
+  item: any,
 ): DocumentIngressUnion {
   switch (item.documentType) {
     case "Request":
@@ -428,7 +428,7 @@ export function requestSerializer(item: Request): any {
           return p;
         }),
     Name: item["name"],
-    Url: item["url"]
+    Url: item["url"],
   };
 }
 
@@ -446,7 +446,7 @@ export function requestDeserializer(item: any): Request {
           return p;
         }),
     name: item["Name"],
-    url: item["Url"]
+    url: item["Url"],
   };
 }
 
@@ -471,7 +471,7 @@ export function exceptionSerializer(item: Exception): any {
           return p;
         }),
     ExceptionType: item["exceptionType"],
-    ExceptionMessage: item["exceptionMessage"]
+    ExceptionMessage: item["exceptionMessage"],
   };
 }
 
@@ -489,7 +489,7 @@ export function exceptionDeserializer(item: any): Exception {
           return p;
         }),
     exceptionType: item["ExceptionType"],
-    exceptionMessage: item["ExceptionMessage"]
+    exceptionMessage: item["ExceptionMessage"],
   };
 }
 ```
