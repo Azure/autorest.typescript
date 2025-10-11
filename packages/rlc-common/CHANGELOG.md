@@ -1,3 +1,7 @@
+## 0.45.1 (2025-10-11)
+
+- [Bugfix] Fix wrong peerDependencies.
+
 ## 0.45.0 (2025-10-11)
 
 - [Feature] Bump TypeSpec version to v1.5.0 and TCGC to v0.61.0. Please refer to [#3526](https://github.com/Azure/autorest.typescript/pull/3526)
