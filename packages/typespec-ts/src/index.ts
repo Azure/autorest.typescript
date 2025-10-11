@@ -133,7 +133,8 @@ export async function $onEmit(context: EmitContext) {
     },
     {
       sourcesDir: dpgContext.generationPathDetail?.modularSourcesDir,
-      options: rlcOptions
+      options: rlcOptions,
+      program
     }
   );
   const extraDependencies = isAzurePackage({ options: rlcOptions })

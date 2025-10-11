@@ -5,10 +5,14 @@ import {
   isAzurePackage,
   RLCModel
 } from "@azure-tools/rlc-common";
-import { CompilerHost, Program } from "@typespec/compiler";
+import { CompilerHost, NoTarget, Program } from "@typespec/compiler";
 import { dirname, join } from "path";
 import { format } from "prettier";
-import { prettierJSONOptions, prettierTypeScriptOptions } from "../lib.js";
+import {
+  prettierJSONOptions,
+  prettierTypeScriptOptions,
+  reportDiagnostic
+} from "../lib.js";
 
 export async function emitModels(rlcModels: RLCModel, program: Program) {
   const schemaOutput = buildSchemaTypes(rlcModels);
@@ -72,10 +76,19 @@ async function emitFile(
   }
   // Format the contents if necessary
   if (isJson || isSourceCode) {
-    prettierFileContent = await format(
-      prettierFileContent,
-      isJson ? prettierJSONOptions : prettierTypeScriptOptions
-    );
+    try {
+      prettierFileContent = await format(
+        prettierFileContent,
+        isJson ? prettierJSONOptions : prettierTypeScriptOptions
+      );
+    } catch (e) {
+      reportDiagnostic(program, {
+        code: "file-format-error",
+        format: { filePath },
+        target: NoTarget
+      });
+      throw e;
+    }
   }
   await host.mkdirp(dirname(filePath));
   await host.writeFile(filePath, prettierFileContent);

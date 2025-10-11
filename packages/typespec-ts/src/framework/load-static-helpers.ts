@@ -13,6 +13,8 @@ import { refkey } from "./refkey.js";
 import { resolveProjectRoot } from "../utils/resolve-project-root.js";
 import { isAzurePackage } from "@azure-tools/rlc-common";
 import { ModularEmitterOptions } from "../modular/interfaces.js";
+import { NoTarget, Program } from "@typespec/compiler";
+import { reportDiagnostic } from "../lib.js";
 export const SourceFileSymbol = Symbol("SourceFile");
 export interface StaticHelperMetadata {
   name: string;
@@ -41,6 +43,7 @@ export interface LoadStaticHelpersOptions
   extends Partial<ModularEmitterOptions> {
   helpersAssetDirectory?: string;
   sourcesDir?: string;
+  program?: Program;
 }
 
 export async function loadStaticHelpers(
@@ -55,7 +58,8 @@ export async function loadStaticHelpers(
     DEFAULT_STATIC_HELPERS_PATH
   );
   const files = await traverseDirectory(
-    options.helpersAssetDirectory ?? defaultStaticHelpersPath
+    options.helpersAssetDirectory ?? defaultStaticHelpersPath,
+    options.program
   );
 
   for (const file of files) {
@@ -161,36 +165,49 @@ function getDeclarationByMetadata(
 const _targetStaticHelpersBaseDir = "static-helpers";
 async function traverseDirectory(
   directory: string,
+  program?: Program,
   result: { source: string; target: string }[] = [],
   relativePath: string = ""
 ): Promise<{ source: string; target: string }[]> {
   const files = await readdir(directory);
 
-  await Promise.all(
-    files.map(async (file) => {
-      const filePath = path.join(directory, file);
-      const fileStat = await stat(filePath);
+  try {
+    await Promise.all(
+      files.map(async (file) => {
+        const filePath = path.join(directory, file);
+        const fileStat = await stat(filePath);
 
-      if (fileStat.isDirectory()) {
-        await traverseDirectory(
-          filePath,
-          result,
-          path.join(relativePath, file)
-        );
-      } else if (
-        fileStat.isFile() &&
-        !file.endsWith(".d.ts") &&
-        file.endsWith(".ts")
-      ) {
-        const target = path.join(
-          _targetStaticHelpersBaseDir,
-          relativePath,
-          file
-        );
-        result.push({ source: filePath, target });
-      }
-    })
-  );
+        if (fileStat.isDirectory()) {
+          await traverseDirectory(
+            filePath,
+            program,
+            result,
+            path.join(relativePath, file)
+          );
+        } else if (
+          fileStat.isFile() &&
+          !file.endsWith(".d.ts") &&
+          file.endsWith(".ts")
+        ) {
+          const target = path.join(
+            _targetStaticHelpersBaseDir,
+            relativePath,
+            file
+          );
+          result.push({ source: filePath, target });
+        }
+      })
+    );
 
-  return result;
+    return result;
+  } catch (error) {
+    if (program) {
+      reportDiagnostic(program, {
+        code: "directory-traversal-error",
+        format: { directory, error: String(error) },
+        target: NoTarget
+      });
+    }
+    throw error;
+  }
 }

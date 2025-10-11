@@ -540,6 +540,18 @@ const libDef = {
       messages: {
         default: paramMessage`The parameter name ${"parameterName"} has conflicts with others and please use @clientName to rename it.`
       }
+    },
+    "file-format-error": {
+      severity: "error",
+      messages: {
+        default: paramMessage`Failed to format file: ${"filePath"}`
+      }
+    },
+    "directory-traversal-error": {
+      severity: "error",
+      messages: {
+        default: paramMessage`Error traversing directory ${"directory"}: ${"error"}`
+      }
     }
   },
   emitter: {
