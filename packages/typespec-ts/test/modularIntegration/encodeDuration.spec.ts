@@ -43,6 +43,26 @@ describe("EncodeDurationClient Rest Client", () => {
       const result = await client.query.int32SecondsArray([36, 47]);
       assert.isUndefined(result);
     });
+
+    it(`should get int32 milliseconds`, async () => {
+      const result = await client.query.int32Milliseconds(36000);
+      assert.isUndefined(result);
+    });
+
+    it(`should get float milliseconds`, async () => {
+      const result = await client.query.floatMilliseconds(35625);
+      assert.isUndefined(result);
+    });
+
+    it(`should get float64 milliseconds`, async () => {
+      const result = await client.query.float64Milliseconds(35625);
+      assert.isUndefined(result);
+    });
+
+    it(`should get int32 milliseconds array`, async () => {
+      const result = await client.query.int32MillisecondsArray([36000, 47000]);
+      assert.isUndefined(result);
+    });
   });
 
   describe("property", () => {
@@ -77,6 +97,30 @@ describe("EncodeDurationClient Rest Client", () => {
       });
       assert.deepEqual(result.value, [35.625, 46.75]);
     });
+
+    it(`should get int32 milliseconds`, async () => {
+      const result = await client.property.int32Milliseconds({ value: 36000 });
+      assert.deepEqual(result.value, 36000);
+    });
+
+    it(`should get float milliseconds`, async () => {
+      const result = await client.property.floatMilliseconds({ value: 35625 });
+      assert.deepEqual(result.value, 35625);
+    });
+
+    it(`should get float64 milliseconds`, async () => {
+      const result = await client.property.float64Milliseconds({
+        value: 35625
+      });
+      assert.deepEqual(result.value, 35625);
+    });
+
+    it(`should get float milliseconds array`, async () => {
+      const result = await client.property.floatMillisecondsArray({
+        value: [35625, 46750]
+      });
+      assert.deepEqual(result.value, [35625, 46750]);
+    });
   });
 
   describe("header", () => {
@@ -105,8 +149,28 @@ describe("EncodeDurationClient Rest Client", () => {
       assert.isUndefined(result);
     });
 
-    it(`should get int32 seconds array`, async () => {
+    it(`should get iso8601 array`, async () => {
       const result = await client.header.iso8601Array(["P40D", "P50D"]);
+      assert.isUndefined(result);
+    });
+
+    it(`should get int32 milliseconds`, async () => {
+      const result = await client.header.int32Milliseconds(36000);
+      assert.isUndefined(result);
+    });
+
+    it(`should get float milliseconds`, async () => {
+      const result = await client.header.floatMilliseconds(35625);
+      assert.isUndefined(result);
+    });
+
+    it(`should get float64 milliseconds`, async () => {
+      const result = await client.header.float64Milliseconds(35625);
+      assert.isUndefined(result);
+    });
+
+    it(`should get int32 milliseconds array`, async () => {
+      const result = await client.header.int32MillisecondsArray([36000, 47000]);
       assert.isUndefined(result);
     });
   });

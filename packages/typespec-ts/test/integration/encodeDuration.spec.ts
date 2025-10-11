@@ -87,6 +87,54 @@ describe("EncodeDurationClient Rest Client", () => {
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body.value, [35.625, 46.75]);
     });
+
+    it(`should post int32-milliseconds property`, async () => {
+      const result = await client
+        .path(`/encode/duration/property/int32-milliseconds`)
+        .post({
+          body: {
+            value: 36000
+          }
+        });
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.value, 36000);
+    });
+
+    it(`should post float-milliseconds property`, async () => {
+      const result = await client
+        .path(`/encode/duration/property/float-milliseconds`)
+        .post({
+          body: {
+            value: 35625
+          }
+        });
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.value, 35625);
+    });
+
+    it(`should post float64-milliseconds property`, async () => {
+      const result = await client
+        .path(`/encode/duration/property/float64-milliseconds`)
+        .post({
+          body: {
+            value: 35625
+          }
+        });
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.value, 35625);
+    });
+
+    it(`should post float-milliseconds-array property`, async () => {
+      const result = await client
+        .path(`/encode/duration/property/float-milliseconds-array`)
+        .post({
+          body: {
+            value: [35625, 46750]
+          }
+        });
+      assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body.value, [35625, 46750]);
+    });
   });
 
   describe("query", () => {
@@ -152,6 +200,50 @@ describe("EncodeDurationClient Rest Client", () => {
         });
       assert.strictEqual(result.status, "204");
     });
+
+    it(`should get int32-milliseconds query`, async () => {
+      const result = await client
+        .path(`/encode/duration/query/int32-milliseconds`)
+        .get({
+          queryParameters: {
+            input: 36000
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
+
+    it(`should get float-milliseconds query`, async () => {
+      const result = await client
+        .path(`/encode/duration/query/float-milliseconds`)
+        .get({
+          queryParameters: {
+            input: 35625
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
+
+    it(`should get float64-milliseconds query`, async () => {
+      const result = await client
+        .path(`/encode/duration/query/float64-milliseconds`)
+        .get({
+          queryParameters: {
+            input: 35625
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
+
+    it(`should get int32-milliseconds-array query`, async () => {
+      const result = await client
+        .path(`/encode/duration/query/int32-milliseconds-array`)
+        .get({
+          queryParameters: {
+            input: [36000, 47000]
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
   });
 
   describe("header", () => {
@@ -212,6 +304,50 @@ describe("EncodeDurationClient Rest Client", () => {
         .get({
           headers: {
             duration: 35.625
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
+
+    it(`should get int32-milliseconds header`, async () => {
+      const result = await client
+        .path(`/encode/duration/header/int32-milliseconds`)
+        .get({
+          headers: {
+            duration: 36000
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
+
+    it(`should get float-milliseconds header`, async () => {
+      const result = await client
+        .path(`/encode/duration/header/float-milliseconds`)
+        .get({
+          headers: {
+            duration: 35625
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
+
+    it(`should get float64-milliseconds header`, async () => {
+      const result = await client
+        .path(`/encode/duration/header/float64-milliseconds`)
+        .get({
+          headers: {
+            duration: 35625
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
+
+    it(`should get int32-milliseconds-array header`, async () => {
+      const result = await client
+        .path(`/encode/duration/header/int32-milliseconds-array`)
+        .get({
+          headers: {
+            duration: ["36000", "47000"].join(",")
           }
         });
       assert.strictEqual(result.status, "204");
