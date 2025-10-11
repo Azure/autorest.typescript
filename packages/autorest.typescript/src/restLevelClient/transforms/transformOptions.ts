@@ -19,7 +19,6 @@ export function transformOptions(model: CodeModel): RLCOptions {
     azureArm,
     flavor,
     isTestPackage,
-    shouldUsePnpmDep
   } = getAutorestOptions();
   // TODO modulekind is a workaround for codegen test environment, should remove this when the esm test framework supported
   const options: RLCOptions = { moduleKind: isTestPackage ? "cjs" : "esm" };
@@ -48,6 +47,5 @@ export function transformOptions(model: CodeModel): RLCOptions {
   options.sourceFrom = "Swagger";
   // Always enable operation group prefix for swagger
   options.enableOperationGroup = true;
-  options.shouldUsePnpmDep = shouldUsePnpmDep;
   return options;
 }
