@@ -73,10 +73,14 @@ export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
       "@azure-tools/test-recorder": "workspace:*",
       "@azure-tools/test-utils-vitest": "workspace:*",
       "@azure/dev-tool": "workspace:*",
+      tshy: "catalog:",
       "@azure/eslint-plugin-azure-sdk": "workspace:*",
       "@azure/identity": "catalog:internal",
       "@types/node": "catalog:",
+      "cross-env": "catalog:",
       eslint: "catalog:",
+      prettier: "catalog:",
+      rimraf: "catalog:",
       ...(config.specSource === "Swagger" && {
         autorest: "catalog:"
       }),
