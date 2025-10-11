@@ -103,12 +103,7 @@ export function getSendPrivateFunction(
     ...getQueryParameters(dpgContext, operation)
   ];
   if (urlTemplateParams.length > 0) {
-    // Build URI template that matches the actual parameters being passed
-    const filteredUriTemplate = buildFilteredUriTemplate(
-      operation,
-      urlTemplateParams
-    );
-    statements.push(`const path = ${resolveReference(UrlTemplateHelpers.parseTemplate)}("${filteredUriTemplate}", {
+    statements.push(`const path = ${resolveReference(UrlTemplateHelpers.parseTemplate)}("${operation.operation.uriTemplate}", {
         ${urlTemplateParams.join(",\n")}
         },{
       allowReserved: ${optionalParamName}?.requestOptions?.skipUrlEncoding
@@ -708,17 +703,10 @@ function getHeaderAndBodyParameters(
       ) {
         continue;
       }
-
-      // Check if this parameter still exists in the corresponding method params (after override)
-      if (
-        param.correspondingMethodParams &&
-        param.correspondingMethodParams.length > 0
-      ) {
-        parametersImplementation[param.kind].push({
-          paramMap: getParameterMap(dpgContext, param, optionalParamName),
-          param
-        });
-      }
+      parametersImplementation[param.kind].push({
+        paramMap: getParameterMap(dpgContext, param, optionalParamName),
+        param
+      });
     }
   }
 
@@ -1029,26 +1017,6 @@ function getDefaultValue(param: SdkHttpParameter) {
 }
 
 /**
- * Check if operation uses parameter grouping (first method param is a model)
- */
-function isOperationParameterGrouping(operation: ServiceOperation): boolean {
-  // Check if the first non-client, non-optional parameter is a model type
-  const firstMethodParam = operation.parameters.find(
-    (p) => !p.onClient && !p.optional
-  );
-  return firstMethodParam?.type?.kind === "model";
-}
-
-/**
- * Get the first method parameter for parameter grouping scenarios
- */
-function getFirstMethodParameter(
-  operation: ServiceOperation
-): SdkMethodParameter | undefined {
-  return operation.parameters.find((p) => !p.onClient && !p.optional);
-}
-
-/**
  * Extracts the path parameters
  */
 function getPathParameters(
@@ -1059,29 +1027,12 @@ function getPathParameters(
     return [];
   }
 
-  // Check if we have parameter grouping (first method param is a model)
-  const isParameterGrouping = isOperationParameterGrouping(operation);
-  const firstMethodParam = isParameterGrouping
-    ? getFirstMethodParameter(operation)
-    : undefined;
-
   const pathParams: string[] = [];
   for (const param of operation.operation.parameters) {
     if (param.kind === "path") {
-      let paramExpr: string;
-      if (isParameterGrouping) {
-        // In parameter grouping scenarios, generate parameter reference with options
-        const parameterName = firstMethodParam?.name || "options";
-        paramExpr = `${parameterName}.${param.name}`;
-      } else {
-        // Regular parameter expression
-        paramExpr = getPathParamExpr(
-          param.correspondingMethodParams[0]!,
-          getDefaultValue(param) as string,
-          optionalParamName
-        );
-      }
-      pathParams.push(`"${param.serializedName}": ${paramExpr}`);
+      pathParams.push(
+        `"${param.serializedName}": ${getPathParamExpr(param.correspondingMethodParams[0]!, getDefaultValue(param) as string, optionalParamName)}`
+      );
     }
   }
 
@@ -1098,13 +1049,6 @@ function getQueryParameters(
   if (!operation.parameters) {
     return [];
   }
-
-  // Check if we have parameter grouping (first method param is a model)
-  const isParameterGrouping = isOperationParameterGrouping(operation);
-  const firstMethodParam = isParameterGrouping
-    ? getFirstMethodParameter(operation)
-    : undefined;
-
   const operationParameters = operation.operation.parameters.filter(
     (p) => !isContentType(p)
   );
@@ -1122,26 +1066,13 @@ function getQueryParameters(
         param.correspondingMethodParams &&
         param.correspondingMethodParams.length > 0
       ) {
-        let paramMapValue: string;
-        if (isParameterGrouping) {
-          // In parameter grouping scenarios, generate parameter map with options reference
-          const parameterName = firstMethodParam?.name || "options";
-          const serializedName = getUriTemplateQueryParamName(
-            param.serializedName
-          );
-          paramMapValue = `"${serializedName}": ${parameterName}.${param.name}`;
-        } else {
-          // Regular parameter mapping
-          paramMapValue = getParameterMap(dpgContext, {
+        parametersImplementation[param.kind].push({
+          paramMap: getParameterMap(dpgContext, {
             ...param,
             // TODO: remember to remove this hack once compiler gives us a name
             // https://github.com/microsoft/typespec/issues/6743
             serializedName: getUriTemplateQueryParamName(param.serializedName)
-          });
-        }
-
-        parametersImplementation[param.kind].push({
-          paramMap: paramMapValue,
+          }),
           param
         });
       }
@@ -1644,70 +1575,4 @@ export function getExpectedStatuses(operation: ServiceOperation): string {
   }
 
   return `[${statusCodes.map((x) => `"${x}"`).join(", ")}]`;
-}
-
-/**
- * Build URI template from the actual parameters being passed to match what the parameter extraction functions return
- */
-/**
- * Build a filtered URI template that preserves the original structure but removes
- * parameters that are not included in the urlTemplateParams
- */
-function buildFilteredUriTemplate(
-  operation: ServiceOperation,
-  urlTemplateParams: string[]
-): string {
-  const originalTemplate = operation.operation.uriTemplate;
-
-  // Extract parameter names from the parameter map entries
-  // urlTemplateParams contains entries like '"param1": value', '"param2": value2', etc.
-  const paramNames = urlTemplateParams
-    .map((param) => {
-      const match = param.match(/^"([^"]+)":/);
-      return match ? match[1] : "";
-    })
-    .filter((name) => name);
-
-  // If all parameters in the original template are still present, return original
-  const [pathPart, queryPart] = originalTemplate.split("{?");
-
-  if (!queryPart) {
-    // No query parameters, return as-is
-    return originalTemplate;
-  }
-
-  // Get all query parameter names from the original template, preserving explode notation
-  const originalQueryParams = queryPart
-    .replace("}", "")
-    .split(",")
-    .map((p) => p.trim());
-
-  // Filter query parameters to only include ones that are actually being passed
-  // We need to handle both regular params and explode params (with *)
-  const filteredQueryParams = originalQueryParams.filter((templateParam) => {
-    // Extract base parameter name (removing * for explode)
-    const baseParamName = templateParam.replace("*", "");
-
-    // Try multiple matching strategies:
-    // 1. Direct match with parameter name as-is
-    // 2. URL decode the template param and match
-    // 3. URL encode the param name and match with template
-    const decodedTemplateParam = decodeURIComponent(baseParamName);
-
-    return paramNames.some((paramName) => {
-      return (
-        paramName === baseParamName ||
-        paramName === decodedTemplateParam ||
-        (paramName &&
-          encodeURIComponent(paramName).replace(/-/g, "%2D") === baseParamName)
-      );
-    });
-  });
-
-  // Reconstruct the template
-  if (filteredQueryParams.length === 0) {
-    return pathPart || originalTemplate; // No query parameters left
-  } else {
-    return `${pathPart}{?${filteredQueryParams.join(",")}}`;
-  }
 }
