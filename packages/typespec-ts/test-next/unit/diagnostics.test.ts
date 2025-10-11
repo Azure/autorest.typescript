@@ -30,12 +30,4 @@ describe("Diagnostic reporting", () => {
       expect(lib.$lib.diagnostics["directory-traversal-error"].severity).toBe("error");
     });
   });
-
-  describe("client-api-version-not-supported diagnostic", () => {
-    it("should report diagnostic when client api-version is not supported", () => {
-      // This test verifies the diagnostic code is defined
-      expect(lib.$lib.diagnostics["client-api-version-not-supported"]).toBeDefined();
-      expect(lib.$lib.diagnostics["client-api-version-not-supported"].severity).toBe("warning");
-    });
-  });
 });

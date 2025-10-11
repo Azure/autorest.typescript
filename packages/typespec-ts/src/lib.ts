@@ -552,13 +552,6 @@ const libDef = {
       messages: {
         default: paramMessage`Error traversing directory ${"directory"}: ${"error"}`
       }
-    },
-    "client-api-version-not-supported": {
-      severity: "warning",
-      messages: {
-        default:
-          "This client does not support client api-version, please change it at the operation level"
-      }
     }
   },
   emitter: {

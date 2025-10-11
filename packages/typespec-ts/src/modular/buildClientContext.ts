@@ -244,11 +244,6 @@ export function buildClientContext(
       });`;
     }
   } else if (isAzurePackage(emitterOptions)) {
-    // Report diagnostic during code generation
-    reportDiagnostic(dpgContext.program, {
-      code: "client-api-version-not-supported",
-      target: NoTarget
-    });
     apiVersionPolicyStatement += `
         if (options.apiVersion) {
           logger.warning("This client does not support client api-version, please change it at the operation level");
