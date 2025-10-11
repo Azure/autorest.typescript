@@ -20,6 +20,9 @@ parameters:
   - name: Windows_Latest
     type: string
     default: "windows-2022"
+  - name: macOS_Latest
+    type: string
+    default: "macOS-latest"
 
 variables:
   AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/packages/autorest.typescript/coverage/"
@@ -258,6 +261,10 @@ stages:
               Pool: ${{ parameters.WindowsPool }}
               OSVmImage: ${{ parameters.Windows_Latest }}
               NodeTestVersion: "20.x"
+            macOS_Latest:
+              Pool: ${{ parameters.MacPool }}
+              OSVmImage: ${{ parameters.macOS_Latest }}
+              NodeTestVersion: "20.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
           demands: ImageOverride -equals $(OSVmImage)
@@ -273,10 +280,6 @@ stages:
           - template: globals.yml
         strategy:
           matrix:
-            macOS_Node20:
-              Pool: ${{ parameters.MacPool }}
-              OSVmImage: "macOS-latest"
-              NodeTestVersion: "20.x"
             Linux_Node20:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: ${{ parameters.OSVmImage }}
@@ -345,10 +348,6 @@ stages:
           - template: globals.yml
         strategy:
           matrix:
-            macOS_Node20:
-              Pool: ${{ parameters.MacPool }}
-              OSVmImage: "macOS-latest"
-              NodeTestVersion: "20.x"
             Linux_Node20:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: ${{ parameters.OSVmImage }}
