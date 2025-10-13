@@ -20,7 +20,6 @@
   "types": "./dist/commonjs/index.d.ts",
   "type": "module",
   "devDependencies": {
-    "mkdirp": "catalog:",
     "typescript": "catalog:",
     "rimraf": "catalog:",
     "dotenv": "catalog:testing",
