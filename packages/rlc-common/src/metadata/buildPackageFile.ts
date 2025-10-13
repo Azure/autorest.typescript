@@ -111,10 +111,10 @@ export function updatePackageFile(
     packageInfo.dependencies = {
       ...packageInfo.dependencies,
       "@azure/core-lro": model.options?.azureSdkForJs
-        ? "workspace:*"
+        ? "workspace:^"
         : "^3.1.0",
       "@azure/abort-controller": model.options?.azureSdkForJs
-        ? "workspace:*"
+        ? "workspace:^"
         : "^2.1.2"
     };
   }
