@@ -169,9 +169,9 @@ async function traverseDirectory(
   result: { source: string; target: string }[] = [],
   relativePath: string = ""
 ): Promise<{ source: string; target: string }[]> {
-  const files = await readdir(directory);
-
   try {
+    const files = await readdir(directory);
+
     await Promise.all(
       files.map(async (file) => {
         const filePath = path.join(directory, file);
