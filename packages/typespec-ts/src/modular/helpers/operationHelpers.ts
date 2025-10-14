@@ -1033,29 +1033,12 @@ function getPathParameters(
     return [];
   }
 
-  // Check if we have parameter grouping (first method param is a model)
-  const isParameterGrouping = isOperationParameterGrouping(operation);
-  const firstMethodParam = isParameterGrouping
-    ? getFirstMethodParameter(operation)
-    : undefined;
-
   const pathParams: string[] = [];
   for (const param of operation.operation.parameters) {
     if (param.kind === "path") {
-      let paramExpr: string;
-      if (isParameterGrouping && firstMethodParam) {
-        // In parameter grouping scenarios, generate parameter reference with options
-        const parameterName = firstMethodParam.name || "options";
-        paramExpr = `${parameterName}.${param.name}`;
-      } else {
-        // Regular parameter expression
-        paramExpr = getPathParamExpr(
-          param.correspondingMethodParams[0]!,
-          getDefaultValue(param) as string,
-          optionalParamName
-        );
-      }
-      pathParams.push(`"${param.serializedName}": ${paramExpr}`);
+      pathParams.push(
+        `"${param.serializedName}": ${getPathParamExpr(param.correspondingMethodParams[0]!, getDefaultValue(param) as string, optionalParamName)}`
+      );
     }
   }
 
@@ -1072,13 +1055,6 @@ function getQueryParameters(
   if (!operation.parameters) {
     return [];
   }
-
-  // Check if we have parameter grouping (first method param is a model)
-  const isParameterGrouping = isOperationParameterGrouping(operation);
-  const firstMethodParam = isParameterGrouping
-    ? getFirstMethodParameter(operation)
-    : undefined;
-
   const operationParameters = operation.operation.parameters.filter(
     (p) => !isContentType(p)
   );
@@ -1096,26 +1072,13 @@ function getQueryParameters(
         param.correspondingMethodParams &&
         param.correspondingMethodParams.length > 0
       ) {
-        let paramMapValue: string;
-        if (isParameterGrouping && firstMethodParam) {
-          // In parameter grouping scenarios, generate parameter map with options reference
-          const parameterName = firstMethodParam.name || "options";
-          const serializedName = getUriTemplateQueryParamName(
-            param.serializedName
-          );
-          paramMapValue = `"${serializedName}": ${parameterName}.${param.name}`;
-        } else {
-          // Regular parameter mapping
-          paramMapValue = getParameterMap(dpgContext, {
+        parametersImplementation[param.kind].push({
+          paramMap: getParameterMap(dpgContext, {
             ...param,
             // TODO: remember to remove this hack once compiler gives us a name
             // https://github.com/microsoft/typespec/issues/6743
             serializedName: getUriTemplateQueryParamName(param.serializedName)
-          });
-        }
-
-        parametersImplementation[param.kind].push({
-          paramMap: paramMapValue,
+          }),
           param
         });
       }
@@ -1136,31 +1099,6 @@ function escapeUriTemplateParamName(name: string) {
   return encodeURIComponent(name).replace(/[:-]/g, function (c) {
     return "%" + c.charCodeAt(0).toString(16).toUpperCase();
   });
-}
-
-/**
- * Check if this operation uses parameter grouping (first method param is a model)
- */
-function isOperationParameterGrouping(operation: ServiceOperation): boolean {
-  const params = operation.parameters?.filter(
-    (p) => p.onClient === false && !p.isApiVersionParam
-  );
-  if (!params || params.length === 0) return false;
-
-  const firstParam = params[0];
-  return firstParam?.type.kind === "model";
-}
-
-/**
- * Get the first method parameter when using parameter grouping
- */
-function getFirstMethodParameter(
-  operation: ServiceOperation
-): SdkMethodParameter | undefined {
-  const params = operation.parameters?.filter(
-    (p) => p.onClient === false && !p.isApiVersionParam
-  );
-  return params?.[0];
 }
 
 function getPathParamExpr(

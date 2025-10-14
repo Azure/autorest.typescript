@@ -28,7 +28,10 @@ describe("Azure ClientGeneratorCore Override Client", () => {
       param1: "param1",
       param2: "param2"
     };
-    const result = await client.groupParameters.group(options.param1,options.param2);
+    const result = await client.groupParameters.group(
+      options.param1,
+      options.param2
+    );
     assert.isUndefined(result);
   });
 
