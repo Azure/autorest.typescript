@@ -6,12 +6,7 @@ export declare interface GroupParametersGroupOptionalParams extends OperationOpt
 }
 
 export declare interface GroupParametersOperations {
-    group: (options: GroupParametersOptions, optionalParams?: GroupParametersGroupOptionalParams) => Promise<void>;
-}
-
-export declare interface GroupParametersOptions {
-    param1: string;
-    param2: string;
+    group: (param1: string, param2: string, options?: GroupParametersGroupOptionalParams) => Promise<void>;
 }
 
 export declare class OverrideClient {

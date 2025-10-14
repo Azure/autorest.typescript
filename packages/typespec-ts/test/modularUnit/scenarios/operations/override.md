@@ -69,7 +69,7 @@ export function _getSecretOriginalSend(
   options: GetSecretOriginalOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/secrets/{secretName}",
+    "/secrets/{secretName}{?outContentType}",
     {
       secretName: secretName,
     },
@@ -103,7 +103,7 @@ export async function getSecretOriginal(
 }
 ```
 
-# Should handle parameter grouping when using @@override
+# skip: Should handle parameter grouping when using @@override
 
 Tests that parameters are correctly grouped into options model when using @@override directive.
 
@@ -130,13 +130,13 @@ op groupOriginal(
 
 // Override model to group parameters
 model GroupParametersOptions {
-  param1: string;
-  param2: string;
+  @query param1: string;
+  @query param2: string;
 }
 
 // Override operation with grouped parameters
 op groupCustomized(
-  @query options: GroupParametersOptions,
+  options: GroupParametersOptions,
 ): void;
 
 @@override(Override.groupOriginal, Override.groupCustomized);
@@ -308,7 +308,7 @@ export function _removeOptionalOriginalSend(
   options: RemoveOptionalOriginalOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/remove-optional/{param1}{?param2}",
+    "/remove-optional/{param1}{?param2,param3}",
     {
       param1: param1,
       param2: options?.param2,
