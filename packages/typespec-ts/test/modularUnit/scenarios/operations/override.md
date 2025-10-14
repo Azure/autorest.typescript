@@ -257,12 +257,14 @@ op removeOptionalOriginal(
   @query param2?: string,
   @query param3?: string,
   @header param4?: string,
+  @header param5?: string,
 ): void;
 
 // Override operation removing some optional parameters
 op removeOptionalCustomized(
   @path param1: string,
   @query param2?: string,
+  @header param4?: string,
 ): void;
 
 @@override(Override.removeOptionalOriginal, Override.removeOptionalCustomized);
@@ -286,6 +288,7 @@ import { OperationOptions } from "@azure-rest/core-client";
 /** Optional parameters. */
 export interface RemoveOptionalOriginalOptionalParams extends OperationOptions {
   param2?: string;
+  param4?: string;
 }
 ```
 
@@ -319,7 +322,13 @@ export function _removeOptionalOriginalSend(
   );
   return context
     .path(path)
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        ...(options?.param4 !== undefined ? { param4: options?.param4 } : {}),
+        ...options.requestOptions?.headers,
+      },
+    });
 }
 
 export async function _removeOptionalOriginalDeserialize(
