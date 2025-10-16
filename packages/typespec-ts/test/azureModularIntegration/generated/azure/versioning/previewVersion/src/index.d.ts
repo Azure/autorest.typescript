@@ -28,6 +28,7 @@ export declare class PreviewVersionClient {
 }
 
 export declare interface PreviewVersionClientOptionalParams extends ClientOptions {
+    apiVersion?: string;
 }
 
 export declare interface UpdateWidgetColorOptionalParams extends OperationOptions {

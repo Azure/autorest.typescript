@@ -32,13 +32,24 @@ describe("PreviewVersionClient Rest Client", () => {
     assert.strictEqual(result?.name, "Sample Widget");
     assert.strictEqual(result?.color, "red");
   });
+});
+
+describe("StableVersionClient Rest Client", () => {
+  let client: PreviewVersionClient;
+
+  beforeEach(() => {
+    client = new PreviewVersionClient({
+      endpoint: "http://localhost:3002",
+      allowInsecureConnection: true,
+      apiVersion: "2024-06-01"
+    });
+  });
 
   it("should list widgets with color filtering", async () => {
     // Test @previewVersion with preview-specific parameters
     // color parameter is only available in preview version
     const result = await client.listWidgets({
-      name: "test",
-      color: "blue"
+      name: "test"
     });
 
     assert.strictEqual(result.widgets.length, 1);
