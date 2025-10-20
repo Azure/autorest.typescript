@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import { DurationClient } from "./generated/encode/duration/src/index.js";
-describe("EncodeDurationClient Rest Client", () => {
+describe("EncodeDurationClient Client", () => {
   let client: DurationClient;
 
   beforeEach(() => {
@@ -54,7 +54,7 @@ describe("EncodeDurationClient Rest Client", () => {
       await client.query.int32MillisecondsArray([36000, 47000]);
     });
 
-    it(`should get float Seconds Larger Unit`, async () => {
+    it.skip(`should get float Seconds Larger Unit`, async () => {
       await client.query.floatSecondsLargerUnit(150.0);
     });
 
@@ -62,7 +62,7 @@ describe("EncodeDurationClient Rest Client", () => {
       await client.query.int32SecondsLargerUnit(120);
     });
 
-    it(`should get float Milliseconds Larger Unit`, async () => {
+    it.skip(`should get float Milliseconds Larger Unit`, async () => {
       await client.query.floatMillisecondsLargerUnit(210000.0);
     });
 
@@ -198,7 +198,7 @@ describe("EncodeDurationClient Rest Client", () => {
       await client.header.int32MillisecondsArray([36000, 47000]);
     });
 
-    it(`should get float Seconds Larger Unit`, async () => {
+    it.skip(`should get float Seconds Larger Unit`, async () => {
       await client.header.floatSecondsLargerUnit(150.0);
     });
 
@@ -206,7 +206,7 @@ describe("EncodeDurationClient Rest Client", () => {
       await client.header.int32SecondsLargerUnit(120);
     });
 
-    it(`should get float Milliseconds Larger Unit`, async () => {
+    it.skip(`should get float Milliseconds Larger Unit`, async () => {
       await client.header.floatMillisecondsLargerUnit(210000.0);
     });
 

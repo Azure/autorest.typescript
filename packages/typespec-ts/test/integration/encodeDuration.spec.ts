@@ -135,6 +135,54 @@ describe("EncodeDurationClient Rest Client", () => {
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body.value, [35625, 46750]);
     });
+
+    it(`should post int32-seconds-larger-unit property`, async () => {
+      const result = await client
+        .path(`/encode/duration/property/int32-seconds-larger-unit`)
+        .post({
+          body: {
+            value: 120
+          }
+        });
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.value, 120);
+    });
+
+    it(`should post float-seconds-larger-unit property`, async () => {
+      const result = await client
+        .path(`/encode/duration/property/float-seconds-larger-unit`)
+        .post({
+          body: {
+            value: 150.0
+          }
+        });
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.value, 150.0);
+    });
+
+    it(`should post int32-milliseconds-larger-unit property`, async () => {
+      const result = await client
+        .path(`/encode/duration/property/int32-milliseconds-larger-unit`)
+        .post({
+          body: {
+            value: 180000
+          }
+        });
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.value, 180000);
+    });
+
+    it(`should post float-milliseconds-larger-unit property`, async () => {
+      const result = await client
+        .path(`/encode/duration/property/float-milliseconds-larger-unit`)
+        .post({
+          body: {
+            value: 210000.0
+          }
+        });
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.value, 210000.0);
+    });
   });
 
   describe("query", () => {
@@ -244,6 +292,50 @@ describe("EncodeDurationClient Rest Client", () => {
         });
       assert.strictEqual(result.status, "204");
     });
+
+    it(`should get int32-seconds-larger-unit query`, async () => {
+      const result = await client
+        .path(`/encode/duration/query/int32-seconds-larger-unit`)
+        .get({
+          queryParameters: {
+            input: 120
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
+
+    it.skip(`should get float-seconds-larger-unit query`, async () => {
+      const result = await client
+        .path(`/encode/duration/query/float-seconds-larger-unit`)
+        .get({
+          queryParameters: {
+            input: 150.0
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
+
+    it(`should get int32-milliseconds-larger-unit query`, async () => {
+      const result = await client
+        .path(`/encode/duration/query/int32-milliseconds-larger-unit`)
+        .get({
+          queryParameters: {
+            input: 180000
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
+
+    it.skip(`should get float-milliseconds-larger-unit query`, async () => {
+      const result = await client
+        .path(`/encode/duration/query/float-milliseconds-larger-unit`)
+        .get({
+          queryParameters: {
+            input: 210000.0
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
   });
 
   describe("header", () => {
@@ -348,6 +440,50 @@ describe("EncodeDurationClient Rest Client", () => {
         .get({
           headers: {
             duration: ["36000", "47000"].join(",")
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
+
+    it(`should get int32-seconds-larger-unit header`, async () => {
+      const result = await client
+        .path(`/encode/duration/header/int32-seconds-larger-unit`)
+        .get({
+          headers: {
+            duration: 120
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
+
+    it.skip(`should get float-seconds-larger-unit header`, async () => {
+      const result = await client
+        .path(`/encode/duration/header/float-seconds-larger-unit`)
+        .get({
+          headers: {
+            duration: 150.0
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
+
+    it(`should get int32-milliseconds-larger-unit header`, async () => {
+      const result = await client
+        .path(`/encode/duration/header/int32-milliseconds-larger-unit`)
+        .get({
+          headers: {
+            duration: 180000
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    });
+
+    it.skip(`should get float-milliseconds-larger-unit header`, async () => {
+      const result = await client
+        .path(`/encode/duration/header/float-milliseconds-larger-unit`)
+        .get({
+          headers: {
+            duration: 210000.0
           }
         });
       assert.strictEqual(result.status, "204");
