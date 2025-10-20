@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import { PreviewVersionClient } from "./generated/azure/versioning/previewVersion/src/index.js";
 
-describe("PreviewVersionClient Rest Client", () => {
+describe("PreviewVersionClient Client", () => {
   let client: PreviewVersionClient;
 
   beforeEach(() => {
@@ -34,7 +34,7 @@ describe("PreviewVersionClient Rest Client", () => {
   });
 });
 
-describe("StableVersionClient Rest Client", () => {
+describe("StableVersionClient Client", () => {
   let client: PreviewVersionClient;
 
   beforeEach(() => {
