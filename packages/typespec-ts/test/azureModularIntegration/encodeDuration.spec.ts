@@ -209,7 +209,7 @@ describe("EncodeDurationClient Rest Client", () => {
     it(`should get float Milliseconds Larger Unit`, async () => {
       await client.header.floatMillisecondsLargerUnit(210000.0);
     });
-    
+
     it(`should get int32 Milliseconds Larger Unit`, async () => {
       await client.header.int32MillisecondsLargerUnit(180000);
     });
