@@ -7,28 +7,27 @@ using TypeSpec.Rest;
 using TypeSpec.Versioning;
 using global.Azure.Core.Traits;
 @versioned(SAPWidgetService.Versions)
-@service(#{
-    title: "Widget Service"
-})
+@service(#{ title: "Widget Service" })
 @useAuth(BearerAuth | ApiKeyAuth<ApiKeyLocation.cookie, "session-id">)
 namespace SAPWidgetService;
 
 /** The Contoso Widget Manager service version. */
 enum Versions {
     /** Version 2022-08-31 */
-    @useDependency(Azure.Core.Versions.v1_0_Preview_2)
     `1.0.0`,
-  }
+}
 
 alias ResourceOperations = global.Azure.Core.ResourceOperations<NoConditionalRequests &
-  NoRepeatableRequests &
-  NoClientRequestId>;
+    NoRepeatableRequests &
+    NoClientRequestId>;
 
 model Widget {
     @doc("The UUID of this widget. This is generated automatically by the service.")
     id: string;
+
     @doc("The weight of the widget. This is an int32, but must be greater than zero.")
     weight: int32;
+
     @doc("The color of the widget.")
     color: "red" | "blue";
 }
@@ -36,6 +35,7 @@ model Widget {
 model CreateWidget {
     @doc("The weight of the widget. This is an int32, but must be greater than zero.")
     weight: int32;
+
     @doc("The color of the widget.")
     color: "red" | "blue";
 }
@@ -43,6 +43,7 @@ model CreateWidget {
 model NonReferencedModel {
     @doc("The weight of the widget. This is an int32, but must be greater than zero.")
     prop1: int32;
+
     @doc("The color of the widget.")
     prop2: string;
 }
@@ -51,8 +52,10 @@ model UpdateWidget {
     @doc("The UUID of this widget. This is generated automatically by the service.")
     @path
     id: string;
+
     @doc("The weight of the widget. This is an int32, but must be greater than zero.")
     weight?: int32;
+
     @doc("The color of the widget.")
     color?: "red" | "blue";
 }
@@ -68,15 +71,16 @@ scalar base64urlBytes extends bytes;
 model WidgetError {
     @doc("The HTTP error code.")
     code: int32;
+
     @doc("A human-readable message describing the error.")
     message: string;
 }
 
-@pagedResult
 model ListWidgetsPagesResults {
     @doc("The current page of results.")
-    @items
+    @pageItems
     results: Widget[];
+
     @doc("The URL to get the next set of results.")
     @TypeSpec.nextLink
     `odata.nextLink`?: string;
@@ -85,102 +89,106 @@ model ListWidgetsPagesResults {
 @resource("users")
 @doc("Details about a user.")
 model SAPUser {
-  @key
-  @visibility(Lifecycle.Read)
-  @doc("The name of user.")
-  name: string;
+    @key
+    @visibility(Lifecycle.Read)
+    @doc("The name of user.")
+    name: string;
 
-  @doc("The role of user")
-  role: string;
+    @doc("The role of user")
+    role: string;
 
-  @doc("The UUID of this widget. This is generated automatically by the service.")
-  id: string;
+    @doc("The UUID of this widget. This is generated automatically by the service.")
+    id: string;
 }
 
 @route("/widgets")
 @tag("Widgets")
 interface SAPWidgets {
     @doc("""
-List all widgets in the system. This operation is not paginated, and returns a simple array of widgets.
-
-It does not accept any options or parameters.
-""")
-
-    @get SAPListWidgets(
-        @header requiredHeader: string, 
-        @header optionalHeader?: string,  
+        List all widgets in the system. This operation is not paginated, and returns a simple array of widgets.
+        
+        It does not accept any options or parameters.
+        """)
+    @get
+    SAPListWidgets(
+        @header requiredHeader: string,
+        @header optionalHeader?: string,
         @header nullableOptionalHeader?: string | null,
         @header bytesHeader: bytes,
         @header @encode(BytesKnownEncoding.base64) value: bytes,
+
         @header
         csvArrayHeader: base64urlBytes[],
+
         @header utcDateHeader: utcDateTime,
         @header optionalDateHeader?: utcDateTime,
         @header nullableDateHeader?: utcDateTime | null,
     ): Widget[] | WidgetError;
 
     @get
-    @route("/widgets/pages") 
+    @route("/widgets/pages")
+    @list
     listWidgetsPages(
         @query page: int32,
         @query pageSize: int32,
     ): ListWidgetsPagesResults | WidgetError;
 
     @post
-    @route("/widgets/pages") 
+    @route("/widgets/pages")
+    @list
     queryWidgetsPages(
         @query page: int32,
         @query pageSize: int32,
     ): ListWidgetsPagesResults | WidgetError;
 
     @doc("Get a widget by ID.")
-    @get getWidget(@path id: string): Widget | WidgetError;
+    @get
+    getWidget(@path id: string): Widget | WidgetError;
 
     @doc("""
-Create a new widget.
-
-The widget ID is not required during creation, as it is automatically set by the server. Providing an ID will
-result in an error.
-""")
-
-    @post createWidget(...CreateWidget): {
+        Create a new widget.
+        
+        The widget ID is not required during creation, as it is automatically set by the server. Providing an ID will
+        result in an error.
+        """)
+    @post
+    createWidget(...CreateWidget): {
         @statusCode code: 201;
         @body widget: Widget;
     } | WidgetError;
 
     @route("/widgets/createOrReplace")
-    op createOrReplace is ResourceOperations.LongRunningResourceCreateOrReplace<SAPUser>;
+    createOrReplace is ResourceOperations.LongRunningResourceCreateOrReplace<SAPUser>;
 
     @doc("""
-Update the contents of the widget. The widget ID is required in the input, but cannot be changed. All other fields
-are optional and will be updated within the widget if provided.
-""")
-
-    @patch updateWidget(...UpdateWidget): Widget | WidgetError;
+        Update the contents of the widget. The widget ID is required in the input, but cannot be changed. All other fields
+        are optional and will be updated within the widget if provided.
+        """)
+    @patch
+    updateWidget(...UpdateWidget): Widget | WidgetError;
 
     @doc("Delete a widget by ID.")
-    @delete deleteWidget(@path id: string): {
+    @delete
+    deleteWidget(@path id: string): {
         @statusCode code: 204;
     } | WidgetError;
 
     @doc("Analyze a widget. The only guarantee is that this method will return a string containing the results of the analysis.")
-    @route("{id}/analyze") @post analyzeWidget(
-        @path id: string
-    ): AnalyzeResult | WidgetError;
+    @route("{id}/analyze")
+    @post
+    analyzeWidget(@path id: string): AnalyzeResult | WidgetError;
 }
 
 @route("/budgets")
 @tag("Widgets")
-interface Budgets { 
+interface Budgets {
     // the same name as Widgets.createOrReplace
     @route("/widgets/createOrReplace")
-    op createOrReplace is ResourceOperations.LongRunningResourceCreateOrReplace<SAPUser>;
+    createOrReplace is ResourceOperations.LongRunningResourceCreateOrReplace<SAPUser>;
 
-    @get getBudgets(
-        @query name: string
-    ): Widget[] | WidgetError;
+    @get getBudgets(@query name: string): Widget[] | WidgetError;
 
     @route("/widgets/continue")
     // test the reserved word "continue" operation
-    op continue(): void;
+    continue(): void;
 }

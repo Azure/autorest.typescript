@@ -17,6 +17,8 @@ import { getModularClientOptions } from "../utils/clientUtils.js";
 import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
 import { join } from "path/posix";
 import { useContext } from "../contextManager.js";
+import { reportDiagnostic } from "../lib.js";
+import { NoTarget } from "@typespec/compiler";
 
 export function buildRootIndex(
   context: SdkContext,
@@ -42,12 +44,14 @@ export function buildRootIndex(
   );
 
   if (!clientFile) {
-    throw new Error(
-      `Couldn't find client file: ${srcPath}/${normalizeName(
-        clientName,
-        NameType.File
-      )}.ts`
-    );
+    reportDiagnostic(context.program, {
+      code: "client-file-not-found",
+      format: {
+        filePath: `${srcPath}/${normalizeName(clientName, NameType.File)}.ts`
+      },
+      target: NoTarget
+    });
+    return; // Skip exporting this client but continue with others
   }
 
   exportClassicalClient(client, rootIndexFile, subfolder ?? "");
@@ -294,7 +298,7 @@ function exportModules(
     }
 
     const exported = [...indexFile.getExportedDeclarations().keys()];
-
+    const serializerOrDeserializerRegex = /.*(Serializer|Deserializer)(_\d+)?$/;
     const namedExports = [...modelsFile.getExportedDeclarations().entries()]
       .filter((exDeclaration) => {
         if (exDeclaration[0].startsWith("_")) {
@@ -310,8 +314,7 @@ function exportModules(
           if (
             moduleName === "models" &&
             ex.getKindName() === "FunctionDeclaration" &&
-            (exDeclaration[0].endsWith("Serializer") ||
-              exDeclaration[0].endsWith("Deserializer"))
+            serializerOrDeserializerRegex.test(exDeclaration[0])
           ) {
             return false;
           }
@@ -347,6 +350,7 @@ function exportModules(
 }
 
 export function buildSubClientIndexFile(
+  context: SdkContext,
   clientMap: [string[], SdkClientType<SdkServiceOperation>],
   emitterOptions: ModularEmitterOptions
 ) {
@@ -366,7 +370,14 @@ export function buildSubClientIndexFile(
   const clientFile = project.getSourceFile(clientFilePath);
 
   if (!clientFile) {
-    throw new Error(`Couldn't find client file: ${clientFilePath}`);
+    reportDiagnostic(context.program, {
+      code: "client-file-not-found",
+      format: {
+        filePath: clientFilePath
+      },
+      target: NoTarget
+    });
+    return; // Skip exporting this client but continue with others
   }
 
   exportClassicalClient(client, subClientIndexFile, subfolder ?? "", true);

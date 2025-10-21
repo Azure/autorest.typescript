@@ -1,4 +1,7 @@
-/** An enum to describe Azure Cloud. */
+/**
+ * An enum to describe Azure Cloud environments.
+ * @enum {string}
+ */
 export enum AzureClouds {
   /** Azure public cloud, which is the default cloud for Azure SDKs. */
   AZURE_PUBLIC_CLOUD = "AZURE_PUBLIC_CLOUD",
@@ -11,6 +14,12 @@ export enum AzureClouds {
 /** The supported values for cloud setting as a string literal type */
 export type AzureSupportedClouds = `${AzureClouds}`;
 
+/**
+ * Gets the Azure Resource Manager endpoint URL for the specified cloud setting.
+ * @param cloudSetting - The Azure cloud environment setting. Use one of the AzureClouds enum values.
+ * @returns The ARM endpoint URL for the specified cloud, or undefined if cloudSetting is undefined.
+ * @throws {Error} Throws an error if an unknown cloud setting is provided.
+ */
 export function getArmEndpoint(
   cloudSetting?: AzureSupportedClouds
 ): string | undefined {

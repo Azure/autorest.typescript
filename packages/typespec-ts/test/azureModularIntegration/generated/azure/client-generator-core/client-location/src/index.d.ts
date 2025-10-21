@@ -9,12 +9,21 @@ export declare interface ArchiveOperationsOperations {
     archiveProduct: (options?: ArchiveOperationsArchiveProductOptionalParams) => Promise<void>;
 }
 
+declare interface Blob_2 {
+    id: string;
+    name: string;
+    size: number;
+    path: string;
+}
+export { Blob_2 as Blob }
+
 export declare class ClientLocationClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: ClientLocationClientOptionalParams);
     getHealthStatus(options?: GetHealthStatusOptionalParams): Promise<void>;
     readonly archiveOperations: ArchiveOperationsOperations;
+    readonly moveMethodParameterToClient: MoveMethodParameterToClientOperations;
     readonly moveToRootClient: MoveToRootClientOperations;
     readonly moveToNewSubClient: MoveToNewSubClientOperations;
     readonly moveToExistingSubClient: MoveToExistingSubClientOperations;
@@ -24,6 +33,17 @@ export declare interface ClientLocationClientOptionalParams extends ClientOption
 }
 
 export declare interface GetHealthStatusOptionalParams extends OperationOptions {
+}
+
+export declare interface MoveMethodParameterToClientBlobOperationsGetBlobOptionalParams extends OperationOptions {
+}
+
+export declare interface MoveMethodParameterToClientBlobOperationsOperations {
+    getBlob: (storageAccount: string, container: string, blob: string, options?: MoveMethodParameterToClientBlobOperationsGetBlobOptionalParams) => Promise<Blob_2>;
+}
+
+export declare interface MoveMethodParameterToClientOperations {
+    blobOperations: MoveMethodParameterToClientBlobOperationsOperations;
 }
 
 export declare interface MoveToExistingSubClientAdminOperationsDeleteUserOptionalParams extends OperationOptions {

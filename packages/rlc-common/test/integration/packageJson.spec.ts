@@ -336,24 +336,24 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "clean",
-        "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log"
+        "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log"
       );
       expect(packageFile.scripts).to.have.property(
         "extract-api",
-        "dev-tool run vendored rimraf review && dev-tool run extract-api"
+        "rimraf review && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "test:browser",
         "dev-tool run build-test && dev-tool run test:vitest --browser"
       );
-      expect(packageFile.scripts).to.have.property("pack", "npm pack 2>&1");
+      expect(packageFile.scripts).to.have.property("pack", "pnpm pack 2>&1");
       expect(packageFile.scripts).to.have.property(
         "test",
         "npm run test:node && npm run test:browser"
       );
       expect(packageFile.scripts).to.have.property(
         "format",
-        'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" '
+        'prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" '
       );
     });
 
@@ -372,7 +372,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "build:node",
-        "tsc -p . && dev-tool run vendored cross-env ONLY_NODE=true rollup -c 2>&1"
+        "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1"
       );
       expect(packageFile.scripts).to.have.property(
         "build:test",
@@ -384,15 +384,15 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "clean",
-        "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log"
+        "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log"
       );
       expect(packageFile.scripts).to.have.property(
         "extract-api",
-        "dev-tool run vendored rimraf review && dev-tool run extract-api"
+        "rimraf review && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "format",
-        'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" '
+        'prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" '
       );
     });
 
@@ -444,8 +444,7 @@ describe("Package file generation", () => {
       const model = createMockModel({
         ...baseConfig,
         moduleKind: "esm",
-        withTests: true,
-        shouldUsePnpmDep: true
+        withTests: true
       });
       const packageFileContent = buildPackageFile(model);
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
@@ -722,6 +721,29 @@ describe("Package file generation", () => {
         "./test/integration/static/package_non_existing.json"
       );
       expect(packageFileContent).to.be.undefined;
+    });
+
+    it("should use standard version for LRO dependencies", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: true
+      });
+      
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-client": "^1.0.0"
+        }
+      };
+      
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+      
+      expect(packageFile.dependencies).to.have.property("@azure/core-lro", "^3.1.0");
+      expect(packageFile.dependencies).to.have.property("@azure/abort-controller", "^2.1.2");
     });
   });
 

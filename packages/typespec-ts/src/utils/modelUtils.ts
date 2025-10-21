@@ -79,10 +79,7 @@ import {
   getWireName,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
-import {
-  getPagedResult,
-  getUnionAsEnum
-} from "@azure-tools/typespec-azure-core";
+import { getUnionAsEnum } from "@azure-tools/typespec-azure-core";
 
 import { getModelNamespaceName } from "./namespaceUtils.js";
 import { reportDiagnostic } from "../lib.js";
@@ -924,7 +921,7 @@ function getModelName(dpgContext: SdkContext, model: Model) {
   // 4. check if this is a model with template arguments
   let name = model.name;
   if (model.templateMapper?.args) {
-    const isPage = getPagedResult(program, model);
+    // const isPage = getPagedResult(program, model);
     const templateTypeNames = model.templateMapper.args
       .map((arg) => (arg.entityKind === "Indeterminate" ? arg.type : arg))
       .map((arg: any) => {
@@ -944,10 +941,7 @@ function getModelName(dpgContext: SdkContext, model: Model) {
       })
       .filter((arg) => arg !== "")
       .join(" ");
-    name = normalizeName(
-      isPage ? `${templateTypeNames} List` : `${name} ${templateTypeNames}`,
-      NameType.Interface
-    );
+    name = normalizeName(`${name} ${templateTypeNames}`, NameType.Interface);
   }
   let fullNamespacePrefix = getModelNamespaceName(dpgContext, model.namespace!)
     .map((nsName) => {
@@ -1714,14 +1708,6 @@ export function trimUsage(model: any) {
   return ordered;
 }
 
-export function buildCoreTypeInfo(program: Program, t?: Type) {
-  return isAzureCoreErrorType(program, t)
-    ? "ErrorType"
-    : isAzureCoreLroType(t)
-      ? "LroType"
-      : undefined;
-}
-
 export function isAzureCoreErrorType(program: Program, t?: Type): boolean {
   if (!t || t.kind !== "Model") {
     return false;
@@ -1735,26 +1721,6 @@ export function isAzureCoreErrorType(program: Program, t?: Type): boolean {
     return false;
   }
   return isAzureCoreFoundationsNamespace(effective);
-}
-
-// Check if the type in the Azure.Core.Foundations has an LRO type in core
-export function isAzureCoreLroType(t?: Type): boolean {
-  if (
-    !(
-      ((t?.kind === "Enum" || t?.kind === "Union") &&
-        ["operationstate"].includes((t.name ?? "").toLowerCase())) ||
-      (t?.kind === "Model" &&
-        ["resourceoperationstatus", "operationstatus"].includes(
-          t.name.toLowerCase()
-        ))
-    )
-  ) {
-    return false;
-  }
-  return (
-    isAzureCoreFoundationsNamespace(t) ||
-    isAzureCoreFoundationsNamespace(t, true)
-  );
 }
 
 function isAzureCoreFoundationsNamespace(
