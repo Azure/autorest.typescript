@@ -34,10 +34,11 @@ import {
   buildSamples,
   updatePackageFile,
   buildSnippets,
-  buildTsTestBrowserConfig,
   buildTsSrcConfig,
-  buildTsSampleConfig,
-  buildTsTestConfig
+  buildTestBrowserTsConfig,
+  buildTestNodeTsConfig,
+  buildTestMainTsConfig,
+  buildTsSampleConfig
 } from "@azure-tools/rlc-common";
 import {
   generateFileByBuilder,
@@ -140,10 +141,9 @@ export async function generateRestLevelClient() {
         generateFileByBuilder(project, buildTsSampleConfig, rlcModels);
       }
       if (generateTest) {
-        // buildTsTestBrowserConfig
-        generateFileByBuilder(project, buildTsTestBrowserConfig, rlcModels);
-        // buildTstestConfig
-        generateFileByBuilder(project, buildTsTestConfig, rlcModels);
+        generateFileByBuilder(project, buildTestNodeTsConfig, rlcModels);
+        generateFileByBuilder(project, buildTestBrowserTsConfig, rlcModels);
+        generateFileByBuilder(project, buildTestMainTsConfig, rlcModels);
       }
     }
   } else {
@@ -183,8 +183,11 @@ ${licenseHeaderOnly}
 
     if (isSourceCode) {
       // Check if the file is in the src folder (auto-generated) vs test/sample folders
-      const isSrcFile = filePath.includes('/src/') || filePath.includes('\\src\\');
-      const licenseHeader = isSrcFile ? licenseHeaderWithCodeGen : licenseHeaderOnly;
+      const isSrcFile =
+        filePath.includes("/src/") || filePath.includes("\\src\\");
+      const licenseHeader = isSrcFile
+        ? licenseHeaderWithCodeGen
+        : licenseHeaderOnly;
       fileContents = `${licenseHeader.trimLeft()}\n${fileContents}`;
     }
 

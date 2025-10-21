@@ -18,7 +18,12 @@ import { generateApiExtractorConfig } from "./generators/static/apiExtractorConf
 import { generateLicenseFile } from "./generators/static/licenseFileGenerator";
 import { generateReadmeFile } from "./generators/static/readmeFileGenerator";
 import { generateSampleTestFile } from "./generators/test/sampleTestGenerator";
-import { generateTsConfig, generateTsSampleConfig, generateTsSrcConfig, generateTsTestConfig, generateTsSnippetsConfig } from "./generators/static/tsConfigFileGenerator";
+import {
+  generateTsConfig,
+  generateTsSampleConfig,
+  generateTsSrcConfig,
+  generateTsSnippetsConfig
+} from "./generators/static/tsConfigFileGenerator";
 import { generateRollupConfig } from "./generators/static/rollupConfigFileGenerator";
 import { generateOperations } from "./generators/operationGenerator";
 import { generateOperationsInterfaces } from "./generators/operationInterfaceGenerator";
@@ -32,7 +37,7 @@ import { getAutorestOptions } from "./autorestSession";
 import { conflictResolver } from "./conflictResolver";
 import { generateSnippetsFile } from "./generators/test/snippetsGenerator";
 import { generateVitestConfig } from "./generators/test/vitestGenerator";
-import { generateTsBrowserConfig } from "./generators/static/tsConfigBrowserFileGenerator";
+import { generateTestTsConfig } from "./generators/static/tsConfigTestFileGenerator";
 
 const prettierTypeScriptOptions: prettier.Options = {
   parser: "typescript",
@@ -101,8 +106,7 @@ export async function generateTypeScriptLibrary(
     }
     if (generateTest) {
       generateTsSnippetsConfig(project);
-      generateTsTestConfig(project);
-      generateTsBrowserConfig(project);
+      generateTestTsConfig(project);
     }
   }
 
@@ -161,8 +165,11 @@ ${licenseHeaderOnly}
     // Add the license header to source code files
     if (shouldGenerateLicense && isSourceCode) {
       // Check if the file is in the src folder (auto-generated) vs test/sample folders
-      const isSrcFile = filePath.includes('/src/') || filePath.includes('\\src\\');
-      const licenseHeader = isSrcFile ? licenseHeaderWithCodeGen : licenseHeaderOnly;
+      const isSrcFile =
+        filePath.includes("/src/") || filePath.includes("\\src\\");
+      const licenseHeader = isSrcFile
+        ? licenseHeaderWithCodeGen
+        : licenseHeaderOnly;
       fileContents = `${licenseHeader.trimLeft()}\n${fileContents}`;
     }
 
