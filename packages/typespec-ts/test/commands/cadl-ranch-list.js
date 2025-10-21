@@ -268,20 +268,18 @@ export const azureRlcTsps = [
     outputPath: "versioning/typeChangedFrom",
     inputPath: "versioning/typeChangedFrom"
   },
-  // skip due to issue https://github.com/Azure/autorest.typescript/issues/3446
-  // {
-  //   outputPath: "azure/resource-manager/resources",
-  //   inputPath: "azure/resource-manager/resources"
-  // },
+  {
+    outputPath: "azure/resource-manager/resources",
+    inputPath: "azure/resource-manager/resources"
+  },
   {
     outputPath: "azure/core/model",
     inputPath: "azure/core/model"
   },
-  // skip due to issue https://github.com/Azure/autorest.typescript/issues/3446
-  // {
-  //   outputPath: "azure/resource-manager/common-properties",
-  //   inputPath: "azure/resource-manager/common-properties"
-  // },
+  {
+    outputPath: "azure/resource-manager/common-properties",
+    inputPath: "azure/resource-manager/common-properties"
+  },
   {
     outputPath: "azure/core/page",
     inputPath: "azure/core/page"
@@ -330,11 +328,10 @@ export const azureRlcTsps = [
     outputPath: "azure/client-generator-core/deserialize-empty-string-as-null",
     inputPath: "azure/client-generator-core/deserialize-empty-string-as-null"
   },
-  // skip due to issue https://github.com/Azure/autorest.typescript/issues/3446
-  // {
-  //   outputPath: "azure/resource-manager/operation-templates",
-  //   inputPath: "azure/resource-manager/operation-templates"
-  // },
+  {
+    outputPath: "azure/resource-manager/operation-templates",
+    inputPath: "azure/resource-manager/operation-templates"
+  },
   {
     outputPath: "azure/client-generator-core/client-location",
     inputPath: "azure/client-generator-core/client-location"
@@ -864,9 +861,14 @@ export const azureModularTsps = [
     inputPath: "azure/resource-manager/operation-templates"
   },
   {
-    outputPath: "azure/client-generator-core/client-location",
-    inputPath: "azure/client-generator-core/client-location"
+    outputPath: "azure/client-generator-core/hierarchy-building",
+    inputPath: "azure/client-generator-core/hierarchy-building"
   }
+  // skip due to issue https://github.com/Azure/autorest.typescript/issues/3494
+  // {
+  //   outputPath: "azure/client-generator-core/client-location",
+  //   inputPath: "azure/client-generator-core/client-location"
+  // }
 ];
 
 export const modularTsps = [

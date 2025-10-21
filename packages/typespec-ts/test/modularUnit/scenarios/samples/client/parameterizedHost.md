@@ -41,7 +41,7 @@ namespace Azure.Test.ParametrizedHost;
 /** The Contoso Widget Manager service version. */
 enum Versions {
   /** Version 2021-10-01-preview */
-  @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+  
   `2021-10-01-preview`,
 }
 

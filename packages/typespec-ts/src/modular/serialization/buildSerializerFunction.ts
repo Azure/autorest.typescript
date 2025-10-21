@@ -22,6 +22,7 @@ import {
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
 import {
+  getAllDiscriminatedValues,
   isDiscriminatedUnion,
   isSupportedSerializeType,
   ModelSerializeOptions
@@ -33,7 +34,12 @@ import {
 import { resolveReference } from "../../framework/reference.js";
 import { isOrExtendsHttpFile } from "@typespec/http";
 import { refkey } from "../../framework/refkey.js";
-import { getAdditionalPropertiesType } from "../helpers/typeHelpers.js";
+import {
+  getAdditionalPropertiesType,
+  getDirectSubtypes
+} from "../helpers/typeHelpers.js";
+import { reportDiagnostic } from "../../lib.js";
+import { NoTarget } from "@typespec/compiler";
 
 export function buildModelSerializer(
   context: SdkContext,
@@ -110,7 +116,11 @@ function buildPolymorphicSerializer(
   nameOnly = false
 ): FunctionDeclarationStructure | undefined | string {
   if (!type.name) {
-    throw new Error(`NYI Serialization of anonymous types`);
+    reportDiagnostic(context.program, {
+      code: "anonymous-type-serialization",
+      target: type.__raw || NoTarget
+    });
+    return undefined; // Return undefined to skip this serialization
   }
   const serializeFunctionName = `${normalizeModelName(
     context,
@@ -154,8 +164,12 @@ function buildPolymorphicSerializer(
       return;
     }
     const union = subType?.discriminatedSubtypes ? "_Union" : "";
-    if (!subType || subType?.name) {
-      throw new Error(`NYI Serialization of anonymous types`);
+    if (!subType || !subType?.name) {
+      reportDiagnostic(context.program, {
+        code: "anonymous-type-serialization",
+        target: subType?.__raw || NoTarget
+      });
+      return; // Skip this subtype
     }
     const rawSubTypeName = `${subType.name}${union}`;
     const subTypeName = `${normalizeName(rawSubTypeName, NameType.Interface, true)}`;
@@ -172,7 +186,7 @@ function buildPolymorphicSerializer(
   });
 
   statements.push(`
-      switch (item.${type.discriminatorProperty.name}) {
+      switch (item.${normalizeName(type.discriminatorProperty.name, NameType.Property)}) {
        ${cases.join("\n")}
         default:
           return item;
@@ -197,7 +211,11 @@ function buildDiscriminatedUnionSerializer(
   nameOnly = false
 ): FunctionDeclarationStructure | undefined | string {
   if (!type.name) {
-    throw new Error(`NYI Serialization of anonymous types`);
+    reportDiagnostic(context.program, {
+      code: "anonymous-type-serialization",
+      target: type.__raw || NoTarget
+    });
+    return undefined; // Return undefined to skip this serialization
   }
   const cases: string[] = [];
   const output: string[] = [];
@@ -215,8 +233,8 @@ function buildDiscriminatedUnionSerializer(
     NameType.Operation,
     true
   )}Serializer`;
-  for (const key in type.discriminatedSubtypes) {
-    const subType = type.discriminatedSubtypes[key]!;
+  const directSubtypes = getDirectSubtypes(type);
+  for (const subType of directSubtypes) {
     if (
       !subType.usage ||
       (subType.usage !== undefined &&
@@ -224,7 +242,11 @@ function buildDiscriminatedUnionSerializer(
     ) {
       continue;
     }
-    const discriminatedValue = subType.discriminatorValue!;
+    // get all discriminated values that is linked by this discriminator property
+    const discriminatedValues = getAllDiscriminatedValues(
+      subType,
+      type.discriminatorProperty
+    );
     const union = subType.discriminatedSubtypes ? "Union" : "";
     const subTypeName = `${normalizeName(subType.name, NameType.Interface, true)}${union}`;
     const subtypeSerializerName = normalizeName(
@@ -233,13 +255,14 @@ function buildDiscriminatedUnionSerializer(
       true
     );
 
+    const caseLabels = discriminatedValues.map((value) => `case "${value}":`);
     cases.push(`
-      case "${discriminatedValue}":
+      ${caseLabels.join("\n")}
         return ${subtypeSerializerName}(item as ${subTypeName});
     `);
   }
   output.push(`
-    switch (item.${type.discriminatorProperty?.name}) {
+    switch (item.${type.discriminatorProperty ? normalizeName(type.discriminatorProperty.name, NameType.Property) : "unknown"}) {
      ${cases.join("\n")}
       default:
         return ${baseSerializerName}(item);
@@ -277,7 +300,11 @@ function buildUnionSerializer(
   nameOnly = false
 ): FunctionDeclarationStructure | string {
   if (!type.name) {
-    throw new Error(`NYI Serialization of anonymous types`);
+    reportDiagnostic(context.program, {
+      code: "anonymous-type-serialization",
+      target: type.__raw || NoTarget
+    });
+    return ""; // Return empty string to continue processing
   }
   const serializerFunctionName = `${normalizeModelName(
     context,
@@ -312,7 +339,11 @@ function buildModelTypeSerializer(
   }
 ): FunctionDeclarationStructure | string {
   if (!type.name) {
-    throw new Error(`NYI Deserialization of anonymous types`);
+    reportDiagnostic(context.program, {
+      code: "anonymous-type-deserialization",
+      target: type.__raw || NoTarget
+    });
+    return ""; // Return empty string to continue processing
   }
   const serializerFunctionName = `${normalizeModelName(
     context,

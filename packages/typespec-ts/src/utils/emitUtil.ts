@@ -5,7 +5,7 @@ import {
   isAzurePackage,
   RLCModel
 } from "@azure-tools/rlc-common";
-import { CompilerHost, NoTarget, Program } from "@typespec/compiler";
+import { CompilerHost, Program, NoTarget } from "@typespec/compiler";
 import { dirname, join } from "path";
 import { format } from "prettier";
 import {
@@ -83,11 +83,14 @@ async function emitFile(
       );
     } catch (e) {
       reportDiagnostic(program, {
-        code: "file-format-error",
-        format: { filePath },
+        code: "file-formatting-error",
+        format: {
+          filePath: filePath,
+          error: String(e)
+        },
         target: NoTarget
       });
-      throw e;
+      // Continue with unformatted content rather than crashing
     }
   }
   await host.mkdirp(dirname(filePath));

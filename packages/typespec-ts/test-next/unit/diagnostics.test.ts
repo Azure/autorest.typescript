@@ -12,14 +12,14 @@ describe("Diagnostic reporting", () => {
     vi.spyOn(lib, "reportDiagnostic").mockImplementation(mockReportDiagnostic);
   });
 
-  describe("file-format-error diagnostic", () => {
+  describe("file-formatting-error diagnostic", () => {
     it("should report diagnostic when file formatting fails", async () => {
       // Import the module that uses reportDiagnostic
       const { default: emitUtil } = await import("../../src/utils/emitUtil.js");
       
       // This test verifies the diagnostic code is defined
-      expect(lib.$lib.diagnostics["file-format-error"]).toBeDefined();
-      expect(lib.$lib.diagnostics["file-format-error"].severity).toBe("error");
+      expect(lib.$lib.diagnostics["file-formatting-error"]).toBeDefined();
+      expect(lib.$lib.diagnostics["file-formatting-error"].severity).toBe("error");
     });
   });
 
