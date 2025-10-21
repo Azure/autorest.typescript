@@ -335,6 +335,10 @@ export const azureRlcTsps = [
   {
     outputPath: "azure/client-generator-core/client-location",
     inputPath: "azure/client-generator-core/client-location"
+  },
+  {
+    outputPath: "azure/client-generator-core/override",
+    inputPath: "azure/client-generator-core/override"
   }
 ];
 
