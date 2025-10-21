@@ -29,7 +29,9 @@ describe("Client Overload Rest Client", () => {
   });
 
   it("should list resources by scope", async () => {
-    const result = await client.path("/client/overload/resources/{scope}", "car").get();
+    const result = await client
+      .path("/client/overload/resources/{scope}", "car")
+      .get();
     assert.strictEqual(result.status, "200");
     if (result.status === "200") {
       assert.strictEqual(result.body.length, 1);
