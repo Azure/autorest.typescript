@@ -722,6 +722,29 @@ describe("Package file generation", () => {
       );
       expect(packageFileContent).to.be.undefined;
     });
+
+    it("should use standard version for LRO dependencies", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: true
+      });
+      
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-client": "^1.0.0"
+        }
+      };
+      
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+      
+      expect(packageFile.dependencies).to.have.property("@azure/core-lro", "^3.1.0");
+      expect(packageFile.dependencies).to.have.property("@azure/abort-controller", "^2.1.2");
+    });
   });
 
   describe("Flavorless lib", () => {
