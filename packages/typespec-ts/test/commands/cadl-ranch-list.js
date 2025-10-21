@@ -335,6 +335,10 @@ export const azureRlcTsps = [
   {
     outputPath: "azure/client-generator-core/client-location",
     inputPath: "azure/client-generator-core/client-location"
+  },
+  {
+    outputPath: "azure/versioning/previewVersion",
+    inputPath: "azure/versioning/previewVersion"
   }
 ];
 
