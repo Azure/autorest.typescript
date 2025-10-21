@@ -335,6 +335,10 @@ export const azureRlcTsps = [
   {
     outputPath: "azure/client-generator-core/client-location",
     inputPath: "azure/client-generator-core/client-location"
+  },
+  {
+    outputPath: "client/overload",
+    inputPath: "client/overload"
   }
 ];
 
@@ -863,6 +867,10 @@ export const azureModularTsps = [
   {
     outputPath: "azure/client-generator-core/hierarchy-building",
     inputPath: "azure/client-generator-core/hierarchy-building"
+  },
+  {
+    outputPath: "client/overload",
+    inputPath: "client/overload"
   }
   // skip due to issue https://github.com/Azure/autorest.typescript/issues/3494
   // {
