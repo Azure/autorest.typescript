@@ -274,7 +274,11 @@ function prepareExampleParameters(
   }
 
   let subscriptionIdValue = `"00000000-0000-0000-0000-00000000000"`;
-  // required parameters
+
+  // Collect parameters by method.parameters order to fix parameter ordering
+  const parametersByOrder = new Map<string, ExampleValue>();
+
+  // Process required parameters from method.operation.parameters
   for (const param of method.operation.parameters) {
     if (
       param.optional === true ||
@@ -306,7 +310,9 @@ function prepareExampleParameters(
       subscriptionIdValue = getParameterValue(exampleValue.value);
       continue;
     }
-    result.push(
+
+    parametersByOrder.set(
+      param.name,
       prepareExampleValue(
         exampleValue.parameter.name,
         exampleValue.value,
@@ -315,13 +321,8 @@ function prepareExampleParameters(
       )
     );
   }
-  // add subscriptionId for ARM clients if ARM clients need it
-  if (dpgContext.arm && getSubscriptionId(dpgContext)) {
-    result.push(
-      prepareExampleValue("subscriptionId", subscriptionIdValue, false, true)
-    );
-  }
-  // required/optional body parameters
+
+  // Process body parameter
   const bodyParam = method.operation.bodyParam;
   const bodySerializeName = bodyParam?.serializedName;
   const bodyExample = parameterMap[bodySerializeName ?? ""];
@@ -336,7 +337,8 @@ function prepareExampleParameters(
         if (!propExample) {
           continue;
         }
-        result.push(
+        parametersByOrder.set(
+          prop.name,
           prepareExampleValue(
             prop.name,
             propExample,
@@ -346,7 +348,8 @@ function prepareExampleParameters(
         );
       }
     } else {
-      result.push(
+      parametersByOrder.set(
+        bodyParam.name,
         prepareExampleValue(
           bodyParam.name,
           bodyExample.value,
@@ -355,6 +358,33 @@ function prepareExampleParameters(
         )
       );
     }
+  }
+
+  // Add parameters in method.parameters order
+  for (const methodParam of method.parameters) {
+    if (
+      methodParam.name !== "context" &&
+      parametersByOrder.has(methodParam.name)
+    ) {
+      result.push(parametersByOrder.get(methodParam.name)!);
+    }
+  }
+
+  // If no parameters were added through method.parameters (e.g., all params in options),
+  // add all collected parameters
+  if (result.length === 0 || (credentialExampleValue && result.length === 1)) {
+    for (const [_, exampleValue] of parametersByOrder) {
+      if (!result.some((r) => r.name === exampleValue.name)) {
+        result.push(exampleValue);
+      }
+    }
+  }
+
+  // add subscriptionId for ARM clients if ARM clients need it
+  if (dpgContext.arm && getSubscriptionId(dpgContext)) {
+    result.push(
+      prepareExampleValue("subscriptionId", subscriptionIdValue, false, true)
+    );
   }
   // optional parameters
   method.operation.parameters
