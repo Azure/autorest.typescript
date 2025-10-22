@@ -703,10 +703,16 @@ function getHeaderAndBodyParameters(
       ) {
         continue;
       }
-      parametersImplementation[param.kind].push({
-        paramMap: getParameterMap(dpgContext, param, optionalParamName),
-        param
-      });
+      // Check if this parameter still exists in the corresponding method params (after override)
+      if (
+        param.correspondingMethodParams &&
+        param.correspondingMethodParams.length > 0
+      ) {
+        parametersImplementation[param.kind].push({
+          paramMap: getParameterMap(dpgContext, param, optionalParamName),
+          param
+        });
+      }
     }
   }
 
