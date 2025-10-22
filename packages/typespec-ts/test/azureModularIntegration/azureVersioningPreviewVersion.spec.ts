@@ -55,5 +55,6 @@ describe("StableVersionClient Client", () => {
     assert.strictEqual(result.widgets.length, 1);
     assert.strictEqual(result.widgets[0]?.id, "widget-1");
     assert.strictEqual(result.widgets[0]?.name, "test");
+    assert.isUndefined(result.widgets[0]?.color);
   });
 });
