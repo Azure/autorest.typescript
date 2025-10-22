@@ -174,9 +174,10 @@ function regularAutorestPackage(
     packageInfo.devDependencies["prettier"] = "catalog:";
     packageInfo.devDependencies["rimraf"] = "catalog:";
     packageInfo.devDependencies["tshy"] = "catalog:";
-    packageInfo.devDependencies["mkdirp"] = "catalog:";
 
     delete packageInfo.devDependencies["@microsoft/api-extractor"];
+    delete packageInfo.devDependencies["mkdirp"];
+
     packageInfo.scripts["build"] =
       "npm run clean && dev-tool run build-package && dev-tool run extract-api";
     packageInfo.scripts["clean"] = "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log";
