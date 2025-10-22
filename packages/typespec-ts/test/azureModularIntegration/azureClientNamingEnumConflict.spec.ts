@@ -1,11 +1,11 @@
 import { assert } from "chai";
-import { NamingEnumConflictClient } from "./generated/client/naming/enum-conflict/src/index.js";
+import { EnumConflictClient } from "./generated/client/naming/enum-conflict/src/index.js";
 
 describe("ClientNamingEnumConflict Modular Client", () => {
-  let client: NamingEnumConflictClient;
+  let client: EnumConflictClient;
 
   beforeEach(() => {
-    client = new NamingEnumConflictClient({
+    client = new EnumConflictClient({
       endpoint: "http://localhost:3002",
       allowInsecureConnection: true,
       retryOptions: {
