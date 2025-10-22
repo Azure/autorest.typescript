@@ -1,4 +1,5 @@
 import * as fsextra from "fs-extra";
+import { readdir, rm } from "fs/promises";
 import { resolve } from "path";
 
 export async function clearDirectory(
@@ -17,7 +18,7 @@ export async function clearDirectory(
 
   try {
     // Get all subdirectories and files
-    const entries = await fsextra.readdir(dirPath);
+    const entries = await readdir(dirPath);
 
     // Filter entries to exclude those that should be preserved
     const filteredEntries = entries.filter((entry) => {
@@ -27,7 +28,7 @@ export async function clearDirectory(
     // Process each entry
     for (const entry of filteredEntries) {
       const entryPath = resolve(dirPath, entry);
-      await fsextra.rm(entryPath, { recursive: true, force: true });
+      await rm(entryPath, { recursive: true, force: true });
     }
   } catch (error) {
     // If there's an error, fall back to regular emptyDir
