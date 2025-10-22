@@ -216,6 +216,10 @@ export const azureRlcTsps = [
     inputPath: "client/naming"
   },
   {
+    outputPath: "client/naming/enum-conflict",
+    inputPath: "client/naming/enum-conflict"
+  },
+  {
     outputPath: "serialization/encoded-name/json",
     inputPath: "serialization/encoded-name/json"
   },
@@ -727,6 +731,10 @@ export const azureModularTsps = [
   {
     outputPath: "client/naming",
     inputPath: "client/naming"
+  },
+  {
+    outputPath: "client/naming/enum-conflict",
+    inputPath: "client/naming/enum-conflict"
   },
   {
     outputPath: "serialization/encoded-name/json",
