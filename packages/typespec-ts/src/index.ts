@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 
 import * as fsextra from "fs-extra";
-import { resolve } from "path";
 import {
   AzureCoreDependencies,
   AzureIdentityDependencies,
   AzurePollingDependencies,
   DefaultCoreDependencies
 } from "./modular/external-dependencies.js";
+import { clearDirectory } from "./utils/fileSystemUtils.js";
 import { EmitContext, Program } from "@typespec/compiler";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import {
@@ -98,51 +98,6 @@ import { emitSamples } from "./modular/emitSamples.js";
 import { generateCrossLanguageDefinitionFile } from "./utils/crossLanguageDef.js";
 
 export * from "./lib.js";
-
-/**
- * Selectively clear a directory while preserving specified files and directories.
- * This function removes all contents from the directory except for the items specified in excludeNames.
- * If no exclusions are provided, it performs a standard directory empty operation for efficiency.
- *
- * @param dirPath - The absolute path to the directory to clear
- * @param excludeNames - Array of file/directory names to preserve (exact string matching)
- */
-async function clearDirectory(
-  dirPath: string,
-  excludeNames: string[] = []
-): Promise<void> {
-  if (!(await fsextra.pathExists(dirPath))) {
-    return;
-  }
-
-  // If no exclude names, just use regular emptyDir for efficiency
-  if (excludeNames.length === 0) {
-    await fsextra.emptyDir(dirPath);
-    return;
-  }
-
-  try {
-    // Get all subdirectories and files
-    const entries = await fsextra.readdir(dirPath);
-
-    // Filter entries to exclude those that should be preserved
-    const filteredEntries = entries.filter((entry) => {
-      return !excludeNames.includes(entry);
-    });
-
-    // Process each entry
-    for (const entry of filteredEntries) {
-      const entryPath = resolve(dirPath, entry);
-      await fsextra.rm(entryPath, { recursive: true, force: true });
-    }
-  } catch (error) {
-    // If there's an error, fall back to regular emptyDir
-    console.warn(
-      `Warning: Selective directory clearing failed, falling back to regular emptyDir: ${error}`
-    );
-    await fsextra.emptyDir(dirPath);
-  }
-}
 
 export async function $onEmit(context: EmitContext) {
   console.time("onEmit");
