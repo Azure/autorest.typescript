@@ -3,7 +3,7 @@ import {
   FunctionDeclarationStructure,
   SourceFile
 } from "ts-morph";
-
+import { resolveReference } from "../framework/reference.js";
 import { SdkContext } from "../utils/interfaces.js";
 import {
   SdkClientType,
@@ -20,11 +20,9 @@ import {
 } from "@azure-tools/rlc-common";
 import { useContext } from "../contextManager.js";
 import { join } from "path";
-
+import { AzureIdentityDependencies } from "../modular/external-dependencies.js";
 import { reportDiagnostic } from "../index.js";
 import { NoTarget } from "@typespec/compiler";
-import { getServers } from "@typespec/http";
-import { getDefaultService } from "../utils/modelUtils.js";
 import {
   buildPropertyNameMapper,
   isSpreadBodyParameter
@@ -132,44 +130,6 @@ function emitMethodSamples(
     });
   }
 
-  // Check if we need DefaultAzureCredential import
-  const needsCredentialImport =
-    isAzurePackage({ options: dpgContext.rlcOptions }) &&
-    (hasKeyCredential(options.topLevelClient.clientInitialization) ||
-      hasTokenCredential(options.topLevelClient.clientInitialization));
-
-  if (needsCredentialImport) {
-    sourceFile.addImportDeclaration({
-      moduleSpecifier: "@azure/identity",
-      namedImports: ["DefaultAzureCredential"]
-    });
-  }
-
-  // Check if we need dotenv (only if there are server parameters)
-  const hasServerParameters = (() => {
-    const program = dpgContext.program;
-    const serviceNs = getDefaultService(program)?.type;
-    if (serviceNs) {
-      const host = getServers(program, serviceNs);
-      return (
-        host &&
-        host?.[0] &&
-        host?.[0]?.parameters &&
-        host[0].parameters.size > 0
-      );
-    }
-    return false;
-  })();
-
-  // Add dotenv import and config only if needed
-  if (hasServerParameters) {
-    sourceFile.addImportDeclaration({
-      moduleSpecifier: "dotenv",
-      namespaceImport: "dotenv"
-    });
-    sourceFile.addStatements("dotenv.config();");
-  }
-
   for (const example of examples) {
     const exampleFunctionBody: string[] = [];
     const exampleName = normalizeName(
@@ -189,7 +149,6 @@ function emitMethodSamples(
       parameterMap,
       options.topLevelClient
     );
-
     // prepare client-level parameters
     const clientParamValues = parameters.filter((p) => p.onClient);
     const clientParams: string[] = clientParamValues
@@ -263,7 +222,6 @@ function emitMethodSamples(
     sourceFile.addFunction(functionDeclaration);
     exampleFunctions.push(exampleFunctionType.name);
   }
-
   // Add statements referencing the tracked declarations
   const functions = exampleFunctions.map((f) => `await ${f}();`).join("\n");
   sourceFile.addStatements(`
@@ -298,35 +256,6 @@ function prepareExampleValue(
   };
 }
 
-// Helper function to get ARM subscriptionId value from examples
-function getArmSubscriptionIdValue(
-  dpgContext: SdkContext,
-  method: ServiceOperation,
-  parameterMap: Record<string, SdkHttpParameterExampleValue>
-): string {
-  const defaultValue = `"00000000-0000-0000-0000-00000000000"`;
-  if (!dpgContext.arm) return defaultValue;
-
-  // Extract subscriptionId value from method parameters if available
-  for (const param of method.operation.parameters) {
-    if (param.name.toLowerCase() === "subscriptionid" && !param.optional) {
-      const exampleValue = parameterMap[param.serializedName];
-      if (exampleValue && exampleValue.value) {
-        return getParameterValue(exampleValue.value);
-      }
-    }
-  }
-
-  // If not found in method parameters, look for it in parameterMap directly
-  const subscriptionIdExample =
-    parameterMap["subscriptionId"] || parameterMap["subscription-id"];
-  if (subscriptionIdExample && subscriptionIdExample.value) {
-    return getParameterValue(subscriptionIdExample.value);
-  }
-
-  return defaultValue;
-}
-
 function prepareExampleParameters(
   dpgContext: SdkContext,
   method: ServiceOperation,
@@ -336,106 +265,12 @@ function prepareExampleParameters(
   // TODO: blocked by TCGC issue: https://github.com/Azure/typespec-azure/issues/1419
   // refine this to support generic client-level parameters once resolved
   const result: ExampleValue[] = [];
-
-  // Get server parameters from service definition to get the correct order and complete list
-  const program = dpgContext.program;
-  const serviceNs = getDefaultService(program)?.type;
-  const serverParameterOrder: string[] = [];
-  if (serviceNs) {
-    const host = getServers(program, serviceNs);
-    if (host && host?.[0] && host?.[0]?.parameters) {
-      for (const key of host[0].parameters.keys()) {
-        serverParameterOrder.push(key);
-      }
-    }
-  }
-
-  // Helper function to get parameter value for server params
-  const getServerParamValue = (serverParam: string) => {
-    if (serverParam === "subscriptionId" && dpgContext.arm) {
-      return getArmSubscriptionIdValue(dpgContext, method, parameterMap);
-    }
-    return `process.env.${getEnvVarName(serverParam)} || ""`;
-  };
-
-  // If we have server parameters, add them first, then credential, then others
-  // Otherwise, follow the client initialization parameters order
-  if (serverParameterOrder.length > 0) {
-    // Add server parameters in their defined order
-    for (const serverParam of serverParameterOrder) {
-      result.push(
-        prepareExampleValue(
-          serverParam,
-          getServerParamValue(serverParam),
-          false,
-          true
-        )
-      );
-    }
-
-    // Add credential parameter at the end
-    for (const property of topLevelClient.clientInitialization.parameters) {
-      if (property.type.kind === "credential") {
-        const credentialExampleValue = getCredentialExampleValue(
-          dpgContext,
-          topLevelClient.clientInitialization
-        );
-        if (credentialExampleValue) {
-          result.push(credentialExampleValue);
-        }
-      }
-    }
-
-    // Add any other required non-server, non-credential parameters
-    for (const property of topLevelClient.clientInitialization.parameters) {
-      const isServerParam = serverParameterOrder.includes(property.name);
-      const isCredential = property.type.kind === "credential";
-      if (
-        !isServerParam &&
-        !isCredential &&
-        !property.optional &&
-        !property.clientDefaultValue
-      ) {
-        result.push(
-          prepareExampleValue(property.name, `"${property.name}"`, false, true)
-        );
-      }
-    }
-  } else {
-    // No server parameters, follow original client initialization order but skip endpoint if it's not used
-    for (const property of topLevelClient.clientInitialization.parameters) {
-      // Skip endpoint parameter when there are no server parameters
-      if (property.name === "endpoint") {
-        continue;
-      }
-      // Credential parameters always use default approach
-      if (property.type.kind === "credential") {
-        const credentialExampleValue = getCredentialExampleValue(
-          dpgContext,
-          topLevelClient.clientInitialization
-        );
-        if (credentialExampleValue) {
-          result.push(credentialExampleValue);
-        }
-      }
-      // For ARM subscriptionId, use the extracted ARM value
-      else if (property.name === "subscriptionId" && dpgContext.arm) {
-        result.push(
-          prepareExampleValue(
-            property.name,
-            getArmSubscriptionIdValue(dpgContext, method, parameterMap),
-            false,
-            true
-          )
-        );
-      }
-      // Other required parameters use parameter name directly (can be extended as needed)
-      else if (!property.optional && !property.clientDefaultValue) {
-        result.push(
-          prepareExampleValue(property.name, `"${property.name}"`, false, true)
-        );
-      }
-    }
+  const credentialExampleValue = getCredentialExampleValue(
+    dpgContext,
+    topLevelClient.clientInitialization
+  );
+  if (credentialExampleValue) {
+    result.push(credentialExampleValue);
   }
 
   let subscriptionIdValue = `"00000000-0000-0000-0000-00000000000"`;
@@ -482,16 +317,9 @@ function prepareExampleParameters(
   }
   // add subscriptionId for ARM clients if ARM clients need it
   if (dpgContext.arm && getSubscriptionId(dpgContext)) {
-    // Check if subscriptionId is already in the result (from server parameters or client initialization)
-    const hasSubscriptionId = result.some(
-      (param) => param.name === "subscriptionId" && param.onClient
+    result.push(
+      prepareExampleValue("subscriptionId", subscriptionIdValue, false, true)
     );
-
-    if (!hasSubscriptionId) {
-      result.push(
-        prepareExampleValue("subscriptionId", subscriptionIdValue, false, true)
-      );
-    }
   }
   // required/optional body parameters
   const bodyParam = method.operation.bodyParam;
@@ -567,7 +395,9 @@ function getCredentialExampleValue(
       // Support DefaultAzureCredential for Azure packages
       return {
         ...defaultSetting,
-        value: `new DefaultAzureCredential()`
+        value: `new ${resolveReference(
+          AzureIdentityDependencies.DefaultAzureCredential
+        )}()`
       };
     } else if (keyCredential) {
       // Support ApiKeyCredential for non-Azure packages
@@ -682,9 +512,4 @@ function escapeSpecialCharToSpace(str: string) {
     return str;
   }
   return str.replace(/_|,|\.|\(|\)|'s |\[|\]/g, " ").replace(/\//g, " Or ");
-}
-
-function getEnvVarName(paramName: string): string {
-  // Convert camelCase to UPPER_SNAKE_CASE
-  return paramName.replace(/([a-z])([A-Z])/g, "$1_$2").toUpperCase();
 }
