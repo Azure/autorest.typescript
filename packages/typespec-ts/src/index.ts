@@ -8,6 +8,7 @@ import {
   AzurePollingDependencies,
   DefaultCoreDependencies
 } from "./modular/external-dependencies.js";
+import { clearDirectory } from "./utils/fileSystemUtils.js";
 import { EmitContext, Program } from "@typespec/compiler";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import {
@@ -188,7 +189,8 @@ export async function $onEmit(context: EmitContext) {
     emitterOptions["generate-sample"] = options.generateSample;
     // clear output folder if needed
     if (options.clearOutputFolder) {
-      await fsextra.emptyDir(context.emitterOutputDir);
+      // Clear output directory while preserving TempTypeSpecFiles
+      await clearDirectory(context.emitterOutputDir, ["TempTypeSpecFiles"]);
     }
     const hasTestFolder = await fsextra.pathExists(
       join(dpgContext.generationPathDetail?.metadataDir ?? "", "test")
