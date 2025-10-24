@@ -61,6 +61,8 @@ Generate samples for non-hierarchy cases:
 ```ts samples
 /** This file path is /samples-dev/readSample.ts */
 import { DemoServiceClient } from "@azure/internal-test";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 /**
  * This sample demonstrates how to show example demo
@@ -69,8 +71,9 @@ import { DemoServiceClient } from "@azure/internal-test";
  * x-ms-original-file: 2021-10-01-preview/json_for_read.json
  */
 async function read(): Promise<void> {
+  const endpoint = process.env.ENDPOINT || "";
   const credential = { key: "INPUT_YOUR_KEY_HERE" };
-  const client = new DemoServiceClient(credential);
+  const client = new DemoServiceClient(endpoint, credential);
   const result = await client.read();
   console.log(result);
 }

@@ -680,5 +680,26 @@ export async function emitSamplesFromTypeSpec(
   }
   const files = await emitSamples(dpgContext);
   useBinder().resolveAllReferences("/");
+
+  // Add dotenv imports to files that need them
+  // This must be done AFTER resolveAllReferences to ensure dotenv import comes after all other imports
+  for (const sourceFile of files) {
+    const fileText = sourceFile.getFullText();
+    if (fileText.includes("process.env.")) {
+      const imports = sourceFile.getImportDeclarations();
+      if (imports.length > 0) {
+        // Insert dotenv import after the last import
+        const { StructureKind } = await import("ts-morph");
+        sourceFile.insertImportDeclaration(imports.length, {
+          kind: StructureKind.ImportDeclaration,
+          moduleSpecifier: "dotenv",
+          namespaceImport: "dotenv"
+        });
+        // Add dotenv.config() after all imports
+        sourceFile.insertStatements(imports.length + 1, "dotenv.config();");
+      }
+    }
+  }
+
   return files;
 }

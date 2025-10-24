@@ -50,8 +50,11 @@ needTCGC: true
 needAzureCore: true
 withRawContent: true
 ```
+
 ## Client Constructor
+
 The client constructor should expect all server template parameters:
+
 ```ts classicClient
 import { createOrUpdate } from "./api/operations.js";
 import { CreateOrUpdateOptionalParams } from "./api/options.js";
@@ -138,7 +141,6 @@ Raw json files for testing client constructor arguments.
 import { MachineLearningServicesClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
-
 dotenv.config();
 
 /**
@@ -240,8 +242,8 @@ Should generate client constructor with required endpoint parameter:
 /** This file path is /samples-dev/findSentenceBoundariesSample.ts */
 import { TextTranslationClient } from "@azure/internal-test";
 import * as dotenv from "dotenv";
-
 dotenv.config();
+
 /**
  * This sample demonstrates how to execute findSentenceBoundaries
  *

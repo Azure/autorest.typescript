@@ -135,6 +135,8 @@ Generate samples for dpg cases:
 /** This file path is /samples-dev/widgetsListWidgetsSample.ts */
 import { WidgetManagerClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 /**
  * This sample demonstrates how to list Widget resources
@@ -143,8 +145,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: 2021-10-01-preview/json_for_Widgets_ListWidgets.json
  */
 async function widgetsListWidgets(): Promise<void> {
+  const endpoint = process.env.ENDPOINT || "";
   const credential = new DefaultAzureCredential();
-  const client = new WidgetManagerClient(credential);
+  const client = new WidgetManagerClient(endpoint, credential);
   const resArray = new Array();
   for await (const item of client.widgets.listWidgets({
     top: 8,
@@ -166,6 +169,8 @@ main().catch(console.error);
 /** This file path is /samples-dev/widgetsDeleteWidgetSample.ts */
 import { WidgetManagerClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 /**
  * This sample demonstrates how to delete a Widget asynchronously.
@@ -174,8 +179,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: 2021-10-01-preview/json_for_Widgets_DeleteWidget.json
  */
 async function deleteWidgetByWidgetNameUsingLongRunningOperation(): Promise<void> {
+  const endpoint = process.env.ENDPOINT || "";
   const credential = new DefaultAzureCredential();
-  const client = new WidgetManagerClient(credential);
+  const client = new WidgetManagerClient(endpoint, credential);
   const result = await client.widgets.deleteWidget("searchbox");
   console.log(result);
 }
@@ -189,6 +195,8 @@ main().catch(console.error);
 /** This file path is /samples-dev/widgetsCreateOrUpdateWidgetSample.ts */
 import { WidgetManagerClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 /**
  * This sample demonstrates how to creates or updates a Widget asynchronously.
@@ -197,8 +205,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: 2021-10-01-preview/json_for_Widgets_CreateOrUpdateWidget.json
  */
 async function widgetsCreateOrUpdateWidget(): Promise<void> {
+  const endpoint = process.env.ENDPOINT || "";
   const credential = new DefaultAzureCredential();
-  const client = new WidgetManagerClient(credential);
+  const client = new WidgetManagerClient(endpoint, credential);
   const result = await client.widgets.createOrUpdateWidget("name1", {
     manufacturerId: "manufacturer id1",
   });

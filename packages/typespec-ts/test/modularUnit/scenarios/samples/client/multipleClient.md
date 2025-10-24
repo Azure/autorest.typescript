@@ -76,6 +76,8 @@ Generate samples for hierarchy cases:
 /** This file path is /samples-dev/aClient/fooSample.ts */
 import { AClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 /**
  * This sample demonstrates how to execute foo
@@ -84,8 +86,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: 2021-10-01-preview/json_for_Sub_foo.json
  */
 async function subFoo(): Promise<void> {
+  const endpoint = process.env.ENDPOINT || "";
   const credential = new DefaultAzureCredential();
-  const client = new AClient(credential);
+  const client = new AClient(endpoint, credential);
   const result = await client.foo();
   console.log(result);
 }

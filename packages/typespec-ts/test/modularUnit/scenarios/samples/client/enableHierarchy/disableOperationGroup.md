@@ -65,6 +65,8 @@ Generated samples.
 ```ts samples
 /** This file path is /samples-dev/opTopLevelSample.ts */
 import { TestingClient } from "@azure/internal-test";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 /**
  * This sample demonstrates how to show example opTopLevel
@@ -73,7 +75,8 @@ import { TestingClient } from "@azure/internal-test";
  * x-ms-original-file: 2021-10-01-preview/json_for_opTopLevel.json
  */
 async function opTopLevel(): Promise<void> {
-  const client = new TestingClient();
+  const endpoint = process.env.ENDPOINT || "";
+  const client = new TestingClient(endpoint);
   const result = await client.opTopLevel({ prop1: "body name" });
   console.log(result);
 }
@@ -107,6 +110,8 @@ Generated samples.
 ```ts samples
 /** This file path is /samples-dev/dOpDSample.ts */
 import { TestingClient } from "@azure/internal-test";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 /**
  * This sample demonstrates how to show example opD
@@ -115,7 +120,8 @@ import { TestingClient } from "@azure/internal-test";
  * x-ms-original-file: 2021-10-01-preview/json_for_opD.json
  */
 async function opD(): Promise<void> {
-  const client = new TestingClient();
+  const endpoint = process.env.ENDPOINT || "";
+  const client = new TestingClient(endpoint);
   const result = await client.d.opD({ prop1: "body name" });
   console.log(result);
 }
@@ -149,6 +155,8 @@ Generated samples.
 ```ts samples
 /** This file path is /samples-dev/bECOpBECSample.ts */
 import { TestingClient } from "@azure/internal-test";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 /**
  * This sample demonstrates how to execute opBEC
@@ -157,7 +165,8 @@ import { TestingClient } from "@azure/internal-test";
  * x-ms-original-file: 2021-10-01-preview/json_for_opBEC.json
  */
 async function opBEC(): Promise<void> {
-  const client = new TestingClient();
+  const endpoint = process.env.ENDPOINT || "";
+  const client = new TestingClient(endpoint);
   const result = await client.b.e.c.opBEC({ prop3: "body name" });
   console.log(result);
 }

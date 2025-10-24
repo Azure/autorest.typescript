@@ -58,6 +58,8 @@ Generated samples.
 ```ts samples
 /** This file path is /samples-dev/dBarSample.ts */
 import { TestingClient } from "@azure/internal-test";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 /**
  * This sample demonstrates how to execute bar
@@ -66,7 +68,8 @@ import { TestingClient } from "@azure/internal-test";
  * x-ms-original-file: 2021-10-01-preview/json_for_bar.json
  */
 async function bar(): Promise<void> {
-  const client = new TestingClient();
+  const endpoint = process.env.ENDPOINT || "";
+  const client = new TestingClient(endpoint);
   const result = await client.d.bar({ prop1: "body name" });
   console.log(result);
 }
@@ -100,6 +103,8 @@ Generated samples.
 ```ts samples
 /** This file path is /samples-dev/cFooSample.ts */
 import { TestingClient } from "@azure/internal-test";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 /**
  * This sample demonstrates how to execute foo
@@ -108,7 +113,8 @@ import { TestingClient } from "@azure/internal-test";
  * x-ms-original-file: 2021-10-01-preview/json_for_foo.json
  */
 async function foo(): Promise<void> {
-  const client = new TestingClient();
+  const endpoint = process.env.ENDPOINT || "";
+  const client = new TestingClient(endpoint);
   const result = await client.c.foo({ prop2: "body name" });
   console.log(result);
 }
