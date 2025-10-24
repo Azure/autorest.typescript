@@ -233,7 +233,7 @@ importers:
   ../../packages/typespec-ts:
     specifiers:
       '@azure-rest/core-client': ^2.3.1
-      '@azure-tools/azure-http-specs': 0.1.0-alpha.31-dev.0
+      '@azure-tools/azure-http-specs': 0.1.0-alpha.32-dev.2
       '@azure-tools/rlc-common': workspace:^0.45.1
       '@azure-tools/typespec-autorest': ^0.61.0
       '@azure-tools/typespec-azure-core': ^0.61.0
@@ -257,7 +257,7 @@ importers:
       '@typescript-eslint/parser': ^8.28.0
       '@typespec/compiler': ^1.5.0
       '@typespec/http': ^1.5.0
-      '@typespec/http-specs': 0.1.0-alpha.28-dev.0
+      '@typespec/http-specs': 0.1.0-alpha.28-dev.1
       '@typespec/openapi': ^1.5.0
       '@typespec/rest': ^0.75.0
       '@typespec/spec-api': 0.1.0-alpha.10-dev.0
@@ -297,7 +297,7 @@ importers:
       tslib: 2.6.2
     devDependencies:
       '@azure-rest/core-client': 2.3.1
-      '@azure-tools/azure-http-specs': 0.1.0-alpha.31-dev.0_mhtpjry45zcimvvqboa2mxannq
+      '@azure-tools/azure-http-specs': 0.1.0-alpha.32-dev.2_mhtpjry45zcimvvqboa2mxannq
       '@azure-tools/typespec-autorest': 0.61.0_zlxwjjyed53dbo4rv32x67ofpa
       '@azure-tools/typespec-azure-core': 0.61.0_eiv3q4yhoovesnkn4zu3754mpu
       '@azure-tools/typespec-azure-resource-manager': 0.61.0_574mczcc7t2su42jtuli7qb6cm
@@ -320,7 +320,7 @@ importers:
       '@typescript-eslint/parser': 8.29.1_rpfclszkijpquoieshhobbfaz4
       '@typespec/compiler': 1.5.0_@types+node@18.18.0
       '@typespec/http': 1.5.0_tbq7huz6rjbzw5ggblcyngywg4
-      '@typespec/http-specs': 0.1.0-alpha.28-dev.0_xbepox52qqkkarzjolnoisepga
+      '@typespec/http-specs': 0.1.0-alpha.28-dev.1_xbepox52qqkkarzjolnoisepga
       '@typespec/openapi': 1.5.0_bk63ksnle4b35owbllb6ylg72e
       '@typespec/rest': 0.75.0_bk63ksnle4b35owbllb6ylg72e
       '@typespec/spec-api': 0.1.0-alpha.10-dev.0
@@ -473,8 +473,8 @@ packages:
       proper-lockfile: 2.0.1
     dev: false
 
-  /@azure-tools/azure-http-specs/0.1.0-alpha.31-dev.0_mhtpjry45zcimvvqboa2mxannq:
-    resolution: {integrity: sha512-RyiGkg6GMkDPBuFCPAxbcQkg8rj/JrwlmICYwJcaT5LwbSSqiqBBYGhhIrd28vtfMun6szaP5j8V7ACGWzdHWQ==}
+  /@azure-tools/azure-http-specs/0.1.0-alpha.32-dev.2_mhtpjry45zcimvvqboa2mxannq:
+    resolution: {integrity: sha512-djf9VNsAHZw1Ei6SJjXII2aMGn4jc/nCTmiBpIEkbS/N3mPc+y31DfPaATw4prK3WM9hZ10+TNZSLhKD+KAxAw==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       '@azure-tools/typespec-azure-core': ^0.61.0 || >=0.62.0-dev <0.62.0
@@ -2882,8 +2882,8 @@ packages:
     dependencies:
       '@typespec/compiler': 1.5.0_@types+node@18.18.0
 
-  /@typespec/http-specs/0.1.0-alpha.28-dev.0_xbepox52qqkkarzjolnoisepga:
-    resolution: {integrity: sha512-vdPWoyZ/WgOGLfuFx+cLX7Ctsc6G9EslAAAPi00EiUlsAzeFihG3bnJal7FJErcC5SqlYF4q+yqZQT62NqhlTQ==}
+  /@typespec/http-specs/0.1.0-alpha.28-dev.1_xbepox52qqkkarzjolnoisepga:
+    resolution: {integrity: sha512-oiuyofjMP19L/0QYyyVFoN4IdQOhzDUEMm2onUEWJ3YAebvRQIvM3UF7mH8wQpMShbe6SCf93ILJ9Lq1CrMCRA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@typespec/compiler': ^1.5.0
