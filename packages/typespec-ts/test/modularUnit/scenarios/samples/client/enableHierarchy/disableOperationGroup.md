@@ -65,8 +65,6 @@ Generated samples.
 ```ts samples
 /** This file path is /samples-dev/opTopLevelSample.ts */
 import { TestingClient } from "@azure/internal-test";
-import * as dotenv from "dotenv";
-dotenv.config();
 
 /**
  * This sample demonstrates how to show example opTopLevel
@@ -110,8 +108,6 @@ Generated samples.
 ```ts samples
 /** This file path is /samples-dev/dOpDSample.ts */
 import { TestingClient } from "@azure/internal-test";
-import * as dotenv from "dotenv";
-dotenv.config();
 
 /**
  * This sample demonstrates how to show example opD
@@ -155,8 +151,6 @@ Generated samples.
 ```ts samples
 /** This file path is /samples-dev/bECOpBECSample.ts */
 import { TestingClient } from "@azure/internal-test";
-import * as dotenv from "dotenv";
-dotenv.config();
 
 /**
  * This sample demonstrates how to execute opBEC

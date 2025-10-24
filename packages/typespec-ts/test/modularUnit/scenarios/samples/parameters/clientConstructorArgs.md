@@ -140,8 +140,6 @@ Raw json files for testing client constructor arguments.
 /** This file path is /samples-dev/createOrUpdateSample.ts */
 import { MachineLearningServicesClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-dotenv.config();
 
 /**
  * This sample demonstrates how to execute createOrUpdate
@@ -241,8 +239,6 @@ Should generate client constructor with required endpoint parameter:
 ```ts samples
 /** This file path is /samples-dev/findSentenceBoundariesSample.ts */
 import { TextTranslationClient } from "@azure/internal-test";
-import * as dotenv from "dotenv";
-dotenv.config();
 
 /**
  * This sample demonstrates how to execute findSentenceBoundaries

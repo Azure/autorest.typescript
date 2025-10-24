@@ -135,8 +135,6 @@ Generate samples for dpg cases:
 /** This file path is /samples-dev/widgetsListWidgetsSample.ts */
 import { WidgetManagerClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-dotenv.config();
 
 /**
  * This sample demonstrates how to list Widget resources
@@ -169,8 +167,6 @@ main().catch(console.error);
 /** This file path is /samples-dev/widgetsDeleteWidgetSample.ts */
 import { WidgetManagerClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-dotenv.config();
 
 /**
  * This sample demonstrates how to delete a Widget asynchronously.
@@ -195,8 +191,6 @@ main().catch(console.error);
 /** This file path is /samples-dev/widgetsCreateOrUpdateWidgetSample.ts */
 import { WidgetManagerClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-dotenv.config();
 
 /**
  * This sample demonstrates how to creates or updates a Widget asynchronously.

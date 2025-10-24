@@ -129,8 +129,6 @@ Samples
 ```ts samples
 /** This file path is /samples-dev/postSample.ts */
 import { TestingClient } from "@azure/internal-test";
-import * as dotenv from "dotenv";
-dotenv.config();
 
 /**
  * This sample demonstrates how to show example demo

@@ -76,8 +76,6 @@ Generate samples for hierarchy cases:
 /** This file path is /samples-dev/aClient/fooSample.ts */
 import { AClient } from "@azure/internal-test";
 import { DefaultAzureCredential } from "@azure/identity";
-import * as dotenv from "dotenv";
-dotenv.config();
 
 /**
  * This sample demonstrates how to execute foo

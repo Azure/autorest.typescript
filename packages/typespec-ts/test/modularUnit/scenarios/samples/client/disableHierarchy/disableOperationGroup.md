@@ -58,8 +58,6 @@ Generated samples.
 ```ts samples
 /** This file path is /samples-dev/barSample.ts */
 import { TestingClient } from "@azure/internal-test";
-import * as dotenv from "dotenv";
-dotenv.config();
 
 /**
  * This sample demonstrates how to execute bar
@@ -103,8 +101,6 @@ Generated samples.
 ```ts samples
 /** This file path is /samples-dev/fooSample.ts */
 import { TestingClient } from "@azure/internal-test";
-import * as dotenv from "dotenv";
-dotenv.config();
 
 /**
  * This sample demonstrates how to execute foo

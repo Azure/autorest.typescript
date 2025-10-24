@@ -61,8 +61,6 @@ Generate samples for non-hierarchy cases:
 ```ts samples
 /** This file path is /samples-dev/readSample.ts */
 import { TestServiceClient } from "@azure/internal-test";
-import * as dotenv from "dotenv";
-dotenv.config();
 
 /**
  * This sample demonstrates how to show example demo

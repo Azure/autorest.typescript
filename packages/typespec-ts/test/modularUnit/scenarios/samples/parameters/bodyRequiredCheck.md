@@ -61,8 +61,6 @@ Generate required body in option parameter:
 ```ts samples
 /** This file path is /samples-dev/readSample.ts */
 import { TestingClient } from "@azure/internal-test";
-import * as dotenv from "dotenv";
-dotenv.config();
 
 /**
  * This sample demonstrates how to show example demo
