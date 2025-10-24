@@ -1,13 +1,13 @@
 import { assert } from "chai";
-import ApiVersionHeaderClientFactory, {
-  ApiVersionHeaderClient
+import HeaderClientFactory, {
+  HeaderClient
 } from "./generated/azure/client-generator-core/api-version/header/src/index.js";
 
 describe("Azure Alternate ApiVersion Header Client", () => {
-  let client: ApiVersionHeaderClient;
+  let client: HeaderClient;
 
   beforeEach(() => {
-    client = ApiVersionHeaderClientFactory({
+    client = HeaderClientFactory({
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0
