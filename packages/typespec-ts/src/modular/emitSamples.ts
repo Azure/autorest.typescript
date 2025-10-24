@@ -37,6 +37,7 @@ import {
   ServiceOperation
 } from "../utils/operationUtil.js";
 import { getSubscriptionId } from "../transform/transfromRLCOptions.js";
+import { getOperationFunction } from "./helpers/operationHelpers.js";
 
 /**
  * Interfaces for samples generations
@@ -53,6 +54,7 @@ interface EmitSampleOptions {
   generatedFiles: SourceFile[];
   classicalMethodPrefix?: string;
   subFolder?: string;
+  hierarchies?: string[]; // Add hierarchies to track operation path
 }
 /**
  * Helpers to emit samples
@@ -80,8 +82,8 @@ function emitClientSamples(
 ) {
   const methodMap = getMethodHierarchiesMap(dpgContext, client);
   for (const [prefixKey, operations] of methodMap) {
-    const prefix = prefixKey
-      .split("/")
+    const hierarchies = prefixKey ? prefixKey.split("/") : [];
+    const prefix = hierarchies
       .map((name) => {
         return normalizeName(name, NameType.Property);
       })
@@ -89,7 +91,8 @@ function emitClientSamples(
     for (const op of operations) {
       emitMethodSamples(dpgContext, op, {
         ...options,
-        classicalMethodPrefix: prefix
+        classicalMethodPrefix: prefix,
+        hierarchies: hierarchies
       });
     }
   }
@@ -173,10 +176,35 @@ function emitMethodSamples(
     );
 
     // prepare operation-level parameters
+    // Get the actual function signature parameter order
+    const operationFunction = getOperationFunction(
+      dpgContext,
+      [options.hierarchies ?? [], method],
+      "Client"
+    );
+
+    // Extract parameter names from the function signature (excluding context and options)
+    const signatureParamNames =
+      operationFunction.parameters
+        ?.filter(
+          (p) =>
+            p.name !== "context" &&
+            !p.type?.toString().includes("OptionalParams")
+        )
+        .map((p) => p.name) ?? [];
+
     const methodParamValues = parameters.filter((p) => !p.onClient);
-    const methodParams = methodParamValues
-      .filter((p) => !p.isOptional)
-      .map((p) => `${p.value}`);
+
+    // Create a map for quick lookup of parameter values by name
+    const paramValueMap = new Map(methodParamValues.map((p) => [p.name, p]));
+
+    // Reorder methodParamValues according to the signature order
+    const orderedRequiredParams = signatureParamNames
+      .map((name) => paramValueMap.get(name))
+      .filter((p): p is ExampleValue => p !== undefined && !p.isOptional);
+
+    const methodParams = orderedRequiredParams.map((p) => `${p.value}`);
+
     const optionalParams = methodParamValues
       .filter((p) => p.isOptional)
       .map((param) => `${param.name}: ${param.value}`);
@@ -274,11 +302,7 @@ function prepareExampleParameters(
   }
 
   let subscriptionIdValue = `"00000000-0000-0000-0000-00000000000"`;
-
-  // Collect parameters by method.parameters order to fix parameter ordering
-  const parametersByOrder = new Map<string, ExampleValue>();
-
-  // Process required parameters from method.operation.parameters
+  // required parameters
   for (const param of method.operation.parameters) {
     if (
       param.optional === true ||
@@ -310,9 +334,7 @@ function prepareExampleParameters(
       subscriptionIdValue = getParameterValue(exampleValue.value);
       continue;
     }
-
-    parametersByOrder.set(
-      param.name,
+    result.push(
       prepareExampleValue(
         exampleValue.parameter.name,
         exampleValue.value,
@@ -321,8 +343,13 @@ function prepareExampleParameters(
       )
     );
   }
-
-  // Process body parameter
+  // add subscriptionId for ARM clients if ARM clients need it
+  if (dpgContext.arm && getSubscriptionId(dpgContext)) {
+    result.push(
+      prepareExampleValue("subscriptionId", subscriptionIdValue, false, true)
+    );
+  }
+  // required/optional body parameters
   const bodyParam = method.operation.bodyParam;
   const bodySerializeName = bodyParam?.serializedName;
   const bodyExample = parameterMap[bodySerializeName ?? ""];
@@ -337,8 +364,7 @@ function prepareExampleParameters(
         if (!propExample) {
           continue;
         }
-        parametersByOrder.set(
-          prop.name,
+        result.push(
           prepareExampleValue(
             prop.name,
             propExample,
@@ -348,8 +374,7 @@ function prepareExampleParameters(
         );
       }
     } else {
-      parametersByOrder.set(
-        bodyParam.name,
+      result.push(
         prepareExampleValue(
           bodyParam.name,
           bodyExample.value,
@@ -358,33 +383,6 @@ function prepareExampleParameters(
         )
       );
     }
-  }
-
-  // Add parameters in method.parameters order
-  for (const methodParam of method.parameters) {
-    if (
-      methodParam.name !== "context" &&
-      parametersByOrder.has(methodParam.name)
-    ) {
-      result.push(parametersByOrder.get(methodParam.name)!);
-    }
-  }
-
-  // If no parameters were added through method.parameters (e.g., all params in options),
-  // add all collected parameters
-  if (result.length === 0 || (credentialExampleValue && result.length === 1)) {
-    for (const [_, exampleValue] of parametersByOrder) {
-      if (!result.some((r) => r.name === exampleValue.name)) {
-        result.push(exampleValue);
-      }
-    }
-  }
-
-  // add subscriptionId for ARM clients if ARM clients need it
-  if (dpgContext.arm && getSubscriptionId(dpgContext)) {
-    result.push(
-      prepareExampleValue("subscriptionId", subscriptionIdValue, false, true)
-    );
   }
   // optional parameters
   method.operation.parameters
