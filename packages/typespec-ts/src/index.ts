@@ -190,7 +190,11 @@ export async function $onEmit(context: EmitContext) {
     // clear output folder if needed
     if (options.clearOutputFolder) {
       // Clear output directory while preserving TempTypeSpecFiles
-      await clearDirectory(context.emitterOutputDir, ["TempTypeSpecFiles"]);
+      await clearDirectory(
+        context.emitterOutputDir,
+        ["TempTypeSpecFiles"],
+        program
+      );
     }
     const hasTestFolder = await fsextra.pathExists(
       join(dpgContext.generationPathDetail?.metadataDir ?? "", "test")
