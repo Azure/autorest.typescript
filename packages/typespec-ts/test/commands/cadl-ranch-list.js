@@ -343,6 +343,10 @@ export const azureRlcTsps = [
   {
     outputPath: "azure/versioning/previewVersion",
     inputPath: "azure/versioning/previewVersion"
+  },
+  {
+    outputPath: "azure/client-generator-core/api-version/header",
+    inputPath: "azure/client-generator-core/api-version/header"
   }
 ];
 
@@ -879,6 +883,10 @@ export const azureModularTsps = [
   {
     outputPath: "azure/versioning/previewVersion",
     inputPath: "azure/versioning/previewVersion"
+  },
+  {
+    outputPath: "azure/client-generator-core/api-version/header",
+    inputPath: "azure/client-generator-core/api-version/header"
   }
   // skip due to issue https://github.com/Azure/autorest.typescript/issues/3494
   // {

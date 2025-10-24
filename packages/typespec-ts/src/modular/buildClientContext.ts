@@ -226,6 +226,13 @@ export function buildClientContext(
     }
 
     if (apiVersionParam.kind === "method") {
+      // Declare the version variable from options
+      const paramName = getClientParameterName(apiVersionParam);
+      const defaultValue = apiVersionParam.clientDefaultValue
+        ? ` ?? "${apiVersionParam.clientDefaultValue}"`
+        : "";
+      apiVersionPolicyStatement += `const ${paramName} = options.${paramName}${defaultValue};
+      `;
       apiVersionPolicyStatement += `
       clientContext.pipeline.addPolicy({
         name: 'ClientApiVersionPolicy',
@@ -236,7 +243,7 @@ export function buildClientContext(
           if (!url.searchParams.get("api-version")) {
             req.url = \`\${req.url}\${
               Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
-            }api-version=\${${getClientParameterName(apiVersionParam)}}\`;
+            }api-version=\${${paramName}}\`;
           }
     
           return next(req);
