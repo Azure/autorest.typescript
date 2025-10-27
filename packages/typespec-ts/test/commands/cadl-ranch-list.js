@@ -729,7 +729,7 @@ export const azureModularTsps = [
     inputPath: "client/naming"
   },
   {
-    outputPath: "client/naming/enum-conflict",
+    outputPath: "client/naming-enum-conflict",
     inputPath: "client/naming/enum-conflict"
   },
   {

@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { EnumConflictClient } from "./generated/client/naming/enum-conflict/src/index.js";
+import { EnumConflictClient } from "./generated/client/naming-enum-conflict/src/index.js";
 
 describe("ClientNamingEnumConflict Modular Client", () => {
   let client: EnumConflictClient;
