@@ -6,14 +6,11 @@ export declare type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-export declare interface ListWithoutContinuationOptionalParams extends OperationOptions {
-}
-
 export declare class PageableClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: PageableClientOptionalParams);
-    listWithoutContinuation(options?: ListWithoutContinuationOptionalParams): PagedAsyncIterableIterator<Pet>;
+    readonly pageSize: PageSizeOperations;
     readonly serverDrivenPagination: ServerDrivenPaginationOperations;
 }
 
@@ -28,6 +25,18 @@ export declare interface PagedAsyncIterableIterator<TElement, TPage = TElement[]
 
 export declare interface PageSettings {
     continuationToken?: string;
+}
+
+export declare interface PageSizeListWithoutContinuationOptionalParams extends OperationOptions {
+}
+
+export declare interface PageSizeListWithPageSizeOptionalParams extends OperationOptions {
+    pageSize?: number;
+}
+
+export declare interface PageSizeOperations {
+    listWithPageSize: (options?: PageSizeListWithPageSizeOptionalParams) => PagedAsyncIterableIterator<Pet>;
+    listWithoutContinuation: (options?: PageSizeListWithoutContinuationOptionalParams) => PagedAsyncIterableIterator<Pet>;
 }
 
 export declare interface Pet {

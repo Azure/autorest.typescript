@@ -703,10 +703,16 @@ function getHeaderAndBodyParameters(
       ) {
         continue;
       }
-      parametersImplementation[param.kind].push({
-        paramMap: getParameterMap(dpgContext, param, optionalParamName),
-        param
-      });
+      // Check if this parameter still exists in the corresponding method params (after override)
+      if (
+        param.correspondingMethodParams &&
+        param.correspondingMethodParams.length > 0
+      ) {
+        parametersImplementation[param.kind].push({
+          paramMap: getParameterMap(dpgContext, param, optionalParamName),
+          param
+        });
+      }
     }
   }
 
@@ -850,7 +856,17 @@ export function getParameterMap(
     return getRequired(context, param);
   }
 
-  throw new Error(`Parameter ${param.name} is not supported`);
+  reportDiagnostic(context.program, {
+    code: "unsupported-parameter-type",
+    format: {
+      paramName: param.name,
+      paramKind: param.kind
+    },
+    target: param.__raw || NoTarget
+  });
+
+  // Return a fallback value to allow the emitter to continue
+  return `"${param.name}": undefined`;
 }
 
 function getCollectionFormat(
@@ -1051,15 +1067,21 @@ function getQueryParameters(
 
   for (const param of operationParameters) {
     if (param.kind === "query") {
-      parametersImplementation[param.kind].push({
-        paramMap: getParameterMap(dpgContext, {
-          ...param,
-          // TODO: remember to remove this hack once compiler gives us a name
-          // https://github.com/microsoft/typespec/issues/6743
-          serializedName: getUriTemplateQueryParamName(param.serializedName)
-        }),
-        param
-      });
+      // Check if this parameter still exists in the corresponding method params (after override)
+      if (
+        param.correspondingMethodParams &&
+        param.correspondingMethodParams.length > 0
+      ) {
+        parametersImplementation[param.kind].push({
+          paramMap: getParameterMap(dpgContext, {
+            ...param,
+            // TODO: remember to remove this hack once compiler gives us a name
+            // https://github.com/microsoft/typespec/issues/6743
+            serializedName: getUriTemplateQueryParamName(param.serializedName)
+          }),
+          param
+        });
+      }
     }
   }
 

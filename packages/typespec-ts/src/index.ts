@@ -8,6 +8,7 @@ import {
   AzurePollingDependencies,
   DefaultCoreDependencies
 } from "./modular/external-dependencies.js";
+import { clearDirectory } from "./utils/fileSystemUtils.js";
 import { EmitContext, Program } from "@typespec/compiler";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import {
@@ -43,7 +44,9 @@ import {
   buildTopLevelIndex,
   buildTsConfig,
   buildTsSnippetsConfig,
-  buildTsTestBrowserConfig,
+  buildTestBrowserTsConfig,
+  buildTestNodeTsConfig,
+  buildTestMainTsConfig,
   buildVitestConfig,
   getClientName,
   hasUnexpectedHelper,
@@ -52,8 +55,7 @@ import {
   buildSampleEnvFile,
   buildSnippets,
   buildTsSrcConfig,
-  buildTsSampleConfig,
-  buildTsTestConfig
+  buildTsSampleConfig
 } from "@azure-tools/rlc-common";
 import {
   buildRootIndex,
@@ -93,6 +95,7 @@ import { provideSdkTypes } from "./framework/hooks/sdkTypes.js";
 import { transformRLCModel } from "./transform/transform.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
 import { emitSamples } from "./modular/emitSamples.js";
+import { generateCrossLanguageDefinitionFile } from "./utils/crossLanguageDef.js";
 
 export * from "./lib.js";
 
@@ -194,7 +197,8 @@ export async function $onEmit(context: EmitContext) {
     emitterOptions["generate-sample"] = options.generateSample;
     // clear output folder if needed
     if (options.clearOutputFolder) {
-      await fsextra.emptyDir(context.emitterOutputDir);
+      // Clear output directory while preserving TempTypeSpecFiles
+      await clearDirectory(context.emitterOutputDir, ["TempTypeSpecFiles"]);
     }
     const hasTestFolder = await fsextra.pathExists(
       join(dpgContext.generationPathDetail?.metadataDir ?? "", "test")
@@ -333,7 +337,7 @@ export async function $onEmit(context: EmitContext) {
         interfaceOnly: true
       });
       if (isMultiClients) {
-        buildSubClientIndexFile(subClient, modularEmitterOptions);
+        buildSubClientIndexFile(dpgContext, subClient, modularEmitterOptions);
       }
       buildRootIndex(
         dpgContext,
@@ -374,9 +378,14 @@ export async function $onEmit(context: EmitContext) {
     console.timeEnd("onEmit: generate files");
     console.timeEnd("onEmit: generate modular sources");
   }
+
   interface Metadata {
     apiVersion?: string;
     emitterVersion?: string;
+    crossLanguageDefinitions?: {
+      CrossLanguagePackageId: string;
+      CrossLanguageDefinitionId: Record<string, string>;
+    };
   }
 
   function buildMetadataJson() {
@@ -392,11 +401,16 @@ export async function $onEmit(context: EmitContext) {
     if (emitterVersion !== undefined) {
       content.emitterVersion = emitterVersion;
     }
+    if (dpgContext.rlcOptions?.isModularLibrary) {
+      content.crossLanguageDefinitions =
+        generateCrossLanguageDefinitionFile(dpgContext);
+    }
     return {
       path: "metadata.json",
       content: JSON.stringify(content, null, 2)
     };
   }
+
   async function generateMetadataAndTest(context: SdkContext) {
     const project = useContext("outputProject");
     if (rlcCodeModels.length === 0 || !rlcCodeModels[0]) {
@@ -445,7 +459,9 @@ export async function $onEmit(context: EmitContext) {
         commonBuilders.push((model) => buildVitestConfig(model, "node"));
         commonBuilders.push((model) => buildVitestConfig(model, "esm"));
         commonBuilders.push((model) => buildVitestConfig(model, "browser"));
-        commonBuilders.push((model) => buildTsTestBrowserConfig(model));
+        commonBuilders.push((model) => buildTestBrowserTsConfig(model));
+        commonBuilders.push((model) => buildTestNodeTsConfig(model));
+        commonBuilders.push((model) => buildTestMainTsConfig(model));
       }
       if (isAzureFlavor) {
         commonBuilders.push(buildEsLintConfig);
@@ -476,9 +492,6 @@ export async function $onEmit(context: EmitContext) {
         commonBuilders.push(buildTsSrcConfig);
         if (option.generateSample) {
           commonBuilders.push(buildTsSampleConfig);
-        }
-        if (option.generateTest) {
-          commonBuilders.push(buildTsTestConfig);
         }
       }
 

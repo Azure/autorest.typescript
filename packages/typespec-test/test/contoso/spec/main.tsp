@@ -8,14 +8,11 @@ using TypeSpec.Rest;
 using TypeSpec.Versioning;
 using Azure.Core;
 
-@service(#{
-    title: "Contoso Widget Manager",
-  })
+@service(#{ title: "Contoso Widget Manager" })
 @versioned(Contoso.WidgetManager.Versions)
 namespace Azure.Contoso.WidgetManager;
 
 enum Versions {
-  @useDependency(Azure.Core.Versions.v1_0_Preview_1)
   v2022_11_01_Preview: "2022-11-01-preview",
 }
 

@@ -1,3 +1,25 @@
+## 0.45.1 (2025-10-11)
+
+- [Bugfix] Upgrade the @azure-tools/typespec-azure-core to v0.61.0. Please refer to [#3532](https://github.com/Azure/autorest.typescript/pull/3532)
+
+## 0.45.0 (2025-10-11)
+
+- [Feature] Bump TypeSpec version to v1.5.0 and TCGC to v0.61.0. Please refer to [#3526](https://github.com/Azure/autorest.typescript/pull/3526)
+- [Feature] Add dev tool dependencies back to individual packages. Please refer to [#3523](https://github.com/Azure/autorest.typescript/pull/3523)
+- [Bugfix] Fix LRO operation status model not generation issue. Please refer to [#3434](https://github.com/Azure/autorest.typescript/pull/3434)
+- [Feature] Update the dependency to pnpm style when `azureSdkForJs` is true. Please refer to [#3210](https://github.com/Azure/autorest.typescript/pull/3210)
+- [Bugfix] Fix the bytes and additional properties issues in sample generation. Please refer to [#3527](https://github.com/Azure/autorest.typescript/pull/3527)
+- [Bugfix] Convert emitter throw statements to diagnostic reports to prevent crashes. Please refer to [#3482](https://github.com/Azure/autorest.typescript/pull/3482)
+- [Feature] Upgrade tcgc and fix nightly ci error. Please refer to [#3510](https://github.com/Azure/autorest.typescript/pull/3510)
+
+## 0.44.1 (2025-09-26)
+
+- [Feature] Multi-level inheritance support. Please refer to [#3514](https://github.com/Azure/autorest.typescript/pull/3514)
+- [Bugfix] Fix the missing parameters in operation options. Please refer to [#3502](https://github.com/Azure/autorest.typescript/pull/3502)
+- [Feature] Add default documentation for enum members without explicit docs. Please refer to [#3505](https://github.com/Azure/autorest.typescript/pull/3505)
+- [Feature] Add initial version of cross language api id support for modular generator. Please refer to [#3497](https://github.com/Azure/autorest.typescript/pull/3497)
+- [Feature] Update tsconfig.browser.config.json. Please refer to [#3461](https://github.com/Azure/autorest.typescript/pull/3461)
+
 ## 0.44.0 (2025-09-11)
 
 - [Bugfix] Improve sourcesRoot calculation for typespec-ts. Please refer to [#3484](https://github.com/Azure/autorest.typescript/pull/3484)

@@ -46,12 +46,12 @@ import path from "path";
 import { refkey } from "../framework/refkey.js";
 import { useContext } from "../contextManager.js";
 import { isMetadata, isOrExtendsHttpFile } from "@typespec/http";
-import {
-  isAzureCoreErrorType,
-  isAzureCoreLroType
-} from "../utils/modelUtils.js";
+import { isAzureCoreErrorType } from "../utils/modelUtils.js";
 import { isExtensibleEnum } from "./type-expressions/get-enum-expression.js";
-import { isDiscriminatedUnion } from "./serialization/serializeUtils.js";
+import {
+  getAllDiscriminatedValues,
+  isDiscriminatedUnion
+} from "./serialization/serializeUtils.js";
 import { reportDiagnostic } from "../lib.js";
 import { getNamespaceFullName, NoTarget } from "@typespec/compiler";
 import {
@@ -66,6 +66,7 @@ import { resolveReference } from "../framework/reference.js";
 import { MultipartHelpers } from "./static-helpers-metadata.js";
 import { getAllAncestors } from "./helpers/operationHelpers.js";
 import { getAllProperties } from "./helpers/operationHelpers.js";
+import { getDirectSubtypes } from "./helpers/typeHelpers.js";
 
 type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
   extends?: string[];
@@ -103,9 +104,6 @@ export function emitTypes(
 
   for (const type of emitQueue) {
     if (!isGenerableType(type)) {
-      continue;
-    }
-    if (isAzureCoreLroType(type.__raw)) {
       continue;
     }
 
@@ -458,6 +456,9 @@ function emitEnumMember(
 
   if (member.doc) {
     memberStructure.docs = [member.doc];
+  } else {
+    // Provide default documentation using the enum value when no explicit doc exists
+    memberStructure.docs = [String(member.value)];
   }
 
   return memberStructure;
@@ -474,7 +475,7 @@ function buildModelInterface(
     properties: type.properties
       .filter((p) => !isMetadata(context.program, p.__raw!))
       .map((p) => {
-        return buildModelProperty(context, p);
+        return buildModelProperty(context, p, type);
       })
   } as InterfaceStructure;
 
@@ -621,17 +622,16 @@ export function normalizeModelName(
 }
 
 function buildModelPolymorphicType(context: SdkContext, type: SdkModelType) {
-  if (!type.discriminatedSubtypes) {
+  // Only include direct subtypes in this union
+  const directSubtypes = getDirectSubtypes(type);
+  if (directSubtypes.length === 0) {
     return undefined;
   }
-
-  const discriminatedSubtypes = Object.values(type.discriminatedSubtypes);
-
   const typeDeclaration: TypeAliasDeclarationStructure = {
     kind: StructureKind.TypeAlias,
     name: `${normalizeName(type.name, NameType.Interface)}Union`,
     isExported: true,
-    type: discriminatedSubtypes
+    type: directSubtypes
       .filter((p) => {
         return (
           p.usage !== undefined &&
@@ -652,7 +652,8 @@ function buildModelPolymorphicType(context: SdkContext, type: SdkModelType) {
 
 function buildModelProperty(
   context: SdkContext,
-  property: SdkModelPropertyType
+  property: SdkModelPropertyType,
+  model: SdkModelType
 ): PropertySignatureStructure {
   const normalizedPropName = normalizeModelPropertyName(context, property);
   if (
@@ -670,8 +671,18 @@ function buildModelProperty(
   }
 
   let typeExpression: string;
+  const allDiscriminatorValues = getAllDiscriminatedValues(model, property);
+
+  // We need refine the discriminator property if
+  // 1. it is discriminated union
+  // 2. it has other discriminator values except itself
+  if (isDiscriminatedUnion(model) && allDiscriminatorValues.length > 1) {
+    typeExpression = allDiscriminatorValues
+      .map((value) => `"${value}"`)
+      .join(" | ");
+  }
   // eslint-disable-next-line
-  if (property.kind === "property" && property.isMultipartFileInput) {
+  else if (property.kind === "property" && property.isMultipartFileInput) {
     // eslint-disable-next-line
     const multipartOptions = property.multipartOptions;
     typeExpression = "{";
@@ -776,7 +787,14 @@ function visitClientMethod(
       visitOperation(context, method.operation);
       break;
     default:
-      throw new Error(`Unknown sdk method kind: ${(method as any).kind}`);
+      reportDiagnostic(context.program, {
+        code: "unknown-sdk-method-kind",
+        format: {
+          methodKind: (method as any).kind
+        },
+        target: NoTarget
+      });
+      return; // Skip processing this method but continue with others
   }
 }
 

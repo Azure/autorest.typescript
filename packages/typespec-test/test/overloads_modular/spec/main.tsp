@@ -18,17 +18,15 @@ using Azure.Core.Traits;
     }
   ]>
 )
-@service(#{
-  title: "Contoso Widget Manager",
-})
+@service(#{ title: "Contoso Widget Manager" })
 @server(
   "{endpoint}/widget",
   "Contoso Widget APIs",
   {
     @doc("""
-Supported Widget Services endpoints (protocol and hostname, for example:
-https://westus.api.widget.contoso.com).
-""")
+      Supported Widget Services endpoints (protocol and hostname, for example:
+      https://westus.api.widget.contoso.com).
+      """)
     endpoint: string,
   }
 )
@@ -38,7 +36,6 @@ namespace Contoso.WidgetManager;
 @doc("The Contoso Widget Manager service version.")
 enum Versions {
   @doc("Version 2022-08-31")
-  @useDependency(Azure.Core.Versions.v1_0_Preview_2)
   `2022-08-30`,
 }
 
@@ -55,9 +52,21 @@ model JpegImage {
 interface FooOperations {
   @route("/avatar")
   @sharedRoute
-  op getAvatarAsPng is Azure.Core.RpcOperation<PngImage, {@header accept: "image/png"; @statusCode _ : "204"; }>;
-  
+  getAvatarAsPng is Azure.Core.RpcOperation<
+    PngImage,
+    {
+      @header accept: "image/png";
+      @statusCode _: "204";
+    }
+  >;
+
   @route("/avatar")
   @sharedRoute
-  op getAvatarAsJpeg is Azure.Core.RpcOperation<JpegImage, {@header accept: "image/jpeg"; @statusCode _ : "204"; }>;
+  getAvatarAsJpeg is Azure.Core.RpcOperation<
+    JpegImage,
+    {
+      @header accept: "image/jpeg";
+      @statusCode _: "204";
+    }
+  >;
 }
