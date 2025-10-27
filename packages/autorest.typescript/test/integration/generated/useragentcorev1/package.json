@@ -13,11 +13,10 @@
   "types": "./dist/commonjs/index.d.ts",
   "type": "module",
   "devDependencies": {
-    "mkdirp": "catalog:",
     "typescript": "catalog:",
     "rimraf": "catalog:",
     "dotenv": "catalog:testing",
-    "@azure/dev-tool": "workspace:*",
+    "@azure/dev-tool": "workspace:^",
     "cross-env": "catalog:",
     "eslint": "catalog:",
     "prettier": "catalog:",
