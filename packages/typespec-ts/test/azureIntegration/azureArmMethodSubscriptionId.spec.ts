@@ -96,7 +96,7 @@ describe("Azure Arm Method Subscription Id Rest Client", () => {
     const result = await client
       .path("/providers/Azure.ResourceManager.MethodSubscriptionId/operations")
       .get();
-    
+
     if (isUnexpected(result)) {
       throw new Error(`Unexpected status code ${result.status}`);
     }
