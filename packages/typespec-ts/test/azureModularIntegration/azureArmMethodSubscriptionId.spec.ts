@@ -4,14 +4,14 @@ import { MethodSubscriptionIdClient } from "./generated/azure/resource-manager/m
 describe("Azure Arm Method Subscription Id Modular Client", () => {
   let client: MethodSubscriptionIdClient;
 
+  const SUBSCRIPTION_ID_EXPECTED = "00000000-0000-0000-0000-000000000000";
+
   beforeEach(() => {
-    client = new MethodSubscriptionIdClient({
+    client = new MethodSubscriptionIdClient(SUBSCRIPTION_ID_EXPECTED, {
       endpoint: "http://localhost:3002",
       allowInsecureConnection: true
     });
   });
-
-  const SUBSCRIPTION_ID_EXPECTED = "00000000-0000-0000-0000-000000000000";
   const RESOURCE_GROUP_EXPECTED = "test-rg";
   const LOCATION_EXPECTED = "eastus";
 
@@ -110,7 +110,7 @@ describe("Azure Arm Method Subscription Id Modular Client", () => {
   });
 
   it("should create or update subscription resource 1", async () => {
-    const result = await client.subscriptionResource1Operations.createOrUpdate(
+    const result = await client.subscriptionResource1Operations.put(
       SUBSCRIPTION_ID_EXPECTED,
       "sub-resource-1",
       {
@@ -142,7 +142,7 @@ describe("Azure Arm Method Subscription Id Modular Client", () => {
   });
 
   it("should create or update subscription resource 2", async () => {
-    const result = await client.subscriptionResource2Operations.createOrUpdate(
+    const result = await client.subscriptionResource2Operations.put(
       SUBSCRIPTION_ID_EXPECTED,
       "sub-resource-2",
       {
@@ -174,7 +174,7 @@ describe("Azure Arm Method Subscription Id Modular Client", () => {
   });
 
   it("should create or update mixed subscription resource", async () => {
-    const result = await client.subscriptionResourceOperations.createOrUpdate(
+    const result = await client.subscriptionResourceOperations.put(
       SUBSCRIPTION_ID_EXPECTED,
       "sub-resource",
       {
@@ -207,7 +207,7 @@ describe("Azure Arm Method Subscription Id Modular Client", () => {
   });
 
   it("should create or update resource group resource", async () => {
-    const result = await client.resourceGroupResourceOperations.createOrUpdate(
+    const result = await client.resourceGroupResourceOperations.put(
       SUBSCRIPTION_ID_EXPECTED,
       RESOURCE_GROUP_EXPECTED,
       "rg-resource",
