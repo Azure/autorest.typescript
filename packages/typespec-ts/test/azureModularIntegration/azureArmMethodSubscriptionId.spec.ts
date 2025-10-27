@@ -198,7 +198,6 @@ describe("Azure Arm Method Subscription Id Modular Client", () => {
   // Test Resource Group resource operations
   it("should get resource group resource", async () => {
     const result = await client.resourceGroupResourceOperations.get(
-      SUBSCRIPTION_ID_EXPECTED,
       RESOURCE_GROUP_EXPECTED,
       "rg-resource"
     );
@@ -208,7 +207,6 @@ describe("Azure Arm Method Subscription Id Modular Client", () => {
 
   it("should create or update resource group resource", async () => {
     const result = await client.resourceGroupResourceOperations.put(
-      SUBSCRIPTION_ID_EXPECTED,
       RESOURCE_GROUP_EXPECTED,
       "rg-resource",
       {
@@ -224,7 +222,6 @@ describe("Azure Arm Method Subscription Id Modular Client", () => {
 
   it("should delete resource group resource", async () => {
     const result = await client.resourceGroupResourceOperations.delete(
-      SUBSCRIPTION_ID_EXPECTED,
       RESOURCE_GROUP_EXPECTED,
       "rg-resource"
     );

@@ -109,7 +109,7 @@ describe("Azure Arm Method Subscription Id Rest Client", () => {
   it("should get subscription resource 1", async () => {
     const result = await client
       .path(
-        "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResource1s/{name}",
+        "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResource1s/{subscriptionResource1Name}",
         SUBSCRIPTION_ID_EXPECTED,
         "sub-resource-1"
       )
@@ -126,7 +126,7 @@ describe("Azure Arm Method Subscription Id Rest Client", () => {
   it("should create or update subscription resource 1", async () => {
     const result = await client
       .path(
-        "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResource1s/{name}",
+        "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResource1s/{subscriptionResource1Name}",
         SUBSCRIPTION_ID_EXPECTED,
         "sub-resource-1"
       )
@@ -148,7 +148,7 @@ describe("Azure Arm Method Subscription Id Rest Client", () => {
   it("should delete subscription resource 1", async () => {
     const result = await client
       .path(
-        "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResource1s/{name}",
+        "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResource1s/{subscriptionResource1Name}",
         SUBSCRIPTION_ID_EXPECTED,
         "sub-resource-1"
       )
@@ -161,7 +161,7 @@ describe("Azure Arm Method Subscription Id Rest Client", () => {
   it("should get subscription resource 2", async () => {
     const result = await client
       .path(
-        "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResource2s/{name}",
+        "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResource2s/{subscriptionResource2Name}",
         SUBSCRIPTION_ID_EXPECTED,
         "sub-resource-2"
       )
@@ -178,7 +178,7 @@ describe("Azure Arm Method Subscription Id Rest Client", () => {
   it("should create or update subscription resource 2", async () => {
     const result = await client
       .path(
-        "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResource2s/{name}",
+        "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResource2s/{subscriptionResource2Name}",
         SUBSCRIPTION_ID_EXPECTED,
         "sub-resource-2"
       )
@@ -200,7 +200,7 @@ describe("Azure Arm Method Subscription Id Rest Client", () => {
   it("should delete subscription resource 2", async () => {
     const result = await client
       .path(
-        "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResource2s/{name}",
+        "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResource2s/{subscriptionResource2Name}",
         SUBSCRIPTION_ID_EXPECTED,
         "sub-resource-2"
       )
@@ -213,7 +213,7 @@ describe("Azure Arm Method Subscription Id Rest Client", () => {
   it("should get mixed subscription resource", async () => {
     const result = await client
       .path(
-        "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResources/{name}",
+        "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResources/{subscriptionResourceName}",
         SUBSCRIPTION_ID_EXPECTED,
         "sub-resource"
       )
@@ -230,7 +230,7 @@ describe("Azure Arm Method Subscription Id Rest Client", () => {
   it("should create or update mixed subscription resource", async () => {
     const result = await client
       .path(
-        "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResources/{name}",
+        "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResources/{subscriptionResourceName}",
         SUBSCRIPTION_ID_EXPECTED,
         "sub-resource"
       )
@@ -252,7 +252,7 @@ describe("Azure Arm Method Subscription Id Rest Client", () => {
   it("should delete mixed subscription resource", async () => {
     const result = await client
       .path(
-        "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResources/{name}",
+        "/subscriptions/{subscriptionId}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResources/{subscriptionResourceName}",
         SUBSCRIPTION_ID_EXPECTED,
         "sub-resource"
       )
@@ -265,7 +265,7 @@ describe("Azure Arm Method Subscription Id Rest Client", () => {
   it("should get resource group resource", async () => {
     const result = await client
       .path(
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.MethodSubscriptionId/resourceGroupResources/{name}",
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.MethodSubscriptionId/resourceGroupResources/{resourceGroupResourceName}",
         SUBSCRIPTION_ID_EXPECTED,
         RESOURCE_GROUP_EXPECTED,
         "rg-resource"
@@ -283,7 +283,7 @@ describe("Azure Arm Method Subscription Id Rest Client", () => {
   it("should create or update resource group resource", async () => {
     const result = await client
       .path(
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.MethodSubscriptionId/resourceGroupResources/{name}",
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.MethodSubscriptionId/resourceGroupResources/{resourceGroupResourceName}",
         SUBSCRIPTION_ID_EXPECTED,
         RESOURCE_GROUP_EXPECTED,
         "rg-resource"
@@ -307,7 +307,7 @@ describe("Azure Arm Method Subscription Id Rest Client", () => {
   it("should delete resource group resource", async () => {
     const result = await client
       .path(
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.MethodSubscriptionId/resourceGroupResources/{name}",
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Azure.ResourceManager.MethodSubscriptionId/resourceGroupResources/{resourceGroupResourceName}",
         SUBSCRIPTION_ID_EXPECTED,
         RESOURCE_GROUP_EXPECTED,
         "rg-resource"
