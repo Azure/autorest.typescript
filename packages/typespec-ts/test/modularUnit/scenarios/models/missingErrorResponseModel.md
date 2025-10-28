@@ -69,7 +69,7 @@ withRawContent: true
 ```ts models
 /** Response for the asset chain summary. */
 export interface AssetChainSummaryResult {
-  errors?: __PLACEHOLDER_o17__[];
+  errors?: ErrorResponse[];
 }
 
 export function assetChainSummaryResultDeserializer(

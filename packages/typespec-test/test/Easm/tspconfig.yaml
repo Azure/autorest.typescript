@@ -1,0 +1,8 @@
+emit: ["@azure-tools/typespec-ts"]
+options:
+  "@azure-tools/typespec-ts":
+    azure-sdk-for-js: false
+    is-modular-library: true
+    emitter-output-dir: "{project-root}/generated/typespec-ts"
+    package-details:
+      name: "@azure/easm"
