@@ -2,17 +2,17 @@
 // Licensed under the MIT License.
 
 import { OpenAIContext } from "../../api/openAIContext.js";
-import {
-  ListModelsResponse,
-  Model,
-  DeleteModelResponse,
-} from "../../models/models.js";
+import { $delete, retrieve, list } from "../../api/models/operations.js";
 import {
   ModelsDeleteOptionalParams,
   ModelsRetrieveOptionalParams,
   ModelsListOptionalParams,
 } from "../../api/models/options.js";
-import { $delete, retrieve, list } from "../../api/models/operations.js";
+import {
+  ListModelsResponse,
+  Model,
+  DeleteModelResponse,
+} from "../../models/models.js";
 
 /** Interface representing a Models operations. */
 export interface ModelsOperations {

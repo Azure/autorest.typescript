@@ -9,7 +9,7 @@ using Azure.Core;
 
 @versioned(APIVersions)
 @useAuth(Oauth2)
-@service(#{title: "Azure Load Testing"})
+@service(#{ title: "Azure Load Testing" })
 @server(
   "https://{endpoint}",
   "These APIs allow end users to create, view and run load tests using Azure Load Test Service.",
@@ -18,13 +18,12 @@ using Azure.Core;
   }
 )
 @doc("""
-These APIs allow end users to create, view and run load tests using Azure Load
-Test Service.
-""")
+  These APIs allow end users to create, view and run load tests using Azure Load
+  Test Service.
+  """)
 namespace AzureLoadTesting;
 
 enum APIVersions {
-  @useDependency(Azure.Core.Versions.v1_0_Preview_2)
   v2022_11_01: "2022-11-01",
 }
 

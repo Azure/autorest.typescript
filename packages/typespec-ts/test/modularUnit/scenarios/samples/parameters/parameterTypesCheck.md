@@ -119,7 +119,7 @@ async function read(): Promise<void> {
     unknownValueWithBoolean: false,
     unknownValueWithObjectNested: {
       foo: "bar",
-      bar: [{ foo: "fooStr" }, "barStr", 7]
+      bar: [{ foo: "fooStr" }, "barStr", 7],
     },
     strValue: "00000000-0000-0000-0000-00000000000",
     numValue: 0.12,
@@ -140,7 +140,9 @@ async function read(): Promise<void> {
     durationProp: "P123DT22H14M12.011S",
     withEscapeChars: '"Tag 10".Value',
     unknownRecord: { a: "foo" },
-    additionalProp: "additional prop"
+    additionalProperties: {
+      additionalProp: "additional prop",
+    },
   });
   console.log(result);
 }

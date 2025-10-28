@@ -30,6 +30,7 @@ import {
   Embeddings,
   embeddingsDeserializer,
 } from "../models/models.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   GetEmbeddingsOptionalParams,
   GenerateSpeechFromTextOptionalParams,
@@ -41,7 +42,6 @@ import {
   GetAudioTranscriptionAsResponseObjectOptionalParams,
   GetAudioTranscriptionAsPlainTextOptionalParams,
 } from "./options.js";
-import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

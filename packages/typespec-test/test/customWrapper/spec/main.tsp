@@ -28,7 +28,6 @@ namespace Azure.Language.Authoring;
 
 enum Versions {
   /** Version 2022-05-15-preview */
-  @useDependency(Azure.Core.Versions.v1_0_Preview_1)
   `2022-05-15-preview`,
 }
 
@@ -52,13 +51,13 @@ model Deployment {
   input_type?: string;
 
   @doc("ID of the model to use")
-  "model"?: string;
+  `model`?: string;
 
   @doc("""
-  An input to embed, encoded as a string, a list of strings, or a list of token
-  lists
-  """)
-  input: string | string[] | integer[] | integer[][];  
+    An input to embed, encoded as a string, a list of strings, or a list of token
+    lists
+    """)
+  input: string | string[] | integer[] | integer[][];
 }
 
 @doc("Deployment resource creation parameters.")
@@ -70,11 +69,11 @@ model DeploymentCreationParameters {
 interface Deployments {
   @doc("Gets the details of a deployment.")
   getDeployment is ResourceRead<Deployment>;
-  
+
   #suppress "@azure-tools/typespec-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
   @doc("Creates a new deployment or replaces an existing one.")
   deployProject is CustomResourceCreateOrReplace<
     Deployment,
     CustomBodyWrapper<DeploymentCreationParameters>
   >;
-}  
+}

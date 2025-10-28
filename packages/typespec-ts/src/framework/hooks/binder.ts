@@ -232,6 +232,10 @@ class BinderImp implements Binder {
       this.resolveDependencyReferences(file);
       const importStructures = this.imports.get(file);
       if (importStructures) {
+        // Sort imports in place by module specifier to ensure consistent ordering
+        importStructures.sort((a, b) =>
+          a.moduleSpecifier < b.moduleSpecifier ? -1 : 1
+        );
         for (const importStructure of importStructures) {
           file.addImportDeclaration(importStructure);
         }

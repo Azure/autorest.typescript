@@ -16,22 +16,7 @@ import {
   MetricNamespaceCollection,
   TimeSeriesElement,
 } from "../models/models.js";
-import {
-  StopTestRunOptionalParams,
-  ListTestRunsOptionalParams,
-  ListMetricsOptionalParams,
-  ListMetricNamespacesOptionalParams,
-  ListMetricDefinitionsOptionalParams,
-  ListMetricDimensionValuesOptionalParams,
-  GetTestRunFileOptionalParams,
-  GetTestRunOptionalParams,
-  GetServerMetricsConfigOptionalParams,
-  GetAppComponentsOptionalParams,
-  DeleteTestRunOptionalParams,
-  CreateOrUpdateServerMetricsConfigOptionalParams,
-  CreateOrUpdateAppComponentsOptionalParams,
-  CreateOrUpdateTestRunOptionalParams,
-} from "./api/options.js";
+import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
 import {
   stopTestRun,
   listTestRuns,
@@ -48,9 +33,24 @@ import {
   createOrUpdateAppComponents,
   createOrUpdateTestRun,
 } from "./api/operations.js";
-import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
-import { Pipeline } from "@azure/core-rest-pipeline";
+import {
+  StopTestRunOptionalParams,
+  ListTestRunsOptionalParams,
+  ListMetricsOptionalParams,
+  ListMetricNamespacesOptionalParams,
+  ListMetricDefinitionsOptionalParams,
+  ListMetricDimensionValuesOptionalParams,
+  GetTestRunFileOptionalParams,
+  GetTestRunOptionalParams,
+  GetServerMetricsConfigOptionalParams,
+  GetAppComponentsOptionalParams,
+  DeleteTestRunOptionalParams,
+  CreateOrUpdateServerMetricsConfigOptionalParams,
+  CreateOrUpdateAppComponentsOptionalParams,
+  CreateOrUpdateTestRunOptionalParams,
+} from "./api/options.js";
 import { TokenCredential } from "@azure/core-auth";
+import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { LoadTestRunClientOptionalParams } from "./api/loadTestRunContext.js";
 

@@ -10,8 +10,8 @@ import {
   FooOperationsOperations,
   _getFooOperationsOperations,
 } from "./classic/fooOperations/index.js";
-import { Pipeline } from "@azure/core-rest-pipeline";
 import { KeyCredential, TokenCredential } from "@azure/core-auth";
+import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { WidgetManagerClientOptionalParams } from "./api/widgetManagerContext.js";
 

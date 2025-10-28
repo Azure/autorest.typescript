@@ -17,6 +17,14 @@ export declare interface ActionResult {
 
 export declare type ActionType = string;
 
+export declare enum AzureClouds {
+    AZURE_PUBLIC_CLOUD = "AZURE_PUBLIC_CLOUD",
+    AZURE_CHINA_CLOUD = "AZURE_CHINA_CLOUD",
+    AZURE_US_GOVERNMENT = "AZURE_US_GOVERNMENT"
+}
+
+export declare type AzureSupportedClouds = `${AzureClouds}`;
+
 export declare interface ChangeAllowanceRequest {
     totalAllowed?: number;
     reason?: string;
@@ -160,6 +168,7 @@ export declare class OperationTemplatesClient {
 
 export declare interface OperationTemplatesClientOptionalParams extends ClientOptions {
     apiVersion?: string;
+    cloudSetting?: AzureSupportedClouds;
 }
 
 export declare interface OptionalBodyGetOptionalParams extends OperationOptions {

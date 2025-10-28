@@ -26,13 +26,18 @@ import { useDependencies } from "../framework/hooks/useDependencies.js";
 import { buildEnumTypes, getApiVersionEnum } from "./emitModels.js";
 import {
   SdkClientType,
+  SdkCredentialParameter,
+  SdkEndpointParameter,
   SdkHttpParameter,
-  SdkParameter,
+  SdkMethodParameter,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 import { getModularClientOptions } from "../utils/clientUtils.js";
 import { useContext } from "../contextManager.js";
 import { refkey } from "../framework/refkey.js";
+import { reportDiagnostic } from "../lib.js";
+import { NoTarget } from "@typespec/compiler";
+import { CloudSettingHelpers } from "./static-helpers-metadata.js";
 
 /**
  * This function gets the path of the file containing the modular client context
@@ -100,25 +105,46 @@ export function buildClientContext(
       })
   });
 
+  const propertiesInOptions = getClientParameters(client, dpgContext, {
+    optionalOnly: true
+  })
+    .filter((p) => getClientParameterName(p) !== "endpoint")
+    .map((p) => {
+      return {
+        name: getClientParameterName(p),
+        type:
+          p.name.toLowerCase() === "apiversion"
+            ? "string"
+            : getTypeExpression(dpgContext, p.type),
+        hasQuestionToken: true,
+        docs: getDocsWithKnownVersion(dpgContext, p)
+      };
+    });
+  if (dpgContext.arm) {
+    propertiesInOptions.push({
+      name: "cloudSetting",
+      type: `${resolveReference(CloudSettingHelpers.AzureSupportedClouds)}`,
+      hasQuestionToken: true,
+      docs: [`Specifies the Azure cloud environment for the client.`]
+    });
+  }
+  // check if we have duplication options
+  const existingOptionNames = new Set<string>();
+  for (const property of propertiesInOptions) {
+    if (existingOptionNames.has(property.name)) {
+      reportDiagnostic(dpgContext.program, {
+        code: "parameter-name-conflict",
+        format: { parameterName: property.name },
+        target: NoTarget
+      });
+    }
+    existingOptionNames.add(property.name);
+  }
   clientContextFile.addInterface({
     name: `${getClassicalClientName(client)}OptionalParams`,
     isExported: true,
     extends: [resolveReference(dependencies.ClientOptions)],
-    properties: getClientParameters(client, dpgContext, {
-      optionalOnly: true
-    })
-      .filter((p) => p.name !== "endpoint")
-      .map((p) => {
-        return {
-          name: getClientParameterName(p),
-          type:
-            p.name.toLowerCase() === "apiversion"
-              ? "string"
-              : getTypeExpression(dpgContext, p.type),
-          hasQuestionToken: true,
-          docs: getDocsWithKnownVersion(dpgContext, p)
-        };
-      }),
+    properties: propertiesInOptions,
     docs: ["Optional parameters for the client."]
   });
 
@@ -259,7 +285,11 @@ export function buildClientContext(
 
 function getDocsWithKnownVersion(
   dpgContext: SdkContext,
-  param: SdkParameter | SdkHttpParameter
+  param:
+    | SdkMethodParameter
+    | SdkEndpointParameter
+    | SdkCredentialParameter
+    | SdkHttpParameter
 ) {
   const docs = getDocsFromDescription(param.doc);
   if (param.name.toLowerCase() !== "apiversion") {

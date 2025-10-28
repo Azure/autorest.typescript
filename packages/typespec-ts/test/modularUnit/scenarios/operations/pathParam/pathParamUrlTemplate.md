@@ -44,6 +44,7 @@ The config would be like:
 
 ```yaml
 needAzureCore: true
+withVersionedApiVersion: true
 ```
 
 ## Operations
@@ -51,8 +52,8 @@ needAzureCore: true
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { KeyBundle, keyBundleDeserializer } from "../models/models.js";
-import { UpdateKeyOptionalParams } from "./options.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { UpdateKeyOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,

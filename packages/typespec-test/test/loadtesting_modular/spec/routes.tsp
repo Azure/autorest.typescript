@@ -287,6 +287,7 @@ interface LoadTestRun {
   @doc("List the metric values for a load test run.")
   @route("/test-runs/{testRunId}/metrics")
   @post
+  @list
   listMetrics is Azure.Core.Foundations.Operation<
     {
       @doc("""

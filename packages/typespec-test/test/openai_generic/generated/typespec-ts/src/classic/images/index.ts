@@ -2,22 +2,16 @@
 // Licensed under the MIT License.
 
 import { OpenAIContext } from "../../api/openAIContext.js";
-import {
-  CreateImageRequest,
-  ImagesResponse,
-  CreateImageEditRequest,
-  CreateImageVariationRequest,
-} from "../../models/models.js";
+import { createVariation, createEdit } from "../../api/images/operations.js";
 import {
   ImagesCreateVariationOptionalParams,
   ImagesCreateEditOptionalParams,
-  ImagesCreateOptionalParams,
 } from "../../api/images/options.js";
 import {
-  createVariation,
-  createEdit,
-  create,
-} from "../../api/images/operations.js";
+  CreateImageEditRequest,
+  ImagesResponse,
+  CreateImageVariationRequest,
+} from "../../models/models.js";
 
 /** Interface representing a Images operations. */
 export interface ImagesOperations {
@@ -28,10 +22,6 @@ export interface ImagesOperations {
   createEdit: (
     image: CreateImageEditRequest,
     options?: ImagesCreateEditOptionalParams,
-  ) => Promise<ImagesResponse>;
-  create: (
-    image: CreateImageRequest,
-    options?: ImagesCreateOptionalParams,
   ) => Promise<ImagesResponse>;
 }
 
@@ -45,8 +35,6 @@ function _getImages(context: OpenAIContext) {
       image: CreateImageEditRequest,
       options?: ImagesCreateEditOptionalParams,
     ) => createEdit(context, image, options),
-    create: (image: CreateImageRequest, options?: ImagesCreateOptionalParams) =>
-      create(context, image, options),
   };
 }
 

@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 import { ErrorModel } from "@azure-rest/core-client";
+import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 
 /** Properties of an event published to an Azure Messaging EventGrid Namespace topic using the CloudEvent 1.0 Schema. */
 export interface CloudEvent {
@@ -227,7 +227,9 @@ export type ReleaseDelay = "0" | "10" | "60" | "600" | "3600";
 
 /** Known values of {@link ServiceApiVersions} that the service accepts. */
 export enum KnownServiceApiVersions {
+  /** 2023-11-01 */
   V20231101 = "2023-11-01",
+  /** 2024-06-01 */
   V20240601 = "2024-06-01",
 }
 

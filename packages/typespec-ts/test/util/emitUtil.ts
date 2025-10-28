@@ -258,18 +258,20 @@ export async function emitClientFactoryFromTypeSpec(
     needAzureCore = false,
     mustEmptyDiagnostic = true,
     withRawContent = false,
-    needNamespaces = false
+    needNamespaces = false,
+    needTCGC = false
   }: {
     needAzureCore?: boolean;
     mustEmptyDiagnostic?: boolean;
     withRawContent?: boolean;
     needNamespaces?: boolean;
+    needTCGC?: boolean;
   } = {}
 ) {
   const context = await rlcEmitterFor(tspContent, {
     needNamespaces,
     needAzureCore,
-    needTCGC: false,
+    needTCGC,
     withRawContent
   });
   const program = context.program;

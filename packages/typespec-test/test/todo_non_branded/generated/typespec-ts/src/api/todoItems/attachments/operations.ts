@@ -15,15 +15,15 @@ import {
   _pageTodoAttachmentDeserializer,
 } from "../../../models/todoItems/models.js";
 import {
-  TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
-  TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
-  TodoItemsAttachmentsListOptionalParams,
-} from "./options.js";
-import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
 } from "../../../static-helpers/pagingHelpers.js";
 import { expandUrlTemplate } from "../../../static-helpers/urlTemplate.js";
+import {
+  TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
+  TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
+  TodoItemsAttachmentsListOptionalParams,
+} from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -53,10 +53,6 @@ export function _createFileAttachmentSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "multipart/form-data",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
       body: fileAttachmentMultipartRequestSerializer(body),
     });
 }
@@ -120,10 +116,6 @@ export function _createJsonAttachmentSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
       body: todoAttachmentSerializer(contents),
     });
 }

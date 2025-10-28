@@ -323,9 +323,9 @@ function prepareExampleParameters(
   }
   // required/optional body parameters
   const bodyParam = method.operation.bodyParam;
-  const bodyName = bodyParam?.serializedName;
-  const bodyExample = parameterMap[bodyName ?? ""];
-  if (bodyName && bodyExample && bodyExample.value) {
+  const bodySerializeName = bodyParam?.serializedName;
+  const bodyExample = parameterMap[bodySerializeName ?? ""];
+  if (bodySerializeName && bodyExample && bodyExample.value) {
     if (
       isSpreadBodyParameter(bodyParam) &&
       bodyParam.type.kind === "model" &&
@@ -348,7 +348,7 @@ function prepareExampleParameters(
     } else {
       result.push(
         prepareExampleValue(
-          bodyName,
+          bodyParam.name,
           bodyExample.value,
           bodyParam.optional,
           bodyParam.onClient
@@ -425,6 +425,12 @@ function getParameterValue(value: SdkExampleValue): string {
         case "utcDateTime":
           retValue = `new Date("${value.value}")`;
           break;
+        case "bytes": {
+          const encode = value.type.encode ?? "base64";
+          // TODO: add check for un-supported encode
+          retValue = `Buffer.from("${value.value}",  "${encode}")`;
+          break;
+        }
         default:
           retValue = `"${value.value
             ?.toString()
@@ -454,11 +460,9 @@ function getParameterValue(value: SdkExampleValue): string {
       const additionalPropertiesValue =
         value.kind === "model" ? (value.additionalPropertiesValue ?? {}) : {};
       for (const propName in {
-        ...value.value,
-        ...additionalPropertiesValue
+        ...value.value
       }) {
-        const propValue =
-          value.value[propName] ?? additionalPropertiesValue[propName];
+        const propValue = value.value[propName];
         if (propValue === undefined || propValue === null) {
           continue;
         }
@@ -466,6 +470,27 @@ function getParameterValue(value: SdkExampleValue): string {
           `"${mapper.get(propName) ?? propName}": ` +
           getParameterValue(propValue);
         values.push(propRetValue);
+      }
+      const additionalBags = [];
+      for (const propName in {
+        ...additionalPropertiesValue
+      }) {
+        const propValue = additionalPropertiesValue[propName];
+        if (propValue === undefined || propValue === null) {
+          continue;
+        }
+        const propRetValue =
+          `"${mapper.get(propName) ?? propName}": ` +
+          getParameterValue(propValue);
+        additionalBags.push(propRetValue);
+      }
+      if (additionalBags.length > 0) {
+        const name = mapper.get("additionalProperties")
+          ? "additionalPropertiesBag"
+          : "additionalProperties";
+        values.push(`"${name}": {
+          ${additionalBags.join(", ")}
+          }`);
       }
 
       retValue = `{${values.join(", ")}}`;

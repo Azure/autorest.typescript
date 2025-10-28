@@ -10,8 +10,8 @@ import {
   ConfidentialLedgerOperations,
   _getConfidentialLedgerOperations,
 } from "./classic/confidentialLedger/index.js";
-import { Pipeline } from "@azure/core-rest-pipeline";
 import { TokenCredential } from "@azure/core-auth";
+import { Pipeline } from "@azure/core-rest-pipeline";
 
 export { ParametrizedHostClientOptionalParams } from "./api/parametrizedHostContext.js";
 
@@ -22,14 +22,13 @@ export class ParametrizedHostClient {
 
   constructor(
     credential: TokenCredential,
-    apiVersion: string,
     options: ParametrizedHostClientOptionalParams = {},
   ) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : `azsdk-js-client`;
-    this._client = createParametrizedHost(credential, apiVersion, {
+    this._client = createParametrizedHost(credential, {
       ...options,
       userAgentOptions: { userAgentPrefix },
     });
