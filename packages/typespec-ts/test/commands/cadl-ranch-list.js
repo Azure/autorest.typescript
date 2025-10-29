@@ -884,10 +884,11 @@ export const azureModularTsps = [
     outputPath: "azure/versioning/previewVersion",
     inputPath: "azure/versioning/previewVersion"
   },
-  {
-    outputPath: "azure/resource-manager/method-subscription-id",
-    inputPath: "azure/resource-manager/method-subscription-id"
-  }
+  // skip due to issue https://github.com/Azure/autorest.typescript/issues/3468
+  // {
+  //   outputPath: "azure/resource-manager/method-subscription-id",
+  //   inputPath: "azure/resource-manager/method-subscription-id"
+  // }
   // skip due to issue https://github.com/Azure/autorest.typescript/issues/3494
   // {
   //   outputPath: "azure/client-generator-core/client-location",
