@@ -1,6 +1,17 @@
 ## 6.0.51 (2025-10-29)
 
-- [Feature] Add spector case for Client Naming Enum Conflict (Azure Modular only). Please refer to [#3550](https://github.com/Azure/autorest.typescript/pull/3550)
+- [Feature] Fix missing client-level parameters in generated samples. Please refer to [#3544](https://github.com/Azure/autorest.typescript/pull/3544)
+- [Feature] Enable no-console ESLint rule in emitter packages. Please refer to [#3554](https://github.com/Azure/autorest.typescript/pull/3554)
+- [Bugfix] Fix sample method parameter order. Please refer to [#3546](https://github.com/Azure/autorest.typescript/pull/3546)
+- [Feature] add ut for `additionalProperties:{}`. Please refer to [#3554](https://github.com/Azure/autorest.typescript/pull/3554)
+- [Feature] Implement selective directory clearing function to preserve TempTypeSpecFiles. Please refer to [#3552](https://github.com/Azure/autorest.typescript/pull/3552)
+- [Feature] Add override spector cases. Please refer to [#3518](https://github.com/Azure/autorest.typescript/pull/3518)
+- [Feature] Remove `mkdirp` from dev deps of generated package.json. Please refer to [#3536](https://github.com/Azure/autorest.typescript/pull/3536)
+- [Feature] Update recorder start case in sample.spec.ts. Please refer to [#3543](https://github.com/Azure/autorest.typescript/pull/3543)
+- [Feature] Upgrade specs version to latest dev. Please refer to [#3547](https://github.com/Azure/autorest.typescript/pull/3547)
+- [Feature] Generate tsconfig.test.node.json. Please refer to [#3535](https://github.com/Azure/autorest.typescript/pull/3535)
+- [Bugfix] Don't use workspace version specifier for runtime dependencies yet. Please refer to [#3537](https://github.com/Azure/autorest.typescript/pull/3537)
+- [Bugfix] [modular] Use "workspace:^" for devDependencies. Please refer to [#3534](https://github.com/Azure/autorest.typescript/pull/3534)
 
 ## 6.0.50 (2025-10-11)
 
