@@ -337,6 +337,10 @@ export const azureRlcTsps = [
     inputPath: "azure/client-generator-core/client-location"
   },
   {
+    outputPath: "client/overload",
+    inputPath: "client/overload"
+  },
+  {
     outputPath: "azure/client-generator-core/override",
     inputPath: "azure/client-generator-core/override"
   },
@@ -741,6 +745,10 @@ export const azureModularTsps = [
     inputPath: "client/naming"
   },
   {
+    outputPath: "client/naming-enum-conflict",
+    inputPath: "client/naming/enum-conflict"
+  },
+  {
     outputPath: "serialization/encoded-name/json",
     inputPath: "serialization/encoded-name/json"
   },
@@ -875,6 +883,10 @@ export const azureModularTsps = [
   {
     outputPath: "azure/client-generator-core/hierarchy-building",
     inputPath: "azure/client-generator-core/hierarchy-building"
+  },
+  {
+    outputPath: "client/overload",
+    inputPath: "client/overload"
   },
   {
     outputPath: "azure/client-generator-core/override",
