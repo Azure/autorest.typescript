@@ -37,6 +37,7 @@ import {
   ServiceOperation
 } from "../utils/operationUtil.js";
 import { getSubscriptionId } from "../transform/transfromRLCOptions.js";
+import { getClientParametersDeclaration } from "./helpers/clientHelpers.js";
 import { getOperationFunction } from "./helpers/operationHelpers.js";
 
 /**
@@ -293,6 +294,31 @@ function prepareExampleParameters(
   // TODO: blocked by TCGC issue: https://github.com/Azure/typespec-azure/issues/1419
   // refine this to support generic client-level parameters once resolved
   const result: ExampleValue[] = [];
+  const clientParams = getClientParametersDeclaration(
+    topLevelClient,
+    dpgContext,
+    {
+      onClientOnly: true
+    }
+  );
+
+  for (const param of clientParams) {
+    if (param.name === "options" || param.name === "credential") {
+      continue;
+    }
+
+    const exampleValue: ExampleValue = {
+      name: param.name === "endpointParam" ? "endpoint" : param.name,
+      value: getEnvironmentVariableName(
+        param.name,
+        getClassicalClientName(topLevelClient)
+      ),
+      isOptional: Boolean(param.hasQuestionToken),
+      onClient: true
+    };
+
+    result.push(exampleValue);
+  }
   const credentialExampleValue = getCredentialExampleValue(
     dpgContext,
     topLevelClient.clientInitialization
@@ -540,4 +566,31 @@ function escapeSpecialCharToSpace(str: string) {
     return str;
   }
   return str.replace(/_|,|\.|\(|\)|'s |\[|\]/g, " ").replace(/\//g, " Or ");
+}
+
+function getEnvironmentVariableName(
+  paramName: string,
+  clientName?: string
+): string {
+  // Remove "Param" suffix if present
+  const cleanName = paramName.replace(/Param$/, "");
+
+  // Remove "Client" suffix from client name if present and convert to UPPER_SNAKE_CASE
+  let prefix = "";
+  if (clientName) {
+    const cleanClientName = clientName.replace(/Client$/, "");
+    prefix =
+      cleanClientName
+        .replace(/([A-Z])/g, "_$1")
+        .toUpperCase()
+        .replace(/^_/, "") + "_";
+  }
+
+  // Convert camelCase to UPPER_SNAKE_CASE
+  const envVarName = cleanName
+    .replace(/([A-Z])/g, "_$1")
+    .toUpperCase()
+    .replace(/^_/, "");
+
+  return `process.env.${prefix}${envVarName} || ""`;
 }
