@@ -5,8 +5,7 @@ import {
   PackageDetails,
   PackageFlavor,
   RLCOptions,
-  ServiceInfo,
-  isAzurePackage
+  ServiceInfo
 } from "@azure-tools/rlc-common";
 import { getHttpOperationWithCache } from "@azure-tools/typespec-client-generator-core";
 import { getDoc, NoTarget, Program } from "@typespec/compiler";
@@ -34,13 +33,7 @@ export function transformRLCOptions(
     emitterOptions,
     dpgContext.generationPathDetail?.rootDir ?? ""
   );
-  if (
-    !isAzurePackage({ options }) &&
-    emitterOptions["is-modular-library"] !== false
-  ) {
-    options.isModularLibrary = true;
-  }
-  if (dpgContext.arm && emitterOptions["is-modular-library"] !== false) {
+  if (emitterOptions["is-modular-library"] !== false) {
     options.isModularLibrary = true;
   }
   const batch = getRLCClients(dpgContext);
