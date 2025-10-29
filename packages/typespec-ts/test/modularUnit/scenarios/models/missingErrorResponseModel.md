@@ -67,6 +67,8 @@ withRawContent: true
 ## Models
 
 ```ts models
+import { ErrorResponse } from "@azure-rest/core-client";
+
 /** Response for the asset chain summary. */
 export interface AssetChainSummaryResult {
   errors?: ErrorResponse[];
