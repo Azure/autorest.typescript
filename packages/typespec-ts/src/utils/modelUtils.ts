@@ -1184,9 +1184,9 @@ function getSchemaForArrayModel(
               .join(" | ");
           }
         }
-      } else if (schema.items.type.includes("|")) {
+      } else if (schema.items.type && schema.items.type.includes("|")) {
         schema.typeName = `(${schema.items.type})[]`;
-      } else {
+      } else if (schema.items.type) {
         schema.typeName = `${schema.items.type}[]`;
       }
     }
