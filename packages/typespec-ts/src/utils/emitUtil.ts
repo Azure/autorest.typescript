@@ -91,7 +91,6 @@ async function emitFile(
         target: NoTarget
       });
       // Continue with unformatted content rather than crashing
-      console.error(`Failed to format file: ${filePath}`, e);
     }
   }
   await host.mkdirp(dirname(filePath));
