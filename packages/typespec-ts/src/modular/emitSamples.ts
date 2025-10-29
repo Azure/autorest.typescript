@@ -37,6 +37,7 @@ import {
   ServiceOperation
 } from "../utils/operationUtil.js";
 import { getSubscriptionId } from "../transform/transfromRLCOptions.js";
+import { getOperationFunction } from "./helpers/operationHelpers.js";
 
 /**
  * Interfaces for samples generations
@@ -53,6 +54,7 @@ interface EmitSampleOptions {
   generatedFiles: SourceFile[];
   classicalMethodPrefix?: string;
   subFolder?: string;
+  hierarchies?: string[]; // Add hierarchies to track operation path
 }
 /**
  * Helpers to emit samples
@@ -80,8 +82,8 @@ function emitClientSamples(
 ) {
   const methodMap = getMethodHierarchiesMap(dpgContext, client);
   for (const [prefixKey, operations] of methodMap) {
-    const prefix = prefixKey
-      .split("/")
+    const hierarchies = prefixKey ? prefixKey.split("/") : [];
+    const prefix = hierarchies
       .map((name) => {
         return normalizeName(name, NameType.Property);
       })
@@ -89,7 +91,8 @@ function emitClientSamples(
     for (const op of operations) {
       emitMethodSamples(dpgContext, op, {
         ...options,
-        classicalMethodPrefix: prefix
+        classicalMethodPrefix: prefix,
+        hierarchies: hierarchies
       });
     }
   }
@@ -173,10 +176,35 @@ function emitMethodSamples(
     );
 
     // prepare operation-level parameters
+    // Get the actual function signature parameter order
+    const operationFunction = getOperationFunction(
+      dpgContext,
+      [options.hierarchies ?? [], method],
+      "Client"
+    );
+
+    // Extract parameter names from the function signature (excluding context and options)
+    const signatureParamNames =
+      operationFunction.parameters
+        ?.filter(
+          (p) =>
+            p.name !== "context" &&
+            !p.type?.toString().includes("OptionalParams")
+        )
+        .map((p) => p.name) ?? [];
+
     const methodParamValues = parameters.filter((p) => !p.onClient);
-    const methodParams = methodParamValues
-      .filter((p) => !p.isOptional)
-      .map((p) => `${p.value}`);
+
+    // Create a map for quick lookup of parameter values by name
+    const paramValueMap = new Map(methodParamValues.map((p) => [p.name, p]));
+
+    // Reorder methodParamValues according to the signature order
+    const orderedRequiredParams = signatureParamNames
+      .map((name) => paramValueMap.get(name))
+      .filter((p): p is ExampleValue => p !== undefined && !p.isOptional);
+
+    const methodParams = orderedRequiredParams.map((p) => `${p.value}`);
+
     const optionalParams = methodParamValues
       .filter((p) => p.isOptional)
       .map((param) => `${param.name}: ${param.value}`);
