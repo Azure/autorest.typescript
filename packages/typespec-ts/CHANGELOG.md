@@ -1,3 +1,7 @@
+## 0.45.2 (2025-10-29)
+
+- [Feature] Add spector case for Client Naming Enum Conflict (Azure Modular only). Please refer to [#3550](https://github.com/Azure/autorest.typescript/pull/3550)
+
 ## 0.45.1 (2025-10-11)
 
 - [Bugfix] Upgrade the @azure-tools/typespec-azure-core to v0.61.0. Please refer to [#3532](https://github.com/Azure/autorest.typescript/pull/3532)
