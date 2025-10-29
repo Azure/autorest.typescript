@@ -335,6 +335,14 @@ export const azureRlcTsps = [
   {
     outputPath: "azure/client-generator-core/client-location",
     inputPath: "azure/client-generator-core/client-location"
+  },
+  {
+    outputPath: "azure/client-generator-core/override",
+    inputPath: "azure/client-generator-core/override"
+  },
+  {
+    outputPath: "azure/versioning/previewVersion",
+    inputPath: "azure/versioning/previewVersion"
   }
 ];
 
@@ -867,6 +875,14 @@ export const azureModularTsps = [
   {
     outputPath: "azure/client-generator-core/hierarchy-building",
     inputPath: "azure/client-generator-core/hierarchy-building"
+  },
+  {
+    outputPath: "azure/client-generator-core/override",
+    inputPath: "azure/client-generator-core/override"
+  },
+  {
+    outputPath: "azure/versioning/previewVersion",
+    inputPath: "azure/versioning/previewVersion"
   }
   // skip due to issue https://github.com/Azure/autorest.typescript/issues/3494
   // {
