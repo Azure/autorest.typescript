@@ -69,7 +69,7 @@ import { TestServiceClient } from "@azure/internal-test";
  * x-ms-original-file: 2021-10-01-preview/json_for_read.json
  */
 async function read(): Promise<void> {
-  const endpoint = process.env.ENDPOINT || "";
+  const endpoint = process.env.TEST_SERVICE_ENDPOINT || "";
   const client = new TestServiceClient(endpoint);
   const result = await client.read();
   console.log(result);

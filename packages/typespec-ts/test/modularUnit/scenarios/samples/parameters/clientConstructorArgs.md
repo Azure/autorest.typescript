@@ -148,10 +148,13 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: 2021-10-01-preview/json_for_Indexes_CreateOrUpdate.json
  */
 async function indexesCreateOrUpdate(): Promise<void> {
-  const endpoint = process.env.ENDPOINT || "";
-  const subscriptionId = process.env.SUBSCRIPTION_ID || "";
-  const resourceGroupName = process.env.RESOURCE_GROUP_NAME || "";
-  const workspaceName = process.env.WORKSPACE_NAME || "";
+  const endpoint = process.env.MACHINE_LEARNING_SERVICES_ENDPOINT || "";
+  const subscriptionId =
+    process.env.MACHINE_LEARNING_SERVICES_SUBSCRIPTION_ID || "";
+  const resourceGroupName =
+    process.env.MACHINE_LEARNING_SERVICES_RESOURCE_GROUP_NAME || "";
+  const workspaceName =
+    process.env.MACHINE_LEARNING_SERVICES_WORKSPACE_NAME || "";
   const credential = new DefaultAzureCredential();
   const client = new MachineLearningServicesClient(
     endpoint,
@@ -247,7 +250,7 @@ import { TextTranslationClient } from "@azure/internal-test";
  * x-ms-original-file: 2021-10-01-preview/json.json
  */
 async function findSentenceBoundaries(): Promise<void> {
-  const endpoint = process.env.ENDPOINT || "";
+  const endpoint = process.env.TEXT_TRANSLATION_ENDPOINT || "";
   const client = new TextTranslationClient(endpoint);
   const result = await client.findSentenceBoundaries(
     [{ text: "How are you? I am fine. What did you do today?" }],

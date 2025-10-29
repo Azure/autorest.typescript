@@ -281,7 +281,10 @@ function prepareExampleParameters(
 
     const exampleValue: ExampleValue = {
       name: param.name === "endpointParam" ? "endpoint" : param.name,
-      value: getEnvironmentVariableName(param.name),
+      value: getEnvironmentVariableName(
+        param.name,
+        getClassicalClientName(topLevelClient)
+      ),
       isOptional: Boolean(param.hasQuestionToken),
       onClient: true
     };
@@ -537,16 +540,29 @@ function escapeSpecialCharToSpace(str: string) {
   return str.replace(/_|,|\.|\(|\)|'s |\[|\]/g, " ").replace(/\//g, " Or ");
 }
 
-function getEnvironmentVariableName(paramName: string): string {
+function getEnvironmentVariableName(
+  paramName: string,
+  clientName?: string
+): string {
   // Remove "Param" suffix if present
   const cleanName = paramName.replace(/Param$/, "");
+
+  // Remove "Client" suffix from client name if present and convert to UPPER_SNAKE_CASE
+  let prefix = "";
+  if (clientName) {
+    const cleanClientName = clientName.replace(/Client$/, "");
+    prefix =
+      cleanClientName
+        .replace(/([A-Z])/g, "_$1")
+        .toUpperCase()
+        .replace(/^_/, "") + "_";
+  }
+
   // Convert camelCase to UPPER_SNAKE_CASE
-  return (
-    "process.env." +
-    cleanName
-      .replace(/([A-Z])/g, "_$1")
-      .toUpperCase()
-      .replace(/^_/, "") +
-    ' || ""'
-  );
+  const envVarName = cleanName
+    .replace(/([A-Z])/g, "_$1")
+    .toUpperCase()
+    .replace(/^_/, "");
+
+  return `process.env.${prefix}${envVarName} || ""`;
 }

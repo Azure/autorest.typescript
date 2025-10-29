@@ -143,7 +143,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: 2021-10-01-preview/json_for_Widgets_ListWidgets.json
  */
 async function widgetsListWidgets(): Promise<void> {
-  const endpoint = process.env.ENDPOINT || "";
+  const endpoint = process.env.WIDGET_MANAGER_ENDPOINT || "";
   const credential = new DefaultAzureCredential();
   const client = new WidgetManagerClient(endpoint, credential);
   const resArray = new Array();
@@ -175,7 +175,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: 2021-10-01-preview/json_for_Widgets_DeleteWidget.json
  */
 async function deleteWidgetByWidgetNameUsingLongRunningOperation(): Promise<void> {
-  const endpoint = process.env.ENDPOINT || "";
+  const endpoint = process.env.WIDGET_MANAGER_ENDPOINT || "";
   const credential = new DefaultAzureCredential();
   const client = new WidgetManagerClient(endpoint, credential);
   const result = await client.widgets.deleteWidget("searchbox");
@@ -199,7 +199,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: 2021-10-01-preview/json_for_Widgets_CreateOrUpdateWidget.json
  */
 async function widgetsCreateOrUpdateWidget(): Promise<void> {
-  const endpoint = process.env.ENDPOINT || "";
+  const endpoint = process.env.WIDGET_MANAGER_ENDPOINT || "";
   const credential = new DefaultAzureCredential();
   const client = new WidgetManagerClient(endpoint, credential);
   const result = await client.widgets.createOrUpdateWidget("name1", {

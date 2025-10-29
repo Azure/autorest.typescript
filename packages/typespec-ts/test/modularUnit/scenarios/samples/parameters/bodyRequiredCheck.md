@@ -69,7 +69,7 @@ import { TestingClient } from "@azure/internal-test";
  * x-ms-original-file: 2021-10-01-preview/json.json
  */
 async function read(): Promise<void> {
-  const endpoint = process.env.ENDPOINT || "";
+  const endpoint = process.env.TESTING_ENDPOINT || "";
   const client = new TestingClient(endpoint);
   const result = await client.read(
     "required path param",

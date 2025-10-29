@@ -84,7 +84,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: 2021-10-01-preview/json_for_Sub_foo.json
  */
 async function subFoo(): Promise<void> {
-  const endpoint = process.env.ENDPOINT || "";
+  const endpoint = process.env.A_ENDPOINT || "";
   const credential = new DefaultAzureCredential();
   const client = new AClient(endpoint, credential);
   const result = await client.foo();
