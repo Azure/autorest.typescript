@@ -64,7 +64,7 @@ export async function loadStaticHelpers(
     resolveProjectRoot(),
     DEFAULT_SOURCES_STATIC_HELPERS_PATH
   );
-  const filesInSources  = await traverseDirectory(
+  const filesInSources = await traverseDirectory(
     options.helpersAssetDirectory ?? defaultStaticHelpersPath,
     options.program
   );

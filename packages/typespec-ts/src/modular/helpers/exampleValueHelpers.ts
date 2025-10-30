@@ -314,7 +314,7 @@ export function prepareCommonParameters(
   const envType = resolveReference(AzureTestDependencies.env);
   const result: CommonValue[] = [];
 
-const clientParams = getClientParametersDeclaration(
+  const clientParams = getClientParametersDeclaration(
     topLevelClient,
     dpgContext,
     {
@@ -538,51 +538,44 @@ export function generateMethodCall(
 
   // Prepare operation-level parameters
   const methodParamValues = parameters.filter((p) => !p.onClient);
-  
+
   let methodParams: string[] = [];
-  
+
   // If dpgContext is provided, reorder parameters according to function signature
   if (dpgContext) {
-    try {
-      // Get the actual function signature parameter order
-      const operationFunction = getOperationFunction(
-        dpgContext,
-        [options.hierarchies ?? [], method],
-        "Client"
-      );
+    // Get the actual function signature parameter order
+    const operationFunction = getOperationFunction(
+      dpgContext,
+      [options.hierarchies ?? [], method],
+      "Client"
+    );
 
-      // Extract parameter names from the function signature (excluding context and options)
-      const signatureParamNames =
-        operationFunction.parameters
-          ?.filter(
-            (p) =>
-              p.name !== "context" &&
-              !p.type?.toString().includes("OptionalParams")
-          )
-          .map((p) => p.name) ?? [];
+    // Extract parameter names from the function signature (excluding context and options)
+    const signatureParamNames =
+      operationFunction.parameters
+        ?.filter(
+          (p) =>
+            p.name !== "context" &&
+            !p.type?.toString().includes("OptionalParams")
+        )
+        .map((p) => p.name) ?? [];
 
-      // Create a map for quick lookup of parameter values by name
-      const paramValueMap = new Map(methodParamValues.map((p) => [p.name, p]));
+    // Create a map for quick lookup of parameter values by name
+    const paramValueMap = new Map(methodParamValues.map((p) => [p.name, p]));
 
-      // Reorder methodParamValues according to the signature order
-      const orderedRequiredParams = signatureParamNames
-        .map((name) => paramValueMap.get(name))
-        .filter((p): p is CommonValue => p !== undefined && !p.isOptional);
+    // Reorder methodParamValues according to the signature order
+    const orderedRequiredParams = signatureParamNames
+      .map((name) => paramValueMap.get(name))
+      .filter((p): p is CommonValue => p !== undefined && !p.isOptional);
 
-      methodParams = orderedRequiredParams.map((p) => `${p.value}`);
-    } catch (error) {
-      // Fallback to original logic if signature analysis fails
-      methodParams = methodParamValues
-        .filter((p) => !p.isOptional)
-        .map((p) => `${p.value}`);
-    }
+    methodParams = orderedRequiredParams.map((p) => `${p.value}`);
   } else {
     // Original logic when dpgContext is not provided
     methodParams = methodParamValues
       .filter((p) => !p.isOptional)
       .map((p) => `${p.value}`);
   }
-  
+
   const optionalParams = methodParamValues
     .filter((p) => p.isOptional)
     .map((param) => `${param.name}: ${param.value}`);
