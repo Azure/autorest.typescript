@@ -76,6 +76,7 @@ export async function loadStaticHelpers(
   );
   const filesInTestings = await traverseDirectory(
     defaultTestingHelpersPath,
+    options.program,
     [],
     "",
     "test/generated/util"
