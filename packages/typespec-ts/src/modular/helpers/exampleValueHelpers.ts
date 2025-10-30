@@ -36,6 +36,8 @@ import { NoTarget } from "@typespec/compiler";
 import { SourceFile } from "ts-morph";
 import { useContext } from "../../contextManager.js";
 import { join } from "path";
+import { getOperationFunction } from "./operationHelpers.js";
+import { getClientParametersDeclaration } from "./clientHelpers.js";
 
 /**
  * Common interfaces for both samples and tests
@@ -52,6 +54,7 @@ export interface ClientEmitOptions {
   generatedFiles: SourceFile[];
   classicalMethodPrefix?: string;
   subFolder?: string;
+  hierarchies?: string[]; // Add hierarchies to track operation path
 }
 
 /**
@@ -311,6 +314,32 @@ export function prepareCommonParameters(
   const envType = resolveReference(AzureTestDependencies.env);
   const result: CommonValue[] = [];
 
+const clientParams = getClientParametersDeclaration(
+    topLevelClient,
+    dpgContext,
+    {
+      onClientOnly: true
+    }
+  );
+
+  for (const param of clientParams) {
+    if (param.name === "options" || param.name === "credential") {
+      continue;
+    }
+
+    const exampleValue: CommonValue = {
+      name: param.name === "endpointParam" ? "endpoint" : param.name,
+      value: getEnvironmentVariableName(
+        param.name,
+        getClassicalClientName(topLevelClient)
+      ),
+      isOptional: Boolean(param.hasQuestionToken),
+      onClient: true
+    };
+
+    result.push(exampleValue);
+  }
+
   // Handle credentials
   const credentialValue = isForTest
     ? getCredentialTestValue(dpgContext, topLevelClient.clientInitialization)
@@ -466,8 +495,8 @@ export function iterateClientsAndMethods(
   for (const client of clients) {
     const methodMap = getMethodHierarchiesMap(dpgContext, client);
     for (const [prefixKey, methods] of methodMap) {
-      const prefix = prefixKey
-        .split("/")
+      const hierarchies = prefixKey ? prefixKey.split("/") : [];
+      const prefix = hierarchies
         .map((name) => {
           return normalizeName(name, NameType.Property);
         })
@@ -480,7 +509,8 @@ export function iterateClientsAndMethods(
           subFolder:
             clients.length > 1
               ? normalizeName(getClassicalClientName(client), NameType.File)
-              : undefined
+              : undefined,
+          hierarchies: hierarchies
         });
       }
     }
@@ -494,7 +524,8 @@ export function iterateClientsAndMethods(
 export function generateMethodCall(
   method: ServiceOperation,
   parameters: CommonValue[],
-  options: ClientEmitOptions
+  options: ClientEmitOptions,
+  dpgContext?: SdkContext
 ): { methodCall: string; clientParams: string[]; clientParamDefs: string[] } {
   // Prepare client-level parameters
   const clientParamValues = parameters.filter((p) => p.onClient);
@@ -507,9 +538,51 @@ export function generateMethodCall(
 
   // Prepare operation-level parameters
   const methodParamValues = parameters.filter((p) => !p.onClient);
-  const methodParams = methodParamValues
-    .filter((p) => !p.isOptional)
-    .map((p) => `${p.value}`);
+  
+  let methodParams: string[] = [];
+  
+  // If dpgContext is provided, reorder parameters according to function signature
+  if (dpgContext) {
+    try {
+      // Get the actual function signature parameter order
+      const operationFunction = getOperationFunction(
+        dpgContext,
+        [options.hierarchies ?? [], method],
+        "Client"
+      );
+
+      // Extract parameter names from the function signature (excluding context and options)
+      const signatureParamNames =
+        operationFunction.parameters
+          ?.filter(
+            (p) =>
+              p.name !== "context" &&
+              !p.type?.toString().includes("OptionalParams")
+          )
+          .map((p) => p.name) ?? [];
+
+      // Create a map for quick lookup of parameter values by name
+      const paramValueMap = new Map(methodParamValues.map((p) => [p.name, p]));
+
+      // Reorder methodParamValues according to the signature order
+      const orderedRequiredParams = signatureParamNames
+        .map((name) => paramValueMap.get(name))
+        .filter((p): p is CommonValue => p !== undefined && !p.isOptional);
+
+      methodParams = orderedRequiredParams.map((p) => `${p.value}`);
+    } catch (error) {
+      // Fallback to original logic if signature analysis fails
+      methodParams = methodParamValues
+        .filter((p) => !p.isOptional)
+        .map((p) => `${p.value}`);
+    }
+  } else {
+    // Original logic when dpgContext is not provided
+    methodParams = methodParamValues
+      .filter((p) => !p.isOptional)
+      .map((p) => `${p.value}`);
+  }
+  
   const optionalParams = methodParamValues
     .filter((p) => p.isOptional)
     .map((param) => `${param.name}: ${param.value}`);
@@ -756,4 +829,31 @@ export function generateResponseAssertions(
   }
 
   return assertions;
+}
+
+function getEnvironmentVariableName(
+  paramName: string,
+  clientName?: string
+): string {
+  // Remove "Param" suffix if present
+  const cleanName = paramName.replace(/Param$/, "");
+
+  // Remove "Client" suffix from client name if present and convert to UPPER_SNAKE_CASE
+  let prefix = "";
+  if (clientName) {
+    const cleanClientName = clientName.replace(/Client$/, "");
+    prefix =
+      cleanClientName
+        .replace(/([A-Z])/g, "_$1")
+        .toUpperCase()
+        .replace(/^_/, "") + "_";
+  }
+
+  // Convert camelCase to UPPER_SNAKE_CASE
+  const envVarName = cleanName
+    .replace(/([A-Z])/g, "_$1")
+    .toUpperCase()
+    .replace(/^_/, "");
+
+  return `process.env.${prefix}${envVarName} || ""`;
 }

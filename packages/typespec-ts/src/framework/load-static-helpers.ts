@@ -13,6 +13,8 @@ import { refkey } from "./refkey.js";
 import { resolveProjectRoot } from "../utils/resolve-project-root.js";
 import { isAzurePackage } from "@azure-tools/rlc-common";
 import { ModularEmitterOptions } from "../modular/interfaces.js";
+import { NoTarget, Program } from "@typespec/compiler";
+import { reportDiagnostic } from "../lib.js";
 export const SourceFileSymbol = Symbol("SourceFile");
 export interface StaticHelperMetadata {
   name: string;
@@ -43,6 +45,7 @@ export interface LoadStaticHelpersOptions
   helpersAssetDirectory?: string;
   sourcesDir?: string;
   rootDir?: string;
+  program?: Program;
 }
 
 interface FileMetadata {
@@ -61,8 +64,9 @@ export async function loadStaticHelpers(
     resolveProjectRoot(),
     DEFAULT_SOURCES_STATIC_HELPERS_PATH
   );
-  const filesInSources = await traverseDirectory(
-    options.helpersAssetDirectory ?? defaultStaticHelpersPath
+  const filesInSources  = await traverseDirectory(
+    options.helpersAssetDirectory ?? defaultStaticHelpersPath,
+    options.program
   );
   await loadFiles(filesInSources, options.sourcesDir ?? "");
   // Load static helpers used in testing code
@@ -181,6 +185,7 @@ function getDeclarationByMetadata(
 
 async function traverseDirectory(
   directory: string,
+  program?: Program,
   result: { source: string; target: string }[] = [],
   relativePath: string = "",
   targetBaseDir: string = "static-helpers"
@@ -196,6 +201,7 @@ async function traverseDirectory(
         if (fileStat.isDirectory()) {
           await traverseDirectory(
             filePath,
+            program,
             result,
             path.join(relativePath, file),
             targetBaseDir
@@ -213,7 +219,13 @@ async function traverseDirectory(
 
     return result;
   } catch (error) {
-    console.error(`Error traversing directory ${directory}:`, error);
+    if (program) {
+      reportDiagnostic(program, {
+        code: "directory-traversal-error",
+        format: { directory, error: String(error) },
+        target: NoTarget
+      });
+    }
     throw error;
   }
 }

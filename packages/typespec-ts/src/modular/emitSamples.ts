@@ -77,7 +77,8 @@ function emitMethodSamples(
     const { methodCall, clientParams, clientParamDefs } = generateMethodCall(
       method,
       parameters,
-      options
+      options,
+      dpgContext
     );
 
     // Add client parameter definitions
