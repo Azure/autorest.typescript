@@ -168,15 +168,16 @@ function regularAutorestPackage(
     packageInfo.homepage = `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}`;
   }
   if (azureSdkForJs) {
-    packageInfo.devDependencies["@azure/dev-tool"] = "workspace:*";
+    packageInfo.devDependencies["@azure/dev-tool"] = "workspace:^";
     packageInfo.devDependencies["cross-env"] = "catalog:";
     packageInfo.devDependencies["eslint"] = "catalog:";
     packageInfo.devDependencies["prettier"] = "catalog:";
     packageInfo.devDependencies["rimraf"] = "catalog:";
     packageInfo.devDependencies["tshy"] = "catalog:";
-    packageInfo.devDependencies["mkdirp"] = "catalog:";
 
     delete packageInfo.devDependencies["@microsoft/api-extractor"];
+    delete packageInfo.devDependencies["mkdirp"];
+
     packageInfo.scripts["build"] =
       "npm run clean && dev-tool run build-package && dev-tool run extract-api";
     packageInfo.scripts["clean"] = "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log";
@@ -198,12 +199,12 @@ function regularAutorestPackage(
 
   if (generateTest) {
     packageInfo.devDependencies["@azure/identity"] = azureSdkForJs ? "catalog:internal" : "^4.9.0";
-    packageInfo.devDependencies["@azure/logger"] = azureSdkForJs ? "workspace:*" : "^1.1.4";
+    packageInfo.devDependencies["@azure/logger"] = azureSdkForJs ? "workspace:^" : "^1.1.4";
     // TODO need unify the version when 4.1.0 released
-    packageInfo.devDependencies["@azure-tools/test-recorder"] = azureSdkForJs ? "workspace:*" : "^4.0.0";
-    packageInfo.devDependencies["@azure-tools/test-credential"] = azureSdkForJs ? "workspace:*" : "^2.0.0";
+    packageInfo.devDependencies["@azure-tools/test-recorder"] = azureSdkForJs ? "workspace:^" : "^4.0.0";
+    packageInfo.devDependencies["@azure-tools/test-credential"] = azureSdkForJs ? "workspace:^" : "^2.0.0";
     if (azureSdkForJs) {
-      packageInfo.devDependencies["@azure-tools/test-utils-vitest"] = azureSdkForJs ? "workspace:*" : "^1.0.0";
+      packageInfo.devDependencies["@azure-tools/test-utils-vitest"] = azureSdkForJs ? "workspace:^" : "^1.0.0";
     }
     packageInfo.devDependencies["@types/node"] = azureSdkForJs ? "catalog:" : "^20.0.0";
     packageInfo.devDependencies["@vitest/browser"] = azureSdkForJs ? "catalog:testing" : "^3.0.9";

@@ -9,6 +9,7 @@ import {
   DefaultCoreDependencies,
   AzureTestDependencies
 } from "./modular/external-dependencies.js";
+import { clearDirectory } from "./utils/fileSystemUtils.js";
 import { EmitContext, Program } from "@typespec/compiler";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import {
@@ -45,7 +46,9 @@ import {
   buildTopLevelIndex,
   buildTsConfig,
   buildTsSnippetsConfig,
-  buildTsTestBrowserConfig,
+  buildTestBrowserTsConfig,
+  buildTestNodeTsConfig,
+  buildTestMainTsConfig,
   buildVitestConfig,
   getClientName,
   hasUnexpectedHelper,
@@ -54,8 +57,7 @@ import {
   buildSampleEnvFile,
   buildSnippets,
   buildTsSrcConfig,
-  buildTsSampleConfig,
-  buildTsTestConfig
+  buildTsSampleConfig
 } from "@azure-tools/rlc-common";
 import {
   buildRootIndex,
@@ -201,7 +203,8 @@ export async function $onEmit(context: EmitContext) {
     emitterOptions["generate-sample"] = options.generateSample;
     // clear output folder if needed
     if (options.clearOutputFolder) {
-      await fsextra.emptyDir(context.emitterOutputDir);
+      // Clear output directory while preserving TempTypeSpecFiles
+      await clearDirectory(context.emitterOutputDir, ["TempTypeSpecFiles"]);
     }
     const hasTestFolder = await fsextra.pathExists(
       join(dpgContext.generationPathDetail?.metadataDir ?? "", "test")
@@ -472,7 +475,9 @@ export async function $onEmit(context: EmitContext) {
         commonBuilders.push((model) => buildVitestConfig(model, "node"));
         commonBuilders.push((model) => buildVitestConfig(model, "esm"));
         commonBuilders.push((model) => buildVitestConfig(model, "browser"));
-        commonBuilders.push((model) => buildTsTestBrowserConfig(model));
+        commonBuilders.push((model) => buildTestBrowserTsConfig(model));
+        commonBuilders.push((model) => buildTestNodeTsConfig(model));
+        commonBuilders.push((model) => buildTestMainTsConfig(model));
       }
       if (isAzureFlavor) {
         commonBuilders.push(buildEsLintConfig);
@@ -503,9 +508,6 @@ export async function $onEmit(context: EmitContext) {
         commonBuilders.push(buildTsSrcConfig);
         if (option.generateSample) {
           commonBuilders.push(buildTsSampleConfig);
-        }
-        if (option.generateTest) {
-          commonBuilders.push(buildTsTestConfig);
         }
       }
 
