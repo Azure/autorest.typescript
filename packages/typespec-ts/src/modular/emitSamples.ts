@@ -37,6 +37,8 @@ import {
   ServiceOperation
 } from "../utils/operationUtil.js";
 import { getSubscriptionId } from "../transform/transfromRLCOptions.js";
+import { getClientParametersDeclaration } from "./helpers/clientHelpers.js";
+import { getOperationFunction } from "./helpers/operationHelpers.js";
 
 /**
  * Interfaces for samples generations
@@ -53,6 +55,7 @@ interface EmitSampleOptions {
   generatedFiles: SourceFile[];
   classicalMethodPrefix?: string;
   subFolder?: string;
+  hierarchies?: string[]; // Add hierarchies to track operation path
 }
 /**
  * Helpers to emit samples
@@ -80,8 +83,8 @@ function emitClientSamples(
 ) {
   const methodMap = getMethodHierarchiesMap(dpgContext, client);
   for (const [prefixKey, operations] of methodMap) {
-    const prefix = prefixKey
-      .split("/")
+    const hierarchies = prefixKey ? prefixKey.split("/") : [];
+    const prefix = hierarchies
       .map((name) => {
         return normalizeName(name, NameType.Property);
       })
@@ -89,7 +92,8 @@ function emitClientSamples(
     for (const op of operations) {
       emitMethodSamples(dpgContext, op, {
         ...options,
-        classicalMethodPrefix: prefix
+        classicalMethodPrefix: prefix,
+        hierarchies: hierarchies
       });
     }
   }
@@ -173,10 +177,35 @@ function emitMethodSamples(
     );
 
     // prepare operation-level parameters
+    // Get the actual function signature parameter order
+    const operationFunction = getOperationFunction(
+      dpgContext,
+      [options.hierarchies ?? [], method],
+      "Client"
+    );
+
+    // Extract parameter names from the function signature (excluding context and options)
+    const signatureParamNames =
+      operationFunction.parameters
+        ?.filter(
+          (p) =>
+            p.name !== "context" &&
+            !p.type?.toString().includes("OptionalParams")
+        )
+        .map((p) => p.name) ?? [];
+
     const methodParamValues = parameters.filter((p) => !p.onClient);
-    const methodParams = methodParamValues
-      .filter((p) => !p.isOptional)
-      .map((p) => `${p.value}`);
+
+    // Create a map for quick lookup of parameter values by name
+    const paramValueMap = new Map(methodParamValues.map((p) => [p.name, p]));
+
+    // Reorder methodParamValues according to the signature order
+    const orderedRequiredParams = signatureParamNames
+      .map((name) => paramValueMap.get(name))
+      .filter((p): p is ExampleValue => p !== undefined && !p.isOptional);
+
+    const methodParams = orderedRequiredParams.map((p) => `${p.value}`);
+
     const optionalParams = methodParamValues
       .filter((p) => p.isOptional)
       .map((param) => `${param.name}: ${param.value}`);
@@ -265,6 +294,31 @@ function prepareExampleParameters(
   // TODO: blocked by TCGC issue: https://github.com/Azure/typespec-azure/issues/1419
   // refine this to support generic client-level parameters once resolved
   const result: ExampleValue[] = [];
+  const clientParams = getClientParametersDeclaration(
+    topLevelClient,
+    dpgContext,
+    {
+      onClientOnly: true
+    }
+  );
+
+  for (const param of clientParams) {
+    if (param.name === "options" || param.name === "credential") {
+      continue;
+    }
+
+    const exampleValue: ExampleValue = {
+      name: param.name === "endpointParam" ? "endpoint" : param.name,
+      value: getEnvironmentVariableName(
+        param.name,
+        getClassicalClientName(topLevelClient)
+      ),
+      isOptional: Boolean(param.hasQuestionToken),
+      onClient: true
+    };
+
+    result.push(exampleValue);
+  }
   const credentialExampleValue = getCredentialExampleValue(
     dpgContext,
     topLevelClient.clientInitialization
@@ -425,6 +479,12 @@ function getParameterValue(value: SdkExampleValue): string {
         case "utcDateTime":
           retValue = `new Date("${value.value}")`;
           break;
+        case "bytes": {
+          const encode = value.type.encode ?? "base64";
+          // TODO: add check for un-supported encode
+          retValue = `Buffer.from("${value.value}",  "${encode}")`;
+          break;
+        }
         default:
           retValue = `"${value.value
             ?.toString()
@@ -454,11 +514,9 @@ function getParameterValue(value: SdkExampleValue): string {
       const additionalPropertiesValue =
         value.kind === "model" ? (value.additionalPropertiesValue ?? {}) : {};
       for (const propName in {
-        ...value.value,
-        ...additionalPropertiesValue
+        ...value.value
       }) {
-        const propValue =
-          value.value[propName] ?? additionalPropertiesValue[propName];
+        const propValue = value.value[propName];
         if (propValue === undefined || propValue === null) {
           continue;
         }
@@ -466,6 +524,27 @@ function getParameterValue(value: SdkExampleValue): string {
           `"${mapper.get(propName) ?? propName}": ` +
           getParameterValue(propValue);
         values.push(propRetValue);
+      }
+      const additionalBags = [];
+      for (const propName in {
+        ...additionalPropertiesValue
+      }) {
+        const propValue = additionalPropertiesValue[propName];
+        if (propValue === undefined || propValue === null) {
+          continue;
+        }
+        const propRetValue =
+          `"${mapper.get(propName) ?? propName}": ` +
+          getParameterValue(propValue);
+        additionalBags.push(propRetValue);
+      }
+      if (additionalBags.length > 0) {
+        const name = mapper.get("additionalProperties")
+          ? "additionalPropertiesBag"
+          : "additionalProperties";
+        values.push(`"${name}": {
+          ${additionalBags.join(", ")}
+          }`);
       }
 
       retValue = `{${values.join(", ")}}`;
@@ -487,4 +566,31 @@ function escapeSpecialCharToSpace(str: string) {
     return str;
   }
   return str.replace(/_|,|\.|\(|\)|'s |\[|\]/g, " ").replace(/\//g, " Or ");
+}
+
+function getEnvironmentVariableName(
+  paramName: string,
+  clientName?: string
+): string {
+  // Remove "Param" suffix if present
+  const cleanName = paramName.replace(/Param$/, "");
+
+  // Remove "Client" suffix from client name if present and convert to UPPER_SNAKE_CASE
+  let prefix = "";
+  if (clientName) {
+    const cleanClientName = clientName.replace(/Client$/, "");
+    prefix =
+      cleanClientName
+        .replace(/([A-Z])/g, "_$1")
+        .toUpperCase()
+        .replace(/^_/, "") + "_";
+  }
+
+  // Convert camelCase to UPPER_SNAKE_CASE
+  const envVarName = cleanName
+    .replace(/([A-Z])/g, "_$1")
+    .toUpperCase()
+    .replace(/^_/, "");
+
+  return `process.env.${prefix}${envVarName} || ""`;
 }

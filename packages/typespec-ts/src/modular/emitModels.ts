@@ -46,10 +46,7 @@ import path from "path";
 import { refkey } from "../framework/refkey.js";
 import { useContext } from "../contextManager.js";
 import { isMetadata, isOrExtendsHttpFile } from "@typespec/http";
-import {
-  isAzureCoreErrorType,
-  isAzureCoreLroType
-} from "../utils/modelUtils.js";
+import { isAzureCoreErrorType } from "../utils/modelUtils.js";
 import { isExtensibleEnum } from "./type-expressions/get-enum-expression.js";
 import {
   getAllDiscriminatedValues,
@@ -107,9 +104,6 @@ export function emitTypes(
 
   for (const type of emitQueue) {
     if (!isGenerableType(type)) {
-      continue;
-    }
-    if (isAzureCoreLroType(type.__raw)) {
       continue;
     }
 
