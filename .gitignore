@@ -29,3 +29,4 @@ dist
 vitest.config.ts.timestamp*
 .tshy
 **/test/**/metadata.json
+.turbo/

@@ -430,7 +430,7 @@ describe("LROs", () => {
         });
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(e.message, "The long-running operation has failed");
+        assert.equal(e.message, "The long-running operation has failed. 500. Internal Server Error");
       }
     });
 

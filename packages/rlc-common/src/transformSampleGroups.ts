@@ -180,7 +180,7 @@ function enrichParameterInSample(
   sample.pathParamNames = getContactParameterNames(parameters.path);
   // Directly apply the inline option value as method parameter
   sample.methodParamNames =
-    parameters.method.length > 0 ? parameters.method[0].value ?? "" : "";
+    parameters.method.length > 0 ? (parameters.method[0].value ?? "") : "";
 }
 
 function getAssignmentStrArray(parameters: SampleParameter[]) {
