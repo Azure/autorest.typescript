@@ -143,8 +143,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: 2021-10-01-preview/json_for_Widgets_ListWidgets.json
  */
 async function widgetsListWidgets(): Promise<void> {
+  const endpoint = process.env.WIDGET_MANAGER_ENDPOINT || "";
   const credential = new DefaultAzureCredential();
-  const client = new WidgetManagerClient(credential);
+  const client = new WidgetManagerClient(endpoint, credential);
   const resArray = new Array();
   for await (const item of client.widgets.listWidgets({
     top: 8,
@@ -174,8 +175,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: 2021-10-01-preview/json_for_Widgets_DeleteWidget.json
  */
 async function deleteWidgetByWidgetNameUsingLongRunningOperation(): Promise<void> {
+  const endpoint = process.env.WIDGET_MANAGER_ENDPOINT || "";
   const credential = new DefaultAzureCredential();
-  const client = new WidgetManagerClient(credential);
+  const client = new WidgetManagerClient(endpoint, credential);
   const result = await client.widgets.deleteWidget("searchbox");
   console.log(result);
 }
@@ -197,8 +199,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  * x-ms-original-file: 2021-10-01-preview/json_for_Widgets_CreateOrUpdateWidget.json
  */
 async function widgetsCreateOrUpdateWidget(): Promise<void> {
+  const endpoint = process.env.WIDGET_MANAGER_ENDPOINT || "";
   const credential = new DefaultAzureCredential();
-  const client = new WidgetManagerClient(credential);
+  const client = new WidgetManagerClient(endpoint, credential);
   const result = await client.widgets.createOrUpdateWidget("name1", {
     manufacturerId: "manufacturer id1",
   });
@@ -229,9 +232,10 @@ describe("list Widget resources", () => {
 
   beforeEach(async function (ctx) {
     recorder = await createRecorder(ctx);
+    const endpoint = process.env.WIDGET_MANAGER_ENDPOINT || "";
     const credential = createTestCredential();
     const clientOptions = recorder.configureClientOptions({});
-    client = new WidgetManagerClient(credential, clientOptions);
+    client = new WidgetManagerClient(endpoint, credential, clientOptions);
   });
 
   afterEach(async function () {
@@ -265,9 +269,10 @@ describe("delete a Widget asynchronously", () => {
 
   beforeEach(async function (ctx) {
     recorder = await createRecorder(ctx);
+    const endpoint = process.env.WIDGET_MANAGER_ENDPOINT || "";
     const credential = createTestCredential();
     const clientOptions = recorder.configureClientOptions({});
-    client = new WidgetManagerClient(credential, clientOptions);
+    client = new WidgetManagerClient(endpoint, credential, clientOptions);
   });
 
   afterEach(async function () {
@@ -294,9 +299,10 @@ describe("creates or updates a Widget asynchronously", () => {
 
   beforeEach(async function (ctx) {
     recorder = await createRecorder(ctx);
+    const endpoint = process.env.WIDGET_MANAGER_ENDPOINT || "";
     const credential = createTestCredential();
     const clientOptions = recorder.configureClientOptions({});
-    client = new WidgetManagerClient(credential, clientOptions);
+    client = new WidgetManagerClient(endpoint, credential, clientOptions);
   });
 
   afterEach(async function () {

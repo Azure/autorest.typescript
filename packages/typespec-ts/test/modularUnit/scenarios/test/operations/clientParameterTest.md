@@ -97,9 +97,10 @@ describe("list Widget resources", () => {
 
   beforeEach(async function (ctx) {
     recorder = await createRecorder(ctx);
+    const endpoint = process.env.WIDGET_MANAGER_ENDPOINT || "";
     const credential = createTestCredential();
     const clientOptions = recorder.configureClientOptions({});
-    client = new WidgetManagerClient(credential, clientOptions);
+    client = new WidgetManagerClient(endpoint, credential, clientOptions);
   });
 
   afterEach(async function () {

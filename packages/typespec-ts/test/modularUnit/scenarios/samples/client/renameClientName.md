@@ -98,8 +98,9 @@ describe("show example demo", () => {
 
   beforeEach(async function (ctx) {
     recorder = await createRecorder(ctx);
+    const endpoint = process.env.TEST_SERVICE_ENDPOINT || "";
     const clientOptions = recorder.configureClientOptions({});
-    client = new TestServiceClient(clientOptions);
+    client = new TestServiceClient(endpoint, clientOptions);
   });
 
   afterEach(async function () {

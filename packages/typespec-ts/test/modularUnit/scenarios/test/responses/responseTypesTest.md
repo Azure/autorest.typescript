@@ -117,8 +117,9 @@ describe("show example demo", () => {
 
   beforeEach(async function (ctx) {
     recorder = await createRecorder(ctx);
+    const endpoint = process.env.TESTING_ENDPOINT || "";
     const clientOptions = recorder.configureClientOptions({});
-    client = new TestingClient(clientOptions);
+    client = new TestingClient(endpoint, clientOptions);
   });
 
   afterEach(async function () {
