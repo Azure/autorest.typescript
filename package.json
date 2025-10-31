@@ -29,6 +29,13 @@
     "pnpm": ">=10.12.1"
   },
   "pnpm": {
-    "overrides": {}
+    "overrides": {},
+    "ignoredBuiltDependencies": [
+      "esbuild"
+    ],
+    "onlyBuiltDependencies": [
+      "autorest",
+      "puppeteer"
+    ]
   }
 }
