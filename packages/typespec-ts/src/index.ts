@@ -6,13 +6,15 @@ import {
   AzureCoreDependencies,
   AzureIdentityDependencies,
   AzurePollingDependencies,
-  DefaultCoreDependencies
+  DefaultCoreDependencies,
+  AzureTestDependencies
 } from "./modular/external-dependencies.js";
 import { clearDirectory } from "./utils/fileSystemUtils.js";
 import { EmitContext, Program } from "@typespec/compiler";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import {
   CloudSettingHelpers,
+  CreateRecorderHelpers,
   MultipartHelpers,
   PagingHelpers,
   PollingHelpers,
@@ -95,6 +97,7 @@ import { provideSdkTypes } from "./framework/hooks/sdkTypes.js";
 import { transformRLCModel } from "./transform/transform.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
 import { emitSamples } from "./modular/emitSamples.js";
+import { emitTests } from "./modular/emitTests.js";
 import { generateCrossLanguageDefinitionFile } from "./utils/crossLanguageDef.js";
 
 export * from "./lib.js";
@@ -132,10 +135,12 @@ export async function $onEmit(context: EmitContext) {
       ...PollingHelpers,
       ...UrlTemplateHelpers,
       ...MultipartHelpers,
-      ...CloudSettingHelpers
+      ...CloudSettingHelpers,
+      ...CreateRecorderHelpers
     },
     {
       sourcesDir: dpgContext.generationPathDetail?.modularSourcesDir,
+      rootDir: dpgContext.generationPathDetail?.rootDir,
       options: rlcOptions,
       program
     }
@@ -144,7 +149,8 @@ export async function $onEmit(context: EmitContext) {
     ? {
         ...AzurePollingDependencies,
         ...AzureCoreDependencies,
-        ...AzureIdentityDependencies
+        ...AzureIdentityDependencies,
+        ...AzureTestDependencies
       }
     : { ...DefaultCoreDependencies };
   const binder = provideBinder(outputProject, {
@@ -348,7 +354,15 @@ export async function $onEmit(context: EmitContext) {
       }
     }
 
-    binder.resolveAllReferences(modularSourcesRoot);
+    // Enable modular test generation when explicitly set to true
+    if (emitterOptions["experimental-generate-test-files"] === true) {
+      await emitTests(dpgContext);
+    }
+
+    binder.resolveAllReferences(
+      modularSourcesRoot,
+      dpgContext.generationPathDetail?.rootDir ?? ""
+    );
     if (program.compilerOptions.noEmit || program.hasError()) {
       return;
     }
