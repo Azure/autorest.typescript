@@ -3,24 +3,8 @@
 
 import { EasmContext as Client } from "./index.js";
 import {
-  _AzureCoreFoundationsPagedAssetResource,
-  _azureCoreFoundationsPagedAssetResourceDeserializer,
-  _AzureCoreFoundationsPagedDataConnection,
-  _azureCoreFoundationsPagedDataConnectionDeserializer,
-  _AzureCoreFoundationsPagedDiscoGroup,
-  _azureCoreFoundationsPagedDiscoGroupDeserializer,
-  _AzureCoreFoundationsPagedDiscoTemplate,
-  _azureCoreFoundationsPagedDiscoTemplateDeserializer,
-  _AzureCoreFoundationsPagedSavedFilter,
-  _azureCoreFoundationsPagedSavedFilterDeserializer,
-  _AzureCoreFoundationsPagedTask,
-  _azureCoreFoundationsPagedTaskDeserializer,
-  _AzureCoreFoundationsPagedCisaCveResult,
-  _azureCoreFoundationsPagedCisaCveResultDeserializer,
-  _AzureCoreFoundationsPagedPolicy,
-  _azureCoreFoundationsPagedPolicyDeserializer,
-} from "../models/azure/core/foundations/models.js";
-import {
+  _PagedAssetResource,
+  _pagedAssetResourceDeserializer,
   assetResourceUnionDeserializer,
   AssetResourceUnion,
   AssetUpdateData,
@@ -40,12 +24,16 @@ import {
   deltaSummaryRequestSerializer,
   DeltaSummaryResult,
   deltaSummaryResultDeserializer,
+  _PagedDataConnection,
+  _pagedDataConnectionDeserializer,
   dataConnectionUnionDeserializer,
   DataConnectionUnion,
   dataConnectionDataUnionSerializer,
   DataConnectionDataUnion,
   ValidateResult,
   validateResultDeserializer,
+  _PagedDiscoGroup,
+  _pagedDiscoGroupDeserializer,
   DiscoGroup,
   discoGroupDeserializer,
   DiscoRunResult,
@@ -57,6 +45,8 @@ import {
   assetChainRequestSerializer,
   AssetChainSummaryResult,
   assetChainSummaryResultDeserializer,
+  _PagedDiscoTemplate,
+  _pagedDiscoTemplateDeserializer,
   DiscoTemplate,
   discoTemplateDeserializer,
   ReportBillableAssetSummaryResult,
@@ -71,12 +61,20 @@ import {
   reportAssetSummaryResultDeserializer,
   ReportAssetSnapshotExportRequest,
   reportAssetSnapshotExportRequestSerializer,
+  _PagedSavedFilter,
+  _pagedSavedFilterDeserializer,
   SavedFilter,
   savedFilterDeserializer,
   SavedFilterData,
   savedFilterDataSerializer,
+  _PagedTask,
+  _pagedTaskDeserializer,
+  _PagedCisaCveResult,
+  _pagedCisaCveResultDeserializer,
   CisaCveResult,
   cisaCveResultDeserializer,
+  _PagedPolicy,
+  _pagedPolicyDeserializer,
   Policy,
   policySerializer,
   policyDeserializer,
@@ -310,13 +308,13 @@ export function _listPolicySend(
 
 export async function _listPolicyDeserialize(
   result: PathUncheckedResponse,
-): Promise<_AzureCoreFoundationsPagedPolicy> {
+): Promise<_PagedPolicy> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return _azureCoreFoundationsPagedPolicyDeserializer(result.body);
+  return _pagedPolicyDeserializer(result.body);
 }
 
 /** Retrieve a list of policies for the provided search parameters. */
@@ -406,13 +404,13 @@ export function _getCisaCvesSend(
 
 export async function _getCisaCvesDeserialize(
   result: PathUncheckedResponse,
-): Promise<_AzureCoreFoundationsPagedCisaCveResult> {
+): Promise<_PagedCisaCveResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return _azureCoreFoundationsPagedCisaCveResultDeserializer(result.body);
+  return _pagedCisaCveResultDeserializer(result.body);
 }
 
 /** Retrieve a list of CisaCves for the provided search parameters. */
@@ -647,13 +645,13 @@ export function _listTaskSend(
 
 export async function _listTaskDeserialize(
   result: PathUncheckedResponse,
-): Promise<_AzureCoreFoundationsPagedTask> {
+): Promise<_PagedTask> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return _azureCoreFoundationsPagedTaskDeserializer(result.body);
+  return _pagedTaskDeserializer(result.body);
 }
 
 /** Retrieve a list of tasks for the provided search parameters. */
@@ -843,13 +841,13 @@ export function _listSavedFilterSend(
 
 export async function _listSavedFilterDeserialize(
   result: PathUncheckedResponse,
-): Promise<_AzureCoreFoundationsPagedSavedFilter> {
+): Promise<_PagedSavedFilter> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return _azureCoreFoundationsPagedSavedFilterDeserializer(result.body);
+  return _pagedSavedFilterDeserializer(result.body);
 }
 
 /** Retrieve a list of saved filters for the provided search parameters. */
@@ -1130,13 +1128,13 @@ export function _listDiscoTemplateSend(
 
 export async function _listDiscoTemplateDeserialize(
   result: PathUncheckedResponse,
-): Promise<_AzureCoreFoundationsPagedDiscoTemplate> {
+): Promise<_PagedDiscoTemplate> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return _azureCoreFoundationsPagedDiscoTemplateDeserializer(result.body);
+  return _pagedDiscoTemplateDeserializer(result.body);
 }
 
 /** Retrieve a list of disco templates for the provided search parameters. */
@@ -1566,13 +1564,13 @@ export function _listDiscoGroupSend(
 
 export async function _listDiscoGroupDeserialize(
   result: PathUncheckedResponse,
-): Promise<_AzureCoreFoundationsPagedDiscoGroup> {
+): Promise<_PagedDiscoGroup> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return _azureCoreFoundationsPagedDiscoGroupDeserializer(result.body);
+  return _pagedDiscoGroupDeserializer(result.body);
 }
 
 /** Retrieve a list of discovery group for the provided search parameters. */
@@ -1817,13 +1815,13 @@ export function _listDataConnectionSend(
 
 export async function _listDataConnectionDeserialize(
   result: PathUncheckedResponse,
-): Promise<_AzureCoreFoundationsPagedDataConnection> {
+): Promise<_PagedDataConnection> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return _azureCoreFoundationsPagedDataConnectionDeserializer(result.body);
+  return _pagedDataConnectionDeserializer(result.body);
 }
 
 /** Retrieve a list of data connections. */
@@ -2180,13 +2178,13 @@ export function _listAssetResourceSend(
 
 export async function _listAssetResourceDeserialize(
   result: PathUncheckedResponse,
-): Promise<_AzureCoreFoundationsPagedAssetResource> {
+): Promise<_PagedAssetResource> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return _azureCoreFoundationsPagedAssetResourceDeserializer(result.body);
+  return _pagedAssetResourceDeserializer(result.body);
 }
 
 /** Retrieve a list of assets for the provided search parameters. */

@@ -1,7 +1,30 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ErrorResponse } from "@azure-tools/typespec-azure-core";
+import { ErrorResponse } from "@azure-rest/core-client";
+
+/** Paged collection of AssetResource items */
+export interface _PagedAssetResource {
+  /** The AssetResource items on this page */
+  value: AssetResourceUnion[];
+  /** The link to the next page of items */
+  nextLink?: string;
+  /** The total number of items available in the full result set. */
+  totalElements?: number;
+  /** The cursor mark to be used on the next request.  Not set if using paging. */
+  mark?: string;
+}
+
+export function _pagedAssetResourceDeserializer(
+  item: any,
+): _PagedAssetResource {
+  return {
+    value: assetResourceUnionArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+    totalElements: item["totalElements"],
+    mark: item["mark"],
+  };
+}
 
 export function assetResourceUnionArrayDeserializer(
   result: Array<AssetResourceUnion>,
@@ -3091,6 +3114,26 @@ export function dailyDeltaTypeResponseDeserializer(
   };
 }
 
+/** Paged collection of DataConnection items */
+export interface _PagedDataConnection {
+  /** The DataConnection items on this page */
+  value: DataConnectionUnion[];
+  /** The link to the next page of items */
+  nextLink?: string;
+  /** The total number of items available in the full result set. */
+  totalElements?: number;
+}
+
+export function _pagedDataConnectionDeserializer(
+  item: any,
+): _PagedDataConnection {
+  return {
+    value: dataConnectionUnionArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+    totalElements: item["totalElements"],
+  };
+}
+
 export function dataConnectionUnionArrayDeserializer(
   result: Array<DataConnectionUnion>,
 ): any[] {
@@ -3485,6 +3528,24 @@ export function innerErrorDeserializer(item: any): InnerError {
   };
 }
 
+/** Paged collection of DiscoGroup items */
+export interface _PagedDiscoGroup {
+  /** The DiscoGroup items on this page */
+  value: DiscoGroup[];
+  /** The link to the next page of items */
+  nextLink?: string;
+  /** The total number of items available in the full result set. */
+  totalElements?: number;
+}
+
+export function _pagedDiscoGroupDeserializer(item: any): _PagedDiscoGroup {
+  return {
+    value: discoGroupArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+    totalElements: item["totalElements"],
+  };
+}
+
 export function discoGroupArrayDeserializer(result: Array<DiscoGroup>): any[] {
   return result.map((item) => {
     return discoGroupDeserializer(item);
@@ -3823,6 +3884,26 @@ export function discoGroupSummaryResultDeserializer(
     id: item["id"],
     name: item["name"],
     displayName: item["displayName"],
+  };
+}
+
+/** Paged collection of DiscoTemplate items */
+export interface _PagedDiscoTemplate {
+  /** The DiscoTemplate items on this page */
+  value: DiscoTemplate[];
+  /** The link to the next page of items */
+  nextLink?: string;
+  /** The total number of items available in the full result set. */
+  totalElements?: number;
+}
+
+export function _pagedDiscoTemplateDeserializer(
+  item: any,
+): _PagedDiscoTemplate {
+  return {
+    value: discoTemplateArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+    totalElements: item["totalElements"],
   };
 }
 
@@ -4165,6 +4246,24 @@ export function reportAssetSnapshotExportRequestSerializer(
   };
 }
 
+/** Paged collection of SavedFilter items */
+export interface _PagedSavedFilter {
+  /** The SavedFilter items on this page */
+  value: SavedFilter[];
+  /** The link to the next page of items */
+  nextLink?: string;
+  /** The total number of items available in the full result set. */
+  totalElements?: number;
+}
+
+export function _pagedSavedFilterDeserializer(item: any): _PagedSavedFilter {
+  return {
+    value: savedFilterArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+    totalElements: item["totalElements"],
+  };
+}
+
 export function savedFilterArrayDeserializer(
   result: Array<SavedFilter>,
 ): any[] {
@@ -4207,10 +4306,48 @@ export function savedFilterDataSerializer(item: SavedFilterData): any {
   return { filter: item["filter"], description: item["description"] };
 }
 
+/** Paged collection of Task items */
+export interface _PagedTask {
+  /** The Task items on this page */
+  value: Task[];
+  /** The link to the next page of items */
+  nextLink?: string;
+  /** The total number of items available in the full result set. */
+  totalElements?: number;
+}
+
+export function _pagedTaskDeserializer(item: any): _PagedTask {
+  return {
+    value: taskArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+    totalElements: item["totalElements"],
+  };
+}
+
 export function taskArrayDeserializer(result: Array<Task>): any[] {
   return result.map((item) => {
     return taskDeserializer(item);
   });
+}
+
+/** Paged collection of CisaCveResult items */
+export interface _PagedCisaCveResult {
+  /** The CisaCveResult items on this page */
+  value: CisaCveResult[];
+  /** The link to the next page of items */
+  nextLink?: string;
+  /** The total number of items available in the full result set. */
+  totalElements?: number;
+}
+
+export function _pagedCisaCveResultDeserializer(
+  item: any,
+): _PagedCisaCveResult {
+  return {
+    value: cisaCveResultArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+    totalElements: item["totalElements"],
+  };
 }
 
 export function cisaCveResultArrayDeserializer(
@@ -4260,6 +4397,24 @@ export function cisaCveResultDeserializer(item: any): CisaCveResult {
     dueDate: new Date(item["dueDate"]),
     updatedAt: new Date(item["updatedAt"]),
     count: item["count"],
+  };
+}
+
+/** Paged collection of Policy items */
+export interface _PagedPolicy {
+  /** The Policy items on this page */
+  value: Policy[];
+  /** The link to the next page of items */
+  nextLink?: string;
+  /** The total number of items available in the full result set. */
+  totalElements?: number;
+}
+
+export function _pagedPolicyDeserializer(item: any): _PagedPolicy {
+  return {
+    value: policyArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+    totalElements: item["totalElements"],
   };
 }
 

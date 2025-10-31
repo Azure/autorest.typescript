@@ -5,7 +5,7 @@
 ```ts
 
 import { ClientOptions } from '@azure-rest/core-client';
-import { ErrorModel } from '@azure-rest/core-client';
+import { ErrorResponse } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
@@ -110,7 +110,7 @@ export type AssetChainSource = "DISCO_GROUP" | "ASSET";
 export interface AssetChainSummaryResult {
     affectedAssetsSummary: AssetChainKindSummaryResult[];
     affectedGroupsSummary: DiscoGroupSummaryResult[];
-    errors?: AzureCoreFoundationsErrorResponse[];
+    errors?: ErrorResponse[];
 }
 
 // @public
@@ -237,11 +237,6 @@ export interface AuditTrailItem {
 
 // @public
 export type AuditTrailItemKind = "as" | "contact" | "domain" | "host" | "ipAddress" | "ipBlock" | "page" | "sslCert";
-
-// @public
-export interface AzureCoreFoundationsErrorResponse {
-    error: ErrorModel;
-}
 
 // @public
 export interface AzureDataExplorerDataConnection extends DataConnection {
