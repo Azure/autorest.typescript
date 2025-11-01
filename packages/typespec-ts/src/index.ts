@@ -35,6 +35,7 @@ import {
   buildPollingHelper,
   buildPaginateHelper as buildRLCPaginateHelper,
   buildReadmeFile,
+  updateReadmeFile,
   buildRecordedClientFile,
   buildResponseTypes,
   buildRollupConfig,
@@ -408,6 +409,11 @@ export async function $onEmit(context: EmitContext) {
       "package.json"
     );
     const hasPackageFile = await existsSync(existingPackageFilePath);
+    const existingReadmeFilePath = join(
+      dpgContext.generationPathDetail?.metadataDir ?? "",
+      "README.md"
+    );
+    const hasReadmeFile = await existsSync(existingReadmeFilePath);
     const shouldGenerateMetadata =
       option.generateMetadata === true || !hasPackageFile;
     const existingTestFolderPath = join(
@@ -507,12 +513,39 @@ export async function $onEmit(context: EmitContext) {
       }
     } else if (hasPackageFile) {
       // update existing package.json file with correct dependencies
+      let updateOptions = {};
+      if (option.isModularLibrary) {
+        const moduleExports = getModuleExports(context, modularEmitterOptions);
+        // Normalize export paths to ensure they all start with "./"
+        const normalizedExports = Object.fromEntries(
+          Object.entries(moduleExports).map(([key, value]) => [
+            key,
+            typeof value === "string" && !value.startsWith("./")
+              ? `./${value}`
+              : value
+          ])
+        );
+        updateOptions = {
+          exports: normalizedExports
+        };
+      }
       await emitContentByBuilder(
         program,
-        (model) => updatePackageFile(model, existingPackageFilePath),
+        (model) =>
+          updatePackageFile(model, existingPackageFilePath, updateOptions),
         rlcClient,
         dpgContext.generationPathDetail?.metadataDir
       );
+
+      // update existing README.md file if it exists
+      if (hasReadmeFile) {
+        await emitContentByBuilder(
+          program,
+          (model) => updateReadmeFile(model, existingReadmeFilePath),
+          rlcClient,
+          dpgContext.generationPathDetail?.metadataDir
+        );
+      }
     }
     if (isAzureFlavor) {
       await emitContentByBuilder(
