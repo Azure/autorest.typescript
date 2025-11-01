@@ -83,15 +83,23 @@ export function buildPackageFile(
 
 /**
  * Automatically updates the package.json with correct paging and LRO dependencies for Azure SDK.
+ * Also updates tshy.exports if provided.
  */
 export function updatePackageFile(
   model: RLCModel,
-  existingFilePathOrContent: string | Record<string, any>
+  existingFilePathOrContent: string | Record<string, any>,
+  options?: { exports?: Record<string, any> }
 ) {
   const hasLro = hasPollingOperations(model);
-  if (!isAzurePackage(model) || !hasLro) {
+  const isAzure = isAzurePackage(model);
+  const needsLroUpdate = isAzure && hasLro;
+  const needsExportsUpdate = options?.exports;
+
+  // Early return if nothing needs to be updated
+  if (!needsLroUpdate && !needsExportsUpdate) {
     return;
   }
+
   let packageInfo;
   if (typeof existingFilePathOrContent === "string") {
     let packageFile: SourceFile;
@@ -107,7 +115,20 @@ export function updatePackageFile(
     packageInfo = existingFilePathOrContent;
   }
 
-  if (hasLro) {
+  // Update tshy.exports if exports are provided and tshy exists
+  if (needsExportsUpdate && packageInfo.tshy) {
+    packageInfo.tshy = {
+      ...packageInfo.tshy,
+      exports: {
+        "./package.json": "./package.json",
+        ".": "./src/index.ts",
+        ...options.exports
+      }
+    };
+  }
+
+  // Update LRO dependencies for Azure packages
+  if (needsLroUpdate) {
     packageInfo.dependencies = {
       ...packageInfo.dependencies,
       "@azure/core-lro": "^3.1.0",
