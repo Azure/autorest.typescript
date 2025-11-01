@@ -8,18 +8,9 @@ import hbs from "handlebars";
 import { NameType, normalizeName } from "../helpers/nameUtils.js";
 import { isAzurePackage } from "../helpers/packageUtil.js";
 import { getClientName } from "../helpers/nameConstructors.js";
+import { readFileSync } from "fs";
 
-const azureReadmeRLCTemplate = `# {{ clientDescriptiveName }} library for JavaScript
-
-{{ description }}
-
-{{#if azureArm}}
-**If you are not familiar with our REST client, please spend 5 minutes to take a look at {{#if serviceDocURL}}[the service's documentation]({{ serviceDocURL }}) and {{/if}}our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library, the REST client provides a light-weighted & developer friendly way to call azure rest api
-{{else}}
-**Please rely heavily on {{#if serviceDocURL}}[the service's documentation]({{ serviceDocURL }}) and {{/if}}our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
-{{/if}}
-
-Key links:
+const keyLinksRLCTemplate = `Key links:
 
 {{#if packageSourceURL}}
 - [Source code]({{ packageSourceURL }})
@@ -35,7 +26,19 @@ Key links:
 {{/if}}
 {{#if samplesURL}}
 - [Samples]({{ samplesURL }})
+{{/if}}`;
+
+const azureReadmeRLCTemplate = `# {{ clientDescriptiveName }} library for JavaScript
+
+{{ description }}
+
+{{#if azureArm}}
+**If you are not familiar with our REST client, please spend 5 minutes to take a look at {{#if serviceDocURL}}[the service's documentation]({{ serviceDocURL }}) and {{/if}}our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library, the REST client provides a light-weighted & developer friendly way to call azure rest api
+{{else}}
+**Please rely heavily on {{#if serviceDocURL}}[the service's documentation]({{ serviceDocURL }}) and {{/if}}our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
 {{/if}}
+
+${keyLinksRLCTemplate}
 
 ## Getting started
 
@@ -83,13 +86,7 @@ setLogLevel("info");
 For more detailed instructions on how to enable logs, you can look at the [@azure/logger package docs](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/core/logger).
 `;
 
-const azureReadmeModularTemplate = `# {{ clientDescriptiveName }} library for JavaScript
-
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for {{ clientDescriptiveName }}.
-
-{{ description }}
-
-Key links:
+const keyLinksModularTemplate = `Key links:
 
 {{#if packageSourceURL}}
 - [Source code]({{ packageSourceURL }})
@@ -103,6 +100,15 @@ Key links:
 {{#if samplesURL}}
 - [Samples]({{samplesURL}})
 {{/if}}
+`;
+
+const azureReadmeModularTemplate = `# {{ clientDescriptiveName }} library for JavaScript
+
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for {{ clientDescriptiveName }}.
+
+{{ description }}
+
+${keyLinksModularTemplate}
 
 ## Getting started
 
@@ -251,11 +257,7 @@ If you'd like to contribute to this library, please read the [contributing guide
 {{/if}}
 `;
 
-const nonBrandedReadmeTemplate = `# {{ clientDescriptiveName }} library for JavaScript
-
-{{ description }}
-
-Key links:
+const nonBrandedkeyLinksTemplate = `Key links:
 
 {{#if packageSourceURL}}
 - [Source code]({{ packageSourceURL }})
@@ -272,6 +274,13 @@ Key links:
 {{#if samplesURL}}
 - [Samples]({{ samplesURL }})
 {{/if}}
+`;
+
+const nonBrandedReadmeTemplate = `# {{ clientDescriptiveName }} library for JavaScript
+
+{{ description }}
+
+${nonBrandedkeyLinksTemplate}
 
 ## Getting started
 
@@ -355,6 +364,62 @@ export function buildReadmeFile(model: RLCModel) {
     path: "README.md",
     content: readmeFileContents(metadata)
   };
+}
+
+/**
+ * Updates an existing README.md file by only updating the "Key links:" section.
+ */
+export function updateReadmeFile(
+  model: RLCModel,
+  existingReadmeFilePath: string
+): { path: string; content: string } | undefined {
+  // Read existing content
+  let existingContent: string;
+  try {
+    existingContent = readFileSync(existingReadmeFilePath, "utf8");
+  } catch (e) {
+    // If the file doesn't exist, we don't need to update it.
+    return;
+  }
+
+  // Generate Key links
+  const metadata = createMetadata(model) ?? {};
+  const newKeyLinksSection = hbs.compile(
+    model.options && isAzurePackage(model)
+      ? model.options.isModularLibrary
+        ? keyLinksModularTemplate
+        : keyLinksRLCTemplate
+      : nonBrandedkeyLinksTemplate,
+    { noEscape: true }
+  )(metadata);
+  if (!newKeyLinksSection?.trim()) {
+    // Nothing to update, return existing content
+    return { path: "README.md", content: existingContent };
+  }
+
+  // Update and return
+  return {
+    path: "README.md",
+    content: updateKeyLinksSection(existingContent, newKeyLinksSection.trim())
+  };
+}
+
+/**
+ * Updates only the Key links section in the existing README content.
+ */
+function updateKeyLinksSection(
+  existingContent: string,
+  newKeyLinksSection: string
+): string {
+  const keyLinksPattern = /Key links:\s*\n((?:(?:\n|.)*?)(?=\n## |\n# |$))/;
+
+  if (existingContent.match(keyLinksPattern)) {
+    // Ensure there's a blank line after the Key links section
+    const newKeyLinksWithBlankLine = newKeyLinksSection + "\n";
+    return existingContent.replace(keyLinksPattern, newKeyLinksWithBlankLine);
+  }
+
+  return existingContent;
 }
 
 /**
