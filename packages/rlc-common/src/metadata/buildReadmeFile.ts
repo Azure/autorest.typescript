@@ -99,8 +99,7 @@ const keyLinksModularTemplate = `Key links:
 {{/if}}
 {{#if samplesURL}}
 - [Samples]({{samplesURL}})
-{{/if}}
-`;
+{{/if}}`;
 
 const azureReadmeModularTemplate = `# {{ clientDescriptiveName }} library for JavaScript
 
@@ -273,8 +272,7 @@ const nonBrandedkeyLinksTemplate = `Key links:
 {{/if}}
 {{#if samplesURL}}
 - [Samples]({{ samplesURL }})
-{{/if}}
-`;
+{{/if}}`;
 
 const nonBrandedReadmeTemplate = `# {{ clientDescriptiveName }} library for JavaScript
 
