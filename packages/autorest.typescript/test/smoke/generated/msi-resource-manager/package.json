@@ -47,7 +47,7 @@
     "@azure-tools/test-credential": "^2.0.0",
     "@types/node": "^20.0.0",
     "@vitest/browser-playwright": "^4.0.6",
-    "@vitest/coverage-istanbul": "^3.0.9",
+    "@vitest/coverage-istanbul": "^4.0.6",
     "playwright": "^1.52.0",
     "vitest": "^4.0.6",
     "cross-env": "^7.0.2"

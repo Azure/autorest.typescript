@@ -208,9 +208,9 @@ function regularAutorestPackage(
     }
     packageInfo.devDependencies["@types/node"] = azureSdkForJs ? "catalog:" : "^20.0.0";
     packageInfo.devDependencies["@vitest/browser-playwright"] = azureSdkForJs ? "catalog:testing" : "^4.0.6";
-    packageInfo.devDependencies["@vitest/coverage-istanbul"] = azureSdkForJs ? "catalog:testing" : "^3.0.9";
+    packageInfo.devDependencies["@vitest/coverage-istanbul"] = azureSdkForJs ? "catalog:testing" : "^4.0.6";
     packageInfo.devDependencies["playwright"] = azureSdkForJs ? "catalog:testing" : "^1.52.0";
-    packageInfo.devDependencies["vitest"] = azureSdkForJs ? "catalog:testing" : "^3.0.9";
+    packageInfo.devDependencies["vitest"] = azureSdkForJs ? "catalog:testing" : "^4.0.6";
     packageInfo.scripts["test"] = "npm run test:node && npm run test:browser";
 
     if (azureSdkForJs) {

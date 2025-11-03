@@ -131,9 +131,9 @@ function getAzurePackageEsmDevDependencies({
     devDependencies = {
       ...devDependencies,
       "@vitest/browser-playwright": "^4.0.6",
-      "@vitest/coverage-istanbul": "^3.0.3",
+      "@vitest/coverage-istanbul": "^4.0.6",
       playwright: "^1.41.2",
-      vitest: "^3.0.3",
+      vitest: "^4.0.6",
       "@azure-tools/test-credential": "^2.0.0",
       "@azure-tools/test-recorder": "^4.0.0"
     };
