@@ -55,7 +55,7 @@ export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
 
   const testDeps = withTests
     ? {
-        "@vitest/browser": "catalog:testing",
+        "@vitest/browser-playwright": "catalog:testing",
         "@vitest/coverage-istanbul": "catalog:testing",
         dotenv: "catalog:testing",
         playwright: "catalog:testing",
