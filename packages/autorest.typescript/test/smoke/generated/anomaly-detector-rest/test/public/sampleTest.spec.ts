@@ -14,7 +14,7 @@ import {
 describe("My test", () => {
   // let recorder: Recorder;
 
-  // beforeEach(async function(ctx) {
+  // beforeEach(async function(_ctx) {
   // recorder = await createRecorder(ctx);
   // });
 
