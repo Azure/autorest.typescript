@@ -409,12 +409,13 @@ function updateKeyLinksSection(
   existingContent: string,
   newKeyLinksSection: string
 ): string {
-  const keyLinksPattern = /Key links:\s*\n((?:(?:\n|.)*?)(?=\n## |\n# |$))/;
+  // Match "Key links:" followed by content until the next section (## or #) or end of file
+  const keyLinksPattern = /Key links:\s*\n[\s\S]*?(?=\n## |\n# |$)/;
 
   if (existingContent.match(keyLinksPattern)) {
+    // Replace the entire Key links section with the new content
     // Ensure there's a blank line after the Key links section
-    const newKeyLinksWithBlankLine = newKeyLinksSection + "\n";
-    return existingContent.replace(keyLinksPattern, newKeyLinksWithBlankLine);
+    return existingContent.replace(keyLinksPattern, newKeyLinksSection + "\n");
   }
 
   return existingContent;
