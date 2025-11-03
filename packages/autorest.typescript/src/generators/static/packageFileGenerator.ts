@@ -132,7 +132,12 @@ function regularAutorestPackage(
       lint: "echo skipped",
       clean:
         "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
-      "build:samples": "echo skipped.",
+      "build:samples": 
+        generateSample && clientDetails.samples && clientDetails.samples.length > 0
+          ? azureArm
+            ? "tsc -p tsconfig.samples.json && dev-tool samples publish -f"
+            : "tsc -p tsconfig.samples.json"
+          : "echo skipped.",
       "check-format": "echo skipped",
       "execute:samples": "echo skipped",
       format: "echo skipped",
