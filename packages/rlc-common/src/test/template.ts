@@ -193,7 +193,7 @@ import { assert } from "chai";
 describe("My test", () => {
   // let recorder: Recorder;
 
-  // beforeEach(async function({{#if isCjs}}this: Context{{else}}ctx{{/if}}) {
+  // beforeEach(async function({{#if isCjs}}this: Context{{else}}_ctx{{/if}}) {
     {{#if isEsm}}
     // recorder = await createRecorder(ctx);
     {{else}}
