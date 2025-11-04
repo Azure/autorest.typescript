@@ -69,12 +69,6 @@ sourceFile2.addStatements(`let obj: ${modelReference} = { id: 1 };`);
 // Apply imports to ensure correct references
 binder.resolveAllReferences("/modularPackageFolder/src");
 
-// Output the generated files
-console.log("// test.ts");
-console.log(sourceFile.getFullText());
-console.log("// test2.ts");
-console.log(sourceFile2.getFullText());
-
 // Output
 // test.ts
 // interface MyInterface {
