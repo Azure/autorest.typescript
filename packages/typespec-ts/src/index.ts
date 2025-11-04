@@ -230,11 +230,26 @@ export async function $onEmit(context: EmitContext) {
   }
 
   async function clearSrcFolder() {
-    await fsextra.emptyDir(
+    const workingDir =
       dpgContext.generationPathDetail?.modularSourcesDir ??
-        dpgContext.generationPathDetail?.rlcSourcesDir ??
-        ""
-    );
+      dpgContext.generationPathDetail?.rlcSourcesDir ??
+      "";
+    if (isHighLevelClient(workingDir)) {
+      await clearDirectory(
+        context.emitterOutputDir,
+        ["TempTypeSpecFiles", "test", "assets.json"],
+        program
+      );
+    } else {
+      await fsextra.emptyDir(workingDir);
+    }
+  }
+
+  function isHighLevelClient(packageRoot: string): boolean {
+    // Check src folder structure (older packages)
+    const srcParameterPath = join(packageRoot, "models", "parameters.ts");
+    const srcParameterExists = existsSync(srcParameterPath);
+    return srcParameterExists;
   }
 
   async function buildRLCCodeModels() {
