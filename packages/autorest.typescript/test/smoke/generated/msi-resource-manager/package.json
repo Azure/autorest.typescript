@@ -68,7 +68,7 @@
     "extract-api": "rimraf review && mkdirp ./review && api-extractor run --local",
     "lint": "echo skipped",
     "clean": "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
-    "build:samples": "echo skipped.",
+    "build:samples": "tsc -p tsconfig.samples.json && dev-tool samples publish -f",
     "check-format": "echo skipped",
     "execute:samples": "echo skipped",
     "format": "echo skipped",
