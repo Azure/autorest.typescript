@@ -334,7 +334,7 @@ export function getClientFactoryBody(
   const { includeShortcuts, packageDetails, addCredentials } = model.options;
   let clientPackageName =
     packageDetails!.nameWithoutScope ?? packageDetails?.name ?? "";
-  const packageVersion = packageDetails.version;
+  const packageVersion = packageDetails.version ?? "1.0.0-beta.1";
   const { endpoint, urlParameters } = model.urlInfo;
 
   const optionalUrlParameters: string[] = [];

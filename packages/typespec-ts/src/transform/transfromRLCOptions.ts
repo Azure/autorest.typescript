@@ -300,7 +300,7 @@ function buildPackageDetails(
   const defaultDetail = {
     name: "@msinternal/unamedpackage",
     nameWithoutScope: "unamedpackage",
-    version: "1.0.0-beta.1"
+    version: undefined
   };
   const packageDetails: PackageDetails = {
     ...emitterOptions["package-details"],
@@ -310,7 +310,7 @@ function buildPackageDetails(
         emitterOptions?.title ?? getDefaultService(program)?.title ?? "",
         NameType.Class
       ),
-    version: emitterOptions["package-details"]?.version ?? "1.0.0-beta.1"
+    version: emitterOptions["package-details"]?.version
   };
   if (emitterOptions["package-details"]?.name) {
     const nameParts = emitterOptions["package-details"]?.name.split("/");
