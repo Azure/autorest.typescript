@@ -5,6 +5,7 @@
 ```ts
 
 import { AbortSignalLike } from '@azure/abort-controller';
+import type { CancelOnProgress } from '@azure/core-lro';
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
@@ -183,8 +184,10 @@ export interface DataProductsListRolesAssignmentsOptionalParams extends Operatio
 // @public
 export interface DataProductsOperations {
     addUserRole: (resourceGroupName: string, dataProductName: string, body: RoleAssignmentCommonProperties, options?: DataProductsAddUserRoleOptionalParams) => Promise<RoleAssignmentDetail>;
+    // Warning: (ae-forgotten-export) The symbol "SimplePollerLike" needs to be exported by the entry point index.d.ts
+    //
     // @deprecated (undocumented)
-    beginCreate: (resourceGroupName: string, dataProductName: string, resource: DataProduct, options?: DataProductsCreateOptionalParams) => Promise<PollerLike<OperationState<DataProduct>, DataProduct>>;
+    beginCreate: (resourceGroupName: string, dataProductName: string, resource: DataProduct, options?: DataProductsCreateOptionalParams) => Promise<SimplePollerLike<OperationState<DataProduct>, DataProduct>>;
     // @deprecated (undocumented)
     beginCreateAndWait: (resourceGroupName: string, dataProductName: string, resource: DataProduct, options?: DataProductsCreateOptionalParams) => Promise<DataProduct>;
     create: (resourceGroupName: string, dataProductName: string, resource: DataProduct, options?: DataProductsCreateOptionalParams) => PollerLike<OperationState<DataProduct>, DataProduct>;

@@ -40,6 +40,7 @@ import {
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
+import { createSimplePoller, SimplePollerLike } from "../../static-helpers/pollingHelpers.js";
 
 /** Interface representing a DataProducts operations. */
 export interface DataProductsOperations {
@@ -124,7 +125,7 @@ export interface DataProductsOperations {
     dataProductName: string,
     resource: DataProduct,
     options?: DataProductsCreateOptionalParams
-  ) => Promise<PollerLike<OperationState<DataProduct>, DataProduct>>;
+  ) => Promise<SimplePollerLike<OperationState<DataProduct>, DataProduct>>;
   /** @deprecated use create instead */
   beginCreateAndWait: (
     resourceGroupName: string,
@@ -223,7 +224,7 @@ function _getDataProducts(context: NetworkAnalyticsApiContext) {
       dataProductName: string,
       resource: DataProduct,
       options?: DataProductsCreateOptionalParams
-    ): Promise<PollerLike<OperationState<DataProduct>, DataProduct>> => {
+    ): Promise<SimplePollerLike<OperationState<DataProduct>, DataProduct>> => {
       const poller = create(
         context,
         resourceGroupName,
@@ -232,7 +233,7 @@ function _getDataProducts(context: NetworkAnalyticsApiContext) {
         options
       );
       await poller.submitted();
-      return poller;
+      return createSimplePoller(poller);
     },
     beginCreateAndWait: async (
       resourceGroupName: string,
