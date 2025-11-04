@@ -350,7 +350,8 @@ export function buildUserAgentOptions(
     emitterOptions.options.packageDetails?.nameWithoutScope ??
     emitterOptions.options.packageDetails?.name ??
     "";
-  const packageVersion = emitterOptions.options.packageDetails?.version ?? "";
+  const packageVersion =
+    emitterOptions.options.packageDetails?.version ?? "1.0.0-beta.1";
 
   const userAgentInfoStatement =
     packageVersion && clientPackageName && sdkUserAgentPrefix.includes("api")
