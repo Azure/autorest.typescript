@@ -112,11 +112,13 @@ export function emitTypes(
     sourceFile = outputProject.getSourceFile(filepath);
     if (!sourceFile) {
       sourceFile = outputProject.createSourceFile(filepath);
-      sourceFile.addStatements([
-        "// This file contains only generated model types and (de)serializers.",
-        "// Disable this rule for deserializer functions which require 'any' for raw JSON input.",
-        "/* eslint-disable @typescript-eslint/explicit-module-boundary-types */"
-      ]);
+      sourceFile.addStatements(
+        `/**
+          * This file contains only generated model types and (de)serializers.
+          * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+          */
+          /* eslint-disable @typescript-eslint/explicit-module-boundary-types */`
+      );
     }
     emitType(context, type, sourceFile);
   }

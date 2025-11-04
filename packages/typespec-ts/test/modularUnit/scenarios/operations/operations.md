@@ -880,8 +880,10 @@ op get(): TestArrayModel;
 ## Models
 
 ```ts models
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface TestArrayModel */
 export interface TestArrayModel {
@@ -981,8 +983,10 @@ op get(): TestDictionary;
 ## models
 
 ```ts models
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface TestDictionary */
 export interface TestDictionary {
@@ -1088,8 +1092,10 @@ op createOrUpdateEndpoint(
 ## models
 
 ```ts models
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Endpoint */
 export interface Endpoint {

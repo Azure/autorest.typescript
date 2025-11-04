@@ -140,8 +140,10 @@ op uploadFile(
 ## Models \_UploadFileRequest
 
 ```ts models interface _UploadFileRequest
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface _UploadFileRequest */
 export interface _UploadFileRequest {
@@ -242,8 +244,10 @@ import {
   createFilePartDescriptor,
 } from "../static-helpers/multipartHelpers.js";
 
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface _UploadFilesRequest */
 export interface _UploadFilesRequest {
@@ -459,8 +463,10 @@ op downloadFile(): {
 import { FileContents } from "../static-helpers/multipartHelpers.js";
 import { stringToUint8Array } from "@azure/core-util";
 
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface _DownloadFileResponse */
 export interface _DownloadFileResponse {
@@ -561,8 +567,10 @@ op downloadFile(): {
 import { FileContents } from "../static-helpers/multipartHelpers.js";
 import { stringToUint8Array } from "@azure/core-util";
 
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface _DownloadFileResponse */
 export interface _DownloadFileResponse {

@@ -22,8 +22,10 @@ op read(@path pathParam: string, @query queryParam: string, ...Foo): OkResponse;
 ## Model Bar
 
 ```ts models interface Bar
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Bar */
 export interface Bar {
@@ -149,8 +151,10 @@ op read(@path pathParam: string, @query queryParam: string, ...Foo): OkResponse;
 ## Models Bar
 
 ```ts models interface Bar
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Bar */
 export interface Bar {
@@ -285,8 +289,10 @@ op read(@path pathParam: string, ...Foo, @query queryParam: string): OkResponse;
 ## Models Bar
 
 ```ts models interface Bar
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Bar */
 export interface Bar {
@@ -429,8 +435,10 @@ export interface Bar {
 ## Models Foo
 
 ```ts models interface Foo
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Foo */
 export interface Foo {
@@ -538,8 +546,10 @@ op read(@path pathParam: string, @query queryParam: string, @body body: {}): OkR
 ## Models
 
 ```ts models
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface _ReadRequest */
 export interface _ReadRequest {}
@@ -728,8 +738,10 @@ op read(@body body: Test): void;
 ## Models Test
 
 ```ts models interface Test
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
@@ -809,8 +821,10 @@ op read(@bodyRoot body: Test): void;
 ## Models Test
 
 ```ts models interface Test
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
@@ -887,8 +901,10 @@ op read(): { @body _: {}; };
 ## Models
 
 ```ts models
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface _ReadResponse */
 export interface _ReadResponse {}
@@ -959,8 +975,10 @@ op read(): {@body _: PublishResult};
 ## Models
 
 ```ts models
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface PublishResult */
 export interface PublishResult {}
@@ -1031,8 +1049,10 @@ op read(): { foo?: {bar: string | null}};
 ## Models
 
 ```ts models
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface _ReadResponse */
 export interface _ReadResponse {
@@ -1134,8 +1154,10 @@ op read(): ReturnBody;
 ## Models
 
 ```ts models
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface ReturnBody */
 export interface ReturnBody {
@@ -1306,8 +1328,10 @@ op read(): Foz;
 ## Models
 
 ```ts models
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Foz */
 export interface Foz {

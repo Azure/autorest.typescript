@@ -38,8 +38,10 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Type of SchemaContentTypeValues */
 export type SchemaContentTypeValues =
@@ -137,8 +139,10 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Type of SchemaContentTypeValues */
 export type SchemaContentTypeValues =
@@ -185,8 +189,10 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Type of SchemaContentTypeValues */
 export type SchemaContentTypeValues =
@@ -237,8 +243,10 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Alias for SchemaContentTypeValues */
 export type SchemaContentTypeValues =
@@ -302,8 +310,10 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Alias for SchemaContentTypeValues */
 export type SchemaContentTypeValues =
@@ -361,8 +371,10 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Type of SchemaContentTypeValues */
 export type SchemaContentTypeValues =
@@ -413,8 +425,10 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Alias for SchemaContentTypeValues */
 export type SchemaContentTypeValues =
@@ -478,8 +492,10 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Alias for SchemaContentTypeValues */
 export type SchemaContentTypeValues =
@@ -722,8 +738,10 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Type of SchemaContentTypeValues */
 export type SchemaContentTypeValues =
@@ -774,8 +792,10 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Type of SchemaContentTypeValues */
 export type SchemaContentTypeValues =
@@ -827,8 +847,10 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Type of EnumTest */
 export type EnumTest = 1 | 2 | 3 | 4;
@@ -886,8 +908,10 @@ mustEmptyDiagnostic: false
 ## schemaOutput
 
 ```ts models
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Foo */
 export interface Foo {}
@@ -921,8 +945,10 @@ op read(@body body: Test): void;
 ## Model interface Test
 
 ```ts models interface Test
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
@@ -956,8 +982,10 @@ op read(@body body: Test): void;
 ## Model interface Test
 
 ```ts models interface Test
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
@@ -986,8 +1014,10 @@ op read(@body body: Test): void;
 ## Model interface Test
 
 ```ts models interface Test
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
@@ -1017,8 +1047,10 @@ op read(@body body: Test): void;
 ## Model interface Test
 
 ```ts models interface Test
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
@@ -1048,8 +1080,10 @@ op read(@body body: Test): void;
 ## Model interface Test
 
 ```ts models interface Test
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
@@ -1083,8 +1117,10 @@ op read(@body body: Test): void;
 ## Model interface Test
 
 ```ts models interface Test
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
@@ -1117,8 +1153,10 @@ op read(@body body: Test): void;
 ## Model interface Test
 
 ```ts models interface Test
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
@@ -1152,8 +1190,10 @@ needAzureCore: true
 ## Model interface Test
 
 ```ts models interface Test
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
@@ -1226,8 +1266,10 @@ experimental-extensible-enums: true
 ## Model interface Test
 
 ```ts models interface Test
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
@@ -1291,8 +1333,10 @@ op read(@body body: Test): void;
 ## Model interface Test
 
 ```ts models interface Test
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
@@ -1337,8 +1381,10 @@ op read(@body body: Test): void;
 ## Model interface Test
 
 ```ts models interface Test
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
@@ -1374,8 +1420,10 @@ op read(@body body: Test): void;
 ## Model interface Test
 
 ```ts models interface Test
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
@@ -1405,8 +1453,10 @@ op read(@body body: Test): void;
 ## Model interface Test
 
 ```ts models interface Test
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {

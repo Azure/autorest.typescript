@@ -20,8 +20,10 @@ op doThing(@header contentType: "multipart/form-data", @multipartBody bodyParam:
 The part should get generated correctly. The generated serializer should be used so that the date of birth is encoded correctly.
 
 ```ts models
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface RequestBody */
 export interface RequestBody {
@@ -72,8 +74,10 @@ op doThing(@header contentType: "multipart/form-data", @multipartBody bodyParam:
 In this case one part is constructed from the serialized array.
 
 ```ts models
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface RequestBody */
 export interface RequestBody {
@@ -130,8 +134,10 @@ op doThing(@header contentType: "multipart/form-data", @multipartBody bodyParam:
 In this case each element in the serialized array is converted to a part descriptor.
 
 ```ts models
-// This file contains only generated model types and (de)serializers.
-// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface RequestBody */
 export interface RequestBody {
