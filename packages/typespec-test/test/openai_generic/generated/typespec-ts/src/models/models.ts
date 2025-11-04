@@ -1745,7 +1745,7 @@ export interface ChatCompletionFunctionParameters {
 export function chatCompletionFunctionParametersSerializer(
   item: ChatCompletionFunctionParameters,
 ): any {
-  return { ...serializeRecord(item.additionalProperties) };
+  return { ...serializeRecord(item.additionalProperties ?? {}) };
 }
 
 /** Alias for _CreateChatCompletionRequestFunctionCall */
