@@ -39,6 +39,9 @@ withRawContent: true
 Generate as normal enums.
 
 ```ts models
+// This file contains only generated model types and (de)serializers.
+// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** The available API versions. */
 export type Versions = "2021-10-01-preview";
 ```

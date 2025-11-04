@@ -37,6 +37,9 @@ compatibility-mode: true
 Generated Models.
 
 ```ts models
+// This file contains only generated model types and (de)serializers.
+// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface SimpleModel */
 export interface SimpleModel extends Record<string, number | string> {
   propA: string;
@@ -96,6 +99,9 @@ compatibility-mode: true
 Generated Models.
 
 ```ts models
+// This file contains only generated model types and (de)serializers.
+// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface SimpleModel */
 export interface SimpleModel {
   additionalProperties: string;
@@ -152,6 +158,9 @@ Generated Models.
 ```ts models
 import { serializeRecord } from "../static-helpers/serialization/serialize-record.js";
 
+// This file contains only generated model types and (de)serializers.
+// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface SimpleModel */
 export interface SimpleModel {
   propA: string;
@@ -287,6 +296,9 @@ Generated Models.
 ```ts models
 import { serializeRecord } from "../static-helpers/serialization/serialize-record.js";
 
+// This file contains only generated model types and (de)serializers.
+// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface SimpleModel */
 export interface SimpleModel {
   propA: string;
@@ -364,6 +376,9 @@ Generated Models.
 ```ts models
 import { serializeRecord } from "../static-helpers/serialization/serialize-record.js";
 
+// This file contains only generated model types and (de)serializers.
+// Disable this rule for deserializer functions which require 'any' for raw JSON input.
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface SimpleModel */
 export interface SimpleModel {
   additionalProperties: Record<string, number>;
