@@ -12,9 +12,9 @@ export async function getBinaryResponse(streamableMethod: StreamableMethod): Pro
     return response as HttpResponse & { body?: Uint8Array };
   }
 
-  const bytes = await new Response(response.body).bytes();
+  const arrayBuffer = await new Response(response.body).arrayBuffer();
   return {
     ...response,
-    body: bytes,
+    body: new Uint8Array(arrayBuffer),
   };
 }
