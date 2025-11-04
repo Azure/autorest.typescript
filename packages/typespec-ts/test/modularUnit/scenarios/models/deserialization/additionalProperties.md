@@ -74,6 +74,12 @@ model NameConflictModel {
     propB: string;
 }
 
+model ObjectAdditionalPropsModel {
+    ...Record<string>;
+    additionalProperties: {};
+    propA: string;
+    propB: string;
+}
 
 @route("/serialize")
 interface D {
@@ -85,6 +91,8 @@ interface D {
   op bas(): { @body body: UnionModel };
   @route("bab")
   op bab(): { @body body: NameConflictModel };
+  @route("obj")
+  op obj(): { @body body: ObjectAdditionalPropsModel };
 }
 ```
 
@@ -179,5 +187,41 @@ export function nameConflictModelDeserializer(item: any): NameConflictModel {
     propA: item["propA"],
     propB: item["propB"],
   };
+}
+
+/** model interface ObjectAdditionalPropsModel */
+export interface ObjectAdditionalPropsModel {
+  additionalProperties: Record<string, any>;
+  propA: string;
+  propB: string;
+  /** Additional properties */
+  additionalPropertiesBag?: Record<string, string>;
+}
+
+export function objectAdditionalPropsModelDeserializer(
+  item: any,
+): ObjectAdditionalPropsModel {
+  return {
+    additionalPropertiesBag: serializeRecord(item, [
+      "additionalProperties",
+      "propA",
+      "propB",
+    ]),
+    additionalProperties:
+      _objectAdditionalPropsModelAdditionalPropertiesDeserializer(
+        item["additionalProperties"],
+      ),
+    propA: item["propA"],
+    propB: item["propB"],
+  };
+}
+
+/** model interface _ObjectAdditionalPropsModelAdditionalProperties */
+export interface _ObjectAdditionalPropsModelAdditionalProperties {}
+
+export function _objectAdditionalPropsModelAdditionalPropertiesDeserializer(
+  item: any,
+): _ObjectAdditionalPropsModelAdditionalProperties {
+  return item;
 }
 ```
