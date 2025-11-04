@@ -158,6 +158,7 @@ export async function $onEmit(context: EmitContext) {
 
   const rlcCodeModels: RLCModel[] = [];
   let modularEmitterOptions: ModularEmitterOptions;
+  await clearHlcFolder();
   // 1. Clear sources folder
   await clearSrcFolder();
   // 2. Generate RLC code model
@@ -230,26 +231,28 @@ export async function $onEmit(context: EmitContext) {
   }
 
   async function clearSrcFolder() {
+    await fsextra.emptyDir(
+      dpgContext.generationPathDetail?.modularSourcesDir ??
+        dpgContext.generationPathDetail?.rlcSourcesDir ??
+        ""
+    );
+  }
+
+  async function clearHlcFolder() {
     const workingDir =
       dpgContext.generationPathDetail?.modularSourcesDir ??
       dpgContext.generationPathDetail?.rlcSourcesDir ??
       "";
-    if (isHighLevelClient(workingDir)) {
+    // Check src folder structure (older packages)
+    const srcParameterPath = join(workingDir, "models", "parameters.ts");
+    const srcParameterExists = existsSync(srcParameterPath);
+    if (srcParameterExists) {
       await clearDirectory(
         context.emitterOutputDir,
         ["TempTypeSpecFiles", "test", "assets.json"],
         program
       );
-    } else {
-      await fsextra.emptyDir(workingDir);
     }
-  }
-
-  function isHighLevelClient(packageRoot: string): boolean {
-    // Check src folder structure (older packages)
-    const srcParameterPath = join(packageRoot, "models", "parameters.ts");
-    const srcParameterExists = existsSync(srcParameterPath);
-    return srcParameterExists;
   }
 
   async function buildRLCCodeModels() {
