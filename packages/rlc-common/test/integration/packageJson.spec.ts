@@ -305,7 +305,7 @@ describe("Package file generation", () => {
       const packageFileContent = buildPackageFile(model);
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
 
-      expect(packageFile.devDependencies).to.have.property("@vitest/browser");
+      expect(packageFile.devDependencies).to.have.property("@vitest/browser-playwright");
       expect(packageFile.devDependencies).to.have.property(
         "@vitest/coverage-istanbul"
       );
@@ -440,6 +440,51 @@ describe("Package file generation", () => {
         "echo skipped"
       );
     });
+
+    it("should include correct build:samples script for ARM packages with samples", () => {
+      const model = createMockModel({
+        ...baseConfig,
+        azureArm: true,
+        withSamples: true
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile.scripts).to.have.property(
+        "build:samples",
+        "tsc -p tsconfig.samples.json && dev-tool samples publish -f"
+      );
+    });
+
+    it("should include correct build:samples script for non-ARM packages with samples", () => {
+      const model = createMockModel({
+        ...baseConfig,
+        azureArm: false,
+        withSamples: true
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile.scripts).to.have.property(
+        "build:samples",
+        "tsc -p tsconfig.samples.json"
+      );
+    });
+
+    it("should skip build:samples script when samples are not enabled", () => {
+      const model = createMockModel({
+        ...baseConfig,
+        azureArm: true,
+        withSamples: false
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile.scripts).to.have.property(
+        "build:samples",
+        "echo skipped"
+      );
+    });
     it("[esm] should include correct scripts with pack", () => {
       const model = createMockModel({
         ...baseConfig,
@@ -569,7 +614,7 @@ describe("Package file generation", () => {
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
 
       expect(packageFile.devDependencies).to.have.property("tshy");
-      expect(packageFile.devDependencies).to.have.property("@vitest/browser");
+      expect(packageFile.devDependencies).to.have.property("@vitest/browser-playwright");
       expect(packageFile.devDependencies).to.have.property(
         "@vitest/coverage-istanbul"
       );

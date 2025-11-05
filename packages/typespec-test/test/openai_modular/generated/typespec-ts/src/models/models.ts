@@ -7,6 +7,11 @@ import {
 } from "../static-helpers/multipartHelpers.js";
 import { ErrorModel } from "@azure-rest/core-client";
 
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** The configuration information for an audio transcription request. */
 export interface AudioTranscriptionOptions {
   /**
