@@ -81,3 +81,35 @@ async function main(): Promise<void> {
 
 main().catch(console.error);
 ```
+
+## Generated tests
+
+```ts tests
+/** This file path is /test/generated/readTest.spec.ts */
+
+import { TestServiceClient } from "../../src/index.js";
+import { createRecorder } from "./util/recordedClient.js";
+import { Recorder } from "@azure-tools/test-recorder";
+import { assert, beforeEach, afterEach, it, describe } from "vitest";
+
+describe("show example demo", () => {
+  let recorder: Recorder;
+  let client: TestServiceClient;
+
+  beforeEach(async function (ctx) {
+    recorder = await createRecorder(ctx);
+    const endpoint = process.env.TEST_SERVICE_ENDPOINT || "";
+    const clientOptions = recorder.configureClientOptions({});
+    client = new TestServiceClient(endpoint, clientOptions);
+  });
+
+  afterEach(async function () {
+    await recorder.stop();
+  });
+
+  it("should show example demo for read", async function () {
+    const result = await client.read();
+    assert.ok(result);
+  });
+});
+```

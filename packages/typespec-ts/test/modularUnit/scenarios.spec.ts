@@ -7,7 +7,8 @@ import {
   emitModularModelsFromTypeSpec,
   emitModularOperationsFromTypeSpec,
   emitRootIndexFromTypeSpec,
-  emitSamplesFromTypeSpec
+  emitSamplesFromTypeSpec,
+  emitTestsFromTypeSpec
 } from "../util/emitUtil.js";
 import { assertEqualContent, ExampleJson } from "../util/testUtil.js";
 import { format } from "prettier";
@@ -193,6 +194,95 @@ const OUTPUT_CODE_BLOCK_TYPES: Record<string, EmitterFunction> = {
       )
       .join("\n");
     return text;
+  },
+
+  // Pattern for multiple test files - each file gets its own block
+  "(ts|typescript) tests {fileName}": async (
+    tsp,
+    { fileName },
+    namedUnknownArgs
+  ) => {
+    if (!namedUnknownArgs || !namedUnknownArgs["examples"]) {
+      throw new Error(`Expected 'examples' to be passed in as an argument`);
+    }
+    const configs = namedUnknownArgs["configs"] as Record<string, string>;
+    const examples = namedUnknownArgs["examples"] as ExampleJson[];
+    const result = await emitTestsFromTypeSpec(tsp, examples, configs);
+
+    // Normalize fileName to handle both "backupTest" and "backupTest.spec.ts" patterns
+    const normalizedFileName = fileName?.replace(/\.spec\.ts$/, "") || "";
+
+    // Find the specific file by name
+    const targetFile = result.find((x) =>
+      x.getFilePath().includes(normalizedFileName)
+    );
+    if (!targetFile) {
+      throw new Error(
+        `File with name containing '${normalizedFileName}' not found in generated tests`
+      );
+    }
+
+    return `/** This file path is ${targetFile.getFilePath()} */\n\n${targetFile.getFullText()}`;
+  },
+
+  // Legacy pattern for single test file (backward compatibility)
+  "(ts|typescript) tests": async (tsp, {}, namedUnknownArgs) => {
+    if (!namedUnknownArgs || !namedUnknownArgs["examples"]) {
+      throw new Error(`Expected 'examples' to be passed in as an argument`);
+    }
+    const configs = namedUnknownArgs["configs"] as Record<string, string>;
+    const examples = namedUnknownArgs["examples"] as ExampleJson[];
+    const result = await emitTestsFromTypeSpec(tsp, examples, configs);
+
+    if (result.length === 1) {
+      // Single file - return as before
+      const file = result[0]!;
+      let content = file.getFullText();
+
+      // Fix malformed content by adding line breaks after common patterns
+      content = content
+        .replace(/;\s*import\s/g, ";\nimport ")
+        .replace(/}\s*import\s/g, "}\nimport ")
+        .replace(/;\s*const\s/g, ";\nconst ")
+        .replace(/}\s*const\s/g, "}\nconst ")
+        .replace(/;\s*export\s/g, ";\nexport ")
+        .replace(/}\s*export\s/g, "}\nexport ")
+        .replace(/;\s*describe\s/g, ";\ndescribe ")
+        .replace(/}\s*describe\s/g, "}\ndescribe ")
+        .replace(/{\s*let\s/g, "{\n  let ")
+        .replace(/;\s*beforeEach\s/g, ";\n  beforeEach ")
+        .replace(/;\s*afterEach\s/g, ";\n  afterEach ")
+        .replace(/;\s*it\s/g, ";\n  it ")
+        .replace(/}\s*\);/g, "}\n);")
+        .replace(/\/\*\* This file path is/g, "\n\n/** This file path is");
+
+      return `/** This file path is ${file.getFilePath()} */\n\n${content}`;
+    } else {
+      // Multiple files - join them but warn this should be separate blocks
+      const text = result
+        .map((x) => {
+          let content = x.getFullText();
+          // Apply the same fixes for multiple files
+          content = content
+            .replace(/;\s*import\s/g, ";\nimport ")
+            .replace(/}\s*import\s/g, "}\nimport ")
+            .replace(/;\s*const\s/g, ";\nconst ")
+            .replace(/}\s*const\s/g, "}\nconst ")
+            .replace(/;\s*export\s/g, ";\nexport ")
+            .replace(/}\s*export\s/g, "}\nexport ")
+            .replace(/;\s*describe\s/g, ";\ndescribe ")
+            .replace(/}\s*describe\s/g, "}\ndescribe ")
+            .replace(/{\s*let\s/g, "{\n  let ")
+            .replace(/;\s*beforeEach\s/g, ";\n  beforeEach ")
+            .replace(/;\s*afterEach\s/g, ";\n  afterEach ")
+            .replace(/;\s*it\s/g, ";\n  it ")
+            .replace(/}\s*\);/g, "}\n);");
+
+          return `/** This file path is ${x.getFilePath()} */\n\n${content}`;
+        })
+        .join("\n\n");
+      return text;
+    }
   },
 
   //Snapshot of the clientContext file for a given typespec
