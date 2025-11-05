@@ -47,4 +47,38 @@ describe("operations", () => {
       }
     });
   });
+
+  describe("paging operations", () => {
+    it("should generate paging operation with default GET method", async () => {
+      const tspContent = `
+        model ListTestResult {
+          @pageItems
+          tests: Test[];
+          @nextLink
+          next: string;
+        }
+        
+        model Test {
+          id: string;
+        }
+        
+        @list
+        @route("/list-get")
+        @get
+        op foo(): ListTestResult;
+      `;
+
+      const result = await emitModularOperationsFromTypeSpec(tspContent, {
+        needAzureCore: true,
+        mustEmptyDiagnostic: false
+      });
+      assert.ok(result);
+      const operationContent =
+        result?.map((f) => f.getFullText()).join("\n") ?? "";
+      // Should not include nextLinkMethod for GET (which is the default)
+      assert.notMatch(operationContent, /nextLinkMethod/);
+      // Should include the buildPagedAsyncIterator call
+      assert.match(operationContent, /buildPagedAsyncIterator/);
+    });
+  });
 });

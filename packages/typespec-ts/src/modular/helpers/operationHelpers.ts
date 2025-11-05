@@ -629,11 +629,19 @@ function getPagingOnlyOperationFunction(
       return property.name;
     })
     .join(".");
+
+  // Get the HTTP method for the next link operation
+  const nextLinkOperation = operation.pagingMetadata.nextLinkOperation;
+  const nextLinkMethod = nextLinkOperation?.operation?.verb?.toUpperCase();
+
   if (itemName) {
     options.push(`itemName: "${itemName}"`);
   }
   if (nextLinkName) {
     options.push(`nextLinkName: "${nextLinkName}"`);
+  }
+  if (nextLinkMethod && nextLinkMethod !== "GET") {
+    options.push(`nextLinkMethod: "${nextLinkMethod}"`);
   }
   statements.push(
     `return ${buildPagedAsyncIteratorReference}(
