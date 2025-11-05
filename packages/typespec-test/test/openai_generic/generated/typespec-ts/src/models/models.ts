@@ -8,6 +8,11 @@ import {
 import { serializeRecord } from "../static-helpers/serialization/serialize-record.js";
 import { stringToUint8Array } from "@azure/core-util";
 
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface CreateCompletionRequest */
 export interface CreateCompletionRequest {
   /**

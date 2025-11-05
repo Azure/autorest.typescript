@@ -37,6 +37,11 @@ withRawContent: true
 Should generate KnownVersions in models.ts.
 
 ```ts models
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** The available API versions. */
 export enum KnownVersions {
   /** 2021-10-01-preview version */
