@@ -11,3 +11,4 @@ options:
     emitter-output-dir: "{project-root}/generated/typespec-ts/sdk/test/arm-test"
     package-details:
       name: "@azure/arm-networkanalytics"
+      version: 1.0.0-beta.1

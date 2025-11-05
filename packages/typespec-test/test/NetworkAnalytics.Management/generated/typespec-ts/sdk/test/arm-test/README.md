@@ -8,7 +8,7 @@ Key links:
 
 - [Source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/test/arm-test)
 - [Package (NPM)](https://www.npmjs.com/package/@azure/arm-networkanalytics)
-- [API reference documentation](https://learn.microsoft.com/javascript/api/@azure/arm-networkanalytics)
+- [API reference documentation](https://learn.microsoft.com/javascript/api/@azure/arm-networkanalytics?view=azure-node-preview)
 - [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/test/arm-test/samples)
 
 ## Getting started
