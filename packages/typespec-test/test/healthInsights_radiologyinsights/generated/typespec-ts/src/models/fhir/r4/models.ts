@@ -3,6 +3,11 @@
 
 import { serializeRecord } from "../../../static-helpers/serialization/serialize-record.js";
 
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function resourceArraySerializer(result: Array<Resource>): any[] {
   return result.map((item) => {
     return resourceSerializer(item);

@@ -305,7 +305,7 @@ describe("Package file generation", () => {
       const packageFileContent = buildPackageFile(model);
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
 
-      expect(packageFile.devDependencies).to.have.property("@vitest/browser");
+      expect(packageFile.devDependencies).to.have.property("@vitest/browser-playwright");
       expect(packageFile.devDependencies).to.have.property(
         "@vitest/coverage-istanbul"
       );
@@ -614,7 +614,7 @@ describe("Package file generation", () => {
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
 
       expect(packageFile.devDependencies).to.have.property("tshy");
-      expect(packageFile.devDependencies).to.have.property("@vitest/browser");
+      expect(packageFile.devDependencies).to.have.property("@vitest/browser-playwright");
       expect(packageFile.devDependencies).to.have.property(
         "@vitest/coverage-istanbul"
       );
