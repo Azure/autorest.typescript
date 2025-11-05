@@ -16,14 +16,6 @@ uses `isRequired()` logic that only checks `!param.optional || param.clientDefau
 which returns `false` (required) when `clientDefaultValue` exists, causing the parameter
 to be treated as required and generating a policy instead of a warning.
 
-## Expected Behavior
-
-When `optional: true` from TCGC, the generated code should:
-
-- Make apiVersion truly optional in the client options
-- Show a warning if apiVersion is provided
-- Not add ClientApiVersionPolicy
-
 ## TypeSpec
 
 ```tsp
@@ -55,14 +47,6 @@ namespace DataMapService;
 enum Versions {
   @doc("API Version 2023-09-01")
   `2023-09-01`,
-}
-
-@doc("The ApiVersion query parameter.")
-model CustomApiVersionParameter {
-  @doc("The API version to use for this operation.")
-  @query("api-version")
-  @minLength(1)
-  apiVersion?: string;
 }
 
 @route("/entities")
