@@ -648,8 +648,7 @@ function getPagingOnlyOperationFunction(
       context, 
       () => _${name}Send(${parameters.map((p) => p.name).join(", ")}), 
       _${name}Deserialize,
-      ${getExpectedStatuses(operation)},
-      ${options.length > 0 ? `{${options.join(", ")}}` : ``}
+      ${getExpectedStatuses(operation)}${options.length > 0 ? `,\n      {${options.join(", ")}}` : ""}
       );`
   );
 
