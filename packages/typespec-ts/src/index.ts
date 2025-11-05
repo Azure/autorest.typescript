@@ -247,6 +247,9 @@ export async function $onEmit(context: EmitContext) {
     const srcParameterPath = join(workingDir, "models", "parameters.ts");
     const srcParameterExists = existsSync(srcParameterPath);
     if (srcParameterExists) {
+      console.log(
+        `Clearing directory for HLC folder at: ${context.emitterOutputDir}`
+      );
       await clearDirectory(
         context.emitterOutputDir,
         ["TempTypeSpecFiles", "test", "assets.json"],
