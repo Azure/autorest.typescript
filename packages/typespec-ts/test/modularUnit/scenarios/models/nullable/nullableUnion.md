@@ -17,6 +17,11 @@ op post(@body body: A): { @body body: A };
 ## Models
 
 ```ts models
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface _PostRequest */
 export interface _PostRequest {
   code?: string;
