@@ -38,6 +38,7 @@ export interface GetLongRunningPollerOptions<TResponse> {
    * The function to get the initial response
    */
   getInitialResponse?: () => PromiseLike<TResponse>;
+  pollingMethod?: "POST" | "GET";
 }
 export function getLongRunningPoller<
   TResponse extends PathUncheckedResponse,
@@ -91,7 +92,11 @@ export function getLongRunningPoller<
       }
       let response;
       try {
-        response = await client.pathUnchecked(path).get({ abortSignal });
+        if(options.pollingMethod === "POST") {
+          response = await client.pathUnchecked(path).post({ abortSignal });
+          } else {
+          response = await client.pathUnchecked(path).get({ abortSignal });
+        }
       } finally {
         options.abortSignal?.removeEventListener("abort", abortListener);
         pollOptions?.abortSignal?.removeEventListener("abort", abortListener);
