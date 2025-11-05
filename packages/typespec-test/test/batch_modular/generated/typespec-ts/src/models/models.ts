@@ -3,6 +3,11 @@
 
 import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** The result of listing the applications available in an Account. */
 export interface _ApplicationListResult {
   /** The list of applications available in the Account. */
