@@ -90,7 +90,7 @@ export interface PagedResult<
 export interface BuildPagedAsyncIteratorOptions {
   itemName?: string;
   nextLinkName?: string;
-  pollingMethod?: "POST" | "GET"; // the default is GET
+  nextLinkMethod?: "POST" | "GET"; // the default is GET
 }
 
 /**
@@ -115,7 +115,7 @@ export function buildPagedAsyncIterator<
       const result =
         pageLink === undefined
           ? await getInitialResponse()
-          : (options.pollingMethod === "POST"
+          : (options.nextLinkMethod === "POST"
           ? await client.pathUnchecked(pageLink).post()
           : await client.pathUnchecked(pageLink).get());
       checkPagingRequest(result, expectedStatuses);
