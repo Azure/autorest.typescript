@@ -337,12 +337,20 @@ export const azureRlcTsps = [
     inputPath: "azure/client-generator-core/client-location"
   },
   {
+    outputPath: "client/overload",
+    inputPath: "client/overload"
+  },
+  {
     outputPath: "azure/client-generator-core/override",
     inputPath: "azure/client-generator-core/override"
   },
   {
     outputPath: "azure/versioning/previewVersion",
     inputPath: "azure/versioning/previewVersion"
+  },
+  {
+    outputPath: "azure/resource-manager/method-subscription-id",
+    inputPath: "azure/resource-manager/method-subscription-id"
   }
 ];
 
@@ -737,6 +745,10 @@ export const azureModularTsps = [
     inputPath: "client/naming"
   },
   {
+    outputPath: "client/naming-enum-conflict",
+    inputPath: "client/naming/enum-conflict"
+  },
+  {
     outputPath: "serialization/encoded-name/json",
     inputPath: "serialization/encoded-name/json"
   },
@@ -873,13 +885,22 @@ export const azureModularTsps = [
     inputPath: "azure/client-generator-core/hierarchy-building"
   },
   {
+    outputPath: "client/overload",
+    inputPath: "client/overload"
+  },
+  {
     outputPath: "azure/client-generator-core/override",
     inputPath: "azure/client-generator-core/override"
   },
   {
     outputPath: "azure/versioning/previewVersion",
     inputPath: "azure/versioning/previewVersion"
-  }
+  },
+  // skip due to issue https://github.com/Azure/autorest.typescript/issues/3468
+  // {
+  //   outputPath: "azure/resource-manager/method-subscription-id",
+  //   inputPath: "azure/resource-manager/method-subscription-id"
+  // }
   // skip due to issue https://github.com/Azure/autorest.typescript/issues/3494
   // {
   //   outputPath: "azure/client-generator-core/client-location",

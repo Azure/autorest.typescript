@@ -1,10 +1,13 @@
 import * as fsextra from "fs-extra";
 import { readdir, rm } from "fs/promises";
 import { resolve } from "path";
+import { NoTarget, Program } from "@typespec/compiler";
+import { reportDiagnostic } from "../lib.js";
 
 export async function clearDirectory(
   dirPath: string,
-  excludeNames: string[] = []
+  excludeNames: string[] = [],
+  program?: Program
 ): Promise<void> {
   if (!(await fsextra.pathExists(dirPath))) {
     return;
@@ -32,9 +35,13 @@ export async function clearDirectory(
     }
   } catch (error) {
     // If there's an error, fall back to regular emptyDir
-    console.warn(
-      `Warning: Selective directory clearing failed, falling back to regular emptyDir: ${error}`
-    );
+    if (program) {
+      reportDiagnostic(program, {
+        code: "directory-traversal-error",
+        format: { directory: dirPath, error: String(error) },
+        target: NoTarget
+      });
+    }
     await fsextra.emptyDir(dirPath);
   }
 }
