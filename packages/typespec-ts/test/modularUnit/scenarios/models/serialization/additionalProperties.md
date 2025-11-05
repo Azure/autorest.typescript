@@ -162,7 +162,7 @@ export interface SimpleModel {
 
 export function simpleModelSerializer(item: SimpleModel): any {
   return {
-    ...serializeRecord(item.additionalProperties),
+    ...serializeRecord(item.additionalProperties ?? {}),
     propA: item["propA"],
     propB: item["propB"],
   };
@@ -178,7 +178,7 @@ export interface ComplexModel {
 export function complexModelSerializer(item: ComplexModel): any {
   return {
     ...serializeRecord(
-      item.additionalProperties,
+      item.additionalProperties ?? {},
       undefined,
       simpleModelSerializer,
     ),
@@ -233,7 +233,7 @@ export interface SimpleModel {
 }
 
 export function simpleModelSerializer(item: SimpleModel): any {
-  return { ...serializeRecord(item.additionalProperties) };
+  return { ...serializeRecord(item.additionalProperties ?? {}) };
 }
 
 /** model interface ComplexModel */
@@ -245,7 +245,7 @@ export interface ComplexModel extends SimpleModel {
 export function complexModelSerializer(item: ComplexModel): any {
   return {
     ...serializeRecord(
-      item.additionalProperties,
+      item.additionalProperties ?? {},
       undefined,
       simpleModelSerializer
     )
@@ -298,7 +298,7 @@ export interface SimpleModel {
 export function simpleModelSerializer(item: SimpleModel): any {
   return {
     ...serializeRecord(
-      item.additionalProperties,
+      item.additionalProperties ?? {},
       undefined,
       _simpleModelAdditionalPropertySerializer,
     ),
@@ -375,7 +375,7 @@ export interface SimpleModel {
 
 export function simpleModelSerializer(item: SimpleModel): any {
   return {
-    ...serializeRecord(item.additionalPropertiesBag),
+    ...serializeRecord(item.additionalPropertiesBag ?? {}),
     additionalProperties: item["additionalProperties"],
     propA: item["propA"],
     propB: item["propB"],
@@ -392,7 +392,7 @@ export interface FooModel extends BarModel {
 
 export function fooModelSerializer(item: FooModel): any {
   return {
-    ...serializeRecord(item.additionalPropertiesBag),
+    ...serializeRecord(item.additionalPropertiesBag ?? {}),
     additionalProperties: item["additionalProperties"],
     propA: item["propA"],
     propB: item["propB"],

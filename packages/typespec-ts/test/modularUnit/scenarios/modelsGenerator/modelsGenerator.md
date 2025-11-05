@@ -2546,7 +2546,7 @@ export interface Vegetables {
 export function vegetablesSerializer(item: Vegetables): any {
   return {
     ...serializeRecord(
-      item.additionalProperties,
+      item.additionalProperties ?? {},
       undefined,
       _vegetablesAdditionalPropertySerializer,
     ),
