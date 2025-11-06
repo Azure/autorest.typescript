@@ -1577,7 +1577,7 @@ export function getExpectedStatuses(operation: ServiceOperation): string {
   let statusCodes = operation.operation.responses.map((x) => x.statusCodes);
   // LROs may call the same path but with GET to get the operation status.
   if (isLroOnlyOperation(operation) && operation.operation.verb !== "get") {
-    statusCodes = Array.from(new Set([...statusCodes, 200, 202]));
+    statusCodes = Array.from(new Set([...statusCodes, 200, 201, 202]));
   }
 
   return `[${statusCodes.map((x) => `"${x}"`).join(", ")}]`;

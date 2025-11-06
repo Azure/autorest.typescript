@@ -83,7 +83,7 @@ interface DeserializationHelper {
 const deserializeMap: Record<string, DeserializationHelper> = {
   "POST /radiology-insights/jobs": {
     deserializer: _inferRadiologyInsightsDeserialize,
-    expectedStatuses: ["202", "200"],
+    expectedStatuses: ["202", "200", "201"],
   },
 };
 
