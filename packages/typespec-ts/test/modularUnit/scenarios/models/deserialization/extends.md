@@ -34,6 +34,11 @@ interface D {
 Generated Models.
 
 ```ts models
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface AWidgetData */
 export interface AWidgetData {
   kind: string;
@@ -165,6 +170,11 @@ interface D {
 Generated Models.
 
 ```ts models
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface DiscountTypeProperties */
 export interface DiscountTypeProperties {
   discountType: DiscountType;
@@ -326,6 +336,11 @@ mustEmptyDiagnostic: false
 Generated Models.
 
 ```ts models
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface DocumentIngress */
 export interface DocumentIngress {
   documentType: DocumentType;
@@ -573,6 +588,11 @@ mustEmptyDiagnostic: false
 Generated Models.
 
 ```ts models
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Animal */
 export interface Animal {
   /** The kind of animal */

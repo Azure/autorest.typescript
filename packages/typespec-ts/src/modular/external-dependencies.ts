@@ -85,6 +85,11 @@ export const DefaultCoreDependencies: CoreDependencies = {
     kind: "externalDependency",
     name: "ErrorModel",
     module: "@typespec/ts-http-runtime"
+  },
+  AzureCoreErrorResponse: {
+    kind: "externalDependency",
+    name: "ErrorResponse",
+    module: "@azure-rest/core-client"
   }
 } as const;
 
@@ -195,6 +200,11 @@ export const AzureCoreDependencies: CoreDependencies = {
   ErrorModel: {
     kind: "externalDependency",
     name: "ErrorModel",
+    module: "@azure-rest/core-client"
+  },
+  AzureCoreErrorResponse: {
+    kind: "externalDependency",
+    name: "ErrorResponse",
     module: "@azure-rest/core-client"
   }
 };
