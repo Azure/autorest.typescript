@@ -1,21 +1,5 @@
 # handle with optional api-version parameter via custom VersionParameterTrait
 
-## Description
-
-This test reproduces the issue found in Azure.Analytics.Purview.DataMap where:
-
-- TypeSpec defines an optional api-version parameter: `apiVersion?: string`
-- TCGC correctly sets `optional: true` for this parameter
-- However, the generated client code incorrectly adds a `ClientApiVersionPolicy` instead of treating it as truly optional
-
-## Root Cause
-
-When a TypeSpec specification uses an optional api-version parameter (with `?` marker),
-TCGC returns `optional: true`, but the current implementation in `clientHelpers.ts`
-uses `isRequired()` logic that only checks `!param.optional || param.clientDefaultValue`,
-which returns `false` (required) when `clientDefaultValue` exists, causing the parameter
-to be treated as required and generating a policy instead of a warning.
-
 ## TypeSpec
 
 ```tsp
