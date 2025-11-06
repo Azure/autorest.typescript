@@ -162,14 +162,14 @@ describe("EncodeBytesClient Modular Client", () => {
   describe("response body", () => {
     const pngFile = readFileSync(
       resolve("../../packages/typespec-ts/temp/assets/image.png")
-    ).toString("utf-8");
+    );
     it(`should get bytes with base64 encoding by default`, async () => {
       const result = await client.responseBody.default({
         onResponse: (res) => {
           res.headers.get("content-type") === "application/octet-stream";
         }
       });
-      assert.strictEqual(uint8ArrayToString(result, "utf-8"), pngFile);
+      assert.sameMembers([...result], [...pngFile]);
     });
 
     it(`should get bytes base64 encoding`, async () => {
@@ -188,7 +188,7 @@ describe("EncodeBytesClient Modular Client", () => {
           res.headers.get("content-type") === "image/png";
         }
       });
-      assert.strictEqual(uint8ArrayToString(result, "utf-8"), pngFile);
+      assert.sameMembers([...result], [...pngFile]);
     });
 
     it(`should get bytes with octet-stream content type`, async () => {
@@ -197,7 +197,7 @@ describe("EncodeBytesClient Modular Client", () => {
           res.headers.get("content-type") === "application/octet-stream";
         }
       });
-      assert.strictEqual(uint8ArrayToString(result, "utf-8"), pngFile);
+      assert.sameMembers([...result], [...pngFile]);
     });
   });
 });
