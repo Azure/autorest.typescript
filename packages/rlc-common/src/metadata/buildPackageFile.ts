@@ -8,7 +8,10 @@ import {
   isAzurePackage,
   isAzureStandalonePackage
 } from "../helpers/packageUtil.js";
-import { PackageCommonInfoConfig } from "./packageJson/packageCommon.js";
+import {
+  PackageCommonInfoConfig,
+  getTshyConfig
+} from "./packageJson/packageCommon.js";
 import { Project, SourceFile } from "ts-morph";
 import { RLCModel } from "../interfaces.js";
 import { buildAzureMonorepoPackage } from "./packageJson/buildAzureMonorepoPackage.js";
@@ -117,7 +120,17 @@ export function updatePackageFile(
 
   // Update tshy.exports if exports are provided and tshy exists
   if (needsExportsUpdate && packageInfo.tshy) {
-    packageInfo.tshy.exports = exports;
+    const newExports = getTshyConfig({
+      description: packageInfo.description ?? "",
+      moduleKind: "esm",
+      name: packageInfo.name ?? "",
+      version: packageInfo.version ?? "1.0.0-beta.1",
+      withSamples: false,
+      withTests: false,
+      exports,
+      azureSdkForJs: model.options?.azureSdkForJs
+    }).exports;
+    packageInfo.tshy.exports = newExports;
   }
 
   // Update LRO dependencies for Azure packages
