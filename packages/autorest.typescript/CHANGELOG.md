@@ -1,4 +1,4 @@
-## 6.0.51 (2025-11-05)
+## 6.0.51 (2025-11-06)
 
 - [Feature] Add status code `201` into lro expected status code. Please refer to [#3579](https://github.com/Azure/autorest.typescript/pull/3579)
 - [Bugfix] Fix binary response handling when response body is not valid UTF-8. Please refer to [#3572](https://github.com/Azure/autorest.typescript/pull/3572)
