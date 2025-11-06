@@ -120,7 +120,7 @@ export function updatePackageFile(
 
   // Update tshy.exports if exports are provided and tshy exists
   if (needsExportsUpdate && packageInfo.tshy) {
-    const newExports = getTshyConfig({
+    const newTshy = getTshyConfig({
       description: packageInfo.description ?? "",
       moduleKind: "esm",
       name: packageInfo.name ?? "",
@@ -129,8 +129,8 @@ export function updatePackageFile(
       withTests: false,
       exports,
       azureSdkForJs: model.options?.azureSdkForJs
-    }).exports;
-    packageInfo.tshy.exports = newExports;
+    });
+    packageInfo.tshy.exports = newTshy.exports;
   }
 
   // Update LRO dependencies for Azure packages
