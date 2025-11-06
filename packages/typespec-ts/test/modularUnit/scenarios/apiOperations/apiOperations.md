@@ -1352,7 +1352,7 @@ export function _updateFileShareSnapshotSend(
 export async function _updateFileShareSnapshotDeserialize(
   result: PathUncheckedResponse,
 ): Promise<FileShareSnapshot> {
-  const expectedStatuses = ["202", "200"];
+  const expectedStatuses = ["202", "200", "201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = errorResponseDeserializer(result.body);
@@ -1374,7 +1374,7 @@ export function updateFileShareSnapshot(
   return getLongRunningPoller(
     context,
     _updateFileShareSnapshotDeserialize,
-    ["202", "200"],
+    ["202", "200", "201"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
