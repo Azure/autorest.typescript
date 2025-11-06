@@ -4,6 +4,11 @@
 import { ErrorModel } from "@azure-rest/core-client";
 import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Properties of an event published to an Azure Messaging EventGrid Namespace topic using the CloudEvent 1.0 Schema. */
 export interface CloudEvent {
   /** An identifier for the event. The combination of id and source must be unique for each distinct event. */
@@ -227,7 +232,9 @@ export type ReleaseDelay = "0" | "10" | "60" | "600" | "3600";
 
 /** Known values of {@link ServiceApiVersions} that the service accepts. */
 export enum KnownServiceApiVersions {
+  /** 2023-11-01 */
   V20231101 = "2023-11-01",
+  /** 2024-06-01 */
   V20240601 = "2024-06-01",
 }
 

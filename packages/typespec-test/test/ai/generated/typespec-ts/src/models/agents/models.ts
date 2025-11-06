@@ -6,6 +6,11 @@ import {
   createFilePartDescriptor,
 } from "../../static-helpers/multipartHelpers.js";
 
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** An abstract representation of an input tool definition that an agent can use. */
 export interface ToolDefinition {
   /** The object type. */
@@ -1232,7 +1237,16 @@ export function toolDefinitionUnionArrayDeserializer(
   });
 }
 
-/** Alias for AgentsApiResponseFormatOption */
+/**
+ * Specifies the format that the model must output. Compatible with GPT-4 Turbo and all GPT-3.5 Turbo models since `gpt-3.5-turbo-1106`.
+ *
+ * Setting to `{ "type": "json_object" }` enables JSON mode, which guarantees the message the model generates is valid JSON.
+ *
+ * **Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message.
+ * Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit,
+ * resulting in a long-running and seemingly "stuck" request. Also note that the message content may be partially cut off
+ * if `finish_reason="length"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length.
+ */
 export type AgentsApiResponseFormatOption =
   | string
   | AgentsApiResponseFormatMode
@@ -1469,7 +1483,7 @@ export function messageAttachmentToolDefinitionArrayDeserializer(
   });
 }
 
-/** Alias for MessageAttachmentToolDefinition */
+/** The possible tools to which files will be added by this message */
 export type MessageAttachmentToolDefinition =
   | CodeInterpreterToolDefinition
   | FileSearchToolDefinition;
@@ -1990,7 +2004,13 @@ export function functionNameDeserializer(item: any): FunctionName {
   };
 }
 
-/** Alias for AgentsApiToolChoiceOption */
+/**
+ * Controls which (if any) tool is called by the model.
+ * - `none` means the model will not call any tools and instead generates a message.
+ * - `auto` is the default value and means the model can pick between generating a message or calling a tool.
+ * Specifying a particular tool like `{"type": "file_search"}` or `{"type": "function", "function": {"name": "my_function"}}`
+ * forces the model to call that tool.
+ */
 export type AgentsApiToolChoiceOption =
   | string
   | AgentsApiToolChoiceOptionMode
@@ -4510,7 +4530,24 @@ export function runStepDeltaCodeInterpreterImageOutputObjectDeserializer(
   };
 }
 
-/** Alias for AgentStreamEvent */
+/**
+ * Each event in a server-sent events stream has an `event` and `data` property:
+ *
+ * ```
+ * event: thread.created
+ * data: {"id": "thread_123", "object": "thread", ...}
+ * ```
+ *
+ * We emit events whenever a new object is created, transitions to a new state, or is being
+ * streamed in parts (deltas). For example, we emit `thread.run.created` when a new run
+ * is created, `thread.run.completed` when a run completes, and so on. When an Agent chooses
+ * to create a message during a run, we emit a `thread.message.created event`, a
+ * `thread.message.in_progress` event, many `thread.message.delta` events, and finally a
+ * `thread.message.completed` event.
+ *
+ * We may add additional events over time, so we recommend handling unknown events gracefully
+ * in your code.
+ */
 export type AgentStreamEvent =
   | string
   | ThreadStreamEvent

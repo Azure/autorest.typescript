@@ -33,7 +33,7 @@ namespace Client.Structure.Service;
 
 enum Versions {
   /** Version 2022-08-31 */
-  @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+  
   `2022-08-30`,
 }
 
@@ -133,7 +133,7 @@ namespace Client.Structure.Service;
 
 enum Versions {
   /** Version 2022-08-31 */
-  @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+  
   `2022-08-30`,
 }
 
@@ -167,6 +167,8 @@ export interface ServiceContext extends Client {}
 
 /** Optional parameters for the client. */
 export interface ServiceClientOptionalParams extends ClientOptions {
+  /** Need to be set as 'http://localhost:3000' in client. */
+  endpointParam?: string;
   /** Need to be set as 'default', 'multi-client', 'renamed-operation', 'two-operation-group' in client. */
   clientParam?: ClientType;
 }
@@ -233,7 +235,7 @@ namespace Client.Structure.Service;
 
 enum Versions {
   /** Version 2022-08-31 */
-  @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+  
   `2022-08-30`,
 }
 

@@ -50,7 +50,6 @@ function regularAutorestPackage(
   clientDetails: ClientDetails,
   packageDetails: PackageDetails
 ) {
-  //TODO should remove all the shouldUsePnpmDep codes after finish the release tool test
   const {
     srcPath,
     useCoreV2,
@@ -62,8 +61,7 @@ function regularAutorestPackage(
     generateSample,
     coreHttpCompatMode,
     azureSdkForJs,
-    isTestPackage,
-    shouldUsePnpmDep
+    isTestPackage
   } = getAutorestOptions();
   const { model } = getSession();
   const { addCredentials } = getSecurityInfoFromModel(model.security);
@@ -88,19 +86,20 @@ function regularAutorestPackage(
     engines: {
       node: ">=20.0.0"
     },
+    // revert this change after sdk repo update.
     dependencies: {
-      ...(hasLro && { "@azure/core-lro": shouldUsePnpmDep && azureSdkForJs ? "catalog:corelrov2" : "^2.5.4" }),
-      ...(hasLro && { "@azure/abort-controller": shouldUsePnpmDep && azureSdkForJs ? "workspace:^" : "^2.1.2" }),
-      ...(hasAsyncIterators && { "@azure/core-paging": shouldUsePnpmDep && azureSdkForJs ? "workspace:^" : "^1.6.2" }),
-      ...(useCoreV2 && { "@azure/core-client": shouldUsePnpmDep && azureSdkForJs ? "workspace:^" : "^1.9.3" }),
-      ...(useCoreV2 && addCredentials && { "@azure/core-auth": shouldUsePnpmDep && azureSdkForJs ? "workspace:^" : "^1.9.0" }),
+      ...(hasLro && { "@azure/core-lro": "^2.5.4" }),
+      ...(hasLro && { "@azure/abort-controller": "^2.1.2" }),
+      ...(hasAsyncIterators && { "@azure/core-paging": "^1.6.2" }),
+      ...(useCoreV2 && { "@azure/core-client": "^1.9.3" }),
+      ...(useCoreV2 && addCredentials && { "@azure/core-auth": "^1.9.0" }),
       ...(useCoreV2 && {
-        "@azure/core-rest-pipeline": shouldUsePnpmDep && azureSdkForJs ? "workspace:^" : "^1.19.1"
+        "@azure/core-rest-pipeline": "^1.19.1"
       }),
       ...(tracingInfo && {
-        "@azure/core-tracing": shouldUsePnpmDep && azureSdkForJs ? "workspace:^" : "^1.2.0"
+        "@azure/core-tracing": "^1.2.0"
       }),
-      tslib: shouldUsePnpmDep && azureSdkForJs ? "catalog:" : "^2.8.1"
+      tslib: "^2.8.1"
     },
     keywords: ["node", "azure", "typescript", "browser", "isomorphic", "cloud"],
     license: "MIT",
@@ -111,9 +110,9 @@ function regularAutorestPackage(
     devDependencies: {
       "@microsoft/api-extractor": "^7.40.3",
       mkdirp: "^3.0.1",
-      typescript: shouldUsePnpmDep && azureSdkForJs ? "catalog:" : "~5.8.2",
+      typescript: azureSdkForJs ? "catalog:" : "~5.8.2",
       rimraf: "^5.0.0",
-      dotenv: shouldUsePnpmDep && azureSdkForJs ? "catalog:testing" : "^16.0.0"
+      dotenv: azureSdkForJs ? "catalog:testing" : "^16.0.0"
     },
     repository: "github:Azure/azure-sdk-for-js",
     bugs: {
@@ -128,13 +127,17 @@ function regularAutorestPackage(
       build:
         "npm run clean && tshy && npm run extract-api",
       minify: `uglifyjs -c -m --comments --source-map "content='./dist/index.js.map'" -o ./dist/index.min.js ./dist/index.js`,
-      prepack: "npm run build",
-      pack: `${shouldUsePnpmDep && azureSdkForJs ? "pnpm" : "npm"} pack 2>&1`,
+      pack: `${azureSdkForJs ? "pnpm" : "npm"} pack 2>&1`,
       "extract-api": "rimraf review && mkdirp ./review && api-extractor run --local",
       lint: "echo skipped",
       clean:
         "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
-      "build:samples": "echo skipped.",
+      "build:samples": 
+        generateSample && clientDetails.samples && clientDetails.samples.length > 0
+          ? azureArm
+            ? "tsc -p tsconfig.samples.json && dev-tool samples publish -f"
+            : "tsc -p tsconfig.samples.json"
+          : "echo skipped.",
       "check-format": "echo skipped",
       "execute:samples": "echo skipped",
       format: "echo skipped",
@@ -155,8 +158,8 @@ function regularAutorestPackage(
     browser: "./dist/browser/index.js",
     "react-native": "./dist/react-native/index.js",
     tshy: {
-      // only JS sdk repo has tsconfig.src.json
-      project: azureSdkForJs ? "./tsconfig.src.json" : undefined,
+      // only JS sdk repo has tsconfig.src.build.json
+      project: azureSdkForJs ? "../../../tsconfig.src.build.json" : undefined,
       exports: {
         "./package.json": "./package.json",
         ".": "./src/index.ts",
@@ -170,18 +173,24 @@ function regularAutorestPackage(
     packageInfo.homepage = `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}`;
   }
   if (azureSdkForJs) {
-    packageInfo.devDependencies["@azure/dev-tool"] = shouldUsePnpmDep && azureSdkForJs ? "workspace:^" : "^1.0.0";
+    packageInfo.devDependencies["@azure/dev-tool"] = "workspace:^";
+    packageInfo.devDependencies["cross-env"] = "catalog:";
+    packageInfo.devDependencies["eslint"] = "catalog:";
+    packageInfo.devDependencies["prettier"] = "catalog:";
+    packageInfo.devDependencies["rimraf"] = "catalog:";
+    packageInfo.devDependencies["tshy"] = "catalog:";
+
     delete packageInfo.devDependencies["@microsoft/api-extractor"];
-    delete packageInfo.devDependencies["rimraf"];
     delete packageInfo.devDependencies["mkdirp"];
+
     packageInfo.scripts["build"] =
       "npm run clean && dev-tool run build-package && dev-tool run extract-api";
-    packageInfo.scripts["clean"] = "dev-tool run vendored rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log";
+    packageInfo.scripts["clean"] = "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log";
     packageInfo.scripts["extract-api"] = "dev-tool run extract-api";
     packageInfo.scripts["update-snippets"] = "dev-tool run update-snippets";
     delete packageInfo.scripts["minify"];
-    packageInfo.scripts["check-format"] = "dev-tool run vendored prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.{ts,cts,mts}\" \"test/**/*.{ts,cts,mts}\" \"*.{js,cjs,mjs,json}\" ";
-    packageInfo.scripts["format"] = "dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.{ts,cts,mts}\" \"test/**/*.{ts,cts,mts}\" \"*.{js,cjs,mjs,json}\" ";
+    packageInfo.scripts["check-format"] = "prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.{ts,cts,mts}\" \"test/**/*.{ts,cts,mts}\" \"*.{js,cjs,mjs,json}\" ";
+    packageInfo.scripts["format"] = "prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.{ts,cts,mts}\" \"test/**/*.{ts,cts,mts}\" \"*.{js,cjs,mjs,json}\" ";
   } else {
     packageInfo.devDependencies["@rollup/plugin-commonjs"] = "^24.0.0";
     packageInfo.devDependencies["@rollup/plugin-json"] = "^6.0.0";
@@ -194,28 +203,22 @@ function regularAutorestPackage(
   }
 
   if (generateTest) {
-    packageInfo.devDependencies["@azure/identity"] = shouldUsePnpmDep && azureSdkForJs ? "catalog:internal" : "^4.9.0";
-    packageInfo.devDependencies["@azure/logger"] = shouldUsePnpmDep && azureSdkForJs ? "workspace:^" : "^1.1.4";
+    packageInfo.devDependencies["@azure/identity"] = azureSdkForJs ? "catalog:internal" : "^4.9.0";
+    packageInfo.devDependencies["@azure/logger"] = azureSdkForJs ? "workspace:^" : "^1.1.4";
     // TODO need unify the version when 4.1.0 released
-    packageInfo.devDependencies["@azure-tools/test-recorder"] = azureSdkForJs ? shouldUsePnpmDep ? "workspace:^" : "^4.1.0" : "^4.0.0";
-    packageInfo.devDependencies["@azure-tools/test-credential"] = shouldUsePnpmDep && azureSdkForJs ? "workspace:^" : "^2.0.0";
+    packageInfo.devDependencies["@azure-tools/test-recorder"] = azureSdkForJs ? "workspace:^" : "^4.0.0";
+    packageInfo.devDependencies["@azure-tools/test-credential"] = azureSdkForJs ? "workspace:^" : "^2.0.0";
     if (azureSdkForJs) {
-      packageInfo.devDependencies["@azure-tools/test-utils-vitest"] = shouldUsePnpmDep && azureSdkForJs ? "workspace:^" : "^1.0.0";
+      packageInfo.devDependencies["@azure-tools/test-utils-vitest"] = azureSdkForJs ? "workspace:^" : "^1.0.0";
     }
-    packageInfo.devDependencies["@types/node"] = shouldUsePnpmDep && azureSdkForJs ? "catalog:" : "^20.0.0";
-    packageInfo.devDependencies["@vitest/browser"] = shouldUsePnpmDep && azureSdkForJs ? "catalog:testing" : "^3.0.9";
-    packageInfo.devDependencies["@vitest/coverage-istanbul"] = shouldUsePnpmDep && azureSdkForJs ? "catalog:testing" : "^3.0.9";
-    packageInfo.devDependencies["playwright"] = shouldUsePnpmDep && azureSdkForJs ? "catalog:testing" : "^1.52.0";
-    packageInfo.devDependencies["vitest"] = shouldUsePnpmDep && azureSdkForJs ? "catalog:testing" : "^3.0.9";
-
-    packageInfo.scripts["test"] = "npm run integration-test";
-    packageInfo.scripts["unit-test"] =
-      "npm run unit-test:node && npm run unit-test:browser";
-    packageInfo.scripts["integration-test"] =
-      "npm run integration-test:node && npm run integration-test:browser";
+    packageInfo.devDependencies["@types/node"] = azureSdkForJs ? "catalog:" : "^20.0.0";
+    packageInfo.devDependencies["@vitest/browser-playwright"] = azureSdkForJs ? "catalog:testing" : "^4.0.6";
+    packageInfo.devDependencies["@vitest/coverage-istanbul"] = azureSdkForJs ? "catalog:testing" : "^4.0.6";
+    packageInfo.devDependencies["playwright"] = azureSdkForJs ? "catalog:testing" : "^1.52.0";
+    packageInfo.devDependencies["vitest"] = azureSdkForJs ? "catalog:testing" : "^4.0.6";
+    packageInfo.scripts["test"] = "npm run test:node && npm run test:browser";
 
     if (azureSdkForJs) {
-      packageInfo.scripts["test"] = "npm run test:node && npm run test:browser";
       packageInfo.scripts["test:node"] = "dev-tool run test:vitest";
       packageInfo.scripts["test:node:esm"] = "dev-tool run test:vitest --esm";
     } else {

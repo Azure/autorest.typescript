@@ -42,10 +42,6 @@ const highLevelTsSampleConfig: Record<string, any> = {
   compilerOptions: {}
 }
 
-const highLevelTsTestConfig: Record<string, any> = {
-  extends: ["./tsconfig.src.json", "../../../tsconfig.test.base.json"]
-}
-
 const highLevelTsSnippetsConfig: Record<string, any> = {
   extends: ["../../../tsconfig.snippets.base.json"]
 }
@@ -113,11 +109,6 @@ export function generateTsSampleConfig(project: Project) {
     "./dist/esm"
   ];
   project.createSourceFile("tsconfig.samples.json", JSON.stringify(highLevelTsSampleConfig, null, 2), {
-    overwrite: true
-  });
-}
-export function generateTsTestConfig(project: Project) {
-  project.createSourceFile("tsconfig.test.json", JSON.stringify(highLevelTsTestConfig, null, 2), {
     overwrite: true
   });
 }

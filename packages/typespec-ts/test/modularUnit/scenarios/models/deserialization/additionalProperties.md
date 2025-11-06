@@ -28,6 +28,11 @@ compatibility-mode: true
 Generated Models.
 
 ```ts models
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface SimpleModel */
 export interface SimpleModel extends Record<string, string> {
   propA: string;
@@ -74,6 +79,12 @@ model NameConflictModel {
     propB: string;
 }
 
+model ObjectAdditionalPropsModel {
+    ...Record<string>;
+    additionalProperties: {};
+    propA: string;
+    propB: string;
+}
 
 @route("/serialize")
 interface D {
@@ -85,6 +96,8 @@ interface D {
   op bas(): { @body body: UnionModel };
   @route("bab")
   op bab(): { @body body: NameConflictModel };
+  @route("obj")
+  op obj(): { @body body: ObjectAdditionalPropsModel };
 }
 ```
 
@@ -102,6 +115,11 @@ Generated Models.
 ```ts models
 import { serializeRecord } from "../static-helpers/serialization/serialize-record.js";
 
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface SimpleModel */
 export interface SimpleModel {
   propA: string;
@@ -179,5 +197,41 @@ export function nameConflictModelDeserializer(item: any): NameConflictModel {
     propA: item["propA"],
     propB: item["propB"],
   };
+}
+
+/** model interface ObjectAdditionalPropsModel */
+export interface ObjectAdditionalPropsModel {
+  additionalProperties: Record<string, any>;
+  propA: string;
+  propB: string;
+  /** Additional properties */
+  additionalPropertiesBag?: Record<string, string>;
+}
+
+export function objectAdditionalPropsModelDeserializer(
+  item: any,
+): ObjectAdditionalPropsModel {
+  return {
+    additionalPropertiesBag: serializeRecord(item, [
+      "additionalProperties",
+      "propA",
+      "propB",
+    ]),
+    additionalProperties:
+      _objectAdditionalPropsModelAdditionalPropertiesDeserializer(
+        item["additionalProperties"],
+      ),
+    propA: item["propA"],
+    propB: item["propB"],
+  };
+}
+
+/** model interface _ObjectAdditionalPropsModelAdditionalProperties */
+export interface _ObjectAdditionalPropsModelAdditionalProperties {}
+
+export function _objectAdditionalPropsModelAdditionalPropertiesDeserializer(
+  item: any,
+): _ObjectAdditionalPropsModelAdditionalProperties {
+  return item;
 }
 ```

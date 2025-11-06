@@ -34,6 +34,40 @@ export declare interface PageSettings {
     continuationToken?: string;
 }
 
+export declare interface PageSizeListWithoutContinuation {
+    get(options?: PageSizeListWithoutContinuationParameters): StreamableMethod<PageSizeListWithoutContinuation200Response>;
+}
+
+export declare interface PageSizeListWithoutContinuation200Response extends HttpResponse {
+    status: "200";
+    body: {
+        pets: Array<PetOutput>;
+    };
+}
+
+export declare type PageSizeListWithoutContinuationParameters = RequestParameters;
+
+export declare interface PageSizeListWithPageSize {
+    get(options?: PageSizeListWithPageSizeParameters): StreamableMethod<PageSizeListWithPageSize200Response>;
+}
+
+export declare interface PageSizeListWithPageSize200Response extends HttpResponse {
+    status: "200";
+    body: {
+        pets: Array<PetOutput>;
+    };
+}
+
+export declare type PageSizeListWithPageSizeParameters = PageSizeListWithPageSizeQueryParam & RequestParameters;
+
+export declare interface PageSizeListWithPageSizeQueryParam {
+    queryParameters?: PageSizeListWithPageSizeQueryParamProperties;
+}
+
+export declare interface PageSizeListWithPageSizeQueryParamProperties {
+    pageSize?: number;
+}
+
 export declare function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
 
 export declare type PaginateReturn<TResult> = TResult extends {
@@ -57,7 +91,10 @@ export declare interface PetOutput {
 
 export declare interface Routes {
     (path: "/payload/pageable/server-driven-pagination/link"): ServerDrivenPaginationLink;
+    (path: "/payload/pageable/server-driven-pagination/link-string"): ServerDrivenPaginationLinkString;
     (path: "/payload/pageable/server-driven-pagination/nested-link"): ServerDrivenPaginationNestedLink;
+    (path: "/payload/pageable/pagesize/without-continuation"): PageSizeListWithoutContinuation;
+    (path: "/payload/pageable/pagesize/list"): PageSizeListWithPageSize;
     (path: "/payload/pageable/server-driven-pagination/continuationtoken/request-query-response-body"): ServerDrivenPaginationContinuationTokenRequestQueryResponseBody;
     (path: "/payload/pageable/server-driven-pagination/continuationtoken/request-header-response-body"): ServerDrivenPaginationContinuationTokenRequestHeaderResponseBody;
     (path: "/payload/pageable/server-driven-pagination/continuationtoken/request-query-response-header"): ServerDrivenPaginationContinuationTokenRequestQueryResponseHeader;
@@ -281,6 +318,20 @@ export declare interface ServerDrivenPaginationLink200Response extends HttpRespo
 }
 
 export declare type ServerDrivenPaginationLinkParameters = RequestParameters;
+
+export declare interface ServerDrivenPaginationLinkString {
+    get(options?: ServerDrivenPaginationLinkStringParameters): StreamableMethod<ServerDrivenPaginationLinkString200Response>;
+}
+
+export declare interface ServerDrivenPaginationLinkString200Response extends HttpResponse {
+    status: "200";
+    body: {
+        pets: Array<PetOutput>;
+        next?: string;
+    };
+}
+
+export declare type ServerDrivenPaginationLinkStringParameters = RequestParameters;
 
 export declare interface ServerDrivenPaginationNestedLink {
     get(options?: ServerDrivenPaginationNestedLinkParameters): StreamableMethod<ServerDrivenPaginationNestedLink200Response>;

@@ -26,8 +26,6 @@ namespace Microsoft.Contoso;
 /** The available API versions. */
 enum Versions {
   /** 2021-10-01-preview version */
-  @useDependency(Azure.ResourceManager.Versions.v1_0_Preview_1)
-  @useDependency(Azure.Core.Versions.v1_0_Preview_2)
   @armCommonTypesVersion(Azure.ResourceManager.CommonTypes.Versions.v5)
   v2021_10_01_preview: "2021-10-01-preview",
 }
@@ -67,6 +65,11 @@ withRawContent: true
 ## Models
 
 ```ts models
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** A list of REST API operations supported by an Azure Resource Provider. It contains an URL link to get the next set of results. */
 export interface _OperationListResult {
   /** The Operation items on this page */

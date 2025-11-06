@@ -14,8 +14,6 @@ export interface PackageCommonInfoConfig {
   azureArm?: boolean;
   isModularLibrary?: boolean;
   azureSdkForJs?: boolean;
-  //TODO should remove this after finish the release tool test
-  shouldUsePnpmDep?: boolean;
 }
 
 /**
@@ -120,7 +118,7 @@ export function getTshyConfig(config: PackageCommonInfoConfig) {
     selfLink: false
   };
   if (config.azureSdkForJs) {
-    tshyConfig["project"] = "./tsconfig.src.json";
+    tshyConfig["project"] = "../../../tsconfig.src.build.json";
   }
   return tshyConfig;
 }

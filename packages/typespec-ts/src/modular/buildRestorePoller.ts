@@ -126,7 +126,7 @@ export function buildRestorePoller(
     }
     
     interface DeserializationHelper {
-      deserializer: Function;
+      deserializer: (result: PathUncheckedResponse) => Promise<any>;
       expectedStatuses: string[];
     }
 

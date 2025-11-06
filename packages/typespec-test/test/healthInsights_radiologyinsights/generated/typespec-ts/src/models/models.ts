@@ -17,6 +17,11 @@ import {
   observationDeserializer,
 } from "./fhir/r4/models.js";
 
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** A patient record, including their clinical information and data. */
 export interface PatientRecord {
   /** A given identifier for the patient. Has to be unique across all patients in a single request. */
@@ -1091,5 +1096,6 @@ export type RepeatabilityResult = "accepted" | "rejected";
 
 /** Known values of {@link ApiVersion} that the service accepts. */
 export enum KnownApiVersion {
+  /** 2023-09-01-preview */
   V20230901Preview = "2023-09-01-preview",
 }

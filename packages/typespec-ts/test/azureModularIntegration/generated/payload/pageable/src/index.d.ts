@@ -10,6 +10,7 @@ export declare class PageableClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: PageableClientOptionalParams);
+    readonly pageSize: PageSizeOperations;
     readonly serverDrivenPagination: ServerDrivenPaginationOperations;
 }
 
@@ -24,6 +25,18 @@ export declare interface PagedAsyncIterableIterator<TElement, TPage = TElement[]
 
 export declare interface PageSettings {
     continuationToken?: string;
+}
+
+export declare interface PageSizeListWithoutContinuationOptionalParams extends OperationOptions {
+}
+
+export declare interface PageSizeListWithPageSizeOptionalParams extends OperationOptions {
+    pageSize?: number;
+}
+
+export declare interface PageSizeOperations {
+    listWithPageSize: (options?: PageSizeListWithPageSizeOptionalParams) => PagedAsyncIterableIterator<Pet>;
+    listWithoutContinuation: (options?: PageSizeListWithoutContinuationOptionalParams) => PagedAsyncIterableIterator<Pet>;
 }
 
 export declare interface Pet {
@@ -79,11 +92,15 @@ export declare interface ServerDrivenPaginationContinuationTokenRequestQueryResp
 export declare interface ServerDrivenPaginationLinkOptionalParams extends OperationOptions {
 }
 
+export declare interface ServerDrivenPaginationLinkStringOptionalParams extends OperationOptions {
+}
+
 export declare interface ServerDrivenPaginationNestedLinkOptionalParams extends OperationOptions {
 }
 
 export declare interface ServerDrivenPaginationOperations {
     nestedLink: (options?: ServerDrivenPaginationNestedLinkOptionalParams) => PagedAsyncIterableIterator<Pet>;
+    linkString: (options?: ServerDrivenPaginationLinkStringOptionalParams) => PagedAsyncIterableIterator<Pet>;
     link: (options?: ServerDrivenPaginationLinkOptionalParams) => PagedAsyncIterableIterator<Pet>;
     continuationToken: ServerDrivenPaginationContinuationTokenOperations;
 }

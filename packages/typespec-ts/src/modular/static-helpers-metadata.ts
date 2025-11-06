@@ -28,6 +28,11 @@ export const SerializationHelpers = {
     kind: "function",
     name: "serializeRecord",
     location: "serialization/serialize-record.ts"
+  },
+  getBinaryResponse: {
+    kind: "function",
+    name: "getBinaryResponse",
+    location: "serialization/get-binary-response.ts"
   }
 } as const;
 

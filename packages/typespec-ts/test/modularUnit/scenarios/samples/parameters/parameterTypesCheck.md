@@ -109,7 +109,8 @@ import { TestingClient } from "@azure/internal-test";
  * x-ms-original-file: 2021-10-01-preview/json.json
  */
 async function read(): Promise<void> {
-  const client = new TestingClient();
+  const endpoint = process.env.TESTING_ENDPOINT || "";
+  const client = new TestingClient(endpoint);
   const result = await client.read({
     unknownValueWithObject: { foo: "bar" },
     unknownValueWithArray: ["x", "y"],
@@ -140,7 +141,9 @@ async function read(): Promise<void> {
     durationProp: "P123DT22H14M12.011S",
     withEscapeChars: '"Tag 10".Value',
     unknownRecord: { a: "foo" },
-    additionalProp: "additional prop",
+    additionalProperties: {
+      additionalProp: "additional prop",
+    },
   });
   console.log(result);
 }

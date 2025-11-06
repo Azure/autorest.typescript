@@ -23,9 +23,7 @@ namespace Microsoft.Contoso;
 
 /** The available API versions. */
 enum Versions {
-  /** 2021-10-01-preview version */
-  @useDependency(Azure.ResourceManager.Versions.v1_0_Preview_1)
-  @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+  /** 2021-10-01-preview version */ 
   @armCommonTypesVersion(Azure.ResourceManager.CommonTypes.Versions.v5)
   v2021_10_01_preview: "2021-10-01-preview",
 }
@@ -68,6 +66,11 @@ experimental-extensible-enums: true
 Model generated.
 
 ```ts models
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface _FooRequestBody */
 export interface _FooRequestBody {
   status: ProvisioningState;

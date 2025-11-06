@@ -7,6 +7,11 @@ import {
 } from "../static-helpers/multipartHelpers.js";
 import { ErrorModel } from "@azure-rest/core-client";
 
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** The configuration information for an audio transcription request. */
 export interface AudioTranscriptionOptions {
   /**
@@ -3899,8 +3904,12 @@ export function embeddingsUsageDeserializer(item: any): EmbeddingsUsage {
 
 /** Known values of {@link ServiceApiVersions} that the service accepts. */
 export enum KnownServiceApiVersions {
+  /** 2022-12-01 */
   V20221201 = "2022-12-01",
+  /** 2023-05-15 */
   V20230515 = "2023-05-15",
+  /** 2024-02-01 */
   V20240201 = "2024-02-01",
+  /** 2024-06-01 */
   V20240601 = "2024-06-01",
 }

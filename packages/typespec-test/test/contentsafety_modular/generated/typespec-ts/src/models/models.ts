@@ -3,6 +3,11 @@
 
 import { uint8ArrayToString } from "@azure/core-util";
 
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** The text analysis request. */
 export interface AnalyzeTextOptions {
   /** The text to be analyzed. We support a maximum of 10k Unicode characters (Unicode code points) in the text of one request. */
@@ -478,6 +483,8 @@ export function _pagedTextBlocklistItemDeserializer(
 
 /** Known values of {@link Versions} that the service accepts. */
 export enum KnownVersions {
+  /** 2023-10-01 */
   V20231001 = "2023-10-01",
+  /** 2024-09-01 */
   V20240901 = "2024-09-01",
 }

@@ -8,6 +8,7 @@ import { NoTarget, Program } from "@typespec/compiler";
 import {
   PagingHelpers,
   PollingHelpers,
+  SerializationHelpers,
   UrlTemplateHelpers
 } from "../static-helpers-metadata.js";
 import {
@@ -482,11 +483,18 @@ export function getOperationFunction(
   };
 
   const statements: string[] = [];
-  statements.push(
-    `const result = await _${name}Send(${parameters
-      .map((p) => p.name)
-      .join(", ")});`
-  );
+
+  const parameterList = parameters.map((p) => p.name).join(", ");
+  // Special case for binary-only bodies: use helper to call streaming methods so that Core doesn't poison the response body by
+  // doing a UTF-8 decode on the raw bytes.
+  if (response?.type?.kind === "bytes" && response.type.encode === "bytes") {
+    statements.push(`const streamableMethod = _${name}Send(${parameterList});`);
+    statements.push(
+      `const result = await ${resolveReference(SerializationHelpers.getBinaryResponse)}(streamableMethod);`
+    );
+  } else {
+    statements.push(`const result = await _${name}Send(${parameterList});`);
+  }
   statements.push(`return _${name}Deserialize(result);`);
 
   return {
@@ -713,10 +721,16 @@ function getHeaderAndBodyParameters(
       ) {
         continue;
       }
-      parametersImplementation[param.kind].push({
-        paramMap: getParameterMap(dpgContext, param, optionalParamName),
-        param
-      });
+      // Check if this parameter still exists in the corresponding method params (after override)
+      if (
+        param.correspondingMethodParams &&
+        param.correspondingMethodParams.length > 0
+      ) {
+        parametersImplementation[param.kind].push({
+          paramMap: getParameterMap(dpgContext, param, optionalParamName),
+          param
+        });
+      }
     }
   }
 
@@ -860,7 +874,17 @@ export function getParameterMap(
     return getRequired(context, param);
   }
 
-  throw new Error(`Parameter ${param.name} is not supported`);
+  reportDiagnostic(context.program, {
+    code: "unsupported-parameter-type",
+    format: {
+      paramName: param.name,
+      paramKind: param.kind
+    },
+    target: param.__raw || NoTarget
+  });
+
+  // Return a fallback value to allow the emitter to continue
+  return `"${param.name}": undefined`;
 }
 
 function getCollectionFormat(
@@ -1061,15 +1085,21 @@ function getQueryParameters(
 
   for (const param of operationParameters) {
     if (param.kind === "query") {
-      parametersImplementation[param.kind].push({
-        paramMap: getParameterMap(dpgContext, {
-          ...param,
-          // TODO: remember to remove this hack once compiler gives us a name
-          // https://github.com/microsoft/typespec/issues/6743
-          serializedName: getUriTemplateQueryParamName(param.serializedName)
-        }),
-        param
-      });
+      // Check if this parameter still exists in the corresponding method params (after override)
+      if (
+        param.correspondingMethodParams &&
+        param.correspondingMethodParams.length > 0
+      ) {
+        parametersImplementation[param.kind].push({
+          paramMap: getParameterMap(dpgContext, {
+            ...param,
+            // TODO: remember to remove this hack once compiler gives us a name
+            // https://github.com/microsoft/typespec/issues/6743
+            serializedName: getUriTemplateQueryParamName(param.serializedName)
+          }),
+          param
+        });
+      }
     }
   }
 
