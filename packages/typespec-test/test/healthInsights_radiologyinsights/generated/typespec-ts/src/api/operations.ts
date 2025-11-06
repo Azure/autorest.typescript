@@ -67,7 +67,7 @@ export function _inferRadiologyInsightsSend(
 export async function _inferRadiologyInsightsDeserialize(
   result: PathUncheckedResponse,
 ): Promise<RadiologyInsightsInferenceResult> {
-  const expectedStatuses = ["202", "200"];
+  const expectedStatuses = ["202", "200", "201"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
@@ -94,7 +94,7 @@ export function inferRadiologyInsights(
   return getLongRunningPoller(
     context,
     _inferRadiologyInsightsDeserialize,
-    ["202", "200"],
+    ["202", "200", "201"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
