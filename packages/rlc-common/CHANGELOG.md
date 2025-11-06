@@ -2,7 +2,6 @@
 
 - [Feature] Add status code `201` into lro expected status code. Please refer to [#3579](https://github.com/Azure/autorest.typescript/pull/3579)
 - [Bugfix] Fix binary response handling when response body is not valid UTF-8. Please refer to [#3572](https://github.com/Azure/autorest.typescript/pull/3572)
-- [Feature] Implement README file updates and enhance package file export options. Please refer to [#3568](https://github.com/Azure/autorest.typescript/pull/3568)
 - [Bugfix] Fix apiVersion parameter missing in DPG modular generation. Please refer to [#3437](https://github.com/Azure/autorest.typescript/pull/3437)
 - [Feature] Update vitest to v4 in generated packages. Please refer to [#3571](https://github.com/Azure/autorest.typescript/pull/3571)
 - [Bugfix] Fix the non-any type argument error. Please refer to [#3576](https://github.com/Azure/autorest.typescript/pull/3576)
