@@ -90,6 +90,16 @@ export function updatePackageFile(
   existingFilePathOrContent: string | Record<string, any>,
   { exports }: PackageFileOptions = {}
 ) {
+  const hasLro = hasPollingOperations(model);
+  const isAzure = isAzurePackage(model);
+  const needsLroUpdate = isAzure && hasLro;
+  const needsExportsUpdate = exports;
+
+  // Early return if nothing needs to be updated
+  if (!needsLroUpdate && !needsExportsUpdate) {
+    return;
+  }
+
   let packageInfo;
   if (typeof existingFilePathOrContent === "string") {
     let packageFile: SourceFile;
@@ -105,19 +115,13 @@ export function updatePackageFile(
     packageInfo = existingFilePathOrContent;
   }
 
-  if (exports) {
+  // Update tshy.exports if exports are provided and tshy exists
+  if (needsExportsUpdate && packageInfo.tshy) {
     packageInfo.tshy.exports = exports;
   }
 
-  const hasLro = hasPollingOperations(model);
-  if (!isAzurePackage(model) || !hasLro) {
-    return {
-      path: "package.json",
-      content: JSON.stringify(packageInfo, null, 2)
-    };
-  }
-
-  if (hasLro) {
+  // Update LRO dependencies for Azure packages
+  if (needsLroUpdate) {
     packageInfo.dependencies = {
       ...packageInfo.dependencies,
       "@azure/core-lro": "^3.1.0",
