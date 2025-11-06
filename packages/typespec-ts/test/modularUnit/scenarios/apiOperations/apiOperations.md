@@ -335,6 +335,7 @@ op downloadFile(): {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { getBinaryResponse } from "../static-helpers/serialization/get-binary-response.js";
 import { DownloadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -373,7 +374,8 @@ export async function downloadFile(
   context: Client,
   options: DownloadFileOptionalParams = { requestOptions: {} },
 ): Promise<Uint8Array> {
-  const result = await _downloadFileSend(context, options);
+  const streamableMethod = _downloadFileSend(context, options);
+  const result = await getBinaryResponse(streamableMethod);
   return _downloadFileDeserialize(result);
 }
 ```
@@ -398,6 +400,7 @@ op downloadFile(): {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { getBinaryResponse } from "../static-helpers/serialization/get-binary-response.js";
 import { DownloadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -436,7 +439,8 @@ export async function downloadFile(
   context: Client,
   options: DownloadFileOptionalParams = { requestOptions: {} },
 ): Promise<Uint8Array> {
-  const result = await _downloadFileSend(context, options);
+  const streamableMethod = _downloadFileSend(context, options);
+  const result = await getBinaryResponse(streamableMethod);
   return _downloadFileDeserialize(result);
 }
 ```
@@ -1348,7 +1352,7 @@ export function _updateFileShareSnapshotSend(
 export async function _updateFileShareSnapshotDeserialize(
   result: PathUncheckedResponse,
 ): Promise<FileShareSnapshot> {
-  const expectedStatuses = ["202", "200"];
+  const expectedStatuses = ["202", "200", "201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = errorResponseDeserializer(result.body);
@@ -1370,7 +1374,7 @@ export function updateFileShareSnapshot(
   return getLongRunningPoller(
     context,
     _updateFileShareSnapshotDeserialize,
-    ["202", "200"],
+    ["202", "200", "201"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
