@@ -10,7 +10,17 @@ import { isAzurePackage } from "../helpers/packageUtil.js";
 import { getClientName } from "../helpers/nameConstructors.js";
 import { readFileSync } from "fs";
 
-const keyLinksRLCTemplate = `Key links:
+const azureReadmeRLCTemplate = `# {{ clientDescriptiveName }} library for JavaScript
+
+{{ description }}
+
+{{#if azureArm}}
+**If you are not familiar with our REST client, please spend 5 minutes to take a look at {{#if serviceDocURL}}[the service's documentation]({{ serviceDocURL }}) and {{/if}}our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library, the REST client provides a light-weighted & developer friendly way to call azure rest api
+{{else}}
+**Please rely heavily on {{#if serviceDocURL}}[the service's documentation]({{ serviceDocURL }}) and {{/if}}our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
+{{/if}}
+
+Key links:
 
 {{#if packageSourceURL}}
 - [Source code]({{ packageSourceURL }})
@@ -26,19 +36,7 @@ const keyLinksRLCTemplate = `Key links:
 {{/if}}
 {{#if samplesURL}}
 - [Samples]({{ samplesURL }})
-{{/if}}`;
-
-const azureReadmeRLCTemplate = `# {{ clientDescriptiveName }} library for JavaScript
-
-{{ description }}
-
-{{#if azureArm}}
-**If you are not familiar with our REST client, please spend 5 minutes to take a look at {{#if serviceDocURL}}[the service's documentation]({{ serviceDocURL }}) and {{/if}}our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library, the REST client provides a light-weighted & developer friendly way to call azure rest api
-{{else}}
-**Please rely heavily on {{#if serviceDocURL}}[the service's documentation]({{ serviceDocURL }}) and {{/if}}our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
 {{/if}}
-
-${keyLinksRLCTemplate}
 
 ## Getting started
 
@@ -86,7 +84,13 @@ setLogLevel("info");
 For more detailed instructions on how to enable logs, you can look at the [@azure/logger package docs](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/core/logger).
 `;
 
-const keyLinksModularTemplate = `Key links:
+const azureReadmeModularTemplate = `# {{ clientDescriptiveName }} library for JavaScript
+
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for {{ clientDescriptiveName }}.
+
+{{ description }}
+
+Key links:
 
 {{#if packageSourceURL}}
 - [Source code]({{ packageSourceURL }})
@@ -99,15 +103,7 @@ const keyLinksModularTemplate = `Key links:
 {{/if}}
 {{#if samplesURL}}
 - [Samples]({{samplesURL}})
-{{/if}}`;
-
-const azureReadmeModularTemplate = `# {{ clientDescriptiveName }} library for JavaScript
-
-This package contains an isomorphic SDK (runs both in Node.js and in browsers) for {{ clientDescriptiveName }}.
-
-{{ description }}
-
-${keyLinksModularTemplate}
+{{/if}}
 
 ## Getting started
 
@@ -256,7 +252,11 @@ If you'd like to contribute to this library, please read the [contributing guide
 {{/if}}
 `;
 
-const nonBrandedkeyLinksTemplate = `Key links:
+const nonBrandedReadmeTemplate = `# {{ clientDescriptiveName }} library for JavaScript
+
+{{ description }}
+
+Key links:
 
 {{#if packageSourceURL}}
 - [Source code]({{ packageSourceURL }})
@@ -272,13 +272,7 @@ const nonBrandedkeyLinksTemplate = `Key links:
 {{/if}}
 {{#if samplesURL}}
 - [Samples]({{ samplesURL }})
-{{/if}}`;
-
-const nonBrandedReadmeTemplate = `# {{ clientDescriptiveName }} library for JavaScript
-
-{{ description }}
-
-${nonBrandedkeyLinksTemplate}
+{{/if}}
 
 ## Getting started
 
@@ -293,6 +287,11 @@ Install the {{ clientDescriptiveName }} library for JavaScript with \`npm\`:
 \`\`\`bash
 npm install {{ clientPackageName }}
 \`\`\`
+`;
+
+const apiReferenceTemplate = `{{#if apiRefURL}}
+- [API reference documentation]({{ apiRefURL }})
+{{/if}}
 `;
 
 /**
@@ -364,61 +363,32 @@ export function buildReadmeFile(model: RLCModel) {
   };
 }
 
-/**
- * Updates an existing README.md file by only updating the "Key links:" section.
- */
 export function updateReadmeFile(
   model: RLCModel,
   existingReadmeFilePath: string
 ): { path: string; content: string } | undefined {
-  // Read existing content
-  let existingContent: string;
   try {
-    existingContent = readFileSync(existingReadmeFilePath, "utf8");
-  } catch (e) {
-    // If the file doesn't exist, we don't need to update it.
+    const existingContent = readFileSync(existingReadmeFilePath, "utf8");
+    const metadata = createMetadata(model) ?? {};
+
+    const newApiRefLink = hbs
+      .compile(apiReferenceTemplate, { noEscape: true })(metadata)
+      .trim();
+
+    if (!newApiRefLink) {
+      return { path: "README.md", content: existingContent };
+    }
+
+    const apiRefRegex =
+      /^- \[API reference documentation\]\(https:\/\/learn\.microsoft\.com\/javascript\/api\/[^)]+\)$/m;
+    const updatedContent = existingContent.replace(apiRefRegex, (match) =>
+      match ? newApiRefLink : match
+    );
+
+    return { path: "README.md", content: updatedContent };
+  } catch {
     return;
   }
-
-  // Generate Key links
-  const metadata = createMetadata(model) ?? {};
-  const newKeyLinksSection = hbs.compile(
-    model.options && isAzurePackage(model)
-      ? model.options.isModularLibrary
-        ? keyLinksModularTemplate
-        : keyLinksRLCTemplate
-      : nonBrandedkeyLinksTemplate,
-    { noEscape: true }
-  )(metadata);
-  if (!newKeyLinksSection?.trim()) {
-    // Nothing to update, return existing content
-    return { path: "README.md", content: existingContent };
-  }
-
-  // Update and return
-  return {
-    path: "README.md",
-    content: updateKeyLinksSection(existingContent, newKeyLinksSection.trim())
-  };
-}
-
-/**
- * Updates only the Key links section in the existing README content.
- */
-function updateKeyLinksSection(
-  existingContent: string,
-  newKeyLinksSection: string
-): string {
-  // Match "Key links:" followed by content until the next section (## or #) or end of file
-  const keyLinksPattern = /Key links:\s*\n[\s\S]*?(?=\n## |\n# |$)/;
-
-  if (existingContent.match(keyLinksPattern)) {
-    // Replace the entire Key links section with the new content
-    // Ensure there's a blank line after the Key links section
-    return existingContent.replace(keyLinksPattern, newKeyLinksSection + "\n");
-  }
-
-  return existingContent;
 }
 
 /**

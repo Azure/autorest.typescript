@@ -513,26 +513,16 @@ export async function $onEmit(context: EmitContext) {
       }
     } else if (hasPackageFile) {
       // update existing package.json file with correct dependencies
-      let updateOptions = {};
+      let modularPackageInfo = {};
       if (option.isModularLibrary) {
-        const moduleExports = getModuleExports(context, modularEmitterOptions);
-        // Normalize export paths to ensure they all start with "./"
-        const normalizedExports = Object.fromEntries(
-          Object.entries(moduleExports).map(([key, value]) => [
-            key,
-            typeof value === "string" && !value.startsWith("./")
-              ? `./${value}`
-              : value
-          ])
-        );
-        updateOptions = {
-          exports: normalizedExports
+        modularPackageInfo = {
+          exports: getModuleExports(context, modularEmitterOptions)
         };
       }
       await emitContentByBuilder(
         program,
         (model) =>
-          updatePackageFile(model, existingPackageFilePath, updateOptions),
+          updatePackageFile(model, existingPackageFilePath, modularPackageInfo),
         rlcClient,
         dpgContext.generationPathDetail?.metadataDir
       );
