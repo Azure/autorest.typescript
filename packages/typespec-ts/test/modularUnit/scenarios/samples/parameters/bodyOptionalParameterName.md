@@ -193,7 +193,7 @@ export function _backupSend(
 export async function _backupDeserialize(
   result: PathUncheckedResponse,
 ): Promise<BackupResult> {
-  const expectedStatuses = ["202", "200"];
+  const expectedStatuses = ["202", "200", "201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = errorResponseDeserializer(result.body);
@@ -210,13 +210,18 @@ export function backup(
   cloudHsmClusterName: string,
   options: BackupOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<BackupResult>, BackupResult> {
-  return getLongRunningPoller(context, _backupDeserialize, ["202", "200"], {
-    updateIntervalInMs: options?.updateIntervalInMs,
-    abortSignal: options?.abortSignal,
-    getInitialResponse: () =>
-      _backupSend(context, resourceGroupName, cloudHsmClusterName, options),
-    resourceLocationConfig: "azure-async-operation",
-  }) as PollerLike<OperationState<BackupResult>, BackupResult>;
+  return getLongRunningPoller(
+    context,
+    _backupDeserialize,
+    ["202", "200", "201"],
+    {
+      updateIntervalInMs: options?.updateIntervalInMs,
+      abortSignal: options?.abortSignal,
+      getInitialResponse: () =>
+        _backupSend(context, resourceGroupName, cloudHsmClusterName, options),
+      resourceLocationConfig: "azure-async-operation",
+    },
+  ) as PollerLike<OperationState<BackupResult>, BackupResult>;
 }
 ```
 
