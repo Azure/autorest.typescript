@@ -582,6 +582,12 @@ const libDef = {
       messages: {
         default: paramMessage`Failed to format file: ${"filePath"}. Error: ${"error"}.`
       }
+    },
+    "directory-traversal-error": {
+      severity: "error",
+      messages: {
+        default: paramMessage`Error traversing directory ${"directory"}: ${"error"}`
+      }
     }
   },
   emitter: {

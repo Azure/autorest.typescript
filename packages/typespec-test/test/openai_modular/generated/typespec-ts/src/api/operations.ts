@@ -30,6 +30,7 @@ import {
   Embeddings,
   embeddingsDeserializer,
 } from "../models/models.js";
+import { getBinaryResponse } from "../static-helpers/serialization/get-binary-response.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import {
   GetEmbeddingsOptionalParams,
@@ -147,12 +148,13 @@ export async function generateSpeechFromText(
   body: SpeechGenerationOptions,
   options: GenerateSpeechFromTextOptionalParams = { requestOptions: {} },
 ): Promise<Uint8Array> {
-  const result = await _generateSpeechFromTextSend(
+  const streamableMethod = _generateSpeechFromTextSend(
     context,
     deploymentId,
     body,
     options,
   );
+  const result = await getBinaryResponse(streamableMethod);
   return _generateSpeechFromTextDeserialize(result);
 }
 

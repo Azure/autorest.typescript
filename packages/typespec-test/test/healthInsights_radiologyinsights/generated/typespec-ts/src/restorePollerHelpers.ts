@@ -76,15 +76,14 @@ export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
 }
 
 interface DeserializationHelper {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
-  deserializer: Function;
+  deserializer: (result: PathUncheckedResponse) => Promise<any>;
   expectedStatuses: string[];
 }
 
 const deserializeMap: Record<string, DeserializationHelper> = {
   "POST /radiology-insights/jobs": {
     deserializer: _inferRadiologyInsightsDeserialize,
-    expectedStatuses: ["202", "200"],
+    expectedStatuses: ["202", "200", "201"],
   },
 };
 

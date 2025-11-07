@@ -473,7 +473,7 @@ function getAdditionalPropertiesStatement(
     false,
     true
   );
-  const params = [`item.${getAdditionalPropertiesName(context, type)}`];
+  const params = [`item.${getAdditionalPropertiesName(context, type)} ?? {}`];
   if (typeof deserializerFunction === "string") {
     params.push("undefined");
     params.push(deserializerFunction);

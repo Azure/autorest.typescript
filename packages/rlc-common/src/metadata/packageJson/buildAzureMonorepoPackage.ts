@@ -55,7 +55,7 @@ export function getAzureMonorepoDependencies(config: AzureMonorepoInfoConfig) {
 
   const testDeps = withTests
     ? {
-        "@vitest/browser": "catalog:testing",
+        "@vitest/browser-playwright": "catalog:testing",
         "@vitest/coverage-istanbul": "catalog:testing",
         dotenv: "catalog:testing",
         playwright: "catalog:testing",
@@ -155,11 +155,12 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
   const esmScripts = getEsmScripts(config);
   const cjsScripts = getCjsScripts(config);
   const skipLinting = config.azureArm && config.isModularLibrary;
+  const buildSampleScripts = config.azureArm
+    ? "tsc -p tsconfig.samples.json && dev-tool samples publish -f"
+    : "tsc -p tsconfig.samples.json";
   return {
     ...getCommonPackageScripts(),
-    "build:samples": config.withSamples
-      ? "tsc -p tsconfig.samples.json && dev-tool samples publish -f"
-      : "echo skipped",
+    "build:samples": config.withSamples ? buildSampleScripts : "echo skipped",
     "check-format": `prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" ${
       config.withSamples ? '"samples-dev/*.ts"' : ""
     }`,
