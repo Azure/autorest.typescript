@@ -318,6 +318,41 @@ describe("url-template", () => {
     });
   });
 
+  describe.only("decode unreserved URI characters", () => {
+    it("should decode percent-encoded hyphen", () => {
+      const assert = createAssertion({
+        "api%2Dversion": "2023-05-01.17.0",
+        timeOut: undefined
+      });
+      assert(
+        "/pools{?api%2Dversion,timeOut}",
+        "/pools?api-version=2023-05-01.17.0"
+      );
+    });
+
+    it("should decode percent-encoded dot", () => {
+      const assert = createAssertion({
+        "api%2Eversion": "2023-05-01.17.0",
+        timeOut: undefined
+      });
+      assert(
+        "/pools{?api%2Eversion,timeOut}",
+        "/pools?api.version=2023-05-01.17.0"
+      );
+    });
+
+    it("should decode percent-encoded tilde", () => {
+      const assert = createAssertion({
+        "api%7Eversion": "2023-05-01.17.0",
+        timeOut: undefined
+      });
+      assert(
+        "/pools{?api%7Eversion,timeOut}",
+        "/pools?api~version=2023-05-01.17.0"
+      );
+    });
+  });
+
   describe("allowReserved option", () => {
     describe("normal path", () => {
       it("should not encode reserved characters if enable allowReserved", () => {
