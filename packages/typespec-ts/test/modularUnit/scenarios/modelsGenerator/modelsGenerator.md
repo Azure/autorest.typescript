@@ -40,6 +40,12 @@ needTCGC: true
 ## Models
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
   prop: string;
@@ -99,6 +105,12 @@ withRawContent: true
 ## Models
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface InputOutputModel */
 export interface InputOutputModel {
   prop: true;
@@ -157,6 +169,12 @@ withRawContent: true
 ## Models
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface InputOutputModel */
 export interface InputOutputModel {
   prop: 1;
@@ -214,6 +232,12 @@ withRawContent: true
 ## Models
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface InputOutputModel */
 export interface InputOutputModel {
   prop: "foo";
@@ -278,6 +302,12 @@ withRawContent: true
 ## Models
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface InputOutputModel */
 export interface InputOutputModel {
   prop: "English";
@@ -375,6 +405,12 @@ op read(@body body: Foo): { @body body: Foo };
 ## Models interface Foo
 
 ```ts models interface Foo
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Foo */
 export interface Foo {
   prop1: string;
@@ -533,6 +569,12 @@ op read(@body body: Foo): { @body body: Foo };
 ## Models Foo
 
 ```ts models interface Foo
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Foo */
 export interface Foo {
   prop1: Date;
@@ -617,6 +659,12 @@ op read(@body body: Foo): { @body body: Foo };
 ## Models Foo
 
 ```ts models interface Foo
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Foo */
 export interface Foo {
   prop1: Date;
@@ -699,6 +747,12 @@ op read(@body body: Foo): { @body body: Foo };
 ## Models Foo
 
 ```ts models interface Foo
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Foo */
 export interface Foo {
   prop1: Date;
@@ -779,6 +833,12 @@ op read(@body body: Foo): { @body body: Foo };
 ## Models Foo
 
 ```ts models interface Foo
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Foo */
 export interface Foo {
   prop1: string;
@@ -852,6 +912,12 @@ op read(@body body: Foo): { @body body: Foo };
 ## Models Foo
 
 ```ts models interface Foo
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Foo */
 export interface Foo {
   prop1: string;
@@ -927,6 +993,12 @@ op read(@body body: Foo): { @body body: Foo };
 ## Models Foo
 
 ```ts models interface Foo
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Foo */
 export interface Foo {
   prop1: number;
@@ -1000,6 +1072,12 @@ op read(@body body: Foo): { @body body: Foo };
 ## Models Foo
 
 ```ts models interface Foo
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Foo */
 export interface Foo {
   prop1: Uint8Array;
@@ -1094,6 +1172,12 @@ op read(@body body: Foo): { @body body: Foo };
 ## Models Foo
 
 ```ts models interface Foo
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Foo */
 export interface Foo {
   prop1: Uint8Array;
@@ -1188,6 +1272,12 @@ op read(@body body: Foo): { @body body: Foo };
 ## Models Foo
 
 ```ts models interface Foo
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Foo */
 export interface Foo {
   prop1: Uint8Array;
@@ -1290,6 +1380,12 @@ op read(): { @body body: Cat | Dog };
 ## Models
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Cat */
 export interface Cat extends Pet {
   kind: "cat";
@@ -1364,6 +1460,12 @@ op read(): { @body body: Cat };
 ## Models
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Cat */
 export interface Cat extends Pet {
   kind: "cat";
@@ -1462,6 +1564,12 @@ op read(): { @body body: Cat };
 ## Models
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Cat */
 export interface Cat extends Pet {
   kind: "cat";
@@ -1574,6 +1682,12 @@ op read(@body body: PSDog): { @body body: PSDog };
 ## Models
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface PSDog */
 export interface PSDog extends Pet {
   kind: "dog";
@@ -1718,6 +1832,12 @@ op read(): { @body body: Pet };
 ## Models
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Pet */
 export interface Pet {
   kind: string;
@@ -1859,6 +1979,12 @@ op read(): { @body body: Pet };
 ## Models
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Pet */
 export interface Pet {
   kind: string;
@@ -2026,6 +2152,12 @@ op read(): { @body body: Foo };
 ## Models
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Foo */
 export interface Foo {
   name: string;
@@ -2141,6 +2273,12 @@ needAzureCore: false
 ## Models
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Type of SchemaContentTypeValues */
 export type SchemaContentTypeValues =
   | "application/json; serialization=Avro"
@@ -2238,6 +2376,12 @@ withRawContent: true
 ## Models
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Type of SchemaContentTypeValues */
 export type SchemaContentTypeValues =
   | "application/json; serialization=Avro"
@@ -2356,6 +2500,12 @@ op read(@bodyRoot body: A): void;
 ## Model interface A
 
 ```ts models interface A
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface A */
 export interface A {
   prop1: string;
@@ -2408,6 +2558,12 @@ export function bSerializer(item: B): any {
 ## Model interface A
 
 ```ts models interface A
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface A */
 export interface A extends B {}
 ```
@@ -2435,6 +2591,12 @@ op read(@body body: A): void;
 ## Models
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface A */
 export interface A {
   readonly exactVersion?: string;
@@ -2460,6 +2622,12 @@ op read(@body body: A): void;
 ## Model interface A
 
 ```ts models interface A
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface A */
 export interface A {
   exactVersion?: string;
@@ -2496,6 +2664,12 @@ compatibility-mode: true
 ## Model interface Vegetables
 
 ```ts models interface Vegetables
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Vegetables */
 export interface Vegetables extends Record<string, number | string> {
   carrots: number;
@@ -2535,6 +2709,12 @@ mustEmptyDiagnostic: true
 ```ts models
 import { serializeRecord } from "../static-helpers/serialization/serialize-record.js";
 
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Vegetables */
 export interface Vegetables {
   carrots: number;
@@ -2546,7 +2726,7 @@ export interface Vegetables {
 export function vegetablesSerializer(item: Vegetables): any {
   return {
     ...serializeRecord(
-      item.additionalProperties,
+      item.additionalProperties ?? {},
       undefined,
       _vegetablesAdditionalPropertySerializer,
     ),
@@ -2607,6 +2787,12 @@ compatibility-mode: true
 ## Model interface A
 
 ```ts models interface A
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface A */
 export interface A extends Base, Record<string, number> {
   prop: number;

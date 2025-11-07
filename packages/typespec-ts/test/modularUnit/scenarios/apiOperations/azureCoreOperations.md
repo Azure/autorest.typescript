@@ -131,6 +131,12 @@ Generate the models
 ```ts models
 import { ErrorModel } from "@azure-rest/core-client";
 
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Provides status details for long running operations. */
 export interface ResourceOperationStatusWidgetSuiteWidgetSuiteError {
   /** The unique ID of the operation. */

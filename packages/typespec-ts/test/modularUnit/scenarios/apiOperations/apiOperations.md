@@ -140,6 +140,12 @@ op uploadFile(
 ## Models \_UploadFileRequest
 
 ```ts models interface _UploadFileRequest
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface _UploadFileRequest */
 export interface _UploadFileRequest {
   name: string;
@@ -239,6 +245,12 @@ import {
   createFilePartDescriptor,
 } from "../static-helpers/multipartHelpers.js";
 
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface _UploadFilesRequest */
 export interface _UploadFilesRequest {
   files: Array<
@@ -325,6 +337,7 @@ op downloadFile(): {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { getBinaryResponse } from "../static-helpers/serialization/get-binary-response.js";
 import { DownloadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -363,7 +376,8 @@ export async function downloadFile(
   context: Client,
   options: DownloadFileOptionalParams = { requestOptions: {} },
 ): Promise<Uint8Array> {
-  const result = await _downloadFileSend(context, options);
+  const streamableMethod = _downloadFileSend(context, options);
+  const result = await getBinaryResponse(streamableMethod);
   return _downloadFileDeserialize(result);
 }
 ```
@@ -388,6 +402,7 @@ op downloadFile(): {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
+import { getBinaryResponse } from "../static-helpers/serialization/get-binary-response.js";
 import { DownloadFileOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -426,7 +441,8 @@ export async function downloadFile(
   context: Client,
   options: DownloadFileOptionalParams = { requestOptions: {} },
 ): Promise<Uint8Array> {
-  const result = await _downloadFileSend(context, options);
+  const streamableMethod = _downloadFileSend(context, options);
+  const result = await getBinaryResponse(streamableMethod);
   return _downloadFileDeserialize(result);
 }
 ```
@@ -453,6 +469,12 @@ op downloadFile(): {
 import { FileContents } from "../static-helpers/multipartHelpers.js";
 import { stringToUint8Array } from "@azure/core-util";
 
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface _DownloadFileResponse */
 export interface _DownloadFileResponse {
   name: string;
@@ -552,6 +574,12 @@ op downloadFile(): {
 import { FileContents } from "../static-helpers/multipartHelpers.js";
 import { stringToUint8Array } from "@azure/core-util";
 
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface _DownloadFileResponse */
 export interface _DownloadFileResponse {
   name: string[];
@@ -1328,7 +1356,7 @@ export function _updateFileShareSnapshotSend(
 export async function _updateFileShareSnapshotDeserialize(
   result: PathUncheckedResponse,
 ): Promise<FileShareSnapshot> {
-  const expectedStatuses = ["202", "200"];
+  const expectedStatuses = ["202", "200", "201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = errorResponseDeserializer(result.body);
@@ -1350,7 +1378,7 @@ export function updateFileShareSnapshot(
   return getLongRunningPoller(
     context,
     _updateFileShareSnapshotDeserialize,
-    ["202", "200"],
+    ["202", "200", "201"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,

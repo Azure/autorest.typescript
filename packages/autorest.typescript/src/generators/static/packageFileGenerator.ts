@@ -132,7 +132,12 @@ function regularAutorestPackage(
       lint: "echo skipped",
       clean:
         "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
-      "build:samples": "echo skipped.",
+      "build:samples": 
+        generateSample && clientDetails.samples && clientDetails.samples.length > 0
+          ? azureArm
+            ? "tsc -p tsconfig.samples.json && dev-tool samples publish -f"
+            : "tsc -p tsconfig.samples.json"
+          : "echo skipped.",
       "check-format": "echo skipped",
       "execute:samples": "echo skipped",
       format: "echo skipped",
@@ -207,10 +212,10 @@ function regularAutorestPackage(
       packageInfo.devDependencies["@azure-tools/test-utils-vitest"] = azureSdkForJs ? "workspace:^" : "^1.0.0";
     }
     packageInfo.devDependencies["@types/node"] = azureSdkForJs ? "catalog:" : "^20.0.0";
-    packageInfo.devDependencies["@vitest/browser"] = azureSdkForJs ? "catalog:testing" : "^3.0.9";
-    packageInfo.devDependencies["@vitest/coverage-istanbul"] = azureSdkForJs ? "catalog:testing" : "^3.0.9";
+    packageInfo.devDependencies["@vitest/browser-playwright"] = azureSdkForJs ? "catalog:testing" : "^4.0.6";
+    packageInfo.devDependencies["@vitest/coverage-istanbul"] = azureSdkForJs ? "catalog:testing" : "^4.0.6";
     packageInfo.devDependencies["playwright"] = azureSdkForJs ? "catalog:testing" : "^1.52.0";
-    packageInfo.devDependencies["vitest"] = azureSdkForJs ? "catalog:testing" : "^3.0.9";
+    packageInfo.devDependencies["vitest"] = azureSdkForJs ? "catalog:testing" : "^4.0.6";
     packageInfo.scripts["test"] = "npm run test:node && npm run test:browser";
 
     if (azureSdkForJs) {

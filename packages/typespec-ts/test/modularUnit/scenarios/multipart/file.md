@@ -18,6 +18,12 @@ import {
   createFilePartDescriptor,
 } from "../static-helpers/multipartHelpers.js";
 
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface RequestBody */
 export interface RequestBody {
   basicFile:
@@ -102,6 +108,12 @@ import {
   createFilePartDescriptor,
 } from "../static-helpers/multipartHelpers.js";
 
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface RequestBody */
 export interface RequestBody {
   nameRequired:
@@ -136,6 +148,12 @@ import {
   createFilePartDescriptor,
 } from "../static-helpers/multipartHelpers.js";
 
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface RequestBody */
 export interface RequestBody {
   image:
@@ -168,6 +186,12 @@ import {
   createFilePartDescriptor,
 } from "../static-helpers/multipartHelpers.js";
 
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface RequestBody */
 export interface RequestBody {
   files: Array<
