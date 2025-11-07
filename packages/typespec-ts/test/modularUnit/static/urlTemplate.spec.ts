@@ -318,7 +318,7 @@ describe("url-template", () => {
     });
   });
 
-  describe.only("decode unreserved URI characters", () => {
+  describe("decode unreserved URI characters", () => {
     it("should decode percent-encoded hyphen", () => {
       const assert = createAssertion({
         "api%2Dversion": "2023-05-01.17.0",
