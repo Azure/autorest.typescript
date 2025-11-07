@@ -200,4 +200,28 @@ describe("EncodeBytesClient Modular Client", () => {
       assert.strictEqual(uint8ArrayToString(result, "utf-8"), pngFile);
     });
   });
+
+  describe.only("request body content type", () => {
+    const pngFile = readFileSync(
+      resolve("../../packages/typespec-ts/temp/assets/image.png")
+    );
+    it(`should post bytes with cose content type`, async () => {
+      const result = await client.requestBodyContentType.cose(pngFile);
+      assert.isUndefined(result);
+    });
+  });
+
+  describe.only("request body content type", () => {
+    const pngFile = readFileSync(
+      resolve("../../packages/typespec-ts/temp/assets/image.png")
+    ).toString("utf-8");
+    it(`should get bytes with cose content type`, async () => {
+      const result = await client.responseBodyContentType.cose({
+        onResponse: (res) => {
+          res.headers.get("content-type") === "application/cose";
+        }
+      });
+      assert.strictEqual(uint8ArrayToString(result, "utf-8"), pngFile);
+    });
+  });
 });
