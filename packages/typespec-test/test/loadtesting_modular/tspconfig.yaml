@@ -10,7 +10,6 @@ options:
     description: Azure Load Testing Client
     azure-sdk-for-js: false
     enable-operation-group: true
-    is-modular-library: true
     hierarchy-client: false
     experimental-extensible-enums: true
     package-details:

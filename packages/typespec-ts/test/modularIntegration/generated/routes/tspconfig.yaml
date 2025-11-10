@@ -7,7 +7,6 @@ options:
     generate-test: false
     azure-sdk-for-js: false
     is-typespec-test: true
-    is-modular-library: true
     hierarchy-client: true
     package-details:
-      name: "@msinternal/routes"
+      name: "@unbranded/routes"
