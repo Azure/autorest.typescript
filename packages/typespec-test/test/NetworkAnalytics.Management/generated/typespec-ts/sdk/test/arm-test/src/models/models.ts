@@ -514,7 +514,7 @@ export function dataTypeDeserializer(item: any): DataType {
       ? item["systemData"]
       : systemDataDeserializer(item["systemData"]),
     ...(!item["properties"]
-      ? {}
+      ? item["properties"]
       : dataTypePropertiesDeserializer(item["properties"])),
   };
 }
