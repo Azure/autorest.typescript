@@ -16,7 +16,7 @@ export interface _OperationListResult {
 }
 
 export function _operationListResultDeserializer(
-  item: any,
+  item: any
 ): _OperationListResult {
   return {
     value: operationArrayDeserializer(item["value"]),
@@ -156,7 +156,7 @@ export function errorDetailDeserializer(item: any): ErrorDetail {
 }
 
 export function errorDetailArrayDeserializer(
-  result: Array<ErrorDetail>,
+  result: Array<ErrorDetail>
 ): any[] {
   return result.map((item) => {
     return errorDetailDeserializer(item);
@@ -164,7 +164,7 @@ export function errorDetailArrayDeserializer(
 }
 
 export function errorAdditionalInfoArrayDeserializer(
-  result: Array<ErrorAdditionalInfo>,
+  result: Array<ErrorAdditionalInfo>
 ): any[] {
   return result.map((item) => {
     return errorAdditionalInfoDeserializer(item);
@@ -180,7 +180,7 @@ export interface ErrorAdditionalInfo {
 }
 
 export function errorAdditionalInfoDeserializer(
-  item: any,
+  item: any
 ): ErrorAdditionalInfo {
   return {
     type: item["type"],
@@ -195,7 +195,7 @@ export interface DataProductsCatalog extends ProxyResource {
 }
 
 export function dataProductsCatalogDeserializer(
-  item: any,
+  item: any
 ): DataProductsCatalog {
   return {
     id: item["id"],
@@ -219,7 +219,7 @@ export interface DataProductsCatalogProperties {
 }
 
 export function dataProductsCatalogPropertiesDeserializer(
-  item: any,
+  item: any
 ): DataProductsCatalogProperties {
   return {
     provisioningState: item["provisioningState"],
@@ -261,7 +261,7 @@ export enum KnownProvisioningState {
 export type ProvisioningState = string;
 
 export function publisherInformationArrayDeserializer(
-  result: Array<PublisherInformation>,
+  result: Array<PublisherInformation>
 ): any[] {
   return result.map((item) => {
     return publisherInformationDeserializer(item);
@@ -277,7 +277,7 @@ export interface PublisherInformation {
 }
 
 export function publisherInformationDeserializer(
-  item: any,
+  item: any
 ): PublisherInformation {
   return {
     publisherName: item["publisherName"],
@@ -286,7 +286,7 @@ export function publisherInformationDeserializer(
 }
 
 export function dataProductInformationArrayDeserializer(
-  result: Array<DataProductInformation>,
+  result: Array<DataProductInformation>
 ): any[] {
   return result.map((item) => {
     return dataProductInformationDeserializer(item);
@@ -304,19 +304,19 @@ export interface DataProductInformation {
 }
 
 export function dataProductInformationDeserializer(
-  item: any,
+  item: any
 ): DataProductInformation {
   return {
     dataProductName: item["dataProductName"],
     description: item["description"],
     dataProductVersions: dataProductVersionArrayDeserializer(
-      item["dataProductVersions"],
+      item["dataProductVersions"]
     ),
   };
 }
 
 export function dataProductVersionArrayDeserializer(
-  result: Array<DataProductVersion>,
+  result: Array<DataProductVersion>
 ): any[] {
   return result.map((item) => {
     return dataProductVersionDeserializer(item);
@@ -444,7 +444,7 @@ export interface _DataProductsCatalogListResult {
 }
 
 export function _dataProductsCatalogListResultDeserializer(
-  item: any,
+  item: any
 ): _DataProductsCatalogListResult {
   return {
     value: dataProductsCatalogArrayDeserializer(item["value"]),
@@ -453,7 +453,7 @@ export function _dataProductsCatalogListResultDeserializer(
 }
 
 export function dataProductsCatalogArrayDeserializer(
-  result: Array<DataProductsCatalog>,
+  result: Array<DataProductsCatalog>
 ): any[] {
   return result.map((item) => {
     return dataProductsCatalogDeserializer(item);
@@ -462,16 +462,47 @@ export function dataProductsCatalogArrayDeserializer(
 
 /** The data type resource. */
 export interface DataType extends ProxyResource {
-  /** The resource-specific properties for this resource. */
-  properties?: DataTypeProperties;
+  /** Latest provisioning state  of data product. */
+  readonly provisioningState?: ProvisioningState;
+  /** State of data type. */
+  state?: DataTypeState;
+  /** Reason for the state of data type. */
+  readonly stateReason?: string;
+  /** Field for storage output retention in days. */
+  storageOutputRetention?: number;
+  /** Field for database cache retention in days. */
+  databaseCacheRetention?: number;
+  /** Field for database data retention in days. */
+  databaseRetention?: number;
+  /** Url for data visualization. */
+  readonly visualizationUrl?: string;
 }
 
 export function dataTypeSerializer(item: DataType): any {
   return {
-    properties: !item["properties"]
-      ? item["properties"]
-      : dataTypePropertiesSerializer(item["properties"]),
+    properties: areAllPropertiesUndefined(item, [
+      "provisioningState",
+      "state",
+      "stateReason",
+      "storageOutputRetention",
+      "databaseCacheRetention",
+      "databaseRetention",
+    ])
+      ? undefined
+      : dataTypePropertiesSerializer(item),
   };
+}
+
+function areAllPropertiesUndefined(
+  item: any,
+  properties: string[] = []
+): boolean {
+  for (const property of properties) {
+    if (item[property] !== undefined) {
+      return false;
+    }
+  }
+  return true;
 }
 
 export function dataTypeDeserializer(item: any): DataType {
@@ -482,9 +513,9 @@ export function dataTypeDeserializer(item: any): DataType {
     systemData: !item["systemData"]
       ? item["systemData"]
       : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : dataTypePropertiesDeserializer(item["properties"]),
+    ...(!item["properties"]
+      ? {}
+      : dataTypePropertiesDeserializer(item["properties"])),
   };
 }
 
@@ -572,7 +603,7 @@ export interface DataTypeUpdateProperties {
 }
 
 export function dataTypeUpdatePropertiesSerializer(
-  item: DataTypeUpdateProperties,
+  item: DataTypeUpdateProperties
 ): any {
   return {
     state: item["state"],
@@ -628,7 +659,7 @@ export interface _DataTypeListResult {
 }
 
 export function _dataTypeListResultDeserializer(
-  item: any,
+  item: any
 ): _DataTypeListResult {
   return {
     value: dataTypeArrayDeserializer(item["value"]),
@@ -733,7 +764,7 @@ export interface DataProductProperties {
 }
 
 export function dataProductPropertiesSerializer(
-  item: DataProductProperties,
+  item: DataProductProperties
 ): any {
   return {
     publisher: item["publisher"],
@@ -762,14 +793,14 @@ export function dataProductPropertiesSerializer(
     ]
       ? item["managedResourceGroupConfiguration"]
       : managedResourceGroupConfigurationSerializer(
-          item["managedResourceGroupConfiguration"],
+          item["managedResourceGroupConfiguration"]
         ),
     currentMinorVersion: item["currentMinorVersion"],
   };
 }
 
 export function dataProductPropertiesDeserializer(
-  item: any,
+  item: any
 ): DataProductProperties {
   return {
     resourceGuid: item["resourceGuid"],
@@ -800,7 +831,7 @@ export function dataProductPropertiesDeserializer(
     ]
       ? item["managedResourceGroupConfiguration"]
       : managedResourceGroupConfigurationDeserializer(
-          item["managedResourceGroupConfiguration"],
+          item["managedResourceGroupConfiguration"]
         ),
     availableMinorVersions: !item["availableMinorVersions"]
       ? item["availableMinorVersions"]
@@ -812,7 +843,7 @@ export function dataProductPropertiesDeserializer(
     consumptionEndpoints: !item["consumptionEndpoints"]
       ? item["consumptionEndpoints"]
       : consumptionEndpointsPropertiesDeserializer(
-          item["consumptionEndpoints"],
+          item["consumptionEndpoints"]
         ),
     keyVaultUrl: item["keyVaultUrl"],
   };
@@ -847,7 +878,7 @@ export interface EncryptionKeyDetails {
 }
 
 export function encryptionKeyDetailsSerializer(
-  item: EncryptionKeyDetails,
+  item: EncryptionKeyDetails
 ): any {
   return {
     keyVaultUri: item["keyVaultUri"],
@@ -857,7 +888,7 @@ export function encryptionKeyDetailsSerializer(
 }
 
 export function encryptionKeyDetailsDeserializer(
-  item: any,
+  item: any
 ): EncryptionKeyDetails {
   return {
     keyVaultUri: item["keyVaultUri"],
@@ -879,11 +910,11 @@ export interface DataProductNetworkAcls {
 }
 
 export function dataProductNetworkAclsSerializer(
-  item: DataProductNetworkAcls,
+  item: DataProductNetworkAcls
 ): any {
   return {
     virtualNetworkRule: virtualNetworkRuleArraySerializer(
-      item["virtualNetworkRule"],
+      item["virtualNetworkRule"]
     ),
     ipRules: ipRulesArraySerializer(item["ipRules"]),
     allowedQueryIpRangeList: item["allowedQueryIpRangeList"].map((p: any) => {
@@ -894,11 +925,11 @@ export function dataProductNetworkAclsSerializer(
 }
 
 export function dataProductNetworkAclsDeserializer(
-  item: any,
+  item: any
 ): DataProductNetworkAcls {
   return {
     virtualNetworkRule: virtualNetworkRuleArrayDeserializer(
-      item["virtualNetworkRule"],
+      item["virtualNetworkRule"]
     ),
     ipRules: ipRulesArrayDeserializer(item["ipRules"]),
     allowedQueryIpRangeList: item["allowedQueryIpRangeList"].map((p: any) => {
@@ -909,7 +940,7 @@ export function dataProductNetworkAclsDeserializer(
 }
 
 export function virtualNetworkRuleArraySerializer(
-  result: Array<VirtualNetworkRule>,
+  result: Array<VirtualNetworkRule>
 ): any[] {
   return result.map((item) => {
     return virtualNetworkRuleSerializer(item);
@@ -917,7 +948,7 @@ export function virtualNetworkRuleArraySerializer(
 }
 
 export function virtualNetworkRuleArrayDeserializer(
-  result: Array<VirtualNetworkRule>,
+  result: Array<VirtualNetworkRule>
 ): any[] {
   return result.map((item) => {
     return virtualNetworkRuleDeserializer(item);
@@ -1004,13 +1035,13 @@ export interface ManagedResourceGroupConfiguration {
 }
 
 export function managedResourceGroupConfigurationSerializer(
-  item: ManagedResourceGroupConfiguration,
+  item: ManagedResourceGroupConfiguration
 ): any {
   return { name: item["name"], location: item["location"] };
 }
 
 export function managedResourceGroupConfigurationDeserializer(
-  item: any,
+  item: any
 ): ManagedResourceGroupConfiguration {
   return {
     name: item["name"],
@@ -1035,7 +1066,7 @@ export interface ConsumptionEndpointsProperties {
 }
 
 export function consumptionEndpointsPropertiesDeserializer(
-  item: any,
+  item: any
 ): ConsumptionEndpointsProperties {
   return {
     ingestionUrl: item["ingestionUrl"],
@@ -1060,7 +1091,7 @@ export interface ManagedServiceIdentityV4 {
 }
 
 export function managedServiceIdentityV4Serializer(
-  item: ManagedServiceIdentityV4,
+  item: ManagedServiceIdentityV4
 ): any {
   return {
     type: item["type"],
@@ -1071,7 +1102,7 @@ export function managedServiceIdentityV4Serializer(
 }
 
 export function managedServiceIdentityV4Deserializer(
-  item: any,
+  item: any
 ): ManagedServiceIdentityV4 {
   return {
     principalId: item["principalId"],
@@ -1108,7 +1139,7 @@ export enum KnownManagedServiceIdentityType {
 export type ManagedServiceIdentityType = string;
 
 export function userAssignedIdentityRecordSerializer(
-  item: Record<string, UserAssignedIdentity>,
+  item: Record<string, UserAssignedIdentity>
 ): Record<string, any> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
@@ -1120,7 +1151,7 @@ export function userAssignedIdentityRecordSerializer(
 }
 
 export function userAssignedIdentityRecordDeserializer(
-  item: Record<string, any>,
+  item: Record<string, any>
 ): Record<string, UserAssignedIdentity> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
@@ -1140,13 +1171,13 @@ export interface UserAssignedIdentity {
 }
 
 export function userAssignedIdentitySerializer(
-  item: UserAssignedIdentity,
+  item: UserAssignedIdentity
 ): any {
   return item;
 }
 
 export function userAssignedIdentityDeserializer(
-  item: any,
+  item: any
 ): UserAssignedIdentity {
   return {
     principalId: item["principalId"],
@@ -1216,7 +1247,7 @@ export interface DataProductUpdateProperties {
 }
 
 export function dataProductUpdatePropertiesSerializer(
-  item: DataProductUpdateProperties,
+  item: DataProductUpdateProperties
 ): any {
   return {
     owners: !item["owners"]
@@ -1288,7 +1319,7 @@ export interface RoleAssignmentCommonProperties {
 }
 
 export function roleAssignmentCommonPropertiesSerializer(
-  item: RoleAssignmentCommonProperties,
+  item: RoleAssignmentCommonProperties
 ): any {
   return {
     roleId: item["roleId"],
@@ -1343,7 +1374,7 @@ export interface RoleAssignmentDetail {
 }
 
 export function roleAssignmentDetailSerializer(
-  item: RoleAssignmentDetail,
+  item: RoleAssignmentDetail
 ): any {
   return {
     roleId: item["roleId"],
@@ -1359,7 +1390,7 @@ export function roleAssignmentDetailSerializer(
 }
 
 export function roleAssignmentDetailDeserializer(
-  item: any,
+  item: any
 ): RoleAssignmentDetail {
   return {
     roleId: item["roleId"],
@@ -1378,7 +1409,7 @@ export function roleAssignmentDetailDeserializer(
 export interface _ListRolesAssignmentsRequest {}
 
 export function _listRolesAssignmentsRequestSerializer(
-  item: _ListRolesAssignmentsRequest,
+  item: _ListRolesAssignmentsRequest
 ): any {
   return item;
 }
@@ -1392,18 +1423,18 @@ export interface ListRoleAssignments {
 }
 
 export function listRoleAssignmentsDeserializer(
-  item: any,
+  item: any
 ): ListRoleAssignments {
   return {
     count: item["count"],
     roleAssignmentResponse: roleAssignmentDetailArrayDeserializer(
-      item["roleAssignmentResponse"],
+      item["roleAssignmentResponse"]
     ),
   };
 }
 
 export function roleAssignmentDetailArraySerializer(
-  result: Array<RoleAssignmentDetail>,
+  result: Array<RoleAssignmentDetail>
 ): any[] {
   return result.map((item) => {
     return roleAssignmentDetailSerializer(item);
@@ -1411,7 +1442,7 @@ export function roleAssignmentDetailArraySerializer(
 }
 
 export function roleAssignmentDetailArrayDeserializer(
-  result: Array<RoleAssignmentDetail>,
+  result: Array<RoleAssignmentDetail>
 ): any[] {
   return result.map((item) => {
     return roleAssignmentDetailDeserializer(item);
@@ -1427,7 +1458,7 @@ export interface _DataProductListResult {
 }
 
 export function _dataProductListResultDeserializer(
-  item: any,
+  item: any
 ): _DataProductListResult {
   return {
     value: dataProductArrayDeserializer(item["value"]),
@@ -1442,7 +1473,7 @@ export function dataProductArraySerializer(result: Array<DataProduct>): any[] {
 }
 
 export function dataProductArrayDeserializer(
-  result: Array<DataProduct>,
+  result: Array<DataProduct>
 ): any[] {
   return result.map((item) => {
     return dataProductDeserializer(item);

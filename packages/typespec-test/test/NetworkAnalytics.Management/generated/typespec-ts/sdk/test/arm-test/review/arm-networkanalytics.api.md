@@ -234,7 +234,13 @@ export interface DataProductVersion {
 
 // @public
 export interface DataType extends ProxyResource {
-    properties?: DataTypeProperties;
+    databaseCacheRetention?: number;
+    databaseRetention?: number;
+    readonly provisioningState?: ProvisioningState;
+    state?: DataTypeState;
+    readonly stateReason?: string;
+    storageOutputRetention?: number;
+    readonly visualizationUrl?: string;
 }
 
 // @public
