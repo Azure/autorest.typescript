@@ -1187,3 +1187,187 @@ export async function createOrUpdateEndpoint(
   return _createOrUpdateEndpointDeserialize(result);
 }
 ```
+
+# should support POST paging generation from TypeSpec
+
+## TypeSpec
+
+```tsp
+import "@typespec/http";
+import "@azure-tools/typespec-client-generator-core";
+using TypeSpec.Http;
+using Azure.ClientGenerator.Core;
+
+@service(#{
+  title: "Test Service"
+})
+namespace testService;
+
+model ListTestResult {
+  @pageItems
+  tests: Test[];
+  @nextLink
+  next: string;
+}
+    
+model Test {
+  id: string;
+}
+    
+@Legacy.nextLinkVerb("GET")
+@list
+@route("/list-get")
+@post
+op bar(): ListTestResult;
+
+@Legacy.nextLinkVerb("POST")
+@list
+@route("/list-post")
+@post
+op foo(): ListTestResult;
+```
+
+The config would be like:
+
+```yaml
+withRawContent: true
+```
+
+## models
+
+```ts models
+/**
+ * This file contains only generated model types and (de)serializers.
+ * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/** model interface _ListTestResult */
+export interface _ListTestResult {
+  tests: Test[];
+  next: string;
+}
+
+export function _listTestResultDeserializer(item: any): _ListTestResult {
+  return {
+    tests: testArrayDeserializer(item["tests"]),
+    next: item["next"],
+  };
+}
+
+export function testArrayDeserializer(result: Array<Test>): any[] {
+  return result.map((item) => {
+    return testDeserializer(item);
+  });
+}
+
+/** model interface Test */
+export interface Test {
+  id: string;
+}
+
+export function testDeserializer(item: any): Test {
+  return {
+    id: item["id"],
+  };
+}
+```
+
+## Operations
+
+```ts operations
+import { testServiceContext as Client } from "./index.js";
+import {
+  _ListTestResult,
+  _listTestResultDeserializer,
+  Test,
+} from "../models/models.js";
+import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../static-helpers/pagingHelpers.js";
+import { FooOptionalParams, BarOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _fooSend(
+  context: Client,
+  options: FooOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/list-post")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
+}
+
+export async function _fooDeserialize(
+  result: PathUncheckedResponse,
+): Promise<_ListTestResult> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return _listTestResultDeserializer(result.body);
+}
+
+export function foo(
+  context: Client,
+  options: FooOptionalParams = { requestOptions: {} },
+): PagedAsyncIterableIterator<Test> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _fooSend(context, options),
+    _fooDeserialize,
+    ["200"],
+    { itemName: "tests", nextLinkName: "next",nextLinkMethod: "POST" },
+  );
+}
+
+export function _barSend(
+  context: Client,
+  options: BarOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/list-get")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
+    });
+}
+
+export async function _barDeserialize(
+  result: PathUncheckedResponse,
+): Promise<_ListTestResult> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return _listTestResultDeserializer(result.body);
+}
+
+export function bar(
+  context: Client,
+  options: BarOptionalParams = { requestOptions: {} },
+): PagedAsyncIterableIterator<Test> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _barSend(context, options),
+    _barDeserialize,
+    ["200"],
+    { itemName: "tests", nextLinkName: "next" },
+  );
+}
+```

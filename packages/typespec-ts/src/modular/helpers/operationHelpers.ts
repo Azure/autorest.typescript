@@ -632,7 +632,12 @@ function getPagingOnlyOperationFunction(
 
   // Get the HTTP method for the next link operation
   const nextLinkOperation = operation.pagingMetadata.nextLinkOperation;
-  const nextLinkMethod = nextLinkOperation?.operation?.verb?.toUpperCase();
+  let nextLinkMethod = nextLinkOperation?.operation?.verb?.toUpperCase();
+
+  // Check for nextLinkVerb from TCGC pagingMetadata (supports @Legacy.nextLinkVerb decorator)
+  if (operation.pagingMetadata.nextLinkVerb) {
+    nextLinkMethod = operation.pagingMetadata.nextLinkVerb;
+  }
 
   if (itemName) {
     options.push(`itemName: "${itemName}"`);
