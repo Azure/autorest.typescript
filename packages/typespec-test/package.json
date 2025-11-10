@@ -9,7 +9,7 @@
     "@typespec/openapi3": "^1.5.0",
     "@azure-tools/typespec-azure-core": "^0.61.0",
     "@azure-tools/typespec-client-generator-core": "0.62.0-dev.9",
-    "@azure-tools/typespec-azure-resource-manager": "^0.61.0",
+    "@azure-tools/typespec-azure-resource-manager": "0.62.0-dev.8",
     "@azure-tools/typespec-azure-rulesets": "^0.61.0",
     "@typespec/compiler": "1.6.0-dev.17",
     "@typespec/http": "^1.5.0",

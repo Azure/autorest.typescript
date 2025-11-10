@@ -1240,9 +1240,10 @@ withRawContent: true
 
 ```ts models
 /**
- * This file contains only generated model types and (de)serializers.
- * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
  */
+/* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface _ListTestResult */
 export interface _ListTestResult {
@@ -1331,7 +1332,7 @@ export function foo(
     () => _fooSend(context, options),
     _fooDeserialize,
     ["200"],
-    { itemName: "tests", nextLinkName: "next",nextLinkMethod: "POST" },
+    { itemName: "tests", nextLinkName: "next", nextLinkMethod: "POST" },
   );
 }
 
