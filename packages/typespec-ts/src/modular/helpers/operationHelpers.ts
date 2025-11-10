@@ -8,6 +8,7 @@ import { NoTarget, Program } from "@typespec/compiler";
 import {
   PagingHelpers,
   PollingHelpers,
+  SerializationHelpers,
   UrlTemplateHelpers
 } from "../static-helpers-metadata.js";
 import {
@@ -472,11 +473,18 @@ export function getOperationFunction(
   };
 
   const statements: string[] = [];
-  statements.push(
-    `const result = await _${name}Send(${parameters
-      .map((p) => p.name)
-      .join(", ")});`
-  );
+
+  const parameterList = parameters.map((p) => p.name).join(", ");
+  // Special case for binary-only bodies: use helper to call streaming methods so that Core doesn't poison the response body by
+  // doing a UTF-8 decode on the raw bytes.
+  if (response?.type?.kind === "bytes" && response.type.encode === "bytes") {
+    statements.push(`const streamableMethod = _${name}Send(${parameterList});`);
+    statements.push(
+      `const result = await ${resolveReference(SerializationHelpers.getBinaryResponse)}(streamableMethod);`
+    );
+  } else {
+    statements.push(`const result = await _${name}Send(${parameterList});`);
+  }
   statements.push(`return _${name}Deserialize(result);`);
 
   return {
@@ -1589,7 +1597,7 @@ export function getExpectedStatuses(operation: ServiceOperation): string {
   let statusCodes = operation.operation.responses.map((x) => x.statusCodes);
   // LROs may call the same path but with GET to get the operation status.
   if (isLroOnlyOperation(operation) && operation.operation.verb !== "get") {
-    statusCodes = Array.from(new Set([...statusCodes, 200, 202]));
+    statusCodes = Array.from(new Set([...statusCodes, 200, 201, 202]));
   }
 
   return `[${statusCodes.map((x) => `"${x}"`).join(", ")}]`;

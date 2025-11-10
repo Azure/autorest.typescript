@@ -9,7 +9,6 @@ options:
     flavor: azure
     azure-sdk-for-js: false
     is-typespec-test: true
-    is-modular-library: true
     package-details:
       name: "@msinternal/model-inheritance-not-discriminated"
       description: "Model Inheritance Test Service"

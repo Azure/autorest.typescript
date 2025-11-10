@@ -10,7 +10,6 @@ options:
     azure-sdk-for-js: false
     is-typespec-test: true
     title: VersioningRemovedClient
-    is-modular-library: true
     hierarchy-client: false
     api-version: "v1"
     package-details:
