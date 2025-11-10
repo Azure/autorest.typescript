@@ -5,9 +5,7 @@ options:
     emitter-output-dir: "{project-root}"
     generate-metadata: true
     generate-test: false
-    
     is-typespec-test: true
-    is-modular-library: true
     hierarchy-client: false
     package-details:
       name: "@unbranded/azure-oauth2"

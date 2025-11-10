@@ -10,7 +10,6 @@ options:
     azure-sdk-for-js: false
     enable-operation-group: true
     is-typespec-test: true
-    is-modular-library: true
     hierarchy-client: false
     package-details:
       name: "@msinternal/parameterSpread"
