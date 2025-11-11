@@ -31,7 +31,7 @@ import {
   _azureSearchDocumentsIndexesListKnowledgeBasesResultDeserializer,
   azureSearchDocumentsIndexesKnowledgeSourceUnionSerializer,
   azureSearchDocumentsIndexesKnowledgeSourceUnionDeserializer,
-  KnowledgeSourceUnion,
+  AzureSearchDocumentsIndexesKnowledgeSourceUnion,
   _AzureSearchDocumentsIndexesListKnowledgeSourcesResult,
   _azureSearchDocumentsIndexesListKnowledgeSourcesResultDeserializer,
   AzureSearchDocumentsIndexesSearchServiceStatistics,
@@ -193,7 +193,7 @@ export async function getServiceStatistics(
 
 export function _createKnowledgeSourceSend(
   context: Client,
-  knowledgeSource: KnowledgeSourceUnion,
+  knowledgeSource: AzureSearchDocumentsIndexesKnowledgeSourceUnion,
   options: CreateKnowledgeSourceOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -225,7 +225,7 @@ export function _createKnowledgeSourceSend(
 
 export async function _createKnowledgeSourceDeserialize(
   result: PathUncheckedResponse,
-): Promise<KnowledgeSourceUnion> {
+): Promise<AzureSearchDocumentsIndexesKnowledgeSourceUnion> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -241,9 +241,9 @@ export async function _createKnowledgeSourceDeserialize(
 /** Creates a new knowledge source. */
 export async function createKnowledgeSource(
   context: Client,
-  knowledgeSource: KnowledgeSourceUnion,
+  knowledgeSource: AzureSearchDocumentsIndexesKnowledgeSourceUnion,
   options: CreateKnowledgeSourceOptionalParams = { requestOptions: {} },
-): Promise<KnowledgeSourceUnion> {
+): Promise<AzureSearchDocumentsIndexesKnowledgeSourceUnion> {
   const result = await _createKnowledgeSourceSend(
     context,
     knowledgeSource,
@@ -298,7 +298,7 @@ export async function _listKnowledgeSourcesDeserialize(
 export function listKnowledgeSources(
   context: Client,
   options: ListKnowledgeSourcesOptionalParams = { requestOptions: {} },
-): PagedAsyncIterableIterator<KnowledgeSourceUnion> {
+): PagedAsyncIterableIterator<AzureSearchDocumentsIndexesKnowledgeSourceUnion> {
   return buildPagedAsyncIterator(
     context,
     () => _listKnowledgeSourcesSend(context, options),
@@ -339,7 +339,7 @@ export function _getKnowledgeSourceSend(
 
 export async function _getKnowledgeSourceDeserialize(
   result: PathUncheckedResponse,
-): Promise<KnowledgeSourceUnion> {
+): Promise<AzureSearchDocumentsIndexesKnowledgeSourceUnion> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -357,7 +357,7 @@ export async function getKnowledgeSource(
   context: Client,
   sourceName: string,
   options: GetKnowledgeSourceOptionalParams = { requestOptions: {} },
-): Promise<KnowledgeSourceUnion> {
+): Promise<AzureSearchDocumentsIndexesKnowledgeSourceUnion> {
   const result = await _getKnowledgeSourceSend(context, sourceName, options);
   return _getKnowledgeSourceDeserialize(result);
 }
@@ -421,7 +421,7 @@ export async function deleteKnowledgeSource(
 
 export function _createOrUpdateKnowledgeSourceSend(
   context: Client,
-  knowledgeSource: KnowledgeSourceUnion,
+  knowledgeSource: AzureSearchDocumentsIndexesKnowledgeSourceUnion,
   sourceName: string,
   options: CreateOrUpdateKnowledgeSourceOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
@@ -462,7 +462,7 @@ export function _createOrUpdateKnowledgeSourceSend(
 
 export async function _createOrUpdateKnowledgeSourceDeserialize(
   result: PathUncheckedResponse,
-): Promise<KnowledgeSourceUnion> {
+): Promise<AzureSearchDocumentsIndexesKnowledgeSourceUnion> {
   const expectedStatuses = ["200", "201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -478,10 +478,10 @@ export async function _createOrUpdateKnowledgeSourceDeserialize(
 /** Creates a new knowledge source or updates an knowledge source if it already exists. */
 export async function createOrUpdateKnowledgeSource(
   context: Client,
-  knowledgeSource: KnowledgeSourceUnion,
+  knowledgeSource: AzureSearchDocumentsIndexesKnowledgeSourceUnion,
   sourceName: string,
   options: CreateOrUpdateKnowledgeSourceOptionalParams = { requestOptions: {} },
-): Promise<KnowledgeSourceUnion> {
+): Promise<AzureSearchDocumentsIndexesKnowledgeSourceUnion> {
   const result = await _createOrUpdateKnowledgeSourceSend(
     context,
     knowledgeSource,

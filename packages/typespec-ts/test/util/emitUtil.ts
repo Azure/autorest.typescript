@@ -373,6 +373,7 @@ export interface ModelConfigOptions extends RLCOptions {
   needOptions?: boolean;
   withRawContent?: boolean;
   needAzureCore?: boolean;
+  needTCGC?: boolean;
   needNamespaces?: boolean;
   mustEmptyDiagnostic?: boolean;
   withVersionedApiVersion?: boolean;
@@ -539,7 +540,7 @@ export async function emitModularOperationsFromTypeSpec(
   const context = await rlcEmitterFor(tspContent, {
     needNamespaces: options.needNamespaces,
     needAzureCore: options.needAzureCore ? true : false,
-    needTCGC: false,
+    needTCGC: options.needTCGC ? true : false,
     withRawContent: options.withRawContent ? true : false,
     withVersionedApiVersion: options.withVersionedApiVersion ? true : false
   });

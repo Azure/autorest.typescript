@@ -12,7 +12,7 @@ import {
   AzureSearchDocumentsQueryAnswerType,
   AzureSearchDocumentsQueryCaptionType,
   AzureSearchDocumentsQueryRewritesType,
-  VectorQueryUnion,
+  AzureSearchDocumentsVectorQueryUnion,
   AzureSearchDocumentsVectorFilterMode,
   AzureSearchDocumentsHybridSearch,
   AzureSearchDocumentsAutocompleteMode,
@@ -200,7 +200,7 @@ export interface SearchPostOptionalParams extends OperationOptions {
   /** The comma-separated list of field names used for semantic ranking. */
   semanticFields?: string;
   /** The query parameters for vector and hybrid search queries. */
-  vectorQueries?: VectorQueryUnion[];
+  vectorQueries?: AzureSearchDocumentsVectorQueryUnion[];
   /** Determines whether or not filters are applied before or after the vector search is performed. Default is 'preFilter' for new indexes. */
   vectorFilterMode?: AzureSearchDocumentsVectorFilterMode;
   /** The query parameters to configure hybrid search behaviors. */
