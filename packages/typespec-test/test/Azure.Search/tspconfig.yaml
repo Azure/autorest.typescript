@@ -1,0 +1,12 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    emitter-output-dir: "{project-root}/generated/typespec-ts"
+    generate-metadata: true
+    azure-sdk-for-js: false
+    experimental-extensible-enums: true
+    is-modular-library: true
+    package-details:
+      name: "@azure/search-documents"
+    flavor: azure
