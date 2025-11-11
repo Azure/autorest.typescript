@@ -39,7 +39,11 @@ import { refkey } from "../../framework/refkey.js";
 import { reportDiagnostic } from "../../lib.js";
 import { resolveReference } from "../../framework/reference.js";
 import { useDependencies } from "../../framework/hooks/useDependencies.js";
-import { useSdkTypes } from "../../framework/hooks/sdkTypes.js";
+import {
+  flattenModels,
+  isSupportedFlattenProperty,
+  useSdkTypes
+} from "../../framework/hooks/sdkTypes.js";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
 import {
   getTypeExpression,
@@ -1137,6 +1141,30 @@ function getNullableCheck(name: string, type: SdkType) {
   return `${name} === null ? null :`;
 }
 
+export function getSerializationFlattenExpression(
+  context: SdkContext,
+  property: SdkModelPropertyType,
+  propertyPath: string
+): string | undefined {
+  if (
+    isSupportedFlattenProperty(property) &&
+    property.type.kind === "model" &&
+    flattenModels.has(property.type)
+  ) {
+    const serializeFunctionName = buildModelSerializer(
+      context,
+      getNullableValidType(property.type),
+      false,
+      true
+    );
+    if (!serializeFunctionName) {
+      return undefined;
+    }
+    return `${serializeFunctionName}(${propertyPath})`;
+  }
+  return undefined;
+}
+
 export function getSerializationExpression(
   context: SdkContext,
   property: SdkModelPropertyType,
@@ -1198,7 +1226,8 @@ export function getRequestModelProperties(
     }
     props.push([
       getPropertySerializedName(property)!,
-      getSerializationExpression(context, property, propertyPath)
+      getSerializationFlattenExpression(context, property, "item") ??
+        getSerializationExpression(context, property, propertyPath)
     ]);
   }
 
@@ -1267,9 +1296,19 @@ export function getResponseMapping(
     );
     const propertyName = normalizeModelPropertyName(context, property);
     if (deserializeFunctionName) {
-      props.push(
-        `${propertyName}: ${nullOrUndefinedPrefix}${deserializeFunctionName}(${restValue})`
-      );
+      if (
+        isSupportedFlattenProperty(property) &&
+        property.type.kind === "model" &&
+        flattenModels.has(property.type)
+      ) {
+        props.push(
+          `...${nullOrUndefinedPrefix}${deserializeFunctionName}(${restValue})`
+        );
+      } else {
+        props.push(
+          `${propertyName}: ${nullOrUndefinedPrefix}${deserializeFunctionName}(${restValue})`
+        );
+      }
     } else if (isAzureCoreErrorType(context.program, property.type.__raw)) {
       props.push(`${propertyName}: ${nullOrUndefinedPrefix}${restValue}`);
     } else {

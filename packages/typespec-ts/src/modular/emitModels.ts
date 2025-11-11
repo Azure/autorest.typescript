@@ -60,7 +60,9 @@ import {
 } from "./type-expressions/get-type-expression.js";
 import {
   emitQueue,
-  getAllOperationsFromClient
+  flattenModels,
+  getAllOperationsFromClient,
+  isSupportedFlattenProperty
 } from "../framework/hooks/sdkTypes.js";
 import { resolveReference } from "../framework/reference.js";
 import { MultipartHelpers } from "./static-helpers-metadata.js";
@@ -474,16 +476,37 @@ function buildModelInterface(
   context: SdkContext,
   type: SdkModelType
 ): InterfaceDeclarationStructure {
+  let flattenModel: SdkModelType | undefined;
   const interfaceStructure = {
     kind: StructureKind.Interface,
     name: normalizeModelName(context, type, NameType.Interface, true),
     isExported: true,
     properties: type.properties
       .filter((p) => !isMetadata(context.program, p.__raw!))
+      .filter((p) => {
+        // filter out the flatten property to be processed later
+        if (
+          isSupportedFlattenProperty(p) &&
+          p.type.kind === "model" &&
+          flattenModels.has(p.type)
+        ) {
+          flattenModel = p.type;
+          return false;
+        }
+        return true;
+      })
       .map((p) => {
         return buildModelProperty(context, p, type);
       })
   } as InterfaceStructure;
+  if (flattenModel) {
+    // add properties from the flattened model
+    interfaceStructure.properties!.push(
+      ...flattenModel.properties.map((p) =>
+        buildModelProperty(context, p, type)
+      )
+    );
+  }
 
   if (type.baseModel) {
     const parentReference = getModelExpression(context, type.baseModel, {
@@ -851,6 +874,12 @@ function visitType(context: SdkContext, type: SdkType | undefined) {
     for (const property of type.properties) {
       if (!emitQueue.has(property.type)) {
         visitType(context, property.type);
+      }
+      if (
+        isSupportedFlattenProperty(property) &&
+        property.type.kind === "model"
+      ) {
+        flattenModels.add(property.type);
       }
     }
     if (type.discriminatedSubtypes) {

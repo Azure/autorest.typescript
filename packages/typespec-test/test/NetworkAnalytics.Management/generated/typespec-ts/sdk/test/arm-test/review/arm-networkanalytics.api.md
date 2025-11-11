@@ -73,8 +73,27 @@ export type CreatedByType = string;
 
 // @public
 export interface DataProduct extends TrackedResource {
+    readonly availableMinorVersions?: string[];
+    readonly consumptionEndpoints?: ConsumptionEndpointsProperties;
+    currentMinorVersion?: string;
+    customerEncryptionKey?: EncryptionKeyDetails;
+    customerManagedKeyEncryptionEnabled?: ControlState;
+    readonly documentation?: string;
     identity?: ManagedServiceIdentityV4;
-    properties?: DataProductProperties;
+    readonly keyVaultUrl?: string;
+    majorVersion: string;
+    managedResourceGroupConfiguration?: ManagedResourceGroupConfiguration;
+    networkacls?: DataProductNetworkAcls;
+    owners?: string[];
+    privateLinksEnabled?: ControlState;
+    product: string;
+    readonly provisioningState?: ProvisioningState;
+    publicNetworkAccess?: ControlState;
+    publisher: string;
+    purviewAccount?: string;
+    purviewCollection?: string;
+    redundancy?: ControlState;
+    readonly resourceGuid?: string;
 }
 
 // @public
