@@ -183,6 +183,12 @@ export interface DataProductsListRolesAssignmentsOptionalParams extends Operatio
 // @public
 export interface DataProductsOperations {
     addUserRole: (resourceGroupName: string, dataProductName: string, body: RoleAssignmentCommonProperties, options?: DataProductsAddUserRoleOptionalParams) => Promise<RoleAssignmentDetail>;
+    // @deprecated (undocumented)
+    beginCreateAndWait: (resourceGroupName: string, dataProductName: string, resource: DataProduct, options?: DataProductsCreateOptionalParams) => Promise<DataProduct>;
+    // @deprecated (undocumented)
+    beginDeleteAndWait: (resourceGroupName: string, dataProductName: string, options?: DataProductsDeleteOptionalParams) => Promise<void>;
+    // @deprecated (undocumented)
+    beginUpdateAndWait: (resourceGroupName: string, dataProductName: string, properties: DataProductUpdate, options?: DataProductsUpdateOptionalParams) => Promise<DataProduct>;
     create: (resourceGroupName: string, dataProductName: string, resource: DataProduct, options?: DataProductsCreateOptionalParams) => PollerLike<OperationState<DataProduct>, DataProduct>;
     delete: (resourceGroupName: string, dataProductName: string, options?: DataProductsDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
     generateStorageAccountSasToken: (resourceGroupName: string, dataProductName: string, body: AccountSas, options?: DataProductsGenerateStorageAccountSasTokenOptionalParams) => Promise<AccountSasToken>;
@@ -277,6 +283,14 @@ export interface DataTypesListByDataProductOptionalParams extends OperationOptio
 
 // @public
 export interface DataTypesOperations {
+    // @deprecated (undocumented)
+    beginCreateAndWait: (resourceGroupName: string, dataProductName: string, dataTypeName: string, resource: DataType, options?: DataTypesCreateOptionalParams) => Promise<DataType>;
+    // @deprecated (undocumented)
+    beginDeleteAndWait: (resourceGroupName: string, dataProductName: string, dataTypeName: string, options?: DataTypesDeleteOptionalParams) => Promise<void>;
+    // @deprecated (undocumented)
+    beginDeleteDataAndWait: (resourceGroupName: string, dataProductName: string, dataTypeName: string, body: Record<string, any>, options?: DataTypesDeleteDataOptionalParams) => Promise<void>;
+    // @deprecated (undocumented)
+    beginUpdateAndWait: (resourceGroupName: string, dataProductName: string, dataTypeName: string, properties: DataTypeUpdate, options?: DataTypesUpdateOptionalParams) => Promise<DataType>;
     create: (resourceGroupName: string, dataProductName: string, dataTypeName: string, resource: DataType, options?: DataTypesCreateOptionalParams) => PollerLike<OperationState<DataType>, DataType>;
     delete: (resourceGroupName: string, dataProductName: string, dataTypeName: string, options?: DataTypesDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
     deleteData: (resourceGroupName: string, dataProductName: string, dataTypeName: string, body: Record<string, any>, options?: DataTypesDeleteDataOptionalParams) => PollerLike<OperationState<void>, void>;

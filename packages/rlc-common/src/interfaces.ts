@@ -254,6 +254,7 @@ export interface RLCOptions {
   compatibilityQueryMultiFormat?: boolean;
   typespecTitleMap?: Record<string, string>;
   hasSubscriptionId?: boolean;
+  compatibilityLro?: boolean;
 }
 
 export interface ServiceInfo {

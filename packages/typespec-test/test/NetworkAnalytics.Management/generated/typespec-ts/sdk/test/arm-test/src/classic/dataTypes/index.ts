@@ -53,6 +53,14 @@ export interface DataTypesOperations {
     body: Record<string, any>,
     options?: DataTypesDeleteDataOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
+  /** @deprecated use deleteData instead */
+  beginDeleteDataAndWait: (
+    resourceGroupName: string,
+    dataProductName: string,
+    dataTypeName: string,
+    body: Record<string, any>,
+    options?: DataTypesDeleteDataOptionalParams,
+  ) => Promise<void>;
   /** Delete data type resource. */
   /**
    *  @fixme delete is a reserved word that cannot be used as an operation name.
@@ -65,6 +73,13 @@ export interface DataTypesOperations {
     dataTypeName: string,
     options?: DataTypesDeleteOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
+  /** @deprecated use delete instead */
+  beginDeleteAndWait: (
+    resourceGroupName: string,
+    dataProductName: string,
+    dataTypeName: string,
+    options?: DataTypesDeleteOptionalParams,
+  ) => Promise<void>;
   /** Update data type resource. */
   update: (
     resourceGroupName: string,
@@ -73,6 +88,14 @@ export interface DataTypesOperations {
     properties: DataTypeUpdate,
     options?: DataTypesUpdateOptionalParams,
   ) => PollerLike<OperationState<DataType>, DataType>;
+  /** @deprecated use update instead */
+  beginUpdateAndWait: (
+    resourceGroupName: string,
+    dataProductName: string,
+    dataTypeName: string,
+    properties: DataTypeUpdate,
+    options?: DataTypesUpdateOptionalParams,
+  ) => Promise<DataType>;
   /** Retrieve data type resource. */
   get: (
     resourceGroupName: string,
@@ -88,6 +111,14 @@ export interface DataTypesOperations {
     resource: DataType,
     options?: DataTypesCreateOptionalParams,
   ) => PollerLike<OperationState<DataType>, DataType>;
+  /** @deprecated use create instead */
+  beginCreateAndWait: (
+    resourceGroupName: string,
+    dataProductName: string,
+    dataTypeName: string,
+    resource: DataType,
+    options?: DataTypesCreateOptionalParams,
+  ) => Promise<DataType>;
 }
 
 function _getDataTypes(context: NetworkAnalyticsApiContext) {
@@ -128,6 +159,22 @@ function _getDataTypes(context: NetworkAnalyticsApiContext) {
         body,
         options,
       ),
+    beginDeleteDataAndWait: async (
+      resourceGroupName: string,
+      dataProductName: string,
+      dataTypeName: string,
+      body: Record<string, any>,
+      options?: DataTypesDeleteDataOptionalParams,
+    ) => {
+      return await deleteData(
+        context,
+        resourceGroupName,
+        dataProductName,
+        dataTypeName,
+        body,
+        options,
+      );
+    },
     delete: (
       resourceGroupName: string,
       dataProductName: string,
@@ -141,6 +188,20 @@ function _getDataTypes(context: NetworkAnalyticsApiContext) {
         dataTypeName,
         options,
       ),
+    beginDeleteAndWait: async (
+      resourceGroupName: string,
+      dataProductName: string,
+      dataTypeName: string,
+      options?: DataTypesDeleteOptionalParams,
+    ) => {
+      return await $delete(
+        context,
+        resourceGroupName,
+        dataProductName,
+        dataTypeName,
+        options,
+      );
+    },
     update: (
       resourceGroupName: string,
       dataProductName: string,
@@ -156,6 +217,22 @@ function _getDataTypes(context: NetworkAnalyticsApiContext) {
         properties,
         options,
       ),
+    beginUpdateAndWait: async (
+      resourceGroupName: string,
+      dataProductName: string,
+      dataTypeName: string,
+      properties: DataTypeUpdate,
+      options?: DataTypesUpdateOptionalParams,
+    ) => {
+      return await update(
+        context,
+        resourceGroupName,
+        dataProductName,
+        dataTypeName,
+        properties,
+        options,
+      );
+    },
     get: (
       resourceGroupName: string,
       dataProductName: string,
@@ -178,6 +255,22 @@ function _getDataTypes(context: NetworkAnalyticsApiContext) {
         resource,
         options,
       ),
+    beginCreateAndWait: async (
+      resourceGroupName: string,
+      dataProductName: string,
+      dataTypeName: string,
+      resource: DataType,
+      options?: DataTypesCreateOptionalParams,
+    ) => {
+      return await create(
+        context,
+        resourceGroupName,
+        dataProductName,
+        dataTypeName,
+        resource,
+        options,
+      );
+    },
   };
 }
 

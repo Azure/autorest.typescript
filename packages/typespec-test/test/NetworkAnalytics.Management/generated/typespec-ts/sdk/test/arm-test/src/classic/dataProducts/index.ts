@@ -98,6 +98,12 @@ export interface DataProductsOperations {
     dataProductName: string,
     options?: DataProductsDeleteOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
+  /** @deprecated use delete instead */
+  beginDeleteAndWait: (
+    resourceGroupName: string,
+    dataProductName: string,
+    options?: DataProductsDeleteOptionalParams,
+  ) => Promise<void>;
   /** Update data product resource. */
   update: (
     resourceGroupName: string,
@@ -105,6 +111,13 @@ export interface DataProductsOperations {
     properties: DataProductUpdate,
     options?: DataProductsUpdateOptionalParams,
   ) => PollerLike<OperationState<DataProduct>, DataProduct>;
+  /** @deprecated use update instead */
+  beginUpdateAndWait: (
+    resourceGroupName: string,
+    dataProductName: string,
+    properties: DataProductUpdate,
+    options?: DataProductsUpdateOptionalParams,
+  ) => Promise<DataProduct>;
   /** Retrieve data product resource. */
   get: (
     resourceGroupName: string,
@@ -118,6 +131,13 @@ export interface DataProductsOperations {
     resource: DataProduct,
     options?: DataProductsCreateOptionalParams,
   ) => PollerLike<OperationState<DataProduct>, DataProduct>;
+  /** @deprecated use create instead */
+  beginCreateAndWait: (
+    resourceGroupName: string,
+    dataProductName: string,
+    resource: DataProduct,
+    options?: DataProductsCreateOptionalParams,
+  ) => Promise<DataProduct>;
 }
 
 function _getDataProducts(context: NetworkAnalyticsApiContext) {
@@ -186,6 +206,18 @@ function _getDataProducts(context: NetworkAnalyticsApiContext) {
       dataProductName: string,
       options?: DataProductsDeleteOptionalParams,
     ) => $delete(context, resourceGroupName, dataProductName, options),
+    beginDeleteAndWait: async (
+      resourceGroupName: string,
+      dataProductName: string,
+      options?: DataProductsDeleteOptionalParams,
+    ) => {
+      return await $delete(
+        context,
+        resourceGroupName,
+        dataProductName,
+        options,
+      );
+    },
     update: (
       resourceGroupName: string,
       dataProductName: string,
@@ -193,6 +225,20 @@ function _getDataProducts(context: NetworkAnalyticsApiContext) {
       options?: DataProductsUpdateOptionalParams,
     ) =>
       update(context, resourceGroupName, dataProductName, properties, options),
+    beginUpdateAndWait: async (
+      resourceGroupName: string,
+      dataProductName: string,
+      properties: DataProductUpdate,
+      options?: DataProductsUpdateOptionalParams,
+    ) => {
+      return await update(
+        context,
+        resourceGroupName,
+        dataProductName,
+        properties,
+        options,
+      );
+    },
     get: (
       resourceGroupName: string,
       dataProductName: string,
@@ -204,6 +250,20 @@ function _getDataProducts(context: NetworkAnalyticsApiContext) {
       resource: DataProduct,
       options?: DataProductsCreateOptionalParams,
     ) => create(context, resourceGroupName, dataProductName, resource, options),
+    beginCreateAndWait: async (
+      resourceGroupName: string,
+      dataProductName: string,
+      resource: DataProduct,
+      options?: DataProductsCreateOptionalParams,
+    ) => {
+      return await create(
+        context,
+        resourceGroupName,
+        dataProductName,
+        resource,
+        options,
+      );
+    },
   };
 }
 
