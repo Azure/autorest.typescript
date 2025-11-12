@@ -870,13 +870,23 @@ function visitType(
       return;
     }
 
+    // Check if this model has valid usage flags
+    const hasValidUsage =
+      type.usage !== undefined &&
+      ((type.usage & UsageFlags.Output) === UsageFlags.Output ||
+        (type.usage & UsageFlags.Input) === UsageFlags.Input ||
+        (type.usage & UsageFlags.Exception) === UsageFlags.Exception);
+
     if (type.additionalProperties) {
-      visitType(context, type.additionalProperties, true);
+      // Only mark as indirect if parent model has valid usage
+      visitType(context, type.additionalProperties, hasValidUsage);
     }
     for (const property of type.properties) {
       if (!emitQueue.has(property.type)) {
-        // Property types are indirect references
-        visitType(context, property.type, true);
+        // Property types are indirect references ONLY if parent has valid usage
+        // This ensures we don't generate models that are only referenced by
+        // other models that themselves have no valid usage
+        visitType(context, property.type, hasValidUsage);
       }
     }
     if (type.discriminatedSubtypes) {
