@@ -19,9 +19,7 @@ import { ServiceOperation } from "../../utils/operationUtil.js";
 import { refkey } from "../../framework/refkey.js";
 import { resolveReference } from "../../framework/reference.js";
 import { addDeclaration } from "../../framework/declaration.js";
-import {
-  SimplePollerHelpers
-} from "../static-helpers-metadata.js";
+import { SimplePollerHelpers } from "../static-helpers-metadata.js";
 import { AzurePollingDependencies } from "../external-dependencies.js";
 
 interface OperationDeclarationInfo {
@@ -252,7 +250,7 @@ export function getClassicalOperation(
                   NameType.Method
                 )}: async (${classicalParamStr}) => {
                   const poller = ${operationInfo?.declarationRefKey}(${
-                     apiParamStr
+                    apiParamStr
                   });
                   await poller.submitted();
                   return ${getSimplePollerReference}(poller);

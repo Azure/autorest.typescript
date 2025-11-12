@@ -55,6 +55,7 @@ export function buildRootIndex(
   }
 
   exportClassicalClient(client, rootIndexFile, subfolder ?? "");
+  exportSimplePollerLike(rootIndexFile, project, srcPath, subfolder);
   exportRestoreHelpers(
     rootIndexFile,
     project,
@@ -186,6 +187,30 @@ function addExportsToRootIndexFile(
       namedExports: newNamedExports
     });
   }
+}
+
+function exportSimplePollerLike(
+  indexFile: SourceFile,
+  project: Project,
+  srcPath: string,
+  subfolder: string = "",
+  isTopLevel: boolean = false
+) {
+  const helperFile = project.getSourceFile(
+    `${srcPath}/${
+      subfolder && subfolder !== "" ? subfolder + "/" : ""
+    }static-helpers/simplePollerHelpers.ts`
+  );
+  if (!helperFile) {
+    return;
+  }
+  const moduleSpecifier = `./${
+    isTopLevel && subfolder && subfolder !== "" ? subfolder + "/" : ""
+  }static-helpers/simplePollerHelpers.js`;
+  indexFile.addExportDeclaration({
+    moduleSpecifier,
+    namedExports: ["SimplePollerLike"]
+  });
 }
 
 function exportRestoreHelpers(
@@ -381,6 +406,7 @@ export function buildSubClientIndexFile(
   }
 
   exportClassicalClient(client, subClientIndexFile, subfolder ?? "", true);
+  exportSimplePollerLike(subClientIndexFile, project, srcPath, subfolder);
   exportRestoreHelpers(
     subClientIndexFile,
     project,
