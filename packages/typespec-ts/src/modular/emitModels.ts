@@ -68,6 +68,24 @@ import { getAllAncestors } from "./helpers/operationHelpers.js";
 import { getAllProperties } from "./helpers/operationHelpers.js";
 import { getDirectSubtypes } from "./helpers/typeHelpers.js";
 
+// Track models that are referenced as property types (indirect references)
+// These should be generated even if they don't have Input/Output usage flags
+const indirectlyReferencedModels = new Set<SdkType>();
+
+/**
+ * Check if a model/enum/union type has valid usage flags (Input, Output, or Exception)
+ */
+function hasValidUsage(
+  type: SdkModelType | SdkEnumType | SdkUnionType
+): boolean {
+  return (
+    type.usage !== undefined &&
+    ((type.usage & UsageFlags.Output) === UsageFlags.Output ||
+      (type.usage & UsageFlags.Input) === UsageFlags.Input ||
+      (type.usage & UsageFlags.Exception) === UsageFlags.Exception)
+  );
+}
+
 type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
   extends?: string[];
   kind: StructureKind.Interface;
@@ -149,15 +167,13 @@ function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
     if (isOrExtendsHttpFile(context.program, type.__raw!)) {
       return;
     }
-    if (
-      !type.usage ||
-      (type.usage !== undefined &&
-        (type.usage & UsageFlags.Output) !== UsageFlags.Output &&
-        (type.usage & UsageFlags.Input) !== UsageFlags.Input &&
-        (type.usage & UsageFlags.Exception) !== UsageFlags.Exception)
-    ) {
+
+    // Skip models without valid usage UNLESS they are indirectly referenced by models with valid usage
+    // This handles cases like models with all @visibility(Lifecycle.Read) properties
+    if (!hasValidUsage(type) && !indirectlyReferencedModels.has(type)) {
       return;
     }
+
     if (!type.name && type.isGeneratedName) {
       // TODO: https://github.com/Azure/typespec-azure/issues/1713 and https://github.com/microsoft/typespec/issues/4815
       // throw new Error(`Generation of anonymous types`);
@@ -747,13 +763,14 @@ function buildModelProperty(
 export function visitPackageTypes(context: SdkContext) {
   const { sdkPackage } = context;
   emitQueue.clear();
+  indirectlyReferencedModels.clear();
   // Add all models in the package to the emit queue
   for (const model of sdkPackage.models) {
-    visitType(context, model);
+    visitType(context, model, false);
   }
 
   for (const union of sdkPackage.unions) {
-    visitType(context, union);
+    visitType(context, union, false);
   }
   // Add all enums to the queue
   for (const enumType of sdkPackage.enums) {
@@ -830,59 +847,74 @@ function visitMethod(
   visitType(context, method.response.type);
 }
 
-function visitType(context: SdkContext, type: SdkType | undefined) {
+function visitType(
+  context: SdkContext,
+  type: SdkType | undefined,
+  isIndirect = false
+) {
   if (!type) {
     return;
   }
 
   if (emitQueue.has(type)) {
+    if (isIndirect && type.kind === "model") {
+      indirectlyReferencedModels.add(type);
+    }
     return;
   }
   emitQueue.add(type);
+
+  if (isIndirect && type.kind === "model") {
+    indirectlyReferencedModels.add(type);
+  }
+
   if (type.kind === "model") {
     const externalModel = getExternalModel(type);
     if (externalModel) {
       return;
     }
 
+    // Only mark children as indirect if this model has valid usage
+    const markChildrenAsIndirect = hasValidUsage(type);
+
     if (type.additionalProperties) {
-      visitType(context, type.additionalProperties);
+      visitType(context, type.additionalProperties, markChildrenAsIndirect);
     }
     for (const property of type.properties) {
       if (!emitQueue.has(property.type)) {
-        visitType(context, property.type);
+        visitType(context, property.type, markChildrenAsIndirect);
       }
     }
     if (type.discriminatedSubtypes) {
       for (const subType of Object.values(type.discriminatedSubtypes)) {
         if (!emitQueue.has(subType)) {
-          visitType(context, subType);
+          visitType(context, subType, false);
         }
       }
     }
   }
   if (type.kind === "array") {
     if (!emitQueue.has(type.valueType)) {
-      visitType(context, type.valueType);
+      visitType(context, type.valueType, isIndirect);
     }
   }
   if (type.kind === "dict") {
     if (!emitQueue.has(type.valueType)) {
-      visitType(context, type.valueType);
+      visitType(context, type.valueType, isIndirect);
     }
   }
   if (type.kind === "union") {
     emitQueue.add(type);
     for (const value of type.variantTypes) {
       if (!emitQueue.has(value)) {
-        visitType(context, value);
+        visitType(context, value, isIndirect);
       }
     }
   }
   if (type.kind === "nullable") {
     emitQueue.add(type);
     if (!emitQueue.has(type.type)) {
-      visitType(context, type.type);
+      visitType(context, type.type, isIndirect);
     }
   }
 }
