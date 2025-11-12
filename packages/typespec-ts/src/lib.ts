@@ -285,7 +285,7 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       type: "boolean",
       nullable: true,
       description:
-        "Whether to generate the legacy LRO interface. When `true`, generates completePollingHelpers.ts with SimplePollerLike interface. When `false` or undefined, generates pollingHelpers.ts with standard PollerLike interface. Defaults to `false`."
+        "Whether to generate the legacy LRO interface. When `true`, we will generate legacy beginXXX and beginXXXAndWait LRO methods."
     },
     "experimental-extensible-enums": {
       type: "boolean",
