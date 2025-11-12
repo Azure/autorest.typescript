@@ -77,7 +77,7 @@ export function getClassicalOperation(
       );
       operationDeclarationMap.set(declaration, {
         declaration,
-        oriName: operation.name,
+        oriName: operation.oriName,
         declarationRefKey: resolveReference(refkey(operation, "api")),
         isLro: declaration.isLro,
         lroFinalReturnType: declaration.lroFinalReturnType
