@@ -161,8 +161,7 @@ function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
         (type.usage & UsageFlags.Input) === UsageFlags.Input ||
         (type.usage & UsageFlags.Exception) === UsageFlags.Exception);
 
-    // Skip models without valid usage UNLESS they are indirectly referenced
-    // (i.e., used as property types in other models)
+    // Skip models without valid usage UNLESS they are indirectly referenced by models with valid usage
     // This handles cases like models with all @visibility(Lifecycle.Read) properties
     if (!hasValidUsage && !indirectlyReferencedModels.has(type)) {
       return;
@@ -851,7 +850,6 @@ function visitType(
   }
 
   if (emitQueue.has(type)) {
-    // Mark as indirectly referenced if this is an indirect access
     if (isIndirect && type.kind === "model") {
       indirectlyReferencedModels.add(type);
     }
@@ -859,7 +857,6 @@ function visitType(
   }
   emitQueue.add(type);
 
-  // Mark as indirectly referenced if this is an indirect access
   if (isIndirect && type.kind === "model") {
     indirectlyReferencedModels.add(type);
   }
@@ -870,30 +867,28 @@ function visitType(
       return;
     }
 
-    // Check if this model has valid usage flags
-    const hasValidUsage =
+    // Only mark children as indirect if this model has valid usage
+    const shouldMarkChildrenAsIndirect =
       type.usage !== undefined &&
       ((type.usage & UsageFlags.Output) === UsageFlags.Output ||
         (type.usage & UsageFlags.Input) === UsageFlags.Input ||
         (type.usage & UsageFlags.Exception) === UsageFlags.Exception);
 
     if (type.additionalProperties) {
-      // Only mark as indirect if parent model has valid usage
-      visitType(context, type.additionalProperties, hasValidUsage);
+      visitType(
+        context,
+        type.additionalProperties,
+        shouldMarkChildrenAsIndirect
+      );
     }
     for (const property of type.properties) {
       if (!emitQueue.has(property.type)) {
-        // Property types are indirect references ONLY if parent has valid usage
-        // This ensures we don't generate models that are only referenced by
-        // other models that themselves have no valid usage
-        visitType(context, property.type, hasValidUsage);
+        visitType(context, property.type, shouldMarkChildrenAsIndirect);
       }
     }
     if (type.discriminatedSubtypes) {
       for (const subType of Object.values(type.discriminatedSubtypes)) {
         if (!emitQueue.has(subType)) {
-          // Discriminated subtypes should NOT be marked as indirectly referenced
-          // They should only be generated if they have valid usage flags
           visitType(context, subType, false);
         }
       }
