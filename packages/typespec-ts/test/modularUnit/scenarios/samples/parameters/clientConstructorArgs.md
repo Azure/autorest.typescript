@@ -70,23 +70,49 @@ export class MachineLearningServicesClient {
 
   constructor(
     endpointParam: string,
-    subscriptionId: string,
     resourceGroupName: string,
     workspaceName: string,
     credential: TokenCredential,
-    options: MachineLearningServicesClientOptionalParams = {},
+    options?: MachineLearningServicesClientOptionalParams
+  );
+  constructor(
+    endpointParam: string,
+    resourceGroupName: string,
+    workspaceName: string,
+    credential: TokenCredential,
+    subscriptionId: string,
+    options?: MachineLearningServicesClientOptionalParams
+  );
+  constructor(
+    endpointParam: string,
+    resourceGroupName: string,
+    workspaceName: string,
+    credential: TokenCredential,
+    subscriptionIdOrOptions?:
+      | string
+      | MachineLearningServicesClientOptionalParams,
+    options?: MachineLearningServicesClientOptionalParams
   ) {
+    let subscriptionId: string | undefined;
+
+    if (typeof subscriptionIdOrOptions === "string") {
+      subscriptionId = subscriptionIdOrOptions;
+    } else if (typeof subscriptionIdOrOptions === "object") {
+      options = subscriptionIdOrOptions;
+    }
+
+    options = options ?? {};
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : `azsdk-js-client`;
     this._client = createMachineLearningServices(
       endpointParam,
-      subscriptionId,
+      subscriptionId ?? "",
       resourceGroupName,
       workspaceName,
       credential,
-      { ...options, userAgentOptions: { userAgentPrefix } },
+      { ...options, userAgentOptions: { userAgentPrefix } }
     );
     this.pipeline = this._client.pipeline;
   }
@@ -94,7 +120,7 @@ export class MachineLearningServicesClient {
   createOrUpdate(
     name: string,
     version: string,
-    options: CreateOrUpdateOptionalParams = { requestOptions: {} },
+    options: CreateOrUpdateOptionalParams = { requestOptions: {} }
   ): Promise<void> {
     return createOrUpdate(this._client, name, version, options);
   }
@@ -161,7 +187,7 @@ async function indexesCreateOrUpdate(): Promise<void> {
     subscriptionId,
     resourceGroupName,
     workspaceName,
-    credential,
+    credential
   );
   await client.createOrUpdate("test-index", "1");
 }
@@ -254,7 +280,7 @@ async function findSentenceBoundaries(): Promise<void> {
   const client = new TextTranslationClient(endpoint);
   const result = await client.findSentenceBoundaries(
     [{ text: "How are you? I am fine. What did you do today?" }],
-    { language: "en", script: "Latn" },
+    { language: "en", script: "Latn" }
   );
   console.log(result);
 }

@@ -117,11 +117,26 @@ export function buildClassicalClient(
     });
   }
 
-  // TODO: We may need to generate constructor overloads at some point. Here we'd do that.
-  const constructor = clientClass.addConstructor({
-    docs: getDocsFromDescription(client.doc),
-    parameters: classicalParams
-  });
+  // Check if constructor overloads for subscriptionId is needed
+  const hasSubscriptionIdParam = classicalParams.some(
+    (param) => param.name.toLowerCase() === "subscriptionid"
+  );
+  const shouldSubscriptionIdOptional =
+    hasSubscriptionIdParam && hasTenantLevelOperations(client, dpgContext);
+
+  let constructor;
+  if (shouldSubscriptionIdOptional) {
+    constructor = generateConstructorWithOverloads(
+      clientClass,
+      classicalParams,
+      client
+    );
+  } else {
+    constructor = clientClass.addConstructor({
+      docs: getDocsFromDescription(client.doc),
+      parameters: classicalParams
+    });
+  }
 
   const paramNames = (contextParams ?? [])
     .map((p) => p.name)
@@ -132,6 +147,8 @@ export function buildClassicalClient(
           emitterOptions,
           "azsdk-js-client"
         )}}`;
+      } else if (x === "subscriptionId" && shouldSubscriptionIdOptional) {
+        return `subscriptionId ?? ""`;
       } else {
         return x;
       }
@@ -322,4 +339,96 @@ function addChildClient(
       { ...this._clientParams.options, ...options }
     )`
   );
+}
+
+function hasTenantLevelOperations(
+  client: SdkClientType<SdkServiceOperation>,
+  dpgContext: SdkContext
+): boolean {
+  const methodMap = getMethodHierarchiesMap(dpgContext, client);
+
+  for (const [_, operations] of methodMap) {
+    for (const op of operations) {
+      // Check if this operation doesn't have a client-level subscriptionId parameter
+      const hasSubscriptionIdParam = op.operation.parameters?.some(
+        (param) =>
+          param.name.toLowerCase() === "subscriptionid" &&
+          param.kind === "path" &&
+          param.onClient
+      );
+
+      if (!hasSubscriptionIdParam) {
+        // Found a tenant-level operation
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
+function generateConstructorWithOverloads(
+  clientClass: ClassDeclaration,
+  classicalParams: any[],
+  client: SdkClientType<SdkServiceOperation>
+) {
+  const requiredParams = classicalParams.filter(
+    (p) =>
+      p.name.toLowerCase() !== "subscriptionid" &&
+      p.name.toLowerCase() !== "options"
+  );
+
+  const clientConstructor = clientClass.addConstructor({
+    parameters: [
+      ...requiredParams,
+      {
+        name: "subscriptionIdOrOptions",
+        type: `string | ${getClassicalClientName(client)}OptionalParams`,
+        hasQuestionToken: true
+      },
+      {
+        name: "options",
+        type: `${getClassicalClientName(client)}OptionalParams`,
+        hasQuestionToken: true
+      }
+    ]
+  });
+
+  clientConstructor.addOverload({
+    parameters: [
+      ...requiredParams,
+      {
+        name: "options",
+        type: `${getClassicalClientName(client)}OptionalParams`,
+        hasQuestionToken: true
+      }
+    ]
+  });
+
+  clientConstructor.addOverload({
+    parameters: [
+      ...requiredParams,
+      ...classicalParams.filter(
+        (p) => p.name.toLowerCase() === "subscriptionid"
+      ),
+      {
+        name: "options",
+        type: `${getClassicalClientName(client)}OptionalParams`,
+        hasQuestionToken: true
+      }
+    ]
+  });
+
+  clientConstructor.addStatements([
+    `let subscriptionId: string | undefined;`,
+    ``,
+    `if (typeof subscriptionIdOrOptions === "string") {`,
+    `  subscriptionId = subscriptionIdOrOptions;`,
+    `} else if (typeof subscriptionIdOrOptions === "object") {`,
+    `  options = subscriptionIdOrOptions;`,
+    `}`,
+    `options = options ?? {};`
+  ]);
+
+  return clientConstructor;
 }
