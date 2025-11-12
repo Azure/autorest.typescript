@@ -72,6 +72,20 @@ import { getDirectSubtypes } from "./helpers/typeHelpers.js";
 // These should be generated even if they don't have Input/Output usage flags
 const indirectlyReferencedModels = new Set<SdkType>();
 
+/**
+ * Check if a model/enum/union type has valid usage flags (Input, Output, or Exception)
+ */
+function hasValidUsage(
+  type: SdkModelType | SdkEnumType | SdkUnionType
+): boolean {
+  return (
+    type.usage !== undefined &&
+    ((type.usage & UsageFlags.Output) === UsageFlags.Output ||
+      (type.usage & UsageFlags.Input) === UsageFlags.Input ||
+      (type.usage & UsageFlags.Exception) === UsageFlags.Exception)
+  );
+}
+
 type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
   extends?: string[];
   kind: StructureKind.Interface;
@@ -154,16 +168,9 @@ function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
       return;
     }
 
-    // Check if the model has valid usage flags (Input, Output, or Exception)
-    const hasValidUsage =
-      type.usage !== undefined &&
-      ((type.usage & UsageFlags.Output) === UsageFlags.Output ||
-        (type.usage & UsageFlags.Input) === UsageFlags.Input ||
-        (type.usage & UsageFlags.Exception) === UsageFlags.Exception);
-
     // Skip models without valid usage UNLESS they are indirectly referenced by models with valid usage
     // This handles cases like models with all @visibility(Lifecycle.Read) properties
-    if (!hasValidUsage && !indirectlyReferencedModels.has(type)) {
+    if (!hasValidUsage(type) && !indirectlyReferencedModels.has(type)) {
       return;
     }
 
@@ -868,22 +875,14 @@ function visitType(
     }
 
     // Only mark children as indirect if this model has valid usage
-    const shouldMarkChildrenAsIndirect =
-      type.usage !== undefined &&
-      ((type.usage & UsageFlags.Output) === UsageFlags.Output ||
-        (type.usage & UsageFlags.Input) === UsageFlags.Input ||
-        (type.usage & UsageFlags.Exception) === UsageFlags.Exception);
+    const markChildrenAsIndirect = hasValidUsage(type);
 
     if (type.additionalProperties) {
-      visitType(
-        context,
-        type.additionalProperties,
-        shouldMarkChildrenAsIndirect
-      );
+      visitType(context, type.additionalProperties, markChildrenAsIndirect);
     }
     for (const property of type.properties) {
       if (!emitQueue.has(property.type)) {
-        visitType(context, property.type, shouldMarkChildrenAsIndirect);
+        visitType(context, property.type, markChildrenAsIndirect);
       }
     }
     if (type.discriminatedSubtypes) {
