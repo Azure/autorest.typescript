@@ -19,6 +19,10 @@ import { ServiceOperation } from "../../utils/operationUtil.js";
 import { refkey } from "../../framework/refkey.js";
 import { resolveReference } from "../../framework/reference.js";
 import { addDeclaration } from "../../framework/declaration.js";
+import {
+  SimplePollerHelpers
+} from "../static-helpers-metadata.js";
+import { AzurePollingDependencies } from "../external-dependencies.js";
 
 interface OperationDeclarationInfo {
   // the operation function
@@ -145,11 +149,26 @@ export function getClassicalOperation(
       });
       // add LRO helper methods if applicable
       if (dpgContext.rlcOptions?.compatibilityLro && operationInfo?.isLro) {
-        const methodName = `begin_${getClassicalMethodName(d)}_andWait`;
+        const operationStateReference = resolveReference(
+          AzurePollingDependencies.OperationState
+        );
+        const simplePollerLikeReference = resolveReference(
+          SimplePollerHelpers.SimplePollerLike
+        );
+        const returnType = operationInfo?.lroFinalReturnType ?? "void";
+        const beginName = `begin_${getClassicalMethodName(d)}`;
+        const beginAndWaitName = `${beginName}_andWait`;
+
         properties.push({
           kind: StructureKind.PropertySignature,
-          name: `${normalizeName(methodName, NameType.Method)}`,
-          type: `(${paramStr}) => Promise<${operationInfo?.lroFinalReturnType ?? "void"}>`,
+          name: `${normalizeName(beginName, NameType.Method)}`,
+          type: `(${paramStr}) => Promise<${simplePollerLikeReference}<${operationStateReference}<${returnType}>, ${returnType}>>`,
+          docs: [`@deprecated use ${getClassicalMethodName(d)} instead`]
+        });
+        properties.push({
+          kind: StructureKind.PropertySignature,
+          name: `${normalizeName(beginAndWaitName, NameType.Method)}`,
+          type: `(${paramStr}) => Promise<${returnType}>`,
           docs: [`@deprecated use ${getClassicalMethodName(d)} instead`]
         });
       }
@@ -222,10 +241,26 @@ export function getClassicalOperation(
               dpgContext.rlcOptions?.compatibilityLro &&
               operationInfo?.isLro
             ) {
-              const methodName = `begin_${getClassicalMethodName(d)}_andWait`;
+              const getSimplePollerReference = resolveReference(
+                SimplePollerHelpers.getSimplePoller
+              );
+              const beginName = `begin_${getClassicalMethodName(d)}`;
+              const beginAndWaitName = `${beginName}_andWait`;
               ret.push(
                 `${normalizeName(
-                  methodName,
+                  beginName,
+                  NameType.Method
+                )}: async (${classicalParamStr}) => {
+                  const poller = ${operationInfo?.declarationRefKey}(${
+                     apiParamStr
+                  });
+                  await poller.submitted();
+                  return ${getSimplePollerReference}(poller);
+                }`
+              );
+              ret.push(
+                `${normalizeName(
+                  beginAndWaitName,
                   NameType.Method
                 )}: async (${classicalParamStr}) => {
                   return await ${operationInfo?.declarationRefKey}(${
