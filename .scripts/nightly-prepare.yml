@@ -7,4 +7,12 @@ steps:
   - script: npx @azure-tools/typespec-bump-deps@latest package.json
     workingDirectory: $(Build.SourcesDirectory)/packages/typespec-test
     displayName: "Override typespec-test package.json to dev"
-  - template: build.yml
+  - script: |
+      npm install -g pnpm
+    displayName: "Install Pnpm"
+  - script: |
+      pnpm install --no-frozen-lockfile
+    displayName: "Install package dependencies"
+  - script: |
+      pnpm build
+    displayName: "Build"
