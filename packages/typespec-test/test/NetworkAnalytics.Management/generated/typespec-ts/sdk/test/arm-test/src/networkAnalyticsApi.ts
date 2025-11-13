@@ -34,32 +34,14 @@ export class NetworkAnalyticsApi {
 
   constructor(
     credential: TokenCredential,
-    options?: NetworkAnalyticsApiOptionalParams,
-  );
-  constructor(
-    credential: TokenCredential,
     subscriptionId: string,
-    options?: NetworkAnalyticsApiOptionalParams,
-  );
-  constructor(
-    credential: TokenCredential,
-    subscriptionIdOrOptions?: string | NetworkAnalyticsApiOptionalParams,
-    options?: NetworkAnalyticsApiOptionalParams,
+    options: NetworkAnalyticsApiOptionalParams = {},
   ) {
-    let subscriptionId: string | undefined;
-
-    if (typeof subscriptionIdOrOptions === "string") {
-      subscriptionId = subscriptionIdOrOptions;
-    } else if (typeof subscriptionIdOrOptions === "object") {
-      options = subscriptionIdOrOptions;
-    }
-
-    options = options ?? {};
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : `azsdk-js-client`;
-    this._client = createNetworkAnalyticsApi(credential, subscriptionId ?? "", {
+    this._client = createNetworkAnalyticsApi(credential, subscriptionId, {
       ...options,
       userAgentOptions: { userAgentPrefix },
     });

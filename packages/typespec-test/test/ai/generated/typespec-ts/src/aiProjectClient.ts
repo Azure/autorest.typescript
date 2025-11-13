@@ -34,43 +34,19 @@ export class AIProjectClient {
 
   constructor(
     endpointParam: string,
-    resourceGroupName: string,
-    projectName: string,
-    credential: TokenCredential,
-    options?: AIProjectClientOptionalParams,
-  );
-  constructor(
-    endpointParam: string,
-    resourceGroupName: string,
-    projectName: string,
-    credential: TokenCredential,
     subscriptionId: string,
-    options?: AIProjectClientOptionalParams,
-  );
-  constructor(
-    endpointParam: string,
     resourceGroupName: string,
     projectName: string,
     credential: TokenCredential,
-    subscriptionIdOrOptions?: string | AIProjectClientOptionalParams,
-    options?: AIProjectClientOptionalParams,
+    options: AIProjectClientOptionalParams = {},
   ) {
-    let subscriptionId: string | undefined;
-
-    if (typeof subscriptionIdOrOptions === "string") {
-      subscriptionId = subscriptionIdOrOptions;
-    } else if (typeof subscriptionIdOrOptions === "object") {
-      options = subscriptionIdOrOptions;
-    }
-
-    options = options ?? {};
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : `azsdk-js-client`;
     this._client = createAIProject(
       endpointParam,
-      subscriptionId ?? "",
+      subscriptionId,
       resourceGroupName,
       projectName,
       credential,

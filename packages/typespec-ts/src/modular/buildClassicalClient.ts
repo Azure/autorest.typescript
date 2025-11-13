@@ -122,7 +122,9 @@ export function buildClassicalClient(
     (param) => param.name.toLowerCase() === "subscriptionid"
   );
   const shouldSubscriptionIdOptional =
-    hasSubscriptionIdParam && hasTenantLevelOperations(client, dpgContext);
+    dpgContext.arm &&
+    hasSubscriptionIdParam &&
+    hasTenantLevelOperations(client, dpgContext);
 
   let constructor;
   if (shouldSubscriptionIdOptional) {
@@ -349,6 +351,16 @@ function hasTenantLevelOperations(
 
   for (const [_, operations] of methodMap) {
     for (const op of operations) {
+      // Skip certain operation types that are not relevant for tenant-level detection
+      const pathLC = op.operation.path.toLowerCase();
+      const clientNamespaceLC = client.namespace.toLowerCase();
+      if (
+        pathLC.includes(`${clientNamespaceLC}/operations`) ||
+        pathLC.includes(`${clientNamespaceLC}/checkname`)
+      ) {
+        continue;
+      }
+
       // Check if this operation doesn't have a client-level subscriptionId parameter
       const hasSubscriptionIdParam = op.operation.parameters?.some(
         (param) =>
@@ -379,6 +391,7 @@ function generateConstructorWithOverloads(
   );
 
   const clientConstructor = clientClass.addConstructor({
+    docs: getDocsFromDescription(client.doc),
     parameters: [
       ...requiredParams,
       {
