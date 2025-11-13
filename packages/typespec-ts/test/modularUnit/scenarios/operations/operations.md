@@ -1191,7 +1191,7 @@ export async function createOrUpdateEndpoint(
 }
 ```
 
-# should support POST paging generation from TypeSpec
+# only: should support POST paging generation from TypeSpec
 
 ## TypeSpec
 

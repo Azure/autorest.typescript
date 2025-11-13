@@ -1,0 +1,26 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+import { OperationOptions } from "@azure-rest/core-client";
+
+/** Optional parameters. */
+export interface FqdnListGlobalRulestackListOptionalParams
+  extends OperationOptions {}
+
+/** Optional parameters. */
+export interface FqdnListGlobalRulestackDeleteOptionalParams
+  extends OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+}
+
+/** Optional parameters. */
+export interface FqdnListGlobalRulestackCreateOrUpdateOptionalParams
+  extends OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+}
+
+/** Optional parameters. */
+export interface FqdnListGlobalRulestackGetOptionalParams
+  extends OperationOptions {}
