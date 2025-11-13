@@ -880,6 +880,12 @@ op get(): TestArrayModel;
 ## Models
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface TestArrayModel */
 export interface TestArrayModel {
   prop: Test[];
@@ -978,6 +984,12 @@ op get(): TestDictionary;
 ## models
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface TestDictionary */
 export interface TestDictionary {
   prop: Record<string, Test>;
@@ -1082,6 +1094,12 @@ op createOrUpdateEndpoint(
 ## models
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Endpoint */
 export interface Endpoint {
   name: string;

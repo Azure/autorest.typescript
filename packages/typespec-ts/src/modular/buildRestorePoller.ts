@@ -126,8 +126,7 @@ export function buildRestorePoller(
     }
     
     interface DeserializationHelper {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
-      deserializer: Function;
+      deserializer: (result: PathUncheckedResponse) => Promise<any>;
       expectedStatuses: string[];
     }
 

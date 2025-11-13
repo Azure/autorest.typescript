@@ -17,6 +17,12 @@ import {
   observationDeserializer,
 } from "./fhir/r4/models.js";
 
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** A patient record, including their clinical information and data. */
 export interface PatientRecord {
   /** A given identifier for the patient. Has to be unique across all patients in a single request. */
