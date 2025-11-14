@@ -163,6 +163,8 @@ export async function $onEmit(context: EmitContext) {
   // 2. Generate RLC code model
   // TODO: skip this step in modular once modular generator is sufficiently decoupled
   await buildRLCCodeModels();
+  // 3. Clear samples-dev folder if generateSample is true
+  await clearSamplesDevFolder();
 
   // 4. Generate sources
   if (emitterOptions["is-modular-library"]) {
@@ -235,6 +237,18 @@ export async function $onEmit(context: EmitContext) {
         dpgContext.generationPathDetail?.rlcSourcesDir ??
         ""
     );
+  }
+
+  async function clearSamplesDevFolder() {
+    if (emitterOptions["generate-sample"] === true) {
+      const samplesDevPath = join(
+        dpgContext.generationPathDetail?.rootDir ?? "",
+        "samples-dev"
+      );
+      if (await fsextra.pathExists(samplesDevPath)) {
+        await fsextra.emptyDir(samplesDevPath);
+      }
+    }
   }
 
   async function buildRLCCodeModels() {
