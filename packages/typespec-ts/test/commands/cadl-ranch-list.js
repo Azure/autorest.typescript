@@ -351,6 +351,10 @@ export const azureRlcTsps = [
   {
     outputPath: "azure/resource-manager/method-subscription-id",
     inputPath: "azure/resource-manager/method-subscription-id"
+  },
+  {
+    outputPath: "azure/client-generator-core/next-link-verb",
+    inputPath: "azure/client-generator-core/next-link-verb"
   }
 ];
 
@@ -895,6 +899,10 @@ export const azureModularTsps = [
   {
     outputPath: "azure/versioning/previewVersion",
     inputPath: "azure/versioning/previewVersion"
+  },
+  {
+    outputPath: "azure/client-generator-core/next-link-verb",
+    inputPath: "azure/client-generator-core/next-link-verb"
   },
   // skip due to issue https://github.com/Azure/autorest.typescript/issues/3468
   // {

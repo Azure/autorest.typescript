@@ -637,19 +637,31 @@ function getPagingOnlyOperationFunction(
       return property.name;
     })
     .join(".");
+
+  // Get the HTTP method for the next link operation
+  const nextLinkOperation = operation.pagingMetadata.nextLinkOperation;
+  let nextLinkMethod = nextLinkOperation?.operation?.verb?.toUpperCase();
+
+  // Check for nextLinkVerb from TCGC pagingMetadata (supports @Legacy.nextLinkVerb decorator)
+  if (operation.pagingMetadata.nextLinkVerb) {
+    nextLinkMethod = operation.pagingMetadata.nextLinkVerb;
+  }
+
   if (itemName) {
     options.push(`itemName: "${itemName}"`);
   }
   if (nextLinkName) {
     options.push(`nextLinkName: "${nextLinkName}"`);
   }
+  if (nextLinkMethod && nextLinkMethod !== "GET") {
+    options.push(`nextLinkMethod: "${nextLinkMethod}"`);
+  }
   statements.push(
     `return ${buildPagedAsyncIteratorReference}(
       context, 
       () => _${name}Send(${parameters.map((p) => p.name).join(", ")}), 
       _${name}Deserialize,
-      ${getExpectedStatuses(operation)},
-      ${options.length > 0 ? `{${options.join(", ")}}` : ``}
+      ${getExpectedStatuses(operation)}${options.length > 0 ? `,\n      {${options.join(", ")}}` : ""}
       );`
   );
 

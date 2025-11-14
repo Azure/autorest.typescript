@@ -1,0 +1,12 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    emitter-output-dir: "{project-root}"
+    add-credentials: false
+    flavor: azure
+    is-modular-library: false
+    azure-sdk-for-js: false
+    is-typespec-test: true
+    package-details:
+      name: "@msinternal/next-link-verb"
