@@ -27,6 +27,10 @@ import {
   ContainerSasToken,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
+import {
+  SimplePollerLike,
+  getSimplePoller,
+} from "../../static-helpers/simplePollerHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
 /** Interface representing a DataTypes operations. */
@@ -53,6 +57,22 @@ export interface DataTypesOperations {
     body: Record<string, any>,
     options?: DataTypesDeleteDataOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
+  /** @deprecated use deleteData instead */
+  beginDeleteData: (
+    resourceGroupName: string,
+    dataProductName: string,
+    dataTypeName: string,
+    body: Record<string, any>,
+    options?: DataTypesDeleteDataOptionalParams,
+  ) => Promise<SimplePollerLike<OperationState<void>, void>>;
+  /** @deprecated use deleteData instead */
+  beginDeleteDataAndWait: (
+    resourceGroupName: string,
+    dataProductName: string,
+    dataTypeName: string,
+    body: Record<string, any>,
+    options?: DataTypesDeleteDataOptionalParams,
+  ) => Promise<void>;
   /** Delete data type resource. */
   /**
    *  @fixme delete is a reserved word that cannot be used as an operation name.
@@ -65,6 +85,20 @@ export interface DataTypesOperations {
     dataTypeName: string,
     options?: DataTypesDeleteOptionalParams,
   ) => PollerLike<OperationState<void>, void>;
+  /** @deprecated use delete instead */
+  beginDelete: (
+    resourceGroupName: string,
+    dataProductName: string,
+    dataTypeName: string,
+    options?: DataTypesDeleteOptionalParams,
+  ) => Promise<SimplePollerLike<OperationState<void>, void>>;
+  /** @deprecated use delete instead */
+  beginDeleteAndWait: (
+    resourceGroupName: string,
+    dataProductName: string,
+    dataTypeName: string,
+    options?: DataTypesDeleteOptionalParams,
+  ) => Promise<void>;
   /** Update data type resource. */
   update: (
     resourceGroupName: string,
@@ -73,6 +107,22 @@ export interface DataTypesOperations {
     properties: DataTypeUpdate,
     options?: DataTypesUpdateOptionalParams,
   ) => PollerLike<OperationState<DataType>, DataType>;
+  /** @deprecated use update instead */
+  beginUpdate: (
+    resourceGroupName: string,
+    dataProductName: string,
+    dataTypeName: string,
+    properties: DataTypeUpdate,
+    options?: DataTypesUpdateOptionalParams,
+  ) => Promise<SimplePollerLike<OperationState<DataType>, DataType>>;
+  /** @deprecated use update instead */
+  beginUpdateAndWait: (
+    resourceGroupName: string,
+    dataProductName: string,
+    dataTypeName: string,
+    properties: DataTypeUpdate,
+    options?: DataTypesUpdateOptionalParams,
+  ) => Promise<DataType>;
   /** Retrieve data type resource. */
   get: (
     resourceGroupName: string,
@@ -88,6 +138,22 @@ export interface DataTypesOperations {
     resource: DataType,
     options?: DataTypesCreateOptionalParams,
   ) => PollerLike<OperationState<DataType>, DataType>;
+  /** @deprecated use create instead */
+  beginCreate: (
+    resourceGroupName: string,
+    dataProductName: string,
+    dataTypeName: string,
+    resource: DataType,
+    options?: DataTypesCreateOptionalParams,
+  ) => Promise<SimplePollerLike<OperationState<DataType>, DataType>>;
+  /** @deprecated use create instead */
+  beginCreateAndWait: (
+    resourceGroupName: string,
+    dataProductName: string,
+    dataTypeName: string,
+    resource: DataType,
+    options?: DataTypesCreateOptionalParams,
+  ) => Promise<DataType>;
 }
 
 function _getDataTypes(context: NetworkAnalyticsApiContext) {
@@ -128,6 +194,40 @@ function _getDataTypes(context: NetworkAnalyticsApiContext) {
         body,
         options,
       ),
+    beginDeleteData: async (
+      resourceGroupName: string,
+      dataProductName: string,
+      dataTypeName: string,
+      body: Record<string, any>,
+      options?: DataTypesDeleteDataOptionalParams,
+    ) => {
+      const poller = deleteData(
+        context,
+        resourceGroupName,
+        dataProductName,
+        dataTypeName,
+        body,
+        options,
+      );
+      await poller.submitted();
+      return getSimplePoller(poller);
+    },
+    beginDeleteDataAndWait: async (
+      resourceGroupName: string,
+      dataProductName: string,
+      dataTypeName: string,
+      body: Record<string, any>,
+      options?: DataTypesDeleteDataOptionalParams,
+    ) => {
+      return await deleteData(
+        context,
+        resourceGroupName,
+        dataProductName,
+        dataTypeName,
+        body,
+        options,
+      );
+    },
     delete: (
       resourceGroupName: string,
       dataProductName: string,
@@ -141,6 +241,36 @@ function _getDataTypes(context: NetworkAnalyticsApiContext) {
         dataTypeName,
         options,
       ),
+    beginDelete: async (
+      resourceGroupName: string,
+      dataProductName: string,
+      dataTypeName: string,
+      options?: DataTypesDeleteOptionalParams,
+    ) => {
+      const poller = $delete(
+        context,
+        resourceGroupName,
+        dataProductName,
+        dataTypeName,
+        options,
+      );
+      await poller.submitted();
+      return getSimplePoller(poller);
+    },
+    beginDeleteAndWait: async (
+      resourceGroupName: string,
+      dataProductName: string,
+      dataTypeName: string,
+      options?: DataTypesDeleteOptionalParams,
+    ) => {
+      return await $delete(
+        context,
+        resourceGroupName,
+        dataProductName,
+        dataTypeName,
+        options,
+      );
+    },
     update: (
       resourceGroupName: string,
       dataProductName: string,
@@ -156,6 +286,40 @@ function _getDataTypes(context: NetworkAnalyticsApiContext) {
         properties,
         options,
       ),
+    beginUpdate: async (
+      resourceGroupName: string,
+      dataProductName: string,
+      dataTypeName: string,
+      properties: DataTypeUpdate,
+      options?: DataTypesUpdateOptionalParams,
+    ) => {
+      const poller = update(
+        context,
+        resourceGroupName,
+        dataProductName,
+        dataTypeName,
+        properties,
+        options,
+      );
+      await poller.submitted();
+      return getSimplePoller(poller);
+    },
+    beginUpdateAndWait: async (
+      resourceGroupName: string,
+      dataProductName: string,
+      dataTypeName: string,
+      properties: DataTypeUpdate,
+      options?: DataTypesUpdateOptionalParams,
+    ) => {
+      return await update(
+        context,
+        resourceGroupName,
+        dataProductName,
+        dataTypeName,
+        properties,
+        options,
+      );
+    },
     get: (
       resourceGroupName: string,
       dataProductName: string,
@@ -178,6 +342,40 @@ function _getDataTypes(context: NetworkAnalyticsApiContext) {
         resource,
         options,
       ),
+    beginCreate: async (
+      resourceGroupName: string,
+      dataProductName: string,
+      dataTypeName: string,
+      resource: DataType,
+      options?: DataTypesCreateOptionalParams,
+    ) => {
+      const poller = create(
+        context,
+        resourceGroupName,
+        dataProductName,
+        dataTypeName,
+        resource,
+        options,
+      );
+      await poller.submitted();
+      return getSimplePoller(poller);
+    },
+    beginCreateAndWait: async (
+      resourceGroupName: string,
+      dataProductName: string,
+      dataTypeName: string,
+      resource: DataType,
+      options?: DataTypesCreateOptionalParams,
+    ) => {
+      return await create(
+        context,
+        resourceGroupName,
+        dataProductName,
+        dataTypeName,
+        resource,
+        options,
+      );
+    },
   };
 }
 

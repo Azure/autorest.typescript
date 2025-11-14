@@ -82,6 +82,19 @@ export const PollingHelpers = {
   }
 } as const;
 
+export const SimplePollerHelpers = {
+  SimplePollerLike: {
+    kind: "interface",
+    name: "SimplePollerLike",
+    location: "simplePollerHelpers.ts"
+  },
+  getSimplePoller: {
+    kind: "function",
+    name: "getSimplePoller",
+    location: "simplePollerHelpers.ts"
+  }
+} as const;
+
 export const UrlTemplateHelpers = {
   parseTemplate: {
     kind: "function",

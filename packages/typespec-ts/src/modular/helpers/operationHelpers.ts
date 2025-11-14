@@ -421,7 +421,11 @@ export function getOperationFunction(
   context: SdkContext,
   method: [string[], ServiceOperation],
   clientType: string
-): FunctionDeclarationStructure & { propertyName?: string } {
+): FunctionDeclarationStructure & {
+  propertyName?: string;
+  isLro?: boolean;
+  lroFinalReturnType?: string;
+} {
   const operation = method[1];
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
@@ -498,7 +502,11 @@ function getLroOnlyOperationFunction(
   method: [string[], SdkLroServiceMethod<SdkHttpOperation>],
   clientType: string,
   optionalParamName: string = "options"
-): FunctionDeclarationStructure & { propertyName?: string } {
+): FunctionDeclarationStructure & {
+  propertyName?: string;
+  isLro?: boolean;
+  lroFinalReturnType?: string;
+} {
   const operation = method[1];
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
@@ -521,6 +529,8 @@ function getLroOnlyOperationFunction(
     isExported: true,
     name,
     propertyName: normalizeName(operation.name, NameType.Property),
+    isLro: true,
+    lroFinalReturnType: returnType.type,
     parameters,
     returnType: `${pollerLikeReference}<${operationStateReference}<${returnType.type}>, ${returnType.type}>`
   };
