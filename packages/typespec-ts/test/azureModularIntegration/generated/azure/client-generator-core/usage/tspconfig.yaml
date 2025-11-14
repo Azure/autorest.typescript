@@ -9,7 +9,6 @@ options:
     flavor: azure
     azure-sdk-for-js: false
     is-typespec-test: true
-    is-modular-library: true
     hierarchy-client: false
     package-details:
       name: "@msinternal/clientGeneratorCore-usage"
