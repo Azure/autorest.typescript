@@ -427,7 +427,6 @@ function createMetadata(model: RLCModel): Metadata | undefined {
   const serviceName = getServiceName(model);
   let apiRefUrlQueryParameter: string = "";
   if (
-    packageDetails?.version === "1.0.0-beta.1" &&
     !packageDetails?.isVersionUserProvided &&
     model.apiVersionInfo?.defaultValue
   ) {

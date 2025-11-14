@@ -121,15 +121,9 @@ export function updatePackageFile(
   // Update tshy.exports if exports are provided and tshy exists
   if (needsExportsUpdate && packageInfo.tshy) {
     const newTshy = getTshyConfig({
-      description: packageInfo.description ?? "",
-      moduleKind: "esm",
-      name: packageInfo.name ?? "",
-      version: packageInfo.version ?? "1.0.0-beta.1",
-      withSamples: false,
-      withTests: false,
       exports,
       azureSdkForJs: model.options?.azureSdkForJs
-    });
+    } as PackageCommonInfoConfig);
     packageInfo.tshy.exports = newTshy.exports;
   }
 
