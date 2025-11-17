@@ -12,3 +12,4 @@ options:
     compatibility-lro: true
     package-details:
       name: "@azure/arm-networkanalytics"
+      version: 1.0.0-beta.2

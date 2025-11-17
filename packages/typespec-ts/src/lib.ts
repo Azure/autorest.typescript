@@ -103,7 +103,8 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
         scopeName: { type: "string", nullable: true },
         nameWithoutScope: { type: "string", nullable: true },
         description: { type: "string", nullable: true },
-        version: { type: "string", nullable: true }
+        version: { type: "string", nullable: true },
+        isVersionUserProvided: { type: "boolean", nullable: true }
       },
       required: ["name"],
       nullable: true,
