@@ -1052,8 +1052,12 @@ namespace KnowledgeBaseRetrievalClient {
 @@clientName(SearchIndexClient.SynonymMaps.get, "getSynonymMap");
 @@clientName(SearchIndexClient.SynonymMaps.delete, "deleteSynonymMap");
 @@clientName(SearchIndexClient.SynonymMaps.create, "createSynonymMap");
-@@clientName(SearchIndexClient.SynonymMaps.createOrUpdate, "createOrUpdateSynonymMap");
-@@clientName(SearchIndexClient.Root.getIndexStatsSummary, "listIndexStatsSummary");
+@@clientName(SearchIndexClient.SynonymMaps.createOrUpdate,
+  "createOrUpdateSynonymMap"
+);
+@@clientName(SearchIndexClient.Root.getIndexStatsSummary,
+  "listIndexStatsSummary"
+);
 @@clientName(SearchIndexClient.Aliases.list, "listAliases");
 @@clientName(SearchIndexClient.Aliases.get, "getAlias");
 @@clientName(SearchIndexClient.Aliases.delete, "deleteAlias");
@@ -1061,16 +1065,22 @@ namespace KnowledgeBaseRetrievalClient {
 @@clientName(SearchIndexClient.Aliases.createOrUpdate, "createOrUpdateAlias");
 @@clientName(SearchIndexClient.KnowledgeBases.delete, "deleteKnowledgeBase");
 @@clientName(SearchIndexClient.KnowledgeBases.create, "createKnowledgeBase");
-@@clientName(SearchIndexClient.KnowledgeBases.createOrUpdate, "createOrUpdateKnowledgeBase");
+@@clientName(SearchIndexClient.KnowledgeBases.createOrUpdate,
+  "createOrUpdateKnowledgeBase"
+);
 @@clientName(SearchIndexClient.KnowledgeBases.get, "getKnowledgeBase");
 @@clientName(SearchIndexClient.KnowledgeBases.list, "listKnowledgeBases");
 @@clientName(SearchIndexClient.Sources.delete, "deleteKnowledgeSource");
 @@clientName(SearchIndexClient.Sources.create, "createKnowledgeSource");
-@@clientName(SearchIndexClient.Sources.createOrUpdate, "createOrUpdateKnowledgeSource");
+@@clientName(SearchIndexClient.Sources.createOrUpdate,
+  "createOrUpdateKnowledgeSource"
+);
 @@clientName(SearchIndexClient.Sources.get, "getKnowledgeSource");
 @@clientName(SearchIndexClient.Sources.list, "listKnowledgeSources");
 @@clientName(SearchIndexerClient.Indexers.create, "createIndexer");
-@@clientName(SearchIndexerClient.Indexers.createOrUpdate, "createOrUpdateIndexer");
+@@clientName(SearchIndexerClient.Indexers.createOrUpdate,
+  "createOrUpdateIndexer"
+);
 @@clientName(SearchIndexerClient.Indexers.delete, "deleteIndexer");
 @@clientName(SearchIndexerClient.Indexers.get, "getIndexer");
 @@clientName(SearchIndexerClient.Indexers.list, "getIndexers");
@@ -1079,13 +1089,21 @@ namespace KnowledgeBaseRetrievalClient {
 @@clientName(SearchIndexerClient.Indexers.resetDocs, "resetDocuments");
 @@clientName(SearchIndexerClient.Indexers.resync, "resync");
 @@clientName(SearchIndexerClient.Indexers.getStatus, "getIndexerStatus");
-@@clientName(SearchIndexerClient.DataSources.create, "createDataSourceConnection");
-@@clientName(SearchIndexerClient.DataSources.createOrUpdate, "createOrUpdateDataSourceConnection");
+@@clientName(SearchIndexerClient.DataSources.create,
+  "createDataSourceConnection"
+);
+@@clientName(SearchIndexerClient.DataSources.createOrUpdate,
+  "createOrUpdateDataSourceConnection"
+);
 @@clientName(SearchIndexerClient.DataSources.get, "getDataSourceConnection");
 @@clientName(SearchIndexerClient.DataSources.list, "getDataSourceConnections");
-@@clientName(SearchIndexerClient.DataSources.delete, "deleteDataSourceConnection");
+@@clientName(SearchIndexerClient.DataSources.delete,
+  "deleteDataSourceConnection"
+);
 @@clientName(SearchIndexerClient.Skillsets.create, "createSkillset");
-@@clientName(SearchIndexerClient.Skillsets.createOrUpdate, "createOrUpdateSkillset");
+@@clientName(SearchIndexerClient.Skillsets.createOrUpdate,
+  "createOrUpdateSkillset"
+);
 @@clientName(SearchIndexerClient.Skillsets.get, "getSkillset");
 @@clientName(SearchIndexerClient.Skillsets.list, "getSkillsets");
 @@clientName(SearchIndexerClient.Skillsets.delete, "deleteSkillset");
@@ -1295,6 +1313,7 @@ namespace KnowledgeBaseRetrievalClient {
 @@clientName(AzureOpenAIEmbeddingSkill.`@odata.type`, "odataType");
 @@clientName(VisionVectorizeSkill.`@odata.type`, "odataType");
 @@clientName(PathHierarchyTokenizer.`@odata.type`, "odataType");
+@@clientName(ChatCompletionSkill.`@odata.type`, "odataType");
 @@clientName(ListIndexStatsSummary.value, "IndexesStatistics");
 
 // Knowledge Base types
