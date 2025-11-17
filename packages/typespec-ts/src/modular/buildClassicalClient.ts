@@ -351,17 +351,7 @@ function hasTenantLevelOperations(
 
   for (const [_, operations] of methodMap) {
     for (const op of operations) {
-      // Skip certain operation types that are not relevant for tenant-level detection
-      const pathLC = op.operation.path.toLowerCase();
-      const clientNamespaceLC = client.namespace.toLowerCase();
-      if (
-        pathLC.includes(`${clientNamespaceLC}/operations`) ||
-        pathLC.includes(`${clientNamespaceLC}/checkname`)
-      ) {
-        continue;
-      }
-
-      // Check if this operation doesn't have a client-level subscriptionId parameter
+      // Check if this operation has a client-level subscriptionId parameter
       const hasSubscriptionIdParam = op.operation.parameters?.some(
         (param) =>
           param.name.toLowerCase() === "subscriptionid" &&
@@ -370,6 +360,18 @@ function hasTenantLevelOperations(
       );
 
       if (!hasSubscriptionIdParam) {
+        // Skip certain operation types that are not relevant for tenant-level detection
+        const pathLC = op.operation.path.toLowerCase();
+        const clientNamespaceLC = client.namespace.toLowerCase();
+        if (
+          pathLC.includes(`${clientNamespaceLC}/operations`) ||
+          pathLC.includes(`${clientNamespaceLC}/locations`) ||
+          pathLC.includes(`${clientNamespaceLC}/registeredsubscriptions`) ||
+          pathLC.includes(`${clientNamespaceLC}/checknameavailability`)
+        ) {
+          continue;
+        }
+
         // Found a tenant-level operation
         return true;
       }
