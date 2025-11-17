@@ -20,12 +20,7 @@ import {
   DataTypesGetOptionalParams,
   DataTypesCreateOptionalParams,
 } from "../../api/dataTypes/options.js";
-import {
-  DataType,
-  DataTypeUpdate,
-  ContainerSaS,
-  ContainerSasToken,
-} from "../../models/models.js";
+import { DataType, DataTypeUpdate, ContainerSaS, ContainerSasToken } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
@@ -96,8 +91,7 @@ function _getDataTypes(context: NetworkAnalyticsApiContext) {
       resourceGroupName: string,
       dataProductName: string,
       options?: DataTypesListByDataProductOptionalParams,
-    ) =>
-      listByDataProduct(context, resourceGroupName, dataProductName, options),
+    ) => listByDataProduct(context, resourceGroupName, dataProductName, options),
     generateStorageContainerSasToken: (
       resourceGroupName: string,
       dataProductName: string,
@@ -119,71 +113,37 @@ function _getDataTypes(context: NetworkAnalyticsApiContext) {
       dataTypeName: string,
       body: Record<string, any>,
       options?: DataTypesDeleteDataOptionalParams,
-    ) =>
-      deleteData(
-        context,
-        resourceGroupName,
-        dataProductName,
-        dataTypeName,
-        body,
-        options,
-      ),
+    ) => deleteData(context, resourceGroupName, dataProductName, dataTypeName, body, options),
     delete: (
       resourceGroupName: string,
       dataProductName: string,
       dataTypeName: string,
       options?: DataTypesDeleteOptionalParams,
-    ) =>
-      $delete(
-        context,
-        resourceGroupName,
-        dataProductName,
-        dataTypeName,
-        options,
-      ),
+    ) => $delete(context, resourceGroupName, dataProductName, dataTypeName, options),
     update: (
       resourceGroupName: string,
       dataProductName: string,
       dataTypeName: string,
       properties: DataTypeUpdate,
       options?: DataTypesUpdateOptionalParams,
-    ) =>
-      update(
-        context,
-        resourceGroupName,
-        dataProductName,
-        dataTypeName,
-        properties,
-        options,
-      ),
+    ) => update(context, resourceGroupName, dataProductName, dataTypeName, properties, options),
     get: (
       resourceGroupName: string,
       dataProductName: string,
       dataTypeName: string,
       options?: DataTypesGetOptionalParams,
-    ) =>
-      get(context, resourceGroupName, dataProductName, dataTypeName, options),
+    ) => get(context, resourceGroupName, dataProductName, dataTypeName, options),
     create: (
       resourceGroupName: string,
       dataProductName: string,
       dataTypeName: string,
       resource: DataType,
       options?: DataTypesCreateOptionalParams,
-    ) =>
-      create(
-        context,
-        resourceGroupName,
-        dataProductName,
-        dataTypeName,
-        resource,
-        options,
-      ),
+    ) => create(context, resourceGroupName, dataProductName, dataTypeName, resource, options),
   };
 }
 
-export function _getDataTypesOperations(
-  context: NetworkAnalyticsApiContext,
-): DataTypesOperations {
+export function _getDataTypesOperations(context: NetworkAnalyticsApiContext): DataTypesOperations {
   return {
     ..._getDataTypes(context),
   };

@@ -51,9 +51,7 @@ export interface Transliterate {
 
 export interface Detect {
   /** Detect Languages */
-  post(
-    options: DetectParameters,
-  ): StreamableMethod<Detect200Response | DetectDefaultResponse>;
+  post(options: DetectParameters): StreamableMethod<Detect200Response | DetectDefaultResponse>;
 }
 
 export interface BreakSentence {
@@ -67,18 +65,14 @@ export interface DictionaryLookup {
   /** Dictionary Lookup */
   post(
     options: DictionaryLookupParameters,
-  ): StreamableMethod<
-    DictionaryLookup200Response | DictionaryLookupDefaultResponse
-  >;
+  ): StreamableMethod<DictionaryLookup200Response | DictionaryLookupDefaultResponse>;
 }
 
 export interface DictionaryExamples {
   /** Dictionary Examples */
   post(
     options: DictionaryExamplesParameters,
-  ): StreamableMethod<
-    DictionaryExamples200Response | DictionaryExamplesDefaultResponse
-  >;
+  ): StreamableMethod<DictionaryExamples200Response | DictionaryExamplesDefaultResponse>;
 }
 
 export interface Routes {

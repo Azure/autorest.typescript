@@ -20,10 +20,7 @@ export class ParametrizedHostClient {
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
-  constructor(
-    credential: TokenCredential,
-    options: ParametrizedHostClientOptionalParams = {},
-  ) {
+  constructor(credential: TokenCredential, options: ParametrizedHostClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

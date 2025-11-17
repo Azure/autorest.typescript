@@ -4,13 +4,10 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface UnivariateDetectUnivariateChangePointOptionalParams
-  extends OperationOptions {}
+export interface UnivariateDetectUnivariateChangePointOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface UnivariateDetectUnivariateLastPointOptionalParams
-  extends OperationOptions {}
+export interface UnivariateDetectUnivariateLastPointOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface UnivariateDetectUnivariateEntireSeriesOptionalParams
-  extends OperationOptions {}
+export interface UnivariateDetectUnivariateEntireSeriesOptionalParams extends OperationOptions {}

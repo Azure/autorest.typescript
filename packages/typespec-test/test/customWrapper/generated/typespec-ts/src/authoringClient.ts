@@ -22,10 +22,7 @@ export interface AuthoringClientOptions extends ClientOptions {
 export default function createClient(
   endpointParam: string,
   credentials: KeyCredential,
-  {
-    apiVersion = "2022-05-15-preview",
-    ...options
-  }: AuthoringClientOptions = {},
+  { apiVersion = "2022-05-15-preview", ...options }: AuthoringClientOptions = {},
 ): AuthoringClient {
   const endpointUrl = options.endpoint ?? `${endpointParam}/language`;
   const userAgentInfo = `azsdk-js-customWrapper-rest/1.0.0-beta.1`;
@@ -42,15 +39,10 @@ export default function createClient(
       logger: options.loggingOptions?.logger ?? logger.info,
     },
     credentials: {
-      apiKeyHeaderName:
-        options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key",
+      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key",
     },
   };
-  const client = getClient(
-    endpointUrl,
-    credentials,
-    options,
-  ) as AuthoringClient;
+  const client = getClient(endpointUrl, credentials, options) as AuthoringClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   client.pipeline.addPolicy({

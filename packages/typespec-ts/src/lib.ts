@@ -604,7 +604,7 @@ export const prettierTypeScriptOptions: Options = {
   arrowParens: "always",
   bracketSpacing: true,
   endOfLine: "lf",
-  printWidth: 80,
+  printWidth: 100,
   semi: true,
   singleQuote: false,
   tabWidth: 2

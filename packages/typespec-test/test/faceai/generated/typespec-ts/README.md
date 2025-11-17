@@ -7,7 +7,7 @@ Face API REST Client
 Key links:
 
 - [Package (NPM)](https://www.npmjs.com/package/@azure-rest/ai-face-rest)
-- [API reference documentation](https://learn.microsoft.com/javascript/api/@azure-rest/ai-face-rest)
+- [API reference documentation](https://learn.microsoft.com/javascript/api/@azure-rest/ai-face-rest?view=azure-node-preview)
 
 ## Getting started
 

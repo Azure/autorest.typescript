@@ -2,9 +2,7 @@
 // Licensed under the MIT License.
 
 import { DefaultAzureCredential } from "@azure/identity";
-import createAzureLoadTestingClient, {
-  getLongRunningPoller,
-} from "@azure-rest/load-testing";
+import createAzureLoadTestingClient, { getLongRunningPoller } from "@azure-rest/load-testing";
 import "dotenv/config";
 
 /**
@@ -34,11 +32,7 @@ async function loadTestRunCreateOrUpdateTestRunSample(): Promise<void> {
           },
         },
         secrets: { key: { value: "{Your value}", type: "AKV_SECRET_URI" } },
-        certificate: {
-          value: "{Your value}",
-          type: "AKV_CERT_URI",
-          name: "{Your name}",
-        },
+        certificate: { value: "{Your value}", type: "AKV_CERT_URI", name: "{Your name}" },
         environmentVariables: { key: "{Your environmentVariables}" },
         loadTestConfiguration: {
           engineInstances: 123,
