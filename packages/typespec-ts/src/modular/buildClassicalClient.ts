@@ -246,6 +246,7 @@ function generateMethod(
     );
     // add begin method
     res.push({
+      isAsync: true,
       docs: [`@deprecated use ${methodName} instead`],
       name: beginName,
       kind: StructureKind.Method,
@@ -257,6 +258,7 @@ function generateMethod(
     });
     // add begin and wait method
     res.push({
+      isAsync: true,
       docs: [`@deprecated use ${methodName} instead`],
       name: beginAndWaitName,
       kind: StructureKind.Method,
