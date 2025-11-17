@@ -2,8 +2,10 @@
 
 - [Feature] Implement README file updates and enhance package file export options [#3568](https://github.com/Azure/autorest.typescript/pull/3568)
 - [Feature] Bump TypeSpec dependencies to latest stable versions [#3597](https://github.com/Azure/autorest.typescript/pull/3597)
-- [Feature] Update codegen default behavior for is-modular-library true [#3369](https://github.com/Azure/autorest.typescript/pull/3369) -[Bugfix] Fix URI template variable name decoding for better service compatibility [#3583](https://github.com/Azure/autorest.typescript/pull/3583) -[Feature] Disable the naming-convention eslint rule for models [#3584](https://github.com/Azure/autorest.typescript/pull/3584)
-
+- [Feature] Update codegen default behavior for is-modular-library true [#3369](https://github.com/Azure/autorest.typescript/pull/3369) 
+- [Bugfix] Fix URI template variable name decoding for better service compatibility [#3583](https://github.com/Azure/autorest.typescript/pull/3583) 
+- [Feature] Disable the naming-convention eslint rule for models [#3584](https://github.com/Azure/autorest.typescript/pull/3584)
+- [Feature] Support POST method for paging next link operations [#3578](https://github.com/Azure/autorest.typescript/pull/3578) 
 ## 6.0.51 (2025-11-06)
 
 - [Feature] Add status code `201` into lro expected status code. Please refer to [#3579](https://github.com/Azure/autorest.typescript/pull/3579)
