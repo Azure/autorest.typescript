@@ -432,7 +432,7 @@ export interface AzureSearchDocumentsSearchRequest {
   /** The comma-separated list of field names used for semantic ranking. */
   semanticFields?: string;
   /** The query parameters for vector and hybrid search queries. */
-  vectorQueries?: AzureSearchDocumentsVectorQueryUnion[];
+  vectorQueries?: VectorQueryUnion[];
   /** Determines whether or not filters are applied before or after the vector search is performed. Default is 'preFilter' for new indexes. */
   vectorFilterMode?: AzureSearchDocumentsVectorFilterMode;
   /** The query parameters to configure hybrid search behaviors. */
@@ -927,7 +927,7 @@ export interface AzureSearchDocumentsVectorQuery {
   /** Relative weight of the vector query when compared to other vector query and/or the text query within the same search request. This value is used when combining the results of multiple ranking lists produced by the different vector queries and/or the results retrieved through the text query. The higher the weight, the higher the documents that matched that query will be in the final ranking. Default is 1.0 and the value needs to be a positive number larger than zero. */
   weight?: number;
   /** The threshold used for vector queries. Note this can only be set if all 'fields' use the same similarity metric. */
-  threshold?: AzureSearchDocumentsVectorThresholdUnion;
+  threshold?: VectorThresholdUnion;
   /** The OData filter expression to apply to this specific vector query. If no filter expression is defined at the vector level, the expression defined in the top level filter parameter is used instead. */
   filterOverride?: string;
   /** The OData filter expression to apply to this specific vector query. If no filter expression is defined at the vector level, the expression defined in the top level filter parameter is used instead. */
@@ -973,8 +973,8 @@ export function azureSearchDocumentsVectorQueryDeserializer(
   };
 }
 
-/** Alias for AzureSearchDocumentsVectorQueryUnion */
-export type AzureSearchDocumentsVectorQueryUnion =
+/** Alias for VectorQueryUnion */
+export type VectorQueryUnion =
   | AzureSearchDocumentsVectorizedQuery
   | AzureSearchDocumentsVectorizableTextQuery
   | AzureSearchDocumentsVectorizableImageUrlQuery
@@ -982,27 +982,23 @@ export type AzureSearchDocumentsVectorQueryUnion =
   | AzureSearchDocumentsVectorQuery;
 
 export function azureSearchDocumentsVectorQueryUnionSerializer(
-  item: AzureSearchDocumentsVectorQueryUnion,
+  item: VectorQueryUnion,
 ): any {
   switch (item.kind) {
     case "vector":
-      return azureSearchDocumentsVectorizedQuerySerializer(
-        item as AzureSearchDocumentsVectorizedQuery,
-      );
+      return vectorizedQuerySerializer(item as VectorizedQuery);
 
     case "text":
-      return azureSearchDocumentsVectorizableTextQuerySerializer(
-        item as AzureSearchDocumentsVectorizableTextQuery,
-      );
+      return vectorizableTextQuerySerializer(item as VectorizableTextQuery);
 
     case "imageUrl":
-      return azureSearchDocumentsVectorizableImageUrlQuerySerializer(
-        item as AzureSearchDocumentsVectorizableImageUrlQuery,
+      return vectorizableImageUrlQuerySerializer(
+        item as VectorizableImageUrlQuery,
       );
 
     case "imageBinary":
-      return azureSearchDocumentsVectorizableImageBinaryQuerySerializer(
-        item as AzureSearchDocumentsVectorizableImageBinaryQuery,
+      return vectorizableImageBinaryQuerySerializer(
+        item as VectorizableImageBinaryQuery,
       );
 
     default:
@@ -1012,26 +1008,22 @@ export function azureSearchDocumentsVectorQueryUnionSerializer(
 
 export function azureSearchDocumentsVectorQueryUnionDeserializer(
   item: any,
-): AzureSearchDocumentsVectorQueryUnion {
+): VectorQueryUnion {
   switch (item.kind) {
     case "vector":
-      return azureSearchDocumentsVectorizedQueryDeserializer(
-        item as AzureSearchDocumentsVectorizedQuery,
-      );
+      return vectorizedQueryDeserializer(item as VectorizedQuery);
 
     case "text":
-      return azureSearchDocumentsVectorizableTextQueryDeserializer(
-        item as AzureSearchDocumentsVectorizableTextQuery,
-      );
+      return vectorizableTextQueryDeserializer(item as VectorizableTextQuery);
 
     case "imageUrl":
-      return azureSearchDocumentsVectorizableImageUrlQueryDeserializer(
-        item as AzureSearchDocumentsVectorizableImageUrlQuery,
+      return vectorizableImageUrlQueryDeserializer(
+        item as VectorizableImageUrlQuery,
       );
 
     case "imageBinary":
-      return azureSearchDocumentsVectorizableImageBinaryQueryDeserializer(
-        item as AzureSearchDocumentsVectorizableImageBinaryQuery,
+      return vectorizableImageBinaryQueryDeserializer(
+        item as VectorizableImageBinaryQuery,
       );
 
     default:
@@ -1060,25 +1052,23 @@ export function azureSearchDocumentsVectorThresholdDeserializer(
   };
 }
 
-/** Alias for AzureSearchDocumentsVectorThresholdUnion */
-export type AzureSearchDocumentsVectorThresholdUnion =
+/** Alias for VectorThresholdUnion */
+export type VectorThresholdUnion =
   | AzureSearchDocumentsVectorSimilarityThreshold
   | AzureSearchDocumentsSearchScoreThreshold
   | AzureSearchDocumentsVectorThreshold;
 
 export function azureSearchDocumentsVectorThresholdUnionSerializer(
-  item: AzureSearchDocumentsVectorThresholdUnion,
+  item: VectorThresholdUnion,
 ): any {
   switch (item.kind) {
     case "vectorSimilarity":
-      return azureSearchDocumentsVectorSimilarityThresholdSerializer(
-        item as AzureSearchDocumentsVectorSimilarityThreshold,
+      return vectorSimilarityThresholdSerializer(
+        item as VectorSimilarityThreshold,
       );
 
     case "searchScore":
-      return azureSearchDocumentsSearchScoreThresholdSerializer(
-        item as AzureSearchDocumentsSearchScoreThreshold,
-      );
+      return searchScoreThresholdSerializer(item as SearchScoreThreshold);
 
     default:
       return azureSearchDocumentsVectorThresholdSerializer(item);
@@ -1087,17 +1077,15 @@ export function azureSearchDocumentsVectorThresholdUnionSerializer(
 
 export function azureSearchDocumentsVectorThresholdUnionDeserializer(
   item: any,
-): AzureSearchDocumentsVectorThresholdUnion {
+): VectorThresholdUnion {
   switch (item.kind) {
     case "vectorSimilarity":
-      return azureSearchDocumentsVectorSimilarityThresholdDeserializer(
-        item as AzureSearchDocumentsVectorSimilarityThreshold,
+      return vectorSimilarityThresholdDeserializer(
+        item as VectorSimilarityThreshold,
       );
 
     case "searchScore":
-      return azureSearchDocumentsSearchScoreThresholdDeserializer(
-        item as AzureSearchDocumentsSearchScoreThreshold,
-      );
+      return searchScoreThresholdDeserializer(item as SearchScoreThreshold);
 
     default:
       return azureSearchDocumentsVectorThresholdDeserializer(item);

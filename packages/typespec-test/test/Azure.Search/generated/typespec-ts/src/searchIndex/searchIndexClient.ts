@@ -15,7 +15,7 @@ import {
   AzureSearchDocumentsIndexesAnalyzeResult,
   AzureSearchDocumentsIndexesSearchAlias,
   AzureSearchDocumentsIndexesKnowledgeBase,
-  AzureSearchDocumentsIndexesKnowledgeSourceUnion,
+  KnowledgeSourceUnion,
   AzureSearchDocumentsIndexesSearchServiceStatistics,
   AzureSearchDocumentsIndexesIndexStatisticsSummary,
 } from "../models/azure/search/documents/indexes/models.js";
@@ -124,16 +124,16 @@ export class SearchIndexClient {
 
   /** Creates a new knowledge source. */
   createKnowledgeSource(
-    knowledgeSource: AzureSearchDocumentsIndexesKnowledgeSourceUnion,
+    knowledgeSource: KnowledgeSourceUnion,
     options: CreateKnowledgeSourceOptionalParams = { requestOptions: {} },
-  ): Promise<AzureSearchDocumentsIndexesKnowledgeSourceUnion> {
+  ): Promise<KnowledgeSourceUnion> {
     return createKnowledgeSource(this._client, knowledgeSource, options);
   }
 
   /** Lists all knowledge sources available for a search service. */
   listKnowledgeSources(
     options: ListKnowledgeSourcesOptionalParams = { requestOptions: {} },
-  ): PagedAsyncIterableIterator<AzureSearchDocumentsIndexesKnowledgeSourceUnion> {
+  ): PagedAsyncIterableIterator<KnowledgeSourceUnion> {
     return listKnowledgeSources(this._client, options);
   }
 
@@ -141,7 +141,7 @@ export class SearchIndexClient {
   getKnowledgeSource(
     sourceName: string,
     options: GetKnowledgeSourceOptionalParams = { requestOptions: {} },
-  ): Promise<AzureSearchDocumentsIndexesKnowledgeSourceUnion> {
+  ): Promise<KnowledgeSourceUnion> {
     return getKnowledgeSource(this._client, sourceName, options);
   }
 
@@ -155,12 +155,12 @@ export class SearchIndexClient {
 
   /** Creates a new knowledge source or updates an knowledge source if it already exists. */
   createOrUpdateKnowledgeSource(
-    knowledgeSource: AzureSearchDocumentsIndexesKnowledgeSourceUnion,
+    knowledgeSource: KnowledgeSourceUnion,
     sourceName: string,
     options: CreateOrUpdateKnowledgeSourceOptionalParams = {
       requestOptions: {},
     },
-  ): Promise<AzureSearchDocumentsIndexesKnowledgeSourceUnion> {
+  ): Promise<KnowledgeSourceUnion> {
     return createOrUpdateKnowledgeSource(
       this._client,
       knowledgeSource,

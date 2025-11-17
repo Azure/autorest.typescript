@@ -1189,9 +1189,6 @@ export function getRequestModelProperties(
   if (properties.length <= 0) {
     return [];
   }
-  // Track seen serialized names to avoid duplicates
-  const seenSerializedNames = new Set<string>();
-
   for (const property of properties) {
     if (property.kind === "property" && isReadOnly(property)) {
       continue;
@@ -1199,16 +1196,8 @@ export function getRequestModelProperties(
     if (isMetadata(context.program, property.__raw!)) {
       continue;
     }
-
-    const serializedName = getPropertySerializedName(property)!;
-    // Skip duplicate serialized names (e.g., when a child class redefines a discriminator property)
-    if (seenSerializedNames.has(serializedName)) {
-      continue;
-    }
-    seenSerializedNames.add(serializedName);
-
     props.push([
-      serializedName,
+      getPropertySerializedName(property)!,
       getSerializationExpression(context, property, propertyPath)
     ]);
   }
@@ -1256,9 +1245,6 @@ export function getResponseMapping(
   const properties =
     type.kind === "model" ? getAllProperties(context, type, allParents) : [];
   const props: string[] = [];
-  // Track seen property names to avoid duplicates
-  const seenPropertyNames = new Set<string>();
-
   for (const property of properties) {
     if (isMetadata(context.program, property.__raw!)) {
       continue;
@@ -1280,13 +1266,6 @@ export function getResponseMapping(
       true
     );
     const propertyName = normalizeModelPropertyName(context, property);
-
-    // Skip duplicate property names (e.g., when a child class redefines a discriminator property)
-    if (seenPropertyNames.has(propertyName)) {
-      continue;
-    }
-    seenPropertyNames.add(propertyName);
-
     if (deserializeFunctionName) {
       props.push(
         `${propertyName}: ${nullOrUndefinedPrefix}${deserializeFunctionName}(${restValue})`

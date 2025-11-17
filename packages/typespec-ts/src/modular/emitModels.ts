@@ -635,7 +635,7 @@ function buildModelPolymorphicType(context: SdkContext, type: SdkModelType) {
   }
   const typeDeclaration: TypeAliasDeclarationStructure = {
     kind: StructureKind.TypeAlias,
-    name: `${normalizeModelName(context, type, NameType.Interface, true)}Union`,
+    name: `${normalizeName(type.name, NameType.Interface)}Union`,
     isExported: true,
     type: directSubtypes
       .filter((p) => {

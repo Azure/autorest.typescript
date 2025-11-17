@@ -30,37 +30,36 @@ export function azureSearchDocumentsKnowledgeBaseKnowledgeRetrievalReasoningEffo
   };
 }
 
-/** Alias for AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalReasoningEffortUnion */
-export type AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalReasoningEffortUnion =
-
-    | AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalMinimalReasoningEffort
-    | AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalLowReasoningEffort
-    | AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalMediumReasoningEffort
-    | AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalHighReasoningEffort
-    | AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalReasoningEffort;
+/** Alias for KnowledgeRetrievalReasoningEffortUnion */
+export type KnowledgeRetrievalReasoningEffortUnion =
+  | AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalMinimalReasoningEffort
+  | AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalLowReasoningEffort
+  | AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalMediumReasoningEffort
+  | AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalHighReasoningEffort
+  | AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalReasoningEffort;
 
 export function azureSearchDocumentsKnowledgeBaseKnowledgeRetrievalReasoningEffortUnionSerializer(
-  item: AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalReasoningEffortUnion,
+  item: KnowledgeRetrievalReasoningEffortUnion,
 ): any {
   switch (item.kind) {
     case "minimal":
-      return azureSearchDocumentsKnowledgeBaseKnowledgeRetrievalMinimalReasoningEffortSerializer(
-        item as AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalMinimalReasoningEffort,
+      return knowledgeRetrievalMinimalReasoningEffortSerializer(
+        item as KnowledgeRetrievalMinimalReasoningEffort,
       );
 
     case "low":
-      return azureSearchDocumentsKnowledgeBaseKnowledgeRetrievalLowReasoningEffortSerializer(
-        item as AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalLowReasoningEffort,
+      return knowledgeRetrievalLowReasoningEffortSerializer(
+        item as KnowledgeRetrievalLowReasoningEffort,
       );
 
     case "medium":
-      return azureSearchDocumentsKnowledgeBaseKnowledgeRetrievalMediumReasoningEffortSerializer(
-        item as AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalMediumReasoningEffort,
+      return knowledgeRetrievalMediumReasoningEffortSerializer(
+        item as KnowledgeRetrievalMediumReasoningEffort,
       );
 
     case "high":
-      return azureSearchDocumentsKnowledgeBaseKnowledgeRetrievalHighReasoningEffortSerializer(
-        item as AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalHighReasoningEffort,
+      return knowledgeRetrievalHighReasoningEffortSerializer(
+        item as KnowledgeRetrievalHighReasoningEffort,
       );
 
     default:
@@ -72,26 +71,26 @@ export function azureSearchDocumentsKnowledgeBaseKnowledgeRetrievalReasoningEffo
 
 export function azureSearchDocumentsKnowledgeBaseKnowledgeRetrievalReasoningEffortUnionDeserializer(
   item: any,
-): AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalReasoningEffortUnion {
+): KnowledgeRetrievalReasoningEffortUnion {
   switch (item.kind) {
     case "minimal":
-      return azureSearchDocumentsKnowledgeBaseKnowledgeRetrievalMinimalReasoningEffortDeserializer(
-        item as AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalMinimalReasoningEffort,
+      return knowledgeRetrievalMinimalReasoningEffortDeserializer(
+        item as KnowledgeRetrievalMinimalReasoningEffort,
       );
 
     case "low":
-      return azureSearchDocumentsKnowledgeBaseKnowledgeRetrievalLowReasoningEffortDeserializer(
-        item as AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalLowReasoningEffort,
+      return knowledgeRetrievalLowReasoningEffortDeserializer(
+        item as KnowledgeRetrievalLowReasoningEffort,
       );
 
     case "medium":
-      return azureSearchDocumentsKnowledgeBaseKnowledgeRetrievalMediumReasoningEffortDeserializer(
-        item as AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalMediumReasoningEffort,
+      return knowledgeRetrievalMediumReasoningEffortDeserializer(
+        item as KnowledgeRetrievalMediumReasoningEffort,
       );
 
     case "high":
-      return azureSearchDocumentsKnowledgeBaseKnowledgeRetrievalHighReasoningEffortDeserializer(
-        item as AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalHighReasoningEffort,
+      return knowledgeRetrievalHighReasoningEffortDeserializer(
+        item as KnowledgeRetrievalHighReasoningEffort,
       );
 
     default:
@@ -234,19 +233,19 @@ export interface AzureSearchDocumentsKnowledgeBaseKnowledgeBaseRetrievalRequest 
   /** A list of chat message style input. */
   messages?: AzureSearchDocumentsKnowledgeBaseKnowledgeBaseMessage[];
   /** A list of intended queries to execute without model query planning. */
-  intents?: AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalIntentUnion[];
+  intents?: KnowledgeRetrievalIntentUnion[];
   /** The maximum runtime in seconds. */
   maxRuntimeInSeconds?: number;
   /** Limits the maximum size of the content in the output. */
   maxOutputSize?: number;
   /** The retrieval reasoning effort configuration. */
-  retrievalReasoningEffort?: AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalReasoningEffortUnion;
+  retrievalReasoningEffort?: KnowledgeRetrievalReasoningEffortUnion;
   /** Indicates retrieval results should include activity information. */
   includeActivity?: boolean;
   /** The output configuration for this retrieval. */
   outputMode?: AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalOutputMode;
   /** A list of runtime parameters for the knowledge sources. */
-  knowledgeSourceParams?: AzureSearchDocumentsKnowledgeBaseKnowledgeSourceParamsUnion[];
+  knowledgeSourceParams?: KnowledgeSourceParamsUnion[];
 }
 
 export function azureSearchDocumentsKnowledgeBaseKnowledgeBaseRetrievalRequestSerializer(
@@ -305,7 +304,7 @@ export interface AzureSearchDocumentsKnowledgeBaseKnowledgeBaseMessage {
   /** The role of the tool response. */
   role?: string;
   /** The content of the message. */
-  content: AzureSearchDocumentsKnowledgeBaseKnowledgeBaseMessageContentUnion[];
+  content: KnowledgeBaseMessageContentUnion[];
 }
 
 export function azureSearchDocumentsKnowledgeBaseKnowledgeBaseMessageSerializer(
@@ -373,24 +372,24 @@ export function azureSearchDocumentsKnowledgeBaseKnowledgeBaseMessageContentDese
   };
 }
 
-/** Alias for AzureSearchDocumentsKnowledgeBaseKnowledgeBaseMessageContentUnion */
-export type AzureSearchDocumentsKnowledgeBaseKnowledgeBaseMessageContentUnion =
+/** Alias for KnowledgeBaseMessageContentUnion */
+export type KnowledgeBaseMessageContentUnion =
   | AzureSearchDocumentsKnowledgeBaseKnowledgeBaseMessageTextContent
   | AzureSearchDocumentsKnowledgeBaseKnowledgeBaseMessageImageContent
   | AzureSearchDocumentsKnowledgeBaseKnowledgeBaseMessageContent;
 
 export function azureSearchDocumentsKnowledgeBaseKnowledgeBaseMessageContentUnionSerializer(
-  item: AzureSearchDocumentsKnowledgeBaseKnowledgeBaseMessageContentUnion,
+  item: KnowledgeBaseMessageContentUnion,
 ): any {
   switch (item.type) {
     case "text":
-      return azureSearchDocumentsKnowledgeBaseKnowledgeBaseMessageTextContentSerializer(
-        item as AzureSearchDocumentsKnowledgeBaseKnowledgeBaseMessageTextContent,
+      return knowledgeBaseMessageTextContentSerializer(
+        item as KnowledgeBaseMessageTextContent,
       );
 
     case "image":
-      return azureSearchDocumentsKnowledgeBaseKnowledgeBaseMessageImageContentSerializer(
-        item as AzureSearchDocumentsKnowledgeBaseKnowledgeBaseMessageImageContent,
+      return knowledgeBaseMessageImageContentSerializer(
+        item as KnowledgeBaseMessageImageContent,
       );
 
     default:
@@ -402,16 +401,16 @@ export function azureSearchDocumentsKnowledgeBaseKnowledgeBaseMessageContentUnio
 
 export function azureSearchDocumentsKnowledgeBaseKnowledgeBaseMessageContentUnionDeserializer(
   item: any,
-): AzureSearchDocumentsKnowledgeBaseKnowledgeBaseMessageContentUnion {
+): KnowledgeBaseMessageContentUnion {
   switch (item.type) {
     case "text":
-      return azureSearchDocumentsKnowledgeBaseKnowledgeBaseMessageTextContentDeserializer(
-        item as AzureSearchDocumentsKnowledgeBaseKnowledgeBaseMessageTextContent,
+      return knowledgeBaseMessageTextContentDeserializer(
+        item as KnowledgeBaseMessageTextContent,
       );
 
     case "image":
-      return azureSearchDocumentsKnowledgeBaseKnowledgeBaseMessageImageContentDeserializer(
-        item as AzureSearchDocumentsKnowledgeBaseKnowledgeBaseMessageImageContent,
+      return knowledgeBaseMessageImageContentDeserializer(
+        item as KnowledgeBaseMessageImageContent,
       );
 
     default:
@@ -539,18 +538,18 @@ export function azureSearchDocumentsKnowledgeBaseKnowledgeRetrievalIntentSeriali
   return { type: item["type"] };
 }
 
-/** Alias for AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalIntentUnion */
-export type AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalIntentUnion =
+/** Alias for KnowledgeRetrievalIntentUnion */
+export type KnowledgeRetrievalIntentUnion =
   | AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalSemanticIntent
   | AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalIntent;
 
 export function azureSearchDocumentsKnowledgeBaseKnowledgeRetrievalIntentUnionSerializer(
-  item: AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalIntentUnion,
+  item: KnowledgeRetrievalIntentUnion,
 ): any {
   switch (item.type) {
     case "semantic":
-      return azureSearchDocumentsKnowledgeBaseKnowledgeRetrievalSemanticIntentSerializer(
-        item as AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalSemanticIntent,
+      return knowledgeRetrievalSemanticIntentSerializer(
+        item as KnowledgeRetrievalSemanticIntent,
       );
 
     default:
@@ -631,8 +630,8 @@ export function azureSearchDocumentsKnowledgeBaseKnowledgeSourceParamsSerializer
   };
 }
 
-/** Alias for AzureSearchDocumentsKnowledgeBaseKnowledgeSourceParamsUnion */
-export type AzureSearchDocumentsKnowledgeBaseKnowledgeSourceParamsUnion =
+/** Alias for KnowledgeSourceParamsUnion */
+export type KnowledgeSourceParamsUnion =
   | AzureSearchDocumentsKnowledgeBaseSearchIndexKnowledgeSourceParams
   | AzureSearchDocumentsKnowledgeBaseAzureBlobKnowledgeSourceParams
   | AzureSearchDocumentsKnowledgeBaseIndexedSharePointKnowledgeSourceParams
@@ -642,37 +641,37 @@ export type AzureSearchDocumentsKnowledgeBaseKnowledgeSourceParamsUnion =
   | AzureSearchDocumentsKnowledgeBaseKnowledgeSourceParams;
 
 export function azureSearchDocumentsKnowledgeBaseKnowledgeSourceParamsUnionSerializer(
-  item: AzureSearchDocumentsKnowledgeBaseKnowledgeSourceParamsUnion,
+  item: KnowledgeSourceParamsUnion,
 ): any {
   switch (item.kind) {
     case "searchIndex":
-      return azureSearchDocumentsKnowledgeBaseSearchIndexKnowledgeSourceParamsSerializer(
-        item as AzureSearchDocumentsKnowledgeBaseSearchIndexKnowledgeSourceParams,
+      return searchIndexKnowledgeSourceParamsSerializer(
+        item as SearchIndexKnowledgeSourceParams,
       );
 
     case "azureBlob":
-      return azureSearchDocumentsKnowledgeBaseAzureBlobKnowledgeSourceParamsSerializer(
-        item as AzureSearchDocumentsKnowledgeBaseAzureBlobKnowledgeSourceParams,
+      return azureBlobKnowledgeSourceParamsSerializer(
+        item as AzureBlobKnowledgeSourceParams,
       );
 
     case "indexedSharePoint":
-      return azureSearchDocumentsKnowledgeBaseIndexedSharePointKnowledgeSourceParamsSerializer(
-        item as AzureSearchDocumentsKnowledgeBaseIndexedSharePointKnowledgeSourceParams,
+      return indexedSharePointKnowledgeSourceParamsSerializer(
+        item as IndexedSharePointKnowledgeSourceParams,
       );
 
     case "indexedOneLake":
-      return azureSearchDocumentsKnowledgeBaseIndexedOneLakeKnowledgeSourceParamsSerializer(
-        item as AzureSearchDocumentsKnowledgeBaseIndexedOneLakeKnowledgeSourceParams,
+      return indexedOneLakeKnowledgeSourceParamsSerializer(
+        item as IndexedOneLakeKnowledgeSourceParams,
       );
 
     case "web":
-      return azureSearchDocumentsKnowledgeBaseWebKnowledgeSourceParamsSerializer(
-        item as AzureSearchDocumentsKnowledgeBaseWebKnowledgeSourceParams,
+      return webKnowledgeSourceParamsSerializer(
+        item as WebKnowledgeSourceParams,
       );
 
     case "remoteSharePoint":
-      return azureSearchDocumentsKnowledgeBaseRemoteSharePointKnowledgeSourceParamsSerializer(
-        item as AzureSearchDocumentsKnowledgeBaseRemoteSharePointKnowledgeSourceParams,
+      return remoteSharePointKnowledgeSourceParamsSerializer(
+        item as RemoteSharePointKnowledgeSourceParams,
       );
 
     default:
@@ -825,9 +824,9 @@ export interface AzureSearchDocumentsKnowledgeBaseKnowledgeBaseRetrievalResponse
   /** The response messages. */
   response?: AzureSearchDocumentsKnowledgeBaseKnowledgeBaseMessage[];
   /** The activity records for tracking progress and billing implications. */
-  activity?: AzureSearchDocumentsKnowledgeBaseKnowledgeBaseActivityRecordUnion[];
+  activity?: KnowledgeBaseActivityRecordUnion[];
   /** The references for the retrieval data used in the response. */
-  references?: AzureSearchDocumentsKnowledgeBaseKnowledgeBaseReferenceUnion[];
+  references?: KnowledgeBaseReferenceUnion[];
 }
 
 export function azureSearchDocumentsKnowledgeBaseKnowledgeBaseRetrievalResponseDeserializer(
@@ -890,8 +889,8 @@ export function azureSearchDocumentsKnowledgeBaseKnowledgeBaseActivityRecordDese
   };
 }
 
-/** Alias for AzureSearchDocumentsKnowledgeBaseKnowledgeBaseActivityRecordUnion */
-export type AzureSearchDocumentsKnowledgeBaseKnowledgeBaseActivityRecordUnion =
+/** Alias for KnowledgeBaseActivityRecordUnion */
+export type KnowledgeBaseActivityRecordUnion =
   | AzureSearchDocumentsKnowledgeBaseKnowledgeBaseModelQueryPlanningActivityRecord
   | AzureSearchDocumentsKnowledgeBaseKnowledgeBaseModelAnswerSynthesisActivityRecord
   | AzureSearchDocumentsKnowledgeBaseKnowledgeBaseAgenticReasoningActivityRecord
@@ -899,21 +898,21 @@ export type AzureSearchDocumentsKnowledgeBaseKnowledgeBaseActivityRecordUnion =
 
 export function azureSearchDocumentsKnowledgeBaseKnowledgeBaseActivityRecordUnionDeserializer(
   item: any,
-): AzureSearchDocumentsKnowledgeBaseKnowledgeBaseActivityRecordUnion {
+): KnowledgeBaseActivityRecordUnion {
   switch (item.type) {
     case "modelQueryPlanning":
-      return azureSearchDocumentsKnowledgeBaseKnowledgeBaseModelQueryPlanningActivityRecordDeserializer(
-        item as AzureSearchDocumentsKnowledgeBaseKnowledgeBaseModelQueryPlanningActivityRecord,
+      return knowledgeBaseModelQueryPlanningActivityRecordDeserializer(
+        item as KnowledgeBaseModelQueryPlanningActivityRecord,
       );
 
     case "modelAnswerSynthesis":
-      return azureSearchDocumentsKnowledgeBaseKnowledgeBaseModelAnswerSynthesisActivityRecordDeserializer(
-        item as AzureSearchDocumentsKnowledgeBaseKnowledgeBaseModelAnswerSynthesisActivityRecord,
+      return knowledgeBaseModelAnswerSynthesisActivityRecordDeserializer(
+        item as KnowledgeBaseModelAnswerSynthesisActivityRecord,
       );
 
     case "agenticReasoning":
-      return azureSearchDocumentsKnowledgeBaseKnowledgeBaseAgenticReasoningActivityRecordDeserializer(
-        item as AzureSearchDocumentsKnowledgeBaseKnowledgeBaseAgenticReasoningActivityRecord,
+      return knowledgeBaseAgenticReasoningActivityRecordDeserializer(
+        item as KnowledgeBaseAgenticReasoningActivityRecord,
       );
 
     default:
@@ -1058,7 +1057,7 @@ export interface AzureSearchDocumentsKnowledgeBaseKnowledgeBaseAgenticReasoningA
   /** The number of input tokens for agentic reasoning. */
   reasoningTokens?: number;
   /** The retrieval reasoning effort configuration. */
-  retrievalReasoningEffort?: AzureSearchDocumentsKnowledgeBaseKnowledgeRetrievalReasoningEffortUnion;
+  retrievalReasoningEffort?: KnowledgeRetrievalReasoningEffortUnion;
 }
 
 export function azureSearchDocumentsKnowledgeBaseKnowledgeBaseAgenticReasoningActivityRecordDeserializer(
@@ -1119,8 +1118,8 @@ export function azureSearchDocumentsKnowledgeBaseKnowledgeBaseReferenceDeseriali
   };
 }
 
-/** Alias for AzureSearchDocumentsKnowledgeBaseKnowledgeBaseReferenceUnion */
-export type AzureSearchDocumentsKnowledgeBaseKnowledgeBaseReferenceUnion =
+/** Alias for KnowledgeBaseReferenceUnion */
+export type KnowledgeBaseReferenceUnion =
   | AzureSearchDocumentsKnowledgeBaseKnowledgeBaseSearchIndexReference
   | AzureSearchDocumentsKnowledgeBaseKnowledgeBaseAzureBlobReference
   | AzureSearchDocumentsKnowledgeBaseKnowledgeBaseIndexedSharePointReference
@@ -1131,36 +1130,36 @@ export type AzureSearchDocumentsKnowledgeBaseKnowledgeBaseReferenceUnion =
 
 export function azureSearchDocumentsKnowledgeBaseKnowledgeBaseReferenceUnionDeserializer(
   item: any,
-): AzureSearchDocumentsKnowledgeBaseKnowledgeBaseReferenceUnion {
+): KnowledgeBaseReferenceUnion {
   switch (item.type) {
     case "searchIndex":
-      return azureSearchDocumentsKnowledgeBaseKnowledgeBaseSearchIndexReferenceDeserializer(
-        item as AzureSearchDocumentsKnowledgeBaseKnowledgeBaseSearchIndexReference,
+      return knowledgeBaseSearchIndexReferenceDeserializer(
+        item as KnowledgeBaseSearchIndexReference,
       );
 
     case "azureBlob":
-      return azureSearchDocumentsKnowledgeBaseKnowledgeBaseAzureBlobReferenceDeserializer(
-        item as AzureSearchDocumentsKnowledgeBaseKnowledgeBaseAzureBlobReference,
+      return knowledgeBaseAzureBlobReferenceDeserializer(
+        item as KnowledgeBaseAzureBlobReference,
       );
 
     case "indexedSharePoint":
-      return azureSearchDocumentsKnowledgeBaseKnowledgeBaseIndexedSharePointReferenceDeserializer(
-        item as AzureSearchDocumentsKnowledgeBaseKnowledgeBaseIndexedSharePointReference,
+      return knowledgeBaseIndexedSharePointReferenceDeserializer(
+        item as KnowledgeBaseIndexedSharePointReference,
       );
 
     case "indexedOneLake":
-      return azureSearchDocumentsKnowledgeBaseKnowledgeBaseIndexedOneLakeReferenceDeserializer(
-        item as AzureSearchDocumentsKnowledgeBaseKnowledgeBaseIndexedOneLakeReference,
+      return knowledgeBaseIndexedOneLakeReferenceDeserializer(
+        item as KnowledgeBaseIndexedOneLakeReference,
       );
 
     case "web":
-      return azureSearchDocumentsKnowledgeBaseKnowledgeBaseWebReferenceDeserializer(
-        item as AzureSearchDocumentsKnowledgeBaseKnowledgeBaseWebReference,
+      return knowledgeBaseWebReferenceDeserializer(
+        item as KnowledgeBaseWebReference,
       );
 
     case "remoteSharePoint":
-      return azureSearchDocumentsKnowledgeBaseKnowledgeBaseRemoteSharePointReferenceDeserializer(
-        item as AzureSearchDocumentsKnowledgeBaseKnowledgeBaseRemoteSharePointReference,
+      return knowledgeBaseRemoteSharePointReferenceDeserializer(
+        item as KnowledgeBaseRemoteSharePointReference,
       );
 
     default:

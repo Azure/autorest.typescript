@@ -241,12 +241,7 @@ function buildDiscriminatedUnionDeserializer(
       type.discriminatorProperty
     );
     const union = subType.discriminatedSubtypes ? "Union" : "";
-    const subTypeName = normalizeModelName(
-      context,
-      subType,
-      NameType.Interface,
-      !union
-    );
+    const subTypeName = `${normalizeName(subType.name, NameType.Interface, true)}${union}`;
     const subtypeDeserializerName = normalizeName(
       `${subTypeName}Deserializer`,
       NameType.Operation,
