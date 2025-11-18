@@ -141,9 +141,10 @@ op uploadFile(
 
 ```ts models interface _UploadFileRequest
 /**
- * This file contains only generated model types and (de)serializers.
- * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
  */
+/* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface _UploadFileRequest */
 export interface _UploadFileRequest {
@@ -245,9 +246,10 @@ import {
 } from "../static-helpers/multipartHelpers.js";
 
 /**
- * This file contains only generated model types and (de)serializers.
- * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
  */
+/* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface _UploadFilesRequest */
 export interface _UploadFilesRequest {
@@ -468,9 +470,10 @@ import { FileContents } from "../static-helpers/multipartHelpers.js";
 import { stringToUint8Array } from "@azure/core-util";
 
 /**
- * This file contains only generated model types and (de)serializers.
- * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
  */
+/* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface _DownloadFileResponse */
 export interface _DownloadFileResponse {
@@ -572,9 +575,10 @@ import { FileContents } from "../static-helpers/multipartHelpers.js";
 import { stringToUint8Array } from "@azure/core-util";
 
 /**
- * This file contains only generated model types and (de)serializers.
- * Disable this rule for deserializer functions which require 'any' for raw JSON input.
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
  */
+/* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface _DownloadFileResponse */
 export interface _DownloadFileResponse {
@@ -1352,7 +1356,7 @@ export function _updateFileShareSnapshotSend(
 export async function _updateFileShareSnapshotDeserialize(
   result: PathUncheckedResponse,
 ): Promise<FileShareSnapshot> {
-  const expectedStatuses = ["202", "200"];
+  const expectedStatuses = ["202", "200", "201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = errorResponseDeserializer(result.body);
@@ -1374,7 +1378,7 @@ export function updateFileShareSnapshot(
   return getLongRunningPoller(
     context,
     _updateFileShareSnapshotDeserialize,
-    ["202", "200"],
+    ["202", "200", "201"],
     {
       updateIntervalInMs: options?.updateIntervalInMs,
       abortSignal: options?.abortSignal,
