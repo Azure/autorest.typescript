@@ -2,6 +2,8 @@ import { Operation, Type, getNamespaceFullName } from "@typespec/compiler";
 import {
   SdkClientType,
   SdkHttpOperation,
+  SdkModelPropertyType,
+  SdkModelType,
   SdkServiceMethod,
   SdkType,
   getClientType
@@ -12,6 +14,7 @@ import { visitPackageTypes } from "../../modular/emitModels.js";
 import { SdkContext } from "../../utils/interfaces.js";
 
 export const emitQueue: Set<SdkType> = new Set<SdkType>();
+export const flattenModels: Set<SdkModelType> = new Set<SdkModelType>();
 
 export interface SdkTypeContext {
   operations: Map<Type, SdkServiceMethod<SdkHttpOperation>>;
@@ -140,4 +143,11 @@ export function getAllOperationsFromClient(
   }
 
   return operations;
+}
+
+export function isSupportedFlattenProperty(property: SdkModelPropertyType) {
+  if (!property.flatten) {
+    return false;
+  }
+  return ["properties"].includes(property.name);
 }
