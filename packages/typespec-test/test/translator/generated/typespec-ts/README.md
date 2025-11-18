@@ -23,7 +23,7 @@ Dictionary example Returns grammatical structure and context examples for the so
 Key links:
 
 - [Package (NPM)](https://www.npmjs.com/package/@azure-rest/cognitiveservices-translator)
-- [API reference documentation](https://learn.microsoft.com/javascript/api/@azure-rest/cognitiveservices-translator?view=azure-node-preview)
+- [API reference documentation](https://learn.microsoft.com/javascript/api/@azure-rest/cognitiveservices-translator)
 
 ## Getting started
 
