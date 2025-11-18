@@ -39,10 +39,7 @@ import {
   ListRoleAssignments,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
-import {
-  SimplePollerLike,
-  getSimplePoller,
-} from "../../static-helpers/simplePollerHelpers.js";
+import { SimplePollerLike, getSimplePoller } from "../../static-helpers/simplePollerHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
 /** Interface representing a DataProducts operations. */
@@ -212,12 +209,7 @@ function _getDataProducts(context: NetworkAnalyticsApiContext) {
       dataProductName: string,
       options?: DataProductsDeleteOptionalParams,
     ) => {
-      const poller = $delete(
-        context,
-        resourceGroupName,
-        dataProductName,
-        options,
-      );
+      const poller = $delete(context, resourceGroupName, dataProductName, options);
       await poller.submitted();
       return getSimplePoller(poller);
     },
@@ -226,33 +218,21 @@ function _getDataProducts(context: NetworkAnalyticsApiContext) {
       dataProductName: string,
       options?: DataProductsDeleteOptionalParams,
     ) => {
-      return await $delete(
-        context,
-        resourceGroupName,
-        dataProductName,
-        options,
-      );
+      return await $delete(context, resourceGroupName, dataProductName, options);
     },
     update: (
       resourceGroupName: string,
       dataProductName: string,
       properties: DataProductUpdate,
       options?: DataProductsUpdateOptionalParams,
-    ) =>
-      update(context, resourceGroupName, dataProductName, properties, options),
+    ) => update(context, resourceGroupName, dataProductName, properties, options),
     beginUpdate: async (
       resourceGroupName: string,
       dataProductName: string,
       properties: DataProductUpdate,
       options?: DataProductsUpdateOptionalParams,
     ) => {
-      const poller = update(
-        context,
-        resourceGroupName,
-        dataProductName,
-        properties,
-        options,
-      );
+      const poller = update(context, resourceGroupName, dataProductName, properties, options);
       await poller.submitted();
       return getSimplePoller(poller);
     },
@@ -262,13 +242,7 @@ function _getDataProducts(context: NetworkAnalyticsApiContext) {
       properties: DataProductUpdate,
       options?: DataProductsUpdateOptionalParams,
     ) => {
-      return await update(
-        context,
-        resourceGroupName,
-        dataProductName,
-        properties,
-        options,
-      );
+      return await update(context, resourceGroupName, dataProductName, properties, options);
     },
     get: (
       resourceGroupName: string,
@@ -287,13 +261,7 @@ function _getDataProducts(context: NetworkAnalyticsApiContext) {
       resource: DataProduct,
       options?: DataProductsCreateOptionalParams,
     ) => {
-      const poller = create(
-        context,
-        resourceGroupName,
-        dataProductName,
-        resource,
-        options,
-      );
+      const poller = create(context, resourceGroupName, dataProductName, resource, options);
       await poller.submitted();
       return getSimplePoller(poller);
     },
@@ -303,13 +271,7 @@ function _getDataProducts(context: NetworkAnalyticsApiContext) {
       resource: DataProduct,
       options?: DataProductsCreateOptionalParams,
     ) => {
-      return await create(
-        context,
-        resourceGroupName,
-        dataProductName,
-        resource,
-        options,
-      );
+      return await create(context, resourceGroupName, dataProductName, resource, options);
     },
   };
 }
