@@ -4,5 +4,4 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface AudioTranslationsCreateOptionalParams
-  extends OperationOptions {}
+export interface AudioTranslationsCreateOptionalParams extends OperationOptions {}

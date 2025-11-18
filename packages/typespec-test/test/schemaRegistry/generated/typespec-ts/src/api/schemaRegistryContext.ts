@@ -37,9 +37,7 @@ export function createSchemaRegistry(
     userAgentOptions: { userAgentPrefix },
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
     credentials: {
-      scopes: options.credentials?.scopes ?? [
-        "https://eventhubs.azure.net/.default",
-      ],
+      scopes: options.credentials?.scopes ?? ["https://eventhubs.azure.net/.default"],
     },
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);

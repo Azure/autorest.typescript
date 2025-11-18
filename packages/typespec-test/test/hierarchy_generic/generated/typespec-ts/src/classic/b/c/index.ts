@@ -13,8 +13,7 @@ export interface BCOperations {
 
 function _getBC(context: FooContext) {
   return {
-    op1: (body: BA, options?: BCOp1OptionalParams) =>
-      op1(context, body, options),
+    op1: (body: BA, options?: BCOp1OptionalParams) => op1(context, body, options),
   };
 }
 

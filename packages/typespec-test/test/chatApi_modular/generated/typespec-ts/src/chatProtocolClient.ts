@@ -7,10 +7,7 @@ import {
   ChatProtocolClientOptionalParams,
 } from "./api/index.js";
 import { create, createStreaming } from "./api/operations.js";
-import {
-  CreateOptionalParams,
-  CreateStreamingOptionalParams,
-} from "./api/options.js";
+import { CreateOptionalParams, CreateStreamingOptionalParams } from "./api/options.js";
 import {
   StreamingChatCompletionOptionsRecord,
   ChatCompletionChunkRecord,

@@ -15,9 +15,7 @@ async function loadTestRunDeleteTestRunSample(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = createAzureLoadTestingClient(endpointParam, credential);
   const testRunId = "{Your testRunId}";
-  const result = await client
-    .path("/test-runs/{testRunId}", testRunId)
-    .delete();
+  const result = await client.path("/test-runs/{testRunId}", testRunId).delete();
   console.log(result);
 }
 

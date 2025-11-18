@@ -57,9 +57,7 @@ export function _inferRadiologyInsightsSend(
         patients: patientRecordArraySerializer(patients),
         configuration: !options?.configuration
           ? options?.configuration
-          : radiologyInsightsModelConfigurationSerializer(
-              options?.configuration,
-            ),
+          : radiologyInsightsModelConfigurationSerializer(options?.configuration),
       },
     });
 }
@@ -87,21 +85,12 @@ export function inferRadiologyInsights(
   context: Client,
   patients: PatientRecord[],
   options: InferRadiologyInsightsOptionalParams = { requestOptions: {} },
-): PollerLike<
-  OperationState<RadiologyInsightsInferenceResult>,
-  RadiologyInsightsInferenceResult
-> {
-  return getLongRunningPoller(
-    context,
-    _inferRadiologyInsightsDeserialize,
-    ["202", "200", "201"],
-    {
-      updateIntervalInMs: options?.updateIntervalInMs,
-      abortSignal: options?.abortSignal,
-      getInitialResponse: () =>
-        _inferRadiologyInsightsSend(context, patients, options),
-    },
-  ) as PollerLike<
+): PollerLike<OperationState<RadiologyInsightsInferenceResult>, RadiologyInsightsInferenceResult> {
+  return getLongRunningPoller(context, _inferRadiologyInsightsDeserialize, ["202", "200", "201"], {
+    updateIntervalInMs: options?.updateIntervalInMs,
+    abortSignal: options?.abortSignal,
+    getInitialResponse: () => _inferRadiologyInsightsSend(context, patients, options),
+  }) as PollerLike<
     OperationState<RadiologyInsightsInferenceResult>,
     RadiologyInsightsInferenceResult
   >;

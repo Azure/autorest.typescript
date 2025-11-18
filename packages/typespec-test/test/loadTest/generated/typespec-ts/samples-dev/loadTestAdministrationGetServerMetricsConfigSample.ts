@@ -15,9 +15,7 @@ async function loadTestAdministrationGetServerMetricsConfigSample(): Promise<voi
   const credential = new DefaultAzureCredential();
   const client = createAzureLoadTestingClient(endpointParam, credential);
   const testId = "{Your testId}";
-  const result = await client
-    .path("/tests/{testId}/server-metrics-config", testId)
-    .get();
+  const result = await client.path("/tests/{testId}/server-metrics-config", testId).get();
   console.log(result);
 }
 

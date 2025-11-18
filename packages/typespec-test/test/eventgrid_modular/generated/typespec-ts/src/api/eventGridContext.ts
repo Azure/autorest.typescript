@@ -4,11 +4,7 @@
 import { logger } from "../logger.js";
 import { KnownServiceApiVersions } from "../models/models.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
-import {
-  KeyCredential,
-  isKeyCredential,
-  TokenCredential,
-} from "@azure/core-auth";
+import { KeyCredential, isKeyCredential, TokenCredential } from "@azure/core-auth";
 
 /** Azure Messaging EventGrid Client */
 export interface EventGridContext extends Client {
@@ -41,9 +37,7 @@ export function createEventGrid(
     userAgentOptions: { userAgentPrefix },
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
     credentials: {
-      scopes: options.credentials?.scopes ?? [
-        "https://eventgrid.azure.net/.default",
-      ],
+      scopes: options.credentials?.scopes ?? ["https://eventgrid.azure.net/.default"],
     },
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);
@@ -52,10 +46,7 @@ export function createEventGrid(
     clientContext.pipeline.addPolicy({
       name: "customKeyCredentialPolicy",
       sendRequest(request, next) {
-        request.headers.set(
-          "Authorization",
-          "SharedAccessKey " + credential.key,
-        );
+        request.headers.set("Authorization", "SharedAccessKey " + credential.key);
         return next(request);
       },
     });

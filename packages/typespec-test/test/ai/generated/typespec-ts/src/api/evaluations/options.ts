@@ -4,12 +4,10 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface EvaluationsDisableScheduleOptionalParams
-  extends OperationOptions {}
+export interface EvaluationsDisableScheduleOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface EvaluationsListScheduleOptionalParams
-  extends OperationOptions {
+export interface EvaluationsListScheduleOptionalParams extends OperationOptions {
   /** The number of result items to return. */
   top?: number;
   /** The number of result items to skip. */
@@ -21,8 +19,7 @@ export interface EvaluationsListScheduleOptionalParams
 }
 
 /** Optional parameters. */
-export interface EvaluationsCreateOrReplaceScheduleOptionalParams
-  extends OperationOptions {
+export interface EvaluationsCreateOrReplaceScheduleOptionalParams extends OperationOptions {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
   clientRequestId?: string;
 }

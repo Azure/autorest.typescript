@@ -1,13 +1,7 @@
 // Licensed under the MIT License.
 
 import { OpenAIContext } from "../../api/openAIContext.js";
-import {
-  download,
-  $delete,
-  retrieve,
-  create,
-  list,
-} from "../../api/files/operations.js";
+import { download, $delete, retrieve, create, list } from "../../api/files/operations.js";
 import {
   FilesDownloadOptionalParams,
   FilesDeleteOptionalParams,
@@ -24,27 +18,15 @@ import {
 
 /** Interface representing a Files operations. */
 export interface FilesOperations {
-  download: (
-    fileId: string,
-    options?: FilesDownloadOptionalParams,
-  ) => Promise<string>;
+  download: (fileId: string, options?: FilesDownloadOptionalParams) => Promise<string>;
   /**
    *  @fixme delete is a reserved word that cannot be used as an operation name.
    *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
    *         to the operation to override the generated name.
    */
-  delete: (
-    fileId: string,
-    options?: FilesDeleteOptionalParams,
-  ) => Promise<DeleteFileResponse>;
-  retrieve: (
-    fileId: string,
-    options?: FilesRetrieveOptionalParams,
-  ) => Promise<OpenAIFile>;
-  create: (
-    file: CreateFileRequest,
-    options?: FilesCreateOptionalParams,
-  ) => Promise<OpenAIFile>;
+  delete: (fileId: string, options?: FilesDeleteOptionalParams) => Promise<DeleteFileResponse>;
+  retrieve: (fileId: string, options?: FilesRetrieveOptionalParams) => Promise<OpenAIFile>;
+  create: (file: CreateFileRequest, options?: FilesCreateOptionalParams) => Promise<OpenAIFile>;
   list: (options?: FilesListOptionalParams) => Promise<ListFilesResponse>;
 }
 

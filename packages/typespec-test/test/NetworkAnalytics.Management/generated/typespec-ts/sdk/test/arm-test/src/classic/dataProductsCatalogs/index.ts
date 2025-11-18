@@ -35,17 +35,14 @@ export interface DataProductsCatalogsOperations {
 
 function _getDataProductsCatalogs(context: NetworkAnalyticsApiContext) {
   return {
-    listBySubscription: (
-      options?: DataProductsCatalogsListBySubscriptionOptionalParams,
-    ) => listBySubscription(context, options),
+    listBySubscription: (options?: DataProductsCatalogsListBySubscriptionOptionalParams) =>
+      listBySubscription(context, options),
     listByResourceGroup: (
       resourceGroupName: string,
       options?: DataProductsCatalogsListByResourceGroupOptionalParams,
     ) => listByResourceGroup(context, resourceGroupName, options),
-    get: (
-      resourceGroupName: string,
-      options?: DataProductsCatalogsGetOptionalParams,
-    ) => get(context, resourceGroupName, options),
+    get: (resourceGroupName: string, options?: DataProductsCatalogsGetOptionalParams) =>
+      get(context, resourceGroupName, options),
   };
 }
 

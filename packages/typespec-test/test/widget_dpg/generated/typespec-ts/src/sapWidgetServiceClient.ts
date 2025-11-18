@@ -6,14 +6,8 @@ import {
   SAPWidgetServiceContext,
   SAPWidgetServiceClientOptionalParams,
 } from "./api/index.js";
-import {
-  BudgetsOperations,
-  _getBudgetsOperations,
-} from "./classic/budgets/index.js";
-import {
-  SAPWidgetsOperations,
-  _getSAPWidgetsOperations,
-} from "./classic/sapWidgets/index.js";
+import { BudgetsOperations, _getBudgetsOperations } from "./classic/budgets/index.js";
+import { SAPWidgetsOperations, _getSAPWidgetsOperations } from "./classic/sapWidgets/index.js";
 import { KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 

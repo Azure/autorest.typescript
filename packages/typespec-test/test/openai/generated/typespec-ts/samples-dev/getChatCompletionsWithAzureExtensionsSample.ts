@@ -16,10 +16,7 @@ async function getChatCompletionsWithAzureExtensionsSample(): Promise<void> {
   const client = createOpenAIClient(endpointParam, credential);
   const deploymentId = "{Your deploymentId}";
   const result = await client
-    .path(
-      "/deployments/{deploymentId}/extensions/chat/completions",
-      deploymentId,
-    )
+    .path("/deployments/{deploymentId}/extensions/chat/completions", deploymentId)
     .post({
       body: {
         messages: [
@@ -27,19 +24,12 @@ async function getChatCompletionsWithAzureExtensionsSample(): Promise<void> {
             role: "system",
             content: "{Your content}",
             name: "{Your name}",
-            function_call: {
-              name: "{Your name}",
-              arguments: "{Your arguments}",
-            },
+            function_call: { name: "{Your name}", arguments: "{Your arguments}" },
             context: { messages: [{} as any /**FIXME */] },
           },
         ],
         functions: [
-          {
-            name: "{Your name}",
-            description: "{Your description}",
-            parameters: "Unknown Type",
-          },
+          { name: "{Your name}", description: "{Your description}", parameters: "Unknown Type" },
         ],
         function_call: "auto",
         max_tokens: 123,
@@ -53,9 +43,7 @@ async function getChatCompletionsWithAzureExtensionsSample(): Promise<void> {
         frequency_penalty: 123,
         stream: true,
         model: "{Your model}",
-        dataSources: [
-          { type: "AzureCognitiveSearch", parameters: "Unknown Type" },
-        ],
+        dataSources: [{ type: "AzureCognitiveSearch", parameters: "Unknown Type" }],
       },
     });
   console.log(result);

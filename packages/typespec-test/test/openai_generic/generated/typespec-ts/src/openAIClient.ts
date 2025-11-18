@@ -1,43 +1,18 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  createOpenAI,
-  OpenAIContext,
-  OpenAIClientOptionalParams,
-} from "./api/index.js";
+import { createOpenAI, OpenAIContext, OpenAIClientOptionalParams } from "./api/index.js";
 import { AudioOperations, _getAudioOperations } from "./classic/audio/index.js";
 import { ChatOperations, _getChatOperations } from "./classic/chat/index.js";
-import {
-  CompletionsOperations,
-  _getCompletionsOperations,
-} from "./classic/completions/index.js";
+import { CompletionsOperations, _getCompletionsOperations } from "./classic/completions/index.js";
 import { EditsOperations, _getEditsOperations } from "./classic/edits/index.js";
-import {
-  EmbeddingsOperations,
-  _getEmbeddingsOperations,
-} from "./classic/embeddings/index.js";
+import { EmbeddingsOperations, _getEmbeddingsOperations } from "./classic/embeddings/index.js";
 import { FilesOperations, _getFilesOperations } from "./classic/files/index.js";
-import {
-  FineTunesOperations,
-  _getFineTunesOperations,
-} from "./classic/fineTunes/index.js";
-import {
-  FineTuningOperations,
-  _getFineTuningOperations,
-} from "./classic/fineTuning/index.js";
-import {
-  ImagesOperations,
-  _getImagesOperations,
-} from "./classic/images/index.js";
-import {
-  ModelsOperations,
-  _getModelsOperations,
-} from "./classic/models/index.js";
-import {
-  ModerationsOperations,
-  _getModerationsOperations,
-} from "./classic/moderations/index.js";
+import { FineTunesOperations, _getFineTunesOperations } from "./classic/fineTunes/index.js";
+import { FineTuningOperations, _getFineTuningOperations } from "./classic/fineTuning/index.js";
+import { ImagesOperations, _getImagesOperations } from "./classic/images/index.js";
+import { ModelsOperations, _getModelsOperations } from "./classic/models/index.js";
+import { ModerationsOperations, _getModerationsOperations } from "./classic/moderations/index.js";
 import { KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
@@ -49,18 +24,12 @@ export class OpenAIClient {
   public readonly pipeline: Pipeline;
 
   /** The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details. */
-  constructor(
-    credential: KeyCredential,
-    options: OpenAIClientOptionalParams = {},
-  ) {
+  constructor(credential: KeyCredential, options: OpenAIClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
       : `azsdk-js-client`;
-    this._client = createOpenAI(credential, {
-      ...options,
-      userAgentOptions: { userAgentPrefix },
-    });
+    this._client = createOpenAI(credential, { ...options, userAgentOptions: { userAgentPrefix } });
     this.pipeline = this._client.pipeline;
     this.moderations = _getModerationsOperations(this._client);
     this.images = _getImagesOperations(this._client);

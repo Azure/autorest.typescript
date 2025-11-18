@@ -24,9 +24,7 @@ function _getTelemetry(context: AIProjectContext) {
   };
 }
 
-export function _getTelemetryOperations(
-  context: AIProjectContext,
-): TelemetryOperations {
+export function _getTelemetryOperations(context: AIProjectContext): TelemetryOperations {
   return {
     ..._getTelemetry(context),
   };

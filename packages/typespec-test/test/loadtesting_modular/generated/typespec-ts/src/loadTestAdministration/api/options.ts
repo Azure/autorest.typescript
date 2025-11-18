@@ -47,19 +47,16 @@ export interface GetTestFileOptionalParams extends OperationOptions {}
 export interface GetTestOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface GetServerMetricsConfigOptionalParams
-  extends OperationOptions {}
+export interface GetServerMetricsConfigOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface GetAppComponentsOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface CreateOrUpdateServerMetricsConfigOptionalParams
-  extends OperationOptions {}
+export interface CreateOrUpdateServerMetricsConfigOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface CreateOrUpdateAppComponentsOptionalParams
-  extends OperationOptions {}
+export interface CreateOrUpdateAppComponentsOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface CreateOrUpdateTestOptionalParams extends OperationOptions {}

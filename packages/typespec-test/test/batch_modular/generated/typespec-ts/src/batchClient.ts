@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  createBatch,
-  BatchContext,
-  BatchClientOptionalParams,
-} from "./api/index.js";
+import { createBatch, BatchContext, BatchClientOptionalParams } from "./api/index.js";
 import {
   listNodeFiles,
   getNodeFileProperties,
@@ -244,13 +240,7 @@ export class BatchClient {
     filePath: string,
     options: GetNodeFilePropertiesOptionalParams = { requestOptions: {} },
   ): Promise<void> {
-    return getNodeFileProperties(
-      this._client,
-      poolId,
-      nodeId,
-      filePath,
-      options,
-    );
+    return getNodeFileProperties(this._client, poolId, nodeId, filePath, options);
   }
 
   /** Returns the content of the specified Compute Node file. */
@@ -289,13 +279,7 @@ export class BatchClient {
     extensionName: string,
     options: GetNodeExtensionOptionalParams = { requestOptions: {} },
   ): Promise<NodeVMExtension> {
-    return getNodeExtension(
-      this._client,
-      poolId,
-      nodeId,
-      extensionName,
-      options,
-    );
+    return getNodeExtension(this._client, poolId, nodeId, extensionName, options);
   }
 
   /** Lists the Compute Nodes in the specified Pool. */
@@ -418,14 +402,7 @@ export class BatchClient {
     body: BatchNodeUserUpdateOptions,
     options: ReplaceNodeUserOptionalParams = { requestOptions: {} },
   ): Promise<void> {
-    return replaceNodeUser(
-      this._client,
-      poolId,
-      nodeId,
-      userName,
-      body,
-      options,
-    );
+    return replaceNodeUser(this._client, poolId, nodeId, userName, body, options);
   }
 
   /**
@@ -470,13 +447,7 @@ export class BatchClient {
     filePath: string,
     options: GetTaskFilePropertiesOptionalParams = { requestOptions: {} },
   ): Promise<void> {
-    return getTaskFileProperties(
-      this._client,
-      jobId,
-      taskId,
-      filePath,
-      options,
-    );
+    return getTaskFileProperties(this._client, jobId, taskId, filePath, options);
   }
 
   /** Returns the content of the specified Task file. */
@@ -730,12 +701,7 @@ export class BatchClient {
     thumbprint: string,
     options: GetCertificateOptionalParams = { requestOptions: {} },
   ): Promise<BatchCertificate> {
-    return getCertificate(
-      this._client,
-      thumbprintAlgorithm,
-      thumbprint,
-      options,
-    );
+    return getCertificate(this._client, thumbprintAlgorithm, thumbprint, options);
   }
 
   /**
@@ -754,12 +720,7 @@ export class BatchClient {
     thumbprint: string,
     options: DeleteCertificateOptionalParams = { requestOptions: {} },
   ): Promise<void> {
-    return deleteCertificate(
-      this._client,
-      thumbprintAlgorithm,
-      thumbprint,
-      options,
-    );
+    return deleteCertificate(this._client, thumbprintAlgorithm, thumbprint, options);
   }
 
   /**
@@ -776,12 +737,7 @@ export class BatchClient {
     thumbprint: string,
     options: CancelCertificateDeletionOptionalParams = { requestOptions: {} },
   ): Promise<void> {
-    return cancelCertificateDeletion(
-      this._client,
-      thumbprintAlgorithm,
-      thumbprint,
-      options,
-    );
+    return cancelCertificateDeletion(this._client, thumbprintAlgorithm, thumbprint, options);
   }
 
   /** Lists all of the Certificates that have been added to the specified Account. */
@@ -822,9 +778,7 @@ export class BatchClient {
    */
   listJobPreparationAndReleaseTaskStatus(
     jobId: string,
-    options: ListJobPreparationAndReleaseTaskStatusOptionalParams = {
-      requestOptions: {},
-    },
+    options: ListJobPreparationAndReleaseTaskStatusOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<JobPreparationAndReleaseTaskExecutionInformation> {
     return listJobPreparationAndReleaseTaskStatus(this._client, jobId, options);
   }
@@ -937,10 +891,7 @@ export class BatchClient {
   }
 
   /** Gets information about the specified Job. */
-  getJob(
-    jobId: string,
-    options: GetJobOptionalParams = { requestOptions: {} },
-  ): Promise<BatchJob> {
+  getJob(jobId: string, options: GetJobOptionalParams = { requestOptions: {} }): Promise<BatchJob> {
     return getJob(this._client, jobId, options);
   }
 

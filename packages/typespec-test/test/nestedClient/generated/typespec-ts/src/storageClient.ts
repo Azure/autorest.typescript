@@ -2,11 +2,7 @@
 // Licensed under the MIT License.
 
 import { BlobClient, BlobClientOptionalParams } from "./blob/blobClient.js";
-import {
-  createStorage,
-  StorageContext,
-  StorageClientOptionalParams,
-} from "./api/index.js";
+import { createStorage, StorageContext, StorageClientOptionalParams } from "./api/index.js";
 import { download } from "./api/operations.js";
 import { DownloadOptionalParams } from "./api/options.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
@@ -41,16 +37,11 @@ export class StorageClient {
     this._clientParams = { endpointParam, accountName, options };
   }
 
-  download(
-    options: DownloadOptionalParams = { requestOptions: {} },
-  ): Promise<void> {
+  download(options: DownloadOptionalParams = { requestOptions: {} }): Promise<void> {
     return download(this._client, options);
   }
 
-  getBlobClient(
-    blobName: string,
-    options: BlobClientOptionalParams = {},
-  ): BlobClient {
+  getBlobClient(blobName: string, options: BlobClientOptionalParams = {}): BlobClient {
     return new BlobClient(
       this._clientParams.endpointParam,
       this._clientParams.accountName,

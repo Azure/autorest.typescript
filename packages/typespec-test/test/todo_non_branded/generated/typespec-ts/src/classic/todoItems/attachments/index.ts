@@ -11,10 +11,7 @@ import {
   TodoItemsAttachmentsCreateJsonAttachmentOptionalParams,
   TodoItemsAttachmentsListOptionalParams,
 } from "../../../api/todoItems/attachments/options.js";
-import {
-  TodoAttachment,
-  FileAttachmentMultipartRequest,
-} from "../../../models/models.js";
+import { TodoAttachment, FileAttachmentMultipartRequest } from "../../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../../static-helpers/pagingHelpers.js";
 
 /** Interface representing a TodoItemsAttachments operations. */

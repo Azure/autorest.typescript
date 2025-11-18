@@ -91,12 +91,7 @@ export class ContentSafetyClient {
     blocklistItemId: string,
     options: GetTextBlocklistItemOptionalParams = { requestOptions: {} },
   ): Promise<TextBlocklistItem> {
-    return getTextBlocklistItem(
-      this._client,
-      blocklistName,
-      blocklistItemId,
-      options,
-    );
+    return getTextBlocklistItem(this._client, blocklistName, blocklistItemId, options);
   }
 
   /** Remove blocklistItems from a text blocklist. You can remove at most 100 BlocklistItems in one request. */
@@ -114,12 +109,7 @@ export class ContentSafetyClient {
     body: AddOrUpdateTextBlocklistItemsOptions,
     options: AddOrUpdateBlocklistItemsOptionalParams = { requestOptions: {} },
   ): Promise<AddOrUpdateTextBlocklistItemsResult> {
-    return addOrUpdateBlocklistItems(
-      this._client,
-      blocklistName,
-      body,
-      options,
-    );
+    return addOrUpdateBlocklistItems(this._client, blocklistName, body, options);
   }
 
   /** Get all text blocklists details. */
@@ -143,12 +133,7 @@ export class ContentSafetyClient {
     resource: TextBlocklist,
     options: CreateOrUpdateTextBlocklistOptionalParams = { requestOptions: {} },
   ): Promise<TextBlocklist> {
-    return createOrUpdateTextBlocklist(
-      this._client,
-      blocklistName,
-      resource,
-      options,
-    );
+    return createOrUpdateTextBlocklist(this._client, blocklistName, resource, options);
   }
 
   /** Returns text blocklist details. */

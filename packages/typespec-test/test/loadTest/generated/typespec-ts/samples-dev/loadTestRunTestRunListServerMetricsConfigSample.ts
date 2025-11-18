@@ -15,9 +15,7 @@ async function loadTestRunTestRunListServerMetricsConfigSample(): Promise<void> 
   const credential = new DefaultAzureCredential();
   const client = createAzureLoadTestingClient(endpointParam, credential);
   const testRunId = "{Your testRunId}";
-  const result = await client
-    .path("/test-runs/{testRunId}/server-metrics-config", testRunId)
-    .get();
+  const result = await client.path("/test-runs/{testRunId}/server-metrics-config", testRunId).get();
   console.log(result);
 }
 

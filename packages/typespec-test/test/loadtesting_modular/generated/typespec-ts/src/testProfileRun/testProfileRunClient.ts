@@ -83,15 +83,8 @@ export class TestProfileRunClient {
   createOrUpdateTestProfileRun(
     testProfileRunId: string,
     body: TestProfileRun,
-    options: CreateOrUpdateTestProfileRunOptionalParams = {
-      requestOptions: {},
-    },
+    options: CreateOrUpdateTestProfileRunOptionalParams = { requestOptions: {} },
   ): Promise<TestProfileRun> {
-    return createOrUpdateTestProfileRun(
-      this._client,
-      testProfileRunId,
-      body,
-      options,
-    );
+    return createOrUpdateTestProfileRun(this._client, testProfileRunId, body, options);
   }
 }

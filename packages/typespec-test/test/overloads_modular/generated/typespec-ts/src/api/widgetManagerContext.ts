@@ -35,9 +35,7 @@ export function createWidgetManager(
     userAgentOptions: { userAgentPrefix },
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
     credentials: {
-      scopes: options.credentials?.scopes ?? [
-        "https://widget.contoso.com/.default",
-      ],
+      scopes: options.credentials?.scopes ?? ["https://widget.contoso.com/.default"],
       apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "api-key",
     },
   };

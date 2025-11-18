@@ -49,8 +49,7 @@ export interface ListMetricNamespacesOptionalParams extends OperationOptions {}
 export interface ListMetricDefinitionsOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface ListMetricDimensionValuesOptionalParams
-  extends OperationOptions {
+export interface ListMetricDimensionValuesOptionalParams extends OperationOptions {
   /** The interval (i.e. timegrain) of the query. */
   interval?: TimeGrain;
 }
@@ -62,8 +61,7 @@ export interface GetTestRunFileOptionalParams extends OperationOptions {}
 export interface GetTestRunOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface GetServerMetricsConfigOptionalParams
-  extends OperationOptions {}
+export interface GetServerMetricsConfigOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface GetAppComponentsOptionalParams extends OperationOptions {}
@@ -72,12 +70,10 @@ export interface GetAppComponentsOptionalParams extends OperationOptions {}
 export interface DeleteTestRunOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface CreateOrUpdateServerMetricsConfigOptionalParams
-  extends OperationOptions {}
+export interface CreateOrUpdateServerMetricsConfigOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface CreateOrUpdateAppComponentsOptionalParams
-  extends OperationOptions {}
+export interface CreateOrUpdateAppComponentsOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface CreateOrUpdateTestRunOptionalParams extends OperationOptions {

@@ -25,9 +25,7 @@ export function _op1Send(
     });
 }
 
-export async function _op1Deserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _op1Deserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);

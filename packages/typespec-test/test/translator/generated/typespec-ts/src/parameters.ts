@@ -213,9 +213,7 @@ export interface DetectHeaderParam {
   headers?: RawHttpHeadersInput & DetectHeaders;
 }
 
-export type DetectParameters = DetectHeaderParam &
-  DetectBodyParam &
-  RequestParameters;
+export type DetectParameters = DetectHeaderParam & DetectBodyParam & RequestParameters;
 
 export interface BreakSentenceHeaders {
   /** A client-generated GUID to uniquely identify the request. */

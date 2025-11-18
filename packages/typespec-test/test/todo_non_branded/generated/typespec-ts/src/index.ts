@@ -20,11 +20,7 @@ export {
   ToDoItemMultipartRequest,
   FileAttachmentMultipartRequest,
 } from "./models/index.js";
-export {
-  InvalidTodoItem,
-  NotFoundErrorResponse,
-  TodoItemPatch,
-} from "./models/todoItems/index.js";
+export { InvalidTodoItem, NotFoundErrorResponse, TodoItemPatch } from "./models/todoItems/index.js";
 export {
   UserCreatedResponse,
   UserExistsResponse,

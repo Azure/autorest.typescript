@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import type {
-  GetDeploymentParameters,
-  DeployProjectParameters,
-} from "./parameters.js";
+import type { GetDeploymentParameters, DeployProjectParameters } from "./parameters.js";
 import type {
   GetDeployment200Response,
   GetDeploymentDefaultResponse,
@@ -23,9 +20,7 @@ export interface GetDeployment {
   put(
     options?: DeployProjectParameters,
   ): StreamableMethod<
-    | DeployProject200Response
-    | DeployProject201Response
-    | DeployProjectDefaultResponse
+    DeployProject200Response | DeployProject201Response | DeployProjectDefaultResponse
   >;
 }
 

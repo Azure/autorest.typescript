@@ -2,11 +2,7 @@
 // Licensed under the MIT License.
 
 import { SAPWidgetServiceContext } from "../../api/sapWidgetServiceContext.js";
-import {
-  $continue,
-  getBudgets,
-  createOrReplace,
-} from "../../api/budgets/operations.js";
+import { $continue, getBudgets, createOrReplace } from "../../api/budgets/operations.js";
 import {
   BudgetsContinueOptionalParams,
   BudgetsGetBudgetsOptionalParams,
@@ -23,10 +19,7 @@ export interface BudgetsOperations {
    *         to the operation to override the generated name.
    */
   continue: (options?: BudgetsContinueOptionalParams) => Promise<void>;
-  getBudgets: (
-    name: string,
-    options?: BudgetsGetBudgetsOptionalParams,
-  ) => Promise<Widget[]>;
+  getBudgets: (name: string, options?: BudgetsGetBudgetsOptionalParams) => Promise<Widget[]>;
   /** Long-running resource create or replace operation template. */
   createOrReplace: (
     name: string,
@@ -37,8 +30,7 @@ export interface BudgetsOperations {
 
 function _getBudgets(context: SAPWidgetServiceContext) {
   return {
-    continue: (options?: BudgetsContinueOptionalParams) =>
-      $continue(context, options),
+    continue: (options?: BudgetsContinueOptionalParams) => $continue(context, options),
     getBudgets: (name: string, options?: BudgetsGetBudgetsOptionalParams) =>
       getBudgets(context, name, options),
     createOrReplace: (
@@ -49,9 +41,7 @@ function _getBudgets(context: SAPWidgetServiceContext) {
   };
 }
 
-export function _getBudgetsOperations(
-  context: SAPWidgetServiceContext,
-): BudgetsOperations {
+export function _getBudgetsOperations(context: SAPWidgetServiceContext): BudgetsOperations {
   return {
     ..._getBudgets(context),
   };

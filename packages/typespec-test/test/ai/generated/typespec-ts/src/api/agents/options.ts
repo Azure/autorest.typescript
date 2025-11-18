@@ -23,8 +23,7 @@ import {
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface AgentsListVectorStoreFileBatchFilesOptionalParams
-  extends OperationOptions {
+export interface AgentsListVectorStoreFileBatchFilesOptionalParams extends OperationOptions {
   /** Filter by file status. */
   filter?: VectorStoreFileStatusFilter;
   /** A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. */
@@ -38,16 +37,13 @@ export interface AgentsListVectorStoreFileBatchFilesOptionalParams
 }
 
 /** Optional parameters. */
-export interface AgentsCancelVectorStoreFileBatchOptionalParams
-  extends OperationOptions {}
+export interface AgentsCancelVectorStoreFileBatchOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface AgentsGetVectorStoreFileBatchOptionalParams
-  extends OperationOptions {}
+export interface AgentsGetVectorStoreFileBatchOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface AgentsCreateVectorStoreFileBatchOptionalParams
-  extends OperationOptions {
+export interface AgentsCreateVectorStoreFileBatchOptionalParams extends OperationOptions {
   /** List of file identifiers. */
   fileIds?: string[];
   /** List of Azure assets. */
@@ -57,16 +53,13 @@ export interface AgentsCreateVectorStoreFileBatchOptionalParams
 }
 
 /** Optional parameters. */
-export interface AgentsDeleteVectorStoreFileOptionalParams
-  extends OperationOptions {}
+export interface AgentsDeleteVectorStoreFileOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface AgentsGetVectorStoreFileOptionalParams
-  extends OperationOptions {}
+export interface AgentsGetVectorStoreFileOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface AgentsCreateVectorStoreFileOptionalParams
-  extends OperationOptions {
+export interface AgentsCreateVectorStoreFileOptionalParams extends OperationOptions {
   /** Identifier of the file. */
   fileId?: string;
   /** Azure asset ID. */
@@ -76,8 +69,7 @@ export interface AgentsCreateVectorStoreFileOptionalParams
 }
 
 /** Optional parameters. */
-export interface AgentsListVectorStoreFilesOptionalParams
-  extends OperationOptions {
+export interface AgentsListVectorStoreFilesOptionalParams extends OperationOptions {
   /** Filter by file status. */
   filter?: VectorStoreFileStatusFilter;
   /** A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. */
@@ -91,12 +83,10 @@ export interface AgentsListVectorStoreFilesOptionalParams
 }
 
 /** Optional parameters. */
-export interface AgentsDeleteVectorStoreOptionalParams
-  extends OperationOptions {}
+export interface AgentsDeleteVectorStoreOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface AgentsModifyVectorStoreOptionalParams
-  extends OperationOptions {
+export interface AgentsModifyVectorStoreOptionalParams extends OperationOptions {
   /** The name of the vector store. */
   name?: string | null;
   /** Details on when this vector store expires */
@@ -109,8 +99,7 @@ export interface AgentsModifyVectorStoreOptionalParams
 export interface AgentsGetVectorStoreOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface AgentsCreateVectorStoreOptionalParams
-  extends OperationOptions {
+export interface AgentsCreateVectorStoreOptionalParams extends OperationOptions {
   /** A list of file IDs that the vector store should use. Useful for tools like `file_search` that can access files. */
   fileIds?: string[];
   /** The name of the vector store. */
@@ -182,8 +171,7 @@ export interface AgentsGetRunStepOptionalParams extends OperationOptions {
 }
 
 /** Optional parameters. */
-export interface AgentsCreateThreadAndRunOptionalParams
-  extends OperationOptions {
+export interface AgentsCreateThreadAndRunOptionalParams extends OperationOptions {
   /** The details used to create the new thread. If no thread is provided, an empty one will be created. */
   thread?: AgentThreadCreationOptions;
   /** The overridden model that the agent should use to run the thread. */
@@ -240,8 +228,7 @@ export interface AgentsCreateThreadAndRunOptionalParams
 export interface AgentsCancelRunOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface AgentsSubmitToolOutputsToRunOptionalParams
-  extends OperationOptions {
+export interface AgentsSubmitToolOutputsToRunOptionalParams extends OperationOptions {
   /** If true, returns a stream of events that happen during the Run as server-sent events, terminating when the run enters a terminal state. */
   stream?: boolean | null;
 }

@@ -8,16 +8,12 @@ import { UserCreatedResponse } from "../../models/users/models.js";
 
 /** Interface representing a Users operations. */
 export interface UsersOperations {
-  create: (
-    user: User,
-    options?: UsersCreateOptionalParams,
-  ) => Promise<UserCreatedResponse>;
+  create: (user: User, options?: UsersCreateOptionalParams) => Promise<UserCreatedResponse>;
 }
 
 function _getUsers(context: TodoContext) {
   return {
-    create: (user: User, options?: UsersCreateOptionalParams) =>
-      create(context, user, options),
+    create: (user: User, options?: UsersCreateOptionalParams) => create(context, user, options),
   };
 }
 

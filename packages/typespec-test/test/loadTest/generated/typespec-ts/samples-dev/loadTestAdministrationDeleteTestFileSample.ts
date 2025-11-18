@@ -16,9 +16,7 @@ async function loadTestAdministrationDeleteTestFileSample(): Promise<void> {
   const client = createAzureLoadTestingClient(endpointParam, credential);
   const testId = "{Your testId}";
   const fileName = "{Your fileName}";
-  const result = await client
-    .path("/tests/{testId}/files/{fileName}", testId, fileName)
-    .delete();
+  const result = await client.path("/tests/{testId}/files/{fileName}", testId, fileName).delete();
   console.log(result);
 }
 

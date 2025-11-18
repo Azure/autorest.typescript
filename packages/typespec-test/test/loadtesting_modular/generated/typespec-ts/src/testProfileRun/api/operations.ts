@@ -47,10 +47,7 @@ export function _stopTestProfileRunSend(
     .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -71,11 +68,7 @@ export async function stopTestProfileRun(
   testProfileRunId: string,
   options: StopTestProfileRunOptionalParams = { requestOptions: {} },
 ): Promise<TestProfileRun> {
-  const result = await _stopTestProfileRunSend(
-    context,
-    testProfileRunId,
-    options,
-  );
+  const result = await _stopTestProfileRunSend(context, testProfileRunId, options);
   return _stopTestProfileRunDeserialize(result);
 }
 
@@ -118,10 +111,7 @@ export function _listTestProfileRunsSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -169,10 +159,7 @@ export function _getTestProfileRunSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -193,11 +180,7 @@ export async function getTestProfileRun(
   testProfileRunId: string,
   options: GetTestProfileRunOptionalParams = { requestOptions: {} },
 ): Promise<TestProfileRun> {
-  const result = await _getTestProfileRunSend(
-    context,
-    testProfileRunId,
-    options,
-  );
+  const result = await _getTestProfileRunSend(context, testProfileRunId, options);
   return _getTestProfileRunDeserialize(result);
 }
 
@@ -216,9 +199,7 @@ export function _deleteTestProfileRunSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  return context
-    .path(path)
-    .delete({ ...operationOptionsToRequestParameters(options) });
+  return context.path(path).delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _deleteTestProfileRunDeserialize(
@@ -238,11 +219,7 @@ export async function deleteTestProfileRun(
   testProfileRunId: string,
   options: DeleteTestProfileRunOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _deleteTestProfileRunSend(
-    context,
-    testProfileRunId,
-    options,
-  );
+  const result = await _deleteTestProfileRunSend(context, testProfileRunId, options);
   return _deleteTestProfileRunDeserialize(result);
 }
 
@@ -267,10 +244,7 @@ export function _createOrUpdateTestProfileRunSend(
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/merge-patch+json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: testProfileRunSerializer(body),
     });
 }
@@ -293,11 +267,6 @@ export async function createOrUpdateTestProfileRun(
   body: TestProfileRun,
   options: CreateOrUpdateTestProfileRunOptionalParams = { requestOptions: {} },
 ): Promise<TestProfileRun> {
-  const result = await _createOrUpdateTestProfileRunSend(
-    context,
-    testProfileRunId,
-    body,
-    options,
-  );
+  const result = await _createOrUpdateTestProfileRunSend(context, testProfileRunId, body, options);
   return _createOrUpdateTestProfileRunDeserialize(result);
 }

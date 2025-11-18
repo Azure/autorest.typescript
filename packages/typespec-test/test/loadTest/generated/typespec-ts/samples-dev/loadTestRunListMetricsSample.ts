@@ -2,9 +2,7 @@
 // Licensed under the MIT License.
 
 import { DefaultAzureCredential } from "@azure/identity";
-import createAzureLoadTestingClient, {
-  paginate,
-} from "@azure-rest/load-testing";
+import createAzureLoadTestingClient, { paginate } from "@azure-rest/load-testing";
 import "dotenv/config";
 
 /**

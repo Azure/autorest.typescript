@@ -62,10 +62,7 @@ export function _listByDataProductSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -91,13 +88,7 @@ export function listByDataProduct(
 ): PagedAsyncIterableIterator<DataType> {
   return buildPagedAsyncIterator(
     context,
-    () =>
-      _listByDataProductSend(
-        context,
-        resourceGroupName,
-        dataProductName,
-        options,
-      ),
+    () => _listByDataProductSend(context, resourceGroupName, dataProductName, options),
     _listByDataProductDeserialize,
     ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
@@ -110,9 +101,7 @@ export function _generateStorageContainerSasTokenSend(
   dataProductName: string,
   dataTypeName: string,
   body: ContainerSaS,
-  options: DataTypesGenerateStorageContainerSasTokenOptionalParams = {
-    requestOptions: {},
-  },
+  options: DataTypesGenerateStorageContainerSasTokenOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}/generateStorageContainerSasToken{?api%2Dversion}",
@@ -132,10 +121,7 @@ export function _generateStorageContainerSasTokenSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: containerSaSSerializer(body),
     });
 }
@@ -160,9 +146,7 @@ export async function generateStorageContainerSasToken(
   dataProductName: string,
   dataTypeName: string,
   body: ContainerSaS,
-  options: DataTypesGenerateStorageContainerSasTokenOptionalParams = {
-    requestOptions: {},
-  },
+  options: DataTypesGenerateStorageContainerSasTokenOptionalParams = { requestOptions: {} },
 ): Promise<ContainerSasToken> {
   const result = await _generateStorageContainerSasTokenSend(
     context,
@@ -205,9 +189,7 @@ export function _deleteDataSend(
     });
 }
 
-export async function _deleteDataDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _deleteDataDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["202", "204", "200", "201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -227,25 +209,13 @@ export function deleteData(
   body: Record<string, any>,
   options: DataTypesDeleteDataOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<void>, void> {
-  return getLongRunningPoller(
-    context,
-    _deleteDataDeserialize,
-    ["202", "204", "200", "201"],
-    {
-      updateIntervalInMs: options?.updateIntervalInMs,
-      abortSignal: options?.abortSignal,
-      getInitialResponse: () =>
-        _deleteDataSend(
-          context,
-          resourceGroupName,
-          dataProductName,
-          dataTypeName,
-          body,
-          options,
-        ),
-      resourceLocationConfig: "location",
-    },
-  ) as PollerLike<OperationState<void>, void>;
+  return getLongRunningPoller(context, _deleteDataDeserialize, ["202", "204", "200", "201"], {
+    updateIntervalInMs: options?.updateIntervalInMs,
+    abortSignal: options?.abortSignal,
+    getInitialResponse: () =>
+      _deleteDataSend(context, resourceGroupName, dataProductName, dataTypeName, body, options),
+    resourceLocationConfig: "location",
+  }) as PollerLike<OperationState<void>, void>;
 }
 
 export function _$deleteSend(
@@ -268,14 +238,10 @@ export function _$deleteSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  return context
-    .path(path)
-    .delete({ ...operationOptionsToRequestParameters(options) });
+  return context.path(path).delete({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _$deleteDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _$deleteDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["202", "204", "200", "201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -299,24 +265,13 @@ export function $delete(
   dataTypeName: string,
   options: DataTypesDeleteOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<void>, void> {
-  return getLongRunningPoller(
-    context,
-    _$deleteDeserialize,
-    ["202", "204", "200", "201"],
-    {
-      updateIntervalInMs: options?.updateIntervalInMs,
-      abortSignal: options?.abortSignal,
-      getInitialResponse: () =>
-        _$deleteSend(
-          context,
-          resourceGroupName,
-          dataProductName,
-          dataTypeName,
-          options,
-        ),
-      resourceLocationConfig: "location",
-    },
-  ) as PollerLike<OperationState<void>, void>;
+  return getLongRunningPoller(context, _$deleteDeserialize, ["202", "204", "200", "201"], {
+    updateIntervalInMs: options?.updateIntervalInMs,
+    abortSignal: options?.abortSignal,
+    getInitialResponse: () =>
+      _$deleteSend(context, resourceGroupName, dataProductName, dataTypeName, options),
+    resourceLocationConfig: "location",
+  }) as PollerLike<OperationState<void>, void>;
 }
 
 export function _updateSend(
@@ -345,17 +300,12 @@ export function _updateSend(
     .patch({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: dataTypeUpdateSerializer(properties),
     });
 }
 
-export async function _updateDeserialize(
-  result: PathUncheckedResponse,
-): Promise<DataType> {
+export async function _updateDeserialize(result: PathUncheckedResponse): Promise<DataType> {
   const expectedStatuses = ["200", "202", "201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -375,25 +325,13 @@ export function update(
   properties: DataTypeUpdate,
   options: DataTypesUpdateOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<DataType>, DataType> {
-  return getLongRunningPoller(
-    context,
-    _updateDeserialize,
-    ["200", "202", "201"],
-    {
-      updateIntervalInMs: options?.updateIntervalInMs,
-      abortSignal: options?.abortSignal,
-      getInitialResponse: () =>
-        _updateSend(
-          context,
-          resourceGroupName,
-          dataProductName,
-          dataTypeName,
-          properties,
-          options,
-        ),
-      resourceLocationConfig: "location",
-    },
-  ) as PollerLike<OperationState<DataType>, DataType>;
+  return getLongRunningPoller(context, _updateDeserialize, ["200", "202", "201"], {
+    updateIntervalInMs: options?.updateIntervalInMs,
+    abortSignal: options?.abortSignal,
+    getInitialResponse: () =>
+      _updateSend(context, resourceGroupName, dataProductName, dataTypeName, properties, options),
+    resourceLocationConfig: "location",
+  }) as PollerLike<OperationState<DataType>, DataType>;
 }
 
 export function _getSend(
@@ -420,16 +358,11 @@ export function _getSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _getDeserialize(
-  result: PathUncheckedResponse,
-): Promise<DataType> {
+export async function _getDeserialize(result: PathUncheckedResponse): Promise<DataType> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -448,13 +381,7 @@ export async function get(
   dataTypeName: string,
   options: DataTypesGetOptionalParams = { requestOptions: {} },
 ): Promise<DataType> {
-  const result = await _getSend(
-    context,
-    resourceGroupName,
-    dataProductName,
-    dataTypeName,
-    options,
-  );
+  const result = await _getSend(context, resourceGroupName, dataProductName, dataTypeName, options);
   return _getDeserialize(result);
 }
 
@@ -484,17 +411,12 @@ export function _createSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: dataTypeSerializer(resource),
     });
 }
 
-export async function _createDeserialize(
-  result: PathUncheckedResponse,
-): Promise<DataType> {
+export async function _createDeserialize(result: PathUncheckedResponse): Promise<DataType> {
   const expectedStatuses = ["200", "201", "202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -514,23 +436,11 @@ export function create(
   resource: DataType,
   options: DataTypesCreateOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<DataType>, DataType> {
-  return getLongRunningPoller(
-    context,
-    _createDeserialize,
-    ["200", "201", "202"],
-    {
-      updateIntervalInMs: options?.updateIntervalInMs,
-      abortSignal: options?.abortSignal,
-      getInitialResponse: () =>
-        _createSend(
-          context,
-          resourceGroupName,
-          dataProductName,
-          dataTypeName,
-          resource,
-          options,
-        ),
-      resourceLocationConfig: "azure-async-operation",
-    },
-  ) as PollerLike<OperationState<DataType>, DataType>;
+  return getLongRunningPoller(context, _createDeserialize, ["200", "201", "202"], {
+    updateIntervalInMs: options?.updateIntervalInMs,
+    abortSignal: options?.abortSignal,
+    getInitialResponse: () =>
+      _createSend(context, resourceGroupName, dataProductName, dataTypeName, resource, options),
+    resourceLocationConfig: "azure-async-operation",
+  }) as PollerLike<OperationState<DataType>, DataType>;
 }

@@ -15,10 +15,7 @@ import "dotenv/config";
 async function createJobSample(): Promise<void> {
   const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
-  const client = createHealthInsightsClinicalMatchingClient(
-    endpointParam,
-    credential,
-  );
+  const client = createHealthInsightsClinicalMatchingClient(endpointParam, credential);
   const initialResponse = await client
     .path("/trialmatcher/jobs")
     .post({
@@ -71,13 +68,7 @@ async function createJobSample(): Promise<void> {
                   recruitmentStatus: "unknownStatus",
                   conditions: ["{Your conditions}"],
                   sponsors: ["{Your sponsors}"],
-                  contacts: [
-                    {
-                      name: "{Your name}",
-                      email: "{Your email}",
-                      phone: "{Your phone}",
-                    },
-                  ],
+                  contacts: [{ name: "{Your name}", email: "{Your email}", phone: "{Your phone}" }],
                   facilities: [
                     {
                       name: "{Your name}",

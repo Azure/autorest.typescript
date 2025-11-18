@@ -89,9 +89,7 @@ export function receiveResultDeserializer(item: any): ReceiveResult {
   };
 }
 
-export function receiveDetailsArrayDeserializer(
-  result: Array<ReceiveDetails>,
-): any[] {
+export function receiveDetailsArrayDeserializer(result: Array<ReceiveDetails>): any[] {
   return result.map((item) => {
     return receiveDetailsDeserializer(item);
   });
@@ -137,18 +135,14 @@ export interface AcknowledgeResult {
 
 export function acknowledgeResultDeserializer(item: any): AcknowledgeResult {
   return {
-    failedLockTokens: failedLockTokenArrayDeserializer(
-      item["failedLockTokens"],
-    ),
+    failedLockTokens: failedLockTokenArrayDeserializer(item["failedLockTokens"]),
     succeededLockTokens: item["succeededLockTokens"].map((p: any) => {
       return p;
     }),
   };
 }
 
-export function failedLockTokenArrayDeserializer(
-  result: Array<FailedLockToken>,
-): any[] {
+export function failedLockTokenArrayDeserializer(result: Array<FailedLockToken>): any[] {
   return result.map((item) => {
     return failedLockTokenDeserializer(item);
   });
@@ -179,9 +173,7 @@ export interface ReleaseResult {
 
 export function releaseResultDeserializer(item: any): ReleaseResult {
   return {
-    failedLockTokens: failedLockTokenArrayDeserializer(
-      item["failedLockTokens"],
-    ),
+    failedLockTokens: failedLockTokenArrayDeserializer(item["failedLockTokens"]),
     succeededLockTokens: item["succeededLockTokens"].map((p: any) => {
       return p;
     }),
@@ -198,9 +190,7 @@ export interface RejectResult {
 
 export function rejectResultDeserializer(item: any): RejectResult {
   return {
-    failedLockTokens: failedLockTokenArrayDeserializer(
-      item["failedLockTokens"],
-    ),
+    failedLockTokens: failedLockTokenArrayDeserializer(item["failedLockTokens"]),
     succeededLockTokens: item["succeededLockTokens"].map((p: any) => {
       return p;
     }),
@@ -215,13 +205,9 @@ export interface RenewCloudEventLocksResult {
   succeededLockTokens: string[];
 }
 
-export function renewCloudEventLocksResultDeserializer(
-  item: any,
-): RenewCloudEventLocksResult {
+export function renewCloudEventLocksResultDeserializer(item: any): RenewCloudEventLocksResult {
   return {
-    failedLockTokens: failedLockTokenArrayDeserializer(
-      item["failedLockTokens"],
-    ),
+    failedLockTokens: failedLockTokenArrayDeserializer(item["failedLockTokens"]),
     succeededLockTokens: item["succeededLockTokens"].map((p: any) => {
       return p;
     }),

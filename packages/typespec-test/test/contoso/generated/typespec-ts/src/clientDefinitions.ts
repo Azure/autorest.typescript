@@ -47,8 +47,7 @@ export interface GetWidgetOperationStatus {
   get(
     options?: GetWidgetOperationStatusParameters,
   ): StreamableMethod<
-    | GetWidgetOperationStatus200Response
-    | GetWidgetOperationStatusDefaultResponse
+    GetWidgetOperationStatus200Response | GetWidgetOperationStatusDefaultResponse
   >;
 }
 

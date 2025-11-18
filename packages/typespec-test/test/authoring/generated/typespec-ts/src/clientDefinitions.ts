@@ -62,18 +62,12 @@ export interface CreateOrUpdate {
   patch(
     options: CreateOrUpdateParameters,
   ): StreamableMethod<
-    | CreateOrUpdate200Response
-    | CreateOrUpdate201Response
-    | CreateOrUpdateDefaultResponse
+    CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse
   >;
   /** Gets the details of a project. */
-  get(
-    options?: GetParameters,
-  ): StreamableMethod<Get200Response | GetDefaultResponse>;
+  get(options?: GetParameters): StreamableMethod<Get200Response | GetDefaultResponse>;
   /** Deletes a project. */
-  delete(
-    options?: DeleteParameters,
-  ): StreamableMethod<Delete202Response | DeleteDefaultResponse>;
+  delete(options?: DeleteParameters): StreamableMethod<Delete202Response | DeleteDefaultResponse>;
 }
 
 export interface ListProjects {
@@ -85,23 +79,17 @@ export interface ListProjects {
 
 export interface Export {
   /** Triggers a job to export a project's data. */
-  post(
-    options: ExportParameters,
-  ): StreamableMethod<Export202Response | ExportDefaultResponse>;
+  post(options: ExportParameters): StreamableMethod<Export202Response | ExportDefaultResponse>;
 }
 
 export interface Importx {
   /** Triggers a job to export a project's data. */
-  post(
-    options?: ImportxParameters,
-  ): StreamableMethod<Importx202Response | ImportxDefaultResponse>;
+  post(options?: ImportxParameters): StreamableMethod<Importx202Response | ImportxDefaultResponse>;
 }
 
 export interface Train {
   /** Triggers a training job for a project. */
-  post(
-    options: TrainParameters,
-  ): StreamableMethod<Train202Response | TrainDefaultResponse>;
+  post(options: TrainParameters): StreamableMethod<Train202Response | TrainDefaultResponse>;
 }
 
 export interface GetDeployment {
@@ -113,43 +101,33 @@ export interface GetDeployment {
   put(
     options: DeployProjectParameters,
   ): StreamableMethod<
-    | DeployProject200Response
-    | DeployProject201Response
-    | DeployProjectDefaultResponse
+    DeployProject200Response | DeployProject201Response | DeployProjectDefaultResponse
   >;
   /** Deletes a project deployment. */
   delete(
     options?: DeleteDeploymentParameters,
-  ): StreamableMethod<
-    DeleteDeployment202Response | DeleteDeploymentDefaultResponse
-  >;
+  ): StreamableMethod<DeleteDeployment202Response | DeleteDeploymentDefaultResponse>;
 }
 
 export interface ListDeployments {
   /** Lists the existing deployments. */
   get(
     options?: ListDeploymentsParameters,
-  ): StreamableMethod<
-    ListDeployments200Response | ListDeploymentsDefaultResponse
-  >;
+  ): StreamableMethod<ListDeployments200Response | ListDeploymentsDefaultResponse>;
 }
 
 export interface SwapDeployments {
   /** Swaps two existing deployments with each other. */
   post(
     options: SwapDeploymentsParameters,
-  ): StreamableMethod<
-    SwapDeployments202Response | SwapDeploymentsDefaultResponse
-  >;
+  ): StreamableMethod<SwapDeployments202Response | SwapDeploymentsDefaultResponse>;
 }
 
 export interface GetDeploymentStatus {
   /** Gets the status of an existing deployment job. */
   get(
     options?: GetDeploymentStatusParameters,
-  ): StreamableMethod<
-    GetDeploymentStatus200Response | GetDeploymentStatusDefaultResponse
-  >;
+  ): StreamableMethod<GetDeploymentStatus200Response | GetDeploymentStatusDefaultResponse>;
 }
 
 export interface GetSwapDeploymentsStatus {
@@ -157,8 +135,7 @@ export interface GetSwapDeploymentsStatus {
   get(
     options?: GetSwapDeploymentsStatusParameters,
   ): StreamableMethod<
-    | GetSwapDeploymentsStatus200Response
-    | GetSwapDeploymentsStatusDefaultResponse
+    GetSwapDeploymentsStatus200Response | GetSwapDeploymentsStatusDefaultResponse
   >;
 }
 
@@ -166,9 +143,7 @@ export interface GetSupportedLanguages {
   /** Gets the supported languages. */
   get(
     options?: GetSupportedLanguagesParameters,
-  ): StreamableMethod<
-    GetSupportedLanguages200Response | GetSupportedLanguagesDefaultResponse
-  >;
+  ): StreamableMethod<GetSupportedLanguages200Response | GetSupportedLanguagesDefaultResponse>;
 }
 
 export interface ListTrainingConfigVersions {
@@ -176,34 +151,21 @@ export interface ListTrainingConfigVersions {
   get(
     options?: ListTrainingConfigVersionsParameters,
   ): StreamableMethod<
-    | ListTrainingConfigVersions200Response
-    | ListTrainingConfigVersionsDefaultResponse
+    ListTrainingConfigVersions200Response | ListTrainingConfigVersionsDefaultResponse
   >;
 }
 
 export interface Routes {
   /** Resource for '/authoring/analyze-text/projects/\{projectName\}' has methods for the following verbs: patch, get, delete */
-  (
-    path: "/authoring/analyze-text/projects/{projectName}",
-    projectName: string,
-  ): CreateOrUpdate;
+  (path: "/authoring/analyze-text/projects/{projectName}", projectName: string): CreateOrUpdate;
   /** Resource for '/authoring/analyze-text/projects' has methods for the following verbs: get */
   (path: "/authoring/analyze-text/projects"): ListProjects;
   /** Resource for '/authoring/analyze-text/projects/\{projectName\}:export' has methods for the following verbs: post */
-  (
-    path: "/authoring/analyze-text/projects/{projectName}:export",
-    projectName: string,
-  ): Export;
+  (path: "/authoring/analyze-text/projects/{projectName}:export", projectName: string): Export;
   /** Resource for '/authoring/analyze-text/projects/\{projectName\}:importx' has methods for the following verbs: post */
-  (
-    path: "/authoring/analyze-text/projects/{projectName}:importx",
-    projectName: string,
-  ): Importx;
+  (path: "/authoring/analyze-text/projects/{projectName}:importx", projectName: string): Importx;
   /** Resource for '/authoring/analyze-text/projects/\{projectName\}:train' has methods for the following verbs: post */
-  (
-    path: "/authoring/analyze-text/projects/{projectName}:train",
-    projectName: string,
-  ): Train;
+  (path: "/authoring/analyze-text/projects/{projectName}:train", projectName: string): Train;
   /** Resource for '/authoring/analyze-text/projects/\{projectName\}/deployments/\{deploymentName\}' has methods for the following verbs: get, put, delete */
   (
     path: "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}",
@@ -235,9 +197,7 @@ export interface Routes {
     jobId: string,
   ): GetSwapDeploymentsStatus;
   /** Resource for '/authoring/analyze-text/projects/global/languages' has methods for the following verbs: get */
-  (
-    path: "/authoring/analyze-text/projects/global/languages",
-  ): GetSupportedLanguages;
+  (path: "/authoring/analyze-text/projects/global/languages"): GetSupportedLanguages;
   /** Resource for '/authoring/analyze-text/projects/global/training-config-versions' has methods for the following verbs: get */
   (
     path: "/authoring/analyze-text/projects/global/training-config-versions",

@@ -118,9 +118,7 @@ export function _listVectorStoreFileBatchFilesSend(
   context: Client,
   vectorStoreId: string,
   batchId: string,
-  options: AgentsListVectorStoreFileBatchFilesOptionalParams = {
-    requestOptions: {},
-  },
+  options: AgentsListVectorStoreFileBatchFilesOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/vector_stores/{vectorStoreId}/file_batches/{batchId}/files{?api%2Dversion,filter,limit,order,after,before}",
@@ -142,10 +140,7 @@ export function _listVectorStoreFileBatchFilesSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -165,16 +160,9 @@ export async function listVectorStoreFileBatchFiles(
   context: Client,
   vectorStoreId: string,
   batchId: string,
-  options: AgentsListVectorStoreFileBatchFilesOptionalParams = {
-    requestOptions: {},
-  },
+  options: AgentsListVectorStoreFileBatchFilesOptionalParams = { requestOptions: {} },
 ): Promise<OpenAIPageableListOfVectorStoreFile> {
-  const result = await _listVectorStoreFileBatchFilesSend(
-    context,
-    vectorStoreId,
-    batchId,
-    options,
-  );
+  const result = await _listVectorStoreFileBatchFilesSend(context, vectorStoreId, batchId, options);
   return _listVectorStoreFileBatchFilesDeserialize(result);
 }
 
@@ -182,9 +170,7 @@ export function _cancelVectorStoreFileBatchSend(
   context: Client,
   vectorStoreId: string,
   batchId: string,
-  options: AgentsCancelVectorStoreFileBatchOptionalParams = {
-    requestOptions: {},
-  },
+  options: AgentsCancelVectorStoreFileBatchOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/vector_stores/{vectorStoreId}/file_batches/{batchId}/cancel{?api%2Dversion}",
@@ -201,10 +187,7 @@ export function _cancelVectorStoreFileBatchSend(
     .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -224,16 +207,9 @@ export async function cancelVectorStoreFileBatch(
   context: Client,
   vectorStoreId: string,
   batchId: string,
-  options: AgentsCancelVectorStoreFileBatchOptionalParams = {
-    requestOptions: {},
-  },
+  options: AgentsCancelVectorStoreFileBatchOptionalParams = { requestOptions: {} },
 ): Promise<VectorStoreFileBatch> {
-  const result = await _cancelVectorStoreFileBatchSend(
-    context,
-    vectorStoreId,
-    batchId,
-    options,
-  );
+  const result = await _cancelVectorStoreFileBatchSend(context, vectorStoreId, batchId, options);
   return _cancelVectorStoreFileBatchDeserialize(result);
 }
 
@@ -258,10 +234,7 @@ export function _getVectorStoreFileBatchSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -283,21 +256,14 @@ export async function getVectorStoreFileBatch(
   batchId: string,
   options: AgentsGetVectorStoreFileBatchOptionalParams = { requestOptions: {} },
 ): Promise<VectorStoreFileBatch> {
-  const result = await _getVectorStoreFileBatchSend(
-    context,
-    vectorStoreId,
-    batchId,
-    options,
-  );
+  const result = await _getVectorStoreFileBatchSend(context, vectorStoreId, batchId, options);
   return _getVectorStoreFileBatchDeserialize(result);
 }
 
 export function _createVectorStoreFileBatchSend(
   context: Client,
   vectorStoreId: string,
-  options: AgentsCreateVectorStoreFileBatchOptionalParams = {
-    requestOptions: {},
-  },
+  options: AgentsCreateVectorStoreFileBatchOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/vector_stores/{vectorStoreId}/file_batches{?api%2Dversion}",
@@ -324,9 +290,7 @@ export function _createVectorStoreFileBatchSend(
         : vectorStoreDataSourceArraySerializer(options?.dataSources),
       chunking_strategy: !options?.chunkingStrategy
         ? options?.chunkingStrategy
-        : vectorStoreChunkingStrategyRequestUnionSerializer(
-            options?.chunkingStrategy,
-          ),
+        : vectorStoreChunkingStrategyRequestUnionSerializer(options?.chunkingStrategy),
     },
   });
 }
@@ -346,15 +310,9 @@ export async function _createVectorStoreFileBatchDeserialize(
 export async function createVectorStoreFileBatch(
   context: Client,
   vectorStoreId: string,
-  options: AgentsCreateVectorStoreFileBatchOptionalParams = {
-    requestOptions: {},
-  },
+  options: AgentsCreateVectorStoreFileBatchOptionalParams = { requestOptions: {} },
 ): Promise<VectorStoreFileBatch> {
-  const result = await _createVectorStoreFileBatchSend(
-    context,
-    vectorStoreId,
-    options,
-  );
+  const result = await _createVectorStoreFileBatchSend(context, vectorStoreId, options);
   return _createVectorStoreFileBatchDeserialize(result);
 }
 
@@ -379,10 +337,7 @@ export function _deleteVectorStoreFileSend(
     .path(path)
     .delete({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -407,12 +362,7 @@ export async function deleteVectorStoreFile(
   fileId: string,
   options: AgentsDeleteVectorStoreFileOptionalParams = { requestOptions: {} },
 ): Promise<VectorStoreFileDeletionStatus> {
-  const result = await _deleteVectorStoreFileSend(
-    context,
-    vectorStoreId,
-    fileId,
-    options,
-  );
+  const result = await _deleteVectorStoreFileSend(context, vectorStoreId, fileId, options);
   return _deleteVectorStoreFileDeserialize(result);
 }
 
@@ -437,10 +387,7 @@ export function _getVectorStoreFileSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -462,12 +409,7 @@ export async function getVectorStoreFile(
   fileId: string,
   options: AgentsGetVectorStoreFileOptionalParams = { requestOptions: {} },
 ): Promise<VectorStoreFile> {
-  const result = await _getVectorStoreFileSend(
-    context,
-    vectorStoreId,
-    fileId,
-    options,
-  );
+  const result = await _getVectorStoreFileSend(context, vectorStoreId, fileId, options);
   return _getVectorStoreFileDeserialize(result);
 }
 
@@ -491,10 +433,7 @@ export function _createVectorStoreFileSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: {
         file_id: options?.fileId,
         data_sources: !options?.dataSources
@@ -502,9 +441,7 @@ export function _createVectorStoreFileSend(
           : vectorStoreDataSourceArraySerializer(options?.dataSources),
         chunking_strategy: !options?.chunkingStrategy
           ? options?.chunkingStrategy
-          : vectorStoreChunkingStrategyRequestUnionSerializer(
-              options?.chunkingStrategy,
-            ),
+          : vectorStoreChunkingStrategyRequestUnionSerializer(options?.chunkingStrategy),
       },
     });
 }
@@ -526,11 +463,7 @@ export async function createVectorStoreFile(
   vectorStoreId: string,
   options: AgentsCreateVectorStoreFileOptionalParams = { requestOptions: {} },
 ): Promise<VectorStoreFile> {
-  const result = await _createVectorStoreFileSend(
-    context,
-    vectorStoreId,
-    options,
-  );
+  const result = await _createVectorStoreFileSend(context, vectorStoreId, options);
   return _createVectorStoreFileDeserialize(result);
 }
 
@@ -558,10 +491,7 @@ export function _listVectorStoreFilesSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -582,11 +512,7 @@ export async function listVectorStoreFiles(
   vectorStoreId: string,
   options: AgentsListVectorStoreFilesOptionalParams = { requestOptions: {} },
 ): Promise<OpenAIPageableListOfVectorStoreFile> {
-  const result = await _listVectorStoreFilesSend(
-    context,
-    vectorStoreId,
-    options,
-  );
+  const result = await _listVectorStoreFilesSend(context, vectorStoreId, options);
   return _listVectorStoreFilesDeserialize(result);
 }
 
@@ -609,10 +535,7 @@ export function _deleteVectorStoreSend(
     .path(path)
     .delete({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -657,10 +580,7 @@ export function _modifyVectorStoreSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: {
         name: options?.name,
         expires_after: !options?.expiresAfter
@@ -711,10 +631,7 @@ export function _getVectorStoreSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -771,9 +688,7 @@ export function _createVectorStoreSend(
         : vectorStoreExpirationPolicySerializer(options?.expiresAfter),
       chunking_strategy: !options?.chunkingStrategy
         ? options?.chunkingStrategy
-        : vectorStoreChunkingStrategyRequestUnionSerializer(
-            options?.chunkingStrategy,
-          ),
+        : vectorStoreChunkingStrategyRequestUnionSerializer(options?.chunkingStrategy),
       metadata: options?.metadata,
     },
   });
@@ -820,10 +735,7 @@ export function _listVectorStoresSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -866,10 +778,7 @@ export function _getFileContentSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/octet-stream",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/octet-stream", ...options.requestOptions?.headers },
     });
 }
 
@@ -913,16 +822,11 @@ export function _getFileSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _getFileDeserialize(
-  result: PathUncheckedResponse,
-): Promise<OpenAIFile> {
+export async function _getFileDeserialize(result: PathUncheckedResponse): Promise<OpenAIFile> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -960,10 +864,7 @@ export function _deleteFileSend(
     .path(path)
     .delete({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -1011,17 +912,12 @@ export function _uploadFileSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "multipart/form-data",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: _uploadFileRequestSerializer(body),
     });
 }
 
-export async function _uploadFileDeserialize(
-  result: PathUncheckedResponse,
-): Promise<OpenAIFile> {
+export async function _uploadFileDeserialize(result: PathUncheckedResponse): Promise<OpenAIFile> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -1062,10 +958,7 @@ export function _listFilesSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -1119,10 +1012,7 @@ export function _listRunStepsSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -1176,16 +1066,11 @@ export function _getRunStepSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _getRunStepDeserialize(
-  result: PathUncheckedResponse,
-): Promise<RunStep> {
+export async function _getRunStepDeserialize(result: PathUncheckedResponse): Promise<RunStep> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -1202,13 +1087,7 @@ export async function getRunStep(
   stepId: string,
   options: AgentsGetRunStepOptionalParams = { requestOptions: {} },
 ): Promise<RunStep> {
-  const result = await _getRunStepSend(
-    context,
-    threadId,
-    runId,
-    stepId,
-    options,
-  );
+  const result = await _getRunStepSend(context, threadId, runId, stepId, options);
   return _getRunStepDeserialize(result);
 }
 
@@ -1231,10 +1110,7 @@ export function _createThreadAndRunSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: {
         assistant_id: assistantId,
         thread: !options?.thread
@@ -1310,16 +1186,11 @@ export function _cancelRunSend(
     .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _cancelRunDeserialize(
-  result: PathUncheckedResponse,
-): Promise<ThreadRun> {
+export async function _cancelRunDeserialize(result: PathUncheckedResponse): Promise<ThreadRun> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -1362,14 +1233,8 @@ export function _submitToolOutputsToRunSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
-      body: {
-        tool_outputs: toolOutputArraySerializer(toolOutputs),
-        stream: options?.stream,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+      body: { tool_outputs: toolOutputArraySerializer(toolOutputs), stream: options?.stream },
     });
 }
 
@@ -1392,13 +1257,7 @@ export async function submitToolOutputsToRun(
   toolOutputs: ToolOutput[],
   options: AgentsSubmitToolOutputsToRunOptionalParams = { requestOptions: {} },
 ): Promise<ThreadRun> {
-  const result = await _submitToolOutputsToRunSend(
-    context,
-    threadId,
-    runId,
-    toolOutputs,
-    options,
-  );
+  const result = await _submitToolOutputsToRunSend(context, threadId, runId, toolOutputs, options);
   return _submitToolOutputsToRunDeserialize(result);
 }
 
@@ -1424,17 +1283,12 @@ export function _updateRunSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: { metadata: options?.metadata },
     });
 }
 
-export async function _updateRunDeserialize(
-  result: PathUncheckedResponse,
-): Promise<ThreadRun> {
+export async function _updateRunDeserialize(result: PathUncheckedResponse): Promise<ThreadRun> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -1475,16 +1329,11 @@ export function _getRunSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _getRunDeserialize(
-  result: PathUncheckedResponse,
-): Promise<ThreadRun> {
+export async function _getRunDeserialize(result: PathUncheckedResponse): Promise<ThreadRun> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -1527,10 +1376,7 @@ export function _listRunsSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -1581,10 +1427,7 @@ export function _createRunSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: {
         assistant_id: assistantId,
         model: options?.model,
@@ -1616,9 +1459,7 @@ export function _createRunSend(
     });
 }
 
-export async function _createRunDeserialize(
-  result: PathUncheckedResponse,
-): Promise<ThreadRun> {
+export async function _createRunDeserialize(result: PathUncheckedResponse): Promise<ThreadRun> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -1660,10 +1501,7 @@ export function _updateMessageSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: { metadata: options?.metadata },
     });
 }
@@ -1686,12 +1524,7 @@ export async function updateMessage(
   messageId: string,
   options: AgentsUpdateMessageOptionalParams = { requestOptions: {} },
 ): Promise<ThreadMessage> {
-  const result = await _updateMessageSend(
-    context,
-    threadId,
-    messageId,
-    options,
-  );
+  const result = await _updateMessageSend(context, threadId, messageId, options);
   return _updateMessageDeserialize(result);
 }
 
@@ -1716,10 +1549,7 @@ export function _getMessageSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -1769,10 +1599,7 @@ export function _listMessagesSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -1819,10 +1646,7 @@ export function _createMessageSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: {
         role: role,
         content: content,
@@ -1853,13 +1677,7 @@ export async function createMessage(
   content: string,
   options: AgentsCreateMessageOptionalParams = { requestOptions: {} },
 ): Promise<ThreadMessage> {
-  const result = await _createMessageSend(
-    context,
-    threadId,
-    role,
-    content,
-    options,
-  );
+  const result = await _createMessageSend(context, threadId, role, content, options);
   return _createMessageDeserialize(result);
 }
 
@@ -1882,10 +1700,7 @@ export function _deleteThreadSend(
     .path(path)
     .delete({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -1930,10 +1745,7 @@ export function _updateThreadSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: {
         tool_resources: !options?.toolResources
           ? options?.toolResources
@@ -1983,16 +1795,11 @@ export function _getThreadSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _getThreadDeserialize(
-  result: PathUncheckedResponse,
-): Promise<AgentThread> {
+export async function _getThreadDeserialize(result: PathUncheckedResponse): Promise<AgentThread> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -2029,10 +1836,7 @@ export function _createThreadSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: {
         messages: !options?.messages
           ? options?.messages
@@ -2084,10 +1888,7 @@ export function _deleteAgentSend(
     .path(path)
     .delete({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -2132,10 +1933,7 @@ export function _updateAgentSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: {
         model: options?.model,
         name: options?.name,
@@ -2157,9 +1955,7 @@ export function _updateAgentSend(
     });
 }
 
-export async function _updateAgentDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Agent> {
+export async function _updateAgentDeserialize(result: PathUncheckedResponse): Promise<Agent> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -2197,16 +1993,11 @@ export function _getAgentSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _getAgentDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Agent> {
+export async function _getAgentDeserialize(result: PathUncheckedResponse): Promise<Agent> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -2246,10 +2037,7 @@ export function _listAgentsSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -2292,10 +2080,7 @@ export function _createAgentSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: {
         model: model,
         name: options?.name,
@@ -2317,9 +2102,7 @@ export function _createAgentSend(
     });
 }
 
-export async function _createAgentDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Agent> {
+export async function _createAgentDeserialize(result: PathUncheckedResponse): Promise<Agent> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);

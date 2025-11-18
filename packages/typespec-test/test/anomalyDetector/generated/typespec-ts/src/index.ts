@@ -61,8 +61,5 @@ export {
   UnivariateDetectUnivariateLastPointOptionalParams,
   UnivariateDetectUnivariateEntireSeriesOptionalParams,
 } from "./api/univariate/index.js";
-export {
-  MultivariateOperations,
-  UnivariateOperations,
-} from "./classic/index.js";
+export { MultivariateOperations, UnivariateOperations } from "./classic/index.js";
 export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };

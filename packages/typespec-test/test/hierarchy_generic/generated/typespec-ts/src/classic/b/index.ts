@@ -17,8 +17,7 @@ export interface BOperations {
 
 function _getB(context: FooContext) {
   return {
-    op1: (body: BA, options?: BOp1OptionalParams) =>
-      op1(context, body, options),
+    op1: (body: BA, options?: BOp1OptionalParams) => op1(context, body, options),
   };
 }
 

@@ -22,9 +22,7 @@ export function _pagedSchemaGroupDeserializer(item: any): _PagedSchemaGroup {
   };
 }
 
-export function schemaGroupArrayDeserializer(
-  result: Array<SchemaGroup>,
-): any[] {
+export function schemaGroupArrayDeserializer(result: Array<SchemaGroup>): any[] {
   return result.map((item) => {
     return schemaGroupDeserializer(item);
   });
@@ -57,9 +55,7 @@ export function _pagedVersionDeserializer(item: any): _PagedVersion {
   };
 }
 
-export function schemaVersionArrayDeserializer(
-  result: Array<SchemaVersion>,
-): any[] {
+export function schemaVersionArrayDeserializer(result: Array<SchemaVersion>): any[] {
   return result.map((item) => {
     return schemaVersionDeserializer(item);
   });

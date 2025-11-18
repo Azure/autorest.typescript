@@ -35,9 +35,7 @@ export function createTestProfileRun(
     userAgentOptions: { userAgentPrefix },
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
     credentials: {
-      scopes: options.credentials?.scopes ?? [
-        "https://cnt-prod.loadtesting.azure.com/.default",
-      ],
+      scopes: options.credentials?.scopes ?? ["https://cnt-prod.loadtesting.azure.com/.default"],
     },
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);

@@ -17,8 +17,7 @@ export interface ReleaseCloudEventsOptionalParams extends OperationOptions {
 }
 
 /** Optional parameters. */
-export interface AcknowledgeCloudEventsOptionalParams
-  extends OperationOptions {}
+export interface AcknowledgeCloudEventsOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface ReceiveCloudEventsOptionalParams extends OperationOptions {

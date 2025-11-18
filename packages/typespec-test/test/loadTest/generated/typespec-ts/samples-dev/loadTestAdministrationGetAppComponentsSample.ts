@@ -15,9 +15,7 @@ async function loadTestAdministrationGetAppComponentsSample(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const client = createAzureLoadTestingClient(endpointParam, credential);
   const testId = "{Your testId}";
-  const result = await client
-    .path("/tests/{testId}/app-components", testId)
-    .get();
+  const result = await client.path("/tests/{testId}/app-components", testId).get();
   console.log(result);
 }
 

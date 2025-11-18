@@ -18,11 +18,7 @@ import {
   SchemaOperationsGetSchemaByIdOptionalParams,
   SchemaOperationsListSchemaGroupsOptionalParams,
 } from "../../api/schemaOperations/options.js";
-import {
-  SchemaGroup,
-  SchemaVersion,
-  SchemaContentTypeValues,
-} from "../../models/models.js";
+import { SchemaGroup, SchemaVersion, SchemaContentTypeValues } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
 
 /** Interface representing a SchemaOperations operations. */
@@ -75,23 +71,14 @@ function _getSchemaOperations(context: SchemaRegistryContext) {
       content: Uint8Array,
       contentType: SchemaContentTypeValues,
       options?: SchemaOperationsRegisterSchemaOptionalParams,
-    ) =>
-      registerSchema(context, groupName, name, content, contentType, options),
+    ) => registerSchema(context, groupName, name, content, contentType, options),
     getSchemaIdByContent: (
       groupName: string,
       name: string,
       contentType: SchemaContentTypeValues,
       schemaContent: Uint8Array,
       options?: SchemaOperationsGetSchemaIdByContentOptionalParams,
-    ) =>
-      getSchemaIdByContent(
-        context,
-        groupName,
-        name,
-        contentType,
-        schemaContent,
-        options,
-      ),
+    ) => getSchemaIdByContent(context, groupName, name, contentType, schemaContent, options),
     getSchemaByVersion: (
       groupName: string,
       name: string,
@@ -103,13 +90,10 @@ function _getSchemaOperations(context: SchemaRegistryContext) {
       name: string,
       options?: SchemaOperationsListSchemaVersionsOptionalParams,
     ) => listSchemaVersions(context, groupName, name, options),
-    getSchemaById: (
-      id: string,
-      options?: SchemaOperationsGetSchemaByIdOptionalParams,
-    ) => getSchemaById(context, id, options),
-    listSchemaGroups: (
-      options?: SchemaOperationsListSchemaGroupsOptionalParams,
-    ) => listSchemaGroups(context, options),
+    getSchemaById: (id: string, options?: SchemaOperationsGetSchemaByIdOptionalParams) =>
+      getSchemaById(context, id, options),
+    listSchemaGroups: (options?: SchemaOperationsListSchemaGroupsOptionalParams) =>
+      listSchemaGroups(context, options),
   };
 }
 

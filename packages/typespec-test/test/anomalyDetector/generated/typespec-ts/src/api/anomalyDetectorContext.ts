@@ -59,8 +59,7 @@ export function createAnomalyDetector(
   options: AnomalyDetectorClientOptionalParams = {},
 ): AnomalyDetectorContext {
   const apiVersion = options.apiVersion ?? "v1.1";
-  const endpointUrl =
-    options.endpoint ?? `${endpointParam}/anomalydetector/${apiVersion}`;
+  const endpointUrl = options.endpoint ?? `${endpointParam}/anomalydetector/${apiVersion}`;
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentInfo = `azsdk-js-ai-anomaly-detector/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions
@@ -71,8 +70,7 @@ export function createAnomalyDetector(
     userAgentOptions: { userAgentPrefix },
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
     credentials: {
-      apiKeyHeaderName:
-        options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key",
+      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key",
     },
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);

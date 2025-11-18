@@ -393,8 +393,7 @@ export interface ListTrainingConfigVersionsDefaultHeaders {
   "x-ms-error-code"?: string;
 }
 
-export interface ListTrainingConfigVersionsDefaultResponse
-  extends HttpResponse {
+export interface ListTrainingConfigVersionsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
   headers: RawHttpHeaders & ListTrainingConfigVersionsDefaultHeaders;

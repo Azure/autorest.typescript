@@ -19,9 +19,8 @@ export interface CreateOrUpdateWidgetMediaTypesParam {
   contentType: "application/merge-patch+json";
 }
 
-export type CreateOrUpdateWidgetParameters =
-  CreateOrUpdateWidgetMediaTypesParam &
-    CreateOrUpdateWidgetBodyParam &
-    RequestParameters;
+export type CreateOrUpdateWidgetParameters = CreateOrUpdateWidgetMediaTypesParam &
+  CreateOrUpdateWidgetBodyParam &
+  RequestParameters;
 export type DeleteWidgetParameters = RequestParameters;
 export type ListWidgetsParameters = RequestParameters;

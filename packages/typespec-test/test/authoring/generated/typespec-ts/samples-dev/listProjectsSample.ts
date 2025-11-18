@@ -14,9 +14,7 @@ async function listProjectsSample(): Promise<void> {
   const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAuthoringClient(endpointParam, credential);
-  const initialResponse = await client
-    .path("/authoring/analyze-text/projects")
-    .get();
+  const initialResponse = await client.path("/authoring/analyze-text/projects").get();
   const pageData = paginate(client, initialResponse);
   const result = [];
   for await (const item of pageData) {

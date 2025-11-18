@@ -2,12 +2,7 @@
 // Licensed under the MIT License.
 
 import type { RequestParameters } from "@azure-rest/core-client";
-import type {
-  Project,
-  TrainingJobOptions,
-  Deployment,
-  SwapDeploymentsOptions,
-} from "./models.js";
+import type { Project, TrainingJobOptions, Deployment, SwapDeploymentsOptions } from "./models.js";
 
 /** The resource instance. */
 export type ProjectResourceMergeAndPatch = Partial<Project>;
@@ -54,8 +49,7 @@ export interface DeployProjectBodyParam {
   body: Deployment;
 }
 
-export type DeployProjectParameters = DeployProjectBodyParam &
-  RequestParameters;
+export type DeployProjectParameters = DeployProjectBodyParam & RequestParameters;
 export type DeleteDeploymentParameters = RequestParameters;
 export type ListDeploymentsParameters = RequestParameters;
 
@@ -64,8 +58,7 @@ export interface SwapDeploymentsBodyParam {
   body: SwapDeploymentsOptions;
 }
 
-export type SwapDeploymentsParameters = SwapDeploymentsBodyParam &
-  RequestParameters;
+export type SwapDeploymentsParameters = SwapDeploymentsBodyParam & RequestParameters;
 export type GetDeploymentStatusParameters = RequestParameters;
 export type GetSwapDeploymentsStatusParameters = RequestParameters;
 
@@ -82,8 +75,7 @@ export interface GetSupportedLanguagesQueryParam {
   queryParameters?: GetSupportedLanguagesQueryParamProperties;
 }
 
-export type GetSupportedLanguagesParameters = GetSupportedLanguagesQueryParam &
-  RequestParameters;
+export type GetSupportedLanguagesParameters = GetSupportedLanguagesQueryParam & RequestParameters;
 
 export interface ListTrainingConfigVersionsQueryParamProperties {
   /** The number of result items to return. */
@@ -98,5 +90,5 @@ export interface ListTrainingConfigVersionsQueryParam {
   queryParameters?: ListTrainingConfigVersionsQueryParamProperties;
 }
 
-export type ListTrainingConfigVersionsParameters =
-  ListTrainingConfigVersionsQueryParam & RequestParameters;
+export type ListTrainingConfigVersionsParameters = ListTrainingConfigVersionsQueryParam &
+  RequestParameters;

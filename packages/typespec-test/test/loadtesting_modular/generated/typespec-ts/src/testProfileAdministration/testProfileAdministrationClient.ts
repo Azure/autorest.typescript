@@ -75,11 +75,6 @@ export class TestProfileAdministrationClient {
     body: TestProfile,
     options: CreateOrUpdateTestProfileOptionalParams = { requestOptions: {} },
   ): Promise<TestProfile> {
-    return createOrUpdateTestProfile(
-      this._client,
-      testProfileId,
-      body,
-      options,
-    );
+    return createOrUpdateTestProfile(this._client, testProfileId, body, options);
   }
 }

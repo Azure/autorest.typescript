@@ -97,9 +97,7 @@ export function metaSerializer(item: Meta): any {
       : item["profile"].map((p: any) => {
           return p;
         }),
-    security: !item["security"]
-      ? item["security"]
-      : codingArraySerializer(item["security"]),
+    security: !item["security"] ? item["security"] : codingArraySerializer(item["security"]),
     tag: !item["tag"] ? item["tag"] : codingArraySerializer(item["tag"]),
   };
 }
@@ -114,9 +112,7 @@ export function metaDeserializer(item: any): Meta {
       : item["profile"].map((p: any) => {
           return p;
         }),
-    security: !item["security"]
-      ? item["security"]
-      : codingArrayDeserializer(item["security"]),
+    security: !item["security"] ? item["security"] : codingArrayDeserializer(item["security"]),
     tag: !item["tag"] ? item["tag"] : codingArrayDeserializer(item["tag"]),
   };
 }
@@ -151,9 +147,7 @@ export interface Coding extends Element {
 export function codingSerializer(item: Coding): any {
   return {
     id: item["id"],
-    extension: !item["extension"]
-      ? item["extension"]
-      : extensionArraySerializer(item["extension"]),
+    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
     system: item["system"],
     version: item["version"],
     code: item["code"],
@@ -188,12 +182,8 @@ export interface CodeableConcept extends Element {
 export function codeableConceptSerializer(item: CodeableConcept): any {
   return {
     id: item["id"],
-    extension: !item["extension"]
-      ? item["extension"]
-      : extensionArraySerializer(item["extension"]),
-    coding: !item["coding"]
-      ? item["coding"]
-      : codingArraySerializer(item["coding"]),
+    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
+    coding: !item["coding"] ? item["coding"] : codingArraySerializer(item["coding"]),
     text: item["text"],
   };
 }
@@ -204,9 +194,7 @@ export function codeableConceptDeserializer(item: any): CodeableConcept {
     extension: !item["extension"]
       ? item["extension"]
       : extensionArrayDeserializer(item["extension"]),
-    coding: !item["coding"]
-      ? item["coding"]
-      : codingArrayDeserializer(item["coding"]),
+    coding: !item["coding"] ? item["coding"] : codingArrayDeserializer(item["coding"]),
     text: item["text"],
   };
 }
@@ -225,9 +213,7 @@ export interface Element {
 export function elementSerializer(item: Element): any {
   return {
     id: item["id"],
-    extension: !item["extension"]
-      ? item["extension"]
-      : extensionArraySerializer(item["extension"]),
+    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
   };
 }
 
@@ -288,9 +274,7 @@ export interface Extension extends Element {
 export function extensionSerializer(item: Extension): any {
   return {
     id: item["id"],
-    extension: !item["extension"]
-      ? item["extension"]
-      : extensionArraySerializer(item["extension"]),
+    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
     url: item["url"],
     valueQuantity: !item["valueQuantity"]
       ? item["valueQuantity"]
@@ -301,20 +285,14 @@ export function extensionSerializer(item: Extension): any {
     valueString: item["valueString"],
     valueBoolean: item["valueBoolean"],
     valueInteger: item["valueInteger"],
-    valueRange: !item["valueRange"]
-      ? item["valueRange"]
-      : rangeSerializer(item["valueRange"]),
-    valueRatio: !item["valueRatio"]
-      ? item["valueRatio"]
-      : ratioSerializer(item["valueRatio"]),
+    valueRange: !item["valueRange"] ? item["valueRange"] : rangeSerializer(item["valueRange"]),
+    valueRatio: !item["valueRatio"] ? item["valueRatio"] : ratioSerializer(item["valueRatio"]),
     valueSampledData: !item["valueSampledData"]
       ? item["valueSampledData"]
       : sampledDataSerializer(item["valueSampledData"]),
     valueTime: item["valueTime"],
     valueDateTime: item["valueDateTime"],
-    valuePeriod: !item["valuePeriod"]
-      ? item["valuePeriod"]
-      : periodSerializer(item["valuePeriod"]),
+    valuePeriod: !item["valuePeriod"] ? item["valuePeriod"] : periodSerializer(item["valuePeriod"]),
     valueReference: !item["valueReference"]
       ? item["valueReference"]
       : referenceSerializer(item["valueReference"]),
@@ -337,12 +315,8 @@ export function extensionDeserializer(item: any): Extension {
     valueString: item["valueString"],
     valueBoolean: item["valueBoolean"],
     valueInteger: item["valueInteger"],
-    valueRange: !item["valueRange"]
-      ? item["valueRange"]
-      : rangeDeserializer(item["valueRange"]),
-    valueRatio: !item["valueRatio"]
-      ? item["valueRatio"]
-      : ratioDeserializer(item["valueRatio"]),
+    valueRange: !item["valueRange"] ? item["valueRange"] : rangeDeserializer(item["valueRange"]),
+    valueRatio: !item["valueRatio"] ? item["valueRatio"] : ratioDeserializer(item["valueRatio"]),
     valueSampledData: !item["valueSampledData"]
       ? item["valueSampledData"]
       : sampledDataDeserializer(item["valueSampledData"]),
@@ -377,9 +351,7 @@ export interface Quantity extends Element {
 export function quantitySerializer(item: Quantity): any {
   return {
     id: item["id"],
-    extension: !item["extension"]
-      ? item["extension"]
-      : extensionArraySerializer(item["extension"]),
+    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
     value: item["value"],
     comparator: item["comparator"],
     unit: item["unit"],
@@ -416,9 +388,7 @@ export interface Range extends Element {
 export function rangeSerializer(item: Range): any {
   return {
     id: item["id"],
-    extension: !item["extension"]
-      ? item["extension"]
-      : extensionArraySerializer(item["extension"]),
+    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
     low: !item["low"] ? item["low"] : quantitySerializer(item["low"]),
     high: !item["high"] ? item["high"] : quantitySerializer(item["high"]),
   };
@@ -449,12 +419,8 @@ export interface Ratio extends Element {
 export function ratioSerializer(item: Ratio): any {
   return {
     id: item["id"],
-    extension: !item["extension"]
-      ? item["extension"]
-      : extensionArraySerializer(item["extension"]),
-    numerator: !item["numerator"]
-      ? item["numerator"]
-      : quantitySerializer(item["numerator"]),
+    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
+    numerator: !item["numerator"] ? item["numerator"] : quantitySerializer(item["numerator"]),
     denominator: !item["denominator"]
       ? item["denominator"]
       : quantitySerializer(item["denominator"]),
@@ -467,9 +433,7 @@ export function ratioDeserializer(item: any): Ratio {
     extension: !item["extension"]
       ? item["extension"]
       : extensionArrayDeserializer(item["extension"]),
-    numerator: !item["numerator"]
-      ? item["numerator"]
-      : quantityDeserializer(item["numerator"]),
+    numerator: !item["numerator"] ? item["numerator"] : quantityDeserializer(item["numerator"]),
     denominator: !item["denominator"]
       ? item["denominator"]
       : quantityDeserializer(item["denominator"]),
@@ -500,9 +464,7 @@ export interface SampledData extends Element {
 export function sampledDataSerializer(item: SampledData): any {
   return {
     id: item["id"],
-    extension: !item["extension"]
-      ? item["extension"]
-      : extensionArraySerializer(item["extension"]),
+    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
     origin: quantitySerializer(item["origin"]),
     period: item["period"],
     factor: item["factor"],
@@ -543,9 +505,7 @@ export interface Period extends Element {
 export function periodSerializer(item: Period): any {
   return {
     id: item["id"],
-    extension: !item["extension"]
-      ? item["extension"]
-      : extensionArraySerializer(item["extension"]),
+    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
     start: item["start"],
     end: item["end"],
   };
@@ -580,14 +540,10 @@ export interface Reference extends Element {
 export function referenceSerializer(item: Reference): any {
   return {
     id: item["id"],
-    extension: !item["extension"]
-      ? item["extension"]
-      : extensionArraySerializer(item["extension"]),
+    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
     reference: item["reference"],
     type: item["type"],
-    identifier: !item["identifier"]
-      ? item["identifier"]
-      : identifierSerializer(item["identifier"]),
+    identifier: !item["identifier"] ? item["identifier"] : identifierSerializer(item["identifier"]),
     display: item["display"],
   };
 }
@@ -629,19 +585,13 @@ export interface Identifier extends Element {
 export function identifierSerializer(item: Identifier): any {
   return {
     id: item["id"],
-    extension: !item["extension"]
-      ? item["extension"]
-      : extensionArraySerializer(item["extension"]),
+    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
     use: item["use"],
-    type: !item["type"]
-      ? item["type"]
-      : codeableConceptSerializer(item["type"]),
+    type: !item["type"] ? item["type"] : codeableConceptSerializer(item["type"]),
     system: item["system"],
     value: item["value"],
     period: !item["period"] ? item["period"] : periodSerializer(item["period"]),
-    assigner: !item["assigner"]
-      ? item["assigner"]
-      : referenceSerializer(item["assigner"]),
+    assigner: !item["assigner"] ? item["assigner"] : referenceSerializer(item["assigner"]),
   };
 }
 
@@ -652,17 +602,11 @@ export function identifierDeserializer(item: any): Identifier {
       ? item["extension"]
       : extensionArrayDeserializer(item["extension"]),
     use: item["use"],
-    type: !item["type"]
-      ? item["type"]
-      : codeableConceptDeserializer(item["type"]),
+    type: !item["type"] ? item["type"] : codeableConceptDeserializer(item["type"]),
     system: item["system"],
     value: item["value"],
-    period: !item["period"]
-      ? item["period"]
-      : periodDeserializer(item["period"]),
-    assigner: !item["assigner"]
-      ? item["assigner"]
-      : referenceDeserializer(item["assigner"]),
+    period: !item["period"] ? item["period"] : periodDeserializer(item["period"]),
+    assigner: !item["assigner"] ? item["assigner"] : referenceDeserializer(item["assigner"]),
   };
 }
 
@@ -674,9 +618,7 @@ export interface Extendible {
 
 export function extendibleSerializer(item: Extendible): any {
   return {
-    extension: !item["extension"]
-      ? item["extension"]
-      : extensionArraySerializer(item["extension"]),
+    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
   };
 }
 
@@ -688,17 +630,13 @@ export function extendibleDeserializer(item: any): Extendible {
   };
 }
 
-export function codeableConceptArraySerializer(
-  result: Array<CodeableConcept>,
-): any[] {
+export function codeableConceptArraySerializer(result: Array<CodeableConcept>): any[] {
   return result.map((item) => {
     return codeableConceptSerializer(item);
   });
 }
 
-export function codeableConceptArrayDeserializer(
-  result: Array<CodeableConcept>,
-): any[] {
+export function codeableConceptArrayDeserializer(result: Array<CodeableConcept>): any[] {
   return result.map((item) => {
     return codeableConceptDeserializer(item);
   });
@@ -839,12 +777,8 @@ export function observationDeserializer(item: any): Observation {
       ? item["category"]
       : codeableConceptArrayDeserializer(item["category"]),
     code: codeableConceptDeserializer(item["code"]),
-    subject: !item["subject"]
-      ? item["subject"]
-      : referenceDeserializer(item["subject"]),
-    encounter: !item["encounter"]
-      ? item["encounter"]
-      : referenceDeserializer(item["encounter"]),
+    subject: !item["subject"] ? item["subject"] : referenceDeserializer(item["subject"]),
+    encounter: !item["encounter"] ? item["encounter"] : referenceDeserializer(item["encounter"]),
     effectiveDateTime: item["effectiveDateTime"],
     effectivePeriod: !item["effectivePeriod"]
       ? item["effectivePeriod"]
@@ -860,12 +794,8 @@ export function observationDeserializer(item: any): Observation {
     valueString: item["valueString"],
     valueBoolean: item["valueBoolean"],
     valueInteger: item["valueInteger"],
-    valueRange: !item["valueRange"]
-      ? item["valueRange"]
-      : rangeDeserializer(item["valueRange"]),
-    valueRatio: !item["valueRatio"]
-      ? item["valueRatio"]
-      : ratioDeserializer(item["valueRatio"]),
+    valueRange: !item["valueRange"] ? item["valueRange"] : rangeDeserializer(item["valueRange"]),
+    valueRatio: !item["valueRatio"] ? item["valueRatio"] : ratioDeserializer(item["valueRatio"]),
     valueSampledData: !item["valueSampledData"]
       ? item["valueSampledData"]
       : sampledDataDeserializer(item["valueSampledData"]),
@@ -880,15 +810,9 @@ export function observationDeserializer(item: any): Observation {
     interpretation: !item["interpretation"]
       ? item["interpretation"]
       : codeableConceptArrayDeserializer(item["interpretation"]),
-    note: !item["note"]
-      ? item["note"]
-      : annotationArrayDeserializer(item["note"]),
-    bodySite: !item["bodySite"]
-      ? item["bodySite"]
-      : codeableConceptDeserializer(item["bodySite"]),
-    method: !item["method"]
-      ? item["method"]
-      : codeableConceptDeserializer(item["method"]),
+    note: !item["note"] ? item["note"] : annotationArrayDeserializer(item["note"]),
+    bodySite: !item["bodySite"] ? item["bodySite"] : codeableConceptDeserializer(item["bodySite"]),
+    method: !item["method"] ? item["method"] : codeableConceptDeserializer(item["method"]),
     referenceRange: !item["referenceRange"]
       ? item["referenceRange"]
       : observationReferenceRangeArrayDeserializer(item["referenceRange"]),
@@ -988,15 +912,11 @@ export interface ObservationReferenceRange {
   text?: string;
 }
 
-export function observationReferenceRangeDeserializer(
-  item: any,
-): ObservationReferenceRange {
+export function observationReferenceRangeDeserializer(item: any): ObservationReferenceRange {
   return {
     low: !item["low"] ? item["low"] : quantityDeserializer(item["low"]),
     high: !item["high"] ? item["high"] : quantityDeserializer(item["high"]),
-    type: !item["type"]
-      ? item["type"]
-      : codeableConceptDeserializer(item["type"]),
+    type: !item["type"] ? item["type"] : codeableConceptDeserializer(item["type"]),
     appliesTo: !item["appliesTo"]
       ? item["appliesTo"]
       : codeableConceptArrayDeserializer(item["appliesTo"]),
@@ -1017,9 +937,7 @@ export function referenceArrayDeserializer(result: Array<Reference>): any[] {
   });
 }
 
-export function observationComponentArrayDeserializer(
-  result: Array<ObservationComponent>,
-): any[] {
+export function observationComponentArrayDeserializer(result: Array<ObservationComponent>): any[] {
   return result.map((item) => {
     return observationComponentDeserializer(item);
   });
@@ -1064,9 +982,7 @@ export interface ObservationComponent extends Element {
   referenceRange?: ObservationReferenceRange[];
 }
 
-export function observationComponentDeserializer(
-  item: any,
-): ObservationComponent {
+export function observationComponentDeserializer(item: any): ObservationComponent {
   return {
     id: item["id"],
     extension: !item["extension"]
@@ -1082,12 +998,8 @@ export function observationComponentDeserializer(
     valueString: item["valueString"],
     valueBoolean: item["valueBoolean"],
     valueInteger: item["valueInteger"],
-    valueRange: !item["valueRange"]
-      ? item["valueRange"]
-      : rangeDeserializer(item["valueRange"]),
-    valueRatio: !item["valueRatio"]
-      ? item["valueRatio"]
-      : ratioDeserializer(item["valueRatio"]),
+    valueRange: !item["valueRange"] ? item["valueRange"] : rangeDeserializer(item["valueRange"]),
+    valueRatio: !item["valueRatio"] ? item["valueRatio"] : ratioDeserializer(item["valueRatio"]),
     valueSampledData: !item["valueSampledData"]
       ? item["valueSampledData"]
       : sampledDataDeserializer(item["valueSampledData"]),
@@ -1163,9 +1075,7 @@ export function domainResourceDeserializer(item: any): DomainResource {
 /** Alias for DomainResourceUnion */
 export type DomainResourceUnion = Observation | DomainResource;
 
-export function domainResourceUnionDeserializer(
-  item: any,
-): DomainResourceUnion {
+export function domainResourceUnionDeserializer(item: any): DomainResourceUnion {
   switch (item.resourceType) {
     case "Observation":
       return observationDeserializer(item as Observation);

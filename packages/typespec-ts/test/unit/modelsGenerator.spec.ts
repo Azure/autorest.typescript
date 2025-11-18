@@ -145,11 +145,7 @@ describe("Input/output model type", () => {
         outputModelFile?.content!,
         `
         /** Alias for AOutput */
-        export type AOutput = null | {
-          code?: string;
-          message?: string;
-          propA?: AOutput;
-        };
+        export type AOutput = null | { code?: string; message?: string; propA?: AOutput };
         `
       );
       const parametersOutput = await emitParameterFromTypeSpec(tspDefinition);

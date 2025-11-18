@@ -16,9 +16,8 @@ export interface ConfidentialLedgerOperations {
 
 function _getConfidentialLedger(context: ParametrizedHostContext) {
   return {
-    listCollections: (
-      options?: ConfidentialLedgerListCollectionsOptionalParams,
-    ) => listCollections(context, options),
+    listCollections: (options?: ConfidentialLedgerListCollectionsOptionalParams) =>
+      listCollections(context, options),
   };
 }
 

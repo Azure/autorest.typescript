@@ -17,13 +17,7 @@ async function getEmbeddingsSample(): Promise<void> {
   const deploymentId = "{Your deploymentId}";
   const result = await client
     .path("/deployments/{deploymentId}/embeddings", deploymentId)
-    .post({
-      body: {
-        user: "{Your user}",
-        model: "{Your model}",
-        input: ["{Your input}"],
-      },
-    });
+    .post({ body: { user: "{Your user}", model: "{Your model}", input: ["{Your input}"] } });
   console.log(result);
 }
 

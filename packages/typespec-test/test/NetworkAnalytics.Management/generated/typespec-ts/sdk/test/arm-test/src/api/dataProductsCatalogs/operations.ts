@@ -28,9 +28,7 @@ import {
 
 export function _listBySubscriptionSend(
   context: Client,
-  options: DataProductsCatalogsListBySubscriptionOptionalParams = {
-    requestOptions: {},
-  },
+  options: DataProductsCatalogsListBySubscriptionOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs{?api%2Dversion}",
@@ -46,10 +44,7 @@ export function _listBySubscriptionSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -69,9 +64,7 @@ export async function _listBySubscriptionDeserialize(
 /** List data catalog by subscription. */
 export function listBySubscription(
   context: Client,
-  options: DataProductsCatalogsListBySubscriptionOptionalParams = {
-    requestOptions: {},
-  },
+  options: DataProductsCatalogsListBySubscriptionOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<DataProductsCatalog> {
   return buildPagedAsyncIterator(
     context,
@@ -85,9 +78,7 @@ export function listBySubscription(
 export function _listByResourceGroupSend(
   context: Client,
   resourceGroupName: string,
-  options: DataProductsCatalogsListByResourceGroupOptionalParams = {
-    requestOptions: {},
-  },
+  options: DataProductsCatalogsListByResourceGroupOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProductsCatalogs{?api%2Dversion}",
@@ -104,10 +95,7 @@ export function _listByResourceGroupSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -128,9 +116,7 @@ export async function _listByResourceGroupDeserialize(
 export function listByResourceGroup(
   context: Client,
   resourceGroupName: string,
-  options: DataProductsCatalogsListByResourceGroupOptionalParams = {
-    requestOptions: {},
-  },
+  options: DataProductsCatalogsListByResourceGroupOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<DataProductsCatalog> {
   return buildPagedAsyncIterator(
     context,
@@ -161,16 +147,11 @@ export function _getSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _getDeserialize(
-  result: PathUncheckedResponse,
-): Promise<DataProductsCatalog> {
+export async function _getDeserialize(result: PathUncheckedResponse): Promise<DataProductsCatalog> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);

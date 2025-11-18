@@ -13,8 +13,7 @@ export interface BECOperations {
 
 function _getBEC(context: FooContext) {
   return {
-    op1: (body: BEA, options?: BECOp1OptionalParams) =>
-      op1(context, body, options),
+    op1: (body: BEA, options?: BECOp1OptionalParams) => op1(context, body, options),
   };
 }
 

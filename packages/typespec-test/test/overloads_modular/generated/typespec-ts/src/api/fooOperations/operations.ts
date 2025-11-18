@@ -37,9 +37,7 @@ export function _getAvatarAsJpegSend(
     });
 }
 
-export async function _getAvatarAsJpegDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _getAvatarAsJpegDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -81,9 +79,7 @@ export function _getAvatarAsPngSend(
     });
 }
 
-export async function _getAvatarAsPngDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _getAvatarAsPngDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);

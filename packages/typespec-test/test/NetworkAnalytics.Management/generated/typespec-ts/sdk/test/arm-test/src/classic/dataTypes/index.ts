@@ -20,17 +20,9 @@ import {
   DataTypesGetOptionalParams,
   DataTypesCreateOptionalParams,
 } from "../../api/dataTypes/options.js";
-import {
-  DataType,
-  DataTypeUpdate,
-  ContainerSaS,
-  ContainerSasToken,
-} from "../../models/models.js";
+import { DataType, DataTypeUpdate, ContainerSaS, ContainerSasToken } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
-import {
-  SimplePollerLike,
-  getSimplePoller,
-} from "../../static-helpers/simplePollerHelpers.js";
+import { SimplePollerLike, getSimplePoller } from "../../static-helpers/simplePollerHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
 /** Interface representing a DataTypes operations. */
@@ -162,8 +154,7 @@ function _getDataTypes(context: NetworkAnalyticsApiContext) {
       resourceGroupName: string,
       dataProductName: string,
       options?: DataTypesListByDataProductOptionalParams,
-    ) =>
-      listByDataProduct(context, resourceGroupName, dataProductName, options),
+    ) => listByDataProduct(context, resourceGroupName, dataProductName, options),
     generateStorageContainerSasToken: (
       resourceGroupName: string,
       dataProductName: string,
@@ -185,15 +176,7 @@ function _getDataTypes(context: NetworkAnalyticsApiContext) {
       dataTypeName: string,
       body: Record<string, any>,
       options?: DataTypesDeleteDataOptionalParams,
-    ) =>
-      deleteData(
-        context,
-        resourceGroupName,
-        dataProductName,
-        dataTypeName,
-        body,
-        options,
-      ),
+    ) => deleteData(context, resourceGroupName, dataProductName, dataTypeName, body, options),
     beginDeleteData: async (
       resourceGroupName: string,
       dataProductName: string,
@@ -233,27 +216,14 @@ function _getDataTypes(context: NetworkAnalyticsApiContext) {
       dataProductName: string,
       dataTypeName: string,
       options?: DataTypesDeleteOptionalParams,
-    ) =>
-      $delete(
-        context,
-        resourceGroupName,
-        dataProductName,
-        dataTypeName,
-        options,
-      ),
+    ) => $delete(context, resourceGroupName, dataProductName, dataTypeName, options),
     beginDelete: async (
       resourceGroupName: string,
       dataProductName: string,
       dataTypeName: string,
       options?: DataTypesDeleteOptionalParams,
     ) => {
-      const poller = $delete(
-        context,
-        resourceGroupName,
-        dataProductName,
-        dataTypeName,
-        options,
-      );
+      const poller = $delete(context, resourceGroupName, dataProductName, dataTypeName, options);
       await poller.submitted();
       return getSimplePoller(poller);
     },
@@ -263,13 +233,7 @@ function _getDataTypes(context: NetworkAnalyticsApiContext) {
       dataTypeName: string,
       options?: DataTypesDeleteOptionalParams,
     ) => {
-      return await $delete(
-        context,
-        resourceGroupName,
-        dataProductName,
-        dataTypeName,
-        options,
-      );
+      return await $delete(context, resourceGroupName, dataProductName, dataTypeName, options);
     },
     update: (
       resourceGroupName: string,
@@ -277,15 +241,7 @@ function _getDataTypes(context: NetworkAnalyticsApiContext) {
       dataTypeName: string,
       properties: DataTypeUpdate,
       options?: DataTypesUpdateOptionalParams,
-    ) =>
-      update(
-        context,
-        resourceGroupName,
-        dataProductName,
-        dataTypeName,
-        properties,
-        options,
-      ),
+    ) => update(context, resourceGroupName, dataProductName, dataTypeName, properties, options),
     beginUpdate: async (
       resourceGroupName: string,
       dataProductName: string,
@@ -325,23 +281,14 @@ function _getDataTypes(context: NetworkAnalyticsApiContext) {
       dataProductName: string,
       dataTypeName: string,
       options?: DataTypesGetOptionalParams,
-    ) =>
-      get(context, resourceGroupName, dataProductName, dataTypeName, options),
+    ) => get(context, resourceGroupName, dataProductName, dataTypeName, options),
     create: (
       resourceGroupName: string,
       dataProductName: string,
       dataTypeName: string,
       resource: DataType,
       options?: DataTypesCreateOptionalParams,
-    ) =>
-      create(
-        context,
-        resourceGroupName,
-        dataProductName,
-        dataTypeName,
-        resource,
-        options,
-      ),
+    ) => create(context, resourceGroupName, dataProductName, dataTypeName, resource, options),
     beginCreate: async (
       resourceGroupName: string,
       dataProductName: string,
@@ -379,9 +326,7 @@ function _getDataTypes(context: NetworkAnalyticsApiContext) {
   };
 }
 
-export function _getDataTypesOperations(
-  context: NetworkAnalyticsApiContext,
-): DataTypesOperations {
+export function _getDataTypesOperations(context: NetworkAnalyticsApiContext): DataTypesOperations {
   return {
     ..._getDataTypes(context),
   };

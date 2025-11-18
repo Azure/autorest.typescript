@@ -305,11 +305,7 @@ export type ClinicalTrialRecruitmentStatus =
 /** The patient's sex. */
 export type PatientInfoSex = "female" | "male" | "unspecified";
 /** The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document). */
-export type DocumentType =
-  | "note"
-  | "fhirBundle"
-  | "dicom"
-  | "genomicSequencing";
+export type DocumentType = "note" | "fhirBundle" | "dicom" | "genomicSequencing";
 /** The type of the clinical document. */
 export type ClinicalDocumentType =
   | "consultation"

@@ -102,14 +102,12 @@ function _getMultivariate(context: AnomalyDetectorContext) {
       modelId: string,
       options: MultivariateMultivariateLastDetectionOptions,
       optionalParams?: MultivariateDetectMultivariateLastAnomalyOptionalParams,
-    ) =>
-      detectMultivariateLastAnomaly(context, modelId, options, optionalParams),
+    ) => detectMultivariateLastAnomaly(context, modelId, options, optionalParams),
     detectMultivariateBatchAnomaly: (
       modelId: string,
       options: MultivariateMultivariateBatchDetectionOptions,
       optionalParams?: MultivariateDetectMultivariateBatchAnomalyOptionalParams,
-    ) =>
-      detectMultivariateBatchAnomaly(context, modelId, options, optionalParams),
+    ) => detectMultivariateBatchAnomaly(context, modelId, options, optionalParams),
     getMultivariateModel: (
       modelId: string,
       options?: MultivariateGetMultivariateModelOptionalParams,
@@ -118,9 +116,8 @@ function _getMultivariate(context: AnomalyDetectorContext) {
       modelId: string,
       options?: MultivariateDeleteMultivariateModelOptionalParams,
     ) => deleteMultivariateModel(context, modelId, options),
-    listMultivariateModels: (
-      options?: MultivariateListMultivariateModelsOptionalParams,
-    ) => listMultivariateModels(context, options),
+    listMultivariateModels: (options?: MultivariateListMultivariateModelsOptionalParams) =>
+      listMultivariateModels(context, options),
     trainMultivariateModel: (
       modelInfo: MultivariateModelInfo,
       options?: MultivariateTrainMultivariateModelOptionalParams,

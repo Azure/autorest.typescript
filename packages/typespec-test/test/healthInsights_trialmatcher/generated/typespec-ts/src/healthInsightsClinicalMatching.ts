@@ -8,8 +8,7 @@ import type { KeyCredential } from "@azure/core-auth";
 import type { HealthInsightsClinicalMatchingClient } from "./clientDefinitions.js";
 
 /** The optional parameters for the client */
-export interface HealthInsightsClinicalMatchingClientOptions
-  extends ClientOptions {
+export interface HealthInsightsClinicalMatchingClientOptions extends ClientOptions {
   /** The api version option of the client */
   apiVersion?: string;
 }
@@ -43,8 +42,7 @@ export default function createClient(
       logger: options.loggingOptions?.logger ?? logger.info,
     },
     credentials: {
-      apiKeyHeaderName:
-        options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key",
+      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key",
     },
   };
   const client = getClient(

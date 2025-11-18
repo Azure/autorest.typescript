@@ -2,10 +2,7 @@
 // Licensed under the MIT License.
 
 import { AIProjectContext as Client } from "../index.js";
-import {
-  GetAppInsightsResponse,
-  getAppInsightsResponseDeserializer,
-} from "../../models/models.js";
+import { GetAppInsightsResponse, getAppInsightsResponseDeserializer } from "../../models/models.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import { TelemetryGetAppInsightsOptionalParams } from "./options.js";
 import {
@@ -34,10 +31,7 @@ export function _getAppInsightsSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -58,10 +52,6 @@ export async function getAppInsights(
   appInsightsResourceUrl: string,
   options: TelemetryGetAppInsightsOptionalParams = { requestOptions: {} },
 ): Promise<GetAppInsightsResponse> {
-  const result = await _getAppInsightsSend(
-    context,
-    appInsightsResourceUrl,
-    options,
-  );
+  const result = await _getAppInsightsSend(context, appInsightsResourceUrl, options);
   return _getAppInsightsDeserialize(result);
 }
