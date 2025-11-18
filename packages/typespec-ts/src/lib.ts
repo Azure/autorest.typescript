@@ -60,6 +60,7 @@ export interface EmitterOptions {
   "enable-model-namespace"?: boolean;
   "hierarchy-client"?: boolean;
   "compatibility-mode"?: boolean;
+  "compatibility-lro"?: boolean;
   "experimental-extensible-enums"?: boolean;
   "clear-output-folder"?: boolean;
   "ignore-property-name-normalize"?: boolean;
@@ -280,6 +281,12 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       nullable: true,
       description:
         "Whether to affect the generation of the additional property feature for the Modular client. Defaults to `false`."
+    },
+    "compatibility-lro": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "[deprecated] Whether to generate the legacy LRO interface. When `true`, we will generate legacy beginXXX and beginXXXAndWait LRO methods."
     },
     "experimental-extensible-enums": {
       type: "boolean",

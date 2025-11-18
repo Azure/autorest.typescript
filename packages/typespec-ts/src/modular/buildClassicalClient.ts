@@ -34,6 +34,8 @@ import {
 import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
 import { useContext } from "../contextManager.js";
 import { refkey } from "../framework/refkey.js";
+import { SimplePollerHelpers } from "./static-helpers-metadata.js";
+import { AzurePollingDependencies } from "./external-dependencies.js";
 
 export function buildClassicalClient(
   dpgContext: SdkContext,
@@ -223,24 +225,69 @@ function generateMethod(
   context: SdkContext,
   clientType: string,
   method: [string[], SdkServiceMethod<SdkServiceOperation>]
-) {
-  const declarations = getOperationFunction(context, method, clientType);
-  const result: MethodDeclarationStructure = {
-    docs: declarations.docs,
-    name: declarations.propertyName ?? declarations.name ?? "FIXME",
+): MethodDeclarationStructure[] {
+  const res: MethodDeclarationStructure[] = [];
+  const declaration = getOperationFunction(context, method, clientType);
+  const methodName = declaration.propertyName ?? declaration.name ?? "FIXME";
+  const methodParams =
+    declaration.parameters?.filter((p) => p.name !== "context") ?? [];
+  const declarationRefKey = resolveReference(refkey(method[1], "api"));
+  const methodParamStr = [
+    "this._client",
+    ...methodParams.map((p) => p.name)
+  ].join(", ");
+
+  res.push({
+    docs: declaration.docs,
+    name: methodName,
     kind: StructureKind.Method,
-    returnType: declarations.returnType,
-    parameters: declarations.parameters?.filter((p) => p.name !== "context"),
-    statements: `return ${resolveReference(refkey(method[1], "api"))}(${[
-      "this._client",
-      ...[
-        declarations.parameters
-          ?.map((p) => p.name)
-          .filter((p) => p !== "context")
-      ]
-    ].join(",")})`
-  };
-  return result;
+    returnType: declaration.returnType,
+    parameters: methodParams,
+    statements: `return ${declarationRefKey}(${methodParamStr})`
+  });
+
+  // add LRO helper methods if applicable
+  if (context.rlcOptions?.compatibilityLro && declaration?.isLro) {
+    const operationStateReference = resolveReference(
+      AzurePollingDependencies.OperationState
+    );
+    const simplePollerLikeReference = resolveReference(
+      SimplePollerHelpers.SimplePollerLike
+    );
+    const getSimplePollerReference = resolveReference(
+      SimplePollerHelpers.getSimplePoller
+    );
+    const returnType = declaration?.lroFinalReturnType ?? "void";
+    const beginName = normalizeName(`begin_${methodName}`, NameType.Method);
+    const beginAndWaitName = normalizeName(
+      `${beginName}_andWait`,
+      NameType.Method
+    );
+    // add begin method
+    res.push({
+      isAsync: true,
+      docs: [`@deprecated use ${methodName} instead`],
+      name: beginName,
+      kind: StructureKind.Method,
+      returnType: `Promise<${simplePollerLikeReference}<${operationStateReference}<${returnType}>, ${returnType}>>`,
+      parameters: methodParams,
+      statements: `const poller = ${declarationRefKey}(${methodParamStr});
+                  await poller.submitted();
+                  return ${getSimplePollerReference}(poller);`
+    });
+    // add begin and wait method
+    res.push({
+      isAsync: true,
+      docs: [`@deprecated use ${methodName} instead`],
+      name: beginAndWaitName,
+      kind: StructureKind.Method,
+      returnType: `Promise<${returnType}>`,
+      parameters: methodParams,
+      statements: `return await ${declarationRefKey}(${methodParamStr});`
+    });
+  }
+
+  return res;
 }
 function buildClientOperationGroups(
   clientMap: [string[], SdkClientType<SdkServiceOperation>],
@@ -259,8 +306,8 @@ function buildClientOperationGroups(
     const layer = 0;
     if (prefixKey === "") {
       operations.forEach((op) => {
-        const method = generateMethod(dpgContext, clientType, [prefixes, op]);
-        clientClass.addMethod(method);
+        const methods = generateMethod(dpgContext, clientType, [prefixes, op]);
+        clientClass.addMethods(methods);
       });
     } else {
       // The `rawGroupName` is used to any places where we need normalized name twice so we need to keep the raw as PascalCase.

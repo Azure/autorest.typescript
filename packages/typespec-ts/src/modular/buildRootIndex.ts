@@ -10,7 +10,6 @@ import {
 } from "./static-helpers-metadata.js";
 import {
   SdkClientType,
-  SdkContext,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
 import { getModularClientOptions } from "../utils/clientUtils.js";
@@ -19,6 +18,8 @@ import { join } from "path/posix";
 import { useContext } from "../contextManager.js";
 import { reportDiagnostic } from "../lib.js";
 import { NoTarget } from "@typespec/compiler";
+import { isLroOnlyOperation } from "./helpers/operationHelpers.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function buildRootIndex(
   context: SdkContext,
@@ -55,6 +56,14 @@ export function buildRootIndex(
   }
 
   exportClassicalClient(client, rootIndexFile, subfolder ?? "");
+  exportSimplePollerLike(
+    context,
+    clientMap,
+    rootIndexFile,
+    project,
+    srcPath,
+    subfolder
+  );
   exportRestoreHelpers(
     rootIndexFile,
     project,
@@ -186,6 +195,41 @@ function addExportsToRootIndexFile(
       namedExports: newNamedExports
     });
   }
+}
+
+function exportSimplePollerLike(
+  context: SdkContext,
+  clientMap: [string[], SdkClientType<SdkServiceOperation>],
+  indexFile: SourceFile,
+  project: Project,
+  srcPath: string,
+  subfolder: string = "",
+  isTopLevel: boolean = false
+) {
+  const [_, client] = clientMap;
+
+  const methodMap = getMethodHierarchiesMap(context, client);
+  const hasLro = Array.from(methodMap.values()).some((operations) => {
+    return operations.some(isLroOnlyOperation);
+  });
+  if (!hasLro || context.rlcOptions?.compatibilityLro !== true) {
+    return;
+  }
+  const helperFile = project.getSourceFile(
+    `${srcPath}/${
+      subfolder && subfolder !== "" ? subfolder + "/" : ""
+    }static-helpers/simplePollerHelpers.ts`
+  );
+  if (!helperFile) {
+    return;
+  }
+  const moduleSpecifier = `./${
+    isTopLevel && subfolder && subfolder !== "" ? subfolder + "/" : ""
+  }static-helpers/simplePollerHelpers.js`;
+  indexFile.addExportDeclaration({
+    moduleSpecifier,
+    namedExports: ["SimplePollerLike"]
+  });
 }
 
 function exportRestoreHelpers(
@@ -381,6 +425,14 @@ export function buildSubClientIndexFile(
   }
 
   exportClassicalClient(client, subClientIndexFile, subfolder ?? "", true);
+  exportSimplePollerLike(
+    context,
+    clientMap,
+    subClientIndexFile,
+    project,
+    srcPath,
+    subfolder
+  );
   exportRestoreHelpers(
     subClientIndexFile,
     project,
