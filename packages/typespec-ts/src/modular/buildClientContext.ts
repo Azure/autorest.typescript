@@ -78,31 +78,59 @@ export function buildClientContext(
     getClientContextPath(clientMap, emitterOptions)
   );
 
+  // Get all client parameters (both required and optional) for the interface
+  const requiredInterfaceProperties = getClientParameters(client, dpgContext, {
+    onClientOnly: false,
+    requiredOnly: true,
+    apiVersionAsRequired: true
+  })
+    .filter((p) => {
+      const clientParamName = getClientParameterName(p);
+      return (
+        clientParamName !== "endpointParam" &&
+        clientParamName !== "credential"
+      );
+    })
+    .map((p) => {
+      return {
+        name: getClientParameterName(p),
+        type: getTypeExpression(dpgContext, p.type),
+        hasQuestionToken: false,
+        docs: getDocsWithKnownVersion(dpgContext, p)
+      };
+    });
+
+  // Collect names of required properties to avoid duplicates
+  const requiredPropertyNames = new Set(requiredInterfaceProperties.map(p => p.name));
+  
+  const optionalInterfaceProperties = getClientParameters(client, dpgContext, {
+    onClientOnly: false,
+    optionalOnly: true
+  })
+    .filter((p) => {
+      const clientParamName = getClientParameterName(p);
+      return (
+        clientParamName !== "endpointParam" &&
+        clientParamName !== "credential" &&
+        clientParamName !== "endpoint" &&
+        !requiredPropertyNames.has(clientParamName) // Avoid duplicating required properties
+      );
+    })
+    .map((p) => {
+      return {
+        name: getClientParameterName(p),
+        type: getTypeExpression(dpgContext, p.type),
+        hasQuestionToken: true,
+        docs: getDocsWithKnownVersion(dpgContext, p)
+      };
+    });
+
   clientContextFile.addInterface({
     isExported: true,
     name: `${rlcClientName}`,
     extends: [resolveReference(dependencies.Client)],
     docs: getDocsFromDescription(client.doc),
-    properties: getClientParameters(client, dpgContext, {
-      onClientOnly: false,
-      requiredOnly: true,
-      apiVersionAsRequired: true
-    })
-      .filter((p) => {
-        const clientParamName = getClientParameterName(p);
-        return (
-          clientParamName !== "endpointParam" &&
-          clientParamName !== "credential"
-        );
-      })
-      .map((p) => {
-        return {
-          name: getClientParameterName(p),
-          type: getTypeExpression(dpgContext, p.type),
-          hasQuestionToken: false,
-          docs: getDocsWithKnownVersion(dpgContext, p)
-        };
-      })
+    properties: [...requiredInterfaceProperties, ...optionalInterfaceProperties]
   });
 
   const propertiesInOptions = getClientParameters(client, dpgContext, {
@@ -262,13 +290,32 @@ export function buildClientContext(
       p.name !== "credential" &&
       p.name !== "options"
   );
-  if (contextRequiredParam.length) {
+  
+  // Collect names of required parameters to avoid duplicates
+  const requiredParamNames = new Set(contextRequiredParam.map(p => p.name));
+  
+  // Also include optional parameters from clientInitialization that should be passed through
+  const contextOptionalParams = getClientParameters(client, dpgContext, {
+    optionalOnly: true,
+    onClientOnly: false
+  }).filter((p) => {
+    const clientParamName = getClientParameterName(p);
+    return (
+      clientParamName !== "endpointParam" &&
+      clientParamName !== "credential" &&
+      clientParamName !== "endpoint" &&
+      !requiredParamNames.has(clientParamName) // Avoid duplicating required parameters
+    );
+  });
+  
+  const allContextParams = [
+    ...contextRequiredParam.map(p => p.name),
+    ...contextOptionalParams.map(p => `${getClientParameterName(p)}: options.${getClientParameterName(p)}`)
+  ];
+  
+  if (allContextParams.length) {
     factoryFunction.addStatements(
-      `return { ...clientContext, ${contextRequiredParam
-        .map((p) => {
-          return p.name;
-        })
-        .join(", ")}} as ${rlcClientName};`
+      `return { ...clientContext, ${allContextParams.join(", ")}} as ${rlcClientName};`
     );
   } else {
     factoryFunction.addStatements(`return clientContext;`);
