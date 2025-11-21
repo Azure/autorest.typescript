@@ -327,7 +327,7 @@ function prepareExampleParameters(
     result.push(credentialExampleValue);
   }
 
-  let subscriptionIdValue = `"00000000-0000-0000-0000-00000000000"`;
+  let subscriptionIdValue = `"00000000-0000-0000-0000-000000000000"`;
   // required parameters
   for (const param of method.operation.parameters) {
     if (
