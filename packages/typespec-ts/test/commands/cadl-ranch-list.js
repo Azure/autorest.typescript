@@ -345,6 +345,10 @@ export const azureRlcTsps = [
     inputPath: "azure/client-generator-core/override"
   },
   {
+    outputPath: "azure/client-generator-core/alternate-type",
+    inputPath: "azure/client-generator-core/alternate-type"
+  },
+  {
     outputPath: "azure/versioning/previewVersion",
     inputPath: "azure/versioning/previewVersion"
   },
@@ -895,6 +899,10 @@ export const azureModularTsps = [
   {
     outputPath: "azure/client-generator-core/override",
     inputPath: "azure/client-generator-core/override"
+  },
+  {
+    outputPath: "azure/client-generator-core/alternate-type",
+    inputPath: "azure/client-generator-core/alternate-type"
   },
   {
     outputPath: "azure/versioning/previewVersion",
