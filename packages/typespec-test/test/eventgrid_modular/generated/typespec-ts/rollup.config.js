@@ -20,8 +20,7 @@ function ignoreNiseSinonEval(warning) {
   return (
     warning.code === "EVAL" &&
     warning.id &&
-    (warning.id.includes("node_modules/nise") ||
-      warning.id.includes("node_modules/sinon")) === true
+    (warning.id.includes("node_modules/nise") || warning.id.includes("node_modules/sinon")) === true
   );
 }
 

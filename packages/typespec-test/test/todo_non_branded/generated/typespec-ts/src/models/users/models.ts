@@ -25,9 +25,7 @@ export interface UserCreatedResponse {
   token: string;
 }
 
-export function userCreatedResponseDeserializer(
-  item: any,
-): UserCreatedResponse {
+export function userCreatedResponseDeserializer(item: any): UserCreatedResponse {
   return {
     id: item["id"],
     username: item["username"],
@@ -54,9 +52,7 @@ export interface InvalidUserResponse extends ApiError {
   code: "invalid-user";
 }
 
-export function invalidUserResponseDeserializer(
-  item: any,
-): InvalidUserResponse {
+export function invalidUserResponseDeserializer(item: any): InvalidUserResponse {
   return {
     code: item["code"],
     message: item["message"],

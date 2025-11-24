@@ -14,18 +14,14 @@ async function dataProductsAddUserRoleMaximumSetGen(): Promise<void> {
   const credential = new DefaultAzureCredential();
   const subscriptionId = "00000000-0000-0000-0000-00000000000";
   const client = new NetworkAnalyticsApi(credential, subscriptionId);
-  const result = await client.dataProducts.addUserRole(
-    "aoiresourceGroupName",
-    "dataproduct01",
-    {
-      roleId: "00000000-0000-0000-0000-00000000000",
-      principalId: "00000000-0000-0000-0000-00000000000",
-      userName: "UserName",
-      dataTypeScope: ["scope"],
-      principalType: "User",
-      role: "Reader",
-    },
-  );
+  const result = await client.dataProducts.addUserRole("aoiresourceGroupName", "dataproduct01", {
+    roleId: "00000000-0000-0000-0000-00000000000",
+    principalId: "00000000-0000-0000-0000-00000000000",
+    userName: "UserName",
+    dataTypeScope: ["scope"],
+    principalType: "User",
+    role: "Reader",
+  });
   console.log(result);
 }
 

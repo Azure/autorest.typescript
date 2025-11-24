@@ -84,13 +84,9 @@ export interface UnivariateTimeSeriesPoint {
   value: number;
 }
 
-export function univariateTimeSeriesPointSerializer(
-  item: UnivariateTimeSeriesPoint,
-): any {
+export function univariateTimeSeriesPointSerializer(item: UnivariateTimeSeriesPoint): any {
   return {
-    timestamp: !item["timestamp"]
-      ? item["timestamp"]
-      : item["timestamp"].toISOString(),
+    timestamp: !item["timestamp"] ? item["timestamp"] : item["timestamp"].toISOString(),
     value: item["value"],
   };
 }
@@ -107,13 +103,7 @@ export type UnivariateTimeGranularity =
   | "microsecond"
   | "none";
 /** Type of UnivariateImputeMode */
-export type UnivariateImputeMode =
-  | "auto"
-  | "previous"
-  | "linear"
-  | "fixed"
-  | "zero"
-  | "notFill";
+export type UnivariateImputeMode = "auto" | "previous" | "linear" | "fixed" | "zero" | "notFill";
 
 /** Response of the entire anomaly detection. */
 export interface UnivariateUnivariateEntireDetectionResult {
