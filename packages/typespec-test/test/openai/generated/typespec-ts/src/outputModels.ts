@@ -295,18 +295,9 @@ export interface ImagePayloadOutput {
 /** Ratings for the intensity and risk level of harmful content. */
 export type ContentFilterSeverityOutput = "safe" | "low" | "medium" | "high";
 /** Representation of the manner in which a completions response concluded. */
-export type CompletionsFinishReasonOutput =
-  | "stop"
-  | "length"
-  | "content_filter"
-  | "function_call";
+export type CompletionsFinishReasonOutput = "stop" | "length" | "content_filter" | "function_call";
 /** A description of the intended purpose of a message within a chat completions interaction. */
-export type ChatRoleOutput =
-  | "system"
-  | "assistant"
-  | "user"
-  | "function"
-  | "tool";
+export type ChatRoleOutput = "system" | "assistant" | "user" | "function" | "tool";
 /** The state of a job or item. */
 export type AzureOpenAIOperationStateOutput =
   | "notRunning"

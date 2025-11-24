@@ -7,10 +7,7 @@ import { AbortSignalLike } from "@azure/abort-controller";
 /**
  * A simple poller that can be used to poll a long running operation.
  */
-export interface SimplePollerLike<
-  TState extends OperationState<TResult>,
-  TResult,
-> {
+export interface SimplePollerLike<TState extends OperationState<TResult>, TResult> {
   /**
    * Returns true if the poller has finished polling.
    */
@@ -34,9 +31,7 @@ export interface SimplePollerLike<
   /**
    * Returns a promise that will resolve once the underlying operation is completed.
    */
-  pollUntilDone(pollOptions?: {
-    abortSignal?: AbortSignalLike;
-  }): Promise<TResult>;
+  pollUntilDone(pollOptions?: { abortSignal?: AbortSignalLike }): Promise<TResult>;
   /**
    * Invokes the provided callback after each polling is completed,
    * sending the current state of the poller's operation.
@@ -88,9 +83,7 @@ export function getSimplePoller<TResult>(
       return poller.isDone;
     },
     isStopped() {
-      throw new Error(
-        "isStopped is deprecated. Use abortSignal status to track this instead.",
-      );
+      throw new Error("isStopped is deprecated. Use abortSignal status to track this instead.");
     },
     getOperationState() {
       if (!poller.operationState) {
@@ -114,9 +107,7 @@ export function getSimplePoller<TResult>(
       });
     },
     stopPolling() {
-      throw new Error(
-        "stopPolling is deprecated. Use abortSignal to stop polling instead.",
-      );
+      throw new Error("stopPolling is deprecated. Use abortSignal to stop polling instead.");
     },
     onProgress: poller.onProgress,
     poll: poller.poll,

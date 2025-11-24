@@ -11,5 +11,4 @@ export interface DeployProjectBodyParam {
   body?: DeploymentCreationParameters;
 }
 
-export type DeployProjectParameters = DeployProjectBodyParam &
-  RequestParameters;
+export type DeployProjectParameters = DeployProjectBodyParam & RequestParameters;

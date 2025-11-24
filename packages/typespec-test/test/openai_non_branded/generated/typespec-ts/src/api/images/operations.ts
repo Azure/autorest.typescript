@@ -10,10 +10,7 @@ import {
   CreateImageVariationRequest,
   createImageVariationRequestSerializer,
 } from "../../models/models.js";
-import {
-  ImagesCreateVariationOptionalParams,
-  ImagesCreateEditOptionalParams,
-} from "./options.js";
+import { ImagesCreateVariationOptionalParams, ImagesCreateEditOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -31,10 +28,7 @@ export function _createVariationSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "multipart/form-data",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: createImageVariationRequestSerializer(image),
     });
 }
@@ -71,10 +65,7 @@ export function _createEditSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "multipart/form-data",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: createImageEditRequestSerializer(image),
     });
 }

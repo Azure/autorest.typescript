@@ -16,10 +16,7 @@ async function listDeploymentsSample(): Promise<void> {
   const client = createAuthoringClient(endpointParam, credential);
   const projectName = "{Your projectName}";
   const initialResponse = await client
-    .path(
-      "/authoring/analyze-text/projects/{projectName}/deployments",
-      projectName,
-    )
+    .path("/authoring/analyze-text/projects/{projectName}/deployments", projectName)
     .get();
   const pageData = paginate(client, initialResponse);
   const result = [];

@@ -1,10 +1,6 @@
 // Licensed under the MIT License.
 
-export function serializeRecord(
-  item: any,
-  excludes?: string[],
-  serializer?: (item: any) => any,
-) {
+export function serializeRecord(item: any, excludes?: string[], serializer?: (item: any) => any) {
   excludes = excludes ?? [];
   const res: any = {};
   for (const key of Object.keys(item)) {
