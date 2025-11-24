@@ -296,6 +296,24 @@ export declare interface RequestBodyBase64UrlMediaTypesParam {
 
 export declare type RequestBodyBase64UrlParameters = RequestBodyBase64UrlMediaTypesParam & RequestBodyBase64UrlBodyParam & RequestParameters;
 
+export declare interface RequestBodyContentTypeCose {
+    post(options: RequestBodyContentTypeCoseParameters): StreamableMethod<RequestBodyContentTypeCose204Response>;
+}
+
+export declare interface RequestBodyContentTypeCose204Response extends HttpResponse {
+    status: "204";
+}
+
+export declare interface RequestBodyContentTypeCoseBodyParam {
+    body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream;
+}
+
+export declare interface RequestBodyContentTypeCoseMediaTypesParam {
+    contentType: "application/cose";
+}
+
+export declare type RequestBodyContentTypeCoseParameters = RequestBodyContentTypeCoseMediaTypesParam & RequestBodyContentTypeCoseBodyParam & RequestParameters;
+
 export declare interface RequestBodyCustomContentType {
     post(options: RequestBodyCustomContentTypeParameters): StreamableMethod<RequestBodyCustomContentType204Response>;
 }
@@ -378,6 +396,22 @@ export declare interface ResponseBodyBase64Url200Response extends HttpResponse {
 
 export declare type ResponseBodyBase64UrlParameters = RequestParameters;
 
+export declare interface ResponseBodyContentTypeCose {
+    get(options?: ResponseBodyContentTypeCoseParameters): StreamableMethod<ResponseBodyContentTypeCose200Response>;
+}
+
+export declare interface ResponseBodyContentTypeCose200Headers {
+    "content-type": "application/cose";
+}
+
+export declare interface ResponseBodyContentTypeCose200Response extends HttpResponse {
+    status: "200";
+    body: Uint8Array;
+    headers: RawHttpHeaders & ResponseBodyContentTypeCose200Headers;
+}
+
+export declare type ResponseBodyContentTypeCoseParameters = RequestParameters;
+
 export declare interface ResponseBodyCustomContentType {
     get(options?: ResponseBodyCustomContentTypeParameters): StreamableMethod<ResponseBodyCustomContentType200Response>;
 }
@@ -444,6 +478,8 @@ export declare interface Routes {
     (path: "/encode/bytes/body/response/custom-content-type"): ResponseBodyCustomContentType;
     (path: "/encode/bytes/body/response/base64"): ResponseBodyBase64;
     (path: "/encode/bytes/body/response/base64url"): ResponseBodyBase64Url;
+    (path: "/encode/bytes/body/request/content-type/cose"): RequestBodyContentTypeCose;
+    (path: "/encode/bytes/body/response/content-type/cose"): ResponseBodyContentTypeCose;
 }
 
 export { }

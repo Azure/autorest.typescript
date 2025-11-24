@@ -18,6 +18,8 @@ export declare class BytesClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: BytesClientOptionalParams);
+    readonly responseBodyContentType: ResponseBodyContentTypeOperations;
+    readonly requestBodyContentType: RequestBodyContentTypeOperations;
     readonly responseBody: ResponseBodyOperations;
     readonly requestBody: RequestBodyOperations;
     readonly header: HeaderOperations;
@@ -95,6 +97,13 @@ export declare interface RequestBodyBase64OptionalParams extends OperationOption
 export declare interface RequestBodyBase64UrlOptionalParams extends OperationOptions {
 }
 
+export declare interface RequestBodyContentTypeCoseOptionalParams extends OperationOptions {
+}
+
+export declare interface RequestBodyContentTypeOperations {
+    cose: (value: Uint8Array, options?: RequestBodyContentTypeCoseOptionalParams) => Promise<void>;
+}
+
 export declare interface RequestBodyCustomContentTypeOptionalParams extends OperationOptions {
 }
 
@@ -116,6 +125,13 @@ export declare interface ResponseBodyBase64OptionalParams extends OperationOptio
 }
 
 export declare interface ResponseBodyBase64UrlOptionalParams extends OperationOptions {
+}
+
+export declare interface ResponseBodyContentTypeCoseOptionalParams extends OperationOptions {
+}
+
+export declare interface ResponseBodyContentTypeOperations {
+    cose: (options?: ResponseBodyContentTypeCoseOptionalParams) => Promise<Uint8Array>;
 }
 
 export declare interface ResponseBodyCustomContentTypeOptionalParams extends OperationOptions {
