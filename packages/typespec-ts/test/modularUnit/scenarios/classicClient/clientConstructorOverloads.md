@@ -1,4 +1,4 @@
-# should generate onstructor without subscription ID
+# should generate constructor without subscription ID
 
 ## TypeSpec
 
@@ -136,7 +136,26 @@ union ProvisioningState {
 @armResourceOperations
 interface StandardResources {
   get is ArmResourceRead<StandardResource>;
-  checkNameAvailability is checkGlobalNameAvailability;
+}
+
+@autoRoute
+op checkNameAvailability is ArmProviderActionSync<
+  Request = CheckNameAvailabilityInput,
+  Response = CheckNameAvailabilityOutput
+>;
+
+model CheckNameAvailabilityInput {
+  name: string;
+  type: string;
+}
+
+model CheckNameAvailabilityOutput {
+  @visibility(Lifecycle.Read)
+  nameAvailable?: boolean;
+  @visibility(Lifecycle.Read)
+  reason?: string;
+  @visibility(Lifecycle.Read)
+  message?: string;
 }
 ```
 
@@ -156,10 +175,10 @@ import {
   ListOptionalParams
 } from "./api/options.js";
 import {
+  CheckNameAvailabilityInput,
+  CheckNameAvailabilityOutput,
   Operation,
-  StandardResource,
-  CheckNameAvailabilityRequest,
-  CheckNameAvailabilityResponse
+  StandardResource
 } from "./models/models.js";
 import { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";
 import { TokenCredential } from "@azure/core-auth";
@@ -189,11 +208,10 @@ export class StandardServiceClient {
     this.pipeline = this._client.pipeline;
   }
 
-  /** Implements global CheckNameAvailability operations */
   checkNameAvailability(
-    body: CheckNameAvailabilityRequest,
+    body: CheckNameAvailabilityInput,
     options: CheckNameAvailabilityOptionalParams = { requestOptions: {} }
-  ): Promise<CheckNameAvailabilityResponse> {
+  ): Promise<CheckNameAvailabilityOutput> {
     return checkNameAvailability(this._client, body, options);
   }
 
@@ -215,7 +233,7 @@ export class StandardServiceClient {
 }
 ```
 
-# should generate constructor overloads for mixed tenant and subscription operations
+# should generate constructor overloads for mixed tenant-level and subscription-level operations
 
 ## TypeSpec
 

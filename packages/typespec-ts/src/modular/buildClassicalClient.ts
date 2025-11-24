@@ -151,7 +151,10 @@ export function buildClassicalClient(
           emitterOptions,
           "azsdk-js-client"
         )}}`;
-      } else if (x === "subscriptionId" && shouldSubscriptionIdOptional) {
+      } else if (
+        x.toLowerCase() === "subscriptionid" &&
+        shouldSubscriptionIdOptional
+      ) {
         return `subscriptionId ?? ""`;
       } else {
         return x;
@@ -413,7 +416,6 @@ function hasTenantLevelOperations(
         if (
           pathLC.includes(`${clientNamespaceLC}/operations`) ||
           pathLC.includes(`${clientNamespaceLC}/locations`) ||
-          pathLC.includes(`${clientNamespaceLC}/registeredsubscriptions`) ||
           pathLC.includes(`${clientNamespaceLC}/checknameavailability`)
         ) {
           continue;
