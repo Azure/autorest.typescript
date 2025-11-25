@@ -16,7 +16,7 @@ describe("AlternateType Client", () => {
   });
 
   const feature = {
-    type: "Feature",
+    type: "Feature" as const,
     geometry: {
       type: "Point",
       coordinates: [-122.25, 37.87]

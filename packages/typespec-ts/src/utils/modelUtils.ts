@@ -1323,6 +1323,10 @@ function getSchemaForStdScalar(
         type: "number",
         format: "safeint"
       });
+    case "numeric":
+      return applyIntrinsicDecorators(program, type, {
+        type: "number"
+      });
     case "uint8":
       return applyIntrinsicDecorators(program, type, {
         type: "number",
