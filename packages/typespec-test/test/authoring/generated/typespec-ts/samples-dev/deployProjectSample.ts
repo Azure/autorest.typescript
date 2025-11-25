@@ -2,9 +2,7 @@
 // Licensed under the MIT License.
 
 import { AzureKeyCredential } from "@azure/core-auth";
-import createAuthoringClient, {
-  getLongRunningPoller,
-} from "@msinternal/authoring";
+import createAuthoringClient, { getLongRunningPoller } from "@msinternal/authoring";
 import "dotenv/config";
 
 /**

@@ -8,7 +8,6 @@ options:
     add-credentials: false
     is-typespec-test: true
     flavor: azure
-    is-modular-library: true
     package-details:
       name: "@msinternal/payload-multipart"
       description: "Payload Multipart Test Service"

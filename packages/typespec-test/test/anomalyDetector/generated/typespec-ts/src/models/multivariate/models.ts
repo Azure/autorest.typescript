@@ -1,6 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Detection results for the resultId value. */
 export interface MultivariateMultivariateDetectionResult {
   /** Result identifier that's used to fetch the results of an inference call. */
@@ -16,9 +22,7 @@ export function multivariateMultivariateDetectionResultDeserializer(
 ): MultivariateMultivariateDetectionResult {
   return {
     resultId: item["resultId"],
-    summary: multivariateMultivariateBatchDetectionResultSummaryDeserializer(
-      item["summary"],
-    ),
+    summary: multivariateMultivariateBatchDetectionResultSummaryDeserializer(item["summary"]),
     results: multivariateAnomalyStateArrayDeserializer(item["results"]),
   };
 }
@@ -49,9 +53,7 @@ export function multivariateMultivariateBatchDetectionResultSummaryDeserializer(
     variableStates: !item["variableStates"]
       ? item["variableStates"]
       : multivariateVariableStateArrayDeserializer(item["variableStates"]),
-    setupInfo: multivariateMultivariateBatchDetectionOptionsDeserializer(
-      item["setupInfo"],
-    ),
+    setupInfo: multivariateMultivariateBatchDetectionOptionsDeserializer(item["setupInfo"]),
   };
 }
 
@@ -78,9 +80,7 @@ export interface MultivariateErrorResponse {
   message: string;
 }
 
-export function multivariateErrorResponseDeserializer(
-  item: any,
-): MultivariateErrorResponse {
+export function multivariateErrorResponseDeserializer(item: any): MultivariateErrorResponse {
   return {
     code: item["code"],
     message: item["message"],
@@ -109,9 +109,7 @@ export interface MultivariateVariableState {
   lastTimestamp?: Date;
 }
 
-export function multivariateVariableStateDeserializer(
-  item: any,
-): MultivariateVariableState {
+export function multivariateVariableStateDeserializer(item: any): MultivariateVariableState {
   return {
     variable: item["variable"],
     filledNARatio: item["filledNARatio"],
@@ -119,9 +117,7 @@ export function multivariateVariableStateDeserializer(
     firstTimestamp: !item["firstTimestamp"]
       ? item["firstTimestamp"]
       : new Date(item["firstTimestamp"]),
-    lastTimestamp: !item["lastTimestamp"]
-      ? item["lastTimestamp"]
-      : new Date(item["lastTimestamp"]),
+    lastTimestamp: !item["lastTimestamp"] ? item["lastTimestamp"] : new Date(item["lastTimestamp"]),
   };
 }
 
@@ -193,14 +189,10 @@ export interface MultivariateAnomalyState {
   errors?: MultivariateErrorResponse[];
 }
 
-export function multivariateAnomalyStateDeserializer(
-  item: any,
-): MultivariateAnomalyState {
+export function multivariateAnomalyStateDeserializer(item: any): MultivariateAnomalyState {
   return {
     timestamp: new Date(item["timestamp"]),
-    value: !item["value"]
-      ? item["value"]
-      : multivariateAnomalyValueDeserializer(item["value"]),
+    value: !item["value"] ? item["value"] : multivariateAnomalyValueDeserializer(item["value"]),
     errors: !item["errors"]
       ? item["errors"]
       : multivariateErrorResponseArrayDeserializer(item["errors"]),
@@ -222,18 +214,14 @@ export interface MultivariateAnomalyValue {
   interpretation?: MultivariateAnomalyInterpretation[];
 }
 
-export function multivariateAnomalyValueDeserializer(
-  item: any,
-): MultivariateAnomalyValue {
+export function multivariateAnomalyValueDeserializer(item: any): MultivariateAnomalyValue {
   return {
     isAnomaly: item["isAnomaly"],
     severity: item["severity"],
     score: item["score"],
     interpretation: !item["interpretation"]
       ? item["interpretation"]
-      : multivariateAnomalyInterpretationArrayDeserializer(
-          item["interpretation"],
-        ),
+      : multivariateAnomalyInterpretationArrayDeserializer(item["interpretation"]),
   };
 }
 
@@ -296,9 +284,7 @@ export interface MultivariateResponseError {
   message: string;
 }
 
-export function multivariateResponseErrorDeserializer(
-  item: any,
-): MultivariateResponseError {
+export function multivariateResponseErrorDeserializer(item: any): MultivariateResponseError {
   return {
     code: item["code"],
     message: item["message"],
@@ -351,9 +337,7 @@ export interface MultivariateModelInfo {
   readonly diagnosticsInfo?: MultivariateDiagnosticsInfo;
 }
 
-export function multivariateModelInfoSerializer(
-  item: MultivariateModelInfo,
-): any {
+export function multivariateModelInfoSerializer(item: MultivariateModelInfo): any {
   return {
     dataSource: item["dataSource"],
     dataSchema: item["dataSchema"],
@@ -367,9 +351,7 @@ export function multivariateModelInfoSerializer(
   };
 }
 
-export function multivariateModelInfoDeserializer(
-  item: any,
-): MultivariateModelInfo {
+export function multivariateModelInfoDeserializer(item: any): MultivariateModelInfo {
   return {
     dataSource: item["dataSource"],
     dataSchema: item["dataSchema"],
@@ -406,9 +388,7 @@ export interface MultivariateAlignPolicy {
   paddingValue?: number;
 }
 
-export function multivariateAlignPolicySerializer(
-  item: MultivariateAlignPolicy,
-): any {
+export function multivariateAlignPolicySerializer(item: MultivariateAlignPolicy): any {
   return {
     alignMode: item["alignMode"],
     fillNAMethod: item["fillNAMethod"],
@@ -416,9 +396,7 @@ export function multivariateAlignPolicySerializer(
   };
 }
 
-export function multivariateAlignPolicyDeserializer(
-  item: any,
-): MultivariateAlignPolicy {
+export function multivariateAlignPolicyDeserializer(item: any): MultivariateAlignPolicy {
   return {
     alignMode: item["alignMode"],
     fillNAMethod: item["fillNAMethod"],
@@ -429,18 +407,9 @@ export function multivariateAlignPolicyDeserializer(
 /** Type of MultivariateAlignMode */
 export type MultivariateAlignMode = "Inner" | "Outer";
 /** Field that indicates how missing values will be filled. */
-export type MultivariateFillNAMethod =
-  | "Previous"
-  | "Subsequent"
-  | "Linear"
-  | "Zero"
-  | "Fixed";
+export type MultivariateFillNAMethod = "Previous" | "Subsequent" | "Linear" | "Zero" | "Fixed";
 /** Type of MultivariateModelStatus */
-export type MultivariateModelStatus =
-  | "CREATED"
-  | "RUNNING"
-  | "READY"
-  | "FAILED";
+export type MultivariateModelStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
 
 /** Diagnostics information to help inspect the states of a model or variable. */
 export interface MultivariateDiagnosticsInfo {
@@ -450,9 +419,7 @@ export interface MultivariateDiagnosticsInfo {
   variableStates?: MultivariateVariableState[];
 }
 
-export function multivariateDiagnosticsInfoDeserializer(
-  item: any,
-): MultivariateDiagnosticsInfo {
+export function multivariateDiagnosticsInfoDeserializer(item: any): MultivariateDiagnosticsInfo {
   return {
     modelState: !item["modelState"]
       ? item["modelState"]
@@ -484,9 +451,7 @@ export interface MultivariateModelState {
   latenciesInSeconds?: number[];
 }
 
-export function multivariateModelStateDeserializer(
-  item: any,
-): MultivariateModelState {
+export function multivariateModelStateDeserializer(item: any): MultivariateModelState {
   return {
     epochIds: !item["epochIds"]
       ? item["epochIds"]
@@ -551,9 +516,7 @@ export interface _MultivariateModelList {
   nextLink?: string;
 }
 
-export function _multivariateModelListDeserializer(
-  item: any,
-): _MultivariateModelList {
+export function _multivariateModelListDeserializer(item: any): _MultivariateModelList {
   return {
     models: multivariateAnomalyDetectionModelArrayDeserializer(item["models"]),
     currentCount: item["currentCount"],
@@ -612,9 +575,7 @@ export interface MultivariateVariableValues {
   values: number[];
 }
 
-export function multivariateVariableValuesSerializer(
-  item: MultivariateVariableValues,
-): any {
+export function multivariateVariableValuesSerializer(item: MultivariateVariableValues): any {
   return {
     variable: item["variable"],
     timestamps: item["timestamps"].map((p: any) => {
