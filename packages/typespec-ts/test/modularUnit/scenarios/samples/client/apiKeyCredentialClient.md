@@ -69,8 +69,9 @@ import { DemoServiceClient } from "@azure/internal-test";
  * x-ms-original-file: 2021-10-01-preview/json_for_read.json
  */
 async function read(): Promise<void> {
+  const endpoint = process.env.DEMO_SERVICE_ENDPOINT || "";
   const credential = { key: "INPUT_YOUR_KEY_HERE" };
-  const client = new DemoServiceClient(credential);
+  const client = new DemoServiceClient(endpoint, credential);
   const result = await client.read();
   console.log(result);
 }

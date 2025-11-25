@@ -8,6 +8,7 @@ import { NoTarget, Program } from "@typespec/compiler";
 import {
   PagingHelpers,
   PollingHelpers,
+  SerializationHelpers,
   UrlTemplateHelpers
 } from "../static-helpers-metadata.js";
 import {
@@ -420,7 +421,11 @@ export function getOperationFunction(
   context: SdkContext,
   method: [string[], ServiceOperation],
   clientType: string
-): FunctionDeclarationStructure & { propertyName?: string } {
+): FunctionDeclarationStructure & {
+  propertyName?: string;
+  isLro?: boolean;
+  lroFinalReturnType?: string;
+} {
   const operation = method[1];
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
@@ -472,11 +477,18 @@ export function getOperationFunction(
   };
 
   const statements: string[] = [];
-  statements.push(
-    `const result = await _${name}Send(${parameters
-      .map((p) => p.name)
-      .join(", ")});`
-  );
+
+  const parameterList = parameters.map((p) => p.name).join(", ");
+  // Special case for binary-only bodies: use helper to call streaming methods so that Core doesn't poison the response body by
+  // doing a UTF-8 decode on the raw bytes.
+  if (response?.type?.kind === "bytes" && response.type.encode === "bytes") {
+    statements.push(`const streamableMethod = _${name}Send(${parameterList});`);
+    statements.push(
+      `const result = await ${resolveReference(SerializationHelpers.getBinaryResponse)}(streamableMethod);`
+    );
+  } else {
+    statements.push(`const result = await _${name}Send(${parameterList});`);
+  }
   statements.push(`return _${name}Deserialize(result);`);
 
   return {
@@ -490,7 +502,11 @@ function getLroOnlyOperationFunction(
   method: [string[], SdkLroServiceMethod<SdkHttpOperation>],
   clientType: string,
   optionalParamName: string = "options"
-): FunctionDeclarationStructure & { propertyName?: string } {
+): FunctionDeclarationStructure & {
+  propertyName?: string;
+  isLro?: boolean;
+  lroFinalReturnType?: string;
+} {
   const operation = method[1];
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
@@ -513,6 +529,8 @@ function getLroOnlyOperationFunction(
     isExported: true,
     name,
     propertyName: normalizeName(operation.name, NameType.Property),
+    isLro: true,
+    lroFinalReturnType: returnType.type,
     parameters,
     returnType: `${pollerLikeReference}<${operationStateReference}<${returnType.type}>, ${returnType.type}>`
   };
@@ -629,19 +647,25 @@ function getPagingOnlyOperationFunction(
       return property.name;
     })
     .join(".");
+
+  // Check for nextLinkVerb from TCGC pagingMetadata (supports @Legacy.nextLinkVerb decorator)
+  const nextLinkMethod = operation.pagingMetadata.nextLinkVerb;
+
   if (itemName) {
     options.push(`itemName: "${itemName}"`);
   }
   if (nextLinkName) {
     options.push(`nextLinkName: "${nextLinkName}"`);
   }
+  if (nextLinkMethod && nextLinkMethod !== "GET") {
+    options.push(`nextLinkMethod: "${nextLinkMethod}"`);
+  }
   statements.push(
     `return ${buildPagedAsyncIteratorReference}(
       context, 
       () => _${name}Send(${parameters.map((p) => p.name).join(", ")}), 
       _${name}Deserialize,
-      ${getExpectedStatuses(operation)},
-      ${options.length > 0 ? `{${options.join(", ")}}` : ``}
+      ${getExpectedStatuses(operation)}${options.length > 0 ? `,\n      {${options.join(", ")}}` : ""}
       );`
   );
 
@@ -1577,7 +1601,7 @@ export function getExpectedStatuses(operation: ServiceOperation): string {
   let statusCodes = operation.operation.responses.map((x) => x.statusCodes);
   // LROs may call the same path but with GET to get the operation status.
   if (isLroOnlyOperation(operation) && operation.operation.verb !== "get") {
-    statusCodes = Array.from(new Set([...statusCodes, 200, 202]));
+    statusCodes = Array.from(new Set([...statusCodes, 200, 201, 202]));
   }
 
   return `[${statusCodes.map((x) => `"${x}"`).join(", ")}]`;

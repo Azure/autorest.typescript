@@ -8,6 +8,7 @@ import hbs from "handlebars";
 import { NameType, normalizeName } from "../helpers/nameUtils.js";
 import { isAzurePackage } from "../helpers/packageUtil.js";
 import { getClientName } from "../helpers/nameConstructors.js";
+import { readFileSync } from "fs";
 
 const azureReadmeRLCTemplate = `# {{ clientDescriptiveName }} library for JavaScript
 
@@ -288,6 +289,11 @@ npm install {{ clientPackageName }}
 \`\`\`
 `;
 
+const apiReferenceTemplate = `{{#if apiRefURL}}
+- [API reference documentation]({{ apiRefURL }})
+{{/if}}
+`;
+
 /**
  * Meta data information about the service, the package, and the client.
  */
@@ -357,6 +363,34 @@ export function buildReadmeFile(model: RLCModel) {
   };
 }
 
+export function updateReadmeFile(
+  model: RLCModel,
+  existingReadmeFilePath: string
+): { path: string; content: string } | undefined {
+  try {
+    const existingContent = readFileSync(existingReadmeFilePath, "utf8");
+    const metadata = createMetadata(model) ?? {};
+
+    const newApiRefLink = hbs
+      .compile(apiReferenceTemplate, { noEscape: true })(metadata)
+      .trim();
+
+    if (!newApiRefLink) {
+      return { path: "README.md", content: existingContent };
+    }
+
+    const apiRefRegex =
+      /^- \[API reference documentation\]\(https:\/\/learn\.microsoft\.com\/javascript\/api\/[^)]+\)$/m;
+    const updatedContent = existingContent.replace(apiRefRegex, (match) =>
+      match ? newApiRefLink : match
+    );
+
+    return { path: "README.md", content: updatedContent };
+  } catch {
+    return;
+  }
+}
+
 /**
  * Returns meta data information about the service, the package, and the client.
  * @param codeModel - include the client details
@@ -392,9 +426,18 @@ function createMetadata(model: RLCModel): Metadata | undefined {
   const clientClassName = getClientName(model);
   const serviceName = getServiceName(model);
   let apiRefUrlQueryParameter: string = "";
-  packageDetails.version = packageDetails.version ?? "1.0.0-beta.1";
-  if (packageDetails?.version.includes("beta")) {
-    apiRefUrlQueryParameter = "?view=azure-node-preview";
+  if (
+    !packageDetails?.isVersionUserProvided &&
+    model.apiVersionInfo?.defaultValue
+  ) {
+    if (model.apiVersionInfo?.defaultValue?.toLowerCase().includes("preview")) {
+      apiRefUrlQueryParameter = "?view=azure-node-preview";
+    }
+  } else {
+    packageDetails.version = packageDetails.version ?? "1.0.0-beta.1";
+    if (packageDetails?.version.includes("beta")) {
+      apiRefUrlQueryParameter = "?view=azure-node-preview";
+    }
   }
 
   return {

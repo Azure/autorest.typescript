@@ -1,6 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Request of the entire or last anomaly detection. */
 export interface UnivariateUnivariateDetectionOptions {
   /**
@@ -78,13 +84,9 @@ export interface UnivariateTimeSeriesPoint {
   value: number;
 }
 
-export function univariateTimeSeriesPointSerializer(
-  item: UnivariateTimeSeriesPoint,
-): any {
+export function univariateTimeSeriesPointSerializer(item: UnivariateTimeSeriesPoint): any {
   return {
-    timestamp: !item["timestamp"]
-      ? item["timestamp"]
-      : item["timestamp"].toISOString(),
+    timestamp: !item["timestamp"] ? item["timestamp"] : item["timestamp"].toISOString(),
     value: item["value"],
   };
 }
@@ -101,13 +103,7 @@ export type UnivariateTimeGranularity =
   | "microsecond"
   | "none";
 /** Type of UnivariateImputeMode */
-export type UnivariateImputeMode =
-  | "auto"
-  | "previous"
-  | "linear"
-  | "fixed"
-  | "zero"
-  | "notFill";
+export type UnivariateImputeMode = "auto" | "previous" | "linear" | "fixed" | "zero" | "notFill";
 
 /** Response of the entire anomaly detection. */
 export interface UnivariateUnivariateEntireDetectionResult {

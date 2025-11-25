@@ -6,6 +6,7 @@ options:
     generate-test: false
     add-credentials: false
     flavor: azure
+    is-modular-library: false
     azure-sdk-for-js: false
     is-typespec-test: true
     package-details:
