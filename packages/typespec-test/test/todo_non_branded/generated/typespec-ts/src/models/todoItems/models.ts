@@ -53,9 +53,7 @@ export interface NotFoundErrorResponse {
   code: "not-found";
 }
 
-export function notFoundErrorResponseDeserializer(
-  item: any,
-): NotFoundErrorResponse {
+export function notFoundErrorResponseDeserializer(item: any): NotFoundErrorResponse {
   return {
     code: item["code"],
   };
@@ -87,9 +85,7 @@ export interface _PageTodoAttachment {
   items: TodoAttachment[];
 }
 
-export function _pageTodoAttachmentDeserializer(
-  item: any,
-): _PageTodoAttachment {
+export function _pageTodoAttachmentDeserializer(item: any): _PageTodoAttachment {
   return {
     items: todoAttachmentArrayDeserializer(item["items"]),
   };

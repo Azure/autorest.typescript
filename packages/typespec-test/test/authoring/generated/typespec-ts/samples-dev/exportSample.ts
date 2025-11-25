@@ -2,9 +2,7 @@
 // Licensed under the MIT License.
 
 import { AzureKeyCredential } from "@azure/core-auth";
-import createAuthoringClient, {
-  getLongRunningPoller,
-} from "@msinternal/authoring";
+import createAuthoringClient, { getLongRunningPoller } from "@msinternal/authoring";
 import "dotenv/config";
 
 /**
@@ -19,9 +17,7 @@ async function exportSample(): Promise<void> {
   const projectName = "{Your projectName}";
   const initialResponse = await client
     .path("/authoring/analyze-text/projects/{projectName}:export", projectName)
-    .post({
-      queryParameters: { projectFileVersion: "{Your projectFileVersion}" },
-    });
+    .post({ queryParameters: { projectFileVersion: "{Your projectFileVersion}" } });
   const poller = await getLongRunningPoller(client, initialResponse);
   const result = await poller.pollUntilDone();
   console.log(result);

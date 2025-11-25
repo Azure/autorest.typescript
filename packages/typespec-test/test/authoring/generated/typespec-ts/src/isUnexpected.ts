@@ -57,28 +57,19 @@ const responseMap: Record<string, string[]> = {
   "POST /authoring/analyze-text/projects/{projectName}:importx": ["202"],
   "GET /authoring/analyze-text/projects/{projectName}:train": ["200", "202"],
   "POST /authoring/analyze-text/projects/{projectName}:train": ["202"],
-  "GET /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}":
-    ["200"],
-  "PUT /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}":
-    ["200", "201"],
-  "DELETE /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}":
-    ["202"],
+  "GET /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}": ["200"],
+  "PUT /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}": ["200", "201"],
+  "DELETE /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}": ["202"],
   "GET /authoring/analyze-text/projects/{projectName}/deployments": ["200"],
-  "GET /authoring/analyze-text/projects/{projectName}/deployments:swap": [
+  "GET /authoring/analyze-text/projects/{projectName}/deployments:swap": ["200", "202"],
+  "POST /authoring/analyze-text/projects/{projectName}/deployments:swap": ["202"],
+  "GET /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}": [
     "200",
-    "202",
   ],
-  "POST /authoring/analyze-text/projects/{projectName}/deployments:swap": [
-    "202",
-  ],
-  "GET /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}":
-    ["200"],
   "GET /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/swap/jobs/{jobId}":
     ["200"],
   "GET /authoring/analyze-text/projects/global/languages": ["200"],
-  "GET /authoring/analyze-text/projects/global/training-config-versions": [
-    "200",
-  ],
+  "GET /authoring/analyze-text/projects/global/training-config-versions": ["200"],
 };
 
 export function isUnexpected(
@@ -101,10 +92,7 @@ export function isUnexpected(
   response: Export202Response | ExportLogicalResponse | ExportDefaultResponse,
 ): response is ExportDefaultResponse;
 export function isUnexpected(
-  response:
-    | Importx202Response
-    | ImportxLogicalResponse
-    | ImportxDefaultResponse,
+  response: Importx202Response | ImportxLogicalResponse | ImportxDefaultResponse,
 ): response is ImportxDefaultResponse;
 export function isUnexpected(
   response: Train202Response | TrainLogicalResponse | TrainDefaultResponse,
@@ -138,19 +126,13 @@ export function isUnexpected(
   response: GetDeploymentStatus200Response | GetDeploymentStatusDefaultResponse,
 ): response is GetDeploymentStatusDefaultResponse;
 export function isUnexpected(
-  response:
-    | GetSwapDeploymentsStatus200Response
-    | GetSwapDeploymentsStatusDefaultResponse,
+  response: GetSwapDeploymentsStatus200Response | GetSwapDeploymentsStatusDefaultResponse,
 ): response is GetSwapDeploymentsStatusDefaultResponse;
 export function isUnexpected(
-  response:
-    | GetSupportedLanguages200Response
-    | GetSupportedLanguagesDefaultResponse,
+  response: GetSupportedLanguages200Response | GetSupportedLanguagesDefaultResponse,
 ): response is GetSupportedLanguagesDefaultResponse;
 export function isUnexpected(
-  response:
-    | ListTrainingConfigVersions200Response
-    | ListTrainingConfigVersionsDefaultResponse,
+  response: ListTrainingConfigVersions200Response | ListTrainingConfigVersionsDefaultResponse,
 ): response is ListTrainingConfigVersionsDefaultResponse;
 export function isUnexpected(
   response:
@@ -245,24 +227,17 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
 
     // track if we have found a match to return the values found.
     let found = true;
-    for (
-      let i = candidateParts.length - 1, j = pathParts.length - 1;
-      i >= 1 && j >= 1;
-      i--, j--
-    ) {
-      if (
-        candidateParts[i]?.startsWith("{") &&
-        candidateParts[i]?.indexOf("}") !== -1
-      ) {
+    for (let i = candidateParts.length - 1, j = pathParts.length - 1; i >= 1 && j >= 1; i--, j--) {
+      if (candidateParts[i]?.startsWith("{") && candidateParts[i]?.indexOf("}") !== -1) {
         const start = candidateParts[i]!.indexOf("}") + 1,
           end = candidateParts[i]?.length;
         // If the current part of the candidate is a "template" part
         // Try to use the suffix of pattern to match the path
         // {guid} ==> $
         // {guid}:export ==> :export$
-        const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`,
-        ).test(pathParts[j] || "");
+        const isMatched = new RegExp(`${candidateParts[i]?.slice(start, end)}`).test(
+          pathParts[j] || "",
+        );
 
         if (!isMatched) {
           found = false;

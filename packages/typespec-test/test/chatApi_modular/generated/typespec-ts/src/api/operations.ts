@@ -12,10 +12,7 @@ import {
   ChatCompletionRecord,
   chatCompletionRecordDeserializer,
 } from "../models/models.js";
-import {
-  CreateOptionalParams,
-  CreateStreamingOptionalParams,
-} from "./options.js";
+import { CreateOptionalParams, CreateStreamingOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -33,10 +30,7 @@ export function _createSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: chatCompletionOptionsRecordSerializer(body),
     });
 }
@@ -72,10 +66,7 @@ export function _createStreamingSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: streamingChatCompletionOptionsRecordSerializer(body),
     });
 }

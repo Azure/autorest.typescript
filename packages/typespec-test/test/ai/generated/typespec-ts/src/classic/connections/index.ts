@@ -38,9 +38,7 @@ export interface ConnectionsOperations {
     options?: ConnectionsListConnectionsOptionalParams,
   ) => Promise<ListConnectionsResponse>;
   /** Gets the properties of the specified machine learning workspace. */
-  getWorkspace: (
-    options?: ConnectionsGetWorkspaceOptionalParams,
-  ) => Promise<GetWorkspaceResponse>;
+  getWorkspace: (options?: ConnectionsGetWorkspaceOptionalParams) => Promise<GetWorkspaceResponse>;
 }
 
 function _getConnections(context: AIProjectContext) {
@@ -50,10 +48,8 @@ function _getConnections(context: AIProjectContext) {
       ignored: string,
       options?: ConnectionsGetConnectionWithSecretsOptionalParams,
     ) => getConnectionWithSecrets(context, connectionName, ignored, options),
-    getConnection: (
-      connectionName: string,
-      options?: ConnectionsGetConnectionOptionalParams,
-    ) => getConnection(context, connectionName, options),
+    getConnection: (connectionName: string, options?: ConnectionsGetConnectionOptionalParams) =>
+      getConnection(context, connectionName, options),
     listConnections: (options?: ConnectionsListConnectionsOptionalParams) =>
       listConnections(context, options),
     getWorkspace: (options?: ConnectionsGetWorkspaceOptionalParams) =>
@@ -61,9 +57,7 @@ function _getConnections(context: AIProjectContext) {
   };
 }
 
-export function _getConnectionsOperations(
-  context: AIProjectContext,
-): ConnectionsOperations {
+export function _getConnectionsOperations(context: AIProjectContext): ConnectionsOperations {
   return {
     ..._getConnections(context),
   };
