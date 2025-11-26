@@ -22,7 +22,6 @@ using Azure.ResourceManager;
 using Azure.ResourceManager.Foundations;
 using Azure.ClientGenerator.Core;
 
-@armProviderNamespace
 @service(#{ title: "Billing benefits RP" })
 @versioned(Versions)
 @armCommonTypesVersion(Azure.ResourceManager.CommonTypes.Versions.v6)
@@ -130,8 +129,6 @@ export interface BillingBenefitsContext extends Client {
   /** The API version to use for this operation. */
   /** Known values of {@link KnownVersions} that the service accepts. */
   apiVersion: string;
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
   /** The expand query parameter. */
   expand?: string;
 }
@@ -143,16 +140,13 @@ export interface BillingBenefitsClientOptionalParams extends ClientOptions {
   apiVersion?: string;
   /** The expand query parameter. */
   expand?: string;
-  /** Specifies the Azure cloud environment for the client. */
-  cloudSetting?: __PLACEHOLDER_o34__;
 }
 
 export function createBillingBenefits(
-  subscriptionId: string,
+  endpointParam: string,
   options: BillingBenefitsClientOptionalParams = {},
 ): BillingBenefitsContext {
-  const endpointUrl =
-    options.endpoint ?? __PLACEHOLDER_o36__(options.cloudSetting) ?? "https://management.azure.com";
+  const endpointUrl = options.endpoint ?? String(endpointParam);
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions ? `${prefixFromOptions} azsdk-js-api` : `azsdk-js-api`;
   const { apiVersion: _, ...updatedOptions } = {
@@ -178,12 +172,7 @@ export function createBillingBenefits(
       return next(req);
     },
   });
-  return {
-    ...clientContext,
-    apiVersion,
-    subscriptionId,
-    expand: options.expand,
-  } as BillingBenefitsContext;
+  return { ...clientContext, apiVersion, expand: options.expand } as BillingBenefitsContext;
 }
 ```
 
@@ -211,7 +200,6 @@ using Azure.ResourceManager;
 using Azure.ResourceManager.Foundations;
 using Azure.ClientGenerator.Core;
 
-@armProviderNamespace
 @service(#{ title: "Billing benefits RP" })
 @versioned(Versions)
 @armCommonTypesVersion(Azure.ResourceManager.CommonTypes.Versions.v6)
@@ -319,8 +307,6 @@ export interface BillingBenefitsContext extends Client {
   /** The API version to use for this operation. */
   /** Known values of {@link KnownVersions} that the service accepts. */
   apiVersion: string;
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
   /** The expand query parameter. */
   expand: string;
 }
@@ -330,17 +316,14 @@ export interface BillingBenefitsClientOptionalParams extends ClientOptions {
   /** The API version to use for this operation. */
   /** Known values of {@link KnownVersions} that the service accepts. */
   apiVersion?: string;
-  /** Specifies the Azure cloud environment for the client. */
-  cloudSetting?: __PLACEHOLDER_o34__;
 }
 
 export function createBillingBenefits(
-  subscriptionId: string,
+  endpointParam: string,
   expand: string,
   options: BillingBenefitsClientOptionalParams = {},
 ): BillingBenefitsContext {
-  const endpointUrl =
-    options.endpoint ?? __PLACEHOLDER_o36__(options.cloudSetting) ?? "https://management.azure.com";
+  const endpointUrl = options.endpoint ?? String(endpointParam);
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentPrefix = prefixFromOptions ? `${prefixFromOptions} azsdk-js-api` : `azsdk-js-api`;
   const { apiVersion: _, ...updatedOptions } = {
@@ -366,6 +349,6 @@ export function createBillingBenefits(
       return next(req);
     },
   });
-  return { ...clientContext, apiVersion, subscriptionId, expand } as BillingBenefitsContext;
+  return { ...clientContext, apiVersion, expand } as BillingBenefitsContext;
 }
 ```

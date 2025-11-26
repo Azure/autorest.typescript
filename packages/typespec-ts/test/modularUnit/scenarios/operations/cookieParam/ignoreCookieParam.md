@@ -44,9 +44,7 @@ export function _testSend(
     });
 }
 
-export async function _testDeserialize(
-  result: PathUncheckedResponse,
-): Promise<string> {
+export async function _testDeserialize(result: PathUncheckedResponse): Promise<string> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);

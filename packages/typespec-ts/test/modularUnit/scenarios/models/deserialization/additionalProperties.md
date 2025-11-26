@@ -190,11 +190,7 @@ export interface NameConflictModel {
 
 export function nameConflictModelDeserializer(item: any): NameConflictModel {
   return {
-    additionalPropertiesBag: serializeRecord(item, [
-      "additionalProperties",
-      "propA",
-      "propB",
-    ]),
+    additionalPropertiesBag: serializeRecord(item, ["additionalProperties", "propA", "propB"]),
     additionalProperties: item["additionalProperties"],
     propA: item["propA"],
     propB: item["propB"],
@@ -210,19 +206,12 @@ export interface ObjectAdditionalPropsModel {
   additionalPropertiesBag?: Record<string, string>;
 }
 
-export function objectAdditionalPropsModelDeserializer(
-  item: any,
-): ObjectAdditionalPropsModel {
+export function objectAdditionalPropsModelDeserializer(item: any): ObjectAdditionalPropsModel {
   return {
-    additionalPropertiesBag: serializeRecord(item, [
-      "additionalProperties",
-      "propA",
-      "propB",
-    ]),
-    additionalProperties:
-      _objectAdditionalPropsModelAdditionalPropertiesDeserializer(
-        item["additionalProperties"],
-      ),
+    additionalPropertiesBag: serializeRecord(item, ["additionalProperties", "propA", "propB"]),
+    additionalProperties: _objectAdditionalPropsModelAdditionalPropertiesDeserializer(
+      item["additionalProperties"],
+    ),
     propA: item["propA"],
     propB: item["propB"],
   };
