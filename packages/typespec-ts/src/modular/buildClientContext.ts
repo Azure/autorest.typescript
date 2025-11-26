@@ -87,8 +87,7 @@ export function buildClientContext(
     .filter((p) => {
       const clientParamName = getClientParameterName(p);
       return (
-        clientParamName !== "endpointParam" &&
-        clientParamName !== "credential"
+        clientParamName !== "endpointParam" && clientParamName !== "credential"
       );
     })
     .map((p) => {
@@ -101,8 +100,10 @@ export function buildClientContext(
     });
 
   // Collect names of required properties to avoid duplicates
-  const requiredPropertyNames = new Set(requiredInterfaceProperties.map(p => p.name));
-  
+  const requiredPropertyNames = new Set(
+    requiredInterfaceProperties.map((p) => p.name)
+  );
+
   const optionalInterfaceProperties = getClientParameters(client, dpgContext, {
     onClientOnly: false,
     optionalOnly: true
@@ -290,10 +291,10 @@ export function buildClientContext(
       p.name !== "credential" &&
       p.name !== "options"
   );
-  
+
   // Collect names of required parameters to avoid duplicates
-  const requiredParamNames = new Set(contextRequiredParam.map(p => p.name));
-  
+  const requiredParamNames = new Set(contextRequiredParam.map((p) => p.name));
+
   // Also include optional parameters from clientInitialization that should be passed through
   const contextOptionalParams = getClientParameters(client, dpgContext, {
     optionalOnly: true,
@@ -307,12 +308,15 @@ export function buildClientContext(
       !requiredParamNames.has(clientParamName) // Avoid duplicating required parameters
     );
   });
-  
+
   const allContextParams = [
-    ...contextRequiredParam.map(p => p.name),
-    ...contextOptionalParams.map(p => `${getClientParameterName(p)}: options.${getClientParameterName(p)}`)
+    ...contextRequiredParam.map((p) => p.name),
+    ...contextOptionalParams.map(
+      (p) =>
+        `${getClientParameterName(p)}: options.${getClientParameterName(p)}`
+    )
   ];
-  
+
   if (allContextParams.length) {
     factoryFunction.addStatements(
       `return { ...clientContext, ${allContextParams.join(", ")}} as ${rlcClientName};`
