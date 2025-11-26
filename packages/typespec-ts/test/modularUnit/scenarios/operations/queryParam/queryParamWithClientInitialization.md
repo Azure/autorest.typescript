@@ -1,4 +1,4 @@
-# only: Optional query parameter with clientInitialization
+# Optional query parameter with clientInitialization
 
 This scenario tests the generation of TypeScript code for an Azure Resource Manager resource read operation with query parameters, specifically the `$expand` parameter for the SavingsPlanModel.
 
@@ -187,7 +187,7 @@ export function createBillingBenefits(
 }
 ```
 
-# only: Required query parameter with clientInitialization
+# Required query parameter with clientInitialization
 
 This scenario tests the generation of TypeScript code for an Azure Resource Manager resource read operation with query parameters, specifically the `$expand` parameter for the SavingsPlanModel.
 
