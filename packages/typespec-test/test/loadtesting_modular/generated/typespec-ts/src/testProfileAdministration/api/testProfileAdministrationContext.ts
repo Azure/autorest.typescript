@@ -13,8 +13,7 @@ export interface TestProfileAdministrationContext extends Client {
 }
 
 /** Optional parameters for the client. */
-export interface TestProfileAdministrationClientOptionalParams
-  extends ClientOptions {
+export interface TestProfileAdministrationClientOptionalParams extends ClientOptions {
   /** The API version to use for this operation. */
   /** Known values of {@link KnownAPIVersions} that the service accepts. */
   apiVersion?: string;
@@ -36,9 +35,7 @@ export function createTestProfileAdministration(
     userAgentOptions: { userAgentPrefix },
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
     credentials: {
-      scopes: options.credentials?.scopes ?? [
-        "https://cnt-prod.loadtesting.azure.com/.default",
-      ],
+      scopes: options.credentials?.scopes ?? ["https://cnt-prod.loadtesting.azure.com/.default"],
     },
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);

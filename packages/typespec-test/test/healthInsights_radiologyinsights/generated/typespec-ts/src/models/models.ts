@@ -93,9 +93,7 @@ export interface Encounter {
 export function encounterSerializer(item: Encounter): any {
   return {
     id: item["id"],
-    period: !item["period"]
-      ? item["period"]
-      : timePeriodSerializer(item["period"]),
+    period: !item["period"] ? item["period"] : timePeriodSerializer(item["period"]),
     class: item["class"],
   };
 }
@@ -124,9 +122,7 @@ export type EncounterClass =
   | "virtual"
   | "healthHome";
 
-export function patientDocumentArraySerializer(
-  result: Array<PatientDocument>,
-): any[] {
+export function patientDocumentArraySerializer(result: Array<PatientDocument>): any[] {
   return result.map((item) => {
     return patientDocumentSerializer(item);
   });
@@ -163,25 +159,17 @@ export function patientDocumentSerializer(item: PatientDocument): any {
     createdDateTime: !item["createdDateTime"]
       ? item["createdDateTime"]
       : item["createdDateTime"].toISOString(),
-    authors: !item["authors"]
-      ? item["authors"]
-      : documentAuthorArraySerializer(item["authors"]),
+    authors: !item["authors"] ? item["authors"] : documentAuthorArraySerializer(item["authors"]),
     specialtyType: item["specialtyType"],
     administrativeMetadata: !item["administrativeMetadata"]
       ? item["administrativeMetadata"]
-      : documentAdministrativeMetadataSerializer(
-          item["administrativeMetadata"],
-        ),
+      : documentAdministrativeMetadataSerializer(item["administrativeMetadata"]),
     content: documentContentSerializer(item["content"]),
   };
 }
 
 /** The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document). */
-export type DocumentType =
-  | "note"
-  | "fhirBundle"
-  | "dicom"
-  | "genomicSequencing";
+export type DocumentType = "note" | "fhirBundle" | "dicom" | "genomicSequencing";
 /** The type of the clinical document. */
 export type ClinicalDocumentType =
   | "consultation"
@@ -193,9 +181,7 @@ export type ClinicalDocumentType =
   | "laboratory"
   | "pathologyReport";
 
-export function documentAuthorArraySerializer(
-  result: Array<DocumentAuthor>,
-): any[] {
+export function documentAuthorArraySerializer(result: Array<DocumentAuthor>): any[] {
   return result.map((item) => {
     return documentAuthorSerializer(item);
   });
@@ -235,17 +221,13 @@ export function documentAdministrativeMetadataSerializer(
   };
 }
 
-export function orderedProcedureArraySerializer(
-  result: Array<OrderedProcedure>,
-): any[] {
+export function orderedProcedureArraySerializer(result: Array<OrderedProcedure>): any[] {
   return result.map((item) => {
     return orderedProcedureSerializer(item);
   });
 }
 
-export function orderedProcedureArrayDeserializer(
-  result: Array<OrderedProcedure>,
-): any[] {
+export function orderedProcedureArrayDeserializer(result: Array<OrderedProcedure>): any[] {
   return result.map((item) => {
     return orderedProcedureDeserializer(item);
   });
@@ -261,12 +243,8 @@ export interface OrderedProcedure extends Extendible {
 
 export function orderedProcedureSerializer(item: OrderedProcedure): any {
   return {
-    extension: !item["extension"]
-      ? item["extension"]
-      : extensionArraySerializer(item["extension"]),
-    code: !item["code"]
-      ? item["code"]
-      : codeableConceptSerializer(item["code"]),
+    extension: !item["extension"] ? item["extension"] : extensionArraySerializer(item["extension"]),
+    code: !item["code"] ? item["code"] : codeableConceptSerializer(item["code"]),
     description: item["description"],
   };
 }
@@ -276,9 +254,7 @@ export function orderedProcedureDeserializer(item: any): OrderedProcedure {
     extension: !item["extension"]
       ? item["extension"]
       : extensionArrayDeserializer(item["extension"]),
-    code: !item["code"]
-      ? item["code"]
-      : codeableConceptDeserializer(item["code"]),
+    code: !item["code"] ? item["code"] : codeableConceptDeserializer(item["code"]),
     description: item["description"],
   };
 }
@@ -370,9 +346,7 @@ export function radiologyInsightsInferenceOptionsSerializer(
     followupRecommendation: !item["followupRecommendation"]
       ? item["followupRecommendation"]
       : followupRecommendationOptionsSerializer(item["followupRecommendation"]),
-    finding: !item["finding"]
-      ? item["finding"]
-      : findingOptionsSerializer(item["finding"]),
+    finding: !item["finding"] ? item["finding"] : findingOptionsSerializer(item["finding"]),
   };
 }
 
@@ -386,14 +360,11 @@ export interface FollowupRecommendationOptions {
   provideFocusedSentenceEvidence?: boolean;
 }
 
-export function followupRecommendationOptionsSerializer(
-  item: FollowupRecommendationOptions,
-): any {
+export function followupRecommendationOptionsSerializer(item: FollowupRecommendationOptions): any {
   return {
     includeRecommendationsWithNoSpecifiedModality:
       item["includeRecommendationsWithNoSpecifiedModality"],
-    includeRecommendationsInReferences:
-      item["includeRecommendationsInReferences"],
+    includeRecommendationsInReferences: item["includeRecommendationsInReferences"],
     provideFocusedSentenceEvidence: item["provideFocusedSentenceEvidence"],
   };
 }
@@ -405,14 +376,10 @@ export interface FindingOptions {
 }
 
 export function findingOptionsSerializer(item: FindingOptions): any {
-  return {
-    provideFocusedSentenceEvidence: item["provideFocusedSentenceEvidence"],
-  };
+  return { provideFocusedSentenceEvidence: item["provideFocusedSentenceEvidence"] };
 }
 
-export function patientRecordArraySerializer(
-  result: Array<PatientRecord>,
-): any[] {
+export function patientRecordArraySerializer(result: Array<PatientRecord>): any[] {
   return result.map((item) => {
     return patientRecordSerializer(item);
   });
@@ -430,9 +397,7 @@ export function radiologyInsightsInferenceResultDeserializer(
   item: any,
 ): RadiologyInsightsInferenceResult {
   return {
-    patientResults: radiologyInsightsPatientResultArrayDeserializer(
-      item["patientResults"],
-    ),
+    patientResults: radiologyInsightsPatientResultArrayDeserializer(item["patientResults"]),
     modelVersion: item["modelVersion"],
   };
 }
@@ -458,9 +423,7 @@ export function radiologyInsightsPatientResultDeserializer(
 ): RadiologyInsightsPatientResult {
   return {
     patientId: item["patientId"],
-    inferences: radiologyInsightsInferenceUnionArrayDeserializer(
-      item["inferences"],
-    ),
+    inferences: radiologyInsightsInferenceUnionArrayDeserializer(item["inferences"]),
   };
 }
 
@@ -491,9 +454,7 @@ export interface RadiologyInsightsInference extends Extendible {
   kind: RadiologyInsightsInferenceType;
 }
 
-export function radiologyInsightsInferenceDeserializer(
-  item: any,
-): RadiologyInsightsInference {
+export function radiologyInsightsInferenceDeserializer(item: any): RadiologyInsightsInference {
   return {
     extension: !item["extension"]
       ? item["extension"]
@@ -527,9 +488,7 @@ export function radiologyInsightsInferenceUnionDeserializer(
       return sexMismatchInferenceDeserializer(item as SexMismatchInference);
 
     case "lateralityDiscrepancy":
-      return lateralityDiscrepancyInferenceDeserializer(
-        item as LateralityDiscrepancyInference,
-      );
+      return lateralityDiscrepancyInferenceDeserializer(item as LateralityDiscrepancyInference);
 
     case "completeOrderDiscrepancy":
       return completeOrderDiscrepancyInferenceDeserializer(
@@ -537,32 +496,22 @@ export function radiologyInsightsInferenceUnionDeserializer(
       );
 
     case "limitedOrderDiscrepancy":
-      return limitedOrderDiscrepancyInferenceDeserializer(
-        item as LimitedOrderDiscrepancyInference,
-      );
+      return limitedOrderDiscrepancyInferenceDeserializer(item as LimitedOrderDiscrepancyInference);
 
     case "finding":
       return findingInferenceDeserializer(item as FindingInference);
 
     case "criticalResult":
-      return criticalResultInferenceDeserializer(
-        item as CriticalResultInference,
-      );
+      return criticalResultInferenceDeserializer(item as CriticalResultInference);
 
     case "radiologyProcedure":
-      return radiologyProcedureInferenceDeserializer(
-        item as RadiologyProcedureInference,
-      );
+      return radiologyProcedureInferenceDeserializer(item as RadiologyProcedureInference);
 
     case "followupRecommendation":
-      return followupRecommendationInferenceDeserializer(
-        item as FollowupRecommendationInference,
-      );
+      return followupRecommendationInferenceDeserializer(item as FollowupRecommendationInference);
 
     case "followupCommunication":
-      return followupCommunicationInferenceDeserializer(
-        item as FollowupCommunicationInference,
-      );
+      return followupCommunicationInferenceDeserializer(item as FollowupCommunicationInference);
 
     default:
       return radiologyInsightsInferenceDeserializer(item);
@@ -579,9 +528,7 @@ export interface AgeMismatchInference extends RadiologyInsightsInference {
   kind: "ageMismatch";
 }
 
-export function ageMismatchInferenceDeserializer(
-  item: any,
-): AgeMismatchInference {
+export function ageMismatchInferenceDeserializer(item: any): AgeMismatchInference {
   return {
     kind: item["kind"],
     extension: !item["extension"]
@@ -598,9 +545,7 @@ export interface SexMismatchInference extends RadiologyInsightsInference {
   sexIndication: CodeableConcept;
 }
 
-export function sexMismatchInferenceDeserializer(
-  item: any,
-): SexMismatchInference {
+export function sexMismatchInferenceDeserializer(item: any): SexMismatchInference {
   return {
     kind: item["kind"],
     extension: !item["extension"]
@@ -616,8 +561,7 @@ export function sexMismatchInferenceDeserializer(
  * TextLateralityContradiction: there is a contradiction within the text of the clinical document.
  * TextLateralityMissing: laterality is missing/not mentioned in the clinical document.
  */
-export interface LateralityDiscrepancyInference
-  extends RadiologyInsightsInference {
+export interface LateralityDiscrepancyInference extends RadiologyInsightsInference {
   /** The type of the inference. */
   kind: "lateralityDiscrepancy";
   /** laterality indication */
@@ -653,8 +597,7 @@ export type LateralityDiscrepancyType =
  * This inference is relevant only for ultrasound procedure/order of type US ABDOMEN, US RETROPERITONEAL, US PELVIS, or US BREAST.
  * This inference returns when there is a missing body part or a missing measurement of a body part that is required by the order.
  */
-export interface CompleteOrderDiscrepancyInference
-  extends RadiologyInsightsInference {
+export interface CompleteOrderDiscrepancyInference extends RadiologyInsightsInference {
   /** The type of the inference. */
   kind: "completeOrderDiscrepancy";
   /** Order Type. */
@@ -689,8 +632,7 @@ export function completeOrderDiscrepancyInferenceDeserializer(
  * This inference is relevant only for ultrasound procedure/order of type US ABDOMEN, US RETROPERITONEAL, US PELVIS, or US BREAST.
  * This inference returns when all body parts and measurement of a body part required by the order, mentioned in the text.
  */
-export interface LimitedOrderDiscrepancyInference
-  extends RadiologyInsightsInference {
+export interface LimitedOrderDiscrepancyInference extends RadiologyInsightsInference {
   /** The type of the inference. */
   kind: "limitedOrderDiscrepancy";
   /** Order Type. */
@@ -748,9 +690,7 @@ export interface CriticalResultInference extends RadiologyInsightsInference {
   result: CriticalResult;
 }
 
-export function criticalResultInferenceDeserializer(
-  item: any,
-): CriticalResultInference {
+export function criticalResultInferenceDeserializer(item: any): CriticalResultInference {
   return {
     kind: item["kind"],
     extension: !item["extension"]
@@ -771,15 +711,12 @@ export interface CriticalResult {
 export function criticalResultDeserializer(item: any): CriticalResult {
   return {
     description: item["description"],
-    finding: !item["finding"]
-      ? item["finding"]
-      : observationDeserializer(item["finding"]),
+    finding: !item["finding"] ? item["finding"] : observationDeserializer(item["finding"]),
   };
 }
 
 /** Procedures found in the document text or associated with the document administrative metadata. */
-export interface RadiologyProcedureInference
-  extends RadiologyInsightsInference {
+export interface RadiologyProcedureInference extends RadiologyInsightsInference {
   /** The type of the inference. */
   kind: "radiologyProcedure";
   /** The LOINC codes for the procedure. */
@@ -790,9 +727,7 @@ export interface RadiologyProcedureInference
   orderedProcedure: OrderedProcedure;
 }
 
-export function radiologyProcedureInferenceDeserializer(
-  item: any,
-): RadiologyProcedureInference {
+export function radiologyProcedureInferenceDeserializer(item: any): RadiologyProcedureInference {
   return {
     kind: item["kind"],
     extension: !item["extension"]
@@ -801,16 +736,12 @@ export function radiologyProcedureInferenceDeserializer(
     procedureCodes: !item["procedureCodes"]
       ? item["procedureCodes"]
       : codeableConceptArrayDeserializer(item["procedureCodes"]),
-    imagingProcedures: imagingProcedureArrayDeserializer(
-      item["imagingProcedures"],
-    ),
+    imagingProcedures: imagingProcedureArrayDeserializer(item["imagingProcedures"]),
     orderedProcedure: orderedProcedureDeserializer(item["orderedProcedure"]),
   };
 }
 
-export function imagingProcedureArrayDeserializer(
-  result: Array<ImagingProcedure>,
-): any[] {
+export function imagingProcedureArrayDeserializer(result: Array<ImagingProcedure>): any[] {
   return result.map((item) => {
     return imagingProcedureDeserializer(item);
   });
@@ -840,9 +771,7 @@ export function imagingProcedureDeserializer(item: any): ImagingProcedure {
     contrast: !item["contrast"]
       ? item["contrast"]
       : radiologyCodeWithTypesDeserializer(item["contrast"]),
-    view: !item["view"]
-      ? item["view"]
-      : radiologyCodeWithTypesDeserializer(item["view"]),
+    view: !item["view"] ? item["view"] : radiologyCodeWithTypesDeserializer(item["view"]),
   };
 }
 
@@ -854,9 +783,7 @@ export interface RadiologyCodeWithTypes {
   types: CodeableConcept[];
 }
 
-export function radiologyCodeWithTypesDeserializer(
-  item: any,
-): RadiologyCodeWithTypes {
+export function radiologyCodeWithTypesDeserializer(item: any): RadiologyCodeWithTypes {
   return {
     code: codeableConceptDeserializer(item["code"]),
     types: codeableConceptArrayDeserializer(item["types"]),
@@ -864,8 +791,7 @@ export function radiologyCodeWithTypesDeserializer(
 }
 
 /** Recommendation Inference */
-export interface FollowupRecommendationInference
-  extends RadiologyInsightsInference {
+export interface FollowupRecommendationInference extends RadiologyInsightsInference {
   /** The type of the inference. */
   kind: "followupRecommendation";
   /** Clinically relevant time/time-period for recommendation */
@@ -916,9 +842,7 @@ export function followupRecommendationInferenceDeserializer(
     isOption: item["isOption"],
     isGuideline: item["isGuideline"],
     isHedging: item["isHedging"],
-    recommendedProcedure: procedureRecommendationUnionDeserializer(
-      item["recommendedProcedure"],
-    ),
+    recommendedProcedure: procedureRecommendationUnionDeserializer(item["recommendedProcedure"]),
   };
 }
 
@@ -940,16 +864,12 @@ export interface RecommendationFinding extends Extendible {
   recommendationFindingStatus: RecommendationFindingStatusType;
 }
 
-export function recommendationFindingDeserializer(
-  item: any,
-): RecommendationFinding {
+export function recommendationFindingDeserializer(item: any): RecommendationFinding {
   return {
     extension: !item["extension"]
       ? item["extension"]
       : extensionArrayDeserializer(item["extension"]),
-    finding: !item["finding"]
-      ? item["finding"]
-      : observationDeserializer(item["finding"]),
+    finding: !item["finding"] ? item["finding"] : observationDeserializer(item["finding"]),
     criticalFinding: !item["criticalFinding"]
       ? item["criticalFinding"]
       : criticalResultDeserializer(item["criticalFinding"]),
@@ -971,9 +891,7 @@ export interface ProcedureRecommendation {
   kind: string;
 }
 
-export function procedureRecommendationDeserializer(
-  item: any,
-): ProcedureRecommendation {
+export function procedureRecommendationDeserializer(item: any): ProcedureRecommendation {
   return {
     kind: item["kind"],
   };
@@ -985,19 +903,13 @@ export type ProcedureRecommendationUnion =
   | ImagingProcedureRecommendation
   | ProcedureRecommendation;
 
-export function procedureRecommendationUnionDeserializer(
-  item: any,
-): ProcedureRecommendationUnion {
+export function procedureRecommendationUnionDeserializer(item: any): ProcedureRecommendationUnion {
   switch (item.kind) {
     case "genericProcedureRecommendation":
-      return genericProcedureRecommendationDeserializer(
-        item as GenericProcedureRecommendation,
-      );
+      return genericProcedureRecommendationDeserializer(item as GenericProcedureRecommendation);
 
     case "imagingProcedureRecommendation":
-      return imagingProcedureRecommendationDeserializer(
-        item as ImagingProcedureRecommendation,
-      );
+      return imagingProcedureRecommendationDeserializer(item as ImagingProcedureRecommendation);
 
     default:
       return procedureRecommendationDeserializer(item);
@@ -1005,8 +917,7 @@ export function procedureRecommendationUnionDeserializer(
 }
 
 /** Generic procedure information. */
-export interface GenericProcedureRecommendation
-  extends ProcedureRecommendation {
+export interface GenericProcedureRecommendation extends ProcedureRecommendation {
   /** The type of the procedure. */
   kind: "genericProcedureRecommendation";
   /** The procedure modality */
@@ -1026,8 +937,7 @@ export function genericProcedureRecommendationDeserializer(
 }
 
 /** Radiology procedure. */
-export interface ImagingProcedureRecommendation
-  extends ProcedureRecommendation {
+export interface ImagingProcedureRecommendation extends ProcedureRecommendation {
   /** The type of the procedure. */
   kind: "imagingProcedureRecommendation";
   /** The LOINC codes for the procedure. */
@@ -1044,15 +954,12 @@ export function imagingProcedureRecommendationDeserializer(
     procedureCodes: !item["procedureCodes"]
       ? item["procedureCodes"]
       : codeableConceptArrayDeserializer(item["procedureCodes"]),
-    imagingProcedures: imagingProcedureArrayDeserializer(
-      item["imagingProcedures"],
-    ),
+    imagingProcedures: imagingProcedureArrayDeserializer(item["imagingProcedures"]),
   };
 }
 
 /** Communication Inference */
-export interface FollowupCommunicationInference
-  extends RadiologyInsightsInference {
+export interface FollowupCommunicationInference extends RadiologyInsightsInference {
   /** The type of the inference. */
   kind: "followupCommunication";
   /** The communication date/time. */

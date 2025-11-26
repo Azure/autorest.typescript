@@ -37,9 +37,7 @@ export function createBatch(
     userAgentOptions: { userAgentPrefix },
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
     credentials: {
-      scopes: options.credentials?.scopes ?? [
-        "https://batch.core.windows.net//.default",
-      ],
+      scopes: options.credentials?.scopes ?? ["https://batch.core.windows.net//.default"],
     },
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);

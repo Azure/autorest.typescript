@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  createEventGrid,
-  EventGridContext,
-  EventGridClientOptionalParams,
-} from "./api/index.js";
+import { createEventGrid, EventGridContext, EventGridClientOptionalParams } from "./api/index.js";
 import {
   renewCloudEventLocks,
   rejectCloudEvents,
@@ -83,13 +79,7 @@ export class EventGridClient {
     lockTokens: string[],
     options: RejectCloudEventsOptionalParams = { requestOptions: {} },
   ): Promise<RejectResult> {
-    return rejectCloudEvents(
-      this._client,
-      topicName,
-      eventSubscriptionName,
-      lockTokens,
-      options,
-    );
+    return rejectCloudEvents(this._client, topicName, eventSubscriptionName, lockTokens, options);
   }
 
   /** Release a batch of Cloud Events. The response will include the set of successfully released lock tokens, along with other failed lock tokens with their corresponding error information. Successfully released events can be received by consumers. */
@@ -99,13 +89,7 @@ export class EventGridClient {
     lockTokens: string[],
     options: ReleaseCloudEventsOptionalParams = { requestOptions: {} },
   ): Promise<ReleaseResult> {
-    return releaseCloudEvents(
-      this._client,
-      topicName,
-      eventSubscriptionName,
-      lockTokens,
-      options,
-    );
+    return releaseCloudEvents(this._client, topicName, eventSubscriptionName, lockTokens, options);
   }
 
   /** Acknowledge a batch of Cloud Events. The response will include the set of successfully acknowledged lock tokens, along with other failed lock tokens with their corresponding error information. Successfully acknowledged events will no longer be available to be received by any consumer. */
@@ -130,12 +114,7 @@ export class EventGridClient {
     eventSubscriptionName: string,
     options: ReceiveCloudEventsOptionalParams = { requestOptions: {} },
   ): Promise<ReceiveResult> {
-    return receiveCloudEvents(
-      this._client,
-      topicName,
-      eventSubscriptionName,
-      options,
-    );
+    return receiveCloudEvents(this._client, topicName, eventSubscriptionName, options);
   }
 
   /** Publish a batch of Cloud Events to a namespace topic. */

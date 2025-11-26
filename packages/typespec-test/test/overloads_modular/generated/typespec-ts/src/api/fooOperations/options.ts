@@ -4,9 +4,7 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface FooOperationsGetAvatarAsJpegOptionalParams
-  extends OperationOptions {}
+export interface FooOperationsGetAvatarAsJpegOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface FooOperationsGetAvatarAsPngOptionalParams
-  extends OperationOptions {}
+export interface FooOperationsGetAvatarAsPngOptionalParams extends OperationOptions {}

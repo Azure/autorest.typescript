@@ -1,27 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  createAIProject,
-  AIProjectContext,
-  AIProjectClientOptionalParams,
-} from "./api/index.js";
-import {
-  AgentsOperations,
-  _getAgentsOperations,
-} from "./classic/agents/index.js";
-import {
-  ConnectionsOperations,
-  _getConnectionsOperations,
-} from "./classic/connections/index.js";
-import {
-  EvaluationsOperations,
-  _getEvaluationsOperations,
-} from "./classic/evaluations/index.js";
-import {
-  TelemetryOperations,
-  _getTelemetryOperations,
-} from "./classic/telemetry/index.js";
+import { createAIProject, AIProjectContext, AIProjectClientOptionalParams } from "./api/index.js";
+import { AgentsOperations, _getAgentsOperations } from "./classic/agents/index.js";
+import { ConnectionsOperations, _getConnectionsOperations } from "./classic/connections/index.js";
+import { EvaluationsOperations, _getEvaluationsOperations } from "./classic/evaluations/index.js";
+import { TelemetryOperations, _getTelemetryOperations } from "./classic/telemetry/index.js";
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 

@@ -15,8 +15,7 @@ export interface CreateLedgerEntryBodyParam {
   body: LedgerEntry;
 }
 
-export type CreateLedgerEntryParameters = CreateLedgerEntryBodyParam &
-  RequestParameters;
+export type CreateLedgerEntryParameters = CreateLedgerEntryBodyParam & RequestParameters;
 export type GetLedgerEntryParameters = RequestParameters;
 export type GetReceiptParameters = RequestParameters;
 export type GetTransactionStatusParameters = RequestParameters;
@@ -30,8 +29,7 @@ export interface GetCurrentLedgerEntryQueryParam {
   queryParameters?: GetCurrentLedgerEntryQueryParamProperties;
 }
 
-export type GetCurrentLedgerEntryParameters = GetCurrentLedgerEntryQueryParam &
-  RequestParameters;
+export type GetCurrentLedgerEntryParameters = GetCurrentLedgerEntryQueryParam & RequestParameters;
 export type DeleteUserParameters = RequestParameters;
 export type GetUserParameters = RequestParameters;
 /** The resource instance. */
