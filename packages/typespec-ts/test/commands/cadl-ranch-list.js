@@ -905,18 +905,6 @@ export const azureModularTsps = [
     inputPath: "azure/client-generator-core/next-link-verb"
   },
   {
-    outputPath: "azure/client-generator-core/api-version/header",
-    inputPath: "azure/client-generator-core/api-version/header"
-  },
-  {
-    outputPath: "azure/client-generator-core/api-version/query",
-    inputPath: "azure/client-generator-core/api-version/query"
-  },
-  {
-    outputPath: "azure/client-generator-core/api-version/path",
-    inputPath: "azure/client-generator-core/api-version/path"
-  },
-  {
     outputPath: "special-headers/conditional-request",
     inputPath: "special-headers/conditional-request"
   }
