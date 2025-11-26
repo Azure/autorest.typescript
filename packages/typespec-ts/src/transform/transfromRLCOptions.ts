@@ -74,6 +74,7 @@ function extractRLCOptions(
   const productDocLink = emitterOptions["product-doc-link"];
   const isModularLibrary = emitterOptions["is-modular-library"];
   const compatibilityMode = emitterOptions["compatibility-mode"];
+  const compatibilityLro = emitterOptions["compatibility-lro"];
   const experimentalExtensibleEnums =
     emitterOptions["experimental-extensible-enums"];
   const ignorePropertyNameNormalize =
@@ -110,6 +111,7 @@ function extractRLCOptions(
     productDocLink,
     isModularLibrary,
     compatibilityMode,
+    compatibilityLro,
     experimentalExtensibleEnums,
     ignorePropertyNameNormalize,
     compatibilityQueryMultiFormat,
@@ -295,6 +297,9 @@ function buildPackageDetails(
     nameWithoutScope: "unamedpackage",
     version: "1.0.0-beta.1"
   };
+  const isVersionUserProvided = Boolean(
+    emitterOptions["package-details"]?.version
+  );
   const packageDetails: PackageDetails = {
     ...emitterOptions["package-details"],
     name:
@@ -303,7 +308,8 @@ function buildPackageDetails(
         emitterOptions?.title ?? getDefaultService(program)?.title ?? "",
         NameType.Class
       ),
-    version: emitterOptions["package-details"]?.version ?? "1.0.0-beta.1"
+    version: emitterOptions["package-details"]?.version ?? "1.0.0-beta.1",
+    isVersionUserProvided
   };
   if (emitterOptions["package-details"]?.name) {
     const nameParts = emitterOptions["package-details"]?.name.split("/");

@@ -98,14 +98,7 @@ export class LoadTestRunClient {
     timespan: string,
     options: ListMetricsOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<TimeSeriesElement> {
-    return listMetrics(
-      this._client,
-      testRunId,
-      metricname,
-      metricNamespace,
-      timespan,
-      options,
-    );
+    return listMetrics(this._client, testRunId, metricname, metricNamespace, timespan, options);
   }
 
   /** List the metric namespaces for a load test run. */
@@ -122,12 +115,7 @@ export class LoadTestRunClient {
     metricNamespace: string,
     options: ListMetricDefinitionsOptionalParams = { requestOptions: {} },
   ): Promise<MetricDefinitionCollection> {
-    return listMetricDefinitions(
-      this._client,
-      testRunId,
-      metricNamespace,
-      options,
-    );
+    return listMetricDefinitions(this._client, testRunId, metricNamespace, options);
   }
 
   /** List the dimension values for the given metric dimension name. */
@@ -198,16 +186,9 @@ export class LoadTestRunClient {
   createOrUpdateServerMetricsConfig(
     testRunId: string,
     body: TestRunServerMetricConfig,
-    options: CreateOrUpdateServerMetricsConfigOptionalParams = {
-      requestOptions: {},
-    },
+    options: CreateOrUpdateServerMetricsConfigOptionalParams = { requestOptions: {} },
   ): Promise<TestRunServerMetricConfig> {
-    return createOrUpdateServerMetricsConfig(
-      this._client,
-      testRunId,
-      body,
-      options,
-    );
+    return createOrUpdateServerMetricsConfig(this._client, testRunId, body, options);
   }
 
   /** Add an app component to a test run by providing the resource Id, name and type. */

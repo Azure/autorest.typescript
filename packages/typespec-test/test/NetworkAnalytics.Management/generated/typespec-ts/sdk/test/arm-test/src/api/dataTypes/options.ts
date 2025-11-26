@@ -4,12 +4,10 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface DataTypesListByDataProductOptionalParams
-  extends OperationOptions {}
+export interface DataTypesListByDataProductOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface DataTypesGenerateStorageContainerSasTokenOptionalParams
-  extends OperationOptions {}
+export interface DataTypesGenerateStorageContainerSasTokenOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface DataTypesDeleteDataOptionalParams extends OperationOptions {

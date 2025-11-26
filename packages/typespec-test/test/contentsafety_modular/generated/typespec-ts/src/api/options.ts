@@ -20,8 +20,7 @@ export interface GetTextBlocklistItemOptionalParams extends OperationOptions {}
 export interface RemoveBlocklistItemsOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface AddOrUpdateBlocklistItemsOptionalParams
-  extends OperationOptions {}
+export interface AddOrUpdateBlocklistItemsOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface ListTextBlocklistsOptionalParams extends OperationOptions {}
@@ -30,8 +29,7 @@ export interface ListTextBlocklistsOptionalParams extends OperationOptions {}
 export interface DeleteTextBlocklistOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface CreateOrUpdateTextBlocklistOptionalParams
-  extends OperationOptions {}
+export interface CreateOrUpdateTextBlocklistOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface GetTextBlocklistOptionalParams extends OperationOptions {}
@@ -40,8 +38,7 @@ export interface GetTextBlocklistOptionalParams extends OperationOptions {}
 export interface AnalyzeImageOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface DetectTextProtectedMaterialOptionalParams
-  extends OperationOptions {}
+export interface DetectTextProtectedMaterialOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface ShieldPromptOptionalParams extends OperationOptions {}

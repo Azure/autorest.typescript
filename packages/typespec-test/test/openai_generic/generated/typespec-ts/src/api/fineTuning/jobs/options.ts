@@ -7,8 +7,7 @@ import { OperationOptions } from "@azure-rest/core-client";
 export interface FineTuningJobsCancelOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface FineTuningJobsListEventsOptionalParams
-  extends OperationOptions {
+export interface FineTuningJobsListEventsOptionalParams extends OperationOptions {
   /** Identifier for the last event from the previous pagination request. */
   after?: string;
   /** Number of events to retrieve. */
@@ -16,8 +15,7 @@ export interface FineTuningJobsListEventsOptionalParams
 }
 
 /** Optional parameters. */
-export interface FineTuningJobsRetrieveOptionalParams
-  extends OperationOptions {}
+export interface FineTuningJobsRetrieveOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface FineTuningJobsListOptionalParams extends OperationOptions {

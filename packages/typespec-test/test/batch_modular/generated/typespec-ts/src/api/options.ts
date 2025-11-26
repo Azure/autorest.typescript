@@ -255,8 +255,7 @@ export interface UploadNodeLogsOptionalParams extends OperationOptions {
 }
 
 /** Optional parameters. */
-export interface GetNodeRemoteDesktopFileOptionalParams
-  extends OperationOptions {
+export interface GetNodeRemoteDesktopFileOptionalParams extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -278,8 +277,7 @@ export interface GetNodeRemoteDesktopFileOptionalParams
 }
 
 /** Optional parameters. */
-export interface GetNodeRemoteLoginSettingsOptionalParams
-  extends OperationOptions {
+export interface GetNodeRemoteLoginSettingsOptionalParams extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1438,8 +1436,7 @@ export interface DeleteCertificateOptionalParams extends OperationOptions {
 }
 
 /** Optional parameters. */
-export interface CancelCertificateDeletionOptionalParams
-  extends OperationOptions {
+export interface CancelCertificateDeletionOptionalParams extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1539,8 +1536,7 @@ export interface GetJobTaskCountsOptionalParams extends OperationOptions {
 }
 
 /** Optional parameters. */
-export interface ListJobPreparationAndReleaseTaskStatusOptionalParams
-  extends OperationOptions {
+export interface ListJobPreparationAndReleaseTaskStatusOptionalParams extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.

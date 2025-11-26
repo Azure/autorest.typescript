@@ -48,9 +48,7 @@ export interface _ListWidgetsPagesResults {
   odataNextLink?: string;
 }
 
-export function _listWidgetsPagesResultsDeserializer(
-  item: any,
-): _ListWidgetsPagesResults {
+export function _listWidgetsPagesResultsDeserializer(item: any): _ListWidgetsPagesResults {
   return {
     results: widgetArrayDeserializer(item["results"]),
     odataNextLink: item["odata.nextLink"],

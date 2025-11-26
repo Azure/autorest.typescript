@@ -60,6 +60,7 @@ export interface EmitterOptions {
   "enable-model-namespace"?: boolean;
   "hierarchy-client"?: boolean;
   "compatibility-mode"?: boolean;
+  "compatibility-lro"?: boolean;
   "experimental-extensible-enums"?: boolean;
   "clear-output-folder"?: boolean;
   "ignore-property-name-normalize"?: boolean;
@@ -102,7 +103,8 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
         scopeName: { type: "string", nullable: true },
         nameWithoutScope: { type: "string", nullable: true },
         description: { type: "string", nullable: true },
-        version: { type: "string", nullable: true }
+        version: { type: "string", nullable: true },
+        isVersionUserProvided: { type: "boolean", nullable: true }
       },
       required: ["name"],
       nullable: true,
@@ -279,6 +281,12 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       nullable: true,
       description:
         "Whether to affect the generation of the additional property feature for the Modular client. Defaults to `false`."
+    },
+    "compatibility-lro": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "[deprecated] Whether to generate the legacy LRO interface. When `true`, we will generate legacy beginXXX and beginXXXAndWait LRO methods."
     },
     "experimental-extensible-enums": {
       type: "boolean",
@@ -603,7 +611,7 @@ export const prettierTypeScriptOptions: Options = {
   arrowParens: "always",
   bracketSpacing: true,
   endOfLine: "lf",
-  printWidth: 80,
+  printWidth: 100,
   semi: true,
   singleQuote: false,
   tabWidth: 2
