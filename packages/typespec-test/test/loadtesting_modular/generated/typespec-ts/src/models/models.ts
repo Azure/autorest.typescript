@@ -96,7 +96,11 @@ export function testDeserializer(item: any): Test {
     certificate: !item["certificate"]
       ? item["certificate"]
       : certificateMetadataDeserializer(item["certificate"]),
-    environmentVariables: item["environmentVariables"],
+    environmentVariables: !item["environmentVariables"]
+      ? item["environmentVariables"]
+      : Object.fromEntries(
+          Object.entries(item["environmentVariables"]).map(([k, p]: [string, any]) => [k, p]),
+        ),
     loadTestConfiguration: !item["loadTestConfiguration"]
       ? item["loadTestConfiguration"]
       : loadTestConfigurationDeserializer(item["loadTestConfiguration"]),
@@ -1098,7 +1102,11 @@ export function testRunDeserializer(item: any): TestRun {
     certificate: !item["certificate"]
       ? item["certificate"]
       : certificateMetadataDeserializer(item["certificate"]),
-    environmentVariables: item["environmentVariables"],
+    environmentVariables: !item["environmentVariables"]
+      ? item["environmentVariables"]
+      : Object.fromEntries(
+          Object.entries(item["environmentVariables"]).map(([k, p]: [string, any]) => [k, p]),
+        ),
     errorDetails: !item["errorDetails"]
       ? item["errorDetails"]
       : errorDetailsArrayDeserializer(item["errorDetails"]),
@@ -2350,7 +2358,9 @@ export function testRunDetailDeserializer(item: any): TestRunDetail {
   return {
     status: item["status"],
     configurationId: item["configurationId"],
-    properties: item["properties"],
+    properties: Object.fromEntries(
+      Object.entries(item["properties"]).map(([k, p]: [string, any]) => [k, p]),
+    ),
   };
 }
 
