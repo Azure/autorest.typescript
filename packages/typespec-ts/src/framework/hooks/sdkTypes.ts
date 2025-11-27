@@ -145,7 +145,3 @@ export function getAllOperationsFromClient(
 
   return operations;
 }
-
-export function isSupportedFlattenProperty(property: SdkModelPropertyType) {
-  return property.flatten;
-}

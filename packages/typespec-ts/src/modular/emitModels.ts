@@ -67,8 +67,7 @@ import {
 import {
   emitQueue,
   flattenProperties,
-  getAllOperationsFromClient,
-  isSupportedFlattenProperty
+  getAllOperationsFromClient
 } from "../framework/hooks/sdkTypes.js";
 import { resolveReference } from "../framework/reference.js";
 import { MultipartHelpers } from "./static-helpers-metadata.js";
@@ -907,10 +906,7 @@ function visitType(context: SdkContext, type: SdkType | undefined) {
       if (!emitQueue.has(property.type)) {
         visitType(context, property.type);
       }
-      if (
-        isSupportedFlattenProperty(property) &&
-        property.type.kind === "model"
-      ) {
+      if (property.flatten && property.type.kind === "model") {
         flattenProperties.set(property, type);
       }
     }
