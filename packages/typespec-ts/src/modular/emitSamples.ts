@@ -379,7 +379,7 @@ function prepareExampleParameters(
   const bodyParam = method.operation.bodyParam;
   const bodySerializeName = bodyParam?.serializedName;
   const bodyExample = parameterMap[bodySerializeName ?? ""];
-  if (bodySerializeName && bodyExample && bodyExample.value) {
+  if (bodyParam && bodyExample && bodyExample.value) {
     if (
       isSpreadBodyParameter(bodyParam) &&
       bodyParam.type.kind === "model" &&
