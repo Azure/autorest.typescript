@@ -1,0 +1,63 @@
+{
+  "name": "@azure/typescript-generators-mono-repo",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "build:test": "turbo run build:test",
+    "clean": "turbo run clean",
+    "check-format": "turbo run check-format",
+    "format": "turbo run format",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
+    "preinstall": "npx only-allow pnpm",
+    "purge": "rimraf --glob \"packages/**/node_modules/\"",
+    "test": "turbo run test",
+    "update-typespec": "node .scripts/update-typespec-overrides.js"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "eslint": "^8.9.0",
+    "prettier": "^3.5.3",
+    "prettier-plugin-packagejson": "^2.5.15",
+    "rimraf": "^5.0.10",
+    "turbo": "^2.5.4",
+    "typescript": "~5.8.2"
+  },
+  "packageManager": "pnpm@10.12.1",
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=10.12.1"
+  },
+  "pnpm": {
+    "overrides": {
+      "@typespec/compiler": "1.7.0-dev.6",
+      "@typespec/http": "1.7.0-dev.2",
+      "@typespec/openapi": "1.7.0-dev.1",
+      "@typespec/rest": "0.77.0-dev.1",
+      "@typespec/versioning": "0.77.0-dev.1",
+      "@typespec/xml": "0.77.0-dev.1",
+      "@typespec/events": "0.77.0-dev.1",
+      "@typespec/sse": "0.77.0-dev.1",
+      "@typespec/streams": "0.77.0-dev.1",
+      "@typespec/http-specs": "0.1.0-alpha.29-dev.4",
+      "@typespec/spector": "0.1.0-alpha.21-dev.3",
+      "@typespec/spec-api": "0.1.0-alpha.11-dev.1",
+      "@azure-tools/typespec-client-generator-core": "0.63.0-dev.2",
+      "@azure-tools/typespec-azure-core": "0.63.0-dev.2",
+      "@azure-tools/typespec-azure-resource-manager": "0.63.0-dev.2",
+      "@azure-tools/typespec-azure-rulesets": "0.63.0-dev.1",
+      "@azure-tools/typespec-autorest": "0.63.0-dev.2",
+      "@azure-tools/azure-http-specs": "0.1.0-alpha.33-dev.3",
+      "@typespec/eslint-config-typespec": "0.56.0-dev.1",
+      "@typespec/library-linter": "0.77.0-dev.1"
+    },
+    "ignoredBuiltDependencies": [
+      "esbuild"
+    ],
+    "onlyBuiltDependencies": [
+      "autorest",
+      "puppeteer"
+    ]
+  }
+}

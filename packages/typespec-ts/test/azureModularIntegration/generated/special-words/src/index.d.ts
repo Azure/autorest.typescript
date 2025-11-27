@@ -46,6 +46,19 @@ export declare interface Del {
     name: string;
 }
 
+export declare interface DictMethods {
+    keys: string;
+    items: string;
+    values: string;
+    popitem: string;
+    clear: string;
+    update: string;
+    setdefault: string;
+    pop: string;
+    get: string;
+    copy: string;
+}
+
 export declare interface Elif {
     name: string;
 }
@@ -98,7 +111,11 @@ export declare interface Lambda {
     name: string;
 }
 
+export declare interface ModelPropertiesDictMethodsOptionalParams extends OperationOptions {
+}
+
 export declare interface ModelPropertiesOperations {
+    dictMethods: (body: DictMethods, options?: ModelPropertiesDictMethodsOptionalParams) => Promise<void>;
     sameAsModel: (body: SameAsModel, options?: ModelPropertiesSameAsModelOptionalParams) => Promise<void>;
 }
 
