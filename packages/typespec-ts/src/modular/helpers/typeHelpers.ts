@@ -98,6 +98,13 @@ export function buildPropertyNameMapper(model: SdkType) {
   if (model.kind !== "model") {
     return mapper;
   }
+
+  // Recursively process base model properties first
+  if (model.baseModel) {
+    const baseMapper = buildPropertyNameMapper(model.baseModel);
+    baseMapper.forEach((value, key) => mapper.set(key, value));
+  }
+
   for (const prop of model.properties) {
     if (prop.kind !== "property") {
       continue;
