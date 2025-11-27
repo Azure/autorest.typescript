@@ -13,7 +13,7 @@
     "preinstall": "npx only-allow pnpm",
     "purge": "rimraf --glob \"packages/**/node_modules/\"",
     "test": "turbo run test",
-    "update-typespec": "node scripts/update-typespec-overrides.js"
+    "update-typespec": "node .scripts/update-typespec-overrides.js"
   },
   "devDependencies": {
     "@types/node": "^18.0.0",
