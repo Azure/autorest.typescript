@@ -182,4 +182,15 @@ export function isPolymorphicUnion(t: SdkType): boolean {
 export interface ModelSerializeOptions {
   nameOnly: boolean;
   skipDiscriminatedUnionSuffix: boolean;
+  // Indicates if the serializer is being built for a property that is flattened.
+  flatten?: {
+    baseModel: SdkModelType;
+    property: SdkModelPropertyType;
+  };
+  // Indicates if any overrides should be applied when building the serializer/deserializer.
+  overrides?: {
+    // If true, all properties will be treated as optional during serialization/deserialization.
+    allOptional?: boolean;
+  };
+  predefinedName?: string;
 }

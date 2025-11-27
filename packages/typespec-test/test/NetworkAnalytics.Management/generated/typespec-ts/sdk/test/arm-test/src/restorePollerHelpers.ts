@@ -2,16 +2,12 @@
 // Licensed under the MIT License.
 
 import { NetworkAnalyticsApi } from "./networkAnalyticsApi.js";
-import {
-  _$deleteDeserialize,
-  _updateDeserialize,
-  _createDeserialize,
-} from "./api/dataProducts/operations.js";
+import { _$deleteDeserialize, _updateDeserialize } from "./api/dataProducts/operations.js";
 import {
   _deleteDataDeserialize,
   _$deleteDeserialize as _$deleteDeserializeDataTypes,
   _updateDeserialize as _updateDeserializeDataTypes,
-  _createDeserialize as _createDeserializeDataTypes,
+  _createDeserialize,
 } from "./api/dataTypes/operations.js";
 import { getLongRunningPoller } from "./static-helpers/pollingHelpers.js";
 import { OperationOptions, PathUncheckedResponse } from "@azure-rest/core-client";
@@ -90,8 +86,6 @@ const deserializeMap: Record<string, DeserializationHelper> = {
     { deserializer: _$deleteDeserialize, expectedStatuses: ["202", "204", "200", "201"] },
   "PATCH /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}":
     { deserializer: _updateDeserialize, expectedStatuses: ["200", "202", "201"] },
-  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}":
-    { deserializer: _createDeserialize, expectedStatuses: ["200", "201", "202"] },
   "POST /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}/deleteData":
     { deserializer: _deleteDataDeserialize, expectedStatuses: ["202", "204", "200", "201"] },
   "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}":
@@ -99,7 +93,7 @@ const deserializeMap: Record<string, DeserializationHelper> = {
   "PATCH /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}":
     { deserializer: _updateDeserializeDataTypes, expectedStatuses: ["200", "202", "201"] },
   "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkAnalytics/dataProducts/{dataProductName}/dataTypes/{dataTypeName}":
-    { deserializer: _createDeserializeDataTypes, expectedStatuses: ["200", "201", "202"] },
+    { deserializer: _createDeserialize, expectedStatuses: ["200", "201", "202"] },
 };
 
 function getDeserializationHelper(

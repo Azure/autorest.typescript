@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import { areAllPropsUndefined } from "../static-helpers/serialization/check-prop-undefined.js";
+
 /**
  * This file contains only generated model types and their (de)serializers.
  * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
@@ -432,24 +434,18 @@ export function dataProductsCatalogArrayDeserializer(result: Array<DataProductsC
 
 /** The data type resource. */
 export interface DataType extends ProxyResource {
-  /** Latest provisioning state  of data product. */
-  readonly provisioningState?: ProvisioningState;
-  /** State of data type. */
-  state?: DataTypeState;
-  /** Reason for the state of data type. */
-  readonly stateReason?: string;
-  /** Field for storage output retention in days. */
-  storageOutputRetention?: number;
-  /** Field for database cache retention in days. */
-  databaseCacheRetention?: number;
-  /** Field for database data retention in days. */
-  databaseRetention?: number;
-  /** Url for data visualization. */
-  readonly visualizationUrl?: string;
+  /** The resource-specific properties for this resource. */
+  properties?: DataTypeProperties;
+  foo: DataProductNetworkAclsRequired;
 }
 
 export function dataTypeSerializer(item: DataType): any {
-  return { properties: dataTypePropertiesSerializer(item) };
+  return {
+    properties: !item["properties"]
+      ? item["properties"]
+      : dataTypePropertiesSerializer(item["properties"]),
+    foo: dataProductNetworkAclsRequiredSerializer(item["foo"]),
+  };
 }
 
 export function dataTypeDeserializer(item: any): DataType {
@@ -460,9 +456,10 @@ export function dataTypeDeserializer(item: any): DataType {
     systemData: !item["systemData"]
       ? item["systemData"]
       : systemDataDeserializer(item["systemData"]),
-    ...(!item["properties"]
+    properties: !item["properties"]
       ? item["properties"]
-      : dataTypePropertiesDeserializer(item["properties"])),
+      : dataTypePropertiesDeserializer(item["properties"]),
+    foo: dataProductNetworkAclsRequiredDeserializer(item["foo"]),
   };
 }
 
@@ -523,14 +520,206 @@ export enum KnownDataTypeState {
  */
 export type DataTypeState = string;
 
+/** Data Product Network rule set */
+export interface DataProductNetworkAclsRequired {
+  /** Virtual Network Rule */
+  virtualNetworkRule: VirtualNetworkRule[];
+  /** IP rule with specific IP or IP range in CIDR format. */
+  ipRules: IPRules[];
+  /** The list of query ips in the format of CIDR allowed to connect to query/visualization endpoint. */
+  allowedQueryIpRangeList: string[];
+  /** Default Action */
+  defaultAction: DefaultAction;
+  baseRequired: string;
+  requiredProp: EncryptionKeyDetails[];
+  optionalProp?: EncryptionKeyDetails[];
+}
+
+export function dataProductNetworkAclsRequiredSerializer(
+  item: DataProductNetworkAclsRequired,
+): any {
+  return {
+    virtualNetworkRule: virtualNetworkRuleArraySerializer(item["virtualNetworkRule"]),
+    ipRules: ipRulesArraySerializer(item["ipRules"]),
+    allowedQueryIpRangeList: item["allowedQueryIpRangeList"].map((p: any) => {
+      return p;
+    }),
+    defaultAction: item["defaultAction"],
+    baseRequired: item["baseRequired"],
+    properties: _dataProductNetworkAclsRequiredPropertiesSerializer(item),
+  };
+}
+
+export function dataProductNetworkAclsRequiredDeserializer(
+  item: any,
+): DataProductNetworkAclsRequired {
+  return {
+    virtualNetworkRule: virtualNetworkRuleArrayDeserializer(item["virtualNetworkRule"]),
+    ipRules: ipRulesArrayDeserializer(item["ipRules"]),
+    allowedQueryIpRangeList: item["allowedQueryIpRangeList"].map((p: any) => {
+      return p;
+    }),
+    defaultAction: item["defaultAction"],
+    baseRequired: item["baseRequired"],
+    ..._dataProductNetworkAclsRequiredPropertiesDeserializer(item["properties"]),
+  };
+}
+
+export function virtualNetworkRuleArraySerializer(result: Array<VirtualNetworkRule>): any[] {
+  return result.map((item) => {
+    return virtualNetworkRuleSerializer(item);
+  });
+}
+
+export function virtualNetworkRuleArrayDeserializer(result: Array<VirtualNetworkRule>): any[] {
+  return result.map((item) => {
+    return virtualNetworkRuleDeserializer(item);
+  });
+}
+
+/** Virtual Network Rule */
+export interface VirtualNetworkRule {
+  /** Resource ID of a subnet */
+  id: string;
+  /** The action of virtual network rule. */
+  action?: string;
+  /** Gets the state of virtual network rule. */
+  state?: string;
+}
+
+export function virtualNetworkRuleSerializer(item: VirtualNetworkRule): any {
+  return { id: item["id"], action: item["action"], state: item["state"] };
+}
+
+export function virtualNetworkRuleDeserializer(item: any): VirtualNetworkRule {
+  return {
+    id: item["id"],
+    action: item["action"],
+    state: item["state"],
+  };
+}
+
+export function ipRulesArraySerializer(result: Array<IPRules>): any[] {
+  return result.map((item) => {
+    return ipRulesSerializer(item);
+  });
+}
+
+export function ipRulesArrayDeserializer(result: Array<IPRules>): any[] {
+  return result.map((item) => {
+    return ipRulesDeserializer(item);
+  });
+}
+
+/** IP rule with specific IP or IP range in CIDR format. */
+export interface IPRules {
+  /** IP Rules Value */
+  value?: string;
+  /** The action of virtual network rule. */
+  action: string;
+}
+
+export function ipRulesSerializer(item: IPRules): any {
+  return { value: item["value"], action: item["action"] };
+}
+
+export function ipRulesDeserializer(item: any): IPRules {
+  return {
+    value: item["value"],
+    action: item["action"],
+  };
+}
+
+/** Specifies the default action of allow or deny when no other rules match. */
+export enum KnownDefaultAction {
+  /** Represents allow action. */
+  Allow = "Allow",
+  /** Represents deny action. */
+  Deny = "Deny",
+}
+
+/**
+ * Specifies the default action of allow or deny when no other rules match. \
+ * {@link KnownDefaultAction} can be used interchangeably with DefaultAction,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Allow**: Represents allow action. \
+ * **Deny**: Represents deny action.
+ */
+export type DefaultAction = string;
+
+/** The data product properties. */
+export interface DataProductProperties {
+  requiredProp: EncryptionKeyDetails[];
+  optionalProp?: EncryptionKeyDetails[];
+}
+
+export function dataProductPropertiesSerializer(item: DataProductProperties): any {
+  return {
+    requiredProp: encryptionKeyDetailsArraySerializer(item["requiredProp"]),
+    optionalProp: !item["optionalProp"]
+      ? item["optionalProp"]
+      : encryptionKeyDetailsArraySerializer(item["optionalProp"]),
+  };
+}
+
+export function dataProductPropertiesDeserializer(item: any): DataProductProperties {
+  return {
+    requiredProp: encryptionKeyDetailsArrayDeserializer(item["requiredProp"]),
+    optionalProp: !item["optionalProp"]
+      ? item["optionalProp"]
+      : encryptionKeyDetailsArrayDeserializer(item["optionalProp"]),
+  };
+}
+
+export function encryptionKeyDetailsArraySerializer(result: Array<EncryptionKeyDetails>): any[] {
+  return result.map((item) => {
+    return encryptionKeyDetailsSerializer(item);
+  });
+}
+
+export function encryptionKeyDetailsArrayDeserializer(result: Array<EncryptionKeyDetails>): any[] {
+  return result.map((item) => {
+    return encryptionKeyDetailsDeserializer(item);
+  });
+}
+
+/** Encryption key details. */
+export interface EncryptionKeyDetails {
+  /** The Uri of the key vault. */
+  keyVaultUri: string;
+  /** The name of the key vault key. */
+  keyName: string;
+  /** The version of the key vault key. */
+  keyVersion: string;
+}
+
+export function encryptionKeyDetailsSerializer(item: EncryptionKeyDetails): any {
+  return {
+    keyVaultUri: item["keyVaultUri"],
+    keyName: item["keyName"],
+    keyVersion: item["keyVersion"],
+  };
+}
+
+export function encryptionKeyDetailsDeserializer(item: any): EncryptionKeyDetails {
+  return {
+    keyVaultUri: item["keyVaultUri"],
+    keyName: item["keyName"],
+    keyVersion: item["keyVersion"],
+  };
+}
+
 /** The type used for update operations of the DataType. */
 export interface DataTypeUpdate {
+  foo?: DataProductNetworkAclsRequired;
   /** The resource-specific properties for this resource. */
   properties?: DataTypeUpdateProperties;
 }
 
 export function dataTypeUpdateSerializer(item: DataTypeUpdate): any {
   return {
+    foo: !item["foo"] ? item["foo"] : dataProductNetworkAclsRequiredSerializer(item["foo"]),
     properties: !item["properties"]
       ? item["properties"]
       : dataTypeUpdatePropertiesSerializer(item["properties"]),
@@ -623,63 +812,29 @@ export function dataTypeArrayDeserializer(result: Array<DataType>): any[] {
 }
 
 /** The data product resource. */
-export interface DataProduct extends TrackedResource {
+export interface DataProductOptional extends TrackedResource {
+  baseRequired: string;
   /** The managed service identities assigned to this resource. */
   identity?: ManagedServiceIdentityV4;
-  /** The resource GUID property of the data product resource. */
-  readonly resourceGuid?: string;
-  /** Latest provisioning state  of data product. */
-  readonly provisioningState?: ProvisioningState;
-  /** Data product publisher name. */
-  publisher: string;
-  /** Product name of data product. */
-  product: string;
-  /** Major version of data product. */
-  majorVersion: string;
-  /** List of name or email associated with data product resource deployment. */
-  owners?: string[];
-  /** Flag to enable or disable redundancy for data product. */
-  redundancy?: ControlState;
-  /** Purview account url for data product to connect to. */
-  purviewAccount?: string;
-  /** Purview collection url for data product to connect to. */
-  purviewCollection?: string;
-  /** Flag to enable or disable private link for data product resource. */
-  privateLinksEnabled?: ControlState;
-  /** Flag to enable or disable public access of data product resource. */
-  publicNetworkAccess?: ControlState;
-  /** Flag to enable customer managed key encryption for data product. */
-  customerManagedKeyEncryptionEnabled?: ControlState;
-  /** Customer managed encryption key details for data product. */
-  customerEncryptionKey?: EncryptionKeyDetails;
-  /** Network rule set for data product. */
-  networkacls?: DataProductNetworkAcls;
-  /** Managed resource group configuration. */
-  managedResourceGroupConfiguration?: ManagedResourceGroupConfiguration;
-  /** List of available minor versions of the data product resource. */
-  readonly availableMinorVersions?: string[];
-  /** Current configured minor version of the data product resource. */
-  currentMinorVersion?: string;
-  /** Documentation link for the data product based on definition file. */
-  readonly documentation?: string;
-  /** Resource links which exposed to the customer to query the data. */
-  readonly consumptionEndpoints?: ConsumptionEndpointsProperties;
-  /** Key vault url. */
-  readonly keyVaultUrl?: string;
+  requiredProp?: EncryptionKeyDetails[];
+  optionalProp?: EncryptionKeyDetails[];
 }
 
-export function dataProductSerializer(item: DataProduct): any {
+export function dataProductOptionalSerializer(item: DataProductOptional): any {
   return {
     tags: item["tags"],
     location: item["location"],
-    properties: dataProductPropertiesSerializer(item),
+    properties: areAllPropsUndefined(item, ["requiredProp", "optionalProp"])
+      ? undefined
+      : _dataProductOptionalPropertiesSerializer(item),
+    baseRequired: item["baseRequired"],
     identity: !item["identity"]
       ? item["identity"]
       : managedServiceIdentityV4Serializer(item["identity"]),
   };
 }
 
-export function dataProductDeserializer(item: any): DataProduct {
+export function dataProductOptionalDeserializer(item: any): DataProductOptional {
   return {
     tags: item["tags"],
     location: item["location"],
@@ -691,337 +846,11 @@ export function dataProductDeserializer(item: any): DataProduct {
       : systemDataDeserializer(item["systemData"]),
     ...(!item["properties"]
       ? item["properties"]
-      : dataProductPropertiesDeserializer(item["properties"])),
+      : _dataProductOptionalPropertiesDeserializer(item["properties"])),
+    baseRequired: item["baseRequired"],
     identity: !item["identity"]
       ? item["identity"]
       : managedServiceIdentityV4Deserializer(item["identity"]),
-  };
-}
-
-/** The data product properties. */
-export interface DataProductProperties {
-  /** The resource GUID property of the data product resource. */
-  readonly resourceGuid?: string;
-  /** Latest provisioning state  of data product. */
-  readonly provisioningState?: ProvisioningState;
-  /** Data product publisher name. */
-  publisher: string;
-  /** Product name of data product. */
-  product: string;
-  /** Major version of data product. */
-  majorVersion: string;
-  /** List of name or email associated with data product resource deployment. */
-  owners?: string[];
-  /** Flag to enable or disable redundancy for data product. */
-  redundancy?: ControlState;
-  /** Purview account url for data product to connect to. */
-  purviewAccount?: string;
-  /** Purview collection url for data product to connect to. */
-  purviewCollection?: string;
-  /** Flag to enable or disable private link for data product resource. */
-  privateLinksEnabled?: ControlState;
-  /** Flag to enable or disable public access of data product resource. */
-  publicNetworkAccess?: ControlState;
-  /** Flag to enable customer managed key encryption for data product. */
-  customerManagedKeyEncryptionEnabled?: ControlState;
-  /** Customer managed encryption key details for data product. */
-  customerEncryptionKey?: EncryptionKeyDetails;
-  /** Network rule set for data product. */
-  networkacls?: DataProductNetworkAcls;
-  /** Managed resource group configuration. */
-  managedResourceGroupConfiguration?: ManagedResourceGroupConfiguration;
-  /** List of available minor versions of the data product resource. */
-  readonly availableMinorVersions?: string[];
-  /** Current configured minor version of the data product resource. */
-  currentMinorVersion?: string;
-  /** Documentation link for the data product based on definition file. */
-  readonly documentation?: string;
-  /** Resource links which exposed to the customer to query the data. */
-  readonly consumptionEndpoints?: ConsumptionEndpointsProperties;
-  /** Key vault url. */
-  readonly keyVaultUrl?: string;
-}
-
-export function dataProductPropertiesSerializer(item: DataProductProperties): any {
-  return {
-    publisher: item["publisher"],
-    product: item["product"],
-    majorVersion: item["majorVersion"],
-    owners: !item["owners"]
-      ? item["owners"]
-      : item["owners"].map((p: any) => {
-          return p;
-        }),
-    redundancy: item["redundancy"],
-    purviewAccount: item["purviewAccount"],
-    purviewCollection: item["purviewCollection"],
-    privateLinksEnabled: item["privateLinksEnabled"],
-    publicNetworkAccess: item["publicNetworkAccess"],
-    customerManagedKeyEncryptionEnabled: item["customerManagedKeyEncryptionEnabled"],
-    customerEncryptionKey: !item["customerEncryptionKey"]
-      ? item["customerEncryptionKey"]
-      : encryptionKeyDetailsSerializer(item["customerEncryptionKey"]),
-    networkacls: !item["networkacls"]
-      ? item["networkacls"]
-      : dataProductNetworkAclsSerializer(item["networkacls"]),
-    managedResourceGroupConfiguration: !item["managedResourceGroupConfiguration"]
-      ? item["managedResourceGroupConfiguration"]
-      : managedResourceGroupConfigurationSerializer(item["managedResourceGroupConfiguration"]),
-    currentMinorVersion: item["currentMinorVersion"],
-  };
-}
-
-export function dataProductPropertiesDeserializer(item: any): DataProductProperties {
-  return {
-    resourceGuid: item["resourceGuid"],
-    provisioningState: item["provisioningState"],
-    publisher: item["publisher"],
-    product: item["product"],
-    majorVersion: item["majorVersion"],
-    owners: !item["owners"]
-      ? item["owners"]
-      : item["owners"].map((p: any) => {
-          return p;
-        }),
-    redundancy: item["redundancy"],
-    purviewAccount: item["purviewAccount"],
-    purviewCollection: item["purviewCollection"],
-    privateLinksEnabled: item["privateLinksEnabled"],
-    publicNetworkAccess: item["publicNetworkAccess"],
-    customerManagedKeyEncryptionEnabled: item["customerManagedKeyEncryptionEnabled"],
-    customerEncryptionKey: !item["customerEncryptionKey"]
-      ? item["customerEncryptionKey"]
-      : encryptionKeyDetailsDeserializer(item["customerEncryptionKey"]),
-    networkacls: !item["networkacls"]
-      ? item["networkacls"]
-      : dataProductNetworkAclsDeserializer(item["networkacls"]),
-    managedResourceGroupConfiguration: !item["managedResourceGroupConfiguration"]
-      ? item["managedResourceGroupConfiguration"]
-      : managedResourceGroupConfigurationDeserializer(item["managedResourceGroupConfiguration"]),
-    availableMinorVersions: !item["availableMinorVersions"]
-      ? item["availableMinorVersions"]
-      : item["availableMinorVersions"].map((p: any) => {
-          return p;
-        }),
-    currentMinorVersion: item["currentMinorVersion"],
-    documentation: item["documentation"],
-    consumptionEndpoints: !item["consumptionEndpoints"]
-      ? item["consumptionEndpoints"]
-      : consumptionEndpointsPropertiesDeserializer(item["consumptionEndpoints"]),
-    keyVaultUrl: item["keyVaultUrl"],
-  };
-}
-
-/** The data type state */
-export enum KnownControlState {
-  /** Field to enable a setting. */
-  Enabled = "Enabled",
-  /** Field to disable a setting. */
-  Disabled = "Disabled",
-}
-
-/**
- * The data type state \
- * {@link KnownControlState} can be used interchangeably with ControlState,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Enabled**: Field to enable a setting. \
- * **Disabled**: Field to disable a setting.
- */
-export type ControlState = string;
-
-/** Encryption key details. */
-export interface EncryptionKeyDetails {
-  /** The Uri of the key vault. */
-  keyVaultUri: string;
-  /** The name of the key vault key. */
-  keyName: string;
-  /** The version of the key vault key. */
-  keyVersion: string;
-}
-
-export function encryptionKeyDetailsSerializer(item: EncryptionKeyDetails): any {
-  return {
-    keyVaultUri: item["keyVaultUri"],
-    keyName: item["keyName"],
-    keyVersion: item["keyVersion"],
-  };
-}
-
-export function encryptionKeyDetailsDeserializer(item: any): EncryptionKeyDetails {
-  return {
-    keyVaultUri: item["keyVaultUri"],
-    keyName: item["keyName"],
-    keyVersion: item["keyVersion"],
-  };
-}
-
-/** Data Product Network rule set */
-export interface DataProductNetworkAcls {
-  /** Virtual Network Rule */
-  virtualNetworkRule: VirtualNetworkRule[];
-  /** IP rule with specific IP or IP range in CIDR format. */
-  ipRules: IPRules[];
-  /** The list of query ips in the format of CIDR allowed to connect to query/visualization endpoint. */
-  allowedQueryIpRangeList: string[];
-  /** Default Action */
-  defaultAction: DefaultAction;
-}
-
-export function dataProductNetworkAclsSerializer(item: DataProductNetworkAcls): any {
-  return {
-    virtualNetworkRule: virtualNetworkRuleArraySerializer(item["virtualNetworkRule"]),
-    ipRules: ipRulesArraySerializer(item["ipRules"]),
-    allowedQueryIpRangeList: item["allowedQueryIpRangeList"].map((p: any) => {
-      return p;
-    }),
-    defaultAction: item["defaultAction"],
-  };
-}
-
-export function dataProductNetworkAclsDeserializer(item: any): DataProductNetworkAcls {
-  return {
-    virtualNetworkRule: virtualNetworkRuleArrayDeserializer(item["virtualNetworkRule"]),
-    ipRules: ipRulesArrayDeserializer(item["ipRules"]),
-    allowedQueryIpRangeList: item["allowedQueryIpRangeList"].map((p: any) => {
-      return p;
-    }),
-    defaultAction: item["defaultAction"],
-  };
-}
-
-export function virtualNetworkRuleArraySerializer(result: Array<VirtualNetworkRule>): any[] {
-  return result.map((item) => {
-    return virtualNetworkRuleSerializer(item);
-  });
-}
-
-export function virtualNetworkRuleArrayDeserializer(result: Array<VirtualNetworkRule>): any[] {
-  return result.map((item) => {
-    return virtualNetworkRuleDeserializer(item);
-  });
-}
-
-/** Virtual Network Rule */
-export interface VirtualNetworkRule {
-  /** Resource ID of a subnet */
-  id: string;
-  /** The action of virtual network rule. */
-  action?: string;
-  /** Gets the state of virtual network rule. */
-  state?: string;
-}
-
-export function virtualNetworkRuleSerializer(item: VirtualNetworkRule): any {
-  return { id: item["id"], action: item["action"], state: item["state"] };
-}
-
-export function virtualNetworkRuleDeserializer(item: any): VirtualNetworkRule {
-  return {
-    id: item["id"],
-    action: item["action"],
-    state: item["state"],
-  };
-}
-
-export function ipRulesArraySerializer(result: Array<IPRules>): any[] {
-  return result.map((item) => {
-    return ipRulesSerializer(item);
-  });
-}
-
-export function ipRulesArrayDeserializer(result: Array<IPRules>): any[] {
-  return result.map((item) => {
-    return ipRulesDeserializer(item);
-  });
-}
-
-/** IP rule with specific IP or IP range in CIDR format. */
-export interface IPRules {
-  /** IP Rules Value */
-  value?: string;
-  /** The action of virtual network rule. */
-  action: string;
-}
-
-export function ipRulesSerializer(item: IPRules): any {
-  return { value: item["value"], action: item["action"] };
-}
-
-export function ipRulesDeserializer(item: any): IPRules {
-  return {
-    value: item["value"],
-    action: item["action"],
-  };
-}
-
-/** Specifies the default action of allow or deny when no other rules match. */
-export enum KnownDefaultAction {
-  /** Represents allow action. */
-  Allow = "Allow",
-  /** Represents deny action. */
-  Deny = "Deny",
-}
-
-/**
- * Specifies the default action of allow or deny when no other rules match. \
- * {@link KnownDefaultAction} can be used interchangeably with DefaultAction,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **Allow**: Represents allow action. \
- * **Deny**: Represents deny action.
- */
-export type DefaultAction = string;
-
-/** ManagedResourceGroup related properties */
-export interface ManagedResourceGroupConfiguration {
-  /** Name of managed resource group */
-  name: string;
-  /** Managed Resource Group location */
-  location: string;
-}
-
-export function managedResourceGroupConfigurationSerializer(
-  item: ManagedResourceGroupConfiguration,
-): any {
-  return { name: item["name"], location: item["location"] };
-}
-
-export function managedResourceGroupConfigurationDeserializer(
-  item: any,
-): ManagedResourceGroupConfiguration {
-  return {
-    name: item["name"],
-    location: item["location"],
-  };
-}
-
-/** Details of Consumption Properties */
-export interface ConsumptionEndpointsProperties {
-  /** Ingestion url to upload the data. */
-  readonly ingestionUrl?: string;
-  /** Resource Id of ingestion endpoint. */
-  readonly ingestionResourceId?: string;
-  /** Url to consume file type. */
-  readonly fileAccessUrl?: string;
-  /** Resource Id of file access endpoint. */
-  readonly fileAccessResourceId?: string;
-  /** Url to consume the processed data. */
-  readonly queryUrl?: string;
-  /** Resource Id of query endpoint. */
-  readonly queryResourceId?: string;
-}
-
-export function consumptionEndpointsPropertiesDeserializer(
-  item: any,
-): ConsumptionEndpointsProperties {
-  return {
-    ingestionUrl: item["ingestionUrl"],
-    ingestionResourceId: item["ingestionResourceId"],
-    fileAccessUrl: item["fileAccessUrl"],
-    fileAccessResourceId: item["fileAccessResourceId"],
-    queryUrl: item["queryUrl"],
-    queryResourceId: item["queryResourceId"],
   };
 }
 
@@ -1145,53 +974,46 @@ export function trackedResourceDeserializer(item: any): TrackedResource {
   };
 }
 
-/** The type used for update operations of the DataProduct. */
-export interface DataProductUpdate {
+/** The type used for update operations of the DataProductOptional. */
+export interface DataProductOptionalUpdate {
+  baseRequired?: string;
   /** The managed service identities assigned to this resource. */
   identity?: ManagedServiceIdentityV4;
   /** Resource tags. */
   tags?: Record<string, string>;
   /** The resource-specific properties for this resource. */
-  properties?: DataProductUpdateProperties;
+  properties?: DataProductOptionalUpdateProperties;
 }
 
-export function dataProductUpdateSerializer(item: DataProductUpdate): any {
+export function dataProductOptionalUpdateSerializer(item: DataProductOptionalUpdate): any {
   return {
+    baseRequired: item["baseRequired"],
     identity: !item["identity"]
       ? item["identity"]
       : managedServiceIdentityV4Serializer(item["identity"]),
     tags: item["tags"],
     properties: !item["properties"]
       ? item["properties"]
-      : dataProductUpdatePropertiesSerializer(item["properties"]),
+      : dataProductOptionalUpdatePropertiesSerializer(item["properties"]),
   };
 }
 
-/** The updatable properties of the DataProduct. */
-export interface DataProductUpdateProperties {
-  /** List of name or email associated with data product resource deployment. */
-  owners?: string[];
-  /** Purview account url for data product to connect to. */
-  purviewAccount?: string;
-  /** Purview collection url for data product to connect to. */
-  purviewCollection?: string;
-  /** Flag to enable or disable private link for data product resource. */
-  privateLinksEnabled?: ControlState;
-  /** Current configured minor version of the data product resource. */
-  currentMinorVersion?: string;
+/** The updatable properties of the DataProductOptional. */
+export interface DataProductOptionalUpdateProperties {
+  requiredProp?: EncryptionKeyDetails[];
+  optionalProp?: EncryptionKeyDetails[];
 }
 
-export function dataProductUpdatePropertiesSerializer(item: DataProductUpdateProperties): any {
+export function dataProductOptionalUpdatePropertiesSerializer(
+  item: DataProductOptionalUpdateProperties,
+): any {
   return {
-    owners: !item["owners"]
-      ? item["owners"]
-      : item["owners"].map((p: any) => {
-          return p;
-        }),
-    purviewAccount: item["purviewAccount"],
-    purviewCollection: item["purviewCollection"],
-    privateLinksEnabled: item["privateLinksEnabled"],
-    currentMinorVersion: item["currentMinorVersion"],
+    requiredProp: !item["requiredProp"]
+      ? item["requiredProp"]
+      : encryptionKeyDetailsArraySerializer(item["requiredProp"]),
+    optionalProp: !item["optionalProp"]
+      ? item["optionalProp"]
+      : encryptionKeyDetailsArraySerializer(item["optionalProp"]),
   };
 }
 
@@ -1368,30 +1190,32 @@ export function roleAssignmentDetailArrayDeserializer(result: Array<RoleAssignme
   });
 }
 
-/** The response of a DataProduct list operation. */
-export interface _DataProductListResult {
-  /** The DataProduct items on this page */
-  value: DataProduct[];
+/** The response of a DataProductOptional list operation. */
+export interface _DataProductOptionalListResult {
+  /** The DataProductOptional items on this page */
+  value: DataProductOptional[];
   /** The link to the next page of items */
   nextLink?: string;
 }
 
-export function _dataProductListResultDeserializer(item: any): _DataProductListResult {
+export function _dataProductOptionalListResultDeserializer(
+  item: any,
+): _DataProductOptionalListResult {
   return {
-    value: dataProductArrayDeserializer(item["value"]),
+    value: dataProductOptionalArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
 }
 
-export function dataProductArraySerializer(result: Array<DataProduct>): any[] {
+export function dataProductOptionalArraySerializer(result: Array<DataProductOptional>): any[] {
   return result.map((item) => {
-    return dataProductSerializer(item);
+    return dataProductOptionalSerializer(item);
   });
 }
 
-export function dataProductArrayDeserializer(result: Array<DataProduct>): any[] {
+export function dataProductOptionalArrayDeserializer(result: Array<DataProductOptional>): any[] {
   return result.map((item) => {
-    return dataProductDeserializer(item);
+    return dataProductOptionalDeserializer(item);
   });
 }
 
@@ -1399,4 +1223,46 @@ export function dataProductArrayDeserializer(result: Array<DataProduct>): any[] 
 export enum KnownVersions {
   /** The 2023-11-15 stable version. */
   V20231115 = "2023-11-15",
+}
+
+export function _dataProductNetworkAclsRequiredPropertiesSerializer(
+  item: DataProductNetworkAclsRequired,
+): any {
+  return {
+    requiredProp: encryptionKeyDetailsArraySerializer(item["requiredProp"]),
+    optionalProp: !item["optionalProp"]
+      ? item["optionalProp"]
+      : encryptionKeyDetailsArraySerializer(item["optionalProp"]),
+  };
+}
+
+export function _dataProductNetworkAclsRequiredPropertiesDeserializer(item: any) {
+  return {
+    requiredProp: encryptionKeyDetailsArrayDeserializer(item["requiredProp"]),
+    optionalProp: !item["optionalProp"]
+      ? item["optionalProp"]
+      : encryptionKeyDetailsArrayDeserializer(item["optionalProp"]),
+  };
+}
+
+export function _dataProductOptionalPropertiesSerializer(item: DataProductOptional): any {
+  return {
+    requiredProp: !item["requiredProp"]
+      ? item["requiredProp"]
+      : encryptionKeyDetailsArraySerializer(item["requiredProp"]),
+    optionalProp: !item["optionalProp"]
+      ? item["optionalProp"]
+      : encryptionKeyDetailsArraySerializer(item["optionalProp"]),
+  };
+}
+
+export function _dataProductOptionalPropertiesDeserializer(item: any) {
+  return {
+    requiredProp: !item["requiredProp"]
+      ? item["requiredProp"]
+      : encryptionKeyDetailsArrayDeserializer(item["requiredProp"]),
+    optionalProp: !item["optionalProp"]
+      ? item["optionalProp"]
+      : encryptionKeyDetailsArrayDeserializer(item["optionalProp"]),
+  };
 }

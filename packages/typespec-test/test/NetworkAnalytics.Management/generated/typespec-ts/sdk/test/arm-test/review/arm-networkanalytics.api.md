@@ -40,16 +40,6 @@ export enum AzureClouds {
 export type AzureSupportedClouds = `${AzureClouds}`;
 
 // @public
-export interface ConsumptionEndpointsProperties {
-    readonly fileAccessResourceId?: string;
-    readonly fileAccessUrl?: string;
-    readonly ingestionResourceId?: string;
-    readonly ingestionUrl?: string;
-    readonly queryResourceId?: string;
-    readonly queryUrl?: string;
-}
-
-// @public
 export interface ContainerSaS {
     expiryTimeStamp: Date;
     ipAddress: string;
@@ -67,35 +57,7 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 };
 
 // @public
-export type ControlState = string;
-
-// @public
 export type CreatedByType = string;
-
-// @public
-export interface DataProduct extends TrackedResource {
-    readonly availableMinorVersions?: string[];
-    readonly consumptionEndpoints?: ConsumptionEndpointsProperties;
-    currentMinorVersion?: string;
-    customerEncryptionKey?: EncryptionKeyDetails;
-    customerManagedKeyEncryptionEnabled?: ControlState;
-    readonly documentation?: string;
-    identity?: ManagedServiceIdentityV4;
-    readonly keyVaultUrl?: string;
-    majorVersion: string;
-    managedResourceGroupConfiguration?: ManagedResourceGroupConfiguration;
-    networkacls?: DataProductNetworkAcls;
-    owners?: string[];
-    privateLinksEnabled?: ControlState;
-    product: string;
-    readonly provisioningState?: ProvisioningState;
-    publicNetworkAccess?: ControlState;
-    publisher: string;
-    purviewAccount?: string;
-    purviewCollection?: string;
-    redundancy?: ControlState;
-    readonly resourceGuid?: string;
-}
 
 // @public
 export interface DataProductInformation {
@@ -105,35 +67,53 @@ export interface DataProductInformation {
 }
 
 // @public
-export interface DataProductNetworkAcls {
+export interface DataProductNetworkAclsRequired {
     allowedQueryIpRangeList: string[];
+    // (undocumented)
+    baseRequired: string;
     defaultAction: DefaultAction;
     ipRules: IPRules[];
+    // (undocumented)
+    optionalProp?: EncryptionKeyDetails[];
+    // (undocumented)
+    requiredProp: EncryptionKeyDetails[];
     virtualNetworkRule: VirtualNetworkRule[];
 }
 
 // @public
+export interface DataProductOptional extends TrackedResource {
+    // (undocumented)
+    baseRequired: string;
+    identity?: ManagedServiceIdentityV4;
+    // (undocumented)
+    optionalProp?: EncryptionKeyDetails[];
+    // (undocumented)
+    requiredProp?: EncryptionKeyDetails[];
+}
+
+// @public
+export interface DataProductOptionalUpdate {
+    // (undocumented)
+    baseRequired?: string;
+    identity?: ManagedServiceIdentityV4;
+    properties?: DataProductOptionalUpdateProperties;
+    tags?: Record<string, string>;
+}
+
+// @public
+export interface DataProductOptionalUpdateProperties {
+    // (undocumented)
+    optionalProp?: EncryptionKeyDetails[];
+    // (undocumented)
+    requiredProp?: EncryptionKeyDetails[];
+}
+
+// @public
 export interface DataProductProperties {
-    readonly availableMinorVersions?: string[];
-    readonly consumptionEndpoints?: ConsumptionEndpointsProperties;
-    currentMinorVersion?: string;
-    customerEncryptionKey?: EncryptionKeyDetails;
-    customerManagedKeyEncryptionEnabled?: ControlState;
-    readonly documentation?: string;
-    readonly keyVaultUrl?: string;
-    majorVersion: string;
-    managedResourceGroupConfiguration?: ManagedResourceGroupConfiguration;
-    networkacls?: DataProductNetworkAcls;
-    owners?: string[];
-    privateLinksEnabled?: ControlState;
-    product: string;
-    readonly provisioningState?: ProvisioningState;
-    publicNetworkAccess?: ControlState;
-    publisher: string;
-    purviewAccount?: string;
-    purviewCollection?: string;
-    redundancy?: ControlState;
-    readonly resourceGuid?: string;
+    // (undocumented)
+    optionalProp?: EncryptionKeyDetails[];
+    // (undocumented)
+    requiredProp: EncryptionKeyDetails[];
 }
 
 // @public
@@ -172,7 +152,6 @@ export interface DataProductsCatalogsOperations {
 
 // @public
 export interface DataProductsCreateOptionalParams extends OperationOptions {
-    updateIntervalInMs?: number;
 }
 
 // @public
@@ -204,27 +183,23 @@ export interface DataProductsListRolesAssignmentsOptionalParams extends Operatio
 export interface DataProductsOperations {
     addUserRole: (resourceGroupName: string, dataProductName: string, body: RoleAssignmentCommonProperties, options?: DataProductsAddUserRoleOptionalParams) => Promise<RoleAssignmentDetail>;
     // @deprecated (undocumented)
-    beginCreate: (resourceGroupName: string, dataProductName: string, resource: DataProduct, options?: DataProductsCreateOptionalParams) => Promise<SimplePollerLike<OperationState<DataProduct>, DataProduct>>;
-    // @deprecated (undocumented)
-    beginCreateAndWait: (resourceGroupName: string, dataProductName: string, resource: DataProduct, options?: DataProductsCreateOptionalParams) => Promise<DataProduct>;
-    // @deprecated (undocumented)
     beginDelete: (resourceGroupName: string, dataProductName: string, options?: DataProductsDeleteOptionalParams) => Promise<SimplePollerLike<OperationState<void>, void>>;
     // @deprecated (undocumented)
     beginDeleteAndWait: (resourceGroupName: string, dataProductName: string, options?: DataProductsDeleteOptionalParams) => Promise<void>;
     // @deprecated (undocumented)
-    beginUpdate: (resourceGroupName: string, dataProductName: string, properties: DataProductUpdate, options?: DataProductsUpdateOptionalParams) => Promise<SimplePollerLike<OperationState<DataProduct>, DataProduct>>;
+    beginUpdate: (resourceGroupName: string, dataProductName: string, properties: DataProductOptionalUpdate, options?: DataProductsUpdateOptionalParams) => Promise<SimplePollerLike<OperationState<DataProductOptional>, DataProductOptional>>;
     // @deprecated (undocumented)
-    beginUpdateAndWait: (resourceGroupName: string, dataProductName: string, properties: DataProductUpdate, options?: DataProductsUpdateOptionalParams) => Promise<DataProduct>;
-    create: (resourceGroupName: string, dataProductName: string, resource: DataProduct, options?: DataProductsCreateOptionalParams) => PollerLike<OperationState<DataProduct>, DataProduct>;
+    beginUpdateAndWait: (resourceGroupName: string, dataProductName: string, properties: DataProductOptionalUpdate, options?: DataProductsUpdateOptionalParams) => Promise<DataProductOptional>;
+    create: (resourceGroupName: string, dataProductName: string, resource: DataProductOptional, options?: DataProductsCreateOptionalParams) => Promise<DataProductOptional>;
     delete: (resourceGroupName: string, dataProductName: string, options?: DataProductsDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
     generateStorageAccountSasToken: (resourceGroupName: string, dataProductName: string, body: AccountSas, options?: DataProductsGenerateStorageAccountSasTokenOptionalParams) => Promise<AccountSasToken>;
-    get: (resourceGroupName: string, dataProductName: string, options?: DataProductsGetOptionalParams) => Promise<DataProduct>;
-    listByResourceGroup: (resourceGroupName: string, options?: DataProductsListByResourceGroupOptionalParams) => PagedAsyncIterableIterator<DataProduct>;
-    listBySubscription: (options?: DataProductsListBySubscriptionOptionalParams) => PagedAsyncIterableIterator<DataProduct>;
+    get: (resourceGroupName: string, dataProductName: string, options?: DataProductsGetOptionalParams) => Promise<DataProductOptional>;
+    listByResourceGroup: (resourceGroupName: string, options?: DataProductsListByResourceGroupOptionalParams) => PagedAsyncIterableIterator<DataProductOptional>;
+    listBySubscription: (options?: DataProductsListBySubscriptionOptionalParams) => PagedAsyncIterableIterator<DataProductOptional>;
     listRolesAssignments: (resourceGroupName: string, dataProductName: string, body: Record<string, any>, options?: DataProductsListRolesAssignmentsOptionalParams) => Promise<ListRoleAssignments>;
     removeUserRole: (resourceGroupName: string, dataProductName: string, body: RoleAssignmentDetail, options?: DataProductsRemoveUserRoleOptionalParams) => Promise<void>;
     rotateKey: (resourceGroupName: string, dataProductName: string, body: KeyVaultInfo, options?: DataProductsRotateKeyOptionalParams) => Promise<void>;
-    update: (resourceGroupName: string, dataProductName: string, properties: DataProductUpdate, options?: DataProductsUpdateOptionalParams) => PollerLike<OperationState<DataProduct>, DataProduct>;
+    update: (resourceGroupName: string, dataProductName: string, properties: DataProductOptionalUpdate, options?: DataProductsUpdateOptionalParams) => PollerLike<OperationState<DataProductOptional>, DataProductOptional>;
 }
 
 // @public
@@ -241,22 +216,6 @@ export interface DataProductsUpdateOptionalParams extends OperationOptions {
 }
 
 // @public
-export interface DataProductUpdate {
-    identity?: ManagedServiceIdentityV4;
-    properties?: DataProductUpdateProperties;
-    tags?: Record<string, string>;
-}
-
-// @public
-export interface DataProductUpdateProperties {
-    currentMinorVersion?: string;
-    owners?: string[];
-    privateLinksEnabled?: ControlState;
-    purviewAccount?: string;
-    purviewCollection?: string;
-}
-
-// @public
 export type DataProductUserRole = string;
 
 // @public
@@ -266,13 +225,9 @@ export interface DataProductVersion {
 
 // @public
 export interface DataType extends ProxyResource {
-    databaseCacheRetention?: number;
-    databaseRetention?: number;
-    readonly provisioningState?: ProvisioningState;
-    state?: DataTypeState;
-    readonly stateReason?: string;
-    storageOutputRetention?: number;
-    readonly visualizationUrl?: string;
+    // (undocumented)
+    foo: DataProductNetworkAclsRequired;
+    properties?: DataTypeProperties;
 }
 
 // @public
@@ -350,6 +305,8 @@ export interface DataTypesUpdateOptionalParams extends OperationOptions {
 
 // @public
 export interface DataTypeUpdate {
+    // (undocumented)
+    foo?: DataProductNetworkAclsRequired;
     properties?: DataTypeUpdateProperties;
 }
 
@@ -405,12 +362,6 @@ export interface KeyVaultInfo {
 // @public
 export enum KnownActionType {
     Internal = "Internal"
-}
-
-// @public
-export enum KnownControlState {
-    Disabled = "Disabled",
-    Enabled = "Enabled"
 }
 
 // @public
@@ -474,12 +425,6 @@ export enum KnownVersions {
 export interface ListRoleAssignments {
     count: number;
     roleAssignmentResponse: RoleAssignmentDetail[];
-}
-
-// @public
-export interface ManagedResourceGroupConfiguration {
-    location: string;
-    name: string;
 }
 
 // @public

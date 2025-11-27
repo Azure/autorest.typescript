@@ -4,11 +4,11 @@
 import { NetworkAnalyticsApiContext as Client } from "../index.js";
 import {
   errorResponseDeserializer,
-  DataProduct,
-  dataProductSerializer,
-  dataProductDeserializer,
-  DataProductUpdate,
-  dataProductUpdateSerializer,
+  DataProductOptional,
+  dataProductOptionalSerializer,
+  dataProductOptionalDeserializer,
+  DataProductOptionalUpdate,
+  dataProductOptionalUpdateSerializer,
   AccountSas,
   accountSasSerializer,
   AccountSasToken,
@@ -23,8 +23,8 @@ import {
   _listRolesAssignmentsRequestSerializer,
   ListRoleAssignments,
   listRoleAssignmentsDeserializer,
-  _DataProductListResult,
-  _dataProductListResultDeserializer,
+  _DataProductOptionalListResult,
+  _dataProductOptionalListResultDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -77,7 +77,7 @@ export function _listBySubscriptionSend(
 
 export async function _listBySubscriptionDeserialize(
   result: PathUncheckedResponse,
-): Promise<_DataProductListResult> {
+): Promise<_DataProductOptionalListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -85,14 +85,14 @@ export async function _listBySubscriptionDeserialize(
     throw error;
   }
 
-  return _dataProductListResultDeserializer(result.body);
+  return _dataProductOptionalListResultDeserializer(result.body);
 }
 
 /** List data products by subscription. */
 export function listBySubscription(
   context: Client,
   options: DataProductsListBySubscriptionOptionalParams = { requestOptions: {} },
-): PagedAsyncIterableIterator<DataProduct> {
+): PagedAsyncIterableIterator<DataProductOptional> {
   return buildPagedAsyncIterator(
     context,
     () => _listBySubscriptionSend(context, options),
@@ -128,7 +128,7 @@ export function _listByResourceGroupSend(
 
 export async function _listByResourceGroupDeserialize(
   result: PathUncheckedResponse,
-): Promise<_DataProductListResult> {
+): Promise<_DataProductOptionalListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -136,7 +136,7 @@ export async function _listByResourceGroupDeserialize(
     throw error;
   }
 
-  return _dataProductListResultDeserializer(result.body);
+  return _dataProductOptionalListResultDeserializer(result.body);
 }
 
 /** List data products by resource group. */
@@ -144,7 +144,7 @@ export function listByResourceGroup(
   context: Client,
   resourceGroupName: string,
   options: DataProductsListByResourceGroupOptionalParams = { requestOptions: {} },
-): PagedAsyncIterableIterator<DataProduct> {
+): PagedAsyncIterableIterator<DataProductOptional> {
   return buildPagedAsyncIterator(
     context,
     () => _listByResourceGroupSend(context, resourceGroupName, options),
@@ -492,7 +492,7 @@ export function _updateSend(
   context: Client,
   resourceGroupName: string,
   dataProductName: string,
-  properties: DataProductUpdate,
+  properties: DataProductOptionalUpdate,
   options: DataProductsUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -513,11 +513,13 @@ export function _updateSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
       headers: { accept: "application/json", ...options.requestOptions?.headers },
-      body: dataProductUpdateSerializer(properties),
+      body: dataProductOptionalUpdateSerializer(properties),
     });
 }
 
-export async function _updateDeserialize(result: PathUncheckedResponse): Promise<DataProduct> {
+export async function _updateDeserialize(
+  result: PathUncheckedResponse,
+): Promise<DataProductOptional> {
   const expectedStatuses = ["200", "202", "201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -525,7 +527,7 @@ export async function _updateDeserialize(result: PathUncheckedResponse): Promise
     throw error;
   }
 
-  return dataProductDeserializer(result.body);
+  return dataProductOptionalDeserializer(result.body);
 }
 
 /** Update data product resource. */
@@ -533,16 +535,16 @@ export function update(
   context: Client,
   resourceGroupName: string,
   dataProductName: string,
-  properties: DataProductUpdate,
+  properties: DataProductOptionalUpdate,
   options: DataProductsUpdateOptionalParams = { requestOptions: {} },
-): PollerLike<OperationState<DataProduct>, DataProduct> {
+): PollerLike<OperationState<DataProductOptional>, DataProductOptional> {
   return getLongRunningPoller(context, _updateDeserialize, ["200", "202", "201"], {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () =>
       _updateSend(context, resourceGroupName, dataProductName, properties, options),
     resourceLocationConfig: "location",
-  }) as PollerLike<OperationState<DataProduct>, DataProduct>;
+  }) as PollerLike<OperationState<DataProductOptional>, DataProductOptional>;
 }
 
 export function _getSend(
@@ -571,7 +573,7 @@ export function _getSend(
     });
 }
 
-export async function _getDeserialize(result: PathUncheckedResponse): Promise<DataProduct> {
+export async function _getDeserialize(result: PathUncheckedResponse): Promise<DataProductOptional> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -579,7 +581,7 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<Da
     throw error;
   }
 
-  return dataProductDeserializer(result.body);
+  return dataProductOptionalDeserializer(result.body);
 }
 
 /** Retrieve data product resource. */
@@ -588,7 +590,7 @@ export async function get(
   resourceGroupName: string,
   dataProductName: string,
   options: DataProductsGetOptionalParams = { requestOptions: {} },
-): Promise<DataProduct> {
+): Promise<DataProductOptional> {
   const result = await _getSend(context, resourceGroupName, dataProductName, options);
   return _getDeserialize(result);
 }
@@ -597,7 +599,7 @@ export function _createSend(
   context: Client,
   resourceGroupName: string,
   dataProductName: string,
-  resource: DataProduct,
+  resource: DataProductOptional,
   options: DataProductsCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -618,34 +620,31 @@ export function _createSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
       headers: { accept: "application/json", ...options.requestOptions?.headers },
-      body: dataProductSerializer(resource),
+      body: dataProductOptionalSerializer(resource),
     });
 }
 
-export async function _createDeserialize(result: PathUncheckedResponse): Promise<DataProduct> {
-  const expectedStatuses = ["200", "201", "202"];
+export async function _createDeserialize(
+  result: PathUncheckedResponse,
+): Promise<DataProductOptional> {
+  const expectedStatuses = ["200", "201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = errorResponseDeserializer(result.body);
     throw error;
   }
 
-  return dataProductDeserializer(result.body);
+  return dataProductOptionalDeserializer(result.body);
 }
 
 /** Create data product resource. */
-export function create(
+export async function create(
   context: Client,
   resourceGroupName: string,
   dataProductName: string,
-  resource: DataProduct,
+  resource: DataProductOptional,
   options: DataProductsCreateOptionalParams = { requestOptions: {} },
-): PollerLike<OperationState<DataProduct>, DataProduct> {
-  return getLongRunningPoller(context, _createDeserialize, ["200", "201", "202"], {
-    updateIntervalInMs: options?.updateIntervalInMs,
-    abortSignal: options?.abortSignal,
-    getInitialResponse: () =>
-      _createSend(context, resourceGroupName, dataProductName, resource, options),
-    resourceLocationConfig: "azure-async-operation",
-  }) as PollerLike<OperationState<DataProduct>, DataProduct>;
+): Promise<DataProductOptional> {
+  const result = await _createSend(context, resourceGroupName, dataProductName, resource, options);
+  return _createDeserialize(result);
 }

@@ -1,4 +1,4 @@
-# only: Should support property flatten with required `properties`
+# Should support property flatten with required `properties`
 
 Should support property flatten with required `properties` and its model includes optional and required properties.
 
@@ -7,9 +7,12 @@ Should support property flatten with required `properties` and its model include
 This is tsp definition.
 
 ```tsp
+model A {
+  x: string;
+}
 model FooProperties {
-  bar?: string;
-  baz: string;
+  bar?: A[];
+  baz: A[];
 }
 
 model Test {
@@ -19,7 +22,7 @@ model Test {
   properties: FooProperties;
 }
 
-op foo(body: Test): void;
+op foo(body: Test): Test;
 ```
 
 Enable the raw content with TCGC dependency.
@@ -44,32 +47,93 @@ Model generated.
 /** model interface Test */
 export interface Test {
   result: string;
-  bar?: string;
-  baz: string;
+  bar?: A[];
+  baz: A[];
 }
 
 export function testSerializer(item: Test): any {
-  return { result: item["result"], properties: fooPropertiesSerializer(item) };
+  return {
+    result: item["result"],
+    properties: _testPropertiesSerializer(item)
+  };
+}
+
+export function testDeserializer(item: any): Test {
+  return {
+    result: item["result"],
+    ..._testPropertiesDeserializer(item["properties"])
+  };
 }
 
 /** model interface FooProperties */
 export interface FooProperties {
-  bar?: string;
-  baz: string;
+  bar?: A[];
+  baz: A[];
 }
 
 export function fooPropertiesSerializer(item: FooProperties): any {
-  return { bar: item["bar"], baz: item["baz"] };
+  return {
+    bar: !item["bar"] ? item["bar"] : aArraySerializer(item["bar"]),
+    baz: aArraySerializer(item["baz"])
+  };
+}
+
+export function fooPropertiesDeserializer(item: any): FooProperties {
+  return {
+    bar: !item["bar"] ? item["bar"] : aArrayDeserializer(item["bar"]),
+    baz: aArrayDeserializer(item["baz"])
+  };
+}
+
+export function aArraySerializer(result: Array<A>): any[] {
+  return result.map((item) => {
+    return aSerializer(item);
+  });
+}
+
+export function aArrayDeserializer(result: Array<A>): any[] {
+  return result.map((item) => {
+    return aDeserializer(item);
+  });
+}
+
+/** model interface A */
+export interface A {
+  x: string;
+}
+
+export function aSerializer(item: A): any {
+  return { x: item["x"] };
+}
+
+export function aDeserializer(item: any): A {
+  return {
+    x: item["x"]
+  };
 }
 
 /** Known values of {@link Versions} that the service accepts. */
 export enum KnownVersions {
   /** 2022-05-15-preview */
-  V20220515Preview = "2022-05-15-preview",
+  V20220515Preview = "2022-05-15-preview"
+}
+
+export function _testPropertiesSerializer(item: Test): any {
+  return {
+    bar: !item["bar"] ? item["bar"] : aArraySerializer(item["bar"]),
+    baz: aArraySerializer(item["baz"])
+  };
+}
+
+export function _testPropertiesDeserializer(item: any) {
+  return {
+    bar: !item["bar"] ? item["bar"] : aArrayDeserializer(item["bar"]),
+    baz: aArrayDeserializer(item["baz"])
+  };
 }
 ```
 
-# Should support property flatten with optional `properties`
+# only: Should support property flatten with optional `properties`
 
 Should support property flatten with optional `properties` and its model includes optional and required properties.
 
@@ -78,9 +142,12 @@ Should support property flatten with optional `properties` and its model include
 This is tsp definition.
 
 ```tsp
+model A {
+  x: string;
+}
 model FooProperties {
-  bar?: string;
-  baz: string;
+  bar?: A[];
+  baz: A[];
 }
 
 model Test {
@@ -90,7 +157,7 @@ model Test {
   properties?: FooProperties;
 }
 
-op foo(body: Test): void;
+op foo(body: Test): Test;
 ```
 
 Enable the raw content with TCGC dependency.
@@ -106,6 +173,8 @@ needTCGC: true
 Model generated.
 
 ```ts models
+import { areAllPropsUndefined } from "../static-helpers/serialization/check-prop-undefined.js";
+
 /**
  * This file contains only generated model types and their (de)serializers.
  * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
@@ -115,30 +184,91 @@ Model generated.
 /** model interface Test */
 export interface Test {
   result: string;
-  properties: Foo;
+  bar?: A[];
+  baz?: A[];
 }
 
 export function testSerializer(item: Test): any {
   return {
     result: item["result"],
-    properties: fooSerializer(item["properties"])
+    properties: areAllPropsUndefined(item, ["bar", "baz"])
+      ? undefined
+      : _testPropertiesSerializer(item),
   };
 }
 
-/** model interface Foo */
-export interface Foo {
-  bar: string;
-  baz: string;
+export function testDeserializer(item: any): Test {
+  return {
+    result: item["result"],
+    ...(!item["properties"] ? item["properties"] : _testPropertiesDeserializer(item["properties"])),
+  };
 }
 
-export function fooSerializer(item: Foo): any {
-  return { bar: item["bar"], baz: item["baz"] };
+/** model interface FooProperties */
+export interface FooProperties {
+  bar?: A[];
+  baz: A[];
+}
+
+export function fooPropertiesSerializer(item: FooProperties): any {
+  return {
+    bar: !item["bar"] ? item["bar"] : aArraySerializer(item["bar"]),
+    baz: aArraySerializer(item["baz"]),
+  };
+}
+
+export function fooPropertiesDeserializer(item: any): FooProperties {
+  return {
+    bar: !item["bar"] ? item["bar"] : aArrayDeserializer(item["bar"]),
+    baz: aArrayDeserializer(item["baz"]),
+  };
+}
+
+export function aArraySerializer(result: Array<A>): any[] {
+  return result.map((item) => {
+    return aSerializer(item);
+  });
+}
+
+export function aArrayDeserializer(result: Array<A>): any[] {
+  return result.map((item) => {
+    return aDeserializer(item);
+  });
+}
+
+/** model interface A */
+export interface A {
+  x: string;
+}
+
+export function aSerializer(item: A): any {
+  return { x: item["x"] };
+}
+
+export function aDeserializer(item: any): A {
+  return {
+    x: item["x"],
+  };
 }
 
 /** Known values of {@link Versions} that the service accepts. */
 export enum KnownVersions {
   /** 2022-05-15-preview */
-  V20220515Preview = "2022-05-15-preview"
+  V20220515Preview = "2022-05-15-preview",
+}
+
+export function _testPropertiesSerializer(item: Test): any {
+  return {
+    bar: !item["bar"] ? item["bar"] : aArraySerializer(item["bar"]),
+    baz: !item["baz"] ? item["baz"] : aArraySerializer(item["baz"]),
+  };
+}
+
+export function _testPropertiesDeserializer(item: any) {
+  return {
+    bar: !item["bar"] ? item["bar"] : aArrayDeserializer(item["bar"]),
+    baz: !item["baz"] ? item["baz"] : aArrayDeserializer(item["baz"]),
+  };
 }
 ```
 

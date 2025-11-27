@@ -14,7 +14,8 @@ import { visitPackageTypes } from "../../modular/emitModels.js";
 import { SdkContext } from "../../utils/interfaces.js";
 
 export const emitQueue: Set<SdkType> = new Set<SdkType>();
-export const flattenModels: Set<SdkModelType> = new Set<SdkModelType>();
+export const flattenProperties: Map<SdkModelPropertyType, SdkModelType> =
+  new Map<SdkModelPropertyType, SdkModelType>();
 
 export interface SdkTypeContext {
   operations: Map<Type, SdkServiceMethod<SdkHttpOperation>>;
@@ -146,8 +147,5 @@ export function getAllOperationsFromClient(
 }
 
 export function isSupportedFlattenProperty(property: SdkModelPropertyType) {
-  if (!property.flatten) {
-    return false;
-  }
-  return ["properties"].includes(property.name);
+  return property.flatten;
 }

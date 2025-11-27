@@ -33,15 +33,20 @@ import {
 } from "./docsHelpers.js";
 import { AzurePollingDependencies } from "../external-dependencies.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
-import { buildModelDeserializer } from "../serialization/buildDeserializerFunction.js";
-import { buildModelSerializer } from "../serialization/buildSerializerFunction.js";
+import {
+  buildModelDeserializer,
+  buildPropertyDeserializer
+} from "../serialization/buildDeserializerFunction.js";
+import {
+  buildModelSerializer,
+  buildPropertySerializer
+} from "../serialization/buildSerializerFunction.js";
 import { refkey } from "../../framework/refkey.js";
 import { reportDiagnostic } from "../../lib.js";
 import { resolveReference } from "../../framework/reference.js";
 import { useDependencies } from "../../framework/hooks/useDependencies.js";
 import {
-  flattenModels,
-  isSupportedFlattenProperty,
+  flattenProperties,
   useSdkTypes
 } from "../../framework/hooks/sdkTypes.js";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
@@ -225,8 +230,10 @@ export function getDeserializePrivateFunction(
     const deserializeFunctionName = buildModelDeserializer(
       context,
       deserializedType,
-      false,
-      true
+      {
+        nameOnly: true,
+        skipDiscriminatedUnionSuffix: false
+      }
     );
     if (deserializeFunctionName) {
       statements.push(`return ${deserializeFunctionName}(${deserializedRoot})`);
@@ -281,8 +288,10 @@ function getExceptionDetails(
     const deserializeFunctionName = buildModelDeserializer(
       context,
       exception.type,
-      false,
-      true
+      {
+        nameOnly: true,
+        skipDiscriminatedUnionSuffix: false
+      }
     );
     if (
       !deserializeFunctionName ||
@@ -813,8 +822,10 @@ function buildBodyParameter(
   const serializerFunctionName = buildModelSerializer(
     context,
     getNullableValidType(bodyParameter.type),
-    false,
-    true
+    {
+      nameOnly: true,
+      skipDiscriminatedUnionSuffix: false
+    }
   );
 
   const bodyParamName = normalizeName(
@@ -1162,21 +1173,33 @@ export function getSerializationFlattenExpression(
   property: SdkModelPropertyType,
   propertyPath: string
 ): string | undefined {
-  if (
-    isSupportedFlattenProperty(property) &&
-    property.type.kind === "model" &&
-    flattenModels.has(property.type)
-  ) {
-    const serializeFunctionName = buildModelSerializer(
-      context,
-      getNullableValidType(property.type),
-      false,
-      true
-    );
+  if (flattenProperties.get(property)) {
+    const serializeFunctionName = buildPropertySerializer(context, property, {
+      nameOnly: true,
+      skipDiscriminatedUnionSuffix: false
+    });
     if (!serializeFunctionName) {
       return undefined;
     }
-    return `${serializeFunctionName}(${propertyPath})`;
+    const validProps = getAllProperties(
+      context,
+      property.type,
+      getAllAncestors(property.type)
+    ).filter(
+      (p) =>
+        p.kind === "property" &&
+        !isReadOnly(p) &&
+        !isMetadata(context.program, p.__raw!)
+    );
+    if (validProps.length === 0) {
+      return `undefined`;
+    }
+    const optionalPrefix = property.optional
+      ? `${resolveReference(SerializationHelpers.areAllPropsUndefined)}(${propertyPath}, [${validProps
+          .map((p) => `"${p.name}"`)
+          .join(", ")}]) ? undefined : `
+      : "";
+    return `${optionalPrefix}${serializeFunctionName}(${propertyPath})`;
   }
   return undefined;
 }
@@ -1202,8 +1225,10 @@ export function getSerializationExpression(
   const serializeFunctionName = buildModelSerializer(
     context,
     getNullableValidType(property.type),
-    false,
-    true
+    {
+      nameOnly: true,
+      skipDiscriminatedUnionSuffix: false
+    }
   );
   if (serializeFunctionName) {
     return `${nullOrUndefinedPrefix}${serializeFunctionName}(${propertyFullName})`;
@@ -1224,7 +1249,8 @@ export function getSerializationExpression(
 export function getRequestModelProperties(
   context: SdkContext,
   modelPropertyType: SdkModelType & { optional?: boolean },
-  propertyPath: string = "body"
+  propertyPath: string = "body",
+  overrideToAllOptional: boolean = false
 ): Array<[string, string]> {
   const props: [string, string][] = [];
   const allParents = getAllAncestors(modelPropertyType);
@@ -1233,7 +1259,8 @@ export function getRequestModelProperties(
   if (properties.length <= 0) {
     return [];
   }
-  for (const property of properties) {
+  for (const prop of properties) {
+    const property = overrideToAllOptional ? { ...prop, optional: true } : prop;
     if (property.kind === "property" && isReadOnly(property)) {
       continue;
     }
@@ -1258,12 +1285,14 @@ export function getRequestModelProperties(
 export function getRequestModelMapping(
   context: SdkContext,
   modelPropertyType: SdkModelType & { optional?: boolean },
-  propertyPath: string = "body"
+  propertyPath: string = "body",
+  overrideToAllOptional: boolean = false
 ): string[] {
   return getRequestModelProperties(
     context,
     modelPropertyType,
-    propertyPath
+    propertyPath,
+    overrideToAllOptional
   ).map(([name, value]) => `"${name}": ${value}`);
 }
 
@@ -1284,13 +1313,15 @@ function getPropertySerializedName(
 export function getResponseMapping(
   context: SdkContext,
   type: SdkType,
-  propertyPath: string = "result.body"
+  propertyPath: string = "result.body",
+  overrideToAllOptional: boolean = false
 ) {
   const allParents = type.kind === "model" ? getAllAncestors(type) : [];
   const properties =
     type.kind === "model" ? getAllProperties(context, type, allParents) : [];
   const props: string[] = [];
-  for (const property of properties) {
+  for (const prop of properties) {
+    const property = overrideToAllOptional ? { ...prop, optional: true } : prop;
     if (isMetadata(context.program, property.__raw!)) {
       continue;
     }
@@ -1304,19 +1335,19 @@ export function getResponseMapping(
       property.optional || isTypeNullable(property.type)
         ? `!${restValue}? ${restValue}: `
         : "";
-    const deserializeFunctionName = buildModelDeserializer(
-      context,
-      getNullableValidType(property.type),
-      false,
-      true
-    );
+    const isSupportedFlattenProperty = flattenProperties.has(property);
+    const deserializeFunctionName = isSupportedFlattenProperty
+      ? buildPropertyDeserializer(context, property, {
+          nameOnly: true,
+          skipDiscriminatedUnionSuffix: false
+        })
+      : buildModelDeserializer(context, getNullableValidType(property.type), {
+          nameOnly: true,
+          skipDiscriminatedUnionSuffix: false
+        });
     const propertyName = normalizeModelPropertyName(context, property);
     if (deserializeFunctionName) {
-      if (
-        isSupportedFlattenProperty(property) &&
-        property.type.kind === "model" &&
-        flattenModels.has(property.type)
-      ) {
+      if (isSupportedFlattenProperty) {
         props.push(
           `...${nullOrUndefinedPrefix}${deserializeFunctionName}(${restValue})`
         );
@@ -1382,8 +1413,10 @@ export function serializeRequestValue(
         const serializeFunctionName = buildModelSerializer(
           context,
           getNullableValidType(type.valueType),
-          false,
-          true
+          {
+            nameOnly: true,
+            skipDiscriminatedUnionSuffix: false
+          }
         );
         if (serializeFunctionName) {
           return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${serializeFunctionName}(p)})`;
@@ -1490,8 +1523,10 @@ export function deserializeResponseValue(
         ? buildModelDeserializer(
             context,
             getNullableValidType(type.valueType),
-            false,
-            true
+            {
+              nameOnly: true,
+              skipDiscriminatedUnionSuffix: false
+            }
           )
         : undefined;
       if (deserializeFunctionName) {
@@ -1519,12 +1554,10 @@ export function deserializeResponseValue(
         return `${restValue}`;
       } else if (isSpecialHandledUnion(type)) {
         const deserializeFunctionName = type
-          ? buildModelDeserializer(
-              context,
-              getNullableValidType(type),
-              false,
-              true
-            )
+          ? buildModelDeserializer(context, getNullableValidType(type), {
+              nameOnly: true,
+              skipDiscriminatedUnionSuffix: false
+            })
           : undefined;
         if (deserializeFunctionName) {
           return `${deserializeFunctionName}(${restValue})`;

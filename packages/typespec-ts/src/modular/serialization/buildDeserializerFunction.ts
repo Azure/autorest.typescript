@@ -2,6 +2,7 @@ import { FunctionDeclarationStructure, StructureKind } from "ts-morph";
 import {
   SdkArrayType,
   SdkDictionaryType,
+  SdkModelPropertyType,
   SdkModelType,
   SdkType,
   SdkUnionType,
@@ -34,17 +35,52 @@ import {
 } from "../helpers/typeHelpers.js";
 import { reportDiagnostic } from "../../lib.js";
 import { NoTarget } from "@typespec/compiler";
+import { flattenProperties } from "../../framework/hooks/sdkTypes.js";
+
+export function buildPropertyDeserializer(
+  context: SdkContext,
+  property: SdkModelPropertyType,
+  options: ModelSerializeOptions = {
+    nameOnly: false,
+    skipDiscriminatedUnionSuffix: false
+  }
+) {
+  const baseModel = flattenProperties.get(property);
+  // only build de-serializer for flatten property
+  if (!baseModel) {
+    return undefined;
+  }
+  const predefinedName = `_${normalizeName(
+    `${baseModel.name}_${property.name}`,
+    NameType.Method,
+    true
+  )}Deserializer`;
+  return buildModelDeserializer(context, property.type, {
+    ...options,
+    flatten: {
+      baseModel,
+      property
+    },
+    overrides: {
+      allOptional: property.optional
+    },
+    predefinedName
+  });
+}
 
 export function buildModelDeserializer(
   context: SdkContext,
   type: SdkType,
-  skipDiscriminatedUnion = false,
-  nameOnly: boolean = false
+  options: ModelSerializeOptions = {
+    nameOnly: false,
+    skipDiscriminatedUnionSuffix: false
+  }
 ): FunctionDeclarationStructure | undefined | string {
   // const modelTcgcType = getTcgcType(type) as SdkModelType;
   if (!isSupportedSerializeType(type)) {
     return undefined;
   }
+  const { nameOnly, skipDiscriminatedUnionSuffix } = options;
   if (type.kind === "model" || type.kind === "union" || type.kind === "enum") {
     if (
       !type.usage ||
@@ -72,16 +108,13 @@ export function buildModelDeserializer(
     return buildPolymorphicDeserializer(context, type, nameOnly);
   }
 
-  if (isDiscriminatedUnion(type) && !skipDiscriminatedUnion) {
+  if (isDiscriminatedUnion(type) && !skipDiscriminatedUnionSuffix) {
     return buildDiscriminatedUnionDeserializer(context, type, nameOnly);
   }
 
   switch (type.kind) {
     case "model":
-      return buildModelTypeDeserializer(context, type, {
-        nameOnly,
-        skipDiscriminatedUnionSuffix: skipDiscriminatedUnion
-      });
+      return buildModelTypeDeserializer(context, type, options);
     case "union": // for non-discriminated union, we just return whatever we get
       return buildUnionDeserializer(context, type, nameOnly);
     case "dict":
@@ -338,14 +371,18 @@ function buildModelTypeDeserializer(
     });
     return ""; // Return empty string to continue processing
   }
-  const deserializerFunctionName = `${normalizeModelName(
-    context,
-    type,
-    NameType.Operation,
-    options.skipDiscriminatedUnionSuffix
-  )}Deserializer`;
+  const deserializerFunctionName =
+    options.predefinedName ??
+    `${normalizeModelName(
+      context,
+      type,
+      NameType.Operation,
+      options.skipDiscriminatedUnionSuffix
+    )}Deserializer`;
   if (options.nameOnly) {
-    return resolveReference(refkey(type, "deserializer"));
+    return options.flatten
+      ? resolveReference(refkey(options.flatten.property, "deserializer"))
+      : resolveReference(refkey(type, "deserializer"));
   }
   const deserializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -357,7 +394,9 @@ function buildModelTypeDeserializer(
         type: "any"
       }
     ],
-    returnType: resolveReference(refkey(type)),
+    returnType: options.flatten
+      ? undefined // not set return type for flattened property deserializer and type system will infer correct one
+      : resolveReference(refkey(type)),
     statements: ["return item;"]
   };
   const nullabilityPrefix = "";
@@ -365,7 +404,12 @@ function buildModelTypeDeserializer(
   const additionalPropertiesSpread =
     getAdditionalPropertiesStatement(context, type) ?? "";
 
-  const propertiesStr = getResponseMapping(context, type, "item");
+  const propertiesStr = getResponseMapping(
+    context,
+    type,
+    "item",
+    options.overrides?.allOptional
+  );
   const propertiesDeserialization = propertiesStr.filter((p) => p.trim());
 
   const output = [];
@@ -406,8 +450,10 @@ function getAdditionalPropertiesStatement(
   const deserializerFunction = buildModelDeserializer(
     context,
     additionalPropertyType,
-    false,
-    true
+    {
+      nameOnly: true,
+      skipDiscriminatedUnionSuffix: false
+    }
   );
   if (typeof deserializerFunction === "string") {
     params.push(deserializerFunction);
@@ -431,12 +477,10 @@ function buildDictTypeDeserializer(
   type: SdkDictionaryType,
   nameOnly = false
 ): FunctionDeclarationStructure | undefined | string {
-  const valueDeserializer = buildModelDeserializer(
-    context,
-    type.valueType,
-    false,
-    true
-  );
+  const valueDeserializer = buildModelDeserializer(context, type.valueType, {
+    nameOnly: true,
+    skipDiscriminatedUnionSuffix: false
+  });
   if (!valueDeserializer) {
     return undefined;
   }
@@ -490,12 +534,10 @@ function buildArrayTypeDeserializer(
   type: SdkArrayType,
   nameOnly = false
 ): FunctionDeclarationStructure | undefined | string {
-  const valueDeserializer = buildModelDeserializer(
-    context,
-    type.valueType,
-    false,
-    true
-  );
+  const valueDeserializer = buildModelDeserializer(context, type.valueType, {
+    nameOnly: true,
+    skipDiscriminatedUnionSuffix: false
+  });
   if (!valueDeserializer) {
     return undefined;
   }
