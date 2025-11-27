@@ -24,11 +24,7 @@ Should enable URI template parse for parameters:
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
-import {
-  RecordOptionalParams,
-  ArrayOptionalParams,
-  PrimitiveOptionalParams,
-} from "./options.js";
+import { RecordOptionalParams, ArrayOptionalParams, PrimitiveOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -50,14 +46,10 @@ export function _recordSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  return context
-    .path(path)
-    .get({ ...operationOptionsToRequestParameters(options) });
+  return context.path(path).get({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _recordDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _recordDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -91,14 +83,10 @@ export function _arraySend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  return context
-    .path(path)
-    .get({ ...operationOptionsToRequestParameters(options) });
+  return context.path(path).get({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _arrayDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _arrayDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -130,14 +118,10 @@ export function _primitiveSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  return context
-    .path(path)
-    .get({ ...operationOptionsToRequestParameters(options) });
+  return context.path(path).get({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _primitiveDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _primitiveDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);

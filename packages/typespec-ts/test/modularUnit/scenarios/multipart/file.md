@@ -13,10 +13,7 @@ op doThing(@header contentType: "multipart/form-data", @multipartBody bodyParam:
 This basic case uses TypeSpec's `Http.File`, which specifies an optional `filename` and `contentType`. Since both are optional, the customer can pass the file's content directly to the `basicFile` property. If the customer wants to specify the filename or content type, they can use the wrapper object.
 
 ```ts models
-import {
-  FileContents,
-  createFilePartDescriptor,
-} from "../static-helpers/multipartHelpers.js";
+import { FileContents, createFilePartDescriptor } from "../static-helpers/multipartHelpers.js";
 
 /**
  * This file contains only generated model types and their (de)serializers.
@@ -26,9 +23,7 @@ import {
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface RequestBody */
 export interface RequestBody {
-  basicFile:
-    | FileContents
-    | { contents: FileContents; contentType?: string; filename?: string };
+  basicFile: FileContents | { contents: FileContents; contentType?: string; filename?: string };
 }
 
 export function requestBodySerializer(item: RequestBody): any {
@@ -63,9 +58,7 @@ export function _doThingSend(
     });
 }
 
-export async function _doThingDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _doThingDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -103,10 +96,7 @@ op doThing(@header contentType: "multipart/form-data", @multipartBody bodyParam:
 The filename must be provided _somehow_. This can either be done by passing a `File` object, which has a required filename property, or by using the wrapper object to pass a `filename` alongside the `contents`.
 
 ```ts models
-import {
-  FileContents,
-  createFilePartDescriptor,
-} from "../static-helpers/multipartHelpers.js";
+import { FileContents, createFilePartDescriptor } from "../static-helpers/multipartHelpers.js";
 
 /**
  * This file contains only generated model types and their (de)serializers.
@@ -116,9 +106,7 @@ import {
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface RequestBody */
 export interface RequestBody {
-  nameRequired:
-    | File
-    | { contents: FileContents; contentType?: string; filename: string };
+  nameRequired: File | { contents: FileContents; contentType?: string; filename: string };
 }
 
 export function requestBodySerializer(item: RequestBody): any {
@@ -143,10 +131,7 @@ op doThing(@header contentType: "multipart/form-data", @multipartBody bodyParam:
 ## Models
 
 ```ts models
-import {
-  FileContents,
-  createFilePartDescriptor,
-} from "../static-helpers/multipartHelpers.js";
+import { FileContents, createFilePartDescriptor } from "../static-helpers/multipartHelpers.js";
 
 /**
  * This file contains only generated model types and their (de)serializers.
@@ -156,9 +141,7 @@ import {
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface RequestBody */
 export interface RequestBody {
-  image:
-    | FileContents
-    | { contents: FileContents; contentType?: "image/png"; filename?: string };
+  image: FileContents | { contents: FileContents; contentType?: "image/png"; filename?: string };
 }
 
 export function requestBodySerializer(item: RequestBody): any {
@@ -181,10 +164,7 @@ op doThing(@header contentType: "multipart/form-data", @multipartBody bodyParam:
 Each provided file in the input corresponds to one part in the multipart request.
 
 ```ts models
-import {
-  FileContents,
-  createFilePartDescriptor,
-} from "../static-helpers/multipartHelpers.js";
+import { FileContents, createFilePartDescriptor } from "../static-helpers/multipartHelpers.js";
 
 /**
  * This file contains only generated model types and their (de)serializers.
@@ -194,15 +174,10 @@ import {
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface RequestBody */
 export interface RequestBody {
-  files: Array<
-    | FileContents
-    | { contents: FileContents; contentType?: string; filename?: string }
-  >;
+  files: Array<FileContents | { contents: FileContents; contentType?: string; filename?: string }>;
 }
 
 export function requestBodySerializer(item: RequestBody): any {
-  return [
-    ...item["files"].map((x: unknown) => createFilePartDescriptor("files", x)),
-  ];
+  return [...item["files"].map((x: unknown) => createFilePartDescriptor("files", x))];
 }
 ```

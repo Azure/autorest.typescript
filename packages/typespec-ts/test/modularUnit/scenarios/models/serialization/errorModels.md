@@ -53,9 +53,7 @@ export interface ApiError {
 export function apiErrorDeserializer(item: any): ApiError {
   return {
     code: item["code"],
-    detail: !item["detail"]
-      ? item["detail"]
-      : errorDetailDeserializer(item["detail"]),
+    detail: !item["detail"] ? item["detail"] : errorDetailDeserializer(item["detail"]),
   };
 }
 
@@ -142,9 +140,7 @@ export interface ApiError {
 export function apiErrorDeserializer(item: any): ApiError {
   return {
     code: item["code"],
-    detail: !item["detail"]
-      ? item["detail"]
-      : errorDetailDeserializer(item["detail"]),
+    detail: !item["detail"] ? item["detail"] : errorDetailDeserializer(item["detail"]),
   };
 }
 ```

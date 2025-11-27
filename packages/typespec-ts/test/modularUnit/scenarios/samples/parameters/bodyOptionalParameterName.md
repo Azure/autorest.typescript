@@ -180,19 +180,14 @@ export function _backupSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: !options["backupRequestProperties"]
         ? options["backupRequestProperties"]
         : backupRequestPropertiesSerializer(options["backupRequestProperties"]),
     });
 }
 
-export async function _backupDeserialize(
-  result: PathUncheckedResponse,
-): Promise<BackupResult> {
+export async function _backupDeserialize(result: PathUncheckedResponse): Promise<BackupResult> {
   const expectedStatuses = ["202", "200", "201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -210,18 +205,12 @@ export function backup(
   cloudHsmClusterName: string,
   options: BackupOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<BackupResult>, BackupResult> {
-  return getLongRunningPoller(
-    context,
-    _backupDeserialize,
-    ["202", "200", "201"],
-    {
-      updateIntervalInMs: options?.updateIntervalInMs,
-      abortSignal: options?.abortSignal,
-      getInitialResponse: () =>
-        _backupSend(context, resourceGroupName, cloudHsmClusterName, options),
-      resourceLocationConfig: "azure-async-operation",
-    },
-  ) as PollerLike<OperationState<BackupResult>, BackupResult>;
+  return getLongRunningPoller(context, _backupDeserialize, ["202", "200", "201"], {
+    updateIntervalInMs: options?.updateIntervalInMs,
+    abortSignal: options?.abortSignal,
+    getInitialResponse: () => _backupSend(context, resourceGroupName, cloudHsmClusterName, options),
+    resourceLocationConfig: "azure-async-operation",
+  }) as PollerLike<OperationState<BackupResult>, BackupResult>;
 }
 ```
 
@@ -245,10 +234,7 @@ async function cloudHsmClustersBackup(): Promise<void> {
   const subscriptionId = "00000000-0000-0000-0000-000000000000";
   const client = new HardwareSecurityModulesClient(credential, subscriptionId);
   const result = await client.backup("rgcloudhsm", "chsm1", {
-    backupRequestProperties: {
-      azureStorageBlobContainerUri: "sss",
-      token: "aaa",
-    },
+    backupRequestProperties: { azureStorageBlobContainerUri: "sss", token: "aaa" },
   });
   console.log(result);
 }
@@ -341,16 +327,11 @@ import { TestingClient } from "@azure/internal-test";
 async function read(): Promise<void> {
   const endpoint = process.env.TESTING_ENDPOINT || "";
   const client = new TestingClient(endpoint);
-  const result = await client.read(
-    "required path param",
-    "required header",
-    "required query",
-    {
-      widget: { name: "body name" },
-      testHeader: "optional header",
-      optionalQuery: "renamed optional query",
-    },
-  );
+  const result = await client.read("required path param", "required header", "required query", {
+    widget: { name: "body name" },
+    testHeader: "optional header",
+    optionalQuery: "renamed optional query",
+  });
   console.log(result);
 }
 
