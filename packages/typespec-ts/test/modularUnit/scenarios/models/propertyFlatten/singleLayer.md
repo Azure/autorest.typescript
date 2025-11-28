@@ -133,7 +133,7 @@ export function _testPropertiesDeserializer(item: any) {
 }
 ```
 
-# only: Should support property flatten with optional `properties`
+# Should support property flatten with optional `properties`
 
 Should support property flatten with optional `properties` and its model includes optional and required properties.
 
@@ -193,14 +193,16 @@ export function testSerializer(item: Test): any {
     result: item["result"],
     properties: areAllPropsUndefined(item, ["bar", "baz"])
       ? undefined
-      : _testPropertiesSerializer(item),
+      : _testPropertiesSerializer(item)
   };
 }
 
 export function testDeserializer(item: any): Test {
   return {
     result: item["result"],
-    ...(!item["properties"] ? item["properties"] : _testPropertiesDeserializer(item["properties"])),
+    ...(!item["properties"]
+      ? item["properties"]
+      : _testPropertiesDeserializer(item["properties"]))
   };
 }
 
@@ -213,14 +215,14 @@ export interface FooProperties {
 export function fooPropertiesSerializer(item: FooProperties): any {
   return {
     bar: !item["bar"] ? item["bar"] : aArraySerializer(item["bar"]),
-    baz: aArraySerializer(item["baz"]),
+    baz: aArraySerializer(item["baz"])
   };
 }
 
 export function fooPropertiesDeserializer(item: any): FooProperties {
   return {
     bar: !item["bar"] ? item["bar"] : aArrayDeserializer(item["bar"]),
-    baz: aArrayDeserializer(item["baz"]),
+    baz: aArrayDeserializer(item["baz"])
   };
 }
 
@@ -247,102 +249,28 @@ export function aSerializer(item: A): any {
 
 export function aDeserializer(item: any): A {
   return {
-    x: item["x"],
+    x: item["x"]
   };
-}
-
-/** Known values of {@link Versions} that the service accepts. */
-export enum KnownVersions {
-  /** 2022-05-15-preview */
-  V20220515Preview = "2022-05-15-preview",
-}
-
-export function _testPropertiesSerializer(item: Test): any {
-  return {
-    bar: !item["bar"] ? item["bar"] : aArraySerializer(item["bar"]),
-    baz: !item["baz"] ? item["baz"] : aArraySerializer(item["baz"]),
-  };
-}
-
-export function _testPropertiesDeserializer(item: any) {
-  return {
-    bar: !item["bar"] ? item["bar"] : aArrayDeserializer(item["bar"]),
-    baz: !item["baz"] ? item["baz"] : aArrayDeserializer(item["baz"]),
-  };
-}
-```
-
-# Should support property flatten with name conflict
-
-Should support property flatten with optional `properties` and its model includes the same name property with top-level models.
-
-## TypeSpec
-
-This is tsp definition.
-
-```tsp
-model FooProperties {
-  bar?: string;
-  baz: string;
-}
-
-model Test {
-  bar?: string;
-  baz: string;
-
-  @Azure.ClientGenerator.Core.Legacy.flattenProperty
-  properties: FooProperties;
-}
-
-op foo(body: Test): void;
-```
-
-Enable the raw content with TCGC dependency.
-
-```yaml
-needArmTemplate: true
-withVersionedApiVersion: true
-needTCGC: true
-```
-
-## Models
-
-Model generated.
-
-```ts models
-/**
- * This file contains only generated model types and their (de)serializers.
- * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
- */
-/* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/** model interface Test */
-export interface Test {
-  result: string;
-  properties: Foo;
-}
-
-export function testSerializer(item: Test): any {
-  return {
-    result: item["result"],
-    properties: fooSerializer(item["properties"])
-  };
-}
-
-/** model interface Foo */
-export interface Foo {
-  bar: string;
-  baz: string;
-}
-
-export function fooSerializer(item: Foo): any {
-  return { bar: item["bar"], baz: item["baz"] };
 }
 
 /** Known values of {@link Versions} that the service accepts. */
 export enum KnownVersions {
   /** 2022-05-15-preview */
   V20220515Preview = "2022-05-15-preview"
+}
+
+export function _testPropertiesSerializer(item: Test): any {
+  return {
+    bar: !item["bar"] ? item["bar"] : aArraySerializer(item["bar"]),
+    baz: !item["baz"] ? item["baz"] : aArraySerializer(item["baz"])
+  };
+}
+
+export function _testPropertiesDeserializer(item: any) {
+  return {
+    bar: !item["bar"] ? item["bar"] : aArrayDeserializer(item["bar"]),
+    baz: !item["baz"] ? item["baz"] : aArrayDeserializer(item["baz"])
+  };
 }
 ```
 
@@ -395,23 +323,30 @@ Model generated.
 /** model interface Test */
 export interface Test {
   result: string;
-  properties: Foo;
+  foo: TestFoo;
 }
 
 export function testSerializer(item: Test): any {
-  return {
-    result: item["result"],
-    properties: fooSerializer(item["properties"])
-  };
+  return { result: item["result"], foo: testFooSerializer(item["foo"]) };
 }
 
-/** model interface Foo */
-export interface Foo {
-  bar: string;
+/** model interface TestFoo */
+export interface TestFoo {
+  bar?: string;
   baz: string;
 }
 
-export function fooSerializer(item: Foo): any {
+export function testFooSerializer(item: TestFoo): any {
+  return { properties: _testFooPropertiesSerializer(item) };
+}
+
+/** model interface FooProperties */
+export interface FooProperties {
+  bar?: string;
+  baz: string;
+}
+
+export function fooPropertiesSerializer(item: FooProperties): any {
   return { bar: item["bar"], baz: item["baz"] };
 }
 
@@ -420,9 +355,13 @@ export enum KnownVersions {
   /** 2022-05-15-preview */
   V20220515Preview = "2022-05-15-preview"
 }
+
+export function _testFooPropertiesSerializer(item: TestFoo): any {
+  return { bar: item["bar"], baz: item["baz"] };
+}
 ```
 
-# Should support property flatten with `properties` and it has base model
+# Should support property flatten with `properties` and it has base model and readOnly visibility property
 
 Should support property flatten with optional `properties` and its model has a parent model.
 
@@ -433,8 +372,9 @@ This is tsp definition.
 ```tsp
 
 model Baz {
-    x: string;
-    baz: string;
+  @visibility(Lifecycle.Read)
+  readOnlyProp: string;
+  baz: string;
 }
 
 model FooProperties extends Baz{
@@ -446,10 +386,10 @@ model Test {
   result: string;
 
   @Azure.ClientGenerator.Core.Legacy.flattenProperty
-  properties: FooProperties;
+  properties?: FooProperties;
 }
 
-op foo(body: Test): void;
+op foo(body: Test): Test;
 ```
 
 Enable the raw content with TCGC dependency.
@@ -465,6 +405,8 @@ needTCGC: true
 Model generated.
 
 ```ts models
+import { areAllPropsUndefined } from "../static-helpers/serialization/check-prop-undefined.js";
+
 /**
  * This file contains only generated model types and their (de)serializers.
  * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
@@ -474,24 +416,62 @@ Model generated.
 /** model interface Test */
 export interface Test {
   result: string;
-  properties: Foo;
+  readonly readOnlyProp?: string;
+  baz?: "baz";
+  bar?: string;
 }
 
 export function testSerializer(item: Test): any {
   return {
     result: item["result"],
-    properties: fooSerializer(item["properties"])
+    properties: areAllPropsUndefined(item, ["baz", "bar"])
+      ? undefined
+      : _testPropertiesSerializer(item)
   };
 }
 
-/** model interface Foo */
-export interface Foo {
-  bar: string;
+export function testDeserializer(item: any): Test {
+  return {
+    result: item["result"],
+    ...(!item["properties"]
+      ? item["properties"]
+      : _testPropertiesDeserializer(item["properties"]))
+  };
+}
+
+/** model interface FooProperties */
+export interface FooProperties extends Baz {
+  bar?: string;
+  baz: "baz";
+}
+
+export function fooPropertiesSerializer(item: FooProperties): any {
+  return { baz: item["baz"], bar: item["bar"] };
+}
+
+export function fooPropertiesDeserializer(item: any): FooProperties {
+  return {
+    readOnlyProp: item["readOnlyProp"],
+    baz: item["baz"],
+    bar: item["bar"]
+  };
+}
+
+/** model interface Baz */
+export interface Baz {
+  readonly readOnlyProp: string;
   baz: string;
 }
 
-export function fooSerializer(item: Foo): any {
-  return { bar: item["bar"], baz: item["baz"] };
+export function bazSerializer(item: Baz): any {
+  return { baz: item["baz"] };
+}
+
+export function bazDeserializer(item: any): Baz {
+  return {
+    readOnlyProp: item["readOnlyProp"],
+    baz: item["baz"]
+  };
 }
 
 /** Known values of {@link Versions} that the service accepts. */
@@ -499,8 +479,188 @@ export enum KnownVersions {
   /** 2022-05-15-preview */
   V20220515Preview = "2022-05-15-preview"
 }
+
+export function _testPropertiesSerializer(item: Test): any {
+  return { baz: item["baz"], bar: item["bar"] };
+}
+
+export function _testPropertiesDeserializer(item: any) {
+  return {
+    readOnlyProp: item["readOnlyProp"],
+    baz: item["baz"],
+    bar: item["bar"]
+  };
+}
 ```
 
-# Should support property flatten with `typeProperties`
+# Should support property flatten with random property name and multiple properties but only single layer
 
-# Should not support property flatten if not `properties` or `typeProperties`
+Should support property flatten with optional `identifiers` and its model has a parent model.
+
+## TypeSpec
+
+This is tsp definition.
+
+```tsp
+
+model Baz {
+  @visibility(Lifecycle.Read)
+  readOnlyProp: string;
+  baz: string;
+}
+
+model FooProperties extends Baz{
+  bar?: string;
+  baz: "baz";
+}
+
+model TestIdentifiers {
+  id: string;
+  location?: string;
+}
+
+model Test {
+  result: string;
+
+  @Azure.ClientGenerator.Core.Legacy.flattenProperty
+  properties?: FooProperties;
+
+  @Azure.ClientGenerator.Core.Legacy.flattenProperty
+  identifiers: TestIdentifiers;
+}
+
+op foo(body: Test): Test;
+```
+
+Enable the raw content with TCGC dependency.
+
+```yaml
+needArmTemplate: true
+withVersionedApiVersion: true
+needTCGC: true
+```
+
+## Models
+
+Model generated.
+
+```ts models
+import { areAllPropsUndefined } from "../static-helpers/serialization/check-prop-undefined.js";
+
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/** model interface Test */
+export interface Test {
+  result: string;
+  readonly readOnlyProp?: string;
+  baz?: "baz";
+  bar?: string;
+  id: string;
+  location?: string;
+}
+
+export function testSerializer(item: Test): any {
+  return {
+    result: item["result"],
+    properties: areAllPropsUndefined(item, ["baz", "bar"])
+      ? undefined
+      : _testPropertiesSerializer(item),
+    identifiers: _testIdentifiersSerializer(item)
+  };
+}
+
+export function testDeserializer(item: any): Test {
+  return {
+    result: item["result"],
+    ...(!item["properties"]
+      ? item["properties"]
+      : _testPropertiesDeserializer(item["properties"])),
+    ..._testIdentifiersDeserializer(item["identifiers"])
+  };
+}
+
+/** model interface FooProperties */
+export interface FooProperties extends Baz {
+  bar?: string;
+  baz: "baz";
+}
+
+export function fooPropertiesSerializer(item: FooProperties): any {
+  return { baz: item["baz"], bar: item["bar"] };
+}
+
+export function fooPropertiesDeserializer(item: any): FooProperties {
+  return {
+    readOnlyProp: item["readOnlyProp"],
+    baz: item["baz"],
+    bar: item["bar"]
+  };
+}
+
+/** model interface TestIdentifiers */
+export interface TestIdentifiers {
+  id: string;
+  location?: string;
+}
+
+export function testIdentifiersSerializer(item: TestIdentifiers): any {
+  return { id: item["id"], location: item["location"] };
+}
+
+export function testIdentifiersDeserializer(item: any): TestIdentifiers {
+  return {
+    id: item["id"],
+    location: item["location"]
+  };
+}
+
+/** model interface Baz */
+export interface Baz {
+  readonly readOnlyProp: string;
+  baz: string;
+}
+
+export function bazSerializer(item: Baz): any {
+  return { baz: item["baz"] };
+}
+
+export function bazDeserializer(item: any): Baz {
+  return {
+    readOnlyProp: item["readOnlyProp"],
+    baz: item["baz"]
+  };
+}
+
+/** Known values of {@link Versions} that the service accepts. */
+export enum KnownVersions {
+  /** 2022-05-15-preview */
+  V20220515Preview = "2022-05-15-preview"
+}
+
+export function _testPropertiesSerializer(item: Test): any {
+  return { baz: item["baz"], bar: item["bar"] };
+}
+
+export function _testPropertiesDeserializer(item: any) {
+  return {
+    readOnlyProp: item["readOnlyProp"],
+    baz: item["baz"],
+    bar: item["bar"]
+  };
+}
+
+export function _testIdentifiersSerializer(item: Test): any {
+  return { id: item["id"], location: item["location"] };
+}
+
+export function _testIdentifiersDeserializer(item: any) {
+  return {
+    id: item["id"],
+    location: item["location"]
+  };
+}
+```

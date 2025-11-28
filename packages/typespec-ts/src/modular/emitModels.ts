@@ -801,6 +801,7 @@ function buildModelProperty(
 export function visitPackageTypes(context: SdkContext) {
   const { sdkPackage } = context;
   emitQueue.clear();
+  flattenProperties.clear();
   // Add all models in the package to the emit queue
   for (const model of sdkPackage.models) {
     visitType(context, model);

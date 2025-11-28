@@ -1168,40 +1168,37 @@ function getNullableCheck(name: string, type: SdkType) {
   return `${name} === null ? null :`;
 }
 
-export function getSerializationFlattenExpression(
+function getSerializationExpressionForFlatten(
   context: SdkContext,
   property: SdkModelPropertyType,
   propertyPath: string
-): string | undefined {
-  if (flattenProperties.get(property)) {
-    const serializeFunctionName = buildPropertySerializer(context, property, {
-      nameOnly: true,
-      skipDiscriminatedUnionSuffix: false
-    });
-    if (!serializeFunctionName) {
-      return undefined;
-    }
-    const validProps = getAllProperties(
-      context,
-      property.type,
-      getAllAncestors(property.type)
-    ).filter(
-      (p) =>
-        p.kind === "property" &&
-        !isReadOnly(p) &&
-        !isMetadata(context.program, p.__raw!)
-    );
-    if (validProps.length === 0) {
-      return `undefined`;
-    }
-    const optionalPrefix = property.optional
-      ? `${resolveReference(SerializationHelpers.areAllPropsUndefined)}(${propertyPath}, [${validProps
-          .map((p) => `"${p.name}"`)
-          .join(", ")}]) ? undefined : `
-      : "";
-    return `${optionalPrefix}${serializeFunctionName}(${propertyPath})`;
+): string {
+  const serializeFunctionName = buildPropertySerializer(context, property, {
+    nameOnly: true,
+    skipDiscriminatedUnionSuffix: false
+  });
+  if (!serializeFunctionName) {
+    return property.optional ? `undefined` : `{}`;
   }
-  return undefined;
+  const validProps = getAllProperties(
+    context,
+    property.type,
+    getAllAncestors(property.type)
+  ).filter(
+    (p) =>
+      p.kind === "property" &&
+      !isReadOnly(p) &&
+      !isMetadata(context.program, p.__raw!)
+  );
+  if (validProps.length === 0) {
+    return `undefined`;
+  }
+  const optionalPrefix = property.optional
+    ? `${resolveReference(SerializationHelpers.areAllPropsUndefined)}(${propertyPath}, [${validProps
+        .map((p) => `"${p.name}"`)
+        .join(", ")}]) ? undefined : `
+    : "";
+  return `${optionalPrefix}${serializeFunctionName}(${propertyPath})`;
 }
 
 export function getSerializationExpression(
@@ -1209,6 +1206,9 @@ export function getSerializationExpression(
   property: SdkModelPropertyType,
   propertyPath: string
 ): string {
+  if (flattenProperties.get(property)) {
+    return getSerializationExpressionForFlatten(context, property, "item");
+  }
   const dot = propertyPath.endsWith("?") ? "." : "";
   const propertyPathWithDot = `${propertyPath ? `${propertyPath}${dot}` : `${dot}`}`;
   const nullOrUndefinedPrefix = getPropertySerializationPrefix(
@@ -1269,8 +1269,7 @@ export function getRequestModelProperties(
     }
     props.push([
       getPropertySerializedName(property)!,
-      getSerializationFlattenExpression(context, property, "item") ??
-        getSerializationExpression(context, property, propertyPath)
+      getSerializationExpression(context, property, propertyPath)
     ]);
   }
 
