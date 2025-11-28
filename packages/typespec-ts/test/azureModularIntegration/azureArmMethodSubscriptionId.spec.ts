@@ -173,6 +173,20 @@ describe("Azure Arm Method Subscription Id Modular Client", () => {
     assert.strictEqual(result.type, validMixedSubscriptionResource.type);
   });
 
+  it("should get mixed subscription resource with method-level subscription ID", async () => {
+    const SUBSCRIPTION_ID_UNEXPECTED = "11111111-1111-1111-1111-111111111111";
+    client = new MethodSubscriptionIdClient(SUBSCRIPTION_ID_UNEXPECTED, {
+      endpoint: "http://localhost:3002",
+      allowInsecureConnection: true
+    });
+    const result = await client.subscriptionResourceOperations.get(
+      SUBSCRIPTION_ID_EXPECTED,
+      "sub-resource"
+    );
+    assert.strictEqual(result.name, validMixedSubscriptionResource.name);
+    assert.strictEqual(result.type, validMixedSubscriptionResource.type);
+  });
+
   it("should create or update mixed subscription resource", async () => {
     const result = await client.subscriptionResourceOperations.put(
       SUBSCRIPTION_ID_EXPECTED,
