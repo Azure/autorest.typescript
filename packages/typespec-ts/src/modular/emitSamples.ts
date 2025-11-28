@@ -34,6 +34,7 @@ import {
 } from "../utils/credentialUtils.js";
 import {
   getMethodHierarchiesMap,
+  isTenantLevelOperation,
   ServiceOperation
 } from "../utils/operationUtil.js";
 import { getSubscriptionId } from "../transform/transfromRLCOptions.js";
@@ -328,6 +329,7 @@ function prepareExampleParameters(
   }
 
   let subscriptionIdValue = `"00000000-0000-0000-0000-00000000000"`;
+  let isSubscriptionIdAdded = false;
   // required parameters
   for (const param of method.operation.parameters) {
     if (
@@ -339,6 +341,25 @@ function prepareExampleParameters(
     }
 
     const exampleValue = parameterMap[param.serializedName];
+
+    // Handle subscriptionId parameter separately for ARM clients
+    // Add it as long as it's the parameter of the method, even no example provided
+    if (param.name.toLowerCase() === "subscriptionid" && dpgContext.arm) {
+      isSubscriptionIdAdded = true;
+      if (exampleValue && exampleValue.value) {
+        subscriptionIdValue = getParameterValue(exampleValue.value);
+      }
+      result.push(
+        prepareExampleValue(
+          param.name,
+          subscriptionIdValue,
+          param.optional,
+          param.onClient
+        )
+      );
+      continue;
+    }
+
     if (!exampleValue || !exampleValue.value) {
       // report diagnostic if required parameter is missing
       reportDiagnostic(dpgContext.program, {
@@ -352,14 +373,6 @@ function prepareExampleParameters(
       continue;
     }
 
-    if (
-      param.name.toLowerCase() === "subscriptionid" &&
-      dpgContext.arm &&
-      exampleValue
-    ) {
-      subscriptionIdValue = getParameterValue(exampleValue.value);
-      continue;
-    }
     result.push(
       prepareExampleValue(
         exampleValue.parameter.name,
@@ -369,12 +382,20 @@ function prepareExampleParameters(
       )
     );
   }
-  // add subscriptionId for ARM clients if ARM clients need it
-  if (dpgContext.arm && getSubscriptionId(dpgContext)) {
+
+  // If client-level subscriptionId is needed on the client for this method, then add it
+  // For example, Operations_List
+  if (
+    dpgContext.arm &&
+    getSubscriptionId(dpgContext) &&
+    !isSubscriptionIdAdded &&
+    !isTenantLevelOperation(method, topLevelClient)
+  ) {
     result.push(
       prepareExampleValue("subscriptionId", subscriptionIdValue, false, true)
     );
   }
+
   // required/optional body parameters
   const bodyParam = method.operation.bodyParam;
   const bodySerializeName = bodyParam?.serializedName;

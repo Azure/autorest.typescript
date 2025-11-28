@@ -31,7 +31,10 @@ import {
   SdkServiceMethod,
   SdkServiceOperation
 } from "@azure-tools/typespec-client-generator-core";
-import { getMethodHierarchiesMap } from "../utils/operationUtil.js";
+import {
+  getMethodHierarchiesMap,
+  isTenantLevelOperation
+} from "../utils/operationUtil.js";
 import { useContext } from "../contextManager.js";
 import { refkey } from "../framework/refkey.js";
 import { SimplePollerHelpers } from "./static-helpers-metadata.js";
@@ -401,26 +404,7 @@ function hasTenantLevelOperations(
 
   for (const [_, operations] of methodMap) {
     for (const op of operations) {
-      // Check if this operation has a client-level subscriptionId parameter
-      const hasSubscriptionIdParam = op.operation.parameters?.some(
-        (param) =>
-          param.name.toLowerCase() === "subscriptionid" &&
-          param.kind === "path" &&
-          param.onClient
-      );
-
-      if (!hasSubscriptionIdParam) {
-        // Skip certain operation types that are not relevant for tenant-level detection
-        const pathLC = op.operation.path.toLowerCase();
-        const clientNamespaceLC = client.namespace.toLowerCase();
-        if (
-          pathLC.includes(`${clientNamespaceLC}/operations`) ||
-          pathLC.includes(`${clientNamespaceLC}/locations`) ||
-          pathLC.includes(`${clientNamespaceLC}/checknameavailability`)
-        ) {
-          continue;
-        }
-
+      if (isTenantLevelOperation(op, client)) {
         // Found a tenant-level operation
         return true;
       }
@@ -435,7 +419,7 @@ function generateConstructorWithOverloads(
   classicalParams: any[],
   client: SdkClientType<SdkServiceOperation>
 ) {
-  const requiredParams = classicalParams.filter(
+  const filteredParams = classicalParams.filter(
     (p) =>
       p.name.toLowerCase() !== "subscriptionid" &&
       p.name.toLowerCase() !== "options"
@@ -444,7 +428,7 @@ function generateConstructorWithOverloads(
   const clientConstructor = clientClass.addConstructor({
     docs: getDocsFromDescription(client.doc),
     parameters: [
-      ...requiredParams,
+      ...filteredParams,
       {
         name: "subscriptionIdOrOptions",
         type: `string | ${getClassicalClientName(client)}OptionalParams`,
@@ -460,7 +444,7 @@ function generateConstructorWithOverloads(
 
   clientConstructor.addOverload({
     parameters: [
-      ...requiredParams,
+      ...filteredParams,
       {
         name: "options",
         type: `${getClassicalClientName(client)}OptionalParams`,
@@ -471,7 +455,7 @@ function generateConstructorWithOverloads(
 
   clientConstructor.addOverload({
     parameters: [
-      ...requiredParams,
+      ...filteredParams,
       ...classicalParams.filter(
         (p) => p.name.toLowerCase() === "subscriptionid"
       ),
