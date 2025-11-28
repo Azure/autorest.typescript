@@ -1,6 +1,9 @@
 steps:
   - script: npm install -g @typespec/compiler@next
     displayName: Install @typespec/compiler@next
+  - script: npm run update-typespec
+    workingDirectory: $(Build.SourcesDirectory)
+    displayName: "Override global pnpm-config to dev"
   - script: npx @azure-tools/typespec-bump-deps@latest package.json
     workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
     displayName: "Override typespec-ts package.json to dev"
