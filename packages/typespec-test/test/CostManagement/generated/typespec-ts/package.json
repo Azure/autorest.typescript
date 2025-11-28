@@ -1,0 +1,514 @@
+{
+  "name": "@azure/arm-costmanagement",
+  "version": "1.0.0-beta.1",
+  "description": "A generated SDK for CostManagementClient.",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "sideEffects": false,
+  "autoPublish": false,
+  "tshy": {
+    "exports": {
+      "./package.json": "./package.json",
+      ".": "./src/index.ts",
+      "./api": "./src/api/index.ts",
+      "./api/priceSheet": "./src/api/priceSheet/index.ts",
+      "./api/generateReservationDetailsReport": "./src/api/generateReservationDetailsReport/index.ts",
+      "./api/query": "./src/api/query/index.ts",
+      "./api/dimensions": "./src/api/dimensions/index.ts",
+      "./api/forecast": "./src/api/forecast/index.ts",
+      "./api/generateDetailedCostReport": "./src/api/generateDetailedCostReport/index.ts",
+      "./api/generateBenefitUtilizationSummariesReport": "./src/api/generateBenefitUtilizationSummariesReport/index.ts",
+      "./api/benefitUtilizationSummaries": "./src/api/benefitUtilizationSummaries/index.ts",
+      "./api/benefitRecommendations": "./src/api/benefitRecommendations/index.ts",
+      "./api/costAllocationRules": "./src/api/costAllocationRules/index.ts",
+      "./api/settings": "./src/api/settings/index.ts",
+      "./api/scheduledActions": "./src/api/scheduledActions/index.ts",
+      "./api/alerts": "./src/api/alerts/index.ts",
+      "./api/views": "./src/api/views/index.ts",
+      "./api/generateDetailedCostReportOperationResults": "./src/api/generateDetailedCostReportOperationResults/index.ts",
+      "./api/generateCostDetailsReport": "./src/api/generateCostDetailsReport/index.ts",
+      "./api/exports": "./src/api/exports/index.ts",
+      "./api/budgets": "./src/api/budgets/index.ts",
+      "./api/operations": "./src/api/operations/index.ts",
+      "./api/generateDetailedCostReportOperationStatus": "./src/api/generateDetailedCostReportOperationStatus/index.ts",
+      "./models": "./src/models/index.ts"
+    },
+    "dialects": [
+      "esm",
+      "commonjs"
+    ],
+    "esmDialects": [
+      "browser",
+      "react-native"
+    ],
+    "selfLink": false
+  },
+  "type": "module",
+  "browser": "./dist/browser/index.js",
+  "react-native": "./dist/react-native/index.js",
+  "keywords": [
+    "node",
+    "azure",
+    "cloud",
+    "typescript",
+    "browser",
+    "isomorphic"
+  ],
+  "author": "Microsoft Corporation",
+  "license": "MIT",
+  "files": [
+    "dist/",
+    "!dist/**/*.d.*ts.map",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "@azure/core-util": "^1.9.2",
+    "@azure-rest/core-client": "^2.3.1",
+    "@azure/core-auth": "^1.6.0",
+    "@azure/core-rest-pipeline": "^1.5.0",
+    "@azure/logger": "^1.0.0",
+    "tslib": "^2.6.2",
+    "@azure/core-lro": "^3.1.0",
+    "@azure/abort-controller": "^2.1.2"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.0",
+    "@types/node": "^20.0.0",
+    "eslint": "^9.9.0",
+    "typescript": "~5.8.2",
+    "tshy": "^2.0.0",
+    "@microsoft/api-extractor": "^7.40.3",
+    "rimraf": "^5.0.5",
+    "mkdirp": "^3.0.1"
+  },
+  "scripts": {
+    "clean": "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
+    "extract-api": "rimraf review && mkdirp ./review && api-extractor run --local",
+    "pack": "npm pack 2>&1",
+    "lint": "eslint package.json api-extractor.json src",
+    "lint:fix": "eslint package.json api-extractor.json src --fix --fix-type [problem,suggestion]",
+    "build": "npm run clean && tshy && npm run extract-api"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "browser": {
+        "types": "./dist/browser/index.d.ts",
+        "default": "./dist/browser/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/index.d.ts",
+        "default": "./dist/react-native/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/index.d.ts",
+        "default": "./dist/commonjs/index.js"
+      }
+    },
+    "./api": {
+      "browser": {
+        "types": "./dist/browser/api/index.d.ts",
+        "default": "./dist/browser/api/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/index.d.ts",
+        "default": "./dist/react-native/api/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/index.d.ts",
+        "default": "./dist/esm/api/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/index.d.ts",
+        "default": "./dist/commonjs/api/index.js"
+      }
+    },
+    "./api/priceSheet": {
+      "browser": {
+        "types": "./dist/browser/api/priceSheet/index.d.ts",
+        "default": "./dist/browser/api/priceSheet/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/priceSheet/index.d.ts",
+        "default": "./dist/react-native/api/priceSheet/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/priceSheet/index.d.ts",
+        "default": "./dist/esm/api/priceSheet/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/priceSheet/index.d.ts",
+        "default": "./dist/commonjs/api/priceSheet/index.js"
+      }
+    },
+    "./api/generateReservationDetailsReport": {
+      "browser": {
+        "types": "./dist/browser/api/generateReservationDetailsReport/index.d.ts",
+        "default": "./dist/browser/api/generateReservationDetailsReport/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/generateReservationDetailsReport/index.d.ts",
+        "default": "./dist/react-native/api/generateReservationDetailsReport/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/generateReservationDetailsReport/index.d.ts",
+        "default": "./dist/esm/api/generateReservationDetailsReport/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/generateReservationDetailsReport/index.d.ts",
+        "default": "./dist/commonjs/api/generateReservationDetailsReport/index.js"
+      }
+    },
+    "./api/query": {
+      "browser": {
+        "types": "./dist/browser/api/query/index.d.ts",
+        "default": "./dist/browser/api/query/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/query/index.d.ts",
+        "default": "./dist/react-native/api/query/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/query/index.d.ts",
+        "default": "./dist/esm/api/query/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/query/index.d.ts",
+        "default": "./dist/commonjs/api/query/index.js"
+      }
+    },
+    "./api/dimensions": {
+      "browser": {
+        "types": "./dist/browser/api/dimensions/index.d.ts",
+        "default": "./dist/browser/api/dimensions/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/dimensions/index.d.ts",
+        "default": "./dist/react-native/api/dimensions/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/dimensions/index.d.ts",
+        "default": "./dist/esm/api/dimensions/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/dimensions/index.d.ts",
+        "default": "./dist/commonjs/api/dimensions/index.js"
+      }
+    },
+    "./api/forecast": {
+      "browser": {
+        "types": "./dist/browser/api/forecast/index.d.ts",
+        "default": "./dist/browser/api/forecast/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/forecast/index.d.ts",
+        "default": "./dist/react-native/api/forecast/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/forecast/index.d.ts",
+        "default": "./dist/esm/api/forecast/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/forecast/index.d.ts",
+        "default": "./dist/commonjs/api/forecast/index.js"
+      }
+    },
+    "./api/generateDetailedCostReport": {
+      "browser": {
+        "types": "./dist/browser/api/generateDetailedCostReport/index.d.ts",
+        "default": "./dist/browser/api/generateDetailedCostReport/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/generateDetailedCostReport/index.d.ts",
+        "default": "./dist/react-native/api/generateDetailedCostReport/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/generateDetailedCostReport/index.d.ts",
+        "default": "./dist/esm/api/generateDetailedCostReport/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/generateDetailedCostReport/index.d.ts",
+        "default": "./dist/commonjs/api/generateDetailedCostReport/index.js"
+      }
+    },
+    "./api/generateBenefitUtilizationSummariesReport": {
+      "browser": {
+        "types": "./dist/browser/api/generateBenefitUtilizationSummariesReport/index.d.ts",
+        "default": "./dist/browser/api/generateBenefitUtilizationSummariesReport/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/generateBenefitUtilizationSummariesReport/index.d.ts",
+        "default": "./dist/react-native/api/generateBenefitUtilizationSummariesReport/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/generateBenefitUtilizationSummariesReport/index.d.ts",
+        "default": "./dist/esm/api/generateBenefitUtilizationSummariesReport/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/generateBenefitUtilizationSummariesReport/index.d.ts",
+        "default": "./dist/commonjs/api/generateBenefitUtilizationSummariesReport/index.js"
+      }
+    },
+    "./api/benefitUtilizationSummaries": {
+      "browser": {
+        "types": "./dist/browser/api/benefitUtilizationSummaries/index.d.ts",
+        "default": "./dist/browser/api/benefitUtilizationSummaries/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/benefitUtilizationSummaries/index.d.ts",
+        "default": "./dist/react-native/api/benefitUtilizationSummaries/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/benefitUtilizationSummaries/index.d.ts",
+        "default": "./dist/esm/api/benefitUtilizationSummaries/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/benefitUtilizationSummaries/index.d.ts",
+        "default": "./dist/commonjs/api/benefitUtilizationSummaries/index.js"
+      }
+    },
+    "./api/benefitRecommendations": {
+      "browser": {
+        "types": "./dist/browser/api/benefitRecommendations/index.d.ts",
+        "default": "./dist/browser/api/benefitRecommendations/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/benefitRecommendations/index.d.ts",
+        "default": "./dist/react-native/api/benefitRecommendations/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/benefitRecommendations/index.d.ts",
+        "default": "./dist/esm/api/benefitRecommendations/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/benefitRecommendations/index.d.ts",
+        "default": "./dist/commonjs/api/benefitRecommendations/index.js"
+      }
+    },
+    "./api/costAllocationRules": {
+      "browser": {
+        "types": "./dist/browser/api/costAllocationRules/index.d.ts",
+        "default": "./dist/browser/api/costAllocationRules/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/costAllocationRules/index.d.ts",
+        "default": "./dist/react-native/api/costAllocationRules/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/costAllocationRules/index.d.ts",
+        "default": "./dist/esm/api/costAllocationRules/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/costAllocationRules/index.d.ts",
+        "default": "./dist/commonjs/api/costAllocationRules/index.js"
+      }
+    },
+    "./api/settings": {
+      "browser": {
+        "types": "./dist/browser/api/settings/index.d.ts",
+        "default": "./dist/browser/api/settings/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/settings/index.d.ts",
+        "default": "./dist/react-native/api/settings/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/settings/index.d.ts",
+        "default": "./dist/esm/api/settings/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/settings/index.d.ts",
+        "default": "./dist/commonjs/api/settings/index.js"
+      }
+    },
+    "./api/scheduledActions": {
+      "browser": {
+        "types": "./dist/browser/api/scheduledActions/index.d.ts",
+        "default": "./dist/browser/api/scheduledActions/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/scheduledActions/index.d.ts",
+        "default": "./dist/react-native/api/scheduledActions/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/scheduledActions/index.d.ts",
+        "default": "./dist/esm/api/scheduledActions/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/scheduledActions/index.d.ts",
+        "default": "./dist/commonjs/api/scheduledActions/index.js"
+      }
+    },
+    "./api/alerts": {
+      "browser": {
+        "types": "./dist/browser/api/alerts/index.d.ts",
+        "default": "./dist/browser/api/alerts/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/alerts/index.d.ts",
+        "default": "./dist/react-native/api/alerts/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/alerts/index.d.ts",
+        "default": "./dist/esm/api/alerts/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/alerts/index.d.ts",
+        "default": "./dist/commonjs/api/alerts/index.js"
+      }
+    },
+    "./api/views": {
+      "browser": {
+        "types": "./dist/browser/api/views/index.d.ts",
+        "default": "./dist/browser/api/views/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/views/index.d.ts",
+        "default": "./dist/react-native/api/views/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/views/index.d.ts",
+        "default": "./dist/esm/api/views/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/views/index.d.ts",
+        "default": "./dist/commonjs/api/views/index.js"
+      }
+    },
+    "./api/generateDetailedCostReportOperationResults": {
+      "browser": {
+        "types": "./dist/browser/api/generateDetailedCostReportOperationResults/index.d.ts",
+        "default": "./dist/browser/api/generateDetailedCostReportOperationResults/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/generateDetailedCostReportOperationResults/index.d.ts",
+        "default": "./dist/react-native/api/generateDetailedCostReportOperationResults/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/generateDetailedCostReportOperationResults/index.d.ts",
+        "default": "./dist/esm/api/generateDetailedCostReportOperationResults/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/generateDetailedCostReportOperationResults/index.d.ts",
+        "default": "./dist/commonjs/api/generateDetailedCostReportOperationResults/index.js"
+      }
+    },
+    "./api/generateCostDetailsReport": {
+      "browser": {
+        "types": "./dist/browser/api/generateCostDetailsReport/index.d.ts",
+        "default": "./dist/browser/api/generateCostDetailsReport/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/generateCostDetailsReport/index.d.ts",
+        "default": "./dist/react-native/api/generateCostDetailsReport/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/generateCostDetailsReport/index.d.ts",
+        "default": "./dist/esm/api/generateCostDetailsReport/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/generateCostDetailsReport/index.d.ts",
+        "default": "./dist/commonjs/api/generateCostDetailsReport/index.js"
+      }
+    },
+    "./api/exports": {
+      "browser": {
+        "types": "./dist/browser/api/exports/index.d.ts",
+        "default": "./dist/browser/api/exports/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/exports/index.d.ts",
+        "default": "./dist/react-native/api/exports/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/exports/index.d.ts",
+        "default": "./dist/esm/api/exports/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/exports/index.d.ts",
+        "default": "./dist/commonjs/api/exports/index.js"
+      }
+    },
+    "./api/budgets": {
+      "browser": {
+        "types": "./dist/browser/api/budgets/index.d.ts",
+        "default": "./dist/browser/api/budgets/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/budgets/index.d.ts",
+        "default": "./dist/react-native/api/budgets/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/budgets/index.d.ts",
+        "default": "./dist/esm/api/budgets/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/budgets/index.d.ts",
+        "default": "./dist/commonjs/api/budgets/index.js"
+      }
+    },
+    "./api/operations": {
+      "browser": {
+        "types": "./dist/browser/api/operations/index.d.ts",
+        "default": "./dist/browser/api/operations/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/operations/index.d.ts",
+        "default": "./dist/react-native/api/operations/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/operations/index.d.ts",
+        "default": "./dist/esm/api/operations/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/operations/index.d.ts",
+        "default": "./dist/commonjs/api/operations/index.js"
+      }
+    },
+    "./api/generateDetailedCostReportOperationStatus": {
+      "browser": {
+        "types": "./dist/browser/api/generateDetailedCostReportOperationStatus/index.d.ts",
+        "default": "./dist/browser/api/generateDetailedCostReportOperationStatus/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/generateDetailedCostReportOperationStatus/index.d.ts",
+        "default": "./dist/react-native/api/generateDetailedCostReportOperationStatus/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/generateDetailedCostReportOperationStatus/index.d.ts",
+        "default": "./dist/esm/api/generateDetailedCostReportOperationStatus/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/generateDetailedCostReportOperationStatus/index.d.ts",
+        "default": "./dist/commonjs/api/generateDetailedCostReportOperationStatus/index.js"
+      }
+    },
+    "./models": {
+      "browser": {
+        "types": "./dist/browser/models/index.d.ts",
+        "default": "./dist/browser/models/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/models/index.d.ts",
+        "default": "./dist/react-native/models/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/models/index.d.ts",
+        "default": "./dist/esm/models/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/models/index.d.ts",
+        "default": "./dist/commonjs/models/index.js"
+      }
+    }
+  },
+  "main": "./dist/commonjs/index.js",
+  "types": "./dist/commonjs/index.d.ts",
+  "module": "./dist/esm/index.js"
+}
