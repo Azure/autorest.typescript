@@ -1184,9 +1184,9 @@ function getSchemaForArrayModel(
               .join(" | ");
           }
         }
-      } else if (schema.items.type.includes("|")) {
+      } else if (schema.items.type && schema.items.type.includes("|")) {
         schema.typeName = `(${schema.items.type})[]`;
-      } else {
+      } else if (schema.items.type) {
         schema.typeName = `${schema.items.type}[]`;
       }
     }
@@ -1322,6 +1322,10 @@ function getSchemaForStdScalar(
       return applyIntrinsicDecorators(program, type, {
         type: "number",
         format: "safeint"
+      });
+    case "numeric":
+      return applyIntrinsicDecorators(program, type, {
+        type: "number"
       });
     case "uint8":
       return applyIntrinsicDecorators(program, type, {
