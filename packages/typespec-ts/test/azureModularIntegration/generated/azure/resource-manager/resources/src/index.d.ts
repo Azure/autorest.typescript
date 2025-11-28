@@ -191,6 +191,7 @@ export declare interface Resource {
 export declare class ResourcesClient {
     private _client;
     readonly pipeline: Pipeline;
+    constructor(options?: ResourcesClientOptionalParams);
     constructor(subscriptionId: string, options?: ResourcesClientOptionalParams);
     readonly locationResources: LocationResourcesOperations;
     readonly extensionsResources: ExtensionsResourcesOperations;
