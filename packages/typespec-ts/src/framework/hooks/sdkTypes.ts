@@ -2,6 +2,8 @@ import { Operation, Type, getNamespaceFullName } from "@typespec/compiler";
 import {
   SdkClientType,
   SdkHttpOperation,
+  SdkModelPropertyType,
+  SdkModelType,
   SdkServiceMethod,
   SdkType,
   getClientType
@@ -12,6 +14,8 @@ import { visitPackageTypes } from "../../modular/emitModels.js";
 import { SdkContext } from "../../utils/interfaces.js";
 
 export const emitQueue: Set<SdkType> = new Set<SdkType>();
+export const flattenProperties: Map<SdkModelPropertyType, SdkModelType> =
+  new Map<SdkModelPropertyType, SdkModelType>();
 
 export interface SdkTypeContext {
   operations: Map<Type, SdkServiceMethod<SdkHttpOperation>>;

@@ -121,7 +121,7 @@ union DefaultAction {
 
 @doc("Data Product Network rule set")
 @added(Versions.v2023_11_15)
-model DataProductNetworkAcls {
+model DataProductNetworkAclsRequired {
   @doc("Virtual Network Rule")
   virtualNetworkRule: VirtualNetworkRule[];
 
@@ -134,11 +134,14 @@ model DataProductNetworkAcls {
 
   @doc("Default Action")
   defaultAction: DefaultAction;
+
+  baseRequired: string;
+  properties: DataProductProperties;
 }
 
 @doc("The data product resource.")
 @added(Versions.v2023_11_15)
-model DataProduct is TrackedResource<DataProductProperties> {
+model DataProductOptional is TrackedResource<DataProductProperties> {
   @doc("The data product resource name")
   @key("dataProductName")
   @segment("dataProducts")
@@ -148,91 +151,15 @@ model DataProduct is TrackedResource<DataProductProperties> {
   @maxLength(63)
   name: string;
 
+  baseRequired: string;
   ...Legacy.ManagedServiceIdentityV4Property;
 }
 
 @doc("The data product properties.")
 @added(Versions.v2023_11_15)
 model DataProductProperties {
-  @doc("The resource GUID property of the data product resource.")
-  @visibility(Lifecycle.Read)
-  resourceGuid?: string;
-
-  @doc("Latest provisioning state  of data product.")
-  @visibility(Lifecycle.Read)
-  provisioningState?: ProvisioningState;
-
-  @doc("Data product publisher name.")
-  @visibility(Lifecycle.Create, Lifecycle.Read)
-  publisher: string;
-
-  @doc("Product name of data product.")
-  @visibility(Lifecycle.Create, Lifecycle.Read)
-  product: string;
-
-  @doc("Major version of data product.")
-  @visibility(Lifecycle.Create, Lifecycle.Read)
-  majorVersion: string;
-
-  @doc("List of name or email associated with data product resource deployment.")
-  @visibility(Lifecycle.Create, Lifecycle.Read, Lifecycle.Update)
-  owners?: string[];
-
-  @doc("Flag to enable or disable redundancy for data product.")
-  @visibility(Lifecycle.Create, Lifecycle.Read)
-  redundancy?: ControlState;
-
-  @doc("Purview account url for data product to connect to.")
-  @visibility(Lifecycle.Create, Lifecycle.Update, Lifecycle.Read)
-  purviewAccount?: string;
-
-  @doc("Purview collection url for data product to connect to.")
-  @visibility(Lifecycle.Create, Lifecycle.Update, Lifecycle.Read)
-  purviewCollection?: string;
-
-  @doc("Flag to enable or disable private link for data product resource.")
-  @visibility(Lifecycle.Create, Lifecycle.Update, Lifecycle.Read)
-  privateLinksEnabled?: ControlState;
-
-  @doc("Flag to enable or disable public access of data product resource.")
-  @visibility(Lifecycle.Create, Lifecycle.Read)
-  publicNetworkAccess?: ControlState;
-
-  @doc("Flag to enable customer managed key encryption for data product.")
-  @visibility(Lifecycle.Create, Lifecycle.Read)
-  customerManagedKeyEncryptionEnabled?: ControlState;
-
-  @doc("Customer managed encryption key details for data product.")
-  @visibility(Lifecycle.Create, Lifecycle.Read)
-  customerEncryptionKey?: EncryptionKeyDetails;
-
-  @doc("Network rule set for data product.")
-  @visibility(Lifecycle.Create, Lifecycle.Read)
-  networkacls?: DataProductNetworkAcls;
-
-  @doc("Managed resource group configuration.")
-  @visibility(Lifecycle.Create)
-  managedResourceGroupConfiguration?: ManagedResourceGroupConfiguration;
-
-  @doc("List of available minor versions of the data product resource.")
-  @visibility(Lifecycle.Read)
-  availableMinorVersions?: string[];
-
-  @doc("Current configured minor version of the data product resource.")
-  @visibility(Lifecycle.Read, Lifecycle.Update)
-  currentMinorVersion?: string;
-
-  @doc("Documentation link for the data product based on definition file.")
-  @visibility(Lifecycle.Read)
-  documentation?: string;
-
-  @doc("Resource links which exposed to the customer to query the data.")
-  @visibility(Lifecycle.Read)
-  consumptionEndpoints?: ConsumptionEndpointsProperties;
-
-  @doc("Key vault url.")
-  @visibility(Lifecycle.Read)
-  keyVaultUrl?: string;
+  requiredProp: EncryptionKeyDetails[];
+  optionalProp?: EncryptionKeyDetails[];
 }
 
 @doc("Encryption key details.")
@@ -338,7 +265,7 @@ model KeyVaultInfo {
 
 @doc("The data type resource.")
 @added(Versions.v2023_11_15)
-@parentResource(DataProduct)
+@parentResource(DataProductOptional)
 model DataType is ProxyResource<DataTypeProperties> {
   @doc("The data type name.")
   @segment("dataTypes")
@@ -348,6 +275,8 @@ model DataType is ProxyResource<DataTypeProperties> {
   @minLength(3)
   @maxLength(63)
   name: string;
+
+  foo: DataProductNetworkAclsRequired;
 }
 
 @doc("The data type properties")
@@ -573,58 +502,61 @@ interface DataProducts {
   @doc("Create data product resource.")
   @Azure.Core.useFinalStateVia("azure-async-operation")
   create is ArmResourceCreateOrUpdateAsync<
-    DataProduct,
+    DataProductOptional,
     LroHeaders = Azure.Core.Foundations.RetryAfterHeader
   >;
 
   @doc("Retrieve data product resource.")
-  get is ArmResourceRead<DataProduct>;
+  get is ArmResourceRead<DataProductOptional>;
 
   @doc("Update data product resource.")
   update is ArmCustomPatchAsync<
-    DataProduct,
+    DataProductOptional,
     Azure.ResourceManager.Foundations.ResourceUpdateModel<
-      DataProduct,
+      DataProductOptional,
       DataProductProperties
     >
   >;
 
   @doc("Delete data product resource.")
-  delete is ArmResourceDeleteWithoutOkAsync<DataProduct>;
+  delete is ArmResourceDeleteWithoutOkAsync<DataProductOptional>;
 
   @doc("Generate sas token for storage account.")
   generateStorageAccountSasToken is ArmResourceActionSync<
-    DataProduct,
+    DataProductOptional,
     AccountSas,
     AccountSasToken
   >;
 
   @doc("Initiate key rotation on Data Product.")
-  rotateKey is ArmResourceActionNoContentSync<DataProduct, KeyVaultInfo>;
+  rotateKey is ArmResourceActionNoContentSync<
+    DataProductOptional,
+    KeyVaultInfo
+  >;
 
   @doc("Assign role to the data product.")
   addUserRole is ArmResourceActionSync<
-    DataProduct,
+    DataProductOptional,
     RoleAssignmentCommonProperties,
     RoleAssignmentDetail
   >;
 
   @doc("Remove role from the data product.")
   removeUserRole is ArmResourceActionNoContentSync<
-    DataProduct,
+    DataProductOptional,
     RoleAssignmentDetail
   >;
 
   @doc("List user roles associated with the data product.")
   listRolesAssignments is ArmResourceActionSync<
-    DataProduct,
+    DataProductOptional,
     {},
     ListRoleAssignments
   >;
 
   @doc("List data products by resource group.")
-  listByResourceGroup is ArmResourceListByParent<DataProduct>;
+  listByResourceGroup is ArmResourceListByParent<DataProductOptional>;
 
   @doc("List data products by subscription.")
-  listBySubscription is ArmListBySubscription<DataProduct>;
+  listBySubscription is ArmListBySubscription<DataProductOptional>;
 }

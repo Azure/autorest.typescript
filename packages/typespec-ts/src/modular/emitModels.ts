@@ -40,16 +40,23 @@ import {
 
 import { SdkContext } from "../utils/interfaces.js";
 import { addDeclaration } from "../framework/declaration.js";
-import { buildModelDeserializer } from "./serialization/buildDeserializerFunction.js";
-import { buildModelSerializer } from "./serialization/buildSerializerFunction.js";
+import {
+  buildModelDeserializer,
+  buildPropertyDeserializer
+} from "./serialization/buildDeserializerFunction.js";
+import {
+  buildModelSerializer,
+  buildPropertySerializer
+} from "./serialization/buildSerializerFunction.js";
 import path from "path";
 import { refkey } from "../framework/refkey.js";
-import { useContext } from "../contextManager.js";
+import { provideContext, useContext } from "../contextManager.js";
 import { isMetadata, isOrExtendsHttpFile } from "@typespec/http";
 import { isAzureCoreErrorType } from "../utils/modelUtils.js";
 import { isExtensibleEnum } from "./type-expressions/get-enum-expression.js";
 import {
   getAllDiscriminatedValues,
+  getPropertyWithOverrides,
   isDiscriminatedUnion
 } from "./serialization/serializeUtils.js";
 import { reportDiagnostic } from "../lib.js";
@@ -60,6 +67,7 @@ import {
 } from "./type-expressions/get-type-expression.js";
 import {
   emitQueue,
+  flattenProperties,
   getAllOperationsFromClient
 } from "../framework/hooks/sdkTypes.js";
 import { resolveReference } from "../framework/reference.js";
@@ -99,6 +107,10 @@ export function emitTypes(
   { sourceRoot }: { sourceRoot: string }
 ) {
   const outputProject = useContext("outputProject");
+  provideContext(
+    "flattenPropertyConflictMap",
+    buildFlattenPropertyConflictMap(context, flattenProperties)
+  );
 
   let sourceFile;
 
@@ -120,6 +132,13 @@ export function emitTypes(
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */`);
     }
     emitType(context, type, sourceFile);
+  }
+
+  for (const [property, _] of flattenProperties) {
+    const namespaces = getModelNamespaces(context, property.type);
+    const filepath = getModelsPath(sourceRoot, namespaces);
+    sourceFile = outputProject.getSourceFile(filepath);
+    emitProperty(context, property, sourceFile!);
   }
 
   const modelFiles = outputProject.getSourceFiles(
@@ -244,6 +263,18 @@ function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
   }
 }
 
+function emitProperty(
+  context: SdkContext,
+  property: SdkModelPropertyType,
+  sourceFile: SourceFile
+) {
+  // Only need to emit serialization functions for the flatten property type
+  if (!flattenProperties.has(property)) {
+    return undefined;
+  }
+  addSerializationFunctions(context, property, sourceFile);
+}
+
 export function getApiVersionEnum(context: SdkContext) {
   const apiVersionEnum = context.sdkPackage.enums.find(
     (e) => e.usage === UsageFlags.ApiVersionEnum
@@ -310,36 +341,38 @@ export function getModelNamespaces(
 
 function addSerializationFunctions(
   context: SdkContext,
-  type: SdkType,
+  typeOrProperty: SdkType | SdkModelPropertyType,
   sourceFile: SourceFile,
-  skipDiscriminatedUnion = false
+  skipDiscriminatedUnionSuffix = false
 ) {
-  const serializationFunction = buildModelSerializer(
-    context,
-    type,
-    skipDiscriminatedUnion
-  );
+  const options = {
+    nameOnly: false,
+    skipDiscriminatedUnionSuffix
+  };
+  const serializationFunction =
+    typeOrProperty.kind === "property"
+      ? buildPropertySerializer(context, typeOrProperty, options)
+      : buildModelSerializer(context, typeOrProperty, options);
 
-  const serializerRefkey = refkey(type, "serializer");
-  const deserailizerRefKey = refkey(type, "deserializer");
+  const serializerRefKey = refkey(typeOrProperty, "serializer");
+  const deserializerRefKey = refkey(typeOrProperty, "deserializer");
   if (
     serializationFunction &&
     typeof serializationFunction !== "string" &&
     serializationFunction.name
   ) {
-    addDeclaration(sourceFile, serializationFunction, serializerRefkey);
+    addDeclaration(sourceFile, serializationFunction, serializerRefKey);
   }
-  const deserializationFunction = buildModelDeserializer(
-    context,
-    type,
-    skipDiscriminatedUnion
-  );
+  const deserializationFunction =
+    typeOrProperty.kind === "property"
+      ? buildPropertyDeserializer(context, typeOrProperty, options)
+      : buildModelDeserializer(context, typeOrProperty, options);
   if (
     deserializationFunction &&
     typeof deserializationFunction !== "string" &&
     deserializationFunction.name
   ) {
-    addDeclaration(sourceFile, deserializationFunction, deserailizerRefKey);
+    addDeclaration(sourceFile, deserializationFunction, deserializerRefKey);
   }
 }
 
@@ -474,16 +507,46 @@ function buildModelInterface(
   context: SdkContext,
   type: SdkModelType
 ): InterfaceDeclarationStructure {
+  const flattenPropertySet = new Set<SdkModelPropertyType>();
   const interfaceStructure = {
     kind: StructureKind.Interface,
     name: normalizeModelName(context, type, NameType.Interface, true),
     isExported: true,
     properties: type.properties
       .filter((p) => !isMetadata(context.program, p.__raw!))
+      .filter((p) => {
+        // filter out the flatten property to be processed later
+        if (flattenProperties.has(p)) {
+          flattenPropertySet.add(p);
+          return false;
+        }
+        return true;
+      })
       .map((p) => {
         return buildModelProperty(context, p, type);
       })
   } as InterfaceStructure;
+  for (const flatten of flattenPropertySet.keys()) {
+    if (flatten.type?.kind !== "model" || !flatten.type.properties) {
+      continue;
+    }
+    const conflictMap = useContext("flattenPropertyConflictMap");
+    const allProperties = getAllProperties(
+      context,
+      flatten.type,
+      getAllAncestors(flatten.type)
+    ).filter((p) => !isMetadata(context.program, p.__raw!));
+    interfaceStructure.properties!.push(
+      ...allProperties.map((p) => {
+        // when the flattened property is optional, all its child properties should be optional too
+        const property = getPropertyWithOverrides(p, {
+          allOptional: flatten.optional,
+          propertyRenames: conflictMap.get(flatten)
+        });
+        return buildModelProperty(context, property, type);
+      })
+    );
+  }
 
   if (type.baseModel) {
     const parentReference = getModelExpression(context, type.baseModel, {
@@ -747,6 +810,7 @@ function buildModelProperty(
 export function visitPackageTypes(context: SdkContext) {
   const { sdkPackage } = context;
   emitQueue.clear();
+  flattenProperties.clear();
   // Add all models in the package to the emit queue
   for (const model of sdkPackage.models) {
     visitType(context, model);
@@ -852,6 +916,9 @@ function visitType(context: SdkContext, type: SdkType | undefined) {
       if (!emitQueue.has(property.type)) {
         visitType(context, property.type);
       }
+      if (property.flatten && property.type.kind === "model") {
+        flattenProperties.set(property, type);
+      }
     }
     if (type.discriminatedSubtypes) {
       for (const subType of Object.values(type.discriminatedSubtypes)) {
@@ -885,4 +952,54 @@ function visitType(context: SdkContext, type: SdkType | undefined) {
       visitType(context, type.type);
     }
   }
+}
+
+// Build a map of flatten properties to their conflicting properties in the base models
+function buildFlattenPropertyConflictMap(
+  context: SdkContext,
+  flattenProperties: Map<SdkModelPropertyType, SdkModelType>
+): Map<SdkModelPropertyType, Map<SdkModelPropertyType, string>> {
+  const result = new Map<
+    SdkModelPropertyType,
+    Map<SdkModelPropertyType, string>
+  >();
+  for (const [flattenProperty, baseModel] of flattenProperties) {
+    // get all properties from base models
+    const allBaseProperties = getAllProperties(
+      context,
+      baseModel,
+      getAllAncestors(baseModel)
+    ).map((p) => normalizeModelPropertyName(context, p));
+    const existingBasePropertyNames = new Set<string>(allBaseProperties);
+    const conflictMap = new Map<SdkModelPropertyType, string>();
+    const flattenModel = flattenProperty.type;
+    if (flattenModel.kind !== "model") {
+      continue;
+    }
+    const allFlattenProperties = getAllProperties(
+      context,
+      flattenModel,
+      getAllAncestors(flattenModel)
+    );
+    for (const flattenChildProperty of allFlattenProperties) {
+      const normName = normalizeModelPropertyName(
+        context,
+        flattenChildProperty
+      );
+      if (existingBasePropertyNames.has(normName)) {
+        conflictMap.set(
+          flattenChildProperty,
+          normalizeName(
+            `${normName}_${flattenProperty.name}_${normName}`,
+            NameType.Property
+          )
+        );
+      }
+    }
+    if (conflictMap.size === 0) {
+      continue;
+    }
+    result.set(flattenProperty, conflictMap);
+  }
+  return result;
 }

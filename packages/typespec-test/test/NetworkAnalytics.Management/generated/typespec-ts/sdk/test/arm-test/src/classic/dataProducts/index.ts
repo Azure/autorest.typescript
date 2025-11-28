@@ -29,8 +29,8 @@ import {
   DataProductsCreateOptionalParams,
 } from "../../api/dataProducts/options.js";
 import {
-  DataProduct,
-  DataProductUpdate,
+  DataProductOptional,
+  DataProductOptionalUpdate,
   AccountSas,
   AccountSasToken,
   KeyVaultInfo,
@@ -47,12 +47,12 @@ export interface DataProductsOperations {
   /** List data products by subscription. */
   listBySubscription: (
     options?: DataProductsListBySubscriptionOptionalParams,
-  ) => PagedAsyncIterableIterator<DataProduct>;
+  ) => PagedAsyncIterableIterator<DataProductOptional>;
   /** List data products by resource group. */
   listByResourceGroup: (
     resourceGroupName: string,
     options?: DataProductsListByResourceGroupOptionalParams,
-  ) => PagedAsyncIterableIterator<DataProduct>;
+  ) => PagedAsyncIterableIterator<DataProductOptional>;
   /** List user roles associated with the data product. */
   listRolesAssignments: (
     resourceGroupName: string,
@@ -115,50 +115,36 @@ export interface DataProductsOperations {
   update: (
     resourceGroupName: string,
     dataProductName: string,
-    properties: DataProductUpdate,
+    properties: DataProductOptionalUpdate,
     options?: DataProductsUpdateOptionalParams,
-  ) => PollerLike<OperationState<DataProduct>, DataProduct>;
+  ) => PollerLike<OperationState<DataProductOptional>, DataProductOptional>;
   /** @deprecated use update instead */
   beginUpdate: (
     resourceGroupName: string,
     dataProductName: string,
-    properties: DataProductUpdate,
+    properties: DataProductOptionalUpdate,
     options?: DataProductsUpdateOptionalParams,
-  ) => Promise<SimplePollerLike<OperationState<DataProduct>, DataProduct>>;
+  ) => Promise<SimplePollerLike<OperationState<DataProductOptional>, DataProductOptional>>;
   /** @deprecated use update instead */
   beginUpdateAndWait: (
     resourceGroupName: string,
     dataProductName: string,
-    properties: DataProductUpdate,
+    properties: DataProductOptionalUpdate,
     options?: DataProductsUpdateOptionalParams,
-  ) => Promise<DataProduct>;
+  ) => Promise<DataProductOptional>;
   /** Retrieve data product resource. */
   get: (
     resourceGroupName: string,
     dataProductName: string,
     options?: DataProductsGetOptionalParams,
-  ) => Promise<DataProduct>;
+  ) => Promise<DataProductOptional>;
   /** Create data product resource. */
   create: (
     resourceGroupName: string,
     dataProductName: string,
-    resource: DataProduct,
+    resource: DataProductOptional,
     options?: DataProductsCreateOptionalParams,
-  ) => PollerLike<OperationState<DataProduct>, DataProduct>;
-  /** @deprecated use create instead */
-  beginCreate: (
-    resourceGroupName: string,
-    dataProductName: string,
-    resource: DataProduct,
-    options?: DataProductsCreateOptionalParams,
-  ) => Promise<SimplePollerLike<OperationState<DataProduct>, DataProduct>>;
-  /** @deprecated use create instead */
-  beginCreateAndWait: (
-    resourceGroupName: string,
-    dataProductName: string,
-    resource: DataProduct,
-    options?: DataProductsCreateOptionalParams,
-  ) => Promise<DataProduct>;
+  ) => Promise<DataProductOptional>;
 }
 
 function _getDataProducts(context: NetworkAnalyticsApiContext) {
@@ -223,13 +209,13 @@ function _getDataProducts(context: NetworkAnalyticsApiContext) {
     update: (
       resourceGroupName: string,
       dataProductName: string,
-      properties: DataProductUpdate,
+      properties: DataProductOptionalUpdate,
       options?: DataProductsUpdateOptionalParams,
     ) => update(context, resourceGroupName, dataProductName, properties, options),
     beginUpdate: async (
       resourceGroupName: string,
       dataProductName: string,
-      properties: DataProductUpdate,
+      properties: DataProductOptionalUpdate,
       options?: DataProductsUpdateOptionalParams,
     ) => {
       const poller = update(context, resourceGroupName, dataProductName, properties, options);
@@ -239,7 +225,7 @@ function _getDataProducts(context: NetworkAnalyticsApiContext) {
     beginUpdateAndWait: async (
       resourceGroupName: string,
       dataProductName: string,
-      properties: DataProductUpdate,
+      properties: DataProductOptionalUpdate,
       options?: DataProductsUpdateOptionalParams,
     ) => {
       return await update(context, resourceGroupName, dataProductName, properties, options);
@@ -252,27 +238,9 @@ function _getDataProducts(context: NetworkAnalyticsApiContext) {
     create: (
       resourceGroupName: string,
       dataProductName: string,
-      resource: DataProduct,
+      resource: DataProductOptional,
       options?: DataProductsCreateOptionalParams,
     ) => create(context, resourceGroupName, dataProductName, resource, options),
-    beginCreate: async (
-      resourceGroupName: string,
-      dataProductName: string,
-      resource: DataProduct,
-      options?: DataProductsCreateOptionalParams,
-    ) => {
-      const poller = create(context, resourceGroupName, dataProductName, resource, options);
-      await poller.submitted();
-      return getSimplePoller(poller);
-    },
-    beginCreateAndWait: async (
-      resourceGroupName: string,
-      dataProductName: string,
-      resource: DataProduct,
-      options?: DataProductsCreateOptionalParams,
-    ) => {
-      return await create(context, resourceGroupName, dataProductName, resource, options);
-    },
   };
 }
 

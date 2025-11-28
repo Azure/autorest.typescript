@@ -23,13 +23,7 @@ async function dataProductsUpdateMaximumSetGen(): Promise<void> {
       },
     },
     tags: { userSpecifiedKeyName: "userSpecifiedKeyValue" },
-    properties: {
-      owners: ["abc@micros.com", "def@micros.com"],
-      purviewAccount: "testpurview",
-      purviewCollection: "134567890",
-      privateLinksEnabled: "Disabled",
-      currentMinorVersion: "1.0.1",
-    },
+    properties: {},
   });
   console.log(result);
 }
