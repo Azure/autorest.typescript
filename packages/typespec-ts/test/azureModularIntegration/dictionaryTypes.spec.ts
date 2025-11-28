@@ -24,9 +24,9 @@ describe("DictionaryClient Modular Client", () => {
     assert.isUndefined(result);
   });
 
-  it.skip("should get a dictionary of datetime", async () => {
+  it("should get a dictionary of datetime", async () => {
     const result = await client.datetimeValue.get();
-    assert.equal(result["k1"]?.toUTCString(), "2022-08-26T18:38:00Z");
+    assert.equal(result["k1"]?.toUTCString(), "Fri, 26 Aug 2022 18:38:00 GMT");
   });
 
   it("should send a dictionary of datetime", async () => {
@@ -138,6 +138,16 @@ describe("DictionaryClient Modular Client", () => {
     });
   });
 
+  it("should put a dictionary of recursive model", async () => {
+    await client.recursiveModelValue.put({
+      k1: { property: "hello", children: {} },
+      k2: {
+        property: "world",
+        children: { "k2.1": { children: undefined, property: "inner world" } }
+      }
+    });
+  });
+
   it("should get a dictionary of string value", async () => {
     const result = await client.stringValue.get();
     assert.deepEqual(result, { k1: "hello", k2: "" });
@@ -151,5 +161,15 @@ describe("DictionaryClient Modular Client", () => {
   it("should get a dictionary of an unknown value", async () => {
     const result = await client.unknownValue.get();
     assert.deepEqual(result, { k1: 1, k2: "hello", k3: null });
+  });
+
+  it("should put a dictionary of an unknown value", async () => {
+    await client.unknownValue.put({
+      k1: 1,
+      k2: "hello",
+      k3: null
+    });
+
+    assert.ok(true);
   });
 });

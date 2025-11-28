@@ -125,7 +125,9 @@ export function choiceDeltaRecordDeserializer(item: any): ChoiceDeltaRecord {
     index: item["index"],
     delta: chatMessageDeltaDeserializer(item["delta"]),
     sessionState: item["session_state"],
-    context: item["context"],
+    context: !item["context"]
+      ? item["context"]
+      : Object.fromEntries(Object.entries(item["context"]).map(([k, p]: [string, any]) => [k, p])),
     finishReason: item["finish_reason"],
   };
 }
@@ -230,7 +232,9 @@ export function chatChoiceRecordDeserializer(item: any): ChatChoiceRecord {
     index: item["index"],
     message: chatMessageDeserializer(item["message"]),
     sessionState: item["session_state"],
-    context: item["context"],
+    context: !item["context"]
+      ? item["context"]
+      : Object.fromEntries(Object.entries(item["context"]).map(([k, p]: [string, any]) => [k, p])),
     finishReason: item["finish_reason"],
   };
 }

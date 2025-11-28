@@ -93,9 +93,7 @@ export function _readSend(
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -234,9 +232,7 @@ export function _readSend(
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -254,15 +250,7 @@ export async function read(
   prop4: string,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _readSend(
-    context,
-    pathParam,
-    queryParam,
-    prop1,
-    prop2,
-    prop4,
-    options,
-  );
+  const result = await _readSend(context, pathParam, queryParam, prop1, prop2, prop4, options);
   return _readDeserialize(result);
 }
 ```
@@ -373,9 +361,7 @@ export function _readSend(
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -393,15 +379,7 @@ export async function read(
   queryParam: string,
   options: ReadOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _readSend(
-    context,
-    pathParam,
-    prop1,
-    prop2,
-    prop4,
-    queryParam,
-    options,
-  );
+  const result = await _readSend(context, pathParam, prop1, prop2, prop4, queryParam, options);
   return _readDeserialize(result);
 }
 ```
@@ -516,9 +494,7 @@ export function _readSend(
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -604,9 +580,7 @@ export function _readSend(
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -703,9 +677,7 @@ export function _readSend(
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -790,9 +762,7 @@ export function _readSend(
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -876,9 +846,7 @@ export function _readSend(
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -943,10 +911,7 @@ export function _readSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -1018,16 +983,11 @@ export function _readSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<PublishResult> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<PublishResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -1110,10 +1070,7 @@ export function _readSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -1183,12 +1140,8 @@ export interface ReturnBody {
 export function returnBodyDeserializer(item: any): ReturnBody {
   return {
     emptyAnomyous: _returnBodyEmptyAnomyousDeserializer(item["emptyAnomyous"]),
-    emptyAnomyousArray: _returnBodyEmptyAnomyousArrayArrayDeserializer(
-      item["emptyAnomyousArray"],
-    ),
-    emptyAnomyousDict: _returnBodyEmptyAnomyousDictRecordDeserializer(
-      item["emptyAnomyousDict"],
-    ),
+    emptyAnomyousArray: _returnBodyEmptyAnomyousArrayArrayDeserializer(item["emptyAnomyousArray"]),
+    emptyAnomyousDict: _returnBodyEmptyAnomyousDictRecordDeserializer(item["emptyAnomyousDict"]),
     emptyModel: emptyModelDeserializer(item["emptyModel"]),
     emptyModelArray: emptyModelArrayDeserializer(item["emptyModelArray"]),
     emptyModelDict: emptyModelRecordDeserializer(item["emptyModelDict"]),
@@ -1198,9 +1151,7 @@ export function returnBodyDeserializer(item: any): ReturnBody {
 /** model interface _ReturnBodyEmptyAnomyous */
 export interface _ReturnBodyEmptyAnomyous {}
 
-export function _returnBodyEmptyAnomyousDeserializer(
-  item: any,
-): _ReturnBodyEmptyAnomyous {
+export function _returnBodyEmptyAnomyousDeserializer(item: any): _ReturnBodyEmptyAnomyous {
   return item;
 }
 
@@ -1226,9 +1177,7 @@ export function _returnBodyEmptyAnomyousDictRecordDeserializer(
 ): Record<string, _ReturnBodyEmptyAnomyousDict> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = !item[key]
-      ? item[key]
-      : _returnBodyEmptyAnomyousDictDeserializer(item[key]);
+    result[key] = !item[key] ? item[key] : _returnBodyEmptyAnomyousDictDeserializer(item[key]);
   });
   return result;
 }
@@ -1236,9 +1185,7 @@ export function _returnBodyEmptyAnomyousDictRecordDeserializer(
 /** model interface _ReturnBodyEmptyAnomyousDict */
 export interface _ReturnBodyEmptyAnomyousDict {}
 
-export function _returnBodyEmptyAnomyousDictDeserializer(
-  item: any,
-): _ReturnBodyEmptyAnomyousDict {
+export function _returnBodyEmptyAnomyousDictDeserializer(item: any): _ReturnBodyEmptyAnomyousDict {
   return item;
 }
 
@@ -1287,16 +1234,11 @@ export function _readSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<ReturnBody> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<ReturnBody> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -1397,12 +1339,8 @@ export function _fozBazDeserializer(item: any): _FozBaz {
       return p;
     }),
     bas: item["bas"],
-    bar: !item["test"]
-      ? item["test"]
-      : simpleModelArrayDeserializer(item["test"]),
-    nonemptyAnomyous: _fozBazNonemptyAnomyousDeserializer(
-      item["nonemptyAnomyous"],
-    ),
+    bar: !item["test"] ? item["test"] : simpleModelArrayDeserializer(item["test"]),
+    nonemptyAnomyous: _fozBazNonemptyAnomyousDeserializer(item["nonemptyAnomyous"]),
     nonemptyAnomyousArray: _fozBazNonemptyAnomyousArrayArrayDeserializer(
       item["nonemptyAnomyousArray"],
     ),
@@ -1412,9 +1350,7 @@ export function _fozBazDeserializer(item: any): _FozBaz {
   };
 }
 
-export function simpleModelArrayDeserializer(
-  result: Array<SimpleModel>,
-): any[] {
+export function simpleModelArrayDeserializer(result: Array<SimpleModel>): any[] {
   return result.map((item) => {
     return simpleModelDeserializer(item);
   });
@@ -1436,9 +1372,7 @@ export interface _FozBazNonemptyAnomyous {
   a: string;
 }
 
-export function _fozBazNonemptyAnomyousDeserializer(
-  item: any,
-): _FozBazNonemptyAnomyous {
+export function _fozBazNonemptyAnomyousDeserializer(item: any): _FozBazNonemptyAnomyous {
   return {
     a: item["a"],
   };
@@ -1457,11 +1391,11 @@ export interface _FozBazNonemptyAnomyousArray {
   b?: Record<string, string>;
 }
 
-export function _fozBazNonemptyAnomyousArrayDeserializer(
-  item: any,
-): _FozBazNonemptyAnomyousArray {
+export function _fozBazNonemptyAnomyousArrayDeserializer(item: any): _FozBazNonemptyAnomyousArray {
   return {
-    b: item["b"],
+    b: !item["b"]
+      ? item["b"]
+      : Object.fromEntries(Object.entries(item["b"]).map(([k, p]: [string, any]) => [k, p])),
   };
 }
 
@@ -1470,9 +1404,7 @@ export function _fozBazNonemptyAnomyousDictRecordDeserializer(
 ): Record<string, _FozBazNonemptyAnomyousDict> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = !item[key]
-      ? item[key]
-      : _fozBazNonemptyAnomyousDictDeserializer(item[key]);
+    result[key] = !item[key] ? item[key] : _fozBazNonemptyAnomyousDictDeserializer(item[key]);
   });
   return result;
 }
@@ -1482,9 +1414,7 @@ export interface _FozBazNonemptyAnomyousDict {
   c: number[];
 }
 
-export function _fozBazNonemptyAnomyousDictDeserializer(
-  item: any,
-): _FozBazNonemptyAnomyousDict {
+export function _fozBazNonemptyAnomyousDictDeserializer(item: any): _FozBazNonemptyAnomyousDict {
   return {
     c: item["c"].map((p: any) => {
       return p;
@@ -1514,16 +1444,11 @@ export function _readSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Foz> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<Foz> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);

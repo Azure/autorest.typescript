@@ -705,8 +705,14 @@ export function vmExtensionDeserializer(item: any): VMExtension {
     typeHandlerVersion: item["typeHandlerVersion"],
     autoUpgradeMinorVersion: item["autoUpgradeMinorVersion"],
     enableAutomaticUpgrade: item["enableAutomaticUpgrade"],
-    settings: item["settings"],
-    protectedSettings: item["protectedSettings"],
+    settings: !item["settings"]
+      ? item["settings"]
+      : Object.fromEntries(Object.entries(item["settings"]).map(([k, p]: [string, any]) => [k, p])),
+    protectedSettings: !item["protectedSettings"]
+      ? item["protectedSettings"]
+      : Object.fromEntries(
+          Object.entries(item["protectedSettings"]).map(([k, p]: [string, any]) => [k, p]),
+        ),
     provisionAfterExtensions: !item["provisionAfterExtensions"]
       ? item["provisionAfterExtensions"]
       : item["provisionAfterExtensions"].map((p: any) => {
