@@ -48,7 +48,9 @@ describe("AlternateType Client Modular", () => {
   });
 
   it("should put property in external type operation", async () => {
-    const result = await client.externalType.putProperty(modelWithFeatureProperty);
+    const result = await client.externalType.putProperty(
+      modelWithFeatureProperty
+    );
     assert.strictEqual(result, undefined);
   });
 });
