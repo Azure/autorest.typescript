@@ -529,7 +529,7 @@ function buildModelInterface(
       context,
       flatten.type,
       getAllAncestors(flatten.type)
-    );
+    ).filter((p) => !isMetadata(context.program, p.__raw!));
     interfaceStructure.properties!.push(
       ...allProperties.map((p) => {
         // when the flattened property is optional, all its child properties should be optional too
