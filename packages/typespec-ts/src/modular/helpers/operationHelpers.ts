@@ -24,8 +24,10 @@ import {
   ServiceOperation
 } from "../../utils/operationUtil.js";
 import {
+  getPropertyWithOverrides,
   isNormalUnion,
-  isSpecialHandledUnion
+  isSpecialHandledUnion,
+  ModelOverrideOptions
 } from "../serialization/serializeUtils.js";
 import {
   getDocsFromDescription,
@@ -1250,7 +1252,7 @@ export function getRequestModelProperties(
   context: SdkContext,
   modelPropertyType: SdkModelType & { optional?: boolean },
   propertyPath: string = "body",
-  overrideToAllOptional: boolean = false
+  overrides?: ModelOverrideOptions
 ): Array<[string, string]> {
   const props: [string, string][] = [];
   const allParents = getAllAncestors(modelPropertyType);
@@ -1260,13 +1262,13 @@ export function getRequestModelProperties(
     return [];
   }
   for (const prop of properties) {
-    const property = overrideToAllOptional ? { ...prop, optional: true } : prop;
-    if (property.kind === "property" && isReadOnly(property)) {
+    if (prop.kind === "property" && isReadOnly(prop)) {
       continue;
     }
-    if (isMetadata(context.program, property.__raw!)) {
+    if (isMetadata(context.program, prop.__raw!)) {
       continue;
     }
+    const property = getPropertyWithOverrides(prop, overrides);
     props.push([
       getPropertySerializedName(property)!,
       getSerializationExpression(context, property, propertyPath)
@@ -1285,13 +1287,13 @@ export function getRequestModelMapping(
   context: SdkContext,
   modelPropertyType: SdkModelType & { optional?: boolean },
   propertyPath: string = "body",
-  overrideToAllOptional: boolean = false
+  overrides?: ModelOverrideOptions
 ): string[] {
   return getRequestModelProperties(
     context,
     modelPropertyType,
     propertyPath,
-    overrideToAllOptional
+    overrides
   ).map(([name, value]) => `"${name}": ${value}`);
 }
 
@@ -1313,17 +1315,17 @@ export function getResponseMapping(
   context: SdkContext,
   type: SdkType,
   propertyPath: string = "result.body",
-  overrideToAllOptional: boolean = false
+  overrides?: ModelOverrideOptions
 ) {
   const allParents = type.kind === "model" ? getAllAncestors(type) : [];
   const properties =
     type.kind === "model" ? getAllProperties(context, type, allParents) : [];
   const props: string[] = [];
   for (const prop of properties) {
-    const property = overrideToAllOptional ? { ...prop, optional: true } : prop;
-    if (isMetadata(context.program, property.__raw!)) {
+    if (isMetadata(context.program, prop.__raw!)) {
       continue;
     }
+    const property = getPropertyWithOverrides(prop, overrides);
     const dot = propertyPath.endsWith("?") ? "." : "";
     const serializedName = getPropertySerializedName(property);
     const restValue = `${

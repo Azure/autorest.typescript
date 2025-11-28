@@ -50,12 +50,13 @@ import {
 } from "./serialization/buildSerializerFunction.js";
 import path from "path";
 import { refkey } from "../framework/refkey.js";
-import { useContext } from "../contextManager.js";
+import { provideContext, useContext } from "../contextManager.js";
 import { isMetadata, isOrExtendsHttpFile } from "@typespec/http";
 import { isAzureCoreErrorType } from "../utils/modelUtils.js";
 import { isExtensibleEnum } from "./type-expressions/get-enum-expression.js";
 import {
   getAllDiscriminatedValues,
+  getPropertyWithOverrides,
   isDiscriminatedUnion
 } from "./serialization/serializeUtils.js";
 import { reportDiagnostic } from "../lib.js";
@@ -106,6 +107,11 @@ export function emitTypes(
   { sourceRoot }: { sourceRoot: string }
 ) {
   const outputProject = useContext("outputProject");
+  console.log("Emitting flatten properties...");
+  provideContext(
+    "flattenPropertyConflictMap",
+    buildFlattenPropertyConflictMap(context, flattenProperties)
+  );
 
   let sourceFile;
 
@@ -338,11 +344,11 @@ function addSerializationFunctions(
   context: SdkContext,
   typeOrProperty: SdkType | SdkModelPropertyType,
   sourceFile: SourceFile,
-  skipDiscriminatedUnion = false
+  skipDiscriminatedUnionSuffix = false
 ) {
   const options = {
     nameOnly: false,
-    skipDiscriminatedUnionSuffix: skipDiscriminatedUnion
+    skipDiscriminatedUnionSuffix
   };
   const serializationFunction =
     typeOrProperty.kind === "property"
@@ -525,6 +531,7 @@ function buildModelInterface(
     if (flatten.type?.kind !== "model" || !flatten.type.properties) {
       continue;
     }
+    const conflictMap = useContext("flattenPropertyConflictMap");
     const allProperties = getAllProperties(
       context,
       flatten.type,
@@ -533,7 +540,10 @@ function buildModelInterface(
     interfaceStructure.properties!.push(
       ...allProperties.map((p) => {
         // when the flattened property is optional, all its child properties should be optional too
-        const property = flatten.optional ? { ...p, optional: true } : p;
+        const property = getPropertyWithOverrides(p, {
+          allOptional: flatten.optional,
+          propertyRenames: conflictMap.get(flatten)
+        });
         return buildModelProperty(context, property, type);
       })
     );
@@ -943,4 +953,54 @@ function visitType(context: SdkContext, type: SdkType | undefined) {
       visitType(context, type.type);
     }
   }
+}
+
+// Build a map of flatten properties to their conflicting properties in the base models
+function buildFlattenPropertyConflictMap(
+  context: SdkContext,
+  flattenProperties: Map<SdkModelPropertyType, SdkModelType>
+): Map<SdkModelPropertyType, Map<SdkModelPropertyType, string>> {
+  const result = new Map<
+    SdkModelPropertyType,
+    Map<SdkModelPropertyType, string>
+  >();
+  for (const [flattenProperty, baseModel] of flattenProperties) {
+    // get all properties from base models
+    const allBaseProperties = getAllProperties(
+      context,
+      baseModel,
+      getAllAncestors(baseModel)
+    ).map((p) => normalizeModelPropertyName(context, p));
+    const existingBasePropertyNames = new Set<string>(allBaseProperties);
+    const conflictMap = new Map<SdkModelPropertyType, string>();
+    const flattenModel = flattenProperty.type;
+    if (flattenModel.kind !== "model") {
+      continue;
+    }
+    const allFlattenProperties = getAllProperties(
+      context,
+      flattenModel,
+      getAllAncestors(flattenModel)
+    );
+    for (const flattenChildProperty of allFlattenProperties) {
+      const normName = normalizeModelPropertyName(
+        context,
+        flattenChildProperty
+      );
+      if (existingBasePropertyNames.has(normName)) {
+        conflictMap.set(
+          flattenChildProperty,
+          normalizeName(
+            `${normName}_${flattenProperty.name}_${normName}`,
+            NameType.Property
+          )
+        );
+      }
+    }
+    if (conflictMap.size === 0) {
+      continue;
+    }
+    result.set(flattenProperty, conflictMap);
+  }
+  return result;
 }

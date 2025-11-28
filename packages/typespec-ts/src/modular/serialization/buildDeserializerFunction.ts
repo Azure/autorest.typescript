@@ -36,6 +36,7 @@ import {
 import { reportDiagnostic } from "../../lib.js";
 import { NoTarget } from "@typespec/compiler";
 import { flattenProperties } from "../../framework/hooks/sdkTypes.js";
+import { useContext } from "../../contextManager.js";
 
 export function buildPropertyDeserializer(
   context: SdkContext,
@@ -55,6 +56,7 @@ export function buildPropertyDeserializer(
     NameType.Method,
     true
   )}Deserializer`;
+  const conflictMap = useContext("flattenPropertyConflictMap");
   return buildModelDeserializer(context, property.type, {
     ...options,
     flatten: {
@@ -62,7 +64,8 @@ export function buildPropertyDeserializer(
       property
     },
     overrides: {
-      allOptional: property.optional
+      allOptional: property.optional,
+      propertyRenames: conflictMap.get(property)
     },
     predefinedName
   });
@@ -408,7 +411,7 @@ function buildModelTypeDeserializer(
     context,
     type,
     "item",
-    options.overrides?.allOptional
+    options.overrides
   );
   const propertiesDeserialization = propertiesStr.filter((p) => p.trim());
 

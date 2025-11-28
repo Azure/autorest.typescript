@@ -188,9 +188,35 @@ export interface ModelSerializeOptions {
     property: SdkModelPropertyType;
   };
   // Indicates if any overrides should be applied when building the serializer/deserializer.
-  overrides?: {
-    // If true, all properties will be treated as optional during serialization/deserialization.
-    allOptional?: boolean;
-  };
+  overrides?: ModelOverrideOptions;
+  // Predefined name to use for the serializer/deserializer instead of generating one.
   predefinedName?: string;
+}
+
+// Options for overriding model information during serialization/deserialization.
+export interface ModelOverrideOptions {
+  // If true, all properties will be treated as optional during serialization/deserialization.
+  allOptional?: boolean;
+
+  // The <Property, Client_Name> map for any renamed properties.
+  // Mainly because the original client name has collision with other property names during flattening.
+  propertyRenames?: Map<SdkModelPropertyType, string>;
+}
+
+export function getPropertyWithOverrides(
+  property: SdkModelPropertyType,
+  overrides?: ModelOverrideOptions
+): SdkModelPropertyType {
+  if (!overrides) {
+    return property;
+  }
+  let updatedProperty = property;
+  if (overrides.allOptional) {
+    updatedProperty = { ...updatedProperty, optional: true };
+  }
+  const renamedClientName = overrides.propertyRenames?.get(property);
+  if (renamedClientName) {
+    updatedProperty = { ...updatedProperty, name: renamedClientName };
+  }
+  return updatedProperty;
 }

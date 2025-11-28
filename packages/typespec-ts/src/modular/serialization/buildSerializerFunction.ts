@@ -42,6 +42,7 @@ import {
 import { reportDiagnostic } from "../../lib.js";
 import { NoTarget } from "@typespec/compiler";
 import { flattenProperties } from "../../framework/hooks/sdkTypes.js";
+import { useContext } from "../../contextManager.js";
 
 export function buildPropertySerializer(
   context: SdkContext,
@@ -61,6 +62,7 @@ export function buildPropertySerializer(
     NameType.Method,
     true
   )}Serializer`;
+  const conflictMap = useContext("flattenPropertyConflictMap");
   return buildModelSerializer(context, property.type, {
     ...options,
     flatten: {
@@ -68,7 +70,8 @@ export function buildPropertySerializer(
       property
     },
     overrides: {
-      allOptional: property.optional
+      allOptional: property.optional,
+      propertyRenames: conflictMap.get(property)
     },
     predefinedName
   });
@@ -477,7 +480,7 @@ function buildModelTypeSerializer(
       context,
       type,
       "item",
-      options.overrides?.allOptional
+      options.overrides
     );
 
     if (additionalPropertiesSpread) {

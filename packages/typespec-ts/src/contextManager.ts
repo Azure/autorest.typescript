@@ -1,7 +1,10 @@
 import { Project, SourceFile } from "ts-morph";
 import { RlcMetaTree } from "./metaTree.js";
 import { EmitContext } from "@typespec/compiler";
-import { SdkContext } from "@azure-tools/typespec-client-generator-core";
+import {
+  SdkContext,
+  SdkModelPropertyType
+} from "@azure-tools/typespec-client-generator-core";
 import { SdkTypeContext } from "./framework/hooks/sdkTypes.js";
 import { Binder } from "./framework/hooks/binder.js";
 import { ExternalDependencies } from "./framework/dependency.js";
@@ -30,6 +33,11 @@ type Contexts = {
   };
   binder: Binder;
   dependencies: ExternalDependencies;
+  // Map to track property name conflicts during flattening.
+  flattenPropertyConflictMap: Map<
+    SdkModelPropertyType,
+    Map<SdkModelPropertyType, string>
+  >;
 };
 
 type ContextKey = keyof Contexts;
@@ -100,5 +108,6 @@ export function provideContext<K extends ContextKey>(
   key: K,
   value: Contexts[K]
 ): void {
+  console.log(`Providing context for key: ${key}`);
   contextManager.setContext(key, value);
 }

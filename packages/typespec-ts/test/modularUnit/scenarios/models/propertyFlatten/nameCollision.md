@@ -20,7 +20,7 @@ model Test {
   properties: FooProperties;
 }
 
-op foo(body: Test): void;
+op foo(body: Test): Test;
 ```
 
 Enable the raw content with TCGC dependency.
@@ -46,15 +46,19 @@ Model generated.
 export interface Test {
   bar?: string;
   baz: string;
-  bar?: string;
-  baz: string;
+  barPropertiesBar?: string;
+  bazPropertiesBaz: string;
 }
 
 export function testSerializer(item: Test): any {
+  return { bar: item["bar"], baz: item["baz"], properties: _testPropertiesSerializer(item) };
+}
+
+export function testDeserializer(item: any): Test {
   return {
     bar: item["bar"],
     baz: item["baz"],
-    properties: _testPropertiesSerializer(item)
+    ..._testPropertiesDeserializer(item["properties"]),
   };
 }
 
@@ -68,14 +72,28 @@ export function fooPropertiesSerializer(item: FooProperties): any {
   return { bar: item["bar"], baz: item["baz"] };
 }
 
+export function fooPropertiesDeserializer(item: any): FooProperties {
+  return {
+    bar: item["bar"],
+    baz: item["baz"],
+  };
+}
+
 /** Known values of {@link Versions} that the service accepts. */
 export enum KnownVersions {
   /** 2022-05-15-preview */
-  V20220515Preview = "2022-05-15-preview"
+  V20220515Preview = "2022-05-15-preview",
 }
 
 export function _testPropertiesSerializer(item: Test): any {
-  return { bar: item["bar"], baz: item["baz"] };
+  return { bar: item["barPropertiesBar"], baz: item["bazPropertiesBaz"] };
+}
+
+export function _testPropertiesDeserializer(item: any) {
+  return {
+    barPropertiesBar: item["bar"],
+    bazPropertiesBaz: item["baz"],
+  };
 }
 ```
 
