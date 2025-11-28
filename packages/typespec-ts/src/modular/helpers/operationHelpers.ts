@@ -1335,8 +1335,7 @@ export function getResponseMapping(
       property.optional || isTypeNullable(property.type)
         ? `!${restValue}? ${restValue}: `
         : "";
-    const isSupportedFlattenProperty = flattenProperties.has(property);
-    const deserializeFunctionName = isSupportedFlattenProperty
+    const deserializeFunctionName = flattenProperties.has(property)
       ? buildPropertyDeserializer(context, property, {
           nameOnly: true,
           skipDiscriminatedUnionSuffix: false
@@ -1347,7 +1346,7 @@ export function getResponseMapping(
         });
     const propertyName = normalizeModelPropertyName(context, property);
     if (deserializeFunctionName) {
-      if (isSupportedFlattenProperty) {
+      if (flattenProperties.has(property)) {
         props.push(
           `...${nullOrUndefinedPrefix}${deserializeFunctionName}(${restValue})`
         );
