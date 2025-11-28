@@ -1,0 +1,117 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+import {
+  createManagement,
+  ManagementContext,
+  ManagementClientOptionalParams,
+} from "./api/index.js";
+import {
+  tenantBackfillStatus,
+  startTenantBackfill,
+  checkNameAvailability,
+} from "./api/operations.js";
+import {
+  TenantBackfillStatusOptionalParams,
+  StartTenantBackfillOptionalParams,
+  CheckNameAvailabilityOptionalParams,
+} from "./api/options.js";
+import {
+  EntitiesOperations,
+  _getEntitiesOperations,
+} from "./classic/entities/index.js";
+import {
+  HierarchySettingsOperations,
+  _getHierarchySettingsOperations,
+} from "./classic/hierarchySettings/index.js";
+import {
+  ManagementGroupSubscriptionsOperations,
+  _getManagementGroupSubscriptionsOperations,
+} from "./classic/managementGroupSubscriptions/index.js";
+import {
+  ManagementGroupsOperations,
+  _getManagementGroupsOperations,
+} from "./classic/managementGroups/index.js";
+import {
+  OperationsOperations,
+  _getOperationsOperations,
+} from "./classic/operations/index.js";
+import {
+  CheckNameAvailabilityRequest,
+  CheckNameAvailabilityResult,
+  TenantBackfillStatusResult,
+} from "./models/models.js";
+import { TokenCredential } from "@azure/core-auth";
+import { Pipeline } from "@azure/core-rest-pipeline";
+
+export { ManagementClientOptionalParams } from "./api/managementContext.js";
+
+export class ManagementClient {
+  private _client: ManagementContext;
+  /** The pipeline used by this client to make requests */
+  public readonly pipeline: Pipeline;
+
+  /**
+   * The Azure Management Groups API enables consolidation of multiple
+   * subscriptions/resources into an organizational hierarchy and centrally
+   * manage access control, policies, alerting and reporting for those resources.
+   */
+  constructor(
+    credential: TokenCredential,
+    subscriptionId: string,
+    options: ManagementClientOptionalParams = {},
+  ) {
+    const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
+    const userAgentPrefix = prefixFromOptions
+      ? `${prefixFromOptions} azsdk-js-client`
+      : `azsdk-js-client`;
+    this._client = createManagement(credential, subscriptionId, {
+      ...options,
+      userAgentOptions: { userAgentPrefix },
+    });
+    this.pipeline = this._client.pipeline;
+    this.entities = _getEntitiesOperations(this._client);
+    this.managementGroupSubscriptions =
+      _getManagementGroupSubscriptionsOperations(this._client);
+    this.hierarchySettings = _getHierarchySettingsOperations(this._client);
+    this.managementGroups = _getManagementGroupsOperations(this._client);
+    this.operations = _getOperationsOperations(this._client);
+  }
+
+  /** Gets tenant backfill status */
+  tenantBackfillStatus(
+    options: TenantBackfillStatusOptionalParams = { requestOptions: {} },
+  ): Promise<TenantBackfillStatusResult> {
+    return tenantBackfillStatus(this._client, options);
+  }
+
+  /** Starts backfilling subscriptions for the Tenant. */
+  startTenantBackfill(
+    options: StartTenantBackfillOptionalParams = { requestOptions: {} },
+  ): Promise<TenantBackfillStatusResult> {
+    return startTenantBackfill(this._client, options);
+  }
+
+  /** Checks if the specified management group name is valid and unique */
+  checkNameAvailability(
+    checkNameAvailabilityRequest: CheckNameAvailabilityRequest,
+    options: CheckNameAvailabilityOptionalParams = { requestOptions: {} },
+  ): Promise<CheckNameAvailabilityResult> {
+    return checkNameAvailability(
+      this._client,
+      checkNameAvailabilityRequest,
+      options,
+    );
+  }
+
+  /** The operation groups for entities */
+  public readonly entities: EntitiesOperations;
+  /** The operation groups for managementGroupSubscriptions */
+  public readonly managementGroupSubscriptions: ManagementGroupSubscriptionsOperations;
+  /** The operation groups for hierarchySettings */
+  public readonly hierarchySettings: HierarchySettingsOperations;
+  /** The operation groups for managementGroups */
+  public readonly managementGroups: ManagementGroupsOperations;
+  /** The operation groups for operations */
+  public readonly operations: OperationsOperations;
+}
