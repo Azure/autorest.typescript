@@ -107,7 +107,6 @@ export function emitTypes(
   { sourceRoot }: { sourceRoot: string }
 ) {
   const outputProject = useContext("outputProject");
-  console.log("Emitting flatten properties...");
   provideContext(
     "flattenPropertyConflictMap",
     buildFlattenPropertyConflictMap(context, flattenProperties)

@@ -108,6 +108,5 @@ export function provideContext<K extends ContextKey>(
   key: K,
   value: Contexts[K]
 ): void {
-  console.log(`Providing context for key: ${key}`);
   contextManager.setContext(key, value);
 }
