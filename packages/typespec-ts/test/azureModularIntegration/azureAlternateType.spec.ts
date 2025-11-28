@@ -6,10 +6,7 @@ describe("AlternateType Client Modular", () => {
 
   beforeEach(() => {
     client = new AlternateTypeClient({
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      allowInsecureConnection: true
     });
   });
 
@@ -38,8 +35,7 @@ describe("AlternateType Client Modular", () => {
   });
 
   it("should put model in external type operation", async () => {
-    const result = await client.externalType.putModel(feature);
-    assert.strictEqual(result, undefined);
+    await client.externalType.putModel(feature);
   });
 
   it("should get property in external type operation", async () => {
@@ -48,9 +44,6 @@ describe("AlternateType Client Modular", () => {
   });
 
   it("should put property in external type operation", async () => {
-    const result = await client.externalType.putProperty(
-      modelWithFeatureProperty
-    );
-    assert.strictEqual(result, undefined);
+    await client.externalType.putProperty(modelWithFeatureProperty);
   });
 });

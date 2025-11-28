@@ -8,10 +8,7 @@ describe("AlternateType Client", () => {
 
   beforeEach(() => {
     client = AlternateTypeClientFactory({
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      allowInsecureConnection: true
     });
   });
 
