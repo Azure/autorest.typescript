@@ -227,12 +227,8 @@ function buildDiscriminatedUnionSerializer(
   if (nameOnly) {
     return resolveReference(refkey(type, "serializer"));
   }
-  const baseSerializerName = `${normalizeModelName(
-    context,
-    type,
-    NameType.Operation,
-    true
-  )}Serializer`;
+  // Get the base serializer name and ensure reference tracking
+  const baseSerializerName = buildModelSerializer(context, type, true, true) as string;
   const directSubtypes = getDirectSubtypes(type);
   for (const subType of directSubtypes) {
     if (
@@ -254,11 +250,8 @@ function buildDiscriminatedUnionSerializer(
       NameType.Interface,
       !union
     );
-    const subtypeSerializerName = normalizeName(
-      `${subTypeName}Serializer`,
-      NameType.Method,
-      true
-    );
+    // Get the serializer name and ensure reference tracking
+    const subtypeSerializerName = buildModelSerializer(context, subType, false, true) as string;
 
     const caseLabels = discriminatedValues.map((value) => `case "${value}":`);
     cases.push(`
