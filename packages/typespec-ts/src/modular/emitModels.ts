@@ -963,18 +963,43 @@ function buildFlattenPropertyConflictMap(
     SdkModelPropertyType,
     Map<SdkModelPropertyType, string>
   >();
+  // Build a map of base model to its existing properties excluding flatten properties
+  // To check for conflicts later
+  const baseModelProperties = new Map<SdkModelType, Set<string>>();
+  flattenProperties.forEach((baseModel, _) => {
+    if (!baseModelProperties.has(baseModel)) {
+      const propertiesExcludedFlatten = getAllProperties(
+        context,
+        baseModel,
+        getAllAncestors(baseModel)
+      )
+        .filter((p) => p.flatten === false || p.flatten === undefined)
+        .map((p) => normalizeModelPropertyName(context, p));
+      baseModelProperties.set(
+        baseModel,
+        new Set<string>(propertiesExcludedFlatten)
+      );
+    }
+  });
   for (const [flattenProperty, baseModel] of flattenProperties) {
-    // get all properties from base models
-    const allBaseProperties = getAllProperties(
-      context,
-      baseModel,
-      getAllAncestors(baseModel)
-    ).map((p) => normalizeModelPropertyName(context, p));
-    const existingBasePropertyNames = new Set<string>(allBaseProperties);
+    const existingProperties = baseModelProperties.get(baseModel)!;
     const conflictMap = new Map<SdkModelPropertyType, string>();
     const flattenModel = flattenProperty.type;
+
     if (flattenModel.kind !== "model") {
       continue;
+    }
+    if (baseModelProperties.has(flattenModel)) {
+      // If the flatten model is also a base model of other flatten properties, which means it has multiple consecutive flatten operations
+      // Since we cannot handle the flatten transition, report warning and skip it for now
+      reportDiagnostic(context.program, {
+        code: "unsupported-flatten-transition",
+        format: {
+          propertyName: flattenProperty.name,
+          modelName: baseModel.name
+        },
+        target: flattenProperty.__raw!
+      });
     }
     const allFlattenProperties = getAllProperties(
       context,
@@ -982,19 +1007,18 @@ function buildFlattenPropertyConflictMap(
       getAllAncestors(flattenModel)
     );
     for (const flattenChildProperty of allFlattenProperties) {
-      const normName = normalizeModelPropertyName(
+      let childPropertyName = normalizeModelPropertyName(
         context,
         flattenChildProperty
       );
-      if (existingBasePropertyNames.has(normName)) {
-        conflictMap.set(
-          flattenChildProperty,
-          normalizeName(
-            `${normName}_${flattenProperty.name}_${normName}`,
-            NameType.Property
-          )
+      if (existingProperties.has(childPropertyName)) {
+        childPropertyName = normalizeName(
+          `${childPropertyName}_${flattenProperty.name}_${childPropertyName}`,
+          NameType.Property
         );
+        conflictMap.set(flattenChildProperty, childPropertyName);
       }
+      existingProperties.add(childPropertyName);
     }
     if (conflictMap.size === 0) {
       continue;
