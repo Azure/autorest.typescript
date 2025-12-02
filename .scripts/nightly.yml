@@ -30,6 +30,6 @@ stages:
       - job: SmokeTest
         steps:
           - template: nightly-prepare.yml
-          - script: node $(Build.SourcesDirectory)/common/scripts/install-run-rushx.js smoke-test
+          - script: npm run smoke-test
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-test
             displayName: "Generate Code From TypeSpec"
