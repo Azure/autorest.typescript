@@ -228,7 +228,12 @@ function buildDiscriminatedUnionSerializer(
     return resolveReference(refkey(type, "serializer"));
   }
   // Get the base serializer name and ensure reference tracking
-  const baseSerializerName = buildModelSerializer(context, type, false, true) as string;
+  const baseSerializerName = buildModelSerializer(
+    context,
+    type,
+    false,
+    true
+  ) as string;
   const directSubtypes = getDirectSubtypes(type);
   for (const subType of directSubtypes) {
     if (
@@ -251,7 +256,12 @@ function buildDiscriminatedUnionSerializer(
       !union
     );
     // Get the serializer name and ensure reference tracking
-    const subtypeSerializerName = buildModelSerializer(context, subType, false, true) as string;
+    const subtypeSerializerName = buildModelSerializer(
+      context,
+      subType,
+      false,
+      true
+    ) as string;
 
     const caseLabels = discriminatedValues.map((value) => `case "${value}":`);
     cases.push(`

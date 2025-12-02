@@ -221,7 +221,12 @@ function buildDiscriminatedUnionDeserializer(
     return resolveReference(refkey(type, "deserializer"));
   }
   // Get the base deserializer name and ensure reference tracking
-  const baseDeserializerName = buildModelDeserializer(context, type, false, true) as string;
+  const baseDeserializerName = buildModelDeserializer(
+    context,
+    type,
+    false,
+    true
+  ) as string;
   const directSubtypes = getDirectSubtypes(type);
   for (const subType of directSubtypes) {
     if (
@@ -244,7 +249,12 @@ function buildDiscriminatedUnionDeserializer(
       !union
     );
     // Get the deserializer name and ensure reference tracking
-    const subtypeDeserializerName = buildModelDeserializer(context, subType, false, true) as string;
+    const subtypeDeserializerName = buildModelDeserializer(
+      context,
+      subType,
+      false,
+      true
+    ) as string;
 
     const caseLabels = discriminatedValues.map((value) => `case "${value}":`);
     cases.push(`
