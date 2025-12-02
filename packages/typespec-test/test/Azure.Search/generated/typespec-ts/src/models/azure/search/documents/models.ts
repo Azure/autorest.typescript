@@ -1006,7 +1006,7 @@ export function azureSearchDocumentsVectorQueryUnionSerializer(
       );
 
     default:
-      return azureSearchDocumentsVectorQueryUnionSerializer(item);
+      return azureSearchDocumentsVectorQuerySerializer(item);
   }
 }
 
@@ -1035,7 +1035,7 @@ export function azureSearchDocumentsVectorQueryUnionDeserializer(
       );
 
     default:
-      return azureSearchDocumentsVectorQueryUnionDeserializer(item);
+      return azureSearchDocumentsVectorQueryDeserializer(item);
   }
 }
 
@@ -1081,7 +1081,7 @@ export function azureSearchDocumentsVectorThresholdUnionSerializer(
       );
 
     default:
-      return azureSearchDocumentsVectorThresholdUnionSerializer(item);
+      return azureSearchDocumentsVectorThresholdSerializer(item);
   }
 }
 
@@ -1100,7 +1100,7 @@ export function azureSearchDocumentsVectorThresholdUnionDeserializer(
       );
 
     default:
-      return azureSearchDocumentsVectorThresholdUnionDeserializer(item);
+      return azureSearchDocumentsVectorThresholdDeserializer(item);
   }
 }
 

@@ -64,7 +64,7 @@ export function azureSearchDocumentsKnowledgeBaseKnowledgeRetrievalReasoningEffo
       );
 
     default:
-      return azureSearchDocumentsKnowledgeBaseKnowledgeRetrievalReasoningEffortUnionSerializer(
+      return azureSearchDocumentsKnowledgeBaseKnowledgeRetrievalReasoningEffortSerializer(
         item,
       );
   }
@@ -95,7 +95,7 @@ export function azureSearchDocumentsKnowledgeBaseKnowledgeRetrievalReasoningEffo
       );
 
     default:
-      return azureSearchDocumentsKnowledgeBaseKnowledgeRetrievalReasoningEffortUnionDeserializer(
+      return azureSearchDocumentsKnowledgeBaseKnowledgeRetrievalReasoningEffortDeserializer(
         item,
       );
   }
@@ -394,7 +394,7 @@ export function azureSearchDocumentsKnowledgeBaseKnowledgeBaseMessageContentUnio
       );
 
     default:
-      return azureSearchDocumentsKnowledgeBaseKnowledgeBaseMessageContentUnionSerializer(
+      return azureSearchDocumentsKnowledgeBaseKnowledgeBaseMessageContentSerializer(
         item,
       );
   }
@@ -415,7 +415,7 @@ export function azureSearchDocumentsKnowledgeBaseKnowledgeBaseMessageContentUnio
       );
 
     default:
-      return azureSearchDocumentsKnowledgeBaseKnowledgeBaseMessageContentUnionDeserializer(
+      return azureSearchDocumentsKnowledgeBaseKnowledgeBaseMessageContentDeserializer(
         item,
       );
   }
@@ -554,7 +554,7 @@ export function azureSearchDocumentsKnowledgeBaseKnowledgeRetrievalIntentUnionSe
       );
 
     default:
-      return azureSearchDocumentsKnowledgeBaseKnowledgeRetrievalIntentUnionSerializer(
+      return azureSearchDocumentsKnowledgeBaseKnowledgeRetrievalIntentSerializer(
         item,
       );
   }
@@ -676,7 +676,7 @@ export function azureSearchDocumentsKnowledgeBaseKnowledgeSourceParamsUnionSeria
       );
 
     default:
-      return azureSearchDocumentsKnowledgeBaseKnowledgeSourceParamsUnionSerializer(
+      return azureSearchDocumentsKnowledgeBaseKnowledgeSourceParamsSerializer(
         item,
       );
   }
@@ -917,7 +917,7 @@ export function azureSearchDocumentsKnowledgeBaseKnowledgeBaseActivityRecordUnio
       );
 
     default:
-      return azureSearchDocumentsKnowledgeBaseKnowledgeBaseActivityRecordUnionDeserializer(
+      return azureSearchDocumentsKnowledgeBaseKnowledgeBaseActivityRecordDeserializer(
         item,
       );
   }
@@ -1164,7 +1164,7 @@ export function azureSearchDocumentsKnowledgeBaseKnowledgeBaseReferenceUnionDese
       );
 
     default:
-      return azureSearchDocumentsKnowledgeBaseKnowledgeBaseReferenceUnionDeserializer(
+      return azureSearchDocumentsKnowledgeBaseKnowledgeBaseReferenceDeserializer(
         item,
       );
   }

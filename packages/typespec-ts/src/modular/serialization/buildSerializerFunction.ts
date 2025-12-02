@@ -233,7 +233,7 @@ function buildDiscriminatedUnionSerializer(
     type,
     NameType.Operation,
     true
-  )}Serializer`
+  )}Serializer`;
   const directSubtypes = getDirectSubtypes(type);
   for (const subType of directSubtypes) {
     if (

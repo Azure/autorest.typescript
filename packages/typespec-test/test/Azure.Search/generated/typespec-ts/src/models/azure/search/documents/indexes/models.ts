@@ -183,7 +183,7 @@ export function azureSearchDocumentsIndexesSearchIndexerDataIdentityUnionSeriali
       );
 
     default:
-      return azureSearchDocumentsIndexesSearchIndexerDataIdentityUnionSerializer(
+      return azureSearchDocumentsIndexesSearchIndexerDataIdentitySerializer(
         item,
       );
   }
@@ -204,7 +204,7 @@ export function azureSearchDocumentsIndexesSearchIndexerDataIdentityUnionDeseria
       );
 
     default:
-      return azureSearchDocumentsIndexesSearchIndexerDataIdentityUnionDeserializer(
+      return azureSearchDocumentsIndexesSearchIndexerDataIdentityDeserializer(
         item,
       );
   }
@@ -1165,7 +1165,7 @@ export function azureSearchDocumentsIndexesScoringFunctionUnionSerializer(
       );
 
     default:
-      return azureSearchDocumentsIndexesScoringFunctionUnionSerializer(item);
+      return azureSearchDocumentsIndexesScoringFunctionSerializer(item);
   }
 }
 
@@ -1194,7 +1194,7 @@ export function azureSearchDocumentsIndexesScoringFunctionUnionDeserializer(
       );
 
     default:
-      return azureSearchDocumentsIndexesScoringFunctionUnionDeserializer(item);
+      return azureSearchDocumentsIndexesScoringFunctionDeserializer(item);
   }
 }
 
@@ -1649,7 +1649,7 @@ export function azureSearchDocumentsIndexesLexicalAnalyzerUnionSerializer(
       );
 
     default:
-      return azureSearchDocumentsIndexesLexicalAnalyzerUnionSerializer(item);
+      return azureSearchDocumentsIndexesLexicalAnalyzerSerializer(item);
   }
 }
 
@@ -1678,7 +1678,7 @@ export function azureSearchDocumentsIndexesLexicalAnalyzerUnionDeserializer(
       );
 
     default:
-      return azureSearchDocumentsIndexesLexicalAnalyzerUnionDeserializer(item);
+      return azureSearchDocumentsIndexesLexicalAnalyzerDeserializer(item);
   }
 }
 
@@ -2187,7 +2187,7 @@ export function azureSearchDocumentsIndexesLexicalTokenizerUnionSerializer(
       );
 
     default:
-      return azureSearchDocumentsIndexesLexicalTokenizerUnionSerializer(item);
+      return azureSearchDocumentsIndexesLexicalTokenizerSerializer(item);
   }
 }
 
@@ -2246,7 +2246,7 @@ export function azureSearchDocumentsIndexesLexicalTokenizerUnionDeserializer(
       );
 
     default:
-      return azureSearchDocumentsIndexesLexicalTokenizerUnionDeserializer(item);
+      return azureSearchDocumentsIndexesLexicalTokenizerDeserializer(item);
   }
 }
 
@@ -3112,7 +3112,7 @@ export function azureSearchDocumentsIndexesTokenFilterUnionSerializer(
       );
 
     default:
-      return azureSearchDocumentsIndexesTokenFilterUnionSerializer(item);
+      return azureSearchDocumentsIndexesTokenFilterSerializer(item);
   }
 }
 
@@ -3236,7 +3236,7 @@ export function azureSearchDocumentsIndexesTokenFilterUnionDeserializer(
       );
 
     default:
-      return azureSearchDocumentsIndexesTokenFilterUnionDeserializer(item);
+      return azureSearchDocumentsIndexesTokenFilterDeserializer(item);
   }
 }
 
@@ -4616,7 +4616,7 @@ export function azureSearchDocumentsIndexesCharFilterUnionSerializer(
       );
 
     default:
-      return azureSearchDocumentsIndexesCharFilterUnionSerializer(item);
+      return azureSearchDocumentsIndexesCharFilterSerializer(item);
   }
 }
 
@@ -4635,7 +4635,7 @@ export function azureSearchDocumentsIndexesCharFilterUnionDeserializer(
       );
 
     default:
-      return azureSearchDocumentsIndexesCharFilterUnionDeserializer(item);
+      return azureSearchDocumentsIndexesCharFilterDeserializer(item);
   }
 }
 
@@ -4760,7 +4760,7 @@ export function azureSearchDocumentsIndexesLexicalNormalizerUnionSerializer(
       );
 
     default:
-      return azureSearchDocumentsIndexesLexicalNormalizerUnionSerializer(item);
+      return azureSearchDocumentsIndexesLexicalNormalizerSerializer(item);
   }
 }
 
@@ -4774,9 +4774,7 @@ export function azureSearchDocumentsIndexesLexicalNormalizerUnionDeserializer(
       );
 
     default:
-      return azureSearchDocumentsIndexesLexicalNormalizerUnionDeserializer(
-        item,
-      );
+      return azureSearchDocumentsIndexesLexicalNormalizerDeserializer(item);
   }
 }
 
@@ -4871,9 +4869,7 @@ export function azureSearchDocumentsIndexesSimilarityAlgorithmUnionSerializer(
       );
 
     default:
-      return azureSearchDocumentsIndexesSimilarityAlgorithmUnionSerializer(
-        item,
-      );
+      return azureSearchDocumentsIndexesSimilarityAlgorithmSerializer(item);
   }
 }
 
@@ -4892,9 +4888,7 @@ export function azureSearchDocumentsIndexesSimilarityAlgorithmUnionDeserializer(
       );
 
     default:
-      return azureSearchDocumentsIndexesSimilarityAlgorithmUnionDeserializer(
-        item,
-      );
+      return azureSearchDocumentsIndexesSimilarityAlgorithmDeserializer(item);
   }
 }
 
@@ -5324,7 +5318,7 @@ export function azureSearchDocumentsIndexesVectorSearchAlgorithmConfigurationUni
       );
 
     default:
-      return azureSearchDocumentsIndexesVectorSearchAlgorithmConfigurationUnionSerializer(
+      return azureSearchDocumentsIndexesVectorSearchAlgorithmConfigurationSerializer(
         item,
       );
   }
@@ -5345,7 +5339,7 @@ export function azureSearchDocumentsIndexesVectorSearchAlgorithmConfigurationUni
       );
 
     default:
-      return azureSearchDocumentsIndexesVectorSearchAlgorithmConfigurationUnionDeserializer(
+      return azureSearchDocumentsIndexesVectorSearchAlgorithmConfigurationDeserializer(
         item,
       );
   }
@@ -5596,9 +5590,7 @@ export function azureSearchDocumentsIndexesVectorSearchVectorizerUnionSerializer
       );
 
     default:
-      return azureSearchDocumentsIndexesVectorSearchVectorizerUnionSerializer(
-        item,
-      );
+      return azureSearchDocumentsIndexesVectorSearchVectorizerSerializer(item);
   }
 }
 
@@ -5627,7 +5619,7 @@ export function azureSearchDocumentsIndexesVectorSearchVectorizerUnionDeserializ
       );
 
     default:
-      return azureSearchDocumentsIndexesVectorSearchVectorizerUnionDeserializer(
+      return azureSearchDocumentsIndexesVectorSearchVectorizerDeserializer(
         item,
       );
   }
@@ -6128,9 +6120,7 @@ export function azureSearchDocumentsIndexesVectorSearchCompressionUnionSerialize
       );
 
     default:
-      return azureSearchDocumentsIndexesVectorSearchCompressionUnionSerializer(
-        item,
-      );
+      return azureSearchDocumentsIndexesVectorSearchCompressionSerializer(item);
   }
 }
 
@@ -6149,7 +6139,7 @@ export function azureSearchDocumentsIndexesVectorSearchCompressionUnionDeseriali
       );
 
     default:
-      return azureSearchDocumentsIndexesVectorSearchCompressionUnionDeserializer(
+      return azureSearchDocumentsIndexesVectorSearchCompressionDeserializer(
         item,
       );
   }
@@ -6768,7 +6758,7 @@ export function azureSearchDocumentsIndexesKnowledgeBaseModelUnionSerializer(
       );
 
     default:
-      return azureSearchDocumentsIndexesKnowledgeBaseModelUnionSerializer(item);
+      return azureSearchDocumentsIndexesKnowledgeBaseModelSerializer(item);
   }
 }
 
@@ -6782,9 +6772,7 @@ export function azureSearchDocumentsIndexesKnowledgeBaseModelUnionDeserializer(
       );
 
     default:
-      return azureSearchDocumentsIndexesKnowledgeBaseModelUnionDeserializer(
-        item,
-      );
+      return azureSearchDocumentsIndexesKnowledgeBaseModelDeserializer(item);
   }
 }
 
@@ -6976,7 +6964,7 @@ export function azureSearchDocumentsIndexesKnowledgeSourceUnionSerializer(
       );
 
     default:
-      return azureSearchDocumentsIndexesKnowledgeSourceUnionSerializer(item);
+      return azureSearchDocumentsIndexesKnowledgeSourceSerializer(item);
   }
 }
 
@@ -6995,7 +6983,7 @@ export function azureSearchDocumentsIndexesKnowledgeSourceUnionDeserializer(
       );
 
     default:
-      return azureSearchDocumentsIndexesKnowledgeSourceUnionDeserializer(item);
+      return azureSearchDocumentsIndexesKnowledgeSourceDeserializer(item);
   }
 }
 
@@ -7739,7 +7727,7 @@ export function azureSearchDocumentsIndexesDataChangeDetectionPolicyUnionSeriali
       );
 
     default:
-      return azureSearchDocumentsIndexesDataChangeDetectionPolicyUnionSerializer(
+      return azureSearchDocumentsIndexesDataChangeDetectionPolicySerializer(
         item,
       );
   }
@@ -7760,7 +7748,7 @@ export function azureSearchDocumentsIndexesDataChangeDetectionPolicyUnionDeseria
       );
 
     default:
-      return azureSearchDocumentsIndexesDataChangeDetectionPolicyUnionDeserializer(
+      return azureSearchDocumentsIndexesDataChangeDetectionPolicyDeserializer(
         item,
       );
   }
@@ -7856,7 +7844,7 @@ export function azureSearchDocumentsIndexesDataDeletionDetectionPolicyUnionSeria
       );
 
     default:
-      return azureSearchDocumentsIndexesDataDeletionDetectionPolicyUnionSerializer(
+      return azureSearchDocumentsIndexesDataDeletionDetectionPolicySerializer(
         item,
       );
   }
@@ -7877,7 +7865,7 @@ export function azureSearchDocumentsIndexesDataDeletionDetectionPolicyUnionDeser
       );
 
     default:
-      return azureSearchDocumentsIndexesDataDeletionDetectionPolicyUnionDeserializer(
+      return azureSearchDocumentsIndexesDataDeletionDetectionPolicyDeserializer(
         item,
       );
   }
@@ -9205,7 +9193,7 @@ export function azureSearchDocumentsIndexesSearchIndexerSkillUnionSerializer(
       );
 
     default:
-      return azureSearchDocumentsIndexesSearchIndexerSkillUnionSerializer(item);
+      return azureSearchDocumentsIndexesSearchIndexerSkillSerializer(item);
   }
 }
 
@@ -9329,9 +9317,7 @@ export function azureSearchDocumentsIndexesSearchIndexerSkillUnionDeserializer(
       );
 
     default:
-      return azureSearchDocumentsIndexesSearchIndexerSkillUnionDeserializer(
-        item,
-      );
+      return azureSearchDocumentsIndexesSearchIndexerSkillDeserializer(item);
   }
 }
 
@@ -12951,7 +12937,7 @@ export function azureSearchDocumentsIndexesCognitiveServicesAccountUnionSerializ
       );
 
     default:
-      return azureSearchDocumentsIndexesCognitiveServicesAccountUnionSerializer(
+      return azureSearchDocumentsIndexesCognitiveServicesAccountSerializer(
         item,
       );
   }
@@ -12982,7 +12968,7 @@ export function azureSearchDocumentsIndexesCognitiveServicesAccountUnionDeserial
       );
 
     default:
-      return azureSearchDocumentsIndexesCognitiveServicesAccountUnionDeserializer(
+      return azureSearchDocumentsIndexesCognitiveServicesAccountDeserializer(
         item,
       );
   }
