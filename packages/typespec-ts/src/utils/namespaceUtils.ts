@@ -3,8 +3,10 @@ import {
   isGlobalNamespace,
   isService,
   Namespace,
+  NoTarget,
   Operation
 } from "@typespec/compiler";
+import { reportDiagnostic } from "../lib.js";
 import { SdkContext } from "./interfaces.js";
 
 export function getModelNamespaceName(
@@ -73,6 +75,17 @@ export function detectModelConflicts(dpgContext: SdkContext) {
       continue;
     }
     if (nameSet.has(model.name)) {
+      reportDiagnostic(dpgContext.program, {
+        code: "detected-model-name-conflict",
+        format: {
+          modelName: model.name,
+          namespaces: allModels
+            .filter((m) => m.name === model.name)
+            .map((m) => m.namespace)
+            .join(" and ")
+        },
+        target: NoTarget
+      });
       return true;
     }
     nameSet.add(model.name);

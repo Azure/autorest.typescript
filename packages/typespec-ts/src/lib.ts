@@ -589,6 +589,12 @@ const libDef = {
       messages: {
         default: paramMessage`Error traversing directory ${"directory"}: ${"error"}`
       }
+    },
+    "detected-model-name-conflict": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Model name conflict detected: "${"modelName"}" exists in multiple namespaces: ${"namespaces"}. Please use @clientName to rename them.`
+      }
     }
   },
   emitter: {

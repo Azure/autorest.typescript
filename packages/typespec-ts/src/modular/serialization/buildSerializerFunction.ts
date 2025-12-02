@@ -256,7 +256,12 @@ function buildDiscriminatedUnionSerializer(
       !union
     );
     // Get the serializer name and ensure reference tracking
-    const subtypeSerializerName = buildModelSerializer(context, subType, false, true) as string;
+    const subtypeSerializerName = buildModelSerializer(
+      context,
+      subType,
+      false,
+      true
+    ) as string;
 
     const caseLabels = discriminatedValues.map((value) => `case "${value}":`);
     cases.push(`
