@@ -19,6 +19,21 @@ import { ServiceOperation } from "../../utils/operationUtil.js";
 import { refkey } from "../../framework/refkey.js";
 import { resolveReference } from "../../framework/reference.js";
 import { addDeclaration } from "../../framework/declaration.js";
+import { SimplePollerHelpers } from "../static-helpers-metadata.js";
+import { AzurePollingDependencies } from "../external-dependencies.js";
+
+interface OperationDeclarationInfo {
+  // the operation function
+  declaration: OptionalKind<FunctionDeclarationStructure>;
+  // the original operation name
+  oriName: string | undefined;
+  // the refkey of the operation declaration
+  declarationRefKey: string | undefined;
+  // the default is false
+  isLro?: boolean;
+  // only set when isLro is true
+  lroFinalReturnType?: string;
+}
 
 export function getClassicalOperation(
   dpgContext: SdkContext,
@@ -51,27 +66,25 @@ export function getClassicalOperation(
     });
   }
 
-  const operationMap = new Map<
+  const operationDeclarationMap = new Map<
     OptionalKind<FunctionDeclarationStructure>,
-    string | undefined
-  >();
-  const operationKeyMap = new Map<
-    OptionalKind<FunctionDeclarationStructure>,
-    string | undefined
+    OperationDeclarationInfo | undefined
   >();
   const operationDeclarations: OptionalKind<FunctionDeclarationStructure>[] =
     operations.map((operation) => {
-      const declarations = getOperationFunction(
+      const declaration = getOperationFunction(
         dpgContext,
         [prefixes, operation],
         rlcClientName
       );
-      operationMap.set(declarations, operation.oriName);
-      operationKeyMap.set(
-        declarations,
-        resolveReference(refkey(operation, "api"))
-      );
-      return declarations;
+      operationDeclarationMap.set(declaration, {
+        declaration,
+        oriName: operation.oriName,
+        declarationRefKey: resolveReference(refkey(operation, "api")),
+        isLro: declaration.isLro,
+        lroFinalReturnType: declaration.lroFinalReturnType
+      });
+      return declaration;
     });
 
   const interfaceNamePrefix = getClassicalLayerPrefix(
@@ -111,24 +124,52 @@ export function getClassicalOperation(
     }
   } else {
     operationDeclarations.forEach((d) => {
+      const operationInfo = operationDeclarationMap.get(d);
+      const paramStr = d.parameters
+        ?.filter((p) => p.name !== "context")
+        .map(
+          (p) =>
+            p.name +
+            (p.type?.toString().endsWith("operationOptions__") ||
+            p.hasQuestionToken
+              ? "?"
+              : "") +
+            ": " +
+            p.type
+        )
+        .join(",");
+      // add the operation method signature
       properties.push({
         kind: StructureKind.PropertySignature,
         name: getClassicalMethodName(d),
-        type: `(${d.parameters
-          ?.filter((p) => p.name !== "context")
-          .map(
-            (p) =>
-              p.name +
-              (p.type?.toString().endsWith("operationOptions__") ||
-              p.hasQuestionToken
-                ? "?"
-                : "") +
-              ": " +
-              p.type
-          )
-          .join(",")}) => ${d.returnType}`,
+        type: `(${paramStr}) => ${d.returnType}`,
         docs: d.docs
       });
+      // add LRO helper methods if applicable
+      if (dpgContext.rlcOptions?.compatibilityLro && operationInfo?.isLro) {
+        const operationStateReference = resolveReference(
+          AzurePollingDependencies.OperationState
+        );
+        const simplePollerLikeReference = resolveReference(
+          SimplePollerHelpers.SimplePollerLike
+        );
+        const returnType = operationInfo?.lroFinalReturnType ?? "void";
+        const beginName = `begin_${getClassicalMethodName(d)}`;
+        const beginAndWaitName = `${beginName}_andWait`;
+
+        properties.push({
+          kind: StructureKind.PropertySignature,
+          name: `${normalizeName(beginName, NameType.Method)}`,
+          type: `(${paramStr}) => Promise<${simplePollerLikeReference}<${operationStateReference}<${returnType}>, ${returnType}>>`,
+          docs: [`@deprecated use ${getClassicalMethodName(d)} instead`]
+        });
+        properties.push({
+          kind: StructureKind.PropertySignature,
+          name: `${normalizeName(beginAndWaitName, NameType.Method)}`,
+          type: `(${paramStr}) => Promise<${returnType}>`,
+          docs: [`@deprecated use ${getClassicalMethodName(d)} instead`]
+        });
+      }
     });
   }
   if (existInterface) {
@@ -168,7 +209,8 @@ export function getClassicalOperation(
       statements: `return {
         ${operationDeclarations
           .map((d) => {
-            return `${getClassicalMethodName(d)}: (${d.parameters
+            const operationInfo = operationDeclarationMap.get(d);
+            const classicalParamStr = d.parameters
               ?.filter((p) => p.name !== "context")
               .map(
                 (p) =>
@@ -180,12 +222,52 @@ export function getClassicalOperation(
                   ": " +
                   p.type
               )
-              .join(",")}) => ${operationKeyMap.get(d)}(${[
+              .join(",");
+            const apiParamStr = [
               "context",
               ...[
                 d.parameters?.map((p) => p.name).filter((p) => p !== "context")
               ]
-            ].join(",")})`;
+            ].join(",");
+            const ret = [
+              `${getClassicalMethodName(d)}: (${classicalParamStr}) => ${operationInfo?.declarationRefKey}(${
+                apiParamStr
+              })`
+            ];
+            // add LRO helper methods if applicable
+            if (
+              dpgContext.rlcOptions?.compatibilityLro &&
+              operationInfo?.isLro
+            ) {
+              const getSimplePollerReference = resolveReference(
+                SimplePollerHelpers.getSimplePoller
+              );
+              const beginName = `begin_${getClassicalMethodName(d)}`;
+              const beginAndWaitName = `${beginName}_andWait`;
+              ret.push(
+                `${normalizeName(
+                  beginName,
+                  NameType.Method
+                )}: async (${classicalParamStr}) => {
+                  const poller = ${operationInfo?.declarationRefKey}(${
+                    apiParamStr
+                  });
+                  await poller.submitted();
+                  return ${getSimplePollerReference}(poller);
+                }`
+              );
+              ret.push(
+                `${normalizeName(
+                  beginAndWaitName,
+                  NameType.Method
+                )}: async (${classicalParamStr}) => {
+                  return await ${operationInfo?.declarationRefKey}(${
+                    apiParamStr
+                  });
+                }`
+              );
+            }
+            return ret.join(",");
           })
           .join(",")}
       }`
@@ -280,7 +362,7 @@ export function getClassicalOperation(
     }
   ) {
     return normalizeName(
-      operationMap.get(declaration) ??
+      operationDeclarationMap.get(declaration)?.oriName ??
         declaration.propertyName ??
         declaration.name ??
         "FIXME",

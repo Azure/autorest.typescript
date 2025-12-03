@@ -421,7 +421,11 @@ export function getOperationFunction(
   context: SdkContext,
   method: [string[], ServiceOperation],
   clientType: string
-): FunctionDeclarationStructure & { propertyName?: string } {
+): FunctionDeclarationStructure & {
+  propertyName?: string;
+  isLro?: boolean;
+  lroFinalReturnType?: string;
+} {
   const operation = method[1];
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
@@ -498,7 +502,11 @@ function getLroOnlyOperationFunction(
   method: [string[], SdkLroServiceMethod<SdkHttpOperation>],
   clientType: string,
   optionalParamName: string = "options"
-): FunctionDeclarationStructure & { propertyName?: string } {
+): FunctionDeclarationStructure & {
+  propertyName?: string;
+  isLro?: boolean;
+  lroFinalReturnType?: string;
+} {
   const operation = method[1];
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
@@ -521,6 +529,8 @@ function getLroOnlyOperationFunction(
     isExported: true,
     name,
     propertyName: normalizeName(operation.name, NameType.Property),
+    isLro: true,
+    lroFinalReturnType: returnType.type,
     parameters,
     returnType: `${pollerLikeReference}<${operationStateReference}<${returnType.type}>, ${returnType.type}>`
   };
@@ -1454,6 +1464,36 @@ export function deserializeResponseValue(
         return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}p})`;
       } else if (type.valueType) {
         return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, "p", getEncodeForType(type.valueType))}})`;
+      } else {
+        return restValue;
+      }
+    }
+    case "dict": {
+      const prefix = nullOrUndefinedPrefix + restValue;
+      let elementNullOrUndefinedPrefix = "";
+      if (
+        type.valueType &&
+        (isTypeNullable(type.valueType) || getOptionalForType(type.valueType))
+      ) {
+        elementNullOrUndefinedPrefix = "!p ? p :";
+      }
+      const deserializeFunctionName = type.valueType
+        ? buildModelDeserializer(
+            context,
+            getNullableValidType(type.valueType),
+            false,
+            true
+          )
+        : undefined;
+      if (deserializeFunctionName) {
+        return `Object.fromEntries(Object.entries(${prefix}).map(([k, p]: [string, any]) => [k, ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(p)]))`;
+      } else if (
+        type.valueType &&
+        isAzureCoreErrorType(context.program, type.valueType.__raw)
+      ) {
+        return `Object.fromEntries(Object.entries(${prefix}).map(([k, p]: [string, any]) => [k, ${elementNullOrUndefinedPrefix}p]))`;
+      } else if (type.valueType) {
+        return `Object.fromEntries(Object.entries(${prefix}).map(([k, p]: [string, any]) => [k, ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, "p", getEncodeForType(type.valueType))}]))`;
       } else {
         return restValue;
       }

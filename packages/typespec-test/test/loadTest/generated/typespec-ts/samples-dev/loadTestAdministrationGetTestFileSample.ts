@@ -16,9 +16,7 @@ async function loadTestAdministrationGetTestFileSample(): Promise<void> {
   const client = createAzureLoadTestingClient(endpointParam, credential);
   const testId = "{Your testId}";
   const fileName = "{Your fileName}";
-  const result = await client
-    .path("/tests/{testId}/files/{fileName}", testId, fileName)
-    .get();
+  const result = await client.path("/tests/{testId}/files/{fileName}", testId, fileName).get();
   console.log(result);
 }
 

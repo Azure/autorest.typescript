@@ -300,12 +300,7 @@ export interface TestRunServerMetricConfig {
 }
 
 /** Alias for PFMetrics */
-export type PFMetrics =
-  | "response_time_ms"
-  | "latency"
-  | "error"
-  | "requests"
-  | "requests_per_sec";
+export type PFMetrics = "response_time_ms" | "latency" | "error" | "requests" | "requests_per_sec";
 /** Alias for PFAgFunc */
 export type PFAgFunc =
   | "count"

@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  createOpenAI,
-  OpenAIContext,
-  OpenAIClientOptionalParams,
-} from "./api/index.js";
+import { createOpenAI, OpenAIContext, OpenAIClientOptionalParams } from "./api/index.js";
 import {
   getEmbeddings,
   generateSpeechFromText,
@@ -126,32 +122,18 @@ export class OpenAIClient {
   getAudioTranslationAsResponseObject(
     deploymentId: string,
     body: AudioTranslationOptions,
-    options: GetAudioTranslationAsResponseObjectOptionalParams = {
-      requestOptions: {},
-    },
+    options: GetAudioTranslationAsResponseObjectOptionalParams = { requestOptions: {} },
   ): Promise<AudioTranslation> {
-    return getAudioTranslationAsResponseObject(
-      this._client,
-      deploymentId,
-      body,
-      options,
-    );
+    return getAudioTranslationAsResponseObject(this._client, deploymentId, body, options);
   }
 
   /** Gets English language transcribed text and associated metadata from provided spoken audio data. */
   getAudioTranslationAsPlainText(
     deploymentId: string,
     body: AudioTranslationOptions,
-    options: GetAudioTranslationAsPlainTextOptionalParams = {
-      requestOptions: {},
-    },
+    options: GetAudioTranslationAsPlainTextOptionalParams = { requestOptions: {} },
   ): Promise<string> {
-    return getAudioTranslationAsPlainText(
-      this._client,
-      deploymentId,
-      body,
-      options,
-    );
+    return getAudioTranslationAsPlainText(this._client, deploymentId, body, options);
   }
 
   /**
@@ -161,16 +143,9 @@ export class OpenAIClient {
   getAudioTranscriptionAsResponseObject(
     deploymentId: string,
     body: AudioTranscriptionOptions,
-    options: GetAudioTranscriptionAsResponseObjectOptionalParams = {
-      requestOptions: {},
-    },
+    options: GetAudioTranscriptionAsResponseObjectOptionalParams = { requestOptions: {} },
   ): Promise<AudioTranscription> {
-    return getAudioTranscriptionAsResponseObject(
-      this._client,
-      deploymentId,
-      body,
-      options,
-    );
+    return getAudioTranscriptionAsResponseObject(this._client, deploymentId, body, options);
   }
 
   /**
@@ -180,15 +155,8 @@ export class OpenAIClient {
   getAudioTranscriptionAsPlainText(
     deploymentId: string,
     body: AudioTranscriptionOptions,
-    options: GetAudioTranscriptionAsPlainTextOptionalParams = {
-      requestOptions: {},
-    },
+    options: GetAudioTranscriptionAsPlainTextOptionalParams = { requestOptions: {} },
   ): Promise<string> {
-    return getAudioTranscriptionAsPlainText(
-      this._client,
-      deploymentId,
-      body,
-      options,
-    );
+    return getAudioTranscriptionAsPlainText(this._client, deploymentId, body, options);
   }
 }

@@ -14,14 +14,8 @@ import {
   DataProductsCatalogsOperations,
   _getDataProductsCatalogsOperations,
 } from "./classic/dataProductsCatalogs/index.js";
-import {
-  DataTypesOperations,
-  _getDataTypesOperations,
-} from "./classic/dataTypes/index.js";
-import {
-  OperationsOperations,
-  _getOperationsOperations,
-} from "./classic/operations/index.js";
+import { DataTypesOperations, _getDataTypesOperations } from "./classic/dataTypes/index.js";
+import { OperationsOperations, _getOperationsOperations } from "./classic/operations/index.js";
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
@@ -48,9 +42,7 @@ export class NetworkAnalyticsApi {
     this.pipeline = this._client.pipeline;
     this.dataProducts = _getDataProductsOperations(this._client);
     this.dataTypes = _getDataTypesOperations(this._client);
-    this.dataProductsCatalogs = _getDataProductsCatalogsOperations(
-      this._client,
-    );
+    this.dataProductsCatalogs = _getDataProductsCatalogsOperations(this._client);
     this.operations = _getOperationsOperations(this._client);
   }
 

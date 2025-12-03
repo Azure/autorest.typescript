@@ -65,9 +65,7 @@ export function testSerializer(item: Test): any {
     autoStopCriteria: !item["autoStopCriteria"]
       ? item["autoStopCriteria"]
       : autoStopCriteriaSerializer(item["autoStopCriteria"]),
-    secrets: !item["secrets"]
-      ? item["secrets"]
-      : secretRecordSerializer(item["secrets"]),
+    secrets: !item["secrets"] ? item["secrets"] : secretRecordSerializer(item["secrets"]),
     certificate: !item["certificate"]
       ? item["certificate"]
       : certificateMetadataSerializer(item["certificate"]),
@@ -94,13 +92,15 @@ export function testDeserializer(item: any): Test {
     autoStopCriteria: !item["autoStopCriteria"]
       ? item["autoStopCriteria"]
       : autoStopCriteriaDeserializer(item["autoStopCriteria"]),
-    secrets: !item["secrets"]
-      ? item["secrets"]
-      : secretRecordDeserializer(item["secrets"]),
+    secrets: !item["secrets"] ? item["secrets"] : secretRecordDeserializer(item["secrets"]),
     certificate: !item["certificate"]
       ? item["certificate"]
       : certificateMetadataDeserializer(item["certificate"]),
-    environmentVariables: item["environmentVariables"],
+    environmentVariables: !item["environmentVariables"]
+      ? item["environmentVariables"]
+      : Object.fromEntries(
+          Object.entries(item["environmentVariables"]).map(([k, p]: [string, any]) => [k, p]),
+        ),
     loadTestConfiguration: !item["loadTestConfiguration"]
       ? item["loadTestConfiguration"]
       : loadTestConfigurationDeserializer(item["loadTestConfiguration"]),
@@ -164,9 +164,7 @@ export function passFailMetricRecordDeserializer(
 ): Record<string, PassFailMetric> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = !item[key]
-      ? item[key]
-      : passFailMetricDeserializer(item[key]);
+    result[key] = !item[key] ? item[key] : passFailMetricDeserializer(item[key]);
   });
   return result;
 }
@@ -372,9 +370,7 @@ export function autoStopCriteriaDeserializer(item: any): AutoStopCriteria {
   };
 }
 
-export function secretRecordSerializer(
-  item: Record<string, Secret>,
-): Record<string, any> {
+export function secretRecordSerializer(item: Record<string, Secret>): Record<string, any> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
     result[key] = !item[key] ? item[key] : secretSerializer(item[key]);
@@ -382,9 +378,7 @@ export function secretRecordSerializer(
   return result;
 }
 
-export function secretRecordDeserializer(
-  item: Record<string, any>,
-): Record<string, Secret> {
+export function secretRecordDeserializer(item: Record<string, any>): Record<string, Secret> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
     result[key] = !item[key] ? item[key] : secretDeserializer(item[key]);
@@ -443,9 +437,7 @@ export function certificateMetadataSerializer(item: CertificateMetadata): any {
   return { value: item["value"], type: item["type"], name: item["name"] };
 }
 
-export function certificateMetadataDeserializer(
-  item: any,
-): CertificateMetadata {
+export function certificateMetadataDeserializer(item: any): CertificateMetadata {
   return {
     value: item["value"],
     type: item["type"],
@@ -490,9 +482,7 @@ export interface LoadTestConfiguration {
   regionalLoadTestConfig?: RegionalConfiguration[];
 }
 
-export function loadTestConfigurationSerializer(
-  item: LoadTestConfiguration,
-): any {
+export function loadTestConfigurationSerializer(item: LoadTestConfiguration): any {
   return {
     engineInstances: item["engineInstances"],
     splitAllCSVs: item["splitAllCSVs"],
@@ -506,9 +496,7 @@ export function loadTestConfigurationSerializer(
   };
 }
 
-export function loadTestConfigurationDeserializer(
-  item: any,
-): LoadTestConfiguration {
+export function loadTestConfigurationDeserializer(item: any): LoadTestConfiguration {
   return {
     engineInstances: item["engineInstances"],
     splitAllCSVs: item["splitAllCSVs"],
@@ -538,9 +526,7 @@ export interface OptionalLoadTestConfig {
   duration?: number;
 }
 
-export function optionalLoadTestConfigSerializer(
-  item: OptionalLoadTestConfig,
-): any {
+export function optionalLoadTestConfigSerializer(item: OptionalLoadTestConfig): any {
   return {
     endpointUrl: item["endpointUrl"],
     requestsPerSecond: item["requestsPerSecond"],
@@ -551,9 +537,7 @@ export function optionalLoadTestConfigSerializer(
   };
 }
 
-export function optionalLoadTestConfigDeserializer(
-  item: any,
-): OptionalLoadTestConfig {
+export function optionalLoadTestConfigDeserializer(item: any): OptionalLoadTestConfig {
   return {
     endpointUrl: item["endpointUrl"],
     requestsPerSecond: item["requestsPerSecond"],
@@ -564,9 +548,7 @@ export function optionalLoadTestConfigDeserializer(
   };
 }
 
-export function regionalConfigurationArraySerializer(
-  result: Array<RegionalConfiguration>,
-): any[] {
+export function regionalConfigurationArraySerializer(result: Array<RegionalConfiguration>): any[] {
   return result.map((item) => {
     return regionalConfigurationSerializer(item);
   });
@@ -592,15 +574,11 @@ export interface RegionalConfiguration {
   region: string;
 }
 
-export function regionalConfigurationSerializer(
-  item: RegionalConfiguration,
-): any {
+export function regionalConfigurationSerializer(item: RegionalConfiguration): any {
   return { engineInstances: item["engineInstances"], region: item["region"] };
 }
 
-export function regionalConfigurationDeserializer(
-  item: any,
-): RegionalConfiguration {
+export function regionalConfigurationDeserializer(item: any): RegionalConfiguration {
   return {
     engineInstances: item["engineInstances"],
     region: item["region"],
@@ -732,9 +710,7 @@ export enum KnownFileStatus {
  */
 export type FileStatus = string;
 
-export function testFileInfoArrayDeserializer(
-  result: Array<TestFileInfo>,
-): any[] {
+export function testFileInfoArrayDeserializer(result: Array<TestFileInfo>): any[] {
   return result.map((item) => {
     return testFileInfoDeserializer(item);
   });
@@ -879,15 +855,11 @@ export interface TestServerMetricConfig {
   readonly lastModifiedBy?: string;
 }
 
-export function testServerMetricConfigSerializer(
-  item: TestServerMetricConfig,
-): any {
+export function testServerMetricConfigSerializer(item: TestServerMetricConfig): any {
   return { metrics: resourceMetricRecordSerializer(item["metrics"]) };
 }
 
-export function testServerMetricConfigDeserializer(
-  item: any,
-): TestServerMetricConfig {
+export function testServerMetricConfigDeserializer(item: any): TestServerMetricConfig {
   return {
     testId: item["testId"],
     metrics: resourceMetricRecordDeserializer(item["metrics"]),
@@ -917,9 +889,7 @@ export function resourceMetricRecordDeserializer(
 ): Record<string, ResourceMetric> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = !item[key]
-      ? item[key]
-      : resourceMetricDeserializer(item[key]);
+    result[key] = !item[key] ? item[key] : resourceMetricDeserializer(item[key]);
   });
   return result;
 }
@@ -1103,9 +1073,7 @@ export function testRunSerializer(item: TestRun): any {
     autoStopCriteria: !item["autoStopCriteria"]
       ? item["autoStopCriteria"]
       : autoStopCriteriaSerializer(item["autoStopCriteria"]),
-    secrets: !item["secrets"]
-      ? item["secrets"]
-      : secretRecordSerializer(item["secrets"]),
+    secrets: !item["secrets"] ? item["secrets"] : secretRecordSerializer(item["secrets"]),
     certificate: !item["certificate"]
       ? item["certificate"]
       : certificateMetadataSerializer(item["certificate"]),
@@ -1130,13 +1098,15 @@ export function testRunDeserializer(item: any): TestRun {
     autoStopCriteria: !item["autoStopCriteria"]
       ? item["autoStopCriteria"]
       : autoStopCriteriaDeserializer(item["autoStopCriteria"]),
-    secrets: !item["secrets"]
-      ? item["secrets"]
-      : secretRecordDeserializer(item["secrets"]),
+    secrets: !item["secrets"] ? item["secrets"] : secretRecordDeserializer(item["secrets"]),
     certificate: !item["certificate"]
       ? item["certificate"]
       : certificateMetadataDeserializer(item["certificate"]),
-    environmentVariables: item["environmentVariables"],
+    environmentVariables: !item["environmentVariables"]
+      ? item["environmentVariables"]
+      : Object.fromEntries(
+          Object.entries(item["environmentVariables"]).map(([k, p]: [string, any]) => [k, p]),
+        ),
     errorDetails: !item["errorDetails"]
       ? item["errorDetails"]
       : errorDetailsArrayDeserializer(item["errorDetails"]),
@@ -1158,12 +1128,8 @@ export function testRunDeserializer(item: any): TestRun {
     testId: item["testId"],
     description: item["description"],
     status: item["status"],
-    startDateTime: !item["startDateTime"]
-      ? item["startDateTime"]
-      : new Date(item["startDateTime"]),
-    endDateTime: !item["endDateTime"]
-      ? item["endDateTime"]
-      : new Date(item["endDateTime"]),
+    startDateTime: !item["startDateTime"] ? item["startDateTime"] : new Date(item["startDateTime"]),
+    endDateTime: !item["endDateTime"] ? item["endDateTime"] : new Date(item["endDateTime"]),
     executedDateTime: !item["executedDateTime"]
       ? item["executedDateTime"]
       : new Date(item["executedDateTime"]),
@@ -1185,9 +1151,7 @@ export function testRunDeserializer(item: any): TestRun {
   };
 }
 
-export function errorDetailsArrayDeserializer(
-  result: Array<ErrorDetails>,
-): any[] {
+export function errorDetailsArrayDeserializer(result: Array<ErrorDetails>): any[] {
   return result.map((item) => {
     return errorDetailsDeserializer(item);
   });
@@ -1210,9 +1174,7 @@ export function testRunStatisticsRecordDeserializer(
 ): Record<string, TestRunStatistics> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = !item[key]
-      ? item[key]
-      : testRunStatisticsDeserializer(item[key]);
+    result[key] = !item[key] ? item[key] : testRunStatisticsDeserializer(item[key]);
   });
   return result;
 }
@@ -1321,9 +1283,7 @@ export interface TestRunInputArtifacts {
   readonly additionalFileInfo?: TestRunFileInfo[];
 }
 
-export function testRunInputArtifactsDeserializer(
-  item: any,
-): TestRunInputArtifacts {
+export function testRunInputArtifactsDeserializer(item: any): TestRunInputArtifacts {
   return {
     configFileInfo: !item["configFileInfo"]
       ? item["configFileInfo"]
@@ -1375,9 +1335,7 @@ export function testRunFileInfoDeserializer(item: any): TestRunFileInfo {
   };
 }
 
-export function testRunFileInfoArrayDeserializer(
-  result: Array<TestRunFileInfo>,
-): any[] {
+export function testRunFileInfoArrayDeserializer(result: Array<TestRunFileInfo>): any[] {
   return result.map((item) => {
     return testRunFileInfoDeserializer(item);
   });
@@ -1395,9 +1353,7 @@ export interface TestRunOutputArtifacts {
   reportFileInfo?: TestRunFileInfo;
 }
 
-export function testRunOutputArtifactsDeserializer(
-  item: any,
-): TestRunOutputArtifacts {
+export function testRunOutputArtifactsDeserializer(item: any): TestRunOutputArtifacts {
   return {
     resultFileInfo: !item["resultFileInfo"]
       ? item["resultFileInfo"]
@@ -1422,9 +1378,7 @@ export interface ArtifactsContainerInfo {
   expireDateTime?: Date;
 }
 
-export function artifactsContainerInfoDeserializer(
-  item: any,
-): ArtifactsContainerInfo {
+export function artifactsContainerInfoDeserializer(item: any): ArtifactsContainerInfo {
   return {
     url: item["url"],
     expireDateTime: !item["expireDateTime"]
@@ -1552,15 +1506,11 @@ export interface TestRunAppComponents {
   readonly lastModifiedBy?: string;
 }
 
-export function testRunAppComponentsSerializer(
-  item: TestRunAppComponents,
-): any {
+export function testRunAppComponentsSerializer(item: TestRunAppComponents): any {
   return { components: appComponentRecordSerializer(item["components"]) };
 }
 
-export function testRunAppComponentsDeserializer(
-  item: any,
-): TestRunAppComponents {
+export function testRunAppComponentsDeserializer(item: any): TestRunAppComponents {
   return {
     components: appComponentRecordDeserializer(item["components"]),
     testRunId: item["testRunId"],
@@ -1595,24 +1545,16 @@ export interface TestRunServerMetricConfig {
   readonly lastModifiedBy?: string;
 }
 
-export function testRunServerMetricConfigSerializer(
-  item: TestRunServerMetricConfig,
-): any {
+export function testRunServerMetricConfigSerializer(item: TestRunServerMetricConfig): any {
   return {
-    metrics: !item["metrics"]
-      ? item["metrics"]
-      : resourceMetricRecordSerializer(item["metrics"]),
+    metrics: !item["metrics"] ? item["metrics"] : resourceMetricRecordSerializer(item["metrics"]),
   };
 }
 
-export function testRunServerMetricConfigDeserializer(
-  item: any,
-): TestRunServerMetricConfig {
+export function testRunServerMetricConfigDeserializer(item: any): TestRunServerMetricConfig {
   return {
     testRunId: item["testRunId"],
-    metrics: !item["metrics"]
-      ? item["metrics"]
-      : resourceMetricRecordDeserializer(item["metrics"]),
+    metrics: !item["metrics"] ? item["metrics"] : resourceMetricRecordDeserializer(item["metrics"]),
     createdDateTime: !item["createdDateTime"]
       ? item["createdDateTime"]
       : new Date(item["createdDateTime"]),
@@ -1652,17 +1594,13 @@ export interface MetricDefinitionCollection {
   value: MetricDefinition[];
 }
 
-export function metricDefinitionCollectionDeserializer(
-  item: any,
-): MetricDefinitionCollection {
+export function metricDefinitionCollectionDeserializer(item: any): MetricDefinitionCollection {
   return {
     value: metricDefinitionArrayDeserializer(item["value"]),
   };
 }
 
-export function metricDefinitionArrayDeserializer(
-  result: Array<MetricDefinition>,
-): any[] {
+export function metricDefinitionArrayDeserializer(result: Array<MetricDefinition>): any[] {
   return result.map((item) => {
     return metricDefinitionDeserializer(item);
   });
@@ -1712,9 +1650,7 @@ export function metricDefinitionDeserializer(item: any): MetricDefinition {
   };
 }
 
-export function nameAndDescArrayDeserializer(
-  result: Array<NameAndDesc>,
-): any[] {
+export function nameAndDescArrayDeserializer(result: Array<NameAndDesc>): any[] {
   return result.map((item) => {
     return nameAndDescDeserializer(item);
   });
@@ -1822,9 +1758,7 @@ export enum KnownMetricUnit {
  */
 export type MetricUnit = string;
 
-export function metricAvailabilityArrayDeserializer(
-  result: Array<MetricAvailability>,
-): any[] {
+export function metricAvailabilityArrayDeserializer(result: Array<MetricAvailability>): any[] {
   return result.map((item) => {
     return metricAvailabilityDeserializer(item);
   });
@@ -1878,17 +1812,13 @@ export interface MetricNamespaceCollection {
   value: MetricNamespace[];
 }
 
-export function metricNamespaceCollectionDeserializer(
-  item: any,
-): MetricNamespaceCollection {
+export function metricNamespaceCollectionDeserializer(item: any): MetricNamespaceCollection {
   return {
     value: metricNamespaceArrayDeserializer(item["value"]),
   };
 }
 
-export function metricNamespaceArrayDeserializer(
-  result: Array<MetricNamespace>,
-): any[] {
+export function metricNamespaceArrayDeserializer(result: Array<MetricNamespace>): any[] {
   return result.map((item) => {
     return metricNamespaceDeserializer(item);
   });
@@ -1920,19 +1850,13 @@ export interface MetricRequestPayload {
   filters?: DimensionFilter[];
 }
 
-export function metricRequestPayloadSerializer(
-  item: MetricRequestPayload,
-): any {
+export function metricRequestPayloadSerializer(item: MetricRequestPayload): any {
   return {
-    filters: !item["filters"]
-      ? item["filters"]
-      : dimensionFilterArraySerializer(item["filters"]),
+    filters: !item["filters"] ? item["filters"] : dimensionFilterArraySerializer(item["filters"]),
   };
 }
 
-export function dimensionFilterArraySerializer(
-  result: Array<DimensionFilter>,
-): any[] {
+export function dimensionFilterArraySerializer(result: Array<DimensionFilter>): any[] {
   return result.map((item) => {
     return dimensionFilterSerializer(item);
   });
@@ -1972,9 +1896,7 @@ export function _metricsDeserializer(item: any): _Metrics {
   };
 }
 
-export function timeSeriesElementArrayDeserializer(
-  result: Array<TimeSeriesElement>,
-): any[] {
+export function timeSeriesElementArrayDeserializer(result: Array<TimeSeriesElement>): any[] {
   return result.map((item) => {
     return timeSeriesElementDeserializer(item);
   });
@@ -1990,18 +1912,14 @@ export interface TimeSeriesElement {
 
 export function timeSeriesElementDeserializer(item: any): TimeSeriesElement {
   return {
-    data: !item["data"]
-      ? item["data"]
-      : metricValueArrayDeserializer(item["data"]),
+    data: !item["data"] ? item["data"] : metricValueArrayDeserializer(item["data"]),
     dimensionValues: !item["dimensionValues"]
       ? item["dimensionValues"]
       : dimensionValueArrayDeserializer(item["dimensionValues"]),
   };
 }
 
-export function metricValueArrayDeserializer(
-  result: Array<MetricValue>,
-): any[] {
+export function metricValueArrayDeserializer(result: Array<MetricValue>): any[] {
   return result.map((item) => {
     return metricValueDeserializer(item);
   });
@@ -2017,16 +1935,12 @@ export interface MetricValue {
 
 export function metricValueDeserializer(item: any): MetricValue {
   return {
-    timestamp: !item["timestamp"]
-      ? item["timestamp"]
-      : new Date(item["timestamp"]),
+    timestamp: !item["timestamp"] ? item["timestamp"] : new Date(item["timestamp"]),
     value: item["value"],
   };
 }
 
-export function dimensionValueArrayDeserializer(
-  result: Array<DimensionValue>,
-): any[] {
+export function dimensionValueArrayDeserializer(result: Array<DimensionValue>): any[] {
   return result.map((item) => {
     return dimensionValueDeserializer(item);
   });
@@ -2106,9 +2020,7 @@ export function testProfileSerializer(item: TestProfile): any {
     targetResourceId: item["targetResourceId"],
     targetResourceConfigurations: !item["targetResourceConfigurations"]
       ? item["targetResourceConfigurations"]
-      : targetResourceConfigurationsUnionSerializer(
-          item["targetResourceConfigurations"],
-        ),
+      : targetResourceConfigurationsUnionSerializer(item["targetResourceConfigurations"]),
   };
 }
 
@@ -2121,9 +2033,7 @@ export function testProfileDeserializer(item: any): TestProfile {
     targetResourceId: item["targetResourceId"],
     targetResourceConfigurations: !item["targetResourceConfigurations"]
       ? item["targetResourceConfigurations"]
-      : targetResourceConfigurationsUnionDeserializer(
-          item["targetResourceConfigurations"],
-        ),
+      : targetResourceConfigurationsUnionDeserializer(item["targetResourceConfigurations"]),
     createdDateTime: !item["createdDateTime"]
       ? item["createdDateTime"]
       : new Date(item["createdDateTime"]),
@@ -2142,15 +2052,11 @@ export interface TargetResourceConfigurations {
   kind: ResourceKind;
 }
 
-export function targetResourceConfigurationsSerializer(
-  item: TargetResourceConfigurations,
-): any {
+export function targetResourceConfigurationsSerializer(item: TargetResourceConfigurations): any {
   return { kind: item["kind"] };
 }
 
-export function targetResourceConfigurationsDeserializer(
-  item: any,
-): TargetResourceConfigurations {
+export function targetResourceConfigurationsDeserializer(item: any): TargetResourceConfigurations {
   return {
     kind: item["kind"],
   };
@@ -2223,9 +2129,7 @@ export function functionFlexConsumptionTargetResourceConfigurationsSerializer(
     kind: item["kind"],
     configurations: !item["configurations"]
       ? item["configurations"]
-      : functionFlexConsumptionResourceConfigurationRecordSerializer(
-          item["configurations"],
-        ),
+      : functionFlexConsumptionResourceConfigurationRecordSerializer(item["configurations"]),
   };
 }
 
@@ -2236,9 +2140,7 @@ export function functionFlexConsumptionTargetResourceConfigurationsDeserializer(
     kind: item["kind"],
     configurations: !item["configurations"]
       ? item["configurations"]
-      : functionFlexConsumptionResourceConfigurationRecordDeserializer(
-          item["configurations"],
-        ),
+      : functionFlexConsumptionResourceConfigurationRecordDeserializer(item["configurations"]),
   };
 }
 
@@ -2277,10 +2179,7 @@ export interface FunctionFlexConsumptionResourceConfiguration {
 export function functionFlexConsumptionResourceConfigurationSerializer(
   item: FunctionFlexConsumptionResourceConfiguration,
 ): any {
-  return {
-    instanceMemoryMB: item["instanceMemoryMB"],
-    httpConcurrency: item["httpConcurrency"],
-  };
+  return { instanceMemoryMB: item["instanceMemoryMB"], httpConcurrency: item["httpConcurrency"] };
 }
 
 export function functionFlexConsumptionResourceConfigurationDeserializer(
@@ -2313,9 +2212,7 @@ export function testProfileArraySerializer(result: Array<TestProfile>): any[] {
   });
 }
 
-export function testProfileArrayDeserializer(
-  result: Array<TestProfile>,
-): any[] {
+export function testProfileArrayDeserializer(result: Array<TestProfile>): any[] {
   return result.map((item) => {
     return testProfileDeserializer(item);
   });
@@ -2379,19 +2276,13 @@ export function testProfileRunDeserializer(item: any): TestProfileRun {
     targetResourceId: item["targetResourceId"],
     targetResourceConfigurations: !item["targetResourceConfigurations"]
       ? item["targetResourceConfigurations"]
-      : targetResourceConfigurationsUnionDeserializer(
-          item["targetResourceConfigurations"],
-        ),
+      : targetResourceConfigurationsUnionDeserializer(item["targetResourceConfigurations"]),
     status: item["status"],
     errorDetails: !item["errorDetails"]
       ? item["errorDetails"]
       : errorDetailsArrayDeserializer(item["errorDetails"]),
-    startDateTime: !item["startDateTime"]
-      ? item["startDateTime"]
-      : new Date(item["startDateTime"]),
-    endDateTime: !item["endDateTime"]
-      ? item["endDateTime"]
-      : new Date(item["endDateTime"]),
+    startDateTime: !item["startDateTime"] ? item["startDateTime"] : new Date(item["startDateTime"]),
+    endDateTime: !item["endDateTime"] ? item["endDateTime"] : new Date(item["endDateTime"]),
     durationInSeconds: item["durationInSeconds"],
     testRunDetails: !item["testRunDetails"]
       ? item["testRunDetails"]
@@ -2467,7 +2358,9 @@ export function testRunDetailDeserializer(item: any): TestRunDetail {
   return {
     status: item["status"],
     configurationId: item["configurationId"],
-    properties: item["properties"],
+    properties: Object.fromEntries(
+      Object.entries(item["properties"]).map(([k, p]: [string, any]) => [k, p]),
+    ),
   };
 }
 
@@ -2487,9 +2380,7 @@ export interface TestProfileRunRecommendation {
   configurations?: string[];
 }
 
-export function testProfileRunRecommendationDeserializer(
-  item: any,
-): TestProfileRunRecommendation {
+export function testProfileRunRecommendationDeserializer(item: any): TestProfileRunRecommendation {
   return {
     category: item["category"],
     configurations: !item["configurations"]
@@ -2526,26 +2417,20 @@ export interface _PagedTestProfileRun {
   nextLink?: string;
 }
 
-export function _pagedTestProfileRunDeserializer(
-  item: any,
-): _PagedTestProfileRun {
+export function _pagedTestProfileRunDeserializer(item: any): _PagedTestProfileRun {
   return {
     value: testProfileRunArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
 }
 
-export function testProfileRunArraySerializer(
-  result: Array<TestProfileRun>,
-): any[] {
+export function testProfileRunArraySerializer(result: Array<TestProfileRun>): any[] {
   return result.map((item) => {
     return testProfileRunSerializer(item);
   });
 }
 
-export function testProfileRunArrayDeserializer(
-  result: Array<TestProfileRun>,
-): any[] {
+export function testProfileRunArrayDeserializer(result: Array<TestProfileRun>): any[] {
   return result.map((item) => {
     return testProfileRunDeserializer(item);
   });

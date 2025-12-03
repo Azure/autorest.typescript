@@ -4,10 +4,7 @@
 import { OpenAIContext } from "../../api/openAIContext.js";
 import { create } from "../../api/embeddings/operations.js";
 import { EmbeddingsCreateOptionalParams } from "../../api/embeddings/options.js";
-import {
-  CreateEmbeddingRequest,
-  CreateEmbeddingResponse,
-} from "../../models/models.js";
+import { CreateEmbeddingRequest, CreateEmbeddingResponse } from "../../models/models.js";
 
 /** Interface representing a Embeddings operations. */
 export interface EmbeddingsOperations {
@@ -19,16 +16,12 @@ export interface EmbeddingsOperations {
 
 function _getEmbeddings(context: OpenAIContext) {
   return {
-    create: (
-      embedding: CreateEmbeddingRequest,
-      options?: EmbeddingsCreateOptionalParams,
-    ) => create(context, embedding, options),
+    create: (embedding: CreateEmbeddingRequest, options?: EmbeddingsCreateOptionalParams) =>
+      create(context, embedding, options),
   };
 }
 
-export function _getEmbeddingsOperations(
-  context: OpenAIContext,
-): EmbeddingsOperations {
+export function _getEmbeddingsOperations(context: OpenAIContext): EmbeddingsOperations {
   return {
     ..._getEmbeddings(context),
   };

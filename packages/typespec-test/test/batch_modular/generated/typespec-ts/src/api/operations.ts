@@ -224,11 +224,7 @@ export function _listNodeFilesSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...(options?.clientRequestId !== undefined
           ? { "client-request-id": options?.clientRequestId }
@@ -303,11 +299,7 @@ export function _getNodeFilePropertiesSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
@@ -349,13 +341,7 @@ export async function getNodeFileProperties(
   filePath: string,
   options: GetNodeFilePropertiesOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _getNodeFilePropertiesSend(
-    context,
-    poolId,
-    nodeId,
-    filePath,
-    options,
-  );
+  const result = await _getNodeFilePropertiesSend(context, poolId, nodeId, filePath, options);
   return _getNodeFilePropertiesDeserialize(result);
 }
 
@@ -391,11 +377,7 @@ export function _getNodeFileSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
@@ -411,18 +393,14 @@ export function _getNodeFileSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        ...(options?.ocpRange !== undefined
-          ? { "ocp-range": options?.ocpRange }
-          : {}),
+        ...(options?.ocpRange !== undefined ? { "ocp-range": options?.ocpRange } : {}),
         accept: "application/octet-stream",
         ...options.requestOptions?.headers,
       },
     });
 }
 
-export async function _getNodeFileDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Uint8Array> {
+export async function _getNodeFileDeserialize(result: PathUncheckedResponse): Promise<Uint8Array> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -441,13 +419,7 @@ export async function getNodeFile(
   filePath: string,
   options: GetNodeFileOptionalParams = { requestOptions: {} },
 ): Promise<Uint8Array> {
-  const streamableMethod = _getNodeFileSend(
-    context,
-    poolId,
-    nodeId,
-    filePath,
-    options,
-  );
+  const streamableMethod = _getNodeFileSend(context, poolId, nodeId, filePath, options);
   const result = await getBinaryResponse(streamableMethod);
   return _getNodeFileDeserialize(result);
 }
@@ -485,20 +457,14 @@ export function _deleteNodeFileSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...options.requestOptions?.headers,
       },
     });
 }
 
-export async function _deleteNodeFileDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _deleteNodeFileDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -517,13 +483,7 @@ export async function deleteNodeFile(
   filePath: string,
   options: DeleteNodeFileOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _deleteNodeFileSend(
-    context,
-    poolId,
-    nodeId,
-    filePath,
-    options,
-  );
+  const result = await _deleteNodeFileSend(context, poolId, nodeId, filePath, options);
   return _deleteNodeFileDeserialize(result);
 }
 
@@ -557,11 +517,7 @@ export function _listNodeExtensionsSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...(options?.clientRequestId !== undefined
           ? { "client-request-id": options?.clientRequestId }
@@ -641,11 +597,7 @@ export function _getNodeExtensionSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
@@ -674,13 +626,7 @@ export async function getNodeExtension(
   extensionName: string,
   options: GetNodeExtensionOptionalParams = { requestOptions: {} },
 ): Promise<NodeVMExtension> {
-  const result = await _getNodeExtensionSend(
-    context,
-    poolId,
-    nodeId,
-    extensionName,
-    options,
-  );
+  const result = await _getNodeExtensionSend(context, poolId, nodeId, extensionName, options);
   return _getNodeExtensionDeserialize(result);
 }
 
@@ -713,11 +659,7 @@ export function _listNodesSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...(options?.clientRequestId !== undefined
           ? { "client-request-id": options?.clientRequestId }
@@ -791,11 +733,7 @@ export function _uploadNodeLogsSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
@@ -830,13 +768,7 @@ export async function uploadNodeLogs(
   body: UploadBatchServiceLogsOptions,
   options: UploadNodeLogsOptionalParams = { requestOptions: {} },
 ): Promise<UploadBatchServiceLogsResult> {
-  const result = await _uploadNodeLogsSend(
-    context,
-    poolId,
-    nodeId,
-    body,
-    options,
-  );
+  const result = await _uploadNodeLogsSend(context, poolId, nodeId, body, options);
   return _uploadNodeLogsDeserialize(result);
 }
 
@@ -870,11 +802,7 @@ export function _getNodeRemoteDesktopFileSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         accept: "application/octet-stream",
         ...options.requestOptions?.headers,
@@ -907,12 +835,7 @@ export async function getNodeRemoteDesktopFile(
   nodeId: string,
   options: GetNodeRemoteDesktopFileOptionalParams = { requestOptions: {} },
 ): Promise<Uint8Array> {
-  const streamableMethod = _getNodeRemoteDesktopFileSend(
-    context,
-    poolId,
-    nodeId,
-    options,
-  );
+  const streamableMethod = _getNodeRemoteDesktopFileSend(context, poolId, nodeId, options);
   const result = await getBinaryResponse(streamableMethod);
   return _getNodeRemoteDesktopFileDeserialize(result);
 }
@@ -947,11 +870,7 @@ export function _getNodeRemoteLoginSettingsSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
@@ -985,12 +904,7 @@ export async function getNodeRemoteLoginSettings(
   nodeId: string,
   options: GetNodeRemoteLoginSettingsOptionalParams = { requestOptions: {} },
 ): Promise<BatchNodeRemoteLoginSettingsResult> {
-  const result = await _getNodeRemoteLoginSettingsSend(
-    context,
-    poolId,
-    nodeId,
-    options,
-  );
+  const result = await _getNodeRemoteLoginSettingsSend(context, poolId, nodeId, options);
   return _getNodeRemoteLoginSettingsDeserialize(result);
 }
 
@@ -1024,11 +938,7 @@ export function _enableNodeSchedulingSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...options.requestOptions?.headers,
       },
@@ -1058,12 +968,7 @@ export async function enableNodeScheduling(
   nodeId: string,
   options: EnableNodeSchedulingOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _enableNodeSchedulingSend(
-    context,
-    poolId,
-    nodeId,
-    options,
-  );
+  const result = await _enableNodeSchedulingSend(context, poolId, nodeId, options);
   return _enableNodeSchedulingDeserialize(result);
 }
 
@@ -1098,11 +1003,7 @@ export function _disableNodeSchedulingSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...options.requestOptions?.headers,
       },
@@ -1135,12 +1036,7 @@ export async function disableNodeScheduling(
   nodeId: string,
   options: DisableNodeSchedulingOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _disableNodeSchedulingSend(
-    context,
-    poolId,
-    nodeId,
-    options,
-  );
+  const result = await _disableNodeSchedulingSend(context, poolId, nodeId, options);
   return _disableNodeSchedulingDeserialize(result);
 }
 
@@ -1175,23 +1071,15 @@ export function _reimageNodeSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...options.requestOptions?.headers,
       },
-      body: !options["body"]
-        ? options["body"]
-        : nodeReimageOptionsSerializer(options["body"]),
+      body: !options["body"] ? options["body"] : nodeReimageOptionsSerializer(options["body"]),
     });
 }
 
-export async function _reimageNodeDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _reimageNodeDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -1248,23 +1136,15 @@ export function _rebootNodeSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...options.requestOptions?.headers,
       },
-      body: !options["body"]
-        ? options["body"]
-        : nodeRebootOptionsSerializer(options["body"]),
+      body: !options["body"] ? options["body"] : nodeRebootOptionsSerializer(options["body"]),
     });
 }
 
-export async function _rebootNodeDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _rebootNodeDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -1321,11 +1201,7 @@ export function _getNodeSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
@@ -1333,9 +1209,7 @@ export function _getNodeSend(
     });
 }
 
-export async function _getNodeDeserialize(
-  result: PathUncheckedResponse,
-): Promise<BatchNode> {
+export async function _getNodeDeserialize(result: PathUncheckedResponse): Promise<BatchNode> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -1391,11 +1265,7 @@ export function _replaceNodeUserSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...options.requestOptions?.headers,
       },
@@ -1403,9 +1273,7 @@ export function _replaceNodeUserSend(
     });
 }
 
-export async function _replaceNodeUserDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _replaceNodeUserDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -1430,14 +1298,7 @@ export async function replaceNodeUser(
   body: BatchNodeUserUpdateOptions,
   options: ReplaceNodeUserOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _replaceNodeUserSend(
-    context,
-    poolId,
-    nodeId,
-    userName,
-    body,
-    options,
-  );
+  const result = await _replaceNodeUserSend(context, poolId, nodeId, userName, body, options);
   return _replaceNodeUserDeserialize(result);
 }
 
@@ -1473,20 +1334,14 @@ export function _deleteNodeUserSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...options.requestOptions?.headers,
       },
     });
 }
 
-export async function _deleteNodeUserDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _deleteNodeUserDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -1508,13 +1363,7 @@ export async function deleteNodeUser(
   userName: string,
   options: DeleteNodeUserOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _deleteNodeUserSend(
-    context,
-    poolId,
-    nodeId,
-    userName,
-    options,
-  );
+  const result = await _deleteNodeUserSend(context, poolId, nodeId, userName, options);
   return _deleteNodeUserDeserialize(result);
 }
 
@@ -1550,11 +1399,7 @@ export function _createNodeUserSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...options.requestOptions?.headers,
       },
@@ -1562,9 +1407,7 @@ export function _createNodeUserSend(
     });
 }
 
-export async function _createNodeUserDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _createNodeUserDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -1586,13 +1429,7 @@ export async function createNodeUser(
   body: BatchNodeUserCreateOptions,
   options: CreateNodeUserOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _createNodeUserSend(
-    context,
-    poolId,
-    nodeId,
-    body,
-    options,
-  );
+  const result = await _createNodeUserSend(context, poolId, nodeId, body, options);
   return _createNodeUserDeserialize(result);
 }
 
@@ -1623,11 +1460,7 @@ export function _listTaskFilesSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...(options?.clientRequestId !== undefined
           ? { "client-request-id": options?.clientRequestId }
@@ -1702,11 +1535,7 @@ export function _getTaskFilePropertiesSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
@@ -1748,13 +1577,7 @@ export async function getTaskFileProperties(
   filePath: string,
   options: GetTaskFilePropertiesOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _getTaskFilePropertiesSend(
-    context,
-    jobId,
-    taskId,
-    filePath,
-    options,
-  );
+  const result = await _getTaskFilePropertiesSend(context, jobId, taskId, filePath, options);
   return _getTaskFilePropertiesDeserialize(result);
 }
 
@@ -1790,11 +1613,7 @@ export function _getTaskFileSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
@@ -1810,18 +1629,14 @@ export function _getTaskFileSend(
                 : options?.ifUnmodifiedSince.toUTCString(),
             }
           : {}),
-        ...(options?.ocpRange !== undefined
-          ? { "ocp-range": options?.ocpRange }
-          : {}),
+        ...(options?.ocpRange !== undefined ? { "ocp-range": options?.ocpRange } : {}),
         accept: "application/octet-stream",
         ...options.requestOptions?.headers,
       },
     });
 }
 
-export async function _getTaskFileDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Uint8Array> {
+export async function _getTaskFileDeserialize(result: PathUncheckedResponse): Promise<Uint8Array> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -1840,13 +1655,7 @@ export async function getTaskFile(
   filePath: string,
   options: GetTaskFileOptionalParams = { requestOptions: {} },
 ): Promise<Uint8Array> {
-  const streamableMethod = _getTaskFileSend(
-    context,
-    jobId,
-    taskId,
-    filePath,
-    options,
-  );
+  const streamableMethod = _getTaskFileSend(context, jobId, taskId, filePath, options);
   const result = await getBinaryResponse(streamableMethod);
   return _getTaskFileDeserialize(result);
 }
@@ -1884,20 +1693,14 @@ export function _deleteTaskFileSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...options.requestOptions?.headers,
       },
     });
 }
 
-export async function _deleteTaskFileDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _deleteTaskFileDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -1916,13 +1719,7 @@ export async function deleteTaskFile(
   filePath: string,
   options: DeleteTaskFileOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _deleteTaskFileSend(
-    context,
-    jobId,
-    taskId,
-    filePath,
-    options,
-  );
+  const result = await _deleteTaskFileSend(context, jobId, taskId, filePath, options);
   return _deleteTaskFileDeserialize(result);
 }
 
@@ -1956,18 +1753,10 @@ export function _reactivateTaskSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -1987,9 +1776,7 @@ export function _reactivateTaskSend(
     });
 }
 
-export async function _reactivateTaskDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _reactivateTaskDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -2049,18 +1836,10 @@ export function _terminateTaskSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -2080,9 +1859,7 @@ export function _terminateTaskSend(
     });
 }
 
-export async function _terminateTaskDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _terminateTaskDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -2143,11 +1920,7 @@ export function _listSubTasksSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
@@ -2211,18 +1984,10 @@ export function _replaceTaskSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -2243,9 +2008,7 @@ export function _replaceTaskSend(
     });
 }
 
-export async function _replaceTaskDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _replaceTaskDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -2308,18 +2071,10 @@ export function _getTaskSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -2340,9 +2095,7 @@ export function _getTaskSend(
     });
 }
 
-export async function _getTaskDeserialize(
-  result: PathUncheckedResponse,
-): Promise<BatchTask> {
+export async function _getTaskDeserialize(result: PathUncheckedResponse): Promise<BatchTask> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -2398,18 +2151,10 @@ export function _deleteTaskSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -2429,9 +2174,7 @@ export function _deleteTaskSend(
     });
 }
 
-export async function _deleteTaskDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _deleteTaskDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -2489,11 +2232,7 @@ export function _createTaskCollectionSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
@@ -2537,12 +2276,7 @@ export async function createTaskCollection(
   collection: BatchTaskCollection,
   options: CreateTaskCollectionOptionalParams = { requestOptions: {} },
 ): Promise<TaskAddCollectionResult> {
-  const result = await _createTaskCollectionSend(
-    context,
-    jobId,
-    collection,
-    options,
-  );
+  const result = await _createTaskCollectionSend(context, jobId, collection, options);
   return _createTaskCollectionDeserialize(result);
 }
 
@@ -2580,11 +2314,7 @@ export function _listTasksSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...(options?.clientRequestId !== undefined
           ? { "client-request-id": options?.clientRequestId }
@@ -2660,11 +2390,7 @@ export function _createTaskSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...options.requestOptions?.headers,
       },
@@ -2672,9 +2398,7 @@ export function _createTaskSend(
     });
 }
 
-export async function _createTaskDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _createTaskDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -2732,11 +2456,7 @@ export function _listJobSchedulesSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...(options?.clientRequestId !== undefined
           ? { "client-request-id": options?.clientRequestId }
@@ -2805,11 +2525,7 @@ export function _createJobScheduleSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...options.requestOptions?.headers,
       },
@@ -2817,9 +2533,7 @@ export function _createJobScheduleSend(
     });
 }
 
-export async function _createJobScheduleDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _createJobScheduleDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -2868,18 +2582,10 @@ export function _terminateJobScheduleSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -2918,11 +2624,7 @@ export async function terminateJobSchedule(
   jobScheduleId: string,
   options: TerminateJobScheduleOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _terminateJobScheduleSend(
-    context,
-    jobScheduleId,
-    options,
-  );
+  const result = await _terminateJobScheduleSend(context, jobScheduleId, options);
   return _terminateJobScheduleDeserialize(result);
 }
 
@@ -2954,18 +2656,10 @@ export function _enableJobScheduleSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -2985,9 +2679,7 @@ export function _enableJobScheduleSend(
     });
 }
 
-export async function _enableJobScheduleDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _enableJobScheduleDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -3036,18 +2728,10 @@ export function _disableJobScheduleSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -3067,9 +2751,7 @@ export function _disableJobScheduleSend(
     });
 }
 
-export async function _disableJobScheduleDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _disableJobScheduleDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -3120,18 +2802,10 @@ export function _replaceJobScheduleSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -3152,9 +2826,7 @@ export function _replaceJobScheduleSend(
     });
 }
 
-export async function _replaceJobScheduleDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _replaceJobScheduleDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -3178,12 +2850,7 @@ export async function replaceJobSchedule(
   body: BatchJobSchedule,
   options: ReplaceJobScheduleOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _replaceJobScheduleSend(
-    context,
-    jobScheduleId,
-    body,
-    options,
-  );
+  const result = await _replaceJobScheduleSend(context, jobScheduleId, body, options);
   return _replaceJobScheduleDeserialize(result);
 }
 
@@ -3217,18 +2884,10 @@ export function _updateJobScheduleSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -3249,9 +2908,7 @@ export function _updateJobScheduleSend(
     });
 }
 
-export async function _updateJobScheduleDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _updateJobScheduleDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -3275,12 +2932,7 @@ export async function updateJobSchedule(
   body: BatchJobScheduleUpdateOptions,
   options: UpdateJobScheduleOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _updateJobScheduleSend(
-    context,
-    jobScheduleId,
-    body,
-    options,
-  );
+  const result = await _updateJobScheduleSend(context, jobScheduleId, body, options);
   return _updateJobScheduleDeserialize(result);
 }
 
@@ -3322,18 +2974,10 @@ export function _getJobScheduleSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -3405,18 +3049,10 @@ export function _deleteJobScheduleSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -3436,9 +3072,7 @@ export function _deleteJobScheduleSend(
     });
 }
 
-export async function _deleteJobScheduleDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _deleteJobScheduleDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -3493,18 +3127,10 @@ export function _jobScheduleExistsSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -3524,9 +3150,7 @@ export function _jobScheduleExistsSend(
     });
 }
 
-export async function _jobScheduleExistsDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _jobScheduleExistsDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200", "404"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -3582,11 +3206,7 @@ export function _getCertificateSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
@@ -3614,12 +3234,7 @@ export async function getCertificate(
   thumbprint: string,
   options: GetCertificateOptionalParams = { requestOptions: {} },
 ): Promise<BatchCertificate> {
-  const result = await _getCertificateSend(
-    context,
-    thumbprintAlgorithm,
-    thumbprint,
-    options,
-  );
+  const result = await _getCertificateSend(context, thumbprintAlgorithm, thumbprint, options);
   return _getCertificateDeserialize(result);
 }
 
@@ -3653,20 +3268,14 @@ export function _deleteCertificateSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...options.requestOptions?.headers,
       },
     });
 }
 
-export async function _deleteCertificateDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _deleteCertificateDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -3694,12 +3303,7 @@ export async function deleteCertificate(
   thumbprint: string,
   options: DeleteCertificateOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _deleteCertificateSend(
-    context,
-    thumbprintAlgorithm,
-    thumbprint,
-    options,
-  );
+  const result = await _deleteCertificateSend(context, thumbprintAlgorithm, thumbprint, options);
   return _deleteCertificateDeserialize(result);
 }
 
@@ -3733,11 +3337,7 @@ export function _cancelCertificateDeletionSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...options.requestOptions?.headers,
       },
@@ -3808,11 +3408,7 @@ export function _listCertificatesSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...(options?.clientRequestId !== undefined
           ? { "client-request-id": options?.clientRequestId }
@@ -3881,11 +3477,7 @@ export function _createCertificateSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...options.requestOptions?.headers,
       },
@@ -3893,9 +3485,7 @@ export function _createCertificateSend(
     });
 }
 
-export async function _createCertificateDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _createCertificateDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -3944,11 +3534,7 @@ export function _getJobTaskCountsSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
@@ -3987,9 +3573,7 @@ export async function getJobTaskCounts(
 export function _listJobPreparationAndReleaseTaskStatusSend(
   context: Client,
   jobId: string,
-  options: ListJobPreparationAndReleaseTaskStatusOptionalParams = {
-    requestOptions: {},
-  },
+  options: ListJobPreparationAndReleaseTaskStatusOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
     "/jobs/{jobId}/jobpreparationandreleasetaskstatus{?maxresults,timeOut,%24filter,%24select}",
@@ -4015,11 +3599,7 @@ export function _listJobPreparationAndReleaseTaskStatusSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...(options?.clientRequestId !== undefined
           ? { "client-request-id": options?.clientRequestId }
@@ -4043,9 +3623,7 @@ export async function _listJobPreparationAndReleaseTaskStatusDeserialize(
     throw error;
   }
 
-  return _batchJobListPreparationAndReleaseTaskStatusResultDeserializer(
-    result.body,
-  );
+  return _batchJobListPreparationAndReleaseTaskStatusResultDeserializer(result.body);
 }
 
 /**
@@ -4059,9 +3637,7 @@ export async function _listJobPreparationAndReleaseTaskStatusDeserialize(
 export function listJobPreparationAndReleaseTaskStatus(
   context: Client,
   jobId: string,
-  options: ListJobPreparationAndReleaseTaskStatusOptionalParams = {
-    requestOptions: {},
-  },
+  options: ListJobPreparationAndReleaseTaskStatusOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<JobPreparationAndReleaseTaskExecutionInformation> {
   return buildPagedAsyncIterator(
     context,
@@ -4106,11 +3682,7 @@ export function _listJobsFromScheduleSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...(options?.clientRequestId !== undefined
           ? { "client-request-id": options?.clientRequestId }
@@ -4184,11 +3756,7 @@ export function _listJobsSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...(options?.clientRequestId !== undefined
           ? { "client-request-id": options?.clientRequestId }
@@ -4257,11 +3825,7 @@ export function _createJobSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...options.requestOptions?.headers,
       },
@@ -4269,9 +3833,7 @@ export function _createJobSend(
     });
 }
 
-export async function _createJobDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _createJobDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -4331,18 +3893,10 @@ export function _terminateJobSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -4365,9 +3919,7 @@ export function _terminateJobSend(
     });
 }
 
-export async function _terminateJobDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _terminateJobDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -4423,18 +3975,10 @@ export function _enableJobSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -4454,9 +3998,7 @@ export function _enableJobSend(
     });
 }
 
-export async function _enableJobDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _enableJobDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -4514,18 +4056,10 @@ export function _disableJobSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -4546,9 +4080,7 @@ export function _disableJobSend(
     });
 }
 
-export async function _disableJobDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _disableJobDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -4609,18 +4141,10 @@ export function _replaceJobSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -4641,9 +4165,7 @@ export function _replaceJobSend(
     });
 }
 
-export async function _replaceJobDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _replaceJobDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -4699,18 +4221,10 @@ export function _updateJobSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -4731,9 +4245,7 @@ export function _updateJobSend(
     });
 }
 
-export async function _updateJobDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _updateJobDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -4797,18 +4309,10 @@ export function _getJobSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -4829,9 +4333,7 @@ export function _getJobSend(
     });
 }
 
-export async function _getJobDeserialize(
-  result: PathUncheckedResponse,
-): Promise<BatchJob> {
+export async function _getJobDeserialize(result: PathUncheckedResponse): Promise<BatchJob> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -4880,18 +4382,10 @@ export function _deleteJobSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -4911,9 +4405,7 @@ export function _deleteJobSend(
     });
 }
 
-export async function _deleteJobDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _deleteJobDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -4965,11 +4457,7 @@ export function _listPoolNodeCountsSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...(options?.clientRequestId !== undefined
           ? { "client-request-id": options?.clientRequestId }
@@ -5036,11 +4524,7 @@ export function _listSupportedImagesSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...(options?.clientRequestId !== undefined
           ? { "client-request-id": options?.clientRequestId }
@@ -5111,18 +4595,10 @@ export function _removeNodesSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -5143,9 +4619,7 @@ export function _removeNodesSend(
     });
 }
 
-export async function _removeNodesDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _removeNodesDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -5201,11 +4675,7 @@ export function _replacePoolPropertiesSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...options.requestOptions?.headers,
       },
@@ -5237,12 +4707,7 @@ export async function replacePoolProperties(
   body: BatchPoolReplaceOptions,
   options: ReplacePoolPropertiesOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _replacePoolPropertiesSend(
-    context,
-    poolId,
-    body,
-    options,
-  );
+  const result = await _replacePoolPropertiesSend(context, poolId, body, options);
   return _replacePoolPropertiesDeserialize(result);
 }
 
@@ -5274,18 +4739,10 @@ export function _stopPoolResizeSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -5305,9 +4762,7 @@ export function _stopPoolResizeSend(
     });
 }
 
-export async function _stopPoolResizeDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _stopPoolResizeDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -5366,18 +4821,10 @@ export function _resizePoolSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -5398,9 +4845,7 @@ export function _resizePoolSend(
     });
 }
 
-export async function _resizePoolDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _resizePoolDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -5460,11 +4905,7 @@ export function _evaluatePoolAutoScaleSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
@@ -5497,12 +4938,7 @@ export async function evaluatePoolAutoScale(
   body: BatchPoolEvaluateAutoScaleOptions,
   options: EvaluatePoolAutoScaleOptionalParams = { requestOptions: {} },
 ): Promise<AutoScaleRun> {
-  const result = await _evaluatePoolAutoScaleSend(
-    context,
-    poolId,
-    body,
-    options,
-  );
+  const result = await _evaluatePoolAutoScaleSend(context, poolId, body, options);
   return _evaluatePoolAutoScaleDeserialize(result);
 }
 
@@ -5536,18 +4972,10 @@ export function _enablePoolAutoScaleSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -5627,11 +5055,7 @@ export function _disablePoolAutoScaleSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...options.requestOptions?.headers,
       },
@@ -5691,18 +5115,10 @@ export function _updatePoolSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -5723,9 +5139,7 @@ export function _updatePoolSend(
     });
 }
 
-export async function _updatePoolDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _updatePoolDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -5789,18 +5203,10 @@ export function _getPoolSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -5821,9 +5227,7 @@ export function _getPoolSend(
     });
 }
 
-export async function _getPoolDeserialize(
-  result: PathUncheckedResponse,
-): Promise<BatchPool> {
+export async function _getPoolDeserialize(result: PathUncheckedResponse): Promise<BatchPool> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -5872,18 +5276,10 @@ export function _poolExistsSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -5903,9 +5299,7 @@ export function _poolExistsSend(
     });
 }
 
-export async function _poolExistsDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _poolExistsDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["404", "200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -5954,18 +5348,10 @@ export function _deletePoolSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
-        ...(options?.ifMatch !== undefined
-          ? { "if-match": options?.ifMatch }
-          : {}),
-        ...(options?.ifNoneMatch !== undefined
-          ? { "if-none-match": options?.ifNoneMatch }
-          : {}),
+        ...(options?.ifMatch !== undefined ? { "if-match": options?.ifMatch } : {}),
+        ...(options?.ifNoneMatch !== undefined ? { "if-none-match": options?.ifNoneMatch } : {}),
         ...(options?.ifModifiedSince !== undefined
           ? {
               "if-modified-since": !options?.ifModifiedSince
@@ -5985,9 +5371,7 @@ export function _deletePoolSend(
     });
 }
 
-export async function _deletePoolDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _deletePoolDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -6053,11 +5437,7 @@ export function _listPoolsSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...(options?.clientRequestId !== undefined
           ? { "client-request-id": options?.clientRequestId }
@@ -6126,11 +5506,7 @@ export function _createPoolSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...options.requestOptions?.headers,
       },
@@ -6138,9 +5514,7 @@ export function _createPoolSend(
     });
 }
 
-export async function _createPoolDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _createPoolDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -6175,12 +5549,8 @@ export function _listPoolUsageMetricsSend(
       "api%2Dversion": context.apiVersion,
       maxresults: options?.maxresults,
       timeOut: options?.timeOutInSeconds,
-      starttime: !options?.starttime
-        ? options?.starttime
-        : options?.starttime.toISOString(),
-      endtime: !options?.endtime
-        ? options?.endtime
-        : options?.endtime.toISOString(),
+      starttime: !options?.starttime ? options?.starttime : options?.starttime.toISOString(),
+      endtime: !options?.endtime ? options?.endtime : options?.endtime.toISOString(),
       "%24filter": options?.filter,
     },
     {
@@ -6193,11 +5563,7 @@ export function _listPoolUsageMetricsSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...(options?.clientRequestId !== undefined
           ? { "client-request-id": options?.clientRequestId }
@@ -6273,11 +5639,7 @@ export function _getApplicationSend(
           ? { "return-client-request-id": options?.returnClientRequestId }
           : {}),
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         accept: "application/json",
         ...options.requestOptions?.headers,
@@ -6335,11 +5697,7 @@ export function _listApplicationsSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.ocpDate !== undefined
-          ? {
-              "ocp-date": !options?.ocpDate
-                ? options?.ocpDate
-                : options?.ocpDate.toUTCString(),
-            }
+          ? { "ocp-date": !options?.ocpDate ? options?.ocpDate : options?.ocpDate.toUTCString() }
           : {}),
         ...(options?.clientRequestId !== undefined
           ? { "client-request-id": options?.clientRequestId }

@@ -6,12 +6,7 @@ import {
   LoadTestAdministrationContext,
   LoadTestAdministrationClientOptionalParams,
 } from "./api/index.js";
-import {
-  Test,
-  TestFileInfo,
-  TestAppComponents,
-  TestServerMetricConfig,
-} from "../models/models.js";
+import { Test, TestFileInfo, TestAppComponents, TestServerMetricConfig } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../static-helpers/pagingHelpers.js";
 import {
   deleteTest,
@@ -126,10 +121,7 @@ export class LoadTestAdministrationClient {
   }
 
   /** Get load test details by test Id */
-  getTest(
-    testId: string,
-    options: GetTestOptionalParams = { requestOptions: {} },
-  ): Promise<Test> {
+  getTest(testId: string, options: GetTestOptionalParams = { requestOptions: {} }): Promise<Test> {
     return getTest(this._client, testId, options);
   }
 
@@ -153,16 +145,9 @@ export class LoadTestAdministrationClient {
   createOrUpdateServerMetricsConfig(
     testId: string,
     body: TestServerMetricConfig,
-    options: CreateOrUpdateServerMetricsConfigOptionalParams = {
-      requestOptions: {},
-    },
+    options: CreateOrUpdateServerMetricsConfigOptionalParams = { requestOptions: {} },
   ): Promise<TestServerMetricConfig> {
-    return createOrUpdateServerMetricsConfig(
-      this._client,
-      testId,
-      body,
-      options,
-    );
+    return createOrUpdateServerMetricsConfig(this._client, testId, body, options);
   }
 
   /** Add an app component to a test by providing the resource Id, name and type. */

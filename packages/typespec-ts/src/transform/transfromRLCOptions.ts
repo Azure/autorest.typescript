@@ -74,6 +74,7 @@ function extractRLCOptions(
   const productDocLink = emitterOptions["product-doc-link"];
   const isModularLibrary = emitterOptions["is-modular-library"];
   const compatibilityMode = emitterOptions["compatibility-mode"];
+  const compatibilityLro = emitterOptions["compatibility-lro"];
   const experimentalExtensibleEnums =
     emitterOptions["experimental-extensible-enums"];
   const ignorePropertyNameNormalize =
@@ -110,6 +111,7 @@ function extractRLCOptions(
     productDocLink,
     isModularLibrary,
     compatibilityMode,
+    compatibilityLro,
     experimentalExtensibleEnums,
     ignorePropertyNameNormalize,
     compatibilityQueryMultiFormat,

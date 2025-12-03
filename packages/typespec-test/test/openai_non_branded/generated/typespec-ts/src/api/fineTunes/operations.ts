@@ -45,16 +45,11 @@ export function _cancelSend(
     .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _cancelDeserialize(
-  result: PathUncheckedResponse,
-): Promise<FineTune> {
+export async function _cancelDeserialize(result: PathUncheckedResponse): Promise<FineTune> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -93,10 +88,7 @@ export function _listEventsSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -140,16 +132,11 @@ export function _retrieveSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _retrieveDeserialize(
-  result: PathUncheckedResponse,
-): Promise<FineTune> {
+export async function _retrieveDeserialize(result: PathUncheckedResponse): Promise<FineTune> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -177,10 +164,7 @@ export function _listSend(
     .path("/fine-tunes")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -215,17 +199,12 @@ export function _createSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: createFineTuneRequestSerializer(fineTune),
     });
 }
 
-export async function _createDeserialize(
-  result: PathUncheckedResponse,
-): Promise<FineTune> {
+export async function _createDeserialize(result: PathUncheckedResponse): Promise<FineTune> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);

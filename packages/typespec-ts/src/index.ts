@@ -17,6 +17,7 @@ import {
   PagingHelpers,
   PollingHelpers,
   SerializationHelpers,
+  SimplePollerHelpers,
   UrlTemplateHelpers
 } from "./modular/static-helpers-metadata.js";
 import {
@@ -131,6 +132,7 @@ export async function $onEmit(context: EmitContext) {
       ...SerializationHelpers,
       ...PagingHelpers,
       ...PollingHelpers,
+      ...SimplePollerHelpers,
       ...UrlTemplateHelpers,
       ...MultipartHelpers,
       ...CloudSettingHelpers

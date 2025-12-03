@@ -4,24 +4,20 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface MultivariateDetectMultivariateLastAnomalyOptionalParams
-  extends OperationOptions {}
+export interface MultivariateDetectMultivariateLastAnomalyOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface MultivariateDetectMultivariateBatchAnomalyOptionalParams
   extends OperationOptions {}
 
 /** Optional parameters. */
-export interface MultivariateGetMultivariateModelOptionalParams
-  extends OperationOptions {}
+export interface MultivariateGetMultivariateModelOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface MultivariateDeleteMultivariateModelOptionalParams
-  extends OperationOptions {}
+export interface MultivariateDeleteMultivariateModelOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface MultivariateListMultivariateModelsOptionalParams
-  extends OperationOptions {
+export interface MultivariateListMultivariateModelsOptionalParams extends OperationOptions {
   /** Skip indicates how many models will be skipped. */
   skip?: number;
   /** Top indicates how many models will be fetched. */
@@ -29,8 +25,7 @@ export interface MultivariateListMultivariateModelsOptionalParams
 }
 
 /** Optional parameters. */
-export interface MultivariateTrainMultivariateModelOptionalParams
-  extends OperationOptions {}
+export interface MultivariateTrainMultivariateModelOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface MultivariateGetMultivariateBatchDetectionResultOptionalParams

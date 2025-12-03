@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  FileContents,
-  createFilePartDescriptor,
-} from "../static-helpers/multipartHelpers.js";
+import { FileContents, createFilePartDescriptor } from "../static-helpers/multipartHelpers.js";
 import { serializeRecord } from "../static-helpers/serialization/serialize-record.js";
 import { stringToUint8Array } from "@azure/core-util";
 
@@ -132,14 +129,10 @@ export interface CreateCompletionRequest {
   best_of?: number | null;
 }
 
-export function createCompletionRequestSerializer(
-  item: CreateCompletionRequest,
-): any {
+export function createCompletionRequestSerializer(item: CreateCompletionRequest): any {
   return {
     model: item["model"],
-    prompt: !item["prompt"]
-      ? item["prompt"]
-      : _promptSerializer(item["prompt"]),
+    prompt: !item["prompt"] ? item["prompt"] : _promptSerializer(item["prompt"]),
     suffix: item["suffix"],
     temperature: item["temperature"],
     top_p: item["top_p"],
@@ -203,18 +196,14 @@ export interface CreateCompletionResponse {
   usage?: CompletionUsage;
 }
 
-export function createCompletionResponseDeserializer(
-  item: any,
-): CreateCompletionResponse {
+export function createCompletionResponseDeserializer(item: any): CreateCompletionResponse {
   return {
     id: item["id"],
     object: item["object"],
     created: new Date(item["created"] * 1000),
     model: item["model"],
     choices: _createCompletionResponseChoiceArrayDeserializer(item["choices"]),
-    usage: !item["usage"]
-      ? item["usage"]
-      : completionUsageDeserializer(item["usage"]),
+    usage: !item["usage"] ? item["usage"] : completionUsageDeserializer(item["usage"]),
   };
 }
 
@@ -278,7 +267,7 @@ export function _createCompletionResponseChoiceLogprobs1Deserializer(
       return p;
     }),
     top_logprobs: item["top_logprobs"].map((p: any) => {
-      return p;
+      return Object.fromEntries(Object.entries(p).map(([k, p]: [string, any]) => [k, p]));
     }),
     text_offset: item["text_offset"].map((p: any) => {
       return p;
@@ -419,9 +408,7 @@ export interface _CreateEditResponseChoice {
   finish_reason: "stop" | "length";
 }
 
-export function _createEditResponseChoiceDeserializer(
-  item: any,
-): _CreateEditResponseChoice {
+export function _createEditResponseChoiceDeserializer(item: any): _CreateEditResponseChoice {
   return {
     text: item["text"],
     index: item["index"],
@@ -444,9 +431,7 @@ export interface CreateEmbeddingRequest {
   user?: string;
 }
 
-export function createEmbeddingRequestSerializer(
-  item: CreateEmbeddingRequest,
-): any {
+export function createEmbeddingRequestSerializer(item: CreateEmbeddingRequest): any {
   return {
     model: item["model"],
     input: _createEmbeddingRequestInputSerializer(item["input"]),
@@ -455,15 +440,9 @@ export function createEmbeddingRequestSerializer(
 }
 
 /** Alias for _CreateEmbeddingRequestInput */
-export type _CreateEmbeddingRequestInput =
-  | string
-  | string[]
-  | number[]
-  | number[][];
+export type _CreateEmbeddingRequestInput = string | string[] | number[] | number[][];
 
-export function _createEmbeddingRequestInputSerializer(
-  item: _CreateEmbeddingRequestInput,
-): any {
+export function _createEmbeddingRequestInputSerializer(item: _CreateEmbeddingRequestInput): any {
   return item;
 }
 
@@ -482,9 +461,7 @@ export interface CreateEmbeddingResponse {
   };
 }
 
-export function createEmbeddingResponseDeserializer(
-  item: any,
-): CreateEmbeddingResponse {
+export function createEmbeddingResponseDeserializer(item: any): CreateEmbeddingResponse {
   return {
     object: item["object"],
     model: item["model"],
@@ -576,13 +553,7 @@ export interface OpenAIFile {
    * The current status of the file, which can be either `uploaded`, `processed`, `pending`,
    * `error`, `deleting` or `deleted`.
    */
-  status:
-    | "uploaded"
-    | "processed"
-    | "pending"
-    | "error"
-    | "deleting"
-    | "deleted";
+  status: "uploaded" | "processed" | "pending" | "error" | "deleting" | "deleted";
   /**
    * Additional details about the status of the file. If the file is in the `error` state, this will
    * include a message describing the error.
@@ -610,9 +581,7 @@ export interface CreateFileRequest {
    *
    * If the `purpose` is set to "fine-tune", the file will be used for fine-tuning.
    */
-  file:
-    | FileContents
-    | { contents: FileContents; contentType?: string; filename?: string };
+  file: FileContents | { contents: FileContents; contentType?: string; filename?: string };
   /**
    * The intended purpose of the uploaded documents. Use "fine-tune" for
    * [fine-tuning](/docs/api-reference/fine-tuning). This allows us to validate the format of the
@@ -754,9 +723,7 @@ export interface CreateFineTuneRequest {
   suffix?: string | null;
 }
 
-export function createFineTuneRequestSerializer(
-  item: CreateFineTuneRequest,
-): any {
+export function createFineTuneRequestSerializer(item: CreateFineTuneRequest): any {
   return {
     training_file: item["training_file"],
     validation_file: item["validation_file"],
@@ -835,9 +802,7 @@ export function fineTuneDeserializer(item: any): FineTune {
     training_files: openAIFileArrayDeserializer(item["training_files"]),
     validation_files: openAIFileArrayDeserializer(item["validation_files"]),
     result_files: openAIFileArrayDeserializer(item["result_files"]),
-    events: !item["events"]
-      ? item["events"]
-      : fineTuneEventArrayDeserializer(item["events"]),
+    events: !item["events"] ? item["events"] : fineTuneEventArrayDeserializer(item["events"]),
   };
 }
 
@@ -865,9 +830,7 @@ export interface _FineTuneHyperparams {
   classification_n_classes?: number;
 }
 
-export function _fineTuneHyperparamsDeserializer(
-  item: any,
-): _FineTuneHyperparams {
+export function _fineTuneHyperparamsDeserializer(item: any): _FineTuneHyperparams {
   return {
     n_epochs: item["n_epochs"],
     batch_size: item["batch_size"],
@@ -879,9 +842,7 @@ export function _fineTuneHyperparamsDeserializer(
   };
 }
 
-export function fineTuneEventArrayDeserializer(
-  result: Array<FineTuneEvent>,
-): any[] {
+export function fineTuneEventArrayDeserializer(result: Array<FineTuneEvent>): any[] {
   return result.map((item) => {
     return fineTuneEventDeserializer(item);
   });
@@ -910,9 +871,7 @@ export interface ListFineTunesResponse {
   data: FineTune[];
 }
 
-export function listFineTunesResponseDeserializer(
-  item: any,
-): ListFineTunesResponse {
+export function listFineTunesResponseDeserializer(item: any): ListFineTunesResponse {
   return {
     object: item["object"],
     data: fineTuneArrayDeserializer(item["data"]),
@@ -931,9 +890,7 @@ export interface ListFineTuneEventsResponse {
   data: FineTuneEvent[];
 }
 
-export function listFineTuneEventsResponseDeserializer(
-  item: any,
-): ListFineTuneEventsResponse {
+export function listFineTuneEventsResponseDeserializer(item: any): ListFineTuneEventsResponse {
   return {
     object: item["object"],
     data: fineTuneEventArrayDeserializer(item["data"]),
@@ -987,9 +944,7 @@ export interface DeleteModelResponse {
   deleted: boolean;
 }
 
-export function deleteModelResponseDeserializer(
-  item: any,
-): DeleteModelResponse {
+export function deleteModelResponseDeserializer(item: any): DeleteModelResponse {
   return {
     id: item["id"],
     object: item["object"],
@@ -1005,17 +960,13 @@ export interface CreateImageEditRequest {
    * The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not
    * provided, image must have transparency, which will be used as the mask.
    */
-  image:
-    | FileContents
-    | { contents: FileContents; contentType?: string; filename?: string };
+  image: FileContents | { contents: FileContents; contentType?: string; filename?: string };
   /**
    * An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where
    * `image` should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions
    * as `image`.
    */
-  mask?:
-    | FileContents
-    | { contents: FileContents; contentType?: string; filename?: string };
+  mask?: FileContents | { contents: FileContents; contentType?: string; filename?: string };
   /** The number of images to generate. Must be between 1 and 10. */
   n?: number | null;
   /** The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. */
@@ -1025,35 +976,19 @@ export interface CreateImageEditRequest {
   user?: string;
 }
 
-export function createImageEditRequestSerializer(
-  item: CreateImageEditRequest,
-): any {
+export function createImageEditRequestSerializer(item: CreateImageEditRequest): any {
   return [
     { name: "prompt", body: item["prompt"] },
-    createFilePartDescriptor(
-      "image",
-      item["image"],
-      "application/octet-stream",
-    ),
+    createFilePartDescriptor("image", item["image"], "application/octet-stream"),
     ...(item["mask"] === undefined
       ? []
-      : [
-          createFilePartDescriptor(
-            "mask",
-            item["mask"],
-            "application/octet-stream",
-          ),
-        ]),
+      : [createFilePartDescriptor("mask", item["mask"], "application/octet-stream")]),
     ...(item["n"] === undefined ? [] : [{ name: "n", body: item["n"] }]),
-    ...(item["size"] === undefined
-      ? []
-      : [{ name: "size", body: item["size"] }]),
+    ...(item["size"] === undefined ? [] : [{ name: "size", body: item["size"] }]),
     ...(item["response_format"] === undefined
       ? []
       : [{ name: "response_format", body: item["response_format"] }]),
-    ...(item["user"] === undefined
-      ? []
-      : [{ name: "user", body: item["user"] }]),
+    ...(item["user"] === undefined ? [] : [{ name: "user", body: item["user"] }]),
   ];
 }
 
@@ -1101,9 +1036,7 @@ export interface CreateImageVariationRequest {
    * The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB,
    * and square.
    */
-  image:
-    | FileContents
-    | { contents: FileContents; contentType?: string; filename?: string };
+  image: FileContents | { contents: FileContents; contentType?: string; filename?: string };
   /** The number of images to generate. Must be between 1 and 10. */
   n?: number | null;
   /** The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. */
@@ -1113,25 +1046,15 @@ export interface CreateImageVariationRequest {
   user?: string;
 }
 
-export function createImageVariationRequestSerializer(
-  item: CreateImageVariationRequest,
-): any {
+export function createImageVariationRequestSerializer(item: CreateImageVariationRequest): any {
   return [
-    createFilePartDescriptor(
-      "image",
-      item["image"],
-      "application/octet-stream",
-    ),
+    createFilePartDescriptor("image", item["image"], "application/octet-stream"),
     ...(item["n"] === undefined ? [] : [{ name: "n", body: item["n"] }]),
-    ...(item["size"] === undefined
-      ? []
-      : [{ name: "size", body: item["size"] }]),
+    ...(item["size"] === undefined ? [] : [{ name: "size", body: item["size"] }]),
     ...(item["response_format"] === undefined
       ? []
       : [{ name: "response_format", body: item["response_format"] }]),
-    ...(item["user"] === undefined
-      ? []
-      : [{ name: "user", body: item["user"] }]),
+    ...(item["user"] === undefined ? [] : [{ name: "user", body: item["user"] }]),
   ];
 }
 
@@ -1149,21 +1072,14 @@ export interface CreateModerationRequest {
   model?: "text-moderation-latest" | "text-moderation-stable";
 }
 
-export function createModerationRequestSerializer(
-  item: CreateModerationRequest,
-): any {
-  return {
-    input: _createModerationRequestInputSerializer(item["input"]),
-    model: item["model"],
-  };
+export function createModerationRequestSerializer(item: CreateModerationRequest): any {
+  return { input: _createModerationRequestInputSerializer(item["input"]), model: item["model"] };
 }
 
 /** Alias for _CreateModerationRequestInput */
 export type _CreateModerationRequestInput = string | string[];
 
-export function _createModerationRequestInputSerializer(
-  item: _CreateModerationRequestInput,
-): any {
+export function _createModerationRequestInputSerializer(item: _CreateModerationRequestInput): any {
   return item;
 }
 
@@ -1205,9 +1121,7 @@ export interface CreateModerationResponse {
   }[];
 }
 
-export function createModerationResponseDeserializer(
-  item: any,
-): CreateModerationResponse {
+export function createModerationResponseDeserializer(item: any): CreateModerationResponse {
   return {
     id: item["id"],
     model: item["model"],
@@ -1262,9 +1176,7 @@ export function _createModerationResponseResultDeserializer(
 ): _CreateModerationResponseResult {
   return {
     flagged: item["flagged"],
-    categories: _createModerationResponseResultCategoriesDeserializer(
-      item["categories"],
-    ),
+    categories: _createModerationResponseResultCategoriesDeserializer(item["categories"]),
     category_scores: _createModerationResponseResultCategoryScoresDeserializer(
       item["category_scores"],
     ),
@@ -1385,9 +1297,7 @@ export interface CreateTranscriptionRequest {
    * The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4,
    * mpeg, mpga, m4a, ogg, wav, or webm.
    */
-  file:
-    | FileContents
-    | { contents: FileContents; contentType?: string; filename?: string };
+  file: FileContents | { contents: FileContents; contentType?: string; filename?: string };
   /** ID of the model to use. Only `whisper-1` is currently available. */
   model: "whisper-1";
   /**
@@ -1415,24 +1325,18 @@ export interface CreateTranscriptionRequest {
   language?: string;
 }
 
-export function createTranscriptionRequestSerializer(
-  item: CreateTranscriptionRequest,
-): any {
+export function createTranscriptionRequestSerializer(item: CreateTranscriptionRequest): any {
   return [
     createFilePartDescriptor("file", item["file"], "application/octet-stream"),
     { name: "model", body: item["model"] },
-    ...(item["prompt"] === undefined
-      ? []
-      : [{ name: "prompt", body: item["prompt"] }]),
+    ...(item["prompt"] === undefined ? [] : [{ name: "prompt", body: item["prompt"] }]),
     ...(item["response_format"] === undefined
       ? []
       : [{ name: "response_format", body: item["response_format"] }]),
     ...(item["temperature"] === undefined
       ? []
       : [{ name: "temperature", body: item["temperature"] }]),
-    ...(item["language"] === undefined
-      ? []
-      : [{ name: "language", body: item["language"] }]),
+    ...(item["language"] === undefined ? [] : [{ name: "language", body: item["language"] }]),
   ];
 }
 
@@ -1441,9 +1345,7 @@ export interface CreateTranscriptionResponse {
   text: string;
 }
 
-export function createTranscriptionResponseDeserializer(
-  item: any,
-): CreateTranscriptionResponse {
+export function createTranscriptionResponseDeserializer(item: any): CreateTranscriptionResponse {
   return {
     text: item["text"],
   };
@@ -1455,9 +1357,7 @@ export interface CreateTranslationRequest {
    * The audio file object (not file name) to translate, in one of these formats: flac, mp3, mp4,
    * mpeg, mpga, m4a, ogg, wav, or webm.
    */
-  file:
-    | FileContents
-    | { contents: FileContents; contentType?: string; filename?: string };
+  file: FileContents | { contents: FileContents; contentType?: string; filename?: string };
   /** ID of the model to use. Only `whisper-1` is currently available. */
   model: "whisper-1";
   /**
@@ -1479,15 +1379,11 @@ export interface CreateTranslationRequest {
   temperature?: number;
 }
 
-export function createTranslationRequestSerializer(
-  item: CreateTranslationRequest,
-): any {
+export function createTranslationRequestSerializer(item: CreateTranslationRequest): any {
   return [
     createFilePartDescriptor("file", item["file"], "application/octet-stream"),
     { name: "model", body: item["model"] },
-    ...(item["prompt"] === undefined
-      ? []
-      : [{ name: "prompt", body: item["prompt"] }]),
+    ...(item["prompt"] === undefined ? [] : [{ name: "prompt", body: item["prompt"] }]),
     ...(item["response_format"] === undefined
       ? []
       : [{ name: "response_format", body: item["response_format"] }]),
@@ -1502,9 +1398,7 @@ export interface CreateTranslationResponse {
   text: string;
 }
 
-export function createTranslationResponseDeserializer(
-  item: any,
-): CreateTranslationResponse {
+export function createTranslationResponseDeserializer(item: any): CreateTranslationResponse {
   return {
     text: item["text"],
   };
@@ -1612,9 +1506,7 @@ export interface CreateChatCompletionRequest {
   stream?: boolean | null;
 }
 
-export function createChatCompletionRequestSerializer(
-  item: CreateChatCompletionRequest,
-): any {
+export function createChatCompletionRequestSerializer(item: CreateChatCompletionRequest): any {
   return {
     model: item["model"],
     messages: chatCompletionRequestMessageArraySerializer(item["messages"]),
@@ -1623,9 +1515,7 @@ export function createChatCompletionRequestSerializer(
       : chatCompletionFunctionsArraySerializer(item["functions"]),
     function_call: !item["function_call"]
       ? item["function_call"]
-      : _createChatCompletionRequestFunctionCallSerializer(
-          item["function_call"],
-        ),
+      : _createChatCompletionRequestFunctionCallSerializer(item["function_call"]),
     temperature: item["temperature"],
     top_p: item["top_p"],
     n: item["n"],
@@ -1669,18 +1559,14 @@ export interface ChatCompletionRequestMessage {
   };
 }
 
-export function chatCompletionRequestMessageSerializer(
-  item: ChatCompletionRequestMessage,
-): any {
+export function chatCompletionRequestMessageSerializer(item: ChatCompletionRequestMessage): any {
   return {
     role: item["role"],
     content: item["content"],
     name: item["name"],
     function_call: !item["function_call"]
       ? item["function_call"]
-      : _chatCompletionRequestMessageFunctionCallSerializer(
-          item["function_call"],
-        ),
+      : _chatCompletionRequestMessageFunctionCallSerializer(item["function_call"]),
   };
 }
 
@@ -1732,9 +1618,7 @@ export interface ChatCompletionFunctions {
   parameters: ChatCompletionFunctionParameters;
 }
 
-export function chatCompletionFunctionsSerializer(
-  item: ChatCompletionFunctions,
-): any {
+export function chatCompletionFunctionsSerializer(item: ChatCompletionFunctions): any {
   return {
     name: item["name"],
     description: item["description"],
@@ -1797,20 +1681,14 @@ export interface CreateChatCompletionResponse {
   usage?: CompletionUsage;
 }
 
-export function createChatCompletionResponseDeserializer(
-  item: any,
-): CreateChatCompletionResponse {
+export function createChatCompletionResponseDeserializer(item: any): CreateChatCompletionResponse {
   return {
     id: item["id"],
     object: item["object"],
     created: new Date(item["created"] * 1000),
     model: item["model"],
-    choices: _createChatCompletionResponseChoiceArrayDeserializer(
-      item["choices"],
-    ),
-    usage: !item["usage"]
-      ? item["usage"]
-      : completionUsageDeserializer(item["usage"]),
+    choices: _createChatCompletionResponseChoiceArrayDeserializer(item["choices"]),
+    usage: !item["usage"] ? item["usage"] : completionUsageDeserializer(item["usage"]),
   };
 }
 
@@ -1867,9 +1745,7 @@ export function chatCompletionResponseMessageDeserializer(
     content: item["content"],
     function_call: !item["function_call"]
       ? item["function_call"]
-      : _chatCompletionResponseMessageFunctionCallDeserializer(
-          item["function_call"],
-        ),
+      : _chatCompletionResponseMessageFunctionCallDeserializer(item["function_call"]),
   };
 }
 
@@ -1938,18 +1814,14 @@ export interface CreateFineTuningJobRequest {
   suffix?: string | null;
 }
 
-export function createFineTuningJobRequestSerializer(
-  item: CreateFineTuningJobRequest,
-): any {
+export function createFineTuningJobRequestSerializer(item: CreateFineTuningJobRequest): any {
   return {
     training_file: item["training_file"],
     validation_file: item["validation_file"],
     model: item["model"],
     hyperparameters: !item["hyperparameters"]
       ? item["hyperparameters"]
-      : _createFineTuningJobRequestHyperparametersSerializer(
-          item["hyperparameters"],
-        ),
+      : _createFineTuningJobRequestHyperparametersSerializer(item["hyperparameters"]),
     suffix: item["suffix"],
   };
 }
@@ -1969,9 +1841,7 @@ export function _createFineTuningJobRequestHyperparametersSerializer(
   return {
     n_epochs: !item["n_epochs"]
       ? item["n_epochs"]
-      : _createFineTuningJobRequestHyperparametersNEpochsSerializer(
-          item["n_epochs"],
-        ),
+      : _createFineTuningJobRequestHyperparametersNEpochsSerializer(item["n_epochs"]),
   };
 }
 
@@ -2010,13 +1880,7 @@ export interface FineTuningJob {
    * The current status of the fine-tuning job, which can be either `created`, `pending`, `running`,
    * `succeeded`, `failed`, or `cancelled`.
    */
-  status:
-    | "created"
-    | "pending"
-    | "running"
-    | "succeeded"
-    | "failed"
-    | "cancelled";
+  status: "created" | "pending" | "running" | "succeeded" | "failed" | "cancelled";
   /**
    * The hyperparameters used for the fine-tuning job. See the
    * [fine-tuning guide](/docs/guides/fine-tuning) for more details.
@@ -2060,25 +1924,19 @@ export function fineTuningJobDeserializer(item: any): FineTuningJob {
     id: item["id"],
     object: item["object"],
     created_at: new Date(item["created_at"] * 1000),
-    finished_at: !item["finished_at"]
-      ? item["finished_at"]
-      : new Date(item["finished_at"] * 1000),
+    finished_at: !item["finished_at"] ? item["finished_at"] : new Date(item["finished_at"] * 1000),
     model: item["model"],
     fine_tuned_model: item["fine_tuned_model"],
     organization_id: item["organization_id"],
     status: item["status"],
-    hyperparameters: _fineTuningJobHyperparametersDeserializer(
-      item["hyperparameters"],
-    ),
+    hyperparameters: _fineTuningJobHyperparametersDeserializer(item["hyperparameters"]),
     training_file: item["training_file"],
     validation_file: item["validation_file"],
     result_files: item["result_files"].map((p: any) => {
       return p;
     }),
     trained_tokens: item["trained_tokens"],
-    error: !item["error"]
-      ? item["error"]
-      : _fineTuningJobError1Deserializer(item["error"]),
+    error: !item["error"] ? item["error"] : _fineTuningJobError1Deserializer(item["error"]),
   };
 }
 
@@ -2126,9 +1984,7 @@ export interface _FineTuningJobError1 {
   param?: string | null;
 }
 
-export function _fineTuningJobError1Deserializer(
-  item: any,
-): _FineTuningJobError1 {
+export function _fineTuningJobError1Deserializer(item: any): _FineTuningJobError1 {
   return {
     message: item["message"],
     code: item["code"],
@@ -2153,9 +2009,7 @@ export function listPaginatedFineTuningJobsResponseDeserializer(
   };
 }
 
-export function fineTuningJobArrayDeserializer(
-  result: Array<FineTuningJob>,
-): any[] {
+export function fineTuningJobArrayDeserializer(result: Array<FineTuningJob>): any[] {
   return result.map((item) => {
     return fineTuningJobDeserializer(item);
   });
@@ -2176,9 +2030,7 @@ export function listFineTuningJobEventsResponseDeserializer(
   };
 }
 
-export function fineTuningJobEventArrayDeserializer(
-  result: Array<FineTuningJobEvent>,
-): any[] {
+export function fineTuningJobEventArrayDeserializer(result: Array<FineTuningJobEvent>): any[] {
   return result.map((item) => {
     return fineTuningJobEventDeserializer(item);
   });
