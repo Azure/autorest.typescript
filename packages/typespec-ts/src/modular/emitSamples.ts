@@ -516,13 +516,21 @@ function getParameterValue(value: SdkExampleValue): string {
       for (const propName in {
         ...value.value
       }) {
+        let property;
+        if (value.type.kind === "model") {
+          property = value.type.properties.find((p) => p.name === propName);
+        }
         const propValue = value.value[propName];
         if (propValue === undefined || propValue === null) {
           continue;
         }
-        const propRetValue =
-          `"${mapper.get(propName) ?? propName}": ` +
-          getParameterValue(propValue);
+        let propRetValue;
+        const paramValue = getParameterValue(propValue);
+        if (property?.flatten) {
+          propRetValue = paramValue.slice(1, -1); // remove {}
+        } else {
+          propRetValue = `"${mapper.get(propName) ?? propName}": ` + paramValue;
+        }
         values.push(propRetValue);
       }
       const additionalBags = [];
