@@ -3,7 +3,7 @@ import { emitModularModelsFromTypeSpec } from "../util/emitUtil.js";
 import { assert } from "chai";
 
 describe("Flatten Property model", () => {
-  it.only("Flatten transitions are not supported so consecutive transitions will be ignored", async () => {
+  it("Flatten transitions are not supported so consecutive transitions will be ignored", async () => {
     try {
       await emitModularModelsFromTypeSpec(
         `
