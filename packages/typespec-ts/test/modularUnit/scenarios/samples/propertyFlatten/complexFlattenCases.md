@@ -122,7 +122,7 @@ export function bodyParameterSerializer(item: BodyParameter): any {
       : _bodyParameterProperties2Serializer(item),
     emptyFlatten: areAllPropsUndefined(item, ["description", "baz"])
       ? undefined
-      : _bodyParameterEmptyFlattenSerializer(item)
+      : _bodyParameterEmptyFlattenSerializer(item),
   };
 }
 
@@ -140,7 +140,7 @@ export function fooPropertiesSerializer(item: FooProperties): any {
     baz: aArraySerializer(item["baz"]),
     properties: areAllPropsUndefined(item, ["description", "baz"])
       ? undefined
-      : _fooPropertiesPropertiesSerializer(item)
+      : _fooPropertiesPropertiesSerializer(item),
   };
 }
 
@@ -172,7 +172,7 @@ export function childFlattenModelSerializer(item: ChildFlattenModel): any {
 /** Known values of {@link Versions} that the service accepts. */
 export enum KnownVersions {
   /** 2022-05-15-preview */
-  V20220515Preview = "2022-05-15-preview"
+  V20220515Preview = "2022-05-15-preview",
 }
 
 export function _fooPropertiesPropertiesSerializer(item: FooProperties): any {
@@ -183,9 +183,9 @@ export function _bodyParameterPropertiesSerializer(item: BodyParameter): any {
   return {
     bar: !item["bar"] ? item["bar"] : aArraySerializer(item["bar"]),
     baz: aArraySerializer(item["bazPropertiesBaz"]),
-    properties: areAllPropsUndefined(item, ["description", "baz"])
-      ? undefined
-      : _fooPropertiesPropertiesSerializer(item)
+    properties: !item["properties"]
+      ? item["properties"]
+      : childFlattenModelSerializer(item["properties"]),
   };
 }
 
@@ -196,7 +196,7 @@ export function _bodyParameterProperties2Serializer(item: BodyParameter): any {
 export function _bodyParameterEmptyFlattenSerializer(item: BodyParameter): any {
   return {
     description: item["descriptionEmptyFlattenDescription"],
-    baz: item["bazEmptyFlattenBaz"]
+    baz: item["bazEmptyFlattenBaz"],
   };
 }
 ```
@@ -224,8 +224,8 @@ async function read(): Promise<void> {
       bazPropertiesBaz: [{ x: "bbb" }],
       bar: [{ x: "xx" }],
       bazPropertiesBaz: 222,
-      bazProperties2Baz: 111
-    }
+      bazProperties2Baz: 111,
+    },
   });
 }
 
