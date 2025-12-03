@@ -70,11 +70,13 @@ export function getOperationNamespaceInterfaceName(
 export function detectModelConflicts(dpgContext: SdkContext) {
   const allModels = getAllModels(dpgContext);
   const nameSet = new Set<string>();
+  const reported = new Set<string>();
+  let hasConflict = false;
   for (const model of allModels) {
     if (model.name === "") {
       continue;
     }
-    if (nameSet.has(model.name)) {
+    if (nameSet.has(model.name) && !reported.has(model.name)) {
       reportDiagnostic(dpgContext.program, {
         code: "detected-model-name-conflict",
         format: {
@@ -86,9 +88,10 @@ export function detectModelConflicts(dpgContext: SdkContext) {
         },
         target: NoTarget
       });
-      return true;
+      reported.add(model.name);
+      hasConflict = true;
     }
     nameSet.add(model.name);
   }
-  return false;
+  return hasConflict;
 }
