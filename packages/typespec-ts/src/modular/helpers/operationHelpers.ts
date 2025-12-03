@@ -1341,8 +1341,7 @@ export function getResponseMapping(
         : "";
     const flattenContext =
       useContext("sdkTypes").flattenProperties.get(property);
-    const isSupportedFlatten =
-      flattenContext && enableFlatten;
+    const isSupportedFlatten = flattenContext && enableFlatten;
     const deserializeFunctionName = isSupportedFlatten
       ? buildPropertyDeserializer(context, property, {
           nameOnly: true,
