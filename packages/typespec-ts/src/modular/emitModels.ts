@@ -130,11 +130,12 @@ export function emitTypes(
     emitType(context, type, sourceFile);
   }
 
+  // Emit serialization/deserialization functions for flattened properties
   for (const [property, _] of flattenPropertyModelMap) {
     const namespaces = getModelNamespaces(context, property.type);
     const filepath = getModelsPath(sourceRoot, namespaces);
     sourceFile = outputProject.getSourceFile(filepath);
-    emitProperty(context, property, sourceFile!);
+    addSerializationFunctions(context, property, sourceFile!);
   }
 
   const modelFiles = outputProject.getSourceFiles(
@@ -257,18 +258,6 @@ function emitType(context: SdkContext, type: SdkType, sourceFile: SourceFile) {
     const nullableType = buildNullableType(context, type);
     addDeclaration(sourceFile, nullableType, type);
   }
-}
-
-function emitProperty(
-  context: SdkContext,
-  property: SdkModelPropertyType,
-  sourceFile: SourceFile
-) {
-  // Only need to emit serialization functions for the flatten property type
-  if (!flattenPropertyModelMap.has(property)) {
-    return undefined;
-  }
-  addSerializationFunctions(context, property, sourceFile);
 }
 
 export function getApiVersionEnum(context: SdkContext) {
@@ -512,7 +501,7 @@ function buildModelInterface(
       .filter((p) => !isMetadata(context.program, p.__raw!))
       .filter((p) => {
         // filter out the flatten property to be processed later
-        if (flattenPropertyModelMap.has(p)) {
+        if (p.flatten) {
           flattenPropertySet.add(p);
           return false;
         }
