@@ -1542,6 +1542,36 @@ export function deserializeResponseValue(
         return restValue;
       }
     }
+    case "dict": {
+      const prefix = nullOrUndefinedPrefix + restValue;
+      let elementNullOrUndefinedPrefix = "";
+      if (
+        type.valueType &&
+        (isTypeNullable(type.valueType) || getOptionalForType(type.valueType))
+      ) {
+        elementNullOrUndefinedPrefix = "!p ? p :";
+      }
+      const deserializeFunctionName = type.valueType
+        ? buildModelDeserializer(
+            context,
+            getNullableValidType(type.valueType),
+            false,
+            true
+          )
+        : undefined;
+      if (deserializeFunctionName) {
+        return `Object.fromEntries(Object.entries(${prefix}).map(([k, p]: [string, any]) => [k, ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(p)]))`;
+      } else if (
+        type.valueType &&
+        isAzureCoreErrorType(context.program, type.valueType.__raw)
+      ) {
+        return `Object.fromEntries(Object.entries(${prefix}).map(([k, p]: [string, any]) => [k, ${elementNullOrUndefinedPrefix}p]))`;
+      } else if (type.valueType) {
+        return `Object.fromEntries(Object.entries(${prefix}).map(([k, p]: [string, any]) => [k, ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, "p", getEncodeForType(type.valueType))}]))`;
+      } else {
+        return restValue;
+      }
+    }
     case "bytes":
       if (format !== "binary" && format !== "bytes") {
         return `typeof ${restValue} === 'string'
