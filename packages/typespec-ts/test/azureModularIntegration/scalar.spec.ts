@@ -114,7 +114,7 @@ describe("Scalar Client", () => {
     await client.decimalVerify.verify(total);
   });
 
-  it("should fail to post decimal128 verify", async () => {
+  it("should pass the post decimal128 verify", async () => {
     // JavaScript uses IEEE 754 floating-point, which cannot represent some decimal fractions exactly.
     // Example: 0.1 + 0.1 + 0.1 === 0.30000000000000004
     // To avoid precision errors when summing decimals, we convert to integer math (scale by 100).
