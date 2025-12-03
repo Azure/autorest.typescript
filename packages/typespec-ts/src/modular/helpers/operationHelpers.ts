@@ -1555,8 +1555,10 @@ export function deserializeResponseValue(
         ? buildModelDeserializer(
             context,
             getNullableValidType(type.valueType),
-            false,
-            true
+            {
+              nameOnly: true,
+              skipDiscriminatedUnionSuffix: false
+            }
           )
         : undefined;
       if (deserializeFunctionName) {
