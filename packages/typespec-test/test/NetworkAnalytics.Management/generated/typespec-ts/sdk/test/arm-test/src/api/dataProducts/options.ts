@@ -41,4 +41,7 @@ export interface DataProductsUpdateOptionalParams extends OperationOptions {
 export interface DataProductsGetOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface DataProductsCreateOptionalParams extends OperationOptions {}
+export interface DataProductsCreateOptionalParams extends OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+}
