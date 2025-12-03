@@ -33,6 +33,7 @@ export interface SdkTypeContext {
 export interface SdkFlattenPropertyContext {
   baseModel: SdkModelType;
   conflictMap?: Map<SdkModelPropertyType, string>;
+  isMultiLevelFlatten?: boolean;
 }
 
 export function useSdkTypes() {
@@ -177,9 +178,10 @@ function enrichFlattenProperties(
     }
   });
   for (const [flattenProperty, baseModel] of propertyModelMap) {
-    propertyContextMap.set(flattenProperty, {
+    const flattenContext: SdkFlattenPropertyContext = {
       baseModel: baseModel
-    });
+    };
+    propertyContextMap.set(flattenProperty, flattenContext);
     const existingProperties = baseModelProperties.get(baseModel)!;
     const conflictMap = new Map<SdkModelPropertyType, string>();
     const flattenModel = flattenProperty.type;
@@ -190,6 +192,7 @@ function enrichFlattenProperties(
     if (baseModelProperties.has(flattenModel)) {
       // If the flatten model is also a base model of other flatten properties, which means it has multiple consecutive flatten operations
       // Since we cannot handle the flatten transition, report warning and skip it for now
+      flattenContext.isMultiLevelFlatten = true;
       reportDiagnostic(context.program, {
         code: "unsupported-flatten-transition",
         format: {
@@ -221,7 +224,7 @@ function enrichFlattenProperties(
     if (conflictMap.size === 0) {
       continue;
     }
-    propertyContextMap.get(flattenProperty)!.conflictMap = conflictMap;
+    flattenContext.conflictMap = conflictMap;
   }
 }
 
