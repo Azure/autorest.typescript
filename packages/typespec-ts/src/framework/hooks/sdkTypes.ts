@@ -33,7 +33,6 @@ export interface SdkTypeContext {
 export interface SdkFlattenPropertyContext {
   baseModel: SdkModelType;
   conflictMap?: Map<SdkModelPropertyType, string>;
-  isMultiLevelFlatten?: boolean;
 }
 
 export function useSdkTypes() {
@@ -192,7 +191,6 @@ function enrichFlattenProperties(
     if (baseModelProperties.has(flattenModel)) {
       // If the flatten model is also a base model of other flatten properties, which means it has multiple consecutive flatten operations
       // Since we cannot handle the flatten transition, report warning and skip it for now
-      flattenContext.isMultiLevelFlatten = true;
       reportDiagnostic(context.program, {
         code: "unsupported-flatten-transition",
         format: {

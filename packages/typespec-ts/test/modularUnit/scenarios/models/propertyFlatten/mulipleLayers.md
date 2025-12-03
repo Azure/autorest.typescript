@@ -56,16 +56,13 @@ export interface NestedFlattenModel {
 }
 
 export function nestedFlattenModelSerializer(item: NestedFlattenModel): any {
-  return {
-    name: item["name"],
-    properties: _nestedFlattenModelPropertiesSerializer(item)
-  };
+  return { name: item["name"], properties: _nestedFlattenModelPropertiesSerializer(item) };
 }
 
 export function nestedFlattenModelDeserializer(item: any): NestedFlattenModel {
   return {
     name: item["name"],
-    ..._nestedFlattenModelPropertiesDeserializer(item["properties"])
+    ..._nestedFlattenModelPropertiesDeserializer(item["properties"]),
   };
 }
 
@@ -77,16 +74,13 @@ export interface ChildFlattenModel {
 }
 
 export function childFlattenModelSerializer(item: ChildFlattenModel): any {
-  return {
-    summary: item["summary"],
-    properties: _childFlattenModelPropertiesSerializer(item)
-  };
+  return { summary: item["summary"], properties: _childFlattenModelPropertiesSerializer(item) };
 }
 
 export function childFlattenModelDeserializer(item: any): ChildFlattenModel {
   return {
     summary: item["summary"],
-    ..._childFlattenModelPropertiesDeserializer(item["properties"])
+    ..._childFlattenModelPropertiesDeserializer(item["properties"]),
   };
 }
 
@@ -103,42 +97,35 @@ export function childModelSerializer(item: ChildModel): any {
 export function childModelDeserializer(item: any): ChildModel {
   return {
     description: item["description"],
-    age: item["age"]
+    age: item["age"],
   };
 }
 
 /** Known values of {@link Versions} that the service accepts. */
 export enum KnownVersions {
   /** 2022-05-15-preview */
-  V20220515Preview = "2022-05-15-preview"
+  V20220515Preview = "2022-05-15-preview",
 }
 
-export function _childFlattenModelPropertiesSerializer(
-  item: ChildFlattenModel
-): any {
+export function _childFlattenModelPropertiesSerializer(item: ChildFlattenModel): any {
   return { description: item["description"], age: item["age"] };
 }
 
 export function _childFlattenModelPropertiesDeserializer(item: any) {
   return {
     description: item["description"],
-    age: item["age"]
+    age: item["age"],
   };
 }
 
-export function _nestedFlattenModelPropertiesSerializer(
-  item: NestedFlattenModel
-): any {
-  return {
-    summary: item["summary"],
-    properties: _childFlattenModelPropertiesSerializer(item)
-  };
+export function _nestedFlattenModelPropertiesSerializer(item: NestedFlattenModel): any {
+  return { summary: item["summary"], properties: childModelSerializer(item["properties"]) };
 }
 
 export function _nestedFlattenModelPropertiesDeserializer(item: any) {
   return {
     summary: item["summary"],
-    ..._childFlattenModelPropertiesDeserializer(item["properties"])
+    properties: childModelDeserializer(item["properties"]),
   };
 }
 ```

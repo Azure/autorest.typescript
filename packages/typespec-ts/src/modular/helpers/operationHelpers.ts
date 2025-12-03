@@ -1204,10 +1204,10 @@ function getSerializationExpressionForFlatten(
 export function getSerializationExpression(
   context: SdkContext,
   property: SdkModelPropertyType,
-  propertyPath: string
+  propertyPath: string,
+  enableFlatten: boolean = true
 ): string {
-  const flattenContext = useContext("sdkTypes").flattenProperties.get(property);
-  if (flattenContext && !flattenContext.isMultiLevelFlatten) {
+  if (property.flatten && enableFlatten) {
     return getSerializationExpressionForFlatten(context, property, "item");
   }
   const dot = propertyPath.endsWith("?") ? "." : "";
@@ -1251,7 +1251,8 @@ export function getRequestModelProperties(
   context: SdkContext,
   modelPropertyType: SdkModelType & { optional?: boolean },
   propertyPath: string = "body",
-  overrides?: ModelOverrideOptions
+  overrides?: ModelOverrideOptions,
+  enableFlatten: boolean = true
 ): Array<[string, string]> {
   const props: [string, string][] = [];
   const allParents = getAllAncestors(modelPropertyType);
@@ -1270,7 +1271,7 @@ export function getRequestModelProperties(
     const property = getPropertyWithOverrides(prop, overrides);
     props.push([
       getPropertySerializedName(property)!,
-      getSerializationExpression(context, property, propertyPath)
+      getSerializationExpression(context, property, propertyPath, enableFlatten)
     ]);
   }
 
@@ -1286,13 +1287,15 @@ export function getRequestModelMapping(
   context: SdkContext,
   modelPropertyType: SdkModelType & { optional?: boolean },
   propertyPath: string = "body",
-  overrides?: ModelOverrideOptions
+  overrides?: ModelOverrideOptions,
+  enableFlatten: boolean = true
 ): string[] {
   return getRequestModelProperties(
     context,
     modelPropertyType,
     propertyPath,
-    overrides
+    overrides,
+    enableFlatten
   ).map(([name, value]) => `"${name}": ${value}`);
 }
 
@@ -1314,7 +1317,8 @@ export function getResponseMapping(
   context: SdkContext,
   type: SdkType,
   propertyPath: string = "result.body",
-  overrides?: ModelOverrideOptions
+  overrides?: ModelOverrideOptions,
+  enableFlatten: boolean = true
 ) {
   const allParents = type.kind === "model" ? getAllAncestors(type) : [];
   const properties =
@@ -1338,7 +1342,7 @@ export function getResponseMapping(
     const flattenContext =
       useContext("sdkTypes").flattenProperties.get(property);
     const isSupportedFlatten =
-      flattenContext && !flattenContext.isMultiLevelFlatten;
+      flattenContext && enableFlatten;
     const deserializeFunctionName = isSupportedFlatten
       ? buildPropertyDeserializer(context, property, {
           nameOnly: true,

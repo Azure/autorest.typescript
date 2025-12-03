@@ -411,7 +411,8 @@ function buildModelTypeDeserializer(
     context,
     type,
     "item",
-    options.overrides
+    options.overrides,
+    !options.flatten
   );
   const propertiesDeserialization = propertiesStr.filter((p) => p.trim());
 

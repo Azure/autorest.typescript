@@ -479,7 +479,8 @@ function buildModelTypeSerializer(
       context,
       type,
       "item",
-      options.overrides
+      options.overrides,
+      !options.flatten
     );
 
     if (additionalPropertiesSpread) {
