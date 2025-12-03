@@ -6,9 +6,8 @@ namespace Microsoft.NetworkAnalytics;
 
 // optional properties
 #suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "@flattenProperty decorator is not recommended to use."
-@@Azure.ClientGenerator.Core.Legacy.flattenProperty(DataProductOptional.properties
-);
+@@Azure.ClientGenerator.Core.Legacy.flattenProperty(DataProduct.properties);
 
 // required properties
-@@Azure.ClientGenerator.Core.Legacy.flattenProperty(DataProductNetworkAclsRequired.properties
-);
+// @@Azure.ClientGenerator.Core.Legacy.flattenProperty(DataProductNetworkAcls.properties
+// );

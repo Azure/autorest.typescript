@@ -4,11 +4,11 @@
 import { NetworkAnalyticsApiContext as Client } from "../index.js";
 import {
   errorResponseDeserializer,
-  DataProductOptional,
-  dataProductOptionalSerializer,
-  dataProductOptionalDeserializer,
-  DataProductOptionalUpdate,
-  dataProductOptionalUpdateSerializer,
+  DataProduct,
+  dataProductSerializer,
+  dataProductDeserializer,
+  DataProductUpdate,
+  dataProductUpdateSerializer,
   AccountSas,
   accountSasSerializer,
   AccountSasToken,
@@ -23,8 +23,8 @@ import {
   _listRolesAssignmentsRequestSerializer,
   ListRoleAssignments,
   listRoleAssignmentsDeserializer,
-  _DataProductOptionalListResult,
-  _dataProductOptionalListResultDeserializer,
+  _DataProductListResult,
+  _dataProductListResultDeserializer,
 } from "../../models/models.js";
 import {
   PagedAsyncIterableIterator,
@@ -77,7 +77,7 @@ export function _listBySubscriptionSend(
 
 export async function _listBySubscriptionDeserialize(
   result: PathUncheckedResponse,
-): Promise<_DataProductOptionalListResult> {
+): Promise<_DataProductListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -85,14 +85,14 @@ export async function _listBySubscriptionDeserialize(
     throw error;
   }
 
-  return _dataProductOptionalListResultDeserializer(result.body);
+  return _dataProductListResultDeserializer(result.body);
 }
 
 /** List data products by subscription. */
 export function listBySubscription(
   context: Client,
   options: DataProductsListBySubscriptionOptionalParams = { requestOptions: {} },
-): PagedAsyncIterableIterator<DataProductOptional> {
+): PagedAsyncIterableIterator<DataProduct> {
   return buildPagedAsyncIterator(
     context,
     () => _listBySubscriptionSend(context, options),
@@ -128,7 +128,7 @@ export function _listByResourceGroupSend(
 
 export async function _listByResourceGroupDeserialize(
   result: PathUncheckedResponse,
-): Promise<_DataProductOptionalListResult> {
+): Promise<_DataProductListResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -136,7 +136,7 @@ export async function _listByResourceGroupDeserialize(
     throw error;
   }
 
-  return _dataProductOptionalListResultDeserializer(result.body);
+  return _dataProductListResultDeserializer(result.body);
 }
 
 /** List data products by resource group. */
@@ -144,7 +144,7 @@ export function listByResourceGroup(
   context: Client,
   resourceGroupName: string,
   options: DataProductsListByResourceGroupOptionalParams = { requestOptions: {} },
-): PagedAsyncIterableIterator<DataProductOptional> {
+): PagedAsyncIterableIterator<DataProduct> {
   return buildPagedAsyncIterator(
     context,
     () => _listByResourceGroupSend(context, resourceGroupName, options),
@@ -492,7 +492,7 @@ export function _updateSend(
   context: Client,
   resourceGroupName: string,
   dataProductName: string,
-  properties: DataProductOptionalUpdate,
+  properties: DataProductUpdate,
   options: DataProductsUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -513,13 +513,11 @@ export function _updateSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
       headers: { accept: "application/json", ...options.requestOptions?.headers },
-      body: dataProductOptionalUpdateSerializer(properties),
+      body: dataProductUpdateSerializer(properties),
     });
 }
 
-export async function _updateDeserialize(
-  result: PathUncheckedResponse,
-): Promise<DataProductOptional> {
+export async function _updateDeserialize(result: PathUncheckedResponse): Promise<DataProduct> {
   const expectedStatuses = ["200", "202", "201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -527,7 +525,7 @@ export async function _updateDeserialize(
     throw error;
   }
 
-  return dataProductOptionalDeserializer(result.body);
+  return dataProductDeserializer(result.body);
 }
 
 /** Update data product resource. */
@@ -535,16 +533,16 @@ export function update(
   context: Client,
   resourceGroupName: string,
   dataProductName: string,
-  properties: DataProductOptionalUpdate,
+  properties: DataProductUpdate,
   options: DataProductsUpdateOptionalParams = { requestOptions: {} },
-): PollerLike<OperationState<DataProductOptional>, DataProductOptional> {
+): PollerLike<OperationState<DataProduct>, DataProduct> {
   return getLongRunningPoller(context, _updateDeserialize, ["200", "202", "201"], {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () =>
       _updateSend(context, resourceGroupName, dataProductName, properties, options),
     resourceLocationConfig: "location",
-  }) as PollerLike<OperationState<DataProductOptional>, DataProductOptional>;
+  }) as PollerLike<OperationState<DataProduct>, DataProduct>;
 }
 
 export function _getSend(
@@ -573,7 +571,7 @@ export function _getSend(
     });
 }
 
-export async function _getDeserialize(result: PathUncheckedResponse): Promise<DataProductOptional> {
+export async function _getDeserialize(result: PathUncheckedResponse): Promise<DataProduct> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -581,7 +579,7 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<Da
     throw error;
   }
 
-  return dataProductOptionalDeserializer(result.body);
+  return dataProductDeserializer(result.body);
 }
 
 /** Retrieve data product resource. */
@@ -590,7 +588,7 @@ export async function get(
   resourceGroupName: string,
   dataProductName: string,
   options: DataProductsGetOptionalParams = { requestOptions: {} },
-): Promise<DataProductOptional> {
+): Promise<DataProduct> {
   const result = await _getSend(context, resourceGroupName, dataProductName, options);
   return _getDeserialize(result);
 }
@@ -599,7 +597,7 @@ export function _createSend(
   context: Client,
   resourceGroupName: string,
   dataProductName: string,
-  resource: DataProductOptional,
+  resource: DataProduct,
   options: DataProductsCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -620,31 +618,34 @@ export function _createSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
       headers: { accept: "application/json", ...options.requestOptions?.headers },
-      body: dataProductOptionalSerializer(resource),
+      body: dataProductSerializer(resource),
     });
 }
 
-export async function _createDeserialize(
-  result: PathUncheckedResponse,
-): Promise<DataProductOptional> {
-  const expectedStatuses = ["200", "201"];
+export async function _createDeserialize(result: PathUncheckedResponse): Promise<DataProduct> {
+  const expectedStatuses = ["200", "201", "202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
     error.details = errorResponseDeserializer(result.body);
     throw error;
   }
 
-  return dataProductOptionalDeserializer(result.body);
+  return dataProductDeserializer(result.body);
 }
 
 /** Create data product resource. */
-export async function create(
+export function create(
   context: Client,
   resourceGroupName: string,
   dataProductName: string,
-  resource: DataProductOptional,
+  resource: DataProduct,
   options: DataProductsCreateOptionalParams = { requestOptions: {} },
-): Promise<DataProductOptional> {
-  const result = await _createSend(context, resourceGroupName, dataProductName, resource, options);
-  return _createDeserialize(result);
+): PollerLike<OperationState<DataProduct>, DataProduct> {
+  return getLongRunningPoller(context, _createDeserialize, ["200", "201", "202"], {
+    updateIntervalInMs: options?.updateIntervalInMs,
+    abortSignal: options?.abortSignal,
+    getInitialResponse: () =>
+      _createSend(context, resourceGroupName, dataProductName, resource, options),
+    resourceLocationConfig: "azure-async-operation",
+  }) as PollerLike<OperationState<DataProduct>, DataProduct>;
 }
