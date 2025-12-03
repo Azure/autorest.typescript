@@ -47,10 +47,7 @@ import { refkey } from "../../framework/refkey.js";
 import { reportDiagnostic } from "../../lib.js";
 import { resolveReference } from "../../framework/reference.js";
 import { useDependencies } from "../../framework/hooks/useDependencies.js";
-import {
-  flattenProperties,
-  useSdkTypes
-} from "../../framework/hooks/sdkTypes.js";
+import { useSdkTypes } from "../../framework/hooks/sdkTypes.js";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
 import {
   getTypeExpression,
@@ -1208,7 +1205,7 @@ export function getSerializationExpression(
   property: SdkModelPropertyType,
   propertyPath: string
 ): string {
-  if (flattenProperties.get(property)) {
+  if (property.flatten === true) {
     return getSerializationExpressionForFlatten(context, property, "item");
   }
   const dot = propertyPath.endsWith("?") ? "." : "";
@@ -1336,18 +1333,19 @@ export function getResponseMapping(
       property.optional || isTypeNullable(property.type)
         ? `!${restValue}? ${restValue}: `
         : "";
-    const deserializeFunctionName = flattenProperties.has(property)
-      ? buildPropertyDeserializer(context, property, {
-          nameOnly: true,
-          skipDiscriminatedUnionSuffix: false
-        })
-      : buildModelDeserializer(context, getNullableValidType(property.type), {
-          nameOnly: true,
-          skipDiscriminatedUnionSuffix: false
-        });
+    const deserializeFunctionName =
+      property.flatten === true
+        ? buildPropertyDeserializer(context, property, {
+            nameOnly: true,
+            skipDiscriminatedUnionSuffix: false
+          })
+        : buildModelDeserializer(context, getNullableValidType(property.type), {
+            nameOnly: true,
+            skipDiscriminatedUnionSuffix: false
+          });
     const propertyName = normalizeModelPropertyName(context, property);
     if (deserializeFunctionName) {
-      if (flattenProperties.has(property)) {
+      if (property.flatten === true) {
         props.push(
           `...${nullOrUndefinedPrefix}${deserializeFunctionName}(${restValue})`
         );
