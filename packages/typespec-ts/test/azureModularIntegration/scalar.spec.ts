@@ -97,7 +97,7 @@ describe("Scalar Client", () => {
     assert.isUndefined(result);
   });
 
-  it("should fail to post decimal verify", async () => {
+  it("should pass the post decimal verify", async () => {
     // JavaScript uses IEEE 754 floating-point, which cannot represent some decimal fractions exactly.
     // Example: 0.1 + 0.1 + 0.1 === 0.30000000000000004
     // To avoid precision errors when summing decimals, we convert to integer math (scale by 100).
