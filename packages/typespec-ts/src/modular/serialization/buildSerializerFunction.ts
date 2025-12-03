@@ -41,7 +41,6 @@ import {
 } from "../helpers/typeHelpers.js";
 import { reportDiagnostic } from "../../lib.js";
 import { NoTarget } from "@typespec/compiler";
-import { flattenProperties } from "../../framework/hooks/sdkTypes.js";
 import { useContext } from "../../contextManager.js";
 
 export function buildPropertySerializer(
@@ -52,26 +51,26 @@ export function buildPropertySerializer(
     skipDiscriminatedUnionSuffix: false
   }
 ) {
-  const baseModel = flattenProperties.get(property);
-  // only build serializer for flatten property
-  if (!baseModel) {
+  const propertyContext =
+    useContext("sdkTypes").flattenProperties.get(property);
+  // only build de-serializer for flatten property
+  if (property.flatten !== true || !propertyContext) {
     return undefined;
   }
   const predefinedName = `_${normalizeName(
-    `${baseModel.name}_${property.name}`,
+    `${propertyContext.baseModel.name}_${property.name}`,
     NameType.Method,
     true
   )}Serializer`;
-  const conflictMap = useContext("flattenPropertyConflictMap");
   return buildModelSerializer(context, property.type, {
     ...options,
     flatten: {
-      baseModel,
+      baseModel: propertyContext.baseModel,
       property
     },
     overrides: {
       allOptional: property.optional,
-      propertyRenames: conflictMap.get(property)
+      propertyRenames: propertyContext.conflictMap
     },
     predefinedName
   });
