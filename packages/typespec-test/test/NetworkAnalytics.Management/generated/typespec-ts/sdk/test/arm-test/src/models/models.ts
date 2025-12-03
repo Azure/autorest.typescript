@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { areAllPropsUndefined } from "../static-helpers/serialization/check-prop-undefined.js";
-
 /**
  * This file contains only generated model types and their (de)serializers.
  * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
@@ -618,72 +616,19 @@ export function dataTypeArrayDeserializer(result: Array<DataType>): any[] {
 
 /** The data product resource. */
 export interface DataProduct extends TrackedResource {
+  /** The resource-specific properties for this resource. */
+  properties?: DataProductProperties;
   /** The managed service identities assigned to this resource. */
   identity?: ManagedServiceIdentityV4;
-  /** The resource GUID property of the data product resource. */
-  readonly resourceGuid?: string;
-  /** Latest provisioning state  of data product. */
-  readonly provisioningState?: ProvisioningState;
-  /** Data product publisher name. */
-  publisher?: string;
-  /** Product name of data product. */
-  product?: string;
-  /** Major version of data product. */
-  majorVersion?: string;
-  /** List of name or email associated with data product resource deployment. */
-  owners?: string[];
-  /** Flag to enable or disable redundancy for data product. */
-  redundancy?: ControlState;
-  /** Purview account url for data product to connect to. */
-  purviewAccount?: string;
-  /** Purview collection url for data product to connect to. */
-  purviewCollection?: string;
-  /** Flag to enable or disable private link for data product resource. */
-  privateLinksEnabled?: ControlState;
-  /** Flag to enable or disable public access of data product resource. */
-  publicNetworkAccess?: ControlState;
-  /** Flag to enable customer managed key encryption for data product. */
-  customerManagedKeyEncryptionEnabled?: ControlState;
-  /** Customer managed encryption key details for data product. */
-  customerEncryptionKey?: EncryptionKeyDetails;
-  /** Network rule set for data product. */
-  networkacls?: DataProductNetworkAcls;
-  /** Managed resource group configuration. */
-  managedResourceGroupConfiguration?: ManagedResourceGroupConfiguration;
-  /** List of available minor versions of the data product resource. */
-  readonly availableMinorVersions?: string[];
-  /** Current configured minor version of the data product resource. */
-  currentMinorVersion?: string;
-  /** Documentation link for the data product based on definition file. */
-  readonly documentation?: string;
-  /** Resource links which exposed to the customer to query the data. */
-  readonly consumptionEndpoints?: ConsumptionEndpointsProperties;
-  /** Key vault url. */
-  readonly keyVaultUrl?: string;
 }
 
 export function dataProductSerializer(item: DataProduct): any {
   return {
     tags: item["tags"],
     location: item["location"],
-    properties: areAllPropsUndefined(item, [
-      "publisher",
-      "product",
-      "majorVersion",
-      "owners",
-      "redundancy",
-      "purviewAccount",
-      "purviewCollection",
-      "privateLinksEnabled",
-      "publicNetworkAccess",
-      "customerManagedKeyEncryptionEnabled",
-      "customerEncryptionKey",
-      "networkacls",
-      "managedResourceGroupConfiguration",
-      "currentMinorVersion",
-    ])
-      ? undefined
-      : _dataProductPropertiesSerializer(item),
+    properties: !item["properties"]
+      ? item["properties"]
+      : dataProductPropertiesSerializer(item["properties"]),
     identity: !item["identity"]
       ? item["identity"]
       : managedServiceIdentityV4Serializer(item["identity"]),
@@ -702,9 +647,9 @@ export function dataProductDeserializer(item: any): DataProduct {
     systemData: !item["systemData"]
       ? item["systemData"]
       : systemDataDeserializer(item["systemData"]),
-    ...(!item["properties"]
+    properties: !item["properties"]
       ? item["properties"]
-      : _dataProductPropertiesDeserializer(item["properties"])),
+      : dataProductPropertiesDeserializer(item["properties"]),
     identity: !item["identity"]
       ? item["identity"]
       : managedServiceIdentityV4Deserializer(item["identity"]),
@@ -1414,74 +1359,4 @@ export function dataProductArrayDeserializer(result: Array<DataProduct>): any[] 
 export enum KnownVersions {
   /** The 2023-11-15 stable version. */
   V20231115 = "2023-11-15",
-}
-
-export function _dataProductPropertiesSerializer(item: DataProduct): any {
-  return {
-    publisher: item["publisher"],
-    product: item["product"],
-    majorVersion: item["majorVersion"],
-    owners: !item["owners"]
-      ? item["owners"]
-      : item["owners"].map((p: any) => {
-          return p;
-        }),
-    redundancy: item["redundancy"],
-    purviewAccount: item["purviewAccount"],
-    purviewCollection: item["purviewCollection"],
-    privateLinksEnabled: item["privateLinksEnabled"],
-    publicNetworkAccess: item["publicNetworkAccess"],
-    customerManagedKeyEncryptionEnabled: item["customerManagedKeyEncryptionEnabled"],
-    customerEncryptionKey: !item["customerEncryptionKey"]
-      ? item["customerEncryptionKey"]
-      : encryptionKeyDetailsSerializer(item["customerEncryptionKey"]),
-    networkacls: !item["networkacls"]
-      ? item["networkacls"]
-      : dataProductNetworkAclsSerializer(item["networkacls"]),
-    managedResourceGroupConfiguration: !item["managedResourceGroupConfiguration"]
-      ? item["managedResourceGroupConfiguration"]
-      : managedResourceGroupConfigurationSerializer(item["managedResourceGroupConfiguration"]),
-    currentMinorVersion: item["currentMinorVersion"],
-  };
-}
-
-export function _dataProductPropertiesDeserializer(item: any) {
-  return {
-    resourceGuid: item["resourceGuid"],
-    provisioningState: item["provisioningState"],
-    publisher: item["publisher"],
-    product: item["product"],
-    majorVersion: item["majorVersion"],
-    owners: !item["owners"]
-      ? item["owners"]
-      : item["owners"].map((p: any) => {
-          return p;
-        }),
-    redundancy: item["redundancy"],
-    purviewAccount: item["purviewAccount"],
-    purviewCollection: item["purviewCollection"],
-    privateLinksEnabled: item["privateLinksEnabled"],
-    publicNetworkAccess: item["publicNetworkAccess"],
-    customerManagedKeyEncryptionEnabled: item["customerManagedKeyEncryptionEnabled"],
-    customerEncryptionKey: !item["customerEncryptionKey"]
-      ? item["customerEncryptionKey"]
-      : encryptionKeyDetailsDeserializer(item["customerEncryptionKey"]),
-    networkacls: !item["networkacls"]
-      ? item["networkacls"]
-      : dataProductNetworkAclsDeserializer(item["networkacls"]),
-    managedResourceGroupConfiguration: !item["managedResourceGroupConfiguration"]
-      ? item["managedResourceGroupConfiguration"]
-      : managedResourceGroupConfigurationDeserializer(item["managedResourceGroupConfiguration"]),
-    availableMinorVersions: !item["availableMinorVersions"]
-      ? item["availableMinorVersions"]
-      : item["availableMinorVersions"].map((p: any) => {
-          return p;
-        }),
-    currentMinorVersion: item["currentMinorVersion"],
-    documentation: item["documentation"],
-    consumptionEndpoints: !item["consumptionEndpoints"]
-      ? item["consumptionEndpoints"]
-      : consumptionEndpointsPropertiesDeserializer(item["consumptionEndpoints"]),
-    keyVaultUrl: item["keyVaultUrl"],
-  };
 }
