@@ -904,11 +904,14 @@ export const azureModularTsps = [
     outputPath: "azure/client-generator-core/next-link-verb",
     inputPath: "azure/client-generator-core/next-link-verb"
   },
-  // skip due to issue https://github.com/Azure/autorest.typescript/issues/3468
-  // {
-  //   outputPath: "azure/resource-manager/method-subscription-id",
-  //   inputPath: "azure/resource-manager/method-subscription-id"
-  // }
+  {
+    outputPath: "special-headers/conditional-request",
+    inputPath: "special-headers/conditional-request"
+  },
+  {
+    outputPath: "azure/resource-manager/method-subscription-id",
+    inputPath: "azure/resource-manager/method-subscription-id"
+  }
   // skip due to issue https://github.com/Azure/autorest.typescript/issues/3494
   // {
   //   outputPath: "azure/client-generator-core/client-location",

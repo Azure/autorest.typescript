@@ -189,7 +189,8 @@ describe("MultiPartClient Rest Client", () => {
             {
               name: "profileImage",
               body: profileImage,
-              filename: "image.jpg"
+              filename: "image.jpg",
+              contentType: "application/octet-stream"
             },
             {
               name: "pictures",

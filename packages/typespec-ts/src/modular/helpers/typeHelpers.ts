@@ -7,6 +7,10 @@ import {
   SdkModelType,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
+import {
+  getPropertyWithOverrides,
+  ModelOverrideOptions
+} from "../serialization/serializeUtils.js";
 
 export function getDirectSubtypes(type: SdkModelType) {
   if (!type.discriminatedSubtypes) {
@@ -93,7 +97,10 @@ export function isCredentialType(
  * Builds a property name mapper between the serializedName and the name of the property.
  * Return empty map if the type is not a model.
  */
-export function buildPropertyNameMapper(model: SdkType) {
+export function buildPropertyNameMapper(
+  model: SdkType,
+  overrides?: ModelOverrideOptions
+) {
   const mapper = new Map<string, string>();
   if (model.kind !== "model") {
     return mapper;
@@ -109,6 +116,7 @@ export function buildPropertyNameMapper(model: SdkType) {
     if (prop.kind !== "property") {
       continue;
     }
+    const prop = getPropertyWithOverrides(p, overrides);
     mapper.set(
       prop.serializationOptions.json?.name || prop.name,
       normalizeName(prop.name, NameType.Property)
