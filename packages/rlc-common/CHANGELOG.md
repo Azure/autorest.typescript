@@ -1,7 +1,7 @@
 ## 0.47.0 (2025-12-04)
 
 - [Bugfix] Fix inconsistent Serializer Function Names in Discriminated Unions cross namesapce. Please refer to [#3589](https://github.com/Azure/autorest.typescript/pull/3589)
-- [Bugfix] Fix inherited property mapping by recursively processing base class properties. Please refer to [#3620](https://github.com/Azure/autorest.typescript/pull/3620)
+- [Bugfix] Fix inherited property mapping by recursively processing base class properties in sample generation. Please refer to [#3620](https://github.com/Azure/autorest.typescript/pull/3620)
 - [Feature] Support client constructor overloads for optional subscriptionId. Please refer to [#3590](https://github.com/Azure/autorest.typescript/pull/3590)
 - [Feature] [Breaking mitigation] Property flatten support in Modular. Please refer to [#3586](https://github.com/Azure/autorest.typescript/pull/3586)
 - [Feature] Convert emitter throw statements to diagnostic reports to prevent crashes. Please refer to [#3482](https://github.com/Azure/autorest.typescript/pull/3482)
