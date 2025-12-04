@@ -285,12 +285,10 @@ function buildDiscriminatedUnionDeserializer(
       !union
     );
     // Get the deserializer name and ensure reference tracking
-    const subtypeDeserializerName = buildModelDeserializer(
-      context,
-      subType,
-      false,
-      true
-    ) as string;
+    const subtypeDeserializerName = buildModelDeserializer(context, subType, {
+      nameOnly: true,
+      skipDiscriminatedUnionSuffix: false
+    }) as string;
 
     const caseLabels = discriminatedValues.map((value) => `case "${value}":`);
     cases.push(`
