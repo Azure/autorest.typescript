@@ -703,7 +703,6 @@ export function isTenantLevelOperation(
     if (
       operation.crossLanguageDefinitionId?.toLowerCase() ===
         "azure.resourcemanager.operations.list" ||
-      pathLC.includes(`operationstatuses`) ||
       pathLC.includes(`${clientNamespaceLC}/checknameavailability`)
     ) {
       return false;
