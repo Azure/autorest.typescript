@@ -644,6 +644,7 @@ export async function emitModularClientFromTypeSpec(
     dpgContext.sdkPackage.clients.length > 0 &&
     dpgContext.sdkPackage.clients[0]
   ) {
+    emitTypes(dpgContext, { sourceRoot: "" });
     renameClientName(dpgContext.sdkPackage.clients[0], modularEmitterOptions);
     const clientMap = Array.from(getClientHierarchyMap(dpgContext));
     buildApiOptions(dpgContext, clientMap[0]!, modularEmitterOptions);
