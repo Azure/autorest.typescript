@@ -274,6 +274,7 @@ function buildParameterValueMap(example: SdkHttpOperationExample) {
 }
 
 function prepareExampleValue(
+  context: SdkContext,
   name: string,
   value: SdkExampleValue | string,
   isOptional?: boolean,
@@ -281,7 +282,8 @@ function prepareExampleValue(
 ): ExampleValue {
   return {
     name: normalizeName(name, NameType.Parameter),
-    value: typeof value === "string" ? value : getParameterValue(value),
+    value:
+      typeof value === "string" ? value : getParameterValue(context, value),
     isOptional: Boolean(isOptional),
     onClient: Boolean(onClient)
   };
@@ -348,10 +350,11 @@ function prepareExampleParameters(
     if (param.name.toLowerCase() === "subscriptionid" && dpgContext.arm) {
       isSubscriptionIdAdded = true;
       if (exampleValue && exampleValue.value) {
-        subscriptionIdValue = getParameterValue(exampleValue.value);
+        subscriptionIdValue = getParameterValue(dpgContext, exampleValue.value);
       }
       result.push(
         prepareExampleValue(
+          dpgContext,
           param.name,
           subscriptionIdValue,
           param.optional,
@@ -376,6 +379,7 @@ function prepareExampleParameters(
 
     result.push(
       prepareExampleValue(
+        dpgContext,
         exampleValue.parameter.name,
         exampleValue.value,
         param.optional,
@@ -393,7 +397,13 @@ function prepareExampleParameters(
     !isTenantLevelOperation(method, topLevelClient)
   ) {
     result.push(
-      prepareExampleValue("subscriptionId", subscriptionIdValue, false, true)
+      prepareExampleValue(
+        dpgContext,
+        "subscriptionId",
+        subscriptionIdValue,
+        false,
+        true
+      )
     );
   }
 
@@ -414,6 +424,7 @@ function prepareExampleParameters(
         }
         result.push(
           prepareExampleValue(
+            dpgContext,
             prop.name,
             propExample,
             prop.optional,
@@ -424,6 +435,7 @@ function prepareExampleParameters(
     } else {
       result.push(
         prepareExampleValue(
+          dpgContext,
           bodyParam.name,
           bodyExample.value,
           bodyParam.optional,
@@ -444,6 +456,7 @@ function prepareExampleParameters(
     .forEach((param) => {
       result.push(
         prepareExampleValue(
+          dpgContext,
           param.parameter.name,
           param.value,
           true,
@@ -494,6 +507,7 @@ function getCredentialExampleValue(
 }
 
 function getParameterValue(
+  context: SdkContext,
   value: SdkExampleValue,
   options?: {
     overrides?: ModelOverrideOptions;
@@ -536,7 +550,11 @@ function getParameterValue(
       break;
     case "dict":
     case "model": {
-      const mapper = buildPropertyNameMapper(value.type, options?.overrides);
+      const mapper = buildPropertyNameMapper(
+        context,
+        value.type,
+        options?.overrides
+      );
       const values = [];
       const additionalPropertiesValue =
         value.kind === "model" ? (value.additionalPropertiesValue ?? {}) : {};
@@ -554,7 +572,7 @@ function getParameterValue(
         let propRetValue;
 
         if (property?.flatten && property.type.kind === "model") {
-          const paramValue = getParameterValue(propValue, {
+          const paramValue = getParameterValue(context, propValue, {
             overrides: {
               propertyRenames:
                 useContext("sdkTypes").flattenProperties.get(property)
@@ -566,7 +584,7 @@ function getParameterValue(
         } else {
           propRetValue =
             `"${mapper.get(propName) ?? propName}": ` +
-            getParameterValue(propValue);
+            getParameterValue(context, propValue);
         }
         if (propRetValue) values.push(propRetValue);
       }
@@ -580,7 +598,7 @@ function getParameterValue(
         }
         const propRetValue =
           `"${mapper.get(propName) ?? propName}": ` +
-          getParameterValue(propValue);
+          getParameterValue(context, propValue);
         additionalBags.push(propRetValue);
       }
       if (additionalBags.length > 0) {
@@ -596,7 +614,9 @@ function getParameterValue(
       break;
     }
     case "array": {
-      const valuesArr = value.value.map((item) => getParameterValue(item));
+      const valuesArr = value.value.map((item) =>
+        getParameterValue(context, item)
+      );
       retValue = `[${valuesArr.join(", ")}]`;
       break;
     }
