@@ -71,7 +71,7 @@ import { TestServiceClient } from "@azure/internal-test";
 async function read(): Promise<void> {
   const endpoint = process.env.TEST_SERVICE_ENDPOINT || "";
   const client = new TestServiceClient(endpoint);
-  const result = await client.read();
+  const result = await client.read("test");
   console.log(result);
 }
 
