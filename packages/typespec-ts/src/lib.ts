@@ -549,6 +549,12 @@ const libDef = {
         default: paramMessage`The parameter name ${"parameterName"} has conflicts with others and please use @clientName to rename it.`
       }
     },
+    "unsupported-flatten-transition": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`The property "${"propertyName"}" in "${"modelName"}" has multiple consecutive flatten operations. Flatten transitions are not supported so consecutive transitions will be ignored.`
+      }
+    },
     "unsupported-parameter-type": {
       severity: "error",
       messages: {
