@@ -1,8 +1,8 @@
 steps:
   - script: npm install -g @typespec/compiler@next
     displayName: Install @typespec/compiler@next
-  - script: npx @azure-tools/typespec-bump-deps@latest pnpm-config.json --add-rush-overrides
-    workingDirectory: $(Build.SourcesDirectory)/common/config/rush
+  - script: npm run update-typespec
+    workingDirectory: $(Build.SourcesDirectory)
     displayName: "Override global pnpm-config to dev"
   - script: npx @azure-tools/typespec-bump-deps@latest package.json
     workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
@@ -10,4 +10,12 @@ steps:
   - script: npx @azure-tools/typespec-bump-deps@latest package.json
     workingDirectory: $(Build.SourcesDirectory)/packages/typespec-test
     displayName: "Override typespec-test package.json to dev"
-  - template: build.yml
+  - script: |
+      npm install -g pnpm
+    displayName: "Install Pnpm"
+  - script: |
+      pnpm install --no-frozen-lockfile
+    displayName: "Install package dependencies"
+  - script: |
+      pnpm build
+    displayName: "Build"
