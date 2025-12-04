@@ -1,0 +1,13 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    azure-sdk-for-js: false
+    generate-sample: true
+    emitter-output-dir: "{project-root}/generated/typespec-ts"
+    experimental-extensible-enums: true
+    package-details:
+      name: "@azure/arm-compute-disk"
+  "@azure-tools/typespec-client-generator-cli":
+    additionalDirectories:
+      - "{project-root}/Common.Management/"
