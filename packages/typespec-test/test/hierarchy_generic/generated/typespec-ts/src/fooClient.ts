@@ -6,6 +6,7 @@ import { op1 } from "./api/operations.js";
 import { Op1OptionalParams } from "./api/options.js";
 import { BOperations, _getBOperations } from "./classic/b/index.js";
 import { DOperations, _getDOperations } from "./classic/d/index.js";
+import { YOperations, _getYOperations } from "./classic/y/index.js";
 import { A } from "./models/models.js";
 import { Pipeline } from "@azure/core-rest-pipeline";
 
@@ -24,6 +25,7 @@ export class FooClient {
     this._client = createFoo(endpointParam, { ...options, userAgentOptions: { userAgentPrefix } });
     this.pipeline = this._client.pipeline;
     this.d = _getDOperations(this._client);
+    this.y = _getYOperations(this._client);
     this.b = _getBOperations(this._client);
   }
 
@@ -33,6 +35,8 @@ export class FooClient {
 
   /** The operation groups for d */
   public readonly d: DOperations;
+  /** The operation groups for y */
+  public readonly y: YOperations;
   /** The operation groups for b */
   public readonly b: BOperations;
 }
