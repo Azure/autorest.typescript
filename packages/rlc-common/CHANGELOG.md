@@ -1,11 +1,24 @@
+## 0.47.0 (2025-12-04)
+
+- [Bugfix] Fix inconsistent Serializer Function Names in Discriminated Unions cross namesapce. Please refer to [#3589](https://github.com/Azure/autorest.typescript/pull/3589)
+- [Bugfix] Fix inherited property mapping by recursively processing base class properties. Please refer to [#3620](https://github.com/Azure/autorest.typescript/pull/3620)
+- [Feature] Support client constructor overloads for optional subscriptionId. Please refer to [#3590](https://github.com/Azure/autorest.typescript/pull/3590)
+- [Feature] [Breaking mitigation] Property flatten support in Modular. Please refer to [#3586](https://github.com/Azure/autorest.typescript/pull/3586)
+- [Feature] Convert emitter throw statements to diagnostic reports to prevent crashes. Please refer to [#3482](https://github.com/Azure/autorest.typescript/pull/3482)
+- [Feature] Add Dictionary Deserialization Support and Improve Test Coverage for Edge Cases. Please refer to [#3613](https://github.com/Azure/autorest.typescript/pull/3613)
+- [Feature] Pnpm migration. Please refer to [#3366](https://github.com/Azure/autorest.typescript/pull/3366)
+- [Bugfix] Fix formatting inconsistency. Please refer to [#3603](https://github.com/Azure/autorest.typescript/pull/3603)
+- [Feature] Support the legacy LRO methods with feature flag. Please refer to [#3593](https://github.com/Azure/autorest.typescript/pull/3593)
+
 ## 0.46.1 (2025-11-17)
 
 - [Feature] Implement README file updates and enhance package file export options [#3568](https://github.com/Azure/autorest.typescript/pull/3568)
 - [Feature] Bump TypeSpec dependencies to latest stable versions [#3597](https://github.com/Azure/autorest.typescript/pull/3597)
-- [Feature] Update codegen default behavior for is-modular-library true [#3369](https://github.com/Azure/autorest.typescript/pull/3369) 
-- [Bugfix] Fix URI template variable name decoding for better service compatibility [#3583](https://github.com/Azure/autorest.typescript/pull/3583) 
+- [Feature] Update codegen default behavior for is-modular-library true [#3369](https://github.com/Azure/autorest.typescript/pull/3369)
+- [Bugfix] Fix URI template variable name decoding for better service compatibility [#3583](https://github.com/Azure/autorest.typescript/pull/3583)
 - [Feature] Disable the naming-convention eslint rule for models [#3584](https://github.com/Azure/autorest.typescript/pull/3584)
-- [Feature] Support POST method for paging next link operations [#3578](https://github.com/Azure/autorest.typescript/pull/3578) 
+- [Feature] Support POST method for paging next link operations [#3578](https://github.com/Azure/autorest.typescript/pull/3578)
+
 ## 0.46.0 (2025-11-06)
 
 - [Feature] Add status code `201` into lro expected status code. Please refer to [#3579](https://github.com/Azure/autorest.typescript/pull/3579)
