@@ -105,14 +105,14 @@ When upgrading TypeSpec dependencies only work on `packages/typespec-ts/` and `p
 - Identify dependencies within the @typespec or @azure-tools npm-scopes under "dependencies", "devDependencies" and "peerDependencies" in package.json
 - You should resolve the version in "next" tag for dependencies on `@typespec/http-specs`, `@typespec/spector`, `@azure-tools/azure-http-specs`, and `@typespec/spec-api`
 - You should resolve the version in "latest" tag for the other dependencies
-- Run "rush update" after editing the dependencies in package.json
+- Run "pnpm install" after editing the dependencies in package.json
 - TypeSpec dependencies means any dependencies starting with `@typespec/` or `@azure-tools/` as these are relevant to TypeSpec and Azure tools.
 - Do not update dependency for @typespec/ts-http-runtime.
 - For spector relevant dependencies, the latest version which is tagged with `next` on npm including `@typespec/http-specs`, `@typespec/spector`, `@azure-tools/azure-http-specs`, and `@typespec/spec-api`.
 - For other dependencies, check the latest versions which is tagged with `latest` on npm and update them accordingly.
-- After updating the versions, run `rush update` to ensure all dependencies are correctly installed and the lock files are updated.
-- Do run `rush build` to build the entire monorepo to check if any building issues introduced by upgrading.
-- Do run `rush format` to format the codebase.
+- After updating the versions, run `pnpm install` to ensure all dependencies are correctly installed and the lock files are updated.
+- Do run `pnpm build` to build the entire monorepo to check if any building issues introduced by upgrading.
+- Do run `pnpm format` to format the codebase.
 - Do run `npm run unit-test` under `packages/typespec-ts/` to validate our Unit Test and follow the below instructions to fix any test failures.
 - Do run `npm run copy:typespec` to copy the files which integration test may use.
 - Do run `npm run integration-test-ci:azure-modular` under `packages/typespec-ts/` to validate our Azure Modular Integration Test and follow the below instructions to fix any test failures. Please do not skip this test. This would take around 30 min.
@@ -204,7 +204,7 @@ When preparing a release, we need to bump package versions and update changelogs
 
 ## How to run and fix test failures in TypeSpec TypeScript emitter
 
-Run `rush update` and `rush build` before running tests.
+Run `pnpm install` and `pnpm build` before running tests.
 
 The tests in the TypeSpec TypeScript emitter can be categorized into:
 

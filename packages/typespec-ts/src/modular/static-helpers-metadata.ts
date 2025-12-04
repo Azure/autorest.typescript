@@ -33,6 +33,11 @@ export const SerializationHelpers = {
     kind: "function",
     name: "getBinaryResponse",
     location: "serialization/get-binary-response.ts"
+  },
+  areAllPropsUndefined: {
+    kind: "function",
+    name: "areAllPropsUndefined",
+    location: "serialization/check-prop-undefined.ts"
   }
 } as const;
 

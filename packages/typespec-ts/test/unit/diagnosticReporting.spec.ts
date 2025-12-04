@@ -104,8 +104,7 @@ describe("Diagnostic Reporting Tests", () => {
 
       const result = buildModelDeserializer(
         mockContext,
-        mockDiscriminatedUnionType,
-        false
+        mockDiscriminatedUnionType
       );
 
       assert.equal(result, undefined);
@@ -225,8 +224,7 @@ describe("Diagnostic Reporting Tests", () => {
 
       const result = buildModelSerializer(
         mockContext,
-        mockDiscriminatedUnionType,
-        false
+        mockDiscriminatedUnionType
       );
 
       assert.equal(result, undefined);

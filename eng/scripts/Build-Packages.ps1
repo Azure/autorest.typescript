@@ -37,8 +37,8 @@ function UpdatePackage($name, $path) {
 function PackPackage($path) {
   Push-Location $path
   try {
-    Invoke-LoggedCommand "node ../../common/scripts/install-run-rush.js build"
-    Invoke-LoggedCommand "node ../../common/scripts/install-run-rush-pnpm.js pack -q --pack-destination $packagesPath"
+    Invoke-LoggedCommand "pnpm run build"
+    Invoke-LoggedCommand "pnpm pack -q --pack-destination $packagesPath"
   }
   finally {
     Pop-Location

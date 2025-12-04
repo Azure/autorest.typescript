@@ -40,6 +40,7 @@ import {
 import { getSubscriptionId } from "../transform/transfromRLCOptions.js";
 import { getClientParametersDeclaration } from "./helpers/clientHelpers.js";
 import { getOperationFunction } from "./helpers/operationHelpers.js";
+import { ModelOverrideOptions } from "./serialization/serializeUtils.js";
 
 /**
  * Interfaces for samples generations
@@ -492,7 +493,12 @@ function getCredentialExampleValue(
   return undefined;
 }
 
-function getParameterValue(value: SdkExampleValue): string {
+function getParameterValue(
+  value: SdkExampleValue,
+  options?: {
+    overrides?: ModelOverrideOptions;
+  }
+): string {
   let retValue = `{} as any`;
   switch (value.kind) {
     case "string": {
@@ -530,21 +536,39 @@ function getParameterValue(value: SdkExampleValue): string {
       break;
     case "dict":
     case "model": {
-      const mapper = buildPropertyNameMapper(value.type);
+      const mapper = buildPropertyNameMapper(value.type, options?.overrides);
       const values = [];
       const additionalPropertiesValue =
         value.kind === "model" ? (value.additionalPropertiesValue ?? {}) : {};
       for (const propName in {
         ...value.value
       }) {
+        let property;
+        if (value.type.kind === "model") {
+          property = value.type.properties.find((p) => p.name === propName);
+        }
         const propValue = value.value[propName];
         if (propValue === undefined || propValue === null) {
           continue;
         }
-        const propRetValue =
-          `"${mapper.get(propName) ?? propName}": ` +
-          getParameterValue(propValue);
-        values.push(propRetValue);
+        let propRetValue;
+
+        if (property?.flatten && property.type.kind === "model") {
+          const paramValue = getParameterValue(propValue, {
+            overrides: {
+              propertyRenames:
+                useContext("sdkTypes").flattenProperties.get(property)
+                  ?.conflictMap
+            }
+          });
+          propRetValue =
+            paramValue.length > 2 ? paramValue.slice(1, -1) : undefined;
+        } else {
+          propRetValue =
+            `"${mapper.get(propName) ?? propName}": ` +
+            getParameterValue(propValue);
+        }
+        if (propRetValue) values.push(propRetValue);
       }
       const additionalBags = [];
       for (const propName in {
@@ -572,7 +596,7 @@ function getParameterValue(value: SdkExampleValue): string {
       break;
     }
     case "array": {
-      const valuesArr = value.value.map(getParameterValue);
+      const valuesArr = value.value.map((item) => getParameterValue(item));
       retValue = `[${valuesArr.join(", ")}]`;
       break;
     }

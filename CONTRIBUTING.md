@@ -39,10 +39,8 @@ In order contribute to this project, You will need to install some prerequisite 
 
 - Git
 - Any of the [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
-- Rush 5.x
-  - Install / update Rush globally via `npm install -g @microsoft/rush`.
-  - Rush will automatically manage the specific version needed by this repo as long as you have any v5 version installed.
-  - If you're unable to install a global tool, you can instead call the wrapper script `node <repo root>/common/scripts/install-run-rush.js` any time the guide instructs you to run `rush`. The wrapper script will install a managed copy of Rush in a temporary directory for you.
+- Pnpm 10.12.x
+  - Install / update Pnpm globally via `npm install -g pnpm`.
 - [Autorest](https://www.npmjs.com/package/autorest), if you're planning contribute to the generator code from swagger either for high level client or for rest level client.
 - [TypeSpec Compiler](https://www.npmjs.com/package/@typespec/compiler), if you're planning contribute to the generator code from TypeSpec.
 
@@ -61,6 +59,6 @@ If your test case is working fine as expected, now you are ready to create the P
 Our generated SDKs take dependency on various packages which you can see in the generated package.json files. These will need to be upgraded from time to time to stay on the latest major version so that we get bug fixes automatically due to semver.
 
 - Update the version of the dependency you are looking for in the methods `restLevelPackage` and/or `regularAutorestPackage` in the [`packageFileGenerator.ts`](https://github.com/Azure/autorest.typescript/blob/main/packages/autorest.typescript/src/generators/static/packageFileGenerator.ts) file.
-- Run `rush rebuild && npm run generate-swaggers && npm run smoke-test` to update the generated files in the repo and run smoke tests before creating the PR.
+- Run `pnpm build && npm run generate-swaggers && npm run smoke-test` to update the generated files in the repo and run smoke tests before creating the PR.
 
 For example, see the [PR 1271](https://github.com/Azure/autorest.typescript/pull/1271) that updates the version of `prettier` that the generated SDKs depend on.
