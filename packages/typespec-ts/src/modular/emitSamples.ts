@@ -300,7 +300,8 @@ function prepareExampleParameters(
     topLevelClient,
     dpgContext,
     {
-      onClientOnly: true
+      onClientOnly: true,
+      requiredOnly: true
     }
   );
 
