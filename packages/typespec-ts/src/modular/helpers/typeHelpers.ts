@@ -11,6 +11,8 @@ import {
   getPropertyWithOverrides,
   ModelOverrideOptions
 } from "../serialization/serializeUtils.js";
+import { getAllAncestors, getAllProperties } from "./operationHelpers.js";
+import { SdkContext } from "../../utils/interfaces.js";
 
 export function getDirectSubtypes(type: SdkModelType) {
   if (!type.discriminatedSubtypes) {
@@ -98,6 +100,7 @@ export function isCredentialType(
  * Return empty map if the type is not a model.
  */
 export function buildPropertyNameMapper(
+  context: SdkContext,
   model: SdkType,
   overrides?: ModelOverrideOptions
 ) {
@@ -105,7 +108,12 @@ export function buildPropertyNameMapper(
   if (model.kind !== "model") {
     return mapper;
   }
-  for (const p of model.properties) {
+  const allProperties = getAllProperties(
+    context,
+    model,
+    getAllAncestors(model)
+  );
+  for (const p of allProperties) {
     if (p.kind !== "property") {
       continue;
     }
