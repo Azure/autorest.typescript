@@ -84,6 +84,7 @@ export class FooClient {
     // (undocumented)
     op1(body: A, options?: Op1OptionalParams): Promise<void>;
     readonly pipeline: Pipeline;
+    readonly y: YOperations;
 }
 
 // @public
@@ -92,6 +93,62 @@ export interface FooClientOptionalParams extends ClientOptions {
 
 // @public
 export interface Op1OptionalParams extends OperationOptions {
+}
+
+// @public
+export type YConnectorType = "EventHubSource" | "IoTHubSource";
+
+// @public
+export interface YDataSourceProperties {
+    // (undocumented)
+    connectorType: YConnectorType;
+}
+
+// @public
+export type YDataSourcePropertiesUnion = YDataverseDataverseSourceConnectorProperties | YDataverseV2DataverseSourceConnectorV2Properties | YDataSourceProperties;
+
+// @public
+export type YDataverseDataverseEventPosition = "Earliest" | "Latest";
+
+// @public
+export interface YDataverseDataverseSourceConnectorProperties extends YDataSourceProperties {
+    // (undocumented)
+    connectorType: "EventHubSource";
+    // (undocumented)
+    startEventPosition: YDataverseDataverseEventPosition;
+}
+
+// @public
+export type YDataverseV2DataverseEventPosition = "Earliest" | "Latest";
+
+// @public
+export interface YDataverseV2DataverseSourceConnectorV2Properties extends YDataSourceProperties {
+    // (undocumented)
+    connectorType: "IoTHubSource";
+    // (undocumented)
+    startEventPosition: YDataverseV2DataverseEventPosition;
+}
+
+// @public
+export interface YOperations {
+    // (undocumented)
+    testOperations: YTestOperationsOperations;
+}
+
+// @public
+export interface YTestOperationsOperations {
+    // (undocumented)
+    testDataverse: (options?: YTestOperationsTestDataverseOptionalParams) => Promise<YDataverseDataverseSourceConnectorProperties>;
+    // (undocumented)
+    testDataverseV2: (options?: YTestOperationsTestDataverseV2OptionalParams) => Promise<YDataverseV2DataverseSourceConnectorV2Properties>;
+}
+
+// @public
+export interface YTestOperationsTestDataverseOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface YTestOperationsTestDataverseV2OptionalParams extends OperationOptions {
 }
 
 // (No @packageDocumentation comment for this package)

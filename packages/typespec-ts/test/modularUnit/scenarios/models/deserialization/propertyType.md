@@ -161,22 +161,41 @@ export function simpleModelDeserializer(item: any): SimpleModel {
       : _simpleModelPropSimpleUnionArrayOptionalArrayDeserializer(
           item["propSimpleUnionArrayOptional"],
         ),
-    propRecordOfString: item["propRecordOfString"],
-    propRecordOfDate: item["propRecordOfDate"],
-    propRecordOfBoolean: item["propRecordOfBoolean"],
-    propRecordOfNumber: item["propRecordOfNumber"],
+    propRecordOfString: Object.fromEntries(
+      Object.entries(item["propRecordOfString"]).map(([k, p]: [string, any]) => [k, p]),
+    ),
+    propRecordOfDate: Object.fromEntries(
+      Object.entries(item["propRecordOfDate"]).map(([k, p]: [string, any]) => [k, new Date(p)]),
+    ),
+    propRecordOfBoolean: Object.fromEntries(
+      Object.entries(item["propRecordOfBoolean"]).map(([k, p]: [string, any]) => [k, p]),
+    ),
+    propRecordOfNumber: Object.fromEntries(
+      Object.entries(item["propRecordOfNumber"]).map(([k, p]: [string, any]) => [k, p]),
+    ),
     propRecordOfSimpleUnion: _simpleModelPropRecordOfSimpleUnionRecordDeserializer(
       item["propRecordOfSimpleUnion"],
     ),
-    propRecordOfStringOptional: item["propRecordOfStringOptional"],
-    propRecordOfStringArray: item["propRecordOfStringArray"],
+    propRecordOfStringOptional: !item["propRecordOfStringOptional"]
+      ? item["propRecordOfStringOptional"]
+      : Object.fromEntries(
+          Object.entries(item["propRecordOfStringOptional"]).map(([k, p]: [string, any]) => [k, p]),
+        ),
+    propRecordOfStringArray: Object.fromEntries(
+      Object.entries(item["propRecordOfStringArray"]).map(([k, p]: [string, any]) => [
+        k,
+        p.map((p: any) => {
+          return p;
+        }),
+      ]),
+    ),
     propArrayOfRecordOfString: item["propArrayOfRecordOfString"].map((p: any) => {
-      return p;
+      return Object.fromEntries(Object.entries(p).map(([k, p]: [string, any]) => [k, p]));
     }),
     propArrayOfRecordOfStringOptional: !item["propArrayOfRecordOfStringOptional"]
       ? item["propArrayOfRecordOfStringOptional"]
       : item["propArrayOfRecordOfStringOptional"].map((p: any) => {
-          return p;
+          return Object.fromEntries(Object.entries(p).map(([k, p]: [string, any]) => [k, p]));
         }),
     propRecordOfUnionArray: _simpleModelPropRecordOfUnionArrayArrayRecordDeserializer(
       item["propRecordOfUnionArray"],

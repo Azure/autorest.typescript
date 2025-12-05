@@ -40,8 +40,14 @@ import {
 
 import { SdkContext } from "../utils/interfaces.js";
 import { addDeclaration } from "../framework/declaration.js";
-import { buildModelDeserializer } from "./serialization/buildDeserializerFunction.js";
-import { buildModelSerializer } from "./serialization/buildSerializerFunction.js";
+import {
+  buildModelDeserializer,
+  buildPropertyDeserializer
+} from "./serialization/buildDeserializerFunction.js";
+import {
+  buildModelSerializer,
+  buildPropertySerializer
+} from "./serialization/buildSerializerFunction.js";
 import path from "path";
 import { refkey } from "../framework/refkey.js";
 import { useContext } from "../contextManager.js";
@@ -50,6 +56,7 @@ import { isAzureCoreErrorType } from "../utils/modelUtils.js";
 import { isExtensibleEnum } from "./type-expressions/get-enum-expression.js";
 import {
   getAllDiscriminatedValues,
+  getPropertyWithOverrides,
   isDiscriminatedUnion
 } from "./serialization/serializeUtils.js";
 import { reportDiagnostic } from "../lib.js";
@@ -60,6 +67,7 @@ import {
 } from "./type-expressions/get-type-expression.js";
 import {
   emitQueue,
+  flattenPropertyModelMap,
   getAllOperationsFromClient
 } from "../framework/hooks/sdkTypes.js";
 import { resolveReference } from "../framework/reference.js";
@@ -120,6 +128,14 @@ export function emitTypes(
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */`);
     }
     emitType(context, type, sourceFile);
+  }
+
+  // Emit serialization/deserialization functions for flattened properties
+  for (const [property, _] of flattenPropertyModelMap) {
+    const namespaces = getModelNamespaces(context, property.type);
+    const filepath = getModelsPath(sourceRoot, namespaces);
+    sourceFile = outputProject.getSourceFile(filepath);
+    addSerializationFunctions(context, property, sourceFile!);
   }
 
   const modelFiles = outputProject.getSourceFiles(
@@ -310,36 +326,38 @@ export function getModelNamespaces(
 
 function addSerializationFunctions(
   context: SdkContext,
-  type: SdkType,
+  typeOrProperty: SdkType | SdkModelPropertyType,
   sourceFile: SourceFile,
-  skipDiscriminatedUnion = false
+  skipDiscriminatedUnionSuffix = false
 ) {
-  const serializationFunction = buildModelSerializer(
-    context,
-    type,
-    skipDiscriminatedUnion
-  );
+  const options = {
+    nameOnly: false,
+    skipDiscriminatedUnionSuffix
+  };
+  const serializationFunction =
+    typeOrProperty.kind === "property"
+      ? buildPropertySerializer(context, typeOrProperty, options)
+      : buildModelSerializer(context, typeOrProperty, options);
 
-  const serializerRefkey = refkey(type, "serializer");
-  const deserailizerRefKey = refkey(type, "deserializer");
+  const serializerRefKey = refkey(typeOrProperty, "serializer");
+  const deserializerRefKey = refkey(typeOrProperty, "deserializer");
   if (
     serializationFunction &&
     typeof serializationFunction !== "string" &&
     serializationFunction.name
   ) {
-    addDeclaration(sourceFile, serializationFunction, serializerRefkey);
+    addDeclaration(sourceFile, serializationFunction, serializerRefKey);
   }
-  const deserializationFunction = buildModelDeserializer(
-    context,
-    type,
-    skipDiscriminatedUnion
-  );
+  const deserializationFunction =
+    typeOrProperty.kind === "property"
+      ? buildPropertyDeserializer(context, typeOrProperty, options)
+      : buildModelDeserializer(context, typeOrProperty, options);
   if (
     deserializationFunction &&
     typeof deserializationFunction !== "string" &&
     deserializationFunction.name
   ) {
-    addDeclaration(sourceFile, deserializationFunction, deserailizerRefKey);
+    addDeclaration(sourceFile, deserializationFunction, deserializerRefKey);
   }
 }
 
@@ -474,16 +492,47 @@ function buildModelInterface(
   context: SdkContext,
   type: SdkModelType
 ): InterfaceDeclarationStructure {
+  const flattenPropertySet = new Set<SdkModelPropertyType>();
   const interfaceStructure = {
     kind: StructureKind.Interface,
     name: normalizeModelName(context, type, NameType.Interface, true),
     isExported: true,
     properties: type.properties
       .filter((p) => !isMetadata(context.program, p.__raw!))
+      .filter((p) => {
+        // filter out the flatten property to be processed later
+        if (p.flatten) {
+          flattenPropertySet.add(p);
+          return false;
+        }
+        return true;
+      })
       .map((p) => {
         return buildModelProperty(context, p, type);
       })
   } as InterfaceStructure;
+  for (const flatten of flattenPropertySet.keys()) {
+    if (flatten.type?.kind !== "model" || !flatten.type.properties) {
+      continue;
+    }
+    const conflictMap =
+      useContext("sdkTypes").flattenProperties.get(flatten)?.conflictMap;
+    const allProperties = getAllProperties(
+      context,
+      flatten.type,
+      getAllAncestors(flatten.type)
+    ).filter((p) => !isMetadata(context.program, p.__raw!));
+    interfaceStructure.properties!.push(
+      ...allProperties.map((p) => {
+        // when the flattened property is optional, all its child properties should be optional too
+        const property = getPropertyWithOverrides(p, {
+          allOptional: flatten.optional,
+          propertyRenames: conflictMap
+        });
+        return buildModelProperty(context, property, type);
+      })
+    );
+  }
 
   if (type.baseModel) {
     const parentReference = getModelExpression(context, type.baseModel, {
@@ -635,7 +684,7 @@ function buildModelPolymorphicType(context: SdkContext, type: SdkModelType) {
   }
   const typeDeclaration: TypeAliasDeclarationStructure = {
     kind: StructureKind.TypeAlias,
-    name: `${normalizeName(type.name, NameType.Interface)}Union`,
+    name: `${normalizeModelName(context, type, NameType.Interface, true)}Union`,
     isExported: true,
     type: directSubtypes
       .filter((p) => {
@@ -747,6 +796,7 @@ function buildModelProperty(
 export function visitPackageTypes(context: SdkContext) {
   const { sdkPackage } = context;
   emitQueue.clear();
+  flattenPropertyModelMap.clear();
   // Add all models in the package to the emit queue
   for (const model of sdkPackage.models) {
     visitType(context, model);
@@ -851,6 +901,9 @@ function visitType(context: SdkContext, type: SdkType | undefined) {
     for (const property of type.properties) {
       if (!emitQueue.has(property.type)) {
         visitType(context, property.type);
+      }
+      if (property.flatten && property.type.kind === "model") {
+        flattenPropertyModelMap.set(property, type);
       }
     }
     if (type.discriminatedSubtypes) {

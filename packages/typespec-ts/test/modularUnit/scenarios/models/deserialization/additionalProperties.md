@@ -191,7 +191,9 @@ export interface NameConflictModel {
 export function nameConflictModelDeserializer(item: any): NameConflictModel {
   return {
     additionalPropertiesBag: serializeRecord(item, ["additionalProperties", "propA", "propB"]),
-    additionalProperties: item["additionalProperties"],
+    additionalProperties: Object.fromEntries(
+      Object.entries(item["additionalProperties"]).map(([k, p]: [string, any]) => [k, p]),
+    ),
     propA: item["propA"],
     propB: item["propB"],
   };

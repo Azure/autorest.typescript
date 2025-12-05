@@ -1393,7 +1393,9 @@ export interface _FozBazNonemptyAnomyousArray {
 
 export function _fozBazNonemptyAnomyousArrayDeserializer(item: any): _FozBazNonemptyAnomyousArray {
   return {
-    b: item["b"],
+    b: !item["b"]
+      ? item["b"]
+      : Object.fromEntries(Object.entries(item["b"]).map(([k, p]: [string, any]) => [k, p])),
   };
 }
 
