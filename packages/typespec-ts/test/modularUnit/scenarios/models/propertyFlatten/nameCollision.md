@@ -51,18 +51,14 @@ export interface Test {
 }
 
 export function testSerializer(item: Test): any {
-  return {
-    bar: item["bar"],
-    baz: item["baz"],
-    properties: _testPropertiesSerializer(item)
-  };
+  return { bar: item["bar"], baz: item["baz"], properties: _testPropertiesSerializer(item) };
 }
 
 export function testDeserializer(item: any): Test {
   return {
     bar: item["bar"],
     baz: item["baz"],
-    ..._testPropertiesDeserializer(item["properties"])
+    ..._testPropertiesDeserializer(item["properties"]),
   };
 }
 
@@ -79,14 +75,14 @@ export function fooPropertiesSerializer(item: FooProperties): any {
 export function fooPropertiesDeserializer(item: any): FooProperties {
   return {
     bar: item["bar"],
-    baz: item["baz"]
+    baz: item["baz"],
   };
 }
 
 /** Known values of {@link Versions} that the service accepts. */
 export enum KnownVersions {
   /** 2022-05-15-preview */
-  V20220515Preview = "2022-05-15-preview"
+  V20220515Preview = "2022-05-15-preview",
 }
 
 export function _testPropertiesSerializer(item: Test): any {
@@ -96,7 +92,7 @@ export function _testPropertiesSerializer(item: Test): any {
 export function _testPropertiesDeserializer(item: any) {
   return {
     barPropertiesBar: item["bar"],
-    bazPropertiesBaz: item["baz"]
+    bazPropertiesBaz: item["baz"],
   };
 }
 ```
@@ -171,7 +167,7 @@ export function testSerializer(item: Test): any {
     properties: _testPropertiesSerializer(item),
     anotherProperties: areAllPropsUndefined(item, ["bar", "baz", "x"])
       ? undefined
-      : _testAnotherPropertiesSerializer(item)
+      : _testAnotherPropertiesSerializer(item),
   };
 }
 
@@ -181,7 +177,7 @@ export function testDeserializer(item: any): Test {
     ..._testPropertiesDeserializer(item["properties"]),
     ...(!item["anotherProperties"]
       ? item["anotherProperties"]
-      : _testAnotherPropertiesDeserializer(item["anotherProperties"]))
+      : _testAnotherPropertiesDeserializer(item["anotherProperties"])),
   };
 }
 
@@ -198,7 +194,7 @@ export function fooPropertiesSerializer(item: FooProperties): any {
 export function fooPropertiesDeserializer(item: any): FooProperties {
   return {
     bar: item["bar"],
-    baz: item["baz"]
+    baz: item["baz"],
   };
 }
 
@@ -217,14 +213,14 @@ export function xPropertiesDeserializer(item: any): XProperties {
   return {
     bar: item["bar"],
     baz: item["baz"],
-    x: item["x"]
+    x: item["x"],
   };
 }
 
 /** Known values of {@link Versions} that the service accepts. */
 export enum KnownVersions {
   /** 2022-05-15-preview */
-  V20220515Preview = "2022-05-15-preview"
+  V20220515Preview = "2022-05-15-preview",
 }
 
 export function _testPropertiesSerializer(item: Test): any {
@@ -234,7 +230,7 @@ export function _testPropertiesSerializer(item: Test): any {
 export function _testPropertiesDeserializer(item: any) {
   return {
     bar: item["bar"],
-    baz: item["baz"]
+    baz: item["baz"],
   };
 }
 
@@ -242,7 +238,7 @@ export function _testAnotherPropertiesSerializer(item: Test): any {
   return {
     bar: item["barAnotherPropertiesBar"],
     baz: item["bazAnotherPropertiesBaz"],
-    x: item["x"]
+    x: item["x"],
   };
 }
 
@@ -250,7 +246,7 @@ export function _testAnotherPropertiesDeserializer(item: any) {
   return {
     barAnotherPropertiesBar: item["bar"],
     bazAnotherPropertiesBaz: item["baz"],
-    x: item["x"]
+    x: item["x"],
   };
 }
 ```
@@ -331,7 +327,7 @@ export function testSerializer(item: Test): any {
     properties: _testPropertiesSerializer(item),
     anotherProperties: areAllPropsUndefined(item, ["bar", "baz", "result"])
       ? undefined
-      : _testAnotherPropertiesSerializer(item)
+      : _testAnotherPropertiesSerializer(item),
   };
 }
 
@@ -343,7 +339,7 @@ export function testDeserializer(item: any): Test {
     ..._testPropertiesDeserializer(item["properties"]),
     ...(!item["anotherProperties"]
       ? item["anotherProperties"]
-      : _testAnotherPropertiesDeserializer(item["anotherProperties"]))
+      : _testAnotherPropertiesDeserializer(item["anotherProperties"])),
   };
 }
 
@@ -360,7 +356,7 @@ export function fooPropertiesSerializer(item: FooProperties): any {
 export function fooPropertiesDeserializer(item: any): FooProperties {
   return {
     bar: item["bar"],
-    baz: item["baz"]
+    baz: item["baz"],
   };
 }
 
@@ -379,14 +375,14 @@ export function xPropertiesDeserializer(item: any): XProperties {
   return {
     bar: item["bar"],
     baz: item["baz"],
-    result: item["result"]
+    result: item["result"],
   };
 }
 
 /** Known values of {@link Versions} that the service accepts. */
 export enum KnownVersions {
   /** 2022-05-15-preview */
-  V20220515Preview = "2022-05-15-preview"
+  V20220515Preview = "2022-05-15-preview",
 }
 
 export function _testPropertiesSerializer(item: Test): any {
@@ -396,7 +392,7 @@ export function _testPropertiesSerializer(item: Test): any {
 export function _testPropertiesDeserializer(item: any) {
   return {
     barPropertiesBar: item["bar"],
-    bazPropertiesBaz: item["baz"]
+    bazPropertiesBaz: item["baz"],
   };
 }
 
@@ -404,7 +400,7 @@ export function _testAnotherPropertiesSerializer(item: Test): any {
   return {
     bar: item["barAnotherPropertiesBar"],
     baz: item["bazAnotherPropertiesBaz"],
-    result: item["resultAnotherPropertiesResult"]
+    result: item["resultAnotherPropertiesResult"],
   };
 }
 
@@ -412,7 +408,7 @@ export function _testAnotherPropertiesDeserializer(item: any) {
   return {
     barAnotherPropertiesBar: item["bar"],
     bazAnotherPropertiesBaz: item["baz"],
-    resultAnotherPropertiesResult: item["result"]
+    resultAnotherPropertiesResult: item["result"],
   };
 }
 ```

@@ -94,7 +94,7 @@ export function createService(
       "This client does not support client api-version, please change it at the operation level",
     );
   }
-  return { ...clientContext, clientParam: options.clientParam } as ServiceContext;
+  return { ...clientContext, clientParam } as ServiceContext;
 }
 ```
 
@@ -194,7 +194,7 @@ export function createService(options: ServiceClientOptionalParams = {}): Servic
       "This client does not support client api-version, please change it at the operation level",
     );
   }
-  return { ...clientContext, clientParam: options.clientParam } as ServiceContext;
+  return { ...clientContext, clientParam } as ServiceContext;
 }
 ```
 
@@ -296,6 +296,6 @@ export function createTestService(
       "This client does not support client api-version, please change it at the operation level",
     );
   }
-  return { ...clientContext, clientParam: options.clientParam } as TestServiceContext;
+  return { ...clientContext, clientParam } as TestServiceContext;
 }
 ```

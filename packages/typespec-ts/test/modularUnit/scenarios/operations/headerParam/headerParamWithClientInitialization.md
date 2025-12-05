@@ -1,4 +1,4 @@
-# only: Optional header parameter with clientInitialization
+# Optional header parameter with clientInitialization
 
 This scenario tests the generation of TypeScript code for an Azure Resource Manager resource read operation with header parameters, specifically the `$expand` parameter for the SavingsPlanModel.
 
@@ -231,7 +231,7 @@ export async function get(
   return _getDeserialize(result);
 }
 ```
-# only: Required header parameter with clientInitialization
+# Required header parameter with clientInitialization
 
 This scenario tests the generation of TypeScript code for an Azure Resource Manager resource read operation with header parameters, specifically the `$expand` parameter for the SavingsPlanModel.
 
