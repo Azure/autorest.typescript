@@ -197,11 +197,8 @@ export function buildClientContext(
     isExported: true
   });
 
-  const endpointParam = buildGetClientEndpointParam(
-    factoryFunction,
-    dpgContext,
-    client
-  );
+  const { endpointParamName: endpointParam, assignedOptionalParams } =
+    buildGetClientEndpointParam(factoryFunction, dpgContext, client);
   const credentialParam = buildGetClientCredentialParam(client, emitterOptions);
   const optionsParam = buildGetClientOptionsParam(
     factoryFunction,
@@ -309,12 +306,21 @@ export function buildClientContext(
     );
   });
 
+  // Build context params, checking if param was already assigned as a required param
   const allContextParams = [
     ...contextRequiredParam.map((p) => p.name),
-    ...contextOptionalParams.map(
-      (p) =>
-        `${getClientParameterName(p)}: options.${getClientParameterName(p)}`
-    )
+    ...contextOptionalParams.map((p) => {
+      const clientParamName = getClientParameterName(p);
+      // If this param was already assigned (e.g., as a required param or in endpoint building), use the value directly
+      // Otherwise, get it from options
+      if (
+        requiredParamNames.has(clientParamName) ||
+        (assignedOptionalParams && assignedOptionalParams.has(clientParamName))
+      ) {
+        return clientParamName;
+      }
+      return `${clientParamName}: options.${clientParamName}`;
+    })
   ];
 
   if (allContextParams.length) {

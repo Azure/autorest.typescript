@@ -64,11 +64,5 @@ export function createParametrizedHost(
       return next(req);
     },
   });
-  return {
-    ...clientContext,
-    apiVersion,
-    host: options.host,
-    subdomain: options.subdomain,
-    sufix: options.sufix,
-  } as ParametrizedHostContext;
+  return { ...clientContext, apiVersion, host, subdomain, sufix } as ParametrizedHostContext;
 }
