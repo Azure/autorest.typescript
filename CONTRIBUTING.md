@@ -40,9 +40,51 @@ In order contribute to this project, You will need to install some prerequisite 
 - Git
 - Any of the [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
 - Pnpm 10.12.x
-  - Install / update Pnpm globally via `npm install -g pnpm`.
+  - Install / update pnpm globally via `npm install -g pnpm`.
 - [Autorest](https://www.npmjs.com/package/autorest), if you're planning contribute to the generator code from swagger either for high level client or for rest level client.
 - [TypeSpec Compiler](https://www.npmjs.com/package/@typespec/compiler), if you're planning contribute to the generator code from TypeSpec.
+
+## Getting Started
+
+### Installing Dependencies
+
+To install all dependencies for the monorepo:
+
+```bash
+pnpm install
+```
+
+### Building One Project
+
+To build a specific package (e.g., typespec-ts):
+
+```bash
+cd packages/typespec-ts
+pnpm build
+```
+
+### Building One Project with its Dependencies
+
+To build a package and all its dependencies:
+
+```bash
+pnpm --filter @azure-tools/typespec-ts build
+```
+
+### Running a Specific Command
+
+To run a specific command (e.g., unit tests) in a package:
+
+```bash
+cd packages/typespec-ts
+pnpm run unit-test
+```
+
+Or from the root:
+
+```bash
+pnpm --filter @azure-tools/typespec-ts run unit-test
+```
 
 ### Things to keep in mind when contributing
 
