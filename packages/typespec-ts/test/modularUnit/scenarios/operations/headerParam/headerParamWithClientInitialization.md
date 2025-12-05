@@ -1,10 +1,10 @@
-# only: Optional query parameter with clientInitialization
+# only: Optional header parameter with clientInitialization
 
-This scenario tests the generation of TypeScript code for an Azure Resource Manager resource read operation with query parameters, specifically the `$expand` parameter for the SavingsPlanModel.
+This scenario tests the generation of TypeScript code for an Azure Resource Manager resource read operation with header parameters, specifically the `$expand` parameter for the SavingsPlanModel.
 
 ## TypeSpec
 
-This TypeSpec defines a SavingsPlanModel with an ArmResourceRead operation that includes an optional `$expand` query parameter to expand detail information of some properties.
+This TypeSpec defines a SavingsPlanModel with an ArmResourceRead operation that includes an optional `$expand` header parameter to expand detail information of some properties.
 
 ```tsp
 import "@typespec/http";
@@ -28,9 +28,9 @@ namespace Microsoft.BillingBenefits;
 
 model ExpandParameter {
   /**
-   * The expand query parameter.
+   * The expand header parameter.
    */
-  @query("$expand")
+  @header("$expand")
   $expand?: string;
 }
 
@@ -86,7 +86,7 @@ interface SavingsPlanModels {
       /**
        * May be used to expand the detail information of some properties.
        */
-      @query("$expand")
+      @header("$expand")
       $expand?: string;
     }
   >;
@@ -113,13 +113,13 @@ import { logger } from "../logger.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 
 export interface BillingBenefitsContext extends Client {
-  /** The expand query parameter. */
+  /** The expand header parameter. */
   expand?: string;
 }
 
 /** Optional parameters for the client. */
 export interface BillingBenefitsClientOptionalParams extends ClientOptions {
-  /** The expand query parameter. */
+  /** The expand header parameter. */
   expand?: string;
 }
 
@@ -174,14 +174,13 @@ export function _getSend(
   options: GetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ThisWillBeReplaced/savingsPlanOrders/{savingsPlanOrderId}/savingsPlans/{savingsPlanId}{?api%2Dversion,%24expand}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ThisWillBeReplaced/savingsPlanOrders/{savingsPlanOrderId}/savingsPlans/{savingsPlanId}{?api%2Dversion}",
     {
       subscriptionId: subscriptionId,
       resourceGroupName: resourceGroupName,
       savingsPlanOrderId: savingsPlanOrderId,
       savingsPlanId: savingsPlanId,
       "api%2Dversion": apiVersion,
-      "%24expand": context.expand,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -191,7 +190,11 @@ export function _getSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json", ...options.requestOptions?.headers },
+      headers: {
+        ...(options?.expand !== undefined ? { $expand: context.expand } : {}),
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
@@ -228,14 +231,13 @@ export async function get(
   return _getDeserialize(result);
 }
 ```
+# only: Required header parameter with clientInitialization
 
-# only: Required query parameter with clientInitialization
-
-This scenario tests the generation of TypeScript code for an Azure Resource Manager resource read operation with query parameters, specifically the `$expand` parameter for the SavingsPlanModel.
+This scenario tests the generation of TypeScript code for an Azure Resource Manager resource read operation with header parameters, specifically the `$expand` parameter for the SavingsPlanModel.
 
 ## TypeSpec
 
-This TypeSpec defines a SavingsPlanModel with an ArmResourceRead operation that includes an optional `$expand` query parameter to expand detail information of some properties.
+This TypeSpec defines a SavingsPlanModel with an ArmResourceRead operation that includes an optional `$expand` header parameter to expand detail information of some properties.
 
 ```tsp
 import "@typespec/http";
@@ -259,9 +261,9 @@ namespace Microsoft.BillingBenefits;
 
 model ExpandParameter {
   /**
-   * The expand query parameter.
+   * The expand header parameter.
    */
-  @query("$expand")
+  @header("$expand")
   $expand: string;
 }
 
@@ -317,7 +319,7 @@ interface SavingsPlanModels {
       /**
        * May be used to expand the detail information of some properties.
        */
-      @query("$expand")
+      @header("$expand")
       $expand?: string;
     }
   >;
@@ -344,7 +346,7 @@ import { logger } from "../logger.js";
 import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
 
 export interface BillingBenefitsContext extends Client {
-  /** The expand query parameter. */
+  /** The expand header parameter. */
   expand: string;
 }
 
@@ -403,14 +405,13 @@ export function _getSend(
   options: GetOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ThisWillBeReplaced/savingsPlanOrders/{savingsPlanOrderId}/savingsPlans/{savingsPlanId}{?api%2Dversion,%24expand}",
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ThisWillBeReplaced/savingsPlanOrders/{savingsPlanOrderId}/savingsPlans/{savingsPlanId}{?api%2Dversion}",
     {
       subscriptionId: subscriptionId,
       resourceGroupName: resourceGroupName,
       savingsPlanOrderId: savingsPlanOrderId,
       savingsPlanId: savingsPlanId,
       "api%2Dversion": apiVersion,
-      "%24expand": context.expand,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
@@ -420,7 +421,11 @@ export function _getSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { accept: "application/json", ...options.requestOptions?.headers },
+      headers: {
+        ...(options?.expand !== undefined ? { $expand: context.expand } : {}),
+        accept: "application/json",
+        ...options.requestOptions?.headers,
+      },
     });
 }
 
