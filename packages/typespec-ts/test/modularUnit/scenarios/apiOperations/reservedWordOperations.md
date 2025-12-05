@@ -30,16 +30,11 @@ export function _$continueSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _$continueDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Test> {
+export async function _$continueDeserialize(result: PathUncheckedResponse): Promise<Test> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -94,16 +89,11 @@ export function _$returnSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _$returnDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Test> {
+export async function _$returnDeserialize(result: PathUncheckedResponse): Promise<Test> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -158,16 +148,11 @@ export function _globalSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _globalDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Test> {
+export async function _globalDeserialize(result: PathUncheckedResponse): Promise<Test> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);

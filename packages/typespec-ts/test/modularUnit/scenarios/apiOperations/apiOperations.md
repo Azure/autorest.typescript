@@ -38,9 +38,7 @@ export function _uploadFileViaBodySend(
     });
 }
 
-export async function _uploadFileViaBodyDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _uploadFileViaBodyDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -100,9 +98,7 @@ export function _uploadFileViaBodySend(
     });
 }
 
-export async function _uploadFileViaBodyDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _uploadFileViaBodyDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -149,9 +145,7 @@ op uploadFile(
 /** model interface _UploadFileRequest */
 export interface _UploadFileRequest {
   name: string;
-  file:
-    | FileContents
-    | { contents: FileContents; contentType?: string; filename?: string };
+  file: FileContents | { contents: FileContents; contentType?: string; filename?: string };
 }
 ```
 
@@ -196,9 +190,7 @@ export function _uploadFileSend(
     });
 }
 
-export async function _uploadFileDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _uploadFileDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -240,10 +232,7 @@ op uploadFiles(
 ## Models
 
 ```ts models
-import {
-  FileContents,
-  createFilePartDescriptor,
-} from "../static-helpers/multipartHelpers.js";
+import { FileContents, createFilePartDescriptor } from "../static-helpers/multipartHelpers.js";
 
 /**
  * This file contains only generated model types and their (de)serializers.
@@ -253,10 +242,7 @@ import {
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface _UploadFilesRequest */
 export interface _UploadFilesRequest {
-  files: Array<
-    | FileContents
-    | { contents: FileContents; contentType?: string; filename?: string }
-  >;
+  files: Array<FileContents | { contents: FileContents; contentType?: string; filename?: string }>;
 }
 
 export function _uploadFilesRequestSerializer(item: _UploadFilesRequest): any {
@@ -297,9 +283,7 @@ export function _uploadFilesSend(
     });
 }
 
-export async function _uploadFilesDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _uploadFilesDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -354,16 +338,11 @@ export function _downloadFileSend(
     .path("/downloadFile")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/octet-stream",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/octet-stream", ...options.requestOptions?.headers },
     });
 }
 
-export async function _downloadFileDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Uint8Array> {
+export async function _downloadFileDeserialize(result: PathUncheckedResponse): Promise<Uint8Array> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -419,16 +398,11 @@ export function _downloadFileSend(
     .path("/downloadFile")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/octet-stream",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/octet-stream", ...options.requestOptions?.headers },
     });
 }
 
-export async function _downloadFileDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Uint8Array> {
+export async function _downloadFileDeserialize(result: PathUncheckedResponse): Promise<Uint8Array> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -478,15 +452,10 @@ import { stringToUint8Array } from "@azure/core-util";
 /** model interface _DownloadFileResponse */
 export interface _DownloadFileResponse {
   name: string;
-  file: Array<
-    | FileContents
-    | { contents: FileContents; contentType?: string; filename?: string }
-  >;
+  file: Array<FileContents | { contents: FileContents; contentType?: string; filename?: string }>;
 }
 
-export function _downloadFileResponseDeserializer(
-  item: any,
-): _DownloadFileResponse {
+export function _downloadFileResponseDeserializer(item: any): _DownloadFileResponse {
   return {
     name: item["name"],
     file: item["file"].map((p: any) => {
@@ -517,16 +486,11 @@ export function _downloadFileSend(
     .path("/downloadFile")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "multipart/form-data",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "multipart/form-data", ...options.requestOptions?.headers },
     });
 }
 
-export async function _downloadFileDeserialize(
-  result: PathUncheckedResponse,
-): Promise<{
+export async function _downloadFileDeserialize(result: PathUncheckedResponse): Promise<{
   name: string;
   file: Uint8Array[];
 }> {
@@ -583,22 +547,16 @@ import { stringToUint8Array } from "@azure/core-util";
 /** model interface _DownloadFileResponse */
 export interface _DownloadFileResponse {
   name: string[];
-  file:
-    | FileContents
-    | { contents: FileContents; contentType?: string; filename?: string };
+  file: FileContents | { contents: FileContents; contentType?: string; filename?: string };
 }
 
-export function _downloadFileResponseDeserializer(
-  item: any,
-): _DownloadFileResponse {
+export function _downloadFileResponseDeserializer(item: any): _DownloadFileResponse {
   return {
     name: item["name"].map((p: any) => {
       return p;
     }),
     file:
-      typeof item["file"] === "string"
-        ? stringToUint8Array(item["file"], "base64")
-        : item["file"],
+      typeof item["file"] === "string" ? stringToUint8Array(item["file"], "base64") : item["file"],
   };
 }
 ```
@@ -624,16 +582,11 @@ export function _downloadFileSend(
     .path("/downloadFile")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "multipart/form-data",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "multipart/form-data", ...options.requestOptions?.headers },
     });
 }
 
-export async function _downloadFileDeserialize(
-  result: PathUncheckedResponse,
-): Promise<{
+export async function _downloadFileDeserialize(result: PathUncheckedResponse): Promise<{
   name: string[];
   file: Uint8Array;
 }> {
@@ -698,9 +651,7 @@ export function _uploadFileViaBodySend(
     });
 }
 
-export async function _uploadFileViaBodyDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _uploadFileViaBodyDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -715,12 +666,7 @@ export async function uploadFileViaBody(
   body: Uint8Array,
   options: UploadFileViaBodyOptionalParams = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _uploadFileViaBodySend(
-    context,
-    contentType,
-    body,
-    options,
-  );
+  const result = await _uploadFileViaBodySend(context, contentType, body, options);
   return _uploadFileViaBodyDeserialize(result);
 }
 ```
@@ -772,9 +718,7 @@ export function _testSend(
     });
 }
 
-export async function _testDeserialize(
-  result: PathUncheckedResponse,
-): Promise<string> {
+export async function _testDeserialize(result: PathUncheckedResponse): Promise<string> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -810,9 +754,7 @@ export function createTesting(
 ): TestingContext {
   const endpointUrl = options.endpoint ?? String(endpointParam);
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
-  const userAgentPrefix = prefixFromOptions
-    ? `${prefixFromOptions} azsdk-js-api`
-    : `azsdk-js-api`;
+  const userAgentPrefix = prefixFromOptions ? `${prefixFromOptions} azsdk-js-api` : `azsdk-js-api`;
   const { apiVersion: _, ...updatedOptions } = {
     ...options,
     userAgentOptions: { userAgentPrefix },
@@ -843,10 +785,7 @@ export class TestingClient {
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
-  constructor(
-    endpointParam: string,
-    options: TestingClientOptionalParams = {},
-  ) {
+  constructor(endpointParam: string, options: TestingClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
@@ -858,10 +797,7 @@ export class TestingClient {
     this.pipeline = this._client.pipeline;
   }
 
-  test(
-    apiVersion: string,
-    options: TestOptionalParams = { requestOptions: {} },
-  ): Promise<string> {
+  test(apiVersion: string, options: TestOptionalParams = { requestOptions: {} }): Promise<string> {
     return test(this._client, apiVersion, options);
   }
 }
@@ -923,9 +859,7 @@ export function _testSend(
     });
 }
 
-export async function _testDeserialize(
-  result: PathUncheckedResponse,
-): Promise<string> {
+export async function _testDeserialize(result: PathUncheckedResponse): Promise<string> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -961,9 +895,7 @@ export function createTesting(
 ): TestingContext {
   const endpointUrl = options.endpoint ?? String(endpointParam);
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
-  const userAgentPrefix = prefixFromOptions
-    ? `${prefixFromOptions} azsdk-js-api`
-    : `azsdk-js-api`;
+  const userAgentPrefix = prefixFromOptions ? `${prefixFromOptions} azsdk-js-api` : `azsdk-js-api`;
   const { apiVersion: _, ...updatedOptions } = {
     ...options,
     userAgentOptions: { userAgentPrefix },
@@ -994,10 +926,7 @@ export class TestingClient {
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
-  constructor(
-    endpointParam: string,
-    options: TestingClientOptionalParams = {},
-  ) {
+  constructor(endpointParam: string, options: TestingClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
@@ -1009,10 +938,7 @@ export class TestingClient {
     this.pipeline = this._client.pipeline;
   }
 
-  test(
-    apiVersion: string,
-    options: TestOptionalParams = { requestOptions: {} },
-  ): Promise<string> {
+  test(apiVersion: string, options: TestOptionalParams = { requestOptions: {} }): Promise<string> {
     return test(this._client, apiVersion, options);
   }
 }
@@ -1058,9 +984,7 @@ export function _test1Send(
     });
 }
 
-export async function _test1Deserialize(
-  result: PathUncheckedResponse,
-): Promise<string> {
+export async function _test1Deserialize(result: PathUncheckedResponse): Promise<string> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -1099,9 +1023,7 @@ export function _testSend(
     });
 }
 
-export async function _testDeserialize(
-  result: PathUncheckedResponse,
-): Promise<string> {
+export async function _testDeserialize(result: PathUncheckedResponse): Promise<string> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -1137,9 +1059,7 @@ export function createTesting(
 ): TestingContext {
   const endpointUrl = options.endpoint ?? String(endpointParam);
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
-  const userAgentPrefix = prefixFromOptions
-    ? `${prefixFromOptions} azsdk-js-api`
-    : `azsdk-js-api`;
+  const userAgentPrefix = prefixFromOptions ? `${prefixFromOptions} azsdk-js-api` : `azsdk-js-api`;
   const { apiVersion: _, ...updatedOptions } = {
     ...options,
     userAgentOptions: { userAgentPrefix },
@@ -1170,10 +1090,7 @@ export class TestingClient {
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
-  constructor(
-    endpointParam: string,
-    options: TestingClientOptionalParams = {},
-  ) {
+  constructor(endpointParam: string, options: TestingClientOptionalParams = {}) {
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`
@@ -1185,16 +1102,11 @@ export class TestingClient {
     this.pipeline = this._client.pipeline;
   }
 
-  test1(
-    options: Test1OptionalParams = { requestOptions: {} },
-  ): Promise<string> {
+  test1(options: Test1OptionalParams = { requestOptions: {} }): Promise<string> {
     return test1(this._client, options);
   }
 
-  test(
-    apiVersion: string,
-    options: TestOptionalParams = { requestOptions: {} },
-  ): Promise<string> {
+  test(apiVersion: string, options: TestOptionalParams = { requestOptions: {} }): Promise<string> {
     return test(this._client, apiVersion, options);
   }
 }
@@ -1311,10 +1223,7 @@ import {
 } from "../static-helpers/pagingHelpers.js";
 import { getLongRunningPoller } from "../static-helpers/pollingHelpers.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
-import {
-  UpdateFileShareSnapshotOptionalParams,
-  ListOptionalParams,
-} from "./options.js";
+import { UpdateFileShareSnapshotOptionalParams, ListOptionalParams } from "./options.js";
 import {
   StreamableMethod,
   PathUncheckedResponse,
@@ -1375,25 +1284,20 @@ export function updateFileShareSnapshot(
   properties: FileShareSnapshotUpdate,
   options: UpdateFileShareSnapshotOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<FileShareSnapshot>, FileShareSnapshot> {
-  return getLongRunningPoller(
-    context,
-    _updateFileShareSnapshotDeserialize,
-    ["202", "200", "201"],
-    {
-      updateIntervalInMs: options?.updateIntervalInMs,
-      abortSignal: options?.abortSignal,
-      getInitialResponse: () =>
-        _updateFileShareSnapshotSend(
-          context,
-          resourceGroupName,
-          resourceName,
-          name,
-          properties,
-          options,
-        ),
-      resourceLocationConfig: "location",
-    },
-  ) as PollerLike<OperationState<FileShareSnapshot>, FileShareSnapshot>;
+  return getLongRunningPoller(context, _updateFileShareSnapshotDeserialize, ["202", "200", "201"], {
+    updateIntervalInMs: options?.updateIntervalInMs,
+    abortSignal: options?.abortSignal,
+    getInitialResponse: () =>
+      _updateFileShareSnapshotSend(
+        context,
+        resourceGroupName,
+        resourceName,
+        name,
+        properties,
+        options,
+      ),
+    resourceLocationConfig: "location",
+  }) as PollerLike<OperationState<FileShareSnapshot>, FileShareSnapshot>;
 }
 
 export function _listSend(
@@ -1413,10 +1317,7 @@ export function _listSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 

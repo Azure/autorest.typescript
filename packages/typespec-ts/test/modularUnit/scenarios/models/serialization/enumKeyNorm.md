@@ -95,10 +95,7 @@ export interface Foo {
 }
 
 export function fooSerializer(item: Foo): any {
-  return {
-    extensibleString: item["extensibleString"],
-    extensibleNumber: item["extensibleNumber"],
-  };
+  return { extensibleString: item["extensibleString"], extensibleNumber: item["extensibleNumber"] };
 }
 
 /** Known values of {@link ExtensibleString} that the service accepts. */

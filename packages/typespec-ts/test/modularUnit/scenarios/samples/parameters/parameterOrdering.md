@@ -176,10 +176,7 @@ import { TestingClient } from "@azure/internal-test";
 async function verify(): Promise<void> {
   const endpoint = process.env.TESTING_ENDPOINT || "";
   const client = new TestingClient(endpoint);
-  const result = await client.verify(
-    { message: "test message" },
-    "zdgrzzaxlodrvewbksn",
-  );
+  const result = await client.verify({ message: "test message" }, "zdgrzzaxlodrvewbksn");
   console.log(result);
 }
 

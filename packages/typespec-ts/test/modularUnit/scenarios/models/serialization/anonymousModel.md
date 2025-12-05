@@ -58,10 +58,7 @@ export interface _SimpleModelProp {
 }
 
 export function _simpleModelPropSerializer(item: _SimpleModelProp): any {
-  return {
-    propA: item["propA"],
-    propB: _simpleModelPropPropBSerializer(item["propB"]),
-  };
+  return { propA: item["propA"], propB: _simpleModelPropPropBSerializer(item["propB"]) };
 }
 
 /** model interface _SimpleModelPropPropB */
@@ -70,9 +67,7 @@ export interface _SimpleModelPropPropB {
   propBB: boolean;
 }
 
-export function _simpleModelPropPropBSerializer(
-  item: _SimpleModelPropPropB,
-): any {
+export function _simpleModelPropPropBSerializer(item: _SimpleModelPropPropB): any {
   return { propAA: item["propAA"], propBB: item["propBB"] };
 }
 ```

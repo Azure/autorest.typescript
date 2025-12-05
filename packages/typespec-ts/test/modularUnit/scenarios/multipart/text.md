@@ -61,9 +61,7 @@ export function _doThingSend(
     });
 }
 
-export async function _doThingDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _doThingDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -110,9 +108,7 @@ export interface RequestBody {
 
 export function requestBodySerializer(item: RequestBody): any {
   return [
-    ...(item["lastName"] === undefined
-      ? []
-      : [{ name: "lastName", body: item["lastName"] }]),
+    ...(item["lastName"] === undefined ? [] : [{ name: "lastName", body: item["lastName"] }]),
   ];
 }
 ```

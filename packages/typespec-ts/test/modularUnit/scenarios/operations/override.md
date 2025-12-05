@@ -77,14 +77,10 @@ export function _getSecretOriginalSend(
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
-  return context
-    .path(path)
-    .get({ ...operationOptionsToRequestParameters(options) });
+  return context.path(path).get({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _getSecretOriginalDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _getSecretOriginalDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);

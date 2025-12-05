@@ -191,16 +191,13 @@ export interface NestedFlattenModel {
 }
 
 export function nestedFlattenModelSerializer(item: NestedFlattenModel): any {
-  return {
-    name: item["name"],
-    properties: _nestedFlattenModelPropertiesSerializer(item)
-  };
+  return { name: item["name"], properties: _nestedFlattenModelPropertiesSerializer(item) };
 }
 
 export function nestedFlattenModelDeserializer(item: any): NestedFlattenModel {
   return {
     name: item["name"],
-    ..._nestedFlattenModelPropertiesDeserializer(item["properties"])
+    ..._nestedFlattenModelPropertiesDeserializer(item["properties"]),
   };
 }
 
@@ -217,7 +214,7 @@ export function childFlattenModelSerializer(item: ChildFlattenModel): any {
 export function childFlattenModelDeserializer(item: any): ChildFlattenModel {
   return {
     summary: item["summary"],
-    foo: fooDeserializer(item["foo"])
+    foo: fooDeserializer(item["foo"]),
   };
 }
 
@@ -233,7 +230,7 @@ export function fooSerializer(item: Foo): any {
 
 export function fooDeserializer(item: any): Foo {
   return {
-    ..._fooPropertiesDeserializer(item["properties"])
+    ..._fooPropertiesDeserializer(item["properties"]),
   };
 }
 
@@ -250,14 +247,14 @@ export function childModelSerializer(item: ChildModel): any {
 export function childModelDeserializer(item: any): ChildModel {
   return {
     description: item["description"],
-    age: item["age"]
+    age: item["age"],
   };
 }
 
 /** Known values of {@link Versions} that the service accepts. */
 export enum KnownVersions {
   /** 2022-05-15-preview */
-  V20220515Preview = "2022-05-15-preview"
+  V20220515Preview = "2022-05-15-preview",
 }
 
 export function _fooPropertiesSerializer(item: Foo): any {
@@ -267,20 +264,18 @@ export function _fooPropertiesSerializer(item: Foo): any {
 export function _fooPropertiesDeserializer(item: any) {
   return {
     description: item["description"],
-    age: item["age"]
+    age: item["age"],
   };
 }
 
-export function _nestedFlattenModelPropertiesSerializer(
-  item: NestedFlattenModel
-): any {
+export function _nestedFlattenModelPropertiesSerializer(item: NestedFlattenModel): any {
   return { summary: item["summary"], foo: fooSerializer(item["foo"]) };
 }
 
 export function _nestedFlattenModelPropertiesDeserializer(item: any) {
   return {
     summary: item["summary"],
-    foo: fooDeserializer(item["foo"])
+    foo: fooDeserializer(item["foo"]),
   };
 }
 ```

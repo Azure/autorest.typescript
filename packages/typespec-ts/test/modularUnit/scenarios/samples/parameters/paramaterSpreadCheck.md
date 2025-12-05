@@ -83,10 +83,7 @@ async function read(): Promise<void> {
     "required header",
     "required query",
     { name: "body name" },
-    {
-      optionalHeader: "optional header",
-      renamedOptional: "renamed optional query",
-    },
+    { optionalHeader: "optional header", renamedOptional: "renamed optional query" },
   );
   console.log(result);
 }
