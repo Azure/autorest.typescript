@@ -10,6 +10,9 @@ export interface ParametrizedHostContext extends Client {
   /** The API version to use for this operation. */
   /** Known values of {@link KnownVersions} that the service accepts. */
   apiVersion: string;
+  host?: string;
+  subdomain?: string;
+  sufix?: string;
 }
 
 /** Optional parameters for the client. */
@@ -61,5 +64,5 @@ export function createParametrizedHost(
       return next(req);
     },
   });
-  return { ...clientContext, apiVersion } as ParametrizedHostContext;
+  return { ...clientContext, apiVersion, host, subdomain, sufix } as ParametrizedHostContext;
 }

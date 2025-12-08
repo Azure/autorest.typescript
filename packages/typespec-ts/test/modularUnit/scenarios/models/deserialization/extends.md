@@ -183,9 +183,7 @@ export interface DiscountTypeProperties {
   discountPercentage?: number;
 }
 
-export function discountTypePropertiesDeserializer(
-  item: any,
-): DiscountTypeProperties {
+export function discountTypePropertiesDeserializer(item: any): DiscountTypeProperties {
   return {
     discountType: item["discountType"],
     discountPercentage: item["discountPercentage"],
@@ -199,14 +197,10 @@ export type DiscountTypePropertiesUnion =
   | DiscountTypeProductSku
   | DiscountTypeProperties;
 
-export function discountTypePropertiesUnionDeserializer(
-  item: any,
-): DiscountTypePropertiesUnion {
+export function discountTypePropertiesUnionDeserializer(item: any): DiscountTypePropertiesUnion {
   switch (item.discountType) {
     case "ProductFamily":
-      return discountTypeProductFamilyDeserializer(
-        item as DiscountTypeProductFamily,
-      );
+      return discountTypeProductFamilyDeserializer(item as DiscountTypeProductFamily);
 
     case "Product":
       return discountTypeProductDeserializer(item as DiscountTypeProduct);
@@ -233,9 +227,7 @@ export interface DiscountTypeProductFamily extends DiscountTypeProperties {
   discountType: "ProductFamily";
 }
 
-export function discountTypeProductFamilyDeserializer(
-  item: any,
-): DiscountTypeProductFamily {
+export function discountTypeProductFamilyDeserializer(item: any): DiscountTypeProductFamily {
   return {
     discountType: item["discountType"],
     discountPercentage: item["discountPercentage"],
@@ -250,9 +242,7 @@ export interface DiscountTypeProduct extends DiscountTypeProperties {
   discountType: "Product";
 }
 
-export function discountTypeProductDeserializer(
-  item: any,
-): DiscountTypeProduct {
+export function discountTypeProductDeserializer(item: any): DiscountTypeProduct {
   return {
     discountType: item["discountType"],
     discountPercentage: item["discountPercentage"],
@@ -269,9 +259,7 @@ export interface DiscountTypeProductSku extends DiscountTypeProperties {
   discountType: "Sku";
 }
 
-export function discountTypeProductSkuDeserializer(
-  item: any,
-): DiscountTypeProductSku {
+export function discountTypeProductSkuDeserializer(item: any): DiscountTypeProductSku {
   return {
     discountType: item["discountType"],
     discountPercentage: item["discountPercentage"],
@@ -386,9 +374,7 @@ export function documentIngressDeserializer(item: any): DocumentIngress {
 /** Alias for DocumentIngressUnion */
 export type DocumentIngressUnion = Request | Exception | DocumentIngress;
 
-export function documentIngressUnionSerializer(
-  item: DocumentIngressUnion,
-): any {
+export function documentIngressUnionSerializer(item: DocumentIngressUnion): any {
   switch (item.documentType) {
     case "Request":
       return requestSerializer(item as Request);
@@ -401,9 +387,7 @@ export function documentIngressUnionSerializer(
   }
 }
 
-export function documentIngressUnionDeserializer(
-  item: any,
-): DocumentIngressUnion {
+export function documentIngressUnionDeserializer(item: any): DocumentIngressUnion {
   switch (item.documentType) {
     case "Request":
       return requestDeserializer(item as Request);
@@ -692,12 +676,7 @@ export interface Dog extends Pet {
 }
 
 export function dogSerializer(item: Dog): any {
-  return {
-    kind: item["kind"],
-    trained: item["trained"],
-    name: item["name"],
-    breed: item["breed"],
-  };
+  return { kind: item["kind"], trained: item["trained"], name: item["name"], breed: item["breed"] };
 }
 
 export function dogDeserializer(item: any): Dog {
