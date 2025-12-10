@@ -30,11 +30,7 @@
     "pnpm": ">=10.12.1"
   },
   "pnpm": {
-    "overrides": {
-      "@typespec/sse": "^0.77.0",
-      "@typespec/events": "^0.77.0",
-      "@typespec/streams": "^0.77.0"
-    },
+    "overrides": {},
     "ignoredBuiltDependencies": [
       "esbuild"
     ],

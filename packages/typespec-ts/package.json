@@ -88,15 +88,11 @@
     "@typescript-eslint/eslint-plugin": "^8.28.0",
     "@typescript-eslint/parser": "^8.28.0",
     "@typespec/compiler": "^1.7.0",
-    "@typespec/events": "^0.77.0",
     "@typespec/http": "^1.7.0",
     "@typespec/openapi": "^1.7.0",
     "@typespec/rest": "^0.77.0",
-    "@typespec/sse": "^0.77.0",
-    "@typespec/streams": "^0.77.0",
     "@typespec/ts-http-runtime": "^0.1.0",
     "@typespec/versioning": "^0.77.0",
-    "@typespec/xml": "^0.77.0",
     "chai": "^4.3.6",
     "chalk": "^4.0.0",
     "cross-env": "^7.0.3",
@@ -118,24 +114,10 @@
     "@azure-tools/typespec-azure-core": "^0.63.0",
     "@azure-tools/typespec-client-generator-core": "^0.63.0",
     "@typespec/compiler": "^1.7.0",
-    "@typespec/events": "^0.77.0",
     "@typespec/http": "^1.7.0",
     "@typespec/rest": "^0.77.0",
-    "@typespec/sse": "^0.77.0",
-    "@typespec/streams": "^0.77.0",
     "@typespec/versioning": "^0.77.0",
     "@typespec/xml": "^0.77.0"
-  },
-  "peerDependenciesMeta": {
-    "@typespec/sse": {
-      "optional": true
-    },
-    "@typespec/events": {
-      "optional": true
-    },
-    "@typespec/streams": {
-      "optional": true
-    }
   },
   "dependencies": {
     "@azure-tools/rlc-common": "workspace:^0.47.0",
