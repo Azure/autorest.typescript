@@ -25,9 +25,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing DatabaseBlobAuditingPolicies operations. */
-export class DatabaseBlobAuditingPoliciesImpl
-  implements DatabaseBlobAuditingPolicies
-{
+export class DatabaseBlobAuditingPoliciesImpl implements DatabaseBlobAuditingPolicies {
   private readonly client: SqlManagementClient;
 
   /**

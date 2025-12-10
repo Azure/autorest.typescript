@@ -632,8 +632,7 @@ export interface WeatherDataDeleteJob {
 
 /** MultiPolygon geometry. */
 export interface MultiPolygon
-  extends GeoJsonObjectParent,
-    MultiPolygonCoordinates {
+  extends GeoJsonObjectParent, MultiPolygonCoordinates {
   type: "MultiPolygon";
 }
 

@@ -18,9 +18,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing RestorableMongodbCollections operations. */
-export class RestorableMongodbCollectionsImpl
-  implements RestorableMongodbCollections
-{
+export class RestorableMongodbCollectionsImpl implements RestorableMongodbCollections {
   private readonly client: CosmosDBManagementClient;
 
   /**

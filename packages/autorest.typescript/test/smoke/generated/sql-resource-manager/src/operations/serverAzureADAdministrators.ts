@@ -33,9 +33,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing ServerAzureADAdministrators operations. */
-export class ServerAzureADAdministratorsImpl
-  implements ServerAzureADAdministrators
-{
+export class ServerAzureADAdministratorsImpl implements ServerAzureADAdministrators {
   private readonly client: SqlManagementClient;
 
   /**

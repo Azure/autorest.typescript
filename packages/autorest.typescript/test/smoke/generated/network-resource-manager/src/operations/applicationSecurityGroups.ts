@@ -39,9 +39,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing ApplicationSecurityGroups operations. */
-export class ApplicationSecurityGroupsImpl
-  implements ApplicationSecurityGroups
-{
+export class ApplicationSecurityGroupsImpl implements ApplicationSecurityGroups {
   private readonly client: NetworkManagementClient;
 
   /**
