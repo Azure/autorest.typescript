@@ -610,8 +610,7 @@ export interface HttpClientFailureGet400DefaultResponse extends HttpResponse {
 }
 
 /** Return 400 status code - should be represented in the client as an error */
-export interface HttpClientFailureOptions400DefaultResponse
-  extends HttpResponse {
+export interface HttpClientFailureOptions400DefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -635,8 +634,7 @@ export interface HttpClientFailurePost400DefaultResponse extends HttpResponse {
 }
 
 /** Return 400 status code - should be represented in the client as an error */
-export interface HttpClientFailureDelete400DefaultResponse
-  extends HttpResponse {
+export interface HttpClientFailureDelete400DefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -654,8 +652,7 @@ export interface HttpClientFailureGet402DefaultResponse extends HttpResponse {
 }
 
 /** Return 403 status code - should be represented in the client as an error */
-export interface HttpClientFailureOptions403DefaultResponse
-  extends HttpResponse {
+export interface HttpClientFailureOptions403DefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -685,8 +682,7 @@ export interface HttpClientFailurePost406DefaultResponse extends HttpResponse {
 }
 
 /** Return 407 status code - should be represented in the client as an error */
-export interface HttpClientFailureDelete407DefaultResponse
-  extends HttpResponse {
+export interface HttpClientFailureDelete407DefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -710,8 +706,7 @@ export interface HttpClientFailureGet411DefaultResponse extends HttpResponse {
 }
 
 /** Return 412 status code - should be represented in the client as an error */
-export interface HttpClientFailureOptions412DefaultResponse
-  extends HttpResponse {
+export interface HttpClientFailureOptions412DefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -747,8 +742,7 @@ export interface HttpClientFailureGet416DefaultResponse extends HttpResponse {
 }
 
 /** Return 417 status code - should be represented in the client as an error */
-export interface HttpClientFailureDelete417DefaultResponse
-  extends HttpResponse {
+export interface HttpClientFailureDelete417DefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -778,8 +772,7 @@ export interface HttpServerFailurePost505DefaultResponse extends HttpResponse {
 }
 
 /** Return 505 status code - should be represented in the client as an error */
-export interface HttpServerFailureDelete505DefaultResponse
-  extends HttpResponse {
+export interface HttpServerFailureDelete505DefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -885,530 +878,450 @@ export interface HttpRetryPatch504DefaultResponse extends HttpResponse {
 }
 
 /** Send a 200 response with valid payload: {'statusCode': '200'} */
-export interface MultipleResponsesGet200Model204NoModelDefaultError200Valid200Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200Model204NoModelDefaultError200Valid200Response extends HttpResponse {
   status: "200";
   body: MyExceptionOutput;
 }
 
 /** Send a 200 response with valid payload: {'statusCode': '200'} */
-export interface MultipleResponsesGet200Model204NoModelDefaultError200Valid204Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200Model204NoModelDefaultError200Valid204Response extends HttpResponse {
   status: "204";
 }
 
 /** Send a 200 response with valid payload: {'statusCode': '200'} */
-export interface MultipleResponsesGet200Model204NoModelDefaultError200ValidDefaultResponse
-  extends HttpResponse {
+export interface MultipleResponsesGet200Model204NoModelDefaultError200ValidDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
 
 /** Send a 204 response with no payload */
-export interface MultipleResponsesGet200Model204NoModelDefaultError204Valid200Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200Model204NoModelDefaultError204Valid200Response extends HttpResponse {
   status: "200";
   body: MyExceptionOutput;
 }
 
 /** Send a 204 response with no payload */
-export interface MultipleResponsesGet200Model204NoModelDefaultError204Valid204Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200Model204NoModelDefaultError204Valid204Response extends HttpResponse {
   status: "204";
 }
 
 /** Send a 204 response with no payload */
-export interface MultipleResponsesGet200Model204NoModelDefaultError204ValidDefaultResponse
-  extends HttpResponse {
+export interface MultipleResponsesGet200Model204NoModelDefaultError204ValidDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
 
 /** Send a 201 response with valid payload: {'statusCode': '201'} */
-export interface MultipleResponsesGet200Model204NoModelDefaultError201Invalid200Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200Model204NoModelDefaultError201Invalid200Response extends HttpResponse {
   status: "200";
   body: MyExceptionOutput;
 }
 
 /** Send a 201 response with valid payload: {'statusCode': '201'} */
-export interface MultipleResponsesGet200Model204NoModelDefaultError201Invalid204Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200Model204NoModelDefaultError201Invalid204Response extends HttpResponse {
   status: "204";
 }
 
 /** Send a 201 response with valid payload: {'statusCode': '201'} */
-export interface MultipleResponsesGet200Model204NoModelDefaultError201InvalidDefaultResponse
-  extends HttpResponse {
+export interface MultipleResponsesGet200Model204NoModelDefaultError201InvalidDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
 
 /** Send a 202 response with no payload: */
-export interface MultipleResponsesGet200Model204NoModelDefaultError202None200Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200Model204NoModelDefaultError202None200Response extends HttpResponse {
   status: "200";
   body: MyExceptionOutput;
 }
 
 /** Send a 202 response with no payload: */
-export interface MultipleResponsesGet200Model204NoModelDefaultError202None204Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200Model204NoModelDefaultError202None204Response extends HttpResponse {
   status: "204";
 }
 
 /** Send a 202 response with no payload: */
-export interface MultipleResponsesGet200Model204NoModelDefaultError202NoneDefaultResponse
-  extends HttpResponse {
+export interface MultipleResponsesGet200Model204NoModelDefaultError202NoneDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
 
 /** Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'} */
-export interface MultipleResponsesGet200Model204NoModelDefaultError400Valid200Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200Model204NoModelDefaultError400Valid200Response extends HttpResponse {
   status: "200";
   body: MyExceptionOutput;
 }
 
 /** Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'} */
-export interface MultipleResponsesGet200Model204NoModelDefaultError400Valid204Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200Model204NoModelDefaultError400Valid204Response extends HttpResponse {
   status: "204";
 }
 
 /** Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'} */
-export interface MultipleResponsesGet200Model204NoModelDefaultError400ValidDefaultResponse
-  extends HttpResponse {
+export interface MultipleResponsesGet200Model204NoModelDefaultError400ValidDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
 
 /** Send a 200 response with valid payload: {'statusCode': '200'} */
-export interface MultipleResponsesGet200Model201ModelDefaultError200Valid200Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200Model201ModelDefaultError200Valid200Response extends HttpResponse {
   status: "200";
   body: MyExceptionOutput;
 }
 
 /** Send a 200 response with valid payload: {'statusCode': '200'} */
-export interface MultipleResponsesGet200Model201ModelDefaultError200Valid201Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200Model201ModelDefaultError200Valid201Response extends HttpResponse {
   status: "201";
   body: BOutput;
 }
 
 /** Send a 200 response with valid payload: {'statusCode': '200'} */
-export interface MultipleResponsesGet200Model201ModelDefaultError200ValidDefaultResponse
-  extends HttpResponse {
+export interface MultipleResponsesGet200Model201ModelDefaultError200ValidDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
 
 /** Send a 201 response with valid payload: {'statusCode': '201', 'textStatusCode': 'Created'} */
-export interface MultipleResponsesGet200Model201ModelDefaultError201Valid200Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200Model201ModelDefaultError201Valid200Response extends HttpResponse {
   status: "200";
   body: MyExceptionOutput;
 }
 
 /** Send a 201 response with valid payload: {'statusCode': '201', 'textStatusCode': 'Created'} */
-export interface MultipleResponsesGet200Model201ModelDefaultError201Valid201Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200Model201ModelDefaultError201Valid201Response extends HttpResponse {
   status: "201";
   body: BOutput;
 }
 
 /** Send a 201 response with valid payload: {'statusCode': '201', 'textStatusCode': 'Created'} */
-export interface MultipleResponsesGet200Model201ModelDefaultError201ValidDefaultResponse
-  extends HttpResponse {
+export interface MultipleResponsesGet200Model201ModelDefaultError201ValidDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
 
 /** Send a 400 response with valid payload: {'code': '400', 'message': 'client error'} */
-export interface MultipleResponsesGet200Model201ModelDefaultError400Valid200Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200Model201ModelDefaultError400Valid200Response extends HttpResponse {
   status: "200";
   body: MyExceptionOutput;
 }
 
 /** Send a 400 response with valid payload: {'code': '400', 'message': 'client error'} */
-export interface MultipleResponsesGet200Model201ModelDefaultError400Valid201Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200Model201ModelDefaultError400Valid201Response extends HttpResponse {
   status: "201";
   body: BOutput;
 }
 
 /** Send a 400 response with valid payload: {'code': '400', 'message': 'client error'} */
-export interface MultipleResponsesGet200Model201ModelDefaultError400ValidDefaultResponse
-  extends HttpResponse {
+export interface MultipleResponsesGet200Model201ModelDefaultError400ValidDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
 
 /** Send a 200 response with valid payload: {'statusCode': '200'} */
-export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200Valid200Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200Valid200Response extends HttpResponse {
   status: "200";
   body: MyExceptionOutput;
 }
 
 /** Send a 200 response with valid payload: {'statusCode': '200'} */
-export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200Valid201Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200Valid201Response extends HttpResponse {
   status: "201";
   body: COutput;
 }
 
 /** Send a 200 response with valid payload: {'statusCode': '200'} */
-export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200Valid404Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200Valid404Response extends HttpResponse {
   status: "404";
   body: DOutput;
 }
 
 /** Send a 200 response with valid payload: {'statusCode': '200'} */
-export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidDefaultResponse
-  extends HttpResponse {
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
 
 /** Send a 200 response with valid payload: {'httpCode': '201'} */
-export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201Valid200Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201Valid200Response extends HttpResponse {
   status: "200";
   body: MyExceptionOutput;
 }
 
 /** Send a 200 response with valid payload: {'httpCode': '201'} */
-export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201Valid201Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201Valid201Response extends HttpResponse {
   status: "201";
   body: COutput;
 }
 
 /** Send a 200 response with valid payload: {'httpCode': '201'} */
-export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201Valid404Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201Valid404Response extends HttpResponse {
   status: "404";
   body: DOutput;
 }
 
 /** Send a 200 response with valid payload: {'httpCode': '201'} */
-export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidDefaultResponse
-  extends HttpResponse {
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
 
 /** Send a 200 response with valid payload: {'httpStatusCode': '404'} */
-export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404Valid200Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404Valid200Response extends HttpResponse {
   status: "200";
   body: MyExceptionOutput;
 }
 
 /** Send a 200 response with valid payload: {'httpStatusCode': '404'} */
-export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404Valid201Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404Valid201Response extends HttpResponse {
   status: "201";
   body: COutput;
 }
 
 /** Send a 200 response with valid payload: {'httpStatusCode': '404'} */
-export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404Valid404Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404Valid404Response extends HttpResponse {
   status: "404";
   body: DOutput;
 }
 
 /** Send a 200 response with valid payload: {'httpStatusCode': '404'} */
-export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidDefaultResponse
-  extends HttpResponse {
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
 
 /** Send a 400 response with valid payload: {'code': '400', 'message': 'client error'} */
-export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400Valid200Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400Valid200Response extends HttpResponse {
   status: "200";
   body: MyExceptionOutput;
 }
 
 /** Send a 400 response with valid payload: {'code': '400', 'message': 'client error'} */
-export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400Valid201Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400Valid201Response extends HttpResponse {
   status: "201";
   body: COutput;
 }
 
 /** Send a 400 response with valid payload: {'code': '400', 'message': 'client error'} */
-export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400Valid404Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400Valid404Response extends HttpResponse {
   status: "404";
   body: DOutput;
 }
 
 /** Send a 400 response with valid payload: {'code': '400', 'message': 'client error'} */
-export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidDefaultResponse
-  extends HttpResponse {
+export interface MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
 
 /** Send a 202 response with no payload */
-export interface MultipleResponsesGet202None204NoneDefaultError202None202Response
-  extends HttpResponse {
+export interface MultipleResponsesGet202None204NoneDefaultError202None202Response extends HttpResponse {
   status: "202";
 }
 
 /** Send a 202 response with no payload */
-export interface MultipleResponsesGet202None204NoneDefaultError202None204Response
-  extends HttpResponse {
+export interface MultipleResponsesGet202None204NoneDefaultError202None204Response extends HttpResponse {
   status: "204";
 }
 
 /** Send a 202 response with no payload */
-export interface MultipleResponsesGet202None204NoneDefaultError202NoneDefaultResponse
-  extends HttpResponse {
+export interface MultipleResponsesGet202None204NoneDefaultError202NoneDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
 
 /** Send a 204 response with no payload */
-export interface MultipleResponsesGet202None204NoneDefaultError204None202Response
-  extends HttpResponse {
+export interface MultipleResponsesGet202None204NoneDefaultError204None202Response extends HttpResponse {
   status: "202";
 }
 
 /** Send a 204 response with no payload */
-export interface MultipleResponsesGet202None204NoneDefaultError204None204Response
-  extends HttpResponse {
+export interface MultipleResponsesGet202None204NoneDefaultError204None204Response extends HttpResponse {
   status: "204";
 }
 
 /** Send a 204 response with no payload */
-export interface MultipleResponsesGet202None204NoneDefaultError204NoneDefaultResponse
-  extends HttpResponse {
+export interface MultipleResponsesGet202None204NoneDefaultError204NoneDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
 
 /** Send a 400 response with valid payload: {'code': '400', 'message': 'client error'} */
-export interface MultipleResponsesGet202None204NoneDefaultError400Valid202Response
-  extends HttpResponse {
+export interface MultipleResponsesGet202None204NoneDefaultError400Valid202Response extends HttpResponse {
   status: "202";
 }
 
 /** Send a 400 response with valid payload: {'code': '400', 'message': 'client error'} */
-export interface MultipleResponsesGet202None204NoneDefaultError400Valid204Response
-  extends HttpResponse {
+export interface MultipleResponsesGet202None204NoneDefaultError400Valid204Response extends HttpResponse {
   status: "204";
 }
 
 /** Send a 400 response with valid payload: {'code': '400', 'message': 'client error'} */
-export interface MultipleResponsesGet202None204NoneDefaultError400ValidDefaultResponse
-  extends HttpResponse {
+export interface MultipleResponsesGet202None204NoneDefaultError400ValidDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
 
 /** Send a 202 response with an unexpected payload {'property': 'value'} */
-export interface MultipleResponsesGet202None204NoneDefaultNone202Invalid202Response
-  extends HttpResponse {
+export interface MultipleResponsesGet202None204NoneDefaultNone202Invalid202Response extends HttpResponse {
   status: "202";
 }
 
 /** Send a 202 response with an unexpected payload {'property': 'value'} */
-export interface MultipleResponsesGet202None204NoneDefaultNone202Invalid204Response
-  extends HttpResponse {
+export interface MultipleResponsesGet202None204NoneDefaultNone202Invalid204Response extends HttpResponse {
   status: "204";
 }
 
 /** Send a 202 response with an unexpected payload {'property': 'value'} */
-export interface MultipleResponsesGet202None204NoneDefaultNone202InvalidDefaultResponse
-  extends HttpResponse {
+export interface MultipleResponsesGet202None204NoneDefaultNone202InvalidDefaultResponse extends HttpResponse {
   status: string;
 }
 
 /** Send a 204 response with no payload */
-export interface MultipleResponsesGet202None204NoneDefaultNone204None202Response
-  extends HttpResponse {
+export interface MultipleResponsesGet202None204NoneDefaultNone204None202Response extends HttpResponse {
   status: "202";
 }
 
 /** Send a 204 response with no payload */
-export interface MultipleResponsesGet202None204NoneDefaultNone204None204Response
-  extends HttpResponse {
+export interface MultipleResponsesGet202None204NoneDefaultNone204None204Response extends HttpResponse {
   status: "204";
 }
 
 /** Send a 204 response with no payload */
-export interface MultipleResponsesGet202None204NoneDefaultNone204NoneDefaultResponse
-  extends HttpResponse {
+export interface MultipleResponsesGet202None204NoneDefaultNone204NoneDefaultResponse extends HttpResponse {
   status: string;
 }
 
 /** Send a 400 response with no payload */
-export interface MultipleResponsesGet202None204NoneDefaultNone400None202Response
-  extends HttpResponse {
+export interface MultipleResponsesGet202None204NoneDefaultNone400None202Response extends HttpResponse {
   status: "202";
 }
 
 /** Send a 400 response with no payload */
-export interface MultipleResponsesGet202None204NoneDefaultNone400None204Response
-  extends HttpResponse {
+export interface MultipleResponsesGet202None204NoneDefaultNone400None204Response extends HttpResponse {
   status: "204";
 }
 
 /** Send a 400 response with no payload */
-export interface MultipleResponsesGet202None204NoneDefaultNone400NoneDefaultResponse
-  extends HttpResponse {
+export interface MultipleResponsesGet202None204NoneDefaultNone400NoneDefaultResponse extends HttpResponse {
   status: string;
 }
 
 /** Send a 400 response with an unexpected payload {'property': 'value'} */
-export interface MultipleResponsesGet202None204NoneDefaultNone400Invalid202Response
-  extends HttpResponse {
+export interface MultipleResponsesGet202None204NoneDefaultNone400Invalid202Response extends HttpResponse {
   status: "202";
 }
 
 /** Send a 400 response with an unexpected payload {'property': 'value'} */
-export interface MultipleResponsesGet202None204NoneDefaultNone400Invalid204Response
-  extends HttpResponse {
+export interface MultipleResponsesGet202None204NoneDefaultNone400Invalid204Response extends HttpResponse {
   status: "204";
 }
 
 /** Send a 400 response with an unexpected payload {'property': 'value'} */
-export interface MultipleResponsesGet202None204NoneDefaultNone400InvalidDefaultResponse
-  extends HttpResponse {
+export interface MultipleResponsesGet202None204NoneDefaultNone400InvalidDefaultResponse extends HttpResponse {
   status: string;
 }
 
 /** Send a 200 response with valid payload: {'statusCode': '200'} */
-export interface MultipleResponsesGetDefaultModelA200Valid200Response
-  extends HttpResponse {
+export interface MultipleResponsesGetDefaultModelA200Valid200Response extends HttpResponse {
   status: "200";
   body: MyExceptionOutput;
 }
 
 /** Send a 200 response with no payload */
-export interface MultipleResponsesGetDefaultModelA200None200Response
-  extends HttpResponse {
+export interface MultipleResponsesGetDefaultModelA200None200Response extends HttpResponse {
   status: "200";
   body: MyExceptionOutput;
 }
 
 /** Send a 400 response with valid payload: {'statusCode': '400'} */
-export interface MultipleResponsesGetDefaultModelA400Valid200Response
-  extends HttpResponse {
+export interface MultipleResponsesGetDefaultModelA400Valid200Response extends HttpResponse {
   status: "200";
 }
 
 /** Send a 400 response with valid payload: {'statusCode': '400'} */
-export interface MultipleResponsesGetDefaultModelA400ValidDefaultResponse
-  extends HttpResponse {
+export interface MultipleResponsesGetDefaultModelA400ValidDefaultResponse extends HttpResponse {
   status: string;
   body: MyExceptionOutput;
 }
 
 /** Send a 400 response with no payload */
-export interface MultipleResponsesGetDefaultModelA400None200Response
-  extends HttpResponse {
+export interface MultipleResponsesGetDefaultModelA400None200Response extends HttpResponse {
   status: "200";
 }
 
 /** Send a 400 response with no payload */
-export interface MultipleResponsesGetDefaultModelA400NoneDefaultResponse
-  extends HttpResponse {
+export interface MultipleResponsesGetDefaultModelA400NoneDefaultResponse extends HttpResponse {
   status: string;
   body: MyExceptionOutput;
 }
 
 /** Send a 200 response with invalid payload: {'statusCode': '200'} */
-export interface MultipleResponsesGetDefaultNone200Invalid200Response
-  extends HttpResponse {
+export interface MultipleResponsesGetDefaultNone200Invalid200Response extends HttpResponse {
   status: "200";
 }
 
 /** Send a 200 response with no payload */
-export interface MultipleResponsesGetDefaultNone200None200Response
-  extends HttpResponse {
+export interface MultipleResponsesGetDefaultNone200None200Response extends HttpResponse {
   status: "200";
 }
 
 /** Send a 400 response with valid payload: {'statusCode': '400'} */
-export interface MultipleResponsesGetDefaultNone400Invalid200Response
-  extends HttpResponse {
+export interface MultipleResponsesGetDefaultNone400Invalid200Response extends HttpResponse {
   status: "200";
 }
 
 /** Send a 400 response with valid payload: {'statusCode': '400'} */
-export interface MultipleResponsesGetDefaultNone400InvalidDefaultResponse
-  extends HttpResponse {
+export interface MultipleResponsesGetDefaultNone400InvalidDefaultResponse extends HttpResponse {
   status: string;
 }
 
 /** Send a 400 response with no payload */
-export interface MultipleResponsesGetDefaultNone400None200Response
-  extends HttpResponse {
+export interface MultipleResponsesGetDefaultNone400None200Response extends HttpResponse {
   status: "200";
 }
 
 /** Send a 400 response with no payload */
-export interface MultipleResponsesGetDefaultNone400NoneDefaultResponse
-  extends HttpResponse {
+export interface MultipleResponsesGetDefaultNone400NoneDefaultResponse extends HttpResponse {
   status: string;
 }
 
 /** Send a 200 response with no payload, when a payload is expected - client should return a null object of thde type for model A */
-export interface MultipleResponsesGet200ModelA200None200Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200ModelA200None200Response extends HttpResponse {
   status: "200";
   body: MyExceptionOutput;
 }
 
 /** Send a 200 response with payload {'statusCode': '200'} */
-export interface MultipleResponsesGet200ModelA200Valid200Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200ModelA200Valid200Response extends HttpResponse {
   status: "200";
   body: MyExceptionOutput;
 }
 
 /** Send a 200 response with invalid payload {'statusCodeInvalid': '200'} */
-export interface MultipleResponsesGet200ModelA200Invalid200Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200ModelA200Invalid200Response extends HttpResponse {
   status: "200";
   body: MyExceptionOutput;
 }
 
 /** Send a 400 response with no payload client should treat as an http error with no error model */
-export interface MultipleResponsesGet200ModelA400None200Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200ModelA400None200Response extends HttpResponse {
   status: "200";
   body: MyExceptionOutput;
 }
 
 /** Send a 200 response with payload {'statusCode': '400'} */
-export interface MultipleResponsesGet200ModelA400Valid200Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200ModelA400Valid200Response extends HttpResponse {
   status: "200";
   body: MyExceptionOutput;
 }
 
 /** Send a 200 response with invalid payload {'statusCodeInvalid': '400'} */
-export interface MultipleResponsesGet200ModelA400Invalid200Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200ModelA400Invalid200Response extends HttpResponse {
   status: "200";
   body: MyExceptionOutput;
 }
 
 /** Send a 202 response with payload {'statusCode': '202'} */
-export interface MultipleResponsesGet200ModelA202Valid200Response
-  extends HttpResponse {
+export interface MultipleResponsesGet200ModelA202Valid200Response extends HttpResponse {
   status: "200";
   body: MyExceptionOutput;
 }

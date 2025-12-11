@@ -178,8 +178,7 @@ export interface ErrorResponseOutput {
 }
 
 /** An instance of an entity along with extended info - like hive_table, hive_database. */
-export interface AtlasEntitiesWithExtInfoOutput
-  extends AtlasEntityExtInfoOutput {
+export interface AtlasEntitiesWithExtInfoOutput extends AtlasEntityExtInfoOutput {
   /** An array of entities. */
   entities?: Array<AtlasEntityOutput>;
 }
