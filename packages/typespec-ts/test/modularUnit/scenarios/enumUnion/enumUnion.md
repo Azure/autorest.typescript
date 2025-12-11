@@ -80,9 +80,7 @@ export function _getSend(
     });
 }
 
-export async function _getDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _getDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -198,9 +196,7 @@ withRawContent: true
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Type of SchemaContentTypeValues */
-export type SchemaContentTypeValues =
-  | "text/plain; charset=utf-8"
-  | "text/vnd.ms.protobuf";
+export type SchemaContentTypeValues = "text/plain; charset=utf-8" | "text/vnd.ms.protobuf";
 ```
 
 # union contains union with string element
@@ -259,9 +255,7 @@ export type SchemaContentTypeValues =
   | "text/vnd.ms.protobuf"
   | string;
 
-export function schemaContentTypeValuesSerializer(
-  item: SchemaContentTypeValues,
-): any {
+export function schemaContentTypeValuesSerializer(item: SchemaContentTypeValues): any {
   return item;
 }
 
@@ -327,9 +321,7 @@ export type SchemaContentTypeValues =
   | "text/vnd.ms.protobuf"
   | string;
 
-export function schemaContentTypeValuesSerializer(
-  item: SchemaContentTypeValues,
-): any {
+export function schemaContentTypeValuesSerializer(item: SchemaContentTypeValues): any {
   return item;
 }
 
@@ -383,9 +375,7 @@ withRawContent: true
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Type of SchemaContentTypeValues */
-export type SchemaContentTypeValues =
-  | "text/plain; charset=utf-8"
-  | "text/vnd.ms.protobuf";
+export type SchemaContentTypeValues = "text/plain; charset=utf-8" | "text/vnd.ms.protobuf";
 ```
 
 # union contains union with string element
@@ -444,9 +434,7 @@ export type SchemaContentTypeValues =
   | "text/vnd.ms.protobuf"
   | string;
 
-export function schemaContentTypeValuesSerializer(
-  item: SchemaContentTypeValues,
-): any {
+export function schemaContentTypeValuesSerializer(item: SchemaContentTypeValues): any {
   return item;
 }
 
@@ -512,9 +500,7 @@ export type SchemaContentTypeValues =
   | "text/vnd.ms.protobuf"
   | string;
 
-export function schemaContentTypeValuesSerializer(
-  item: SchemaContentTypeValues,
-): any {
+export function schemaContentTypeValuesSerializer(item: SchemaContentTypeValues): any {
   return item;
 }
 
@@ -584,17 +570,12 @@ export function _getSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "text/plain",
-      headers: {
-        "test-header": testHeader,
-        ...options.requestOptions?.headers,
-      },
+      headers: { "test-header": testHeader, ...options.requestOptions?.headers },
       body: body,
     });
 }
 
-export async function _getDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _getDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -675,17 +656,12 @@ export function _getSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "text/plain",
-      headers: {
-        "test-header": testHeader,
-        ...options.requestOptions?.headers,
-      },
+      headers: { "test-header": testHeader, ...options.requestOptions?.headers },
       body: body,
     });
 }
 
-export async function _getDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _getDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
