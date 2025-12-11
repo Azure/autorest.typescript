@@ -135,6 +135,8 @@ export function isSpreadBodyParameter(body: SdkBodyParameter) {
   const methodParams = body.methodParameterSegments;
   return (
     methodParams.length > 1 ||
-    (methodParams.length === 1 && methodParams[0]?.length === 1 && methodParams[0][0]?.type !== body.type)
+    (methodParams.length === 1 &&
+      methodParams[0]?.length === 1 &&
+      methodParams[0][0]?.type !== body.type)
   );
 }
