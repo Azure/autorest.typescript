@@ -1,0 +1,9 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    "emitter-output-dir": "{project-root}/generated"
+    azure-sdk-for-js: false
+    experimental-extensible-enums: true
+    package-details:
+      name: "@azure/arm-appservice"
