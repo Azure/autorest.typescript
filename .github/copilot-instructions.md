@@ -7,10 +7,10 @@ This repository focuses on the TypeSpec TypeScript emitter, which generates Type
 ## Working Effectively
 
 - **Bootstrap, build, and test the repository:**
-  - `npm install -g @microsoft/rush` -- Install Rush globally (takes ~2 minutes)
-  - `PUPPETEER_SKIP_DOWNLOAD=true rush update` -- Install dependencies, takes ~8 seconds. NEVER CANCEL. Set timeout to 15+ minutes.
-  - `rush build` -- Build all packages, takes ~12 seconds. NEVER CANCEL. Set timeout to 20+ minutes.
-  - `rush format` -- Format all code, takes ~6 seconds. NEVER CANCEL. Set timeout to 10+ minutes.
+  - `npm install -g pnpm` -- Install pnpm globally (takes ~2 minutes)
+  - `PUPPETEER_SKIP_DOWNLOAD=true pnpm install` -- Install dependencies, takes ~8 seconds. NEVER CANCEL. Set timeout to 15+ minutes.
+  - `pnpm build` -- Build all packages, takes ~12 seconds. NEVER CANCEL. Set timeout to 20+ minutes.
+  - `pnpm format` -- Format all code, takes ~6 seconds. NEVER CANCEL. Set timeout to 10+ minutes.
 
 - **Run tests:**
   - Unit tests: `npm run unit-test` in `packages/typespec-ts/` -- takes ~2.5 minutes. NEVER CANCEL. Set timeout to 10+ minutes.
@@ -27,9 +27,9 @@ This repository focuses on the TypeSpec TypeScript emitter, which generates Type
   - All integration tests: `npm run integration-test-ci` -- takes ~1+ hour. NEVER CANCEL. Set timeout to 90+ minutes.
 
 - **Validation steps before committing:**
-  - `rush update` -- Ensure dependencies are correctly installed (takes ~8 seconds)
-  - `rush build` -- Build all packages and verify no build issues (takes ~12 seconds)
-  - `rush format` -- Format code
+  - `pnpm install` -- Ensure dependencies are correctly installed (takes ~8 seconds)
+  - `pnpm build` -- Build all packages and verify no build issues (takes ~12 seconds)
+  - `pnpm format` -- Format code
   - `npm run lint` in `packages/typespec-ts/` -- Lint TypeSpec emitter (takes ~6 seconds)
   - `npm run check-format` in `packages/typespec-ts/` -- Check code formatting (takes ~5 seconds)
 
@@ -181,9 +181,9 @@ When preparing a release, we need to bump package versions and update changelogs
    - Update any internal package references if version changes affect dependencies
 
 7. **Validation Steps**
-   - Run `rush update` to ensure all dependencies are correctly installed (takes ~8 seconds)
-   - Run `rush build` to build all packages and verify no build issues (takes ~12 seconds)
-   - Run `rush format` to format the codebase (takes ~6 seconds)
+   - Run `pnpm install` to ensure all dependencies are correctly installed (takes ~8 seconds)
+   - Run `pnpm build` to build all packages and verify no build issues (takes ~12 seconds)
+   - Run `pnpm format` to format the codebase (takes ~6 seconds)
    - Run unit tests: `npm run unit-test` in `packages/typespec-ts/` (takes ~2.5 minutes)
    - Optionally run smoke tests: `npm run smoke-test` in `packages/typespec-test/` (takes ~10 minutes). **Wait for "All specs succeeded!" message.**
    - Optionally run integration tests to ensure end-to-end functionality works
@@ -200,7 +200,7 @@ When preparing a release, we need to bump package versions and update changelogs
 - Ensure changelog dates match the actual release date
 - Verify PR links are correct and accessible
 - Check that version increments follow the established rules
-- Always validate changes with rush build before committing
+- Always validate changes with pnpm build before committing
 
 ## How to run and fix test failures in TypeSpec TypeScript emitter
 
