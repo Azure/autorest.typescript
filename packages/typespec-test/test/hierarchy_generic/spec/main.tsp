@@ -18,7 +18,7 @@ namespace B {
   }
   @route("c")
   interface C {
-    op op1(@body body: A): void;
+    op1(@body body: A): void;
   }
   @route("e")
   namespace E {
@@ -26,7 +26,7 @@ namespace B {
       prop3: string;
     }
     interface C {
-      op op1(@body body: A): void
+      op1(@body body: A): void;
     }
   }
   op op1(@body body: A): void;
@@ -34,6 +34,56 @@ namespace B {
 
 @route("/d")
 interface D {
-  op op1(@body body: A): void;
+  op1(@body body: A): void;
 }
 op op1(@body body: A): void;
+
+namespace Y {
+  union ConnectorType {
+    EventHubSource: "EventHubSource",
+    IoTHubSource: "IoTHubSource",
+    string,
+  }
+  @discriminator("connectorType")
+  model DataSourceProperties {
+    connectorType: ConnectorType;
+  }
+  namespace Dataverse {
+    union DataverseEventPosition {
+      Earliest: "Earliest",
+      Latest: "Latest",
+      string,
+    }
+
+    model DataverseSourceConnectorProperties extends DataSourceProperties {
+      connectorType: ConnectorType.EventHubSource;
+      startEventPosition: DataverseEventPosition;
+    }
+  }
+  namespace DataverseV2 {
+    union DataverseEventPosition {
+      Earliest: "Earliest",
+      Latest: "Latest",
+      string,
+    }
+
+    model DataverseSourceConnectorV2Properties extends DataSourceProperties {
+      connectorType: ConnectorType.IoTHubSource;
+      startEventPosition: DataverseEventPosition;
+    }
+  }
+  @route("/test")
+  interface TestOperations {
+    @get
+    testDataverse(): {
+      @body
+      v1: Dataverse.DataverseSourceConnectorProperties;
+    };
+
+    @post
+    testDataverseV2(): {
+      @body
+      v2: DataverseV2.DataverseSourceConnectorV2Properties;
+    };
+  }
+}

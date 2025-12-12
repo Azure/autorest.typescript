@@ -38,6 +38,12 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Type of SchemaContentTypeValues */
 export type SchemaContentTypeValues =
   | "application/json; serialization=Avro"
@@ -74,9 +80,7 @@ export function _getSend(
     });
 }
 
-export async function _getDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _getDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -134,6 +138,12 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Type of SchemaContentTypeValues */
 export type SchemaContentTypeValues =
   | "application/json; serialization=Avro"
@@ -179,10 +189,14 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Type of SchemaContentTypeValues */
-export type SchemaContentTypeValues =
-  | "text/plain; charset=utf-8"
-  | "text/vnd.ms.protobuf";
+export type SchemaContentTypeValues = "text/plain; charset=utf-8" | "text/vnd.ms.protobuf";
 ```
 
 # union contains union with string element
@@ -228,6 +242,12 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Alias for SchemaContentTypeValues */
 export type SchemaContentTypeValues =
   | JsonContentType
@@ -235,9 +255,7 @@ export type SchemaContentTypeValues =
   | "text/vnd.ms.protobuf"
   | string;
 
-export function schemaContentTypeValuesSerializer(
-  item: SchemaContentTypeValues,
-): any {
+export function schemaContentTypeValuesSerializer(item: SchemaContentTypeValues): any {
   return item;
 }
 
@@ -290,6 +308,12 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Alias for SchemaContentTypeValues */
 export type SchemaContentTypeValues =
   | JsonContentType
@@ -297,9 +321,7 @@ export type SchemaContentTypeValues =
   | "text/vnd.ms.protobuf"
   | string;
 
-export function schemaContentTypeValuesSerializer(
-  item: SchemaContentTypeValues,
-): any {
+export function schemaContentTypeValuesSerializer(item: SchemaContentTypeValues): any {
   return item;
 }
 
@@ -346,10 +368,14 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Type of SchemaContentTypeValues */
-export type SchemaContentTypeValues =
-  | "text/plain; charset=utf-8"
-  | "text/vnd.ms.protobuf";
+export type SchemaContentTypeValues = "text/plain; charset=utf-8" | "text/vnd.ms.protobuf";
 ```
 
 # union contains union with string element
@@ -395,6 +421,12 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Alias for SchemaContentTypeValues */
 export type SchemaContentTypeValues =
   | JsonContentType
@@ -402,9 +434,7 @@ export type SchemaContentTypeValues =
   | "text/vnd.ms.protobuf"
   | string;
 
-export function schemaContentTypeValuesSerializer(
-  item: SchemaContentTypeValues,
-): any {
+export function schemaContentTypeValuesSerializer(item: SchemaContentTypeValues): any {
   return item;
 }
 
@@ -457,6 +487,12 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Alias for SchemaContentTypeValues */
 export type SchemaContentTypeValues =
   | JsonContentType
@@ -464,9 +500,7 @@ export type SchemaContentTypeValues =
   | "text/vnd.ms.protobuf"
   | string;
 
-export function schemaContentTypeValuesSerializer(
-  item: SchemaContentTypeValues,
-): any {
+export function schemaContentTypeValuesSerializer(item: SchemaContentTypeValues): any {
   return item;
 }
 
@@ -536,17 +570,12 @@ export function _getSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "text/plain",
-      headers: {
-        "test-header": testHeader,
-        ...options.requestOptions?.headers,
-      },
+      headers: { "test-header": testHeader, ...options.requestOptions?.headers },
       body: body,
     });
 }
 
-export async function _getDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _getDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -627,17 +656,12 @@ export function _getSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "text/plain",
-      headers: {
-        "test-header": testHeader,
-        ...options.requestOptions?.headers,
-      },
+      headers: { "test-header": testHeader, ...options.requestOptions?.headers },
       body: body,
     });
 }
 
-export async function _getDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _getDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -698,6 +722,12 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Type of SchemaContentTypeValues */
 export type SchemaContentTypeValues =
   | "application/json; serialization=Avro"
@@ -747,6 +777,12 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Type of SchemaContentTypeValues */
 export type SchemaContentTypeValues =
   | "application/json; serialization=Avro"
@@ -797,6 +833,12 @@ withRawContent: true
 ## schemaOutput
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Type of EnumTest */
 export type EnumTest = 1 | 2 | 3 | 4;
 ```
@@ -853,6 +895,12 @@ mustEmptyDiagnostic: false
 ## schemaOutput
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Foo */
 export interface Foo {}
 
@@ -885,6 +933,12 @@ op read(@body body: Test): void;
 ## Model interface Test
 
 ```ts models interface Test
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
   color: "red" | "blue";
@@ -917,6 +971,12 @@ op read(@body body: Test): void;
 ## Model interface Test
 
 ```ts models interface Test
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
   color: "red";
@@ -944,6 +1004,12 @@ op read(@body body: Test): void;
 ## Model interface Test
 
 ```ts models interface Test
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
   content: "red" | null;
@@ -972,6 +1038,12 @@ op read(@body body: Test): void;
 ## Model interface Test
 
 ```ts models interface Test
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
   content: string | null;
@@ -1000,6 +1072,12 @@ op read(@body body: Test): void;
 ## Model interface Test
 
 ```ts models interface Test
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
   color: 1 | 2;
@@ -1032,6 +1110,12 @@ op read(@body body: Test): void;
 ## Model interface Test
 
 ```ts models interface Test
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
   color: 1;
@@ -1063,6 +1147,12 @@ op read(@body body: Test): void;
 ## Model interface Test
 
 ```ts models interface Test
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
   color: Color | null;
@@ -1095,6 +1185,12 @@ needAzureCore: true
 ## Model interface Test
 
 ```ts models interface Test
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
   color: Color | null;
@@ -1166,6 +1262,12 @@ experimental-extensible-enums: true
 ## Model interface Test
 
 ```ts models interface Test
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
   color: ImageSize;
@@ -1228,6 +1330,12 @@ op read(@body body: Test): void;
 ## Model interface Test
 
 ```ts models interface Test
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
   color: LR | UD;
@@ -1271,6 +1379,12 @@ op read(@body body: Test): void;
 ## Model interface Test
 
 ```ts models interface Test
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
   color: LeftAndRight | UpAndDown;
@@ -1305,6 +1419,12 @@ op read(@body body: Test): void;
 ## Model interface Test
 
 ```ts models interface Test
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
   content: 1 | null;
@@ -1333,6 +1453,12 @@ op read(@body body: Test): void;
 ## Model interface Test
 
 ```ts models interface Test
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface Test */
 export interface Test {
   content: number | null;

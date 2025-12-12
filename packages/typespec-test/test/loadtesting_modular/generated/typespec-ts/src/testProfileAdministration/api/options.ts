@@ -24,5 +24,4 @@ export interface GetTestProfileOptionalParams extends OperationOptions {}
 export interface DeleteTestProfileOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface CreateOrUpdateTestProfileOptionalParams
-  extends OperationOptions {}
+export interface CreateOrUpdateTestProfileOptionalParams extends OperationOptions {}

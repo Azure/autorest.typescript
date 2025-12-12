@@ -4,7 +4,8 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 
 export declare interface ChildFlattenModel {
     summary: string;
-    properties: ChildModel;
+    description: string;
+    age: number;
 }
 
 export declare interface ChildModel {
@@ -14,7 +15,8 @@ export declare interface ChildModel {
 
 export declare interface FlattenModel {
     name: string;
-    properties: ChildModel;
+    description: string;
+    age: number;
 }
 
 export declare class FlattenPropertyClient {
@@ -30,7 +32,8 @@ export declare interface FlattenPropertyClientOptionalParams extends ClientOptio
 
 export declare interface NestedFlattenModel {
     name: string;
-    properties: ChildFlattenModel;
+    summary: string;
+    properties: ChildModel;
 }
 
 export declare interface PutFlattenModelOptionalParams extends OperationOptions {

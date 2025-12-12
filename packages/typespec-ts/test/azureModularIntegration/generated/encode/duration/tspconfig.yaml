@@ -10,7 +10,6 @@ options:
     azure-sdk-for-js: false
     is-typespec-test: true
     enable-operation-group: true
-    is-modular-library: true
     hierarchy-client: false
     package-details:
       name: "@msinternal/encode-duration"

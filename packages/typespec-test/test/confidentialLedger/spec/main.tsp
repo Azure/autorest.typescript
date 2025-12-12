@@ -28,7 +28,6 @@ namespace Azure.Security.ConfidentialLedger;
 
 enum Versions {
   /** Version 2022-08-31 */
-  @useDependency(Azure.Core.Versions.v1_0_Preview_1)
   `2022-05-13`,
 }
 
@@ -151,10 +150,9 @@ model TransactionStatus {
 }
 
 @doc("Paginated ledger entries returned in response to a query.")
-@pagedResult
 model PagedLedgerEntries {
   @doc("Array of ledger entries.")
-  @items
+  @pageItems
   entries: LedgerEntry[];
 
   @doc("State of the ledger query.")

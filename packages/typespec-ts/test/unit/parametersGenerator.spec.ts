@@ -41,12 +41,15 @@ describe("Parameters.ts", () => {
       it("should not generate apiVersion if there's a client level apiVersion but without default value", async () => {
         const tspContent = `
         model ApiVersionParameter {
+          @apiVersion
           @query
           "api-version": string;
         }
         op test(...ApiVersionParameter): string;
         `;
-        const parameters = await emitParameterFromTypeSpec(tspContent);
+        const parameters = await emitParameterFromTypeSpec(tspContent, {
+          needTCGC: true
+        });
         assert.ok(parameters);
         await assertEqualContent(
           parameters?.content!,
@@ -57,7 +60,8 @@ describe("Parameters.ts", () => {
             `
         );
         const models = await emitClientFactoryFromTypeSpec(tspContent, {
-          needNamespaces: true
+          needNamespaces: true,
+          needTCGC: true
         });
         assert.ok(models);
         await assertEqualContent(
@@ -412,15 +416,15 @@ describe("Parameters.ts", () => {
         import type { RequestParameters } from "@azure-rest/core-client";
 
         export interface GetModelHeaders {
-            "x": string;
-            "y": string;
-            "value": string;
-            "input": string;
-            "z": number;
+          x: string;
+          y: string;
+          value: string;
+          input: string;
+          z: number;
         }
 
         export interface GetModelHeaderParam {
-            headers: RawHttpHeadersInput & GetModelHeaders;
+          headers: RawHttpHeadersInput & GetModelHeaders;
         }
 
         export type GetModelParameters = GetModelHeaderParam & RequestParameters;

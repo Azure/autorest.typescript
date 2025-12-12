@@ -3,10 +3,7 @@
 import { OpenAIContext } from "../../api/openAIContext.js";
 import { create } from "../../api/completions/operations.js";
 import { CompletionsCreateOptionalParams } from "../../api/completions/options.js";
-import {
-  CreateCompletionRequest,
-  CreateCompletionResponse,
-} from "../../models/models.js";
+import { CreateCompletionRequest, CreateCompletionResponse } from "../../models/models.js";
 
 /** Interface representing a Completions operations. */
 export interface CompletionsOperations {
@@ -18,16 +15,12 @@ export interface CompletionsOperations {
 
 function _getCompletions(context: OpenAIContext) {
   return {
-    create: (
-      body: CreateCompletionRequest,
-      options?: CompletionsCreateOptionalParams,
-    ) => create(context, body, options),
+    create: (body: CreateCompletionRequest, options?: CompletionsCreateOptionalParams) =>
+      create(context, body, options),
   };
 }
 
-export function _getCompletionsOperations(
-  context: OpenAIContext,
-): CompletionsOperations {
+export function _getCompletionsOperations(context: OpenAIContext): CompletionsOperations {
   return {
     ..._getCompletions(context),
   };

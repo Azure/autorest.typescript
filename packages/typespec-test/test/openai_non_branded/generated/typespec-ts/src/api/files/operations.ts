@@ -49,9 +49,7 @@ export function _downloadSend(
     });
 }
 
-export async function _downloadDeserialize(
-  result: PathUncheckedResponse,
-): Promise<string> {
+export async function _downloadDeserialize(result: PathUncheckedResponse): Promise<string> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -89,10 +87,7 @@ export function _$deleteSend(
     .path(path)
     .delete({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -141,16 +136,11 @@ export function _retrieveSend(
     .path(path)
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _retrieveDeserialize(
-  result: PathUncheckedResponse,
-): Promise<OpenAIFile> {
+export async function _retrieveDeserialize(result: PathUncheckedResponse): Promise<OpenAIFile> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -180,17 +170,12 @@ export function _createSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "multipart/form-data",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: createFileRequestSerializer(file),
     });
 }
 
-export async function _createDeserialize(
-  result: PathUncheckedResponse,
-): Promise<OpenAIFile> {
+export async function _createDeserialize(result: PathUncheckedResponse): Promise<OpenAIFile> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -218,16 +203,11 @@ export function _listSend(
     .path("/files")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _listDeserialize(
-  result: PathUncheckedResponse,
-): Promise<ListFilesResponse> {
+export async function _listDeserialize(result: PathUncheckedResponse): Promise<ListFilesResponse> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);

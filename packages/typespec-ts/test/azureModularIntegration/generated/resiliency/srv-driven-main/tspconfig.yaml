@@ -6,7 +6,6 @@ options:
     generate-test: false
     azure-sdk-for-js: false
     flavor: azure
-    is-modular-library: true
     hierarchy-client: false
     emitter-output-dir: "{project-root}"
     package-details:

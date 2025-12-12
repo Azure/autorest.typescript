@@ -73,14 +73,15 @@ export function getClientParameters(
   const hasDefaultValue = (p: SdkParameter) =>
     p.clientDefaultValue || p.__raw?.defaultValue || p.type.kind === "constant";
   const isRequired = (p: SdkParameter) =>
-    !p.optional &&
-    ((!hasDefaultValue(p) &&
+    // Special case: when apiVersionAsRequired is true, apiVersion should always be considered required
+    (options.apiVersionAsRequired && p.isApiVersionParam) ||
+    (!p.optional &&
+      !hasDefaultValue(p) &&
       !(
         p.type.kind === "endpoint" &&
         p.type.templateArguments[0] &&
         hasDefaultValue(p.type.templateArguments[0])
-      )) ||
-      (options.apiVersionAsRequired && p.isApiVersionParam));
+      ));
   const isOptional = (p: SdkParameter) => p.optional || hasDefaultValue(p);
   const skipCredentials = (p: SdkParameter) => p.kind !== "credential";
   const skipMethodParam = (p: SdkParameter) => p.kind !== "method";
@@ -98,7 +99,6 @@ export function getClientParameters(
   const params = clientParams.filter((p) =>
     filters.every((filter) => !filter || filter(p))
   );
-
   return params;
 }
 
@@ -174,7 +174,8 @@ export function buildGetClientEndpointParam(
   context: StatementedNode,
   dpgContext: SdkContext,
   client: SdkClientType<SdkServiceOperation>
-): string {
+): { endpointParamName: string; assignedOptionalParams?: Set<string> } {
+  const assignedOptionalParams = new Set<string>();
   let coreEndpointParam = "";
   if (dpgContext.rlcOptions?.flavor === "azure") {
     const cloudSettingSuffix = dpgContext.arm
@@ -209,8 +210,10 @@ export function buildGetClientEndpointParam(
           context.addStatements(
             `const ${paramName} = options.${paramName} ?? ${defaultValue};`
           );
+          assignedOptionalParams.add(paramName);
         } else if (templateParam.optional) {
           context.addStatements(`const ${paramName} = options.${paramName};`);
+          assignedOptionalParams.add(paramName);
         }
         parameterizedEndpointUrl = parameterizedEndpointUrl.replace(
           `{${templateParam.name}}`,
@@ -219,7 +222,7 @@ export function buildGetClientEndpointParam(
       }
       const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? \`${parameterizedEndpointUrl}\`;`;
       context.addStatements(endpointUrl);
-      return "endpointUrl";
+      return { endpointParamName: "endpointUrl", assignedOptionalParams };
     } else if (endpointParam.type.kind === "endpoint") {
       const clientDefaultValue =
         endpointParam.type.templateArguments[0]?.clientDefaultValue;
@@ -231,14 +234,14 @@ export function buildGetClientEndpointParam(
             : `String(${getClientParameterName(endpointParam)})`;
       const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? ${defaultValueStr};`;
       context.addStatements(endpointUrl);
-      return "endpointUrl";
+      return { endpointParamName: "endpointUrl" };
     }
     const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? String(${getClientParameterName(endpointParam)});`;
     context.addStatements(endpointUrl);
-    return "endpointUrl";
+    return { endpointParamName: "endpointUrl" };
   }
 
-  return "endpointUrl";
+  return { endpointParamName: "endpointUrl" };
 }
 
 /**

@@ -321,33 +321,117 @@ export const azureRlcTsps = [
   //   inputPath: "azure/resource-manager/large-header"
   // },
   {
-    outputPath: "azure/client-generator-core/client-initialization/default/default",
-    inputPath: "azure/client-generator-core/client-initialization/default/default"
+    outputPath: "azure/client-generator-core/client-initialization/default",
+    inputPath: "azure/client-generator-core/client-initialization/default"
   },
   {
-    outputPath: "azure/client-generator-core/client-initialization/default/individually",
-    inputPath: "azure/client-generator-core/client-initialization/default/individually"
+    outputPath: "azure/client-generator-core/client-initialization/individually",
+    inputPath: "azure/client-generator-core/client-initialization/individually"
   },
   {
-    outputPath: "azure/client-generator-core/client-initialization/default/parent",
-    inputPath: "azure/client-generator-core/client-initialization/default/parent"
+    outputPath: "azure/client-generator-core/client-initialization/parent",
+    inputPath: "azure/client-generator-core/client-initialization/parent"
   },
   {
-    outputPath: "azure/client-generator-core/client-initialization/default/individuallyParent",
-    inputPath: "azure/client-generator-core/client-initialization/default/individuallyParent"
+    outputPath: "azure/client-generator-core/client-initialization/individuallyParent",
+    inputPath: "azure/client-generator-core/client-initialization/individuallyParent"
   },
-  // {
-  //   outputPath: "azure/client-generator-core/deserialize-empty-string-as-null",
-  //   inputPath: "azure/client-generator-core/deserialize-empty-string-as-null"
-  // },
-  // {
-  //   outputPath: "azure/resource-manager/operation-templates",
-  //   inputPath: "azure/resource-manager/operation-templates"
-  // },
-  // {
-  //   outputPath: "azure/client-generator-core/client-location",
-  //   inputPath: "azure/client-generator-core/client-location"
-  // }
+  {
+    outputPath: "azure/core/model",
+    inputPath: "azure/core/model"
+  },
+  {
+    outputPath: "azure/resource-manager/common-properties",
+    inputPath: "azure/resource-manager/common-properties"
+  },
+  {
+    outputPath: "azure/core/page",
+    inputPath: "azure/core/page"
+  },
+  {
+    outputPath: "azure/client-generator-core/flatten-property",
+    inputPath: "azure/client-generator-core/flatten-property"
+  },
+  {
+    outputPath: "client/structure/client-operation-group",
+    inputPath: "client/structure/client-operation-group"
+  },
+  {
+    outputPath: "encode/numeric",
+    inputPath: "encode/numeric"
+  },
+  {
+    outputPath: "azure/payload/pageable",
+    inputPath: "azure/payload/pageable"
+  },
+  {
+    outputPath: "azure/example/basic",
+    inputPath: "azure/example/basic"
+  },
+  {
+    outputPath: "client/namespace",
+    inputPath: "client/namespace"
+  },
+  {
+    outputPath: "azure/encode/duration",
+    inputPath: "azure/encode/duration"
+  },
+  {
+    outputPath: "azure/resource-manager/non-resource",
+    inputPath: "azure/resource-manager/non-resource"
+  },
+  {
+    outputPath: "azure/resource-manager/large-header",
+    inputPath: "azure/resource-manager/large-header"
+  },
+  {
+    outputPath: "azure/client-generator-core/client-initialization",
+    inputPath: "azure/client-generator-core/client-initialization"
+  },
+  {
+    outputPath: "azure/client-generator-core/deserialize-empty-string-as-null",
+    inputPath: "azure/client-generator-core/deserialize-empty-string-as-null"
+  },
+  {
+    outputPath: "azure/resource-manager/operation-templates",
+    inputPath: "azure/resource-manager/operation-templates"
+  },
+  {
+    outputPath: "azure/client-generator-core/client-location/move-to-existing-sub-client",
+    inputPath: "azure/client-generator-core/client-location/move-to-existing-sub-client"
+  },
+  {
+    outputPath: "azure/client-generator-core/client-location/move-to-new-sub-client",
+    inputPath: "azure/client-generator-core/client-location/move-to-new-sub-client"
+  },
+  {
+    outputPath: "azure/client-generator-core/client-location/move-to-root-client",
+    inputPath: "azure/client-generator-core/client-location/move-to-root-client"
+  },
+  {
+    outputPath: "azure/client-generator-core/client-location/move-method-parameter-to-client",
+    inputPath: "azure/client-generator-core/client-location/move-method-parameter-to-client"
+  },
+  {
+    outputPath: "client/overload",
+    inputPath: "client/overload"
+  },
+  {
+    outputPath: "azure/client-generator-core/override",
+    inputPath: "azure/client-generator-core/override"
+  },
+  {
+    outputPath: "azure/versioning/previewVersion",
+    inputPath: "azure/versioning/previewVersion"
+  },
+  {
+    outputPath: "azure/resource-manager/method-subscription-id",
+    inputPath: "azure/resource-manager/method-subscription-id"
+  },
+  {
+    outputPath: "azure/client-generator-core/next-link-verb",
+    inputPath: "azure/client-generator-core/next-link-verb"
+  }
 ];
 
 export const rlcTsps = [
@@ -741,6 +825,10 @@ export const azureModularTsps = [
   //   inputPath: "client/naming"
   // },
   // {
+  //   outputPath: "client/naming-enum-conflict",
+  //   inputPath: "client/naming/enum-conflict"
+  // },
+  // {
   //   outputPath: "serialization/encoded-name/json",
   //   inputPath: "serialization/encoded-name/json"
   // },
@@ -852,21 +940,21 @@ export const azureModularTsps = [
   //   outputPath: "azure/encode/duration",
   //   inputPath: "azure/encode/duration"
   // },
-  {
-    outputPath: "azure/client-generator-core/client-initialization/default/default",
-    inputPath: "azure/client-generator-core/client-initialization/default/default"
+ {
+    outputPath: "azure/client-generator-core/client-initialization/default",
+    inputPath: "azure/client-generator-core/client-initialization/default"
   },
   {
-    outputPath: "azure/client-generator-core/client-initialization/default/individually",
-    inputPath: "azure/client-generator-core/client-initialization/default/individually"
+    outputPath: "azure/client-generator-core/client-initialization/individually",
+    inputPath: "azure/client-generator-core/client-initialization/individually"
   },
   {
-    outputPath: "azure/client-generator-core/client-initialization/default/parent",
-    inputPath: "azure/client-generator-core/client-initialization/default/parent"
+    outputPath: "azure/client-generator-core/client-initialization/parent",
+    inputPath: "azure/client-generator-core/client-initialization/parent"
   },
   {
-    outputPath: "azure/client-generator-core/client-initialization/default/individuallyParent",
-    inputPath: "azure/client-generator-core/client-initialization/default/individuallyParent"
+    outputPath: "azure/client-generator-core/client-initialization/individuallyParent",
+    inputPath: "azure/client-generator-core/client-initialization/individuallyParent"
   },
   // {
   //   outputPath: "azure/resource-manager/non-resource",
@@ -884,10 +972,49 @@ export const azureModularTsps = [
   //   outputPath: "azure/resource-manager/operation-templates",
   //   inputPath: "azure/resource-manager/operation-templates"
   // },
-  // skip due to issue https://github.com/Azure/autorest.typescript/issues/3494
   // {
-  //   outputPath: "azure/client-generator-core/client-location",
-  //   inputPath: "azure/client-generator-core/client-location"
+  //   outputPath: "azure/client-generator-core/hierarchy-building",
+  //   inputPath: "azure/client-generator-core/hierarchy-building"
+  // },
+  // {
+  //   outputPath: "client/overload",
+  //   inputPath: "client/overload"
+  // },
+  // {
+  //   outputPath: "azure/client-generator-core/override",
+  //   inputPath: "azure/client-generator-core/override"
+  // },
+  // {
+  //   outputPath: "azure/versioning/previewVersion",
+  //   inputPath: "azure/versioning/previewVersion"
+  // },
+  // {
+  //   outputPath: "azure/client-generator-core/next-link-verb",
+  //   inputPath: "azure/client-generator-core/next-link-verb"
+  // },
+  // {
+  //   outputPath: "special-headers/conditional-request",
+  //   inputPath: "special-headers/conditional-request"
+  // },
+  // {
+  //   outputPath: "azure/resource-manager/method-subscription-id",
+  //   inputPath: "azure/resource-manager/method-subscription-id"
+  // },
+  // {
+  //   outputPath: "azure/client-generator-core/client-location/move-to-existing-sub-client",
+  //   inputPath: "azure/client-generator-core/client-location/move-to-existing-sub-client"
+  // },
+  // {
+  //   outputPath: "azure/client-generator-core/client-location/move-to-new-sub-client",
+  //   inputPath: "azure/client-generator-core/client-location/move-to-new-sub-client"
+  // },
+  // {
+  //   outputPath: "azure/client-generator-core/client-location/move-to-root-client",
+  //   inputPath: "azure/client-generator-core/client-location/move-to-root-client"
+  // },
+  // {
+  //   outputPath: "azure/client-generator-core/client-location/move-method-parameter-to-client",
+  //   inputPath: "azure/client-generator-core/client-location/move-method-parameter-to-client"
   // }
 ];
 

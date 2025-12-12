@@ -1,6 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** The configuration for a streaming chat completion request. */
 export interface StreamingChatCompletionOptionsRecord {
   /** The collection of context messages associated with this completion request. */
@@ -38,9 +44,7 @@ export function chatMessageArraySerializer(result: Array<ChatMessage>): any[] {
   });
 }
 
-export function chatMessageArrayDeserializer(
-  result: Array<ChatMessage>,
-): any[] {
+export function chatMessageArrayDeserializer(result: Array<ChatMessage>): any[] {
   return result.map((item) => {
     return chatMessageDeserializer(item);
   });
@@ -62,11 +66,7 @@ export interface ChatMessage {
 }
 
 export function chatMessageSerializer(item: ChatMessage): any {
-  return {
-    content: item["content"],
-    role: item["role"],
-    session_state: item["sessionState"],
-  };
+  return { content: item["content"], role: item["role"], session_state: item["sessionState"] };
 }
 
 export function chatMessageDeserializer(item: any): ChatMessage {
@@ -86,17 +86,13 @@ export interface ChatCompletionChunkRecord {
   choices: ChoiceDeltaRecord[];
 }
 
-export function chatCompletionChunkRecordDeserializer(
-  item: any,
-): ChatCompletionChunkRecord {
+export function chatCompletionChunkRecordDeserializer(item: any): ChatCompletionChunkRecord {
   return {
     choices: choiceDeltaRecordArrayDeserializer(item["choices"]),
   };
 }
 
-export function choiceDeltaRecordArrayDeserializer(
-  result: Array<ChoiceDeltaRecord>,
-): any[] {
+export function choiceDeltaRecordArrayDeserializer(result: Array<ChoiceDeltaRecord>): any[] {
   return result.map((item) => {
     return choiceDeltaRecordDeserializer(item);
   });
@@ -129,7 +125,9 @@ export function choiceDeltaRecordDeserializer(item: any): ChoiceDeltaRecord {
     index: item["index"],
     delta: chatMessageDeltaDeserializer(item["delta"]),
     sessionState: item["session_state"],
-    context: item["context"],
+    context: !item["context"]
+      ? item["context"]
+      : Object.fromEntries(Object.entries(item["context"]).map(([k, p]: [string, any]) => [k, p])),
     finishReason: item["finish_reason"],
   };
 }
@@ -180,9 +178,7 @@ export interface ChatCompletionOptionsRecord {
   context?: Record<string, any>;
 }
 
-export function chatCompletionOptionsRecordSerializer(
-  item: ChatCompletionOptionsRecord,
-): any {
+export function chatCompletionOptionsRecordSerializer(item: ChatCompletionOptionsRecord): any {
   return {
     messages: chatMessageArraySerializer(item["messages"]),
     stream: item["stream"],
@@ -197,17 +193,13 @@ export interface ChatCompletionRecord {
   choices: ChatChoiceRecord[];
 }
 
-export function chatCompletionRecordDeserializer(
-  item: any,
-): ChatCompletionRecord {
+export function chatCompletionRecordDeserializer(item: any): ChatCompletionRecord {
   return {
     choices: chatChoiceRecordArrayDeserializer(item["choices"]),
   };
 }
 
-export function chatChoiceRecordArrayDeserializer(
-  result: Array<ChatChoiceRecord>,
-): any[] {
+export function chatChoiceRecordArrayDeserializer(result: Array<ChatChoiceRecord>): any[] {
   return result.map((item) => {
     return chatChoiceRecordDeserializer(item);
   });
@@ -240,12 +232,15 @@ export function chatChoiceRecordDeserializer(item: any): ChatChoiceRecord {
     index: item["index"],
     message: chatMessageDeserializer(item["message"]),
     sessionState: item["session_state"],
-    context: item["context"],
+    context: !item["context"]
+      ? item["context"]
+      : Object.fromEntries(Object.entries(item["context"]).map(([k, p]: [string, any]) => [k, p])),
     finishReason: item["finish_reason"],
   };
 }
 
 /** Known values of {@link APIVersion} that the service accepts. */
 export enum KnownAPIVersion {
+  /** 2023-10-01-preview */
   V20231001Preview = "2023-10-01-preview",
 }

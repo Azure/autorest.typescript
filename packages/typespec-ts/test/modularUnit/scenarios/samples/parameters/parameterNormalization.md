@@ -77,9 +77,7 @@ export function _postSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
       headers: {
-        ...(options?.headerParam !== undefined
-          ? { header_param: options?.headerParam }
-          : {}),
+        ...(options?.headerParam !== undefined ? { header_param: options?.headerParam } : {}),
         ...options.requestOptions?.headers,
       },
       body: !options["listCredentialsRequest"]
@@ -88,9 +86,7 @@ export function _postSend(
     });
 }
 
-export async function _postDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _postDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -137,7 +133,8 @@ import { TestingClient } from "@azure/internal-test";
  * x-ms-original-file: 2021-10-01-preview/json.json
  */
 async function post(): Promise<void> {
-  const client = new TestingClient();
+  const endpoint = process.env.TESTING_ENDPOINT || "";
+  const client = new TestingClient(endpoint);
   await client.post({
     listCredentialsRequest: { serviceName: "SSH", propertyName: "name" },
     queryParam: "query",

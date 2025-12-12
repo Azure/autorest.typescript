@@ -10,9 +10,8 @@ options:
     azure-sdk-for-js: false
     is-typespec-test: true
     title: VersioningRemovedClient
-    is-modular-library: true
     hierarchy-client: false
     api-version: "v2preview"
     package-details:
-      name: "@msinternal/versionning-removed"
+      name: "@unbranded/versionning-removed"
       description: "Versioning Removed Test Service"

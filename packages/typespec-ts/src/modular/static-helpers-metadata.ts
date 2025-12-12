@@ -28,6 +28,16 @@ export const SerializationHelpers = {
     kind: "function",
     name: "serializeRecord",
     location: "serialization/serialize-record.ts"
+  },
+  getBinaryResponse: {
+    kind: "function",
+    name: "getBinaryResponse",
+    location: "serialization/get-binary-response.ts"
+  },
+  areAllPropsUndefined: {
+    kind: "function",
+    name: "areAllPropsUndefined",
+    location: "serialization/check-prop-undefined.ts"
   }
 } as const;
 
@@ -74,6 +84,19 @@ export const PollingHelpers = {
     kind: "function",
     name: "getLongRunningPoller",
     location: "pollingHelpers.ts"
+  }
+} as const;
+
+export const SimplePollerHelpers = {
+  SimplePollerLike: {
+    kind: "interface",
+    name: "SimplePollerLike",
+    location: "simplePollerHelpers.ts"
+  },
+  getSimplePoller: {
+    kind: "function",
+    name: "getSimplePoller",
+    location: "simplePollerHelpers.ts"
   }
 } as const;
 

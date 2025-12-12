@@ -24,8 +24,6 @@ namespace Microsoft.Contoso;
 /** The available API versions. */
 enum Versions {
   /** 2021-10-01-preview version */
-  @useDependency(Azure.ResourceManager.Versions.v1_0_Preview_1)
-  @useDependency(Azure.Core.Versions.v1_0_Preview_2)
   @armCommonTypesVersion(Azure.ResourceManager.CommonTypes.Versions.v5)
   v2021_10_01_preview: "2021-10-01-preview",
 }
@@ -68,6 +66,12 @@ experimental-extensible-enums: false
 Model generated.
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface _FooRequestBody */
 export interface _FooRequestBody {
   status: ProvisioningState;
@@ -77,7 +81,7 @@ export function _fooRequestBodySerializer(item: _FooRequestBody): any {
   return { status: provisioningStateSerializer(item["status"]) };
 }
 
-/** Alias for ProvisioningState */
+/** The resource provisioning state. */
 export type ProvisioningState =
   | ResourceProvisioningState
   | "Provisioning"

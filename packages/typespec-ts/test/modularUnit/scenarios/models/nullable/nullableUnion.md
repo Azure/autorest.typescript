@@ -17,6 +17,12 @@ op post(@body body: A): { @body body: A };
 ## Models
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface _PostRequest */
 export interface _PostRequest {
   code?: string;
@@ -28,9 +34,7 @@ export function _postRequestSerializer(item: _PostRequest): any {
   return {
     code: item["code"],
     message: item["message"],
-    propA: !item["propA"]
-      ? item["propA"]
-      : _postRequestSerializer(item["propA"]),
+    propA: !item["propA"] ? item["propA"] : _postRequestSerializer(item["propA"]),
   };
 }
 
@@ -38,9 +42,7 @@ export function _postRequestDeserializer(item: any): _PostRequest {
   return {
     code: item["code"],
     message: item["message"],
-    propA: !item["propA"]
-      ? item["propA"]
-      : _postRequestDeserializer(item["propA"]),
+    propA: !item["propA"] ? item["propA"] : _postRequestDeserializer(item["propA"]),
   };
 }
 
@@ -56,11 +58,7 @@ export type A = {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  _postRequestSerializer,
-  _postRequestDeserializer,
-  A,
-} from "../models/models.js";
+import { _postRequestSerializer, _postRequestDeserializer, A } from "../models/models.js";
 import { PostOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -79,17 +77,12 @@ export function _postSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: !body ? body : _postRequestSerializer(body),
     });
 }
 
-export async function _postDeserialize(
-  result: PathUncheckedResponse,
-): Promise<A> {
+export async function _postDeserialize(result: PathUncheckedResponse): Promise<A> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);

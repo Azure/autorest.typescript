@@ -60,6 +60,7 @@ export interface EmitterOptions {
   "enable-model-namespace"?: boolean;
   "hierarchy-client"?: boolean;
   "compatibility-mode"?: boolean;
+  "compatibility-lro"?: boolean;
   "experimental-extensible-enums"?: boolean;
   "clear-output-folder"?: boolean;
   "ignore-property-name-normalize"?: boolean;
@@ -102,7 +103,8 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
         scopeName: { type: "string", nullable: true },
         nameWithoutScope: { type: "string", nullable: true },
         description: { type: "string", nullable: true },
-        version: { type: "string", nullable: true }
+        version: { type: "string", nullable: true },
+        isVersionUserProvided: { type: "boolean", nullable: true }
       },
       required: ["name"],
       nullable: true,
@@ -279,6 +281,12 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       nullable: true,
       description:
         "Whether to affect the generation of the additional property feature for the Modular client. Defaults to `false`."
+    },
+    "compatibility-lro": {
+      type: "boolean",
+      nullable: true,
+      description:
+        "[deprecated] Whether to generate the legacy LRO interface. When `true`, we will generate legacy beginXXX and beginXXXAndWait LRO methods."
     },
     "experimental-extensible-enums": {
       type: "boolean",
@@ -540,6 +548,66 @@ const libDef = {
       messages: {
         default: paramMessage`The parameter name ${"parameterName"} has conflicts with others and please use @clientName to rename it.`
       }
+    },
+    "unsupported-flatten-transition": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`The property "${"propertyName"}" in "${"modelName"}" has multiple consecutive flatten operations. Flatten transitions are not supported so consecutive transitions will be ignored.`
+      }
+    },
+    "unsupported-parameter-type": {
+      severity: "error",
+      messages: {
+        default: paramMessage`Parameter '${"paramName"}' with kind '${"paramKind"}' is not supported.`
+      }
+    },
+    "unknown-sdk-method-kind": {
+      severity: "error",
+      messages: {
+        default: paramMessage`Unknown SDK method kind: '${"methodKind"}'.`
+      }
+    },
+    "client-file-not-found": {
+      severity: "error",
+      messages: {
+        default: paramMessage`Client file not found: '${"filePath"}'.`
+      }
+    },
+    "anonymous-type-serialization": {
+      severity: "error",
+      messages: {
+        default: "Serialization of anonymous types is not yet implemented."
+      }
+    },
+    "anonymous-type-deserialization": {
+      severity: "error",
+      messages: {
+        default: "Deserialization of anonymous types is not yet implemented."
+      }
+    },
+    "lro-polling-config-error": {
+      severity: "error",
+      messages: {
+        default: paramMessage`LRO polling configuration error: ${"message"}.`
+      }
+    },
+    "file-formatting-error": {
+      severity: "error",
+      messages: {
+        default: paramMessage`Failed to format file: ${"filePath"}. Error: ${"error"}.`
+      }
+    },
+    "directory-traversal-error": {
+      severity: "error",
+      messages: {
+        default: paramMessage`Error traversing directory ${"directory"}: ${"error"}`
+      }
+    },
+    "detected-model-name-conflict": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Model name conflict detected: "${"modelName"}" exists in multiple namespaces: ${"namespaces"}. Please use @clientName to rename them.`
+      }
     }
   },
   emitter: {
@@ -555,7 +623,7 @@ export const prettierTypeScriptOptions: Options = {
   arrowParens: "always",
   bracketSpacing: true,
   endOfLine: "lf",
-  printWidth: 80,
+  printWidth: 100,
   semi: true,
   singleQuote: false,
   tabWidth: 2

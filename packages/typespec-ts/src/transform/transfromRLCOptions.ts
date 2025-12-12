@@ -5,8 +5,7 @@ import {
   PackageDetails,
   PackageFlavor,
   RLCOptions,
-  ServiceInfo,
-  isAzurePackage
+  ServiceInfo
 } from "@azure-tools/rlc-common";
 import { getHttpOperationWithCache } from "@azure-tools/typespec-client-generator-core";
 import { getDoc, NoTarget, Program } from "@typespec/compiler";
@@ -34,13 +33,7 @@ export function transformRLCOptions(
     emitterOptions,
     dpgContext.generationPathDetail?.rootDir ?? ""
   );
-  if (
-    !isAzurePackage({ options }) &&
-    emitterOptions["is-modular-library"] !== false
-  ) {
-    options.isModularLibrary = true;
-  }
-  if (dpgContext.arm && emitterOptions["is-modular-library"] !== false) {
+  if (emitterOptions["is-modular-library"] !== false) {
     options.isModularLibrary = true;
   }
   const batch = getRLCClients(dpgContext);
@@ -81,6 +74,7 @@ function extractRLCOptions(
   const productDocLink = emitterOptions["product-doc-link"];
   const isModularLibrary = emitterOptions["is-modular-library"];
   const compatibilityMode = emitterOptions["compatibility-mode"];
+  const compatibilityLro = emitterOptions["compatibility-lro"];
   const experimentalExtensibleEnums =
     emitterOptions["experimental-extensible-enums"];
   const ignorePropertyNameNormalize =
@@ -91,8 +85,6 @@ function extractRLCOptions(
     emitterOptions["compatibility-query-multi-format"];
   const typespecTitleMap = emitterOptions["typespec-title-map"];
   const hasSubscriptionId = getSubscriptionId(dpgContext);
-  //TODO should remove this after finish the release tool test
-  const shouldUsePnpmDep = emitterOptions["should-use-pnpm-dep"];
 
   return {
     ...credentialInfo,
@@ -119,14 +111,13 @@ function extractRLCOptions(
     productDocLink,
     isModularLibrary,
     compatibilityMode,
+    compatibilityLro,
     experimentalExtensibleEnums,
     ignorePropertyNameNormalize,
     compatibilityQueryMultiFormat,
     typespecTitleMap,
     ignoreEnumMemberNameNormalize,
-    hasSubscriptionId,
-    //TODO should remove this after finish the release tool test
-    shouldUsePnpmDep
+    hasSubscriptionId
   };
 }
 
@@ -306,6 +297,9 @@ function buildPackageDetails(
     nameWithoutScope: "unamedpackage",
     version: "1.0.0-beta.1"
   };
+  const isVersionUserProvided = Boolean(
+    emitterOptions["package-details"]?.version
+  );
   const packageDetails: PackageDetails = {
     ...emitterOptions["package-details"],
     name:
@@ -314,7 +308,8 @@ function buildPackageDetails(
         emitterOptions?.title ?? getDefaultService(program)?.title ?? "",
         NameType.Class
       ),
-    version: emitterOptions["package-details"]?.version ?? "1.0.0-beta.1"
+    version: emitterOptions["package-details"]?.version ?? "1.0.0-beta.1",
+    isVersionUserProvided
   };
   if (emitterOptions["package-details"]?.name) {
     const nameParts = emitterOptions["package-details"]?.name.split("/");
