@@ -32,9 +32,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing VirtualHubIpConfiguration operations. */
-export class VirtualHubIpConfigurationImpl
-  implements VirtualHubIpConfiguration
-{
+export class VirtualHubIpConfigurationImpl implements VirtualHubIpConfiguration {
   private readonly client: NetworkManagementClient;
 
   /**

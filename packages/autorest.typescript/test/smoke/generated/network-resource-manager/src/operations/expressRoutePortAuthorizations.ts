@@ -32,9 +32,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing ExpressRoutePortAuthorizations operations. */
-export class ExpressRoutePortAuthorizationsImpl
-  implements ExpressRoutePortAuthorizations
-{
+export class ExpressRoutePortAuthorizationsImpl implements ExpressRoutePortAuthorizations {
   private readonly client: NetworkManagementClient;
 
   /**

@@ -22,8 +22,7 @@ export interface DataProductsAddUserRoleOptionalParams extends OperationOptions 
 export interface DataProductsRotateKeyOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface DataProductsGenerateStorageAccountSasTokenOptionalParams
-  extends OperationOptions {}
+export interface DataProductsGenerateStorageAccountSasTokenOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface DataProductsDeleteOptionalParams extends OperationOptions {

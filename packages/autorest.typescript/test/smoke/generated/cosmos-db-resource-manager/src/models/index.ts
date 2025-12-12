@@ -1961,8 +1961,7 @@ export interface DatabaseAccountGetResults extends ARMResourceProperties {
 }
 
 /** Parameters to create and update Cosmos DB database accounts. */
-export interface DatabaseAccountCreateUpdateParameters
-  extends ARMResourceProperties {
+export interface DatabaseAccountCreateUpdateParameters extends ARMResourceProperties {
   /** Indicates the type of database account. This can only be set at database account creation. */
   kind?: DatabaseAccountKind;
   /** Identity for the resource. */
@@ -2030,8 +2029,7 @@ export interface SqlDatabaseGetResults extends ARMResourceProperties {
 }
 
 /** Parameters to create and update Cosmos DB SQL database. */
-export interface SqlDatabaseCreateUpdateParameters
-  extends ARMResourceProperties {
+export interface SqlDatabaseCreateUpdateParameters extends ARMResourceProperties {
   /** The standard JSON format of a SQL database */
   resource: SqlDatabaseResource;
   /** A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request. */
@@ -2044,8 +2042,7 @@ export interface ThroughputSettingsGetResults extends ARMResourceProperties {
 }
 
 /** Parameters to update Cosmos DB resource throughput. */
-export interface ThroughputSettingsUpdateParameters
-  extends ARMResourceProperties {
+export interface ThroughputSettingsUpdateParameters extends ARMResourceProperties {
   /** The standard JSON format of a resource throughput */
   resource: ThroughputSettingsResource;
 }
@@ -2057,8 +2054,7 @@ export interface SqlContainerGetResults extends ARMResourceProperties {
 }
 
 /** Parameters to create and update Cosmos DB container. */
-export interface SqlContainerCreateUpdateParameters
-  extends ARMResourceProperties {
+export interface SqlContainerCreateUpdateParameters extends ARMResourceProperties {
   /** The standard JSON format of a container */
   resource: SqlContainerResource;
   /** A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request. */
@@ -2071,8 +2067,7 @@ export interface SqlStoredProcedureGetResults extends ARMResourceProperties {
 }
 
 /** Parameters to create and update Cosmos DB storedProcedure. */
-export interface SqlStoredProcedureCreateUpdateParameters
-  extends ARMResourceProperties {
+export interface SqlStoredProcedureCreateUpdateParameters extends ARMResourceProperties {
   /** The standard JSON format of a storedProcedure */
   resource: SqlStoredProcedureResource;
   /** A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request. */
@@ -2080,14 +2075,12 @@ export interface SqlStoredProcedureCreateUpdateParameters
 }
 
 /** An Azure Cosmos DB userDefinedFunction. */
-export interface SqlUserDefinedFunctionGetResults
-  extends ARMResourceProperties {
+export interface SqlUserDefinedFunctionGetResults extends ARMResourceProperties {
   resource?: SqlUserDefinedFunctionGetPropertiesResource;
 }
 
 /** Parameters to create and update Cosmos DB userDefinedFunction. */
-export interface SqlUserDefinedFunctionCreateUpdateParameters
-  extends ARMResourceProperties {
+export interface SqlUserDefinedFunctionCreateUpdateParameters extends ARMResourceProperties {
   /** The standard JSON format of a userDefinedFunction */
   resource: SqlUserDefinedFunctionResource;
   /** A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request. */
@@ -2100,8 +2093,7 @@ export interface SqlTriggerGetResults extends ARMResourceProperties {
 }
 
 /** Parameters to create and update Cosmos DB trigger. */
-export interface SqlTriggerCreateUpdateParameters
-  extends ARMResourceProperties {
+export interface SqlTriggerCreateUpdateParameters extends ARMResourceProperties {
   /** The standard JSON format of a trigger */
   resource: SqlTriggerResource;
   /** A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request. */
@@ -2115,8 +2107,7 @@ export interface MongoDBDatabaseGetResults extends ARMResourceProperties {
 }
 
 /** Parameters to create and update Cosmos DB MongoDB database. */
-export interface MongoDBDatabaseCreateUpdateParameters
-  extends ARMResourceProperties {
+export interface MongoDBDatabaseCreateUpdateParameters extends ARMResourceProperties {
   /** The standard JSON format of a MongoDB database */
   resource: MongoDBDatabaseResource;
   /** A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request. */
@@ -2130,8 +2121,7 @@ export interface MongoDBCollectionGetResults extends ARMResourceProperties {
 }
 
 /** Parameters to create and update Cosmos DB MongoDB collection. */
-export interface MongoDBCollectionCreateUpdateParameters
-  extends ARMResourceProperties {
+export interface MongoDBCollectionCreateUpdateParameters extends ARMResourceProperties {
   /** The standard JSON format of a MongoDB collection */
   resource: MongoDBCollectionResource;
   /** A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request. */
@@ -2159,8 +2149,7 @@ export interface CassandraKeyspaceGetResults extends ARMResourceProperties {
 }
 
 /** Parameters to create and update Cosmos DB Cassandra keyspace. */
-export interface CassandraKeyspaceCreateUpdateParameters
-  extends ARMResourceProperties {
+export interface CassandraKeyspaceCreateUpdateParameters extends ARMResourceProperties {
   /** The standard JSON format of a Cassandra keyspace */
   resource: CassandraKeyspaceResource;
   /** A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request. */
@@ -2174,8 +2163,7 @@ export interface CassandraTableGetResults extends ARMResourceProperties {
 }
 
 /** Parameters to create and update Cosmos DB Cassandra table. */
-export interface CassandraTableCreateUpdateParameters
-  extends ARMResourceProperties {
+export interface CassandraTableCreateUpdateParameters extends ARMResourceProperties {
   /** The standard JSON format of a Cassandra table */
   resource: CassandraTableResource;
   /** A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request. */
@@ -2189,8 +2177,7 @@ export interface GremlinDatabaseGetResults extends ARMResourceProperties {
 }
 
 /** Parameters to create and update Cosmos DB Gremlin database. */
-export interface GremlinDatabaseCreateUpdateParameters
-  extends ARMResourceProperties {
+export interface GremlinDatabaseCreateUpdateParameters extends ARMResourceProperties {
   /** The standard JSON format of a Gremlin database */
   resource: GremlinDatabaseResource;
   /** A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request. */
@@ -2204,8 +2191,7 @@ export interface GremlinGraphGetResults extends ARMResourceProperties {
 }
 
 /** Parameters to create and update Cosmos DB Gremlin graph. */
-export interface GremlinGraphCreateUpdateParameters
-  extends ARMResourceProperties {
+export interface GremlinGraphCreateUpdateParameters extends ARMResourceProperties {
   /** The standard JSON format of a Gremlin graph */
   resource: GremlinGraphResource;
   /** A key-value pair of options to be applied for the request. This corresponds to the headers sent with the request. */
@@ -2213,8 +2199,7 @@ export interface GremlinGraphCreateUpdateParameters
 }
 
 /** The access keys for the given database account. */
-export interface DatabaseAccountListKeysResult
-  extends DatabaseAccountListReadOnlyKeysResult {
+export interface DatabaseAccountListKeysResult extends DatabaseAccountListReadOnlyKeysResult {
   /**
    * Base 64 encoded value of the primary read-write key.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -2295,8 +2280,7 @@ export interface PartitionUsage extends Usage {
 }
 
 export interface SqlDatabaseGetPropertiesResource
-  extends SqlDatabaseResource,
-    ExtendedResourceProperties {
+  extends SqlDatabaseResource, ExtendedResourceProperties {
   /** A system generated property that specified the addressable path of the collections resource. */
   colls?: string;
   /** A system generated property that specifies the addressable path of the users resource. */
@@ -2305,8 +2289,7 @@ export interface SqlDatabaseGetPropertiesResource
 
 /** Cosmos DB SQL database resource object */
 export interface RestorableSqlDatabasePropertiesResourceDatabase
-  extends SqlDatabaseResource,
-    ExtendedResourceProperties {
+  extends SqlDatabaseResource, ExtendedResourceProperties {
   /**
    * A system generated property that specified the addressable path of the collections resource.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -2325,57 +2308,44 @@ export interface RestorableSqlDatabasePropertiesResourceDatabase
 }
 
 export interface ThroughputSettingsGetPropertiesResource
-  extends ThroughputSettingsResource,
-    ExtendedResourceProperties {}
+  extends ThroughputSettingsResource, ExtendedResourceProperties {}
 
 export interface SqlContainerGetPropertiesResource
-  extends SqlContainerResource,
-    ExtendedResourceProperties {}
+  extends SqlContainerResource, ExtendedResourceProperties {}
 
 export interface SqlStoredProcedureGetPropertiesResource
-  extends SqlStoredProcedureResource,
-    ExtendedResourceProperties {}
+  extends SqlStoredProcedureResource, ExtendedResourceProperties {}
 
 export interface SqlUserDefinedFunctionGetPropertiesResource
-  extends SqlUserDefinedFunctionResource,
-    ExtendedResourceProperties {}
+  extends SqlUserDefinedFunctionResource, ExtendedResourceProperties {}
 
 export interface SqlTriggerGetPropertiesResource
-  extends SqlTriggerResource,
-    ExtendedResourceProperties {}
+  extends SqlTriggerResource, ExtendedResourceProperties {}
 
 export interface MongoDBDatabaseGetPropertiesResource
-  extends MongoDBDatabaseResource,
-    ExtendedResourceProperties {}
+  extends MongoDBDatabaseResource, ExtendedResourceProperties {}
 
 export interface MongoDBCollectionGetPropertiesResource
-  extends MongoDBCollectionResource,
-    ExtendedResourceProperties {}
+  extends MongoDBCollectionResource, ExtendedResourceProperties {}
 
 export interface TableGetPropertiesResource
-  extends TableResource,
-    ExtendedResourceProperties {}
+  extends TableResource, ExtendedResourceProperties {}
 
 export interface CassandraKeyspaceGetPropertiesResource
-  extends CassandraKeyspaceResource,
-    ExtendedResourceProperties {}
+  extends CassandraKeyspaceResource, ExtendedResourceProperties {}
 
 export interface CassandraTableGetPropertiesResource
-  extends CassandraTableResource,
-    ExtendedResourceProperties {}
+  extends CassandraTableResource, ExtendedResourceProperties {}
 
 export interface GremlinDatabaseGetPropertiesResource
-  extends GremlinDatabaseResource,
-    ExtendedResourceProperties {}
+  extends GremlinDatabaseResource, ExtendedResourceProperties {}
 
 export interface GremlinGraphGetPropertiesResource
-  extends GremlinGraphResource,
-    ExtendedResourceProperties {}
+  extends GremlinGraphResource, ExtendedResourceProperties {}
 
 /** Cosmos DB SQL container resource object */
 export interface RestorableSqlContainerPropertiesResourceContainer
-  extends SqlContainerResource,
-    ExtendedResourceProperties {
+  extends SqlContainerResource, ExtendedResourceProperties {
   /**
    * A system generated property that specifies the addressable path of the container resource.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -2389,13 +2359,11 @@ export interface SqlContainerGetPropertiesOptions extends OptionsResource {}
 
 export interface MongoDBDatabaseGetPropertiesOptions extends OptionsResource {}
 
-export interface MongoDBCollectionGetPropertiesOptions
-  extends OptionsResource {}
+export interface MongoDBCollectionGetPropertiesOptions extends OptionsResource {}
 
 export interface TableGetPropertiesOptions extends OptionsResource {}
 
-export interface CassandraKeyspaceGetPropertiesOptions
-  extends OptionsResource {}
+export interface CassandraKeyspaceGetPropertiesOptions extends OptionsResource {}
 
 export interface CassandraTableGetPropertiesOptions extends OptionsResource {}
 
@@ -2424,8 +2392,7 @@ export interface NotebookWorkspace extends ARMProxyResource {
 }
 
 /** Parameters to create a notebook workspace resource */
-export interface NotebookWorkspaceCreateUpdateParameters
-  extends ARMProxyResource {}
+export interface NotebookWorkspaceCreateUpdateParameters extends ARMProxyResource {}
 
 /** A private link resource */
 export interface PrivateLinkResource extends ARMProxyResource {

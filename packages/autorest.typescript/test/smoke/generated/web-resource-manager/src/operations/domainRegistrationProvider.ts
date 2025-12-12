@@ -21,9 +21,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing DomainRegistrationProvider operations. */
-export class DomainRegistrationProviderImpl
-  implements DomainRegistrationProvider
-{
+export class DomainRegistrationProviderImpl implements DomainRegistrationProvider {
   private readonly client: WebSiteManagementClient;
 
   /**

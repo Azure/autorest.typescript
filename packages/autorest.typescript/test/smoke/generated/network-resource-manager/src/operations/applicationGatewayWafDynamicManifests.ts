@@ -21,9 +21,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing ApplicationGatewayWafDynamicManifests operations. */
-export class ApplicationGatewayWafDynamicManifestsImpl
-  implements ApplicationGatewayWafDynamicManifests
-{
+export class ApplicationGatewayWafDynamicManifestsImpl implements ApplicationGatewayWafDynamicManifests {
   private readonly client: NetworkManagementClient;
 
   /**

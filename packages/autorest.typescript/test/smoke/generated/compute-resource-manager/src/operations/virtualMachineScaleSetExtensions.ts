@@ -35,9 +35,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing VirtualMachineScaleSetExtensions operations. */
-export class VirtualMachineScaleSetExtensionsImpl
-  implements VirtualMachineScaleSetExtensions
-{
+export class VirtualMachineScaleSetExtensionsImpl implements VirtualMachineScaleSetExtensions {
   private readonly client: ComputeManagementClient;
 
   /**

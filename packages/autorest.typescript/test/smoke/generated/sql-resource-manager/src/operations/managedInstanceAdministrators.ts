@@ -33,9 +33,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing ManagedInstanceAdministrators operations. */
-export class ManagedInstanceAdministratorsImpl
-  implements ManagedInstanceAdministrators
-{
+export class ManagedInstanceAdministratorsImpl implements ManagedInstanceAdministrators {
   private readonly client: SqlManagementClient;
 
   /**

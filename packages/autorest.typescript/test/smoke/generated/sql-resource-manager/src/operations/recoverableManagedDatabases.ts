@@ -23,9 +23,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing RecoverableManagedDatabases operations. */
-export class RecoverableManagedDatabasesImpl
-  implements RecoverableManagedDatabases
-{
+export class RecoverableManagedDatabasesImpl implements RecoverableManagedDatabases {
   private readonly client: SqlManagementClient;
 
   /**

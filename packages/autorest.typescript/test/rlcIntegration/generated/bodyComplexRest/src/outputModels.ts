@@ -153,8 +153,7 @@ export interface MyBaseHelperTypeOutput {
 }
 
 export interface SmartSalmonOutput
-  extends SalmonOutputParent,
-    Record<string, unknown> {
+  extends SalmonOutputParent, Record<string, unknown> {
   college_degree?: string;
   fishtype: "smart_salmon";
 }

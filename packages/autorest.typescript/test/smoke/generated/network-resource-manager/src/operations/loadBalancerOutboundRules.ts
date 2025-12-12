@@ -23,9 +23,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing LoadBalancerOutboundRules operations. */
-export class LoadBalancerOutboundRulesImpl
-  implements LoadBalancerOutboundRules
-{
+export class LoadBalancerOutboundRulesImpl implements LoadBalancerOutboundRules {
   private readonly client: NetworkManagementClient;
 
   /**

@@ -32,9 +32,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing ManagedServerSecurityAlertPolicies operations. */
-export class ManagedServerSecurityAlertPoliciesImpl
-  implements ManagedServerSecurityAlertPolicies
-{
+export class ManagedServerSecurityAlertPoliciesImpl implements ManagedServerSecurityAlertPolicies {
   private readonly client: SqlManagementClient;
 
   /**

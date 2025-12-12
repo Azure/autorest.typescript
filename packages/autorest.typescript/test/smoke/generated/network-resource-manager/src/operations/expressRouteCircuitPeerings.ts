@@ -32,9 +32,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing ExpressRouteCircuitPeerings operations. */
-export class ExpressRouteCircuitPeeringsImpl
-  implements ExpressRouteCircuitPeerings
-{
+export class ExpressRouteCircuitPeeringsImpl implements ExpressRouteCircuitPeerings {
   private readonly client: NetworkManagementClient;
 
   /**

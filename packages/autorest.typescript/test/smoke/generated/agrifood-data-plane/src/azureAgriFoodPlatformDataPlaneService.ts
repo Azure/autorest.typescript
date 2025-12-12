@@ -11,8 +11,7 @@ import type { KeyCredential } from "@azure/core-auth";
 import type { AzureAgriFoodPlatformDataPlaneServiceClient } from "./clientDefinitions.js";
 
 /** The optional parameters for the client */
-export interface AzureAgriFoodPlatformDataPlaneServiceClientOptions
-  extends ClientOptions {
+export interface AzureAgriFoodPlatformDataPlaneServiceClientOptions extends ClientOptions {
   /** The api version option of the client */
   apiVersion?: string;
 }

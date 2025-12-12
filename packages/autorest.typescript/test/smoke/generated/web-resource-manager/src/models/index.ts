@@ -4572,8 +4572,7 @@ export interface PremierAddOn extends Resource {
 }
 
 /** ARM resource for a certificate order that is purchased through Azure. */
-export interface AppServiceCertificateOrderPatchResource
-  extends ProxyOnlyResource {
+export interface AppServiceCertificateOrderPatchResource extends ProxyOnlyResource {
   /** State of the Key Vault secret. */
   certificates?: { [propertyName: string]: AppServiceCertificate };
   /** Certificate distinguished name. */
@@ -5000,8 +4999,7 @@ export interface Usage extends ProxyOnlyResource {
 }
 
 /** Remote Private Endpoint Connection ARM resource. */
-export interface RemotePrivateEndpointConnectionARMResource
-  extends ProxyOnlyResource {
+export interface RemotePrivateEndpointConnectionARMResource extends ProxyOnlyResource {
   /** NOTE: This property will not be serialized. It can only be populated by the server. */
   readonly provisioningState?: string;
   /** PrivateEndpoint of a remote private endpoint connection */
@@ -5013,8 +5011,7 @@ export interface RemotePrivateEndpointConnectionARMResource
 }
 
 /** Private Endpoint Connection Approval ARM resource. */
-export interface PrivateLinkConnectionApprovalRequestResource
-  extends ProxyOnlyResource {
+export interface PrivateLinkConnectionApprovalRequestResource extends ProxyOnlyResource {
   /** The state of a private link connection */
   privateLinkServiceConnectionState?: PrivateLinkConnectionState;
 }
@@ -5929,8 +5926,7 @@ export interface StringDictionary extends ProxyOnlyResource {
 }
 
 /** Static Site Function Overview ARM resource. */
-export interface StaticSiteFunctionOverviewARMResource
-  extends ProxyOnlyResource {
+export interface StaticSiteFunctionOverviewARMResource extends ProxyOnlyResource {
   /**
    * The name for the function
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5944,8 +5940,7 @@ export interface StaticSiteFunctionOverviewARMResource
 }
 
 /** Static Site User Provided Function App ARM resource. */
-export interface StaticSiteUserProvidedFunctionAppARMResource
-  extends ProxyOnlyResource {
+export interface StaticSiteUserProvidedFunctionAppARMResource extends ProxyOnlyResource {
   /** The resource id of the function app registered with the static site */
   functionAppResourceId?: string;
   /** The region of the function app registered with the static site */
@@ -5972,8 +5967,7 @@ export interface StaticSiteZipDeploymentARMResource extends ProxyOnlyResource {
 }
 
 /** Static sites user roles invitation resource. */
-export interface StaticSiteUserInvitationRequestResource
-  extends ProxyOnlyResource {
+export interface StaticSiteUserInvitationRequestResource extends ProxyOnlyResource {
   /** The domain name for the static site custom domain. */
   domain?: string;
   /** The identity provider for the static site user. */
@@ -5987,8 +5981,7 @@ export interface StaticSiteUserInvitationRequestResource
 }
 
 /** Static sites user roles invitation link resource. */
-export interface StaticSiteUserInvitationResponseResource
-  extends ProxyOnlyResource {
+export interface StaticSiteUserInvitationResponseResource extends ProxyOnlyResource {
   /**
    * The expiration time of the invitation
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -6002,8 +5995,7 @@ export interface StaticSiteUserInvitationResponseResource
 }
 
 /** Static Site Custom Domain Overview ARM resource. */
-export interface StaticSiteCustomDomainOverviewARMResource
-  extends ProxyOnlyResource {
+export interface StaticSiteCustomDomainOverviewARMResource extends ProxyOnlyResource {
   /**
    * The domain name for the static site custom domain.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -6029,8 +6021,7 @@ export interface StaticSiteCustomDomainOverviewARMResource
 }
 
 /** Static Site Custom Domain Request Properties ARM resource. */
-export interface StaticSiteCustomDomainRequestPropertiesARMResource
-  extends ProxyOnlyResource {
+export interface StaticSiteCustomDomainRequestPropertiesARMResource extends ProxyOnlyResource {
   /** Validation method for adding a custom domain */
   validationMethod?: string;
 }
@@ -6042,8 +6033,7 @@ export interface StringList extends ProxyOnlyResource {
 }
 
 /** Static Site Reset Properties ARM resource. */
-export interface StaticSiteResetPropertiesARMResource
-  extends ProxyOnlyResource {
+export interface StaticSiteResetPropertiesARMResource extends ProxyOnlyResource {
   /** The token which proves admin privileges to the repository. */
   repositoryToken?: string;
   /** Determines whether the repository should be updated with the new properties. */
@@ -6370,8 +6360,7 @@ export interface RestoreRequest extends ProxyOnlyResource {
 }
 
 /** Publishing Credentials Policies parameters. */
-export interface CsmPublishingCredentialsPoliciesEntity
-  extends ProxyOnlyResource {
+export interface CsmPublishingCredentialsPoliciesEntity extends ProxyOnlyResource {
   /** <code>true</code> to allow access to a publishing method; otherwise, <code>false</code>. */
   allow?: boolean;
 }
@@ -6741,8 +6730,7 @@ export interface SiteAuthSettingsV2 extends ProxyOnlyResource {
 }
 
 /** AzureStorageInfo dictionary resource. */
-export interface AzureStoragePropertyDictionaryResource
-  extends ProxyOnlyResource {
+export interface AzureStoragePropertyDictionaryResource extends ProxyOnlyResource {
   /** Azure storage accounts. */
   properties?: { [propertyName: string]: AzureStorageInfoValue };
 }

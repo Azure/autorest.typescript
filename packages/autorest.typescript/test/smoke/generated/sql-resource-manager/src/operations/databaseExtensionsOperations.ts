@@ -31,9 +31,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing DatabaseExtensionsOperations operations. */
-export class DatabaseExtensionsOperationsImpl
-  implements DatabaseExtensionsOperations
-{
+export class DatabaseExtensionsOperationsImpl implements DatabaseExtensionsOperations {
   private readonly client: SqlManagementClient;
 
   /**

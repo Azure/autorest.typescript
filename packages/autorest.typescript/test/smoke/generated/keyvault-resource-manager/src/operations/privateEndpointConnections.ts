@@ -33,9 +33,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing PrivateEndpointConnections operations. */
-export class PrivateEndpointConnectionsImpl
-  implements PrivateEndpointConnections
-{
+export class PrivateEndpointConnectionsImpl implements PrivateEndpointConnections {
   private readonly client: KeyVaultManagementClient;
 
   /**

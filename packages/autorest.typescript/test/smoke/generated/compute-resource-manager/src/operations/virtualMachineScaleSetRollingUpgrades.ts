@@ -24,9 +24,7 @@ import {
 } from "../models/index.js";
 
 /** Class containing VirtualMachineScaleSetRollingUpgrades operations. */
-export class VirtualMachineScaleSetRollingUpgradesImpl
-  implements VirtualMachineScaleSetRollingUpgrades
-{
+export class VirtualMachineScaleSetRollingUpgradesImpl implements VirtualMachineScaleSetRollingUpgrades {
   private readonly client: ComputeManagementClient;
 
   /**

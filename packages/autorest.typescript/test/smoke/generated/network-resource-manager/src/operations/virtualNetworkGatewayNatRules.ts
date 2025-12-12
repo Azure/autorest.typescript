@@ -32,9 +32,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing VirtualNetworkGatewayNatRules operations. */
-export class VirtualNetworkGatewayNatRulesImpl
-  implements VirtualNetworkGatewayNatRules
-{
+export class VirtualNetworkGatewayNatRulesImpl implements VirtualNetworkGatewayNatRules {
   private readonly client: NetworkManagementClient;
 
   /**

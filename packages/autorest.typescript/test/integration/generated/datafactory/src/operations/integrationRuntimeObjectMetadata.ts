@@ -17,9 +17,7 @@ import {
 } from "../models";
 
 /** Class containing IntegrationRuntimeObjectMetadata operations. */
-export class IntegrationRuntimeObjectMetadataImpl
-  implements IntegrationRuntimeObjectMetadata
-{
+export class IntegrationRuntimeObjectMetadataImpl implements IntegrationRuntimeObjectMetadata {
   private readonly client: DataFactoryClient;
 
   /**

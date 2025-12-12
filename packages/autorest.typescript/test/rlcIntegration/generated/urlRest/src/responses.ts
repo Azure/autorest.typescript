@@ -46,8 +46,7 @@ export interface PathsGetIntNegativeOneMillion200Response extends HttpResponse {
 }
 
 /** Get '-1000000' integer value */
-export interface PathsGetIntNegativeOneMillionDefaultResponse
-  extends HttpResponse {
+export interface PathsGetIntNegativeOneMillionDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -69,8 +68,7 @@ export interface PathsGetNegativeTenBillion200Response extends HttpResponse {
 }
 
 /** Get '-10000000000' 64 bit integer value */
-export interface PathsGetNegativeTenBillionDefaultResponse
-  extends HttpResponse {
+export interface PathsGetNegativeTenBillionDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -81,8 +79,7 @@ export interface PathsFloatScientificPositive200Response extends HttpResponse {
 }
 
 /** Get '1.034E+20' numeric value */
-export interface PathsFloatScientificPositiveDefaultResponse
-  extends HttpResponse {
+export interface PathsFloatScientificPositiveDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -93,8 +90,7 @@ export interface PathsFloatScientificNegative200Response extends HttpResponse {
 }
 
 /** Get '-1.034E-20' numeric value */
-export interface PathsFloatScientificNegativeDefaultResponse
-  extends HttpResponse {
+export interface PathsFloatScientificNegativeDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -105,8 +101,7 @@ export interface PathsDoubleDecimalPositive200Response extends HttpResponse {
 }
 
 /** Get '9999999.999' numeric value */
-export interface PathsDoubleDecimalPositiveDefaultResponse
-  extends HttpResponse {
+export interface PathsDoubleDecimalPositiveDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -117,8 +112,7 @@ export interface PathsDoubleDecimalNegative200Response extends HttpResponse {
 }
 
 /** Get '-9999999.999' numeric value */
-export interface PathsDoubleDecimalNegativeDefaultResponse
-  extends HttpResponse {
+export interface PathsDoubleDecimalNegativeDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -355,14 +349,12 @@ export interface QueriesGetIntOneMillionDefaultResponse extends HttpResponse {
 }
 
 /** Get '-1000000' integer value */
-export interface QueriesGetIntNegativeOneMillion200Response
-  extends HttpResponse {
+export interface QueriesGetIntNegativeOneMillion200Response extends HttpResponse {
   status: "200";
 }
 
 /** Get '-1000000' integer value */
-export interface QueriesGetIntNegativeOneMillionDefaultResponse
-  extends HttpResponse {
+export interface QueriesGetIntNegativeOneMillionDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -395,8 +387,7 @@ export interface QueriesGetNegativeTenBillion200Response extends HttpResponse {
 }
 
 /** Get '-10000000000' 64 bit integer value */
-export interface QueriesGetNegativeTenBillionDefaultResponse
-  extends HttpResponse {
+export interface QueriesGetNegativeTenBillionDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -413,27 +404,23 @@ export interface QueriesGetLongNullDefaultResponse extends HttpResponse {
 }
 
 /** Get '1.034E+20' numeric value */
-export interface QueriesFloatScientificPositive200Response
-  extends HttpResponse {
+export interface QueriesFloatScientificPositive200Response extends HttpResponse {
   status: "200";
 }
 
 /** Get '1.034E+20' numeric value */
-export interface QueriesFloatScientificPositiveDefaultResponse
-  extends HttpResponse {
+export interface QueriesFloatScientificPositiveDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
 
 /** Get '-1.034E-20' numeric value */
-export interface QueriesFloatScientificNegative200Response
-  extends HttpResponse {
+export interface QueriesFloatScientificNegative200Response extends HttpResponse {
   status: "200";
 }
 
 /** Get '-1.034E-20' numeric value */
-export interface QueriesFloatScientificNegativeDefaultResponse
-  extends HttpResponse {
+export interface QueriesFloatScientificNegativeDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -455,8 +442,7 @@ export interface QueriesDoubleDecimalPositive200Response extends HttpResponse {
 }
 
 /** Get '9999999.999' numeric value */
-export interface QueriesDoubleDecimalPositiveDefaultResponse
-  extends HttpResponse {
+export interface QueriesDoubleDecimalPositiveDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -467,8 +453,7 @@ export interface QueriesDoubleDecimalNegative200Response extends HttpResponse {
 }
 
 /** Get '-9999999.999' numeric value */
-export interface QueriesDoubleDecimalNegativeDefaultResponse
-  extends HttpResponse {
+export interface QueriesDoubleDecimalNegativeDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -633,8 +618,7 @@ export interface QueriesArrayStringCsvValid200Response extends HttpResponse {
 }
 
 /** Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format */
-export interface QueriesArrayStringCsvValidDefaultResponse
-  extends HttpResponse {
+export interface QueriesArrayStringCsvValidDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -656,21 +640,18 @@ export interface QueriesArrayStringCsvEmpty200Response extends HttpResponse {
 }
 
 /** Get an empty array [] of string using the csv-array format */
-export interface QueriesArrayStringCsvEmptyDefaultResponse
-  extends HttpResponse {
+export interface QueriesArrayStringCsvEmptyDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
 
 /** Array query has no defined collection format, should default to csv. Pass in ['hello', 'nihao', 'bonjour'] for the 'arrayQuery' parameter to the service */
-export interface QueriesArrayStringNoCollectionFormatEmpty200Response
-  extends HttpResponse {
+export interface QueriesArrayStringNoCollectionFormatEmpty200Response extends HttpResponse {
   status: "200";
 }
 
 /** Array query has no defined collection format, should default to csv. Pass in ['hello', 'nihao', 'bonjour'] for the 'arrayQuery' parameter to the service */
-export interface QueriesArrayStringNoCollectionFormatEmptyDefaultResponse
-  extends HttpResponse {
+export interface QueriesArrayStringNoCollectionFormatEmptyDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -681,8 +662,7 @@ export interface QueriesArrayStringSsvValid200Response extends HttpResponse {
 }
 
 /** Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format */
-export interface QueriesArrayStringSsvValidDefaultResponse
-  extends HttpResponse {
+export interface QueriesArrayStringSsvValidDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -693,8 +673,7 @@ export interface QueriesArrayStringTsvValid200Response extends HttpResponse {
 }
 
 /** Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format */
-export interface QueriesArrayStringTsvValidDefaultResponse
-  extends HttpResponse {
+export interface QueriesArrayStringTsvValidDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -705,8 +684,7 @@ export interface QueriesArrayStringPipesValid200Response extends HttpResponse {
 }
 
 /** Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format */
-export interface QueriesArrayStringPipesValidDefaultResponse
-  extends HttpResponse {
+export interface QueriesArrayStringPipesValidDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -728,34 +706,29 @@ export interface PathItemsGetGlobalQueryNull200Response extends HttpResponse {
 }
 
 /** send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery' */
-export interface PathItemsGetGlobalQueryNullDefaultResponse
-  extends HttpResponse {
+export interface PathItemsGetGlobalQueryNullDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
 
 /** send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery=null */
-export interface PathItemsGetGlobalAndLocalQueryNull200Response
-  extends HttpResponse {
+export interface PathItemsGetGlobalAndLocalQueryNull200Response extends HttpResponse {
   status: "200";
 }
 
 /** send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery=null */
-export interface PathItemsGetGlobalAndLocalQueryNullDefaultResponse
-  extends HttpResponse {
+export interface PathItemsGetGlobalAndLocalQueryNullDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
 
 /** send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery=null, localStringQuery=null */
-export interface PathItemsGetLocalPathItemQueryNull200Response
-  extends HttpResponse {
+export interface PathItemsGetLocalPathItemQueryNull200Response extends HttpResponse {
   status: "200";
 }
 
 /** send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery=null, localStringQuery=null */
-export interface PathItemsGetLocalPathItemQueryNullDefaultResponse
-  extends HttpResponse {
+export interface PathItemsGetLocalPathItemQueryNullDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }

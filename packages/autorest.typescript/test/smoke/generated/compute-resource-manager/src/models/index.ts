@@ -4066,8 +4066,7 @@ export interface VirtualMachineScaleSetIPConfiguration extends SubResource {
 }
 
 /** Describes a virtual machine scale set network profile's network configurations. */
-export interface VirtualMachineScaleSetNetworkConfiguration
-  extends SubResource {
+export interface VirtualMachineScaleSetNetworkConfiguration extends SubResource {
   /** The network configuration name. */
   name: string;
   /** Specifies the primary network interface in case the virtual machine has more than 1 network interface. */
@@ -4113,8 +4112,7 @@ export interface VirtualMachineCaptureResult extends SubResource {
 }
 
 /** Describes a virtual machine scale set network profile's IP configuration. NOTE: The subnet of a scale set may be modified as long as the original subnet and the new subnet are in the same virtual network */
-export interface VirtualMachineScaleSetUpdateIPConfiguration
-  extends SubResource {
+export interface VirtualMachineScaleSetUpdateIPConfiguration extends SubResource {
   /** The IP configuration name. */
   name?: string;
   /** The subnet. */
@@ -4136,8 +4134,7 @@ export interface VirtualMachineScaleSetUpdateIPConfiguration
 }
 
 /** Describes a virtual machine scale set network profile's network configurations. */
-export interface VirtualMachineScaleSetUpdateNetworkConfiguration
-  extends SubResource {
+export interface VirtualMachineScaleSetUpdateNetworkConfiguration extends SubResource {
   /** The network configuration name. */
   name?: string;
   /** Whether this is a primary NIC on a virtual machine. */
@@ -5332,8 +5329,7 @@ export interface VirtualMachineScaleSetExtension extends SubResourceReadOnly {
 }
 
 /** Describes a Virtual Machine Scale Set Extension. */
-export interface VirtualMachineScaleSetExtensionUpdate
-  extends SubResourceReadOnly {
+export interface VirtualMachineScaleSetExtensionUpdate extends SubResourceReadOnly {
   /**
    * The name of the extension.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5411,8 +5407,7 @@ export interface VirtualMachineScaleSetVMExtension extends SubResourceReadOnly {
 }
 
 /** Describes a VMSS VM Extension. */
-export interface VirtualMachineScaleSetVMExtensionUpdate
-  extends SubResourceReadOnly {
+export interface VirtualMachineScaleSetVMExtensionUpdate extends SubResourceReadOnly {
   /**
    * The name of the extension.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5444,8 +5439,7 @@ export interface VirtualMachineScaleSetVMExtensionUpdate
 }
 
 /** The instance view of a dedicated host that includes the name of the dedicated host. It is used for the response to the instance view of a dedicated host group. */
-export interface DedicatedHostInstanceViewWithName
-  extends DedicatedHostInstanceView {
+export interface DedicatedHostInstanceViewWithName extends DedicatedHostInstanceView {
   /**
    * The name of the dedicated host.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5491,8 +5485,7 @@ export interface RestorePoint extends ProxyResource {
 }
 
 /** The instance view of a capacity reservation that includes the name of the capacity reservation. It is used for the response to the instance view of a capacity reservation group. */
-export interface CapacityReservationInstanceViewWithName
-  extends CapacityReservationInstanceView {
+export interface CapacityReservationInstanceViewWithName extends CapacityReservationInstanceView {
   /**
    * The name of the capacity reservation.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5501,8 +5494,7 @@ export interface CapacityReservationInstanceViewWithName
 }
 
 /** Describes a Virtual Machine Scale Set VM Reimage Parameters. */
-export interface VirtualMachineScaleSetVMReimageParameters
-  extends VirtualMachineReimageParameters {}
+export interface VirtualMachineScaleSetVMReimageParameters extends VirtualMachineReimageParameters {}
 
 /** Api request input for LogAnalytics getRequestRateByInterval Api. */
 export interface RequestRateByIntervalInput extends LogAnalyticsInputBase {
@@ -5658,8 +5650,7 @@ export interface GalleryApplicationUpdate extends UpdateResourceDefinition {
 }
 
 /** Specifies information about the gallery Application Version that you want to update. */
-export interface GalleryApplicationVersionUpdate
-  extends UpdateResourceDefinition {
+export interface GalleryApplicationVersionUpdate extends UpdateResourceDefinition {
   /** The publishing profile of a gallery image version. */
   publishingProfile?: GalleryApplicationVersionPublishingProfile;
   /**
@@ -5675,12 +5666,10 @@ export interface GalleryApplicationVersionUpdate
 }
 
 /** The publishing profile of a gallery image Version. */
-export interface GalleryImageVersionPublishingProfile
-  extends GalleryArtifactPublishingProfileBase {}
+export interface GalleryImageVersionPublishingProfile extends GalleryArtifactPublishingProfileBase {}
 
 /** The publishing profile of a gallery image version. */
-export interface GalleryApplicationVersionPublishingProfile
-  extends GalleryArtifactPublishingProfileBase {
+export interface GalleryApplicationVersionPublishingProfile extends GalleryArtifactPublishingProfileBase {
   /** The source image from which the Image Version is going to be created. */
   source: UserArtifactSource;
   manageActions?: UserArtifactManage;
@@ -5738,8 +5727,7 @@ export interface CommunityGalleryImage extends PirCommunityGalleryResource {
 }
 
 /** Specifies information about the gallery image version that you want to create or update. */
-export interface CommunityGalleryImageVersion
-  extends PirCommunityGalleryResource {
+export interface CommunityGalleryImageVersion extends PirCommunityGalleryResource {
   /** The published date of the gallery image version Definition. This property can be used for decommissioning purposes. This property is updatable. */
   publishedDate?: Date;
   /** The end of life date of the gallery image version Definition. This property can be used for decommissioning purposes. This property is updatable. */
@@ -5763,8 +5751,7 @@ export interface VirtualMachineImage extends VirtualMachineImageResource {
 }
 
 /** Describes a Virtual Machine Scale Set VM Reimage Parameters. */
-export interface VirtualMachineScaleSetReimageParameters
-  extends VirtualMachineScaleSetVMReimageParameters {
+export interface VirtualMachineScaleSetReimageParameters extends VirtualMachineScaleSetVMReimageParameters {
   /** The virtual machine scale set instance ids. Omitting the virtual machine scale set instance ids will result in the operation being performed on all virtual machines in the virtual machine scale set. */
   instanceIds?: string[];
 }

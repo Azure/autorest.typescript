@@ -586,8 +586,8 @@ function getPropertySignatures(
 function isBinaryArray(schema: Schema): boolean {
   return Boolean(
     isArraySchema(schema) &&
-      (schema.items?.typeName?.includes("NodeJS.ReadableStream") ||
-        schema.items?.outputTypeName?.includes("NodeJS.ReadableStream"))
+    (schema.items?.typeName?.includes("NodeJS.ReadableStream") ||
+      schema.items?.outputTypeName?.includes("NodeJS.ReadableStream"))
   );
 }
 

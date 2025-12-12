@@ -3167,8 +3167,7 @@ export function vectorStoreAutoChunkingStrategyRequestSerializer(
 }
 
 /** A statically configured chunking strategy. */
-export interface VectorStoreStaticChunkingStrategyRequest
-  extends VectorStoreChunkingStrategyRequest {
+export interface VectorStoreStaticChunkingStrategyRequest extends VectorStoreChunkingStrategyRequest {
   /** The object type, which is always 'static'. */
   type: "static";
   /** The options for the static chunking strategy. */
@@ -3368,8 +3367,7 @@ export function vectorStoreChunkingStrategyResponseUnionDeserializer(
 export type VectorStoreChunkingStrategyResponseType = "other" | "static";
 
 /** This is returned when the chunking strategy is unknown. Typically, this is because the file was indexed before the chunking_strategy concept was introduced in the API. */
-export interface VectorStoreAutoChunkingStrategyResponse
-  extends VectorStoreChunkingStrategyResponse {
+export interface VectorStoreAutoChunkingStrategyResponse extends VectorStoreChunkingStrategyResponse {
   /** The object type, which is always 'other'. */
   type: "other";
 }
@@ -3383,8 +3381,7 @@ export function vectorStoreAutoChunkingStrategyResponseDeserializer(
 }
 
 /** A statically configured chunking strategy. */
-export interface VectorStoreStaticChunkingStrategyResponse
-  extends VectorStoreChunkingStrategyResponse {
+export interface VectorStoreStaticChunkingStrategyResponse extends VectorStoreChunkingStrategyResponse {
   /** The object type, which is always 'static'. */
   type: "static";
   /** The options for the static chunking strategy. */

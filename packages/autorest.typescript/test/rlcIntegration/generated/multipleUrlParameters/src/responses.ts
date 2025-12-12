@@ -59,8 +59,7 @@ export interface EntityCreateOrUpdateEntities200Response extends HttpResponse {
  * Existing entity is matched using its unique guid if supplied or by its unique attributes eg: qualifiedName.
  * Map and array of collections are not well supported. E.g., array<array<int>>, array<map<string, int>>.
  */
-export interface EntityCreateOrUpdateEntitiesDefaultResponse
-  extends HttpResponse {
+export interface EntityCreateOrUpdateEntitiesDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -106,8 +105,7 @@ export interface EntityGetByGuidDefaultResponse extends HttpResponse {
  * It does not support updating complex types like arrays, and maps.
  * Null updates are not possible.
  */
-export interface EntityPartialUpdateEntityAttributeByGuid200Response
-  extends HttpResponse {
+export interface EntityPartialUpdateEntityAttributeByGuid200Response extends HttpResponse {
   status: "200";
   body: EntityMutationResponseOutput;
 }
@@ -118,8 +116,7 @@ export interface EntityPartialUpdateEntityAttributeByGuid200Response
  * It does not support updating complex types like arrays, and maps.
  * Null updates are not possible.
  */
-export interface EntityPartialUpdateEntityAttributeByGuidDefaultResponse
-  extends HttpResponse {
+export interface EntityPartialUpdateEntityAttributeByGuidDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }

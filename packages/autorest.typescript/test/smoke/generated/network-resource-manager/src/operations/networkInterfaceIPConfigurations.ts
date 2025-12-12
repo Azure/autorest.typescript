@@ -23,9 +23,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing NetworkInterfaceIPConfigurations operations. */
-export class NetworkInterfaceIPConfigurationsImpl
-  implements NetworkInterfaceIPConfigurations
-{
+export class NetworkInterfaceIPConfigurationsImpl implements NetworkInterfaceIPConfigurations {
   private readonly client: NetworkManagementClient;
 
   /**

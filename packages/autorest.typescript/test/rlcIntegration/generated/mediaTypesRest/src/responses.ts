@@ -35,8 +35,7 @@ export interface BinaryBodyWithTwoContentTypes200Response extends HttpResponse {
 }
 
 /** Binary body with three content types. Pass in string 'hello, world' with content type 'text/plain', {'hello': world'} with content type 'application/json' and a byte string for 'application/octet-stream'. */
-export interface BinaryBodyWithThreeContentTypes200Response
-  extends HttpResponse {
+export interface BinaryBodyWithThreeContentTypes200Response extends HttpResponse {
   status: "200";
   body: string;
 }

@@ -23,9 +23,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing RestorableDroppedManagedDatabases operations. */
-export class RestorableDroppedManagedDatabasesImpl
-  implements RestorableDroppedManagedDatabases
-{
+export class RestorableDroppedManagedDatabasesImpl implements RestorableDroppedManagedDatabases {
   private readonly client: SqlManagementClient;
 
   /**

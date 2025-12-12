@@ -37,9 +37,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing CloudServiceRoleInstances operations. */
-export class CloudServiceRoleInstancesImpl
-  implements CloudServiceRoleInstances
-{
+export class CloudServiceRoleInstancesImpl implements CloudServiceRoleInstances {
   private readonly client: ComputeManagementClient;
 
   /**

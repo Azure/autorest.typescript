@@ -15,9 +15,7 @@ import {
 } from "../models/index.js";
 
 /** Class containing ExpressRouteProviderPortsLocation operations. */
-export class ExpressRouteProviderPortsLocationImpl
-  implements ExpressRouteProviderPortsLocation
-{
+export class ExpressRouteProviderPortsLocationImpl implements ExpressRouteProviderPortsLocation {
   private readonly client: NetworkManagementClient;
 
   /**

@@ -33,9 +33,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing ServerAzureADOnlyAuthentications operations. */
-export class ServerAzureADOnlyAuthenticationsImpl
-  implements ServerAzureADOnlyAuthentications
-{
+export class ServerAzureADOnlyAuthenticationsImpl implements ServerAzureADOnlyAuthentications {
   private readonly client: SqlManagementClient;
 
   /**

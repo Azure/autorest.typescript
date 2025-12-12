@@ -32,9 +32,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing LoadBalancerBackendAddressPools operations. */
-export class LoadBalancerBackendAddressPoolsImpl
-  implements LoadBalancerBackendAddressPools
-{
+export class LoadBalancerBackendAddressPoolsImpl implements LoadBalancerBackendAddressPools {
   private readonly client: NetworkManagementClient;
 
   /**

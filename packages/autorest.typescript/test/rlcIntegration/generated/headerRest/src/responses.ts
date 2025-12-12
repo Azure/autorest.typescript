@@ -59,8 +59,7 @@ export interface HeaderResponseProtectedKey200Response extends HttpResponse {
 }
 
 /** Get a response with header value "Content-Type": "text/html" */
-export interface HeaderResponseProtectedKeyDefaultResponse
-  extends HttpResponse {
+export interface HeaderResponseProtectedKeyDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -295,8 +294,7 @@ export interface HeaderParamDatetimeRfc1123200Response extends HttpResponse {
 }
 
 /** Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56 GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT" */
-export interface HeaderParamDatetimeRfc1123DefaultResponse
-  extends HttpResponse {
+export interface HeaderParamDatetimeRfc1123DefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }
@@ -313,8 +311,7 @@ export interface HeaderResponseDatetimeRfc1123200Response extends HttpResponse {
 }
 
 /** Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT" */
-export interface HeaderResponseDatetimeRfc1123DefaultResponse
-  extends HttpResponse {
+export interface HeaderResponseDatetimeRfc1123DefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }

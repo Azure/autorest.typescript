@@ -32,9 +32,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing SecurityAdminConfigurations operations. */
-export class SecurityAdminConfigurationsImpl
-  implements SecurityAdminConfigurations
-{
+export class SecurityAdminConfigurationsImpl implements SecurityAdminConfigurations {
   private readonly client: NetworkManagementClient;
 
   /**

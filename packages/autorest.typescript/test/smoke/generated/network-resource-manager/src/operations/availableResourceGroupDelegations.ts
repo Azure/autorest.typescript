@@ -21,9 +21,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing AvailableResourceGroupDelegations operations. */
-export class AvailableResourceGroupDelegationsImpl
-  implements AvailableResourceGroupDelegations
-{
+export class AvailableResourceGroupDelegationsImpl implements AvailableResourceGroupDelegations {
   private readonly client: NetworkManagementClient;
 
   /**

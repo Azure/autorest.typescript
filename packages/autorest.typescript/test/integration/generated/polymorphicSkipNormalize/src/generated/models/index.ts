@@ -294,8 +294,7 @@ export interface MediaGraphTopologySetRequest extends MethodRequest {
 
 /** Represents the MediaGraphTopologySetRequest body. */
 export interface MediaGraphTopologySetRequestBody
-  extends MethodRequest,
-    MediaGraphTopology {
+  extends MethodRequest, MediaGraphTopology {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   methodName: "MediaGraphTopologySetRequestBody";
 }
@@ -310,8 +309,7 @@ export interface MediaGraphInstanceSetRequest extends MethodRequest {
 
 /** Represents the MediaGraphInstanceSetRequest body. */
 export interface MediaGraphInstanceSetRequestBody
-  extends MethodRequest,
-    MediaGraphInstance {
+  extends MethodRequest, MediaGraphInstance {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   methodName: "MediaGraphInstanceSetRequestBody";
 }
@@ -361,8 +359,7 @@ export interface MediaGraphIoTHubMessageSource extends MediaGraphSource {
 }
 
 /** A node that accepts raw video as input, and detects if there are moving objects present. If so, then it emits an event, and allows frames where motion was detected to pass through. Other frames are blocked/dropped. */
-export interface MediaGraphMotionDetectionProcessor
-  extends MediaGraphProcessor {
+export interface MediaGraphMotionDetectionProcessor extends MediaGraphProcessor {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   "@type": "#Microsoft.Media.MediaGraphMotionDetectionProcessor";
   /** Enumeration that specifies the sensitivity of the motion detection processor. */
@@ -454,8 +451,7 @@ export interface MediaGraphTlsEndpoint extends MediaGraphEndpoint {
 }
 
 /** Username/password credential pair. */
-export interface MediaGraphUsernamePasswordCredentials
-  extends MediaGraphCredentials {
+export interface MediaGraphUsernamePasswordCredentials extends MediaGraphCredentials {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   "@type": "#Microsoft.Media.MediaGraphUsernamePasswordCredentials";
   /** Username for a username/password pair. */
@@ -475,8 +471,7 @@ export interface MediaGraphHttpHeaderCredentials extends MediaGraphCredentials {
 }
 
 /** A list of PEM formatted certificates. */
-export interface MediaGraphPemCertificateList
-  extends MediaGraphCertificateSource {
+export interface MediaGraphPemCertificateList extends MediaGraphCertificateSource {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   "@type": "#Microsoft.Media.MediaGraphPemCertificateList";
   /** PEM formatted public certificates one per entry. */
@@ -530,15 +525,13 @@ export interface MediaGraphInstanceGetRequest extends ItemNonSetRequestBase {
 }
 
 /** Represents the MediaGraphInstanceActivateRequest. */
-export interface MediaGraphInstanceActivateRequest
-  extends ItemNonSetRequestBase {
+export interface MediaGraphInstanceActivateRequest extends ItemNonSetRequestBase {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   methodName: "GraphInstanceActivate";
 }
 
 /** Represents the MediaGraphInstanceDeactivateRequest. */
-export interface MediaGraphInstanceDeActivateRequest
-  extends ItemNonSetRequestBase {
+export interface MediaGraphInstanceDeActivateRequest extends ItemNonSetRequestBase {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   methodName: "GraphInstanceDeactivate";
 }
@@ -550,15 +543,13 @@ export interface MediaGraphInstanceDeleteRequest extends ItemNonSetRequestBase {
 }
 
 /** A processor that allows the media graph to send video frames to a Cognitive Services Vision extension. Inference results are relayed to downstream nodes. */
-export interface MediaGraphCognitiveServicesVisionExtension
-  extends MediaGraphExtensionProcessorBase {
+export interface MediaGraphCognitiveServicesVisionExtension extends MediaGraphExtensionProcessorBase {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   "@type": "#Microsoft.Media.MediaGraphCognitiveServicesVisionExtension";
 }
 
 /** A processor that allows the media graph to send video frames to an external inference container over a gRPC connection. This can be done using shared memory (for high frame rates), or over the network. Inference results are relayed to downstream nodes. */
-export interface MediaGraphGrpcExtension
-  extends MediaGraphExtensionProcessorBase {
+export interface MediaGraphGrpcExtension extends MediaGraphExtensionProcessorBase {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   "@type": "#Microsoft.Media.MediaGraphGrpcExtension";
   /** How media should be transferred to the inference engine. */
@@ -568,8 +559,7 @@ export interface MediaGraphGrpcExtension
 }
 
 /** A processor that allows the media graph to send video frames (mostly at low frame rates e.g. <5 fps) to an external inference container over an HTTP-based RESTful API. Inference results are relayed to downstream nodes. */
-export interface MediaGraphHttpExtension
-  extends MediaGraphExtensionProcessorBase {
+export interface MediaGraphHttpExtension extends MediaGraphExtensionProcessorBase {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   "@type": "#Microsoft.Media.MediaGraphHttpExtension";
 }

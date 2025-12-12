@@ -32,9 +32,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing ServiceEndpointPolicyDefinitions operations. */
-export class ServiceEndpointPolicyDefinitionsImpl
-  implements ServiceEndpointPolicyDefinitions
-{
+export class ServiceEndpointPolicyDefinitionsImpl implements ServiceEndpointPolicyDefinitions {
   private readonly client: NetworkManagementClient;
 
   /**

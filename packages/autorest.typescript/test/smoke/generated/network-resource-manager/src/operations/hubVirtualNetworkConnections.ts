@@ -32,9 +32,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing HubVirtualNetworkConnections operations. */
-export class HubVirtualNetworkConnectionsImpl
-  implements HubVirtualNetworkConnections
-{
+export class HubVirtualNetworkConnectionsImpl implements HubVirtualNetworkConnections {
   private readonly client: NetworkManagementClient;
 
   /**

@@ -262,16 +262,14 @@ export interface ScriptLog extends AzureResourceBase {
 
 /** Properties of the Azure PowerShell script object. */
 export interface AzurePowerShellScriptProperties
-  extends DeploymentScriptPropertiesBase,
-    ScriptConfigurationBase {
+  extends DeploymentScriptPropertiesBase, ScriptConfigurationBase {
   /** Azure PowerShell module version to be used. */
   azPowerShellVersion: string;
 }
 
 /** Properties of the Azure CLI script object. */
 export interface AzureCliScriptProperties
-  extends DeploymentScriptPropertiesBase,
-    ScriptConfigurationBase {
+  extends DeploymentScriptPropertiesBase, ScriptConfigurationBase {
   /** Azure CLI module version to be used. */
   azCliVersion: string;
 }

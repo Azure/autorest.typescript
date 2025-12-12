@@ -23,9 +23,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing SharedGalleryImageVersions operations. */
-export class SharedGalleryImageVersionsImpl
-  implements SharedGalleryImageVersions
-{
+export class SharedGalleryImageVersionsImpl implements SharedGalleryImageVersions {
   private readonly client: ComputeManagementClient;
 
   /**

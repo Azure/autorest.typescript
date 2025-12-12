@@ -42,9 +42,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing VirtualMachineRunCommands operations. */
-export class VirtualMachineRunCommandsImpl
-  implements VirtualMachineRunCommands
-{
+export class VirtualMachineRunCommandsImpl implements VirtualMachineRunCommands {
   private readonly client: ComputeManagementClient;
 
   /**

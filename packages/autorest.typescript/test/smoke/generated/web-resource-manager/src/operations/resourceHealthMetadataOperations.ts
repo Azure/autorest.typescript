@@ -37,9 +37,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing ResourceHealthMetadataOperations operations. */
-export class ResourceHealthMetadataOperationsImpl
-  implements ResourceHealthMetadataOperations
-{
+export class ResourceHealthMetadataOperationsImpl implements ResourceHealthMetadataOperations {
   private readonly client: WebSiteManagementClient;
 
   /**

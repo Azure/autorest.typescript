@@ -24,28 +24,24 @@ export interface PagingGetNoItemNamePagesDefaultResponse extends HttpResponse {
 }
 
 /** A paging operation that gets an empty next link and should stop after page 1. */
-export interface PagingGetEmptyNextLinkNamePages200Response
-  extends HttpResponse {
+export interface PagingGetEmptyNextLinkNamePages200Response extends HttpResponse {
   status: "200";
   body: ProductResultValueOutput;
 }
 
 /** A paging operation that gets an empty next link and should stop after page 1. */
-export interface PagingGetEmptyNextLinkNamePagesDefaultResponse
-  extends HttpResponse {
+export interface PagingGetEmptyNextLinkNamePagesDefaultResponse extends HttpResponse {
   status: string;
 }
 
 /** A paging operation that must ignore any kind of nextLink, and stop after page 1. */
-export interface PagingGetNullNextLinkNamePages200Response
-  extends HttpResponse {
+export interface PagingGetNullNextLinkNamePages200Response extends HttpResponse {
   status: "200";
   body: ProductResultOutput;
 }
 
 /** A paging operation that must ignore any kind of nextLink, and stop after page 1. */
-export interface PagingGetNullNextLinkNamePagesDefaultResponse
-  extends HttpResponse {
+export interface PagingGetNullNextLinkNamePagesDefaultResponse extends HttpResponse {
   status: string;
 }
 
@@ -61,15 +57,13 @@ export interface PagingGetSinglePagesDefaultResponse extends HttpResponse {
 }
 
 /** A paging operation that finishes on the first call with body params without a nextlink */
-export interface PagingGetSinglePagesWithBodyParams200Response
-  extends HttpResponse {
+export interface PagingGetSinglePagesWithBodyParams200Response extends HttpResponse {
   status: "200";
   body: ProductResultOutput;
 }
 
 /** A paging operation that finishes on the first call with body params without a nextlink */
-export interface PagingGetSinglePagesWithBodyParamsDefaultResponse
-  extends HttpResponse {
+export interface PagingGetSinglePagesWithBodyParamsDefaultResponse extends HttpResponse {
   status: string;
 }
 
@@ -129,15 +123,13 @@ export interface PagingPageWithMaxPageSizeDefaultResponse extends HttpResponse {
 }
 
 /** Next operation for getWithQueryParams. Pass in next=True to pass test. Returns a ProductResult */
-export interface PagingNextOperationWithQueryParams200Response
-  extends HttpResponse {
+export interface PagingNextOperationWithQueryParams200Response extends HttpResponse {
   status: "200";
   body: ProductResultOutput;
 }
 
 /** Next operation for getWithQueryParams. Pass in next=True to pass test. Returns a ProductResult */
-export interface PagingNextOperationWithQueryParamsDefaultResponse
-  extends HttpResponse {
+export interface PagingNextOperationWithQueryParamsDefaultResponse extends HttpResponse {
   status: string;
 }
 
@@ -148,47 +140,40 @@ export interface PagingGetOdataMultiplePages200Response extends HttpResponse {
 }
 
 /** A paging operation that includes a nextLink in odata format that has 10 pages */
-export interface PagingGetOdataMultiplePagesDefaultResponse
-  extends HttpResponse {
+export interface PagingGetOdataMultiplePagesDefaultResponse extends HttpResponse {
   status: string;
 }
 
 /** A paging operation that includes a nextLink that has 10 pages */
-export interface PagingGetMultiplePagesWithOffset200Response
-  extends HttpResponse {
+export interface PagingGetMultiplePagesWithOffset200Response extends HttpResponse {
   status: "200";
   body: ProductResultOutput;
 }
 
 /** A paging operation that includes a nextLink that has 10 pages */
-export interface PagingGetMultiplePagesWithOffsetDefaultResponse
-  extends HttpResponse {
+export interface PagingGetMultiplePagesWithOffsetDefaultResponse extends HttpResponse {
   status: string;
 }
 
 /** A paging operation that fails on the first call with 500 and then retries and then get a response including a nextLink that has 10 pages */
-export interface PagingGetMultiplePagesRetryFirst200Response
-  extends HttpResponse {
+export interface PagingGetMultiplePagesRetryFirst200Response extends HttpResponse {
   status: "200";
   body: ProductResultOutput;
 }
 
 /** A paging operation that fails on the first call with 500 and then retries and then get a response including a nextLink that has 10 pages */
-export interface PagingGetMultiplePagesRetryFirstDefaultResponse
-  extends HttpResponse {
+export interface PagingGetMultiplePagesRetryFirstDefaultResponse extends HttpResponse {
   status: string;
 }
 
 /** A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first with 500. The client should retry and finish all 10 pages eventually. */
-export interface PagingGetMultiplePagesRetrySecond200Response
-  extends HttpResponse {
+export interface PagingGetMultiplePagesRetrySecond200Response extends HttpResponse {
   status: "200";
   body: ProductResultOutput;
 }
 
 /** A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first with 500. The client should retry and finish all 10 pages eventually. */
-export interface PagingGetMultiplePagesRetrySecondDefaultResponse
-  extends HttpResponse {
+export interface PagingGetMultiplePagesRetrySecondDefaultResponse extends HttpResponse {
   status: string;
 }
 
@@ -199,8 +184,7 @@ export interface PagingGetSinglePagesFailure200Response extends HttpResponse {
 }
 
 /** A paging operation that receives a 400 on the first call */
-export interface PagingGetSinglePagesFailureDefaultResponse
-  extends HttpResponse {
+export interface PagingGetSinglePagesFailureDefaultResponse extends HttpResponse {
   status: string;
 }
 
@@ -211,47 +195,40 @@ export interface PagingGetMultiplePagesFailure200Response extends HttpResponse {
 }
 
 /** A paging operation that receives a 400 on the second call */
-export interface PagingGetMultiplePagesFailureDefaultResponse
-  extends HttpResponse {
+export interface PagingGetMultiplePagesFailureDefaultResponse extends HttpResponse {
   status: string;
 }
 
 /** A paging operation that receives an invalid nextLink */
-export interface PagingGetMultiplePagesFailureUri200Response
-  extends HttpResponse {
+export interface PagingGetMultiplePagesFailureUri200Response extends HttpResponse {
   status: "200";
   body: ProductResultOutput;
 }
 
 /** A paging operation that receives an invalid nextLink */
-export interface PagingGetMultiplePagesFailureUriDefaultResponse
-  extends HttpResponse {
+export interface PagingGetMultiplePagesFailureUriDefaultResponse extends HttpResponse {
   status: string;
 }
 
 /** A paging operation that doesn't return a full URL, just a fragment */
-export interface PagingGetMultiplePagesFragmentNextLink200Response
-  extends HttpResponse {
+export interface PagingGetMultiplePagesFragmentNextLink200Response extends HttpResponse {
   status: "200";
   body: OdataProductResultOutput;
 }
 
 /** A paging operation that doesn't return a full URL, just a fragment */
-export interface PagingGetMultiplePagesFragmentNextLinkDefaultResponse
-  extends HttpResponse {
+export interface PagingGetMultiplePagesFragmentNextLinkDefaultResponse extends HttpResponse {
   status: string;
 }
 
 /** A paging operation that doesn't return a full URL, just a fragment with parameters grouped */
-export interface PagingGetMultiplePagesFragmentWithGroupingNextLink200Response
-  extends HttpResponse {
+export interface PagingGetMultiplePagesFragmentWithGroupingNextLink200Response extends HttpResponse {
   status: "200";
   body: OdataProductResultOutput;
 }
 
 /** A paging operation that doesn't return a full URL, just a fragment with parameters grouped */
-export interface PagingGetMultiplePagesFragmentWithGroupingNextLinkDefaultResponse
-  extends HttpResponse {
+export interface PagingGetMultiplePagesFragmentWithGroupingNextLinkDefaultResponse extends HttpResponse {
   status: string;
 }
 
@@ -300,27 +277,23 @@ export interface PagingNextFragmentDefaultResponse extends HttpResponse {
 }
 
 /** A paging operation that doesn't return a full URL, just a fragment */
-export interface PagingNextFragmentWithGrouping200Response
-  extends HttpResponse {
+export interface PagingNextFragmentWithGrouping200Response extends HttpResponse {
   status: "200";
   body: OdataProductResultOutput;
 }
 
 /** A paging operation that doesn't return a full URL, just a fragment */
-export interface PagingNextFragmentWithGroupingDefaultResponse
-  extends HttpResponse {
+export interface PagingNextFragmentWithGroupingDefaultResponse extends HttpResponse {
   status: string;
 }
 
 /** A paging operation that returns a paging model whose item name is is overriden by x-ms-client-name 'indexes'. */
-export interface PagingGetPagingModelWithItemNameWithXMSClientName200Response
-  extends HttpResponse {
+export interface PagingGetPagingModelWithItemNameWithXMSClientName200Response extends HttpResponse {
   status: "200";
   body: ProductResultValueWithXMSClientNameOutput;
 }
 
 /** A paging operation that returns a paging model whose item name is is overriden by x-ms-client-name 'indexes'. */
-export interface PagingGetPagingModelWithItemNameWithXMSClientNameDefaultResponse
-  extends HttpResponse {
+export interface PagingGetPagingModelWithItemNameWithXMSClientNameDefaultResponse extends HttpResponse {
   status: string;
 }

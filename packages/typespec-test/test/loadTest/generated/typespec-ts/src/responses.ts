@@ -177,8 +177,7 @@ export interface LoadTestAdministrationCreateOrUpdateAppComponentsDefaultHeaders
   "x-ms-error-code"?: string;
 }
 
-export interface LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse
-  extends HttpResponse {
+export interface LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
   headers: RawHttpHeaders & LoadTestAdministrationCreateOrUpdateAppComponentsDefaultHeaders;
@@ -202,15 +201,13 @@ export interface LoadTestAdministrationGetAppComponentsDefaultResponse extends H
 }
 
 /** The request has succeeded. */
-export interface LoadTestAdministrationCreateOrUpdateServerMetricsConfig200Response
-  extends HttpResponse {
+export interface LoadTestAdministrationCreateOrUpdateServerMetricsConfig200Response extends HttpResponse {
   status: "200";
   body: TestServerMetricConfigOutput;
 }
 
 /** The request has succeeded and a new resource has been created as a result. */
-export interface LoadTestAdministrationCreateOrUpdateServerMetricsConfig201Response
-  extends HttpResponse {
+export interface LoadTestAdministrationCreateOrUpdateServerMetricsConfig201Response extends HttpResponse {
   status: "201";
   body: TestServerMetricConfigOutput;
 }
@@ -220,8 +217,7 @@ export interface LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultH
   "x-ms-error-code"?: string;
 }
 
-export interface LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse
-  extends HttpResponse {
+export interface LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
   headers: RawHttpHeaders & LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultHeaders;

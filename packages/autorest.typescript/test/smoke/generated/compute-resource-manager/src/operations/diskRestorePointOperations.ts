@@ -33,9 +33,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing DiskRestorePointOperations operations. */
-export class DiskRestorePointOperationsImpl
-  implements DiskRestorePointOperations
-{
+export class DiskRestorePointOperationsImpl implements DiskRestorePointOperations {
   private readonly client: ComputeManagementClient;
 
   /**

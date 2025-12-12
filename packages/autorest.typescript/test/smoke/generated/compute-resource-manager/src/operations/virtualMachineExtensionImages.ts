@@ -19,9 +19,7 @@ import {
 } from "../models/index.js";
 
 /** Class containing VirtualMachineExtensionImages operations. */
-export class VirtualMachineExtensionImagesImpl
-  implements VirtualMachineExtensionImages
-{
+export class VirtualMachineExtensionImagesImpl implements VirtualMachineExtensionImages {
   private readonly client: ComputeManagementClient;
 
   /**

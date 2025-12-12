@@ -3712,8 +3712,7 @@ export interface PrivateEndpointConnectionResource extends SubResource {
 }
 
 /** Private Endpoint Connection Approval ARM resource. */
-export interface PrivateLinkConnectionApprovalRequestResource
-  extends SubResource {
+export interface PrivateLinkConnectionApprovalRequestResource extends SubResource {
   /** Core resource properties */
   properties?: PrivateLinkConnectionApprovalRequest;
 }
@@ -3731,8 +3730,7 @@ export interface CredentialResource extends SubResource {
 }
 
 /** Managed integration runtime status. */
-export interface ManagedIntegrationRuntimeStatus
-  extends IntegrationRuntimeStatus {
+export interface ManagedIntegrationRuntimeStatus extends IntegrationRuntimeStatus {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "Managed";
   /**
@@ -3758,8 +3756,7 @@ export interface ManagedIntegrationRuntimeStatus
 }
 
 /** Self-hosted integration runtime status. */
-export interface SelfHostedIntegrationRuntimeStatus
-  extends IntegrationRuntimeStatus {
+export interface SelfHostedIntegrationRuntimeStatus extends IntegrationRuntimeStatus {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "SelfHosted";
   /**
@@ -7166,8 +7163,7 @@ export interface WranglingDataFlow extends DataFlow {
 }
 
 /** Integration runtime debug resource. */
-export interface IntegrationRuntimeDebugResource
-  extends SubResourceDebugResource {
+export interface IntegrationRuntimeDebugResource extends SubResourceDebugResource {
   /** Integration runtime properties. */
   properties: IntegrationRuntimeUnion;
 }
@@ -7493,8 +7489,7 @@ export interface AzPowerShellSetup extends CustomSetupBase {
 }
 
 /** The key authorization type integration runtime. */
-export interface LinkedIntegrationRuntimeKeyAuthorization
-  extends LinkedIntegrationRuntimeType {
+export interface LinkedIntegrationRuntimeKeyAuthorization extends LinkedIntegrationRuntimeType {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   authorizationType: "Key";
   /** The key used for authorization. */
@@ -7502,8 +7497,7 @@ export interface LinkedIntegrationRuntimeKeyAuthorization
 }
 
 /** The role based access control (RBAC) authorization type integration runtime. */
-export interface LinkedIntegrationRuntimeRbacAuthorization
-  extends LinkedIntegrationRuntimeType {
+export interface LinkedIntegrationRuntimeRbacAuthorization extends LinkedIntegrationRuntimeType {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   authorizationType: "RBAC";
   /** The resource identifier of the integration runtime to be shared. */
@@ -7511,8 +7505,7 @@ export interface LinkedIntegrationRuntimeRbacAuthorization
 }
 
 /** A WebLinkedService that uses anonymous authentication to communicate with an HTTP endpoint. */
-export interface WebAnonymousAuthentication
-  extends WebLinkedServiceTypeProperties {
+export interface WebAnonymousAuthentication extends WebLinkedServiceTypeProperties {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   authenticationType: "Anonymous";
 }
@@ -7528,8 +7521,7 @@ export interface WebBasicAuthentication extends WebLinkedServiceTypeProperties {
 }
 
 /** A WebLinkedService that uses client certificate based authentication to communicate with an HTTP endpoint. This scheme follows mutual authentication; the server must also provide valid credentials to the client. */
-export interface WebClientCertificateAuthentication
-  extends WebLinkedServiceTypeProperties {
+export interface WebClientCertificateAuthentication extends WebLinkedServiceTypeProperties {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   authenticationType: "ClientCertificate";
   /** Base64-encoded contents of a PFX file. */
@@ -9056,8 +9048,7 @@ export interface TabularTranslator extends CopyTranslator {
 }
 
 /** Execute power query data flow activity properties. */
-export interface ExecutePowerQueryActivityTypeProperties
-  extends ExecuteDataFlowActivityTypeProperties {
+export interface ExecutePowerQueryActivityTypeProperties extends ExecuteDataFlowActivityTypeProperties {
   /** (Deprecated. Please use Queries). List of Power Query activity sinks mapped to a queryName. */
   sinks?: { [propertyName: string]: PowerQuerySink };
   /** List of mapping for Power Query mashup query to sink dataset(s). */
@@ -9075,8 +9066,7 @@ export interface TriggerDependencyReference extends DependencyReference {
 }
 
 /** Self referenced tumbling window trigger dependency. */
-export interface SelfDependencyTumblingWindowTriggerReference
-  extends DependencyReference {
+export interface SelfDependencyTumblingWindowTriggerReference extends DependencyReference {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "SelfDependencyTumblingWindowTriggerReference";
   /** Timespan applied to the start time of a tumbling window when evaluating dependency. */
@@ -10298,8 +10288,7 @@ export interface AmazonRedshiftSource extends TabularSource {
 }
 
 /** Referenced tumbling window trigger dependency. */
-export interface TumblingWindowTriggerDependencyReference
-  extends TriggerDependencyReference {
+export interface TumblingWindowTriggerDependencyReference extends TriggerDependencyReference {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "TumblingWindowTriggerDependencyReference";
   /** Timespan applied to the start time of a tumbling window when evaluating dependency. */

@@ -83,8 +83,7 @@ export interface CloudConnectorsOutput {
 }
 
 /** The URIs that are the public endpoints of the account. */
-export interface AccountPropertiesEndpointsOutput
-  extends AccountEndpointsOutput {}
+export interface AccountPropertiesEndpointsOutput extends AccountEndpointsOutput {}
 
 /** The account endpoints */
 export interface AccountEndpointsOutput {
@@ -97,8 +96,7 @@ export interface AccountEndpointsOutput {
 }
 
 /** Gets the resource identifiers of the managed resources. */
-export interface AccountPropertiesManagedResourcesOutput
-  extends ManagedResourcesOutput {}
+export interface AccountPropertiesManagedResourcesOutput extends ManagedResourcesOutput {}
 
 /** The managed resources in customer subscription. */
 export interface ManagedResourcesOutput {

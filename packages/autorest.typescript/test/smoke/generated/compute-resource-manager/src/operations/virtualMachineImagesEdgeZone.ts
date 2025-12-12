@@ -23,9 +23,7 @@ import {
 } from "../models/index.js";
 
 /** Class containing VirtualMachineImagesEdgeZone operations. */
-export class VirtualMachineImagesEdgeZoneImpl
-  implements VirtualMachineImagesEdgeZone
-{
+export class VirtualMachineImagesEdgeZoneImpl implements VirtualMachineImagesEdgeZone {
   private readonly client: ComputeManagementClient;
 
   /**
