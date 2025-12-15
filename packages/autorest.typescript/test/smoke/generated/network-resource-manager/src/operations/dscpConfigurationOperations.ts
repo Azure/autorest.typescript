@@ -36,9 +36,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing DscpConfigurationOperations operations. */
-export class DscpConfigurationOperationsImpl
-  implements DscpConfigurationOperations
-{
+export class DscpConfigurationOperationsImpl implements DscpConfigurationOperations {
   private readonly client: NetworkManagementClient;
 
   /**

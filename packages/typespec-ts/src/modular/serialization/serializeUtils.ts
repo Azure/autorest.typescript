@@ -144,8 +144,8 @@ export function isDiscriminatedUnion(
   }
   return Boolean(
     type?.kind === "model" &&
-      type.discriminatorProperty &&
-      type.discriminatedSubtypes
+    type.discriminatorProperty &&
+    type.discriminatedSubtypes
   );
 }
 

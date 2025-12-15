@@ -3980,8 +3980,7 @@ export interface TrackedResource extends Resource {
 }
 
 /** ARM proxy resource. */
-export interface ProxyResourceWithWritableName
-  extends ResourceWithWritableName {}
+export interface ProxyResourceWithWritableName extends ResourceWithWritableName {}
 
 /** A recoverable database */
 export interface RecoverableDatabase extends ProxyResource {
@@ -5015,8 +5014,7 @@ export interface DatabaseTable extends ProxyResource {
 }
 
 /** A database vulnerability assessment rule baseline. */
-export interface DatabaseVulnerabilityAssessmentRuleBaseline
-  extends ProxyResource {
+export interface DatabaseVulnerabilityAssessmentRuleBaseline extends ProxyResource {
   /** The rule baseline result */
   baselineResults?: DatabaseVulnerabilityAssessmentRuleBaselineItem[];
 }
@@ -5078,8 +5076,7 @@ export interface VulnerabilityAssessmentScanRecord extends ProxyResource {
 }
 
 /** A database Vulnerability Assessment scan export resource. */
-export interface DatabaseVulnerabilityAssessmentScansExport
-  extends ProxyResource {
+export interface DatabaseVulnerabilityAssessmentScansExport extends ProxyResource {
   /**
    * Location of the exported report (e.g. https://myStorage.blob.core.windows.net/VaScans/scans/serverName/databaseName/scan_scanId.xlsx).
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -5671,8 +5668,7 @@ export interface ManagedInstanceAdministrator extends ProxyResource {
 }
 
 /** Azure Active Directory only authentication. */
-export interface ManagedInstanceAzureADOnlyAuthentication
-  extends ProxyResource {
+export interface ManagedInstanceAzureADOnlyAuthentication extends ProxyResource {
   /** Azure Active Directory only Authentication enabled. */
   azureADOnlyAuthentication?: boolean;
 }
@@ -5822,8 +5818,7 @@ export interface ManagedInstanceOperation extends ProxyResource {
 }
 
 /** A private endpoint connection */
-export interface ManagedInstancePrivateEndpointConnection
-  extends ProxyResource {
+export interface ManagedInstancePrivateEndpointConnection extends ProxyResource {
   /** Private endpoint which the connection belongs to. */
   privateEndpoint?: ManagedInstancePrivateEndpointProperty;
   /** Connection State of the Private Endpoint Connection. */
@@ -6378,8 +6373,7 @@ export interface TimeZone extends ProxyResource {
 }
 
 /** A recoverable managed database resource. */
-export interface UpdateManagedInstanceDnsServersOperation
-  extends ProxyResource {
+export interface UpdateManagedInstanceDnsServersOperation extends ProxyResource {
   /**
    * The status of the DNS refresh operation.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -6433,8 +6427,7 @@ export interface WorkloadGroup extends ProxyResource {
 }
 
 /** A logical database transparent data encryption state. */
-export interface LogicalDatabaseTransparentDataEncryption
-  extends ProxyResource {
+export interface LogicalDatabaseTransparentDataEncryption extends ProxyResource {
   /** Specifies the state of the transparent data encryption. */
   state?: TransparentDataEncryptionState;
 }

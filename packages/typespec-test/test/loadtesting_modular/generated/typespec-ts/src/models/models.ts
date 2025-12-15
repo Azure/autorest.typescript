@@ -2111,8 +2111,7 @@ export enum KnownResourceKind {
 export type ResourceKind = string;
 
 /** Configurations for a Function App using Flex Consumption Plan. */
-export interface FunctionFlexConsumptionTargetResourceConfigurations
-  extends TargetResourceConfigurations {
+export interface FunctionFlexConsumptionTargetResourceConfigurations extends TargetResourceConfigurations {
   /**
    * The kind value to use when providing configuration.
    * This should typically be not changed from its value.

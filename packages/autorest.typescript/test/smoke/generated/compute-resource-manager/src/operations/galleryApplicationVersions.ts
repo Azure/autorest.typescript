@@ -35,9 +35,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing GalleryApplicationVersions operations. */
-export class GalleryApplicationVersionsImpl
-  implements GalleryApplicationVersions
-{
+export class GalleryApplicationVersionsImpl implements GalleryApplicationVersions {
   private readonly client: ComputeManagementClient;
 
   /**

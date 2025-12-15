@@ -23,9 +23,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing CertificateOrdersDiagnostics operations. */
-export class CertificateOrdersDiagnosticsImpl
-  implements CertificateOrdersDiagnostics
-{
+export class CertificateOrdersDiagnosticsImpl implements CertificateOrdersDiagnostics {
   private readonly client: WebSiteManagementClient;
 
   /**

@@ -19,9 +19,7 @@ import {
 } from "../models";
 
 /** Class containing IotConnectorFhirDestination operations. */
-export class IotConnectorFhirDestinationImpl
-  implements IotConnectorFhirDestination
-{
+export class IotConnectorFhirDestinationImpl implements IotConnectorFhirDestination {
   private readonly client: HealthCareApisClient;
 
   /**

@@ -18,9 +18,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing ElasticPoolDatabaseActivities operations. */
-export class ElasticPoolDatabaseActivitiesImpl
-  implements ElasticPoolDatabaseActivities
-{
+export class ElasticPoolDatabaseActivitiesImpl implements ElasticPoolDatabaseActivities {
   private readonly client: SqlManagementClient;
 
   /**
