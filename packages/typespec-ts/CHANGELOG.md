@@ -1,6 +1,11 @@
 ## 0.47.1 (2025-12-15)
 
+- [Feature] Prevent flatten property decorator from being applied to non-model types. Please refer to [#3643](https://github.com/Azure/autorest.typescript/pull/3643)
 - [Feature] Bump TypeSpec dependencies to latest stable (1.7.0 / 0.77.0 / 0.63.0). Please refer to [#3638](https://github.com/Azure/autorest.typescript/pull/3638)
+- [Feature] Update documentation to use pnpm commands instead of rush. Please refer to [#3629](https://github.com/Azure/autorest.typescript/pull/3629)
+- [Feature] Remove review/ and changelogmd in package.json's files config. Please refer to [#3310](https://github.com/Azure/autorest.typescript/pull/3310)
+- [Bugfix] Fix query parameter missing issue if using @clientInitialization. Please refer to [#3555](https://github.com/Azure/autorest.typescript/pull/3555)
+- [Feature] Pnpm migration. Please refer to [#3366](https://github.com/Azure/autorest.typescript/pull/3366)
 
 ## 0.47.0 (2025-12-04)
 
