@@ -156,8 +156,7 @@ export interface StringGetNullBase64UrlEncoded200Response extends HttpResponse {
 }
 
 /** Get null value that is expected to be base64url encoded */
-export interface StringGetNullBase64UrlEncodedDefaultResponse
-  extends HttpResponse {
+export interface StringGetNullBase64UrlEncodedDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorModelOutput;
 }

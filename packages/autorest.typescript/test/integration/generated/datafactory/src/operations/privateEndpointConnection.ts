@@ -13,9 +13,7 @@ import {
 } from "../models";
 
 /** Class containing PrivateEndpointConnection operations. */
-export class PrivateEndpointConnectionImpl
-  implements PrivateEndpointConnection
-{
+export class PrivateEndpointConnectionImpl implements PrivateEndpointConnection {
   private readonly client: DataFactoryClient;
 
   /**

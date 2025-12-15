@@ -391,8 +391,9 @@ function getOperationSignatureParameters(
         p.type.kind !== "constant" &&
         operation.operation.parameters.filter((param) => {
           return (
-            param.correspondingMethodParams.length === 1 &&
-            param.correspondingMethodParams[0] === p
+            param.methodParameterSegments.length === 1 &&
+            param.methodParameterSegments[0]?.length === 1 &&
+            param.methodParameterSegments[0]?.[0] === p
           );
         })[0]?.kind !== "cookie" &&
         p.clientDefaultValue === undefined &&
@@ -742,8 +743,8 @@ function getHeaderAndBodyParameters(
       }
       // Check if this parameter still exists in the corresponding method params (after override)
       if (
-        param.correspondingMethodParams &&
-        param.correspondingMethodParams.length > 0
+        param.methodParameterSegments &&
+        param.methodParameterSegments.length > 0
       ) {
         parametersImplementation[param.kind].push({
           paramMap: getParameterMap(dpgContext, param, optionalParamName),
@@ -1075,9 +1076,12 @@ function getPathParameters(
   const pathParams: string[] = [];
   for (const param of operation.operation.parameters) {
     if (param.kind === "path") {
-      pathParams.push(
-        `"${param.serializedName}": ${getPathParamExpr(param.correspondingMethodParams[0]!, getDefaultValue(param) as string, optionalParamName)}`
-      );
+      const methodParam = param.methodParameterSegments[0]?.[0];
+      if (methodParam) {
+        pathParams.push(
+          `"${param.serializedName}": ${getPathParamExpr(methodParam, getDefaultValue(param) as string, optionalParamName)}`
+        );
+      }
     }
   }
 
@@ -1108,8 +1112,8 @@ function getQueryParameters(
     if (param.kind === "query") {
       // Check if this parameter still exists in the corresponding method params (after override)
       if (
-        param.correspondingMethodParams &&
-        param.correspondingMethodParams.length > 0
+        param.methodParameterSegments &&
+        param.methodParameterSegments.length > 0
       ) {
         parametersImplementation[param.kind].push({
           paramMap: getParameterMap(dpgContext, {

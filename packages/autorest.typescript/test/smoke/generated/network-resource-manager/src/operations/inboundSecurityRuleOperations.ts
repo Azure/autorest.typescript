@@ -22,9 +22,7 @@ import {
 } from "../models/index.js";
 
 /** Class containing InboundSecurityRuleOperations operations. */
-export class InboundSecurityRuleOperationsImpl
-  implements InboundSecurityRuleOperations
-{
+export class InboundSecurityRuleOperationsImpl implements InboundSecurityRuleOperations {
   private readonly client: NetworkManagementClient;
 
   /**
