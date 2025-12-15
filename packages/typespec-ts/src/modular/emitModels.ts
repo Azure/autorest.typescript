@@ -512,9 +512,6 @@ function buildModelInterface(
       })
   } as InterfaceStructure;
   for (const flatten of flattenPropertySet.keys()) {
-    if (flatten.type?.kind !== "model" || !flatten.type.properties) {
-      continue;
-    }
     const conflictMap =
       useContext("sdkTypes").flattenProperties.get(flatten)?.conflictMap;
     const allProperties = getAllProperties(
@@ -902,8 +899,14 @@ function visitType(context: SdkContext, type: SdkType | undefined) {
       if (!emitQueue.has(property.type)) {
         visitType(context, property.type);
       }
-      if (property.flatten && property.type.kind === "model") {
-        flattenPropertyModelMap.set(property, type);
+      if (property.flatten) {
+        if (property.type.kind === "model" && property.type.properties) {
+          flattenPropertyModelMap.set(property, type);
+        } else {
+          // Flatten is only applicable for model types
+          // Reset flatten flag if the property type is not model
+          property.flatten = false;
+        }
       }
     }
     if (type.discriminatedSubtypes) {
