@@ -501,7 +501,7 @@ function buildModelInterface(
       .filter((p) => !isMetadata(context.program, p.__raw!))
       .filter((p) => {
         // filter out the flatten property to be processed later
-        if (p.flatten) {
+        if (p.flatten && p.type.kind === "model") {
           flattenPropertySet.add(p);
           return false;
         }
@@ -899,14 +899,8 @@ function visitType(context: SdkContext, type: SdkType | undefined) {
       if (!emitQueue.has(property.type)) {
         visitType(context, property.type);
       }
-      if (property.flatten) {
-        if (property.type.kind === "model" && property.type.properties) {
-          flattenPropertyModelMap.set(property, type);
-        } else {
-          // Flatten is only applicable for model types
-          // Reset flatten flag if the property type is not model
-          property.flatten = false;
-        }
+      if (property.flatten && property.type.kind === "model") {
+        flattenPropertyModelMap.set(property, type);
       }
     }
     if (type.discriminatedSubtypes) {
