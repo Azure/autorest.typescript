@@ -48,7 +48,7 @@ importers:
         specifier: ^2.9.1
         version: 2.10.1
       '@azure-tools/rlc-common':
-        specifier: workspace:^0.47.0
+        specifier: workspace:^0.47.1
         version: link:../rlc-common
       '@azure/core-auth':
         specifier: ^1.6.0
@@ -333,7 +333,7 @@ importers:
   packages/typespec-ts:
     dependencies:
       '@azure-tools/rlc-common':
-        specifier: workspace:^0.47.0
+        specifier: workspace:^0.47.1
         version: link:../rlc-common
       '@typespec/xml':
         specifier: ^0.77.0
@@ -359,7 +359,7 @@ importers:
         version: 2.5.1
       '@azure-tools/azure-http-specs':
         specifier: 0.1.0-alpha.34-dev.1
-        version: 0.1.0-alpha.34-dev.1(70303648c470bfa928cadf7b1d93e478)
+        version: 0.1.0-alpha.34-dev.1(b404e9d7018ca1ea35b3a29f5cf0c657)
       '@azure-tools/typespec-autorest':
         specifier: ^0.63.0
         version: 0.63.0(17cf065f026f0b7bdf78e0118627b694)
@@ -5467,7 +5467,7 @@ snapshots:
       '@azure-tools/tasks': 3.0.255
       proper-lockfile: 2.0.1
 
-  '@azure-tools/azure-http-specs@0.1.0-alpha.34-dev.1(70303648c470bfa928cadf7b1d93e478)':
+  '@azure-tools/azure-http-specs@0.1.0-alpha.34-dev.1(b404e9d7018ca1ea35b3a29f5cf0c657)':
     dependencies:
       '@azure-tools/typespec-azure-core': 0.63.0(@typespec/compiler@1.7.0(@types/node@24.10.2))(@typespec/http@1.7.0(@typespec/compiler@1.7.0(@types/node@24.10.2))(@typespec/streams@0.77.0(@typespec/compiler@1.7.0(@types/node@24.10.2))))(@typespec/rest@0.77.0(@typespec/compiler@1.7.0(@types/node@24.10.2))(@typespec/http@1.7.0(@typespec/compiler@1.7.0(@types/node@24.10.2))(@typespec/streams@0.77.0(@typespec/compiler@1.7.0(@types/node@24.10.2)))))
       '@typespec/compiler': 1.7.0(@types/node@24.10.2)

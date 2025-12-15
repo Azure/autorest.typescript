@@ -1,3 +1,7 @@
+## 6.0.54 (2025-12-15)
+
+- [Feature] Bump TypeSpec dependencies to latest stable (1.7.0 / 0.77.0 / 0.63.0). Please refer to [#3638](https://github.com/Azure/autorest.typescript/pull/3638)
+
 ## 6.0.53 (2025-12-04)
 
 - [Bugfix] Fix inconsistent Serializer Function Names in Discriminated Unions cross namesapce. Please refer to [#3589](https://github.com/Azure/autorest.typescript/pull/3589)
