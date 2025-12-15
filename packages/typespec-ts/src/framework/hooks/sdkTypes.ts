@@ -168,7 +168,7 @@ function enrichFlattenProperties(
         baseModel,
         getAllAncestors(baseModel)
       )
-        .filter((p) => p.flatten === false || p.flatten === undefined)
+        .filter((p) => !(p.flatten && p.type.kind === "model"))
         .map((p) => normalizeModelPropertyName(context, p));
       baseModelProperties.set(
         baseModel,
@@ -185,10 +185,7 @@ function enrichFlattenProperties(
     const conflictMap = new Map<SdkModelPropertyType, string>();
     const flattenModel = flattenProperty.type;
 
-    if (flattenModel.kind !== "model") {
-      continue;
-    }
-    if (baseModelProperties.has(flattenModel)) {
+    if (baseModelProperties.has(flattenModel as SdkModelType)) {
       // If the flatten model is also a base model of other flatten properties, which means it has multiple consecutive flatten operations
       // Since we cannot handle the flatten transition, report warning and skip it for now
       reportDiagnostic(context.program, {
