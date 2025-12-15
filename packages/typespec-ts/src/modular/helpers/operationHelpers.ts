@@ -1211,7 +1211,7 @@ export function getSerializationExpression(
   propertyPath: string,
   enableFlatten: boolean = true
 ): string {
-  if (property.flatten && enableFlatten) {
+  if (property.flatten && property.type.kind === "model" && enableFlatten) {
     return getSerializationExpressionForFlatten(context, property, "item");
   }
   const dot = propertyPath.endsWith("?") ? "." : "";

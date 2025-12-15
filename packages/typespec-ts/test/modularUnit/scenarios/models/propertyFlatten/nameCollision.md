@@ -51,14 +51,18 @@ export interface Test {
 }
 
 export function testSerializer(item: Test): any {
-  return { bar: item["bar"], baz: item["baz"], properties: _testPropertiesSerializer(item) };
+  return {
+    bar: item["bar"],
+    baz: item["baz"],
+    properties: _testPropertiesSerializer(item)
+  };
 }
 
 export function testDeserializer(item: any): Test {
   return {
     bar: item["bar"],
     baz: item["baz"],
-    ..._testPropertiesDeserializer(item["properties"]),
+    ..._testPropertiesDeserializer(item["properties"])
   };
 }
 
@@ -75,14 +79,14 @@ export function fooPropertiesSerializer(item: FooProperties): any {
 export function fooPropertiesDeserializer(item: any): FooProperties {
   return {
     bar: item["bar"],
-    baz: item["baz"],
+    baz: item["baz"]
   };
 }
 
 /** Known values of {@link Versions} that the service accepts. */
 export enum KnownVersions {
   /** 2022-05-15-preview */
-  V20220515Preview = "2022-05-15-preview",
+  V20220515Preview = "2022-05-15-preview"
 }
 
 export function _testPropertiesSerializer(item: Test): any {
@@ -92,7 +96,7 @@ export function _testPropertiesSerializer(item: Test): any {
 export function _testPropertiesDeserializer(item: any) {
   return {
     barPropertiesBar: item["bar"],
-    bazPropertiesBaz: item["baz"],
+    bazPropertiesBaz: item["baz"]
   };
 }
 ```
@@ -167,7 +171,7 @@ export function testSerializer(item: Test): any {
     properties: _testPropertiesSerializer(item),
     anotherProperties: areAllPropsUndefined(item, ["bar", "baz", "x"])
       ? undefined
-      : _testAnotherPropertiesSerializer(item),
+      : _testAnotherPropertiesSerializer(item)
   };
 }
 
@@ -177,7 +181,7 @@ export function testDeserializer(item: any): Test {
     ..._testPropertiesDeserializer(item["properties"]),
     ...(!item["anotherProperties"]
       ? item["anotherProperties"]
-      : _testAnotherPropertiesDeserializer(item["anotherProperties"])),
+      : _testAnotherPropertiesDeserializer(item["anotherProperties"]))
   };
 }
 
@@ -194,7 +198,7 @@ export function fooPropertiesSerializer(item: FooProperties): any {
 export function fooPropertiesDeserializer(item: any): FooProperties {
   return {
     bar: item["bar"],
-    baz: item["baz"],
+    baz: item["baz"]
   };
 }
 
@@ -213,14 +217,14 @@ export function xPropertiesDeserializer(item: any): XProperties {
   return {
     bar: item["bar"],
     baz: item["baz"],
-    x: item["x"],
+    x: item["x"]
   };
 }
 
 /** Known values of {@link Versions} that the service accepts. */
 export enum KnownVersions {
   /** 2022-05-15-preview */
-  V20220515Preview = "2022-05-15-preview",
+  V20220515Preview = "2022-05-15-preview"
 }
 
 export function _testPropertiesSerializer(item: Test): any {
@@ -230,7 +234,7 @@ export function _testPropertiesSerializer(item: Test): any {
 export function _testPropertiesDeserializer(item: any) {
   return {
     bar: item["bar"],
-    baz: item["baz"],
+    baz: item["baz"]
   };
 }
 
@@ -238,7 +242,7 @@ export function _testAnotherPropertiesSerializer(item: Test): any {
   return {
     bar: item["barAnotherPropertiesBar"],
     baz: item["bazAnotherPropertiesBaz"],
-    x: item["x"],
+    x: item["x"]
   };
 }
 
@@ -246,7 +250,7 @@ export function _testAnotherPropertiesDeserializer(item: any) {
   return {
     barAnotherPropertiesBar: item["bar"],
     bazAnotherPropertiesBaz: item["baz"],
-    x: item["x"],
+    x: item["x"]
   };
 }
 ```
@@ -327,7 +331,7 @@ export function testSerializer(item: Test): any {
     properties: _testPropertiesSerializer(item),
     anotherProperties: areAllPropsUndefined(item, ["bar", "baz", "result"])
       ? undefined
-      : _testAnotherPropertiesSerializer(item),
+      : _testAnotherPropertiesSerializer(item)
   };
 }
 
@@ -339,7 +343,7 @@ export function testDeserializer(item: any): Test {
     ..._testPropertiesDeserializer(item["properties"]),
     ...(!item["anotherProperties"]
       ? item["anotherProperties"]
-      : _testAnotherPropertiesDeserializer(item["anotherProperties"])),
+      : _testAnotherPropertiesDeserializer(item["anotherProperties"]))
   };
 }
 
@@ -356,7 +360,7 @@ export function fooPropertiesSerializer(item: FooProperties): any {
 export function fooPropertiesDeserializer(item: any): FooProperties {
   return {
     bar: item["bar"],
-    baz: item["baz"],
+    baz: item["baz"]
   };
 }
 
@@ -375,14 +379,14 @@ export function xPropertiesDeserializer(item: any): XProperties {
   return {
     bar: item["bar"],
     baz: item["baz"],
-    result: item["result"],
+    result: item["result"]
   };
 }
 
 /** Known values of {@link Versions} that the service accepts. */
 export enum KnownVersions {
   /** 2022-05-15-preview */
-  V20220515Preview = "2022-05-15-preview",
+  V20220515Preview = "2022-05-15-preview"
 }
 
 export function _testPropertiesSerializer(item: Test): any {
@@ -392,7 +396,7 @@ export function _testPropertiesSerializer(item: Test): any {
 export function _testPropertiesDeserializer(item: any) {
   return {
     barPropertiesBar: item["bar"],
-    bazPropertiesBaz: item["baz"],
+    bazPropertiesBaz: item["baz"]
   };
 }
 
@@ -400,7 +404,7 @@ export function _testAnotherPropertiesSerializer(item: Test): any {
   return {
     bar: item["barAnotherPropertiesBar"],
     baz: item["bazAnotherPropertiesBaz"],
-    result: item["resultAnotherPropertiesResult"],
+    result: item["resultAnotherPropertiesResult"]
   };
 }
 
@@ -408,7 +412,122 @@ export function _testAnotherPropertiesDeserializer(item: any) {
   return {
     barAnotherPropertiesBar: item["bar"],
     bazAnotherPropertiesBaz: item["baz"],
-    resultAnotherPropertiesResult: item["result"],
+    resultAnotherPropertiesResult: item["result"]
+  };
+}
+```
+
+# Should ignore non-model flatten property and handle name collision with model flatten property correctly
+
+Should ignore non-model flatten property (de)serialize it correctly when its name collides with properties from a model-type flatten property.
+
+## TypeSpec
+
+This is tsp definition.
+
+```tsp
+model FooProperties {
+  name: string;
+  prop1: string;
+  @Azure.ClientGenerator.Core.Legacy.flattenProperty
+  prop2: string;
+}
+
+model Test {
+  result: string;
+
+  @Azure.ClientGenerator.Core.Legacy.flattenProperty
+  name: string;
+
+  @Azure.ClientGenerator.Core.Legacy.flattenProperty
+  properties: FooProperties;
+}
+
+op foo(body: Test): Test;
+```
+
+Enable the raw content with TCGC dependency.
+
+```yaml
+needArmTemplate: true
+withVersionedApiVersion: true
+needTCGC: true
+```
+
+## Models
+
+Model generated.
+
+```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/** model interface Test */
+export interface Test {
+  result: string;
+  name: string;
+  namePropertiesName: string;
+  prop1: string;
+  prop2: string;
+}
+
+export function testSerializer(item: Test): any {
+  return {
+    result: item["result"],
+    name: item["name"],
+    properties: _testPropertiesSerializer(item)
+  };
+}
+
+export function testDeserializer(item: any): Test {
+  return {
+    result: item["result"],
+    name: item["name"],
+    ..._testPropertiesDeserializer(item["properties"])
+  };
+}
+
+/** model interface FooProperties */
+export interface FooProperties {
+  name: string;
+  prop1: string;
+  prop2: string;
+}
+
+export function fooPropertiesSerializer(item: FooProperties): any {
+  return { name: item["name"], prop1: item["prop1"], prop2: item["prop2"] };
+}
+
+export function fooPropertiesDeserializer(item: any): FooProperties {
+  return {
+    name: item["name"],
+    prop1: item["prop1"],
+    prop2: item["prop2"]
+  };
+}
+
+/** Known values of {@link Versions} that the service accepts. */
+export enum KnownVersions {
+  /** 2022-05-15-preview */
+  V20220515Preview = "2022-05-15-preview"
+}
+
+export function _testPropertiesSerializer(item: Test): any {
+  return {
+    name: item["namePropertiesName"],
+    prop1: item["prop1"],
+    prop2: item["prop2"]
+  };
+}
+
+export function _testPropertiesDeserializer(item: any) {
+  return {
+    namePropertiesName: item["name"],
+    prop1: item["prop1"],
+    prop2: item["prop2"]
   };
 }
 ```
