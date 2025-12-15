@@ -5,7 +5,6 @@ options:
     title: EventGrid Service
     generate-metadata: true
     azure-sdk-for-js: false
-    is-modular-library: true
     emitter-output-dir: "{project-root}/generated/typespec-ts"
     package-details:
       name: "@msinternal/eventgrid"

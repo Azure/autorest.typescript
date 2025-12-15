@@ -32,11 +32,7 @@ async function loadTestAdministrationCreateOrUpdateTestSample(): Promise<void> {
           },
         },
         secrets: { key: { value: "{Your value}", type: "AKV_SECRET_URI" } },
-        certificate: {
-          value: "{Your value}",
-          type: "AKV_CERT_URI",
-          name: "{Your name}",
-        },
+        certificate: { value: "{Your value}", type: "AKV_CERT_URI", name: "{Your name}" },
         environmentVariables: { key: "{Your environmentVariables}" },
         loadTestConfiguration: {
           engineInstances: 123,

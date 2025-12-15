@@ -8,6 +8,7 @@ import { NoTarget, Program } from "@typespec/compiler";
 import {
   PagingHelpers,
   PollingHelpers,
+  SerializationHelpers,
   UrlTemplateHelpers
 } from "../static-helpers-metadata.js";
 import {
@@ -23,8 +24,10 @@ import {
   ServiceOperation
 } from "../../utils/operationUtil.js";
 import {
+  getPropertyWithOverrides,
   isNormalUnion,
-  isSpecialHandledUnion
+  isSpecialHandledUnion,
+  ModelOverrideOptions
 } from "../serialization/serializeUtils.js";
 import {
   getDocsFromDescription,
@@ -32,8 +35,14 @@ import {
 } from "./docsHelpers.js";
 import { AzurePollingDependencies } from "../external-dependencies.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
-import { buildModelDeserializer } from "../serialization/buildDeserializerFunction.js";
-import { buildModelSerializer } from "../serialization/buildSerializerFunction.js";
+import {
+  buildModelDeserializer,
+  buildPropertyDeserializer
+} from "../serialization/buildDeserializerFunction.js";
+import {
+  buildModelSerializer,
+  buildPropertySerializer
+} from "../serialization/buildSerializerFunction.js";
 import { refkey } from "../../framework/refkey.js";
 import { reportDiagnostic } from "../../lib.js";
 import { resolveReference } from "../../framework/reference.js";
@@ -63,6 +72,7 @@ import {
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
 import { isMetadata } from "@typespec/http";
+import { useContext } from "../../contextManager.js";
 
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
@@ -220,8 +230,10 @@ export function getDeserializePrivateFunction(
     const deserializeFunctionName = buildModelDeserializer(
       context,
       deserializedType,
-      false,
-      true
+      {
+        nameOnly: true,
+        skipDiscriminatedUnionSuffix: false
+      }
     );
     if (deserializeFunctionName) {
       statements.push(`return ${deserializeFunctionName}(${deserializedRoot})`);
@@ -276,8 +288,10 @@ function getExceptionDetails(
     const deserializeFunctionName = buildModelDeserializer(
       context,
       exception.type,
-      false,
-      true
+      {
+        nameOnly: true,
+        skipDiscriminatedUnionSuffix: false
+      }
     );
     if (
       !deserializeFunctionName ||
@@ -420,7 +434,11 @@ export function getOperationFunction(
   context: SdkContext,
   method: [string[], ServiceOperation],
   clientType: string
-): FunctionDeclarationStructure & { propertyName?: string } {
+): FunctionDeclarationStructure & {
+  propertyName?: string;
+  isLro?: boolean;
+  lroFinalReturnType?: string;
+} {
   const operation = method[1];
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
@@ -472,11 +490,18 @@ export function getOperationFunction(
   };
 
   const statements: string[] = [];
-  statements.push(
-    `const result = await _${name}Send(${parameters
-      .map((p) => p.name)
-      .join(", ")});`
-  );
+
+  const parameterList = parameters.map((p) => p.name).join(", ");
+  // Special case for binary-only bodies: use helper to call streaming methods so that Core doesn't poison the response body by
+  // doing a UTF-8 decode on the raw bytes.
+  if (response?.type?.kind === "bytes" && response.type.encode === "bytes") {
+    statements.push(`const streamableMethod = _${name}Send(${parameterList});`);
+    statements.push(
+      `const result = await ${resolveReference(SerializationHelpers.getBinaryResponse)}(streamableMethod);`
+    );
+  } else {
+    statements.push(`const result = await _${name}Send(${parameterList});`);
+  }
   statements.push(`return _${name}Deserialize(result);`);
 
   return {
@@ -490,7 +515,11 @@ function getLroOnlyOperationFunction(
   method: [string[], SdkLroServiceMethod<SdkHttpOperation>],
   clientType: string,
   optionalParamName: string = "options"
-): FunctionDeclarationStructure & { propertyName?: string } {
+): FunctionDeclarationStructure & {
+  propertyName?: string;
+  isLro?: boolean;
+  lroFinalReturnType?: string;
+} {
   const operation = method[1];
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
@@ -513,6 +542,8 @@ function getLroOnlyOperationFunction(
     isExported: true,
     name,
     propertyName: normalizeName(operation.name, NameType.Property),
+    isLro: true,
+    lroFinalReturnType: returnType.type,
     parameters,
     returnType: `${pollerLikeReference}<${operationStateReference}<${returnType.type}>, ${returnType.type}>`
   };
@@ -629,19 +660,25 @@ function getPagingOnlyOperationFunction(
       return property.name;
     })
     .join(".");
+
+  // Check for nextLinkVerb from TCGC pagingMetadata (supports @Legacy.nextLinkVerb decorator)
+  const nextLinkMethod = operation.pagingMetadata.nextLinkVerb;
+
   if (itemName) {
     options.push(`itemName: "${itemName}"`);
   }
   if (nextLinkName) {
     options.push(`nextLinkName: "${nextLinkName}"`);
   }
+  if (nextLinkMethod && nextLinkMethod !== "GET") {
+    options.push(`nextLinkMethod: "${nextLinkMethod}"`);
+  }
   statements.push(
     `return ${buildPagedAsyncIteratorReference}(
       context, 
       () => _${name}Send(${parameters.map((p) => p.name).join(", ")}), 
       _${name}Deserialize,
-      ${getExpectedStatuses(operation)},
-      ${options.length > 0 ? `{${options.join(", ")}}` : ``}
+      ${getExpectedStatuses(operation)}${options.length > 0 ? `,\n      {${options.join(", ")}}` : ""}
       );`
   );
 
@@ -703,10 +740,16 @@ function getHeaderAndBodyParameters(
       ) {
         continue;
       }
-      parametersImplementation[param.kind].push({
-        paramMap: getParameterMap(dpgContext, param, optionalParamName),
-        param
-      });
+      // Check if this parameter still exists in the corresponding method params (after override)
+      if (
+        param.correspondingMethodParams &&
+        param.correspondingMethodParams.length > 0
+      ) {
+        parametersImplementation[param.kind].push({
+          paramMap: getParameterMap(dpgContext, param, optionalParamName),
+          param
+        });
+      }
     }
   }
 
@@ -779,8 +822,10 @@ function buildBodyParameter(
   const serializerFunctionName = buildModelSerializer(
     context,
     getNullableValidType(bodyParameter.type),
-    false,
-    true
+    {
+      nameOnly: true,
+      skipDiscriminatedUnionSuffix: false
+    }
   );
 
   const bodyParamName = normalizeName(
@@ -850,7 +895,17 @@ export function getParameterMap(
     return getRequired(context, param);
   }
 
-  throw new Error(`Parameter ${param.name} is not supported`);
+  reportDiagnostic(context.program, {
+    code: "unsupported-parameter-type",
+    format: {
+      paramName: param.name,
+      paramKind: param.kind
+    },
+    target: param.__raw || NoTarget
+  });
+
+  // Return a fallback value to allow the emitter to continue
+  return `"${param.name}": undefined`;
 }
 
 function getCollectionFormat(
@@ -1051,15 +1106,21 @@ function getQueryParameters(
 
   for (const param of operationParameters) {
     if (param.kind === "query") {
-      parametersImplementation[param.kind].push({
-        paramMap: getParameterMap(dpgContext, {
-          ...param,
-          // TODO: remember to remove this hack once compiler gives us a name
-          // https://github.com/microsoft/typespec/issues/6743
-          serializedName: getUriTemplateQueryParamName(param.serializedName)
-        }),
-        param
-      });
+      // Check if this parameter still exists in the corresponding method params (after override)
+      if (
+        param.correspondingMethodParams &&
+        param.correspondingMethodParams.length > 0
+      ) {
+        parametersImplementation[param.kind].push({
+          paramMap: getParameterMap(dpgContext, {
+            ...param,
+            // TODO: remember to remove this hack once compiler gives us a name
+            // https://github.com/microsoft/typespec/issues/6743
+            serializedName: getUriTemplateQueryParamName(param.serializedName)
+          }),
+          param
+        });
+      }
     }
   }
 
@@ -1107,11 +1168,48 @@ function getNullableCheck(name: string, type: SdkType) {
   return `${name} === null ? null :`;
 }
 
-export function getSerializationExpression(
+function getSerializationExpressionForFlatten(
   context: SdkContext,
   property: SdkModelPropertyType,
   propertyPath: string
 ): string {
+  const serializeFunctionName = buildPropertySerializer(context, property, {
+    nameOnly: true,
+    skipDiscriminatedUnionSuffix: false
+  });
+  if (!serializeFunctionName) {
+    return property.optional ? `undefined` : `{}`;
+  }
+  const validProps = getAllProperties(
+    context,
+    property.type,
+    getAllAncestors(property.type)
+  ).filter(
+    (p) =>
+      p.kind === "property" &&
+      !isReadOnly(p) &&
+      !isMetadata(context.program, p.__raw!)
+  );
+  if (validProps.length === 0) {
+    return `undefined`;
+  }
+  const optionalPrefix = property.optional
+    ? `${resolveReference(SerializationHelpers.areAllPropsUndefined)}(${propertyPath}, [${validProps
+        .map((p) => `"${p.name}"`)
+        .join(", ")}]) ? undefined : `
+    : "";
+  return `${optionalPrefix}${serializeFunctionName}(${propertyPath})`;
+}
+
+export function getSerializationExpression(
+  context: SdkContext,
+  property: SdkModelPropertyType,
+  propertyPath: string,
+  enableFlatten: boolean = true
+): string {
+  if (property.flatten && enableFlatten) {
+    return getSerializationExpressionForFlatten(context, property, "item");
+  }
   const dot = propertyPath.endsWith("?") ? "." : "";
   const propertyPathWithDot = `${propertyPath ? `${propertyPath}${dot}` : `${dot}`}`;
   const nullOrUndefinedPrefix = getPropertySerializationPrefix(
@@ -1128,8 +1226,10 @@ export function getSerializationExpression(
   const serializeFunctionName = buildModelSerializer(
     context,
     getNullableValidType(property.type),
-    false,
-    true
+    {
+      nameOnly: true,
+      skipDiscriminatedUnionSuffix: false
+    }
   );
   if (serializeFunctionName) {
     return `${nullOrUndefinedPrefix}${serializeFunctionName}(${propertyFullName})`;
@@ -1150,7 +1250,9 @@ export function getSerializationExpression(
 export function getRequestModelProperties(
   context: SdkContext,
   modelPropertyType: SdkModelType & { optional?: boolean },
-  propertyPath: string = "body"
+  propertyPath: string = "body",
+  overrides?: ModelOverrideOptions,
+  enableFlatten: boolean = true
 ): Array<[string, string]> {
   const props: [string, string][] = [];
   const allParents = getAllAncestors(modelPropertyType);
@@ -1159,16 +1261,17 @@ export function getRequestModelProperties(
   if (properties.length <= 0) {
     return [];
   }
-  for (const property of properties) {
-    if (property.kind === "property" && isReadOnly(property)) {
+  for (const prop of properties) {
+    if (prop.kind === "property" && isReadOnly(prop)) {
       continue;
     }
-    if (isMetadata(context.program, property.__raw!)) {
+    if (isMetadata(context.program, prop.__raw!)) {
       continue;
     }
+    const property = getPropertyWithOverrides(prop, overrides);
     props.push([
       getPropertySerializedName(property)!,
-      getSerializationExpression(context, property, propertyPath)
+      getSerializationExpression(context, property, propertyPath, enableFlatten)
     ]);
   }
 
@@ -1183,12 +1286,16 @@ export function getRequestModelProperties(
 export function getRequestModelMapping(
   context: SdkContext,
   modelPropertyType: SdkModelType & { optional?: boolean },
-  propertyPath: string = "body"
+  propertyPath: string = "body",
+  overrides?: ModelOverrideOptions,
+  enableFlatten: boolean = true
 ): string[] {
   return getRequestModelProperties(
     context,
     modelPropertyType,
-    propertyPath
+    propertyPath,
+    overrides,
+    enableFlatten
   ).map(([name, value]) => `"${name}": ${value}`);
 }
 
@@ -1209,16 +1316,19 @@ function getPropertySerializedName(
 export function getResponseMapping(
   context: SdkContext,
   type: SdkType,
-  propertyPath: string = "result.body"
+  propertyPath: string = "result.body",
+  overrides?: ModelOverrideOptions,
+  enableFlatten: boolean = true
 ) {
   const allParents = type.kind === "model" ? getAllAncestors(type) : [];
   const properties =
     type.kind === "model" ? getAllProperties(context, type, allParents) : [];
   const props: string[] = [];
-  for (const property of properties) {
-    if (isMetadata(context.program, property.__raw!)) {
+  for (const prop of properties) {
+    if (isMetadata(context.program, prop.__raw!)) {
       continue;
     }
+    const property = getPropertyWithOverrides(prop, overrides);
     const dot = propertyPath.endsWith("?") ? "." : "";
     const serializedName = getPropertySerializedName(property);
     const restValue = `${
@@ -1229,17 +1339,29 @@ export function getResponseMapping(
       property.optional || isTypeNullable(property.type)
         ? `!${restValue}? ${restValue}: `
         : "";
-    const deserializeFunctionName = buildModelDeserializer(
-      context,
-      getNullableValidType(property.type),
-      false,
-      true
-    );
+    const flattenContext =
+      useContext("sdkTypes").flattenProperties.get(property);
+    const isSupportedFlatten = flattenContext && enableFlatten;
+    const deserializeFunctionName = isSupportedFlatten
+      ? buildPropertyDeserializer(context, property, {
+          nameOnly: true,
+          skipDiscriminatedUnionSuffix: false
+        })
+      : buildModelDeserializer(context, getNullableValidType(property.type), {
+          nameOnly: true,
+          skipDiscriminatedUnionSuffix: false
+        });
     const propertyName = normalizeModelPropertyName(context, property);
     if (deserializeFunctionName) {
-      props.push(
-        `${propertyName}: ${nullOrUndefinedPrefix}${deserializeFunctionName}(${restValue})`
-      );
+      if (isSupportedFlatten) {
+        props.push(
+          `...${nullOrUndefinedPrefix}${deserializeFunctionName}(${restValue})`
+        );
+      } else {
+        props.push(
+          `${propertyName}: ${nullOrUndefinedPrefix}${deserializeFunctionName}(${restValue})`
+        );
+      }
     } else if (isAzureCoreErrorType(context.program, property.type.__raw)) {
       props.push(`${propertyName}: ${nullOrUndefinedPrefix}${restValue}`);
     } else {
@@ -1297,8 +1419,10 @@ export function serializeRequestValue(
         const serializeFunctionName = buildModelSerializer(
           context,
           getNullableValidType(type.valueType),
-          false,
-          true
+          {
+            nameOnly: true,
+            skipDiscriminatedUnionSuffix: false
+          }
         );
         if (serializeFunctionName) {
           return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${serializeFunctionName}(p)})`;
@@ -1405,8 +1529,10 @@ export function deserializeResponseValue(
         ? buildModelDeserializer(
             context,
             getNullableValidType(type.valueType),
-            false,
-            true
+            {
+              nameOnly: true,
+              skipDiscriminatedUnionSuffix: false
+            }
           )
         : undefined;
       if (deserializeFunctionName) {
@@ -1418,6 +1544,38 @@ export function deserializeResponseValue(
         return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}p})`;
       } else if (type.valueType) {
         return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, "p", getEncodeForType(type.valueType))}})`;
+      } else {
+        return restValue;
+      }
+    }
+    case "dict": {
+      const prefix = nullOrUndefinedPrefix + restValue;
+      let elementNullOrUndefinedPrefix = "";
+      if (
+        type.valueType &&
+        (isTypeNullable(type.valueType) || getOptionalForType(type.valueType))
+      ) {
+        elementNullOrUndefinedPrefix = "!p ? p :";
+      }
+      const deserializeFunctionName = type.valueType
+        ? buildModelDeserializer(
+            context,
+            getNullableValidType(type.valueType),
+            {
+              nameOnly: true,
+              skipDiscriminatedUnionSuffix: false
+            }
+          )
+        : undefined;
+      if (deserializeFunctionName) {
+        return `Object.fromEntries(Object.entries(${prefix}).map(([k, p]: [string, any]) => [k, ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(p)]))`;
+      } else if (
+        type.valueType &&
+        isAzureCoreErrorType(context.program, type.valueType.__raw)
+      ) {
+        return `Object.fromEntries(Object.entries(${prefix}).map(([k, p]: [string, any]) => [k, ${elementNullOrUndefinedPrefix}p]))`;
+      } else if (type.valueType) {
+        return `Object.fromEntries(Object.entries(${prefix}).map(([k, p]: [string, any]) => [k, ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, "p", getEncodeForType(type.valueType))}]))`;
       } else {
         return restValue;
       }
@@ -1434,12 +1592,10 @@ export function deserializeResponseValue(
         return `${restValue}`;
       } else if (isSpecialHandledUnion(type)) {
         const deserializeFunctionName = type
-          ? buildModelDeserializer(
-              context,
-              getNullableValidType(type),
-              false,
-              true
-            )
+          ? buildModelDeserializer(context, getNullableValidType(type), {
+              nameOnly: true,
+              skipDiscriminatedUnionSuffix: false
+            })
           : undefined;
         if (deserializeFunctionName) {
           return `${deserializeFunctionName}(${restValue})`;
@@ -1555,7 +1711,7 @@ export function getExpectedStatuses(operation: ServiceOperation): string {
   let statusCodes = operation.operation.responses.map((x) => x.statusCodes);
   // LROs may call the same path but with GET to get the operation status.
   if (isLroOnlyOperation(operation) && operation.operation.verb !== "get") {
-    statusCodes = Array.from(new Set([...statusCodes, 200, 202]));
+    statusCodes = Array.from(new Set([...statusCodes, 200, 201, 202]));
   }
 
   return `[${statusCodes.map((x) => `"${x}"`).join(", ")}]`;

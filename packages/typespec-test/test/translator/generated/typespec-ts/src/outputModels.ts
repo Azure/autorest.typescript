@@ -187,8 +187,7 @@ export interface TransliteratedTextOutput {
 }
 
 /** Detected Language with alternatives */
-export interface DetectedLanguageWithAlternativesOutput
-  extends DetectedLanguageElementOutput {
+export interface DetectedLanguageWithAlternativesOutput extends DetectedLanguageElementOutput {
   /** An array of other possible languages. */
   alternatives: Array<DetectedLanguageOutput>;
 }

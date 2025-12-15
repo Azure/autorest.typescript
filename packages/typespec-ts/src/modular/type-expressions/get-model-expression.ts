@@ -48,7 +48,8 @@ export function getModelExpression(
 }
 
 const externalModels: Record<string, string> = {
-  "Azure.Core.Foundations.Error": "ErrorModel"
+  "Azure.Core.Foundations.Error": "ErrorModel",
+  "Azure.Core.Foundations.ErrorResponse": "AzureCoreErrorResponse"
 };
 
 export function getExternalModel(type: SdkModelType) {

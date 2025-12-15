@@ -8,13 +8,17 @@ import {
   isAzurePackage,
   isAzureStandalonePackage
 } from "../helpers/packageUtil.js";
-import { PackageCommonInfoConfig } from "./packageJson/packageCommon.js";
+import {
+  PackageCommonInfoConfig,
+  getTshyConfig
+} from "./packageJson/packageCommon.js";
 import { Project, SourceFile } from "ts-morph";
 import { RLCModel } from "../interfaces.js";
 import { buildAzureMonorepoPackage } from "./packageJson/buildAzureMonorepoPackage.js";
 import { buildAzureStandalonePackage } from "./packageJson/buildAzureStandalonePackage.js";
 import { buildFlavorlessPackage } from "./packageJson/buildFlavorlessPackage.js";
 import { getRelativePartFromSrcPath } from "../helpers/pathUtils.js";
+import { getPackageName } from "./utils.js";
 
 interface PackageFileOptions {
   exports?: Record<string, any>;
@@ -37,9 +41,7 @@ export function buildPackageFile(
     exports,
     azureArm: model.options?.azureArm,
     isModularLibrary: model.options?.isModularLibrary ?? false,
-    azureSdkForJs: model.options?.azureSdkForJs,
-    //TODO should remove this after finish the release tool test
-    shouldUsePnpmDep: model.options?.shouldUsePnpmDep
+    azureSdkForJs: model.options?.azureSdkForJs
   };
 
   let packageInfo: Record<string, any> = buildFlavorlessPackage(config);
@@ -84,15 +86,23 @@ export function buildPackageFile(
 
 /**
  * Automatically updates the package.json with correct paging and LRO dependencies for Azure SDK.
+ * Also updates tshy.exports if provided.
  */
 export function updatePackageFile(
   model: RLCModel,
-  existingFilePathOrContent: string | Record<string, any>
+  existingFilePathOrContent: string | Record<string, any>,
+  { exports }: PackageFileOptions = {}
 ) {
   const hasLro = hasPollingOperations(model);
-  if (!isAzurePackage(model) || !hasLro) {
+  const isAzure = isAzurePackage(model);
+  const needsLroUpdate = isAzure && hasLro;
+  const needsExportsUpdate = exports;
+
+  // Early return if nothing needs to be updated
+  if (!needsLroUpdate && !needsExportsUpdate) {
     return;
   }
+
   let packageInfo;
   if (typeof existingFilePathOrContent === "string") {
     let packageFile: SourceFile;
@@ -108,18 +118,21 @@ export function updatePackageFile(
     packageInfo = existingFilePathOrContent;
   }
 
-  if (hasLro) {
+  // Update tshy.exports if exports are provided and tshy exists
+  if (needsExportsUpdate && packageInfo.tshy) {
+    const newTshy = getTshyConfig({
+      exports,
+      azureSdkForJs: model.options?.azureSdkForJs
+    } as PackageCommonInfoConfig);
+    packageInfo.tshy.exports = newTshy.exports;
+  }
+
+  // Update LRO dependencies for Azure packages
+  if (needsLroUpdate) {
     packageInfo.dependencies = {
       ...packageInfo.dependencies,
-      // TODO remove model.options?.shouldUsePnpmDep after pnpm migration
-      "@azure/core-lro":
-        model.options?.shouldUsePnpmDep && model.options.azureSdkForJs
-          ? "workspace:^"
-          : "^3.1.0",
-      "@azure/abort-controller":
-        model.options?.shouldUsePnpmDep && model.options.azureSdkForJs
-          ? "workspace:^"
-          : "^2.1.2"
+      "@azure/core-lro": "^3.1.0",
+      "@azure/abort-controller": "^2.1.2"
     };
   }
 
@@ -139,10 +152,6 @@ function getDescription(model: RLCModel): string {
     return `A generated SDK for ${model.libraryName}.`;
   }
   return description;
-}
-
-function getPackageName(model: RLCModel): string {
-  return model.options?.packageDetails?.name ?? model.libraryName;
 }
 
 function getClientFilePath(model: RLCModel) {

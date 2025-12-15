@@ -574,10 +574,7 @@ export type SecretTypeOutput = "AKV_SECRET_URI" | "SECRET_VALUE";
 /** Alias for CertificateTypeOutput */
 export type CertificateTypeOutput = "AKV_CERT_URI";
 /** Alias for FileTypeOutput */
-export type FileTypeOutput =
-  | "JMX_FILE"
-  | "USER_PROPERTIES"
-  | "ADDITIONAL_ARTIFACTS";
+export type FileTypeOutput = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS";
 /** Alias for FileStatusOutput */
 export type FileStatusOutput =
   | "NOT_VALIDATED"

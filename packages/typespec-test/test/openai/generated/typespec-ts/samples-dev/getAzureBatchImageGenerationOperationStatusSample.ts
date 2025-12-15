@@ -15,9 +15,7 @@ async function getAzureBatchImageGenerationOperationStatusSample(): Promise<void
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createOpenAIClient(endpointParam, credential);
   const operationId = "{Your operationId}";
-  const result = await client
-    .path("/operations/images/{operationId}", operationId)
-    .get();
+  const result = await client.path("/operations/images/{operationId}", operationId).get();
   console.log(result);
 }
 

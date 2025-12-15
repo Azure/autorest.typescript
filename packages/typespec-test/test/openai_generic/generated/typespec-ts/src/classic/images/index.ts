@@ -31,10 +31,8 @@ function _getImages(context: OpenAIContext) {
       image: CreateImageVariationRequest,
       options?: ImagesCreateVariationOptionalParams,
     ) => createVariation(context, image, options),
-    createEdit: (
-      image: CreateImageEditRequest,
-      options?: ImagesCreateEditOptionalParams,
-    ) => createEdit(context, image, options),
+    createEdit: (image: CreateImageEditRequest, options?: ImagesCreateEditOptionalParams) =>
+      createEdit(context, image, options),
   };
 }
 

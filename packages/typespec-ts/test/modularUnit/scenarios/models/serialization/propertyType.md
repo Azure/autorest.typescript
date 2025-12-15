@@ -59,6 +59,12 @@ interface D {
 Generated Models.
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface SimpleModel */
 export interface SimpleModel {
   propString: string;
@@ -95,15 +101,9 @@ export interface SimpleModel {
   propArrayOfRecordOfString: Record<string, string>[];
   propArrayOfRecordOfStringOptional?: Record<string, string>[];
   propRecordOfUnionArray: Record<string, (string | boolean | number)[]>;
-  propRecordOfUnionArrayOptional?: Record<
-    string,
-    (string | boolean | number)[]
-  >;
+  propRecordOfUnionArrayOptional?: Record<string, (string | boolean | number)[]>;
   propArrayOfRecordOfUnion: Record<string, string | boolean | number>[];
-  propArrayOfRecordOfUnionOptional?: Record<
-    string,
-    string | boolean | number
-  >[];
+  propArrayOfRecordOfUnionOptional?: Record<string, string | boolean | number>[];
   propEncoded: string;
 }
 
@@ -113,14 +113,10 @@ export function simpleModelSerializer(item: SimpleModel): any {
     propboolean: item["propboolean"],
     propNumber: item["propNumber"],
     propStringOptional: item["propStringOptional"],
-    propSimpleUnion: _simpleModelPropSimpleUnionSerializer(
-      item["propSimpleUnion"],
-    ),
+    propSimpleUnion: _simpleModelPropSimpleUnionSerializer(item["propSimpleUnion"]),
     propSimpleUnionOptional: !item["propSimpleUnionOptional"]
       ? item["propSimpleUnionOptional"]
-      : _simpleModelPropSimpleUnionOptionalSerializer(
-          item["propSimpleUnionOptional"],
-        ),
+      : _simpleModelPropSimpleUnionOptionalSerializer(item["propSimpleUnionOptional"]),
     propStringLiteral: item["propStringLiteral"],
     propBooleanLiteral: item["propBooleanLiteral"],
     propNumberLiteral: item["propNumberLiteral"],
@@ -129,15 +125,11 @@ export function simpleModelSerializer(item: SimpleModel): any {
     propStringUnionOptioanl: item["propStringUnionOptioanl"],
     propStringUnionNullable: item["propStringUnionNullable"],
     propStringUnionAsExtensible: item["propStringUnionAsExtensible"],
-    propStringUnionAsExtensibleOptional:
-      item["propStringUnionAsExtensibleOptional"],
-    propStringUnionAsExtensibleNullable:
-      item["propStringUnionAsExtensibleNullable"],
+    propStringUnionAsExtensibleOptional: item["propStringUnionAsExtensibleOptional"],
+    propStringUnionAsExtensibleNullable: item["propStringUnionAsExtensibleNullable"],
     propStringUnionAsExtensibleOptionalAndNullable:
       item["propStringUnionAsExtensibleOptionalAndNullable"],
-    propMixedTypeLiteral: _simpleModelPropMixedTypeLiteralSerializer(
-      item["propMixedTypeLiteral"],
-    ),
+    propMixedTypeLiteral: _simpleModelPropMixedTypeLiteralSerializer(item["propMixedTypeLiteral"]),
     propStringArray: item["propStringArray"].map((p: any) => {
       return p;
     }),
@@ -164,37 +156,30 @@ export function simpleModelSerializer(item: SimpleModel): any {
     propRecordOfDate: item["propRecordOfDate"],
     propRecordOfBoolean: item["propRecordOfBoolean"],
     propRecordOfNumber: item["propRecordOfNumber"],
-    propRecordOfSimpleUnion:
-      _simpleModelPropRecordOfSimpleUnionRecordSerializer(
-        item["propRecordOfSimpleUnion"],
-      ),
+    propRecordOfSimpleUnion: _simpleModelPropRecordOfSimpleUnionRecordSerializer(
+      item["propRecordOfSimpleUnion"],
+    ),
     propRecordOfStringOptional: item["propRecordOfStringOptional"],
     propRecordOfStringArray: item["propRecordOfStringArray"],
-    propArrayOfRecordOfString: item["propArrayOfRecordOfString"].map(
-      (p: any) => {
-        return p;
-      },
-    ),
-    propArrayOfRecordOfStringOptional: !item[
-      "propArrayOfRecordOfStringOptional"
-    ]
+    propArrayOfRecordOfString: item["propArrayOfRecordOfString"].map((p: any) => {
+      return p;
+    }),
+    propArrayOfRecordOfStringOptional: !item["propArrayOfRecordOfStringOptional"]
       ? item["propArrayOfRecordOfStringOptional"]
       : item["propArrayOfRecordOfStringOptional"].map((p: any) => {
           return p;
         }),
-    propRecordOfUnionArray:
-      _simpleModelPropRecordOfUnionArrayArrayRecordSerializer(
-        item["propRecordOfUnionArray"],
-      ),
+    propRecordOfUnionArray: _simpleModelPropRecordOfUnionArrayArrayRecordSerializer(
+      item["propRecordOfUnionArray"],
+    ),
     propRecordOfUnionArrayOptional: !item["propRecordOfUnionArrayOptional"]
       ? item["propRecordOfUnionArrayOptional"]
       : _simpleModelPropRecordOfUnionArrayOptionalArrayRecordSerializer(
           item["propRecordOfUnionArrayOptional"],
         ),
-    propArrayOfRecordOfUnion:
-      _simpleModelPropArrayOfRecordOfUnionRecordArraySerializer(
-        item["propArrayOfRecordOfUnion"],
-      ),
+    propArrayOfRecordOfUnion: _simpleModelPropArrayOfRecordOfUnionRecordArraySerializer(
+      item["propArrayOfRecordOfUnion"],
+    ),
     propArrayOfRecordOfUnionOptional: !item["propArrayOfRecordOfUnionOptional"]
       ? item["propArrayOfRecordOfUnionOptional"]
       : _simpleModelPropArrayOfRecordOfUnionOptionalRecordArraySerializer(
@@ -207,9 +192,7 @@ export function simpleModelSerializer(item: SimpleModel): any {
 /** Alias for _SimpleModelPropSimpleUnion */
 export type _SimpleModelPropSimpleUnion = string | boolean | number;
 
-export function _simpleModelPropSimpleUnionSerializer(
-  item: _SimpleModelPropSimpleUnion,
-): any {
+export function _simpleModelPropSimpleUnionSerializer(item: _SimpleModelPropSimpleUnion): any {
   return item;
 }
 
@@ -257,10 +240,7 @@ export function _simpleModelPropSimpleUnionArrayOptionalArraySerializer(
 }
 
 /** Alias for _SimpleModelPropSimpleUnionArrayOptional */
-export type _SimpleModelPropSimpleUnionArrayOptional =
-  | string
-  | boolean
-  | number;
+export type _SimpleModelPropSimpleUnionArrayOptional = string | boolean | number;
 
 export function _simpleModelPropSimpleUnionArrayOptionalSerializer(
   item: _SimpleModelPropSimpleUnionArrayOptional,
@@ -273,9 +253,7 @@ export function _simpleModelPropRecordOfSimpleUnionRecordSerializer(
 ): Record<string, any> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = !item[key]
-      ? item[key]
-      : _simpleModelPropRecordOfSimpleUnionSerializer(item[key]);
+    result[key] = !item[key] ? item[key] : _simpleModelPropRecordOfSimpleUnionSerializer(item[key]);
   });
   return result;
 }
@@ -339,10 +317,7 @@ export function _simpleModelPropRecordOfUnionArrayOptionalArraySerializer(
 }
 
 /** Alias for _SimpleModelPropRecordOfUnionArrayOptional */
-export type _SimpleModelPropRecordOfUnionArrayOptional =
-  | string
-  | boolean
-  | number;
+export type _SimpleModelPropRecordOfUnionArrayOptional = string | boolean | number;
 
 export function _simpleModelPropRecordOfUnionArrayOptionalSerializer(
   item: _SimpleModelPropRecordOfUnionArrayOptional,
@@ -400,10 +375,7 @@ export function _simpleModelPropArrayOfRecordOfUnionOptionalRecordSerializer(
 }
 
 /** Alias for _SimpleModelPropArrayOfRecordOfUnionOptional */
-export type _SimpleModelPropArrayOfRecordOfUnionOptional =
-  | string
-  | boolean
-  | number;
+export type _SimpleModelPropArrayOfRecordOfUnionOptional = string | boolean | number;
 
 export function _simpleModelPropArrayOfRecordOfUnionOptionalSerializer(
   item: _SimpleModelPropArrayOfRecordOfUnionOptional,

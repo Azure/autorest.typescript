@@ -1,8 +1,48 @@
 import { getAllAncestors } from "../helpers/operationHelpers.js";
 import {
+  SdkModelPropertyType,
   SdkModelType,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
+import { getDirectSubtypes } from "../helpers/typeHelpers.js";
+
+/**
+ * Get all discriminated values for a given model type and given discriminator property.
+ * @param type The model type to get discriminated values from.
+ * @param discriminatorProperty The discriminator property to use for filtering.
+ * @returns An array of all discriminated values.
+ */
+export function getAllDiscriminatedValues(
+  type: SdkModelType,
+  discriminatorProperty?: SdkModelPropertyType
+) {
+  if (!type.discriminatorValue) {
+    return [];
+  }
+  const values: string[] = [];
+  const children = [type];
+  while (children.length > 0) {
+    const model = children.shift()!;
+    // skip if no discriminator value
+    if (!model.discriminatorValue) {
+      continue;
+    }
+    // Check if this model is a subtype of the given discriminator property
+    if (
+      !!discriminatorProperty &&
+      model.baseModel?.discriminatorProperty?.name ===
+        discriminatorProperty?.name
+    ) {
+      values.push(model.discriminatorValue);
+      if (model.discriminatorProperty?.name === discriminatorProperty.name) {
+        // Traverse subtypes also if they have the same discriminator property
+        children.push(...getDirectSubtypes(model));
+      }
+    }
+  }
+
+  return values;
+}
 
 export function isSupportedSerializeType(type: SdkType): boolean {
   return (
@@ -142,4 +182,41 @@ export function isPolymorphicUnion(t: SdkType): boolean {
 export interface ModelSerializeOptions {
   nameOnly: boolean;
   skipDiscriminatedUnionSuffix: boolean;
+  // Indicates if the serializer is being built for a property that is flattened.
+  flatten?: {
+    baseModel: SdkModelType;
+    property: SdkModelPropertyType;
+  };
+  // Indicates if any overrides should be applied when building the serializer/deserializer.
+  overrides?: ModelOverrideOptions;
+  // Predefined name to use for the serializer/deserializer instead of generating one.
+  predefinedName?: string;
+}
+
+// Options for overriding model information during serialization/deserialization.
+export interface ModelOverrideOptions {
+  // If true, all properties will be treated as optional during serialization/deserialization.
+  allOptional?: boolean;
+
+  // The <Property, Client_Name> map for any renamed properties.
+  // Mainly because the original client name has collision with other property names during flattening.
+  propertyRenames?: Map<SdkModelPropertyType, string>;
+}
+
+export function getPropertyWithOverrides(
+  property: SdkModelPropertyType,
+  overrides?: ModelOverrideOptions
+): SdkModelPropertyType {
+  if (!overrides) {
+    return property;
+  }
+  let updatedProperty = property;
+  if (overrides.allOptional) {
+    updatedProperty = { ...updatedProperty, optional: true };
+  }
+  const renamedClientName = overrides.propertyRenames?.get(property);
+  if (renamedClientName) {
+    updatedProperty = { ...updatedProperty, name: renamedClientName };
+  }
+  return updatedProperty;
 }

@@ -833,13 +833,9 @@ export type ImageSize = "256x256" | "512x512" | "1024x1024" | "1792x1024" | "102
 
 // @public
 export enum KnownServiceApiVersions {
-    // (undocumented)
     V20221201 = "2022-12-01",
-    // (undocumented)
     V20230515 = "2023-05-15",
-    // (undocumented)
     V20240201 = "2024-02-01",
-    // (undocumented)
     V20240601 = "2024-06-01"
 }
 

@@ -10,7 +10,6 @@ options:
     azure-sdk-for-js: false
     is-typespec-test: true
     title: UnionClient
-    is-modular-library: true
     hierarchy-client: false
     experimental-extensible-enums: true
     package-details:

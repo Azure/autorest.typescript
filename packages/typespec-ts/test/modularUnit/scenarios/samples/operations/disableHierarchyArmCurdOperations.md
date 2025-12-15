@@ -30,8 +30,6 @@ namespace Microsoft.Contoso;
 /** The available API versions. */
 enum Versions {
   /** 2021-10-01-preview version */
-  @useDependency(Azure.ResourceManager.Versions.v1_0_Preview_1)
-  @useDependency(Azure.Core.Versions.v1_0_Preview_2)
   @armCommonTypesVersion(Azure.ResourceManager.CommonTypes.Versions.v5)
   v2021_10_01_preview: "2021-10-01-preview",
 }
@@ -128,7 +126,7 @@ import { DefaultAzureCredential } from "@azure/identity";
  */
 async function operationsList(): Promise<void> {
   const credential = new DefaultAzureCredential();
-  const subscriptionId = "00000000-0000-0000-0000-00000000000";
+  const subscriptionId = "00000000-0000-0000-0000-000000000000";
   const client = new ContosoClient(credential, subscriptionId);
   const resArray = new Array();
   for await (const item of client.list()) {
@@ -195,7 +193,7 @@ async function employeesCreateOrUpdate(): Promise<void> {
     properties: {
       age: 30,
       city: "gydhnntudughbmxlkyzrskcdkotrxn",
-      profile: "ms",
+      profile: Buffer.from("ms", "base64url"),
     },
     tags: { key2913: "urperxmkkhhkp" },
     location: "itajgxyqozseoygnl",

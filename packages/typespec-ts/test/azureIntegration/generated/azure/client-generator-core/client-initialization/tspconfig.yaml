@@ -5,6 +5,7 @@ options:
     emitter-output-dir: "{project-root}"
     add-credentials: false
     azure-sdk-for-js: false
+    is-modular-library: false
     package-details:
       name: "@azure/client-generator-core-initialization"
       version: "1.0.0"

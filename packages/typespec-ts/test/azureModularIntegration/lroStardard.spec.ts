@@ -74,7 +74,7 @@ describe("LROStandardClient Classical Client", () => {
         await poller.submitted();
         assert.fail("Should throw an AbortError");
       } catch (err: any) {
-        assert.strictEqual(err.message, "The operation was aborted.");
+        assert.strictEqual(err.name, "AbortError");
       }
     });
 
@@ -95,7 +95,7 @@ describe("LROStandardClient Classical Client", () => {
         await poller.poll();
         assert.fail("Should throw an AbortError");
       } catch (err: any) {
-        assert.strictEqual(err.message, "The operation was aborted.");
+        assert.strictEqual(err.name, "AbortError");
       }
     });
 
@@ -109,7 +109,7 @@ describe("LROStandardClient Classical Client", () => {
         await poller.pollUntilDone({ abortSignal: abortController.signal });
         assert.fail("Should throw an AbortError");
       } catch (err: any) {
-        assert.strictEqual(err.message, "The operation was aborted.");
+        assert.strictEqual(err.name, "AbortError");
       }
     });
 
@@ -131,7 +131,7 @@ describe("LROStandardClient Classical Client", () => {
         await poller.pollUntilDone({ abortSignal: pollAbort.signal });
         assert.fail("Should throw an AbortError");
       } catch (err: any) {
-        assert.strictEqual(err.message, "The operation was aborted.");
+        assert.strictEqual(err.name, "AbortError");
       }
     });
 
@@ -186,6 +186,105 @@ describe("LROStandardClient Classical Client", () => {
     it("await should catch initial exception", async () => {
       try {
         await client.createOrReplace("madge", {
+          role: "foo"
+        } as any);
+        assert.fail("Expected an exception");
+      } catch (err: any) {
+        expect(err.message).to.match(
+          /Body provided doesn't match expected body/i,
+          `Expected ${err.message} to match /Body provided doesn't match expected body/i`
+        );
+      }
+    });
+  });
+
+  describe("createOrReplace legacy", () => {
+    it("should await beginCreateOrReplaceAndWait result directly", async () => {
+      const result = await client.beginCreateOrReplaceAndWait("madge", {
+        role: "contributor"
+      } as any);
+      assert.deepEqual(result, { name: "madge", role: "contributor" });
+    });
+
+    it("should await beginCreateOrReplaceAndWait result directly", async () => {
+      const poller = await client.beginCreateOrReplace("madge", {
+        role: "contributor"
+      } as any);
+      assert.deepEqual(await poller.pollUntilDone(), {
+        name: "madge",
+        role: "contributor"
+      });
+    });
+
+    it("should get in-the-middle values by onProgress/operationState", async () => {
+      const poller = await client.beginCreateOrReplace("madge", {
+        role: "contributor"
+      } as any);
+      const states: string[] = [];
+      const operations: OperationState<User>[] = [];
+      poller.onProgress((state) => {
+        states.push(state.status);
+        operations.push(poller.getOperationState());
+        assert.strictEqual(state, poller.getOperationState());
+      });
+      const res1 = await poller.pollUntilDone();
+      const res2 = poller.getResult();
+      assert.deepEqual(res1, res2);
+      assert.strictEqual(operations.length, 2);
+      assert.strictEqual(states.length, 2);
+      assert.deepEqual(states, ["running", "succeeded"]);
+    });
+
+    it("submitted should catch the initial error", async () => {
+      try {
+        const poller = await client.beginCreateOrReplace("madge", {
+          role: "foo"
+        } as any);
+        assert.isNotNull(poller);
+        assert.fail("Expected an exception");
+      } catch (err: any) {
+        expect(err.message).to.match(
+          /Body provided doesn't match expected body/i,
+          `Expected ${err.message} to match /Body provided doesn't match expected body/i`
+        );
+      }
+    });
+
+    it("poll should catch the initial error", async () => {
+      try {
+        const poller = await client.beginCreateOrReplace("madge", {
+          role: "foo"
+        } as any);
+        assert.isNotNull(poller);
+        await poller.poll();
+        assert.fail("Expected an exception");
+      } catch (err: any) {
+        expect(err.message).to.match(
+          /Body provided doesn't match expected body/i,
+          `Expected ${err.message} to match /Body provided doesn't match expected body/i`
+        );
+      }
+    });
+
+    it("pollUntilDone should catch the initial error", async () => {
+      try {
+        const poller = await client.beginCreateOrReplace("madge", {
+          role: "foo"
+        } as any);
+        assert.isNotNull(poller);
+        await poller.pollUntilDone();
+        assert.fail("Expected an exception");
+      } catch (err: any) {
+        expect(err.message).to.match(
+          /Body provided doesn't match expected body/i,
+          `Expected ${err.message} to match /Body provided doesn't match expected body/i`
+        );
+      }
+    });
+
+    it("await should catch initial exception", async () => {
+      try {
+        await client.beginCreateOrReplace("madge", {
           role: "foo"
         } as any);
         assert.fail("Expected an exception");

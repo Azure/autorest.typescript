@@ -4,6 +4,12 @@
 import { ErrorModel } from "@azure-rest/core-client";
 import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** Properties of an event published to an Azure Messaging EventGrid Namespace topic using the CloudEvent 1.0 Schema. */
 export interface CloudEvent {
   /** An identifier for the event. The combination of id and source must be unique for each distinct event. */
@@ -83,9 +89,7 @@ export function receiveResultDeserializer(item: any): ReceiveResult {
   };
 }
 
-export function receiveDetailsArrayDeserializer(
-  result: Array<ReceiveDetails>,
-): any[] {
+export function receiveDetailsArrayDeserializer(result: Array<ReceiveDetails>): any[] {
   return result.map((item) => {
     return receiveDetailsDeserializer(item);
   });
@@ -131,18 +135,14 @@ export interface AcknowledgeResult {
 
 export function acknowledgeResultDeserializer(item: any): AcknowledgeResult {
   return {
-    failedLockTokens: failedLockTokenArrayDeserializer(
-      item["failedLockTokens"],
-    ),
+    failedLockTokens: failedLockTokenArrayDeserializer(item["failedLockTokens"]),
     succeededLockTokens: item["succeededLockTokens"].map((p: any) => {
       return p;
     }),
   };
 }
 
-export function failedLockTokenArrayDeserializer(
-  result: Array<FailedLockToken>,
-): any[] {
+export function failedLockTokenArrayDeserializer(result: Array<FailedLockToken>): any[] {
   return result.map((item) => {
     return failedLockTokenDeserializer(item);
   });
@@ -173,9 +173,7 @@ export interface ReleaseResult {
 
 export function releaseResultDeserializer(item: any): ReleaseResult {
   return {
-    failedLockTokens: failedLockTokenArrayDeserializer(
-      item["failedLockTokens"],
-    ),
+    failedLockTokens: failedLockTokenArrayDeserializer(item["failedLockTokens"]),
     succeededLockTokens: item["succeededLockTokens"].map((p: any) => {
       return p;
     }),
@@ -192,9 +190,7 @@ export interface RejectResult {
 
 export function rejectResultDeserializer(item: any): RejectResult {
   return {
-    failedLockTokens: failedLockTokenArrayDeserializer(
-      item["failedLockTokens"],
-    ),
+    failedLockTokens: failedLockTokenArrayDeserializer(item["failedLockTokens"]),
     succeededLockTokens: item["succeededLockTokens"].map((p: any) => {
       return p;
     }),
@@ -209,13 +205,9 @@ export interface RenewCloudEventLocksResult {
   succeededLockTokens: string[];
 }
 
-export function renewCloudEventLocksResultDeserializer(
-  item: any,
-): RenewCloudEventLocksResult {
+export function renewCloudEventLocksResultDeserializer(item: any): RenewCloudEventLocksResult {
   return {
-    failedLockTokens: failedLockTokenArrayDeserializer(
-      item["failedLockTokens"],
-    ),
+    failedLockTokens: failedLockTokenArrayDeserializer(item["failedLockTokens"]),
     succeededLockTokens: item["succeededLockTokens"].map((p: any) => {
       return p;
     }),
@@ -227,7 +219,9 @@ export type ReleaseDelay = "0" | "10" | "60" | "600" | "3600";
 
 /** Known values of {@link ServiceApiVersions} that the service accepts. */
 export enum KnownServiceApiVersions {
+  /** 2023-11-01 */
   V20231101 = "2023-11-01",
+  /** 2024-06-01 */
   V20240601 = "2024-06-01",
 }
 

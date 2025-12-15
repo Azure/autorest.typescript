@@ -20,6 +20,12 @@ op doThing(@header contentType: "multipart/form-data", @multipartBody bodyParam:
 The part should get generated correctly. The generated serializer should be used so that the date of birth is encoded correctly.
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface RequestBody */
 export interface RequestBody {
   person: Person;
@@ -69,6 +75,12 @@ op doThing(@header contentType: "multipart/form-data", @multipartBody bodyParam:
 In this case one part is constructed from the serialized array.
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface RequestBody */
 export interface RequestBody {
   people: Person[];
@@ -124,6 +136,12 @@ op doThing(@header contentType: "multipart/form-data", @multipartBody bodyParam:
 In this case each element in the serialized array is converted to a part descriptor.
 
 ```ts models
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /** model interface RequestBody */
 export interface RequestBody {
   people: Person[];
@@ -131,10 +149,7 @@ export interface RequestBody {
 
 export function requestBodySerializer(item: RequestBody): any {
   return [
-    ...personArraySerializer(item["people"]).map((x: unknown) => ({
-      name: "people",
-      body: x,
-    })),
+    ...personArraySerializer(item["people"]).map((x: unknown) => ({ name: "people", body: x })),
   ];
 }
 

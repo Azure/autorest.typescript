@@ -179,9 +179,7 @@ export interface AgentsOperations {
     options?: AgentsGetVectorStoreOptionalParams,
   ) => Promise<VectorStore>;
   /** Creates a vector store. */
-  createVectorStore: (
-    options?: AgentsCreateVectorStoreOptionalParams,
-  ) => Promise<VectorStore>;
+  createVectorStore: (options?: AgentsCreateVectorStoreOptionalParams) => Promise<VectorStore>;
   /** Returns a list of vector stores. */
   listVectorStores: (
     options?: AgentsListVectorStoresOptionalParams,
@@ -192,10 +190,7 @@ export interface AgentsOperations {
     options?: AgentsGetFileContentOptionalParams,
   ) => Promise<Uint8Array>;
   /** Returns information about a specific file. Does not retrieve file content. */
-  getFile: (
-    fileId: string,
-    options?: AgentsGetFileOptionalParams,
-  ) => Promise<OpenAIFile>;
+  getFile: (fileId: string, options?: AgentsGetFileOptionalParams) => Promise<OpenAIFile>;
   /** Delete a previously uploaded file. */
   deleteFile: (
     fileId: string,
@@ -211,9 +206,7 @@ export interface AgentsOperations {
     options?: AgentsUploadFileOptionalParams,
   ) => Promise<OpenAIFile>;
   /** Gets a list of previously uploaded files. */
-  listFiles: (
-    options?: AgentsListFilesOptionalParams,
-  ) => Promise<FileListResponse>;
+  listFiles: (options?: AgentsListFilesOptionalParams) => Promise<FileListResponse>;
   /** Gets a list of run steps from a thread run. */
   listRunSteps: (
     threadId: string,
@@ -303,38 +296,22 @@ export interface AgentsOperations {
     options?: AgentsUpdateThreadOptionalParams,
   ) => Promise<AgentThread>;
   /** Gets information about an existing thread. */
-  getThread: (
-    threadId: string,
-    options?: AgentsGetThreadOptionalParams,
-  ) => Promise<AgentThread>;
+  getThread: (threadId: string, options?: AgentsGetThreadOptionalParams) => Promise<AgentThread>;
   /** Creates a new thread. Threads contain messages and can be run by agents. */
-  createThread: (
-    options?: AgentsCreateThreadOptionalParams,
-  ) => Promise<AgentThread>;
+  createThread: (options?: AgentsCreateThreadOptionalParams) => Promise<AgentThread>;
   /** Deletes an agent. */
   deleteAgent: (
     assistantId: string,
     options?: AgentsDeleteAgentOptionalParams,
   ) => Promise<AgentDeletionStatus>;
   /** Modifies an existing agent. */
-  updateAgent: (
-    assistantId: string,
-    options?: AgentsUpdateAgentOptionalParams,
-  ) => Promise<Agent>;
+  updateAgent: (assistantId: string, options?: AgentsUpdateAgentOptionalParams) => Promise<Agent>;
   /** Retrieves an existing agent. */
-  getAgent: (
-    assistantId: string,
-    options?: AgentsGetAgentOptionalParams,
-  ) => Promise<Agent>;
+  getAgent: (assistantId: string, options?: AgentsGetAgentOptionalParams) => Promise<Agent>;
   /** Gets a list of agents that were previously created. */
-  listAgents: (
-    options?: AgentsListAgentsOptionalParams,
-  ) => Promise<OpenAIPageableListOfAgent>;
+  listAgents: (options?: AgentsListAgentsOptionalParams) => Promise<OpenAIPageableListOfAgent>;
   /** Creates a new agent. */
-  createAgent: (
-    model: string,
-    options?: AgentsCreateAgentOptionalParams,
-  ) => Promise<Agent>;
+  createAgent: (model: string, options?: AgentsCreateAgentOptionalParams) => Promise<Agent>;
 }
 
 function _getAgents(context: AIProjectContext) {
@@ -343,8 +320,7 @@ function _getAgents(context: AIProjectContext) {
       vectorStoreId: string,
       batchId: string,
       options?: AgentsListVectorStoreFileBatchFilesOptionalParams,
-    ) =>
-      listVectorStoreFileBatchFiles(context, vectorStoreId, batchId, options),
+    ) => listVectorStoreFileBatchFiles(context, vectorStoreId, batchId, options),
     cancelVectorStoreFileBatch: (
       vectorStoreId: string,
       batchId: string,
@@ -377,26 +353,18 @@ function _getAgents(context: AIProjectContext) {
       vectorStoreId: string,
       options?: AgentsListVectorStoreFilesOptionalParams,
     ) => listVectorStoreFiles(context, vectorStoreId, options),
-    deleteVectorStore: (
-      vectorStoreId: string,
-      options?: AgentsDeleteVectorStoreOptionalParams,
-    ) => deleteVectorStore(context, vectorStoreId, options),
-    modifyVectorStore: (
-      vectorStoreId: string,
-      options?: AgentsModifyVectorStoreOptionalParams,
-    ) => modifyVectorStore(context, vectorStoreId, options),
-    getVectorStore: (
-      vectorStoreId: string,
-      options?: AgentsGetVectorStoreOptionalParams,
-    ) => getVectorStore(context, vectorStoreId, options),
+    deleteVectorStore: (vectorStoreId: string, options?: AgentsDeleteVectorStoreOptionalParams) =>
+      deleteVectorStore(context, vectorStoreId, options),
+    modifyVectorStore: (vectorStoreId: string, options?: AgentsModifyVectorStoreOptionalParams) =>
+      modifyVectorStore(context, vectorStoreId, options),
+    getVectorStore: (vectorStoreId: string, options?: AgentsGetVectorStoreOptionalParams) =>
+      getVectorStore(context, vectorStoreId, options),
     createVectorStore: (options?: AgentsCreateVectorStoreOptionalParams) =>
       createVectorStore(context, options),
     listVectorStores: (options?: AgentsListVectorStoresOptionalParams) =>
       listVectorStores(context, options),
-    getFileContent: (
-      fileId: string,
-      options?: AgentsGetFileContentOptionalParams,
-    ) => getFileContent(context, fileId, options),
+    getFileContent: (fileId: string, options?: AgentsGetFileContentOptionalParams) =>
+      getFileContent(context, fileId, options),
     getFile: (fileId: string, options?: AgentsGetFileOptionalParams) =>
       getFile(context, fileId, options),
     deleteFile: (fileId: string, options?: AgentsDeleteFileOptionalParams) =>
@@ -409,103 +377,68 @@ function _getAgents(context: AIProjectContext) {
       },
       options?: AgentsUploadFileOptionalParams,
     ) => uploadFile(context, body, options),
-    listFiles: (options?: AgentsListFilesOptionalParams) =>
-      listFiles(context, options),
-    listRunSteps: (
-      threadId: string,
-      runId: string,
-      options?: AgentsListRunStepsOptionalParams,
-    ) => listRunSteps(context, threadId, runId, options),
+    listFiles: (options?: AgentsListFilesOptionalParams) => listFiles(context, options),
+    listRunSteps: (threadId: string, runId: string, options?: AgentsListRunStepsOptionalParams) =>
+      listRunSteps(context, threadId, runId, options),
     getRunStep: (
       threadId: string,
       runId: string,
       stepId: string,
       options?: AgentsGetRunStepOptionalParams,
     ) => getRunStep(context, threadId, runId, stepId, options),
-    createThreadAndRun: (
-      assistantId: string,
-      options?: AgentsCreateThreadAndRunOptionalParams,
-    ) => createThreadAndRun(context, assistantId, options),
-    cancelRun: (
-      threadId: string,
-      runId: string,
-      options?: AgentsCancelRunOptionalParams,
-    ) => cancelRun(context, threadId, runId, options),
+    createThreadAndRun: (assistantId: string, options?: AgentsCreateThreadAndRunOptionalParams) =>
+      createThreadAndRun(context, assistantId, options),
+    cancelRun: (threadId: string, runId: string, options?: AgentsCancelRunOptionalParams) =>
+      cancelRun(context, threadId, runId, options),
     submitToolOutputsToRun: (
       threadId: string,
       runId: string,
       toolOutputs: ToolOutput[],
       options?: AgentsSubmitToolOutputsToRunOptionalParams,
     ) => submitToolOutputsToRun(context, threadId, runId, toolOutputs, options),
-    updateRun: (
-      threadId: string,
-      runId: string,
-      options?: AgentsUpdateRunOptionalParams,
-    ) => updateRun(context, threadId, runId, options),
-    getRun: (
-      threadId: string,
-      runId: string,
-      options?: AgentsGetRunOptionalParams,
-    ) => getRun(context, threadId, runId, options),
+    updateRun: (threadId: string, runId: string, options?: AgentsUpdateRunOptionalParams) =>
+      updateRun(context, threadId, runId, options),
+    getRun: (threadId: string, runId: string, options?: AgentsGetRunOptionalParams) =>
+      getRun(context, threadId, runId, options),
     listRuns: (threadId: string, options?: AgentsListRunsOptionalParams) =>
       listRuns(context, threadId, options),
-    createRun: (
-      threadId: string,
-      assistantId: string,
-      options?: AgentsCreateRunOptionalParams,
-    ) => createRun(context, threadId, assistantId, options),
+    createRun: (threadId: string, assistantId: string, options?: AgentsCreateRunOptionalParams) =>
+      createRun(context, threadId, assistantId, options),
     updateMessage: (
       threadId: string,
       messageId: string,
       options?: AgentsUpdateMessageOptionalParams,
     ) => updateMessage(context, threadId, messageId, options),
-    getMessage: (
-      threadId: string,
-      messageId: string,
-      options?: AgentsGetMessageOptionalParams,
-    ) => getMessage(context, threadId, messageId, options),
-    listMessages: (
-      threadId: string,
-      options?: AgentsListMessagesOptionalParams,
-    ) => listMessages(context, threadId, options),
+    getMessage: (threadId: string, messageId: string, options?: AgentsGetMessageOptionalParams) =>
+      getMessage(context, threadId, messageId, options),
+    listMessages: (threadId: string, options?: AgentsListMessagesOptionalParams) =>
+      listMessages(context, threadId, options),
     createMessage: (
       threadId: string,
       role: MessageRole,
       content: string,
       options?: AgentsCreateMessageOptionalParams,
     ) => createMessage(context, threadId, role, content, options),
-    deleteThread: (
-      threadId: string,
-      options?: AgentsDeleteThreadOptionalParams,
-    ) => deleteThread(context, threadId, options),
-    updateThread: (
-      threadId: string,
-      options?: AgentsUpdateThreadOptionalParams,
-    ) => updateThread(context, threadId, options),
+    deleteThread: (threadId: string, options?: AgentsDeleteThreadOptionalParams) =>
+      deleteThread(context, threadId, options),
+    updateThread: (threadId: string, options?: AgentsUpdateThreadOptionalParams) =>
+      updateThread(context, threadId, options),
     getThread: (threadId: string, options?: AgentsGetThreadOptionalParams) =>
       getThread(context, threadId, options),
-    createThread: (options?: AgentsCreateThreadOptionalParams) =>
-      createThread(context, options),
-    deleteAgent: (
-      assistantId: string,
-      options?: AgentsDeleteAgentOptionalParams,
-    ) => deleteAgent(context, assistantId, options),
-    updateAgent: (
-      assistantId: string,
-      options?: AgentsUpdateAgentOptionalParams,
-    ) => updateAgent(context, assistantId, options),
+    createThread: (options?: AgentsCreateThreadOptionalParams) => createThread(context, options),
+    deleteAgent: (assistantId: string, options?: AgentsDeleteAgentOptionalParams) =>
+      deleteAgent(context, assistantId, options),
+    updateAgent: (assistantId: string, options?: AgentsUpdateAgentOptionalParams) =>
+      updateAgent(context, assistantId, options),
     getAgent: (assistantId: string, options?: AgentsGetAgentOptionalParams) =>
       getAgent(context, assistantId, options),
-    listAgents: (options?: AgentsListAgentsOptionalParams) =>
-      listAgents(context, options),
+    listAgents: (options?: AgentsListAgentsOptionalParams) => listAgents(context, options),
     createAgent: (model: string, options?: AgentsCreateAgentOptionalParams) =>
       createAgent(context, model, options),
   };
 }
 
-export function _getAgentsOperations(
-  context: AIProjectContext,
-): AgentsOperations {
+export function _getAgentsOperations(context: AIProjectContext): AgentsOperations {
   return {
     ..._getAgents(context),
   };

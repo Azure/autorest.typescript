@@ -305,7 +305,7 @@ describe("Package file generation", () => {
       const packageFileContent = buildPackageFile(model);
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
 
-      expect(packageFile.devDependencies).to.have.property("@vitest/browser");
+      expect(packageFile.devDependencies).to.have.property("@vitest/browser-playwright");
       expect(packageFile.devDependencies).to.have.property(
         "@vitest/coverage-istanbul"
       );
@@ -346,7 +346,7 @@ describe("Package file generation", () => {
         "test:browser",
         "dev-tool run build-test && dev-tool run test:vitest --browser"
       );
-      expect(packageFile.scripts).to.have.property("pack", "npm pack 2>&1");
+      expect(packageFile.scripts).to.have.property("pack", "pnpm pack 2>&1");
       expect(packageFile.scripts).to.have.property(
         "test",
         "npm run test:node && npm run test:browser"
@@ -440,12 +440,56 @@ describe("Package file generation", () => {
         "echo skipped"
       );
     });
+
+    it("should include correct build:samples script for ARM packages with samples", () => {
+      const model = createMockModel({
+        ...baseConfig,
+        azureArm: true,
+        withSamples: true
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile.scripts).to.have.property(
+        "build:samples",
+        "tsc -p tsconfig.samples.json && dev-tool samples publish -f"
+      );
+    });
+
+    it("should include correct build:samples script for non-ARM packages with samples", () => {
+      const model = createMockModel({
+        ...baseConfig,
+        azureArm: false,
+        withSamples: true
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile.scripts).to.have.property(
+        "build:samples",
+        "tsc -p tsconfig.samples.json"
+      );
+    });
+
+    it("should skip build:samples script when samples are not enabled", () => {
+      const model = createMockModel({
+        ...baseConfig,
+        azureArm: true,
+        withSamples: false
+      });
+      const packageFileContent = buildPackageFile(model);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile.scripts).to.have.property(
+        "build:samples",
+        "echo skipped"
+      );
+    });
     it("[esm] should include correct scripts with pack", () => {
       const model = createMockModel({
         ...baseConfig,
         moduleKind: "esm",
-        withTests: true,
-        shouldUsePnpmDep: true
+        withTests: true
       });
       const packageFileContent = buildPackageFile(model);
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
@@ -570,7 +614,7 @@ describe("Package file generation", () => {
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
 
       expect(packageFile.devDependencies).to.have.property("tshy");
-      expect(packageFile.devDependencies).to.have.property("@vitest/browser");
+      expect(packageFile.devDependencies).to.have.property("@vitest/browser-playwright");
       expect(packageFile.devDependencies).to.have.property(
         "@vitest/coverage-istanbul"
       );
@@ -722,6 +766,121 @@ describe("Package file generation", () => {
         "./test/integration/static/package_non_existing.json"
       );
       expect(packageFileContent).to.be.undefined;
+    });
+
+    it("should use standard version for LRO dependencies", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: true
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-client": "^1.0.0"
+        }
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo);
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile.dependencies).to.have.property("@azure/core-lro", "^3.1.0");
+      expect(packageFile.dependencies).to.have.property("@azure/abort-controller", "^2.1.2");
+    });
+
+    it("should update tshy.exports when exports option is provided", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: true
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-client": "^1.0.0"
+        },
+        tshy: {
+          exports: {
+            "./package.json": "./package.json",
+            ".": "./src/index.ts"
+          },
+          dialects: ["esm", "commonjs"],
+          esmDialects: ["browser", "react-native"],
+          selfLink: false
+        }
+      };
+
+      const newExports = {
+        "./api": "./src/api/index.ts",
+        "./models": "./src/models/index.ts"
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo, {
+        exports: newExports
+      });
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile.dependencies).to.have.property(
+        "@azure/core-lro",
+        "^3.1.0"
+      );
+      expect(packageFile.dependencies).to.have.property(
+        "@azure/abort-controller",
+        "^2.1.2"
+      );
+      expect(packageFile.tshy).to.have.property("exports");
+      expect(packageFile.tshy.exports).to.deep.equal({
+        "./package.json": "./package.json",
+        ".": "./src/index.ts",
+        "./api": "./src/api/index.ts",
+        "./models": "./src/models/index.ts"
+      });
+      expect(packageFile.tshy).to.have.property("dialects");
+      expect(packageFile.tshy).to.have.property("esmDialects");
+      expect(packageFile.tshy).to.have.property("selfLink");
+    });
+
+    it("should not update tshy.exports when tshy does not exist in package.json", () => {
+      const model = createMockModel({
+        moduleKind: "esm",
+        flavor: "azure",
+        isMonorepo: true,
+        hasLro: true
+      });
+
+      const initialPackageInfo = {
+        name: "@azure/test-package",
+        version: "1.0.0",
+        dependencies: {
+          "@azure/core-client": "^1.0.0"
+        }
+      };
+
+      const newExports = {
+        "./api": "./src/api/index.ts",
+        "./models": "./src/models/index.ts"
+      };
+
+      const packageFileContent = updatePackageFile(model, initialPackageInfo, {
+        exports: newExports
+      });
+      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
+
+      expect(packageFile.dependencies).to.have.property(
+        "@azure/core-lro",
+        "^3.1.0"
+      );
+      expect(packageFile.dependencies).to.have.property(
+        "@azure/abort-controller",
+        "^2.1.2"
+      );
+      expect(packageFile).to.not.have.property("tshy");
     });
   });
 
