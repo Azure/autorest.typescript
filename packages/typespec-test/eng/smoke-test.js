@@ -116,6 +116,7 @@ async function build(path, logger) {
 async function generateSmokeTest(path) {
   const logger = createTaskLogger();
   const contents = await readdir(path);
+  console.log(contents);
   logger.log(`================Start ${path}===============`);
   if (contents.includes("skip")) {
     logger.log(`          ##### Skipped #####          `);
