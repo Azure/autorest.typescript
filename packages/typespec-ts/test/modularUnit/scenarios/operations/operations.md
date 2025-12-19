@@ -1276,3 +1276,84 @@ export function bar(
   );
 }
 ```
+
+# only: should support non-model type as response from TypeSpec
+
+## TypeSpec
+
+```tsp
+import "@typespec/http";
+import "@azure-tools/typespec-client-generator-core";
+using TypeSpec.Http;
+using Azure.ClientGenerator.Core;
+
+@service(#{
+  title: "Test Service"
+})
+namespace testService;
+model ListTestResult is string[];
+    
+model Test {
+  id: string;
+}
+    
+@route("/list-get")
+@post
+op bar(): ListTestResult;
+```
+
+The config would be like:
+
+```yaml
+withRawContent: true
+```
+
+## models
+
+```ts models
+// (file was not generated)
+```
+
+## Operations
+
+```ts operations
+import { testServiceContext as Client } from "./index.js";
+import { BarOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _barSend(
+  context: Client,
+  options: BarOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  return context
+    .path("/list-get")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+    });
+}
+
+export async function _barDeserialize(result: PathUncheckedResponse): Promise<string[]> {
+  const expectedStatuses = ["200"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return result.body.map((p: any) => {
+    return p;
+  });
+}
+
+export async function bar(
+  context: Client,
+  options: BarOptionalParams = { requestOptions: {} },
+): Promise<string[]> {
+  const result = await _barSend(context, options);
+  return _barDeserialize(result);
+}
+```
