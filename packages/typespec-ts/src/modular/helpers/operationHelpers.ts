@@ -1507,7 +1507,8 @@ export function deserializeResponseValue(
   context: SdkContext,
   type: SdkType,
   restValue: string,
-  format?: string
+  format?: string,
+  depth: number = 0
 ): string {
   const dependencies = useDependencies();
   const stringToUint8ArrayReference = resolveReference(
@@ -1522,12 +1523,13 @@ export function deserializeResponseValue(
       return `${nullOrUndefinedPrefix} new Date(${type.encode === "unixTimestamp" ? `${restValue} * 1000` : restValue})`;
     case "array": {
       const prefix = nullOrUndefinedPrefix + restValue;
+      const varName = depth > 0 ? `p${depth}` : "p";
       let elementNullOrUndefinedPrefix = "";
       if (
         type.valueType &&
         (isTypeNullable(type.valueType) || getOptionalForType(type.valueType))
       ) {
-        elementNullOrUndefinedPrefix = "!p ? p :";
+        elementNullOrUndefinedPrefix = `!${varName} ? ${varName} :`;
       }
       const deserializeFunctionName = type.valueType
         ? buildModelDeserializer(
@@ -1540,26 +1542,28 @@ export function deserializeResponseValue(
           )
         : undefined;
       if (deserializeFunctionName) {
-        return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(p)})`;
+        return `${prefix}.map((${varName}: any) => { return ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(${varName})})`;
       } else if (
         type.valueType &&
         isAzureCoreErrorType(context.program, type.valueType.__raw)
       ) {
-        return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}p})`;
+        return `${prefix}.map((${varName}: any) => { return ${elementNullOrUndefinedPrefix}${varName}})`;
       } else if (type.valueType) {
-        return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, "p", getEncodeForType(type.valueType))}})`;
+        return `${prefix}.map((${varName}: any) => { return ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, varName, getEncodeForType(type.valueType), depth + 1)}})`;
       } else {
         return restValue;
       }
     }
     case "dict": {
       const prefix = nullOrUndefinedPrefix + restValue;
+      const keyVar = depth > 0 ? `k${depth}` : "k";
+      const valueVar = depth > 0 ? `p${depth}` : "p";
       let elementNullOrUndefinedPrefix = "";
       if (
         type.valueType &&
         (isTypeNullable(type.valueType) || getOptionalForType(type.valueType))
       ) {
-        elementNullOrUndefinedPrefix = "!p ? p :";
+        elementNullOrUndefinedPrefix = `!${valueVar} ? ${valueVar} :`;
       }
       const deserializeFunctionName = type.valueType
         ? buildModelDeserializer(
@@ -1572,14 +1576,14 @@ export function deserializeResponseValue(
           )
         : undefined;
       if (deserializeFunctionName) {
-        return `Object.fromEntries(Object.entries(${prefix}).map(([k, p]: [string, any]) => [k, ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(p)]))`;
+        return `Object.fromEntries(Object.entries(${prefix}).map(([${keyVar}, ${valueVar}]: [string, any]) => [${keyVar}, ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(${valueVar})]))`;
       } else if (
         type.valueType &&
         isAzureCoreErrorType(context.program, type.valueType.__raw)
       ) {
-        return `Object.fromEntries(Object.entries(${prefix}).map(([k, p]: [string, any]) => [k, ${elementNullOrUndefinedPrefix}p]))`;
+        return `Object.fromEntries(Object.entries(${prefix}).map(([${keyVar}, ${valueVar}]: [string, any]) => [${keyVar}, ${elementNullOrUndefinedPrefix}${valueVar}]))`;
       } else if (type.valueType) {
-        return `Object.fromEntries(Object.entries(${prefix}).map(([k, p]: [string, any]) => [k, ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, "p", getEncodeForType(type.valueType))}]))`;
+        return `Object.fromEntries(Object.entries(${prefix}).map(([${keyVar}, ${valueVar}]: [string, any]) => [${keyVar}, ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, valueVar, getEncodeForType(type.valueType), depth + 1)}]))`;
       } else {
         return restValue;
       }
@@ -1616,7 +1620,8 @@ export function deserializeResponseValue(
         context,
         type.type,
         restValue,
-        getEncodeForType(type.type)
+        getEncodeForType(type.type),
+        depth
       );
     default:
       return restValue;
