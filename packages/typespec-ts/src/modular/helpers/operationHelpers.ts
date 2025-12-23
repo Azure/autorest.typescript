@@ -1599,7 +1599,7 @@ export function deserializeResponseValue(
               isTypeNullable(type) || getOptionalForType(type) || !required
                 ? `${restValue} == null? ${restValue}: `
                 : "";
-            return `${optionalPrefixForString}${parseHelper}(${restValue}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, "p", true, getEncodeForType(type.valueType))}}))`;
+            return `${optionalPrefixForString}${parseHelper}(${restValue})`;
           } else {
             throw `No supported collection format parse helper found for ${format}.`;
           }

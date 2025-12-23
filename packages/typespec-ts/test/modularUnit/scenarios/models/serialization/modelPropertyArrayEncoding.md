@@ -103,32 +103,16 @@ export function widgetDeserializer(item: any): Widget {
       : item["optionalColors"].map((p: any) => {
           return p;
         }),
-    requiredCsvColors: parseCsvCollection(
-      item["requiredCsvColors"].map((p: any) => {
-        return p;
-      }),
-    ),
-    requiredPipeColors: parsePipeCollection(
-      item["requiredPipeColors"].map((p: any) => {
-        return p;
-      }),
-    ),
+    requiredCsvColors: parseCsvCollection(item["requiredCsvColors"]),
+    requiredPipeColors: parsePipeCollection(item["requiredPipeColors"]),
     optionalSsvColors:
       item["optionalSsvColors"] == null
         ? item["optionalSsvColors"]
-        : parseSsvCollection(
-            item["optionalSsvColors"].map((p: any) => {
-              return p;
-            }),
-          ),
+        : parseSsvCollection(item["optionalSsvColors"]),
     optionalNewlineColors:
       item["optionalNewlineColors"] == null
         ? item["optionalNewlineColors"]
-        : parseNewlineCollection(
-            item["optionalNewlineColors"].map((p: any) => {
-              return p;
-            }),
-          ),
+        : parseNewlineCollection(item["optionalNewlineColors"]),
   };
 }
 ```
@@ -225,19 +209,9 @@ export function nestedWidgetSerializer(item: NestedWidget): any {
 
 export function nestedWidgetDeserializer(item: any): NestedWidget {
   return {
-    tags: parseCsvCollection(
-      item["tags"].map((p: any) => {
-        return p;
-      }),
-    ),
+    tags: parseCsvCollection(item["tags"]),
     categories:
-      item["categories"] == null
-        ? item["categories"]
-        : parsePipeCollection(
-            item["categories"].map((p: any) => {
-              return p;
-            }),
-          ),
+      item["categories"] == null ? item["categories"] : parsePipeCollection(item["categories"]),
   };
 }
 ```
