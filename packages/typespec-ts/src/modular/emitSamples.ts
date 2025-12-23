@@ -571,12 +571,19 @@ function getParameterValue(
         }
         let propRetValue;
 
-        if (property?.flatten && property.type.kind === "model") {
+        if (
+          property?.flatten &&
+          property.type.kind === "model" &&
+          options?.overrides?.enableFlatten !== false
+        ) {
+          // For flatten property, we need to recursively get its properties
+          // but disable further flattening to match the TypeScript interface structure
           const paramValue = getParameterValue(context, propValue, {
             overrides: {
               propertyRenames:
                 useContext("sdkTypes").flattenProperties.get(property)
-                  ?.conflictMap
+                  ?.conflictMap,
+              enableFlatten: false
             }
           });
           propRetValue =
@@ -584,7 +591,7 @@ function getParameterValue(
         } else {
           propRetValue =
             `"${mapper.get(propName) ?? propName}": ` +
-            getParameterValue(context, propValue);
+            getParameterValue(context, propValue, options);
         }
         if (propRetValue) values.push(propRetValue);
       }
