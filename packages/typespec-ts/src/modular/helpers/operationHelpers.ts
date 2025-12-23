@@ -1642,7 +1642,7 @@ export function deserializeResponseValue(
     }
     case "bytes":
       if (format !== "binary" && format !== "bytes") {
-        return `typeof ${restValue} === 'string'
+        return `${nullOrUndefinedPrefix}typeof ${restValue} === 'string'
         ? ${stringToUint8ArrayReference}(${restValue}, "${format ?? "base64"}")
         : ${restValue}`;
       }

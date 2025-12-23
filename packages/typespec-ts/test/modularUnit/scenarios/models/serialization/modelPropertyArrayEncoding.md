@@ -69,27 +69,27 @@ export function widgetSerializer(item: Widget): any {
     requiredCsvColors: buildCsvCollection(
       item["requiredCsvColors"].map((p: any) => {
         return p;
-      })
+      }),
     ),
     requiredPipeColors: buildPipeCollection(
       item["requiredPipeColors"].map((p: any) => {
         return p;
-      })
+      }),
     ),
     optionalSsvColors: !item["optionalSsvColors"]
       ? item["optionalSsvColors"]
       : buildSsvCollection(
           item["optionalSsvColors"].map((p: any) => {
             return p;
-          })
+          }),
         ),
     optionalNewlineColors: !item["optionalNewlineColors"]
       ? item["optionalNewlineColors"]
       : buildNewlineCollection(
           item["optionalNewlineColors"].map((p: any) => {
             return p;
-          })
-        )
+          }),
+        ),
   };
 }
 
@@ -106,12 +106,12 @@ export function widgetDeserializer(item: any): Widget {
     requiredCsvColors: parseCsvCollection(
       item["requiredCsvColors"].map((p: any) => {
         return p;
-      })
+      }),
     ),
     requiredPipeColors: parsePipeCollection(
       item["requiredPipeColors"].map((p: any) => {
         return p;
-      })
+      }),
     ),
     optionalSsvColors:
       item["optionalSsvColors"] == null
@@ -119,7 +119,7 @@ export function widgetDeserializer(item: any): Widget {
         : parseSsvCollection(
             item["optionalSsvColors"].map((p: any) => {
               return p;
-            })
+            }),
           ),
     optionalNewlineColors:
       item["optionalNewlineColors"] == null
@@ -127,8 +127,8 @@ export function widgetDeserializer(item: any): Widget {
         : parseNewlineCollection(
             item["optionalNewlineColors"].map((p: any) => {
               return p;
-            })
-          )
+            }),
+          ),
   };
 }
 ```
@@ -186,7 +186,7 @@ export function containerWidgetSerializer(item: ContainerWidget): any {
     nested: nestedWidgetSerializer(item["nested"]),
     optionalNested: !item["optionalNested"]
       ? item["optionalNested"]
-      : nestedWidgetSerializer(item["optionalNested"])
+      : nestedWidgetSerializer(item["optionalNested"]),
   };
 }
 
@@ -196,7 +196,7 @@ export function containerWidgetDeserializer(item: any): ContainerWidget {
     nested: nestedWidgetDeserializer(item["nested"]),
     optionalNested: !item["optionalNested"]
       ? item["optionalNested"]
-      : nestedWidgetDeserializer(item["optionalNested"])
+      : nestedWidgetDeserializer(item["optionalNested"]),
   };
 }
 
@@ -211,15 +211,15 @@ export function nestedWidgetSerializer(item: NestedWidget): any {
     tags: buildCsvCollection(
       item["tags"].map((p: any) => {
         return p;
-      })
+      }),
     ),
     categories: !item["categories"]
       ? item["categories"]
       : buildPipeCollection(
           item["categories"].map((p: any) => {
             return p;
-          })
-        )
+          }),
+        ),
   };
 }
 
@@ -228,7 +228,7 @@ export function nestedWidgetDeserializer(item: any): NestedWidget {
     tags: parseCsvCollection(
       item["tags"].map((p: any) => {
         return p;
-      })
+      }),
     ),
     categories:
       item["categories"] == null
@@ -236,8 +236,8 @@ export function nestedWidgetDeserializer(item: any): NestedWidget {
         : parsePipeCollection(
             item["categories"].map((p: any) => {
               return p;
-            })
-          )
+            }),
+          ),
   };
 }
 ```
