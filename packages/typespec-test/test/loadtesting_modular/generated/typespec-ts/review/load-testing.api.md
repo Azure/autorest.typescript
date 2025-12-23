@@ -189,10 +189,7 @@ export enum KnownAggregationType {
 
 // @public
 export enum KnownAPIVersions {
-    V20221101 = "2022-11-01",
-    V20230401Preview = "2023-04-01-preview",
-    V20240301Preview = "2024-03-01-preview",
-    V20240501Preview = "2024-05-01-preview"
+    V20221101 = "2022-11-01"
 }
 
 // @public
