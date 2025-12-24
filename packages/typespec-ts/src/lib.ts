@@ -612,7 +612,7 @@ const libDef = {
     "un-supported-array-encoding": {
       severity: "warning",
       messages: {
-        default: paramMessage`The array "${"arrayName"}" of ${"arrayType"} type is not supported for encoding and will be ignored.`
+        default: paramMessage`The array property "${"arrayName"}" of ${"arrayType"} type is not supported for encoding and will be ignored.`
       }
     }
   },
