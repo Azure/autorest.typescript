@@ -258,7 +258,10 @@ export async function $onEmit(context: EmitContext) {
     for (const client of clients) {
       const rlcModels = await transformRLCModel(client, dpgContext);
       rlcCodeModels.push(rlcModels);
-      serviceNameToRlcModelsMap.set(client.service.name, rlcModels);
+      const serviceName = Array.isArray(client.service)
+        ? (client.service[0]?.name ?? "Unknown")
+        : client.service.name;
+      serviceNameToRlcModelsMap.set(serviceName, rlcModels);
       needUnexpectedHelper.set(
         getClientName(rlcModels),
         hasUnexpectedHelper(rlcModels)
