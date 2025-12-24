@@ -625,15 +625,6 @@ function buildArrayTypeSerializer(
   if (nameOnly) {
     return resolveReference(refkey(type, "serializer"));
   }
-
-  let elementTypeRef: string;
-  if (type.valueType.kind === "model" && isDiscriminatedUnion(type.valueType)) {
-    elementTypeRef = resolveReference(
-      refkey(type.valueType, "polymorphicType")
-    );
-  } else {
-    elementTypeRef = resolveReference(type.valueType);
-  }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
     name: serializerFunctionName,
@@ -641,7 +632,7 @@ function buildArrayTypeSerializer(
     parameters: [
       {
         name: "result",
-        type: `Array<${elementTypeRef ?? "any"}>`
+        type: `Array<${normalizeModelName(context, type.valueType as any) ?? "any"}>`
       }
     ],
     returnType: "any[]",
