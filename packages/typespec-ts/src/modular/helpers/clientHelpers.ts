@@ -174,7 +174,8 @@ export function buildGetClientEndpointParam(
   context: StatementedNode,
   dpgContext: SdkContext,
   client: SdkClientType<SdkServiceOperation>
-): string {
+): { endpointParamName: string; assignedOptionalParams?: Set<string> } {
+  const assignedOptionalParams = new Set<string>();
   let coreEndpointParam = "";
   if (dpgContext.rlcOptions?.flavor === "azure") {
     const cloudSettingSuffix = dpgContext.arm
@@ -209,8 +210,10 @@ export function buildGetClientEndpointParam(
           context.addStatements(
             `const ${paramName} = options.${paramName} ?? ${defaultValue};`
           );
+          assignedOptionalParams.add(paramName);
         } else if (templateParam.optional) {
           context.addStatements(`const ${paramName} = options.${paramName};`);
+          assignedOptionalParams.add(paramName);
         }
         parameterizedEndpointUrl = parameterizedEndpointUrl.replace(
           `{${templateParam.name}}`,
@@ -219,7 +222,7 @@ export function buildGetClientEndpointParam(
       }
       const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? \`${parameterizedEndpointUrl}\`;`;
       context.addStatements(endpointUrl);
-      return "endpointUrl";
+      return { endpointParamName: "endpointUrl", assignedOptionalParams };
     } else if (endpointParam.type.kind === "endpoint") {
       const clientDefaultValue =
         endpointParam.type.templateArguments[0]?.clientDefaultValue;
@@ -231,14 +234,14 @@ export function buildGetClientEndpointParam(
             : `String(${getClientParameterName(endpointParam)})`;
       const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? ${defaultValueStr};`;
       context.addStatements(endpointUrl);
-      return "endpointUrl";
+      return { endpointParamName: "endpointUrl" };
     }
     const endpointUrl = `const endpointUrl = ${coreEndpointParam} ?? String(${getClientParameterName(endpointParam)});`;
     context.addStatements(endpointUrl);
-    return "endpointUrl";
+    return { endpointParamName: "endpointUrl" };
   }
 
-  return "endpointUrl";
+  return { endpointParamName: "endpointUrl" };
 }
 
 /**

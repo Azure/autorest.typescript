@@ -5794,8 +5794,7 @@ export interface ApplicationGatewayIPConfiguration extends SubResource {
 }
 
 /** Authentication certificates of an application gateway. */
-export interface ApplicationGatewayAuthenticationCertificate
-  extends SubResource {
+export interface ApplicationGatewayAuthenticationCertificate extends SubResource {
   /** Name of the authentication certificate that is unique within an Application Gateway. */
   name?: string;
   /**
@@ -5843,8 +5842,7 @@ export interface ApplicationGatewayTrustedRootCertificate extends SubResource {
 }
 
 /** Trusted client certificates of an application gateway. */
-export interface ApplicationGatewayTrustedClientCertificate
-  extends SubResource {
+export interface ApplicationGatewayTrustedClientCertificate extends SubResource {
   /** Name of the trusted client certificate that is unique within an Application Gateway. */
   name?: string;
   /**
@@ -7021,8 +7019,7 @@ export interface ApplicationGatewayRedirectConfiguration extends SubResource {
 }
 
 /** The application gateway private link ip configuration. */
-export interface ApplicationGatewayPrivateLinkIpConfiguration
-  extends SubResource {
+export interface ApplicationGatewayPrivateLinkIpConfiguration extends SubResource {
   /** The name of application gateway private link ip configuration. */
   name?: string;
   /**
@@ -7051,8 +7048,7 @@ export interface ApplicationGatewayPrivateLinkIpConfiguration
 }
 
 /** Private Link Configuration on an application gateway. */
-export interface ApplicationGatewayPrivateLinkConfiguration
-  extends SubResource {
+export interface ApplicationGatewayPrivateLinkConfiguration extends SubResource {
   /** Name of the private link configuration that is unique within an Application Gateway. */
   name?: string;
   /**
@@ -7075,8 +7071,7 @@ export interface ApplicationGatewayPrivateLinkConfiguration
 }
 
 /** Private Endpoint connection on an application gateway. */
-export interface ApplicationGatewayPrivateEndpointConnection
-  extends SubResource {
+export interface ApplicationGatewayPrivateEndpointConnection extends SubResource {
   /** Name of the private endpoint connection on an application gateway. */
   name?: string;
   /**
@@ -10771,8 +10766,7 @@ export interface PrivateLinkServicePropertiesVisibility extends ResourceSet {}
 export interface PrivateLinkServicePropertiesAutoApproval extends ResourceSet {}
 
 /** Firewall Policy NAT Rule Collection. */
-export interface FirewallPolicyNatRuleCollection
-  extends FirewallPolicyRuleCollection {
+export interface FirewallPolicyNatRuleCollection extends FirewallPolicyRuleCollection {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   ruleCollectionType: "FirewallPolicyNatRuleCollection";
   /** The action type of a Nat rule collection. */
@@ -10782,8 +10776,7 @@ export interface FirewallPolicyNatRuleCollection
 }
 
 /** Firewall Policy Filter Rule Collection. */
-export interface FirewallPolicyFilterRuleCollection
-  extends FirewallPolicyRuleCollection {
+export interface FirewallPolicyFilterRuleCollection extends FirewallPolicyRuleCollection {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   ruleCollectionType: "FirewallPolicyFilterRuleCollection";
   /** The action type of a Filter rule collection. */
@@ -10793,8 +10786,7 @@ export interface FirewallPolicyFilterRuleCollection
 }
 
 /** Active connectivity configuration. */
-export interface ActiveConnectivityConfiguration
-  extends EffectiveConnectivityConfiguration {
+export interface ActiveConnectivityConfiguration extends EffectiveConnectivityConfiguration {
   /** Deployment time string. */
   commitTime?: Date;
   /** Deployment region. */
@@ -10831,8 +10823,7 @@ export interface ActiveSecurityAdminRule extends ActiveBaseSecurityAdminRule {
 }
 
 /** Network default admin rule. */
-export interface ActiveDefaultSecurityAdminRule
-  extends ActiveBaseSecurityAdminRule {
+export interface ActiveDefaultSecurityAdminRule extends ActiveBaseSecurityAdminRule {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   kind: "Default";
   /**
@@ -11038,8 +11029,7 @@ export interface BaseAdminRule extends ChildResource {
 }
 
 /** Network admin rule. */
-export interface EffectiveSecurityAdminRule
-  extends EffectiveBaseSecurityAdminRule {
+export interface EffectiveSecurityAdminRule extends EffectiveBaseSecurityAdminRule {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   kind: "Custom";
   /** A description for this rule. Restricted to 140 chars. */
@@ -11068,8 +11058,7 @@ export interface EffectiveSecurityAdminRule
 }
 
 /** Network default admin rule. */
-export interface EffectiveDefaultSecurityAdminRule
-  extends EffectiveBaseSecurityAdminRule {
+export interface EffectiveDefaultSecurityAdminRule extends EffectiveBaseSecurityAdminRule {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   kind: "Default";
   /**
@@ -11136,8 +11125,7 @@ export interface PacketCaptureResultProperties extends PacketCaptureParameters {
 }
 
 /** Describes the properties of a connection monitor. */
-export interface ConnectionMonitorResultProperties
-  extends ConnectionMonitorParameters {
+export interface ConnectionMonitorResultProperties extends ConnectionMonitorParameters {
   /**
    * The provisioning state of the connection monitor.
    * NOTE: This property will not be serialized. It can only be populated by the server.

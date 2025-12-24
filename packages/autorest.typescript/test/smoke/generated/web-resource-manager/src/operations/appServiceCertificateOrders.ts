@@ -68,9 +68,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing AppServiceCertificateOrders operations. */
-export class AppServiceCertificateOrdersImpl
-  implements AppServiceCertificateOrders
-{
+export class AppServiceCertificateOrdersImpl implements AppServiceCertificateOrders {
   private readonly client: WebSiteManagementClient;
 
   /**

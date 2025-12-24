@@ -149,10 +149,7 @@ export interface RequestBody {
 
 export function requestBodySerializer(item: RequestBody): any {
   return [
-    ...personArraySerializer(item["people"]).map((x: unknown) => ({
-      name: "people",
-      body: x,
-    })),
+    ...personArraySerializer(item["people"]).map((x: unknown) => ({ name: "people", body: x })),
   ];
 }
 

@@ -821,7 +821,7 @@ export function completionsLogProbabilityModelDeserializer(
       return !p ? p : p;
     }),
     topLogprobs: item["top_logprobs"].map((p: any) => {
-      return p;
+      return Object.fromEntries(Object.entries(p).map(([k, p]: [string, any]) => [k, !p ? p : p]));
     }),
     textOffset: item["text_offset"].map((p: any) => {
       return p;
@@ -1696,8 +1696,7 @@ export function onYourDataApiKeyAuthenticationOptionsSerializer(
 }
 
 /** The authentication options for Azure OpenAI On Your Data when using a connection string. */
-export interface OnYourDataConnectionStringAuthenticationOptions
-  extends OnYourDataAuthenticationOptions {
+export interface OnYourDataConnectionStringAuthenticationOptions extends OnYourDataAuthenticationOptions {
   /** The authentication type of connection string. */
   type: "connection_string";
   /** The connection string to use for authentication. */
@@ -1711,8 +1710,7 @@ export function onYourDataConnectionStringAuthenticationOptionsSerializer(
 }
 
 /** The authentication options for Azure OpenAI On Your Data when using an Elasticsearch key and key ID pair. */
-export interface OnYourDataKeyAndKeyIdAuthenticationOptions
-  extends OnYourDataAuthenticationOptions {
+export interface OnYourDataKeyAndKeyIdAuthenticationOptions extends OnYourDataAuthenticationOptions {
   /** The authentication type of Elasticsearch key and key ID pair. */
   type: "key_and_key_id";
   /** The key to use for authentication. */
@@ -1728,8 +1726,7 @@ export function onYourDataKeyAndKeyIdAuthenticationOptionsSerializer(
 }
 
 /** The authentication options for Azure OpenAI On Your Data when using an Elasticsearch encoded API key. */
-export interface OnYourDataEncodedApiKeyAuthenticationOptions
-  extends OnYourDataAuthenticationOptions {
+export interface OnYourDataEncodedApiKeyAuthenticationOptions extends OnYourDataAuthenticationOptions {
   /** The authentication type of Elasticsearch encoded API Key. */
   type: "encoded_api_key";
   /** The encoded API key to use for authentication. */
@@ -1743,8 +1740,7 @@ export function onYourDataEncodedApiKeyAuthenticationOptionsSerializer(
 }
 
 /** The authentication options for Azure OpenAI On Your Data when using access token. */
-export interface OnYourDataAccessTokenAuthenticationOptions
-  extends OnYourDataAuthenticationOptions {
+export interface OnYourDataAccessTokenAuthenticationOptions extends OnYourDataAuthenticationOptions {
   /** The authentication type of access token. */
   type: "access_token";
   /** The access token to use for authentication. */
@@ -1758,8 +1754,7 @@ export function onYourDataAccessTokenAuthenticationOptionsSerializer(
 }
 
 /** The authentication options for Azure OpenAI On Your Data when using a system-assigned managed identity. */
-export interface OnYourDataSystemAssignedManagedIdentityAuthenticationOptions
-  extends OnYourDataAuthenticationOptions {
+export interface OnYourDataSystemAssignedManagedIdentityAuthenticationOptions extends OnYourDataAuthenticationOptions {
   /** The authentication type of system-assigned managed identity. */
   type: "system_assigned_managed_identity";
 }
@@ -1771,8 +1766,7 @@ export function onYourDataSystemAssignedManagedIdentityAuthenticationOptionsSeri
 }
 
 /** The authentication options for Azure OpenAI On Your Data when using a user-assigned managed identity. */
-export interface OnYourDataUserAssignedManagedIdentityAuthenticationOptions
-  extends OnYourDataAuthenticationOptions {
+export interface OnYourDataUserAssignedManagedIdentityAuthenticationOptions extends OnYourDataAuthenticationOptions {
   /** The authentication type of user-assigned managed identity. */
   type: "user_assigned_managed_identity";
   /** The resource ID of the user-assigned managed identity to use for authentication. */
@@ -1955,8 +1949,7 @@ export function onYourDataVectorSearchAuthenticationOptionsUnionSerializer(
 export type OnYourDataVectorSearchAuthenticationType = "api_key" | "access_token";
 
 /** The authentication options for Azure OpenAI On Your Data when using an API key. */
-export interface OnYourDataVectorSearchApiKeyAuthenticationOptions
-  extends OnYourDataVectorSearchAuthenticationOptions {
+export interface OnYourDataVectorSearchApiKeyAuthenticationOptions extends OnYourDataVectorSearchAuthenticationOptions {
   /** The authentication type of API key. */
   type: "api_key";
   /** The API key to use for authentication. */
@@ -1970,8 +1963,7 @@ export function onYourDataVectorSearchApiKeyAuthenticationOptionsSerializer(
 }
 
 /** The authentication options for Azure OpenAI On Your Data vector search when using access token. */
-export interface OnYourDataVectorSearchAccessTokenAuthenticationOptions
-  extends OnYourDataVectorSearchAuthenticationOptions {
+export interface OnYourDataVectorSearchAccessTokenAuthenticationOptions extends OnYourDataVectorSearchAuthenticationOptions {
   /** The authentication type of access token. */
   type: "access_token";
   /** The access token to use for authentication. */
@@ -2028,8 +2020,7 @@ export function onYourDataModelIdVectorizationSourceSerializer(
  * A specific representation of configurable options for Azure Machine Learning vector index when using it as an Azure
  * OpenAI chat extension.
  */
-export interface AzureMachineLearningIndexChatExtensionConfiguration
-  extends AzureChatExtensionConfiguration {
+export interface AzureMachineLearningIndexChatExtensionConfiguration extends AzureChatExtensionConfiguration {
   /**
    * The type label to use when configuring Azure OpenAI chat extensions. This should typically not be changed from its
    * default value for Azure Machine Learning vector index.
@@ -2693,8 +2684,7 @@ export function chatCompletionsNamedToolSelectionUnionSerializer(
 }
 
 /** A tool selection of a specific, named function tool that will limit chat completions to using the named function. */
-export interface ChatCompletionsNamedFunctionToolSelection
-  extends ChatCompletionsNamedToolSelection {
+export interface ChatCompletionsNamedFunctionToolSelection extends ChatCompletionsNamedToolSelection {
   /** The object type, which is always 'function'. */
   type: "function";
   /** The function that should be called. */

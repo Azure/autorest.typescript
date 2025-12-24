@@ -72,16 +72,11 @@ export function _fooSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        "api-version": context.apiVersion,
-        ...options.requestOptions?.headers,
-      },
+      headers: { "api-version": context.apiVersion, ...options.requestOptions?.headers },
     });
 }
 
-export async function _fooDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _fooDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);

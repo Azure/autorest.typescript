@@ -91,19 +91,19 @@ stages:
             name: UpdateRLCCommonDevVersionInTypesSpecTs
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
           - script: |
-              export TAR_NAME=$(node ../../common/scripts/install-run-rush-pnpm.js pack -q)
+              export TAR_NAME=$(pnpm pack -q | tail -n 1)
               echo $TAR_NAME
               echo "##vso[task.setvariable variable=TAR_NAME;isOutput=true;]$TAR_NAME"
             name: PackAutorestTypescriptArtifacts
             workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
           - script: |
-              export TAR_NAME=$(node ../../common/scripts/install-run-rush-pnpm.js pack -q)
+              export TAR_NAME=$(pnpm pack -q | tail -n 1)
               echo $TAR_NAME
               echo "##vso[task.setvariable variable=TAR_NAME;isOutput=true;]$TAR_NAME"
             name: PackTypeSpecTSArtifacts
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
           - script: |
-              export TAR_NAME=$(node ../../common/scripts/install-run-rush-pnpm.js pack -q)
+              export TAR_NAME=$(pnpm pack -q | tail -n 1)
               echo $TAR_NAME
               echo "##vso[task.setvariable variable=TAR_NAME;isOutput=true;]$TAR_NAME"
             name: PackRLCCommonArtifacts
@@ -244,7 +244,7 @@ stages:
           demands: ImageOverride -equals $(OSVmImage)
         steps:
           - template: build.yml
-          - script: node $(Build.SourcesDirectory)/common/scripts/install-run-rushx.js smoke-test
+          - script: npm run smoke-test
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-test
             displayName: "Generate Code From TypeSpec"
           - script: npm run check:tree
@@ -270,7 +270,7 @@ stages:
           vmImage: $[coalesce(variables['OSVmImage'], '')]
         steps:
           - template: build.yml
-          - script: node $(Build.SourcesDirectory)/common/scripts/install-run-rushx.js smoke-test:contoso && node $(Build.SourcesDirectory)/common/scripts/install-run-rushx.js smoke-test:todo
+          - script: npm run smoke-test:contoso && npm run smoke-test:todo
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-test
             displayName: "Generate Contoso Code From TypeSpec"
 

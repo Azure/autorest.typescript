@@ -18,9 +18,7 @@ import {
 } from "../models";
 
 /** Class containing SubscriptionInCredentials operations. */
-export class SubscriptionInCredentialsImpl
-  implements SubscriptionInCredentials
-{
+export class SubscriptionInCredentialsImpl implements SubscriptionInCredentials {
   private readonly client: AzureSpecialPropertiesClient;
 
   /**

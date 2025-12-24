@@ -34,11 +34,13 @@ import {
 } from "../utils/credentialUtils.js";
 import {
   getMethodHierarchiesMap,
+  isTenantLevelOperation,
   ServiceOperation
 } from "../utils/operationUtil.js";
 import { getSubscriptionId } from "../transform/transfromRLCOptions.js";
 import { getClientParametersDeclaration } from "./helpers/clientHelpers.js";
 import { getOperationFunction } from "./helpers/operationHelpers.js";
+import { ModelOverrideOptions } from "./serialization/serializeUtils.js";
 
 /**
  * Interfaces for samples generations
@@ -272,6 +274,7 @@ function buildParameterValueMap(example: SdkHttpOperationExample) {
 }
 
 function prepareExampleValue(
+  context: SdkContext,
   name: string,
   value: SdkExampleValue | string,
   isOptional?: boolean,
@@ -279,7 +282,8 @@ function prepareExampleValue(
 ): ExampleValue {
   return {
     name: normalizeName(name, NameType.Parameter),
-    value: typeof value === "string" ? value : getParameterValue(value),
+    value:
+      typeof value === "string" ? value : getParameterValue(context, value),
     isOptional: Boolean(isOptional),
     onClient: Boolean(onClient)
   };
@@ -329,6 +333,7 @@ function prepareExampleParameters(
   }
 
   let subscriptionIdValue = `"00000000-0000-0000-0000-000000000000"`;
+  let isSubscriptionIdAdded = false;
   // required parameters
   for (const param of method.operation.parameters) {
     if (
@@ -340,6 +345,26 @@ function prepareExampleParameters(
     }
 
     const exampleValue = parameterMap[param.serializedName];
+
+    // Handle subscriptionId parameter separately for ARM clients
+    // Add it as long as it's the parameter of the method, even no example provided
+    if (param.name.toLowerCase() === "subscriptionid" && dpgContext.arm) {
+      isSubscriptionIdAdded = true;
+      if (exampleValue && exampleValue.value) {
+        subscriptionIdValue = getParameterValue(dpgContext, exampleValue.value);
+      }
+      result.push(
+        prepareExampleValue(
+          dpgContext,
+          param.name,
+          subscriptionIdValue,
+          param.optional,
+          param.onClient
+        )
+      );
+      continue;
+    }
+
     if (!exampleValue || !exampleValue.value) {
       // report diagnostic if required parameter is missing
       reportDiagnostic(dpgContext.program, {
@@ -353,16 +378,9 @@ function prepareExampleParameters(
       continue;
     }
 
-    if (
-      param.name.toLowerCase() === "subscriptionid" &&
-      dpgContext.arm &&
-      exampleValue
-    ) {
-      subscriptionIdValue = getParameterValue(exampleValue.value);
-      continue;
-    }
     result.push(
       prepareExampleValue(
+        dpgContext,
         exampleValue.parameter.name,
         exampleValue.value,
         param.optional,
@@ -370,12 +388,26 @@ function prepareExampleParameters(
       )
     );
   }
-  // add subscriptionId for ARM clients if ARM clients need it
-  if (dpgContext.arm && getSubscriptionId(dpgContext)) {
+
+  // If client-level subscriptionId is needed on the client for this method, then add it
+  // For example, Operations_List
+  if (
+    dpgContext.arm &&
+    getSubscriptionId(dpgContext) &&
+    !isSubscriptionIdAdded &&
+    !isTenantLevelOperation(method, topLevelClient)
+  ) {
     result.push(
-      prepareExampleValue("subscriptionId", subscriptionIdValue, false, true)
+      prepareExampleValue(
+        dpgContext,
+        "subscriptionId",
+        subscriptionIdValue,
+        false,
+        true
+      )
     );
   }
+
   // required/optional body parameters
   const bodyParam = method.operation.bodyParam;
   const bodySerializeName = bodyParam?.serializedName;
@@ -393,6 +425,7 @@ function prepareExampleParameters(
         }
         result.push(
           prepareExampleValue(
+            dpgContext,
             prop.name,
             propExample,
             prop.optional,
@@ -403,6 +436,7 @@ function prepareExampleParameters(
     } else {
       result.push(
         prepareExampleValue(
+          dpgContext,
           bodyParam.name,
           bodyExample.value,
           bodyParam.optional,
@@ -423,6 +457,7 @@ function prepareExampleParameters(
     .forEach((param) => {
       result.push(
         prepareExampleValue(
+          dpgContext,
           param.parameter.name,
           param.value,
           true,
@@ -472,7 +507,13 @@ function getCredentialExampleValue(
   return undefined;
 }
 
-function getParameterValue(value: SdkExampleValue): string {
+function getParameterValue(
+  context: SdkContext,
+  value: SdkExampleValue,
+  options?: {
+    overrides?: ModelOverrideOptions;
+  }
+): string {
   let retValue = `{} as any`;
   switch (value.kind) {
     case "string": {
@@ -510,21 +551,50 @@ function getParameterValue(value: SdkExampleValue): string {
       break;
     case "dict":
     case "model": {
-      const mapper = buildPropertyNameMapper(value.type);
+      const mapper = buildPropertyNameMapper(
+        context,
+        value.type,
+        options?.overrides
+      );
       const values = [];
       const additionalPropertiesValue =
         value.kind === "model" ? (value.additionalPropertiesValue ?? {}) : {};
       for (const propName in {
         ...value.value
       }) {
+        let property;
+        if (value.type.kind === "model") {
+          property = value.type.properties.find((p) => p.name === propName);
+        }
         const propValue = value.value[propName];
         if (propValue === undefined || propValue === null) {
           continue;
         }
-        const propRetValue =
-          `"${mapper.get(propName) ?? propName}": ` +
-          getParameterValue(propValue);
-        values.push(propRetValue);
+        let propRetValue;
+
+        if (
+          property?.flatten &&
+          property.type.kind === "model" &&
+          options?.overrides?.enableFlatten !== false
+        ) {
+          // For flatten property, we need to recursively get its properties
+          // but disable further flattening to match the TypeScript interface structure
+          const paramValue = getParameterValue(context, propValue, {
+            overrides: {
+              propertyRenames:
+                useContext("sdkTypes").flattenProperties.get(property)
+                  ?.conflictMap,
+              enableFlatten: false
+            }
+          });
+          propRetValue =
+            paramValue.length > 2 ? paramValue.slice(1, -1) : undefined;
+        } else {
+          propRetValue =
+            `"${mapper.get(propName) ?? propName}": ` +
+            getParameterValue(context, propValue, options);
+        }
+        if (propRetValue) values.push(propRetValue);
       }
       const additionalBags = [];
       for (const propName in {
@@ -536,7 +606,7 @@ function getParameterValue(value: SdkExampleValue): string {
         }
         const propRetValue =
           `"${mapper.get(propName) ?? propName}": ` +
-          getParameterValue(propValue);
+          getParameterValue(context, propValue);
         additionalBags.push(propRetValue);
       }
       if (additionalBags.length > 0) {
@@ -552,7 +622,9 @@ function getParameterValue(value: SdkExampleValue): string {
       break;
     }
     case "array": {
-      const valuesArr = value.value.map(getParameterValue);
+      const valuesArr = value.value.map((item) =>
+        getParameterValue(context, item)
+      );
       retValue = `[${valuesArr.join(", ")}]`;
       break;
     }

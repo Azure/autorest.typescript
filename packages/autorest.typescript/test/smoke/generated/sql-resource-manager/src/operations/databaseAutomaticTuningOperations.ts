@@ -18,9 +18,7 @@ import {
 } from "../models/index.js";
 
 /** Class containing DatabaseAutomaticTuningOperations operations. */
-export class DatabaseAutomaticTuningOperationsImpl
-  implements DatabaseAutomaticTuningOperations
-{
+export class DatabaseAutomaticTuningOperationsImpl implements DatabaseAutomaticTuningOperations {
   private readonly client: SqlManagementClient;
 
   /**

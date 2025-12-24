@@ -32,9 +32,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing ConfigurationPolicyGroups operations. */
-export class ConfigurationPolicyGroupsImpl
-  implements ConfigurationPolicyGroups
-{
+export class ConfigurationPolicyGroupsImpl implements ConfigurationPolicyGroups {
   private readonly client: NetworkManagementClient;
 
   /**

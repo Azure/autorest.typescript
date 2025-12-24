@@ -34,9 +34,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing LedgerDigestUploadsOperations operations. */
-export class LedgerDigestUploadsOperationsImpl
-  implements LedgerDigestUploadsOperations
-{
+export class LedgerDigestUploadsOperationsImpl implements LedgerDigestUploadsOperations {
   private readonly client: SqlManagementClient;
 
   /**

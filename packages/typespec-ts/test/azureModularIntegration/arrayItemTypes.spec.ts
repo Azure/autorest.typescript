@@ -40,10 +40,13 @@ const testedTypes: TypeDetail[] = [
     type: "unknown",
     defaultValue: [1, "hello", null]
   },
-  // {
-  //   type: "model",
-  //   defaultValue: [{ property: "hello" }, { property: "world" }]
-  // },
+  {
+    type: "model",
+    defaultValue: [
+      { property: "hello", children: undefined },
+      { property: "world", children: undefined }
+    ]
+  },
   {
     type: "nullable-float",
     defaultValue: [1.25, null, 3.0]
@@ -59,11 +62,15 @@ const testedTypes: TypeDetail[] = [
   {
     type: "nullable-boolean",
     defaultValue: [true, null, false]
+  },
+  {
+    type: "nullable-model",
+    defaultValue: [
+      { property: "hello", children: undefined },
+      null,
+      { property: "world", children: undefined }
+    ]
   }
-  // {
-  //   type: "nullable-model",
-  //   defaultValue: [{ property: "hello" }, null, { property: "world" }]
-  // }
 ];
 describe("Array Item-Types Client", () => {
   let client: ArrayClient;
@@ -105,9 +112,9 @@ describe("Array Item-Types Client", () => {
         case "unknown":
           result = await client.unknownValue.get();
           break;
-        // case "model":
-        //   result = await client.modelValue.get();
-        //   break;
+        case "model":
+          result = await client.modelValue.get();
+          break;
         case "nullable-float":
           result = await client.nullableFloatValue.get();
           break;
@@ -120,9 +127,9 @@ describe("Array Item-Types Client", () => {
         case "nullable-boolean":
           result = await client.nullableBooleanValue.get();
           break;
-        // case "nullable-model":
-        //   result = await client.nullableModelValue.get();
-        //   break;
+        case "nullable-model":
+          result = await client.nullableModelValue.get();
+          break;
         default:
           break;
       }

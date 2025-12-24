@@ -118,10 +118,7 @@ async function read(): Promise<void> {
     unknownValueWithNum: 7,
     unknownValueWithNull: null,
     unknownValueWithBoolean: false,
-    unknownValueWithObjectNested: {
-      foo: "bar",
-      bar: [{ foo: "fooStr" }, "barStr", 7],
-    },
+    unknownValueWithObjectNested: { foo: "bar", bar: [{ foo: "fooStr" }, "barStr", 7] },
     strValue: "00000000-0000-0000-0000-00000000000",
     numValue: 0.12,
     enumValue: "red",

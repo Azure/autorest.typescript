@@ -16,9 +16,7 @@ import {
 } from "../models/index.js";
 
 /** Class containing ManagedDatabaseRestoreDetails operations. */
-export class ManagedDatabaseRestoreDetailsImpl
-  implements ManagedDatabaseRestoreDetails
-{
+export class ManagedDatabaseRestoreDetailsImpl implements ManagedDatabaseRestoreDetails {
   private readonly client: SqlManagementClient;
 
   /**
