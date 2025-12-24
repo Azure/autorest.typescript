@@ -49,6 +49,8 @@ model SimpleModel {
   propNotNormalizeModel: FOO;
   propNormalizeModel: FOOBAR;
   propRecordOfUnionArrayNotNormalize: Record<NFVIs[]>;
+  propUnionArrayNotNormalize: NFVIs[];
+  propRecordOfUnionNotNormalize: Record<NFVIs>;
 }
 
 @discriminator("nfviType")
@@ -135,6 +137,8 @@ export interface SimpleModel {
   propNotNormalizeModel: FOO;
   propNormalizeModel: Foobar;
   propRecordOfUnionArrayNotNormalize: Record<string, NFVIsUnion[]>;
+  propUnionArrayNotNormalize: NFVIsUnion[];
+  propRecordOfUnionNotNormalize: Record<string, NFVIsUnion>;
 }
 
 export function simpleModelSerializer(item: SimpleModel): any {
@@ -220,6 +224,10 @@ export function simpleModelSerializer(item: SimpleModel): any {
     propNormalizeModel: foobarSerializer(item["propNormalizeModel"]),
     propRecordOfUnionArrayNotNormalize: nfvIsUnionArrayRecordSerializer(
       item["propRecordOfUnionArrayNotNormalize"],
+    ),
+    propUnionArrayNotNormalize: nfvIsUnionArraySerializer(item["propUnionArrayNotNormalize"]),
+    propRecordOfUnionNotNormalize: nfvIsUnionRecordSerializer(
+      item["propRecordOfUnionNotNormalize"],
     ),
   };
 }
@@ -500,5 +508,13 @@ export function azureArcK8SClusterNfviDetailsSerializer(item: AzureArcK8SCluster
     nfviType: item["nfviType"],
     customLocationId: item["customLocationId"],
   };
+}
+
+export function nfvIsUnionRecordSerializer(item: Record<string, NFVIs>): Record<string, any> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = !item[key] ? item[key] : nfvIsUnionSerializer(item[key]);
+  });
+  return result;
 }
 ```
