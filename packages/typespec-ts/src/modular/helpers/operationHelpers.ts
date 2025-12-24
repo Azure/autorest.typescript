@@ -920,28 +920,15 @@ function getCollectionFormatForParam(
 ) {
   const serializedName = getPropertySerializedName(param);
   const format = (param as any).collectionFormat;
-  if (!param.optional) {
-    return `"${serializedName}": ${serializeRequestValue(
-      context,
-      param.type,
-      param.name,
-      true,
-      format,
-      serializedName,
-      true
-    )}`;
-  }
-  return `"${serializedName}": ${optionalParamName}?.${
-    param.name
-  } !== undefined ? ${serializeRequestValue(
+  return `"${serializedName}": ${serializeRequestValue(
     context,
     param.type,
-    `${optionalParamName}?.${param.name}`,
-    false,
+    param.optional ? `${optionalParamName}?.${param.name}` : param.name,
+    !param.optional,
     format,
     serializedName,
     true
-  )}: undefined`;
+  )}`;
 }
 
 function isContentType(param: SdkHttpParameter): boolean {
@@ -1602,7 +1589,7 @@ export function deserializeResponseValue(
             // We shouldn't check for an empty string here since an empty string should be parsed as an empty array
             const optionalPrefixForString =
               isTypeNullable(type) || getOptionalForType(type) || !required
-                ? `${restValue} == null? ${restValue}: `
+                ? `${restValue} === null || ${restValue} === undefined ? ${restValue}: `
                 : "";
             return `${optionalPrefixForString}${parseHelper}(${restValue})`;
           } else {

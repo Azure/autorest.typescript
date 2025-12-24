@@ -106,11 +106,11 @@ export function widgetDeserializer(item: any): Widget {
     requiredCsvColors: parseCsvCollection(item["requiredCsvColors"]),
     requiredPipeColors: parsePipeCollection(item["requiredPipeColors"]),
     optionalSsvColors:
-      item["optionalSsvColors"] == null
+      item["optionalSsvColors"] === null || item["optionalSsvColors"] === undefined
         ? item["optionalSsvColors"]
         : parseSsvCollection(item["optionalSsvColors"]),
     optionalNewlineColors:
-      item["optionalNewlineColors"] == null
+      item["optionalNewlineColors"] === null || item["optionalNewlineColors"] === undefined
         ? item["optionalNewlineColors"]
         : parseNewlineCollection(item["optionalNewlineColors"]),
   };
@@ -211,7 +211,9 @@ export function nestedWidgetDeserializer(item: any): NestedWidget {
   return {
     tags: parseCsvCollection(item["tags"]),
     categories:
-      item["categories"] == null ? item["categories"] : parsePipeCollection(item["categories"]),
+      item["categories"] === null || item["categories"] === undefined
+        ? item["categories"]
+        : parsePipeCollection(item["categories"]),
   };
 }
 ```

@@ -62,16 +62,13 @@ export function _createSend(
           return p;
         }),
       ),
-      ssvOptionalArray:
-        options?.ssvOptionalArray !== undefined
-          ? !options?.ssvOptionalArray
-            ? options?.ssvOptionalArray
-            : buildSsvCollection(
-                options?.ssvOptionalArray.map((p: any) => {
-                  return p;
-                }),
-              )
-          : undefined,
+      ssvOptionalArray: !options?.ssvOptionalArray
+        ? options?.ssvOptionalArray
+        : buildSsvCollection(
+            options?.ssvOptionalArray.map((p: any) => {
+              return p;
+            }),
+          ),
       pipeArray: buildPipeCollection(
         pipeArray.map((p: any) => {
           return p;

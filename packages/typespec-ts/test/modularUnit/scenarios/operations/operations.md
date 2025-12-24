@@ -168,16 +168,13 @@ export function _readSend(
       ),
       ...(options?.optionalCsvArrayHeader !== undefined
         ? {
-            "optional-csv-array-header":
-              options?.optionalCsvArrayHeader !== undefined
-                ? !options?.optionalCsvArrayHeader
-                  ? options?.optionalCsvArrayHeader
-                  : buildCsvCollection(
-                      options?.optionalCsvArrayHeader.map((p: any) => {
-                        return p;
-                      }),
-                    )
-                : undefined,
+            "optional-csv-array-header": !options?.optionalCsvArrayHeader
+              ? options?.optionalCsvArrayHeader
+              : buildCsvCollection(
+                  options?.optionalCsvArrayHeader.map((p: any) => {
+                    return p;
+                  }),
+                ),
           }
         : {}),
       "utc-date-header": utcDateHeader.toUTCString(),
