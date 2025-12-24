@@ -1174,7 +1174,11 @@ function getNullableCheck(name: string, type: SdkType) {
   return `${name} === null ? null :`;
 }
 
-function getEncodeForProperty(
+/**
+ * Determines the appropriate encoding format for a model property, especially for arrays with collection format encoding.
+ * For example, returns "csv" for comma-delimited arrays or the property's type encoding for regular properties.
+ */
+function getEncodeForModelProperty(
   context: SdkContext,
   property: SdkModelPropertyType
 ): string | undefined {
@@ -1189,10 +1193,11 @@ function getEncodeForProperty(
         },
         target: NoTarget
       });
+      return getEncodeForType(property.type);
     }
 
     const collectionFormat = getCollectionFormatFromArrayEncoding(
-      property.encode ?? ""
+      property.encode
     );
     if (
       collectionFormat &&
@@ -1277,7 +1282,7 @@ export function getSerializationExpression(
       property.type,
       propertyFullName,
       !property.optional,
-      getEncodeForProperty(context, property),
+      getEncodeForModelProperty(context, property),
       getPropertySerializedName(property),
       propertyPath === "" ? true : false
     );
@@ -1407,7 +1412,7 @@ export function getResponseMapping(
         property.type,
         `${propertyPath}${dot}["${serializedName}"]`,
         !property.optional,
-        getEncodeForProperty(context, property)
+        getEncodeForModelProperty(context, property)
       );
       props.push(`${propertyName}: ${deserializeValue}`);
     }
@@ -1594,7 +1599,7 @@ export function deserializeResponseValue(
         if (format) {
           const parseHelper = getCollectionFormatParseHelper(format);
           if (parseHelper) {
-            // An empty string should be parsed as an empty array
+            // We shouldn't check for an empty string here since an empty string should be parsed as an empty array
             const optionalPrefixForString =
               isTypeNullable(type) || getOptionalForType(type) || !required
                 ? `${restValue} == null? ${restValue}: `
