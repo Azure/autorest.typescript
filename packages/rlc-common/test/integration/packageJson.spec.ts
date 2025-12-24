@@ -237,34 +237,6 @@ describe("Package file generation", () => {
       );
     });
 
-    it("[cjs] should include correct entrypoints with tests", () => {
-      const model = createMockModel({
-        ...baseConfig,
-        withTests: true,
-        moduleKind: "cjs"
-      });
-      const packageFileContent = buildPackageFile(model);
-      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
-
-      expect(packageFile).to.have.property("main", "dist/src/index.js");
-      expect(packageFile).to.have.property("types", `./types/src/test.d.ts`);
-      expect(packageFile).to.have.property("module", "./dist-esm/src/index.js");
-    });
-
-    it("[cjs] should include correct entrypoints with samples", () => {
-      const model = createMockModel({
-        ...baseConfig,
-        withSamples: true,
-        moduleKind: "cjs"
-      });
-      const packageFileContent = buildPackageFile(model);
-      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
-
-      expect(packageFile).to.have.property("main", "dist/src/index.js");
-      expect(packageFile).to.have.property("types", `./types/src/test.d.ts`);
-      expect(packageFile).to.have.property("module", "./dist-esm/src/index.js");
-    });
-
     it("[esm] should include correct entrypoints", () => {
       const model = createMockModel({
         ...baseConfig,
@@ -350,45 +322,6 @@ describe("Package file generation", () => {
       expect(packageFile.scripts).to.have.property(
         "test",
         "npm run test:node && npm run test:browser"
-      );
-      expect(packageFile.scripts).to.have.property(
-        "format",
-        'prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}" '
-      );
-    });
-
-    it("[cjs] should include correct scripts with tests", () => {
-      const model = createMockModel({
-        ...baseConfig,
-        moduleKind: "cjs",
-        withTests: true
-      });
-      const packageFileContent = buildPackageFile(model);
-      const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
-
-      expect(packageFile.scripts).to.have.property(
-        "build",
-        "npm run clean && tsc -p . && dev-tool run extract-api"
-      );
-      expect(packageFile.scripts).to.have.property(
-        "build:node",
-        "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1"
-      );
-      expect(packageFile.scripts).to.have.property(
-        "build:test",
-        "tsc -p ."
-      );
-      expect(packageFile.scripts).to.have.property(
-        "build:debug",
-        "tsc -p . && dev-tool run extract-api"
-      );
-      expect(packageFile.scripts).to.have.property(
-        "clean",
-        "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log"
-      );
-      expect(packageFile.scripts).to.have.property(
-        "extract-api",
-        "rimraf review && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "format",

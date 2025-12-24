@@ -153,7 +153,6 @@ function addSwaggerMetadata(
 
 function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
   const esmScripts = getEsmScripts(config);
-  const cjsScripts = getCjsScripts(config);
   const skipLinting = config.azureArm && config.isModularLibrary;
   const buildSampleScripts = config.azureArm
     ? "tsc -p tsconfig.samples.json && dev-tool samples publish -f"
@@ -182,7 +181,6 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
     lint: skipLinting ? "echo skipped" : "eslint package.json src test",
     pack: `pnpm pack 2>&1`,
     ...esmScripts,
-    ...cjsScripts,
     "update-snippets": "dev-tool run update-snippets"
   };
 }
@@ -198,25 +196,6 @@ function getEsmScripts({ moduleKind }: AzureMonorepoInfoConfig) {
     "test:node": "dev-tool run test:vitest",
     "test:node:esm": "dev-tool run test:vitest --esm",
     test: "npm run test:node && npm run test:browser"
-  };
-}
-
-function getCjsScripts({ moduleKind }: AzureMonorepoInfoConfig) {
-  if (moduleKind !== "cjs") {
-    return {};
-  }
-
-  return {
-    build: "npm run clean && tsc -p . && dev-tool run extract-api",
-    "build:node": "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1",
-    "build:test": "tsc -p .",
-    "build:debug": "tsc -p . && dev-tool run extract-api",
-    "integration-test:browser": "dev-tool run test:browser",
-    "integration-test:node":
-      "dev-tool run test:node-js-input -- --timeout 5000000 'dist-esm/test/**/*.spec.js'",
-    "unit-test:node":
-      "dev-tool run test:node-ts-input -- --timeout 1200000 --exclude 'test/**/browser/*.spec.ts' 'test/**/*.spec.ts'",
-    "unit-test:browser": "dev-tool run test:browser"
   };
 }
 
