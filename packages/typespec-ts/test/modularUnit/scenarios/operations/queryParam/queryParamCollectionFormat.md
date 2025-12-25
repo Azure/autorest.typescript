@@ -143,3 +143,79 @@ export async function read(
   return _readDeserialize(result);
 }
 ```
+
+# only: Should explode if both explode and collection format encoding are applied to the query parameters
+
+## TypeSpec
+
+```tsp
+@route("/query")
+interface QueryOperations {
+  @get
+  read(
+    @query(#{explode: true})
+    @encode(ArrayEncoding.spaceDelimited)
+    ssvArray: int32[];
+
+    @query(#{explode: true})
+    @encode(ArrayEncoding.spaceDelimited)
+    ssvOptionalArray?: int32[];
+  ): void;
+}
+```
+
+## Operations
+
+```ts operations
+import { TestingContext as Client } from "./index.js";
+import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
+import { ReadOptionalParams } from "./options.js";
+import {
+  StreamableMethod,
+  PathUncheckedResponse,
+  createRestError,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+
+export function _readSend(
+  context: Client,
+  ssvArray: number[],
+  options: ReadOptionalParams = { requestOptions: {} },
+): StreamableMethod {
+  const path = expandUrlTemplate(
+    "/query{?ssvArray*,ssvOptionalArray*}",
+    {
+      ssvArray: ssvArray.map((p: any) => {
+        return p;
+      }),
+      ssvOptionalArray: !options?.ssvOptionalArray
+        ? options?.ssvOptionalArray
+        : options?.ssvOptionalArray.map((p: any) => {
+            return p;
+          }),
+    },
+    {
+      allowReserved: options?.requestOptions?.skipUrlEncoding,
+    },
+  );
+  return context.path(path).get({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
+  const expectedStatuses = ["204"];
+  if (!expectedStatuses.includes(result.status)) {
+    throw createRestError(result);
+  }
+
+  return;
+}
+
+export async function read(
+  context: Client,
+  ssvArray: number[],
+  options: ReadOptionalParams = { requestOptions: {} },
+): Promise<void> {
+  const result = await _readSend(context, ssvArray, options);
+  return _readDeserialize(result);
+}
+```
