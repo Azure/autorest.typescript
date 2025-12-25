@@ -561,13 +561,11 @@ export interface DicomServicePatchResource extends ResourceTags {}
 
 /** Iot Connector patch properties */
 export interface IotConnectorPatchResource
-  extends ResourceTags,
-    ServiceManagedIdentity {}
+  extends ResourceTags, ServiceManagedIdentity {}
 
 /** FhirService patch properties */
 export interface FhirServicePatchResource
-  extends ResourceTags,
-    ServiceManagedIdentity {}
+  extends ResourceTags, ServiceManagedIdentity {}
 
 /** The common properties for any location based resource, tracked or proxy. */
 export interface LocationBasedResource extends ResourceCore {
@@ -624,8 +622,7 @@ export interface IotFhirDestinationProperties extends IotDestinationProperties {
 }
 
 /** The Private Endpoint Connection resource. */
-export interface PrivateEndpointConnectionDescription
-  extends PrivateEndpointConnection {
+export interface PrivateEndpointConnectionDescription extends PrivateEndpointConnection {
   /**
    * Metadata pertaining to creation and last modification of the resource.
    * NOTE: This property will not be serialized. It can only be populated by the server.

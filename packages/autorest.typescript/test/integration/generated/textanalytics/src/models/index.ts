@@ -538,9 +538,7 @@ export interface HealthcareJobState extends JobMetadata, Pagination {
 }
 
 export interface AnalyzeJobState
-  extends AnalyzeJobMetadata,
-    TasksState,
-    Pagination {
+  extends AnalyzeJobMetadata, TasksState, Pagination {
   errors?: TextAnalyticsError[];
   /** if includeStatistics=true was specified in the request this field will contain information about the request payload. */
   statistics?: TextDocumentBatchStatistics;
@@ -549,19 +547,23 @@ export interface AnalyzeJobState
 export interface TasksStateTasksDetails extends TaskState {}
 
 export interface TasksStateTasksEntityRecognitionTasksItem
-  extends TaskState,
+  extends
+    TaskState,
     Components15Gvwi3SchemasTasksstatePropertiesTasksPropertiesEntityrecognitiontasksItemsAllof1 {}
 
 export interface TasksStateTasksEntityRecognitionPiiTasksItem
-  extends TaskState,
+  extends
+    TaskState,
     Components15X8E9LSchemasTasksstatePropertiesTasksPropertiesEntityrecognitionpiitasksItemsAllof1 {}
 
 export interface TasksStateTasksKeyPhraseExtractionTasksItem
-  extends TaskState,
+  extends
+    TaskState,
     Components1D9IzucSchemasTasksstatePropertiesTasksPropertiesKeyphraseextractiontasksItemsAllof1 {}
 
 export interface TasksStateTasksEntityLinkingTasksItem
-  extends TaskState,
+  extends
+    TaskState,
     ComponentsIfu7BjSchemasTasksstatePropertiesTasksPropertiesEntitylinkingtasksItemsAllof1 {}
 
 export interface HealthcareEntity extends Entity {

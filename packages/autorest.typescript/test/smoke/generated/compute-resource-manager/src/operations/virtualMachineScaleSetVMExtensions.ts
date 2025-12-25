@@ -30,9 +30,7 @@ import {
 } from "../models/index.js";
 
 /** Class containing VirtualMachineScaleSetVMExtensions operations. */
-export class VirtualMachineScaleSetVMExtensionsImpl
-  implements VirtualMachineScaleSetVMExtensions
-{
+export class VirtualMachineScaleSetVMExtensionsImpl implements VirtualMachineScaleSetVMExtensions {
   private readonly client: ComputeManagementClient;
 
   /**

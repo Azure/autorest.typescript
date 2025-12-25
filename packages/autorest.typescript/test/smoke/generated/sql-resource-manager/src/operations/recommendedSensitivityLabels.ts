@@ -15,9 +15,7 @@ import {
 } from "../models/index.js";
 
 /** Class containing RecommendedSensitivityLabels operations. */
-export class RecommendedSensitivityLabelsImpl
-  implements RecommendedSensitivityLabels
-{
+export class RecommendedSensitivityLabelsImpl implements RecommendedSensitivityLabels {
   private readonly client: SqlManagementClient;
 
   /**

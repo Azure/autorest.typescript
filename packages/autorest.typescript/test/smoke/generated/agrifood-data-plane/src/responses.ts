@@ -54,8 +54,7 @@ export interface ApplicationDataListByFarmerId200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of application data resources under a particular farm. */
-export interface ApplicationDataListByFarmerIdDefaultResponse
-  extends HttpResponse {
+export interface ApplicationDataListByFarmerIdDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -97,8 +96,7 @@ export interface ApplicationDataCreateOrUpdate201Response extends HttpResponse {
 }
 
 /** Creates or updates an application data resource under a particular farmer. */
-export interface ApplicationDataCreateOrUpdateDefaultResponse
-  extends HttpResponse {
+export interface ApplicationDataCreateOrUpdateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -199,8 +197,7 @@ export interface BoundariesSearchByFarmerId200Response extends HttpResponse {
 }
 
 /** Search for boundaries by fields and intersecting geometry. */
-export interface BoundariesSearchByFarmerIdDefaultResponse
-  extends HttpResponse {
+export interface BoundariesSearchByFarmerIdDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -230,29 +227,25 @@ export interface BoundariesSearchDefaultResponse extends HttpResponse {
 }
 
 /** Get cascade delete job for specified boundary. */
-export interface BoundariesGetCascadeDeleteJobDetails200Response
-  extends HttpResponse {
+export interface BoundariesGetCascadeDeleteJobDetails200Response extends HttpResponse {
   status: "200";
   body: CascadeDeleteJobOutput;
 }
 
 /** Get cascade delete job for specified boundary. */
-export interface BoundariesGetCascadeDeleteJobDetailsDefaultResponse
-  extends HttpResponse {
+export interface BoundariesGetCascadeDeleteJobDetailsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** Create a cascade delete job for specified boundary. */
-export interface BoundariesCreateCascadeDeleteJob202Response
-  extends HttpResponse {
+export interface BoundariesCreateCascadeDeleteJob202Response extends HttpResponse {
   status: "202";
   body: CascadeDeleteJobOutput;
 }
 
 /** Create a cascade delete job for specified boundary. */
-export interface BoundariesCreateCascadeDeleteJobDefaultResponse
-  extends HttpResponse {
+export interface BoundariesCreateCascadeDeleteJobDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -412,8 +405,7 @@ export interface CropVarietiesCreateOrUpdate201Response extends HttpResponse {
 }
 
 /** Creates or updates a crop variety resource. */
-export interface CropVarietiesCreateOrUpdateDefaultResponse
-  extends HttpResponse {
+export interface CropVarietiesCreateOrUpdateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -483,15 +475,13 @@ export interface FarmersDeleteDefaultResponse extends HttpResponse {
 }
 
 /** Get a cascade delete job for specified farmer. */
-export interface FarmersGetCascadeDeleteJobDetails200Response
-  extends HttpResponse {
+export interface FarmersGetCascadeDeleteJobDetails200Response extends HttpResponse {
   status: "200";
   body: CascadeDeleteJobOutput;
 }
 
 /** Get a cascade delete job for specified farmer. */
-export interface FarmersGetCascadeDeleteJobDetailsDefaultResponse
-  extends HttpResponse {
+export interface FarmersGetCascadeDeleteJobDetailsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -503,36 +493,31 @@ export interface FarmersCreateCascadeDeleteJob202Response extends HttpResponse {
 }
 
 /** Create a cascade delete job for specified farmer. */
-export interface FarmersCreateCascadeDeleteJobDefaultResponse
-  extends HttpResponse {
+export interface FarmersCreateCascadeDeleteJobDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** Create a farm operation data ingestion job. */
-export interface FarmOperationsCreateDataIngestionJob202Response
-  extends HttpResponse {
+export interface FarmOperationsCreateDataIngestionJob202Response extends HttpResponse {
   status: "202";
   body: FarmOperationDataIngestionJobOutput;
 }
 
 /** Create a farm operation data ingestion job. */
-export interface FarmOperationsCreateDataIngestionJobDefaultResponse
-  extends HttpResponse {
+export interface FarmOperationsCreateDataIngestionJobDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** Get a farm operation data ingestion job. */
-export interface FarmOperationsGetDataIngestionJobDetails200Response
-  extends HttpResponse {
+export interface FarmOperationsGetDataIngestionJobDetails200Response extends HttpResponse {
   status: "200";
   body: FarmOperationDataIngestionJobOutput;
 }
 
 /** Get a farm operation data ingestion job. */
-export interface FarmOperationsGetDataIngestionJobDetailsDefaultResponse
-  extends HttpResponse {
+export interface FarmOperationsGetDataIngestionJobDetailsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -603,15 +588,13 @@ export interface FarmsDeleteDefaultResponse extends HttpResponse {
 }
 
 /** Get a cascade delete job for specified farm. */
-export interface FarmsGetCascadeDeleteJobDetails200Response
-  extends HttpResponse {
+export interface FarmsGetCascadeDeleteJobDetails200Response extends HttpResponse {
   status: "200";
   body: CascadeDeleteJobOutput;
 }
 
 /** Get a cascade delete job for specified farm. */
-export interface FarmsGetCascadeDeleteJobDetailsDefaultResponse
-  extends HttpResponse {
+export interface FarmsGetCascadeDeleteJobDetailsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -623,8 +606,7 @@ export interface FarmsCreateCascadeDeleteJob202Response extends HttpResponse {
 }
 
 /** Create a cascade delete job for specified farm. */
-export interface FarmsCreateCascadeDeleteJobDefaultResponse
-  extends HttpResponse {
+export interface FarmsCreateCascadeDeleteJobDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -695,15 +677,13 @@ export interface FieldsDeleteDefaultResponse extends HttpResponse {
 }
 
 /** Get a cascade delete job for specified field. */
-export interface FieldsGetCascadeDeleteJobDetails200Response
-  extends HttpResponse {
+export interface FieldsGetCascadeDeleteJobDetails200Response extends HttpResponse {
   status: "200";
   body: CascadeDeleteJobOutput;
 }
 
 /** Get a cascade delete job for specified field. */
-export interface FieldsGetCascadeDeleteJobDetailsDefaultResponse
-  extends HttpResponse {
+export interface FieldsGetCascadeDeleteJobDetailsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -715,8 +695,7 @@ export interface FieldsCreateCascadeDeleteJob202Response extends HttpResponse {
 }
 
 /** Create a cascade delete job for specified field. */
-export interface FieldsCreateCascadeDeleteJobDefaultResponse
-  extends HttpResponse {
+export interface FieldsCreateCascadeDeleteJobDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -787,21 +766,18 @@ export interface HarvestDataDeleteDefaultResponse extends HttpResponse {
 }
 
 /** Create a ImageProcessing Rasterize job. */
-export interface ImageProcessingCreateRasterizeJob202Response
-  extends HttpResponse {
+export interface ImageProcessingCreateRasterizeJob202Response extends HttpResponse {
   status: "202";
   body: ImageProcessingRasterizeJobOutput;
 }
 
 /** Create a ImageProcessing Rasterize job. */
-export interface ImageProcessingCreateRasterizeJobDefaultResponse
-  extends HttpResponse {
+export interface ImageProcessingCreateRasterizeJobDefaultResponse extends HttpResponse {
   status: string;
 }
 
 /** Get ImageProcessing Rasterize job's details. */
-export interface ImageProcessingGetRasterizeJob200Response
-  extends HttpResponse {
+export interface ImageProcessingGetRasterizeJob200Response extends HttpResponse {
   status: "200";
   body: ImageProcessingRasterizeJobOutput;
 }
@@ -843,8 +819,7 @@ export interface OAuthProvidersCreateOrUpdate201Response extends HttpResponse {
 }
 
 /** Creates or updates an oauthProvider resource. */
-export interface OAuthProvidersCreateOrUpdateDefaultResponse
-  extends HttpResponse {
+export interface OAuthProvidersCreateOrUpdateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -873,43 +848,37 @@ export interface OAuthTokensListDefaultResponse extends HttpResponse {
 }
 
 /** Returns Connection link needed in the OAuth flow. */
-export interface OAuthTokensGetOAuthConnectionLink200Response
-  extends HttpResponse {
+export interface OAuthTokensGetOAuthConnectionLink200Response extends HttpResponse {
   status: "200";
   body: string;
 }
 
 /** Returns Connection link needed in the OAuth flow. */
-export interface OAuthTokensGetOAuthConnectionLinkDefaultResponse
-  extends HttpResponse {
+export interface OAuthTokensGetOAuthConnectionLinkDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** Get cascade delete job details for OAuth tokens for specified job ID. */
-export interface OAuthTokensGetCascadeDeleteJobDetails200Response
-  extends HttpResponse {
+export interface OAuthTokensGetCascadeDeleteJobDetails200Response extends HttpResponse {
   status: "200";
   body: CascadeDeleteJobOutput;
 }
 
 /** Get cascade delete job details for OAuth tokens for specified job ID. */
-export interface OAuthTokensGetCascadeDeleteJobDetailsDefaultResponse
-  extends HttpResponse {
+export interface OAuthTokensGetCascadeDeleteJobDetailsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** Create a cascade delete job for OAuth tokens. */
-export interface OAuthTokensCreateCascadeDeleteJob202Response
-  extends HttpResponse {
+export interface OAuthTokensCreateCascadeDeleteJob202Response extends HttpResponse {
   status: "202";
   body: CascadeDeleteJobOutput;
 }
 
 /** Create a cascade delete job for OAuth tokens. */
-export interface OAuthTokensCreateCascadeDeleteJobDefaultResponse
-  extends HttpResponse {
+export interface OAuthTokensCreateCascadeDeleteJobDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -921,8 +890,7 @@ export interface PlantingDataListByFarmerId200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of planting data resources under a particular farm. */
-export interface PlantingDataListByFarmerIdDefaultResponse
-  extends HttpResponse {
+export interface PlantingDataListByFarmerIdDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -964,8 +932,7 @@ export interface PlantingDataCreateOrUpdate201Response extends HttpResponse {
 }
 
 /** Creates or updates an planting data resource under a particular farmer. */
-export interface PlantingDataCreateOrUpdateDefaultResponse
-  extends HttpResponse {
+export interface PlantingDataCreateOrUpdateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -994,29 +961,25 @@ export interface ScenesListDefaultResponse extends HttpResponse {
 }
 
 /** Create a satellite data ingestion job. */
-export interface ScenesCreateSatelliteDataIngestionJob202Response
-  extends HttpResponse {
+export interface ScenesCreateSatelliteDataIngestionJob202Response extends HttpResponse {
   status: "202";
   body: SatelliteDataIngestionJobOutput;
 }
 
 /** Create a satellite data ingestion job. */
-export interface ScenesCreateSatelliteDataIngestionJobDefaultResponse
-  extends HttpResponse {
+export interface ScenesCreateSatelliteDataIngestionJobDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** Get a satellite data ingestion job. */
-export interface ScenesGetSatelliteDataIngestionJobDetails200Response
-  extends HttpResponse {
+export interface ScenesGetSatelliteDataIngestionJobDetails200Response extends HttpResponse {
   status: "200";
   body: SatelliteDataIngestionJobOutput;
 }
 
 /** Get a satellite data ingestion job. */
-export interface ScenesGetSatelliteDataIngestionJobDetailsDefaultResponse
-  extends HttpResponse {
+export interface ScenesGetSatelliteDataIngestionJobDetailsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -1041,8 +1004,7 @@ export interface SeasonalFieldsListByFarmerId200Response extends HttpResponse {
 }
 
 /** Returns a paginated list of seasonal field resources under a particular farmer. */
-export interface SeasonalFieldsListByFarmerIdDefaultResponse
-  extends HttpResponse {
+export interface SeasonalFieldsListByFarmerIdDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -1084,8 +1046,7 @@ export interface SeasonalFieldsCreateOrUpdate201Response extends HttpResponse {
 }
 
 /** Creates or Updates a seasonal field resource under a particular farmer. */
-export interface SeasonalFieldsCreateOrUpdateDefaultResponse
-  extends HttpResponse {
+export interface SeasonalFieldsCreateOrUpdateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -1102,29 +1063,25 @@ export interface SeasonalFieldsDeleteDefaultResponse extends HttpResponse {
 }
 
 /** Get cascade delete job for specified seasonal field. */
-export interface SeasonalFieldsGetCascadeDeleteJobDetails200Response
-  extends HttpResponse {
+export interface SeasonalFieldsGetCascadeDeleteJobDetails200Response extends HttpResponse {
   status: "200";
   body: CascadeDeleteJobOutput;
 }
 
 /** Get cascade delete job for specified seasonal field. */
-export interface SeasonalFieldsGetCascadeDeleteJobDetailsDefaultResponse
-  extends HttpResponse {
+export interface SeasonalFieldsGetCascadeDeleteJobDetailsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** Create a cascade delete job for specified seasonal field. */
-export interface SeasonalFieldsCreateCascadeDeleteJob202Response
-  extends HttpResponse {
+export interface SeasonalFieldsCreateCascadeDeleteJob202Response extends HttpResponse {
   status: "202";
   body: CascadeDeleteJobOutput;
 }
 
 /** Create a cascade delete job for specified seasonal field. */
-export interface SeasonalFieldsCreateCascadeDeleteJobDefaultResponse
-  extends HttpResponse {
+export interface SeasonalFieldsCreateCascadeDeleteJobDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -1260,15 +1217,13 @@ export interface WeatherListDefaultResponse extends HttpResponse {
 }
 
 /** Get weather ingestion job. */
-export interface WeatherGetDataIngestionJobDetails200Response
-  extends HttpResponse {
+export interface WeatherGetDataIngestionJobDetails200Response extends HttpResponse {
   status: "200";
   body: WeatherDataIngestionJobOutput;
 }
 
 /** Get weather ingestion job. */
-export interface WeatherGetDataIngestionJobDetailsDefaultResponse
-  extends HttpResponse {
+export interface WeatherGetDataIngestionJobDetailsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -1280,22 +1235,19 @@ export interface WeatherCreateDataIngestionJob202Response extends HttpResponse {
 }
 
 /** Create a weather data ingestion job. */
-export interface WeatherCreateDataIngestionJobDefaultResponse
-  extends HttpResponse {
+export interface WeatherCreateDataIngestionJobDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** Get weather data delete job. */
-export interface WeatherGetDataDeleteJobDetails200Response
-  extends HttpResponse {
+export interface WeatherGetDataDeleteJobDetails200Response extends HttpResponse {
   status: "200";
   body: WeatherDataDeleteJobOutput;
 }
 
 /** Get weather data delete job. */
-export interface WeatherGetDataDeleteJobDetailsDefaultResponse
-  extends HttpResponse {
+export interface WeatherGetDataDeleteJobDetailsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -1307,8 +1259,7 @@ export interface WeatherCreateDataDeleteJob202Response extends HttpResponse {
 }
 
 /** Create a weather data delete job. */
-export interface WeatherCreateDataDeleteJobDefaultResponse
-  extends HttpResponse {
+export interface WeatherCreateDataDeleteJobDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }

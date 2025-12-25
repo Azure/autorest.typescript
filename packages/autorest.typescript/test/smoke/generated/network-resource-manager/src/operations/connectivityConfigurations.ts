@@ -32,9 +32,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing ConnectivityConfigurations operations. */
-export class ConnectivityConfigurationsImpl
-  implements ConnectivityConfigurations
-{
+export class ConnectivityConfigurationsImpl implements ConnectivityConfigurations {
   private readonly client: NetworkManagementClient;
 
   /**

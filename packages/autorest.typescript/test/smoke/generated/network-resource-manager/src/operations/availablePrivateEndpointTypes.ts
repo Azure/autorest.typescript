@@ -25,9 +25,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing AvailablePrivateEndpointTypes operations. */
-export class AvailablePrivateEndpointTypesImpl
-  implements AvailablePrivateEndpointTypes
-{
+export class AvailablePrivateEndpointTypesImpl implements AvailablePrivateEndpointTypes {
   private readonly client: NetworkManagementClient;
 
   /**

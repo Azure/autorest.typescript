@@ -21,9 +21,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing ExpressRouteServiceProviders operations. */
-export class ExpressRouteServiceProvidersImpl
-  implements ExpressRouteServiceProviders
-{
+export class ExpressRouteServiceProvidersImpl implements ExpressRouteServiceProviders {
   private readonly client: NetworkManagementClient;
 
   /**

@@ -30,9 +30,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing CloudServiceOperatingSystems operations. */
-export class CloudServiceOperatingSystemsImpl
-  implements CloudServiceOperatingSystems
-{
+export class CloudServiceOperatingSystemsImpl implements CloudServiceOperatingSystems {
   private readonly client: ComputeManagementClient;
 
   /**

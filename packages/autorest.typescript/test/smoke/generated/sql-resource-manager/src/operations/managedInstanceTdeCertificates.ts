@@ -21,9 +21,7 @@ import {
 } from "../models/index.js";
 
 /** Class containing ManagedInstanceTdeCertificates operations. */
-export class ManagedInstanceTdeCertificatesImpl
-  implements ManagedInstanceTdeCertificates
-{
+export class ManagedInstanceTdeCertificatesImpl implements ManagedInstanceTdeCertificates {
   private readonly client: SqlManagementClient;
 
   /**

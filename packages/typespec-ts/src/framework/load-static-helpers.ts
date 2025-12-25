@@ -28,10 +28,10 @@ export function isStaticHelperMetadata(
 ): metadata is StaticHelperMetadata {
   return Boolean(
     metadata &&
-      metadata.name &&
-      metadata.kind &&
-      metadata.location &&
-      metadata[SourceFileSymbol]
+    metadata.name &&
+    metadata.kind &&
+    metadata.location &&
+    metadata[SourceFileSymbol]
   );
 }
 
@@ -39,8 +39,7 @@ export type StaticHelpers = Record<string, StaticHelperMetadata>;
 
 const DEFAULT_STATIC_HELPERS_PATH = "static/static-helpers";
 
-export interface LoadStaticHelpersOptions
-  extends Partial<ModularEmitterOptions> {
+export interface LoadStaticHelpersOptions extends Partial<ModularEmitterOptions> {
   helpersAssetDirectory?: string;
   sourcesDir?: string;
   program?: Program;
