@@ -110,6 +110,7 @@ op read(
     #suppress "deprecated" "Legacy test"
     @header
     csvArrayHeader: base64urlBytes[],
+    @header optionalCsvArrayHeader?: string[],
     @header utcDateHeader: utcDateTime,
     @header optionalDateHeader?: utcDateTime,
     @header nullableDateHeader?: utcDateTime | null,
@@ -165,6 +166,17 @@ export function _readSend(
           return uint8ArrayToString(p, "base64url");
         }),
       ),
+      ...(options?.optionalCsvArrayHeader !== undefined
+        ? {
+            "optional-csv-array-header": !options?.optionalCsvArrayHeader
+              ? options?.optionalCsvArrayHeader
+              : buildCsvCollection(
+                  options?.optionalCsvArrayHeader.map((p: any) => {
+                    return p;
+                  }),
+                ),
+          }
+        : {}),
       "utc-date-header": utcDateHeader.toUTCString(),
       ...(options?.optionalDateHeader !== undefined
         ? {
@@ -1127,11 +1139,11 @@ model ListTestResult {
   @nextLink
   next: string;
 }
-    
+
 model Test {
   id: string;
 }
-    
+
 @Legacy.nextLinkVerb("GET")
 @list
 @route("/list-get")

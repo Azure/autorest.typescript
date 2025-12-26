@@ -608,6 +608,12 @@ const libDef = {
       messages: {
         default: paramMessage`Model name conflict detected: "${"modelName"}" exists in multiple namespaces: ${"namespaces"}. Please use @clientName to rename them.`
       }
+    },
+    "un-supported-array-encoding": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`The array property "${"arrayName"}" of ${"arrayType"} type is not supported for encoding and will be ignored.`
+      }
     }
   },
   emitter: {

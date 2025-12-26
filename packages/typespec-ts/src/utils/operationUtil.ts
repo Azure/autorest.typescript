@@ -461,7 +461,8 @@ export function hasCollectionFormatInfo(
     getHasSsvCollection(paramType, paramFormat) ||
     getHasTsvCollection(paramType, paramFormat) ||
     getHasCsvCollection(paramType, paramFormat) ||
-    getHasPipeCollection(paramType, paramFormat)
+    getHasPipeCollection(paramType, paramFormat) ||
+    getHasNewlineCollection(paramType, paramFormat)
   );
 }
 
@@ -503,50 +504,96 @@ function getHasMultiCollection(
 ) {
   return (
     ((includeQuery && paramType === "query") || paramType === "header") &&
-    paramFormat === "multi"
+    paramFormat === KnownCollectionFormat.Multi
   );
 }
 function getHasSsvCollection(paramType: string, paramFormat: string) {
-  return paramType === "query" && paramFormat === "ssv";
+  return (
+    (paramType === "query" || paramType === "property") &&
+    paramFormat === KnownCollectionFormat.Ssv
+  );
 }
 
 function getHasTsvCollection(paramType: string, paramFormat: string) {
-  return paramType === "query" && paramFormat === "tsv";
+  return paramType === "query" && paramFormat === KnownCollectionFormat.Tsv;
 }
 
 function getHasCsvCollection(paramType: string, paramFormat: string) {
-  return paramType === "header" && paramFormat === "csv";
+  return (
+    (paramType === "header" || paramType === "property") &&
+    paramFormat === KnownCollectionFormat.Csv
+  );
 }
 
 function getHasPipeCollection(paramType: string, paramFormat: string) {
-  return paramType === "query" && paramFormat === "pipes";
+  return (
+    (paramType === "query" || paramType === "property") &&
+    paramFormat === KnownCollectionFormat.Pipes
+  );
 }
 
-export function getCollectionFormatHelper(
-  paramType: string,
-  paramFormat: string
-) {
-  if (getHasMultiCollection(paramType, paramFormat, false)) {
-    return resolveReference(SerializationHelpers.buildMultiCollection);
-  }
+function getHasNewlineCollection(paramType: string, paramFormat: string) {
+  return (
+    paramType === "property" && paramFormat === KnownCollectionFormat.Newline
+  );
+}
 
-  if (getHasPipeCollection(paramType, paramFormat)) {
-    return resolveReference(SerializationHelpers.buildPipeCollection);
+export function getCollectionFormatHelper(format: string) {
+  switch (format) {
+    case KnownCollectionFormat.Multi:
+      return resolveReference(SerializationHelpers.buildMultiCollection);
+    case KnownCollectionFormat.Pipes:
+      return resolveReference(SerializationHelpers.buildPipeCollection);
+    case KnownCollectionFormat.Ssv:
+      return resolveReference(SerializationHelpers.buildSsvCollection);
+    case KnownCollectionFormat.Tsv:
+      return resolveReference(SerializationHelpers.buildTsvCollection);
+    case KnownCollectionFormat.Csv:
+      return resolveReference(SerializationHelpers.buildCsvCollection);
+    case KnownCollectionFormat.Newline:
+      return resolveReference(SerializationHelpers.buildNewlineCollection);
+    default:
+      return undefined;
   }
+}
 
-  if (getHasSsvCollection(paramType, paramFormat)) {
-    return resolveReference(SerializationHelpers.buildSsvCollection);
+export function getCollectionFormatParseHelper(format: string) {
+  switch (format) {
+    case KnownCollectionFormat.Pipes:
+      return resolveReference(SerializationHelpers.parsePipeCollection);
+    case KnownCollectionFormat.Ssv:
+      return resolveReference(SerializationHelpers.parseSsvCollection);
+    case KnownCollectionFormat.Csv:
+      return resolveReference(SerializationHelpers.parseCsvCollection);
+    case KnownCollectionFormat.Newline:
+      return resolveReference(SerializationHelpers.parseNewlineCollection);
+    default:
+      return undefined;
   }
+}
 
-  if (getHasTsvCollection(paramType, paramFormat)) {
-    return resolveReference(SerializationHelpers.buildTsvCollection);
+export function getCollectionFormatFromArrayEncoding(encoding: string) {
+  switch (encoding) {
+    case "pipeDelimited":
+      return KnownCollectionFormat.Pipes;
+    case "spaceDelimited":
+      return KnownCollectionFormat.Ssv;
+    case "commaDelimited":
+      return KnownCollectionFormat.Csv;
+    case "newlineDelimited":
+      return KnownCollectionFormat.Newline;
+    default:
+      return undefined;
   }
+}
 
-  if (getHasCsvCollection(paramType, paramFormat)) {
-    return resolveReference(SerializationHelpers.buildCsvCollection);
-  }
-
-  return undefined;
+export enum KnownCollectionFormat {
+  Csv = "csv",
+  Ssv = "ssv",
+  Tsv = "tsv",
+  Pipes = "pipes",
+  Newline = "newline",
+  Multi = "multi"
 }
 
 export function getCustomRequestHeaderNameForOperation(
