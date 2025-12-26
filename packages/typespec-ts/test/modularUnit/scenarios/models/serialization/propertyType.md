@@ -46,6 +46,35 @@ model SimpleModel {
   propArrayOfRecordOfUnionOptional?: Record<string | boolean | int32>[];
   @encodedName("application/json", "prop_encoded")
   propEncoded: string;
+  propNotNormalizeModel: FOO;
+  propNormalizeModel: FOOBAR;
+  propRecordOfUnionArrayNotNormalize: Record<NFVIs[]>;
+  propUnionArrayNotNormalize: NFVIs[];
+  propRecordOfUnionNotNormalize: Record<NFVIs>;
+}
+
+@discriminator("nfviType")
+model NFVIs {
+  name?: string;
+  nfviType: string;
+}
+
+model AzureCoreNFVIDetails extends NFVIs {
+  location?: string;
+  nfviType: "AzureCore";
+}
+
+model AzureArcK8sClusterNFVIDetails extends NFVIs {
+  customLocationId?: string;
+  nfviType: "AzureArcKubernetes";
+}
+
+model FOOBAR{
+  name?: Record<NFVIs[]>;
+}
+
+model FOO {
+   param?: FOOBAR;
 }
 
 @route("/serialize")
@@ -105,6 +134,11 @@ export interface SimpleModel {
   propArrayOfRecordOfUnion: Record<string, string | boolean | number>[];
   propArrayOfRecordOfUnionOptional?: Record<string, string | boolean | number>[];
   propEncoded: string;
+  propNotNormalizeModel: FOO;
+  propNormalizeModel: Foobar;
+  propRecordOfUnionArrayNotNormalize: Record<string, NFVIsUnion[]>;
+  propUnionArrayNotNormalize: NFVIsUnion[];
+  propRecordOfUnionNotNormalize: Record<string, NFVIsUnion>;
 }
 
 export function simpleModelSerializer(item: SimpleModel): any {
@@ -186,6 +220,15 @@ export function simpleModelSerializer(item: SimpleModel): any {
           item["propArrayOfRecordOfUnionOptional"],
         ),
     prop_encoded: item["propEncoded"],
+    propNotNormalizeModel: fooSerializer(item["propNotNormalizeModel"]),
+    propNormalizeModel: foobarSerializer(item["propNormalizeModel"]),
+    propRecordOfUnionArrayNotNormalize: nfvIsUnionArrayRecordSerializer(
+      item["propRecordOfUnionArrayNotNormalize"],
+    ),
+    propUnionArrayNotNormalize: nfvIsUnionArraySerializer(item["propUnionArrayNotNormalize"]),
+    propRecordOfUnionNotNormalize: nfvIsUnionRecordSerializer(
+      item["propRecordOfUnionNotNormalize"],
+    ),
   };
 }
 
@@ -381,5 +424,97 @@ export function _simpleModelPropArrayOfRecordOfUnionOptionalSerializer(
   item: _SimpleModelPropArrayOfRecordOfUnionOptional,
 ): any {
   return item;
+}
+
+/** model interface FOO */
+export interface FOO {
+  param?: Foobar;
+}
+
+export function fooSerializer(item: FOO): any {
+  return { param: !item["param"] ? item["param"] : foobarSerializer(item["param"]) };
+}
+
+/** model interface Foobar */
+export interface Foobar {
+  name?: Record<string, NFVIsUnion[]>;
+}
+
+export function foobarSerializer(item: Foobar): any {
+  return { name: !item["name"] ? item["name"] : nfvIsUnionArrayRecordSerializer(item["name"]) };
+}
+
+export function nfvIsUnionArrayRecordSerializer(
+  item: Record<string, Array<NFVIsUnion>>,
+): Record<string, any> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = !item[key] ? item[key] : nfvIsUnionArraySerializer(item[key]);
+  });
+  return result;
+}
+
+export function nfvIsUnionArraySerializer(result: Array<NFVIsUnion>): any[] {
+  return result.map((item) => {
+    return nfvIsUnionSerializer(item);
+  });
+}
+
+/** model interface NFVIs */
+export interface NFVIs {
+  name?: string;
+  nfviType: string;
+}
+
+export function nfvIsSerializer(item: NFVIs): any {
+  return { name: item["name"], nfviType: item["nfviType"] };
+}
+
+/** Alias for NFVIsUnion */
+export type NFVIsUnion = AzureCoreNfviDetails | AzureArcK8SClusterNfviDetails | NFVIs;
+
+export function nfvIsUnionSerializer(item: NFVIsUnion): any {
+  switch (item.nfviType) {
+    case "AzureCore":
+      return azureCoreNfviDetailsSerializer(item as AzureCoreNfviDetails);
+
+    case "AzureArcKubernetes":
+      return azureArcK8SClusterNfviDetailsSerializer(item as AzureArcK8SClusterNfviDetails);
+
+    default:
+      return nfvIsSerializer(item);
+  }
+}
+
+/** model interface AzureCoreNfviDetails */
+export interface AzureCoreNfviDetails extends NFVIs {
+  location?: string;
+  nfviType: "AzureCore";
+}
+
+export function azureCoreNfviDetailsSerializer(item: AzureCoreNfviDetails): any {
+  return { name: item["name"], nfviType: item["nfviType"], location: item["location"] };
+}
+
+/** model interface AzureArcK8SClusterNfviDetails */
+export interface AzureArcK8SClusterNfviDetails extends NFVIs {
+  customLocationId?: string;
+  nfviType: "AzureArcKubernetes";
+}
+
+export function azureArcK8SClusterNfviDetailsSerializer(item: AzureArcK8SClusterNfviDetails): any {
+  return {
+    name: item["name"],
+    nfviType: item["nfviType"],
+    customLocationId: item["customLocationId"],
+  };
+}
+
+export function nfvIsUnionRecordSerializer(item: Record<string, NFVIs>): Record<string, any> {
+  const result: Record<string, any> = {};
+  Object.keys(item).map((key) => {
+    result[key] = !item[key] ? item[key] : nfvIsUnionSerializer(item[key]);
+  });
+  return result;
 }
 ```
