@@ -144,7 +144,7 @@ export async function read(
 }
 ```
 
-# only: Should explode if both explode and collection format encoding are applied to the query parameters
+# Should explode if both explode and collection format encoding are applied to the query parameters
 
 ## TypeSpec
 
