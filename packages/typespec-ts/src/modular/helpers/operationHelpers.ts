@@ -23,7 +23,8 @@ import {
   isBinaryPayload,
   ServiceOperation,
   getCollectionFormatParseHelper,
-  getCollectionFormatFromArrayEncoding
+  getCollectionFormatFromArrayEncoding,
+  KnownCollectionFormat
 } from "../../utils/operationUtil.js";
 import {
   getPropertyWithOverrides,
@@ -1462,12 +1463,10 @@ export function serializeRequestValue(
           if (format) {
             const formatHelper = getCollectionFormatHelper(format);
             if (formatHelper) {
-              if (format?.toLowerCase() === "multi") {
+              if (format?.toLowerCase() === KnownCollectionFormat.Multi) {
                 return `${nullOrUndefinedPrefix}${formatHelper}(${serializedValue}, "${serializedName}")`;
               }
               return `${nullOrUndefinedPrefix}${formatHelper}(${serializedValue})`;
-            } else {
-              throw `No supported collection format helper found for ${format}.`;
             }
           }
           return `${nullOrUndefinedPrefix}${serializedValue}`;

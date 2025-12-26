@@ -587,6 +587,15 @@ export function getCollectionFormatFromArrayEncoding(encoding: string) {
   }
 }
 
+export enum KnownCollectionFormat {
+  Csv = "csv",
+  Ssv = "ssv",
+  Tsv = "tsv",
+  Pipes = "pipes",
+  Newline = "newline",
+  Multi = "multi"
+}
+
 export function getCustomRequestHeaderNameForOperation(
   route: HttpOperation
 ): string | undefined {
@@ -763,13 +772,4 @@ function resolveParameterNameConflict(
     p.name = paramName;
   }
   return p;
-}
-
-enum KnownCollectionFormat {
-  Csv = "csv",
-  Ssv = "ssv",
-  Tsv = "tsv",
-  Pipes = "pipes",
-  Newline = "newline",
-  Multi = "multi"
 }
