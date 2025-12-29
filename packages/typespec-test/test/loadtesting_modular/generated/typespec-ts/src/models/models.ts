@@ -2439,4 +2439,10 @@ export function testProfileRunArrayDeserializer(result: Array<TestProfileRun>): 
 export enum KnownAPIVersions {
   /** The 2022-11-01 version of the Azure Load Testing API. */
   V20221101 = "2022-11-01",
+  /** The 2023-04-01-preview version of the Azure Load Testing API. */
+  V20230401Preview = "2023-04-01-preview",
+  /** The 2024-03-01-preview version of the Azure Load Testing API. */
+  V20240301Preview = "2024-03-01-preview",
+  /** The 2024-05-01-preview version of the Azure Load Testing API. */
+  V20240501Preview = "2024-05-01-preview",
 }
