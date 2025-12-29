@@ -29,12 +29,9 @@ export function getRLCClients(dpgContext: SdkContext): SdkClient[] {
     }
   });
   const rawServiceNamespaces = listAllServiceNamespaces(dpgContext);
-  const namespacesArray = Array.isArray(rawServiceNamespaces)
-    ? rawServiceNamespaces
-    : [rawServiceNamespaces];
-  if (services.size === 0 && namespacesArray.length > 0) {
+  if (services.size === 0 && rawServiceNamespaces.length > 0) {
     // If no clients are found, fall back to raw service namespaces
-    namespacesArray.forEach((ns) => services.add(ns));
+    [...rawServiceNamespaces.values()].forEach((ns) => services.add(ns));
   }
 
   return [...services.values()].map((service) => {
