@@ -6,29 +6,13 @@ export declare class AlternateTypeClient {
     private _client;
     readonly pipeline: Pipeline;
     constructor(options?: AlternateTypeClientOptionalParams);
-    readonly externalType: ExternalTypeOperations;
+    putProperty(body: ModelWithFeatureProperty, options?: PutPropertyOptionalParams): Promise<void>;
+    getProperty(options?: GetPropertyOptionalParams): Promise<ModelWithFeatureProperty>;
+    putModel(body: Feature, options?: PutModelOptionalParams): Promise<void>;
+    getModel(options?: GetModelOptionalParams): Promise<Feature>;
 }
 
 export declare interface AlternateTypeClientOptionalParams extends ClientOptions {
-}
-
-export declare interface ExternalTypeGetModelOptionalParams extends OperationOptions {
-}
-
-export declare interface ExternalTypeGetPropertyOptionalParams extends OperationOptions {
-}
-
-export declare interface ExternalTypeOperations {
-    putProperty: (body: ModelWithFeatureProperty, options?: ExternalTypePutPropertyOptionalParams) => Promise<void>;
-    getProperty: (options?: ExternalTypeGetPropertyOptionalParams) => Promise<ModelWithFeatureProperty>;
-    putModel: (body: Feature, options?: ExternalTypePutModelOptionalParams) => Promise<void>;
-    getModel: (options?: ExternalTypeGetModelOptionalParams) => Promise<Feature>;
-}
-
-export declare interface ExternalTypePutModelOptionalParams extends OperationOptions {
-}
-
-export declare interface ExternalTypePutPropertyOptionalParams extends OperationOptions {
 }
 
 export declare interface Feature {
@@ -43,9 +27,21 @@ export declare interface Geometry {
     coordinates: number[];
 }
 
+export declare interface GetModelOptionalParams extends OperationOptions {
+}
+
+export declare interface GetPropertyOptionalParams extends OperationOptions {
+}
+
 export declare interface ModelWithFeatureProperty {
     feature: Feature;
     additionalProperty: string;
+}
+
+export declare interface PutModelOptionalParams extends OperationOptions {
+}
+
+export declare interface PutPropertyOptionalParams extends OperationOptions {
 }
 
 export { }
