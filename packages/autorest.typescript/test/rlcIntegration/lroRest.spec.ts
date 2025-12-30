@@ -204,7 +204,7 @@ describe("LRO Rest Client", () => {
         await promise;
         assert.fail("Should be aborted by stopPolling");
       } catch (e) {
-        assert.equal(e.message, "The operation was aborted.");
+        assert.equal(e.name, "AbortError");
       }
     });
 

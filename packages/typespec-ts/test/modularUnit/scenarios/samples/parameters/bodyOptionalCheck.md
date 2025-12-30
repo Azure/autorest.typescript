@@ -75,10 +75,7 @@ Should generate operations correctly:
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  bodyParameterSerializer,
-  _readResponseDeserializer,
-} from "../models/models.js";
+import { bodyParameterSerializer, _readResponseDeserializer } from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { ReadOptionalParams } from "./options.js";
 import {
@@ -110,13 +107,8 @@ export function _readSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
-      body: !options["widget"]
-        ? options["widget"]
-        : bodyParameterSerializer(options["widget"]),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+      body: !options["widget"] ? options["widget"] : bodyParameterSerializer(options["widget"]),
     });
 }
 

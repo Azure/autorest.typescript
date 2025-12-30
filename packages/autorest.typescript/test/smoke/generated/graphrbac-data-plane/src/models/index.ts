@@ -710,8 +710,7 @@ export interface ServicePrincipalCreateParameters extends ServicePrincipalBase {
 }
 
 /** Request parameters for update an existing service principal. */
-export interface ServicePrincipalUpdateParameters
-  extends ServicePrincipalBase {}
+export interface ServicePrincipalUpdateParameters extends ServicePrincipalBase {}
 
 /** Request parameters for creating a new work or school account user. */
 export interface UserCreateParameters extends UserBase {

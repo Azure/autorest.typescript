@@ -18,9 +18,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing CollectionPartitionRegion operations. */
-export class CollectionPartitionRegionImpl
-  implements CollectionPartitionRegion
-{
+export class CollectionPartitionRegionImpl implements CollectionPartitionRegion {
   private readonly client: CosmosDBManagementClient;
 
   /**

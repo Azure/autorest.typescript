@@ -679,6 +679,41 @@ export function getMethodHierarchiesMap(
   return operationHierarchiesMap;
 }
 
+export function isTenantLevelOperation(
+  operation: ServiceOperation,
+  client: SdkClientType<SdkServiceOperation>
+): boolean {
+  // Check if this operation has a subscriptionId path parameter
+  const subscriptionIdParam = operation.operation.parameters?.find(
+    (param) =>
+      param.name.toLowerCase() === "subscriptionid" && param.kind === "path"
+  );
+
+  if (subscriptionIdParam) {
+    // The operation has a client-level subscriptionId parameter, then it's not tenant-level
+    if (subscriptionIdParam.onClient) {
+      return false;
+    }
+  } else {
+    // Skip tenant-level internal ARM APIs
+    // Ref: https://armwiki.azurewebsites.net/rpaas/operations_auto_gen.html#special-cases
+    const pathLC = operation.operation.path.toLowerCase();
+    // Get the provider namespace from the client
+    const clientNamespaceLC = client.namespace.toLowerCase();
+    if (
+      operation.crossLanguageDefinitionId?.toLowerCase() ===
+        "azure.resourcemanager.operations.list" ||
+      pathLC.includes(`${clientNamespaceLC}/checknameavailability`)
+    ) {
+      return false;
+    }
+  }
+
+  // The operation has no subscriptionId parameter or has method-level subscriptionId parameter
+  // Considered as tenant-level
+  return true;
+}
+
 function resolveParameterNameConflict(
   operationOrGroup: SdkServiceMethod<SdkHttpOperation>,
   p: SdkMethodParameter | SdkHttpParameter | SdkBodyParameter

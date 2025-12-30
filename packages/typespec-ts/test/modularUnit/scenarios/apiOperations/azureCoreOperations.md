@@ -87,10 +87,7 @@ export function _getWidgetOperationStatusSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -102,9 +99,7 @@ export async function _getWidgetOperationStatusDeserialize(
     throw createRestError(result);
   }
 
-  return resourceOperationStatusWidgetSuiteWidgetSuiteErrorDeserializer(
-    result.body,
-  );
+  return resourceOperationStatusWidgetSuiteWidgetSuiteErrorDeserializer(result.body);
 }
 
 /** Get the status of a long-running operation on widgets. */
@@ -156,19 +151,12 @@ export function resourceOperationStatusWidgetSuiteWidgetSuiteErrorDeserializer(
     id: item["id"],
     status: item["status"],
     error: !item["error"] ? item["error"] : item["error"],
-    result: !item["result"]
-      ? item["result"]
-      : widgetSuiteDeserializer(item["result"]),
+    result: !item["result"] ? item["result"] : widgetSuiteDeserializer(item["result"]),
   };
 }
 
 /** Enum describing allowed operation states. */
-export type OperationState =
-  | "NotStarted"
-  | "Running"
-  | "Succeeded"
-  | "Failed"
-  | "Canceled";
+export type OperationState = "NotStarted" | "Running" | "Succeeded" | "Failed" | "Canceled";
 
 /** A widget. */
 export interface WidgetSuite {

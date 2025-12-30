@@ -51,6 +51,19 @@ export declare interface Del {
     name: string;
 }
 
+export declare interface DictMethods {
+    keys: string;
+    items: string;
+    values: string;
+    popitem: string;
+    clear: string;
+    update: string;
+    setdefault: string;
+    pop: string;
+    get: string;
+    copy: string;
+}
+
 export declare interface Elif {
     name: string;
 }
@@ -102,6 +115,20 @@ export declare interface Is {
 export declare interface Lambda {
     name: string;
 }
+
+export declare interface ModelPropertiesDictMethods {
+    post(options: ModelPropertiesDictMethodsParameters): StreamableMethod<ModelPropertiesDictMethods204Response>;
+}
+
+export declare interface ModelPropertiesDictMethods204Response extends HttpResponse {
+    status: "204";
+}
+
+export declare interface ModelPropertiesDictMethodsBodyParam {
+    body: DictMethods;
+}
+
+export declare type ModelPropertiesDictMethodsParameters = ModelPropertiesDictMethodsBodyParam & RequestParameters;
 
 export declare interface ModelPropertiesSameAsModel {
     post(options: ModelPropertiesSameAsModelParameters): StreamableMethod<ModelPropertiesSameAsModel204Response>;
@@ -1576,6 +1603,7 @@ export declare interface Routes {
     (path: "/special-words/models/with"): ModelsWithWith;
     (path: "/special-words/models/yield"): ModelsWithYield;
     (path: "/special-words/model-properties/same-as-model"): ModelPropertiesSameAsModel;
+    (path: "/special-words/model-properties/dict-methods"): ModelPropertiesDictMethods;
     (path: "/special-words/operations/and"): OperationsAnd;
     (path: "/special-words/operations/as"): OperationsAs;
     (path: "/special-words/operations/assert"): OperationsAssert;

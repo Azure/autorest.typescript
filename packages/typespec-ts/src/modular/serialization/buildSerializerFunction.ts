@@ -2,6 +2,7 @@ import { FunctionDeclarationStructure, StructureKind } from "ts-morph";
 import {
   SdkArrayType,
   SdkDictionaryType,
+  SdkModelPropertyType,
   SdkModelType,
   SdkType,
   SdkUnionType,
@@ -40,17 +41,53 @@ import {
 } from "../helpers/typeHelpers.js";
 import { reportDiagnostic } from "../../lib.js";
 import { NoTarget } from "@typespec/compiler";
+import { useContext } from "../../contextManager.js";
+
+export function buildPropertySerializer(
+  context: SdkContext,
+  property: SdkModelPropertyType,
+  options: ModelSerializeOptions = {
+    nameOnly: false,
+    skipDiscriminatedUnionSuffix: false
+  }
+) {
+  const propertyContext =
+    useContext("sdkTypes").flattenProperties.get(property);
+  // only build de-serializer for flatten property
+  if (property.flatten !== true || !propertyContext) {
+    return undefined;
+  }
+  const predefinedName = `_${normalizeName(
+    `${propertyContext.baseModel.name}_${property.name}`,
+    NameType.Method,
+    true
+  )}Serializer`;
+  return buildModelSerializer(context, property.type, {
+    ...options,
+    flatten: {
+      baseModel: propertyContext.baseModel,
+      property
+    },
+    overrides: {
+      allOptional: property.optional,
+      propertyRenames: propertyContext.conflictMap
+    },
+    predefinedName
+  });
+}
 
 export function buildModelSerializer(
   context: SdkContext,
   type: SdkType,
-  skipDiscriminatedUnion = false,
-  nameOnly: boolean = false
+  options: ModelSerializeOptions = {
+    nameOnly: false,
+    skipDiscriminatedUnionSuffix: false
+  }
 ): FunctionDeclarationStructure | undefined | string {
-  // const modelTcgcType = getTcgcType(type) as SdkModelType;
   if (!isSupportedSerializeType(type)) {
     return undefined;
   }
+  const { nameOnly } = options;
   if (type.kind === "model" || type.kind === "union" || type.kind === "enum") {
     if (
       !type.usage ||
@@ -80,16 +117,13 @@ export function buildModelSerializer(
     return buildPolymorphicSerializer(context, type, nameOnly);
   }
 
-  if (isDiscriminatedUnion(type) && !skipDiscriminatedUnion) {
+  if (isDiscriminatedUnion(type) && !options.skipDiscriminatedUnionSuffix) {
     return buildDiscriminatedUnionSerializer(context, type, nameOnly);
   }
 
   switch (type.kind) {
     case "model":
-      return buildModelTypeSerializer(context, type, {
-        nameOnly,
-        skipDiscriminatedUnionSuffix: skipDiscriminatedUnion
-      });
+      return buildModelTypeSerializer(context, type, options);
     case "union": // for non-discriminated union, we just return whatever we get
       return buildUnionSerializer(context, type, nameOnly);
     case "dict":
@@ -227,6 +261,7 @@ function buildDiscriminatedUnionSerializer(
   if (nameOnly) {
     return resolveReference(refkey(type, "serializer"));
   }
+  // Get the base serializer name and ensure reference tracking
   const baseSerializerName = `${normalizeModelName(
     context,
     type,
@@ -248,12 +283,17 @@ function buildDiscriminatedUnionSerializer(
       type.discriminatorProperty
     );
     const union = subType.discriminatedSubtypes ? "Union" : "";
-    const subTypeName = `${normalizeName(subType.name, NameType.Interface, true)}${union}`;
-    const subtypeSerializerName = normalizeName(
-      `${subTypeName}Serializer`,
-      NameType.Method,
-      true
+    const subTypeName = normalizeModelName(
+      context,
+      subType,
+      NameType.Interface,
+      !union
     );
+    // Get the serializer name and ensure reference tracking
+    const subtypeSerializerName = buildModelSerializer(context, subType, {
+      nameOnly: true,
+      skipDiscriminatedUnionSuffix: false
+    }) as string;
 
     const caseLabels = discriminatedValues.map((value) => `case "${value}":`);
     cases.push(`
@@ -345,14 +385,18 @@ function buildModelTypeSerializer(
     });
     return ""; // Return empty string to continue processing
   }
-  const serializerFunctionName = `${normalizeModelName(
-    context,
-    type,
-    NameType.Operation,
-    options.skipDiscriminatedUnionSuffix
-  )}Serializer`;
+  const serializerFunctionName =
+    options.predefinedName ??
+    `${normalizeModelName(
+      context,
+      type,
+      NameType.Operation,
+      options.skipDiscriminatedUnionSuffix
+    )}Serializer`;
   if (options.nameOnly) {
-    return resolveReference(refkey(type, "serializer"));
+    return options.flatten
+      ? resolveReference(refkey(options.flatten.property, "serializer"))
+      : resolveReference(refkey(type, "serializer"));
   }
   const serializerFunction: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -361,7 +405,9 @@ function buildModelTypeSerializer(
     parameters: [
       {
         name: "item",
-        type: resolveReference(refkey(type))
+        type: options.flatten
+          ? resolveReference(refkey(options.flatten.baseModel))
+          : resolveReference(refkey(type))
       }
     ],
     returnType: "any",
@@ -435,7 +481,13 @@ function buildModelTypeSerializer(
       type
     );
 
-    const propertiesStr = getRequestModelMapping(context, type, "item");
+    const propertiesStr = getRequestModelMapping(
+      context,
+      type,
+      "item",
+      options.overrides,
+      !options.flatten
+    );
 
     if (additionalPropertiesSpread) {
       propertiesStr.unshift(additionalPropertiesSpread);
@@ -470,8 +522,10 @@ function getAdditionalPropertiesStatement(
   const deserializerFunction = buildModelSerializer(
     context,
     additionalPropertyType,
-    false,
-    true
+    {
+      nameOnly: true,
+      skipDiscriminatedUnionSuffix: false
+    }
   );
   const params = [`item.${getAdditionalPropertiesName(context, type)} ?? {}`];
   if (typeof deserializerFunction === "string") {
@@ -497,12 +551,10 @@ function buildDictTypeSerializer(
   type: SdkDictionaryType,
   nameOnly = false
 ): FunctionDeclarationStructure | undefined | string {
-  const valueSerializer = buildModelSerializer(
-    context,
-    type.valueType,
-    false,
-    true
-  );
+  const valueSerializer = buildModelSerializer(context, type.valueType, {
+    nameOnly: true,
+    skipDiscriminatedUnionSuffix: false
+  });
   if (!valueSerializer) {
     return undefined;
   }
@@ -555,12 +607,10 @@ function buildArrayTypeSerializer(
   type: SdkArrayType,
   nameOnly = false
 ): FunctionDeclarationStructure | undefined | string {
-  const valueSerializer = buildModelSerializer(
-    context,
-    type.valueType,
-    false,
-    true
-  );
+  const valueSerializer = buildModelSerializer(context, type.valueType, {
+    nameOnly: true,
+    skipDiscriminatedUnionSuffix: false
+  });
   if (!valueSerializer) {
     return undefined;
   }

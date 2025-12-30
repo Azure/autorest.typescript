@@ -26,9 +26,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing TransparentDataEncryptions operations. */
-export class TransparentDataEncryptionsImpl
-  implements TransparentDataEncryptions
-{
+export class TransparentDataEncryptionsImpl implements TransparentDataEncryptions {
   private readonly client: SqlManagementClient;
 
   /**

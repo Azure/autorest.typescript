@@ -32,9 +32,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing FirewallPolicyRuleCollectionGroups operations. */
-export class FirewallPolicyRuleCollectionGroupsImpl
-  implements FirewallPolicyRuleCollectionGroups
-{
+export class FirewallPolicyRuleCollectionGroupsImpl implements FirewallPolicyRuleCollectionGroups {
   private readonly client: NetworkManagementClient;
 
   /**

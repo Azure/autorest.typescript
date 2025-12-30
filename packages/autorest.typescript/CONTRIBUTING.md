@@ -41,8 +41,8 @@ git clone https://github.com/Azure/autorest.typescript.git
 
 ```
 npm install -g @autorest/autorest
-rush update
-rush rebuild
+pnpm install
+pnpm build
 ```
 
 3. There are 3 test-suites in the generator:
@@ -205,9 +205,9 @@ git clone https://github.com/Azure/autorest.typescript.git
 2. Use the following commands to build the SDK generator:
 
 ```
-npm install -g @autorest/autorest
-rush update
-rush rebuild
+npm install -g pnpm
+pnpm install
+pnpm build
 ```
 
 3. There are also 3 test-suites in the RLC generator:

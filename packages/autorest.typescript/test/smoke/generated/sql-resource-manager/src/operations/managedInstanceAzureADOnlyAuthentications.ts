@@ -33,9 +33,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing ManagedInstanceAzureADOnlyAuthentications operations. */
-export class ManagedInstanceAzureADOnlyAuthenticationsImpl
-  implements ManagedInstanceAzureADOnlyAuthentications
-{
+export class ManagedInstanceAzureADOnlyAuthenticationsImpl implements ManagedInstanceAzureADOnlyAuthentications {
   private readonly client: SqlManagementClient;
 
   /**

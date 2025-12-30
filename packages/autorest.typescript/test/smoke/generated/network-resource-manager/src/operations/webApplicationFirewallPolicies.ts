@@ -36,9 +36,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing WebApplicationFirewallPolicies operations. */
-export class WebApplicationFirewallPoliciesImpl
-  implements WebApplicationFirewallPolicies
-{
+export class WebApplicationFirewallPoliciesImpl implements WebApplicationFirewallPolicies {
   private readonly client: NetworkManagementClient;
 
   /**

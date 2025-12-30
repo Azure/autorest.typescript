@@ -195,11 +195,7 @@ export interface ComplexModel {
 
 export function complexModelSerializer(item: ComplexModel): any {
   return {
-    ...serializeRecord(
-      item.additionalProperties ?? {},
-      undefined,
-      simpleModelSerializer,
-    ),
+    ...serializeRecord(item.additionalProperties ?? {}, undefined, simpleModelSerializer),
     propA: simpleModelSerializer(item["propA"]),
   };
 }

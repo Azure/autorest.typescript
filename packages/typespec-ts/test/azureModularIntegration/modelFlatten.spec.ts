@@ -13,30 +13,26 @@ describe("Property Flatten Client", () => {
   it("Update and receive model with 1 levels of flattening", async () => {
     const result = await client.putFlattenModel({
       name: "foo",
-      properties: {
-        description: "bar",
-        age: 10
-      }
+      description: "bar",
+      age: 10
     });
     assert.strictEqual(result.name, "test");
-    assert.strictEqual(result.properties.description, "test");
-    assert.strictEqual(result.properties.age, 1);
+    assert.strictEqual(result.description, "test");
+    assert.strictEqual(result.age, 1);
   });
 
   it("Update and receive model with 2 levels of flattening", async () => {
     const result = await client.putNestedFlattenModel({
       name: "foo",
+      summary: "bar",
       properties: {
-        summary: "bar",
-        properties: {
-          description: "test",
-          age: 10
-        }
+        description: "test",
+        age: 10
       }
     });
     assert.strictEqual(result.name, "test");
-    assert.strictEqual(result.properties.summary, "test");
-    assert.strictEqual(result.properties.properties.description, "foo");
-    assert.strictEqual(result.properties.properties.age, 1);
+    assert.strictEqual(result.summary, "test");
+    assert.strictEqual(result.properties.description, "foo");
+    assert.strictEqual(result.properties.age, 1);
   });
 });
