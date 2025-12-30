@@ -108,4 +108,42 @@ describe("client utils get rlc clients", () => {
     assert.equal(clients[0]?.name, "MyServiceClient");
     assert.equal(clients[1]?.name, "MySecondServiceClient");
   });
+
+  it("should handle both 1:1 and 1:N mappings between @service and @client", async () => {
+    const content = `
+    import "@azure-tools/typespec-client-generator-core";
+
+    using Azure.ClientGenerator.Core;
+    
+    @service
+    namespace MyService {
+      interface MyInterface {
+        op1(): void
+      }
+    }
+    
+    @service
+    namespace MySecondService {
+      interface MySecondInterface {
+        op1(): void
+      }
+    }
+    
+    @client(
+      {
+        name: "CombineClient",
+        service: [MyService, MySecondService],
+      }
+    )
+     @client({
+        name: "MyThirdClient",
+        service: MySecondService
+      })
+    namespace CombineClient{}
+    `;
+    const clients = await getRLCClientsFromTypeSpec(content);
+    assert.equal(clients.length, 2);
+    assert.equal(clients[0]?.name, "MyServiceClient");
+    assert.equal(clients[1]?.name, "MySecondServiceClient");
+  });
 });
