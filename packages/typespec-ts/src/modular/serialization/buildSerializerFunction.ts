@@ -492,12 +492,18 @@ function buildModelTypeSerializer(
     if (additionalPropertiesSpread) {
       propertiesStr.unshift(additionalPropertiesSpread);
     }
-    const serializeContent = `{${propertiesStr.join(",")}}`;
+
+    // Filter out properties that are explicitly undefined (e.g., flatten properties with all readonly fields)
+    const filteredPropertiesStr = propertiesStr.filter(
+      (prop) => !prop.endsWith(": undefined")
+    );
+
+    const serializeContent = `{${filteredPropertiesStr.join(",")}}`;
 
     const output = [];
 
     // don't emit a serializer if there is nothing to serialize
-    if (propertiesStr.length) {
+    if (filteredPropertiesStr.length) {
       output.push(`
         return ${serializeContent}
       `);
