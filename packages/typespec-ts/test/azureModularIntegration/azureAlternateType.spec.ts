@@ -6,6 +6,7 @@ describe("AlternateType Client Modular", () => {
 
   beforeEach(() => {
     client = new AlternateTypeClient({
+      endpoint: "http://localhost:3002",
       allowInsecureConnection: true
     });
   });

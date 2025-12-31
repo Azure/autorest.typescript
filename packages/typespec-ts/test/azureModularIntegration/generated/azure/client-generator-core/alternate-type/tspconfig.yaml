@@ -3,14 +3,10 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     emitter-output-dir: "{project-root}"
-    generate-metadata: true
-    generate-test: false
     add-credentials: false
     flavor: azure
     azure-sdk-for-js: false
     is-typespec-test: true
-    is-modular-library: true
-    hierarchy-client: false
     package-details:
       name: "@msinternal/clientGeneratorCore-alternateType"
       description: "Azure clientGenerator Core alternate type Test Service"
