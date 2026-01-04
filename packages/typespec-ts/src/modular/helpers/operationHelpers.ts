@@ -1601,7 +1601,6 @@ export function deserializeResponseValue(
       }
     }
     case "dict": {
-      const prefix = nullOrUndefinedPrefix + restValue;
       const keyVar = depth > 0 ? `k${depth}` : "k";
       const valueVar = depth > 0 ? `p${depth}` : "p";
       let elementNullOrUndefinedPrefix = "";
@@ -1622,14 +1621,14 @@ export function deserializeResponseValue(
           )
         : undefined;
       if (deserializeFunctionName) {
-        return `${nullOrUndefinedPrefix}Object.fromEntries(Object.entries(${prefix}).map(([${keyVar}, ${valueVar}]: [string, any]) => [${keyVar}, ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(${valueVar})]))`;
+        return `${nullOrUndefinedPrefix}Object.fromEntries(Object.entries(${restValue}).map(([${keyVar}, ${valueVar}]: [string, any]) => [${keyVar}, ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(${valueVar})]))`;
       } else if (
         type.valueType &&
         isAzureCoreErrorType(context.program, type.valueType.__raw)
       ) {
-        return `${nullOrUndefinedPrefix}Object.fromEntries(Object.entries(${prefix}).map(([${keyVar}, ${valueVar}]: [string, any]) => [${keyVar}, ${elementNullOrUndefinedPrefix}${valueVar}]))`;
+        return `${nullOrUndefinedPrefix}Object.fromEntries(Object.entries(${restValue}).map(([${keyVar}, ${valueVar}]: [string, any]) => [${keyVar}, ${elementNullOrUndefinedPrefix}${valueVar}]))`;
       } else if (type.valueType) {
-        return `${nullOrUndefinedPrefix}Object.fromEntries(Object.entries(${prefix}).map(([${keyVar}, ${valueVar}]: [string, any]) => [${keyVar}, ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, valueVar, true, getEncodeForType(type.valueType), depth + 1)}]))`;
+        return `${nullOrUndefinedPrefix}Object.fromEntries(Object.entries(${restValue}).map(([${keyVar}, ${valueVar}]: [string, any]) => [${keyVar}, ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, valueVar, true, getEncodeForType(type.valueType), depth + 1)}]))`;
       } else {
         return restValue;
       }
