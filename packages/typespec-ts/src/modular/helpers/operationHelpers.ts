@@ -21,7 +21,10 @@ import {
   getCollectionFormatHelper,
   hasCollectionFormatInfo,
   isBinaryPayload,
-  ServiceOperation
+  ServiceOperation,
+  getCollectionFormatParseHelper,
+  getCollectionFormatFromArrayEncoding,
+  KnownCollectionFormat
 } from "../../utils/operationUtil.js";
 import {
   getPropertyWithOverrides,
@@ -245,6 +248,7 @@ export function getDeserializePrivateFunction(
           context,
           deserializedType,
           deserializedRoot,
+          true,
           isBinaryPayload(context, response.type!.__raw!, contentTypes!)
             ? "binary"
             : getEncodeForType(deserializedType)
@@ -856,6 +860,7 @@ function buildBodyParameter(
     isBinaryPayload(context, bodyParameter.__raw!, bodyParameter.contentTypes)
       ? "binary"
       : getEncodeForType(bodyParameter.type),
+    undefined,
     true
   );
   return `\nbody: ${serializedBody.startsWith(nullOrUndefinedPrefix) ? "" : nullOrUndefinedPrefix}${serializedBody},`;
@@ -884,7 +889,7 @@ export function getParameterMap(
   }
 
   if (hasCollectionFormatInfo(param.kind, (param as any).collectionFormat)) {
-    return getCollectionFormat(context, param, optionalParamName);
+    return getCollectionFormatForParam(context, param, optionalParamName);
   }
 
   // if the parameter or property is optional, we don't need to handle the default value
@@ -909,39 +914,22 @@ export function getParameterMap(
   return `"${param.name}": undefined`;
 }
 
-function getCollectionFormat(
+function getCollectionFormatForParam(
   context: SdkContext,
   param: SdkHttpParameter,
   optionalParamName: string = "options"
 ) {
   const serializedName = getPropertySerializedName(param);
   const format = (param as any).collectionFormat;
-  const collectionInfo = getCollectionFormatHelper(param.kind, format ?? "");
-  if (!collectionInfo) {
-    throw "Has collection format info but without helper function detected";
-  }
-  const isMulti = format.toLowerCase() === "multi";
-  const additionalParam = isMulti ? `, "${serializedName}"` : "";
-  if (!param.optional) {
-    return `"${serializedName}": ${collectionInfo}(${serializeRequestValue(
-      context,
-      param.type,
-      param.name,
-      true,
-      getEncodeForType(param.type),
-      true
-    )}${additionalParam})`;
-  }
-  return `"${serializedName}": ${optionalParamName}?.${
-    param.name
-  } !== undefined ? ${collectionInfo}(${serializeRequestValue(
+  return `"${serializedName}": ${serializeRequestValue(
     context,
     param.type,
-    `${optionalParamName}?.${param.name}`,
-    false,
-    getEncodeForType(param.type),
+    param.optional ? `${optionalParamName}?.${param.name}` : param.name,
+    !param.optional,
+    format,
+    serializedName,
     true
-  )}${additionalParam}): undefined`;
+  )}`;
 }
 
 function isContentType(param: SdkHttpParameter): boolean {
@@ -992,6 +980,7 @@ function getRequired(context: SdkContext, param: SdkHttpParameter) {
     clientValue,
     true,
     getEncodeForType(param.type),
+    serializedName,
     true
   )}`;
 }
@@ -1033,6 +1022,7 @@ function getOptional(
     paramName,
     false,
     getEncodeForType(param.type),
+    serializedName,
     true
   )}`;
 }
@@ -1172,6 +1162,41 @@ function getNullableCheck(name: string, type: SdkType) {
   return `${name} === null ? null :`;
 }
 
+/**
+ * Determines the appropriate encoding format for a model property, especially for arrays with collection format encoding.
+ * For example, returns "csv" for comma-delimited arrays or the property's type encoding for regular properties.
+ */
+function getEncodeForModelProperty(
+  context: SdkContext,
+  property: SdkModelPropertyType
+): string | undefined {
+  if (property.encode && property.type.kind === "array") {
+    // Only arrays of string type can have collectionFormat encoding
+    if (property.type.valueType.kind !== "string") {
+      reportDiagnostic(context.program, {
+        code: "un-supported-array-encoding",
+        format: {
+          arrayName: property.name,
+          arrayType: property.type.valueType.kind
+        },
+        target: NoTarget
+      });
+      return getEncodeForType(property.type);
+    }
+
+    const collectionFormat = getCollectionFormatFromArrayEncoding(
+      property.encode
+    );
+    if (
+      collectionFormat &&
+      hasCollectionFormatInfo(property.kind, collectionFormat)
+    ) {
+      return collectionFormat;
+    }
+  }
+  return getEncodeForType(property.type);
+}
+
 function getSerializationExpressionForFlatten(
   context: SdkContext,
   property: SdkModelPropertyType,
@@ -1245,7 +1270,8 @@ export function getSerializationExpression(
       property.type,
       propertyFullName,
       !property.optional,
-      getEncodeForType(property.type),
+      getEncodeForModelProperty(context, property),
+      getPropertySerializedName(property),
       propertyPath === "" ? true : false
     );
   }
@@ -1373,20 +1399,17 @@ export function getResponseMapping(
         context,
         property.type,
         `${propertyPath}${dot}["${serializedName}"]`,
-        getEncodeForType(property.type)
+        !property.optional,
+        getEncodeForModelProperty(context, property)
       );
-      props.push(
-        `${propertyName}: ${deserializeValue === `${propertyPath}${dot}["${serializedName}"]` ? "" : nullOrUndefinedPrefix}${deserializeValue}`
-      );
+      props.push(`${propertyName}: ${deserializeValue}`);
     }
   }
   return props;
 }
 
 /**
- * This function helps converting strings into JS complex types recursively.
- * We need to drill down into Array elements to make sure that the element type is
- * deserialized correctly
+ * Converts JavaScript values to their serialized wire format for HTTP requests.
  */
 export function serializeRequestValue(
   context: SdkContext,
@@ -1394,6 +1417,7 @@ export function serializeRequestValue(
   clientValue: string,
   required: boolean,
   format?: string,
+  serializedName?: string,
   isTopLevel: boolean = false
 ): string {
   const getSdkType = useSdkTypes();
@@ -1414,8 +1438,8 @@ export function serializeRequestValue(
           return `${nullOrUndefinedPrefix}${clientValue}.toISOString()`;
       }
     case "array": {
-      const prefix = nullOrUndefinedPrefix + clientValue;
       if (type.valueType) {
+        const prefix = nullOrUndefinedPrefix + clientValue;
         const elementNullOrUndefinedPrefix =
           isTypeNullable(type.valueType) || getOptionalForType(type.valueType)
             ? "!p ? p : "
@@ -1435,7 +1459,17 @@ export function serializeRequestValue(
         ) {
           return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}p})`;
         } else {
-          return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${serializeRequestValue(context, type.valueType, "p", true, getEncodeForType(type.valueType))}})`;
+          const serializedValue = `${clientValue}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${serializeRequestValue(context, type.valueType, "p", true, getEncodeForType(type.valueType))}})`;
+          if (format) {
+            const formatHelper = getCollectionFormatHelper(format);
+            if (formatHelper) {
+              if (format?.toLowerCase() === KnownCollectionFormat.Multi) {
+                return `${nullOrUndefinedPrefix}${formatHelper}(${serializedValue}, "${serializedName}")`;
+              }
+              return `${nullOrUndefinedPrefix}${formatHelper}(${serializedValue})`;
+            }
+          }
+          return `${nullOrUndefinedPrefix}${serializedValue}`;
         }
       }
       return clientValue;
@@ -1507,6 +1541,7 @@ export function deserializeResponseValue(
   context: SdkContext,
   type: SdkType,
   restValue: string,
+  required: boolean,
   format?: string
 ): string {
   const dependencies = useDependencies();
@@ -1514,7 +1549,7 @@ export function deserializeResponseValue(
     dependencies.stringToUint8Array
   );
   const nullOrUndefinedPrefix =
-    isTypeNullable(type) || getOptionalForType(type)
+    isTypeNullable(type) || getOptionalForType(type) || !required
       ? `!${restValue}? ${restValue}: `
       : "";
   switch (type.kind) {
@@ -1547,13 +1582,23 @@ export function deserializeResponseValue(
       ) {
         return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}p})`;
       } else if (type.valueType) {
-        return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, "p", getEncodeForType(type.valueType))}})`;
+        if (format) {
+          const parseHelper = getCollectionFormatParseHelper(format);
+          if (parseHelper) {
+            // We shouldn't check for an empty string here since an empty string should be parsed as an empty array
+            const optionalPrefixForString =
+              isTypeNullable(type) || getOptionalForType(type) || !required
+                ? `${restValue} === null || ${restValue} === undefined ? ${restValue}: `
+                : "";
+            return `${optionalPrefixForString}${parseHelper}(${restValue})`;
+          }
+        }
+        return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, "p", true, getEncodeForType(type.valueType))}})`;
       } else {
         return restValue;
       }
     }
     case "dict": {
-      const prefix = nullOrUndefinedPrefix + restValue;
       let elementNullOrUndefinedPrefix = "";
       if (
         type.valueType &&
@@ -1572,21 +1617,21 @@ export function deserializeResponseValue(
           )
         : undefined;
       if (deserializeFunctionName) {
-        return `Object.fromEntries(Object.entries(${prefix}).map(([k, p]: [string, any]) => [k, ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(p)]))`;
+        return `${nullOrUndefinedPrefix}Object.fromEntries(Object.entries(${restValue}).map(([k, p]: [string, any]) => [k, ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(p)]))`;
       } else if (
         type.valueType &&
         isAzureCoreErrorType(context.program, type.valueType.__raw)
       ) {
-        return `Object.fromEntries(Object.entries(${prefix}).map(([k, p]: [string, any]) => [k, ${elementNullOrUndefinedPrefix}p]))`;
+        return `${nullOrUndefinedPrefix}Object.fromEntries(Object.entries(${restValue}).map(([k, p]: [string, any]) => [k, ${elementNullOrUndefinedPrefix}p]))`;
       } else if (type.valueType) {
-        return `Object.fromEntries(Object.entries(${prefix}).map(([k, p]: [string, any]) => [k, ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, "p", getEncodeForType(type.valueType))}]))`;
+        return `${nullOrUndefinedPrefix}Object.fromEntries(Object.entries(${restValue}).map(([k, p]: [string, any]) => [k, ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, "p", true, getEncodeForType(type.valueType))}]))`;
       } else {
         return restValue;
       }
     }
     case "bytes":
       if (format !== "binary" && format !== "bytes") {
-        return `typeof ${restValue} === 'string'
+        return `${nullOrUndefinedPrefix}typeof ${restValue} === 'string'
         ? ${stringToUint8ArrayReference}(${restValue}, "${format ?? "base64"}")
         : ${restValue}`;
       }
@@ -1616,6 +1661,7 @@ export function deserializeResponseValue(
         context,
         type.type,
         restValue,
+        false,
         getEncodeForType(type.type)
       );
     default:
