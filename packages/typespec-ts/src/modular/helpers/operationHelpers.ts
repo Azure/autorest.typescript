@@ -1400,8 +1400,7 @@ export function getResponseMapping(
         property.type,
         `${propertyPath}${dot}["${serializedName}"]`,
         !property.optional,
-        getEncodeForModelProperty(context, property),
-        0
+        getEncodeForModelProperty(context, property)
       );
       props.push(`${propertyName}: ${deserializeValue}`);
     }
