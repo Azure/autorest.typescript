@@ -333,20 +333,27 @@ export const azureRlcTsps = [
     inputPath: "azure/resource-manager/operation-templates"
   },
   {
-    outputPath: "azure/client-generator-core/client-location/move-to-existing-sub-client",
-    inputPath: "azure/client-generator-core/client-location/move-to-existing-sub-client"
+    outputPath:
+      "azure/client-generator-core/client-location/move-to-existing-sub-client",
+    inputPath:
+      "azure/client-generator-core/client-location/move-to-existing-sub-client"
   },
   {
-    outputPath: "azure/client-generator-core/client-location/move-to-new-sub-client",
-    inputPath: "azure/client-generator-core/client-location/move-to-new-sub-client"
+    outputPath:
+      "azure/client-generator-core/client-location/move-to-new-sub-client",
+    inputPath:
+      "azure/client-generator-core/client-location/move-to-new-sub-client"
   },
   {
-    outputPath: "azure/client-generator-core/client-location/move-to-root-client",
+    outputPath:
+      "azure/client-generator-core/client-location/move-to-root-client",
     inputPath: "azure/client-generator-core/client-location/move-to-root-client"
   },
   {
-    outputPath: "azure/client-generator-core/client-location/move-method-parameter-to-client",
-    inputPath: "azure/client-generator-core/client-location/move-method-parameter-to-client"
+    outputPath:
+      "azure/client-generator-core/client-location/move-method-parameter-to-client",
+    inputPath:
+      "azure/client-generator-core/client-location/move-method-parameter-to-client"
   },
   {
     outputPath: "client/overload",
@@ -933,20 +940,27 @@ export const azureModularTsps = [
     inputPath: "azure/resource-manager/method-subscription-id"
   },
   {
-    outputPath: "azure/client-generator-core/client-location/move-to-existing-sub-client",
-    inputPath: "azure/client-generator-core/client-location/move-to-existing-sub-client"
+    outputPath:
+      "azure/client-generator-core/client-location/move-to-existing-sub-client",
+    inputPath:
+      "azure/client-generator-core/client-location/move-to-existing-sub-client"
   },
   {
-    outputPath: "azure/client-generator-core/client-location/move-to-new-sub-client",
-    inputPath: "azure/client-generator-core/client-location/move-to-new-sub-client"
+    outputPath:
+      "azure/client-generator-core/client-location/move-to-new-sub-client",
+    inputPath:
+      "azure/client-generator-core/client-location/move-to-new-sub-client"
   },
   {
-    outputPath: "azure/client-generator-core/client-location/move-to-root-client",
+    outputPath:
+      "azure/client-generator-core/client-location/move-to-root-client",
     inputPath: "azure/client-generator-core/client-location/move-to-root-client"
   },
   {
-    outputPath: "azure/client-generator-core/client-location/move-method-parameter-to-client",
-    inputPath: "azure/client-generator-core/client-location/move-method-parameter-to-client"
+    outputPath:
+      "azure/client-generator-core/client-location/move-method-parameter-to-client",
+    inputPath:
+      "azure/client-generator-core/client-location/move-method-parameter-to-client"
   }
 ];
 
@@ -1147,5 +1161,9 @@ export const modularTsps = [
   {
     outputPath: "payload/pageable",
     inputPath: "payload/pageable"
+  },
+  {
+    outputPath: "encode/array",
+    inputPath: "encode/array"
   }
 ];
