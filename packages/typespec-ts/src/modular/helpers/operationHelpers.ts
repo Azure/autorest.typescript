@@ -1591,8 +1591,6 @@ export function deserializeResponseValue(
                 ? `${restValue} === null || ${restValue} === undefined ? ${restValue}: `
                 : "";
             return `${optionalPrefixForString}${parseHelper}(${restValue})`;
-          } else {
-            throw `No supported collection format parse helper found for ${format}.`;
           }
         }
         return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, "p", true, getEncodeForType(type.valueType))}})`;
