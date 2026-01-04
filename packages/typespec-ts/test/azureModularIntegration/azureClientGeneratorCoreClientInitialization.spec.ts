@@ -5,7 +5,7 @@ import {
   IndividuallyParentNestedWithMultipleClient,
   IndividuallyParentNestedWithPathClient,
   IndividuallyParentNestedWithQueryClient
-} from "./generated/azure/client-generator-core/client-initialization/default/individuallyParent/src/index.js";
+} from "./generated/azure/client-generator-core/client-initialization/individuallyParent/src/index.js";
 
 describe("Azure ClientGeneratorCore Client Initialization", () => {
   const endpointOptions = {

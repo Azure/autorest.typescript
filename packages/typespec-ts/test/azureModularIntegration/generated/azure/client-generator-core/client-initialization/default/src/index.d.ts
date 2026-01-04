@@ -93,6 +93,27 @@ export declare interface PathParamClientWithQueryOptionalParams extends Operatio
     format?: string;
 }
 
+export declare class QueryParamClient {
+    private _client;
+    readonly pipeline: Pipeline;
+    constructor(blobName: string, options?: QueryParamClientOptionalParams);
+    deleteStandalone(options?: QueryParamClientDeleteStandaloneOptionalParams): Promise<void>;
+    getStandalone(options?: QueryParamClientGetStandaloneOptionalParams): Promise<BlobProperties>;
+    withQuery(options?: QueryParamClientWithQueryOptionalParams): Promise<void>;
+}
+
+export declare interface QueryParamClientDeleteStandaloneOptionalParams extends OperationOptions {
+}
+
+export declare interface QueryParamClientGetStandaloneOptionalParams extends OperationOptions {
+}
+
+export declare interface QueryParamClientOptionalParams extends ClientOptions {
+}
+
+export declare interface QueryParamClientWithQueryOptionalParams extends OperationOptions {
+}
+
 export declare interface WithAliasedNameOptionalParams extends OperationOptions {
 }
 
