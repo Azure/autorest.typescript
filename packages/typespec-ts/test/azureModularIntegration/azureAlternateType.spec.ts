@@ -31,20 +31,20 @@ describe("AlternateType Client Modular", () => {
   };
 
   it("should get model in external type operation", async () => {
-    const result = await client.getModel();
+    const result = await client.externalType.getModel();
     assert.deepEqual(result, feature);
   });
 
   it("should put model in external type operation", async () => {
-    await client.putModel(feature);
+    await client.externalType.putModel(feature);
   });
 
   it("should get property in external type operation", async () => {
-    const result = await client.getProperty();
+    const result = await client.externalType.getProperty();
     assert.deepEqual(result, modelWithFeatureProperty);
   });
 
   it("should put property in external type operation", async () => {
-    await client.putProperty(modelWithFeatureProperty);
+    await client.externalType.putProperty(modelWithFeatureProperty);
   });
 });
