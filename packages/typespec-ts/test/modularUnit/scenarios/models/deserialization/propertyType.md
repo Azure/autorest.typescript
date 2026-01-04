@@ -19,7 +19,7 @@ model SimpleModel {
   propNumberLiteral: 1;
   propStringLiteralOptional?: "A";
   propStringUnion: "A" | "B";
-  propStringUnionOptioanl: "A" | "B";
+  propStringUnionOptional?: "A" | "B";
   propStringUnionNullable: "A" | "B" | null;
   propStringUnionAsExtensible: "A" | "B" | string;
   propStringUnionAsExtensibleOptional?: "A" | "B" | string;
@@ -86,7 +86,7 @@ export interface SimpleModel {
   propNumberLiteral: 1;
   propStringLiteralOptional?: "A";
   propStringUnion: "A" | "B";
-  propStringUnionOptioanl: "A" | "B";
+  propStringUnionOptional?: "A" | "B";
   propStringUnionNullable: ("A" | "B") | null;
   propStringUnionAsExtensible: string;
   propStringUnionAsExtensibleOptional?: string;
@@ -131,7 +131,7 @@ export function simpleModelDeserializer(item: any): SimpleModel {
     propNumberLiteral: item["propNumberLiteral"],
     propStringLiteralOptional: item["propStringLiteralOptional"],
     propStringUnion: item["propStringUnion"],
-    propStringUnionOptioanl: item["propStringUnionOptioanl"],
+    propStringUnionOptional: item["propStringUnionOptional"],
     propStringUnionNullable: item["propStringUnionNullable"],
     propStringUnionAsExtensible: item["propStringUnionAsExtensible"],
     propStringUnionAsExtensibleOptional: item["propStringUnionAsExtensibleOptional"],
