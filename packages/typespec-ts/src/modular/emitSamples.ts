@@ -38,7 +38,10 @@ import {
   ServiceOperation
 } from "../utils/operationUtil.js";
 import { getSubscriptionId } from "../transform/transfromRLCOptions.js";
-import { getClientParametersDeclaration } from "./helpers/clientHelpers.js";
+import {
+  getClientParametersDeclaration,
+  getClientParameters
+} from "./helpers/clientHelpers.js";
 import { getOperationFunction } from "./helpers/operationHelpers.js";
 import { ModelOverrideOptions } from "./serialization/serializeUtils.js";
 
@@ -298,17 +301,64 @@ function prepareExampleParameters(
   // TODO: blocked by TCGC issue: https://github.com/Azure/typespec-azure/issues/1419
   // refine this to support generic client-level parameters once resolved
   const result: ExampleValue[] = [];
+
+  // Get the raw SDK parameters to check for default values
+  const rawClientParams = getClientParameters(topLevelClient, dpgContext, {
+    onClientOnly: true
+  });
+
   const clientParams = getClientParametersDeclaration(
     topLevelClient,
     dpgContext,
     {
-      onClientOnly: true,
-      requiredOnly: true
+      onClientOnly: true
     }
   );
 
+  // Helper to check if a parameter has a default value
+  const hasDefaultValue = (paramName: string) => {
+    const rawParam = rawClientParams.find((p) => {
+      const name =
+        p.name === "endpoint" ||
+        ((p.kind === "endpoint" || p.kind === "path") &&
+          p.name.toLowerCase() === "endpoint")
+          ? "endpointParam"
+          : p.name;
+      return name === paramName;
+    });
+
+    if (!rawParam) return false;
+
+    // Check if the parameter or its endpoint template has a default value
+    if (
+      rawParam.clientDefaultValue ||
+      rawParam.__raw?.defaultValue ||
+      rawParam.type.kind === "constant"
+    ) {
+      return true;
+    }
+
+    // Special case for endpoint parameters with template arguments that have default values
+    if (
+      rawParam.type.kind === "endpoint" &&
+      rawParam.type.templateArguments[0]
+    ) {
+      const templateArg = rawParam.type.templateArguments[0];
+      return !!(
+        templateArg.clientDefaultValue || templateArg.__raw?.defaultValue
+      );
+    }
+
+    return false;
+  };
+
   for (const param of clientParams) {
     if (param.name === "options" || param.name === "credential") {
+      continue;
+    }
+
+    // Skip parameters that have default values - they are truly optional
+    if (hasDefaultValue(param.name)) {
       continue;
     }
 
