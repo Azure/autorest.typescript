@@ -1,5 +1,5 @@
-import "./service1.tsp";
-import "./service2.tsp";
+import "./compute.tsp";
+import "./computeDisk.tsp";
 import "@azure-tools/typespec-client-generator-core";
 
 using Versioning;
