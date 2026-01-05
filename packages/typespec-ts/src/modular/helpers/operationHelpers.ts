@@ -1194,9 +1194,6 @@ function getSerializationExpressionForFlatten(
       !isReadOnly(p) &&
       !isMetadata(context.program, p.__raw!)
   );
-  if (validProps.length === 0) {
-    return `undefined`;
-  }
   const optionalPrefix = property.optional
     ? `${resolveReference(SerializationHelpers.areAllPropsUndefined)}(${propertyPath}, [${validProps
         .map((p) => `"${p.name}"`)
