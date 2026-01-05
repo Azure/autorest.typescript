@@ -1,3 +1,12 @@
+## 0.48.0 (2026-01-05)
+
+- [Feature] Implement array encoding for model properties. Please refer to [#3659](https://github.com/Azure/autorest.typescript/pull/3659)
+- [Feature] Add code owner. Please refer to [#3667](https://github.com/Azure/autorest.typescript/pull/3667)
+- [Feature] Upgrade tcgc for multiple service. Please refer to [#3658](https://github.com/Azure/autorest.typescript/pull/3658)
+- [Bugfix] Fix compile issues if upgrade tcgc to 0.63.1. Please refer to [#3662](https://github.com/Azure/autorest.typescript/pull/3662)
+- [Bugfix] Normalization in-consistancy for discriminated union during Serializer/DeSerializer. Please refer to [#3652](https://github.com/Azure/autorest.typescript/pull/3652)
+- [Bugfix] Fix flatten inconsistency between src and sample gen. Please refer to [#3657](https://github.com/Azure/autorest.typescript/pull/3657)
+
 ## 0.47.1 (2025-12-15)
 
 - [Feature] Prevent flatten property decorator from being applied to non-model types. Please refer to [#3643](https://github.com/Azure/autorest.typescript/pull/3643)
