@@ -1543,7 +1543,7 @@ export function deserializeResponseValue(
   restValue: string,
   required: boolean,
   format?: string,
-  depth: number = 0
+  recursionDepth: number = 0
 ): string {
   const dependencies = useDependencies();
   const stringToUint8ArrayReference = resolveReference(
@@ -1558,7 +1558,7 @@ export function deserializeResponseValue(
       return `${nullOrUndefinedPrefix} new Date(${type.encode === "unixTimestamp" ? `${restValue} * 1000` : restValue})`;
     case "array": {
       const prefix = nullOrUndefinedPrefix + restValue;
-      const varName = depth > 0 ? `p${depth}` : "p";
+      const varName = recursionDepth > 0 ? `p${recursionDepth}` : "p";
       let elementNullOrUndefinedPrefix = "";
       if (
         type.valueType &&
@@ -1595,14 +1595,14 @@ export function deserializeResponseValue(
             return `${optionalPrefixForString}${parseHelper}(${restValue})`;
           }
         }
-        return `${prefix}.map((${varName}: any) => { return ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, varName, true, getEncodeForType(type.valueType), depth + 1)}})`;
+        return `${prefix}.map((${varName}: any) => { return ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, varName, true, getEncodeForType(type.valueType), recursionDepth + 1)}})`;
       } else {
         return restValue;
       }
     }
     case "dict": {
-      const keyVar = depth > 0 ? `k${depth}` : "k";
-      const valueVar = depth > 0 ? `p${depth}` : "p";
+      const keyVar = recursionDepth > 0 ? `k${recursionDepth}` : "k";
+      const valueVar = recursionDepth > 0 ? `p${recursionDepth}` : "p";
       let elementNullOrUndefinedPrefix = "";
       if (
         type.valueType &&
@@ -1628,7 +1628,7 @@ export function deserializeResponseValue(
       ) {
         return `${nullOrUndefinedPrefix}Object.fromEntries(Object.entries(${restValue}).map(([${keyVar}, ${valueVar}]: [string, any]) => [${keyVar}, ${elementNullOrUndefinedPrefix}${valueVar}]))`;
       } else if (type.valueType) {
-        return `${nullOrUndefinedPrefix}Object.fromEntries(Object.entries(${restValue}).map(([${keyVar}, ${valueVar}]: [string, any]) => [${keyVar}, ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, valueVar, true, getEncodeForType(type.valueType), depth + 1)}]))`;
+        return `${nullOrUndefinedPrefix}Object.fromEntries(Object.entries(${restValue}).map(([${keyVar}, ${valueVar}]: [string, any]) => [${keyVar}, ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, valueVar, true, getEncodeForType(type.valueType), recursionDepth + 1)}]))`;
       } else {
         return restValue;
       }
@@ -1667,7 +1667,7 @@ export function deserializeResponseValue(
         restValue,
         false,
         getEncodeForType(type.type),
-        depth
+        recursionDepth + 1
       );
     default:
       return restValue;
