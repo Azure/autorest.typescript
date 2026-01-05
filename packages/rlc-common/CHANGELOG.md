@@ -5,6 +5,7 @@
 - [Feature] Upgrade tcgc for multiple service. Please refer to [#3658](https://github.com/Azure/autorest.typescript/pull/3658)
 - [Bugfix] Fix compile issues if upgrade tcgc to 0.63.1. Please refer to [#3662](https://github.com/Azure/autorest.typescript/pull/3662)
 - [Bugfix] Fix flatten property generation error for all readOnly. Please refer to [#3668](https://github.com/Azure/autorest.typescript/pull/3668)
+- [Bugfix] Fix nested Record type deserializer linter issue. Please refer to [#3660](https://github.com/Azure/autorest.typescript/pull/3660)
 - [Bugfix] Normalization in-consistancy for discriminated union during Serializer/DeSerializer. Please refer to [#3652](https://github.com/Azure/autorest.typescript/pull/3652)
 - [Bugfix] Fix flatten inconsistency between src and sample gen. Please refer to [#3657](https://github.com/Azure/autorest.typescript/pull/3657)
 
