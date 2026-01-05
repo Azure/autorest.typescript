@@ -223,7 +223,7 @@ async function read(): Promise<void> {
       baz: "body name",
       bazPropertiesBaz: [{ x: "bbb" }],
       bar: [{ x: "xx" }],
-      bazPropertiesBaz: 222,
+      properties: { baz: 222 },
       bazProperties2Baz: 111,
     },
   });
