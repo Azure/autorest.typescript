@@ -3034,8 +3034,8 @@ export function chatTokenLogProbabilityResultDeserializer(
     logprob: item["logprob"],
     bytes: !item["bytes"]
       ? item["bytes"]
-      : item["bytes"].map((p: any) => {
-          return p;
+      : item["bytes"].map((p1: any) => {
+          return p1;
         }),
     topLogprobs: !item["top_logprobs"]
       ? item["top_logprobs"]
@@ -3067,8 +3067,8 @@ export function chatTokenLogProbabilityInfoDeserializer(item: any): ChatTokenLog
     logprob: item["logprob"],
     bytes: !item["bytes"]
       ? item["bytes"]
-      : item["bytes"].map((p: any) => {
-          return p;
+      : item["bytes"].map((p1: any) => {
+          return p1;
         }),
   };
 }
