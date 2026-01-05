@@ -1539,7 +1539,8 @@ export function deserializeResponseValue(
   type: SdkType,
   restValue: string,
   required: boolean,
-  format?: string
+  format?: string,
+  recursionDepth: number = 0
 ): string {
   const dependencies = useDependencies();
   const stringToUint8ArrayReference = resolveReference(
@@ -1554,12 +1555,13 @@ export function deserializeResponseValue(
       return `${nullOrUndefinedPrefix} new Date(${type.encode === "unixTimestamp" ? `${restValue} * 1000` : restValue})`;
     case "array": {
       const prefix = nullOrUndefinedPrefix + restValue;
+      const varName = recursionDepth > 0 ? `p${recursionDepth}` : "p";
       let elementNullOrUndefinedPrefix = "";
       if (
         type.valueType &&
         (isTypeNullable(type.valueType) || getOptionalForType(type.valueType))
       ) {
-        elementNullOrUndefinedPrefix = "!p ? p :";
+        elementNullOrUndefinedPrefix = `!${varName} ? ${varName} :`;
       }
       const deserializeFunctionName = type.valueType
         ? buildModelDeserializer(
@@ -1572,12 +1574,12 @@ export function deserializeResponseValue(
           )
         : undefined;
       if (deserializeFunctionName) {
-        return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(p)})`;
+        return `${prefix}.map((${varName}: any) => { return ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(${varName})})`;
       } else if (
         type.valueType &&
         isAzureCoreErrorType(context.program, type.valueType.__raw)
       ) {
-        return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}p})`;
+        return `${prefix}.map((${varName}: any) => { return ${elementNullOrUndefinedPrefix}${varName}})`;
       } else if (type.valueType) {
         if (format) {
           const parseHelper = getCollectionFormatParseHelper(format);
@@ -1590,18 +1592,20 @@ export function deserializeResponseValue(
             return `${optionalPrefixForString}${parseHelper}(${restValue})`;
           }
         }
-        return `${prefix}.map((p: any) => { return ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, "p", true, getEncodeForType(type.valueType))}})`;
+        return `${prefix}.map((${varName}: any) => { return ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, varName, true, getEncodeForType(type.valueType), recursionDepth + 1)}})`;
       } else {
         return restValue;
       }
     }
     case "dict": {
+      const keyVar = recursionDepth > 0 ? `k${recursionDepth}` : "k";
+      const valueVar = recursionDepth > 0 ? `p${recursionDepth}` : "p";
       let elementNullOrUndefinedPrefix = "";
       if (
         type.valueType &&
         (isTypeNullable(type.valueType) || getOptionalForType(type.valueType))
       ) {
-        elementNullOrUndefinedPrefix = "!p ? p :";
+        elementNullOrUndefinedPrefix = `!${valueVar} ? ${valueVar} :`;
       }
       const deserializeFunctionName = type.valueType
         ? buildModelDeserializer(
@@ -1614,14 +1618,14 @@ export function deserializeResponseValue(
           )
         : undefined;
       if (deserializeFunctionName) {
-        return `${nullOrUndefinedPrefix}Object.fromEntries(Object.entries(${restValue}).map(([k, p]: [string, any]) => [k, ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(p)]))`;
+        return `${nullOrUndefinedPrefix}Object.fromEntries(Object.entries(${restValue}).map(([${keyVar}, ${valueVar}]: [string, any]) => [${keyVar}, ${elementNullOrUndefinedPrefix}${deserializeFunctionName}(${valueVar})]))`;
       } else if (
         type.valueType &&
         isAzureCoreErrorType(context.program, type.valueType.__raw)
       ) {
-        return `${nullOrUndefinedPrefix}Object.fromEntries(Object.entries(${restValue}).map(([k, p]: [string, any]) => [k, ${elementNullOrUndefinedPrefix}p]))`;
+        return `${nullOrUndefinedPrefix}Object.fromEntries(Object.entries(${restValue}).map(([${keyVar}, ${valueVar}]: [string, any]) => [${keyVar}, ${elementNullOrUndefinedPrefix}${valueVar}]))`;
       } else if (type.valueType) {
-        return `${nullOrUndefinedPrefix}Object.fromEntries(Object.entries(${restValue}).map(([k, p]: [string, any]) => [k, ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, "p", true, getEncodeForType(type.valueType))}]))`;
+        return `${nullOrUndefinedPrefix}Object.fromEntries(Object.entries(${restValue}).map(([${keyVar}, ${valueVar}]: [string, any]) => [${keyVar}, ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, valueVar, true, getEncodeForType(type.valueType), recursionDepth + 1)}]))`;
       } else {
         return restValue;
       }
@@ -1659,7 +1663,8 @@ export function deserializeResponseValue(
         type.type,
         restValue,
         false,
-        getEncodeForType(type.type)
+        getEncodeForType(type.type),
+        recursionDepth + 1
       );
     default:
       return restValue;
