@@ -821,9 +821,7 @@ export function completionsLogProbabilityModelDeserializer(
       return !p ? p : p;
     }),
     topLogprobs: item["top_logprobs"].map((p: any) => {
-      return Object.fromEntries(
-        Object.entries(p).map(([k1, p1]: [string, any]) => [k1, !p1 ? p1 : p1]),
-      );
+      return Object.fromEntries(Object.entries(p).map(([k, p]: [string, any]) => [k, !p ? p : p]));
     }),
     textOffset: item["text_offset"].map((p: any) => {
       return p;
@@ -3034,8 +3032,8 @@ export function chatTokenLogProbabilityResultDeserializer(
     logprob: item["logprob"],
     bytes: !item["bytes"]
       ? item["bytes"]
-      : item["bytes"].map((p1: any) => {
-          return p1;
+      : item["bytes"].map((p: any) => {
+          return p;
         }),
     topLogprobs: !item["top_logprobs"]
       ? item["top_logprobs"]
@@ -3067,8 +3065,8 @@ export function chatTokenLogProbabilityInfoDeserializer(item: any): ChatTokenLog
     logprob: item["logprob"],
     bytes: !item["bytes"]
       ? item["bytes"]
-      : item["bytes"].map((p1: any) => {
-          return p1;
+      : item["bytes"].map((p: any) => {
+          return p;
         }),
   };
 }

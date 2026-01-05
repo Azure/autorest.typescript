@@ -1121,9 +1121,7 @@ export function agentDeserializer(item: any): Agent {
       : agentsApiResponseFormatOptionDeserializer(item["response_format"]),
     metadata: !item["metadata"]
       ? item["metadata"]
-      : Object.fromEntries(
-          Object.entries(item["metadata"]).map(([k1, p1]: [string, any]) => [k1, p1]),
-        ),
+      : Object.fromEntries(Object.entries(item["metadata"]).map(([k, p]: [string, any]) => [k, p])),
   };
 }
 
@@ -1320,9 +1318,7 @@ export function agentThreadDeserializer(item: any): AgentThread {
       : toolResourcesDeserializer(item["tool_resources"]),
     metadata: !item["metadata"]
       ? item["metadata"]
-      : Object.fromEntries(
-          Object.entries(item["metadata"]).map(([k1, p1]: [string, any]) => [k1, p1]),
-        ),
+      : Object.fromEntries(Object.entries(item["metadata"]).map(([k, p]: [string, any]) => [k, p])),
   };
 }
 
@@ -1401,9 +1397,7 @@ export function threadMessageDeserializer(item: any): ThreadMessage {
       : messageAttachmentArrayDeserializer(item["attachments"]),
     metadata: !item["metadata"]
       ? item["metadata"]
-      : Object.fromEntries(
-          Object.entries(item["metadata"]).map(([k1, p1]: [string, any]) => [k1, p1]),
-        ),
+      : Object.fromEntries(Object.entries(item["metadata"]).map(([k, p]: [string, any]) => [k, p])),
   };
 }
 
@@ -1882,9 +1876,7 @@ export function threadRunDeserializer(item: any): ThreadRun {
       : agentsApiResponseFormatOptionDeserializer(item["response_format"]),
     metadata: !item["metadata"]
       ? item["metadata"]
-      : Object.fromEntries(
-          Object.entries(item["metadata"]).map(([k1, p1]: [string, any]) => [k1, p1]),
-        ),
+      : Object.fromEntries(Object.entries(item["metadata"]).map(([k, p]: [string, any]) => [k, p])),
     toolResources: !item["tool_resources"]
       ? item["tool_resources"]
       : updateToolResourcesOptionsDeserializer(item["tool_resources"]),
@@ -2316,9 +2308,7 @@ export function runStepDeserializer(item: any): RunStep {
     usage: !item["usage"] ? item["usage"] : runStepCompletionUsageDeserializer(item["usage"]),
     metadata: !item["metadata"]
       ? item["metadata"]
-      : Object.fromEntries(
-          Object.entries(item["metadata"]).map(([k1, p1]: [string, any]) => [k1, p1]),
-        ),
+      : Object.fromEntries(Object.entries(item["metadata"]).map(([k, p]: [string, any]) => [k, p])),
   };
 }
 
@@ -3070,9 +3060,7 @@ export function vectorStoreDeserializer(item: any): VectorStore {
       : new Date(item["last_active_at"] * 1000),
     metadata: !item["metadata"]
       ? item["metadata"]
-      : Object.fromEntries(
-          Object.entries(item["metadata"]).map(([k1, p1]: [string, any]) => [k1, p1]),
-        ),
+      : Object.fromEntries(Object.entries(item["metadata"]).map(([k, p]: [string, any]) => [k, p])),
   };
 }
 
