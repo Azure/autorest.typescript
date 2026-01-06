@@ -24,6 +24,31 @@ export const SerializationHelpers = {
     name: "buildTsvCollection",
     location: "serialization/build-tsv-collection.ts"
   },
+  buildNewlineCollection: {
+    kind: "function",
+    name: "buildNewlineCollection",
+    location: "serialization/build-newline-collection.ts"
+  },
+  parseCsvCollection: {
+    kind: "function",
+    name: "parseCsvCollection",
+    location: "serialization/parse-csv-collection.ts"
+  },
+  parsePipeCollection: {
+    kind: "function",
+    name: "parsePipeCollection",
+    location: "serialization/parse-pipe-collection.ts"
+  },
+  parseSsvCollection: {
+    kind: "function",
+    name: "parseSsvCollection",
+    location: "serialization/parse-ssv-collection.ts"
+  },
+  parseNewlineCollection: {
+    kind: "function",
+    name: "parseNewlineCollection",
+    location: "serialization/parse-newline-collection.ts"
+  },
   serializeRecord: {
     kind: "function",
     name: "serializeRecord",
@@ -33,6 +58,11 @@ export const SerializationHelpers = {
     kind: "function",
     name: "getBinaryResponse",
     location: "serialization/get-binary-response.ts"
+  },
+  areAllPropsUndefined: {
+    kind: "function",
+    name: "areAllPropsUndefined",
+    location: "serialization/check-prop-undefined.ts"
   }
 } as const;
 

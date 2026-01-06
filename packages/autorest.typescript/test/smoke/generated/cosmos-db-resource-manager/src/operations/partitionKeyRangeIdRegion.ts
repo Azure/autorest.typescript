@@ -18,9 +18,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing PartitionKeyRangeIdRegion operations. */
-export class PartitionKeyRangeIdRegionImpl
-  implements PartitionKeyRangeIdRegion
-{
+export class PartitionKeyRangeIdRegionImpl implements PartitionKeyRangeIdRegion {
   private readonly client: CosmosDBManagementClient;
 
   /**

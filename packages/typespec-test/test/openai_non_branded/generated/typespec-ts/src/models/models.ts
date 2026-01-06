@@ -266,7 +266,7 @@ export function _createCompletionResponseChoiceLogprobs1Deserializer(
       return p;
     }),
     topLogprobs: item["top_logprobs"].map((p: any) => {
-      return p;
+      return Object.fromEntries(Object.entries(p).map(([k1, p1]: [string, any]) => [k1, p1]));
     }),
     textOffset: item["text_offset"].map((p: any) => {
       return p;

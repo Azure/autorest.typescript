@@ -7,8 +7,7 @@ import { OperationOptions } from "@azure-rest/core-client";
 export interface MultivariateDetectMultivariateLastAnomalyOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface MultivariateDetectMultivariateBatchAnomalyOptionalParams
-  extends OperationOptions {}
+export interface MultivariateDetectMultivariateBatchAnomalyOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
 export interface MultivariateGetMultivariateModelOptionalParams extends OperationOptions {}
@@ -28,5 +27,4 @@ export interface MultivariateListMultivariateModelsOptionalParams extends Operat
 export interface MultivariateTrainMultivariateModelOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface MultivariateGetMultivariateBatchDetectionResultOptionalParams
-  extends OperationOptions {}
+export interface MultivariateGetMultivariateBatchDetectionResultOptionalParams extends OperationOptions {}

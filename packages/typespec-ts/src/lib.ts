@@ -549,6 +549,12 @@ const libDef = {
         default: paramMessage`The parameter name ${"parameterName"} has conflicts with others and please use @clientName to rename it.`
       }
     },
+    "unsupported-flatten-transition": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`The property "${"propertyName"}" in "${"modelName"}" has multiple consecutive flatten operations. Flatten transitions are not supported so consecutive transitions will be ignored.`
+      }
+    },
     "unsupported-parameter-type": {
       severity: "error",
       messages: {
@@ -595,6 +601,18 @@ const libDef = {
       severity: "error",
       messages: {
         default: paramMessage`Error traversing directory ${"directory"}: ${"error"}`
+      }
+    },
+    "detected-model-name-conflict": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Model name conflict detected: "${"modelName"}" exists in multiple namespaces: ${"namespaces"}. Please use @clientName to rename them.`
+      }
+    },
+    "un-supported-array-encoding": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`The array property "${"arrayName"}" of ${"arrayType"} type is not supported for encoding and will be ignored.`
       }
     }
   },

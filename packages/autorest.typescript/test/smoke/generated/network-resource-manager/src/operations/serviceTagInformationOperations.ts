@@ -21,9 +21,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing ServiceTagInformationOperations operations. */
-export class ServiceTagInformationOperationsImpl
-  implements ServiceTagInformationOperations
-{
+export class ServiceTagInformationOperationsImpl implements ServiceTagInformationOperations {
   private readonly client: NetworkManagementClient;
 
   /**

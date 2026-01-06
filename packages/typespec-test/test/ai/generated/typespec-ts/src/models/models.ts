@@ -286,8 +286,14 @@ export function evaluationDeserializer(item: any): Evaluation {
       ? item["systemData"]
       : systemDataDeserializer(item["systemData"]),
     status: item["status"],
-    tags: item["tags"],
-    properties: item["properties"],
+    tags: !item["tags"]
+      ? item["tags"]
+      : Object.fromEntries(Object.entries(item["tags"]).map(([k, p]: [string, any]) => [k, p])),
+    properties: !item["properties"]
+      ? item["properties"]
+      : Object.fromEntries(
+          Object.entries(item["properties"]).map(([k, p]: [string, any]) => [k, p]),
+        ),
     evaluators: evaluatorConfigurationRecordDeserializer(item["evaluators"]),
   };
 }
@@ -452,8 +458,16 @@ export function evaluatorConfigurationSerializer(item: EvaluatorConfiguration): 
 export function evaluatorConfigurationDeserializer(item: any): EvaluatorConfiguration {
   return {
     id: item["id"],
-    initParams: item["initParams"],
-    dataMapping: item["dataMapping"],
+    initParams: !item["initParams"]
+      ? item["initParams"]
+      : Object.fromEntries(
+          Object.entries(item["initParams"]).map(([k, p]: [string, any]) => [k, p]),
+        ),
+    dataMapping: !item["dataMapping"]
+      ? item["dataMapping"]
+      : Object.fromEntries(
+          Object.entries(item["dataMapping"]).map(([k, p]: [string, any]) => [k, p]),
+        ),
   };
 }
 
@@ -528,8 +542,14 @@ export function evaluationScheduleDeserializer(item: any): EvaluationSchedule {
       ? item["systemData"]
       : systemDataDeserializer(item["systemData"]),
     provisioningState: item["provisioningState"],
-    tags: item["tags"],
-    properties: item["properties"],
+    tags: !item["tags"]
+      ? item["tags"]
+      : Object.fromEntries(Object.entries(item["tags"]).map(([k, p]: [string, any]) => [k, p])),
+    properties: !item["properties"]
+      ? item["properties"]
+      : Object.fromEntries(
+          Object.entries(item["properties"]).map(([k, p]: [string, any]) => [k, p]),
+        ),
     isEnabled: item["isEnabled"],
     evaluators: evaluatorConfigurationRecordDeserializer(item["evaluators"]),
     trigger: triggerUnionDeserializer(item["trigger"]),

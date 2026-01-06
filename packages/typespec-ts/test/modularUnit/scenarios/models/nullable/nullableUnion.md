@@ -34,9 +34,7 @@ export function _postRequestSerializer(item: _PostRequest): any {
   return {
     code: item["code"],
     message: item["message"],
-    propA: !item["propA"]
-      ? item["propA"]
-      : _postRequestSerializer(item["propA"]),
+    propA: !item["propA"] ? item["propA"] : _postRequestSerializer(item["propA"]),
   };
 }
 
@@ -44,9 +42,7 @@ export function _postRequestDeserializer(item: any): _PostRequest {
   return {
     code: item["code"],
     message: item["message"],
-    propA: !item["propA"]
-      ? item["propA"]
-      : _postRequestDeserializer(item["propA"]),
+    propA: !item["propA"] ? item["propA"] : _postRequestDeserializer(item["propA"]),
   };
 }
 
@@ -62,11 +58,7 @@ export type A = {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  _postRequestSerializer,
-  _postRequestDeserializer,
-  A,
-} from "../models/models.js";
+import { _postRequestSerializer, _postRequestDeserializer, A } from "../models/models.js";
 import { PostOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -85,17 +77,12 @@ export function _postSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: !body ? body : _postRequestSerializer(body),
     });
 }
 
-export async function _postDeserialize(
-  result: PathUncheckedResponse,
-): Promise<A> {
+export async function _postDeserialize(result: PathUncheckedResponse): Promise<A> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);

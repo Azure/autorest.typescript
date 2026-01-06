@@ -120,16 +120,11 @@ export function _readSend(
     .path(path)
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Example> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<Example> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);

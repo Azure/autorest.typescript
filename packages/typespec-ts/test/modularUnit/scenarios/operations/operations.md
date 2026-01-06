@@ -24,14 +24,10 @@ export function _readSend(
   context: Client,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context
-    .path("/")
-    .post({ ...operationOptionsToRequestParameters(options) });
+  return context.path("/").post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -73,14 +69,10 @@ export function _readSend(
   context: Client,
   options: ReadOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  return context
-    .path("/")
-    .get({ ...operationOptionsToRequestParameters(options) });
+  return context.path("/").get({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -118,6 +110,7 @@ op read(
     #suppress "deprecated" "Legacy test"
     @header
     csvArrayHeader: base64urlBytes[],
+    @header optionalCsvArrayHeader?: string[],
     @header utcDateHeader: utcDateTime,
     @header optionalDateHeader?: utcDateTime,
     @header nullableDateHeader?: utcDateTime | null,
@@ -163,8 +156,7 @@ export function _readSend(
       ...(options?.optionalHeader !== undefined
         ? { "optional-header": options?.optionalHeader }
         : {}),
-      ...(options?.nullableOptionalHeader !== undefined &&
-      options?.nullableOptionalHeader !== null
+      ...(options?.nullableOptionalHeader !== undefined && options?.nullableOptionalHeader !== null
         ? { "nullable-optional-header": options?.nullableOptionalHeader }
         : {}),
       "bytes-header": uint8ArrayToString(bytesHeader, "base64"),
@@ -174,6 +166,17 @@ export function _readSend(
           return uint8ArrayToString(p, "base64url");
         }),
       ),
+      ...(options?.optionalCsvArrayHeader !== undefined
+        ? {
+            "optional-csv-array-header": !options?.optionalCsvArrayHeader
+              ? options?.optionalCsvArrayHeader
+              : buildCsvCollection(
+                  options?.optionalCsvArrayHeader.map((p: any) => {
+                    return p;
+                  }),
+                ),
+          }
+        : {}),
       "utc-date-header": utcDateHeader.toUTCString(),
       ...(options?.optionalDateHeader !== undefined
         ? {
@@ -182,8 +185,7 @@ export function _readSend(
               : options?.optionalDateHeader.toUTCString(),
           }
         : {}),
-      ...(options?.nullableDateHeader !== undefined &&
-      options?.nullableDateHeader !== null
+      ...(options?.nullableDateHeader !== undefined && options?.nullableDateHeader !== null
         ? {
             "nullable-date-header": !options?.nullableDateHeader
               ? options?.nullableDateHeader
@@ -196,9 +198,7 @@ export function _readSend(
   });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -275,9 +275,7 @@ export function _readSend(
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -330,15 +328,11 @@ export function _readSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      body: !options["bars"]
-        ? options["bars"]
-        : barArraySerializer(options["bars"]),
+      body: !options["bars"] ? options["bars"] : barArraySerializer(options["bars"]),
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -395,9 +389,7 @@ export function _readSend(
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -449,10 +441,7 @@ export function _readSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
@@ -498,11 +487,7 @@ op read(@body bars?: Bar[]): Bar[] | null;
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  Bar,
-  barArraySerializer,
-  barArrayDeserializer,
-} from "../models/models.js";
+import { Bar, barArraySerializer, barArrayDeserializer } from "../models/models.js";
 import { ReadOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -520,19 +505,12 @@ export function _readSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
-      body: !options["bars"]
-        ? options["bars"]
-        : barArraySerializer(options["bars"]),
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
+      body: !options["bars"] ? options["bars"] : barArraySerializer(options["bars"]),
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Bar[]> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<Bar[]> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -595,9 +573,7 @@ export function _readSend(
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -655,16 +631,11 @@ export function _readSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Foo> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<Foo> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -733,16 +704,11 @@ export function _testSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _testDeserialize(
-  result: PathUncheckedResponse,
-): Promise<_Bar> {
+export async function _testDeserialize(result: PathUncheckedResponse): Promise<_Bar> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -804,11 +770,7 @@ needAzureCore: true
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  errorDeserializer,
-  _Child,
-  _childDeserializer,
-} from "../models/models.js";
+import { errorDeserializer, _Child, _childDeserializer } from "../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
@@ -829,16 +791,11 @@ export function _testSend(
     .path("/")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _testDeserialize(
-  result: PathUncheckedResponse,
-): Promise<_Child> {
+export async function _testDeserialize(result: PathUncheckedResponse): Promise<_Child> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -919,10 +876,7 @@ export function testDeserializer(item: any): Test {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  TestArrayModel,
-  testArrayModelDeserializer,
-} from "../models/models.js";
+import { TestArrayModel, testArrayModelDeserializer } from "../models/models.js";
 import { GetOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -939,16 +893,11 @@ export function _getSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _getDeserialize(
-  result: PathUncheckedResponse,
-): Promise<TestArrayModel> {
+export async function _getDeserialize(result: PathUncheckedResponse): Promise<TestArrayModel> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -1001,9 +950,7 @@ export function testDictionaryDeserializer(item: any): TestDictionary {
   };
 }
 
-export function testRecordDeserializer(
-  item: Record<string, any>,
-): Record<string, Test> {
+export function testRecordDeserializer(item: Record<string, any>): Record<string, Test> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
     result[key] = !item[key] ? item[key] : testDeserializer(item[key]);
@@ -1027,10 +974,7 @@ export function testDeserializer(item: any): Test {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  TestDictionary,
-  testDictionaryDeserializer,
-} from "../models/models.js";
+import { TestDictionary, testDictionaryDeserializer } from "../models/models.js";
 import { GetOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -1047,16 +991,11 @@ export function _getSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _getDeserialize(
-  result: PathUncheckedResponse,
-): Promise<TestDictionary> {
+export async function _getDeserialize(result: PathUncheckedResponse): Promise<TestDictionary> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -1122,11 +1061,7 @@ export function endpointDeserializer(item: any): Endpoint {
 
 ```ts operations
 import { TestingContext as Client } from "./index.js";
-import {
-  Endpoint,
-  endpointSerializer,
-  endpointDeserializer,
-} from "../models/models.js";
+import { Endpoint, endpointSerializer, endpointDeserializer } from "../models/models.js";
 import { expandUrlTemplate } from "../static-helpers/urlTemplate.js";
 import { CreateOrUpdateEndpointOptionalParams } from "./options.js";
 import {
@@ -1156,10 +1091,7 @@ export function _createOrUpdateEndpointSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: endpointSerializer(endpointParam),
     });
 }
@@ -1181,12 +1113,7 @@ export async function createOrUpdateEndpoint(
   endpointParam: Endpoint,
   options: CreateOrUpdateEndpointOptionalParams = { requestOptions: {} },
 ): Promise<Endpoint> {
-  const result = await _createOrUpdateEndpointSend(
-    context,
-    endpointName,
-    endpointParam,
-    options,
-  );
+  const result = await _createOrUpdateEndpointSend(context, endpointName, endpointParam, options);
   return _createOrUpdateEndpointDeserialize(result);
 }
 ```
@@ -1212,11 +1139,11 @@ model ListTestResult {
   @nextLink
   next: string;
 }
-    
+
 model Test {
   id: string;
 }
-    
+
 @Legacy.nextLinkVerb("GET")
 @list
 @route("/list-get")
@@ -1280,11 +1207,7 @@ export function testDeserializer(item: any): Test {
 
 ```ts operations
 import { testServiceContext as Client } from "./index.js";
-import {
-  _ListTestResult,
-  _listTestResultDeserializer,
-  Test,
-} from "../models/models.js";
+import { _ListTestResult, _listTestResultDeserializer, Test } from "../models/models.js";
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
@@ -1305,16 +1228,11 @@ export function _fooSend(
     .path("/list-post")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _fooDeserialize(
-  result: PathUncheckedResponse,
-): Promise<_ListTestResult> {
+export async function _fooDeserialize(result: PathUncheckedResponse): Promise<_ListTestResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -1344,16 +1262,11 @@ export function _barSend(
     .path("/list-get")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _barDeserialize(
-  result: PathUncheckedResponse,
-): Promise<_ListTestResult> {
+export async function _barDeserialize(result: PathUncheckedResponse): Promise<_ListTestResult> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);

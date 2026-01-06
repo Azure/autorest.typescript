@@ -368,9 +368,7 @@ export function _createStreamingSend(
     });
 }
 
-export async function _createStreamingDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _createStreamingDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -469,17 +467,12 @@ export function _readSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: fooSerializer(body),
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Foo> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<Foo> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -531,9 +524,7 @@ export function _readSend(
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -613,17 +604,12 @@ export function _readSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: fooSerializer(body),
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Foo> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<Foo> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -703,17 +689,12 @@ export function _readSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: fooSerializer(body),
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Foo> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<Foo> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -790,17 +771,12 @@ export function _readSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: fooSerializer(body),
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Foo> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<Foo> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -868,17 +844,12 @@ export function _readSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: fooSerializer(body),
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Foo> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<Foo> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -947,17 +918,12 @@ export function _readSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: fooSerializer(body),
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Foo> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<Foo> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -1029,17 +995,12 @@ export function _readSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: fooSerializer(body),
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Foo> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<Foo> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -1128,17 +1089,12 @@ export function _readSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: fooSerializer(body),
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Foo> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<Foo> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -1228,17 +1184,12 @@ export function _readSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: fooSerializer(body),
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Foo> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<Foo> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -1328,17 +1279,12 @@ export function _readSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: fooSerializer(body),
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Foo> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<Foo> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -1516,16 +1462,11 @@ export function _readSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Cat> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<Cat> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -1630,16 +1571,11 @@ export function _readSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Cat> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<Cat> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -1695,12 +1631,7 @@ export interface PSDog extends Pet {
 }
 
 export function psDogSerializer(item: PSDog): any {
-  return {
-    kind: item["kind"],
-    name: item["name"],
-    weight: item["weight"],
-    bark: item["bark"],
-  };
+  return { kind: item["kind"], name: item["name"], weight: item["weight"], bark: item["bark"] };
 }
 
 export function psDogDeserializer(item: any): PSDog {
@@ -1778,17 +1709,12 @@ export function _readSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: psDogSerializer(body),
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<PSDog> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<PSDog> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -1921,16 +1847,11 @@ export function _readSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<PetUnion> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<PetUnion> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -2106,16 +2027,11 @@ export function _readSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<PetUnion> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<PetUnion> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -2206,16 +2122,11 @@ export function _readSend(
     .path("/")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<Foo> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<Foo> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -2315,9 +2226,7 @@ export function _getSend(
     });
 }
 
-export async function _getDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _getDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -2451,17 +2360,12 @@ export function _getSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "text/plain",
-      headers: {
-        "test-header": testHeader,
-        ...options.requestOptions?.headers,
-      },
+      headers: { "test-header": testHeader, ...options.requestOptions?.headers },
       body: body,
     });
 }
 
-export async function _getDeserialize(
-  result: PathUncheckedResponse,
-): Promise<void> {
+export async function _getDeserialize(result: PathUncheckedResponse): Promise<void> {
   const expectedStatuses = ["204"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
@@ -2750,9 +2654,7 @@ export function vegetablesDeserializer(item: any): Vegetables {
 /** Alias for _VegetablesAdditionalProperty */
 export type _VegetablesAdditionalProperty = number | string;
 
-export function _vegetablesAdditionalPropertySerializer(
-  item: _VegetablesAdditionalProperty,
-): any {
+export function _vegetablesAdditionalPropertySerializer(item: _VegetablesAdditionalProperty): any {
   return item;
 }
 

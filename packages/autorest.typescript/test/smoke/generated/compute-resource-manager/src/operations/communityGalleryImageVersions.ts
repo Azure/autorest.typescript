@@ -15,9 +15,7 @@ import {
 } from "../models/index.js";
 
 /** Class containing CommunityGalleryImageVersions operations. */
-export class CommunityGalleryImageVersionsImpl
-  implements CommunityGalleryImageVersions
-{
+export class CommunityGalleryImageVersionsImpl implements CommunityGalleryImageVersions {
   private readonly client: ComputeManagementClient;
 
   /**

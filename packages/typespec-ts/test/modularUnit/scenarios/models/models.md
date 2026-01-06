@@ -32,11 +32,7 @@ export interface StreamingChatCompletionOptions {
 export function streamingChatCompletionOptionsSerializer(
   item: StreamingChatCompletionOptions,
 ): any {
-  return {
-    stream: item["stream"],
-    messages: item["messages"],
-    index: item["index"],
-  };
+  return { stream: item["stream"], messages: item["messages"], index: item["index"] };
 }
 
 export function streamingChatCompletionOptionsDeserializer(
@@ -88,10 +84,7 @@ export function _readSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
       body: streamingChatCompletionOptionsSerializer(body),
     });
 }
@@ -165,9 +158,7 @@ export function _readSend(
     });
 }
 
-export async function _readDeserialize(
-  result: PathUncheckedResponse,
-): Promise<true> {
+export async function _readDeserialize(result: PathUncheckedResponse): Promise<true> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);

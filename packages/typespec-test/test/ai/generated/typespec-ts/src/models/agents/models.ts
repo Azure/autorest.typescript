@@ -1119,7 +1119,11 @@ export function agentDeserializer(item: any): Agent {
     responseFormat: !item["response_format"]
       ? item["response_format"]
       : agentsApiResponseFormatOptionDeserializer(item["response_format"]),
-    metadata: item["metadata"],
+    metadata: !item["metadata"]
+      ? item["metadata"]
+      : Object.fromEntries(
+          Object.entries(item["metadata"]).map(([k1, p1]: [string, any]) => [k1, p1]),
+        ),
   };
 }
 
@@ -1314,7 +1318,11 @@ export function agentThreadDeserializer(item: any): AgentThread {
     toolResources: !item["tool_resources"]
       ? item["tool_resources"]
       : toolResourcesDeserializer(item["tool_resources"]),
-    metadata: item["metadata"],
+    metadata: !item["metadata"]
+      ? item["metadata"]
+      : Object.fromEntries(
+          Object.entries(item["metadata"]).map(([k1, p1]: [string, any]) => [k1, p1]),
+        ),
   };
 }
 
@@ -1391,7 +1399,11 @@ export function threadMessageDeserializer(item: any): ThreadMessage {
     attachments: !item["attachments"]
       ? item["attachments"]
       : messageAttachmentArrayDeserializer(item["attachments"]),
-    metadata: item["metadata"],
+    metadata: !item["metadata"]
+      ? item["metadata"]
+      : Object.fromEntries(
+          Object.entries(item["metadata"]).map(([k1, p1]: [string, any]) => [k1, p1]),
+        ),
   };
 }
 
@@ -1868,7 +1880,11 @@ export function threadRunDeserializer(item: any): ThreadRun {
     responseFormat: !item["response_format"]
       ? item["response_format"]
       : agentsApiResponseFormatOptionDeserializer(item["response_format"]),
-    metadata: item["metadata"],
+    metadata: !item["metadata"]
+      ? item["metadata"]
+      : Object.fromEntries(
+          Object.entries(item["metadata"]).map(([k1, p1]: [string, any]) => [k1, p1]),
+        ),
     toolResources: !item["tool_resources"]
       ? item["tool_resources"]
       : updateToolResourcesOptionsDeserializer(item["tool_resources"]),
@@ -2298,7 +2314,11 @@ export function runStepDeserializer(item: any): RunStep {
       : new Date(item["cancelled_at"] * 1000),
     failedAt: !item["failed_at"] ? item["failed_at"] : new Date(item["failed_at"] * 1000),
     usage: !item["usage"] ? item["usage"] : runStepCompletionUsageDeserializer(item["usage"]),
-    metadata: item["metadata"],
+    metadata: !item["metadata"]
+      ? item["metadata"]
+      : Object.fromEntries(
+          Object.entries(item["metadata"]).map(([k1, p1]: [string, any]) => [k1, p1]),
+        ),
   };
 }
 
@@ -2689,7 +2709,9 @@ export function runStepBingGroundingToolCallDeserializer(item: any): RunStepBing
   return {
     type: item["type"],
     id: item["id"],
-    bingGrounding: item["bing_grounding"],
+    bingGrounding: Object.fromEntries(
+      Object.entries(item["bing_grounding"]).map(([k, p]: [string, any]) => [k, p]),
+    ),
   };
 }
 
@@ -2708,7 +2730,9 @@ export function runStepAzureAISearchToolCallDeserializer(item: any): RunStepAzur
   return {
     type: item["type"],
     id: item["id"],
-    azureAISearch: item["azure_ai_search"],
+    azureAISearch: Object.fromEntries(
+      Object.entries(item["azure_ai_search"]).map(([k, p]: [string, any]) => [k, p]),
+    ),
   };
 }
 
@@ -2727,7 +2751,9 @@ export function runStepSharepointToolCallDeserializer(item: any): RunStepSharepo
   return {
     type: item["type"],
     id: item["id"],
-    sharePoint: item["sharepoint_grounding"],
+    sharePoint: Object.fromEntries(
+      Object.entries(item["sharepoint_grounding"]).map(([k, p]: [string, any]) => [k, p]),
+    ),
   };
 }
 
@@ -2748,7 +2774,9 @@ export function runStepMicrosoftFabricToolCallDeserializer(
   return {
     type: item["type"],
     id: item["id"],
-    microsoftFabric: item["fabric_aiskill"],
+    microsoftFabric: Object.fromEntries(
+      Object.entries(item["fabric_aiskill"]).map(([k, p]: [string, any]) => [k, p]),
+    ),
   };
 }
 
@@ -3040,7 +3068,11 @@ export function vectorStoreDeserializer(item: any): VectorStore {
     lastActiveAt: !item["last_active_at"]
       ? item["last_active_at"]
       : new Date(item["last_active_at"] * 1000),
-    metadata: item["metadata"],
+    metadata: !item["metadata"]
+      ? item["metadata"]
+      : Object.fromEntries(
+          Object.entries(item["metadata"]).map(([k1, p1]: [string, any]) => [k1, p1]),
+        ),
   };
 }
 
@@ -3147,8 +3179,7 @@ export function vectorStoreAutoChunkingStrategyRequestSerializer(
 }
 
 /** A statically configured chunking strategy. */
-export interface VectorStoreStaticChunkingStrategyRequest
-  extends VectorStoreChunkingStrategyRequest {
+export interface VectorStoreStaticChunkingStrategyRequest extends VectorStoreChunkingStrategyRequest {
   /** The object type, which is always 'static'. */
   type: "static";
   /** The options for the static chunking strategy. */
@@ -3348,8 +3379,7 @@ export function vectorStoreChunkingStrategyResponseUnionDeserializer(
 export type VectorStoreChunkingStrategyResponseType = "other" | "static";
 
 /** This is returned when the chunking strategy is unknown. Typically, this is because the file was indexed before the chunking_strategy concept was introduced in the API. */
-export interface VectorStoreAutoChunkingStrategyResponse
-  extends VectorStoreChunkingStrategyResponse {
+export interface VectorStoreAutoChunkingStrategyResponse extends VectorStoreChunkingStrategyResponse {
   /** The object type, which is always 'other'. */
   type: "other";
 }
@@ -3363,8 +3393,7 @@ export function vectorStoreAutoChunkingStrategyResponseDeserializer(
 }
 
 /** A statically configured chunking strategy. */
-export interface VectorStoreStaticChunkingStrategyResponse
-  extends VectorStoreChunkingStrategyResponse {
+export interface VectorStoreStaticChunkingStrategyResponse extends VectorStoreChunkingStrategyResponse {
   /** The object type, which is always 'static'. */
   type: "static";
   /** The options for the static chunking strategy. */
@@ -3927,7 +3956,11 @@ export function runStepDeltaFileSearchToolCallDeserializer(
     index: item["index"],
     id: item["id"],
     type: item["type"],
-    fileSearch: item["file_search"],
+    fileSearch: !item["file_search"]
+      ? item["file_search"]
+      : Object.fromEntries(
+          Object.entries(item["file_search"]).map(([k, p]: [string, any]) => [k, p]),
+        ),
   };
 }
 

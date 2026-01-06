@@ -149,12 +149,9 @@ import { DefaultAzureCredential } from "@azure/identity";
  */
 async function indexesCreateOrUpdate(): Promise<void> {
   const endpoint = process.env.MACHINE_LEARNING_SERVICES_ENDPOINT || "";
-  const subscriptionId =
-    process.env.MACHINE_LEARNING_SERVICES_SUBSCRIPTION_ID || "";
-  const resourceGroupName =
-    process.env.MACHINE_LEARNING_SERVICES_RESOURCE_GROUP_NAME || "";
-  const workspaceName =
-    process.env.MACHINE_LEARNING_SERVICES_WORKSPACE_NAME || "";
+  const subscriptionId = process.env.MACHINE_LEARNING_SERVICES_SUBSCRIPTION_ID || "";
+  const resourceGroupName = process.env.MACHINE_LEARNING_SERVICES_RESOURCE_GROUP_NAME || "";
+  const workspaceName = process.env.MACHINE_LEARNING_SERVICES_WORKSPACE_NAME || "";
   const credential = new DefaultAzureCredential();
   const client = new MachineLearningServicesClient(
     endpoint,

@@ -80,9 +80,7 @@ export interface AssetChainSummaryResult {
   errors?: ErrorResponse[];
 }
 
-export function assetChainSummaryResultDeserializer(
-  item: any,
-): AssetChainSummaryResult {
+export function assetChainSummaryResultDeserializer(item: any): AssetChainSummaryResult {
   return {
     errors: !item["errors"]
       ? item["errors"]
@@ -103,10 +101,7 @@ export enum KnownVersions {
 
 ```ts operations
 import { TestServiceContext as Client } from "./index.js";
-import {
-  AssetChainSummaryResult,
-  assetChainSummaryResultDeserializer,
-} from "../models/models.js";
+import { AssetChainSummaryResult, assetChainSummaryResultDeserializer } from "../models/models.js";
 import { GetAssetChainSummaryOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -123,10 +118,7 @@ export function _getAssetChainSummarySend(
     .path("/assetChainSummary")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { accept: "application/json", ...options.requestOptions?.headers },
     });
 }
 

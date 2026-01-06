@@ -22,9 +22,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing RestorableDatabaseAccounts operations. */
-export class RestorableDatabaseAccountsImpl
-  implements RestorableDatabaseAccounts
-{
+export class RestorableDatabaseAccountsImpl implements RestorableDatabaseAccounts {
   private readonly client: CosmosDBManagementClient;
 
   /**
