@@ -972,7 +972,7 @@ export interface TrainDefaultResponse extends HttpResponse {
 
 // @public
 export interface TrainingConfigVersionOutput {
-    modelExpirationDate: string;
+    modelExpirationDate: Date;
     trainingConfigVersion: string;
 }
 

@@ -25,7 +25,7 @@ async function createJobSample(): Promise<void> {
             id: "{Your id}",
             info: {
               sex: "female",
-              birthDate: "{Your birthDate}",
+              birthDate: new Date(),
               clinicalInfo: [
                 {
                   system: "{Your system}",

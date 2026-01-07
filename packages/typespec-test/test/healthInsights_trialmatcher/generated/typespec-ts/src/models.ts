@@ -79,7 +79,7 @@ export interface PatientInfo {
   /** The patient's sex. */
   sex?: PatientInfoSex;
   /** The patient's date of birth. */
-  birthDate?: string;
+  birthDate?: Date;
   /** Known clinical information for the patient, structured. */
   clinicalInfo?: Array<ClinicalCodedElement>;
 }

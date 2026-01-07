@@ -376,7 +376,7 @@ export interface PatientDocument {
 
 // @public
 export interface PatientInfo {
-    birthDate?: string;
+    birthDate?: Date;
     clinicalInfo?: Array<ClinicalCodedElement>;
     sex?: PatientInfoSex;
 }
@@ -478,7 +478,7 @@ export interface TrialMatcherResultOutput {
 
 // @public
 export interface TrialMatcherResultsOutput {
-    knowledgeGraphLastUpdateDate?: string;
+    knowledgeGraphLastUpdateDate?: Date;
     modelVersion: string;
     patients: Array<TrialMatcherPatientResultOutput>;
 }

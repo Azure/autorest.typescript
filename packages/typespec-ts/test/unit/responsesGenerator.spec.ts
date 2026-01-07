@@ -539,7 +539,7 @@ describe("Array generation", () => {
       /** The request has succeeded. */
       export interface Read200Response extends HttpResponse {
         status: "200";
-        body: string[];
+        body: Date[];
       }
       `
     );

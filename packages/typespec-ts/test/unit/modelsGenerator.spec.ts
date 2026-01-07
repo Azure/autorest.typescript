@@ -702,10 +702,10 @@ describe("Input/output model type", () => {
       await verifyPropertyType(tspType, typeScriptType);
     });
 
-    it("should handle plainDate[] -> input 'Date[] | string[]' output type 'string[]'", async () => {
+    it("should handle plainDate[] -> input 'Date[] | string[]' output type 'Date[]'", async () => {
       const tspType = "plainDate[]";
-      const inputType = "string[]";
-      const outputType = "string[]";
+      const inputType = "Date[]";
+      const outputType = "Date[]";
       await verifyPropertyType(tspType, inputType, { outputType });
     });
 
@@ -1923,9 +1923,9 @@ describe("Input/output model type", () => {
     });
   });
   describe("datetime generation", () => {
-    it("should handle plainDate -> string in output model &  `Date | string` in input model", async () => {
-      const inputType = "string";
-      const outputType = "string";
+    it("should handle plainDate -> string in output model &  `Date` in input model", async () => {
+      const inputType = "Date";
+      const outputType = "Date";
       await verifyPropertyType("plainDate", inputType, {
         outputType
       });
