@@ -62,12 +62,13 @@ export function getTypeExpression(
       }
       return "number";
     case "endpoint":
-    case "plainDate":
     case "plainTime":
     case "string":
     case "url":
       // TODO - what typespec produces uri, password?
       return "string";
+    case "plainDate":
+      return "Date";
     case "bytes":
       return "Uint8Array";
     case "constant":
