@@ -455,11 +455,11 @@ export declare interface PlainDateGetDefault200Response extends HttpResponse {
 export declare type PlainDateGetDefaultParameters = RequestParameters;
 
 export declare interface PlainDateProperty {
-    property?: string;
+    property?: Date;
 }
 
 export declare interface PlainDatePropertyOutput {
-    property?: string;
+    property?: Date;
 }
 
 export declare interface PlainDatePutAll204Response extends HttpResponse {
