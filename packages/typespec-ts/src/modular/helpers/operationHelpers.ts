@@ -703,25 +703,29 @@ function getLroAndPagingOperationFunction(
       ? `resourceLocationConfig: "${lroMetadata?.finalStateVia}"`
       : "";
 
-  // For LRO+Paging, we need to:
-  // 1. Create a wrapper function that waits for the LRO to complete
-  // 2. Then use the LRO result as the initial response for paging
+  // For LRO+Paging operations, we need to:
+  // 1. Create an LRO poller that waits for the long-running operation to complete
+  // 2. Convert the LRO result (which is the first page) into a response format
+  // 3. Pass this to the paging helper to enable iteration through subsequent pages
+  const expectedStatuses = getExpectedStatuses(operation);
+  const paramList = parameters.map((p) => p.name).join(", ");
+  const pagingOptions =
+    options.length > 0 ? `,\n    {${options.join(", ")}}` : "";
+
   statements.push(`
-  const poller = ${getLongRunningPollerReference}(context, _${name}Deserialize, ${getExpectedStatuses(
-    operation
-  )}, {
+  const poller = ${getLongRunningPollerReference}(context, _${name}Deserialize, ${expectedStatuses}, {
     updateIntervalInMs: ${optionalParamName}?.updateIntervalInMs,
     abortSignal: ${optionalParamName}?.abortSignal,
-    getInitialResponse: () => _${name}Send(${parameters
-      .map((p) => p.name)
-      .join(", ")}),
+    getInitialResponse: () => _${name}Send(${paramList}),
     ${resourceLocationConfig}
   });
   
   const getInitialResponseForPaging = async () => {
     const lroResult = await poller.pollUntilDone();
-    // The LRO result is the first page of results, we need to convert it back to a response format
-    // that the paging helper expects
+    // The LRO result contains the first page of results. We need to wrap it in a 
+    // PathUncheckedResponse-like object that buildPagedAsyncIterator expects.
+    // The status is hardcoded to "200" because a successful LRO completion means
+    // we have a successful response with the first page.
     return {
       status: "200",
       body: lroResult
@@ -732,7 +736,7 @@ function getLroAndPagingOperationFunction(
     context,
     getInitialResponseForPaging,
     async (result) => result.body,
-    ${getExpectedStatuses(operation)}${options.length > 0 ? `,\n    {${options.join(", ")}}` : ""}
+    ${expectedStatuses}${pagingOptions}
   );
   `);
 
