@@ -28,7 +28,7 @@ export interface TrialMatcherResultsOutput {
   /** The version of the model used for inference, expressed as the model date. */
   modelVersion: string;
   /** The date when the clinical trials knowledge graph was last updated. */
-  knowledgeGraphLastUpdateDate?: Date;
+  knowledgeGraphLastUpdateDate?: string;
 }
 
 /** The results of the model's work for a single patient. */

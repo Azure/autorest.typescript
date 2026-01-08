@@ -145,7 +145,7 @@ export interface TrainingConfigVersionOutput {
   /** Represents the version of the config. */
   trainingConfigVersion: string;
   /** Represents the training config version expiration date. */
-  modelExpirationDate: Date;
+  modelExpirationDate: string;
 }
 
 /** Represents the project kind. */
