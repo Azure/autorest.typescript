@@ -210,14 +210,14 @@ export function getDeserializePrivateFunction(
   const deserializedType = isLroOnly
     ? operation?.lroMetadata?.finalResponse?.result
     : isLroAndPaging
-      ? response.type  // For LRO+Paging, use the array type from response
+      ? response.type // For LRO+Paging, use the array type from response
       : restResponse
         ? restResponse.type
         : response.type;
   const lroSubSegments = isLroOnly
     ? operation?.lroMetadata?.finalResponse?.resultSegments
     : isLroAndPaging
-      ? operation.response.resultSegments  // For LRO+Paging, use paging result segments
+      ? operation.response.resultSegments // For LRO+Paging, use paging result segments
       : undefined;
 
   let lroSubPath;
