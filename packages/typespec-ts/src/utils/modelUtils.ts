@@ -1404,8 +1404,8 @@ function getSchemaForStdScalar(
         type: "string",
         format,
         description,
-        typeName: "Date",
-        outputTypeName: "Date"
+        typeName: "string",
+        outputTypeName: "string"
       };
     case "utcDateTime":
       return {

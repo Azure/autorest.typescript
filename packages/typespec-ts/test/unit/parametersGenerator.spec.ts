@@ -577,7 +577,7 @@ describe("Parameters.ts", () => {
         import type { RequestParameters } from "@azure-rest/core-client";
 
         export interface ReadBodyParam {
-          body: Date[];
+          body: string[];
         }  
 
         export type ReadParameters = ReadBodyParam & RequestParameters;

@@ -141,12 +141,12 @@ describe("ModelsPropertyOptional Rest Client", () => {
     assert.strictEqual(result.status, "204");
   });
 
-  it.skip("should get all plainDate", async () => {
+  it("should get all plainDate", async () => {
     const result = await client
       .path("/type/property/optional/plainDate/all")
       .get();
     assert.strictEqual(result.status, "200");
-    assert.strictEqual(result.body.property, new Date("2022-12-12"));
+    assert.strictEqual(result.body.property, "2022-12-12");
   });
 
   it("should get default plainDate", async () => {
@@ -157,11 +157,11 @@ describe("ModelsPropertyOptional Rest Client", () => {
     assert.deepEqual(result.body, {});
   });
 
-  it.skip("should put all plainDate", async () => {
+  it("should put all plainDate", async () => {
     const result = await client
       .path("/type/property/optional/plainDate/all")
       .put({
-        body: { property: new Date("2022-12-12") }
+        body: { property: "2022-12-12" }
       });
     assert.strictEqual(result.status, "204");
   });
