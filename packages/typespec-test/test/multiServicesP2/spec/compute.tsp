@@ -12,10 +12,10 @@ using TypeSpec.Versioning;
 /**
  * Compute Client
  */
-@armProviderNamespace
+@armProviderNamespace("Microsoft.Compute")
 @service(#{ title: "Azure Compute resource management API." })
 @versioned(Versions)
-namespace Microsoft.Compute;
+namespace Compute;
 
 /**
  * The available API versions.
@@ -107,4 +107,31 @@ interface RestorePointCollections {
      * The operation to create or update the restore point collection. Please refer to https://aka.ms/RestorePoints for more details. When updating a restore point collection, only tags may be modified.
      */
     createOrUpdate is ArmResourceCreateOrReplaceSync<RestorePointCollection>;
+}
+
+model ActionGroup
+    is Azure.ResourceManager.TrackedResource<ActionGroupsProperties> {
+    ...ResourceNameParameter<
+        Resource = ActionGroup,
+        KeyName = "actionGroupName",
+        SegmentName = "actionGroups",
+        NamePattern = ""
+    >;
+}
+
+model ActionGroupsProperties {
+    #suppress "@azure-tools/typespec-azure-resource-manager/arm-resource-provisioning-state" "For backward compatibility"
+    @visibility(Lifecycle.Read)
+    provisioningState?: string;
+}
+
+@armResourceOperations
+interface ActionGroups {
+    get is ArmResourceRead<
+        ActionGroup,
+        Parameters = {
+            @query("$expand")
+            $expand?: string;
+        }
+    >;
 }
