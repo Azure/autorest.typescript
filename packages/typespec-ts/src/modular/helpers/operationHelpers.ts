@@ -158,9 +158,8 @@ export function getDeserializePrivateFunction(
       type: PathUncheckedResponseReference
     }
   ];
-  // TODO: Support LRO + paging operation
-  // https://github.com/Azure/autorest.typescript/issues/2313
   const isLroOnly = isLroOnlyOperation(operation);
+  const isLroAndPaging = isLroAndPagingOperation(operation);
 
   // TODO: Support operation overloads
   // TODO: Support multiple responses
@@ -169,6 +168,16 @@ export function getDeserializePrivateFunction(
   let returnType;
   if (isLroOnly) {
     returnType = buildLroReturnType(context, operation);
+  } else if (isLroAndPaging) {
+    // For LRO+Paging, return type is the array from the response
+    if (response.type && response.type.kind === "array") {
+      returnType = {
+        name: (restResponse as any).name ?? "",
+        type: getTypeExpression(context, response.type)
+      };
+    } else {
+      returnType = { name: "", type: "void" };
+    }
   } else if (response.type && restResponse) {
     returnType = {
       name: (restResponse as any).name ?? "",
@@ -200,12 +209,16 @@ export function getDeserializePrivateFunction(
   );
   const deserializedType = isLroOnly
     ? operation?.lroMetadata?.finalResponse?.result
-    : restResponse
-      ? restResponse.type
-      : response.type;
+    : isLroAndPaging
+      ? response.type  // For LRO+Paging, use the array type from response
+      : restResponse
+        ? restResponse.type
+        : response.type;
   const lroSubSegments = isLroOnly
     ? operation?.lroMetadata?.finalResponse?.resultSegments
-    : undefined;
+    : isLroAndPaging
+      ? operation.response.resultSegments  // For LRO+Paging, use paging result segments
+      : undefined;
 
   let lroSubPath;
   if (lroSubSegments && lroSubSegments.length > 0) {
@@ -219,7 +232,7 @@ export function getDeserializePrivateFunction(
   const deserializePrefix = "result.body";
 
   const deserializedRoot = `${deserializePrefix}${lroSubPath ? "." + lroSubPath : ""}`;
-  if (isLroOnly && lroSubPath) {
+  if ((isLroOnly || isLroAndPaging) && lroSubPath) {
     statements.push(
       `if(${deserializedRoot.split(".").join("?.")} === undefined) {
         throw ${createRestErrorReference}(\`Expected a result in the response at position "${deserializedRoot}"\`, result);
@@ -465,8 +478,13 @@ export function getOperationFunction(
       optionalParamName
     );
   } else if (isLroAndPagingOperation(operation)) {
-    // Case 3: both paging + lro operation is not supported yet so handle them as normal operation and customization may be needed
-    // https://github.com/Azure/autorest.typescript/issues/2313
+    // Case 3: both paging + lro operation
+    return getLroAndPagingOperationFunction(
+      context,
+      [method[0], operation],
+      clientType,
+      optionalParamName
+    );
   }
 
   // TODO: Support operation overloads
@@ -586,6 +604,136 @@ function getLroOnlyOperationFunction(
   }) as ${pollerLikeReference}<${operationStateReference}<${
     returnType.type
   }>, ${returnType.type}>;
+  `);
+
+  return {
+    ...functionStatement,
+    statements
+  } as FunctionDeclarationStructure & { propertyName?: string };
+}
+
+function getLroAndPagingOperationFunction(
+  context: SdkContext,
+  method: [string[], SdkLroPagingServiceMethod<SdkHttpOperation>],
+  clientType: string,
+  optionalParamName: string = "options"
+): FunctionDeclarationStructure & { propertyName?: string } {
+  const operation = method[1];
+  // Extract required parameters
+  const parameters: OptionalKind<ParameterDeclarationStructure>[] =
+    getOperationSignatureParameters(context, method, clientType);
+
+  // For LRO+Paging operations, the return type is the element type from the array
+  const response = operation.response;
+  let returnType = { name: "", type: "void" };
+  if (response.type && response.type.kind === "array") {
+    const type = response.type;
+    returnType = {
+      name: (type.valueType as any).name ?? "",
+      type: getTypeExpression(context, type.valueType)
+    };
+  }
+
+  const { name, fixme = [] } = getOperationName(operation);
+  const pagedAsyncIterableIteratorReference = resolveReference(
+    PagingHelpers.PagedAsyncIterableIterator
+  );
+  const buildPagedAsyncIteratorReference = resolveReference(
+    PagingHelpers.BuildPagedAsyncIterator
+  );
+  const getLongRunningPollerReference = resolveReference(
+    PollingHelpers.GetLongRunningPoller
+  );
+
+  const functionStatement = {
+    kind: StructureKind.Function,
+    docs: [
+      ...getDocsFromDescription(operation.doc),
+      ...getFixmeForMultilineDocs(fixme)
+    ],
+    isAsync: false,
+    isExported: true,
+    name,
+    propertyName: normalizeName(operation.name, NameType.Property),
+    parameters,
+    returnType: `${pagedAsyncIterableIteratorReference}<${returnType.type}>`
+  };
+
+  const statements: string[] = [];
+  const options = [];
+
+  // Get paging metadata
+  const nextLinkSegments = operation.pagingMetadata.nextLinkSegments;
+  const nextLinkName = nextLinkSegments
+    ?.map((property) => {
+      return property.name;
+    })
+    .join(".");
+  const itemSegments = operation.response.resultSegments;
+  const itemName = itemSegments
+    ?.map((property) => {
+      return property.name;
+    })
+    .join(".");
+
+  // Check for nextLinkVerb from TCGC pagingMetadata (supports @Legacy.nextLinkVerb decorator)
+  const nextLinkMethod = operation.pagingMetadata.nextLinkVerb;
+
+  if (itemName) {
+    options.push(`itemName: "${itemName}"`);
+  }
+  if (nextLinkName) {
+    options.push(`nextLinkName: "${nextLinkName}"`);
+  }
+  if (nextLinkMethod && nextLinkMethod !== "GET") {
+    options.push(`nextLinkMethod: "${nextLinkMethod}"`);
+  }
+
+  // Get LRO metadata
+  const lroMetadata = operation.lroMetadata;
+  const allowedFinalLocation = [
+    "azure-async-operation",
+    "location",
+    "original-uri",
+    "operation-location"
+  ];
+  const resourceLocationConfig =
+    lroMetadata?.finalStateVia &&
+    allowedFinalLocation.includes(lroMetadata?.finalStateVia)
+      ? `resourceLocationConfig: "${lroMetadata?.finalStateVia}"`
+      : "";
+
+  // For LRO+Paging, we need to:
+  // 1. Create a wrapper function that waits for the LRO to complete
+  // 2. Then use the LRO result as the initial response for paging
+  statements.push(`
+  const poller = ${getLongRunningPollerReference}(context, _${name}Deserialize, ${getExpectedStatuses(
+    operation
+  )}, {
+    updateIntervalInMs: ${optionalParamName}?.updateIntervalInMs,
+    abortSignal: ${optionalParamName}?.abortSignal,
+    getInitialResponse: () => _${name}Send(${parameters
+      .map((p) => p.name)
+      .join(", ")}),
+    ${resourceLocationConfig}
+  });
+  
+  const getInitialResponseForPaging = async () => {
+    const lroResult = await poller.pollUntilDone();
+    // The LRO result is the first page of results, we need to convert it back to a response format
+    // that the paging helper expects
+    return {
+      status: "200",
+      body: lroResult
+    } as any;
+  };
+
+  return ${buildPagedAsyncIteratorReference}(
+    context,
+    getInitialResponseForPaging,
+    async (result) => result.body,
+    ${getExpectedStatuses(operation)}${options.length > 0 ? `,\n    {${options.join(", ")}}` : ""}
+  );
   `);
 
   return {
