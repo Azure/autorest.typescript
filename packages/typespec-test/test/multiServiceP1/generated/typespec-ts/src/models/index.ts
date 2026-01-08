@@ -2,8 +2,6 @@
 // Licensed under the MIT License.
 
 export {
-  VirtualMachine,
-  VirtualMachineProperties,
   KnownResourceProvisioningState,
   ResourceProvisioningState,
   TrackedResource,
@@ -14,12 +12,6 @@ export {
   ErrorResponse,
   ErrorDetail,
   ErrorAdditionalInfo,
-  RestorePointCollection,
-  RestorePointCollectionProperties,
-  Disk,
-  DiskProperties,
-  DiskAccess,
-  DiskAccessProperties,
   PrivateEndpointConnection,
   PrivateEndpointConnectionProperties,
   PrivateEndpoint,
@@ -28,6 +20,4 @@ export {
   PrivateEndpointServiceConnectionStatus,
   KnownPrivateEndpointConnectionProvisioningState,
   PrivateEndpointConnectionProvisioningState,
-  KnownVersions,
-  KnownVersions_1,
 } from "./models.js";

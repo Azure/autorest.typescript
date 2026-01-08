@@ -7,7 +7,7 @@ import {
   RestorePointCollectionsCreateOrUpdateOptionalParams,
   RestorePointCollectionsGetOptionalParams,
 } from "../../api/restorePointCollections/options.js";
-import { RestorePointCollection } from "../../models/models.js";
+import { ComputeRestorePointCollection } from "../../models/compute/models.js";
 
 /** Interface representing a RestorePointCollections operations. */
 export interface RestorePointCollectionsOperations {
@@ -15,15 +15,15 @@ export interface RestorePointCollectionsOperations {
   createOrUpdate: (
     resourceGroupName: string,
     restorePointCollectionName: string,
-    resource: RestorePointCollection,
+    resource: ComputeRestorePointCollection,
     options?: RestorePointCollectionsCreateOrUpdateOptionalParams,
-  ) => Promise<RestorePointCollection>;
+  ) => Promise<ComputeRestorePointCollection>;
   /** The operation to get the restore point collection. */
   get: (
     resourceGroupName: string,
     restorePointCollectionName: string,
     options?: RestorePointCollectionsGetOptionalParams,
-  ) => Promise<RestorePointCollection>;
+  ) => Promise<ComputeRestorePointCollection>;
 }
 
 function _getRestorePointCollections(context: ComputeContext) {
@@ -31,7 +31,7 @@ function _getRestorePointCollections(context: ComputeContext) {
     createOrUpdate: (
       resourceGroupName: string,
       restorePointCollectionName: string,
-      resource: RestorePointCollection,
+      resource: ComputeRestorePointCollection,
       options?: RestorePointCollectionsCreateOrUpdateOptionalParams,
     ) => createOrUpdate(context, resourceGroupName, restorePointCollectionName, resource, options),
     get: (

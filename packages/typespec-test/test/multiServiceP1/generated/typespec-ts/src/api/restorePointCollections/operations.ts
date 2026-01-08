@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 
 import { ComputeContext } from "../index.js";
+import { errorResponseDeserializer } from "../../models/models.js";
 import {
-  errorResponseDeserializer,
-  RestorePointCollection,
-  restorePointCollectionSerializer,
-  restorePointCollectionDeserializer,
-} from "../../models/models.js";
+  ComputeRestorePointCollection,
+  computeRestorePointCollectionSerializer,
+  computeRestorePointCollectionDeserializer,
+} from "../../models/compute/models.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
   RestorePointCollectionsCreateOrUpdateOptionalParams,
@@ -24,7 +24,7 @@ export function _createOrUpdateSend(
   context: ComputeContext,
   resourceGroupName: string,
   restorePointCollectionName: string,
-  resource: RestorePointCollection,
+  resource: ComputeRestorePointCollection,
   options: RestorePointCollectionsCreateOrUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -45,13 +45,13 @@ export function _createOrUpdateSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
       headers: { accept: "application/json", ...options.requestOptions?.headers },
-      body: restorePointCollectionSerializer(resource),
+      body: computeRestorePointCollectionSerializer(resource),
     });
 }
 
 export async function _createOrUpdateDeserialize(
   result: PathUncheckedResponse,
-): Promise<RestorePointCollection> {
+): Promise<ComputeRestorePointCollection> {
   const expectedStatuses = ["200", "201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -59,7 +59,7 @@ export async function _createOrUpdateDeserialize(
     throw error;
   }
 
-  return restorePointCollectionDeserializer(result.body);
+  return computeRestorePointCollectionDeserializer(result.body);
 }
 
 /** The operation to create or update the restore point collection. Please refer to https://aka.ms/RestorePoints for more details. When updating a restore point collection, only tags may be modified. */
@@ -67,9 +67,9 @@ export async function createOrUpdate(
   context: ComputeContext,
   resourceGroupName: string,
   restorePointCollectionName: string,
-  resource: RestorePointCollection,
+  resource: ComputeRestorePointCollection,
   options: RestorePointCollectionsCreateOrUpdateOptionalParams = { requestOptions: {} },
-): Promise<RestorePointCollection> {
+): Promise<ComputeRestorePointCollection> {
   const result = await _createOrUpdateSend(
     context,
     resourceGroupName,
@@ -108,7 +108,7 @@ export function _getSend(
 
 export async function _getDeserialize(
   result: PathUncheckedResponse,
-): Promise<RestorePointCollection> {
+): Promise<ComputeRestorePointCollection> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -116,7 +116,7 @@ export async function _getDeserialize(
     throw error;
   }
 
-  return restorePointCollectionDeserializer(result.body);
+  return computeRestorePointCollectionDeserializer(result.body);
 }
 
 /** The operation to get the restore point collection. */
@@ -125,7 +125,7 @@ export async function get(
   resourceGroupName: string,
   restorePointCollectionName: string,
   options: RestorePointCollectionsGetOptionalParams = { requestOptions: {} },
-): Promise<RestorePointCollection> {
+): Promise<ComputeRestorePointCollection> {
   const result = await _getSend(context, resourceGroupName, restorePointCollectionName, options);
   return _getDeserialize(result);
 }

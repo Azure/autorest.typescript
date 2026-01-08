@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 
 import { ComputeContext } from "../index.js";
+import { errorResponseDeserializer } from "../../models/models.js";
 import {
-  errorResponseDeserializer,
-  DiskAccess,
-  diskAccessSerializer,
-  diskAccessDeserializer,
-} from "../../models/models.js";
+  ComputeDiskDiskAccess,
+  computeDiskDiskAccessSerializer,
+  computeDiskDiskAccessDeserializer,
+} from "../../models/computeDisk/models.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
@@ -26,7 +26,7 @@ export function _createOrUpdateSend(
   context: ComputeContext,
   resourceGroupName: string,
   diskAccessName: string,
-  resource: DiskAccess,
+  resource: ComputeDiskDiskAccess,
   options: DiskAccessesCreateOrUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -47,13 +47,13 @@ export function _createOrUpdateSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
       headers: { accept: "application/json", ...options.requestOptions?.headers },
-      body: diskAccessSerializer(resource),
+      body: computeDiskDiskAccessSerializer(resource),
     });
 }
 
 export async function _createOrUpdateDeserialize(
   result: PathUncheckedResponse,
-): Promise<DiskAccess> {
+): Promise<ComputeDiskDiskAccess> {
   const expectedStatuses = ["200", "202", "201"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -61,7 +61,7 @@ export async function _createOrUpdateDeserialize(
     throw error;
   }
 
-  return diskAccessDeserializer(result.body);
+  return computeDiskDiskAccessDeserializer(result.body);
 }
 
 /** Creates or updates a disk access resource */
@@ -69,16 +69,16 @@ export function createOrUpdate(
   context: ComputeContext,
   resourceGroupName: string,
   diskAccessName: string,
-  resource: DiskAccess,
+  resource: ComputeDiskDiskAccess,
   options: DiskAccessesCreateOrUpdateOptionalParams = { requestOptions: {} },
-): PollerLike<OperationState<DiskAccess>, DiskAccess> {
+): PollerLike<OperationState<ComputeDiskDiskAccess>, ComputeDiskDiskAccess> {
   return getLongRunningPoller(context, _createOrUpdateDeserialize, ["200", "202", "201"], {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () =>
       _createOrUpdateSend(context, resourceGroupName, diskAccessName, resource, options),
     resourceLocationConfig: "location",
-  }) as PollerLike<OperationState<DiskAccess>, DiskAccess>;
+  }) as PollerLike<OperationState<ComputeDiskDiskAccess>, ComputeDiskDiskAccess>;
 }
 
 export function _getSend(
@@ -107,7 +107,7 @@ export function _getSend(
     });
 }
 
-export async function _getDeserialize(result: PathUncheckedResponse): Promise<DiskAccess> {
+export async function _getDeserialize(result: PathUncheckedResponse): Promise<ComputeDiskDiskAccess> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -115,7 +115,7 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<Di
     throw error;
   }
 
-  return diskAccessDeserializer(result.body);
+  return computeDiskDiskAccessDeserializer(result.body);
 }
 
 /** Gets information about a disk access resource. */
@@ -124,7 +124,7 @@ export async function get(
   resourceGroupName: string,
   diskAccessName: string,
   options: DiskAccessesGetOptionalParams = { requestOptions: {} },
-): Promise<DiskAccess> {
+): Promise<ComputeDiskDiskAccess> {
   const result = await _getSend(context, resourceGroupName, diskAccessName, options);
   return _getDeserialize(result);
 }

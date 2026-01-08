@@ -15,7 +15,7 @@ using TypeSpec.Versioning;
 @armProviderNamespace("Microsoft.Compute")
 @service(#{ title: "Azure Compute resource management API." })
 @versioned(Versions)
-namespace Microsoft.ComputeDisk;
+namespace ComputeDisk;
 
 /**
  * The available API versions.
@@ -118,4 +118,25 @@ interface DiskAccesses {
             @bodyRoot _: DiskAccess;
         })
     >;
+}
+
+model ActionGroup
+    is Azure.ResourceManager.TrackedResource<ActionGroupsProperties> {
+    ...ResourceNameParameter<
+        Resource = ActionGroup,
+        KeyName = "actionGroupName",
+        SegmentName = "actionGroups",
+        NamePattern = ""
+    >;
+}
+
+model ActionGroupsProperties {
+    #suppress "@azure-tools/typespec-azure-resource-manager/arm-resource-provisioning-state" "For backward compatibility"
+    @visibility(Lifecycle.Read)
+    provisioningState?: string;
+}
+
+@armResourceOperations
+interface ActionGroups {
+    list is ArmListBySubscription<ActionGroup>;
 }

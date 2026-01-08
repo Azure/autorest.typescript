@@ -2,12 +2,15 @@
 // Licensed under the MIT License.
 
 import { AzureClouds, AzureSupportedClouds } from "./static-helpers/cloudSettingHelpers.js";
+import {
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./static-helpers/pagingHelpers.js";
 
 export { ComputeClient } from "./computeClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
-  VirtualMachine,
-  VirtualMachineProperties,
   KnownResourceProvisioningState,
   ResourceProvisioningState,
   TrackedResource,
@@ -18,12 +21,6 @@ export {
   ErrorResponse,
   ErrorDetail,
   ErrorAdditionalInfo,
-  RestorePointCollection,
-  RestorePointCollectionProperties,
-  Disk,
-  DiskProperties,
-  DiskAccess,
-  DiskAccessProperties,
   PrivateEndpointConnection,
   PrivateEndpointConnectionProperties,
   PrivateEndpoint,
@@ -32,10 +29,30 @@ export {
   PrivateEndpointServiceConnectionStatus,
   KnownPrivateEndpointConnectionProvisioningState,
   PrivateEndpointConnectionProvisioningState,
-  KnownVersions,
-  KnownVersions_1,
 } from "./models/index.js";
+export {
+  ComputeVirtualMachine,
+  ComputeVirtualMachineProperties,
+  ComputeRestorePointCollection,
+  ComputeRestorePointCollectionProperties,
+  ComputeActionGroup,
+  ComputeActionGroupsProperties,
+  KnownComputeVersions,
+} from "./models/compute/index.js";
+export {
+  ComputeDiskDisk,
+  ComputeDiskDiskProperties,
+  ComputeDiskDiskAccess,
+  ComputeDiskDiskAccessProperties,
+  ComputeDiskActionGroup,
+  ComputeDiskActionGroupsProperties,
+  KnownComputeDiskVersions,
+} from "./models/computeDisk/index.js";
 export { ComputeClientOptionalParams } from "./api/index.js";
+export {
+  ActionGroupsListOptionalParams,
+  ActionGroupsGetOptionalParams,
+} from "./api/actionGroups/index.js";
 export {
   DiskAccessesCreateOrUpdateOptionalParams,
   DiskAccessesGetOptionalParams,
@@ -50,9 +67,11 @@ export {
   VirtualMachinesGetOptionalParams,
 } from "./api/virtualMachines/index.js";
 export {
+  ActionGroupsOperations,
   DiskAccessesOperations,
   DisksOperations,
   RestorePointCollectionsOperations,
   VirtualMachinesOperations,
 } from "./classic/index.js";
+export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
 export { AzureClouds, AzureSupportedClouds };

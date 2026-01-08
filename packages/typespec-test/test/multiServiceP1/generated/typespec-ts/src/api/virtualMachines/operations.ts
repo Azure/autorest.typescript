@@ -3,11 +3,11 @@
 
 import { ComputeContext } from "../index.js";
 import {
-  VirtualMachine,
-  virtualMachineSerializer,
-  virtualMachineDeserializer,
-  errorResponseDeserializer,
-} from "../../models/models.js";
+  ComputeVirtualMachine,
+  computeVirtualMachineSerializer,
+  computeVirtualMachineDeserializer,
+} from "../../models/compute/models.js";
+import { errorResponseDeserializer } from "../../models/models.js";
 import { getLongRunningPoller } from "../../static-helpers/pollingHelpers.js";
 import { expandUrlTemplate } from "../../static-helpers/urlTemplate.js";
 import {
@@ -26,7 +26,7 @@ export function _createOrUpdateSend(
   context: ComputeContext,
   resourceGroupName: string,
   vmName: string,
-  resource: VirtualMachine,
+  resource: ComputeVirtualMachine,
   options: VirtualMachinesCreateOrUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -47,13 +47,13 @@ export function _createOrUpdateSend(
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
       headers: { accept: "application/json", ...options.requestOptions?.headers },
-      body: virtualMachineSerializer(resource),
+      body: computeVirtualMachineSerializer(resource),
     });
 }
 
 export async function _createOrUpdateDeserialize(
   result: PathUncheckedResponse,
-): Promise<VirtualMachine> {
+): Promise<ComputeVirtualMachine> {
   const expectedStatuses = ["200", "201", "202"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -61,7 +61,7 @@ export async function _createOrUpdateDeserialize(
     throw error;
   }
 
-  return virtualMachineDeserializer(result.body);
+  return computeVirtualMachineDeserializer(result.body);
 }
 
 /** The operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation. */
@@ -69,16 +69,16 @@ export function createOrUpdate(
   context: ComputeContext,
   resourceGroupName: string,
   vmName: string,
-  resource: VirtualMachine,
+  resource: ComputeVirtualMachine,
   options: VirtualMachinesCreateOrUpdateOptionalParams = { requestOptions: {} },
-): PollerLike<OperationState<VirtualMachine>, VirtualMachine> {
+): PollerLike<OperationState<ComputeVirtualMachine>, ComputeVirtualMachine> {
   return getLongRunningPoller(context, _createOrUpdateDeserialize, ["200", "201", "202"], {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () =>
       _createOrUpdateSend(context, resourceGroupName, vmName, resource, options),
     resourceLocationConfig: "azure-async-operation",
-  }) as PollerLike<OperationState<VirtualMachine>, VirtualMachine>;
+  }) as PollerLike<OperationState<ComputeVirtualMachine>, ComputeVirtualMachine>;
 }
 
 export function _getSend(
@@ -107,7 +107,7 @@ export function _getSend(
     });
 }
 
-export async function _getDeserialize(result: PathUncheckedResponse): Promise<VirtualMachine> {
+export async function _getDeserialize(result: PathUncheckedResponse): Promise<ComputeVirtualMachine> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     const error = createRestError(result);
@@ -115,7 +115,7 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<Vi
     throw error;
   }
 
-  return virtualMachineDeserializer(result.body);
+  return computeVirtualMachineDeserializer(result.body);
 }
 
 /** Retrieves information about the model view or the instance view of a virtual machine. */
@@ -124,7 +124,7 @@ export async function get(
   resourceGroupName: string,
   vmName: string,
   options: VirtualMachinesGetOptionalParams = { requestOptions: {} },
-): Promise<VirtualMachine> {
+): Promise<ComputeVirtualMachine> {
   const result = await _getSend(context, resourceGroupName, vmName, options);
   return _getDeserialize(result);
 }

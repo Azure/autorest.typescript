@@ -7,7 +7,7 @@ import {
   DiskAccessesCreateOrUpdateOptionalParams,
   DiskAccessesGetOptionalParams,
 } from "../../api/diskAccesses/options.js";
-import { DiskAccess } from "../../models/models.js";
+import { ComputeDiskDiskAccess } from "../../models/computeDisk/models.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
 /** Interface representing a DiskAccesses operations. */
@@ -16,15 +16,15 @@ export interface DiskAccessesOperations {
   createOrUpdate: (
     resourceGroupName: string,
     diskAccessName: string,
-    resource: DiskAccess,
+    resource: ComputeDiskDiskAccess,
     options?: DiskAccessesCreateOrUpdateOptionalParams,
-  ) => PollerLike<OperationState<DiskAccess>, DiskAccess>;
+  ) => PollerLike<OperationState<ComputeDiskDiskAccess>, ComputeDiskDiskAccess>;
   /** Gets information about a disk access resource. */
   get: (
     resourceGroupName: string,
     diskAccessName: string,
     options?: DiskAccessesGetOptionalParams,
-  ) => Promise<DiskAccess>;
+  ) => Promise<ComputeDiskDiskAccess>;
 }
 
 function _getDiskAccesses(context: ComputeContext) {
@@ -32,7 +32,7 @@ function _getDiskAccesses(context: ComputeContext) {
     createOrUpdate: (
       resourceGroupName: string,
       diskAccessName: string,
-      resource: DiskAccess,
+      resource: ComputeDiskDiskAccess,
       options?: DiskAccessesCreateOrUpdateOptionalParams,
     ) => createOrUpdate(context, resourceGroupName, diskAccessName, resource, options),
     get: (

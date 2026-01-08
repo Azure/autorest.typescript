@@ -2,6 +2,11 @@
 // Licensed under the MIT License.
 
 import { AzureClouds, AzureSupportedClouds } from "./static-helpers/cloudSettingHelpers.js";
+import {
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./static-helpers/pagingHelpers.js";
 
 export { ComputeClient } from "./computeClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
@@ -69,4 +74,5 @@ export {
   RestorePointCollectionsOperations,
   VirtualMachinesOperations,
 } from "./compute/classic/index.js";
+export { PageSettings, ContinuablePage, PagedAsyncIterableIterator };
 export { AzureClouds, AzureSupportedClouds };

@@ -1,61 +1,17 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+import {
+  computeDiskActionGroupArrayDeserializer,
+  ComputeDiskActionGroup,
+} from "./computeDisk/models.js";
+
 /**
  * This file contains only generated model types and their (de)serializers.
  * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
  */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/** Describes a Virtual Machine. */
-export interface VirtualMachine extends TrackedResource {
-  /** The resource-specific properties for this resource. */
-  properties?: VirtualMachineProperties;
-}
-
-export function virtualMachineSerializer(item: VirtualMachine): any {
-  return {
-    tags: item["tags"],
-    location: item["location"],
-    properties: !item["properties"]
-      ? item["properties"]
-      : virtualMachinePropertiesSerializer(item["properties"]),
-  };
-}
-
-export function virtualMachineDeserializer(item: any): VirtualMachine {
-  return {
-    tags: !item["tags"]
-      ? item["tags"]
-      : Object.fromEntries(Object.entries(item["tags"]).map(([k, p]: [string, any]) => [k, p])),
-    location: item["location"],
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : virtualMachinePropertiesDeserializer(item["properties"]),
-  };
-}
-
-/** model interface VirtualMachineProperties */
-export interface VirtualMachineProperties {
-  readonly provisioningState?: ResourceProvisioningState;
-}
-
-export function virtualMachinePropertiesSerializer(item: VirtualMachineProperties): any {
-  return item;
-}
-
-export function virtualMachinePropertiesDeserializer(item: any): VirtualMachineProperties {
-  return {
-    provisioningState: item["provisioningState"],
-  };
-}
-
 /** The provisioning state of a resource type. */
 export enum KnownResourceProvisioningState {
   /** Resource has been created. */
@@ -249,170 +205,6 @@ export function errorAdditionalInfoDeserializer(item: any): ErrorAdditionalInfo 
   };
 }
 
-/** Create or update Restore Point collection parameters. */
-export interface RestorePointCollection extends TrackedResource {
-  /** The resource-specific properties for this resource. */
-  properties?: RestorePointCollectionProperties;
-}
-
-export function restorePointCollectionSerializer(item: RestorePointCollection): any {
-  return {
-    tags: item["tags"],
-    location: item["location"],
-    properties: !item["properties"]
-      ? item["properties"]
-      : restorePointCollectionPropertiesSerializer(item["properties"]),
-  };
-}
-
-export function restorePointCollectionDeserializer(item: any): RestorePointCollection {
-  return {
-    tags: !item["tags"]
-      ? item["tags"]
-      : Object.fromEntries(Object.entries(item["tags"]).map(([k, p]: [string, any]) => [k, p])),
-    location: item["location"],
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : restorePointCollectionPropertiesDeserializer(item["properties"]),
-  };
-}
-
-/** The restore point collection properties. */
-export interface RestorePointCollectionProperties {
-  /** The provisioning state of the restore point collection. */
-  readonly provisioningState?: string;
-  /** This property determines whether instant access snapshot is enabled for restore points created under this restore point collection for Premium SSD v2 or Ultra disk. Instant access snapshot for Premium SSD v2 or Ultra disk is instantaneously available for restoring disk with fast restore performance. */
-  instantAccess?: boolean;
-}
-
-export function restorePointCollectionPropertiesSerializer(
-  item: RestorePointCollectionProperties,
-): any {
-  return { instantAccess: item["instantAccess"] };
-}
-
-export function restorePointCollectionPropertiesDeserializer(
-  item: any,
-): RestorePointCollectionProperties {
-  return {
-    provisioningState: item["provisioningState"],
-    instantAccess: item["instantAccess"],
-  };
-}
-
-/** Disk resource. */
-export interface Disk extends TrackedResource {
-  /** The resource-specific properties for this resource. */
-  properties?: DiskProperties;
-}
-
-export function diskSerializer(item: Disk): any {
-  return {
-    tags: item["tags"],
-    location: item["location"],
-    properties: !item["properties"]
-      ? item["properties"]
-      : diskPropertiesSerializer(item["properties"]),
-  };
-}
-
-export function diskDeserializer(item: any): Disk {
-  return {
-    tags: !item["tags"]
-      ? item["tags"]
-      : Object.fromEntries(Object.entries(item["tags"]).map(([k, p]: [string, any]) => [k, p])),
-    location: item["location"],
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : diskPropertiesDeserializer(item["properties"]),
-  };
-}
-
-/** Disk resource properties. */
-export interface DiskProperties {
-  readonly provisioningState?: ResourceProvisioningState;
-}
-
-export function diskPropertiesSerializer(item: DiskProperties): any {
-  return item;
-}
-
-export function diskPropertiesDeserializer(item: any): DiskProperties {
-  return {
-    provisioningState: item["provisioningState"],
-  };
-}
-
-/** Concrete tracked resource types can be created by aliasing this type using a specific property type. */
-export interface DiskAccess extends TrackedResource {
-  /** The resource-specific properties for this resource. */
-  properties?: DiskAccessProperties;
-}
-
-export function diskAccessSerializer(item: DiskAccess): any {
-  return {
-    tags: item["tags"],
-    location: item["location"],
-    properties: !item["properties"]
-      ? item["properties"]
-      : diskAccessPropertiesSerializer(item["properties"]),
-  };
-}
-
-export function diskAccessDeserializer(item: any): DiskAccess {
-  return {
-    tags: !item["tags"]
-      ? item["tags"]
-      : Object.fromEntries(Object.entries(item["tags"]).map(([k, p]: [string, any]) => [k, p])),
-    location: item["location"],
-    id: item["id"],
-    name: item["name"],
-    type: item["type"],
-    systemData: !item["systemData"]
-      ? item["systemData"]
-      : systemDataDeserializer(item["systemData"]),
-    properties: !item["properties"]
-      ? item["properties"]
-      : diskAccessPropertiesDeserializer(item["properties"]),
-  };
-}
-
-/** model interface DiskAccessProperties */
-export interface DiskAccessProperties {
-  /** A readonly collection of private endpoint connections created on the disk. Currently only one endpoint connection is supported. */
-  readonly privateEndpointConnections?: PrivateEndpointConnection[];
-  /** The disk access resource provisioning state. */
-  readonly provisioningState?: string;
-  /** The time when the disk access was created. */
-  readonly timeCreated?: Date;
-}
-
-export function diskAccessPropertiesSerializer(item: DiskAccessProperties): any {
-  return item;
-}
-
-export function diskAccessPropertiesDeserializer(item: any): DiskAccessProperties {
-  return {
-    privateEndpointConnections: !item["privateEndpointConnections"]
-      ? item["privateEndpointConnections"]
-      : privateEndpointConnectionArrayDeserializer(item["privateEndpointConnections"]),
-    provisioningState: item["provisioningState"],
-    timeCreated: !item["timeCreated"] ? item["timeCreated"] : new Date(item["timeCreated"]),
-  };
-}
-
 export function privateEndpointConnectionArrayDeserializer(
   result: Array<PrivateEndpointConnection>,
 ): any[] {
@@ -542,18 +334,17 @@ export enum KnownPrivateEndpointConnectionProvisioningState {
  */
 export type PrivateEndpointConnectionProvisioningState = string;
 
-/** The available API versions. */
-export enum KnownVersions {
-  /** The 2024-11-01 API version. */
-  V20241101 = "2024-11-01",
-  /** The 2025-04-01 API version. */
-  V20250401 = "2025-04-01",
+/** The response of a ActionGroup list operation. */
+export interface _ActionGroupListResult {
+  /** The ActionGroup items on this page */
+  value: ComputeDiskActionGroup[];
+  /** The link to the next page of items */
+  nextLink?: string;
 }
 
-/** The available API versions. */
-export enum KnownVersions_1 {
-  /** The 2024-03-02 API version. */
-  V20240302 = "2024-03-02",
-  /** The 2025-01-02 API version. */
-  V20250102 = "2025-01-02",
+export function _actionGroupListResultDeserializer(item: any): _ActionGroupListResult {
+  return {
+    value: computeDiskActionGroupArrayDeserializer(item["value"]),
+    nextLink: item["nextLink"],
+  };
 }

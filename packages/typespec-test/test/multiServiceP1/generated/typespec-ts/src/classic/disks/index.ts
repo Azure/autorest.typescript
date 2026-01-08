@@ -7,7 +7,7 @@ import {
   DisksCreateOrUpdateOptionalParams,
   DisksGetOptionalParams,
 } from "../../api/disks/options.js";
-import { Disk } from "../../models/models.js";
+import { ComputeDiskDisk } from "../../models/computeDisk/models.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 
 /** Interface representing a Disks operations. */
@@ -16,15 +16,15 @@ export interface DisksOperations {
   createOrUpdate: (
     resourceGroupName: string,
     diskName: string,
-    resource: Disk,
+    resource: ComputeDiskDisk,
     options?: DisksCreateOrUpdateOptionalParams,
-  ) => PollerLike<OperationState<Disk>, Disk>;
+  ) => PollerLike<OperationState<ComputeDiskDisk>, ComputeDiskDisk>;
   /** Gets information about a disk. */
   get: (
     resourceGroupName: string,
     diskName: string,
     options?: DisksGetOptionalParams,
-  ) => Promise<Disk>;
+  ) => Promise<ComputeDiskDisk>;
 }
 
 function _getDisks(context: ComputeContext) {
@@ -32,7 +32,7 @@ function _getDisks(context: ComputeContext) {
     createOrUpdate: (
       resourceGroupName: string,
       diskName: string,
-      resource: Disk,
+      resource: ComputeDiskDisk,
       options?: DisksCreateOrUpdateOptionalParams,
     ) => createOrUpdate(context, resourceGroupName, diskName, resource, options),
     get: (resourceGroupName: string, diskName: string, options?: DisksGetOptionalParams) =>

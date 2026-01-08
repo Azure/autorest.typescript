@@ -14,6 +14,22 @@ import { PollerLike } from '@azure/core-lro';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
+export interface ActionGroupsGetOptionalParams extends OperationOptions {
+    // (undocumented)
+    expand?: string;
+}
+
+// @public
+export interface ActionGroupsListOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface ActionGroupsOperations {
+    get: (resourceGroupName: string, actionGroupName: string, options?: ActionGroupsGetOptionalParams) => Promise<ComputeActionGroup>;
+    list: (options?: ActionGroupsListOptionalParams) => PagedAsyncIterableIterator<ComputeDiskActionGroup>;
+}
+
+// @public
 export enum AzureClouds {
     AZURE_CHINA_CLOUD = "AZURE_CHINA_CLOUD",
     AZURE_PUBLIC_CLOUD = "AZURE_PUBLIC_CLOUD",
@@ -22,6 +38,17 @@ export enum AzureClouds {
 
 // @public
 export type AzureSupportedClouds = `${AzureClouds}`;
+
+// @public
+export interface ComputeActionGroup extends TrackedResource {
+    properties?: ComputeActionGroupsProperties;
+}
+
+// @public
+export interface ComputeActionGroupsProperties {
+    // (undocumented)
+    readonly provisioningState?: string;
+}
 
 // @public (undocumented)
 export class ComputeClient {
@@ -41,17 +68,68 @@ export interface ComputeClientOptionalParams extends ClientOptions {
 }
 
 // @public
+export interface ComputeDiskActionGroup extends TrackedResource {
+    properties?: ComputeDiskActionGroupsProperties;
+}
+
+// @public
+export interface ComputeDiskActionGroupsProperties {
+    // (undocumented)
+    readonly provisioningState?: string;
+}
+
+// @public
+export interface ComputeDiskDisk extends TrackedResource {
+    properties?: ComputeDiskDiskProperties;
+}
+
+// @public
+export interface ComputeDiskDiskAccess extends TrackedResource {
+    properties?: ComputeDiskDiskAccessProperties;
+}
+
+// @public
+export interface ComputeDiskDiskAccessProperties {
+    readonly privateEndpointConnections?: PrivateEndpointConnection[];
+    readonly provisioningState?: string;
+    readonly timeCreated?: Date;
+}
+
+// @public
+export interface ComputeDiskDiskProperties {
+    // (undocumented)
+    readonly provisioningState?: ResourceProvisioningState;
+}
+
+// @public
+export interface ComputeRestorePointCollection extends TrackedResource {
+    properties?: ComputeRestorePointCollectionProperties;
+}
+
+// @public
+export interface ComputeRestorePointCollectionProperties {
+    instantAccess?: boolean;
+    readonly provisioningState?: string;
+}
+
+// @public
+export interface ComputeVirtualMachine extends TrackedResource {
+    properties?: ComputeVirtualMachineProperties;
+}
+
+// @public
+export interface ComputeVirtualMachineProperties {
+    // (undocumented)
+    readonly provisioningState?: ResourceProvisioningState;
+}
+
+// @public
+export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
+    continuationToken?: string;
+};
+
+// @public
 export type CreatedByType = string;
-
-// @public
-export interface Disk extends TrackedResource {
-    properties?: DiskProperties;
-}
-
-// @public
-export interface DiskAccess extends TrackedResource {
-    properties?: DiskAccessProperties;
-}
 
 // @public
 export interface DiskAccessesCreateOrUpdateOptionalParams extends OperationOptions {
@@ -64,21 +142,8 @@ export interface DiskAccessesGetOptionalParams extends OperationOptions {
 
 // @public
 export interface DiskAccessesOperations {
-    createOrUpdate: (resourceGroupName: string, diskAccessName: string, resource: DiskAccess, options?: DiskAccessesCreateOrUpdateOptionalParams) => PollerLike<OperationState<DiskAccess>, DiskAccess>;
-    get: (resourceGroupName: string, diskAccessName: string, options?: DiskAccessesGetOptionalParams) => Promise<DiskAccess>;
-}
-
-// @public
-export interface DiskAccessProperties {
-    readonly privateEndpointConnections?: PrivateEndpointConnection[];
-    readonly provisioningState?: string;
-    readonly timeCreated?: Date;
-}
-
-// @public
-export interface DiskProperties {
-    // (undocumented)
-    readonly provisioningState?: ResourceProvisioningState;
+    createOrUpdate: (resourceGroupName: string, diskAccessName: string, resource: ComputeDiskDiskAccess, options?: DiskAccessesCreateOrUpdateOptionalParams) => PollerLike<OperationState<ComputeDiskDiskAccess>, ComputeDiskDiskAccess>;
+    get: (resourceGroupName: string, diskAccessName: string, options?: DiskAccessesGetOptionalParams) => Promise<ComputeDiskDiskAccess>;
 }
 
 // @public
@@ -92,8 +157,8 @@ export interface DisksGetOptionalParams extends OperationOptions {
 
 // @public
 export interface DisksOperations {
-    createOrUpdate: (resourceGroupName: string, diskName: string, resource: Disk, options?: DisksCreateOrUpdateOptionalParams) => PollerLike<OperationState<Disk>, Disk>;
-    get: (resourceGroupName: string, diskName: string, options?: DisksGetOptionalParams) => Promise<Disk>;
+    createOrUpdate: (resourceGroupName: string, diskName: string, resource: ComputeDiskDisk, options?: DisksCreateOrUpdateOptionalParams) => PollerLike<OperationState<ComputeDiskDisk>, ComputeDiskDisk>;
+    get: (resourceGroupName: string, diskName: string, options?: DisksGetOptionalParams) => Promise<ComputeDiskDisk>;
 }
 
 // @public
@@ -114,6 +179,18 @@ export interface ErrorDetail {
 // @public
 export interface ErrorResponse {
     error?: ErrorDetail;
+}
+
+// @public
+export enum KnownComputeDiskVersions {
+    V20240302 = "2024-03-02",
+    V20250102 = "2025-01-02"
+}
+
+// @public
+export enum KnownComputeVersions {
+    V20241101 = "2024-11-01",
+    V20250401 = "2025-04-01"
 }
 
 // @public
@@ -147,15 +224,15 @@ export enum KnownResourceProvisioningState {
 }
 
 // @public
-export enum KnownVersions {
-    V20241101 = "2024-11-01",
-    V20250401 = "2025-04-01"
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
+    next(): Promise<IteratorResult<TElement>>;
 }
 
 // @public
-export enum KnownVersions_1 {
-    V20240302 = "2024-03-02",
-    V20250102 = "2025-01-02"
+export interface PageSettings {
+    continuationToken?: string;
 }
 
 // @public
@@ -200,17 +277,6 @@ export interface Resource {
 export type ResourceProvisioningState = string;
 
 // @public
-export interface RestorePointCollection extends TrackedResource {
-    properties?: RestorePointCollectionProperties;
-}
-
-// @public
-export interface RestorePointCollectionProperties {
-    instantAccess?: boolean;
-    readonly provisioningState?: string;
-}
-
-// @public
 export interface RestorePointCollectionsCreateOrUpdateOptionalParams extends OperationOptions {
 }
 
@@ -220,8 +286,8 @@ export interface RestorePointCollectionsGetOptionalParams extends OperationOptio
 
 // @public
 export interface RestorePointCollectionsOperations {
-    createOrUpdate: (resourceGroupName: string, restorePointCollectionName: string, resource: RestorePointCollection, options?: RestorePointCollectionsCreateOrUpdateOptionalParams) => Promise<RestorePointCollection>;
-    get: (resourceGroupName: string, restorePointCollectionName: string, options?: RestorePointCollectionsGetOptionalParams) => Promise<RestorePointCollection>;
+    createOrUpdate: (resourceGroupName: string, restorePointCollectionName: string, resource: ComputeRestorePointCollection, options?: RestorePointCollectionsCreateOrUpdateOptionalParams) => Promise<ComputeRestorePointCollection>;
+    get: (resourceGroupName: string, restorePointCollectionName: string, options?: RestorePointCollectionsGetOptionalParams) => Promise<ComputeRestorePointCollection>;
 }
 
 // @public
@@ -251,17 +317,6 @@ export interface TrackedResource extends Resource {
 }
 
 // @public
-export interface VirtualMachine extends TrackedResource {
-    properties?: VirtualMachineProperties;
-}
-
-// @public
-export interface VirtualMachineProperties {
-    // (undocumented)
-    readonly provisioningState?: ResourceProvisioningState;
-}
-
-// @public
 export interface VirtualMachinesCreateOrUpdateOptionalParams extends OperationOptions {
     updateIntervalInMs?: number;
 }
@@ -272,8 +327,8 @@ export interface VirtualMachinesGetOptionalParams extends OperationOptions {
 
 // @public
 export interface VirtualMachinesOperations {
-    createOrUpdate: (resourceGroupName: string, vmName: string, resource: VirtualMachine, options?: VirtualMachinesCreateOrUpdateOptionalParams) => PollerLike<OperationState<VirtualMachine>, VirtualMachine>;
-    get: (resourceGroupName: string, vmName: string, options?: VirtualMachinesGetOptionalParams) => Promise<VirtualMachine>;
+    createOrUpdate: (resourceGroupName: string, vmName: string, resource: ComputeVirtualMachine, options?: VirtualMachinesCreateOrUpdateOptionalParams) => PollerLike<OperationState<ComputeVirtualMachine>, ComputeVirtualMachine>;
+    get: (resourceGroupName: string, vmName: string, options?: VirtualMachinesGetOptionalParams) => Promise<ComputeVirtualMachine>;
 }
 
 // (No @packageDocumentation comment for this package)

@@ -12,11 +12,14 @@
       "./package.json": "./package.json",
       ".": "./src/index.ts",
       "./api": "./src/api/index.ts",
+      "./api/actionGroups": "./src/api/actionGroups/index.ts",
       "./api/diskAccesses": "./src/api/diskAccesses/index.ts",
       "./api/disks": "./src/api/disks/index.ts",
       "./api/restorePointCollections": "./src/api/restorePointCollections/index.ts",
       "./api/virtualMachines": "./src/api/virtualMachines/index.ts",
-      "./models": "./src/models/index.ts"
+      "./models": "./src/models/index.ts",
+      "./models/compute": "./src/models/compute/index.ts",
+      "./models/computeDisk": "./src/models/computeDisk/index.ts"
     },
     "dialects": [
       "esm",
@@ -113,6 +116,24 @@
         "default": "./dist/commonjs/api/index.js"
       }
     },
+    "./api/actionGroups": {
+      "browser": {
+        "types": "./dist/browser/api/actionGroups/index.d.ts",
+        "default": "./dist/browser/api/actionGroups/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/actionGroups/index.d.ts",
+        "default": "./dist/react-native/api/actionGroups/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/actionGroups/index.d.ts",
+        "default": "./dist/esm/api/actionGroups/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/actionGroups/index.d.ts",
+        "default": "./dist/commonjs/api/actionGroups/index.js"
+      }
+    },
     "./api/diskAccesses": {
       "browser": {
         "types": "./dist/browser/api/diskAccesses/index.d.ts",
@@ -201,6 +222,42 @@
       "require": {
         "types": "./dist/commonjs/models/index.d.ts",
         "default": "./dist/commonjs/models/index.js"
+      }
+    },
+    "./models/compute": {
+      "browser": {
+        "types": "./dist/browser/models/compute/index.d.ts",
+        "default": "./dist/browser/models/compute/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/models/compute/index.d.ts",
+        "default": "./dist/react-native/models/compute/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/models/compute/index.d.ts",
+        "default": "./dist/esm/models/compute/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/models/compute/index.d.ts",
+        "default": "./dist/commonjs/models/compute/index.js"
+      }
+    },
+    "./models/computeDisk": {
+      "browser": {
+        "types": "./dist/browser/models/computeDisk/index.d.ts",
+        "default": "./dist/browser/models/computeDisk/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/models/computeDisk/index.d.ts",
+        "default": "./dist/react-native/models/computeDisk/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/models/computeDisk/index.d.ts",
+        "default": "./dist/esm/models/computeDisk/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/models/computeDisk/index.d.ts",
+        "default": "./dist/commonjs/models/computeDisk/index.js"
       }
     }
   },
