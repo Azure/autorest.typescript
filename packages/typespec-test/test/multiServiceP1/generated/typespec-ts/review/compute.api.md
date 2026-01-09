@@ -53,6 +53,7 @@ export interface ComputeActionGroupsProperties {
 // @public (undocumented)
 export class ComputeClient {
     constructor(credential: TokenCredential, subscriptionId: string, options?: ComputeClientOptionalParams);
+    readonly actionGroups: ActionGroupsOperations;
     readonly diskAccesses: DiskAccessesOperations;
     readonly disks: DisksOperations;
     readonly pipeline: Pipeline;

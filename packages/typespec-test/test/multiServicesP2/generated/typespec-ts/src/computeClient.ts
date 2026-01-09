@@ -33,27 +33,11 @@ export class ComputeClient {
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
-  constructor(credential: TokenCredential, options?: ComputeClientOptionalParams);
   constructor(
     credential: TokenCredential,
     subscriptionId: string,
-    options?: ComputeClientOptionalParams,
-  );
-  /** Compute Client */
-  constructor(
-    credential: TokenCredential,
-    subscriptionIdOrOptions?: string | ComputeClientOptionalParams,
-    options?: ComputeClientOptionalParams,
+    options: ComputeClientOptionalParams = {},
   ) {
-    let subscriptionId: string | undefined;
-
-    if (typeof subscriptionIdOrOptions === "string") {
-      subscriptionId = subscriptionIdOrOptions;
-    } else if (typeof subscriptionIdOrOptions === "object") {
-      options = subscriptionIdOrOptions;
-    }
-
-    options = options ?? {};
     const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
     const userAgentPrefix = prefixFromOptions
       ? `${prefixFromOptions} azsdk-js-client`

@@ -47,7 +47,6 @@ export interface ComputeActionGroupsProperties {
 
 // @public (undocumented)
 export class ComputeClient {
-    constructor(credential: TokenCredential, options?: ComputeClientOptionalParams);
     constructor(credential: TokenCredential, subscriptionId: string, options?: ComputeClientOptionalParams);
     readonly actionGroups: ComputeActionGroupsOperations & ComputeDiskActionGroupsOperations;
     readonly diskAccesses: DiskAccessesOperations;
@@ -74,7 +73,6 @@ export interface ComputeDiskActionGroupsListOptionalParams extends OperationOpti
 
 // @public
 export interface ComputeDiskActionGroupsOperations {
-    // Warning: (ae-forgotten-export) The symbol "PagedAsyncIterableIterator" needs to be exported by the entry point index.d.ts
     list: (options?: ComputeDiskActionGroupsListOptionalParams) => PagedAsyncIterableIterator<ComputeDiskActionGroup>;
 }
 
@@ -128,6 +126,11 @@ export interface ComputeVirtualMachineProperties {
     // (undocumented)
     readonly provisioningState?: ResourceProvisioningState;
 }
+
+// @public
+export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
+    continuationToken?: string;
+};
 
 // @public
 export type CreatedByType = string;
@@ -222,6 +225,18 @@ export enum KnownResourceProvisioningState {
     Canceled = "Canceled",
     Failed = "Failed",
     Succeeded = "Succeeded"
+}
+
+// @public
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
+    next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public
+export interface PageSettings {
+    continuationToken?: string;
 }
 
 // @public
