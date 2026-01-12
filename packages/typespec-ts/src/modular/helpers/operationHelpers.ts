@@ -704,38 +704,37 @@ function getLroAndPagingOperationFunction(
       : "";
 
   // For LRO+Paging operations, we need to:
-  // 1. Create an LRO poller that waits for the long-running operation to complete
-  // 2. Convert the LRO result (which is the first page) into a response format
-  // 3. Pass this to the paging helper to enable iteration through subsequent pages
+  // 1. Create an LRO poller that returns the raw PathUncheckedResponse
+  // 2. Use the poller with the paging helper to wait for LRO completion and then paginate
   const expectedStatuses = getExpectedStatuses(operation);
   const paramList = parameters.map((p) => p.name).join(", ");
   const pagingOptions =
     options.length > 0 ? `,\n    {${options.join(", ")}}` : "";
 
+  const pollerLikeReference = resolveReference(
+    AzurePollingDependencies.PollerLike
+  );
+  const operationStateReference = resolveReference(
+    AzurePollingDependencies.OperationState
+  );
+  const pathUncheckedResponseReference = resolveReference(
+    useDependencies().PathUncheckedResponse
+  );
+
   statements.push(`
-  const poller = ${getLongRunningPollerReference}(context, _${name}Deserialize, ${expectedStatuses}, {
+  const initialPagingPoller = ${getLongRunningPollerReference}(context,
+    async (result: ${pathUncheckedResponseReference}) => result,
+    ${expectedStatuses}, {
     updateIntervalInMs: ${optionalParamName}?.updateIntervalInMs,
     abortSignal: ${optionalParamName}?.abortSignal,
     getInitialResponse: () => _${name}Send(${paramList}),
     ${resourceLocationConfig}
-  });
+  }) as ${pollerLikeReference}<${operationStateReference}<${pathUncheckedResponseReference}>, ${pathUncheckedResponseReference}>;
   
-  const getInitialResponseForPaging = async () => {
-    const lroResult = await poller.pollUntilDone();
-    // The LRO result contains the first page of results. We need to wrap it in a 
-    // PathUncheckedResponse-like object that buildPagedAsyncIterator expects.
-    // The status is hardcoded to "200" because a successful LRO completion means
-    // we have a successful response with the first page.
-    return {
-      status: "200",
-      body: lroResult
-    } as any;
-  };
-
   return ${buildPagedAsyncIteratorReference}(
     context,
-    getInitialResponseForPaging,
-    async (result) => result.body,
+    () => initialPagingPoller.pollUntilDone(),
+    _${name}Deserialize,
     ${expectedStatuses}${pagingOptions}
   );
   `);
