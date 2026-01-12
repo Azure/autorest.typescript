@@ -1739,11 +1739,17 @@ export function getPropertySerializationPrefix(
 }
 
 export function getPropertyFullName(
-  context: SdkContext,
+  _context: SdkContext,
   property: SdkHttpParameter | SdkModelPropertyType,
   propertyPath?: string
 ) {
-  const normalizedPropertyName = normalizeModelPropertyName(context, property)
+  const nameType = propertyPath === "" ? NameType.Parameter : NameType.Property;
+  const shouldGuardReserved = propertyPath === "";
+  const normalizedPropertyName = normalizeName(
+    property.name,
+    nameType,
+    shouldGuardReserved
+  )
     .replace(/^"/g, "")
     .replace(/"$/g, "");
   let fullName = normalizedPropertyName;
