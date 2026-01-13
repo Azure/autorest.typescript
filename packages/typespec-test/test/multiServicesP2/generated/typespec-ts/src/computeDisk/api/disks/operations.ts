@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ComputeContext } from "../../../api/index.js";
 import {
   ComputeDiskDisk,
   computeDiskDiskSerializer,
@@ -10,6 +9,7 @@ import {
 import { errorResponseDeserializer } from "../../../models/models.js";
 import { getLongRunningPoller } from "../../../static-helpers/pollingHelpers.js";
 import { expandUrlTemplate } from "../../../static-helpers/urlTemplate.js";
+import { ComputeDiskContext } from "../index.js";
 import { DisksCreateOrUpdateOptionalParams, DisksGetOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -20,7 +20,7 @@ import {
 import { PollerLike, OperationState } from "@azure/core-lro";
 
 export function _createOrUpdateSend(
-  context: ComputeContext,
+  context: ComputeDiskContext,
   resourceGroupName: string,
   diskName: string,
   resource: ComputeDiskDisk,
@@ -61,7 +61,7 @@ export async function _createOrUpdateDeserialize(result: PathUncheckedResponse):
 
 /** Creates or updates a disk. */
 export function createOrUpdate(
-  context: ComputeContext,
+  context: ComputeDiskContext,
   resourceGroupName: string,
   diskName: string,
   resource: ComputeDiskDisk,
@@ -77,7 +77,7 @@ export function createOrUpdate(
 }
 
 export function _getSend(
-  context: ComputeContext,
+  context: ComputeDiskContext,
   resourceGroupName: string,
   diskName: string,
   options: DisksGetOptionalParams = { requestOptions: {} },
@@ -115,7 +115,7 @@ export async function _getDeserialize(result: PathUncheckedResponse): Promise<Co
 
 /** Gets information about a disk. */
 export async function get(
-  context: ComputeContext,
+  context: ComputeDiskContext,
   resourceGroupName: string,
   diskName: string,
   options: DisksGetOptionalParams = { requestOptions: {} },

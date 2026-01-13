@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ComputeContext } from "../../../api/index.js";
 import { ComputeDiskActionGroup } from "../../../models/computeDisk/models.js";
 import {
   errorResponseDeserializer,
@@ -13,6 +12,7 @@ import {
   buildPagedAsyncIterator,
 } from "../../../static-helpers/pagingHelpers.js";
 import { expandUrlTemplate } from "../../../static-helpers/urlTemplate.js";
+import { ComputeDiskContext } from "../index.js";
 import { ActionGroupsListOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -22,7 +22,7 @@ import {
 } from "@azure-rest/core-client";
 
 export function _listSend(
-  context: ComputeContext,
+  context: ComputeDiskContext,
   options: ActionGroupsListOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
   const path = expandUrlTemplate(
@@ -58,7 +58,7 @@ export async function _listDeserialize(
 
 /** List ActionGroup resources by subscription ID */
 export function list(
-  context: ComputeContext,
+  context: ComputeDiskContext,
   options: ActionGroupsListOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<ComputeDiskActionGroup> {
   return buildPagedAsyncIterator(

@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ComputeContext } from "../../../api/computeContext.js";
 import { list } from "../../api/actionGroups/operations.js";
 import {
   ActionGroupsListOptionalParams,
 } from "../../api/actionGroups/options.js";
 import { ComputeDiskActionGroup } from "../../../models/computeDisk/models.js";
 import { PagedAsyncIterableIterator } from "../../../static-helpers/pagingHelpers.js";
+import { ComputeDiskContext } from "../../api/index.js";
 
 /** Interface representing a ActionGroups operations. */
 export interface ActionGroupsOperations {
@@ -17,13 +17,13 @@ export interface ActionGroupsOperations {
   ) => PagedAsyncIterableIterator<ComputeDiskActionGroup>;
 }
 
-function _getActionGroups(context: ComputeContext) {
+function _getActionGroups(context: ComputeDiskContext) {
   return {
     list: (options?: ActionGroupsListOptionalParams) => list(context, options),
   };
 }
 
-export function _getActionGroupsOperations(context: ComputeContext): ActionGroupsOperations {
+export function _getActionGroupsOperations(context: ComputeDiskContext): ActionGroupsOperations {
   return {
     ..._getActionGroups(context),
   };

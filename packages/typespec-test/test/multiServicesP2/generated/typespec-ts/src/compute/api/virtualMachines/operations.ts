@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ComputeContext } from "../../../api/index.js";
+import { ComputeContext } from "../index.js";
 import {
   ComputeVirtualMachine,
   computeVirtualMachineSerializer,

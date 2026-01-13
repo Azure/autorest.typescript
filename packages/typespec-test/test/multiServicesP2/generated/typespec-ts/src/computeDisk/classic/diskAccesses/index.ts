@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ComputeContext } from "../../../api/computeContext.js";
 import { createOrUpdate, get } from "../../api/diskAccesses/operations.js";
 import {
   DiskAccessesCreateOrUpdateOptionalParams,
@@ -9,6 +8,7 @@ import {
 } from "../../api/diskAccesses/options.js";
 import { ComputeDiskDiskAccess } from "../../../models/computeDisk/models.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
+import { ComputeDiskContext } from "../../api/index.js";
 
 /** Interface representing a DiskAccesses operations. */
 export interface DiskAccessesOperations {
@@ -27,7 +27,7 @@ export interface DiskAccessesOperations {
   ) => Promise<ComputeDiskDiskAccess>;
 }
 
-function _getDiskAccesses(context: ComputeContext) {
+function _getDiskAccesses(context: ComputeDiskContext) {
   return {
     createOrUpdate: (
       resourceGroupName: string,
@@ -43,7 +43,7 @@ function _getDiskAccesses(context: ComputeContext) {
   };
 }
 
-export function _getDiskAccessesOperations(context: ComputeContext): DiskAccessesOperations {
+export function _getDiskAccessesOperations(context: ComputeDiskContext): DiskAccessesOperations {
   return {
     ..._getDiskAccesses(context),
   };

@@ -10,3 +10,5 @@ export {
   DisksGetOptionalParams,
 } from "./api/disks/index.js";
 export { DiskAccessesOperations, DisksOperations } from "./classic/index.js";
+export { ComputeDiskClient } from "./computeDiskClient.js";
+export { ComputeDiskClientOptionalParams } from "./api/index.js";

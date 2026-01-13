@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ComputeContext } from "../../../api/computeContext.js";
+import { ComputeContext } from "../../api/computeContext.js";
 import { get } from "../../api/actionGroups/operations.js";
 import {
   ActionGroupsGetOptionalParams,
