@@ -1739,24 +1739,22 @@ export function getPropertySerializationPrefix(
 }
 
 export function getPropertyFullName(
-  _context: SdkContext,
+  context: SdkContext,
   property: SdkHttpParameter | SdkModelPropertyType,
   propertyPath?: string
 ) {
-  const nameType = propertyPath === "" ? NameType.Parameter : NameType.Property;
-  const shouldGuardReserved = propertyPath === "";
-  const normalizedPropertyName = normalizeName(
-    property.name,
-    nameType,
-    shouldGuardReserved
-  )
-    .replace(/^"/g, "")
-    .replace(/"$/g, "");
-  let fullName = normalizedPropertyName;
+  const propertyName =
+    propertyPath === ""
+      ? normalizeName(property.name, NameType.Parameter, true)
+      : normalizeModelPropertyName(context, property)
+          .replace(/^"/g, "")
+          .replace(/"$/g, "");
+
+  let fullName = propertyName;
   if (propertyPath === "" && property.optional) {
-    fullName = `options?.${normalizedPropertyName}`;
+    fullName = `options?.${propertyName}`;
   } else if (propertyPath) {
-    fullName = `${propertyPath}["${normalizedPropertyName}"]`;
+    fullName = `${propertyPath}["${propertyName}"]`;
   }
   return fullName;
 }
