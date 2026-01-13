@@ -11,7 +11,8 @@ import {
   getOperationFunction,
   getOperationOptionsName,
   getSendPrivateFunction,
-  isLroOnlyOperation
+  isLroOnlyOperation,
+  isLroAndPagingOperation
 } from "./helpers/operationHelpers.js";
 
 import { OperationPathAndDeserDetails } from "./interfaces.js";
@@ -156,7 +157,11 @@ export function buildOperationOptions(
     name,
     isExported: true,
     extends: [operationOptionsReference],
-    properties: (isLroOnlyOperation(operation) ? [lroOptions] : []).concat(
+    properties: (isLroOnlyOperation(operation) ||
+    isLroAndPagingOperation(operation)
+      ? [lroOptions]
+      : []
+    ).concat(
       options.map((p) => {
         return {
           docs: getDocsFromDescription(p.doc),
