@@ -113,6 +113,38 @@ describe("Azure ARM Operation Templates", () => {
     });
   });
 
+  describe("LRO + Paging Operations", () => {
+    it("should handle long-running operation with paging", async () => {
+      const resourceGroupName = "test-rg";
+      const productName = "default";
+
+      const result = client.lroPaging.postPagingLro(
+        resourceGroupName,
+        productName
+      );
+
+      const items = [];
+      for await (const product of result) {
+        items.push(product);
+      }
+
+      // Should get 2 products from 2 pages
+      assert.strictEqual(items.length, 2);
+
+      // Verify first product from first page
+      assert.equal(items[0]?.name, "product1");
+      assert.equal(items[0]?.location, "eastus");
+      assert.equal(items[0]?.properties?.productId, "product1");
+      assert.equal(items[0]?.properties?.provisioningState, "Succeeded");
+
+      // Verify second product from second page
+      assert.equal(items[1]?.name, "product2");
+      assert.equal(items[1]?.location, "eastus");
+      assert.equal(items[1]?.properties?.productId, "product2");
+      assert.equal(items[1]?.properties?.provisioningState, "Succeeded");
+    });
+  });
+
   describe("Optional Body Operations", () => {
     const widgetName = "widget1";
 

@@ -358,8 +358,8 @@ importers:
         specifier: ^2.3.1
         version: 2.5.1
       '@azure-tools/azure-http-specs':
-        specifier: 0.1.0-alpha.34-dev.1
-        version: 0.1.0-alpha.34-dev.1(b521a27fa8821ed16478817a97cb6f09)
+        specifier: 0.1.0-alpha.35-dev.10
+        version: 0.1.0-alpha.35-dev.10(b521a27fa8821ed16478817a97cb6f09)
       '@azure-tools/typespec-autorest':
         specifier: ^0.63.0
         version: 0.63.1(9021bc0b498590539b9c60a12d5a05e1)
@@ -528,12 +528,12 @@ packages:
     resolution: {integrity: sha512-X1C7XdyCuo50ch9FzKtTvmK18FgDxxf1Bbt3cSoknQqeDaRegHSSCO+zByq2YA4NvUzKXeZ1engh29IDxZXgpQ==}
     engines: {node: '>=10.12.0'}
 
-  '@azure-tools/azure-http-specs@0.1.0-alpha.34-dev.1':
-    resolution: {integrity: sha512-9i/Jd4x7KiV91z8JgQRl2nQj6+RRpGm+IA3kGZYuEhKYojfvY1YBehDMTd5AmsyItry0rnWbUwqJQpSYgTNOdA==}
+  '@azure-tools/azure-http-specs@0.1.0-alpha.35-dev.10':
+    resolution: {integrity: sha512-12HzBJ81ILcGGy/cw0JlekfBrWhMnse6UTVJ1XMVdikWiE5iNP5UWZQQu1ZpWFxznxDyEiwy6S2Xicfjr28iZw==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       '@azure-tools/typespec-azure-core': ^0.63.0 || >=0.64.0-dev <0.64.0
-      '@typespec/compiler': ^1.7.0
+      '@typespec/compiler': ^1.7.1
       '@typespec/http': ^1.7.0
       '@typespec/rest': ^0.77.0 || >=0.78.0-dev <0.78.0
       '@typespec/versioning': ^0.77.0 || >=0.78.0-dev <0.78.0
@@ -5473,7 +5473,7 @@ snapshots:
       '@azure-tools/tasks': 3.0.255
       proper-lockfile: 2.0.1
 
-  '@azure-tools/azure-http-specs@0.1.0-alpha.34-dev.1(b521a27fa8821ed16478817a97cb6f09)':
+  '@azure-tools/azure-http-specs@0.1.0-alpha.35-dev.10(b521a27fa8821ed16478817a97cb6f09)':
     dependencies:
       '@azure-tools/typespec-azure-core': 0.63.0(@typespec/compiler@1.7.1(@types/node@24.10.2))(@typespec/http@1.7.0(@typespec/compiler@1.7.1(@types/node@24.10.2))(@typespec/streams@0.77.0(@typespec/compiler@1.7.1(@types/node@24.10.2))))(@typespec/rest@0.77.0(@typespec/compiler@1.7.1(@types/node@24.10.2))(@typespec/http@1.7.0(@typespec/compiler@1.7.1(@types/node@24.10.2))(@typespec/streams@0.77.0(@typespec/compiler@1.7.1(@types/node@24.10.2)))))
       '@typespec/compiler': 1.7.1(@types/node@24.10.2)
