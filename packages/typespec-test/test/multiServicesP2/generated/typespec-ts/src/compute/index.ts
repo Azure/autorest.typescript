@@ -10,3 +10,5 @@ export {
   VirtualMachinesGetOptionalParams,
 } from "./api/virtualMachines/index.js";
 export { RestorePointCollectionsOperations, VirtualMachinesOperations } from "./classic/index.js";
+export { ComputeClient } from "./ComputeClient.js";
+export { ComputeClientOptionalParams } from "./api/index.js";
