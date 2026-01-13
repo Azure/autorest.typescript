@@ -627,33 +627,58 @@ function getLroAndPagingOperationFunction(
   optionalParamName: string = "options"
 ): FunctionDeclarationStructure & { propertyName?: string } {
   const operation = method[1];
-  // Extract required parameters
-  const parameters: OptionalKind<ParameterDeclarationStructure>[] =
-    getOperationSignatureParameters(context, method, clientType);
-
-  // For LRO+Paging operations, the return type is the element type from the array
-  const response = operation.response;
-  let returnType = { name: "", type: "void" };
-  if (response.type && response.type.kind === "array") {
-    const type = response.type;
-    returnType = {
-      name: (type.valueType as any).name ?? "",
-      type: getTypeExpression(context, type.valueType)
-    };
-  }
-
+  const parameters = getOperationSignatureParameters(
+    context,
+    method,
+    clientType
+  );
   const { name, fixme = [] } = getOperationName(operation);
-  const pagedAsyncIterableIteratorReference = resolveReference(
-    PagingHelpers.PagedAsyncIterableIterator
-  );
-  const buildPagedAsyncIteratorReference = resolveReference(
-    PagingHelpers.BuildPagedAsyncIterator
-  );
-  const getLongRunningPollerReference = resolveReference(
-    PollingHelpers.GetLongRunningPoller
-  );
 
-  const functionStatement = {
+  // Extract element type from array response
+  const elementType =
+    operation.response.type?.kind === "array"
+      ? getTypeExpression(context, operation.response.type.valueType)
+      : "void";
+
+  // Build paging options from metadata
+  const pagingOptions = [
+    operation.response.resultSegments &&
+      `itemName: "${operation.response.resultSegments.map((p) => p.name).join(".")}"`,
+    operation.pagingMetadata.nextLinkSegments &&
+      `nextLinkName: "${operation.pagingMetadata.nextLinkSegments.map((p) => p.name).join(".")}"`,
+    operation.pagingMetadata.nextLinkVerb !== "GET" &&
+      `nextLinkMethod: "${operation.pagingMetadata.nextLinkVerb}"`
+  ].filter(Boolean);
+
+  // Build LRO resource location config
+  const allowedLocations = [
+    "azure-async-operation",
+    "location",
+    "original-uri",
+    "operation-location"
+  ];
+  const resourceLocationConfig =
+    operation.lroMetadata?.finalStateVia &&
+    allowedLocations.includes(operation.lroMetadata.finalStateVia)
+      ? `resourceLocationConfig: "${operation.lroMetadata.finalStateVia}"`
+      : "";
+
+  // Resolve references
+  const refs = {
+    pagedIterator: resolveReference(PagingHelpers.PagedAsyncIterableIterator),
+    buildPaging: resolveReference(PagingHelpers.BuildPagedAsyncIterator),
+    getLroPoller: resolveReference(PollingHelpers.GetLongRunningPoller),
+    pollerLike: resolveReference(AzurePollingDependencies.PollerLike),
+    operationState: resolveReference(AzurePollingDependencies.OperationState),
+    pathResponse: resolveReference(useDependencies().PathUncheckedResponse)
+  };
+
+  const expectedStatuses = getExpectedStatuses(operation);
+  const paramList = parameters.map((p) => p.name).join(", ");
+  const pagingOptionsStr =
+    pagingOptions.length > 0 ? `,\n    {${pagingOptions.join(", ")}}` : "";
+
+  return {
     kind: StructureKind.Function,
     docs: [
       ...getDocsFromDescription(operation.doc),
@@ -664,93 +689,27 @@ function getLroAndPagingOperationFunction(
     name,
     propertyName: normalizeName(operation.name, NameType.Property),
     parameters,
-    returnType: `${pagedAsyncIterableIteratorReference}<${returnType.type}>`
-  };
-
-  const statements: string[] = [];
-  const options = [];
-
-  // Get paging metadata
-  const nextLinkSegments = operation.pagingMetadata.nextLinkSegments;
-  const nextLinkName = nextLinkSegments
-    ?.map((property) => {
-      return property.name;
-    })
-    .join(".");
-  const itemSegments = operation.response.resultSegments;
-  const itemName = itemSegments
-    ?.map((property) => {
-      return property.name;
-    })
-    .join(".");
-
-  // Check for nextLinkVerb from TCGC pagingMetadata (supports @Legacy.nextLinkVerb decorator)
-  const nextLinkMethod = operation.pagingMetadata.nextLinkVerb;
-
-  if (itemName) {
-    options.push(`itemName: "${itemName}"`);
-  }
-  if (nextLinkName) {
-    options.push(`nextLinkName: "${nextLinkName}"`);
-  }
-  if (nextLinkMethod && nextLinkMethod !== "GET") {
-    options.push(`nextLinkMethod: "${nextLinkMethod}"`);
-  }
-
-  // Get LRO metadata
-  const lroMetadata = operation.lroMetadata;
-  const allowedFinalLocation = [
-    "azure-async-operation",
-    "location",
-    "original-uri",
-    "operation-location"
-  ];
-  const resourceLocationConfig =
-    lroMetadata?.finalStateVia &&
-    allowedFinalLocation.includes(lroMetadata?.finalStateVia)
-      ? `resourceLocationConfig: "${lroMetadata?.finalStateVia}"`
-      : "";
-
-  // For LRO+Paging operations, we need to:
-  // 1. Create an LRO poller that returns the raw PathUncheckedResponse
-  // 2. Use the poller with the paging helper to wait for LRO completion and then paginate
-  const expectedStatuses = getExpectedStatuses(operation);
-  const paramList = parameters.map((p) => p.name).join(", ");
-  const pagingOptions =
-    options.length > 0 ? `,\n    {${options.join(", ")}}` : "";
-
-  const pollerLikeReference = resolveReference(
-    AzurePollingDependencies.PollerLike
-  );
-  const operationStateReference = resolveReference(
-    AzurePollingDependencies.OperationState
-  );
-  const pathUncheckedResponseReference = resolveReference(
-    useDependencies().PathUncheckedResponse
-  );
-
-  statements.push(`
-  const initialPagingPoller = ${getLongRunningPollerReference}(context,
-    async (result: ${pathUncheckedResponseReference}) => result,
+    returnType: `${refs.pagedIterator}<${elementType}>`,
+    statements: [
+      `
+  const initialPagingPoller = ${refs.getLroPoller}(context,
+    async (result: ${refs.pathResponse}) => result,
     ${expectedStatuses}, {
     updateIntervalInMs: ${optionalParamName}?.updateIntervalInMs,
     abortSignal: ${optionalParamName}?.abortSignal,
     getInitialResponse: () => _${name}Send(${paramList}),
     ${resourceLocationConfig}
-  }) as ${pollerLikeReference}<${operationStateReference}<${pathUncheckedResponseReference}>, ${pathUncheckedResponseReference}>;
+  }) as ${refs.pollerLike}<${refs.operationState}<${refs.pathResponse}>, ${refs.pathResponse}>;
   
-  return ${buildPagedAsyncIteratorReference}(
+  return ${refs.buildPaging}(
     context,
     () => initialPagingPoller.pollUntilDone(),
     _${name}Deserialize,
-    ${expectedStatuses}${pagingOptions}
+    ${expectedStatuses}${pagingOptionsStr}
   );
-  `);
-
-  return {
-    ...functionStatement,
-    statements
-  } as FunctionDeclarationStructure & { propertyName?: string };
+  `
+    ]
+  };
 }
 
 function buildLroReturnType(
