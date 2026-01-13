@@ -1743,18 +1743,18 @@ export function getPropertyFullName(
   property: SdkHttpParameter | SdkModelPropertyType,
   propertyPath?: string
 ) {
-  const propertyName =
+  const normalizedPropertyName =
     propertyPath === ""
       ? normalizeName(property.name, NameType.Parameter, true)
       : normalizeModelPropertyName(context, property)
           .replace(/^"/g, "")
           .replace(/"$/g, "");
 
-  let fullName = propertyName;
+  let fullName = normalizedPropertyName;
   if (propertyPath === "" && property.optional) {
-    fullName = `options?.${propertyName}`;
+    fullName = `options?.${normalizedPropertyName}`;
   } else if (propertyPath) {
-    fullName = `${propertyPath}["${propertyName}"]`;
+    fullName = `${propertyPath}["${normalizedPropertyName}"]`;
   }
   return fullName;
 }
