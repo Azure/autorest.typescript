@@ -1,4 +1,4 @@
-# only: only: Should generate lro and paging operation
+# Should generate lro and paging operation
 
 ## TypeSpec
 
@@ -73,6 +73,7 @@ import {
   createRestError,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { PollerLike, OperationState } from "@azure/core-lro";
 
 export function _suspendSend(
   context: Client,
@@ -125,29 +126,22 @@ export function suspend(
   name: string,
   options: SuspendOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<Site> {
-  const poller = getLongRunningPoller(context, _suspendDeserialize, ["200"], {
-    updateIntervalInMs: options?.updateIntervalInMs,
-    abortSignal: options?.abortSignal,
-    getInitialResponse: () => _suspendSend(context, resourceGroupName, name, options),
-    resourceLocationConfig: "location",
-  });
-
-  const getInitialResponseForPaging = async () => {
-    const lroResult = await poller.pollUntilDone();
-    // The LRO result contains the first page of results. We need to wrap it in a
-    // PathUncheckedResponse-like object that buildPagedAsyncIterator expects.
-    // The status is hardcoded to "200" because a successful LRO completion means
-    // we have a successful response with the first page.
-    return {
-      status: "200",
-      body: lroResult,
-    } as any;
-  };
+  const initialPagingPoller = getLongRunningPoller(
+    context,
+    async (result: PathUncheckedResponse) => result,
+    ["200"],
+    {
+      updateIntervalInMs: options?.updateIntervalInMs,
+      abortSignal: options?.abortSignal,
+      getInitialResponse: () => _suspendSend(context, resourceGroupName, name, options),
+      resourceLocationConfig: "location",
+    },
+  ) as PollerLike<OperationState<PathUncheckedResponse>, PathUncheckedResponse>;
 
   return buildPagedAsyncIterator(
     context,
-    getInitialResponseForPaging,
-    async (result) => result.body,
+    () => initialPagingPoller.pollUntilDone(),
+    _suspendDeserialize,
     ["200"],
     { itemName: "value", nextLinkName: "nextLink" },
   );
