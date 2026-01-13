@@ -92,7 +92,7 @@ export function _checkNameAvailabilitySend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: "application/json",
-      body: { name: name, type: type },
+      body: { name: name, type: typeParam },
     });
 }
 
