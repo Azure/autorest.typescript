@@ -358,8 +358,8 @@ importers:
         specifier: ^2.3.1
         version: 2.5.1
       '@azure-tools/azure-http-specs':
-        specifier: 0.1.0-alpha.36-dev.0
-        version: 0.1.0-alpha.36-dev.0(5138caf4499aee753ef92bf5cc391e32)
+        specifier: 0.1.0-alpha.35-dev.9
+        version: 0.1.0-alpha.35-dev.9(5138caf4499aee753ef92bf5cc391e32)
       '@azure-tools/typespec-autorest':
         specifier: ^0.64.0
         version: 0.64.0(bdfd8d5a87355ca5d03c58293a0c21b6)
@@ -528,16 +528,16 @@ packages:
     resolution: {integrity: sha512-X1C7XdyCuo50ch9FzKtTvmK18FgDxxf1Bbt3cSoknQqeDaRegHSSCO+zByq2YA4NvUzKXeZ1engh29IDxZXgpQ==}
     engines: {node: '>=10.12.0'}
 
-  '@azure-tools/azure-http-specs@0.1.0-alpha.36-dev.0':
-    resolution: {integrity: sha512-aGfu3jqFy/shwn94pi8xv8Cd7WdrUzHWImv03qlDAu+Ljsx/svkpHOOc9kXVX/QXjk2ciMDftssd23K6yePl/Q==}
+  '@azure-tools/azure-http-specs@0.1.0-alpha.35-dev.9':
+    resolution: {integrity: sha512-Ly8Qazx+rCDxU0b3gQMn4RFJ+lcgbUjO5inSyu8Q7YmHVdvdmmzDMaPopBitrwu38+XNlvYTppWjDF5M7odZyA==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
-      '@azure-tools/typespec-azure-core': ^0.64.0 || >=0.65.0-dev <0.65.0
-      '@typespec/compiler': ^1.8.0
-      '@typespec/http': ^1.8.0
-      '@typespec/rest': ^0.78.0 || >=0.79.0-dev <0.79.0
-      '@typespec/versioning': ^0.78.0 || >=0.79.0-dev <0.79.0
-      '@typespec/xml': ^0.78.0 || >=0.79.0-dev <0.79.0
+      '@azure-tools/typespec-azure-core': ^0.63.0 || >=0.64.0-dev <0.64.0
+      '@typespec/compiler': ^1.7.1
+      '@typespec/http': ^1.7.0
+      '@typespec/rest': ^0.77.0 || >=0.78.0-dev <0.78.0
+      '@typespec/versioning': ^0.77.0 || >=0.78.0-dev <0.78.0
+      '@typespec/xml': ^0.77.0 || >=0.78.0-dev <0.78.0
 
   '@azure-tools/codegen@2.10.1':
     resolution: {integrity: sha512-fZfREKjQnBTscjObgK4LuyZNFaofoCNQDNz0jl1i8fYNwCM5EOF9BXwtEtobuEyCpPUNDxQ/KKO65eWzirqk4w==}
@@ -5462,7 +5462,7 @@ snapshots:
       '@azure-tools/tasks': 3.0.255
       proper-lockfile: 2.0.1
 
-  '@azure-tools/azure-http-specs@0.1.0-alpha.36-dev.0(5138caf4499aee753ef92bf5cc391e32)':
+  '@azure-tools/azure-http-specs@0.1.0-alpha.35-dev.9(5138caf4499aee753ef92bf5cc391e32)':
     dependencies:
       '@azure-tools/typespec-azure-core': 0.64.0(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/http@1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/streams@0.77.0(@typespec/compiler@1.8.0(@types/node@25.0.8))))(@typespec/rest@0.78.0(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/http@1.8.0(@typespec/compiler@1.8.0(@types/node@25.0.8))(@typespec/streams@0.77.0(@typespec/compiler@1.8.0(@types/node@25.0.8)))))
       '@typespec/compiler': 1.8.0(@types/node@25.0.8)

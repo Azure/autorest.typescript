@@ -135,8 +135,16 @@ export declare interface FormDataOperations {
     binaryArrayParts: (body: BinaryArrayPartsRequest, options?: FormDataBinaryArrayPartsOptionalParams) => Promise<void>;
     jsonPart: (body: JsonPartRequest, options?: FormDataJsonPartOptionalParams) => Promise<void>;
     fileArrayAndBasic: (body: ComplexPartsRequest, options?: FormDataFileArrayAndBasicOptionalParams) => Promise<void>;
+    optionalParts: (body: MultiPartOptionalRequest, options?: FormDataOptionalPartsOptionalParams) => Promise<void>;
+    withWireName: (body: MultiPartRequestWithWireName, options?: FormDataWithWireNameOptionalParams) => Promise<void>;
     basic: (body: MultiPartRequest, options?: FormDataBasicOptionalParams) => Promise<void>;
     httpParts: FormDataHttpPartsOperations;
+}
+
+export declare interface FormDataOptionalPartsOptionalParams extends OperationOptions {
+}
+
+export declare interface FormDataWithWireNameOptionalParams extends OperationOptions {
 }
 
 export declare interface JsonPartRequest {
@@ -171,9 +179,27 @@ export declare class MultiPartClient {
 export declare interface MultiPartClientOptionalParams extends ClientOptions {
 }
 
+export declare interface MultiPartOptionalRequest {
+    id?: string;
+    profileImage?: FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    };
+}
+
 export declare interface MultiPartRequest {
     id: string;
     profileImage: FileContents | {
+        contents: FileContents;
+        contentType?: string;
+        filename?: string;
+    };
+}
+
+export declare interface MultiPartRequestWithWireName {
+    identifier: string;
+    image: FileContents | {
         contents: FileContents;
         contentType?: string;
         filename?: string;
