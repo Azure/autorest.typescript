@@ -217,3 +217,111 @@ export function nestedWidgetDeserializer(item: any): NestedWidget {
   };
 }
 ```
+
+# Should generate collection format serializers for string-based enum array properties
+
+## TypeSpec
+
+```tsp
+
+enum Color {
+  string,
+  Red: "red",
+  Blue: "blue",
+  Green: "green"
+}
+
+model Widget {
+  @encode(ArrayEncoding.commaDelimited)
+  requiredCsvColors: Color[];
+
+  @encode(ArrayEncoding.pipeDelimited)
+  optionalPipeColors?: Color[];
+
+  @encode(ArrayEncoding.spaceDelimited)
+  requiredSpaceTypes: ("a" | "b")[];
+
+  @encode(ArrayEncoding.newlineDelimited)
+  optionalSpaceTypes?: ("c" | "d" | "e")[];
+}
+
+@route("/widgets")
+interface WidgetOperations {
+  @post
+  createWidget(@body widget: Widget): Widget;
+}
+```
+
+## Models
+
+```ts models
+import { buildCsvCollection } from "../static-helpers/serialization/build-csv-collection.js";
+import { buildNewlineCollection } from "../static-helpers/serialization/build-newline-collection.js";
+import { buildPipeCollection } from "../static-helpers/serialization/build-pipe-collection.js";
+import { buildSsvCollection } from "../static-helpers/serialization/build-ssv-collection.js";
+import { parseCsvCollection } from "../static-helpers/serialization/parse-csv-collection.js";
+import { parseNewlineCollection } from "../static-helpers/serialization/parse-newline-collection.js";
+import { parsePipeCollection } from "../static-helpers/serialization/parse-pipe-collection.js";
+import { parseSsvCollection } from "../static-helpers/serialization/parse-ssv-collection.js";
+
+/**
+ * This file contains only generated model types and their (de)serializers.
+ * Disable the following rules for internal models with '_' prefix and deserializers which require 'any' for raw JSON input.
+ */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/** model interface Widget */
+export interface Widget {
+  requiredCsvColors: Color[];
+  optionalPipeColors?: Color[];
+  requiredSpaceTypes: ("a" | "b")[];
+  optionalSpaceTypes?: ("c" | "d" | "e")[];
+}
+
+export function widgetSerializer(item: Widget): any {
+  return {
+    requiredCsvColors: buildCsvCollection(
+      item["requiredCsvColors"].map((p: any) => {
+        return p;
+      }),
+    ),
+    optionalPipeColors: !item["optionalPipeColors"]
+      ? item["optionalPipeColors"]
+      : buildPipeCollection(
+          item["optionalPipeColors"].map((p: any) => {
+            return p;
+          }),
+        ),
+    requiredSpaceTypes: buildSsvCollection(
+      item["requiredSpaceTypes"].map((p: any) => {
+        return p;
+      }),
+    ),
+    optionalSpaceTypes: !item["optionalSpaceTypes"]
+      ? item["optionalSpaceTypes"]
+      : buildNewlineCollection(
+          item["optionalSpaceTypes"].map((p: any) => {
+            return p;
+          }),
+        ),
+  };
+}
+
+export function widgetDeserializer(item: any): Widget {
+  return {
+    requiredCsvColors: parseCsvCollection(item["requiredCsvColors"]) as Color[],
+    optionalPipeColors:
+      item["optionalPipeColors"] === null || item["optionalPipeColors"] === undefined
+        ? item["optionalPipeColors"]
+        : (parsePipeCollection(item["optionalPipeColors"]) as Color[]),
+    requiredSpaceTypes: parseSsvCollection(item["requiredSpaceTypes"]) as ("a" | "b")[],
+    optionalSpaceTypes:
+      item["optionalSpaceTypes"] === null || item["optionalSpaceTypes"] === undefined
+        ? item["optionalSpaceTypes"]
+        : (parseNewlineCollection(item["optionalSpaceTypes"]) as ("c" | "d" | "e")[]),
+  };
+}
+
+/** Type of Color */
+export type Color = "string" | "red" | "blue" | "green";
+```
