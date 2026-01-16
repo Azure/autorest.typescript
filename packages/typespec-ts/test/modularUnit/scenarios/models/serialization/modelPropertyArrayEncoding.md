@@ -223,26 +223,33 @@ export function nestedWidgetDeserializer(item: any): NestedWidget {
 ## TypeSpec
 
 ```tsp
-
 enum Color {
-  string,
   Red: "red",
   Blue: "blue",
   Green: "green"
 }
+
+union ColorsUnion {
+  string,
+  red: "red";
+  blue: "blue";
+  green: "green";
+}
+
+alias Type = "x" | "y" | "z";
 
 model Widget {
   @encode(ArrayEncoding.commaDelimited)
   requiredCsvColors: Color[];
 
   @encode(ArrayEncoding.pipeDelimited)
-  optionalPipeColors?: Color[];
+  optionalPipeColors?: ColorsUnion[];
 
   @encode(ArrayEncoding.spaceDelimited)
   requiredSpaceTypes: ("a" | "b")[];
 
   @encode(ArrayEncoding.newlineDelimited)
-  optionalSpaceTypes?: ("c" | "d" | "e")[];
+  optionalSpaceTypes?: Type[];
 }
 
 @route("/widgets")
@@ -250,6 +257,12 @@ interface WidgetOperations {
   @post
   createWidget(@body widget: Widget): Widget;
 }
+```
+
+This is the tspconfig.yaml.
+
+```yaml
+experimental-extensible-enums: true
 ```
 
 ## Models
@@ -273,9 +286,9 @@ import { parseSsvCollection } from "../static-helpers/serialization/parse-ssv-co
 /** model interface Widget */
 export interface Widget {
   requiredCsvColors: Color[];
-  optionalPipeColors?: Color[];
+  optionalPipeColors?: ColorsUnion[];
   requiredSpaceTypes: ("a" | "b")[];
-  optionalSpaceTypes?: ("c" | "d" | "e")[];
+  optionalSpaceTypes?: ("x" | "y" | "z")[];
 }
 
 export function widgetSerializer(item: Widget): any {
@@ -313,15 +326,28 @@ export function widgetDeserializer(item: any): Widget {
     optionalPipeColors:
       item["optionalPipeColors"] === null || item["optionalPipeColors"] === undefined
         ? item["optionalPipeColors"]
-        : (parsePipeCollection(item["optionalPipeColors"]) as Color[]),
+        : parsePipeCollection(item["optionalPipeColors"]),
     requiredSpaceTypes: parseSsvCollection(item["requiredSpaceTypes"]) as ("a" | "b")[],
     optionalSpaceTypes:
       item["optionalSpaceTypes"] === null || item["optionalSpaceTypes"] === undefined
         ? item["optionalSpaceTypes"]
-        : (parseNewlineCollection(item["optionalSpaceTypes"]) as ("c" | "d" | "e")[]),
+        : (parseNewlineCollection(item["optionalSpaceTypes"]) as ("x" | "y" | "z")[]),
   };
 }
 
 /** Type of Color */
-export type Color = "string" | "red" | "blue" | "green";
+export type Color = "red" | "blue" | "green";
+
+/** Known values of {@link ColorsUnion} that the service accepts. */
+export enum KnownColorsUnion {
+  /** red */
+  Red = "red",
+  /** blue */
+  Blue = "blue",
+  /** green */
+  Green = "green",
+}
+
+/** Type of ColorsUnion */
+export type ColorsUnion = string;
 ```

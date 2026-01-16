@@ -77,6 +77,7 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { isMetadata } from "@typespec/http";
 import { useContext } from "../../contextManager.js";
+import { isExtensibleEnum } from "../type-expressions/get-enum-expression.js";
 
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
@@ -1611,9 +1612,9 @@ export function deserializeResponseValue(
                 : "";
             if (
               type.valueType.kind === "enum" &&
-              (type.valueType as SdkEnumType).isFixed
+              !isExtensibleEnum(context, type.valueType)
             ) {
-              // Special handling for enum with fixed members to cast the result to the correct type
+              // Special handling for non-extensible enums to cast the result to the correct type
               return `${optionalPrefixForString}${parseHelper}(${restValue}) as ${getTypeExpression(context, type)}`;
             } else {
               return `${optionalPrefixForString}${parseHelper}(${restValue})`;
