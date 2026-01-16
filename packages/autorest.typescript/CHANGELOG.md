@@ -1,7 +1,7 @@
 ## 6.0.55 (2026-01-16)
 
 - [Feature] Bump TypeSpec dependencies to latest stable (1.8.0). Please refer to [#3681](https://github.com/Azure/autorest.typescript/pull/3681)
-- [Bugfix] Fix nightly CI. Please refer to [#3667](https://github.com/Azure/autorest.typescript/pull/3667)
+- [Bugfix] Fix nightly CI. Please refer to [#3677](https://github.com/Azure/autorest.typescript/pull/3677)
 - [Feature] Implement array encoding for model properties. Please refer to [#3659](https://github.com/Azure/autorest.typescript/pull/3659)
 - [Feature] Add code owner. Please refer to [#3667](https://github.com/Azure/autorest.typescript/pull/3667)
 - [Feature] Upgrade tcgc for multiple service. Please refer to [#3658](https://github.com/Azure/autorest.typescript/pull/3658)
