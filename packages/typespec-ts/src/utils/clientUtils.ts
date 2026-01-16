@@ -41,7 +41,7 @@ export function getRLCClients(dpgContext: SdkContext): SdkClient[] {
       name: clientName,
       service: service,
       type: service,
-      services: [service]
+      services: [service],
       arm: Boolean(dpgContext.arm),
       crossLanguageDefinitionId: `${getNamespaceFullName(
         service
