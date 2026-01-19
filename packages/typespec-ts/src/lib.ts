@@ -54,7 +54,7 @@ export interface EmitterOptions {
   "azure-arm"?: boolean;
   "source-from"?: "TypeSpec" | "Swagger";
   "is-modular-library"?: boolean;
-  "module-kind"?: "esm" | "cjs";
+  "module-kind"?: "esm";
   "enable-operation-group"?: boolean;
   flavor?: PackageFlavor;
   "enable-model-namespace"?: boolean;
@@ -272,7 +272,7 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
     "module-kind": {
       type: "string",
       nullable: true,
-      enum: ["esm", "cjs"],
+      enum: ["esm"],
       default: "esm",
       description: "Internal option for test."
     },
@@ -607,6 +607,12 @@ const libDef = {
       severity: "warning",
       messages: {
         default: paramMessage`Model name conflict detected: "${"modelName"}" exists in multiple namespaces: ${"namespaces"}. Please use @clientName to rename them.`
+      }
+    },
+    "un-supported-array-encoding": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`The array property "${"arrayName"}" of ${"arrayType"} type is not supported for encoding and will be ignored.`
       }
     }
   },

@@ -19,7 +19,7 @@ model SimpleModel {
   propNumberLiteral: 1;
   propStringLiteralOptional?: "A";
   propStringUnion: "A" | "B";
-  propStringUnionOptioanl: "A" | "B";
+  propStringUnionOptional?: "A" | "B";
   propStringUnionNullable: "A" | "B" | null;
   propStringUnionAsExtensible: "A" | "B" | string;
   propStringUnionAsExtensibleOptional?: "A" | "B" | string;
@@ -47,6 +47,7 @@ model SimpleModel {
   propArrayOfRecordOfUnionOptional?: Record<string | boolean | int32>[];
   @encodedName("application/json", "prop_encoded")
   propEncoded: string;
+  propNestedDict?: Record<Record<unknown>>;
 }
 
 @route("/serialize")
@@ -85,7 +86,7 @@ export interface SimpleModel {
   propNumberLiteral: 1;
   propStringLiteralOptional?: "A";
   propStringUnion: "A" | "B";
-  propStringUnionOptioanl: "A" | "B";
+  propStringUnionOptional?: "A" | "B";
   propStringUnionNullable: ("A" | "B") | null;
   propStringUnionAsExtensible: string;
   propStringUnionAsExtensibleOptional?: string;
@@ -112,6 +113,7 @@ export interface SimpleModel {
   propArrayOfRecordOfUnion: Record<string, string | boolean | number>[];
   propArrayOfRecordOfUnionOptional?: Record<string, string | boolean | number>[];
   propEncoded: string;
+  propNestedDict?: Record<string, Record<string, any>>;
 }
 
 export function simpleModelDeserializer(item: any): SimpleModel {
@@ -129,7 +131,7 @@ export function simpleModelDeserializer(item: any): SimpleModel {
     propNumberLiteral: item["propNumberLiteral"],
     propStringLiteralOptional: item["propStringLiteralOptional"],
     propStringUnion: item["propStringUnion"],
-    propStringUnionOptioanl: item["propStringUnionOptioanl"],
+    propStringUnionOptional: item["propStringUnionOptional"],
     propStringUnionNullable: item["propStringUnionNullable"],
     propStringUnionAsExtensible: item["propStringUnionAsExtensible"],
     propStringUnionAsExtensibleOptional: item["propStringUnionAsExtensibleOptional"],
@@ -184,18 +186,18 @@ export function simpleModelDeserializer(item: any): SimpleModel {
     propRecordOfStringArray: Object.fromEntries(
       Object.entries(item["propRecordOfStringArray"]).map(([k, p]: [string, any]) => [
         k,
-        p.map((p: any) => {
-          return p;
+        p.map((p1: any) => {
+          return p1;
         }),
       ]),
     ),
     propArrayOfRecordOfString: item["propArrayOfRecordOfString"].map((p: any) => {
-      return Object.fromEntries(Object.entries(p).map(([k, p]: [string, any]) => [k, p]));
+      return Object.fromEntries(Object.entries(p).map(([k1, p1]: [string, any]) => [k1, p1]));
     }),
     propArrayOfRecordOfStringOptional: !item["propArrayOfRecordOfStringOptional"]
       ? item["propArrayOfRecordOfStringOptional"]
       : item["propArrayOfRecordOfStringOptional"].map((p: any) => {
-          return Object.fromEntries(Object.entries(p).map(([k, p]: [string, any]) => [k, p]));
+          return Object.fromEntries(Object.entries(p).map(([k1, p1]: [string, any]) => [k1, p1]));
         }),
     propRecordOfUnionArray: _simpleModelPropRecordOfUnionArrayArrayRecordDeserializer(
       item["propRecordOfUnionArray"],
@@ -214,6 +216,14 @@ export function simpleModelDeserializer(item: any): SimpleModel {
           item["propArrayOfRecordOfUnionOptional"],
         ),
     propEncoded: item["prop_encoded"],
+    propNestedDict: !item["propNestedDict"]
+      ? item["propNestedDict"]
+      : Object.fromEntries(
+          Object.entries(item["propNestedDict"]).map(([k, p]: [string, any]) => [
+            k,
+            Object.fromEntries(Object.entries(p).map(([k1, p1]: [string, any]) => [k1, p1])),
+          ]),
+        ),
   };
 }
 

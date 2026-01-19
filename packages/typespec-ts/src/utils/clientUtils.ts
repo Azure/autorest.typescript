@@ -20,7 +20,14 @@ import { NameType, normalizeName } from "@azure-tools/rlc-common";
 
 export function getRLCClients(dpgContext: SdkContext): SdkClient[] {
   const services = new Set<Namespace>();
-  listClients(dpgContext).forEach((c) => services.add(c.service));
+  listClients(dpgContext).forEach((c) => {
+    const clientService = c.service;
+    if (Array.isArray(clientService)) {
+      clientService.forEach((ns) => services.add(ns));
+    } else {
+      services.add(clientService);
+    }
+  });
   const rawServiceNamespaces = listAllServiceNamespaces(dpgContext);
   if (services.size === 0 && rawServiceNamespaces.length > 0) {
     // If no clients are found, fall back to raw service namespaces
@@ -34,6 +41,7 @@ export function getRLCClients(dpgContext: SdkContext): SdkClient[] {
       name: clientName,
       service: service,
       type: service,
+      services: [service],
       arm: Boolean(dpgContext.arm),
       crossLanguageDefinitionId: `${getNamespaceFullName(
         service
@@ -45,7 +53,10 @@ export function getRLCClients(dpgContext: SdkContext): SdkClient[] {
 
 export function listOperationsUnderRLCClient(client: SdkClient): Operation[] {
   const operations = [];
-  const queue: (Namespace | Interface)[] = [client.service];
+  const serviceArray = Array.isArray(client.service)
+    ? client.service
+    : [client.service];
+  const queue: (Namespace | Interface)[] = [...serviceArray];
   while (queue.length > 0) {
     const current = queue.shift()!;
     if (
@@ -55,7 +66,7 @@ export function listOperationsUnderRLCClient(client: SdkClient): Operation[] {
           getNamespaceFullName(d.definition?.namespace) ===
             "Azure.ClientGenerator.Core"
       ) &&
-      current !== client.service
+      !serviceArray.includes(current as Namespace)
     ) {
       continue;
     }
