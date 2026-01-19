@@ -949,10 +949,6 @@ export const azureModularTsps = [
     inputPath: "azure/client-generator-core/client-initialization/individually"
   },
   {
-    outputPath: "azure/client-generator-core/client-initialization/parent",
-    inputPath: "azure/client-generator-core/client-initialization/parent"
-  },
-  {
     outputPath: "azure/client-generator-core/client-initialization/individuallyParent",
     inputPath: "azure/client-generator-core/client-initialization/individuallyParent"
   },
