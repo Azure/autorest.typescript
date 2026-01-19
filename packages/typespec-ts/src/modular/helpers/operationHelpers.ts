@@ -9,7 +9,8 @@ import {
   PagingHelpers,
   PollingHelpers,
   SerializationHelpers,
-  UrlTemplateHelpers
+  UrlTemplateHelpers,
+  XmlHelpers
 } from "../static-helpers-metadata.js";
 import {
   getNullableValidType,
@@ -21,6 +22,8 @@ import {
   getCollectionFormatHelper,
   hasCollectionFormatInfo,
   isBinaryPayload,
+  isXmlPayload,
+  hasDualFormatSupport,
   ServiceOperation,
   getCollectionFormatParseHelper,
   getCollectionFormatFromArrayEncoding,
@@ -46,6 +49,11 @@ import {
   buildModelSerializer,
   buildPropertySerializer
 } from "../serialization/buildSerializerFunction.js";
+import {
+  buildXmlModelSerializer,
+  buildXmlModelDeserializer,
+  hasXmlSerialization
+} from "../serialization/buildXmlSerializerFunction.js";
 import { refkey } from "../../framework/refkey.js";
 import { reportDiagnostic } from "../../lib.js";
 import { resolveReference } from "../../framework/reference.js";
@@ -231,31 +239,109 @@ export function getDeserializePrivateFunction(
   }
 
   if (deserializedType) {
-    const contentTypes = operation.operation.responses[0]?.contentTypes;
-    const deserializeFunctionName = buildModelDeserializer(
-      context,
-      deserializedType,
-      {
-        nameOnly: true,
-        skipDiscriminatedUnionSuffix: false
-      }
-    );
-    if (deserializeFunctionName) {
-      statements.push(`return ${deserializeFunctionName}(${deserializedRoot})`);
-    } else if (isAzureCoreErrorType(context.program, deserializedType.__raw)) {
-      statements.push(`return ${deserializedRoot}`);
-    } else {
-      statements.push(
-        `return ${deserializeResponseValue(
+    const contentTypes = operation.operation.responses[0]?.contentTypes ?? [];
+    const isXml = isXmlPayload(contentTypes);
+    const isDualFormat = hasDualFormatSupport(contentTypes);
+    const useXmlDeserialization = isXml && deserializedType.kind === "model" && hasXmlSerialization(deserializedType);
+
+    // For dual-format responses, check content-type header at runtime
+    if (isDualFormat && deserializedType.kind === "model" && hasXmlSerialization(deserializedType)) {
+      const xmlDeserializerName = buildXmlModelDeserializer(
+        context,
+        deserializedType,
+        {
+          nameOnly: true,
+          skipDiscriminatedUnionSuffix: false
+        }
+      ) as string | undefined;
+      const jsonDeserializerName = buildModelDeserializer(
+        context,
+        deserializedType,
+        {
+          nameOnly: true,
+          skipDiscriminatedUnionSuffix: false
+        }
+      );
+
+      if (xmlDeserializerName && jsonDeserializerName) {
+        const isXmlContentTypeRef = resolveReference(XmlHelpers.isXmlContentType);
+        statements.push(
+          `const responseContentType = result.headers?.["content-type"] ?? "";
+          if (${isXmlContentTypeRef}(responseContentType)) {
+            return ${xmlDeserializerName}(${deserializedRoot});
+          }
+          return ${jsonDeserializerName}(${deserializedRoot});`
+        );
+      } else {
+        // Fall back to JSON deserializer
+        const deserializeFunctionName = buildModelDeserializer(
           context,
           deserializedType,
-          deserializedRoot,
-          true,
-          isBinaryPayload(context, response.type!.__raw!, contentTypes!)
-            ? "binary"
-            : getEncodeForType(deserializedType)
-        )}`
+          {
+            nameOnly: true,
+            skipDiscriminatedUnionSuffix: false
+          }
+        );
+        if (deserializeFunctionName) {
+          statements.push(`return ${deserializeFunctionName}(${deserializedRoot})`);
+        }
+      }
+    } else if (useXmlDeserialization) {
+      // XML-only response
+      const xmlDeserializerName = buildXmlModelDeserializer(
+        context,
+        deserializedType,
+        {
+          nameOnly: true,
+          skipDiscriminatedUnionSuffix: false
+        }
+      ) as string | undefined;
+
+      if (xmlDeserializerName) {
+        statements.push(`return ${xmlDeserializerName}(${deserializedRoot})`);
+      } else {
+        // Fall back to JSON deserializer if XML deserializer is not available
+        const deserializeFunctionName = buildModelDeserializer(
+          context,
+          deserializedType,
+          {
+            nameOnly: true,
+            skipDiscriminatedUnionSuffix: false
+          }
+        );
+        if (deserializeFunctionName) {
+          statements.push(`return ${deserializeFunctionName}(${deserializedRoot})`);
+        } else {
+          statements.push(`return ${deserializedRoot}`);
+        }
+      }
+    } else {
+      // JSON response (default)
+      const deserializeFunctionName = buildModelDeserializer(
+        context,
+        deserializedType,
+        {
+          nameOnly: true,
+          skipDiscriminatedUnionSuffix: false
+        }
       );
+      if (deserializeFunctionName) {
+        statements.push(`return ${deserializeFunctionName}(${deserializedRoot})`);
+      } else if (isAzureCoreErrorType(context.program, deserializedType.__raw)) {
+        statements.push(`return ${deserializedRoot}`);
+      } else {
+        statements.push(
+          `return ${deserializeResponseValue(
+            context,
+            deserializedType,
+            deserializedRoot,
+            true,
+            isBinaryPayload(context, response.type!.__raw!, contentTypes)
+              ? "binary"
+              : getEncodeForType(deserializedType)
+          )}`
+        );
+      }
     }
   } else if (returnType.type === "void") {
     statements.push("return;");
@@ -826,14 +912,38 @@ function buildBodyParameter(
   if (!bodyParameter || !bodyParameter.type) {
     return "";
   }
-  const serializerFunctionName = buildModelSerializer(
-    context,
-    getNullableValidType(bodyParameter.type),
-    {
-      nameOnly: true,
-      skipDiscriminatedUnionSuffix: false
-    }
-  );
+
+  const contentTypes = bodyParameter.contentTypes;
+  const isXml = isXmlPayload(contentTypes);
+  const isDualFormat = hasDualFormatSupport(contentTypes);
+  const bodyType = getNullableValidType(bodyParameter.type);
+
+  // Check if XML serialization is needed and available
+  const useXmlSerialization = isXml && bodyType.kind === "model" && hasXmlSerialization(bodyType);
+
+  let serializerFunctionName: string | undefined;
+
+  if (useXmlSerialization) {
+    // Use XML serializer
+    serializerFunctionName = buildXmlModelSerializer(
+      context,
+      bodyType,
+      {
+        nameOnly: true,
+        skipDiscriminatedUnionSuffix: false
+      }
+    ) as string | undefined;
+  } else {
+    // Use JSON serializer (default)
+    serializerFunctionName = buildModelSerializer(
+      context,
+      bodyType,
+      {
+        nameOnly: true,
+        skipDiscriminatedUnionSuffix: false
+      }
+    ) as string | undefined;
+  }
 
   const bodyParamName = normalizeName(
     bodyParameter.name,
@@ -848,6 +958,32 @@ function buildBodyParameter(
     bodyParameter,
     bodyParameter.optional ? optionalParamName : undefined
   );
+
+  // For dual-format operations, check the contentType option at runtime
+  if (isDualFormat && bodyType.kind === "model" && hasXmlSerialization(bodyType)) {
+    const xmlSerializerName = buildXmlModelSerializer(
+      context,
+      bodyType,
+      {
+        nameOnly: true,
+        skipDiscriminatedUnionSuffix: false
+      }
+    ) as string | undefined;
+    const jsonSerializerName = buildModelSerializer(
+      context,
+      bodyType,
+      {
+        nameOnly: true,
+        skipDiscriminatedUnionSuffix: false
+      }
+    ) as string | undefined;
+
+    if (xmlSerializerName && jsonSerializerName) {
+      const isXmlContentTypeRef = resolveReference(XmlHelpers.isXmlContentType);
+      return `\nbody: ${nullOrUndefinedPrefix}(${isXmlContentTypeRef}(${optionalParamName}?.contentType ?? "application/json") ? ${xmlSerializerName}(${bodyNameExpression}) : ${jsonSerializerName}(${bodyNameExpression})),`;
+    }
+  }
+
   // if a model being used in both spread and non spread operation, we should only leverage the deserializer in non spread operation
   if (serializerFunctionName && !isSpreadBodyParameter(bodyParameter)) {
     return `\nbody: ${nullOrUndefinedPrefix}${serializerFunctionName}(${bodyNameExpression}),`;
