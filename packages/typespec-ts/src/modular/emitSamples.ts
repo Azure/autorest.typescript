@@ -380,7 +380,7 @@ function prepareExampleParameters(
     result.push(
       prepareExampleValue(
         dpgContext,
-        exampleValue.parameter.name,
+        normalizeName(exampleValue.parameter.name, NameType.Parameter, true),
         exampleValue.value,
         param.optional,
         param.onClient
@@ -436,7 +436,7 @@ function prepareExampleParameters(
       result.push(
         prepareExampleValue(
           dpgContext,
-          bodyParam.name,
+          normalizeName(bodyParam.name, NameType.Parameter, true),
           bodyExample.value,
           bodyParam.optional,
           bodyParam.onClient
@@ -457,7 +457,7 @@ function prepareExampleParameters(
       result.push(
         prepareExampleValue(
           dpgContext,
-          param.parameter.name,
+          normalizeName(param.parameter.name, NameType.Parameter, true),
           param.value,
           true,
           param.parameter.onClient
