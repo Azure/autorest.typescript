@@ -200,7 +200,7 @@ export function buildClientContext(
   const { endpointParamName: endpointParam, assignedOptionalParams } =
     buildGetClientEndpointParam(factoryFunction, dpgContext, client);
   const credentialParam = buildGetClientCredentialParam(client, emitterOptions);
-  
+
   // Get api version param early so we can use its name when building options
   const apiVersionParam = getClientParameters(client, dpgContext).find(
     (x) => x.isApiVersionParam
@@ -208,7 +208,7 @@ export function buildClientContext(
   const apiVersionParamName = apiVersionParam
     ? getClientParameterName(apiVersionParam)
     : undefined;
-  
+
   const optionsParam = buildGetClientOptionsParam(
     factoryFunction,
     emitterOptions,
