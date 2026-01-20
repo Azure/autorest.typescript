@@ -200,10 +200,20 @@ export function buildClientContext(
   const { endpointParamName: endpointParam, assignedOptionalParams } =
     buildGetClientEndpointParam(factoryFunction, dpgContext, client);
   const credentialParam = buildGetClientCredentialParam(client, emitterOptions);
+  
+  // Get api version param early so we can use its name when building options
+  const apiVersionParam = getClientParameters(client, dpgContext).find(
+    (x) => x.isApiVersionParam
+  );
+  const apiVersionParamName = apiVersionParam
+    ? getClientParameterName(apiVersionParam)
+    : undefined;
+  
   const optionsParam = buildGetClientOptionsParam(
     factoryFunction,
     emitterOptions,
-    endpointParam
+    endpointParam,
+    apiVersionParamName
   );
 
   factoryFunction.addStatements(
@@ -230,9 +240,6 @@ export function buildClientContext(
   }
 
   let apiVersionPolicyStatement = `clientContext.pipeline.removePolicy({ name: "ApiVersionPolicy" });`;
-  const apiVersionParam = getClientParameters(client, dpgContext).find(
-    (x) => x.isApiVersionParam
-  );
   const endpointParameter = getClientParameters(client, dpgContext, {
     onClientOnly: false,
     requiredOnly: true,
@@ -248,7 +255,7 @@ export function buildClientContext(
     const apiVersionInEndpoint =
       templateArguments && templateArguments.find((p) => p.isApiVersionParam);
     if (!apiVersionInEndpoint && apiVersionParam.clientDefaultValue) {
-      apiVersionPolicyStatement += `const apiVersion = options.apiVersion ?? "${apiVersionParam.clientDefaultValue}";`;
+      apiVersionPolicyStatement += `const ${apiVersionParamName} = options.${apiVersionParamName} ?? "${apiVersionParam.clientDefaultValue}";`;
     }
 
     if (apiVersionParam.kind === "method") {
