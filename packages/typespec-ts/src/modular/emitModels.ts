@@ -48,6 +48,11 @@ import {
   buildModelSerializer,
   buildPropertySerializer
 } from "./serialization/buildSerializerFunction.js";
+import {
+  buildXmlModelSerializer,
+  buildXmlModelDeserializer,
+  hasXmlSerialization
+} from "./serialization/buildXmlSerializerFunction.js";
 import path from "path";
 import { refkey } from "../framework/refkey.js";
 import { useContext } from "../contextManager.js";
@@ -334,6 +339,8 @@ function addSerializationFunctions(
     nameOnly: false,
     skipDiscriminatedUnionSuffix
   };
+
+  // Add JSON serializers
   const serializationFunction =
     typeOrProperty.kind === "property"
       ? buildPropertySerializer(context, typeOrProperty, options)
@@ -358,6 +365,42 @@ function addSerializationFunctions(
     deserializationFunction.name
   ) {
     addDeclaration(sourceFile, deserializationFunction, deserializerRefKey);
+  }
+
+  // Add XML serializers if the type has XML serialization options
+  if (typeOrProperty.kind === "model" && hasXmlSerialization(typeOrProperty)) {
+    const xmlSerializerRefKey = refkey(typeOrProperty, "xmlSerializer");
+    const xmlDeserializerRefKey = refkey(typeOrProperty, "xmlDeserializer");
+
+    const xmlSerializationFunction = buildXmlModelSerializer(
+      context,
+      typeOrProperty,
+      options
+    );
+    if (
+      xmlSerializationFunction &&
+      typeof xmlSerializationFunction !== "string" &&
+      xmlSerializationFunction.name
+    ) {
+      addDeclaration(sourceFile, xmlSerializationFunction, xmlSerializerRefKey);
+    }
+
+    const xmlDeserializationFunction = buildXmlModelDeserializer(
+      context,
+      typeOrProperty,
+      options
+    );
+    if (
+      xmlDeserializationFunction &&
+      typeof xmlDeserializationFunction !== "string" &&
+      xmlDeserializationFunction.name
+    ) {
+      addDeclaration(
+        sourceFile,
+        xmlDeserializationFunction,
+        xmlDeserializerRefKey
+      );
+    }
   }
 }
 

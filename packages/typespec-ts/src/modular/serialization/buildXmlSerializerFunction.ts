@@ -5,6 +5,7 @@ import { FunctionDeclarationStructure, StructureKind } from "ts-morph";
 import {
   SdkModelPropertyType,
   SdkModelType,
+  SdkPackage,
   SdkType,
   UsageFlags
 } from "@azure-tools/typespec-client-generator-core";
@@ -16,7 +17,10 @@ import {
 import { normalizeModelName } from "../emitModels.js";
 import { NameType } from "@azure-tools/rlc-common";
 import { isAzureCoreErrorType } from "../../utils/modelUtils.js";
-import { isSupportedSerializeType, ModelSerializeOptions } from "./serializeUtils.js";
+import {
+  isSupportedSerializeType,
+  ModelSerializeOptions
+} from "./serializeUtils.js";
 import { XmlHelpers } from "../static-helpers-metadata.js";
 import { resolveReference } from "../../framework/reference.js";
 import { refkey } from "../../framework/refkey.js";
@@ -25,6 +29,8 @@ import { NoTarget } from "@typespec/compiler";
 import { isMetadata } from "@typespec/http";
 import { normalizeModelPropertyName } from "../type-expressions/get-type-expression.js";
 import { isReadOnly } from "@azure-tools/typespec-client-generator-core";
+import { buildModelSerializer } from "./buildSerializerFunction.js";
+import { buildModelDeserializer } from "./buildDeserializerFunction.js";
 
 /**
  * Checks if a model type has XML serialization options defined
@@ -42,6 +48,20 @@ export function hasXmlSerialization(type: SdkType): boolean {
 }
 
 /**
+ * Checks if any model in the SDK package uses XML serialization
+ */
+export function packageUsesXmlSerialization(
+  sdkPackage: SdkPackage<any>
+): boolean {
+  for (const model of sdkPackage.models) {
+    if (hasXmlSerialization(model)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
  * Gets the XML element name for a model type
  */
 export function getXmlRootName(type: SdkModelType): string {
@@ -51,7 +71,9 @@ export function getXmlRootName(type: SdkModelType): string {
 /**
  * Gets the XML namespace for a model type
  */
-export function getXmlRootNs(type: SdkModelType): { namespace: string; prefix: string } | undefined {
+export function getXmlRootNs(
+  type: SdkModelType
+): { namespace: string; prefix: string } | undefined {
   return type.serializationOptions?.xml?.ns;
 }
 
@@ -104,7 +126,9 @@ export function buildXmlModelSerializer(
   }
 
   const serializeToXmlRef = resolveReference(XmlHelpers.serializeToXml);
-  const xmlPropertyMetadataRef = resolveReference(XmlHelpers.XmlPropertyMetadata);
+  const xmlPropertyMetadataRef = resolveReference(
+    XmlHelpers.XmlPropertyMetadata
+  );
 
   const properties = getAllProperties(context, type, getAllAncestors(type));
   const xmlRootName = getXmlRootName(type);
@@ -116,7 +140,9 @@ export function buildXmlModelSerializer(
   const statements: string[] = [];
 
   // Generate the properties metadata constant
-  statements.push(`const properties: ${xmlPropertyMetadataRef}[] = [${propertyMetadata}];`);
+  statements.push(
+    `const properties: ${xmlPropertyMetadataRef}[] = [${propertyMetadata}];`
+  );
 
   // Generate the serialization call
   if (xmlRootNs) {
@@ -172,7 +198,8 @@ function buildPropertyMetadataArray(
     const cleanPropertyName = propertyName.replace(/^"|"$/g, "");
 
     // Use XML name if available, fall back to JSON name, then property name
-    const serializedName = xmlOptions?.name ?? jsonOptions?.name ?? property.name;
+    const serializedName =
+      xmlOptions?.name ?? jsonOptions?.name ?? property.name;
 
     const metadataObj: string[] = [
       `propertyName: "${cleanPropertyName}"`,
@@ -203,16 +230,14 @@ function buildPropertyMetadataArray(
 /**
  * Builds the XML options string from XmlSerializationOptions
  */
-function buildXmlOptionsString(
-  xmlOptions?: {
-    name: string;
-    attribute?: boolean;
-    ns?: { namespace: string; prefix: string };
-    unwrapped?: boolean;
-    itemsName?: string;
-    itemsNs?: { namespace: string; prefix: string };
-  }
-): string {
+function buildXmlOptionsString(xmlOptions?: {
+  name: string;
+  attribute?: boolean;
+  ns?: { namespace: string; prefix: string };
+  unwrapped?: boolean;
+  itemsName?: string;
+  itemsNs?: { namespace: string; prefix: string };
+}): string {
   if (!xmlOptions) {
     return "";
   }
@@ -223,7 +248,9 @@ function buildXmlOptionsString(
     parts.push(`attribute: true`);
   }
   if (xmlOptions.ns) {
-    parts.push(`ns: { namespace: "${xmlOptions.ns.namespace}", prefix: "${xmlOptions.ns.prefix}" }`);
+    parts.push(
+      `ns: { namespace: "${xmlOptions.ns.namespace}", prefix: "${xmlOptions.ns.prefix}" }`
+    );
   }
   if (xmlOptions.unwrapped) {
     parts.push(`unwrapped: true`);
@@ -232,7 +259,9 @@ function buildXmlOptionsString(
     parts.push(`itemsName: "${xmlOptions.itemsName}"`);
   }
   if (xmlOptions.itemsNs) {
-    parts.push(`itemsNs: { namespace: "${xmlOptions.itemsNs.namespace}", prefix: "${xmlOptions.itemsNs.prefix}" }`);
+    parts.push(
+      `itemsNs: { namespace: "${xmlOptions.itemsNs.namespace}", prefix: "${xmlOptions.itemsNs.prefix}" }`
+    );
   }
 
   return parts.length > 0 ? `, ${parts.join(", ")}` : "";
@@ -242,19 +271,21 @@ function buildXmlOptionsString(
  * Gets type information for a property for XML serialization
  */
 function getPropertyTypeInfo(type: SdkType): {
-  type?: "array" | "object" | "primitive" | "date" | "bytes";
+  type?: "array" | "object" | "primitive" | "date" | "bytes" | "dict";
   dateEncoding?: "rfc3339" | "rfc7231" | "unixTimestamp";
 } {
   switch (type.kind) {
     case "array":
       return { type: "array" };
     case "model":
-    case "dict":
       return { type: "object" };
+    case "dict":
+      return { type: "dict" };
     case "utcDateTime":
       return {
         type: "date",
-        dateEncoding: (type.encode as "rfc3339" | "rfc7231" | "unixTimestamp") ?? "rfc3339"
+        dateEncoding:
+          (type.encode as "rfc3339" | "rfc7231" | "unixTimestamp") ?? "rfc3339"
       };
     case "bytes":
       return { type: "bytes" };
@@ -270,8 +301,10 @@ function getNestedXmlSerializer(
   context: SdkContext,
   type: SdkType
 ): string | undefined {
-  if (type.kind === "model" && hasXmlSerialization(type)) {
-    const serializerName = buildXmlModelSerializer(context, type, {
+  if (type.kind === "model") {
+    // For nested objects, use the regular JSON serializer which returns objects
+    // The XML builder will convert these objects to XML elements
+    const serializerName = buildModelSerializer(context, type, {
       nameOnly: true,
       skipDiscriminatedUnionSuffix: false
     });
@@ -280,9 +313,14 @@ function getNestedXmlSerializer(
     }
   }
   if (type.kind === "array" && type.valueType.kind === "model") {
-    const itemSerializer = getNestedXmlSerializer(context, type.valueType);
-    if (itemSerializer) {
-      return `(items: any[]) => items.map(${itemSerializer})`;
+    // For arrays, use the regular JSON serializer which returns objects
+    // The XML helper calls this for each item and handles the array mapping
+    const itemSerializer = buildModelSerializer(context, type.valueType, {
+      nameOnly: true,
+      skipDiscriminatedUnionSuffix: false
+    });
+    if (typeof itemSerializer === "string") {
+      return itemSerializer;
     }
   }
   return undefined;
@@ -338,19 +376,26 @@ export function buildXmlModelDeserializer(
   }
 
   const deserializeFromXmlRef = resolveReference(XmlHelpers.deserializeFromXml);
-  const xmlPropertyDeserializeMetadataRef = resolveReference(XmlHelpers.XmlPropertyDeserializeMetadata);
+  const xmlPropertyDeserializeMetadataRef = resolveReference(
+    XmlHelpers.XmlPropertyDeserializeMetadata
+  );
 
   const properties = getAllProperties(context, type, getAllAncestors(type));
   const xmlRootName = getXmlRootName(type);
   const xmlRootNs = getXmlRootNs(type);
 
   // Build property metadata array for deserialization
-  const propertyMetadata = buildDeserializePropertyMetadataArray(context, properties);
+  const propertyMetadata = buildDeserializePropertyMetadataArray(
+    context,
+    properties
+  );
 
   const statements: string[] = [];
 
   // Generate the properties metadata constant
-  statements.push(`const properties: ${xmlPropertyDeserializeMetadataRef}[] = [${propertyMetadata}];`);
+  statements.push(
+    `const properties: ${xmlPropertyDeserializeMetadataRef}[] = [${propertyMetadata}];`
+  );
 
   // Generate the deserialization call
   const typeRef = resolveReference(refkey(type));
@@ -404,7 +449,8 @@ function buildDeserializePropertyMetadataArray(
     const cleanPropertyName = propertyName.replace(/^"|"$/g, "");
 
     // Use XML name if available, fall back to JSON name, then property name
-    const serializedName = xmlOptions?.name ?? jsonOptions?.name ?? property.name;
+    const serializedName =
+      xmlOptions?.name ?? jsonOptions?.name ?? property.name;
 
     const metadataObj: string[] = [
       `propertyName: "${cleanPropertyName}"`,
@@ -439,8 +485,10 @@ function getNestedXmlDeserializer(
   context: SdkContext,
   type: SdkType
 ): string | undefined {
-  if (type.kind === "model" && hasXmlSerialization(type)) {
-    const deserializerName = buildXmlModelDeserializer(context, type, {
+  if (type.kind === "model") {
+    // For nested objects, use the regular JSON deserializer which takes parsed objects
+    // The XML parser has already converted the XML to an object structure
+    const deserializerName = buildModelDeserializer(context, type, {
       nameOnly: true,
       skipDiscriminatedUnionSuffix: false
     });
@@ -449,9 +497,14 @@ function getNestedXmlDeserializer(
     }
   }
   if (type.kind === "array" && type.valueType.kind === "model") {
-    const itemDeserializer = getNestedXmlDeserializer(context, type.valueType);
-    if (itemDeserializer) {
-      return `(items: any[]) => items.map(${itemDeserializer})`;
+    // For arrays, use the regular JSON deserializer which takes parsed objects
+    // The XML helper calls this for each item and handles the array mapping
+    const itemDeserializer = buildModelDeserializer(context, type.valueType, {
+      nameOnly: true,
+      skipDiscriminatedUnionSuffix: false
+    });
+    if (typeof itemDeserializer === "string") {
+      return itemDeserializer;
     }
   }
   return undefined;

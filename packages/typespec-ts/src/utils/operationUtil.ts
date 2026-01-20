@@ -43,7 +43,11 @@ import {
   HttpStatusCodesEntry
 } from "@typespec/http";
 import { SdkContext } from "./interfaces.js";
-import { KnownMediaType, knownMediaType, isMediaTypeXml } from "./mediaTypes.js";
+import {
+  KnownMediaType,
+  knownMediaType,
+  isMediaTypeXml
+} from "./mediaTypes.js";
 import { isByteOrByteUnion } from "./modelUtils.js";
 import { getOperationNamespaceInterfaceName } from "./namespaceUtils.js";
 import { resolveReference } from "../framework/reference.js";
@@ -212,8 +216,12 @@ export function isXmlPayload(contentType: string | string[]): boolean {
  * Checks if the operation supports multiple content types (e.g., both JSON and XML)
  */
 export function hasDualFormatSupport(contentTypes: string[]): boolean {
-  const hasJson = contentTypes.some((ct) => knownMediaType(ct) === KnownMediaType.Json);
-  const hasXml = contentTypes.some((ct) => knownMediaType(ct) === KnownMediaType.Xml);
+  const hasJson = contentTypes.some(
+    (ct) => knownMediaType(ct) === KnownMediaType.Json
+  );
+  const hasXml = contentTypes.some(
+    (ct) => knownMediaType(ct) === KnownMediaType.Xml
+  );
   return hasJson && hasXml;
 }
 

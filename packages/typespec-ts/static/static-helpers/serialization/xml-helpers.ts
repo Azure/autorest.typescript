@@ -38,7 +38,7 @@ export interface XmlPropertyMetadata {
   /** Serializer function for complex types */
   serializer?: (value: any) => XmlSerializedValue;
   /** Type of the property for special handling */
-  type?: "array" | "object" | "primitive" | "date" | "bytes";
+  type?: "array" | "object" | "primitive" | "date" | "bytes" | "dict";
   /** Date encoding format */
   dateEncoding?: "rfc3339" | "rfc7231" | "unixTimestamp";
 }
@@ -54,7 +54,7 @@ export interface XmlPropertyDeserializeMetadata {
   /** Deserializer function for complex types */
   deserializer?: (value: any) => any;
   /** Type of the property for special handling */
-  type?: "array" | "object" | "primitive" | "date" | "bytes";
+  type?: "array" | "object" | "primitive" | "date" | "bytes" | "dict";
   /** Date encoding format */
   dateEncoding?: "rfc3339" | "rfc7231" | "unixTimestamp";
 }
@@ -80,8 +80,13 @@ const defaultParserOptions = {
   attributeNamePrefix: "@_",
   textNodeName: "#text",
   parseAttributeValue: true,
-  trimValues: true,
-  isArray: (_name: string, _jpath: string, isLeafNode: boolean, isAttribute: boolean) => {
+  trimValues: false, // Preserve whitespace in text content
+  isArray: (
+    _name: string,
+    _jpath: string,
+    isLeafNode: boolean,
+    isAttribute: boolean
+  ) => {
     // Don't auto-detect arrays for attributes or leaf nodes by default
     // Let the metadata drive array detection
     return !isAttribute && !isLeafNode;
@@ -99,7 +104,10 @@ const defaultBuilderOptions: Partial<XmlBuilderOptions> = {
 /**
  * Creates an XML element name with optional namespace prefix
  */
-function getElementName(name: string, ns?: { namespace: string; prefix: string }): string {
+function getElementName(
+  name: string,
+  ns?: { namespace: string; prefix: string }
+): string {
   if (ns?.prefix) {
     return `${ns.prefix}:${name}`;
   }
@@ -141,7 +149,10 @@ function collectNamespaces(
       namespaces.set(prop.xmlOptions.ns.prefix, prop.xmlOptions.ns.namespace);
     }
     if (prop.xmlOptions.itemsNs) {
-      namespaces.set(prop.xmlOptions.itemsNs.prefix, prop.xmlOptions.itemsNs.namespace);
+      namespaces.set(
+        prop.xmlOptions.itemsNs.prefix,
+        prop.xmlOptions.itemsNs.namespace
+      );
     }
   }
 
@@ -153,7 +164,7 @@ function collectNamespaces(
  */
 function serializePrimitiveValue(
   value: any,
-  type?: "array" | "object" | "primitive" | "date" | "bytes",
+  type?: "array" | "object" | "primitive" | "date" | "bytes" | "dict",
   dateEncoding?: "rfc3339" | "rfc7231" | "unixTimestamp"
 ): string | number | boolean {
   if (value === null || value === undefined) {
@@ -208,9 +219,12 @@ function serializeArrayProperty(
     // Unwrapped: return items directly (they'll be siblings)
     return serializedItems;
   } else {
-    // Wrapped: items are nested under a wrapper element
+    // Wrapped: items are nested under a wrapper element, which contains item elements
+    const wrapperName = getElementName(xmlOptions.name, xmlOptions.ns);
     return {
-      [itemName]: serializedItems
+      [wrapperName]: {
+        [itemName]: serializedItems
+      }
     } as XmlSerializedObject;
   }
 }
@@ -251,7 +265,18 @@ export function serializeModelToXml(
       const attrName = xmlOptions.ns?.prefix
         ? `@_${xmlOptions.ns.prefix}:${xmlOptions.name}`
         : `@_${xmlOptions.name}`;
-      attributes[attrName] = serializePrimitiveValue(value, type, prop.dateEncoding);
+      attributes[attrName] = serializePrimitiveValue(
+        value,
+        type,
+        prop.dateEncoding
+      );
+    } else if (type === "dict" && value !== null && typeof value === "object") {
+      // Serialize dictionary - each key-value pair becomes an element
+      const dictContent: Record<string, XmlSerializedValue> = {};
+      for (const [key, val] of Object.entries(value)) {
+        dictContent[key] = String(val);
+      }
+      result[elementName] = dictContent;
     } else if (Array.isArray(value)) {
       // Serialize array
       const arrayResult = serializeArrayProperty(value, prop);
@@ -268,9 +293,16 @@ export function serializeModelToXml(
     } else if (value !== null && typeof value === "object" && serializer) {
       // Serialize nested object
       result[elementName] = serializer(value);
+    } else if (xmlOptions.unwrapped && !Array.isArray(value)) {
+      // Unwrapped primitive - this becomes the text content of the parent element
+      result["#text"] = serializePrimitiveValue(value, type, prop.dateEncoding);
     } else {
       // Serialize primitive
-      result[elementName] = serializePrimitiveValue(value, type, prop.dateEncoding);
+      result[elementName] = serializePrimitiveValue(
+        value,
+        type,
+        prop.dateEncoding
+      );
     }
   }
 
@@ -333,7 +365,7 @@ export function parseXmlString(
  */
 function deserializePrimitiveValue(
   value: any,
-  type?: "array" | "object" | "primitive" | "date" | "bytes",
+  type?: "array" | "object" | "primitive" | "date" | "bytes" | "dict",
   dateEncoding?: "rfc3339" | "rfc7231" | "unixTimestamp"
 ): any {
   if (value === null || value === undefined || value === "") {
@@ -361,12 +393,19 @@ function deserializePrimitiveValue(
 }
 
 /**
+ * Unwraps a value if it's a single-element array (parser wraps non-leaf elements in arrays)
+ */
+function unwrapSingleElementArray(value: any): any {
+  if (Array.isArray(value) && value.length === 1) {
+    return value[0];
+  }
+  return value;
+}
+
+/**
  * Extracts element value from parsed XML, handling namespaces
  */
-function getElementValue(
-  obj: any,
-  xmlOptions: XmlSerializationOptions
-): any {
+function getElementValue(obj: any, xmlOptions: XmlSerializationOptions): any {
   if (!obj) {
     return undefined;
   }
@@ -381,7 +420,10 @@ function getElementValue(
 
   // Look for element with or without namespace prefix
   const elementName = ns?.prefix ? `${ns.prefix}:${name}` : name;
-  return obj[elementName] ?? obj[name]; // Fall back to name without prefix
+  const value = obj[elementName] ?? obj[name]; // Fall back to name without prefix
+
+  // Unwrap single-element arrays (parser wraps non-leaf elements in arrays)
+  return unwrapSingleElementArray(value);
 }
 
 /**
@@ -405,17 +447,23 @@ function deserializeArrayProperty(
   } else {
     // Items are nested under wrapper element
     const wrapperName = getElementName(xmlOptions.name, xmlOptions.ns);
-    const wrapper = obj[wrapperName] ?? obj[xmlOptions.name];
+    let wrapper = obj[wrapperName] ?? obj[xmlOptions.name];
 
     if (!wrapper) {
       return [];
     }
 
+    // Unwrap single-element array if the parser wrapped it
+    wrapper = unwrapSingleElementArray(wrapper);
+
     const itemName = getElementName(
       xmlOptions.itemsName || xmlOptions.name,
       xmlOptions.itemsNs
     );
-    arrayData = wrapper[itemName] ?? wrapper[xmlOptions.itemsName || xmlOptions.name] ?? wrapper;
+    arrayData =
+      wrapper[itemName] ??
+      wrapper[xmlOptions.itemsName || xmlOptions.name] ??
+      wrapper;
   }
 
   if (!arrayData) {
@@ -426,10 +474,12 @@ function deserializeArrayProperty(
   const items = Array.isArray(arrayData) ? arrayData : [arrayData];
 
   return items.map((item) => {
+    // Unwrap single-element array for each item if needed
+    const unwrappedItem = unwrapSingleElementArray(item);
     if (deserializer) {
-      return deserializer(item);
+      return deserializer(unwrappedItem);
     }
-    return deserializePrimitiveValue(item, type, dateEncoding);
+    return deserializePrimitiveValue(unwrappedItem, type, dateEncoding);
   });
 }
 
@@ -446,9 +496,10 @@ export function deserializeXmlToModel<T = Record<string, any>>(
     return {} as T;
   }
 
-  // Get root element content
+  // Get root element content - unwrap if it's wrapped in an array by the parser
   const rootElementName = getElementName(rootName, rootNs);
-  const content = xmlObject[rootElementName] ?? xmlObject[rootName] ?? xmlObject;
+  let content = xmlObject[rootElementName] ?? xmlObject[rootName] ?? xmlObject;
+  content = unwrapSingleElementArray(content);
 
   const result: Record<string, any> = {};
 
@@ -458,6 +509,29 @@ export function deserializeXmlToModel<T = Record<string, any>>(
     if (type === "array" || xmlOptions.itemsName) {
       // Deserialize array
       result[propertyName] = deserializeArrayProperty(content, prop);
+    } else if (type === "dict") {
+      // Deserialize dictionary - each child element is a key-value pair
+      const rawValue = getElementValue(content, xmlOptions);
+      if (rawValue !== undefined && typeof rawValue === "object") {
+        const dict: Record<string, string> = {};
+        for (const [key, val] of Object.entries(rawValue)) {
+          // Skip attributes (start with @_) and text nodes (#text)
+          if (!key.startsWith("@_") && key !== "#text") {
+            dict[key] = String(val);
+          }
+        }
+        result[propertyName] = dict;
+      }
+    } else if (xmlOptions.unwrapped && type !== "object") {
+      // Unwrapped primitive - get text content from the element
+      const rawValue = content["#text"];
+      if (rawValue !== undefined) {
+        result[propertyName] = deserializePrimitiveValue(
+          rawValue,
+          type,
+          dateEncoding
+        );
+      }
     } else {
       // Get element or attribute value
       const rawValue = getElementValue(content, xmlOptions);
@@ -471,7 +545,11 @@ export function deserializeXmlToModel<T = Record<string, any>>(
         result[propertyName] = deserializer(rawValue);
       } else {
         // Deserialize primitive
-        result[propertyName] = deserializePrimitiveValue(rawValue, type, dateEncoding);
+        result[propertyName] = deserializePrimitiveValue(
+          rawValue,
+          type,
+          dateEncoding
+        );
       }
     }
   }

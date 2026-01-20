@@ -154,7 +154,9 @@ export function buildOperationOptions(
     name: "contentType",
     type: "string",
     hasQuestionToken: true,
-    docs: ["The content type for the request body. Defaults to \"application/json\". Use \"application/xml\" for XML serialization."]
+    docs: [
+      'The content type for the request body. Defaults to "application/json". Use "application/xml" for XML serialization.'
+    ]
   };
 
   // handle optional body parameter
@@ -166,7 +168,12 @@ export function buildOperationOptions(
   );
 
   // Build the additional options array
-  const additionalOptions: { name: string; type: string; hasQuestionToken: boolean; docs: string[] }[] = [];
+  const additionalOptions: {
+    name: string;
+    type: string;
+    hasQuestionToken: boolean;
+    docs: string[];
+  }[] = [];
   if (isLroOnlyOperation(operation)) {
     additionalOptions.push(lroOptions);
   }
@@ -195,7 +202,7 @@ export function buildOperationOptions(
     sourceFile,
     operationOptionsInterface,
     refkey(method[1], "operationOptions")
-  )
+  );
 }
 
 /**
