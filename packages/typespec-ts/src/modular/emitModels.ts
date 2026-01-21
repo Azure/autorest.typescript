@@ -501,7 +501,7 @@ function buildModelInterface(
       .filter((p) => !isMetadata(context.program, p.__raw!))
       .filter((p) => {
         // filter out the flatten property to be processed later
-        if (p.flatten) {
+        if (p.flatten && p.type.kind === "model") {
           flattenPropertySet.add(p);
           return false;
         }
@@ -512,9 +512,6 @@ function buildModelInterface(
       })
   } as InterfaceStructure;
   for (const flatten of flattenPropertySet.keys()) {
-    if (flatten.type?.kind !== "model" || !flatten.type.properties) {
-      continue;
-    }
     const conflictMap =
       useContext("sdkTypes").flattenProperties.get(flatten)?.conflictMap;
     const allProperties = getAllProperties(
@@ -673,7 +670,7 @@ export function normalizeModelName(
     : "";
   const internalModelPrefix =
     isPagedResultModel(context, type) || type.isGeneratedName ? "_" : "";
-  return `${internalModelPrefix}${normalizeName(namespacePrefix + type.name + unionSuffix, nameType, true)}`;
+  return `${internalModelPrefix}${normalizeName(namespacePrefix + type.name, nameType, true)}${unionSuffix}`;
 }
 
 function buildModelPolymorphicType(context: SdkContext, type: SdkModelType) {

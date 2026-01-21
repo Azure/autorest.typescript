@@ -452,10 +452,11 @@ function buildModelTypeSerializer(
             ? undefined
             : multipart.defaultContentTypes?.[0];
 
+        const propertyAccessor = getPropertyFullName(context, property, "item");
         if (multipart.isMulti) {
-          partDefinition = `...(item["${multipart.name}"].map((x: unknown) => ${createFilePartDescriptorDefinition}("${multipart.name}", x${contentType ? `,"${contentType}"` : ""})))`;
+          partDefinition = `...(${propertyAccessor}.map((x: unknown) => ${createFilePartDescriptorDefinition}("${multipart.name}", x${contentType ? `,"${contentType}"` : ""})))`;
         } else {
-          partDefinition = `${createFilePartDescriptorDefinition}("${multipart.name}", item["${multipart.name}"]${contentType ? `, "${contentType}"` : ""})`;
+          partDefinition = `${createFilePartDescriptorDefinition}("${multipart.name}", ${propertyAccessor}${contentType ? `, "${contentType}"` : ""})`;
         }
       } else if (multipart?.isMulti) {
         partDefinition = `...((${expr}).map((x: unknown) => ({ name: "${multipart?.name}", body: x })))`;

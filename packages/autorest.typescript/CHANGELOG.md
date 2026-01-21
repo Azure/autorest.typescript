@@ -1,3 +1,26 @@
+## 6.0.55 (2026-01-16)
+
+- [Feature] Bump TypeSpec dependencies to latest stable (1.8.0). Please refer to [#3681](https://github.com/Azure/autorest.typescript/pull/3681)
+- [Bugfix] Fix nightly CI. Please refer to [#3677](https://github.com/Azure/autorest.typescript/pull/3677)
+- [Feature] Implement array encoding for model properties. Please refer to [#3659](https://github.com/Azure/autorest.typescript/pull/3659)
+- [Feature] Add code owner. Please refer to [#3667](https://github.com/Azure/autorest.typescript/pull/3667)
+- [Feature] Upgrade tcgc for multiple service. Please refer to [#3658](https://github.com/Azure/autorest.typescript/pull/3658)
+- [Feature] Remove cjs config for azure sdk js repository. Please refer to [#3654](https://github.com/Azure/autorest.typescript/pull/3654)
+- [Bugfix] Fix compile issues if upgrade tcgc to 0.63.1. Please refer to [#3662](https://github.com/Azure/autorest.typescript/pull/3662)
+- [Bugfix] Fix flatten property generation error for all readOnly. Please refer to [#3668](https://github.com/Azure/autorest.typescript/pull/3668)
+- [Bugfix] Fix nested Record type deserializer linter issue. Please refer to [#3660](https://github.com/Azure/autorest.typescript/pull/3660)
+- [Bugfix] Normalization in-consistancy for discriminated union during Serializer/DeSerializer. Please refer to [#3652](https://github.com/Azure/autorest.typescript/pull/3652)
+- [Bugfix] Fix flatten inconsistency between src and sample gen. Please refer to [#3657](https://github.com/Azure/autorest.typescript/pull/3657)
+
+## 6.0.54 (2025-12-15)
+
+- [Feature] Prevent flatten property decorator from being applied to non-model types. Please refer to [#3643](https://github.com/Azure/autorest.typescript/pull/3643)
+- [Feature] Bump TypeSpec dependencies to latest stable (1.7.0 / 0.77.0 / 0.63.0). Please refer to [#3638](https://github.com/Azure/autorest.typescript/pull/3638)
+- [Feature] Update documentation to use pnpm commands instead of rush. Please refer to [#3629](https://github.com/Azure/autorest.typescript/pull/3629)
+- [Feature] Remove review/ and changelogmd in package.json's files config. Please refer to [#3310](https://github.com/Azure/autorest.typescript/pull/3310)
+- [Bugfix] Fix query parameter missing issue if using @clientInitialization. Please refer to [#3555](https://github.com/Azure/autorest.typescript/pull/3555)
+- [Feature] Pnpm migration. Please refer to [#3366](https://github.com/Azure/autorest.typescript/pull/3366)
+
 ## 6.0.53 (2025-12-04)
 
 - [Bugfix] Fix inconsistent Serializer Function Names in Discriminated Unions cross namesapce. Please refer to [#3589](https://github.com/Azure/autorest.typescript/pull/3589)

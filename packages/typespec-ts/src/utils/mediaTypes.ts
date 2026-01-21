@@ -107,8 +107,8 @@ export function isMediaTypeJsonMergePatch(
   if (Array.isArray(mediaType)) {
     return Boolean(
       mediaType.length === 1 &&
-        mediaType[0] &&
-        isMediaTypeJsonMergePatch(mediaType[0])
+      mediaType[0] &&
+      isMediaTypeJsonMergePatch(mediaType[0])
     );
   }
   const mt = parseMediaType(mediaType);
@@ -133,8 +133,8 @@ export function isMediaTypeMultipartFormData(
   if (Array.isArray(mediaType)) {
     return Boolean(
       mediaType.length === 1 &&
-        mediaType[0] &&
-        isMediaTypeMultipartFormData(mediaType[0])
+      mediaType[0] &&
+      isMediaTypeMultipartFormData(mediaType[0])
     );
   }
 

@@ -31,9 +31,7 @@ import {
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing ServerDevOpsAuditSettings operations. */
-export class ServerDevOpsAuditSettingsImpl
-  implements ServerDevOpsAuditSettings
-{
+export class ServerDevOpsAuditSettingsImpl implements ServerDevOpsAuditSettings {
   private readonly client: SqlManagementClient;
 
   /**

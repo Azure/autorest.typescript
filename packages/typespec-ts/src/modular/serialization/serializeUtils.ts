@@ -144,8 +144,8 @@ export function isDiscriminatedUnion(
   }
   return Boolean(
     type?.kind === "model" &&
-      type.discriminatorProperty &&
-      type.discriminatedSubtypes
+    type.discriminatorProperty &&
+    type.discriminatedSubtypes
   );
 }
 
@@ -201,6 +201,10 @@ export interface ModelOverrideOptions {
   // The <Property, Client_Name> map for any renamed properties.
   // Mainly because the original client name has collision with other property names during flattening.
   propertyRenames?: Map<SdkModelPropertyType, string>;
+
+  // If true (default), enable flattening for nested flatten properties when generating samples.
+  // When false, nested flatten properties are not further flattened to match the TypeScript interface structure.
+  enableFlatten?: boolean;
 }
 
 export function getPropertyWithOverrides(
