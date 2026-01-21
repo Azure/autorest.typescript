@@ -752,6 +752,10 @@ export const azureModularTsps = [
     inputPath: "payload/multipart"
   },
   {
+    outputPath: "payload/xml",
+    inputPath: "payload/xml"
+  },
+  {
     outputPath: "server/versions/versioned",
     inputPath: "server/versions/versioned"
   },

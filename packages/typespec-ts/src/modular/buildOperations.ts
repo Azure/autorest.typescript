@@ -30,7 +30,8 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import {
   getMethodHierarchiesMap,
-  ServiceOperation
+  ServiceOperation,
+  hasDualFormatSupport
 } from "../utils/operationUtil.js";
 import { resolveReference } from "../framework/reference.js";
 import { useDependencies } from "../framework/hooks/useDependencies.js";
@@ -144,6 +145,20 @@ export function buildOperationOptions(
     docs: ["Delay to wait until next poll, in milliseconds."]
   };
 
+  // Check if this operation supports both JSON and XML content types
+  const bodyContentTypes = operation.operation.bodyParam?.contentTypes ?? [];
+  const isDualFormat = hasDualFormatSupport(bodyContentTypes);
+
+  // Content type option for dual-format operations
+  const contentTypeOption = {
+    name: "contentType",
+    type: "string",
+    hasQuestionToken: true,
+    docs: [
+      'The content type for the request body. Defaults to "application/json". Use "application/xml" for XML serialization.'
+    ]
+  };
+
   // handle optional body parameter
   // if (operation.operation.bodyParam?.optional === true) {
   //   options.push(operation.operation.bodyParam);
@@ -151,12 +166,27 @@ export function buildOperationOptions(
   const operationOptionsReference = resolveReference(
     dependencies.OperationOptions
   );
+
+  // Build the additional options array
+  const additionalOptions: {
+    name: string;
+    type: string;
+    hasQuestionToken: boolean;
+    docs: string[];
+  }[] = [];
+  if (isLroOnlyOperation(operation)) {
+    additionalOptions.push(lroOptions);
+  }
+  if (isDualFormat) {
+    additionalOptions.push(contentTypeOption);
+  }
+
   const operationOptionsInterface: InterfaceDeclarationStructure = {
     kind: StructureKind.Interface,
     name,
     isExported: true,
     extends: [operationOptionsReference],
-    properties: (isLroOnlyOperation(operation) ? [lroOptions] : []).concat(
+    properties: additionalOptions.concat(
       options.map((p) => {
         return {
           docs: getDocsFromDescription(p.doc),
