@@ -145,9 +145,7 @@ export function isMediaTypeMultipartFormData(
 /**
  * Checks if the media type is any multipart type (multipart/mixed, multipart/form-data, etc.)
  */
-export function isMediaTypeMultipart(
-  mediaType: string | string[]
-): boolean {
+export function isMediaTypeMultipart(mediaType: string | string[]): boolean {
   if (Array.isArray(mediaType)) {
     return mediaType.some((mt) => isMediaTypeMultipart(mt));
   }
