@@ -40,6 +40,8 @@ describe("MultiPartClient Rest Client", () => {
         .post({
           contentType: "multipart/form-data",
           body: [
+            // Using 'as any' because generated types use TypeSpec property names ('identifier', 'image')
+            // but runtime expects wire names ('id', 'profileImage') per TypeSpec @name annotation
             { name: "id" as any, body: "123" },
             {
               name: "profileImage" as any,
