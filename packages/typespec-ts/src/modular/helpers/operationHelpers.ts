@@ -1033,21 +1033,32 @@ export function getParameterMap(
   param: SdkHttpParameter,
   optionalParamName: string = "options"
 ): string {
+  // Use lowercase for header names since HTTP headers are case-insensitive
+  const serializedName =
+    param.kind === "header"
+      ? getHeaderSerializedName(param)
+      : getPropertySerializedName(param);
+
   if (isConstant(param.type)) {
-    return `"${param.name}": ${getConstantValue(param.type)}`;
+    return `"${serializedName}": ${getConstantValue(param.type)}`;
   }
 
   if (hasCollectionFormatInfo(param.kind, (param as any).collectionFormat)) {
-    return getCollectionFormatForParam(context, param, optionalParamName);
+    return getCollectionFormatForParam(
+      context,
+      param,
+      optionalParamName,
+      serializedName
+    );
   }
 
   // if the parameter or property is optional, we don't need to handle the default value
   if (isOptional(param)) {
-    return getOptional(context, param, optionalParamName);
+    return getOptional(context, param, optionalParamName, serializedName);
   }
 
   if (isRequired(param)) {
-    return getRequired(context, param);
+    return getRequired(context, param, serializedName);
   }
 
   reportDiagnostic(context.program, {
@@ -1066,9 +1077,9 @@ export function getParameterMap(
 function getCollectionFormatForParam(
   context: SdkContext,
   param: SdkHttpParameter,
-  optionalParamName: string = "options"
+  optionalParamName: string = "options",
+  serializedName: string
 ) {
-  const serializedName = getPropertySerializedName(param);
   const format = (param as any).collectionFormat;
   return `"${serializedName}": ${serializeRequestValue(
     context,
@@ -1112,8 +1123,11 @@ function isRequired(param: SdkHttpParameter) {
   return !param.optional;
 }
 
-function getRequired(context: SdkContext, param: SdkHttpParameter) {
-  const serializedName = getPropertySerializedName(param);
+function getRequired(
+  context: SdkContext,
+  param: SdkHttpParameter,
+  serializedName: string
+) {
   const clientValue = `${param.onClient ? "context." : ""}${param.name}`;
   if (param.type.kind === "model") {
     const propertiesStr = getRequestModelMapping(
@@ -1152,9 +1166,9 @@ function isOptional(param: SdkHttpParameter) {
 function getOptional(
   context: SdkContext,
   param: SdkHttpParameter,
-  optionalParamName: string
+  optionalParamName: string,
+  serializedName: string
 ) {
-  const serializedName = getPropertySerializedName(param);
   const paramName = `${param.onClient ? "context." : `${optionalParamName}?.`}${param.name}`;
   if (param.type.kind === "model") {
     const propertiesStr = getRequestModelMapping(
@@ -1502,6 +1516,14 @@ function getPropertySerializedName(
       ? property.serializationOptions.json?.name
       : property.serializedName) ?? property.name
   );
+}
+
+/**
+ * Get the serialized name for a header parameter, normalized to lowercase.
+ * HTTP headers are case-insensitive, so we normalize to lowercase for consistency.
+ */
+function getHeaderSerializedName(param: SdkHttpParameter) {
+  return getPropertySerializedName(param).toLowerCase();
 }
 
 /**
