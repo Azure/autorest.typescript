@@ -63,6 +63,7 @@ import {
   SdkBodyParameter,
   SdkClientType,
   SdkConstantType,
+  SdkEnumType,
   SdkHttpOperation,
   SdkHttpParameter,
   SdkLroPagingServiceMethod,
@@ -76,6 +77,7 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { isMetadata } from "@typespec/http";
 import { useContext } from "../../contextManager.js";
+import { isExtensibleEnum } from "../type-expressions/get-enum-expression.js";
 
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
@@ -1171,8 +1173,8 @@ function getEncodeForModelProperty(
   property: SdkModelPropertyType
 ): string | undefined {
   if (property.encode && property.type.kind === "array") {
-    // Only arrays of string type can have collectionFormat encoding
-    if (property.type.valueType.kind !== "string") {
+    // Only arrays of string type or string-based enum type can have collectionFormat encoding
+    if (!isStringEncodableArrayValueType(property.type.valueType)) {
       reportDiagnostic(context.program, {
         code: "un-supported-array-encoding",
         format: {
@@ -1195,6 +1197,25 @@ function getEncodeForModelProperty(
     }
   }
   return getEncodeForType(property.type);
+}
+
+/**
+ * Checks if an array value type is string-encodable for collection format encoding.
+ * This includes both string type and string-based enum types.
+ */
+function isStringEncodableArrayValueType(valueType: SdkType): boolean {
+  // Direct string type
+  if (valueType.kind === "string") {
+    return true;
+  }
+  // String-based enum type
+  if (
+    valueType.kind === "enum" &&
+    (valueType as SdkEnumType).valueType.kind === "string"
+  ) {
+    return true;
+  }
+  return false;
 }
 
 function getSerializationExpressionForFlatten(
@@ -1589,7 +1610,15 @@ export function deserializeResponseValue(
               isTypeNullable(type) || getOptionalForType(type) || !required
                 ? `${restValue} === null || ${restValue} === undefined ? ${restValue}: `
                 : "";
-            return `${optionalPrefixForString}${parseHelper}(${restValue})`;
+            if (
+              type.valueType.kind === "enum" &&
+              !isExtensibleEnum(context, type.valueType)
+            ) {
+              // Special handling for non-extensible enums to cast the result to the correct type
+              return `${optionalPrefixForString}${parseHelper}(${restValue}) as ${getTypeExpression(context, type)}`;
+            } else {
+              return `${optionalPrefixForString}${parseHelper}(${restValue})`;
+            }
           }
         }
         return `${prefix}.map((${varName}: any) => { return ${elementNullOrUndefinedPrefix}${deserializeResponseValue(context, type.valueType, varName, true, getEncodeForType(type.valueType), recursionDepth + 1)}})`;
