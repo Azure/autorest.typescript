@@ -25,6 +25,7 @@ export declare class IndividuallyParentClient {
     getIndividuallyParentNestedWithHeaderClient(name: string, options?: IndividuallyParentNestedWithHeaderClientOptionalParams): IndividuallyParentNestedWithHeaderClient;
     getIndividuallyParentNestedWithMultipleClient(name: string, region: string, options?: IndividuallyParentNestedWithMultipleClientOptionalParams): IndividuallyParentNestedWithMultipleClient;
     getIndividuallyParentNestedWithMixedClient(name: string, options?: IndividuallyParentNestedWithMixedClientOptionalParams): IndividuallyParentNestedWithMixedClient;
+    getIndividuallyParentNestedWithParamAliasClient(blobName: string, options?: IndividuallyParentNestedWithParamAliasClientOptionalParams): IndividuallyParentNestedWithParamAliasClient;
 }
 
 export declare interface IndividuallyParentClientOptionalParams extends ClientOptions {
@@ -96,6 +97,17 @@ export declare interface IndividuallyParentNestedWithMultipleClientWithQueryOpti
     format?: string;
 }
 
+export declare class IndividuallyParentNestedWithParamAliasClient {
+    private _client;
+    readonly pipeline: Pipeline;
+    constructor(blobName: string, options?: IndividuallyParentNestedWithParamAliasClientOptionalParams);
+    withOriginalName(options?: WithOriginalNameOptionalParams): Promise<void>;
+    withAliasedName(options?: WithAliasedNameOptionalParams): Promise<void>;
+}
+
+export declare interface IndividuallyParentNestedWithParamAliasClientOptionalParams extends ClientOptions {
+}
+
 export declare class IndividuallyParentNestedWithPathClient {
     private _client;
     readonly pipeline: Pipeline;
@@ -127,6 +139,13 @@ export declare interface IndividuallyParentNestedWithQueryClientOptionalParams e
 }
 
 export declare interface IndividuallyParentNestedWithQueryClientWithQueryOptionalParams extends OperationOptions {
+    format?: string;
+}
+
+export declare interface WithAliasedNameOptionalParams extends OperationOptions {
+}
+
+export declare interface WithOriginalNameOptionalParams extends OperationOptions {
 }
 
 export declare interface WithQueryOptionalParams extends OperationOptions {

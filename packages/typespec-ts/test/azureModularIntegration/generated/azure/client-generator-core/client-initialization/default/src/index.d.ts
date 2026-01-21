@@ -112,6 +112,7 @@ export declare interface QueryParamClientOptionalParams extends ClientOptions {
 }
 
 export declare interface QueryParamClientWithQueryOptionalParams extends OperationOptions {
+    format?: string;
 }
 
 export declare interface WithAliasedNameOptionalParams extends OperationOptions {
