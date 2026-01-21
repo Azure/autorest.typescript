@@ -142,6 +142,20 @@ export function isMediaTypeMultipartFormData(
   return mt ? mt.type === multipart && mt.subtype === formData : false;
 }
 
+/**
+ * Checks if the media type is any multipart type (multipart/mixed, multipart/form-data, etc.)
+ */
+export function isMediaTypeMultipart(
+  mediaType: string | string[]
+): boolean {
+  if (Array.isArray(mediaType)) {
+    return mediaType.some((mt) => isMediaTypeMultipart(mt));
+  }
+
+  const mt = parseMediaType(mediaType);
+  return mt ? mt.type === multipart : false;
+}
+
 export function hasMediaType(
   target: KnownMediaType,
   sourceTypes: KnownMediaType[] = []

@@ -46,7 +46,8 @@ import { SdkContext } from "./interfaces.js";
 import {
   KnownMediaType,
   knownMediaType,
-  isMediaTypeXml
+  isMediaTypeXml,
+  isMediaTypeMultipart
 } from "./mediaTypes.js";
 import { isByteOrByteUnion } from "./modelUtils.js";
 import { getOperationNamespaceInterfaceName } from "./namespaceUtils.js";
@@ -210,6 +211,13 @@ export function isBinaryPayload(
 export function isXmlPayload(contentType: string | string[]): boolean {
   const contentTypes = Array.isArray(contentType) ? contentType : [contentType];
   return contentTypes.some((ct) => isMediaTypeXml(ct));
+}
+
+/**
+ * Checks if the content type(s) indicate multipart payload (multipart/mixed, multipart/form-data, etc.)
+ */
+export function isMultipartPayload(contentType: string | string[]): boolean {
+  return isMediaTypeMultipart(contentType);
 }
 
 /**

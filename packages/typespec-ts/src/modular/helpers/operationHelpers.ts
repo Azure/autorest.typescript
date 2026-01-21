@@ -23,6 +23,7 @@ import {
   hasCollectionFormatInfo,
   isBinaryPayload,
   isXmlPayload,
+  isMultipartPayload,
   hasDualFormatSupport,
   ServiceOperation,
   getCollectionFormatParseHelper,
@@ -242,10 +243,14 @@ export function getDeserializePrivateFunction(
     const contentTypes = operation.operation.responses[0]?.contentTypes ?? [];
     const isXml = isXmlPayload(contentTypes);
     const isDualFormat = hasDualFormatSupport(contentTypes);
+    const isMultipart = isMultipartPayload(contentTypes);
     const useXmlDeserialization =
       isXml &&
       deserializedType.kind === "model" &&
       hasXmlSerialization(deserializedType);
+
+    // Workaround for multipart response: cast return value as any due to lack of multipart response handling in core
+    const multipartCastSuffix = isMultipart ? " as any" : "";
 
     // For dual-format responses, check content-type header at runtime
     if (
@@ -329,7 +334,7 @@ export function getDeserializePrivateFunction(
         }
       }
     } else {
-      // JSON response (default)
+      // JSON response (default) - also handles multipart responses
       const deserializeFunctionName = buildModelDeserializer(
         context,
         deserializedType,
@@ -340,12 +345,12 @@ export function getDeserializePrivateFunction(
       );
       if (deserializeFunctionName) {
         statements.push(
-          `return ${deserializeFunctionName}(${deserializedRoot})`
+          `return ${deserializeFunctionName}(${deserializedRoot})${multipartCastSuffix}`
         );
       } else if (
         isAzureCoreErrorType(context.program, deserializedType.__raw)
       ) {
-        statements.push(`return ${deserializedRoot}`);
+        statements.push(`return ${deserializedRoot}${multipartCastSuffix}`);
       } else {
         statements.push(
           `return ${deserializeResponseValue(
@@ -356,7 +361,7 @@ export function getDeserializePrivateFunction(
             isBinaryPayload(context, response.type!.__raw!, contentTypes)
               ? "binary"
               : getEncodeForType(deserializedType)
-          )}`
+          )}${multipartCastSuffix}`
         );
       }
     }
