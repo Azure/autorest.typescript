@@ -41,8 +41,12 @@ describe("MultiPartClient Rest Client", () => {
         .post({
           contentType: "multipart/form-data",
           body: [
-            { name: "id", body: "123" },
-            { name: "profileImage", body: file, filename: "profileImage.jpg" }
+            { name: "id" as any, body: "123" },
+            {
+              name: "profileImage" as any,
+              body: file,
+              filename: "profileImage.jpg"
+            }
           ]
         });
       assert.strictEqual(result.status, "204");
@@ -71,9 +75,7 @@ describe("MultiPartClient Rest Client", () => {
         .path("/multipart/form-data/optional-parts")
         .post({
           contentType: "multipart/form-data",
-          body: [
-            { name: "id", body: "123" }
-          ]
+          body: [{ name: "id", body: "123" }]
         });
       assert.strictEqual(result.status, "204");
     });
