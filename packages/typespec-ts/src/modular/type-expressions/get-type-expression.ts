@@ -89,6 +89,10 @@ export function getTypeExpression(
       return `Record<string, ${valueType}>`;
     }
     case "model":
+      // Special handling for TypeSpec.Http.File
+      if (type.crossLanguageDefinitionId === "TypeSpec.Http.File") {
+        return "Uint8Array";
+      }
       return getModelExpression(context, type);
     case "nullable":
       return getNullableExpression(context, type, options);

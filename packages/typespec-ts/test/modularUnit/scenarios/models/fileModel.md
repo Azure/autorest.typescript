@@ -1,4 +1,4 @@
-# only: Should generate file model
+# Should generate file model
 
 ## TypeSpec
 
@@ -33,6 +33,7 @@ export function siteSerializer(item: Site): any {
 ```ts operations
 import { TestingContext as Client } from "./index.js";
 import { Site, siteSerializer } from "../models/models.js";
+import { getBinaryResponse } from "../static-helpers/serialization/get-binary-response.js";
 import { TestOptionalParams } from "./options.js";
 import {
   StreamableMethod,
@@ -56,23 +57,22 @@ export function _testSend(
     });
 }
 
-export async function _testDeserialize(
-  result: PathUncheckedResponse,
-): Promise<__PLACEHOLDER_o22__> {
+export async function _testDeserialize(result: PathUncheckedResponse): Promise<Uint8Array> {
   const expectedStatuses = ["200"];
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
 
-  return __PLACEHOLDER_o22_sdeserializer__(result.body);
+  return result.body;
 }
 
 export async function test(
   context: Client,
   site: Site,
   options: TestOptionalParams = { requestOptions: {} },
-): Promise<__PLACEHOLDER_o22__> {
-  const result = await _testSend(context, site, options);
+): Promise<Uint8Array> {
+  const streamableMethod = _testSend(context, site, options);
+  const result = await getBinaryResponse(streamableMethod);
   return _testDeserialize(result);
 }
 ```

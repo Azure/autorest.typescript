@@ -80,6 +80,13 @@ export function buildModelDeserializer(
   }
 ): FunctionDeclarationStructure | undefined | string {
   // const modelTcgcType = getTcgcType(type) as SdkModelType;
+  // TypeSpec.Http.File doesn't need deserialization - it's already a Uint8Array
+  if (
+    type.kind === "model" &&
+    type.crossLanguageDefinitionId === "TypeSpec.Http.File"
+  ) {
+    return undefined;
+  }
   if (!isSupportedSerializeType(type)) {
     return undefined;
   }
