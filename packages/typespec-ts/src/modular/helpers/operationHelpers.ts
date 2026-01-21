@@ -232,30 +232,42 @@ export function getDeserializePrivateFunction(
 
   if (deserializedType) {
     const contentTypes = operation.operation.responses[0]?.contentTypes;
-    const deserializeFunctionName = buildModelDeserializer(
-      context,
-      deserializedType,
-      {
-        nameOnly: true,
-        skipDiscriminatedUnionSuffix: false
-      }
-    );
-    if (deserializeFunctionName) {
-      statements.push(`return ${deserializeFunctionName}(${deserializedRoot})`);
-    } else if (isAzureCoreErrorType(context.program, deserializedType.__raw)) {
+    // For File type responses, directly return the body
+    if (
+      deserializedType.kind === "model" &&
+      deserializedType.crossLanguageDefinitionId === "TypeSpec.Http.File"
+    ) {
       statements.push(`return ${deserializedRoot}`);
     } else {
-      statements.push(
-        `return ${deserializeResponseValue(
-          context,
-          deserializedType,
-          deserializedRoot,
-          true,
-          isBinaryPayload(context, response.type!.__raw!, contentTypes!)
-            ? "binary"
-            : getEncodeForType(deserializedType)
-        )}`
+      const deserializeFunctionName = buildModelDeserializer(
+        context,
+        deserializedType,
+        {
+          nameOnly: true,
+          skipDiscriminatedUnionSuffix: false
+        }
       );
+      if (deserializeFunctionName) {
+        statements.push(
+          `return ${deserializeFunctionName}(${deserializedRoot})`
+        );
+      } else if (
+        isAzureCoreErrorType(context.program, deserializedType.__raw)
+      ) {
+        statements.push(`return ${deserializedRoot}`);
+      } else {
+        statements.push(
+          `return ${deserializeResponseValue(
+            context,
+            deserializedType,
+            deserializedRoot,
+            true,
+            isBinaryPayload(context, response.type!.__raw!, contentTypes!)
+              ? "binary"
+              : getEncodeForType(deserializedType)
+          )}`
+        );
+      }
     }
   } else if (returnType.type === "void") {
     statements.push("return;");
@@ -501,7 +513,11 @@ export function getOperationFunction(
   const parameterList = parameters.map((p) => p.name).join(", ");
   // Special case for binary-only bodies: use helper to call streaming methods so that Core doesn't poison the response body by
   // doing a UTF-8 decode on the raw bytes.
-  if (response?.type?.kind === "bytes" && response.type.encode === "bytes") {
+  const isBinaryResponse =
+    (response?.type?.kind === "bytes" && response.type.encode === "bytes") ||
+    (response?.type?.kind === "model" &&
+      response.type.crossLanguageDefinitionId === "TypeSpec.Http.File");
+  if (isBinaryResponse) {
     statements.push(`const streamableMethod = _${name}Send(${parameterList});`);
     statements.push(
       `const result = await ${resolveReference(SerializationHelpers.getBinaryResponse)}(streamableMethod);`
@@ -1685,6 +1701,10 @@ export function deserializeResponseValue(
         return `${restValue} as any`;
       }
     case "model": // generate deserialize logic for spread model types
+      // Special handling for TypeSpec.Http.File - it's already a Uint8Array
+      if (type.crossLanguageDefinitionId === "TypeSpec.Http.File") {
+        return restValue;
+      }
       return `{${getResponseMapping(context, type, "").join(",")}}`;
     case "nullable":
       return deserializeResponseValue(
