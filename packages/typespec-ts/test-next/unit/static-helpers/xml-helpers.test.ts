@@ -17,7 +17,11 @@ describe("XML Helpers", () => {
     it("should serialize a simple model to XML string", () => {
       const item = { name: "foo", age: 123 };
       const properties: XmlPropertyMetadata[] = [
-        { propertyName: "name", xmlOptions: { name: "name" }, type: "primitive" },
+        {
+          propertyName: "name",
+          xmlOptions: { name: "name" },
+          type: "primitive"
+        },
         { propertyName: "age", xmlOptions: { name: "age" }, type: "primitive" }
       ];
 
@@ -33,7 +37,11 @@ describe("XML Helpers", () => {
       const properties: XmlPropertyMetadata[] = [];
 
       const nullResult = serializeToXml(null as any, properties, "Root");
-      const undefinedResult = serializeToXml(undefined as any, properties, "Root");
+      const undefinedResult = serializeToXml(
+        undefined as any,
+        properties,
+        "Root"
+      );
 
       // When input is null/undefined, serializeModelToXml returns {Root: {}}, which
       // fast-xml-parser suppresses as an empty node due to suppressEmptyNode: true
@@ -44,14 +52,22 @@ describe("XML Helpers", () => {
     it("should serialize attributes correctly", () => {
       const item = { id: 123, enabled: true };
       const properties: XmlPropertyMetadata[] = [
-        { propertyName: "id", xmlOptions: { name: "id", attribute: true }, type: "primitive" },
-        { propertyName: "enabled", xmlOptions: { name: "enabled", attribute: true }, type: "primitive" }
+        {
+          propertyName: "id",
+          xmlOptions: { name: "id", attribute: true },
+          type: "primitive"
+        },
+        {
+          propertyName: "enabled",
+          xmlOptions: { name: "enabled", attribute: true },
+          type: "primitive"
+        }
       ];
 
       const result = serializeToXml(item, properties, "Model");
 
       expect(result).toContain('id="123"');
-      // fast-xml-parser serializes boolean true as just the attribute name (enabled) 
+      // fast-xml-parser serializes boolean true as just the attribute name (enabled)
       // without a value, which is valid XML shorthand
       expect(result).toMatch(/enabled/);
     });
@@ -102,7 +118,11 @@ describe("XML Helpers", () => {
         }
       };
       const properties: XmlPropertyMetadata[] = [
-        { propertyName: "metadata", xmlOptions: { name: "metadata" }, type: "dict" }
+        {
+          propertyName: "metadata",
+          xmlOptions: { name: "metadata" },
+          type: "dict"
+        }
       ];
 
       const result = serializeToXml(item, properties, "Model");
@@ -136,8 +156,16 @@ describe("XML Helpers", () => {
     it("should serialize unwrapped text content", () => {
       const item = { language: "foo", content: "This is some text." };
       const properties: XmlPropertyMetadata[] = [
-        { propertyName: "language", xmlOptions: { name: "language", attribute: true }, type: "primitive" },
-        { propertyName: "content", xmlOptions: { name: "content", unwrapped: true }, type: "primitive" }
+        {
+          propertyName: "language",
+          xmlOptions: { name: "language", attribute: true },
+          type: "primitive"
+        },
+        {
+          propertyName: "content",
+          xmlOptions: { name: "content", unwrapped: true },
+          type: "primitive"
+        }
       ];
 
       const result = serializeToXml(item, properties, "ModelWithText");
@@ -159,12 +187,10 @@ describe("XML Helpers", () => {
         }
       ];
 
-      const result = serializeToXml(
-        item,
-        properties,
-        "Model",
-        { namespace: "http://example.com", prefix: "ex" }
-      );
+      const result = serializeToXml(item, properties, "Model", {
+        namespace: "http://example.com",
+        prefix: "ex"
+      });
 
       expect(result).toContain("xmlns:ex");
       expect(result).toContain("ex:name");
@@ -173,7 +199,11 @@ describe("XML Helpers", () => {
     it("should skip undefined properties", () => {
       const item = { name: "foo", age: undefined };
       const properties: XmlPropertyMetadata[] = [
-        { propertyName: "name", xmlOptions: { name: "name" }, type: "primitive" },
+        {
+          propertyName: "name",
+          xmlOptions: { name: "name" },
+          type: "primitive"
+        },
         { propertyName: "age", xmlOptions: { name: "age" }, type: "primitive" }
       ];
 
@@ -186,7 +216,12 @@ describe("XML Helpers", () => {
     it("should serialize Date with rfc3339 encoding", () => {
       const item = { created: new Date("2023-08-01T12:00:00Z") };
       const properties: XmlPropertyMetadata[] = [
-        { propertyName: "created", xmlOptions: { name: "created" }, type: "date", dateEncoding: "rfc3339" }
+        {
+          propertyName: "created",
+          xmlOptions: { name: "created" },
+          type: "date",
+          dateEncoding: "rfc3339"
+        }
       ];
 
       const result = serializeToXml(item, properties, "Model");
@@ -197,7 +232,12 @@ describe("XML Helpers", () => {
     it("should serialize Date with rfc7231 encoding", () => {
       const item = { created: new Date("2023-08-01T12:00:00Z") };
       const properties: XmlPropertyMetadata[] = [
-        { propertyName: "created", xmlOptions: { name: "created" }, type: "date", dateEncoding: "rfc7231" }
+        {
+          propertyName: "created",
+          xmlOptions: { name: "created" },
+          type: "date",
+          dateEncoding: "rfc7231"
+        }
       ];
 
       const result = serializeToXml(item, properties, "Model");
@@ -208,7 +248,12 @@ describe("XML Helpers", () => {
     it("should serialize Date with unixTimestamp encoding", () => {
       const item = { created: new Date("2023-08-01T12:00:00Z") };
       const properties: XmlPropertyMetadata[] = [
-        { propertyName: "created", xmlOptions: { name: "created" }, type: "date", dateEncoding: "unixTimestamp" }
+        {
+          propertyName: "created",
+          xmlOptions: { name: "created" },
+          type: "date",
+          dateEncoding: "unixTimestamp"
+        }
       ];
 
       const result = serializeToXml(item, properties, "Model");
@@ -232,7 +277,11 @@ describe("XML Helpers", () => {
     it("should return an object structure suitable for XML builder", () => {
       const item = { name: "test" };
       const properties: XmlPropertyMetadata[] = [
-        { propertyName: "name", xmlOptions: { name: "name" }, type: "primitive" }
+        {
+          propertyName: "name",
+          xmlOptions: { name: "name" },
+          type: "primitive"
+        }
       ];
 
       const result = serializeModelToXml(item, properties, "Root");
@@ -265,13 +314,13 @@ describe("XML Helpers", () => {
     });
 
     it("should preserve whitespace in text content", () => {
-      // When there's only text content in an element, the parser 
+      // When there's only text content in an element, the parser
       // places it directly as the element value (leaf node)
       const xml = "<root>\n  Some text with whitespace.\n</root>";
 
       const result = parseXmlString(xml);
 
-      // With only text content and no child elements, the text is 
+      // With only text content and no child elements, the text is
       // returned directly as the element value (leaf node - not wrapped in array)
       expect(result.root).toBe("\n  Some text with whitespace.\n");
     });
@@ -283,13 +332,138 @@ describe("XML Helpers", () => {
 
       expect(result.root).toBeDefined();
     });
+
+    it("should parse elements with underscore names correctly", () => {
+      // This test verifies that element names containing underscores are properly parsed.
+      // Azure Storage services use underscores in metadata keys, so this is important.
+      // The default textNodeName in fast-xml-parser is "#text", which doesn't conflict
+      // with underscore element names.
+      const xml = "<Metadata><h>v</h><_>underscore</_></Metadata>";
+
+      const result = parseXmlString(xml);
+
+      // The underscore element should be parsed as a regular element
+      expect(result.Metadata[0].h).toBe("v");
+      expect(result.Metadata[0]._).toBe("underscore");
+    });
+
+    it("should handle mixed content with underscore elements", () => {
+      // More complex case with multiple underscore-prefixed elements
+      const xml =
+        "<Container><_key1>value1</_key1><normal>value2</normal><_key2>value3</_key2></Container>";
+
+      const result = parseXmlString(xml);
+
+      expect(result.Container[0]._key1).toBe("value1");
+      expect(result.Container[0].normal).toBe("value2");
+      expect(result.Container[0]._key2).toBe("value3");
+    });
+
+    it("should handle unwanted BOM characters", () => {
+      // BOM (Byte Order Mark) character at the start of XML should be handled
+      const xml = "\uFEFF<fruit>apple</fruit>";
+
+      const result = parseXmlString(xml);
+
+      expect(result.fruit).toBe("apple");
+    });
+
+    it("should handle URL encoded content with ampersands", () => {
+      // URL encoded content with &amp; should be properly decoded
+      const xml =
+        "<entry><id>https://example.com/path?api-version=2017-04&amp;enrich=False</id></entry>";
+
+      const result = parseXmlString(xml);
+
+      expect(result.entry[0].id).toBe(
+        "https://example.com/path?api-version=2017-04&enrich=False"
+      );
+    });
+
+    it("should handle special characters including Chinese", () => {
+      // Test special characters like Chinese characters and symbols
+      const xml =
+        "<Blob><Name>汉字. special ~!@#$%^&amp;*()_+`1234567890-={}|[]:\";'&lt;&gt;?,/'</Name></Blob>";
+
+      const result = parseXmlString(xml);
+
+      expect(result.Blob[0].Name).toBe(
+        "汉字. special ~!@#$%^&*()_+`1234567890-={}|[]:\";'<>?,/'"
+      );
+    });
+
+    it("should keep leading spaces in element values", () => {
+      const xml = "<Blob><Name>  leadingspace.txt</Name></Blob>";
+
+      const result = parseXmlString(xml);
+
+      expect(result.Blob[0].Name).toBe("  leadingspace.txt");
+    });
+
+    it("should keep trailing spaces in element values", () => {
+      const xml = "<Blob><Name>trailingspace   </Name></Blob>";
+
+      const result = parseXmlString(xml);
+
+      expect(result.Blob[0].Name).toBe("trailingspace   ");
+    });
+
+    it("should not parse nested escaped XML documents", () => {
+      // Escaped XML within XML should remain as string, not be parsed
+      const xml =
+        '<NotificationDetails><NotificationBody>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;toast&gt;&lt;visual&gt;&lt;binding template="ToastText01"&gt;&lt;text id="1"&gt;Hello from a .NET App!&lt;/text&gt;&lt;/binding&gt;&lt;/visual&gt;&lt;/toast&gt;</NotificationBody></NotificationDetails>';
+
+      const result = parseXmlString(xml);
+
+      expect(result.NotificationDetails[0].NotificationBody).toBe(
+        '<?xml version="1.0" encoding="utf-16"?><toast><visual><binding template="ToastText01"><text id="1">Hello from a .NET App!</text></binding></visual></toast>'
+      );
+    });
+
+    it("should parse XML with declaration header", () => {
+      const xml =
+        '<?xml version="1.0" encoding="utf-8"?><SignedIdentifiers><SignedIdentifier><Id>test</Id></SignedIdentifier></SignedIdentifiers>';
+
+      const result = parseXmlString(xml);
+
+      expect(result.SignedIdentifiers[0].SignedIdentifier[0].Id).toBe("test");
+    });
+
+    it("should handle namespace prefixes", () => {
+      const xml =
+        '<h:table xmlns:h="http://www.w3.org/TR/html4/"><h:tr><h:td>Apples</h:td><h:td>Bananas</h:td></h:tr></h:table>';
+
+      const result = parseXmlString(xml);
+
+      expect(result["h:table"][0]["@_xmlns:h"]).toBe(
+        "http://www.w3.org/TR/html4/"
+      );
+      expect(result["h:table"][0]["h:tr"][0]["h:td"]).toEqual([
+        "Apples",
+        "Bananas"
+      ]);
+    });
+
+    it("should handle invalid XML gracefully", () => {
+      // Note: fast-xml-parser by default does not throw on invalid XML,
+      // it tries to parse what it can. This is different from core-xml which validates.
+      // This test documents the current behavior.
+      const result = parseXmlString("INVALID");
+
+      // fast-xml-parser returns the text content when it can't parse structure
+      expect(result).toBeDefined();
+    });
   });
 
   describe("deserializeFromXml", () => {
     it("should deserialize a simple model from XML string", () => {
       const xml = "<SimpleModel><name>foo</name><age>123</age></SimpleModel>";
       const properties: XmlPropertyDeserializeMetadata[] = [
-        { propertyName: "name", xmlOptions: { name: "name" }, type: "primitive" },
+        {
+          propertyName: "name",
+          xmlOptions: { name: "name" },
+          type: "primitive"
+        },
         { propertyName: "age", xmlOptions: { name: "age" }, type: "primitive" }
       ];
 
@@ -301,8 +475,16 @@ describe("XML Helpers", () => {
     it("should deserialize attributes", () => {
       const xml = '<Model id="123" enabled="true"/>';
       const properties: XmlPropertyDeserializeMetadata[] = [
-        { propertyName: "id", xmlOptions: { name: "id", attribute: true }, type: "primitive" },
-        { propertyName: "enabled", xmlOptions: { name: "enabled", attribute: true }, type: "primitive" }
+        {
+          propertyName: "id",
+          xmlOptions: { name: "id", attribute: true },
+          type: "primitive"
+        },
+        {
+          propertyName: "enabled",
+          xmlOptions: { name: "enabled", attribute: true },
+          type: "primitive"
+        }
       ];
 
       const result = deserializeFromXml(xml, properties, "Model");
@@ -365,7 +547,11 @@ describe("XML Helpers", () => {
         </Model>
       `;
       const properties: XmlPropertyDeserializeMetadata[] = [
-        { propertyName: "metadata", xmlOptions: { name: "metadata" }, type: "dict" }
+        {
+          propertyName: "metadata",
+          xmlOptions: { name: "metadata" },
+          type: "dict"
+        }
       ];
 
       const result = deserializeFromXml(xml, properties, "Model");
@@ -387,7 +573,11 @@ describe("XML Helpers", () => {
         </Model>
       `;
       const properties: XmlPropertyDeserializeMetadata[] = [
-        { propertyName: "metadata", xmlOptions: { name: "metadata" }, type: "dict" }
+        {
+          propertyName: "metadata",
+          xmlOptions: { name: "metadata" },
+          type: "dict"
+        }
       ];
 
       const result = deserializeFromXml(xml, properties, "Model");
@@ -423,36 +613,69 @@ describe("XML Helpers", () => {
     });
 
     it("should deserialize unwrapped text content", () => {
-      const xml = '<ModelWithText language="foo">This is some text.</ModelWithText>';
+      const xml =
+        '<ModelWithText language="foo">This is some text.</ModelWithText>';
       const properties: XmlPropertyDeserializeMetadata[] = [
-        { propertyName: "language", xmlOptions: { name: "language", attribute: true }, type: "primitive" },
-        { propertyName: "content", xmlOptions: { name: "content", unwrapped: true }, type: "primitive" }
+        {
+          propertyName: "language",
+          xmlOptions: { name: "language", attribute: true },
+          type: "primitive"
+        },
+        {
+          propertyName: "content",
+          xmlOptions: { name: "content", unwrapped: true },
+          type: "primitive"
+        }
       ];
 
       const result = deserializeFromXml(xml, properties, "ModelWithText");
 
-      expect(result).toEqual({ language: "foo", content: "This is some text." });
+      expect(result).toEqual({
+        language: "foo",
+        content: "This is some text."
+      });
     });
 
     it("should preserve whitespace in unwrapped text content", () => {
-      const xml = '<ModelWithText language="foo">\n  This is some text.\n</ModelWithText>';
+      const xml =
+        '<ModelWithText language="foo">\n  This is some text.\n</ModelWithText>';
       const properties: XmlPropertyDeserializeMetadata[] = [
-        { propertyName: "language", xmlOptions: { name: "language", attribute: true }, type: "primitive" },
-        { propertyName: "content", xmlOptions: { name: "content", unwrapped: true }, type: "primitive" }
+        {
+          propertyName: "language",
+          xmlOptions: { name: "language", attribute: true },
+          type: "primitive"
+        },
+        {
+          propertyName: "content",
+          xmlOptions: { name: "content", unwrapped: true },
+          type: "primitive"
+        }
       ];
 
       const result = deserializeFromXml(xml, properties, "ModelWithText");
 
-      expect(result).toEqual({ language: "foo", content: "\n  This is some text.\n" });
+      expect(result).toEqual({
+        language: "foo",
+        content: "\n  This is some text.\n"
+      });
     });
 
     it("should deserialize Date with rfc3339 encoding", () => {
       const xml = "<Model><created>2023-08-01T12:00:00.000Z</created></Model>";
       const properties: XmlPropertyDeserializeMetadata[] = [
-        { propertyName: "created", xmlOptions: { name: "created" }, type: "date", dateEncoding: "rfc3339" }
+        {
+          propertyName: "created",
+          xmlOptions: { name: "created" },
+          type: "date",
+          dateEncoding: "rfc3339"
+        }
       ];
 
-      const result = deserializeFromXml<{ created: Date }>(xml, properties, "Model");
+      const result = deserializeFromXml<{ created: Date }>(
+        xml,
+        properties,
+        "Model"
+      );
 
       expect(result.created).toBeInstanceOf(Date);
       expect(result.created.toISOString()).toBe("2023-08-01T12:00:00.000Z");
@@ -461,10 +684,19 @@ describe("XML Helpers", () => {
     it("should deserialize Date with unixTimestamp encoding", () => {
       const xml = "<Model><created>1690891200</created></Model>";
       const properties: XmlPropertyDeserializeMetadata[] = [
-        { propertyName: "created", xmlOptions: { name: "created" }, type: "date", dateEncoding: "unixTimestamp" }
+        {
+          propertyName: "created",
+          xmlOptions: { name: "created" },
+          type: "date",
+          dateEncoding: "unixTimestamp"
+        }
       ];
 
-      const result = deserializeFromXml<{ created: Date }>(xml, properties, "Model");
+      const result = deserializeFromXml<{ created: Date }>(
+        xml,
+        properties,
+        "Model"
+      );
 
       expect(result.created).toBeInstanceOf(Date);
       expect(result.created.toISOString()).toBe("2023-08-01T12:00:00.000Z");
@@ -476,7 +708,11 @@ describe("XML Helpers", () => {
         { propertyName: "data", xmlOptions: { name: "data" }, type: "bytes" }
       ];
 
-      const result = deserializeFromXml<{ data: Uint8Array }>(xml, properties, "Model");
+      const result = deserializeFromXml<{ data: Uint8Array }>(
+        xml,
+        properties,
+        "Model"
+      );
 
       expect(result.data).toBeInstanceOf(Uint8Array);
       expect(Array.from(result.data)).toEqual([72, 101, 108, 108, 111]);
@@ -500,7 +736,11 @@ describe("XML Helpers", () => {
     it("should handle missing optional fields", () => {
       const xml = "<Model><name>test</name></Model>";
       const properties: XmlPropertyDeserializeMetadata[] = [
-        { propertyName: "name", xmlOptions: { name: "name" }, type: "primitive" },
+        {
+          propertyName: "name",
+          xmlOptions: { name: "name" },
+          type: "primitive"
+        },
         { propertyName: "age", xmlOptions: { name: "age" }, type: "primitive" }
       ];
 
@@ -517,7 +757,11 @@ describe("XML Helpers", () => {
   <age>42</age>
 </Model>`;
       const properties: XmlPropertyDeserializeMetadata[] = [
-        { propertyName: "name", xmlOptions: { name: "name" }, type: "primitive" },
+        {
+          propertyName: "name",
+          xmlOptions: { name: "name" },
+          type: "primitive"
+        },
         { propertyName: "age", xmlOptions: { name: "age" }, type: "primitive" }
       ];
 
@@ -543,19 +787,23 @@ describe("XML Helpers", () => {
 
       const properties: XmlPropertyDeserializeMetadata[] = [
         {
-          propertyName: "modelData",  // Different from XML name "SimpleModelData"
+          propertyName: "modelData", // Different from XML name "SimpleModelData"
           xmlOptions: { name: "SimpleModelData" },
           type: "object",
-          deserializer: (val: any) => ({ name: val.name, age: val.age }),
+          deserializer: (val: any) => ({ name: val.name, age: val.age })
         },
         {
-          propertyName: "colors",  // Different from XML name "PossibleColors"
+          propertyName: "colors", // Different from XML name "PossibleColors"
           xmlOptions: { name: "PossibleColors", itemsName: "string" },
-          type: "array",
-        },
+          type: "array"
+        }
       ];
 
-      const result = deserializeFromXml(xml, properties, "ModelWithEncodedNamesSrc");
+      const result = deserializeFromXml(
+        xml,
+        properties,
+        "ModelWithEncodedNamesSrc"
+      );
 
       expect(result).toEqual({
         modelData: { name: "foo", age: 123 },
@@ -582,18 +830,18 @@ describe("XML Helpers", () => {
           propertyName: "data",
           xmlOptions: { name: "data" },
           type: "object",
-          deserializer: (val: any) => ({ id: val.id, label: val.label }),
+          deserializer: (val: any) => ({ id: val.id, label: val.label })
         },
         {
           propertyName: "tags",
           xmlOptions: { name: "tags", itemsName: "tag" },
-          type: "array",
+          type: "array"
         },
         {
           propertyName: "count",
           xmlOptions: { name: "count" },
-          type: "primitive",
-        },
+          type: "primitive"
+        }
       ];
 
       const result = deserializeFromXml(xml, properties, "ComplexModel");
@@ -710,7 +958,11 @@ describe("XML Helpers", () => {
     it("should round-trip a simple model", () => {
       const original = { name: "foo", age: 123 };
       const properties: XmlPropertyMetadata[] = [
-        { propertyName: "name", xmlOptions: { name: "name" }, type: "primitive" },
+        {
+          propertyName: "name",
+          xmlOptions: { name: "name" },
+          type: "primitive"
+        },
         { propertyName: "age", xmlOptions: { name: "age" }, type: "primitive" }
       ];
 
@@ -741,8 +993,16 @@ describe("XML Helpers", () => {
       // which parses back as empty string. Use numeric values for reliable round-trip.
       const original = { id1: 123, id2: 456 };
       const properties: XmlPropertyMetadata[] = [
-        { propertyName: "id1", xmlOptions: { name: "id1", attribute: true }, type: "primitive" },
-        { propertyName: "id2", xmlOptions: { name: "id2", attribute: true }, type: "primitive" }
+        {
+          propertyName: "id1",
+          xmlOptions: { name: "id1", attribute: true },
+          type: "primitive"
+        },
+        {
+          propertyName: "id2",
+          xmlOptions: { name: "id2", attribute: true },
+          type: "primitive"
+        }
       ];
 
       const xml = serializeToXml(original, properties, "Model");
@@ -759,7 +1019,11 @@ describe("XML Helpers", () => {
         }
       };
       const properties: XmlPropertyMetadata[] = [
-        { propertyName: "metadata", xmlOptions: { name: "metadata" }, type: "dict" }
+        {
+          propertyName: "metadata",
+          xmlOptions: { name: "metadata" },
+          type: "dict"
+        }
       ];
 
       const xml = serializeToXml(original, properties, "Model");
