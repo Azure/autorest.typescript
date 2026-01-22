@@ -281,7 +281,7 @@ function prepareExampleValue(
   onClient?: boolean
 ): ExampleValue {
   return {
-    name: normalizeName(name, NameType.Parameter),
+    name: normalizeName(name, NameType.Parameter, true),
     value:
       typeof value === "string" ? value : getParameterValue(context, value),
     isOptional: Boolean(isOptional),
@@ -380,7 +380,7 @@ function prepareExampleParameters(
     result.push(
       prepareExampleValue(
         dpgContext,
-        normalizeName(exampleValue.parameter.name, NameType.Parameter, true),
+        exampleValue.parameter.name,
         exampleValue.value,
         param.optional,
         param.onClient
@@ -436,7 +436,7 @@ function prepareExampleParameters(
       result.push(
         prepareExampleValue(
           dpgContext,
-          normalizeName(bodyParam.name, NameType.Parameter, true),
+          bodyParam.name,
           bodyExample.value,
           bodyParam.optional,
           bodyParam.onClient
@@ -457,7 +457,7 @@ function prepareExampleParameters(
       result.push(
         prepareExampleValue(
           dpgContext,
-          normalizeName(param.parameter.name, NameType.Parameter, true),
+          param.parameter.name,
           param.value,
           true,
           param.parameter.onClient
