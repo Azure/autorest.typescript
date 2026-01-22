@@ -1961,7 +1961,16 @@ export function getExpectedStatuses(operation: ServiceOperation): string {
   let statusCodes = operation.operation.responses.map((x) => x.statusCodes);
   // LROs may call the same path but with GET to get the operation status.
   if (isLroOnlyOperation(operation) && operation.operation.verb !== "get") {
-    statusCodes = Array.from(new Set([...statusCodes, 200, 201, 202]));
+    // According to Azure REST API specs (R2005), different HTTP methods have different expected status codes:
+    // DELETE: 200, 202, 204 (no 201)
+    // POST: 200, 201, 202, 204
+    // PUT/PATCH: 200, 201, 202
+    const verb = operation.operation.verb.toLowerCase();
+    if (verb === "delete") {
+      statusCodes = Array.from(new Set([...statusCodes, 200, 202]));
+    } else {
+      statusCodes = Array.from(new Set([...statusCodes, 200, 201, 202]));
+    }
   }
 
   return `[${statusCodes.map((x) => `"${x}"`).join(", ")}]`;
